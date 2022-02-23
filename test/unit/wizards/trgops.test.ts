@@ -4,7 +4,7 @@ import { SinonSpy, spy } from 'sinon';
 import '../../mock-wizard.js';
 import { MockWizard } from '../../mock-wizard.js';
 
-import { isUpdate, Update, WizardInput } from '../../../src/foundation.js';
+import { isUpdate, Replace, WizardInput } from '../../../src/foundation.js';
 import { WizardSelect } from '../../../src/wizard-select.js';
 import { editTrgOpsWizard } from '../../../src/wizards/trgops.js';
 
@@ -68,7 +68,7 @@ describe('Wizards for SCL TrgOps element', () => {
       const action = actionEvent.args[0][0].detail.action;
       expect(action).to.satisfy(isUpdate);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.have.attribute('dchg', 'true');
       expect(updateAction.new.element).to.have.attribute('dchg', 'false');
     });
@@ -86,7 +86,7 @@ describe('Wizards for SCL TrgOps element', () => {
       const action = actionEvent.args[0][0].detail.action;
       expect(action).to.satisfy(isUpdate);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.not.have.attribute('qchg');
       expect(updateAction.new.element).to.have.attribute('qchg', 'false');
     });
@@ -104,7 +104,7 @@ describe('Wizards for SCL TrgOps element', () => {
       const action = actionEvent.args[0][0].detail.action;
       expect(action).to.satisfy(isUpdate);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.not.have.attribute('dupd');
       expect(updateAction.new.element).to.have.attribute('dupd', 'true');
     });
@@ -121,7 +121,7 @@ describe('Wizards for SCL TrgOps element', () => {
       const action = actionEvent.args[0][0].detail.action;
       expect(action).to.satisfy(isUpdate);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.have.attribute('gi', 'false');
       expect(updateAction.new.element).to.have.attribute('gi', 'true');
     });
@@ -139,7 +139,7 @@ describe('Wizards for SCL TrgOps element', () => {
       const action = actionEvent.args[0][0].detail.action;
       expect(action).to.satisfy(isUpdate);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.not.have.attribute('period');
       expect(updateAction.new.element).to.have.attribute('period', 'true');
     });

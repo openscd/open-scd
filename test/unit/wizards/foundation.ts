@@ -1,7 +1,13 @@
-import {expect} from "@open-wc/testing";
+import { expect } from '@open-wc/testing';
 
-import {isUpdate, SimpleAction, Update, WizardActor, WizardInput} from "../../../src/foundation.js";
-import {WizardTextField} from "../../../src/wizard-textfield.js";
+import {
+  isUpdate,
+  SimpleAction,
+  Replace,
+  WizardActor,
+  WizardInput,
+} from '../../../src/foundation.js';
+import { WizardTextField } from '../../../src/wizard-textfield.js';
 
 const noOp = () => {
   return;
@@ -12,7 +18,10 @@ export const newWizard = (done = noOp) => {
   return element;
 };
 
-export async function setWizardTextFieldValue(field: WizardTextField, value: string | null): Promise<void> {
+export async function setWizardTextFieldValue(
+  field: WizardTextField,
+  value: string | null
+): Promise<void> {
   if (field.nullSwitch && !field.nullSwitch.checked) {
     field.nullSwitch?.click();
   }
@@ -20,38 +29,64 @@ export async function setWizardTextFieldValue(field: WizardTextField, value: str
   await field.requestUpdate();
 }
 
-export function executeWizardUpdateAction(wizardActor: WizardActor, inputs: WizardInput[]): Update {
+export function executeWizardUpdateAction(
+  wizardActor: WizardActor,
+  inputs: WizardInput[]
+): Replace {
   const updateActions = wizardActor(inputs, newWizard());
   expect(updateActions.length).to.equal(1);
   expect(updateActions[0]).to.satisfy(isUpdate);
-  return <Update>updateActions[0];
+  return <Replace>updateActions[0];
 }
 
-export function expectWizardNoUpdateAction(wizardActor: WizardActor, inputs: WizardInput[]): void {
+export function expectWizardNoUpdateAction(
+  wizardActor: WizardActor,
+  inputs: WizardInput[]
+): void {
   const updateActions = wizardActor(inputs, newWizard());
   expect(updateActions).to.be.empty;
 }
 
-export function expectUpdateAction(simpleAction: SimpleAction, tagName: string, attributeName: string,
-                                   oldValue: string | null, newValue: string | null) {
+export function expectUpdateAction(
+  simpleAction: SimpleAction,
+  tagName: string,
+  attributeName: string,
+  oldValue: string | null,
+  newValue: string | null
+) {
   expect(simpleAction).to.satisfy(isUpdate);
 
-  expect((<Update>simpleAction).old.element.tagName).to.be.equal(tagName);
+  expect((<Replace>simpleAction).old.element.tagName).to.be.equal(tagName);
   if (oldValue === null) {
-    expect((<Update>simpleAction).old.element).to.not.have.attribute(attributeName);
+    expect((<Replace>simpleAction).old.element).to.not.have.attribute(
+      attributeName
+    );
   } else {
-    expect((<Update>simpleAction).old.element).to.have.attribute(attributeName, oldValue);
+    expect((<Replace>simpleAction).old.element).to.have.attribute(
+      attributeName,
+      oldValue
+    );
   }
 
-  expect((<Update>simpleAction).new.element.tagName).to.be.equal(tagName);
+  expect((<Replace>simpleAction).new.element.tagName).to.be.equal(tagName);
   if (newValue === null) {
-    expect((<Update>simpleAction).new.element).to.not.have.attribute(attributeName);
+    expect((<Replace>simpleAction).new.element).to.not.have.attribute(
+      attributeName
+    );
   } else {
-    expect((<Update>simpleAction).new.element).to.have.attribute(attributeName, newValue);
+    expect((<Replace>simpleAction).new.element).to.have.attribute(
+      attributeName,
+      newValue
+    );
   }
 }
 
-export function expectUpdateTextValue(action: Update, parentTagName: string, oldValue: string, newValue: string): void {
+export function expectUpdateTextValue(
+  action: Replace,
+  parentTagName: string,
+  oldValue: string,
+  newValue: string
+): void {
   expect(action.old.element.parentElement!.tagName).to.be.equal(parentTagName);
   expect(action.old.element.textContent).to.be.equal(oldValue);
   expect(action.new.element.textContent).to.be.equal(newValue);

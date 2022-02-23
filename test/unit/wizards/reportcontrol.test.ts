@@ -9,7 +9,7 @@ import {
   isCreate,
   isDelete,
   isUpdate,
-  Update,
+  Replace,
   WizardInput,
 } from '../../../src/foundation.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
@@ -154,7 +154,7 @@ describe('Wizards for SCL ReportControl element', () => {
       const action = actionEvent.args[0][0].detail.action;
       expect(action).to.satisfy(isUpdate);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.have.attribute('name', 'ReportCb');
       expect(updateAction.new.element).to.have.attribute('name', 'myNewCbName');
     });
@@ -172,7 +172,7 @@ describe('Wizards for SCL ReportControl element', () => {
       const action = actionEvent.args[0][0].detail.action;
       expect(action).to.satisfy(isUpdate);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.not.have.attribute('desc');
       expect(updateAction.new.element).to.have.attribute('desc', 'myDesc');
     });
@@ -189,7 +189,7 @@ describe('Wizards for SCL ReportControl element', () => {
       const action = actionEvent.args[0][0].detail.action;
       expect(action).to.satisfy(isUpdate);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.have.attribute('rptID', 'reportCb1');
       expect(updateAction.new.element).to.have.attribute(
         'rptID',
@@ -209,7 +209,7 @@ describe('Wizards for SCL ReportControl element', () => {
       const action = actionEvent.args[0][0].detail.action;
       expect(action).to.satisfy(isUpdate);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.have.attribute('indexed', 'true');
       expect(updateAction.new.element).to.have.attribute('indexed', 'false');
     });
@@ -226,7 +226,7 @@ describe('Wizards for SCL ReportControl element', () => {
       const action = actionEvent.args[0][0].detail.action;
       expect(action).to.satisfy(isUpdate);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.have.attribute('bufTime', '100');
       expect(updateAction.new.element).to.have.attribute('bufTime', '54');
     });
@@ -244,7 +244,7 @@ describe('Wizards for SCL ReportControl element', () => {
       const action = actionEvent.args[0][0].detail.action;
       expect(action).to.satisfy(isUpdate);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.not.have.attribute('intgPd');
       expect(updateAction.new.element).to.have.attribute('intgPd', '1000');
     });
@@ -261,7 +261,7 @@ describe('Wizards for SCL ReportControl element', () => {
       const action = actionEvent.args[0][0].detail.action;
       expect(action).to.satisfy(isUpdate);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.new.element.tagName).to.equal('RptEnabled');
       expect(updateAction.old.element.tagName).to.equal('RptEnabled');
       expect(updateAction.old.element).to.have.attribute('max', '5');
@@ -310,7 +310,7 @@ describe('Wizards for SCL ReportControl element', () => {
         const action = actionEvent.args[0][0].detail.action;
         expect(action).to.satisfy(isCreate);
 
-        const updateAction = <Update>action;
+        const updateAction = <Replace>action;
         expect(updateAction.new.element.tagName).to.equal('RptEnabled');
         expect(updateAction.new.element).to.have.attribute('max', '6');
       });

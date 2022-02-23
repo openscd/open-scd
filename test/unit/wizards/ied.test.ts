@@ -1,16 +1,21 @@
-import {expect, fixture, html} from '@open-wc/testing';
+import { expect, fixture, html } from '@open-wc/testing';
 
 import '../../mock-wizard.js';
-import {MockWizard} from '../../mock-wizard.js';
+import { MockWizard } from '../../mock-wizard.js';
 
-import {WizardTextField} from '../../../src/wizard-textfield.js';
-import {ComplexAction, isSimple, isUpdate, Update, WizardInput} from '../../../src/foundation.js';
-import {editIEDWizard, updateIED} from '../../../src/wizards/ied.js';
+import { WizardTextField } from '../../../src/wizard-textfield.js';
+import {
+  ComplexAction,
+  isSimple,
+  WizardInput,
+} from '../../../src/foundation.js';
+import { editIEDWizard, updateIED } from '../../../src/wizards/ied.js';
 
 import {
   expectUpdateAction,
   expectWizardNoUpdateAction,
-  fetchDoc, newWizard,
+  fetchDoc,
+  newWizard,
   setWizardTextFieldValue,
 } from './foundation.js';
 
@@ -42,7 +47,13 @@ describe('Wizards for SCL element IED', () => {
     expect(simpleActions.length).to.equal(2);
 
     expectUpdateAction(simpleActions[0], 'IED', 'name', 'IED3', 'OtherIED3');
-    expectUpdateAction(simpleActions[1], 'ConnectedAP', 'iedName', 'IED3', 'OtherIED3');
+    expectUpdateAction(
+      simpleActions[1],
+      'ConnectedAP',
+      'iedName',
+      'IED3',
+      'OtherIED3'
+    );
   });
 
   it('update name should be unique in document', async function () {
@@ -51,7 +62,10 @@ describe('Wizards for SCL element IED', () => {
   });
 
   it('update description should be updated in document', async function () {
-    await setWizardTextFieldValue(<WizardTextField>inputs[1], 'Some description');
+    await setWizardTextFieldValue(
+      <WizardTextField>inputs[1],
+      'Some description'
+    );
 
     const complexAction = updateIED(ied)(inputs, newWizard());
     expect(complexAction.length).to.equal(1);
@@ -60,7 +74,13 @@ describe('Wizards for SCL element IED', () => {
     const simpleActions = (<ComplexAction>complexAction[0]).actions;
     expect(simpleActions.length).to.equal(1);
 
-    expectUpdateAction(simpleActions[0], 'IED', 'desc', null, 'Some description');
+    expectUpdateAction(
+      simpleActions[0],
+      'IED',
+      'desc',
+      null,
+      'Some description'
+    );
   });
 
   it('when no fields changed there will be no update action', async function () {

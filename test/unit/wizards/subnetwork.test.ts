@@ -10,7 +10,7 @@ import {
   isDelete,
   WizardInput,
   isUpdate,
-  Update,
+  Replace,
   Delete,
   Create,
 } from '../../../src/foundation.js';
@@ -78,7 +78,7 @@ describe('Wizards for SCL element SubNetwork', () => {
         expect(actionEvent).to.be.calledOnce;
         expect(actionEvent.args[0][0].detail.action).to.satisfy(isUpdate);
 
-        const updateAction = <Update>actionEvent.args[0][0].detail.action;
+        const updateAction = <Replace>actionEvent.args[0][0].detail.action;
         expect(updateAction.old.element).to.have.a.attribute(
           'name',
           'StationBus'
@@ -103,7 +103,7 @@ describe('Wizards for SCL element SubNetwork', () => {
         expect(actionEvent).to.be.calledOnce;
         expect(actionEvent.args[0][0].detail.action).to.satisfy(isUpdate);
 
-        const updateAction = <Update>actionEvent.args[0][0].detail.action;
+        const updateAction = <Replace>actionEvent.args[0][0].detail.action;
         expect(updateAction.old.element).to.not.have.a.attribute('desc');
         expect(updateAction.new.element).to.have.a.attribute(
           'desc',
@@ -122,7 +122,7 @@ describe('Wizards for SCL element SubNetwork', () => {
         expect(actionEvent).to.be.calledOnce;
         expect(actionEvent.args[0][0].detail.action).to.satisfy(isUpdate);
 
-        const updateAction = <Update>actionEvent.args[0][0].detail.action;
+        const updateAction = <Replace>actionEvent.args[0][0].detail.action;
         expect(updateAction.old.element).to.have.a.attribute('type', '8-MMS');
         expect(updateAction.new.element).to.have.a.attribute(
           'type',
@@ -144,7 +144,7 @@ describe('Wizards for SCL element SubNetwork', () => {
         expect(actionEvent).to.be.calledOnce;
         expect(actionEvent.args[0][0].detail.action).to.satisfy(isUpdate);
 
-        const updateAction = <Update>actionEvent.args[0][0].detail.action;
+        const updateAction = <Replace>actionEvent.args[0][0].detail.action;
         expect(updateAction.old.element.innerHTML.trim()).to.equal('100.0');
         expect(updateAction.old.element).to.not.have.attribute('multiplier');
         expect(updateAction.new.element.innerHTML.trim()).to.equal('200.');

@@ -11,7 +11,7 @@ import {
   isCreate,
   isDelete,
   isUpdate,
-  Update,
+  Replace,
 } from '../../../src/foundation.js';
 import {
   getValAction,
@@ -36,7 +36,7 @@ describe('abstractda wizards', () => {
     });
 
     it('properly updates an new Val', () => {
-      const editorAction = <Update>getValAction(oldVal, 'newVal', abstractda);
+      const editorAction = <Replace>getValAction(oldVal, 'newVal', abstractda);
       expect(editorAction.new.element.textContent?.trim()).to.equal('newVal');
     });
 

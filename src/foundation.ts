@@ -10,7 +10,7 @@ import { WizardTextField } from './wizard-textfield.js';
 import { WizardSelect } from './wizard-select.js';
 import { WizardCheckbox } from './wizard-checkbox.js';
 
-export type SimpleAction = Create | Update | Delete | Move;
+export type SimpleAction = Create | Replace | Delete | Move;
 export type ComplexAction = {
   actions: SimpleAction[];
   title: string;
@@ -38,7 +38,7 @@ export interface Move {
   checkValidity?: () => boolean;
 }
 /** Replaces `old.element` with `new.element`, keeping element children. */
-export interface Update {
+export interface Replace {
   old: { element: Element };
   new: { element: Element };
   derived?: boolean;
@@ -47,7 +47,7 @@ export interface Update {
 
 export function isCreate(action: EditorAction): action is Create {
   return (
-    (action as Update).old === undefined &&
+    (action as Replace).old === undefined &&
     (action as Create).new?.parent !== undefined &&
     (action as Create).new?.element !== undefined
   );
@@ -56,7 +56,7 @@ export function isDelete(action: EditorAction): action is Delete {
   return (
     (action as Delete).old?.parent !== undefined &&
     (action as Delete).old?.element !== undefined &&
-    (action as Update).new === undefined
+    (action as Replace).new === undefined
   );
 }
 export function isMove(action: EditorAction): action is Move {
@@ -64,15 +64,15 @@ export function isMove(action: EditorAction): action is Move {
     (action as Move).old?.parent !== undefined &&
     (action as Move).old?.element !== undefined &&
     (action as Move).new?.parent !== undefined &&
-    (action as Update).new?.element == undefined
+    (action as Replace).new?.element == undefined
   );
 }
-export function isUpdate(action: EditorAction): action is Update {
+export function isUpdate(action: EditorAction): action is Replace {
   return (
     (action as Move).old?.parent === undefined &&
-    (action as Update).old?.element !== undefined &&
+    (action as Replace).old?.element !== undefined &&
     (action as Move).new?.parent === undefined &&
-    (action as Update).new?.element !== undefined
+    (action as Replace).new?.element !== undefined
   );
 }
 export function isSimple(action: EditorAction): action is SimpleAction {

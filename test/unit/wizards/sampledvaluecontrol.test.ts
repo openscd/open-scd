@@ -7,7 +7,7 @@ import { MockWizard } from '../../mock-wizard.js';
 import {
   isDelete,
   isUpdate,
-  Update,
+  Replace,
   WizardInput,
 } from '../../../src/foundation.js';
 import {
@@ -153,7 +153,7 @@ describe('Wizards for SCL element SampledValueControl', () => {
       const action = actionEvent.args[0][0].detail.action;
       expect(action).to.satisfy(isUpdate);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.have.attribute('name', 'MSVCB01');
       expect(updateAction.new.element).to.have.attribute('name', 'myNewCbName');
     });
@@ -171,7 +171,7 @@ describe('Wizards for SCL element SampledValueControl', () => {
       const action = actionEvent.args[0][0].detail.action;
       expect(action).to.satisfy(isUpdate);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.not.have.attribute('desc');
       expect(updateAction.new.element).to.have.attribute('desc', 'myDesc');
     });
@@ -188,7 +188,7 @@ describe('Wizards for SCL element SampledValueControl', () => {
       const action = actionEvent.args[0][0].detail.action;
       expect(action).to.satisfy(isUpdate);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.have.attribute(
         'smvID',
         'some/reference'
@@ -212,7 +212,7 @@ describe('Wizards for SCL element SampledValueControl', () => {
       const action = actionEvent.args[0][0].detail.action;
       expect(action).to.satisfy(isUpdate);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.not.have.attribute('smpMod');
       expect(updateAction.new.element).to.have.attribute('smpMod', 'SmpPerSec');
     });
@@ -229,7 +229,7 @@ describe('Wizards for SCL element SampledValueControl', () => {
       const action = actionEvent.args[0][0].detail.action;
       expect(action).to.satisfy(isUpdate);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.have.attribute('smpRate', '80');
       expect(updateAction.new.element).to.have.attribute('smpRate', '4000');
     });
@@ -246,7 +246,7 @@ describe('Wizards for SCL element SampledValueControl', () => {
       const action = actionEvent.args[0][0].detail.action;
       expect(action).to.satisfy(isUpdate);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.have.attribute('nofASDU', '1');
       expect(updateAction.new.element).to.have.attribute('nofASDU', '2');
     });
@@ -264,7 +264,7 @@ describe('Wizards for SCL element SampledValueControl', () => {
       const action = actionEvent.args[0][0].detail.action;
       expect(action).to.satisfy(isUpdate);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.not.have.attribute('securityEnable');
       expect(updateAction.new.element).to.have.attribute(
         'securityEnable',

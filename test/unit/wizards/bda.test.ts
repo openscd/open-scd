@@ -9,7 +9,7 @@ import {
   Create,
   isCreate,
   isUpdate,
-  Update,
+  Replace,
   Wizard,
   WizardInput,
 } from '../../../src/foundation.js';
@@ -104,7 +104,7 @@ describe('bda wizards', () => {
       const editorAction = updateBDaAction(bda);
       expect(editorAction(inputs, newWizard()).length).to.equal(1);
       expect(editorAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>editorAction(inputs, newWizard())[0];
+      const updateAction = <Replace>editorAction(inputs, newWizard())[0];
       expect(updateAction.old.element).to.have.attribute('type');
       expect(updateAction.new.element).to.not.have.attribute('type');
     });
@@ -117,7 +117,7 @@ describe('bda wizards', () => {
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
       expect(updateActions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>updateActions[0];
+      const updateAction = <Replace>updateActions[0];
       expect(updateAction.old.element).to.not.have.attribute('sAddr');
       expect(updateAction.new.element).to.have.attribute('sAddr', 'mysAddr');
     });
@@ -130,7 +130,7 @@ describe('bda wizards', () => {
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
       expect(updateActions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>updateActions[0];
+      const updateAction = <Replace>updateActions[0];
       expect(updateAction.old.element).to.not.have.attribute('valKind');
       expect(updateAction.new.element).to.have.attribute('valKind', 'RO');
     });
@@ -143,7 +143,7 @@ describe('bda wizards', () => {
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
       expect(updateActions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>updateActions[0];
+      const updateAction = <Replace>updateActions[0];
       expect(updateAction.old.element).to.not.have.attribute('valImport');
       expect(updateAction.new.element).to.have.attribute('valImport', 'true');
     });

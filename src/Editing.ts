@@ -20,7 +20,7 @@ import {
   OpenDocEvent,
   SCLTag,
   SimpleAction,
-  Update,
+  Replace,
 } from './foundation.js';
 
 /** Mixin that edits an `XML` `doc`, listening to [[`EditorActionEvent`]]s */
@@ -174,17 +174,18 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       );
     }
 
-    private checkUpdateValidity(update: Update): boolean {
-      if (update.checkValidity !== undefined) return update.checkValidity();
+    private checkUpdateValidity(replace: Replace): boolean {
+      if (replace.checkValidity !== undefined) return replace.checkValidity();
 
       const invalid =
-        update.new.element.hasAttribute('name') &&
-        update.new.element.getAttribute('name') !==
-          update.old.element.getAttribute('name') &&
-        Array.from(update.old.element.parentElement?.children ?? []).some(
+        replace.new.element.hasAttribute('name') &&
+        replace.new.element.getAttribute('name') !==
+          replace.old.element.getAttribute('name') &&
+        Array.from(replace.old.element.parentElement?.children ?? []).some(
           elm =>
-            elm.tagName === update.new.element.tagName &&
-            elm.getAttribute('name') === update.new.element.getAttribute('name')
+            elm.tagName === replace.new.element.tagName &&
+            elm.getAttribute('name') ===
+              replace.new.element.getAttribute('name')
         );
 
       if (invalid)
@@ -192,12 +193,12 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
           newLogEvent({
             kind: 'error',
             title: get('editing.error.update', {
-              name: update.new.element.tagName,
+              name: replace.new.element.tagName,
             }),
             message: get('editing.error.nameClash', {
-              parent: update.old.element.parentElement!.tagName,
-              child: update.new.element.tagName,
-              name: update.new.element.getAttribute('name')!,
+              parent: replace.old.element.parentElement!.tagName,
+              child: replace.new.element.tagName,
+              name: replace.new.element.getAttribute('name')!,
             }),
           })
         );
@@ -205,7 +206,7 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       return !invalid;
     }
 
-    private onUpdate(action: Update) {
+    private onUpdate(action: Replace) {
       if (!this.checkUpdateValidity(action)) return false;
 
       action.new.element.append(...Array.from(action.old.element.children));
@@ -213,7 +214,7 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       return true;
     }
 
-    private logUpdate(action: Update) {
+    private logUpdate(action: Replace) {
       this.dispatchEvent(
         newLogEvent({
           kind: 'action',
@@ -229,14 +230,14 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       if (isMove(action)) return this.onMove(action as Move);
       else if (isCreate(action)) return this.onCreate(action as Create);
       else if (isDelete(action)) return this.onDelete(action as Delete);
-      else if (isUpdate(action)) return this.onUpdate(action as Update);
+      else if (isUpdate(action)) return this.onUpdate(action as Replace);
     }
 
     private logSimpleAction(action: SimpleAction) {
       if (isMove(action)) this.logMove(action as Move);
       else if (isCreate(action)) this.logCreate(action as Create);
       else if (isDelete(action)) this.logDelete(action as Delete);
-      else if (isUpdate(action)) this.logUpdate(action as Update);
+      else if (isUpdate(action)) this.logUpdate(action as Replace);
     }
 
     private onAction(event: EditorActionEvent<EditorAction>) {

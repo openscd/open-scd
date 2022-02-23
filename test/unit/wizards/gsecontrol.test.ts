@@ -8,7 +8,7 @@ import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   isDelete,
   isUpdate,
-  Update,
+  Replace,
   Wizard,
   WizardInput,
 } from '../../../src/foundation.js';
@@ -237,7 +237,7 @@ describe('gsecontrol wizards', () => {
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
       expect(updateActions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>updateActions[0];
+      const updateAction = <Replace>updateActions[0];
       expect(updateAction.old.element).to.have.attribute('name', 'myCbName');
       expect(updateAction.new.element).to.have.attribute('name', 'myNewCbName');
     });
@@ -250,7 +250,7 @@ describe('gsecontrol wizards', () => {
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
       expect(updateActions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>updateActions[0];
+      const updateAction = <Replace>updateActions[0];
       expect(updateAction.old.element).to.not.have.attribute('desc');
       expect(updateAction.new.element).to.have.attribute('desc', 'myDesc');
     });
@@ -262,7 +262,7 @@ describe('gsecontrol wizards', () => {
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
       expect(updateActions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>updateActions[0];
+      const updateAction = <Replace>updateActions[0];
       expect(updateAction.old.element).to.have.attribute('type', 'GOOSE');
       expect(updateAction.new.element).to.have.attribute('type', 'GSSE');
     });
@@ -274,7 +274,7 @@ describe('gsecontrol wizards', () => {
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
       expect(updateActions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>updateActions[0];
+      const updateAction = <Replace>updateActions[0];
       expect(updateAction.old.element).to.have.attribute('type', 'GOOSE');
       expect(updateAction.new.element).to.not.have.attribute('type');
     });
@@ -287,7 +287,7 @@ describe('gsecontrol wizards', () => {
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
       expect(updateActions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>updateActions[0];
+      const updateAction = <Replace>updateActions[0];
       expect(updateAction.old.element).to.have.attribute('appID', 'myAPP/ID');
       expect(updateAction.new.element).to.have.attribute(
         'appID',
@@ -303,7 +303,7 @@ describe('gsecontrol wizards', () => {
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
       expect(updateActions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>updateActions[0];
+      const updateAction = <Replace>updateActions[0];
       expect(updateAction.old.element).to.not.have.attribute('fixedOffs');
       expect(updateAction.new.element).to.have.attribute('fixedOffs', 'true');
     });
@@ -316,7 +316,7 @@ describe('gsecontrol wizards', () => {
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
       expect(updateActions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>updateActions[0];
+      const updateAction = <Replace>updateActions[0];
       expect(updateAction.old.element).to.not.have.attribute('securityEnabled');
       expect(updateAction.new.element).to.have.attribute(
         'securityEnabled',
