@@ -12,6 +12,7 @@ import './elements/ied-element.js';
 
 import { translate } from 'lit-translate';
 import { GOOSEDataSetEvent, IEDSubscriptionEvent } from '../../foundation.js';
+import { styles } from '../templates/foundation.js';
 
 /**
  * An IED within this IED list has 2 properties:
@@ -22,6 +23,18 @@ interface IED {
   element: Element;
   partial?: boolean;
 }
+
+/**
+ * All available FCDA references that are used to link ExtRefs.
+ */
+const fcdaReferences = [
+  "ldInst",
+  "lnClass",
+  "lnInst",
+  "prefix",
+  "doName",
+  "daName",
+];
 
 /** An sub element for subscribing and unsubscribing IEDs to GOOSE messages. */
 @customElement('subscriber-ied-list')
@@ -74,7 +87,7 @@ export class SubscriberIEDList extends LitElement {
     Array.from(this.doc.querySelectorAll(':root > IED')).forEach(ied => {
       const inputs = ied.querySelector(`LN0[lnClass="LLN0"] > Inputs`);
 
-      let partiallySubscribed = false;
+      let numberOfLinkedExtRefs = 0;
       
       /**
        * If no Inputs element is found, we can safely say it's not subscribed.
@@ -85,41 +98,33 @@ export class SubscriberIEDList extends LitElement {
       }
 
       /**
-       * If there is an ExtRef element, we just search for the first linked FCDA that cannot be found.
-       * It so, it's partially subscribed.
+       * Count all the linked ExtRefs.
        */
       this.dataSet.querySelectorAll('FCDA').forEach(fcda => {
-        if(!inputs.querySelector(`ExtRef[iedName=${event.detail.iedName}][serviceType="GOOSE"]` +
-          `${
-            fcda.getAttribute('ldInst')
-              ? `[ldInst="${fcda.getAttribute('ldInst')}"]`
-              : ``
-          }${
-            fcda.getAttribute('lnClass')
-              ? `[lnClass="${fcda.getAttribute('lnClass')}"]`
-              : ``
-          }${
-            fcda.getAttribute('lnInst')
-              ? `[lnInst="${fcda.getAttribute('lnInst')}"]`
-              : ``
-          }${
-            fcda.getAttribute('prefix')
-              ? `[prefix="${fcda.getAttribute('prefix')}"]`
-              : ``
-          }${
-            fcda.getAttribute('doName')
-              ? `[doName="${fcda.getAttribute('doName')}"]`
-              : ``
-          }${
-            fcda.getAttribute('daName')
-              ? `[daName="${fcda.getAttribute('daName')}"]`
-              : ``
-          }`)) {
-            partiallySubscribed = true;
+        if(inputs.querySelector(`ExtRef[iedName=${event.detail.iedName}][serviceType="GOOSE"]` +
+          `${fcdaReferences.map(fcdaRef =>
+            fcda.getAttribute(fcdaRef)
+              ? `[${fcdaRef}="${fcda.getAttribute(fcdaRef)}"]`
+              : '').join('')
+            }`)) {
+            numberOfLinkedExtRefs++;
           }
       })
 
-      partiallySubscribed ? this.availableIeds.push({element: ied, partial: true}) : this.subscribedIeds.push({element: ied})
+      /**
+       * Make a distinction between not subscribed at all,
+       * partially subscribed and fully subscribed.
+       */
+      if (numberOfLinkedExtRefs == 0) {
+        this.availableIeds.push({element: ied});
+        return;
+      }
+
+      if (numberOfLinkedExtRefs == this.dataSet.querySelectorAll('FCDA').length) {
+        this.subscribedIeds.push({element: ied});
+      } else {
+        this.availableIeds.push({element: ied, partial: true});
+      }
       
     })
 
@@ -192,66 +197,57 @@ export class SubscriberIEDList extends LitElement {
     const partialSubscribedIeds = this.availableIeds.filter(ied => ied.partial);
 
     return html`
-      <h1>${translate('subscription.subscriberIed.title', {
-        selected: this.gseName ? this.iedName+'>'+this.gseName : 'IED'
-      })}</h1>
-      ${this.gseName ?
-      html`<div class="subscriberWrapper">
-        <mwc-list>
-          <mwc-list-item noninteractive>
-            <span class="iedListTitle">${translate('subscription.subscriberIed.subscribed')}</span>
-          </mwc-list-item>
-          <li divider role="separator"></li>
-          ${this.subscribedIeds.length > 0 ?
-            this.subscribedIeds.map(ied => html`<ied-element .element=${ied.element}></ied-element>`)
-            : html`<mwc-list-item graphic="avatar" noninteractive>
-              <span>${translate('subscription.none')}</span>
-            </mwc-list-item>`}
-          </mwc-list>
+      <section>
+        <h1>${translate('subscription.subscriberIed.title', {
+          selected: this.gseName ? this.iedName + ' > ' + this.gseName : 'IED'
+        })}</h1>
+        ${this.gseName ?
+        html`<div class="subscriberWrapper">
           <mwc-list>
             <mwc-list-item noninteractive>
-              <span class="iedListTitle">${translate('subscription.subscriberIed.partiallySubscribed')}</span>
+              <span class="iedListTitle">${translate('subscription.subscriberIed.subscribed')}</span>
             </mwc-list-item>
             <li divider role="separator"></li>
-            ${partialSubscribedIeds.length > 0 ?
-              partialSubscribedIeds.map(ied => html`<ied-element .element=${ied.element}></ied-element>`)
+            ${this.subscribedIeds.length > 0 ?
+              this.subscribedIeds.map(ied => html`<ied-element .element=${ied.element}></ied-element>`)
               : html`<mwc-list-item graphic="avatar" noninteractive>
-              <span>${translate('subscription.none')}</span>
-            </mwc-list-item>`}
-          </mwc-list>
-          <mwc-list>
-            <mwc-list-item noninteractive>
-              <span class="iedListTitle">${translate('subscription.subscriberIed.availableToSubscribe')}</span>
-            </mwc-list-item>
-            <li divider role="separator"></li>
-            ${this.availableIeds.length > 0 ?
-              this.availableIeds.map(ied => html`<ied-element .element=${ied.element}></ied-element>`)
-              : html`<mwc-list-item graphic="avatar" noninteractive>
-              <span>${translate('subscription.none')}</span>
-            </mwc-list-item>`}
-          </mwc-list>` : html`<mwc-list>
-            <mwc-list-item noninteractive>
-              <span class="iedListTitle">${translate('subscription.subscriberIed.noGooseMessageSelected')}</span>
-            </mwc-list-item>
-          </mwc-list>
-        </div>`}
+                <span>${translate('subscription.none')}</span>
+              </mwc-list-item>`}
+            </mwc-list>
+            <mwc-list>
+              <mwc-list-item noninteractive>
+                <span class="iedListTitle">${translate('subscription.subscriberIed.partiallySubscribed')}</span>
+              </mwc-list-item>
+              <li divider role="separator"></li>
+              ${partialSubscribedIeds.length > 0 ?
+                partialSubscribedIeds.map(ied => html`<ied-element .element=${ied.element}></ied-element>`)
+                : html`<mwc-list-item graphic="avatar" noninteractive>
+                <span>${translate('subscription.none')}</span>
+              </mwc-list-item>`}
+            </mwc-list>
+            <mwc-list>
+              <mwc-list-item noninteractive>
+                <span class="iedListTitle">${translate('subscription.subscriberIed.availableToSubscribe')}</span>
+              </mwc-list-item>
+              <li divider role="separator"></li>
+              ${this.availableIeds.length > 0 ?
+                this.availableIeds.map(ied => html`<ied-element .element=${ied.element}></ied-element>`)
+                : html`<mwc-list-item graphic="avatar" noninteractive>
+                <span>${translate('subscription.none')}</span>
+              </mwc-list-item>`}
+            </mwc-list>` : html`<mwc-list>
+              <mwc-list-item noninteractive>
+                <span class="iedListTitle">${translate('subscription.subscriberIed.noGooseMessageSelected')}</span>
+              </mwc-list-item>
+            </mwc-list>
+          </div>`}
+        </section>
       `;
   }
 
   static styles = css`
-    h1 {
-      color: var(--mdc-theme-on-surface);
-      font-family: 'Roboto', sans-serif;
-      font-weight: 300;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      margin: 0px;
-      line-height: 48px;
-      padding-left: 0.3em;
-      transition: background-color 150ms linear;
-    }
-
+    ${styles}
+    
     .subscriberWrapper {
       height: 45rem;
       overflow-y: scroll;

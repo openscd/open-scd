@@ -24,7 +24,7 @@ export const officialPlugins = [
     name: 'Subscription',
     src: '/src/editors/Subscription.js',
     icon: 'link',
-    default: false,
+    default: true,
     kind: 'editor',
   },
   {

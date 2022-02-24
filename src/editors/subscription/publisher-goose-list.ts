@@ -11,6 +11,7 @@ import './elements/goose-message.js';
 
 import { translate } from 'lit-translate';
 import { compareNames, getNameAttribute } from '../../foundation.js';
+import { styles } from '../templates/foundation.js';
 
 /** An sub element for showing all published GOOSE messages per IED. */
 @customElement('publisher-goose-list')
@@ -25,7 +26,7 @@ export class PublisherGOOSEList extends LitElement {
   }
 
   /**
-   * Get all the published GOOSE messages, ABB method.
+   * Get all the published GOOSE messages.
    * @param ied - The IED to search through.
    * @returns All the published GOOSE messages of this specific IED.
    */
@@ -35,38 +36,31 @@ export class PublisherGOOSEList extends LitElement {
 
   render(): TemplateResult {
     return html`
-    <h1>${translate('subscription.publisherGoose.title')}</h1>
-    <mwc-list>
-    ${this.ieds.map(ied =>
-      ied.querySelector('GSEControl') ?
-        html`
-          <mwc-list-item noninteractive graphic="icon">
-            <span class="iedListTitle">${getNameAttribute(ied)}</span>
-            <mwc-icon slot="graphic">developer_board</mwc-icon>
-          </mwc-list-item>
-          <li divider role="separator"></li>
-          ${this.getGSEControls(ied).map(control =>
-            html`<goose-message
-              .element=${control}
-            ></goose-message>`)}
-        ` : ``)}
-    </mwc-list>`;
+    <section>
+      <h1>${translate('subscription.publisherGoose.title')}</h1>
+      <mwc-list>
+        ${this.ieds.map(ied =>
+          ied.querySelector('GSEControl') ?
+            html`
+              <mwc-list-item noninteractive graphic="icon">
+                <span class="iedListTitle">${getNameAttribute(ied)}</span>
+                <mwc-icon slot="graphic">developer_board</mwc-icon>
+              </mwc-list-item>
+              <li divider role="separator"></li>
+              ${this.getGSEControls(ied).map(control =>
+                html`<goose-message
+                  .element=${control}
+                ></goose-message>`)}
+            ` : ``
+          )
+        }
+        </mwc-list>
+      </section>`;
   }
 
   static styles = css`
-    h1 {
-      color: var(--mdc-theme-on-surface);
-      font-family: 'Roboto', sans-serif;
-      font-weight: 300;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      margin: 0px;
-      line-height: 48px;
-      padding-left: 0.3em;
-      transition: background-color 150ms linear;
-    }
-
+    ${styles}
+  
     mwc-list {
       height: 45rem;
       overflow-y: scroll;
