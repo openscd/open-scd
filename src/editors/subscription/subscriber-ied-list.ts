@@ -140,7 +140,7 @@ export class SubscriberIEDList extends LitElement {
 
     return html`
       <h1>${translate('subscription.subscriberIed.title', {
-        selected: this.gseName ? this.iedName + '>' + this.gseName : 'IED'
+        selected: this.gseName ? this.iedName + ' > ' + this.gseName : 'IED'
       })}</h1>
       ${this.gseName ?
       html`<div class="subscriberWrapper">
@@ -202,9 +202,6 @@ export class SubscriberIEDList extends LitElement {
       color: var(--mdc-theme-on-surface);
       font-family: 'Roboto', sans-serif;
       font-weight: 300;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
       margin: 0px;
       line-height: 48px;
       padding-left: 0.3em;

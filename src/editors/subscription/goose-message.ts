@@ -7,6 +7,7 @@ import {
   TemplateResult,
 } from 'lit-element';
 import { newGOOSEDataSetEvent } from '../../foundation.js';
+import { gooseIcon } from '../../icons.js';
 
 @customElement('goose-message')
 export class GOOSEMessage extends LitElement {
@@ -29,8 +30,9 @@ export class GOOSEMessage extends LitElement {
   render(): TemplateResult {
     return html`<mwc-list-item
       @click=${this.onGooseSelect}
-      graphic="icon">
+      graphic="large">
       <span>${this.element.getAttribute('name')}</span>
+      <mwc-icon slot="graphic">${gooseIcon}</mwc-icon>
     </mwc-list-item>`;
   }
 

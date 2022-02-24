@@ -264,10 +264,10 @@ export const en = {
   subscription: {
     none: 'None',
     publisherGoose: {
-      title: 'Publisher GOOSE'
+      title: 'GOOSE publisher'
     },
     subscriberIed: {
-      title: 'Subscriber {{ selected }}',
+      title: 'Subscriber of {{ selected }}',
       subscribed: 'Subscribed',
       availableToSubscribe: 'Available to subscribe',
       partiallySubscribed: 'Partially subscribed',
