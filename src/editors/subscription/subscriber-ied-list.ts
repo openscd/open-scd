@@ -20,6 +20,18 @@ interface IED {
   partial?: boolean;
 }
 
+/**
+ * All available FCDA references that are used to link ExtRefs.
+ */
+const fcdaReferences = [
+  "ldInst",
+  "lnClass",
+  "lnInst",
+  "prefix",
+  "doName",
+  "daName",
+];
+
 /** An sub element for subscribing and unsubscribing IEDs to GOOSE messages. */
 @customElement('subscriber-ied-list')
 export class SubscriberIEDList extends LitElement {
@@ -76,40 +88,23 @@ export class SubscriberIEDList extends LitElement {
       }
 
       /**
-       * If there is an ExtRef element, we just search for the first linked FCDA that cannot be found.
-       * It so, it's partially subscribed.
+       * Count all the linked ExtRefs.
        */
       dataSet.querySelectorAll('FCDA').forEach(fcda => {
         if(inputs.querySelector(`ExtRef[iedName=${event.detail.iedName}][serviceType="GOOSE"]` +
-          `${
-            fcda.getAttribute('ldInst')
-              ? `[ldInst="${fcda.getAttribute('ldInst')}"]`
-              : ``
-          }${
-            fcda.getAttribute('lnClass')
-              ? `[lnClass="${fcda.getAttribute('lnClass')}"]`
-              : ``
-          }${
-            fcda.getAttribute('lnInst')
-              ? `[lnInst="${fcda.getAttribute('lnInst')}"]`
-              : ``
-          }${
-            fcda.getAttribute('prefix')
-              ? `[prefix="${fcda.getAttribute('prefix')}"]`
-              : ``
-          }${
-            fcda.getAttribute('doName')
-              ? `[doName="${fcda.getAttribute('doName')}"]`
-              : ``
-          }${
-            fcda.getAttribute('daName')
-              ? `[daName="${fcda.getAttribute('daName')}"]`
-              : ``
-          }`)) {
+          `${fcdaReferences.map(fcdaRef =>
+            fcda.getAttribute(fcdaRef)
+              ? `[${fcdaRef}="${fcda.getAttribute(fcdaRef)}"]`
+              : '').join('')
+            }`)) {
             numberOfLinkedExtRefs++;
           }
       })
 
+      /**
+       * Make a distinction between not subscribed at all,
+       * partially subscribed and fully subscribed.
+       */
       if (numberOfLinkedExtRefs == 0) {
         this.availableIeds.push({element: ied});
         return;
