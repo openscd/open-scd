@@ -37,7 +37,7 @@ export const en = {
     multicast: 'SMV acc. to IEC 61850 9-2',
     smpMod: 'Sample mode',
     smpRate: 'Sample rate',
-    nofASDU: 'Samples per paket',
+    nofASDU: 'Samples per packet',
     SmvOpts: 'Optional Information',
     refreshTime: 'Add time stamp to SMV telegram',
     sampleRate: 'Add sampled rete time to SMV telegram',
