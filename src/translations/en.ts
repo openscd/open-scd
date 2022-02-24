@@ -271,7 +271,7 @@ export const en = {
       subscribed: 'Subscribed',
       availableToSubscribe: 'Available to subscribe',
       partiallySubscribed: 'Partially subscribed',
-      noGooseMessageSelected: 'No GOOSE message selected.'
+      noGooseMessageSelected: 'No GOOSE message selected'
     }
   },
   'enum-val': {

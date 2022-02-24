@@ -25,7 +25,7 @@ export class PublisherGOOSEList extends LitElement {
   }
 
   /**
-   * Get all the published GOOSE messages, ABB method.
+   * Get all the published GOOSE messages.
    * @param ied - The IED to search through.
    * @returns All the published GOOSE messages of this specific IED.
    */

@@ -136,7 +136,7 @@ export class SubscriberIEDList extends LitElement {
 
     return html`
       <h1>${translate('subscription.subscriberIed.title', {
-        selected: this.gseName ? this.iedName+'>'+this.gseName : 'IED'
+        selected: this.gseName ? this.iedName + '>' + this.gseName : 'IED'
       })}</h1>
       ${this.gseName ?
       html`<div class="subscriberWrapper">
