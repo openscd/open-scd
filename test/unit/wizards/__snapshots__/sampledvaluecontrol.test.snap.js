@@ -126,6 +126,12 @@ snapshots["Wizards for SCL element SampledValueControl define an edit wizard tha
       </mwc-list-item>
     </wizard-select>
     <mwc-button
+      icon="edit"
+      id="editsmvopts"
+      label="[scl.SmvOpts]"
+    >
+    </mwc-button>
+    <mwc-button
       icon="delete"
       label="[remove]"
     >

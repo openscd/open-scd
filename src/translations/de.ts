@@ -40,6 +40,12 @@ export const de: Translations = {
     smpMod: 'Abtast-Art',
     smpRate: 'Abtastrate',
     nofASDU: 'Abtastpunkte pro Datenpacket',
+    SmvOpts: 'Optionale Informationen',
+    refreshTime: 'Zeitstempel des Abtastwertes zu Telegram hinzufügen',
+    sampleRate: 'Abtastrate zu Telegram hinzufügen',
+    dataSet: 'Datensatznamen zu Telegram hinzufügen',
+    security: 'Potentiel in Zukunft für z.B. digitale Signature',
+    synchSourceId: 'Identität der Zeitquelle zu Telegram hinzufügen',
   },
   settings: {
     title: 'Einstellungen',
@@ -51,7 +57,7 @@ export const de: Translations = {
     selectFileButton: 'Datei auswählen',
     loadNsdTranslations: 'NSDoc-Dateien hochladen',
     invalidFileNoIdFound: 'Ungültiges NSDoc; kein \'id\'-Attribut in der Datei gefunden',
-    invalidNsdocVersion: '???'
+    invalidNsdocVersion: 'Die Version {{ id }} NSD ({{ nsdVersion }}) passt nicht zu der geladenen NSDoc ({{ nsdocVersion }})'
   },
   menu: {
     new: 'Neues projekt',
