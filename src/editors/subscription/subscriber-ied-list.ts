@@ -65,7 +65,7 @@ export class SubscriberIEDList extends LitElement {
     Array.from(this.doc.querySelectorAll(':root > IED')).forEach(ied => {
       const inputs = ied.querySelector(`LN0[lnClass="LLN0"] > Inputs`);
 
-      let partiallySubscribed = false;
+      let numberOfLinkedExtRefs = 0;
       
       /**
        * If no Inputs element is found, we can safely say it's not subscribed.
@@ -80,7 +80,7 @@ export class SubscriberIEDList extends LitElement {
        * It so, it's partially subscribed.
        */
       dataSet.querySelectorAll('FCDA').forEach(fcda => {
-        if(!inputs.querySelector(`ExtRef[iedName=${event.detail.iedName}][serviceType="GOOSE"]` +
+        if(inputs.querySelector(`ExtRef[iedName=${event.detail.iedName}][serviceType="GOOSE"]` +
           `${
             fcda.getAttribute('ldInst')
               ? `[ldInst="${fcda.getAttribute('ldInst')}"]`
@@ -106,11 +106,20 @@ export class SubscriberIEDList extends LitElement {
               ? `[daName="${fcda.getAttribute('daName')}"]`
               : ``
           }`)) {
-            partiallySubscribed = true;
+            numberOfLinkedExtRefs++;
           }
       })
 
-      partiallySubscribed ? this.availableIeds.push({element: ied, partial: true}) : this.subscribedIeds.push({element: ied})
+      if (numberOfLinkedExtRefs == 0) {
+        this.availableIeds.push({element: ied});
+        return;
+      }
+
+      if (numberOfLinkedExtRefs == dataSet.querySelectorAll('FCDA').length) {
+        this.subscribedIeds.push({element: ied});
+      } else {
+        this.availableIeds.push({element: ied, partial: true});
+      }
       
     })
 
