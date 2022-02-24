@@ -2,16 +2,22 @@
 export const snapshots = {};
 
 snapshots["subscriber-ied-list looks like the latest snapshot"] = 
-`<h1>
-  [subscription.subscriberIed.title]
-</h1>
-<mwc-list>
-  <mwc-list-item noninteractive="">
-    <span class="iedListTitle">
-      [subscription.subscriberIed.noGooseMessageSelected]
-    </span>
-  </mwc-list-item>
-</mwc-list>
+`<section>
+  <h1>
+    [subscription.subscriberIed.title]
+  </h1>
+  <mwc-list>
+    <mwc-list-item
+      aria-disabled="false"
+      noninteractive=""
+      tabindex="-1"
+    >
+      <span class="iedListTitle">
+        [subscription.subscriberIed.noGooseMessageSelected]
+      </span>
+    </mwc-list-item>
+  </mwc-list>
+</section>
 `;
 /* end snapshot subscriber-ied-list looks like the latest snapshot */
 

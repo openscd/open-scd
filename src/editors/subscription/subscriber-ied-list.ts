@@ -9,6 +9,7 @@ import {
 } from 'lit-element';
 import { translate } from 'lit-translate';
 import { GOOSEDataSetEvent } from '../../foundation.js';
+import { styles } from '../templates/foundation.js';
 
 /**
  * An IED within this IED list has 2 properties:
@@ -139,75 +140,69 @@ export class SubscriberIEDList extends LitElement {
     const partialSubscribedIeds = this.availableIeds.filter(ied => ied.partial);
 
     return html`
-      <h1>${translate('subscription.subscriberIed.title', {
-        selected: this.gseName ? this.iedName + ' > ' + this.gseName : 'IED'
-      })}</h1>
-      ${this.gseName ?
-      html`<div class="subscriberWrapper">
-        <mwc-list>
-          <mwc-list-item noninteractive>
-            <span class="iedListTitle">${translate('subscription.subscriberIed.subscribed')}</span>
-          </mwc-list-item>
-          <li divider role="separator"></li>
-          ${this.subscribedIeds.length > 0 ?
-            this.subscribedIeds.map(ied => html`
-            <mwc-list-item graphic="avatar" hasMeta>
-              <span>${ied.element.getAttribute('name')}</span>
-              <mwc-icon slot="graphic">clear</mwc-icon>
-            </mwc-list-item>`)
-            : html`<mwc-list-item graphic="avatar" noninteractive>
-              <span>${translate('subscription.none')}</span>
-            </mwc-list-item>`}
-          </mwc-list>
+      <section>
+        <h1>${translate('subscription.subscriberIed.title', {
+          selected: this.gseName ? this.iedName + ' > ' + this.gseName : 'IED'
+        })}</h1>
+        ${this.gseName ?
+        html`<div class="subscriberWrapper">
           <mwc-list>
             <mwc-list-item noninteractive>
-              <span class="iedListTitle">${translate('subscription.subscriberIed.partiallySubscribed')}</span>
+              <span class="iedListTitle">${translate('subscription.subscriberIed.subscribed')}</span>
             </mwc-list-item>
             <li divider role="separator"></li>
-            ${partialSubscribedIeds.length > 0 ?
-              partialSubscribedIeds.map(ied => html`
+            ${this.subscribedIeds.length > 0 ?
+              this.subscribedIeds.map(ied => html`
               <mwc-list-item graphic="avatar" hasMeta>
                 <span>${ied.element.getAttribute('name')}</span>
-                <mwc-icon slot="graphic">add</mwc-icon>
+                <mwc-icon slot="graphic">clear</mwc-icon>
               </mwc-list-item>`)
               : html`<mwc-list-item graphic="avatar" noninteractive>
-              <span>${translate('subscription.none')}</span>
-            </mwc-list-item>`}
-          </mwc-list>
-          <mwc-list>
-            <mwc-list-item noninteractive>
-              <span class="iedListTitle">${translate('subscription.subscriberIed.availableToSubscribe')}</span>
-            </mwc-list-item>
-            <li divider role="separator"></li>
-            ${this.availableIeds.length > 0 ?
-              this.availableIeds.map(ied => html`
-              <mwc-list-item graphic="avatar" hasMeta>
-                <span>${ied.element.getAttribute('name')}</span>
-                <mwc-icon slot="graphic">add</mwc-icon>
-              </mwc-list-item>`)
-              : html`<mwc-list-item graphic="avatar" noninteractive>
-              <span>${translate('subscription.none')}</span>
-            </mwc-list-item>`}
-          </mwc-list>` : html`<mwc-list>
-            <mwc-list-item noninteractive>
-              <span class="iedListTitle">${translate('subscription.subscriberIed.noGooseMessageSelected')}</span>
-            </mwc-list-item>
-          </mwc-list>
-        </div>`}
+                <span>${translate('subscription.none')}</span>
+              </mwc-list-item>`}
+            </mwc-list>
+            <mwc-list>
+              <mwc-list-item noninteractive>
+                <span class="iedListTitle">${translate('subscription.subscriberIed.partiallySubscribed')}</span>
+              </mwc-list-item>
+              <li divider role="separator"></li>
+              ${partialSubscribedIeds.length > 0 ?
+                partialSubscribedIeds.map(ied => html`
+                <mwc-list-item graphic="avatar" hasMeta>
+                  <span>${ied.element.getAttribute('name')}</span>
+                  <mwc-icon slot="graphic">add</mwc-icon>
+                </mwc-list-item>`)
+                : html`<mwc-list-item graphic="avatar" noninteractive>
+                <span>${translate('subscription.none')}</span>
+              </mwc-list-item>`}
+            </mwc-list>
+            <mwc-list>
+              <mwc-list-item noninteractive>
+                <span class="iedListTitle">${translate('subscription.subscriberIed.availableToSubscribe')}</span>
+              </mwc-list-item>
+              <li divider role="separator"></li>
+              ${this.availableIeds.length > 0 ?
+                this.availableIeds.map(ied => html`
+                <mwc-list-item graphic="avatar" hasMeta>
+                  <span>${ied.element.getAttribute('name')}</span>
+                  <mwc-icon slot="graphic">add</mwc-icon>
+                </mwc-list-item>`)
+                : html`<mwc-list-item graphic="avatar" noninteractive>
+                <span>${translate('subscription.none')}</span>
+              </mwc-list-item>`}
+            </mwc-list>` : html`<mwc-list>
+              <mwc-list-item noninteractive>
+                <span class="iedListTitle">${translate('subscription.subscriberIed.noGooseMessageSelected')}</span>
+              </mwc-list-item>
+            </mwc-list>
+          </div>`}
+        </section>
       `;
   }
 
   static styles = css`
-    h1 {
-      color: var(--mdc-theme-on-surface);
-      font-family: 'Roboto', sans-serif;
-      font-weight: 300;
-      margin: 0px;
-      line-height: 48px;
-      padding-left: 0.3em;
-      transition: background-color 150ms linear;
-    }
-
+    ${styles}
+    
     .subscriberWrapper {
       height: 45rem;
       overflow-y: scroll;
