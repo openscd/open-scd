@@ -75,6 +75,8 @@ function contentReportControlWizard(options: ContentOptions): TemplateResult[] {
     html`<wizard-textfield
       label="rptID"
       .maybeValue=${options.rptID}
+      nullable
+      required
       helper="${translate('scl.id')}"
     ></wizard-textfield>`,
     html`<wizard-checkbox
@@ -214,7 +216,7 @@ export function createReportControlWizard(ln0OrLn: Element): Wizard {
   const name = getUniqueElementName(ln0OrLn, 'ReportControl');
   const desc = null;
   const buffered = 'true';
-  const rptID = '';
+  const rptID = null;
   const indexed = 'true';
   const max = '5';
   const bufTime = '100';

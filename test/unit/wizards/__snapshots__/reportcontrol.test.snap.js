@@ -33,6 +33,8 @@ snapshots["Wizards for SCL ReportControl element define an edit wizard that for 
     <wizard-textfield
       helper="[scl.id]"
       label="rptID"
+      nullable=""
+      required=""
     >
     </wizard-textfield>
     <wizard-checkbox
@@ -143,8 +145,11 @@ snapshots["Wizards for SCL ReportControl element define an edit wizard that for 
     >
     </wizard-checkbox>
     <wizard-textfield
+      disabled=""
       helper="[scl.id]"
       label="rptID"
+      nullable=""
+      required=""
     >
     </wizard-textfield>
     <wizard-checkbox
@@ -359,8 +364,11 @@ snapshots["Wizards for SCL ReportControl element define an create wizard that th
     >
     </wizard-checkbox>
     <wizard-textfield
+      disabled=""
       helper="[scl.id]"
       label="rptID"
+      nullable=""
+      required=""
     >
     </wizard-textfield>
     <wizard-checkbox
