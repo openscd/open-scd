@@ -1,7 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Wizards for SCL ReportControl element define an edit wizard that looks like the latest snapshot"] = 
+snapshots["Wizards for SCL ReportControl element define an edit wizard that for complete ReportControl element looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="close"
   heading="[wizard.title.edit]"
@@ -111,9 +111,105 @@ snapshots["Wizards for SCL ReportControl element define an edit wizard that look
   </mwc-button>
 </mwc-dialog>
 `;
-/* end snapshot Wizards for SCL ReportControl element define an edit wizard that looks like the latest snapshot */
+/* end snapshot Wizards for SCL ReportControl element define an edit wizard that for complete ReportControl element looks like the latest snapshot */
 
-snapshots["Wizards for SCL ReportControl element define a select wizard that looks like the latest snapshot"] = 
+snapshots["Wizards for SCL ReportControl element define an edit wizard that for ReportControl with missing child elements and referenced DataSet looks like the latest snapshot"] = 
+`<mwc-dialog
+  defaultaction="close"
+  heading="[wizard.title.edit]"
+  open=""
+>
+  <div id="wizard-content">
+    <wizard-textfield
+      dialoginitialfocus=""
+      helper="[scl.name]"
+      label="name"
+      maxlength="32"
+      pattern="[A-Za-z][0-9,A-Z,a-z_]*"
+      required=""
+      validationmessage="[textfield.required]"
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      helper="[scl.desc]"
+      label="desc"
+      nullable=""
+    >
+    </wizard-textfield>
+    <wizard-checkbox
+      helper="[scl.buffered]"
+      label="buffered"
+    >
+    </wizard-checkbox>
+    <wizard-textfield
+      helper="[scl.id]"
+      label="rptID"
+    >
+    </wizard-textfield>
+    <wizard-checkbox
+      helper="[scl.indexed]"
+      label="indexed"
+      nullable=""
+    >
+    </wizard-checkbox>
+    <wizard-textfield
+      disabled=""
+      helper="[scl.maxReport]"
+      label="max Clients"
+      nullable=""
+      suffix="#"
+      type="number"
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      helper="[scl.bufTime]"
+      label="bufTime"
+      min="0"
+      nullable=""
+      required=""
+      suffix="ms"
+      type="number"
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      helper="[scl.intgPd]"
+      label="intgPd"
+      min="0"
+      nullable=""
+      required=""
+      suffix="ms"
+      type="number"
+    >
+    </wizard-textfield>
+    <mwc-button
+      icon="delete"
+      label="[remove]"
+    >
+    </mwc-button>
+  </div>
+  <mwc-button
+    dialogaction="close"
+    label="[cancel]"
+    slot="secondaryAction"
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+  </mwc-button>
+  <mwc-button
+    dialoginitialfocus=""
+    icon="save"
+    label="[save]"
+    slot="primaryAction"
+    trailingicon=""
+  >
+  </mwc-button>
+</mwc-dialog>
+`;
+/* end snapshot Wizards for SCL ReportControl element define an edit wizard that for ReportControl with missing child elements and referenced DataSet looks like the latest snapshot */
+
+snapshots["Wizards for SCL ReportControl element define a select wizard that with existing ReportControl element looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="close"
   heading="[wizard.title.select]"
@@ -210,7 +306,28 @@ snapshots["Wizards for SCL ReportControl element define a select wizard that loo
   </mwc-button>
 </mwc-dialog>
 `;
-/* end snapshot Wizards for SCL ReportControl element define a select wizard that looks like the latest snapshot */
+/* end snapshot Wizards for SCL ReportControl element define a select wizard that with existing ReportControl element looks like the latest snapshot */
+
+snapshots["Wizards for SCL ReportControl element define a select wizard that with invalid parent looks like the latest snapshot"] = 
+`<mwc-dialog
+  defaultaction="close"
+  heading="[wizard.title.select]"
+  open=""
+>
+  <div id="wizard-content">
+    <filtered-list>
+    </filtered-list>
+  </div>
+  <mwc-button
+    dialogaction="close"
+    label="[cancel]"
+    slot="secondaryAction"
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+  </mwc-button>
+</mwc-dialog>
+`;
+/* end snapshot Wizards for SCL ReportControl element define a select wizard that with invalid parent looks like the latest snapshot */
 
 snapshots["Wizards for SCL ReportControl element define an create wizard that the first page looks like the latest snapshot"] = 
 `<mwc-dialog
