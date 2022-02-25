@@ -6,7 +6,7 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
-import { newIEDSubscriptionEvent } from '../../../foundation.js';
+import { newIEDSubscriptionEvent, SubscribeStatus } from '../../../foundation.js';
 
 @customElement('ied-element')
 export class IEDElement extends LitElement {
@@ -14,10 +14,13 @@ export class IEDElement extends LitElement {
   @property({ attribute: false })
   element!: Element;
 
+  status!: SubscribeStatus;
+
   private onIedSelect = () => {
     document.querySelector('open-scd')!.dispatchEvent(
       newIEDSubscriptionEvent(
-        this.element!.getAttribute('name') ?? ''
+        this.element!.getAttribute('name') ?? '',
+        this.status
       )
     );
   };

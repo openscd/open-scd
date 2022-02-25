@@ -300,19 +300,28 @@ export function newGOOSEDataSetEvent(
   });
 }
 
+/**
+ * Enumeration stating the Subscribe status of a IED to a GOOSE.
+ */
+export enum SubscribeStatus {
+  Full,
+  Partial,
+  None
+}
+
 export interface IEDSubscriptionDetail {
   iedName: string;
+  subscribeStatus: SubscribeStatus;
 }
 export type IEDSubscriptionEvent = CustomEvent<IEDSubscriptionDetail>;
 export function newIEDSubscriptionEvent(
   iedName: string,
-  eventInitDict?: CustomEventInit<IEDSubscriptionDetail>
+  subscribeStatus: SubscribeStatus
 ): IEDSubscriptionEvent {
   return new CustomEvent<IEDSubscriptionDetail>('ied-subscription', {
     bubbles: true,
     composed: true,
-    ...eventInitDict,
-    detail: { iedName, ...eventInitDict?.detail },
+    detail: { iedName, subscribeStatus },
   });
 }
 
