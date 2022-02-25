@@ -202,9 +202,15 @@ export class SubscriberIEDList extends LitElement {
 
   static styles = css`
     ${styles}
+
+    h1 {
+      overflow: unset;
+      white-space: unset;
+      text-overflow: unset;
+    }
     
     .subscriberWrapper {
-      height: 45rem;
+      height: 100vh;
       overflow-y: scroll;
     }
 

@@ -62,7 +62,7 @@ export class PublisherGOOSEList extends LitElement {
     ${styles}
   
     mwc-list {
-      height: 45rem;
+      height: 100vh;
       overflow-y: scroll;
     }
 
