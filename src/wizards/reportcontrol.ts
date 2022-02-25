@@ -208,10 +208,10 @@ function createReportControlAction(parent: Element): WizardActor {
   };
 }
 
-export function createReportControlWizard(parent: Element): Wizard {
-  const server = parent.closest('Server');
+export function createReportControlWizard(ln0OrLn: Element): Wizard {
+  const server = ln0OrLn.closest('Server');
 
-  const name = getUniqueElementName(parent, 'ReportControl');
+  const name = getUniqueElementName(ln0OrLn, 'ReportControl');
   const desc = null;
   const buffered = 'true';
   const rptID = '';
@@ -272,7 +272,7 @@ export function createReportControlWizard(parent: Element): Wizard {
       primary: {
         icon: 'save',
         label: get('save'),
-        action: createReportControlAction(parent),
+        action: createReportControlAction(ln0OrLn),
       },
 
       content: [server ? dataAttributePicker(server) : html``],
@@ -280,7 +280,7 @@ export function createReportControlWizard(parent: Element): Wizard {
   ];
 }
 
-function openControlBlock(doc: XMLDocument): WizardActor {
+function openReportControlCreateWizard(doc: XMLDocument): WizardActor {
   return (_: WizardInput[], wizard: Element) => {
     const finder = wizard.shadowRoot?.querySelector<FinderList>('finder-list');
     const path = finder?.path ?? [];
@@ -297,26 +297,26 @@ function openControlBlock(doc: XMLDocument): WizardActor {
   };
 }
 
-export function controlBlockLocationSelector(doc: XMLDocument): Wizard {
+export function reportControlParentSelector(doc: XMLDocument): Wizard {
   return [
     {
       title: get('report.wizard.location'),
       primary: {
         icon: '',
         label: get('next'),
-        action: openControlBlock(doc),
+        action: openReportControlCreateWizard(doc),
       },
       content: [iEDPicker(doc)],
     },
   ];
 }
 
-function triggerReportControlCreate(parent: Element | Element): WizardActor {
+function prepareReportControlCreateWizard(anyParent: Element): WizardActor {
   return () => {
-    if (parent.tagName === 'IED')
-      return [() => createReportControlWizard(parent)];
+    if (anyParent.tagName === 'IED' && anyParent.querySelector('LN0'))
+      return [() => createReportControlWizard(anyParent.querySelector('LN0')!)];
 
-    return [() => controlBlockLocationSelector(parent.ownerDocument)];
+    return [() => reportControlParentSelector(anyParent.ownerDocument)];
   };
 }
 
