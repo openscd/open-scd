@@ -31,7 +31,7 @@ import {
   getUniqueElementName,
 } from '../foundation.js';
 import { FinderList } from '../finder-list.js';
-import { dataAttributePicker, logicalNodePicker } from './foundation/finder.js';
+import { dataAttributePicker, iEDPicker } from './foundation/finder.js';
 import { maxLength, patterns } from './foundation/limits.js';
 import { editDataSetWizard } from './dataset.js';
 import { newFCDA } from './fcda.js';
@@ -306,7 +306,7 @@ export function controlBlockLocationSelector(doc: XMLDocument): Wizard {
         label: get('next'),
         action: openControlBlock(doc),
       },
-      content: [logicalNodePicker(doc)],
+      content: [iEDPicker(doc)],
     },
   ];
 }
