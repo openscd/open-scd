@@ -527,14 +527,18 @@ export function selectReportControlWizard(element: Element): Wizard {
     element.querySelectorAll('ReportControl')
   ).filter(isPublic);
 
+  const primary = element.querySelector('LN0')
+    ? {
+        icon: 'add',
+        label: get('Report'),
+        action: prepareReportControlCreateWizard(element),
+      }
+    : undefined;
+
   return [
     {
       title: get('wizard.title.select', { tagName: 'ReportControl' }),
-      primary: {
-        icon: 'add',
-        label: get('Report'),
-        action: triggerReportControlCreate(element),
-      },
+      primary,
       content: [
         html`<filtered-list
           @selected=${(e: SingleSelectedEvent) => {
