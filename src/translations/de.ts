@@ -55,6 +55,12 @@ export const de: Translations = {
     maxReport: 'Anzahl Instanzen',
     bufTime: 'Min. Intervall zwischen zwei Reports',
     intgPd: 'Intervall zwischen zwei periodischen Reports',
+    SmvOpts: 'Optionale Informationen',
+    refreshTime: 'Zeitstempel des Abtastwertes zu Telegram hinzufügen',
+    sampleRate: 'Abtastrate zu Telegram hinzufügen',
+    dataSet: 'Datensatznamen zu Telegram hinzufügen',
+    security: 'Potentiel in Zukunft für z.B. digitale Signature',
+    synchSourceId: 'Identität der Zeitquelle zu Telegram hinzufügen',
   },
   settings: {
     title: 'Einstellungen',
@@ -65,8 +71,8 @@ export const de: Translations = {
     showieds: 'Zeige IEDs im Substation-Editor',
     selectFileButton: 'Datei auswählen',
     loadNsdTranslations: 'NSDoc-Dateien hochladen',
-    invalidFileNoIdFound:
-      "Ungültiges NSDoc; kein 'id'-Attribut in der Datei gefunden",
+    invalidFileNoIdFound: 'Ungültiges NSDoc; kein \'id\'-Attribut in der Datei gefunden',
+    invalidNsdocVersion: 'Die Version {{ id }} NSD ({{ nsdVersion }}) passt nicht zu der geladenen NSDoc ({{ nsdocVersion }})'
   },
   menu: {
     new: 'Neues projekt',

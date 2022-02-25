@@ -53,6 +53,12 @@ export const en = {
     maxReport: 'Number of Instances',
     bufTime: 'Min. time between two Reports',
     intgPd: 'Time between two periodic Reports',
+    SmvOpts: 'Optional Information',
+    refreshTime: 'Add timestamp to SMV packet',
+    sampleRate: 'Add sample rate to SMV packet',
+    dataSet: 'Add DataSet name to SMV packet',
+    security: 'Potential future use. e.g. digital signature',
+    synchSourceId: 'Add sync source id to SMV packet',
   },
   settings: {
     title: 'Settings',
@@ -63,7 +69,8 @@ export const en = {
     showieds: 'Show IEDs in substation editor',
     selectFileButton: 'Select file',
     loadNsdTranslations: 'Uploading NSDoc files',
-    invalidFileNoIdFound: "Invalid NSDoc; no 'id' attribute found in file",
+    invalidFileNoIdFound: 'Invalid NSDoc; no \'id\' attribute found in file',
+    invalidNsdocVersion: 'The version of {{ id }} NSD ({{ nsdVersion }}) does not correlate with the version of the corresponding NSDoc ({{ nsdocVersion }})'
   },
   menu: {
     new: 'New project',
