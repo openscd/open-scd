@@ -116,8 +116,12 @@ describe('Wizards for SCL element ConnectedAP', () => {
 
       const complexAction = <ComplexAction>actionEvent.args[0][0].detail.action;
 
-      const oldAddress = (<Delete>complexAction.actions[0]).old.element;
-      const newAddress = (<Create>complexAction.actions[1]).new.element;
+      const oldAddress = <Element>(
+        (<Delete>complexAction.actions[0]).old.element
+      );
+      const newAddress = <Element>(
+        (<Create>complexAction.actions[1]).new.element
+      );
 
       expect(
         oldAddress.querySelector<Element>('P[type="IP"]')?.textContent
@@ -138,8 +142,12 @@ describe('Wizards for SCL element ConnectedAP', () => {
 
       const complexAction = <ComplexAction>actionEvent.args[0][0].detail.action;
 
-      const oldAddress = (<Delete>complexAction.actions[0]).old.element;
-      const newAddress = (<Create>complexAction.actions[1]).new.element;
+      const oldAddress = <Element>(
+        (<Delete>complexAction.actions[0]).old.element
+      );
+      const newAddress = <Element>(
+        (<Create>complexAction.actions[1]).new.element
+      );
 
       const oldIP = oldAddress.querySelector<Element>('P[type="IP"]');
       const newIP = newAddress.querySelector<Element>('P[type="IP"]');

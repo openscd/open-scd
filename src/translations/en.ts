@@ -85,6 +85,7 @@ export const en = {
     smvcontrol: 'Show all Sampled Values',
   },
   editing: {
+    node: 'User defined object',
     created: 'Added {{ name }}',
     deleted: 'Removed {{ name }}',
     moved: 'Moved {{ name }}',

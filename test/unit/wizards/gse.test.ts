@@ -90,8 +90,8 @@ describe('gse wizards', () => {
       expect(actions.length).to.equal(2);
       expect(actions[0]).to.satisfy(isDelete);
       expect(actions[1]).to.satisfy(isCreate);
-      const oldElement = (<Delete>actions[0]).old.element;
-      const newElement = (<Create>actions[1]).new.element;
+      const oldElement = <Element>(<Delete>actions[0]).old.element;
+      const newElement = <Element>(<Create>actions[1]).new.element;
       expect(
         oldElement.querySelector('P[type="MAC-Address"]')?.textContent?.trim()
       ).to.equal('01-0C-CD-01-00-10');
@@ -110,8 +110,8 @@ describe('gse wizards', () => {
       expect(actions.length).to.equal(2);
       expect(actions[0]).to.satisfy(isDelete);
       expect(actions[1]).to.satisfy(isCreate);
-      const oldElement = (<Delete>actions[0]).old.element;
-      const newElement = (<Create>actions[1]).new.element;
+      const oldElement = <Element>(<Delete>actions[0]).old.element;
+      const newElement = <Element>(<Create>actions[1]).new.element;
       expect(
         oldElement.querySelector('P[type="APPID"]')?.textContent?.trim()
       ).to.equal('0010');
@@ -130,8 +130,8 @@ describe('gse wizards', () => {
       expect(actions.length).to.equal(2);
       expect(actions[0]).to.satisfy(isDelete);
       expect(actions[1]).to.satisfy(isCreate);
-      const oldElement = (<Delete>actions[0]).old.element;
-      const newElement = (<Create>actions[1]).new.element;
+      const oldElement = <Element>(<Delete>actions[0]).old.element;
+      const newElement = <Element>(<Create>actions[1]).new.element;
       expect(
         oldElement.querySelector('P[type="VLAN-ID"]')?.textContent?.trim()
       ).to.equal('005');
@@ -150,8 +150,8 @@ describe('gse wizards', () => {
       expect(actions.length).to.equal(2);
       expect(actions[0]).to.satisfy(isDelete);
       expect(actions[1]).to.satisfy(isCreate);
-      const oldElement = (<Delete>actions[0]).old.element;
-      const newElement = (<Create>actions[1]).new.element;
+      const oldElement = <Element>(<Delete>actions[0]).old.element;
+      const newElement = <Element>(<Create>actions[1]).new.element;
       expect(
         oldElement.querySelector('P[type="VLAN-PRIORITY"]')?.textContent?.trim()
       ).to.equal('4');

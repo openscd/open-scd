@@ -37,6 +37,35 @@ describe('EditingElement', () => {
     expect(elm.doc!.querySelector('newBay')).to.not.be.null;
   });
 
+  it('creates an Node on receiving a Create Action', () => {
+    const testNode = document.createTextNode('myTestNode');
+
+    elm.dispatchEvent(
+      newActionEvent({
+        new: {
+          parent,
+          element: testNode,
+        },
+      })
+    );
+    expect(parent.lastChild).to.equal(testNode);
+  });
+
+  it('creates the Node based on the reference definition', () => {
+    const testNode = document.createTextNode('myTestNode');
+
+    elm.dispatchEvent(
+      newActionEvent({
+        new: {
+          parent,
+          element: testNode,
+          reference: parent.firstChild,
+        },
+      })
+    );
+    expect(parent.firstChild).to.equal(testNode);
+  });
+
   it('triggers getReference with missing reference on Create Action', () => {
     elm.dispatchEvent(
       newActionEvent({
@@ -97,6 +126,41 @@ describe('EditingElement', () => {
     );
     expect(elm.doc!.querySelector('VoltageLevel[name="E1"] > Bay[name="Q01"]'))
       .to.be.null;
+  });
+
+  it('deletes a Node on receiving a Delete action', () => {
+    const testNode = document.createTextNode('myTestNode');
+    parent.appendChild(testNode);
+    expect(testNode.parentNode).to.be.equal(parent);
+
+    elm.dispatchEvent(
+      newActionEvent({
+        old: {
+          parent,
+          element: testNode,
+        },
+      })
+    );
+
+    expect(parent.lastChild).to.not.equal(testNode);
+    expect(testNode.parentNode).to.be.null;
+  });
+
+  it('correctly handles incorrect delete action definition', () => {
+    const testNode = document.createTextNode('myTestNode');
+    expect(testNode.parentNode).to.null;
+
+    elm.dispatchEvent(
+      newActionEvent({
+        old: {
+          parent,
+          element: testNode,
+        },
+      })
+    );
+
+    expect(parent.lastChild).to.not.equal(testNode);
+    expect(testNode.parentNode).to.null;
   });
 
   it('updates an element on receiving an Update action', () => {

@@ -167,7 +167,7 @@ describe('Wizards for SCL element SubNetwork', () => {
         expect(actionEvent.args[0][0].detail.action).to.satisfy(isDelete);
 
         const updateAction = <Delete>actionEvent.args[0][0].detail.action;
-        expect(updateAction.old.element.innerHTML.trim()).to.equal('100.0');
+        expect(updateAction.old.element.textContent?.trim()).to.equal('100.0');
         expect(updateAction.old.element).to.not.have.attribute('multiplier');
       });
     });
@@ -210,7 +210,7 @@ describe('Wizards for SCL element SubNetwork', () => {
         expect(actionEvent.args[0][0].detail.action).to.satisfy(isCreate);
 
         const updateAction = <Create>actionEvent.args[0][0].detail.action;
-        expect(updateAction.new.element.innerHTML.trim()).to.equal('100.0');
+        expect(updateAction.new.element.textContent?.trim()).to.equal('100.0');
         expect(updateAction.new.element).to.have.attribute('multiplier', 'M');
       });
 
@@ -230,7 +230,7 @@ describe('Wizards for SCL element SubNetwork', () => {
         expect(actionEvent.args[0][0].detail.action).to.satisfy(isCreate);
 
         const updateAction = <Create>actionEvent.args[0][0].detail.action;
-        expect(updateAction.new.element.innerHTML.trim()).to.equal('');
+        expect(updateAction.new.element.textContent?.trim()).to.equal('');
         expect(updateAction.new.element).to.have.attribute('multiplier');
       });
 
@@ -250,7 +250,7 @@ describe('Wizards for SCL element SubNetwork', () => {
         expect(actionEvent.args[0][0].detail.action).to.satisfy(isCreate);
 
         const updateAction = <Create>actionEvent.args[0][0].detail.action;
-        expect(updateAction.new.element.innerHTML.trim()).to.equal('100.0');
+        expect(updateAction.new.element.textContent?.trim()).to.equal('100.0');
         expect(updateAction.new.element).to.not.have.attribute('multiplier');
       });
     });
@@ -310,12 +310,15 @@ describe('Wizards for SCL element SubNetwork', () => {
       );
       expect(updateAction.new.element).to.have.a.attribute('desc', '');
       expect(updateAction.new.element).to.have.a.attribute('type', '8-MMS');
-      expect(updateAction.new.element.querySelector('BitRate')).to.exist;
+      expect((<Element>updateAction.new.element).querySelector('BitRate')).to
+        .exist;
       expect(
-        updateAction.new.element.querySelector('BitRate')
+        (<Element>updateAction.new.element).querySelector('BitRate')
       ).to.have.attribute('multiplier', 'M');
       expect(
-        updateAction.new.element.querySelector('BitRate')?.textContent?.trim()
+        (<Element>updateAction.new.element)
+          .querySelector('BitRate')
+          ?.textContent?.trim()
       ).to.equal('100');
     });
 
@@ -353,7 +356,8 @@ describe('Wizards for SCL element SubNetwork', () => {
       );
       expect(updateAction.new.element).to.not.have.a.attribute('desc');
       expect(updateAction.new.element).to.not.have.a.attribute('type');
-      expect(updateAction.new.element.querySelector('BitRate')).to.not.exist;
+      expect((<Element>updateAction.new.element).querySelector('BitRate')).to
+        .not.exist;
     });
   });
 });

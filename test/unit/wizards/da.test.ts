@@ -165,7 +165,9 @@ describe('da wizards', () => {
       expect(updateActions[0]).to.satisfy(isCreate);
       const updateAction = <Create>updateActions[0];
       expect(
-        updateAction.new.element.querySelector('Val')?.textContent?.trim()
+        (<Element>updateAction.new.element)
+          .querySelector('Val')
+          ?.textContent?.trim()
       ).to.not.equal('direct-with-normal-security');
     });
     it('update a DA element when fc attribute changed', async () => {
@@ -359,7 +361,9 @@ describe('da wizards', () => {
       expect(editorAction(inputs, newWizard())[0]).to.satisfy(isCreate);
       const createAction = <Create>editorAction(inputs, newWizard())[0];
       expect(
-        createAction.new.element.querySelector('Val')?.textContent?.trim()
+        (<Element>createAction.new.element)
+          .querySelector('Val')
+          ?.textContent?.trim()
       ).to.equal('8123');
     });
   });

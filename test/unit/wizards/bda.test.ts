@@ -158,7 +158,9 @@ describe('bda wizards', () => {
       expect(updateActions[0]).to.satisfy(isCreate);
       const updateAction = <Create>updateActions[0];
       expect(
-        updateAction.new.element.querySelector('Val')?.textContent?.trim()
+        (<Element>updateAction.new.element)
+          .querySelector('Val')
+          ?.textContent?.trim()
       ).to.not.equal('bay-control');
     });
   });
@@ -279,7 +281,9 @@ describe('bda wizards', () => {
       expect(editorAction(inputs, newWizard())[0]).to.satisfy(isCreate);
       const createAction = <Create>editorAction(inputs, newWizard())[0];
       expect(
-        createAction.new.element.querySelector('Val')?.textContent?.trim()
+        (<Element>createAction.new.element)
+          .querySelector('Val')
+          ?.textContent?.trim()
       ).to.equal('8123');
     });
   });

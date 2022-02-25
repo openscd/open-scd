@@ -20,13 +20,13 @@ export type ComplexAction = {
 export type EditorAction = SimpleAction | ComplexAction;
 /** Inserts `new.element` to `new.parent` before `new.reference`. */
 export interface Create {
-  new: { parent: Element; element: Element; reference?: Node | null };
+  new: { parent: Node; element: Node; reference?: Node | null };
   derived?: boolean;
   checkValidity?: () => boolean;
 }
 /** Removes `old.element` from `old.parent` before `old.reference`. */
 export interface Delete {
-  old: { parent: Element; element: Element; reference?: Node | null };
+  old: { parent: Node; element: Node; reference?: Node | null };
   derived?: boolean;
   checkValidity?: () => boolean;
 }
