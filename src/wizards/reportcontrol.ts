@@ -133,6 +133,9 @@ function createReportControlAction(parent: Element): WizardActor {
       reportControlAttrs[key] = getValue(inputs.find(i => i.label === key)!);
     });
 
+    // confRef is handled automatically and is 1 for new referenced ReportControl
+    reportControlAttrs['confRev'] = '1';
+
     const dataSetName = reportControlAttrs.name + 'sDataSet';
     reportControlAttrs['datSet'] = dataSetName;
 

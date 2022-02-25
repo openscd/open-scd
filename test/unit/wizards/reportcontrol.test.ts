@@ -534,6 +534,18 @@ describe('Wizards for SCL ReportControl element', () => {
       expect(createAction.new.element.tagName).to.equal('ReportControl');
     });
 
+    it('add default confRev to the ReportControlElement', async () => {
+      await primaryAction.click();
+
+      const actions = (<ComplexAction>actionEvent.args[0][0].detail.action)
+        .actions;
+      expect(actions.length).to.equal(2);
+      const action = actions[0];
+      expect(action).to.satisfy(isCreate);
+      const createAction = <Create>action;
+      expect(createAction.new.element).has.attribute('confRev', '1');
+    });
+
     it('complex action carries referenced DataSet element', async () => {
       await primaryAction.click();
 
