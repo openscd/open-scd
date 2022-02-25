@@ -237,7 +237,6 @@ export function createReportControlWizard(ln0OrLn: Element): Wizard {
 
   return [
     {
-      initial: parent.tagName === 'LN0' ? true : false,
       title: get('wizard.title.add', { tagName: 'ReportControl' }),
       content: contentReportControlWizard({
         name,
@@ -288,12 +287,15 @@ function openReportControlCreateWizard(doc: XMLDocument): WizardActor {
     if (path.length === 0) return [];
 
     const [tagName, id] = path.pop()!.split(': ');
-    if (tagName !== 'LN0' && tagName !== 'LN') return [];
+    if (tagName !== 'IED') return [];
 
-    const lNorLN0 = doc.querySelector(selector(tagName, id));
-    if (!lNorLN0) return [];
+    const ied = doc.querySelector(selector(tagName, id));
+    if (!ied) return [];
 
-    return [() => createReportControlWizard(lNorLN0)];
+    const ln0 = ied.querySelector('LN0');
+    if (!ln0) return [];
+
+    return [() => createReportControlWizard(ln0)];
   };
 }
 
