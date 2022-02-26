@@ -263,7 +263,6 @@ function createNewLNodeType(parent: Element, element: Element): WizardActor {
     selected.forEach(select => {
       const DO = createElement(parent.ownerDocument, 'DO', {
         name: select.label,
-        bType: 'Struct',
         type: select.value,
       });
 

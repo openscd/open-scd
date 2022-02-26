@@ -338,17 +338,17 @@ describe('LNodeType wizards', () => {
 
         expect(
           doc.querySelector(
-            `LNodeType[id="myGeneralLNodeType"][lnClass="CILO"] > DO[name="Beh"][bType="Struct"][type="${ensId}"]`
+            `LNodeType[id="myGeneralLNodeType"][lnClass="CILO"] > DO[name="Beh"]:not([bType])[type="${ensId}"]`
           )
         ).to.exist;
         expect(
           doc.querySelector(
-            `LNodeType[id="myGeneralLNodeType"][lnClass="CILO"] > DO[name="EnaOpn"][bType="Struct"][type="${spsId}"]`
+            `LNodeType[id="myGeneralLNodeType"][lnClass="CILO"] > DO[name="EnaOpn"]:not([bType])[type="${spsId}"]`
           )
         ).to.exist;
         expect(
           doc.querySelector(
-            `LNodeType[id="myGeneralLNodeType"][lnClass="CILO"] > DO[name="EnaCls"][bType="Struct"][type="${spsId}"]`
+            `LNodeType[id="myGeneralLNodeType"][lnClass="CILO"] > DO[name="EnaCls"]:not([bType])[type="${spsId}"]`
           )
         ).to.exist;
       });
