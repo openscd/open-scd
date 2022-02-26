@@ -21,6 +21,8 @@ import {
   SCLTag,
   SimpleAction,
   Replace,
+  Update,
+  isUpdate,
 } from './foundation.js';
 
 /** Mixin that edits an `XML` `doc`, listening to [[`EditorActionEvent`]]s */
@@ -234,16 +236,63 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       return true;
     }
 
-    private logUpdate(action: Replace) {
+    private logUpdate(action: Replace | Update) {
+      const name = isReplace(action)
+        ? action.new.element.tagName
+        : (action as Update).element.tagName;
+
       this.dispatchEvent(
         newLogEvent({
           kind: 'action',
           title: get('editing.updated', {
-            name: action.new.element.tagName,
+            name,
           }),
           action: action,
         })
       );
+    }
+
+    private checkUpdateValidity(update: Update): boolean {
+      if (update.checkValidity !== undefined) return update.checkValidity();
+
+      const invalid = Array.from(
+        update.element.parentElement?.children ?? []
+      ).some(
+        elm =>
+          elm.tagName === update.element.tagName &&
+          elm.getAttribute('name') === update.newAttributes['name']
+      );
+
+      if (invalid)
+        this.dispatchEvent(
+          newLogEvent({
+            kind: 'error',
+            title: get('editing.error.update', {
+              name: update.element.tagName,
+            }),
+            message: get('editing.error.nameClash', {
+              parent: update.element.parentElement!.tagName,
+              child: update.element.tagName,
+              name: update.newAttributes['name']!,
+            }),
+          })
+        );
+
+      return !invalid;
+    }
+
+    private onUpdate(action: Update) {
+      if (!this.checkUpdateValidity(action)) return false;
+
+      Array.from(action.element.attributes).forEach(attr =>
+        action.element.removeAttributeNode(attr)
+      );
+
+      Object.entries(action.newAttributes).forEach(([key, value]) => {
+        if (value) action.element.setAttribute(key, value);
+      });
+
+      return true;
     }
 
     private onSimpleAction(action: SimpleAction) {
@@ -251,6 +300,7 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       else if (isCreate(action)) return this.onCreate(action as Create);
       else if (isDelete(action)) return this.onDelete(action as Delete);
       else if (isReplace(action)) return this.onReplace(action as Replace);
+      else if (isUpdate(action)) return this.onUpdate(action as Update);
     }
 
     private logSimpleAction(action: SimpleAction) {
@@ -258,6 +308,7 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       else if (isCreate(action)) this.logCreate(action as Create);
       else if (isDelete(action)) this.logDelete(action as Delete);
       else if (isReplace(action)) this.logUpdate(action as Replace);
+      else if (isUpdate(action)) this.logUpdate(action as Update);
     }
 
     private onAction(event: EditorActionEvent<EditorAction>) {

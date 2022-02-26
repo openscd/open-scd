@@ -245,5 +245,33 @@ describe('Editing-Logging integration', () => {
     });
   });
 
+  describe('has an Update EditorAction type that', () => {
+    let updateAction: Update;
+    beforeEach(() => {
+      const newAttributes: Record<string, string | null> = {};
+      newAttributes['name'] = 'Q03';
+
+      updateAction = createUpdateAction(element, newAttributes);
+    });
+
+    it('can undo', () => {
+      elm.dispatchEvent(newActionEvent(updateAction));
+      expect(element).to.have.attribute('name', 'Q03');
+      expect(element).to.not.have.attribute('desc');
+
+      elm.undo();
+      expect(element).to.have.attribute('name', 'Q01');
+      expect(element).to.have.attribute('desc', 'Bay');
+    });
+
+    it('can redo', () => {
+      elm.dispatchEvent(newActionEvent(updateAction));
+
+      elm.undo();
+      elm.redo();
+
+      expect(element).to.have.attribute('name', 'Q03');
+      expect(element).to.not.have.attribute('desc');
+    });
   });
 });
