@@ -163,7 +163,7 @@ describe('EditingElement', () => {
     expect(testNode.parentNode).to.null;
   });
 
-  it('updates an element on receiving an Update action', () => {
+  it('replaces an element on receiving an Delete action', () => {
     elm.dispatchEvent(
       newActionEvent({
         old: {
@@ -181,7 +181,7 @@ describe('EditingElement', () => {
     );
   });
 
-  it('does not update an element with name conflict', () => {
+  it('does not replace an element with name conflict', () => {
     const newElement = elm.doc!.createElement('Bay');
     newElement?.setAttribute('name', 'Q02');
 
