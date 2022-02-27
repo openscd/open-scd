@@ -23,6 +23,7 @@ import {
   identity,
   isPublic,
   newActionEvent,
+  newSubWizardEvent,
   newWizardEvent,
   patterns,
   selector,
@@ -601,8 +602,7 @@ export function lNodeTypeWizard(
             const wizard = dOWizard({
               parent: lnodetype,
             });
-            if (wizard) e.target!.dispatchEvent(newWizardEvent(wizard));
-            e.target!.dispatchEvent(newWizardEvent());
+            if (wizard) e.target!.dispatchEvent(newSubWizardEvent(wizard));
           }}
         ></mwc-button>`,
         html`
@@ -614,8 +614,7 @@ export function lNodeTypeWizard(
                 doc,
               });
 
-              if (wizard) e.target!.dispatchEvent(newWizardEvent(wizard));
-              e.target!.dispatchEvent(newWizardEvent());
+              if (wizard) e.target!.dispatchEvent(newSubWizardEvent(wizard));
             }}
           >
             ${Array.from(lnodetype.querySelectorAll('DO')).map(
