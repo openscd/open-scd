@@ -1,7 +1,12 @@
 'use strict';
 
 import { LitElement, html, TemplateResult, property, css } from 'lit-element';
-import { render } from 'lit-html';
+import { compareNames } from '../foundation.js';
+import {
+  Delete,
+  newActionEvent,
+  newWizardEvent,
+} from '../foundation.js';
 
 import '@vaadin/grid';
 import '@vaadin/grid/vaadin-grid-column-group.js';
@@ -9,17 +14,15 @@ import '@vaadin/grid/theme/material/vaadin-grid.js';
 import '@vaadin/grid/theme/material/vaadin-grid-filter-column.js';
 import '@vaadin/grid/theme/material/vaadin-grid-selection-column.js';
 
-// import './subscription/subscriber-ied-list.js';
-import './cleanup/publisher-goose-list.js';
+import type { Grid } from '@vaadin/grid';
 
-import { compareNames } from '../foundation.js';
-import {
-  Delete,
-  newActionEvent,
-  newWizardEvent,
-  newSubWizardEvent,
-} from '../foundation.js';
-import { editDataSetWizard } from '../wizards/dataset.js';
+interface iedData {
+  name: string,
+  type: string,
+  manufacturer: string,
+  dataset: string
+}
+
 
 /** An editor [[`plugin`]] for cleaning SCL references and definitions. */
 export default class Cleanup extends LitElement {
@@ -27,13 +30,12 @@ export default class Cleanup extends LitElement {
   @property()
   doc!: XMLDocument;
   @property()
-
   areDatasetsCleanable = false;
 
-  gridRowsUnusedDatasets = [];
+  gridRowsUnusedDatasets: iedData[] = [];
 
   /**
-   * Get sorted IEDs associated with this SCL file
+   * Get sorted IEDs associated with this SCL file.
    */
   private get ieds(): Element[] {
     return this.doc
@@ -44,9 +46,10 @@ export default class Cleanup extends LitElement {
   }
 
   /**
-   * Get all the published GOOSE messages.
+   * Get all the control block of a particular type
    * @param ied - The IED to search through.
-   * @returns All the published GOOSE messages of this specific IED.
+   * @param controlType - One of GSEControl, SampledValueControl or ReportControl.
+   * @returns The SCL element for all the control blocks type in an array.
    */
   private getControlType(ied: Element, controlType = 'GSEControl'): Element[] {
     return Array.from(
@@ -57,11 +60,11 @@ export default class Cleanup extends LitElement {
   }
 
   /**
-   * Get all the published GOOSE messages.
-   * @param ied - The IED to search through.
-   * @returns All the published GOOSE messages of this specific IED.
+   * Get all the DataSets for a specific IED
+   * @param ied - The SCL IED element to search through.
+   * @returns An Array containing the name of all DataSets.
    */
-  private getDatasets(ied: Element): string[] {
+  private getDatasetNames(ied: Element): string[] {
     return Array.from(
       ied.querySelectorAll(
         `:scope > AccessPoint > Server > LDevice > LN0[lnClass="LLN0"] > DataSet`
@@ -69,125 +72,64 @@ export default class Cleanup extends LitElement {
       elem => elem.getAttribute('name') ?? 'unknown'
     );
   }
-  // gseControl
-  private getControlInfo(ied: Element, controlType: string) {
+  
+  /**
+   * Gets DataSets for a particular control block type.
+   * @param ied - The SCL IED element to search through.
+   * @param controlType - One of GSEControl, SampledValueControl or ReportControl.
+   * @returns An array containing the DataSets used by a control type.
+   */
+  private getControlDatasets(ied: Element, controlType: string) {
     const controlInfo: string[] = [];
     this.getControlType(ied, controlType).forEach(control => {
-      if (control && !!control.getAttribute('name')) {
+      if (control?.getAttribute('name')) {
         controlInfo.push(control.getAttribute('datSet') ?? 'unknown dataset');
       }
     });
     return controlInfo;
   }
 
+  /**
+   * For an SCL IED element, return the used DataSet names.
+   * @param ied - An SCL IED element.
+   * @returns All used DataSet in an array by name.
+   */
   private getUsedDatasets(ied: Element) {
-    const controlReport = this.getControlInfo(ied, 'ReportControl');
-    const controlGSE = this.getControlInfo(ied, 'GSEControl');
-    const controlSV = this.getControlInfo(ied, 'SampledValueControl');
+    const controlReport = this.getControlDatasets(ied, 'ReportControl');
+    const controlGSE = this.getControlDatasets(ied, 'GSEControl');
+    const controlSV = this.getControlDatasets(ied, 'SampledValueControl');
     return controlReport.concat(controlGSE, controlSV);
   }
 
-  private getDatasetFromIED(ied: string, dataset: string): Element|null {
-    return this.doc.querySelector(`:root > IED[name="${ied}"] > AccessPoint > Server > LDevice > LN0[lnClass="LLN0"] > DataSet[name="${dataset}"]`)
-  }
-
-  private cleanDatasets(): Delete[] {
-    const gridDataset = this.shadowRoot?.querySelector('#grid-datasets');
-
-    const actions: Delete[] = [];
-
-    if (gridDataset) {
-      gridDataset.selectedItems.forEach((item) => {
-        const itemToDelete = this.getDatasetFromIED(item.name, item.dataset)
-        console.log(itemToDelete)
-        actions.push({
-          old: {
-            parent: itemToDelete.parentElement!,
-            itemToDelete,
-            reference: itemToDelete.nextSibling,
-          },
-        });
-      })
-    } 
-    return actions;
-  }
-
-  private doDataSetRendering(root, column, rowData) {
-    // const datasetElement = this.getDatasetFromIED(rowData.item.name, rowData.item.dataset)
-    return render( html`
-    <span>${rowData.item.dataset}</span>
-    <span><mwc-button
-    id="editdataset"
-    label="Edit",
-    })}
-    icon="edit"
-    }"
-  ></mwc-button></span>
-    `, root
+  /**
+   * Get a named dataset from a specific IED name in the SCL file.
+   * @param ied - An SCL IED element.
+   * @param dataset - The name of a DataSet.
+   * @returns - An SCL DataSet Element
+   */
+  private getDatasetFromIED(ied: string, dataset: string): Element | null {
+    return this.doc.querySelector(
+      `:root > IED[name="${ied}"] > AccessPoint > Server > LDevice > LN0[lnClass="LLN0"] > DataSet[name="${dataset}"]`
     );
+  }
 
-    // @click="${() => {
-    //   this.dispatchEvent(
-    //     newWizardEvent(editDataSetWizard(datasetElement))
-    //   )
-    // }
-
-    // @click="${(e: MouseEvent) => {
-    //   console.log(this)
-    //   // e.target?.dispatchEvent(
-    //   //   newWizardEvent(() => editDataSetWizard(datasetElement))
-    //   // );
-    //   this.dispatchEvent(
-    //     newWizardEvent(() => editDataSetWizard(datasetElement))
-    //   )
-    // }}"
-
-    // console.log(rowData)
-    //   render(
-    //     html`
-    //       <button>Test</button>
-    //     `, 
-    //     root
-    //   );
-    }
-
-  //   return `html
-  //   <span>row.item.dataset</span>
-  //   <span><mwc-button
-  //   id="editdataset"
-  //   label="do something with a dataset",
-  //   })}
-  //   icon="edit"
-  //   @click="${(e: MouseEvent) => {
-  //     e.target?.dispatchEvent(
-  //       newSubWizardEvent(() => editDataSetWizard(getDatasetFromIED(row.item.name, row.item.dataset)))
-  //     );
-  //   }}}"
-  // ></mwc-button></span>
-  //   `
-  // }
-
+  /**
+   * Render a user selectable table of unused datasets if any exist, otherwise indicate this is not an issue
+   * @returns 
+   */
   private getUnusedDatasets() {
     // Unused Datasets
-    let gridRowsUnusedDatasets = [];
+    const gridRowsUnusedDatasets: iedData[] = [];
     this.ieds.forEach(ied => {
       const usedDatasets = this.getUsedDatasets(ied);
-      this.getDatasets(ied)
+      this.getDatasetNames(ied)
         .filter(ds => !usedDatasets.includes(ds))
         .forEach(unusedDS => {
-          const rowItem = {
+          const rowItem:iedData = {
             name: ied.getAttribute('name') ?? 'unknown',
             type: ied.getAttribute('type') ?? 'unknown',
             manufacturer: ied.getAttribute('manufacturer') ?? 'unknown',
-            dataset: unusedDS // unusedDS,
-            // 
-            // 
-            // @click="${(e: MouseEvent) => {
-            //   e.target?.dispatchEvent(
-            //     newSubWizardEvent(() => editDataSetWizard(dataSet))
-            //   );
-            // }
-            // 
+            dataset: unusedDS,
           };
           gridRowsUnusedDatasets.push(rowItem);
         });
@@ -217,7 +159,6 @@ export default class Cleanup extends LitElement {
           <vaadin-grid-filter-column
             id="dataset"
             path="dataset"
-            .renderer="${this.doDataSetRendering}"
             header="Unused Dataset Name"
           ></vaadin-grid-filter-column>
           </vaadin-grid-column-group>
@@ -243,14 +184,38 @@ export default class Cleanup extends LitElement {
     }
   }
 
-  async firstUpdated(): Promise<void> {
-    // nothing in particular
-    let gridDataset = this.shadowRoot?.querySelector('#grid-datasets');
+  /**
+   * Clean datasets as requested by removing DataSet elements specified by the user from the SCL file
+   * @returns an actions array to support undo/redo
+   */
+   private cleanDatasets(): Delete[] {
+    const gridDataset: Grid|null|undefined = this.shadowRoot?.querySelector('#grid-datasets');
+    const actions: Delete[] = [];
+    if (gridDataset) {
+      gridDataset.selectedItems.forEach(item => {
+        const itemToDelete: Element|null|undefined = this.getDatasetFromIED(item.name, item.dataset);
+        console.log(itemToDelete);
+        actions.push({
+          old: {
+            parent: itemToDelete?.parentElement,
+            itemToDelete,
+            reference: itemToDelete?.nextSibling,
+          },
+        });
+      });
+    }
+    return actions;
+  }
 
+  async firstUpdated(): Promise<void> {
+    const gridDataset: Grid|null|undefined = this.shadowRoot?.querySelector('#grid-datasets');
+    // add event listener to allow button to be disabled
     if (gridDataset) {
       gridDataset.items = this.gridRowsUnusedDatasets;
-      gridDataset.addEventListener('selected-items-changed', grid => {
-        this.areDatasetsCleanable = grid.target?.selectedItems.length !== 0;
+      gridDataset.addEventListener('selected-items-changed', event => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const selectedItems:any|null = event.target
+        this.areDatasetsCleanable = selectedItems?.length !== 0
       });
     }
   }
