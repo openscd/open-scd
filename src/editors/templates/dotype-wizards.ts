@@ -200,7 +200,7 @@ function addPredefinedDOType(
       : null;
     const element = values.selected
       ? <Element>selectedElement!.cloneNode(true)
-      : parent.ownerDocument.createElement('DOType');
+      : createElement(parent.ownerDocument, 'DOType', {});
 
     element.setAttribute('id', id);
     element.setAttribute('cdc', cdc);
