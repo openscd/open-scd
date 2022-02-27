@@ -13,6 +13,7 @@ import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import '../../wizard-textfield.js';
 import {
   Create,
+  createElement,
   EditorAction,
   getValue,
   identity,
@@ -153,7 +154,7 @@ function addPredefinedDAType(
       : null;
     const element = values.selected
       ? <Element>selectedElement!.cloneNode(true)
-      : parent.ownerDocument.createElement('DAType');
+      : createElement(parent.ownerDocument, 'DAType', {});
 
     element.setAttribute('id', id);
     if (desc) element.setAttribute('desc', desc);
