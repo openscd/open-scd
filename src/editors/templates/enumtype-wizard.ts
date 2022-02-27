@@ -188,7 +188,7 @@ function createAction(parent: Element, templates: XMLDocument): WizardActor {
             .querySelector(`EnumType[id="${values.selected.value}"]`)!
             .cloneNode(true)
         )
-      : parent.ownerDocument.createElement('EnumType');
+      : createElement(parent.ownerDocument, 'EnumType', {});
 
     element.setAttribute('id', id);
     if (desc) element.setAttribute('desc', desc);
