@@ -193,13 +193,13 @@ export default class Cleanup extends LitElement {
     const actions: Delete[] = [];
     if (gridDataset) {
       gridDataset.selectedItems.forEach(item => {
-        const itemToDelete: Element|null|undefined = this.getDatasetFromIED(item.name, item.dataset);
+        const itemToDelete: Element = this.getDatasetFromIED(item.name, item.dataset)!;
         console.log(itemToDelete);
         actions.push({
           old: {
-            parent: itemToDelete?.parentElement,
-            itemToDelete,
-            reference: itemToDelete?.nextSibling,
+            parent: <Element>(itemToDelete.parentElement!),
+            element: itemToDelete,
+            reference: <Node|null>itemToDelete!.nextSibling,
           },
         });
       });
