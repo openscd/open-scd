@@ -19,6 +19,7 @@ import {
   identity,
   isPublic,
   newActionEvent,
+  newSubWizardEvent,
   newWizardEvent,
   patterns,
   selector,
@@ -317,8 +318,7 @@ export function eNumTypeEditWizard(
               const wizard = eNumValWizard({
                 parent: enumtype,
               });
-              if (wizard) e.target!.dispatchEvent(newWizardEvent(wizard));
-              e.target!.dispatchEvent(newWizardEvent());
+              if (wizard) e.target!.dispatchEvent(newSubWizardEvent(wizard));
             }}
           ></mwc-button>
           <mwc-list
@@ -328,8 +328,7 @@ export function eNumTypeEditWizard(
                 identity: (<ListItem>(<List>e.target).selected).value,
                 doc,
               });
-              if (wizard) e.target!.dispatchEvent(newWizardEvent(wizard));
-              e.target!.dispatchEvent(newWizardEvent());
+              if (wizard) e.target!.dispatchEvent(newSubWizardEvent(wizard));
             }}
             >${Array.from(enumtype.querySelectorAll('EnumVal')).map(
               enumval =>
