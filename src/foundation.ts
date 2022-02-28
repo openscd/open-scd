@@ -310,18 +310,18 @@ export enum SubscribeStatus {
 }
 
 export interface IEDSubscriptionDetail {
-  iedName: string;
+  element: Element;
   subscribeStatus: SubscribeStatus;
 }
 export type IEDSubscriptionEvent = CustomEvent<IEDSubscriptionDetail>;
 export function newIEDSubscriptionEvent(
-  iedName: string,
+  element: Element,
   subscribeStatus: SubscribeStatus
 ): IEDSubscriptionEvent {
   return new CustomEvent<IEDSubscriptionDetail>('ied-subscription', {
     bubbles: true,
     composed: true,
-    detail: { iedName, subscribeStatus },
+    detail: { element, subscribeStatus },
   });
 }
 

@@ -19,7 +19,7 @@ export class IEDElement extends LitElement {
   private onIedSelect = () => {
     document.querySelector('open-scd')!.dispatchEvent(
       newIEDSubscriptionEvent(
-        this.element!.getAttribute('name') ?? '',
+        this.element,
         this.status
       )
     );
