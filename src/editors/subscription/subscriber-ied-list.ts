@@ -158,11 +158,12 @@ export class SubscriberIEDList extends LitElement {
   private subscribe(ied: Element): void {
     const clone: Element = <Element>ied.cloneNode(true);
 
-    let inputsElement = clone.querySelector('LN0[lnClass="LLN0"] > Inputs');
+    let inputsElement = clone.querySelector('LN0 > Inputs');
     if (!inputsElement) {
       inputsElement = document.createElementNS(document.documentElement.namespaceURI, 'Inputs');
     }
 
+    /** Updating the ExtRefs according the dataset */
     this.currentSelectedGooseDataset.querySelectorAll('FCDA').forEach(fcda => {
       if(!inputsElement!.querySelector(`ExtRef[iedName=${this.currentSelectedGooseIED}][serviceType="GOOSE"]` +
         `${fcdaReferences.map(fcdaRef =>
@@ -171,18 +172,22 @@ export class SubscriberIEDList extends LitElement {
             : '').join('')
           }`)) {
           const extRef = document.createElementNS(document.documentElement.namespaceURI, 'ExtRef');
-          extRef.setAttribute('serviceType', 'GOOSE');
-          extRef.setAttribute('iedName', this.currentSelectedGooseIED);
+          extRef.setAttributeNS(document.documentElement.namespaceURI, 'iedName', this.currentSelectedGooseIED);
+          extRef.setAttributeNS(document.documentElement.namespaceURI, 'serviceType', 'GOOSE');
           fcdaReferences.map(fcdaRef => {
-            extRef.setAttribute(fcdaRef, fcda.getAttribute(fcdaRef) ?? '');
+            extRef.setAttributeNS(document.documentElement.namespaceURI, fcdaRef, fcda.getAttribute(fcdaRef) ?? '');
           });
           inputsElement?.appendChild(extRef);
         }
     });
 
-    clone.querySelector('LN0[lnClass="LLN0"] > Inputs')?.remove();
-    clone.querySelector('LN0[lnClass="LLN0"]')?.append(inputsElement);
-  
+    if (!inputsElement.parentElement) {
+      // Inputs isn't available, we need to add it manually.
+      
+      // clone.querySelector('LN0[lnClass="LLN0"] > Inputs')?.remove();
+      // clone.querySelector('LN0[lnClass="LLN0"]')?.append(inputsElement);
+    }
+
     this.dispatchEvent(
       newActionEvent({
         new: {
