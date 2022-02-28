@@ -8,7 +8,7 @@ import {
   TemplateResult,
 } from 'lit-element';
 import { translate } from 'lit-translate';
-import { GOOSEDataSetEvent } from '../../foundation.js';
+import { GOOSESelectEvent } from '../../foundation.js';
 import { styles } from '../templates/foundation.js';
 
 /**
@@ -48,8 +48,8 @@ export class SubscriberIEDList extends LitElement {
   /** Current selected IED. */
   iedName!: string;
 
-  /** Current selected GOOSE message. */
-  gseName!: string;
+  /** Current selected GSEControl element. */
+  gseControl!: Element;
   
   @query('div') subscriberWrapper!: Element;
 
@@ -67,9 +67,9 @@ export class SubscriberIEDList extends LitElement {
    * all FCDAs are covered, or partly FCDAs are covered.
    * @param event - Incoming event.
    */
-  private async onGOOSEDataSetEvent(event: GOOSEDataSetEvent) {
+  private async onGOOSEDataSetEvent(event: GOOSESelectEvent) {
     this.iedName = event.detail.iedName;
-    this.gseName = event.detail.gseName;
+    this.gseControl = event.detail.gseControl;
 
     const dataSet = event.detail.dataset;
 
@@ -92,7 +92,7 @@ export class SubscriberIEDList extends LitElement {
        * Count all the linked ExtRefs.
        */
       dataSet.querySelectorAll('FCDA').forEach(fcda => {
-        if(inputs.querySelector(`ExtRef[iedName=${event.detail.iedName}][serviceType="GOOSE"]` +
+        if(inputs.querySelector(`ExtRef[iedName=${event.detail.iedName}]` +
           `${fcdaReferences.map(fcdaRef =>
             fcda.getAttribute(fcdaRef)
               ? `[${fcdaRef}="${fcda.getAttribute(fcdaRef)}"]`
@@ -138,13 +138,14 @@ export class SubscriberIEDList extends LitElement {
 
   render(): TemplateResult {
     const partialSubscribedIeds = this.availableIeds.filter(ied => ied.partial);
+    const gseControlName = this.gseControl?.getAttribute('name') ?? undefined;
 
     return html`
       <section>
         <h1>${translate('subscription.subscriberIed.title', {
-          selected: this.gseName ? this.iedName + ' > ' + this.gseName : 'IED'
+          selected: gseControlName ? this.iedName + ' > ' + gseControlName : 'IED'
         })}</h1>
-        ${this.gseName ?
+        ${this.gseControl ?
         html`<div class="subscriberWrapper">
           <mwc-list>
             <mwc-list-item noninteractive>
