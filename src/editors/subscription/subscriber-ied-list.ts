@@ -156,7 +156,6 @@ export class SubscriberIEDList extends LitElement {
    * @param ied - Given IED to subscribe.
    */
   private subscribe(ied: Element): void {
-    const parent: Element = ied.parentElement!;
     const clone: Element = <Element>ied.cloneNode(true);
 
     let inputsElement = clone.querySelector('LN0[lnClass="LLN0"] > Inputs');
@@ -187,10 +186,11 @@ export class SubscriberIEDList extends LitElement {
     this.dispatchEvent(
       newActionEvent({
         new: {
-          parent: parent,
-          element: clone,
-          reference: clone.nextSibling,
+          element: clone
         },
+        old: {
+          element: ied
+        }
       })
     );
   }
@@ -225,6 +225,11 @@ export class SubscriberIEDList extends LitElement {
           element: clone,
           reference: clone.nextSibling,
         },
+        old: {
+          parent: parent,
+          element: ied,
+          reference: ied.nextSibling
+        }
       })
     );
   }

@@ -72,6 +72,7 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     private onCreate(action: Create) {
+      console.log('onCreate')
       if (!this.checkCreateValidity(action)) return false;
 
       if (action.new.reference === undefined)
@@ -97,6 +98,7 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     private onDelete(action: Delete) {
+      console.log('onDelete')
       if (!action.old.reference)
         action.old.reference = action.old.element.nextSibling;
 
@@ -147,6 +149,7 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     private onMove(action: Move) {
+      console.log('onMove')
       if (!this.checkMoveValidity(action)) return false;
 
       if (!action.old.reference)
@@ -206,6 +209,7 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     private onUpdate(action: Update) {
+      console.log('onUpdate')
       if (!this.checkUpdateValidity(action)) return false;
 
       action.new.element.append(...Array.from(action.old.element.children));
