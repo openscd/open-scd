@@ -11,7 +11,7 @@ import {
 import './elements/ied-element.js';
 
 import { translate } from 'lit-translate';
-import { GOOSEDataSetEvent, IEDSubscriptionEvent, newActionEvent, SubscribeStatus } from '../../foundation.js';
+import { createElement, GOOSEDataSetEvent, IEDSubscriptionEvent, newActionEvent, SubscribeStatus } from '../../foundation.js';
 import { styles } from '../templates/foundation.js';
 
 /**
@@ -81,7 +81,7 @@ export class SubscriberIEDList extends LitElement {
     this.clearIedLists();
 
     Array.from(this.doc.querySelectorAll(':root > IED')).forEach(ied => {
-      const inputs = ied.querySelector(`LN0[lnClass="LLN0"] > Inputs`);
+      const inputs = ied.querySelector(`LN0 > Inputs`);
 
       let numberOfLinkedExtRefs = 0;
       
@@ -134,17 +134,14 @@ export class SubscriberIEDList extends LitElement {
   private async onIEDSubscriptionEvent(event: IEDSubscriptionEvent) {
     switch (event.detail.subscribeStatus) {
       case SubscribeStatus.Full: {
-        console.log("Full Subscribed");
         this.unsubscribe(event.detail.element)
         break;
       }
       case SubscribeStatus.Partial: {
-        console.log("Partial Subscribed");
         this.subscribe(event.detail.element)
         break;
       }
       case SubscribeStatus.None: {
-        console.log("Not Subscribed");
         this.subscribe(event.detail.element)
         break;
       }
@@ -160,7 +157,7 @@ export class SubscriberIEDList extends LitElement {
 
     let inputsElement = clone.querySelector('LN0 > Inputs');
     if (!inputsElement) {
-      inputsElement = document.createElementNS(document.documentElement.namespaceURI, 'Inputs');
+      inputsElement = createElement(ied.ownerDocument, 'Inputs', {});
     }
 
     /** Updating the ExtRefs according the dataset */
@@ -171,21 +168,27 @@ export class SubscriberIEDList extends LitElement {
             ? `[${fcdaRef}="${fcda.getAttribute(fcdaRef)}"]`
             : '').join('')
           }`)) {
-          const extRef = document.createElementNS(document.documentElement.namespaceURI, 'ExtRef');
-          extRef.setAttributeNS(document.documentElement.namespaceURI, 'iedName', this.currentSelectedGooseIED);
-          extRef.setAttributeNS(document.documentElement.namespaceURI, 'serviceType', 'GOOSE');
-          fcdaReferences.map(fcdaRef => {
-            extRef.setAttributeNS(document.documentElement.namespaceURI, fcdaRef, fcda.getAttribute(fcdaRef) ?? '');
-          });
-          inputsElement?.appendChild(extRef);
+            const extRef = createElement(
+              ied.ownerDocument, 
+              'ExtRef',
+              {
+                iedName: this.currentSelectedGooseIED,
+                serviceType: 'GOOSE',
+                ldInst: fcda.getAttribute('ldInst') ?? '',
+                lnClass: fcda.getAttribute('lnClass') ?? '',
+                lnInst: fcda.getAttribute('lnInst') ?? '',
+                prefix: fcda.getAttribute('prefix') ?? '',
+                doName: fcda.getAttribute('doName') ?? '',
+                daName: fcda.getAttribute('daName') ?? ''
+              });
+
+            inputsElement?.appendChild(extRef);
         }
     });
 
+    /** If the IED doesn't have a Inputs element, just append it to the first LN0 element. */
     if (!inputsElement.parentElement) {
-      // Inputs isn't available, we need to add it manually.
-      
-      // clone.querySelector('LN0[lnClass="LLN0"] > Inputs')?.remove();
-      // clone.querySelector('LN0[lnClass="LLN0"]')?.append(inputsElement);
+      clone.querySelector('LN0')?.append(inputsElement);
     }
 
     this.dispatchEvent(
@@ -205,35 +208,31 @@ export class SubscriberIEDList extends LitElement {
    * @param ied - Given IED to unsubscribe.
    */
   private unsubscribe(ied: Element): void {
-    const parent: Element = ied.parentElement!;
     const clone: Element = <Element>ied.cloneNode(true);
 
-    const inputsElement = clone.querySelector('LN0[lnClass="LLN0"] > Inputs');
+    const inputsElement = clone.querySelector('LN0 > Inputs');
 
     this.currentSelectedGooseDataset.querySelectorAll('FCDA').forEach(fcda => {
-      const extRef = document.createElement('ExtRef');
-      extRef.setAttribute('serviceType', 'GOOSE');
-      extRef.setAttribute('iedName', this.currentSelectedGooseIED);
-      fcdaReferences.map(fcdaRef => {
-        extRef.setAttribute(fcdaRef, fcda.getAttribute(fcdaRef) ?? '');
-      });
+      const extRef = inputsElement?.querySelector(`ExtRef[iedName=${this.currentSelectedGooseIED}][serviceType="GOOSE"]` +
+        `${fcdaReferences.map(fcdaRef =>
+          fcda.getAttribute(fcdaRef)
+            ? `[${fcdaRef}="${fcda.getAttribute(fcdaRef)}"]`
+            : '').join('')
+          }`);
 
-      inputsElement?.removeChild(extRef);
+      inputsElement?.removeChild(extRef!);
     });
 
-    clone.replaceChild(inputsElement!, clone.querySelector('LN0[lnClass="LLN0"] > Inputs')!)
+    clone.querySelector('LN0 > Inputs')?.remove();
+    clone.querySelector('LN0')?.appendChild(inputsElement!)
   
     this.dispatchEvent(
       newActionEvent({
         new: {
-          parent: parent,
-          element: clone,
-          reference: clone.nextSibling,
+          element: clone
         },
         old: {
-          parent: parent,
-          element: ied,
-          reference: ied.nextSibling
+          element: ied
         }
       })
     );

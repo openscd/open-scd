@@ -31,7 +31,7 @@ export class PublisherGOOSEList extends LitElement {
    * @returns All the published GOOSE messages of this specific IED.
    */
   private getGSEControls(ied: Element) : Element[] {
-    return Array.from(ied.querySelectorAll(':scope > AccessPoint > Server > LDevice > LN0[lnClass="LLN0"] > GSEControl'));
+    return Array.from(ied.querySelectorAll(':scope > AccessPoint > Server > LDevice > LN0 > GSEControl'));
   }
 
   render(): TemplateResult {
