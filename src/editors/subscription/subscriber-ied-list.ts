@@ -80,7 +80,9 @@ export class SubscriberIEDList extends LitElement {
 
     this.clearIedLists();
 
-    Array.from(this.doc.querySelectorAll(':root > IED')).forEach(ied => {
+    Array.from(this.doc.querySelectorAll(':root > IED'))
+    .filter(ied => ied.getAttribute('name') != this.currentSelectedGooseIED)
+    .forEach(ied => {
       const inputs = ied.querySelector(`LN0 > Inputs`);
 
       let numberOfLinkedExtRefs = 0;
@@ -152,7 +154,7 @@ export class SubscriberIEDList extends LitElement {
    * Full subscribe a given IED to the current dataset.
    * @param ied - Given IED to subscribe.
    */
-  private subscribe(ied: Element): void {
+  private async subscribe(ied: Element): Promise<void> {
     const clone: Element = <Element>ied.cloneNode(true);
 
     let inputsElement = clone.querySelector('LN0 > Inputs');
@@ -191,16 +193,7 @@ export class SubscriberIEDList extends LitElement {
       clone.querySelector('LN0')?.append(inputsElement);
     }
 
-    this.dispatchEvent(
-      newActionEvent({
-        new: {
-          element: clone
-        },
-        old: {
-          element: ied
-        }
-      })
-    );
+    this.replaceElement(ied, clone);
   }
 
   /**
@@ -224,15 +217,37 @@ export class SubscriberIEDList extends LitElement {
     });
 
     clone.querySelector('LN0 > Inputs')?.remove();
-    clone.querySelector('LN0')?.appendChild(inputsElement!)
-  
+    clone.querySelector('LN0')?.appendChild(inputsElement!);
+
+    this.replaceElement(ied, clone);
+  }
+
+  /**
+   * Replacing an element in the current opened file.
+   * @param original - The original element.
+   * @param clone - The element to replace the original with.
+   */
+  private async replaceElement(original: Element, clone: Element) {
+    const parent = original.parentElement;
+
+    this.dispatchEvent(
+      newActionEvent({
+        old: {
+          parent: parent!,
+          element: original,
+          reference: original.nextSibling
+        }
+      })
+    );
+
+    await this.updateComplete;
+
     this.dispatchEvent(
       newActionEvent({
         new: {
-          element: clone
-        },
-        old: {
-          element: ied
+          parent: parent!,
+          element: clone,
+          reference: clone.nextSibling
         }
       })
     );
