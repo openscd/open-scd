@@ -14,6 +14,7 @@ import '../../action-pane.js';
 import './access-point-container.js';
 import { Nsdoc } from '../../foundation/nsdoc.js';
 import { getDescriptionAttribute, getNameAttribute, newWizardEvent } from '../../foundation.js';
+import { iedIcon } from './icons.js';
 
 /** [[`IED`]] plugin subeditor for editing `IED` element. */
 @customElement('ied-container')
@@ -38,14 +39,13 @@ export class IedContainer extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<action-pane .label="${this.header()}">
+    return html`<action-pane .icon=${iedIcon} .label="${this.header()}">
       <abbr slot="action" title="${translate('edit')}">
         <mwc-icon-button
           icon="edit"
           @click=${() => this.openEditWizard()}
         ></mwc-icon-button>
       </abbr>
-
       ${Array.from(this.element.querySelectorAll(':scope > AccessPoint')).map(
         ap => html`<access-point-container
           .element=${ap}

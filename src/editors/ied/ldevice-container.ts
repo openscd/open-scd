@@ -15,6 +15,7 @@ import { getDescriptionAttribute, getInstanceAttribute, getNameAttribute } from 
 import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 import { translate } from 'lit-translate';
 import { Nsdoc } from '../../foundation/nsdoc.js';
+import { logicalDeviceIcon } from './icons.js';
 
 /** [[`IED`]] plugin subeditor for editing `LDevice` element. */
 @customElement('ldevice-container')
@@ -44,7 +45,7 @@ export class LDeviceContainer extends LitElement {
   render(): TemplateResult {
     const lnElements = Array.from(this.element.querySelectorAll(':scope > LN,LN0'));
     
-    return html`<action-pane .label="${this.header()}">
+    return html`<action-pane .icon=${logicalDeviceIcon} .label="${this.header()}">
       ${lnElements.length > 0 ? html`<abbr slot="action" title="${translate('iededitor.toggleChildElements')}">
         <mwc-icon-button-toggle
           on

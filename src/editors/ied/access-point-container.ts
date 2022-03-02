@@ -12,6 +12,7 @@ import './server-container.js'
 import { nothing } from 'lit-html';
 import { getDescriptionAttribute, getNameAttribute } from '../../foundation.js';
 import { Nsdoc } from '../../foundation/nsdoc.js';
+import { accessPointIcon } from './icons.js';
 
 /** [[`IED`]] plugin subeditor for editing `AccessPoint` element. */
 @customElement('access-point-container')
@@ -33,13 +34,13 @@ export class AccessPointContainer extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<action-pane .label="${this.header()}">
-    ${Array.from(this.element.querySelectorAll(':scope > Server')).map(
-      server => html`<server-container
-        .element=${server}
-        .nsdoc=${this.nsdoc}
-        .ancestors=${[this.element, ...this.ancestors]}
-      ></server-container>`)}
+    return html`<action-pane .icon=${accessPointIcon} .label="${this.header()}">
+      ${Array.from(this.element.querySelectorAll(':scope > Server')).map(server =>
+        html`<server-container
+          .element=${server}
+          .nsdoc=${this.nsdoc}
+          .ancestors=${[this.element, ...this.ancestors]}
+        ></server-container>`)}
     </action-pane>`;
   }
 
