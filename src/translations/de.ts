@@ -265,16 +265,16 @@ export const de: Translations = {
     add: 'DataTypeTemplates hinzufügen',
   },
   subscription: {
-    none: '???',
+    none: 'Keine Verbindung vorhanden',
     publisherGoose: {
-      title: '???'
+      title: 'GOOSE-Publizierer'
     },
     subscriberIed: {
-      title: '???',
-      subscribed: '???',
-      availableToSubscribe: '???',
-      partiallySubscribed: '???',
-      noGooseMessageSelected: '???'
+      title: 'Verbunden mit {{ selected }}',
+      subscribed: 'Verbunden',
+      availableToSubscribe: 'Kann verbunden werden',
+      partiallySubscribed: 'Teilweise verbunden',
+      noGooseMessageSelected: 'Keine GOOSE ausgewählt'
     }
   },
   'enum-val': {

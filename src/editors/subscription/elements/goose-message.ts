@@ -6,7 +6,7 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
-import { newGOOSEDataSetEvent } from '../../../foundation.js';
+import { newGOOSESelectEvent } from '../../../foundation.js';
 import { gooseIcon } from '../../../icons.js';
 
 @customElement('goose-message')
@@ -18,10 +18,10 @@ export class GOOSEMessage extends LitElement {
   private onGooseSelect = () => {
     const ln = this.element.parentElement;
     const dataset = ln?.querySelector(`DataSet[name=${this.element.getAttribute('datSet')}]`);
-    document.querySelector('open-scd')!.dispatchEvent(
-      newGOOSEDataSetEvent(
+    this.dispatchEvent(
+      newGOOSESelectEvent(
         this.element.closest('IED')?.getAttribute('name') ?? '',
-        this.element.getAttribute('name') ?? '',
+        this.element,
         dataset!
       )
     );

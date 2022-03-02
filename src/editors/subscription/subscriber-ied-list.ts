@@ -11,7 +11,7 @@ import {
 import './elements/ied-element.js';
 
 import { translate } from 'lit-translate';
-import { createElement, GOOSEDataSetEvent, IEDSubscriptionEvent, newActionEvent, SubscribeStatus } from '../../foundation.js';
+import { createElement, GOOSESelectEvent, IEDSubscriptionEvent, newActionEvent, SubscribeStatus } from '../../foundation.js';
 import { styles } from '../templates/foundation.js';
 
 /**
@@ -50,9 +50,9 @@ export class SubscriberIEDList extends LitElement {
 
   currentSelectedGooseIED!: string;
 
-  currentSelectedGoose!: string;
-
   currentSelectedGooseDataset!: Element;
+  /** Current selected GSEControl element. */
+  gseControl!: Element;
   
   @query('div') subscriberWrapper!: Element;
 
@@ -73,9 +73,9 @@ export class SubscriberIEDList extends LitElement {
    * all FCDAs are covered, or partly FCDAs are covered.
    * @param event - Incoming event.
    */
-  private async onGOOSEDataSetEvent(event: GOOSEDataSetEvent) {
+  private async onGOOSEDataSetEvent(event: GOOSESelectEvent) {
     this.currentSelectedGooseIED = event.detail.iedName;
-    this.currentSelectedGoose = event.detail.gseName;
+    this.gseControl = event.detail.gseControl;
     this.currentSelectedGooseDataset = event.detail.dataset;
 
     this.clearIedLists();
@@ -99,7 +99,7 @@ export class SubscriberIEDList extends LitElement {
        * Count all the linked ExtRefs.
        */
       this.currentSelectedGooseDataset.querySelectorAll('FCDA').forEach(fcda => {
-        if(inputs.querySelector(`ExtRef[iedName=${this.currentSelectedGooseIED}][serviceType="GOOSE"]` +
+        if(inputs.querySelector(`ExtRef[iedName=${this.currentSelectedGooseIED}]` +
           `${fcdaReferences.map(fcdaRef =>
             fcda.getAttribute(fcdaRef)
               ? `[${fcdaRef}="${fcda.getAttribute(fcdaRef)}"]`
@@ -269,13 +269,14 @@ export class SubscriberIEDList extends LitElement {
 
   render(): TemplateResult {
     const partialSubscribedIeds = this.availableIeds.filter(ied => ied.partial);
+    const gseControlName = this.gseControl?.getAttribute('name') ?? undefined;
 
     return html`
       <section>
         <h1>${translate('subscription.subscriberIed.title', {
-          selected: this.currentSelectedGoose ? this.currentSelectedGooseIED + ' > ' + this.currentSelectedGoose : 'IED'
+          selected: gseControlName ? this.currentSelectedGooseIED + ' > ' + gseControlName : 'IED'
         })}</h1>
-        ${this.currentSelectedGoose ?
+        ${this.gseControl ?
         html`<div class="subscriberWrapper">
           <mwc-list>
             <mwc-list-item noninteractive>
