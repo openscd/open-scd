@@ -20,4 +20,10 @@ describe('publisher-goose-list', () => {
   it('looks like the latest snapshot', async () => {
     await expect(element).shadowDom.to.equalSnapshot();
   });
+
+  it('looks like the latest snapshot without a doc loaded', async () => {
+    element = await fixture(html`<publisher-goose-list></publisher-goose-list>`);
+
+    await expect(element).shadowDom.to.equalSnapshot();
+  });
 });

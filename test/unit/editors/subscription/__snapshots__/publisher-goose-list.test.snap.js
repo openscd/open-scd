@@ -54,3 +54,14 @@ snapshots["publisher-goose-list looks like the latest snapshot"] =
 `;
 /* end snapshot publisher-goose-list looks like the latest snapshot */
 
+snapshots["publisher-goose-list looks like the latest snapshot without a doc loaded"] = 
+`<section>
+  <h1>
+    [subscription.publisherGoose.title]
+  </h1>
+  <mwc-list>
+  </mwc-list>
+</section>
+`;
+/* end snapshot publisher-goose-list looks like the latest snapshot without a doc loaded */
+
