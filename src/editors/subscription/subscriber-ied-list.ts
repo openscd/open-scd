@@ -48,12 +48,14 @@ export class SubscriberIEDList extends LitElement {
   /** List holding all current avaialble IEDs which are not subscribed. */
   availableIeds: IED[] = [];
 
-  selectedGooseIEDName!: string;
+  /** The current selected dataset */
+  currentDataset!: Element;
 
-  selectedDataset!: Element;
+  /** Current selected GSEControl element */
+  currentGseControl!: Element;
 
-  /** Current selected GSEControl element. */
-  gseControl!: Element;
+  /** The name of the IED belonging to the current selected GOOSE */
+  currentGooseIEDName!: string | undefined | null;
   
   @query('div') subscriberWrapper!: Element;
 
@@ -75,14 +77,14 @@ export class SubscriberIEDList extends LitElement {
    * @param event - Incoming event.
    */
   private async onGOOSEDataSetEvent(event: GOOSESelectEvent) {
-    this.selectedGooseIEDName = event.detail.iedName;
-    this.gseControl = event.detail.gseControl;
-    this.selectedDataset = event.detail.dataset;
+    this.currentGseControl = event.detail.gseControl;
+    this.currentDataset = event.detail.dataset;
+    this.currentGooseIEDName = this.currentGseControl.closest('IED')?.getAttribute('name');
 
     this.clearIedLists();
 
     Array.from(this.doc.querySelectorAll(':root > IED'))
-    .filter(ied => ied.getAttribute('name') != this.selectedGooseIEDName)
+    .filter(ied => ied.getAttribute('name') != this.currentGooseIEDName)
     .forEach(ied => {
       const inputs = ied.querySelector(`LN0 > Inputs`);
 
@@ -99,8 +101,8 @@ export class SubscriberIEDList extends LitElement {
       /**
        * Count all the linked ExtRefs.
        */
-      this.selectedDataset.querySelectorAll('FCDA').forEach(fcda => {
-        if(inputs.querySelector(`ExtRef[iedName=${this.selectedGooseIEDName}]` +
+      this.currentDataset.querySelectorAll('FCDA').forEach(fcda => {
+        if(inputs.querySelector(`ExtRef[iedName=${this.currentGooseIEDName}]` +
           `${fcdaReferences.map(fcdaRef =>
             fcda.getAttribute(fcdaRef)
               ? `[${fcdaRef}="${fcda.getAttribute(fcdaRef)}"]`
@@ -119,7 +121,7 @@ export class SubscriberIEDList extends LitElement {
         return;
       }
 
-      if (numberOfLinkedExtRefs == this.selectedDataset.querySelectorAll('FCDA').length) {
+      if (numberOfLinkedExtRefs == this.currentDataset.querySelectorAll('FCDA').length) {
         this.subscribedIeds.push({element: ied});
       } else {
         this.availableIeds.push({element: ied, partial: true});
@@ -164,8 +166,8 @@ export class SubscriberIEDList extends LitElement {
     }
 
     /** Updating the ExtRefs according the dataset */
-    this.selectedDataset.querySelectorAll('FCDA').forEach(fcda => {
-      if(!inputsElement!.querySelector(`ExtRef[iedName=${this.selectedGooseIEDName}][serviceType="GOOSE"]` +
+    this.currentDataset.querySelectorAll('FCDA').forEach(fcda => {
+      if(!inputsElement!.querySelector(`ExtRef[iedName=${this.currentGooseIEDName}]` +
         `${fcdaReferences.map(fcdaRef =>
           fcda.getAttribute(fcdaRef)
             ? `[${fcdaRef}="${fcda.getAttribute(fcdaRef)}"]`
@@ -175,7 +177,7 @@ export class SubscriberIEDList extends LitElement {
               ied.ownerDocument, 
               'ExtRef',
               {
-                iedName: this.selectedGooseIEDName,
+                iedName: this.currentGooseIEDName!,
                 serviceType: 'GOOSE',
                 ldInst: fcda.getAttribute('ldInst') ?? '',
                 lnClass: fcda.getAttribute('lnClass') ?? '',
@@ -206,8 +208,8 @@ export class SubscriberIEDList extends LitElement {
 
     const inputsElement = clone.querySelector('LN0 > Inputs');
 
-    this.selectedDataset.querySelectorAll('FCDA').forEach(fcda => {
-      const extRef = inputsElement?.querySelector(`ExtRef[iedName=${this.selectedGooseIEDName}][serviceType="GOOSE"]` +
+    this.currentDataset.querySelectorAll('FCDA').forEach(fcda => {
+      const extRef = inputsElement?.querySelector(`ExtRef[iedName=${this.currentGooseIEDName}][serviceType="GOOSE"]` +
         `${fcdaReferences.map(fcdaRef =>
           fcda.getAttribute(fcdaRef)
             ? `[${fcdaRef}="${fcda.getAttribute(fcdaRef)}"]`
@@ -270,14 +272,14 @@ export class SubscriberIEDList extends LitElement {
 
   render(): TemplateResult {
     const partialSubscribedIeds = this.availableIeds.filter(ied => ied.partial);
-    const gseControlName = this.gseControl?.getAttribute('name') ?? undefined;
+    const gseControlName = this.currentGseControl?.getAttribute('name') ?? undefined;
 
     return html`
       <section>
         <h1>${translate('subscription.subscriberIed.title', {
-          selected: gseControlName ? this.selectedGooseIEDName + ' > ' + gseControlName : 'IED'
+          selected: gseControlName ? this.currentGooseIEDName + ' > ' + gseControlName : 'IED'
         })}</h1>
-        ${this.gseControl ?
+        ${this.currentGseControl ?
         html`<div class="subscriberWrapper">
           <mwc-list>
             <mwc-list-item noninteractive>

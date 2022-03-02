@@ -281,13 +281,11 @@ export interface ResetDetail {
 }
 
 export interface GOOSESelectDetail {
-  iedName: string;
   gseControl: Element;
   dataset: Element;
 }
 export type GOOSESelectEvent = CustomEvent<GOOSESelectDetail>;
 export function newGOOSESelectEvent(
-  iedName: string,
   gseControl: Element,
   dataset: Element,
   eventInitDict?: CustomEventInit<GOOSESelectDetail>
@@ -296,7 +294,7 @@ export function newGOOSESelectEvent(
     bubbles: true,
     composed: true,
     ...eventInitDict,
-    detail: { iedName, gseControl, dataset, ...eventInitDict?.detail },
+    detail: { gseControl, dataset, ...eventInitDict?.detail },
   });
 }
 

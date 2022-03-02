@@ -20,7 +20,6 @@ export class GOOSEMessage extends LitElement {
     const dataset = ln?.querySelector(`DataSet[name=${this.element.getAttribute('datSet')}]`);
     this.dispatchEvent(
       newGOOSESelectEvent(
-        this.element.closest('IED')?.getAttribute('name') ?? '',
         this.element,
         dataset!
       )
