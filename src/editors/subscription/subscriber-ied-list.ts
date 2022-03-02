@@ -48,9 +48,10 @@ export class SubscriberIEDList extends LitElement {
   /** List holding all current avaialble IEDs which are not subscribed. */
   availableIeds: IED[] = [];
 
-  currentSelectedGooseIED!: string;
+  selectedGooseIEDName!: string;
 
-  currentSelectedGooseDataset!: Element;
+  selectedDataset!: Element;
+
   /** Current selected GSEControl element. */
   gseControl!: Element;
   
@@ -74,14 +75,14 @@ export class SubscriberIEDList extends LitElement {
    * @param event - Incoming event.
    */
   private async onGOOSEDataSetEvent(event: GOOSESelectEvent) {
-    this.currentSelectedGooseIED = event.detail.iedName;
+    this.selectedGooseIEDName = event.detail.iedName;
     this.gseControl = event.detail.gseControl;
-    this.currentSelectedGooseDataset = event.detail.dataset;
+    this.selectedDataset = event.detail.dataset;
 
     this.clearIedLists();
 
     Array.from(this.doc.querySelectorAll(':root > IED'))
-    .filter(ied => ied.getAttribute('name') != this.currentSelectedGooseIED)
+    .filter(ied => ied.getAttribute('name') != this.selectedGooseIEDName)
     .forEach(ied => {
       const inputs = ied.querySelector(`LN0 > Inputs`);
 
@@ -98,8 +99,8 @@ export class SubscriberIEDList extends LitElement {
       /**
        * Count all the linked ExtRefs.
        */
-      this.currentSelectedGooseDataset.querySelectorAll('FCDA').forEach(fcda => {
-        if(inputs.querySelector(`ExtRef[iedName=${this.currentSelectedGooseIED}]` +
+      this.selectedDataset.querySelectorAll('FCDA').forEach(fcda => {
+        if(inputs.querySelector(`ExtRef[iedName=${this.selectedGooseIEDName}]` +
           `${fcdaReferences.map(fcdaRef =>
             fcda.getAttribute(fcdaRef)
               ? `[${fcdaRef}="${fcda.getAttribute(fcdaRef)}"]`
@@ -118,7 +119,7 @@ export class SubscriberIEDList extends LitElement {
         return;
       }
 
-      if (numberOfLinkedExtRefs == this.currentSelectedGooseDataset.querySelectorAll('FCDA').length) {
+      if (numberOfLinkedExtRefs == this.selectedDataset.querySelectorAll('FCDA').length) {
         this.subscribedIeds.push({element: ied});
       } else {
         this.availableIeds.push({element: ied, partial: true});
@@ -163,8 +164,8 @@ export class SubscriberIEDList extends LitElement {
     }
 
     /** Updating the ExtRefs according the dataset */
-    this.currentSelectedGooseDataset.querySelectorAll('FCDA').forEach(fcda => {
-      if(!inputsElement!.querySelector(`ExtRef[iedName=${this.currentSelectedGooseIED}][serviceType="GOOSE"]` +
+    this.selectedDataset.querySelectorAll('FCDA').forEach(fcda => {
+      if(!inputsElement!.querySelector(`ExtRef[iedName=${this.selectedGooseIEDName}][serviceType="GOOSE"]` +
         `${fcdaReferences.map(fcdaRef =>
           fcda.getAttribute(fcdaRef)
             ? `[${fcdaRef}="${fcda.getAttribute(fcdaRef)}"]`
@@ -174,7 +175,7 @@ export class SubscriberIEDList extends LitElement {
               ied.ownerDocument, 
               'ExtRef',
               {
-                iedName: this.currentSelectedGooseIED,
+                iedName: this.selectedGooseIEDName,
                 serviceType: 'GOOSE',
                 ldInst: fcda.getAttribute('ldInst') ?? '',
                 lnClass: fcda.getAttribute('lnClass') ?? '',
@@ -205,8 +206,8 @@ export class SubscriberIEDList extends LitElement {
 
     const inputsElement = clone.querySelector('LN0 > Inputs');
 
-    this.currentSelectedGooseDataset.querySelectorAll('FCDA').forEach(fcda => {
-      const extRef = inputsElement?.querySelector(`ExtRef[iedName=${this.currentSelectedGooseIED}][serviceType="GOOSE"]` +
+    this.selectedDataset.querySelectorAll('FCDA').forEach(fcda => {
+      const extRef = inputsElement?.querySelector(`ExtRef[iedName=${this.selectedGooseIEDName}][serviceType="GOOSE"]` +
         `${fcdaReferences.map(fcdaRef =>
           fcda.getAttribute(fcdaRef)
             ? `[${fcdaRef}="${fcda.getAttribute(fcdaRef)}"]`
@@ -274,7 +275,7 @@ export class SubscriberIEDList extends LitElement {
     return html`
       <section>
         <h1>${translate('subscription.subscriberIed.title', {
-          selected: gseControlName ? this.currentSelectedGooseIED + ' > ' + gseControlName : 'IED'
+          selected: gseControlName ? this.selectedGooseIEDName + ' > ' + gseControlName : 'IED'
         })}</h1>
         ${this.gseControl ?
         html`<div class="subscriberWrapper">
