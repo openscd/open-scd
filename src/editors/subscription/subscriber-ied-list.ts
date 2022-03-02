@@ -11,7 +11,7 @@ import {
 import './elements/ied-element.js';
 
 import { translate } from 'lit-translate';
-import { createElement, GOOSESelectEvent, IEDSubscriptionEvent, newActionEvent, SubscribeStatus } from '../../foundation.js';
+import { createElement, GOOSESelectEvent, IEDSubscriptionEvent, newActionEvent, newGOOSESelectEvent, SubscribeStatus } from '../../foundation.js';
 import { styles } from '../templates/foundation.js';
 
 /**
@@ -209,7 +209,7 @@ export class SubscriberIEDList extends LitElement {
     const inputsElement = clone.querySelector('LN0 > Inputs');
 
     this.currentDataset.querySelectorAll('FCDA').forEach(fcda => {
-      const extRef = inputsElement?.querySelector(`ExtRef[iedName=${this.currentGooseIEDName}][serviceType="GOOSE"]` +
+      const extRef = inputsElement?.querySelector(`ExtRef[iedName=${this.currentGooseIEDName}]` +
         `${fcdaReferences.map(fcdaRef =>
           fcda.getAttribute(fcdaRef)
             ? `[${fcdaRef}="${fcda.getAttribute(fcdaRef)}"]`
