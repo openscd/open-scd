@@ -14,13 +14,14 @@ export class IEDElement extends LitElement {
   @property({ attribute: false })
   element!: Element;
 
+  @property({ attribute: false })
   status!: SubscribeStatus;
 
   private onIedSelect = () => {
-    document.querySelector('open-scd')!.dispatchEvent(
+    this.dispatchEvent(
       newIEDSubscriptionEvent(
         this.element,
-        this.status
+        this.status ?? SubscribeStatus.None
       )
     );
   };
