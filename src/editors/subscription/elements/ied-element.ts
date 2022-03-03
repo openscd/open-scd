@@ -32,7 +32,7 @@ export class IEDElement extends LitElement {
       graphic="avatar"
       hasMeta>
       <span>${this.element.getAttribute('name')}</span>
-      <mwc-icon slot="graphic">add</mwc-icon>
+      <mwc-icon slot="graphic">${this.status == SubscribeStatus.Full ? html`clear` : html`add`}</mwc-icon>
     </mwc-list-item>`;
   }
 
