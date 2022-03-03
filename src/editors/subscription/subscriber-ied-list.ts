@@ -213,6 +213,13 @@ export class SubscriberIEDList extends LitElement {
     }
 
     this.replaceElement(ied, clone);
+
+    this.dispatchEvent(
+      newGOOSESelectEvent(
+        localState.currentGseControl!,
+        localState.currentDataset!
+      )
+    );
   }
 
   /**
@@ -239,6 +246,13 @@ export class SubscriberIEDList extends LitElement {
     clone.querySelector('LN0')?.appendChild(inputsElement!);
 
     this.replaceElement(ied, clone);
+
+    this.dispatchEvent(
+      newGOOSESelectEvent(
+        localState.currentGseControl!,
+        localState.currentDataset!
+      )
+    );
   }
 
   /**
@@ -267,13 +281,6 @@ export class SubscriberIEDList extends LitElement {
           reference: clone.nextSibling
         }
       })
-    );
-
-    this.dispatchEvent(
-      newGOOSESelectEvent(
-        localState.currentGseControl!,
-        localState.currentDataset!
-      )
     );
   }
 
