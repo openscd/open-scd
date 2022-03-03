@@ -2,7 +2,10 @@
 export const snapshots = {};
 
 snapshots["ied-container looks like the latest snapshot"] = 
-`<action-pane tabindex="0">
+`<action-pane
+  icon="developer_board"
+  tabindex="0"
+>
   <abbr
     slot="action"
     title="[edit]"
