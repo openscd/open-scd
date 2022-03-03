@@ -17,6 +17,7 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 import '../action-pane.js';
 import './ied-editor.js';
 import './conducting-equipment-editor.js';
+import './powertransformer-editor.js';
 import { VoltageLevelEditor } from './voltage-level-editor.js';
 import {
   getChildElementsByTagName,
@@ -34,7 +35,7 @@ function childTags(element: Element | null | undefined): SCLTag[] {
     child => wizards[child].create !== emptyWizard
   );
 }
-import { startMove, styles, cloneSubstationElement } from './foundation.js';
+import { startMove, styles, cloneSubstationElement, selectors } from './foundation.js';
 
 /** [[`SubstationEditor`]] subeditor for a `Bay` element. */
 @customElement('bay-editor')
@@ -103,6 +104,15 @@ export class BayEditor extends LitElement {
       : html``;
   }
 
+  renderPowerTransformerContainer(): TemplateResult {
+    const pwts = Array.from(this.element?.querySelectorAll(selectors.Bay + ' > PowerTransformer') ?? []);
+    return pwts?.length
+      ? html`<div id="powertransformercontainer">
+        ${pwts.map(pwt => html`<powertransformer-editor .element=${pwt}></powertransformer-editor>`)}
+      </div>`
+      : html``;
+  }
+
   private renderAddButtons(): TemplateResult[] {
     return childTags(this.element).map(
       child =>
@@ -164,6 +174,7 @@ export class BayEditor extends LitElement {
         >
       </abbr>
       ${this.renderIedContainer()}
+      ${this.renderPowerTransformerContainer()}
       <div id="ceContainer">
         ${Array.from(
           getChildElementsByTagName(this.element, 'ConductingEquipment')

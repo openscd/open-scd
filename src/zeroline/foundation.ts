@@ -261,6 +261,14 @@ export const styles = css`
     border-bottom: none;
   }
 
+  #powertransformercontainer {
+    display: grid;
+    grid-gap: 12px;
+    padding: 8px 12px 16px;
+    box-sizing: border-box;
+    grid-template-columns: repeat(auto-fit, minmax(64px, auto));
+  }
+
   #iedcontainer {
     display: grid;
     grid-gap: 12px;

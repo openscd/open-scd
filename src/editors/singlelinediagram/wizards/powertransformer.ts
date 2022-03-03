@@ -20,11 +20,12 @@ import {
 function render(
   name: string | null,
   desc: string | null,
+  type: string | null,
   xCoordinate: string | null,
   yCoordinate: string | null,
   reservedNames: string[]
 ): TemplateResult[] {
-  return renderPowerTransformerWizard(name, desc, reservedNames)
+  return renderPowerTransformerWizard(name, desc, type, reservedNames)
     .concat(renderXYCoordinateFields(xCoordinate, yCoordinate));
 }
 
@@ -41,6 +42,7 @@ export function editPowerTransformerWizard(element: Element): Wizard {
       content: render(
         getNameAttribute(element),
         getDescAttribute(element),
+        element.getAttribute('type'),
         getXCoordinateAttribute(element),
         getYCoordinateAttribute(element),
         reservedNamesPowerTransformer(element)

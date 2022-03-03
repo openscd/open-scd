@@ -2271,7 +2271,10 @@ export const tags: Record<
     identity: namingIdentity,
     selector: namingSelector,
     parents: ['SCL'],
-    children: [...tEquipmentContainerSequence, 'VoltageLevel', 'Function'],
+    children: [...tEquipmentContainerSequence,
+      'VoltageLevel',
+      'Function',
+    ],
   },
   SupSubscription: {
     identity: singletonIdentity,
@@ -2348,7 +2351,11 @@ export const tags: Record<
     identity: namingIdentity,
     selector: namingSelector,
     parents: ['Substation'],
-    children: [...tEquipmentContainerSequence, 'Voltage', 'Bay', 'Function'],
+    children: [...tEquipmentContainerSequence,
+      'Voltage',
+      'Bay',
+      'Function',
+    ],
   },
 };
 

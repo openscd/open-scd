@@ -60,7 +60,7 @@ describe('Wizards for SCL element Power Transformer (X/Y)', () => {
   });
 
   it('update X-Coordinate should be updated in document', async function () {
-    await setWizardTextFieldValue(<WizardTextField>inputs[2], '4');
+    await setWizardTextFieldValue(<WizardTextField>inputs[3], '4');
 
     const updateAction = executeWizardUpdateAction(
       updateNamingAndCoordinatesAction(powerTransformer),
@@ -71,7 +71,7 @@ describe('Wizards for SCL element Power Transformer (X/Y)', () => {
   });
 
   it('update Y-Coordinate should be updated in document', async function () {
-    await setWizardTextFieldValue(<WizardTextField>inputs[3], '5');
+    await setWizardTextFieldValue(<WizardTextField>inputs[4], '5');
 
     const updateAction = executeWizardUpdateAction(
       updateNamingAndCoordinatesAction(powerTransformer),
@@ -82,7 +82,7 @@ describe('Wizards for SCL element Power Transformer (X/Y)', () => {
   });
 
   it('clear Y-Coordinate should be updated in document', async function () {
-    await setWizardTextFieldValue(<WizardTextField>inputs[3], null);
+    await setWizardTextFieldValue(<WizardTextField>inputs[4], null);
 
     const updateAction = executeWizardUpdateAction(
       updateNamingAndCoordinatesAction(powerTransformer),

@@ -196,7 +196,9 @@ export const en = {
     wizard: {
       nameHelper: 'Power transformer name',
       descHelper: 'Power transformer description',
+      typeHelper: 'Power transformer type',
       title: {
+        add: 'Add power transformer',
         edit: 'Edit power transformer',
       },
     },

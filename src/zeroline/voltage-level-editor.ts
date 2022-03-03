@@ -17,6 +17,7 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 import '../action-pane.js';
 import './bay-editor.js';
 import './ied-editor.js';
+import './powertransformer-editor.js';
 import {
   selectors,
   startMove,
@@ -113,6 +114,15 @@ export class VoltageLevelEditor extends LitElement {
       : html``;
   }
 
+  renderPowerTransformerContainer(): TemplateResult {
+    const pwts = Array.from(this.element?.querySelectorAll(selectors.VoltageLevel + ' > PowerTransformer') ?? []);
+    return pwts?.length
+      ? html`<div id="powertransformercontainer">
+        ${pwts.map(pwt => html`<powertransformer-editor .element=${pwt}></powertransformer-editor>`)}
+      </div>`
+      : html``;
+  }
+
   private renderAddButtons(): TemplateResult[] {
     return childTags(this.element).map(
       child =>
@@ -174,6 +184,7 @@ export class VoltageLevelEditor extends LitElement {
         >
       </abbr>
       ${this.renderIedContainer()}
+      ${this.renderPowerTransformerContainer()}
       <div id="bayContainer">
         ${Array.from(this.element?.querySelectorAll(selectors.Bay) ?? []).map(
           bay => html`<bay-editor

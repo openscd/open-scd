@@ -23,6 +23,12 @@ snapshots["Wizards for SCL element Power Transformer looks like the latest snaps
       nullable=""
     >
     </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      helper="[powertransformer.wizard.typeHelper]"
+      label="type"
+    >
+    </wizard-textfield>
   </div>
   <mwc-button
     dialogaction="close"
