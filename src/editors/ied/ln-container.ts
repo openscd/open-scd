@@ -28,8 +28,9 @@ export class LNContainer extends LitElement {
 
   @property()
   nsdoc!: Nsdoc;
-  
-  @query('#toggleButton') toggleButton!: IconButtonToggle | undefined;
+
+  @query('#toggleButton')
+  toggleButton!: IconButtonToggle | undefined;
 
   private async header(): Promise<TemplateResult> {
     const prefix = this.element.getAttribute('prefix');
@@ -67,7 +68,7 @@ export class LNContainer extends LitElement {
 
   render(): TemplateResult {
     const doElements = this.getDOElements();
-    
+
     return html`<action-pane .label="${until(this.header())}">
       ${doElements.length > 0 ? html`<abbr slot="action" title="${translate('iededitor.toggleChildElements')}">
         <mwc-icon-button-toggle
@@ -77,7 +78,7 @@ export class LNContainer extends LitElement {
           @click=${() => this.requestUpdate()}
         ></mwc-icon-button-toggle>
       </abbr>` : nothing}
-      ${this.toggleButton?.on ? this.getDOElements().map(dO => html`<do-container
+      ${this.toggleButton?.on ? doElements.map(dO => html`<do-container
           .element=${dO}
           .instanceElement=${this.getInstanceElement(dO)}
           .nsdoc=${this.nsdoc}
