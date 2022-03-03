@@ -11,7 +11,7 @@ import {
 import './elements/ied-element.js';
 
 import { translate } from 'lit-translate';
-import { createElement, GOOSESelectEvent, IEDSubscriptionEvent, newActionEvent, newGOOSESelectEvent, SubscribeStatus } from '../../foundation.js';
+import { createElement, GOOSESelectEvent, IEDSubscriptionEvent, newActionEvent, SubscribeStatus } from '../../foundation.js';
 import { styles } from '../templates/foundation.js';
 
 /**
