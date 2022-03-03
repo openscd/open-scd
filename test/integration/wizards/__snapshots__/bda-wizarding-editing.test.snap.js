@@ -20,7 +20,7 @@ snapshots["BDA wizarding editing integration defines a editBDaWizard to edit an 
       helper="[scl.name]"
       label="name"
       maxlength="60"
-      pattern="((T)|(Test)|(Check)|(SIUnit)|(Open)|(SBO)|(SBOw)|(Cancel)|[a-z][0-9A-Za-z]*)"
+      pattern="((T)|(Test)|(Check)|(SIUnit)|(Oper)|(SBO)|(SBOw)|(Cancel)|[a-z][0-9A-Za-z]*)"
       required=""
     >
       >
@@ -624,7 +624,7 @@ snapshots["BDA wizarding editing integration defines a createBDaWizard to create
       helper="[scl.name]"
       label="name"
       maxlength="60"
-      pattern="((T)|(Test)|(Check)|(SIUnit)|(Open)|(SBO)|(SBOw)|(Cancel)|[a-z][0-9A-Za-z]*)"
+      pattern="((T)|(Test)|(Check)|(SIUnit)|(Oper)|(SBO)|(SBOw)|(Cancel)|[a-z][0-9A-Za-z]*)"
       required=""
     >
       >
