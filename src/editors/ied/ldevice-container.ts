@@ -15,7 +15,7 @@ import { getDescriptionAttribute, getInstanceAttribute, getNameAttribute } from 
 import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 import { translate } from 'lit-translate';
 import { Nsdoc } from '../../foundation/nsdoc.js';
-import { logicalDeviceIcon } from './icons.js';
+import { logicalDeviceIcon } from '../../icons/ied-icons.js';
 
 /** [[`IED`]] plugin subeditor for editing `LDevice` element. */
 @customElement('ldevice-container')

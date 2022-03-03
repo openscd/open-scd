@@ -9,7 +9,7 @@ import {
 
 import '../../action-pane.js';
 import { Nsdoc } from '../../foundation/nsdoc.js';
-import { serverIcon } from './icons.js';
+import { serverIcon } from '../../icons/ied-icons.js';
 import './ldevice-container.js';
 
 /** [[`IED`]] plugin subeditor for editing `Server` element. */

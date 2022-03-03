@@ -17,7 +17,7 @@ import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 import './zeroline/substation-editor.js';
 import './zeroline/ied-editor.js';
 import { communicationMappingWizard } from './wizards/commmap-wizards.js';
-import { gooseIcon, smvIcon, reportIcon } from './icons.js';
+import { gooseIcon, smvIcon, reportIcon } from './icons/icons.js';
 import { isPublic, newWizardEvent } from './foundation.js';
 import { selectGseControlWizard } from './wizards/gsecontrol.js';
 import { wizards } from './wizards/wizard-library.js';
