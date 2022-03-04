@@ -102,14 +102,14 @@ export class SubscriberIEDList extends LitElement {
     Array.from(this.doc.querySelectorAll(':root > IED'))
     .filter(ied => ied.getAttribute('name') != localState.currentGooseIEDName)
     .forEach(ied => {
-      const inputs = ied.querySelector(`LN0 > Inputs`);
+      const inputElements = ied.querySelectorAll(`LN0 > Inputs, LN > Inputs`);
 
       let numberOfLinkedExtRefs = 0;
       
       /**
        * If no Inputs element is found, we can safely say it's not subscribed.
        */
-      if (!inputs) {
+      if (!inputElements) {
         localState.availableIeds.push({element: ied});
         return;
       }
@@ -118,14 +118,16 @@ export class SubscriberIEDList extends LitElement {
        * Count all the linked ExtRefs.
        */
       localState.currentDataset!.querySelectorAll('FCDA').forEach(fcda => {
-        if(inputs.querySelector(`ExtRef[iedName=${localState.currentGooseIEDName}]` +
-          `${fcdaReferences.map(fcdaRef =>
-            fcda.getAttribute(fcdaRef)
-              ? `[${fcdaRef}="${fcda.getAttribute(fcdaRef)}"]`
-              : '').join('')
-            }`)) {
-            numberOfLinkedExtRefs++;
-          }
+        inputElements.forEach(inputs => {
+          if(inputs.querySelector(`ExtRef[iedName=${localState.currentGooseIEDName}]` +
+            `${fcdaReferences.map(fcdaRef =>
+              fcda.getAttribute(fcdaRef)
+                ? `[${fcdaRef}="${fcda.getAttribute(fcdaRef)}"]`
+                : '').join('')
+              }`)) {
+              numberOfLinkedExtRefs++;
+            }
+        })
       })
 
       /**
@@ -229,21 +231,22 @@ export class SubscriberIEDList extends LitElement {
   private unsubscribe(ied: Element): void {
     const clone: Element = <Element>ied.cloneNode(true);
 
-    const inputsElement = clone.querySelector('LN0 > Inputs');
+    clone.querySelectorAll('LN0 > Inputs, LN > Inputs').forEach(inputs => {
+      localState.currentDataset!.querySelectorAll('FCDA').forEach(fcda => {
+        const extRef = inputs.querySelector(`ExtRef[iedName=${localState.currentGooseIEDName}]` +
+          `${fcdaReferences.map(fcdaRef =>
+            fcda.getAttribute(fcdaRef)
+              ? `[${fcdaRef}="${fcda.getAttribute(fcdaRef)}"]`
+              : '').join('')
+            }`);
+  
+          if (extRef) inputs.removeChild(extRef!);
+      });
 
-    localState.currentDataset!.querySelectorAll('FCDA').forEach(fcda => {
-      const extRef = inputsElement?.querySelector(`ExtRef[iedName=${localState.currentGooseIEDName}]` +
-        `${fcdaReferences.map(fcdaRef =>
-          fcda.getAttribute(fcdaRef)
-            ? `[${fcdaRef}="${fcda.getAttribute(fcdaRef)}"]`
-            : '').join('')
-          }`);
-
-      inputsElement?.removeChild(extRef!);
-    });
-
-    clone.querySelector('LN0 > Inputs')?.remove();
-    clone.querySelector('LN0')?.appendChild(inputsElement!);
+      const lnParent = inputs.closest('LN0,LN');
+      lnParent?.querySelector('Inputs')?.remove();
+      lnParent?.appendChild(inputs);
+    })
 
     this.replaceElement(ied, clone);
 
