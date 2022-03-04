@@ -76,7 +76,7 @@ export class SubscriberIEDList extends LitElement {
     this.clearIedLists();
 
     Array.from(this.doc.querySelectorAll(':root > IED')).forEach(ied => {
-      const inputs = ied.querySelector(`LN0[lnClass="LLN0"] > Inputs`);
+      const inputs = ied.querySelectorAll(`LN0 > Inputs, LN > Inputs`);
 
       let numberOfLinkedExtRefs = 0;
       
@@ -92,14 +92,16 @@ export class SubscriberIEDList extends LitElement {
        * Count all the linked ExtRefs.
        */
       dataSet.querySelectorAll('FCDA').forEach(fcda => {
-        if(inputs.querySelector(`ExtRef[iedName=${event.detail.iedName}]` +
-          `${fcdaReferences.map(fcdaRef =>
-            fcda.getAttribute(fcdaRef)
-              ? `[${fcdaRef}="${fcda.getAttribute(fcdaRef)}"]`
-              : '').join('')
-            }`)) {
-            numberOfLinkedExtRefs++;
-          }
+        inputs.forEach(inputsElement => {
+          if(inputsElement.querySelector(`ExtRef[iedName=${event.detail.iedName}]` +
+            `${fcdaReferences.map(fcdaRef =>
+              fcda.getAttribute(fcdaRef)
+                ? `[${fcdaRef}="${fcda.getAttribute(fcdaRef)}"]`
+                : '').join('')
+              }`)) {
+              numberOfLinkedExtRefs++;
+            }
+        })
       })
 
       /**
