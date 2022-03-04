@@ -93,7 +93,6 @@ export class SubscriberIEDList extends LitElement {
   private async onGOOSEDataSetEvent(event: GOOSESelectEvent) {
     localState.currentGseControl = event.detail.gseControl;
     localState.currentDataset = event.detail.dataset;
-    
     localState.currentGooseIEDName = localState.currentGseControl.closest('IED')?.getAttribute('name');
 
     localState.subscribedIeds = [];
@@ -151,7 +150,7 @@ export class SubscriberIEDList extends LitElement {
   }
 
   /**
-   * When a IEDSubscriptionEvent is received, check if 
+   * When a IEDSubscriptionEvent is received, check if
    * @param event - Incoming event.
    */
   private async onIEDSubscriptionEvent(event: IEDSubscriptionEvent) {
@@ -242,11 +241,7 @@ export class SubscriberIEDList extends LitElement {
   
           if (extRef) inputs.removeChild(extRef!);
       });
-
-      const lnParent = inputs.closest('LN0,LN');
-      lnParent?.querySelector('Inputs')?.remove();
-      lnParent?.appendChild(inputs);
-    })
+    });
 
     this.replaceElement(ied, clone);
 
