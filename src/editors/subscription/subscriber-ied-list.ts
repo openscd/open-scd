@@ -76,14 +76,14 @@ export class SubscriberIEDList extends LitElement {
     this.clearIedLists();
 
     Array.from(this.doc.querySelectorAll(':root > IED')).forEach(ied => {
-      const inputs = ied.querySelectorAll(`LN0 > Inputs, LN > Inputs`);
+      const inputElements = ied.querySelectorAll(`LN0 > Inputs, LN > Inputs`);
 
       let numberOfLinkedExtRefs = 0;
       
       /**
        * If no Inputs element is found, we can safely say it's not subscribed.
        */
-      if (!inputs) {
+      if (!inputElements) {
         this.availableIeds.push({element: ied});
         return;
       }
@@ -92,8 +92,8 @@ export class SubscriberIEDList extends LitElement {
        * Count all the linked ExtRefs.
        */
       dataSet.querySelectorAll('FCDA').forEach(fcda => {
-        inputs.forEach(inputsElement => {
-          if(inputsElement.querySelector(`ExtRef[iedName=${event.detail.iedName}]` +
+        inputElements.forEach(inputs => {
+          if(inputs.querySelector(`ExtRef[iedName=${event.detail.iedName}]` +
             `${fcdaReferences.map(fcdaRef =>
               fcda.getAttribute(fcdaRef)
                 ? `[${fcdaRef}="${fcda.getAttribute(fcdaRef)}"]`
