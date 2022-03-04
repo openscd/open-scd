@@ -179,7 +179,7 @@ function updateConnectedApAction(parent: Element): WizardActor {
       }),
     };
     if (oldAddress !== null && !isEqualAddress(oldAddress, newAddress)) {
-      // We cannot use updateAction on address as both address child elements P are changed
+      //address & child elements P are changed: cannot use replace editor action
       complexAction.actions.push({
         old: {
           parent,

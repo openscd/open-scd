@@ -5,7 +5,7 @@ import '../../mock-wizard.js';
 import { MockWizard } from '../../mock-wizard.js';
 
 import { WizardCheckbox } from '../../../src/wizard-checkbox.js';
-import { isUpdate, Update } from '../../../src/foundation.js';
+import { isReplace, Replace } from '../../../src/foundation.js';
 import { editSmvOptsWizard } from '../../../src/wizards/smvopts.js';
 
 describe('Wizards for SCL SmvOpts element', () => {
@@ -66,9 +66,9 @@ describe('Wizards for SCL SmvOpts element', () => {
       expect(actionEvent).to.be.calledOnce;
 
       const action = actionEvent.args[0][0].detail.action;
-      expect(action).to.satisfy(isUpdate);
+      expect(action).to.satisfy(isReplace);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.have.attribute('dataSet', 'true');
       expect(updateAction.new.element).to.have.attribute('dataSet', 'false');
     });
@@ -83,9 +83,9 @@ describe('Wizards for SCL SmvOpts element', () => {
       expect(actionEvent).to.be.calledOnce;
 
       const action = actionEvent.args[0][0].detail.action;
-      expect(action).to.satisfy(isUpdate);
+      expect(action).to.satisfy(isReplace);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.have.attribute('dataSet', 'true');
       expect(updateAction.new.element).to.not.have.attribute('dataSet');
     });
@@ -100,9 +100,9 @@ describe('Wizards for SCL SmvOpts element', () => {
       expect(actionEvent).to.be.calledOnce;
 
       const action = actionEvent.args[0][0].detail.action;
-      expect(action).to.satisfy(isUpdate);
+      expect(action).to.satisfy(isReplace);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.have.attribute('refreshTime', 'true');
       expect(updateAction.new.element).to.have.attribute(
         'refreshTime',
@@ -121,9 +121,9 @@ describe('Wizards for SCL SmvOpts element', () => {
       expect(actionEvent).to.be.calledOnce;
 
       const action = actionEvent.args[0][0].detail.action;
-      expect(action).to.satisfy(isUpdate);
+      expect(action).to.satisfy(isReplace);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.not.have.attribute('sampleRate');
       expect(updateAction.new.element).to.have.attribute('sampleRate', 'true');
     });
@@ -139,9 +139,9 @@ describe('Wizards for SCL SmvOpts element', () => {
       expect(actionEvent).to.be.calledOnce;
 
       const action = actionEvent.args[0][0].detail.action;
-      expect(action).to.satisfy(isUpdate);
+      expect(action).to.satisfy(isReplace);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.not.have.attribute('security');
       expect(updateAction.new.element).to.have.attribute('security', 'true');
     });
@@ -157,9 +157,9 @@ describe('Wizards for SCL SmvOpts element', () => {
       expect(actionEvent).to.be.calledOnce;
 
       const action = actionEvent.args[0][0].detail.action;
-      expect(action).to.satisfy(isUpdate);
+      expect(action).to.satisfy(isReplace);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.not.have.attribute('synchSourceId');
       expect(updateAction.new.element).to.have.attribute(
         'synchSourceId',

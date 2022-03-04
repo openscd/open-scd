@@ -92,7 +92,7 @@ export function updateAddress(
   const oldAddress = parent.querySelector('Address');
 
   if (oldAddress !== null && !isEqualAddress(oldAddress, newAddress)) {
-    // We cannot use updateAction on address as both address child elements P are changed
+    //address & child elements P are changed: cannot use replace editor action
     actions.push({
       old: {
         parent: parent,

@@ -51,8 +51,8 @@ function containsCreateAction(actions: Create[], newAction: Create): boolean {
   return !actions.some(
     action =>
       action.new.parent === newAction.new.parent &&
-      action.new.element.getAttribute('id') ===
-        newAction.new.element.getAttribute('id')
+      (<Element>action.new.element).getAttribute('id') ===
+        (<Element>newAction.new.element).getAttribute('id')
   );
 }
 

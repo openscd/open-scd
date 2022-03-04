@@ -10,8 +10,8 @@ import {
   Create,
   isCreate,
   isDelete,
-  isUpdate,
-  Update,
+  isReplace,
+  Replace,
 } from '../../../src/foundation.js';
 import {
   getValAction,
@@ -32,11 +32,11 @@ describe('abstractda wizards', () => {
 
     it('updates a Val child element when changed', () => {
       const editorAction = getValAction(oldVal, 'newVal', abstractda);
-      expect(editorAction).to.satisfy(isUpdate);
+      expect(editorAction).to.satisfy(isReplace);
     });
 
     it('properly updates an new Val', () => {
-      const editorAction = <Update>getValAction(oldVal, 'newVal', abstractda);
+      const editorAction = <Replace>getValAction(oldVal, 'newVal', abstractda);
       expect(editorAction.new.element.textContent?.trim()).to.equal('newVal');
     });
 

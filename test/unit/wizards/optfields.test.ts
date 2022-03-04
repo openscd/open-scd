@@ -5,7 +5,7 @@ import '../../mock-wizard.js';
 import { MockWizard } from '../../mock-wizard.js';
 
 import { WizardSelect } from '../../../src/wizard-select.js';
-import { isUpdate, Update, WizardInput } from '../../../src/foundation.js';
+import { isReplace, Replace, WizardInput } from '../../../src/foundation.js';
 import { editOptFieldsWizard } from '../../../src/wizards/optfields.js';
 
 describe('Wizards for SCL OptFields element', () => {
@@ -66,9 +66,9 @@ describe('Wizards for SCL OptFields element', () => {
       expect(actionEvent).to.be.calledOnce;
 
       const action = actionEvent.args[0][0].detail.action;
-      expect(action).to.satisfy(isUpdate);
+      expect(action).to.satisfy(isReplace);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.have.attribute('dataSet', 'true');
       expect(updateAction.new.element).to.have.attribute('dataSet', 'false');
     });
@@ -83,9 +83,9 @@ describe('Wizards for SCL OptFields element', () => {
       expect(actionEvent).to.be.calledOnce;
 
       const action = actionEvent.args[0][0].detail.action;
-      expect(action).to.satisfy(isUpdate);
+      expect(action).to.satisfy(isReplace);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.have.attribute('dataSet', 'true');
       expect(updateAction.new.element).to.not.have.attribute('dataSet');
     });
@@ -101,9 +101,9 @@ describe('Wizards for SCL OptFields element', () => {
       expect(actionEvent).to.be.calledOnce;
 
       const action = actionEvent.args[0][0].detail.action;
-      expect(action).to.satisfy(isUpdate);
+      expect(action).to.satisfy(isReplace);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.not.have.attribute('seqNum');
       expect(updateAction.new.element).to.have.attribute('seqNum', 'true');
     });
@@ -119,9 +119,9 @@ describe('Wizards for SCL OptFields element', () => {
       expect(actionEvent).to.be.calledOnce;
 
       const action = actionEvent.args[0][0].detail.action;
-      expect(action).to.satisfy(isUpdate);
+      expect(action).to.satisfy(isReplace);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.not.have.attribute('timeStamp');
       expect(updateAction.new.element).to.have.attribute('timeStamp', 'true');
     });
@@ -137,9 +137,9 @@ describe('Wizards for SCL OptFields element', () => {
       expect(actionEvent).to.be.calledOnce;
 
       const action = actionEvent.args[0][0].detail.action;
-      expect(action).to.satisfy(isUpdate);
+      expect(action).to.satisfy(isReplace);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.not.have.attribute('reasonCode');
       expect(updateAction.new.element).to.have.attribute('reasonCode', 'true');
     });
@@ -155,9 +155,9 @@ describe('Wizards for SCL OptFields element', () => {
       expect(actionEvent).to.be.calledOnce;
 
       const action = actionEvent.args[0][0].detail.action;
-      expect(action).to.satisfy(isUpdate);
+      expect(action).to.satisfy(isReplace);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.not.have.attribute('dataRef');
       expect(updateAction.new.element).to.have.attribute('dataRef', 'true');
     });
@@ -173,9 +173,9 @@ describe('Wizards for SCL OptFields element', () => {
       expect(actionEvent).to.be.calledOnce;
 
       const action = actionEvent.args[0][0].detail.action;
-      expect(action).to.satisfy(isUpdate);
+      expect(action).to.satisfy(isReplace);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.not.have.attribute('entryID');
       expect(updateAction.new.element).to.have.attribute('entryID', 'true');
     });
@@ -191,9 +191,9 @@ describe('Wizards for SCL OptFields element', () => {
       expect(actionEvent).to.be.calledOnce;
 
       const action = actionEvent.args[0][0].detail.action;
-      expect(action).to.satisfy(isUpdate);
+      expect(action).to.satisfy(isReplace);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.not.have.attribute('configRef');
       expect(updateAction.new.element).to.have.attribute('configRef', 'true');
     });
@@ -208,9 +208,9 @@ describe('Wizards for SCL OptFields element', () => {
       expect(actionEvent).to.be.calledOnce;
 
       const action = actionEvent.args[0][0].detail.action;
-      expect(action).to.satisfy(isUpdate);
+      expect(action).to.satisfy(isReplace);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.have.attribute('bufOvfl', 'true');
       expect(updateAction.new.element).to.have.attribute('bufOvfl', 'false');
     });
