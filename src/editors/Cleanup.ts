@@ -1,9 +1,8 @@
 'use strict';
 
 import { LitElement, html, TemplateResult, property, css } from 'lit-element';
+import { translate } from 'lit-translate';
 import { List, MWCListIndex } from '@material/mwc-list';
-import '@material/mwc-list/mwc-check-list-item';
-import '@material/mwc-snackbar';
 
 import { compareNames } from '../foundation.js';
 import {
@@ -113,8 +112,8 @@ export default class Cleanup extends LitElement {
   }
 
   /**
-   * Render a user selectable table of unused datasets if any exist, otherwise indicate this is not an issue
-   * @returns
+   * Render a user selectable table of unused datasets if any exist, otherwise indicate this is not an issue.
+   * @returns html for table and action button.
    */
   private getUnusedDatasets() {
     // Unused Datasets
@@ -125,14 +124,14 @@ export default class Cleanup extends LitElement {
         .filter(
           ds =>
             !usedDatasets.includes(
-              ds.getAttribute('name') || 'unknownDataSetName'
+              ds.getAttribute('name')!
             )
         )
         .forEach(unusedDS => {
           const rowItem: iedData = {
-            name: ied.getAttribute('name') ?? 'unknown',
-            type: ied.getAttribute('type') ?? 'unknown',
-            manufacturer: ied.getAttribute('manufacturer') ?? 'unknown',
+            name: ied.getAttribute('name')!,
+            type: ied.getAttribute('type')!,
+            manufacturer: ied.getAttribute('manufacturer')!,
             dataset: unusedDS,
           };
           gridRowsUnusedDatasets.push(rowItem);
@@ -145,11 +144,11 @@ export default class Cleanup extends LitElement {
     );
     const thing = html`
       <h1>
-        Unused Datasets
+      ${translate('cleanup.unusedDatasets.title')}
         <abbr slot="action">
           <mwc-icon-button
             icon="info"
-            title="Datasets without an associated Sampled Value, Report or GOOSE control block."
+            title="${translate('cleanup.unusedDatasets.tooltip')}"
           >
           </mwc-icon-button>
         </abbr>
@@ -186,14 +185,14 @@ export default class Cleanup extends LitElement {
       <mwc-button
         icon="delete"
         id="grid-datasets-delete"
-        label="Remove Selected Datasets"
+        label="${translate('cleanup.unusedDatasets.deleteButton')}"
         ?disabled=${this.disableDatasetClean}
         slot="secondaryAction"
         @click=${(e: MouseEvent) => {
-          const selectedItems = <MWCListIndex>(
-            (<List>this.shadowRoot!.querySelector('#unuseddatasetlist')).index
-          );
-          const cleanItems = Array.from(selectedItems.values()).map(
+          const selectedItems = (<List>(
+            this.shadowRoot!.querySelector('#unuseddatasetlist')
+          )).index
+          const cleanItems = Array.from((<Set<number>>selectedItems).values()).map(
             index => this.gridRowsUnusedDatasets[index]
           );
           const deleteActions = this.cleanDatasets(cleanItems);
@@ -223,7 +222,7 @@ export default class Cleanup extends LitElement {
           old: {
             parent: <Element>itemToDelete.parentElement!,
             element: itemToDelete,
-            reference: <Node | null>itemToDelete!.nextSibling,
+            reference: <Node|null>itemToDelete!.nextSibling,
           },
         });
       });
@@ -235,7 +234,8 @@ export default class Cleanup extends LitElement {
     const checklist: List =
       this.shadowRoot!.querySelector('#unuseddatasetlist')!;
     checklist!.addEventListener('selected', () => {
-      this.disableDatasetClean = checklist!.index.size === 0;
+      this.disableDatasetClean =
+        (<Set<number>>(<MWCListIndex>checklist!.index)).size === 0;
     });
   }
 
