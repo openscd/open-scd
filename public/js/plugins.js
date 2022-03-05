@@ -130,7 +130,7 @@ export const officialPlugins = [
     name: 'Cleanup',
     src: '/src/editors/Cleanup.js',
     icon: 'cleaning_services',
-    default: true,
+    default: false,
     kind: 'editor',
   },
   {
