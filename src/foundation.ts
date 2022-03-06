@@ -280,49 +280,6 @@ export interface ResetDetail {
   kind: 'reset';
 }
 
-export interface GOOSESelectDetail {
-  gseControl: Element;
-  dataset: Element;
-}
-export type GOOSESelectEvent = CustomEvent<GOOSESelectDetail>;
-export function newGOOSESelectEvent(
-  gseControl: Element,
-  dataset: Element,
-  eventInitDict?: CustomEventInit<GOOSESelectDetail>
-): GOOSESelectEvent {
-  return new CustomEvent<GOOSESelectDetail>('goose-dataset', {
-    bubbles: true,
-    composed: true,
-    ...eventInitDict,
-    detail: { gseControl, dataset, ...eventInitDict?.detail },
-  });
-}
-
-/**
- * Enumeration stating the Subscribe status of a IED to a GOOSE.
- */
-export enum SubscribeStatus {
-  Full,
-  Partial,
-  None
-}
-
-export interface IEDSubscriptionDetail {
-  element: Element;
-  subscribeStatus: SubscribeStatus;
-}
-export type IEDSubscriptionEvent = CustomEvent<IEDSubscriptionDetail>;
-export function newIEDSubscriptionEvent(
-  element: Element,
-  subscribeStatus: SubscribeStatus
-): IEDSubscriptionEvent {
-  return new CustomEvent<IEDSubscriptionDetail>('ied-subscription', {
-    bubbles: true,
-    composed: true,
-    detail: { element, subscribeStatus },
-  });
-}
-
 export type LogDetail = InfoDetail | CommitDetail | ResetDetail;
 export type LogEvent = CustomEvent<LogDetail>;
 export function newLogEvent(
@@ -2680,8 +2637,6 @@ declare global {
     ['open-doc']: OpenDocEvent;
     ['wizard']: WizardEvent;
     ['validate']: ValidateEvent;
-    ['goose-dataset']: GOOSESelectEvent;
-    ['ied-subscription']: IEDSubscriptionEvent;
     ['log']: LogEvent;
     ['issue']: IssueEvent;
   }

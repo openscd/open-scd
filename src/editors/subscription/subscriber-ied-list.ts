@@ -11,8 +11,14 @@ import {
 import './elements/ied-element.js';
 
 import { translate } from 'lit-translate';
-import { createElement, GOOSESelectEvent, IEDSubscriptionEvent, newActionEvent, newGOOSESelectEvent, SubscribeStatus } from '../../foundation.js';
 import { styles } from '../templates/foundation.js';
+import {
+  GOOSESelectEvent,
+  IEDSubscriptionEvent,
+  newGOOSESelectEvent,
+  styles,
+  SubscribeStatus,
+} from './foundation.js';
 
 /**
  * An IED within this IED list has 2 properties:

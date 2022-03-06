@@ -6,7 +6,8 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
-import { newIEDSubscriptionEvent, SubscribeStatus } from '../../../foundation.js';
+
+import { newIEDSubscriptionEvent, SubscribeStatus } from '../foundation.js';
 
 @customElement('ied-element')
 export class IEDElement extends LitElement {

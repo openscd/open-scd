@@ -6,8 +6,8 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
-import { newGOOSESelectEvent } from '../../../foundation.js';
 import { gooseIcon } from '../../../icons.js';
+import { newGOOSESelectEvent } from '../foundation.js';
 
 @customElement('goose-message')
 export class GOOSEMessage extends LitElement {
