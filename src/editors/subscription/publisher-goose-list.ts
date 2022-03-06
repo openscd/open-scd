@@ -6,10 +6,13 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
+import { translate } from 'lit-translate';
+
+import '@material/mwc-icon';
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-list-item';
 
 import './elements/goose-message.js';
-
-import { translate } from 'lit-translate';
 import { compareNames, getNameAttribute } from '../../foundation.js';
 import { styles } from './foundation.js';
 

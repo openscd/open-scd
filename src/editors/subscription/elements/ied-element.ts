@@ -6,6 +6,9 @@ import {
   TemplateResult,
 } from 'lit-element';
 
+import '@material/mwc-icon';
+import '@material/mwc-list/mwc-list-item';
+
 import { newIEDSubscriptionEvent, SubscribeStatus } from '../foundation.js';
 
 @customElement('ied-element')

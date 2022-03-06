@@ -7,10 +7,19 @@ import {
   query,
   TemplateResult,
 } from 'lit-element';
+import { translate } from 'lit-translate';
+
+import '@material/mwc-icon';
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-list-item';
 
 import './elements/ied-element.js';
-
-import { translate } from 'lit-translate';
+import {
+  Create,
+  createElement,
+  Delete,
+  newActionEvent,
+} from '../../foundation.js';
 import {
   GOOSESelectEvent,
   IEDSubscriptionEvent,
