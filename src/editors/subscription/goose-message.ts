@@ -17,7 +17,9 @@ export class GOOSEMessage extends LitElement {
 
   private onGooseSelect = () => {
     const ln = this.element.parentElement;
-    const dataset = ln?.querySelector(`DataSet[name=${this.element.getAttribute('datSet')}]`);
+    const dataset = ln?.querySelector(
+      `DataSet[name=${this.element.getAttribute('datSet')}]`
+    );
     this.dispatchEvent(
       newGOOSESelectEvent(
         this.element.closest('IED')?.getAttribute('name') ?? '',
@@ -28,9 +30,7 @@ export class GOOSEMessage extends LitElement {
   };
 
   render(): TemplateResult {
-    return html`<mwc-list-item
-      @click=${this.onGooseSelect}
-      graphic="large">
+    return html`<mwc-list-item @click=${this.onGooseSelect} graphic="large">
       <span>${this.element.getAttribute('name')}</span>
       <mwc-icon slot="graphic">${gooseIcon}</mwc-icon>
     </mwc-list-item>`;
