@@ -8,8 +8,8 @@ import {
   TemplateResult,
 } from 'lit-element';
 import { translate } from 'lit-translate';
-import { GOOSESelectEvent } from '../../foundation.js';
 import { styles } from '../templates/foundation.js';
+import { GOOSESelectEvent } from './foundation.js';
 
 /**
  * An IED within this IED list has 2 properties:
