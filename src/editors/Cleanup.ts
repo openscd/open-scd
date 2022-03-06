@@ -30,7 +30,7 @@ export default class Cleanup extends LitElement {
   doc!: XMLDocument;
   @property()
   disableDatasetClean = false;
-
+  @property()
   gridRowsUnusedDatasets: iedData[] = [];
 
   /**
@@ -142,7 +142,7 @@ export default class Cleanup extends LitElement {
         .getAttribute('name')!
         .localeCompare(b.dataset.getAttribute('name')!)
     );
-    const thing = html`
+    return html`
       <h1>
       ${translate('cleanup.unusedDatasets.title')}
         <abbr slot="action">
@@ -203,14 +203,13 @@ export default class Cleanup extends LitElement {
         }}
       ></mwc-button>
     `;
-    return thing;
   }
 
   /**
    * Clean datasets as requested by removing DataSet elements specified by the user from the SCL file
    * @returns an actions array to support undo/redo
    */
-  private cleanDatasets(cleanItems: iedData[]): Delete[] {
+  public cleanDatasets(cleanItems: iedData[]): Delete[] {
     const actions: Delete[] = [];
     if (cleanItems) {
       cleanItems.forEach(item => {
@@ -235,7 +234,7 @@ export default class Cleanup extends LitElement {
       this.shadowRoot!.querySelector('#unuseddatasetlist')!;
     checklist!.addEventListener('selected', () => {
       this.disableDatasetClean =
-        (<Set<number>>(<MWCListIndex>checklist!.index)).size === 0;
+        (<Set<number>>(<MWCListIndex>checklist!.index)).size === 0 || (<MWCListIndex>checklist!.index === -1)
     });
   }
 
