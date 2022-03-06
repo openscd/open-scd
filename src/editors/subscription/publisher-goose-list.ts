@@ -11,7 +11,7 @@ import './elements/goose-message.js';
 
 import { translate } from 'lit-translate';
 import { compareNames, getNameAttribute } from '../../foundation.js';
-import { styles } from '../templates/foundation.js';
+import { styles } from './foundation.js';
 
 /** An sub element for showing all published GOOSE messages per IED. */
 @customElement('publisher-goose-list')
