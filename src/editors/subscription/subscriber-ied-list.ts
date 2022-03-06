@@ -189,45 +189,53 @@ export class SubscriberIEDList extends LitElement {
    * @param ied - Given IED to subscribe.
    */
   private async subscribe(ied: Element): Promise<void> {
-    const clone: Element = <Element>ied.cloneNode(true);
+    if (!ied.querySelector('LN0')) return;
 
-    let inputsElement = clone.querySelector('LN0 > Inputs');
-    if (!inputsElement) {
+    let inputsElement = ied.querySelector('LN0 > Inputs');
+    if (!inputsElement)
       inputsElement = createElement(ied.ownerDocument, 'Inputs', {});
-    }
 
-    /** Updating the ExtRefs according the dataset */
+    const actions: Create[] = [];
     localState.currentDataset!.querySelectorAll('FCDA').forEach(fcda => {
-      if(!inputsElement!.querySelector(`ExtRef[iedName=${localState.currentGooseIEDName}]` +
-        `${fcdaReferences.map(fcdaRef =>
-          fcda.getAttribute(fcdaRef)
-            ? `[${fcdaRef}="${fcda.getAttribute(fcdaRef)}"]`
-            : '').join('')
-          }`)) {
-            const extRef = createElement(
-              ied.ownerDocument, 
-              'ExtRef',
-              {
-                iedName: localState.currentGooseIEDName!,
-                serviceType: 'GOOSE',
-                ldInst: fcda.getAttribute('ldInst') ?? '',
-                lnClass: fcda.getAttribute('lnClass') ?? '',
-                lnInst: fcda.getAttribute('lnInst') ?? '',
-                prefix: fcda.getAttribute('prefix') ?? '',
-                doName: fcda.getAttribute('doName') ?? '',
-                daName: fcda.getAttribute('daName') ?? ''
-              });
+      if (
+        !inputsElement!.querySelector(
+          `ExtRef[iedName=${localState.currentGooseIEDName}]` +
+            `${fcdaReferences
+              .map(fcdaRef =>
+                fcda.getAttribute(fcdaRef)
+                  ? `[${fcdaRef}="${fcda.getAttribute(fcdaRef)}"]`
+                  : ''
+              )
+              .join('')}`
+        )
+      ) {
+        const extRef = createElement(ied.ownerDocument, 'ExtRef', {
+          iedName: localState.currentGooseIEDName!,
+          serviceType: 'GOOSE',
+          ldInst: fcda.getAttribute('ldInst') ?? '',
+          lnClass: fcda.getAttribute('lnClass') ?? '',
+          lnInst: fcda.getAttribute('lnInst') ?? '',
+          prefix: fcda.getAttribute('prefix') ?? '',
+          doName: fcda.getAttribute('doName') ?? '',
+          daName: fcda.getAttribute('daName') ?? '',
+        });
 
-            inputsElement?.appendChild(extRef);
-        }
+        if (inputsElement?.parentElement)
+          actions.push({ new: { parent: inputsElement!, element: extRef } });
+        else inputsElement?.appendChild(extRef);
+      }
     });
 
     /** If the IED doesn't have a Inputs element, just append it to the first LN0 element. */
-    if (!inputsElement.parentElement) {
-      clone.querySelector('LN0')?.append(inputsElement);
+    const title = 'Connect';
+    if (inputsElement.parentElement)
+      this.dispatchEvent(newActionEvent({ title, actions }));
+    else {
+      const inputAction: Create = {
+        new: { parent: ied.querySelector('LN0')!, element: inputsElement },
+      };
+      this.dispatchEvent(newActionEvent({ title, actions: [inputAction] }));
     }
-
-    this.replaceElement(ied, clone);
 
     this.dispatchEvent(
       newGOOSESelectEvent(
@@ -242,46 +250,28 @@ export class SubscriberIEDList extends LitElement {
    * @param ied - Given IED to unsubscribe.
    */
   private unsubscribe(ied: Element): void {
-    const clone: Element = <Element>ied.cloneNode(true);
-
-    clone.querySelectorAll('LN0 > Inputs, LN > Inputs').forEach(inputs => {
+    const actions: Delete[] = [];
+    ied.querySelectorAll('LN0 > Inputs, LN > Inputs').forEach(inputs => {
       localState.currentDataset!.querySelectorAll('FCDA').forEach(fcda => {
-        const extRef = inputs.querySelector(`ExtRef[iedName=${localState.currentGooseIEDName}]` +
-          `${fcdaReferences.map(fcdaRef =>
-            fcda.getAttribute(fcdaRef)
-              ? `[${fcdaRef}="${fcda.getAttribute(fcdaRef)}"]`
-              : '').join('')
-            }`);
-  
-          if (extRef) inputs.removeChild(extRef!);
+        const extRef = inputs.querySelector(
+          `ExtRef[iedName=${localState.currentGooseIEDName}]` +
+            `${fcdaReferences
+              .map(fcdaRef =>
+                fcda.getAttribute(fcdaRef)
+                  ? `[${fcdaRef}="${fcda.getAttribute(fcdaRef)}"]`
+                  : ''
+              )
+              .join('')}`
+        );
+
+        if (extRef) actions.push({ old: { parent: inputs, element: extRef } });
       });
     });
 
-    this.replaceElement(ied, clone);
-
-    this.dispatchEvent(
-      newGOOSESelectEvent(
-        localState.currentGseControl!,
-        localState.currentDataset!
-      )
-    );
-  }
-
-  /**
-   * Replacing an element in the current opened file.
-   * @param original - The original element.
-   * @param clone - The element to replace the original with.
-   */
-  private async replaceElement(original: Element, clone: Element) {
-    const parent = original.parentElement;
-
     this.dispatchEvent(
       newActionEvent({
-        old: {
-          parent: parent!,
-          element: original,
-          reference: original.nextSibling
-        }
+        title: 'Disconnect',
+        actions,
       })
     );
 
