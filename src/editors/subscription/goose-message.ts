@@ -6,6 +6,10 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
+
+import '@material/mwc-icon';
+import '@material/mwc-list/mwc-list-item';
+
 import { gooseIcon } from '../../icons.js';
 import { newGOOSESelectEvent } from './foundation.js';
 

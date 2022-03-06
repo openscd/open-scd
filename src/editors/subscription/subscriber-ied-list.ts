@@ -8,6 +8,11 @@ import {
   TemplateResult,
 } from 'lit-element';
 import { translate } from 'lit-translate';
+
+import '@material/mwc-icon';
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-list-item';
+
 import { styles } from '../templates/foundation.js';
 import { GOOSESelectEvent } from './foundation.js';
 
