@@ -22,10 +22,7 @@ export class IEDElement extends LitElement {
 
   private onIedSelect = () => {
     this.dispatchEvent(
-      newIEDSubscriptionEvent(
-        this.element,
-        this.status ?? SubscribeStatus.None
-      )
+      newIEDSubscriptionEvent(this.element, this.status ?? SubscribeStatus.None)
     );
   };
 
@@ -33,11 +30,14 @@ export class IEDElement extends LitElement {
     return html`<mwc-list-item
       @click=${this.onIedSelect}
       graphic="avatar"
-      hasMeta>
+      hasMeta
+    >
       <span>${this.element.getAttribute('name')}</span>
-      <mwc-icon slot="graphic">${this.status == SubscribeStatus.Full ? html`clear` : html`add`}</mwc-icon>
+      <mwc-icon slot="graphic"
+        >${this.status == SubscribeStatus.Full
+          ? html`clear`
+          : html`add`}</mwc-icon
+      >
     </mwc-list-item>`;
   }
-
-  static styles = css``;
 }
