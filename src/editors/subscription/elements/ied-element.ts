@@ -1,12 +1,15 @@
 import {
-  css,
   customElement,
   html,
   LitElement,
   property,
   TemplateResult,
 } from 'lit-element';
-import { newIEDSubscriptionEvent, SubscribeStatus } from '../../../foundation.js';
+
+import '@material/mwc-icon';
+import '@material/mwc-list/mwc-list-item';
+
+import { newIEDSubscriptionEvent, SubscribeStatus } from '../foundation.js';
 
 @customElement('ied-element')
 export class IEDElement extends LitElement {
@@ -19,10 +22,7 @@ export class IEDElement extends LitElement {
 
   private onIedSelect = () => {
     this.dispatchEvent(
-      newIEDSubscriptionEvent(
-        this.element,
-        this.status ?? SubscribeStatus.None
-      )
+      newIEDSubscriptionEvent(this.element, this.status ?? SubscribeStatus.None)
     );
   };
 
@@ -30,11 +30,14 @@ export class IEDElement extends LitElement {
     return html`<mwc-list-item
       @click=${this.onIedSelect}
       graphic="avatar"
-      hasMeta>
+      hasMeta
+    >
       <span>${this.element.getAttribute('name')}</span>
-      <mwc-icon slot="graphic">${this.status == SubscribeStatus.Full ? html`clear` : html`add`}</mwc-icon>
+      <mwc-icon slot="graphic"
+        >${this.status == SubscribeStatus.Full
+          ? html`clear`
+          : html`add`}</mwc-icon
+      >
     </mwc-list-item>`;
   }
-
-  static styles = css``;
 }

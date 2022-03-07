@@ -3,7 +3,7 @@ import { spy } from 'sinon';
 
 import '../../../../../src/editors/subscription/elements/ied-element.js'
 import { IEDElement } from '../../../../../src/editors/subscription/elements/ied-element.js';
-import { SubscribeStatus } from '../../../../../src/foundation.js';
+import { SubscribeStatus } from '../../../../../src/editors/subscription/foundation.js';
 
 describe('ied-element', () => {
   let element: IEDElement;
