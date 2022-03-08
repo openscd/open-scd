@@ -1,5 +1,5 @@
-import { html } from 'lit-html';
-import { get } from 'lit-translate';
+import { html, TemplateResult } from 'lit-element';
+import { get, translate } from 'lit-translate';
 
 import '@material/mwc-list/mwc-list-item';
 
@@ -13,6 +13,31 @@ import {
   WizardActor,
   WizardInput,
 } from '../foundation.js';
+
+interface ContentOptions {
+  seqNum: string | null;
+  timeStamp: string | null;
+  dataSet: string | null;
+  reasonCode: string | null;
+  dataRef: string | null;
+  entryID: string | null;
+  configRef: string | null;
+  bufOvfl: string | null;
+}
+
+export function contentOptFieldsWizard(
+  option: ContentOptions
+): TemplateResult[] {
+  return Object.entries(option).map(
+    ([key, value]) =>
+      html`<wizard-checkbox
+        label="${key}"
+        .maybeValue=${value}
+        nullable
+        helper="${translate(`scl.${key}`)}"
+      ></wizard-checkbox>`
+  );
+}
 
 function updateOptFieldsAction(element: Element): WizardActor {
   return (inputs: WizardInput[]): WizardAction[] => {
@@ -53,7 +78,16 @@ function updateOptFieldsAction(element: Element): WizardActor {
 }
 
 export function editOptFieldsWizard(element: Element): Wizard {
-  const optFields = [
+  const [
+    seqNum,
+    timeStamp,
+    dataSet,
+    reasonCode,
+    dataRef,
+    entryID,
+    configRef,
+    bufOvfl,
+  ] = [
     'seqNum',
     'timeStamp',
     'dataSet',
@@ -62,7 +96,7 @@ export function editOptFieldsWizard(element: Element): Wizard {
     'entryID',
     'configRef',
     'bufOvfl',
-  ];
+  ].map(optField => element.getAttribute(optField));
 
   return [
     {
@@ -72,15 +106,16 @@ export function editOptFieldsWizard(element: Element): Wizard {
         label: get('save'),
         action: updateOptFieldsAction(element),
       },
-      content: optFields.map(
-        optField =>
-          html`<wizard-checkbox
-            label="${optField}"
-            .maybeValue=${element.getAttribute(optField)}
-            nullable
-            required
-          ></wizard-checkbox>`
-      ),
+      content: contentOptFieldsWizard({
+        seqNum,
+        timeStamp,
+        dataSet,
+        reasonCode,
+        dataRef,
+        entryID,
+        configRef,
+        bufOvfl,
+      }),
     },
   ];
 }

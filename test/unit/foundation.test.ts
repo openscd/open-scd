@@ -24,6 +24,7 @@ import {
   getChildElementsByTagName,
   cloneElement,
   depth,
+  getUniqueElementName,
 } from '../../src/foundation.js';
 
 import { MockAction } from './mock-actions.js';
@@ -464,6 +465,26 @@ describe('foundation', () => {
         findControlBlocks(doc.querySelector('Private > ExtRef')!).size
       ).to.equal(0);
     });
+  });
+
+  describe('getUniqueElementName', () => {
+    let parent: Element;
+    beforeEach(() => {
+      const testDoc = new DOMParser().parseFromString(
+        '<Parent>' +
+          '<Child name="newChild1"/><Child name="newChild2"/>' +
+          '<Child2 name="newChild3"/><Child2 name="newChild21"/>' +
+          '</Parent>',
+        'application/xml'
+      );
+      parent = testDoc.querySelector<Element>('Parent')!;
+    });
+
+    it('returns unique name for Child', () =>
+      expect(getUniqueElementName(parent, 'Child')).to.equal('newChild3'));
+
+    it('returns unique name for Child2', () =>
+      expect(getUniqueElementName(parent, 'Child2')).to.equal('newChild22'));
   });
 
   describe('findFCDAs', () => {

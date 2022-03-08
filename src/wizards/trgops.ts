@@ -1,5 +1,5 @@
-import { html } from 'lit-html';
-import { get } from 'lit-translate';
+import { html, TemplateResult } from 'lit-element';
+import { get, translate } from 'lit-translate';
 
 import '@material/mwc-list/mwc-list-item';
 
@@ -13,6 +13,26 @@ import {
   WizardActor,
   WizardInput,
 } from '../foundation.js';
+
+interface ContentOptions {
+  dchg: string | null;
+  qchg: string | null;
+  dupd: string | null;
+  period: string | null;
+  gi: string | null;
+}
+
+export function contentTrgOpsWizard(option: ContentOptions): TemplateResult[] {
+  return Object.entries(option).map(
+    ([key, value]) =>
+      html`<wizard-checkbox
+        label="${key}"
+        .maybeValue=${value}
+        nullable
+        helper="${translate(`scl.${key}`)}"
+      ></wizard-checkbox>`
+  );
+}
 
 function updateTrgOpsAction(element: Element): WizardActor {
   return (inputs: WizardInput[]): WizardAction[] => {
@@ -45,7 +65,13 @@ function updateTrgOpsAction(element: Element): WizardActor {
 }
 
 export function editTrgOpsWizard(element: Element): Wizard {
-  const trgOps = ['dchg', 'qchg', 'dupd', 'period', 'gi'];
+  const [dchg, qchg, dupd, period, gi] = [
+    'dchg',
+    'qchg',
+    'dupd',
+    'period',
+    'gi',
+  ].map(trgOp => element.getAttribute(trgOp));
 
   return [
     {
@@ -55,14 +81,7 @@ export function editTrgOpsWizard(element: Element): Wizard {
         label: get('save'),
         action: updateTrgOpsAction(element),
       },
-      content: trgOps.map(
-        trgOp =>
-          html`<wizard-checkbox
-            label="${trgOp}"
-            .maybeValue=${element.getAttribute(trgOp)}
-            nullable
-          ></wizard-checkbox>`
-      ),
+      content: contentTrgOpsWizard({ dchg, qchg, dupd, period, gi }),
     },
   ];
 }
