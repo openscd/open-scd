@@ -34,7 +34,8 @@ export class AccessPointContainer extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<action-pane .icon=${accessPointIcon} .label="${this.header()}">
+    return html`<action-pane .label="${this.header()}">
+      <mwc-icon slot="icon">${accessPointIcon}</mwc-icon>
       ${Array.from(this.element.querySelectorAll(':scope > Server')).map(server =>
         html`<server-container
           .element=${server}

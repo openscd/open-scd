@@ -38,7 +38,8 @@ export class IedContainer extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<action-pane icon="developer_board" .label="${this.header()}">
+    return html`<action-pane .label="${this.header()}">
+      <mwc-icon slot="icon">developer_board</mwc-icon>
       <abbr slot="action" title="${translate('edit')}">
         <mwc-icon-button
           icon="edit"

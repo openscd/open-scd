@@ -29,7 +29,8 @@ export class ServerContainer extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<action-pane .icon=${serverIcon} label="${this.header()}">
+    return html`<action-pane label="${this.header()}">
+      <mwc-icon slot="icon">${serverIcon}</mwc-icon>
       ${Array.from(this.element.querySelectorAll(':scope > LDevice')).map(server => 
         html`<ldevice-container
           .element=${server}
