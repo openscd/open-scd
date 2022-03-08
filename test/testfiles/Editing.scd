@@ -38,4 +38,12 @@
 			</Bay>
 		</VoltageLevel>
 	</Substation>
+	<DataTypeTemplates>
+		<LNodeType id="testId" lnClass="LLN0">
+			<DO name="Test" type="pointerToNowhere"/>
+		</LNodeType>
+		<DAType id="testId1">
+			<BDA name="test" type="pointerToNowhere"/>
+		</DAType>
+	</DataTypeTemplates>
 </SCL>

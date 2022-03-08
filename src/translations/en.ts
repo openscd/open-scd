@@ -113,6 +113,7 @@ export const en = {
       duplicate: 'Could not copy {{ name }}',
       nameClash:
         'Parent {{ parent }} already contains a {{ child }} named "{{ name }}"',
+      idClash: 'The project has already an ID "{{ id }}"',
     },
   },
   textfield: {

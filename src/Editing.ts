@@ -50,7 +50,7 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       )
         return true;
 
-      const invalid =
+      const invalidNaming =
         create.new.element.hasAttribute('name') &&
         Array.from(create.new.parent.children).some(
           elm =>
@@ -59,7 +59,7 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
               (<Element>create.new.element).getAttribute('name')
         );
 
-      if (invalid)
+      if (invalidNaming) {
         this.dispatchEvent(
           newLogEvent({
             kind: 'error',
@@ -77,7 +77,38 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
           })
         );
 
-      return !invalid;
+        return false;
+      }
+
+      const invalidId =
+        create.new.element.hasAttribute('id') &&
+        Array.from(
+          create.new.parent.ownerDocument.querySelectorAll(
+            'LNodeType, DOType, DAType, EnumType'
+          )
+        ).some(
+          elm =>
+            elm.getAttribute('id') ===
+            (<Element>create.new.element).getAttribute('id')
+        );
+
+      if (invalidId) {
+        this.dispatchEvent(
+          newLogEvent({
+            kind: 'error',
+            title: get('editing.error.create', {
+              name: create.new.element.tagName,
+            }),
+            message: get('editing.error.idClash', {
+              id: create.new.element.getAttribute('id')!,
+            }),
+          })
+        );
+
+        return false;
+      }
+
+      return true;
     }
 
     private onCreate(action: Create) {
@@ -199,7 +230,7 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
     private checkReplaceValidity(replace: Replace): boolean {
       if (replace.checkValidity !== undefined) return replace.checkValidity();
 
-      const invalid =
+      const invalidNaming =
         replace.new.element.hasAttribute('name') &&
         replace.new.element.getAttribute('name') !==
           replace.old.element.getAttribute('name') &&
@@ -210,7 +241,7 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
               replace.new.element.getAttribute('name')
         );
 
-      if (invalid)
+      if (invalidNaming) {
         this.dispatchEvent(
           newLogEvent({
             kind: 'error',
@@ -225,7 +256,40 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
           })
         );
 
-      return !invalid;
+        return false;
+      }
+
+      const invalidId =
+        replace.new.element.hasAttribute('id') &&
+        replace.new.element.getAttribute('id') !==
+          replace.old.element.getAttribute('id') &&
+        Array.from(
+          replace.new.element.ownerDocument.querySelectorAll(
+            'LNodeType, DOType, DAType, EnumType'
+          )
+        ).some(
+          elm =>
+            elm.getAttribute('id') ===
+            (<Element>replace.new.element).getAttribute('id')
+        );
+
+      if (invalidId) {
+        this.dispatchEvent(
+          newLogEvent({
+            kind: 'error',
+            title: get('editing.error.update', {
+              name: replace.new.element.tagName,
+            }),
+            message: get('editing.error.idClash', {
+              id: replace.new.element.getAttribute('id')!,
+            }),
+          })
+        );
+
+        return false;
+      }
+
+      return true;
     }
 
     private onReplace(action: Replace) {
@@ -255,7 +319,7 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
     private checkUpdateValidity(update: Update): boolean {
       if (update.checkValidity !== undefined) return update.checkValidity();
 
-      const invalid = Array.from(
+      const invalidNaming = Array.from(
         update.element.parentElement?.children ?? []
       ).some(
         elm =>
@@ -263,7 +327,7 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
           elm.getAttribute('name') === update.newAttributes['name']
       );
 
-      if (invalid)
+      if (invalidNaming) {
         this.dispatchEvent(
           newLogEvent({
             kind: 'error',
@@ -278,7 +342,34 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
           })
         );
 
-      return !invalid;
+        return false;
+      }
+
+      const invalidId =
+        update.newAttributes['id'] &&
+        Array.from(
+          update.element.ownerDocument.querySelectorAll(
+            'LNodeType, DOType, DAType, EnumType'
+          )
+        ).some(elm => elm.getAttribute('id') === update.newAttributes['id']);
+
+      if (invalidId) {
+        this.dispatchEvent(
+          newLogEvent({
+            kind: 'error',
+            title: get('editing.error.update', {
+              name: update.element.tagName,
+            }),
+            message: get('editing.error.idClash', {
+              id: update.newAttributes['id']!,
+            }),
+          })
+        );
+
+        return false;
+      }
+
+      return true;
     }
 
     private onUpdate(action: Update) {
