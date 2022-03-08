@@ -3,6 +3,8 @@ export const snapshots = {};
 
 snapshots["ldevice-container looks like the latest snapshot"] = 
 `<action-pane tabindex="0">
+  <mwc-icon slot="icon">
+  </mwc-icon>
   <abbr
     slot="action"
     title="[iededitor.toggleChildElements]"
@@ -41,6 +43,8 @@ snapshots["ldevice-container looks like the latest snapshot"] =
 
 snapshots["ldevice-container looks like the latest snapshot with a LDevice without LN elements"] = 
 `<action-pane tabindex="0">
+  <mwc-icon slot="icon">
+  </mwc-icon>
   <div id="lnContainer">
   </div>
 </action-pane>
