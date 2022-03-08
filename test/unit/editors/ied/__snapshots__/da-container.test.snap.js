@@ -1,7 +1,26 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["looks like the latest snapshot with a DA element"] = 
+snapshots["looks like the latest snapshot with a DA element containing and a DAI"] = 
+`<action-pane
+  icon="done"
+  tabindex="0"
+>
+  <abbr slot="action">
+    <mwc-icon-button
+      icon="info"
+      title="ctlModel"
+    >
+    </mwc-icon-button>
+  </abbr>
+  <h6>
+    status-only
+  </h6>
+</action-pane>
+`;
+/* end snapshot looks like the latest snapshot with a DA element containing and a DAI */
+
+snapshots["with a DA element looks like the latest snapshot"] = 
 `<action-pane
   icon=""
   tabindex="0"
@@ -17,9 +36,9 @@ snapshots["looks like the latest snapshot with a DA element"] =
   </h6>
 </action-pane>
 `;
-/* end snapshot looks like the latest snapshot with a DA element */
+/* end snapshot with a DA element looks like the latest snapshot */
 
-snapshots["looks like the latest snapshot with a DA element and child elements are toggled."] = 
+snapshots["with a BDA element looks like the latest snapshot"] = 
 `<action-pane
   icon=""
   tabindex="0"
@@ -27,7 +46,25 @@ snapshots["looks like the latest snapshot with a DA element and child elements a
   <abbr slot="action">
     <mwc-icon-button
       icon="info"
-      title="SBOw"
+      title="ctlVal"
+    >
+    </mwc-icon-button>
+  </abbr>
+  <h6>
+  </h6>
+</action-pane>
+`;
+/* end snapshot with a BDA element looks like the latest snapshot */
+
+snapshots["with a DA element and child elements are toggled looks like the latest snapshot"] = 
+`<action-pane
+  icon=""
+  tabindex="0"
+>
+  <abbr slot="action">
+    <mwc-icon-button
+      icon="info"
+      title="Some SBOw title"
     >
     </mwc-icon-button>
   </abbr>
@@ -59,24 +96,5 @@ snapshots["looks like the latest snapshot with a DA element and child elements a
   </da-container>
 </action-pane>
 `;
-/* end snapshot looks like the latest snapshot with a DA element and child elements are toggled. */
-
-snapshots["looks like the latest snapshot with a DA element containing and a DAI."] = 
-`<action-pane
-  icon="done"
-  tabindex="0"
->
-  <abbr slot="action">
-    <mwc-icon-button
-      icon="info"
-      title="ctlModel"
-    >
-    </mwc-icon-button>
-  </abbr>
-  <h6>
-    status-only
-  </h6>
-</action-pane>
-`;
-/* end snapshot looks like the latest snapshot with a DA element containing and a DAI. */
+/* end snapshot with a DA element and child elements are toggled looks like the latest snapshot */
 

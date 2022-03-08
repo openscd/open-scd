@@ -11,8 +11,8 @@ import {
   isCreate,
   isDelete,
   isSimple,
-  isUpdate,
-  Update,
+  isReplace,
+  Replace,
   WizardInput,
 } from '../../../src/foundation.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
@@ -162,9 +162,9 @@ describe('Wizards for SCL ReportControl element', () => {
         expect(actionEvent).to.be.calledOnce;
 
         const action = actionEvent.args[0][0].detail.action;
-        expect(action).to.satisfy(isUpdate);
+        expect(action).to.satisfy(isReplace);
 
-        const updateAction = <Update>action;
+        const updateAction = <Replace>action;
         expect(updateAction.old.element).to.have.attribute('name', 'ReportCb');
         expect(updateAction.new.element).to.have.attribute(
           'name',
@@ -183,9 +183,9 @@ describe('Wizards for SCL ReportControl element', () => {
         expect(actionEvent).to.be.calledOnce;
 
         const action = actionEvent.args[0][0].detail.action;
-        expect(action).to.satisfy(isUpdate);
+        expect(action).to.satisfy(isReplace);
 
-        const updateAction = <Update>action;
+        const updateAction = <Replace>action;
         expect(updateAction.old.element).to.not.have.attribute('desc');
         expect(updateAction.new.element).to.have.attribute('desc', 'myDesc');
       });
@@ -200,9 +200,9 @@ describe('Wizards for SCL ReportControl element', () => {
         expect(actionEvent).to.be.calledOnce;
 
         const action = actionEvent.args[0][0].detail.action;
-        expect(action).to.satisfy(isUpdate);
+        expect(action).to.satisfy(isReplace);
 
-        const updateAction = <Update>action;
+        const updateAction = <Replace>action;
         expect(updateAction.old.element).to.have.attribute(
           'rptID',
           'reportCb1'
@@ -223,9 +223,9 @@ describe('Wizards for SCL ReportControl element', () => {
         expect(actionEvent).to.be.calledOnce;
 
         const action = actionEvent.args[0][0].detail.action;
-        expect(action).to.satisfy(isUpdate);
+        expect(action).to.satisfy(isReplace);
 
-        const updateAction = <Update>action;
+        const updateAction = <Replace>action;
         expect(updateAction.old.element).to.have.attribute('indexed', 'true');
         expect(updateAction.new.element).to.have.attribute('indexed', 'false');
       });
@@ -240,9 +240,9 @@ describe('Wizards for SCL ReportControl element', () => {
         expect(actionEvent).to.be.calledOnce;
 
         const action = actionEvent.args[0][0].detail.action;
-        expect(action).to.satisfy(isUpdate);
+        expect(action).to.satisfy(isReplace);
 
-        const updateAction = <Update>action;
+        const updateAction = <Replace>action;
         expect(updateAction.old.element).to.have.attribute('bufTime', '100');
         expect(updateAction.new.element).to.have.attribute('bufTime', '54');
       });
@@ -258,9 +258,9 @@ describe('Wizards for SCL ReportControl element', () => {
         expect(actionEvent).to.be.calledOnce;
 
         const action = actionEvent.args[0][0].detail.action;
-        expect(action).to.satisfy(isUpdate);
+        expect(action).to.satisfy(isReplace);
 
-        const updateAction = <Update>action;
+        const updateAction = <Replace>action;
         expect(updateAction.old.element).to.not.have.attribute('intgPd');
         expect(updateAction.new.element).to.have.attribute('intgPd', '1000');
       });
@@ -275,9 +275,9 @@ describe('Wizards for SCL ReportControl element', () => {
         expect(actionEvent).to.be.calledOnce;
 
         const action = actionEvent.args[0][0].detail.action;
-        expect(action).to.satisfy(isUpdate);
+        expect(action).to.satisfy(isReplace);
 
-        const updateAction = <Update>action;
+        const updateAction = <Replace>action;
         expect(updateAction.new.element.tagName).to.equal('RptEnabled');
         expect(updateAction.old.element.tagName).to.equal('RptEnabled');
         expect(updateAction.old.element).to.have.attribute('max', '5');
@@ -326,7 +326,7 @@ describe('Wizards for SCL ReportControl element', () => {
           const action = actionEvent.args[0][0].detail.action;
           expect(action).to.satisfy(isCreate);
 
-          const updateAction = <Update>action;
+          const updateAction = <Replace>action;
           expect(updateAction.new.element.tagName).to.equal('RptEnabled');
           expect(updateAction.new.element).to.have.attribute('max', '6');
         });
@@ -531,7 +531,9 @@ describe('Wizards for SCL ReportControl element', () => {
       const action = actions[0];
       expect(action).to.satisfy(isCreate);
       const createAction = <Create>action;
-      expect(createAction.new.element.tagName).to.equal('ReportControl');
+      expect((<Element>createAction.new.element).tagName).to.equal(
+        'ReportControl'
+      );
     });
 
     it('add default confRev to the ReportControlElement', async () => {
@@ -555,7 +557,7 @@ describe('Wizards for SCL ReportControl element', () => {
       const action = actions[1];
       expect(action).to.satisfy(isCreate);
       const createAction = <Create>action;
-      expect(createAction.new.element.tagName).to.equal('DataSet');
+      expect((<Element>createAction.new.element).tagName).to.equal('DataSet');
     });
 
     it('referenced DataSet element not having any FCDA per default', async () => {
@@ -564,7 +566,7 @@ describe('Wizards for SCL ReportControl element', () => {
       const createAction = <Create>(
         (<ComplexAction>actionEvent.args[0][0].detail.action).actions[1]
       );
-      expect(createAction.new.element.children).to.be.empty;
+      expect((<Element>createAction.new.element).children).to.be.empty;
     });
 
     it('referenced DataSet element saving selected FCDA', async () => {
@@ -584,8 +586,8 @@ describe('Wizards for SCL ReportControl element', () => {
       const createAction = <Create>(
         (<ComplexAction>actionEvent.args[0][0].detail.action).actions[1]
       );
-      expect(createAction.new.element.children).to.not.be.empty;
-      expect(createAction.new.element.children).to.have.lengthOf(1);
+      expect((<Element>createAction.new.element).children).to.not.be.empty;
+      expect((<Element>createAction.new.element).children).to.have.lengthOf(1);
     });
 
     it('complex action adding OptField element as child element', async () => {
@@ -597,7 +599,9 @@ describe('Wizards for SCL ReportControl element', () => {
       const action = actions[0];
       expect(action).to.satisfy(isCreate);
       const createAction = <Create>action;
-      const optFields = createAction.new.element.querySelector('OptFields');
+      const optFields = (<Element>createAction.new.element).querySelector(
+        'OptFields'
+      );
       expect(optFields).to.exist;
       expect(optFields).to.have.attribute('seqNum', 'true');
     });
@@ -611,7 +615,9 @@ describe('Wizards for SCL ReportControl element', () => {
       const action = actions[0];
       expect(action).to.satisfy(isCreate);
       const createAction = <Create>action;
-      const trgOps = createAction.new.element.querySelector('TrgOps');
+      const trgOps = (<Element>createAction.new.element).querySelector(
+        'TrgOps'
+      );
       expect(trgOps).to.exist;
       expect(trgOps).to.have.attribute('dchg', 'true');
       expect(trgOps).to.have.attribute('gi', 'false');
@@ -626,7 +632,9 @@ describe('Wizards for SCL ReportControl element', () => {
       const action = actions[0];
       expect(action).to.satisfy(isCreate);
       const createAction = <Create>action;
-      const rptEnabled = createAction.new.element.querySelector('RptEnabled');
+      const rptEnabled = (<Element>createAction.new.element).querySelector(
+        'RptEnabled'
+      );
       expect(rptEnabled).to.exist;
       expect(rptEnabled).to.have.attribute('max', '5');
     });
@@ -648,7 +656,9 @@ describe('Wizards for SCL ReportControl element', () => {
       const action = actions[0];
       expect(action).to.satisfy(isCreate);
       const createAction = <Create>action;
-      const rptEnabled = createAction.new.element.querySelector('RptEnabled');
+      const rptEnabled = (<Element>createAction.new.element).querySelector(
+        'RptEnabled'
+      );
       expect(rptEnabled).to.not.exist;
     });
   });

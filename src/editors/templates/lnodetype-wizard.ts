@@ -23,6 +23,7 @@ import {
   identity,
   isPublic,
   newActionEvent,
+  newSubWizardEvent,
   newWizardEvent,
   patterns,
   selector,
@@ -263,7 +264,6 @@ function createNewLNodeType(parent: Element, element: Element): WizardActor {
     selected.forEach(select => {
       const DO = createElement(parent.ownerDocument, 'DO', {
         name: select.label,
-        bType: 'Struct',
         type: select.value,
       });
 
@@ -602,8 +602,7 @@ export function lNodeTypeWizard(
             const wizard = dOWizard({
               parent: lnodetype,
             });
-            if (wizard) e.target!.dispatchEvent(newWizardEvent(wizard));
-            e.target!.dispatchEvent(newWizardEvent());
+            if (wizard) e.target!.dispatchEvent(newSubWizardEvent(wizard));
           }}
         ></mwc-button>`,
         html`
@@ -615,8 +614,7 @@ export function lNodeTypeWizard(
                 doc,
               });
 
-              if (wizard) e.target!.dispatchEvent(newWizardEvent(wizard));
-              e.target!.dispatchEvent(newWizardEvent());
+              if (wizard) e.target!.dispatchEvent(newSubWizardEvent(wizard));
             }}
           >
             ${Array.from(lnodetype.querySelectorAll('DO')).map(

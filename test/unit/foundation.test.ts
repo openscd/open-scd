@@ -13,7 +13,7 @@ import {
   isMove,
   isSame,
   isSimple,
-  isUpdate,
+  isReplace,
   newActionEvent,
   newPendingStateEvent,
   newWizardEvent,
@@ -66,8 +66,8 @@ describe('foundation', () => {
       expect(MockAction.cre).to.satisfy(isCreate);
       expect(MockAction.del).to.satisfy(isDelete);
       expect(MockAction.mov).to.satisfy(isMove);
-      expect(MockAction.upd).to.satisfy(isUpdate);
-
+      expect(MockAction.upd).to.satisfy(isReplace);
+      isReplace;
       expect(MockAction.cre).to.satisfy(isSimple);
       expect(MockAction.del).to.satisfy(isSimple);
       expect(MockAction.mov).to.satisfy(isSimple);
@@ -75,16 +75,16 @@ describe('foundation', () => {
 
       expect(MockAction.cre).to.not.satisfy(isDelete);
       expect(MockAction.cre).to.not.satisfy(isMove);
-      expect(MockAction.cre).to.not.satisfy(isUpdate);
-
+      expect(MockAction.cre).to.not.satisfy(isReplace);
+      isReplace;
       expect(MockAction.del).to.not.satisfy(isCreate);
       expect(MockAction.del).to.not.satisfy(isMove);
-      expect(MockAction.del).to.not.satisfy(isUpdate);
-
+      expect(MockAction.del).to.not.satisfy(isReplace);
+      isReplace;
       expect(MockAction.mov).to.not.satisfy(isCreate);
       expect(MockAction.mov).to.not.satisfy(isDelete);
-      expect(MockAction.mov).to.not.satisfy(isUpdate);
-
+      expect(MockAction.mov).to.not.satisfy(isReplace);
+      isReplace;
       expect(MockAction.upd).to.not.satisfy(isCreate);
       expect(MockAction.upd).to.not.satisfy(isDelete);
       expect(MockAction.upd).to.not.satisfy(isMove);
@@ -96,8 +96,9 @@ describe('foundation', () => {
       expect(MockAction.complex).to.not.satisfy(isCreate);
       expect(MockAction.complex).to.not.satisfy(isDelete);
       expect(MockAction.complex).to.not.satisfy(isMove);
-      expect(MockAction.complex).to.not.satisfy(isUpdate);
+      expect(MockAction.complex).to.not.satisfy(isReplace);
     });
+    isReplace;
 
     describe('invert', () => {
       it('turns Create into Delete and vice versa', () => {
@@ -110,8 +111,9 @@ describe('foundation', () => {
       });
 
       it('turns Update into Update', () => {
-        expect(invert(MockAction.upd)).to.satisfy(isUpdate);
+        expect(invert(MockAction.upd)).to.satisfy(isReplace);
       });
+      isReplace;
 
       it('inverts components of complex actions in reverse order', () => {
         const action = MockAction.complex;
