@@ -31,7 +31,7 @@ import {
 /**
  * An IED within this IED list has 2 properties:
  * - The IED element itself.
- * - A 'partial' property indicating if the GOOSE is fully initialized or partially.
+ * - A 'partial' property indicating if the Sampled Value is fully initialized or partially.
  */
 interface IED {
   element: Element;
@@ -79,7 +79,7 @@ const localState: State = {
   availableIeds: [],
 };
 
-/** An sub element for subscribing and unsubscribing IEDs to GOOSE messages. */
+/** An sub element for subscribing and unsubscribing IEDs to Sampled Values messages. */
 @customElement('subscriber-ied-list')
 export class SubscriberIEDList extends LitElement {
   @property({ attribute: false })
