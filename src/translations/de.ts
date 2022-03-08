@@ -271,6 +271,19 @@ export const de: Translations = {
     missing: 'DataTypeTemplates fehlen',
     add: 'DataTypeTemplates hinzufügen',
   },
+  sampledvalues: {
+    none: 'Keine Verbindung vorhanden',
+    sampledValuesList: {
+      title: '???'
+    },
+    subscriberIed: {
+      title: 'Verbunden mit {{ selected }}',
+      subscribed: 'Verbunden',
+      availableToSubscribe: 'Kann verbunden werden',
+      partiallySubscribed: 'Teilweise verbunden',
+      noSampledValuesSelected: 'Keine Sampled Values ausgewählt'
+    }
+  },
   'enum-val': {
     wizard: {
       title: {

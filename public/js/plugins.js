@@ -21,6 +21,13 @@ export const officialPlugins = [
     kind: 'editor',
   },
   {
+    name: 'Sampled Values',
+    src: '/src/editors/SampledValues.js',
+    icon: 'link',
+    default: true,
+    kind: 'editor',
+  },
+  {
     name: 'Communication',
     src: '/src/editors/Communication.js',
     icon: 'settings_ethernet',
