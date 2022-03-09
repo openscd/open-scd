@@ -26,6 +26,7 @@ import {
   newSubWizardEvent,
   newWizardEvent,
   patterns,
+  Replace,
   selector,
   Wizard,
   WizardActor,
@@ -530,7 +531,24 @@ function updateLNodeTypeAction(element: Element): WizardActor {
 
     const newElement = cloneElement(element, { id, desc, lnClass });
 
-    return [{ old: { element }, new: { element: newElement } }];
+    const actions: Replace[] = [];
+    actions.push({ old: { element }, new: { element: newElement } });
+
+    const oldId = element.getAttribute('id')!;
+    Array.from(
+      element.ownerDocument.querySelectorAll(
+        `LN0[lnType="${oldId}"], LN[lnType="${oldId}"]`
+      )
+    ).forEach(oldAnyLn => {
+      const newAnyLn = <Element>oldAnyLn.cloneNode(false);
+      newAnyLn.setAttribute('lnType', id);
+
+      actions.push({ old: { element: oldAnyLn }, new: { element: newAnyLn } });
+    });
+
+    return [
+      { title: get('lnodetype.action.edit', { oldId, newId: id }), actions },
+    ];
   };
 }
 

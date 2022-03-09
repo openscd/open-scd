@@ -356,6 +356,9 @@ export const en = {
         select: 'Select Data Objects',
       },
     },
+    action: {
+      edit: 'Edited LNodeType ID "{{oldId}}" and its LN references to {{newId}} ',
+    },
     autoimport: 'Use LN class from OpenSCD template',
     missinglnclass: 'Missing pre-defined LN class',
   },

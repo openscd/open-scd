@@ -360,6 +360,9 @@ export const de: Translations = {
         select: 'Data Objects auswählen',
       },
     },
+    action: {
+      edit: 'LNodeType ID "{{oldId}}" und deren LN-Referenzen geändert zu {{newId}} ',
+    },
     autoimport: 'Vordefinierte OpenSCD LN Klasse verwenden',
     missinglnclass: 'Vordefinierte LN Klasse fehlt',
   },
