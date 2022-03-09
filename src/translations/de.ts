@@ -116,6 +116,7 @@ export const de: Translations = {
       duplicate: 'Konnte {{name}} nicht kopieren',
       nameClash:
         '{{ parent }} enthält bereits ein {{ child }} Kind namens "{{ name }}"',
+      idClash: 'Das Projekt enthält bereits die ID "{{ id }}"',
     },
   },
   validator: {

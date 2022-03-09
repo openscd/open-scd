@@ -7,12 +7,13 @@ import { createUpdateAction, newActionEvent } from '../../src/foundation.js';
 
 describe('EditingElement', () => {
   let elm: MockEditor;
+  let doc: XMLDocument;
   let parent: Element;
   let element: Element;
   let reference: Node | null;
 
   beforeEach(async () => {
-    const doc = await fetch('/test/testfiles/Editing.scd')
+    doc = await fetch('/test/testfiles/Editing.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     elm = <MockEditor>(
@@ -114,6 +115,22 @@ describe('EditingElement', () => {
     expect(parent.querySelectorAll('Bay[name="Q01"]').length).to.be.equal(1);
   });
 
+  it('does not creates an element on id attribute conflict', () => {
+    const newElement = elm.doc!.createElement('DOType');
+    newElement?.setAttribute('id', 'testId');
+
+    elm.dispatchEvent(
+      newActionEvent({
+        new: {
+          parent: doc.querySelector('DataTypeTemplates')!,
+          element: newElement,
+          reference: null,
+        },
+      })
+    );
+    expect(doc.querySelector('DOType')).to.be.null;
+  });
+
   it('deletes an element on receiving a Delete action', () => {
     elm.dispatchEvent(
       newActionEvent({
@@ -163,7 +180,7 @@ describe('EditingElement', () => {
     expect(testNode.parentNode).to.null;
   });
 
-  it('replaces an element on receiving an Delete action', () => {
+  it('replaces an element on receiving an Replace action', () => {
     elm.dispatchEvent(
       newActionEvent({
         old: {
@@ -199,6 +216,46 @@ describe('EditingElement', () => {
     expect(
       parent.querySelector('Bay[name="Q01"]')?.nextElementSibling
     ).to.equal(parent.querySelector('Bay[name="Q02"]'));
+  });
+
+  it('replaces id defined element on receiving Replace action', () => {
+    expect(doc.querySelector('LNodeType[id="testId"]')).to.not.be.null;
+
+    const newElement = doc.createElement('LNodeType');
+    newElement?.setAttribute('id', 'testId3');
+
+    elm.dispatchEvent(
+      newActionEvent({
+        old: {
+          element: doc.querySelector('LNodeType[id="testId"]')!,
+        },
+        new: {
+          element: newElement,
+        },
+      })
+    );
+    expect(doc.querySelector('LNodeType[id="testId"]')).to.be.null;
+    expect(doc.querySelector('LNodeType[id="testId3"]')).to.not.be.null;
+  });
+
+  it('does not replace an element with name conflict', () => {
+    expect(doc.querySelector('LNodeType[id="testId"]')).to.not.be.null;
+
+    const newElement = elm.doc!.createElement('LNodeType');
+    newElement?.setAttribute('id', 'testId1');
+
+    elm.dispatchEvent(
+      newActionEvent({
+        old: {
+          element: doc.querySelector('LNodeType[id="testId"]')!,
+        },
+        new: {
+          element: newElement,
+        },
+      })
+    );
+    expect(doc.querySelector('LNodeType[id="testId"]')).to.not.be.null;
+    expect(doc.querySelector('LNodeType[id="testId1"]')).to.be.null;
   });
 
   it('moves an element on receiving a Move action', () => {
@@ -278,6 +335,20 @@ describe('EditingElement', () => {
     expect(element).to.not.have.attribute('desc');
   });
 
+  it('not update an element with id conflict', () => {
+    const newAttributes: Record<string, string | null> = {};
+    newAttributes['id'] = 'testId1';
+
+    elm.dispatchEvent(
+      newActionEvent(
+        createUpdateAction(doc.querySelector('LNodeType')!, newAttributes)
+      )
+    );
+
+    expect(doc.querySelector('LNodeType[id="testId"]')).to.exist;
+    expect(doc.querySelector('LNodeType[id="testId1"]')).to.not.exist;
+  });
+
   it('does not update an element with name conflict', () => {
     const newAttributes: Record<string, string | null> = {};
     newAttributes['name'] = 'Q02';
@@ -289,6 +360,20 @@ describe('EditingElement', () => {
     expect(element.parentElement).to.equal(parent);
     expect(element).to.have.attribute('name', 'Q01');
     expect(element).to.have.attribute('desc', 'Bay');
+  });
+
+  it('does not update an element with id conflict', () => {
+    const newAttributes: Record<string, string | null> = {};
+    newAttributes['id'] = 'testId1';
+
+    elm.dispatchEvent(
+      newActionEvent(
+        createUpdateAction(doc.querySelector('LNodeType')!, newAttributes)
+      )
+    );
+
+    expect(doc.querySelector('LNodeType[id="testId"]')).to.exist;
+    expect(doc.querySelector('LNodeType[id="testId1"]')).to.not.exist;
   });
 
   it('carries out subactions sequentially on receiving a ComplexAction', () => {
