@@ -266,7 +266,7 @@ export class SubscriberIEDList extends LitElement {
    * @param ied - Given IED to unsubscribe.
    */
   private unsubscribe(ied: Element): void {
-    const actions: Delete[] = [];
+    let actions: Delete[] = [];
     ied.querySelectorAll('LN0 > Inputs, LN > Inputs').forEach(inputs => {
       localState.currentDataset!.querySelectorAll('FCDA').forEach(fcda => {
         const extRef = inputs.querySelector(
@@ -282,6 +282,14 @@ export class SubscriberIEDList extends LitElement {
 
         if (extRef) actions.push({ old: { parent: inputs, element: extRef } });
       });
+
+      /**
+       * If the number of delete actions is equal to the number of
+       * ExtRefs in the Inputs element, just delete the whole Inputs element.
+       */
+      if (actions.length === inputs.children.length) {
+        actions = [{ old: { parent: inputs.parentElement!, element: inputs } }]
+      }
     });
 
     this.dispatchEvent(
