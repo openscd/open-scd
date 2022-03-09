@@ -92,13 +92,13 @@ export class SubscriberIEDList extends LitElement {
     this.onGOOSEDataSetEvent = this.onGOOSEDataSetEvent.bind(this);
     this.onIEDSubscriptionEvent = this.onIEDSubscriptionEvent.bind(this);
 
-    const openScdElement = document.querySelector('open-scd');
-    if (openScdElement) {
-      openScdElement.addEventListener(
+    const parentDiv = this.closest('div[id="containerTemplates"]');
+    if (parentDiv) {
+      parentDiv.addEventListener(
         'goose-dataset',
         this.onGOOSEDataSetEvent
       );
-      openScdElement.addEventListener(
+      parentDiv.addEventListener(
         'ied-subscription',
         this.onIEDSubscriptionEvent
       );
