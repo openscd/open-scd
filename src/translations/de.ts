@@ -351,6 +351,9 @@ export const de: Translations = {
       },
       enums: 'Standard Enumerations',
     },
+    action: {
+      edit: 'DOType ID "{{oldId}}" und deren DO-Referenzen geändert zu {{newId}} ',
+    },
   },
   lnodetype: {
     wizard: {

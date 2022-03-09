@@ -347,6 +347,9 @@ export const en = {
       },
       enums: 'Default enumerations',
     },
+    action: {
+      edit: 'Edited DOType ID "{{oldId}}" and its DO references to {{newId}} ',
+    },
   },
   lnodetype: {
     wizard: {
