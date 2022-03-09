@@ -92,13 +92,13 @@ export class SubscriberIEDList extends LitElement {
     this.onGOOSEDataSetEvent = this.onGOOSEDataSetEvent.bind(this);
     this.onIEDSubscriptionEvent = this.onIEDSubscriptionEvent.bind(this);
 
-    const openScdElement = document.querySelector('open-scd');
-    if (openScdElement) {
-      openScdElement.addEventListener(
+    const parentDiv = this.closest('div[id="containerTemplates"]');
+    if (parentDiv) {
+      parentDiv.addEventListener(
         'goose-dataset',
         this.onGOOSEDataSetEvent
       );
-      openScdElement.addEventListener(
+      parentDiv.addEventListener(
         'ied-subscription',
         this.onIEDSubscriptionEvent
       );
@@ -331,7 +331,7 @@ export class SubscriberIEDList extends LitElement {
         </h1>
         ${localState.currentGseControl
           ? html`<div class="subscriberWrapper">
-              <mwc-list>
+              <mwc-list id="subscribedIeds">
                 <mwc-list-item noninteractive>
                   <span class="iedListTitle"
                     >${translate('subscription.subscriberIed.subscribed')}</span
@@ -350,7 +350,7 @@ export class SubscriberIEDList extends LitElement {
                       <span>${translate('subscription.none')}</span>
                     </mwc-list-item>`}
               </mwc-list>
-              <mwc-list>
+              <mwc-list id="partialSubscribedIeds">
                 <mwc-list-item noninteractive>
                   <span class="iedListTitle"
                     >${translate(
@@ -371,7 +371,7 @@ export class SubscriberIEDList extends LitElement {
                       <span>${translate('subscription.none')}</span>
                     </mwc-list-item>`}
               </mwc-list>
-              <mwc-list>
+              <mwc-list id="notSubscribedIeds">
                 <mwc-list-item noninteractive>
                   <span class="iedListTitle"
                     >${translate(
