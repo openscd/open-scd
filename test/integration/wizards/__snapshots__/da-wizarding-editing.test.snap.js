@@ -20,7 +20,7 @@ snapshots["DA wizarding editing integration defines a editDaWizard to edit an ex
       helper="[scl.name]"
       label="name"
       maxlength="60"
-      pattern="((T)|(Test)|(Check)|(SIUnit)|(Open)|(SBO)|(SBOw)|(Cancel)|[a-z][0-9A-Za-z]*)"
+      pattern="((T)|(Test)|(Check)|(SIUnit)|(Oper)|(SBO)|(SBOw)|(Cancel)|[a-z][0-9A-Za-z]*)"
       required=""
     >
       >
@@ -813,7 +813,7 @@ snapshots["DA wizarding editing integration defines a createDaWizard to create a
       helper="[scl.name]"
       label="name"
       maxlength="60"
-      pattern="((T)|(Test)|(Check)|(SIUnit)|(Open)|(SBO)|(SBOw)|(Cancel)|[a-z][0-9A-Za-z]*)"
+      pattern="((T)|(Test)|(Check)|(SIUnit)|(Oper)|(SBO)|(SBOw)|(Cancel)|[a-z][0-9A-Za-z]*)"
       required=""
     >
       >

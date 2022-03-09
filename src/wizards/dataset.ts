@@ -13,7 +13,7 @@ import {
   identity,
   newSubWizardEvent,
   selector,
-  Update,
+  Replace,
   Wizard,
   WizardAction,
   WizardActor,
@@ -27,7 +27,7 @@ function updateDataSetAction(element: Element): WizardActor {
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const oldName = element.getAttribute('name');
 
-    const dataSetUpdateAction: Update[] = [];
+    const dataSetUpdateAction: Replace[] = [];
     if (!(name === oldName && desc === element.getAttribute('desc'))) {
       const newElement = cloneElement(element, { name, desc });
 

@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.11.0](https://github.com/openscd/open-scd/compare/v0.10.0...v0.11.0) (2022-03-08)
+
+
+### Features
+
+* **plugins/IED:** Added Functional Constraint value to DA Container. ([f389c2c](https://github.com/openscd/open-scd/commits/f389c2cf7595f9c2486dff0ef0f40a5feff028fb))
+* **wizards/reportcontrol:** add create wizard ([#544](https://github.com/openscd/open-scd/issues/544)) ([546419f](https://github.com/openscd/open-scd/commits/546419f31afe82ebf1315e2acce59e11f97d8ca8))
+* **wizards/smvopts:** add edit wizard ([#547](https://github.com/openscd/open-scd/issues/547)) ([10343c6](https://github.com/openscd/open-scd/commits/10343c605bcaf31c59d108b33838990a9615eaa4))
+
+
+### Bug Fixes
+
+* **editors/template:** create element with NS definition ([#567](https://github.com/openscd/open-scd/issues/567)) ([6fe49d2](https://github.com/openscd/open-scd/commits/6fe49d234df4730bc7838f6e597312e60171b0d5))
+* **editors/template:** three minor issues ([#565](https://github.com/openscd/open-scd/issues/565)) ([f00092a](https://github.com/openscd/open-scd/commits/f00092a96d78f2c86c94d4978b2886489e14c952))
+* **Settings:** remove 'undefined' when no NSDoc version can be read ([d557d26](https://github.com/openscd/open-scd/commits/d557d264ed7a65370d774f174b0ad77c01ba934d))
+* **wizard/foundation/limits:** abstractDataAttributeName ([#573](https://github.com/openscd/open-scd/issues/573)) ([179cad1](https://github.com/openscd/open-scd/commits/179cad1f0d05846111a9d868b800465c7e2bc0a5))
+
 ## [0.10.0](https://github.com/openscd/open-scd/compare/v0.9.0...v0.10.0) (2022-02-21)
 
 

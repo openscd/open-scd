@@ -4,7 +4,7 @@ import sinon, { SinonSpy } from 'sinon';
 import '../../mock-wizard.js';
 import { MockWizard } from '../../mock-wizard.js';
 
-import { ComplexAction, isSimple, isUpdate } from '../../../src/foundation.js';
+import { ComplexAction, isSimple, isReplace } from '../../../src/foundation.js';
 import UpdateDescriptionAbb from '../../../src/menu/UpdateDescriptionABB.js';
 
 describe('Update method for desc attributes in ABB IEDs', () => {
@@ -71,7 +71,7 @@ describe('Update method for desc attributes in ABB IEDs', () => {
       );
       expect(complexAction.actions.length).to.equal(2);
       for (const action of complexAction.actions)
-        expect(action).to.satisfy(isUpdate);
+        expect(action).to.satisfy(isReplace);
     });
   });
 });

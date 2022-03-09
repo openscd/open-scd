@@ -3,7 +3,7 @@ import { SinonSpy, spy } from 'sinon';
 
 import '../../../src/open-scd.js';
 import { OpenSCD } from '../../../src/open-scd.js';
-import { ComplexAction, isSimple, isUpdate } from '../../../src/foundation.js';
+import { ComplexAction, isSimple, isReplace } from '../../../src/foundation.js';
 import UpdateDescriptionSel from '../../../src/menu/UpdateDescriptionSEL.js';
 
 describe('Update method for desc attributes in SEL IEDs', () => {
@@ -101,7 +101,7 @@ describe('Update method for desc attributes in SEL IEDs', () => {
         );
         expect(complexAction.actions.length).to.equal(7);
         for (const action of complexAction.actions)
-          expect(action).to.satisfy(isUpdate);
+          expect(action).to.satisfy(isReplace);
       });
     });
 
@@ -132,7 +132,7 @@ describe('Update method for desc attributes in SEL IEDs', () => {
         );
         expect(complexAction.actions.length).to.equal(7);
         for (const action of complexAction.actions)
-          expect(action).to.satisfy(isUpdate);
+          expect(action).to.satisfy(isReplace);
       });
     });
   });

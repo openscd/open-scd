@@ -11,8 +11,8 @@ import {
   isCreate,
   isDelete,
   isSimple,
-  isUpdate,
-  Update,
+  isReplace,
+  Replace,
   Wizard,
   WizardInput,
 } from '../../../src/foundation.js';
@@ -90,8 +90,8 @@ describe('gse wizards', () => {
       expect(actions.length).to.equal(2);
       expect(actions[0]).to.satisfy(isDelete);
       expect(actions[1]).to.satisfy(isCreate);
-      const oldElement = (<Delete>actions[0]).old.element;
-      const newElement = (<Create>actions[1]).new.element;
+      const oldElement = <Element>(<Delete>actions[0]).old.element;
+      const newElement = <Element>(<Create>actions[1]).new.element;
       expect(
         oldElement.querySelector('P[type="MAC-Address"]')?.textContent?.trim()
       ).to.equal('01-0C-CD-01-00-10');
@@ -110,8 +110,8 @@ describe('gse wizards', () => {
       expect(actions.length).to.equal(2);
       expect(actions[0]).to.satisfy(isDelete);
       expect(actions[1]).to.satisfy(isCreate);
-      const oldElement = (<Delete>actions[0]).old.element;
-      const newElement = (<Create>actions[1]).new.element;
+      const oldElement = <Element>(<Delete>actions[0]).old.element;
+      const newElement = <Element>(<Create>actions[1]).new.element;
       expect(
         oldElement.querySelector('P[type="APPID"]')?.textContent?.trim()
       ).to.equal('0010');
@@ -130,8 +130,8 @@ describe('gse wizards', () => {
       expect(actions.length).to.equal(2);
       expect(actions[0]).to.satisfy(isDelete);
       expect(actions[1]).to.satisfy(isCreate);
-      const oldElement = (<Delete>actions[0]).old.element;
-      const newElement = (<Create>actions[1]).new.element;
+      const oldElement = <Element>(<Delete>actions[0]).old.element;
+      const newElement = <Element>(<Create>actions[1]).new.element;
       expect(
         oldElement.querySelector('P[type="VLAN-ID"]')?.textContent?.trim()
       ).to.equal('005');
@@ -150,8 +150,8 @@ describe('gse wizards', () => {
       expect(actions.length).to.equal(2);
       expect(actions[0]).to.satisfy(isDelete);
       expect(actions[1]).to.satisfy(isCreate);
-      const oldElement = (<Delete>actions[0]).old.element;
-      const newElement = (<Create>actions[1]).new.element;
+      const oldElement = <Element>(<Delete>actions[0]).old.element;
+      const newElement = <Element>(<Create>actions[1]).new.element;
       expect(
         oldElement.querySelector('P[type="VLAN-PRIORITY"]')?.textContent?.trim()
       ).to.equal('4');
@@ -168,8 +168,8 @@ describe('gse wizards', () => {
       expect(complexAction[0]).to.not.satisfy(isSimple);
       const actions = (<ComplexAction>complexAction[0]).actions;
       expect(actions.length).to.equal(1);
-      expect(actions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>actions[0];
+      expect(actions[0]).to.satisfy(isReplace);
+      const updateAction = <Replace>actions[0];
       expect(updateAction.old.element.textContent?.trim()).to.equal('10');
       expect(updateAction.new.element.textContent?.trim()).to.equal('15');
     });
@@ -182,8 +182,8 @@ describe('gse wizards', () => {
       expect(complexAction[0]).to.not.satisfy(isSimple);
       const actions = (<ComplexAction>complexAction[0]).actions;
       expect(actions.length).to.equal(1);
-      expect(actions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>actions[0];
+      expect(actions[0]).to.satisfy(isReplace);
+      const updateAction = <Replace>actions[0];
       expect(updateAction.old.element.textContent?.trim()).to.equal('10000');
       expect(updateAction.new.element.textContent?.trim()).to.equal('65');
     });
@@ -205,8 +205,8 @@ describe('gse wizards', () => {
 
     it('updates a MinTime child element when chenged', () => {
       const editorAction = getMTimeAction('MinTime', oldMinTime, '654', gse);
-      expect(editorAction).to.satisfy(isUpdate);
-      expect((<Update>editorAction).new.element.textContent?.trim()).to.equal(
+      expect(editorAction).to.satisfy(isReplace);
+      expect((<Replace>editorAction).new.element.textContent?.trim()).to.equal(
         '654'
       );
     });
@@ -229,8 +229,8 @@ describe('gse wizards', () => {
         '1234123',
         gse
       );
-      expect(editorAction).to.satisfy(isUpdate);
-      expect((<Update>editorAction).new.element.textContent?.trim()).to.equal(
+      expect(editorAction).to.satisfy(isReplace);
+      expect((<Replace>editorAction).new.element.textContent?.trim()).to.equal(
         '1234123'
       );
     });

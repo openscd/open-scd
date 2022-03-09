@@ -88,8 +88,8 @@ describe('address', () => {
           expect(actions.length).to.equal(2);
           expect(actions[0]).to.satisfy(isDelete);
           expect(actions[1]).to.satisfy(isCreate);
-          const oldElement = (<Delete>actions[0]).old.element;
-          const newElement = (<Create>actions[1]).new.element;
+          const oldElement = <Element>(<Delete>actions[0]).old.element;
+          const newElement = <Element>(<Create>actions[1]).new.element;
           expect(
             oldElement.querySelector(`P[type="${type}"]`)?.textContent?.trim()
           ).to.equal(oldValue);
@@ -118,8 +118,8 @@ describe('address', () => {
           expect(actions.length).to.equal(2);
           expect(actions[0]).to.satisfy(isDelete);
           expect(actions[1]).to.satisfy(isCreate);
-          const oldElement = (<Delete>actions[0]).old.element;
-          const newElement = (<Create>actions[1]).new.element;
+          const oldElement = <Element>(<Delete>actions[0]).old.element;
+          const newElement = <Element>(<Create>actions[1]).new.element;
           expect(
             oldElement.querySelector(`P[type="${type}"]`)?.textContent?.trim()
           ).to.equal(oldValue);
@@ -165,7 +165,7 @@ describe('address', () => {
           const actions = updateAddress(gse, inputs, false);
           expect(actions.length).to.equal(1);
           expect(actions[0]).to.satisfy(isCreate);
-          const newElement = (<Create>actions[0]).new.element;
+          const newElement = <Element>(<Create>actions[0]).new.element;
           expect(
             newElement.querySelector(`P[type="${type}"]`)?.textContent?.trim()
           ).to.equal(newValue);
@@ -189,7 +189,7 @@ describe('address', () => {
           const actions = updateAddress(gse, inputs, true);
           expect(actions.length).to.equal(1);
           expect(actions[0]).to.satisfy(isCreate);
-          const newElement = (<Create>actions[0]).new.element;
+          const newElement = <Element>(<Create>actions[0]).new.element;
           expect(
             newElement.querySelector(`P[type="${type}"]`)?.textContent?.trim()
           ).to.equal(newValue);

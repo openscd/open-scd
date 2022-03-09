@@ -1,7 +1,25 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["looks like the latest snapshot with a DA element and child elements are toggled."] = 
+snapshots["with a BDA element looks like the latest snapshot"] = 
+`<action-pane
+  icon=""
+  tabindex="0"
+>
+  <abbr slot="action">
+    <mwc-icon-button
+      icon="info"
+      title="ctlVal"
+    >
+    </mwc-icon-button>
+  </abbr>
+  <h6>
+  </h6>
+</action-pane>
+`;
+/* end snapshot with a BDA element looks like the latest snapshot */
+
+snapshots["with a DA element and child elements are toggled looks like the latest snapshot"] = 
 `<action-pane
   icon=""
   tabindex="0"
@@ -41,5 +59,5 @@ snapshots["looks like the latest snapshot with a DA element and child elements a
   </da-container>
 </action-pane>
 `;
-/* end snapshot looks like the latest snapshot with a DA element and child elements are toggled. */
+/* end snapshot with a DA element and child elements are toggled looks like the latest snapshot */
 

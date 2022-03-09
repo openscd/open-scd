@@ -8,11 +8,18 @@ import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import { FilteredList } from '../../../src/filtered-list.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
-import { selectReportControlWizard } from '../../../src/wizards/reportcontrol.js';
+import {
+  createReportControlWizard,
+  reportControlParentSelector,
+  selectReportControlWizard,
+} from '../../../src/wizards/reportcontrol.js';
+import { FinderList } from '../../../src/finder-list.js';
 
 describe('Wizards for SCL element ReportControl', () => {
   let doc: XMLDocument;
   let element: MockWizardEditor;
+
+  let primaryAction: HTMLElement;
 
   beforeEach(async () => {
     element = await fixture(html`<mock-wizard-editor></mock-wizard-editor>`);
@@ -24,58 +31,122 @@ describe('Wizards for SCL element ReportControl', () => {
   describe('define a select wizards that ', () => {
     let reportControlList: FilteredList;
 
-    beforeEach(async () => {
-      const wizard = selectReportControlWizard(doc.documentElement);
-      element.workflow.push(() => wizard);
-      await element.requestUpdate();
+    describe('with the document element as input', () => {
+      beforeEach(async () => {
+        const wizard = selectReportControlWizard(doc.documentElement);
+        element.workflow.push(() => wizard);
+        await element.requestUpdate();
 
-      reportControlList = <FilteredList>(
-        element.wizardUI.dialog?.querySelector('filtered-list')
-      );
-      await reportControlList.updateComplete;
+        reportControlList = <FilteredList>(
+          element.wizardUI.dialog?.querySelector('filtered-list')
+        );
+        await reportControlList.updateComplete;
+      });
+
+      it('shows all ReportControl elements within a project', () =>
+        expect(reportControlList.items.length).to.equal(
+          doc.querySelectorAll('ReportControl').length
+        ));
+
+      it('opens edit wizard for selected ReportControl element on click', async () => {
+        const reportItem = <ListItemBase>reportControlList.items[1];
+        reportItem.click();
+        await new Promise(resolve => setTimeout(resolve, 20)); // await animation
+
+        const nameField = <WizardTextField>(
+          element.wizardUI.dialog?.querySelector(
+            'wizard-textfield[label="name"]'
+          )
+        );
+        await nameField.requestUpdate();
+
+        expect(nameField.value).to.equal(
+          doc.querySelectorAll('ReportControl')[1].getAttribute('name')
+        );
+      });
+
+      describe('has an add Report primary button that', () => {
+        let iEDPicker: FinderList;
+
+        beforeEach(async () => {
+          (<HTMLElement>(
+            element.wizardUI.dialog?.querySelector(
+              'mwc-button[slot="primaryAction"]'
+            )
+          )).click();
+          await new Promise(resolve => setTimeout(resolve, 50)); // await animation
+
+          iEDPicker = <FinderList>(
+            element.wizardUI.dialog?.querySelector('finder-list')
+          );
+        });
+
+        it('opens a potential list of host IEDs for the ReportControl element', async () =>
+          expect(iEDPicker).to.exist);
+      });
     });
 
-    it('shows all ReportControl elements within a project', () =>
-      expect(reportControlList.items.length).to.equal(
-        doc.querySelectorAll('ReportControl').length
-      ));
+    describe('with a specific IED as input', () => {
+      beforeEach(async () => {
+        const wizard = selectReportControlWizard(doc.querySelector('IED')!);
+        element.workflow.push(() => wizard);
+        await element.requestUpdate();
 
-    it('allows to filter ReportControl elements per IED', async () => {
-      const wizard = selectReportControlWizard(doc.querySelector('IED')!);
-      element.workflow.pop();
-      element.workflow.push(() => wizard);
-      await element.requestUpdate();
+        reportControlList = <FilteredList>(
+          element.wizardUI.dialog?.querySelector('filtered-list')
+        );
+        await reportControlList.updateComplete;
+      });
 
-      reportControlList = <FilteredList>(
-        element.wizardUI.dialog?.querySelector('filtered-list')
-      );
-      await reportControlList.updateComplete;
+      it('allows to filter ReportControl elements per IED', async () =>
+        expect(reportControlList.items.length).to.equal(
+          doc.querySelector('IED')!.querySelectorAll('ReportControl').length
+        ));
 
-      expect(reportControlList.items.length).to.equal(
-        doc.querySelector('IED')!.querySelectorAll('ReportControl').length
-      );
-    });
+      it('opens edit wizard for selected ReportControl element on click', async () => {
+        const reportItem = <ListItemBase>reportControlList.items[1];
+        reportItem.click();
+        await new Promise(resolve => setTimeout(resolve, 20)); // await animation
 
-    it('opens edit wizard for selected ReportControl element on click', async () => {
-      const reportItem = <ListItemBase>reportControlList.items[1];
-      reportItem.click();
-      await new Promise(resolve => setTimeout(resolve, 20)); // await animation
+        const nameField = <WizardTextField>(
+          element.wizardUI.dialog?.querySelector(
+            'wizard-textfield[label="name"]'
+          )
+        );
+        await nameField.requestUpdate();
 
-      const nameField = <WizardTextField>(
-        element.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
-      );
-      await nameField.requestUpdate();
+        expect(nameField.value).to.equal(
+          doc.querySelectorAll('ReportControl')[1].getAttribute('name')
+        );
+      });
 
-      expect(nameField.value).to.equal(
-        doc.querySelectorAll('ReportControl')[1].getAttribute('name')
-      );
+      describe('has an add Report primary button that', () => {
+        it('opens the create wizard for the ReportControl element', async () => {
+          const primaryAction = <HTMLElement>(
+            element.wizardUI.dialog?.querySelector(
+              'mwc-button[slot="primaryAction"]'
+            )
+          );
+
+          await primaryAction.click();
+          await new Promise(resolve => setTimeout(resolve, 20)); // await animation
+
+          const nameField = <WizardTextField>(
+            element.wizardUI.dialog?.querySelector(
+              'wizard-textfield[label="name"]'
+            )
+          );
+          await nameField.requestUpdate();
+
+          expect(nameField).to.exist;
+        });
+      });
     });
   });
 
   describe('defines an edit wizard that', () => {
     let nameField: WizardTextField;
     let secondaryAction: HTMLElement;
-    let primaryAction: HTMLElement;
     let parentIED: Element;
 
     beforeEach(async () => {
@@ -246,6 +317,109 @@ describe('Wizards for SCL element ReportControl', () => {
           'IED[name="IED2"] LN[lnClass="XSWI"][inst="1"] DataSet[name="dataSet"]'
         )
       ).to.not.exist;
+    });
+  });
+
+  describe('defines a selector wizard to select ReportControl parent', () => {
+    let iEDPicker: FinderList;
+
+    beforeEach(async () => {
+      const wizard = reportControlParentSelector(doc);
+      element.workflow.push(() => wizard);
+      await element.requestUpdate();
+
+      iEDPicker = <FinderList>(
+        element.wizardUI.dialog?.querySelector('finder-list')
+      );
+
+      primaryAction = <HTMLElement>(
+        element.wizardUI.dialog?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      );
+    });
+
+    it('opens a potential list of host IEDs for the ReportControl element', () =>
+      expect(iEDPicker).to.exist);
+
+    it('is not of type multi', () => expect(iEDPicker.multi).to.be.false);
+
+    it('forwards LN0/LN as parent to ReportControl create wizard', async () => {
+      expect(
+        doc
+          .querySelector('IED[name="IED3"]')
+          ?.querySelectorAll('LN0 > ReportControl')
+      ).to.have.lengthOf(1);
+
+      iEDPicker.path = ['IED: IED3'];
+      primaryAction.click();
+      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
+      const nameField = <WizardTextField>(
+        element.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
+      );
+      expect(nameField).to.exist;
+
+      (<HTMLElement>(
+        element.wizardUI.dialogs[3]?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      )).click();
+      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
+      expect(
+        doc
+          .querySelector('IED[name="IED3"]')
+          ?.querySelectorAll('LN0 > ReportControl')
+      ).to.have.lengthOf(2);
+    });
+  });
+
+  describe('defines a create wizards that', () => {
+    let primaryAction: HTMLElement;
+
+    beforeEach(async () => {
+      const wizard = createReportControlWizard(doc.querySelector('LN0')!);
+      element.workflow.push(() => wizard);
+      await element.requestUpdate();
+
+      primaryAction = <HTMLElement>(
+        element.wizardUI.dialogs[3]?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      );
+    });
+
+    it('creates a new instance of a ReportControl element', () => {
+      expect(
+        doc
+          .querySelector<Element>('IED[name="IED2"]')
+          ?.querySelectorAll('LN0 > ReportControl')
+      ).to.have.lengthOf(1);
+
+      primaryAction.click();
+
+      expect(
+        doc
+          .querySelector<Element>('IED[name="IED2"]')
+          ?.querySelectorAll('LN0 > ReportControl')
+      ).to.have.lengthOf(2);
+    });
+
+    it('creates a new instance of a DataSet element referenced from ReportControl', () => {
+      expect(
+        doc
+          .querySelector<Element>('IED[name="IED2"]')
+          ?.querySelectorAll('LN0 > DataSet')
+      ).to.have.lengthOf(1);
+
+      primaryAction.click();
+
+      expect(
+        doc
+          .querySelector<Element>('IED[name="IED2"]')
+          ?.querySelectorAll('LN0 > DataSet')
+      ).to.have.lengthOf(2);
     });
   });
 });
