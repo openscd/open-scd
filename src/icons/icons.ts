@@ -82,50 +82,6 @@ export function getFilterIcon(
   </svg> `;
 }
 
-export const iedIcon = html`<svg
-  xmlns="http://www.w3.org/2000/svg"
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
->
-  <rect
-    width="20"
-    height="20"
-    x="2"
-    y="2"
-    rx="2"
-    ry="2"
-    fill="transparent"
-    stroke="currentColor"
-    stroke-width="1.5"
-  />
-  <rect width="8" height="10" x="12" y="4" />
-
-  <circle cx="4" cy="6" r="0.5" />
-  <line x1="6" y1="6" x2="10" y2="6" stroke="currentColor" stroke-width="1.5" />
-  <circle cx="4" cy="8" r="0.5" />
-  <line x1="6" y1="8" x2="10" y2="8" stroke="currentColor" stroke-width="1.5" />
-  <circle cx="4" cy="10" r="0.5" />
-  <line
-    x1="6"
-    y1="10"
-    x2="10"
-    y2="10"
-    stroke="currentColor"
-    stroke-width="1.5"
-  />
-
-  <rect x="4" y="13.5" width="2" height="2" />
-  <rect x="4" y="16" width="2" height="2" />
-  <rect x="4" y="18.5" width="2" height="2" />
-  <rect x="6.5" y="13.5" width="2" height="2" />
-  <rect x="6.5" y="16" width="2" height="2" />
-  <rect x="6.5" y="18.5" width="2" height="2" />
-  <rect x="9" y="13.5" width="2" height="2" />
-  <rect x="9" y="16" width="2" height="2" />
-  <rect x="9" y="18.5" width="2" height="2" />
-</svg>`;
-
 export const networkConfigIcon = html`<svg
   xmlns="http://www.w3.org/2000/svg"
   slot="icon"

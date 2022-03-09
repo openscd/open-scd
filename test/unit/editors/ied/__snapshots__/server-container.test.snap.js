@@ -6,6 +6,8 @@ snapshots["server-container looks like the latest snapshot"] =
   label="Server"
   tabindex="0"
 >
+  <mwc-icon slot="icon">
+  </mwc-icon>
   <ldevice-container>
   </ldevice-container>
   <ldevice-container>
