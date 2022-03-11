@@ -11,7 +11,7 @@ import {
   isCreate,
   isDelete,
   Wizard,
-  WizardInput,
+  WizardInputElement,
 } from '../../../src/foundation.js';
 import {
   renderGseSmvAddress,
@@ -46,7 +46,7 @@ describe('address', () => {
 
   describe('updateAddress', () => {
     let gse: Element;
-    let inputs: WizardInput[];
+    let inputs: WizardInputElement[];
     let wizard: Wizard;
 
     describe('with exiting address element', () => {

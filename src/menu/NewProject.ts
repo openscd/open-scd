@@ -12,13 +12,13 @@ import {
   newOpenDocEvent,
   newWizardEvent,
   Wizard,
-  WizardInput,
+  WizardInputElement,
 } from '../foundation.js';
 import { newEmptySCD, SupportedVersion } from '../schemas.js';
 
 export default class NewProjectPlugin extends LitElement {
   private createNewProject(
-    inputs: WizardInput[],
+    inputs: WizardInputElement[],
     wizard: Element
   ): EditorAction[] {
     const docName = inputs[0].value?.match(/\.s[sc]d$/i)

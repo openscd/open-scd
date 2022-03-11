@@ -13,7 +13,7 @@ import {
   isSimple,
   isReplace,
   Replace,
-  WizardInput,
+  WizardInputElement,
 } from '../../../src/foundation.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
@@ -29,7 +29,7 @@ import { FinderList } from '../../../src/finder-list.js';
 describe('Wizards for SCL ReportControl element', () => {
   let doc: XMLDocument;
   let element: MockWizard;
-  let inputs: WizardInput[];
+  let inputs: WizardInputElement[];
 
   let primaryAction: HTMLElement;
 

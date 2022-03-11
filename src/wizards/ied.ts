@@ -9,7 +9,7 @@ import {
   isPublic,
   Wizard,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
 } from '../foundation.js';
 import {patterns} from "./foundation/limits.js";
 import {updateReferences} from "./foundation/references.js";
@@ -22,7 +22,7 @@ const iedNamePattern = "[A-Za-z][0-9A-Za-z_]{0,2}|" +
   "Non[0-9A-Za-df-z_]";
 
 export function updateIED(element: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!)!;
     const oldName = element.getAttribute('name');
     const desc = getValue(inputs.find(i => i.label === 'desc')!);

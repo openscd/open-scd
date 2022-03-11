@@ -30,7 +30,7 @@ import {
   selector,
   Wizard,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
 } from '../../foundation.js';
 import { WizardSelect } from '../../wizard-select.js';
 import {
@@ -43,7 +43,7 @@ import {
 } from './foundation.js';
 
 function updateDoAction(element: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const type = getValue(inputs.find(i => i.label === 'type')!)!;
@@ -78,7 +78,7 @@ function updateDoAction(element: Element): WizardActor {
 }
 
 function createDoAction(parent: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const type = getValue(inputs.find(i => i.label === 'type')!);
@@ -255,7 +255,7 @@ function getAllDataObjects(nsd74: XMLDocument, base: string): Element[] {
 }
 
 function createNewLNodeType(parent: Element, element: Element): WizardActor {
-  return (_: WizardInput[], wizard: Element): EditorAction[] => {
+  return (_: WizardInputElement[], wizard: Element): EditorAction[] => {
     const selected = Array.from(
       wizard.shadowRoot!.querySelectorAll<WizardSelect>('wizard-select')
     ).filter(select => select.maybeValue);
@@ -368,7 +368,7 @@ function startLNodeTypeCreate(
   templates: XMLDocument,
   nsd74: XMLDocument
 ): WizardActor {
-  return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
+  return (inputs: WizardInputElement[], wizard: Element): EditorAction[] => {
     const id = getValue(inputs.find(i => i.label === 'id')!);
     if (!id) return [];
 
@@ -517,7 +517,7 @@ export function createLNodeTypeWizard(
 }
 
 function updateLNodeTypeAction(element: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const id = getValue(inputs.find(i => i.label === 'id')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const lnClass = getValue(inputs.find(i => i.label === 'lnClass')!)!;

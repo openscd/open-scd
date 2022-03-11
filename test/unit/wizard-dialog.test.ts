@@ -7,7 +7,7 @@ import { Button } from '@material/mwc-button';
 import '../../src/wizard-textfield.js';
 import '../../src/wizard-dialog.js';
 import { WizardDialog } from '../../src/wizard-dialog.js';
-import { EditorAction, WizardInput } from '../../src/foundation.js';
+import { EditorAction, WizardInputElement } from '../../src/foundation.js';
 
 describe('wizard-dialog', () => {
   let element: WizardDialog;
@@ -83,7 +83,7 @@ describe('wizard-dialog', () => {
 
     describe('with invalid inputs', () => {
       beforeEach(async () => {
-        element.dialogs[1].querySelector<WizardInput>(
+        element.dialogs[1].querySelector<WizardInputElement>(
           'wizard-textfield'
         )!.value = 'Peter';
         await element.updateComplete;

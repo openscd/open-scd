@@ -12,7 +12,7 @@ import {
   isReplace,
   Replace,
   Wizard,
-  WizardInput,
+  WizardInputElement,
 } from '../../../src/foundation.js';
 
 describe('dataset wizards', () => {
@@ -56,7 +56,7 @@ describe('dataset wizards', () => {
     describe('with stand alone DataSet', () => {
       let dataSet: Element;
       let wizard: Wizard;
-      let inputs: WizardInput[];
+      let inputs: WizardInputElement[];
       let primaryAction: HTMLElement;
 
       beforeEach(async () => {
@@ -110,7 +110,7 @@ describe('dataset wizards', () => {
     describe('with connected DataSet', () => {
       let dataSet: Element;
       let wizard: Wizard;
-      let inputs: WizardInput[];
+      let inputs: WizardInputElement[];
       let primaryAction: HTMLElement;
       let firstFCDA: HTMLElement;
       let thirdFCDA: HTMLElement;

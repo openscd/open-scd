@@ -13,12 +13,12 @@ import {
   newWizardEvent,
   Wizard,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
 } from '../foundation.js';
 import { getValAction, wizardContent } from './abstractda.js';
 
 export function updateBDaAction(element: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const bType = getValue(inputs.find(i => i.label === 'bType')!)!;
@@ -141,7 +141,7 @@ export function editBDAWizard(element: Element): Wizard {
 }
 
 export function createBDaAction(parent: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const bType = getValue(inputs.find(i => i.label === 'bType')!)!;

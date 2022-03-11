@@ -24,7 +24,7 @@ import {
   selector,
   Wizard,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
 } from '../foundation.js';
 import { maxLength, patterns } from './foundation/limits.js';
 import { editDataSetWizard } from './dataset.js';
@@ -154,7 +154,7 @@ export function removeGseControl(element: Element): Delete[] {
 }
 
 export function updateGseControlAction(element: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const name = inputs.find(i => i.label === 'name')!.value!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const type = getValue(inputs.find(i => i.label === 'type')!);

@@ -17,12 +17,12 @@ import {
   Wizard,
   WizardAction,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
 } from '../foundation.js';
 import { createFCDAsWizard } from './fcda.js';
 
 function updateDataSetAction(element: Element): WizardActor {
-  return (inputs: WizardInput[], wizard: Element): WizardAction[] => {
+  return (inputs: WizardInputElement[], wizard: Element): WizardAction[] => {
     const name = inputs.find(i => i.label === 'name')!.value!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const oldName = element.getAttribute('name');

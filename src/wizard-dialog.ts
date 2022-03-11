@@ -20,7 +20,7 @@ import 'ace-custom-element';
 import {
   newActionEvent,
   Wizard,
-  WizardInput,
+  WizardInputElement,
   WizardPage,
   newWizardEvent,
   WizardActor,
@@ -33,7 +33,7 @@ import {
   identity,
 } from './foundation.js';
 
-function dialogInputs(dialog?: Dialog): WizardInput[] {
+function dialogInputs(dialog?: Dialog): WizardInputElement[] {
   return Array.from(dialog?.querySelectorAll(wizardInputSelector) ?? []);
 }
 
@@ -87,7 +87,7 @@ export class WizardDialog extends LitElement {
   @queryAll('mwc-dialog')
   dialogs!: NodeListOf<Dialog>;
   @queryAll(wizardInputSelector)
-  inputs!: NodeListOf<WizardInput>;
+  inputs!: NodeListOf<WizardInputElement>;
 
   /** The `Dialog` showing the active [[`WizardPage`]]. */
   get dialog(): Dialog | undefined {

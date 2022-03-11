@@ -26,7 +26,7 @@ import {
   selector,
   Wizard,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
 } from '../../foundation.js';
 import { createBDAWizard, editBDAWizard } from '../../wizards/bda.js';
 import {
@@ -36,7 +36,7 @@ import {
 } from './foundation.js';
 
 function updateDATpyeAction(element: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const id = getValue(inputs.find(i => i.label === 'id')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
 
@@ -171,7 +171,7 @@ function addPredefinedDAType(
   parent: Element,
   templates: XMLDocument
 ): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const id = getValue(inputs.find(i => i.label === 'id')!);
 
     if (!id) return [];

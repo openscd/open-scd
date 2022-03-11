@@ -10,7 +10,7 @@ import {
   isReplace,
   Replace,
   Wizard,
-  WizardInput,
+  WizardInputElement,
 } from '../../../src/foundation.js';
 import {
   editGseControlWizard,
@@ -193,7 +193,7 @@ describe('gsecontrol wizards', () => {
       ).documentElement
     );
 
-    let inputs: WizardInput[];
+    let inputs: WizardInputElement[];
     let wizard: Wizard;
 
     const noOp = () => {

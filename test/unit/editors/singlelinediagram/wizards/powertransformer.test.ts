@@ -10,7 +10,7 @@ import {
 } from '../../../wizards/foundation.js';
 
 import { WizardTextField } from '../../../../../src/wizard-textfield.js';
-import { WizardInput } from '../../../../../src/foundation.js';
+import { WizardInputElement } from '../../../../../src/foundation.js';
 import { editPowerTransformerWizard } from '../../../../../src/editors/singlelinediagram/wizards/powertransformer.js';
 import { updateNamingAndCoordinatesAction } from '../../../../../src/editors/singlelinediagram/wizards/foundation.js';
 
@@ -18,7 +18,7 @@ describe('Wizards for SCL element Power Transformer (X/Y)', () => {
   let doc: XMLDocument;
   let powerTransformer: Element;
   let element: MockWizard;
-  let inputs: WizardInput[];
+  let inputs: WizardInputElement[];
 
   beforeEach(async () => {
     doc = await fetchDoc('/test/testfiles/valid2007B4withSubstationXY.scd');

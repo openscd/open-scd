@@ -8,7 +8,7 @@ import {
   isDelete,
   isReplace,
   Replace,
-  WizardInput,
+  WizardInputElement,
 } from '../../../src/foundation.js';
 import {
   editSampledValueControlWizard,
@@ -22,7 +22,7 @@ import { WizardTextField } from '../../../src/wizard-textfield.js';
 describe('Wizards for SCL element SampledValueControl', () => {
   let doc: XMLDocument;
   let element: MockWizard;
-  let inputs: WizardInput[];
+  let inputs: WizardInputElement[];
 
   let primaryAction: HTMLElement;
 

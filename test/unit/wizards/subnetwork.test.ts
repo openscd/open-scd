@@ -8,7 +8,7 @@ import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   isCreate,
   isDelete,
-  WizardInput,
+  WizardInputElement,
   isReplace,
   Replace,
   Delete,
@@ -22,8 +22,8 @@ import {
 describe('Wizards for SCL element SubNetwork', () => {
   let doc: XMLDocument;
   let element: MockWizard;
-  let inputs: WizardInput[];
-  let input: WizardInput | undefined;
+  let inputs: WizardInputElement[];
+  let input: WizardInputElement | undefined;
   let primaryAction: HTMLElement;
 
   let actionEvent: SinonSpy;

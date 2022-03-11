@@ -11,7 +11,7 @@ import {
   Wizard,
   WizardAction,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
 } from '../foundation.js';
 
 interface ContentOptions {
@@ -40,7 +40,7 @@ export function contentOptFieldsWizard(
 }
 
 function updateOptFieldsAction(element: Element): WizardActor {
-  return (inputs: WizardInput[]): WizardAction[] => {
+  return (inputs: WizardInputElement[]): WizardAction[] => {
     const seqNum = getValue(inputs.find(i => i.label === 'seqNum')!);
     const timeStamp = getValue(inputs.find(i => i.label === 'timeStamp')!);
     const dataSet = getValue(inputs.find(i => i.label === 'dataSet')!);

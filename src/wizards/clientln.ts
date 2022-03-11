@@ -15,7 +15,7 @@ import {
   Wizard,
   WizardAction,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
 } from '../foundation.js';
 import { clientIcon } from '../icons/icons.js';
 import { openCommunicationMappingWizard } from './commmap-wizards.js';
@@ -112,7 +112,7 @@ function hasClientLN(cb: Element, identity: string): boolean {
 }
 
 function addClientLnAction(doc: XMLDocument): WizardActor {
-  return (inputs: WizardInput[], wizard: Element): WizardAction[] => {
+  return (inputs: WizardInputElement[], wizard: Element): WizardAction[] => {
     const cbSelected = <ListItemBase[]>(
       (<List>wizard.shadowRoot!.querySelector('#sourcelist')).selected
     );
@@ -272,7 +272,7 @@ export function createClientLnWizard(
 
 function disconnectClientLnAction(elements: Element[]): WizardActor {
   return (
-    inputs: WizardInput[],
+    inputs: WizardInputElement[],
     wizard: Element,
     list?: List | null
   ): WizardAction[] => {

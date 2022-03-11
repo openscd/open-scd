@@ -8,12 +8,12 @@ import {
   Wizard,
   WizardAction,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
 } from '../foundation.js';
 import { renderGseSmvAddress, updateAddress } from './address.js';
 
 export function updateSmvAction(element: Element): WizardActor {
-  return (inputs: WizardInput[], wizard: Element): WizardAction[] => {
+  return (inputs: WizardInputElement[], wizard: Element): WizardAction[] => {
     const complexAction: ComplexAction = {
       actions: [],
       title: get('smv.action.addaddress', {

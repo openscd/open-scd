@@ -20,7 +20,7 @@ import {
   selector,
   Wizard,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
 } from '../foundation.js';
 
 /** Description of a `ListItem` representing an `IED` or `LN[0]` */
@@ -122,7 +122,7 @@ function includesLNode(anyln: Element, lnodes: Element[]): boolean {
  */
 export function lNodeWizardAction(parent: Element): WizardActor {
   return (
-    inputs: WizardInput[],
+    inputs: WizardInputElement[],
     wizard: Element,
     list?: List | null
   ): EditorAction[] => {

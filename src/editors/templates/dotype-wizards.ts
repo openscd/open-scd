@@ -26,7 +26,7 @@ import {
   selector,
   Wizard,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
 } from '../../foundation.js';
 import { createDaWizard, editDAWizard } from '../../wizards/da.js';
 import { patterns } from '../../wizards/foundation/limits.js';
@@ -40,7 +40,7 @@ import {
 } from './foundation.js';
 
 function updateSDoAction(element: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const type = getValue(inputs.find(i => i.label === 'type')!)!;
@@ -62,7 +62,7 @@ function updateSDoAction(element: Element): WizardActor {
 }
 
 function createSDoAction(parent: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const type = getValue(inputs.find(i => i.label === 'type')!);
@@ -182,7 +182,7 @@ function addPredefinedDOType(
   parent: Element,
   templates: XMLDocument
 ): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const id = getValue(inputs.find(i => i.label === 'id')!);
 
     if (!id) return [];
@@ -307,7 +307,7 @@ export function createDOTypeWizard(
 }
 
 function updateDOTypeAction(element: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const id = getValue(inputs.find(i => i.label === 'id')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const cdc = getValue(inputs.find(i => i.label === 'CDC')!)!;

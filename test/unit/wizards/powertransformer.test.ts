@@ -4,7 +4,7 @@ import '../../mock-wizard.js';
 import { MockWizard } from '../../mock-wizard.js';
 
 import { WizardTextField } from '../../../src/wizard-textfield.js';
-import { WizardInput } from '../../../src/foundation.js';
+import { WizardInputElement } from '../../../src/foundation.js';
 import { editPowerTransformerWizard } from '../../../src/wizards/powertransformer.js';
 import { updateNamingAction } from '../../../src/wizards/foundation/actions.js';
 
@@ -19,7 +19,7 @@ describe('Wizards for SCL element Power Transformer', () => {
   let doc: XMLDocument;
   let powerTransformer: Element;
   let element: MockWizard;
-  let inputs: WizardInput[];
+  let inputs: WizardInputElement[];
 
   beforeEach(async () => {
     doc = await fetchDoc('/test/testfiles/valid2007B4withSubstationXY.scd');

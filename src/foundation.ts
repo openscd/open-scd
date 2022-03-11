@@ -171,7 +171,7 @@ export function newActionEvent<T extends EditorAction>(
 
 export const wizardInputSelector =
   'wizard-textfield, mwc-textfield, ace-editor, mwc-select,wizard-select, wizard-checkbox';
-export type WizardInput =
+export type WizardInputElement =
   | WizardTextField
   | TextField
   | (AceEditor & { checkValidity: () => boolean; label: string })
@@ -183,7 +183,7 @@ export type WizardAction = EditorAction | WizardFactory;
 
 /** @returns [[`EditorAction`]]s to dispatch on [[`WizardDialog`]] commit. */
 export type WizardActor = (
-  inputs: WizardInput[],
+  inputs: WizardInputElement[],
   wizard: Element,
   list?: List | null
 ) => WizardAction[];
@@ -195,21 +195,21 @@ export function isWizardFactory(
 }
 
 /** @returns the validity of `input` depending on type. */
-export function checkValidity(input: WizardInput): boolean {
+export function checkValidity(input: WizardInputElement): boolean {
   if (input instanceof WizardTextField || input instanceof Select)
     return input.checkValidity();
   else return true;
 }
 
 /** reports the validity of `input` depending on type. */
-export function reportValidity(input: WizardInput): boolean {
+export function reportValidity(input: WizardInputElement): boolean {
   if (input instanceof WizardTextField || input instanceof Select)
     return input.reportValidity();
   else return true;
 }
 
 /** @returns the `value` or `maybeValue` of `input` depending on type. */
-export function getValue(input: WizardInput): string | null {
+export function getValue(input: WizardInputElement): string | null {
   if (
     input instanceof WizardTextField ||
     input instanceof WizardSelect ||
@@ -220,7 +220,7 @@ export function getValue(input: WizardInput): string | null {
 }
 
 /** @returns the `multiplier` of `input` if available. */
-export function getMultiplier(input: WizardInput): string | null {
+export function getMultiplier(input: WizardInputElement): string | null {
   if (input instanceof WizardTextField) return input.multiplier;
   else return null;
 }

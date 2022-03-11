@@ -23,7 +23,7 @@ import {
   selector,
   Wizard,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
 } from '../foundation.js';
 import { securityEnableEnum, smpModEnum } from './foundation/enums.js';
 import { maxLength, patterns } from './foundation/limits.js';
@@ -180,7 +180,7 @@ function contentSampledValueControlWizard(
 }
 
 function updateSampledValueControlAction(element: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const attributes: Record<string, string | null> = {};
     const attributeKeys = [
       'name',

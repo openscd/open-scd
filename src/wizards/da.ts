@@ -16,7 +16,7 @@ import {
   newWizardEvent,
   Wizard,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
 } from '../foundation.js';
 import { getValAction, wizardContent } from './abstractda.js';
 import { functionalConstraintEnum } from './foundation/enums.js';
@@ -61,7 +61,7 @@ export function renderDa(
 }
 
 export function updateDaAction(element: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const bType = getValue(inputs.find(i => i.label === 'bType')!)!;
@@ -204,7 +204,7 @@ export function editDAWizard(element: Element): Wizard {
 }
 
 export function createDaAction(parent: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const bType = getValue(inputs.find(i => i.label === 'bType')!)!;

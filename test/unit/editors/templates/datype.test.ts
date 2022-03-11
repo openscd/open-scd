@@ -9,15 +9,15 @@ import {
   identity,
   isSimple,
   Replace,
-  WizardInput,
+  WizardInputElement,
 } from '../../../../src/foundation.js';
 import { editDaTypeWizard } from '../../../../src/editors/templates/datype-wizards.js';
 
 describe('wizards for DAType element', () => {
   let doc: XMLDocument;
   let element: MockWizard;
-  let inputs: WizardInput[];
-  let input: WizardInput | undefined;
+  let inputs: WizardInputElement[];
+  let input: WizardInputElement | undefined;
 
   let primaryAction: HTMLElement;
 

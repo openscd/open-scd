@@ -5,7 +5,7 @@ import {
   SimpleAction,
   Replace,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
 } from '../../../src/foundation.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 
@@ -31,7 +31,7 @@ export async function setWizardTextFieldValue(
 
 export function executeWizardUpdateAction(
   wizardActor: WizardActor,
-  inputs: WizardInput[]
+  inputs: WizardInputElement[]
 ): Replace {
   const updateActions = wizardActor(inputs, newWizard());
   expect(updateActions.length).to.equal(1);
@@ -41,7 +41,7 @@ export function executeWizardUpdateAction(
 
 export function expectWizardNoUpdateAction(
   wizardActor: WizardActor,
-  inputs: WizardInput[]
+  inputs: WizardInputElement[]
 ): void {
   const updateActions = wizardActor(inputs, newWizard());
   expect(updateActions).to.be.empty;
