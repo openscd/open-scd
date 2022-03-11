@@ -306,6 +306,9 @@ export const en = {
         edit: 'Edit DAType',
       },
     },
+    action: {
+      edit: 'Edited DAType ID "{{oldId}}" and its DA references to {{newId}} ',
+    },
   },
   bda: {
     wizard: {

@@ -310,6 +310,9 @@ export const de: Translations = {
         edit: 'DAType bearbeiten',
       },
     },
+    action: {
+      edit: 'DAType ID "{{oldId}}" und deren DA-Referenzen geändert zu {{newId}} ',
+    },
   },
   bda: {
     wizard: {
