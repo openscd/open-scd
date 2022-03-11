@@ -69,7 +69,7 @@ export class WizardCheckbox extends LitElement {
   disabled = false;
   @state()
   get formfieldLabel(): string {
-    return this.helper ? `${this.label} (${this.helper})` : this.label;
+    return this.helper ? `${this.helper} (${this.label})` : this.label;
   }
 
   @query('mwc-switch') nullSwitch?: Switch;
