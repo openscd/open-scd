@@ -298,6 +298,9 @@ export const en = {
         edit: 'Edit EnumType',
       },
     },
+    action: {
+      edit: 'Edited EnumType ID "{{oldId}}" and its DA references to {{newId}} ',
+    },
   },
   datype: {
     wizard: {

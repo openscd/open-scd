@@ -302,6 +302,9 @@ export const de: Translations = {
         edit: 'EnumType bearbeiten',
       },
     },
+    action: {
+      edit: 'DAType ID "{{oldId}}" und deren DA-Referenzen geändert zu {{newId}} ',
+    },
   },
   datype: {
     wizard: {
@@ -311,7 +314,7 @@ export const de: Translations = {
       },
     },
     action: {
-      edit: 'DAType ID "{{oldId}}" und deren DA-Referenzen geändert zu {{newId}} ',
+      edit: 'EnumType ID "{{oldId}}" und deren DA-Referenzen geändert zu {{newId}} ',
     },
   },
   bda: {
