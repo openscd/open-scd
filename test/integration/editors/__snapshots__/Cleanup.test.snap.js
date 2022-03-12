@@ -2,10 +2,11 @@
 export const snapshots = {};
 
 snapshots["Cleanup without a doc loaded looks like the latest snapshot"] = 
-`<div id="containerTemplates">
+`<div class="cleanupUnusedDatasets">
   <section tabindex="0">
     <h1>
       [cleanup.unusedDatasets.title]
+        (0)
       <abbr slot="action">
         <mwc-icon-button
           icon="info"
@@ -15,14 +16,15 @@ snapshots["Cleanup without a doc loaded looks like the latest snapshot"] =
       </abbr>
     </h1>
     <filtered-list
-      id="unuseddatasetlist"
+      class="cleanupUnusedDatasetsList"
       multi=""
     >
     </filtered-list>
     <mwc-button
+      class="cleanupUnusedDatasetsDeleteButton"
+      disabled=""
       icon="delete"
-      id="grid-datasets-delete"
-      label="[cleanup.unusedDatasets.deleteButton]"
+      label="[cleanup.unusedDatasets.deleteButton] (0)"
       slot="secondaryAction"
     >
     </mwc-button>

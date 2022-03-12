@@ -36,15 +36,15 @@ describe('Cleanup', () => {
     it('creates correct number of checkboxes for the expected unused datasets', () => {
       const checkBoxes: NodeList | undefined =
         element.shadowRoot?.querySelectorAll(
-          '#unuseddatasetlist > mwc-check-list-item'
+          '.cleanupUnusedDatasetsList > mwc-check-list-item'
         );
-      expect(Array.from(checkBoxes!).length).to.equal(2);
+      expect(Array.from(checkBoxes!).length).to.equal(7);
     });
 
     it('creates two Delete Actions', async () => {
       // select all items and update list
       const itemList = <List>(
-        element.shadowRoot!.querySelector('#unuseddatasetlist')
+        element.shadowRoot!.querySelector('.cleanupUnusedDatasetsList')
       );
       itemList.items.forEach(item => (item.selected = true));
       await itemList.layout();
@@ -52,18 +52,19 @@ describe('Cleanup', () => {
         index => element.gridRowsUnusedDatasets[index]
       );
       const deleteActions = element.cleanDatasets(cleanItems);
-      expect(deleteActions.length).to.equal(2);
+      expect(deleteActions.length).to.equal(7);
     });
 
-    it('correct removes the datasets from the SCL file', async () => {
+    it('correctly removes the datasets from the SCL file', async () => {
       // select all items and update list
       const itemList = <List>(
-        element.shadowRoot!.querySelector('#unuseddatasetlist')
+        element.shadowRoot!.querySelector('.cleanupUnusedDatasetsList')
       );
       itemList.items.forEach(item => (item.selected = true));
       await itemList.layout();
+      debugger
       await (<Button>(
-        element.shadowRoot!.querySelector('#grid-datasets-delete')!
+        element.shadowRoot!.querySelector('.cleanupUnusedDatasetsDeleteButton')!
       )).click();
       // two datasets should be deleted, leaving us with two
       const dataSetCountCheck =

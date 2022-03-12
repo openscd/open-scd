@@ -32,6 +32,8 @@ export default class Cleanup extends LitElement {
   disableDatasetClean = false;
   @property()
   gridRowsUnusedDatasets: iedData[] = [];
+  @property()
+  selectedItems: MWCListIndex | [] = [];
 
   /**
    * Get sorted IEDs associated with this SCL file.
@@ -51,9 +53,11 @@ export default class Cleanup extends LitElement {
    * @returns The SCL element for all the control blocks type in an array.
    */
   private getControlType(ied: Element, controlType = 'GSEControl'): Element[] {
+    // GSEControl and SampledValueControl must be in LN0 but ReportControl may be within any LN
     return Array.from(
       ied.querySelectorAll(
-        `:scope > AccessPoint > Server > LDevice > LN0[lnClass="LLN0"] > ${controlType}`
+        `:scope > Access,Point > Server > LDevice > LN0 > ${controlType},
+        :scope > Access,Point > Server > LDevice > LN > ${controlType}`
       )
     );
   }
@@ -66,7 +70,7 @@ export default class Cleanup extends LitElement {
   private getDatasetNames(ied: Element): Element[] {
     return Array.from(
       ied.querySelectorAll(
-        `:scope > AccessPoint > Server > LDevice > LN0[lnClass="LLN0"] > DataSet`
+        ':scope > AccessPoint > Server > LDevice > LN0 > DataSet, :scope > AccessPoint > Server > LDevice > LN > DataSet'
       )
     );
   }
@@ -112,6 +116,15 @@ export default class Cleanup extends LitElement {
   }
 
   /**
+   * Set a class variable for selected items to allow processing and UI interaction
+   */
+  private getSelectedUnusedDatasetItems() {
+    this.selectedItems = (<List>(
+      this.shadowRoot!.querySelector('.cleanupUnusedDatasetsList')
+    )).index;
+  }
+
+  /**
    * Render a user selectable table of unused datasets if any exist, otherwise indicate this is not an issue.
    * @returns html for table and action button.
    */
@@ -121,12 +134,7 @@ export default class Cleanup extends LitElement {
     this.ieds.forEach(ied => {
       const usedDatasets = this.getUsedDatasets(ied);
       this.getDatasetNames(ied)
-        .filter(
-          ds =>
-            !usedDatasets.includes(
-              ds.getAttribute('name')!
-            )
-        )
+        .filter(ds => !usedDatasets.includes(ds.getAttribute('name')!))
         .forEach(unusedDS => {
           const rowItem: iedData = {
             name: ied.getAttribute('name')!,
@@ -144,7 +152,8 @@ export default class Cleanup extends LitElement {
     );
     return html`
       <h1>
-      ${translate('cleanup.unusedDatasets.title')}
+        ${translate('cleanup.unusedDatasets.title')}
+        (${this.gridRowsUnusedDatasets.length})
         <abbr slot="action">
           <mwc-icon-button
             icon="info"
@@ -153,21 +162,21 @@ export default class Cleanup extends LitElement {
           </mwc-icon-button>
         </abbr>
       </h1>
-      <filtered-list multi id="unuseddatasetlist"
+      <filtered-list multi class="cleanupUnusedDatasetsList"
         >${Array.from(
           this.gridRowsUnusedDatasets.map(
             item =>
               html`<mwc-check-list-item
                 twoline
                 value="${identity(item.dataset)}"
-                ><span class="datasetname"
+                ><span class="unusedDataset"
                   >${item.dataset.getAttribute('name')}
                 </span>
                 <span>
                   <mwc-icon-button
                     label="Edit"
                     icon="edit"
-                    class="editunuseddataset"
+                    class="editUnusedDataset"
                     @click=${(e: MouseEvent) => {
                       e.target?.dispatchEvent(
                         newSubWizardEvent(() => editDataSetWizard(item.dataset))
@@ -184,17 +193,17 @@ export default class Cleanup extends LitElement {
       </filtered-list>
       <mwc-button
         icon="delete"
-        id="grid-datasets-delete"
-        label="${translate('cleanup.unusedDatasets.deleteButton')}"
-        ?disabled=${this.disableDatasetClean}
+        class="cleanupUnusedDatasetsDeleteButton"
+        label="${translate('cleanup.unusedDatasets.deleteButton')} (${(<
+          Set<number>
+        >this.selectedItems).size || '0'})"
+        ?disabled=${(<Set<number>>this.selectedItems).size === 0 ||
+        (Array.isArray(this.selectedItems) && !this.selectedItems.length)}
         slot="secondaryAction"
         @click=${(e: MouseEvent) => {
-          const selectedItems = (<List>(
-            this.shadowRoot!.querySelector('#unuseddatasetlist')
-          )).index
-          const cleanItems = Array.from((<Set<number>>selectedItems).values()).map(
-            index => this.gridRowsUnusedDatasets[index]
-          );
+          const cleanItems = Array.from(
+            (<Set<number>>this.selectedItems).values()
+          ).map(index => this.gridRowsUnusedDatasets[index]);
           const deleteActions = this.cleanDatasets(cleanItems);
           deleteActions.forEach(deleteAction =>
             e.target?.dispatchEvent(newActionEvent(deleteAction))
@@ -221,7 +230,7 @@ export default class Cleanup extends LitElement {
           old: {
             parent: <Element>itemToDelete.parentElement!,
             element: itemToDelete,
-            reference: <Node|null>itemToDelete!.nextSibling,
+            reference: <Node | null>itemToDelete!.nextSibling,
           },
         });
       });
@@ -230,17 +239,17 @@ export default class Cleanup extends LitElement {
   }
 
   async firstUpdated(): Promise<void> {
-    const checklist: List =
-      this.shadowRoot!.querySelector('#unuseddatasetlist')!;
+    const checklist: List = this.shadowRoot!.querySelector(
+      '.cleanupUnusedDatasetsList'
+    )!;
     checklist!.addEventListener('selected', () => {
-      this.disableDatasetClean =
-        (<Set<number>>(<MWCListIndex>checklist!.index)).size === 0 || (<MWCListIndex>checklist!.index === -1)
+      this.getSelectedUnusedDatasetItems();
     });
   }
 
   render(): TemplateResult {
     return html`
-      <div id="containerTemplates">
+      <div class="cleanupUnusedDatasets">
         <section tabindex="0">${this.getUnusedDatasets()}</section>
       </div>
     `;
@@ -253,7 +262,7 @@ export default class Cleanup extends LitElement {
       width: 100vw;
     }
 
-    #containerTemplates {
+    .cleanupUnusedDatasets {
       display: grid;
       grid-gap: 12px;
       padding: 8px 12px 16px;
@@ -262,12 +271,12 @@ export default class Cleanup extends LitElement {
     }
 
     @media (max-width: 387px) {
-      #containerTemplates {
+      .cleanupUnusedDatasets {
         grid-template-columns: repeat(auto-fit, minmax(196px, auto));
       }
     }
 
-    .editunuseddataset {
+    .editUnusedDataset {
       --mdc-icon-size: 16px;
     }
   `;
