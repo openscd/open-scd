@@ -23,6 +23,7 @@ interface datasetInfo {
   dataset: Element;
   lnClass: string;
   inst: string;
+  prefix: string|null;
 }
 
 /** An editor [[`plugin`]] for cleaning SCL references and definitions. */
@@ -112,9 +113,10 @@ export default class Cleanup extends LitElement {
    * @param dataset - The name of a DataSet.
    * @returns - An SCL DataSet Element
    */
-  private getDatasetFromIED(ied: string, dataset: string, lnClass: string, inst: string): Element | null {
+  private getDatasetFromIED(ied: string, dataset: string, lnClass: string, inst: string, prefix:string|null): Element | null {
+    const prefixValue = prefix ? '[prefix=${prefix}]' : ''
     return this.doc.querySelector(
-      `:root > IED[name="${ied}"] > AccessPoint > Server > LDevice > LN0[lnClass="${lnClass}"] > DataSet[name="${dataset}"], :root > IED[name="${ied}"] > AccessPoint > Server > LDevice > LN[lnClass="${lnClass}"][inst="${inst}"] > DataSet[name="${dataset}"]`
+      `:root > IED[name="${ied}"] > AccessPoint > Server > LDevice > LN0[lnClass="${lnClass}"] > DataSet[name="${dataset}"], :root > IED[name="${ied}"] > AccessPoint > Server > LDevice > LN[lnClass="${lnClass}"][inst="${inst}"]${prefixValue} > DataSet[name="${dataset}"]`
     );
   }
 
@@ -146,6 +148,7 @@ export default class Cleanup extends LitElement {
             dataset: unusedDS,
             lnClass: unusedDS.parentElement!.getAttribute('lnClass')!,
             inst: unusedDS.parentElement!.getAttribute('inst')!,
+            prefix: unusedDS.parentElement!.getAttribute('prefix'),
           };
           gridRowsUnusedDatasets.push(rowItem);
         });
@@ -232,6 +235,7 @@ export default class Cleanup extends LitElement {
           item.dataset.getAttribute('name')!,
           item.lnClass,
           item.inst,
+          item.prefix
         )!;
         actions.push({
           old: {
