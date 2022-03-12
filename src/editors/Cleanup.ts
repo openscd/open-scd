@@ -153,11 +153,19 @@ export default class Cleanup extends LitElement {
           gridRowsUnusedDatasets.push(rowItem);
         });
     });
-    this.gridRowsUnusedDatasets = gridRowsUnusedDatasets.sort((a, b) =>
-      a.dataset
-        .getAttribute('name')!
-        .localeCompare(b.dataset.getAttribute('name')!)
-    );
+    this.gridRowsUnusedDatasets = gridRowsUnusedDatasets.sort((a, b) => {
+      // sorting using the identity ensures sort order includes IED
+      const aId = identity(a.dataset)
+      const bId = identity(b.dataset) 
+      if (aId < bId) {
+        return -1;
+      }
+      if (aId > bId) {
+        return 1;
+      }
+      // names must be equal
+      return 0;
+    });
     return html`
       <h1>
         ${translate('cleanup.unusedDatasets.title')}
