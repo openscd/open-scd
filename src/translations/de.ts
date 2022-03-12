@@ -475,7 +475,7 @@ export const de: Translations = {
     unusedDatasets: {
       title: 'Unbenutzter Datensatz',
       deleteButton: 'Ausgewählten Datensatz entfernen',
-      tooltip: 'Datensatz ohne zugeordneten Sampled Value, Report oder GOOSE Control Block'
+      tooltip: 'Datensatz ohne zugeordneten GOOSE, Log, Report oder Sampled Value Control Block'
     }
   },
   add: 'Hinzufügen',

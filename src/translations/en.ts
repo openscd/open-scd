@@ -471,7 +471,7 @@ export const en = {
     unusedDatasets: {
       title: 'Unused Datasets',
       deleteButton: 'Remove Selected Datasets',
-      tooltip: 'Datasets without an associated Sampled Value, Report or GOOSE Control Block'
+      tooltip: 'Datasets without an associated GOOSE, Log, Report or Sampled Value Control Block'
     }
   },
   add: 'Add',

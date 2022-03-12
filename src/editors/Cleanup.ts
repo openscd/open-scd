@@ -23,7 +23,7 @@ interface datasetInfo {
   dataset: Element;
   lnClass: string;
   inst: string;
-  prefix: string|null;
+  prefix: string | null;
 }
 
 /** An editor [[`plugin`]] for cleaning SCL references and definitions. */
@@ -55,12 +55,14 @@ export default class Cleanup extends LitElement {
    * @param controlType - One of GSEControl, SampledValueControl or ReportControl.
    * @returns The SCL element for all the control blocks type in an array.
    */
-  private getControlType(ied: Element, controlType = 'GSEControl'): Element[] {
+  private getControlBlocksOfType(
+    ied: Element,
+    controlType = 'GSEControl'
+  ): Element[] {
     // GSEControl and SampledValueControl must be in LN0 but ReportControl may be within any LN
     return Array.from(
       ied.querySelectorAll(
-        `:scope > Access,Point > Server > LDevice > LN0 > ${controlType},
-        :scope > Access,Point > Server > LDevice > LN > ${controlType}`
+        `:scope > AccessPoint > Server > LDevice > LN0 > ${controlType}, :scope > AccessPoint > Server > LDevice > LN > ${controlType}`
       )
     );
   }
@@ -86,7 +88,7 @@ export default class Cleanup extends LitElement {
    */
   private getControlDatasets(ied: Element, controlType: string) {
     const controlInfo: string[] = [];
-    this.getControlType(ied, controlType).forEach(control => {
+    this.getControlBlocksOfType(ied, controlType).forEach(control => {
       if (control?.getAttribute('name')) {
         controlInfo.push(control.getAttribute('datSet') ?? 'Unknown Dataset');
       }
@@ -113,8 +115,14 @@ export default class Cleanup extends LitElement {
    * @param dataset - The name of a DataSet.
    * @returns - An SCL DataSet Element
    */
-  private getDatasetFromIED(ied: string, dataset: string, lnClass: string, inst: string, prefix:string|null): Element | null {
-    const prefixValue = prefix ? '[prefix=${prefix}]' : ''
+  private getDatasetFromIED(
+    ied: string,
+    dataset: string,
+    lnClass: string,
+    inst: string,
+    prefix: string | null
+  ): Element | null {
+    const prefixValue = prefix ? '[prefix=${prefix}]' : '';
     return this.doc.querySelector(
       `:root > IED[name="${ied}"] > AccessPoint > Server > LDevice > LN0[lnClass="${lnClass}"] > DataSet[name="${dataset}"], :root > IED[name="${ied}"] > AccessPoint > Server > LDevice > LN[lnClass="${lnClass}"][inst="${inst}"]${prefixValue} > DataSet[name="${dataset}"]`
     );
@@ -155,8 +163,8 @@ export default class Cleanup extends LitElement {
     });
     this.gridRowsUnusedDatasets = gridRowsUnusedDatasets.sort((a, b) => {
       // sorting using the identity ensures sort order includes IED
-      const aId = identity(a.dataset)
-      const bId = identity(b.dataset) 
+      const aId = identity(a.dataset);
+      const bId = identity(b.dataset);
       if (aId < bId) {
         return -1;
       }
