@@ -16,11 +16,13 @@ import {
 import { editDataSetWizard } from '../wizards/dataset.js';
 import { styles } from './templates/foundation.js';
 
-interface iedData {
+interface datasetInfo {
   name: string;
   type: string;
   manufacturer: string;
   dataset: Element;
+  lnClass: string;
+  inst: string;
 }
 
 /** An editor [[`plugin`]] for cleaning SCL references and definitions. */
@@ -31,7 +33,7 @@ export default class Cleanup extends LitElement {
   @property()
   disableDatasetClean = false;
   @property()
-  gridRowsUnusedDatasets: iedData[] = [];
+  gridRowsUnusedDatasets: datasetInfo[] = [];
   @property()
   selectedItems: MWCListIndex | [] = [];
 
@@ -85,7 +87,7 @@ export default class Cleanup extends LitElement {
     const controlInfo: string[] = [];
     this.getControlType(ied, controlType).forEach(control => {
       if (control?.getAttribute('name')) {
-        controlInfo.push(control.getAttribute('datSet') ?? 'unknown dataset');
+        controlInfo.push(control.getAttribute('datSet') ?? 'Unknown Dataset');
       }
     });
     return controlInfo;
@@ -100,18 +102,19 @@ export default class Cleanup extends LitElement {
     const controlReport = this.getControlDatasets(ied, 'ReportControl');
     const controlGSE = this.getControlDatasets(ied, 'GSEControl');
     const controlSV = this.getControlDatasets(ied, 'SampledValueControl');
-    return controlReport.concat(controlGSE, controlSV);
+    const controlLog = this.getControlDatasets(ied, 'LogControl');
+    return controlReport.concat(controlGSE, controlSV, controlLog);
   }
 
   /**
    * Get a named dataset from a specific IED name in the SCL file.
-   * @param ied - An SCL IED element.
+   * @param ied - An SCL IED element by name.
    * @param dataset - The name of a DataSet.
    * @returns - An SCL DataSet Element
    */
-  private getDatasetFromIED(ied: string, dataset: string): Element | null {
+  private getDatasetFromIED(ied: string, dataset: string, lnClass: string, inst: string): Element | null {
     return this.doc.querySelector(
-      `:root > IED[name="${ied}"] > AccessPoint > Server > LDevice > LN0[lnClass="LLN0"] > DataSet[name="${dataset}"]`
+      `:root > IED[name="${ied}"] > AccessPoint > Server > LDevice > LN0[lnClass="${lnClass}"] > DataSet[name="${dataset}"], :root > IED[name="${ied}"] > AccessPoint > Server > LDevice > LN[lnClass="${lnClass}"][inst="${inst}"] > DataSet[name="${dataset}"]`
     );
   }
 
@@ -130,17 +133,19 @@ export default class Cleanup extends LitElement {
    */
   private getUnusedDatasets() {
     // Unused Datasets
-    const gridRowsUnusedDatasets: iedData[] = [];
+    const gridRowsUnusedDatasets: datasetInfo[] = [];
     this.ieds.forEach(ied => {
       const usedDatasets = this.getUsedDatasets(ied);
       this.getDatasetNames(ied)
         .filter(ds => !usedDatasets.includes(ds.getAttribute('name')!))
         .forEach(unusedDS => {
-          const rowItem: iedData = {
+          const rowItem: datasetInfo = {
             name: ied.getAttribute('name')!,
             type: ied.getAttribute('type')!,
             manufacturer: ied.getAttribute('manufacturer')!,
             dataset: unusedDS,
+            lnClass: unusedDS.parentElement!.getAttribute('lnClass')!,
+            inst: unusedDS.parentElement!.getAttribute('inst')!,
           };
           gridRowsUnusedDatasets.push(rowItem);
         });
@@ -218,13 +223,15 @@ export default class Cleanup extends LitElement {
    * Clean datasets as requested by removing DataSet elements specified by the user from the SCL file
    * @returns an actions array to support undo/redo
    */
-  public cleanDatasets(cleanItems: iedData[]): Delete[] {
+  public cleanDatasets(cleanItems: datasetInfo[]): Delete[] {
     const actions: Delete[] = [];
     if (cleanItems) {
       cleanItems.forEach(item => {
         const itemToDelete: Element = this.getDatasetFromIED(
           item.name,
-          item.dataset.getAttribute('name')!
+          item.dataset.getAttribute('name')!,
+          item.lnClass,
+          item.inst,
         )!;
         actions.push({
           old: {

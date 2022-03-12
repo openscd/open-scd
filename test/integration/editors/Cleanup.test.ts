@@ -62,19 +62,15 @@ describe('Cleanup', () => {
       );
       itemList.items.forEach(item => (item.selected = true));
       await itemList.layout();
-      debugger
       await (<Button>(
         element.shadowRoot!.querySelector('.cleanupUnusedDatasetsDeleteButton')!
       )).click();
-      // two datasets should be deleted, leaving us with two
+      // all datasets should be deleted
       const dataSetCountCheck =
         doc.querySelectorAll(
-          ':root > IED[name="IED1"] > AccessPoint > Server > LDevice > LN0 > DataSet'
-        ).length +
-        doc.querySelectorAll(
-          ':root > IED[name="IED3"] > AccessPoint > Server > LDevice > LN0[lnClass="LLN0"] > DataSet'
-        ).length;
-      expect(dataSetCountCheck).to.equal(2);
+          ':root > IED > AccessPoint > Server > LDevice > LN0 > DataSet, :root > IED > AccessPoint > Server > LDevice > LN > DataSet'
+        ).length
+      expect(dataSetCountCheck).to.equal(0);
     });
   });
 });
