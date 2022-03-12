@@ -184,6 +184,7 @@ export default class Cleanup extends LitElement {
             item =>
               html`<mwc-check-list-item
                 twoline
+                left
                 value="${identity(item.dataset)}"
                 ><span class="unusedDataset"
                   >${item.dataset.getAttribute('name')}
@@ -286,7 +287,7 @@ export default class Cleanup extends LitElement {
       grid-gap: 12px;
       padding: 8px 12px 16px;
       box-sizing: border-box;
-      grid-template-columns: repeat(auto-fit, minmax(316px, auto));
+      grid-template-columns: repeat(auto-fit, minmax(316px, 50%));
     }
 
     @media (max-width: 387px) {
