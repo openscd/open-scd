@@ -124,6 +124,7 @@ export const officialPlugins = [
     requireDoc: true,
     position: 'top',
   },
+
   {
     name: 'Validate Schema',
     src: '/src/validators/ValidateSchema.js',
@@ -225,4 +226,13 @@ export const officialPlugins = [
     requireDoc: false,
     position: 'bottom',
   },
+  {
+    name: 'Export Communication Section',
+    src: '/src/menu/ExportCommunication.js',
+    icon: 'share',
+    default: false,
+    kind: 'menu',
+    requireDoc: true,
+    position: 'middle'
+  }
 ];

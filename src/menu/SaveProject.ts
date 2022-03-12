@@ -1,18 +1,6 @@
 import { LitElement, property } from 'lit-element';
 
-function formatXml(xml: string, tab?: string) {
-  let formatted = '',
-    indent = '';
-
-  if (!tab) tab = '\t';
-  xml.split(/>\s*</).forEach(function (node) {
-    if (node.match(/^\/\w/)) indent = indent.substring(tab!.length);
-    formatted += indent + '<' + node + '>\r\n';
-    if (node.match(/^<?\w[^>]*[^/]$/)) indent += tab;
-  });
-  return formatted.substring(1, formatted.length - 3);
-}
-
+import { formatXml } from '../foundation.js';
 export default class SaveProjectPlugin extends LitElement {
   @property() doc!: XMLDocument;
   @property() docName!: string;

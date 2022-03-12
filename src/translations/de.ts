@@ -790,6 +790,9 @@ export const de: Translations = {
       smvopts: 'Optionale Felder',
     },
   },
+  exportCommunication: {
+    noCommunicationSection: 'Kein Export als Abschnitt Kommunikation leer',
+  },
   add: 'Hinzufügen',
   new: 'Neu',
   remove: 'Entfernen',
