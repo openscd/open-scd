@@ -1,8 +1,19 @@
 'use strict';
 
-import { LitElement, html, TemplateResult, property, css } from 'lit-element';
+import {
+  css,
+  html,
+  LitElement,
+  property,
+  TemplateResult,
+  query,
+  queryAll,
+} from 'lit-element';
 import { translate } from 'lit-translate';
+import { Button } from '@material/mwc-button';
 import { List, MWCListIndex } from '@material/mwc-list';
+import { ListItem } from '@material/mwc-list/mwc-list-item.js';
+
 
 import { compareNames } from '../foundation.js';
 import {
@@ -37,6 +48,13 @@ export default class Cleanup extends LitElement {
   gridRowsUnusedDatasets: datasetInfo[] = [];
   @property()
   selectedItems: MWCListIndex | [] = [];
+
+  @query('.cleanupUnusedDatasetsDeleteButton')
+  _cleanUnusedDatasetsButton!: Button;
+  @query('.cleanupUnusedDatasetsList')
+  _cleanUnusedDatasetsList: List | undefined
+  @queryAll('mwc-check-list-item') 
+  _cleanUnusedDatasetItems: ListItem[] | undefined;
 
   /**
    * Get sorted IEDs associated with this SCL file.
@@ -203,6 +221,7 @@ export default class Cleanup extends LitElement {
                     icon="edit"
                     class="editUnusedDataset"
                     @click=${(e: MouseEvent) => {
+                      e.stopPropagation();
                       e.target?.dispatchEvent(
                         newSubWizardEvent(() => editDataSetWizard(item.dataset))
                       );
@@ -216,26 +235,32 @@ export default class Cleanup extends LitElement {
           )
         )}
       </filtered-list>
-      <mwc-button
-        icon="delete"
-        class="cleanupUnusedDatasetsDeleteButton"
-        label="${translate('cleanup.unusedDatasets.deleteButton')} (${(<
-          Set<number>
-        >this.selectedItems).size || '0'})"
-        ?disabled=${(<Set<number>>this.selectedItems).size === 0 ||
-        (Array.isArray(this.selectedItems) && !this.selectedItems.length)}
-        slot="secondaryAction"
-        @click=${(e: MouseEvent) => {
-          const cleanItems = Array.from(
-            (<Set<number>>this.selectedItems).values()
-          ).map(index => this.gridRowsUnusedDatasets[index]);
-          const deleteActions = this.cleanDatasets(cleanItems);
-          deleteActions.forEach(deleteAction =>
-            e.target?.dispatchEvent(newActionEvent(deleteAction))
-          );
-          e.target?.dispatchEvent(newWizardEvent());
-        }}
-      ></mwc-button>
+      <footer id="actions">
+        <span>
+          <slot name="primaryAction">
+            <mwc-button
+              icon="delete"
+              class="cleanupUnusedDatasetsDeleteButton"
+              label="${translate('cleanup.unusedDatasets.deleteButton')} (${(<
+                Set<number>
+              >this.selectedItems).size || '0'})"
+              ?disabled=${(<Set<number>>this.selectedItems).size === 0 ||
+              (Array.isArray(this.selectedItems) && !this.selectedItems.length)}
+              slot="secondaryAction"
+              @click=${(e: MouseEvent) => {
+                const cleanItems = Array.from(
+                  (<Set<number>>this.selectedItems).values()
+                ).map(index => this.gridRowsUnusedDatasets[index]);
+                const deleteActions = this.cleanDatasets(cleanItems);
+                deleteActions.forEach(deleteAction =>
+                  e.target?.dispatchEvent(newActionEvent(deleteAction))
+                );
+                e.target?.dispatchEvent(newWizardEvent());
+              }}
+            ></mwc-button>
+          </slot>
+        </span>
+      </footer>
     `;
   }
 
@@ -306,6 +331,10 @@ export default class Cleanup extends LitElement {
 
     .editUnusedDataset {
       --mdc-icon-size: 16px;
+    }
+
+    footer {
+      padding: 10px;
     }
   `;
 }

@@ -149,7 +149,7 @@
 							<IEDName apRef="P1" ldInst="CircuitBreaker_CB1" lnClass="CSWI" lnInst="1">IED2</IEDName>
 						</GSEControl>
 						<GSEControl type="GOOSE" appID="0003" fixedOffs="false" confRev="1" name="GCB2"/>
-						<LogControl name="Log" datSet="Positions" logName="LogDataSet1">
+						<LogControl name="Log" datSet="LogDataSet1" logName="LogDataSet1">
                             <TrgOps dchg="true" qchg="true" />
                         </LogControl>
 					</LN0>
