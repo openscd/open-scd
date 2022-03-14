@@ -10,6 +10,12 @@ import { WizardTextField } from './wizard-textfield.js';
 import { WizardSelect } from './wizard-select.js';
 import { WizardCheckbox } from './wizard-checkbox.js';
 
+export {
+  schemaAttributeDefinition,
+  AttributeDefinition,
+  AttributeRestriction,
+} from './foundation/schema/attributes.js';
+
 export type SimpleAction = Update | Create | Replace | Delete | Move;
 export type ComplexAction = {
   actions: SimpleAction[];
