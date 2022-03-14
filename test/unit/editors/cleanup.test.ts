@@ -2,8 +2,9 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
 import { Editing } from '../../../src/Editing.js';
-import Cleanup from '../../../src/editors/Cleanup.js';
 import { Wizarding } from '../../../src/Wizarding.js';
+
+import Cleanup from '../../../src/editors/Cleanup.js';
 
 describe('Cleanup', () => {
   customElements.define('cleanup-plugin', Wizarding(Editing(Cleanup)));
