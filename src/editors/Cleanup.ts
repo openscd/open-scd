@@ -14,7 +14,6 @@ import { Button } from '@material/mwc-button';
 import { List, MWCListIndex } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 
-
 import { compareNames } from '../foundation.js';
 import {
   Delete,
@@ -52,8 +51,8 @@ export default class Cleanup extends LitElement {
   @query('.cleanupUnusedDatasetsDeleteButton')
   _cleanUnusedDatasetsButton!: Button;
   @query('.cleanupUnusedDatasetsList')
-  _cleanUnusedDatasetsList: List | undefined
-  @queryAll('mwc-check-list-item') 
+  _cleanUnusedDatasetsList: List | undefined;
+  @queryAll('mwc-check-list-item')
   _cleanUnusedDatasetItems: ListItem[] | undefined;
 
   /**
@@ -239,6 +238,7 @@ export default class Cleanup extends LitElement {
         <span>
           <slot name="primaryAction">
             <mwc-button
+              outlined
               icon="delete"
               class="cleanupUnusedDatasetsDeleteButton"
               label="${translate('cleanup.unusedDatasets.deleteButton')} (${(<
@@ -333,8 +333,10 @@ export default class Cleanup extends LitElement {
       --mdc-icon-size: 16px;
     }
 
-    footer {
-      padding: 10px;
+    .cleanupUnusedDatasetsDeleteButton {
+      float: right;
+      margin-bottom: 10px;
+      margin-right: 10px;
     }
   `;
 }
