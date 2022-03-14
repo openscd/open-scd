@@ -2,38 +2,34 @@
 export const snapshots = {};
 
 snapshots["Cleanup without a doc loaded looks like the latest snapshot"] = 
-`<div class="cleanupUnusedDatasets">
+`<div class="cleanupUnreferencedDataSets">
   <section tabindex="0">
     <h1>
-      [cleanup.unusedDatasets.title]
+      [cleanup.unreferencedDataSets.title]
         (0)
       <abbr slot="action">
         <mwc-icon-button
           icon="info"
-          title="[cleanup.unusedDatasets.tooltip]"
+          title="[cleanup.unreferencedDataSets.tooltip]"
         >
         </mwc-icon-button>
       </abbr>
     </h1>
     <filtered-list
-      class="cleanupUnusedDatasetsList"
+      class="cleanupUnreferencedDataSetsList"
       multi=""
     >
     </filtered-list>
-    <footer id="actions">
-      <span>
-        <slot name="primaryAction">
-          <mwc-button
-            class="cleanupUnusedDatasetsDeleteButton"
-            disabled=""
-            icon="delete"
-            label="[cleanup.unusedDatasets.deleteButton] (0)"
-            outlined=""
-            slot="secondaryAction"
-          >
-          </mwc-button>
-        </slot>
-      </span>
+    <footer>
+      <mwc-button
+        class="cleanupUnreferencedDataSetsDeleteButton"
+        disabled=""
+        icon="delete"
+        label="[cleanup.unreferencedDataSets.deleteButton] (0)"
+        outlined=""
+        slot="secondaryAction"
+      >
+      </mwc-button>
     </footer>
   </section>
 </div>

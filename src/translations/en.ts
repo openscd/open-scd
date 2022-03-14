@@ -468,10 +468,10 @@ export const en = {
   report: {
     wizard: { location: 'Select Report Control Location' },
   cleanup: {
-    unusedDatasets: {
-      title: 'Unused Datasets',
+    unreferencedDataSets: {
+      title: 'Unreferenced Datasets',
       deleteButton: 'Remove Selected Datasets',
-      tooltip: 'Datasets without an associated GOOSE, Log, Report or Sampled Value Control Block'
+      tooltip: 'Datasets without a reference to an associated GOOSE, Log, Report or Sampled Value Control Block'
     }
   },
   add: 'Add',

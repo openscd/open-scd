@@ -472,11 +472,12 @@ export const de: Translations = {
   report: {
     wizard: { location: 'Ablageort der Reports wählen' },
   cleanup: {
-    unusedDatasets: {
-      title: 'Unbenutzter Datensatz',
+    unreferencedDataSets: {
+      title: 'Nicht referenzierte Datensätze',
       deleteButton: 'Ausgewählten Datensatz entfernen',
-      tooltip: 'Datensatz ohne zugeordneten GOOSE, Log, Report oder Sampled Value Control Block'
-    }
+      tooltip:
+        'DatenSätze ohne Verweis auf einen zugehörigen GOOSE-, Log-, Report- oder Sampled Value Control Block',
+    },
   },
   add: 'Hinzufügen',
   new: 'Neu',

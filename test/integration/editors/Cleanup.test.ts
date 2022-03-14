@@ -1,3 +1,4 @@
+'use strict';
 import { html, fixture, expect } from '@open-wc/testing';
 
 import { Editing } from '../../../src/Editing.js';
@@ -18,7 +19,7 @@ describe('Cleanup', () => {
     });
   });
 
-  describe('unused Datasets', () => {
+  describe('Unreferenced DataSets', () => {
     let doc: Document;
     beforeEach(async () => {
       doc = await fetch('/test/testfiles/cleanup.scd')
@@ -33,27 +34,27 @@ describe('Cleanup', () => {
     it('creates two Delete Actions', async () => {
       // select all items and update list
       const checkbox = element
-        .shadowRoot!.querySelector('.cleanupUnusedDatasetsList')!
+        .shadowRoot!.querySelector('.cleanupUnreferencedDataSetsList')!
         .shadowRoot!.querySelector('mwc-formfield')!
         .querySelector('mwc-checkbox')!;
       await checkbox.click();
-      element._cleanUnusedDatasetsList?.layout();
+      element._cleanUnreferencedDataSetsList?.layout();
       const cleanItems = Array.from(
-        (<Set<number>>element._cleanUnusedDatasetsList!.index).values()
-      ).map(index => element.gridRowsUnusedDatasets[index]);
-      const deleteActions = element.cleanDatasets(cleanItems);
+        (<Set<number>>element._cleanUnreferencedDataSetsList!.index).values()
+      ).map(index => element.unreferencedDataSets[index]);
+      const deleteActions = element.cleanDataSets(cleanItems);
       expect(deleteActions.length).to.equal(2);
     });
 
     it('correctly removes the datasets from the SCL file', async () => {
       // select all items and update list
       const checkbox = element
-        .shadowRoot!.querySelector('.cleanupUnusedDatasetsList')!
+        .shadowRoot!.querySelector('.cleanupUnreferencedDataSetsList')!
         .shadowRoot!.querySelector('mwc-formfield')!
         .querySelector('mwc-checkbox')!;
       await checkbox.click();
-      element._cleanUnusedDatasetsList?.layout();
-      await element._cleanUnusedDatasetsButton.click();
+      element._cleanUnreferencedDataSetsList?.layout();
+      await element._cleanUnreferencedDataSetsButton.click();
       // the correct number of DataSets should remain
       const remainingDataSetCountCheck =
         doc.querySelectorAll(
