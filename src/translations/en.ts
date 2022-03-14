@@ -299,7 +299,7 @@ export const en = {
       },
     },
     action: {
-      edit: 'Edited EnumType ID "{{oldId}}" and its DA references to {{newId}} ',
+      edit: 'Change EnumType ID "{{oldId}}" and its DA references to {{newId}} ',
     },
   },
   datype: {
@@ -310,7 +310,7 @@ export const en = {
       },
     },
     action: {
-      edit: 'Edited DAType ID "{{oldId}}" and its DA references to {{newId}} ',
+      edit: 'Change DAType ID "{{oldId}}" and its DA references to {{newId}} ',
     },
   },
   bda: {
@@ -354,7 +354,7 @@ export const en = {
       enums: 'Default enumerations',
     },
     action: {
-      edit: 'Edited DOType ID "{{oldId}}" and its DO references to {{newId}} ',
+      edit: 'Change DOType ID "{{oldId}}" and its DO references to {{newId}} ',
     },
   },
   lnodetype: {
@@ -366,7 +366,7 @@ export const en = {
       },
     },
     action: {
-      edit: 'Edited LNodeType ID "{{oldId}}" and its LN references to {{newId}} ',
+      edit: 'Change LNodeType ID "{{oldId}}" and its LN references to {{newId}} ',
     },
     autoimport: 'Use LN class from OpenSCD template',
     missinglnclass: 'Missing pre-defined LN class',
