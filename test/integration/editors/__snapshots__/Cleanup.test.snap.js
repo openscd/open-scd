@@ -28,6 +28,7 @@ snapshots["Cleanup without a doc loaded looks like the latest snapshot"] =
             disabled=""
             icon="delete"
             label="[cleanup.unusedDatasets.deleteButton] (0)"
+            outlined=""
             slot="secondaryAction"
           >
           </mwc-button>
