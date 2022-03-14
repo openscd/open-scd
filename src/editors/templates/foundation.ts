@@ -30,23 +30,6 @@ export function isCreateOptions(
   return (<CreateOptions>options).parent !== undefined;
 }
 
-export function updateIDNamingAction(element: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
-    const id = getValue(inputs.find(i => i.label === 'id')!)!;
-    const desc = getValue(inputs.find(i => i.label === 'desc')!);
-
-    if (
-      id === element.getAttribute('id') &&
-      desc === element.getAttribute('desc')
-    )
-      return [];
-
-    const newElement = cloneElement(element, { id, desc });
-
-    return [{ old: { element }, new: { element: newElement } }];
-  };
-}
-
 function containsCreateAction(actions: Create[], newAction: Create): boolean {
   return !actions.some(
     action =>

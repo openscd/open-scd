@@ -303,6 +303,9 @@ export const de: Translations = {
         edit: 'EnumType bearbeiten',
       },
     },
+    action: {
+      edit: 'DAType ID "{{oldId}}" und deren DA-Referenzen geändert zu {{newId}} ',
+    },
   },
   datype: {
     wizard: {
@@ -310,6 +313,9 @@ export const de: Translations = {
         add: 'DAType hinzufügen',
         edit: 'DAType bearbeiten',
       },
+    },
+    action: {
+      edit: 'EnumType ID "{{oldId}}" und deren DA-Referenzen geändert zu {{newId}} ',
     },
   },
   bda: {
@@ -352,6 +358,9 @@ export const de: Translations = {
       },
       enums: 'Standard Enumerations',
     },
+    action: {
+      edit: 'DOType ID "{{oldId}}" und deren DO-Referenzen geändert zu {{newId}} ',
+    },
   },
   lnodetype: {
     wizard: {
@@ -360,6 +369,9 @@ export const de: Translations = {
         edit: 'LNodeType bearbeiten',
         select: 'Data Objects auswählen',
       },
+    },
+    action: {
+      edit: 'LNodeType ID "{{oldId}}" und deren LN-Referenzen geändert zu {{newId}} ',
     },
     autoimport: 'Vordefinierte OpenSCD LN Klasse verwenden',
     missinglnclass: 'Vordefinierte LN Klasse fehlt',

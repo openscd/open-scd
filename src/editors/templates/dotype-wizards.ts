@@ -22,6 +22,7 @@ import {
   newActionEvent,
   newSubWizardEvent,
   newWizardEvent,
+  Replace,
   selector,
   Wizard,
   WizardActor,
@@ -320,7 +321,24 @@ function updateDOTypeAction(element: Element): WizardActor {
 
     const newElement = cloneElement(element, { id, desc, cdc });
 
-    return [{ old: { element }, new: { element: newElement } }];
+    const actions: Replace[] = [];
+    actions.push({ old: { element }, new: { element: newElement } });
+
+    const oldId = element.getAttribute('id')!;
+    Array.from(
+      element.ownerDocument.querySelectorAll(
+        `LNodeType > DO[type="${oldId}"], DOType > SDO[type="${oldId}"]`
+      )
+    ).forEach(oldDo => {
+      const newDo = <Element>oldDo.cloneNode(false);
+      newDo.setAttribute('type', id);
+
+      actions.push({ old: { element: oldDo }, new: { element: newDo } });
+    });
+
+    return [
+      { title: get('dotype.action.edit', { oldId, newId: id }), actions },
+    ];
   };
 }
 
