@@ -10,9 +10,13 @@ import {
   queryAll,
 } from 'lit-element';
 import { translate } from 'lit-translate';
+
+import '@material/mwc-button';
 import { Button } from '@material/mwc-button';
 import { List, MWCListIndex } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item.js';
+import '@material/mwc-list/mwc-checked-list-item';
+import '../filtered-list.js';
 
 import {
   Delete,
@@ -54,6 +58,32 @@ export default class Cleanup extends LitElement {
   }
 
   /**
+   * Clean datasets as requested by removing DataSet elements specified by the user from the SCL file
+   * @returns an actions array to support undo/redo
+   */
+  public cleanDataSets(cleanItems: Element[]): Delete[] {
+    const actions: Delete[] = [];
+    if (cleanItems) {
+      cleanItems.forEach(item => {
+        actions.push({
+          old: {
+            parent: <Element>item.parentElement!,
+            element: item,
+            reference: <Node | null>item!.nextSibling,
+          },
+        });
+      });
+    }
+    return actions;
+  }
+
+  async firstUpdated(): Promise<void> {
+    this._cleanUnreferencedDataSetsList?.addEventListener('selected', () => {
+      this.getSelectedUnreferencedDataSetItems();
+    });
+  }
+
+  /**
    * Render a user selectable table of unreferenced datasets if any exist, otherwise indicate this is not an issue.
    * @returns html for table and action button.
    */
@@ -73,6 +103,7 @@ export default class Cleanup extends LitElement {
         if (parent && (!name || !isReferenced))
           unreferencedDataSets.push(dataSet);
       });
+
     this.unreferencedDataSets = unreferencedDataSets.sort((a, b) => {
       // sorting using the identity ensures sort order includes IED
       const aId = identity(a);
@@ -86,6 +117,7 @@ export default class Cleanup extends LitElement {
       // names must be equal
       return 0;
     });
+
     return html`
       <h1>
         ${translate('cleanup.unreferencedDataSets.title')}
@@ -141,7 +173,6 @@ export default class Cleanup extends LitElement {
           >this.selectedItems).size || '0'})"
           ?disabled=${(<Set<number>>this.selectedItems).size === 0 ||
           (Array.isArray(this.selectedItems) && !this.selectedItems.length)}
-          slot="secondaryAction"
           @click=${(e: MouseEvent) => {
             const cleanItems = Array.from(
               (<Set<number>>this.selectedItems).values()
@@ -154,32 +185,6 @@ export default class Cleanup extends LitElement {
         ></mwc-button>
       </footer>
     `;
-  }
-
-  /**
-   * Clean datasets as requested by removing DataSet elements specified by the user from the SCL file
-   * @returns an actions array to support undo/redo
-   */
-  public cleanDataSets(cleanItems: Element[]): Delete[] {
-    const actions: Delete[] = [];
-    if (cleanItems) {
-      cleanItems.forEach(item => {
-        actions.push({
-          old: {
-            parent: <Element>item.parentElement!,
-            element: item,
-            reference: <Node | null>item!.nextSibling,
-          },
-        });
-      });
-    }
-    return actions;
-  }
-
-  async firstUpdated(): Promise<void> {
-    this._cleanUnreferencedDataSetsList?.addEventListener('selected', () => {
-      this.getSelectedUnreferencedDataSetItems();
-    });
   }
 
   render(): TemplateResult {
