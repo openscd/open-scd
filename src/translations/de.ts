@@ -471,6 +471,7 @@ export const de: Translations = {
   },
   report: {
     wizard: { location: 'Ablageort der Reports wählen' },
+  },
   cleanup: {
     unreferencedDataSets: {
       title: 'Nicht referenzierte Datensätze',

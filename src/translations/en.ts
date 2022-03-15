@@ -467,6 +467,7 @@ export const en = {
   },
   report: {
     wizard: { location: 'Select Report Control Location' },
+  },
   cleanup: {
     unreferencedDataSets: {
       title: 'Unreferenced Datasets',
