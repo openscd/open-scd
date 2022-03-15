@@ -15,7 +15,7 @@ import '@material/mwc-button';
 import { Button } from '@material/mwc-button';
 import { List, MWCListIndex } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item.js';
-import '@material/mwc-list/mwc-checked-list-item';
+import '@material/mwc-list/mwc-check-list-item.js';
 import '../filtered-list.js';
 
 import {
