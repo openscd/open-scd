@@ -16,6 +16,7 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 import '../action-pane.js';
 import './ied-editor.js';
+import './powertransformer-editor.js';
 import './voltage-level-editor.js';
 import { newActionEvent, newWizardEvent, SCLTag, tags } from '../foundation.js';
 import { emptyWizard, wizards } from '../wizards/wizard-library.js';
@@ -103,6 +104,15 @@ export class SubstationEditor extends LitElement {
       : html``;
   }
 
+  renderPowerTransformerContainer(): TemplateResult {
+    const pwts = Array.from(this.element?.querySelectorAll(selectors.Substation + ' > PowerTransformer') ?? []);
+    return pwts?.length
+      ? html`<div id="powertransformercontainer">
+        ${pwts.map(pwt => html`<powertransformer-editor .element=${pwt}></powertransformer-editor>`)}
+      </div>`
+      : html``;
+  }
+
   private renderAddButtons(): TemplateResult[] {
     return childTags(this.element).map(
       child =>
@@ -135,7 +145,7 @@ export class SubstationEditor extends LitElement {
       <abbr slot="action" title="${translate('move')}">
         <mwc-icon-button
           icon="forward"
-          @click=${() => startMove(this, SubstationEditor, SubstationEditor)}
+          @click=${() => startMove(this, SubstationEditor, [SubstationEditor])}
         ></mwc-icon-button>
       </abbr>
       <abbr slot="action" title="${translate('remove')}">
@@ -164,6 +174,7 @@ export class SubstationEditor extends LitElement {
         >
       </abbr>
       ${this.renderIedContainer()}
+      ${this.renderPowerTransformerContainer()}
       ${Array.from(this.element.querySelectorAll(selectors.VoltageLevel)).map(
         voltageLevel =>
           html`<voltage-level-editor
