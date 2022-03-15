@@ -471,6 +471,8 @@ export const en = {
   controlblock: {
     action: {
       edit: 'Edited {{type}} "{{name}}" in IED {{iedName}}',
+      remove:
+        'Removed {{type}} "{{name}}" and its referenced elements from IED {{iedName}}',
     },
   },
   add: 'Add',

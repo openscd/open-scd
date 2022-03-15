@@ -475,6 +475,8 @@ export const de: Translations = {
   controlblock: {
     action: {
       edit: '{{type}} "{{name}}" in IED {{iedName}} bearbeitet',
+      remove:
+        '{{type}} "{{name}}" and referenzierte Element von IED {{iedName}} entfernt',
     },
   },
   add: 'Hinzufügen',

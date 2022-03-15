@@ -8,6 +8,7 @@ import { MockWizard } from '../../mock-wizard.js';
 import {
   ComplexAction,
   Create,
+  Delete,
   isCreate,
   isDelete,
   isSimple,
@@ -381,7 +382,9 @@ describe('Wizards for SCL ReportControl element', () => {
 
         it('removes ReportControl and its referenced DataSet if no other ReportControl are assigned', () => {
           const reportControl = ln01gse.querySelector('ReportControl')!;
-          const actions = removeReportControlAction(reportControl);
+          const actions = <Delete[]>(
+            removeReportControlAction(reportControl)!.actions
+          );
           expect(actions.length).to.equal(2);
           expect(actions[0]).to.satisfy(isDelete);
           expect(actions[0].old.element).to.equal(reportControl);
@@ -393,7 +396,9 @@ describe('Wizards for SCL ReportControl element', () => {
 
         it('does not remove if another ReportControl is assigned to the same DataSet', () => {
           const reportControl = ln02gse.querySelector('ReportControl')!;
-          const actions = removeReportControlAction(reportControl);
+          const actions = <Delete[]>(
+            removeReportControlAction(reportControl)!.actions
+          );
           expect(actions.length).to.equal(1);
           expect(actions[0]).to.satisfy(isDelete);
           expect(actions[0].old.element).to.equal(reportControl);
@@ -401,7 +406,9 @@ describe('Wizards for SCL ReportControl element', () => {
 
         it('does not remove if another GSEControl is assigned to the same DataSet', () => {
           const reportControl = ln02rp.querySelector('ReportControl')!;
-          const actions = removeReportControlAction(reportControl);
+          const actions = <Delete[]>(
+            removeReportControlAction(reportControl)!.actions
+          );
           expect(actions.length).to.equal(1);
           expect(actions[0]).to.satisfy(isDelete);
           expect(actions[0].old.element).to.equal(reportControl);
@@ -409,15 +416,17 @@ describe('Wizards for SCL ReportControl element', () => {
 
         it('does not remove if another SMV is assigned to the same DataSet', () => {
           const reportControl = ln02smv.querySelector('ReportControl')!;
-          const actions = removeReportControlAction(reportControl);
+          const actions = <Delete[]>(
+            removeReportControlAction(reportControl)!.actions
+          );
           expect(actions.length).to.equal(1);
           expect(actions[0]).to.satisfy(isDelete);
           expect(actions[0].old.element).to.equal(reportControl);
         });
 
         it('does not remove with missing parent element', () => {
-          const actions = removeReportControlAction(missingparent);
-          expect(actions.length).to.equal(0);
+          const action = removeReportControlAction(missingparent);
+          expect(action).to.be.null;
         });
       });
     });
