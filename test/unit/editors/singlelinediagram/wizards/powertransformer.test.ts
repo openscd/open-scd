@@ -3,7 +3,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 import '../../../../mock-wizard.js';
 import { MockWizard } from '../../../../mock-wizard.js';
 import {
-  executeWizardUpdateAction,
+  executeWizardReplaceAction,
   expectWizardNoUpdateAction,
   fetchDoc,
   setWizardTextFieldValue,
@@ -34,7 +34,7 @@ describe('Wizards for SCL element Power Transformer (X/Y)', () => {
   it('update name should be updated in document', async function () {
     await setWizardTextFieldValue(<WizardTextField>inputs[0], 'OtherTA1');
 
-    const updateAction = executeWizardUpdateAction(
+    const updateAction = executeWizardReplaceAction(
       updateNamingAndCoordinatesAction(powerTransformer),
       inputs
     );
@@ -48,7 +48,7 @@ describe('Wizards for SCL element Power Transformer (X/Y)', () => {
       'Some description'
     );
 
-    const updateAction = executeWizardUpdateAction(
+    const updateAction = executeWizardReplaceAction(
       updateNamingAndCoordinatesAction(powerTransformer),
       inputs
     );
@@ -62,7 +62,7 @@ describe('Wizards for SCL element Power Transformer (X/Y)', () => {
   it('update X-Coordinate should be updated in document', async function () {
     await setWizardTextFieldValue(<WizardTextField>inputs[3], '4');
 
-    const updateAction = executeWizardUpdateAction(
+    const updateAction = executeWizardReplaceAction(
       updateNamingAndCoordinatesAction(powerTransformer),
       inputs
     );
@@ -73,7 +73,7 @@ describe('Wizards for SCL element Power Transformer (X/Y)', () => {
   it('update Y-Coordinate should be updated in document', async function () {
     await setWizardTextFieldValue(<WizardTextField>inputs[4], '5');
 
-    const updateAction = executeWizardUpdateAction(
+    const updateAction = executeWizardReplaceAction(
       updateNamingAndCoordinatesAction(powerTransformer),
       inputs
     );
@@ -84,7 +84,7 @@ describe('Wizards for SCL element Power Transformer (X/Y)', () => {
   it('clear Y-Coordinate should be updated in document', async function () {
     await setWizardTextFieldValue(<WizardTextField>inputs[4], null);
 
-    const updateAction = executeWizardUpdateAction(
+    const updateAction = executeWizardReplaceAction(
       updateNamingAndCoordinatesAction(powerTransformer),
       inputs
     );
