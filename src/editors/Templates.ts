@@ -66,7 +66,10 @@ export default class TemplatesPlugin extends LitElement {
 
   openLNodeTypeWizard(identity: string): void {
     const wizard = lNodeTypeWizard(identity, this.doc);
-    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+    if (wizard)
+      this.dispatchEvent(
+        newWizardEvent(() => lNodeTypeWizard(identity, this.doc)!)
+      );
   }
 
   async openCreateDOTypeWizard(): Promise<void> {
@@ -84,12 +87,18 @@ export default class TemplatesPlugin extends LitElement {
 
   openDOTypeWizard(identity: string): void {
     const wizard = dOTypeWizard(identity, this.doc);
-    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+    if (wizard)
+      this.dispatchEvent(
+        newWizardEvent(() => dOTypeWizard(identity, this.doc)!)
+      );
   }
 
   openDATypeWizard(identity: string): void {
     const wizard = editDaTypeWizard(identity, this.doc);
-    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+    if (wizard)
+      this.dispatchEvent(
+        newWizardEvent(() => editDaTypeWizard(identity, this.doc)!)
+      );
   }
 
   async openCreateDATypeWizard(): Promise<void> {
@@ -107,7 +116,10 @@ export default class TemplatesPlugin extends LitElement {
 
   openEnumTypeWizard(identity: string): void {
     const wizard = eNumTypeEditWizard(identity, this.doc);
-    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+    if (wizard)
+      this.dispatchEvent(
+        newWizardEvent(() => eNumTypeEditWizard(identity, this.doc)!)
+      );
   }
 
   async openCreateEnumWizard(): Promise<void> {

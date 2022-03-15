@@ -13,7 +13,7 @@ import {
   isMove,
   isSame,
   isSimple,
-  isUpdate,
+  isReplace,
   newActionEvent,
   newPendingStateEvent,
   newWizardEvent,
@@ -24,6 +24,7 @@ import {
   getChildElementsByTagName,
   cloneElement,
   depth,
+  getUniqueElementName,
 } from '../../src/foundation.js';
 
 import { MockAction } from './mock-actions.js';
@@ -65,8 +66,8 @@ describe('foundation', () => {
       expect(MockAction.cre).to.satisfy(isCreate);
       expect(MockAction.del).to.satisfy(isDelete);
       expect(MockAction.mov).to.satisfy(isMove);
-      expect(MockAction.upd).to.satisfy(isUpdate);
-
+      expect(MockAction.upd).to.satisfy(isReplace);
+      isReplace;
       expect(MockAction.cre).to.satisfy(isSimple);
       expect(MockAction.del).to.satisfy(isSimple);
       expect(MockAction.mov).to.satisfy(isSimple);
@@ -74,16 +75,16 @@ describe('foundation', () => {
 
       expect(MockAction.cre).to.not.satisfy(isDelete);
       expect(MockAction.cre).to.not.satisfy(isMove);
-      expect(MockAction.cre).to.not.satisfy(isUpdate);
-
+      expect(MockAction.cre).to.not.satisfy(isReplace);
+      isReplace;
       expect(MockAction.del).to.not.satisfy(isCreate);
       expect(MockAction.del).to.not.satisfy(isMove);
-      expect(MockAction.del).to.not.satisfy(isUpdate);
-
+      expect(MockAction.del).to.not.satisfy(isReplace);
+      isReplace;
       expect(MockAction.mov).to.not.satisfy(isCreate);
       expect(MockAction.mov).to.not.satisfy(isDelete);
-      expect(MockAction.mov).to.not.satisfy(isUpdate);
-
+      expect(MockAction.mov).to.not.satisfy(isReplace);
+      isReplace;
       expect(MockAction.upd).to.not.satisfy(isCreate);
       expect(MockAction.upd).to.not.satisfy(isDelete);
       expect(MockAction.upd).to.not.satisfy(isMove);
@@ -95,8 +96,9 @@ describe('foundation', () => {
       expect(MockAction.complex).to.not.satisfy(isCreate);
       expect(MockAction.complex).to.not.satisfy(isDelete);
       expect(MockAction.complex).to.not.satisfy(isMove);
-      expect(MockAction.complex).to.not.satisfy(isUpdate);
+      expect(MockAction.complex).to.not.satisfy(isReplace);
     });
+    isReplace;
 
     describe('invert', () => {
       it('turns Create into Delete and vice versa', () => {
@@ -109,8 +111,9 @@ describe('foundation', () => {
       });
 
       it('turns Update into Update', () => {
-        expect(invert(MockAction.upd)).to.satisfy(isUpdate);
+        expect(invert(MockAction.upd)).to.satisfy(isReplace);
       });
+      isReplace;
 
       it('inverts components of complex actions in reverse order', () => {
         const action = MockAction.complex;
@@ -462,6 +465,26 @@ describe('foundation', () => {
         findControlBlocks(doc.querySelector('Private > ExtRef')!).size
       ).to.equal(0);
     });
+  });
+
+  describe('getUniqueElementName', () => {
+    let parent: Element;
+    beforeEach(() => {
+      const testDoc = new DOMParser().parseFromString(
+        '<Parent>' +
+          '<Child name="newChild1"/><Child name="newChild2"/>' +
+          '<Child2 name="newChild3"/><Child2 name="newChild21"/>' +
+          '</Parent>',
+        'application/xml'
+      );
+      parent = testDoc.querySelector<Element>('Parent')!;
+    });
+
+    it('returns unique name for Child', () =>
+      expect(getUniqueElementName(parent, 'Child')).to.equal('newChild3'));
+
+    it('returns unique name for Child2', () =>
+      expect(getUniqueElementName(parent, 'Child2')).to.equal('newChild22'));
   });
 
   describe('findFCDAs', () => {

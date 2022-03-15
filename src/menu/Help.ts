@@ -6,7 +6,7 @@ import '@material/mwc-icon';
 
 import '../finder-list.js';
 import { newWizardEvent, Wizard } from '../foundation.js';
-import { openSCDIcon } from '../icons.js';
+import { openSCDIcon } from '../icons/icons.js';
 import { Directory } from '../finder-list.js';
 
 function aboutBox(version: string) {

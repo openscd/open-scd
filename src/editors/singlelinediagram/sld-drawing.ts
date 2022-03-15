@@ -4,7 +4,7 @@ import {
   connectivityNodeIcon,
   editIcon,
   powerTransformerTwoWindingIcon,
-} from '../../icons.js';
+} from '../../icons/icons.js';
 
 import {
   getRelativeCoordinates,

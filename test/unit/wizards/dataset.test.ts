@@ -9,8 +9,8 @@ import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   Delete,
   isDelete,
-  isUpdate,
-  Update,
+  isReplace,
+  Replace,
   Wizard,
   WizardInput,
 } from '../../../src/foundation.js';
@@ -96,9 +96,9 @@ describe('dataset wizards', () => {
         expect(actionEvent).to.be.calledOnce;
 
         const action = actionEvent.args[0][0].detail.action;
-        expect(action).to.satisfy(isUpdate);
+        expect(action).to.satisfy(isReplace);
 
-        const updateAction = <Update>action;
+        const updateAction = <Replace>action;
         expect(updateAction.old.element).to.have.attribute('name', 'myDS');
         expect(updateAction.new.element).to.have.attribute(
           'name',
@@ -161,9 +161,9 @@ describe('dataset wizards', () => {
         expect(actionEvent).to.be.calledThrice;
 
         const action = actionEvent.args[0][0].detail.action;
-        expect(action).to.satisfy(isUpdate);
+        expect(action).to.satisfy(isReplace);
 
-        const updateAction = <Update>action;
+        const updateAction = <Replace>action;
         expect(updateAction.old.element).to.have.attribute(
           'name',
           'GooseDataSet1'
@@ -185,9 +185,9 @@ describe('dataset wizards', () => {
 
         for (let i = 1; i < actionEvent.args.length; i++) {
           const action = actionEvent.args[i][0].detail.action;
-          expect(action).to.satisfy(isUpdate);
+          expect(action).to.satisfy(isReplace);
 
-          const updateAction = <Update>action;
+          const updateAction = <Replace>action;
           expect(updateAction.old.element).to.have.attribute(
             'datSet',
             'GooseDataSet1'
@@ -210,9 +210,9 @@ describe('dataset wizards', () => {
         expect(actionEvent).to.be.calledOnce;
 
         const action = actionEvent.args[0][0].detail.action;
-        expect(action).to.satisfy(isUpdate);
+        expect(action).to.satisfy(isReplace);
 
-        const updateAction = <Update>action;
+        const updateAction = <Replace>action;
         expect(updateAction.old.element).to.not.have.attribute('desc');
         expect(updateAction.new.element).to.have.attribute('desc', 'myDesc');
       });

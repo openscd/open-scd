@@ -170,5 +170,12 @@ export class ActionPane extends LitElement {
       top: -0.1em;
       --mdc-icon-size: 1em;
     }
+
+    ::slotted([slot='icon']) {
+      vertical-align: middle;
+      position: relative;
+      top: -0.1em;
+      --mdc-icon-size: 1em;
+    }
   `;
 }
