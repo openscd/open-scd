@@ -18,7 +18,9 @@ import {
   Create,
   createElement,
   Delete,
+  identity,
   newActionEvent,
+  selector,
 } from '../../foundation.js';
 import {
   GOOSESelectEvent,
@@ -283,19 +285,13 @@ export class SubscriberIEDList extends LitElement {
         if (extRef) actions.push({ old: { parent: inputs, element: extRef } });
       });
 
-      /**
-       * If the number of delete actions is equal to the number of
-       * ExtRefs in the Inputs element, just delete the whole Inputs element.
-       */
-      if (actions.length === inputs.children.length) {
-        actions = [{ old: { parent: inputs.parentElement!, element: inputs } }]
-      }
+      
     });
 
     this.dispatchEvent(
       newActionEvent({
         title: 'Disconnect',
-        actions,
+        actions: this.removeToBeEmptiedInputs(actions),
       })
     );
 
@@ -305,6 +301,47 @@ export class SubscriberIEDList extends LitElement {
         localState.currentDataset!
       )
     );
+  }
+
+  /**
+   * Creating Delete actions in case Inputs elements are empty.
+   * @param extRefDeleteActions - All Delete actions for ExtRefs.
+   * @returns Possible delete actions for empty Inputs elements.
+   */
+  private removeToBeEmptiedInputs(extRefDeleteActions: Delete[]): Delete[] {
+    if (!extRefDeleteActions.length) return [];
+  
+    // needed for later query to the DOM
+    const doc = extRefDeleteActions[0].old.parent.ownerDocument!;
+  
+    const inputsDeleteActions: Delete[] = [];
+    const inputsMap: Record<string, Element> = {};
+  
+    // save clone Inputs with identity to map, remove extRef from cloned inputs
+    for (const extRefDeleteAction of extRefDeleteActions) {
+      const extRef = <Element>extRefDeleteAction.old.element;
+      const inputs = <Element>extRefDeleteAction.old.parent;
+
+      const id = identity(inputs);
+  
+      if (!inputsMap[id]) inputsMap[id] = inputs;
+  
+      inputsMap[id].removeChild(extRef);
+    }
+  
+    // create delete action for each empty inputs
+    Object.entries(inputsMap).forEach(([key, value]) => {
+      if (value.children.length ! == 0) {
+        const inputs = doc.querySelector(selector('Inputs', key));
+  
+        if (inputs && inputs.parentElement)
+          inputsDeleteActions.push({
+            old: { parent: inputs.parentElement, element: inputs },
+          });
+      }
+    });
+  
+    return inputsDeleteActions;
   }
 
   protected updated(): void {
