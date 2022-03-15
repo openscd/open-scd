@@ -35,7 +35,7 @@ import {
   OpenDocEvent,
   SclhistoryEntry,
 } from './foundation.js';
-import { getFilterIcon, iconColors } from './icons.js';
+import { getFilterIcon, iconColors } from './icons/icons.js';
 import { Plugin } from './Plugging.js';
 
 const icons = {

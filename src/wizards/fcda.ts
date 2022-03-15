@@ -1,23 +1,24 @@
 import { html } from 'lit-element';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
-import '../finder-list.js';
 import {
   createElement,
-  identity,
   selector,
   Wizard,
   WizardAction,
   WizardActor,
   WizardInput,
 } from '../foundation.js';
-import { getChildren } from './foundation/functions.js';
-import { Directory, FinderList } from '../finder-list.js';
+import { FinderList } from '../finder-list.js';
+import {
+  dataAttributePicker,
+  getDataModelChildren,
+} from './foundation/finder.js';
 
-function newFCDA(parent: Element, path: string[]): Element | undefined {
+export function newFCDA(parent: Element, path: string[]): Element | undefined {
   const [leafTag, leafId] = path[path.length - 1].split(': ');
   const leaf = parent.ownerDocument.querySelector(selector(leafTag, leafId));
-  if (!leaf || getChildren(leaf).length > 0) return;
+  if (!leaf || getDataModelChildren(leaf).length > 0) return;
 
   const lnSegment = path.find(segment => segment.startsWith('LN'));
   if (!lnSegment) return;
@@ -31,7 +32,7 @@ function newFCDA(parent: Element, path: string[]): Element | undefined {
   const prefix = ln.getAttribute('prefix') ?? '';
   const lnClass = ln.getAttribute('lnClass');
   const lnInst =
-    (ln.getAttribute('inst') && ln.getAttribute('inst') !== '')
+    ln.getAttribute('inst') && ln.getAttribute('inst') !== ''
       ? ln.getAttribute('inst')
       : null;
 
@@ -95,28 +96,6 @@ function createFCDAsAction(parent: Element): WizardActor {
   };
 }
 
-function getDisplayString(entry: string): string {
-  return entry.replace(/^.*>/, '').trim();
-}
-
-function getReader(server: Element): (path: string[]) => Promise<Directory> {
-  return async (path: string[]) => {
-    const [tagName, id] = path[path.length - 1]?.split(': ', 2);
-    const element = server.ownerDocument.querySelector(selector(tagName, id));
-
-    if (!element)
-      return { path, header: html`<p>${translate('error')}</p>`, entries: [] };
-
-    return {
-      path,
-      header: undefined,
-      entries: getChildren(element).map(
-        child => `${child.tagName}: ${identity(child)}`
-      ),
-    };
-  };
-}
-
 export function createFCDAsWizard(parent: Element): Wizard {
   const server = parent.closest('Server');
 
@@ -128,17 +107,7 @@ export function createFCDAsWizard(parent: Element): Wizard {
         icon: 'add',
         action: createFCDAsAction(parent),
       },
-      content: [
-        server
-          ? html`<finder-list
-              multi
-              .paths=${[['Server: ' + identity(server)]]}
-              .read=${getReader(server)}
-              .getDisplayString=${getDisplayString}
-              .getTitle=${(path: string[]) => path[path.length - 1]}
-            ></finder-list>`
-          : html``,
-      ],
+      content: [server ? dataAttributePicker(server) : html``],
     },
   ];
 }

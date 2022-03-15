@@ -1,6 +1,5 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
-import fc from 'fast-check';
 
 import '../../../mock-wizard.js';
 import { MockWizard } from '../../../mock-wizard.js';
@@ -12,10 +11,9 @@ import {
   Replace,
   WizardInput,
 } from '../../../../src/foundation.js';
-import { lNodeTypeWizard } from '../../../../src/editors/templates/lnodetype-wizard.js';
-import { regExp, regexString } from '../../../foundation.js';
+import { editDaTypeWizard } from '../../../../src/editors/templates/datype-wizards.js';
 
-describe('wizards for LNodeType element', () => {
+describe('wizards for DAType element', () => {
   let doc: XMLDocument;
   let element: MockWizard;
   let inputs: WizardInput[];
@@ -31,14 +29,15 @@ describe('wizards for LNodeType element', () => {
     actionEvent = spy();
     window.addEventListener('editor-action', actionEvent);
   });
+
   describe('include an edit wizard that', () => {
     beforeEach(async () => {
       doc = await fetch('/test/testfiles/valid2003.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-      const wizard = lNodeTypeWizard(
-        <string>identity(doc.querySelector('LNodeType')),
+      const wizard = editDaTypeWizard(
+        <string>identity(doc.querySelector('DAType')),
         doc
       )!;
       element.workflow.push(() => wizard);
@@ -51,32 +50,6 @@ describe('wizards for LNodeType element', () => {
           'mwc-button[slot="primaryAction"]'
         )
       );
-    });
-
-    describe('allows to edit lnClass attribute', () => {
-      beforeEach(() => {
-        input = inputs.find(input => input.label === 'lnClass');
-      });
-
-      it('as wizard input', () => expect(input).to.exist);
-
-      it('for valid input', async () =>
-        await fc.assert(
-          fc.asyncProperty(
-            regexString(regExp.lnClass, 4, 4),
-            async testValue => {
-              input!.value = testValue;
-              await element.requestUpdate();
-              expect(input!.checkValidity()).to.be.true;
-            }
-          )
-        ));
-
-      it('takes the exception LLN0 into account', async () => {
-        input!.value = 'LLN0';
-        await element.requestUpdate();
-        expect(input!.checkValidity()).to.be.true;
-      });
     });
 
     describe('allows to edit id attribute', () => {
@@ -95,7 +68,7 @@ describe('wizards for LNodeType element', () => {
         expect(action).to.not.satisfy(isSimple);
       });
 
-      it('that edits the id attribute of LNodeType', () => {
+      it('that edits the id attribute of DAType', () => {
         input!.value = 'someTestId';
         primaryAction.click();
 
@@ -109,7 +82,7 @@ describe('wizards for LNodeType element', () => {
       it('that edits all referenced lnType attribute as well', () => {
         const oldId = input?.value;
         const numReferences = doc.querySelectorAll(
-          `LN0[lnType="${oldId}"], LN[lnType="${oldId}"]`
+          `DOType > DA[type="${oldId}"], DAType > BDA[type="${oldId}"]`
         ).length;
 
         input!.value = 'someTestId';
@@ -120,9 +93,10 @@ describe('wizards for LNodeType element', () => {
         );
         const actions = <Replace[]>complexAction.actions;
         expect(actions).to.have.lengthOf(numReferences + 1);
-        actions.shift(); //the first updates the LNodeType itself and has no 'id'
+
+        actions.shift(); //the first updates the DAType itself and has no 'id'
         for (const action of actions)
-          expect(action.new.element).to.have.attribute('lnType', 'someTestId');
+          expect(action.new.element).to.have.attribute('type', 'someTestId');
       });
     });
   });

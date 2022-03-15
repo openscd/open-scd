@@ -12,6 +12,7 @@ import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
 import '../../wizard-textfield.js';
 import {
+  cloneElement,
   Create,
   createElement,
   EditorAction,
@@ -21,6 +22,7 @@ import {
   newSubWizardEvent,
   newWizardEvent,
   patterns,
+  Replace,
   selector,
   Wizard,
   WizardActor,
@@ -31,8 +33,41 @@ import {
   addReferencedDataTypes,
   allDataTypeSelector,
   unifyCreateActionArray,
-  updateIDNamingAction,
 } from './foundation.js';
+
+function updateDATpyeAction(element: Element): WizardActor {
+  return (inputs: WizardInput[]): EditorAction[] => {
+    const id = getValue(inputs.find(i => i.label === 'id')!)!;
+    const desc = getValue(inputs.find(i => i.label === 'desc')!);
+
+    if (
+      id === element.getAttribute('id') &&
+      desc === element.getAttribute('desc')
+    )
+      return [];
+
+    const newElement = cloneElement(element, { id, desc });
+
+    const actions: Replace[] = [];
+    actions.push({ old: { element }, new: { element: newElement } });
+
+    const oldId = element.getAttribute('id')!;
+    Array.from(
+      element.ownerDocument.querySelectorAll(
+        `DOType > DA[type="${oldId}"], DAType > BDA[type="${oldId}"]`
+      )
+    ).forEach(oldDa => {
+      const newDa = <Element>oldDa.cloneNode(false);
+      newDa.setAttribute('type', id);
+
+      actions.push({ old: { element: oldDa }, new: { element: newDa } });
+    });
+
+    return [
+      { title: get('datype.action.edit', { oldId, newId: id }), actions },
+    ];
+  };
+}
 
 export function editDaTypeWizard(
   dATypeIdentity: string,
@@ -51,7 +86,7 @@ export function editDaTypeWizard(
       primary: {
         icon: '',
         label: get('save'),
-        action: updateIDNamingAction(datype),
+        action: updateDATpyeAction(datype),
       },
       content: [
         html`<mwc-button

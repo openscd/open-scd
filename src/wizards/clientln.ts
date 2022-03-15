@@ -17,7 +17,7 @@ import {
   WizardActor,
   WizardInput,
 } from '../foundation.js';
-import { clientIcon } from '../icons.js';
+import { clientIcon } from '../icons/icons.js';
 import { openCommunicationMappingWizard } from './commmap-wizards.js';
 
 function getPath(identity: string | number): string {

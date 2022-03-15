@@ -2587,6 +2587,18 @@ export function depth(t: Record<string, unknown>, mem = new WeakSet()): number {
     }
 }
 
+export function getUniqueElementName(
+  parent: Element,
+  tagName: string,
+  iteration = 1
+): string {
+  const newName = 'new' + tagName + iteration;
+  const child = parent.querySelector(`:scope > ${tagName}[name="${newName}"]`);
+
+  if (!child) return newName;
+  else return getUniqueElementName(parent, tagName, ++iteration);
+}
+
 export function findFCDAs(extRef: Element): Element[] {
   if (extRef.tagName !== 'ExtRef' || extRef.closest('Private')) return [];
 
