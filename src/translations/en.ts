@@ -278,7 +278,7 @@ export const en = {
       subscribed: 'Subscribed',
       availableToSubscribe: 'Available to subscribe',
       partiallySubscribed: 'Partially subscribed',
-      noSampledValuesSelected: 'No Sampled Values message selected'
+      noSampledValuesSelected: 'No control block selected'
     }
   },
   'enum-val': {

@@ -274,14 +274,14 @@ export const de: Translations = {
   sampledvalues: {
     none: 'Keine Verbindung vorhanden',
     sampledValuesList: {
-      title: '???'
+      title: 'Sampled Values'
     },
     subscriberIed: {
       title: 'Verbunden mit {{ selected }}',
       subscribed: 'Verbunden',
       availableToSubscribe: 'Kann verbunden werden',
       partiallySubscribed: 'Teilweise verbunden',
-      noSampledValuesSelected: 'Keine Sampled Values ausgewählt'
+      noSampledValuesSelected: 'Keinen Kontrollblock ausgewählt'
     }
   },
   'enum-val': {
