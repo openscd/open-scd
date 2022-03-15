@@ -68,6 +68,17 @@ snapshots["substation-editor looks like the latest snapshot"] =
         mwc-list-item=""
         role="menuitem"
         tabindex="-1"
+        value="PowerTransformer"
+      >
+        <span>
+          PowerTransformer
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
         value="VoltageLevel"
       >
         <span>
@@ -144,6 +155,17 @@ snapshots["substation-editor with readonly property looks like the latest snapsh
       >
         <span>
           LNode
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="PowerTransformer"
+      >
+        <span>
+          PowerTransformer
         </span>
       </mwc-list-item>
       <mwc-list-item

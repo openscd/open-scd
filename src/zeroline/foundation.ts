@@ -100,10 +100,6 @@ export function getAttachedIeds(
   };
 }
 
-export type ElementEditor = Element & {
-  element: Element;
-};
-
 export function cloneSubstationElement(
   editor: BayEditor | VoltageLevelEditor | SubstationEditor
 ): void {
@@ -144,6 +140,11 @@ export function cloneSubstationElement(
   );
 }
 
+export type ElementEditor = Element & {
+  element: Element;
+};
+export type ElementEditorClass<T extends ElementEditor> = new () => T;
+
 /**
  * Moves the element edited by `editor` to the place before the next `Child`
  * editor selected or to the end of the next `Parent` editor selected by mouse
@@ -152,10 +153,14 @@ export function cloneSubstationElement(
  * The move action can be aborted by clicking on something other than a `Child`
  * or `Parent` editor or by hitting the escape key on the keyboard.
  */
-export function startMove<E extends ElementEditor, P extends ElementEditor>(
+export function startMove<
+  E extends ElementEditor,
+  C extends ElementEditorClass<ElementEditor>,
+  P extends ElementEditorClass<ElementEditor>>
+(
   editor: E,
-  Child: new () => E,
-  Parent: new () => P
+  childClass: C,
+  parentClasses: P[]
 ): void {
   if (!editor.element) return;
 
@@ -179,19 +184,17 @@ export function startMove<E extends ElementEditor, P extends ElementEditor>(
 
     if (e instanceof KeyboardEvent && e.key === 'Escape') return;
 
-    const targetEditor = e
-      .composedPath()
-      .find(e => e instanceof Child || e instanceof Parent);
-
+    const targetEditor = e.composedPath()
+      .find(et => et instanceof childClass || checkInstanceOfParentClass(et, parentClasses));
     if (targetEditor === undefined || targetEditor === editor) return;
 
     const destination =
-      targetEditor instanceof Child
+      targetEditor instanceof childClass
         ? {
             parent: targetEditor.element.parentElement!,
             reference: targetEditor.element,
           }
-        : { parent: (<P>targetEditor).element, reference: null };
+        : { parent: (<E>targetEditor).element, reference: null };
 
     if (!destination.parent) return;
 
@@ -213,6 +216,20 @@ export function startMove<E extends ElementEditor, P extends ElementEditor>(
 
   window.addEventListener('click', moveToTarget, true);
   window.addEventListener('keydown', moveToTarget, true);
+}
+
+/**
+ * Check if the eventTarget that triggered the event is one of the classes that
+ * we accepted as target to use to move an element to.
+ *
+ * @param et - The Event Target.
+ * @param classes - The list of Classes which are acceptable.
+ */
+function checkInstanceOfParentClass<E extends ElementEditor>(
+  et: EventTarget,
+  classes: ElementEditorClass<E>[]): boolean {
+  const targetEditor = classes.find(clazz => et instanceof clazz);
+  return targetEditor !== undefined;
 }
 
 /**
@@ -259,6 +276,14 @@ export const styles = css`
   abbr {
     text-decoration: none;
     border-bottom: none;
+  }
+
+  #powertransformercontainer {
+    display: grid;
+    grid-gap: 12px;
+    padding: 8px 12px 16px;
+    box-sizing: border-box;
+    grid-template-columns: repeat(auto-fit, minmax(64px, auto));
   }
 
   #iedcontainer {
