@@ -155,7 +155,7 @@ export class VoltageLevelEditor extends LitElement {
       <abbr slot="action" title="${translate('move')}">
         <mwc-icon-button
           icon="forward"
-          @click=${() => startMove(this, VoltageLevelEditor, SubstationEditor)}
+          @click=${() => startMove(this, VoltageLevelEditor, [SubstationEditor])}
         ></mwc-icon-button>
       </abbr>
       <abbr slot="action" title="${translate('remove')}">

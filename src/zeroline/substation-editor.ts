@@ -145,7 +145,7 @@ export class SubstationEditor extends LitElement {
       <abbr slot="action" title="${translate('move')}">
         <mwc-icon-button
           icon="forward"
-          @click=${() => startMove(this, SubstationEditor, SubstationEditor)}
+          @click=${() => startMove(this, SubstationEditor, [SubstationEditor])}
         ></mwc-icon-button>
       </abbr>
       <abbr slot="action" title="${translate('remove')}">

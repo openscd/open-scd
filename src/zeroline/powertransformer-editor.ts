@@ -11,11 +11,13 @@ import '@material/mwc-fab';
 import '@material/mwc-icon';
 
 import '../action-icon.js';
-import { powerTransformerTwoWindingIcon } from '../icons.js';
+import { powerTransformerTwoWindingIcon } from '../icons/icons.js';
 import { wizards } from '../wizards/wizard-library.js';
 import { newActionEvent, newWizardEvent } from '../foundation.js';
 import { startMove } from "./foundation.js";
 import { SubstationEditor } from "./substation-editor.js";
+import { BayEditor } from "./bay-editor.js";
+import { VoltageLevelEditor } from "./voltage-level-editor.js";
 
 /** [[`SubstationEditor`]] subeditor for a child-less `PowerTransformer` element. */
 @customElement('powertransformer-editor')
@@ -72,7 +74,7 @@ export class PowerTransformerEditor extends LitElement {
         slot="action"
         mini
         @click="${() => {
-          startMove(this, PowerTransformerEditor, SubstationEditor)//[BayEditor, VoltageLevelEditor, SubstationEditor])
+          startMove(this, PowerTransformerEditor, [SubstationEditor, VoltageLevelEditor, BayEditor])
         }}"
         icon="forward"
       ></mwc-fab>
