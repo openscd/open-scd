@@ -229,25 +229,49 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
   ];
 }
 
-function getDescendantClasses(nsd74: XMLDocument, base: string): Element[] {
+function getDescendantClasses(
+  nsd74: XMLDocument,
+  base: string,
+  otherNsd?: XMLDocument
+): Element[] {
   if (base === '') return [];
-  const descendants = getDescendantClasses(
-    nsd74,
-    nsd74
-      .querySelector(`LNClass[name="${base}"], AbstractLNClass[name="${base}"]`)
-      ?.getAttribute('base') ?? ''
-  );
-  return descendants.concat(
-    Array.from(
-      nsd74.querySelectorAll(
-        `LNClass[name="${base}"], AbstractLNClass[name="${base}"]`
-      )
+
+  const currentNsd =
+    !otherNsd ||
+    nsd74.querySelector(
+      `LNClass[name="${base}"], AbstractLNClass[name="${base}"]`
+    )
+      ? nsd74
+      : otherNsd;
+
+  const descendants = Array.from(
+    nsd74.querySelectorAll(
+      `LNClass[name="${base}"], AbstractLNClass[name="${base}"]`
     )
   );
+
+  const otherDescendants = Array.from(
+    otherNsd?.querySelectorAll(
+      `LNClass[name="${base}"], AbstractLNClass[name="${base}"]`
+    ) ?? []
+  );
+
+  const parentDescendants = getDescendantClasses(
+    nsd74,
+    currentNsd
+      .querySelector(`LNClass[name="${base}"], AbstractLNClass[name="${base}"]`)
+      ?.getAttribute('base') ?? '',
+    otherNsd
+  );
+  return parentDescendants.concat(descendants, otherDescendants);
 }
 
-function getAllDataObjects(nsd74: XMLDocument, base: string): Element[] {
-  const lnodeclasses = getDescendantClasses(nsd74, base);
+function getAllDataObjects(
+  nsd74: XMLDocument,
+  base: string,
+  nsd7420?: XMLDocument
+): Element[] {
+  const lnodeclasses = getDescendantClasses(nsd74, base, nsd7420);
 
   return lnodeclasses.flatMap(lnodeclass =>
     Array.from(lnodeclass.querySelectorAll('DataObject'))
@@ -366,7 +390,8 @@ function addPredefinedLNodeType(
 function startLNodeTypeCreate(
   parent: Element,
   templates: XMLDocument,
-  nsd74: XMLDocument
+  nsd74: XMLDocument,
+  nsd7420: XMLDocument
 ): WizardActor {
   return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
     const id = getValue(inputs.find(i => i.label === 'id')!);
@@ -397,7 +422,7 @@ function startLNodeTypeCreate(
     if (templateLNodeType)
       return addPredefinedLNodeType(parent, newLNodeType, templateLNodeType);
 
-    const allDo = getAllDataObjects(nsd74, value!);
+    const allDo = getAllDataObjects(nsd74, value!, nsd7420);
     wizard.dispatchEvent(
       newWizardEvent(createLNodeTypeHelperWizard(parent, newLNodeType, allDo))
     );
@@ -430,7 +455,8 @@ function onLnClassChange(e: Event, templates: XMLDocument): void {
 export function createLNodeTypeWizard(
   parent: Element,
   templates: Document,
-  nsd74: XMLDocument
+  nsd74: XMLDocument,
+  nsd7420: XMLDocument
 ): Wizard {
   return [
     {
@@ -438,7 +464,7 @@ export function createLNodeTypeWizard(
       primary: {
         icon: '',
         label: get('next') + '...',
-        action: startLNodeTypeCreate(parent, templates, nsd74),
+        action: startLNodeTypeCreate(parent, templates, nsd74, nsd7420),
       },
       content: [
         html`<mwc-select
@@ -489,7 +515,26 @@ export function createLNodeTypeWizard(
                 value="${className}"
                 ><span>${className}</span>
                 <span slot="meta"
-                  >${getAllDataObjects(nsd74, className).length}</span
+                  >${getAllDataObjects(nsd74, className, nsd7420).length}</span
+                >
+              </mwc-list-item>`;
+            }
+          )}
+          <mwc-list-item noninteractive
+            >Empty lnClasses from IEC 61850-7-420</mwc-list-item
+          >
+          <li divider role="separator"></li>
+          ${Array.from(nsd7420.querySelectorAll('LNClasses > LNClass')).map(
+            lnClass => {
+              const className = lnClass.getAttribute('name') ?? '';
+              return html`<mwc-list-item
+                style="min-width:200px"
+                graphic="icon"
+                hasMeta
+                value="${className}"
+                ><span>${className}</span>
+                <span slot="meta"
+                  >${getAllDataObjects(nsd74, className, nsd7420).length}</span
                 >
               </mwc-list-item>`;
             }
