@@ -12,6 +12,7 @@ import '../wizard-select.js';
 import '../wizard-textfield.js';
 import {
   cloneElement,
+  ComplexAction,
   Delete,
   EditorAction,
   getValue,
@@ -47,8 +48,10 @@ function getSMV(element: Element): Element | null {
   );
 }
 
-export function removeSampledValueControlAction(element: Element): Delete[] {
-  if (!element.parentElement) return [];
+export function removeSampledValueControlAction(
+  element: Element
+): ComplexAction | null {
+  if (!element.parentElement) return null;
 
   const dataSet = element.parentElement!.querySelector(
     `DataSet[name="${element.getAttribute('datSet')}"]`
@@ -90,7 +93,17 @@ export function removeSampledValueControlAction(element: Element): Delete[] {
       },
     });
 
-  return actions;
+  const name = element.getAttribute('name')!;
+  const iedName = element.closest('IED')?.getAttribute('name') ?? '';
+
+  return {
+    title: get('controlblock.action.remove', {
+      type: element.tagName,
+      name,
+      iedName,
+    }),
+    actions,
+  };
 }
 
 interface ContentOptions {
@@ -273,10 +286,11 @@ export function editSampledValueControlWizard(element: Element): Wizard {
           label="${translate('remove')}"
           icon="delete"
           @click=${(e: MouseEvent) => {
-            const deleteActions = removeSampledValueControlAction(element);
-            deleteActions.forEach(deleteAction =>
-              e.target?.dispatchEvent(newActionEvent(deleteAction))
-            );
+            const complexAction = removeSampledValueControlAction(element);
+
+            if (complexAction)
+              e.target?.dispatchEvent(newActionEvent(complexAction));
+
             e.target?.dispatchEvent(newWizardEvent());
           }}
         ></mwc-button>`,

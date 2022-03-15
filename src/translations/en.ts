@@ -482,6 +482,13 @@ export const en = {
   report: {
     wizard: { location: 'Select Report Control Location' },
   },
+  controlblock: {
+    action: {
+      edit: 'Edited {{type}} "{{name}}" in IED {{iedName}}',
+      remove:
+        'Removed {{type}} "{{name}}" and its referenced elements from IED {{iedName}}',
+    },
+  },
   add: 'Add',
   new: 'New',
   remove: 'Remove',

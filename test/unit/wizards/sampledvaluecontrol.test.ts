@@ -5,6 +5,7 @@ import '../../mock-wizard.js';
 import { MockWizard } from '../../mock-wizard.js';
 
 import {
+  Delete,
   isDelete,
   isReplace,
   Replace,
@@ -321,7 +322,9 @@ describe('Wizards for SCL element SampledValueControl', () => {
         const sampledValueControl = ln01smv.querySelector(
           'SampledValueControl'
         )!;
-        const actions = removeSampledValueControlAction(sampledValueControl);
+        const actions = <Delete[]>(
+          removeSampledValueControlAction(sampledValueControl)?.actions
+        );
         expect(actions.length).to.equal(2);
         expect(actions[0]).to.satisfy(isDelete);
         expect(actions[0].old.element).to.equal(sampledValueControl);
@@ -335,7 +338,9 @@ describe('Wizards for SCL element SampledValueControl', () => {
         const sampledValueControl = ln02smv2.querySelector(
           'SampledValueControl'
         )!;
-        const actions = removeSampledValueControlAction(sampledValueControl);
+        const actions = <Delete[]>(
+          removeSampledValueControlAction(sampledValueControl)?.actions
+        );
         expect(actions.length).to.equal(1);
         expect(actions[0]).to.satisfy(isDelete);
         expect(actions[0].old.element).to.equal(sampledValueControl);
@@ -345,7 +350,9 @@ describe('Wizards for SCL element SampledValueControl', () => {
         const sampledValueControl = ln02gse.querySelector(
           'SampledValueControl'
         )!;
-        const actions = removeSampledValueControlAction(sampledValueControl);
+        const actions = <Delete[]>(
+          removeSampledValueControlAction(sampledValueControl)?.actions
+        );
         expect(actions.length).to.equal(1);
         expect(actions[0]).to.satisfy(isDelete);
         expect(actions[0].old.element).to.equal(sampledValueControl);
@@ -355,22 +362,26 @@ describe('Wizards for SCL element SampledValueControl', () => {
         const sampledValueControl = ln02rp.querySelector(
           'SampledValueControl'
         )!;
-        const actions = removeSampledValueControlAction(sampledValueControl);
+        const actions = <Delete[]>(
+          removeSampledValueControlAction(sampledValueControl)?.actions
+        );
         expect(actions.length).to.equal(1);
         expect(actions[0]).to.satisfy(isDelete);
         expect(actions[0].old.element).to.equal(sampledValueControl);
       });
 
       it('does not remove with missing parent element', () => {
-        const actions = removeSampledValueControlAction(missingparent);
-        expect(actions.length).to.equal(0);
+        const action = removeSampledValueControlAction(missingparent);
+        expect(action).to.be.null;
       });
 
       it('removes referenced SMV element in the Communication section', () => {
         const sampledValueControl = doc.querySelector(
           'IED[name="IED3"] SampledValueControl'
         )!;
-        const actions = removeSampledValueControlAction(sampledValueControl);
+        const actions = <Delete[]>(
+          removeSampledValueControlAction(sampledValueControl)?.actions
+        );
         expect(actions.length).to.equal(3);
         expect(actions[0]).to.satisfy(isDelete);
         expect(actions[0].old.element).to.equal(sampledValueControl);
