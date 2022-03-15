@@ -30,7 +30,6 @@ import { emptyWizard, wizards } from '../wizards/wizard-library.js';
 import {
   cloneSubstationElement,
   startMove,
-  selectors,
   styles,
 } from './foundation.js';
 

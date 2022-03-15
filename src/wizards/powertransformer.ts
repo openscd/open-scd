@@ -3,9 +3,12 @@ import { get, translate } from 'lit-translate';
 
 import {
   createElement,
-  EditorAction, getValue,
+  EditorAction,
+  getValue,
   isPublic,
-  Wizard, WizardActor, WizardInput,
+  Wizard,
+  WizardActor,
+  WizardInput,
 } from '../foundation.js';
 
 import { updateNamingAction } from "./foundation/actions.js";
