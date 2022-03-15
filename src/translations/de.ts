@@ -472,6 +472,11 @@ export const de: Translations = {
   report: {
     wizard: { location: 'Ablageort der Reports wählen' },
   },
+  controlblock: {
+    action: {
+      edit: '{{type}} "{{name}}" in IED {{iedName}} bearbeitet',
+    },
+  },
   add: 'Hinzufügen',
   new: 'Neu',
   remove: 'Entfernen',

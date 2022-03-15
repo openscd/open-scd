@@ -11,7 +11,6 @@ import {
   isCreate,
   isDelete,
   isSimple,
-  isReplace,
   Replace,
   WizardInput,
 } from '../../../src/foundation.js';
@@ -162,9 +161,9 @@ describe('Wizards for SCL ReportControl element', () => {
         expect(actionEvent).to.be.calledOnce;
 
         const action = actionEvent.args[0][0].detail.action;
-        expect(action).to.satisfy(isReplace);
+        expect(action).to.not.satisfy(isSimple);
 
-        const updateAction = <Replace>action;
+        const updateAction = <Replace>(<ComplexAction>action).actions[0];
         expect(updateAction.old.element).to.have.attribute('name', 'ReportCb');
         expect(updateAction.new.element).to.have.attribute(
           'name',
@@ -183,9 +182,9 @@ describe('Wizards for SCL ReportControl element', () => {
         expect(actionEvent).to.be.calledOnce;
 
         const action = actionEvent.args[0][0].detail.action;
-        expect(action).to.satisfy(isReplace);
+        expect(action).to.not.satisfy(isSimple);
 
-        const updateAction = <Replace>action;
+        const updateAction = <Replace>(<ComplexAction>action).actions[0];
         expect(updateAction.old.element).to.not.have.attribute('desc');
         expect(updateAction.new.element).to.have.attribute('desc', 'myDesc');
       });
@@ -200,9 +199,9 @@ describe('Wizards for SCL ReportControl element', () => {
         expect(actionEvent).to.be.calledOnce;
 
         const action = actionEvent.args[0][0].detail.action;
-        expect(action).to.satisfy(isReplace);
+        expect(action).to.not.satisfy(isSimple);
 
-        const updateAction = <Replace>action;
+        const updateAction = <Replace>(<ComplexAction>action).actions[0];
         expect(updateAction.old.element).to.have.attribute(
           'rptID',
           'reportCb1'
@@ -223,9 +222,9 @@ describe('Wizards for SCL ReportControl element', () => {
         expect(actionEvent).to.be.calledOnce;
 
         const action = actionEvent.args[0][0].detail.action;
-        expect(action).to.satisfy(isReplace);
+        expect(action).to.not.satisfy(isSimple);
 
-        const updateAction = <Replace>action;
+        const updateAction = <Replace>(<ComplexAction>action).actions[0];
         expect(updateAction.old.element).to.have.attribute('indexed', 'true');
         expect(updateAction.new.element).to.have.attribute('indexed', 'false');
       });
@@ -240,9 +239,9 @@ describe('Wizards for SCL ReportControl element', () => {
         expect(actionEvent).to.be.calledOnce;
 
         const action = actionEvent.args[0][0].detail.action;
-        expect(action).to.satisfy(isReplace);
+        expect(action).to.not.satisfy(isSimple);
 
-        const updateAction = <Replace>action;
+        const updateAction = <Replace>(<ComplexAction>action).actions[0];
         expect(updateAction.old.element).to.have.attribute('bufTime', '100');
         expect(updateAction.new.element).to.have.attribute('bufTime', '54');
       });
@@ -258,9 +257,9 @@ describe('Wizards for SCL ReportControl element', () => {
         expect(actionEvent).to.be.calledOnce;
 
         const action = actionEvent.args[0][0].detail.action;
-        expect(action).to.satisfy(isReplace);
+        expect(action).to.not.satisfy(isSimple);
 
-        const updateAction = <Replace>action;
+        const updateAction = <Replace>(<ComplexAction>action).actions[0];
         expect(updateAction.old.element).to.not.have.attribute('intgPd');
         expect(updateAction.new.element).to.have.attribute('intgPd', '1000');
       });
@@ -275,9 +274,9 @@ describe('Wizards for SCL ReportControl element', () => {
         expect(actionEvent).to.be.calledOnce;
 
         const action = actionEvent.args[0][0].detail.action;
-        expect(action).to.satisfy(isReplace);
+        expect(action).to.not.satisfy(isSimple);
 
-        const updateAction = <Replace>action;
+        const updateAction = <Replace>(<ComplexAction>action).actions[0];
         expect(updateAction.new.element.tagName).to.equal('RptEnabled');
         expect(updateAction.old.element.tagName).to.equal('RptEnabled');
         expect(updateAction.old.element).to.have.attribute('max', '5');
@@ -324,10 +323,13 @@ describe('Wizards for SCL ReportControl element', () => {
           expect(actionEvent).to.be.calledOnce;
 
           const action = actionEvent.args[0][0].detail.action;
-          expect(action).to.satisfy(isCreate);
+          expect(action).to.not.satisfy(isSimple);
+          expect((<ComplexAction>action).actions[0]).to.satisfy(isCreate);
 
-          const updateAction = <Replace>action;
-          expect(updateAction.new.element.tagName).to.equal('RptEnabled');
+          const updateAction = <Create>(<ComplexAction>action).actions[0];
+          expect((<Element>updateAction.new.element).tagName).to.equal(
+            'RptEnabled'
+          );
           expect(updateAction.new.element).to.have.attribute('max', '6');
         });
       });

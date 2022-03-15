@@ -420,7 +420,7 @@ function updateReportControlAction(element: Element): WizardActor {
 
     const max = getValue(inputs.find(i => i.label === 'max Clients')!);
 
-    let rptEnabledAction: EditorAction | null = null;
+    let rptEnabledAction: SimpleAction | null = null;
     if (
       max !== (element.querySelector('RptEnabled')?.getAttribute('max') ?? null)
     )
@@ -430,10 +430,22 @@ function updateReportControlAction(element: Element): WizardActor {
         element
       );
 
-    const actions: EditorAction[] = [];
+    const actions: SimpleAction[] = [];
     if (reportControlAction) actions.push(reportControlAction);
     if (rptEnabledAction) actions.push(rptEnabledAction);
-    return actions;
+
+    const name = attributes['name']!;
+    const iedName = element.closest('IED')!.getAttribute('name')!;
+    const complexAction = {
+      title: get('controlblock.action.edit', {
+        type: 'Report',
+        name,
+        iedName,
+      }),
+      actions,
+    };
+
+    return actions.length ? [complexAction] : [];
   };
 }
 
