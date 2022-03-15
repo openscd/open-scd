@@ -10,7 +10,7 @@ import '@material/mwc-icon';
 import '@material/mwc-list/mwc-list-item';
 
 import { newSampledValuesSelectEvent } from '../foundation.js';
-import { smvIcon } from '../../../icons.js';
+import { smvIcon } from '../../../icons/icons.js';
 
 @customElement('sampled-values-message')
 export class SampledValuesMessage extends LitElement {

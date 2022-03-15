@@ -61,3 +61,23 @@ snapshots["with a DA element and child elements are toggled looks like the lates
 `;
 /* end snapshot with a DA element and child elements are toggled looks like the latest snapshot */
 
+snapshots["with a DA element looks like the latest snapshot"] = 
+`<action-pane
+  icon=""
+  tabindex="0"
+>
+  <abbr slot="action">
+    <mwc-icon-button
+      icon="info"
+      title="ctlModel"
+    >
+    </mwc-icon-button>
+  </abbr>
+  <h6>
+  </h6>
+</action-pane>
+`;
+/* end snapshot with a DA element looks like the latest snapshot */
+
+he latest snapshot with a DA element containing and a DAI */
+
