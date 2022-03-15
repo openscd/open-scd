@@ -27,7 +27,6 @@ snapshots["Cleanup without a doc loaded looks like the latest snapshot"] =
         icon="delete"
         label="[cleanup.unreferencedDataSets.deleteButton] (0)"
         outlined=""
-        slot="secondaryAction"
       >
       </mwc-button>
     </footer>
