@@ -53,6 +53,21 @@ const fcdaReferences = [
 ];
 
 /**
+ * Get all the FCDA attributes containing values from a specific element.
+ * @param elementContainingFcdaReferences - The element to use
+ * @returns FCDA references
+ */
+function getFcdaReferences(elementContainingFcdaReferences: Element): string {
+  return fcdaReferences
+  .map(fcdaRef =>
+    elementContainingFcdaReferences.getAttribute(fcdaRef)
+      ? `[${fcdaRef}="${elementContainingFcdaReferences.getAttribute(fcdaRef)}"]`
+      : ''
+  )
+  .join('');
+}
+
+/**
  * Internal persistent state, so it's not lost when
  * subscribing / unsubscribing.
  */
@@ -145,13 +160,7 @@ export class SubscriberIEDList extends LitElement {
             if (
               inputs.querySelector(
                 `ExtRef[iedName=${localState.currentGooseIEDName}]` +
-                  `${fcdaReferences
-                    .map(fcdaRef =>
-                      fcda.getAttribute(fcdaRef)
-                        ? `[${fcdaRef}="${fcda.getAttribute(fcdaRef)}"]`
-                        : ''
-                    )
-                    .join('')}`
+                  `${getFcdaReferences(fcda)}`
               )
             ) {
               numberOfLinkedExtRefs++;
@@ -218,13 +227,7 @@ export class SubscriberIEDList extends LitElement {
       if (
         !inputsElement!.querySelector(
           `ExtRef[iedName=${localState.currentGooseIEDName}]` +
-            `${fcdaReferences
-              .map(fcdaRef =>
-                fcda.getAttribute(fcdaRef)
-                  ? `[${fcdaRef}="${fcda.getAttribute(fcdaRef)}"]`
-                  : ''
-              )
-              .join('')}`
+            `${getFcdaReferences(fcda)}`
         )
       ) {
         const extRef = createElement(ied.ownerDocument, 'ExtRef', {
@@ -273,13 +276,7 @@ export class SubscriberIEDList extends LitElement {
       localState.currentDataset!.querySelectorAll('FCDA').forEach(fcda => {
         const extRef = inputs.querySelector(
           `ExtRef[iedName=${localState.currentGooseIEDName}]` +
-            `${fcdaReferences
-              .map(fcdaRef =>
-                fcda.getAttribute(fcdaRef)
-                  ? `[${fcdaRef}="${fcda.getAttribute(fcdaRef)}"]`
-                  : ''
-              )
-              .join('')}`
+            `${getFcdaReferences(fcda)}`
         );
 
         if (extRef) actions.push({ old: { parent: inputs, element: extRef } });
@@ -323,7 +320,7 @@ export class SubscriberIEDList extends LitElement {
       if (!inputsMap[id]) inputsMap[id] = <Element>(inputsElement.cloneNode(true));
 
       const linkedExtRef = inputsMap[id].querySelector(`ExtRef[iedName=${extRef.getAttribute('iedName')}]` +
-      `${this.getFcdaReferences(extRef)}`);
+      `${getFcdaReferences(extRef)}`);
   
       if (linkedExtRef) inputsMap[id].removeChild(linkedExtRef);
     }
@@ -343,21 +340,6 @@ export class SubscriberIEDList extends LitElement {
     });
   
     return extendedDeleteActions;
-  }
-
-  /**
-   * Get all the FCDA attributes containing values from a specific element.
-   * @param elementContainingFcdaReferences - The element to use
-   * @returns FCDA references
-   */
-  private getFcdaReferences(elementContainingFcdaReferences: Element): string {
-    return fcdaReferences
-    .map(fcdaRef =>
-      elementContainingFcdaReferences.getAttribute(fcdaRef)
-        ? `[${fcdaRef}="${elementContainingFcdaReferences.getAttribute(fcdaRef)}"]`
-        : ''
-    )
-    .join('');
   }
 
   protected updated(): void {
