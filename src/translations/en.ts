@@ -213,7 +213,9 @@ export const en = {
     wizard: {
       nameHelper: 'Power transformer name',
       descHelper: 'Power transformer description',
+      typeHelper: 'Power transformer type',
       title: {
+        add: 'Add power transformer',
         edit: 'Edit power transformer',
       },
     },
@@ -284,6 +286,19 @@ export const en = {
     missing: 'DataTypeTemplates missing',
     add: 'Add DataTypeTemplates',
   },
+  sampledvalues: {
+    none: 'none',
+    sampledValuesList: {
+      title: 'Sampled Values'
+    },
+    subscriberIed: {
+      title: 'Subscriber of {{ selected }}',
+      subscribed: 'Subscribed',
+      availableToSubscribe: 'Available to subscribe',
+      partiallySubscribed: 'Partially subscribed',
+      noSampledValuesSelected: 'No control block selected'
+    }
+  },
   'enum-val': {
     wizard: {
       title: {
@@ -299,6 +314,9 @@ export const en = {
         edit: 'Edit EnumType',
       },
     },
+    action: {
+      edit: 'Change EnumType ID "{{oldId}}" and its DA references to {{newId}} ',
+    },
   },
   datype: {
     wizard: {
@@ -306,6 +324,9 @@ export const en = {
         add: 'Add DAType',
         edit: 'Edit DAType',
       },
+    },
+    action: {
+      edit: 'Change DAType ID "{{oldId}}" and its DA references to {{newId}} ',
     },
   },
   bda: {
@@ -348,6 +369,9 @@ export const en = {
       },
       enums: 'Default enumerations',
     },
+    action: {
+      edit: 'Change DOType ID "{{oldId}}" and its DO references to {{newId}} ',
+    },
   },
   lnodetype: {
     wizard: {
@@ -356,6 +380,9 @@ export const en = {
         edit: 'Edit LNodeType',
         select: 'Select Data Objects',
       },
+    },
+    action: {
+      edit: 'Change LNodeType ID "{{oldId}}" and its LN references to {{newId}} ',
     },
     autoimport: 'Use LN class from OpenSCD template',
     missinglnclass: 'Missing pre-defined LN class',
@@ -473,7 +500,14 @@ export const en = {
       title: 'Unreferenced Datasets',
       deleteButton: 'Remove Selected Datasets',
       tooltip: 'Datasets without a reference to an associated GOOSE, Log, Report or Sampled Value Control Block'
-    }
+    },
+  },
+  controlblock: {
+    action: {
+      edit: 'Edited {{type}} "{{name}}" in IED {{iedName}}',
+      remove:
+        'Removed {{type}} "{{name}}" and its referenced elements from IED {{iedName}}',
+    },
   },
   add: 'Add',
   new: 'New',

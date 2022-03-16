@@ -22,17 +22,13 @@ import {
   newSubWizardEvent,
   newWizardEvent,
   patterns,
+  Replace,
   selector,
   Wizard,
   WizardActor,
   WizardInput,
 } from '../../foundation.js';
-import {
-  CreateOptions,
-  updateIDNamingAction,
-  UpdateOptions,
-  WizardOptions,
-} from './foundation.js';
+import { CreateOptions, UpdateOptions, WizardOptions } from './foundation.js';
 
 function nextOrd(parent: Element): string {
   const maxOrd = Math.max(
@@ -258,6 +254,38 @@ export function createEnumTypeWizard(
   ];
 }
 
+function updateEnumTpyeAction(element: Element): WizardActor {
+  return (inputs: WizardInput[]): EditorAction[] => {
+    const id = getValue(inputs.find(i => i.label === 'id')!)!;
+    const desc = getValue(inputs.find(i => i.label === 'desc')!);
+
+    if (
+      id === element.getAttribute('id') &&
+      desc === element.getAttribute('desc')
+    )
+      return [];
+
+    const newElement = cloneElement(element, { id, desc });
+
+    const actions: Replace[] = [];
+    actions.push({ old: { element }, new: { element: newElement } });
+
+    const oldId = element.getAttribute('id')!;
+    Array.from(
+      element.ownerDocument.querySelectorAll(
+        `DOType > DA[type="${oldId}"], DAType > BDA[type="${oldId}"]`
+      )
+    ).forEach(oldDa => {
+      const newDa = <Element>oldDa.cloneNode(false);
+      newDa.setAttribute('type', id);
+
+      actions.push({ old: { element: oldDa }, new: { element: newDa } });
+    });
+
+    return [{ title: get('enum.action.edit', { oldId, newId: id }), actions }];
+  };
+}
+
 export function eNumTypeEditWizard(
   eNumTypeIdentity: string,
   doc: XMLDocument
@@ -272,7 +300,7 @@ export function eNumTypeEditWizard(
       primary: {
         icon: '',
         label: get('save'),
-        action: updateIDNamingAction(enumtype),
+        action: updateEnumTpyeAction(enumtype),
       },
       content: [
         html`<mwc-button
