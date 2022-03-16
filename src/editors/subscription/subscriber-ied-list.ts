@@ -268,7 +268,7 @@ export class SubscriberIEDList extends LitElement {
    * @param ied - Given IED to unsubscribe.
    */
   private unsubscribe(ied: Element): void {
-    let actions: Delete[] = [];
+    const actions: Delete[] = [];
     ied.querySelectorAll('LN0 > Inputs, LN > Inputs').forEach(inputs => {
       localState.currentDataset!.querySelectorAll('FCDA').forEach(fcda => {
         const extRef = inputs.querySelector(
@@ -291,7 +291,7 @@ export class SubscriberIEDList extends LitElement {
     this.dispatchEvent(
       newActionEvent({
         title: 'Disconnect',
-        actions: this.removeToBeEmptiedInputs(actions),
+        actions: this.extendDeleteActions(actions),
       })
     );
 
@@ -308,40 +308,56 @@ export class SubscriberIEDList extends LitElement {
    * @param extRefDeleteActions - All Delete actions for ExtRefs.
    * @returns Possible delete actions for empty Inputs elements.
    */
-  private removeToBeEmptiedInputs(extRefDeleteActions: Delete[]): Delete[] {
+  private extendDeleteActions(extRefDeleteActions: Delete[]): Delete[] {
     if (!extRefDeleteActions.length) return [];
   
-    // needed for later query to the DOM
-    const doc = extRefDeleteActions[0].old.parent.ownerDocument!;
-  
-    const inputsDeleteActions: Delete[] = [];
+    // Initialize with the already existing ExtRef Delete actions.
+    const extendedDeleteActions: Delete[] = extRefDeleteActions;
     const inputsMap: Record<string, Element> = {};
   
-    // save clone Inputs with identity to map, remove extRef from cloned inputs
     for (const extRefDeleteAction of extRefDeleteActions) {
       const extRef = <Element>extRefDeleteAction.old.element;
-      const inputs = <Element>extRefDeleteAction.old.parent;
+      const inputsElement = <Element>extRefDeleteAction.old.parent;
 
-      const id = identity(inputs);
+      const id = identity(inputsElement);
+      if (!inputsMap[id]) inputsMap[id] = <Element>(inputsElement.cloneNode(true));
+
+      const linkedExtRef = inputsMap[id].querySelector(`ExtRef[iedName=${extRef.getAttribute('iedName')}]` +
+      `${this.getFcdaReferences(extRef)}`);
   
-      if (!inputsMap[id]) inputsMap[id] = inputs;
-  
-      inputsMap[id].removeChild(extRef);
+      if (linkedExtRef) inputsMap[id].removeChild(linkedExtRef);
     }
   
     // create delete action for each empty inputs
     Object.entries(inputsMap).forEach(([key, value]) => {
       if (value.children.length ! == 0) {
+        const doc = extRefDeleteActions[0].old.parent.ownerDocument!;
         const inputs = doc.querySelector(selector('Inputs', key));
   
-        if (inputs && inputs.parentElement)
-          inputsDeleteActions.push({
+        if (inputs && inputs.parentElement) {
+          extendedDeleteActions.push({
             old: { parent: inputs.parentElement, element: inputs },
           });
+        }
       }
     });
   
-    return inputsDeleteActions;
+    return extendedDeleteActions;
+  }
+
+  /**
+   * Get all the FCDA attributes containing values from a specific element.
+   * @param elementContainingFcdaReferences - The element to use
+   * @returns FCDA references
+   */
+  private getFcdaReferences(elementContainingFcdaReferences: Element): string {
+    return fcdaReferences
+    .map(fcdaRef =>
+      elementContainingFcdaReferences.getAttribute(fcdaRef)
+        ? `[${fcdaRef}="${elementContainingFcdaReferences.getAttribute(fcdaRef)}"]`
+        : ''
+    )
+    .join('');
   }
 
   protected updated(): void {
