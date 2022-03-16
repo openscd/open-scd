@@ -1,7 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["subscriber-ied-list looks like the latest snapshot"] = 
+snapshots["subscriber-ied-list initially looks like the latest snapshot"] = 
 `<section>
   <h1>
     [subscription.subscriberIed.title]
@@ -19,5 +19,5 @@ snapshots["subscriber-ied-list looks like the latest snapshot"] =
   </mwc-list>
 </section>
 `;
-/* end snapshot subscriber-ied-list looks like the latest snapshot */
+/* end snapshot subscriber-ied-list initially looks like the latest snapshot */
 
