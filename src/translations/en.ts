@@ -286,6 +286,19 @@ export const en = {
     missing: 'DataTypeTemplates missing',
     add: 'Add DataTypeTemplates',
   },
+  sampledvalues: {
+    none: 'none',
+    sampledValuesList: {
+      title: 'Sampled Values'
+    },
+    subscriberIed: {
+      title: 'Subscriber of {{ selected }}',
+      subscribed: 'Subscribed',
+      availableToSubscribe: 'Available to subscribe',
+      partiallySubscribed: 'Partially subscribed',
+      noSampledValuesSelected: 'No control block selected'
+    }
+  },
   'enum-val': {
     wizard: {
       title: {
