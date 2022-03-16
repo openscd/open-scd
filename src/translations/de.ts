@@ -499,6 +499,14 @@ export const de: Translations = {
   report: {
     wizard: { location: 'Ablageort der Reports wählen' },
   },
+  cleanup: {
+    unreferencedDataSets: {
+      title: 'Nicht referenzierte Datensätze',
+      deleteButton: 'Ausgewählten Datensatz entfernen',
+      tooltip:
+        'DatenSätze ohne Verweis auf einen zugehörigen GOOSE-, Log-, Report- oder Sampled Value Control Block',
+    },
+  },
   controlblock: {
     action: {
       edit: '{{type}} "{{name}}" in IED {{iedName}} bearbeitet',

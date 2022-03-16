@@ -134,6 +134,13 @@ export const officialPlugins = [
     position: 'middle'
   },
   {
+    name: 'Cleanup',
+    src: '/src/editors/Cleanup.js',
+    icon: 'cleaning_services',
+    default: false,
+    kind: 'editor',
+  },
+  {
     name: 'Help',
     src: '/src/menu/Help.js',
     icon: 'help',

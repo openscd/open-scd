@@ -495,6 +495,13 @@ export const en = {
   report: {
     wizard: { location: 'Select Report Control Location' },
   },
+  cleanup: {
+    unreferencedDataSets: {
+      title: 'Unreferenced Datasets',
+      deleteButton: 'Remove Selected Datasets',
+      tooltip: 'Datasets without a reference to an associated GOOSE, Log, Report or Sampled Value Control Block'
+    },
+  },
   controlblock: {
     action: {
       edit: 'Edited {{type}} "{{name}}" in IED {{iedName}}',
