@@ -1,7 +1,7 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
 import '../../../src/wizard-textfield.js';
-import { WizardInput, isCreate, isUpdate } from '../../../src/foundation.js';
+import { WizardInput, isCreate, isReplace } from '../../../src/foundation.js';
 import { updateNamingAction } from '../../../src/wizards/foundation/actions.js';
 import { createAction } from '../../../src/wizards/substation.js';
 
@@ -58,7 +58,7 @@ describe('SubstationEditor', () => {
 
     it('returns a WizardAction which returns an Update EditorAction', () => {
       const wizardAction = updateNamingAction(element);
-      expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
+      expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isReplace);
     });
 
     describe('with no change in element Substation', () => {

@@ -9,6 +9,7 @@ import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { FilteredList } from '../../../src/filtered-list.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import { selectSampledValueControlWizard } from '../../../src/wizards/sampledvaluecontrol.js';
+import { WizardCheckbox } from '../../../src/wizard-checkbox.js';
 
 describe('Wizards for SCL element SampledValueControl', () => {
   let doc: XMLDocument;
@@ -237,6 +238,28 @@ describe('Wizards for SCL element SampledValueControl', () => {
             .querySelector('SMV > Address > P[type="MAC-Address"]')
             ?.textContent?.trim()
         );
+      });
+
+      it('opens a edit wizard for SMV on edit SMV button click', async () => {
+        const editSmvOptsButton = <Button>(
+          element.wizardUI.dialog!.querySelector(
+            'mwc-button[id="editsmvopts"]'
+          )!
+        );
+        expect(editSmvOptsButton).to.exist;
+
+        await editSmvOptsButton.updateComplete;
+        editSmvOptsButton.click();
+        await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
+        const macField = <WizardCheckbox>(
+          element.wizardUI.dialog?.querySelector(
+            'wizard-checkbox[label="refreshTime"]'
+          )
+        );
+        await macField.updateComplete;
+
+        expect(macField).to.exist;
       });
 
       it('removes the SampledValueControl element and its referenced elements on remove button click', async () => {

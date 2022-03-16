@@ -4,7 +4,7 @@ import {MockWizard} from "../../mock-wizard.js";
 import {fetchDoc, setWizardTextFieldValue} from "../wizards/foundation.js";
 import {initializeNsdoc, Nsdoc} from "../../../src/foundation/nsdoc.js";
 import {WizardTextField} from "../../../src/wizard-textfield.js";
-import {ComplexAction, isSimple, isUpdate, Update, WizardAction} from "../../../src/foundation.js";
+import {ComplexAction, isSimple, isReplace, Replace, WizardAction} from "../../../src/foundation.js";
 
 import "../../mock-wizard.js";
 
@@ -57,9 +57,9 @@ describe('Wizards for Locamation Plugin to edit the selected Logical Node - ', (
     it('when saving and updating the identifier with valid value returns a update action', async () => {
       await setWizardTextFieldValue(<WizardTextField>element.inputs[4], '10.10.8');
 
-      const updateAction = validateAndRetrieveUpdateAction(element.save());
-      expect(updateAction.old.element).to.have.text('10.12.14');
-      expect(updateAction.new.element).to.have.text('10.10.8');
+      const replaceAction = validateAndRetrieveReplaceAction(element.save());
+      expect(replaceAction.old.element).to.have.text('10.12.14');
+      expect(replaceAction.new.element).to.have.text('10.10.8');
     });
 
     it('when saving and updating the identifier with invalid value returns a update action', async () => {
@@ -72,9 +72,9 @@ describe('Wizards for Locamation Plugin to edit the selected Logical Node - ', (
     it('when saving and updating the transform first with valid value returns a update action', async () => {
       await setWizardTextFieldValue(<WizardTextField>element.inputs[6], '2000');
 
-      const updateAction = validateAndRetrieveUpdateAction(element.save());
-      expect(updateAction.old.element).to.have.text('1000');
-      expect(updateAction.new.element).to.have.text('2000');
+      const replaceAction = validateAndRetrieveReplaceAction(element.save());
+      expect(replaceAction.old.element).to.have.text('1000');
+      expect(replaceAction.new.element).to.have.text('2000');
     });
 
     it('when saving and updating the transform first with invalid value returns a update action', async () => {
@@ -87,9 +87,9 @@ describe('Wizards for Locamation Plugin to edit the selected Logical Node - ', (
     it('when saving and updating the transform second with valid value returns a update action', async () => {
       await setWizardTextFieldValue(<WizardTextField>element.inputs[7], '40');
 
-      const updateAction = validateAndRetrieveUpdateAction(element.save());
-      expect(updateAction.old.element).to.have.text('20');
-      expect(updateAction.new.element).to.have.text('40');
+      const replaceAction = validateAndRetrieveReplaceAction(element.save());
+      expect(replaceAction.old.element).to.have.text('20');
+      expect(replaceAction.new.element).to.have.text('40');
     });
 
     it('when saving and updating the transform second with invalid value returns a update action', async () => {
@@ -113,9 +113,9 @@ describe('Wizards for Locamation Plugin to edit the selected Logical Node - ', (
     it('when saving and updating the channel with valid value returns a update action', async () => {
       await setWizardTextFieldValue(<WizardTextField>element.inputs[5], '3');
 
-      const updateAction = validateAndRetrieveUpdateAction(element.save());
-      expect(updateAction.old.element).to.have.text('0');
-      expect(updateAction.new.element).to.have.text('3');
+      const replaceAction = validateAndRetrieveReplaceAction(element.save());
+      expect(replaceAction.old.element).to.have.text('0');
+      expect(replaceAction.new.element).to.have.text('3');
     });
 
     it('when saving and updating the channel with invalid value returns a update action', async () => {
@@ -143,9 +143,9 @@ describe('Wizards for Locamation Plugin to edit the selected Logical Node - ', (
     it('when saving and updating the sum with valid value returns a update action', async () => {
       await setWizardTextFieldValue(<WizardTextField>element.inputs[5], '3,4,5');
 
-      const updateAction = validateAndRetrieveUpdateAction(element.save());
-      expect(updateAction.old.element).to.have.text('0,1,2');
-      expect(updateAction.new.element).to.have.text('3,4,5');
+      const replaceAction = validateAndRetrieveReplaceAction(element.save());
+      expect(replaceAction.old.element).to.have.text('0,1,2');
+      expect(replaceAction.new.element).to.have.text('3,4,5');
     });
 
     it('when saving and updating the sum with invalid value returns a update action', async () => {
@@ -173,9 +173,9 @@ describe('Wizards for Locamation Plugin to edit the selected Logical Node - ', (
     it('when saving and updating the channel with valid value returns a update action', async () => {
       await setWizardTextFieldValue(<WizardTextField>element.inputs[5], '2');
 
-      const updateAction = validateAndRetrieveUpdateAction(element.save());
-      expect(updateAction.old.element).to.have.text('0');
-      expect(updateAction.new.element).to.have.text('2');
+      const replaceAction = validateAndRetrieveReplaceAction(element.save());
+      expect(replaceAction.old.element).to.have.text('0');
+      expect(replaceAction.new.element).to.have.text('2');
     });
 
     it('when saving and updating the channel with invalid value returns a update action', async () => {
@@ -203,9 +203,9 @@ describe('Wizards for Locamation Plugin to edit the selected Logical Node - ', (
     it('when saving and updating the sum with valid value returns a update action', async () => {
       await setWizardTextFieldValue(<WizardTextField>element.inputs[5], '2,1,0');
 
-      const updateAction = validateAndRetrieveUpdateAction(element.save());
-      expect(updateAction.old.element).to.have.text('0,1,2');
-      expect(updateAction.new.element).to.have.text('2,1,0');
+      const replaceAction = validateAndRetrieveReplaceAction(element.save());
+      expect(replaceAction.old.element).to.have.text('0,1,2');
+      expect(replaceAction.new.element).to.have.text('2,1,0');
     });
 
     it('when saving and updating the sum with invalid value returns a update action', async () => {
@@ -221,13 +221,13 @@ describe('Wizards for Locamation Plugin to edit the selected Logical Node - ', (
   });
 });
 
-function validateAndRetrieveUpdateAction(complexActions: WizardAction[]): Update {
+function validateAndRetrieveReplaceAction(complexActions: WizardAction[]): Replace {
   expect(complexActions.length).to.be.equal(1);
   expect(complexActions[0]).to.not.satisfy(isSimple);
 
   const complexAction = <ComplexAction>complexActions[0];
   expect(complexAction.actions.length).to.be.equal(1);
-  expect(complexAction.actions[0]).to.satisfy(isUpdate);
+  expect(complexAction.actions[0]).to.satisfy(isReplace);
 
-  return <Update>complexAction.actions[0];
+  return <Replace>complexAction.actions[0];
 }

@@ -3,7 +3,7 @@ import { html, fixture, expect } from '@open-wc/testing';
 import './mock-editor.js';
 import { MockEditor } from './mock-editor.js';
 
-import { newActionEvent } from '../../src/foundation.js';
+import { createUpdateAction, newActionEvent } from '../../src/foundation.js';
 
 describe('EditingElement', () => {
   let elm: MockEditor;
@@ -35,6 +35,35 @@ describe('EditingElement', () => {
       })
     );
     expect(elm.doc!.querySelector('newBay')).to.not.be.null;
+  });
+
+  it('creates an Node on receiving a Create Action', () => {
+    const testNode = document.createTextNode('myTestNode');
+
+    elm.dispatchEvent(
+      newActionEvent({
+        new: {
+          parent,
+          element: testNode,
+        },
+      })
+    );
+    expect(parent.lastChild).to.equal(testNode);
+  });
+
+  it('creates the Node based on the reference definition', () => {
+    const testNode = document.createTextNode('myTestNode');
+
+    elm.dispatchEvent(
+      newActionEvent({
+        new: {
+          parent,
+          element: testNode,
+          reference: parent.firstChild,
+        },
+      })
+    );
+    expect(parent.firstChild).to.equal(testNode);
   });
 
   it('triggers getReference with missing reference on Create Action', () => {
@@ -99,7 +128,42 @@ describe('EditingElement', () => {
       .to.be.null;
   });
 
-  it('updates an element on receiving an Update action', () => {
+  it('deletes a Node on receiving a Delete action', () => {
+    const testNode = document.createTextNode('myTestNode');
+    parent.appendChild(testNode);
+    expect(testNode.parentNode).to.be.equal(parent);
+
+    elm.dispatchEvent(
+      newActionEvent({
+        old: {
+          parent,
+          element: testNode,
+        },
+      })
+    );
+
+    expect(parent.lastChild).to.not.equal(testNode);
+    expect(testNode.parentNode).to.be.null;
+  });
+
+  it('correctly handles incorrect delete action definition', () => {
+    const testNode = document.createTextNode('myTestNode');
+    expect(testNode.parentNode).to.null;
+
+    elm.dispatchEvent(
+      newActionEvent({
+        old: {
+          parent,
+          element: testNode,
+        },
+      })
+    );
+
+    expect(parent.lastChild).to.not.equal(testNode);
+    expect(testNode.parentNode).to.null;
+  });
+
+  it('replaces an element on receiving an Delete action', () => {
     elm.dispatchEvent(
       newActionEvent({
         old: {
@@ -117,7 +181,7 @@ describe('EditingElement', () => {
     );
   });
 
-  it('does not update an element with name conflict', () => {
+  it('does not replace an element with name conflict', () => {
     const newElement = elm.doc!.createElement('Bay');
     newElement?.setAttribute('name', 'Q02');
 
@@ -199,6 +263,32 @@ describe('EditingElement', () => {
       elm.doc!.querySelector('VoltageLevel[name="J1"] > Bay[name="Q01"]')
         ?.nextElementSibling
     ).to.be.null;
+  });
+
+  it('updates an element on receiving an Update action', () => {
+    const newAttributes: Record<string, string | null> = {};
+    newAttributes['name'] = 'Q03';
+
+    elm.dispatchEvent(
+      newActionEvent(createUpdateAction(element, newAttributes))
+    );
+
+    expect(element.parentElement).to.equal(parent);
+    expect(element).to.have.attribute('name', 'Q03');
+    expect(element).to.not.have.attribute('desc');
+  });
+
+  it('does not update an element with name conflict', () => {
+    const newAttributes: Record<string, string | null> = {};
+    newAttributes['name'] = 'Q02';
+
+    elm.dispatchEvent(
+      newActionEvent(createUpdateAction(element, newAttributes))
+    );
+
+    expect(element.parentElement).to.equal(parent);
+    expect(element).to.have.attribute('name', 'Q01');
+    expect(element).to.have.attribute('desc', 'Bay');
   });
 
   it('carries out subactions sequentially on receiving a ComplexAction', () => {

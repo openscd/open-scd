@@ -1,6 +1,6 @@
 import {expect} from "@open-wc/testing";
 
-import {Create, isCreate, isUpdate, Update} from "../../../src/foundation.js";
+import {Create, isCreate, isReplace, Replace} from "../../../src/foundation.js";
 import {initializeNsdoc} from "../../../src/foundation/nsdoc.js";
 
 import {
@@ -168,9 +168,9 @@ describe('locamation foundation - ', () => {
       const result = createEditorAction(locamationPrivate, 'CHANNEL', '1');
 
       expect(result.length).to.be.equal(1);
-      expect(result[0]).to.satisfy(isUpdate);
-      expect((<Update>result[0]).old.element.textContent).to.be.equal('0');
-      expect((<Update>result[0]).new.element.textContent).to.be.equal('1');
+      expect(result[0]).to.satisfy(isReplace);
+      expect((<Replace>result[0]).old.element.textContent).to.be.equal('0');
+      expect((<Replace>result[0]).new.element.textContent).to.be.equal('1');
     });
 
     it('create insert action to add value', () => {

@@ -1,12 +1,6 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["compas-scl-list show-loading looks like the latest snapshot"] = 
-`<compas-loading>
-</compas-loading>
-`;
-/* end snapshot compas-scl-list show-loading looks like the latest snapshot */
-
 snapshots["compas-scl-list no-items-in-list looks like the latest snapshot"] = 
 `<mwc-list>
   <mwc-list-item
@@ -41,4 +35,10 @@ snapshots["compas-scl-list after-list-loaded looks like the latest snapshot"] =
 </mwc-list>
 `;
 /* end snapshot compas-scl-list after-list-loaded looks like the latest snapshot */
+
+snapshots["compas-scl-list show-loading looks like the latest snapshot"] = 
+`<compas-loading>
+</compas-loading>
+`;
+/* end snapshot compas-scl-list show-loading looks like the latest snapshot */
 

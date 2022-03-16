@@ -13,10 +13,12 @@ import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import '../../wizard-textfield.js';
 import {
   Create,
+  createElement,
   EditorAction,
   getValue,
   identity,
   newActionEvent,
+  newSubWizardEvent,
   newWizardEvent,
   patterns,
   selector,
@@ -95,9 +97,8 @@ export function editDaTypeWizard(
             @click=${(e: Event) => {
               if (datype)
                 e.target!.dispatchEvent(
-                  newWizardEvent(createBDAWizard(datype))
+                  newSubWizardEvent(createBDAWizard(datype))
                 );
-              e.target!.dispatchEvent(newWizardEvent());
             }}
           ></mwc-button>
           <mwc-list
@@ -107,8 +108,7 @@ export function editDaTypeWizard(
               const bda = doc.querySelector(selector('BDA', bdaIdentity));
 
               if (bda)
-                e.target!.dispatchEvent(newWizardEvent(editBDAWizard(bda)));
-              e.target!.dispatchEvent(newWizardEvent());
+                e.target!.dispatchEvent(newSubWizardEvent(editBDAWizard(bda)));
             }}
           >
             ${Array.from(datype.querySelectorAll('BDA')).map(
@@ -154,7 +154,7 @@ function addPredefinedDAType(
       : null;
     const element = values.selected
       ? <Element>selectedElement!.cloneNode(true)
-      : parent.ownerDocument.createElement('DAType');
+      : createElement(parent.ownerDocument, 'DAType', {});
 
     element.setAttribute('id', id);
     if (desc) element.setAttribute('desc', desc);

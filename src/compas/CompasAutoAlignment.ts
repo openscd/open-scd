@@ -5,7 +5,7 @@ import '@material/mwc-list';
 import '@material/mwc-list/mwc-check-list-item';
 
 import {newLogEvent, newOpenDocEvent, newWizardEvent} from "../foundation.js";
-import {dispatchEventOnOpenScd, getOpenScdElement} from "./foundation.js";
+import {dispatchEventOnOpenScd} from "./foundation.js";
 
 import {CompasSclAutoAlignmentService} from "../compas-services/CompasSclAutoAlignmentService.js";
 import {createLogEvent} from "../compas-services/foundation.js";

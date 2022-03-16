@@ -1,7 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Wizards for SCL OptFields element define an edit wizard that looks like the latest snapshot"] = 
+snapshots["Wizards for SCL SmvOpts element define an edit wizard that looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="close"
   heading="[wizard.title.edit]"
@@ -9,14 +9,14 @@ snapshots["Wizards for SCL OptFields element define an edit wizard that looks li
 >
   <div id="wizard-content">
     <wizard-checkbox
-      helper="[scl.seqNum]"
-      label="seqNum"
+      helper="[scl.refreshTime]"
+      label="refreshTime"
       nullable=""
     >
     </wizard-checkbox>
     <wizard-checkbox
-      helper="[scl.timeStamp]"
-      label="timeStamp"
+      helper="[scl.sampleRate]"
+      label="sampleRate"
       nullable=""
     >
     </wizard-checkbox>
@@ -27,32 +27,14 @@ snapshots["Wizards for SCL OptFields element define an edit wizard that looks li
     >
     </wizard-checkbox>
     <wizard-checkbox
-      helper="[scl.reasonCode]"
-      label="reasonCode"
+      helper="[scl.security]"
+      label="security"
       nullable=""
     >
     </wizard-checkbox>
     <wizard-checkbox
-      helper="[scl.dataRef]"
-      label="dataRef"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-checkbox
-      helper="[scl.entryID]"
-      label="entryID"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-checkbox
-      helper="[scl.configRef]"
-      label="configRef"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-checkbox
-      helper="[scl.bufOvfl]"
-      label="bufOvfl"
+      helper="[scl.synchSourceId]"
+      label="synchSourceId"
       nullable=""
     >
     </wizard-checkbox>
@@ -73,5 +55,5 @@ snapshots["Wizards for SCL OptFields element define an edit wizard that looks li
   </mwc-button>
 </mwc-dialog>
 `;
-/* end snapshot Wizards for SCL OptFields element define an edit wizard that looks like the latest snapshot */
+/* end snapshot Wizards for SCL SmvOpts element define an edit wizard that looks like the latest snapshot */
 

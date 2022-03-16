@@ -21,7 +21,7 @@ import { Nsdoc } from '../../foundation/nsdoc.js';
 @customElement('da-container')
 export class DAContainer extends LitElement {
   /**
-   * The DA itself.
+   * The (B)DA itself.
    */
   @property({ attribute: false })
   element!: Element;
@@ -40,17 +40,19 @@ export class DAContainer extends LitElement {
 
   @property()
   nsdoc!: Nsdoc;
-  
-  @query('#toggleButton') toggleButton: IconButtonToggle | undefined;
+
+  @query('#toggleButton')
+  toggleButton: IconButtonToggle | undefined;
 
   private header(): TemplateResult {
     const name = getNameAttribute(this.element);
-    const bType = this.element!.getAttribute('bType') ?? nothing;
+    const bType = this.element.getAttribute('bType') ?? nothing;
+    const fc = this.element.getAttribute("fc");
 
     if (this.instanceElement) {
-      return html`<b>${name}</b> &mdash; ${bType}`;
+      return html`<b>${name}</b> &mdash; ${bType}${fc ? html` [${fc}]`: ``}`;
     } else {
-      return html`${name} &mdash; ${bType}`;
+      return html`${name} &mdash; ${bType}${fc ? html` [${fc}]`: ``}`;
     }
   }
 
@@ -75,6 +77,7 @@ export class DAContainer extends LitElement {
   private getValueElement(element: Element): Element | null {
     return element.querySelector('Val') ?? null;
   }
+
 
   /**
    * Get the nested (B)DA element(s) if available.

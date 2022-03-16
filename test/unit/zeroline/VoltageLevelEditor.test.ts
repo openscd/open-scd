@@ -4,7 +4,7 @@ import '../../../src/wizard-textfield.js';
 import {
   WizardInput,
   isCreate,
-  isUpdate,
+  isReplace,
   isDelete,
 } from '../../../src/foundation.js';
 import {
@@ -69,7 +69,7 @@ describe('VoltageLevelEditor', () => {
 
         it('returns a WizardAction with the first returned EditorAction beeing an Update', () => {
           const wizardAction = updateAction(element);
-          expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
+          expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isReplace);
         });
 
         it('returns a WizardAction with the second returned EditorAction beeing a Create', () => {
@@ -96,12 +96,12 @@ describe('VoltageLevelEditor', () => {
 
         it('returns a WizardAction with the first returned EditorAction beeing an Update', () => {
           const wizardAction = updateAction(element);
-          expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
+          expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isReplace);
         });
 
         it('returns a WizardAction with the second returned EditorAction beeing a Update', () => {
           const wizardAction = updateAction(element);
-          expect(wizardAction(inputs, newWizard())[1]).to.satisfy(isUpdate);
+          expect(wizardAction(inputs, newWizard())[1]).to.satisfy(isReplace);
         });
       });
 
@@ -123,7 +123,7 @@ describe('VoltageLevelEditor', () => {
 
         it('returns a WizardAction with the first returned EditorAction beeing an Update', () => {
           const wizardAction = updateAction(element);
-          expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
+          expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isReplace);
         });
       });
 
@@ -196,7 +196,7 @@ describe('VoltageLevelEditor', () => {
 
         it('returns a WizardAction with the first returned EditorAction beeing an Update', () => {
           const wizardAction = updateAction(element);
-          expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
+          expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isReplace);
         });
 
         it('returns a WizardAction with the second returned EditorAction beeing a Delete', () => {

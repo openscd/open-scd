@@ -117,72 +117,6 @@ snapshots["Single Line Diagram drawing creates a group element for every given C
 `;
 /* end snapshot Single Line Diagram drawing creates a group element for every given ConductingEquipment element that looks like its latest snapshot */
 
-snapshots["Single Line Diagram drawing creates a group element for every given VoltageLevel element that looks like its latest snapshot"] = 
-`<g
-  desc="Voltage Level"
-  id="AA1>J1"
-  sxy:x="2"
-  sxy:y="6"
-  type="VoltageLevel"
->
-</g>
-`;
-/* end snapshot Single Line Diagram drawing creates a group element for every given VoltageLevel element that looks like its latest snapshot */
-
-snapshots["Single Line Diagram drawing creates a group element for every given Bus Bar element that looks like its latest snapshot"] = 
-`<g
-  id="AA1>J1>BusBar A"
-  sxy:x="2"
-  sxy:y="2"
-  type="Busbar"
->
-  <line
-    name="BusBar A"
-    stroke="currentColor"
-    stroke-width="4"
-    x1="256"
-    x2="200"
-    y1="512"
-    y2="512"
-  >
-  </line>
-</g>
-`;
-/* end snapshot Single Line Diagram drawing creates a group element for every given Bus Bar element that looks like its latest snapshot */
-
-snapshots["Single Line Diagram drawing creates a group element for every given Bay element that looks like its latest snapshot"] = 
-`<g
-  desc="Feld A"
-  id="AA1>J1>Bay A"
-  sxy:x="2"
-  sxy:y="12"
-  type="Bay"
->
-</g>
-`;
-/* end snapshot Single Line Diagram drawing creates a group element for every given Bay element that looks like its latest snapshot */
-
-snapshots["Single Line Diagram drawing creates a group element for every given ConnectivityNode element that looks like its latest snapshot"] = 
-`<g
-  id="AA1>J1>Bay A>L1"
-  sxy:x="0"
-  sxy:y="0"
-  type="ConnectivityNode"
->
-  <circle
-    cx="12.5"
-    cy="12.5"
-    fill="currentColor"
-    r="5"
-    stroke="currentColor"
-    stroke-width="1"
-    transform="translate(531.5,1363.5)"
-  >
-  </circle>
-</g>
-`;
-/* end snapshot Single Line Diagram drawing creates a group element for every given ConnectivityNode element that looks like its latest snapshot */
-
 snapshots["Single Line Diagram drawing creates a group element for every given Terminal element that looks like its latest snapshot"] = 
 `<g
   id="AA1>J1>Bay A>QB1>AA1/J1/Bay A/L1"
@@ -200,4 +134,6 @@ snapshots["Single Line Diagram drawing creates a group element for every given T
 </g>
 `;
 /* end snapshot Single Line Diagram drawing creates a group element for every given Terminal element that looks like its latest snapshot */
+
+every given ConnectivityNode element that looks like its latest snapshot */
 
