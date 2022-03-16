@@ -13,6 +13,7 @@ import '../wizard-select.js';
 import '../wizard-textfield.js';
 import {
   cloneElement,
+  ComplexAction,
   Delete,
   EditorAction,
   getValue,
@@ -106,8 +107,10 @@ export function renderGseAttributes(
   ];
 }
 
-export function removeGseControl(element: Element): Delete[] {
-  const dataSet = element.parentElement!.querySelector(
+export function removeGseControl(element: Element): ComplexAction | null {
+  if (!element.parentElement) return null;
+
+  const dataSet = element.parentElement.querySelector(
     `DataSet[name="${element.getAttribute('datSet')}"]`
   );
   const gSE = getGSE(element);
@@ -126,7 +129,7 @@ export function removeGseControl(element: Element): Delete[] {
 
   actions.push({
     old: {
-      parent: element.parentElement!,
+      parent: element.parentElement,
       element,
       reference: element.nextSibling,
     },
@@ -135,9 +138,9 @@ export function removeGseControl(element: Element): Delete[] {
   if (dataSet && singleUse)
     actions.push({
       old: {
-        parent: element.parentElement!,
+        parent: element.parentElement,
         element: dataSet,
-        reference: element.nextSibling,
+        reference: dataSet.nextSibling,
       },
     });
 
@@ -150,7 +153,17 @@ export function removeGseControl(element: Element): Delete[] {
       },
     });
 
-  return actions;
+  const name = element.getAttribute('name')!;
+  const iedName = element.closest('IED')?.getAttribute('name') ?? '';
+
+  return {
+    title: get('controlblock.action.remove', {
+      type: element.tagName,
+      name,
+      iedName,
+    }),
+    actions,
+  };
 }
 
 export function updateGseControlAction(element: Element): WizardActor {
@@ -215,10 +228,10 @@ export function editGseControlWizard(element: Element): Wizard {
           label="${translate('remove')}"
           icon="delete"
           @click=${(e: MouseEvent) => {
-            const deleteActions = removeGseControl(element);
-            deleteActions.forEach(deleteAction =>
-              e.target?.dispatchEvent(newActionEvent(deleteAction))
-            );
+            const complexAction = removeGseControl(element);
+            if (complexAction)
+              e.target?.dispatchEvent(newActionEvent(complexAction));
+
             e.target?.dispatchEvent(newWizardEvent());
           }}
         ></mwc-button>`,

@@ -8,10 +8,10 @@ import { MockWizard } from '../../mock-wizard.js';
 import {
   ComplexAction,
   Create,
+  Delete,
   isCreate,
   isDelete,
   isSimple,
-  isReplace,
   Replace,
   WizardInputElement,
 } from '../../../src/foundation.js';
@@ -162,9 +162,9 @@ describe('Wizards for SCL ReportControl element', () => {
         expect(actionEvent).to.be.calledOnce;
 
         const action = actionEvent.args[0][0].detail.action;
-        expect(action).to.satisfy(isReplace);
+        expect(action).to.not.satisfy(isSimple);
 
-        const updateAction = <Replace>action;
+        const updateAction = <Replace>(<ComplexAction>action).actions[0];
         expect(updateAction.old.element).to.have.attribute('name', 'ReportCb');
         expect(updateAction.new.element).to.have.attribute(
           'name',
@@ -183,9 +183,9 @@ describe('Wizards for SCL ReportControl element', () => {
         expect(actionEvent).to.be.calledOnce;
 
         const action = actionEvent.args[0][0].detail.action;
-        expect(action).to.satisfy(isReplace);
+        expect(action).to.not.satisfy(isSimple);
 
-        const updateAction = <Replace>action;
+        const updateAction = <Replace>(<ComplexAction>action).actions[0];
         expect(updateAction.old.element).to.not.have.attribute('desc');
         expect(updateAction.new.element).to.have.attribute('desc', 'myDesc');
       });
@@ -200,9 +200,9 @@ describe('Wizards for SCL ReportControl element', () => {
         expect(actionEvent).to.be.calledOnce;
 
         const action = actionEvent.args[0][0].detail.action;
-        expect(action).to.satisfy(isReplace);
+        expect(action).to.not.satisfy(isSimple);
 
-        const updateAction = <Replace>action;
+        const updateAction = <Replace>(<ComplexAction>action).actions[0];
         expect(updateAction.old.element).to.have.attribute(
           'rptID',
           'reportCb1'
@@ -223,9 +223,9 @@ describe('Wizards for SCL ReportControl element', () => {
         expect(actionEvent).to.be.calledOnce;
 
         const action = actionEvent.args[0][0].detail.action;
-        expect(action).to.satisfy(isReplace);
+        expect(action).to.not.satisfy(isSimple);
 
-        const updateAction = <Replace>action;
+        const updateAction = <Replace>(<ComplexAction>action).actions[0];
         expect(updateAction.old.element).to.have.attribute('indexed', 'true');
         expect(updateAction.new.element).to.have.attribute('indexed', 'false');
       });
@@ -240,9 +240,9 @@ describe('Wizards for SCL ReportControl element', () => {
         expect(actionEvent).to.be.calledOnce;
 
         const action = actionEvent.args[0][0].detail.action;
-        expect(action).to.satisfy(isReplace);
+        expect(action).to.not.satisfy(isSimple);
 
-        const updateAction = <Replace>action;
+        const updateAction = <Replace>(<ComplexAction>action).actions[0];
         expect(updateAction.old.element).to.have.attribute('bufTime', '100');
         expect(updateAction.new.element).to.have.attribute('bufTime', '54');
       });
@@ -258,9 +258,9 @@ describe('Wizards for SCL ReportControl element', () => {
         expect(actionEvent).to.be.calledOnce;
 
         const action = actionEvent.args[0][0].detail.action;
-        expect(action).to.satisfy(isReplace);
+        expect(action).to.not.satisfy(isSimple);
 
-        const updateAction = <Replace>action;
+        const updateAction = <Replace>(<ComplexAction>action).actions[0];
         expect(updateAction.old.element).to.not.have.attribute('intgPd');
         expect(updateAction.new.element).to.have.attribute('intgPd', '1000');
       });
@@ -275,9 +275,9 @@ describe('Wizards for SCL ReportControl element', () => {
         expect(actionEvent).to.be.calledOnce;
 
         const action = actionEvent.args[0][0].detail.action;
-        expect(action).to.satisfy(isReplace);
+        expect(action).to.not.satisfy(isSimple);
 
-        const updateAction = <Replace>action;
+        const updateAction = <Replace>(<ComplexAction>action).actions[0];
         expect(updateAction.new.element.tagName).to.equal('RptEnabled');
         expect(updateAction.old.element.tagName).to.equal('RptEnabled');
         expect(updateAction.old.element).to.have.attribute('max', '5');
@@ -324,10 +324,13 @@ describe('Wizards for SCL ReportControl element', () => {
           expect(actionEvent).to.be.calledOnce;
 
           const action = actionEvent.args[0][0].detail.action;
-          expect(action).to.satisfy(isCreate);
+          expect(action).to.not.satisfy(isSimple);
+          expect((<ComplexAction>action).actions[0]).to.satisfy(isCreate);
 
-          const updateAction = <Replace>action;
-          expect(updateAction.new.element.tagName).to.equal('RptEnabled');
+          const updateAction = <Create>(<ComplexAction>action).actions[0];
+          expect((<Element>updateAction.new.element).tagName).to.equal(
+            'RptEnabled'
+          );
           expect(updateAction.new.element).to.have.attribute('max', '6');
         });
       });
@@ -379,7 +382,9 @@ describe('Wizards for SCL ReportControl element', () => {
 
         it('removes ReportControl and its referenced DataSet if no other ReportControl are assigned', () => {
           const reportControl = ln01gse.querySelector('ReportControl')!;
-          const actions = removeReportControlAction(reportControl);
+          const actions = <Delete[]>(
+            removeReportControlAction(reportControl)!.actions
+          );
           expect(actions.length).to.equal(2);
           expect(actions[0]).to.satisfy(isDelete);
           expect(actions[0].old.element).to.equal(reportControl);
@@ -391,7 +396,9 @@ describe('Wizards for SCL ReportControl element', () => {
 
         it('does not remove if another ReportControl is assigned to the same DataSet', () => {
           const reportControl = ln02gse.querySelector('ReportControl')!;
-          const actions = removeReportControlAction(reportControl);
+          const actions = <Delete[]>(
+            removeReportControlAction(reportControl)!.actions
+          );
           expect(actions.length).to.equal(1);
           expect(actions[0]).to.satisfy(isDelete);
           expect(actions[0].old.element).to.equal(reportControl);
@@ -399,7 +406,9 @@ describe('Wizards for SCL ReportControl element', () => {
 
         it('does not remove if another GSEControl is assigned to the same DataSet', () => {
           const reportControl = ln02rp.querySelector('ReportControl')!;
-          const actions = removeReportControlAction(reportControl);
+          const actions = <Delete[]>(
+            removeReportControlAction(reportControl)!.actions
+          );
           expect(actions.length).to.equal(1);
           expect(actions[0]).to.satisfy(isDelete);
           expect(actions[0].old.element).to.equal(reportControl);
@@ -407,15 +416,17 @@ describe('Wizards for SCL ReportControl element', () => {
 
         it('does not remove if another SMV is assigned to the same DataSet', () => {
           const reportControl = ln02smv.querySelector('ReportControl')!;
-          const actions = removeReportControlAction(reportControl);
+          const actions = <Delete[]>(
+            removeReportControlAction(reportControl)!.actions
+          );
           expect(actions.length).to.equal(1);
           expect(actions[0]).to.satisfy(isDelete);
           expect(actions[0].old.element).to.equal(reportControl);
         });
 
         it('does not remove with missing parent element', () => {
-          const actions = removeReportControlAction(missingparent);
-          expect(actions.length).to.equal(0);
+          const action = removeReportControlAction(missingparent);
+          expect(action).to.be.null;
         });
       });
     });

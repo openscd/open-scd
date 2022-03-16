@@ -69,6 +69,17 @@ snapshots["voltage-level-editor looks like the latest snapshot"] =
         mwc-list-item=""
         role="menuitem"
         tabindex="-1"
+        value="PowerTransformer"
+      >
+        <span>
+          PowerTransformer
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
         value="Bay"
       >
         <span>
@@ -148,6 +159,17 @@ snapshots["voltage-level-editor with readonly property looks like the latest sna
       >
         <span>
           LNode
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="PowerTransformer"
+      >
+        <span>
+          PowerTransformer
         </span>
       </mwc-list-item>
       <mwc-list-item

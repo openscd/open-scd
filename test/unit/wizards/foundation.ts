@@ -6,6 +6,8 @@ import {
   Replace,
   WizardActor,
   WizardInputElement,
+  Create,
+  isCreate,
 } from '../../../src/foundation.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 
@@ -29,14 +31,24 @@ export async function setWizardTextFieldValue(
   await field.requestUpdate();
 }
 
-export function executeWizardUpdateAction(
+export function executeWizardReplaceAction(
   wizardActor: WizardActor,
   inputs: WizardInputElement[]
 ): Replace {
-  const updateActions = wizardActor(inputs, newWizard());
-  expect(updateActions.length).to.equal(1);
-  expect(updateActions[0]).to.satisfy(isReplace);
-  return <Replace>updateActions[0];
+  const replaceActions = wizardActor(inputs, newWizard());
+  expect(replaceActions.length).to.equal(1);
+  expect(replaceActions[0]).to.satisfy(isReplace);
+  return <Replace>replaceActions[0];
+}
+
+export function executeWizardCreateAction(
+  wizardActor: WizardActor,
+  inputs: WizardInputElement[]
+): Create {
+  const createActions = wizardActor(inputs, newWizard());
+  expect(createActions.length).to.equal(1);
+  expect(createActions[0]).to.satisfy(isCreate);
+  return <Create>createActions[0];
 }
 
 export function expectWizardNoUpdateAction(

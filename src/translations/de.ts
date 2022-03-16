@@ -217,7 +217,9 @@ export const de: Translations = {
     wizard: {
       nameHelper: '`Name des Leistungstransformators',
       descHelper: 'Beschreibung des Leistungstransformators',
+      typeHelper: 'Type des Leistungstransformators',
       title: {
+        add: 'Leistungstransformator hinzufügen',
         edit: 'Leistungstransformator bearbeiten',
       },
     },
@@ -483,6 +485,13 @@ export const de: Translations = {
   },
   report: {
     wizard: { location: 'Ablageort der Reports wählen' },
+  },
+  controlblock: {
+    action: {
+      edit: '{{type}} "{{name}}" in IED {{iedName}} bearbeitet',
+      remove:
+        '{{type}} "{{name}}" and referenzierte Element von IED {{iedName}} entfernt',
+    },
   },
   add: 'Hinzufügen',
   new: 'Neu',
