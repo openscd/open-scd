@@ -18,7 +18,9 @@ import {
   Create,
   createElement,
   Delete,
+  identity,
   newActionEvent,
+  selector,
 } from '../../foundation.js';
 import {
   SampledValuesSelectEvent,
@@ -49,6 +51,21 @@ const fcdaReferences = [
   'doName',
   'daName',
 ];
+
+/**
+ * Get all the FCDA attributes containing values from a specific element.
+ * @param elementContainingFcdaReferences - The element to use
+ * @returns FCDA references
+ */
+function getFcdaReferences(elementContainingFcdaReferences: Element): string {
+  return fcdaReferences
+  .map(fcdaRef =>
+    elementContainingFcdaReferences.getAttribute(fcdaRef)
+      ? `[${fcdaRef}="${elementContainingFcdaReferences.getAttribute(fcdaRef)}"]`
+      : ''
+  )
+  .join('');
+}
 
 /**
  * Internal persistent state, so it's not lost when
@@ -143,13 +160,7 @@ export class SubscriberIEDList extends LitElement {
             if (
               inputs.querySelector(
                 `ExtRef[iedName=${localState.currentSampledValuesIEDName}]` +
-                  `${fcdaReferences
-                    .map(fcdaRef =>
-                      fcda.getAttribute(fcdaRef)
-                        ? `[${fcdaRef}="${fcda.getAttribute(fcdaRef)}"]`
-                        : ''
-                    )
-                    .join('')}`
+                  `${getFcdaReferences(fcda)}`
               )
             ) {
               numberOfLinkedExtRefs++;
@@ -167,7 +178,7 @@ export class SubscriberIEDList extends LitElement {
         }
 
         if (
-          numberOfLinkedExtRefs ==
+          numberOfLinkedExtRefs >=
           localState.currentDataset!.querySelectorAll('FCDA').length
         ) {
           localState.subscribedIeds.push({ element: ied });
@@ -216,13 +227,7 @@ export class SubscriberIEDList extends LitElement {
       if (
         !inputsElement!.querySelector(
           `ExtRef[iedName=${localState.currentSampledValuesIEDName}]` +
-            `${fcdaReferences
-              .map(fcdaRef =>
-                fcda.getAttribute(fcdaRef)
-                  ? `[${fcdaRef}="${fcda.getAttribute(fcdaRef)}"]`
-                  : ''
-              )
-              .join('')}`
+            `${getFcdaReferences(fcda)}`
         )
       ) {
         const extRef = createElement(ied.ownerDocument, 'ExtRef', {
@@ -271,13 +276,7 @@ export class SubscriberIEDList extends LitElement {
       localState.currentDataset!.querySelectorAll('FCDA').forEach(fcda => {
         const extRef = inputs.querySelector(
           `ExtRef[iedName=${localState.currentSampledValuesIEDName}]` +
-            `${fcdaReferences
-              .map(fcdaRef =>
-                fcda.getAttribute(fcdaRef)
-                  ? `[${fcdaRef}="${fcda.getAttribute(fcdaRef)}"]`
-                  : ''
-              )
-              .join('')}`
+            `${getFcdaReferences(fcda)}`
         );
 
         if (extRef) actions.push({ old: { parent: inputs, element: extRef } });
@@ -287,7 +286,7 @@ export class SubscriberIEDList extends LitElement {
     this.dispatchEvent(
       newActionEvent({
         title: 'Disconnect',
-        actions,
+        actions: this.extendDeleteActions(actions),
       })
     );
 
@@ -299,6 +298,48 @@ export class SubscriberIEDList extends LitElement {
     );
   }
 
+  /**
+   * Creating Delete actions in case Inputs elements are empty.
+   * @param extRefDeleteActions - All Delete actions for ExtRefs.
+   * @returns Possible delete actions for empty Inputs elements.
+   */
+  private extendDeleteActions(extRefDeleteActions: Delete[]): Delete[] {
+    if (!extRefDeleteActions.length) return [];
+  
+    // Initialize with the already existing ExtRef Delete actions.
+    const extendedDeleteActions: Delete[] = extRefDeleteActions;
+    const inputsMap: Record<string, Element> = {};
+  
+    for (const extRefDeleteAction of extRefDeleteActions) {
+      const extRef = <Element>extRefDeleteAction.old.element;
+      const inputsElement = <Element>extRefDeleteAction.old.parent;
+
+      const id = identity(inputsElement);
+      if (!inputsMap[id]) inputsMap[id] = <Element>(inputsElement.cloneNode(true));
+
+      const linkedExtRef = inputsMap[id].querySelector(`ExtRef[iedName=${extRef.getAttribute('iedName')}]` +
+      `${getFcdaReferences(extRef)}`);
+  
+      if (linkedExtRef) inputsMap[id].removeChild(linkedExtRef);
+    }
+  
+    // create delete action for each empty inputs
+    Object.entries(inputsMap).forEach(([key, value]) => {
+      if (value.children.length ! == 0) {
+        const doc = extRefDeleteActions[0].old.parent.ownerDocument!;
+        const inputs = doc.querySelector(selector('Inputs', key));
+  
+        if (inputs && inputs.parentElement) {
+          extendedDeleteActions.push({
+            old: { parent: inputs.parentElement, element: inputs },
+          });
+        }
+      }
+    });
+  
+    return extendedDeleteActions;
+  }
+
   protected updated(): void {
     if (this.subscriberWrapper) {
       this.subscriberWrapper.scrollTo(0, 0);
@@ -308,6 +349,9 @@ export class SubscriberIEDList extends LitElement {
   render(): TemplateResult {
     const partialSubscribedIeds = localState.availableIeds.filter(
       ied => ied.partial
+    );
+    const availableIeds = localState.availableIeds.filter(
+      ied => !ied.partial
     );
     const smvControlName =
       localState.currentSampledValuesControl?.getAttribute('name') ?? undefined;
@@ -372,8 +416,8 @@ export class SubscriberIEDList extends LitElement {
                   >
                 </mwc-list-item>
                 <li divider role="separator"></li>
-                ${localState.availableIeds.length > 0
-                  ? localState.availableIeds.map(
+                ${availableIeds.length > 0
+                  ? availableIeds.map(
                       ied =>
                         html`<ied-element
                           .status=${SubscribeStatus.None}
