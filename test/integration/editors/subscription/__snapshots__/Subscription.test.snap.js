@@ -49,6 +49,28 @@ snapshots["Subscription Plugin initially the GOOSE list looks like the latest sn
     </li>
     <goose-message>
     </goose-message>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="icon"
+      noninteractive=""
+      tabindex="-1"
+    >
+      <span class="iedListTitle">
+        IED4
+      </span>
+      <mwc-icon slot="graphic">
+        developer_board
+      </mwc-icon>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <goose-message>
+    </goose-message>
+    <goose-message>
+    </goose-message>
   </mwc-list>
 </section>
 `;
@@ -81,7 +103,11 @@ snapshots["Subscription Plugin when selecting a GOOSE message the list on the ri
   </h1>
   <div class="subscriberWrapper">
     <mwc-list id="subscribedIeds">
-      <mwc-list-item noninteractive="">
+      <mwc-list-item
+        aria-disabled="false"
+        noninteractive=""
+        tabindex="-1"
+      >
         <span class="iedListTitle">
           [subscription.subscriberIed.subscribed]
         </span>
@@ -91,17 +117,15 @@ snapshots["Subscription Plugin when selecting a GOOSE message the list on the ri
         role="separator"
       >
       </li>
-      <mwc-list-item
-        graphic="avatar"
-        noninteractive=""
-      >
-        <span>
-          [subscription.none]
-        </span>
-      </mwc-list-item>
+      <ied-element>
+      </ied-element>
     </mwc-list>
     <mwc-list id="partialSubscribedIeds">
-      <mwc-list-item noninteractive="">
+      <mwc-list-item
+        aria-disabled="false"
+        noninteractive=""
+        tabindex="-1"
+      >
         <span class="iedListTitle">
           [subscription.subscriberIed.partiallySubscribed]
         </span>
@@ -115,7 +139,159 @@ snapshots["Subscription Plugin when selecting a GOOSE message the list on the ri
       </ied-element>
     </mwc-list>
     <mwc-list id="notSubscribedIeds">
-      <mwc-list-item noninteractive="">
+      <mwc-list-item
+        aria-disabled="false"
+        noninteractive=""
+        tabindex="-1"
+      >
+        <span class="iedListTitle">
+          [subscription.subscriberIed.availableToSubscribe]
+        </span>
+      </mwc-list-item>
+      <li
+        divider=""
+        role="separator"
+      >
+      </li>
+      <ied-element>
+      </ied-element>
+    </mwc-list>
+  </div>
+</section>
+`;
+/* end snapshot Subscription Plugin when selecting a GOOSE message the list on the right will initially show the subscribed / partially subscribed / not subscribed IEDs */
+
+snapshots["Subscription Plugin when selecting a GOOSE message and you subscribe a non-subscribed IED it looks like the latest snapshot"] = 
+`<section>
+  <h1>
+    [subscription.subscriberIed.title]
+  </h1>
+  <div class="subscriberWrapper">
+    <mwc-list id="subscribedIeds">
+      <mwc-list-item
+        aria-disabled="false"
+        noninteractive=""
+        tabindex="-1"
+      >
+        <span class="iedListTitle">
+          [subscription.subscriberIed.subscribed]
+        </span>
+      </mwc-list-item>
+      <li
+        divider=""
+        role="separator"
+      >
+      </li>
+      <ied-element>
+      </ied-element>
+      <ied-element>
+      </ied-element>
+    </mwc-list>
+    <mwc-list id="partialSubscribedIeds">
+      <mwc-list-item
+        aria-disabled="false"
+        noninteractive=""
+        tabindex="-1"
+      >
+        <span class="iedListTitle">
+          [subscription.subscriberIed.partiallySubscribed]
+        </span>
+      </mwc-list-item>
+      <li
+        divider=""
+        role="separator"
+      >
+      </li>
+      <ied-element>
+      </ied-element>
+    </mwc-list>
+    <mwc-list id="notSubscribedIeds">
+      <mwc-list-item
+        aria-disabled="false"
+        noninteractive=""
+        tabindex="-1"
+      >
+        <span class="iedListTitle">
+          [subscription.subscriberIed.availableToSubscribe]
+        </span>
+      </mwc-list-item>
+      <li
+        divider=""
+        role="separator"
+      >
+      </li>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="avatar"
+        noninteractive=""
+        tabindex="-1"
+      >
+        <span>
+          [subscription.none]
+        </span>
+      </mwc-list-item>
+    </mwc-list>
+  </div>
+</section>
+`;
+/* end snapshot Subscription Plugin when selecting a GOOSE message and you subscribe a non-subscribed IED it looks like the latest snapshot */
+
+snapshots["Subscription Plugin when selecting a GOOSE message and you unsubscribe a subscribed IED it looks like the latest snapshot"] = 
+`<section>
+  <h1>
+    [subscription.subscriberIed.title]
+  </h1>
+  <div class="subscriberWrapper">
+    <mwc-list id="subscribedIeds">
+      <mwc-list-item
+        aria-disabled="false"
+        noninteractive=""
+        tabindex="-1"
+      >
+        <span class="iedListTitle">
+          [subscription.subscriberIed.subscribed]
+        </span>
+      </mwc-list-item>
+      <li
+        divider=""
+        role="separator"
+      >
+      </li>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="avatar"
+        noninteractive=""
+        tabindex="-1"
+      >
+        <span>
+          [subscription.none]
+        </span>
+      </mwc-list-item>
+    </mwc-list>
+    <mwc-list id="partialSubscribedIeds">
+      <mwc-list-item
+        aria-disabled="false"
+        noninteractive=""
+        tabindex="-1"
+      >
+        <span class="iedListTitle">
+          [subscription.subscriberIed.partiallySubscribed]
+        </span>
+      </mwc-list-item>
+      <li
+        divider=""
+        role="separator"
+      >
+      </li>
+      <ied-element>
+      </ied-element>
+    </mwc-list>
+    <mwc-list id="notSubscribedIeds">
+      <mwc-list-item
+        aria-disabled="false"
+        noninteractive=""
+        tabindex="-1"
+      >
         <span class="iedListTitle">
           [subscription.subscriberIed.availableToSubscribe]
         </span>
@@ -133,5 +309,80 @@ snapshots["Subscription Plugin when selecting a GOOSE message the list on the ri
   </div>
 </section>
 `;
-/* end snapshot Subscription Plugin when selecting a GOOSE message the list on the right will initially show the subscribed / partially subscribed / not subscribed IEDs */
+/* end snapshot Subscription Plugin when selecting a GOOSE message and you unsubscribe a subscribed IED it looks like the latest snapshot */
+
+snapshots["Subscription Plugin when selecting a GOOSE message and you subscribe a partially subscribed IED it looks like the latest snapshot"] = 
+`<section>
+  <h1>
+    [subscription.subscriberIed.title]
+  </h1>
+  <div class="subscriberWrapper">
+    <mwc-list id="subscribedIeds">
+      <mwc-list-item
+        aria-disabled="false"
+        noninteractive=""
+        tabindex="-1"
+      >
+        <span class="iedListTitle">
+          [subscription.subscriberIed.subscribed]
+        </span>
+      </mwc-list-item>
+      <li
+        divider=""
+        role="separator"
+      >
+      </li>
+      <ied-element>
+      </ied-element>
+      <ied-element>
+      </ied-element>
+    </mwc-list>
+    <mwc-list id="partialSubscribedIeds">
+      <mwc-list-item
+        aria-disabled="false"
+        noninteractive=""
+        tabindex="-1"
+      >
+        <span class="iedListTitle">
+          [subscription.subscriberIed.partiallySubscribed]
+        </span>
+      </mwc-list-item>
+      <li
+        divider=""
+        role="separator"
+      >
+      </li>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="avatar"
+        noninteractive=""
+        tabindex="-1"
+      >
+        <span>
+          [subscription.none]
+        </span>
+      </mwc-list-item>
+    </mwc-list>
+    <mwc-list id="notSubscribedIeds">
+      <mwc-list-item
+        aria-disabled="false"
+        noninteractive=""
+        tabindex="-1"
+      >
+        <span class="iedListTitle">
+          [subscription.subscriberIed.availableToSubscribe]
+        </span>
+      </mwc-list-item>
+      <li
+        divider=""
+        role="separator"
+      >
+      </li>
+      <ied-element>
+      </ied-element>
+    </mwc-list>
+  </div>
+</section>
+`;
+/* end snapshot Subscription Plugin when selecting a GOOSE message and you subscribe a partially subscribed IED it looks like the latest snapshot */
 

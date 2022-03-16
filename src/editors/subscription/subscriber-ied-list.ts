@@ -141,6 +141,8 @@ export class SubscriberIEDList extends LitElement {
       .filter(ied => ied.getAttribute('name') != localState.currentGooseIEDName)
       .forEach(ied => {
         const inputElements = ied.querySelectorAll(`LN0 > Inputs, LN > Inputs`);
+        console.log(ied.getAttribute('name'));
+        console.log(inputElements)
 
         let numberOfLinkedExtRefs = 0;
 
@@ -178,7 +180,7 @@ export class SubscriberIEDList extends LitElement {
         }
 
         if (
-          numberOfLinkedExtRefs ==
+          numberOfLinkedExtRefs >=
           localState.currentDataset!.querySelectorAll('FCDA').length
         ) {
           localState.subscribedIeds.push({ element: ied });
@@ -244,14 +246,16 @@ export class SubscriberIEDList extends LitElement {
         if (inputsElement?.parentElement)
           actions.push({ new: { parent: inputsElement!, element: extRef } });
         else inputsElement?.appendChild(extRef);
+
+        console.log(inputsElement)
       }
     });
 
     /** If the IED doesn't have a Inputs element, just append it to the first LN0 element. */
     const title = 'Connect';
-    if (inputsElement.parentElement)
+    if (inputsElement.parentElement) {
       this.dispatchEvent(newActionEvent({ title, actions }));
-    else {
+    } else {
       const inputAction: Create = {
         new: { parent: ied.querySelector('LN0')!, element: inputsElement },
       };
@@ -352,6 +356,9 @@ export class SubscriberIEDList extends LitElement {
     const partialSubscribedIeds = localState.availableIeds.filter(
       ied => ied.partial
     );
+    const availableIeds = localState.availableIeds.filter(
+      ied => !ied.partial
+    );
     const gseControlName =
       localState.currentGseControl?.getAttribute('name') ?? undefined;
 
@@ -415,8 +422,8 @@ export class SubscriberIEDList extends LitElement {
                   >
                 </mwc-list-item>
                 <li divider role="separator"></li>
-                ${localState.availableIeds.length > 0
-                  ? localState.availableIeds.map(
+                ${availableIeds.length > 0
+                  ? availableIeds.map(
                       ied =>
                         html`<ied-element
                           .status=${SubscribeStatus.None}
