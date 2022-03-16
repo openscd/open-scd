@@ -286,7 +286,6 @@ snapshots["gsecontrol wizards editGseControlWizard looks like the latest snapsho
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="save"
     label="[save]"
     slot="primaryAction"

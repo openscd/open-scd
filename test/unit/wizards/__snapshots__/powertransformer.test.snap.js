@@ -32,7 +32,6 @@ snapshots["Wizards for SCL element Power Transformer looks like the latest snaps
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="edit"
     label="[save]"
     slot="primaryAction"

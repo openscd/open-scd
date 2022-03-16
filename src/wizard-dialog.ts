@@ -224,6 +224,7 @@ export class WizardDialog extends LitElement {
             @click=${() => this.act(page.secondary?.action, false)}
             icon="${page.secondary.icon}"
             label="${page.secondary.label}"
+            style="${page.secondary.style ? page.secondary.style :  ''}"
           ></mwc-button>`
         : html`<mwc-button
             slot="secondaryAction"
@@ -238,7 +239,6 @@ export class WizardDialog extends LitElement {
             icon="code"
             label="${translate('save')}"
             trailingIcon
-            dialogInitialFocus
           ></mwc-button>`
         : page.primary
         ? html`<mwc-button
@@ -247,7 +247,6 @@ export class WizardDialog extends LitElement {
             icon="${page.primary.icon}"
             label="${page.primary.label}"
             trailingIcon
-            dialogInitialFocus
           ></mwc-button>`
         : index + 1 < (this.wizard?.length ?? 0)
         ? html`<mwc-button

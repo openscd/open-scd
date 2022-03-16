@@ -104,7 +104,6 @@ snapshots["Wizards for SCL ReportControl element define an edit wizard that for 
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="save"
     label="[save]"
     slot="primaryAction"
@@ -203,7 +202,6 @@ snapshots["Wizards for SCL ReportControl element define an edit wizard that for 
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="save"
     label="[save]"
     slot="primaryAction"
@@ -302,7 +300,6 @@ snapshots["Wizards for SCL ReportControl element define a select wizard that wit
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="add"
     label="[Report]"
     slot="primaryAction"
@@ -593,7 +590,6 @@ snapshots["Wizards for SCL ReportControl element define an create wizard that th
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="save"
     label="[save]"
     slot="primaryAction"
@@ -622,7 +618,6 @@ snapshots["Wizards for SCL ReportControl element define a wizard to select the c
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon=""
     label="[next]"
     slot="primaryAction"
