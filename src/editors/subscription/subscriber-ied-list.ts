@@ -141,8 +141,6 @@ export class SubscriberIEDList extends LitElement {
       .filter(ied => ied.getAttribute('name') != localState.currentGooseIEDName)
       .forEach(ied => {
         const inputElements = ied.querySelectorAll(`LN0 > Inputs, LN > Inputs`);
-        console.log(ied.getAttribute('name'));
-        console.log(inputElements)
 
         let numberOfLinkedExtRefs = 0;
 
@@ -246,8 +244,6 @@ export class SubscriberIEDList extends LitElement {
         if (inputsElement?.parentElement)
           actions.push({ new: { parent: inputsElement!, element: extRef } });
         else inputsElement?.appendChild(extRef);
-
-        console.log(inputsElement)
       }
     });
 
