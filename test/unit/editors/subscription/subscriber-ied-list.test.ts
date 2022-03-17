@@ -17,7 +17,7 @@ describe('subscriber-ied-list', () => {
     ></subscriber-ied-list>`);
   });
 
-  it('looks like the latest snapshot', async () => {
+  it('initially looks like the latest snapshot', async () => {
     await expect(element).shadowDom.to.equalSnapshot();
   });
 });
