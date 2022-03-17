@@ -21,6 +21,13 @@ export const officialPlugins = [
     kind: 'editor',
   },
   {
+    name: 'Subscription',
+    src: '/src/editors/Subscription.js',
+    icon: 'link',
+    default: true,
+    kind: 'editor',
+  },
+  {
     name: 'Sampled Values Subscriber',
     src: '/src/editors/SampledValues.js',
     icon: 'link',

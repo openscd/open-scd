@@ -290,6 +290,19 @@ export const de: Translations = {
     missing: 'DataTypeTemplates fehlen',
     add: 'DataTypeTemplates hinzufügen',
   },
+  subscription: {
+    none: 'Keine Verbindung vorhanden',
+    publisherGoose: {
+      title: 'GOOSE-Publizierer'
+    },
+    subscriberIed: {
+      title: 'Verbunden mit {{ selected }}',
+      subscribed: 'Verbunden',
+      availableToSubscribe: 'Kann verbunden werden',
+      partiallySubscribed: 'Teilweise verbunden',
+      noGooseMessageSelected: 'Keine GOOSE ausgewählt'
+    }
+  },
   sampledvalues: {
     none: 'Keine Verbindung vorhanden',
     sampledValuesList: {

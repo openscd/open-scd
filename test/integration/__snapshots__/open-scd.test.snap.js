@@ -613,6 +613,22 @@ snapshots["open-scd looks like its snapshot"] =
       mwc-list-item=""
       selected=""
       tabindex="-1"
+      value="/src/editors/Subscription.js"
+    >
+      <mwc-icon slot="meta">
+        link
+      </mwc-icon>
+      Subscription
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
       value="/src/editors/SampledValues.js"
     >
       <mwc-icon slot="meta">

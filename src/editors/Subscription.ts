@@ -2,11 +2,11 @@ import { LitElement, html, TemplateResult, property, css } from 'lit-element';
 
 import '@material/mwc-fab';
 
-import './sampledvalues/subscriber-ied-list-smv.js';
-import './sampledvalues/sampled-values-list.js';
+import './subscription/subscriber-ied-list-goose.js';
+import './subscription/publisher-goose-list.js';
 
-/** An editor [[`plugin`]] for subscribing IEDs to Sampled Values. */
-export default class SampledValuesPlugin extends LitElement {
+/** An editor [[`plugin`]] for subscribing IEDs to GOOSE messages using the ABB subscription method. */
+export default class SubscriptionABBPlugin extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property()
   doc!: XMLDocument;
@@ -15,10 +15,10 @@ export default class SampledValuesPlugin extends LitElement {
     return html`
     <div id="containerTemplates">
       <section>
-        <sampled-values-list .doc=${this.doc}></sampled-values-list>
+        <publisher-goose-list .doc=${this.doc}></publisher-goose-list>
       </section>
       <section>
-        <subscriber-ied-list-smv .doc=${this.doc}></subscriber-ied-list-smv>
+        <subscriber-ied-list-goose .doc=${this.doc}></subscriber-ied-list-goose>
       </section>
     </div>`;
   }

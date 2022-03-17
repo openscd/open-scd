@@ -9,10 +9,10 @@ import {
 import '@material/mwc-icon';
 import '@material/mwc-list/mwc-list-item';
 
-import { newIEDSampledValuesSubscriptionEvent, SubscribeStatus } from '../foundation.js';
+import { newIEDSubscriptionEvent, SubscribeStatus } from '../foundation.js';
 
-@customElement('ied-element')
-export class IEDElement extends LitElement {
+@customElement('ied-element-goose')
+export class IEDElementGoose extends LitElement {
   /** Holding the IED element */
   @property({ attribute: false })
   element!: Element;
@@ -22,10 +22,7 @@ export class IEDElement extends LitElement {
 
   private onIedSelect = () => {
     this.dispatchEvent(
-      newIEDSampledValuesSubscriptionEvent(
-        this.element,
-        this.status ?? SubscribeStatus.None
-      )
+      newIEDSubscriptionEvent(this.element, this.status ?? SubscribeStatus.None)
     );
   };
 

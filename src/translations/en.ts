@@ -286,6 +286,19 @@ export const en = {
     missing: 'DataTypeTemplates missing',
     add: 'Add DataTypeTemplates',
   },
+  subscription: {
+    none: 'None',
+    publisherGoose: {
+      title: 'GOOSE publisher'
+    },
+    subscriberIed: {
+      title: 'Subscriber of {{ selected }}',
+      subscribed: 'Subscribed',
+      availableToSubscribe: 'Available to subscribe',
+      partiallySubscribed: 'Partially subscribed',
+      noGooseMessageSelected: 'No GOOSE message selected'
+    }
+  },
   sampledvalues: {
     none: 'none',
     sampledValuesList: {

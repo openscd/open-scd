@@ -25,7 +25,7 @@ describe('Sampled Values Plugin', () => {
     });
 
     it('the IED list looks like the latest snapshot', async () => {
-      await expect(element.shadowRoot?.querySelector('subscriber-ied-list')).shadowDom.to.equalSnapshot();
+      await expect(element.shadowRoot?.querySelector('subscriber-ied-list-smv')).shadowDom.to.equalSnapshot();
     });
   });
 
@@ -39,39 +39,39 @@ describe('Sampled Values Plugin', () => {
 
     it('the list on the right will initially show the subscribed / partially subscribed / not subscribed IEDs', async () => {
       await element.updateComplete;
-      expect(element.shadowRoot?.querySelector('subscriber-ied-list')).shadowDom.to.equalSnapshot();
+      expect(element.shadowRoot?.querySelector('subscriber-ied-list-smv')).shadowDom.to.equalSnapshot();
     });
 
     describe('and you subscribe a non-subscribed IED', () => {
       it('it looks like the latest snapshot', async () => {
-        const ied = element.shadowRoot?.querySelector('subscriber-ied-list')
-          ?.shadowRoot?.querySelectorAll('ied-element')[2].shadowRoot?.querySelector('mwc-list-item');
+        const ied = element.shadowRoot?.querySelector('subscriber-ied-list-smv')
+          ?.shadowRoot?.querySelectorAll('ied-element-smv')[2].shadowRoot?.querySelector('mwc-list-item');
 
         (<HTMLElement>(ied)).click();
         await element.updateComplete;
-        expect(element.shadowRoot?.querySelector('subscriber-ied-list')).shadowDom.to.equalSnapshot();
+        expect(element.shadowRoot?.querySelector('subscriber-ied-list-smv')).shadowDom.to.equalSnapshot();
       });
     });
 
     describe('and you unsubscribe a subscribed IED', () => {
       it('it looks like the latest snapshot', async () => {
-        const ied = element.shadowRoot?.querySelector('subscriber-ied-list')
-          ?.shadowRoot?.querySelectorAll('ied-element')[0].shadowRoot?.querySelector('mwc-list-item');
+        const ied = element.shadowRoot?.querySelector('subscriber-ied-list-smv')
+          ?.shadowRoot?.querySelectorAll('ied-element-smv')[0].shadowRoot?.querySelector('mwc-list-item');
 
         (<HTMLElement>(ied)).click();
         await element.updateComplete;
-        expect(element.shadowRoot?.querySelector('subscriber-ied-list')).shadowDom.to.equalSnapshot();
+        expect(element.shadowRoot?.querySelector('subscriber-ied-list-smv')).shadowDom.to.equalSnapshot();
       });
     });
 
     describe('and you subscribe a partially subscribed IED', () => {
       it('it looks like the latest snapshot', async () => {
-        const ied = element.shadowRoot?.querySelector('subscriber-ied-list')
-          ?.shadowRoot?.querySelectorAll('ied-element')[1].shadowRoot?.querySelector('mwc-list-item');
+        const ied = element.shadowRoot?.querySelector('subscriber-ied-list-smv')
+          ?.shadowRoot?.querySelectorAll('ied-element-smv')[1].shadowRoot?.querySelector('mwc-list-item');
 
         (<HTMLElement>(ied)).click();
         await element.updateComplete;
-        expect(element.shadowRoot?.querySelector('subscriber-ied-list')).shadowDom.to.equalSnapshot();
+        expect(element.shadowRoot?.querySelector('subscriber-ied-list-smv')).shadowDom.to.equalSnapshot();
       });
     });
   });

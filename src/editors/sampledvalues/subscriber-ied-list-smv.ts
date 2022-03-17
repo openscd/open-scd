@@ -13,7 +13,7 @@ import '@material/mwc-icon';
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 
-import './elements/ied-element.js';
+import './elements/ied-element-smv.js';
 import {
   Create,
   createElement,
@@ -97,8 +97,8 @@ const localState: State = {
 };
 
 /** An sub element for subscribing and unsubscribing IEDs to Sampled Values messages. */
-@customElement('subscriber-ied-list')
-export class SubscriberIEDList extends LitElement {
+@customElement('subscriber-ied-list-smv')
+export class SubscriberIEDListSmv extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
 
@@ -128,6 +128,7 @@ export class SubscriberIEDList extends LitElement {
    * @param event - Incoming event.
    */
   private async onSampledValuesDataSetEvent(event: SampledValuesSelectEvent) {
+    console.log('onSMVSelect')
     localState.currentSampledValuesControl = event.detail.sampledValuesControl;
     localState.currentDataset = event.detail.dataset;
     localState.currentSampledValuesIEDName = localState.currentSampledValuesControl
@@ -195,6 +196,7 @@ export class SubscriberIEDList extends LitElement {
    * @param event - Incoming event.
    */
   private async onIEDSubscriptionEvent(event: IEDSampledValuesSubscriptionEvent) {
+    console.log('onSMVIEDSub')
     switch (event.detail.subscribeStatus) {
       case SubscribeStatus.Full: {
         this.unsubscribe(event.detail.ied);
@@ -377,10 +379,10 @@ export class SubscriberIEDList extends LitElement {
                 ${localState.subscribedIeds.length > 0
                   ? localState.subscribedIeds.map(
                       ied =>
-                        html`<ied-element
+                        html`<ied-element-smv
                           .status=${SubscribeStatus.Full}
                           .element=${ied.element}
-                        ></ied-element>`
+                        ></ied-element-smv>`
                     )
                   : html`<mwc-list-item graphic="avatar" noninteractive>
                       <span>${translate('sampledvalues.none')}</span>
@@ -398,10 +400,10 @@ export class SubscriberIEDList extends LitElement {
                 ${partialSubscribedIeds.length > 0
                   ? partialSubscribedIeds.map(
                       ied =>
-                        html`<ied-element
+                        html`<ied-element-smv
                           .status=${SubscribeStatus.Partial}
                           .element=${ied.element}
-                        ></ied-element>`
+                        ></ied-element-smv>`
                     )
                   : html`<mwc-list-item graphic="avatar" noninteractive>
                       <span>${translate('sampledvalues.none')}</span>
@@ -419,10 +421,10 @@ export class SubscriberIEDList extends LitElement {
                 ${availableIeds.length > 0
                   ? availableIeds.map(
                       ied =>
-                        html`<ied-element
+                        html`<ied-element-smv
                           .status=${SubscribeStatus.None}
                           .element=${ied.element}
-                        ></ied-element>`
+                        ></ied-element-smv>`
                     )
                   : html`<mwc-list-item graphic="avatar" noninteractive>
                       <span>${translate('sampledvalues.none')}</span>
