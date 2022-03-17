@@ -4,7 +4,7 @@ import '../../../src/wizard-textfield.js';
 import {
   WizardInput,
   isCreate,
-  isUpdate,
+  isReplace,
   isDelete,
 } from '../../../src/foundation.js';
 import {
@@ -62,17 +62,17 @@ describe('VoltageLevelEditor', () => {
           ).documentElement;
         });
 
-        it('returns a WizardAction which retruns two EditorActions', () => {
+        it('returns a WizardAction which returns two EditorActions', () => {
           const wizardAction = updateAction(element);
           expect(wizardAction(inputs, newWizard()).length).to.equal(2);
         });
 
-        it('returns a WizardAction with the first returned EditorAction beeing an Update', () => {
+        it('returns a WizardAction with the first returned EditorAction being an Update', () => {
           const wizardAction = updateAction(element);
-          expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
+          expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isReplace);
         });
 
-        it('returns a WizardAction with the second returned EditorAction beeing a Create', () => {
+        it('returns a WizardAction with the second returned EditorAction being a Create', () => {
           const wizardAction = updateAction(element);
           expect(wizardAction(inputs, newWizard())[1]).to.satisfy(isCreate);
         });
@@ -94,14 +94,14 @@ describe('VoltageLevelEditor', () => {
           expect(wizardAction(inputs, newWizard()).length).to.equal(2);
         });
 
-        it('returns a WizardAction with the first returned EditorAction beeing an Update', () => {
+        it('returns a WizardAction with the first returned EditorAction being an Update', () => {
           const wizardAction = updateAction(element);
-          expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
+          expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isReplace);
         });
 
-        it('returns a WizardAction with the second returned EditorAction beeing a Update', () => {
+        it('returns a WizardAction with the second returned EditorAction being a Update', () => {
           const wizardAction = updateAction(element);
-          expect(wizardAction(inputs, newWizard())[1]).to.satisfy(isUpdate);
+          expect(wizardAction(inputs, newWizard())[1]).to.satisfy(isReplace);
         });
       });
 
@@ -123,7 +123,7 @@ describe('VoltageLevelEditor', () => {
 
         it('returns a WizardAction with the first returned EditorAction beeing an Update', () => {
           const wizardAction = updateAction(element);
-          expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
+          expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isReplace);
         });
       });
 
@@ -196,7 +196,7 @@ describe('VoltageLevelEditor', () => {
 
         it('returns a WizardAction with the first returned EditorAction beeing an Update', () => {
           const wizardAction = updateAction(element);
-          expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
+          expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isReplace);
         });
 
         it('returns a WizardAction with the second returned EditorAction beeing a Delete', () => {

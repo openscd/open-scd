@@ -629,6 +629,22 @@ snapshots["open-scd looks like its snapshot"] =
       mwc-list-item=""
       selected=""
       tabindex="-1"
+      value="/src/editors/SampledValues.js"
+    >
+      <mwc-icon slot="meta">
+        link
+      </mwc-icon>
+      Sampled Values Subscriber
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
       value="/src/editors/Communication.js"
     >
       <mwc-icon slot="meta">
@@ -651,6 +667,21 @@ snapshots["open-scd looks like its snapshot"] =
         copy_all
       </mwc-icon>
       Templates
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      tabindex="-1"
+      value="/src/editors/Cleanup.js"
+    >
+      <mwc-icon slot="meta">
+        cleaning_services
+      </mwc-icon>
+      Cleanup
     </mwc-check-list-item>
     <mwc-list-item
       aria-disabled="false"

@@ -30,9 +30,11 @@ export const de: Translations = {
     dchg: 'Detenänderung ist Auslöser',
     qchg: 'Qualitätsanderung ist Auslöser',
     dupd: 'Datenupdate ist Auslöser',
+    period: 'Periodisch übertragen',
+    gi: 'Manuelle Abfrage',
     fixedOffs: 'Fester Offset',
     securityEnable: 'Aktive Sicherungsmaßnahmen',
-    DataSet: 'Datensetz',
+    DataSet: 'Datensatz',
     Communication: 'Kommunikation',
     TrgOps: 'Triggerbedingungen',
     OptFields: 'Optionale felder',
@@ -40,6 +42,24 @@ export const de: Translations = {
     smpMod: 'Abtast-Art',
     smpRate: 'Abtastrate',
     nofASDU: 'Abtastpunkte pro Datenpacket',
+    seqNum: 'Sequenznummer mitschicken',
+    timeStamp: 'Zeitstempel mitschicken',
+    dataSet: 'Datensatz-Reference mitschicken',
+    reasonCode: 'Was hat den Report getriggert?',
+    dataRef: 'Beschreibung der Datensatzes',
+    entryID: 'Entry ID mitschicken',
+    configRef: 'Konfigurations-Revision mitschicken',
+    bufOvfl: 'Überlauf des internen Speichers signalisieren',
+    indexed: 'Mehrere Instanzen möglich',
+    buffered: 'Gepufferter Report',
+    maxReport: 'Anzahl Instanzen',
+    bufTime: 'Min. Intervall zwischen zwei Reports',
+    intgPd: 'Intervall zwischen zwei periodischen Reports',
+    SmvOpts: 'Optionale Informationen',
+    refreshTime: 'Zeitstempel des Abtastwertes zu Telegram hinzufügen',
+    sampleRate: 'Abtastrate zu Telegram hinzufügen',
+    security: 'Potentiel in Zukunft für z.B. digitale Signature',
+    synchSourceId: 'Identität der Zeitquelle zu Telegram hinzufügen',
   },
   settings: {
     title: 'Einstellungen',
@@ -50,8 +70,10 @@ export const de: Translations = {
     showieds: 'Zeige IEDs im Substation-Editor',
     selectFileButton: 'Datei auswählen',
     loadNsdTranslations: 'NSDoc-Dateien hochladen',
-    invalidFileNoIdFound: 'Ungültiges NSDoc; kein \'id\'-Attribut in der Datei gefunden',
-    invalidNsdocVersion: '???'
+    invalidFileNoIdFound:
+      "Ungültiges NSDoc; kein 'id'-Attribut in der Datei gefunden",
+    invalidNsdocVersion:
+      'Die Version {{ id }} NSD ({{ nsdVersion }}) passt nicht zu der geladenen NSDoc ({{ nsdocVersion }})',
   },
   menu: {
     new: 'Neues projekt',
@@ -81,6 +103,7 @@ export const de: Translations = {
     smvcontrol: 'Sampled Values anzeigen',
   },
   editing: {
+    node: 'Benutzerdefiniertes Objekt',
     created: '{{ name }} hinzugefügt',
     deleted: '{{ name }} entfernt',
     moved: '{{ name }} verschoben',
@@ -93,6 +116,7 @@ export const de: Translations = {
       duplicate: 'Konnte {{name}} nicht kopieren',
       nameClash:
         '{{ parent }} enthält bereits ein {{ child }} Kind namens "{{ name }}"',
+      idClash: 'Das Projekt enthält bereits die ID "{{ id }}"',
     },
   },
   validator: {
@@ -193,7 +217,9 @@ export const de: Translations = {
     wizard: {
       nameHelper: '`Name des Leistungstransformators',
       descHelper: 'Beschreibung des Leistungstransformators',
+      typeHelper: 'Type des Leistungstransformators',
       title: {
+        add: 'Leistungstransformator hinzufügen',
         edit: 'Leistungstransformator bearbeiten',
       },
     },
@@ -277,6 +303,19 @@ export const de: Translations = {
       noGooseMessageSelected: 'Keine GOOSE ausgewählt'
     }
   },
+  sampledvalues: {
+    none: 'Keine Verbindung vorhanden',
+    sampledValuesList: {
+      title: 'Sampled Values'
+    },
+    subscriberIed: {
+      title: 'Verbunden mit {{ selected }}',
+      subscribed: 'Verbunden',
+      availableToSubscribe: 'Kann verbunden werden',
+      partiallySubscribed: 'Teilweise verbunden',
+      noSampledValuesSelected: 'Keinen Kontrollblock ausgewählt'
+    }
+  },
   'enum-val': {
     wizard: {
       title: {
@@ -292,6 +331,9 @@ export const de: Translations = {
         edit: 'EnumType bearbeiten',
       },
     },
+    action: {
+      edit: 'DAType ID "{{oldId}}" und deren DA-Referenzen geändert zu {{newId}} ',
+    },
   },
   datype: {
     wizard: {
@@ -299,6 +341,9 @@ export const de: Translations = {
         add: 'DAType hinzufügen',
         edit: 'DAType bearbeiten',
       },
+    },
+    action: {
+      edit: 'EnumType ID "{{oldId}}" und deren DA-Referenzen geändert zu {{newId}} ',
     },
   },
   bda: {
@@ -341,6 +386,9 @@ export const de: Translations = {
       },
       enums: 'Standard Enumerations',
     },
+    action: {
+      edit: 'DOType ID "{{oldId}}" und deren DO-Referenzen geändert zu {{newId}} ',
+    },
   },
   lnodetype: {
     wizard: {
@@ -349,6 +397,9 @@ export const de: Translations = {
         edit: 'LNodeType bearbeiten',
         select: 'Data Objects auswählen',
       },
+    },
+    action: {
+      edit: 'LNodeType ID "{{oldId}}" und deren LN-Referenzen geändert zu {{newId}} ',
     },
     autoimport: 'Vordefinierte OpenSCD LN Klasse verwenden',
     missinglnclass: 'Vordefinierte LN Klasse fehlt',
@@ -452,6 +503,28 @@ export const de: Translations = {
     wizard: {
       xCoordinateHelper: 'X-Koordinate im Einphasenersatzschaltbild',
       yCoordinateHelper: 'Y-Koordinate im Einphasenersatzschaltbild',
+    },
+  },
+  dataset: {
+    fcda: { add: 'Daten-Attribute hinzufügen' },
+    fcd: { add: 'Daten-Objekte hinzufügen' },
+  },
+  report: {
+    wizard: { location: 'Ablageort der Reports wählen' },
+  },
+  cleanup: {
+    unreferencedDataSets: {
+      title: 'Nicht referenzierte Datensätze',
+      deleteButton: 'Ausgewählten Datensatz entfernen',
+      tooltip:
+        'DatenSätze ohne Verweis auf einen zugehörigen GOOSE-, Log-, Report- oder Sampled Value Control Block',
+    },
+  },
+  controlblock: {
+    action: {
+      edit: '{{type}} "{{name}}" in IED {{iedName}} bearbeitet',
+      remove:
+        '{{type}} "{{name}}" and referenzierte Element von IED {{iedName}} entfernt',
     },
   },
   add: 'Hinzufügen',

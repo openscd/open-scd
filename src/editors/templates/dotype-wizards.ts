@@ -20,7 +20,9 @@ import {
   identity,
   isPublic,
   newActionEvent,
+  newSubWizardEvent,
   newWizardEvent,
+  Replace,
   selector,
   Wizard,
   WizardActor,
@@ -200,7 +202,7 @@ function addPredefinedDOType(
       : null;
     const element = values.selected
       ? <Element>selectedElement!.cloneNode(true)
-      : parent.ownerDocument.createElement('DOType');
+      : createElement(parent.ownerDocument, 'DOType', {});
 
     element.setAttribute('id', id);
     element.setAttribute('cdc', cdc);
@@ -319,7 +321,24 @@ function updateDOTypeAction(element: Element): WizardActor {
 
     const newElement = cloneElement(element, { id, desc, cdc });
 
-    return [{ old: { element }, new: { element: newElement } }];
+    const actions: Replace[] = [];
+    actions.push({ old: { element }, new: { element: newElement } });
+
+    const oldId = element.getAttribute('id')!;
+    Array.from(
+      element.ownerDocument.querySelectorAll(
+        `LNodeType > DO[type="${oldId}"], DOType > SDO[type="${oldId}"]`
+      )
+    ).forEach(oldDo => {
+      const newDo = <Element>oldDo.cloneNode(false);
+      newDo.setAttribute('type', id);
+
+      actions.push({ old: { element: oldDo }, new: { element: newDo } });
+    });
+
+    return [
+      { title: get('dotype.action.edit', { oldId, newId: id }), actions },
+    ];
   };
 }
 
@@ -391,8 +410,7 @@ export function dOTypeWizard(
               const wizard = sDOWizard({
                 parent: dotype,
               });
-              if (wizard) e.target!.dispatchEvent(newWizardEvent(wizard));
-              e.target!.dispatchEvent(newWizardEvent());
+              if (wizard) e.target!.dispatchEvent(newSubWizardEvent(wizard));
             }}
           ></mwc-button>
           <mwc-button
@@ -402,8 +420,9 @@ export function dOTypeWizard(
             label="${translate('scl.DA')}"
             @click=${(e: Event) => {
               if (dotype)
-                e.target!.dispatchEvent(newWizardEvent(createDaWizard(dotype)));
-              e.target!.dispatchEvent(newWizardEvent());
+                e.target!.dispatchEvent(
+                  newSubWizardEvent(createDaWizard(dotype))
+                );
             }}
           ></mwc-button>
         </section>`,
@@ -425,8 +444,7 @@ export function dOTypeWizard(
                     doc,
                   });
 
-              if (wizard) e.target!.dispatchEvent(newWizardEvent(wizard));
-              e.target!.dispatchEvent(newWizardEvent());
+              if (wizard) e.target!.dispatchEvent(newSubWizardEvent(wizard));
             }}
           >
             ${Array.from(dotype.querySelectorAll('SDO, DA')).map(

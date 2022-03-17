@@ -28,6 +28,8 @@ export const en = {
     dchg: 'Trigger on data change',
     qchg: 'Trigger on quality change',
     dupd: 'Trigger on data update',
+    period: 'Periodical Publishing',
+    gi: 'General Interrogation',
     fixedOffs: 'Fixed offset',
     securityEnable: 'Security enabled',
     DataSet: 'Dataset',
@@ -37,7 +39,25 @@ export const en = {
     multicast: 'SMV acc. to IEC 61850 9-2',
     smpMod: 'Sample mode',
     smpRate: 'Sample rate',
-    nofASDU: 'Samples per paket',
+    nofASDU: 'Samples per packet',
+    seqNum: 'Add Sequence Number',
+    timeStamp: 'Add Timestamp',
+    dataSet: 'Add DataSet Reference',
+    reasonCode: 'Add Trigger Reason',
+    dataRef: 'Add description of the payload',
+    entryID: 'Add Entry ID',
+    configRef: 'Add Configuration Revision',
+    bufOvfl: 'Add Buffered Overflow information',
+    indexed: 'Multiple instances possible',
+    buffered: 'Buffered Report',
+    maxReport: 'Number of Instances',
+    bufTime: 'Min. time between two Reports',
+    intgPd: 'Time between two periodic Reports',
+    SmvOpts: 'Optional Information',
+    refreshTime: 'Add timestamp to SMV packet',
+    sampleRate: 'Add sample rate to SMV packet',
+    security: 'Potential future use. e.g. digital signature',
+    synchSourceId: 'Add sync source id to SMV packet',
   },
   settings: {
     title: 'Settings',
@@ -48,8 +68,9 @@ export const en = {
     showieds: 'Show IEDs in substation editor',
     selectFileButton: 'Select file',
     loadNsdTranslations: 'Uploading NSDoc files',
-    invalidFileNoIdFound: 'Invalid NSDoc; no \'id\' attribute found in file',
-    invalidNsdocVersion: 'The version of {{ id }} NSD ({{ nsdVersion }}) does not correlate with the version of the corresponding NSDoc ({{ nsdocVersion }})'
+    invalidFileNoIdFound: "Invalid NSDoc; no 'id' attribute found in file",
+    invalidNsdocVersion:
+      'The version of {{ id }} NSD ({{ nsdVersion }}) does not correlate with the version of the corresponding NSDoc ({{ nsdocVersion }})',
   },
   menu: {
     new: 'New project',
@@ -79,6 +100,7 @@ export const en = {
     smvcontrol: 'Show all Sampled Values',
   },
   editing: {
+    node: 'User defined object',
     created: 'Added {{ name }}',
     deleted: 'Removed {{ name }}',
     moved: 'Moved {{ name }}',
@@ -91,6 +113,7 @@ export const en = {
       duplicate: 'Could not copy {{ name }}',
       nameClash:
         'Parent {{ parent }} already contains a {{ child }} named "{{ name }}"',
+      idClash: 'The project has already an ID "{{ id }}"',
     },
   },
   textfield: {
@@ -190,7 +213,9 @@ export const en = {
     wizard: {
       nameHelper: 'Power transformer name',
       descHelper: 'Power transformer description',
+      typeHelper: 'Power transformer type',
       title: {
+        add: 'Add power transformer',
         edit: 'Edit power transformer',
       },
     },
@@ -274,6 +299,19 @@ export const en = {
       noGooseMessageSelected: 'No GOOSE message selected'
     }
   },
+  sampledvalues: {
+    none: 'none',
+    sampledValuesList: {
+      title: 'Sampled Values'
+    },
+    subscriberIed: {
+      title: 'Subscriber of {{ selected }}',
+      subscribed: 'Subscribed',
+      availableToSubscribe: 'Available to subscribe',
+      partiallySubscribed: 'Partially subscribed',
+      noSampledValuesSelected: 'No control block selected'
+    }
+  },
   'enum-val': {
     wizard: {
       title: {
@@ -289,6 +327,9 @@ export const en = {
         edit: 'Edit EnumType',
       },
     },
+    action: {
+      edit: 'Change EnumType ID "{{oldId}}" and its DA references to {{newId}} ',
+    },
   },
   datype: {
     wizard: {
@@ -296,6 +337,9 @@ export const en = {
         add: 'Add DAType',
         edit: 'Edit DAType',
       },
+    },
+    action: {
+      edit: 'Change DAType ID "{{oldId}}" and its DA references to {{newId}} ',
     },
   },
   bda: {
@@ -338,6 +382,9 @@ export const en = {
       },
       enums: 'Default enumerations',
     },
+    action: {
+      edit: 'Change DOType ID "{{oldId}}" and its DO references to {{newId}} ',
+    },
   },
   lnodetype: {
     wizard: {
@@ -346,6 +393,9 @@ export const en = {
         edit: 'Edit LNodeType',
         select: 'Select Data Objects',
       },
+    },
+    action: {
+      edit: 'Change LNodeType ID "{{oldId}}" and its LN references to {{newId}} ',
     },
     autoimport: 'Use LN class from OpenSCD template',
     missinglnclass: 'Missing pre-defined LN class',
@@ -449,6 +499,27 @@ export const en = {
     wizard: {
       xCoordinateHelper: 'X-Coordinate for Single Line Diagram',
       yCoordinateHelper: 'Y-Coordinate for Single Line Diagram',
+    },
+  },
+  dataset: {
+    fcda: { add: 'Add Data Attributes' },
+    fcd: { add: 'Add Data Objects' },
+  },
+  report: {
+    wizard: { location: 'Select Report Control Location' },
+  },
+  cleanup: {
+    unreferencedDataSets: {
+      title: 'Unreferenced Datasets',
+      deleteButton: 'Remove Selected Datasets',
+      tooltip: 'Datasets without a reference to an associated GOOSE, Log, Report or Sampled Value Control Block'
+    },
+  },
+  controlblock: {
+    action: {
+      edit: 'Edited {{type}} "{{name}}" in IED {{iedName}}',
+      remove:
+        'Removed {{type}} "{{name}}" and its referenced elements from IED {{iedName}}',
     },
   },
   add: 'Add',

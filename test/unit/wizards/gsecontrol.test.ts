@@ -6,9 +6,10 @@ import { MockWizard } from '../../mock-wizard.js';
 
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
+  Delete,
   isDelete,
-  isUpdate,
-  Update,
+  isReplace,
+  Replace,
   Wizard,
   WizardInput,
 } from '../../../src/foundation.js';
@@ -139,39 +140,55 @@ describe('gsecontrol wizards', () => {
       'application/xml'
     ).documentElement;
 
+    const missingparent = <Element>(
+      new DOMParser().parseFromString(
+        `<GSEControl name="myName" datSet="myDataSet"/>`,
+        'application/xml'
+      ).documentElement
+    );
+
     it('removes GSEControl and its refereced DataSet if no other GSEControl are aasinged', () => {
       const gseControl = ln01gse.querySelector('GSEControl')!;
-      const actions = removeGseControl(gseControl);
+      const actions = <Delete[]>removeGseControl(gseControl)!.actions;
       expect(actions.length).to.equal(2);
       expect(actions[0]).to.satisfy(isDelete);
       expect(actions[0].old.element).to.equal(gseControl);
       expect(actions[1]).to.satisfy(isDelete);
       expect(actions[1].old.element).to.equal(ln01gse.querySelector('DataSet'));
     });
+
     it('removes GSEControl only if other GSEControl is assinged to the same DataSet', () => {
       const gseControl = ln02gse.querySelector('GSEControl')!;
-      const actions = removeGseControl(gseControl);
+      const actions = <Delete[]>removeGseControl(gseControl)!.actions;
       expect(actions.length).to.equal(1);
       expect(actions[0]).to.satisfy(isDelete);
       expect(actions[0].old.element).to.equal(gseControl);
     });
+
     it('removes GSEControl only if other ReportControlBlock is assinged to the same DataSet', () => {
       const gseControl = ln02rp.querySelector('GSEControl')!;
-      const actions = removeGseControl(gseControl);
+      const actions = <Delete[]>removeGseControl(gseControl)!.actions;
       expect(actions.length).to.equal(1);
       expect(actions[0]).to.satisfy(isDelete);
       expect(actions[0].old.element).to.equal(gseControl);
     });
+
     it('removes GSEControl only if other SMV is assinged to the same DataSet', () => {
       const gseControl = ln02smv.querySelector('GSEControl')!;
-      const actions = removeGseControl(gseControl);
+      const actions = <Delete[]>removeGseControl(gseControl)!.actions;
       expect(actions.length).to.equal(1);
       expect(actions[0]).to.satisfy(isDelete);
       expect(actions[0].old.element).to.equal(gseControl);
     });
+
+    it('does not remove with missing parent element', () => {
+      const action = removeGseControl(missingparent);
+      expect(action).to.be.null;
+    });
+
     it('removes GSE element if present in the Communication section', () => {
       const gseControl = doc.querySelector('IED[name="IED1"] GSEControl')!;
-      const actions = removeGseControl(gseControl);
+      const actions = <Delete[]>removeGseControl(gseControl)!.actions;
       expect(actions.length).to.equal(3);
       expect(actions[0]).to.satisfy(isDelete);
       expect(actions[0].old.element).to.equal(gseControl);
@@ -236,8 +253,8 @@ describe('gsecontrol wizards', () => {
       const editorAction = updateGseControlAction(gseControl);
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
-      expect(updateActions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>updateActions[0];
+      expect(updateActions[0]).to.satisfy(isReplace);
+      const updateAction = <Replace>updateActions[0];
       expect(updateAction.old.element).to.have.attribute('name', 'myCbName');
       expect(updateAction.new.element).to.have.attribute('name', 'myNewCbName');
     });
@@ -249,8 +266,8 @@ describe('gsecontrol wizards', () => {
       const editorAction = updateGseControlAction(gseControl);
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
-      expect(updateActions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>updateActions[0];
+      expect(updateActions[0]).to.satisfy(isReplace);
+      const updateAction = <Replace>updateActions[0];
       expect(updateAction.old.element).to.not.have.attribute('desc');
       expect(updateAction.new.element).to.have.attribute('desc', 'myDesc');
     });
@@ -261,8 +278,8 @@ describe('gsecontrol wizards', () => {
       const editorAction = updateGseControlAction(gseControl);
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
-      expect(updateActions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>updateActions[0];
+      expect(updateActions[0]).to.satisfy(isReplace);
+      const updateAction = <Replace>updateActions[0];
       expect(updateAction.old.element).to.have.attribute('type', 'GOOSE');
       expect(updateAction.new.element).to.have.attribute('type', 'GSSE');
     });
@@ -273,8 +290,8 @@ describe('gsecontrol wizards', () => {
       const editorAction = updateGseControlAction(gseControl);
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
-      expect(updateActions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>updateActions[0];
+      expect(updateActions[0]).to.satisfy(isReplace);
+      const updateAction = <Replace>updateActions[0];
       expect(updateAction.old.element).to.have.attribute('type', 'GOOSE');
       expect(updateAction.new.element).to.not.have.attribute('type');
     });
@@ -286,8 +303,8 @@ describe('gsecontrol wizards', () => {
       const editorAction = updateGseControlAction(gseControl);
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
-      expect(updateActions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>updateActions[0];
+      expect(updateActions[0]).to.satisfy(isReplace);
+      const updateAction = <Replace>updateActions[0];
       expect(updateAction.old.element).to.have.attribute('appID', 'myAPP/ID');
       expect(updateAction.new.element).to.have.attribute(
         'appID',
@@ -302,8 +319,8 @@ describe('gsecontrol wizards', () => {
       const editorAction = updateGseControlAction(gseControl);
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
-      expect(updateActions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>updateActions[0];
+      expect(updateActions[0]).to.satisfy(isReplace);
+      const updateAction = <Replace>updateActions[0];
       expect(updateAction.old.element).to.not.have.attribute('fixedOffs');
       expect(updateAction.new.element).to.have.attribute('fixedOffs', 'true');
     });
@@ -315,8 +332,8 @@ describe('gsecontrol wizards', () => {
       const editorAction = updateGseControlAction(gseControl);
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
-      expect(updateActions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>updateActions[0];
+      expect(updateActions[0]).to.satisfy(isReplace);
+      const updateAction = <Replace>updateActions[0];
       expect(updateAction.old.element).to.not.have.attribute('securityEnabled');
       expect(updateAction.new.element).to.have.attribute(
         'securityEnabled',

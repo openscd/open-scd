@@ -12,6 +12,7 @@ import '../wizard-select.js';
 import '../wizard-textfield.js';
 import {
   cloneElement,
+  ComplexAction,
   Delete,
   EditorAction,
   getValue,
@@ -28,6 +29,7 @@ import {
 import { securityEnableEnum, smpModEnum } from './foundation/enums.js';
 import { maxLength, patterns } from './foundation/limits.js';
 import { editSMvWizard } from './smv.js';
+import { editSmvOptsWizard } from './smvopts.js';
 
 function getSMV(element: Element): Element | null {
   const cbName = element.getAttribute('name');
@@ -46,8 +48,10 @@ function getSMV(element: Element): Element | null {
   );
 }
 
-export function removeSampledValueControlAction(element: Element): Delete[] {
-  if (!element.parentElement) return [];
+export function removeSampledValueControlAction(
+  element: Element
+): ComplexAction | null {
+  if (!element.parentElement) return null;
 
   const dataSet = element.parentElement!.querySelector(
     `DataSet[name="${element.getAttribute('datSet')}"]`
@@ -89,7 +93,17 @@ export function removeSampledValueControlAction(element: Element): Delete[] {
       },
     });
 
-  return actions;
+  const name = element.getAttribute('name')!;
+  const iedName = element.closest('IED')?.getAttribute('name') ?? '';
+
+  return {
+    title: get('controlblock.action.remove', {
+      type: element.tagName,
+      name,
+      iedName,
+    }),
+    actions,
+  };
 }
 
 interface ContentOptions {
@@ -224,6 +238,7 @@ export function editSampledValueControlWizard(element: Element): Wizard {
   const securityEnable = element.getAttribute('securityEnabled');
 
   const sMV = getSMV(element);
+  const smvOpts = element.querySelector('SmvOpts')!;
 
   return [
     {
@@ -258,13 +273,24 @@ export function editSampledValueControlWizard(element: Element): Wizard {
             ></mwc-button>`
           : html``,
         html`<mwc-button
+          id="editsmvopts"
+          label=${translate('scl.SmvOpts')}
+          icon="edit"
+          @click="${(e: MouseEvent) => {
+            e.target?.dispatchEvent(
+              newSubWizardEvent(() => editSmvOptsWizard(smvOpts))
+            );
+          }}}"
+        ></mwc-button>`,
+        html`<mwc-button
           label="${translate('remove')}"
           icon="delete"
           @click=${(e: MouseEvent) => {
-            const deleteActions = removeSampledValueControlAction(element);
-            deleteActions.forEach(deleteAction =>
-              e.target?.dispatchEvent(newActionEvent(deleteAction))
-            );
+            const complexAction = removeSampledValueControlAction(element);
+
+            if (complexAction)
+              e.target?.dispatchEvent(newActionEvent(complexAction));
+
             e.target?.dispatchEvent(newWizardEvent());
           }}
         ></mwc-button>`,

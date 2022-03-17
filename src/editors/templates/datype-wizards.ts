@@ -12,13 +12,17 @@ import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
 import '../../wizard-textfield.js';
 import {
+  cloneElement,
   Create,
+  createElement,
   EditorAction,
   getValue,
   identity,
   newActionEvent,
+  newSubWizardEvent,
   newWizardEvent,
   patterns,
+  Replace,
   selector,
   Wizard,
   WizardActor,
@@ -29,8 +33,41 @@ import {
   addReferencedDataTypes,
   allDataTypeSelector,
   unifyCreateActionArray,
-  updateIDNamingAction,
 } from './foundation.js';
+
+function updateDATpyeAction(element: Element): WizardActor {
+  return (inputs: WizardInput[]): EditorAction[] => {
+    const id = getValue(inputs.find(i => i.label === 'id')!)!;
+    const desc = getValue(inputs.find(i => i.label === 'desc')!);
+
+    if (
+      id === element.getAttribute('id') &&
+      desc === element.getAttribute('desc')
+    )
+      return [];
+
+    const newElement = cloneElement(element, { id, desc });
+
+    const actions: Replace[] = [];
+    actions.push({ old: { element }, new: { element: newElement } });
+
+    const oldId = element.getAttribute('id')!;
+    Array.from(
+      element.ownerDocument.querySelectorAll(
+        `DOType > DA[type="${oldId}"], DAType > BDA[type="${oldId}"]`
+      )
+    ).forEach(oldDa => {
+      const newDa = <Element>oldDa.cloneNode(false);
+      newDa.setAttribute('type', id);
+
+      actions.push({ old: { element: oldDa }, new: { element: newDa } });
+    });
+
+    return [
+      { title: get('datype.action.edit', { oldId, newId: id }), actions },
+    ];
+  };
+}
 
 export function editDaTypeWizard(
   dATypeIdentity: string,
@@ -49,7 +86,7 @@ export function editDaTypeWizard(
       primary: {
         icon: '',
         label: get('save'),
-        action: updateIDNamingAction(datype),
+        action: updateDATpyeAction(datype),
       },
       content: [
         html`<mwc-button
@@ -95,9 +132,8 @@ export function editDaTypeWizard(
             @click=${(e: Event) => {
               if (datype)
                 e.target!.dispatchEvent(
-                  newWizardEvent(createBDAWizard(datype))
+                  newSubWizardEvent(createBDAWizard(datype))
                 );
-              e.target!.dispatchEvent(newWizardEvent());
             }}
           ></mwc-button>
           <mwc-list
@@ -107,8 +143,7 @@ export function editDaTypeWizard(
               const bda = doc.querySelector(selector('BDA', bdaIdentity));
 
               if (bda)
-                e.target!.dispatchEvent(newWizardEvent(editBDAWizard(bda)));
-              e.target!.dispatchEvent(newWizardEvent());
+                e.target!.dispatchEvent(newSubWizardEvent(editBDAWizard(bda)));
             }}
           >
             ${Array.from(datype.querySelectorAll('BDA')).map(
@@ -154,7 +189,7 @@ function addPredefinedDAType(
       : null;
     const element = values.selected
       ? <Element>selectedElement!.cloneNode(true)
-      : parent.ownerDocument.createElement('DAType');
+      : createElement(parent.ownerDocument, 'DAType', {});
 
     element.setAttribute('id', id);
     if (desc) element.setAttribute('desc', desc);

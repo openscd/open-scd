@@ -11,8 +11,8 @@ import '@material/mwc-list/mwc-list-item';
 
 import { newIEDSubscriptionEvent, SubscribeStatus } from '../foundation.js';
 
-@customElement('ied-element')
-export class IEDElement extends LitElement {
+@customElement('ied-element-goose')
+export class IEDElementGoose extends LitElement {
   /** Holding the IED element */
   @property({ attribute: false })
   element!: Element;

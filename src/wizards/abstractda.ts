@@ -16,6 +16,8 @@ import { maxLength, patterns } from './foundation/limits.js';
 import { predefinedBasicTypeEnum, valKindEnum } from './foundation/enums.js';
 
 function selectType(e: SelectedEvent, data: Element, Val: string | null): void {
+  if (!e.target || !(e.target as Select).parentElement) return;
+
   const typeSelected = (<Select>e.target).selected?.value;
   const selectedBType = (<WizardSelect>(
     (<Select>e.target).parentElement!.querySelector(

@@ -9,8 +9,8 @@ import {
 import '@material/mwc-icon';
 import '@material/mwc-list/mwc-list-item';
 
-import { gooseIcon } from '../../../icons.js';
 import { newGOOSESelectEvent } from '../foundation.js';
+import { gooseIcon } from '../../../icons/icons.js';
 
 @customElement('goose-message')
 export class GOOSEMessage extends LitElement {

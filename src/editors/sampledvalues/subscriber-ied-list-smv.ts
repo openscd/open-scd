@@ -13,7 +13,7 @@ import '@material/mwc-icon';
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 
-import './elements/ied-element.js';
+import './elements/ied-element-smv.js';
 import {
   Create,
   createElement,
@@ -23,9 +23,9 @@ import {
   selector,
 } from '../../foundation.js';
 import {
-  GOOSESelectEvent,
-  IEDSubscriptionEvent,
-  newGOOSESelectEvent,
+  SampledValuesSelectEvent,
+  IEDSampledValuesSubscriptionEvent,
+  newSampledValuesSelectEvent,
   styles,
   SubscribeStatus,
 } from './foundation.js';
@@ -33,7 +33,7 @@ import {
 /**
  * An IED within this IED list has 2 properties:
  * - The IED element itself.
- * - A 'partial' property indicating if the GOOSE is fully initialized or partially.
+ * - A 'partial' property indicating if the Sampled Value is fully initialized or partially.
  */
 interface IED {
   element: Element;
@@ -72,14 +72,14 @@ function getFcdaReferences(elementContainingFcdaReferences: Element): string {
  * subscribing / unsubscribing.
  */
 interface State {
-  /** Current selected GSEControl element */
-  currentGseControl: Element | undefined;
+  /** Current selected Sampled Values element */
+  currentSampledValuesControl: Element | undefined;
 
   /** The current selected dataset */
   currentDataset: Element | undefined;
 
-  /** The name of the IED belonging to the current selected GOOSE */
-  currentGooseIEDName: string | undefined | null;
+  /** The name of the IED belonging to the current selected Sampled Values */
+  currentSampledValuesIEDName: string | undefined | null;
 
   /** List holding all current subscribed IEDs. */
   subscribedIeds: IED[];
@@ -89,16 +89,16 @@ interface State {
 }
 
 const localState: State = {
-  currentGseControl: undefined,
+  currentSampledValuesControl: undefined,
   currentDataset: undefined,
-  currentGooseIEDName: undefined,
+  currentSampledValuesIEDName: undefined,
   subscribedIeds: [],
   availableIeds: [],
 };
 
-/** An sub element for subscribing and unsubscribing IEDs to GOOSE messages. */
-@customElement('subscriber-ied-list')
-export class SubscriberIEDList extends LitElement {
+/** An sub element for subscribing and unsubscribing IEDs to Sampled Values messages. */
+@customElement('subscriber-ied-list-smv')
+export class SubscriberIEDListSmv extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
 
@@ -106,31 +106,32 @@ export class SubscriberIEDList extends LitElement {
 
   constructor() {
     super();
-    this.onGOOSEDataSetEvent = this.onGOOSEDataSetEvent.bind(this);
+    this.onSampledValuesDataSetEvent = this.onSampledValuesDataSetEvent.bind(this);
     this.onIEDSubscriptionEvent = this.onIEDSubscriptionEvent.bind(this);
 
     const parentDiv = this.closest('div[id="containerTemplates"]');
     if (parentDiv) {
       parentDiv.addEventListener(
-        'goose-dataset',
-        this.onGOOSEDataSetEvent
+        'sampled-values-select',
+        this.onSampledValuesDataSetEvent
       );
       parentDiv.addEventListener(
-        'ied-subscription',
+        'ied-smv-subscription',
         this.onIEDSubscriptionEvent
       );
     }
   }
 
   /**
-   * When a GOOSEDataSetEvent is received, check for all IEDs if
+   * When a SampledValuesSelectEvent is received, check for all IEDs if
    * all FCDAs are covered, or partly FCDAs are covered.
    * @param event - Incoming event.
    */
-  private async onGOOSEDataSetEvent(event: GOOSESelectEvent) {
-    localState.currentGseControl = event.detail.gseControl;
+  private async onSampledValuesDataSetEvent(event: SampledValuesSelectEvent) {
+    console.log('onSMVSelect')
+    localState.currentSampledValuesControl = event.detail.sampledValuesControl;
     localState.currentDataset = event.detail.dataset;
-    localState.currentGooseIEDName = localState.currentGseControl
+    localState.currentSampledValuesIEDName = localState.currentSampledValuesControl
       .closest('IED')
       ?.getAttribute('name');
 
@@ -138,7 +139,7 @@ export class SubscriberIEDList extends LitElement {
     localState.availableIeds = [];
 
     Array.from(this.doc.querySelectorAll(':root > IED'))
-      .filter(ied => ied.getAttribute('name') != localState.currentGooseIEDName)
+      .filter(ied => ied.getAttribute('name') != localState.currentSampledValuesIEDName)
       .forEach(ied => {
         const inputElements = ied.querySelectorAll(`LN0 > Inputs, LN > Inputs`);
 
@@ -159,7 +160,7 @@ export class SubscriberIEDList extends LitElement {
           inputElements.forEach(inputs => {
             if (
               inputs.querySelector(
-                `ExtRef[iedName=${localState.currentGooseIEDName}]` +
+                `ExtRef[iedName=${localState.currentSampledValuesIEDName}]` +
                   `${getFcdaReferences(fcda)}`
               )
             ) {
@@ -194,18 +195,19 @@ export class SubscriberIEDList extends LitElement {
    * When a IEDSubscriptionEvent is received, check if
    * @param event - Incoming event.
    */
-  private async onIEDSubscriptionEvent(event: IEDSubscriptionEvent) {
+  private async onIEDSubscriptionEvent(event: IEDSampledValuesSubscriptionEvent) {
+    console.log('onSMVIEDSub')
     switch (event.detail.subscribeStatus) {
       case SubscribeStatus.Full: {
-        this.unsubscribe(event.detail.element);
+        this.unsubscribe(event.detail.ied);
         break;
       }
       case SubscribeStatus.Partial: {
-        this.subscribe(event.detail.element);
+        this.subscribe(event.detail.ied);
         break;
       }
       case SubscribeStatus.None: {
-        this.subscribe(event.detail.element);
+        this.subscribe(event.detail.ied);
         break;
       }
     }
@@ -226,13 +228,13 @@ export class SubscriberIEDList extends LitElement {
     localState.currentDataset!.querySelectorAll('FCDA').forEach(fcda => {
       if (
         !inputsElement!.querySelector(
-          `ExtRef[iedName=${localState.currentGooseIEDName}]` +
+          `ExtRef[iedName=${localState.currentSampledValuesIEDName}]` +
             `${getFcdaReferences(fcda)}`
         )
       ) {
         const extRef = createElement(ied.ownerDocument, 'ExtRef', {
-          iedName: localState.currentGooseIEDName!,
-          serviceType: 'GOOSE',
+          iedName: localState.currentSampledValuesIEDName!,
+          serviceType: 'SMV',
           ldInst: fcda.getAttribute('ldInst') ?? '',
           lnClass: fcda.getAttribute('lnClass') ?? '',
           lnInst: fcda.getAttribute('lnInst') ?? '',
@@ -249,9 +251,9 @@ export class SubscriberIEDList extends LitElement {
 
     /** If the IED doesn't have a Inputs element, just append it to the first LN0 element. */
     const title = 'Connect';
-    if (inputsElement.parentElement) {
+    if (inputsElement.parentElement)
       this.dispatchEvent(newActionEvent({ title, actions }));
-    } else {
+    else {
       const inputAction: Create = {
         new: { parent: ied.querySelector('LN0')!, element: inputsElement },
       };
@@ -259,8 +261,8 @@ export class SubscriberIEDList extends LitElement {
     }
 
     this.dispatchEvent(
-      newGOOSESelectEvent(
-        localState.currentGseControl!,
+      newSampledValuesSelectEvent(
+        localState.currentSampledValuesControl!,
         localState.currentDataset!
       )
     );
@@ -275,14 +277,12 @@ export class SubscriberIEDList extends LitElement {
     ied.querySelectorAll('LN0 > Inputs, LN > Inputs').forEach(inputs => {
       localState.currentDataset!.querySelectorAll('FCDA').forEach(fcda => {
         const extRef = inputs.querySelector(
-          `ExtRef[iedName=${localState.currentGooseIEDName}]` +
+          `ExtRef[iedName=${localState.currentSampledValuesIEDName}]` +
             `${getFcdaReferences(fcda)}`
         );
 
         if (extRef) actions.push({ old: { parent: inputs, element: extRef } });
       });
-
-      
     });
 
     this.dispatchEvent(
@@ -293,8 +293,8 @@ export class SubscriberIEDList extends LitElement {
     );
 
     this.dispatchEvent(
-      newGOOSESelectEvent(
-        localState.currentGseControl!,
+      newSampledValuesSelectEvent(
+        localState.currentSampledValuesControl!,
         localState.currentDataset!
       )
     );
@@ -355,44 +355,44 @@ export class SubscriberIEDList extends LitElement {
     const availableIeds = localState.availableIeds.filter(
       ied => !ied.partial
     );
-    const gseControlName =
-      localState.currentGseControl?.getAttribute('name') ?? undefined;
+    const smvControlName =
+      localState.currentSampledValuesControl?.getAttribute('name') ?? undefined;
 
     return html`
       <section>
         <h1>
-          ${translate('subscription.subscriberIed.title', {
-            selected: gseControlName
-              ? localState.currentGooseIEDName + ' > ' + gseControlName
+          ${translate('sampledvalues.subscriberIed.title', {
+            selected: smvControlName
+              ? localState.currentSampledValuesIEDName + ' > ' + smvControlName
               : 'IED',
           })}
         </h1>
-        ${localState.currentGseControl
+        ${localState.currentSampledValuesControl
           ? html`<div class="subscriberWrapper">
-              <mwc-list id="subscribedIeds">
+              <mwc-list>
                 <mwc-list-item noninteractive>
                   <span class="iedListTitle"
-                    >${translate('subscription.subscriberIed.subscribed')}</span
+                    >${translate('sampledvalues.subscriberIed.subscribed')}</span
                   >
                 </mwc-list-item>
                 <li divider role="separator"></li>
                 ${localState.subscribedIeds.length > 0
                   ? localState.subscribedIeds.map(
                       ied =>
-                        html`<ied-element
+                        html`<ied-element-smv
                           .status=${SubscribeStatus.Full}
                           .element=${ied.element}
-                        ></ied-element>`
+                        ></ied-element-smv>`
                     )
                   : html`<mwc-list-item graphic="avatar" noninteractive>
-                      <span>${translate('subscription.none')}</span>
+                      <span>${translate('sampledvalues.none')}</span>
                     </mwc-list-item>`}
               </mwc-list>
-              <mwc-list id="partialSubscribedIeds">
+              <mwc-list>
                 <mwc-list-item noninteractive>
                   <span class="iedListTitle"
                     >${translate(
-                      'subscription.subscriberIed.partiallySubscribed'
+                      'sampledvalues.subscriberIed.partiallySubscribed'
                     )}</span
                   >
                 </mwc-list-item>
@@ -400,20 +400,20 @@ export class SubscriberIEDList extends LitElement {
                 ${partialSubscribedIeds.length > 0
                   ? partialSubscribedIeds.map(
                       ied =>
-                        html`<ied-element
+                        html`<ied-element-smv
                           .status=${SubscribeStatus.Partial}
                           .element=${ied.element}
-                        ></ied-element>`
+                        ></ied-element-smv>`
                     )
                   : html`<mwc-list-item graphic="avatar" noninteractive>
-                      <span>${translate('subscription.none')}</span>
+                      <span>${translate('sampledvalues.none')}</span>
                     </mwc-list-item>`}
               </mwc-list>
-              <mwc-list id="notSubscribedIeds">
+              <mwc-list>
                 <mwc-list-item noninteractive>
                   <span class="iedListTitle"
                     >${translate(
-                      'subscription.subscriberIed.availableToSubscribe'
+                      'sampledvalues.subscriberIed.availableToSubscribe'
                     )}</span
                   >
                 </mwc-list-item>
@@ -421,20 +421,20 @@ export class SubscriberIEDList extends LitElement {
                 ${availableIeds.length > 0
                   ? availableIeds.map(
                       ied =>
-                        html`<ied-element
+                        html`<ied-element-smv
                           .status=${SubscribeStatus.None}
                           .element=${ied.element}
-                        ></ied-element>`
+                        ></ied-element-smv>`
                     )
                   : html`<mwc-list-item graphic="avatar" noninteractive>
-                      <span>${translate('subscription.none')}</span>
+                      <span>${translate('sampledvalues.none')}</span>
                     </mwc-list-item>`}
               </mwc-list>
             </div>`
           : html`<mwc-list>
               <mwc-list-item noninteractive>
                 <span class="iedListTitle">${translate(
-                  'subscription.subscriberIed.noGooseMessageSelected'
+                  'sampledvalues.subscriberIed.noSampledValuesSelected'
                 )}</span>
               </mwc-list-item>
             </mwc-list>

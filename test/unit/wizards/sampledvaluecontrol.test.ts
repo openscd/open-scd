@@ -5,9 +5,10 @@ import '../../mock-wizard.js';
 import { MockWizard } from '../../mock-wizard.js';
 
 import {
+  Delete,
   isDelete,
-  isUpdate,
-  Update,
+  isReplace,
+  Replace,
   WizardInput,
 } from '../../../src/foundation.js';
 import {
@@ -151,9 +152,9 @@ describe('Wizards for SCL element SampledValueControl', () => {
       expect(actionEvent).to.be.calledOnce;
 
       const action = actionEvent.args[0][0].detail.action;
-      expect(action).to.satisfy(isUpdate);
+      expect(action).to.satisfy(isReplace);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.have.attribute('name', 'MSVCB01');
       expect(updateAction.new.element).to.have.attribute('name', 'myNewCbName');
     });
@@ -169,9 +170,9 @@ describe('Wizards for SCL element SampledValueControl', () => {
       expect(actionEvent).to.be.calledOnce;
 
       const action = actionEvent.args[0][0].detail.action;
-      expect(action).to.satisfy(isUpdate);
+      expect(action).to.satisfy(isReplace);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.not.have.attribute('desc');
       expect(updateAction.new.element).to.have.attribute('desc', 'myDesc');
     });
@@ -186,9 +187,9 @@ describe('Wizards for SCL element SampledValueControl', () => {
       expect(actionEvent).to.be.calledOnce;
 
       const action = actionEvent.args[0][0].detail.action;
-      expect(action).to.satisfy(isUpdate);
+      expect(action).to.satisfy(isReplace);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.have.attribute(
         'smvID',
         'some/reference'
@@ -210,9 +211,9 @@ describe('Wizards for SCL element SampledValueControl', () => {
       expect(actionEvent).to.be.calledOnce;
 
       const action = actionEvent.args[0][0].detail.action;
-      expect(action).to.satisfy(isUpdate);
+      expect(action).to.satisfy(isReplace);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.not.have.attribute('smpMod');
       expect(updateAction.new.element).to.have.attribute('smpMod', 'SmpPerSec');
     });
@@ -227,9 +228,9 @@ describe('Wizards for SCL element SampledValueControl', () => {
       expect(actionEvent).to.be.calledOnce;
 
       const action = actionEvent.args[0][0].detail.action;
-      expect(action).to.satisfy(isUpdate);
+      expect(action).to.satisfy(isReplace);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.have.attribute('smpRate', '80');
       expect(updateAction.new.element).to.have.attribute('smpRate', '4000');
     });
@@ -244,9 +245,9 @@ describe('Wizards for SCL element SampledValueControl', () => {
       expect(actionEvent).to.be.calledOnce;
 
       const action = actionEvent.args[0][0].detail.action;
-      expect(action).to.satisfy(isUpdate);
+      expect(action).to.satisfy(isReplace);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.have.attribute('nofASDU', '1');
       expect(updateAction.new.element).to.have.attribute('nofASDU', '2');
     });
@@ -262,9 +263,9 @@ describe('Wizards for SCL element SampledValueControl', () => {
       expect(actionEvent).to.be.calledOnce;
 
       const action = actionEvent.args[0][0].detail.action;
-      expect(action).to.satisfy(isUpdate);
+      expect(action).to.satisfy(isReplace);
 
-      const updateAction = <Update>action;
+      const updateAction = <Replace>action;
       expect(updateAction.old.element).to.not.have.attribute('securityEnable');
       expect(updateAction.new.element).to.have.attribute(
         'securityEnable',
@@ -321,7 +322,9 @@ describe('Wizards for SCL element SampledValueControl', () => {
         const sampledValueControl = ln01smv.querySelector(
           'SampledValueControl'
         )!;
-        const actions = removeSampledValueControlAction(sampledValueControl);
+        const actions = <Delete[]>(
+          removeSampledValueControlAction(sampledValueControl)?.actions
+        );
         expect(actions.length).to.equal(2);
         expect(actions[0]).to.satisfy(isDelete);
         expect(actions[0].old.element).to.equal(sampledValueControl);
@@ -335,7 +338,9 @@ describe('Wizards for SCL element SampledValueControl', () => {
         const sampledValueControl = ln02smv2.querySelector(
           'SampledValueControl'
         )!;
-        const actions = removeSampledValueControlAction(sampledValueControl);
+        const actions = <Delete[]>(
+          removeSampledValueControlAction(sampledValueControl)?.actions
+        );
         expect(actions.length).to.equal(1);
         expect(actions[0]).to.satisfy(isDelete);
         expect(actions[0].old.element).to.equal(sampledValueControl);
@@ -345,7 +350,9 @@ describe('Wizards for SCL element SampledValueControl', () => {
         const sampledValueControl = ln02gse.querySelector(
           'SampledValueControl'
         )!;
-        const actions = removeSampledValueControlAction(sampledValueControl);
+        const actions = <Delete[]>(
+          removeSampledValueControlAction(sampledValueControl)?.actions
+        );
         expect(actions.length).to.equal(1);
         expect(actions[0]).to.satisfy(isDelete);
         expect(actions[0].old.element).to.equal(sampledValueControl);
@@ -355,22 +362,26 @@ describe('Wizards for SCL element SampledValueControl', () => {
         const sampledValueControl = ln02rp.querySelector(
           'SampledValueControl'
         )!;
-        const actions = removeSampledValueControlAction(sampledValueControl);
+        const actions = <Delete[]>(
+          removeSampledValueControlAction(sampledValueControl)?.actions
+        );
         expect(actions.length).to.equal(1);
         expect(actions[0]).to.satisfy(isDelete);
         expect(actions[0].old.element).to.equal(sampledValueControl);
       });
 
       it('does not remove with missing parent element', () => {
-        const actions = removeSampledValueControlAction(missingparent);
-        expect(actions.length).to.equal(0);
+        const action = removeSampledValueControlAction(missingparent);
+        expect(action).to.be.null;
       });
 
       it('removes referenced SMV element in the Communication section', () => {
         const sampledValueControl = doc.querySelector(
           'IED[name="IED3"] SampledValueControl'
         )!;
-        const actions = removeSampledValueControlAction(sampledValueControl);
+        const actions = <Delete[]>(
+          removeSampledValueControlAction(sampledValueControl)?.actions
+        );
         expect(actions.length).to.equal(3);
         expect(actions[0]).to.satisfy(isDelete);
         expect(actions[0].old.element).to.equal(sampledValueControl);

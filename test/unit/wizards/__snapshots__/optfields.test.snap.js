@@ -9,51 +9,51 @@ snapshots["Wizards for SCL OptFields element define an edit wizard that looks li
 >
   <div id="wizard-content">
     <wizard-checkbox
+      helper="[scl.seqNum]"
       label="seqNum"
       nullable=""
-      required=""
     >
     </wizard-checkbox>
     <wizard-checkbox
+      helper="[scl.timeStamp]"
       label="timeStamp"
       nullable=""
-      required=""
     >
     </wizard-checkbox>
     <wizard-checkbox
+      helper="[scl.dataSet]"
       label="dataSet"
       nullable=""
-      required=""
     >
     </wizard-checkbox>
     <wizard-checkbox
+      helper="[scl.reasonCode]"
       label="reasonCode"
       nullable=""
-      required=""
     >
     </wizard-checkbox>
     <wizard-checkbox
+      helper="[scl.dataRef]"
       label="dataRef"
       nullable=""
-      required=""
     >
     </wizard-checkbox>
     <wizard-checkbox
+      helper="[scl.entryID]"
       label="entryID"
       nullable=""
-      required=""
     >
     </wizard-checkbox>
     <wizard-checkbox
+      helper="[scl.configRef]"
       label="configRef"
       nullable=""
-      required=""
     >
     </wizard-checkbox>
     <wizard-checkbox
+      helper="[scl.bufOvfl]"
       label="bufOvfl"
       nullable=""
-      required=""
     >
     </wizard-checkbox>
   </div>

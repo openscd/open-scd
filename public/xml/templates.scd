@@ -789,7 +789,7 @@
     </DAType>
     <DAType id="OpenSCD_Unit_Hz">
       <BDA name="SIUnit" bType="Enum" type="SIUnitKind">
-        <Val>A</Val>
+        <Val>Hz</Val>
       </BDA>
     </DAType>
     <DAType id="OpenSCD_ValWithTrans_wo_transInd">

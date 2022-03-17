@@ -2,7 +2,7 @@ import { LitElement, html, TemplateResult, property, css } from 'lit-element';
 
 import '@material/mwc-fab';
 
-import './subscription/subscriber-ied-list.js';
+import './subscription/subscriber-ied-list-goose.js';
 import './subscription/publisher-goose-list.js';
 
 /** An editor [[`plugin`]] for subscribing IEDs to GOOSE messages using the ABB subscription method. */
@@ -18,7 +18,7 @@ export default class SubscriptionABBPlugin extends LitElement {
         <publisher-goose-list .doc=${this.doc}></publisher-goose-list>
       </section>
       <section>
-        <subscriber-ied-list .doc=${this.doc}></subscriber-ied-list>
+        <subscriber-ied-list-goose .doc=${this.doc}></subscriber-ied-list-goose>
       </section>
     </div>`;
   }
