@@ -15,6 +15,32 @@ describe('wizard-dialog', () => {
     element = await fixture(html`<wizard-dialog></wizard-dialog>`);
   });
 
+  describe('with user defined menu actions set', () => {
+    beforeEach(async () => {
+      element.wizard = [
+        {
+          title: 'Page 1',
+          menuActions: [
+            {
+              icon: 'delete',
+              label: 'remove',
+              action: () => [],
+            },
+            {
+              icon: 'delete',
+              label: 'remove',
+              action: () => [],
+            },
+          ],
+        },
+      ];
+      await element.updateComplete;
+    });
+
+    it('looks like its snapshot', async () =>
+      await expect(element).shadowDom.to.equalSnapshot());
+  });
+
   describe('with an empty wizard property', () => {
     it('shows no dialog', () =>
       expect(element).property('dialog').to.not.exist);

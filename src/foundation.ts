@@ -225,6 +225,16 @@ export function getMultiplier(input: WizardInput): string | null {
   else return null;
 }
 
+/** @returns [[`WizardAction`]]s to dispatch on [[`WizardDialog`]] menu action. */
+export type WizardMenuActor = () => WizardAction[];
+
+/** User interactions rendered in the wizard-dialog menu */
+interface MenuAction {
+  label: string;
+  icon?: string;
+  action: WizardMenuActor;
+}
+
 /** Represents a page of a wizard dialog */
 export interface WizardPage {
   title: string;
@@ -242,6 +252,7 @@ export interface WizardPage {
   };
   initial?: boolean;
   element?: Element;
+  menuActions?: MenuAction[];
 }
 export type Wizard = WizardPage[];
 export type WizardFactory = () => Wizard;
@@ -2307,10 +2318,7 @@ export const tags: Record<
     identity: namingIdentity,
     selector: namingSelector,
     parents: ['SCL'],
-    children: [...tEquipmentContainerSequence,
-      'VoltageLevel',
-      'Function',
-    ],
+    children: [...tEquipmentContainerSequence, 'VoltageLevel', 'Function'],
   },
   SupSubscription: {
     identity: singletonIdentity,
@@ -2387,11 +2395,7 @@ export const tags: Record<
     identity: namingIdentity,
     selector: namingSelector,
     parents: ['Substation'],
-    children: [...tEquipmentContainerSequence,
-      'Voltage',
-      'Bay',
-      'Function',
-    ],
+    children: [...tEquipmentContainerSequence, 'Voltage', 'Bay', 'Function'],
   },
 };
 
