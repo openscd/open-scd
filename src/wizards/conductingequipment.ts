@@ -168,9 +168,8 @@ function containsEarthSwitchDefinition(condEq: Element): boolean {
  */
 export function typeStr(condEq: Element): string {
   if (
-    containsGroundedTerminal(condEq) ||
-    (condEq.getAttribute('type') === 'DIS' &&
-      containsEarthSwitchDefinition(condEq))
+    condEq.getAttribute('type') === 'DIS' &&
+    (containsGroundedTerminal(condEq) || containsEarthSwitchDefinition(condEq))
   ) {
     // these checks only carried out for a three phase system
     return 'ERS';
@@ -268,7 +267,10 @@ export function createAction(parent: Element): WizardActor {
   };
 }
 
-export function reservedNamesConductingEquipment(parent: Element, currentName?: string | null): string[] {
+export function reservedNamesConductingEquipment(
+  parent: Element,
+  currentName?: string | null
+): string[] {
   return Array.from(parent.querySelectorAll('ConductingEquipment'))
     .filter(isPublic)
     .map(condEq => condEq.getAttribute('name') ?? '')
@@ -287,7 +289,13 @@ export function createConductingEquipmentWizard(parent: Element): Wizard {
         label: get('add'),
         action: createAction(parent),
       },
-      content: renderConductingEquipmentWizard('', '', 'create', '', reservedNames),
+      content: renderConductingEquipmentWizard(
+        '',
+        '',
+        'create',
+        '',
+        reservedNames
+      ),
     },
   ];
 }
@@ -295,7 +303,8 @@ export function createConductingEquipmentWizard(parent: Element): Wizard {
 export function editConductingEquipmentWizard(element: Element): Wizard {
   const reservedNames = reservedNamesConductingEquipment(
     <Element>element.parentNode!,
-    element.getAttribute('name'));
+    element.getAttribute('name')
+  );
 
   return [
     {
