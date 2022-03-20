@@ -519,8 +519,7 @@ export const en = {
       deleteButton: 'Remove Selected Control Blocks',
       tooltip: 'Control Blocks without a reference to an existing DataSet. Note that this is normal in an ICD file or for an MMS ReportControl with a dynamically allocated DataSet',
       addressDefinitionTooltip: 'An address definition exists for this control block in the Communication section',
-      alsoRemoveFromCommunication: 'Also Remove SMV/GSE Address',
-      alsoRemoveFromCommunicationTooltip: 'When removing a Control Block, remove any linked SMV/GSE definitions in the Communication section if applicable',
+      alsoRemoveFromCommunication: 'Also remove SMV/GSE Address',
     },
   },
   controlblock: {

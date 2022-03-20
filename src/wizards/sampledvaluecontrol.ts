@@ -31,7 +31,7 @@ import { maxLength, patterns } from './foundation/limits.js';
 import { editSMvWizard } from './smv.js';
 import { editSmvOptsWizard } from './smvopts.js';
 
-function getSMV(element: Element): Element | null {
+export function getSMV(element: Element): Element | null {
   const cbName = element.getAttribute('name');
   const iedName = element.closest('IED')?.getAttribute('name');
   const apName = element.closest('AccessPoint')?.getAttribute('name');

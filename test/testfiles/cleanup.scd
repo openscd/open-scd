@@ -66,6 +66,14 @@
 						<P type="APPID">0010</P>
 					</Address>
 				</GSE>
+				<GSE ldInst="CircuitBreaker_CB1" cbName="GCB_NP">
+					<Address>
+						<P type="MAC-Address">01-0C-CD-01-00-11</P>
+						<P type="VLAN-ID">005</P>
+						<P type="VLAN-PRIORITY">4</P>
+						<P type="APPID">0010</P>
+					</Address>
+				</GSE>
 				<PhysConn type="RedConn">
 					<P type="Plug">RJ45</P>
 				</PhysConn>
@@ -98,6 +106,14 @@
 				<SMV ldInst="MU01" cbName="MSVCB01">
 					<Address>
 						<P type="MAC-Address">01-0C-CD-04-00-20</P>
+						<P type="VLAN-ID">007</P>
+						<P type="VLAN-PRIORITY">4</P>
+						<P type="APPID">4002</P>
+					</Address>
+				</SMV>
+				<SMV ldInst="MU01" cbName="MSVCB01_A">
+					<Address>
+						<P type="MAC-Address">01-0C-CD-04-00-21</P>
 						<P type="VLAN-ID">007</P>
 						<P type="VLAN-PRIORITY">4</P>
 						<P type="APPID">4002</P>
@@ -152,6 +168,9 @@
 							<FCDA ldInst="Disconnectors" prefix="DC" lnClass="XSWI" lnInst="1" doName="Pos" daName="q" fc="ST"/>
 						</DataSet>
 						<GSEControl type="GOOSE" appID="0001" fixedOffs="false" confRev="1" name="GCB" datSet="GooseDataSet1">
+							<IEDName apRef="P1" ldInst="CircuitBreaker_CB1" lnClass="CSWI" lnInst="1">IED2</IEDName>
+						</GSEControl>
+						<GSEControl type="GOOSE" appID="0001" fixedOffs="false" confRev="1" name="GCB_NP" datSet="GooseDataSet1_NP">
 							<IEDName apRef="P1" ldInst="CircuitBreaker_CB1" lnClass="CSWI" lnInst="1">IED2</IEDName>
 						</GSEControl>
 						<GSEControl type="GOOSE" appID="0003" fixedOffs="false" confRev="1" name="GCB2_NP"/>
@@ -429,7 +448,7 @@
 							<IEDName>IED3</IEDName>
 							<SmvOpts/>
 						</SampledValueControl>
-						<SampledValueControl smvID="IED3_SMVID" multicast="true" smpRate="80" nofASDU="1" confRev="1" name="MSVCB01" datSet="PhsMeas2_NP">
+						<SampledValueControl smvID="IED3_SMVID" multicast="true" smpRate="80" nofASDU="1" confRev="1" name="MSVCB01_A" datSet="PhsMeas2_NP">
 							<IEDName>IED3</IEDName>
 							<SmvOpts/>
 						</SampledValueControl>

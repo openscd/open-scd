@@ -32,7 +32,25 @@ import { editGseControlWizard } from '../wizards/gsecontrol.js';
 import { editSampledValueControlWizard } from '../wizards/sampledvaluecontrol.js';
 import { editReportControlWizard } from '../wizards/reportcontrol.js';
 
+import { getSMV } from '../wizards/sampledvaluecontrol.js';
+import { getGSE } from '../wizards/gsecontrol.js';
+
 import { styles } from './templates/foundation.js';
+import { Checkbox } from '@material/mwc-checkbox';
+
+/**
+ * Check whether a control block is instantiated in the Communication section of the SCL file.
+ * @param cb - SCL control block element.
+ * @returns true or false if a GSE or SMV element exists under the Communication section.
+ */
+function getCommAddress(cb: Element): Element | null | undefined {
+  if (cb.tagName === 'GSEControl') {
+    return getGSE(cb);
+  } else if (cb.tagName === 'SampledValueControl') {
+    return getSMV(cb);
+  }
+  return null;
+}
 
 /** An editor [[`plugin`]] for cleaning SCL references and definitions. */
 export default class Cleanup extends LitElement {
@@ -67,9 +85,9 @@ export default class Cleanup extends LitElement {
   @query('.cleanupUnreferencedControlsList')
   _cleanUnreferencedControlsList: List | undefined;
   @queryAll('mwc-check-list-item.cleanupUnreferencedControlsCheckListItem')
-  _cleanUnreferencedControlsAddress: ListItem | undefined;
-  @query('mwc-check-list-item.cleanupUnreferencedControlsAddress')
-  
+  _cleanUnreferencedControlsItems: ListItem | undefined;
+  @query('.cleanupUnreferencedControlsAddress')
+  _cleanUnreferencedControlsAddress: Checkbox | undefined;
   /**
    * Clean datasets as requested by removing SCL elements specified by the user from the SCL file
    * @returns an actions array to support undo/redo
@@ -136,54 +154,54 @@ export default class Cleanup extends LitElement {
 
     return html`
       <div>
-      <h1>
-        ${translate('cleanup.unreferencedDataSets.title')}
-        (${unreferencedDataSets.length})
-        <abbr slot="action">
-          <mwc-icon-button
-            icon="info"
-            title="${translate('cleanup.unreferencedDataSets.tooltip')}"
-          >
-          </mwc-icon-button>
-        </abbr>
-      </h1>
-      <filtered-list multi class="cleanupUnreferencedDataSetsList"
-        >${Array.from(
-          unreferencedDataSets.map(
-            item =>
-              html`<mwc-check-list-item
-                twoline
-                left
-                class="cleanupUnreferencedDataSetsCheckListItem"
-                value="${identity(item)}"
-                ><span class="unreferencedDataSet"
-                  >${item.getAttribute('name')!}
-                </span>
-                <span>
-                  <mwc-icon-button
-                    label="Edit"
-                    icon="edit"
-                    class="editUnreferencedDataSet editItem"
-                    @click=${(e: MouseEvent) => {
-                      e.stopPropagation();
-                      e.target?.dispatchEvent(
-                        newSubWizardEvent(() => editDataSetWizard(item))
-                      );
-                    }}
-                  ></mwc-icon-button>
-                </span>
-                <span slot="secondary"
-                  >${item.closest('IED')?.getAttribute('name')}
-                  (${item.closest('IED')?.getAttribute('manufacturer') ??
-                  'No manufacturer defined'})
-                  -
-                  ${item.closest('IED')?.getAttribute('type') ??
-                  'No Type Defined'}</span
-                >
-              </mwc-check-list-item>`
-          )
-        )}
-      </filtered-list>
+        <h1>
+          ${translate('cleanup.unreferencedDataSets.title')}
+          (${unreferencedDataSets.length})
+          <abbr slot="action">
+            <mwc-icon-button
+              icon="info"
+              title="${translate('cleanup.unreferencedDataSets.tooltip')}"
+            >
+            </mwc-icon-button>
+          </abbr>
+        </h1>
+        <filtered-list multi class="cleanupUnreferencedDataSetsList"
+          >${Array.from(
+            unreferencedDataSets.map(
+              item =>
+                html`<mwc-check-list-item
+                  twoline
+                  left
+                  class="cleanupUnreferencedDataSetsCheckListItem"
+                  value="${identity(item)}"
+                  ><span class="unreferencedDataSet"
+                    >${item.getAttribute('name')!}
+                  </span>
+                  <span>
+                    <mwc-icon-button
+                      label="Edit"
+                      icon="edit"
+                      class="editUnreferencedDataSet editItem"
+                      @click=${(e: MouseEvent) => {
+                        e.stopPropagation();
+                        e.target?.dispatchEvent(
+                          newSubWizardEvent(() => editDataSetWizard(item))
+                        );
+                      }}
+                    ></mwc-icon-button>
+                  </span>
+                  <span slot="secondary"
+                    >${item.closest('IED')?.getAttribute('name')}
+                    (${item.closest('IED')?.getAttribute('manufacturer') ??
+                    'No manufacturer defined'})
+                    -
+                    ${item.closest('IED')?.getAttribute('type') ??
+                    'No Type Defined'}</span
+                  >
+                </mwc-check-list-item>`
+            )
+          )}
+        </filtered-list>
       </div>
       <footer>
         <mwc-button
@@ -215,7 +233,7 @@ export default class Cleanup extends LitElement {
    * @returns html for table and action button.
    */
   private renderUnreferencedControls() {
-    const unreferencedControls: Element[] = [];
+    const unreferencedCBs: Element[] = [];
     // Control Blocks which can have a DataSet reference
     Array.from(
       this.doc?.querySelectorAll(
@@ -227,10 +245,10 @@ export default class Cleanup extends LitElement {
         const parent = cb.parentElement;
         const name = cb.getAttribute('datSet');
         const isReferenced = parent?.querySelector(`DataSet[name=${name}]`);
-        if (parent && (!name || !isReferenced)) unreferencedControls.push(cb);
+        if (parent && (!name || !isReferenced)) unreferencedCBs.push(cb);
       });
 
-    this.unreferencedControls = unreferencedControls.sort((a, b) => {
+    this.unreferencedControls = unreferencedCBs.sort((a, b) => {
       // sorting using the identity ensures sort order includes IED
       const aId = identity(a);
       const bId = identity(b);
@@ -248,7 +266,7 @@ export default class Cleanup extends LitElement {
       <div>
         <h1>
           ${translate('cleanup.unreferencedControls.title')}
-          (${unreferencedControls.length})
+          (${unreferencedCBs.length})
           <abbr slot="action">
             <mwc-icon-button
               icon="info"
@@ -257,44 +275,39 @@ export default class Cleanup extends LitElement {
             </mwc-icon-button>
           </abbr>
         </h1>
-        <filtered-list
-          multi
-          class="cleanupUnreferencedControlsList"
-          helper="hi dan"
+        <filtered-list multi class="cleanupUnreferencedControlsList"
           >${Array.from(
-            unreferencedControls.map(
-              item =>
+            unreferencedCBs.map(
+              cb =>
                 html`<mwc-check-list-item
                   twoline
                   left
                   class="cleanupUnreferencedControlsCheckListItem"
-                  value="${identity(item)}"
+                  value="${identity(cb)}"
                   ><span class="unreferencedControl"
-                    >${item.getAttribute('name')!}
+                    >${cb.getAttribute('name')!}
                   </span>
                   <span>
                     <mwc-icon-button
                       label="Edit"
                       icon="edit"
                       class="editItem"
-                      ?disabled="${item.nodeName === 'LogControl'}"
+                      ?disabled="${cb.nodeName === 'LogControl'}"
                       @click=${(e: MouseEvent) => {
                         e.stopPropagation();
-                        if (item.nodeName === 'GSEControl') {
+                        if (cb.nodeName === 'GSEControl') {
                           e.target?.dispatchEvent(
-                            newSubWizardEvent(editGseControlWizard(item))
+                            newSubWizardEvent(editGseControlWizard(cb))
                           );
-                        } else if (item.nodeName === 'ReportControl') {
+                        } else if (cb.nodeName === 'ReportControl') {
                           e.target?.dispatchEvent(
-                            newSubWizardEvent(editReportControlWizard(item))
+                            newSubWizardEvent(editReportControlWizard(cb))
                           );
-                        } else if (item.nodeName === 'SampledValueControl') {
+                        } else if (cb.nodeName === 'SampledValueControl') {
                           e.target?.dispatchEvent(
-                            newSubWizardEvent(
-                              editSampledValueControlWizard(item)
-                            )
+                            newSubWizardEvent(editSampledValueControlWizard(cb))
                           );
-                        } else if (item.nodeName === 'LogControl') {
+                        } else if (cb.nodeName === 'LogControl') {
                           // not implemented yet, disabled above
                         }
                       }}
@@ -302,21 +315,22 @@ export default class Cleanup extends LitElement {
                   </span>
                   <span>
                     <mwc-icon-button
+                      label="warning"
                       icon="warning_amber"
                       class="cautionItem"
                       title="${translate(
                         'cleanup.unreferencedControls.addressDefinitionTooltip'
                       )}"
+                      ?disabled="${!(getCommAddress(cb) !== null)}"
                     >
                     </mwc-icon-button>
                   </span>
                   <span slot="secondary"
-                    >${item.tagName} -
-                    ${item.closest('IED')?.getAttribute('name')}
-                    (${item.closest('IED')?.getAttribute('manufacturer') ??
+                    >${cb.tagName} - ${cb.closest('IED')?.getAttribute('name')}
+                    (${cb.closest('IED')?.getAttribute('manufacturer') ??
                     'No manufacturer defined'})
                     -
-                    ${item.closest('IED')?.getAttribute('type') ??
+                    ${cb.closest('IED')?.getAttribute('type') ??
                     'No Type Defined'}</span
                   >
                 </mwc-check-list-item>`
@@ -339,7 +353,14 @@ export default class Cleanup extends LitElement {
             const cleanItems = Array.from(
               (<Set<number>>this.selectedControlItems).values()
             ).map(index => this.unreferencedControls[index]);
-            const deleteActions = this.cleanSCLItems(cleanItems);
+            let addressItems: Delete[] = [];
+            if (this._cleanUnreferencedControlsAddress!.checked === true) {
+              addressItems = this.cleanSCLItems(
+                cleanItems.map(cb => getCommAddress(cb)!).filter(Boolean)
+              );
+            }
+            const deleteActions =
+              this.cleanSCLItems(cleanItems).concat(addressItems);
             deleteActions.forEach(deleteAction =>
               e.target?.dispatchEvent(newActionEvent(deleteAction))
             );
@@ -350,12 +371,14 @@ export default class Cleanup extends LitElement {
           label="${translate(
             'cleanup.unreferencedControls.alsoRemoveFromCommunication'
           )}"
-          tooltip="${translate(
-            'cleanup.unreferencedControls.alsoRemoveFromCommunicationTooltip'
-          )}"
-          ><mwc-checkbox checked class="cleanupUnreferencedControlsAddress" ?disabled=${(<Set<number>>this.selectedControlItems).size === 0 ||
+        >
+          <mwc-checkbox
+            checked
+            class="cleanupUnreferencedControlsAddress"
+            ?disabled=${(<Set<number>>this.selectedControlItems).size === 0 ||
             (Array.isArray(this.selectedControlItems) &&
-              !this.selectedControlItems.length)}></mwc-checkbox
+              !this.selectedControlItems.length)}
+          ></mwc-checkbox
         ></mwc-formfield>
       </footer>
     `;
@@ -398,7 +421,7 @@ export default class Cleanup extends LitElement {
       flex-wrap: wrap;
       /* See: https://css-tricks.com/responsive-layouts-fewer-media-queries/ */
       flex: clamp(100%/3 + 0.1%, (400px - 100hw) * 1000, 100%);
-      padding: 8px 12px 16px;
+      padding: 20px;
       box-sizing: border-box;
       gap: 20px;
     }
@@ -439,7 +462,7 @@ export default class Cleanup extends LitElement {
     }
 
     filtered-list {
-      max-height: 120vh;
+      max-height: 70vh;
       overflow-y: scroll;
     }
   `;

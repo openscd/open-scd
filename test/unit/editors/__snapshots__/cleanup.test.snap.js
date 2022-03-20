@@ -2,33 +2,76 @@
 export const snapshots = {};
 
 snapshots["Cleanup without a doc loaded looks like the latest snapshot"] = 
-`<div class="cleanupUnreferencedDataSets">
+`<div class="cleanup">
   <section tabindex="0">
-    <h1>
-      [cleanup.unreferencedDataSets.title]
-        (0)
-      <abbr slot="action">
-        <mwc-icon-button
-          icon="info"
-          title="[cleanup.unreferencedDataSets.tooltip]"
-        >
-        </mwc-icon-button>
-      </abbr>
-    </h1>
-    <filtered-list
-      class="cleanupUnreferencedDataSetsList"
-      multi=""
-    >
-    </filtered-list>
+    <div>
+      <h1>
+        [cleanup.unreferencedDataSets.title]
+          (0)
+        <abbr slot="action">
+          <mwc-icon-button
+            icon="info"
+            title="[cleanup.unreferencedDataSets.tooltip]"
+          >
+          </mwc-icon-button>
+        </abbr>
+      </h1>
+      <filtered-list
+        class="cleanupUnreferencedDataSetsList"
+        multi=""
+      >
+      </filtered-list>
+    </div>
     <footer>
       <mwc-button
-        class="cleanupUnreferencedDataSetsDeleteButton"
+        class="cleanupDeleteButton cleanupUnreferencedDataSetsDeleteButton"
         disabled=""
         icon="delete"
         label="[cleanup.unreferencedDataSets.deleteButton] (0)"
         outlined=""
       >
       </mwc-button>
+    </footer>
+  </section>
+  <section tabindex="1">
+    <div>
+      <h1>
+        [cleanup.unreferencedControls.title]
+          (0)
+        <abbr slot="action">
+          <mwc-icon-button
+            icon="info"
+            title="[cleanup.unreferencedControls.tooltip]"
+          >
+          </mwc-icon-button>
+        </abbr>
+      </h1>
+      <filtered-list
+        class="cleanupUnreferencedControlsList"
+        multi=""
+      >
+      </filtered-list>
+    </div>
+    <footer>
+      <mwc-button
+        class="cleanupDeleteButton cleanupUnreferencedControlDeleteButton"
+        disabled=""
+        icon="delete"
+        label="[cleanup.unreferencedControls.deleteButton] (0)"
+        outlined=""
+      >
+      </mwc-button>
+      <mwc-formfield
+        class="removeFromCommunication"
+        label="[cleanup.unreferencedControls.alsoRemoveFromCommunication]"
+      >
+        <mwc-checkbox
+          checked=""
+          class="cleanupUnreferencedControlsAddress"
+          disabled=""
+        >
+        </mwc-checkbox>
+      </mwc-formfield>
     </footer>
   </section>
 </div>

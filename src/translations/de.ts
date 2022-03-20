@@ -524,8 +524,7 @@ export const de: Translations = {
       deleteButton: 'Ausgewählte Kontrollblöcke entfernen',
       tooltip: 'Steuerblöcke ohne Verweis auf ein vorhandenes DataSet. Beachten Sie, dass dies in einer ICD-Datei oder für ein MMS-ReportControl mit einem dynamisch zugewiesenen DataSet normal ist',
       addressDefinitionTooltip: 'Für diesen Steuerblock existiert eine Adressdefinition im Abschnitt Kommunikation',
-      alsoRemoveFromCommunication: 'Also Remove Communication SMV/GSE',
-      alsoRemoveFromCommunicationTooltip: 'When removing a Control Block, remove any linked SMV/GSE definitions in the Communication section if applicable',
+      alsoRemoveFromCommunication: 'Entfernen Sie auch die Kommunikation SMV/GSE',
     },
   },
   controlblock: {

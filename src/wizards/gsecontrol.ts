@@ -32,7 +32,7 @@ import { editDataSetWizard } from './dataset.js';
 import { editGseWizard } from './gse.js';
 import { securityEnableEnum } from './foundation/enums.js';
 
-function getGSE(element: Element): Element | null | undefined {
+export function getGSE(element: Element): Element | null | undefined {
   const cbName = element.getAttribute('name');
   const iedName = element.closest('IED')?.getAttribute('name');
   const apName = element.closest('AccessPoint')?.getAttribute('name');
