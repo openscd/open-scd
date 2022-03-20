@@ -43,7 +43,7 @@ describe('Cleanup', () => {
       const cleanItems = Array.from(
         (<Set<number>>element._cleanUnreferencedDataSetsList!.index).values()
       ).map(index => element.unreferencedDataSets[index]);
-      const deleteActions = element.cleanDataSets(cleanItems);
+      const deleteActions = element.cleanSCLItems(cleanItems);
       expect(deleteActions.length).to.equal(2);
     });
 
