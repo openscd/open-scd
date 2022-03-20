@@ -132,7 +132,7 @@ describe('BDA wizarding editing integration', () => {
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       (<HTMLElement>(
-        parent.wizardUI.dialog?.querySelector('mwc-button[icon="playlist_add"]')
+        parent.wizardUI.dialog?.querySelectorAll('mwc-menu > mwc-list-item')[1]
       )).click();
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation

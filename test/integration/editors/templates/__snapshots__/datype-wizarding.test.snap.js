@@ -620,14 +620,45 @@ snapshots["DAType wizards defines a dATypeWizard looks like the latest snapshot"
   heading="[datype.wizard.title.edit]"
   open=""
 >
-  <div id="wizard-content">
-    <mwc-button
-      fullwidth=""
-      icon="delete"
-      label="[remove]"
-      trailingicon=""
+  <nav>
+    <mwc-icon-button icon="more_vert">
+    </mwc-icon-button>
+    <mwc-menu
+      class="actions-menu"
+      corner="BOTTOM_RIGHT"
+      menucorner="END"
     >
-    </mwc-button>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="0"
+      >
+        <span>
+          [remove]
+        </span>
+        <mwc-icon slot="graphic">
+          delete
+        </mwc-icon>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span>
+          [scl.DA]
+        </span>
+        <mwc-icon slot="graphic">
+          playlist_add
+        </mwc-icon>
+      </mwc-list-item>
+    </mwc-menu>
+  </nav>
+  <div id="wizard-content">
     <wizard-textfield
       dialoginitialfocus=""
       helper="[scl.id]"
@@ -646,13 +677,6 @@ snapshots["DAType wizards defines a dATypeWizard looks like the latest snapshot"
       pattern="([ -~]|[]|[ -퟿]|[-�])*"
     >
     </wizard-textfield>
-    <mwc-button
-      icon="playlist_add"
-      label="[scl.DA]"
-      slot="graphic"
-      trailingicon=""
-    >
-    </mwc-button>
     <mwc-list style="margin-top: 0px;">
       <mwc-list-item
         aria-disabled="false"
