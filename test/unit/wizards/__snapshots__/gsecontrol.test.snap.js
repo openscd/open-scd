@@ -174,12 +174,56 @@ snapshots["gsecontrol wizards editGseControlWizard looks like the latest snapsho
   heading="[wizard.title.edit]"
   open=""
 >
-  <div id="wizard-content">
-    <mwc-button
-      icon="delete"
-      label="[remove]"
+  <nav>
+    <mwc-icon-button icon="more_vert">
+    </mwc-icon-button>
+    <mwc-menu
+      class="actions-menu"
+      corner="BOTTOM_RIGHT"
+      menucorner="END"
     >
-    </mwc-button>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <span>
+          [remove]
+        </span>
+        <mwc-icon slot="graphic">
+          delete
+        </mwc-icon>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <span>
+          [scl.DataSet]
+        </span>
+        <mwc-icon slot="graphic">
+          edit
+        </mwc-icon>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <span>
+          [scl.Communication]
+        </span>
+        <mwc-icon slot="graphic">
+          edit
+        </mwc-icon>
+      </mwc-list-item>
+    </mwc-menu>
+  </nav>
+  <div id="wizard-content">
     <wizard-textfield
       dialoginitialfocus=""
       helper="[scl.name]"
@@ -265,18 +309,6 @@ snapshots["gsecontrol wizards editGseControlWizard looks like the latest snapsho
         SignatureAndEncryption
       </mwc-list-item>
     </wizard-select>
-    <mwc-button
-      icon="edit"
-      id="editdataset"
-      label="[wizard.title.edit]"
-    >
-    </mwc-button>
-    <mwc-button
-      icon="edit"
-      id="editgse"
-      label="[scl.Communication]"
-    >
-    </mwc-button>
   </div>
   <mwc-button
     dialogaction="close"

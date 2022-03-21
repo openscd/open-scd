@@ -3,7 +3,6 @@ import { expect, fixture, html } from '@open-wc/testing';
 import '../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../mock-wizard-editor.js';
 
-import { Button } from '@material/mwc-button';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import { FilteredList } from '../../../src/filtered-list.js';
