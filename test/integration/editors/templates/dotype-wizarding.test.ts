@@ -9,6 +9,7 @@ import { Select } from '@material/mwc-select';
 import { FilteredList } from '../../../../src/filtered-list.js';
 import TemplatesPlugin from '../../../../src/editors/Templates.js';
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
+import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 describe('DOType wizards', () => {
   if (customElements.get('templates-editor') === undefined)
@@ -70,6 +71,7 @@ describe('DOType wizards', () => {
     it('looks like the latest snapshot', async () => {
       await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
+
     it('allows to add empty DOTypes to the project', async () => {
       expect(doc.querySelector('DOType[id="myGeneralDOType"]')).to.not.exist;
       idField.maybeValue = 'myGeneralDOType';
@@ -79,6 +81,7 @@ describe('DOType wizards', () => {
       await parent.updateComplete;
       expect(doc.querySelector('DOType[id="myGeneralDOType"]')).to.exist;
     });
+
     it('allows to define CDC only for empty DOType creation', async () => {
       await cdcField.updateComplete;
       expect(cdcField.disabled).to.not.be.true;
@@ -86,6 +89,7 @@ describe('DOType wizards', () => {
       await cdcField.requestUpdate();
       expect(cdcField.disabled).to.be.true;
     });
+
     it('requires CDC definition for empty DOTypes', async () => {
       expect(doc.querySelector('DOType[id="myGeneralDOType"]')).to.not.exist;
       idField.maybeValue = 'myGeneralDOType';
@@ -95,6 +99,7 @@ describe('DOType wizards', () => {
       await parent.updateComplete;
       expect(doc.querySelector('DOType[id="myGeneralDOType"]')).to.not.exist;
     });
+
     it('respects the sequence defined in the standard', async () => {
       idField.maybeValue = 'myGeneralDOType';
       cdcField.maybeValue = 'SPS';
@@ -105,6 +110,7 @@ describe('DOType wizards', () => {
       expect(element?.nextElementSibling?.tagName).to.equal('DOType');
       expect(element?.previousElementSibling?.tagName).to.equal('LNodeType');
     });
+
     it('recursively add missing! subsequent EnumType elements', async () => {
       expect(doc.querySelector('DOType[id="myENSHealth"]')).to.not.exist;
       expect(doc.querySelector('EnumType[id="HealthKind"]')).to.not.exist;
@@ -119,6 +125,7 @@ describe('DOType wizards', () => {
         1
       );
     });
+
     it('recursively add missing! subsequent DAType elements', async () => {
       expect(doc.querySelector('DAType[id="OpenSCD_AnalogueValue_INT32"]')).to
         .not.exist;
@@ -155,14 +162,19 @@ describe('DOType wizards', () => {
         )
       );
       deleteButton = <HTMLElement>(
-        parent.wizardUI.dialog?.querySelector('mwc-button[icon="delete"]')
+        Array.from(
+          parent.wizardUI.dialog!.querySelectorAll<ListItemBase>(
+            'mwc-menu > mwc-list-item'
+          )
+        ).find(item => item.innerHTML.includes(`[remove]`))
       );
     });
 
     it('looks like the latest snapshot', async () => {
       await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
-    it('edits DAType attributes id', async () => {
+
+    it('edits DOType attributes id', async () => {
       expect(doc.querySelector('DOType[id="Dummy.LLN0.Mod"]')).to.exist;
       idField.value = 'changedDOType';
       await parent.requestUpdate();
@@ -171,7 +183,8 @@ describe('DOType wizards', () => {
       expect(doc.querySelector('DOType[id="Dummy.LLN0.Mod"]')).to.not.exist;
       expect(doc.querySelector('DOType[id="changedDOType"]')).to.exist;
     });
-    it('deletes the DAType attribute on delete button click', async () => {
+
+    it('deletes the DOType attribute on delete button click', async () => {
       expect(doc.querySelector('DOType[id="Dummy.LLN0.Mod"]')).to.exist;
       expect(doc.querySelectorAll('DOType').length).to.equal(15);
       deleteButton.click();
@@ -179,7 +192,8 @@ describe('DOType wizards', () => {
       expect(doc.querySelector('DAType[id="Dummy.LLN0.Mod"]')).to.not.exist;
       expect(doc.querySelectorAll('DOType').length).to.equal(14);
     });
-    it('does not edit DAType element without changes', async () => {
+
+    it('does not edit DOType element without changes', async () => {
       const originData = (<Element>(
         doc.querySelector('DOType[id="Dummy.LLN0.Mod"]')
       )).cloneNode(true);
@@ -220,7 +234,7 @@ describe('DOType wizards', () => {
         )
       );
       deleteButton = <HTMLElement>(
-        parent.wizardUI.dialog?.querySelector('mwc-button[icon="delete"]')
+        parent.wizardUI.dialog?.querySelector('mwc-menu > mwc-list-item')
       );
       typeSelect = <Select>(
         parent.wizardUI.dialog?.querySelector('mwc-select[label="type"]')
@@ -287,12 +301,16 @@ describe('DOType wizards', () => {
       )).click();
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
       (<HTMLElement>(
-        parent.wizardUI.dialog?.querySelectorAll(
-          'mwc-button[icon="playlist_add"]'
-        )[0]
+        Array.from(
+          parent.wizardUI.dialog!.querySelectorAll<ListItemBase>(
+            'mwc-menu > mwc-list-item'
+          )
+        ).find(item => item.innerHTML.includes(`[scl.DO]`))
       )).click();
-      await parent.requestUpdate();
+      await parent.wizardUI.dialog?.requestUpdate();
+
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
       nameField = <WizardTextField>(

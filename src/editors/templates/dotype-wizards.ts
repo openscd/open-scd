@@ -19,14 +19,14 @@ import {
   getValue,
   identity,
   isPublic,
-  newActionEvent,
   newSubWizardEvent,
-  newWizardEvent,
   Replace,
   selector,
   Wizard,
+  WizardAction,
   WizardActor,
   WizardInput,
+  WizardMenuActor,
 } from '../../foundation.js';
 import { createDaWizard, editDAWizard } from '../../wizards/da.js';
 import { patterns } from '../../wizards/foundation/limits.js';
@@ -38,6 +38,12 @@ import {
   UpdateOptions,
   WizardOptions,
 } from './foundation.js';
+
+function remove(element: Element): WizardMenuActor {
+  return (): EditorAction[] => {
+    return [{ old: { parent: element.parentElement!, element } }];
+  };
+}
 
 function updateSDoAction(element: Element): WizardActor {
   return (inputs: WizardInput[]): EditorAction[] => {
@@ -96,29 +102,12 @@ function sDOWizard(options: WizardOptions): Wizard | undefined {
       )
     ).find(isPublic) ?? null;
 
-  const [title, action, type, deleteButton, name, desc] = sdo
+  const [title, action, type, menuActions, name, desc] = sdo
     ? [
         get('sdo.wizard.title.edit'),
         updateSDoAction(sdo),
         sdo.getAttribute('type'),
-        html`<mwc-button
-          icon="delete"
-          trailingIcon
-          label="${translate('remove')}"
-          @click=${(e: MouseEvent) => {
-            e.target!.dispatchEvent(newWizardEvent());
-            e.target!.dispatchEvent(
-              newActionEvent({
-                old: {
-                  parent: sdo.parentElement!,
-                  element: sdo,
-                  reference: sdo.nextSibling,
-                },
-              })
-            );
-          }}
-          fullwidth
-        ></mwc-button> `,
+        [{ icon: 'delete', label: get('remove'), action: remove(sdo) }],
         sdo.getAttribute('name'),
         sdo.getAttribute('desc'),
       ]
@@ -126,7 +115,7 @@ function sDOWizard(options: WizardOptions): Wizard | undefined {
         get('sdo.wizard.title.add'),
         createSDoAction((<CreateOptions>options).parent),
         null,
-        html``,
+        undefined,
         '',
         null,
       ];
@@ -140,8 +129,8 @@ function sDOWizard(options: WizardOptions): Wizard | undefined {
       title,
       element: sdo ?? undefined,
       primary: { icon: '', label: get('save'), action },
+      menuActions,
       content: [
-        deleteButton,
         html`<wizard-textfield
           label="name"
           .maybeValue=${name}
@@ -306,6 +295,18 @@ export function createDOTypeWizard(
   ];
 }
 
+function openAddSdo(parent: Element): WizardMenuActor {
+  return (): WizardAction[] => {
+    return [() => sDOWizard({ parent })!];
+  };
+}
+
+function openAddDa(parent: Element): WizardMenuActor {
+  return (): WizardAction[] => {
+    return [() => createDaWizard(parent)!];
+  };
+}
+
 function updateDOTypeAction(element: Element): WizardActor {
   return (inputs: WizardInput[]): EditorAction[] => {
     const id = getValue(inputs.find(i => i.label === 'id')!)!;
@@ -358,25 +359,24 @@ export function dOTypeWizard(
         label: get('save'),
         action: updateDOTypeAction(dotype),
       },
+      menuActions: [
+        {
+          label: get('remove'),
+          icon: 'delete',
+          action: remove(dotype),
+        },
+        {
+          label: get('scl.DO'),
+          icon: 'playlist_add',
+          action: openAddSdo(dotype),
+        },
+        {
+          label: get('scl.DA'),
+          icon: 'playlist_add',
+          action: openAddDa(dotype),
+        },
+      ],
       content: [
-        html`<mwc-button
-          icon="delete"
-          trailingIcon
-          label="${translate('remove')}"
-          @click=${(e: MouseEvent) => {
-            e.target!.dispatchEvent(newWizardEvent());
-            e.target!.dispatchEvent(
-              newActionEvent({
-                old: {
-                  parent: dotype.parentElement!,
-                  element: dotype,
-                  reference: dotype.nextSibling,
-                },
-              })
-            );
-          }}
-          fullwidth
-        ></mwc-button> `,
         html`<wizard-textfield
           label="id"
           helper="${translate('scl.id')}"
@@ -400,32 +400,6 @@ export function dOTypeWizard(
           .maybeValue=${dotype.getAttribute('cdc')}
           pattern="${patterns.normalizedString}"
         ></wizard-textfield>`,
-        html`<section>
-          <mwc-button
-            slot="graphic"
-            icon="playlist_add"
-            trailingIcon
-            label="${translate('scl.DO')}"
-            @click=${(e: Event) => {
-              const wizard = sDOWizard({
-                parent: dotype,
-              });
-              if (wizard) e.target!.dispatchEvent(newSubWizardEvent(wizard));
-            }}
-          ></mwc-button>
-          <mwc-button
-            slot="graphic"
-            icon="playlist_add"
-            trailingIcon
-            label="${translate('scl.DA')}"
-            @click=${(e: Event) => {
-              if (dotype)
-                e.target!.dispatchEvent(
-                  newSubWizardEvent(createDaWizard(dotype))
-                );
-            }}
-          ></mwc-button>
-        </section>`,
         html`
           <mwc-list
             style="margin-top: 0px;"
