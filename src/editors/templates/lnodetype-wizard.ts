@@ -29,8 +29,10 @@ import {
   Replace,
   selector,
   Wizard,
+  WizardAction,
   WizardActor,
   WizardInput,
+  WizardMenuActor,
 } from '../../foundation.js';
 import { WizardSelect } from '../../wizard-select.js';
 import {
@@ -41,6 +43,18 @@ import {
   UpdateOptions,
   WizardOptions,
 } from './foundation.js';
+
+function remove(element: Element): WizardMenuActor {
+  return (): EditorAction[] => {
+    return [{ old: { parent: element.parentElement!, element } }];
+  };
+}
+
+function openAddDo(parent: Element): WizardMenuActor {
+  return (): WizardAction[] => {
+    return [() => dOWizard({ parent })!];
+  };
+}
 
 function updateDoAction(element: Element): WizardActor {
   return (inputs: WizardInput[]): EditorAction[] => {
@@ -613,25 +627,19 @@ export function lNodeTypeWizard(
         label: get('save'),
         action: updateLNodeTypeAction(lnodetype),
       },
+      menuActions: [
+        {
+          label: get('remove'),
+          icon: 'delete',
+          action: remove(lnodetype),
+        },
+        {
+          label: get('scl.DO'),
+          icon: 'playlist_add',
+          action: openAddDo(lnodetype),
+        },
+      ],
       content: [
-        html`<mwc-button
-          icon="delete"
-          trailingIcon
-          label="${translate('remove')}"
-          @click=${(e: MouseEvent) => {
-            e.target!.dispatchEvent(newWizardEvent());
-            e.target!.dispatchEvent(
-              newActionEvent({
-                old: {
-                  parent: lnodetype.parentElement!,
-                  element: lnodetype,
-                  reference: lnodetype.nextSibling,
-                },
-              })
-            );
-          }}
-          fullwidth
-        ></mwc-button> `,
         html`<wizard-textfield
           label="id"
           helper="${translate('scl.id')}"
@@ -656,18 +664,6 @@ export function lNodeTypeWizard(
           required
           pattern="${patterns.lnClass}"
         ></wizard-textfield>`,
-        html` <mwc-button
-          slot="graphic"
-          icon="playlist_add"
-          trailingIcon
-          label="${translate('scl.DO')}"
-          @click=${(e: Event) => {
-            const wizard = dOWizard({
-              parent: lnodetype,
-            });
-            if (wizard) e.target!.dispatchEvent(newSubWizardEvent(wizard));
-          }}
-        ></mwc-button>`,
         html`
           <mwc-list
             style="margin-top: 0px;"
