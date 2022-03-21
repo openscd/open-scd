@@ -11,7 +11,7 @@ import {dispatchEventOnOpenScd} from "./foundation.js";
 import {SclSelectedEvent} from "./CompasScl.js";
 import {TypeSelectedEvent} from "./CompasSclTypeList.js";
 
-import './CompasDivider.js';
+import '../WizardDivider.js';
 import './CompasSclTypeList.js';
 import './CompasScl.js';
 
@@ -107,12 +107,12 @@ export default class CompasOpenElement extends LitElement {
 
   render(): TemplateResult {
     return html `
-      <compas-divider></compas-divider>
+      <wizard-divider></wizard-divider>
       <section>
         <h3>${translate('compas.open.localTitle')}</h3>
         ${this.renderFileSelect()}
       </section>
-      <compas-divider></compas-divider>
+      <wizard-divider></wizard-divider>
       <section>
         <h3>${translate('compas.open.compasTitle')}</h3>
         ${(this.selectedType) ? this.renderSclList() : this.renderSclTypeList()}

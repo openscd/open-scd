@@ -21,9 +21,9 @@ import {
   updateDocumentInOpenSCD
 } from "./foundation.js";
 
+import '../WizardDivider.js';
 import './CompasChangeSetRadiogroup.js';
 import './CompasComment.js';
-import './CompasDivider.js';
 import './CompasLoading.js';
 import './CompasSclTypeRadiogroup.js';
 
@@ -146,12 +146,12 @@ export default class CompasSaveElement extends CompasExistsIn(LitElement) {
 
   render(): TemplateResult {
     return html `
-      <compas-divider></compas-divider>
+      <wizard-divider></wizard-divider>
       <section>
         <h3>${translate('compas.save.localTitle')}</h3>
         ${this.renderSaveFilePart()}
       </section>
-      <compas-divider></compas-divider>
+      <wizard-divider></wizard-divider>
       <section>
         <h3>${translate('compas.save.compasTitle')}</h3>
         ${this.renderSaveCompasPart()}
