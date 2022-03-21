@@ -264,7 +264,7 @@ describe('wizard-dialog', () => {
   });
 
   describe('with content definition throught WizardInputs', () => {
-    describe('for a specific WizardInputs of the kind Checkbox', () => {
+    describe('for a specific WizardInput of the kind Checkbox', () => {
       let checkbox: WizardCheckbox;
       beforeEach(async () => {
         element.wizard = [
