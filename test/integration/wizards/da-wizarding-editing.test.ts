@@ -11,6 +11,7 @@ import TemplatesPlugin from '../../../src/editors/Templates.js';
 import { WizardSelect } from '../../../src/wizard-select.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import { WizardCheckbox } from '../../../src/wizard-checkbox.js';
+import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 describe('DA wizarding editing integration', () => {
   if (customElements.get('templates-editor') === undefined)
@@ -67,7 +68,11 @@ describe('DA wizarding editing integration', () => {
         )
       );
       deleteButton = <HTMLElement>(
-        parent.wizardUI.dialog?.querySelector('mwc-button[icon="delete"]')
+        Array.from(
+          parent.wizardUI.dialog!.querySelectorAll<ListItemBase>(
+            'mwc-menu > mwc-list-item'
+          )
+        ).find(item => item.innerHTML.includes('[remove]'))
       );
     });
 
@@ -133,7 +138,6 @@ describe('DA wizarding editing integration', () => {
     let descField: WizardTextField;
     let sAddrField: WizardTextField;
     let bTypeSelect: WizardSelect;
-    let typeSelect: WizardSelect;
     let valKindSelect: WizardSelect;
     let valImportSelect: WizardCheckbox;
     let fcSelect: WizardSelect;
@@ -168,9 +172,6 @@ describe('DA wizarding editing integration', () => {
       );
       bTypeSelect = <WizardSelect>(
         parent.wizardUI.dialog?.querySelector('wizard-select[label="bType"]')
-      );
-      typeSelect = <WizardSelect>(
-        parent.wizardUI.dialog?.querySelector('wizard-select[label="type"]')
       );
       valKindSelect = <WizardSelect>(
         parent.wizardUI.dialog?.querySelector('wizard-select[label="valKind"]')
