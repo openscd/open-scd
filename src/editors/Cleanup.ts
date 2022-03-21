@@ -171,7 +171,6 @@ export default class Cleanup extends LitElement {
               item =>
                 html`<mwc-check-list-item
                   twoline
-                  left
                   class="cleanupUnreferencedDataSetsCheckListItem"
                   value="${identity(item)}"
                   ><span class="unreferencedDataSet"
