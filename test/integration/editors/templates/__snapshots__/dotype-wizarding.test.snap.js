@@ -1009,14 +1009,31 @@ snapshots["DOType wizards defines a sDOWizard to edit an existing SDO looks like
   heading="[sdo.wizard.title.edit]"
   open=""
 >
-  <div id="wizard-content">
-    <mwc-button
-      fullwidth=""
-      icon="delete"
-      label="[remove]"
-      trailingicon=""
+  <nav>
+    <mwc-icon-button icon="more_vert">
+    </mwc-icon-button>
+    <mwc-menu
+      class="actions-menu"
+      corner="BOTTOM_RIGHT"
+      menucorner="END"
     >
-    </mwc-button>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="0"
+      >
+        <span>
+          [remove]
+        </span>
+        <mwc-icon slot="graphic">
+          delete
+        </mwc-icon>
+      </mwc-list-item>
+    </mwc-menu>
+  </nav>
+  <div id="wizard-content">
     <wizard-textfield
       dialoginitialfocus=""
       helper="[scl.name]"

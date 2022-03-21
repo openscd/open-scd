@@ -27,6 +27,7 @@ import {
   Wizard,
   WizardActor,
   WizardInput,
+  WizardMenuActor,
 } from '../../foundation.js';
 import { createDaWizard, editDAWizard } from '../../wizards/da.js';
 import { patterns } from '../../wizards/foundation/limits.js';
@@ -38,6 +39,12 @@ import {
   UpdateOptions,
   WizardOptions,
 } from './foundation.js';
+
+function remove(element: Element): WizardMenuActor {
+  return (): EditorAction[] => {
+    return [{ old: { parent: element.parentElement!, element } }];
+  };
+}
 
 function updateSDoAction(element: Element): WizardActor {
   return (inputs: WizardInput[]): EditorAction[] => {
@@ -96,29 +103,12 @@ function sDOWizard(options: WizardOptions): Wizard | undefined {
       )
     ).find(isPublic) ?? null;
 
-  const [title, action, type, deleteButton, name, desc] = sdo
+  const [title, action, type, menuActions, name, desc] = sdo
     ? [
         get('sdo.wizard.title.edit'),
         updateSDoAction(sdo),
         sdo.getAttribute('type'),
-        html`<mwc-button
-          icon="delete"
-          trailingIcon
-          label="${translate('remove')}"
-          @click=${(e: MouseEvent) => {
-            e.target!.dispatchEvent(newWizardEvent());
-            e.target!.dispatchEvent(
-              newActionEvent({
-                old: {
-                  parent: sdo.parentElement!,
-                  element: sdo,
-                  reference: sdo.nextSibling,
-                },
-              })
-            );
-          }}
-          fullwidth
-        ></mwc-button> `,
+        [{ icon: 'delete', label: get('remove'), action: remove(sdo) }],
         sdo.getAttribute('name'),
         sdo.getAttribute('desc'),
       ]
@@ -126,7 +116,7 @@ function sDOWizard(options: WizardOptions): Wizard | undefined {
         get('sdo.wizard.title.add'),
         createSDoAction((<CreateOptions>options).parent),
         null,
-        html``,
+        undefined,
         '',
         null,
       ];
@@ -140,8 +130,8 @@ function sDOWizard(options: WizardOptions): Wizard | undefined {
       title,
       element: sdo ?? undefined,
       primary: { icon: '', label: get('save'), action },
+      menuActions,
       content: [
-        deleteButton,
         html`<wizard-textfield
           label="name"
           .maybeValue=${name}
