@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.12.0](https://github.com/openscd/open-scd/compare/v0.11.0...v0.12.0) (2022-03-21)
+
+
+### Features
+
+* **Editing:** check globally for ID uniqueness ([c2b14fb](https://github.com/openscd/open-scd/commits/c2b14fb337adb9f55874dbb3add0aefda8622946))
+* **editors/cleanup:** unreferenced DataSet ([#568](https://github.com/openscd/open-scd/issues/568)) ([edc133c](https://github.com/openscd/open-scd/commits/edc133cdecce61abf53d043bc45292d1a1a36c7c))
+* **editors/Substation:** Add PowerTransformer Components to Substation Editor ([22555b6](https://github.com/openscd/open-scd/commits/22555b6713c9f2c8e882269ffce9a826d016e87b))
+* **editors/template/lnodetype-wizards:** make use of -7-420 NSD ([0a2d5a4](https://github.com/openscd/open-scd/commits/0a2d5a40c50d5a0cc66fd7c5b31f6493aa7c4600))
+* **plugins/IED:** Add icon set to IED editor containers ([9878259](https://github.com/openscd/open-scd/commits/9878259665be2e34bd99dd1d5f72c1944b3dca1f))
+* **plugins/SampledValues:** Create Sampled Values tab in Subscription plugin ([f94b042](https://github.com/openscd/open-scd/commits/f94b0422253940785a0982ae72910f1bbbc2ac62))
+* **plugins/SampledValues:** Small bug fix + Added Integration tests ([a58f305](https://github.com/openscd/open-scd/commits/a58f305c78a65c056c617e9f09e8d648f4aaf610))
+* **plugins/Subscription:** Create 'Subscription' plugin for GOOSE subscriptions  ([25fae6f](https://github.com/openscd/open-scd/commits/25fae6fc42ad76f269ef029848d5cae6329eee33))
+* **wizard-dialog:** allow used-defined actions in menu ([f8c5a93](https://github.com/openscd/open-scd/commits/f8c5a93100e4c7e922627337ffee32f6169b12cf))
+
+
+### Bug Fixes
+
+* **action-pane:** adjust css rules for icon slot ([#594](https://github.com/openscd/open-scd/issues/594)) ([8bc0549](https://github.com/openscd/open-scd/commits/8bc0549bc791ef6b7fe0b1dfd4d5a6f1dfccde2d))
+* **editors/template:** on id attribute update adopt references as well ([#590](https://github.com/openscd/open-scd/issues/590)) ([af246dd](https://github.com/openscd/open-scd/commits/af246ddcde907688081aaa20d295faeb978b0a6f))
+* **editors/template:** properly update xxxType list after add/editing ([#582](https://github.com/openscd/open-scd/issues/582)) ([2e11cc8](https://github.com/openscd/open-scd/commits/2e11cc8c277d31dd693ae54656e1c3b4cd23f8f3))
+* **wizard-dialog:** make sure to close on non empty editor action ([8fb125c](https://github.com/openscd/open-scd/commits/8fb125c1c353feb37a4c988d59a608090fb0425b))
+
 ## [0.11.0](https://github.com/openscd/open-scd/compare/v0.10.0...v0.11.0) (2022-03-08)
 
 
