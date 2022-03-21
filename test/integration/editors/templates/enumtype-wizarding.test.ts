@@ -110,6 +110,7 @@ describe('EnumType wizards', () => {
       (<ListItem>(
         eNumTypeList.querySelector('mwc-list-item[value="#Dummy_ctlModel"]')
       )).click();
+
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       idField = <WizardTextField>(
@@ -121,13 +122,14 @@ describe('EnumType wizards', () => {
         )
       );
       deleteButton = <HTMLElement>(
-        parent.wizardUI.dialog?.querySelector('mwc-button[icon="delete"]')
+        parent.wizardUI.dialog?.querySelectorAll('mwc-menu > mwc-list-item')[0]
       );
     });
 
     it('looks like the latest snapshot', async () => {
       await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
+
     it('edits EnumType attributes id', async () => {
       expect(doc.querySelector('EnumType[id="Dummy_ctlModel"]')).to.exist;
       idField.value = 'changedEnumType';
@@ -137,6 +139,7 @@ describe('EnumType wizards', () => {
       expect(doc.querySelector('EnumType[id="Dummy_ctlModel"]')).to.not.exist;
       expect(doc.querySelector('EnumType[id="changedEnumType"]')).to.exist;
     });
+
     it('deletes the EnumVal element on delete button click', async () => {
       expect(doc.querySelector('EnumType[id="Dummy_ctlModel"]')).to.exist;
       expect(doc.querySelectorAll('EnumType').length).to.equal(4);
@@ -145,6 +148,7 @@ describe('EnumType wizards', () => {
       expect(doc.querySelector('EnumType[id="Dummy_ctlModel"]')).to.not.exist;
       expect(doc.querySelectorAll('EnumType').length).to.equal(3);
     });
+
     it('does not edit EnumType element without changes', async () => {
       const originData = (<Element>(
         doc.querySelector('EnumType[id="Dummy_ctlModel"]')
@@ -195,13 +199,14 @@ describe('EnumType wizards', () => {
         )
       );
       deleteButton = <HTMLElement>(
-        parent.wizardUI.dialog?.querySelector('mwc-button[icon="delete"]')
+        parent.wizardUI.dialog?.querySelectorAll('mwc-menu > mwc-list-item')[0]
       );
     });
 
     it('looks like the latest snapshot', async () => {
       await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
+
     it('edits EnumVal attributes ord', async () => {
       expect(
         doc.querySelector('EnumType[id="Dummy_ctlModel"] > EnumVal[ord="1"]')
@@ -217,6 +222,7 @@ describe('EnumType wizards', () => {
         doc.querySelector('EnumType[id="Dummy_ctlModel"] > EnumVal[ord="10"]')
       ).to.exist;
     });
+
     it('edits EnumVal attributes value', async () => {
       expect(
         doc.querySelector('EnumType[id="Dummy_ctlModel"] > EnumVal[ord="1"]')
@@ -234,6 +240,7 @@ describe('EnumType wizards', () => {
         )?.textContent
       ).to.equal('direct-with-normal-security-test');
     });
+
     it('deletes the EnumVal element on delete button click', async () => {
       expect(
         doc.querySelector('EnumType[id="Dummy_ctlModel"] > EnumVal[ord="1"]')
@@ -250,6 +257,7 @@ describe('EnumType wizards', () => {
         doc.querySelectorAll('EnumType[id="Dummy_ctlModel"] > EnumVal').length
       ).to.equal(4);
     });
+
     it('does not edit EnumVal element without changes', async () => {
       const originData = (<Element>(
         doc.querySelector('EnumType[id="Dummy_ctlModel"] > EnumVal[ord="1"]')
@@ -277,7 +285,7 @@ describe('EnumType wizards', () => {
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       (<HTMLElement>(
-        parent.wizardUI.dialog?.querySelector('mwc-button[icon="playlist_add"]')
+        parent.wizardUI.dialog?.querySelectorAll('mwc-menu > mwc-list-item')[1]
       )).click();
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation

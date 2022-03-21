@@ -44,6 +44,10 @@ const nsd74 = fetch('public/xml/IEC_61850-7-4_2007B3.nsd')
   .then(response => response.text())
   .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
+const nsd7420 = fetch('public/xml/IEC_61850-7-420_2019A4.nsd')
+  .then(response => response.text())
+  .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
 /** An editor [[`plugin`]] for editing the `DataTypeTemplates` section. */
 export default class TemplatesPlugin extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
@@ -58,7 +62,8 @@ export default class TemplatesPlugin extends LitElement {
         createLNodeTypeWizard(
           this.doc.querySelector(':root > DataTypeTemplates')!,
           await templates,
-          await nsd74
+          await nsd74,
+          await nsd7420
         )
       )
     );
@@ -66,7 +71,10 @@ export default class TemplatesPlugin extends LitElement {
 
   openLNodeTypeWizard(identity: string): void {
     const wizard = lNodeTypeWizard(identity, this.doc);
-    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+    if (wizard)
+      this.dispatchEvent(
+        newWizardEvent(() => lNodeTypeWizard(identity, this.doc)!)
+      );
   }
 
   async openCreateDOTypeWizard(): Promise<void> {
@@ -84,12 +92,18 @@ export default class TemplatesPlugin extends LitElement {
 
   openDOTypeWizard(identity: string): void {
     const wizard = dOTypeWizard(identity, this.doc);
-    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+    if (wizard)
+      this.dispatchEvent(
+        newWizardEvent(() => dOTypeWizard(identity, this.doc)!)
+      );
   }
 
   openDATypeWizard(identity: string): void {
     const wizard = editDaTypeWizard(identity, this.doc);
-    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+    if (wizard)
+      this.dispatchEvent(
+        newWizardEvent(() => editDaTypeWizard(identity, this.doc)!)
+      );
   }
 
   async openCreateDATypeWizard(): Promise<void> {
@@ -107,7 +121,10 @@ export default class TemplatesPlugin extends LitElement {
 
   openEnumTypeWizard(identity: string): void {
     const wizard = eNumTypeEditWizard(identity, this.doc);
-    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+    if (wizard)
+      this.dispatchEvent(
+        newWizardEvent(() => eNumTypeEditWizard(identity, this.doc)!)
+      );
   }
 
   async openCreateEnumWizard(): Promise<void> {

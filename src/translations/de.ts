@@ -116,6 +116,7 @@ export const de: Translations = {
       duplicate: 'Konnte {{name}} nicht kopieren',
       nameClash:
         '{{ parent }} enthält bereits ein {{ child }} Kind namens "{{ name }}"',
+      idClash: 'Das Projekt enthält bereits die ID "{{ id }}"',
     },
   },
   validator: {
@@ -216,7 +217,9 @@ export const de: Translations = {
     wizard: {
       nameHelper: '`Name des Leistungstransformators',
       descHelper: 'Beschreibung des Leistungstransformators',
+      typeHelper: 'Type des Leistungstransformators',
       title: {
+        add: 'Leistungstransformator hinzufügen',
         edit: 'Leistungstransformator bearbeiten',
       },
     },
@@ -287,6 +290,32 @@ export const de: Translations = {
     missing: 'DataTypeTemplates fehlen',
     add: 'DataTypeTemplates hinzufügen',
   },
+  subscription: {
+    none: 'Keine Verbindung vorhanden',
+    publisherGoose: {
+      title: 'GOOSE-Publizierer'
+    },
+    subscriberIed: {
+      title: 'Verbunden mit {{ selected }}',
+      subscribed: 'Verbunden',
+      availableToSubscribe: 'Kann verbunden werden',
+      partiallySubscribed: 'Teilweise verbunden',
+      noGooseMessageSelected: 'Keine GOOSE ausgewählt'
+    }
+  },
+  sampledvalues: {
+    none: 'Keine Verbindung vorhanden',
+    sampledValuesList: {
+      title: 'Sampled Values'
+    },
+    subscriberIed: {
+      title: 'Verbunden mit {{ selected }}',
+      subscribed: 'Verbunden',
+      availableToSubscribe: 'Kann verbunden werden',
+      partiallySubscribed: 'Teilweise verbunden',
+      noSampledValuesSelected: 'Keinen Kontrollblock ausgewählt'
+    }
+  },
   'enum-val': {
     wizard: {
       title: {
@@ -302,6 +331,9 @@ export const de: Translations = {
         edit: 'EnumType bearbeiten',
       },
     },
+    action: {
+      edit: 'DAType ID "{{oldId}}" und deren DA-Referenzen geändert zu {{newId}} ',
+    },
   },
   datype: {
     wizard: {
@@ -309,6 +341,9 @@ export const de: Translations = {
         add: 'DAType hinzufügen',
         edit: 'DAType bearbeiten',
       },
+    },
+    action: {
+      edit: 'EnumType ID "{{oldId}}" und deren DA-Referenzen geändert zu {{newId}} ',
     },
   },
   bda: {
@@ -351,6 +386,9 @@ export const de: Translations = {
       },
       enums: 'Standard Enumerations',
     },
+    action: {
+      edit: 'DOType ID "{{oldId}}" und deren DO-Referenzen geändert zu {{newId}} ',
+    },
   },
   lnodetype: {
     wizard: {
@@ -359,6 +397,9 @@ export const de: Translations = {
         edit: 'LNodeType bearbeiten',
         select: 'Data Objects auswählen',
       },
+    },
+    action: {
+      edit: 'LNodeType ID "{{oldId}}" und deren LN-Referenzen geändert zu {{newId}} ',
     },
     autoimport: 'Vordefinierte OpenSCD LN Klasse verwenden',
     missinglnclass: 'Vordefinierte LN Klasse fehlt',
@@ -470,6 +511,21 @@ export const de: Translations = {
   },
   report: {
     wizard: { location: 'Ablageort der Reports wählen' },
+  },
+  cleanup: {
+    unreferencedDataSets: {
+      title: 'Nicht referenzierte Datensätze',
+      deleteButton: 'Ausgewählten Datensatz entfernen',
+      tooltip:
+        'DatenSätze ohne Verweis auf einen zugehörigen GOOSE-, Log-, Report- oder Sampled Value Control Block',
+    },
+  },
+  controlblock: {
+    action: {
+      edit: '{{type}} "{{name}}" in IED {{iedName}} bearbeitet',
+      remove:
+        '{{type}} "{{name}}" and referenzierte Element von IED {{iedName}} entfernt',
+    },
   },
   userinfo: {
     loggedInAs: '???'

@@ -7,6 +7,72 @@ snapshots["Wizards for SCL ReportControl element define an edit wizard that for 
   heading="[wizard.title.edit]"
   open=""
 >
+  <nav>
+    <mwc-icon-button icon="more_vert">
+    </mwc-icon-button>
+    <mwc-menu
+      class="actions-menu"
+      corner="BOTTOM_RIGHT"
+      menucorner="END"
+    >
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="0"
+      >
+        <span>
+          [remove]
+        </span>
+        <mwc-icon slot="graphic">
+          delete
+        </mwc-icon>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span>
+          [scl.DataSet]
+        </span>
+        <mwc-icon slot="graphic">
+          edit
+        </mwc-icon>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span>
+          [scl.TrgOps]
+        </span>
+        <mwc-icon slot="graphic">
+          edit
+        </mwc-icon>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span>
+          [scl.OptFields]
+        </span>
+        <mwc-icon slot="graphic">
+          edit
+        </mwc-icon>
+      </mwc-list-item>
+    </mwc-menu>
+  </nav>
   <div id="wizard-content">
     <wizard-textfield
       dialoginitialfocus=""
@@ -72,29 +138,6 @@ snapshots["Wizards for SCL ReportControl element define an edit wizard that for 
       type="number"
     >
     </wizard-textfield>
-    <mwc-button
-      icon="edit"
-      id="editdataset"
-      label="[scl.DataSet]"
-    >
-    </mwc-button>
-    <mwc-button
-      icon="edit"
-      id="edittrgops"
-      label="[scl.TrgOps]"
-    >
-    </mwc-button>
-    <mwc-button
-      icon="edit"
-      id="editoptfields"
-      label="[scl.OptFields]"
-    >
-    </mwc-button>
-    <mwc-button
-      icon="delete"
-      label="[remove]"
-    >
-    </mwc-button>
   </div>
   <mwc-button
     dialogaction="close"
@@ -120,6 +163,29 @@ snapshots["Wizards for SCL ReportControl element define an edit wizard that for 
   heading="[wizard.title.edit]"
   open=""
 >
+  <nav>
+    <mwc-icon-button icon="more_vert">
+    </mwc-icon-button>
+    <mwc-menu
+      class="actions-menu"
+      corner="BOTTOM_RIGHT"
+      menucorner="END"
+    >
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <span>
+          [remove]
+        </span>
+        <mwc-icon slot="graphic">
+          delete
+        </mwc-icon>
+      </mwc-list-item>
+    </mwc-menu>
+  </nav>
   <div id="wizard-content">
     <wizard-textfield
       dialoginitialfocus=""
@@ -188,11 +254,6 @@ snapshots["Wizards for SCL ReportControl element define an edit wizard that for 
       type="number"
     >
     </wizard-textfield>
-    <mwc-button
-      icon="delete"
-      label="[remove]"
-    >
-    </mwc-button>
   </div>
   <mwc-button
     dialogaction="close"

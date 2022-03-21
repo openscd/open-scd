@@ -3,6 +3,9 @@ export const snapshots = {};
 
 snapshots["ied-container looks like the latest snapshot"] = 
 `<action-pane tabindex="0">
+  <mwc-icon slot="icon">
+    developer_board
+  </mwc-icon>
   <abbr
     slot="action"
     title="[edit]"

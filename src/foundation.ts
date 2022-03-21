@@ -225,6 +225,16 @@ export function getMultiplier(input: WizardInput): string | null {
   else return null;
 }
 
+/** @returns [[`WizardAction`]]s to dispatch on [[`WizardDialog`]] menu action. */
+export type WizardMenuActor = () => WizardAction[];
+
+/** User interactions rendered in the wizard-dialog menu */
+export interface MenuAction {
+  label: string;
+  icon?: string;
+  action: WizardMenuActor;
+}
+
 /** Represents a page of a wizard dialog */
 export interface WizardPage {
   title: string;
@@ -243,6 +253,7 @@ export interface WizardPage {
   };
   initial?: boolean;
   element?: Element;
+  menuActions?: MenuAction[];
 }
 export type Wizard = WizardPage[];
 export type WizardFactory = () => Wizard;

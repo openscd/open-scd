@@ -20,8 +20,6 @@ import {
   identity,
   isPublic,
   newSubWizardEvent,
-  newWizardEvent,
-  newActionEvent,
   selector,
   SimpleAction,
   Wizard,
@@ -29,6 +27,10 @@ import {
   WizardInput,
   Delete,
   getUniqueElementName,
+  ComplexAction,
+  WizardMenuActor,
+  WizardAction,
+  MenuAction,
 } from '../foundation.js';
 import { FinderList } from '../finder-list.js';
 import { dataAttributePicker, iEDPicker } from './foundation/finder.js';
@@ -327,8 +329,10 @@ function prepareReportControlCreateWizard(anyParent: Element): WizardActor {
   };
 }
 
-export function removeReportControlAction(element: Element): Delete[] {
-  if (!element.parentElement) return [];
+export function removeReportControlAction(
+  element: Element
+): ComplexAction | null {
+  if (!element.parentElement) return null;
 
   const dataSet = element.parentElement.querySelector(
     `DataSet[name="${element.getAttribute('datSet')}"]`
@@ -358,11 +362,17 @@ export function removeReportControlAction(element: Element): Delete[] {
       old: {
         parent: element.parentElement!,
         element: dataSet,
-        reference: element.nextSibling,
+        reference: dataSet.nextSibling,
       },
     });
 
-  return actions;
+  const name = element.getAttribute('name')!;
+  const iedName = element.closest('IED')?.getAttribute('name') ?? '';
+
+  return {
+    title: get('controlblock.action.remove', { type: 'Report', name, iedName }),
+    actions,
+  };
 }
 
 function getRptEnabledAction(
@@ -387,6 +397,32 @@ function getRptEnabledAction(
   return {
     old: { element: olRptEnabled! },
     new: { element: newRptEnabled },
+  };
+}
+
+export function removeReportControl(element: Element): WizardMenuActor {
+  return (): WizardAction[] => {
+    const complexAction = removeReportControlAction(element);
+    if (complexAction) return [complexAction];
+    return [];
+  };
+}
+
+function openDataSetWizard(element: Element): WizardMenuActor {
+  return (): WizardAction[] => {
+    return [() => editDataSetWizard(element)];
+  };
+}
+
+function openTrgOpsWizard(element: Element): WizardMenuActor {
+  return (): WizardAction[] => {
+    return [() => editTrgOpsWizard(element)];
+  };
+}
+
+function openOptFieldsWizard(element: Element): WizardMenuActor {
+  return (): WizardAction[] => {
+    return [() => editOptFieldsWizard(element)];
   };
 }
 
@@ -420,7 +456,7 @@ function updateReportControlAction(element: Element): WizardActor {
 
     const max = getValue(inputs.find(i => i.label === 'max Clients')!);
 
-    let rptEnabledAction: EditorAction | null = null;
+    let rptEnabledAction: SimpleAction | null = null;
     if (
       max !== (element.querySelector('RptEnabled')?.getAttribute('max') ?? null)
     )
@@ -430,10 +466,22 @@ function updateReportControlAction(element: Element): WizardActor {
         element
       );
 
-    const actions: EditorAction[] = [];
+    const actions: SimpleAction[] = [];
     if (reportControlAction) actions.push(reportControlAction);
     if (rptEnabledAction) actions.push(rptEnabledAction);
-    return actions;
+
+    const name = attributes['name']!;
+    const iedName = element.closest('IED')!.getAttribute('name')!;
+    const complexAction = {
+      title: get('controlblock.action.edit', {
+        type: 'Report',
+        name,
+        iedName,
+      }),
+      actions,
+    };
+
+    return actions.length ? [complexAction] : [];
   };
 }
 
@@ -455,6 +503,34 @@ export function editReportControlWizard(element: Element): Wizard {
     `DataSet[name="${element.getAttribute('datSet')}"]`
   );
 
+  const menuActions: MenuAction[] = [];
+  menuActions.push({
+    icon: 'delete',
+    label: get('remove'),
+    action: removeReportControl(element),
+  });
+
+  if (dataSet)
+    menuActions.push({
+      icon: 'edit',
+      label: get('scl.DataSet'),
+      action: openDataSetWizard(dataSet),
+    });
+
+  if (trgOps)
+    menuActions.push({
+      icon: 'edit',
+      label: get('scl.TrgOps'),
+      action: openTrgOpsWizard(trgOps),
+    });
+
+  if (optFields)
+    menuActions.push({
+      icon: 'edit',
+      label: get('scl.OptFields'),
+      action: openOptFieldsWizard(optFields),
+    });
+
   return [
     {
       title: get('wizard.title.edit', { tagName: element.tagName }),
@@ -464,6 +540,7 @@ export function editReportControlWizard(element: Element): Wizard {
         label: get('save'),
         action: updateReportControlAction(element),
       },
+      menuActions,
       content: [
         ...contentReportControlWizard({
           name,
@@ -475,53 +552,6 @@ export function editReportControlWizard(element: Element): Wizard {
           bufTime,
           intgPd,
         }),
-        dataSet
-          ? html`<mwc-button
-              label=${translate('scl.DataSet')}
-              icon="edit"
-              id="editdataset"
-              @click=${(e: MouseEvent) => {
-                e.target?.dispatchEvent(
-                  newSubWizardEvent(() => editDataSetWizard(dataSet))
-                );
-              }}
-            ></mwc-button>`
-          : html``,
-        trgOps
-          ? html`<mwc-button
-              label=${translate('scl.TrgOps')}
-              icon="edit"
-              id="edittrgops"
-              @click=${(e: MouseEvent) => {
-                e.target?.dispatchEvent(
-                  newSubWizardEvent(() => editTrgOpsWizard(trgOps))
-                );
-              }}
-            ></mwc-button>`
-          : html``,
-        optFields
-          ? html`<mwc-button
-              label=${translate('scl.OptFields')}
-              icon="edit"
-              id="editoptfields"
-              @click=${(e: MouseEvent) => {
-                e.target?.dispatchEvent(
-                  newSubWizardEvent(() => editOptFieldsWizard(optFields))
-                );
-              }}
-            ></mwc-button>`
-          : html``,
-        html`<mwc-button
-          label="${translate('remove')}"
-          icon="delete"
-          @click=${(e: MouseEvent) => {
-            const deleteActions = removeReportControlAction(element);
-            deleteActions.forEach(deleteAction =>
-              e.target?.dispatchEvent(newActionEvent(deleteAction))
-            );
-            e.target?.dispatchEvent(newWizardEvent());
-          }}
-        ></mwc-button>`,
       ],
     },
   ];
