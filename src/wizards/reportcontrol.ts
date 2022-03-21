@@ -20,8 +20,6 @@ import {
   identity,
   isPublic,
   newSubWizardEvent,
-  newWizardEvent,
-  newActionEvent,
   selector,
   SimpleAction,
   Wizard,
@@ -30,6 +28,9 @@ import {
   Delete,
   getUniqueElementName,
   ComplexAction,
+  WizardMenuActor,
+  WizardAction,
+  MenuAction,
 } from '../foundation.js';
 import { FinderList } from '../finder-list.js';
 import { dataAttributePicker, iEDPicker } from './foundation/finder.js';
@@ -399,6 +400,32 @@ function getRptEnabledAction(
   };
 }
 
+export function removeReportControl(element: Element): WizardMenuActor {
+  return (): WizardAction[] => {
+    const complexAction = removeReportControlAction(element);
+    if (complexAction) return [complexAction];
+    return [];
+  };
+}
+
+function openDataSetWizard(element: Element): WizardMenuActor {
+  return (): WizardAction[] => {
+    return [() => editDataSetWizard(element)];
+  };
+}
+
+function openTrgOpsWizard(element: Element): WizardMenuActor {
+  return (): WizardAction[] => {
+    return [() => editTrgOpsWizard(element)];
+  };
+}
+
+function openOptFieldsWizard(element: Element): WizardMenuActor {
+  return (): WizardAction[] => {
+    return [() => editOptFieldsWizard(element)];
+  };
+}
+
 function updateReportControlAction(element: Element): WizardActor {
   return (inputs: WizardInput[]): EditorAction[] => {
     const attributes: Record<string, string | null> = {};
@@ -476,6 +503,34 @@ export function editReportControlWizard(element: Element): Wizard {
     `DataSet[name="${element.getAttribute('datSet')}"]`
   );
 
+  const menuActions: MenuAction[] = [];
+  menuActions.push({
+    icon: 'delete',
+    label: get('remove'),
+    action: removeReportControl(element),
+  });
+
+  if (dataSet)
+    menuActions.push({
+      icon: 'edit',
+      label: get('scl.DataSet'),
+      action: openDataSetWizard(dataSet),
+    });
+
+  if (trgOps)
+    menuActions.push({
+      icon: 'edit',
+      label: get('scl.TrgOps'),
+      action: openTrgOpsWizard(trgOps),
+    });
+
+  if (optFields)
+    menuActions.push({
+      icon: 'edit',
+      label: get('scl.OptFields'),
+      action: openOptFieldsWizard(optFields),
+    });
+
   return [
     {
       title: get('wizard.title.edit', { tagName: element.tagName }),
@@ -485,6 +540,7 @@ export function editReportControlWizard(element: Element): Wizard {
         label: get('save'),
         action: updateReportControlAction(element),
       },
+      menuActions,
       content: [
         ...contentReportControlWizard({
           name,
@@ -496,53 +552,6 @@ export function editReportControlWizard(element: Element): Wizard {
           bufTime,
           intgPd,
         }),
-        dataSet
-          ? html`<mwc-button
-              label=${translate('scl.DataSet')}
-              icon="edit"
-              id="editdataset"
-              @click=${(e: MouseEvent) => {
-                e.target?.dispatchEvent(
-                  newSubWizardEvent(() => editDataSetWizard(dataSet))
-                );
-              }}
-            ></mwc-button>`
-          : html``,
-        trgOps
-          ? html`<mwc-button
-              label=${translate('scl.TrgOps')}
-              icon="edit"
-              id="edittrgops"
-              @click=${(e: MouseEvent) => {
-                e.target?.dispatchEvent(
-                  newSubWizardEvent(() => editTrgOpsWizard(trgOps))
-                );
-              }}
-            ></mwc-button>`
-          : html``,
-        optFields
-          ? html`<mwc-button
-              label=${translate('scl.OptFields')}
-              icon="edit"
-              id="editoptfields"
-              @click=${(e: MouseEvent) => {
-                e.target?.dispatchEvent(
-                  newSubWizardEvent(() => editOptFieldsWizard(optFields))
-                );
-              }}
-            ></mwc-button>`
-          : html``,
-        html`<mwc-button
-          label="${translate('remove')}"
-          icon="delete"
-          @click=${(e: MouseEvent) => {
-            const complexAction = removeReportControlAction(element);
-            if (complexAction)
-              e.target?.dispatchEvent(newActionEvent(complexAction));
-
-            e.target?.dispatchEvent(newWizardEvent());
-          }}
-        ></mwc-button>`,
       ],
     },
   ];
