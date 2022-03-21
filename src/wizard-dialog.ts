@@ -163,11 +163,13 @@ export class WizardDialog extends LitElement {
 
     const wizardActions = action();
 
-    wizardActions.forEach(wa =>
-      isWizardFactory(wa)
-        ? this.dispatchEvent(newSubWizardEvent(wa))
-        : this.dispatchEvent(newActionEvent(wa))
-    );
+    wizardActions.forEach(wa => {
+      if (isWizardFactory(wa)) this.dispatchEvent(newSubWizardEvent(wa));
+      else {
+        this.dispatchEvent(newWizardEvent());
+        this.dispatchEvent(newActionEvent(wa));
+      }
+    });
     return true;
   }
 

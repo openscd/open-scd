@@ -229,7 +229,7 @@ export function getMultiplier(input: WizardInput): string | null {
 export type WizardMenuActor = () => WizardAction[];
 
 /** User interactions rendered in the wizard-dialog menu */
-interface MenuAction {
+export interface MenuAction {
   label: string;
   icon?: string;
   action: WizardMenuActor;
