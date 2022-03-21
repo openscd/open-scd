@@ -63,7 +63,6 @@ snapshots["voltage-level-editor wizarding integration looks like the latest snap
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="edit"
     label="[save]"
     slot="primaryAction"

@@ -10,14 +10,14 @@ export const officialPlugins = [
     name: 'IED',
     src: '/src/editors/IED.js',
     icon: 'developer_board',
-    default: false,
+    default: true,
     kind: 'editor',
   },
   {
     name: 'Single Line Diagram',
     src: '/src/editors/SingleLineDiagram.js',
     icon: 'edit',
-    default: false,
+    default: true,
     kind: 'editor',
   },
   {
@@ -49,8 +49,15 @@ export const officialPlugins = [
     kind: 'editor',
   },
   {
+    name: 'CoMPAS Versions',
+    src: '/src/compas-editors/CompasVersions.js',
+    icon: 'copy_all',
+    default: true,
+    kind: 'editor',
+  },
+  {
     name: 'Open project',
-    src: '/src/menu/OpenProject.js',
+    src: '/src/menu/CompasOpen.js',
     icon: 'folder_open',
     default: true,
     kind: 'menu',
@@ -67,8 +74,17 @@ export const officialPlugins = [
     position: 'top'
   },
   {
+    name: 'Project from CIM',
+    src: '/src/menu/CompasCimMapping.js',
+    icon: 'input',
+    default: true,
+    kind: 'menu',
+    requireDoc: false,
+    position: 'top'
+  },
+  {
     name: 'Save project',
-    src: '/src/menu/SaveProject.js',
+    src: '/src/menu/CompasSave.js',
     icon: 'save',
     default: true,
     kind: 'menu',
@@ -91,7 +107,7 @@ export const officialPlugins = [
   },
   {
     name: 'Import IEDs',
-    src: '/src/menu/ImportIEDs.js',
+    src: '/src/menu/CompasImportIEDs.js',
     icon: 'snippet_folder',
     default: true,
     kind: 'menu',
@@ -124,7 +140,7 @@ export const officialPlugins = [
   },
   {
     name: 'Merge Project',
-    src: '/src/menu/Merge.js',
+    src: '/src/menu/CompasMerge.js',
     icon: 'merge_type',
     default: true,
     kind: 'menu',
@@ -133,7 +149,7 @@ export const officialPlugins = [
   },
   {
     name: 'Update Substation',
-    src: '/src/menu/UpdateSubstation.js',
+    src: '/src/menu/CompasUpdateSubstation.js',
     icon: 'merge_type',
     default: true,
     kind: 'menu',
@@ -146,6 +162,33 @@ export const officialPlugins = [
     icon: 'cleaning_services',
     default: false,
     kind: 'editor',
+  },
+  {
+    name: 'Auto Align SLD',
+    src: '/src/menu/CompasAutoAlignment.js',
+    icon: 'dashboard',
+    default: true,
+    kind: 'menu',
+    requireDoc: true,
+    position: 'middle'
+  },
+  {
+    name: 'Locamation VMU',
+    src: '/src/menu/LocamationVMU.js',
+    icon: 'edit_note',
+    default: false,
+    kind: 'menu',
+    requireDoc: true,
+    position: 'middle'
+  },
+  {
+    name: 'CoMPAS Settings',
+    src: '/src/menu/CompasSettings.js',
+    icon: 'settings',
+    default: true,
+    kind: 'menu',
+    requireDoc: false,
+    position: 'bottom'
   },
   {
     name: 'Help',

@@ -14,7 +14,7 @@ export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
   */
   browserLogs: false,
 
-  /** specify groups for unit and integrations tests 
+  /** specify groups for unit and integrations tests
    * hint: no --group definition runs all groups
   */
   groups: [
@@ -27,7 +27,13 @@ export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
       files: 'test/integration/**/*.test.ts',
     },
   ],
-  
+
+  testFramework: {
+    config: {
+      timeout: '5000',
+    },
+  },
+
   /** Compile JS for older browsers. Requires @web/dev-server-esbuild plugin */
   // esbuildTarget: 'auto',
 

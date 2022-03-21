@@ -131,7 +131,6 @@ snapshots["Update method for desc attributes in SEL IEDs working on SCL files co
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="save"
     label="Save"
     slot="primaryAction"
@@ -272,7 +271,6 @@ snapshots["Update method for desc attributes in SEL IEDs working on SCL files co
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="save"
     label="Save"
     slot="primaryAction"

@@ -47,7 +47,6 @@ snapshots["conducting-equipment-editor wizarding integration looks like the late
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="edit"
     label="[save]"
     slot="primaryAction"
