@@ -22,7 +22,6 @@ import {
   getValue,
   identity,
   isPublic,
-  newActionEvent,
   newSubWizardEvent,
   newWizardEvent,
   patterns,
@@ -139,7 +138,7 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
     title,
     action,
     type,
-    deleteButton,
+    menuActions,
     name,
     desc,
     accessControl,
@@ -149,24 +148,13 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
         get('do.wizard.title.edit'),
         updateDoAction(DO),
         DO.getAttribute('type'),
-        html`<mwc-button
-          icon="delete"
-          trailingIcon
-          label="${translate('remove')}"
-          @click=${(e: MouseEvent) => {
-            e.target!.dispatchEvent(newWizardEvent());
-            e.target!.dispatchEvent(
-              newActionEvent({
-                old: {
-                  parent: DO.parentElement!,
-                  element: DO,
-                  reference: DO.nextSibling,
-                },
-              })
-            );
-          }}
-          fullwidth
-        ></mwc-button> `,
+        [
+          {
+            icon: 'delete',
+            label: get('remove'),
+            action: remove(DO),
+          },
+        ],
         DO.getAttribute('name'),
         DO.getAttribute('desc'),
         DO.getAttribute('accessControl'),
@@ -176,7 +164,7 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
         get('do.wizard.title.add'),
         createDoAction((<CreateOptions>options).parent),
         null,
-        html``,
+        undefined,
         '',
         null,
         null,
@@ -192,8 +180,8 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
       title,
       element: DO ?? undefined,
       primary: { icon: '', label: get('save'), action },
+      menuActions,
       content: [
-        deleteButton,
         html`<wizard-textfield
           label="name"
           .maybeValue=${name}
