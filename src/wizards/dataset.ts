@@ -11,15 +11,21 @@ import {
   cloneElement,
   getValue,
   identity,
-  newSubWizardEvent,
   selector,
   Replace,
   Wizard,
   WizardAction,
   WizardActor,
   WizardInput,
+  WizardMenuActor,
 } from '../foundation.js';
 import { createFCDAsWizard } from './fcda.js';
+
+function openFcdaWizard(element: Element): WizardMenuActor {
+  return (): WizardAction[] => {
+    return [() => createFCDAsWizard(element)];
+  };
+}
 
 function updateDataSetAction(element: Element): WizardActor {
   return (inputs: WizardInput[], wizard: Element): WizardAction[] => {
@@ -89,6 +95,13 @@ export function editDataSetWizard(element: Element): Wizard {
         icon: 'save',
         action: updateDataSetAction(element),
       },
+      menuActions: [
+        {
+          icon: 'add',
+          label: get('dataset.fcda.add'),
+          action: openFcdaWizard(element),
+        },
+      ],
       content: [
         html`<wizard-textfield
           label="name"
@@ -116,15 +129,6 @@ export function editDataSetWizard(element: Element): Wizard {
               >`
           )}</filtered-list
         >`,
-        html`<mwc-button
-          icon="add"
-          label="${translate('wizard.title.add', { tagName: 'FCDA' })}"
-          @click="${(e: Event) => {
-            e.target?.dispatchEvent(
-              newSubWizardEvent(() => createFCDAsWizard(element))
-            );
-          }}"
-        ></mwc-button>`,
       ],
     },
   ];
