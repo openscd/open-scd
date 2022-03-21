@@ -11,7 +11,6 @@ import TemplatesPlugin from '../../../src/editors/Templates.js';
 import { WizardSelect } from '../../../src/wizard-select.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import { WizardCheckbox } from '../../../src/wizard-checkbox.js';
-import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 describe('DA wizarding editing integration', () => {
   if (customElements.get('templates-editor') === undefined)
