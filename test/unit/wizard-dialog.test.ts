@@ -263,7 +263,7 @@ describe('wizard-dialog', () => {
     });
   });
 
-  describe('with content definition throught WizardInput s', () => {
+  describe('with content definition throught WizardInputs', () => {
     describe('for a specific WizardInputs of the kind Checkbox', () => {
       let checkbox: WizardCheckbox;
       beforeEach(async () => {
