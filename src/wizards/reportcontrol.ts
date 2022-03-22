@@ -33,12 +33,17 @@ import {
   MenuAction,
 } from '../foundation.js';
 import { FinderList } from '../finder-list.js';
-import { dataAttributePicker, iEDPicker } from './foundation/finder.js';
+import {
+  dataAttributePicker,
+  iEDPicker,
+  iEDsPicker,
+} from './foundation/finder.js';
 import { maxLength, patterns } from './foundation/limits.js';
 import { editDataSetWizard } from './dataset.js';
 import { newFCDA } from './fcda.js';
 import { contentOptFieldsWizard, editOptFieldsWizard } from './optfields.js';
 import { contentTrgOpsWizard, editTrgOpsWizard } from './trgops.js';
+import { existFcdaReference } from '../foundation/scl.js';
 
 interface ContentOptions {
   name: string | null;
@@ -400,6 +405,77 @@ function getRptEnabledAction(
   };
 }
 
+function copyReportControlActions(element: Element): WizardActor {
+  return (_: WizardInputElement[], wizard: Element) => {
+    const doc = element.ownerDocument;
+
+    const finder = wizard.shadowRoot?.querySelector<FinderList>('finder-list');
+    const paths = finder?.paths ?? [];
+
+    if (paths.length === 0) return [];
+
+    const complexActions: ComplexAction[] = [];
+    paths.forEach(path => {
+      const [tagName, id] = path.pop()!.split(': ');
+      if (tagName !== 'IED') return;
+
+      const ied = doc.querySelector(selector(tagName, id));
+      if (!ied) return;
+
+      const sinkLn0 = ied.querySelector('LN0');
+      if (!sinkLn0) return [];
+
+      const sourceDataSet = element.parentElement?.querySelector(
+        `DataSet[name="${element.getAttribute('datSet')}"]`
+      );
+
+      // clone DataSet and make sure that FCDA is valid in ied
+      const sinkDataSet = <Element>sourceDataSet?.cloneNode(true);
+      Array.from(sinkDataSet.querySelectorAll('FCDA')).forEach(fcda => {
+        if (!existFcdaReference(fcda, ied)) sinkDataSet.removeChild(fcda);
+      });
+      if (sinkDataSet.children.length === 0) return []; // when no data left no copy needed
+
+      const sinkReportControl = <Element>element.cloneNode(true);
+
+      const source = element.closest('IED')?.getAttribute('name');
+      const sink = ied.getAttribute('name');
+
+      complexActions.push({
+        title: `ReportControl copied from ${source} to ${sink}`,
+        actions: [
+          { new: { parent: sinkLn0, element: sinkDataSet } },
+          { new: { parent: sinkLn0, element: sinkReportControl } },
+        ],
+      });
+    });
+
+    return complexActions;
+  };
+}
+
+function iedsSelector(element: Element): Wizard {
+  const doc = element.ownerDocument;
+
+  return [
+    {
+      title: get('report.wizard.location'),
+      primary: {
+        icon: 'save',
+        label: get('save'),
+        action: copyReportControlActions(element),
+      },
+      content: [iEDsPicker(doc)],
+    },
+  ];
+}
+
+function openIedsSelector(element: Element): WizardMenuActor {
+  return (): WizardAction[] => {
+    return [() => iedsSelector(element)];
+  };
+}
+
 export function removeReportControl(element: Element): WizardMenuActor {
   return (): WizardAction[] => {
     const complexAction = removeReportControlAction(element);
@@ -530,6 +606,12 @@ export function editReportControlWizard(element: Element): Wizard {
       label: get('scl.OptFields'),
       action: openOptFieldsWizard(optFields),
     });
+
+  menuActions.push({
+    icon: 'copy',
+    label: 'Copy to other IEDs',
+    action: openIedsSelector(element),
+  });
 
   return [
     {
