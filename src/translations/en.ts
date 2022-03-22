@@ -630,6 +630,7 @@ export const en = {
     settings: {
       title: 'CoMPAS Settings',
       sclDataServiceUrl: 'CoMPAS SCL Data Service URL',
+      sclValidatorServiceUrl: 'CoMPAS SCL Validator Service URL',
       cimMappingServiceUrl: 'CoMPAS CIM Mapping Service URL',
       sclAutoAlignmentServiceUrl: 'CoMPAS SCL Auto Alignment Service URL',
     },
