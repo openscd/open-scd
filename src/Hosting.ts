@@ -36,7 +36,7 @@ interface MenuItem {
 }
 
 interface Validator {
-  validate: () => Promise<void>;
+  validate: (manual?: boolean) => Promise<void>;
 }
 
 interface MenuPlugin {
@@ -148,7 +148,7 @@ export function Hosting<
                   (<unknown>(
                     (<List>ae.target).items[ae.detail.index].lastElementChild
                   ))
-                )).validate()
+                )).validate(true)
               )
             );
           },
@@ -235,7 +235,7 @@ export function Hosting<
             .querySelector('mwc-list')!
             .items.filter(item => item.className === 'validator')
             .map(item =>
-              (<Validator>(<unknown>item.lastElementChild)).validate()
+              (<Validator>(<unknown>item.lastElementChild)).validate(false)
             )
         ).then();
         this.dispatchEvent(newPendingStateEvent(this.validated));

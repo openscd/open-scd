@@ -10,6 +10,7 @@ import {dispatchEventOnOpenScd} from "./foundation.js";
 
 export type CompasSettingsRecord = {
   sclDataServiceUrl: string;
+  sclValidatorServiceUrl: string;
   cimMappingServiceUrl: string;
   sclAutoAlignmentServiceUrl: string;
 };
@@ -20,6 +21,7 @@ export function CompasSettings() {
     get compasSettings(): CompasSettingsRecord {
       return {
         sclDataServiceUrl: this.getCompasSetting('sclDataServiceUrl'),
+        sclValidatorServiceUrl: this.getCompasSetting('sclValidatorServiceUrl'),
         cimMappingServiceUrl: this.getCompasSetting('cimMappingServiceUrl'),
         sclAutoAlignmentServiceUrl: this.getCompasSetting('sclAutoAlignmentServiceUrl'),
       };
@@ -28,6 +30,7 @@ export function CompasSettings() {
     get defaultSettings(): CompasSettingsRecord {
       return {
         sclDataServiceUrl: '/compas-scl-data-service',
+        sclValidatorServiceUrl: '/compas-scl-validator',
         cimMappingServiceUrl: '/compas-cim-mapping',
         sclAutoAlignmentServiceUrl: '/compas-scl-auto-alignment'
       }
@@ -57,6 +60,10 @@ export class CompasSettingsElement extends LitElement {
     return <TextFieldBase>this.shadowRoot!.querySelector('mwc-textfield[id="sclDataServiceUrl"]');
   }
 
+  getSclValidatorServiceUrlField(): TextFieldBase {
+    return <TextFieldBase>this.shadowRoot!.querySelector('mwc-textfield[id="sclValidatorServiceUrl"]');
+  }
+
   getCimMappingServiceUrlField(): TextFieldBase {
     return <TextFieldBase>this.shadowRoot!.querySelector('mwc-textfield[id="cimMappingServiceUrl"]');
   }
@@ -67,6 +74,7 @@ export class CompasSettingsElement extends LitElement {
 
   valid(): boolean {
     return this.getSclDataServiceUrlField().checkValidity()
+      && this.getSclValidatorServiceUrlField().checkValidity()
       && this.getCimMappingServiceUrlField().checkValidity()
       && this.getSclAutoAlignmentServiceUrlField().checkValidity();
   }
@@ -78,6 +86,7 @@ export class CompasSettingsElement extends LitElement {
 
     // Update settings from TextField.
     CompasSettings().setCompasSetting('sclDataServiceUrl', this.getSclDataServiceUrlField().value);
+    CompasSettings().setCompasSetting('sclValidatorServiceUrl', this.getSclValidatorServiceUrlField().value);
     CompasSettings().setCompasSetting('cimMappingServiceUrl', this.getCimMappingServiceUrlField().value);
     CompasSettings().setCompasSetting('sclAutoAlignmentServiceUrl', this.getSclAutoAlignmentServiceUrlField().value);
     return true;
@@ -100,6 +109,10 @@ export class CompasSettingsElement extends LitElement {
       <mwc-textfield dialogInitialFocus id="sclDataServiceUrl"
                      label="${translate('compas.settings.sclDataServiceUrl')}"
                      value="${this.compasSettings.sclDataServiceUrl}" required>
+      </mwc-textfield>
+      <mwc-textfield dialogInitialFocus id="sclValidatorServiceUrl"
+                     label="${translate('compas.settings.sclValidatorServiceUrl')}"
+                     value="${this.compasSettings.sclValidatorServiceUrl}" required>
       </mwc-textfield>
       <mwc-textfield id="cimMappingServiceUrl"
                      label="${translate('compas.settings.cimMappingServiceUrl')}"
