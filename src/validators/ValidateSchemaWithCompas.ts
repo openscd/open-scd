@@ -28,7 +28,6 @@ export default class ValidateTemplates extends LitElement {
         const validationErrors = Array.from(document.querySelectorAll('SclValidateResponse > ValidationErrors') ?? []);
         // Check if there are validation errors, if there are we will process them.
         if (validationErrors.length > 0) {
-          console.debug('Retrieved %d validation error from CoMPAS Validator', validationErrors.length);
           validationErrors.forEach(validationError => {
             const message = validationError.getElementsByTagNameNS(SVS_NAMESPACE, "Message")!.item(0)!.textContent;
             dispatchEventOnOpenScd(
