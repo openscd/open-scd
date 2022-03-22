@@ -14,7 +14,7 @@ import {
   isPublic,
   Wizard,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
   WizardMenuActor,
 } from '../foundation.js';
 import { getValAction, wizardContent } from './abstractda.js';
@@ -66,7 +66,7 @@ export function renderDa(
 }
 
 export function updateDaAction(element: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const bType = getValue(inputs.find(i => i.label === 'bType')!)!;
@@ -196,7 +196,7 @@ export function editDAWizard(element: Element): Wizard {
 }
 
 export function createDaAction(parent: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const bType = getValue(inputs.find(i => i.label === 'bType')!)!;

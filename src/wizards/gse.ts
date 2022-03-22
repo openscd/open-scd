@@ -13,7 +13,7 @@ import {
   SimpleAction,
   Wizard,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
 } from '../foundation.js';
 import { renderGseSmvAddress, updateAddress } from './address.js';
 
@@ -56,7 +56,7 @@ export function getMTimeAction(
 }
 
 export function updateGSEAction(element: Element): WizardActor {
-  return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
+  return (inputs: WizardInputElement[], wizard: Element): EditorAction[] => {
     const complexAction: ComplexAction = {
       actions: [],
       title: get('gse.action.addaddress', {

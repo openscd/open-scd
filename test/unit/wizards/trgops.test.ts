@@ -4,14 +4,14 @@ import { SinonSpy, spy } from 'sinon';
 import '../../mock-wizard.js';
 import { MockWizard } from '../../mock-wizard.js';
 
-import { isReplace, Replace, WizardInput } from '../../../src/foundation.js';
+import { isReplace, Replace, WizardInputElement } from '../../../src/foundation.js';
 import { WizardSelect } from '../../../src/wizard-select.js';
 import { editTrgOpsWizard } from '../../../src/wizards/trgops.js';
 
 describe('Wizards for SCL TrgOps element', () => {
   let element: MockWizard;
   let trgOps: Element;
-  let inputs: WizardInput[];
+  let inputs: WizardInputElement[];
 
   let primaryAction: HTMLElement;
 

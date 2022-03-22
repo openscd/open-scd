@@ -16,7 +16,7 @@ import {
   Wizard,
   WizardAction,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
 } from '../foundation.js';
 
 interface SignalDescription {
@@ -61,7 +61,7 @@ function addDescriptionToSEL(
 
 function addDescriptionAction(doc: XMLDocument): WizardActor {
   return (
-    _: WizardInput[],
+    _: WizardInputElement[],
     wizard: Element,
     list: List | null | undefined
   ): WizardAction[] => {

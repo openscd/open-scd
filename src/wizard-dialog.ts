@@ -9,6 +9,7 @@ import {
   html,
   query,
 } from 'lit-element';
+import { ifDefined } from 'lit-html/directives/if-defined';
 import { get, translate } from 'lit-translate';
 
 import '@material/mwc-button';
@@ -22,10 +23,13 @@ import { List } from '@material/mwc-list';
 import { Menu } from '@material/mwc-menu';
 
 import 'ace-custom-element';
+import './wizard-checkbox.js';
+import './wizard-textfield.js';
+import './wizard-select.js';
 import {
   newActionEvent,
   Wizard,
-  WizardInput,
+  WizardInputElement,
   WizardPage,
   newWizardEvent,
   WizardActor,
@@ -36,11 +40,64 @@ import {
   Delete,
   Create,
   identity,
+  WizardInput,
   WizardMenuActor,
   newSubWizardEvent,
 } from './foundation.js';
 
-function dialogInputs(dialog?: Dialog): WizardInput[] {
+function renderWizardInput(
+  input: TemplateResult | WizardInput
+): TemplateResult {
+  if (input instanceof TemplateResult) return input;
+
+  if (input.kind === 'Checkbox')
+    return html`<wizard-checkbox
+      ?nullable=${input.nullable}
+      ?defaultChecked=${input.default}
+      ?dialogInitialFocus=${input.dialogInitialFocus}
+      label="${input.label}"
+      helper="${ifDefined(input.helper)}"
+      .maybeValue=${input.maybeValue}
+    ></wizard-checkbox>`;
+
+  if (input.kind === 'Select')
+    return html`<wizard-select
+      ?nullable=${input.nullable}
+      ?dialogInitialFocus=${input.dialogInitialFocus}
+      label="${input.label}"
+      helper="${ifDefined(input.helper)}"
+      defaultValue="${ifDefined(input.default)}"
+      validationMessage="${ifDefined(input.valadationMessage)}"
+      .maybeValue=${input.maybeValue}
+      >${input.values.map(
+        value => html`<mwc-list-item value="${value}">${value}</mwc-list-item>`
+      )}</wizard-select
+    >`;
+
+  return html`<wizard-textfield
+    ?nullable=${input.nullable}
+    ?required=${input.required}
+    ?disabled=${input.disabled}
+    ?dialogInitialFocus=${input.dialogInitialFocus}
+    label="${input.label}"
+    defaultValue="${ifDefined(input.default)}"
+    helper="${ifDefined(input.helper)}"
+    validationMessage="${ifDefined(input.helper)}"
+    unit="${ifDefined(input.unit)}"
+    .multipliers=${input.multipliers ?? []}
+    .multiplier=${input.multiplier ?? null}
+    suffix="${ifDefined(input.suffix)}"
+    .maybeValue=${input.maybeValue}
+    pattern="${ifDefined(input.pattern)}"
+    minLength="${ifDefined(input.minLength)}"
+    maxLength="${ifDefined(input.maxLength)}"
+    type="${ifDefined(input.type)}"
+    min="${ifDefined(input.min)}"
+    max="${ifDefined(input.max)}"
+  ></wizard-textfield>`;
+}
+
+function dialogInputs(dialog?: Dialog): WizardInputElement[] {
   return Array.from(dialog?.querySelectorAll(wizardInputSelector) ?? []);
 }
 
@@ -92,7 +149,7 @@ export class WizardDialog extends LitElement {
   pageIndex = 0;
 
   @queryAll('mwc-dialog') dialogs!: NodeListOf<Dialog>;
-  @queryAll(wizardInputSelector) inputs!: NodeListOf<WizardInput>;
+  @queryAll(wizardInputSelector) inputs!: NodeListOf<WizardInputElement>;
   @query('.actions-menu') actionsMenu!: Menu;
   @query('mwc-icon-button[icon="more_vert"]') menuButton!: IconButton;
 
@@ -270,7 +327,7 @@ export class WizardDialog extends LitElement {
               mode="ace/mode/xml"
               value="${new XMLSerializer().serializeToString(page.element)}"
             ></ace-editor>`
-          : page.content}
+          : page.content?.map(renderWizardInput)}
       </div>
       ${index > 0
         ? html`<mwc-button

@@ -7,7 +7,7 @@ import {
   Wizard,
   WizardAction,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
 } from '../foundation.js';
 import { FinderList } from '../finder-list.js';
 import {
@@ -73,7 +73,7 @@ export function newFCDA(parent: Element, path: string[]): Element | undefined {
 }
 
 function createFCDAsAction(parent: Element): WizardActor {
-  return (inputs: WizardInput[], wizard: Element): WizardAction[] => {
+  return (inputs: WizardInputElement[], wizard: Element): WizardAction[] => {
     const finder = wizard.shadowRoot!.querySelector<FinderList>('finder-list');
     const paths = finder?.paths ?? [];
 

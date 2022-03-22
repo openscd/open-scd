@@ -14,7 +14,7 @@ import {
   isDelete,
   isSimple,
   Create,
-  WizardInput,
+  WizardInputElement,
 } from '../../../src/foundation.js';
 import {
   createConnectedApWizard,
@@ -25,8 +25,8 @@ import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 describe('Wizards for SCL element ConnectedAP', () => {
   let doc: XMLDocument;
   let element: MockWizard;
-  let inputs: WizardInput[];
-  let input: WizardInput | undefined;
+  let inputs: WizardInputElement[];
+  let input: WizardInputElement | undefined;
   let primaryAction: HTMLElement;
 
   let actionEvent: SinonSpy;

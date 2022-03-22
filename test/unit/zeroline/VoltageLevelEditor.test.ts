@@ -2,7 +2,7 @@ import { fixture, html, expect } from '@open-wc/testing';
 
 import '../../../src/wizard-textfield.js';
 import {
-  WizardInput,
+  WizardInputElement,
   isCreate,
   isReplace,
   isDelete,
@@ -23,12 +23,12 @@ describe('VoltageLevelEditor', () => {
       return element;
     };
 
-    let inputs: WizardInput[];
+    let inputs: WizardInputElement[];
     beforeEach(async () => {
       inputs = await Promise.all(
         ['name', 'desc', 'nomFreq', 'numPhases', 'Voltage'].map(
           label =>
-            <Promise<WizardInput>>(
+            <Promise<WizardInputElement>>(
               fixture(
                 html`<wizard-textfield label=${label}></wizard-textfield>`
               )
@@ -154,12 +154,12 @@ describe('VoltageLevelEditor', () => {
       return element;
     };
 
-    let inputs: WizardInput[];
+    let inputs: WizardInputElement[];
     beforeEach(async () => {
       inputs = await Promise.all(
         ['name', 'desc', 'nomFreq', 'numPhases', 'Voltage'].map(
           label =>
-            <Promise<WizardInput>>(
+            <Promise<WizardInputElement>>(
               fixture(
                 html`<wizard-textfield label=${label}></wizard-textfield>`
               )

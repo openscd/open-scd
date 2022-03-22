@@ -6,7 +6,7 @@ import {
   EditorAction,
   getValue,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
 } from '../../../foundation.js';
 import { SCL_COORDINATES_NAMESPACE } from "../foundation.js";
 
@@ -48,7 +48,7 @@ function updateXYAttribute(element: Element, attributeName: string, value: strin
 }
 
 export function updateNamingAndCoordinatesAction(element: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const xCoordinate = getValue(inputs.find(i => i.label === 'xCoordinate')!);

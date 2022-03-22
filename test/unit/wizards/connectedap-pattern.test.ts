@@ -5,7 +5,7 @@ import '../../mock-wizard.js';
 import { MockWizard } from '../../mock-wizard.js';
 
 import '../../../src/editors/communication/connectedap-editor.js';
-import { WizardInput } from '../../../src/foundation.js';
+import { WizardInputElement } from '../../../src/foundation.js';
 
 import {
   ipV6,
@@ -20,8 +20,8 @@ import { editConnectedApWizard } from '../../../src/wizards/connectedap.js';
 describe('Edit wizard for SCL element ConnectedAP', () => {
   let doc: XMLDocument;
   let element: MockWizard;
-  let inputs: WizardInput[];
-  let input: WizardInput | undefined;
+  let inputs: WizardInputElement[];
+  let input: WizardInputElement | undefined;
 
   beforeEach(async () => {
     element = <MockWizard>await fixture(html`<mock-wizard></mock-wizard>`);

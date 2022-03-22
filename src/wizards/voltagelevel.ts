@@ -11,7 +11,7 @@ import {
   patterns,
   Wizard,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
 } from '../foundation.js';
 
 const initial = {
@@ -82,7 +82,7 @@ function render(
 }
 
 export function createAction(parent: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!);
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const nomFreq = getValue(inputs.find(i => i.label === 'nomFreq')!);
@@ -179,7 +179,7 @@ function getVoltageAction(
 }
 
 export function updateAction(element: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const name = inputs.find(i => i.label === 'name')!.value!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const nomFreq = getValue(inputs.find(i => i.label === 'nomFreq')!);

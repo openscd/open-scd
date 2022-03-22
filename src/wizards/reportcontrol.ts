@@ -24,7 +24,7 @@ import {
   SimpleAction,
   Wizard,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
   Delete,
   getUniqueElementName,
   ComplexAction,
@@ -119,7 +119,7 @@ function contentReportControlWizard(options: ContentOptions): TemplateResult[] {
 }
 
 function createReportControlAction(parent: Element): WizardActor {
-  return (inputs: WizardInput[], wizard: Element) => {
+  return (inputs: WizardInputElement[], wizard: Element) => {
     // create ReportControl element
     const reportControlAttrs: Record<string, string | null> = {};
     const reportKeys = [
@@ -287,7 +287,7 @@ export function createReportControlWizard(ln0OrLn: Element): Wizard {
 }
 
 function openReportControlCreateWizard(doc: XMLDocument): WizardActor {
-  return (_: WizardInput[], wizard: Element) => {
+  return (_: WizardInputElement[], wizard: Element) => {
     const finder = wizard.shadowRoot?.querySelector<FinderList>('finder-list');
     const path = finder?.path ?? [];
 
@@ -427,7 +427,7 @@ function openOptFieldsWizard(element: Element): WizardMenuActor {
 }
 
 function updateReportControlAction(element: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const attributes: Record<string, string | null> = {};
     const attributeKeys = [
       'name',

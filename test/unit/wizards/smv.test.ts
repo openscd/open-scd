@@ -9,7 +9,7 @@ import {
   ComplexAction,
   Create,
   Delete,
-  WizardInput,
+  WizardInputElement,
 } from '../../../src/foundation.js';
 import { editSMvWizard } from '../../../src/wizards/smv.js';
 import { invertedRegex, MAC, regExp } from '../../foundation.js';
@@ -18,8 +18,8 @@ import { WizardTextField } from '../../../src/wizard-textfield.js';
 describe('Wizards for SCL element SMV', () => {
   let doc: XMLDocument;
   let element: MockWizard;
-  let inputs: WizardInput[];
-  let input: WizardInput | undefined;
+  let inputs: WizardInputElement[];
+  let input: WizardInputElement | undefined;
 
   let primaryAction: HTMLElement;
 

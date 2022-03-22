@@ -1,7 +1,7 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
 import '../../../src/wizard-textfield.js';
-import { WizardInput, isCreate, isReplace } from '../../../src/foundation.js';
+import { WizardInputElement, isCreate, isReplace } from '../../../src/foundation.js';
 import { updateNamingAction } from '../../../src/wizards/foundation/actions.js';
 import { createAction } from '../../../src/wizards/substation.js';
 
@@ -15,12 +15,12 @@ describe('SubstationEditor', () => {
     return element;
   };
 
-  let inputs: WizardInput[];
+  let inputs: WizardInputElement[];
   beforeEach(async () => {
     inputs = await Promise.all(
       ['name', 'desc'].map(
         label =>
-          <Promise<WizardInput>>(
+          <Promise<WizardInputElement>>(
             fixture(html`<wizard-textfield label=${label}></wizard-textfield>`)
           )
       )

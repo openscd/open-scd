@@ -8,7 +8,7 @@ import {
   isPublic,
   Wizard,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
 } from '../foundation.js';
 
 import { updateNamingAction } from "./foundation/actions.js";
@@ -16,7 +16,7 @@ import { updateNamingAction } from "./foundation/actions.js";
 const defaultPowerTransformerType = 'PTR';
 
 export function createAction(parent: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!);
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const element = createElement(parent.ownerDocument, 'PowerTransformer', {

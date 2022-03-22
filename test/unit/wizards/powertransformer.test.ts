@@ -4,13 +4,14 @@ import '../../mock-wizard.js';
 import { MockWizard } from '../../mock-wizard.js';
 
 import { WizardTextField } from '../../../src/wizard-textfield.js';
-import { WizardInput } from '../../../src/foundation.js';
+import { WizardInputElement } from '../../../src/foundation.js';
+import { updateNamingAction } from '../../../src/wizards/foundation/actions.js';
+
 import {
   createAction,
   createPowerTransformerWizard,
   editPowerTransformerWizard
 } from '../../../src/wizards/powertransformer.js';
-import { updateNamingAction } from '../../../src/wizards/foundation/actions.js';
 
 import {
   executeWizardCreateAction,
@@ -24,7 +25,7 @@ describe('Wizards for SCL element Power Transformer', () => {
   let doc: XMLDocument;
   let powerTransformer: Element;
   let element: MockWizard;
-  let inputs: WizardInput[];
+  let inputs: WizardInputElement[];
 
   describe('edit existing Power Transformer', () => {
     beforeEach(async () => {

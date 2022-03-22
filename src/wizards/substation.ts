@@ -12,7 +12,7 @@ import {
   newWizardEvent,
   Wizard,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
 } from '../foundation.js';
 import { updateNamingAction } from './foundation/actions.js';
 import { guessVoltageLevel } from '../editors/substation/guess-wizard.js';
@@ -46,7 +46,7 @@ function render(
 }
 
 export function createAction(parent: Element): WizardActor {
-  return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
+  return (inputs: WizardInputElement[], wizard: Element): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!);
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const guess = wizard.shadowRoot?.querySelector('mwc-checkbox')?.checked;

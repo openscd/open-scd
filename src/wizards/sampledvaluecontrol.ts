@@ -24,7 +24,7 @@ import {
   Wizard,
   WizardAction,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
   WizardMenuActor,
 } from '../foundation.js';
 import { securityEnableEnum, smpModEnum } from './foundation/enums.js';
@@ -221,7 +221,7 @@ function openSMvWizard(element: Element): WizardMenuActor {
 }
 
 function updateSampledValueControlAction(element: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const attributes: Record<string, string | null> = {};
     const attributeKeys = [
       'name',

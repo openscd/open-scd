@@ -13,7 +13,7 @@ import {
   isPublic,
   Wizard,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
 } from '../foundation.js';
 import { updateNamingAction } from './foundation/actions.js';
 
@@ -236,7 +236,7 @@ export function renderConductingEquipmentWizard(
 }
 
 export function createAction(parent: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!);
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const proxyType = getValue(inputs.find(i => i.label === 'type')!);

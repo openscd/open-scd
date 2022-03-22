@@ -8,7 +8,7 @@ import {
   getValue,
   Wizard,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
 } from '../foundation.js';
 import { updateNamingAction } from './foundation/actions.js';
 
@@ -32,7 +32,7 @@ export function renderBayWizard(name: string | null, desc: string | null): Templ
 }
 
 export function createAction(parent: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!);
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const element = createElement(parent.ownerDocument, 'Bay', {

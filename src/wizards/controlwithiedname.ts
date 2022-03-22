@@ -15,7 +15,7 @@ import {
   Wizard,
   WizardAction,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
 } from '../foundation.js';
 
 import { inputIcon } from '../icons/icons.js';
@@ -149,7 +149,7 @@ function disconnectExtRefs(extRefs: Element[]): EditorAction[] {
 
 function disconnect(extRef: Element[]): WizardActor {
   return (
-    inputs: WizardInput[],
+    inputs: WizardInputElement[],
     wizard: Element,
     list?: List | null
   ): WizardAction[] => {

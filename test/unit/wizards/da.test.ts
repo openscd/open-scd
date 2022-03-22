@@ -12,7 +12,7 @@ import {
   isReplace,
   Replace,
   Wizard,
-  WizardInput,
+  WizardInputElement,
 } from '../../../src/foundation.js';
 import {
   createDaAction,
@@ -33,7 +33,7 @@ describe('da wizards', () => {
       ).documentElement
     );
 
-    let inputs: WizardInput[];
+    let inputs: WizardInputElement[];
     let wizard: Wizard;
 
     const noOp = () => {
@@ -235,7 +235,7 @@ describe('da wizards', () => {
       ).documentElement
     );
 
-    let inputs: WizardInput[];
+    let inputs: WizardInputElement[];
     let wizard: Wizard;
 
     const noOp = () => {
