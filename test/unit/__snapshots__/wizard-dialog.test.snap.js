@@ -1,6 +1,63 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
+snapshots["wizard-dialog with user defined menu actions set looks like its snapshot"] = 
+`<mwc-dialog
+  defaultaction="close"
+  heading="Page 1"
+  open=""
+>
+  <nav>
+    <mwc-icon-button icon="more_vert">
+    </mwc-icon-button>
+    <mwc-menu
+      class="actions-menu"
+      corner="BOTTOM_RIGHT"
+      menucorner="END"
+    >
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span>
+          remove
+        </span>
+        <mwc-icon slot="graphic">
+          delete
+        </mwc-icon>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span>
+          remove
+        </span>
+        <mwc-icon slot="graphic">
+          delete
+        </mwc-icon>
+      </mwc-list-item>
+    </mwc-menu>
+  </nav>
+  <div id="wizard-content">
+  </div>
+  <mwc-button
+    dialogaction="close"
+    label="[cancel]"
+    slot="secondaryAction"
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+  </mwc-button>
+</mwc-dialog>
+`;
+/* end snapshot wizard-dialog with user defined menu actions set looks like its snapshot */
+
 snapshots["wizard-dialog with a nonempty wizard property in pro mode looks like its snapshot"] = 
 `<wizard-dialog>
 </wizard-dialog>
@@ -13,7 +70,7 @@ snapshots["wizard-dialog with a nonempty wizard property in pro mode switches to
 `;
 /* end snapshot wizard-dialog with a nonempty wizard property in pro mode switches to code editor view on code toggle button click */
 
-snapshots["wizard-dialog with content definition throught WizardInput s for a specific WizardInputs of the kind Checkbox the dom looks like the latest snapshot"] = 
+snapshots["wizard-dialog with content definition throught WizardInputs for a specific WizardInput of the kind Checkbox the dom looks like the latest snapshot"] = 
 `<wizard-checkbox
   defaultchecked=""
   label="myLabel"
@@ -21,18 +78,18 @@ snapshots["wizard-dialog with content definition throught WizardInput s for a sp
 >
 </wizard-checkbox>
 `;
-/* end snapshot wizard-dialog with content definition throught WizardInput s for a specific WizardInputs of the kind Checkbox the dom looks like the latest snapshot */
+/* end snapshot wizard-dialog with content definition throught WizardInputs for a specific WizardInput of the kind Checkbox the dom looks like the latest snapshot */
 
-snapshots["wizard-dialog with content definition throught WizardInput s for another WizardInputs of the kind Checkbox the dom looks like the latest snapshot"] = 
+snapshots["wizard-dialog with content definition throught WizardInputs for another WizardInputs of the kind Checkbox the dom looks like the latest snapshot"] = 
 `<wizard-checkbox
   label="myLabel"
   nullable=""
 >
 </wizard-checkbox>
 `;
-/* end snapshot wizard-dialog with content definition throught WizardInput s for another WizardInputs of the kind Checkbox the dom looks like the latest snapshot */
+/* end snapshot wizard-dialog with content definition throught WizardInputs for another WizardInputs of the kind Checkbox the dom looks like the latest snapshot */
 
-snapshots["wizard-dialog with content definition throught WizardInput s for a specific WizardInput of the kind Select the dom looks like the latest snapshot"] = 
+snapshots["wizard-dialog with content definition throught WizardInputs for a specific WizardInput of the kind Select the dom looks like the latest snapshot"] = 
 `<wizard-select label="myLabel">
   <mwc-list-item
     activated=""
@@ -57,9 +114,9 @@ snapshots["wizard-dialog with content definition throught WizardInput s for a sp
   </mwc-list-item>
 </wizard-select>
 `;
-/* end snapshot wizard-dialog with content definition throught WizardInput s for a specific WizardInput of the kind Select the dom looks like the latest snapshot */
+/* end snapshot wizard-dialog with content definition throught WizardInputs for a specific WizardInput of the kind Select the dom looks like the latest snapshot */
 
-snapshots["wizard-dialog with content definition throught WizardInput s for a specific WizardInput of the kind TextField the dom looks like the latest snapshot"] = 
+snapshots["wizard-dialog with content definition throught WizardInputs for a specific WizardInput of the kind TextField the dom looks like the latest snapshot"] = 
 `<wizard-textfield
   disabled=""
   label="myLabel"
@@ -67,5 +124,5 @@ snapshots["wizard-dialog with content definition throught WizardInput s for a sp
 >
 </wizard-textfield>
 `;
-/* end snapshot wizard-dialog with content definition throught WizardInput s for a specific WizardInput of the kind TextField the dom looks like the latest snapshot */
+/* end snapshot wizard-dialog with content definition throught WizardInputs for a specific WizardInput of the kind TextField the dom looks like the latest snapshot */
 

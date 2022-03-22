@@ -3,7 +3,6 @@ import { expect, fixture, html } from '@open-wc/testing';
 import '../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../mock-wizard-editor.js';
 
-import { Button } from '@material/mwc-button';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import { FilteredList } from '../../../src/filtered-list.js';
@@ -177,9 +176,15 @@ describe('Wizards for SCL element SampledValueControl', () => {
       });
 
       it('does not render SMV edit button', async () => {
-        const editSMvButton = <Button>(
-          element.wizardUI.dialog!.querySelector('mwc-button[id="editsmv"]')!
+        const editSMvButton = <HTMLElement>(
+          Array.from(
+            element.wizardUI.dialog!.querySelectorAll<ListItemBase>(
+              'mwc-menu > mwc-list-item'
+            )
+          ).find(item => item.innerHTML.includes(`[scl.Communication]`))
         );
+
+        await element.wizardUI.dialog?.requestUpdate();
         expect(editSMvButton).not.to.exist;
       });
     });
@@ -217,12 +222,17 @@ describe('Wizards for SCL element SampledValueControl', () => {
       });
 
       it('opens a edit wizard for SMV on edit SMV button click', async () => {
-        const editSMvButton = <Button>(
-          element.wizardUI.dialog!.querySelector('mwc-button[id="editsmv"]')!
+        const editSMvButton = <HTMLElement>(
+          Array.from(
+            element.wizardUI.dialog!.querySelectorAll<ListItemBase>(
+              'mwc-menu > mwc-list-item'
+            )
+          ).find(item => item.innerHTML.includes(`[scl.Communication]`))
         );
+
+        await element.wizardUI.dialog?.requestUpdate();
         expect(editSMvButton).to.exist;
 
-        await editSMvButton.updateComplete;
         editSMvButton.click();
         await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
@@ -241,14 +251,17 @@ describe('Wizards for SCL element SampledValueControl', () => {
       });
 
       it('opens a edit wizard for SMV on edit SMV button click', async () => {
-        const editSmvOptsButton = <Button>(
-          element.wizardUI.dialog!.querySelector(
-            'mwc-button[id="editsmvopts"]'
-          )!
+        const editSmvOptsButton = <HTMLElement>(
+          Array.from(
+            element.wizardUI.dialog!.querySelectorAll<ListItemBase>(
+              'mwc-menu > mwc-list-item'
+            )
+          ).find(item => item.innerHTML.includes(`[scl.SmvOpts]`))
         );
+
+        await element.wizardUI.dialog?.requestUpdate();
         expect(editSmvOptsButton).to.exist;
 
-        await editSmvOptsButton.updateComplete;
         editSmvOptsButton.click();
         await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
@@ -272,10 +285,15 @@ describe('Wizards for SCL element SampledValueControl', () => {
           .to.exist;
         expect(doc.querySelector('SMV[cbName="MSVCB01"]')).to.exist;
 
-        const deleteButton = <Button>(
-          element.wizardUI.dialog!.querySelector('mwc-button[icon="delete"]')!
+        const deleteButton = <HTMLElement>(
+          Array.from(
+            element.wizardUI.dialog!.querySelectorAll<ListItemBase>(
+              'mwc-menu > mwc-list-item'
+            )
+          ).find(item => item.innerHTML.includes(`[remove]`))
         );
-        await deleteButton.updateComplete;
+
+        await element.wizardUI.dialog?.requestUpdate();
         deleteButton.click();
 
         expect(

@@ -21,6 +21,20 @@ export const officialPlugins = [
     kind: 'editor',
   },
   {
+    name: 'Subscription',
+    src: '/src/editors/Subscription.js',
+    icon: 'link',
+    default: true,
+    kind: 'editor',
+  },
+  {
+    name: 'Sampled Values Subscriber',
+    src: '/src/editors/SampledValues.js',
+    icon: 'link',
+    default: true,
+    kind: 'editor',
+  },
+  {
     name: 'Communication',
     src: '/src/editors/Communication.js',
     icon: 'settings_ethernet',
@@ -125,6 +139,13 @@ export const officialPlugins = [
     kind: 'menu',
     requireDoc: true,
     position: 'middle'
+  },
+  {
+    name: 'Cleanup',
+    src: '/src/editors/Cleanup.js',
+    icon: 'cleaning_services',
+    default: false,
+    kind: 'editor',
   },
   {
     name: 'Help',

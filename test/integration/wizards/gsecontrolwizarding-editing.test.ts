@@ -3,7 +3,6 @@ import { expect, fixture, html } from '@open-wc/testing';
 import '../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../mock-wizard-editor.js';
 
-import { Button } from '@material/mwc-button';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import {
@@ -166,13 +165,15 @@ describe('Wizards for SCL element GSEControl', () => {
       });
 
       it('opens edit wizard for DataSet element on edit dataset button click', async () => {
-        const editDataSetButton = <Button>(
-          element.wizardUI.dialog!.querySelector(
-            'mwc-button[id="editdataset"]'
-          )!
+        const editDataSetButton = <HTMLElement>(
+          Array.from(
+            element.wizardUI.dialog!.querySelectorAll<ListItemBase>(
+              'mwc-menu > mwc-list-item'
+            )
+          ).find(item => item.innerHTML.includes(`[scl.DataSet]`))
         );
 
-        await editDataSetButton.updateComplete;
+        await element.wizardUI.dialog?.requestUpdate();
         editDataSetButton.click();
         await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
@@ -189,12 +190,15 @@ describe('Wizards for SCL element GSEControl', () => {
       });
 
       it('opens a editGseWizard on edit GSE button click', async () => {
-        const editGseButton = <Button>(
-          element.wizardUI.dialog!.querySelector('mwc-button[id="editgse"]')!
+        const editGseButton = <HTMLElement>(
+          Array.from(
+            element.wizardUI.dialog!.querySelectorAll<ListItemBase>(
+              'mwc-menu > mwc-list-item'
+            )
+          ).find(item => item.innerHTML.includes(`[scl.Communication]`))
         );
-        expect(editGseButton).to.exist;
 
-        await editGseButton.updateComplete;
+        await element.wizardUI.dialog?.requestUpdate();
         editGseButton.click();
         await new Promise(resolve => setTimeout(resolve, 100)); // await animation
         const macField = <WizardTextField>(
@@ -217,11 +221,17 @@ describe('Wizards for SCL element GSEControl', () => {
           doc.querySelector('IED[name="IED1"] DataSet[name="GooseDataSet1"]')
         ).to.exist;
         expect(doc.querySelector('GSE[cbName="GCB"]')).to.exist;
-        const deleteButton = <Button>(
-          element.wizardUI.dialog!.querySelector('mwc-button[icon="delete"]')!
+
+        const deleteButton = <HTMLElement>(
+          Array.from(
+            element.wizardUI.dialog!.querySelectorAll<ListItemBase>(
+              'mwc-menu > mwc-list-item'
+            )
+          ).find(item => item.innerHTML.includes(`[remove]`))
         );
-        await deleteButton.updateComplete;
+        await element.wizardUI.dialog?.requestUpdate();
         deleteButton.click();
+
         expect(doc.querySelector('IED[name="IED1"] GSEControl[name="GCB"]')).to
           .not.exist;
         expect(
@@ -240,11 +250,14 @@ describe('Wizards for SCL element GSEControl', () => {
       });
 
       it('does not show edit DataSet button', async () => {
-        const editGseButton = <Button>(
-          element.wizardUI.dialog!.querySelector(
-            'mwc-button[id="editdataset"]'
-          )!
+        const editGseButton = <HTMLElement>(
+          Array.from(
+            element.wizardUI.dialog!.querySelectorAll<ListItemBase>(
+              'mwc-menu > mwc-list-item'
+            )
+          ).find(item => item.innerHTML.includes(`[scl.DataSet]`))
         );
+
         expect(editGseButton).to.not.exist;
       });
     });
@@ -260,9 +273,14 @@ describe('Wizards for SCL element GSEControl', () => {
       });
 
       it('does not show edit DataSet button', async () => {
-        const editGseButton = <Button>(
-          element.wizardUI.dialog!.querySelector('mwc-button[id="editgse"]')!
+        const editGseButton = <HTMLElement>(
+          Array.from(
+            element.wizardUI.dialog!.querySelectorAll<ListItemBase>(
+              'mwc-menu > mwc-list-item'
+            )
+          ).find(item => item.innerHTML.includes(`[scl.Communication]`))
         );
+
         expect(editGseButton).to.not.exist;
       });
     });

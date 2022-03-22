@@ -286,6 +286,32 @@ export const en = {
     missing: 'DataTypeTemplates missing',
     add: 'Add DataTypeTemplates',
   },
+  subscription: {
+    none: 'None',
+    publisherGoose: {
+      title: 'GOOSE publisher'
+    },
+    subscriberIed: {
+      title: 'Subscriber of {{ selected }}',
+      subscribed: 'Subscribed',
+      availableToSubscribe: 'Available to subscribe',
+      partiallySubscribed: 'Partially subscribed',
+      noGooseMessageSelected: 'No GOOSE message selected'
+    }
+  },
+  sampledvalues: {
+    none: 'none',
+    sampledValuesList: {
+      title: 'Sampled Values'
+    },
+    subscriberIed: {
+      title: 'Subscriber of {{ selected }}',
+      subscribed: 'Subscribed',
+      availableToSubscribe: 'Available to subscribe',
+      partiallySubscribed: 'Partially subscribed',
+      noSampledValuesSelected: 'No control block selected'
+    }
+  },
   'enum-val': {
     wizard: {
       title: {
@@ -481,6 +507,13 @@ export const en = {
   },
   report: {
     wizard: { location: 'Select Report Control Location' },
+  },
+  cleanup: {
+    unreferencedDataSets: {
+      title: 'Unreferenced Datasets',
+      deleteButton: 'Remove Selected Datasets',
+      tooltip: 'Datasets without a reference to an associated GOOSE, Log, Report or Sampled Value Control Block'
+    },
   },
   controlblock: {
     action: {

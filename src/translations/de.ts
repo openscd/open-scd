@@ -290,6 +290,32 @@ export const de: Translations = {
     missing: 'DataTypeTemplates fehlen',
     add: 'DataTypeTemplates hinzufügen',
   },
+  subscription: {
+    none: 'Keine Verbindung vorhanden',
+    publisherGoose: {
+      title: 'GOOSE-Publizierer'
+    },
+    subscriberIed: {
+      title: 'Verbunden mit {{ selected }}',
+      subscribed: 'Verbunden',
+      availableToSubscribe: 'Kann verbunden werden',
+      partiallySubscribed: 'Teilweise verbunden',
+      noGooseMessageSelected: 'Keine GOOSE ausgewählt'
+    }
+  },
+  sampledvalues: {
+    none: 'Keine Verbindung vorhanden',
+    sampledValuesList: {
+      title: 'Sampled Values'
+    },
+    subscriberIed: {
+      title: 'Verbunden mit {{ selected }}',
+      subscribed: 'Verbunden',
+      availableToSubscribe: 'Kann verbunden werden',
+      partiallySubscribed: 'Teilweise verbunden',
+      noSampledValuesSelected: 'Keinen Kontrollblock ausgewählt'
+    }
+  },
   'enum-val': {
     wizard: {
       title: {
@@ -485,6 +511,14 @@ export const de: Translations = {
   },
   report: {
     wizard: { location: 'Ablageort der Reports wählen' },
+  },
+  cleanup: {
+    unreferencedDataSets: {
+      title: 'Nicht referenzierte Datensätze',
+      deleteButton: 'Ausgewählten Datensatz entfernen',
+      tooltip:
+        'DatenSätze ohne Verweis auf einen zugehörigen GOOSE-, Log-, Report- oder Sampled Value Control Block',
+    },
   },
   controlblock: {
     action: {

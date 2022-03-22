@@ -7,6 +7,29 @@ snapshots["dataset wizards include a dataset edit wizard looks like the latest s
   heading="[wizard.title.edit]"
   open=""
 >
+  <nav>
+    <mwc-icon-button icon="more_vert">
+    </mwc-icon-button>
+    <mwc-menu
+      class="actions-menu"
+      corner="BOTTOM_RIGHT"
+      menucorner="END"
+    >
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <span>
+          [dataset.fcda.add]
+        </span>
+        <mwc-icon slot="graphic">
+          add
+        </mwc-icon>
+      </mwc-list-item>
+    </mwc-menu>
+  </nav>
   <div id="wizard-content">
     <wizard-textfield
       disabled=""
@@ -55,11 +78,6 @@ snapshots["dataset wizards include a dataset edit wizard looks like the latest s
         CBSW/ XSWI 2.OpSlc.dsd sasd.ads.asd (ST)
       </mwc-check-list-item>
     </filtered-list>
-    <mwc-button
-      icon="add"
-      label="[wizard.title.add]"
-    >
-    </mwc-button>
   </div>
   <mwc-button
     dialogaction="close"

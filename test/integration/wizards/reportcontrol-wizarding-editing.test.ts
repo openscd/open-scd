@@ -3,7 +3,6 @@ import { expect, fixture, html } from '@open-wc/testing';
 import '../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../mock-wizard-editor.js';
 
-import { Button } from '@material/mwc-button';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import { FilteredList } from '../../../src/filtered-list.js';
@@ -235,11 +234,15 @@ describe('Wizards for SCL element ReportControl', () => {
     });
 
     it('opens edit wizard for DataSet element on edit dataset button click', async () => {
-      const editDataSetButton = <Button>(
-        element.wizardUI.dialog!.querySelector('mwc-button[id="editdataset"]')!
+      const editDataSetButton = <HTMLElement>(
+        Array.from(
+          element.wizardUI.dialog!.querySelectorAll<ListItemBase>(
+            'mwc-menu > mwc-list-item'
+          )
+        ).find(item => item.innerHTML.includes(`[scl.DataSet]`))
       );
 
-      await editDataSetButton.updateComplete;
+      await element.wizardUI.dialog?.requestUpdate();
       editDataSetButton.click();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
@@ -254,11 +257,15 @@ describe('Wizards for SCL element ReportControl', () => {
     });
 
     it('opens edit wizard for TrgOps element on edit trigger options button click', async () => {
-      const editTrgOpsButton = <Button>(
-        element.wizardUI.dialog!.querySelector('mwc-button[id="edittrgops"]')!
+      const editTrgOpsButton = <HTMLElement>(
+        Array.from(
+          element.wizardUI.dialog!.querySelectorAll<ListItemBase>(
+            'mwc-menu > mwc-list-item'
+          )
+        ).find(item => item.innerHTML.includes(`[scl.TrgOps]`))
       );
 
-      await editTrgOpsButton.updateComplete;
+      await element.wizardUI.dialog?.requestUpdate();
       editTrgOpsButton.click();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
@@ -271,13 +278,15 @@ describe('Wizards for SCL element ReportControl', () => {
     });
 
     it('opens edit wizard for OptFields element on edit optional fields button click', async () => {
-      const editOptFieldsButton = <Button>(
-        element.wizardUI.dialog!.querySelector(
-          'mwc-button[id="editoptfields"]'
-        )!
+      const editOptFieldsButton = <HTMLElement>(
+        Array.from(
+          element.wizardUI.dialog!.querySelectorAll<ListItemBase>(
+            'mwc-menu > mwc-list-item'
+          )
+        ).find(item => item.innerHTML.includes(`[scl.OptFields]`))
       );
 
-      await editOptFieldsButton.updateComplete;
+      await element.wizardUI.dialog?.requestUpdate();
       editOptFieldsButton.click();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
@@ -302,11 +311,17 @@ describe('Wizards for SCL element ReportControl', () => {
           'IED[name="IED2"] LN[lnClass="XSWI"][inst="1"] DataSet[name="dataSet"]'
         )
       ).to.exist;
-      const deleteButton = <Button>(
-        element.wizardUI.dialog!.querySelector('mwc-button[icon="delete"]')!
+
+      const deleteElement = <HTMLElement>(
+        Array.from(
+          element.wizardUI.dialog!.querySelectorAll<ListItemBase>(
+            'mwc-menu > mwc-list-item'
+          )
+        ).find(item => item.innerHTML.includes(`[remove]`))
       );
-      await deleteButton.updateComplete;
-      deleteButton.click();
+      await element.wizardUI.dialog?.requestUpdate();
+      deleteElement.click();
+
       expect(
         doc.querySelector(
           'IED[name="IED2"] LN[lnClass="XSWI"][inst="1"] ReportControl[name="ReportCb2"]'

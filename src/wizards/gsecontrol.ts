@@ -19,13 +19,14 @@ import {
   getValue,
   identity,
   isPublic,
-  newActionEvent,
+  MenuAction,
   newSubWizardEvent,
-  newWizardEvent,
   selector,
   Wizard,
+  WizardAction,
   WizardActor,
   WizardInputElement,
+  WizardMenuActor,
 } from '../foundation.js';
 import { maxLength, patterns } from './foundation/limits.js';
 import { editDataSetWizard } from './dataset.js';
@@ -107,7 +108,7 @@ export function renderGseAttributes(
   ];
 }
 
-export function removeGseControl(element: Element): ComplexAction | null {
+export function removeGseControlAction(element: Element): ComplexAction | null {
   if (!element.parentElement) return null;
 
   const dataSet = element.parentElement.querySelector(
@@ -166,6 +167,26 @@ export function removeGseControl(element: Element): ComplexAction | null {
   };
 }
 
+export function removeGseControl(element: Element): WizardMenuActor {
+  return (): WizardAction[] => {
+    const complexAction = removeGseControlAction(element);
+    if (complexAction) return [complexAction];
+    return [];
+  };
+}
+
+function openDataSetWizard(element: Element): WizardMenuActor {
+  return (): WizardAction[] => {
+    return [() => editDataSetWizard(element)];
+  };
+}
+
+function openGseWizard(element: Element): WizardMenuActor {
+  return (): WizardAction[] => {
+    return [() => editGseWizard(element)];
+  };
+}
+
 export function updateGseControlAction(element: Element): WizardActor {
   return (inputs: WizardInputElement[]): EditorAction[] => {
     const name = inputs.find(i => i.label === 'name')!.value!;
@@ -214,6 +235,27 @@ export function editGseControlWizard(element: Element): Wizard {
     `DataSet[name="${element.getAttribute('datSet')}"]`
   );
 
+  const menuActions: MenuAction[] = [];
+  menuActions.push({
+    icon: 'delete',
+    label: get('remove'),
+    action: removeGseControl(element),
+  });
+
+  if (dataSet)
+    menuActions.push({
+      icon: 'edit',
+      label: get('scl.DataSet'),
+      action: openDataSetWizard(dataSet),
+    });
+
+  if (gSE)
+    menuActions.push({
+      icon: 'edit',
+      label: get('scl.Communication'),
+      action: openGseWizard(gSE),
+    });
+
   return [
     {
       title: get('wizard.title.edit', { tagName: element.tagName }),
@@ -223,18 +265,8 @@ export function editGseControlWizard(element: Element): Wizard {
         label: get('save'),
         action: updateGseControlAction(element),
       },
+      menuActions,
       content: [
-        html`<mwc-button
-          label="${translate('remove')}"
-          icon="delete"
-          @click=${(e: MouseEvent) => {
-            const complexAction = removeGseControl(element);
-            if (complexAction)
-              e.target?.dispatchEvent(newActionEvent(complexAction));
-
-            e.target?.dispatchEvent(newWizardEvent());
-          }}
-        ></mwc-button>`,
         ...renderGseAttributes(
           name,
           desc,
@@ -243,32 +275,6 @@ export function editGseControlWizard(element: Element): Wizard {
           fixedOffs,
           securityEnabled
         ),
-        dataSet
-          ? html`<mwc-button
-              id="editdataset"
-              label=${translate('wizard.title.edit', {
-                tagName: get('scl.DataSet'),
-              })}
-              icon="edit"
-              @click="${(e: MouseEvent) => {
-                e.target?.dispatchEvent(
-                  newSubWizardEvent(() => editDataSetWizard(dataSet))
-                );
-              }}}"
-            ></mwc-button>`
-          : html``,
-        gSE
-          ? html`<mwc-button
-              id="editgse"
-              label=${translate('scl.Communication')}
-              icon="edit"
-              @click="${(e: MouseEvent) => {
-                e.target?.dispatchEvent(
-                  newSubWizardEvent(() => editGseWizard(gSE))
-                );
-              }}}"
-            ></mwc-button>`
-          : html``,
       ],
     },
   ];

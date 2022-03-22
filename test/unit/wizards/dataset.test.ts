@@ -4,6 +4,8 @@ import { SinonSpy, spy } from 'sinon';
 import '../../mock-wizard.js';
 import { MockWizard } from '../../mock-wizard.js';
 
+import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
+
 import { editDataSetWizard } from '../../../src/wizards/dataset.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
@@ -47,7 +49,11 @@ describe('dataset wizards', () => {
 
     it('allows to add a new FCDA on add FCDA button click', async () => {
       const addButton = <HTMLElement>(
-        element.wizardUI.dialog?.querySelector('mwc-button[icon="add"]')
+        Array.from(
+          element.wizardUI.dialog!.querySelectorAll<ListItemBase>(
+            'mwc-menu > mwc-list-item'
+          )
+        ).find(item => item.innerHTML.includes('dataset.fcda.add'))
       );
       await addButton.click();
       expect(wizardEvent).to.be.calledOnce;

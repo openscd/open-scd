@@ -58,7 +58,7 @@ describe('LNodeType wizards', () => {
         )
       );
       deleteButton = <HTMLElement>(
-        parent.wizardUI.dialog?.querySelector('mwc-button[icon="delete"]')
+        parent.wizardUI.dialog?.querySelector('mwc-menu > mwc-list-item')
       );
     });
 
@@ -123,6 +123,12 @@ describe('LNodeType wizards', () => {
     it('looks like the latest snapshot', async () => {
       await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
+
+    it('uses -7-4 and -7-420 namespace for lnClass suggestion', () =>
+      expect(
+        selector.items.filter(item => !item.noninteractive && !item.twoline)
+      ).to.have.lengthOf(215));
+
     it('recursively add missing! subsequent DOType elements', async () => {
       expect(doc.querySelector('LNodeType[id="myCSWI"]')).to.not.exist;
       expect(doc.querySelector('DOType[id="OpenSCD_ENC_Mod"]')).to.not.exist;
@@ -158,6 +164,7 @@ describe('LNodeType wizards', () => {
         1
       );
     }).timeout(5000);
+
     it('recursively add missing! subsequent DAType elements', async () => {
       expect(doc.querySelector('LNodeType[id="myCSWI"]')).to.not.exist;
       expect(doc.querySelector('DAType[id="OpenSCD_Originator"]')).to.not.exist;
@@ -200,6 +207,7 @@ describe('LNodeType wizards', () => {
         doc.querySelectorAll('DAType[id="OpenSCD_PulseConfig"]').length
       ).to.equal(1);
     }).timeout(5000);
+
     it('recursively add missing! subsequent EnumType elements', async () => {
       expect(doc.querySelector('LNodeType[id="myCSWI"]')).to.not.exist;
       expect(doc.querySelector('EnumType[id="OriginatorCategoryKind"]')).to.not
@@ -232,6 +240,7 @@ describe('LNodeType wizards', () => {
         doc.querySelectorAll('EnumType[id="OutputSignalKind"]').length
       ).to.equal(1);
     }).timeout(5000);
+
     it('respects the sequence defined in the standard', async () => {
       selector.value = '#OpenSCD_CSWI_noPB';
       await parent.requestUpdate(); // selector updates autoimport
@@ -311,6 +320,7 @@ describe('LNodeType wizards', () => {
           )
         ).to.not.exist;
       });
+
       it('adds new LNodeType with correct id and lnClass', async () => {
         beh.value = ensId;
         enaOpn.value = spsId;
@@ -327,6 +337,7 @@ describe('LNodeType wizards', () => {
           )
         ).to.exist;
       });
+
       it('adds selected DOs to new LNodeType', async () => {
         beh.value = ensId;
         enaOpn.value = spsId;
@@ -403,7 +414,7 @@ describe('LNodeType wizards', () => {
         )
       );
       deleteButton = <HTMLElement>(
-        parent.wizardUI.dialog?.querySelector('mwc-button[icon="delete"]')
+        parent.wizardUI.dialog?.querySelector('mwc-menu > mwc-list-item')
       );
     });
 
@@ -494,9 +505,7 @@ describe('LNodeType wizards', () => {
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       (<HTMLElement>(
-        parent.wizardUI.dialog?.querySelectorAll(
-          'mwc-button[icon="playlist_add"]'
-        )[0]
+        parent.wizardUI.dialog?.querySelectorAll('mwc-menu > mwc-list-item')[1]
       )).click();
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation

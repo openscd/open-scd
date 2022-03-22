@@ -22,15 +22,16 @@ import {
   getValue,
   identity,
   isPublic,
-  newActionEvent,
   newSubWizardEvent,
   newWizardEvent,
   patterns,
   Replace,
   selector,
   Wizard,
+  WizardAction,
   WizardActor,
   WizardInputElement,
+  WizardMenuActor,
 } from '../../foundation.js';
 import { WizardSelect } from '../../wizard-select.js';
 import {
@@ -41,6 +42,18 @@ import {
   UpdateOptions,
   WizardOptions,
 } from './foundation.js';
+
+function remove(element: Element): WizardMenuActor {
+  return (): EditorAction[] => {
+    return [{ old: { parent: element.parentElement!, element } }];
+  };
+}
+
+function openAddDo(parent: Element): WizardMenuActor {
+  return (): WizardAction[] => {
+    return [() => dOWizard({ parent })!];
+  };
+}
 
 function updateDoAction(element: Element): WizardActor {
   return (inputs: WizardInputElement[]): EditorAction[] => {
@@ -125,7 +138,7 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
     title,
     action,
     type,
-    deleteButton,
+    menuActions,
     name,
     desc,
     accessControl,
@@ -135,24 +148,13 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
         get('do.wizard.title.edit'),
         updateDoAction(DO),
         DO.getAttribute('type'),
-        html`<mwc-button
-          icon="delete"
-          trailingIcon
-          label="${translate('remove')}"
-          @click=${(e: MouseEvent) => {
-            e.target!.dispatchEvent(newWizardEvent());
-            e.target!.dispatchEvent(
-              newActionEvent({
-                old: {
-                  parent: DO.parentElement!,
-                  element: DO,
-                  reference: DO.nextSibling,
-                },
-              })
-            );
-          }}
-          fullwidth
-        ></mwc-button> `,
+        [
+          {
+            icon: 'delete',
+            label: get('remove'),
+            action: remove(DO),
+          },
+        ],
         DO.getAttribute('name'),
         DO.getAttribute('desc'),
         DO.getAttribute('accessControl'),
@@ -162,7 +164,7 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
         get('do.wizard.title.add'),
         createDoAction((<CreateOptions>options).parent),
         null,
-        html``,
+        undefined,
         '',
         null,
         null,
@@ -178,8 +180,8 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
       title,
       element: DO ?? undefined,
       primary: { icon: '', label: get('save'), action },
+      menuActions,
       content: [
-        deleteButton,
         html`<wizard-textfield
           label="name"
           .maybeValue=${name}
@@ -229,25 +231,49 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
   ];
 }
 
-function getDescendantClasses(nsd74: XMLDocument, base: string): Element[] {
+function getDescendantClasses(
+  nsd74: XMLDocument,
+  base: string,
+  otherNsd?: XMLDocument
+): Element[] {
   if (base === '') return [];
-  const descendants = getDescendantClasses(
-    nsd74,
-    nsd74
-      .querySelector(`LNClass[name="${base}"], AbstractLNClass[name="${base}"]`)
-      ?.getAttribute('base') ?? ''
-  );
-  return descendants.concat(
-    Array.from(
-      nsd74.querySelectorAll(
-        `LNClass[name="${base}"], AbstractLNClass[name="${base}"]`
-      )
+
+  const currentNsd =
+    !otherNsd ||
+    nsd74.querySelector(
+      `LNClass[name="${base}"], AbstractLNClass[name="${base}"]`
+    )
+      ? nsd74
+      : otherNsd;
+
+  const descendants = Array.from(
+    nsd74.querySelectorAll(
+      `LNClass[name="${base}"], AbstractLNClass[name="${base}"]`
     )
   );
+
+  const otherDescendants = Array.from(
+    otherNsd?.querySelectorAll(
+      `LNClass[name="${base}"], AbstractLNClass[name="${base}"]`
+    ) ?? []
+  );
+
+  const parentDescendants = getDescendantClasses(
+    nsd74,
+    currentNsd
+      .querySelector(`LNClass[name="${base}"], AbstractLNClass[name="${base}"]`)
+      ?.getAttribute('base') ?? '',
+    otherNsd
+  );
+  return parentDescendants.concat(descendants, otherDescendants);
 }
 
-function getAllDataObjects(nsd74: XMLDocument, base: string): Element[] {
-  const lnodeclasses = getDescendantClasses(nsd74, base);
+function getAllDataObjects(
+  nsd74: XMLDocument,
+  base: string,
+  nsd7420?: XMLDocument
+): Element[] {
+  const lnodeclasses = getDescendantClasses(nsd74, base, nsd7420);
 
   return lnodeclasses.flatMap(lnodeclass =>
     Array.from(lnodeclass.querySelectorAll('DataObject'))
@@ -366,7 +392,8 @@ function addPredefinedLNodeType(
 function startLNodeTypeCreate(
   parent: Element,
   templates: XMLDocument,
-  nsd74: XMLDocument
+  nsd74: XMLDocument,
+  nsd7420: XMLDocument
 ): WizardActor {
   return (inputs: WizardInputElement[], wizard: Element): EditorAction[] => {
     const id = getValue(inputs.find(i => i.label === 'id')!);
@@ -397,7 +424,7 @@ function startLNodeTypeCreate(
     if (templateLNodeType)
       return addPredefinedLNodeType(parent, newLNodeType, templateLNodeType);
 
-    const allDo = getAllDataObjects(nsd74, value!);
+    const allDo = getAllDataObjects(nsd74, value!, nsd7420);
     wizard.dispatchEvent(
       newWizardEvent(createLNodeTypeHelperWizard(parent, newLNodeType, allDo))
     );
@@ -430,7 +457,8 @@ function onLnClassChange(e: Event, templates: XMLDocument): void {
 export function createLNodeTypeWizard(
   parent: Element,
   templates: Document,
-  nsd74: XMLDocument
+  nsd74: XMLDocument,
+  nsd7420: XMLDocument
 ): Wizard {
   return [
     {
@@ -438,7 +466,7 @@ export function createLNodeTypeWizard(
       primary: {
         icon: '',
         label: get('next') + '...',
-        action: startLNodeTypeCreate(parent, templates, nsd74),
+        action: startLNodeTypeCreate(parent, templates, nsd74, nsd7420),
       },
       content: [
         html`<mwc-select
@@ -489,7 +517,26 @@ export function createLNodeTypeWizard(
                 value="${className}"
                 ><span>${className}</span>
                 <span slot="meta"
-                  >${getAllDataObjects(nsd74, className).length}</span
+                  >${getAllDataObjects(nsd74, className, nsd7420).length}</span
+                >
+              </mwc-list-item>`;
+            }
+          )}
+          <mwc-list-item noninteractive
+            >Empty lnClasses from IEC 61850-7-420</mwc-list-item
+          >
+          <li divider role="separator"></li>
+          ${Array.from(nsd7420.querySelectorAll('LNClasses > LNClass')).map(
+            lnClass => {
+              const className = lnClass.getAttribute('name') ?? '';
+              return html`<mwc-list-item
+                style="min-width:200px"
+                graphic="icon"
+                hasMeta
+                value="${className}"
+                ><span>${className}</span>
+                <span slot="meta"
+                  >${getAllDataObjects(nsd74, className, nsd7420).length}</span
                 >
               </mwc-list-item>`;
             }
@@ -568,25 +615,19 @@ export function lNodeTypeWizard(
         label: get('save'),
         action: updateLNodeTypeAction(lnodetype),
       },
+      menuActions: [
+        {
+          label: get('remove'),
+          icon: 'delete',
+          action: remove(lnodetype),
+        },
+        {
+          label: get('scl.DO'),
+          icon: 'playlist_add',
+          action: openAddDo(lnodetype),
+        },
+      ],
       content: [
-        html`<mwc-button
-          icon="delete"
-          trailingIcon
-          label="${translate('remove')}"
-          @click=${(e: MouseEvent) => {
-            e.target!.dispatchEvent(newWizardEvent());
-            e.target!.dispatchEvent(
-              newActionEvent({
-                old: {
-                  parent: lnodetype.parentElement!,
-                  element: lnodetype,
-                  reference: lnodetype.nextSibling,
-                },
-              })
-            );
-          }}
-          fullwidth
-        ></mwc-button> `,
         html`<wizard-textfield
           label="id"
           helper="${translate('scl.id')}"
@@ -611,18 +652,6 @@ export function lNodeTypeWizard(
           required
           pattern="${patterns.lnClass}"
         ></wizard-textfield>`,
-        html` <mwc-button
-          slot="graphic"
-          icon="playlist_add"
-          trailingIcon
-          label="${translate('scl.DO')}"
-          @click=${(e: Event) => {
-            const wizard = dOWizard({
-              parent: lnodetype,
-            });
-            if (wizard) e.target!.dispatchEvent(newSubWizardEvent(wizard));
-          }}
-        ></mwc-button>`,
         html`
           <mwc-list
             style="margin-top: 0px;"
