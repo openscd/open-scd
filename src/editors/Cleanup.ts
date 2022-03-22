@@ -13,11 +13,16 @@ import { translate } from 'lit-translate';
 
 import '@material/mwc-button';
 import { Button } from '@material/mwc-button';
+import { Checkbox } from '@material/mwc-checkbox';
+import '@material/mwc-icon';
+import '@material/mwc-icon-button-toggle';
 import { List, MWCListIndex } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 import '@material/mwc-list/mwc-check-list-item.js';
 import '@material/mwc-checkbox';
 import '../filtered-list.js';
+
+import { styles } from './templates/foundation.js';
 
 import {
   Delete,
@@ -27,16 +32,22 @@ import {
   newActionEvent,
 } from '../foundation.js';
 
+import { getFilterIcon, controlBlockIcons } from '../icons/icons.js';
+
 import { editDataSetWizard } from '../wizards/dataset.js';
-import { editGseControlWizard } from '../wizards/gsecontrol.js';
-import { editSampledValueControlWizard } from '../wizards/sampledvaluecontrol.js';
+import { editGseControlWizard, getGSE } from '../wizards/gsecontrol.js';
 import { editReportControlWizard } from '../wizards/reportcontrol.js';
+import {
+  editSampledValueControlWizard,
+  getSMV,
+} from '../wizards/sampledvaluecontrol.js';
 
-import { getSMV } from '../wizards/sampledvaluecontrol.js';
-import { getGSE } from '../wizards/gsecontrol.js';
-
-import { styles } from './templates/foundation.js';
-import { Checkbox } from '@material/mwc-checkbox';
+const iconMapping = {
+  GSEControl: 'gooseIcon',
+  LogControl: 'logIcon',
+  SampledValueControl: 'smvIcon',
+  ReportControl: 'reportIcon',
+};
 
 /**
  * Check whether a control block is instantiated in the Communication section of the SCL file.
@@ -260,7 +271,7 @@ export default class Cleanup extends LitElement {
       // names must be equal
       return 0;
     });
-
+    console.log(controlBlockIcons['GSEControl']);
     return html`
       <div>
         <h1>
@@ -274,15 +285,59 @@ export default class Cleanup extends LitElement {
             </mwc-icon-button>
           </abbr>
         </h1>
+        <mwc-icon-button-toggle
+          slot="graphic"
+          label="filter"
+          class="reportControlFilterIcon tLogControlFilter"
+          on
+          @click="${(e: MouseEvent) => {
+            e.stopPropagation();
+          }}"
+          >${getFilterIcon(iconMapping['LogControl'], true)}
+          ${getFilterIcon(iconMapping['LogControl'], false)}
+        </mwc-icon-button-toggle>
+        <mwc-icon-button-toggle
+          slot="graphic"
+          label="filter"
+          class="reportControlFilterIcon tReportControlFilter"
+          on
+          @click="${(e: MouseEvent) => {
+            e.stopPropagation();
+          }}"
+          >${getFilterIcon(iconMapping['ReportControl'], true)}
+          ${getFilterIcon(iconMapping['ReportControl'], false)}
+        </mwc-icon-button-toggle>
+        <mwc-icon-button-toggle
+          slot="graphic"
+          label="filter"
+          class="reportControlFilterIcon tGSEControlFilter"
+          on
+          @click="${(e: MouseEvent) => {
+            e.stopPropagation();
+          }}"
+          >${getFilterIcon(iconMapping['GSEControl'], true)}
+          ${getFilterIcon(iconMapping['GSEControl'], false)}
+        </mwc-icon-button-toggle>
+        <mwc-icon-button-toggle
+          slot="graphic"
+          label="filter"
+          class="reportControlFilterIcon tSampledValueControlFilter"
+          on
+          @click="${(e: MouseEvent) => {
+            e.stopPropagation();
+          }}"
+          >${getFilterIcon(iconMapping['SampledValueControl'], true)}
+          ${getFilterIcon(iconMapping['SampledValueControl'], false)}
+        </mwc-icon-button-toggle>
         <filtered-list multi class="cleanupUnreferencedControlsList"
           >${Array.from(
             unreferencedCBs.map(
               cb =>
                 html`<mwc-check-list-item
                   twoline
-                  left
-                  class="cleanupUnreferencedControlsCheckListItem"
+                  class="cleanupUnreferencedControlsCheckListItem t${cb.nodeName}"
                   value="${identity(cb)}"
+                  graphic="large"
                   ><span class="unreferencedControl"
                     >${cb.getAttribute('name')!}
                   </span>
@@ -331,6 +386,9 @@ export default class Cleanup extends LitElement {
                     -
                     ${cb.closest('IED')?.getAttribute('type') ??
                     'No Type Defined'}</span
+                  >
+                  <mwc-icon slot="graphic"
+                    >${controlBlockIcons[cb.nodeName]}</mwc-icon
                   >
                 </mwc-check-list-item>`
             )
@@ -430,6 +488,8 @@ export default class Cleanup extends LitElement {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      /* any more than 700px and distance between check box and item is too great */
+      max-width: 700px;
     }
 
     .editItem,
@@ -464,5 +524,44 @@ export default class Cleanup extends LitElement {
       max-height: 70vh;
       overflow-y: scroll;
     }
+
+    .tGSEControlFilter[on],
+    .tSampledValueControlFilter[on],
+    .tLogControlFilter[on],
+    .tReportControlFilter[on]
+     {
+      color: var(--base3);
+      opacity: 1;
+    }
+
+    .tGSEControlFilter
+      ~ cleanupUnreferencedControlsList > .tGSEControl {
+      display: none;
+    }
+
+    .tGSEControlFilter[on]
+      ~ cleanupUnreferencedControlsList > mwc-check-list-item.tGSEControl {
+      display: flex;
+    }
+
+    .tGSEControlFilter, 
+    .tSampledValueControlFilter,
+    .tLogControlFilter,
+    .tReportControlFilter
+     {
+      opacity: 0.38;
+    }
+
+    .tGSEControlFilter[on], 
+    .tSampledValueControlFilter[on],
+    .tLogControlFilter[on],
+    .tReportControlFilter[on]
+     {
+      color: var(--secondary);
+    }
+
+
+  }
+
   `;
 }
