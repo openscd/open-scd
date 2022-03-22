@@ -4,6 +4,7 @@ import '../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../mock-wizard-editor.js';
 
 import { ListItem } from '@material/mwc-list/mwc-list-item';
+import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import { FilteredList } from '../../../src/filtered-list.js';
 import { WizardSelect } from '../../../src/wizard-select.js';
@@ -66,13 +67,18 @@ describe('BDA wizarding editing integration', () => {
         )
       );
       deleteButton = <HTMLElement>(
-        parent.wizardUI.dialog?.querySelector('mwc-button[icon="delete"]')
+        Array.from(
+          parent.wizardUI.dialog!.querySelectorAll<ListItemBase>(
+            'mwc-menu > mwc-list-item'
+          )
+        ).find(item => item.innerHTML.includes('[remove]'))
       );
     });
 
     it('looks like the latest snapshot', async () => {
       await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
+
     it('edits BDA element', async () => {
       expect(
         doc.querySelector(
@@ -94,6 +100,7 @@ describe('BDA wizarding editing integration', () => {
         )
       ).to.exist;
     });
+
     it('deletes the BDA element on delete button click', async () => {
       expect(
         doc.querySelector(
