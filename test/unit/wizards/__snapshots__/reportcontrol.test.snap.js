@@ -71,6 +71,20 @@ snapshots["Wizards for SCL ReportControl element define an edit wizard that for 
           edit
         </mwc-icon>
       </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span>
+          Copy to other IEDs
+        </span>
+        <mwc-icon slot="graphic">
+          copy
+        </mwc-icon>
+      </mwc-list-item>
     </mwc-menu>
   </nav>
   <div id="wizard-content">
@@ -183,6 +197,19 @@ snapshots["Wizards for SCL ReportControl element define an edit wizard that for 
         </span>
         <mwc-icon slot="graphic">
           delete
+        </mwc-icon>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <span>
+          Copy to other IEDs
+        </span>
+        <mwc-icon slot="graphic">
+          copy
         </mwc-icon>
       </mwc-list-item>
     </mwc-menu>
