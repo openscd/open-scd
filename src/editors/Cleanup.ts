@@ -32,7 +32,7 @@ import {
   newActionEvent,
 } from '../foundation.js';
 
-import { getFilterIcon, controlBlockIcons } from '../icons/icons.js';
+import { controlBlockIcons, getFilterIcon, iconType } from '../icons/icons.js';
 
 import { editDataSetWizard } from '../wizards/dataset.js';
 import { editGseControlWizard, getGSE } from '../wizards/gsecontrol.js';
@@ -43,10 +43,10 @@ import {
 } from '../wizards/sampledvaluecontrol.js';
 
 const iconMapping = {
-  GSEControl: 'gooseIcon',
-  LogControl: 'logIcon',
-  SampledValueControl: 'smvIcon',
-  ReportControl: 'reportIcon',
+  GSEControl: <iconType>'gooseIcon',
+  LogControl: <iconType>'logIcon',
+  SampledValueControl: <iconType>'smvIcon',
+  ReportControl: <iconType>'reportIcon',
 };
 
 /**
@@ -534,16 +534,25 @@ export default class Cleanup extends LitElement {
       opacity: 1;
     }
 
-    .tGSEControlFilter
-      ~ cleanupUnreferencedControlsList > .tGSEControl {
+    .tGSEControl,
+    .tSampledValueControl,
+    .tLogControl,
+    .tReportControl {
       display: none;
     }
 
     .tGSEControlFilter[on]
-      ~ cleanupUnreferencedControlsList > mwc-check-list-item.tGSEControl {
+      ~ .cleanupUnreferencedControlsList > .tGSEControl,
+      .tSampledValueControlFilter[on]
+      ~ .cleanupUnreferencedControlsList > .tSampledValueControl,
+      .tLogControlFilter[on]
+      ~ .cleanupUnreferencedControlsList > .tLogControl,
+      .tReportControlFilter[on]
+      ~ .cleanupUnreferencedControlsList > .tReportControl {
       display: flex;
     }
 
+    /* filter disabled, Material Design guidelines for opacity */
     .tGSEControlFilter, 
     .tSampledValueControlFilter,
     .tLogControlFilter,
@@ -552,6 +561,7 @@ export default class Cleanup extends LitElement {
       opacity: 0.38;
     }
 
+    /* filter enabled */
     .tGSEControlFilter[on], 
     .tSampledValueControlFilter[on],
     .tLogControlFilter[on],
