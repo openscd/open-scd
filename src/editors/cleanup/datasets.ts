@@ -41,20 +41,19 @@ export class CleanupDatasets extends LitElement {
   @property()
   doc!: XMLDocument;
 
-  // For DataSet Cleanup
   @property()
-  disableDataSetClean = false;
+  _disableDataSetClean = false;
   @property()
-  unreferencedDataSets: Element[] = [];
+  _unreferencedDataSets: Element[] = [];
   @property()
-  selectedDatasetItems: MWCListIndex | [] = [];
+  _selectedDatasetItems: MWCListIndex | [] = [];
 
-  @query('.cleanupUnreferencedDataSetsDeleteButton')
-  _cleanUnreferencedDataSetsButton!: Button;
-  @query('.cleanupUnreferencedDataSetsList')
-  _cleanUnreferencedDataSetsList: List | undefined;
-  @queryAll('mwc-check-list-item.cleanupUnreferencedDataSetsCheckListItem')
-  _cleanUnreferencedDataSetItems: ListItem[] | undefined;
+  @query('.deleteButton')
+  _cleanupButton!: Button;
+  @query('.dataSetList')
+  _dataSetList: List | undefined;
+  @queryAll('mwc-check-list-item.checkListItem')
+  _dataSetItems: ListItem[] | undefined;
 
   /**
    * Clean datasets as requested by removing SCL elements specified by the user from the SCL file
@@ -77,8 +76,8 @@ export class CleanupDatasets extends LitElement {
   }
 
   async firstUpdated(): Promise<void> {
-    this._cleanUnreferencedDataSetsList?.addEventListener('selected', () => {
-      this.selectedDatasetItems = this._cleanUnreferencedDataSetsList!.index;
+    this._dataSetList?.addEventListener('selected', () => {
+      this._selectedDatasetItems = this._dataSetList!.index;
     });
   }
 
@@ -103,7 +102,7 @@ export class CleanupDatasets extends LitElement {
           unreferencedDataSets.push(dataSet);
       });
 
-    this.unreferencedDataSets = unreferencedDataSets.sort((a, b) => {
+    this._unreferencedDataSets = unreferencedDataSets.sort((a, b) => {
       // sorting using the identity ensures sort order includes IED
       const aId = identity(a);
       const bId = identity(b);
@@ -130,13 +129,13 @@ export class CleanupDatasets extends LitElement {
             </mwc-icon-button>
           </abbr>
         </h1>
-        <filtered-list multi class="cleanupUnreferencedDataSetsList"
+        <filtered-list multi class="dataSetList"
           >${Array.from(
             unreferencedDataSets.map(
               item =>
                 html`<mwc-check-list-item
                   twoline
-                  class="cleanupUnreferencedDataSetsCheckListItem"
+                  class="checkListItem"
                   value="${identity(item)}"
                   ><span class="unreferencedDataSet"
                     >${item.getAttribute('name')!}
@@ -171,17 +170,17 @@ export class CleanupDatasets extends LitElement {
         <mwc-button
           outlined
           icon="delete"
-          class="cleanupUnreferencedDataSetsDeleteButton cleanupDeleteButton"
+          class="deleteButton cleanupDeleteButton"
           label="${translate('cleanup.unreferencedDataSets.deleteButton')} (${(<
             Set<number>
-          >this.selectedDatasetItems).size || '0'})"
-          ?disabled=${(<Set<number>>this.selectedDatasetItems).size === 0 ||
-          (Array.isArray(this.selectedDatasetItems) &&
-            !this.selectedDatasetItems.length)}
+          >this._selectedDatasetItems).size || '0'})"
+          ?disabled=${(<Set<number>>this._selectedDatasetItems).size === 0 ||
+          (Array.isArray(this._selectedDatasetItems) &&
+            !this._selectedDatasetItems.length)}
           @click=${(e: MouseEvent) => {
             const cleanItems = Array.from(
-              (<Set<number>>this.selectedDatasetItems).values()
-            ).map(index => this.unreferencedDataSets[index]);
+              (<Set<number>>this._selectedDatasetItems).values()
+            ).map(index => this._unreferencedDataSets[index]);
             const deleteActions = this.cleanSCLItems(cleanItems);
             deleteActions.forEach(deleteAction =>
               e.target?.dispatchEvent(newActionEvent(deleteAction))

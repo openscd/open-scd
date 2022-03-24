@@ -1,17 +1,22 @@
 'use strict';
 import { html, fixture, expect } from '@open-wc/testing';
 
-import { Editing } from '../../../src/Editing.js';
-import { Wizarding } from '../../../src/Wizarding.js';
+import { Editing } from '../../../../src/Editing.js';
+import { Wizarding } from '../../../../src/Wizarding.js';
 
-import Cleanup from '../../../src/editors/Cleanup.js';
+import { CleanupDatasets } from '../../../../src/editors/cleanup/datasets.js';
 
-describe('Cleanup', () => {
-  customElements.define('cleanup-plugin', Wizarding(Editing(Cleanup)));
-  let element: Cleanup;
+describe('Cleanup: Datasets Container', () => {
+  customElements.define(
+    'cleanup-plugin-datasets',
+    Wizarding(Editing(CleanupDatasets))
+  );
+  let element: CleanupDatasets;
 
   beforeEach(async () => {
-    element = await fixture(html`<cleanup-plugin></cleanup-plugin>`);
+    element = await fixture(
+      html`<cleanup-plugin-datasets></cleanup-plugin-datasets>`
+    );
   });
 
   describe('without a doc loaded', () => {
@@ -39,10 +44,10 @@ describe('Cleanup', () => {
         .shadowRoot!.querySelector('mwc-formfield')!
         .querySelector('mwc-checkbox')!;
       await checkbox.click();
-      element._cleanUnreferencedDataSetsList?.layout();
+      element._dataSetList?.layout();
       const cleanItems = Array.from(
-        (<Set<number>>element._cleanUnreferencedDataSetsList!.index).values()
-      ).map(index => element.unreferencedDataSets[index]);
+        (<Set<number>>element._dataSetList!.index).values()
+      ).map(index => element._unreferencedDataSets[index]);
       const deleteActions = element.cleanSCLItems(cleanItems);
       expect(deleteActions.length).to.equal(2);
     });
@@ -54,8 +59,8 @@ describe('Cleanup', () => {
         .shadowRoot!.querySelector('mwc-formfield')!
         .querySelector('mwc-checkbox')!;
       await checkbox.click();
-      element._cleanUnreferencedDataSetsList?.layout();
-      await element._cleanUnreferencedDataSetsButton.click();
+      element._dataSetList?.layout();
+      await element._dataSetList!.click();
       // the correct number of DataSets should remain
       const remainingDataSetCountCheck =
         doc.querySelectorAll(

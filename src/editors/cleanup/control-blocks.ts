@@ -46,7 +46,11 @@ import {
   getSMV,
 } from '../../wizards/sampledvaluecontrol.js';
 
-type controlType = 'GSEControl' | 'LogControl' | 'SampledValueControl' | 'ReportControl'
+type controlType =
+  | 'GSEControl'
+  | 'LogControl'
+  | 'SampledValueControl'
+  | 'ReportControl';
 
 const iconMapping = {
   GSEControl: <iconType>'gooseIcon',
@@ -118,25 +122,26 @@ export default class Cleanup extends LitElement {
   }
 
   private toggleHiddenClass(selectorType: string) {
-    this._cleanUnreferencedControlsList!.querySelectorAll(`.${selectorType}`).forEach(element => {
-      element.classList.toggle('hidden')
-    })
+    this._cleanUnreferencedControlsList!.querySelectorAll(
+      `.${selectorType}`
+    ).forEach(element => {
+      element.classList.toggle('hidden');
+    });
   }
 
   private createFilterIconButton(controlType: controlType) {
     return html`<mwc-icon-button-toggle
-          slot="graphic"
-          label="filter"
-          class="t${controlType}Filter"
-          on
-          @click="${(e: MouseEvent) => {
-            e.stopPropagation();
-            this.toggleHiddenClass(`t${controlType}`)
-            }
-          }"
-          >${getFilterIcon(iconMapping[controlType], true)} ${getFilterIcon(iconMapping[controlType], false)}
-        </mwc-icon-button-toggle>
-        `;
+      slot="graphic"
+      label="filter"
+      class="t${controlType}Filter"
+      on
+      @click="${(e: MouseEvent) => {
+        e.stopPropagation();
+        this.toggleHiddenClass(`t${controlType}`);
+      }}"
+      >${getFilterIcon(iconMapping[controlType], true)}
+      ${getFilterIcon(iconMapping[controlType], false)}
+    </mwc-icon-button-toggle> `;
   }
 
   /**
@@ -272,6 +277,9 @@ export default class Cleanup extends LitElement {
             ).map(index => this.unreferencedControls[index]);
             let addressItems: Delete[] = [];
             if (this._cleanUnreferencedControlsAddress!.checked === true) {
+              // TODO: To be truly complete elements should also be checked, possibly
+              // including: tServiceSettings, tReportSettings, tGSESettings, tSMVSettings
+              // and ExtRef elements in the Inputs section
               addressItems = this.cleanSCLItems(
                 cleanItems.map(cb => getCommAddress(cb)!).filter(Boolean)
               );
