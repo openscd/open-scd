@@ -210,6 +210,100 @@
 			</Server>
 		</AccessPoint>
 	</IED>
+	<IED name="IED4" type="DummyIED" manufacturer="DummyManufactorer" configVersion="1" originalSclVersion="2007" originalSclRevision="B" owner="DummyOwner">
+		<Services>
+			<DynAssociation />
+			<GetDirectory />
+			<GetDataObjectDefinition />
+			<DataObjectDirectory />
+			<GetDataSetValue />
+			<SetDataSetValue />
+			<DataSetDirectory />
+			<ConfDataSet modify="false" max="3" />
+			<DynDataSet max="42" />
+			<ReadWrite />
+			<ConfReportControl max="10" />
+			<GetCBValues />
+			<ReportSettings rptID="Dyn" optFields="Dyn" bufTime="Dyn" trgOps="Dyn" intgPd="Dyn" resvTms="true" owner="true" />
+			<GOOSE max="1" />
+			<GSSE max="0" />
+			<ConfLNs fixPrefix="true" fixLnInst="true" />
+		</Services>
+		<AccessPoint name="P1">
+			<Server>
+				<Authentication />
+				<LDevice inst="CBSW">
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0">
+						<Private type="dummyType">
+							<esld:FCDA xmlns:esld="http://www.dummyURL.com/dummyNS" ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="2" doName="Pos" daName="stVal" fc="ST"/>
+						</Private>
+					</LN0>
+					<LN lnClass="LPHD" inst="1" lnType="Dummy.LPHD1"/>
+					<LN lnClass="XCBR" inst="1" lnType="Dummy.XCBR1">
+						<DOI name="Pos">
+							<DAI name="ctlModel">
+								<Val>status-only</Val>
+							</DAI>
+						</DOI>
+					</LN>
+					<LN lnClass="XSWI" inst="3" lnType="Dummy.XSWI1">
+						<DOI name="Pos">
+							<DAI name="ctlModel">
+								<Val>status-only</Val>
+							</DAI>
+						</DOI>
+					</LN>
+				</LDevice>
+			</Server>
+		</AccessPoint>
+	</IED>
+	<IED name="IED5" type="DummyIED" manufacturer="DummyManufactorer" configVersion="1" originalSclVersion="2007" originalSclRevision="B" owner="DummyOwner">
+		<Services>
+			<DynAssociation />
+			<GetDirectory />
+			<GetDataObjectDefinition />
+			<DataObjectDirectory />
+			<GetDataSetValue />
+			<SetDataSetValue />
+			<DataSetDirectory />
+			<ConfDataSet modify="false" max="3" />
+			<DynDataSet max="42" />
+			<ReadWrite />
+			<ConfReportControl max="10" />
+			<GetCBValues />
+			<ReportSettings rptID="Dyn" optFields="Dyn" bufTime="Dyn" trgOps="Dyn" intgPd="Dyn" resvTms="true" owner="true" />
+			<GOOSE max="1" />
+			<GSSE max="0" />
+			<ConfLNs fixPrefix="true" fixLnInst="true" />
+		</Services>
+		<AccessPoint name="P1">
+			<Server>
+				<Authentication />
+				<LDevice inst="CBSW">
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0">
+						<Private type="dummyType">
+							<esld:FCDA xmlns:esld="http://www.dummyURL.com/dummyNS" ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="2" doName="Pos" daName="stVal" fc="ST"/>
+						</Private>
+					</LN0>
+					<LN lnClass="LPHD" inst="1" lnType="Dummy.LPHD1"/>
+					<LN lnClass="XCBR" inst="1" lnType="Dummy.XCBR1">
+						<DOI name="Pos">
+							<DAI name="ctlModel">
+								<Val>status-only</Val>
+							</DAI>
+						</DOI>
+					</LN>
+					<LN lnClass="XSWI" inst="2" lnType="Dummy.XSWI1">
+						<DOI name="Pos">
+							<DAI name="ctlModel">
+								<Val>status-only</Val>
+							</DAI>
+						</DOI>
+					</LN>
+				</LDevice>
+			</Server>
+		</AccessPoint>
+	</IED>
 	<DataTypeTemplates>
 		<LNodeType lnClass="LLN0" id="Dummy.LLN0">
     		<DO name="Mod" type="Dummy.LLN0.Mod" />
@@ -307,9 +401,9 @@
     		<DA fc="CO" name="Cancel" bType="Struct" type="Dummy.LLN0.Mod.Cancel" />
     	</DOType>
     	<DOType cdc="ENS" id="Dummy.LLN0.Beh">
-    		<DA fc="ST" name="stVal" bType="Enum" type="Dummy_Beh" />
-    		<DA fc="ST" name="q" bType="Quality" />
-    		<DA fc="ST" name="t" bType="Timestamp" />
+    		<DA fc="ST" name="stVal" bType="Enum" type="Dummy_Beh"/>
+    		<DA fc="ST" name="q" bType="Quality"/>
+    		<DA fc="ST" name="t" bType="Timestamp"/>
     	</DOType>
     	<DOType cdc="ENS" id="Dummy.LLN0.Health">
     		<DA fc="ST" name="stVal" bType="Enum" type="Dummy_Health" />

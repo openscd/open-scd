@@ -9,6 +9,7 @@ import { FilteredList } from '../../../src/filtered-list.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   createReportControlWizard,
+  reportControlCopyToIedSelector,
   reportControlParentSelector,
   selectReportControlWizard,
 } from '../../../src/wizards/reportcontrol.js';
@@ -333,6 +334,8 @@ describe('Wizards for SCL element ReportControl', () => {
         )
       ).to.not.exist;
     });
+
+    it('opens a IEDs selector wizard on copy to other IEDs ');
   });
 
   describe('defines a selector wizard to select ReportControl parent', () => {
@@ -387,6 +390,75 @@ describe('Wizards for SCL element ReportControl', () => {
           .querySelector('IED[name="IED3"]')
           ?.querySelectorAll('LN0 > ReportControl')
       ).to.have.lengthOf(2);
+    });
+  });
+
+  describe('defines a selector wizard to select ReportControl copy to sink', () => {
+    let iedsPicker: FinderList;
+
+    beforeEach(async () => {
+      const sourceReportControl = doc.querySelector(
+        'IED[name="IED2"] ReportControl[name="ReportCb"]'
+      )!;
+      const wizard = reportControlCopyToIedSelector(sourceReportControl);
+      element.workflow.push(() => wizard);
+      await element.requestUpdate();
+
+      iedsPicker = <FinderList>(
+        element.wizardUI.dialog?.querySelector('finder-list')
+      );
+
+      primaryAction = <HTMLElement>(
+        element.wizardUI.dialog?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      );
+    });
+
+    it('opens a potential list of sink IEDs for the copy operation', () =>
+      expect(iedsPicker).to.exist);
+
+    it('allows to copy to multiple IED at once', () =>
+      expect(iedsPicker.multi).to.be.true);
+
+    describe('with a sink IED not meeting any of the data references', () => {
+      beforeEach(async () => {
+        iedsPicker.paths = [['IED: IED4']];
+        primaryAction.click();
+
+        await element.requestUpdate();
+      });
+
+      it('does not copy the control block ', () =>
+        expect(doc.querySelector('IED[name="IED4"] ReportControl')).to.not
+          .exist);
+
+      it('does not close the wizard', async () =>
+        expect(element.wizardUI.dialog).to.exist);
+    });
+
+    describe('with a sink IED not meeting partially the data references', () => {
+      beforeEach(async () => {
+        iedsPicker.paths = [['IED: IED5']];
+        primaryAction.click();
+
+        await element.requestUpdate();
+      });
+
+      it('does copy the control block ', () =>
+        expect(doc.querySelector('IED[name="IED5"] ReportControl')).to.exist);
+
+      it('removes non referenced data from the DataSet the control block ', () => {
+        const rpControl = doc.querySelector('IED[name="IED5"] ReportControl')!;
+        const dataSet = doc.querySelector(
+          `IED[name="IED5"] DataSet[name="${rpControl.getAttribute('datSet')}"]`
+        );
+        expect(dataSet).to.exist;
+        expect(dataSet!.children).to.have.lengthOf(2);
+      });
+
+      it('does close the wizard', () =>
+        expect(element.wizardUI.dialog).to.not.exist);
     });
   });
 

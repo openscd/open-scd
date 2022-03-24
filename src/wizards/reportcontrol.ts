@@ -454,7 +454,7 @@ function copyReportControlActions(element: Element): WizardActor {
   };
 }
 
-function iedsSelector(element: Element): Wizard {
+export function reportControlCopyToIedSelector(element: Element): Wizard {
   const doc = element.ownerDocument;
 
   return [
@@ -472,7 +472,7 @@ function iedsSelector(element: Element): Wizard {
 
 function openIedsSelector(element: Element): WizardMenuActor {
   return (): WizardAction[] => {
-    return [() => iedsSelector(element)];
+    return [() => reportControlCopyToIedSelector(element)];
   };
 }
 
