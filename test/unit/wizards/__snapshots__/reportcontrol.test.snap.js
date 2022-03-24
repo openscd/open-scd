@@ -79,7 +79,7 @@ snapshots["Wizards for SCL ReportControl element define an edit wizard that for 
         tabindex="-1"
       >
         <span>
-          Copy to other IEDs
+          [controlblock.label.copy]
         </span>
         <mwc-icon slot="graphic">
           copy
@@ -206,7 +206,7 @@ snapshots["Wizards for SCL ReportControl element define an edit wizard that for 
         tabindex="-1"
       >
         <span>
-          Copy to other IEDs
+          [controlblock.label.copy]
         </span>
         <mwc-icon slot="graphic">
           copy
