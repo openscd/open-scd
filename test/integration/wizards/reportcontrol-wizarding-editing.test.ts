@@ -14,6 +14,7 @@ import {
   selectReportControlWizard,
 } from '../../../src/wizards/reportcontrol.js';
 import { FinderList } from '../../../src/finder-list.js';
+import { execPath } from 'process';
 
 describe('Wizards for SCL element ReportControl', () => {
   let doc: XMLDocument;
@@ -335,7 +336,24 @@ describe('Wizards for SCL element ReportControl', () => {
       ).to.not.exist;
     });
 
-    it('opens a IEDs selector wizard on copy to other IEDs ');
+    it('opens a IEDs selector wizard on copy to other IEDs meu action', async () => {
+      const copyMenuAction = <HTMLElement>(
+        Array.from(
+          element.wizardUI.dialog!.querySelectorAll<ListItemBase>(
+            'mwc-menu > mwc-list-item'
+          )
+        ).find(item => item.innerHTML.includes(`[controlblock.label.copy]`))
+      );
+      await element.wizardUI.dialog?.requestUpdate();
+      copyMenuAction.click();
+      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
+      const iedsPicker =
+        element.wizardUI.dialog?.querySelector<FinderList>('finder-list');
+
+      expect(iedsPicker).to.exist;
+      expect(iedsPicker!.multi).to.be.true;
+    });
   });
 
   describe('defines a selector wizard to select ReportControl parent', () => {
