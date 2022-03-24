@@ -115,12 +115,6 @@ export default class Cleanup extends LitElement {
     return actions;
   }
 
-  async firstUpdated(): Promise<void> {
-    this._cleanUnreferencedControlsList?.addEventListener('selected', () => {
-      this.selectedControlItems = this._cleanUnreferencedControlsList!.index;
-    });
-  }
-
   private toggleHiddenClass(selectorType: string) {
     this._cleanUnreferencedControlsList!.querySelectorAll(
       `.${selectorType}`
@@ -129,12 +123,15 @@ export default class Cleanup extends LitElement {
     });
   }
 
-  private createFilterIconButton(controlType: controlType) {
+  private createFilterIconButton(
+    controlType: controlType,
+    initialState = true
+  ) {
     return html`<mwc-icon-button-toggle
       slot="graphic"
       label="filter"
+      ?on=${initialState}
       class="t${controlType}Filter"
-      on
       @click="${(e: MouseEvent) => {
         e.stopPropagation();
         this.toggleHiddenClass(`t${controlType}`);
@@ -142,6 +139,13 @@ export default class Cleanup extends LitElement {
       >${getFilterIcon(iconMapping[controlType], true)}
       ${getFilterIcon(iconMapping[controlType], false)}
     </mwc-icon-button-toggle> `;
+  }
+
+  async firstUpdated(): Promise<void> {
+    this._cleanUnreferencedControlsList?.addEventListener('selected', () => {
+      this.selectedControlItems = this._cleanUnreferencedControlsList!.index;
+    });
+    this.toggleHiddenClass('tReportControl');
   }
 
   /**
@@ -191,7 +195,7 @@ export default class Cleanup extends LitElement {
           </abbr>
         </h1>
         ${this.createFilterIconButton('LogControl')}
-        ${this.createFilterIconButton('ReportControl')}
+        ${this.createFilterIconButton('ReportControl', false)}
         ${this.createFilterIconButton('GSEControl')}
         ${this.createFilterIconButton('SampledValueControl')}
         <filtered-list multi class="cleanupUnreferencedControlsList"
