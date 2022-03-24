@@ -609,7 +609,7 @@ export function editReportControlWizard(element: Element): Wizard {
 
   menuActions.push({
     icon: 'copy',
-    label: 'Copy to other IEDs',
+    label: get('controlblock.label.copy'),
     action: openIedsSelector(element),
   });
 

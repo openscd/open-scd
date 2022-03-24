@@ -289,28 +289,28 @@ export const en = {
   subscription: {
     none: 'None',
     publisherGoose: {
-      title: 'GOOSE publisher'
+      title: 'GOOSE publisher',
     },
     subscriberIed: {
       title: 'Subscriber of {{ selected }}',
       subscribed: 'Subscribed',
       availableToSubscribe: 'Available to subscribe',
       partiallySubscribed: 'Partially subscribed',
-      noGooseMessageSelected: 'No GOOSE message selected'
-    }
+      noGooseMessageSelected: 'No GOOSE message selected',
+    },
   },
   sampledvalues: {
     none: 'none',
     sampledValuesList: {
-      title: 'Sampled Values'
+      title: 'Sampled Values',
     },
     subscriberIed: {
       title: 'Subscriber of {{ selected }}',
       subscribed: 'Subscribed',
       availableToSubscribe: 'Available to subscribe',
       partiallySubscribed: 'Partially subscribed',
-      noSampledValuesSelected: 'No control block selected'
-    }
+      noSampledValuesSelected: 'No control block selected',
+    },
   },
   'enum-val': {
     wizard: {
@@ -512,7 +512,8 @@ export const en = {
     unreferencedDataSets: {
       title: 'Unreferenced Datasets',
       deleteButton: 'Remove Selected Datasets',
-      tooltip: 'Datasets without a reference to an associated GOOSE, Log, Report or Sampled Value Control Block'
+      tooltip:
+        'Datasets without a reference to an associated GOOSE, Log, Report or Sampled Value Control Block',
     },
   },
   controlblock: {
@@ -521,6 +522,7 @@ export const en = {
       remove:
         'Removed {{type}} "{{name}}" and its referenced elements from IED {{iedName}}',
     },
+    label: { copy: 'Copy to other IEDs' },
   },
   add: 'Add',
   new: 'New',
