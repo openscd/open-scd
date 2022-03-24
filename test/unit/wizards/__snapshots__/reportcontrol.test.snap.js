@@ -380,6 +380,20 @@ snapshots["Wizards for SCL ReportControl element define a select wizard that wit
           IED3>>CBSW> XSWI 1>ReportCb2
         </span>
       </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="IED6>>CBSW>ReportCb"
+      >
+        <span>
+          ReportCb
+        </span>
+        <span slot="secondary">
+          IED6>>CBSW>ReportCb
+        </span>
+      </mwc-list-item>
     </filtered-list>
   </div>
   <mwc-button

@@ -428,6 +428,20 @@ function copyReportControlActions(element: Element): WizardActor {
       const sourceDataSet = element.parentElement?.querySelector(
         `DataSet[name="${element.getAttribute('datSet')}"]`
       );
+      if (
+        sourceDataSet &&
+        sinkLn0.querySelector(
+          `DataSet[name="${sourceDataSet!.getAttribute('name')}"]`
+        )
+      )
+        return [];
+
+      if (
+        sinkLn0.querySelector(
+          `ReportControl[name="${element.getAttribute('name')}"]`
+        )
+      )
+        return [];
 
       // clone DataSet and make sure that FCDA is valid in ied
       const sinkDataSet = <Element>sourceDataSet?.cloneNode(true);

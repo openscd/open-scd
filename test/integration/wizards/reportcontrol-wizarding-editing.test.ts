@@ -436,9 +436,6 @@ describe('Wizards for SCL element ReportControl', () => {
     it('opens a potential list of sink IEDs for the copy operation', () =>
       expect(iedsPicker).to.exist);
 
-    it('allows to copy to multiple IED at once', () =>
-      expect(iedsPicker.multi).to.be.true);
-
     describe('with a sink IED not meeting any of the data references', () => {
       beforeEach(async () => {
         iedsPicker.paths = [['IED: IED4']];
@@ -477,6 +474,40 @@ describe('Wizards for SCL element ReportControl', () => {
 
       it('does close the wizard', () =>
         expect(element.wizardUI.dialog).to.not.exist);
+    });
+
+    describe('with a sink IED already containing ReportControl', () => {
+      beforeEach(async () => {
+        iedsPicker.paths = [['IED: IED6']];
+        primaryAction.click();
+
+        await element.requestUpdate();
+      });
+
+      it('does not copy report control block nor DataSet ', () => {
+        const rpControl = doc.querySelector('IED[name="IED6"] ReportControl')!;
+        expect(rpControl.getAttribute('datSet')).to.not.exist;
+
+        const dataSet = doc.querySelector(`IED[name="IED6"] DataSet`);
+        expect(dataSet).to.not.exist;
+      });
+    });
+
+    describe('with a sink IED already containing DataSet', () => {
+      beforeEach(async () => {
+        iedsPicker.paths = [['IED: IED7']];
+        primaryAction.click();
+
+        await element.requestUpdate();
+      });
+
+      it('does not copy report control block nor DataSet ', () => {
+        const rpControl = doc.querySelector('IED[name="IED7"] ReportControl')!;
+        expect(rpControl).to.not.exist;
+
+        const dataSet = doc.querySelector(`IED[name="IED7"] DataSet`);
+        expect(dataSet?.children).to.have.lengthOf(3);
+      });
     });
   });
 
