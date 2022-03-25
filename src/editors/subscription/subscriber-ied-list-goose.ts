@@ -196,7 +196,6 @@ export class SubscriberIEDListGoose extends LitElement {
    * @param event - Incoming event.
    */
   private async onIEDSubscriptionEvent(event: IEDSubscriptionEvent) {
-    console.log('onGOOSEIEDSub');
     switch (event.detail.subscribeStatus) {
       case SubscribeStatus.Full: {
         this.unsubscribe(event.detail.element);
