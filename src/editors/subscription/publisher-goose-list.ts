@@ -9,12 +9,12 @@ import {
 import { translate } from 'lit-translate';
 
 import '@material/mwc-icon';
-import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 
-import './elements/goose-message.js';
+import '../../filtered-list.js';
 import { compareNames, getNameAttribute } from '../../foundation.js';
-import { styles } from './foundation.js';
+import { newGOOSESelectEvent, styles } from './foundation.js';
+import { gooseIcon } from '../../icons/icons.js';
 
 /** An sub element for showing all published GOOSE messages per IED. */
 @customElement('publisher-goose-list')
@@ -43,10 +43,28 @@ export class PublisherGOOSEList extends LitElement {
     );
   }
 
+  private onGooseSelect(element: Element): void {
+    const ln = element.parentElement;
+    const dataset = ln?.querySelector(
+      `DataSet[name=${element.getAttribute('datSet')}]`
+    );
+    this.dispatchEvent(newGOOSESelectEvent(element, dataset!));
+  }
+
+  renderGoose(element: Element): TemplateResult {
+    return html`<mwc-list-item
+      @click=${() => this.onGooseSelect(element)}
+      graphic="large"
+    >
+      <span>${element.getAttribute('name')}</span>
+      <mwc-icon slot="graphic">${gooseIcon}</mwc-icon>
+    </mwc-list-item>`;
+  }
+
   render(): TemplateResult {
     return html` <section>
       <h1>${translate('subscription.publisherGoose.title')}</h1>
-      <mwc-list>
+      <filtered-list>
         ${this.ieds.map(ied =>
           ied.querySelector('GSEControl')
             ? html`
@@ -55,14 +73,13 @@ export class PublisherGOOSEList extends LitElement {
                   <mwc-icon slot="graphic">developer_board</mwc-icon>
                 </mwc-list-item>
                 <li divider role="separator"></li>
-                ${this.getGSEControls(ied).map(
-                  control =>
-                    html`<goose-message .element=${control}></goose-message>`
+                ${this.getGSEControls(ied).map(control =>
+                  this.renderGoose(control)
                 )}
               `
             : ``
         )}
-      </mwc-list>
+      </filtered-list>
     </section>`;
   }
 
