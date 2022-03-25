@@ -204,8 +204,15 @@ function createReportControlAction(parent: Element): WizardActor {
       dataSet.appendChild(element);
     }
 
+    const name = reportControlAttrs['name']!;
+    const iedName = parent.closest('IED')!.getAttribute('name')!;
+
     const complexAction = {
-      title: 'Create ReportControl',
+      title: get('controlblock.action.add', {
+        type: 'Report',
+        name,
+        iedName,
+      }),
       actions: [
         { new: { parent, element: reportControl } },
         { new: { parent, element: dataSet } },
