@@ -13,6 +13,7 @@ import '@material/mwc-icon';
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 
+import '../../filtered-list.js';
 import {
   Create,
   createElement,
