@@ -79,6 +79,24 @@ snapshots["publisher-goose-list looks like the latest snapshot"] =
       <mwc-icon slot="graphic">
       </mwc-icon>
     </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="icon"
+      noninteractive=""
+      tabindex="-1"
+    >
+      <span class="iedListTitle">
+        IED3
+      </span>
+      <mwc-icon slot="graphic">
+        developer_board
+      </mwc-icon>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
   </filtered-list>
 </section>
 `;

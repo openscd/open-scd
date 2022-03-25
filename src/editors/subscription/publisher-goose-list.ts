@@ -65,19 +65,18 @@ export class PublisherGOOSEList extends LitElement {
     return html` <section>
       <h1>${translate('subscription.publisherGoose.title')}</h1>
       <filtered-list>
-        ${this.ieds.map(ied =>
-          ied.querySelector('GSEControl')
-            ? html`
-                <mwc-list-item noninteractive graphic="icon">
-                  <span class="iedListTitle">${getNameAttribute(ied)}</span>
-                  <mwc-icon slot="graphic">developer_board</mwc-icon>
-                </mwc-list-item>
-                <li divider role="separator"></li>
-                ${this.getGSEControls(ied).map(control =>
-                  this.renderGoose(control)
-                )}
-              `
-            : ``
+        ${this.ieds.map(
+          ied =>
+            html`
+              <mwc-list-item noninteractive graphic="icon">
+                <span class="iedListTitle">${getNameAttribute(ied)}</span>
+                <mwc-icon slot="graphic">developer_board</mwc-icon>
+              </mwc-list-item>
+              <li divider role="separator"></li>
+              ${this.getGSEControls(ied).map(control =>
+                this.renderGoose(control)
+              )}
+            `
         )}
       </filtered-list>
     </section>`;
