@@ -13,7 +13,6 @@ import '@material/mwc-icon';
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 
-import './elements/ied-element-goose.js';
 import {
   Create,
   createElement,
@@ -23,6 +22,7 @@ import {
   selector,
 } from '../../foundation.js';
 import {
+  newIEDSubscriptionEvent,
   GOOSESelectEvent,
   IEDSubscriptionEvent,
   newGOOSESelectEvent,
@@ -351,10 +351,20 @@ export class SubscriberIEDListGoose extends LitElement {
   }
 
   renderSubscriber(status: SubscribeStatus, element: Element): TemplateResult {
-    return html`<ied-element-goose
-      .status=${status}
-      .element=${element}
-    ></ied-element-goose>`;
+    return html` <mwc-list-item
+      @click=${() => {
+        this.dispatchEvent(
+          newIEDSubscriptionEvent(element, status ?? SubscribeStatus.None)
+        );
+      }}
+      graphic="avatar"
+      hasMeta
+    >
+      <span>${element.getAttribute('name')}</span>
+      <mwc-icon slot="graphic"
+        >${status == SubscribeStatus.Full ? html`clear` : html`add`}</mwc-icon
+      >
+    </mwc-list-item>`;
   }
 
   renderUnSubscribers(ieds: IED[]): TemplateResult {
