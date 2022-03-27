@@ -80,21 +80,27 @@ export default class Cleanup extends LitElement {
   @property()
   doc!: XMLDocument;
 
-  // For Control Cleanup
   @property()
   disableControlClean = false;
+
   @property()
   unreferencedControls: Element[] = [];
+
   @property()
   selectedControlItems: MWCListIndex | [] = [];
-  @query('.cleanupUnreferencedControlsDeleteButton')
+
+  @query('.deleteButton')
   _cleanUnreferencedControlsButton!: Button;
-  @query('.cleanupUnreferencedControlsList')
-  _cleanUnreferencedControlsList: List | undefined;
-  @queryAll('mwc-check-list-item.cleanupUnreferencedControlsCheckListItem')
-  _cleanUnreferencedControlsItems: ListItem | undefined;
-  @query('.cleanupUnreferencedControlsAddress')
-  _cleanUnreferencedControlsAddress: Checkbox | undefined;
+
+  @query('.cleanupList')
+  _cleanupList: List | undefined;
+
+  @queryAll('mwc-check-list-item.cleanupListItem')
+  _cleanupListItem: ListItem | undefined;
+
+  @query('.cleanupAddressCheckbox')
+  cleanupAddressCheckbox: Checkbox | undefined;
+
   /**
    * Clean datasets as requested by removing SCL elements specified by the user from the SCL file
    * @returns an actions array to support undo/redo
@@ -115,14 +121,22 @@ export default class Cleanup extends LitElement {
     return actions;
   }
 
+  /**
+   * Toggle the class hidden in the unused controls list for use by filter buttons.
+   * @param selectorType - class for selection to toggle the hidden class used by the list.
+   */
   private toggleHiddenClass(selectorType: string) {
-    this._cleanUnreferencedControlsList!.querySelectorAll(
-      `.${selectorType}`
-    ).forEach(element => {
+    this._cleanupList!.querySelectorAll(`.${selectorType}`).forEach(element => {
       element.classList.toggle('hidden');
     });
   }
 
+  /**
+   * Create a button for filtering in the controlblock cleanup container.
+   * @param controlType - SCL Control Type e.g. GSEControl.
+   * @param initialState - boolean representing whether button is on or off.
+   * @returns html for the icon button.
+   */
   private createFilterIconButton(
     controlType: controlType,
     initialState = true
@@ -141,9 +155,109 @@ export default class Cleanup extends LitElement {
     </mwc-icon-button-toggle> `;
   }
 
+  /**
+   * Provide list item in the control block cleanup container.
+   * @param cb - an unused SCL ControlBlock element.
+   * @returns html for checklist item.
+   */
+  private getListItem(cb: Element) {
+    return html`<mwc-check-list-item
+      twoline
+      class="cleanupListItem t${cb.nodeName}"
+      value="${identity(cb)}"
+      graphic="large"
+      ><span class="unreferencedControl">${cb.getAttribute('name')!} </span>
+      <span>
+        <mwc-icon-button
+          label="Edit"
+          icon="edit"
+          class="editItem"
+          ?disabled="${cb.nodeName === 'LogControl'}"
+          @click=${(e: MouseEvent) => {
+            e.stopPropagation();
+            if (cb.nodeName === 'GSEControl') {
+              e.target?.dispatchEvent(
+                newSubWizardEvent(editGseControlWizard(cb))
+              );
+            } else if (cb.nodeName === 'ReportControl') {
+              e.target?.dispatchEvent(
+                newSubWizardEvent(editReportControlWizard(cb))
+              );
+            } else if (cb.nodeName === 'SampledValueControl') {
+              e.target?.dispatchEvent(
+                newSubWizardEvent(editSampledValueControlWizard(cb))
+              );
+            } else if (cb.nodeName === 'LogControl') {
+              // not implemented yet, disabled above
+            }
+          }}
+        ></mwc-icon-button>
+      </span>
+      <span>
+        <mwc-icon-button
+          label="warning"
+          icon="warning_amber"
+          class="cautionItem"
+          title="${translate(
+            'cleanup.unreferencedControls.addressDefinitionTooltip'
+          )}"
+          ?disabled="${!(getCommAddress(cb) !== null)}"
+        >
+        </mwc-icon-button>
+      </span>
+      <span slot="secondary"
+        >${cb.tagName} - ${cb.closest('IED')?.getAttribute('name')}
+        (${cb.closest('IED')?.getAttribute('manufacturer') ??
+        'No manufacturer defined'})
+        - ${cb.closest('IED')?.getAttribute('type') ?? 'No Type Defined'}</span
+      >
+      <mwc-icon slot="graphic">${controlBlockIcons[cb.nodeName]}</mwc-icon>
+    </mwc-check-list-item>`;
+  }
+
+  /**
+   * Provide delete button the control block cleanup container.
+   * @returns html for the Delete Button of this container.
+   */
+  private getDeleteButton() {
+    return html`<mwc-button
+      outlined
+      icon="delete"
+      class="deleteButton"
+      label="${translate('cleanup.unreferencedControls.deleteButton')} (${(<
+        Set<number>
+      >this.selectedControlItems).size || '0'})"
+      ?disabled=${(<Set<number>>this.selectedControlItems).size === 0 ||
+      (Array.isArray(this.selectedControlItems) &&
+        !this.selectedControlItems.length)}
+      @click=${(e: MouseEvent) => {
+        const cleanItems = Array.from(
+          (<Set<number>>this.selectedControlItems).values()
+        ).map(index => this.unreferencedControls[index]);
+        let addressItems: Delete[] = [];
+        if (this.cleanupAddressCheckbox!.checked === true) {
+          // TODO: To be truly complete other elements should also be checked, possibly
+          // including: tServiceSettings, tReportSettings, tGSESettings, tSMVSettings
+          // and ExtRef elements in the Inputs section
+          addressItems = this.cleanSCLItems(
+            cleanItems.map(cb => getCommAddress(cb)!).filter(Boolean)
+          );
+        }
+        const deleteActions =
+          this.cleanSCLItems(cleanItems).concat(addressItems);
+        deleteActions.forEach(deleteAction =>
+          e.target?.dispatchEvent(newActionEvent(deleteAction))
+        );
+      }}
+    ></mwc-button>`;
+  }
+
+  /**
+   * Initial update after container is loaded.
+   */
   async firstUpdated(): Promise<void> {
-    this._cleanUnreferencedControlsList?.addEventListener('selected', () => {
-      this.selectedControlItems = this._cleanUnreferencedControlsList!.index;
+    this._cleanupList?.addEventListener('selected', () => {
+      this.selectedControlItems = this._cleanupList!.index;
     });
     this.toggleHiddenClass('tReportControl');
   }
@@ -198,103 +312,12 @@ export default class Cleanup extends LitElement {
         ${this.createFilterIconButton('ReportControl', false)}
         ${this.createFilterIconButton('GSEControl')}
         ${this.createFilterIconButton('SampledValueControl')}
-        <filtered-list multi class="cleanupUnreferencedControlsList"
-          >${Array.from(
-            unreferencedCBs.map(
-              cb =>
-                html`<mwc-check-list-item
-                  twoline
-                  class="cleanupUnreferencedControlsCheckListItem t${cb.nodeName}"
-                  value="${identity(cb)}"
-                  graphic="large"
-                  ><span class="unreferencedControl"
-                    >${cb.getAttribute('name')!}
-                  </span>
-                  <span>
-                    <mwc-icon-button
-                      label="Edit"
-                      icon="edit"
-                      class="editItem"
-                      ?disabled="${cb.nodeName === 'LogControl'}"
-                      @click=${(e: MouseEvent) => {
-                        e.stopPropagation();
-                        if (cb.nodeName === 'GSEControl') {
-                          e.target?.dispatchEvent(
-                            newSubWizardEvent(editGseControlWizard(cb))
-                          );
-                        } else if (cb.nodeName === 'ReportControl') {
-                          e.target?.dispatchEvent(
-                            newSubWizardEvent(editReportControlWizard(cb))
-                          );
-                        } else if (cb.nodeName === 'SampledValueControl') {
-                          e.target?.dispatchEvent(
-                            newSubWizardEvent(editSampledValueControlWizard(cb))
-                          );
-                        } else if (cb.nodeName === 'LogControl') {
-                          // not implemented yet, disabled above
-                        }
-                      }}
-                    ></mwc-icon-button>
-                  </span>
-                  <span>
-                    <mwc-icon-button
-                      label="warning"
-                      icon="warning_amber"
-                      class="cautionItem"
-                      title="${translate(
-                        'cleanup.unreferencedControls.addressDefinitionTooltip'
-                      )}"
-                      ?disabled="${!(getCommAddress(cb) !== null)}"
-                    >
-                    </mwc-icon-button>
-                  </span>
-                  <span slot="secondary"
-                    >${cb.tagName} - ${cb.closest('IED')?.getAttribute('name')}
-                    (${cb.closest('IED')?.getAttribute('manufacturer') ??
-                    'No manufacturer defined'})
-                    -
-                    ${cb.closest('IED')?.getAttribute('type') ??
-                    'No Type Defined'}</span
-                  >
-                  <mwc-icon slot="graphic"
-                    >${controlBlockIcons[cb.nodeName]}</mwc-icon
-                  >
-                </mwc-check-list-item>`
-            )
-          )}
+        <filtered-list multi class="cleanupList"
+          >${Array.from(unreferencedCBs.map(cb => this.getListItem(cb)))}
         </filtered-list>
       </div>
       <footer>
-        <mwc-button
-          outlined
-          icon="delete"
-          class="cleanupUnreferencedControlDeleteButton cleanupDeleteButton"
-          label="${translate('cleanup.unreferencedControls.deleteButton')} (${(<
-            Set<number>
-          >this.selectedControlItems).size || '0'})"
-          ?disabled=${(<Set<number>>this.selectedControlItems).size === 0 ||
-          (Array.isArray(this.selectedControlItems) &&
-            !this.selectedControlItems.length)}
-          @click=${(e: MouseEvent) => {
-            const cleanItems = Array.from(
-              (<Set<number>>this.selectedControlItems).values()
-            ).map(index => this.unreferencedControls[index]);
-            let addressItems: Delete[] = [];
-            if (this._cleanUnreferencedControlsAddress!.checked === true) {
-              // TODO: To be truly complete elements should also be checked, possibly
-              // including: tServiceSettings, tReportSettings, tGSESettings, tSMVSettings
-              // and ExtRef elements in the Inputs section
-              addressItems = this.cleanSCLItems(
-                cleanItems.map(cb => getCommAddress(cb)!).filter(Boolean)
-              );
-            }
-            const deleteActions =
-              this.cleanSCLItems(cleanItems).concat(addressItems);
-            deleteActions.forEach(deleteAction =>
-              e.target?.dispatchEvent(newActionEvent(deleteAction))
-            );
-          }}
-        ></mwc-button>
+        ${this.getDeleteButton()}
         <mwc-formfield
           class="removeFromCommunication"
           label="${translate(
@@ -303,7 +326,7 @@ export default class Cleanup extends LitElement {
         >
           <mwc-checkbox
             checked
-            class="cleanupUnreferencedControlsAddress"
+            class="cleanupAddressCheckbox"
             ?disabled=${(<Set<number>>this.selectedControlItems).size === 0 ||
             (Array.isArray(this.selectedControlItems) &&
               !this.selectedControlItems.length)}
@@ -354,7 +377,7 @@ export default class Cleanup extends LitElement {
       display: none;
     }
 
-    .cleanupDeleteButton {
+    .deleteButton {
       float: right;
     }
 
@@ -391,14 +414,10 @@ export default class Cleanup extends LitElement {
     }
 
     /* items enabled if filter is selected */
-    .tGSEControlFilter[on] ~ .cleanupUnreferencedControlsList > .tGSEControl,
-    .tSampledValueControlFilter[on]
-      ~ .cleanupUnreferencedControlsList
-      > .tSampledValueControl,
-    .tLogControlFilter[on] ~ .cleanupUnreferencedControlsList > .tLogControl,
-    .tReportControlFilter[on]
-      ~ .cleanupUnreferencedControlsList
-      > .tReportControl {
+    .tGSEControlFilter[on] ~ .cleanupList > .tGSEControl,
+    .tSampledValueControlFilter[on] ~ .cleanupList > .tSampledValueControl,
+    .tLogControlFilter[on] ~ .cleanupList > .tLogControl,
+    .tReportControlFilter[on] ~ .cleanupList > .tReportControl {
       display: flex;
     }
 
