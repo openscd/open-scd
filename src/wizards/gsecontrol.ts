@@ -32,6 +32,14 @@ import { maxLength, patterns } from './foundation/limits.js';
 import { editDataSetWizard } from './dataset.js';
 import { editGseWizard } from './gse.js';
 import { securityEnableEnum } from './foundation/enums.js';
+interface ContentOptions {
+  name: string | null;
+  desc: string | null;
+  type: string | null;
+  appID: string | null;
+  fixedOffs: string | null;
+  securityEnabled: string | null;
+}
 
 export function getGSE(element: Element): Element | null | undefined {
   const cbName = element.getAttribute('name');
@@ -47,18 +55,13 @@ export function getGSE(element: Element): Element | null | undefined {
     );
 }
 
-export function renderGseAttributes(
-  name: string | null,
-  desc: string | null,
-  type: string | null,
-  appID: string | null,
-  fixedOffs: string | null,
-  securityEnabled: string | null
+export function renderGseControlAttributes(
+  content: ContentOptions
 ): TemplateResult[] {
   return [
     html`<wizard-textfield
       label="name"
-      .maybeValue=${name}
+      .maybeValue=${content.name}
       helper="${translate('scl.name')}"
       required
       validationMessage="${translate('textfield.required')}"
@@ -68,13 +71,13 @@ export function renderGseAttributes(
     ></wizard-textfield>`,
     html`<wizard-textfield
       label="desc"
-      .maybeValue=${desc}
+      .maybeValue=${content.desc}
       nullable
       helper="${translate('scl.desc')}"
     ></wizard-textfield>`,
     html`<wizard-select
       label="type"
-      .maybeValue=${type}
+      .maybeValue=${content.type}
       helper="${translate('scl.type')}"
       nullable
       required
@@ -84,20 +87,20 @@ export function renderGseAttributes(
     >`,
     html`<wizard-textfield
       label="appID"
-      .maybeValue=${appID}
+      .maybeValue=${content.appID}
       helper="${translate('scl.id')}"
       required
       validationMessage="${translate('textfield.nonempty')}"
     ></wizard-textfield>`,
     html`<wizard-checkbox
       label="fixedOffs"
-      .maybeValue=${fixedOffs}
+      .maybeValue=${content.fixedOffs}
       nullable
       helper="${translate('scl.fixedOffs')}"
     ></wizard-checkbox>`,
     html`<wizard-select
       label="securityEnabled"
-      .maybeValue=${securityEnabled}
+      .maybeValue=${content.securityEnabled}
       nullable
       required
       helper="${translate('scl.securityEnable')}"
@@ -267,14 +270,14 @@ export function editGseControlWizard(element: Element): Wizard {
       },
       menuActions,
       content: [
-        ...renderGseAttributes(
+        ...renderGseControlAttributes({
           name,
           desc,
           type,
           appID,
           fixedOffs,
-          securityEnabled
-        ),
+          securityEnabled,
+        }),
       ],
     },
   ];

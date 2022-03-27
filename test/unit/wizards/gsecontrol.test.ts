@@ -16,7 +16,7 @@ import {
 import {
   editGseControlWizard,
   removeGseControlAction,
-  renderGseAttributes,
+  renderGseControlAttributes,
   selectGseControlWizard,
   updateGseControlAction,
 } from '../../../src/wizards/gsecontrol.js';
@@ -51,14 +51,14 @@ describe('gsecontrol wizards', () => {
       const wizard = [
         {
           title: 'title',
-          content: renderGseAttributes(
-            'GSEcontrol',
-            null,
-            'GOOSE',
-            'myIED/myAP/myLD/myLN0/myGSE',
-            null,
-            null
-          ),
+          content: renderGseControlAttributes({
+            name: 'GSEcontrol',
+            desc: null,
+            type: 'GOOSE',
+            appID: 'myIED/myAP/myLD/myLN0/myGSE',
+            fixedOffs: null,
+            securityEnabled: null,
+          }),
         },
       ];
       element.workflow.push(() => wizard);
@@ -226,14 +226,14 @@ describe('gsecontrol wizards', () => {
       wizard = [
         {
           title: 'title',
-          content: renderGseAttributes(
-            'myCbName',
-            null,
-            'GOOSE',
-            'myAPP/ID',
-            null,
-            null
-          ),
+          content: renderGseControlAttributes({
+            name: 'myCbName',
+            desc: null,
+            type: 'GOOSE',
+            appID: 'myAPP/ID',
+            fixedOffs: null,
+            securityEnabled: null,
+          }),
         },
       ];
       element.workflow.push(() => wizard);
