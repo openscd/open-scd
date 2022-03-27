@@ -132,13 +132,14 @@ describe('Cleanup: Control Blocks Container', () => {
         .querySelector('mwc-checkbox')!;
       await checkbox.click();
       await element._cleanupList?.layout();
+      
       await element._cleanButton.click();
+
       // the correct number of LogControls should remain
-      const logControlTotalCheck =
-        doc.querySelectorAll('LogControl').length === 1;
-      const logControlCheck =
-        doc.querySelectorAll('LogControl[name="LogNP"]').length === 0;
-      expect(logControlCheck && logControlTotalCheck).to.equal(true);
+      expect(doc.querySelectorAll('LogControl')).to.have.length(1);
+      expect(doc.querySelectorAll('LogControl[name="LogNP"]')).to.have.length(
+        0
+      );
     });
 
     it('correctly removes all GSEControl entries and Address entries from the SCL file', async () => {
@@ -151,23 +152,19 @@ describe('Cleanup: Control Blocks Container', () => {
         .querySelector('mwc-checkbox')!;
       await checkbox.click();
       await element._cleanupList?.layout();
+
       await element._cleanButton.click();
-      // the correct number of GSEControls should remain
-      const GSEControlTotalCheck =
-        doc.querySelectorAll('GSEControl').length === 2;
-      const GSEControlCheck =
+
+      // the correct number of GSEControl should remain
+      expect(doc.querySelectorAll('GSEControl')).to.have.lengthOf(2);
+      expect(
         doc.querySelectorAll(
           'GSEControl[name="GCB_NP"], GSEControl[name="GCB2_NP"]'
-        ).length === 0;
-      const GSEAddressCheck =
-        doc.querySelectorAll('GSE[cbName="GCB_NP"]').length === 0;
-      const GSEAddressCheckTotal = doc.querySelectorAll('GSE').length === 1;
-      expect(
-        GSEControlCheck &&
-          GSEControlTotalCheck &&
-          GSEAddressCheck &&
-          GSEAddressCheckTotal
-      ).to.equal(true);
+        )
+      ).to.have.lengthOf(0);
+      // Addresses removed
+      expect(doc.querySelectorAll('GSE[cbName="GCB_NP"]')).to.have.lengthOf(0);
+      expect(doc.querySelectorAll('GSE')).to.have.lengthOf(1);
     });
 
     it('correctly removes all GSEControl entries but not Address entries if it is unchecked', async () => {
@@ -180,25 +177,22 @@ describe('Cleanup: Control Blocks Container', () => {
         .querySelector('mwc-checkbox')!;
       await checkbox.click();
       await element._cleanupList?.layout();
-      await element._cleanupAddressCheckbox?.click();
+
+      element._cleanupAddressCheckbox!.checked = false;
+      await element._cleanupAddressCheckbox!.requestUpdate();
+
       await element._cleanButton.click();
-      // the correct number of GSEControls should remain
-      const GSEControlTotalCheck =
-        doc.querySelectorAll('GSEControl').length === 2;
-      const GSEControlCheck =
+
+      // the correct number of GSEControl should remain
+      expect(doc.querySelectorAll('GSEControl')).to.have.lengthOf(2);
+      expect(
         doc.querySelectorAll(
           'GSEControl[name="GCB_NP"], GSEControl[name="GCB2_NP"]'
-        ).length === 0;
-      // Address entries should NOT be changed
-      const GSEAddressCheck =
-        doc.querySelectorAll('GSE[cbName="GCB_NP"]').length === 0;
-      const GSEAddressTotalCheck = doc.querySelectorAll('GSE').length === 1;
-      expect(
-        GSEControlCheck &&
-          GSEControlTotalCheck &&
-          GSEAddressCheck &&
-          GSEAddressTotalCheck
-      ).to.equal(true);
+        )
+      ).to.have.lengthOf(0);
+      // Addresses unchanged
+      expect(doc.querySelectorAll('GSE[cbName="GCB_NP"]')).to.have.lengthOf(1);
+      expect(doc.querySelectorAll('GSE')).to.have.lengthOf(2);
     });
 
     it('correctly removes all SampledValueControl and Address entries from the SCL file', async () => {
@@ -211,22 +205,19 @@ describe('Cleanup: Control Blocks Container', () => {
         .querySelector('mwc-checkbox')!;
       await checkbox.click();
       await element._cleanupList?.layout();
+
       await element._cleanButton.click();
+
       // the correct number of SampledValueControls should remain
-      const SVControlTotalCheck =
-        doc.querySelectorAll('SampledValueControl').length === 1;
-      const SVControlCheck =
-        doc.querySelectorAll('SampledValueControl[name="MSVCB01_A"]').length ===
-        0;
-      const SVAddressCheck =
-        doc.querySelectorAll('SMV[cbName="MSVCB01_A"]').length === 0;
-      const SVAddressTotalCheck = doc.querySelectorAll('SMV').length === 1;
+      expect(doc.querySelectorAll('SampledValueControl')).to.have.lengthOf(1);
       expect(
-        SVControlTotalCheck &&
-          SVControlCheck &&
-          SVAddressCheck &&
-          SVAddressTotalCheck
-      ).to.equal(true);
+        doc.querySelectorAll('SampledValueControl[name="MSVCB01_A"]')
+      ).to.have.lengthOf(0);
+      // Addresses removed
+      expect(doc.querySelectorAll('SMV[cbName="MSVCB01_A"]')).to.have.lengthOf(
+        0
+      );
+      expect(doc.querySelectorAll('SMV')).to.have.lengthOf(1);
     });
 
     it('correctly removes all SampledValueControl and Address entries from the SCL file but not Address entries if it is unchecked', async () => {
@@ -239,32 +230,22 @@ describe('Cleanup: Control Blocks Container', () => {
         .querySelector('mwc-checkbox')!;
       await checkbox.click();
       await element._cleanupList?.layout();
-      await element._cleanupAddressCheckbox?.click();
-      // QUESTION: OK, that should work
-      // But it didn't Does this help? Nope.
-      await element._cleanupAddressCheckbox?.updateComplete;
-      // What about being old fashioned
-      await new Promise(resolve => setTimeout(resolve, 1800)); // await magic
-      // Nope
-      debugger
-        await element._cleanButton.click();
+
+      element._cleanupAddressCheckbox!.checked = false;
+      await element._cleanupAddressCheckbox!.requestUpdate();
+
+      await element._cleanButton.click();
+
       // the correct number of SampledValueControls should remain
-      const SVControlTotalCheck =
-        doc.querySelectorAll('SampledValueControl').length === 1;
-      const SVControlCheck =
-        doc.querySelectorAll('SampledValueControl[name="MSVCB01_A"]').length ===
-        0;
-      // Address entries should NOT be changed
-      const SVAddressCheck =
-        doc.querySelectorAll('SMV[cbName="MSVCB01_A"]').length === 1;
-      const SVAddressTotalCheck = doc.querySelectorAll('SMV').length === 2;
-      debugger;
+      expect(doc.querySelectorAll('SampledValueControl')).to.have.lengthOf(1);
       expect(
-        SVControlTotalCheck &&
-          SVControlCheck &&
-          SVAddressCheck &&
-          SVAddressTotalCheck
-      ).to.equal(true);
+        doc.querySelectorAll('SampledValueControl[name="MSVCB01_A"]')
+      ).to.have.lengthOf(0);
+      // Addresses unchanged
+      expect(doc.querySelectorAll('SMV[cbName="MSVCB01_A"]')).to.have.lengthOf(
+        1
+      );
+      expect(doc.querySelectorAll('SMV')).to.have.lengthOf(2);
     });
   });
 });

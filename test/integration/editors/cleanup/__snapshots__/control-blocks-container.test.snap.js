@@ -152,7 +152,7 @@ snapshots["Cleanup: Control Blocks Container Unreferenced Control Blocks looks l
         </span>
         <span slot="secondary">
           GSEControl - IED1
-        (DummyManufactorer)
+        (DummyManufacturer)
         - DummyIED
         </span>
         <mwc-icon slot="graphic">
@@ -189,7 +189,7 @@ snapshots["Cleanup: Control Blocks Container Unreferenced Control Blocks looks l
         </span>
         <span slot="secondary">
           GSEControl - IED1
-        (DummyManufactorer)
+        (DummyManufacturer)
         - DummyIED
         </span>
         <mwc-icon slot="graphic">
@@ -228,7 +228,7 @@ snapshots["Cleanup: Control Blocks Container Unreferenced Control Blocks looks l
         </span>
         <span slot="secondary">
           LogControl - IED1
-        (DummyManufactorer)
+        (DummyManufacturer)
         - DummyIED
         </span>
         <mwc-icon slot="graphic">
@@ -266,7 +266,7 @@ snapshots["Cleanup: Control Blocks Container Unreferenced Control Blocks looks l
         </span>
         <span slot="secondary">
           ReportControl - IED2
-        (DummyManufactorer)
+        (DummyManufacturer)
         - DummyIED
         </span>
         <mwc-icon slot="graphic">
@@ -303,7 +303,7 @@ snapshots["Cleanup: Control Blocks Container Unreferenced Control Blocks looks l
         </span>
         <span slot="secondary">
           SampledValueControl - IED3
-        (DummyManufactorer)
+        (DummyManufacturer)
         - DummyIED
         </span>
         <mwc-icon slot="graphic">

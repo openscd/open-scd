@@ -18,7 +18,6 @@ import { Checkbox } from '@material/mwc-checkbox';
 import '@material/mwc-icon';
 import '@material/mwc-icon-button-toggle';
 import { List, MWCListIndex } from '@material/mwc-list';
-import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 import '@material/mwc-list/mwc-check-list-item.js';
 import '@material/mwc-checkbox';
 import '../../filtered-list.js';
@@ -91,7 +90,7 @@ export class CleanupControlBlocks extends LitElement {
   @query('.cleanupList')
   _cleanupList: List | undefined;
   @queryAll('mwc-check-list-item.cleanupListItem')
-  _cleanupListItem: ListItem | undefined;
+  _cleanupListItems: NodeList | undefined;
   @query('.cleanupAddressCheckbox')
   _cleanupAddressCheckbox: Checkbox | undefined;
   @query('.tGSEControlFilter')

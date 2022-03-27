@@ -6,7 +6,9 @@ import { Wizarding } from '../../../../src/Wizarding.js';
 
 import { CleanupControlBlocks } from '../../../../src/editors/cleanup/control-blocks-container.js';
 
-describe('Cleanup: Datasets Container', () => {
+import { ListItem } from '@material/mwc-list/mwc-list-item.js';
+
+describe('Cleanup: Control Blocks Container', () => {
   customElements.define(
     'cleanup-plugin-controlblocks',
     Wizarding(Editing(CleanupControlBlocks))
@@ -25,7 +27,7 @@ describe('Cleanup: Datasets Container', () => {
     });
   });
 
-  describe('Unreferenced DataSets', () => {
+  describe('Unreferenced Control Blocks', () => {
     let doc: Document;
     beforeEach(async () => {
       doc = await fetch('/test/testfiles/cleanup.scd')
@@ -37,47 +39,51 @@ describe('Cleanup: Datasets Container', () => {
       await element.updateComplete;
     });
 
-    it('creates correct number of checkboxes for the expected unreferenced datasets', () => {
-      expect(Array.from(element._unreferencedControls!).length).to.equal(2);
+    it('creates correct number of checkboxes for the expected unreferenced control blocks', () => {
+      expect(Array.from(element._unreferencedControls!).length).to.equal(5);
     });
 
     it('has the remove button disabled by default', () => {
-      expect(element._cleanUnreferencedControlsButton).to.have.property('disabled', true);
+      expect(element._cleanButton).to.have.property('disabled', true);
     });
 
-    // it('has the remove button enabled after selecting an item', async () => {
-    //   const firstCheckListItem: HTMLElement = element._dataSetItems![0];
-    //   await firstCheckListItem.click();
-    //   expect(element._cleanupButton).to.have.property('disabled', false);
-    // });
+    it('has the remove button enabled after selecting an item', async () => {
+      const firstCheckListItem = element._cleanupListItems!.item(0);
+      await (<ListItem>firstCheckListItem!).click();
+      await element._cleanupList!.layout();
+      expect(element._cleanButton).to.have.property('disabled', false);
+    });
 
-    // it('after selecting and deselecting an item the remove button is disabled', async () => {
-    //   const firstCheckListItem: HTMLElement = element._dataSetItems![0];
-    //   await firstCheckListItem.click();
-    //   await firstCheckListItem.click();
-    //   expect(element._cleanupButton).to.have.property('disabled', true);
-    // });
+    it('after selecting and deselecting an item the remove button is disabled', async () => {
+      const firstCheckListItem = element._cleanupListItems!.item(0);
+      await (<ListItem>firstCheckListItem!).click();
+      await element._cleanupList!.layout();
+      await (<ListItem>firstCheckListItem!).click();
+      await element._cleanupList!.layout();
+      expect(element._cleanButton).to.have.property('disabled', true);
+    });
 
-    // it('after clicking select all the button is not disabled', async () => {
-    //   // TODO: What is a more effective way to select this?
-    //   const checkbox = element
-    //     .shadowRoot!.querySelector('.dataSetList')!
-    //     .shadowRoot!.querySelector('.checkall')!
-    //     .querySelector('mwc-checkbox')!;
-    //   await checkbox.click();
-    //   await element._dataSetList?.layout();
-    //   expect(element._cleanupButton).to.have.property('disabled', false);
-    // });
+    it('after clicking select all the button is not disabled', async () => {
+      const checkbox = element
+        .shadowRoot!.querySelector('.cleanupList')!
+        .shadowRoot!.querySelector('.checkall')!
+        .querySelector('mwc-checkbox')!;
+      await checkbox.click();
+      await element._cleanupList?.layout();
+      expect(element._cleanButton).to.have.property('disabled', false);
+    });
 
-    // it('after clicking select all twice the button is disabled', async () => {
-    //   const checkbox = element
-    //     .shadowRoot!.querySelector('.dataSetList')!
-    //     .shadowRoot!.querySelector('.checkall')!
-    //     .querySelector('mwc-checkbox')!;
-    //   await checkbox.click();
-    //   await checkbox.click();
-    //   await element._dataSetList?.layout();
-    //   expect(element._cleanupButton).to.have.property('disabled', true);
-    // });
+    it('after clicking select all twice the button is disabled', async () => {
+      const checkbox = element
+        .shadowRoot!.querySelector('.cleanupList')!
+        .shadowRoot!.querySelector('.checkall')!
+        .querySelector('mwc-checkbox')!;
+      await checkbox.click();
+      await element._cleanupList?.layout();
+      await checkbox.click();
+      await element._cleanupList?.layout();
+      expect(element._cleanButton).to.have.property('disabled', true);
+    });
+
   });
 });
