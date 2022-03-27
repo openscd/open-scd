@@ -133,7 +133,7 @@ export class CleanupControlBlocks extends LitElement {
   }
 
   /**
-   * Create a button for filtering in the controlblock cleanup container.
+   * Create a button for filtering in the control block cleanup container.
    * @param controlType - SCL Control Type e.g. GSEControl.
    * @param initialState - boolean representing whether button is on or off.
    * @returns html for the icon button.
