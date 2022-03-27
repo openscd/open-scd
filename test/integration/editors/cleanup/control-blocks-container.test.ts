@@ -132,7 +132,7 @@ describe('Cleanup: Control Blocks Container', () => {
         .querySelector('mwc-checkbox')!;
       await checkbox.click();
       await element._cleanupList?.layout();
-      
+
       await element._cleanButton.click();
 
       // the correct number of LogControls should remain

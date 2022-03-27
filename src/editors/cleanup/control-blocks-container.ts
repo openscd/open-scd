@@ -100,8 +100,8 @@ export class CleanupControlBlocks extends LitElement {
   @query('.tLogControlFilter')
   _cleanupLogControlFilter!: Button;
   @query('.tReportControlFilter')
-  _cleanupReportControlFilter!: Button; 
-  
+  _cleanupReportControlFilter!: Button;
+
   /**
    * Clean datasets as requested by removing SCL elements specified by the user from the SCL file
    * @returns an actions array to support undo/redo
