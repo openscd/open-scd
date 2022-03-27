@@ -13,32 +13,30 @@ import {
   getValue,
   WizardInputElement,
 } from '../foundation.js';
-import {
-  pTypesGSESMV,
-  typeNullable,
-  typePattern,
-} from './foundation/p-types.js';
+import { typeNullable, typePattern } from './foundation/p-types.js';
 
-export function renderGseSmvAddress(parent: Element): TemplateResult[] {
-  const hasInstType = Array.from(parent.querySelectorAll('Address > P')).some(
-    pType => pType.getAttribute('xsi:type')
-  );
+interface ContentOptions {
+  hasInstType: boolean;
+  attributes: Record<string, string | null>;
+}
 
+export function contentGseWizard(content: ContentOptions): TemplateResult[] {
   return [
     html`<mwc-formfield
       label="${translate('connectedap.wizard.addschemainsttype')}"
     >
-      <mwc-checkbox id="instType" ?checked="${hasInstType}"></mwc-checkbox>
+      <mwc-checkbox
+        id="instType"
+        ?checked="${content.hasInstType}"
+      ></mwc-checkbox>
     </mwc-formfield>`,
-    html`${pTypesGSESMV.map(
-      ptype =>
+    html`${Object.entries(content.attributes).map(
+      ([key, value]) =>
         html`<wizard-textfield
-          label="${ptype}"
-          .maybeValue=${parent
-            .querySelector(`Address > P[type="${ptype}"]`)
-            ?.innerHTML.trim() ?? null}
-          ?nullable=${typeNullable[ptype]}
-          pattern="${ifDefined(typePattern[ptype])}"
+          label="${key}"
+          .maybeValue=${value}
+          ?nullable=${typeNullable[key]}
+          pattern="${ifDefined(typePattern[key])}"
           required
         ></wizard-textfield>`
     )}`,

@@ -14,7 +14,7 @@ import {
   WizardInputElement,
 } from '../../../src/foundation.js';
 import {
-  renderGseSmvAddress,
+  contentGseWizard,
   updateAddress,
 } from '../../../src/wizards/address.js';
 
@@ -34,7 +34,25 @@ describe('address', () => {
       const gse = doc.querySelector(
         'GSE[ldInst="CircuitBreaker_CB1"][cbName="GCB"]'
       )!;
-      const wizard = [{ title: 'title', content: renderGseSmvAddress(gse) }];
+
+      const hasInstType = Array.from(gse.querySelectorAll('Address > P')).some(
+        pType => pType.getAttribute('xsi:type')
+      );
+
+      const attributes: Record<string, string | null> = {};
+      ['MAC-Address', 'APPID', 'VLAN-ID', 'VLAN-PRIORITY'].forEach(key => {
+        if (!attributes[key])
+          attributes[key] =
+            gse.querySelector(`Address > P[type="${key}"]`)?.innerHTML.trim() ??
+            null;
+      });
+
+      const wizard = [
+        {
+          title: 'title',
+          content: contentGseWizard({ hasInstType, attributes }),
+        },
+      ];
 
       element.workflow.push(() => wizard);
       await element.requestUpdate();
@@ -55,10 +73,23 @@ describe('address', () => {
           'GSE[ldInst="CircuitBreaker_CB1"][cbName="GCB"]'
         )!;
 
+        const hasInstType = Array.from(
+          gse.querySelectorAll('Address > P')
+        ).some(pType => pType.getAttribute('xsi:type'));
+
+        const attributes: Record<string, string | null> = {};
+        ['MAC-Address', 'APPID', 'VLAN-ID', 'VLAN-PRIORITY'].forEach(key => {
+          if (!attributes[key])
+            attributes[key] =
+              gse
+                .querySelector(`Address > P[type="${key}"]`)
+                ?.innerHTML.trim() ?? null;
+        });
+
         wizard = [
           {
             title: 'asdas',
-            content: renderGseSmvAddress(gse),
+            content: contentGseWizard({ hasInstType, attributes }),
           },
         ];
         element.workflow.push(() => wizard);
@@ -138,10 +169,23 @@ describe('address', () => {
           'GSE[ldInst="CircuitBreaker_CB1"][cbName="GCB2"]'
         )!;
 
+        const hasInstType = Array.from(
+          gse.querySelectorAll('Address > P')
+        ).some(pType => pType.getAttribute('xsi:type'));
+
+        const attributes: Record<string, string | null> = {};
+        ['MAC-Address', 'APPID', 'VLAN-ID', 'VLAN-PRIORITY'].forEach(key => {
+          if (!attributes[key])
+            attributes[key] =
+              gse
+                .querySelector(`Address > P[type="${key}"]`)
+                ?.innerHTML.trim() ?? null;
+        });
+
         wizard = [
           {
             title: 'asdas',
-            content: renderGseSmvAddress(gse),
+            content: contentGseWizard({ hasInstType, attributes }),
           },
         ];
         element.workflow.push(() => wizard);

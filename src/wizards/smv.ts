@@ -10,7 +10,7 @@ import {
   WizardActor,
   WizardInputElement,
 } from '../foundation.js';
-import { renderGseSmvAddress, updateAddress } from './address.js';
+import { contentGseWizard, updateAddress } from './address.js';
 
 export function updateSmvAction(element: Element): WizardActor {
   return (inputs: WizardInputElement[], wizard: Element): WizardAction[] => {
@@ -36,6 +36,18 @@ export function updateSmvAction(element: Element): WizardActor {
 }
 
 export function editSMvWizard(element: Element): Wizard {
+  const hasInstType = Array.from(element.querySelectorAll('Address > P')).some(
+    pType => pType.getAttribute('xsi:type')
+  );
+
+  const attributes: Record<string, string | null> = {};
+
+  ['MAC-Address', 'APPID', 'VLAN-ID', 'VLAN-PRIORITY'].forEach(key => {
+    if (!attributes[key])
+      attributes[key] =
+        element.querySelector(`Address > P[type="${key}"]`)?.innerHTML.trim() ??
+        null;
+  });
   return [
     {
       title: get('wizard.title.edit', { tagName: element.tagName }),
@@ -45,7 +57,7 @@ export function editSMvWizard(element: Element): Wizard {
         icon: 'edit',
         action: updateSmvAction(element),
       },
-      content: [...renderGseSmvAddress(element)],
+      content: [...contentGseWizard({ hasInstType, attributes })],
     },
   ];
 }
