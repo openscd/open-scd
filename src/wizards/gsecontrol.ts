@@ -55,7 +55,7 @@ export function getGSE(element: Element): Element | null | undefined {
     );
 }
 
-export function renderGseControlAttributes(
+export function contentGseControlWizard(
   content: ContentOptions
 ): TemplateResult[] {
   return [
@@ -270,7 +270,7 @@ export function editGseControlWizard(element: Element): Wizard {
       },
       menuActions,
       content: [
-        ...renderGseControlAttributes({
+        ...contentGseControlWizard({
           name,
           desc,
           type,

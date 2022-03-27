@@ -16,7 +16,7 @@ import {
 import {
   editGseControlWizard,
   removeGseControlAction,
-  renderGseControlAttributes,
+  contentGseControlWizard,
   selectGseControlWizard,
   updateGseControlAction,
 } from '../../../src/wizards/gsecontrol.js';
@@ -51,7 +51,7 @@ describe('gsecontrol wizards', () => {
       const wizard = [
         {
           title: 'title',
-          content: renderGseControlAttributes({
+          content: contentGseControlWizard({
             name: 'GSEcontrol',
             desc: null,
             type: 'GOOSE',
@@ -226,7 +226,7 @@ describe('gsecontrol wizards', () => {
       wizard = [
         {
           title: 'title',
-          content: renderGseControlAttributes({
+          content: contentGseControlWizard({
             name: 'myCbName',
             desc: null,
             type: 'GOOSE',
