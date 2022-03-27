@@ -4,7 +4,7 @@ import { html, fixture, expect } from '@open-wc/testing';
 import { Editing } from '../../../../src/Editing.js';
 import { Wizarding } from '../../../../src/Wizarding.js';
 
-import { CleanupDatasets } from '../../../../src/editors/cleanup/datasets.js';
+import { CleanupDatasets } from '../../../../src/editors/cleanup/datasets-container.js';
 
 describe('Cleanup: Datasets Container', () => {
   customElements.define(
@@ -32,7 +32,7 @@ describe('Cleanup: Datasets Container', () => {
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       element = await fixture(
-        html`<cleanup-plugin .doc="${doc}"></cleanup-plugin>`
+        html`<cleanup-plugin-datasets .doc="${doc}"></cleanup-plugin-datasets>`
       );
       await element.updateComplete;
     });
@@ -40,7 +40,7 @@ describe('Cleanup: Datasets Container', () => {
     it('creates two Delete Actions', async () => {
       // select all items and update list
       const checkbox = element
-        .shadowRoot!.querySelector('.cleanupUnreferencedDataSetsList')!
+        .shadowRoot!.querySelector('.dataSetList')!
         .shadowRoot!.querySelector('mwc-formfield')!
         .querySelector('mwc-checkbox')!;
       await checkbox.click();
@@ -55,12 +55,12 @@ describe('Cleanup: Datasets Container', () => {
     it('correctly removes the datasets from the SCL file', async () => {
       // select all items and update list
       const checkbox = element
-        .shadowRoot!.querySelector('.cleanupUnreferencedDataSetsList')!
+        .shadowRoot!.querySelector('.dataSetList')!
         .shadowRoot!.querySelector('mwc-formfield')!
         .querySelector('mwc-checkbox')!;
       await checkbox.click();
       element._dataSetList?.layout();
-      await element._dataSetList!.click();
+      await element._cleanupButton!.click();
       // the correct number of DataSets should remain
       const remainingDataSetCountCheck =
         doc.querySelectorAll(

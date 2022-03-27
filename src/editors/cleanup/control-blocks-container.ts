@@ -75,32 +75,34 @@ function getCommAddress(cb: Element): Element | null | undefined {
 
 /** An editor component for cleaning SCL Control Blocks. */
 @customElement('cleanup-control-blocks')
-export default class Cleanup extends LitElement {
+export class CleanupControlBlocks extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property()
   doc!: XMLDocument;
 
   @property()
   disableControlClean = false;
-
   @property()
-  unreferencedControls: Element[] = [];
-
+  _unreferencedControls: Element[] = [];
   @property()
-  selectedControlItems: MWCListIndex | [] = [];
-
+  _selectedControlItems: MWCListIndex | [] = [];
   @query('.deleteButton')
-  _cleanUnreferencedControlsButton!: Button;
-
+  _cleanButton!: Button;
   @query('.cleanupList')
   _cleanupList: List | undefined;
-
   @queryAll('mwc-check-list-item.cleanupListItem')
   _cleanupListItem: ListItem | undefined;
-
   @query('.cleanupAddressCheckbox')
-  cleanupAddressCheckbox: Checkbox | undefined;
-
+  _cleanupAddressCheckbox: Checkbox | undefined;
+  @query('.tGSEControlFilter')
+  _cleanupGSEControlFilter!: Button;
+  @query('.tSampledValueControlFilter')
+  _cleanupSampledValueControlFilter!: Button;
+  @query('.tLogControlFilter')
+  _cleanupLogControlFilter!: Button;
+  @query('.tReportControlFilter')
+  _cleanupReportControlFilter!: Button; 
+  
   /**
    * Clean datasets as requested by removing SCL elements specified by the user from the SCL file
    * @returns an actions array to support undo/redo
@@ -226,16 +228,16 @@ export default class Cleanup extends LitElement {
       class="deleteButton"
       label="${translate('cleanup.unreferencedControls.deleteButton')} (${(<
         Set<number>
-      >this.selectedControlItems).size || '0'})"
-      ?disabled=${(<Set<number>>this.selectedControlItems).size === 0 ||
-      (Array.isArray(this.selectedControlItems) &&
-        !this.selectedControlItems.length)}
+      >this._selectedControlItems).size || '0'})"
+      ?disabled=${(<Set<number>>this._selectedControlItems).size === 0 ||
+      (Array.isArray(this._selectedControlItems) &&
+        !this._selectedControlItems.length)}
       @click=${(e: MouseEvent) => {
         const cleanItems = Array.from(
-          (<Set<number>>this.selectedControlItems).values()
-        ).map(index => this.unreferencedControls[index]);
+          (<Set<number>>this._selectedControlItems).values()
+        ).map(index => this._unreferencedControls[index]);
         let addressItems: Delete[] = [];
-        if (this.cleanupAddressCheckbox!.checked === true) {
+        if (this._cleanupAddressCheckbox!.checked === true) {
           // TODO: To be truly complete other elements should also be checked, possibly
           // including: tServiceSettings, tReportSettings, tGSESettings, tSMVSettings
           // and ExtRef elements in the Inputs section
@@ -257,7 +259,7 @@ export default class Cleanup extends LitElement {
    */
   async firstUpdated(): Promise<void> {
     this._cleanupList?.addEventListener('selected', () => {
-      this.selectedControlItems = this._cleanupList!.index;
+      this._selectedControlItems = this._cleanupList!.index;
     });
     this.toggleHiddenClass('tReportControl');
   }
@@ -282,7 +284,7 @@ export default class Cleanup extends LitElement {
         if (parent && (!name || !isReferenced)) unreferencedCBs.push(cb);
       });
 
-    this.unreferencedControls = unreferencedCBs.sort((a, b) => {
+    this._unreferencedControls = unreferencedCBs.sort((a, b) => {
       // sorting using the identity ensures sort order includes IED
       const aId = identity(a);
       const bId = identity(b);
@@ -327,9 +329,9 @@ export default class Cleanup extends LitElement {
           <mwc-checkbox
             checked
             class="cleanupAddressCheckbox"
-            ?disabled=${(<Set<number>>this.selectedControlItems).size === 0 ||
-            (Array.isArray(this.selectedControlItems) &&
-              !this.selectedControlItems.length)}
+            ?disabled=${(<Set<number>>this._selectedControlItems).size === 0 ||
+            (Array.isArray(this._selectedControlItems) &&
+              !this._selectedControlItems.length)}
           ></mwc-checkbox
         ></mwc-formfield>
       </footer>

@@ -4,8 +4,8 @@ import { css, html, LitElement, property, TemplateResult } from 'lit-element';
 
 import { styles } from './templates/foundation.js';
 
-import './cleanup/datasets.js';
-import './cleanup/control-blocks.js';
+import './cleanup/datasets-container.js';
+import './cleanup/control-blocks-container.js';
 
 /** An editor [[`plugin`]] for cleaning SCL references and definitions. */
 export default class Cleanup extends LitElement {
