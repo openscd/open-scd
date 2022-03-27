@@ -46,8 +46,6 @@ export default class Cleanup extends LitElement {
 
     .cleanup {
       display: flex;
-      /* See: https://css-tricks.com/responsive-layouts-fewer-media-queries/ */
-      flex: clamp(100%/3 + 0.1%, (400px - 100hw) * 1000, 100%);
       flex-wrap: wrap;
       gap: 20px;
       padding: 20px;
