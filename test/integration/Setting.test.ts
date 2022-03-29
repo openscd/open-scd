@@ -1,6 +1,7 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
 import '../../src/open-scd.js';
+
 import { OpenSCD } from '../../src/open-scd.js';
 import { newLoadNsdocEvent } from "../../src/Setting.js";
 

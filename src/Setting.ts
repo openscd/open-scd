@@ -12,7 +12,7 @@ import { Dialog } from '@material/mwc-dialog';
 import { Select } from '@material/mwc-select';
 import { Switch } from '@material/mwc-switch';
 
-import {ifImplemented, LitElementConstructor, Mixin, newLogEvent, OpenDocEvent} from './foundation.js';
+import { ifImplemented, LitElementConstructor, Mixin, newLogEvent } from './foundation.js';
 import { Language, languages, loader } from './translations/loader.js';
 
 import './WizardDivider.js';
