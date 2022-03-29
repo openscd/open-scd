@@ -1,7 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["open-scd looks like its snapshot"] =
+snapshots["Setting upload .nsdoc file using event and looks like latest snapshot"] =
 `<mwc-drawer
   class="mdc-theme--surface"
   hasheader=""
@@ -48,23 +48,6 @@ snapshots["open-scd looks like its snapshot"] =
       </mwc-icon>
       <span>
         New project
-      </span>
-      <mwc-linear-progress indeterminate="">
-      </mwc-linear-progress>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="top"
-      graphic="icon"
-      iconid="input"
-      mwc-list-item=""
-      tabindex="-1"
-    >
-      <mwc-icon slot="graphic">
-        input
-      </mwc-icon>
-      <span>
-        Project from CIM
       </span>
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
@@ -124,24 +107,6 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         Redo
       </span>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="true"
-      class="validator"
-      disabled=""
-      graphic="icon"
-      iconid="rule_folder"
-      mwc-list-item=""
-      tabindex="-1"
-    >
-      <mwc-icon slot="graphic">
-        rule_folder
-      </mwc-icon>
-      <span>
-        Validate using OCL
-      </span>
-      <mwc-linear-progress indeterminate="">
-      </mwc-linear-progress>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="true"
@@ -287,24 +252,6 @@ snapshots["open-scd looks like its snapshot"] =
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
     </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="true"
-      class="middle"
-      disabled=""
-      graphic="icon"
-      iconid="dashboard"
-      mwc-list-item=""
-      tabindex="-1"
-    >
-      <mwc-icon slot="graphic">
-        dashboard
-      </mwc-icon>
-      <span>
-        Auto Align SLD
-      </span>
-      <mwc-linear-progress indeterminate="">
-      </mwc-linear-progress>
-    </mwc-list-item>
     <li
       divider=""
       padded=""
@@ -325,23 +272,6 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         Settings
       </span>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="middle"
-      graphic="icon"
-      iconid="settings"
-      mwc-list-item=""
-      tabindex="-1"
-    >
-      <mwc-icon slot="graphic">
-        settings
-      </mwc-icon>
-      <span>
-        CoMPAS Settings
-      </span>
-      <mwc-linear-progress indeterminate="">
-      </mwc-linear-progress>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
@@ -437,14 +367,6 @@ snapshots["open-scd looks like its snapshot"] =
   >
     <div class="landing_label">
       New project
-    </div>
-  </mwc-icon-button>
-  <mwc-icon-button
-    class="landing_icon"
-    icon="input"
-  >
-    <div class="landing_label">
-      Project from CIM
     </div>
   </mwc-icon-button>
 </div>
@@ -659,7 +581,6 @@ snapshots["open-scd looks like its snapshot"] =
       hasmeta=""
       left=""
       mwc-list-item=""
-      selected=""
       tabindex="-1"
       value="/src/editors/IED.js"
     >
@@ -675,7 +596,6 @@ snapshots["open-scd looks like its snapshot"] =
       hasmeta=""
       left=""
       mwc-list-item=""
-      selected=""
       tabindex="-1"
       value="/src/editors/SingleLineDiagram.js"
     >
@@ -755,22 +675,6 @@ snapshots["open-scd looks like its snapshot"] =
       hasmeta=""
       left=""
       mwc-list-item=""
-      selected=""
-      tabindex="-1"
-      value="/src/compas-editors/CompasVersions.js"
-    >
-      <mwc-icon slot="meta">
-        copy_all
-      </mwc-icon>
-      CoMPAS Versions
-    </mwc-check-list-item>
-    <mwc-check-list-item
-      aria-disabled="false"
-      class="official"
-      graphic="control"
-      hasmeta=""
-      left=""
-      mwc-list-item=""
       tabindex="-1"
       value="/src/editors/Cleanup.js"
     >
@@ -811,7 +715,7 @@ snapshots["open-scd looks like its snapshot"] =
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/menu/CompasOpen.js"
+      value="/src/menu/OpenProject.js"
     >
       <mwc-icon slot="meta">
         folder_open
@@ -843,23 +747,7 @@ snapshots["open-scd looks like its snapshot"] =
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/menu/CompasCimMapping.js"
-    >
-      <mwc-icon slot="meta">
-        input
-      </mwc-icon>
-      Project from CIM
-    </mwc-check-list-item>
-    <mwc-check-list-item
-      aria-disabled="false"
-      class="official"
-      graphic="control"
-      hasmeta=""
-      left=""
-      mwc-list-item=""
-      selected=""
-      tabindex="-1"
-      value="/src/menu/CompasSave.js"
+      value="/src/menu/SaveProject.js"
     >
       <mwc-icon slot="meta">
         save
@@ -872,22 +760,6 @@ snapshots["open-scd looks like its snapshot"] =
       role="separator"
     >
     </li>
-    <mwc-check-list-item
-      aria-disabled="false"
-      class="official"
-      graphic="control"
-      hasmeta=""
-      left=""
-      mwc-list-item=""
-      selected=""
-      tabindex="-1"
-      value="/src/validators/ValidateSchemaWithCompas.js"
-    >
-      <mwc-icon slot="meta">
-        rule_folder
-      </mwc-icon>
-      Validate using OCL
-    </mwc-check-list-item>
     <mwc-check-list-item
       aria-disabled="false"
       class="official"
@@ -935,7 +807,7 @@ snapshots["open-scd looks like its snapshot"] =
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/menu/CompasImportIEDs.js"
+      value="/src/menu/ImportIEDs.js"
     >
       <mwc-icon slot="meta">
         snippet_folder
@@ -997,7 +869,7 @@ snapshots["open-scd looks like its snapshot"] =
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/menu/CompasMerge.js"
+      value="/src/menu/Merge.js"
     >
       <mwc-icon slot="meta">
         merge_type
@@ -1013,43 +885,12 @@ snapshots["open-scd looks like its snapshot"] =
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/menu/CompasUpdateSubstation.js"
+      value="/src/menu/UpdateSubstation.js"
     >
       <mwc-icon slot="meta">
         merge_type
       </mwc-icon>
       Update Substation
-    </mwc-check-list-item>
-    <mwc-check-list-item
-      aria-disabled="false"
-      class="official"
-      graphic="control"
-      hasmeta=""
-      left=""
-      mwc-list-item=""
-      selected=""
-      tabindex="-1"
-      value="/src/menu/CompasAutoAlignment.js"
-    >
-      <mwc-icon slot="meta">
-        dashboard
-      </mwc-icon>
-      Auto Align SLD
-    </mwc-check-list-item>
-    <mwc-check-list-item
-      aria-disabled="false"
-      class="official"
-      graphic="control"
-      hasmeta=""
-      left=""
-      mwc-list-item=""
-      tabindex="-1"
-      value="/src/menu/LocamationVMU.js"
-    >
-      <mwc-icon slot="meta">
-        edit_note
-      </mwc-icon>
-      Locamation VMU
     </mwc-check-list-item>
     <li
       divider=""
@@ -1057,22 +898,6 @@ snapshots["open-scd looks like its snapshot"] =
       role="separator"
     >
     </li>
-    <mwc-check-list-item
-      aria-disabled="false"
-      class="official"
-      graphic="control"
-      hasmeta=""
-      left=""
-      mwc-list-item=""
-      selected=""
-      tabindex="-1"
-      value="/src/menu/CompasSettings.js"
-    >
-      <mwc-icon slot="meta">
-        settings
-      </mwc-icon>
-      CoMPAS Settings
-    </mwc-check-list-item>
     <mwc-check-list-item
       aria-disabled="false"
       class="official"
@@ -1262,6 +1087,7 @@ snapshots["open-scd looks like its snapshot"] =
 <mwc-dialog
   heading="Settings"
   id="settings"
+  open=""
 >
   <form>
     <mwc-select
@@ -1315,8 +1141,7 @@ snapshots["open-scd looks like its snapshot"] =
   </section>
   <mwc-list id="nsdocList">
     <mwc-list-item
-      aria-disabled="true"
-      disabled=""
+      aria-disabled="false"
       graphic="avatar"
       hasmeta=""
       id="IEC 61850-7-2"
@@ -1327,11 +1152,20 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         IEC 61850-7-2
       </span>
+      <span slot="secondary">
+        2007B3
+      </span>
       <mwc-icon
         slot="graphic"
-        style="color:red;"
+        style="color:green;"
       >
-        close
+        done
+      </mwc-icon>
+      <mwc-icon
+        id="deleteNsdocItem"
+        slot="meta"
+      >
+        delete
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1417,10 +1251,6 @@ snapshots["open-scd looks like its snapshot"] =
     Save
   </mwc-button>
 </mwc-dialog>
-<compas-session-expiring-dialog>
-</compas-session-expiring-dialog>
-<compas-session-expired-dialog>
-</compas-session-expired-dialog>
 `;
-/* end snapshot open-scd looks like its snapshot */
+/* end snapshot Setting upload .nsdoc file using event and looks like latest snapshot */
 
