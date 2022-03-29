@@ -1,7 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["open-scd looks like its snapshot"] = 
+snapshots["Setting upload .nsdoc file using event and looks like latest snapshot"] = 
 `<mwc-drawer
   class="mdc-theme--surface"
   hasheader=""
@@ -1087,6 +1087,7 @@ snapshots["open-scd looks like its snapshot"] =
 <mwc-dialog
   heading="Settings"
   id="settings"
+  open=""
 >
   <form>
     <mwc-select
@@ -1153,8 +1154,7 @@ snapshots["open-scd looks like its snapshot"] =
   </section>
   <mwc-list id="nsdocList">
     <mwc-list-item
-      aria-disabled="true"
-      disabled=""
+      aria-disabled="false"
       graphic="avatar"
       hasmeta=""
       id="IEC 61850-7-2"
@@ -1165,11 +1165,20 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         IEC 61850-7-2
       </span>
+      <span slot="secondary">
+        2007B3
+      </span>
       <mwc-icon
         slot="graphic"
-        style="color:red;"
+        style="color:green;"
       >
-        close
+        done
+      </mwc-icon>
+      <mwc-icon
+        id="deleteNsdocItem"
+        slot="meta"
+      >
+        delete
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1256,5 +1265,5 @@ snapshots["open-scd looks like its snapshot"] =
   </mwc-button>
 </mwc-dialog>
 `;
-/* end snapshot open-scd looks like its snapshot */
+/* end snapshot Setting upload .nsdoc file using event and looks like latest snapshot */
 

@@ -10,6 +10,8 @@ describe('open-scd', () => {
   let validSCL: string;
 
   beforeEach(async () => {
+    localStorage.clear();
+
     invalidSCL = await fetch('/test/testfiles/invalid2007B.scd').then(
       response => response.text()
     );
@@ -21,10 +23,7 @@ describe('open-scd', () => {
 
       <link href="public/google/fonts/roboto-v27.css" rel="stylesheet" />
       <link href="public/google/fonts/roboto-mono-v13.css" rel="stylesheet" />
-      <link
-        href="public/google/icons/material-icons-outlined.css"
-        rel="stylesheet"
-      />
+      <link href="public/google/icons/material-icons-outlined.css" rel="stylesheet" />
     `);
   });
 
