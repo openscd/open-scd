@@ -3,6 +3,7 @@ import { html, fixture, expect } from '@open-wc/testing';
 import '../../src/open-scd.js';
 import { newEmptySCD } from '../../src/schemas.js';
 import { OpenSCD } from '../../src/open-scd.js';
+import { cleanLocalStorageForNsdocFiles } from "../unit/foundation/nsdoc.test.js";
 
 describe('open-scd', () => {
   let element: OpenSCD;
@@ -10,6 +11,8 @@ describe('open-scd', () => {
   let validSCL: string;
 
   beforeEach(async () => {
+    cleanLocalStorageForNsdocFiles();
+
     invalidSCL = await fetch('/test/testfiles/invalid2007B.scd').then(
       response => response.text()
     );

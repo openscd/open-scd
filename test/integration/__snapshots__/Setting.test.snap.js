@@ -1182,7 +1182,8 @@ snapshots["Setting upload .nsdoc file using event and looks like latest snapshot
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
-      aria-disabled="false"
+      aria-disabled="true"
+      disabled=""
       graphic="avatar"
       hasmeta=""
       id="IEC 61850-7-3"
@@ -1193,24 +1194,16 @@ snapshots["Setting upload .nsdoc file using event and looks like latest snapshot
       <span>
         IEC 61850-7-3
       </span>
-      <span slot="secondary">
-        1010X1
-      </span>
       <mwc-icon
         slot="graphic"
-        style="color:green;"
+        style="color:red;"
       >
-        done
-      </mwc-icon>
-      <mwc-icon
-        id="deleteNsdocItem"
-        slot="meta"
-      >
-        delete
+        close
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
-      aria-disabled="false"
+      aria-disabled="true"
+      disabled=""
       graphic="avatar"
       hasmeta=""
       id="IEC 61850-7-4"
@@ -1221,24 +1214,16 @@ snapshots["Setting upload .nsdoc file using event and looks like latest snapshot
       <span>
         IEC 61850-7-4
       </span>
-      <span slot="secondary">
-        2007B3
-      </span>
       <mwc-icon
         slot="graphic"
-        style="color:green;"
+        style="color:red;"
       >
-        done
-      </mwc-icon>
-      <mwc-icon
-        id="deleteNsdocItem"
-        slot="meta"
-      >
-        delete
+        close
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
-      aria-disabled="false"
+      aria-disabled="true"
+      disabled=""
       graphic="avatar"
       hasmeta=""
       id="IEC 61850-8-1"
@@ -1249,20 +1234,11 @@ snapshots["Setting upload .nsdoc file using event and looks like latest snapshot
       <span>
         IEC 61850-8-1
       </span>
-      <span slot="secondary">
-        1010X1
-      </span>
       <mwc-icon
         slot="graphic"
-        style="color:green;"
+        style="color:red;"
       >
-        done
-      </mwc-icon>
-      <mwc-icon
-        id="deleteNsdocItem"
-        slot="meta"
-      >
-        delete
+        close
       </mwc-icon>
     </mwc-list-item>
   </mwc-list>
