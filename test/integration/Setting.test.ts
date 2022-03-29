@@ -4,13 +4,12 @@ import '../../src/open-scd.js';
 
 import { OpenSCD } from '../../src/open-scd.js';
 import { newLoadNsdocEvent } from "../../src/Setting.js";
-import { cleanLocalStorageForNsdocFiles } from "../unit/foundation/nsdoc.test.js";
 
 describe('Setting', () => {
   let element: OpenSCD;
 
   beforeEach(async () => {
-    cleanLocalStorageForNsdocFiles();
+    localStorage.clear();
 
     element = await fixture(html`
       <open-scd></open-scd>
