@@ -62,7 +62,7 @@ export interface LoadNsdocDetail {
 export type LoadNsdocEvent = CustomEvent<LoadNsdocDetail>;
 export function newLoadNsdocEvent(
   nsdoc: string,
-  filename: string,
+  filename: string
 ): LoadNsdocEvent {
   return new CustomEvent<LoadNsdocDetail>('load-nsdoc', {
     bubbles: true,
