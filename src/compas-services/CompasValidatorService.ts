@@ -32,11 +32,10 @@ export function CompasSclValidatorService() {
         .then(parseXml);
     },
 
-    getNsdocFile(id: string): Promise<Document> {
+    getNsdocFile(id: string): Promise<string> {
       const svsUrl = getCompasSettings().sclValidatorServiceUrl + '/nsdoc/v1/' + id;
       return fetch(svsUrl).catch(handleError)
-        .then(handleResponse)
-        .then(parseXml);
+        .then(handleResponse);
     },
   }
 }
