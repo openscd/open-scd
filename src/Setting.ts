@@ -12,7 +12,7 @@ import { Dialog } from '@material/mwc-dialog';
 import { Select } from '@material/mwc-select';
 import { Switch } from '@material/mwc-switch';
 
-import { ifImplemented, LitElementConstructor, Mixin, newLogEvent } from './foundation.js';
+import {ifImplemented, LitElementConstructor, Mixin, newLogEvent, OpenDocEvent} from './foundation.js';
 import { Language, languages, loader } from './translations/loader.js';
 
 import './WizardDivider.js';
@@ -52,6 +52,25 @@ type NsdVersions = {
   'IEC 61850-7-3': NsdVersion;
   'IEC 61850-7-4': NsdVersion;
   'IEC 61850-8-1': NsdVersion;
+}
+
+/** Represents a document to be opened. */
+export interface LoadNsdocDetail {
+  nsdoc: string;
+  filename: string;
+}
+export type LoadNsdocEvent = CustomEvent<LoadNsdocDetail>;
+export function newLoadNsdocEvent(
+  nsdoc: string,
+  filename: string,
+  eventInitDict?: CustomEventInit<Partial<LoadNsdocDetail>>
+): LoadNsdocEvent {
+  return new CustomEvent<LoadNsdocDetail>('load-nsdoc', {
+    bubbles: true,
+    composed: true,
+    ...eventInitDict,
+    detail: { nsdoc, filename, ...eventInitDict?.detail },
+  });
 }
 
 /** Mixin that saves [[`Settings`]] to `localStorage`, reflecting them in the
@@ -168,7 +187,7 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
     private renderFileSelect(): TemplateResult {
       return html `
         <input id="nsdoc-file" accept=".nsdoc" type="file" hidden required multiple
-          @change=${(evt: Event) => this.loadNsdocFile(evt)}}>
+          @change=${(evt: Event) => this.uploadNsdocFile(evt)}}>
         <mwc-button label="${translate('settings.selectFileButton')}"
                     id="selectFileButton"
                     @click=${() => {
@@ -179,50 +198,63 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
       `;
     }
 
-    private async loadNsdocFile(evt: Event): Promise<void> {
-      const nsdVersions = await this.nsdVersions();
+    private async uploadNsdocFile(evt: Event): Promise<void> {
       const files = Array.from(
         (<HTMLInputElement | null>evt.target)?.files ?? []
       );
-      
-      if (files.length == 0) return;
-      files.forEach(async file => {
-        const text = await file.text();
-        const nsdocElement = this.parseToXmlObject(text).querySelector('NSDoc');
-        const id = nsdocElement?.getAttribute('id');
-        if (!id) {
-          document
-          .querySelector('open-scd')!
-          .dispatchEvent(
-              newLogEvent({ kind: 'error', title: get('settings.invalidFileNoIdFound') })
-            );
-          return;
-        }
-        const nsdVersion = nsdVersions[id as keyof NsdVersions];
-        const nsdocVersion = {
-          version: nsdocElement!.getAttribute('version') ?? '',
-          revision: nsdocElement!.getAttribute('revision') ?? '',
-          release: nsdocElement!.getAttribute('release') ?? ''
-        }
 
-        if (!this.isEqual(nsdVersion, nsdocVersion)) {
-          document
+      if (files.length == 0) return;
+      for (const file of files) {
+        const text = await file.text();
+        document
           .querySelector('open-scd')!
           .dispatchEvent(
-              newLogEvent({ kind: 'error', title: get('settings.invalidNsdocVersion', {
-                id: id,
-                nsdVersion: `${nsdVersion.version}${nsdVersion.revision}${nsdVersion.release}`,
-                nsdocVersion: `${nsdocVersion.version}${nsdocVersion.revision}${nsdocVersion.release}`
-              }) })
-            );
-          return;
-        }
-  
-        this.setSetting(id as keyof Settings, text);
-      })
+            newLoadNsdocEvent(text, file.name)
+          );
+      }
 
       this.nsdocFileUI.value = '';
       this.requestUpdate();
+    }
+
+    private async onLoadNsdoc(event: LoadNsdocEvent) {
+      const nsdocElement = this.parseToXmlObject(event.detail.nsdoc).querySelector('NSDoc');
+
+      const id = nsdocElement?.getAttribute('id');
+      if (!id) {
+        document
+          .querySelector('open-scd')!
+          .dispatchEvent(
+            newLogEvent({ kind: 'error', title: get('settings.invalidFileNoIdFound', {
+              filename: event.detail.filename
+            }) })
+          );
+        return;
+      }
+
+      const nsdVersions = await this.nsdVersions();
+      const nsdVersion = nsdVersions[id as keyof NsdVersions];
+      const nsdocVersion = {
+        version: nsdocElement!.getAttribute('version') ?? '',
+        revision: nsdocElement!.getAttribute('revision') ?? '',
+        release: nsdocElement!.getAttribute('release') ?? ''
+      }
+
+      if (!this.isEqual(nsdVersion, nsdocVersion)) {
+        document
+          .querySelector('open-scd')!
+          .dispatchEvent(
+            newLogEvent({ kind: 'error', title: get('settings.invalidNsdocVersion', {
+                id: id,
+                filename: event.detail.filename,
+                nsdVersion: `${nsdVersion.version}${nsdVersion.revision}${nsdVersion.release}`,
+                nsdocVersion: `${nsdocVersion.version}${nsdocVersion.revision}${nsdocVersion.release}`
+              }) })
+          );
+        return;
+      }
+
+      this.setSetting(id as keyof Settings, event.detail.nsdoc);
     }
 
     /**
@@ -245,7 +277,7 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
       let nsdVersion: string | undefined | null;
       let nsdRevision: string | undefined | null;
       let nsdRelease: string | undefined | null;
-      
+
       if (nsdSetting) {
         const nsdoc = this.parseToXmlObject(nsdSetting)!.querySelector('NSDoc');
         nsdVersion = nsdoc?.getAttribute('version');
@@ -273,6 +305,8 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
 
       registerTranslateConfig({ loader, empty: key => key });
       use(this.settings.language);
+
+      (<any>this).addEventListener('load-nsdoc', this.onLoadNsdoc);
     }
 
     render(): TemplateResult {

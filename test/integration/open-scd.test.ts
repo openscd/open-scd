@@ -21,10 +21,7 @@ describe('open-scd', () => {
 
       <link href="public/google/fonts/roboto-v27.css" rel="stylesheet" />
       <link href="public/google/fonts/roboto-mono-v13.css" rel="stylesheet" />
-      <link
-        href="public/google/icons/material-icons-outlined.css"
-        rel="stylesheet"
-      />
+      <link href="public/google/icons/material-icons-outlined.css" rel="stylesheet" />
     `);
   });
 

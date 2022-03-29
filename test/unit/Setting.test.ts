@@ -52,12 +52,12 @@ describe('SettingElement', () => {
   it('saves chosen .nsdoc file and looks like latest snapshot', async () => {
     element.settingsUI.show();
     await element.settingsUI.updateComplete;
-  
-    const nsdocFile = await fetch('/test/testfiles/settingTest.nsdoc')
+
+    const nsdocFile = await fetch('/test/testfiles/nsdoc/IEC_61850-7-2.nsdoc')
       .then(response => response.text())
 
     element.setSetting('IEC 61850-7-2', nsdocFile);
-    
+
     await element.requestUpdate();
     await element.updateComplete;
 
@@ -68,19 +68,19 @@ describe('SettingElement', () => {
   it('deletes a chosen .nsdoc file and looks like latest snapshot', async () => {
     element.settingsUI.show();
     await element.settingsUI.updateComplete;
-  
-    const nsdocFile = await fetch('/test/testfiles/settingTest.nsdoc')
+
+    const nsdocFile = await fetch('/test/testfiles/nsdoc/IEC_61850-7-2.nsdoc')
       .then(response => response.text())
 
     element.setSetting('IEC 61850-7-2', nsdocFile);
-    
+
     await element.requestUpdate();
     await element.updateComplete;
 
     (<Button>(
       element.settingsUI.querySelector('mwc-icon[id="deleteNsdocItem"]')
     )).click();
-    
+
     await element.requestUpdate();
     await element.updateComplete;
 

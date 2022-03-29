@@ -245,8 +245,8 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
 
       this.undo = this.undo.bind(this);
       this.redo = this.redo.bind(this);
-
       this.onLog = this.onLog.bind(this);
+
       this.addEventListener('log', this.onLog);
       this.addEventListener('issue', this.onIssue);
       this.addEventListener('open-doc', this.onLoadHistoryFromDoc);
