@@ -3,7 +3,7 @@ import { html, fixture, expect } from '@open-wc/testing';
 import '../../src/open-scd.js';
 import { newEmptySCD } from '../../src/schemas.js';
 import { OpenSCD } from '../../src/open-scd.js';
-import { cleanLocalStorageForNsdocFiles } from "../unit/foundation/nsdoc.test.js";
+import { cleanLocalStorageForNsdocFiles } from "./foundation.js";
 
 describe('open-scd', () => {
   let element: OpenSCD;

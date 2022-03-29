@@ -1,7 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["open-scd looks like its snapshot"] = 
+snapshots["open-scd looks like its snapshot"] =
 `<mwc-drawer
   class="mdc-theme--surface"
   hasheader=""
@@ -1312,19 +1312,6 @@ snapshots["open-scd looks like its snapshot"] =
     <h3>
       Uploaded NSDoc files
     </h3>
-    <input
-      accept=".nsdoc"
-      hidden=""
-      id="nsdoc-file"
-      multiple=""
-      required=""
-      type="file"
-    >
-    <mwc-button
-      id="selectFileButton"
-      label="Select file"
-    >
-    </mwc-button>
   </section>
   <mwc-list id="nsdocList">
     <mwc-list-item
