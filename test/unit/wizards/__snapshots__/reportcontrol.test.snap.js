@@ -756,7 +756,7 @@ snapshots["Wizards for SCL ReportControl element define copy to other IED select
           IED2
         </span>
         <span slot="secondary">
-          Source IED
+          [controlblock.hints.source]
         </span>
       </mwc-check-list-item>
       <mwc-check-list-item
@@ -772,7 +772,7 @@ snapshots["Wizards for SCL ReportControl element define copy to other IED select
           IED3
         </span>
         <span slot="secondary">
-          ReportControl already exist
+          [controlblock.hints.exist]
         </span>
       </mwc-check-list-item>
       <mwc-check-list-item
@@ -788,7 +788,7 @@ snapshots["Wizards for SCL ReportControl element define copy to other IED select
           IED4
         </span>
         <span slot="secondary">
-          No matching data
+          [controlblock.hints.noMatchingData]
         </span>
       </mwc-check-list-item>
       <mwc-check-list-item
@@ -803,7 +803,7 @@ snapshots["Wizards for SCL ReportControl element define copy to other IED select
           IED5
         </span>
         <span slot="secondary">
-          Can be copied
+          [controlBlock.hints.valid]
         </span>
       </mwc-check-list-item>
       <mwc-check-list-item
@@ -819,7 +819,7 @@ snapshots["Wizards for SCL ReportControl element define copy to other IED select
           IED6
         </span>
         <span slot="secondary">
-          ReportControl already exist
+          [controlblock.hints.exist]
         </span>
       </mwc-check-list-item>
       <mwc-check-list-item
@@ -835,7 +835,7 @@ snapshots["Wizards for SCL ReportControl element define copy to other IED select
           IED7
         </span>
         <span slot="secondary">
-          ReportControl already exist
+          [controlblock.hints.exist]
         </span>
       </mwc-check-list-item>
     </filtered-list>

@@ -526,6 +526,13 @@ export const de: Translations = {
       remove:
         '{{type}} "{{name}}" and referenzierte Element von IED {{iedName}} entfernt',
     },
+    hints: {
+      source: 'Quell-IED',
+      missingServer: 'Kein Server vorhanden',
+      exist: '{{type}} mit dem Namen {{name}} existiert',
+      noMatchingData: 'Keine Datenübereinstimmung',
+      valid: 'Kann kopiert werden',
+    },
     label: {
       copy: 'Kopie in anderen IEDs ertellen',
     },

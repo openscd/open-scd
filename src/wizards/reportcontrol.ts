@@ -490,14 +490,20 @@ function renderIedListItem(sourceCb: Element, ied: Element): TemplateResult {
 
   const primSpan = ied.getAttribute('name');
   let secondSpan = '';
-  if (isSourceIed) secondSpan = 'Source IED';
-  else if (!ln0) secondSpan = 'Not a Server';
+  if (isSourceIed) secondSpan = get('controlblock.hints.source');
+  else if (!ln0) secondSpan = get('controlblock.hints.missingServer');
   else if (hasDataSetConflict && !isSourceIed)
-    secondSpan = 'ReportControl already exist';
+    secondSpan = get('controlblock.hints.exist', {
+      type: 'RerportControl',
+      name: sourceCb.getAttribute('name')!,
+    });
   else if (hasCbNameConflict && !isSourceIed)
-    secondSpan = 'ReportControl already exist';
-  else if (!hasDataMatch) secondSpan = 'No matching data';
-  else secondSpan = 'Can be copied';
+    secondSpan = get('controlblock.hints.exist', {
+      type: 'DataSet',
+      name: sourceCb.getAttribute('name')!,
+    });
+  else if (!hasDataMatch) secondSpan = get('controlblock.hints.noMatchingData');
+  else secondSpan = get('controlBlock.hints.valid');
 
   return html`<mwc-check-list-item
     twoline
