@@ -104,7 +104,7 @@ export function createSubNetworkAction(parent: Element): WizardActor {
 export function createSubNetworkWizard(parent: Element): Wizard {
   return [
     {
-      title: get('wizard.title.create', { tagName: 'SubNetwork' }),
+      title: get('wizard.title.add', { tagName: 'SubNetwork' }),
       primary: {
         icon: 'add',
         label: get('add'),
