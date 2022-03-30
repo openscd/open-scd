@@ -3,6 +3,7 @@ import { get, translate } from 'lit-translate';
 
 import '@material/mwc-button';
 import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-list/mwc-check-list-item';
 import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
@@ -32,12 +33,9 @@ import {
   WizardAction,
   MenuAction,
 } from '../foundation.js';
+import { FilteredList } from '../filtered-list.js';
 import { FinderList } from '../finder-list.js';
-import {
-  dataAttributePicker,
-  iEDPicker,
-  iEDsPicker,
-} from './foundation/finder.js';
+import { dataAttributePicker, iEDPicker } from './foundation/finder.js';
 import { maxLength, patterns } from './foundation/limits.js';
 import { editDataSetWizard } from './dataset.js';
 import { newFCDA } from './fcda.js';
@@ -409,17 +407,13 @@ function copyReportControlActions(element: Element): WizardActor {
   return (_: WizardInputElement[], wizard: Element) => {
     const doc = element.ownerDocument;
 
-    const finder = wizard.shadowRoot?.querySelector<FinderList>('finder-list');
-    const paths = finder?.paths ?? [];
-
-    if (paths.length === 0) return [];
+    const iedItems = <ListItemBase[]>(
+      wizard.shadowRoot?.querySelector<FilteredList>('filtered-list')?.selected
+    );
 
     const complexActions: ComplexAction[] = [];
-    paths.forEach(path => {
-      const [tagName, id] = path.pop()!.split(': ');
-      if (tagName !== 'IED') return;
-
-      const ied = doc.querySelector(selector(tagName, id));
+    iedItems.forEach(iedItem => {
+      const ied = doc.querySelector(selector('IED', iedItem.value));
       if (!ied) return;
 
       const sinkLn0 = ied.querySelector('LN0');
@@ -468,9 +462,57 @@ function copyReportControlActions(element: Element): WizardActor {
   };
 }
 
-export function reportControlCopyToIedSelector(element: Element): Wizard {
-  const doc = element.ownerDocument;
+function renderIedListItem(sourceCb: Element, ied: Element): TemplateResult {
+  const sourceDataSet = sourceCb.parentElement?.querySelector(
+    `DataSet[name="${sourceCb.getAttribute('datSet')}"]`
+  );
 
+  const isSourceIed =
+    sourceCb.closest('IED')?.getAttribute('name') === ied.getAttribute('name');
+  const ln0 = ied.querySelector('AccessPoint > Server > LDevice > LN0');
+  const hasCbNameConflict = ln0?.querySelector(
+    `ReportControl[name="${sourceCb.getAttribute('name')}"]`
+  )
+    ? true
+    : false;
+  const hasDataSetConflict = ln0?.querySelector(
+    `DataSet[name="${sourceDataSet?.getAttribute('name')}"]`
+  )
+    ? true
+    : false;
+
+  // clone DataSet and make sure that FCDA is valid in ied
+  const sinkDataSet = <Element>sourceDataSet?.cloneNode(true);
+  Array.from(sinkDataSet.querySelectorAll('FCDA')).forEach(fcda => {
+    if (!existFcdaReference(fcda, ied)) sinkDataSet.removeChild(fcda);
+  });
+  const hasDataMatch = sinkDataSet.children.length > 0;
+
+  const primSpan = ied.getAttribute('name');
+  let secondSpan = '';
+  if (isSourceIed) secondSpan = 'Source IED';
+  else if (!ln0) secondSpan = 'Not a Server';
+  else if (hasDataSetConflict && !isSourceIed)
+    secondSpan = 'ReportControl already exist';
+  else if (hasCbNameConflict && !isSourceIed)
+    secondSpan = 'ReportControl already exist';
+  else if (!hasDataMatch) secondSpan = 'No matching data';
+  else secondSpan = 'Can be copied';
+
+  return html`<mwc-check-list-item
+    twoline
+    value="${identity(ied)}"
+    ?disabled=${isSourceIed ||
+    !ln0 ||
+    hasCbNameConflict ||
+    hasDataSetConflict ||
+    !hasDataMatch}
+    ><span>${primSpan}</span
+    ><span slot="secondary">${secondSpan}</span></mwc-check-list-item
+  >`;
+}
+
+export function reportControlCopyToIedSelector(element: Element): Wizard {
   return [
     {
       title: get('report.wizard.location'),
@@ -479,7 +521,13 @@ export function reportControlCopyToIedSelector(element: Element): Wizard {
         label: get('save'),
         action: copyReportControlActions(element),
       },
-      content: [iEDsPicker(doc)],
+      content: [
+        html`<filtered-list multi
+          >${Array.from(element.ownerDocument.querySelectorAll('IED')).map(
+            ied => renderIedListItem(element, ied)
+          )}</filtered-list
+        >`,
+      ],
     },
   ];
 }

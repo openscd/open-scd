@@ -26,6 +26,8 @@ import {
 } from '../../../src/wizards/reportcontrol.js';
 import { inverseRegExp, regExp, regexString } from '../../foundation.js';
 import { FinderList } from '../../../src/finder-list.js';
+import { FilteredList } from '../../../src/filtered-list.js';
+import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 describe('Wizards for SCL ReportControl element', () => {
   let doc: XMLDocument;
@@ -690,7 +692,8 @@ describe('Wizards for SCL ReportControl element', () => {
   });
 
   describe('define copy to other IED selector', () => {
-    let iedsPicker: FinderList;
+    let iedsPicker: FilteredList;
+    let listItem: ListItemBase;
 
     beforeEach(async () => {
       const sourceReportControl = doc.querySelector(
@@ -700,8 +703,8 @@ describe('Wizards for SCL ReportControl element', () => {
       element.workflow.push(() => wizard);
       await element.requestUpdate();
 
-      iedsPicker = <FinderList>(
-        element.wizardUI.dialog?.querySelector('finder-list')
+      iedsPicker = <FilteredList>(
+        element.wizardUI.dialog?.querySelector('filtered-list')
       );
 
       primaryAction = <HTMLElement>(
@@ -711,31 +714,27 @@ describe('Wizards for SCL ReportControl element', () => {
       );
     });
 
+    it('looks like the latest snapshot', async () => {
+      await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
+    }).timeout(5000);
+
     it('allows to copy to multiple IED at once', () =>
       expect(iedsPicker.multi).to.be.true);
 
-    describe('with missing sink IED', () => {
-      beforeEach(async () => {
-        iedsPicker.paths = [['IED: IED20']];
-        primaryAction.click();
-
-        await element.requestUpdate();
-      });
-
-      it('does not copy the control block ', () =>
-        expect(actionEvent).to.not.have.been.called);
-    });
-
     describe('with a sink IED not meeting partially the data references', () => {
       beforeEach(async () => {
-        iedsPicker.paths = [['IED: IED5']];
-        primaryAction.click();
-
+        listItem = iedsPicker.items.find(item => item.value.includes('IED5'))!;
         await element.requestUpdate();
       });
 
-      it('does copy the control block ', () =>
-        expect(actionEvent).to.have.been.called);
+      it('disabled the list item', () =>
+        expect(listItem.disabled).to.not.be.true);
+
+      it('does copy the control block ', () => {
+        listItem.click();
+        primaryAction.click();
+        expect(actionEvent).to.have.been.called;
+      });
     });
   });
 });

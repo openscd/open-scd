@@ -735,3 +735,127 @@ snapshots["Wizards for SCL ReportControl element define a wizard to select the c
 `;
 /* end snapshot Wizards for SCL ReportControl element define a wizard to select the control block reference looks like the latest snapshot */
 
+snapshots["Wizards for SCL ReportControl element define copy to other IED selector looks like the latest snapshot"] = 
+`<mwc-dialog
+  defaultaction="close"
+  heading="[report.wizard.location]"
+  open=""
+>
+  <div id="wizard-content">
+    <filtered-list multi="">
+      <mwc-check-list-item
+        aria-disabled="true"
+        disabled=""
+        graphic="control"
+        mwc-list-item=""
+        tabindex="0"
+        twoline=""
+        value="IED2"
+      >
+        <span>
+          IED2
+        </span>
+        <span slot="secondary">
+          Source IED
+        </span>
+      </mwc-check-list-item>
+      <mwc-check-list-item
+        aria-disabled="true"
+        disabled=""
+        graphic="control"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="IED3"
+      >
+        <span>
+          IED3
+        </span>
+        <span slot="secondary">
+          ReportControl already exist
+        </span>
+      </mwc-check-list-item>
+      <mwc-check-list-item
+        aria-disabled="true"
+        disabled=""
+        graphic="control"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="IED4"
+      >
+        <span>
+          IED4
+        </span>
+        <span slot="secondary">
+          No matching data
+        </span>
+      </mwc-check-list-item>
+      <mwc-check-list-item
+        aria-disabled="false"
+        graphic="control"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="IED5"
+      >
+        <span>
+          IED5
+        </span>
+        <span slot="secondary">
+          Can be copied
+        </span>
+      </mwc-check-list-item>
+      <mwc-check-list-item
+        aria-disabled="true"
+        disabled=""
+        graphic="control"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="IED6"
+      >
+        <span>
+          IED6
+        </span>
+        <span slot="secondary">
+          ReportControl already exist
+        </span>
+      </mwc-check-list-item>
+      <mwc-check-list-item
+        aria-disabled="true"
+        disabled=""
+        graphic="control"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="IED7"
+      >
+        <span>
+          IED7
+        </span>
+        <span slot="secondary">
+          ReportControl already exist
+        </span>
+      </mwc-check-list-item>
+    </filtered-list>
+  </div>
+  <mwc-button
+    dialogaction="close"
+    label="[cancel]"
+    slot="secondaryAction"
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+  </mwc-button>
+  <mwc-button
+    dialoginitialfocus=""
+    icon="save"
+    label="[save]"
+    slot="primaryAction"
+    trailingicon=""
+  >
+  </mwc-button>
+</mwc-dialog>
+`;
+/* end snapshot Wizards for SCL ReportControl element define copy to other IED selector looks like the latest snapshot */
+

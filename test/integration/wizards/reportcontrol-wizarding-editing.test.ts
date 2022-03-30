@@ -14,7 +14,7 @@ import {
   selectReportControlWizard,
 } from '../../../src/wizards/reportcontrol.js';
 import { FinderList } from '../../../src/finder-list.js';
-import { execPath } from 'process';
+import { CheckListItem } from '@material/mwc-list/mwc-check-list-item';
 
 describe('Wizards for SCL element ReportControl', () => {
   let doc: XMLDocument;
@@ -349,7 +349,7 @@ describe('Wizards for SCL element ReportControl', () => {
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
       const iedsPicker =
-        element.wizardUI.dialog?.querySelector<FinderList>('finder-list');
+        element.wizardUI.dialog?.querySelector<FilteredList>('filtered-list');
 
       expect(iedsPicker).to.exist;
       expect(iedsPicker!.multi).to.be.true;
@@ -412,7 +412,8 @@ describe('Wizards for SCL element ReportControl', () => {
   });
 
   describe('defines a selector wizard to select ReportControl copy to sink', () => {
-    let iedsPicker: FinderList;
+    let iedsPicker: FilteredList;
+    let listItem: CheckListItem;
 
     beforeEach(async () => {
       const sourceReportControl = doc.querySelector(
@@ -422,8 +423,8 @@ describe('Wizards for SCL element ReportControl', () => {
       element.workflow.push(() => wizard);
       await element.requestUpdate();
 
-      iedsPicker = <FinderList>(
-        element.wizardUI.dialog?.querySelector('finder-list')
+      iedsPicker = <FilteredList>(
+        element.wizardUI.dialog?.querySelector('filtered-list')
       );
 
       primaryAction = <HTMLElement>(
@@ -438,32 +439,49 @@ describe('Wizards for SCL element ReportControl', () => {
 
     describe('with a sink IED not meeting any of the data references', () => {
       beforeEach(async () => {
-        iedsPicker.paths = [['IED: IED4']];
-        primaryAction.click();
-
+        listItem = <CheckListItem>(
+          iedsPicker.items.find(item => item.value.includes('IED4'))!
+        );
         await element.requestUpdate();
       });
 
-      it('does not copy the control block ', () =>
-        expect(doc.querySelector('IED[name="IED4"] ReportControl')).to.not
-          .exist);
+      it('disables the list item', () => expect(listItem.disabled).to.be.true);
 
-      it('does not close the wizard', async () =>
-        expect(element.wizardUI.dialog).to.exist);
+      it('does not copy the control block ', async () => {
+        listItem.selected = true;
+        await listItem.requestUpdate();
+        primaryAction.click();
+        expect(doc.querySelector('IED[name="IED4"] ReportControl')).to.not
+          .exist;
+      });
     });
 
-    describe('with a sink IED not meeting partially the data references', () => {
+    describe('with a sink IED meeting partially the data references', () => {
       beforeEach(async () => {
-        iedsPicker.paths = [['IED: IED5']];
-        primaryAction.click();
+        listItem = <CheckListItem>(
+          iedsPicker.items.find(item => item.value.includes('IED5'))!
+        );
 
         await element.requestUpdate();
+        await listItem.requestUpdate();
       });
 
-      it('does copy the control block ', () =>
-        expect(doc.querySelector('IED[name="IED5"] ReportControl')).to.exist);
+      it('list item is selectable', () =>
+        expect(listItem.disabled).to.be.false);
 
-      it('removes non referenced data from the DataSet the control block ', () => {
+      it('does copy the control block ', async () => {
+        listItem.selected = true;
+        await listItem.requestUpdate();
+        primaryAction.click();
+
+        expect(doc.querySelector('IED[name="IED5"] ReportControl')).to.exist;
+      });
+
+      it('removes non referenced data from the DataSet the control block ', async () => {
+        listItem.selected = true;
+        await listItem.requestUpdate();
+        primaryAction.click();
+
         const rpControl = doc.querySelector('IED[name="IED5"] ReportControl')!;
         const dataSet = doc.querySelector(
           `IED[name="IED5"] DataSet[name="${rpControl.getAttribute('datSet')}"]`
@@ -471,20 +489,24 @@ describe('Wizards for SCL element ReportControl', () => {
         expect(dataSet).to.exist;
         expect(dataSet!.children).to.have.lengthOf(2);
       });
-
-      it('does close the wizard', () =>
-        expect(element.wizardUI.dialog).to.not.exist);
     });
 
     describe('with a sink IED already containing ReportControl', () => {
       beforeEach(async () => {
-        iedsPicker.paths = [['IED: IED6']];
-        primaryAction.click();
+        listItem = <CheckListItem>(
+          iedsPicker.items.find(item => item.value.includes('IED4'))!
+        );
 
         await element.requestUpdate();
       });
 
-      it('does not copy report control block nor DataSet ', () => {
+      it('list item is disabled', () => expect(listItem.disabled).to.be.true);
+
+      it('does not copy report control block nor DataSet ', async () => {
+        listItem.selected = true;
+        await listItem.requestUpdate();
+        primaryAction.click();
+
         const rpControl = doc.querySelector('IED[name="IED6"] ReportControl')!;
         expect(rpControl.getAttribute('datSet')).to.not.exist;
 
@@ -495,13 +517,18 @@ describe('Wizards for SCL element ReportControl', () => {
 
     describe('with a sink IED already containing DataSet', () => {
       beforeEach(async () => {
-        iedsPicker.paths = [['IED: IED7']];
-        primaryAction.click();
+        listItem = <CheckListItem>(
+          iedsPicker.items.find(item => item.value.includes('IED7'))!
+        );
 
         await element.requestUpdate();
       });
 
-      it('does not copy report control block nor DataSet ', () => {
+      it('does not copy report control block nor DataSet ', async () => {
+        listItem.selected = true;
+        await listItem.requestUpdate();
+        primaryAction.click();
+
         const rpControl = doc.querySelector('IED[name="IED7"] ReportControl')!;
         expect(rpControl).to.not.exist;
 
