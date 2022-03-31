@@ -1,3 +1,17 @@
+export function getConnectedAP(element: Element): Element | null {
+  return element.ownerDocument.querySelector(
+    `:root > Communication > SubNetwork > ConnectedAP[iedName="${element
+      .closest('IED')
+      ?.getAttribute('name')}"][apName="${element
+      .closest('AccessPoint')
+      ?.getAttribute('name')}"]`
+  );
+}
+
+export function isAccessPointConnected(element: Element): boolean {
+  return getConnectedAP(element) ? true : false;
+}
+
 function incrementMac(oldMac: string): string {
   const mac = oldMac.split('-').join('');
   //destination MAC in IEC61850 always starts with 01:0C:CD:...
