@@ -152,21 +152,6 @@ describe('SCL specific functions', () => {
   });
 
   describe('define a function to get unique APPID', () => {
-    describe('with all APPIDs in use', () => {
-      const appIdElementString = `<SubNetwork>${createAppIds().map(
-        appId =>
-          `<ConnectedAP><Address><P type="APPID">${appId}</P></Address></ConnectedAP>`
-      )}</SubNetwork>`;
-      const doc = new DOMParser().parseFromString(
-        appIdElementString,
-        'application/xml'
-      );
-
-      it('return null with no unique APPID', () => {
-        expect(uniqueAppId(doc)).to.be.null;
-      }).timeout(10000);
-    });
-
     describe('with available APPID', () => {
       const appIds = createAppIds();
       appIds.splice(10, 5);
@@ -182,23 +167,6 @@ describe('SCL specific functions', () => {
       it('return the first availablefirst unique APPID', () => {
         expect(uniqueAppId(doc)).to.equal('000B');
       });
-    });
-
-    describe('with one available APPID', () => {
-      const appIds = createAppIds();
-      appIds.pop();
-      const appIdElementString = `<SubNetwork>${appIds.map(
-        appId =>
-          `<ConnectedAP><Address><P type="APPID">${appId}</P></Address></ConnectedAP>`
-      )}</SubNetwork>`;
-      const doc = new DOMParser().parseFromString(
-        appIdElementString,
-        'application/xml'
-      );
-
-      it('return the first availablefirst unique APPID', () => {
-        expect(uniqueAppId(doc)).to.equal('FFFF');
-      }).timeout(10000);
     });
   });
 });
