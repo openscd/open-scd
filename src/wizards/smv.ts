@@ -4,6 +4,7 @@ import { Checkbox } from '@material/mwc-checkbox';
 
 import {
   ComplexAction,
+  getValue,
   identity,
   Wizard,
   WizardAction,
@@ -24,7 +25,20 @@ export function updateSmvAction(element: Element): WizardActor {
     const instType: boolean = (<Checkbox>(
       wizard.shadowRoot?.querySelector('#instType')
     ))?.checked;
-    const addressActions = updateAddress(element, inputs, instType);
+
+    const addressContent: Record<string, string | null> = {};
+    addressContent['MAC-Address'] = getValue(
+      inputs.find(i => i.label === 'MAC-Address')!
+    );
+    addressContent['APPID'] = getValue(inputs.find(i => i.label === 'APPID')!);
+    addressContent['VLAN-ID'] = getValue(
+      inputs.find(i => i.label === 'VLAN-ID')!
+    );
+    addressContent['VLAN-PRIORITY'] = getValue(
+      inputs.find(i => i.label === 'VLAN-PRIORITY')!
+    );
+
+    const addressActions = updateAddress(element, addressContent, instType);
     if (!addressActions.length) return [];
 
     addressActions.forEach(action => {

@@ -67,7 +67,20 @@ export function updateGSEAction(element: Element): WizardActor {
     const instType: boolean =
       (<Checkbox>wizard.shadowRoot?.querySelector('#instType'))?.checked ??
       false;
-    const addressActions = updateAddress(element, inputs, instType);
+
+    const addressContent: Record<string, string | null> = {};
+    addressContent['MAC-Address'] = getValue(
+      inputs.find(i => i.label === 'MAC-Address')!
+    );
+    addressContent['APPID'] = getValue(inputs.find(i => i.label === 'APPID')!);
+    addressContent['VLAN-ID'] = getValue(
+      inputs.find(i => i.label === 'VLAN-ID')!
+    );
+    addressContent['VLAN-PRIORITY'] = getValue(
+      inputs.find(i => i.label === 'VLAN-PRIORITY')!
+    );
+
+    const addressActions = updateAddress(element, addressContent, instType);
 
     addressActions.forEach(action => {
       complexAction.actions.push(action);

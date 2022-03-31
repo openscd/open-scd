@@ -8,6 +8,7 @@ import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   Create,
   Delete,
+  getValue,
   isCreate,
   isDelete,
   Wizard,
@@ -17,6 +18,25 @@ import {
   contentGseWizard,
   updateAddress,
 } from '../../../src/wizards/address.js';
+
+function addressContent(
+  inputs: WizardInputElement[]
+): Record<string, string | null> {
+  const addressContent: Record<string, string | null> = {};
+
+  addressContent['MAC-Address'] = getValue(
+    inputs.find(i => i.label === 'MAC-Address')!
+  );
+  addressContent['APPID'] = getValue(inputs.find(i => i.label === 'APPID')!);
+  addressContent['VLAN-ID'] = getValue(
+    inputs.find(i => i.label === 'VLAN-ID')!
+  );
+  addressContent['VLAN-PRIORITY'] = getValue(
+    inputs.find(i => i.label === 'VLAN-PRIORITY')!
+  );
+
+  return addressContent;
+}
 
 describe('address', () => {
   let doc: XMLDocument;
@@ -99,9 +119,10 @@ describe('address', () => {
       });
 
       it('does not update a Address element when no attribute has changed', () => {
-        const actions = updateAddress(gse, inputs, false);
+        const actions = updateAddress(gse, addressContent(inputs), false);
         expect(actions).to.be.empty;
       });
+
       it('update a Address element when at least one attribute changes', async () => {
         for (const rawInput of inputs) {
           const input =
@@ -115,7 +136,8 @@ describe('address', () => {
 
           input.value = newValue;
           await input.requestUpdate();
-          const actions = updateAddress(gse, inputs, false);
+
+          const actions = updateAddress(gse, addressContent(inputs), false);
           expect(actions.length).to.equal(2);
           expect(actions[0]).to.satisfy(isDelete);
           expect(actions[1]).to.satisfy(isCreate);
@@ -132,6 +154,7 @@ describe('address', () => {
           ).to.not.have.attribute('xsi:type', `tP_${type}`);
         }
       });
+
       it('update a Address element when status of instType has changed', async () => {
         for (const rawInput of inputs) {
           const input =
@@ -145,7 +168,8 @@ describe('address', () => {
 
           input.value = newValue;
           await input.requestUpdate();
-          const actions = updateAddress(gse, inputs, true);
+
+          const actions = updateAddress(gse, addressContent(inputs), true);
           expect(actions.length).to.equal(2);
           expect(actions[0]).to.satisfy(isDelete);
           expect(actions[1]).to.satisfy(isCreate);
@@ -163,6 +187,7 @@ describe('address', () => {
         }
       });
     });
+
     describe('with missing address element', () => {
       beforeEach(async () => {
         gse = doc.querySelector(
@@ -206,7 +231,8 @@ describe('address', () => {
 
           input.value = newValue;
           await input.requestUpdate();
-          const actions = updateAddress(gse, inputs, false);
+
+          const actions = updateAddress(gse, addressContent(inputs), false);
           expect(actions.length).to.equal(1);
           expect(actions[0]).to.satisfy(isCreate);
           const newElement = <Element>(<Create>actions[0]).new.element;
@@ -218,6 +244,7 @@ describe('address', () => {
           ).to.not.have.attribute('xsi:type', `tP_${type}`);
         }
       });
+
       it('update a Address element when status of instType has changed', async () => {
         for (const rawInput of inputs) {
           const input =
@@ -230,7 +257,7 @@ describe('address', () => {
 
           input.value = newValue;
           await input.requestUpdate();
-          const actions = updateAddress(gse, inputs, true);
+          const actions = updateAddress(gse, addressContent(inputs), true);
           expect(actions.length).to.equal(1);
           expect(actions[0]).to.satisfy(isCreate);
           const newElement = <Element>(<Create>actions[0]).new.element;

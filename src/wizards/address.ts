@@ -6,13 +6,7 @@ import '@material/mwc-checkbox';
 import '@material/mwc-formfield';
 
 import '../wizard-textfield.js';
-import {
-  Create,
-  createElement,
-  Delete,
-  getValue,
-  WizardInputElement,
-} from '../foundation.js';
+import { Create, createElement, Delete } from '../foundation.js';
 import { typeNullable, typePattern } from './foundation/p-types.js';
 
 interface ContentOptions {
@@ -54,25 +48,25 @@ function isEqualAddress(oldAddr: Element, newAdddr: Element): boolean {
   );
 }
 
-function createAddressElement(
-  inputs: WizardInputElement[],
+export function createAddressElement(
+  inputs: Record<string, string | null>,
   parent: Element,
   instType: boolean
 ): Element {
   const element = createElement(parent.ownerDocument, 'Address', {});
 
-  inputs
-    .filter(input => getValue(input) !== null)
-    .forEach(validInput => {
-      const type = validInput.label;
+  Object.entries(inputs)
+    .filter(([key, value]) => value !== null)
+    .forEach(([key, value]) => {
+      const type = key;
       const child = createElement(parent.ownerDocument, 'P', { type });
       if (instType)
         child.setAttributeNS(
           'http://www.w3.org/2001/XMLSchema-instance',
           'xsi:type',
-          'tP_' + type
+          'tP_' + key
         );
-      child.textContent = getValue(validInput);
+      child.textContent = value;
       element.appendChild(child);
     });
 
@@ -81,7 +75,7 @@ function createAddressElement(
 
 export function updateAddress(
   parent: Element,
-  inputs: WizardInputElement[],
+  inputs: Record<string, string | null>,
   instType: boolean
 ): (Create | Delete)[] {
   const actions: (Create | Delete)[] = [];
