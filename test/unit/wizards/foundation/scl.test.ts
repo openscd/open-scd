@@ -164,7 +164,7 @@ describe('SCL specific functions', () => {
 
       it('return null with no unique APPID', () => {
         expect(uniqueAppId(doc)).to.be.null;
-      }).timeout(5000);
+      }).timeout(10000);
     });
 
     describe('with available APPID', () => {
@@ -198,7 +198,7 @@ describe('SCL specific functions', () => {
 
       it('return the first availablefirst unique APPID', () => {
         expect(uniqueAppId(doc)).to.equal('FFFF');
-      }).timeout(5000);
+      }).timeout(10000);
     });
   });
 });
