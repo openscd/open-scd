@@ -1,4 +1,5 @@
 import { expect, fixture, html } from '@open-wc/testing';
+import { SinonSpy, spy } from 'sinon';
 import fc from 'fast-check';
 
 import '../../mock-wizard.js';
@@ -6,9 +7,13 @@ import { MockWizard } from '../../mock-wizard.js';
 
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
+  ComplexAction,
+  Create,
   Delete,
+  isCreate,
   isDelete,
   isReplace,
+  isSimple,
   Replace,
   Wizard,
   WizardInputElement,
@@ -19,18 +24,28 @@ import {
   contentGseControlWizard,
   selectGseControlWizard,
   updateGseControlAction,
+  gseControlParentSelector,
+  createGseControlWizard,
 } from '../../../src/wizards/gsecontrol.js';
 import { regExp, regexString } from '../../foundation.js';
+import { FinderList } from '../../../src/finder-list.js';
 
 describe('gsecontrol wizards', () => {
   let doc: XMLDocument;
   let element: MockWizard;
+
+  let primaryAction: HTMLElement;
+
+  let actionEvent: SinonSpy;
 
   beforeEach(async () => {
     element = await fixture(html`<mock-wizard></mock-wizard>`);
     doc = await fetch('/test/testfiles/wizards/gsecontrol.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+    actionEvent = spy();
+    window.addEventListener('editor-action', actionEvent);
   });
 
   describe('selectGseControlWizard', () => {
@@ -340,5 +355,205 @@ describe('gsecontrol wizards', () => {
         'SignatureAndEncryption'
       );
     });
+  });
+
+  describe('define an create wizard that', () => {
+    let dataPicker: FinderList;
+
+    describe('with existing ConnectedAP element in the Communication section', () => {
+      beforeEach(async () => {
+        const wizard = createGseControlWizard(doc.querySelector('LN0')!);
+        element.workflow.push(() => wizard);
+        await element.requestUpdate();
+
+        (<WizardTextField>(
+          element.wizardUI.dialogs[0].querySelector(
+            'wizard-textfield[label="appID"]'
+          )
+        )).maybeValue = 'wer';
+
+        primaryAction = <HTMLElement>(
+          element.wizardUI.dialogs[2]?.querySelector(
+            'mwc-button[slot="primaryAction"]'
+          )
+        );
+
+        dataPicker = <FinderList>(
+          element.wizardUI.dialogs[2]?.querySelector('finder-list')
+        );
+
+        await element.wizardUI.requestUpdate(); // make sure wizard is rendered
+      });
+
+      it('has three pages', () =>
+        expect(element.wizardUI.dialogs.length).to.equal(3));
+
+      it('the first page looks like the latest snapshot', async () => {
+        await expect(element.wizardUI.dialogs[0]).dom.to.equalSnapshot();
+      }).timeout(5000);
+
+      it('the second page looks like the latest snapshot', async () => {
+        await expect(element.wizardUI.dialogs[1]).dom.to.equalSnapshot();
+      }).timeout(5000);
+
+      it('the third page looks like the latest snapshot', async () => {
+        await expect(element.wizardUI.dialogs[2]).dom.to.equalSnapshot();
+      }).timeout(5000);
+
+      it('triggers complex action on primary action click', async () => {
+        await primaryAction.click();
+
+        expect(actionEvent).to.be.calledOnce;
+        const action = actionEvent.args[0][0].detail.action;
+        expect(action).to.not.satisfy(isSimple);
+      });
+
+      it('complex action carries GSEControl element', async () => {
+        await primaryAction.click();
+
+        const actions = (<ComplexAction>actionEvent.args[0][0].detail.action)
+          .actions;
+        expect(actions.length).to.equal(3);
+        const action = actions[0];
+        expect(action).to.satisfy(isCreate);
+        const createAction = <Create>action;
+        expect((<Element>createAction.new.element).tagName).to.equal(
+          'GSEControl'
+        );
+      });
+
+      it('add default confRev to the GSEControl element', async () => {
+        await primaryAction.click();
+
+        const actions = (<ComplexAction>actionEvent.args[0][0].detail.action)
+          .actions;
+        expect(actions.length).to.equal(3);
+        const action = actions[0];
+        expect(action).to.satisfy(isCreate);
+        const createAction = <Create>action;
+        expect(createAction.new.element).has.attribute('confRev', '1');
+      });
+
+      it('complex action carries referenced DataSet element', async () => {
+        await primaryAction.click();
+
+        const actions = (<ComplexAction>actionEvent.args[0][0].detail.action)
+          .actions;
+        expect(actions.length).to.equal(3);
+        const action = actions[2];
+        expect(action).to.satisfy(isCreate);
+        const createAction = <Create>action;
+        expect((<Element>createAction.new.element).tagName).to.equal('DataSet');
+      });
+
+      it('referenced DataSet element not having any FCDA per default', async () => {
+        await primaryAction.click();
+
+        const createAction = <Create>(
+          (<ComplexAction>actionEvent.args[0][0].detail.action).actions[2]
+        );
+        expect((<Element>createAction.new.element).children).to.be.empty;
+      });
+
+      it('referenced DataSet element saving selected FCDA', async () => {
+        const path = [
+          'Server: IED2>P1',
+          'LDevice: IED2>>CircuitBreaker_CB1',
+          'LN0: IED2>>CircuitBreaker_CB1',
+          'DO: #Dummy.LLN0>Beh',
+          'DA: #Dummy.LLN0.Beh>stVal',
+        ];
+
+        dataPicker.paths = [path];
+        await element.requestUpdate();
+
+        await primaryAction.click();
+
+        const createAction = <Create>(
+          (<ComplexAction>actionEvent.args[0][0].detail.action).actions[2]
+        );
+        expect((<Element>createAction.new.element).children).to.not.be.empty;
+        expect((<Element>createAction.new.element).children).to.have.lengthOf(
+          1
+        );
+      });
+
+      it('complex action adding GSE element in the Communication section', async () => {
+        await primaryAction.click();
+
+        const actions = (<ComplexAction>actionEvent.args[0][0].detail.action)
+          .actions;
+        expect(actions.length).to.equal(3);
+        const action = actions[1];
+        expect(action).to.satisfy(isCreate);
+        const createAction = <Create>action;
+        expect((<Element>createAction.new.element).tagName).to.equal('GSE');
+      });
+    });
+
+    describe('with missing ConnectedAP element in the Communication section', () => {
+      beforeEach(async () => {
+        const wizard = createGseControlWizard(
+          doc.querySelector('IED[name="IED4"] LN0')!
+        );
+        element.workflow.push(() => wizard);
+        await element.requestUpdate();
+
+        (<WizardTextField>(
+          element.wizardUI.dialogs[0].querySelector(
+            'wizard-textfield[label="appID"]'
+          )
+        )).maybeValue = 'wer';
+
+        primaryAction = <HTMLElement>(
+          element.wizardUI.dialogs[1]?.querySelector(
+            'mwc-button[slot="primaryAction"]'
+          )
+        );
+
+        dataPicker = <FinderList>(
+          element.wizardUI.dialogs[2]?.querySelector('finder-list')
+        );
+
+        await element.wizardUI.requestUpdate(); // make sure wizard is rendered
+      });
+
+      it('has two pages', () =>
+        expect(element.wizardUI.dialogs.length).to.equal(2));
+
+      it('triggers complex action on primary action click', async () => {
+        await primaryAction.click();
+
+        expect(actionEvent).to.be.calledOnce;
+        const action = actionEvent.args[0][0].detail.action;
+        expect(action).to.not.satisfy(isSimple);
+      });
+
+      it('complex action NOT adding GSE element in the Communication section', async () => {
+        await primaryAction.click();
+
+        const actions = (<ComplexAction>actionEvent.args[0][0].detail.action)
+          .actions;
+        expect(actions.length).to.equal(2);
+        const action = actions[1];
+        expect(action).to.satisfy(isCreate);
+        const createAction = <Create>action;
+        expect((<Element>createAction.new.element).tagName).to.equal('DataSet');
+      });
+    });
+  });
+
+  describe('define a wizard to select the control block reference', () => {
+    beforeEach(async () => {
+      const wizard = gseControlParentSelector(doc);
+      element.workflow.push(() => wizard);
+      await element.requestUpdate();
+
+      await element.wizardUI.requestUpdate(); // make sure wizard is rendered
+    });
+
+    it('looks like the latest snapshot', async () => {
+      await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
+    }).timeout(5000);
   });
 });
