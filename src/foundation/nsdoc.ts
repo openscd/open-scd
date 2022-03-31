@@ -66,9 +66,10 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
   function getLNDataDescription(element: Element): { label: string; } {
     const lnClassAttribute = element.getAttribute('lnClass')!;
     const lnClass = nsd74.querySelector(`NS > LNClasses > LNClass[name="${lnClassAttribute}"]`);
+    const lnClassDescription = getNsdocDocumentation(nsdoc74!, lnClass?.getAttribute('titleID'));
 
     return {
-      label: getNsdocDocumentation(nsdoc74!, lnClass?.getAttribute('titleID')) ?? lnClassAttribute
+      label: lnClassDescription ? lnClassDescription + ' (' + lnClassAttribute + ')' : lnClassAttribute
     };
   }
 
@@ -96,7 +97,7 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
   function getSDODataDescription(element: Element): { label: string; } {
     const sdoName = element.getAttribute('name')!;
     const subDataObject = nsd73.querySelector(`CDCs > CDC[name="${element.parentElement?.getAttribute('cdc')}"] > SubDataObject[name="${sdoName}"]`);
-    
+
     return {
       label: getNsdocDocumentation(nsdoc73!, subDataObject?.getAttribute('descID')) ?? sdoName
     };
@@ -172,7 +173,7 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
   /**
    * Get the potential inherited data object based on a LNClass base.
    * @param lnClassBase - The base of a LNClass element.
-   * @param doName - The name of the DO(I) to search for. 
+   * @param doName - The name of the DO(I) to search for.
    * @returns the DataObject in case found, otherwise null.
    */
   function getInheritedDataObject(lnClassBase: string, doName: string): Element | null {
@@ -195,7 +196,7 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
         }
         >].getDataDescription(element, ancestors);
     }
-    
+
   }
 }
 

@@ -57,7 +57,7 @@ describe('nsdoc', () => {
           const ln = validSCL.querySelector(
             'IED[name="IED1"] > AccessPoint[name="P1"] > Server > LDevice[inst="CircuitBreaker_CB1"] > LN0[lnClass="LLN0"]')
 
-            expect(nsdocsObject.getDataDescription(ln!).label).to.eql('Some LN title');
+            expect(nsdocsObject.getDataDescription(ln!).label).to.eql('Some LN title (LLN0)');
         });
 
         it('returns the lnClass in case no title can be found', async function () {
