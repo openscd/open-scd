@@ -13,7 +13,7 @@ import '@material/mwc-icon';
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 
-import './elements/ied-element-goose.js';
+import '../../filtered-list.js';
 import {
   Create,
   createElement,
@@ -23,6 +23,7 @@ import {
   selector,
 } from '../../foundation.js';
 import {
+  newIEDSubscriptionEvent,
   GOOSESelectEvent,
   IEDSubscriptionEvent,
   newGOOSESelectEvent,
@@ -59,12 +60,14 @@ const fcdaReferences = [
  */
 function getFcdaReferences(elementContainingFcdaReferences: Element): string {
   return fcdaReferences
-  .map(fcdaRef =>
-    elementContainingFcdaReferences.getAttribute(fcdaRef)
-      ? `[${fcdaRef}="${elementContainingFcdaReferences.getAttribute(fcdaRef)}"]`
-      : ''
-  )
-  .join('');
+    .map(fcdaRef =>
+      elementContainingFcdaReferences.getAttribute(fcdaRef)
+        ? `[${fcdaRef}="${elementContainingFcdaReferences.getAttribute(
+            fcdaRef
+          )}"]`
+        : ''
+    )
+    .join('');
 }
 
 /**
@@ -111,10 +114,7 @@ export class SubscriberIEDListGoose extends LitElement {
 
     const parentDiv = this.closest('div[id="containerTemplates"]');
     if (parentDiv) {
-      parentDiv.addEventListener(
-        'goose-dataset',
-        this.onGOOSEDataSetEvent
-      );
+      parentDiv.addEventListener('goose-dataset', this.onGOOSEDataSetEvent);
       parentDiv.addEventListener(
         'ied-subscription',
         this.onIEDSubscriptionEvent
@@ -128,7 +128,7 @@ export class SubscriberIEDListGoose extends LitElement {
    * @param event - Incoming event.
    */
   private async onGOOSEDataSetEvent(event: GOOSESelectEvent) {
-    console.log('onGOOSESelect')
+    console.log('onGOOSESelect');
     localState.currentGseControl = event.detail.gseControl;
     localState.currentDataset = event.detail.dataset;
     localState.currentGooseIEDName = localState.currentGseControl
@@ -196,7 +196,6 @@ export class SubscriberIEDListGoose extends LitElement {
    * @param event - Incoming event.
    */
   private async onIEDSubscriptionEvent(event: IEDSubscriptionEvent) {
-    console.log('onGOOSEIEDSub')
     switch (event.detail.subscribeStatus) {
       case SubscribeStatus.Full: {
         this.unsubscribe(event.detail.element);
@@ -283,8 +282,6 @@ export class SubscriberIEDListGoose extends LitElement {
 
         if (extRef) actions.push({ old: { parent: inputs, element: extRef } });
       });
-
-      
     });
 
     this.dispatchEvent(
@@ -309,30 +306,33 @@ export class SubscriberIEDListGoose extends LitElement {
    */
   private extendDeleteActions(extRefDeleteActions: Delete[]): Delete[] {
     if (!extRefDeleteActions.length) return [];
-  
+
     // Initialize with the already existing ExtRef Delete actions.
     const extendedDeleteActions: Delete[] = extRefDeleteActions;
     const inputsMap: Record<string, Element> = {};
-  
+
     for (const extRefDeleteAction of extRefDeleteActions) {
       const extRef = <Element>extRefDeleteAction.old.element;
       const inputsElement = <Element>extRefDeleteAction.old.parent;
 
       const id = identity(inputsElement);
-      if (!inputsMap[id]) inputsMap[id] = <Element>(inputsElement.cloneNode(true));
+      if (!inputsMap[id])
+        inputsMap[id] = <Element>inputsElement.cloneNode(true);
 
-      const linkedExtRef = inputsMap[id].querySelector(`ExtRef[iedName=${extRef.getAttribute('iedName')}]` +
-      `${getFcdaReferences(extRef)}`);
-  
+      const linkedExtRef = inputsMap[id].querySelector(
+        `ExtRef[iedName=${extRef.getAttribute('iedName')}]` +
+          `${getFcdaReferences(extRef)}`
+      );
+
       if (linkedExtRef) inputsMap[id].removeChild(linkedExtRef);
     }
-  
+
     // create delete action for each empty inputs
     Object.entries(inputsMap).forEach(([key, value]) => {
-      if (value.children.length ! == 0) {
+      if (value.children.length! == 0) {
         const doc = extRefDeleteActions[0].old.parent.ownerDocument!;
         const inputs = doc.querySelector(selector('Inputs', key));
-  
+
         if (inputs && inputs.parentElement) {
           extendedDeleteActions.push({
             old: { parent: inputs.parentElement, element: inputs },
@@ -340,7 +340,7 @@ export class SubscriberIEDListGoose extends LitElement {
         }
       }
     });
-  
+
     return extendedDeleteActions;
   }
 
@@ -350,13 +350,76 @@ export class SubscriberIEDListGoose extends LitElement {
     }
   }
 
+  renderSubscriber(status: SubscribeStatus, element: Element): TemplateResult {
+    return html` <mwc-list-item
+      @click=${() => {
+        this.dispatchEvent(
+          newIEDSubscriptionEvent(element, status ?? SubscribeStatus.None)
+        );
+      }}
+      graphic="avatar"
+      hasMeta
+    >
+      <span>${element.getAttribute('name')}</span>
+      <mwc-icon slot="graphic"
+        >${status == SubscribeStatus.Full ? html`clear` : html`add`}</mwc-icon
+      >
+    </mwc-list-item>`;
+  }
+
+  renderUnSubscribers(ieds: IED[]): TemplateResult {
+    return html`<mwc-list-item noninteractive>
+        <span class="iedListTitle"
+          >${translate('subscription.subscriberIed.availableToSubscribe')}</span
+        >
+      </mwc-list-item>
+      <li divider role="separator"></li>
+      ${ieds.length > 0
+        ? ieds.map(ied =>
+            this.renderSubscriber(SubscribeStatus.None, ied.element)
+          )
+        : html`<mwc-list-item graphic="avatar" noninteractive>
+            <span>${translate('subscription.none')}</span>
+          </mwc-list-item>`}`;
+  }
+
+  renderPartiallySubscribers(ieds: IED[]): TemplateResult {
+    return html`<mwc-list-item noninteractive>
+        <span class="iedListTitle"
+          >${translate('subscription.subscriberIed.partiallySubscribed')}</span
+        >
+      </mwc-list-item>
+      <li divider role="separator"></li>
+      ${ieds.length > 0
+        ? ieds.map(ied =>
+            this.renderSubscriber(SubscribeStatus.Partial, ied.element)
+          )
+        : html`<mwc-list-item graphic="avatar" noninteractive>
+            <span>${translate('subscription.none')}</span>
+          </mwc-list-item>`}`;
+  }
+
+  renderFullSubscribers(): TemplateResult {
+    return html`<mwc-list-item noninteractive>
+        <span class="iedListTitle"
+          >${translate('subscription.subscriberIed.subscribed')}</span
+        >
+      </mwc-list-item>
+      <li divider role="separator"></li>
+      ${localState.subscribedIeds.length > 0
+        ? localState.subscribedIeds.map(ied =>
+            this.renderSubscriber(SubscribeStatus.Full, ied.element)
+          )
+        : html`<mwc-list-item graphic="avatar" noninteractive>
+            <span>${translate('subscription.none')}</span>
+          </mwc-list-item>`}`;
+  }
+
   render(): TemplateResult {
     const partialSubscribedIeds = localState.availableIeds.filter(
       ied => ied.partial
     );
-    const availableIeds = localState.availableIeds.filter(
-      ied => !ied.partial
-    );
+    const availableIeds = localState.availableIeds.filter(ied => !ied.partial);
     const gseControlName =
       localState.currentGseControl?.getAttribute('name') ?? undefined;
 
@@ -371,67 +434,11 @@ export class SubscriberIEDListGoose extends LitElement {
         </h1>
         ${localState.currentGseControl
           ? html`<div class="subscriberWrapper">
-              <mwc-list id="subscribedIeds">
-                <mwc-list-item noninteractive>
-                  <span class="iedListTitle"
-                    >${translate('subscription.subscriberIed.subscribed')}</span
-                  >
-                </mwc-list-item>
-                <li divider role="separator"></li>
-                ${localState.subscribedIeds.length > 0
-                  ? localState.subscribedIeds.map(
-                      ied =>
-                        html`<ied-element-goose
-                          .status=${SubscribeStatus.Full}
-                          .element=${ied.element}
-                        ></ied-element-goose>`
-                    )
-                  : html`<mwc-list-item graphic="avatar" noninteractive>
-                      <span>${translate('subscription.none')}</span>
-                    </mwc-list-item>`}
-              </mwc-list>
-              <mwc-list id="partialSubscribedIeds">
-                <mwc-list-item noninteractive>
-                  <span class="iedListTitle"
-                    >${translate(
-                      'subscription.subscriberIed.partiallySubscribed'
-                    )}</span
-                  >
-                </mwc-list-item>
-                <li divider role="separator"></li>
-                ${partialSubscribedIeds.length > 0
-                  ? partialSubscribedIeds.map(
-                      ied =>
-                        html`<ied-element-goose
-                          .status=${SubscribeStatus.Partial}
-                          .element=${ied.element}
-                        ></ied-element-goose>`
-                    )
-                  : html`<mwc-list-item graphic="avatar" noninteractive>
-                      <span>${translate('subscription.none')}</span>
-                    </mwc-list-item>`}
-              </mwc-list>
-              <mwc-list id="notSubscribedIeds">
-                <mwc-list-item noninteractive>
-                  <span class="iedListTitle"
-                    >${translate(
-                      'subscription.subscriberIed.availableToSubscribe'
-                    )}</span
-                  >
-                </mwc-list-item>
-                <li divider role="separator"></li>
-                ${availableIeds.length > 0
-                  ? availableIeds.map(
-                      ied =>
-                        html`<ied-element-goose
-                          .status=${SubscribeStatus.None}
-                          .element=${ied.element}
-                        ></ied-element-goose>`
-                    )
-                  : html`<mwc-list-item graphic="avatar" noninteractive>
-                      <span>${translate('subscription.none')}</span>
-                    </mwc-list-item>`}
-              </mwc-list>
+              <filtered-list id="subscribedIeds">
+                ${this.renderFullSubscribers()}
+                ${this.renderPartiallySubscribers(partialSubscribedIeds)}
+                ${this.renderUnSubscribers(availableIeds)}
+              </filtered-list>
             </div>`
           : html`<mwc-list>
               <mwc-list-item noninteractive>
