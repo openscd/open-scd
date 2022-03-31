@@ -60,6 +60,14 @@ snapshots["gsecontrol wizards selectGseControlWizard looks like the latest snaps
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
   </mwc-button>
+  <mwc-button
+    dialoginitialfocus=""
+    icon="add"
+    label="[GOOSE]"
+    slot="primaryAction"
+    trailingicon=""
+  >
+  </mwc-button>
 </mwc-dialog>
 `;
 /* end snapshot gsecontrol wizards selectGseControlWizard looks like the latest snapshot */
