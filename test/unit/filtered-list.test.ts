@@ -1,6 +1,8 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
 import '@material/mwc-list/mwc-check-list-item';
+import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-list/mwc-radio-list-item';
 
 import '../../src/filtered-list.js';
 import { FilteredList } from '../../src/filtered-list.js';
@@ -13,6 +15,7 @@ describe('filtered-list', () => {
     { prim: 'item3', sec: 'item3sec', disabled: false },
     { prim: 'item4', sec: 'item4sec', disabled: true },
   ];
+
   beforeEach(async () => {
     element = await fixture(
       html`<filtered-list multi
@@ -22,7 +25,13 @@ describe('filtered-list', () => {
               ><span>${item.prim}</span
               ><span slot="secondary">${item.sec}</span></mwc-check-list-item
             >`
-        )}</filtered-list
+        )}<abbr
+          ><mwc-list-item><span>nestedItem5</span></mwc-list-item></abbr
+        ><abbr
+          ><div>
+            <mwc-radio-list-item><span>nestedItem6</span></mwc-radio-list-item>
+          </div></abbr
+        ></filtered-list
       >`
     );
   });
@@ -44,6 +53,7 @@ describe('filtered-list', () => {
         element.shadowRoot!.querySelector('mwc-formfield>mwc-checkbox')
       ).to.have.attribute('indeterminate');
     });
+
     it('is selected if all check-list-items are selected', async () => {
       expect(
         element.shadowRoot!.querySelector('mwc-formfield>mwc-checkbox')
@@ -59,6 +69,7 @@ describe('filtered-list', () => {
         element.shadowRoot!.querySelector('mwc-formfield>mwc-checkbox')
       ).to.have.attribute('checked');
     });
+
     it('is none of the above if no check-list-item is selected', () => {
       expect(
         element.shadowRoot!.querySelector('mwc-formfield>mwc-checkbox')
@@ -67,6 +78,7 @@ describe('filtered-list', () => {
         element.shadowRoot!.querySelector('mwc-formfield>mwc-checkbox')
       ).to.not.have.attribute('indeterminate');
     });
+
     it('can be disabled with disableCheckAll property', async () => {
       expect(element.shadowRoot!.querySelector('mwc-formfield>mwc-checkbox')).to
         .not.be.null;
@@ -75,6 +87,7 @@ describe('filtered-list', () => {
       expect(element.shadowRoot!.querySelector('mwc-formfield>mwc-checkbox')).to
         .be.null;
     });
+
     it('selects all enabled and visable check-list-items on checkAll click', async () => {
       (<HTMLElement>(
         element.shadowRoot!.querySelector('mwc-formfield>mwc-checkbox')
@@ -86,6 +99,7 @@ describe('filtered-list', () => {
           expect(item).to.have.attribute('selected');
         });
     });
+
     it('does not select disabled check-list-items on checkAll click', async () => {
       (<HTMLElement>(
         element.shadowRoot!.querySelector('mwc-formfield>mwc-checkbox')
@@ -93,6 +107,7 @@ describe('filtered-list', () => {
       await element.updateComplete;
       expect(element.items[3]).to.not.have.attribute('selected');
     });
+
     it('unselects all check-list-items on checkAll click', async () => {
       (<HTMLElement>(
         element.shadowRoot!.querySelector('mwc-formfield>mwc-checkbox')
@@ -109,27 +124,31 @@ describe('filtered-list', () => {
     });
   });
 
-  describe('onFilterInput', () => {
-    it('filteres its items', async () => {
+  describe('allows to filter on', () => {
+    it('directly slotted mwc-check-list-item', async () => {
       element.searchField.value = 'item1';
       element.onFilterInput();
       element.requestUpdate();
       await element.updateComplete;
-      expect(element.items[0].classList.contains('hidden')).to.be.false;
-      expect(element.items[1].classList.contains('hidden')).to.be.true;
-      expect(element.items[2].classList.contains('hidden')).to.be.true;
-      expect(element.items[3].classList.contains('hidden')).to.be.true;
+      expect(element.children[0].classList.contains('hidden')).to.be.false;
+      expect(element.children[1].classList.contains('hidden')).to.be.true;
+      expect(element.children[2].classList.contains('hidden')).to.be.true;
+      expect(element.children[3].classList.contains('hidden')).to.be.true;
+      expect(element.children[4].classList.contains('hidden')).to.be.true;
+      expect(element.children[5].classList.contains('hidden')).to.be.true;
     });
 
-    it('filteres within twoline mwc-list-item', async () => {
+    it('directly slotted twoline mwc-check-list-item', async () => {
       element.searchField.value = 'item2sec';
       element.onFilterInput();
       element.requestUpdate();
       await element.updateComplete;
-      expect(element.items[0].classList.contains('hidden')).to.be.true;
-      expect(element.items[1].classList.contains('hidden')).to.be.false;
-      expect(element.items[2].classList.contains('hidden')).to.be.true;
-      expect(element.items[3].classList.contains('hidden')).to.be.true;
+      expect(element.children[0].classList.contains('hidden')).to.be.true;
+      expect(element.children[1].classList.contains('hidden')).to.be.false;
+      expect(element.children[2].classList.contains('hidden')).to.be.true;
+      expect(element.children[3].classList.contains('hidden')).to.be.true;
+      expect(element.children[4].classList.contains('hidden')).to.be.true;
+      expect(element.children[5].classList.contains('hidden')).to.be.true;
     });
 
     it('uses space as logic AND ', async () => {
@@ -137,10 +156,38 @@ describe('filtered-list', () => {
       element.onFilterInput();
       element.requestUpdate();
       await element.updateComplete;
-      expect(element.items[0].classList.contains('hidden')).to.be.true;
-      expect(element.items[1].classList.contains('hidden')).to.be.true;
-      expect(element.items[2].classList.contains('hidden')).to.be.false;
-      expect(element.items[3].classList.contains('hidden')).to.be.true;
+      expect(element.children[0].classList.contains('hidden')).to.be.true;
+      expect(element.children[1].classList.contains('hidden')).to.be.true;
+      expect(element.children[2].classList.contains('hidden')).to.be.false;
+      expect(element.children[3].classList.contains('hidden')).to.be.true;
+      expect(element.children[4].classList.contains('hidden')).to.be.true;
+      expect(element.children[5].classList.contains('hidden')).to.be.true;
+    });
+
+    it('nested mwc-list-item elements', async () => {
+      element.searchField.value = 'nesteditem5';
+      element.onFilterInput();
+      element.requestUpdate();
+      await element.updateComplete;
+      expect(element.children[0].classList.contains('hidden')).to.be.true;
+      expect(element.children[1].classList.contains('hidden')).to.be.true;
+      expect(element.children[2].classList.contains('hidden')).to.be.true;
+      expect(element.children[3].classList.contains('hidden')).to.be.true;
+      expect(element.children[4].classList.contains('hidden')).to.be.false;
+      expect(element.children[5].classList.contains('hidden')).to.be.true;
+    });
+
+    it('nested mwc-radio-list-item elements', async () => {
+      element.searchField.value = 'nesteditem6';
+      element.onFilterInput();
+      element.requestUpdate();
+      await element.updateComplete;
+      expect(element.children[0].classList.contains('hidden')).to.be.true;
+      expect(element.children[1].classList.contains('hidden')).to.be.true;
+      expect(element.children[2].classList.contains('hidden')).to.be.true;
+      expect(element.children[3].classList.contains('hidden')).to.be.true;
+      expect(element.children[4].classList.contains('hidden')).to.be.true;
+      expect(element.children[5].classList.contains('hidden')).to.be.false;
     });
   });
 });
