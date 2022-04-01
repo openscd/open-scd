@@ -112,7 +112,7 @@ export class SubscriberIEDListGoose extends LitElement {
     this.onGOOSEDataSetEvent = this.onGOOSEDataSetEvent.bind(this);
     this.onIEDSubscriptionEvent = this.onIEDSubscriptionEvent.bind(this);
 
-    const parentDiv = this.closest('div[id="containerTemplates"]');
+    const parentDiv = this.closest('.container');
     if (parentDiv) {
       parentDiv.addEventListener('goose-dataset', this.onGOOSEDataSetEvent);
       parentDiv.addEventListener(
@@ -424,7 +424,7 @@ export class SubscriberIEDListGoose extends LitElement {
       localState.currentGseControl?.getAttribute('name') ?? undefined;
 
     return html`
-      <section>
+      <section tabindex="0">
         <h1>
           ${translate('subscription.subscriberIed.title', {
             selected: gseControlName
@@ -454,17 +454,6 @@ export class SubscriberIEDListGoose extends LitElement {
 
   static styles = css`
     ${styles}
-
-    h1 {
-      overflow: unset;
-      white-space: unset;
-      text-overflow: unset;
-    }
-
-    .subscriberWrapper {
-      height: 100vh;
-      overflow-y: scroll;
-    }
 
     .iedListTitle {
       font-weight: bold;

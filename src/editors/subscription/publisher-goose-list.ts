@@ -62,7 +62,7 @@ export class PublisherGOOSEList extends LitElement {
   }
 
   render(): TemplateResult {
-    return html` <section>
+    return html` <section tabindex="0">
       <h1>${translate('subscription.publisherGoose.title')}</h1>
       <filtered-list>
         ${this.ieds.map(
@@ -84,11 +84,6 @@ export class PublisherGOOSEList extends LitElement {
 
   static styles = css`
     ${styles}
-
-    filtered-list {
-      height: 100vh;
-      overflow-y: scroll;
-    }
 
     .iedListTitle {
       font-weight: bold;
