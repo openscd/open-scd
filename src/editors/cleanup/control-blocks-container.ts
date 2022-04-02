@@ -13,16 +13,16 @@ import {
 import { translate } from 'lit-translate';
 
 import '@material/mwc-button';
-import { Button } from '@material/mwc-button';
-import { Checkbox } from '@material/mwc-checkbox';
 import '@material/mwc-icon';
 import '@material/mwc-icon-button-toggle';
-import { List, MWCListIndex } from '@material/mwc-list';
 import '@material/mwc-list/mwc-check-list-item.js';
 import '@material/mwc-checkbox';
-import '../../filtered-list.js';
 
-import { styles } from '../templates/foundation.js';
+import { Button } from '@material/mwc-button';
+import { Checkbox } from '@material/mwc-checkbox';
+import { List, MWCListIndex } from '@material/mwc-list';
+
+import '../../filtered-list.js';
 
 import {
   Delete,
@@ -31,19 +31,19 @@ import {
   newSubWizardEvent,
   newActionEvent,
 } from '../../foundation.js';
-
+import { styles } from '../templates/foundation.js';
 import {
   controlBlockIcons,
   getFilterIcon,
   iconType,
 } from '../../icons/icons.js';
-
 import { editGseControlWizard, getGSE } from '../../wizards/gsecontrol.js';
 import { editReportControlWizard } from '../../wizards/reportcontrol.js';
 import {
   editSampledValueControlWizard,
   getSMV,
 } from '../../wizards/sampledvaluecontrol.js';
+import { cleanSCLItems, identitySort } from './foundation.js';
 
 type controlType =
   | 'GSEControl'
@@ -60,14 +60,14 @@ const iconMapping = {
 
 /**
  * Check whether a control block is instantiated in the Communication section of the SCL file.
- * @param cb - SCL control block element.
+ * @param controlBlock - SCL control block element.
  * @returns true or false if a GSE or SMV element exists under the Communication section.
  */
-function getCommAddress(cb: Element): Element | null | undefined {
-  if (cb.tagName === 'GSEControl') {
-    return getGSE(cb);
-  } else if (cb.tagName === 'SampledValueControl') {
-    return getSMV(cb);
+function getCommAddress(controlBlock: Element): Element | null | undefined {
+  if (controlBlock.tagName === 'GSEControl') {
+    return getGSE(controlBlock);
+  } else if (controlBlock.tagName === 'SampledValueControl') {
+    return getSMV(controlBlock);
   }
   return null;
 }
@@ -79,57 +79,57 @@ export class CleanupControlBlocks extends LitElement {
   @property()
   doc!: XMLDocument;
 
-  @property()
+  @property({ type: Boolean })
   disableControlClean = false;
-  @property()
-  _unreferencedControls: Element[] = [];
-  @property()
-  _selectedControlItems: MWCListIndex | [] = [];
-  @query('.deleteButton')
-  _cleanButton!: Button;
-  @query('.cleanupList')
-  _cleanupList: List | undefined;
-  @queryAll('mwc-check-list-item.cleanupListItem')
-  _cleanupListItems: NodeList | undefined;
-  @query('.cleanupAddressCheckbox')
-  _cleanupAddressCheckbox: Checkbox | undefined;
-  @query('.tGSEControlFilter')
-  _cleanupGSEControlFilter!: Button;
-  @query('.tSampledValueControlFilter')
-  _cleanupSampledValueControlFilter!: Button;
-  @query('.tLogControlFilter')
-  _cleanupLogControlFilter!: Button;
-  @query('.tReportControlFilter')
-  _cleanupReportControlFilter!: Button;
 
-  /**
-   * Clean datasets as requested by removing SCL elements specified by the user from the SCL file
-   * @returns an actions array to support undo/redo
-   */
-  public cleanSCLItems(cleanItems: Element[]): Delete[] {
-    const actions: Delete[] = [];
-    if (cleanItems) {
-      cleanItems.forEach(item => {
-        actions.push({
-          old: {
-            parent: <Element>item.parentElement!,
-            element: item,
-            reference: <Node | null>item!.nextSibling,
-          },
-        });
-      });
-    }
-    return actions;
-  }
+  @property({ type: Array })
+  unreferencedControls: Element[] = [];
+
+  @property()
+  selectedControlItems: MWCListIndex | [] = [];
+
+  @query('.deleteButton')
+  cleanButton!: Button;
+
+  @query('.cleanupList')
+  cleanupList: List | undefined;
+
+  @queryAll('mwc-check-list-item.cleanupListItem')
+  cleanupListItems: NodeList | undefined;
+
+  @query('.cleanupAddressCheckbox')
+  cleanupAddressCheckbox: Checkbox | undefined;
+
+  @query('.tGSEControlFilter')
+  cleanupGSEControlFilter!: Button;
+
+  @query('.tSampledValueControlFilter')
+  cleanupSampledValueControlFilter!: Button;
+
+  @query('.tLogControlFilter')
+  cleanupLogControlFilter!: Button;
+
+  @query('.tReportControlFilter')
+  cleanupReportControlFilter!: Button;
 
   /**
    * Toggle the class hidden in the unused controls list for use by filter buttons.
    * @param selectorType - class for selection to toggle the hidden class used by the list.
    */
   private toggleHiddenClass(selectorType: string) {
-    this._cleanupList!.querySelectorAll(`.${selectorType}`).forEach(element => {
+    this.cleanupList!.querySelectorAll(`.${selectorType}`).forEach(element => {
       element.classList.toggle('hidden');
     });
+  }
+
+  /**
+   * Initial update after container is loaded.
+   */
+  async firstUpdated(): Promise<void> {
+    this.cleanupList?.addEventListener('selected', () => {
+      this.selectedControlItems = this.cleanupList!.index;
+    });
+    this.toggleHiddenClass('tReportControl');
   }
 
   /**
@@ -138,10 +138,10 @@ export class CleanupControlBlocks extends LitElement {
    * @param initialState - boolean representing whether button is on or off.
    * @returns html for the icon button.
    */
-  private createFilterIconButton(
+  private renderFilterIconButton(
     controlType: controlType,
     initialState = true
-  ) {
+  ): TemplateResult {
     return html`<mwc-icon-button-toggle
       slot="graphic"
       label="filter"
@@ -158,37 +158,39 @@ export class CleanupControlBlocks extends LitElement {
 
   /**
    * Provide list item in the control block cleanup container.
-   * @param cb - an unused SCL ControlBlock element.
+   * @param controlBlock - an unused SCL ControlBlock element.
    * @returns html for checklist item.
    */
-  private getListItem(cb: Element) {
+  private renderListItem(controlBlock: Element): TemplateResult {
     return html`<mwc-check-list-item
       twoline
-      class="cleanupListItem t${cb.nodeName}"
-      value="${identity(cb)}"
+      class="cleanupListItem t${controlBlock.tagName}"
+      value="${identity(controlBlock)}"
       graphic="large"
-      ><span class="unreferencedControl">${cb.getAttribute('name')!} </span>
+      ><span class="unreferencedControl"
+        >${controlBlock.getAttribute('name')!}
+      </span>
       <span>
         <mwc-icon-button
           label="Edit"
           icon="edit"
           class="editItem"
-          ?disabled="${cb.nodeName === 'LogControl'}"
+          ?disabled="${controlBlock.tagName === 'LogControl'}"
           @click=${(e: MouseEvent) => {
             e.stopPropagation();
-            if (cb.nodeName === 'GSEControl') {
+            if (controlBlock.tagName === 'GSEControl') {
               e.target?.dispatchEvent(
-                newSubWizardEvent(editGseControlWizard(cb))
+                newSubWizardEvent(editGseControlWizard(controlBlock))
               );
-            } else if (cb.nodeName === 'ReportControl') {
+            } else if (controlBlock.tagName === 'ReportControl') {
               e.target?.dispatchEvent(
-                newSubWizardEvent(editReportControlWizard(cb))
+                newSubWizardEvent(editReportControlWizard(controlBlock))
               );
-            } else if (cb.nodeName === 'SampledValueControl') {
+            } else if (controlBlock.tagName === 'SampledValueControl') {
               e.target?.dispatchEvent(
-                newSubWizardEvent(editSampledValueControlWizard(cb))
+                newSubWizardEvent(editSampledValueControlWizard(controlBlock))
               );
-            } else if (cb.nodeName === 'LogControl') {
+            } else if (controlBlock.tagName === 'LogControl') {
               // not implemented yet, disabled above
             }
           }}
@@ -202,17 +204,22 @@ export class CleanupControlBlocks extends LitElement {
           title="${translate(
             'cleanup.unreferencedControls.addressDefinitionTooltip'
           )}"
-          ?disabled="${!(getCommAddress(cb) !== null)}"
+          ?disabled="${!(getCommAddress(controlBlock) !== null)}"
         >
         </mwc-icon-button>
       </span>
       <span slot="secondary"
-        >${cb.tagName} - ${cb.closest('IED')?.getAttribute('name')}
-        (${cb.closest('IED')?.getAttribute('manufacturer') ??
+        >${controlBlock.tagName} -
+        ${controlBlock.closest('IED')?.getAttribute('name')}
+        (${controlBlock.closest('IED')?.getAttribute('manufacturer') ??
         'No manufacturer defined'})
-        - ${cb.closest('IED')?.getAttribute('type') ?? 'No Type Defined'}</span
+        -
+        ${controlBlock.closest('IED')?.getAttribute('type') ??
+        'No Type Defined'}</span
       >
-      <mwc-icon slot="graphic">${controlBlockIcons[cb.nodeName]}</mwc-icon>
+      <mwc-icon slot="graphic"
+        >${controlBlockIcons[controlBlock.tagName]}</mwc-icon
+      >
     </mwc-check-list-item>`;
   }
 
@@ -220,47 +227,36 @@ export class CleanupControlBlocks extends LitElement {
    * Provide delete button the control block cleanup container.
    * @returns html for the Delete Button of this container.
    */
-  private getDeleteButton() {
+  private renderDeleteButton(): TemplateResult {
     return html`<mwc-button
       outlined
       icon="delete"
       class="deleteButton"
       label="${translate('cleanup.unreferencedControls.deleteButton')} (${(<
         Set<number>
-      >this._selectedControlItems).size || '0'})"
-      ?disabled=${(<Set<number>>this._selectedControlItems).size === 0 ||
-      (Array.isArray(this._selectedControlItems) &&
-        !this._selectedControlItems.length)}
+      >this.selectedControlItems).size || '0'})"
+      ?disabled=${(<Set<number>>this.selectedControlItems).size === 0 ||
+      (Array.isArray(this.selectedControlItems) &&
+        !this.selectedControlItems.length)}
       @click=${(e: MouseEvent) => {
         const cleanItems = Array.from(
-          (<Set<number>>this._selectedControlItems).values()
-        ).map(index => this._unreferencedControls[index]);
-        let addressItems: Delete[] = [];
-        if (this._cleanupAddressCheckbox!.checked === true) {
+          (<Set<number>>this.selectedControlItems).values()
+        ).map(index => this.unreferencedControls[index]);
+        let gseSmvAddressItems: Delete[] = [];
+        if (this.cleanupAddressCheckbox!.checked === true) {
           // TODO: To be truly complete other elements should also be checked, possibly
           // including: tServiceSettings, tReportSettings, tGSESettings, tSMVSettings
-          // and ExtRef elements in the Inputs section
-          addressItems = this.cleanSCLItems(
+          gseSmvAddressItems = cleanSCLItems(
             cleanItems.map(cb => getCommAddress(cb)!).filter(Boolean)
           );
         }
-        const deleteActions =
-          this.cleanSCLItems(cleanItems).concat(addressItems);
-        deleteActions.forEach(deleteAction =>
+        const gseSmvLogReportDeleteActions =
+          cleanSCLItems(cleanItems).concat(gseSmvAddressItems);
+        gseSmvLogReportDeleteActions.forEach(deleteAction =>
           e.target?.dispatchEvent(newActionEvent(deleteAction))
         );
       }}
     ></mwc-button>`;
-  }
-
-  /**
-   * Initial update after container is loaded.
-   */
-  async firstUpdated(): Promise<void> {
-    this._cleanupList?.addEventListener('selected', () => {
-      this._selectedControlItems = this._cleanupList!.index;
-    });
-    this.toggleHiddenClass('tReportControl');
   }
 
   /**
@@ -282,20 +278,7 @@ export class CleanupControlBlocks extends LitElement {
         const isReferenced = parent?.querySelector(`DataSet[name=${name}]`);
         if (parent && (!name || !isReferenced)) unreferencedCBs.push(cb);
       });
-
-    this._unreferencedControls = unreferencedCBs.sort((a, b) => {
-      // sorting using the identity ensures sort order includes IED
-      const aId = identity(a);
-      const bId = identity(b);
-      if (aId < bId) {
-        return -1;
-      }
-      if (aId > bId) {
-        return 1;
-      }
-      // names must be equal
-      return 0;
-    });
+    this.unreferencedControls = identitySort(unreferencedCBs);
     return html`
       <div>
         <h1>
@@ -309,16 +292,16 @@ export class CleanupControlBlocks extends LitElement {
             </mwc-icon-button>
           </abbr>
         </h1>
-        ${this.createFilterIconButton('LogControl')}
-        ${this.createFilterIconButton('ReportControl', false)}
-        ${this.createFilterIconButton('GSEControl')}
-        ${this.createFilterIconButton('SampledValueControl')}
+        ${this.renderFilterIconButton('LogControl')}
+        ${this.renderFilterIconButton('ReportControl', false)}
+        ${this.renderFilterIconButton('GSEControl')}
+        ${this.renderFilterIconButton('SampledValueControl')}
         <filtered-list multi class="cleanupList"
-          >${Array.from(unreferencedCBs.map(cb => this.getListItem(cb)))}
+          >${Array.from(unreferencedCBs.map(cb => this.renderListItem(cb)))}
         </filtered-list>
       </div>
       <footer>
-        ${this.getDeleteButton()}
+        ${this.renderDeleteButton()}
         <mwc-formfield
           class="removeFromCommunication"
           label="${translate(
@@ -328,9 +311,9 @@ export class CleanupControlBlocks extends LitElement {
           <mwc-checkbox
             checked
             class="cleanupAddressCheckbox"
-            ?disabled=${(<Set<number>>this._selectedControlItems).size === 0 ||
-            (Array.isArray(this._selectedControlItems) &&
-              !this._selectedControlItems.length)}
+            ?disabled=${(<Set<number>>this.selectedControlItems).size === 0 ||
+            (Array.isArray(this.selectedControlItems) &&
+              !this.selectedControlItems.length)}
           ></mwc-checkbox
         ></mwc-formfield>
       </footer>
@@ -393,7 +376,6 @@ export class CleanupControlBlocks extends LitElement {
     }
 
     filtered-list {
-      max-height: 70vh;
       min-height: 20vh;
       overflow-y: scroll;
     }

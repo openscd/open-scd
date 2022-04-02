@@ -25,7 +25,7 @@ describe('Cleanup: Datasets Container', () => {
     });
   });
 
-  describe('Unreferenced DataSets', () => {
+  describe('with a test file loaded', () => {
     let doc: Document;
     beforeEach(async () => {
       doc = await fetch('/test/testfiles/cleanup.scd')
@@ -37,25 +37,29 @@ describe('Cleanup: Datasets Container', () => {
       await element.updateComplete;
     });
 
+    it('looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
+    });
+
     it('creates correct number of checkboxes for the expected unreferenced datasets', () => {
-      expect(Array.from(element._dataSetItems!).length).to.equal(2);
+      expect(Array.from(element.dataSetItems!).length).to.equal(2);
     });
 
     it('has the remove button disabled by default', () => {
-      expect(element._cleanupButton).to.have.property('disabled', true);
+      expect(element.cleanupButton).to.have.property('disabled', true);
     });
 
     it('has the remove button enabled after selecting an item', async () => {
-      const firstCheckListItem: HTMLElement = element._dataSetItems![0];
+      const firstCheckListItem: HTMLElement = element.dataSetItems![0];
       await firstCheckListItem.click();
-      expect(element._cleanupButton).to.have.property('disabled', false);
+      expect(element.cleanupButton).to.have.property('disabled', false);
     });
 
     it('after selecting and deselecting an item the remove button is disabled', async () => {
-      const firstCheckListItem: HTMLElement = element._dataSetItems![0];
+      const firstCheckListItem: HTMLElement = element.dataSetItems![0];
       await firstCheckListItem.click();
       await firstCheckListItem.click();
-      expect(element._cleanupButton).to.have.property('disabled', true);
+      expect(element.cleanupButton).to.have.property('disabled', true);
     });
 
     it('after clicking select all the button is not disabled', async () => {
@@ -65,8 +69,8 @@ describe('Cleanup: Datasets Container', () => {
         .shadowRoot!.querySelector('.checkall')!
         .querySelector('mwc-checkbox')!;
       await checkbox.click();
-      await element._dataSetList?.layout();
-      expect(element._cleanupButton).to.have.property('disabled', false);
+      await element.dataSetList?.layout();
+      expect(element.cleanupButton).to.have.property('disabled', false);
     });
 
     it('after clicking select all twice the button is disabled', async () => {
@@ -76,8 +80,8 @@ describe('Cleanup: Datasets Container', () => {
         .querySelector('mwc-checkbox')!;
       await checkbox.click();
       await checkbox.click();
-      await element._dataSetList?.layout();
-      expect(element._cleanupButton).to.have.property('disabled', true);
+      await element.dataSetList?.layout();
+      expect(element.cleanupButton).to.have.property('disabled', true);
     });
   });
 });

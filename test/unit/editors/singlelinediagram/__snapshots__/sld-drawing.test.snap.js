@@ -122,7 +122,7 @@ snapshots["Single Line Diagram drawing creates a group element for every given B
   id="AA1>J1>BusBar A"
   sxy:x="2"
   sxy:y="2"
-  type="Bay"
+  type="Busbar"
 >
   <line
     name="BusBar A"
@@ -134,13 +134,6 @@ snapshots["Single Line Diagram drawing creates a group element for every given B
     y2="512"
   >
   </line>
-  <text
-    style="font-family: Roboto, sans-serif; font-weight: 300; font-size: small"
-    x="256"
-    y="502"
-  >
-    BusBar A
-  </text>
 </g>
 `;
 /* end snapshot Single Line Diagram drawing creates a group element for every given Bus Bar element that looks like its latest snapshot */
@@ -168,7 +161,7 @@ snapshots["Single Line Diagram drawing creates a group element for every given C
     cx="12.5"
     cy="12.5"
     fill="currentColor"
-    r="4"
+    r="5"
     stroke="currentColor"
     stroke-width="1"
     transform="translate(531.5,1363.5)"

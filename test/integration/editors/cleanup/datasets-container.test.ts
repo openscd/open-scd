@@ -5,27 +5,30 @@ import { Editing } from '../../../../src/Editing.js';
 import { Wizarding } from '../../../../src/Wizarding.js';
 
 import { CleanupDatasets } from '../../../../src/editors/cleanup/datasets-container.js';
+import { cleanSCLItems } from '../../../../src/editors/cleanup/foundation.js';
 
-describe('Cleanup: Datasets Container', () => {
+describe('cleanup-editor integration: dataset removal', () => {
   customElements.define(
     'cleanup-plugin-datasets',
     Wizarding(Editing(CleanupDatasets))
   );
   let element: CleanupDatasets;
 
-  beforeEach(async () => {
-    element = await fixture(
-      html`<cleanup-plugin-datasets></cleanup-plugin-datasets>`
-    );
-  });
-
   describe('without a doc loaded', () => {
+    beforeEach(async () => {
+      const doc = null;
+      element = await fixture(
+        html`<cleanup-plugin-datasets .doc="${doc}"></cleanup-plugin-datasets>`
+      );
+      await element.updateComplete;
+    });
+
     it('looks like the latest snapshot', async () => {
       await expect(element).shadowDom.to.equalSnapshot();
     });
   });
 
-  describe('Unreferenced DataSets', () => {
+  describe('With a test file loaded', () => {
     let doc: Document;
     beforeEach(async () => {
       doc = await fetch('/test/testfiles/cleanup.scd')
@@ -37,18 +40,22 @@ describe('Cleanup: Datasets Container', () => {
       await element.updateComplete;
     });
 
-    it('creates two Delete Actions', async () => {
+    it('looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
+    });
+
+    it('creates two delete actions', async () => {
       // select all items and update list
       const checkbox = element
         .shadowRoot!.querySelector('.dataSetList')!
         .shadowRoot!.querySelector('mwc-formfield')!
         .querySelector('mwc-checkbox')!;
       await checkbox.click();
-      element._dataSetList?.layout();
+      element.dataSetList?.layout();
       const cleanItems = Array.from(
-        (<Set<number>>element._dataSetList!.index).values()
-      ).map(index => element._unreferencedDataSets[index]);
-      const deleteActions = element.cleanSCLItems(cleanItems);
+        (<Set<number>>element.dataSetList!.index).values()
+      ).map(index => element.unreferencedDataSets[index]);
+      const deleteActions = cleanSCLItems(cleanItems);
       expect(deleteActions.length).to.equal(2);
     });
 
@@ -59,8 +66,8 @@ describe('Cleanup: Datasets Container', () => {
         .shadowRoot!.querySelector('mwc-formfield')!
         .querySelector('mwc-checkbox')!;
       await checkbox.click();
-      element._dataSetList?.layout();
-      await element._cleanupButton!.click();
+      element.dataSetList?.layout();
+      await element.cleanupButton!.click();
       // the correct number of DataSets should remain
       const remainingDataSetCountCheck =
         doc.querySelectorAll(

@@ -35,6 +35,12 @@ export default class Cleanup extends LitElement {
       }
     }
 
+    @media (min-width: 800px) {
+      .cleanup {
+        max-height: 60vh;
+      }
+    }
+
     cleanup-datasets, cleanup-control-blocks {
       display: flex;
       flex: 1;
@@ -42,6 +48,7 @@ export default class Cleanup extends LitElement {
       justify-content: space-between;
       /* any more than 700px and distance between check box and item is too great */
       max-width: 700px;
+
     }
 
     .cleanup {
