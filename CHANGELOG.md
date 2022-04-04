@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.13.0](https://github.com/openscd/open-scd/compare/v0.11.0...v0.13.0) (2022-04-04)
+
+
+### Features
+
+* **Editing:** check globally for ID uniqueness ([c2b14fb](https://github.com/openscd/open-scd/commits/c2b14fb337adb9f55874dbb3add0aefda8622946))
+* **editors/cleanup:** unreferenced DataSet ([#568](https://github.com/openscd/open-scd/issues/568)) ([edc133c](https://github.com/openscd/open-scd/commits/edc133cdecce61abf53d043bc45292d1a1a36c7c))
+* **editors/subscriber:** use filtered lists ([#638](https://github.com/openscd/open-scd/issues/638)) ([f255bfb](https://github.com/openscd/open-scd/commits/f255bfb4f205239413f12f7c47e221e739cefdce))
+* **editors/Substation:** Add PowerTransformer Components to Substation Editor ([22555b6](https://github.com/openscd/open-scd/commits/22555b6713c9f2c8e882269ffce9a826d016e87b))
+* **editors/template/lnodetype-wizards:** make use of -7-420 NSD ([0a2d5a4](https://github.com/openscd/open-scd/commits/0a2d5a40c50d5a0cc66fd7c5b31f6493aa7c4600))
+* **ied-editor/ln-node:** Changed description of LN Node in IED Editor ([#647](https://github.com/openscd/open-scd/issues/647)) ([9a655e8](https://github.com/openscd/open-scd/commits/9a655e88d1a8341ec56a83c6af540e77f4e9c280))
+* **plugins/IED:** Add icon set to IED editor containers ([9878259](https://github.com/openscd/open-scd/commits/9878259665be2e34bd99dd1d5f72c1944b3dca1f))
+* **plugins/SampledValues:** Create Sampled Values tab in Subscription plugin ([f94b042](https://github.com/openscd/open-scd/commits/f94b0422253940785a0982ae72910f1bbbc2ac62))
+* **plugins/SampledValues:** Small bug fix + Added Integration tests ([a58f305](https://github.com/openscd/open-scd/commits/a58f305c78a65c056c617e9f09e8d648f4aaf610))
+* **plugins/Subscription:** Create 'Subscription' plugin for GOOSE subscriptions  ([25fae6f](https://github.com/openscd/open-scd/commits/25fae6fc42ad76f269ef029848d5cae6329eee33))
+* **wizard-dialog:** allow used-defined actions in menu ([f8c5a93](https://github.com/openscd/open-scd/commits/f8c5a93100e4c7e922627337ffee32f6169b12cf))
+* **wizard-dialog:** wizard-dialog content definition through `WizardInput` objects ([5f3a7a7](https://github.com/openscd/open-scd/commits/5f3a7a7c4a74bffb5e800b8c75bffdbdb3213e15))
+* **wizards/reportcontrol:** add copy to other IEDs  ([#632](https://github.com/openscd/open-scd/issues/632)) ([1850dfa](https://github.com/openscd/open-scd/commits/1850dfa6c77669fd47ac36379a32267dc54ef913))
+
+
+### Bug Fixes
+
+* **action-pane:** adjust css rules for icon slot ([#594](https://github.com/openscd/open-scd/issues/594)) ([8bc0549](https://github.com/openscd/open-scd/commits/8bc0549bc791ef6b7fe0b1dfd4d5a6f1dfccde2d))
+* **editors/template:** on id attribute update adopt references as well ([#590](https://github.com/openscd/open-scd/issues/590)) ([af246dd](https://github.com/openscd/open-scd/commits/af246ddcde907688081aaa20d295faeb978b0a6f))
+* **editors/template:** properly update xxxType list after add/editing ([#582](https://github.com/openscd/open-scd/issues/582)) ([2e11cc8](https://github.com/openscd/open-scd/commits/2e11cc8c277d31dd693ae54656e1c3b4cd23f8f3))
+* **wizard-dialog:** make sure to close on non empty editor action ([8fb125c](https://github.com/openscd/open-scd/commits/8fb125c1c353feb37a4c988d59a608090fb0425b))
+* **wizards/subnetwork:** incorrect title for create wizard ([#645](https://github.com/openscd/open-scd/issues/645)) ([0210913](https://github.com/openscd/open-scd/commits/0210913cc8eef9cf06d1071a146072ba24e80df0))
+
 ## [0.12.0](https://github.com/openscd/open-scd/compare/v0.11.0...v0.12.0) (2022-03-21)
 
 
