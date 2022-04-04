@@ -567,6 +567,9 @@ export const de: Translations = {
       minor: '???',
       patch: '???',
     },
+    import: {
+      title: '???'
+    },
     open: {
       title: '???',
       localTitle: '???',

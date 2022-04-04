@@ -83,6 +83,15 @@ export const officialPlugins = [
     position: 'top'
   },
   {
+    name: 'Import from API',
+    src: '/src/menu/CompasImportFromLiander.js',
+    icon: 'create_new_folder',
+    default: false,
+    kind: 'menu',
+    requireDoc: false,
+    position: 'top'
+  },
+  {
     name: 'Save project',
     src: '/src/menu/CompasSave.js',
     icon: 'save',

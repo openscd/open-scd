@@ -563,6 +563,9 @@ export const en = {
       minor: 'Minor change',
       patch: 'Patch change',
     },
+    import: {
+      title: 'Import from API'
+    },
     open: {
       title: 'Open project',
       localTitle: 'Local',
