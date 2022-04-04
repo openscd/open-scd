@@ -442,7 +442,7 @@ export class SubscriberIEDListGoose extends LitElement {
             </div>`
           : html`<mwc-list>
               <mwc-list-item noninteractive>
-                <span class="iedListTitle">${translate(
+                <span>${translate(
                   'subscription.subscriberIed.noGooseMessageSelected'
                 )}</span>
               </mwc-list-item>
@@ -454,9 +454,5 @@ export class SubscriberIEDListGoose extends LitElement {
 
   static styles = css`
     ${styles}
-
-    .iedListTitle {
-      font-weight: bold;
-    }
   `;
 }

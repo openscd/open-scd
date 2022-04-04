@@ -105,6 +105,10 @@ export const styles = css`
     cursor: inherit !important;
     text-decoration: none !important;
   }
+
+  mwc-list-item[noninteractive] {
+    font-weight: 500;
+  }
 `;
 
 declare global {
