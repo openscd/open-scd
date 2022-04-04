@@ -13,7 +13,7 @@ snapshots["publisher-goose-list looks like the latest snapshot"] =
       noninteractive=""
       tabindex="-1"
     >
-      <span class="iedListTitle">
+      <span>
         IED1
       </span>
       <mwc-icon slot="graphic">
@@ -55,7 +55,7 @@ snapshots["publisher-goose-list looks like the latest snapshot"] =
       noninteractive=""
       tabindex="-1"
     >
-      <span class="iedListTitle">
+      <span>
         IED2
       </span>
       <mwc-icon slot="graphic">
@@ -85,7 +85,7 @@ snapshots["publisher-goose-list looks like the latest snapshot"] =
       noninteractive=""
       tabindex="-1"
     >
-      <span class="iedListTitle">
+      <span>
         IED3
       </span>
       <mwc-icon slot="graphic">
