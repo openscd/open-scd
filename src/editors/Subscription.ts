@@ -4,7 +4,6 @@ import '@material/mwc-fab';
 
 import './subscription/subscriber-ied-list-goose.js';
 import './subscription/publisher-goose-list.js';
-import { styles } from './subscription/foundation.js';
 
 /** An editor [[`plugin`]] for subscribing IEDs to GOOSE messages using the ABB subscription method. */
 export default class SubscriptionABBPlugin extends LitElement {
