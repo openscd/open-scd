@@ -86,9 +86,11 @@ export class FilteredList extends ListBase {
       this.querySelectorAll(
         'mwc-list-item, mwc-check-list-item, mwc-radio-list-item'
       )
-    ).forEach(item =>
-      hideFiltered(item as ListItemBase, this.searchField.value)
-    );
+    )
+      .filter(item => !(item as ListItemBase).noninteractive)
+      .forEach(item =>
+        hideFiltered(item as ListItemBase, this.searchField.value)
+      );
   }
 
   protected onListItemConnected(e: CustomEvent): void {

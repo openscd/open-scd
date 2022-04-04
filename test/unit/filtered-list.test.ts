@@ -31,8 +31,8 @@ describe('filtered-list', () => {
           ><div>
             <mwc-radio-list-item><span>nestedItem6</span></mwc-radio-list-item>
           </div></abbr
-        ></filtered-list
-      >`
+        ><mwc-list-item noninteractive><span>item7</span></mwc-list-item>
+      </filtered-list>`
     );
   });
 
@@ -149,6 +149,7 @@ describe('filtered-list', () => {
       expect(element.children[3].classList.contains('hidden')).to.be.true;
       expect(element.children[4].classList.contains('hidden')).to.be.true;
       expect(element.children[5].classList.contains('hidden')).to.be.true;
+      expect(element.children[6].classList.contains('hidden')).to.be.false;
     });
 
     it('uses space as logic AND ', async () => {
@@ -162,6 +163,7 @@ describe('filtered-list', () => {
       expect(element.children[3].classList.contains('hidden')).to.be.true;
       expect(element.children[4].classList.contains('hidden')).to.be.true;
       expect(element.children[5].classList.contains('hidden')).to.be.true;
+      expect(element.children[6].classList.contains('hidden')).to.be.false;
     });
 
     it('nested mwc-list-item elements', async () => {
@@ -175,6 +177,7 @@ describe('filtered-list', () => {
       expect(element.children[3].classList.contains('hidden')).to.be.true;
       expect(element.children[4].classList.contains('hidden')).to.be.false;
       expect(element.children[5].classList.contains('hidden')).to.be.true;
+      expect(element.children[6].classList.contains('hidden')).to.be.false;
     });
 
     it('nested mwc-radio-list-item elements', async () => {
@@ -188,6 +191,21 @@ describe('filtered-list', () => {
       expect(element.children[3].classList.contains('hidden')).to.be.true;
       expect(element.children[4].classList.contains('hidden')).to.be.true;
       expect(element.children[5].classList.contains('hidden')).to.be.false;
+      expect(element.children[6].classList.contains('hidden')).to.be.false;
+    });
+
+    it('onyl on noninteractive list itmes', async () => {
+      element.searchField.value = 'item7';
+      element.onFilterInput();
+      element.requestUpdate();
+      await element.updateComplete;
+      expect(element.children[0].classList.contains('hidden')).to.be.true;
+      expect(element.children[1].classList.contains('hidden')).to.be.true;
+      expect(element.children[2].classList.contains('hidden')).to.be.true;
+      expect(element.children[3].classList.contains('hidden')).to.be.true;
+      expect(element.children[4].classList.contains('hidden')).to.be.true;
+      expect(element.children[5].classList.contains('hidden')).to.be.true;
+      expect(element.children[6].classList.contains('hidden')).to.be.false;
     });
   });
 });
