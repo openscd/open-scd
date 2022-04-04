@@ -2,7 +2,7 @@
 export const snapshots = {};
 
 snapshots["publisher-goose-list looks like the latest snapshot"] = 
-`<section>
+`<section tabindex="0">
   <h1>
     [subscription.publisherGoose.title]
   </h1>
@@ -13,7 +13,7 @@ snapshots["publisher-goose-list looks like the latest snapshot"] =
       noninteractive=""
       tabindex="-1"
     >
-      <span class="iedListTitle">
+      <span>
         IED1
       </span>
       <mwc-icon slot="graphic">
@@ -55,7 +55,7 @@ snapshots["publisher-goose-list looks like the latest snapshot"] =
       noninteractive=""
       tabindex="-1"
     >
-      <span class="iedListTitle">
+      <span>
         IED2
       </span>
       <mwc-icon slot="graphic">
@@ -85,7 +85,7 @@ snapshots["publisher-goose-list looks like the latest snapshot"] =
       noninteractive=""
       tabindex="-1"
     >
-      <span class="iedListTitle">
+      <span>
         IED3
       </span>
       <mwc-icon slot="graphic">
@@ -103,7 +103,7 @@ snapshots["publisher-goose-list looks like the latest snapshot"] =
 /* end snapshot publisher-goose-list looks like the latest snapshot */
 
 snapshots["publisher-goose-list looks like the latest snapshot without a doc loaded"] = 
-`<section>
+`<section tabindex="0">
   <h1>
     [subscription.publisherGoose.title]
   </h1>

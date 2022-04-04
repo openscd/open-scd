@@ -62,14 +62,14 @@ export class PublisherGOOSEList extends LitElement {
   }
 
   render(): TemplateResult {
-    return html` <section>
+    return html` <section tabindex="0">
       <h1>${translate('subscription.publisherGoose.title')}</h1>
       <filtered-list>
         ${this.ieds.map(
           ied =>
             html`
               <mwc-list-item noninteractive graphic="icon">
-                <span class="iedListTitle">${getNameAttribute(ied)}</span>
+                <span>${getNameAttribute(ied)}</span>
                 <mwc-icon slot="graphic">developer_board</mwc-icon>
               </mwc-list-item>
               <li divider role="separator"></li>
@@ -84,14 +84,5 @@ export class PublisherGOOSEList extends LitElement {
 
   static styles = css`
     ${styles}
-
-    filtered-list {
-      height: 100vh;
-      overflow-y: scroll;
-    }
-
-    .iedListTitle {
-      font-weight: bold;
-    }
   `;
 }
