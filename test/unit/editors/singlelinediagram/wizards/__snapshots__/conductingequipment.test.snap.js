@@ -60,7 +60,6 @@ snapshots["Wizards for SCL element Conducting Equipment (X/Y) looks like the lat
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="edit"
     label="[save]"
     slot="primaryAction"

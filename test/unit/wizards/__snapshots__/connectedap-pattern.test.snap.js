@@ -118,7 +118,6 @@ snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that f
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="save"
     label="[save]"
     slot="primaryAction"
@@ -294,7 +293,6 @@ snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that f
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="save"
     label="[save]"
     slot="primaryAction"
@@ -533,7 +531,6 @@ snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that f
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="save"
     label="[save]"
     slot="primaryAction"

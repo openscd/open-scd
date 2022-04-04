@@ -69,7 +69,6 @@ snapshots["Wizards for SCL element ConnectedAP include a create wizard that look
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="save"
     label="[save]"
     slot="primaryAction"
