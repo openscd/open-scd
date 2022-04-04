@@ -13,7 +13,7 @@ snapshots["Subscription Plugin initially the GOOSE list looks like the latest sn
       noninteractive=""
       tabindex="-1"
     >
-      <span class="iedListTitle">
+      <span>
         IED1
       </span>
       <mwc-icon slot="graphic">
@@ -55,7 +55,7 @@ snapshots["Subscription Plugin initially the GOOSE list looks like the latest sn
       noninteractive=""
       tabindex="-1"
     >
-      <span class="iedListTitle">
+      <span>
         IED2
       </span>
       <mwc-icon slot="graphic">
@@ -85,7 +85,7 @@ snapshots["Subscription Plugin initially the GOOSE list looks like the latest sn
       noninteractive=""
       tabindex="-1"
     >
-      <span class="iedListTitle">
+      <span>
         IED3
       </span>
       <mwc-icon slot="graphic">
@@ -103,7 +103,7 @@ snapshots["Subscription Plugin initially the GOOSE list looks like the latest sn
       noninteractive=""
       tabindex="-1"
     >
-      <span class="iedListTitle">
+      <span>
         IED4
       </span>
       <mwc-icon slot="graphic">
@@ -155,7 +155,7 @@ snapshots["Subscription Plugin initially the IED list looks like the latest snap
       noninteractive=""
       tabindex="-1"
     >
-      <span class="iedListTitle">
+      <span>
         [subscription.subscriberIed.noGooseMessageSelected]
       </span>
     </mwc-list-item>
