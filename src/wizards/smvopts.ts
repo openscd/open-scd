@@ -7,7 +7,7 @@ import {
   Wizard,
   WizardAction,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
 } from '../foundation.js';
 
 interface ContentOptions {
@@ -31,7 +31,7 @@ function contentSmvOptsWizard(option: ContentOptions): TemplateResult[] {
 }
 
 function updateSmvOptsAction(element: Element): WizardActor {
-  return (inputs: WizardInput[]): WizardAction[] => {
+  return (inputs: WizardInputElement[]): WizardAction[] => {
     const attributes: Record<string, string | null> = {};
     const attributeKeys = [
       'refreshTime',

@@ -3,11 +3,11 @@ import {
   EditorAction,
   getValue,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
 } from '../../foundation.js';
 
 export function updateNamingAction(element: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
 

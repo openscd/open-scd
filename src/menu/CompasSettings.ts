@@ -1,7 +1,7 @@
 import {html, LitElement} from 'lit-element';
 import {get} from "lit-translate";
 
-import {newWizardEvent, Wizard, WizardInput} from '../foundation.js';
+import {newWizardEvent, Wizard, WizardInputElement} from '../foundation.js';
 
 import {CompasSettingsElement} from "../compas/CompasSettings.js";
 import {retrieveUserInfo} from "../compas/CompasSession.js";
@@ -17,7 +17,7 @@ export default class CompasSettingsMenuPlugin extends LitElement {
 
 export function compasSettingWizard(): Wizard {
   function save() {
-    return function (inputs: WizardInput[], wizard: Element) {
+    return function (inputs: WizardInputElement[], wizard: Element) {
       const compasSettingsElement = <CompasSettingsElement>wizard.shadowRoot!.querySelector('compas-settings')
       if (compasSettingsElement.save()) {
         compasSettingsElement.close();

@@ -25,7 +25,7 @@ import {
   Wizard,
   WizardAction,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
   WizardMenuActor,
 } from '../../foundation.js';
 import { CreateOptions, UpdateOptions, WizardOptions } from './foundation.js';
@@ -46,7 +46,7 @@ function nextOrd(parent: Element): string {
 }
 
 function createEnumValAction(parent: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const value = getValue(inputs.find(i => i.label === 'value')!);
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const ord =
@@ -71,7 +71,7 @@ function createEnumValAction(parent: Element): WizardActor {
 }
 
 function updateEnumValAction(element: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const value = getValue(inputs.find(i => i.label === 'value')!) ?? '';
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const ord =
@@ -167,7 +167,7 @@ function eNumValWizard(options: WizardOptions): Wizard {
 }
 
 function createAction(parent: Element, templates: XMLDocument): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const id = getValue(inputs.find(i => i.label === 'id')!);
 
     if (!id) return [];
@@ -256,7 +256,7 @@ function openAddEnumVal(parent: Element): WizardMenuActor {
 }
 
 function updateEnumTpyeAction(element: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const id = getValue(inputs.find(i => i.label === 'id')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
 

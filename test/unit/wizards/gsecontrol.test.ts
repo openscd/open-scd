@@ -11,11 +11,11 @@ import {
   isReplace,
   Replace,
   Wizard,
-  WizardInput,
+  WizardInputElement,
 } from '../../../src/foundation.js';
 import {
   editGseControlWizard,
-  removeGseControl,
+  removeGseControlAction,
   renderGseAttributes,
   selectGseControlWizard,
   updateGseControlAction,
@@ -149,7 +149,7 @@ describe('gsecontrol wizards', () => {
 
     it('removes GSEControl and its refereced DataSet if no other GSEControl are aasinged', () => {
       const gseControl = ln01gse.querySelector('GSEControl')!;
-      const actions = <Delete[]>removeGseControl(gseControl)!.actions;
+      const actions = <Delete[]>removeGseControlAction(gseControl)!.actions;
       expect(actions.length).to.equal(2);
       expect(actions[0]).to.satisfy(isDelete);
       expect(actions[0].old.element).to.equal(gseControl);
@@ -159,7 +159,7 @@ describe('gsecontrol wizards', () => {
 
     it('removes GSEControl only if other GSEControl is assinged to the same DataSet', () => {
       const gseControl = ln02gse.querySelector('GSEControl')!;
-      const actions = <Delete[]>removeGseControl(gseControl)!.actions;
+      const actions = <Delete[]>removeGseControlAction(gseControl)!.actions;
       expect(actions.length).to.equal(1);
       expect(actions[0]).to.satisfy(isDelete);
       expect(actions[0].old.element).to.equal(gseControl);
@@ -167,7 +167,7 @@ describe('gsecontrol wizards', () => {
 
     it('removes GSEControl only if other ReportControlBlock is assinged to the same DataSet', () => {
       const gseControl = ln02rp.querySelector('GSEControl')!;
-      const actions = <Delete[]>removeGseControl(gseControl)!.actions;
+      const actions = <Delete[]>removeGseControlAction(gseControl)!.actions;
       expect(actions.length).to.equal(1);
       expect(actions[0]).to.satisfy(isDelete);
       expect(actions[0].old.element).to.equal(gseControl);
@@ -175,20 +175,20 @@ describe('gsecontrol wizards', () => {
 
     it('removes GSEControl only if other SMV is assinged to the same DataSet', () => {
       const gseControl = ln02smv.querySelector('GSEControl')!;
-      const actions = <Delete[]>removeGseControl(gseControl)!.actions;
+      const actions = <Delete[]>removeGseControlAction(gseControl)!.actions;
       expect(actions.length).to.equal(1);
       expect(actions[0]).to.satisfy(isDelete);
       expect(actions[0].old.element).to.equal(gseControl);
     });
 
     it('does not remove with missing parent element', () => {
-      const action = removeGseControl(missingparent);
+      const action = removeGseControlAction(missingparent);
       expect(action).to.be.null;
     });
 
     it('removes GSE element if present in the Communication section', () => {
       const gseControl = doc.querySelector('IED[name="IED1"] GSEControl')!;
-      const actions = <Delete[]>removeGseControl(gseControl)!.actions;
+      const actions = <Delete[]>removeGseControlAction(gseControl)!.actions;
       expect(actions.length).to.equal(3);
       expect(actions[0]).to.satisfy(isDelete);
       expect(actions[0].old.element).to.equal(gseControl);
@@ -210,7 +210,7 @@ describe('gsecontrol wizards', () => {
       ).documentElement
     );
 
-    let inputs: WizardInput[];
+    let inputs: WizardInputElement[];
     let wizard: Wizard;
 
     const noOp = () => {

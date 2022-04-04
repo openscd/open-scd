@@ -58,7 +58,7 @@ describe('LNodeType wizards', () => {
         )
       );
       deleteButton = <HTMLElement>(
-        parent.wizardUI.dialog?.querySelector('mwc-button[icon="delete"]')
+        parent.wizardUI.dialog?.querySelector('mwc-menu > mwc-list-item')
       );
     });
 
@@ -414,7 +414,7 @@ describe('LNodeType wizards', () => {
         )
       );
       deleteButton = <HTMLElement>(
-        parent.wizardUI.dialog?.querySelector('mwc-button[icon="delete"]')
+        parent.wizardUI.dialog?.querySelector('mwc-menu > mwc-list-item')
       );
     });
 
@@ -505,9 +505,7 @@ describe('LNodeType wizards', () => {
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       (<HTMLElement>(
-        parent.wizardUI.dialog?.querySelectorAll(
-          'mwc-button[icon="playlist_add"]'
-        )[0]
+        parent.wizardUI.dialog?.querySelectorAll('mwc-menu > mwc-list-item')[1]
       )).click();
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation

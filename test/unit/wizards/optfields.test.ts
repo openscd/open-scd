@@ -5,13 +5,13 @@ import '../../mock-wizard.js';
 import { MockWizard } from '../../mock-wizard.js';
 
 import { WizardSelect } from '../../../src/wizard-select.js';
-import { isReplace, Replace, WizardInput } from '../../../src/foundation.js';
+import { isReplace, Replace, WizardInputElement } from '../../../src/foundation.js';
 import { editOptFieldsWizard } from '../../../src/wizards/optfields.js';
 
 describe('Wizards for SCL OptFields element', () => {
   let element: MockWizard;
   let optFields: Element;
-  let inputs: WizardInput[];
+  let inputs: WizardInputElement[];
 
   let primaryAction: HTMLElement;
 

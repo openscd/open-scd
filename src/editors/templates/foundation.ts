@@ -1,17 +1,8 @@
-import { css, html, TemplateResult } from 'lit-element';
-import { ifDefined } from 'lit-html/directives/if-defined';
+import { css } from 'lit-element';
 
 import '@material/mwc-list/mwc-list-item';
 
-import {
-  cloneElement,
-  Create,
-  EditorAction,
-  getValue,
-  isPublic,
-  WizardActor,
-  WizardInput,
-} from '../../foundation.js';
+import { Create, isPublic } from '../../foundation.js';
 
 export interface UpdateOptions {
   identity: string | null;

@@ -1,7 +1,7 @@
 import {html, LitElement} from 'lit-element';
 import {get} from "lit-translate";
 
-import {newPendingStateEvent, newWizardEvent, Wizard, WizardInput} from '../foundation.js';
+import {newPendingStateEvent, newWizardEvent, Wizard, WizardInputElement} from '../foundation.js';
 
 import CompasSaveElement from "../compas/CompasSave.js";
 import {dispatchEventOnOpenScd} from "../compas/foundation.js";
@@ -15,7 +15,7 @@ export default class CompasSaveMenuPlugin extends LitElement {
 
   private saveToCompasWizard(): Wizard {
     function saveToCompas() {
-      return function (inputs: WizardInput[], wizard: Element) {
+      return function (inputs: WizardInputElement[], wizard: Element) {
         const compasSave = <CompasSaveElement>wizard.shadowRoot!.querySelector('compas-save')
         if (!compasSave.valid()) {
           return [];

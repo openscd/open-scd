@@ -17,7 +17,7 @@ import {
   EditorAction,
   Wizard,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
   compareNames,
   getValue,
   createElement,
@@ -48,7 +48,7 @@ function compareAccessPointConnection(
 
 function createConnectedApAction(parent: Element): WizardActor {
   return (
-    _: WizardInput[],
+    _: WizardInputElement[],
     __: Element,
     list?: List | null
   ): EditorAction[] => {
@@ -136,7 +136,7 @@ function isEqualAddress(oldAddress: Element, newAddress: Element): boolean {
 }
 
 function createAddressElement(
-  inputs: WizardInput[],
+  inputs: WizardInputElement[],
   parent: Element,
   typeRestriction: boolean
 ): Element {
@@ -163,7 +163,7 @@ function createAddressElement(
 }
 
 function updateConnectedApAction(parent: Element): WizardActor {
-  return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
+  return (inputs: WizardInputElement[], wizard: Element): EditorAction[] => {
     const typeRestriction: boolean =
       (<Checkbox>wizard.shadowRoot?.querySelector('#typeRestriction'))
         ?.checked ?? false;

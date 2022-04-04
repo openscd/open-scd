@@ -171,7 +171,7 @@ export function newActionEvent<T extends EditorAction>(
 
 export const wizardInputSelector =
   'wizard-textfield, mwc-textfield, ace-editor, mwc-select, wizard-select, wizard-checkbox';
-export type WizardInput =
+export type WizardInputElement =
   | WizardTextField
   | TextField
   | (AceEditor & { checkValidity: () => boolean; label: string })
@@ -183,7 +183,7 @@ export type WizardAction = EditorAction | WizardFactory;
 
 /** @returns [[`EditorAction`]]s to dispatch on [[`WizardDialog`]] commit. */
 export type WizardActor = (
-  inputs: WizardInput[],
+  inputs: WizardInputElement[],
   wizard: Element,
   list?: List | null
 ) => WizardAction[];
@@ -195,21 +195,21 @@ export function isWizardFactory(
 }
 
 /** @returns the validity of `input` depending on type. */
-export function checkValidity(input: WizardInput): boolean {
+export function checkValidity(input: WizardInputElement): boolean {
   if (input instanceof WizardTextField || input instanceof Select)
     return input.checkValidity();
   else return true;
 }
 
 /** reports the validity of `input` depending on type. */
-export function reportValidity(input: WizardInput): boolean {
+export function reportValidity(input: WizardInputElement): boolean {
   if (input instanceof WizardTextField || input instanceof Select)
     return input.reportValidity();
   else return true;
 }
 
 /** @returns the `value` or `maybeValue` of `input` depending on type. */
-export function getValue(input: WizardInput): string | null {
+export function getValue(input: WizardInputElement): string | null {
   if (
     input instanceof WizardTextField ||
     input instanceof WizardSelect ||
@@ -220,9 +220,76 @@ export function getValue(input: WizardInput): string | null {
 }
 
 /** @returns the `multiplier` of `input` if available. */
-export function getMultiplier(input: WizardInput): string | null {
+export function getMultiplier(input: WizardInputElement): string | null {
   if (input instanceof WizardTextField) return input.multiplier;
   else return null;
+}
+
+/** Inputs as `TextField`, `Select` or `Checkbox `used in`wizard-dialog` */
+export type WizardInput =
+  | WizardInputTextField
+  | WizardInputSelect
+  | WizardInputCheckbox;
+
+interface WizardInputBase {
+  /** maps attribute key */
+  label: string;
+  /** maps attribute value */
+  maybeValue: string | null;
+  /** whether attribute is optional */
+  nullable?: boolean;
+  /** whether the input shall be disabled */
+  disabled?: boolean;
+  /** helper text */
+  helper?: string;
+  /** initial focused element in `wizard-dialog` (once per dialog) */
+  dialogInitialFocus?: boolean;
+}
+
+interface WizardInputTextField extends WizardInputBase {
+  kind: 'TextField';
+  /** wether the input might be empty string */
+  required?: boolean;
+  /** pattern definition from schema */
+  pattern?: string;
+  /** minimal characters allowed */
+  minLength?: number;
+  /** maximal characters allowed */
+  maxLength?: number;
+  /** message text explaining invalid inputs */
+  validationMessage?: string;
+  /** suffix definition - overwrites unit multiplier definition */
+  suffix?: string;
+  /** SI unit for specific suffix definition */
+  unit?: string;
+  /** in comibination with unit defines specific suffix */
+  multiplier?: string | null;
+  /** array of multipliers allowed for the input */
+  multipliers?: (string | null)[];
+  /** used for specific input type e.g. number */
+  type?: string;
+  /** minimal valid number in combination with type number */
+  min?: number;
+  /** maximal valid number in combination with type number */
+  max?: number;
+  /** value displaxed when input is nulled */
+  default?: string;
+}
+
+interface WizardInputSelect extends WizardInputBase {
+  kind: 'Select';
+  /** selectabled values */
+  values: string[];
+  /** value displayed with input is nulled */
+  default?: string;
+  /** message explaining invalid inputs */
+  valadationMessage?: string;
+}
+
+interface WizardInputCheckbox extends WizardInputBase {
+  kind: 'Checkbox';
+  /** wether checkbox is checked with nulled input */
+  default?: boolean;
 }
 
 /** @returns [[`WizardAction`]]s to dispatch on [[`WizardDialog`]] menu action. */
@@ -238,7 +305,7 @@ export interface MenuAction {
 /** Represents a page of a wizard dialog */
 export interface WizardPage {
   title: string;
-  content?: TemplateResult[];
+  content?: (TemplateResult | WizardInput)[];
   primary?: {
     icon: string;
     label: string;

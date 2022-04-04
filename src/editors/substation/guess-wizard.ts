@@ -13,7 +13,7 @@ import {
   EditorAction,
   Wizard,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
 } from '../../foundation.js';
 
 let bayNum = 1;
@@ -169,7 +169,7 @@ function createBayElement(
 
 function guessBasedOnCSWI(doc: XMLDocument): WizardActor {
   return (
-    inputs: WizardInput[],
+    inputs: WizardInputElement[],
     wizard: Element,
     list?: List | null
   ): EditorAction[] => {

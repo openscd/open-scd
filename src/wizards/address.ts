@@ -11,7 +11,7 @@ import {
   createElement,
   Delete,
   getValue,
-  WizardInput,
+  WizardInputElement,
 } from '../foundation.js';
 import {
   pTypesGSESMV,
@@ -57,7 +57,7 @@ function isEqualAddress(oldAddr: Element, newAdddr: Element): boolean {
 }
 
 function createAddressElement(
-  inputs: WizardInput[],
+  inputs: WizardInputElement[],
   parent: Element,
   instType: boolean
 ): Element {
@@ -83,7 +83,7 @@ function createAddressElement(
 
 export function updateAddress(
   parent: Element,
-  inputs: WizardInput[],
+  inputs: WizardInputElement[],
   instType: boolean
 ): (Create | Delete)[] {
   const actions: (Create | Delete)[] = [];

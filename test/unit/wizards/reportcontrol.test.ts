@@ -13,7 +13,7 @@ import {
   isDelete,
   isSimple,
   Replace,
-  WizardInput,
+  WizardInputElement,
 } from '../../../src/foundation.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
@@ -22,14 +22,17 @@ import {
   editReportControlWizard,
   removeReportControlAction,
   selectReportControlWizard,
+  reportControlCopyToIedSelector,
 } from '../../../src/wizards/reportcontrol.js';
 import { inverseRegExp, regExp, regexString } from '../../foundation.js';
 import { FinderList } from '../../../src/finder-list.js';
+import { FilteredList } from '../../../src/filtered-list.js';
+import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 describe('Wizards for SCL ReportControl element', () => {
   let doc: XMLDocument;
   let element: MockWizard;
-  let inputs: WizardInput[];
+  let inputs: WizardInputElement[];
 
   let primaryAction: HTMLElement;
 
@@ -686,5 +689,52 @@ describe('Wizards for SCL ReportControl element', () => {
     it('looks like the latest snapshot', async () => {
       await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
     }).timeout(5000);
+  });
+
+  describe('define copy to other IED selector', () => {
+    let iedsPicker: FilteredList;
+    let listItem: ListItemBase;
+
+    beforeEach(async () => {
+      const sourceReportControl = doc.querySelector(
+        'IED[name="IED2"] ReportControl[name="ReportCb"]'
+      )!;
+      const wizard = reportControlCopyToIedSelector(sourceReportControl);
+      element.workflow.push(() => wizard);
+      await element.requestUpdate();
+
+      iedsPicker = <FilteredList>(
+        element.wizardUI.dialog?.querySelector('filtered-list')
+      );
+
+      primaryAction = <HTMLElement>(
+        element.wizardUI.dialog?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      );
+    });
+
+    it('looks like the latest snapshot', async () => {
+      await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
+    }).timeout(5000);
+
+    it('allows to copy to multiple IED at once', () =>
+      expect(iedsPicker.multi).to.be.true);
+
+    describe('with a sink IED not meeting partially the data references', () => {
+      beforeEach(async () => {
+        listItem = iedsPicker.items.find(item => item.value.includes('IED5'))!;
+        await element.requestUpdate();
+      });
+
+      it('disabled the list item', () =>
+        expect(listItem.disabled).to.not.be.true);
+
+      it('does copy the control block ', () => {
+        listItem.click();
+        primaryAction.click();
+        expect(actionEvent).to.have.been.called;
+      });
+    });
   });
 });

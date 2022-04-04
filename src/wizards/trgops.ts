@@ -11,7 +11,7 @@ import {
   Wizard,
   WizardAction,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
 } from '../foundation.js';
 
 interface ContentOptions {
@@ -35,7 +35,7 @@ export function contentTrgOpsWizard(option: ContentOptions): TemplateResult[] {
 }
 
 function updateTrgOpsAction(element: Element): WizardActor {
-  return (inputs: WizardInput[]): WizardAction[] => {
+  return (inputs: WizardInputElement[]): WizardAction[] => {
     const dchg = getValue(inputs.find(i => i.label === 'dchg')!);
     const qchg = getValue(inputs.find(i => i.label === 'qchg')!);
     const dupd = getValue(inputs.find(i => i.label === 'dupd')!);

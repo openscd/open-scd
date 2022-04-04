@@ -3,6 +3,7 @@ import { get, translate } from 'lit-translate';
 
 import '@material/mwc-button';
 import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-list/mwc-check-list-item';
 import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
@@ -24,7 +25,7 @@ import {
   SimpleAction,
   Wizard,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
   Delete,
   getUniqueElementName,
   ComplexAction,
@@ -32,6 +33,7 @@ import {
   WizardAction,
   MenuAction,
 } from '../foundation.js';
+import { FilteredList } from '../filtered-list.js';
 import { FinderList } from '../finder-list.js';
 import { dataAttributePicker, iEDPicker } from './foundation/finder.js';
 import { maxLength, patterns } from './foundation/limits.js';
@@ -39,6 +41,7 @@ import { editDataSetWizard } from './dataset.js';
 import { newFCDA } from './fcda.js';
 import { contentOptFieldsWizard, editOptFieldsWizard } from './optfields.js';
 import { contentTrgOpsWizard, editTrgOpsWizard } from './trgops.js';
+import { existFcdaReference } from '../foundation/scl.js';
 
 interface ContentOptions {
   name: string | null;
@@ -119,7 +122,7 @@ function contentReportControlWizard(options: ContentOptions): TemplateResult[] {
 }
 
 function createReportControlAction(parent: Element): WizardActor {
-  return (inputs: WizardInput[], wizard: Element) => {
+  return (inputs: WizardInputElement[], wizard: Element) => {
     // create ReportControl element
     const reportControlAttrs: Record<string, string | null> = {};
     const reportKeys = [
@@ -204,8 +207,15 @@ function createReportControlAction(parent: Element): WizardActor {
       dataSet.appendChild(element);
     }
 
+    const name = reportControlAttrs['name']!;
+    const iedName = parent.closest('IED')!.getAttribute('name')!;
+
     const complexAction = {
-      title: 'Create ReportControl',
+      title: get('controlblock.action.add', {
+        type: 'Report',
+        name,
+        iedName,
+      }),
       actions: [
         { new: { parent, element: reportControl } },
         { new: { parent, element: dataSet } },
@@ -287,7 +297,7 @@ export function createReportControlWizard(ln0OrLn: Element): Wizard {
 }
 
 function openReportControlCreateWizard(doc: XMLDocument): WizardActor {
-  return (_: WizardInput[], wizard: Element) => {
+  return (_: WizardInputElement[], wizard: Element) => {
     const finder = wizard.shadowRoot?.querySelector<FinderList>('finder-list');
     const path = finder?.path ?? [];
 
@@ -400,6 +410,147 @@ function getRptEnabledAction(
   };
 }
 
+function copyReportControlActions(element: Element): WizardActor {
+  return (_: WizardInputElement[], wizard: Element) => {
+    const doc = element.ownerDocument;
+
+    const iedItems = <ListItemBase[]>(
+      wizard.shadowRoot?.querySelector<FilteredList>('filtered-list')?.selected
+    );
+
+    const complexActions: ComplexAction[] = [];
+    iedItems.forEach(iedItem => {
+      const ied = doc.querySelector(selector('IED', iedItem.value));
+      if (!ied) return;
+
+      const sinkLn0 = ied.querySelector('LN0');
+      if (!sinkLn0) return [];
+
+      const sourceDataSet = element.parentElement?.querySelector(
+        `DataSet[name="${element.getAttribute('datSet')}"]`
+      );
+      if (
+        sourceDataSet &&
+        sinkLn0.querySelector(
+          `DataSet[name="${sourceDataSet!.getAttribute('name')}"]`
+        )
+      )
+        return [];
+
+      if (
+        sinkLn0.querySelector(
+          `ReportControl[name="${element.getAttribute('name')}"]`
+        )
+      )
+        return [];
+
+      // clone DataSet and make sure that FCDA is valid in ied
+      const sinkDataSet = <Element>sourceDataSet?.cloneNode(true);
+      Array.from(sinkDataSet.querySelectorAll('FCDA')).forEach(fcda => {
+        if (!existFcdaReference(fcda, ied)) sinkDataSet.removeChild(fcda);
+      });
+      if (sinkDataSet.children.length === 0) return []; // when no data left no copy needed
+
+      const sinkReportControl = <Element>element.cloneNode(true);
+
+      const source = element.closest('IED')?.getAttribute('name');
+      const sink = ied.getAttribute('name');
+
+      complexActions.push({
+        title: `ReportControl copied from ${source} to ${sink}`,
+        actions: [
+          { new: { parent: sinkLn0, element: sinkDataSet } },
+          { new: { parent: sinkLn0, element: sinkReportControl } },
+        ],
+      });
+    });
+
+    return complexActions;
+  };
+}
+
+function renderIedListItem(sourceCb: Element, ied: Element): TemplateResult {
+  const sourceDataSet = sourceCb.parentElement?.querySelector(
+    `DataSet[name="${sourceCb.getAttribute('datSet')}"]`
+  );
+
+  const isSourceIed =
+    sourceCb.closest('IED')?.getAttribute('name') === ied.getAttribute('name');
+  const ln0 = ied.querySelector('AccessPoint > Server > LDevice > LN0');
+  const hasCbNameConflict = ln0?.querySelector(
+    `ReportControl[name="${sourceCb.getAttribute('name')}"]`
+  )
+    ? true
+    : false;
+  const hasDataSetConflict = ln0?.querySelector(
+    `DataSet[name="${sourceDataSet?.getAttribute('name')}"]`
+  )
+    ? true
+    : false;
+
+  // clone DataSet and make sure that FCDA is valid in ied
+  const sinkDataSet = <Element>sourceDataSet?.cloneNode(true);
+  Array.from(sinkDataSet.querySelectorAll('FCDA')).forEach(fcda => {
+    if (!existFcdaReference(fcda, ied)) sinkDataSet.removeChild(fcda);
+  });
+  const hasDataMatch = sinkDataSet.children.length > 0;
+
+  const primSpan = ied.getAttribute('name');
+  let secondSpan = '';
+  if (isSourceIed) secondSpan = get('controlblock.hints.source');
+  else if (!ln0) secondSpan = get('controlblock.hints.missingServer');
+  else if (hasDataSetConflict && !isSourceIed)
+    secondSpan = get('controlblock.hints.exist', {
+      type: 'RerportControl',
+      name: sourceCb.getAttribute('name')!,
+    });
+  else if (hasCbNameConflict && !isSourceIed)
+    secondSpan = get('controlblock.hints.exist', {
+      type: 'DataSet',
+      name: sourceCb.getAttribute('name')!,
+    });
+  else if (!hasDataMatch) secondSpan = get('controlblock.hints.noMatchingData');
+  else secondSpan = get('controlBlock.hints.valid');
+
+  return html`<mwc-check-list-item
+    twoline
+    value="${identity(ied)}"
+    ?disabled=${isSourceIed ||
+    !ln0 ||
+    hasCbNameConflict ||
+    hasDataSetConflict ||
+    !hasDataMatch}
+    ><span>${primSpan}</span
+    ><span slot="secondary">${secondSpan}</span></mwc-check-list-item
+  >`;
+}
+
+export function reportControlCopyToIedSelector(element: Element): Wizard {
+  return [
+    {
+      title: get('report.wizard.location'),
+      primary: {
+        icon: 'save',
+        label: get('save'),
+        action: copyReportControlActions(element),
+      },
+      content: [
+        html`<filtered-list multi
+          >${Array.from(element.ownerDocument.querySelectorAll('IED')).map(
+            ied => renderIedListItem(element, ied)
+          )}</filtered-list
+        >`,
+      ],
+    },
+  ];
+}
+
+function openIedsSelector(element: Element): WizardMenuActor {
+  return (): WizardAction[] => {
+    return [() => reportControlCopyToIedSelector(element)];
+  };
+}
+
 export function removeReportControl(element: Element): WizardMenuActor {
   return (): WizardAction[] => {
     const complexAction = removeReportControlAction(element);
@@ -427,7 +578,7 @@ function openOptFieldsWizard(element: Element): WizardMenuActor {
 }
 
 function updateReportControlAction(element: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const attributes: Record<string, string | null> = {};
     const attributeKeys = [
       'name',
@@ -530,6 +681,12 @@ export function editReportControlWizard(element: Element): Wizard {
       label: get('scl.OptFields'),
       action: openOptFieldsWizard(optFields),
     });
+
+  menuActions.push({
+    icon: 'copy',
+    label: get('controlblock.label.copy'),
+    action: openIedsSelector(element),
+  });
 
   return [
     {

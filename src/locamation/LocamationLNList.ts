@@ -4,7 +4,7 @@ import {get, translate} from "lit-translate";
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 
-import {newSubWizardEvent, newWizardEvent, Wizard, WizardInput} from '../foundation.js';
+import {newSubWizardEvent, newWizardEvent, Wizard, WizardInputElement} from '../foundation.js';
 import {isSCLNamespace} from "../schemas.js";
 import {Nsdoc} from "../foundation/nsdoc.js";
 
@@ -50,7 +50,7 @@ export class LocamationLNodeListElement extends LitElement {
           ${logicalNodes.map(ln => {
             const locamationPrivate = getPrivate(ln);
             const locamationVersion = getPrivateTextValue(locamationPrivate, 'VERSION');
-            
+
             return html`
                 <mwc-list-item
                   .disabled="${locamationVersion !== '1'}"
@@ -87,7 +87,7 @@ export class LocamationLNodeListElement extends LitElement {
 
 export function locamationLNListWizard(lDevice: Element, nsdoc: Nsdoc): Wizard {
   function close() {
-    return function (inputs: WizardInput[], wizard: Element) {
+    return function (inputs: WizardInputElement[], wizard: Element) {
       const locamationIEDListElement = <LocamationLNodeListElement>wizard.shadowRoot!.querySelector('locamation-ln-list')
       locamationIEDListElement.close();
       return [];

@@ -7,14 +7,13 @@ import {
   getNameAttribute,
   getValue,
   SimpleAction,
-  WizardInput
+  WizardInputElement
 } from "../foundation.js";
 
 export const LOCAMATION_MANUFACTURER = "Locamation B.V.";
 export const LOCAMATION_PRIVATE = "LCMTN_VMU_SENSOR";
 export const LOCAMATION_NS = "https://www.locamation.com/61850/VMU/SCL";
 export const LOCAMATION_PREFIX = "lcmtn_ext";
-
 
 export function lnHeader(ln: Element, nsDoc: Nsdoc): string {
   const prefix = ln.getAttribute('prefix');
@@ -40,11 +39,11 @@ export function iedHeader(ied: Element): string {
 }
 
 
-export function getInputFieldValue(inputs: WizardInput[], id: string): string | null {
+export function getInputFieldValue(inputs: WizardInputElement[], id: string): string | null {
   return getValue(inputs.find(i => i.id === id)!);
 }
 
-export function inputFieldChanged(inputs: WizardInput[], id: string, oldValue: string | null): boolean {
+export function inputFieldChanged(inputs: WizardInputElement[], id: string, oldValue: string | null): boolean {
   const value = getInputFieldValue(inputs, id);
   if (oldValue) {
     return value !== oldValue;

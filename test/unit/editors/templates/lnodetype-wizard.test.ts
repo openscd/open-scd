@@ -10,7 +10,7 @@ import {
   identity,
   isSimple,
   Replace,
-  WizardInput,
+  WizardInputElement,
 } from '../../../../src/foundation.js';
 import { lNodeTypeWizard } from '../../../../src/editors/templates/lnodetype-wizard.js';
 import { regExp, regexString } from '../../../foundation.js';
@@ -18,8 +18,8 @@ import { regExp, regexString } from '../../../foundation.js';
 describe('wizards for LNodeType element', () => {
   let doc: XMLDocument;
   let element: MockWizard;
-  let inputs: WizardInput[];
-  let input: WizardInput | undefined;
+  let inputs: WizardInputElement[];
+  let input: WizardInputElement | undefined;
 
   let primaryAction: HTMLElement;
 

@@ -292,28 +292,28 @@ export const de: Translations = {
   subscription: {
     none: 'Keine Verbindung vorhanden',
     publisherGoose: {
-      title: 'GOOSE-Publizierer'
+      title: 'GOOSE-Publizierer',
     },
     subscriberIed: {
       title: 'Verbunden mit {{ selected }}',
       subscribed: 'Verbunden',
       availableToSubscribe: 'Kann verbunden werden',
       partiallySubscribed: 'Teilweise verbunden',
-      noGooseMessageSelected: 'Keine GOOSE ausgewählt'
-    }
+      noGooseMessageSelected: 'Keine GOOSE ausgewählt',
+    },
   },
   sampledvalues: {
     none: 'Keine Verbindung vorhanden',
     sampledValuesList: {
-      title: 'Sampled Values'
+      title: 'Sampled Values',
     },
     subscriberIed: {
       title: 'Verbunden mit {{ selected }}',
       subscribed: 'Verbunden',
       availableToSubscribe: 'Kann verbunden werden',
       partiallySubscribed: 'Teilweise verbunden',
-      noSampledValuesSelected: 'Keinen Kontrollblock ausgewählt'
-    }
+      noSampledValuesSelected: 'Keinen Kontrollblock ausgewählt',
+    },
   },
   'enum-val': {
     wizard: {
@@ -522,8 +522,19 @@ export const de: Translations = {
   controlblock: {
     action: {
       edit: '{{type}} "{{name}}" in IED {{iedName}} bearbeitet',
+      add: '{{type}} "{{name}}" zu IED {{iedName}} hinzugefügt',
       remove:
         '{{type}} "{{name}}" and referenzierte Element von IED {{iedName}} entfernt',
+    },
+    hints: {
+      source: 'Quell-IED',
+      missingServer: 'Kein Server vorhanden',
+      exist: '{{type}} mit dem Namen {{name}} existiert',
+      noMatchingData: 'Keine Datenübereinstimmung',
+      valid: 'Kann kopiert werden',
+    },
+    label: {
+      copy: 'Kopie in anderen IEDs ertellen',
     },
   },
   userinfo: {

@@ -11,7 +11,7 @@ import {
   isReplace,
   Replace,
   Wizard,
-  WizardInput,
+  WizardInputElement,
 } from '../../../src/foundation.js';
 import { wizardContent } from '../../../src/wizards/abstractda.js';
 import { createBDaAction, updateBDaAction } from '../../../src/wizards/bda.js';
@@ -29,7 +29,7 @@ describe('bda wizards', () => {
       ).documentElement
     );
 
-    let inputs: WizardInput[];
+    let inputs: WizardInputElement[];
     let wizard: Wizard;
 
     const noOp = () => {
@@ -177,7 +177,7 @@ describe('bda wizards', () => {
       ).documentElement
     );
 
-    let inputs: WizardInput[];
+    let inputs: WizardInputElement[];
     let wizard: Wizard;
 
     const noOp = () => {

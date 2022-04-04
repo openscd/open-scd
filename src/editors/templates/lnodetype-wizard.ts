@@ -22,15 +22,16 @@ import {
   getValue,
   identity,
   isPublic,
-  newActionEvent,
   newSubWizardEvent,
   newWizardEvent,
   patterns,
   Replace,
   selector,
   Wizard,
+  WizardAction,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
+  WizardMenuActor,
 } from '../../foundation.js';
 import { WizardSelect } from '../../wizard-select.js';
 import {
@@ -42,8 +43,20 @@ import {
   WizardOptions,
 } from './foundation.js';
 
+function remove(element: Element): WizardMenuActor {
+  return (): EditorAction[] => {
+    return [{ old: { parent: element.parentElement!, element } }];
+  };
+}
+
+function openAddDo(parent: Element): WizardMenuActor {
+  return (): WizardAction[] => {
+    return [() => dOWizard({ parent })!];
+  };
+}
+
 function updateDoAction(element: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const type = getValue(inputs.find(i => i.label === 'type')!)!;
@@ -78,7 +91,7 @@ function updateDoAction(element: Element): WizardActor {
 }
 
 function createDoAction(parent: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const type = getValue(inputs.find(i => i.label === 'type')!);
@@ -125,7 +138,7 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
     title,
     action,
     type,
-    deleteButton,
+    menuActions,
     name,
     desc,
     accessControl,
@@ -135,24 +148,13 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
         get('do.wizard.title.edit'),
         updateDoAction(DO),
         DO.getAttribute('type'),
-        html`<mwc-button
-          icon="delete"
-          trailingIcon
-          label="${translate('remove')}"
-          @click=${(e: MouseEvent) => {
-            e.target!.dispatchEvent(newWizardEvent());
-            e.target!.dispatchEvent(
-              newActionEvent({
-                old: {
-                  parent: DO.parentElement!,
-                  element: DO,
-                  reference: DO.nextSibling,
-                },
-              })
-            );
-          }}
-          fullwidth
-        ></mwc-button> `,
+        [
+          {
+            icon: 'delete',
+            label: get('remove'),
+            action: remove(DO),
+          },
+        ],
         DO.getAttribute('name'),
         DO.getAttribute('desc'),
         DO.getAttribute('accessControl'),
@@ -162,7 +164,7 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
         get('do.wizard.title.add'),
         createDoAction((<CreateOptions>options).parent),
         null,
-        html``,
+        undefined,
         '',
         null,
         null,
@@ -178,8 +180,8 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
       title,
       element: DO ?? undefined,
       primary: { icon: '', label: get('save'), action },
+      menuActions,
       content: [
-        deleteButton,
         html`<wizard-textfield
           label="name"
           .maybeValue=${name}
@@ -279,7 +281,7 @@ function getAllDataObjects(
 }
 
 function createNewLNodeType(parent: Element, element: Element): WizardActor {
-  return (_: WizardInput[], wizard: Element): EditorAction[] => {
+  return (_: WizardInputElement[], wizard: Element): EditorAction[] => {
     const selected = Array.from(
       wizard.shadowRoot!.querySelectorAll<WizardSelect>('wizard-select')
     ).filter(select => select.maybeValue);
@@ -393,7 +395,7 @@ function startLNodeTypeCreate(
   nsd74: XMLDocument,
   nsd7420: XMLDocument
 ): WizardActor {
-  return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
+  return (inputs: WizardInputElement[], wizard: Element): EditorAction[] => {
     const id = getValue(inputs.find(i => i.label === 'id')!);
     if (!id) return [];
 
@@ -562,7 +564,7 @@ export function createLNodeTypeWizard(
 }
 
 function updateLNodeTypeAction(element: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const id = getValue(inputs.find(i => i.label === 'id')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const lnClass = getValue(inputs.find(i => i.label === 'lnClass')!)!;
@@ -613,25 +615,19 @@ export function lNodeTypeWizard(
         label: get('save'),
         action: updateLNodeTypeAction(lnodetype),
       },
+      menuActions: [
+        {
+          label: get('remove'),
+          icon: 'delete',
+          action: remove(lnodetype),
+        },
+        {
+          label: get('scl.DO'),
+          icon: 'playlist_add',
+          action: openAddDo(lnodetype),
+        },
+      ],
       content: [
-        html`<mwc-button
-          icon="delete"
-          trailingIcon
-          label="${translate('remove')}"
-          @click=${(e: MouseEvent) => {
-            e.target!.dispatchEvent(newWizardEvent());
-            e.target!.dispatchEvent(
-              newActionEvent({
-                old: {
-                  parent: lnodetype.parentElement!,
-                  element: lnodetype,
-                  reference: lnodetype.nextSibling,
-                },
-              })
-            );
-          }}
-          fullwidth
-        ></mwc-button> `,
         html`<wizard-textfield
           label="id"
           helper="${translate('scl.id')}"
@@ -656,18 +652,6 @@ export function lNodeTypeWizard(
           required
           pattern="${patterns.lnClass}"
         ></wizard-textfield>`,
-        html` <mwc-button
-          slot="graphic"
-          icon="playlist_add"
-          trailingIcon
-          label="${translate('scl.DO')}"
-          @click=${(e: Event) => {
-            const wizard = dOWizard({
-              parent: lnodetype,
-            });
-            if (wizard) e.target!.dispatchEvent(newSubWizardEvent(wizard));
-          }}
-        ></mwc-button>`,
         html`
           <mwc-list
             style="margin-top: 0px;"

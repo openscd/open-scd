@@ -48,6 +48,16 @@ export function iEDPicker(doc: XMLDocument): TemplateResult {
   ></finder-list>`;
 }
 
+export function iEDsPicker(doc: XMLDocument): TemplateResult {
+  return html`<finder-list
+    multi
+    path="${JSON.stringify(['SCL: '])}"
+    .read=${getReader(doc.querySelector('SCL')!, getIED)}
+    .getDisplayString=${getDisplayString}
+    .getTitle=${(path: string[]) => path[path.length - 1]}
+  ></finder-list>`;
+}
+
 export function getDataModelChildren(parent: Element): Element[] {
   if (['LDevice', 'Server'].includes(parent.tagName))
     return Array.from(parent.children).filter(

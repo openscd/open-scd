@@ -2,7 +2,14 @@ import {css, customElement, html, LitElement, property, TemplateResult} from 'li
 import {get, translate} from "lit-translate";
 
 import {patterns} from "../wizards/foundation/limits.js";
-import {checkValidity, ComplexAction, Wizard, WizardAction, WizardInput, wizardInputSelector} from '../foundation.js';
+import {
+  checkValidity,
+  ComplexAction,
+  Wizard,
+  WizardAction,
+  WizardInputElement,
+  wizardInputSelector
+} from '../foundation.js';
 import {Nsdoc} from "../foundation/nsdoc.js";
 
 import '../wizard-textfield.js';
@@ -26,7 +33,7 @@ export class LocamationVMUEditElement extends LitElement {
   @property()
   nsdoc!: Nsdoc;
 
-  get inputs(): WizardInput[] {
+  get inputs(): WizardInputElement[] {
     return Array.from(this.shadowRoot!.querySelectorAll(wizardInputSelector));
   }
 
@@ -54,7 +61,7 @@ export class LocamationVMUEditElement extends LitElement {
     return complexAction.actions.length ? [complexAction] : [];
   }
 
-  private fieldsChanged(locamationPrivate: Element | null, inputs: WizardInput[]): boolean {
+  private fieldsChanged(locamationPrivate: Element | null, inputs: WizardInputElement[]): boolean {
     const oldIdentifier= getPrivateTextValue(locamationPrivate, 'IDENTIFIER');
     const oldChannel = getPrivateTextValue(locamationPrivate, 'CHANNEL');
     const oldSum = getPrivateTextValue(locamationPrivate, 'SUM');
@@ -68,7 +75,7 @@ export class LocamationVMUEditElement extends LitElement {
       || inputFieldChanged(inputs, 'transformSecondary', oldTransformSecondary);
   }
 
-  private checkValidityInputs(inputs: WizardInput[]): boolean {
+  private checkValidityInputs(inputs: WizardInputElement[]): boolean {
     return Array.from(inputs).every(checkValidity);
   }
 
@@ -165,7 +172,7 @@ export class LocamationVMUEditElement extends LitElement {
 
 export function locamationLNEditWizard(logicalNode: Element, nsdoc: Nsdoc): Wizard {
   function save() {
-    return function (inputs: WizardInput[], wizard: Element): WizardAction[] {
+    return function (inputs: WizardInputElement[], wizard: Element): WizardAction[] {
       const locamationVMUEditElement = <LocamationVMUEditElement>wizard.shadowRoot!.querySelector('locamation-ln-edit')
       return locamationVMUEditElement.save();
     };

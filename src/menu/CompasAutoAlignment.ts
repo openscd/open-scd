@@ -1,7 +1,7 @@
 import {html, LitElement} from 'lit-element';
 import {get} from "lit-translate";
 
-import {newPendingStateEvent, newWizardEvent, Wizard, WizardInput} from '../foundation.js';
+import {newPendingStateEvent, newWizardEvent, Wizard, WizardInputElement} from '../foundation.js';
 
 import CompasAutoAlignmentElement from "../compas/CompasAutoAlignment.js";
 import {dispatchEventOnOpenScd} from "../compas/foundation.js";
@@ -15,7 +15,7 @@ export default class CompasAutoAlignmentMenuPlugin extends LitElement {
 
   private autoAlignmentCompasWizard(): Wizard {
     function execute() {
-      return function (inputs: WizardInput[], wizard: Element) {
+      return function (inputs: WizardInputElement[], wizard: Element) {
         const compasAutoAlignmentElement = <CompasAutoAlignmentElement>wizard.shadowRoot!.querySelector('compas-auto-alignment')
         if (!compasAutoAlignmentElement.valid()) {
           return [];

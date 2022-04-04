@@ -7,7 +7,7 @@ import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   ComplexAction,
   isSimple,
-  WizardInput,
+  WizardInputElement,
 } from '../../../src/foundation.js';
 import { editIEDWizard, updateIED } from '../../../src/wizards/ied.js';
 
@@ -23,7 +23,7 @@ describe('Wizards for SCL element IED', () => {
   let doc: XMLDocument;
   let ied: Element;
   let element: MockWizard;
-  let inputs: WizardInput[];
+  let inputs: WizardInputElement[];
 
   beforeEach(async () => {
     doc = await fetchDoc('/test/testfiles/wizards/ied.scd');

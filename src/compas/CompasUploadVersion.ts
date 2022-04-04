@@ -5,7 +5,13 @@ import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-button';
 
-import {newLogEvent, newPendingStateEvent, newWizardEvent, Wizard, WizardInput} from "../foundation.js";
+import {
+  newLogEvent,
+  newPendingStateEvent,
+  newWizardEvent,
+  Wizard,
+  WizardInputElement
+} from "../foundation.js";
 
 import '../wizard-textfield.js';
 
@@ -120,7 +126,7 @@ export interface AddToCompasWizardOptions {
 }
 export function addVersionToCompasWizard(saveToOptions: AddToCompasWizardOptions): Wizard {
   function uploadToCompas() {
-    return function (inputs: WizardInput[], wizard: Element) {
+    return function (inputs: WizardInputElement[], wizard: Element) {
       const compasAddTo = <CompasUploadVersionElement>wizard.shadowRoot!.querySelector('compas-upload-version')
       if (!compasAddTo.valid()) {
         return [];

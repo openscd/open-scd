@@ -4,7 +4,7 @@ import {get, translate} from "lit-translate";
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 
-import {newSubWizardEvent, newWizardEvent, Wizard, WizardInput} from '../foundation.js';
+import {newSubWizardEvent, newWizardEvent, Wizard, WizardInputElement} from '../foundation.js';
 import {isSCLNamespace} from "../schemas.js";
 import {Nsdoc} from "../foundation/nsdoc.js";
 
@@ -68,7 +68,7 @@ export class LocamationIEDListElement extends LitElement {
 
 export function locamationIEDListWizard(doc: XMLDocument, nsdoc: Nsdoc): Wizard {
   function close() {
-    return function (inputs: WizardInput[], wizard: Element) {
+    return function (inputs: WizardInputElement[], wizard: Element) {
       const locamationIEDListElement = <LocamationIEDListElement>wizard.shadowRoot!.querySelector('locamation-ied-list')
       locamationIEDListElement.close();
       return [];

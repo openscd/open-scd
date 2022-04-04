@@ -135,7 +135,7 @@ describe('DAType wizards', () => {
         )
       );
       deleteButton = <HTMLElement>(
-        parent.wizardUI.dialog?.querySelector('mwc-button[icon="delete"]')
+        parent.wizardUI.dialog?.querySelector('mwc-menu > mwc-list-item')
       );
     });
 

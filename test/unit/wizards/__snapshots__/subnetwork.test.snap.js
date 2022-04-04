@@ -121,7 +121,7 @@ snapshots["Wizards for SCL element SubNetwork include an edit wizard that with m
 snapshots["Wizards for SCL element SubNetwork include an create wizard that looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="close"
-  heading="[wizard.title.create]"
+  heading="[wizard.title.add]"
   open=""
 >
   <div id="wizard-content">
