@@ -19,3 +19,5 @@
 /_site/
 /build/
 /out-tsc/
+
+/public/cim/
