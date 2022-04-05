@@ -13,6 +13,7 @@ export type CompasSettingsRecord = {
   sclValidatorServiceUrl: string;
   cimMappingServiceUrl: string;
   sclAutoAlignmentServiceUrl: string;
+  importFromApiUrl: string;
 };
 
 export function CompasSettings() {
@@ -24,6 +25,7 @@ export function CompasSettings() {
         sclValidatorServiceUrl: this.getCompasSetting('sclValidatorServiceUrl'),
         cimMappingServiceUrl: this.getCompasSetting('cimMappingServiceUrl'),
         sclAutoAlignmentServiceUrl: this.getCompasSetting('sclAutoAlignmentServiceUrl'),
+        importFromApiUrl: this.getCompasSetting('importFromApiUrl'),
       };
     },
 
@@ -32,7 +34,8 @@ export function CompasSettings() {
         sclDataServiceUrl: '/compas-scl-data-service',
         sclValidatorServiceUrl: '/compas-scl-validator',
         cimMappingServiceUrl: '/compas-cim-mapping',
-        sclAutoAlignmentServiceUrl: '/compas-scl-auto-alignment'
+        sclAutoAlignmentServiceUrl: '/compas-scl-auto-alignment',
+        importFromApiUrl: '/public/cim'
       }
     },
 
@@ -72,11 +75,16 @@ export class CompasSettingsElement extends LitElement {
     return <TextFieldBase>this.shadowRoot!.querySelector('mwc-textfield[id="sclAutoAlignmentServiceUrl"]');
   }
 
+  getImportFromApiUrlField(): TextFieldBase {
+    return <TextFieldBase>this.shadowRoot!.querySelector('mwc-textfield[id="importFromApiUrl"]');
+  }
+
   valid(): boolean {
     return this.getSclDataServiceUrlField().checkValidity()
       && this.getSclValidatorServiceUrlField().checkValidity()
       && this.getCimMappingServiceUrlField().checkValidity()
-      && this.getSclAutoAlignmentServiceUrlField().checkValidity();
+      && this.getSclAutoAlignmentServiceUrlField().checkValidity()
+      && this.getImportFromApiUrlField().checkValidity();
   }
 
   save(): boolean {
@@ -89,6 +97,7 @@ export class CompasSettingsElement extends LitElement {
     CompasSettings().setCompasSetting('sclValidatorServiceUrl', this.getSclValidatorServiceUrlField().value);
     CompasSettings().setCompasSetting('cimMappingServiceUrl', this.getCimMappingServiceUrlField().value);
     CompasSettings().setCompasSetting('sclAutoAlignmentServiceUrl', this.getSclAutoAlignmentServiceUrlField().value);
+    CompasSettings().setCompasSetting('importFromApiUrl', this.getImportFromApiUrlField().value);
     return true;
   }
 
@@ -121,6 +130,10 @@ export class CompasSettingsElement extends LitElement {
       <mwc-textfield id="sclAutoAlignmentServiceUrl"
                      label="${translate('compas.settings.sclAutoAlignmentServiceUrl')}"
                      value="${this.compasSettings.sclAutoAlignmentServiceUrl}" required>
+      </mwc-textfield>
+      <mwc-textfield id="importFromApiUrl"
+                     label="${translate('compas.settings.importFromApiUrl')}"
+                     value="${this.compasSettings.importFromApiUrl}" required>
       </mwc-textfield>
 
       <mwc-button @click=${() => {

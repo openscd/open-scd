@@ -640,6 +640,7 @@ export const de: Translations = {
       sclValidatorServiceUrl: 'CoMPAS SCL Validator Service URL',
       cimMappingServiceUrl: 'CoMPAS CIM Mapping Service URL',
       sclAutoAlignmentServiceUrl: 'CoMPAS SCL Auto Alignment Service URL',
+      importFromApiUrl: 'CoMPAS Import from API URL',
     },
     session: {
       headingExpiring: '???',

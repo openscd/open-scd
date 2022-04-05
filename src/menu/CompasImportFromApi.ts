@@ -8,15 +8,16 @@ import {
   Wizard,
 } from '../foundation.js';
 
+import "../compas/CompasImportFromApi.js";
+
 export default class ImportFromApiPlugin extends LitElement {
+
   private importFromApiWizard(): Wizard {
     return [
       {
         title: get('compas.import.title'),
         content: [
-          html`<filtered-list>
-          
-          </filtered-list>`,
+          html`<compas-import-from-api></compas-import-from-api>`,
         ],
       },
     ];

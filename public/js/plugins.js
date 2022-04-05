@@ -84,8 +84,8 @@ export const officialPlugins = [
   },
   {
     name: 'Import from API',
-    src: '/src/menu/CompasImportFromLiander.js',
-    icon: 'create_new_folder',
+    src: '/src/menu/CompasImportFromApi.js',
+    icon: 'cloud_download',
     default: false,
     kind: 'menu',
     requireDoc: false,

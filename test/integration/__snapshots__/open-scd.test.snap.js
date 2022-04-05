@@ -858,10 +858,10 @@ snapshots["open-scd looks like its snapshot"] =
       left=""
       mwc-list-item=""
       tabindex="-1"
-      value="/src/menu/CompasImportFromLiander.js"
+      value="/src/menu/CompasImportFromApi.js"
     >
       <mwc-icon slot="meta">
-        create_new_folder
+        cloud_download
       </mwc-icon>
       Import from API
     </mwc-check-list-item>
