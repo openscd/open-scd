@@ -61,14 +61,15 @@ export function processNamingAttributes(
   element: Element,
   inputs: WizardInputElement[]
 ): void {
-  const oldName = element.getAttribute('name');
-  const oldDesc = element.getAttribute('desc');
-
   const name = getValue(inputs.find(i => i.label === 'name')!)!;
   const desc = getValue(inputs.find(i => i.label === 'desc')!);
 
-  if (name !== oldName) { newAttributes['name'] = name; }
-  if (desc !== oldDesc) { newAttributes['desc'] = desc; }
+  if (name !== element.getAttribute('name')) {
+    newAttributes['name'] = name;
+  }
+  if (desc !== element.getAttribute('desc')) {
+    newAttributes['desc'] = desc;
+  }
 }
 
 export function addMissingAttributes(
