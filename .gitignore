@@ -21,3 +21,4 @@
 /out-tsc/
 
 /public/cim/
+!/public/cim/README.md
