@@ -23,7 +23,7 @@ export function CompasSettings() {
         sclDataServiceUrl: this.getCompasSetting('sclDataServiceUrl'),
         sclValidatorServiceUrl: this.getCompasSetting('sclValidatorServiceUrl'),
         cimMappingServiceUrl: this.getCompasSetting('cimMappingServiceUrl'),
-        sclAutoAlignmentServiceUrl: this.getCompasSetting('sclAutoAlignmentServiceUrl'),
+        sclAutoAlignmentServiceUrl: this.getCompasSetting('sclAutoAlignmentServiceUrl')
       };
     },
 

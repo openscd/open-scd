@@ -573,6 +573,9 @@ export const en = {
       minor: 'Minor change',
       patch: 'Patch change',
     },
+    import: {
+      title: 'Import from API'
+    },
     open: {
       title: 'Open project',
       localTitle: 'Local',
@@ -642,7 +645,7 @@ export const en = {
       sclDataServiceUrl: 'CoMPAS SCL Data Service URL',
       sclValidatorServiceUrl: 'CoMPAS SCL Validator Service URL',
       cimMappingServiceUrl: 'CoMPAS CIM Mapping Service URL',
-      sclAutoAlignmentServiceUrl: 'CoMPAS SCL Auto Alignment Service URL',
+      sclAutoAlignmentServiceUrl: 'CoMPAS SCL Auto Alignment Service URL'
     },
     session: {
       headingExpiring: 'Your session is about to expire!',

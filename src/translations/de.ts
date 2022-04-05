@@ -578,6 +578,9 @@ export const de: Translations = {
       minor: '???',
       patch: '???',
     },
+    import: {
+      title: '???'
+    },
     open: {
       title: '???',
       localTitle: '???',
@@ -647,7 +650,7 @@ export const de: Translations = {
       sclDataServiceUrl: 'CoMPAS SCL Data Service URL',
       sclValidatorServiceUrl: 'CoMPAS SCL Validator Service URL',
       cimMappingServiceUrl: 'CoMPAS CIM Mapping Service URL',
-      sclAutoAlignmentServiceUrl: 'CoMPAS SCL Auto Alignment Service URL',
+      sclAutoAlignmentServiceUrl: 'CoMPAS SCL Auto Alignment Service URL'
     },
     session: {
       headingExpiring: '???',

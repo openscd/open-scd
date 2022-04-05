@@ -1,7 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["open-scd looks like its snapshot"] =
+snapshots["open-scd looks like its snapshot"] = 
 `<mwc-drawer
   class="mdc-theme--surface"
   hasheader=""
@@ -849,6 +849,21 @@ snapshots["open-scd looks like its snapshot"] =
         input
       </mwc-icon>
       Project from CIM
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      tabindex="-1"
+      value="/src/menu/CompasImportFromApi.js"
+    >
+      <mwc-icon slot="meta">
+        cloud_download
+      </mwc-icon>
+      Import from API
     </mwc-check-list-item>
     <mwc-check-list-item
       aria-disabled="false"
