@@ -16,7 +16,28 @@ import '@material/mwc-textfield';
 import { CheckListItem } from '@material/mwc-list/mwc-check-list-item';
 import { List } from '@material/mwc-list';
 import { ListBase } from '@material/mwc-list/mwc-list-base';
+import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { TextField } from '@material/mwc-textfield';
+
+function slotItem(item: Element): Element {
+  if (!item.closest('filtered-list') || !item.parentElement) return item;
+  if (item.parentElement instanceof FilteredList) return item;
+  return slotItem(item.parentElement);
+}
+
+function hideFiltered(item: ListItemBase, searchText: string): void {
+  const itemInnerText = item.innerText + '\n';
+  const childInnerText = Array.from(item.children)
+    .map(child => (<HTMLElement>child).innerText)
+    .join('\n');
+  const filterTarget: string = (itemInnerText + childInnerText).toUpperCase();
+
+  const terms: string[] = searchText.toUpperCase().split(' ');
+
+  terms.some(term => !filterTarget.includes(term))
+    ? slotItem(item).classList.add('hidden')
+    : slotItem(item).classList.remove('hidden');
+}
 
 /**
  * A mwc-list with mwc-textfield that filters the list items for given or separated terms
@@ -61,20 +82,15 @@ export class FilteredList extends ListBase {
   }
 
   onFilterInput(): void {
-    this.items.forEach(item => {
-      const text: string = (
-        item.innerText +
-        '\n' +
-        Array.from(item.children)
-          .map(child => (<HTMLElement>child).innerText)
-          .join('\n')
-      ).toUpperCase();
-      const terms: string[] = this.searchField.value.toUpperCase().split(' ');
-
-      terms.some(term => !text.includes(term))
-        ? item.classList.add('hidden')
-        : item.classList.remove('hidden');
-    });
+    Array.from(
+      this.querySelectorAll(
+        'mwc-list-item, mwc-check-list-item, mwc-radio-list-item'
+      )
+    )
+      .filter(item => !(item as ListItemBase).noninteractive)
+      .forEach(item =>
+        hideFiltered(item as ListItemBase, this.searchField.value)
+      );
   }
 
   protected onListItemConnected(e: CustomEvent): void {
