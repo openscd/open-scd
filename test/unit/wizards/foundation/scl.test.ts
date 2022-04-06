@@ -11,7 +11,7 @@ function incrementMac(oldMac: string): string {
   return newMac.match(/.{1,2}/g)!.join('-');
 }
 
-export function createMacs(serviceType: 'SMV' | 'GOOSE'): string[] {
+function createMacs(serviceType: 'SMV' | 'GOOSE'): string[] {
   const maxMac =
     serviceType === 'GOOSE' ? '01-0C-CD-01-01-FF' : '01-0C-CD-04-01-FF';
   const startMac =
@@ -37,7 +37,7 @@ function incrementAppId(oldAppId: string): string {
     .padStart(4, '0');
 }
 
-export function createAppIds(): string[] {
+function createAppIds(): string[] {
   const maxAppId = 'FFFF';
   const startAppId = '0001';
 
