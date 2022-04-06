@@ -261,7 +261,7 @@ describe('wizard-dialog', () => {
         element.requestUpdate();
         await element.updateComplete;
         await element.dialog?.updateComplete;
-        expect(element).to.equalSnapshot();
+        await expect(element).to.equalSnapshot();
       });
 
       describe('in code editor mode', () => {

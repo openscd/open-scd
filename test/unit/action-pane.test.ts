@@ -14,8 +14,8 @@ describe('action-pane', () => {
     await element.updateComplete;
   });
 
-  it('looks like the latest snapshot', () => {
-    expect(element).shadowDom.to.equalSnapshot();
+  it('looks like the latest snapshot', async () => {
+    await expect(element).shadowDom.to.equalSnapshot();
   });
 
   it('renders the header as <h1> per default', () => {
@@ -143,8 +143,8 @@ describe('action-pane', () => {
       await element.updateComplete;
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(element).shadowDom.to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
     });
   });
 
