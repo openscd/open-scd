@@ -7,6 +7,7 @@ import {
   query,
   TemplateResult,
   unsafeCSS,
+  queryAll,
 } from 'lit-element';
 import { translate } from 'lit-translate';
 
@@ -18,6 +19,8 @@ import { List } from '@material/mwc-list';
 import { ListBase } from '@material/mwc-list/mwc-list-base';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { TextField } from '@material/mwc-textfield';
+import { Menu } from '@material/mwc-menu';
+import { IconButton } from '@material/mwc-icon-button';
 
 function slotItem(item: Element): Element {
   if (!item.closest('filtered-list') || !item.parentElement) return item;
@@ -50,6 +53,9 @@ export class FilteredList extends ListBase {
   /** Whether the check all option (checkbox next to search text field) is activated */
   @property({ type: Boolean })
   disableCheckAll = false;
+  /** Wether noninteractives shall be filtered via select menu */
+  @property({ type: Boolean })
+  filterNoninteractives = false;
 
   @state()
   private get existCheckListItem(): boolean {
@@ -73,6 +79,71 @@ export class FilteredList extends ListBase {
   }
 
   @query('mwc-textfield') searchField!: TextField;
+  @query('mwc-menu') filterMenu!: Menu;
+  @query('mwc-icon-button[icon="filter_list"]') filterButton!: IconButton;
+  @queryAll('mwc-menu > mwc-check-list-item[selected]')
+  filterItems!: ListItemBase[];
+
+  private filterItem(): void {
+    if (this.filterItems.length === 0) {
+      this.querySelectorAll(
+        'mwc-list-item,mwc-check-list-item,mwc-radio-list-item,li'
+      ).forEach(item => item.classList.remove('filter'));
+
+      return;
+    }
+
+    this.querySelectorAll(
+      'mwc-list-item,mwc-check-list-item,mwc-radio-list-item,li'
+    ).forEach(item => item.classList.add('filter'));
+
+    const noniacts = <ListItemBase[]>(
+      Array.from(
+        this.querySelectorAll(
+          'mwc-list-item, mwc-check-list-item, mwc-radio-list-item'
+        )
+      ).filter(item => item.getAttribute('sectionheader') !== null)
+    );
+
+    const items = <ListItemBase[]>(
+      Array.from(
+        this.querySelectorAll(
+          'mwc-list-item,mwc-check-list-item,mwc-radio-list-item,li'
+        )
+      )
+    );
+
+    this.filterItems.forEach(item => {
+      const value = item.value;
+      const noniact = noniacts.find(
+        noniact => noniact.querySelector('span')?.innerText === value
+      );
+
+      if (!noniact) return;
+      const noniactindex = noniacts.indexOf(noniact);
+      const index = items.indexOf(
+        items.find(item => item.querySelector('span')?.innerText === value)!
+      );
+
+      const nextnoniactindex = noniacts[noniactindex + 1]
+        ? items.indexOf(
+            items.find(
+              item =>
+                item.querySelector('span')?.innerText ===
+                noniacts[noniactindex + 1].querySelector('span')?.innerText
+            )!
+          )
+        : items.length + 1;
+
+      items
+        .filter((v, i, a) => i >= index && i < nextnoniactindex)
+        .forEach(item => item.classList.remove('filter'));
+    });
+  }
+
+  private createFilterMenu(): void {
+    this.filterMenu.open = true;
+  }
 
   private onCheckAll(): void {
     const select = !this.isAllSelected;
@@ -98,11 +169,46 @@ export class FilteredList extends ListBase {
     this.requestUpdate();
   }
 
+  protected updated(
+    _changedProperties: Map<string | number | symbol, unknown>
+  ): void {
+    if (this.filterMenu)
+      this.filterMenu.anchor = <HTMLElement>this.filterButton;
+  }
+
   constructor() {
     super();
     this.addEventListener('selected', () => {
       this.requestUpdate();
     });
+  }
+
+  private renderFilterNoninteractives(): TemplateResult {
+    return this.filterNoninteractives
+      ? html`<mwc-icon-button
+            icon="filter_list"
+            @click=${() => this.createFilterMenu()}
+          ></mwc-icon-button
+          ><mwc-menu
+            corner="BOTTOM_LEFT"
+            menuCorner="END"
+            @closed=${async () => {
+              await this.requestUpdate();
+              this.filterItem();
+            }}
+          >
+            ${Array.from(this.querySelectorAll('mwc-list-item'))
+              .filter(item => item.getAttribute('sectionheader') !== null)
+              .map(item => {
+                const text = item.querySelector('span')?.innerText;
+
+                if (text)
+                  return html`<mwc-check-list-item value="${text}"
+                    ><span>${text}</span></mwc-check-list-item
+                  >`;
+              })}</mwc-menu
+          >`
+      : html``;
   }
 
   private renderCheckAll(): TemplateResult {
@@ -121,6 +227,7 @@ export class FilteredList extends ListBase {
 
   render(): TemplateResult {
     return html`<div id="tfcontainer">
+        ${this.renderFilterNoninteractives()}
         <abbr title="${this.searchFieldLabel ?? translate('filter')}"
           ><mwc-textfield
             label="${this.searchFieldLabel ?? ''}"
@@ -140,9 +247,14 @@ export class FilteredList extends ListBase {
     #tfcontainer {
       display: flex;
       flex: auto;
+      align-items: center;
     }
 
     ::slotted(.hidden) {
+      display: none;
+    }
+
+    ::slotted(.filter) {
       display: none;
     }
 
@@ -161,6 +273,10 @@ export class FilteredList extends ListBase {
 
     mwc-formfield.checkall {
       padding-right: 8px;
+    }
+
+    mwc-icon-button {
+      margin: 2px;
     }
 
     .mdc-list {

@@ -64,11 +64,11 @@ export class PublisherGOOSEList extends LitElement {
   render(): TemplateResult {
     return html` <section tabindex="0">
       <h1>${translate('subscription.publisherGoose.title')}</h1>
-      <filtered-list>
+      <filtered-list filterNoninteractives>
         ${this.ieds.map(
           ied =>
             html`
-              <mwc-list-item noninteractive graphic="icon">
+              <mwc-list-item noninteractive sectionheader graphic="icon">
                 <span>${getNameAttribute(ied)}</span>
                 <mwc-icon slot="graphic">developer_board</mwc-icon>
               </mwc-list-item>

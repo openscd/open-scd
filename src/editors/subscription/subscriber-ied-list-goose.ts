@@ -368,7 +368,7 @@ export class SubscriberIEDListGoose extends LitElement {
   }
 
   renderUnSubscribers(ieds: IED[]): TemplateResult {
-    return html`<mwc-list-item noninteractive>
+    return html`<mwc-list-item noninteractive sectionheader>
         <span class="iedListTitle"
           >${translate('subscription.subscriberIed.availableToSubscribe')}</span
         >
@@ -384,7 +384,7 @@ export class SubscriberIEDListGoose extends LitElement {
   }
 
   renderPartiallySubscribers(ieds: IED[]): TemplateResult {
-    return html`<mwc-list-item noninteractive>
+    return html`<mwc-list-item noninteractive sectionheader>
         <span class="iedListTitle"
           >${translate('subscription.subscriberIed.partiallySubscribed')}</span
         >
@@ -400,7 +400,7 @@ export class SubscriberIEDListGoose extends LitElement {
   }
 
   renderFullSubscribers(): TemplateResult {
-    return html`<mwc-list-item noninteractive>
+    return html`<mwc-list-item noninteractive sectionheader>
         <span class="iedListTitle"
           >${translate('subscription.subscriberIed.subscribed')}</span
         >
@@ -434,7 +434,7 @@ export class SubscriberIEDListGoose extends LitElement {
         </h1>
         ${localState.currentGseControl
           ? html`<div class="subscriberWrapper">
-              <filtered-list id="subscribedIeds">
+              <filtered-list id="subscribedIeds" filterNoninteractives>
                 ${this.renderFullSubscribers()}
                 ${this.renderPartiallySubscribers(partialSubscribedIeds)}
                 ${this.renderUnSubscribers(availableIeds)}
