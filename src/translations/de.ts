@@ -518,6 +518,13 @@ export const de: Translations = {
       tooltip:
         'DatenSätze ohne Verweis auf einen zugehörigen GOOSE-, Log-, Report- oder Sampled Value Control Block',
     },
+    unreferencedControls: {
+      title: 'Steuerblöcke mit einem fehlenden oder ungültigen Kontrollblock',
+      deleteButton: 'Ausgewählte Kontrollblöcke entfernen',
+      tooltip: 'Steuerblöcke ohne Verweis auf ein vorhandenes Datensatz. Das ist kein Fehler und eher üblich for allem für Reports',
+      addressDefinitionTooltip: 'Für diesen Kontrollblock existiert eine Adressdefinition im Abschnitt Kommunikation',
+      alsoRemoveFromCommunication: 'Kommunikation SMV/GSE mit entfernen',
+    },
   },
   controlblock: {
     action: {
