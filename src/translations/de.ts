@@ -468,6 +468,8 @@ export const de: Translations = {
     action: {
       addaddress: 'GSE bearbeitet ({{identity}})',
     },
+    missingaccp:
+      'AccessPoint is nicht verbunden. GSE kann nicht hinzugefügt werden.',
   },
   smv: {
     action: {

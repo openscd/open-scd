@@ -506,7 +506,7 @@ describe('gsecontrol wizards', () => {
         )).maybeValue = 'wer';
 
         primaryAction = <HTMLElement>(
-          element.wizardUI.dialogs[1]?.querySelector(
+          element.wizardUI.dialogs[2]?.querySelector(
             'mwc-button[slot="primaryAction"]'
           )
         );
@@ -518,8 +518,12 @@ describe('gsecontrol wizards', () => {
         await element.wizardUI.requestUpdate(); // make sure wizard is rendered
       });
 
-      it('has two pages', () =>
-        expect(element.wizardUI.dialogs.length).to.equal(2));
+      it('has three pages', () =>
+        expect(element.wizardUI.dialogs.length).to.equal(3));
+
+      it('the second page having a warning message ', async () => {
+        await expect(element.wizardUI.dialogs[1]).dom.to.equalSnapshot();
+      }).timeout(5000);
 
       it('triggers complex action on primary action click', async () => {
         await primaryAction.click();

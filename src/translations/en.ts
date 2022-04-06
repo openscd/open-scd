@@ -68,7 +68,8 @@ export const en = {
     showieds: 'Show IEDs in substation editor',
     selectFileButton: 'Select file',
     loadNsdTranslations: 'Uploaded NSDoc files',
-    invalidFileNoIdFound: "Invalid NSDoc ({{ filename }}); no 'id' attribute found in file",
+    invalidFileNoIdFound:
+      "Invalid NSDoc ({{ filename }}); no 'id' attribute found in file",
     invalidNsdocVersion:
       'The version of {{ id }} NSD ({{ nsdVersion }}) does not correlate with the version of the corresponding NSDoc ({{ filename }}, {{ nsdocVersion }})',
   },
@@ -465,6 +466,7 @@ export const en = {
     action: {
       addaddress: 'Edit GSE ({{identity}})',
     },
+    missingaccp: 'Accesspoint is not connected. GSE cannot be created.',
   },
   smv: {
     action: {
@@ -518,8 +520,10 @@ export const en = {
     unreferencedControls: {
       title: 'Control Blocks with a Missing or Invalid Dataset',
       deleteButton: 'Remove Selected Control Blocks',
-      tooltip: 'Control Blocks without a reference to an existing DataSet. Note that this is normal in an ICD file or for an MMS ReportControl with a dynamically allocated DataSet',
-      addressDefinitionTooltip: 'An address definition exists for this control block in the Communication section',
+      tooltip:
+        'Control Blocks without a reference to an existing DataSet. Note that this is normal in an ICD file or for an MMS ReportControl with a dynamically allocated DataSet',
+      addressDefinitionTooltip:
+        'An address definition exists for this control block in the Communication section',
       alsoRemoveFromCommunication: 'Also remove SMV/GSE Address',
     },
   },

@@ -569,6 +569,44 @@ snapshots["gsecontrol wizards define an create wizard that with existing Connect
 `;
 /* end snapshot gsecontrol wizards define an create wizard that with existing ConnectedAP element in the Communication section the third page looks like the latest snapshot */
 
+snapshots["gsecontrol wizards define an create wizard that with missing ConnectedAP element in the Communication section the second page having a warning message "] = 
+`<mwc-dialog
+  defaultaction="close"
+  heading="[wizard.title.add]"
+>
+  <div id="wizard-content">
+    <h3 style="color: var(--mdc-theme-on-surface);
+                      font-family: 'Roboto', sans-serif;
+                      font-weight: 300;">
+      [gse.missingaccp]
+    </h3>
+  </div>
+  <mwc-button
+    dialogaction="prev"
+    icon="navigate_before"
+    label="[wizard.title.add]"
+    slot="secondaryAction"
+  >
+  </mwc-button>
+  <mwc-button
+    dialogaction="close"
+    label="[cancel]"
+    slot="secondaryAction"
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+  </mwc-button>
+  <mwc-button
+    dialogaction="next"
+    icon="navigate_next"
+    label="[dataset.fcda.add]"
+    slot="primaryAction"
+    trailingicon=""
+  >
+  </mwc-button>
+</mwc-dialog>
+`;
+/* end snapshot gsecontrol wizards define an create wizard that with missing ConnectedAP element in the Communication section the second page having a warning message  */
+
 snapshots["gsecontrol wizards define a wizard to select the control block reference looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="close"

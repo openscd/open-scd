@@ -306,6 +306,18 @@ export function createGseControlWizard(ln0OrLn: Element): Wizard {
           }),
         },
         {
+          title: get('wizard.title.add', { tagName: 'GSE' }),
+          content: [
+            html`<h3
+              style="color: var(--mdc-theme-on-surface);
+                      font-family: 'Roboto', sans-serif;
+                      font-weight: 300;"
+            >
+              ${translate('gse.missingaccp')}
+            </h3>`,
+          ],
+        },
+        {
           title: get('dataset.fcda.add'),
           primary: {
             icon: 'save',
