@@ -17,6 +17,7 @@ import './foundation/inline-edit-textfield.js'
 import '../../action-pane.js';
 import { getNameAttribute } from '../../foundation.js';
 import { Nsdoc } from '../../foundation/nsdoc.js';
+import { DaiValidationTypes, getCustomDaiValidation } from './foundation/foundation.js';
 
 /** [[`IED`]] plugin subeditor for editing `(B)DA` element. */
 @customElement('da-container')
@@ -113,6 +114,9 @@ export class DAContainer extends LitElement {
       </abbr>` : nothing}
       <inline-edit-textfield
         .value=${this.renderValue() ?? ''}
+        .validation=${getCustomDaiValidation[
+          <DaiValidationTypes>this.element.getAttribute('bType')
+        ]}
       ></inline-edit-textfield>
       ${this.toggleButton?.on && bType == 'Struct' ? this.getBDAElements().map(element =>
         html`<da-container

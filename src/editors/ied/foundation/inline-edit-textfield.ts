@@ -10,12 +10,14 @@ import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-menu';
 import '@material/mwc-icon-button-toggle';
 import { TextField } from '@material/mwc-textfield';
+import { CustomDAIValidation } from './foundation.js';
+import { get } from 'lit-translate';
 
 @customElement('inline-edit-textfield')
 export class InlineEditTextField extends TextField {
 
-  @property({ type: String })
-  validation = '';
+  @property()
+  validation: CustomDAIValidation | undefined;
 
   constructor() {
     super();
@@ -23,7 +25,8 @@ export class InlineEditTextField extends TextField {
   }
 
   checkValidity(): boolean {
-    this.setCustomValidity('');
+    const validationMessage = this.validation?.validationMessage;
+    this.setCustomValidity(validationMessage ?? get('ied.dai.defaultvalidationmessage'));
     return super.checkValidity();
   }
 
@@ -44,9 +47,12 @@ export class InlineEditTextField extends TextField {
     return html`
       <div style="display: flex; flex-direction: row;">
         <div style="flex: auto;">${super.render()}</div>
-        <div style="display: flex; align-items: center; height: 56px;">
-          ${this.renderEditSwitch()}
-        </div>
+        ${this.validation 
+          ? html`<div style="display: flex; align-items: center; height: 56px;">
+              ${this.renderEditSwitch()}
+            </div>`
+          : html``
+        }
       </div>
     `;
   }
