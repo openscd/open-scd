@@ -13,6 +13,7 @@ import { translate } from 'lit-translate';
 import '@material/mwc-icon-button-toggle';
 import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 
+import './foundation/inline-edit-textfield.js'
 import '../../action-pane.js';
 import { getNameAttribute } from '../../foundation.js';
 import { Nsdoc } from '../../foundation/nsdoc.js';
@@ -61,12 +62,12 @@ export class DAContainer extends LitElement {
    * If there is a DAI, it get's priority on top of (B)DA values.
    * @returns TemplateResult containing the value of the instance, element or nothing.
    */
-  private renderValue(): TemplateResult {
+  private renderValue(): string | null | undefined {
     if (this.instanceElement) {
-      return html`${this.getValueElement(this.instanceElement)?.textContent}`
+      return this.getValueElement(this.instanceElement)?.textContent?.trim()
     }
 
-    return html`${this.getValueElement(this.element)?.textContent}`;
+    return this.getValueElement(this.element)?.textContent?.trim();
   }
 
   /**
@@ -110,7 +111,9 @@ export class DAContainer extends LitElement {
           @click=${() => this.requestUpdate()}
         ></mwc-icon-button-toggle>
       </abbr>` : nothing}
-      <h6>${this.renderValue()}</h6>
+      <inline-edit-textfield
+        .value=${this.renderValue() ?? ''}
+      ></inline-edit-textfield>
       ${this.toggleButton?.on && bType == 'Struct' ? this.getBDAElements().map(element =>
         html`<da-container
           .element=${element}
