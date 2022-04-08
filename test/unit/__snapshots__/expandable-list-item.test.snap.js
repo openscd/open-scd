@@ -4,7 +4,7 @@ export const snapshots = {};
 snapshots["expandable/collapsable list item container with missing parent and children slotted looks like the latest snapshot"] = 
 `<div class="container">
   <div class="parent">
-    <div class="extendContainer">
+    <div class="expandIconContainer">
       <mwc-icon-button-toggle
         }}=""
         class="hidden"
@@ -29,7 +29,7 @@ snapshots["expandable/collapsable list item container with missing parent and ch
 snapshots["expandable/collapsable list item container with only parent item slotted looks like the latest snapshot"] = 
 `<div class="container">
   <div class="parent">
-    <div class="extendContainer">
+    <div class="expandIconContainer">
       <mwc-icon-button-toggle
         }}=""
         class="hidden"
@@ -54,7 +54,7 @@ snapshots["expandable/collapsable list item container with only parent item slot
 snapshots["expandable/collapsable list item container with both parent and childen slotted and defaultExpanded not set looks like the latest snapshot"] = 
 `<div class="container">
   <div class="parent">
-    <div class="extendContainer">
+    <div class="expandIconContainer">
       <mwc-icon-button-toggle
         }}=""
         officon="keyboard_arrow_down"
@@ -81,7 +81,7 @@ snapshots["expandable/collapsable list item container with both parent and child
     class="parent"
     on=""
   >
-    <div class="extendContainer">
+    <div class="expandIconContainer">
       <mwc-icon-button-toggle
         }}=""
         officon="keyboard_arrow_down"
