@@ -39,7 +39,7 @@ export class ExpandableListItem extends LitElement {
     this.requestUpdate();
   }
 
-  private onExtendToggle(e: Event): void {
+  private onExpandToggle(e: Event): void {
     const isOn = (e.target as Element).getAttribute('on');
     if (isOn !== null)
       this.shadowRoot?.querySelector('.parent')?.setAttribute('on', '');
@@ -52,11 +52,11 @@ export class ExpandableListItem extends LitElement {
   }
 
   renderExtendToggle(): TemplateResult {
-    return html`<div class="extendContainer">
+    return html`<div class="expandIconContainer">
       <mwc-icon-button-toggle
         onIcon="keyboard_arrow_up"
         offIcon="keyboard_arrow_down"
-        @click=${this.onExtendToggle}
+        @click=${this.onExpandToggle}
         }}
       ></mwc-icon-button-toggle>
     </div>`;
@@ -83,12 +83,12 @@ export class ExpandableListItem extends LitElement {
       align-items: center;
     }
 
-    .content {
-      padding-left: 28px;
+    .expandIconContainer {
+      flex-basis: 28px;
     }
 
-    .extendContainer {
-      flex-basis: 28px;
+    .content {
+      padding-left: 28px;
     }
 
     mwc-icon-button-toggle {
