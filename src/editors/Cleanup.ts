@@ -6,6 +6,7 @@ import { styles } from './templates/foundation.js';
 
 import './cleanup/datasets-container.js';
 import './cleanup/control-blocks-container.js';
+import './cleanup/datatypes-container.js';
 
 /** An editor [[`plugin`]] for cleaning SCL references and definitions. */
 export default class Cleanup extends LitElement {
@@ -18,6 +19,7 @@ export default class Cleanup extends LitElement {
       <div class="cleanup">
         <cleanup-datasets .doc=${this.doc}></cleanup-datasets>
         <cleanup-control-blocks .doc=${this.doc}></cleanup-control-blocks>
+        <cleanup-datatypes .doc=${this.doc}></cleanup-datatypes>
       </div>
     `;
   }
@@ -41,7 +43,7 @@ export default class Cleanup extends LitElement {
       }
     }
 
-    cleanup-datasets, cleanup-control-blocks {
+    cleanup-datasets, cleanup-control-blocks, cleanup-datatypes {
       display: flex;
       flex: 1;
       flex-direction: column;

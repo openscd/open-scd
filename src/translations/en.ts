@@ -720,6 +720,12 @@ export const en = {
         'An address definition exists for this control block in the Communication section',
       alsoRemoveFromCommunication: 'Also remove SMV/GSE Address',
     },
+    unreferencedDataTypes: {
+      title: 'Unreferenced DataTypes',
+      deleteButton: 'Remove Selected DataTypes',
+      tooltip:
+        'DataTypes which are not referenced in a Logical Node or other used DataType',
+    }
   },
   controlblock: {
     action: {
