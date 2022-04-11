@@ -1,13 +1,15 @@
 import { expect } from '@open-wc/testing';
 
 import {
-  isReplace,
-  SimpleAction,
-  Replace,
-  WizardActor,
-  WizardInputElement,
   Create,
   isCreate,
+  isReplace,
+  isUpdate,
+  Replace,
+  SimpleAction,
+  Update,
+  WizardActor,
+  WizardInputElement,
 } from '../../../src/foundation.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 
@@ -59,13 +61,13 @@ export function expectWizardNoUpdateAction(
   expect(updateActions).to.be.empty;
 }
 
-export function expectUpdateAction(
+export function expectReplaceAction(
   simpleAction: SimpleAction,
   tagName: string,
   attributeName: string,
   oldValue: string | null,
   newValue: string | null
-) {
+): void {
   expect(simpleAction).to.satisfy(isReplace);
 
   expect((<Replace>simpleAction).old.element.tagName).to.be.equal(tagName);
@@ -90,6 +92,33 @@ export function expectUpdateAction(
       attributeName,
       newValue
     );
+  }
+}
+
+export function expectUpdateAction(
+  simpleAction: SimpleAction,
+  tagName: string,
+  attributeName: string,
+  oldValue: string | null,
+  newValue: string | null
+): void {
+  expect(simpleAction).to.satisfy(isUpdate);
+
+  expect((<Update>simpleAction).element.tagName).to.be.equal(tagName);
+  const oldAttributes = (<Update>simpleAction).oldAttributes;
+  if (oldValue === null) {
+    expect(Object.keys(oldAttributes)).to.not.contain(attributeName);
+  } else {
+    expect(Object.keys(oldAttributes)).to.contain(attributeName);
+    expect(Object.values(oldAttributes)).to.contain(oldValue);
+  }
+
+  const newAttributes = (<Update>simpleAction).newAttributes;
+  if (newValue === null) {
+    expect(Object.keys(newAttributes)).to.not.contain(attributeName);
+  } else {
+    expect(Object.keys(newAttributes)).to.contain(attributeName);
+    expect(Object.values(newAttributes)).to.contain(newValue);
   }
 }
 

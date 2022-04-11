@@ -1,5 +1,5 @@
 import {
-  expectUpdateAction,
+  expectReplaceAction,
   expectUpdateTextValue,
   fetchDoc,
 } from '../foundation.js';
@@ -23,35 +23,35 @@ describe('Update reference for ', () => {
       const updateActions = updateReferences(ied, oldName, newName);
       expect(updateActions.length).to.equal(9);
 
-      expectUpdateAction(
+      expectReplaceAction(
         <Replace>updateActions[0],
         'Association',
         'iedName',
         oldName,
         newName
       );
-      expectUpdateAction(
+      expectReplaceAction(
         <Replace>updateActions[1],
         'ClientLN',
         'iedName',
         oldName,
         newName
       );
-      expectUpdateAction(
+      expectReplaceAction(
         <Replace>updateActions[3],
         'ConnectedAP',
         'iedName',
         oldName,
         newName
       );
-      expectUpdateAction(
+      expectReplaceAction(
         <Replace>updateActions[4],
         'ExtRef',
         'iedName',
         oldName,
         newName
       );
-      expectUpdateAction(
+      expectReplaceAction(
         <Replace>updateActions[8],
         'KDC',
         'iedName',
@@ -68,7 +68,7 @@ describe('Update reference for ', () => {
       const updateActions = updateReferences(ied, oldName, newName);
       expect(updateActions.length).to.equal(8);
 
-      expectUpdateAction(
+      expectReplaceAction(
         <Replace>updateActions[4],
         'LNode',
         'iedName',
