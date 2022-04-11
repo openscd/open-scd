@@ -16,6 +16,7 @@ export class InlineEditTextField extends TextField {
   constructor() {
     super();
     this.disabled = true;
+    this.type = 'text';
   }
 
   checkValidity(): boolean {
@@ -41,8 +42,8 @@ export class InlineEditTextField extends TextField {
       <div style="display: flex; flex-direction: row;">
         <div style="flex: auto;">${super.render()}</div>
           <div style="display: flex; align-items: center; height: 56px;">
-              ${this.renderEditSwitch()}
-            </div>
+            ${this.renderEditSwitch()}
+          </div>
       </div>
     `;
   }

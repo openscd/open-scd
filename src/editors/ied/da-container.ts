@@ -63,7 +63,7 @@ export class DAContainer extends LitElement {
    * If there is a DAI, it get's priority on top of (B)DA values.
    * @returns TemplateResult containing the value of the instance, element or nothing.
    */
-  private renderValue(): string | null | undefined {
+  private getValue(): string | null | undefined {
     if (this.instanceElement) {
       return this.getValueElement(this.instanceElement)?.textContent?.trim()
     }
@@ -96,6 +96,7 @@ export class DAContainer extends LitElement {
 
   render(): TemplateResult {
     const bType = this.element!.getAttribute('bType');
+    const value = this.getValue() ?? '';
 
     return html`<action-pane .label="${this.header()}" icon="${this.instanceElement != null ? 'done' : ''}">
       <abbr slot="action">
@@ -112,7 +113,8 @@ export class DAContainer extends LitElement {
           @click=${() => this.requestUpdate()}
         ></mwc-icon-button-toggle>
       </abbr>` : nothing}
-      ${getCustomField[<DaiValidationTypes>bType]?.render() ?? this.renderValue()}
+      ${getCustomField()[<DaiValidationTypes>bType]
+        ?.render(getNameAttribute(this.element)!, value) ?? value}
       ${this.toggleButton?.on && bType == 'Struct' ? this.getBDAElements().map(element =>
         html`<da-container
           .element=${element}
