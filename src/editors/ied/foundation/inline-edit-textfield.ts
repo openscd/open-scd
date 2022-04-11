@@ -25,8 +25,7 @@ export class InlineEditTextField extends TextField {
   }
 
   checkValidity(): boolean {
-    const validationMessage = this.validation?.validationMessage;
-    this.setCustomValidity(validationMessage ?? get('ied.dai.defaultvalidationmessage'));
+    this.setCustomValidity(this.validation?.validationMessage ?? get('ied.dai.defaultvalidationmessage'));
     return super.checkValidity();
   }
 
