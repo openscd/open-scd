@@ -13,16 +13,6 @@ import { get } from 'lit-translate';
 
 @customElement('inline-edit-textfield')
 export class InlineEditTextField extends TextField {
-  constructor() {
-    super();
-    this.disabled = true;
-    this.type = 'text';
-  }
-
-  checkValidity(): boolean {
-    this.setCustomValidity(get('ied.dai.defaultvalidationmessage'));
-    return super.checkValidity();
-  }
 
   renderEditSwitch(): TemplateResult {
     return html`<mwc-icon-button-toggle
@@ -35,6 +25,12 @@ export class InlineEditTextField extends TextField {
 
   private handleEditSwitch() {
     this.disabled = !this.disabled;
+  }
+
+  async firstUpdated(): Promise<void> {
+    super.firstUpdated();
+    this.disabled = true;
+    this.setCustomValidity(get('ied.dai.defaultvalidationmessage'));
   }
 
   render(): TemplateResult {
