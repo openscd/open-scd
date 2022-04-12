@@ -22,6 +22,12 @@ export class InlineEditTextField extends TextField {
 
   @query('#doneButton') doneButton!: IconButton;
 
+  constructor() {
+    super();
+    this.autoValidate = true;
+    this.disabled = true;
+  }
+
   private done() {
     const oldVal = this.element.querySelector('Val');
     const newVal = <Element>oldVal?.cloneNode(false);
@@ -49,9 +55,11 @@ export class InlineEditTextField extends TextField {
 
   async firstUpdated(): Promise<void> {
     super.firstUpdated();
-
-    this.disabled = true;
     this.value = this.getValue();
+  }
+
+  updated(): void {
+    this.doneButton.disabled = !this.validity.valid;
   }
 
   private getValue(): string {
