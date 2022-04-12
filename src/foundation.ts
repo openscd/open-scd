@@ -411,6 +411,7 @@ export function newLogEvent(
 
 export interface IssueDetail extends LogDetailBase {
   validatorId: string;
+  resetList?: boolean;
 }
 export type IssueEvent = CustomEvent<IssueDetail>;
 export function newIssueEvent(

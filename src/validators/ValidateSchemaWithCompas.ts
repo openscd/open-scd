@@ -1,10 +1,10 @@
-import {LitElement, property} from "lit-element";
+import { LitElement, property } from "lit-element";
 
-import {newIssueEvent} from "../foundation.js";
+import { newIssueEvent } from "../foundation.js";
 
-import {CompasSclValidatorService, SVS_NAMESPACE} from "../compas-services/CompasValidatorService.js";
-import {createLogEvent} from "../compas-services/foundation.js";
-import {dispatchEventOnOpenScd, getTypeFromDocName} from "../compas/foundation.js";
+import { CompasSclValidatorService, SVS_NAMESPACE } from "../compas-services/CompasValidatorService.js";
+import { createLogEvent } from "../compas-services/foundation.js";
+import { dispatchEventOnOpenScd, getTypeFromDocName } from "../compas/foundation.js";
 
 export default class ValidateTemplates extends LitElement {
   @property({ attribute: false })
@@ -23,22 +23,31 @@ export default class ValidateTemplates extends LitElement {
     }
 
     const docType = getTypeFromDocName(this.docName);
-    await CompasSclValidatorService().validateSCL(docType, this.doc)
-      .then(document => {
-        const validationErrors = Array.from(document.querySelectorAll('SclValidateResponse > ValidationErrors') ?? []);
-        // Check if there are validation errors, if there are we will process them.
-        if (validationErrors.length > 0) {
-          validationErrors.forEach(validationError => {
-            const message = validationError.getElementsByTagNameNS(SVS_NAMESPACE, "Message")!.item(0)!.textContent;
-            dispatchEventOnOpenScd(
-              newIssueEvent({
-                validatorId: this.pluginId,
-                title: message ?? 'No message'
-              })
-            );
+    const service = CompasSclValidatorService();
+    if (service.useWebsocket()) {
+      service.validateSCLUsingWebsockets(docType, this.doc, (doc) => {
+        this.processValidationResponse(doc);
+      });
+    } else {
+      service.validateSCLUsingRest(docType, this.doc)
+        .then(response => this.processValidationResponse(response))
+        .catch(createLogEvent);
+    }
+  }
+
+  private processValidationResponse(response: Document): void {
+    const validationErrors = Array.from(response.querySelectorAll('SclValidateResponse > ValidationErrors') ?? []);
+    // Check if there are validation errors, if there are we will process them.
+    if (validationErrors.length > 0) {
+      validationErrors.forEach(validationError => {
+        const message = validationError.getElementsByTagNameNS(SVS_NAMESPACE, "Message")!.item(0)!.textContent;
+        dispatchEventOnOpenScd(
+          newIssueEvent({
+            validatorId: this.pluginId,
+            title: message ?? 'No message'
           })
-        }
+        );
       })
-      .catch(createLogEvent);
+    }
   }
 }
