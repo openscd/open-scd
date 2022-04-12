@@ -645,7 +645,8 @@ export const en = {
       sclDataServiceUrl: 'CoMPAS SCL Data Service URL',
       sclValidatorServiceUrl: 'CoMPAS SCL Validator Service URL',
       cimMappingServiceUrl: 'CoMPAS CIM Mapping Service URL',
-      sclAutoAlignmentServiceUrl: 'CoMPAS SCL Auto Alignment Service URL'
+      sclAutoAlignmentServiceUrl: 'CoMPAS SCL Auto Alignment Service URL',
+      useWebsockets: 'Use Websockets',
     },
     session: {
       headingExpiring: 'Your session is about to expire!',

@@ -25,6 +25,10 @@ export function CompasSclValidatorService() {
     if (sclValidatorServiceUrl.startsWith("ws://") || sclValidatorServiceUrl.startsWith("wss://")) {
       return sclValidatorServiceUrl + (sclValidatorServiceUrl.endsWith("/") ? "" : "/");
     }
+    if (sclValidatorServiceUrl.startsWith("http://") || sclValidatorServiceUrl.startsWith("https://")) {
+      return sclValidatorServiceUrl.replace("http://", "ws://").replace("https://", "wss://")
+        + (sclValidatorServiceUrl.endsWith("/") ? "" : "/");
+    }
 
     return (document.location.protocol == "http:" ? "ws://" : "wss://")
       + document.location.hostname  + ":" + getWebsocketPort()
@@ -40,8 +44,7 @@ export function CompasSclValidatorService() {
 
   return {
     useWebsocket(): boolean {
-      const sclValidatorServiceUrl = getCompasSettings().sclValidatorServiceUrl;
-      return !sclValidatorServiceUrl.startsWith("http");
+      return getCompasSettings().useWebsockets === 'on';
     },
 
     validateSCLUsingRest(type: string, doc: Document): Promise<Document> {
