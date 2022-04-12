@@ -113,8 +113,7 @@ export class DAContainer extends LitElement {
           @click=${() => this.requestUpdate()}
         ></mwc-icon-button-toggle>
       </abbr>` : nothing}
-      ${getCustomField()[<DaiValidationTypes>bType]
-        ?.render(getNameAttribute(this.element)!, value) ?? value}
+      ${this.instanceElement ? getCustomField()[<DaiValidationTypes>bType]?.render(this.instanceElement) ?? value : value}
       ${this.toggleButton?.on && bType == 'Struct' ? this.getBDAElements().map(element =>
         html`<da-container
           .element=${element}

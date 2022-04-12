@@ -207,9 +207,6 @@ export const en = {
     },
     action: {
       updateied: 'Edited IED "{{iedName}}"',
-    },
-    dai: {
-      defaultvalidationmessage: 'Invalid value'
     }
   },
   powertransformer: {

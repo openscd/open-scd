@@ -1,6 +1,7 @@
 import {
   customElement,
   html,
+  property,
   query,
   TemplateResult,
 } from 'lit-element';
@@ -10,16 +11,36 @@ import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-menu';
 import '@material/mwc-icon-button-toggle';
 import { TextField } from '@material/mwc-textfield';
-import { get } from 'lit-translate';
 import { IconButton } from '@material/mwc-icon-button';
+import { newActionEvent, Replace } from '../../../foundation.js';
 
 @customElement('inline-edit-textfield')
 export class InlineEditTextField extends TextField {
+  
+  @property({ attribute: false })
+  element!: Element;
 
   @query('#doneButton') doneButton!: IconButton;
 
-  private handleEdit() {
+  private done() {
+    const oldVal = this.element.querySelector('Val');
+    const newVal = <Element>oldVal?.cloneNode(false);
+    newVal.textContent = this.value;
+
+    const inputAction: Replace = {
+      old: {
+        element: oldVal!
+      },
+      new: {
+        element: newVal
+      },
+    };
+    this.dispatchEvent(newActionEvent({ title: 'Update', actions: [inputAction] }));
+  }
+
+  private edit() {
     this.disabled = !this.disabled;
+    
     this.doneButton.getAttribute('style')?.includes('display: none;')
       ? this.doneButton.setAttribute('style', 'color: var(--mdc-theme-on-surface);')
       : this.doneButton.setAttribute('style', 'color: var(--mdc-theme-on-surface); display: none;')
@@ -29,7 +50,7 @@ export class InlineEditTextField extends TextField {
     super.firstUpdated();
 
     this.disabled = true;
-    this.setCustomValidity(get('ied.dai.defaultvalidationmessage'));
+    this.value = this.element.querySelector('Val')?.textContent ?? '';
   }
 
   render(): TemplateResult {
@@ -41,13 +62,13 @@ export class InlineEditTextField extends TextField {
             id="doneButton"
             style="color: var(--mdc-theme-on-surface); display: none;"
             icon="done"
-            @click=${() => console.log('check')}
+            @click=${() => this.done()}
           ></mwc-icon-button>
           <mwc-icon-button-toggle
             style="margin-left: 5px; color: var(--mdc-theme-on-surface);"
             onIcon="clear"
             offIcon="edit"
-            @click=${() => this.handleEdit()}
+            @click=${() => this.edit()}
           ></mwc-icon-button-toggle>
         </div>
       </div>

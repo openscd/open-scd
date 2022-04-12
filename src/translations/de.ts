@@ -210,9 +210,6 @@ export const de: Translations = {
     },
     action: {
       updateied: 'IED "{{iedName}}" bearbeitet',
-    },
-    dai: {
-      defaultvalidationmessage: '???'
     }
   },
   powertransformer: {

@@ -3,7 +3,7 @@ import { html, TemplateResult } from "lit-html";
 import './inline-edit-textfield.js'
 
 export interface CustomField {
-  render(id: string, value: string): TemplateResult;
+  render(element: Element): TemplateResult;
 }
 
 const daiValidationTypes = ['INT8', 'INT16', 'INT24', 'INT32', 'INT64', 'INT128', 'INT8U', 'INT16U', 'INT24U', 'INT32U'] as const;
@@ -25,13 +25,12 @@ export function getCustomField(): Record<DaiValidationTypes, CustomField> {
 
   function integerField(min: number, max: number): CustomField {
     return {
-      render: (id: string, value: string) => {
+      render: (element: Element) => {
         return html`<inline-edit-textfield
+          .element=${element}
           type="number"
           min=${min}
           max=${max}
-          id=${id}
-          value=${value}
         ></inline-edit-textfield>`;
       }
     }
