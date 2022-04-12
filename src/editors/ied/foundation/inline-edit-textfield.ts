@@ -39,6 +39,7 @@ export class InlineEditTextField extends TextField {
   }
 
   private edit() {
+    this.value = this.getValue();
     this.disabled = !this.disabled;
     
     this.doneButton.getAttribute('style')?.includes('display: none;')
@@ -50,7 +51,11 @@ export class InlineEditTextField extends TextField {
     super.firstUpdated();
 
     this.disabled = true;
-    this.value = this.element.querySelector('Val')?.textContent ?? '';
+    this.value = this.getValue();
+  }
+
+  private getValue(): string {
+    return this.element.querySelector('Val')?.textContent ?? '';
   }
 
   render(): TemplateResult {
