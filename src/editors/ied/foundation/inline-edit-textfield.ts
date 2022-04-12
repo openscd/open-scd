@@ -41,7 +41,7 @@ export class InlineEditTextField extends TextField {
         element: newVal
       },
     };
-    this.dispatchEvent(newActionEvent({ title: 'Update', actions: [inputAction] }));
+    this.dispatchEvent(newActionEvent({ title: 'Replace', actions: [inputAction] }));
   }
 
   private edit() {
