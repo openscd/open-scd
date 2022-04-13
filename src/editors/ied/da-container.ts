@@ -13,10 +13,10 @@ import { translate } from 'lit-translate';
 import '@material/mwc-icon-button-toggle';
 import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 
-import './foundation/inline-edit-textfield.js'
 import '../../action-pane.js';
-import { getNameAttribute } from '../../foundation.js';
+import { getNameAttribute, newWizardEvent } from '../../foundation.js';
 import { Nsdoc } from '../../foundation/nsdoc.js';
+import { wizards } from '../../wizards/wizard-library.js';
 import { DaiValidationTypes, getCustomField } from './foundation/foundation.js';
 
 /** [[`IED`]] plugin subeditor for editing `(B)DA` element. */
@@ -93,6 +93,11 @@ export class DAContainer extends LitElement {
     }
     return [];
   }
+  
+  private openEditWizard(): void {
+    const wizard = wizards['DAI'].edit(this.element, this.instanceElement);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
 
   render(): TemplateResult {
     const bType = this.element!.getAttribute('bType');
@@ -113,7 +118,19 @@ export class DAContainer extends LitElement {
           @click=${() => this.requestUpdate()}
         ></mwc-icon-button-toggle>
       </abbr>` : nothing}
-      ${this.instanceElement ? getCustomField()[<DaiValidationTypes>bType]?.render(this.instanceElement) ?? value : value}
+      ${this.instanceElement && getCustomField()[<DaiValidationTypes>bType] ?
+        html`<div style="display: flex; flex-direction: row;">
+          <div id="value">
+            <h4>${value}</h4>
+          </div>
+          <div style="display: flex; align-items: center;">
+            <mwc-icon-button
+              icon="edit"
+              @click=${() => this.openEditWizard()}
+            ></mwc-icon-button>
+          </div>
+        </div>` :
+        html`<h4>${value}</h4>`}
       ${this.toggleButton?.on && bType == 'Struct' ? this.getBDAElements().map(element =>
         html`<da-container
           .element=${element}
@@ -126,16 +143,24 @@ export class DAContainer extends LitElement {
   }
 
   static styles = css`
-    h6 {
+    h4 {
       color: var(--mdc-theme-on-surface);
       font-family: 'Roboto', sans-serif;
-      font-weight: 500;
-      font-size: 0.8em;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
       margin: 0px;
       padding-left: 0.3em;
+    }
+
+    #value {
+      flex: auto;
+      align-items: center;
+      display: flex;
+    }
+
+    mwc-icon-button {
+      color: var(--mdc-theme-on-surface);
     }
   `;
 }
