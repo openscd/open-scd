@@ -565,7 +565,7 @@ export const en = {
     noSclVersions: 'No versions found for this project in CoMPAS',
     error: {
       type: 'Unable to determine type from document name!',
-      server: 'Error communicating with CoMPAS Server',
+      server: 'Error communicating with CoMPAS Ecosystem',
       serverDetails: '{{type}}: {{message}}',
     },
     changeset: {

@@ -29,9 +29,11 @@ export default class ValidateTemplates extends LitElement {
         this.processValidationResponse(doc);
       });
     } else {
-      service.validateSCLUsingRest(docType, this.doc)
-        .then(response => this.processValidationResponse(response))
+      const response = await service.validateSCLUsingRest(docType, this.doc)
         .catch(createLogEvent);
+      if (response instanceof Document) {
+        this.processValidationResponse(response);
+      }
     }
   }
 

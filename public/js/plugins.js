@@ -102,7 +102,7 @@ export const officialPlugins = [
   },
   {
     name: 'Validate using OCL',
-    src: '/src/validators/ValidateSchemaWithCompas.js',
+    src: '/src/validators/CompasValidateSchema.js',
     icon: 'rule_folder',
     default: true,
     kind: 'validator',

@@ -5,6 +5,7 @@ import {
   handleResponse,
   parseXml
 } from "./foundation.js";
+import {Websockets} from "./Websockets";
 
 export const SVS_NAMESPACE = 'https://www.lfenergy.org/compas/SclValidatorService/v1';
 
@@ -22,17 +23,13 @@ export function CompasSclValidatorService() {
 
   function getWebsocketUri(): string {
     const sclValidatorServiceUrl = getCompasSettings().sclValidatorServiceUrl;
-    if (sclValidatorServiceUrl.startsWith("ws://") || sclValidatorServiceUrl.startsWith("wss://")) {
-      return sclValidatorServiceUrl + (sclValidatorServiceUrl.endsWith("/") ? "" : "/");
-    }
     if (sclValidatorServiceUrl.startsWith("http://") || sclValidatorServiceUrl.startsWith("https://")) {
-      return sclValidatorServiceUrl.replace("http://", "ws://").replace("https://", "wss://")
-        + (sclValidatorServiceUrl.endsWith("/") ? "" : "/");
+      return sclValidatorServiceUrl.replace("http://", "ws://").replace("https://", "wss://");
     }
 
     return (document.location.protocol == "http:" ? "ws://" : "wss://")
       + document.location.hostname  + ":" + getWebsocketPort()
-      + sclValidatorServiceUrl + (sclValidatorServiceUrl.endsWith("/") ? "" : "/");
+      + sclValidatorServiceUrl;
   }
 
   function createRequest(doc: Document): string {
@@ -61,30 +58,11 @@ export function CompasSclValidatorService() {
     },
 
     validateSCLUsingWebsockets(type: string, doc: Document, callback: (doc: Document) => void) {
-      const websocket = new WebSocket(getWebsocketUri() + 'validate-ws/v1/' + type);
-
-      websocket.onopen = () => {
-        websocket.send(createRequest(doc));
-      };
-
-      websocket.onmessage = (evt) => {
-        parseXml(evt.data)
-          .then(doc => {
-            callback(doc);
-            websocket.close();
-          })
-          .catch(reason => {
-            createLogEvent(reason);
-            websocket.close();
-          });
-      };
-
-      websocket.onerror = () => {
-        createLogEvent(
-          { message: 'Websocket Error',
-            type: 'Error'})
-        websocket.close();
-      };
+      Websockets('CompasValidatorService')
+        .execute(
+          getWebsocketUri() + '/validate-ws/v1/' + type,
+          createRequest(doc),
+          callback);
     },
 
     listNsdocFiles(): Promise<Document> {
