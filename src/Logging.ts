@@ -168,7 +168,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
     private onIssue(de: IssueEvent): void {
       const issues = this.diagnoses.get(de.detail.validatorId);
 
-      if (!issues || de.detail.resetList === true) this.diagnoses.set(de.detail.validatorId, [de.detail]);
+      if (!issues) this.diagnoses.set(de.detail.validatorId, [de.detail]);
       else issues?.push(de.detail);
 
       this.latestIssue = de.detail;
