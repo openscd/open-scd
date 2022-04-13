@@ -6,7 +6,10 @@ import { CompasSclValidatorService, SVS_NAMESPACE } from "../compas-services/Com
 import { createLogEvent } from "../compas-services/foundation.js";
 import { dispatchEventOnOpenScd, getTypeFromDocName } from "../compas/foundation.js";
 
-export default class ValidateTemplates extends LitElement {
+// Boolean to prevent running the validation multiple times at the same time.
+let compasValidationSchemaRunning = false;
+
+export default class CompasValidateSchema extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
 
@@ -18,21 +21,31 @@ export default class ValidateTemplates extends LitElement {
 
   async validate(manual: boolean): Promise<void> {
     // We don't want to externally validate every time a save is done. So only start the validation when manually triggered.
-    if (!manual) {
+    // And also if one is already running we don't want to start another one, wait until it's finished.
+    if (!manual || compasValidationSchemaRunning) {
       return;
     }
+
+    // Block running another validation until this one is finished.
+    compasValidationSchemaRunning = true;
 
     const docType = getTypeFromDocName(this.docName);
     const service = CompasSclValidatorService();
     if (service.useWebsocket()) {
-      service.validateSCLUsingWebsockets(docType, this.doc, (doc) => {
-        this.processValidationResponse(doc);
-      });
+      service.validateSCLUsingWebsockets(docType, this.doc,
+        (doc) => {
+          this.processValidationResponse(doc);
+        },
+        () => {
+          compasValidationSchemaRunning = false;
+        });
     } else {
       const response = await service.validateSCLUsingRest(docType, this.doc)
         .catch(createLogEvent);
       if (response instanceof Document) {
         this.processValidationResponse(response);
+      } else {
+        compasValidationSchemaRunning = false;
       }
     }
   }
@@ -51,5 +64,7 @@ export default class ValidateTemplates extends LitElement {
         );
       })
     }
+
+    compasValidationSchemaRunning = false;
   }
 }

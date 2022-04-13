@@ -39,12 +39,15 @@ export function CompasSclValidatorService() {
         .then(parseXml);
     },
 
-    validateSCLUsingWebsockets(type: string, doc: Document, callback: (doc: Document) => void) {
+    validateSCLUsingWebsockets(type: string, doc: Document,
+                               callback: (doc: Document) => void,
+                               onCloseCallback: () => void) {
       Websockets('CompasValidatorService')
         .execute(
           getWebsocketUri(getSclValidatorServiceUrl()) + '/validate-ws/v1/' + type,
           createRequest(doc),
-          callback);
+          callback,
+          onCloseCallback);
     },
 
     listNsdocFiles(): Promise<Document> {

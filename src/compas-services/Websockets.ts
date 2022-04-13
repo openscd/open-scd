@@ -16,7 +16,9 @@ export function Websockets(serviceName: string) {
   }
 
   return {
-    execute(url: string, request: string, callback: (doc: Document) => void) {
+    execute(url: string, request: string,
+            onMessageCallback: (doc: Document) => void,
+            onCloseCallback?: () => void) {
       websocket = new WebSocket(url);
 
       websocket.onopen = () => {
@@ -26,7 +28,7 @@ export function Websockets(serviceName: string) {
       websocket.onmessage = (evt) => {
         parseXml(evt.data)
           .then(doc => {
-            callback(doc);
+            onMessageCallback(doc);
             websocket?.close();
           })
           .catch(reason => {
@@ -44,6 +46,9 @@ export function Websockets(serviceName: string) {
 
       websocket.onclose = () => {
         websocket = undefined;
+        if (onCloseCallback) {
+          onCloseCallback();
+        }
       }
 
       dispatchEventOnOpenScd(newPendingStateEvent(waitUntilValidated()))
