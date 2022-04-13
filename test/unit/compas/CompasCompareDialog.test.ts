@@ -62,8 +62,8 @@ describe('compas-compare-dialog', () => {
       await element;
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(element).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(element).to.equalSnapshot();
     });
   });
 });

@@ -28,9 +28,8 @@ describe('compas-comment', () => {
       .to.be.equal(value)
   });
 
-  it('looks like the latest snapshot', () => {
-    expect(element).shadowDom
-      .to.equalSnapshot();
+  it('looks like the latest snapshot', async () => {
+    await expect(element).shadowDom.to.equalSnapshot();
   });
 
   function setValue(value: string) {

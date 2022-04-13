@@ -2,8 +2,8 @@
 export const snapshots = {};
 
 snapshots["compas-open when-type-needs-to-be-selected looks like the latest snapshot"] = 
-`<compas-divider>
-</compas-divider>
+`<wizard-divider>
+</wizard-divider>
 <section>
   <h3>
     [compas.open.localTitle]
@@ -18,8 +18,8 @@ snapshots["compas-open when-type-needs-to-be-selected looks like the latest snap
   <mwc-button label="[compas.open.selectFileButton]">
   </mwc-button>
 </section>
-<compas-divider>
-</compas-divider>
+<wizard-divider>
+</wizard-divider>
 <section>
   <h3>
     [compas.open.compasTitle]
@@ -34,8 +34,8 @@ snapshots["compas-open when-type-needs-to-be-selected looks like the latest snap
 /* end snapshot compas-open when-type-needs-to-be-selected looks like the latest snapshot */
 
 snapshots["compas-open when-project-needs-to-be-selected looks like the latest snapshot"] = 
-`<compas-divider>
-</compas-divider>
+`<wizard-divider>
+</wizard-divider>
 <section>
   <h3>
     [compas.open.localTitle]
@@ -50,8 +50,8 @@ snapshots["compas-open when-project-needs-to-be-selected looks like the latest s
   <mwc-button label="[compas.open.selectFileButton]">
   </mwc-button>
 </section>
-<compas-divider>
-</compas-divider>
+<wizard-divider>
+</wizard-divider>
 <section>
   <h3>
     [compas.open.compasTitle]

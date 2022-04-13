@@ -24,18 +24,22 @@ describe('compas-settings', () => {
     CompasSettings().setCompasSetting('sclDataServiceUrl', 'http://localhost:9090/compas-scl-data-service');
     CompasSettings().setCompasSetting('cimMappingServiceUrl', 'http://localhost:9091/compas-cim-mapping');
     CompasSettings().setCompasSetting('sclAutoAlignmentServiceUrl', 'http://localhost:9092/compas-scl-auto-alignment');
+    CompasSettings().setCompasSetting('useWebsockets', 'off');
     expect(localStorage.getItem('sclDataServiceUrl')).to.equal('http://localhost:9090/compas-scl-data-service');
     expect(localStorage.getItem('cimMappingServiceUrl')).to.equal('http://localhost:9091/compas-cim-mapping');
     expect(localStorage.getItem('sclAutoAlignmentServiceUrl')).to.equal('http://localhost:9092/compas-scl-auto-alignment');
+    expect(localStorage.getItem('useWebsockets')).to.equal('off');
   });
 
   it('retrieves settings from localStorage', () => {
     localStorage.setItem('sclDataServiceUrl', 'http://localhost:9090/compas-scl-data-service');
     localStorage.setItem('cimMappingServiceUrl', 'http://localhost:9091/compas-cim-mapping');
     localStorage.setItem('sclAutoAlignmentServiceUrl', 'http://localhost:9092/compas-scl-auto-alignment');
+    localStorage.setItem('useWebsockets', 'off');
     expect(CompasSettings().compasSettings).to.have.property('sclDataServiceUrl', 'http://localhost:9090/compas-scl-data-service');
     expect(CompasSettings().compasSettings).to.have.property('cimMappingServiceUrl', 'http://localhost:9091/compas-cim-mapping');
     expect(CompasSettings().compasSettings).to.have.property('sclAutoAlignmentServiceUrl', 'http://localhost:9092/compas-scl-auto-alignment');
+    expect(CompasSettings().compasSettings).to.have.property('useWebsockets', 'off');
   });
 
   it('saves chosen settings on save button click', async () => {
@@ -44,14 +48,17 @@ describe('compas-settings', () => {
     element.getSclDataServiceUrlField().value = 'http://localhost:9091/compas-scl-data-service';
     element.getCimMappingServiceUrlField().value = 'http://localhost:9092/compas-cim-mapping';
     element.getSclAutoAlignmentServiceUrlField().value = 'http://localhost:9093/compas-scl-auto-alignment';
+    element.getUseWebsockets().checked = false;
     await element.getSclDataServiceUrlField().updateComplete;
     await element.getCimMappingServiceUrlField().updateComplete;
     await element.getSclAutoAlignmentServiceUrlField().updateComplete;
+    await element.getUseWebsockets().updateComplete;
 
     expect(element.save()).to.be.true;
     expect(element.compasSettings).to.have.property('sclDataServiceUrl', 'http://localhost:9091/compas-scl-data-service');
     expect(element.compasSettings).to.have.property('cimMappingServiceUrl', 'http://localhost:9092/compas-cim-mapping');
     expect(element.compasSettings).to.have.property('sclAutoAlignmentServiceUrl', 'http://localhost:9093/compas-scl-auto-alignment');
+    expect(element.compasSettings).to.have.property('useWebsockets', 'off');
   });
 
   it('save will not be done when invalid value (Scl Data Service)', async () => {
@@ -86,6 +93,7 @@ describe('compas-settings', () => {
     CompasSettings().setCompasSetting('sclDataServiceUrl', 'http://localhost:9091/compas-scl-data-service');
     CompasSettings().setCompasSetting('cimMappingServiceUrl', 'http://localhost:9092/compas-cim-mapping');
     CompasSettings().setCompasSetting('sclAutoAlignmentServiceUrl', 'http://localhost:9093/compas-scl-auto-alignment');
+    CompasSettings().setCompasSetting('useWebsockets', 'off');
 
     expect(element).to.not.have.deep.property('compasSettings', CompasSettings().defaultSettings);
     expect(element.reset()).to.be.true;
@@ -93,7 +101,6 @@ describe('compas-settings', () => {
   });
 
   it('looks like the latest snapshot', async () => {
-    expect(element).shadowDom
-      .to.equalSnapshot();
+    await expect(element).shadowDom.to.equalSnapshot();
   });
 });

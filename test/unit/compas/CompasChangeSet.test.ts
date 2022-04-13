@@ -45,8 +45,7 @@ describe('compas-changeset-radiogroup', () => {
       .to.be.equal(ChangeSet.MAJOR)
   });
 
-  it('looks like the latest snapshot', () => {
-    expect(element).shadowDom
-      .to.equalSnapshot();
+  it('looks like the latest snapshot', async () => {
+    await expect(element).shadowDom.to.equalSnapshot();
   });
 });

@@ -20,9 +20,8 @@ describe('compas-session', () => {
       );
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(element).shadowDom
-        .to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
     });
   });
 
@@ -36,9 +35,8 @@ describe('compas-session', () => {
       );
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(element).shadowDom
-        .to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
     });
   });
 
@@ -54,9 +52,8 @@ describe('compas-session', () => {
       );
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(element).shadowDom
-        .to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
     });
   });
 });
