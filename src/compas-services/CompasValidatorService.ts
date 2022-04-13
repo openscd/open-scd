@@ -1,35 +1,17 @@
 import { CompasSettings } from "../compas/CompasSettings.js";
+import { Websockets } from "./Websockets.js";
 import {
-  createLogEvent,
+  getWebsocketUri,
   handleError,
   handleResponse,
   parseXml
 } from "./foundation.js";
-import {Websockets} from "./Websockets";
 
 export const SVS_NAMESPACE = 'https://www.lfenergy.org/compas/SclValidatorService/v1';
 
 export function CompasSclValidatorService() {
-  function getCompasSettings() {
-    return CompasSettings().compasSettings;
-  }
-
-  function getWebsocketPort(): string {
-    if (document.location.port === "") {
-      return (document.location.protocol == "http:" ? "80" : "443")
-    }
-    return document.location.port;
-  }
-
-  function getWebsocketUri(): string {
-    const sclValidatorServiceUrl = getCompasSettings().sclValidatorServiceUrl;
-    if (sclValidatorServiceUrl.startsWith("http://") || sclValidatorServiceUrl.startsWith("https://")) {
-      return sclValidatorServiceUrl.replace("http://", "ws://").replace("https://", "wss://");
-    }
-
-    return (document.location.protocol == "http:" ? "ws://" : "wss://")
-      + document.location.hostname  + ":" + getWebsocketPort()
-      + sclValidatorServiceUrl;
+  function getSclValidatorServiceUrl(): string {
+    return CompasSettings().compasSettings.sclValidatorServiceUrl;
   }
 
   function createRequest(doc: Document): string {
@@ -41,11 +23,11 @@ export function CompasSclValidatorService() {
 
   return {
     useWebsocket(): boolean {
-      return getCompasSettings().useWebsockets === 'on';
+      return CompasSettings().useWebsockets();
     },
 
     validateSCLUsingRest(type: string, doc: Document): Promise<Document> {
-      const svsUrl = getCompasSettings().sclValidatorServiceUrl + '/validate/v1/' + type;
+      const svsUrl = getSclValidatorServiceUrl() + '/validate/v1/' + type;
       return fetch(svsUrl, {
         method: 'POST',
         headers: {
@@ -60,20 +42,20 @@ export function CompasSclValidatorService() {
     validateSCLUsingWebsockets(type: string, doc: Document, callback: (doc: Document) => void) {
       Websockets('CompasValidatorService')
         .execute(
-          getWebsocketUri() + '/validate-ws/v1/' + type,
+          getWebsocketUri(getSclValidatorServiceUrl()) + '/validate-ws/v1/' + type,
           createRequest(doc),
           callback);
     },
 
     listNsdocFiles(): Promise<Document> {
-      const svsUrl = getCompasSettings().sclValidatorServiceUrl + '/nsdoc/v1';
+      const svsUrl = getSclValidatorServiceUrl() + '/nsdoc/v1';
       return fetch(svsUrl).catch(handleError)
         .then(handleResponse)
         .then(parseXml);
     },
 
     getNsdocFile(id: string): Promise<string> {
-      const svsUrl = getCompasSettings().sclValidatorServiceUrl + '/nsdoc/v1/' + id;
+      const svsUrl = getSclValidatorServiceUrl() + '/nsdoc/v1/' + id;
       return fetch(svsUrl).catch(handleError)
         .then(handleResponse);
     },

@@ -40,6 +40,10 @@ export function CompasSettings() {
       }
     },
 
+    useWebsockets(): boolean {
+      return this.compasSettings.useWebsockets === 'on';
+    },
+
     /** Update the `value` of `setting`, storing to `localStorage`. */
     setCompasSetting<T extends keyof CompasSettingsRecord>(setting: T, value: CompasSettingsRecord[T]): void {
       localStorage.setItem(setting, <string>(<unknown>value));
