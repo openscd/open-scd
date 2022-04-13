@@ -2,8 +2,8 @@
 export const snapshots = {};
 
 snapshots["compas-save still determining if document exists in CoMPAS looks like the latest snapshot"] = 
-`<compas-divider>
-</compas-divider>
+`<wizard-divider>
+</wizard-divider>
 <section>
   <h3>
     [compas.save.localTitle]
@@ -11,8 +11,8 @@ snapshots["compas-save still determining if document exists in CoMPAS looks like
   <mwc-button label="[compas.save.saveFileButton]">
   </mwc-button>
 </section>
-<compas-divider>
-</compas-divider>
+<wizard-divider>
+</wizard-divider>
 <section>
   <h3>
     [compas.save.compasTitle]
@@ -23,9 +23,9 @@ snapshots["compas-save still determining if document exists in CoMPAS looks like
 `;
 /* end snapshot compas-save still determining if document exists in CoMPAS looks like the latest snapshot */
 
-snapshots["compas-save existing document in compas looks like the latest snapshot"] = 
-`<compas-divider>
-</compas-divider>
+snapshots["compas-save new document in compas looks like the latest snapshot"] = 
+`<wizard-divider>
+</wizard-divider>
 <section>
   <h3>
     [compas.save.localTitle]
@@ -33,8 +33,40 @@ snapshots["compas-save existing document in compas looks like the latest snapsho
   <mwc-button label="[compas.save.saveFileButton]">
   </mwc-button>
 </section>
-<compas-divider>
-</compas-divider>
+<wizard-divider>
+</wizard-divider>
+<section>
+  <h3>
+    [compas.save.compasTitle]
+  </h3>
+  <mwc-textfield
+    dialoginitialfocus=""
+    id="name"
+    label="[scl.name]"
+    required=""
+    value="station123.scd"
+  >
+  </mwc-textfield>
+  <compas-scltype-radiogroup>
+  </compas-scltype-radiogroup>
+  <compas-comment>
+  </compas-comment>
+</section>
+`;
+/* end snapshot compas-save new document in compas looks like the latest snapshot */
+
+snapshots["compas-save existing document in compas looks like the latest snapshot"] = 
+`<wizard-divider>
+</wizard-divider>
+<section>
+  <h3>
+    [compas.save.localTitle]
+  </h3>
+  <mwc-button label="[compas.save.saveFileButton]">
+  </mwc-button>
+</section>
+<wizard-divider>
+</wizard-divider>
 <section>
   <h3>
     [compas.save.compasTitle]
@@ -46,10 +78,4 @@ snapshots["compas-save existing document in compas looks like the latest snapsho
 </section>
 `;
 /* end snapshot compas-save existing document in compas looks like the latest snapshot */
-
-as-comment>
-  </compas-comment>
-</section>
-`;
-/* end snapshot compas-save new document in compas looks like the latest snapshot */
 

@@ -896,7 +896,7 @@ snapshots["open-scd looks like its snapshot"] =
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/validators/ValidateSchemaWithCompas.js"
+      value="/src/validators/CompasValidateSchema.js"
     >
       <mwc-icon slot="meta">
         rule_folder

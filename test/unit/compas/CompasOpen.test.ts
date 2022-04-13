@@ -14,8 +14,8 @@ describe('compas-open', () => {
       await element;
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(element).shadowDom.to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
     });
   });
 
@@ -34,8 +34,8 @@ describe('compas-open', () => {
       expect(element.selectedType).to.be.undefined;
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(element).shadowDom.to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
     });
   });
 });

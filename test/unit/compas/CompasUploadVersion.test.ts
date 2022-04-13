@@ -26,8 +26,8 @@ describe('compas-upload-version', () => {
       await element;
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(element).shadowDom.to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
     });
   });
 
@@ -45,8 +45,8 @@ describe('compas-upload-version', () => {
       await waitUntil(() => element.existInCompas !== undefined);
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(element).shadowDom.to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
     });
   });
 
@@ -64,8 +64,8 @@ describe('compas-upload-version', () => {
       await waitUntil(() => element.existInCompas !== undefined);
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(element).shadowDom.to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
     });
   })
 
@@ -88,8 +88,8 @@ describe('compas-upload-version', () => {
       await waitUntil(() => element.existInCompas !== undefined);
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(wizardElement.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(wizardElement.wizardUI.dialog).to.equalSnapshot();
     });
   })
 

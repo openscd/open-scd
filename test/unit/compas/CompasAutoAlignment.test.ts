@@ -47,9 +47,8 @@ describe('compas-auto-alignment', () => {
         .to.contains("_974565b1-ac55-4901-9f48-afc7ef5486df");
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(element).shadowDom
-        .to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
     });
   });
 
@@ -69,9 +68,8 @@ describe('compas-auto-alignment', () => {
         .to.have.length(0)
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(element).shadowDom
-        .to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
     });
   });
 });

@@ -7,6 +7,43 @@ snapshots["compas-upload-version still determining if document exists in CoMPAS 
 `;
 /* end snapshot compas-upload-version still determining if document exists in CoMPAS looks like the latest snapshot */
 
+snapshots["compas-upload-version no document in compas (anymore) looks like the latest snapshot"] = 
+`<mwc-list>
+  <mwc-list-item
+    aria-disabled="false"
+    mwc-list-item=""
+    tabindex="0"
+  >
+    [compas.notExists]
+  </mwc-list-item>
+</mwc-list>
+`;
+/* end snapshot compas-upload-version no document in compas (anymore) looks like the latest snapshot */
+
+snapshots["compas-upload-version existing document in compas looks like the latest snapshot"] = 
+`<input
+  accept=".scd"
+  hidden=""
+  id="scl-file"
+  required=""
+  type="file"
+>
+<wizard-textfield
+  id="filename"
+  label="[compas.uploadVersion.filename]"
+  readonly=""
+  required=""
+>
+</wizard-textfield>
+<mwc-button label="[compas.uploadVersion.selectButton]">
+</mwc-button>
+<compas-changeset-radiogroup>
+</compas-changeset-radiogroup>
+<compas-comment>
+</compas-comment>
+`;
+/* end snapshot compas-upload-version existing document in compas looks like the latest snapshot */
+
 snapshots["compas-upload-version existing document in compas through wizard looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="close"
@@ -34,41 +71,4 @@ snapshots["compas-upload-version existing document in compas through wizard look
 </mwc-dialog>
 `;
 /* end snapshot compas-upload-version existing document in compas through wizard looks like the latest snapshot */
-
-snapshots["compas-upload-version existing document in compas looks like the latest snapshot"] = 
-`<input
-  accept=".scd"
-  hidden=""
-  id="scl-file"
-  required=""
-  type="file"
->
-<wizard-textfield
-  id="filename"
-  label="[compas.uploadVersion.filename]"
-  readonly=""
-  required=""
->
-</wizard-textfield>
-<mwc-button label="[compas.uploadVersion.selectButton]">
-</mwc-button>
-<compas-changeset-radiogroup>
-</compas-changeset-radiogroup>
-<compas-comment>
-</compas-comment>
-`;
-/* end snapshot compas-upload-version existing document in compas looks like the latest snapshot */
-
-snapshots["compas-upload-version no document in compas (anymore) looks like the latest snapshot"] = 
-`<mwc-list>
-  <mwc-list-item
-    aria-disabled="false"
-    mwc-list-item=""
-    tabindex="0"
-  >
-    [compas.notExists]
-  </mwc-list-item>
-</mwc-list>
-`;
-/* end snapshot compas-upload-version no document in compas (anymore) looks like the latest snapshot */
 

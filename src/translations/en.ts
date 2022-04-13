@@ -565,7 +565,7 @@ export const en = {
     noSclVersions: 'No versions found for this project in CoMPAS',
     error: {
       type: 'Unable to determine type from document name!',
-      server: 'Error communicating with CoMPAS Server',
+      server: 'Error communicating with CoMPAS Ecosystem',
       serverDetails: '{{type}}: {{message}}',
     },
     changeset: {
@@ -645,7 +645,8 @@ export const en = {
       sclDataServiceUrl: 'CoMPAS SCL Data Service URL',
       sclValidatorServiceUrl: 'CoMPAS SCL Validator Service URL',
       cimMappingServiceUrl: 'CoMPAS CIM Mapping Service URL',
-      sclAutoAlignmentServiceUrl: 'CoMPAS SCL Auto Alignment Service URL'
+      sclAutoAlignmentServiceUrl: 'CoMPAS SCL Auto Alignment Service URL',
+      useWebsockets: 'Use Websockets',
     },
     session: {
       headingExpiring: 'Your session is about to expire!',

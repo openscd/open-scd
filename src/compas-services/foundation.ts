@@ -77,3 +77,21 @@ export function createLogEvent(reason: any): void {
       message: get('compas.error.serverDetails', {type: reason.type, message: message})
     }));
 }
+
+export function getWebsocketUri(settingsUrl: string): string {
+  if (settingsUrl.startsWith("http://") || settingsUrl.startsWith("https://")) {
+    return settingsUrl.replace("http://", "ws://").replace("https://", "wss://");
+  }
+
+  return (document.location.protocol == "http:" ? "ws://" : "wss://")
+    + document.location.hostname  + ":" + getWebsocketPort()
+    + settingsUrl;
+}
+
+export function getWebsocketPort(): string {
+  if (document.location.port === "") {
+    return (document.location.protocol == "http:" ? "80" : "443")
+  }
+  return document.location.port;
+}
+

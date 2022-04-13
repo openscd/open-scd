@@ -41,8 +41,7 @@ describe('compas-versions-plugin', () => {
     });
 
     it('looks like the latest snapshot', async () => {
-      expect(element).shadowDom
-        .to.equalSnapshot();
+      await expect(element).shadowDom.to.equalSnapshot();
       sinon.assert.notCalled(stub);
     });
   });
@@ -66,8 +65,7 @@ describe('compas-versions-plugin', () => {
     });
 
     it('looks like the latest snapshot', async () => {
-      expect(element).shadowDom
-        .to.equalSnapshot();
+      await expect(element).shadowDom.to.equalSnapshot();
     });
   });
 
@@ -91,8 +89,7 @@ describe('compas-versions-plugin', () => {
     });
 
     it('looks like the latest snapshot', async () => {
-      expect(element).shadowDom
-        .to.equalSnapshot();
+      await expect(element).shadowDom.to.equalSnapshot();
       sinon.assert.calledOnce(stub);
     });
   });
@@ -143,8 +140,7 @@ describe('compas-versions-plugin', () => {
     });
 
     it('looks like the latest snapshot', async () => {
-      expect(element).shadowDom
-        .to.equalSnapshot();
+      await expect(element).shadowDom.to.equalSnapshot();
       sinon.assert.calledOnce(stub);
     });
   });

@@ -33,8 +33,7 @@ describe('compas-scltype-radiogroup', () => {
     });
 
     it('looks like the latest snapshot', async () => {
-      expect(element).shadowDom
-        .to.equalSnapshot();
+      await expect(element).shadowDom.to.equalSnapshot();
     });
   });
 
@@ -56,8 +55,7 @@ describe('compas-scltype-radiogroup', () => {
     });
 
     it('looks like the latest snapshot', async () => {
-      expect(element).shadowDom
-        .to.equalSnapshot();
+      await expect(element).shadowDom.to.equalSnapshot();
       sinon.assert.calledOnce(stub);
     });
   });
@@ -115,8 +113,7 @@ describe('compas-scltype-radiogroup', () => {
     });
 
     it('looks like the latest snapshot', async () => {
-      expect(element).shadowDom
-        .to.equalSnapshot();
+      await expect(element).shadowDom.to.equalSnapshot();
       sinon.assert.calledOnce(stub);
     });
   });

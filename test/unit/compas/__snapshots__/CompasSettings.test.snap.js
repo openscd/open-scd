@@ -11,6 +11,14 @@ snapshots["compas-settings looks like the latest snapshot"] =
 >
 </mwc-textfield>
 <mwc-textfield
+  dialoginitialfocus=""
+  id="sclValidatorServiceUrl"
+  label="[compas.settings.sclValidatorServiceUrl]"
+  required=""
+  value="/compas-scl-validator"
+>
+</mwc-textfield>
+<mwc-textfield
   id="cimMappingServiceUrl"
   label="[compas.settings.cimMappingServiceUrl]"
   required=""
@@ -24,6 +32,13 @@ snapshots["compas-settings looks like the latest snapshot"] =
   value="/compas-scl-auto-alignment"
 >
 </mwc-textfield>
+<mwc-formfield label="[compas.settings.useWebsockets]">
+  <mwc-switch
+    checked=""
+    id="useWebsockets"
+  >
+  </mwc-switch>
+</mwc-formfield>
 <mwc-button>
   [reset]
 </mwc-button>

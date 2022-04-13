@@ -24,9 +24,8 @@ describe('compas-save', () => {
       await element;
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(element).shadowDom
-        .to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
     });
   });
 
@@ -44,9 +43,8 @@ describe('compas-save', () => {
       await waitUntil(() => element.existInCompas !== undefined);
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(element).shadowDom
-        .to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
     });
   });
 
@@ -65,9 +63,8 @@ describe('compas-save', () => {
 
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(element).shadowDom
-        .to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
     });
   })
 
