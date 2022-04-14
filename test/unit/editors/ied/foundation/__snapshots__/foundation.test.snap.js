@@ -610,3 +610,43 @@ snapshots["foundation getCustomField renders a VisString255 field correctly"] =
 `;
 /* end snapshot foundation getCustomField renders a VisString255 field correctly */
 
+snapshots["foundation getCustomField renders a BOOLEAN field correctly"] = 
+`<div style="display: flex; flex-direction: row;">
+  <div style="flex: auto;">
+    <label class="mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
+      <span class="mdc-text-field__ripple">
+      </span>
+      <span
+        class="mdc-floating-label mdc-floating-label--float-above"
+        id="label"
+      >
+        Value
+      </span>
+      <input
+        aria-controls="helper-text"
+        aria-labelledby="label"
+        class="mdc-text-field__input"
+        max="255"
+        min="-256"
+        placeholder=""
+        type="number"
+      >
+      <span class="mdc-line-ripple">
+      </span>
+    </label>
+    <div class="mdc-text-field-helper-line">
+      <div
+        aria-hidden="true"
+        class="mdc-text-field-helper-text"
+        id="helper-text"
+      >
+        [dai.wizard.valueHelper]
+      </div>
+    </div>
+  </div>
+  <div style="display: flex; align-items: center; height: 56px;">
+  </div>
+</div>
+`;
+/* end snapshot foundation getCustomField renders a BOOLEAN field correctly */
+

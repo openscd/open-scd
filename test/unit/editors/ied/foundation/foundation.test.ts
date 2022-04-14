@@ -12,6 +12,14 @@ describe('foundation', async () => {
   });
 
   describe('getCustomField', () => {
+    it('renders a BOOLEAN field correctly', async () => {
+      const value = getValue("booleantest");
+      const element = await fixture(html`${getCustomField()[<DaiValidationTypes>'BOOLEAN']?.render(value!)}`);
+
+      expect(element).shadowDom.to.equalSnapshot();
+      expect(element.shadowRoot?.querySelector('input')?.value).to.eql('true');
+    });
+
     it('renders a INT8 field correctly', async () => {
       const value = getValue("int8test");
       const element = await fixture(html`${getCustomField()[<DaiValidationTypes>'INT8']?.render(value!)}`);
