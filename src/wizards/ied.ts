@@ -1,18 +1,10 @@
-import {html, TemplateResult} from 'lit-element';
-import {get, translate} from 'lit-translate';
+import { html, TemplateResult } from 'lit-element';
+import { get, translate } from 'lit-translate';
 
-import {
-  cloneElement,
-  ComplexAction,
-  EditorAction,
-  getValue,
-  isPublic,
-  Wizard,
-  WizardActor,
-  WizardInputElement,
-} from '../foundation.js';
-import {patterns} from "./foundation/limits.js";
-import {updateReferences} from "./foundation/references.js";
+import '../wizard-textfield.js';
+import { isPublic, Wizard } from '../foundation.js';
+import { patterns } from "./foundation/limits.js";
+import { updateNamingAttributeWithReferencesAction } from "./foundation/actions.js";
 
 const iedNamePattern = "[A-Za-z][0-9A-Za-z_]{0,2}|" +
   "[A-Za-z][0-9A-Za-z_]{4,63}|" +
@@ -20,29 +12,6 @@ const iedNamePattern = "[A-Za-z][0-9A-Za-z_]{0,2}|" +
   "N[0-9A-Za-np-z_][0-9A-Za-z_]{2}|" +
   "No[0-9A-Za-mo-z_][0-9A-Za-z_]|" +
   "Non[0-9A-Za-df-z_]";
-
-export function updateIED(element: Element): WizardActor {
-  return (inputs: WizardInputElement[]): EditorAction[] => {
-    const name = getValue(inputs.find(i => i.label === 'name')!)!;
-    const oldName = element.getAttribute('name');
-    const desc = getValue(inputs.find(i => i.label === 'desc')!);
-
-    if ( name === oldName &&
-         desc === element.getAttribute('desc')) {
-      return [];
-    }
-
-    const complexAction: ComplexAction = {
-      actions: [],
-      title: get('ied.action.updateied', {iedName: name}),
-    };
-
-    const newElement = cloneElement(element, { name, desc });
-    complexAction.actions.push({ old: { element }, new: { element: newElement } });
-    complexAction.actions.push(...updateReferences(element, oldName, name));
-    return complexAction.actions.length ? [complexAction] : [];
-  };
-}
 
 export function renderIEDWizard(
   name: string | null,
@@ -87,7 +56,7 @@ export function editIEDWizard(element: Element): Wizard {
       primary: {
         icon: 'edit',
         label: get('save'),
-        action: updateIED(element),
+        action: updateNamingAttributeWithReferencesAction(element, 'ied.action.updateied'),
       },
       content: renderIEDWizard(
         element.getAttribute('name'),

@@ -94,7 +94,7 @@ describe('Wizards for SCL element Power Transformer', () => {
       await setWizardTextFieldValue(<WizardTextField>inputs[0], 'NewTA1');
 
       const createAC = executeWizardCreateAction(
-        createAction(powerTransformer),
+        createAction(parent),
         inputs
       );
       expect(createAC.new.element).to.have.attribute('name', 'NewTA1');
