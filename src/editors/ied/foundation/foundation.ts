@@ -43,8 +43,8 @@ export function getCustomField(): Record<DaiValidationTypes, CustomField> {
           .maybeValue=${value}
           fixedMenuPosition
         >
-        <mwc-list-item value="0">0</mwc-list-item>
-        <mwc-list-item value="1">1</mwc-list-item>
+          <mwc-list-item value="true">true</mwc-list-item>
+          <mwc-list-item value="false">false</mwc-list-item>
         </wizard-select>`;
       }
     }
