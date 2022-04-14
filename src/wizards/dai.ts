@@ -3,7 +3,6 @@ import { get } from 'lit-translate';
 import { DaiValidationTypes, getCustomField } from '../editors/ied/foundation/foundation.js';
 
 import {
-  cloneElement,
   ComplexAction,
   EditorAction,
   getValue,
@@ -14,43 +13,23 @@ import {
 
 export function updateValue(element: Element): WizardActor {
   return (inputs: WizardInputElement[]): EditorAction[] => {
-    // const name = getValue(inputs.find(i => i.label === 'name')!)!;
-    // const oldName = element.getAttribute('name');
-    // const desc = getValue(inputs.find(i => i.label === 'desc')!);
+    const newValue = getValue(inputs.find(i => i.value)!)!;
+    const name = element.getAttribute('name');
 
-    // if ( name === oldName &&
-    //      desc === element.getAttribute('desc')) {
-    //   return [];
-    // }
+    const oldVal = element.querySelector('Val')!;
 
-    // const complexAction: ComplexAction = {
-    //   actions: [],
-    //   title: get('dai.action.updatedai', {daiName: name}),
-    // };
+    const complexAction: ComplexAction = {
+      actions: [],
+      title: get('dai.action.updatedai', {daiName: name!}),
+    };
 
-    // const newElement = cloneElement(element, { name, desc });
-    // complexAction.actions.push({ old: { element }, new: { element: newElement } });
-    // return complexAction.actions.length ? [complexAction] : [];
+    const newVal = <Element>oldVal.cloneNode(false);
+    newVal.textContent = newValue;
 
-    return [];
+    complexAction.actions.push({ old: { element: oldVal }, new: { element: newVal } });
+    return [complexAction];
   };
 }
-
-
-  // -    const oldVal = this.element.querySelector('Val');
-  // -    const newVal = <Element>oldVal?.cloneNode(false);
-  // -    newVal.textContent = this.value;
-  // -
-  // -    const inputAction: Replace = {
-  // -      old: {
-  // -        element: oldVal!
-  // -      },
-  // -      new: {
-  // -        element: newVal
-  // -      },
-  // -    };
-  // -    this.dispatchEvent(newActionEvent({ title: 'Replace', actions: [inputAction] }));
-
 
 export function renderDAIWizard(
   element: Element,
@@ -74,7 +53,7 @@ export function editDAIWizard(element: Element, instanceElement?: Element): Wiza
       primary: {
         icon: 'edit',
         label: get('save'),
-        action: updateValue(element),
+        action: updateValue(instanceElement!),
       },
       content: renderDAIWizard(
         element,
