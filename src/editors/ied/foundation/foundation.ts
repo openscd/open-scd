@@ -2,18 +2,20 @@ import { html, TemplateResult } from "lit-html";
 import { translate } from "lit-translate";
 
 import '../../../../src/wizard-textfield.js';
+import '../../../../src/wizard-select.js';
 
 export interface CustomField {
   render(value: string): TemplateResult;
 }
 
-const daiValidationTypes = ['INT8', 'INT16', 'INT24', 'INT32', 'INT64',
+const daiValidationTypes = ['BOOLEAN', 'INT8', 'INT16', 'INT24', 'INT32', 'INT64',
   'INT128', 'INT8U', 'INT16U', 'INT24U', 'INT32U', 'FLOAT32', 'FLOAT64', 'VisString32', 'VisString64',
   'VisString65', 'VisString129', 'VisString255'] as const;
 export type DaiValidationTypes = typeof daiValidationTypes[number];
 
 export function getCustomField(): Record<DaiValidationTypes, CustomField> {
   return {
+    BOOLEAN: booleanField(),
     INT8: integerField('INT8', -(2**8), 2**8-1),
     INT16: integerField('INT16', -(2**16), 2**16-1),
     INT24: integerField('INT24', -(2**24), 2**24-1),
@@ -31,6 +33,21 @@ export function getCustomField(): Record<DaiValidationTypes, CustomField> {
     VisString65: stringField('VisString65', 65),
     VisString129: stringField('VisString129', 129),
     VisString255: stringField('VisString255', 255)
+  }
+
+  function booleanField(): CustomField {
+    return {
+      render: (value: string) => {
+        return html`<wizard-select
+          label="Value"
+          .maybeValue=${value}
+          fixedMenuPosition
+        >
+        <mwc-list-item value="0">0</mwc-list-item>
+        <mwc-list-item value="1">1</mwc-list-item>
+        </wizard-select>`;
+      }
+    }
   }
 
   function integerField(type: string, min: number, max: number): CustomField {
