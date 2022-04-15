@@ -721,10 +721,11 @@ export const en = {
       alsoRemoveFromCommunication: 'Also remove SMV/GSE Address',
     },
     unreferencedDataTypes: {
-      title: 'Unreferenced DataTypes',
-      deleteButton: 'Remove Selected DataTypes',
+      title: 'Unreferenced Data Types',
+      deleteButton: 'Remove Selected Data Types',
       tooltip:
-        'DataTypes which are not referenced in a Logical Node or other used DataType',
+        'Data Types which are not referenced in a Logical Node or other used Data Type',
+        alsoRemoveSubTypes: 'Also remove subtypes'
     }
   },
   controlblock: {

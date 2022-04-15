@@ -537,6 +537,12 @@
 			<DO name="NamPlt" type="Dummy.XCBR1.NamPlt"/>
 			<DO name="Vol" type="DummySAV"/>
 		</LNodeType>
+		<LNodeType lnClass="TVTR" id="NotUsedTVTR">
+			<DO name="Mod" type="Dummy.LLN0.Mod"/>
+			<DO name="Beh" type="Dummy.LLN0.Beh"/>
+			<DO name="NamPlt" type="Dummy.XCBR1.NamPlt"/>
+			<DO name="Vol" type="DummySAV"/>
+		</LNodeType>
 		<DOType cdc="SAV" id="DummySAV">
 			<DA fc="MX" name="instMag" bType="Struct" type="AnalogueValue_i"/>
 			<DA fc="MX" qchg="true" name="q" bType="Quality"/>
@@ -665,6 +671,30 @@
 			<DA fc="ST" qchg="true" name="q" bType="Quality"/>
 			<DA fc="ST" name="t" bType="Timestamp"/>
 		</DOType>
+		<DOType cdc="SPS" id="NotUsedDummy.SPS">
+			<DA fc="ST" dchg="true" name="stVal" bType="BOOLEAN"/>
+			<DA fc="ST" qchg="true" name="q" bType="Quality"/>
+			<DA fc="ST" name="t" bType="Timestamp"/>
+		</DOType>
+		<DOType id="WYE_2_3" cdc="WYE">
+			<SDO name="phsA" type="CMV_1" />
+			<SDO name="phsB" type="CMV_1" />
+			<SDO name="phsC" type="CMV_1" />
+			<SDO name="neut" type="CMV_1" />
+			<SDO name="res" type="CMV_1" />
+			<DA name="phsToNeut" bType="BOOLEAN" valKind="RO" fc="CF">
+			  <Val>true</Val>
+			</DA>
+		</DOType>
+		<!-- Note that if CMV_1 is removed in the Unreferenced DataTypes, then WYE_2_3 becomes unused -->
+		<DOType id="CMV_1" cdc="CMV">
+			<DA name="instCVal" bType="Struct" type="Vector_1" fc="MX" />
+			<DA name="cVal" bType="Struct" type="Vector_1" dchg="true" fc="MX" />
+			<DA name="q" bType="Quality" qchg="true" fc="MX" />
+			<DA name="t" bType="Timestamp" fc="MX" />
+			<DA name="units" bType="Struct" valKind="RO" type="Units_0_3" fc="CF" />
+			<DA name="db" bType="INT32U" valKind="RO" fc="CF" />
+		</DOType>		  
 		<DAType id="AnalogueValue_i">
 			<BDA name="i" bType="INT32"/>
 		</DAType>
@@ -707,6 +737,21 @@
 			<BDA name="T" bType="Timestamp"/>
 			<BDA name="Test" bType="BOOLEAN"/>
 		</DAType>
+		<DAType id="NotUsedDummy.LPHD1.Sim.Cancel">
+			<BDA name="ctlVal" bType="BOOLEAN"/>
+			<BDA name="origin" bType="Struct" type="Dummy_origin"/>
+			<BDA name="ctlNum" bType="INT8U"/>
+			<BDA name="T" bType="Timestamp"/>
+			<BDA name="Test" bType="BOOLEAN"/>
+		</DAType>
+		<DAType id="OnlySubUsedVector_0">
+			<BDA name="mag" bType="Struct" type="AnalogValue_0" />
+			<BDA name="ang" bType="Struct" type="AnalogValue_0" />
+		  </DAType>
+		<!-- If OnlySubUsedVector_0 is removed then AnalogValue_0 is unused -->
+		<DAType id="AnalogValue_0">
+			<BDA name="f" bType="FLOAT32" />
+		</DAType>
 		<EnumType id="Dummy_ctlModel">
 			<EnumVal ord="0">status-only</EnumVal>
 			<EnumVal ord="1">direct-with-normal-security</EnumVal>
@@ -737,5 +782,11 @@
 			<EnumVal ord="7">maintenance</EnumVal>
 			<EnumVal ord="8">process</EnumVal>
 		</EnumType>
+		<EnumType id="NotUsedDir">
+			<EnumVal ord="0">unknown</EnumVal>
+			<EnumVal ord="1">forward</EnumVal>
+			<EnumVal ord="2">backward</EnumVal>
+			<EnumVal ord="3">both</EnumVal>
+		  </EnumType>
 	</DataTypeTemplates>
 </SCL>

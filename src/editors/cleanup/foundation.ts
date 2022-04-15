@@ -42,3 +42,12 @@ export function identitySort(elements: Element[]): Element[] {
     return 0;
   });
 }
+
+/**
+ * Return a de-duplicate set of array elements.
+ * @param arr - an array of items with duplicates.
+ * @returns an array of items without duplicates.
+ */
+export function uniq(arr: unknown[]): unknown[] {
+  return Array.from(new Set(arr));
+}

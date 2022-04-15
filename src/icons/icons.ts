@@ -83,12 +83,34 @@ export const iconProperties: Partial<Record<iconType, iconProperty>> = {
   },
 };
 
+export const dataTypeTemplateIcons: Partial<Record<string, SVGTemplateResult>> = {
+  DAType: getIcon('dAIcon'),
+  DOType: getIcon('dOIcon'),
+  EnumType: getIcon('enumIcon'),
+  LNodeType: getIcon('lNIcon'),
+};
+
 export const iconColors: { [key: string]: string;} = {
   info: '--cyan',
   warning: '--yellow',
   error: '--red',
   action: '--blue',
 };
+
+export function getIcon(
+  type: iconType ): TemplateResult {
+  if (type === 'reset') return html``;
+  const height = iconProperties[type]?.height ?? 24;
+  const width = iconProperties[type]?.width ?? 24;
+  return html`<svg
+    xmlns="http://www.w3.org/2000/svg"
+    height="${height}"
+    viewBox="0 0 ${width} ${height}"
+    width="${width}"
+  >
+    ${pathsSVG[type]}
+  </svg> `;
+}
 
 export function getFilterIcon(
   type: iconType,
