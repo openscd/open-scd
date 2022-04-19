@@ -10,13 +10,13 @@ export enum SubscribeStatus {
 }
 
 export interface SampledValuesSelectDetail {
-  sampledValuesControl: Element;
-  dataset: Element;
+  sampledValuesControl: Element | undefined;
+  dataset: Element | undefined | null;
 }
 export type SampledValuesSelectEvent = CustomEvent<SampledValuesSelectDetail>;
 export function newSampledValuesSelectEvent(
-  sampledValuesControl: Element,
-  dataset: Element,
+  sampledValuesControl: Element | undefined,
+  dataset: Element | undefined | null,
   eventInitDict?: CustomEventInit<SampledValuesSelectDetail>
 ): SampledValuesSelectEvent {
   return new CustomEvent<SampledValuesSelectDetail>('sampled-values-select', {

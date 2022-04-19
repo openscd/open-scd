@@ -12,9 +12,18 @@ import '@material/mwc-icon';
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 
-import './elements/sampled-values-message.js';
 import { compareNames, getNameAttribute } from '../../foundation.js';
-import { styles } from './foundation.js';
+import { newSampledValuesSelectEvent, styles } from './foundation.js';
+import { smvIcon } from '../../icons/icons.js';
+
+let selectedSmvMsg: Element | undefined;
+let selectedDataSet: Element | undefined | null;
+
+function onOpenDocResetSelectedSmvMsg() {
+  selectedSmvMsg = undefined;
+  selectedDataSet = undefined;
+}
+addEventListener('open-doc', onOpenDocResetSelectedSmvMsg);
 
 /** An sub element for showing all Sampled Values per IED. */
 @customElement('sampled-values-list')
@@ -43,6 +52,39 @@ export class SampledValuesList extends LitElement {
     );
   }
 
+  private onSmvSelect(element: Element) {
+    const ln = element.parentElement;
+    const dataset = ln?.querySelector(
+      `DataSet[name=${element.getAttribute('datSet')}]`
+    );
+
+    selectedSmvMsg = element;
+    selectedDataSet = dataset;
+
+    this.dispatchEvent(
+      newSampledValuesSelectEvent(
+        selectedSmvMsg,
+        selectedDataSet!
+      )
+    );
+  }
+
+  renderSmv(element: Element): TemplateResult {
+    return html`<mwc-list-item @click=${() => this.onSmvSelect(element)} graphic="large">
+      <span>${element.getAttribute('name')}</span>
+      <mwc-icon slot="graphic">${smvIcon}</mwc-icon>
+    </mwc-list-item>`;
+  }
+
+  protected firstUpdated(): void {
+    this.dispatchEvent(
+      newSampledValuesSelectEvent(
+        selectedSmvMsg,
+        selectedDataSet
+      )
+    );
+  }
+
   render(): TemplateResult {
     return html` <section>
       <h1>${translate('sampledvalues.sampledValuesList.title')}</h1>
@@ -56,8 +98,7 @@ export class SampledValuesList extends LitElement {
                 </mwc-list-item>
                 <li divider role="separator"></li>
                 ${this.getSampledValuesControls(ied).map(
-                  control =>
-                    html`<sampled-values-message .element=${control}></sampled-values-message>`
+                  control => this.renderSmv(control)
                 )}
               `
             : ``
