@@ -101,7 +101,7 @@ export const officialPlugins = [
     position: 'top'
   },
   {
-    name: 'Save project as...',
+    name: 'Save project as',
     src: '/src/menu/CompasSaveAs.js',
     icon: 'save',
     default: true,
