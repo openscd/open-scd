@@ -913,7 +913,7 @@ snapshots["open-scd looks like its snapshot"] =
       <mwc-icon slot="meta">
         save
       </mwc-icon>
-      Save project as...
+      Save project as
     </mwc-check-list-item>
     <li
       divider=""
