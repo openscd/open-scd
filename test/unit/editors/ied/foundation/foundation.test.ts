@@ -12,6 +12,10 @@ describe('foundation', async () => {
   });
 
   describe('getCustomField', () => {
+    function getValue(daiName: string) {
+      return validSCL.querySelector(`DAI[name="${daiName}"] > Val`)?.textContent?.trim()
+    }
+
     it('renders a BOOLEAN field correctly', async () => {
       const value = getValue("booleantest");
       const element = await fixture(html`${getCustomField()[<DaiValidationTypes>'BOOLEAN']?.render(value!)}`);
@@ -156,8 +160,4 @@ describe('foundation', async () => {
       expect(element.shadowRoot?.querySelector('input')?.value).to.eql('deadlift');
     });
   });
-
-  function getValue(daiName: string) {
-    return validSCL.querySelector(`DAI[name="${daiName}"] > Val`)?.textContent?.trim()
-  }
 });

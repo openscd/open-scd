@@ -120,7 +120,7 @@ export class DAContainer extends LitElement {
       </abbr>` : nothing}
       ${this.instanceElement && getCustomField()[<DaiValidationTypes>bType] ?
         html`<div style="display: flex; flex-direction: row;">
-          <div id="value">
+          <div style="display: flex; align-items: center; flex: auto;">
             <h4>${value}</h4>
           </div>
           <div style="display: flex; align-items: center;">
@@ -151,12 +151,6 @@ export class DAContainer extends LitElement {
       text-overflow: ellipsis;
       margin: 0px;
       padding-left: 0.3em;
-    }
-
-    #value {
-      flex: auto;
-      align-items: center;
-      display: flex;
     }
 
     mwc-icon-button {

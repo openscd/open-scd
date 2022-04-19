@@ -39,7 +39,7 @@ export function getCustomField(): Record<DaiValidationTypes, CustomField> {
     return {
       render: (value: string) => {
         return html`<wizard-select
-          label="Value"
+          label="Val"
           .maybeValue=${value}
           fixedMenuPosition
         >
@@ -54,7 +54,7 @@ export function getCustomField(): Record<DaiValidationTypes, CustomField> {
     return {
       render: (value: string) => {
         return html`<wizard-textfield
-          label="Value"
+          label="Val"
           .maybeValue=${value}
           helper="${translate('dai.wizard.valueHelper', { type })}"
           type="number"
@@ -69,7 +69,7 @@ export function getCustomField(): Record<DaiValidationTypes, CustomField> {
     return {
       render: (value: string) => {
         return html`<wizard-textfield
-          label="Value"
+          label="Val"
           .maybeValue=${value}
           helper="${translate('dai.wizard.valueHelper', { type })}"
           type="number"
@@ -85,7 +85,7 @@ export function getCustomField(): Record<DaiValidationTypes, CustomField> {
     return {
       render: (value: string) => {
         return html`<wizard-textfield
-          label="Value"
+          label="Val"
           .maybeValue=${value}
           helper="${translate('dai.wizard.valueHelper', { type })}"
           maxLength=${maxNrOfCharacters}

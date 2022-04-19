@@ -10,7 +10,7 @@ snapshots["Wizards for SCL element DAI edit existing DAI looks like the latest s
   <div id="wizard-content">
     <wizard-textfield
       helper="[dai.wizard.valueHelper]"
-      label="Value"
+      label="Val"
       max="255"
       min="0"
       type="number"
