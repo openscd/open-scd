@@ -87,6 +87,24 @@ snapshots["open-scd looks like its snapshot"] =
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
     </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      class="top"
+      disabled=""
+      graphic="icon"
+      iconid="save"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        save
+      </mwc-icon>
+      <span>
+        Save project as...
+      </span>
+      <mwc-linear-progress indeterminate="">
+      </mwc-linear-progress>
+    </mwc-list-item>
     <li
       divider=""
       padded=""
@@ -880,6 +898,22 @@ snapshots["open-scd looks like its snapshot"] =
         save
       </mwc-icon>
       Save project
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/menu/CompasSaveAs.js"
+    >
+      <mwc-icon slot="meta">
+        save
+      </mwc-icon>
+      Save project as...
     </mwc-check-list-item>
     <li
       divider=""
