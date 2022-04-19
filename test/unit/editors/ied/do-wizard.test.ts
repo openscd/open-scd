@@ -5,7 +5,7 @@ import { MockWizard } from "../../../mock-wizard.js";
 
 import { initializeNsdoc } from '../../../../src/foundation/nsdoc.js';
 import { createDoInfoWizard } from "../../../../src/editors/ied/do-wizard.js";
-import { getAncestorsFromDO } from "./test-foundation.js";
+import { getAncestorsFromDO } from "./test-support.js";
 
 describe('do-wizard', async () => {
   let element: MockWizard;

@@ -5,7 +5,7 @@ import {
   findElement,
   findLogicaNodeElement, getValueElement
 } from "../../../../src/editors/ied/foundation.js";
-import { getAncestorsFromDA, getAncestorsFromDO } from "./test-foundation.js";
+import { getAncestorsFromDA, getAncestorsFromDO } from "./test-support.js";
 
 describe('ied-foundation', async () => {
   let validSCL: Document;

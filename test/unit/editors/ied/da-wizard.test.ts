@@ -5,7 +5,7 @@ import { MockWizard } from "../../../mock-wizard.js";
 
 import { initializeNsdoc } from '../../../../src/foundation/nsdoc.js';
 import { createDaInfoWizard } from "../../../../src/editors/ied/da-wizard.js";
-import { getAncestorsFromDA } from "./test-foundation.js";
+import { getAncestorsFromDA } from "./test-support.js";
 
 describe('da-wizard', async () => {
   let element: MockWizard;
