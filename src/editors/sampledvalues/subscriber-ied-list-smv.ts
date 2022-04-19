@@ -128,7 +128,6 @@ export class SubscriberIEDListSmv extends LitElement {
    * @param event - Incoming event.
    */
   private async onSampledValuesDataSetEvent(event: SampledValuesSelectEvent) {
-    console.log('onSMVSelect')
     localState.currentSampledValuesControl = event.detail.sampledValuesControl;
     localState.currentDataset = event.detail.dataset;
     localState.currentSampledValuesIEDName = localState.currentSampledValuesControl
@@ -196,7 +195,6 @@ export class SubscriberIEDListSmv extends LitElement {
    * @param event - Incoming event.
    */
   private async onIEDSubscriptionEvent(event: IEDSampledValuesSubscriptionEvent) {
-    console.log('onSMVIEDSub')
     switch (event.detail.subscribeStatus) {
       case SubscribeStatus.Full: {
         this.unsubscribe(event.detail.ied);
