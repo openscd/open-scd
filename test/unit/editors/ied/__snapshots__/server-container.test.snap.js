@@ -2,10 +2,7 @@
 export const snapshots = {};
 
 snapshots["server-container looks like the latest snapshot"] = 
-`<action-pane
-  label="Server"
-  tabindex="0"
->
+`<action-pane tabindex="0">
   <mwc-icon slot="icon">
   </mwc-icon>
   <ldevice-container>
