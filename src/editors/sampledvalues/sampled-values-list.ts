@@ -80,7 +80,7 @@ export class SampledValuesList extends LitElement {
     this.dispatchEvent(
       newSampledValuesSelectEvent(
         selectedSmvMsg,
-        selectedDataSet
+        selectedDataSet ?? undefined
       )
     );
   }

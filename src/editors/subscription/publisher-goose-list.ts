@@ -83,7 +83,7 @@ export class PublisherGOOSEList extends LitElement {
     this.dispatchEvent(
       newGOOSESelectEvent(
         selectedGooseMsg,
-        selectedDataSet
+        selectedDataSet ?? undefined
       )
     );
   }

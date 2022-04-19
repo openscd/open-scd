@@ -11,12 +11,12 @@ export enum SubscribeStatus {
 
 export interface GOOSESelectDetail {
   gseControl: Element | undefined;
-  dataset: Element | undefined | null;
+  dataset: Element | undefined;
 }
 export type GOOSESelectEvent = CustomEvent<GOOSESelectDetail>;
 export function newGOOSESelectEvent(
   gseControl: Element | undefined,
-  dataset: Element | undefined | null,
+  dataset: Element | undefined,
   eventInitDict?: CustomEventInit<GOOSESelectDetail>
 ): GOOSESelectEvent {
   return new CustomEvent<GOOSESelectDetail>('goose-dataset', {
