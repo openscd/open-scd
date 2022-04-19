@@ -128,7 +128,6 @@ export class SubscriberIEDListGoose extends LitElement {
    * @param event - Incoming event.
    */
   private async onGOOSEDataSetEvent(event: GOOSESelectEvent) {
-    console.log('onGOOSESelect');
     localState.currentGseControl = event.detail.gseControl;
     localState.currentDataset = event.detail.dataset;
     localState.currentGooseIEDName = localState.currentGseControl
