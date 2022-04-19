@@ -1,7 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["open-scd looks like its snapshot"] = 
+snapshots["open-scd looks like its snapshot"] =
 `<mwc-drawer
   class="mdc-theme--surface"
   hasheader=""
@@ -100,7 +100,7 @@ snapshots["open-scd looks like its snapshot"] =
         save
       </mwc-icon>
       <span>
-        Save project as...
+        Save project as
       </span>
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
