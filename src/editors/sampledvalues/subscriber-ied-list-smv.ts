@@ -25,7 +25,6 @@ import {
 import {
   SampledValuesSelectEvent,
   IEDSampledValuesSubscriptionEvent,
-  newSampledValuesSelectEvent,
   styles,
   SubscribeStatus,
 } from './foundation.js';
@@ -67,40 +66,26 @@ function getFcdaReferences(elementContainingFcdaReferences: Element): string {
   .join('');
 }
 
-/**
- * Internal persistent state, so it's not lost when
- * subscribing / unsubscribing.
- */
-interface State {
-  /** Current selected Sampled Values element */
-  currentSampledValuesControl: Element | undefined;
-
-  /** The current selected dataset */
-  currentDataset: Element | undefined;
-
-  /** The name of the IED belonging to the current selected Sampled Values */
-  currentSampledValuesIEDName: string | undefined | null;
-
-  /** List holding all current subscribed IEDs. */
-  subscribedIeds: IED[];
-
-  /** List holding all current avaialble IEDs which are not subscribed. */
-  availableIeds: IED[];
-}
-
-const localState: State = {
-  currentSampledValuesControl: undefined,
-  currentDataset: undefined,
-  currentSampledValuesIEDName: undefined,
-  subscribedIeds: [],
-  availableIeds: [],
-};
-
 /** An sub element for subscribing and unsubscribing IEDs to Sampled Values messages. */
 @customElement('subscriber-ied-list-smv')
 export class SubscriberIEDListSmv extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
+
+  /** Current selected Sampled Values element */
+  currentSampledValuesControl: Element | undefined;
+
+  /** The current selected dataset */
+  currentDataset: Element | undefined | null;
+
+  /** The name of the IED belonging to the current selected Sampled Values */
+  currentSampledValuesIEDName: string | undefined | null;
+
+  /** List holding all current subscribed IEDs. */
+  subscribedIeds: IED[] = [];
+
+  /** List holding all current avaialble IEDs which are not subscribed. */
+  availableIeds: IED[] = [];
 
   @query('div') subscriberWrapper!: Element;
 
@@ -128,18 +113,17 @@ export class SubscriberIEDListSmv extends LitElement {
    * @param event - Incoming event.
    */
   private async onSampledValuesDataSetEvent(event: SampledValuesSelectEvent) {
-    console.log('onSMVSelect')
-    localState.currentSampledValuesControl = event.detail.sampledValuesControl;
-    localState.currentDataset = event.detail.dataset;
-    localState.currentSampledValuesIEDName = localState.currentSampledValuesControl
-      .closest('IED')
+    this.currentSampledValuesControl = event.detail.sampledValuesControl;
+    this.currentDataset = event.detail.dataset;
+    this.currentSampledValuesIEDName = this.currentSampledValuesControl
+      ?.closest('IED')
       ?.getAttribute('name');
 
-    localState.subscribedIeds = [];
-    localState.availableIeds = [];
+    this.subscribedIeds = [];
+    this.availableIeds = [];
 
     Array.from(this.doc.querySelectorAll(':root > IED'))
-      .filter(ied => ied.getAttribute('name') != localState.currentSampledValuesIEDName)
+      .filter(ied => ied.getAttribute('name') != this.currentSampledValuesIEDName)
       .forEach(ied => {
         const inputElements = ied.querySelectorAll(`LN0 > Inputs, LN > Inputs`);
 
@@ -149,18 +133,18 @@ export class SubscriberIEDListSmv extends LitElement {
          * If no Inputs element is found, we can safely say it's not subscribed.
          */
         if (!inputElements) {
-          localState.availableIeds.push({ element: ied });
+          this.availableIeds.push({ element: ied });
           return;
         }
 
         /**
          * Count all the linked ExtRefs.
          */
-        localState.currentDataset!.querySelectorAll('FCDA').forEach(fcda => {
+         this.currentDataset!.querySelectorAll('FCDA').forEach(fcda => {
           inputElements.forEach(inputs => {
             if (
               inputs.querySelector(
-                `ExtRef[iedName=${localState.currentSampledValuesIEDName}]` +
+                `ExtRef[iedName=${this.currentSampledValuesIEDName}]` +
                   `${getFcdaReferences(fcda)}`
               )
             ) {
@@ -174,17 +158,17 @@ export class SubscriberIEDListSmv extends LitElement {
          * partially subscribed and fully subscribed.
          */
         if (numberOfLinkedExtRefs == 0) {
-          localState.availableIeds.push({ element: ied });
+          this.availableIeds.push({ element: ied });
           return;
         }
 
         if (
           numberOfLinkedExtRefs >=
-          localState.currentDataset!.querySelectorAll('FCDA').length
+          this.currentDataset!.querySelectorAll('FCDA').length
         ) {
-          localState.subscribedIeds.push({ element: ied });
+          this.subscribedIeds.push({ element: ied });
         } else {
-          localState.availableIeds.push({ element: ied, partial: true });
+          this.availableIeds.push({ element: ied, partial: true });
         }
       });
 
@@ -196,7 +180,6 @@ export class SubscriberIEDListSmv extends LitElement {
    * @param event - Incoming event.
    */
   private async onIEDSubscriptionEvent(event: IEDSampledValuesSubscriptionEvent) {
-    console.log('onSMVIEDSub')
     switch (event.detail.subscribeStatus) {
       case SubscribeStatus.Full: {
         this.unsubscribe(event.detail.ied);
@@ -225,15 +208,15 @@ export class SubscriberIEDListSmv extends LitElement {
       inputsElement = createElement(ied.ownerDocument, 'Inputs', {});
 
     const actions: Create[] = [];
-    localState.currentDataset!.querySelectorAll('FCDA').forEach(fcda => {
+    this.currentDataset!.querySelectorAll('FCDA').forEach(fcda => {
       if (
         !inputsElement!.querySelector(
-          `ExtRef[iedName=${localState.currentSampledValuesIEDName}]` +
+          `ExtRef[iedName=${this.currentSampledValuesIEDName}]` +
             `${getFcdaReferences(fcda)}`
         )
       ) {
         const extRef = createElement(ied.ownerDocument, 'ExtRef', {
-          iedName: localState.currentSampledValuesIEDName!,
+          iedName: this.currentSampledValuesIEDName!,
           serviceType: 'SMV',
           ldInst: fcda.getAttribute('ldInst') ?? '',
           lnClass: fcda.getAttribute('lnClass') ?? '',
@@ -259,13 +242,6 @@ export class SubscriberIEDListSmv extends LitElement {
       };
       this.dispatchEvent(newActionEvent({ title, actions: [inputAction] }));
     }
-
-    this.dispatchEvent(
-      newSampledValuesSelectEvent(
-        localState.currentSampledValuesControl!,
-        localState.currentDataset!
-      )
-    );
   }
 
   /**
@@ -275,9 +251,9 @@ export class SubscriberIEDListSmv extends LitElement {
   private unsubscribe(ied: Element): void {
     const actions: Delete[] = [];
     ied.querySelectorAll('LN0 > Inputs, LN > Inputs').forEach(inputs => {
-      localState.currentDataset!.querySelectorAll('FCDA').forEach(fcda => {
+      this.currentDataset!.querySelectorAll('FCDA').forEach(fcda => {
         const extRef = inputs.querySelector(
-          `ExtRef[iedName=${localState.currentSampledValuesIEDName}]` +
+          `ExtRef[iedName=${this.currentSampledValuesIEDName}]` +
             `${getFcdaReferences(fcda)}`
         );
 
@@ -290,13 +266,6 @@ export class SubscriberIEDListSmv extends LitElement {
         title: 'Disconnect',
         actions: this.extendDeleteActions(actions),
       })
-    );
-
-    this.dispatchEvent(
-      newSampledValuesSelectEvent(
-        localState.currentSampledValuesControl!,
-        localState.currentDataset!
-      )
     );
   }
 
@@ -349,25 +318,25 @@ export class SubscriberIEDListSmv extends LitElement {
   }
 
   render(): TemplateResult {
-    const partialSubscribedIeds = localState.availableIeds.filter(
+    const partialSubscribedIeds = this.availableIeds.filter(
       ied => ied.partial
     );
-    const availableIeds = localState.availableIeds.filter(
+    const availableIeds = this.availableIeds.filter(
       ied => !ied.partial
     );
     const smvControlName =
-      localState.currentSampledValuesControl?.getAttribute('name') ?? undefined;
+    this.currentSampledValuesControl?.getAttribute('name') ?? undefined;
 
     return html`
       <section>
         <h1>
           ${translate('sampledvalues.subscriberIed.title', {
             selected: smvControlName
-              ? localState.currentSampledValuesIEDName + ' > ' + smvControlName
+              ? this.currentSampledValuesIEDName + ' > ' + smvControlName
               : 'IED',
           })}
         </h1>
-        ${localState.currentSampledValuesControl
+        ${this.currentSampledValuesControl
           ? html`<div class="subscriberWrapper">
               <mwc-list>
                 <mwc-list-item noninteractive>
@@ -376,8 +345,8 @@ export class SubscriberIEDListSmv extends LitElement {
                   >
                 </mwc-list-item>
                 <li divider role="separator"></li>
-                ${localState.subscribedIeds.length > 0
-                  ? localState.subscribedIeds.map(
+                ${this.subscribedIeds.length > 0
+                  ? this.subscribedIeds.map(
                       ied =>
                         html`<ied-element-smv
                           .status=${SubscribeStatus.Full}
