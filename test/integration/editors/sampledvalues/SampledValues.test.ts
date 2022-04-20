@@ -39,7 +39,7 @@ describe('Sampled Values Plugin', () => {
     });
 
     it('the list on the right will initially show the subscribed / partially subscribed / not subscribed IEDs', async () => {
-      expect(element.shadowRoot?.querySelector('subscriber-ied-list-smv')).shadowDom.to.equalSnapshot();
+      await expect(element.shadowRoot?.querySelector('subscriber-ied-list-smv')).shadowDom.to.equalSnapshot();
     });
 
     describe('and you subscribe a non-subscribed IED', () => {
@@ -49,7 +49,7 @@ describe('Sampled Values Plugin', () => {
 
         (<HTMLElement>(ied)).click();
         await element.updateComplete;
-        expect(element.shadowRoot?.querySelector('subscriber-ied-list-smv')).shadowDom.to.equalSnapshot();
+        await expect(element.shadowRoot?.querySelector('subscriber-ied-list-smv')).shadowDom.to.equalSnapshot();
       });
     });
 
@@ -60,7 +60,7 @@ describe('Sampled Values Plugin', () => {
 
         (<HTMLElement>(ied)).click();
         await element.updateComplete;
-        expect(element.shadowRoot?.querySelector('subscriber-ied-list-smv')).shadowDom.to.equalSnapshot();
+        await expect(element.shadowRoot?.querySelector('subscriber-ied-list-smv')).shadowDom.to.equalSnapshot();
       });
     });
 
@@ -71,7 +71,7 @@ describe('Sampled Values Plugin', () => {
 
         (<HTMLElement>(ied)).click();
         await element.updateComplete;
-        expect(element.shadowRoot?.querySelector('subscriber-ied-list-smv')).shadowDom.to.equalSnapshot();
+        await expect(element.shadowRoot?.querySelector('subscriber-ied-list-smv')).shadowDom.to.equalSnapshot();
       });
     });
   });
