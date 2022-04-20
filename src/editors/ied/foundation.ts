@@ -28,8 +28,8 @@ export function findLogicaNodeElement(ancestors: Element[]): Element | null {
  * @returns The DOType element found in the DataType Templates section or null if it not exists.
  */
 export function findDOTypeElement(element: Element | null): Element | null {
-  if (element) {
-    const type = element.getAttribute('type') ?? undefined;
+  if (element && element.hasAttribute('type')) {
+    const type = element.getAttribute('type');
     return element.closest('SCL')!.querySelector(`:root > DataTypeTemplates > DOType[id="${type}"]`);
   }
   return null;
@@ -41,5 +41,5 @@ export function findDOTypeElement(element: Element | null): Element | null {
  * @returns The 'Val' element, or null if not found.
  */
 export function getValueElement(element: Element): Element | null {
-  return element.querySelector('Val') ?? null;
+  return element.querySelector('Val');
 }
