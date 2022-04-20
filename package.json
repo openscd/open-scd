@@ -1,0 +1,101 @@
+{
+  "name": "open-scd-core",
+  "version": "0.0.0",
+  "license": "Apache-2.0",
+  "packageManager": "npm@8.12.2",
+  "type": "module",
+  "exports": {
+    ".": "dist/foundation.js",
+    "/open-scd.js": "dist/open-scd.js"
+  },
+  "scripts": {
+    "start": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds\"",
+    "test": "tsc && wtr --coverage",
+    "test:watch": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wtr --watch\"",
+    "analyze": "cem analyze --litelement",
+    "build": "tsc && tsc foundation.ts --declaration --emitDeclarationOnly --outDir dist && npm run analyze -- --exclude dist && typedoc --out dist/doc foundation.ts",
+    "prepublish": "npm run build",
+    "lint": "eslint --ext .ts,.html . --ignore-path .gitignore && prettier \"**/*.ts\" --check --ignore-path .gitignore",
+    "format": "eslint --ext .ts,.html . --fix --ignore-path .gitignore && prettier \"**/*.ts\" --write --ignore-path .gitignore"
+  },
+  "dependencies": {
+    "lit": "^2.2.7"
+  },
+  "devDependencies": {
+    "@custom-elements-manifest/analyzer": "^0.6.3",
+    "@open-wc/eslint-config": "^7.0.0",
+    "@open-wc/testing": "next",
+    "@typescript-eslint/eslint-plugin": "^5.30.7",
+    "@typescript-eslint/parser": "^5.30.7",
+    "@web/dev-server": "^0.1.32",
+    "@web/test-runner": "next",
+    "concurrently": "^7.3.0",
+    "eslint": "^8.20.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-tsdoc": "^0.2.16",
+    "husky": "^4.3.8",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "tsdoc": "^0.0.4",
+    "tslib": "^2.4.0",
+    "typedoc": "^0.23.8",
+    "typescript": "^4.7.4"
+  },
+  "customElements": "custom-elements.json",
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+      "@open-wc",
+      "prettier"
+    ],
+    "plugins": [
+      "@typescript-eslint",
+      "eslint-plugin-tsdoc"
+    ],
+    "rules": {
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": [
+        "error"
+      ],
+      "import/no-unresolved": "off",
+      "import/extensions": [
+        "error",
+        "always",
+        {
+          "ignorePackages": true
+        }
+      ]
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/*.spec.ts"
+        ],
+        "rules": {
+          "import/no-extraneous-dependencies": [
+            "error",
+            {
+              "devDependencies": true
+            }
+          ],
+          "no-unused-expressions": "off"
+        }
+      }
+    ]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "arrowParens": "avoid"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  }
+}
