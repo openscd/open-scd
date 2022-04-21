@@ -112,7 +112,7 @@ export class DAContainer extends LitElement {
         this.instanceElement && getCustomField()[<DaiValidationTypes>bType] ?
           html`<div style="display: flex; flex-direction: row;">
             <div style="display: flex; align-items: center; flex: auto;">
-              <h4>${this.getValue() ?? ''}</h4>
+              <h6>${this.getValue() ?? ''}</h6>
             </div>
             <div style="display: flex; align-items: center;">
               <mwc-icon-button
@@ -121,7 +121,7 @@ export class DAContainer extends LitElement {
               ></mwc-icon-button>
             </div>
           </div>` :
-          html`<h4>${this.getValue() ?? ''}</h4>`}
+          html`<h6>${this.getValue() ?? ''}</h6>`}
       ${this.toggleButton?.on && bType == 'Struct' ? this.getBDAElements().map(bdaElement =>
         html`<da-container
           .element=${bdaElement}
@@ -134,7 +134,7 @@ export class DAContainer extends LitElement {
   }
 
   static styles = css`
-    h4 {
+    h6 {
       color: var(--mdc-theme-on-surface);
       font-family: 'Roboto', sans-serif;
       overflow: hidden;
