@@ -466,7 +466,7 @@ export const en = {
     action: {
       addaddress: 'Edit GSE ({{identity}})',
     },
-    missingaccp: 'Accesspoint is not connected. GSE cannot be created.',
+    missingaccp: 'AccessPoint is not connected. GSE cannot be created.',
   },
   smv: {
     action: {
