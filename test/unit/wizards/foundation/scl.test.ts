@@ -146,7 +146,7 @@ describe('SCL specific functions', () => {
         'application/xml'
       );
 
-      it('return the first availablefirst unique MAC', () =>
+      it('return the first available unique MAC', () =>
         expect(uniqueMacAddress(doc, 'SMV')).to.equal('01-0C-CD-04-01-FF'));
     });
   });
