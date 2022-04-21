@@ -82,7 +82,7 @@ describe('SCL specific functions', () => {
         'application/xml'
       );
 
-      it('return the first availablefirst unique MAC', () =>
+      it('return the first available first unique MAC', () =>
         expect(uniqueMacAddress(doc, 'GOOSE')).to.equal('01-0C-CD-01-00-04'));
     });
 
