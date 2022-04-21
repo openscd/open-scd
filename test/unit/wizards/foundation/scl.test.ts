@@ -60,7 +60,7 @@ describe('SCL specific functions', () => {
       const gseElementString = `<SubNetwork>${createMacs('GOOSE').map(
         mac =>
           `<ConnectedAP><Address><P type="MAC-Address">${mac}</P></Address></ConnectedAP>`
-      )}</SubNEtwork>`;
+      )}</SubNetwork>`;
       const doc = new DOMParser().parseFromString(
         gseElementString,
         'application/xml'
