@@ -18,6 +18,8 @@ import { getNameAttribute, newWizardEvent } from '../../foundation.js';
 import { Nsdoc } from '../../foundation/nsdoc.js';
 import { wizards } from '../../wizards/wizard-library.js';
 import { DaiValidationTypes, getCustomField } from './foundation/foundation.js';
+import { createDaInfoWizard } from "./da-wizard.js";
+import { getValueElement } from './foundation.js';
 
 /** [[`IED`]] plugin subeditor for editing `(B)DA` element. */
 @customElement('da-container')
@@ -33,9 +35,6 @@ export class DAContainer extends LitElement {
    */
   @property({ attribute: false })
   instanceElement!: Element;
-
-  @property({ attribute: false })
-  daParent!: Element
 
   @property()
   ancestors: Element[] = [];
@@ -65,21 +64,11 @@ export class DAContainer extends LitElement {
    */
   private getValue(): string | null | undefined {
     if (this.instanceElement) {
-      return this.getValueElement(this.instanceElement)?.textContent?.trim()
+      return getValueElement(this.instanceElement)?.textContent?.trim()
     }
 
-    return this.getValueElement(this.element)?.textContent?.trim();
+    return getValueElement(this.element)?.textContent?.trim();
   }
-
-  /**
-   * Get the 'Val' element of another element.
-   * @param element - The element to search for an 'Val' element.
-   * @returns the 'Val' element, or null if not found.
-   */
-  private getValueElement(element: Element): Element | null {
-    return element.querySelector('Val') ?? null;
-  }
-
 
   /**
    * Get the nested (B)DA element(s) if available.
@@ -108,6 +97,8 @@ export class DAContainer extends LitElement {
         <mwc-icon-button
           title=${this.nsdoc.getDataDescription(this.element, this.ancestors).label}
           icon="info"
+          @click=${() => this.dispatchEvent(newWizardEvent(
+            createDaInfoWizard(this.element, this.instanceElement, this.ancestors, this.nsdoc)))}
         ></mwc-icon-button>
       </abbr>
       ${bType == 'Struct' ? html`<abbr slot="action" title="${translate('iededitor.toggleChildElements')}">
@@ -135,7 +126,6 @@ export class DAContainer extends LitElement {
         html`<da-container
           .element=${element}
           .nsdoc=${this.nsdoc}
-          .daParent=${this.daParent ?? this.element}
           .ancestors=${[this.element, ...this.ancestors]}
         ></da-container>`) : nothing}
     </action-pane>

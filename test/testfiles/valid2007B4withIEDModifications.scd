@@ -136,7 +136,7 @@
 						</GSEControl>
 						<GSEControl type="GOOSE" appID="0003" fixedOffs="false" confRev="1" name="GCB2"/>
 					</LN0>
-					<LN lnClass="XCBR" inst="1" lnType="Dummy.XCBR1">						
+					<LN lnClass="XCBR" inst="1" lnType="Dummy.XCBR1">
 						<DOI name="Pos">
 							<DAI name="ctlModel">
 								<Val>status-only</Val>
@@ -144,7 +144,7 @@
 						</DOI>
 					</LN>
 					<LN lnClass="CSWI" inst="1" lnType="Dummy.CSWIwithoutCtlModel">
-						<DOI name="Pos">
+						<DOI name="Pos" desc="Position">
 							<SDI name="anotherPosDo">
 							</SDI>
 							<DAI name="ctlModel">
@@ -152,7 +152,7 @@
 							</DAI>
 						</DOI>
 					</LN>
-					<LN prefix="CB" lnClass="XCBR" inst="2" lnType="Dummy.XCBR1">						
+					<LN prefix="CB" lnClass="XCBR" inst="2" lnType="Dummy.XCBR1">
 						<DOI name="Pos">
 							<DAI name="ctlModel">
 								<Val>status-only</Val>
@@ -315,7 +315,7 @@
 					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
 					<LN lnClass="XCBR" inst="1" lnType="Dummy.XCBR1">
 						<DOI name="Pos">
-							<DAI name="ctlModel">
+							<DAI name="ctlModel" desc="CTL Model">
 								<Val>status-only</Val>
 							</DAI>
 						</DOI>

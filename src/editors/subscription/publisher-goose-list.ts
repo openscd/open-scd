@@ -16,6 +16,15 @@ import { compareNames, getNameAttribute } from '../../foundation.js';
 import { newGOOSESelectEvent, styles } from './foundation.js';
 import { gooseIcon } from '../../icons/icons.js';
 
+let selectedGooseMsg: Element | undefined;
+let selectedDataSet: Element | undefined | null;
+
+function onOpenDocResetSelectedGooseMsg() {
+  selectedGooseMsg = undefined;
+  selectedDataSet = undefined;
+}
+addEventListener('open-doc', onOpenDocResetSelectedGooseMsg);
+
 /** An sub element for showing all published GOOSE messages per IED. */
 @customElement('publisher-goose-list')
 export class PublisherGOOSEList extends LitElement {
@@ -48,7 +57,16 @@ export class PublisherGOOSEList extends LitElement {
     const dataset = ln?.querySelector(
       `DataSet[name=${element.getAttribute('datSet')}]`
     );
-    this.dispatchEvent(newGOOSESelectEvent(element, dataset!));
+
+    selectedGooseMsg = element;
+    selectedDataSet = dataset;
+
+    this.dispatchEvent(
+      newGOOSESelectEvent(
+        selectedGooseMsg,
+        selectedDataSet!
+      )
+    );
   }
 
   renderGoose(element: Element): TemplateResult {
@@ -59,6 +77,15 @@ export class PublisherGOOSEList extends LitElement {
       <span>${element.getAttribute('name')}</span>
       <mwc-icon slot="graphic">${gooseIcon}</mwc-icon>
     </mwc-list-item>`;
+  }
+
+  protected firstUpdated(): void {
+    this.dispatchEvent(
+      newGOOSESelectEvent(
+        selectedGooseMsg,
+        selectedDataSet ?? undefined
+      )
+    );
   }
 
   render(): TemplateResult {

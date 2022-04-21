@@ -32,7 +32,7 @@ export class LNContainer extends LitElement {
   @query('#toggleButton')
   toggleButton!: IconButtonToggle | undefined;
 
-  private async header(): Promise<TemplateResult> {
+  private header(): TemplateResult {
     const prefix = this.element.getAttribute('prefix');
     const inst = getInstanceAttribute(this.element);
 

@@ -32,14 +32,14 @@ describe('Sampled Values Plugin', () => {
   describe('when selecting a Sampled Values message', () => {
     beforeEach(async () => {
       const smvMsg = element.shadowRoot?.querySelector('sampled-values-list')
-        ?.shadowRoot?.querySelectorAll('sampled-values-message')[0].shadowRoot?.querySelector('mwc-list-item');
+      ?.shadowRoot?.querySelectorAll('mwc-list-item')[1];
 
       (<HTMLElement>(smvMsg)).click();
+      await element.updateComplete;
     });
 
     it('the list on the right will initially show the subscribed / partially subscribed / not subscribed IEDs', async () => {
-      await element.updateComplete;
-      expect(element.shadowRoot?.querySelector('subscriber-ied-list-smv')).shadowDom.to.equalSnapshot();
+      await expect(element.shadowRoot?.querySelector('subscriber-ied-list-smv')).shadowDom.to.equalSnapshot();
     });
 
     describe('and you subscribe a non-subscribed IED', () => {
@@ -49,7 +49,7 @@ describe('Sampled Values Plugin', () => {
 
         (<HTMLElement>(ied)).click();
         await element.updateComplete;
-        expect(element.shadowRoot?.querySelector('subscriber-ied-list-smv')).shadowDom.to.equalSnapshot();
+        await expect(element.shadowRoot?.querySelector('subscriber-ied-list-smv')).shadowDom.to.equalSnapshot();
       });
     });
 
@@ -60,7 +60,7 @@ describe('Sampled Values Plugin', () => {
 
         (<HTMLElement>(ied)).click();
         await element.updateComplete;
-        expect(element.shadowRoot?.querySelector('subscriber-ied-list-smv')).shadowDom.to.equalSnapshot();
+        await expect(element.shadowRoot?.querySelector('subscriber-ied-list-smv')).shadowDom.to.equalSnapshot();
       });
     });
 
@@ -71,7 +71,7 @@ describe('Sampled Values Plugin', () => {
 
         (<HTMLElement>(ied)).click();
         await element.updateComplete;
-        expect(element.shadowRoot?.querySelector('subscriber-ied-list-smv')).shadowDom.to.equalSnapshot();
+        await expect(element.shadowRoot?.querySelector('subscriber-ied-list-smv')).shadowDom.to.equalSnapshot();
       });
     });
   });
