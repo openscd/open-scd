@@ -17,7 +17,7 @@ import '../../action-pane.js';
 import { getNameAttribute, newWizardEvent } from '../../foundation.js';
 import { Nsdoc } from '../../foundation/nsdoc.js';
 import { createDaInfoWizard } from "./da-wizard.js";
-import { getValueElement } from './foundation.js';
+import {getInstanceDAElement, getValueElement} from './foundation.js';
 
 /** [[`IED`]] plugin subeditor for editing `(B)DA` element. */
 @customElement('da-container')
@@ -93,18 +93,20 @@ export class DAContainer extends LitElement {
             createDaInfoWizard(this.element, this.instanceElement, this.ancestors, this.nsdoc)))}
         ></mwc-icon-button>
       </abbr>
-      ${bType == 'Struct' ? html`<abbr slot="action" title="${translate('iededitor.toggleChildElements')}">
-        <mwc-icon-button-toggle
-          id="toggleButton"
-          onIcon="keyboard_arrow_up"
-          offIcon="keyboard_arrow_down"
-          @click=${() => this.requestUpdate()}
-        ></mwc-icon-button-toggle>
-      </abbr>` : nothing}
-      <h6>${this.renderValue()}</h6>
-      ${this.toggleButton?.on && bType == 'Struct' ? this.getBDAElements().map(element =>
+      ${bType == 'Struct' ?
+        html`<abbr slot="action" title="${translate('iededitor.toggleChildElements')}">
+          <mwc-icon-button-toggle
+            id="toggleButton"
+            onIcon="keyboard_arrow_up"
+            offIcon="keyboard_arrow_down"
+            @click=${() => this.requestUpdate()}
+          ></mwc-icon-button-toggle>
+        </abbr>` :
+        html `<h6>${this.renderValue()}</h6>`}
+      ${this.toggleButton?.on && bType == 'Struct' ? this.getBDAElements().map(bdaElement =>
         html`<da-container
-          .element=${element}
+          .element=${bdaElement}
+          .instanceElement=${getInstanceDAElement(this.instanceElement, bdaElement)}
           .nsdoc=${this.nsdoc}
           .ancestors=${[this.element, ...this.ancestors]}
         ></da-container>`) : nothing}
