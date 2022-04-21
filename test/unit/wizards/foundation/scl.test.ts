@@ -164,7 +164,7 @@ describe('SCL specific functions', () => {
         'application/xml'
       );
 
-      it('return the first availablefirst unique APPID', () => {
+      it('return the first available unique APPID', () => {
         expect(uniqueAppId(doc)).to.equal('000B');
       });
     });
