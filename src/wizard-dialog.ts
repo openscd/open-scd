@@ -352,13 +352,15 @@ export class WizardDialog extends LitElement {
             style="--mdc-theme-primary: var(--mdc-theme-error)"
           ></mwc-button>`}
       ${this.code && page.element
-        ? html`<mwc-button
-            slot="primaryAction"
-            @click=${() => this.act(codeAction(page.element!))}
-            icon="code"
-            label="${translate('save')}"
-            trailingIcon
-          ></mwc-button>`
+        ? (page.element.parentElement)
+          ? html`<mwc-button
+              slot="primaryAction"
+              @click=${() => this.act(codeAction(page.element!))}
+              icon="code"
+              label="${translate('save')}"
+              trailingIcon
+            ></mwc-button>`
+          : html ``
         : page.primary
         ? html`<mwc-button
             slot="primaryAction"

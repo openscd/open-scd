@@ -19,13 +19,21 @@ describe('compas-versions-plugin', () => {
     'compas-versions-plugin',
     Wizarding(Editing(CompasVersionsPlugin))
   );
+  let doc: Document;
   let element: CompasVersionsPlugin;
   let stub: SinonStub;
+
+  beforeEach(async () => {
+    doc = await fetch('/test/testfiles/compas/test-scd.cid')
+      .then(response => response.text())
+      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+  })
 
   describe('no-compas-document', () => {
     beforeEach(async () => {
       element = fixtureSync(html`
-        <compas-versions-plugin></compas-versions-plugin>`);
+        <compas-versions-plugin .doc="${doc}">
+        </compas-versions-plugin>`);
 
       stub = stubFetchResponseFunction(element, FETCH_FUNCTION, undefined, VERSION_ENTRY_ELEMENT_NAME,
         () => {
@@ -49,8 +57,8 @@ describe('compas-versions-plugin', () => {
   describe('show-loading', () => {
     beforeEach(async () => {
       element = fixtureSync(html`
-        <compas-versions-plugin></compas-versions-plugin>`);
-      element.docId = docId;
+        <compas-versions-plugin .doc="${doc}" .docId="${docId}">
+        </compas-versions-plugin>`);
 
       stub = stubFetchResponseFunction(element, FETCH_FUNCTION, undefined, VERSION_ENTRY_ELEMENT_NAME,
         () => {
@@ -72,8 +80,8 @@ describe('compas-versions-plugin', () => {
   describe('no-items-in-list', () => {
     beforeEach(async () => {
       element = fixtureSync(html`
-        <compas-versions-plugin></compas-versions-plugin>`);
-      element.docId = docId;
+        <compas-versions-plugin .doc="${doc}" .docId="${docId}">
+        </compas-versions-plugin>`);
 
       stub = stubFetchResponseFunction(element, FETCH_FUNCTION, undefined, VERSION_ENTRY_ELEMENT_NAME,
         (result: Element[]) => {
@@ -97,8 +105,8 @@ describe('compas-versions-plugin', () => {
   describe('items-in-list', () => {
     beforeEach(async () => {
       element = fixtureSync(html`
-        <compas-versions-plugin></compas-versions-plugin>`);
-      element.docId = docId;
+        <compas-versions-plugin .doc="${doc}" .docId="${docId}">
+        </compas-versions-plugin>`);
 
       stub = stubFetchResponseFunction(element, FETCH_FUNCTION, BASIC_VERSIONS_LIST_RESPONSE, VERSION_ENTRY_ELEMENT_NAME,
         (result: Element[]) => {

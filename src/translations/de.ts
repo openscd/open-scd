@@ -621,6 +621,7 @@ export const de: Translations = {
     },
     versions: {
       title: '???',
+      sclInfo: '???: {{name}}, ???: {{version}}',
       addVersionButton: '???',
       confirmRestoreTitle: "???",
       confirmRestore: "??? {{version}}?",
@@ -639,6 +640,10 @@ export const de: Translations = {
       compareCurrentButton: '???',
       selectOneVersionsTitle: "???",
       selectOneVersionsMessage: "???",
+    },
+    scl: {
+      wizardTitle: '???',
+      filenameHelper: '???',
     },
     compare: {
       title: '???',

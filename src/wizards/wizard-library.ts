@@ -19,6 +19,7 @@ import { createPowerTransformerWizard, editPowerTransformerWizard } from './powe
 import { editSubNetworkWizard } from './subnetwork.js';
 import { editIEDWizard } from './ied.js';
 import { editTrgOpsWizard } from './trgops.js';
+import { editCompasSCLWizard } from "../compas-wizards/scl.js";
 
 type SclElementWizard = (element: Element) => Wizard | undefined;
 
@@ -398,7 +399,7 @@ export const wizards: Record<
     create: emptyWizard,
   },
   SCL: {
-    edit: emptyWizard,
+    edit: editCompasSCLWizard,
     create: emptyWizard,
   },
   SDI: {
