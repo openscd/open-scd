@@ -6,38 +6,38 @@
 			<Hitem version="1" revision="143" when="Wednesday, September 25, 2019 9:11:36 AM" who="Licenced User: OMICRON electronics GmbH JakVog00 Machine: JAKVOG00LW01 User: JakVog00" what="Station is upgraded from IEC 61850 System Configurator, Version: V5.80 HF1 to V5.90 ." why="IEC 61850 System Configurator Automatic Startup: Insert Comment" />
 		</History>
 	</Header>
-  <Substation name="AA1" desc="Substation">
-    <VoltageLevel name="E1" desc="Voltage Level" nomFreq="50.0" numPhases="3">
-      <Voltage unit="V" multiplier="k">110.0</Voltage>
-      <Bay name="COUPLING_BAY" desc="Bay">
-        <Private type="dummyType">
-          <ekaf:LNode xmlns:ekaf="http://www.dummyURL.com/dummyNS" iedName="IED2" ldInst="CBSWr" lnClass="LPHD" lnInst="1"/>
-        </Private>
-        <LNode iedName="IED2" ldInst="CBSW" lnClass="LPHD" lnInst="1"/>
-        <LNode iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="3"/>
-        <ConductingEquipment type="CBR" name="QA1" desc="coupling field ciscuit breaker"/>
-        <ConductingEquipment type="DIS" name="QB1" desc="busbar disconnector QB1">
-          <LNode iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="2"/>
-        </ConductingEquipment>
-        <ConductingEquipment type="DIS" name="QB2" desc="busbar disconnector QB2"/>
-        <ConductingEquipment type="DIS" name="QC11" desc="busbar earth switch QC11">
-          <Terminal name="T1" connectivityNode="AA1/E1/COUPLING_BAY/L2" substationName="AA1" voltageLevelName="E1" bayName="COUPLING_BAY" cNodeName="L2"/>
-          <Terminal connectivityNode="AA1/E1/COUPLING_BAY/grounded" name="T2" substationName="AA1" voltageLevelName="E1" bayName="COUPLING_BAY" cNodeName="grounded"/>
-        </ConductingEquipment>
-        <ConductingEquipment type="DIS" name="QC21" desc="busbar disconnector Q12">
-          <Terminal connectivityNode="AA1/E1/COUPLING_BAY/grounded" name="T1" substationName="AA1" voltageLevelName="E1" bayName="COUPLING_BAY" cNodeName="grounded"/>
-        </ConductingEquipment>
-        <ConnectivityNode pathName="AA1/E1/COUPLING_BAY/L2" name="L2"/>
-      </Bay>
-      <Bay name="Bay2" desc="Bay2">
-      </Bay>
-    </VoltageLevel>
-    <VoltageLevel name="J1" desc="Voltage Level">
-      <Voltage unit="V" multiplier="k">20</Voltage>
-      <Bay name="Bay1" desc="Bay1">
-      </Bay>
-    </VoltageLevel>
-  </Substation>
+	<Substation name="AA1" desc="Substation">
+		<VoltageLevel name="E1" desc="Voltage Level" nomFreq="50.0" numPhases="3">
+			<Voltage unit="V" multiplier="k">110.0</Voltage>
+			<Bay name="COUPLING_BAY" desc="Bay">
+        		<Private type="dummyType">
+          			<ekaf:LNode xmlns:ekaf="http://www.dummyURL.com/dummyNS" iedName="IED2" ldInst="CBSWr" lnClass="LPHD" lnInst="1"/>
+        		</Private>
+				<LNode iedName="IED2" ldInst="CBSW" lnClass="LPHD" lnInst="1"/>
+				<LNode iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="3"/>
+				<ConductingEquipment type="CBR" name="QA1" desc="coupling field ciscuit breaker"/>
+				<ConductingEquipment type="DIS" name="QB1" desc="busbar disconnector QB1">
+					<LNode iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="2"/>
+				</ConductingEquipment>
+				<ConductingEquipment type="DIS" name="QB2" desc="busbar disconnector QB2"/>
+				<ConductingEquipment type="DIS" name="QC11" desc="busbar earth switch QC11">
+					<Terminal name="T1" connectivityNode="AA1/E1/COUPLING_BAY/L2" substationName="AA1" voltageLevelName="E1" bayName="COUPLING_BAY" cNodeName="L2"/>
+					<Terminal connectivityNode="AA1/E1/COUPLING_BAY/grounded" name="T2" substationName="AA1" voltageLevelName="E1" bayName="COUPLING_BAY" cNodeName="grounded"/>
+				</ConductingEquipment>
+				<ConductingEquipment type="DIS" name="QC21" desc="busbar disconnector Q12">
+					<Terminal connectivityNode="AA1/E1/COUPLING_BAY/grounded" name="T1" substationName="AA1" voltageLevelName="E1" bayName="COUPLING_BAY" cNodeName="grounded"/>
+				</ConductingEquipment>
+                <ConnectivityNode pathName="AA1/E1/COUPLING_BAY/L2" name="L2"/>
+			</Bay>
+			<Bay name="Bay2" desc="Bay2">
+			</Bay>
+		</VoltageLevel>
+		<VoltageLevel name="J1" desc="Voltage Level">
+			<Voltage unit="V" multiplier="k">20</Voltage>
+			<Bay name="Bay1" desc="Bay1">
+			</Bay>
+		</VoltageLevel>
+	</Substation>
 	<Communication>
 		<SubNetwork name="StationBus" desc="desc" type="8-MMS">
 			<BitRate unit="b/s">100.0</BitRate>
@@ -137,6 +137,62 @@
 						<GSEControl type="GOOSE" appID="0003" fixedOffs="false" confRev="1" name="GCB2"/>
 					</LN0>
 					<LN lnClass="XCBR" inst="1" lnType="Dummy.XCBR1">
+						<DOI name="Beh">
+							<DAI name="booleantest">
+								<Val>true</Val>
+							</DAI>
+							<DAI name="int8test">
+								<Val>5</Val>
+							</DAI>
+							<DAI name="int16test">
+								<Val>500</Val>
+							</DAI>
+							<DAI name="int24test">
+								<Val>8321</Val>
+							</DAI>
+							<DAI name="int32test">
+								<Val>83218</Val>
+							</DAI>
+							<DAI name="int64test">
+								<Val>-543923</Val>
+							</DAI>
+							<DAI name="int128test">
+								<Val>-8</Val>
+							</DAI>
+							<DAI name="int8utest">
+								<Val>99</Val>
+							</DAI>
+							<DAI name="int16utest">
+								<Val>20000</Val>
+							</DAI>
+							<DAI name="int24utest">
+								<Val>654321</Val>
+							</DAI>
+							<DAI name="int32utest">
+								<Val>2</Val>
+							</DAI>
+							<DAI name="float32test">
+								<Val>659.3</Val>
+							</DAI>
+							<DAI name="float64test">
+								<Val>1111659.8</Val>
+							</DAI>
+							<DAI name="visstring32test">
+								<Val>pull-ups</Val>
+							</DAI>
+							<DAI name="visstring64test">
+								<Val>lat pulldown</Val>
+							</DAI>
+							<DAI name="visstring65test">
+								<Val>bench press</Val>
+							</DAI>
+							<DAI name="visstring129test">
+								<Val>front squat</Val>
+							</DAI>
+							<DAI name="visstring255test">
+								<Val>deadlift</Val>
+							</DAI>
+						</DOI>
 						<DOI name="Pos">
 							<DAI name="ctlModel">
 								<Val>status-only</Val>
@@ -150,7 +206,7 @@
 							</DAI>
 						</DOI>
 					</LN>
-					<LN prefix="CB" lnClass="XCBR" inst="2" lnType="Dummy.XCBR1">
+					<LN prefix="CB" lnClass="XCBR" inst="2" lnType="Dummy.XCBR1">						
 						<DOI name="Pos">
 							<DAI name="ctlModel">
 								<Val>status-only</Val>
@@ -158,11 +214,6 @@
 						</DOI>
 					</LN>
 					<LN prefix="CB" lnClass="CSWI" inst="2" lnType="Dummy.CSWIwithoutCtlModel">
-						<DOI name="Beh">
-								<DAI name="integer">
-    								<Val>5</Val>
-								</DAI>
-						</DOI>
 						<DOI name="Pos">
 							<SDI name="pulseConfig">
 								<DAI name="numPls">
@@ -333,7 +384,6 @@
 						</Inputs>
 					</LN>
 				</LDevice>
-        <Association iedName="IED1"/>
 			</Server>
 		</AccessPoint>
 	</IED>
@@ -380,8 +430,7 @@
                             <FCDA ldInst="MU01" prefix="U01N" lnClass="TVTR" lnInst="4" doName="Vol" daName="q" fc="MX"/>
                         </DataSet>
 					<SampledValueControl smvID="IED3_SMVID" multicast="true" smpRate="80" nofASDU="1" confRev="1" name="MSVCB01" datSet="PhsMeas1">
-						<IEDName>IED2</IEDName>
-            <SmvOpts/>
+						<SmvOpts/>
 					</SampledValueControl>
 					</LN0>
                     <LN prefix="I01A" lnClass="TCTR" inst="1" lnType="DummyTCTR" />
@@ -517,10 +566,27 @@
 			<DA fc="MX" name="t" bType="Timestamp"/>
 		</DOType>
 		<DOType cdc="ENS" id="Dummy.LLN0.Beh">
-			<DA fc="ST" name="integer" bType="INT8U" />
 			<DA fc="ST" name="stVal" bType="Enum" type="Dummy_Beh" />
 			<DA fc="ST" name="q" bType="Quality" />
 			<DA fc="ST" name="t" bType="Timestamp" />
+			<DA fc="ST" name="int8test" bType="BOOLEAN" />
+			<DA fc="ST" name="int8test" bType="INT8" />
+			<DA fc="ST" name="int16test" bType="INT16" />
+			<DA fc="ST" name="int24test" bType="INT24" />
+			<DA fc="ST" name="int32test" bType="INT32" />
+			<DA fc="ST" name="int64test" bType="INT64" />
+			<DA fc="ST" name="int128test" bType="INT128" />
+			<DA fc="ST" name="int8utest" bType="INT8U" />
+			<DA fc="ST" name="int16utest" bType="INT16U" />
+			<DA fc="ST" name="int24utest" bType="INT24U" />
+			<DA fc="ST" name="int32utest" bType="INT32U" />
+			<DA fc="ST" name="float32test" bType="FLOAT32" />
+			<DA fc="ST" name="float64test" bType="FLOAT64" />
+			<DA fc="ST" name="visstring32test" bType="VisString32" />
+			<DA fc="ST" name="visstring64test" bType="VisString64" />
+			<DA fc="ST" name="visstring65test" bType="VisString65" />
+			<DA fc="ST" name="visstring129test" bType="VisString129" />
+			<DA fc="ST" name="visstring255test" bType="VisString255" />
 		</DOType>
 		<DOType cdc="ENS" id="Dummy.LLN0.Health">
 			<DA fc="ST" name="stVal" bType="Enum" type="Dummy_Health" />
