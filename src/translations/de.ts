@@ -530,6 +530,7 @@ export const de: Translations = {
   },
   report: {
     wizard: { location: 'Ablageort der Reports wählen' },
+    rptID: '???'
   },
   cleanup: {
     unreferencedDataSets: {

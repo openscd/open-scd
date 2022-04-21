@@ -82,7 +82,7 @@ function contentReportControlWizard(options: ContentOptions): TemplateResult[] {
       .maybeValue=${options.rptID}
       nullable
       required
-      helper="${translate('scl.id')}"
+      helper="${translate('report.rptID')}"
     ></wizard-textfield>`,
     html`<wizard-checkbox
       label="indexed"
