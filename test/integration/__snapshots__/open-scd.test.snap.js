@@ -1153,7 +1153,8 @@ snapshots["open-scd looks like its snapshot"] =
   </section>
   <mwc-list id="nsdocList">
     <mwc-list-item
-      aria-disabled="false"
+      aria-disabled="true"
+      disabled=""
       graphic="avatar"
       hasmeta=""
       id="IEC 61850-7-2"
@@ -1164,20 +1165,11 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         IEC 61850-7-2
       </span>
-      <span slot="secondary">
-        2007B3
-      </span>
       <mwc-icon
         slot="graphic"
-        style="color:green;"
+        style="color:red;"
       >
-        done
-      </mwc-icon>
-      <mwc-icon
-        id="deleteNsdocItem"
-        slot="meta"
-      >
-        delete
+        close
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
