@@ -17,7 +17,7 @@ import '../../action-pane.js';
 import { getNameAttribute, newWizardEvent } from '../../foundation.js';
 import { Nsdoc } from '../../foundation/nsdoc.js';
 import { createDaInfoWizard } from "./da-wizard.js";
-import {getInstanceDAElement, getValueElement} from './foundation.js';
+import { getInstanceDAElement, getValueElement } from './foundation.js';
 
 /** [[`IED`]] plugin subeditor for editing `(B)DA` element. */
 @customElement('da-container')

@@ -1,4 +1,4 @@
-import {getNameAttribute} from "../../foundation";
+import { getNameAttribute } from "../../foundation.js";
 
 /**
  * Search for an element with a passed tag-name in the list of ancestors passed.

@@ -17,7 +17,7 @@ import { getDescriptionAttribute, getNameAttribute, newWizardEvent } from '../..
 import { translate } from 'lit-translate';
 import { Nsdoc } from '../../foundation/nsdoc.js';
 import { createDoInfoWizard } from "./do-wizard.js";
-import {findDOTypeElement, getInstanceDAElement} from "./foundation.js";
+import { findDOTypeElement, getInstanceDAElement } from "./foundation.js";
 
 /** [[`IED`]] plugin subeditor for editing `DO` element. */
 @customElement('do-container')
