@@ -16,6 +16,8 @@ import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 import '../../action-pane.js';
 import { getNameAttribute, newWizardEvent } from '../../foundation.js';
 import { Nsdoc } from '../../foundation/nsdoc.js';
+import { wizards } from '../../wizards/wizard-library.js';
+import { DaiValidationTypes, getCustomField } from './foundation/foundation.js';
 import { createDaInfoWizard } from "./da-wizard.js";
 import { getValueElement } from './foundation.js';
 
@@ -60,12 +62,12 @@ export class DAContainer extends LitElement {
    * If there is a DAI, it get's priority on top of (B)DA values.
    * @returns TemplateResult containing the value of the instance, element or nothing.
    */
-  private renderValue(): TemplateResult {
+  private getValue(): string | null | undefined {
     if (this.instanceElement) {
-      return html`${getValueElement(this.instanceElement)?.textContent}`
+      return getValueElement(this.instanceElement)?.textContent?.trim()
     }
 
-    return html`${getValueElement(this.element)?.textContent}`;
+    return getValueElement(this.element)?.textContent?.trim();
   }
 
   /**
@@ -80,9 +82,15 @@ export class DAContainer extends LitElement {
     }
     return [];
   }
+  
+  private openEditWizard(): void {
+    const wizard = wizards['DAI'].edit(this.element, this.instanceElement);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
 
   render(): TemplateResult {
     const bType = this.element!.getAttribute('bType');
+    const value = this.getValue() ?? '';
 
     return html`<action-pane .label="${this.header()}" icon="${this.instanceElement != null ? 'done' : ''}">
       <abbr slot="action">
@@ -101,7 +109,19 @@ export class DAContainer extends LitElement {
           @click=${() => this.requestUpdate()}
         ></mwc-icon-button-toggle>
       </abbr>` : nothing}
-      <h6>${this.renderValue()}</h6>
+      ${this.instanceElement && getCustomField()[<DaiValidationTypes>bType] ?
+        html`<div style="display: flex; flex-direction: row;">
+          <div style="display: flex; align-items: center; flex: auto;">
+            <h4>${value}</h4>
+          </div>
+          <div style="display: flex; align-items: center;">
+            <mwc-icon-button
+              icon="edit"
+              @click=${() => this.openEditWizard()}
+            ></mwc-icon-button>
+          </div>
+        </div>` :
+        html`<h4>${value}</h4>`}
       ${this.toggleButton?.on && bType == 'Struct' ? this.getBDAElements().map(element =>
         html`<da-container
           .element=${element}
@@ -113,16 +133,18 @@ export class DAContainer extends LitElement {
   }
 
   static styles = css`
-    h6 {
+    h4 {
       color: var(--mdc-theme-on-surface);
       font-family: 'Roboto', sans-serif;
-      font-weight: 500;
-      font-size: 0.8em;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
       margin: 0px;
       padding-left: 0.3em;
+    }
+
+    mwc-icon-button {
+      color: var(--mdc-theme-on-surface);
     }
   `;
 }
