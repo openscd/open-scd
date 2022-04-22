@@ -29,6 +29,7 @@ import {
 import { emptyWizard, wizards } from '../wizards/wizard-library.js';
 import {
   cloneSubstationElement,
+  renderFunctions,
   startMove,
   styles,
 } from './foundation.js';
@@ -168,7 +169,7 @@ export class BayEditor extends LitElement {
           >${this.renderAddButtons()}</mwc-menu
         >
       </abbr>
-      ${this.renderIedContainer()}
+      ${this.renderIedContainer()} ${renderFunctions(this.element)}
       <div id="ceContainer">
         ${Array.from(
           getChildElementsByTagName(this.element, 'PowerTransformer')

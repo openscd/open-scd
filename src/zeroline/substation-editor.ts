@@ -22,6 +22,7 @@ import { newActionEvent, newWizardEvent, SCLTag, tags } from '../foundation.js';
 import { emptyWizard, wizards } from '../wizards/wizard-library.js';
 import {
   cloneSubstationElement,
+  renderFunctions,
   selectors,
   startMove,
   styles,
@@ -173,7 +174,7 @@ export class SubstationEditor extends LitElement {
           >${this.renderAddButtons()}</mwc-menu
         >
       </abbr>
-      ${this.renderIedContainer()}
+      ${this.renderIedContainer()}${renderFunctions(this.element)}
       ${this.renderPowerTransformerContainer()}
       ${Array.from(this.element.querySelectorAll(selectors.VoltageLevel)).map(
         voltageLevel =>

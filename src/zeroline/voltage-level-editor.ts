@@ -23,6 +23,7 @@ import {
   startMove,
   cloneSubstationElement,
   styles,
+  renderFunctions,
 } from './foundation.js';
 import { newActionEvent, newWizardEvent, SCLTag, tags } from '../foundation.js';
 
@@ -183,7 +184,7 @@ export class VoltageLevelEditor extends LitElement {
           >${this.renderAddButtons()}</mwc-menu
         >
       </abbr>
-      ${this.renderIedContainer()}
+      ${this.renderIedContainer()}${renderFunctions(this.element)}
       ${this.renderPowerTransformerContainer()}
       <div id="bayContainer">
         ${Array.from(this.element?.querySelectorAll(selectors.Bay) ?? []).map(

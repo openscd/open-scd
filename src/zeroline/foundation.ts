@@ -1,6 +1,11 @@
-import { css, TemplateResult } from 'lit-element';
+import { css, html, TemplateResult } from 'lit-element';
 
-import { newActionEvent, isPublic } from '../foundation.js';
+import './function-editor.js';
+import {
+  newActionEvent,
+  isPublic,
+  getChildElementsByTagName,
+} from '../foundation.js';
 import {
   circuitBreakerIcon,
   disconnectorIcon,
@@ -16,6 +21,15 @@ import { typeStr } from '../wizards/conductingequipment.js';
 
 export function shouldShowFunctions(): boolean {
   return localStorage.getItem('showfunctions') === 'on';
+}
+
+export function renderFunctions(element: Element): TemplateResult {
+  if (!shouldShowFunctions()) return html``;
+
+  const functions = getChildElementsByTagName(element, 'Function');
+  return html` ${functions.map(
+    fUnction => html`<function-editor .element=${fUnction}></function-editor>`
+  )}`;
 }
 
 function containsReference(element: Element, iedName: string): boolean {
