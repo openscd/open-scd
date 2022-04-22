@@ -21,7 +21,7 @@ import { gooseIcon, smvIcon, reportIcon } from './icons/icons.js';
 import { isPublic, newWizardEvent } from './foundation.js';
 import { selectGseControlWizard } from './wizards/gsecontrol.js';
 import { wizards } from './wizards/wizard-library.js';
-import { getAttachedIeds } from './zeroline/foundation.js';
+import { getAttachedIeds, shouldShowFunctions } from './zeroline/foundation.js';
 import { selectSampledValueControlWizard } from './wizards/sampledvaluecontrol.js';
 import { Settings } from './Setting.js';
 import { selectReportControlWizard } from './wizards/reportcontrol.js';
@@ -32,6 +32,10 @@ function shouldShowIEDs(): boolean {
 
 function setShowIEDs(value: Settings['showieds']) {
   localStorage.setItem('showieds', value);
+}
+
+function setShowFunctions(value: 'on' | 'off') {
+  localStorage.setItem('showfunctions', value);
 }
 
 /** [[`Zeroline`]] pane for displaying `Substation` and/or `IED` sections. */
@@ -87,6 +91,12 @@ export class ZerolinePane extends LitElement {
   toggleShowIEDs(): void {
     if (shouldShowIEDs()) setShowIEDs('off');
     else setShowIEDs('on');
+    this.requestUpdate();
+  }
+
+  toggleShowFunctions(): void {
+    if (shouldShowFunctions()) setShowFunctions('off');
+    else setShowFunctions('on');
     this.requestUpdate();
   }
 
