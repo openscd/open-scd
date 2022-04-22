@@ -60,7 +60,7 @@ describe('SCL specific functions', () => {
       const gseElementString = `<SubNetwork>${createMacs('GOOSE').map(
         mac =>
           `<ConnectedAP><Address><P type="MAC-Address">${mac}</P></Address></ConnectedAP>`
-      )}</SubNEtwork>`;
+      )}</SubNetwork>`;
       const doc = new DOMParser().parseFromString(
         gseElementString,
         'application/xml'
@@ -76,13 +76,13 @@ describe('SCL specific functions', () => {
       const gseElementString = `<SubNetwork>${macs.map(
         mac =>
           `<ConnectedAP><Address><P type="MAC-Address">${mac}</P></Address></ConnectedAP>`
-      )}</SubNEtwork>`;
+      )}</SubNetwork>`;
       const doc = new DOMParser().parseFromString(
         gseElementString,
         'application/xml'
       );
 
-      it('return the first availablefirst unique MAC', () =>
+      it('return the first available first unique MAC', () =>
         expect(uniqueMacAddress(doc, 'GOOSE')).to.equal('01-0C-CD-01-00-04'));
     });
 
@@ -130,7 +130,7 @@ describe('SCL specific functions', () => {
         'application/xml'
       );
 
-      it('return the first availablefirst unique MAC', () =>
+      it('return the first available unique MAC', () =>
         expect(uniqueMacAddress(doc, 'SMV')).to.equal('01-0C-CD-04-00-0A'));
     });
 
@@ -146,7 +146,7 @@ describe('SCL specific functions', () => {
         'application/xml'
       );
 
-      it('return the first availablefirst unique MAC', () =>
+      it('return the first available unique MAC', () =>
         expect(uniqueMacAddress(doc, 'SMV')).to.equal('01-0C-CD-04-01-FF'));
     });
   });
@@ -164,7 +164,7 @@ describe('SCL specific functions', () => {
         'application/xml'
       );
 
-      it('return the first availablefirst unique APPID', () => {
+      it('return the first available unique APPID', () => {
         expect(uniqueAppId(doc)).to.equal('000B');
       });
     });
