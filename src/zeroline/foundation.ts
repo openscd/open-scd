@@ -14,6 +14,10 @@ import { SubstationEditor } from './substation-editor.js';
 import { VoltageLevelEditor } from './voltage-level-editor.js';
 import { typeStr } from '../wizards/conductingequipment.js';
 
+export function shouldShowFunctions(): boolean {
+  return localStorage.getItem('showfunctions') === 'on';
+}
+
 function containsReference(element: Element, iedName: string): boolean {
   return Array.from(element.getElementsByTagName('LNode'))
     .filter(isPublic)

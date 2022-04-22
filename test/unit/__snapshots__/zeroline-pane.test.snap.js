@@ -21,6 +21,14 @@ snapshots["zeroline-pane per default looks like the latest snapshot"] =
       >
       </mwc-icon-button-toggle>
     </abbr>
+    <abbr title="[zeroline.showfunctions]">
+      <mwc-icon-button-toggle
+        id="showfunctions"
+        officon="layers_clear"
+        onicon="layers"
+      >
+      </mwc-icon-button-toggle>
+    </abbr>
     <abbr title="[zeroline.commmap]">
       <mwc-icon-button
         icon="link"
@@ -69,6 +77,14 @@ snapshots["zeroline-pane showieds looks like the latest snapshot"] =
         officon="developer_board_off"
         on=""
         onicon="developer_board"
+      >
+      </mwc-icon-button-toggle>
+    </abbr>
+    <abbr title="[zeroline.showfunctions]">
+      <mwc-icon-button-toggle
+        id="showfunctions"
+        officon="layers_clear"
+        onicon="layers"
       >
       </mwc-icon-button-toggle>
     </abbr>

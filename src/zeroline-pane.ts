@@ -124,6 +124,15 @@ export class ZerolinePane extends LitElement {
               offIcon="developer_board_off"
             ></mwc-icon-button-toggle>
           </abbr>
+          <abbr title="${translate('zeroline.showfunctions')}">
+            <mwc-icon-button-toggle
+              ?on=${shouldShowFunctions()}
+              @click=${() => this.toggleShowFunctions()}
+              id="showfunctions"
+              onIcon="layers"
+              offIcon="layers_clear"
+            ></mwc-icon-button-toggle>
+          </abbr>
           <abbr title="${translate('zeroline.commmap')}">
             <mwc-icon-button
               id="commmap"
