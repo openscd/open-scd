@@ -39,12 +39,15 @@ describe('zeroline-pane', () => {
   });
 
   it('per default looks like the latest snapshot', async () => {
-    const element = await fixture(
+    const element: ZerolinePane = await fixture(
       html`<zeroline-pane
         .doc=${doc}
         .getAttachedIeds="${undefined}"
       ></zeroline-pane>`
     );
+
+    if (element.showieds.on) await element.showieds.click();
+    if (element.showfunctions.on) await element.showfunctions.click();
 
     await new Promise(resolve => setTimeout(resolve, 2000)); // await animation
 
@@ -60,6 +63,7 @@ describe('zeroline-pane', () => {
     );
 
     if (!element.showieds.on) await element.showieds.click();
+    if (element.showfunctions.on) await element.showfunctions.click();
 
     await new Promise(resolve => setTimeout(resolve, 2000)); // await IEDs are rendered
 
@@ -117,6 +121,7 @@ describe('zeroline-pane', () => {
       });
     });
   });
+
   it('both the functions return every IED only once', async () => {
     const numSub1 = (await attachedIeds(substation1, remainingIeds)).length;
     const numSub2 = (await attachedIeds(substation2, remainingIeds)).length;

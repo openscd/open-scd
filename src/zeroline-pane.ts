@@ -52,6 +52,7 @@ export class ZerolinePane extends LitElement {
 
   @query('#commmap') commmap!: IconButton;
   @query('#showieds') showieds!: IconButtonToggle;
+  @query('#showfunctions') showfunctions!: IconButtonToggle;
   @query('#gsecontrol') gsecontrol!: IconButton;
   @query('#smvcontrol') smvcontrol!: IconButton;
   @query('#reportcontrol') reportcontrol!: IconButton;
