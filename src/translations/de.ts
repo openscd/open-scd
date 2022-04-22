@@ -70,7 +70,8 @@ export const de: Translations = {
     showieds: 'Zeige IEDs im Substation-Editor',
     selectFileButton: 'Datei auswählen',
     loadNsdTranslations: 'NSDoc-Dateien hochladen',
-    invalidFileNoIdFound: "Ungültiges NSDoc ({{ filename }}); kein 'id'-Attribut in der Datei gefunden",
+    invalidFileNoIdFound:
+      "Ungültiges NSDoc ({{ filename }}); kein 'id'-Attribut in der Datei gefunden",
     invalidNsdocVersion:
       'Die Version {{ id }} NSD ({{ nsdVersion }}) passt nicht zu der geladenen NSDoc ({{ filename }}, {{ nsdocVersion }})',
   },
@@ -523,8 +524,10 @@ export const de: Translations = {
     unreferencedControls: {
       title: 'Steuerblöcke mit einem fehlenden oder ungültigen Kontrollblock',
       deleteButton: 'Ausgewählte Kontrollblöcke entfernen',
-      tooltip: 'Steuerblöcke ohne Verweis auf ein vorhandenes Datensatz. Das ist kein Fehler und eher üblich for allem für Reports',
-      addressDefinitionTooltip: 'Für diesen Kontrollblock existiert eine Adressdefinition im Abschnitt Kommunikation',
+      tooltip:
+        'Steuerblöcke ohne Verweis auf ein vorhandenes Datensatz. Das ist kein Fehler und eher üblich for allem für Reports',
+      addressDefinitionTooltip:
+        'Für diesen Kontrollblock existiert eine Adressdefinition im Abschnitt Kommunikation',
       alsoRemoveFromCommunication: 'Kommunikation SMV/GSE mit entfernen',
     },
   },
@@ -545,6 +548,9 @@ export const de: Translations = {
     label: {
       copy: 'Kopie in anderen IEDs ertellen',
     },
+  },
+  gsecontrol: {
+    wizard: { location: 'Ablageort der GOOSE wählen' },
   },
   add: 'Hinzufügen',
   new: 'Neu',

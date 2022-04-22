@@ -480,6 +480,7 @@ snapshots["gsecontrol wizards define an create wizard that with existing Connect
     >
     </wizard-textfield>
     <wizard-textfield
+      disabled=""
       label="VLAN-ID"
       nullable=""
       pattern="[0-9A-F]{3}"
@@ -487,6 +488,7 @@ snapshots["gsecontrol wizards define an create wizard that with existing Connect
     >
     </wizard-textfield>
     <wizard-textfield
+      disabled=""
       label="VLAN-PRIORITY"
       nullable=""
       pattern="[0-7]"
@@ -610,7 +612,7 @@ snapshots["gsecontrol wizards define an create wizard that with missing Connecte
 snapshots["gsecontrol wizards define a wizard to select the control block reference looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="close"
-  heading="[report.wizard.location]"
+  heading="[gsecontrol.wizard.location]"
   open=""
 >
   <div id="wizard-content">

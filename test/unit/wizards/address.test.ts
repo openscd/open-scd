@@ -226,9 +226,13 @@ describe('address', () => {
               ? <WizardTextField>rawInput
               : <WizardSelect>rawInput;
 
+          if (input.maybeValue === null) {
+            input.nullSwitch?.click();
+            await input.requestUpdate();
+          }
+
           const type = input.label;
           const newValue = 'newValue';
-
           input.value = newValue;
           await input.requestUpdate();
 
@@ -251,6 +255,11 @@ describe('address', () => {
             rawInput instanceof WizardTextField
               ? <WizardTextField>rawInput
               : <WizardSelect>rawInput;
+
+          if (input.maybeValue === null) {
+            input.nullSwitch?.click();
+            await input.requestUpdate();
+          }
 
           const type = input.label;
           const newValue = input.value;

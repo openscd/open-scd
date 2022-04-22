@@ -244,8 +244,8 @@ export function createGseControlWizard(ln0OrLn: Element): Wizard {
   const attributes: Record<string, string | null> = {
     'MAC-Address': uniqueMacAddress(ln0OrLn.ownerDocument, 'GOOSE'),
     APPID: uniqueAppId(ln0OrLn.ownerDocument),
-    'VLAN-ID': '000',
-    'VLAN-PRIORITY': '7',
+    'VLAN-ID': null,
+    'VLAN-PRIORITY': null,
   };
   const minTime = '10';
   const maxTime = '1000';
@@ -352,7 +352,7 @@ function openGseControlCreateWizard(doc: XMLDocument): WizardActor {
 export function gseControlParentSelector(doc: XMLDocument): Wizard {
   return [
     {
-      title: get('report.wizard.location'),
+      title: get('gsecontrol.wizard.location'),
       primary: {
         icon: '',
         label: get('next'),

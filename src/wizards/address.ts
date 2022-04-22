@@ -28,8 +28,8 @@ export function contentGseWizard(content: ContentOptions): TemplateResult[] {
       ([key, value]) =>
         html`<wizard-textfield
           label="${key}"
-          .maybeValue=${value}
           ?nullable=${typeNullable[key]}
+          .maybeValue=${value}
           pattern="${ifDefined(typePattern[key])}"
           required
         ></wizard-textfield>`

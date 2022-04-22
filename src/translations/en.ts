@@ -543,6 +543,9 @@ export const en = {
     },
     label: { copy: 'Copy to other IEDs' },
   },
+  gsecontrol: {
+    wizard: { location: 'Select GOOSE Control Block Location' },
+  },
   add: 'Add',
   new: 'New',
   remove: 'Remove',
