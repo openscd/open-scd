@@ -175,7 +175,9 @@ export class BayEditor extends LitElement {
           getChildElementsByTagName(this.element, 'PowerTransformer')
         ).map(
           pwt =>
-            html`<powertransformer-editor .element=${pwt}></powertransformer-editor>`
+            html`<powertransformer-editor
+              .element=${pwt}
+            ></powertransformer-editor>`
         )}
         ${Array.from(
           getChildElementsByTagName(this.element, 'ConductingEquipment')

@@ -116,11 +116,20 @@ export class VoltageLevelEditor extends LitElement {
   }
 
   renderPowerTransformerContainer(): TemplateResult {
-    const pwts = Array.from(this.element?.querySelectorAll(selectors.VoltageLevel + ' > PowerTransformer') ?? []);
+    const pwts = Array.from(
+      this.element?.querySelectorAll(
+        selectors.VoltageLevel + ' > PowerTransformer'
+      ) ?? []
+    );
     return pwts?.length
       ? html`<div id="powertransformercontainer">
-        ${pwts.map(pwt => html`<powertransformer-editor .element=${pwt}></powertransformer-editor>`)}
-      </div>`
+          ${pwts.map(
+            pwt =>
+              html`<powertransformer-editor
+                .element=${pwt}
+              ></powertransformer-editor>`
+          )}
+        </div>`
       : html``;
   }
 
@@ -156,7 +165,8 @@ export class VoltageLevelEditor extends LitElement {
       <abbr slot="action" title="${translate('move')}">
         <mwc-icon-button
           icon="forward"
-          @click=${() => startMove(this, VoltageLevelEditor, [SubstationEditor])}
+          @click=${() =>
+            startMove(this, VoltageLevelEditor, [SubstationEditor])}
         ></mwc-icon-button>
       </abbr>
       <abbr slot="action" title="${translate('remove')}">

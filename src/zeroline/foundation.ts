@@ -174,12 +174,8 @@ export type ElementEditorClass<T extends ElementEditor> = new () => T;
 export function startMove<
   E extends ElementEditor,
   C extends ElementEditorClass<ElementEditor>,
-  P extends ElementEditorClass<ElementEditor>>
-(
-  editor: E,
-  childClass: C,
-  parentClasses: P[]
-): void {
+  P extends ElementEditorClass<ElementEditor>
+>(editor: E, childClass: C, parentClasses: P[]): void {
   if (!editor.element) return;
 
   editor.classList.add('moving');
@@ -202,8 +198,13 @@ export function startMove<
 
     if (e instanceof KeyboardEvent && e.key === 'Escape') return;
 
-    const targetEditor = e.composedPath()
-      .find(et => et instanceof childClass || checkInstanceOfParentClass(et, parentClasses));
+    const targetEditor = e
+      .composedPath()
+      .find(
+        et =>
+          et instanceof childClass ||
+          checkInstanceOfParentClass(et, parentClasses)
+      );
     if (targetEditor === undefined || targetEditor === editor) return;
 
     const destination =
@@ -245,7 +246,8 @@ export function startMove<
  */
 function checkInstanceOfParentClass<E extends ElementEditor>(
   et: EventTarget,
-  classes: ElementEditorClass<E>[]): boolean {
+  classes: ElementEditorClass<E>[]
+): boolean {
   const targetEditor = classes.find(clazz => et instanceof clazz);
   return targetEditor !== undefined;
 }

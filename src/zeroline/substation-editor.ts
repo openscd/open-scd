@@ -106,11 +106,20 @@ export class SubstationEditor extends LitElement {
   }
 
   renderPowerTransformerContainer(): TemplateResult {
-    const pwts = Array.from(this.element?.querySelectorAll(selectors.Substation + ' > PowerTransformer') ?? []);
+    const pwts = Array.from(
+      this.element?.querySelectorAll(
+        selectors.Substation + ' > PowerTransformer'
+      ) ?? []
+    );
     return pwts?.length
       ? html`<div id="powertransformercontainer">
-        ${pwts.map(pwt => html`<powertransformer-editor .element=${pwt}></powertransformer-editor>`)}
-      </div>`
+          ${pwts.map(
+            pwt =>
+              html`<powertransformer-editor
+                .element=${pwt}
+              ></powertransformer-editor>`
+          )}
+        </div>`
       : html``;
   }
 
