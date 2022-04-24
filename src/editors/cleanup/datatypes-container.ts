@@ -233,18 +233,33 @@ export class CleanupDataTypes extends LitElement {
     keyAttributeName: string,
     templateSelector: string
   ) {
-    const usedTypes = uniq(Array.from(this.doc?.querySelectorAll(usedSelector) ?? [])
-      .filter(isPublic)
-      .map(uType => uType.getAttribute(keyAttributeName)));
+    const usedTypes = uniq(
+      Array.from(this.doc?.querySelectorAll(usedSelector) ?? [])
+        .filter(isPublic)
+        .map(uType => uType.getAttribute(keyAttributeName))
+    );
 
     const unreferencedTypes: Element[] = [];
-    Array.from(this.doc?.querySelectorAll(`DataTypeTemplates > ${templateSelector}`) ?? [])
+    Array.from(
+      this.doc?.querySelectorAll(`DataTypeTemplates > ${templateSelector}`) ??
+        []
+    )
       .filter(isPublic)
       .forEach(dType => {
         if (!usedTypes.includes(dType.getAttribute('id') ?? 'Unknown'))
           unreferencedTypes.push(dType);
       });
     return identitySort(unreferencedTypes);
+  }
+
+  /**
+   * Checks if the list selection includes DOType or DAType elements which may have SDO or DA[bType=Struct] which references sub-elements.
+   * @returns true if the selection contains DOType or DAType elements.
+   */
+  private selectionContainsDOOrDAType() {
+    return Array.from(<Set<number>>this.selectedDataTypeItems).some(item =>
+      ['DOType', 'DAType'].includes(this.unreferencedDataTypes[item].tagName)
+    );
   }
 
   /**
@@ -309,8 +324,10 @@ export class CleanupDataTypes extends LitElement {
             checked
             class="cleanupCascadeCheckbox"
             ?disabled=${(<Set<number>>this.selectedDataTypeItems).size === 0 ||
-            (Array.isArray(this.selectedDataTypeItems) &&
-              !this.selectedDataTypeItems.length)}
+            !(
+              (<Set<number>>this.selectedDataTypeItems).size !== 0 &&
+              this.selectionContainsDOOrDAType()
+            )}
           ></mwc-checkbox
         ></mwc-formfield>
       </footer>
