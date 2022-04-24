@@ -8,15 +8,35 @@ import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   Create,
   Delete,
+  getValue,
   isCreate,
   isDelete,
   Wizard,
   WizardInputElement,
 } from '../../../src/foundation.js';
 import {
-  renderGseSmvAddress,
+  contentGseWizard,
   updateAddress,
 } from '../../../src/wizards/address.js';
+
+function addressContent(
+  inputs: WizardInputElement[]
+): Record<string, string | null> {
+  const addressContent: Record<string, string | null> = {};
+
+  addressContent['MAC-Address'] = getValue(
+    inputs.find(i => i.label === 'MAC-Address')!
+  );
+  addressContent['APPID'] = getValue(inputs.find(i => i.label === 'APPID')!);
+  addressContent['VLAN-ID'] = getValue(
+    inputs.find(i => i.label === 'VLAN-ID')!
+  );
+  addressContent['VLAN-PRIORITY'] = getValue(
+    inputs.find(i => i.label === 'VLAN-PRIORITY')!
+  );
+
+  return addressContent;
+}
 
 describe('address', () => {
   let doc: XMLDocument;
@@ -34,7 +54,25 @@ describe('address', () => {
       const gse = doc.querySelector(
         'GSE[ldInst="CircuitBreaker_CB1"][cbName="GCB"]'
       )!;
-      const wizard = [{ title: 'title', content: renderGseSmvAddress(gse) }];
+
+      const hasInstType = Array.from(gse.querySelectorAll('Address > P')).some(
+        pType => pType.getAttribute('xsi:type')
+      );
+
+      const attributes: Record<string, string | null> = {};
+      ['MAC-Address', 'APPID', 'VLAN-ID', 'VLAN-PRIORITY'].forEach(key => {
+        if (!attributes[key])
+          attributes[key] =
+            gse.querySelector(`Address > P[type="${key}"]`)?.innerHTML.trim() ??
+            null;
+      });
+
+      const wizard = [
+        {
+          title: 'title',
+          content: contentGseWizard({ hasInstType, attributes }),
+        },
+      ];
 
       element.workflow.push(() => wizard);
       await element.requestUpdate();
@@ -55,10 +93,23 @@ describe('address', () => {
           'GSE[ldInst="CircuitBreaker_CB1"][cbName="GCB"]'
         )!;
 
+        const hasInstType = Array.from(
+          gse.querySelectorAll('Address > P')
+        ).some(pType => pType.getAttribute('xsi:type'));
+
+        const attributes: Record<string, string | null> = {};
+        ['MAC-Address', 'APPID', 'VLAN-ID', 'VLAN-PRIORITY'].forEach(key => {
+          if (!attributes[key])
+            attributes[key] =
+              gse
+                .querySelector(`Address > P[type="${key}"]`)
+                ?.innerHTML.trim() ?? null;
+        });
+
         wizard = [
           {
             title: 'asdas',
-            content: renderGseSmvAddress(gse),
+            content: contentGseWizard({ hasInstType, attributes }),
           },
         ];
         element.workflow.push(() => wizard);
@@ -68,9 +119,10 @@ describe('address', () => {
       });
 
       it('does not update a Address element when no attribute has changed', () => {
-        const actions = updateAddress(gse, inputs, false);
+        const actions = updateAddress(gse, addressContent(inputs), false);
         expect(actions).to.be.empty;
       });
+
       it('update a Address element when at least one attribute changes', async () => {
         for (const rawInput of inputs) {
           const input =
@@ -84,7 +136,8 @@ describe('address', () => {
 
           input.value = newValue;
           await input.requestUpdate();
-          const actions = updateAddress(gse, inputs, false);
+
+          const actions = updateAddress(gse, addressContent(inputs), false);
           expect(actions.length).to.equal(2);
           expect(actions[0]).to.satisfy(isDelete);
           expect(actions[1]).to.satisfy(isCreate);
@@ -101,6 +154,7 @@ describe('address', () => {
           ).to.not.have.attribute('xsi:type', `tP_${type}`);
         }
       });
+
       it('update a Address element when status of instType has changed', async () => {
         for (const rawInput of inputs) {
           const input =
@@ -114,7 +168,8 @@ describe('address', () => {
 
           input.value = newValue;
           await input.requestUpdate();
-          const actions = updateAddress(gse, inputs, true);
+
+          const actions = updateAddress(gse, addressContent(inputs), true);
           expect(actions.length).to.equal(2);
           expect(actions[0]).to.satisfy(isDelete);
           expect(actions[1]).to.satisfy(isCreate);
@@ -132,16 +187,30 @@ describe('address', () => {
         }
       });
     });
+
     describe('with missing address element', () => {
       beforeEach(async () => {
         gse = doc.querySelector(
           'GSE[ldInst="CircuitBreaker_CB1"][cbName="GCB2"]'
         )!;
 
+        const hasInstType = Array.from(
+          gse.querySelectorAll('Address > P')
+        ).some(pType => pType.getAttribute('xsi:type'));
+
+        const attributes: Record<string, string | null> = {};
+        ['MAC-Address', 'APPID', 'VLAN-ID', 'VLAN-PRIORITY'].forEach(key => {
+          if (!attributes[key])
+            attributes[key] =
+              gse
+                .querySelector(`Address > P[type="${key}"]`)
+                ?.innerHTML.trim() ?? null;
+        });
+
         wizard = [
           {
             title: 'asdas',
-            content: renderGseSmvAddress(gse),
+            content: contentGseWizard({ hasInstType, attributes }),
           },
         ];
         element.workflow.push(() => wizard);
@@ -157,12 +226,17 @@ describe('address', () => {
               ? <WizardTextField>rawInput
               : <WizardSelect>rawInput;
 
+          if (input.maybeValue === null) {
+            input.nullSwitch?.click();
+            await input.requestUpdate();
+          }
+
           const type = input.label;
           const newValue = 'newValue';
-
           input.value = newValue;
           await input.requestUpdate();
-          const actions = updateAddress(gse, inputs, false);
+
+          const actions = updateAddress(gse, addressContent(inputs), false);
           expect(actions.length).to.equal(1);
           expect(actions[0]).to.satisfy(isCreate);
           const newElement = <Element>(<Create>actions[0]).new.element;
@@ -174,6 +248,7 @@ describe('address', () => {
           ).to.not.have.attribute('xsi:type', `tP_${type}`);
         }
       });
+
       it('update a Address element when status of instType has changed', async () => {
         for (const rawInput of inputs) {
           const input =
@@ -181,12 +256,17 @@ describe('address', () => {
               ? <WizardTextField>rawInput
               : <WizardSelect>rawInput;
 
+          if (input.maybeValue === null) {
+            input.nullSwitch?.click();
+            await input.requestUpdate();
+          }
+
           const type = input.label;
           const newValue = input.value;
 
           input.value = newValue;
           await input.requestUpdate();
-          const actions = updateAddress(gse, inputs, true);
+          const actions = updateAddress(gse, addressContent(inputs), true);
           expect(actions.length).to.equal(1);
           expect(actions[0]).to.satisfy(isCreate);
           const newElement = <Element>(<Create>actions[0]).new.element;
