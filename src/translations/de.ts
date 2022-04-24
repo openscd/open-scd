@@ -544,6 +544,7 @@ export const de: Translations = {
   },
   report: {
     wizard: { location: 'Ablageort der Reports wählen' },
+    rptID: 'Report-Kontrolblock Kennung',
   },
   cleanup: {
     unreferencedDataSets: {

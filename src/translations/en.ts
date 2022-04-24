@@ -540,6 +540,7 @@ export const en = {
   },
   report: {
     wizard: { location: 'Select Report Control Location' },
+    rptID: 'Report control block identifier',
   },
   cleanup: {
     unreferencedDataSets: {
