@@ -49,7 +49,6 @@ snapshots["Wizards for SCL element SubNetwork include an edit wizard that with e
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="save"
     label="[save]"
     slot="primaryAction"
@@ -109,7 +108,6 @@ snapshots["Wizards for SCL element SubNetwork include an edit wizard that with m
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="save"
     label="[save]"
     slot="primaryAction"
@@ -167,7 +165,6 @@ snapshots["Wizards for SCL element SubNetwork include an create wizard that look
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="add"
     label="[add]"
     slot="primaryAction"

@@ -31,7 +31,6 @@ snapshots["substation-editor wizarding integration looks like the latest snapsho
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="edit"
     label="[save]"
     slot="primaryAction"

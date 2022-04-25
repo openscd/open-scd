@@ -31,7 +31,6 @@ snapshots["bay-editor wizarding integration looks like the latest snapshot"] =
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="edit"
     label="[save]"
     slot="primaryAction"

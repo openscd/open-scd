@@ -214,7 +214,6 @@ snapshots["selectExtRefWizard looks like the latest snapshot"] =
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="delete"
     label="[disconnect]"
     slot="primaryAction"

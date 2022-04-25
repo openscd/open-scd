@@ -38,7 +38,6 @@ snapshots["Wizards for SCL element Power Transformer edit existing Power Transfo
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="edit"
     label="[save]"
     slot="primaryAction"
@@ -86,7 +85,6 @@ snapshots["Wizards for SCL element Power Transformer add new Power Transformer l
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon=""
     label="[add]"
     slot="primaryAction"

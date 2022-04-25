@@ -603,7 +603,6 @@ snapshots["DAType wizards defines a createDATypeWizard looks like the latest sna
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="add"
     label="[add]"
     slot="primaryAction"
@@ -772,7 +771,6 @@ snapshots["DAType wizards defines a dATypeWizard looks like the latest snapshot"
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon=""
     label="[save]"
     slot="primaryAction"

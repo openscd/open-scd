@@ -47,7 +47,6 @@ snapshots["Wizards for SCL element SMV include an edit wizard that looks like th
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="edit"
     label="[save]"
     slot="primaryAction"

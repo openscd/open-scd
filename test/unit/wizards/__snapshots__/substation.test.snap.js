@@ -31,7 +31,6 @@ snapshots["Wizards for SCL element Substation edit existing Substation looks lik
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="edit"
     label="[save]"
     slot="primaryAction"
@@ -72,7 +71,6 @@ snapshots["Wizards for SCL element Substation add new Substation looks like the 
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="add"
     label="[add]"
     slot="primaryAction"

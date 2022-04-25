@@ -44,7 +44,6 @@ snapshots["Wizards for SCL element Bay (X/Y) looks like the latest snapshot"] =
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="edit"
     label="[save]"
     slot="primaryAction"
