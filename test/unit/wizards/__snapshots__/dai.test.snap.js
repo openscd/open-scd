@@ -25,7 +25,6 @@ snapshots["Wizards for SCL element DAI edit existing DAI looks like the latest s
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="edit"
     label="[save]"
     slot="primaryAction"

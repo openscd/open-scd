@@ -19,7 +19,6 @@ snapshots["create wizard for FCDA element with a valid SCL file looks like the l
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="add"
     label="add"
     slot="primaryAction"

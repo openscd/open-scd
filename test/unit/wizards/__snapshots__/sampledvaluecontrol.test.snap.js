@@ -186,7 +186,6 @@ snapshots["Wizards for SCL element SampledValueControl define an edit wizard tha
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="save"
     label="[save]"
     slot="primaryAction"

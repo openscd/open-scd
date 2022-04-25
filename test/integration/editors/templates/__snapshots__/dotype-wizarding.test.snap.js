@@ -706,7 +706,6 @@ snapshots["DOType wizards defines a createDOTypeWizard looks like the latest sna
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="add"
     label="[add]"
     slot="primaryAction"
@@ -1021,7 +1020,6 @@ snapshots["DOType wizards defines a dOTypeWizard looks like the latest snapshot"
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon=""
     label="[save]"
     slot="primaryAction"
@@ -1233,7 +1231,6 @@ snapshots["DOType wizards defines a sDOWizard to edit an existing SDO looks like
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon=""
     label="[save]"
     slot="primaryAction"
@@ -1419,7 +1416,6 @@ snapshots["DOType wizards defines a sDOWizard to create a new SDO element looks 
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon=""
     label="[save]"
     slot="primaryAction"

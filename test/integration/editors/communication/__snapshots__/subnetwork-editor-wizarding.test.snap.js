@@ -48,7 +48,6 @@ snapshots["subnetwork-editor wizarding integration edit/add Subnetwork wizard lo
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="save"
     label="[save]"
     slot="primaryAction"

@@ -61,7 +61,6 @@ snapshots["gsecontrol wizards selectGseControlWizard looks like the latest snaps
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="add"
     label="[GOOSE]"
     slot="primaryAction"
@@ -326,7 +325,6 @@ snapshots["gsecontrol wizards editGseControlWizard looks like the latest snapsho
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="save"
     label="[save]"
     slot="primaryAction"
@@ -560,7 +558,6 @@ snapshots["gsecontrol wizards define an create wizard that with existing Connect
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="save"
     label="[save]"
     slot="primaryAction"
@@ -627,7 +624,6 @@ snapshots["gsecontrol wizards define a wizard to select the control block refere
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon=""
     label="[next]"
     slot="primaryAction"
