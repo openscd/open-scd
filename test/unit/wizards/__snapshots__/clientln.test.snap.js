@@ -6,6 +6,7 @@ snapshots["clientln wizards createClientLnWizard looks like the latest snapshot"
   defaultaction="close"
   heading="[commmap.connectToIED]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <div
@@ -341,6 +342,7 @@ snapshots["clientln wizards selectClientLnWizard looks like the latest snapshot"
   defaultaction="close"
   heading="IED2>>CBSW> XSWI 2>ReportCb - IED1"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <filtered-list multi="">

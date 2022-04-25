@@ -6,6 +6,7 @@ snapshots["Update method for desc attributes in SEL IEDs working on SCL files co
   defaultaction="close"
   heading="Add desc"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <filtered-list multi="">
@@ -146,6 +147,7 @@ snapshots["Update method for desc attributes in SEL IEDs working on SCL files co
   defaultaction="close"
   heading="Add desc"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <filtered-list multi="">

@@ -6,6 +6,7 @@ snapshots["Wizards for SCL element Power Transformer edit existing Power Transfo
   defaultaction="close"
   heading="[powertransformer.wizard.title.edit]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <wizard-textfield
@@ -53,6 +54,7 @@ snapshots["Wizards for SCL element Power Transformer add new Power Transformer l
   defaultaction="close"
   heading="[powertransformer.wizard.title.add]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <wizard-textfield

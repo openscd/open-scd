@@ -6,6 +6,7 @@ snapshots["with no ancestors looks like the latest snapshot"] =
   defaultaction="close"
   heading="[iededitor.wizard.doTitle]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <mwc-textarea
@@ -108,6 +109,7 @@ snapshots["with a DO element looks like the latest snapshot"] =
   defaultaction="close"
   heading="[iededitor.wizard.doTitle]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <mwc-textarea
@@ -210,6 +212,7 @@ snapshots["with a DO element and DOI Element looks like the latest snapshot"] =
   defaultaction="close"
   heading="[iededitor.wizard.doTitle]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <mwc-textarea

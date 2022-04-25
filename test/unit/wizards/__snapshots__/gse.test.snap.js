@@ -6,6 +6,7 @@ snapshots["gse wizards editGseWizard looks like the latest snapshot"] =
   defaultaction="close"
   heading="[wizard.title.edit]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <mwc-formfield label="[connectedap.wizard.addschemainsttype]">

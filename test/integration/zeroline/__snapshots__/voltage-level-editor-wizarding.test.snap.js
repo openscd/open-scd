@@ -6,6 +6,7 @@ snapshots["voltage-level-editor wizarding integration looks like the latest snap
   defaultaction="close"
   heading="[voltagelevel.wizard.title.edit]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <wizard-textfield

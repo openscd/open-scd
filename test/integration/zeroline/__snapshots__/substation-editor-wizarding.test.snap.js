@@ -6,6 +6,7 @@ snapshots["substation-editor wizarding integration looks like the latest snapsho
   defaultaction="close"
   heading="[substation.wizard.title.edit]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <wizard-textfield

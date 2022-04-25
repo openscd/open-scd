@@ -6,6 +6,7 @@ snapshots["conducting-equipment-editor wizarding integration looks like the late
   defaultaction="close"
   heading="[conductingequipment.wizard.title.edit]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <mwc-select

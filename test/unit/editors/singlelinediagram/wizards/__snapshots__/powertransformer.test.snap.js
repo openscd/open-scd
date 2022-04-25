@@ -6,6 +6,7 @@ snapshots["Wizards for SCL element Power Transformer (X/Y) looks like the latest
   defaultaction="close"
   heading="[powertransformer.wizard.title.edit]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <wizard-textfield
