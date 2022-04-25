@@ -140,16 +140,12 @@ export default class CompasVersionsPlugin extends LitElement {
 
   private getCurrentVersion(): string {
     const header = this.doc.querySelector('Header');
-    return (header && header.hasAttribute('version')
-      ? header.getAttribute('version')!
-      : 'unknown');
+    return header!.getAttribute('version') ?? 'unknown';
   }
 
   private getCurrentName(): string {
     const sclName = this.doc.querySelector('SCL > Private[type="compas_scl"] > SclName');
-    return (sclName && sclName.textContent
-      ? sclName.textContent
-      : 'unknown');
+    return sclName!.textContent ?? 'unknown';
   }
 
   render(): TemplateResult {
