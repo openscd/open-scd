@@ -6,6 +6,7 @@ snapshots["Wizards for SCL element Substation edit existing Substation looks lik
   defaultaction="close"
   heading="[substation.wizard.title.edit]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <wizard-textfield
@@ -46,6 +47,7 @@ snapshots["Wizards for SCL element Substation add new Substation looks like the 
   defaultaction="close"
   heading="[substation.wizard.title.add]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <wizard-textfield

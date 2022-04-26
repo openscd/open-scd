@@ -6,6 +6,7 @@ snapshots["Wizards for SCL element Bay (X/Y) looks like the latest snapshot"] =
   defaultaction="close"
   heading="[bay.wizard.title.edit]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <wizard-textfield

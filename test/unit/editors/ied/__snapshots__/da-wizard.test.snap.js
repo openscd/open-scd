@@ -6,6 +6,7 @@ snapshots["with no ancestors looks like the latest snapshot"] =
   defaultaction="close"
   heading="[iededitor.wizard.daTitle]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <mwc-textarea
@@ -141,6 +142,7 @@ snapshots["with a DA element looks like the latest snapshot"] =
   defaultaction="close"
   heading="[iededitor.wizard.daTitle]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <mwc-textarea
@@ -276,6 +278,7 @@ snapshots["with a BDA element looks like the latest snapshot"] =
   defaultaction="close"
   heading="[iededitor.wizard.daTitle]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <mwc-textarea
@@ -411,6 +414,7 @@ snapshots["with a DA element and DAI Element looks like the latest snapshot"] =
   defaultaction="close"
   heading="[iededitor.wizard.daTitle]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <mwc-textarea

@@ -6,6 +6,7 @@ snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that f
   defaultaction="close"
   heading="[wizard.title.edit]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <mwc-formfield label="[connectedap.wizard.addschemainsttype]">
@@ -133,6 +134,7 @@ snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that f
   defaultaction="close"
   heading="[wizard.title.edit]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <mwc-formfield label="[connectedap.wizard.addschemainsttype]">
@@ -308,6 +310,7 @@ snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that f
   defaultaction="close"
   heading="[wizard.title.edit]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <mwc-formfield label="[connectedap.wizard.addschemainsttype]">
