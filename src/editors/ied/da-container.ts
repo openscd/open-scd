@@ -19,7 +19,7 @@ import { Nsdoc } from '../../foundation/nsdoc.js';
 import { wizards } from '../../wizards/wizard-library.js';
 import { DaiValidationTypes, getCustomField } from './foundation/foundation.js';
 import { createDaInfoWizard } from "./da-wizard.js";
-import { getValueElement } from './foundation.js';
+import { getInstanceDAElement, getValueElement } from './foundation.js';
 
 /** [[`IED`]] plugin subeditor for editing `(B)DA` element. */
 @customElement('da-container')
@@ -82,7 +82,7 @@ export class DAContainer extends LitElement {
     }
     return [];
   }
-  
+
   private openEditWizard(): void {
     const wizard = wizards['DAI'].edit(this.element, this.instanceElement);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
@@ -90,7 +90,6 @@ export class DAContainer extends LitElement {
 
   render(): TemplateResult {
     const bType = this.element!.getAttribute('bType');
-    const value = this.getValue() ?? '';
 
     return html`<action-pane .label="${this.header()}" icon="${this.instanceElement != null ? 'done' : ''}">
       <abbr slot="action">
@@ -101,30 +100,32 @@ export class DAContainer extends LitElement {
             createDaInfoWizard(this.element, this.instanceElement, this.ancestors, this.nsdoc)))}
         ></mwc-icon-button>
       </abbr>
-      ${bType == 'Struct' ? html`<abbr slot="action" title="${translate('iededitor.toggleChildElements')}">
-        <mwc-icon-button-toggle
-          id="toggleButton"
-          onIcon="keyboard_arrow_up"
-          offIcon="keyboard_arrow_down"
-          @click=${() => this.requestUpdate()}
-        ></mwc-icon-button-toggle>
-      </abbr>` : nothing}
-      ${this.instanceElement && getCustomField()[<DaiValidationTypes>bType] ?
-        html`<div style="display: flex; flex-direction: row;">
-          <div style="display: flex; align-items: center; flex: auto;">
-            <h4>${value}</h4>
-          </div>
-          <div style="display: flex; align-items: center;">
-            <mwc-icon-button
-              icon="edit"
-              @click=${() => this.openEditWizard()}
-            ></mwc-icon-button>
-          </div>
-        </div>` :
-        html`<h4>${value}</h4>`}
-      ${this.toggleButton?.on && bType == 'Struct' ? this.getBDAElements().map(element =>
+      ${bType == 'Struct' ?
+        html`<abbr slot="action" title="${translate('iededitor.toggleChildElements')}">
+          <mwc-icon-button-toggle
+            id="toggleButton"
+            onIcon="keyboard_arrow_up"
+            offIcon="keyboard_arrow_down"
+            @click=${() => this.requestUpdate()}
+          ></mwc-icon-button-toggle>
+        </abbr>` :
+        this.instanceElement && getCustomField()[<DaiValidationTypes>bType] ?
+          html`<div style="display: flex; flex-direction: row;">
+            <div style="display: flex; align-items: center; flex: auto;">
+              <h6>${this.getValue() ?? ''}</h6>
+            </div>
+            <div style="display: flex; align-items: center;">
+              <mwc-icon-button
+                icon="edit"
+                @click=${() => this.openEditWizard()}
+              ></mwc-icon-button>
+            </div>
+          </div>` :
+          html`<h6>${this.getValue() ?? ''}</h6>`}
+      ${this.toggleButton?.on && bType == 'Struct' ? this.getBDAElements().map(bdaElement =>
         html`<da-container
-          .element=${element}
+          .element=${bdaElement}
+          .instanceElement=${getInstanceDAElement(this.instanceElement, bdaElement)}
           .nsdoc=${this.nsdoc}
           .ancestors=${[this.element, ...this.ancestors]}
         ></da-container>`) : nothing}
@@ -133,7 +134,7 @@ export class DAContainer extends LitElement {
   }
 
   static styles = css`
-    h4 {
+    h6 {
       color: var(--mdc-theme-on-surface);
       font-family: 'Roboto', sans-serif;
       overflow: hidden;

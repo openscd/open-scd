@@ -1,3 +1,5 @@
+import { getNameAttribute } from "../../foundation.js";
+
 /**
  * Search for an element with a passed tag-name in the list of ancestors passed.
  * @param ancestors - The list of elements to search in for an LN or LN0 element.
@@ -31,6 +33,24 @@ export function findDOTypeElement(element: Element | null): Element | null {
   if (element && element.hasAttribute('type')) {
     const type = element.getAttribute('type');
     return element.closest('SCL')!.querySelector(`:root > DataTypeTemplates > DOType[id="${type}"]`);
+  }
+  return null;
+}
+
+/**
+ * Get the instance element (SDI / DAI) of a DA element (if available)
+ * @param parentInstance - The parent instance if available to search in for other instance elements.
+ * @param da             - The (B)DA object to search with.
+ * @returns The optional SDI / DAI element.
+ */
+export function getInstanceDAElement(parentInstance: Element | null, da: Element): Element | null {
+  if (parentInstance) {
+    const daName = getNameAttribute(da);
+    const bType = da.getAttribute('bType');
+    if (bType == 'Struct') {
+      return parentInstance.querySelector(`:scope > SDI[name="${daName}"]`)
+    }
+    return parentInstance.querySelector(`:scope > DAI[name="${daName}"]`)
   }
   return null;
 }
