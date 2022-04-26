@@ -56,6 +56,61 @@ snapshots["foundation getCustomField renders a BOOLEAN field correctly"] =
 `;
 /* end snapshot foundation getCustomField renders a BOOLEAN field correctly */
 
+snapshots["foundation getCustomField renders a ENUM field correctly"] = 
+`<div style="display: flex; flex-direction: row;">
+  <div style="flex: auto;">
+    <div class="mdc-select mdc-select--filled">
+      <input
+        class="formElement"
+        hidden=""
+      >
+      <div
+        aria-autocomplete="none"
+        aria-disabled="false"
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        aria-invalid="false"
+        aria-labelledby="label"
+        aria-required="false"
+        class="mdc-select__anchor"
+        role="combobox"
+        tabindex="0"
+      >
+        <span class="mdc-select__ripple">
+        </span>
+        <span
+          class="mdc-floating-label mdc-floating-label--float-above"
+          id="label"
+        >
+          val
+        </span>
+        <span class="mdc-select__selected-text-container">
+          <span class="mdc-select__selected-text">
+            blocked
+          </span>
+        </span>
+        <span class="mdc-select__dropdown-icon">
+        </span>
+        <span class="mdc-line-ripple">
+        </span>
+      </div>
+      <mwc-menu
+        activatable=""
+        class="mdc-menu mdc-menu-surface mdc-select__menu"
+        innerrole="listbox"
+        wrapfocus=""
+      >
+        <slot>
+        </slot>
+      </mwc-menu>
+    </div>
+  </div>
+  <div style="display: flex; align-items: center; height: 56px;">
+  </div>
+</div>
+`;
+/* end snapshot foundation getCustomField renders a ENUM field correctly */
+
 snapshots["foundation getCustomField renders a INT8 field correctly"] = 
 `<div style="display: flex; flex-direction: row;">
   <div style="flex: auto;">

@@ -36,10 +36,9 @@ export function renderDAIWizard(
   instanceElement?: Element
 ): TemplateResult[] {
   const bType = element.getAttribute('bType')!;
-  const value = instanceElement!.querySelector('Val')?.textContent?.trim() ?? '';
 
   return [
-    html`${getCustomField()[<DaiValidationTypes>bType].render(value)}`,
+    html`${getCustomField()[<DaiValidationTypes>bType].render(element, instanceElement)}`,
   ];
 }
 
