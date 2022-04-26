@@ -45,6 +45,7 @@ snapshots["compas-versions-plugin no-items-in-list looks like the latest snapsho
 
 snapshots["compas-versions-plugin items-in-list looks like the latest snapshot"] = 
 `<h1>
+  [compas.versions.sclInfo]
   <nav>
     <abbr title="[compas.versions.addVersionButton]">
       <mwc-icon-button icon="playlist_add">
@@ -54,6 +55,12 @@ snapshots["compas-versions-plugin items-in-list looks like the latest snapshot"]
   <nav>
     <abbr title="[compas.versions.deleteProjectButton]">
       <mwc-icon-button icon="delete_forever">
+      </mwc-icon-button>
+    </abbr>
+  </nav>
+  <nav>
+    <abbr title="[edit]">
+      <mwc-icon-button icon="edit">
       </mwc-icon-button>
     </abbr>
   </nav>

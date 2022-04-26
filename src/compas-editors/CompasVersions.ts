@@ -1,5 +1,5 @@
-import {css, html, LitElement, property, TemplateResult} from 'lit-element';
-import {get, translate} from 'lit-translate';
+import { css, html, LitElement, property, TemplateResult } from 'lit-element';
+import { get, translate } from 'lit-translate';
 
 import '@material/mwc-fab';
 import '@material/mwc-icon';
@@ -8,23 +8,30 @@ import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-list/mwc-check-list-item';
 
-import {newLogEvent, newWizardEvent, Wizard} from "../foundation.js";
-import {MultiSelectedEvent} from "@material/mwc-list/mwc-list-foundation";
+import { newLogEvent, newWizardEvent, Wizard } from "../foundation.js";
+import { MultiSelectedEvent } from "@material/mwc-list/mwc-list-foundation";
 
-import {CompasSclDataService, SDS_NAMESPACE} from "../compas-services/CompasSclDataService.js";
-import {createLogEvent} from "../compas-services/foundation.js";
+import { CompasSclDataService, SDS_NAMESPACE } from "../compas-services/CompasSclDataService.js";
+import { createLogEvent } from "../compas-services/foundation.js";
 import {
   dispatchEventOnOpenScd,
   getOpenScdElement,
   getTypeFromDocName,
   updateDocumentInOpenSCD
 } from "../compas/foundation.js";
-import {addVersionToCompasWizard} from "../compas/CompasUploadVersion.js";
-import {compareWizard} from "../compas/CompasCompareDialog.js";
-import {getElementByName, styles} from './foundation.js';
+import { addVersionToCompasWizard } from "../compas/CompasUploadVersion.js";
+import { compareWizard } from "../compas/CompasCompareDialog.js";
+import { getElementByName, styles } from './foundation.js';
+import { wizards } from "../wizards/wizard-library.js";
 
 // Save the selection for the current document.
 let selectedVersionsOnCompasVersionsEditor: Set<number> = new Set();
+// We will also add an Event Listener when a new document is opened. We then want to reset the selection.
+function resetSelection(): void {
+  // When a new document is loaded the selection will be reset.
+  selectedVersionsOnCompasVersionsEditor = new Set();
+}
+addEventListener('open-doc', resetSelection);
 
 /** An editor [[`plugin`]] for selecting the `Substation` section. */
 export default class CompasVersionsPlugin extends LitElement {
@@ -37,21 +44,6 @@ export default class CompasVersionsPlugin extends LitElement {
 
   @property()
   scls!: Element[];
-
-  constructor() {
-    super();
-
-    // Add event to get a notification when a new document is opened.
-    const openSCD = getOpenScdElement();
-    if (openSCD !== null) {
-      openSCD.addEventListener('open-doc', this.resetSelection);
-    }
-  }
-
-  resetSelection() {
-    // When a new document is loaded the selection will be reset.
-    selectedVersionsOnCompasVersionsEditor = new Set();
-  }
 
   firstUpdated(): void {
     if (!this.docId) {
@@ -141,6 +133,21 @@ export default class CompasVersionsPlugin extends LitElement {
       });
   }
 
+  private openEditWizard(): void {
+    const wizard = wizards['SCL'].edit(this.doc.documentElement);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
+
+  private getCurrentVersion(): string {
+    const header = this.doc.querySelector('Header');
+    return header!.getAttribute('version') ?? 'unknown';
+  }
+
+  private getCurrentName(): string {
+    const sclName = this.doc.querySelector('SCL > Private[type="compas_scl"] > SclName');
+    return sclName!.textContent ?? 'unknown';
+  }
+
   render(): TemplateResult {
     if (!this.scls) {
       return html `
@@ -158,6 +165,10 @@ export default class CompasVersionsPlugin extends LitElement {
     }
     return html`
       <h1>
+        ${translate('compas.versions.sclInfo',
+          { name: this.getCurrentName(),
+            version: this.getCurrentVersion()
+          })}
         <nav>
           <abbr title="${translate('compas.versions.addVersionButton')}">
             <mwc-icon-button icon="playlist_add"
@@ -174,10 +185,18 @@ export default class CompasVersionsPlugin extends LitElement {
                              }}></mwc-icon-button>
           </abbr>
         </nav>
+        <nav>
+          <abbr title="${translate('edit')}">
+            <mwc-icon-button icon="edit"
+                             @click=${() => this.openEditWizard()}></mwc-icon-button>
+          </abbr>
+        </nav>
       </h1>
       <div id="containerCompasVersions">
         <section tabindex="0">
-          <h1>${translate('compas.versions.title')}</h1>
+          <h1>
+            ${translate('compas.versions.title')}
+          </h1>
           <mwc-list multi
                     @selected=${(evt: MultiSelectedEvent) => {
                       selectedVersionsOnCompasVersionsEditor = evt.detail.index;
@@ -248,7 +267,7 @@ export default class CompasVersionsPlugin extends LitElement {
     }
 
     #containerCompasVersions {
-      padding: 8px 12px 16px;
+      padding: 16px 12px 16px 12px;
       box-sizing: border-box;
       grid-template-columns: repeat(auto-fit, minmax(316px, auto));
     }

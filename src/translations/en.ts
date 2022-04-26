@@ -616,6 +616,7 @@ export const en = {
     },
     versions: {
       title: 'CoMPAS Versions',
+      sclInfo: 'Current project - Name: {{name}}, Version: {{version}}',
       addVersionButton: 'Add version',
       confirmRestoreTitle: 'Restore version?',
       confirmRestore: 'Are you sure to restore version {{version}}?',
@@ -634,6 +635,10 @@ export const en = {
       compareCurrentButton: 'Compare version (current)',
       selectOneVersionsTitle: 'Select one version?',
       selectOneVersionsMessage: 'Select maximum one version to compare the current project against. Currently selected: {{size}}.',
+    },
+    scl: {
+      wizardTitle: 'Edit SCL',
+      filenameHelper: 'Filename used by CoMPAS when saving to a filesystem',
     },
     compare: {
       title: 'Compare version {{oldVersion}} with version {{newVersion}}',
