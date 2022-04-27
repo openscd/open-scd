@@ -285,7 +285,7 @@ snapshots["voltage-level-editor with function filter deactivated shows connected
   <function-editor>
   </function-editor>
   <div id="bayContainer">
-    <bay-editor>
+    <bay-editor showfunctions="">
     </bay-editor>
   </div>
 </action-pane>

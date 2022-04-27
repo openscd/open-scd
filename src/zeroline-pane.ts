@@ -21,7 +21,7 @@ import { gooseIcon, smvIcon, reportIcon } from './icons/icons.js';
 import { isPublic, newWizardEvent } from './foundation.js';
 import { selectGseControlWizard } from './wizards/gsecontrol.js';
 import { wizards } from './wizards/wizard-library.js';
-import { getAttachedIeds, shouldShowFunctions } from './zeroline/foundation.js';
+import { getAttachedIeds } from './zeroline/foundation.js';
 import { selectSampledValueControlWizard } from './wizards/sampledvaluecontrol.js';
 import { Settings } from './Setting.js';
 import { selectReportControlWizard } from './wizards/reportcontrol.js';
@@ -32,6 +32,10 @@ function shouldShowIEDs(): boolean {
 
 function setShowIEDs(value: Settings['showieds']) {
   localStorage.setItem('showieds', value);
+}
+
+function shouldShowFunctions(): boolean {
+  return localStorage.getItem('showfunctions') === 'on';
 }
 
 function setShowFunctions(value: 'on' | 'off') {
@@ -185,6 +189,7 @@ export class ZerolinePane extends LitElement {
                     .element=${substation}
                     .getAttachedIeds=${this.getAttachedIeds}
                     ?readonly=${this.readonly}
+                    ?showfunctions=${shouldShowFunctions()}
                   ></substation-editor>`
               )}
           </section>`

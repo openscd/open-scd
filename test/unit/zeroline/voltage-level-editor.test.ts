@@ -41,7 +41,7 @@ describe('voltage-level-editor', () => {
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
       element.element = doc.querySelector('VoltageLevel')!;
-      localStorage.setItem('showfunctions', 'on');
+      element.showfunctions = true;
       await element.requestUpdate();
     });
 

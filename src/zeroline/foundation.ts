@@ -1,11 +1,7 @@
-import { css, html, TemplateResult } from 'lit-element';
+import { css, TemplateResult } from 'lit-element';
 
 import './function-editor.js';
-import {
-  newActionEvent,
-  isPublic,
-  getChildElementsByTagName,
-} from '../foundation.js';
+import { newActionEvent, isPublic } from '../foundation.js';
 import {
   circuitBreakerIcon,
   disconnectorIcon,
@@ -18,19 +14,6 @@ import { BayEditor } from './bay-editor.js';
 import { SubstationEditor } from './substation-editor.js';
 import { VoltageLevelEditor } from './voltage-level-editor.js';
 import { typeStr } from '../wizards/conductingequipment.js';
-
-export function shouldShowFunctions(): boolean {
-  return localStorage.getItem('showfunctions') === 'on';
-}
-
-export function renderFunctions(element: Element): TemplateResult {
-  if (!shouldShowFunctions()) return html``;
-
-  const functions = getChildElementsByTagName(element, 'Function');
-  return html` ${functions.map(
-    fUnction => html`<function-editor .element=${fUnction}></function-editor>`
-  )}`;
-}
 
 function containsReference(element: Element, iedName: string): boolean {
   return Array.from(element.getElementsByTagName('LNode'))

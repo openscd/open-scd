@@ -37,7 +37,7 @@ describe('substation-editor', () => {
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
       element.element = doc.querySelector('Substation')!;
-      localStorage.setItem('showfunctions', 'on');
+      element.showfunctions = true;
       await element.requestUpdate();
     });
 

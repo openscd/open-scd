@@ -39,7 +39,7 @@ describe('bay-editor', () => {
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
       element.element = doc.querySelector('Bay')!;
-      localStorage.setItem('showfunctions', 'on');
+      element.showfunctions = true;
       await element.requestUpdate();
     });
 

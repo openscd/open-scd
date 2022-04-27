@@ -277,7 +277,7 @@ snapshots["substation-editor with function filter deactivated shows connected Fu
   </abbr>
   <function-editor>
   </function-editor>
-  <voltage-level-editor>
+  <voltage-level-editor showfunctions="">
   </voltage-level-editor>
 </action-pane>
 `;

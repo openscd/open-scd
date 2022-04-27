@@ -23,9 +23,14 @@ import {
   startMove,
   cloneSubstationElement,
   styles,
-  renderFunctions,
 } from './foundation.js';
-import { newActionEvent, newWizardEvent, SCLTag, tags } from '../foundation.js';
+import {
+  getChildElementsByTagName,
+  newActionEvent,
+  newWizardEvent,
+  SCLTag,
+  tags,
+} from '../foundation.js';
 
 import { SubstationEditor } from './substation-editor.js';
 import { emptyWizard, wizards } from '../wizards/wizard-library.js';
@@ -45,6 +50,9 @@ export class VoltageLevelEditor extends LitElement {
   element!: Element;
   @property({ type: Boolean })
   readonly = false;
+  /** Wheter `Function` and `SubFunction` are rendered */
+  @property({ type: Boolean })
+  showfunctions = false;
 
   @property()
   get voltage(): string | null {
@@ -104,6 +112,15 @@ export class VoltageLevelEditor extends LitElement {
 
   firstUpdated(): void {
     this.addMenu.anchor = <HTMLElement>this.addButton;
+  }
+
+  renderFunctions(): TemplateResult {
+    if (!this.showfunctions) return html``;
+
+    const functions = getChildElementsByTagName(this.element, 'Function');
+    return html` ${functions.map(
+      fUnction => html`<function-editor .element=${fUnction}></function-editor>`
+    )}`;
   }
 
   renderIedContainer(): TemplateResult {
@@ -194,7 +211,7 @@ export class VoltageLevelEditor extends LitElement {
           >${this.renderAddButtons()}</mwc-menu
         >
       </abbr>
-      ${this.renderIedContainer()}${renderFunctions(this.element)}
+      ${this.renderIedContainer()}${this.renderFunctions()}
       ${this.renderPowerTransformerContainer()}
       <div id="bayContainer">
         ${Array.from(this.element?.querySelectorAll(selectors.Bay) ?? []).map(
@@ -202,6 +219,7 @@ export class VoltageLevelEditor extends LitElement {
             .element=${bay}
             .getAttachedIeds=${this.getAttachedIeds}
             ?readonly=${this.readonly}
+            ?showfunctions=${this.showfunctions}
           ></bay-editor>`
         )}
       </div>
