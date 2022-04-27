@@ -27,6 +27,22 @@ export function newGOOSESelectEvent(
   });
 }
 
+export interface IEDSelectDetail {
+  ied: Element | undefined;
+}
+export type IEDSelectEvent = CustomEvent<IEDSelectDetail>;
+export function newIEDSelectEvent(
+  ied: Element | undefined,
+  eventInitDict?: CustomEventInit<IEDSelectDetail>
+): IEDSelectEvent {
+  return new CustomEvent<IEDSelectDetail>('ied-select', {
+    bubbles: true,
+    composed: true,
+    ...eventInitDict,
+    detail: { ied,  ...eventInitDict?.detail },
+  });
+}
+
 export interface IEDSubscriptionDetail {
   element: Element;
   subscribeStatus: SubscribeStatus;

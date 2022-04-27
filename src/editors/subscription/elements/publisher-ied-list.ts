@@ -13,7 +13,7 @@ import '@material/mwc-list/mwc-list-item';
 
 import '../../../filtered-list.js';
 import { compareNames, getNameAttribute } from '../../../foundation.js';
-import { styles } from '../foundation.js';
+import { newIEDSelectEvent, styles } from '../foundation.js';
 
 let selectedIed: Element | undefined;
 
@@ -35,6 +35,24 @@ export class PublisherIEDList extends LitElement {
       : [];
   }
 
+  private onIedSelect(element: Element): void {
+    selectedIed = element;
+
+    this.dispatchEvent(
+      newIEDSelectEvent(
+        selectedIed
+      )
+    );
+  }
+
+  protected firstUpdated(): void {
+    this.dispatchEvent(
+      newIEDSelectEvent(
+        selectedIed
+      )
+    );
+  }
+
   render(): TemplateResult {
     return html` <section tabindex="0">
       <h1>${translate('subscription.publisherIed.title')}</h1>
@@ -42,7 +60,10 @@ export class PublisherIEDList extends LitElement {
         ${this.ieds.map(
           ied =>
             html`
-              <mwc-list-item graphic="icon">
+              <mwc-list-item
+                @click=${() => this.onIedSelect(ied)}
+                graphic="icon"
+              >
                 <span>${getNameAttribute(ied)}</span>
                 <mwc-icon slot="graphic">developer_board</mwc-icon>
               </mwc-list-item>
