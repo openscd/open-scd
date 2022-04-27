@@ -1,7 +1,7 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../../../../src/editors/subscription/publisher-goose-list.js'
-import { PublisherGOOSEList } from '../../../../src/editors/subscription/publisher-goose-list.js';
+import '../../../../src/editors/subscription/elements/publisher-goose-list.js'
+import { PublisherGOOSEList } from '../../../../src/editors/subscription/elements/publisher-goose-list.js';
 
 describe('publisher-goose-list', () => {
   let element: PublisherGOOSEList;

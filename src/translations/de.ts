@@ -314,6 +314,9 @@ export const de: Translations = {
     publisherGoose: {
       title: 'GOOSE-Publizierer',
     },
+    publisherIed: {
+      title: 'IED-Publizierer',
+    },
     subscriberIed: {
       title: 'Verbunden mit {{ selected }}',
       subscribed: 'Verbunden',
@@ -321,6 +324,10 @@ export const de: Translations = {
       partiallySubscribed: 'Teilweise verbunden',
       noGooseMessageSelected: 'Keine GOOSE ausgewählt',
     },
+    view: {
+      byGooseView: "???",
+      byIedView: "???"
+    }
   },
   sampledvalues: {
     none: 'Keine Verbindung vorhanden',
