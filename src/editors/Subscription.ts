@@ -8,11 +8,7 @@ import './subscription/subscriber-ied-list-goose.js';
 import './subscription/elements/publisher-goose-list.js';
 import './subscription/elements/publisher-ied-list.js';
 import { translate } from 'lit-translate';
-
-enum View {
-  GOOSE,
-  IED
-}
+import { newViewEvent, View, ViewEvent } from './subscription/foundation.js';
 
 /** An editor [[`plugin`]] for subscribing IEDs to GOOSE messages using the ABB subscription method. */
 export default class SubscriptionABBPlugin extends LitElement {
@@ -23,8 +19,11 @@ export default class SubscriptionABBPlugin extends LitElement {
   @state()
   view: View = View.GOOSE;
 
-  private setView(view: View) {
-    this.view = view;
+  constructor() {
+    super();
+    this.addEventListener('view', (evt: ViewEvent) => {
+      this.view = evt.detail.view;
+    });
   }
 
   render(): TemplateResult {
@@ -35,7 +34,7 @@ export default class SubscriptionABBPlugin extends LitElement {
           checked
           name="view"
           value="goose"
-          @checked=${() => this.setView(View.GOOSE)}
+          @checked=${() => this.dispatchEvent(newViewEvent(View.GOOSE))}
         ></mwc-radio>
       </mwc-formfield>
       <mwc-formfield label="${translate('subscription.view.byIedView')}">
@@ -43,7 +42,7 @@ export default class SubscriptionABBPlugin extends LitElement {
           id="byIedRadio"
           name="view"
           value="ied"
-          @checked=${() => this.setView(View.IED)}
+          @checked=${() => this.dispatchEvent(newViewEvent(View.IED))}
         ></mwc-radio>
       </mwc-formfield>
       <div class="container">

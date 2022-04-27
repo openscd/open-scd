@@ -314,12 +314,13 @@ export const en = {
     publisherIed: {
       title: 'IED publisher',
     },
-    subscriberIed: {
+    subscriber: {
       title: 'Subscriber of {{ selected }}',
       subscribed: 'Subscribed',
       availableToSubscribe: 'Available to subscribe',
       partiallySubscribed: 'Partially subscribed',
       noGooseMessageSelected: 'No GOOSE message selected',
+      noIedSelected: 'No IED selected',
     },
     view: {
       byGooseView: "by-GOOSE view",

@@ -317,12 +317,13 @@ export const de: Translations = {
     publisherIed: {
       title: 'IED-Publizierer',
     },
-    subscriberIed: {
+    subscriber: {
       title: 'Verbunden mit {{ selected }}',
       subscribed: 'Verbunden',
       availableToSubscribe: 'Kann verbunden werden',
       partiallySubscribed: 'Teilweise verbunden',
       noGooseMessageSelected: 'Keine GOOSE ausgewählt',
+      noIedSelected: 'Keine IED ausgewählt',
     },
     view: {
       byGooseView: "???",

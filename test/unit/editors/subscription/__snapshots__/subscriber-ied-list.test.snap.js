@@ -4,7 +4,7 @@ export const snapshots = {};
 snapshots["subscriber-ied-list initially looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.subscriberIed.title]
+    [subscription.subscriber.title]
   </h1>
   <mwc-list>
     <mwc-list-item
@@ -13,7 +13,7 @@ snapshots["subscriber-ied-list initially looks like the latest snapshot"] =
       tabindex="-1"
     >
       <span>
-        [subscription.subscriberIed.noGooseMessageSelected]
+        [subscription.subscriber.noGooseMessageSelected]
       </span>
     </mwc-list-item>
   </mwc-list>
