@@ -7,12 +7,16 @@
 		</History>
 	</Header>
 	<Substation name="AA1" desc="Substation">
-        <Function name="myFunc" desc="myDesc" type="myFuncType"/>
+        <Function name="myFunc" desc="myDesc" type="myFuncType">
+			<SubFunction name="mySubFunc"/>
+		</Function>
 		<VoltageLevel name="E1" desc="Voltage Level" nomFreq="50.0" numPhases="3">
 			<Voltage unit="V" multiplier="k">110.0</Voltage>
             <Function name="voltLvName">
-                <SubFunction name="mySubFunc">
-					<SubFunction name="mySubSubFunction"/>
+                <SubFunction name="mySubFunc" desc="some string" type="some type">
+					<SubFunction name="mySubSubFunction">
+						<SubFunction name="mySubSubSubFunction"/>
+					</SubFunction>
 				</SubFunction> 
             </Function>
 			<Bay name="COUPLING_BAY" desc="Bay">
