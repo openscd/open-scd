@@ -254,6 +254,9 @@ export const en = {
         edit: 'Edit voltage level',
       },
     },
+    action: {
+      updateVoltagelevel: 'Edited voltagelevel "{{name}}"',
+    },
   },
   bay: {
     name: 'Bay',
@@ -264,6 +267,9 @@ export const en = {
         add: 'Add bay',
         edit: 'Edit bay',
       },
+    },
+    action: {
+      updateBay: 'Edited bay "{{name}}"',
     },
   },
   conductingequipment: {

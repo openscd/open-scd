@@ -257,6 +257,9 @@ export const de: Translations = {
         edit: 'Spannungsebene bearbeiten',
       },
     },
+    action: {
+      updateVoltagelevel: 'Spannungsebene "{{name}}" bearbeitet',
+    },
   },
   bay: {
     name: 'Feld',
@@ -267,6 +270,9 @@ export const de: Translations = {
         add: 'Feld hinzufügen',
         edit: 'Feld bearbeiten',
       },
+    },
+    action: {
+      updateBay: 'Feld "{{name}}" bearbeitet',
     },
   },
   conductingequipment: {

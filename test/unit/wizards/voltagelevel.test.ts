@@ -5,7 +5,7 @@ import {
   WizardInputElement,
   isCreate,
   isReplace,
-  isDelete,
+  isDelete, isSimple, ComplexAction, WizardActor,
 } from '../../../src/foundation.js';
 import {
   createAction,
@@ -13,30 +13,37 @@ import {
 } from '../../../src/wizards/voltagelevel.js';
 
 describe('VoltageLevelEditor', () => {
-  describe('with no nulled properties', () => {
-    const noOp = () => {
-      return;
-    };
-    const newWizard = (done = noOp) => {
-      const element = document.createElement('mwc-dialog');
-      element.close = done;
-      return element;
-    };
+  const noOp = () => {
+    return;
+  };
+  const newWizard = (done = noOp) => {
+    const element = document.createElement('mwc-dialog');
+    element.close = done;
+    return element;
+  };
 
-    let inputs: WizardInputElement[];
-    beforeEach(async () => {
-      inputs = await Promise.all(
-        ['name', 'desc', 'nomFreq', 'numPhases', 'Voltage'].map(
-          label =>
-            <Promise<WizardInputElement>>(
-              fixture(
-                html`<wizard-textfield label=${label}></wizard-textfield>`
-              )
+  let inputs: WizardInputElement[];
+  beforeEach(async () => {
+    inputs = await Promise.all(
+      ['name', 'desc', 'nomFreq', 'numPhases', 'Voltage'].map(
+        label =>
+          <Promise<WizardInputElement>>(
+            fixture(
+              html`<wizard-textfield label=${label}></wizard-textfield>`
             )
-        )
-      );
-    });
+          )
+      )
+    );
+  });
 
+  function getAndValidComplexAction(wizardActor: WizardActor): ComplexAction {
+    const editorActions = wizardActor(inputs, newWizard());
+    expect(editorActions.length).to.equal(1);
+    expect(editorActions[0]).to.not.satisfy(isSimple);
+    return <ComplexAction>editorActions[0];
+  }
+
+  describe('with no nulled properties', () => {
     describe('has a createAction that', () => {
       let parent: Element;
       beforeEach(() => {
@@ -64,17 +71,20 @@ describe('VoltageLevelEditor', () => {
 
         it('returns a WizardAction which returns two EditorActions', () => {
           const wizardAction = updateAction(element);
-          expect(wizardAction(inputs, newWizard()).length).to.equal(2);
+          const complexAction = getAndValidComplexAction(wizardAction);
+          expect(complexAction.actions.length).to.equal(2);
         });
 
         it('returns a WizardAction with the first returned EditorAction being an Update', () => {
           const wizardAction = updateAction(element);
-          expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isReplace);
+          const complexAction = getAndValidComplexAction(wizardAction);
+          expect(complexAction.actions[0]).to.satisfy(isReplace);
         });
 
         it('returns a WizardAction with the second returned EditorAction being a Create', () => {
           const wizardAction = updateAction(element);
-          expect(wizardAction(inputs, newWizard())[1]).to.satisfy(isCreate);
+          const complexAction = getAndValidComplexAction(wizardAction);
+          expect(complexAction.actions[1]).to.satisfy(isCreate);
         });
       });
 
@@ -91,17 +101,20 @@ describe('VoltageLevelEditor', () => {
 
         it('returns a WizardAction which returns two EditorActions', () => {
           const wizardAction = updateAction(element);
-          expect(wizardAction(inputs, newWizard()).length).to.equal(2);
+          const complexAction = getAndValidComplexAction(wizardAction);
+          expect(complexAction.actions.length).to.equal(2);
         });
 
         it('returns a WizardAction with the first returned EditorAction being an Update', () => {
           const wizardAction = updateAction(element);
-          expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isReplace);
+          const complexAction = getAndValidComplexAction(wizardAction);
+          expect(complexAction.actions[0]).to.satisfy(isReplace);
         });
 
         it('returns a WizardAction with the second returned EditorAction being a Update', () => {
           const wizardAction = updateAction(element);
-          expect(wizardAction(inputs, newWizard())[1]).to.satisfy(isReplace);
+          const complexAction = getAndValidComplexAction(wizardAction);
+          expect(complexAction.actions[1]).to.satisfy(isReplace);
         });
       });
 
@@ -118,12 +131,14 @@ describe('VoltageLevelEditor', () => {
 
         it('returns a WizardAction which returns one EditorActions', () => {
           const wizardAction = updateAction(element);
-          expect(wizardAction(inputs, newWizard()).length).to.equal(1);
+          const complexAction = getAndValidComplexAction(wizardAction);
+          expect(complexAction.actions.length).to.equal(1);
         });
 
         it('returns a WizardAction with the first returned EditorAction beeing an Update', () => {
           const wizardAction = updateAction(element);
-          expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isReplace);
+          const complexAction = getAndValidComplexAction(wizardAction);
+          expect(complexAction.actions[0]).to.satisfy(isReplace);
         });
       });
 
@@ -145,28 +160,6 @@ describe('VoltageLevelEditor', () => {
   });
 
   describe('with nulled properties', () => {
-    const noOp = () => {
-      return;
-    };
-    const newWizard = (done = noOp) => {
-      const element = document.createElement('mwc-dialog');
-      element.close = done;
-      return element;
-    };
-
-    let inputs: WizardInputElement[];
-    beforeEach(async () => {
-      inputs = await Promise.all(
-        ['name', 'desc', 'nomFreq', 'numPhases', 'Voltage'].map(
-          label =>
-            <Promise<WizardInputElement>>(
-              fixture(
-                html`<wizard-textfield label=${label}></wizard-textfield>`
-              )
-            )
-        )
-      );
-    });
 
     describe('has an updateAction that', () => {
       describe('with present child element Voltage', () => {
@@ -191,17 +184,20 @@ describe('VoltageLevelEditor', () => {
 
         it('returns a WizardAction which returns two EditorActions', () => {
           const wizardAction = updateAction(element);
-          expect(wizardAction(inputs, newWizard()).length).to.equal(2);
+          const complexAction = getAndValidComplexAction(wizardAction);
+          expect(complexAction.actions.length).to.equal(2);
         });
 
         it('returns a WizardAction with the first returned EditorAction beeing an Update', () => {
           const wizardAction = updateAction(element);
-          expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isReplace);
+          const complexAction = getAndValidComplexAction(wizardAction);
+          expect(complexAction.actions[0]).to.satisfy(isReplace);
         });
 
         it('returns a WizardAction with the second returned EditorAction beeing a Delete', () => {
           const wizardAction = updateAction(element);
-          expect(wizardAction(inputs, newWizard())[1]).to.satisfy(isDelete);
+          const complexAction = getAndValidComplexAction(wizardAction);
+          expect(complexAction.actions[1]).to.satisfy(isDelete);
         });
       });
     });

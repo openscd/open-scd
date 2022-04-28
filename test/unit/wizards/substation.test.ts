@@ -6,7 +6,7 @@ import { MockWizard } from '../../mock-wizard.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   ComplexAction,
-  isSimple, Replace,
+  isSimple,
   WizardInputElement,
 } from '../../../src/foundation.js';
 

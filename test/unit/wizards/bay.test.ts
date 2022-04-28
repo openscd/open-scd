@@ -1,10 +1,17 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
-import { WizardInputElement, isCreate, isReplace } from '../../../src/foundation.js';
+import {
+  WizardInputElement,
+  isCreate,
+  isReplace,
+  WizardActor,
+  ComplexAction,
+  isSimple
+} from '../../../src/foundation.js';
 
 import '../../../src/wizard-textfield.js';
 import { createAction } from '../../../src/wizards/bay.js';
-import { updateNamingAction } from '../../../src/wizards/foundation/actions.js';
+import { replaceNamingAttributeWithReferencesAction } from '../../../src/wizards/foundation/actions.js';
 
 describe('BayEditor', () => {
   const noOp = () => {
@@ -27,6 +34,13 @@ describe('BayEditor', () => {
       )
     );
   });
+
+  function getAndValidComplexAction(wizardActor: WizardActor): ComplexAction {
+    const editorActions = wizardActor(inputs, newWizard());
+    expect(editorActions.length).to.equal(1);
+    expect(editorActions[0]).to.not.satisfy(isSimple);
+    return <ComplexAction>editorActions[0];
+  }
 
   describe('createAction', () => {
     let parent: Element;
@@ -53,13 +67,15 @@ describe('BayEditor', () => {
     });
 
     it('returns a WizardAction which retruns one EditorAction', () => {
-      const wizardAction = updateNamingAction(element);
-      expect(wizardAction(inputs, newWizard()).length).to.equal(1);
+      const wizardAction = replaceNamingAttributeWithReferencesAction(element, 'bay.action.updateBay');
+      const complexAction = getAndValidComplexAction(wizardAction);
+      expect(complexAction.actions.length).to.equal(1);
     });
 
     it('returns a WizardAction which returns an Update EditorAction', () => {
-      const wizardAction = updateNamingAction(element);
-      expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isReplace);
+      const wizardAction = replaceNamingAttributeWithReferencesAction(element, 'bay.action.updateBay');
+      const complexAction = getAndValidComplexAction(wizardAction);
+      expect(complexAction.actions[0]).to.satisfy(isReplace);
     });
 
     describe('with no change in element Bay', () => {
@@ -73,7 +89,7 @@ describe('BayEditor', () => {
       });
 
       it('returns a WizardAction which returns empty EditorAction array', () => {
-        const wizardAction = updateNamingAction(element);
+        const wizardAction = replaceNamingAttributeWithReferencesAction(element, 'bay.action.updateBay');
         expect(wizardAction(inputs, newWizard()).length).to.equal(0);
       });
     });

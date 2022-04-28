@@ -1,6 +1,6 @@
 import {isPublic, SimpleAction} from "../../foundation.js";
 
-const referenceInfoTags = ['IED', 'Substation'] as const;
+const referenceInfoTags = ['IED', 'Substation', 'VoltageLevel', 'Bay'] as const;
 type ReferencesInfoTag = typeof referenceInfoTags[number];
 
 /*
@@ -12,41 +12,63 @@ type ReferencesInfoTag = typeof referenceInfoTags[number];
 const referenceInfos: Record<
   ReferencesInfoTag,
   {
+    queryOnDocument: boolean;
     elementQuery: string;
     attribute: string | null;
   }[]
 > = {
   IED:
     [{
+      queryOnDocument: true,
       elementQuery: `Association`,
       attribute: 'iedName'
     }, {
+      queryOnDocument: true,
       elementQuery: `ClientLN`,
       attribute: 'iedName'
     }, {
+      queryOnDocument: true,
       elementQuery: `ConnectedAP`,
       attribute: 'iedName'
     }, {
+      queryOnDocument: true,
       elementQuery: `ExtRef`,
       attribute: 'iedName'
     }, {
+      queryOnDocument: true,
       elementQuery: `KDC`,
       attribute: 'iedName'
     }, {
+      queryOnDocument: true,
       elementQuery: `LNode`,
       attribute: 'iedName'
     }, {
+      queryOnDocument: true,
       elementQuery: `GSEControl > IEDName`,
       attribute: null
     }, {
+      queryOnDocument: true,
       elementQuery: `SampledValueControl > IEDName`,
       attribute: null
     }],
   Substation:
     [{
+      queryOnDocument: true,
       elementQuery: `Terminal`,
       attribute: 'substationName'
-    }]
+    }],
+  VoltageLevel:
+    [{
+      queryOnDocument: false,
+      elementQuery: `Terminal`,
+      attribute: 'voltageLevelName'
+    }],
+  Bay:
+    [{
+      queryOnDocument: false,
+      elementQuery: `Terminal`,
+      attribute: 'bayName'
+    }],
 }
 
 function cloneElement(element: Element, attributeName: string, value: string | null): Element {
@@ -77,21 +99,28 @@ export function updateReferences(element: Element, oldValue: string | null, newV
 
   const actions: SimpleAction[] = [];
   referenceInfo.forEach(info => {
-    if (info.attribute !== null) {
-      Array.from(element.ownerDocument.querySelectorAll(`${info.elementQuery}[${info.attribute}="${oldValue}"]`))
-        .filter(isPublic)
-        .forEach(element => {
-          const newElement = cloneElement(element, info.attribute!, newValue);
-          actions.push({old: {element}, new: {element: newElement}});
-        })
-    } else {
-      Array.from(element.ownerDocument.querySelectorAll(`${info.elementQuery}`))
-        .filter(element => element.textContent === oldValue)
-        .filter(isPublic)
-        .forEach(element => {
-          const newElement = cloneElementAndTextContent(element, newValue);
-          actions.push({old: {element}, new: {element: newElement}});
-        })
+    let queryRoot: Document | Element | null = element.ownerDocument;
+    if (!info.queryOnDocument) {
+      queryRoot = element.parentElement;
+    }
+
+    if (queryRoot) {
+      if (info.attribute !== null) {
+        Array.from(queryRoot.querySelectorAll(`${info.elementQuery}[${info.attribute}="${oldValue}"]`))
+          .filter(isPublic)
+          .forEach(element => {
+            const newElement = cloneElement(element, info.attribute!, newValue);
+            actions.push({old: {element}, new: {element: newElement}});
+          })
+      } else {
+        Array.from(queryRoot.querySelectorAll(`${info.elementQuery}`))
+          .filter(element => element.textContent === oldValue)
+          .filter(isPublic)
+          .forEach(element => {
+            const newElement = cloneElementAndTextContent(element, newValue);
+            actions.push({old: {element}, new: {element: newElement}});
+          })
+      }
     }
   })
   return actions;
