@@ -1,14 +1,19 @@
 import { html, TemplateResult } from "lit-html";
 import { translate } from "lit-translate";
 
+import '@material/mwc-list/mwc-list-item';
+
 import '../../../../src/wizard-textfield.js';
 import '../../../../src/wizard-select.js';
 
 export interface CustomField {
-  render(value: string): TemplateResult;
+  render(
+    element: Element,
+    instanceElement?: Element
+  ): TemplateResult;
 }
 
-const daiValidationTypes = ['BOOLEAN', 'INT8', 'INT16', 'INT24', 'INT32', 'INT64',
+const daiValidationTypes = ['BOOLEAN', 'Enum', 'INT8', 'INT16', 'INT24', 'INT32', 'INT64',
   'INT128', 'INT8U', 'INT16U', 'INT24U', 'INT32U', 'FLOAT32', 'FLOAT64', 'VisString32', 'VisString64',
   'VisString65', 'VisString129', 'VisString255'] as const;
 export type DaiValidationTypes = typeof daiValidationTypes[number];
@@ -16,6 +21,7 @@ export type DaiValidationTypes = typeof daiValidationTypes[number];
 export function getCustomField(): Record<DaiValidationTypes, CustomField> {
   return {
     BOOLEAN: booleanField(),
+    Enum: enumField(),
     INT8: integerField('INT8', -(2**8), 2**8-1),
     INT16: integerField('INT16', -(2**16), 2**16-1),
     INT24: integerField('INT24', -(2**24), 2**24-1),
@@ -37,10 +43,10 @@ export function getCustomField(): Record<DaiValidationTypes, CustomField> {
 
   function booleanField(): CustomField {
     return {
-      render: (value: string) => {
+      render: (element: Element, instanceElement?: Element) => {
         return html`<wizard-select
           label="Val"
-          .maybeValue=${value}
+          .maybeValue=${getValue(instanceElement)}
           fixedMenuPosition
         >
           <mwc-list-item value="true">true</mwc-list-item>
@@ -50,48 +56,85 @@ export function getCustomField(): Record<DaiValidationTypes, CustomField> {
     }
   }
 
+  function enumField(): CustomField {
+    return {
+      render: (element: Element, instanceElement?: Element) => {
+        return html`<wizard-select
+          label="val"
+          .maybeValue=${getValue(instanceElement)}
+          fixedMenuPosition
+        >
+        ${getEnumValues(element).map(
+          enumValue => {
+            return html`<mwc-list-item value="${enumValue}">${enumValue}</mwc-list-item>`;
+          })}
+        </wizard-select>`;
+      }
+    }
+  }
+
   function integerField(type: string, min: number, max: number): CustomField {
     return {
-      render: (value: string) => {
+      render: (element: Element, instanceElement?: Element) => {
         return html`<wizard-textfield
           label="Val"
-          .maybeValue=${value}
+          .maybeValue=${getValue(instanceElement)}
           helper="${translate('dai.wizard.valueHelper', { type })}"
           type="number"
           min=${min}
-          max=${max}
-        ></wizard-textfield>`;
+          max=${max}>
+        </wizard-textfield>`;
       }
     }
   }
 
   function floatField(type: string, min: number, max: number): CustomField {
     return {
-      render: (value: string) => {
+      render: (element: Element, instanceElement?: Element) => {
         return html`<wizard-textfield
           label="Val"
-          .maybeValue=${value}
+          .maybeValue=${getValue(instanceElement)}
           helper="${translate('dai.wizard.valueHelper', { type })}"
           type="number"
           min=${min}
           max=${max}
-          step="0.1"
-        ></wizard-textfield>`;
+          step="0.1">
+        </wizard-textfield>`;
       }
     }
   }
 
   function stringField(type: string, maxNrOfCharacters: number): CustomField {
     return {
-      render: (value: string) => {
+      render: (element: Element, instanceElement?: Element) => {
         return html`<wizard-textfield
           label="Val"
-          .maybeValue=${value}
+          .maybeValue=${getValue(instanceElement)}
           helper="${translate('dai.wizard.valueHelper', { type })}"
           maxLength=${maxNrOfCharacters}
-          type="text"
-        ></wizard-textfield>`;
+          type="text">
+        </wizard-textfield>`;
       }
     }
+  }
+
+  function getValue(instanceElement?: Element): string {
+    return instanceElement!.querySelector('Val')?.textContent?.trim() ?? '';
+  }
+
+  function getEnumValues(element: Element): string[] {
+    const daType = element.getAttribute('type');
+    const values: string[] = [];
+
+    // No retrieve all the EnumVal Element to process these as values for the Select Element.
+    // Sort them on the attribute 'ord' and filter the ones that don't have a value.
+    Array.from(element.ownerDocument.querySelectorAll(`EnumType[id="${daType}"] > EnumVal`))
+      .filter(enumValElement => enumValElement.textContent && enumValElement.textContent !== "")
+      .sort((eve1, eve2) => parseInt(eve1.getAttribute('ord') ?? "0") - parseInt(eve2.getAttribute('ord') ?? "0"))
+      .forEach(enumValElement => {
+        values.push(enumValElement.textContent ?? '');
+      });
+
+    return values;
   }
 }
