@@ -5,7 +5,10 @@ import {
   WizardInputElement,
   isCreate,
   isReplace,
-  isDelete, isSimple, ComplexAction, WizardActor,
+  isDelete,
+  isSimple,
+  ComplexAction,
+  WizardActor,
 } from '../../../src/foundation.js';
 import {
   createAction,
