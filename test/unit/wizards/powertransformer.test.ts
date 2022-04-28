@@ -19,7 +19,7 @@ import {
   expectWizardNoUpdateAction,
   fetchDoc,
   setWizardTextFieldValue,
-} from './foundation.js';
+} from './test-support.js';
 
 describe('Wizards for SCL element Power Transformer', () => {
   let doc: XMLDocument;

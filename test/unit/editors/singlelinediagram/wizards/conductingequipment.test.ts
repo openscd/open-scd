@@ -7,7 +7,7 @@ import {
   expectWizardNoUpdateAction,
   fetchDoc,
   setWizardTextFieldValue,
-} from '../../../wizards/foundation.js';
+} from '../../../wizards/test-support.js';
 
 import { WizardTextField } from '../../../../../src/wizard-textfield.js';
 import { WizardInputElement } from '../../../../../src/foundation.js';

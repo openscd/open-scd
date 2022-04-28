@@ -18,7 +18,7 @@ import {
   fetchDoc,
   newWizard,
   setWizardTextFieldValue,
-} from './foundation.js';
+} from './test-support.js';
 import { updateNamingAttributeWithReferencesAction } from "../../../src/wizards/foundation/actions.js";
 import {
   createAction,
