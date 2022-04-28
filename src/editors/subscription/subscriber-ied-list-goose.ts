@@ -125,7 +125,54 @@ export class SubscriberIEDListGoose extends LitElement {
   }
 
   private async onIEDSelectEvent(event: IEDSelectEvent) {
-    this.currentIed = event.detail.ied;
+    this.currentIed = event.detail.ied!;
+    if (!this.currentIed) return;
+
+    this.subscribedElements = [];
+    this.availableElements = [];
+
+    const subscribedInputs = this.currentIed.querySelectorAll(`LN0 > Inputs, LN > Inputs`);
+
+    this.doc.querySelectorAll('GSEControl').forEach(control => {
+      const ied = control.closest('IED')!;
+
+      /** If no Inputs is available, it's automatically available. */
+      if (subscribedInputs.length == 0) {
+        this.availableElements.push({ element: control });
+        return;
+      }
+
+      let numberOfLinkedExtRefs = 0;
+      const dataSet = ied.querySelector(`DataSet[name="${control.getAttribute('datSet')}"]`)!;
+
+      dataSet.querySelectorAll('FCDA').forEach(fcda => {
+        subscribedInputs.forEach(inputs => {
+          if (
+            inputs.querySelector(
+              `ExtRef[iedName=${ied.getAttribute('name')}]` +
+                `${getFcdaReferences(fcda)}`
+            )
+          ) {
+            numberOfLinkedExtRefs++;
+          }
+        });
+      });
+
+      if (numberOfLinkedExtRefs == 0) {
+        this.availableElements.push({ element: control });
+        return;
+      }
+
+      if (
+        numberOfLinkedExtRefs >=
+        dataSet.querySelectorAll('FCDA').length
+      ) {
+        this.subscribedElements.push({ element: control });
+      } else {
+        this.availableElements.push({ element: control, partial: true });
+      }
+    })
+
     this.requestUpdate();
   }
 
