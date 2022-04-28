@@ -24,9 +24,9 @@ import {
   selector,
 } from '../../foundation.js';
 import {
-  newIEDSubscriptionEvent,
+  newSubscriptionEvent,
   GOOSESelectEvent,
-  IEDSubscriptionEvent,
+  SubscriptionEvent,
   styles,
   SubscribeStatus,
   IEDSelectEvent,
@@ -112,7 +112,7 @@ export class SubscriberIEDListGoose extends LitElement {
     const parentDiv = this.closest('.container');
     if (parentDiv) {
       parentDiv.addEventListener('goose-dataset', this.onGOOSEDataSetEvent);
-      parentDiv.addEventListener('ied-subscription', this.onIEDSubscriptionEvent);
+      parentDiv.addEventListener('subscription', this.onIEDSubscriptionEvent);
       parentDiv.addEventListener('ied-select', this.onIEDSelectEvent);
     }
     
@@ -248,7 +248,7 @@ export class SubscriberIEDListGoose extends LitElement {
    * When a IEDSubscriptionEvent is received, check if
    * @param event - Incoming event.
    */
-  private async onIEDSubscriptionEvent(event: IEDSubscriptionEvent) {
+  private async onIEDSubscriptionEvent(event: SubscriptionEvent) {
     switch (event.detail.subscribeStatus) {
       case SubscribeStatus.Full: {
         this.unsubscribe(event.detail.element);
@@ -390,16 +390,20 @@ export class SubscriberIEDListGoose extends LitElement {
   }
 
   renderSubscriber(status: SubscribeStatus, element: Element): TemplateResult {
+    const title = this.view == View.GOOSE
+      ? element.getAttribute('name')
+      : element.getAttribute('name') + ` (${element.closest('IED')?.getAttribute('name')})`;
+    
     return html` <mwc-list-item
       @click=${() => {
         this.dispatchEvent(
-          newIEDSubscriptionEvent(element, status ?? SubscribeStatus.None)
+          newSubscriptionEvent(element, status ?? SubscribeStatus.None)
         );
       }}
       graphic="avatar"
       hasMeta
     >
-      <span>${element.getAttribute('name')}</span>
+      <span>${title}</span>
       <mwc-icon slot="graphic"
         >${status == SubscribeStatus.Full ? html`clear` : html`add`}</mwc-icon
       >

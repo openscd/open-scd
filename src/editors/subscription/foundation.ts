@@ -67,16 +67,16 @@ export function newViewEvent(
   });
 }
 
-export interface IEDSubscriptionDetail {
+export interface SubscriptionDetail {
   element: Element;
   subscribeStatus: SubscribeStatus;
 }
-export type IEDSubscriptionEvent = CustomEvent<IEDSubscriptionDetail>;
-export function newIEDSubscriptionEvent(
+export type SubscriptionEvent = CustomEvent<SubscriptionDetail>;
+export function newSubscriptionEvent(
   element: Element,
   subscribeStatus: SubscribeStatus
-): IEDSubscriptionEvent {
-  return new CustomEvent<IEDSubscriptionDetail>('ied-subscription', {
+): SubscriptionEvent {
+  return new CustomEvent<SubscriptionDetail>('subscription', {
     bubbles: true,
     composed: true,
     detail: { element, subscribeStatus },
@@ -154,7 +154,7 @@ export const styles = css`
 declare global {
   interface ElementEventMap {
     ['goose-dataset']: GOOSESelectEvent;
-    ['ied-subscription']: IEDSubscriptionEvent;
+    ['subscription']: SubscriptionEvent;
     ['ied-select']: IEDSelectEvent;
     ['view']: ViewEvent;
   }
