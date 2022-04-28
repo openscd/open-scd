@@ -309,13 +309,14 @@ export const en = {
   subscription: {
     none: 'None',
     publisherGoose: {
-      title: 'GOOSE publisher',
+      title: 'GOOSE Publisher',
+      subscriberTitle: 'Subscriber of {{ selected }}'
     },
-    publisherIed: {
-      title: 'IED publisher',
+    subscriberGoose: {
+      title: 'GOOSE Subscriber',
+      publisherTitle: 'Publisher of GOOSE'
     },
     subscriber: {
-      title: 'Subscriber of {{ selected }}',
       subscribed: 'Subscribed',
       availableToSubscribe: 'Available to subscribe',
       partiallySubscribed: 'Partially subscribed',
@@ -323,8 +324,8 @@ export const en = {
       noIedSelected: 'No IED selected',
     },
     view: {
-      byGooseView: "by-GOOSE view",
-      byIedView: "by-IED view"
+      publisherView: "GOOSE Publisher view",
+      subscriberView: "GOOSE Subscriber view"
     }
   },
   sampledvalues: {

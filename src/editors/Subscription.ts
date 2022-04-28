@@ -1,4 +1,4 @@
-import { LitElement, html, TemplateResult, property, css, state } from 'lit-element';
+import { LitElement, html, TemplateResult, property, css } from 'lit-element';
 
 import '@material/mwc-fab';
 import '@material/mwc-radio';
@@ -10,25 +10,26 @@ import './subscription/elements/publisher-ied-list.js';
 import { translate } from 'lit-translate';
 import { newViewEvent, View, ViewEvent } from './subscription/foundation.js';
 
+/** Defining view outside the class, which makes it persistent. */
+let view: View = View.GOOSE;
+
 /** An editor [[`plugin`]] for subscribing IEDs to GOOSE messages using the ABB subscription method. */
 export default class SubscriptionABBPlugin extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property()
   doc!: XMLDocument;
 
-  @state()
-  view: View = View.GOOSE;
-
   constructor() {
     super();
     this.addEventListener('view', (evt: ViewEvent) => {
-      this.view = evt.detail.view;
+      view = evt.detail.view;
+      this.requestUpdate();
     });
   }
 
   render(): TemplateResult {
     return html`<div>
-      <mwc-formfield label="${translate('subscription.view.byGooseView')}">
+      <mwc-formfield label="${translate('subscription.view.publisherView')}">
         <mwc-radio
           id="byGooseRadio"
           checked
@@ -37,7 +38,7 @@ export default class SubscriptionABBPlugin extends LitElement {
           @checked=${() => this.dispatchEvent(newViewEvent(View.GOOSE))}
         ></mwc-radio>
       </mwc-formfield>
-      <mwc-formfield label="${translate('subscription.view.byIedView')}">
+      <mwc-formfield label="${translate('subscription.view.subscriberView')}">
         <mwc-radio
           id="byIedRadio"
           name="view"
@@ -46,7 +47,7 @@ export default class SubscriptionABBPlugin extends LitElement {
         ></mwc-radio>
       </mwc-formfield>
       <div class="container">
-        ${this.view == View.GOOSE
+        ${view == View.GOOSE
           ? html`<publisher-goose-list class="row" .doc=${this.doc}></publisher-goose-list>`
           : html`<publisher-ied-list class="row" .doc=${this.doc}></publisher-ied-list>`
         }
@@ -75,10 +76,6 @@ export default class SubscriptionABBPlugin extends LitElement {
       min-width: 300px;
       height: 100%;
       overflow-y: scroll;
-    }
-
-    mwc-formfield {
-      display: block;
     }
   `;
 }

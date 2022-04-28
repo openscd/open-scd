@@ -106,19 +106,20 @@ export class SubscriberIEDListGoose extends LitElement {
   constructor() {
     super();
     this.onGOOSEDataSetEvent = this.onGOOSEDataSetEvent.bind(this);
-    this.onIEDSubscriptionEvent = this.onIEDSubscriptionEvent.bind(this);
+    this.onSubscriptionEvent = this.onSubscriptionEvent.bind(this);
     this.onIEDSelectEvent = this.onIEDSelectEvent.bind(this);
 
     const parentDiv = this.closest('.container');
     if (parentDiv) {
       parentDiv.addEventListener('goose-dataset', this.onGOOSEDataSetEvent);
-      parentDiv.addEventListener('subscription', this.onIEDSubscriptionEvent);
+      parentDiv.addEventListener('subscription', this.onSubscriptionEvent);
       parentDiv.addEventListener('ied-select', this.onIEDSelectEvent);
     }
     
     const openScdElement = document.querySelector('open-scd');
     if (openScdElement) {
       openScdElement.addEventListener('view', (evt: ViewEvent) => {
+        this.resetElements();
         this.view = evt.detail.view;
       });
     }
@@ -128,8 +129,7 @@ export class SubscriberIEDListGoose extends LitElement {
     this.currentIed = event.detail.ied!;
     if (!this.currentIed) return;
 
-    this.subscribedElements = [];
-    this.availableElements = [];
+    this.resetElements();
 
     const subscribedInputs = this.currentIed.querySelectorAll(`LN0 > Inputs, LN > Inputs`);
 
@@ -143,9 +143,9 @@ export class SubscriberIEDListGoose extends LitElement {
       }
 
       let numberOfLinkedExtRefs = 0;
-      const dataSet = ied.querySelector(`DataSet[name="${control.getAttribute('datSet')}"]`)!;
+      this.currentDataset = ied.querySelector(`DataSet[name="${control.getAttribute('datSet')}"]`)!;
 
-      dataSet.querySelectorAll('FCDA').forEach(fcda => {
+      this.currentDataset.querySelectorAll('FCDA').forEach(fcda => {
         subscribedInputs.forEach(inputs => {
           if (
             inputs.querySelector(
@@ -165,7 +165,7 @@ export class SubscriberIEDListGoose extends LitElement {
 
       if (
         numberOfLinkedExtRefs >=
-        dataSet.querySelectorAll('FCDA').length
+        this.currentDataset.querySelectorAll('FCDA').length
       ) {
         this.subscribedElements.push({ element: control });
       } else {
@@ -188,8 +188,7 @@ export class SubscriberIEDListGoose extends LitElement {
       ?.closest('IED')
       ?.getAttribute('name');
 
-    this.subscribedElements = [];
-    this.availableElements = [];
+    this.resetElements();
 
     Array.from(this.doc.querySelectorAll(':root > IED'))
       .filter(ied => ied.getAttribute('name') != this.currentGooseIEDName)
@@ -245,10 +244,10 @@ export class SubscriberIEDListGoose extends LitElement {
   }
 
   /**
-   * When a IEDSubscriptionEvent is received, check if
+   * When a SubscriptionEvent is received, check if
    * @param event - Incoming event.
    */
-  private async onIEDSubscriptionEvent(event: SubscriptionEvent) {
+  private async onSubscriptionEvent(event: SubscriptionEvent) {
     switch (event.detail.subscribeStatus) {
       case SubscribeStatus.Full: {
         this.unsubscribe(event.detail.element);
@@ -383,6 +382,11 @@ export class SubscriberIEDListGoose extends LitElement {
     return extendedDeleteActions;
   }
 
+  private resetElements() {
+    this.subscribedElements = [];
+    this.availableElements = [];
+  }
+
   protected updated(): void {
     if (this.subscriberWrapper) {
       this.subscriberWrapper.scrollTo(0, 0);
@@ -397,7 +401,10 @@ export class SubscriberIEDListGoose extends LitElement {
     return html` <mwc-list-item
       @click=${() => {
         this.dispatchEvent(
-          newSubscriptionEvent(element, status ?? SubscribeStatus.None)
+          newSubscriptionEvent(this.view == View.GOOSE
+            ? element
+            : element.closest('IED')!,
+            status ?? SubscribeStatus.None)
         );
       }}
       graphic="avatar"
@@ -461,11 +468,13 @@ export class SubscriberIEDListGoose extends LitElement {
   renderTitle(): TemplateResult {
     const gseControlName = this.currentGseControl?.getAttribute('name') ?? undefined;
 
-    return html`<h1>${translate('subscription.subscriber.title', {
-        selected: gseControlName
-          ? this.currentGooseIEDName + ' > ' + gseControlName
-          : this.view == View.GOOSE ? 'IED' : 'GOOSE',
-      })}</h1>`;
+    return this.view == View.GOOSE
+      ? html`<h1>${translate('subscription.publisherGoose.subscriberTitle', {
+          selected: gseControlName
+            ? this.currentGooseIEDName + ' > ' + gseControlName
+            : 'GOOSE',
+        })}</h1>`
+      : html`<h1>${translate('subscription.subscriberGoose.publisherTitle')}</h1>`;
   }
 
   render(): TemplateResult {

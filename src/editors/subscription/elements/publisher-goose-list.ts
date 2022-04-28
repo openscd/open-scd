@@ -4,6 +4,7 @@ import {
   html,
   LitElement,
   property,
+  query,
   TemplateResult,
 } from 'lit-element';
 import { translate } from 'lit-translate';
@@ -18,10 +19,12 @@ import { gooseIcon } from '../../../icons/icons.js';
 
 let selectedGooseMsg: Element | undefined;
 let selectedDataSet: Element | undefined | null;
+let selectedIndex: number | undefined;
 
 function onOpenDocResetSelectedGooseMsg() {
   selectedGooseMsg = undefined;
   selectedDataSet = undefined;
+  selectedIndex = undefined;
 }
 addEventListener('open-doc', onOpenDocResetSelectedGooseMsg);
 
@@ -71,7 +74,9 @@ export class PublisherGOOSEList extends LitElement {
 
   renderGoose(element: Element): TemplateResult {
     return html`<mwc-list-item
-      @click=${() => this.onGooseSelect(element)}
+      @click=${() => {
+        this.onGooseSelect(element);
+      }}
       graphic="large"
     >
       <span>${element.getAttribute('name')}</span>

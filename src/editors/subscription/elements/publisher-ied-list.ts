@@ -55,7 +55,7 @@ export class PublisherIEDList extends LitElement {
 
   render(): TemplateResult {
     return html` <section tabindex="0">
-      <h1>${translate('subscription.publisherIed.title')}</h1>
+      <h1>${translate('subscription.subscriberGoose.title')}</h1>
       <filtered-list>
         ${this.ieds.map(
           ied =>
