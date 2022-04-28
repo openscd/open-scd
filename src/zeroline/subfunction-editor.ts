@@ -11,10 +11,10 @@ import '../action-pane.js';
 import './subfunction-editor.js';
 import { getChildElementsByTagName } from '../foundation.js';
 
-/** Pane rendering `Function` element with its children */
-@customElement('function-editor')
-export class FunctionEditor extends LitElement {
-  /** The edited `Function` element */
+/** Pane rendering `SubFunction` element with its children */
+@customElement('subfunction-editor')
+export class SubFunctionEditor extends LitElement {
+  /** The edited `SubFunction` element */
   @property({ attribute: false })
   element!: Element;
   @state()
@@ -35,11 +35,7 @@ export class FunctionEditor extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<action-pane
-      label="${this.header}"
-      icon="functions"
-      secondary
-      highlighted
+    return html`<action-pane label="${this.header}" icon="functions" secondary
       >${this.renderSubFunctions()}</action-pane
     >`;
   }
