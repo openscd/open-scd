@@ -51,7 +51,7 @@ describe('Subscription Plugin', () => {
 
     it('the list on the right will initially show the subscribed / partially subscribed / not subscribed IEDs', async () => {
       await element.updateComplete;
-      expect(
+      await expect(
         element.shadowRoot?.querySelector('subscriber-ied-list-goose')
       ).shadowDom.to.equalSnapshot();
     });
@@ -66,7 +66,7 @@ describe('Subscription Plugin', () => {
 
         (<HTMLElement>ied).click();
         await element.updateComplete;
-        expect(
+        await expect(
           element.shadowRoot?.querySelector('subscriber-ied-list-goose')
         ).shadowDom.to.equalSnapshot();
       });
@@ -82,7 +82,7 @@ describe('Subscription Plugin', () => {
 
         (<HTMLElement>ied).click();
         await element.updateComplete;
-        expect(
+        await expect(
           element.shadowRoot?.querySelector('subscriber-ied-list-goose')
         ).shadowDom.to.equalSnapshot();
       });
@@ -98,7 +98,7 @@ describe('Subscription Plugin', () => {
 
         (<HTMLElement>ied).click();
         await element.updateComplete;
-        expect(
+        await expect(
           element.shadowRoot?.querySelector('subscriber-ied-list-goose')
         ).shadowDom.to.equalSnapshot();
       });
