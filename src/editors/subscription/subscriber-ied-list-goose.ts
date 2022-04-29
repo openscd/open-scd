@@ -5,7 +5,6 @@ import {
   LitElement,
   property,
   query,
-  state,
   TemplateResult,
 } from 'lit-element';
 import { translate } from 'lit-translate';
@@ -73,6 +72,9 @@ function getFcdaReferences(elementContainingFcdaReferences: Element): string {
     .join('');
 }
 
+/** Defining view outside the class, which makes it persistent. */
+let view: View = View.GOOSE;
+
 /** An sub element for subscribing and unsubscribing IEDs to GOOSE messages. */
 @customElement('subscriber-ied-list-goose')
 export class SubscriberIEDListGoose extends LitElement {
@@ -97,9 +99,6 @@ export class SubscriberIEDListGoose extends LitElement {
   /** List holding all current avaialble Elements which are not subscribed. */
   availableElements: ListElement[] = [];
 
-  @state()
-  view: View = View.GOOSE;
-
   @query('div') subscriberWrapper!: Element;
 
   constructor() {
@@ -119,7 +118,8 @@ export class SubscriberIEDListGoose extends LitElement {
     if (openScdElement) {
       openScdElement.addEventListener('view', (evt: ViewEvent) => {
         this.resetElements();
-        this.view = evt.detail.view;
+        view = evt.detail.view;
+        this.requestUpdate();
       });
     }
   }
@@ -130,8 +130,8 @@ export class SubscriberIEDListGoose extends LitElement {
    * @param event - Incoming event.
    */
   private async onIEDSelectEvent(event: IEDSelectEvent) {
+    if (!event.detail.ied) return;
     this.currentSelectedIed = event.detail.ied!;
-    if (!this.currentSelectedIed) return;
 
     this.resetElements();
 
@@ -186,6 +186,8 @@ export class SubscriberIEDListGoose extends LitElement {
    * @param event - Incoming event.
    */
   private async onGOOSEDataSetEvent(event: GOOSESelectEvent) {
+    if (!event.detail.dataset || !event.detail.gseControl) return;
+
     this.currentSelectedGseControl = event.detail.gseControl;
     this.currentUsedDataset = event.detail.dataset;
     this.currentGooseIEDName = this.currentSelectedGseControl
@@ -254,7 +256,7 @@ export class SubscriberIEDListGoose extends LitElement {
   private async onSubscriptionEvent(event: SubscriptionEvent) {
     let elementToSubscribe = event.detail.element;
 
-    if (this.view == View.IED) {
+    if (view == View.IED) {
       const dataSetName = event.detail.element.getAttribute('datSet');
       this.currentUsedDataset = event.detail.element.parentElement?.querySelector(`DataSet[name="${dataSetName}"]`);
       this.currentGooseIEDName = event.detail.element.closest('IED')?.getAttribute('name');
@@ -415,7 +417,7 @@ export class SubscriberIEDListGoose extends LitElement {
       hasMeta
       >
       <span>${
-        this.view == View.GOOSE
+        view == View.GOOSE
         ? element.getAttribute('name')
         : element.getAttribute('name') + ` (${element.closest('IED')?.getAttribute('name')})`
       }</span>
@@ -476,13 +478,17 @@ export class SubscriberIEDListGoose extends LitElement {
   renderTitle(): TemplateResult {
     const gseControlName = this.currentSelectedGseControl?.getAttribute('name') ?? undefined;
 
-    return this.view == View.GOOSE
+    return view == View.GOOSE
       ? html`<h1>${translate('subscription.publisherGoose.subscriberTitle', {
           selected: gseControlName
             ? this.currentGooseIEDName + ' > ' + gseControlName
             : 'GOOSE',
         })}</h1>`
-      : html`<h1>${translate('subscription.subscriberGoose.publisherTitle')}</h1>`;
+      : html`<h1>${translate('subscription.subscriberGoose.publisherTitle', {
+        selected: this.currentSelectedIed
+          ? 'to ' + this.currentSelectedIed.getAttribute('name')
+          : 'of GOOSE',
+      })}</h1>`;
   }
 
   render(): TemplateResult {
@@ -504,7 +510,7 @@ export class SubscriberIEDListGoose extends LitElement {
             </div>`
           : html`<mwc-list>
               <mwc-list-item noninteractive>
-                <span>${this.view == View.GOOSE
+                <span>${view == View.GOOSE
                   ? translate('subscription.subscriber.noGooseMessageSelected')
                   : translate('subscription.subscriber.noIedSelected')}</span>
               </mwc-list-item>

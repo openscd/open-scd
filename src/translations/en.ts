@@ -314,7 +314,7 @@ export const en = {
     },
     subscriberGoose: {
       title: 'GOOSE Subscriber',
-      publisherTitle: 'Publisher of GOOSE'
+      publisherTitle: 'Publisher {{ selected }}'
     },
     subscriber: {
       subscribed: 'Subscribed',
