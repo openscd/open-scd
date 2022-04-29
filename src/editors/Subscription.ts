@@ -1,4 +1,4 @@
-import { LitElement, html, TemplateResult, property, css } from 'lit-element';
+import { LitElement, html, TemplateResult, property, css, query } from 'lit-element';
 
 import '@material/mwc-fab';
 import '@material/mwc-radio';
@@ -9,6 +9,7 @@ import './subscription/elements/publisher-goose-list.js';
 import './subscription/elements/publisher-ied-list.js';
 import { translate } from 'lit-translate';
 import { newViewEvent, View, ViewEvent } from './subscription/foundation.js';
+import { RadioListItem } from '@material/mwc-list/mwc-radio-list-item';
 
 /** Defining view outside the class, which makes it persistent. */
 let view: View = View.GOOSE;
@@ -19,6 +20,12 @@ export default class SubscriptionABBPlugin extends LitElement {
   @property()
   doc!: XMLDocument;
 
+  @query('#byGooseRadio')
+  byGooseRadio!: RadioListItem;
+
+  @query('#byIedRadio')
+  byIedRadio!: RadioListItem;
+
   constructor() {
     super();
     this.addEventListener('view', (evt: ViewEvent) => {
@@ -27,12 +34,17 @@ export default class SubscriptionABBPlugin extends LitElement {
     });
   }
 
+  protected firstUpdated(): void {
+    view == View.GOOSE
+      ? this.byGooseRadio.setAttribute('checked', '')
+      : this.byIedRadio.setAttribute('checked', '')
+  }
+
   render(): TemplateResult {
     return html`<div>
       <mwc-formfield label="${translate('subscription.view.publisherView')}">
         <mwc-radio
           id="byGooseRadio"
-          checked
           name="view"
           value="goose"
           @checked=${() => this.dispatchEvent(newViewEvent(View.GOOSE))}
