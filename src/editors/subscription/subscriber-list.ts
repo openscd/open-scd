@@ -140,6 +140,8 @@ export class SubscriberList extends LitElement {
     this.doc.querySelectorAll('GSEControl').forEach(control => {
       const ied = control.closest('IED')!;
 
+      if (ied.getAttribute('name') == this.currentSelectedIed?.getAttribute('name')) return;
+
       /** If no Inputs is available, it's automatically available. */
       if (subscribedInputs.length == 0) {
         this.availableElements.push({ element: control });
