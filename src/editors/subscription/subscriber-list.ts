@@ -76,8 +76,8 @@ function getFcdaReferences(elementContainingFcdaReferences: Element): string {
 let view: View = View.GOOSE;
 
 /** An sub element for subscribing and unsubscribing IEDs to GOOSE messages. */
-@customElement('subscriber-ied-list-goose')
-export class SubscriberIEDListGoose extends LitElement {
+@customElement('subscriber-list')
+export class SubscriberList extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
 

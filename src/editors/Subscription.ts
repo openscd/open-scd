@@ -4,9 +4,9 @@ import '@material/mwc-fab';
 import '@material/mwc-radio';
 import '@material/mwc-formfield';
 
-import './subscription/subscriber-ied-list-goose.js';
-import './subscription/elements/publisher-goose-list.js';
-import './subscription/elements/publisher-ied-list.js';
+import './subscription/subscriber-list.js';
+import './subscription/elements/goose-publisher-list.js';
+import './subscription/elements/goose-subscriber-list.js';
 import { translate } from 'lit-translate';
 import { newViewEvent, View, ViewEvent } from './subscription/foundation.js';
 import { RadioListItem } from '@material/mwc-list/mwc-radio-list-item';
@@ -34,7 +34,7 @@ export default class SubscriptionABBPlugin extends LitElement {
     });
   }
 
-  protected firstUpdated(): void {
+  firstUpdated(): void {
     view == View.GOOSE
       ? this.byGooseRadio.setAttribute('checked', '')
       : this.byIedRadio.setAttribute('checked', '')
@@ -60,13 +60,13 @@ export default class SubscriptionABBPlugin extends LitElement {
       </mwc-formfield>
       <div class="container">
         ${view == View.GOOSE
-          ? html`<publisher-goose-list class="row" .doc=${this.doc}></publisher-goose-list>`
-          : html`<publisher-ied-list class="row" .doc=${this.doc}></publisher-ied-list>`
+          ? html`<goose-publisher-list class="row" .doc=${this.doc}></goose-publisher-list>`
+          : html`<goose-subscriber-list class="row" .doc=${this.doc}></goose-subscriber-list>`
         }
-        <subscriber-ied-list-goose
+        <subscriber-list
           class="row"
           .doc=${this.doc}
-        ></subscriber-ied-list-goose>
+        ></subscriber-list>
       </div>
     </div>`;
   }

@@ -1,10 +1,10 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../../../../src/editors/subscription/elements/publisher-goose-list.js'
-import { PublisherGOOSEList } from '../../../../src/editors/subscription/elements/publisher-goose-list.js';
+import '../../../../src/editors/subscription/elements/goose-publisher-list.js'
+import { GoosePublisherList } from '../../../../src/editors/subscription/elements/goose-publisher-list.js';
 
-describe('publisher-goose-list', () => {
-  let element: PublisherGOOSEList;
+describe('goose-publisher-list', () => {
+  let element: GoosePublisherList;
   let validSCL: XMLDocument;
 
   beforeEach(async () => {
@@ -12,9 +12,9 @@ describe('publisher-goose-list', () => {
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-    element = await fixture(html`<publisher-goose-list
+    element = await fixture(html`<goose-publisher-list
       .doc=${validSCL}
-    ></publisher-goose-list>`);
+    ></goose-publisher-list>`);
   });
 
   it('looks like the latest snapshot', async () => {
@@ -22,7 +22,7 @@ describe('publisher-goose-list', () => {
   });
 
   it('looks like the latest snapshot without a doc loaded', async () => {
-    element = await fixture(html`<publisher-goose-list></publisher-goose-list>`);
+    element = await fixture(html`<goose-publisher-list></goose-publisher-list>`);
 
     await expect(element).shadowDom.to.equalSnapshot();
   });

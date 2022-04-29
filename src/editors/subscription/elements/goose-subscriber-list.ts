@@ -22,8 +22,8 @@ function onOpenDocResetSelectedGooseMsg() {
 }
 addEventListener('open-doc', onOpenDocResetSelectedGooseMsg);
 
-@customElement('publisher-ied-list')
-export class PublisherIEDList extends LitElement {
+@customElement('goose-subscriber-list')
+export class GooseSubscriberList extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
 

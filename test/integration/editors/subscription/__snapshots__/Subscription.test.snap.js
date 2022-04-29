@@ -1,7 +1,38 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Subscription Plugin initially the GOOSE list looks like the latest snapshot"] = 
+snapshots["Subscription Plugin in GOOSE Publisher view initially the plugin looks like the latest snapshot"] = 
+`<div>
+  <mwc-formfield label="[subscription.view.publisherView]">
+    <mwc-radio
+      checked=""
+      id="byGooseRadio"
+      name="view"
+      value="goose"
+    >
+    </mwc-radio>
+  </mwc-formfield>
+  <mwc-formfield label="[subscription.view.subscriberView]">
+    <mwc-radio
+      id="byIedRadio"
+      name="view"
+      value="ied"
+    >
+    </mwc-radio>
+  </mwc-formfield>
+  <div class="container">
+    <goose-publisher-list class="row">
+    </goose-publisher-list>
+    <subscriber-list class="row">
+    </subscriber-list>
+  </div>
+</div>
+<wizard-dialog>
+</wizard-dialog>
+`;
+/* end snapshot Subscription Plugin in GOOSE Publisher view initially the plugin looks like the latest snapshot */
+
+snapshots["Subscription Plugin in GOOSE Publisher view initially the GOOSE list looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
     [subscription.publisherGoose.title]
@@ -142,9 +173,9 @@ snapshots["Subscription Plugin initially the GOOSE list looks like the latest sn
   </filtered-list>
 </section>
 `;
-/* end snapshot Subscription Plugin initially the GOOSE list looks like the latest snapshot */
+/* end snapshot Subscription Plugin in GOOSE Publisher view initially the GOOSE list looks like the latest snapshot */
 
-snapshots["Subscription Plugin initially the IED list looks like the latest snapshot"] = 
+snapshots["Subscription Plugin in GOOSE Publisher view initially the IED list looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
     [subscription.publisherGoose.subscriberTitle]
@@ -162,9 +193,9 @@ snapshots["Subscription Plugin initially the IED list looks like the latest snap
   </mwc-list>
 </section>
 `;
-/* end snapshot Subscription Plugin initially the IED list looks like the latest snapshot */
+/* end snapshot Subscription Plugin in GOOSE Publisher view initially the IED list looks like the latest snapshot */
 
-snapshots["Subscription Plugin when selecting a GOOSE message the list on the right will initially show the subscribed / partially subscribed / not subscribed IEDs"] = 
+snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE message the list on the right will initially show the subscribed / partially subscribed / not subscribed IEDs"] = 
 `<section tabindex="0">
   <h1>
     [subscription.publisherGoose.subscriberTitle]
@@ -259,9 +290,9 @@ snapshots["Subscription Plugin when selecting a GOOSE message the list on the ri
   </div>
 </section>
 `;
-/* end snapshot Subscription Plugin when selecting a GOOSE message the list on the right will initially show the subscribed / partially subscribed / not subscribed IEDs */
+/* end snapshot Subscription Plugin in GOOSE Publisher view when selecting a GOOSE message the list on the right will initially show the subscribed / partially subscribed / not subscribed IEDs */
 
-snapshots["Subscription Plugin when selecting a GOOSE message and you subscribe a non-subscribed IED it looks like the latest snapshot"] = 
+snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE message and you subscribe a non-subscribed IED it looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
     [subscription.publisherGoose.subscriberTitle]
@@ -358,9 +389,9 @@ snapshots["Subscription Plugin when selecting a GOOSE message and you subscribe 
   </div>
 </section>
 `;
-/* end snapshot Subscription Plugin when selecting a GOOSE message and you subscribe a non-subscribed IED it looks like the latest snapshot */
+/* end snapshot Subscription Plugin in GOOSE Publisher view when selecting a GOOSE message and you subscribe a non-subscribed IED it looks like the latest snapshot */
 
-snapshots["Subscription Plugin when selecting a GOOSE message and you unsubscribe a subscribed IED it looks like the latest snapshot"] = 
+snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE message and you unsubscribe a subscribed IED it looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
     [subscription.publisherGoose.subscriberTitle]
@@ -457,9 +488,9 @@ snapshots["Subscription Plugin when selecting a GOOSE message and you unsubscrib
   </div>
 </section>
 `;
-/* end snapshot Subscription Plugin when selecting a GOOSE message and you unsubscribe a subscribed IED it looks like the latest snapshot */
+/* end snapshot Subscription Plugin in GOOSE Publisher view when selecting a GOOSE message and you unsubscribe a subscribed IED it looks like the latest snapshot */
 
-snapshots["Subscription Plugin when selecting a GOOSE message and you subscribe a partially subscribed IED it looks like the latest snapshot"] = 
+snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE message and you subscribe a partially subscribed IED it looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
     [subscription.publisherGoose.subscriberTitle]
@@ -556,5 +587,36 @@ snapshots["Subscription Plugin when selecting a GOOSE message and you subscribe 
   </div>
 </section>
 `;
-/* end snapshot Subscription Plugin when selecting a GOOSE message and you subscribe a partially subscribed IED it looks like the latest snapshot */
+/* end snapshot Subscription Plugin in GOOSE Publisher view when selecting a GOOSE message and you subscribe a partially subscribed IED it looks like the latest snapshot */
+
+snapshots["Subscription Plugin in GOOSE Subscriber view initially the plugin looks like the latest snapshot"] = 
+`<div>
+  <mwc-formfield label="[subscription.view.publisherView]">
+    <mwc-radio
+      id="byGooseRadio"
+      name="view"
+      value="goose"
+    >
+    </mwc-radio>
+  </mwc-formfield>
+  <mwc-formfield label="[subscription.view.subscriberView]">
+    <mwc-radio
+      checked=""
+      id="byIedRadio"
+      name="view"
+      value="ied"
+    >
+    </mwc-radio>
+  </mwc-formfield>
+  <div class="container">
+    <goose-subscriber-list class="row">
+    </goose-subscriber-list>
+    <subscriber-list class="row">
+    </subscriber-list>
+  </div>
+</div>
+<wizard-dialog>
+</wizard-dialog>
+`;
+/* end snapshot Subscription Plugin in GOOSE Subscriber view initially the plugin looks like the latest snapshot */
 
