@@ -147,7 +147,7 @@ snapshots["Subscription Plugin initially the GOOSE list looks like the latest sn
 snapshots["Subscription Plugin initially the IED list looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.subscriber.title]
+    [subscription.publisherGoose.subscriberTitle]
   </h1>
   <mwc-list>
     <mwc-list-item
@@ -167,7 +167,7 @@ snapshots["Subscription Plugin initially the IED list looks like the latest snap
 snapshots["Subscription Plugin when selecting a GOOSE message the list on the right will initially show the subscribed / partially subscribed / not subscribed IEDs"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.subscriber.title]
+    [subscription.publisherGoose.subscriberTitle]
   </h1>
   <div class="subscriberWrapper">
     <filtered-list id="subscribedIeds">
@@ -264,7 +264,7 @@ snapshots["Subscription Plugin when selecting a GOOSE message the list on the ri
 snapshots["Subscription Plugin when selecting a GOOSE message and you subscribe a non-subscribed IED it looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.subscriber.title]
+    [subscription.publisherGoose.subscriberTitle]
   </h1>
   <div class="subscriberWrapper">
     <filtered-list id="subscribedIeds">
@@ -363,7 +363,7 @@ snapshots["Subscription Plugin when selecting a GOOSE message and you subscribe 
 snapshots["Subscription Plugin when selecting a GOOSE message and you unsubscribe a subscribed IED it looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.subscriber.title]
+    [subscription.publisherGoose.subscriberTitle]
   </h1>
   <div class="subscriberWrapper">
     <filtered-list id="subscribedIeds">
@@ -462,7 +462,7 @@ snapshots["Subscription Plugin when selecting a GOOSE message and you unsubscrib
 snapshots["Subscription Plugin when selecting a GOOSE message and you subscribe a partially subscribed IED it looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.subscriber.title]
+    [subscription.publisherGoose.subscriberTitle]
   </h1>
   <div class="subscriberWrapper">
     <filtered-list id="subscribedIeds">

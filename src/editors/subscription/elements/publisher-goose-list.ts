@@ -4,7 +4,6 @@ import {
   html,
   LitElement,
   property,
-  query,
   TemplateResult,
 } from 'lit-element';
 import { translate } from 'lit-translate';
@@ -19,12 +18,10 @@ import { gooseIcon } from '../../../icons/icons.js';
 
 let selectedGooseMsg: Element | undefined;
 let selectedDataSet: Element | undefined | null;
-let selectedIndex: number | undefined;
 
 function onOpenDocResetSelectedGooseMsg() {
   selectedGooseMsg = undefined;
   selectedDataSet = undefined;
-  selectedIndex = undefined;
 }
 addEventListener('open-doc', onOpenDocResetSelectedGooseMsg);
 
@@ -55,13 +52,13 @@ export class PublisherGOOSEList extends LitElement {
     );
   }
 
-  private onGooseSelect(element: Element): void {
-    const ln = element.parentElement;
+  private onGooseSelect(gseControl: Element): void {
+    const ln = gseControl.parentElement;
     const dataset = ln?.querySelector(
-      `DataSet[name=${element.getAttribute('datSet')}]`
+      `DataSet[name=${gseControl.getAttribute('datSet')}]`
     );
 
-    selectedGooseMsg = element;
+    selectedGooseMsg = gseControl;
     selectedDataSet = dataset;
 
     this.dispatchEvent(
@@ -72,14 +69,12 @@ export class PublisherGOOSEList extends LitElement {
     );
   }
 
-  renderGoose(element: Element): TemplateResult {
+  renderGoose(gseControl: Element): TemplateResult {
     return html`<mwc-list-item
-      @click=${() => {
-        this.onGooseSelect(element);
-      }}
+      @click=${() => this.onGooseSelect(gseControl)}
       graphic="large"
     >
-      <span>${element.getAttribute('name')}</span>
+      <span>${gseControl.getAttribute('name')}</span>
       <mwc-icon slot="graphic">${gooseIcon}</mwc-icon>
     </mwc-list-item>`;
   }
@@ -105,8 +100,8 @@ export class PublisherGOOSEList extends LitElement {
                 <mwc-icon slot="graphic">developer_board</mwc-icon>
               </mwc-list-item>
               <li divider role="separator"></li>
-              ${this.getGSEControls(ied).map(control =>
-                this.renderGoose(control)
+              ${this.getGSEControls(ied).map(gseControl =>
+                this.renderGoose(gseControl)
               )}
             `
         )}
