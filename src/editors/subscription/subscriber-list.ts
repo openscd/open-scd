@@ -149,9 +149,11 @@ export class SubscriberList extends LitElement {
       }
 
       let numberOfLinkedExtRefs = 0;
-      const dataSet = ied.querySelector(`DataSet[name="${control.getAttribute('datSet')}"]`)!;
+      const dataSet = ied.querySelector(`DataSet[name="${control.getAttribute('datSet')}"]`);
 
-      dataSet.querySelectorAll('FCDA').forEach(fcda => {
+      if (!dataSet) return;
+
+      dataSet!.querySelectorAll('FCDA').forEach(fcda => {
         subscribedInputs.forEach(inputs => {
           if (
             inputs.querySelector(
@@ -171,7 +173,7 @@ export class SubscriberList extends LitElement {
 
       if (
         numberOfLinkedExtRefs >=
-        dataSet.querySelectorAll('FCDA').length
+        dataSet!.querySelectorAll('FCDA').length
       ) {
         this.subscribedElements.push({ element: control });
       } else {
