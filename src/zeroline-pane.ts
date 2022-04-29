@@ -34,6 +34,14 @@ function setShowIEDs(value: Settings['showieds']) {
   localStorage.setItem('showieds', value);
 }
 
+function shouldShowFunctions(): boolean {
+  return localStorage.getItem('showfunctions') === 'on';
+}
+
+function setShowFunctions(value: 'on' | 'off') {
+  localStorage.setItem('showfunctions', value);
+}
+
 /** [[`Zeroline`]] pane for displaying `Substation` and/or `IED` sections. */
 @customElement('zeroline-pane')
 export class ZerolinePane extends LitElement {
@@ -48,6 +56,7 @@ export class ZerolinePane extends LitElement {
 
   @query('#commmap') commmap!: IconButton;
   @query('#showieds') showieds!: IconButtonToggle;
+  @query('#showfunctions') showfunctions!: IconButtonToggle;
   @query('#gsecontrol') gsecontrol!: IconButton;
   @query('#smvcontrol') smvcontrol!: IconButton;
   @query('#reportcontrol') reportcontrol!: IconButton;
@@ -90,6 +99,12 @@ export class ZerolinePane extends LitElement {
     this.requestUpdate();
   }
 
+  toggleShowFunctions(): void {
+    if (shouldShowFunctions()) setShowFunctions('off');
+    else setShowFunctions('on');
+    this.requestUpdate();
+  }
+
   renderIedContainer(): TemplateResult {
     this.getAttachedIeds = shouldShowIEDs()
       ? getAttachedIeds(this.doc)
@@ -122,6 +137,15 @@ export class ZerolinePane extends LitElement {
               id="showieds"
               onIcon="developer_board"
               offIcon="developer_board_off"
+            ></mwc-icon-button-toggle>
+          </abbr>
+          <abbr title="${translate('zeroline.showfunctions')}">
+            <mwc-icon-button-toggle
+              ?on=${shouldShowFunctions()}
+              @click=${() => this.toggleShowFunctions()}
+              id="showfunctions"
+              onIcon="layers"
+              offIcon="layers_clear"
             ></mwc-icon-button-toggle>
           </abbr>
           <abbr title="${translate('zeroline.commmap')}">
@@ -165,6 +189,7 @@ export class ZerolinePane extends LitElement {
                     .element=${substation}
                     .getAttachedIeds=${this.getAttachedIeds}
                     ?readonly=${this.readonly}
+                    ?showfunctions=${shouldShowFunctions()}
                   ></substation-editor>`
               )}
           </section>`

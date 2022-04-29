@@ -27,11 +27,7 @@ import {
   tags,
 } from '../foundation.js';
 import { emptyWizard, wizards } from '../wizards/wizard-library.js';
-import {
-  cloneSubstationElement,
-  startMove,
-  styles,
-} from './foundation.js';
+import { cloneSubstationElement, startMove, styles } from './foundation.js';
 
 function childTags(element: Element | null | undefined): SCLTag[] {
   if (!element) return [];
@@ -48,6 +44,9 @@ export class BayEditor extends LitElement {
   element!: Element;
   @property({ type: Boolean })
   readonly = false;
+  /** Wheter `Function` and `SubFunction` are rendered */
+  @property({ type: Boolean })
+  showfunctions = false;
 
   @property({ type: String })
   get header(): string {
@@ -97,6 +96,15 @@ export class BayEditor extends LitElement {
 
   firstUpdated(): void {
     this.addMenu.anchor = <HTMLElement>this.addButton;
+  }
+
+  renderFunctions(): TemplateResult {
+    if (!this.showfunctions) return html``;
+
+    const functions = getChildElementsByTagName(this.element, 'Function');
+    return html` ${functions.map(
+      fUnction => html`<function-editor .element=${fUnction}></function-editor>`
+    )}`;
   }
 
   renderIedContainer(): TemplateResult {
@@ -168,13 +176,15 @@ export class BayEditor extends LitElement {
           >${this.renderAddButtons()}</mwc-menu
         >
       </abbr>
-      ${this.renderIedContainer()}
+      ${this.renderIedContainer()} ${this.renderFunctions()}
       <div id="ceContainer">
         ${Array.from(
           getChildElementsByTagName(this.element, 'PowerTransformer')
         ).map(
           pwt =>
-            html`<powertransformer-editor .element=${pwt}></powertransformer-editor>`
+            html`<powertransformer-editor
+              .element=${pwt}
+            ></powertransformer-editor>`
         )}
         ${Array.from(
           getChildElementsByTagName(this.element, 'ConductingEquipment')

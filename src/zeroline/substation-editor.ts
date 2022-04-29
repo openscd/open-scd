@@ -18,7 +18,13 @@ import '../action-pane.js';
 import './ied-editor.js';
 import './powertransformer-editor.js';
 import './voltage-level-editor.js';
-import { newActionEvent, newWizardEvent, SCLTag, tags } from '../foundation.js';
+import {
+  getChildElementsByTagName,
+  newActionEvent,
+  newWizardEvent,
+  SCLTag,
+  tags,
+} from '../foundation.js';
 import { emptyWizard, wizards } from '../wizards/wizard-library.js';
 import {
   cloneSubstationElement,
@@ -43,6 +49,9 @@ export class SubstationEditor extends LitElement {
   element!: Element;
   @property({ type: Boolean })
   readonly = false;
+  /** Wheter `Function` and `SubFunction` are rendered */
+  @property({ type: Boolean })
+  showfunctions = false;
 
   @property({ type: String })
   get header(): string {
@@ -95,6 +104,15 @@ export class SubstationEditor extends LitElement {
     this.addMenu.anchor = <HTMLElement>this.addButton;
   }
 
+  renderFunctions(): TemplateResult {
+    if (!this.showfunctions) return html``;
+
+    const functions = getChildElementsByTagName(this.element, 'Function');
+    return html` ${functions.map(
+      fUnction => html`<function-editor .element=${fUnction}></function-editor>`
+    )}`;
+  }
+
   renderIedContainer(): TemplateResult {
     const ieds = this.getAttachedIeds?.(this.element) ?? [];
     return ieds?.length
@@ -105,11 +123,20 @@ export class SubstationEditor extends LitElement {
   }
 
   renderPowerTransformerContainer(): TemplateResult {
-    const pwts = Array.from(this.element?.querySelectorAll(selectors.Substation + ' > PowerTransformer') ?? []);
+    const pwts = Array.from(
+      this.element?.querySelectorAll(
+        selectors.Substation + ' > PowerTransformer'
+      ) ?? []
+    );
     return pwts?.length
       ? html`<div id="powertransformercontainer">
-        ${pwts.map(pwt => html`<powertransformer-editor .element=${pwt}></powertransformer-editor>`)}
-      </div>`
+          ${pwts.map(
+            pwt =>
+              html`<powertransformer-editor
+                .element=${pwt}
+              ></powertransformer-editor>`
+          )}
+        </div>`
       : html``;
   }
 
@@ -173,7 +200,7 @@ export class SubstationEditor extends LitElement {
           >${this.renderAddButtons()}</mwc-menu
         >
       </abbr>
-      ${this.renderIedContainer()}
+      ${this.renderIedContainer()}${this.renderFunctions()}
       ${this.renderPowerTransformerContainer()}
       ${Array.from(this.element.querySelectorAll(selectors.VoltageLevel)).map(
         voltageLevel =>
@@ -181,6 +208,7 @@ export class SubstationEditor extends LitElement {
             .element=${voltageLevel}
             .getAttachedIeds=${this.getAttachedIeds}
             ?readonly=${this.readonly}
+            ?showfunctions=${this.showfunctions}
           ></voltage-level-editor>`
       )}</action-pane
     >`;
