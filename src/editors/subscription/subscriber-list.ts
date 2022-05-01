@@ -20,6 +20,7 @@ import {
   Delete,
   identity,
   newActionEvent,
+  newWizardEvent,
   selector,
 } from '../../foundation.js';
 import {
@@ -32,6 +33,7 @@ import {
   View,
   ViewEvent,
 } from './foundation.js';
+import { wizards } from '../../wizards/wizard-library.js';
 
 /**
  * An element within this list has 2 properties:
@@ -279,6 +281,9 @@ export class SubscriberList extends LitElement {
   private async onViewChange(event: ViewEvent) {
     view = event.detail.view;
 
+    this.currentSelectedIed = undefined;
+    this.currentSelectedGseControl = undefined;
+    
     this.resetElements();
     this.requestUpdate();
   }
@@ -483,16 +488,41 @@ export class SubscriberList extends LitElement {
     const gseControlName = this.currentSelectedGseControl?.getAttribute('name') ?? undefined;
 
     return view == View.GOOSE
-      ? html`<h1>${translate('subscription.publisherGoose.subscriberTitle', {
-          selected: gseControlName
-            ? this.currentGooseIEDName + ' > ' + gseControlName
-            : 'GOOSE',
-        })}</h1>`
-      : html`<h1>${translate('subscription.subscriberGoose.publisherTitle', {
-        selected: this.currentSelectedIed
-          ? 'to ' + this.currentSelectedIed.getAttribute('name')
-          : 'of GOOSE',
-      })}</h1>`;
+      ? html`<h1>
+          ${translate('subscription.publisherGoose.subscriberTitle', {
+            selected: gseControlName
+              ? this.currentGooseIEDName + ' > ' + gseControlName
+              : 'GOOSE',
+          })}
+          ${this.renderEditButton()}
+        </h1>`
+      : html`<h1>
+          ${translate('subscription.subscriberGoose.publisherTitle', {
+            selected: this.currentSelectedIed
+              ? 'to ' + this.currentSelectedIed.getAttribute('name')
+              : 'of GOOSE',
+          })}
+          ${this.renderEditButton()}
+        </h1>`;
+  }
+
+  private renderEditButton(): TemplateResult | undefined {
+    return this.currentSelectedIed || this.currentSelectedGseControl
+      ? html`<abbr slot="action" title="${translate('edit')}">
+        <mwc-icon-button
+          icon="edit"
+          @click=${() => this.openEditWizard()}
+        ></mwc-icon-button>
+      </abbr>`
+      : undefined;
+  }
+  
+  private openEditWizard(): void {
+    const wizard = view == View.GOOSE
+      ? wizards['GSEControl'].edit(this.currentSelectedGseControl!)
+      : wizards['IED'].edit(this.currentSelectedIed!);
+
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
   render(): TemplateResult {
