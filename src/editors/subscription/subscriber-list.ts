@@ -106,21 +106,14 @@ export class SubscriberList extends LitElement {
     this.onGOOSEDataSetEvent = this.onGOOSEDataSetEvent.bind(this);
     this.onSubscriptionEvent = this.onSubscriptionEvent.bind(this);
     this.onIEDSelectEvent = this.onIEDSelectEvent.bind(this);
+    this.onViewChange = this.onViewChange.bind(this);
 
     const parentDiv = this.closest('.container');
     if (parentDiv) {
       parentDiv.addEventListener('goose-dataset', this.onGOOSEDataSetEvent);
       parentDiv.addEventListener('subscription', this.onSubscriptionEvent);
       parentDiv.addEventListener('ied-select', this.onIEDSelectEvent);
-    }
-    
-    const openScdElement = document.querySelector('open-scd');
-    if (openScdElement) {
-      openScdElement.addEventListener('view', (evt: ViewEvent) => {
-        this.resetElements();
-        view = evt.detail.view;
-        this.requestUpdate();
-      });
+      parentDiv.addEventListener('view', this.onViewChange);
     }
   }
 
@@ -281,6 +274,13 @@ export class SubscriberList extends LitElement {
         break;
       }
     }
+  }
+
+  private async onViewChange(event: ViewEvent) {
+    view = event.detail.view;
+
+    this.resetElements();
+    this.requestUpdate();
   }
 
   /**

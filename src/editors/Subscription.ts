@@ -26,6 +26,9 @@ export default class SubscriptionABBPlugin extends LitElement {
   @query('#byIedRadio')
   byIedRadio!: RadioListItem;
 
+  @query('div[class="container"]')
+  listDiv!: Element;
+
   constructor() {
     super();
     this.addEventListener('view', (evt: ViewEvent) => {
@@ -47,7 +50,7 @@ export default class SubscriptionABBPlugin extends LitElement {
           id="byGooseRadio"
           name="view"
           value="goose"
-          @checked=${() => this.dispatchEvent(newViewEvent(View.GOOSE))}
+          @checked=${() => this.listDiv.dispatchEvent(newViewEvent(View.GOOSE))}
         ></mwc-radio>
       </mwc-formfield>
       <mwc-formfield label="${translate('subscription.view.subscriberView')}">
@@ -55,7 +58,7 @@ export default class SubscriptionABBPlugin extends LitElement {
           id="byIedRadio"
           name="view"
           value="ied"
-          @checked=${() => this.dispatchEvent(newViewEvent(View.IED))}
+          @checked=${() => this.listDiv.dispatchEvent(newViewEvent(View.IED))}
         ></mwc-radio>
       </mwc-formfield>
       <div class="container">
