@@ -13,8 +13,8 @@ export enum SubscribeStatus {
  * Enumeration stating the current view of the Subscription plugin.
  */
 export enum View {
-  GOOSE,
-  IED
+  GOOSE_PUBLISHER,
+  GOOSE_SUBSCRIBER
 }
 
 export interface GOOSESelectDetail {
