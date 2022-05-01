@@ -44,18 +44,20 @@ describe('Subscription Plugin', () => {
     });
 
     describe('when selecting a GOOSE message', () => {
+      let goose: HTMLElement;
+
       beforeEach(async () => {
-        const gseMsg = Array.from(
+        goose = Array.from(
           element.shadowRoot
             ?.querySelector('goose-publisher-list')
             ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
         ).filter(item => !item.noninteractive)[2];
 
-        (<HTMLElement>gseMsg).click();
+        (<HTMLElement>goose).click();
+        await element.updateComplete;
       });
 
       it('the list on the right will initially show the subscribed / partially subscribed / not subscribed IEDs', async () => {
-        await element.updateComplete;
         await expect(
           element.shadowRoot?.querySelector('subscriber-list')
         ).shadowDom.to.equalSnapshot();
@@ -71,6 +73,11 @@ describe('Subscription Plugin', () => {
 
           (<HTMLElement>ied).click();
           await element.updateComplete;
+
+          // Re select the GOOSE
+          (<HTMLElement>goose).click();
+          await element.updateComplete;
+
           await expect(
             element.shadowRoot?.querySelector('subscriber-list')
           ).shadowDom.to.equalSnapshot();
@@ -87,6 +94,11 @@ describe('Subscription Plugin', () => {
 
           (<HTMLElement>ied).click();
           await element.updateComplete;
+
+          // Re select the GOOSE
+          (<HTMLElement>goose).click();
+          await element.updateComplete;
+
           await expect(
             element.shadowRoot?.querySelector('subscriber-list')
           ).shadowDom.to.equalSnapshot();
@@ -103,6 +115,11 @@ describe('Subscription Plugin', () => {
 
           (<HTMLElement>ied).click();
           await element.updateComplete;
+
+          // Re select the GOOSE
+          (<HTMLElement>goose).click();
+          await element.updateComplete;
+
           await expect(
             element.shadowRoot?.querySelector('subscriber-list')
           ).shadowDom.to.equalSnapshot();
@@ -124,71 +141,102 @@ describe('Subscription Plugin', () => {
       });
     });
 
-    // describe('when selecting an IED', () => {
-    //   beforeEach(async () => {
-    //     const iedMsg = Array.from(
-    //       element.shadowRoot
-    //         ?.querySelector('goose-subscriber-list')
-    //         ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
-    //     ).filter(item => !item.noninteractive)[2];
+    describe('when selecting an IED', () => {
+      let ied: HTMLElement;
 
-    //     (<HTMLElement>iedMsg).click();
-    //     await element.updateComplete;
-    //   });
+      beforeEach(async () => {
+        // Selecting one of the IEDs
+        ied = Array.from(
+          element.shadowRoot
+            ?.querySelector('goose-subscriber-list')
+            ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
+        ).filter(item => !item.noninteractive)[1];
 
-    //   it('the list on the right will initially show the subscribed / partially subscribed / not subscribed IEDs', async () => {
-    //     // await expect(
-    //     //   element.shadowRoot?.querySelector('subscriber-list')
-    //     // ).shadowDom.to.equalSnapshot();
-    //   });
+        (<HTMLElement>ied).click();
+        await element.updateComplete;
+      });
 
-    //   // describe('and you subscribe a non-subscribed IED', () => {
-    //   //   it('it looks like the latest snapshot', async () => {
-    //   //     const ied = Array.from(
-    //   //       element.shadowRoot
-    //   //         ?.querySelector('subscriber-list')
-    //   //         ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
-    //   //     ).filter(item => !item.noninteractive)[2];
+      it('the list on the right will initially show the subscribed / partially subscribed / not subscribed IEDs', async () => {
+        await expect(
+          element.shadowRoot?.querySelector('subscriber-list')
+        ).shadowDom.to.equalSnapshot();
+      });
 
-    //   //     (<HTMLElement>ied).click();
-    //   //     await element.updateComplete;
-    //   //     await expect(
-    //   //       element.shadowRoot?.querySelector('subscriber-list')
-    //   //     ).shadowDom.to.equalSnapshot();
-    //   //   });
-    //   // });
+      describe('and you subscribe a non-subscribed GOOSE message', () => {
+        it('it looks like the latest snapshot', async () => {
+          const goose = Array.from(
+            element.shadowRoot
+              ?.querySelector('subscriber-list')
+              ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
+          ).filter(item => !item.noninteractive)[1];
 
-    //   // describe('and you unsubscribe a subscribed IED', () => {
-    //   //   it('it looks like the latest snapshot', async () => {
-    //   //     const ied = Array.from(
-    //   //       element.shadowRoot
-    //   //         ?.querySelector('subscriber-list')
-    //   //         ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
-    //   //     ).filter(item => !item.noninteractive)[1];
+          (<HTMLElement>goose).click();
+          await element.updateComplete;
 
-    //   //     (<HTMLElement>ied).click();
-    //   //     await element.updateComplete;
-    //   //     await expect(
-    //   //       element.shadowRoot?.querySelector('subscriber-list')
-    //   //     ).shadowDom.to.equalSnapshot();
-    //   //   });
-    //   // });
+          // Re select the IED
+          (<HTMLElement>ied).click();
+          await element.updateComplete;
 
-    //   // describe('and you subscribe a partially subscribed IED', () => {
-    //   //   it('it looks like the latest snapshot', async () => {
-    //   //     const ied = Array.from(
-    //   //       element.shadowRoot
-    //   //         ?.querySelector('subscriber-list')
-    //   //         ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
-    //   //     ).filter(item => !item.noninteractive)[1];
+          await expect(
+            element.shadowRoot?.querySelector('subscriber-list')
+          ).shadowDom.to.equalSnapshot();
+        });
+      });
 
-    //   //     (<HTMLElement>ied).click();
-    //   //     await element.updateComplete;
-    //   //     await expect(
-    //   //       element.shadowRoot?.querySelector('subscriber-list')
-    //   //     ).shadowDom.to.equalSnapshot();
-    //   //   });
-    //   // });
-    // });
+      describe('and you unsubscribe a subscribed GOOSE message', () => {
+        it('it looks like the latest snapshot', async () => {
+          let goose = Array.from(
+            element.shadowRoot
+              ?.querySelector('subscriber-list')
+              ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
+          ).filter(item => !item.noninteractive)[1];
+
+          (<HTMLElement>goose).click();
+          await element.updateComplete;
+
+          // Re select the IED
+          (<HTMLElement>ied).click();
+          await element.updateComplete;
+
+          goose = Array.from(
+            element.shadowRoot
+              ?.querySelector('subscriber-list')
+              ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
+          ).filter(item => !item.noninteractive)[0];
+
+          (<HTMLElement>goose).click();
+          await element.updateComplete;
+
+          // Re select the IED
+          (<HTMLElement>ied).click();
+          await element.updateComplete;
+
+          await expect(
+            element.shadowRoot?.querySelector('subscriber-list')
+          ).shadowDom.to.equalSnapshot();
+        });
+      });
+
+      describe('and you subscribe a partially subscribed GOOSE message', () => {
+        it('it looks like the latest snapshot', async () => {
+          const goose = Array.from(
+            element.shadowRoot
+              ?.querySelector('subscriber-list')
+              ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
+          ).filter(item => !item.noninteractive)[0];
+
+          (<HTMLElement>goose).click();
+          await element.updateComplete;
+
+          // Re select the IED
+          (<HTMLElement>ied).click();
+          await element.updateComplete;
+
+          await expect(
+            element.shadowRoot?.querySelector('subscriber-list')
+          ).shadowDom.to.equalSnapshot();
+        });
+      });
+    });
   });
 });
