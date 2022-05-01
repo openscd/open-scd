@@ -199,6 +199,13 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
 `<section tabindex="0">
   <h1>
     [subscription.publisherGoose.subscriberTitle]
+    <abbr
+      slot="action"
+      title="[edit]"
+    >
+      <mwc-icon-button icon="edit">
+      </mwc-icon-button>
+    </abbr>
   </h1>
   <div class="subscriberWrapper">
     <filtered-list id="subscribedIeds">
@@ -296,6 +303,13 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
 `<section tabindex="0">
   <h1>
     [subscription.publisherGoose.subscriberTitle]
+    <abbr
+      slot="action"
+      title="[edit]"
+    >
+      <mwc-icon-button icon="edit">
+      </mwc-icon-button>
+    </abbr>
   </h1>
   <div class="subscriberWrapper">
     <filtered-list id="subscribedIeds">
@@ -399,6 +413,13 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
 `<section tabindex="0">
   <h1>
     [subscription.publisherGoose.subscriberTitle]
+    <abbr
+      slot="action"
+      title="[edit]"
+    >
+      <mwc-icon-button icon="edit">
+      </mwc-icon-button>
+    </abbr>
   </h1>
   <div class="subscriberWrapper">
     <filtered-list id="subscribedIeds">
@@ -502,6 +523,13 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
 `<section tabindex="0">
   <h1>
     [subscription.publisherGoose.subscriberTitle]
+    <abbr
+      slot="action"
+      title="[edit]"
+    >
+      <mwc-icon-button icon="edit">
+      </mwc-icon-button>
+    </abbr>
   </h1>
   <div class="subscriberWrapper">
     <filtered-list id="subscribedIeds">
@@ -636,6 +664,13 @@ snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED th
 `<section tabindex="0">
   <h1>
     [subscription.subscriberGoose.publisherTitle]
+    <abbr
+      slot="action"
+      title="[edit]"
+    >
+      <mwc-icon-button icon="edit">
+      </mwc-icon-button>
+    </abbr>
   </h1>
   <div class="subscriberWrapper">
     <filtered-list id="subscribedIeds">
@@ -729,6 +764,13 @@ snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED an
 `<section tabindex="0">
   <h1>
     [subscription.subscriberGoose.publisherTitle]
+    <abbr
+      slot="action"
+      title="[edit]"
+    >
+      <mwc-icon-button icon="edit">
+      </mwc-icon-button>
+    </abbr>
   </h1>
   <div class="subscriberWrapper">
     <filtered-list id="subscribedIeds">
@@ -818,6 +860,13 @@ snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED an
 `<section tabindex="0">
   <h1>
     [subscription.subscriberGoose.publisherTitle]
+    <abbr
+      slot="action"
+      title="[edit]"
+    >
+      <mwc-icon-button icon="edit">
+      </mwc-icon-button>
+    </abbr>
   </h1>
   <div class="subscriberWrapper">
     <filtered-list id="subscribedIeds">
@@ -908,6 +957,13 @@ snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED an
 `<section tabindex="0">
   <h1>
     [subscription.subscriberGoose.publisherTitle]
+    <abbr
+      slot="action"
+      title="[edit]"
+    >
+      <mwc-icon-button icon="edit">
+      </mwc-icon-button>
+    </abbr>
   </h1>
   <div class="subscriberWrapper">
     <filtered-list id="subscribedIeds">

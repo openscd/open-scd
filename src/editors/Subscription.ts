@@ -12,7 +12,7 @@ import { newViewEvent, View, ViewEvent } from './subscription/foundation.js';
 import { RadioListItem } from '@material/mwc-list/mwc-radio-list-item';
 
 /** Defining view outside the class, which makes it persistent. */
-let view: View = View.GOOSE;
+let view: View = View.GOOSE_PUBLISHER;
 
 /** An editor [[`plugin`]] for subscribing IEDs to GOOSE messages using the ABB subscription method. */
 export default class SubscriptionABBPlugin extends LitElement {
@@ -38,7 +38,7 @@ export default class SubscriptionABBPlugin extends LitElement {
   }
 
   firstUpdated(): void {
-    view == View.GOOSE
+    view == View.GOOSE_PUBLISHER
       ? this.byGooseRadio.setAttribute('checked', '')
       : this.byIedRadio.setAttribute('checked', '')
   }
@@ -50,7 +50,7 @@ export default class SubscriptionABBPlugin extends LitElement {
           id="byGooseRadio"
           name="view"
           value="goose"
-          @checked=${() => this.listDiv.dispatchEvent(newViewEvent(View.GOOSE))}
+          @checked=${() => this.listDiv.dispatchEvent(newViewEvent(View.GOOSE_PUBLISHER))}
         ></mwc-radio>
       </mwc-formfield>
       <mwc-formfield label="${translate('subscription.view.subscriberView')}">
@@ -58,11 +58,11 @@ export default class SubscriptionABBPlugin extends LitElement {
           id="byIedRadio"
           name="view"
           value="ied"
-          @checked=${() => this.listDiv.dispatchEvent(newViewEvent(View.IED))}
+          @checked=${() => this.listDiv.dispatchEvent(newViewEvent(View.GOOSE_SUBSCRIBER))}
         ></mwc-radio>
       </mwc-formfield>
       <div class="container">
-        ${view == View.GOOSE
+        ${view == View.GOOSE_PUBLISHER
           ? html`<goose-publisher-list class="row" .doc=${this.doc}></goose-publisher-list>`
           : html`<goose-subscriber-list class="row" .doc=${this.doc}></goose-subscriber-list>`
         }
