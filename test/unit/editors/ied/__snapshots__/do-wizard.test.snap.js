@@ -98,6 +98,7 @@ snapshots["with no ancestors looks like the latest snapshot"] =
     icon=""
     label="[close]"
     slot="secondaryAction"
+    style=""
   >
   </mwc-button>
 </mwc-dialog>
@@ -201,6 +202,7 @@ snapshots["with a DO element looks like the latest snapshot"] =
     icon=""
     label="[close]"
     slot="secondaryAction"
+    style=""
   >
   </mwc-button>
 </mwc-dialog>
@@ -304,6 +306,7 @@ snapshots["with a DO element and DOI Element looks like the latest snapshot"] =
     icon=""
     label="[close]"
     slot="secondaryAction"
+    style=""
   >
   </mwc-button>
 </mwc-dialog>

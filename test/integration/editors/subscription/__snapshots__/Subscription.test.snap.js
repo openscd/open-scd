@@ -298,20 +298,6 @@ snapshots["Subscription Plugin when selecting a GOOSE message and you subscribe 
       </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
-        graphic="avatar"
-        hasmeta=""
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <span>
-          IED3
-        </span>
-        <mwc-icon slot="graphic">
-          clear
-        </mwc-icon>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
         noninteractive=""
         tabindex="-1"
       >
@@ -326,7 +312,6 @@ snapshots["Subscription Plugin when selecting a GOOSE message and you subscribe 
       </li>
       <mwc-list-item
         aria-disabled="false"
-        aria-selected="false"
         graphic="avatar"
         hasmeta=""
         mwc-list-item=""
@@ -355,13 +340,19 @@ snapshots["Subscription Plugin when selecting a GOOSE message and you subscribe 
       </li>
       <mwc-list-item
         aria-disabled="false"
+        aria-selected="true"
         graphic="avatar"
-        noninteractive=""
-        tabindex="-1"
+        hasmeta=""
+        mwc-list-item=""
+        selected=""
+        tabindex="0"
       >
         <span>
-          [subscription.none]
+          IED3
         </span>
+        <mwc-icon slot="graphic">
+          add
+        </mwc-icon>
       </mwc-list-item>
     </filtered-list>
   </div>
@@ -406,21 +397,6 @@ snapshots["Subscription Plugin when selecting a GOOSE message and you unsubscrib
       </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
-        aria-selected="false"
-        graphic="avatar"
-        hasmeta=""
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <span>
-          IED4
-        </span>
-        <mwc-icon slot="graphic">
-          clear
-        </mwc-icon>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
         noninteractive=""
         tabindex="-1"
       >
@@ -435,13 +411,19 @@ snapshots["Subscription Plugin when selecting a GOOSE message and you unsubscrib
       </li>
       <mwc-list-item
         aria-disabled="false"
+        aria-selected="true"
         graphic="avatar"
-        noninteractive=""
-        tabindex="-1"
+        hasmeta=""
+        mwc-list-item=""
+        selected=""
+        tabindex="0"
       >
         <span>
-          [subscription.none]
+          IED4
         </span>
+        <mwc-icon slot="graphic">
+          add
+        </mwc-icon>
       </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
@@ -514,21 +496,6 @@ snapshots["Subscription Plugin when selecting a GOOSE message and you subscribe 
       </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
-        aria-selected="false"
-        graphic="avatar"
-        hasmeta=""
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <span>
-          IED4
-        </span>
-        <mwc-icon slot="graphic">
-          clear
-        </mwc-icon>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
         noninteractive=""
         tabindex="-1"
       >
@@ -543,13 +510,19 @@ snapshots["Subscription Plugin when selecting a GOOSE message and you subscribe 
       </li>
       <mwc-list-item
         aria-disabled="false"
+        aria-selected="true"
         graphic="avatar"
-        noninteractive=""
-        tabindex="-1"
+        hasmeta=""
+        mwc-list-item=""
+        selected=""
+        tabindex="0"
       >
         <span>
-          [subscription.none]
+          IED4
         </span>
+        <mwc-icon slot="graphic">
+          add
+        </mwc-icon>
       </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"

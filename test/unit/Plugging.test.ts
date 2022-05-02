@@ -22,7 +22,7 @@ describe('PluggingElement', () => {
   });
 
   it('stores default plugins on load', () =>
-    expect(element).property('editors').to.have.lengthOf(5));
+    expect(element).property('editors').to.have.lengthOf(8));
 
   describe('plugin manager dialog', () => {
     let firstEditorPlugin: HTMLElement;
@@ -49,7 +49,7 @@ describe('PluggingElement', () => {
     it('disables deselected plugins', async () => {
       firstEditorPlugin.click();
       await element.updateComplete;
-      expect(element).property('editors').to.have.lengthOf(4);
+      expect(element).property('editors').to.have.lengthOf(7);
     });
 
     it('enables selected plugins', async () => {
@@ -57,7 +57,7 @@ describe('PluggingElement', () => {
       await element.updateComplete;
       (<HTMLElement>element.pluginList.firstElementChild).click();
       await element.updateComplete;
-      expect(element).property('editors').to.have.lengthOf(5);
+      expect(element).property('editors').to.have.lengthOf(8);
     });
 
     it('resets plugins to default on reset button click', async () => {
@@ -65,7 +65,7 @@ describe('PluggingElement', () => {
       await element.updateComplete;
       resetAction.click();
       await element.updateComplete;
-      expect(element).property('editors').to.have.lengthOf(5);
+      expect(element).property('editors').to.have.lengthOf(8);
     });
 
     it('opens the custom plugin dialog on add button click', async () => {
@@ -139,7 +139,7 @@ describe('PluggingElement', () => {
       await name.updateComplete;
       primaryAction.click();
       await element.updateComplete;
-      expect(element.editors).to.have.lengthOf(6);
+      expect(element.editors).to.have.lengthOf(9);
     });
     it('adds a new menu kind plugin on add button click', async () => {
       const lengthMenuKindPlugins = element.menuEntries.length;
@@ -168,7 +168,7 @@ describe('PluggingElement', () => {
       ).to.have.property('position');
     });
     it('adds a new validator kind plugin on add button click', async () => {
-      expect(element.validators).to.have.lengthOf(2);
+      expect(element.validators).to.have.lengthOf(3);
       src.value = 'http://example.com/plugin.js';
       name.value = 'testName';
       validatorKindOption.click();
@@ -176,7 +176,7 @@ describe('PluggingElement', () => {
       await name.updateComplete;
       primaryAction.click();
       await element.updateComplete;
-      expect(element.validators).to.have.lengthOf(3);
+      expect(element.validators).to.have.lengthOf(4);
     });
   });
 });
