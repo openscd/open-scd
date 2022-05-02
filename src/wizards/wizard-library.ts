@@ -19,6 +19,7 @@ import { createPowerTransformerWizard, editPowerTransformerWizard } from './powe
 import { editSubNetworkWizard } from './subnetwork.js';
 import { editIEDWizard } from './ied.js';
 import { editTrgOpsWizard } from './trgops.js';
+import { editGseControlWizard } from './gsecontrol.js';
 
 type SclElementWizard = (element: Element) => Wizard | undefined;
 
@@ -238,7 +239,7 @@ export const wizards: Record<
     create: emptyWizard,
   },
   GSEControl: {
-    edit: emptyWizard,
+    edit: editGseControlWizard,
     create: emptyWizard,
   },
   GSESettings: {
