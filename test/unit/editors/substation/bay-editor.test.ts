@@ -32,7 +32,7 @@ describe('bay-editor', () => {
     });
   });
 
-  describe('with function filter deactivated shows connected Function`s in the Substation', () => {
+  describe('with function filter deactivated', () => {
     beforeEach(async () => {
       doc = await fetch('/test/testfiles/zeroline/functions.scd')
         .then(response => response.text())

@@ -32,6 +32,7 @@ import {
   startMove,
   styles,
 } from './foundation.js';
+import { classMap } from 'lit-html/directives/class-map';
 
 function childTags(element: Element | null | undefined): SCLTag[] {
   if (!element) return [];
@@ -129,11 +130,17 @@ export class SubstationEditor extends LitElement {
       ) ?? []
     );
     return pwts?.length
-      ? html`<div id="powertransformercontainer">
+      ? html`<div
+          class="${classMap({
+            ptrContent: true,
+            actionicon: !this.showfunctions,
+          })}"
+        >
           ${pwts.map(
             pwt =>
               html`<powertransformer-editor
                 .element=${pwt}
+                ?showfunctions=${this.showfunctions}
               ></powertransformer-editor>`
           )}
         </div>`

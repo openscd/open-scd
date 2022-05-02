@@ -10,6 +10,7 @@
         <Function name="myFunc" desc="myDesc" type="myFuncType">
 			<SubFunction name="mySubFunc"/>
 		</Function>
+		<PowerTransformer name="myPtr1" type="PTR"/>
 		<VoltageLevel name="E1" desc="Voltage Level" nomFreq="50.0" numPhases="3">
 			<Voltage unit="V" multiplier="k">110.0</Voltage>
             <Function name="voltLvName">
@@ -19,6 +20,7 @@
 					</SubFunction>
 				</SubFunction> 
             </Function>
+			<PowerTransformer name="myPtr2" type="PTR"/>
 			<Bay name="COUPLING_BAY" desc="Bay">
 				<Function name="bayName">
 					<SubFunction name="myBaySubFunc" desc="myDesc" type="myBaySubFuncType"/>
@@ -26,6 +28,7 @@
 				<Function name="bay2Func">
 					<SubFunction name="myBaySubFunc" desc="myDesc" type="myBaySubFuncType"/>
 				</Function>
+				<PowerTransformer name="myPtr3" type="PTR"/>
                 <ConductingEquipment>
                     <EqFunction name="myEqFunc">
                         <EqSubFunction name="myEqSubFunc"/> 
