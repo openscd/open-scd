@@ -3,12 +3,12 @@ import { expect, fixture, html } from '@open-wc/testing';
 import '../../mock-wizard.js';
 import { MockWizard } from '../../mock-wizard.js';
 
-import '../../../src/zeroline-pane.js';
+import '../../../src/editors/substation/zeroline-pane.js';
 import {
   getSinkReferences,
   getSourceReferences,
 } from '../../../src/wizards/commmap-wizards.js';
-import { ZerolinePane } from '../../../src/zeroline-pane.js';
+import { ZerolinePane } from '../../../src/editors/substation/zeroline-pane.js';
 
 describe('communication mapping wizard', () => {
   let doc: Document;

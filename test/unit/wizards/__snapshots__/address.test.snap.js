@@ -6,6 +6,7 @@ snapshots["address renderGseSmvAddress looks like the latest snapshot"] =
   defaultaction="close"
   heading="title"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <mwc-formfield label="[connectedap.wizard.addschemainsttype]">

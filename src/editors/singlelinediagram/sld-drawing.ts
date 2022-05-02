@@ -1,5 +1,5 @@
 import { getDescriptionAttribute, getNameAttribute, identity } from '../../foundation.js';
-import { getIcon } from '../../zeroline/foundation.js';
+import { getIcon } from '../substation/foundation.js';
 import {
   connectivityNodeIcon,
   editIcon,

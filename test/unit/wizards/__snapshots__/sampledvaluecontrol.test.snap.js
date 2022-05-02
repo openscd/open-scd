@@ -6,6 +6,7 @@ snapshots["Wizards for SCL element SampledValueControl define an edit wizard tha
   defaultaction="close"
   heading="[wizard.title.edit]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 48px)"
 >
   <nav>
     <mwc-icon-button icon="more_vert">
@@ -201,6 +202,7 @@ snapshots["Wizards for SCL element SampledValueControl define a select wizard th
   defaultaction="close"
   heading="[wizard.title.select]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <filtered-list>

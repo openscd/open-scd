@@ -97,6 +97,7 @@ export const de: Translations = {
   zeroline: {
     iedsloading: 'IEDs werden geladen...',
     showieds: 'IEDs im Substation-Editor anzeigen/ausblenden',
+    showfunctions: 'Funktionselemente in der Ansicht filtern',
     commmap: 'Kommunikationszuordnung',
     reportcontrol: 'Reports anzeigen',
     gsecontrol: 'GOOSEs anzeigen',
@@ -397,7 +398,7 @@ export const de: Translations = {
     },
     action: {
       updatedai: 'DAI "{{daiName}} bearbeitet"',
-    }
+    },
   },
   sdo: {
     wizard: {

@@ -6,6 +6,7 @@ snapshots["gsecontrol wizards selectGseControlWizard looks like the latest snaps
   defaultaction="close"
   heading="[wizard.title.select]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <filtered-list>
@@ -76,6 +77,7 @@ snapshots["gsecontrol wizards renderGseAttribute looks like the latest snapshot"
   defaultaction="close"
   heading="title"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <wizard-textfield
@@ -180,6 +182,7 @@ snapshots["gsecontrol wizards editGseControlWizard looks like the latest snapsho
   defaultaction="close"
   heading="[wizard.title.edit]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 48px)"
 >
   <nav>
     <mwc-icon-button icon="more_vert">
@@ -340,6 +343,7 @@ snapshots["gsecontrol wizards define an create wizard that with existing Connect
   defaultaction="close"
   heading="[wizard.title.add]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <wizard-textfield
@@ -456,6 +460,7 @@ snapshots["gsecontrol wizards define an create wizard that with existing Connect
 `<mwc-dialog
   defaultaction="close"
   heading="[wizard.title.add]"
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <mwc-formfield label="[connectedap.wizard.addschemainsttype]">
@@ -538,6 +543,7 @@ snapshots["gsecontrol wizards define an create wizard that with existing Connect
 `<mwc-dialog
   defaultaction="close"
   heading="[dataset.fcda.add]"
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <finder-list multi="">
@@ -572,6 +578,7 @@ snapshots["gsecontrol wizards define an create wizard that with missing Connecte
 `<mwc-dialog
   defaultaction="close"
   heading="[wizard.title.add]"
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <h3 style="color: var(--mdc-theme-on-surface);
@@ -611,6 +618,7 @@ snapshots["gsecontrol wizards define a wizard to select the control block refere
   defaultaction="close"
   heading="[gsecontrol.wizard.location]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <finder-list path="[&quot;SCL: &quot;]">

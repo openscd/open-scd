@@ -6,6 +6,7 @@ snapshots["dataset wizards include a dataset edit wizard looks like the latest s
   defaultaction="close"
   heading="[wizard.title.edit]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 48px)"
 >
   <nav>
     <mwc-icon-button icon="more_vert">

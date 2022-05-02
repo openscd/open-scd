@@ -6,6 +6,7 @@ snapshots["DA wizarding editing integration defines a editDaWizard to edit an ex
   defaultaction="close"
   heading="[da.wizard.title.edit]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 48px)"
 >
   <nav>
     <mwc-icon-button icon="more_vert">
@@ -822,6 +823,7 @@ snapshots["DA wizarding editing integration defines a createDaWizard to create a
   defaultaction="close"
   heading="[da.wizard.title.edit]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <wizard-textfield

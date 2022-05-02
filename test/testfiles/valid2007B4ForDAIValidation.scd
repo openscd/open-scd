@@ -141,6 +141,9 @@
 							<DAI name="booleantest">
 								<Val>true</Val>
 							</DAI>
+							<DAI name="enumtest">
+								<Val>blocked</Val>
+							</DAI>
 							<DAI name="int8test">
 								<Val>5</Val>
 							</DAI>
@@ -206,7 +209,7 @@
 							</DAI>
 						</DOI>
 					</LN>
-					<LN prefix="CB" lnClass="XCBR" inst="2" lnType="Dummy.XCBR1">						
+					<LN prefix="CB" lnClass="XCBR" inst="2" lnType="Dummy.XCBR1">
 						<DOI name="Pos">
 							<DAI name="ctlModel">
 								<Val>status-only</Val>
@@ -569,6 +572,7 @@
 			<DA fc="ST" name="stVal" bType="Enum" type="Dummy_Beh" />
 			<DA fc="ST" name="q" bType="Quality" />
 			<DA fc="ST" name="t" bType="Timestamp" />
+      <DA fc="ST" name="enumtest" bType="Enum" type="Dummy_Beh" />
 			<DA fc="ST" name="int8test" bType="BOOLEAN" />
 			<DA fc="ST" name="int8test" bType="INT8" />
 			<DA fc="ST" name="int16test" bType="INT16" />

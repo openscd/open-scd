@@ -6,6 +6,7 @@ snapshots["BDA wizarding editing integration defines a editBDaWizard to edit an 
   defaultaction="close"
   heading="[bda.wizard.title.edit]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 48px)"
 >
   <nav>
     <mwc-icon-button icon="more_vert">
@@ -633,6 +634,7 @@ snapshots["BDA wizarding editing integration defines a createBDaWizard to create
   defaultaction="close"
   heading="[bda.wizard.title.edit]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <wizard-textfield
