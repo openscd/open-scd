@@ -64,7 +64,7 @@ describe('Subscription Plugin', () => {
       });
 
       describe('and subscribing a unsubscribed IED', () => {
-        it('it looks like the latest snapshot', async () => {
+        beforeEach(async () => {
           const ied = Array.from(
             element.shadowRoot
               ?.querySelector('subscriber-list')
@@ -73,7 +73,9 @@ describe('Subscription Plugin', () => {
 
           (<HTMLElement>ied).click();
           await element.updateComplete;
+        });
 
+        it('it looks like the latest snapshot', async () => {
           // Re select the GOOSE
           (<HTMLElement>goose).click();
           await element.updateComplete;
@@ -82,9 +84,15 @@ describe('Subscription Plugin', () => {
             element.shadowRoot?.querySelector('subscriber-list')
           ).shadowDom.to.equalSnapshot();
         });
+
+        it('adds the required ExtRefs to the subscriber IED', async () => {
+          // IED2 -> GCB -> GooseDataSet1 -> 3 FCDAs
+          const extRefs = doc.querySelectorAll('IED[name="IED3"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef');
+          expect(extRefs.length).to.eql(3);
+        });
       });
 
-      describe('and unsubscriving a subscribed IED', () => {
+      describe('and unsubscribing a subscribed IED', () => {
         it('it looks like the latest snapshot', async () => {
           const ied = Array.from(
             element.shadowRoot
