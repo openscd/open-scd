@@ -11,9 +11,9 @@ import { translate } from 'lit-translate';
 import '@material/mwc-icon';
 import '@material/mwc-list/mwc-list-item';
 
-import '../../../filtered-list.js';
-import { compareNames, getNameAttribute } from '../../../foundation.js';
-import { newIEDSelectEvent, styles } from '../foundation.js';
+import '../../filtered-list.js';
+import { compareNames, getNameAttribute } from '../../foundation.js';
+import { newIEDSelectEvent, styles } from './foundation.js';
 
 let selectedIed: Element | undefined;
 

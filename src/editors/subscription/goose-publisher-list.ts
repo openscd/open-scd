@@ -11,10 +11,10 @@ import { translate } from 'lit-translate';
 import '@material/mwc-icon';
 import '@material/mwc-list/mwc-list-item';
 
-import '../../../filtered-list.js';
-import { compareNames, getNameAttribute } from '../../../foundation.js';
-import { newGOOSESelectEvent, styles } from '../foundation.js';
-import { gooseIcon } from '../../../icons/icons.js';
+import '../../filtered-list.js';
+import { compareNames, getNameAttribute } from '../../foundation.js';
+import { newGOOSESelectEvent, styles } from './foundation.js';
+import { gooseIcon } from '../../icons/icons.js';
 
 let selectedGooseMsg: Element | undefined;
 let selectedDataSet: Element | undefined | null;

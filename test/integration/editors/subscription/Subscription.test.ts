@@ -63,7 +63,7 @@ describe('Subscription Plugin', () => {
         ).shadowDom.to.equalSnapshot();
       });
 
-      describe('and you subscribe a non-subscribed IED', () => {
+      describe('and subscribing a unsubscribed IED', () => {
         it('it looks like the latest snapshot', async () => {
           const ied = Array.from(
             element.shadowRoot
@@ -84,7 +84,7 @@ describe('Subscription Plugin', () => {
         });
       });
 
-      describe('and you unsubscribe a subscribed IED', () => {
+      describe('and unsubscriving a subscribed IED', () => {
         it('it looks like the latest snapshot', async () => {
           const ied = Array.from(
             element.shadowRoot
@@ -105,7 +105,7 @@ describe('Subscription Plugin', () => {
         });
       });
 
-      describe('and you subscribe a partially subscribed IED', () => {
+      describe('and subscribing a partially subscribed IED', () => {
         it('it looks like the latest snapshot', async () => {
           const ied = Array.from(
             element.shadowRoot
@@ -162,7 +162,7 @@ describe('Subscription Plugin', () => {
         ).shadowDom.to.equalSnapshot();
       });
 
-      describe('and you subscribe a non-subscribed GOOSE message', () => {
+      describe('and subscribing a unsubscribed GOOSE message', () => {
         it('it looks like the latest snapshot', async () => {
           const goose = Array.from(
             element.shadowRoot
@@ -183,7 +183,7 @@ describe('Subscription Plugin', () => {
         });
       });
 
-      describe('and you unsubscribe a subscribed GOOSE message', () => {
+      describe('and unsubscribing a subscribed GOOSE message', () => {
         it('it looks like the latest snapshot', async () => {
           let goose = Array.from(
             element.shadowRoot
@@ -217,7 +217,7 @@ describe('Subscription Plugin', () => {
         });
       });
 
-      describe('and you subscribe a partially subscribed GOOSE message', () => {
+      describe('and subscribing a partially subscribed GOOSE message', () => {
         it('it looks like the latest snapshot', async () => {
           const goose = Array.from(
             element.shadowRoot
