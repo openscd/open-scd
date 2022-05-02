@@ -1,7 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Wizards for Locamation Plugin to edit the selected Logical Node -  starting screen as wizard -  looks like the latest snapshot"] = 
+snapshots["Wizards for Locamation Plugin to edit the selected Logical Node -  starting screen as wizard -  looks like the latest snapshot"] =
 `<mwc-dialog
   defaultaction="close"
   heading="[locamation.vmu.ln.editTitle]"
@@ -30,7 +30,7 @@ snapshots["Wizards for Locamation Plugin to edit the selected Logical Node -  st
 `;
 /* end snapshot Wizards for Locamation Plugin to edit the selected Logical Node -  starting screen as wizard -  looks like the latest snapshot */
 
-snapshots["Wizards for Locamation Plugin to edit the selected Logical Node -  using screen as web component with locamation LN for CIM (Channel) -  looks like the latest snapshot"] = 
+snapshots["Wizards for Locamation Plugin to edit the selected Logical Node -  using screen as web component with locamation LN for CIM (Channel) -  looks like the latest snapshot"] =
 `<wizard-textfield
   disabled=""
   label="[locamation.vmu.ied.name]"
@@ -56,7 +56,7 @@ snapshots["Wizards for Locamation Plugin to edit the selected Logical Node -  us
   helper="[locamation.vmu.identifierHelper]"
   id="identifier"
   label="[locamation.vmu.identifier]"
-  pattern="^(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(\.(?!$)|$)){3}$"
+  pattern="^(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(\\.(?!$)|$)){3}$"
   placeholder="134.12.213"
   required=""
 >
@@ -88,7 +88,7 @@ snapshots["Wizards for Locamation Plugin to edit the selected Logical Node -  us
 `;
 /* end snapshot Wizards for Locamation Plugin to edit the selected Logical Node -  using screen as web component with locamation LN for CIM (Channel) -  looks like the latest snapshot */
 
-snapshots["Wizards for Locamation Plugin to edit the selected Logical Node -  using screen as web component with locamation LN for CIM (Sum) -  looks like the latest snapshot"] = 
+snapshots["Wizards for Locamation Plugin to edit the selected Logical Node -  using screen as web component with locamation LN for CIM (Sum) -  looks like the latest snapshot"] =
 `<wizard-textfield
   disabled=""
   label="[locamation.vmu.ied.name]"
@@ -114,7 +114,7 @@ snapshots["Wizards for Locamation Plugin to edit the selected Logical Node -  us
   helper="[locamation.vmu.identifierHelper]"
   id="identifier"
   label="[locamation.vmu.identifier]"
-  pattern="^(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(\.(?!$)|$)){3}$"
+  pattern="^(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(\\.(?!$)|$)){3}$"
   placeholder="134.12.213"
   required=""
 >
@@ -147,7 +147,7 @@ snapshots["Wizards for Locamation Plugin to edit the selected Logical Node -  us
 `;
 /* end snapshot Wizards for Locamation Plugin to edit the selected Logical Node -  using screen as web component with locamation LN for CIM (Sum) -  looks like the latest snapshot */
 
-snapshots["Wizards for Locamation Plugin to edit the selected Logical Node -  using screen as web component with locamation LN for VIM (Channel) -  looks like the latest snapshot"] = 
+snapshots["Wizards for Locamation Plugin to edit the selected Logical Node -  using screen as web component with locamation LN for VIM (Channel) -  looks like the latest snapshot"] =
 `<wizard-textfield
   disabled=""
   label="[locamation.vmu.ied.name]"
@@ -173,7 +173,7 @@ snapshots["Wizards for Locamation Plugin to edit the selected Logical Node -  us
   helper="[locamation.vmu.identifierHelper]"
   id="identifier"
   label="[locamation.vmu.identifier]"
-  pattern="^(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(\.(?!$)|$)){3}$"
+  pattern="^(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(\\.(?!$)|$)){3}$"
   placeholder="134.12.213"
   required=""
 >
@@ -205,7 +205,7 @@ snapshots["Wizards for Locamation Plugin to edit the selected Logical Node -  us
 `;
 /* end snapshot Wizards for Locamation Plugin to edit the selected Logical Node -  using screen as web component with locamation LN for VIM (Channel) -  looks like the latest snapshot */
 
-snapshots["Wizards for Locamation Plugin to edit the selected Logical Node -  using screen as web component with locamation LN for VIM (Sum) -  looks like the latest snapshot"] = 
+snapshots["Wizards for Locamation Plugin to edit the selected Logical Node -  using screen as web component with locamation LN for VIM (Sum) -  looks like the latest snapshot"] =
 `<wizard-textfield
   disabled=""
   label="[locamation.vmu.ied.name]"
@@ -231,7 +231,7 @@ snapshots["Wizards for Locamation Plugin to edit the selected Logical Node -  us
   helper="[locamation.vmu.identifierHelper]"
   id="identifier"
   label="[locamation.vmu.identifier]"
-  pattern="^(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(\.(?!$)|$)){3}$"
+  pattern="^(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(\\.(?!$)|$)){3}$"
   placeholder="134.12.213"
   required=""
 >
