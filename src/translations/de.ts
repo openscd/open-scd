@@ -317,7 +317,7 @@ export const de: Translations = {
     },
     subscriberGoose: {
       title: 'IED-Publizierer',
-      publisherTitle: '??? {{ selected }}'
+      publisherTitle: 'GOOSE(s) verbunden mit {{selected}}'
     },
     subscriber: {
       subscribed: 'Verbunden',
@@ -327,8 +327,8 @@ export const de: Translations = {
       noIedSelected: 'Keine IED ausgewählt',
     },
     view: {
-      publisherView: "???",
-      subscriberView: "???"
+      publisherView: "Zeigt verbundene IED(s) der ausgewählten GOOSE",
+      subscriberView: "Zeigt verbundene GOOSE(s) des ausgewählten IED"
     }
   },
   sampledvalues: {

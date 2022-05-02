@@ -314,7 +314,7 @@ export const en = {
     },
     subscriberGoose: {
       title: 'GOOSE Subscriber',
-      publisherTitle: 'Publisher {{ selected }}'
+      publisherTitle: 'GOOSE(s) subscriber by {{selected}}'
     },
     subscriber: {
       subscribed: 'Subscribed',
@@ -324,8 +324,8 @@ export const en = {
       noIedSelected: 'No IED selected',
     },
     view: {
-      publisherView: "GOOSE Publisher view",
-      subscriberView: "GOOSE Subscriber view"
+      publisherView: "Show subscriber IED(s) per selected GOOSE",
+      subscriberView: "Show subscribed GOOSE publisher for selected IED"
     }
   },
   sampledvalues: {
