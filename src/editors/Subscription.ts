@@ -12,14 +12,12 @@ export default class SubscriptionABBPlugin extends LitElement {
   doc!: XMLDocument;
 
   render(): TemplateResult {
-    return html`
-    <div id="containerTemplates">
-      <section>
-        <publisher-goose-list .doc=${this.doc}></publisher-goose-list>
-      </section>
-      <section>
-        <subscriber-ied-list-goose .doc=${this.doc}></subscriber-ied-list-goose>
-      </section>
+    return html` <div class="container">
+      <publisher-goose-list class="row" .doc=${this.doc}></publisher-goose-list>
+      <subscriber-ied-list-goose
+        class="row"
+        .doc=${this.doc}
+      ></subscriber-ied-list-goose>
     </div>`;
   }
 
@@ -28,22 +26,18 @@ export default class SubscriptionABBPlugin extends LitElement {
       width: 100vw;
     }
 
-    section {
-      width: 49vw;
+    .container {
+      display: flex;
+      padding: 8px 6px 16px;
+      height: 86vh;
     }
 
-    #containerTemplates {
-      display: grid;
-      grid-gap: 12px;
-      padding: 8px 12px 16px;
-      box-sizing: border-box;
-      grid-template-columns: repeat(auto-fit, minmax(316px, auto));
-    }
-
-    @media (max-width: 387px) {
-      #containerTemplates {
-        grid-template-columns: repeat(auto-fit, minmax(196px, auto));
-      }
+    .row {
+      flex: 50%;
+      margin: 0px 6px 0px;
+      min-width: 300px;
+      height: 100%;
+      overflow-y: scroll;
     }
   `;
 }

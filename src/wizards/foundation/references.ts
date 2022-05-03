@@ -1,6 +1,6 @@
 import {isPublic, SimpleAction} from "../../foundation.js";
 
-const referenceInfoTags = ['IED'] as const;
+const referenceInfoTags = ['IED', 'Substation'] as const;
 type ReferencesInfoTag = typeof referenceInfoTags[number];
 
 /*
@@ -41,6 +41,11 @@ const referenceInfos: Record<
     }, {
       elementQuery: `SampledValueControl > IEDName`,
       attribute: null
+    }],
+  Substation:
+    [{
+      elementQuery: `Terminal`,
+      attribute: 'substationName'
     }]
 }
 

@@ -6,6 +6,7 @@ snapshots["Wizards for Locamation Plugin to select the IED/Logical Device -  sta
   defaultaction="close"
   heading="[locamation.vmu.ied.title]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <locamation-ied-list>

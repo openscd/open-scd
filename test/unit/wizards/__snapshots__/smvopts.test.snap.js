@@ -6,6 +6,7 @@ snapshots["Wizards for SCL SmvOpts element define an edit wizard that looks like
   defaultaction="close"
   heading="[wizard.title.edit]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <wizard-checkbox

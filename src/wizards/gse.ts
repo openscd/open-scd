@@ -15,7 +15,7 @@ import {
   WizardActor,
   WizardInputElement,
 } from '../foundation.js';
-import { renderGseSmvAddress, updateAddress } from './address.js';
+import { contentGseWizard, updateAddress } from './address.js';
 
 export function getMTimeAction(
   type: 'MinTime' | 'MaxTime',
@@ -67,7 +67,20 @@ export function updateGSEAction(element: Element): WizardActor {
     const instType: boolean =
       (<Checkbox>wizard.shadowRoot?.querySelector('#instType'))?.checked ??
       false;
-    const addressActions = updateAddress(element, inputs, instType);
+
+    const addressContent: Record<string, string | null> = {};
+    addressContent['MAC-Address'] = getValue(
+      inputs.find(i => i.label === 'MAC-Address')!
+    );
+    addressContent['APPID'] = getValue(inputs.find(i => i.label === 'APPID')!);
+    addressContent['VLAN-ID'] = getValue(
+      inputs.find(i => i.label === 'VLAN-ID')!
+    );
+    addressContent['VLAN-PRIORITY'] = getValue(
+      inputs.find(i => i.label === 'VLAN-PRIORITY')!
+    );
+
+    const addressActions = updateAddress(element, addressContent, instType);
 
     addressActions.forEach(action => {
       complexAction.actions.push(action);
@@ -110,6 +123,19 @@ export function editGseWizard(element: Element): Wizard {
   const minTime = element.querySelector('MinTime')?.innerHTML.trim() ?? null;
   const maxTime = element.querySelector('MaxTime')?.innerHTML.trim() ?? null;
 
+  const hasInstType = Array.from(element.querySelectorAll('Address > P')).some(
+    pType => pType.getAttribute('xsi:type')
+  );
+
+  const attributes: Record<string, string | null> = {};
+
+  ['MAC-Address', 'APPID', 'VLAN-ID', 'VLAN-PRIORITY'].forEach(key => {
+    if (!attributes[key])
+      attributes[key] =
+        element.querySelector(`Address > P[type="${key}"]`)?.innerHTML.trim() ??
+        null;
+  });
+
   return [
     {
       title: get('wizard.title.edit', { tagName: element.tagName }),
@@ -120,7 +146,7 @@ export function editGseWizard(element: Element): Wizard {
         action: updateGSEAction(element),
       },
       content: [
-        ...renderGseSmvAddress(element),
+        ...contentGseWizard({ hasInstType, attributes }),
         html`<wizard-textfield
           label="MinTime"
           .maybeValue=${minTime}

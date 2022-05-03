@@ -6,6 +6,7 @@ snapshots["Wizards for Locamation Plugin to select the Logical Node -  starting 
   defaultaction="close"
   heading="[locamation.vmu.ln.title]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <locamation-ln-list>

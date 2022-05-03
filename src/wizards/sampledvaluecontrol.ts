@@ -33,7 +33,7 @@ import { editSMvWizard } from './smv.js';
 import { editSmvOptsWizard } from './smvopts.js';
 import { editDataSetWizard } from './dataset.js';
 
-function getSMV(element: Element): Element | null {
+export function getSMV(element: Element): Element | null {
   const cbName = element.getAttribute('name');
   const iedName = element.closest('IED')?.getAttribute('name');
   const apName = element.closest('AccessPoint')?.getAttribute('name');

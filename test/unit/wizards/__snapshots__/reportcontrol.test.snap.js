@@ -6,6 +6,7 @@ snapshots["Wizards for SCL ReportControl element define an edit wizard that for 
   defaultaction="close"
   heading="[wizard.title.edit]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 48px)"
 >
   <nav>
     <mwc-icon-button icon="more_vert">
@@ -111,7 +112,7 @@ snapshots["Wizards for SCL ReportControl element define an edit wizard that for 
     >
     </wizard-checkbox>
     <wizard-textfield
-      helper="[scl.id]"
+      helper="[report.rptID]"
       label="rptID"
       nullable=""
       required=""
@@ -176,6 +177,7 @@ snapshots["Wizards for SCL ReportControl element define an edit wizard that for 
   defaultaction="close"
   heading="[wizard.title.edit]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 48px)"
 >
   <nav>
     <mwc-icon-button icon="more_vert">
@@ -238,7 +240,7 @@ snapshots["Wizards for SCL ReportControl element define an edit wizard that for 
     </wizard-checkbox>
     <wizard-textfield
       disabled=""
-      helper="[scl.id]"
+      helper="[report.rptID]"
       label="rptID"
       nullable=""
       required=""
@@ -305,6 +307,7 @@ snapshots["Wizards for SCL ReportControl element define a select wizard that wit
   defaultaction="close"
   heading="[wizard.title.select]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <filtered-list>
@@ -417,6 +420,7 @@ snapshots["Wizards for SCL ReportControl element define a select wizard that wit
   defaultaction="close"
   heading="[wizard.title.select]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <filtered-list>
@@ -438,6 +442,7 @@ snapshots["Wizards for SCL ReportControl element define an create wizard that th
   defaultaction="close"
   heading="[wizard.title.add]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <wizard-textfield
@@ -464,7 +469,7 @@ snapshots["Wizards for SCL ReportControl element define an create wizard that th
     </wizard-checkbox>
     <wizard-textfield
       disabled=""
-      helper="[scl.id]"
+      helper="[report.rptID]"
       label="rptID"
       nullable=""
       required=""
@@ -528,6 +533,7 @@ snapshots["Wizards for SCL ReportControl element define an create wizard that th
 `<mwc-dialog
   defaultaction="close"
   heading="[scl.TrgOps]"
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <wizard-checkbox
@@ -591,6 +597,7 @@ snapshots["Wizards for SCL ReportControl element define an create wizard that th
 `<mwc-dialog
   defaultaction="close"
   heading="[scl.OptFields]"
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <wizard-checkbox
@@ -672,6 +679,7 @@ snapshots["Wizards for SCL ReportControl element define an create wizard that th
 `<mwc-dialog
   defaultaction="close"
   heading="[dataset.fcda.add]"
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <finder-list multi="">
@@ -707,6 +715,7 @@ snapshots["Wizards for SCL ReportControl element define a wizard to select the c
   defaultaction="close"
   heading="[report.wizard.location]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <finder-list path="[&quot;SCL: &quot;]">
@@ -735,6 +744,7 @@ snapshots["Wizards for SCL ReportControl element define copy to other IED select
   defaultaction="close"
   heading="[report.wizard.location]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <filtered-list multi="">

@@ -68,7 +68,8 @@ export const en = {
     showieds: 'Show IEDs in substation editor',
     selectFileButton: 'Select file',
     loadNsdTranslations: 'Uploaded NSDoc files',
-    invalidFileNoIdFound: "Invalid NSDoc ({{ filename }}); no 'id' attribute found in file",
+    invalidFileNoIdFound:
+      "Invalid NSDoc ({{ filename }}); no 'id' attribute found in file",
     invalidNsdocVersion:
       'The version of {{ id }} NSD ({{ nsdVersion }}) does not correlate with the version of the corresponding NSDoc ({{ filename }}, {{ nsdocVersion }})',
   },
@@ -94,6 +95,7 @@ export const en = {
   zeroline: {
     iedsloading: 'Loading IEDs...',
     showieds: 'Show/hide IEDs in substation editor',
+    showfunctions: 'Filter function type elements',
     commmap: 'Communication mapping',
     reportcontrol: 'Show all Reports',
     gsecontrol: 'Show all GOOSEs',
@@ -189,6 +191,7 @@ export const en = {
     },
     action: {
       addvoltagelevel: 'Add voltage level',
+      updatesubstation: 'Edited substation "{{name}}"',
     },
   },
   iededitor: {
@@ -196,6 +199,25 @@ export const en = {
     searchHelperDesc: '({{description}})',
     missing: 'No IED',
     toggleChildElements: 'Toggle child elements',
+    wizard: {
+      daTitle: 'Show DA Info',
+      doTitle: 'Show DO Info',
+      nsdocDescription: 'NSDoc description',
+      doiDescription: 'Data object description',
+      daiDescription: 'Data attribute description',
+      ied: 'IED',
+      accessPoint: 'Access point',
+      lDevice: 'Logical device',
+      lnPrefix: 'Logical node prefix',
+      lnDescription: 'Logical node description',
+      lnInst: 'Logical node inst',
+      doName: 'Data object name',
+      doCdc: 'Data object common data class',
+      daName: 'Data attribute name',
+      daFc: 'Data attribute functional constraint',
+      daBType: 'Data attribute type',
+      daValue: 'Data attribute value',
+    },
   },
   ied: {
     wizard: {
@@ -206,7 +228,7 @@ export const en = {
       },
     },
     action: {
-      updateied: 'Edited IED "{{iedName}}"',
+      updateied: 'Edited IED "{{name}}"',
     },
   },
   powertransformer: {
@@ -358,6 +380,17 @@ export const en = {
       },
     },
   },
+  dai: {
+    wizard: {
+      valueHelper: 'Value should be of type {{type}}',
+      title: {
+        edit: 'Edit {{daiName}}',
+      },
+    },
+    action: {
+      updatedai: 'Edited DAI "{{daiName}}"',
+    },
+  },
   sdo: {
     wizard: {
       title: {
@@ -465,6 +498,7 @@ export const en = {
     action: {
       addaddress: 'Edit GSE ({{identity}})',
     },
+    missingaccp: 'AccessPoint is not connected. GSE cannot be created.',
   },
   smv: {
     action: {
@@ -507,6 +541,7 @@ export const en = {
   },
   report: {
     wizard: { location: 'Select Report Control Location' },
+    rptID: 'Report control block identifier',
   },
   cleanup: {
     unreferencedDataSets: {
@@ -514,6 +549,15 @@ export const en = {
       deleteButton: 'Remove Selected Datasets',
       tooltip:
         'Datasets without a reference to an associated GOOSE, Log, Report or Sampled Value Control Block',
+    },
+    unreferencedControls: {
+      title: 'Control Blocks with a Missing or Invalid Dataset',
+      deleteButton: 'Remove Selected Control Blocks',
+      tooltip:
+        'Control Blocks without a reference to an existing DataSet. Note that this is normal in an ICD file or for an MMS ReportControl with a dynamically allocated DataSet',
+      addressDefinitionTooltip:
+        'An address definition exists for this control block in the Communication section',
+      alsoRemoveFromCommunication: 'Also remove SMV/GSE Address',
     },
   },
   controlblock: {
@@ -531,6 +575,9 @@ export const en = {
       valid: 'Can be copied',
     },
     label: { copy: 'Copy to other IEDs' },
+  },
+  gsecontrol: {
+    wizard: { location: 'Select GOOSE Control Block Location' },
   },
   userinfo: {
     loggedInAs: 'Logged in as {{name}}'

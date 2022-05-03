@@ -58,13 +58,13 @@ import '@material/mwc-textfield';
  * We need a variable outside the plugin to save the selected substation, because the Plugin is created
  * more than once during working with the SLD, for instance when opening a Wizard to edit equipment.
  */
-let sldEditorSelectedSubstationName: string | undefined;
+let sldEditorSelectedSubstation: Element | undefined;
 /*
  * We will also add an Event Listener when a new document is opened. We then want to reset the selection
  * so setting it to undefined will set the selected Substation again on the first in the list.
  */
 function onOpenDocResetSelectedSubstation() {
-  sldEditorSelectedSubstationName = undefined;
+  sldEditorSelectedSubstation = undefined;
 }
 addEventListener('open-doc', onOpenDocResetSelectedSubstation);
 
@@ -90,19 +90,17 @@ export default class SingleLineDiagramPlugin extends LitElement {
 
   @state()
   private set selectedSubstation(element: Element | undefined) {
-    sldEditorSelectedSubstationName = (element) ? getNameAttribute(element) : undefined;
+    sldEditorSelectedSubstation = element;
   }
 
   private get selectedSubstation(): Element | undefined {
-    if (sldEditorSelectedSubstationName === undefined) {
+    if (sldEditorSelectedSubstation === undefined) {
       const substationList = this.substations;
       if (substationList.length > 0) {
-        sldEditorSelectedSubstationName = getNameAttribute(substationList[0]);
+        sldEditorSelectedSubstation = substationList[0];
       }
     }
-    return (sldEditorSelectedSubstationName)
-      ? this.doc.querySelector(`:root > Substation[name="${sldEditorSelectedSubstationName}"]`) ?? undefined
-      : undefined;
+    return sldEditorSelectedSubstation;
   }
 
     /**

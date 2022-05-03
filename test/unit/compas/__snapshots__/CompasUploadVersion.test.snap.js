@@ -49,6 +49,7 @@ snapshots["compas-upload-version existing document in compas through wizard look
   defaultaction="close"
   heading="[compas.uploadVersion.title]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <compas-upload-version>

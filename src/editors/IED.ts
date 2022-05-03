@@ -4,8 +4,8 @@ import '@material/mwc-fab';
 import '@material/mwc-select';
 import '@material/mwc-list/mwc-list-item';
 
-import '../zeroline-pane.js';
 import './ied/ied-container.js'
+import './substation/zeroline-pane.js';
 
 import { translate } from 'lit-translate';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
@@ -16,13 +16,13 @@ import { Nsdoc } from '../foundation/nsdoc.js';
  * We need a variable outside the plugin to save the selected IED, because the Plugin is created
  * more than once during working with the IED Editor, for instance when opening a Wizard to edit the IED.
  */
-let iedEditorSelectedIedName: string | undefined;
+let iedEditorSelectedIed: Element | undefined;
 /*
  * We will also add an Event Listener when a new document is opened. We then want to reset the selection
  * so setting it to undefined will set the selected IED again on the first in the list.
  */
 function onOpenDocResetSelectedIed() {
-  iedEditorSelectedIedName = undefined;
+  iedEditorSelectedIed = undefined;
 }
 addEventListener('open-doc', onOpenDocResetSelectedIed);
 
@@ -45,14 +45,17 @@ export default class IedPlugin extends LitElement {
 
   @state()
   private set selectedIed(element: Element | undefined) {
-    iedEditorSelectedIedName = (element) ? getNameAttribute(element) : undefined;
+    iedEditorSelectedIed = element;
   }
 
-  private get selectedIed(): Element {
-    if (iedEditorSelectedIedName === undefined) {
-      iedEditorSelectedIedName = getNameAttribute(this.alphabeticOrderedIeds[0]);
+  private get selectedIed(): Element | undefined {
+    if (iedEditorSelectedIed === undefined) {
+      const iedList = this.alphabeticOrderedIeds;
+      if (iedList.length > 0) {
+        iedEditorSelectedIed = iedList[0];
+      }
     }
-    return this.doc.querySelector(`:root > IED[name="${iedEditorSelectedIedName}"]`)!;
+    return iedEditorSelectedIed;
   }
 
   private onSelect(event: SingleSelectedEvent): void {
@@ -63,11 +66,6 @@ export default class IedPlugin extends LitElement {
   render(): TemplateResult {
     const iedList = this.alphabeticOrderedIeds;
     if (iedList.length > 0) {
-      let selectedIedElement = this.selectedIed;
-      if (!selectedIedElement) {
-        // Fix: If the selected IED can't be found, because the name is changed, will select the first one again.
-        selectedIedElement = iedList[0];
-      }
       return html `
         <section>
           <mwc-select
@@ -78,7 +76,7 @@ export default class IedPlugin extends LitElement {
               ied =>
                 html`
                   <mwc-list-item
-                    ?selected=${ied == selectedIedElement}
+                    ?selected=${ied == this.selectedIed}
                     value="${getNameAttribute(ied)}"
                   >${getNameAttribute(ied)} ${ied.hasAttribute('desc') ? translate('iededitor.searchHelperDesc', {
                     description: getDescriptionAttribute(ied)!,
@@ -87,7 +85,7 @@ export default class IedPlugin extends LitElement {
             )}
           </mwc-select>
           <ied-container
-            .element=${selectedIedElement}
+            .element=${this.selectedIed}
             .nsdoc=${this.nsdoc}
           ></ied-container>
         </section>`;

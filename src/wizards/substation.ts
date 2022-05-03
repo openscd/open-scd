@@ -14,8 +14,8 @@ import {
   WizardActor,
   WizardInputElement,
 } from '../foundation.js';
-import { updateNamingAction } from './foundation/actions.js';
 import { guessVoltageLevel } from '../editors/substation/guess-wizard.js';
+import { updateNamingAttributeWithReferencesAction } from "./foundation/actions.js";
 
 function render(
   name: string,
@@ -97,7 +97,7 @@ export function substationEditWizard(element: Element): Wizard {
       primary: {
         icon: 'edit',
         label: get('save'),
-        action: updateNamingAction(element),
+        action: updateNamingAttributeWithReferencesAction(element, 'substation.action.updatesubstation'),
       },
       content: render(
         element.getAttribute('name') ?? '',

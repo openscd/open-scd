@@ -6,6 +6,7 @@ snapshots["Wizards for Locamation Plugin to edit the selected Logical Node -  st
   defaultaction="close"
   heading="[locamation.vmu.ln.editTitle]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <locamation-ln-edit>

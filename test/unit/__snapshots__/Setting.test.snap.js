@@ -54,21 +54,8 @@ snapshots["SettingElement saves chosen .nsdoc file and looks like latest snapsho
   </wizard-divider>
   <section>
     <h3>
-      Uploading NSDoc files
+      Uploaded NSDoc files
     </h3>
-    <input
-      accept=".nsdoc"
-      hidden=""
-      id="nsdoc-file"
-      multiple=""
-      required=""
-      type="file"
-    >
-    <mwc-button
-      id="selectFileButton"
-      label="Select file"
-    >
-    </mwc-button>
   </section>
   <mwc-list id="nsdocList">
     <mwc-list-item
@@ -84,6 +71,7 @@ snapshots["SettingElement saves chosen .nsdoc file and looks like latest snapsho
         IEC 61850-7-2
       </span>
       <span slot="secondary">
+        2007B3
       </span>
       <mwc-icon
         slot="graphic"
@@ -237,21 +225,8 @@ snapshots["SettingElement deletes a chosen .nsdoc file and looks like latest sna
   </wizard-divider>
   <section>
     <h3>
-      Uploading NSDoc files
+      Uploaded NSDoc files
     </h3>
-    <input
-      accept=".nsdoc"
-      hidden=""
-      id="nsdoc-file"
-      multiple=""
-      required=""
-      type="file"
-    >
-    <mwc-button
-      id="selectFileButton"
-      label="Select file"
-    >
-    </mwc-button>
   </section>
   <mwc-list id="nsdocList">
     <mwc-list-item

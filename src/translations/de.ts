@@ -70,7 +70,8 @@ export const de: Translations = {
     showieds: 'Zeige IEDs im Substation-Editor',
     selectFileButton: 'Datei auswählen',
     loadNsdTranslations: 'NSDoc-Dateien hochladen',
-    invalidFileNoIdFound: "Ungültiges NSDoc ({{ filename }}); kein 'id'-Attribut in der Datei gefunden",
+    invalidFileNoIdFound:
+      "Ungültiges NSDoc ({{ filename }}); kein 'id'-Attribut in der Datei gefunden",
     invalidNsdocVersion:
       'Die Version {{ id }} NSD ({{ nsdVersion }}) passt nicht zu der geladenen NSDoc ({{ filename }}, {{ nsdocVersion }})',
   },
@@ -96,6 +97,7 @@ export const de: Translations = {
   zeroline: {
     iedsloading: 'IEDs werden geladen...',
     showieds: 'IEDs im Substation-Editor anzeigen/ausblenden',
+    showfunctions: 'Funktionselemente in der Ansicht filtern',
     commmap: 'Kommunikationszuordnung',
     reportcontrol: 'Reports anzeigen',
     gsecontrol: 'GOOSEs anzeigen',
@@ -192,6 +194,7 @@ export const de: Translations = {
     },
     action: {
       addvoltagelevel: 'Spannungsebene hinzufügen',
+      updatesubstation: 'Schaltanlage "{{name}}" bearbeitet',
     },
   },
   iededitor: {
@@ -199,6 +202,25 @@ export const de: Translations = {
     searchHelperDesc: '({{description}})',
     missing: 'Kein IED vorhanden',
     toggleChildElements: '???',
+    wizard: {
+      daTitle: '???',
+      doTitle: '???',
+      nsdocDescription: 'Beschreibung',
+      doiDescription: 'Beschreibung des DOI',
+      daiDescription: 'Beschreibung des DAI',
+      ied: 'IED',
+      accessPoint: '???',
+      lDevice: '???',
+      lnPrefix: '???',
+      lnDescription: 'Beschreibung des LN',
+      lnInst: '???',
+      doName: '???',
+      doCdc: '???',
+      daName: '???',
+      daFc: '???',
+      daBType: '???',
+      daValue: '???',
+    },
   },
   ied: {
     wizard: {
@@ -209,7 +231,7 @@ export const de: Translations = {
       },
     },
     action: {
-      updateied: 'IED "{{iedName}}" bearbeitet',
+      updateied: 'IED "{{name}}" bearbeitet',
     },
   },
   powertransformer: {
@@ -361,6 +383,17 @@ export const de: Translations = {
       },
     },
   },
+  dai: {
+    wizard: {
+      valueHelper: 'Der Wert sollte vom Typ sein {{type}}',
+      title: {
+        edit: 'Edit {{daiName}}',
+      },
+    },
+    action: {
+      updatedai: 'DAI "{{daiName}} bearbeitet"',
+    },
+  },
   sdo: {
     wizard: {
       title: {
@@ -468,6 +501,8 @@ export const de: Translations = {
     action: {
       addaddress: 'GSE bearbeitet ({{identity}})',
     },
+    missingaccp:
+      'AccessPoint is nicht verbunden. GSE kann nicht hinzugefügt werden.',
   },
   smv: {
     action: {
@@ -510,6 +545,7 @@ export const de: Translations = {
   },
   report: {
     wizard: { location: 'Ablageort der Reports wählen' },
+    rptID: 'Report-Kontrolblock Kennung',
   },
   cleanup: {
     unreferencedDataSets: {
@@ -517,6 +553,15 @@ export const de: Translations = {
       deleteButton: 'Ausgewählten Datensatz entfernen',
       tooltip:
         'DatenSätze ohne Verweis auf einen zugehörigen GOOSE-, Log-, Report- oder Sampled Value Control Block',
+    },
+    unreferencedControls: {
+      title: 'Steuerblöcke mit einem fehlenden oder ungültigen Kontrollblock',
+      deleteButton: 'Ausgewählte Kontrollblöcke entfernen',
+      tooltip:
+        'Steuerblöcke ohne Verweis auf ein vorhandenes Datensatz. Das ist kein Fehler und eher üblich for allem für Reports',
+      addressDefinitionTooltip:
+        'Für diesen Kontrollblock existiert eine Adressdefinition im Abschnitt Kommunikation',
+      alsoRemoveFromCommunication: 'Kommunikation SMV/GSE mit entfernen',
     },
   },
   controlblock: {
@@ -536,6 +581,9 @@ export const de: Translations = {
     label: {
       copy: 'Kopie in anderen IEDs ertellen',
     },
+  },
+  gsecontrol: {
+    wizard: { location: 'Ablageort der GOOSE wählen' },
   },
   userinfo: {
     loggedInAs: '???'

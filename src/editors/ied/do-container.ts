@@ -13,9 +13,11 @@ import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 
 import '../../action-pane.js';
 import './da-container.js';
-import { getDescriptionAttribute, getNameAttribute } from '../../foundation.js';
+import { getDescriptionAttribute, getNameAttribute, newWizardEvent } from '../../foundation.js';
 import { translate } from 'lit-translate';
 import { Nsdoc } from '../../foundation/nsdoc.js';
+import { createDoInfoWizard } from "./do-wizard.js";
+import { findDOTypeElement, getInstanceDAElement } from "./foundation.js";
 
 /** [[`IED`]] plugin subeditor for editing `DO` element. */
 @customElement('do-container')
@@ -37,7 +39,7 @@ export class DOContainer extends LitElement {
 
   @property()
   nsdoc!: Nsdoc;
-  
+
   @query('#toggleButton') toggleButton: IconButtonToggle | undefined;
 
   private header(): TemplateResult {
@@ -56,10 +58,9 @@ export class DOContainer extends LitElement {
    * @returns The nested SDO element(s) of this DO container.
    */
   private getDOElements(): Element[] {
-    const type = this.element.getAttribute('type') ?? undefined;
-    const doType =  this.element.closest('SCL')!.querySelector(`:root > DataTypeTemplates > DOType[id="${type}"]`);
+    const doType = findDOTypeElement(this.element);
     if (doType != null) {
-      return Array.from(doType!.querySelectorAll(':scope > SDO'))
+      return Array.from(doType.querySelectorAll(':scope > SDO'))
     }
     return [];
   }
@@ -90,19 +91,6 @@ export class DOContainer extends LitElement {
     return null;
   }
 
-  /**
-   * Get the instance element (DAI) of a DA element (if available)
-   * @param da - The (B)DA object to search with.
-   * @returns The optional DAI element.
-   */
-  private getInstanceDAElement(da: Element): Element | null {
-    const daName = getNameAttribute(da);
-    if (this.instanceElement) {
-      return this.instanceElement.querySelector(`:scope > DAI[name="${daName}"]`)
-    }
-    return null;
-  }
-
   render(): TemplateResult {
     const daElements = this.getDAElements();
     const doElements = this.getDOElements();
@@ -112,6 +100,8 @@ export class DOContainer extends LitElement {
         <mwc-icon-button
           title=${this.nsdoc.getDataDescription(this.element).label}
           icon="info"
+          @click=${() => this.dispatchEvent(newWizardEvent(
+            createDoInfoWizard(this.element, this.instanceElement, this.ancestors, this.nsdoc)))}
         ></mwc-icon-button>
       </abbr>
       ${daElements.length > 0 || doElements.length > 0 ?
@@ -123,17 +113,17 @@ export class DOContainer extends LitElement {
             @click=${()=>this.requestUpdate()}
           ></mwc-icon-button-toggle>
         </abbr>` : nothing}
-      ${this.toggleButton?.on ? daElements.map(da =>
+      ${this.toggleButton?.on ? daElements.map(daElement =>
         html`<da-container
-          .element=${da}
-          .instanceElement=${this.getInstanceDAElement(da)}
+          .element=${daElement}
+          .instanceElement=${getInstanceDAElement(this.instanceElement, daElement)}
           .nsdoc=${this.nsdoc}
           .ancestors=${[this.element, ...this.ancestors]}
         ></da-container>`) : nothing}
-      ${this.toggleButton?.on ? doElements.map(dO =>
+      ${this.toggleButton?.on ? doElements.map(doElement =>
         html`<do-container
-          .element=${dO}
-          .instanceElement=${this.getInstanceDOElement(dO)}
+          .element=${doElement}
+          .instanceElement=${this.getInstanceDOElement(doElement)}
           .nsdoc=${this.nsdoc}
           .ancestors=${[this.element, ...this.ancestors]}
         ></do-container>`) : nothing}

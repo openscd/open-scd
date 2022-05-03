@@ -6,39 +6,31 @@ import '@material/mwc-checkbox';
 import '@material/mwc-formfield';
 
 import '../wizard-textfield.js';
-import {
-  Create,
-  createElement,
-  Delete,
-  getValue,
-  WizardInputElement,
-} from '../foundation.js';
-import {
-  pTypesGSESMV,
-  typeNullable,
-  typePattern,
-} from './foundation/p-types.js';
+import { Create, createElement, Delete } from '../foundation.js';
+import { typeNullable, typePattern } from './foundation/p-types.js';
 
-export function renderGseSmvAddress(parent: Element): TemplateResult[] {
-  const hasInstType = Array.from(parent.querySelectorAll('Address > P')).some(
-    pType => pType.getAttribute('xsi:type')
-  );
+interface ContentOptions {
+  hasInstType: boolean;
+  attributes: Record<string, string | null>;
+}
 
+export function contentGseWizard(content: ContentOptions): TemplateResult[] {
   return [
     html`<mwc-formfield
       label="${translate('connectedap.wizard.addschemainsttype')}"
     >
-      <mwc-checkbox id="instType" ?checked="${hasInstType}"></mwc-checkbox>
+      <mwc-checkbox
+        id="instType"
+        ?checked="${content.hasInstType}"
+      ></mwc-checkbox>
     </mwc-formfield>`,
-    html`${pTypesGSESMV.map(
-      ptype =>
+    html`${Object.entries(content.attributes).map(
+      ([key, value]) =>
         html`<wizard-textfield
-          label="${ptype}"
-          .maybeValue=${parent
-            .querySelector(`Address > P[type="${ptype}"]`)
-            ?.innerHTML.trim() ?? null}
-          ?nullable=${typeNullable[ptype]}
-          pattern="${ifDefined(typePattern[ptype])}"
+          label="${key}"
+          ?nullable=${typeNullable[key]}
+          .maybeValue=${value}
+          pattern="${ifDefined(typePattern[key])}"
           required
         ></wizard-textfield>`
     )}`,
@@ -56,25 +48,25 @@ function isEqualAddress(oldAddr: Element, newAdddr: Element): boolean {
   );
 }
 
-function createAddressElement(
-  inputs: WizardInputElement[],
+export function createAddressElement(
+  inputs: Record<string, string | null>,
   parent: Element,
   instType: boolean
 ): Element {
   const element = createElement(parent.ownerDocument, 'Address', {});
 
-  inputs
-    .filter(input => getValue(input) !== null)
-    .forEach(validInput => {
-      const type = validInput.label;
+  Object.entries(inputs)
+    .filter(([key, value]) => value !== null)
+    .forEach(([key, value]) => {
+      const type = key;
       const child = createElement(parent.ownerDocument, 'P', { type });
       if (instType)
         child.setAttributeNS(
           'http://www.w3.org/2001/XMLSchema-instance',
           'xsi:type',
-          'tP_' + type
+          'tP_' + key
         );
-      child.textContent = getValue(validInput);
+      child.textContent = value;
       element.appendChild(child);
     });
 
@@ -83,7 +75,7 @@ function createAddressElement(
 
 export function updateAddress(
   parent: Element,
-  inputs: WizardInputElement[],
+  inputs: Record<string, string | null>,
   instType: boolean
 ): (Create | Delete)[] {
   const actions: (Create | Delete)[] = [];

@@ -158,6 +158,11 @@
 						</DOI>
 					</LN>
 					<LN prefix="CB" lnClass="CSWI" inst="2" lnType="Dummy.CSWIwithoutCtlModel">
+						<DOI name="Beh">
+								<DAI name="integer">
+    								<Val>5</Val>
+								</DAI>
+						</DOI>
 						<DOI name="Pos">
 							<SDI name="pulseConfig">
 								<DAI name="numPls">
@@ -512,6 +517,7 @@
 			<DA fc="MX" name="t" bType="Timestamp"/>
 		</DOType>
 		<DOType cdc="ENS" id="Dummy.LLN0.Beh">
+			<DA fc="ST" name="integer" bType="INT8U" />
 			<DA fc="ST" name="stVal" bType="Enum" type="Dummy_Beh" />
 			<DA fc="ST" name="q" bType="Quality" />
 			<DA fc="ST" name="t" bType="Timestamp" />

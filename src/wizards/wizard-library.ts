@@ -19,9 +19,11 @@ import { createPowerTransformerWizard, editPowerTransformerWizard } from './powe
 import { editSubNetworkWizard } from './subnetwork.js';
 import { editIEDWizard } from './ied.js';
 import { editTrgOpsWizard } from './trgops.js';
+import { createDaWizard } from './da.js';
+import { editDAIWizard } from './dai.js';
 import { editCompasSCLWizard } from "../compas-wizards/scl.js";
 
-type SclElementWizard = (element: Element) => Wizard | undefined;
+type SclElementWizard = (element: Element, instanceElement?: Element) => Wizard | undefined;
 
 export function emptyWizard(): Wizard | undefined {
   return;
@@ -123,11 +125,11 @@ export const wizards: Record<
     create: emptyWizard,
   },
   DA: {
-    edit: emptyWizard,
+    edit: createDaWizard,
     create: emptyWizard,
   },
   DAI: {
-    edit: emptyWizard,
+    edit: editDAIWizard,
     create: emptyWizard,
   },
   DAType: {

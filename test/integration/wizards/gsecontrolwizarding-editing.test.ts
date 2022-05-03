@@ -11,6 +11,7 @@ import {
 } from '../../../src/wizards/gsecontrol.js';
 import { FilteredList } from '../../../src/filtered-list.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
+import { FinderList } from '../../../src/finder-list.js';
 
 describe('Wizards for SCL element GSEControl', () => {
   let doc: XMLDocument;
@@ -26,52 +27,117 @@ describe('Wizards for SCL element GSEControl', () => {
   describe('define a select wizards that', () => {
     let gseControlList: FilteredList;
 
-    beforeEach(async () => {
-      const wizard = selectGseControlWizard(doc.documentElement);
-      element.workflow.push(() => wizard);
-      await element.requestUpdate();
-      gseControlList = <FilteredList>(
-        element.wizardUI.dialog?.querySelector('filtered-list')
-      );
-      await gseControlList.updateComplete;
+    describe('with the document element as input', () => {
+      beforeEach(async () => {
+        const wizard = selectGseControlWizard(doc.documentElement);
+        element.workflow.push(() => wizard);
+        await element.requestUpdate();
+        gseControlList = <FilteredList>(
+          element.wizardUI.dialog?.querySelector('filtered-list')
+        );
+        await gseControlList.updateComplete;
+      });
+
+      it('shows all GSEControl within the SCL', () =>
+        expect(gseControlList.items.length).to.equal(
+          doc.querySelectorAll('GSEControl').length
+        ));
+
+      it('opens edit wizard for selected GSEControl on filtered-list item click', async () => {
+        const gse2 = <ListItemBase>gseControlList.items[1];
+        await gse2.updateComplete;
+        gse2.click();
+        await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+        await element.wizardUI.dialog?.updateComplete;
+
+        const nameField = <WizardTextField>(
+          element.wizardUI.dialog?.querySelector(
+            'wizard-textfield[label="name"]'
+          )
+        );
+        await nameField.updateComplete;
+
+        expect(nameField.value).to.equal(
+          doc.querySelectorAll('GSEControl')[1].getAttribute('name')
+        );
+      });
+
+      describe('has an add GSEControl primary button that', () => {
+        let iEDPicker: FinderList;
+
+        beforeEach(async () => {
+          (<HTMLElement>(
+            element.wizardUI.dialog?.querySelector(
+              'mwc-button[slot="primaryAction"]'
+            )
+          )).click();
+          await new Promise(resolve => setTimeout(resolve, 50)); // await animation
+
+          iEDPicker = <FinderList>(
+            element.wizardUI.dialog?.querySelector('finder-list')
+          );
+        });
+
+        it('opens a potential list of host IEDs for the ReportControl element', async () =>
+          expect(iEDPicker).to.exist);
+      });
     });
 
-    it('shows all GSEControl within an IED or SCL', () =>
-      expect(gseControlList.items.length).to.equal(
-        doc.querySelectorAll('GSEControl').length
-      ));
+    describe('with a specific IED as input', () => {
+      beforeEach(async () => {
+        const wizard = selectGseControlWizard(doc.querySelector('IED')!);
+        element.workflow.push(() => wizard);
+        await element.requestUpdate();
 
-    it('allows to filter GSEControl elements per IED', async () => {
-      const wizard = selectGseControlWizard(doc.querySelector('IED')!);
-      element.workflow.pop();
-      element.workflow.push(() => wizard);
-      await element.requestUpdate();
+        gseControlList = <FilteredList>(
+          element.wizardUI.dialog?.querySelector('filtered-list')
+        );
+        await gseControlList.updateComplete;
+      });
 
-      gseControlList = <FilteredList>(
-        element.wizardUI.dialog?.querySelector('filtered-list')
-      );
-      await gseControlList.updateComplete;
+      it('allows to filter ReportControl elements per IED', async () =>
+        expect(gseControlList.items.length).to.equal(
+          doc.querySelector('IED')!.querySelectorAll('GSEControl').length
+        ));
 
-      expect(gseControlList.items.length).to.equal(
-        doc.querySelector('IED')!.querySelectorAll('GSEControl').length
-      );
-    });
+      it('opens edit wizard for selected ReportControl element on click', async () => {
+        const reportItem = <ListItemBase>gseControlList.items[1];
+        reportItem.click();
+        await new Promise(resolve => setTimeout(resolve, 20)); // await animation
 
-    it('opens edit wizard for selected GSEControl on filtered-list item click', async () => {
-      const gse2 = <ListItemBase>gseControlList.items[1];
-      await gse2.updateComplete;
-      gse2.click();
-      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
-      await element.wizardUI.dialog?.updateComplete;
+        const nameField = <WizardTextField>(
+          element.wizardUI.dialog?.querySelector(
+            'wizard-textfield[label="name"]'
+          )
+        );
+        await nameField.requestUpdate();
 
-      const nameField = <WizardTextField>(
-        element.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
-      );
-      await nameField.updateComplete;
+        expect(nameField.value).to.equal(
+          doc.querySelectorAll('GSEControl')[1].getAttribute('name')
+        );
+      });
 
-      expect(nameField.value).to.equal(
-        doc.querySelectorAll('GSEControl')[1].getAttribute('name')
-      );
+      describe('has an add Report primary button that', () => {
+        it('opens the create wizard for the ReportControl element', async () => {
+          const primaryAction = <HTMLElement>(
+            element.wizardUI.dialog?.querySelector(
+              'mwc-button[slot="primaryAction"]'
+            )
+          );
+
+          await primaryAction.click();
+          await new Promise(resolve => setTimeout(resolve, 20)); // await animation
+
+          const nameField = <WizardTextField>(
+            element.wizardUI.dialog?.querySelector(
+              'wizard-textfield[label="name"]'
+            )
+          );
+          await nameField.requestUpdate();
+
+          expect(nameField).to.exist;
+        });
+      });
     });
   });
 

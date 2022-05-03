@@ -6,6 +6,7 @@ snapshots["Wizards for SCL element (CoMPAS) edit scl looks like the latest snaps
   defaultaction="close"
   heading="[compas.scl.wizardTitle]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <wizard-textfield
