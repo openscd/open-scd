@@ -317,15 +317,24 @@ export const en = {
   subscription: {
     none: 'None',
     publisherGoose: {
-      title: 'GOOSE publisher',
+      title: 'GOOSE Publisher',
+      subscriberTitle: 'Subscriber of {{ selected }}'
     },
-    subscriberIed: {
-      title: 'Subscriber of {{ selected }}',
+    subscriberGoose: {
+      title: 'GOOSE Subscriber',
+      publisherTitle: 'GOOSE(s) subscribed by {{selected}}'
+    },
+    subscriber: {
       subscribed: 'Subscribed',
       availableToSubscribe: 'Available to subscribe',
       partiallySubscribed: 'Partially subscribed',
       noGooseMessageSelected: 'No GOOSE message selected',
+      noIedSelected: 'No IED selected',
     },
+    view: {
+      publisherView: "Show subscriber IED(s) per selected GOOSE",
+      subscriberView: "Show subscribed GOOSE publisher for selected IED"
+    }
   },
   sampledvalues: {
     none: 'none',

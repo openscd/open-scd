@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.15.0](https://github.com/openscd/open-scd/compare/v0.14.0...v0.15.0) (2022-05-02)
+
+
+### Features
+
+* **iededitor:** Added implementation to change enum values in IED Editor. ([865f7ab](https://github.com/openscd/open-scd/commits/865f7ab33f7361b8f481be2c47f77b0fe1f05e81))
+* **substation:** read only Function and SubFunction container ([#700](https://github.com/openscd/open-scd/issues/700)) ([3d7b2ef](https://github.com/openscd/open-scd/commits/3d7b2ef5c4950d2341973bac70ae4a658a00f859)), closes [#706](https://github.com/openscd/open-scd/issues/706)
+* **wizards/dai:** Change DAI values ([#687](https://github.com/openscd/open-scd/issues/687)) ([3689ef2](https://github.com/openscd/open-scd/commits/3689ef26253ba3c352f0bd758b9abdbc17fe9c33))
+* **wizards/gsecontrol:** add create wizards ([#654](https://github.com/openscd/open-scd/issues/654)) ([887f46f](https://github.com/openscd/open-scd/commits/887f46f5e3bc885cfad1f9e18a2d5f58161fbb44))
+* **wizards:** Changed label of rptID ([#697](https://github.com/openscd/open-scd/issues/697)) ([10f3f0b](https://github.com/openscd/open-scd/commits/10f3f0bdea05328838196914f62290e4ca6c76bc))
+
+
+### Bug Fixes
+
+* **wizard-dialog:** avoid header overlap with extra action buttons ([#703](https://github.com/openscd/open-scd/issues/703)) ([ffe7859](https://github.com/openscd/open-scd/commits/ffe7859b4d67873339658d1a216cc0a8dabfb687))
+* **wizard-dialog:** remove initialFocus from action buttons ([#702](https://github.com/openscd/open-scd/issues/702)) ([a4783ab](https://github.com/openscd/open-scd/commits/a4783ab46e350e5ed1af64102bd3a78e95fc2c93))
+
 ## [0.14.0](https://github.com/openscd/open-scd/compare/v0.13.0...v0.14.0) (2022-04-21)
 
 
