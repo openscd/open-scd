@@ -6,6 +6,7 @@ snapshots["wizard-dialog with user defined menu actions set looks like its snaps
   defaultaction="close"
   heading="Page 1"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 48px)"
 >
   <nav>
     <mwc-icon-button icon="more_vert">

@@ -5,8 +5,8 @@ import '@material/mwc-radio';
 import '@material/mwc-formfield';
 
 import './subscription/subscriber-list.js';
-import './subscription/elements/goose-publisher-list.js';
-import './subscription/elements/goose-subscriber-list.js';
+import './subscription/goose-publisher-list.js';
+import './subscription/goose-subscriber-list.js';
 import { translate } from 'lit-translate';
 import { newViewEvent, View, ViewEvent } from './subscription/foundation.js';
 import { RadioListItem } from '@material/mwc-list/mwc-radio-list-item';

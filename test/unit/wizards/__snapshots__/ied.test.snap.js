@@ -6,6 +6,7 @@ snapshots["Wizards for SCL element IED edit existing IED looks like the latest s
   defaultaction="close"
   heading="[ied.wizard.title.edit]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <wizard-textfield
@@ -34,7 +35,6 @@ snapshots["Wizards for SCL element IED edit existing IED looks like the latest s
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="edit"
     label="[save]"
     slot="primaryAction"

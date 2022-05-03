@@ -6,6 +6,7 @@ snapshots["Wizards for SCL element Conducting Equipment (X/Y) looks like the lat
   defaultaction="close"
   heading="[conductingequipment.wizard.title.edit]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <mwc-select
@@ -60,7 +61,6 @@ snapshots["Wizards for SCL element Conducting Equipment (X/Y) looks like the lat
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="edit"
     label="[save]"
     slot="primaryAction"

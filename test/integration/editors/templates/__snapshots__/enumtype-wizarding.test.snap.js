@@ -6,6 +6,7 @@ snapshots["EnumType wizards defines a createEnumTypeWizard looks like the latest
   defaultaction="close"
   heading="[enum.wizard.title.add]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <mwc-select
@@ -1355,7 +1356,6 @@ snapshots["EnumType wizards defines a createEnumTypeWizard looks like the latest
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="add"
     label="[add]"
     slot="primaryAction"
@@ -1371,6 +1371,7 @@ snapshots["EnumType wizards defines an eNumTypeEditWizard looks like the latest 
   defaultaction="close"
   heading="[enum.wizard.title.edit]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 48px)"
 >
   <nav>
     <mwc-icon-button icon="more_vert">
@@ -1515,7 +1516,6 @@ snapshots["EnumType wizards defines an eNumTypeEditWizard looks like the latest 
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon=""
     label="[save]"
     slot="primaryAction"
@@ -1531,6 +1531,7 @@ snapshots["EnumType wizards defines a eNumValWizard to edit an existing EnumVal 
   defaultaction="close"
   heading="[enum-val.wizard.title.edit]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 48px)"
 >
   <nav>
     <mwc-icon-button icon="more_vert">
@@ -1589,7 +1590,6 @@ snapshots["EnumType wizards defines a eNumValWizard to edit an existing EnumVal 
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon=""
     label="Save"
     slot="primaryAction"
@@ -1605,6 +1605,7 @@ snapshots["EnumType wizards defines a eNumValWizard to create a new EnumVal elem
   defaultaction="close"
   heading="[enum-val.wizard.title.add]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <wizard-textfield
@@ -1639,7 +1640,6 @@ snapshots["EnumType wizards defines a eNumValWizard to create a new EnumVal elem
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon=""
     label="Save"
     slot="primaryAction"

@@ -6,6 +6,7 @@ snapshots["Wizards for SCL element SubNetwork include an edit wizard that with e
   defaultaction="close"
   heading="[wizard.title.edit]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <wizard-textfield
@@ -49,7 +50,6 @@ snapshots["Wizards for SCL element SubNetwork include an edit wizard that with e
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="save"
     label="[save]"
     slot="primaryAction"
@@ -65,6 +65,7 @@ snapshots["Wizards for SCL element SubNetwork include an edit wizard that with m
   defaultaction="close"
   heading="[wizard.title.edit]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <wizard-textfield
@@ -109,7 +110,6 @@ snapshots["Wizards for SCL element SubNetwork include an edit wizard that with m
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="save"
     label="[save]"
     slot="primaryAction"
@@ -125,6 +125,7 @@ snapshots["Wizards for SCL element SubNetwork include an create wizard that look
   defaultaction="close"
   heading="[wizard.title.add]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <wizard-textfield
@@ -167,7 +168,6 @@ snapshots["Wizards for SCL element SubNetwork include an create wizard that look
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="add"
     label="[add]"
     slot="primaryAction"

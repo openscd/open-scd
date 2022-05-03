@@ -6,6 +6,7 @@ snapshots["Wizards for SCL element SMV include an edit wizard that looks like th
   defaultaction="close"
   heading="[wizard.title.edit]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <mwc-formfield label="[connectedap.wizard.addschemainsttype]">
@@ -47,7 +48,6 @@ snapshots["Wizards for SCL element SMV include an edit wizard that looks like th
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="edit"
     label="[save]"
     slot="primaryAction"

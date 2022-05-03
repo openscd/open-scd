@@ -6,6 +6,7 @@ snapshots["Wizards for SCL element ConnectedAP include a create wizard that look
   defaultaction="close"
   heading="[wizard.title.add]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <filtered-list
@@ -69,7 +70,6 @@ snapshots["Wizards for SCL element ConnectedAP include a create wizard that look
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="save"
     label="[save]"
     slot="primaryAction"

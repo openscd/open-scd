@@ -6,6 +6,7 @@ snapshots["Update method for desc attributes in ABB IEDs working on SCL files wi
   defaultaction="close"
   heading="[wizard.title.add]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <filtered-list multi="">
@@ -19,7 +20,6 @@ snapshots["Update method for desc attributes in ABB IEDs working on SCL files wi
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="save"
     label="[save]"
     slot="primaryAction"
@@ -35,6 +35,7 @@ snapshots["Update method for desc attributes in ABB IEDs working on SCL files co
   defaultaction="close"
   heading="[wizard.title.add]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <filtered-list multi="">
@@ -80,7 +81,6 @@ snapshots["Update method for desc attributes in ABB IEDs working on SCL files co
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="save"
     label="[save]"
     slot="primaryAction"

@@ -6,6 +6,7 @@ snapshots["selectExtRefWizard looks like the latest snapshot"] =
   defaultaction="close"
   heading="IED3>>MU01>MSVCB01 - IED1"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <filtered-list multi="">
@@ -214,7 +215,6 @@ snapshots["selectExtRefWizard looks like the latest snapshot"] =
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="delete"
     label="[disconnect]"
     slot="primaryAction"

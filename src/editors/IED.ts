@@ -4,8 +4,8 @@ import '@material/mwc-fab';
 import '@material/mwc-select';
 import '@material/mwc-list/mwc-list-item';
 
-import '../zeroline-pane.js';
 import './ied/ied-container.js'
+import './substation/zeroline-pane.js';
 
 import { translate } from 'lit-translate';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';

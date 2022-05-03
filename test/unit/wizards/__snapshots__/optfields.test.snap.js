@@ -6,6 +6,7 @@ snapshots["Wizards for SCL OptFields element define an edit wizard that looks li
   defaultaction="close"
   heading="[wizard.title.edit]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <wizard-checkbox
@@ -65,7 +66,6 @@ snapshots["Wizards for SCL OptFields element define an edit wizard that looks li
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="save"
     label="[save]"
     slot="primaryAction"

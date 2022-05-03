@@ -6,6 +6,7 @@ snapshots["create wizard for FCDA element with a valid SCL file looks like the l
   defaultaction="close"
   heading="[wizard.title.add]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <finder-list multi="">
@@ -19,7 +20,6 @@ snapshots["create wizard for FCDA element with a valid SCL file looks like the l
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="add"
     label="add"
     slot="primaryAction"

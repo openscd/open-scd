@@ -6,6 +6,7 @@ snapshots["DAType wizards defines a createDATypeWizard looks like the latest sna
   defaultaction="close"
   heading="[datype.wizard.title.add]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <mwc-select
@@ -603,7 +604,6 @@ snapshots["DAType wizards defines a createDATypeWizard looks like the latest sna
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="add"
     label="[add]"
     slot="primaryAction"
@@ -619,6 +619,7 @@ snapshots["DAType wizards defines a dATypeWizard looks like the latest snapshot"
   defaultaction="close"
   heading="[datype.wizard.title.edit]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 48px)"
 >
   <nav>
     <mwc-icon-button icon="more_vert">
@@ -772,7 +773,6 @@ snapshots["DAType wizards defines a dATypeWizard looks like the latest snapshot"
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon=""
     label="[save]"
     slot="primaryAction"

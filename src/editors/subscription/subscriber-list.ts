@@ -499,8 +499,8 @@ export class SubscriberList extends LitElement {
       : html`<h1>
           ${translate('subscription.subscriberGoose.publisherTitle', {
             selected: this.currentSelectedIed
-              ? 'to ' + this.currentSelectedIed.getAttribute('name')
-              : 'of GOOSE',
+            ? this.currentSelectedIed.getAttribute('name')!
+            : 'IED',
           })}
           ${this.renderEditButton()}
         </h1>`;

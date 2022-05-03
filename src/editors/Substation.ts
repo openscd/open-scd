@@ -3,7 +3,7 @@ import { get } from 'lit-translate';
 
 import '@material/mwc-fab';
 
-import '../zeroline-pane.js';
+import './substation/zeroline-pane.js';
 import { newWizardEvent } from '../foundation.js';
 import { wizards } from '../wizards/wizard-library.js';
 

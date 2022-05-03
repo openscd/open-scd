@@ -6,6 +6,7 @@ snapshots["LNodeType wizards defines a lNodeTypeHelperWizard looks like the late
   defaultaction="close"
   heading="[lnodetype.wizard.title.edit]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 48px)"
 >
   <nav>
     <mwc-icon-button icon="more_vert">
@@ -152,7 +153,6 @@ snapshots["LNodeType wizards defines a lNodeTypeHelperWizard looks like the late
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon=""
     label="[save]"
     slot="primaryAction"
@@ -168,6 +168,7 @@ snapshots["LNodeType wizards defines a createLNodeTypeWizard looks like the late
   defaultaction="close"
   heading="[lnodetype.wizard.title.add]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <mwc-select
@@ -4339,7 +4340,6 @@ snapshots["LNodeType wizards defines a createLNodeTypeWizard looks like the late
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon=""
     label="[next]..."
     slot="primaryAction"
@@ -4355,6 +4355,7 @@ snapshots["LNodeType wizards defines a createLNodeTypeWizard opens a createLNode
   defaultaction="close"
   heading="[lnodetype.wizard.title.select]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <wizard-select
@@ -4674,7 +4675,6 @@ snapshots["LNodeType wizards defines a createLNodeTypeWizard opens a createLNode
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon=""
     label="[save]"
     slot="primaryAction"
@@ -4690,6 +4690,7 @@ snapshots["LNodeType wizards defines a dOWizard to create a new DO element looks
   defaultaction="close"
   heading="[do.wizard.title.add]"
   open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <wizard-textfield
@@ -4874,7 +4875,6 @@ snapshots["LNodeType wizards defines a dOWizard to create a new DO element looks
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon=""
     label="[save]"
     slot="primaryAction"

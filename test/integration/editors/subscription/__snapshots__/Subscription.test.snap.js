@@ -299,7 +299,7 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
 `;
 /* end snapshot Subscription Plugin in GOOSE Publisher view when selecting a GOOSE message the list on the right will initially show the subscribed / partially subscribed / not subscribed IEDs */
 
-snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE message and you subscribe a non-subscribed IED it looks like the latest snapshot"] = 
+snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE message and subscribing an unsubscribed IED it looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
     [subscription.publisherGoose.subscriberTitle]
@@ -407,9 +407,9 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
   </div>
 </section>
 `;
-/* end snapshot Subscription Plugin in GOOSE Publisher view when selecting a GOOSE message and you subscribe a non-subscribed IED it looks like the latest snapshot */
+/* end snapshot Subscription Plugin in GOOSE Publisher view when selecting a GOOSE message and subscribing an unsubscribed IED it looks like the latest snapshot */
 
-snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE message and you unsubscribe a subscribed IED it looks like the latest snapshot"] = 
+snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE message and unsubscribing a subscribed IED it looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
     [subscription.publisherGoose.subscriberTitle]
@@ -438,30 +438,12 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
       >
       </li>
       <mwc-list-item
-        aria-disabled="false"
         graphic="avatar"
-        hasmeta=""
-        mwc-list-item=""
-        tabindex="-1"
+        noninteractive=""
       >
         <span>
-          IED1
+          [subscription.none]
         </span>
-        <mwc-icon slot="graphic">
-          clear
-        </mwc-icon>
-      </mwc-list-item>
-      <mwc-list-item
-        graphic="avatar"
-        hasmeta=""
-        mwc-list-item=""
-      >
-        <span>
-          IED4
-        </span>
-        <mwc-icon slot="graphic">
-          clear
-        </mwc-icon>
       </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
@@ -478,12 +460,18 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
       >
       </li>
       <mwc-list-item
+        aria-disabled="false"
         graphic="avatar"
-        noninteractive=""
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
       >
         <span>
-          [subscription.none]
+          IED4
         </span>
+        <mwc-icon slot="graphic">
+          add
+        </mwc-icon>
       </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
@@ -507,6 +495,18 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
         tabindex="-1"
       >
         <span>
+          IED1
+        </span>
+        <mwc-icon slot="graphic">
+          add
+        </mwc-icon>
+      </mwc-list-item>
+      <mwc-list-item
+        graphic="avatar"
+        hasmeta=""
+        mwc-list-item=""
+      >
+        <span>
           IED3
         </span>
         <mwc-icon slot="graphic">
@@ -517,9 +517,9 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
   </div>
 </section>
 `;
-/* end snapshot Subscription Plugin in GOOSE Publisher view when selecting a GOOSE message and you unsubscribe a subscribed IED it looks like the latest snapshot */
+/* end snapshot Subscription Plugin in GOOSE Publisher view when selecting a GOOSE message and unsubscribing a subscribed IED it looks like the latest snapshot */
 
-snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE message and you subscribe a partially subscribed IED it looks like the latest snapshot"] = 
+snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE message and subscribing a partially subscribed IED it looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
     [subscription.publisherGoose.subscriberTitle]
@@ -627,7 +627,7 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
   </div>
 </section>
 `;
-/* end snapshot Subscription Plugin in GOOSE Publisher view when selecting a GOOSE message and you subscribe a partially subscribed IED it looks like the latest snapshot */
+/* end snapshot Subscription Plugin in GOOSE Publisher view when selecting a GOOSE message and subscribing a partially subscribed IED it looks like the latest snapshot */
 
 snapshots["Subscription Plugin in GOOSE Subscriber view initially the plugin looks like the latest snapshot"] = 
 `<div>
@@ -760,7 +760,7 @@ snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED th
 `;
 /* end snapshot Subscription Plugin in GOOSE Subscriber view when selecting an IED the list on the right will initially show the subscribed / partially subscribed / not subscribed IEDs */
 
-snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED and you subscribe a non-subscribed GOOSE message it looks like the latest snapshot"] = 
+snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED and subscribing a unsubscribed GOOSE message it looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
     [subscription.subscriberGoose.publisherTitle]
@@ -854,9 +854,9 @@ snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED an
   </div>
 </section>
 `;
-/* end snapshot Subscription Plugin in GOOSE Subscriber view when selecting an IED and you subscribe a non-subscribed GOOSE message it looks like the latest snapshot */
+/* end snapshot Subscription Plugin in GOOSE Subscriber view when selecting an IED and subscribing a unsubscribed GOOSE message it looks like the latest snapshot */
 
-snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED and you unsubscribe a subscribed GOOSE message it looks like the latest snapshot"] = 
+snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED and unsubscribing a subscribed GOOSE message it looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
     [subscription.subscriberGoose.publisherTitle]
@@ -951,9 +951,9 @@ snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED an
   </div>
 </section>
 `;
-/* end snapshot Subscription Plugin in GOOSE Subscriber view when selecting an IED and you unsubscribe a subscribed GOOSE message it looks like the latest snapshot */
+/* end snapshot Subscription Plugin in GOOSE Subscriber view when selecting an IED and unsubscribing a subscribed GOOSE message it looks like the latest snapshot */
 
-snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED and you subscribe a partially subscribed GOOSE message it looks like the latest snapshot"] = 
+snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED and subscribing a partially subscribed GOOSE message it looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
     [subscription.subscriberGoose.publisherTitle]
@@ -1047,5 +1047,5 @@ snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED an
   </div>
 </section>
 `;
-/* end snapshot Subscription Plugin in GOOSE Subscriber view when selecting an IED and you subscribe a partially subscribed GOOSE message it looks like the latest snapshot */
+/* end snapshot Subscription Plugin in GOOSE Subscriber view when selecting an IED and subscribing a partially subscribed GOOSE message it looks like the latest snapshot */
 

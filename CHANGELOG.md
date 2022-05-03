@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.15.0](https://github.com/openscd/open-scd/compare/v0.14.0...v0.15.0) (2022-05-02)
+
+
+### Features
+
+* **iededitor:** Added implementation to change enum values in IED Editor. ([865f7ab](https://github.com/openscd/open-scd/commits/865f7ab33f7361b8f481be2c47f77b0fe1f05e81))
+* **substation:** read only Function and SubFunction container ([#700](https://github.com/openscd/open-scd/issues/700)) ([3d7b2ef](https://github.com/openscd/open-scd/commits/3d7b2ef5c4950d2341973bac70ae4a658a00f859)), closes [#706](https://github.com/openscd/open-scd/issues/706)
+* **wizards/dai:** Change DAI values ([#687](https://github.com/openscd/open-scd/issues/687)) ([3689ef2](https://github.com/openscd/open-scd/commits/3689ef26253ba3c352f0bd758b9abdbc17fe9c33))
+* **wizards/gsecontrol:** add create wizards ([#654](https://github.com/openscd/open-scd/issues/654)) ([887f46f](https://github.com/openscd/open-scd/commits/887f46f5e3bc885cfad1f9e18a2d5f58161fbb44))
+* **wizards:** Changed label of rptID ([#697](https://github.com/openscd/open-scd/issues/697)) ([10f3f0b](https://github.com/openscd/open-scd/commits/10f3f0bdea05328838196914f62290e4ca6c76bc))
+
+
+### Bug Fixes
+
+* **wizard-dialog:** avoid header overlap with extra action buttons ([#703](https://github.com/openscd/open-scd/issues/703)) ([ffe7859](https://github.com/openscd/open-scd/commits/ffe7859b4d67873339658d1a216cc0a8dabfb687))
+* **wizard-dialog:** remove initialFocus from action buttons ([#702](https://github.com/openscd/open-scd/issues/702)) ([a4783ab](https://github.com/openscd/open-scd/commits/a4783ab46e350e5ed1af64102bd3a78e95fc2c93))
+
+## [0.14.0](https://github.com/openscd/open-scd/compare/v0.13.0...v0.14.0) (2022-04-21)
+
+
+### Features
+
+* **editors/cleanup:** remove unused control blocks ([#620](https://github.com/openscd/open-scd/issues/620)) ([e63f11f](https://github.com/openscd/open-scd/commits/e63f11f9e5e2130b273506eff2567ec31a890f57))
+* **editors/Subscription:** When undo / redo actions Subscription / SMV plugin, lists are not refreshed ([7889be9](https://github.com/openscd/open-scd/commits/7889be93b7d8f76042cc08656392b83f1b82dada))
+
+
+### Bug Fixes
+
+* **editors/subscription:** several styling issues ([#661](https://github.com/openscd/open-scd/issues/661)) ([b9f5555](https://github.com/openscd/open-scd/commits/b9f5555c4c01c7ba29cfca12dd5f0b318abee861))
+* **editors:** Changed selectors in Substation and IED Editors and updated IED and Substation Wizards. ([#671](https://github.com/openscd/open-scd/issues/671)) ([33b590a](https://github.com/openscd/open-scd/commits/33b590abdedca12d1029d950654d8d6673124e8f))
+* **filtered-list:** allow filter nested list-item s ([#660](https://github.com/openscd/open-scd/issues/660)) ([1ea37c5](https://github.com/openscd/open-scd/commits/1ea37c5c490de52b538201d3a4fb39291b239771))
+
 ## [0.13.0](https://github.com/openscd/open-scd/compare/v0.11.0...v0.13.0) (2022-04-04)
 
 
