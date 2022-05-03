@@ -1,10 +1,10 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../../../../src/editors/subscription/subscriber-ied-list-goose.js'
-import { SubscriberIEDListGoose } from '../../../../src/editors/subscription/subscriber-ied-list-goose.js';
+import '../../../../src/editors/subscription/subscriber-list.js'
+import { SubscriberList } from '../../../../src/editors/subscription/subscriber-list.js';
 
-describe('subscriber-ied-list', () => {
-  let element: SubscriberIEDListGoose;
+describe('subscriber-list', () => {
+  let element: SubscriberList;
   let validSCL: XMLDocument;
 
   beforeEach(async () => {
@@ -12,9 +12,9 @@ describe('subscriber-ied-list', () => {
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-    element = await fixture(html`<subscriber-ied-list-goose
+    element = await fixture(html`<subscriber-list
       .doc=${validSCL}
-    ></subscriber-ied-list-goose>`);
+    ></subscriber-list>`);
   });
 
   it('initially looks like the latest snapshot', async () => {
