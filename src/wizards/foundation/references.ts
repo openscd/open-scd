@@ -1,76 +1,132 @@
-import {isPublic, SimpleAction} from "../../foundation.js";
+import {
+  isPublic,
+  Replace
+} from "../../foundation.js";
 
 const referenceInfoTags = ['IED', 'Substation', 'VoltageLevel', 'Bay'] as const;
 type ReferencesInfoTag = typeof referenceInfoTags[number];
+
+type FilterFunction = (element: Element, attributeName: string | null, oldName: string | null) => string;
 
 /*
  * For every supported tag a list of information about which elements to search for and which attribute value
  * to replace with the new value typed in the screen by the user. This is used to update references to a name
  * of an element by other elements.
- * If the attribute is null the text content of the found element will be replaced.
+ * If the attributeName is null the text content of the found element will be replaced.
  */
 const referenceInfos: Record<
   ReferencesInfoTag,
   {
-    queryOnDocument: boolean;
-    elementQuery: string;
-    attribute: string | null;
+    attributeName: string | null;
+    filter: FilterFunction;
   }[]
 > = {
   IED:
     [{
-      queryOnDocument: true,
-      elementQuery: `Association`,
-      attribute: 'iedName'
+      attributeName: 'iedName',
+      filter: simpleAttributeFilter(`Association`)
     }, {
-      queryOnDocument: true,
-      elementQuery: `ClientLN`,
-      attribute: 'iedName'
+      attributeName: 'iedName',
+      filter: simpleAttributeFilter(`ClientLN`)
     }, {
-      queryOnDocument: true,
-      elementQuery: `ConnectedAP`,
-      attribute: 'iedName'
+      attributeName: 'iedName',
+      filter: simpleAttributeFilter(`ConnectedAP`)
     }, {
-      queryOnDocument: true,
-      elementQuery: `ExtRef`,
-      attribute: 'iedName'
+      attributeName: 'iedName',
+      filter: simpleAttributeFilter(`ExtRef`)
     }, {
-      queryOnDocument: true,
-      elementQuery: `KDC`,
-      attribute: 'iedName'
+      attributeName: 'iedName',
+      filter: simpleAttributeFilter(`KDC`)
     }, {
-      queryOnDocument: true,
-      elementQuery: `LNode`,
-      attribute: 'iedName'
+      attributeName: 'iedName',
+      filter: simpleAttributeFilter(`LNode`)
     }, {
-      queryOnDocument: true,
-      elementQuery: `GSEControl > IEDName`,
-      attribute: null
+      attributeName: null,
+      filter: simpleTextContentFilter(`GSEControl > IEDName`)
     }, {
-      queryOnDocument: true,
-      elementQuery: `SampledValueControl > IEDName`,
-      attribute: null
+      attributeName: null,
+      filter: simpleTextContentFilter(`SampledValueControl > IEDName`)
     }],
   Substation:
     [{
-      queryOnDocument: true,
-      elementQuery: `Terminal`,
-      attribute: 'substationName'
+      attributeName: 'substationName',
+      filter: simpleAttributeFilter(`Terminal`)
     }],
   VoltageLevel:
     [{
-      queryOnDocument: false,
-      elementQuery: `Terminal`,
-      attribute: 'voltageLevelName'
+      attributeName: 'voltageLevelName',
+      filter: attributeFilterWithParentNameAttribute(`Terminal`,
+        {'Substation': 'substationName'})
     }],
   Bay:
     [{
-      queryOnDocument: false,
-      elementQuery: `Terminal`,
-      attribute: 'bayName'
+      attributeName: 'bayName',
+      filter: attributeFilterWithParentNameAttribute(`Terminal`,
+        {'Substation': 'substationName', 'VoltageLevel': 'voltageLevelName'})
     }],
 }
 
+/**
+ * Simple function to create a filter to find Elements where the value of an attribute equals the old name.
+ *
+ * @param tagName - The tagName of the elements to search for.
+ */
+function simpleAttributeFilter(tagName: string) {
+  return function filter(element: Element, attributeName: string | null, oldName: string | null): string {
+    return `${tagName}[${attributeName}="${oldName}"]`;
+  }
+}
+
+/**
+ * Simple function to search for Elements for which the text content may contain the old name.
+ * Because the text content of an element can't be search for in a CSS Selector this is done afterwards.
+ *
+ * @param elementQuery - The CSS Query to search for the Elements.
+ */
+function simpleTextContentFilter(elementQuery: string) {
+  return function filter(): string {
+    return `${elementQuery}`;
+  }
+}
+
+/**
+ * More complex function to search for elements for which the value of an attribute needs to be updated.
+ * To find the correct element the name of a parent element also needs to be included in the search.
+ *
+ * For instance when the name of a Bay is updated only the terminals need to be updated where of course
+ * the old name of the bay is the value of the attribute 'bayName', but also the voltage level and substation
+ * name need to be included, because the name of the bay is only unique within the voltage level.
+ * The query will then become
+ * `Terminal[substationName="<substationName>"][voltageLevelName="<voltageLevelName>"][bayName="<oldName>"]`
+ *
+ * @param elementName - The tagName of the elements to search for.
+ * @param parentInfo  - The records of parent to search for, the key is the tagName of the parent, the value
+ *                      is the name of the attribuet to use in the query.
+ */
+function attributeFilterWithParentNameAttribute(elementName: string, parentInfo: Record<string, string>) {
+  return function filter(element: Element, attributeName: string | null, oldName: string | null): string {
+    return `${elementName}${Object.entries(parentInfo)
+      .map(([parentTag, parentAttribute]) => {
+        const parentElement = element.closest(parentTag);
+        if (parentElement && parentElement.hasAttribute('name')) {
+          const name = parentElement.getAttribute('name');
+          return `[${parentAttribute}="${name}"]`;
+        }
+        return null;
+      }).join('') // Join the strings to 1 string without a separator.
+    }[${attributeName}="${oldName}"]`;
+  }
+}
+
+/**
+ * Clone an element with the attribute name passed and process the new value. If the new value
+ * is null the attribute will be removed otherwise the value of the attribute is updated.
+ *
+ * @param element       - The element to clone.
+ * @param attributeName - The name of the attribute to copy.
+ * @param value         - The value to set on the cloned element or if null remove the attribute.
+ * @returns Returns the cloned element.
+ */
 function cloneElement(element: Element, attributeName: string, value: string | null): Element {
   const newElement = <Element>element.cloneNode(false);
   if (value === null) {
@@ -81,14 +137,33 @@ function cloneElement(element: Element, attributeName: string, value: string | n
   return newElement;
 }
 
+/**
+ * Clone an element and set the value as text content on the cloned element.
+ *
+ * @param element - The element to clone.
+ * @param value   - The value to set.
+ * @returns Returns the cloned element.
+ */
 function cloneElementAndTextContent(element: Element, value: string | null): Element {
   const newElement = <Element>element.cloneNode(false);
   newElement.textContent = value;
   return newElement;
 }
 
-export function updateReferences(element: Element, oldValue: string | null, newValue: string): SimpleAction[] {
-  if (oldValue === newValue) {
+/**
+ * Function to create Replace actions to update reference which point to the name of the element being updated.
+ * For instance the IED Name is used in other SCL Elements as attribute 'iedName' to reference the IED.
+ * These attribute values need to be updated if the name of the IED changes.
+ *
+ * An empty array will be returned if the old and new value are the same or no references need to be updated.
+ *
+ * @param element - The element for which the name is updated.
+ * @param oldName - The old name of the element.
+ * @param newName - The new name of the element.
+ * @returns Returns a list of Replace Actions that can be added to a Complex Action or returned directly for execution.
+ */
+export function updateReferences(element: Element, oldName: string | null, newName: string): Replace[] {
+  if (oldName === newName) {
     return [];
   }
 
@@ -97,30 +172,29 @@ export function updateReferences(element: Element, oldValue: string | null, newV
     return [];
   }
 
-  const actions: SimpleAction[] = [];
+  const actions: Replace[] = [];
   referenceInfo.forEach(info => {
-    let queryRoot: Document | Element | null = element.ownerDocument;
-    if (!info.queryOnDocument) {
-      queryRoot = element.parentElement;
-    }
-
-    if (queryRoot) {
-      if (info.attribute !== null) {
-        Array.from(queryRoot.querySelectorAll(`${info.elementQuery}[${info.attribute}="${oldValue}"]`))
-          .filter(isPublic)
-          .forEach(element => {
-            const newElement = cloneElement(element, info.attribute!, newValue);
-            actions.push({old: {element}, new: {element: newElement}});
-          })
-      } else {
-        Array.from(queryRoot.querySelectorAll(`${info.elementQuery}`))
-          .filter(element => element.textContent === oldValue)
-          .filter(isPublic)
-          .forEach(element => {
-            const newElement = cloneElementAndTextContent(element, newValue);
-            actions.push({old: {element}, new: {element: newElement}});
-          })
-      }
+    // Depending on if an attribute value needs to be updated or the text content of an element
+    // different scenarios need to be executed.
+    if (info.attributeName) {
+      const filter = info.filter(element, info.attributeName, oldName);
+      Array.from(element.ownerDocument.querySelectorAll(`${filter}`))
+        .filter(isPublic)
+        .forEach(element => {
+          const newElement = cloneElement(element, info.attributeName!, newName);
+          actions.push({old: {element}, new: {element: newElement}});
+        })
+    } else {
+      // If the text content needs to be updated, filter on the text content can't be done in a CSS Selector.
+      // So we query all elements the may need to be updated and filter them afterwards.
+      const filter = info.filter(element, info.attributeName, oldName);
+      Array.from(element.ownerDocument.querySelectorAll(`${filter}`))
+        .filter(element => element.textContent === oldName)
+        .filter(isPublic)
+        .forEach(element => {
+          const newElement = cloneElementAndTextContent(element, newName);
+          actions.push({old: {element}, new: {element: newElement}});
+        })
     }
   })
   return actions;
