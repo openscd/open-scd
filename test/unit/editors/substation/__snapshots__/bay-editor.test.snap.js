@@ -300,6 +300,12 @@ snapshots["bay-editor with function filter deactivated looks like the latest sna
     </powertransformer-editor>
     <conducting-equipment-editor showfunctions="">
     </conducting-equipment-editor>
+    <conducting-equipment-editor showfunctions="">
+    </conducting-equipment-editor>
+    <conducting-equipment-editor showfunctions="">
+    </conducting-equipment-editor>
+    <conducting-equipment-editor showfunctions="">
+    </conducting-equipment-editor>
   </div>
 </action-pane>
 `;

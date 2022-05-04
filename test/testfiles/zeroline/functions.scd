@@ -20,7 +20,11 @@
 					</SubFunction>
 				</SubFunction> 
             </Function>
-			<PowerTransformer name="myPtr2" type="PTR"/>
+			<PowerTransformer name="myPtr2" type="PTR">
+				<EqFunction name="myEqFuncPtr2">
+                    <EqSubFunction name="myEqSubFunc"/> 
+                </EqFunction> 
+			</PowerTransformer>
 			<Bay name="COUPLING_BAY" desc="Bay">
 				<Function name="bayName">
 					<SubFunction name="myBaySubFunc" desc="myDesc" type="myBaySubFuncType"/>
@@ -29,8 +33,23 @@
 					<SubFunction name="myBaySubFunc" desc="myDesc" type="myBaySubFuncType"/>
 				</Function>
 				<PowerTransformer name="myPtr3" type="PTR"/>
-                <ConductingEquipment>
-                    <EqFunction name="myEqFunc">
+                <ConductingEquipment name="QA1" desc="some desc" type="CRB">
+                    <EqFunction name="myEqFuncQA1" desc="funcForQA1" type="eqFuncType">
+                        <EqSubFunction name="myEqSubFunc"/> 
+                    </EqFunction> 
+                </ConductingEquipment>
+				<ConductingEquipment name="QB1" type="DIS">
+                    <EqFunction name="myEqFuncQB1">
+                        <EqSubFunction name="myEqSubFunc"/> 
+                    </EqFunction> 
+                </ConductingEquipment>
+				<ConductingEquipment name="QB1" type="DIS">
+                    <EqFunction name="myEqFuncQB1">
+                        <EqSubFunction name="myEqSubFunc"/> 
+                    </EqFunction> 
+                </ConductingEquipment>
+				<ConductingEquipment name="QC9" type="DIS">
+                    <EqFunction name="myEqFuncQC9">
                         <EqSubFunction name="myEqSubFunc"/> 
                     </EqFunction> 
                 </ConductingEquipment>

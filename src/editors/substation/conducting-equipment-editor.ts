@@ -14,8 +14,13 @@ import '@material/mwc-icon-button';
 
 import '../../action-icon.js';
 import '../../action-pane.js';
+import './eqfunction-editor.js';
 import { startMove, getIcon } from './foundation.js';
-import { newActionEvent, newWizardEvent } from '../../foundation.js';
+import {
+  getChildElementsByTagName,
+  newActionEvent,
+  newWizardEvent,
+} from '../../foundation.js';
 import { BayEditor } from './bay-editor.js';
 import { wizards } from '../../wizards/wizard-library.js';
 
@@ -55,6 +60,16 @@ export class ConductingEquipmentEditor extends LitElement {
           },
         })
       );
+  }
+
+  renderEqFunctions(): TemplateResult {
+    if (!this.showfunctions) return html``;
+
+    const eqFunctions = getChildElementsByTagName(this.element, 'EqFunction');
+    return html` ${eqFunctions.map(
+      eqFunction =>
+        html`<eqfunction-editor .element=${eqFunction}></eqfunction-editor>`
+    )}`;
   }
 
   renderContentPane(): TemplateResult {
@@ -128,7 +143,7 @@ export class ConductingEquipmentEditor extends LitElement {
   render(): TemplateResult {
     if (this.showfunctions)
       return html`<action-pane label="${this.name}"
-        >${this.renderContentPane()}</action-pane
+        >${this.renderContentPane()}${this.renderEqFunctions()}</action-pane
       >`;
 
     return html`<action-icon label="${this.name}"
