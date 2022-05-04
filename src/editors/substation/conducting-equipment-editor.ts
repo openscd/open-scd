@@ -30,7 +30,7 @@ export class ConductingEquipmentEditor extends LitElement {
   get name(): string {
     return this.element.getAttribute('name') ?? '';
   }
-  /** Wheter `Function` and `SubFunction` are rendered */
+  /** Whether `EqFunction` and `SubEqFunction` are rendered */
   @property({ type: Boolean })
   showfunctions = false;
 

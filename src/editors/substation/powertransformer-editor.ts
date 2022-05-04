@@ -34,7 +34,7 @@ export class PowerTransformerEditor extends LitElement {
   get name(): string {
     return this.element.getAttribute('name') ?? 'UNDEFINED';
   }
-  /** Wheter `EqFunction` and `SubEqFunction` are rendered */
+  /** Whether `EqFunction` and `SubEqFunction` are rendered */
   @property({ type: Boolean })
   showfunctions = false;
 

@@ -51,7 +51,7 @@ export class VoltageLevelEditor extends LitElement {
   element!: Element;
   @property({ type: Boolean })
   readonly = false;
-  /** Wheter `Function` and `SubFunction` are rendered */
+  /** Whether `Function` and `SubFunction` are rendered */
   @property({ type: Boolean })
   showfunctions = false;
 
