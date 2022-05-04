@@ -9,6 +9,8 @@ import {
 import { translate } from 'lit-translate';
 
 import '@material/mwc-fab';
+import '@material/mwc-icon';
+import '@material/mwc-icon-button';
 
 import '../../action-icon.js';
 import '../../action-pane.js';
