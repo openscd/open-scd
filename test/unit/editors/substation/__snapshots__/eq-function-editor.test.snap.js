@@ -9,6 +9,8 @@ snapshots["web component rendering EqFunction element with complete attribute se
   secondary=""
   tabindex="0"
 >
+  <eq-sub-function-editor>
+  </eq-sub-function-editor>
 </action-pane>
 `;
 /* end snapshot web component rendering EqFunction element with complete attribute set and existing children looks like the latest snapshot */
@@ -21,6 +23,8 @@ snapshots["web component rendering EqFunction element with missing desc and type
   secondary=""
   tabindex="0"
 >
+  <eq-sub-function-editor>
+  </eq-sub-function-editor>
 </action-pane>
 `;
 /* end snapshot web component rendering EqFunction element with missing desc and type attribute looks like the latest snapshot */

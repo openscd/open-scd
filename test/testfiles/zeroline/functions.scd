@@ -35,7 +35,9 @@
 				<PowerTransformer name="myPtr3" type="PTR"/>
                 <ConductingEquipment name="QA1" desc="some desc" type="CRB">
                     <EqFunction name="myEqFuncQA1" desc="funcForQA1" type="eqFuncType">
-                        <EqSubFunction name="myEqSubFunc"/> 
+                        <EqSubFunction name="myEqSubFunc">
+							<EqSubFunction name="myEqSubSubFunction" desc="my desc" type="sometype"/>
+						</EqSubFunction> 
                     </EqFunction> 
                 </ConductingEquipment>
 				<ConductingEquipment name="QB1" type="DIS">
