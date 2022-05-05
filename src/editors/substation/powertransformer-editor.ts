@@ -71,7 +71,7 @@ export class PowerTransformerEditor extends LitElement {
     const eqFunctions = getChildElementsByTagName(this.element, 'EqFunction');
     return html` ${eqFunctions.map(
       eqFunction =>
-        html`<eqfunction-editor .element=${eqFunction}></eqfunction-editor>`
+        html`<eq-function-editor .element=${eqFunction}></eq-function-editor>`
     )}`;
   }
 

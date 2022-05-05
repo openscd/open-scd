@@ -148,8 +148,8 @@ snapshots["conducting-equipment-editor rendered as action pane with EqFunction c
     >
     </mwc-icon-button>
   </abbr>
-  <eqfunction-editor>
-  </eqfunction-editor>
+  <eq-function-editor>
+  </eq-function-editor>
 </action-pane>
 `;
 /* end snapshot conducting-equipment-editor rendered as action pane with EqFunction children looks like the latest snapshot */

@@ -1,7 +1,7 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
-import '../../../../src/editors/substation/eqfunction-editor.js';
-import { EqFunctionEditor } from '../../../../src/editors/substation/eqfunction-editor.js';
+import '../../../../src/editors/substation/eq-function-editor.js';
+import { EqFunctionEditor } from '../../../../src/editors/substation/eq-function-editor.js';
 
 describe('web component rendering EqFunction element', () => {
   let element: EqFunctionEditor;
@@ -17,9 +17,9 @@ describe('web component rendering EqFunction element', () => {
     beforeEach(async () => {
       element = <EqFunctionEditor>(
         await fixture(
-          html`<eqfunction-editor
+          html`<eq-function-editor
             .element=${doc.querySelector('ConductingEquipment EqFunction')}
-          ></eqfunction-editor>`
+          ></eq-function-editor>`
         )
       );
     });
@@ -32,9 +32,9 @@ describe('web component rendering EqFunction element', () => {
     beforeEach(async () => {
       element = <EqFunctionEditor>(
         await fixture(
-          html`<eqfunction-editor
+          html`<eq-function-editor
             .element=${doc.querySelector('EqFunction')}
-          ></eqfunction-editor>`
+          ></eq-function-editor>`
         )
       );
     });

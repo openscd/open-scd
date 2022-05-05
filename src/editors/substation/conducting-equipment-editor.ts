@@ -14,7 +14,7 @@ import '@material/mwc-icon-button';
 
 import '../../action-icon.js';
 import '../../action-pane.js';
-import './eqfunction-editor.js';
+import './eq-function-editor.js';
 import { startMove, getIcon } from './foundation.js';
 import {
   getChildElementsByTagName,
@@ -68,7 +68,7 @@ export class ConductingEquipmentEditor extends LitElement {
     const eqFunctions = getChildElementsByTagName(this.element, 'EqFunction');
     return html` ${eqFunctions.map(
       eqFunction =>
-        html`<eqfunction-editor .element=${eqFunction}></eqfunction-editor>`
+        html`<eq-function-editor .element=${eqFunction}></eq-function-editor>`
     )}`;
   }
 

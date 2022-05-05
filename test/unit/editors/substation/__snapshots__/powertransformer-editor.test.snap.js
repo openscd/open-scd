@@ -149,8 +149,8 @@ snapshots["powertransformer-editor rendered as action pane with EqFunction child
     >
     </mwc-icon-button>
   </abbr>
-  <eqfunction-editor>
-  </eqfunction-editor>
+  <eq-function-editor>
+  </eq-function-editor>
 </action-pane>
 `;
 /* end snapshot powertransformer-editor rendered as action pane with EqFunction childrend looks like the latest snapshot */

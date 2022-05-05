@@ -10,7 +10,7 @@ import {
 import '../../action-pane.js';
 
 /** Pane rendering `Function` element with its children */
-@customElement('eqfunction-editor')
+@customElement('eq-function-editor')
 export class EqFunctionEditor extends LitElement {
   /** The edited `EqFunction` element */
   @property({ attribute: false })
