@@ -16,7 +16,11 @@ import '../../action-icon.js';
 import '../../action-pane.js';
 import { powerTransformerTwoWindingIcon } from '../../icons/icons.js';
 import { wizards } from '../../wizards/wizard-library.js';
-import { newActionEvent, newWizardEvent } from '../../foundation.js';
+import {
+  getChildElementsByTagName,
+  newActionEvent,
+  newWizardEvent,
+} from '../../foundation.js';
 import { startMove } from './foundation.js';
 import { SubstationEditor } from './substation-editor.js';
 import { BayEditor } from './bay-editor.js';
@@ -59,6 +63,16 @@ export class PowerTransformerEditor extends LitElement {
           },
         })
       );
+  }
+
+  renderEqFunctions(): TemplateResult {
+    if (!this.showfunctions) return html``;
+
+    const eqFunctions = getChildElementsByTagName(this.element, 'EqFunction');
+    return html` ${eqFunctions.map(
+      eqFunction =>
+        html`<eq-function-editor .element=${eqFunction}></eq-function-editor>`
+    )}`;
   }
 
   renderContentPane(): TemplateResult {
@@ -145,7 +159,7 @@ export class PowerTransformerEditor extends LitElement {
   render(): TemplateResult {
     if (this.showfunctions)
       return html`<action-pane label="${this.name}"
-        >${this.renderContentPane()}</action-pane
+        >${this.renderContentPane()}${this.renderEqFunctions()}</action-pane
       > `;
 
     return html`<action-icon label="${this.name}"

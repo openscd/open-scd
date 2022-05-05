@@ -94,3 +94,63 @@ snapshots["conducting-equipment-editor rendered as action pane looks like the la
 `;
 /* end snapshot conducting-equipment-editor rendered as action pane looks like the latest snapshot */
 
+snapshots["conducting-equipment-editor rendered as action pane with EqFunction children looks like the latest snapshot"] = 
+`<action-pane
+  label="QA1"
+  tabindex="0"
+>
+  <mwc-icon
+    slot="icon"
+    style="width:24px;height:24px"
+  >
+  </mwc-icon>
+  <abbr
+    slot="action"
+    title="[lnode.tooltip]"
+  >
+    <mwc-icon-button
+      icon="account_tree"
+      mini=""
+      slot="action"
+    >
+    </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="action"
+    title="[edit]"
+  >
+    <mwc-icon-button
+      icon="edit"
+      mini=""
+      slot="action"
+    >
+    </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="action"
+    title="[move]"
+  >
+    <mwc-icon-button
+      icon="forward"
+      mini=""
+      slot="action"
+    >
+    </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="action"
+    title="[remove]"
+  >
+    <mwc-icon-button
+      icon="delete"
+      mini=""
+      slot="action"
+    >
+    </mwc-icon-button>
+  </abbr>
+  <eq-function-editor>
+  </eq-function-editor>
+</action-pane>
+`;
+/* end snapshot conducting-equipment-editor rendered as action pane with EqFunction children looks like the latest snapshot */
+
