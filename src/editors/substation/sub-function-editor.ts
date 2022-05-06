@@ -18,7 +18,7 @@ export class SubFunctionEditor extends LitElement {
   @property({ attribute: false })
   element!: Element;
   @state()
-  get header(): string {
+  private get header(): string {
     const name = this.element.getAttribute('name');
     const desc = this.element.getAttribute('desc');
     const type = this.element.getAttribute('type');
@@ -26,7 +26,7 @@ export class SubFunctionEditor extends LitElement {
     return `${name}${desc ? ` - ${desc}` : ''}${type ? ` (${type})` : ''}`;
   }
 
-  renderSubFunctions(): TemplateResult {
+  private renderSubFunctions(): TemplateResult {
     const subfunctions = getChildElementsByTagName(this.element, 'SubFunction');
     return html` ${subfunctions.map(
       subFunction =>

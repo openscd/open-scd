@@ -18,7 +18,7 @@ export class EqFunctionEditor extends LitElement {
   @property({ attribute: false })
   element!: Element;
   @state()
-  get header(): string {
+  private get header(): string {
     const name = this.element.getAttribute('name');
     const desc = this.element.getAttribute('desc');
     const type = this.element.getAttribute('type');
@@ -26,7 +26,7 @@ export class EqFunctionEditor extends LitElement {
     return `${name}${desc ? ` - ${desc}` : ''}${type ? ` (${type})` : ''}`;
   }
 
-  renderEqSubFunctions(): TemplateResult {
+  private renderEqSubFunctions(): TemplateResult {
     const eqSubFunctions = getChildElementsByTagName(
       this.element,
       'EqSubFunction'
