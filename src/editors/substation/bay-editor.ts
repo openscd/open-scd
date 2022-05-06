@@ -7,6 +7,7 @@ import {
   query,
   TemplateResult,
 } from 'lit-element';
+import { classMap } from 'lit-html/directives/class-map';
 import { translate } from 'lit-translate';
 
 import '@material/mwc-icon-button';
@@ -44,7 +45,7 @@ export class BayEditor extends LitElement {
   element!: Element;
   @property({ type: Boolean })
   readonly = false;
-  /** Wheter `Function` and `SubFunction` are rendered */
+  /** Whether `Function` and `SubFunction` are rendered */
   @property({ type: Boolean })
   showfunctions = false;
 
@@ -177,13 +178,19 @@ export class BayEditor extends LitElement {
         >
       </abbr>
       ${this.renderIedContainer()} ${this.renderFunctions()}
-      <div id="ceContainer">
+      <div
+        class="${classMap({
+          content: true,
+          actionicon: !this.showfunctions,
+        })}"
+      >
         ${Array.from(
           getChildElementsByTagName(this.element, 'PowerTransformer')
         ).map(
           pwt =>
             html`<powertransformer-editor
               .element=${pwt}
+              ?showfunctions=${this.showfunctions}
             ></powertransformer-editor>`
         )}
         ${Array.from(
@@ -193,6 +200,7 @@ export class BayEditor extends LitElement {
             html`<conducting-equipment-editor
               .element=${voltageLevel}
               ?readonly=${this.readonly}
+              ?showfunctions=${this.showfunctions}
             ></conducting-equipment-editor>`
         )}
       </div>
@@ -202,12 +210,16 @@ export class BayEditor extends LitElement {
   static styles = css`
     ${styles}
 
-    #ceContainer {
+    .content.actionicon {
       display: grid;
       grid-gap: 12px;
       padding: 12px;
       box-sizing: border-box;
       grid-template-columns: repeat(auto-fit, minmax(64px, auto));
+    }
+
+    conducting-equipment-editor[showfunctions] {
+      margin: 4px 8px 16px;
     }
   `;
 }

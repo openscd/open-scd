@@ -8,13 +8,13 @@ import {
 } from 'lit-element';
 
 import '../../action-pane.js';
-import './sub-function-editor.js';
+import './eq-sub-function-editor.js';
 import { getChildElementsByTagName } from '../../foundation.js';
 
-/** Pane rendering `Function` element with its children */
-@customElement('function-editor')
-export class FunctionEditor extends LitElement {
-  /** The edited `Function` element */
+/** Pane rendering `EqFunction` element with its children */
+@customElement('eq-function-editor')
+export class EqFunctionEditor extends LitElement {
+  /** The edited `EqFunction` element */
   @property({ attribute: false })
   element!: Element;
   @state()
@@ -26,13 +26,16 @@ export class FunctionEditor extends LitElement {
     return `${name}${desc ? ` - ${desc}` : ''}${type ? ` (${type})` : ''}`;
   }
 
-  private renderSubFunctions(): TemplateResult {
-    const subfunctions = getChildElementsByTagName(this.element, 'SubFunction');
-    return html` ${subfunctions.map(
-      subFunction =>
-        html`<sub-function-editor
-          .element=${subFunction}
-        ></sub-function-editor>`
+  private renderEqSubFunctions(): TemplateResult {
+    const eqSubFunctions = getChildElementsByTagName(
+      this.element,
+      'EqSubFunction'
+    );
+    return html` ${eqSubFunctions.map(
+      eqSubFunction =>
+        html`<eq-sub-function-editor
+          .element=${eqSubFunction}
+        ></eq-sub-function-editor>`
     )}`;
   }
 
@@ -42,7 +45,7 @@ export class FunctionEditor extends LitElement {
       icon="functions"
       secondary
       highlighted
-      >${this.renderSubFunctions()}</action-pane
+      >${this.renderEqSubFunctions()}</action-pane
     >`;
   }
 }

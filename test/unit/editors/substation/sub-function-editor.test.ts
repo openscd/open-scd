@@ -1,7 +1,7 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
-import '../../../../src/editors/substation/subfunction-editor.js';
-import { SubFunctionEditor } from '../../../../src/editors/substation/subfunction-editor.js';
+import '../../../../src/editors/substation/sub-function-editor.js';
+import { SubFunctionEditor } from '../../../../src/editors/substation/sub-function-editor.js';
 
 describe('web component rendering SubFunction element', () => {
   let element: SubFunctionEditor;
@@ -17,9 +17,9 @@ describe('web component rendering SubFunction element', () => {
     beforeEach(async () => {
       element = <SubFunctionEditor>(
         await fixture(
-          html`<subfunction-editor
+          html`<sub-function-editor
             .element=${doc.querySelector('VoltageLevel SubFunction')}
-          ></subfunction-editor>`
+          ></sub-function-editor>`
         )
       );
     });
@@ -33,9 +33,9 @@ describe('web component rendering SubFunction element', () => {
     beforeEach(async () => {
       element = <SubFunctionEditor>(
         await fixture(
-          html`<subfunction-editor
+          html`<sub-function-editor
             .element=${doc.querySelector('SubFunction')}
-          ></subfunction-editor>`
+          ></sub-function-editor>`
         )
       );
     });

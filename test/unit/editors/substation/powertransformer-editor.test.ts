@@ -32,41 +32,117 @@ describe('powertransformer-editor', () => {
     window.addEventListener('editor-action', actionEvent);
   });
 
-  it('looks like the latest snapshot', async () => {
-    await expect(element).shadowDom.to.equalSnapshot();
+  describe('rendered as action icon', () => {
+    beforeEach(async () => {
+      element.showfunctions = false;
+      await element.requestUpdate();
+    });
+
+    it('looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
+    });
+
+    it('triggers edit wizard for Linking LNode element on action button click', async () => {
+      (<HTMLElement>(
+        element.shadowRoot?.querySelector('mwc-fab[icon="account_tree"]')
+      )).click();
+
+      await element.requestUpdate();
+
+      expect(wizardEvent).to.have.be.calledOnce;
+      expect(wizardEvent.args[0][0].detail.wizard()[0].title).to.contain(
+        'lnode'
+      );
+    });
+
+    it('triggers edit wizard for PowerTransformer element on action button click', async () => {
+      (<HTMLElement>(
+        element.shadowRoot?.querySelector('mwc-fab[icon="edit"]')
+      )).click();
+
+      await element.requestUpdate();
+
+      expect(wizardEvent).to.have.be.calledOnce;
+      expect(wizardEvent.args[0][0].detail.wizard()[0].title).to.contain(
+        'edit'
+      );
+    });
+
+    it('triggers remove powertransformer action on action button click', async () => {
+      (<HTMLElement>(
+        element.shadowRoot?.querySelector('mwc-fab[icon="delete"]')
+      )).click();
+
+      await element.requestUpdate();
+
+      expect(wizardEvent).to.not.have.been.called;
+      expect(actionEvent).to.have.been.calledOnce;
+      expect(actionEvent.args[0][0].detail.action).to.satisfy(isDelete);
+    });
   });
 
-  it('triggers edit wizard for Linking LNode element on action button click', async () => {
-    (<HTMLElement>(
-      element.shadowRoot?.querySelector('mwc-fab[icon="account_tree"]')
-    )).click();
+  describe('rendered as action pane', () => {
+    beforeEach(async () => {
+      element.showfunctions = true;
+      await element.requestUpdate();
+    });
 
-    await element.requestUpdate();
+    it('looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
+    });
 
-    expect(wizardEvent).to.have.be.calledOnce;
-    expect(wizardEvent.args[0][0].detail.wizard()[0].title).to.contain('lnode');
-  });
+    describe('with EqFunction childrend', () => {
+      beforeEach(async () => {
+        const doc = await fetch('/test/testfiles/zeroline/functions.scd')
+          .then(response => response.text())
+          .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-  it('triggers edit wizard for PowerTransformer element on action button click', async () => {
-    (<HTMLElement>(
-      element.shadowRoot?.querySelector('mwc-fab[icon="edit"]')
-    )).click();
+        element.element = doc.querySelector('PowerTransformer[name="myPtr2"]')!;
+        await element.requestUpdate();
+      });
 
-    await element.requestUpdate();
+      it('looks like the latest snapshot', async () =>
+        await expect(element).shadowDom.to.equalSnapshot());
+    });
 
-    expect(wizardEvent).to.have.be.calledOnce;
-    expect(wizardEvent.args[0][0].detail.wizard()[0].title).to.contain('edit');
-  });
+    it('triggers edit wizard for Linking LNode element on action button click', async () => {
+      (<HTMLElement>(
+        element.shadowRoot?.querySelector(
+          'mwc-icon-button[icon="account_tree"]'
+        )
+      )).click();
 
-  it('triggers remove powertransformer action on action button click', async () => {
-    (<HTMLElement>(
-      element.shadowRoot?.querySelector('mwc-fab[icon="delete"]')
-    )).click();
+      await element.requestUpdate();
 
-    await element.requestUpdate();
+      expect(wizardEvent).to.have.be.calledOnce;
+      expect(wizardEvent.args[0][0].detail.wizard()[0].title).to.contain(
+        'lnode'
+      );
+    });
 
-    expect(wizardEvent).to.not.have.been.called;
-    expect(actionEvent).to.have.been.calledOnce;
-    expect(actionEvent.args[0][0].detail.action).to.satisfy(isDelete);
+    it('triggers edit wizard for PowerTransformer element on action button click', async () => {
+      (<HTMLElement>(
+        element.shadowRoot?.querySelector('mwc-icon-button[icon="edit"]')
+      )).click();
+
+      await element.requestUpdate();
+
+      expect(wizardEvent).to.have.be.calledOnce;
+      expect(wizardEvent.args[0][0].detail.wizard()[0].title).to.contain(
+        'edit'
+      );
+    });
+
+    it('triggers remove powertransformer action on action button click', async () => {
+      (<HTMLElement>(
+        element.shadowRoot?.querySelector('mwc-icon-button[icon="delete"]')
+      )).click();
+
+      await element.requestUpdate();
+
+      expect(wizardEvent).to.not.have.been.called;
+      expect(actionEvent).to.have.been.calledOnce;
+      expect(actionEvent.args[0][0].detail.action).to.satisfy(isDelete);
+    });
   });
 });
