@@ -8,13 +8,12 @@ import {
 } from 'lit-element';
 
 import '../../action-pane.js';
-import './eq-sub-function-editor.js';
 import { getChildElementsByTagName } from '../../foundation.js';
 
-/** Pane rendering `EqFunction` element with its children */
-@customElement('eq-function-editor')
-export class EqFunctionEditor extends LitElement {
-  /** The edited `EqFunction` element */
+/** Pane rendering `EqSubFunction` element with its children */
+@customElement('eq-sub-function-editor')
+export class EqSubFunctionEditor extends LitElement {
+  /** The edited `EqSubFunction` element */
   @property({ attribute: false })
   element!: Element;
   @state()
@@ -40,11 +39,7 @@ export class EqFunctionEditor extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<action-pane
-      label="${this.header}"
-      icon="functions"
-      secondary
-      highlighted
+    return html`<action-pane label="${this.header}" icon="functions" secondary
       >${this.renderEqSubFunctions()}</action-pane
     >`;
   }
