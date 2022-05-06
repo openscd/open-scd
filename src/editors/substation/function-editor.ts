@@ -8,7 +8,7 @@ import {
 } from 'lit-element';
 
 import '../../action-pane.js';
-import './subfunction-editor.js';
+import './sub-function-editor.js';
 import { getChildElementsByTagName } from '../../foundation.js';
 
 /** Pane rendering `Function` element with its children */
@@ -30,7 +30,9 @@ export class FunctionEditor extends LitElement {
     const subfunctions = getChildElementsByTagName(this.element, 'SubFunction');
     return html` ${subfunctions.map(
       subFunction =>
-        html`<subfunction-editor .element=${subFunction}></subfunction-editor>`
+        html`<sub-function-editor
+          .element=${subFunction}
+        ></sub-function-editor>`
     )}`;
   }
 

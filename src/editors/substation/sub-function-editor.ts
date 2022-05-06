@@ -8,11 +8,11 @@ import {
 } from 'lit-element';
 
 import '../../action-pane.js';
-import './subfunction-editor.js';
+import './sub-function-editor.js';
 import { getChildElementsByTagName } from '../../foundation.js';
 
 /** Pane rendering `SubFunction` element with its children */
-@customElement('subfunction-editor')
+@customElement('sub-function-editor')
 export class SubFunctionEditor extends LitElement {
   /** The edited `SubFunction` element */
   @property({ attribute: false })
@@ -30,7 +30,9 @@ export class SubFunctionEditor extends LitElement {
     const subfunctions = getChildElementsByTagName(this.element, 'SubFunction');
     return html` ${subfunctions.map(
       subFunction =>
-        html`<subfunction-editor .element=${subFunction}></subfunction-editor>`
+        html`<sub-function-editor
+          .element=${subFunction}
+        ></sub-function-editor>`
     )}`;
   }
 
