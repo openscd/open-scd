@@ -36,7 +36,9 @@
 					</SubFunction>
 				</Function>
 				<Function name="bay2Func">
-					<SubFunction name="myBaySubFunc" desc="myDesc" type="myBaySubFuncType"/>
+					<LNode iedName="None" prefix="DC" lnClass="XSWI" lnInst="1"/>
+					<LNode iedName="None" prefix="DC" lnClass="CSWI" lnInst="1"/>
+					<LNode iedName="None" prefix="DC" lnClass="CILO" lnInst="1"/>
 				</Function>
 				<PowerTransformer name="myPtr3" type="PTR"/>
                 <ConductingEquipment name="QA1" desc="some desc" type="CRB">
