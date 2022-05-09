@@ -5,7 +5,7 @@ import { MockWizard } from '../../mock-wizard.js';
 
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import { WizardInputElement } from '../../../src/foundation.js';
-import { updateNamingAction } from '../../../src/wizards/foundation/actions.js';
+import { replaceNamingAction } from '../../../src/wizards/foundation/actions.js';
 
 import {
   createAction,
@@ -19,7 +19,7 @@ import {
   expectWizardNoUpdateAction,
   fetchDoc,
   setWizardTextFieldValue,
-} from './foundation.js';
+} from './test-support.js';
 
 describe('Wizards for SCL element Power Transformer', () => {
   let doc: XMLDocument;
@@ -43,7 +43,7 @@ describe('Wizards for SCL element Power Transformer', () => {
       await setWizardTextFieldValue(<WizardTextField>inputs[0], 'OtherTA1');
 
       const updateAction = executeWizardReplaceAction(
-        updateNamingAction(powerTransformer),
+        replaceNamingAction(powerTransformer),
         inputs
       );
       expect(updateAction.old.element).to.have.attribute('name', 'TA1');
@@ -57,7 +57,7 @@ describe('Wizards for SCL element Power Transformer', () => {
       );
 
       const updateAction = executeWizardReplaceAction(
-        updateNamingAction(powerTransformer),
+        replaceNamingAction(powerTransformer),
         inputs
       );
       expect(updateAction.old.element).to.not.have.attribute('desc');
@@ -68,7 +68,7 @@ describe('Wizards for SCL element Power Transformer', () => {
     });
 
     it('when no fields changed there will be no update action', async function () {
-      expectWizardNoUpdateAction(updateNamingAction(powerTransformer), inputs);
+      expectWizardNoUpdateAction(replaceNamingAction(powerTransformer), inputs);
     });
 
     it('looks like the latest snapshot', async () => {

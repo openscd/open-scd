@@ -10,7 +10,7 @@ import {
 import { get } from "lit-translate";
 import { updateReferences } from "./references.js";
 
-export function updateNamingAction(element: Element): WizardActor {
+export function replaceNamingAction(element: Element): WizardActor {
   return (inputs: WizardInputElement[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
@@ -25,6 +25,34 @@ export function updateNamingAction(element: Element): WizardActor {
     const newElement = cloneElement(element, { name, desc });
 
     return [{ old: { element }, new: { element: newElement } }];
+  };
+}
+
+export function replaceNamingAttributeWithReferencesAction(
+  element: Element,
+  messageTitleKey: string
+): WizardActor {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
+    const newName = getValue(inputs.find(i => i.label === 'name')!)!;
+    const oldName = element.getAttribute('name');
+    const newDesc = getValue(inputs.find(i => i.label === 'desc')!);
+
+    if (
+      newName === oldName &&
+      newDesc === element.getAttribute('desc')
+    ) {
+      return [];
+    }
+
+    const newElement = cloneElement(element, { name: newName, desc: newDesc });
+
+    const complexAction: ComplexAction = {
+      actions: [],
+      title: get(messageTitleKey, {name: newName}),
+    };
+    complexAction.actions.push({ old: { element }, new: { element: newElement } });
+    complexAction.actions.push(...updateReferences(element, oldName, newName));
+    return complexAction.actions.length ? [complexAction] : [];
   };
 }
 
