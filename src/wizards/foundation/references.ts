@@ -99,13 +99,13 @@ function simpleTextContentFilter(elementQuery: string) {
  * The query will then become
  * `Terminal[substationName="<substationName>"][voltageLevelName="<voltageLevelName>"][bayName="<oldName>"]`
  *
- * @param elementName - The tagName of the elements to search for.
- * @param parentInfo  - The records of parent to search for, the key is the tagName of the parent, the value
- *                      is the name of the attribuet to use in the query.
+ * @param tagName    - The tagName of the elements to search for.
+ * @param parentInfo - The records of parent to search for, the key is the tagName of the parent, the value
+ *                     is the name of the attribuet to use in the query.
  */
-function attributeFilterWithParentNameAttribute(elementName: string, parentInfo: Record<string, string>) {
+function attributeFilterWithParentNameAttribute(tagName: string, parentInfo: Record<string, string>) {
   return function filter(element: Element, attributeName: string | null, oldName: string | null): string {
-    return `${elementName}${Object.entries(parentInfo)
+    return `${tagName}${Object.entries(parentInfo)
       .map(([parentTag, parentAttribute]) => {
         const parentElement = element.closest(parentTag);
         if (parentElement && parentElement.hasAttribute('name')) {
