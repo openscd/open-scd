@@ -76,6 +76,11 @@
 				<LNode iedName="IED1" ldInst="CircuitBreaker_CB1" prefix="" lnClass="CILO" lnInst="1"/>
             </Bay>
     	</VoltageLevel>
+		<VoltageLevel name="J1" desc="Voltage Level with LNode">
+			<LNode iedName="IED1" ldInst="CircuitBreaker_CB1" prefix="" lnClass="XCBR" lnInst="1"/>
+			<LNode iedName="IED1" ldInst="CircuitBreaker_CB1" prefix="" lnClass="CSWI" lnInst="1"/>
+			<LNode iedName="IED1" ldInst="CircuitBreaker_CB1" prefix="" lnClass="CILO" lnInst="1"/>
+		</VoltageLevel>
     </Substation>
     <IED name="IED1" type="DummyIED" manufacturer="DummyManufactorer" configVersion="1" originalSclVersion="2007" originalSclRevision="B" owner="DummyOwner">
     	<Services>

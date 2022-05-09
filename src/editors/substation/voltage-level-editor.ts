@@ -115,6 +115,20 @@ export class VoltageLevelEditor extends LitElement {
     this.addMenu.anchor = <HTMLElement>this.addButton;
   }
 
+  private renderLNodes(): TemplateResult {
+    if (!this.showfunctions) return html``;
+
+    const lNodes = getChildElementsByTagName(this.element, 'LNode');
+
+    return lNodes.length
+      ? html`<div class="container lnode">
+          ${lNodes.map(
+            lNode => html`<l-node-editor .element=${lNode}></l-node-editor>`
+          )}
+        </div>`
+      : html``;
+  }
+
   renderFunctions(): TemplateResult {
     if (!this.showfunctions) return html``;
 
@@ -218,7 +232,7 @@ export class VoltageLevelEditor extends LitElement {
           >${this.renderAddButtons()}</mwc-menu
         >
       </abbr>
-      ${this.renderIedContainer()}${this.renderFunctions()}
+      ${this.renderIedContainer()}${this.renderLNodes()}${this.renderFunctions()}
       ${this.renderPowerTransformerContainer()}
       <div id="bayContainer">
         ${Array.from(this.element?.querySelectorAll(selectors.Bay) ?? []).map(
