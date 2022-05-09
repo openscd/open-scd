@@ -26,6 +26,18 @@ export class EqFunctionEditor extends LitElement {
     return `${name}${desc ? ` - ${desc}` : ''}${type ? ` (${type})` : ''}`;
   }
 
+  private renderLNodes(): TemplateResult {
+    const lNodes = getChildElementsByTagName(this.element, 'LNode');
+
+    return lNodes.length
+      ? html`<div class="container lnode">
+          ${lNodes.map(
+            lNode => html`<l-node-editor .element=${lNode}></l-node-editor>`
+          )}
+        </div>`
+      : html``;
+  }
+
   private renderEqSubFunctions(): TemplateResult {
     const eqSubFunctions = getChildElementsByTagName(
       this.element,
@@ -45,7 +57,7 @@ export class EqFunctionEditor extends LitElement {
       icon="functions"
       secondary
       highlighted
-      >${this.renderEqSubFunctions()}</action-pane
+      >${this.renderLNodes()}${this.renderEqSubFunctions()}</action-pane
     >`;
   }
 }

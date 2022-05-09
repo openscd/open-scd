@@ -51,9 +51,11 @@
 						</EqSubFunction>
                     </EqFunction>
                 </ConductingEquipment>
-    			<ConductingEquipment name="QB1" type="DIS">
+    			<ConductingEquipment name="QB2" type="DIS">
                     <EqFunction name="myEqFuncQB1">
-                        <EqSubFunction name="myEqSubFunc"/>
+                        <LNode iedName="None" prefix="DC" lnClass="XSWI" lnInst="1"/>
+						<LNode iedName="None" prefix="DC" lnClass="CSWI" lnInst="1"/>
+						<LNode iedName="None" prefix="DC" lnClass="CILO" lnInst="1"/>
                     </EqFunction>
                 </ConductingEquipment>
     			<ConductingEquipment name="QC9" type="DIS">
