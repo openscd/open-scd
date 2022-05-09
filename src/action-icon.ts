@@ -75,16 +75,6 @@ export class ActionIcon extends LitElement {
       --mdc-icon-size: 64px;
     }
 
-    :host(:focus-within) ::slotted([slot='icon']),
-    :host(:focus-within) mwc-icon {
-      outline-style: solid;
-      outline-width: 4px;
-      transform: scale(0.8);
-      transition: all 250ms linear;
-      box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
-        0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
-    }
-
     :host([secondary]) ::slotted([slot='icon']),
     :host([secondary]) mwc-icon {
       outline-color: var(--mdc-theme-secondary);
@@ -96,6 +86,15 @@ export class ActionIcon extends LitElement {
       outline-width: 2px;
     }
 
+    :host(:focus-within) ::slotted([slot='icon']),
+    :host(:focus-within) mwc-icon {
+      outline-style: solid;
+      outline-width: 4px;
+      transform: scale(0.8);
+      transition: all 250ms linear;
+      box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+        0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+    }
     ::slotted([slot='icon']:hover),
     mwc-icon:hover {
       outline-style: dashed;
