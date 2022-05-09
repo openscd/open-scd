@@ -85,6 +85,17 @@ snapshots["substation-editor looks like the latest snapshot"] =
           VoltageLevel
         </span>
       </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="Function"
+      >
+        <span>
+          Function
+        </span>
+      </mwc-list-item>
     </mwc-menu>
   </abbr>
   <voltage-level-editor>
@@ -179,6 +190,17 @@ snapshots["substation-editor with readonly property looks like the latest snapsh
           VoltageLevel
         </span>
       </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="Function"
+      >
+        <span>
+          Function
+        </span>
+      </mwc-list-item>
     </mwc-menu>
   </abbr>
   <voltage-level-editor readonly="">
@@ -271,6 +293,17 @@ snapshots["substation-editor with function filter deactivated looks like the lat
       >
         <span>
           VoltageLevel
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="Function"
+      >
+        <span>
+          Function
         </span>
       </mwc-list-item>
     </mwc-menu>

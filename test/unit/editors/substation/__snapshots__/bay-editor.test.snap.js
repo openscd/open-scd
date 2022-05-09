@@ -85,6 +85,17 @@ snapshots["bay-editor looks like the latest snapshot"] =
           ConductingEquipment
         </span>
       </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="Function"
+      >
+        <span>
+          Function
+        </span>
+      </mwc-list-item>
     </mwc-menu>
   </abbr>
   <div class="actionicon content">
@@ -187,6 +198,17 @@ snapshots["bay-editor with readonly property looks like the latest snapshot"] =
           ConductingEquipment
         </span>
       </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="Function"
+      >
+        <span>
+          Function
+        </span>
+      </mwc-list-item>
     </mwc-menu>
   </abbr>
   <div class="actionicon content">
@@ -287,6 +309,17 @@ snapshots["bay-editor with function filter deactivated looks like the latest sna
       >
         <span>
           ConductingEquipment
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="Function"
+      >
+        <span>
+          Function
         </span>
       </mwc-list-item>
     </mwc-menu>

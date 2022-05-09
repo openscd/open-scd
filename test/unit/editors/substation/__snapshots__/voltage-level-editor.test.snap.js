@@ -86,6 +86,17 @@ snapshots["voltage-level-editor looks like the latest snapshot"] =
           Bay
         </span>
       </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="Function"
+      >
+        <span>
+          Function
+        </span>
+      </mwc-list-item>
     </mwc-menu>
   </abbr>
   <div id="bayContainer">
@@ -183,6 +194,17 @@ snapshots["voltage-level-editor with readonly property looks like the latest sna
           Bay
         </span>
       </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="Function"
+      >
+        <span>
+          Function
+        </span>
+      </mwc-list-item>
     </mwc-menu>
   </abbr>
   <div id="bayContainer">
@@ -278,6 +300,17 @@ snapshots["voltage-level-editor with function filter deactivated looks like the 
       >
         <span>
           Bay
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="Function"
+      >
+        <span>
+          Function
         </span>
       </mwc-list-item>
     </mwc-menu>
