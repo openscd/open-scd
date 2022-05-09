@@ -29,7 +29,11 @@
 			</PowerTransformer>
 			<Bay name="COUPLING_BAY" desc="Bay">
 				<Function name="bayName">
-					<SubFunction name="myBaySubFunc" desc="myDesc" type="myBaySubFuncType"/>
+					<SubFunction name="myBaySubFunc" desc="myDesc" type="myBaySubFuncType">
+						<LNode iedName="None" prefix="DC" lnClass="XSWI" lnInst="1"/>
+						<LNode iedName="None" prefix="DC" lnClass="CSWI" lnInst="1"/>
+						<LNode iedName="None" prefix="DC" lnClass="CILO" lnInst="1"/>
+					</SubFunction>
 				</Function>
 				<Function name="bay2Func">
 					<SubFunction name="myBaySubFunc" desc="myDesc" type="myBaySubFuncType"/>
