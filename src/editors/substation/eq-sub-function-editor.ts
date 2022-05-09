@@ -5,10 +5,12 @@ import {
   property,
   customElement,
   state,
+  css,
 } from 'lit-element';
 
 import '../../action-pane.js';
 import { getChildElementsByTagName } from '../../foundation.js';
+import { styles } from './foundation.js';
 
 /** Pane rendering `EqSubFunction` element with its children */
 @customElement('eq-sub-function-editor')
@@ -38,9 +40,25 @@ export class EqSubFunctionEditor extends LitElement {
     )}`;
   }
 
+  private renderLNodes(): TemplateResult {
+    const lNodes = getChildElementsByTagName(this.element, 'LNode');
+
+    return lNodes.length
+      ? html`<div class="container lnode">
+          ${lNodes.map(
+            lNode => html`<l-node-editor .element=${lNode}></l-node-editor>`
+          )}
+        </div>`
+      : html``;
+  }
+
   render(): TemplateResult {
     return html`<action-pane label="${this.header}" icon="functions" secondary
-      >${this.renderEqSubFunctions()}</action-pane
+      >${this.renderLNodes()}${this.renderEqSubFunctions()}</action-pane
     >`;
   }
+
+  static styles = css`
+    ${styles}
+  `;
 }
