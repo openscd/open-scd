@@ -12,9 +12,10 @@ import '@material/mwc-icon';
 import '@material/mwc-list/mwc-list-item';
 
 import '../../filtered-list.js';
-import { compareNames, getNameAttribute } from '../../foundation.js';
+import { compareNames, getNameAttribute, newWizardEvent } from '../../foundation.js';
 import { newGOOSESelectEvent, styles } from './foundation.js';
 import { gooseIcon } from '../../icons/icons.js';
+import { wizards } from '../../wizards/wizard-library.js';
 
 let selectedGooseMsg: Element | undefined;
 let selectedDataSet: Element | undefined | null;
@@ -73,10 +74,20 @@ export class GoosePublisherList extends LitElement {
     return html`<mwc-list-item
       @click=${() => this.onGooseSelect(gseControl)}
       graphic="large"
+      hasMeta
     >
-      <span>${gseControl.getAttribute('name')}</span>
       <mwc-icon slot="graphic">${gooseIcon}</mwc-icon>
+      <span>${gseControl.getAttribute('name')}</span>
+      <mwc-icon
+        slot="meta"
+        @click=${() => this.openEditWizard(gseControl)}
+      >edit</mwc-icon>
     </mwc-list-item>`;
+  }
+  
+  private openEditWizard(gseControl: Element): void {
+    const wizard = wizards['GSEControl'].edit(gseControl);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
   protected firstUpdated(): void {

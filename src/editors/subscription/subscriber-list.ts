@@ -20,7 +20,6 @@ import {
   Delete,
   identity,
   newActionEvent,
-  newWizardEvent,
   selector,
 } from '../../foundation.js';
 import {
@@ -33,7 +32,6 @@ import {
   View,
   ViewEvent,
 } from './foundation.js';
-import { wizards } from '../../wizards/wizard-library.js';
 
 /**
  * An element within this list has 2 properties:
@@ -494,7 +492,6 @@ export class SubscriberList extends LitElement {
               ? this.currentGooseIEDName + ' > ' + gseControlName
               : 'GOOSE',
           })}
-          ${this.renderEditButton()}
         </h1>`
       : html`<h1>
           ${translate('subscription.subscriberGoose.publisherTitle', {
@@ -502,27 +499,7 @@ export class SubscriberList extends LitElement {
             ? this.currentSelectedIed.getAttribute('name')!
             : 'IED',
           })}
-          ${this.renderEditButton()}
         </h1>`;
-  }
-
-  private renderEditButton(): TemplateResult | undefined {
-    return this.currentSelectedIed || this.currentSelectedGseControl
-      ? html`<abbr slot="action" title="${translate('edit')}">
-        <mwc-icon-button
-          icon="edit"
-          @click=${() => this.openEditWizard()}
-        ></mwc-icon-button>
-      </abbr>`
-      : undefined;
-  }
-  
-  private openEditWizard(): void {
-    const wizard = view == View.GOOSE_PUBLISHER
-      ? wizards['GSEControl'].edit(this.currentSelectedGseControl!)
-      : wizards['IED'].edit(this.currentSelectedIed!);
-
-    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
   render(): TemplateResult {
