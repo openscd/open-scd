@@ -65,6 +65,18 @@ export class PowerTransformerEditor extends LitElement {
       );
   }
 
+  private renderLNodes(): TemplateResult {
+    const lNodes = getChildElementsByTagName(this.element, 'LNode');
+
+    return lNodes.length
+      ? html`<div class="container lnode">
+          ${lNodes.map(
+            lNode => html`<l-node-editor .element=${lNode}></l-node-editor>`
+          )}
+        </div>`
+      : html``;
+  }
+
   renderEqFunctions(): TemplateResult {
     if (!this.showfunctions) return html``;
 
@@ -159,7 +171,7 @@ export class PowerTransformerEditor extends LitElement {
   render(): TemplateResult {
     if (this.showfunctions)
       return html`<action-pane label="${this.name}"
-        >${this.renderContentPane()}${this.renderEqFunctions()}</action-pane
+        >${this.renderContentPane()}${this.renderLNodes()}${this.renderEqFunctions()}</action-pane
       > `;
 
     return html`<action-icon label="${this.name}"

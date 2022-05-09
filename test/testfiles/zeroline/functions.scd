@@ -10,7 +10,9 @@
         <Function name="myFunc" desc="myDesc" type="myFuncType">
 			<SubFunction name="mySubFunc"/>
 		</Function>
-		<PowerTransformer name="myPtr1" type="PTR"/>
+		<PowerTransformer name="myPtr1" type="PTR">
+			<LNode iedName="IED2" ldInst="CBSW" lnClass="LLN0" lnInst=""/>
+		</PowerTransformer>
 		<VoltageLevel name="E1" desc="Voltage Level" nomFreq="50.0" numPhases="3">
 			<Voltage unit="V" multiplier="k">110.0</Voltage>
             <Function name="voltLvName">
