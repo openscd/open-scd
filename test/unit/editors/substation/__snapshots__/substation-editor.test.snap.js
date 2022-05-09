@@ -275,12 +275,22 @@ snapshots["substation-editor with function filter deactivated looks like the lat
       </mwc-list-item>
     </mwc-menu>
   </abbr>
+  <div class="container lnode">
+    <l-node-editor>
+    </l-node-editor>
+    <l-node-editor>
+    </l-node-editor>
+    <l-node-editor>
+    </l-node-editor>
+  </div>
   <function-editor>
   </function-editor>
   <div class="ptrContent">
     <powertransformer-editor showfunctions="">
     </powertransformer-editor>
   </div>
+  <voltage-level-editor showfunctions="">
+  </voltage-level-editor>
   <voltage-level-editor showfunctions="">
   </voltage-level-editor>
 </action-pane>

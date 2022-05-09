@@ -7,6 +7,9 @@
 		</History>
 	</Header>
 	<Substation name="AA1" desc="Substation">
+		<LNode iedName="IED1" ldInst="CircuitBreaker_CB1" prefix="" lnClass="XCBR" lnInst="1"/>
+		<LNode iedName="IED1" ldInst="CircuitBreaker_CB1" prefix="" lnClass="CSWI" lnInst="1"/>
+		<LNode iedName="IED1" ldInst="CircuitBreaker_CB1" prefix="" lnClass="CILO" lnInst="1"/>
         <Function name="myFunc" desc="myDesc" type="myFuncType">
 			<SubFunction name="mySubFunc"/>
 		</Function>
