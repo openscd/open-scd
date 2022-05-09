@@ -34,10 +34,7 @@
 				</Function>
 				<PowerTransformer name="myPtr3" type="PTR"/>
                 <ConductingEquipment name="QA1" desc="some desc" type="CRB">
-					<LNode iedName="IED1" ldInst="CircuitBreaker_CB1" prefix="" lnClass="XCBR" lnInst="1"/>
-					<LNode iedName="IED1" ldInst="CircuitBreaker_CB1" prefix="" lnClass="CSWI" lnInst="1"/>
-					<LNode iedName="IED1" ldInst="CircuitBreaker_CB1" prefix="" lnClass="CILO" lnInst="1"/>
-                    <EqFunction name="myEqFuncQA1" desc="funcForQA1" type="eqFuncType">
+					<EqFunction name="myEqFuncQA1" desc="funcForQA1" type="eqFuncType">
                         <EqSubFunction name="myEqSubFunc">
     						<EqSubFunction name="myEqSubSubFunction" desc="my desc" type="sometype"/>
     					</EqSubFunction>
@@ -58,9 +55,9 @@
                     </EqFunction>
                 </ConductingEquipment>
     			<ConductingEquipment name="QC9" type="DIS">
-                    <EqFunction name="myEqFuncQC9">
-                        <EqSubFunction name="myEqSubFunc"/>
-                    </EqFunction>
+					<LNode iedName="IED1" ldInst="CircuitBreaker_CB1" prefix="" lnClass="XCBR" lnInst="1"/>
+					<LNode iedName="IED1" ldInst="CircuitBreaker_CB1" prefix="" lnClass="CSWI" lnInst="1"/>
+					<LNode iedName="IED1" ldInst="CircuitBreaker_CB1" prefix="" lnClass="CILO" lnInst="1"/>
                 </ConductingEquipment>
     		</Bay>
     	</VoltageLevel>

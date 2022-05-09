@@ -15,7 +15,8 @@ import '@material/mwc-icon-button';
 import '../../action-icon.js';
 import '../../action-pane.js';
 import './eq-function-editor.js';
-import { startMove, getIcon } from './foundation.js';
+import './l-node-editor.js';
+import { startMove, getIcon, styles } from './foundation.js';
 import {
   getChildElementsByTagName,
   newActionEvent,
@@ -60,6 +61,18 @@ export class ConductingEquipmentEditor extends LitElement {
           },
         })
       );
+  }
+
+  private renderLNodes(): TemplateResult {
+    const lNodes = getChildElementsByTagName(this.element, 'LNode');
+
+    return lNodes.length
+      ? html`<div class="container lnode">
+          ${lNodes.map(
+            lNode => html`<l-node-editor .element=${lNode}></l-node-editor>`
+          )}
+        </div>`
+      : html``;
   }
 
   renderEqFunctions(): TemplateResult {
@@ -143,7 +156,7 @@ export class ConductingEquipmentEditor extends LitElement {
   render(): TemplateResult {
     if (this.showfunctions)
       return html`<action-pane label="${this.name}"
-        >${this.renderContentPane()}${this.renderEqFunctions()}</action-pane
+        >${this.renderContentPane()}${this.renderLNodes()}${this.renderEqFunctions()}</action-pane
       >`;
 
     return html`<action-icon label="${this.name}"
@@ -152,6 +165,8 @@ export class ConductingEquipmentEditor extends LitElement {
   }
 
   static styles = css`
+    ${styles}
+
     :host(.moving) {
       opacity: 0.3;
     }
