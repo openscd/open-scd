@@ -21,7 +21,8 @@ async function processNsdocFile(id: string, nsdocId: string, filename: string, c
   if (localStorage.getItem(nsdocId) === null || checksumStored === null || checksumStored !== checksum) {
     console.info(`Loading NSDoc File '${nsdocId}' with ID '${id}'.`);
     await CompasSclValidatorService().getNsdocFile(id)
-      .then(nsdocContent => {
+      .then(document => {
+        const nsdocContent = document.querySelectorAll("NsdocFile").item(0).textContent ?? '';
         dispatchEventOnOpenScd(newLoadNsdocEvent(nsdocContent, filename));
         localStorage.setItem(checksumKey, checksum);
       })

@@ -57,10 +57,11 @@ export function CompasSclValidatorService() {
         .then(parseXml);
     },
 
-    getNsdocFile(id: string): Promise<string> {
+    getNsdocFile(id: string): Promise<Document> {
       const svsUrl = getSclValidatorServiceUrl() + '/nsdoc/v1/' + id;
       return fetch(svsUrl).catch(handleError)
-        .then(handleResponse);
+        .then(handleResponse)
+        .then(parseXml);
     },
   }
 }
