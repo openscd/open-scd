@@ -17,11 +17,11 @@ import { newGOOSESelectEvent, styles } from './foundation.js';
 import { gooseIcon } from '../../icons/icons.js';
 import { wizards } from '../../wizards/wizard-library.js';
 
-let selectedGooseMsg: Element | undefined;
+let selectedGseControl: Element | undefined;
 let selectedDataSet: Element | undefined | null;
 
 function onOpenDocResetSelectedGooseMsg() {
-  selectedGooseMsg = undefined;
+  selectedGseControl = undefined;
   selectedDataSet = undefined;
 }
 addEventListener('open-doc', onOpenDocResetSelectedGooseMsg);
@@ -54,20 +54,24 @@ export class GoosePublisherList extends LitElement {
   }
 
   private onGooseSelect(gseControl: Element): void {
+    if (gseControl == selectedGseControl) return;
+
     const ln = gseControl.parentElement;
     const dataset = ln?.querySelector(
       `DataSet[name=${gseControl.getAttribute('datSet')}]`
     );
 
-    selectedGooseMsg = gseControl;
+    selectedGseControl = gseControl;
     selectedDataSet = dataset;
 
     this.dispatchEvent(
       newGOOSESelectEvent(
-        selectedGooseMsg,
+        selectedGseControl,
         selectedDataSet!
       )
     );
+
+    this.requestUpdate();
   }
 
   renderGoose(gseControl: Element): TemplateResult {
@@ -78,10 +82,10 @@ export class GoosePublisherList extends LitElement {
     >
       <mwc-icon slot="graphic">${gooseIcon}</mwc-icon>
       <span>${gseControl.getAttribute('name')}</span>
-      <mwc-icon
+      ${gseControl == selectedGseControl ? html`<mwc-icon
         slot="meta"
         @click=${() => this.openEditWizard(gseControl)}
-      >edit</mwc-icon>
+      >edit</mwc-icon>` : html``}
     </mwc-list-item>`;
   }
   
@@ -93,7 +97,7 @@ export class GoosePublisherList extends LitElement {
   protected firstUpdated(): void {
     this.dispatchEvent(
       newGOOSESelectEvent(
-        selectedGooseMsg,
+        selectedGseControl,
         selectedDataSet ?? undefined
       )
     );
