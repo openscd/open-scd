@@ -49,7 +49,9 @@ export default class IedPlugin extends LitElement {
   }
 
   private get selectedIed(): Element | undefined {
-    if (iedEditorSelectedIed === undefined) {
+    // When there is IED selected, or the selected IED has no parent (IED has been removed)
+    // select the first IED from the List.
+    if (iedEditorSelectedIed === undefined || iedEditorSelectedIed.parentElement === null) {
       const iedList = this.alphabeticOrderedIeds;
       if (iedList.length > 0) {
         iedEditorSelectedIed = iedList[0];

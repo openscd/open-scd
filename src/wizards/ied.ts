@@ -104,7 +104,6 @@ export function removeIEDWizard(element: Element): Wizard | null {
     return [
       {
         title: get('ied.wizard.title.delete'),
-        element,
         content: renderIEDReferencesWizard(references),
         primary: {
           icon: 'delete',
