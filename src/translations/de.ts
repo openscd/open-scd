@@ -228,8 +228,8 @@ export const de: Translations = {
       descHelper: 'Beschreibung des IED',
       title: {
         edit: 'IED bearbeiten',
-        delete: '???',
-        references: '???',
+        delete: 'IED mit Abhängigkeiten entfernen',
+        references: 'Gelöschte Abhängikeiten',
       },
     },
     action: {
