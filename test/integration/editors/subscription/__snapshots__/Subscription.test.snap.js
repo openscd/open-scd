@@ -59,26 +59,28 @@ snapshots["Subscription Plugin in GOOSE Publisher view initially the GOOSE list 
     <mwc-list-item
       aria-disabled="false"
       graphic="large"
+      hasmeta=""
       mwc-list-item=""
       tabindex="0"
     >
+      <mwc-icon slot="graphic">
+      </mwc-icon>
       <span>
         GCB
       </span>
-      <mwc-icon slot="graphic">
-      </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
       graphic="large"
+      hasmeta=""
       mwc-list-item=""
       tabindex="-1"
     >
+      <mwc-icon slot="graphic">
+      </mwc-icon>
       <span>
         GCB2
       </span>
-      <mwc-icon slot="graphic">
-      </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
@@ -101,14 +103,15 @@ snapshots["Subscription Plugin in GOOSE Publisher view initially the GOOSE list 
     <mwc-list-item
       aria-disabled="false"
       graphic="large"
+      hasmeta=""
       mwc-list-item=""
       tabindex="-1"
     >
+      <mwc-icon slot="graphic">
+      </mwc-icon>
       <span>
         GCB
       </span>
-      <mwc-icon slot="graphic">
-      </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
@@ -149,26 +152,28 @@ snapshots["Subscription Plugin in GOOSE Publisher view initially the GOOSE list 
     <mwc-list-item
       aria-disabled="false"
       graphic="large"
+      hasmeta=""
       mwc-list-item=""
       tabindex="-1"
     >
+      <mwc-icon slot="graphic">
+      </mwc-icon>
       <span>
         GCB
       </span>
-      <mwc-icon slot="graphic">
-      </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
       graphic="large"
+      hasmeta=""
       mwc-list-item=""
       tabindex="-1"
     >
+      <mwc-icon slot="graphic">
+      </mwc-icon>
       <span>
         GCB2
       </span>
-      <mwc-icon slot="graphic">
-      </mwc-icon>
     </mwc-list-item>
   </filtered-list>
 </section>
@@ -199,13 +204,6 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
 `<section tabindex="0">
   <h1>
     [subscription.publisherGoose.subscriberTitle]
-    <abbr
-      slot="action"
-      title="[edit]"
-    >
-      <mwc-icon-button icon="edit">
-      </mwc-icon-button>
-    </abbr>
   </h1>
   <div class="subscriberWrapper">
     <filtered-list id="subscribedIeds">
@@ -303,13 +301,6 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
 `<section tabindex="0">
   <h1>
     [subscription.publisherGoose.subscriberTitle]
-    <abbr
-      slot="action"
-      title="[edit]"
-    >
-      <mwc-icon-button icon="edit">
-      </mwc-icon-button>
-    </abbr>
   </h1>
   <div class="subscriberWrapper">
     <filtered-list id="subscribedIeds">
@@ -336,18 +327,6 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
       >
         <span>
           IED1
-        </span>
-        <mwc-icon slot="graphic">
-          clear
-        </mwc-icon>
-      </mwc-list-item>
-      <mwc-list-item
-        graphic="avatar"
-        hasmeta=""
-        mwc-list-item=""
-      >
-        <span>
-          IED3
         </span>
         <mwc-icon slot="graphic">
           clear
@@ -396,12 +375,20 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
       >
       </li>
       <mwc-list-item
+        aria-disabled="false"
+        aria-selected="true"
         graphic="avatar"
-        noninteractive=""
+        hasmeta=""
+        mwc-list-item=""
+        selected=""
+        tabindex="0"
       >
         <span>
-          [subscription.none]
+          IED3
         </span>
+        <mwc-icon slot="graphic">
+          add
+        </mwc-icon>
       </mwc-list-item>
     </filtered-list>
   </div>
@@ -413,13 +400,6 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
 `<section tabindex="0">
   <h1>
     [subscription.publisherGoose.subscriberTitle]
-    <abbr
-      slot="action"
-      title="[edit]"
-    >
-      <mwc-icon-button icon="edit">
-      </mwc-icon-button>
-    </abbr>
   </h1>
   <div class="subscriberWrapper">
     <filtered-list id="subscribedIeds">
@@ -438,12 +418,20 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
       >
       </li>
       <mwc-list-item
+        aria-disabled="false"
+        aria-selected="true"
         graphic="avatar"
-        noninteractive=""
+        hasmeta=""
+        mwc-list-item=""
+        selected=""
+        tabindex="0"
       >
         <span>
-          [subscription.none]
+          IED1
         </span>
+        <mwc-icon slot="graphic">
+          clear
+        </mwc-icon>
       </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
@@ -493,18 +481,6 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
         hasmeta=""
         mwc-list-item=""
         tabindex="-1"
-      >
-        <span>
-          IED1
-        </span>
-        <mwc-icon slot="graphic">
-          add
-        </mwc-icon>
-      </mwc-list-item>
-      <mwc-list-item
-        graphic="avatar"
-        hasmeta=""
-        mwc-list-item=""
       >
         <span>
           IED3
@@ -523,13 +499,6 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
 `<section tabindex="0">
   <h1>
     [subscription.publisherGoose.subscriberTitle]
-    <abbr
-      slot="action"
-      title="[edit]"
-    >
-      <mwc-icon-button icon="edit">
-      </mwc-icon-button>
-    </abbr>
   </h1>
   <div class="subscriberWrapper">
     <filtered-list id="subscribedIeds">
@@ -562,18 +531,6 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
         </mwc-icon>
       </mwc-list-item>
       <mwc-list-item
-        graphic="avatar"
-        hasmeta=""
-        mwc-list-item=""
-      >
-        <span>
-          IED4
-        </span>
-        <mwc-icon slot="graphic">
-          clear
-        </mwc-icon>
-      </mwc-list-item>
-      <mwc-list-item
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
@@ -588,12 +545,20 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
       >
       </li>
       <mwc-list-item
+        aria-disabled="false"
+        aria-selected="true"
         graphic="avatar"
-        noninteractive=""
+        hasmeta=""
+        mwc-list-item=""
+        selected=""
+        tabindex="0"
       >
         <span>
-          [subscription.none]
+          IED4
         </span>
+        <mwc-icon slot="graphic">
+          add
+        </mwc-icon>
       </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
@@ -664,13 +629,6 @@ snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED th
 `<section tabindex="0">
   <h1>
     [subscription.subscriberGoose.publisherTitle]
-    <abbr
-      slot="action"
-      title="[edit]"
-    >
-      <mwc-icon-button icon="edit">
-      </mwc-icon-button>
-    </abbr>
   </h1>
   <div class="subscriberWrapper">
     <filtered-list id="subscribedIeds">
@@ -764,13 +722,6 @@ snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED an
 `<section tabindex="0">
   <h1>
     [subscription.subscriberGoose.publisherTitle]
-    <abbr
-      slot="action"
-      title="[edit]"
-    >
-      <mwc-icon-button icon="edit">
-      </mwc-icon-button>
-    </abbr>
   </h1>
   <div class="subscriberWrapper">
     <filtered-list id="subscribedIeds">
@@ -860,13 +811,6 @@ snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED an
 `<section tabindex="0">
   <h1>
     [subscription.subscriberGoose.publisherTitle]
-    <abbr
-      slot="action"
-      title="[edit]"
-    >
-      <mwc-icon-button icon="edit">
-      </mwc-icon-button>
-    </abbr>
   </h1>
   <div class="subscriberWrapper">
     <filtered-list id="subscribedIeds">
@@ -957,13 +901,6 @@ snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED an
 `<section tabindex="0">
   <h1>
     [subscription.subscriberGoose.publisherTitle]
-    <abbr
-      slot="action"
-      title="[edit]"
-    >
-      <mwc-icon-button icon="edit">
-      </mwc-icon-button>
-    </abbr>
   </h1>
   <div class="subscriberWrapper">
     <filtered-list id="subscribedIeds">
