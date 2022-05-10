@@ -15,7 +15,7 @@ import '../../action-icon.js';
 import { createClientLnWizard } from '../../wizards/clientln.js';
 import { gooseIcon, smvIcon, reportIcon } from '../../icons/icons.js';
 import { wizards } from '../../wizards/wizard-library.js';
-import {newActionEvent, newWizardEvent} from '../../foundation.js';
+import { newActionEvent, newWizardEvent } from '../../foundation.js';
 import { selectGseControlWizard } from '../../wizards/gsecontrol.js';
 import { selectSampledValueControlWizard } from '../../wizards/sampledvaluecontrol.js';
 import { selectReportControlWizard } from '../../wizards/reportcontrol.js';

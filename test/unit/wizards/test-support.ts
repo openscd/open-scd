@@ -1,8 +1,10 @@
 import { expect } from '@open-wc/testing';
 
 import {
-  Create, Delete,
-  isCreate, isDelete,
+  Create,
+  Delete,
+  isCreate,
+  isDelete,
   isReplace,
   isUpdate,
   Replace,

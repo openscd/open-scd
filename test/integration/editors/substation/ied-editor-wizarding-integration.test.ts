@@ -6,7 +6,6 @@ import { MockWizardEditor } from '../../../mock-wizard-editor.js';
 import '../../../../src/editors/substation/ied-editor.js';
 import { FilteredList } from '../../../../src/filtered-list.js';
 import { IedEditor } from '../../../../src/editors/substation/ied-editor.js';
-import {ListBase} from "@material/mwc-list/mwc-list-base";
 
 describe('IED editor component wizarding editing integration', () => {
   let doc: XMLDocument;
