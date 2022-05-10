@@ -28,26 +28,40 @@ snapshots["goose-publisher-list looks like the latest snapshot"] =
     <mwc-list-item
       aria-disabled="false"
       graphic="large"
+      hasmeta=""
       mwc-list-item=""
       tabindex="0"
     >
+      <mwc-icon slot="graphic">
+      </mwc-icon>
       <span>
         GCB
       </span>
-      <mwc-icon slot="graphic">
-      </mwc-icon>
+      <mwc-icon-button
+        class="hidden"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
       graphic="large"
+      hasmeta=""
       mwc-list-item=""
       tabindex="-1"
     >
+      <mwc-icon slot="graphic">
+      </mwc-icon>
       <span>
         GCB2
       </span>
-      <mwc-icon slot="graphic">
-      </mwc-icon>
+      <mwc-icon-button
+        class="hidden"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
@@ -70,14 +84,21 @@ snapshots["goose-publisher-list looks like the latest snapshot"] =
     <mwc-list-item
       aria-disabled="false"
       graphic="large"
+      hasmeta=""
       mwc-list-item=""
       tabindex="-1"
     >
+      <mwc-icon slot="graphic">
+      </mwc-icon>
       <span>
         GCB
       </span>
-      <mwc-icon slot="graphic">
-      </mwc-icon>
+      <mwc-icon-button
+        class="hidden"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"

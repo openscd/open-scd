@@ -21,6 +21,7 @@ import { editIEDWizard } from './ied.js';
 import { editTrgOpsWizard } from './trgops.js';
 import { createDaWizard } from './da.js';
 import { editDAIWizard } from './dai.js';
+import { editGseControlWizard } from './gsecontrol.js';
 
 type SclElementWizard = (element: Element, instanceElement?: Element) => Wizard | undefined;
 
@@ -240,7 +241,7 @@ export const wizards: Record<
     create: emptyWizard,
   },
   GSEControl: {
-    edit: emptyWizard,
+    edit: editGseControlWizard,
     create: emptyWizard,
   },
   GSESettings: {

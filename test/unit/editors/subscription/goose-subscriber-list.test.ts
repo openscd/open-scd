@@ -15,7 +15,6 @@ describe('goose-subscriber-list', () => {
     element = await fixture(html`<goose-subscriber-list
       .doc=${validSCL}
     ></goose-subscriber-list>`);
-
     await expect(element).shadowDom.to.equalSnapshot();
   });
 
