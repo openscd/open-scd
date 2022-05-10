@@ -34,17 +34,17 @@ describe('goose-publisher-list', () => {
   });
 
   it('triggers edit wizard when the Edit button of a GseControl is pressed', async () => {
-    expect(element.shadowRoot?.querySelector('mwc-list-item[graphic="large"] > mwc-icon[slot="meta"]')).to.be.null;
+    expect(element.shadowRoot?.querySelector('mwc-list-item[graphic="large"] > mwc-icon-button[class="hidden"]')).to.not.be.null;
 
     (<HTMLElement>(
       element.shadowRoot?.querySelector('mwc-list-item[graphic="large"]')
     )).click();
     await element.updateComplete;
 
-    expect(element.shadowRoot?.querySelector('mwc-list-item[graphic="large"] > mwc-icon[slot="meta"]')).to.not.be.null;
+    expect(element.shadowRoot?.querySelector('mwc-list-item[graphic="large"] > mwc-icon-button[class=""]')).to.not.be.null;
 
     (<HTMLElement>(
-      element.shadowRoot?.querySelector('mwc-list-item[graphic="large"] > mwc-icon[slot="meta"]')
+      element.shadowRoot?.querySelector('mwc-list-item[graphic="large"] > mwc-icon-button')
     )).click();
     await element.updateComplete;
 

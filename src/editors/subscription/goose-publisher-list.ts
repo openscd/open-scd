@@ -16,6 +16,7 @@ import { compareNames, getNameAttribute, newWizardEvent } from '../../foundation
 import { newGOOSESelectEvent, styles } from './foundation.js';
 import { gooseIcon } from '../../icons/icons.js';
 import { wizards } from '../../wizards/wizard-library.js';
+import { classMap } from 'lit-html/directives/class-map';
 
 let selectedGseControl: Element | undefined;
 let selectedDataSet: Element | undefined | null;
@@ -82,10 +83,14 @@ export class GoosePublisherList extends LitElement {
     >
       <mwc-icon slot="graphic">${gooseIcon}</mwc-icon>
       <span>${gseControl.getAttribute('name')}</span>
-      ${gseControl == selectedGseControl ? html`<mwc-icon
+      <mwc-icon-button
+        class="${classMap({
+          hidden: gseControl !== selectedGseControl,
+        })}"
         slot="meta"
+        icon="edit"
         @click=${() => this.openEditWizard(gseControl)}
-      >edit</mwc-icon>` : html``}
+      ></mwc-icon-button>
     </mwc-list-item>`;
   }
   
@@ -126,5 +131,13 @@ export class GoosePublisherList extends LitElement {
 
   static styles = css`
     ${styles}
+
+    mwc-list-item {
+      --mdc-list-item-meta-size: 48px;
+    }
+
+    mwc-icon-button.hidden {
+      display: none;
+    }
   `;
 }

@@ -37,6 +37,12 @@ snapshots["goose-publisher-list looks like the latest snapshot"] =
       <span>
         GCB
       </span>
+      <mwc-icon-button
+        class="hidden"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
@@ -50,6 +56,12 @@ snapshots["goose-publisher-list looks like the latest snapshot"] =
       <span>
         GCB2
       </span>
+      <mwc-icon-button
+        class="hidden"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
@@ -81,6 +93,12 @@ snapshots["goose-publisher-list looks like the latest snapshot"] =
       <span>
         GCB
       </span>
+      <mwc-icon-button
+        class="hidden"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"

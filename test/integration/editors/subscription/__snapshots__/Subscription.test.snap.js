@@ -68,6 +68,12 @@ snapshots["Subscription Plugin in GOOSE Publisher view initially the GOOSE list 
       <span>
         GCB
       </span>
+      <mwc-icon-button
+        class="hidden"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
@@ -81,6 +87,12 @@ snapshots["Subscription Plugin in GOOSE Publisher view initially the GOOSE list 
       <span>
         GCB2
       </span>
+      <mwc-icon-button
+        class="hidden"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
@@ -112,6 +124,12 @@ snapshots["Subscription Plugin in GOOSE Publisher view initially the GOOSE list 
       <span>
         GCB
       </span>
+      <mwc-icon-button
+        class="hidden"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
@@ -161,6 +179,12 @@ snapshots["Subscription Plugin in GOOSE Publisher view initially the GOOSE list 
       <span>
         GCB
       </span>
+      <mwc-icon-button
+        class="hidden"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
@@ -174,6 +198,12 @@ snapshots["Subscription Plugin in GOOSE Publisher view initially the GOOSE list 
       <span>
         GCB2
       </span>
+      <mwc-icon-button
+        class="hidden"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
     </mwc-list-item>
   </filtered-list>
 </section>
