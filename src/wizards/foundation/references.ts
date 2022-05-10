@@ -1,4 +1,6 @@
 import {
+  Delete,
+  getNameAttribute,
   isPublic,
   Replace
 } from "../../foundation.js";
@@ -127,13 +129,9 @@ function attributeFilterWithParentNameAttribute(tagName: string, parentInfo: Rec
  * @param value         - The value to set on the cloned element or if null remove the attribute.
  * @returns Returns the cloned element.
  */
-function cloneElement(element: Element, attributeName: string, value: string | null): Element {
+function cloneElement(element: Element, attributeName: string, value: string): Element {
   const newElement = <Element>element.cloneNode(false);
-  if (value === null) {
-    newElement.removeAttribute(attributeName);
-  } else {
-    newElement.setAttribute(attributeName, value);
-  }
+  newElement.setAttribute(attributeName, value);
   return newElement;
 }
 
@@ -163,7 +161,7 @@ function cloneElementAndTextContent(element: Element, value: string | null): Ele
  * @returns Returns a list of Replace Actions that can be added to a Complex Action or returned directly for execution.
  */
 export function updateReferences(element: Element, oldName: string | null, newName: string): Replace[] {
-  if (oldName === newName) {
+  if (oldName === null || oldName === newName) {
     return [];
   }
 
@@ -176,8 +174,8 @@ export function updateReferences(element: Element, oldName: string | null, newNa
   referenceInfo.forEach(info => {
     // Depending on if an attribute value needs to be updated or the text content of an element
     // different scenarios need to be executed.
+    const filter = info.filter(element, info.attributeName, oldName);
     if (info.attributeName) {
-      const filter = info.filter(element, info.attributeName, oldName);
       Array.from(element.ownerDocument.querySelectorAll(`${filter}`))
         .filter(isPublic)
         .forEach(element => {
@@ -187,13 +185,59 @@ export function updateReferences(element: Element, oldName: string | null, newNa
     } else {
       // If the text content needs to be updated, filter on the text content can't be done in a CSS Selector.
       // So we query all elements the may need to be updated and filter them afterwards.
-      const filter = info.filter(element, info.attributeName, oldName);
       Array.from(element.ownerDocument.querySelectorAll(`${filter}`))
         .filter(element => element.textContent === oldName)
         .filter(isPublic)
         .forEach(element => {
           const newElement = cloneElementAndTextContent(element, newName);
           actions.push({old: {element}, new: {element: newElement}});
+        })
+    }
+  })
+  return actions;
+}
+
+/**
+ * Function to create Delete actions to remove reference which point to the name of the element being removed.
+ * For instance the IED Name is used in other SCL Elements as attribute 'iedName' to reference the IED.
+ * These elements need to be removed if the IED is removed.
+ *
+ * @param element - The element that will be removed and it's name is used to search for references.
+ * @returns Returns a list of Delete Actions that can be added to a Complex Action or returned directly for execution.
+ */
+export function deleteReferences(element: Element): Delete[] {
+  const name = getNameAttribute(element) ?? null;
+  if (name === null) {
+    return [];
+  }
+
+  const referenceInfo = referenceInfos[<ReferencesInfoTag>element.tagName];
+  if (referenceInfo === undefined) {
+    return [];
+  }
+
+  const actions: Delete[] = [];
+  referenceInfo.forEach(info => {
+    // Depending on if an attribute value is used for filtering or the text content of an element
+    // different scenarios need to be executed.
+    const filter = info.filter(element, info.attributeName, name);
+    if (info.attributeName) {
+      Array.from(element.ownerDocument.querySelectorAll(`${filter}`))
+        .filter(isPublic)
+        .forEach(element => {
+          actions.push({old: { parent: element.parentElement!, element }});
+        })
+    } else {
+      // If the text content needs to be used for filtering, filter on the text content can't be done in a CSS Selector.
+      // So we query all elements the may need to be deleted and filter them afterwards.
+      Array.from(element.ownerDocument.querySelectorAll(`${filter}`))
+        .filter(element => element.textContent === name)
+        .filter(isPublic)
+        .forEach(element => {
+          // We not only need to remove the element containing the text content, but the parent of this element.
+          if (element.parentElement) {
+            actions.push({old: {parent: element.parentElement.parentElement!, element: element.parentElement}});
+          }
         })
     }
   })

@@ -6,6 +6,7 @@ import { MockWizardEditor } from '../../../mock-wizard-editor.js';
 import '../../../../src/editors/substation/ied-editor.js';
 import { FilteredList } from '../../../../src/filtered-list.js';
 import { IedEditor } from '../../../../src/editors/substation/ied-editor.js';
+import {ListBase} from "@material/mwc-list/mwc-list-base";
 
 describe('IED editor component wizarding editing integration', () => {
   let doc: XMLDocument;
@@ -62,5 +63,18 @@ describe('IED editor component wizarding editing integration', () => {
     expect(reportControlList.items.length).to.equal(
       doc.querySelectorAll('IED[name="IED2"] ReportControl').length
     );
+  });
+
+  it('opens wizard showing References of one IED', async () => {
+    (<HTMLElement>(
+      iededitor.shadowRoot?.querySelector('mwc-fab[class="delete"]')
+    )).click();
+    await parent.updateComplete;
+
+    expect(parent.wizardUI.dialog).to.exist;
+    const referencesList = parent.wizardUI.dialog?.querySelectorAll('mwc-list-item');
+
+    expect(referencesList).to.be.not.undefined;
+    expect(referencesList!.length).to.equal(7);
   });
 });

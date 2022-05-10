@@ -662,7 +662,7 @@ function kDCSelector(tagName: SCLTag, identity: string): string {
 }
 
 function associationIdentity(e: Element): string {
-  return `${identity(e.parentElement)}>${e.getAttribute('associationID')}`;
+  return `${identity(e.parentElement)}>${e.getAttribute('associationID')??''}`;
 }
 
 function associationSelector(tagName: SCLTag, identity: string): string {

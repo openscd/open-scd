@@ -228,10 +228,13 @@ export const de: Translations = {
       descHelper: 'Beschreibung des IED',
       title: {
         edit: 'IED bearbeiten',
+        delete: '???',
+        references: '???',
       },
     },
     action: {
       updateied: 'IED "{{name}}" bearbeitet',
+      deleteied: 'IED "{{name}}" entfernt',
     },
   },
   powertransformer: {

@@ -9,9 +9,10 @@ import {
   isSimple,
   WizardInputElement,
 } from '../../../src/foundation.js';
-import { editIEDWizard } from '../../../src/wizards/ied.js';
+import {editIEDWizard, removeIEDAndReferences, removeIEDWizard} from '../../../src/wizards/ied.js';
 
 import {
+  expectDeleteAction,
   expectReplaceAction,
   expectUpdateAction,
   expectWizardNoUpdateAction,
@@ -27,9 +28,12 @@ describe('Wizards for SCL element IED', () => {
   let element: MockWizard;
   let inputs: WizardInputElement[];
 
-  describe('edit existing IED', () => {
+  beforeEach(async () => {
+    doc = await fetchDoc('/test/testfiles/wizards/ied.scd');
+  });
+
+  describe('edit IED', () => {
     beforeEach(async () => {
-      doc = await fetchDoc('/test/testfiles/wizards/ied.scd');
       ied = doc.querySelector('IED[name="IED3"]')!;
 
       element = await fixture(html`<mock-wizard></mock-wizard>`);
@@ -76,6 +80,36 @@ describe('Wizards for SCL element IED', () => {
 
     it('when no fields changed there will be no update action', async function () {
       expectWizardNoUpdateAction(updateNamingAttributeWithReferencesAction(ied, 'ied.action.updateied'), inputs);
+    });
+
+    it('looks like the latest snapshot', async () => {
+      await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
+    });
+  });
+
+  describe('remove IED', () => {
+    beforeEach(async () => {
+      ied = doc.querySelector('IED[name="IED1"]')!;
+
+      element = await fixture(html`<mock-wizard></mock-wizard>`);
+      const wizard = removeIEDWizard(ied);
+      element.workflow.push(() => wizard!);
+      await element.requestUpdate();
+      inputs = Array.from(element.wizardUI.inputs);
+    });
+
+    it('remove IED should return expected actions', async function () {
+      const complexAction = removeIEDAndReferences(ied)(inputs, newWizard());
+
+      expect(complexAction.length).to.equal(1);
+      expect(complexAction[0]).to.not.satisfy(isSimple);
+
+      const simpleActions = (<ComplexAction>complexAction[0]).actions;
+      expect(simpleActions.length).to.equal(10);
+
+      expectDeleteAction(simpleActions[0], 'IED');
+      expectDeleteAction(simpleActions[1], 'Association');
+      expectDeleteAction(simpleActions[2], 'ClientLN');
     });
 
     it('looks like the latest snapshot', async () => {
