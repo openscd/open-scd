@@ -9,7 +9,11 @@ import {
   isSimple,
   WizardInputElement,
 } from '../../../src/foundation.js';
-import {editIEDWizard, removeIEDAndReferences, removeIEDWizard} from '../../../src/wizards/ied.js';
+import {
+  editIEDWizard,
+  removeIEDAndReferences,
+  removeIEDWizard
+} from '../../../src/wizards/ied.js';
 
 import {
   expectDeleteAction,
