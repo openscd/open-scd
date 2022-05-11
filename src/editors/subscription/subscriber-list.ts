@@ -18,9 +18,7 @@ import {
   Create,
   createElement,
   Delete,
-  identity,
   newActionEvent,
-  selector,
 } from '../../foundation.js';
 import {
   newSubscriptionEvent,
@@ -32,6 +30,10 @@ import {
   View,
   ViewEvent,
 } from './foundation.js';
+import {
+  emptyInputsDeleteActions,
+  getFcdaReferences
+} from "../../foundation/ied.js";
 
 /**
  * An element within this list has 2 properties:
@@ -41,35 +43,6 @@ import {
 interface ListElement {
   element: Element;
   partial?: boolean;
-}
-
-/**
- * All available FCDA references that are used to link ExtRefs.
- */
-const fcdaReferences = [
-  'ldInst',
-  'lnClass',
-  'lnInst',
-  'prefix',
-  'doName',
-  'daName',
-];
-
-/**
- * Get all the FCDA attributes containing values from a specific element.
- * @param elementContainingFcdaReferences - The element to use
- * @returns FCDA references
- */
-function getFcdaReferences(elementContainingFcdaReferences: Element): string {
-  return fcdaReferences
-    .map(fcdaRef =>
-      elementContainingFcdaReferences.getAttribute(fcdaRef)
-        ? `[${fcdaRef}="${elementContainingFcdaReferences.getAttribute(
-            fcdaRef
-          )}"]`
-        : ''
-    )
-    .join('');
 }
 
 /** Defining view outside the class, which makes it persistent. */
@@ -348,57 +321,15 @@ export class SubscriberList extends LitElement {
       });
     });
 
+    // Check if empty Input Element should also be removed.
+    actions.push(...emptyInputsDeleteActions(actions));
+
     this.dispatchEvent(
       newActionEvent({
         title: 'Disconnect',
-        actions: this.extendDeleteActions(actions),
+        actions: actions,
       })
     );
-  }
-
-  /**
-   * Creating Delete actions in case Inputs elements are empty.
-   * @param extRefDeleteActions - All Delete actions for ExtRefs.
-   * @returns Possible delete actions for empty Inputs elements.
-   */
-  private extendDeleteActions(extRefDeleteActions: Delete[]): Delete[] {
-    if (!extRefDeleteActions.length) return [];
-
-    // Initialize with the already existing ExtRef Delete actions.
-    const extendedDeleteActions: Delete[] = extRefDeleteActions;
-    const inputsMap: Record<string, Element> = {};
-
-    for (const extRefDeleteAction of extRefDeleteActions) {
-      const extRef = <Element>extRefDeleteAction.old.element;
-      const inputsElement = <Element>extRefDeleteAction.old.parent;
-
-      const id = identity(inputsElement);
-      if (!inputsMap[id])
-        inputsMap[id] = <Element>inputsElement.cloneNode(true);
-
-      const linkedExtRef = inputsMap[id].querySelector(
-        `ExtRef[iedName=${extRef.getAttribute('iedName')}]` +
-          `${getFcdaReferences(extRef)}`
-      );
-
-      if (linkedExtRef) inputsMap[id].removeChild(linkedExtRef);
-    }
-
-    // create delete action for each empty inputs
-    Object.entries(inputsMap).forEach(([key, value]) => {
-      if (value.children.length! == 0) {
-        const doc = extRefDeleteActions[0].old.parent.ownerDocument!;
-        const inputs = doc.querySelector(selector('Inputs', key));
-
-        if (inputs && inputs.parentElement) {
-          extendedDeleteActions.push({
-            old: { parent: inputs.parentElement, element: inputs },
-          });
-        }
-      }
-    });
-
-    return extendedDeleteActions;
   }
 
   private resetElements() {

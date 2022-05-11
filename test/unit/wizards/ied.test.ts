@@ -109,11 +109,12 @@ describe('Wizards for SCL element IED', () => {
       expect(complexAction[0]).to.not.satisfy(isSimple);
 
       const simpleActions = (<ComplexAction>complexAction[0]).actions;
-      expect(simpleActions.length).to.equal(10);
+      expect(simpleActions.length).to.equal(12);
 
       expectDeleteAction(simpleActions[0], 'IED');
       expectDeleteAction(simpleActions[1], 'Association');
       expectDeleteAction(simpleActions[2], 'ClientLN');
+      expectDeleteAction(simpleActions[11], 'Inputs');
     });
 
     it('looks like the latest snapshot', async () => {

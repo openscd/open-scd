@@ -8,18 +8,21 @@ import '../wizard-textfield.js';
 import {
   ComplexAction,
   Delete,
-  EditorAction, getNameAttribute, identity,
+  EditorAction,
+  identity,
   isPublic,
-  newActionEvent, newWizardEvent,
+  newWizardEvent,
   Wizard,
   WizardAction,
-  WizardActor, WizardInputElement,
+  WizardActor,
+  WizardInputElement,
   WizardMenuActor
 } from '../foundation.js';
 import { patterns } from "./foundation/limits.js";
 
 import { updateNamingAttributeWithReferencesAction } from "./foundation/actions.js";
 import { deleteReferences } from "./foundation/references.js";
+import { emptyInputsDeleteActions } from "../foundation/ied.js";
 
 const iedNamePattern = "[A-Za-z][0-9A-Za-z_]{0,2}|" +
   "[A-Za-z][0-9A-Za-z_]{4,63}|" +
@@ -85,6 +88,13 @@ export function removeIEDAndReferences(element: Element): WizardActor {
     // Close Edit Wizard, if open.
     wizard.dispatchEvent(newWizardEvent());
 
+    // Get Delete Actions for other elements that also need to be removed
+    const referencesDeleteActions = deleteReferences(element);
+    // Use the ExtRef Elements to check if after removing the ExtRef there are empty Inputs that can also be removed.
+    const extRefsDeleteActions = referencesDeleteActions
+      .filter(deleteAction => (<Element>deleteAction.old.element).tagName === 'ExtRef')
+    const inputsDeleteActions = emptyInputsDeleteActions(extRefsDeleteActions)
+
     // Create Complex Action to remove IED and all references.
     const name = element.getAttribute('name') ?? 'Unknown';
     const complexAction: ComplexAction = {
@@ -92,7 +102,8 @@ export function removeIEDAndReferences(element: Element): WizardActor {
       title: get('ied.action.deleteied', {name}),
     };
     complexAction.actions.push({ old: { parent: element.parentElement!, element } });
-    complexAction.actions.push(...deleteReferences(element));
+    complexAction.actions.push(...referencesDeleteActions);
+    complexAction.actions.push(...inputsDeleteActions);
     return [complexAction];
   }
 }
