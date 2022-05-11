@@ -16,7 +16,9 @@ interface ContentOptions {
   reservedNames: string[];
 }
 
-function contentFunctionWizard(content: ContentOptions): TemplateResult[] {
+export function contentFunctionWizard(
+  content: ContentOptions
+): TemplateResult[] {
   return [
     html`<wizard-textfield
       label="name"
