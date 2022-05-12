@@ -2,7 +2,6 @@ import {
   css,
   customElement,
   html,
-  LitElement,
   property,
   TemplateResult,
 } from 'lit-element';
@@ -14,14 +13,11 @@ import '../../action-pane.js';
 import './access-point-container.js';
 import { Nsdoc } from '../../foundation/nsdoc.js';
 import { getDescriptionAttribute, getNameAttribute, newWizardEvent } from '../../foundation.js';
+import { Container } from './foundation.js';
 
 /** [[`IED`]] plugin subeditor for editing `IED` element. */
 @customElement('ied-container')
-export class IedContainer extends LitElement {
-  /** The edited `Element`, a common property of all IED subcontainers. */
-  @property({ attribute: false })
-  element!: Element;
-
+export class IedContainer extends Container {
   @property()
   nsdoc!: Nsdoc;
   

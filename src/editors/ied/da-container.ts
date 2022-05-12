@@ -2,7 +2,6 @@ import {
   css,
   customElement,
   html,
-  LitElement,
   property,
   query,
   TemplateResult,
@@ -19,25 +18,16 @@ import { Nsdoc } from '../../foundation/nsdoc.js';
 import { wizards } from '../../wizards/wizard-library.js';
 import { DaiValidationTypes, getCustomField } from './foundation/foundation.js';
 import { createDaInfoWizard } from "./da-wizard.js";
-import { getInstanceDAElement, getValueElement } from './foundation.js';
+import { Container, getInstanceDAElement, getValueElement } from './foundation.js';
 
 /** [[`IED`]] plugin subeditor for editing `(B)DA` element. */
 @customElement('da-container')
-export class DAContainer extends LitElement {
-  /**
-   * The (B)DA itself.
-   */
-  @property({ attribute: false })
-  element!: Element;
-
+export class DAContainer extends Container {
   /**
    * The optional DAI of this (B)DA.
    */
   @property({ attribute: false })
   instanceElement!: Element;
-
-  @property()
-  ancestors: Element[] = [];
 
   @property()
   nsdoc!: Nsdoc;
@@ -127,7 +117,7 @@ export class DAContainer extends LitElement {
           .element=${bdaElement}
           .instanceElement=${getInstanceDAElement(this.instanceElement, bdaElement)}
           .nsdoc=${this.nsdoc}
-          .ancestors=${[this.element, ...this.ancestors]}
+          .ancestors=${[...this.ancestors, this.element]}
         ></da-container>`) : nothing}
     </action-pane>
     `;

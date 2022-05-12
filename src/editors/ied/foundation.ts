@@ -1,4 +1,38 @@
-import { getNameAttribute } from "../../foundation.js";
+import { LitElement, property } from "lit-element";
+import { getInstanceAttribute, getNameAttribute } from "../../foundation.js";
+
+/** Base class for all containers inside the IED Editor. */
+export class Container extends LitElement {
+  @property({ attribute: false })
+  element!: Element;
+
+  @property()
+  ancestors: Element[] = [];
+
+  constructor() {
+    super();
+
+    this.addEventListener('focus', (event) => {
+      event.stopPropagation();
+      const pathOfAncestorNames = this.ancestors.map(ancestor => getTitleForElementPath(ancestor)!);
+      pathOfAncestorNames.push(getTitleForElementPath(this.element)!);
+
+      this.dispatchEvent(
+        newFullElementPathEvent(
+          pathOfAncestorNames
+        )
+      );
+    });
+
+    this.addEventListener('blur', () => {
+      this.dispatchEvent(
+        newFullElementPathEvent(
+          this.ancestors.map(ancestor => getTitleForElementPath(ancestor)!)
+        )
+      );
+    });
+  }
+}
 
 /**
  * Search for an element with a passed tag-name in the list of ancestors passed.
@@ -55,6 +89,24 @@ export function getInstanceDAElement(parentInstance: Element | null, da: Element
   return null;
 }
 
+export function getTitleForElementPath(element: Element): string {
+  switch (element.tagName) {
+    case 'LN':
+    case 'LN0': {
+      return element.getAttribute('lnClass')!;
+    }
+    case 'LDevice': {
+      return (getNameAttribute(element) ?? getInstanceAttribute(element))!
+    }
+    case 'Server': {
+      return 'Server';
+    }
+    default: {
+      return element.getAttribute('name')!;
+    }
+  }
+}
+
 /**
  * Get the 'Val' element of another element.
  * @param element - The element to search for an 'Val' element.
@@ -62,4 +114,26 @@ export function getInstanceDAElement(parentInstance: Element | null, da: Element
  */
 export function getValueElement(element: Element): Element | null {
   return element.querySelector('Val');
+}
+
+export interface FullElementPathDetail {
+  elementNames: string[];
+}
+export type FullElementPathEvent = CustomEvent<FullElementPathDetail>;
+export function newFullElementPathEvent(
+  elementNames: string[],
+  eventInitDict?: CustomEventInit<FullElementPathDetail>
+): FullElementPathEvent {
+  return new CustomEvent<FullElementPathDetail>('full-element-path', {
+    bubbles: true,
+    composed: true,
+    ...eventInitDict,
+    detail: { elementNames, ...eventInitDict?.detail },
+  });
+}
+
+declare global {
+  interface ElementEventMap {
+    ['full-element-path']: FullElementPathEvent;
+  }
 }
