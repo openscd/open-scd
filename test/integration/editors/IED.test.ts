@@ -62,6 +62,30 @@ describe('IED Plugin', () => {
         expect(element.shadowRoot?.querySelector('ied-container')!
           .shadowRoot?.querySelector('action-pane')!.shadowRoot?.innerHTML).to.include('IED3');
       });
+
+      it('renders the path of elements correctly', async () => {
+        const iedContainer = element.shadowRoot?.querySelector('ied-container');
+        expect(element.shadowRoot?.querySelector('element-path')?.shadowRoot?.querySelector('h3')?.textContent).to.be.empty;
+
+        iedContainer!.dispatchEvent(new Event('focus'));
+        await element.updateComplete;
+
+        expect(element.shadowRoot?.querySelector('element-path')?.shadowRoot?.querySelector('h3')?.textContent).to.eql('IED3');
+
+        const serverContainer = iedContainer
+          ?.shadowRoot?.querySelector('access-point-container')
+          ?.shadowRoot?.querySelector('server-container');
+
+        serverContainer!.dispatchEvent(new Event('focus'));
+        await element.updateComplete;
+
+        expect(element.shadowRoot?.querySelector('element-path')?.shadowRoot?.querySelector('h3')?.textContent).to.eql('IED3 / P1 / Server');
+
+        iedContainer!.dispatchEvent(new Event('blur'));
+        await element.updateComplete;
+
+        expect(element.shadowRoot?.querySelector('element-path')?.shadowRoot?.querySelector('h3')?.textContent).to.be.empty;
+      });
     });
   });
 });
