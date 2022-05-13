@@ -63,7 +63,7 @@ describe('IED Plugin', () => {
 
     it('it selects another IED after using the drop down box', async () => {
       selector = <Select>(
-        element.shadowRoot?.querySelector('mwc-select[id="iedSelect"]')
+        element.shadowRoot?.querySelector('mwc-select[class="iedSelect"]')
       );
       selector.value = "IED3"
       await element.requestUpdate();

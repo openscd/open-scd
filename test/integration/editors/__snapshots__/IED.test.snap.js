@@ -14,9 +14,9 @@ snapshots["IED Plugin without a doc loaded looks like the latest snapshot"] =
 
 snapshots["IED Plugin with a doc loaded including IED without a name looks like the latest snapshot"] = 
 `<section>
-  <div>
+  <div class="header">
     <mwc-select
-      id="iedSelect"
+      class="iedSelect"
       label="[iededitor.searchHelper]"
     >
       <mwc-list-item

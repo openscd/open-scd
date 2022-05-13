@@ -26,7 +26,9 @@ export class ElementPath extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<h3>${this.elementNames.join(' / ')}</h3>`;
+    return html`
+      <h3>${this.elementNames.join(' / ')}</h3>
+    `;
   }
 
   static styles = css`

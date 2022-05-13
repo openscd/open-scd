@@ -69,9 +69,9 @@ export default class IedPlugin extends LitElement {
     if (iedList.length > 0) {
       return html `
         <section>
-          <div>
+          <div class="header">
             <mwc-select
-              id="iedSelect"
+              class="iedSelect"
               label="${translate("iededitor.searchHelper")}"
               @selected=${this.onSelect}>
               ${iedList.map(
@@ -109,14 +109,18 @@ export default class IedPlugin extends LitElement {
       padding: 8px 12px 16px;
     }
 
-    #iedSelect {
+    .iedSelect {
       width: 35vw;
       padding-bottom: 20px;
     }
 
+    .header {
+      display: flex;
+    }
+
     .elementPath {
-      position: fixed;
-      right: 5%;
+      margin-left: auto;
+      padding-right: 12px;
     }
 
     h1 {
