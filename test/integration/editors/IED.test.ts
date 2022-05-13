@@ -25,7 +25,7 @@ describe('IED Plugin', () => {
     });
   });
 
-  describe('with a doc loaded including IED without a name', () => {
+  describe('with a doc loaded', () => {
     let doc: XMLDocument;
 
     beforeEach(async () => {
@@ -36,42 +36,32 @@ describe('IED Plugin', () => {
         html`<ied-plugin .doc="${doc}"></ied-plugin>`
       );
     });
-
-    it('looks like the latest snapshot', async () => {
+    
+    it('including IED without a name looks like the latest snapshot', async () => {
       await expect(element).shadowDom.to.equalSnapshot();
     });
-  });
 
-  describe('with a doc loaded including valid IED sections', () => {
-    let doc: XMLDocument;
-    let selector: Select;
+    describe('including valid IED sections', () => {
+      let selector: Select;
 
-    beforeEach(async () => {
-      doc = await fetch('/test/testfiles/valid2007B4.scd')
-        .then(response => response.text())
-        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      element = await fixture(
-        html`<ied-plugin .doc="${doc}"></ied-plugin>`
-      );
-    });
+      it('it initially contains 1 rendered IED container', () => {
+        expect(element.shadowRoot?.querySelectorAll('ied-container').length).to.eql(1);
+        expect(element.shadowRoot?.querySelector('ied-container')!
+          .shadowRoot?.querySelector('action-pane')!.shadowRoot?.innerHTML).to.include('IED1');
+      });
 
-    it('it initially contains 1 rendered IED container', () => {
-      expect(element.shadowRoot?.querySelectorAll('ied-container').length).to.eql(1);
-      expect(element.shadowRoot?.querySelector('ied-container')!
-        .shadowRoot?.querySelector('action-pane')!.shadowRoot?.innerHTML).to.include('IED1');
-    });
+      it('it selects another IED after using the drop down box', async () => {
+        selector = <Select>(
+          element.shadowRoot?.querySelector('mwc-select[class="iedSelect"]')
+        );
+        selector.value = "IED3"
+        await element.requestUpdate();
+        await element.updateComplete;
 
-    it('it selects another IED after using the drop down box', async () => {
-      selector = <Select>(
-        element.shadowRoot?.querySelector('mwc-select[class="iedSelect"]')
-      );
-      selector.value = "IED3"
-      await element.requestUpdate();
-      await element.updateComplete;
-
-      expect(element.shadowRoot?.querySelectorAll('ied-container').length).to.eql(1);
-      expect(element.shadowRoot?.querySelector('ied-container')!
-        .shadowRoot?.querySelector('action-pane')!.shadowRoot?.innerHTML).to.include('IED3');
+        expect(element.shadowRoot?.querySelectorAll('ied-container').length).to.eql(1);
+        expect(element.shadowRoot?.querySelector('ied-container')!
+          .shadowRoot?.querySelector('action-pane')!.shadowRoot?.innerHTML).to.include('IED3');
+      });
     });
   });
 });
