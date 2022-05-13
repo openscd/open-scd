@@ -252,7 +252,7 @@ describe('Wizards for SCL element SampledValueControl', () => {
       expect(updateAction.new.element).to.have.attribute('nofASDU', '2');
     });
 
-    it('updates the SampledValueEnable element when securityEnable changed', async () => {
+    it('updates the SampledValueEnable element when securityEnabled changed', async () => {
       const input = <WizardTextField>inputs[7];
       input.nullSwitch?.click();
       input.value = 'Signature';
@@ -266,9 +266,9 @@ describe('Wizards for SCL element SampledValueControl', () => {
       expect(action).to.satisfy(isReplace);
 
       const updateAction = <Replace>action;
-      expect(updateAction.old.element).to.not.have.attribute('securityEnable');
+      expect(updateAction.old.element).to.not.have.attribute('securityEnabled');
       expect(updateAction.new.element).to.have.attribute(
-        'securityEnable',
+        'securityEnabled',
         'Signature'
       );
     });

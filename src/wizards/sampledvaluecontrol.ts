@@ -2,6 +2,7 @@ import { html, TemplateResult } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
 import '@material/mwc-list/mwc-list-item.js';
+import { Checkbox } from '@material/mwc-checkbox';
 import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
@@ -13,8 +14,10 @@ import '../wizard-textfield.js';
 import {
   cloneElement,
   ComplexAction,
+  createElement,
   Delete,
   EditorAction,
+  getUniqueElementName,
   getValue,
   identity,
   isPublic,
@@ -28,11 +31,21 @@ import {
   WizardInputElement,
   WizardMenuActor,
 } from '../foundation.js';
-import { securityEnableEnum, smpModEnum } from './foundation/enums.js';
+import { securityEnabledEnum, smpModEnum } from './foundation/enums.js';
 import { maxLength, patterns } from './foundation/limits.js';
 import { editSMvWizard } from './smv.js';
-import { editSmvOptsWizard } from './smvopts.js';
+import { contentSmvOptsWizard, editSmvOptsWizard } from './smvopts.js';
 import { editDataSetWizard } from './dataset.js';
+import { dataAttributePicker, iEDPicker } from './foundation/finder.js';
+import { FinderList } from '../finder-list.js';
+import {
+  getConnectedAP,
+  isAccessPointConnected,
+  uniqueAppId,
+  uniqueMacAddress,
+} from './foundation/scl.js';
+import { contentGseOrSmvWizard, createAddressElement } from './address.js';
+import { newFCDA } from './fcda.js';
 
 export function getSMV(element: Element): Element | null {
   const cbName = element.getAttribute('name');
@@ -117,7 +130,7 @@ interface ContentOptions {
   smpMod: string | null;
   smpRate: string | null;
   nofASDU: string | null;
-  securityEnable: string | null;
+  securityEnabled: string | null;
 }
 
 function contentSampledValueControlWizard(
@@ -182,17 +195,292 @@ function contentSampledValueControlWizard(
       min="0"
     ></wizard-textfield>`,
     html`<wizard-select
-      label="securityEnable"
-      .maybeValue=${options.securityEnable}
+      label="securityEnabled"
+      .maybeValue=${options.securityEnabled}
       nullable
       required
       helper="${translate('scl.securityEnable')}"
-      >${securityEnableEnum.map(
+      >${securityEnabledEnum.map(
         option =>
           html`<mwc-list-item value="${option}">${option}</mwc-list-item>`
       )}</wizard-select
     >`,
   ];
+}
+
+function createSampledValueControlAction(parent: Element): WizardActor {
+  return (inputs: WizardInputElement[], wizard: Element) => {
+    // create SampledValueControl element
+    const sampledValueControlAttrs: Record<string, string | null> = {};
+    const sampledValueControlKeys = [
+      'name',
+      'desc',
+      'multicast',
+      'smvID',
+      'smpMod',
+      'smpRate',
+      'nofASDU',
+      'securityEnabled',
+    ];
+    sampledValueControlKeys.forEach(key => {
+      sampledValueControlAttrs[key] = getValue(
+        inputs.find(i => i.label === key)!
+      );
+    });
+
+    // confRef is handled automatically and is 1 for new referenced SampledValueControl
+    sampledValueControlAttrs['confRev'] = '1';
+
+    const dataSetName = sampledValueControlAttrs.name + 'sDataSet';
+    sampledValueControlAttrs['datSet'] = dataSetName;
+
+    const sampledValueControl = createElement(
+      parent.ownerDocument,
+      'SampledValueControl',
+      sampledValueControlAttrs
+    );
+
+    // create SmvOpts element
+    const smvOptsAttrs: Record<string, string | null> = {};
+    const smvOptsKeys = [
+      'refreshTime',
+      'sampleRate',
+      'dataSet',
+      'security',
+      'synchSourceId',
+    ];
+    smvOptsKeys.forEach(key => {
+      smvOptsAttrs[key] = getValue(inputs.find(i => i.label === key)!);
+    });
+
+    const smvOpts = createElement(
+      parent.ownerDocument,
+      'SmvOpts',
+      smvOptsAttrs
+    );
+
+    sampledValueControl.appendChild(smvOpts); // add to SampledValueControl element as child
+
+    // create SMV element with connected AccessPoint
+    let smv: Element | null = null;
+    let smvParent: Element | null = null;
+    if (isAccessPointConnected(parent)) {
+      const instType: boolean =
+        (<Checkbox>wizard.shadowRoot?.querySelector('#instType'))?.checked ??
+        false;
+
+      const smvAttrs: Record<string, string | null> = {};
+      const smvKeys = ['MAC-Address', 'APPID', 'VLAN-ID', 'VLAN-PRIORITY'];
+      smvKeys.forEach(key => {
+        smvAttrs[key] = getValue(inputs.find(i => i.label === key)!);
+      });
+
+      smv = createElement(parent.ownerDocument, 'SMV', {
+        ldInst: parent.closest('LDevice')?.getAttribute('inst') ?? '',
+        cbName: sampledValueControlAttrs['name']!,
+      });
+      const address = createAddressElement(smvAttrs, smv, instType);
+
+      smv.appendChild(address);
+
+      // get `SMV`'s ``ConnectedAP`` parent
+      smvParent = getConnectedAP(parent);
+    }
+
+    //add empty dataset that can be filled later
+    const dataSet = createElement(parent.ownerDocument, 'DataSet', {
+      name: dataSetName,
+    });
+    const finder = wizard.shadowRoot!.querySelector<FinderList>('finder-list');
+    const paths = finder?.paths ?? [];
+
+    for (const path of paths) {
+      const element = newFCDA(parent, path);
+
+      if (!element) continue;
+
+      dataSet.appendChild(element);
+    }
+
+    const complexAction = smv
+      ? {
+          title: 'Create SampledValueControl',
+          actions: [
+            { new: { parent, element: sampledValueControl } },
+            { new: { parent: smvParent!, element: smv } },
+            { new: { parent, element: dataSet } },
+          ],
+        }
+      : {
+          title: 'Create SampledValueControl',
+          actions: [
+            { new: { parent, element: sampledValueControl } },
+            { new: { parent, element: dataSet } },
+          ],
+        };
+
+    return [complexAction];
+  };
+}
+
+export function createSampledValueControlWizard(ln0OrLn: Element): Wizard {
+  const server = ln0OrLn.closest('Server');
+
+  const name = getUniqueElementName(ln0OrLn, 'SampledValueControl');
+  const desc = null;
+  const multicast = 'true';
+  const smvID = '';
+  const smpMod = 'SmpPerPeriod';
+  const smpRate = '80';
+  const nofASDU = '1';
+  const securityEnabled = null;
+
+  const refreshTime = null;
+  const sampleRate = 'true';
+  const dataSet = 'true';
+  const security = null;
+  const synchSourceId = 'true';
+
+  const hasInstType = true;
+  const attributes: Record<string, string | null> = {
+    'MAC-Address': uniqueMacAddress(ln0OrLn.ownerDocument, 'SMV'),
+    APPID: uniqueAppId(ln0OrLn.ownerDocument),
+    'VLAN-ID': null,
+    'VLAN-PRIORITY': null,
+  };
+
+  return isAccessPointConnected(ln0OrLn)
+    ? [
+        {
+          title: get('wizard.title.add', { tagName: 'SampledValueControl' }),
+          content: contentSampledValueControlWizard({
+            name,
+            desc,
+            multicast,
+            smvID,
+            smpMod,
+            smpRate,
+            nofASDU,
+            securityEnabled,
+          }),
+        },
+        {
+          title: get('wizard.title.add', { tagName: 'SmvOpts' }),
+          content: contentSmvOptsWizard({
+            refreshTime,
+            sampleRate,
+            dataSet,
+            security,
+            synchSourceId,
+          }),
+        },
+        {
+          title: get('wizard.title.add', { tagName: 'SMV' }),
+          content: [...contentGseOrSmvWizard({ hasInstType, attributes })],
+        },
+        {
+          title: get('dataset.fcda.add'),
+          primary: {
+            icon: 'save',
+            label: get('save'),
+            action: createSampledValueControlAction(ln0OrLn),
+          },
+          content: [server ? dataAttributePicker(server) : html``],
+        },
+      ]
+    : [
+        {
+          title: get('wizard.title.add', { tagName: 'SampledValueControl' }),
+          content: contentSampledValueControlWizard({
+            name,
+            desc,
+            multicast,
+            smvID,
+            smpMod,
+            smpRate,
+            nofASDU,
+            securityEnabled,
+          }),
+        },
+        {
+          title: get('wizard.title.add', { tagName: 'SmvOpts' }),
+          content: contentSmvOptsWizard({
+            refreshTime,
+            sampleRate,
+            dataSet,
+            security,
+            synchSourceId,
+          }),
+        },
+        {
+          title: get('wizard.title.add', { tagName: 'SMV' }),
+          content: [
+            html`<h3
+              style="color: var(--mdc-theme-on-surface);
+                      font-family: 'Roboto', sans-serif;
+                      font-weight: 300;"
+            >
+              ${translate('gse.missingaccp')}
+            </h3>`,
+          ],
+        },
+        {
+          title: get('dataset.fcda.add'),
+          primary: {
+            icon: 'save',
+            label: get('save'),
+            action: createSampledValueControlAction(ln0OrLn),
+          },
+          content: [server ? dataAttributePicker(server) : html``],
+        },
+      ];
+}
+
+function openSampledValueControlCreateWizard(doc: XMLDocument): WizardActor {
+  return (_: WizardInputElement[], wizard: Element) => {
+    const finder = wizard.shadowRoot?.querySelector<FinderList>('finder-list');
+    const path = finder?.path ?? [];
+
+    if (path.length === 0) return [];
+
+    const [tagName, id] = path.pop()!.split(': ');
+    if (tagName !== 'IED') return [];
+
+    const ied = doc.querySelector(selector(tagName, id));
+    if (!ied) return [];
+
+    const ln0 = ied.querySelector('LN0');
+    if (!ln0) return [];
+
+    return [() => createSampledValueControlWizard(ln0)];
+  };
+}
+
+export function gseControlParentSelector(doc: XMLDocument): Wizard {
+  return [
+    {
+      title: get('samvpledvaluecontrol.wizard.location'),
+      primary: {
+        icon: '',
+        label: get('next'),
+        action: openSampledValueControlCreateWizard(doc),
+      },
+      content: [iEDPicker(doc)],
+    },
+  ];
+}
+
+function prepareSampledValueControlCreateWizard(
+  anyParent: Element
+): WizardActor {
+  return () => {
+    if (anyParent.tagName === 'IED' && anyParent.querySelector('LN0'))
+      return [
+        () => createSampledValueControlWizard(anyParent.querySelector('LN0')!),
+      ];
+
+    return [() => gseControlParentSelector(anyParent.ownerDocument)];
+  };
 }
 
 function removeSampledValueControl(element: Element): WizardMenuActor {
@@ -232,7 +520,7 @@ function updateSampledValueControlAction(element: Element): WizardActor {
       'smpMod',
       'smpRate',
       'nofASDU',
-      'securityEnable',
+      'securityEnabled',
     ];
 
     attributeKeys.forEach(key => {
@@ -264,7 +552,7 @@ export function editSampledValueControlWizard(element: Element): Wizard {
   const smpMod = element.getAttribute('smpMod');
   const smpRate = element.getAttribute('smpRate');
   const nofASDU = element.getAttribute('nofASDU');
-  const securityEnable = element.getAttribute('securityEnabled');
+  const securityEnabled = element.getAttribute('securityEnabled');
 
   const sMV = getSMV(element);
   const smvOpts = element.querySelector('SmvOpts')!;
@@ -320,7 +608,7 @@ export function editSampledValueControlWizard(element: Element): Wizard {
           smpMod,
           smpRate,
           nofASDU,
-          securityEnable,
+          securityEnabled: securityEnabled,
         }),
       ],
     },
@@ -332,9 +620,18 @@ export function selectSampledValueControlWizard(element: Element): Wizard {
     element.querySelectorAll('SampledValueControl')
   ).filter(isPublic);
 
+  const primary = element.querySelector('LN0')
+    ? {
+        icon: 'add',
+        label: 'Sampled Value Control Block',
+        action: prepareSampledValueControlCreateWizard(element),
+      }
+    : undefined;
+
   return [
     {
       title: get('wizard.title.select', { tagName: 'SampledValueControl' }),
+      primary,
       content: [
         html`<filtered-list
           @selected=${(e: SingleSelectedEvent) => {

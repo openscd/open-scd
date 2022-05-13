@@ -321,11 +321,11 @@ export const en = {
     none: 'None',
     publisherGoose: {
       title: 'GOOSE Publisher',
-      subscriberTitle: 'Subscriber of {{ selected }}'
+      subscriberTitle: 'Subscriber of {{ selected }}',
     },
     subscriberGoose: {
       title: 'GOOSE Subscriber',
-      publisherTitle: 'GOOSE(s) subscribed by {{selected}}'
+      publisherTitle: 'GOOSE(s) subscribed by {{selected}}',
     },
     subscriber: {
       subscribed: 'Subscribed',
@@ -335,9 +335,9 @@ export const en = {
       noIedSelected: 'No IED selected',
     },
     view: {
-      publisherView: "Show subscriber IED(s) per selected GOOSE",
-      subscriberView: "Show subscribed GOOSE publisher for selected IED"
-    }
+      publisherView: 'Show subscriber IED(s) per selected GOOSE',
+      subscriberView: 'Show subscribed GOOSE publisher for selected IED',
+    },
   },
   sampledvalues: {
     none: 'none',
@@ -596,6 +596,9 @@ export const en = {
   },
   gsecontrol: {
     wizard: { location: 'Select GOOSE Control Block Location' },
+  },
+  samvpledvaluecontrol: {
+    wizard: { location: 'Select Sampled Value Control Block Location' },
   },
   add: 'Add',
   new: 'New',

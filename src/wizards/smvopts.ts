@@ -18,7 +18,7 @@ interface ContentOptions {
   synchSourceId: string | null;
 }
 
-function contentSmvOptsWizard(option: ContentOptions): TemplateResult[] {
+export function contentSmvOptsWizard(option: ContentOptions): TemplateResult[] {
   return Object.entries(option).map(
     ([key, value]) =>
       html`<wizard-checkbox

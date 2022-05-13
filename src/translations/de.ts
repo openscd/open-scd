@@ -324,11 +324,11 @@ export const de: Translations = {
     none: 'Keine Verbindung vorhanden',
     publisherGoose: {
       title: 'GOOSE-Publizierer',
-      subscriberTitle: 'Verbunden mit {{ selected }}'
+      subscriberTitle: 'Verbunden mit {{ selected }}',
     },
     subscriberGoose: {
       title: 'IED-Publizierer',
-      publisherTitle: 'GOOSE(s) verbunden mit {{selected}}'
+      publisherTitle: 'GOOSE(s) verbunden mit {{selected}}',
     },
     subscriber: {
       subscribed: 'Verbunden',
@@ -338,9 +338,9 @@ export const de: Translations = {
       noIedSelected: 'Keine IED ausgewählt',
     },
     view: {
-      publisherView: "Zeigt verbundene IED(s) der ausgewählten GOOSE",
-      subscriberView: "Zeigt verbundene GOOSE(s) des ausgewählten IED"
-    }
+      publisherView: 'Zeigt verbundene IED(s) der ausgewählten GOOSE',
+      subscriberView: 'Zeigt verbundene GOOSE(s) des ausgewählten IED',
+    },
   },
   sampledvalues: {
     none: 'Keine Verbindung vorhanden',
@@ -602,6 +602,11 @@ export const de: Translations = {
   },
   gsecontrol: {
     wizard: { location: 'Ablageort der GOOSE wählen' },
+  },
+  samvpledvaluecontrol: {
+    wizard: {
+      location: 'Ablageort des Select Sampled Value Control Block wählen',
+    },
   },
   add: 'Hinzufügen',
   new: 'Neu',

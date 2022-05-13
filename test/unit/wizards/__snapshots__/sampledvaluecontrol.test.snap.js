@@ -146,7 +146,7 @@ snapshots["Wizards for SCL element SampledValueControl define an edit wizard tha
     <wizard-select
       disabled=""
       helper="[scl.securityEnable]"
-      label="securityEnable"
+      label="securityEnabled"
       nullable=""
       required=""
     >
@@ -241,6 +241,13 @@ snapshots["Wizards for SCL element SampledValueControl define a select wizard th
     label="[cancel]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+  </mwc-button>
+  <mwc-button
+    icon="add"
+    label="Sampled Value Control Block"
+    slot="primaryAction"
+    trailingicon=""
   >
   </mwc-button>
 </mwc-dialog>
