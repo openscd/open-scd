@@ -45,6 +45,12 @@ import {
 } from '../../wizards/sampledvaluecontrol.js';
 import { cleanSCLItems, identitySort } from './foundation.js';
 
+interface ControlBlockSelectDetail {
+  controlBlock: Element | undefined;
+}
+
+type ControlBlockSelectEvent = CustomEvent<ControlBlockSelectDetail>;
+
 type controlType =
   | 'GSEControl'
   | 'LogControl'
@@ -57,6 +63,26 @@ const iconMapping = {
   SampledValueControl: <iconType>'smvIcon',
   ReportControl: <iconType>'reportIcon',
 };
+
+let selectedControlBlock: Element | undefined;
+
+function onOpenDocResetSelectedControlBlock() {
+  selectedControlBlock = undefined;
+}
+
+addEventListener('open-doc', onOpenDocResetSelectedControlBlock);
+
+function newSelectControlBlockEvent(
+  controlBlock: Element | undefined,
+  eventInitDict?: CustomEventInit<ControlBlockSelectDetail>
+): ControlBlockSelectEvent {
+  return new CustomEvent<ControlBlockSelectDetail>('control-block', {
+    bubbles: true,
+    composed: true,
+    ...eventInitDict,
+    detail: { controlBlock,  ...eventInitDict?.detail },
+  });
+}
 
 /**
  * Check whether a control block is instantiated in the Communication section of the SCL file.
@@ -112,6 +138,12 @@ export class CleanupControlBlocks extends LitElement {
   @query('.tReportControlFilter')
   cleanupReportControlFilter!: Button;
 
+  constructor() {
+    super();
+    selectedControlBlock = undefined;
+    this.onControlBlockItemSelect = this.onControlBlockItemSelect.bind(this);
+  }
+
   /**
    * Toggle the class hidden in the unused controls list for use by filter buttons.
    * @param selectorType - class for selection to toggle the hidden class used by the list.
@@ -129,6 +161,7 @@ export class CleanupControlBlocks extends LitElement {
     this.cleanupList?.addEventListener('selected', () => {
       this.selectedControlItems = this.cleanupList!.index;
     });
+    selectedControlBlock = undefined;
     this.toggleHiddenClass('tReportControl');
   }
 
@@ -156,6 +189,18 @@ export class CleanupControlBlocks extends LitElement {
     </mwc-icon-button-toggle> `;
   }
 
+  private onControlBlockItemSelect(controlBlock: Element): void {
+    if (controlBlock == selectedControlBlock) return;
+
+    selectedControlBlock = controlBlock;
+
+    this.dispatchEvent(
+      newSelectControlBlockEvent (selectedControlBlock)
+    );
+
+    this.requestUpdate();
+  }
+
   /**
    * Provide list item in the control block cleanup container.
    * @param controlBlock - an unused SCL ControlBlock element.
@@ -166,6 +211,7 @@ export class CleanupControlBlocks extends LitElement {
       twoline
       class="cleanupListItem t${controlBlock.tagName}"
       value="${identity(controlBlock)}"
+      @click=${() => this.onControlBlockItemSelect(controlBlock)}
       graphic="large"
       ><span class="unreferencedControl"
         >${controlBlock.getAttribute('name')!}
@@ -174,7 +220,7 @@ export class CleanupControlBlocks extends LitElement {
         <mwc-icon-button
           label="Edit"
           icon="edit"
-          class="editItem"
+          class="editItem ${(controlBlock !== selectedControlBlock) ? 'hidden': ''}"
           ?disabled="${controlBlock.tagName === 'LogControl'}"
           @click=${(e: MouseEvent) => {
             e.stopPropagation();
@@ -411,5 +457,15 @@ export class CleanupControlBlocks extends LitElement {
     .tReportControlFilter {
       opacity: 0.38;
     }
+
+    mwc-icon-button.hidden {
+      display: none;
+    }
   `;
+}
+
+declare global {
+  interface ElementEventMap {
+    ['control-block']: ControlBlockSelectEvent;
+  }
 }
