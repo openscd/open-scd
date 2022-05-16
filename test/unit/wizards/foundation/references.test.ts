@@ -1,21 +1,63 @@
 import {
+  expectDeleteAction,
   expectReplaceAction,
   expectUpdateTextValue,
   fetchDoc,
 } from '../test-support.js';
-import { updateReferences } from '../../../../src/wizards/foundation/references.js';
+import {
+  deleteReferences,
+  updateReferences
+} from '../../../../src/wizards/foundation/references.js';
 import { expect } from '@open-wc/testing';
-import { Replace } from '../../../../src/foundation.js';
 
 describe('Update reference for ', () => {
   let doc: XMLDocument;
+
+  describe('element without Reference Info (ConductingEquipment)', () => {
+    const ceName = 'QA1';
+    let conductingEquipment: Element;
+
+    beforeEach(async () => {
+      doc = await fetchDoc('/test/testfiles/wizards/ied.scd');
+      conductingEquipment = doc.querySelector(`ConductingEquipment[name="${ceName}"]`)!;
+    });
+
+    it('will update no references to ConductingEquipment', function () {
+      const updateActions = updateReferences(conductingEquipment, ceName, 'Other CE Name');
+      expect(updateActions.length).to.equal(0);
+    });
+
+    it('will delete no references to ConductingEquipment', function () {
+      const updateActions = deleteReferences(conductingEquipment);
+      expect(updateActions.length).to.equal(0);
+    });
+  });
+
+  describe('element without Name Attribute (Value)', () => {
+    let connectAP: Element;
+
+    beforeEach(async () => {
+      doc = await fetchDoc('/test/testfiles/wizards/ied.scd');
+      connectAP = doc.querySelector(`ConnectedAP[iedName="IED1"][apName="P1"]`)!;
+    });
+
+    it('will update no references to ConnectedAP', function () {
+      const updateActions = updateReferences(connectAP, null, 'New Name');
+      expect(updateActions.length).to.equal(0);
+    });
+
+    it('will delete no references to ConnectedAP', function () {
+      const updateActions = deleteReferences(connectAP);
+      expect(updateActions.length).to.equal(0);
+    });
+  });
 
   describe('IED', () => {
     beforeEach(async () => {
       doc = await fetchDoc('/test/testfiles/wizards/ied.scd');
     });
 
-    it('will update all references to IED IED1', async function () {
+    it('will update all references to IED IED1', function () {
       const oldName = 'IED1';
       const newName = 'NewIED1';
       const ied = doc.querySelector(`IED[name="${oldName}"]`)!;
@@ -24,43 +66,22 @@ describe('Update reference for ', () => {
       expect(updateActions.length).to.equal(9);
 
       expectReplaceAction(
-        <Replace>updateActions[0],
+        updateActions[0],
         'Association',
         'iedName',
         oldName,
         newName
       );
       expectReplaceAction(
-        <Replace>updateActions[1],
+        updateActions[1],
         'ClientLN',
-        'iedName',
-        oldName,
-        newName
-      );
-      expectReplaceAction(
-        <Replace>updateActions[3],
-        'ConnectedAP',
-        'iedName',
-        oldName,
-        newName
-      );
-      expectReplaceAction(
-        <Replace>updateActions[4],
-        'ExtRef',
-        'iedName',
-        oldName,
-        newName
-      );
-      expectReplaceAction(
-        <Replace>updateActions[8],
-        'KDC',
         'iedName',
         oldName,
         newName
       );
     });
 
-    it('will update all references to IED IED2', async function () {
+    it('will update all references to IED IED2', function () {
       const oldName = 'IED2';
       const newName = 'NewIED2';
       const ied = doc.querySelector(`IED[name="${oldName}"]`)!;
@@ -68,25 +89,40 @@ describe('Update reference for ', () => {
       const updateActions = updateReferences(ied, oldName, newName);
       expect(updateActions.length).to.equal(8);
 
-      expectReplaceAction(
-        <Replace>updateActions[4],
-        'LNode',
-        'iedName',
-        oldName,
-        newName
-      );
       expectUpdateTextValue(
-        <Replace>updateActions[6],
+        updateActions[6],
         'GSEControl',
         oldName,
         newName
       );
       expectUpdateTextValue(
-        <Replace>updateActions[7],
+        updateActions[7],
         'SampledValueControl',
         oldName,
         newName
       );
+    });
+
+    it('will delete all references to IED IED1', function () {
+      const name = 'IED1';
+      const ied = doc.querySelector(`IED[name="${name}"]`)!;
+
+      const updateActions = deleteReferences(ied);
+      expect(updateActions.length).to.equal(9);
+
+      expectDeleteAction(updateActions[0], 'Association');
+      expectDeleteAction(updateActions[1], 'ClientLN');
+    });
+
+    it('will delete all references to IED IED2', async function () {
+      const name = 'IED2';
+      const ied = doc.querySelector(`IED[name="${name}"]`)!;
+
+      const updateActions = deleteReferences(ied);
+      expect(updateActions.length).to.equal(8);
+
+      expectDeleteAction(updateActions[6], 'GSEControl');
+      expectDeleteAction(updateActions[7], 'SampledValueControl');
     });
   });
 
@@ -95,7 +131,7 @@ describe('Update reference for ', () => {
       doc = await fetchDoc('/test/testfiles/wizards/references.scd');
     });
 
-    it('will update all references to Substation AA1', async function () {
+    it('will update all references to Substation AA1', function () {
       const oldName = 'AA1';
       const newName = 'NewAA1';
       const substation = doc.querySelector(`Substation[name="${oldName}"]`)!;
@@ -104,7 +140,7 @@ describe('Update reference for ', () => {
       expect(updateActions.length).to.equal(48);
 
       expectReplaceAction(
-        <Replace>updateActions[0],
+        updateActions[0],
         'Terminal',
         'substationName',
         oldName,
@@ -118,7 +154,7 @@ describe('Update reference for ', () => {
       doc = await fetchDoc('/test/testfiles/wizards/references.scd');
     });
 
-    it('will update all references to VoltageLevel "J1"', async function () {
+    it('will update all references to VoltageLevel "J1"', function () {
       const oldName = 'J1';
       const newName = 'J1 UPD';
       const voltageLevel = doc.querySelector(`VoltageLevel[name="${oldName}"]`)!;
@@ -127,7 +163,7 @@ describe('Update reference for ', () => {
       expect(updateActions.length).to.equal(48);
 
       expectReplaceAction(
-        <Replace>updateActions[0],
+        updateActions[0],
         'Terminal',
         'voltageLevelName',
         oldName,
@@ -141,7 +177,7 @@ describe('Update reference for ', () => {
       doc = await fetchDoc('/test/testfiles/wizards/references.scd');
     });
 
-    it('will update all references to BusBar "BusBar A"', async function () {
+    it('will update all references to BusBar "BusBar A"', function () {
       const oldName = 'BusBar A';
       const newName = 'BusBar A UPD';
       const bay = doc.querySelector(`Bay[name="${oldName}"]`)!;
@@ -150,7 +186,7 @@ describe('Update reference for ', () => {
       expect(updateActions.length).to.equal(6);
 
       expectReplaceAction(
-        <Replace>updateActions[0],
+        updateActions[0],
         'Terminal',
         'bayName',
         oldName,
@@ -158,7 +194,7 @@ describe('Update reference for ', () => {
       );
     });
 
-    it('will update all references to Bay "Bay A"', async function () {
+    it('will update all references to Bay "Bay A"', function () {
       const oldName = 'Bay A';
       const newName = 'Bay A UPD';
       const bay = doc.querySelector(`Bay[name="${oldName}"]`)!;
@@ -167,7 +203,7 @@ describe('Update reference for ', () => {
       expect(updateActions.length).to.equal(8);
 
       expectReplaceAction(
-        <Replace>updateActions[0],
+        updateActions[0],
         'Terminal',
         'bayName',
         oldName,

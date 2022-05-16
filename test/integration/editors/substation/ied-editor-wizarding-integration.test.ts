@@ -63,4 +63,17 @@ describe('IED editor component wizarding editing integration', () => {
       doc.querySelectorAll('IED[name="IED2"] ReportControl').length
     );
   });
+
+  it('opens wizard showing References of one IED', async () => {
+    (<HTMLElement>(
+      iededitor.shadowRoot?.querySelector('mwc-fab[class="delete"]')
+    )).click();
+    await parent.updateComplete;
+
+    expect(parent.wizardUI.dialog).to.exist;
+    const referencesList = parent.wizardUI.dialog?.querySelectorAll('mwc-list-item');
+
+    expect(referencesList).to.be.not.undefined;
+    expect(referencesList!.length).to.equal(7);
+  });
 });

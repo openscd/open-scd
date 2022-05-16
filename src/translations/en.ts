@@ -225,10 +225,13 @@ export const en = {
       descHelper: 'IED description',
       title: {
         edit: 'Edit IED',
+        delete: 'Remove IED with references',
+        references: 'References to be removed',
       },
     },
     action: {
       updateied: 'Edited IED "{{name}}"',
+      deleteied: 'Removed IED "{{name}}"',
     },
   },
   powertransformer: {
