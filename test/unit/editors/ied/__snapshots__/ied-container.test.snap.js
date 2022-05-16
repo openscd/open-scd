@@ -8,6 +8,13 @@ snapshots["ied-container looks like the latest snapshot"] =
   </mwc-icon>
   <abbr
     slot="action"
+    title="[remove]"
+  >
+    <mwc-icon-button icon="delete">
+    </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="action"
     title="[edit]"
   >
     <mwc-icon-button icon="edit">

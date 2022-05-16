@@ -78,6 +78,19 @@ describe('A component to visualize SCL element IED', () => {
     );
   });
 
+  it('triggers reference wizard for removing IED on action button click', async () => {
+    (<HTMLElement>(
+      element.shadowRoot?.querySelector('mwc-fab[class="delete"]')
+    )).click();
+
+    await element.requestUpdate();
+
+    expect(wizardEvent).to.have.be.calledOnce;
+    expect(wizardEvent.args[0][0].detail.wizard()[0].title).to.contain(
+      'delete'
+    );
+  });
+
   it('triggers create wizard for ClientLN element on action button click', async () => {
     (<HTMLElement>(
       element.shadowRoot?.querySelector('mwc-fab[class="connectreport"]')

@@ -2,7 +2,9 @@ import { expect } from '@open-wc/testing';
 
 import {
   Create,
+  Delete,
   isCreate,
+  isDelete,
   isReplace,
   isUpdate,
   Replace,
@@ -137,4 +139,14 @@ export async function fetchDoc(docName: string): Promise<XMLDocument> {
   return await fetch(docName)
     .then(response => response.text())
     .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+}
+
+export function expectDeleteAction(
+  simpleAction: SimpleAction,
+  tagName: string,
+): void {
+  expect(simpleAction).to.satisfy(isDelete);
+
+  const oldElement = (<Delete>simpleAction).old.element;
+  expect((<Element>oldElement).tagName).to.be.equal(tagName);
 }
