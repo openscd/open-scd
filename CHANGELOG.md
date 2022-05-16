@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.16.0](https://github.com/openscd/open-scd/compare/v0.15.0...v0.16.0) (2022-05-16)
+
+
+### Features
+
+* **editor/ied:** Add wizard/action to remove IED including references ([#732](https://github.com/openscd/open-scd/issues/732)) ([bba9b3c](https://github.com/openscd/open-scd/commits/bba9b3c7154a6e7d81a0776d10b1a41738bad388))
+* **editor/ied:** Show the technical path to a DO/DA ([15c4f7b](https://github.com/openscd/open-scd/commits/15c4f7bd3124c4f734b00f1b52d579eec1c08d89))
+* **editors/substation:** show read-only `EqFunction` and `EqSubFunction` ([#720](https://github.com/openscd/open-scd/issues/720)) ([52a49ce](https://github.com/openscd/open-scd/commits/52a49cec947332204ffb519c47ee4aca27b5af05)), closes [#722](https://github.com/openscd/open-scd/issues/722) [#726](https://github.com/openscd/open-scd/issues/726)
+* **Subscription:** Add edit button or hyperlink to GSEControl dialog in the Subscription Editor ([5c19822](https://github.com/openscd/open-scd/commits/5c1982220504092e666ed177a05a295b2ce4130c))
+* **Subscription:** Select by Subscriber in Subscriptions Editor ([b1f2d12](https://github.com/openscd/open-scd/commits/b1f2d1295343002dd440ef3b8cc369d168be456d))
+
 ## [0.15.0](https://github.com/openscd/open-scd/compare/v0.14.0...v0.15.0) (2022-05-02)
 
 
