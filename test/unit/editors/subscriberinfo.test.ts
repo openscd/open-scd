@@ -3,7 +3,7 @@ import { expect } from '@open-wc/testing';
 import { createMissingIEDNameSubscriberInfo } from '../../../src/menu/SubscriberInfo.js';
 import { Create, isCreate, SimpleAction } from '../../../src/foundation.js';
 
-describe('SubscriberInfo', () => {
+describe('menu plugin adding subscriber info', () => {
   describe('for Edition2 and higher files', () => {
     let doc: Document;
     let actions: SimpleAction[];
@@ -15,11 +15,11 @@ describe('SubscriberInfo', () => {
       actions = createMissingIEDNameSubscriberInfo(doc);
     });
 
-    it('creates two SimpleActions', () => {
-      expect(actions.length).to.equal(3);
+    it('does create one action per necessary IEDName creation', () => {
+      expect(actions.length).to.equal(4);
     });
 
-    it('the first writes the correct IEDName element', () => {
+    it('creates correct IEDName element referencing LN0 element', () => {
       expect(actions[0]).to.satisfy(isCreate);
       expect(
         (<Element>(<Create>actions[0]).new.element).getAttribute('apRef')
@@ -32,32 +32,34 @@ describe('SubscriberInfo', () => {
       ).to.equal('');
       expect(
         (<Element>(<Create>actions[0]).new.element).getAttribute('lnClass')
-      ).to.equal('XSWI');
+      ).to.equal('LLN0');
       expect(
         (<Element>(<Create>actions[0]).new.element).getAttribute('lnInst')
-      ).to.equal('1');
+      ).to.equal(null);
       expect((<Create>actions[0]).new.element.textContent).to.equal('IED2');
     });
-    it('the second writes the correct IEDName element', () => {
+
+    it('creates correct IEDName element referencing LN element', () => {
       expect(actions[1]).to.satisfy(isCreate);
       expect(
         (<Element>(<Create>actions[1]).new.element).getAttribute('apRef')
       ).to.equal('P1');
       expect(
         (<Element>(<Create>actions[1]).new.element).getAttribute('ldInst')
-      ).to.equal('Disconnectors');
+      ).to.equal('CBSW');
       expect(
         (<Element>(<Create>actions[1]).new.element).getAttribute('prefix')
-      ).to.equal('DC');
+      ).to.equal('');
       expect(
         (<Element>(<Create>actions[1]).new.element).getAttribute('lnClass')
-      ).to.equal('CSWI');
+      ).to.equal('XSWI');
       expect(
         (<Element>(<Create>actions[1]).new.element).getAttribute('lnInst')
       ).to.equal('1');
-      expect((<Create>actions[1]).new.element.textContent).to.equal('IED1');
+      expect((<Create>actions[1]).new.element.textContent).to.equal('IED2');
     });
-    it('the third writes the correct IEDName element', () => {
+
+    it('creates correct IEDName element referencing LN element', () => {
       expect(actions[2]).to.satisfy(isCreate);
       expect(
         (<Element>(<Create>actions[2]).new.element).getAttribute('apRef')
@@ -67,14 +69,34 @@ describe('SubscriberInfo', () => {
       ).to.equal('Disconnectors');
       expect(
         (<Element>(<Create>actions[2]).new.element).getAttribute('prefix')
-      ).to.equal('');
+      ).to.equal('DC');
       expect(
         (<Element>(<Create>actions[2]).new.element).getAttribute('lnClass')
       ).to.equal('CSWI');
       expect(
         (<Element>(<Create>actions[2]).new.element).getAttribute('lnInst')
-      ).to.equal('2');
+      ).to.equal('1');
       expect((<Create>actions[2]).new.element.textContent).to.equal('IED1');
+    });
+
+    it('creates correct IEDName element referencing LN element', () => {
+      expect(actions[3]).to.satisfy(isCreate);
+      expect(
+        (<Element>(<Create>actions[3]).new.element).getAttribute('apRef')
+      ).to.equal('P1');
+      expect(
+        (<Element>(<Create>actions[3]).new.element).getAttribute('ldInst')
+      ).to.equal('Disconnectors');
+      expect(
+        (<Element>(<Create>actions[3]).new.element).getAttribute('prefix')
+      ).to.equal('');
+      expect(
+        (<Element>(<Create>actions[3]).new.element).getAttribute('lnClass')
+      ).to.equal('CSWI');
+      expect(
+        (<Element>(<Create>actions[3]).new.element).getAttribute('lnInst')
+      ).to.equal('2');
+      expect((<Create>actions[3]).new.element.textContent).to.equal('IED1');
     });
   });
 
@@ -89,21 +111,21 @@ describe('SubscriberInfo', () => {
       actions = createMissingIEDNameSubscriberInfo(doc);
     });
 
-    it('creates two SimpleActions', () => {
+    it('does create one action per necessary IEDName creation', () => {
       expect(actions.length).to.equal(2);
     });
 
-    it('the first writing correct IEDName element', () => {
+    it('creates correct IEDName element', () => {
       expect(actions[0]).to.satisfy(isCreate);
       expect((<Create>actions[0]).new.element.textContent).to.equal('IED1');
     });
 
-    it('the second writing correct IEDName element', () => {
+    it('creates correct IEDName element', () => {
       expect(actions[1]).to.satisfy(isCreate);
       expect((<Create>actions[1]).new.element.textContent).to.equal('IED1');
     });
 
-    it('not writing Edition2 attributes into the IEDName element', () => {
+    it('does not add Edition2 attributes into the IEDName element', () => {
       actions.forEach(action => {
         expect((<Element>(<Create>action).new.element).getAttribute('apRef')).to
           .be.null;
