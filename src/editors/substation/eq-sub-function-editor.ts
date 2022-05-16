@@ -10,7 +10,6 @@ import {
 
 import '../../action-pane.js';
 import { getChildElementsByTagName } from '../../foundation.js';
-import { styles } from './foundation.js';
 
 /** Pane rendering `EqSubFunction` element with its children */
 @customElement('eq-sub-function-editor')
@@ -59,6 +58,12 @@ export class EqSubFunctionEditor extends LitElement {
   }
 
   static styles = css`
-    ${styles}
+    .container.lnode {
+      display: grid;
+      grid-gap: 12px;
+      padding: 8px 12px 16px;
+      box-sizing: border-box;
+      grid-template-columns: repeat(auto-fit, minmax(64px, auto));
+    }
   `;
 }

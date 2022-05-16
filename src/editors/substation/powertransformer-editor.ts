@@ -21,7 +21,7 @@ import {
   newActionEvent,
   newWizardEvent,
 } from '../../foundation.js';
-import { startMove } from './foundation.js';
+import { startMove, styles } from './foundation.js';
 import { SubstationEditor } from './substation-editor.js';
 import { BayEditor } from './bay-editor.js';
 import { VoltageLevelEditor } from './voltage-level-editor.js';
@@ -180,6 +180,8 @@ export class PowerTransformerEditor extends LitElement {
   }
 
   static styles = css`
+    ${styles}
+
     :host(.moving) {
       opacity: 0.3;
     }

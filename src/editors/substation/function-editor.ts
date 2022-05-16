@@ -5,6 +5,7 @@ import {
   property,
   customElement,
   state,
+  css,
 } from 'lit-element';
 
 import '../../action-pane.js';
@@ -57,4 +58,14 @@ export class FunctionEditor extends LitElement {
       >${this.renderLNodes()}${this.renderSubFunctions()}</action-pane
     >`;
   }
+
+  static styles = css`
+    .container.lnode {
+      display: grid;
+      grid-gap: 12px;
+      padding: 8px 12px 16px;
+      box-sizing: border-box;
+      grid-template-columns: repeat(auto-fit, minmax(64px, auto));
+    }
+  `;
 }
