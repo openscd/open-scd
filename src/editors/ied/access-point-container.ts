@@ -2,7 +2,6 @@ import {
   css,
   customElement,
   html,
-  LitElement,
   property,
   TemplateResult,
 } from 'lit-element';
@@ -13,16 +12,11 @@ import { nothing } from 'lit-html';
 import { getDescriptionAttribute, getNameAttribute } from '../../foundation.js';
 import { Nsdoc } from '../../foundation/nsdoc.js';
 import { accessPointIcon } from '../../icons/ied-icons.js';
+import { Container } from './foundation.js';
 
 /** [[`IED`]] plugin subeditor for editing `AccessPoint` element. */
 @customElement('access-point-container')
-export class AccessPointContainer extends LitElement {
-  @property({ attribute: false })
-  element!: Element;
-
-  @property()
-  ancestors: Element[] = [];
-
+export class AccessPointContainer extends Container {
   @property()
   nsdoc!: Nsdoc;
 
@@ -40,7 +34,7 @@ export class AccessPointContainer extends LitElement {
         html`<server-container
           .element=${server}
           .nsdoc=${this.nsdoc}
-          .ancestors=${[this.element, ...this.ancestors]}
+          .ancestors=${[...this.ancestors, this.element]}
         ></server-container>`)}
     </action-pane>`;
   }
