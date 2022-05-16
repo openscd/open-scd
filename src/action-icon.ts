@@ -31,6 +31,9 @@ export class ActionIcon extends LitElement {
   /** highlight pane with dotted outline */
   @property({ type: Boolean })
   highlighted = false;
+  /** disables CSS adoption to action buttons */
+  @property({ type: Boolean })
+  noaction = false;
 
   async firstUpdated(): Promise<void> {
     this.tabIndex = 0;
@@ -90,11 +93,16 @@ export class ActionIcon extends LitElement {
     :host(:focus-within) mwc-icon {
       outline-style: solid;
       outline-width: 4px;
+    }
+
+    :host(:focus-within:not([noaction])) ::slotted([slot='icon']),
+    :host(:focus-within:not([noaction])) mwc-icon {
       transform: scale(0.8);
       transition: all 250ms linear;
       box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
         0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
     }
+
     ::slotted([slot='icon']:hover),
     mwc-icon:hover {
       outline-style: dashed;
@@ -177,6 +185,10 @@ export class ActionIcon extends LitElement {
         opacity 200ms linear;
     }
 
+    :host([secondary]) header {
+      background-color: var(--mdc-theme-secondary);
+    }
+
     :host(:hover) header {
       position: absolute;
       opacity: 1;
@@ -190,11 +202,18 @@ export class ActionIcon extends LitElement {
     :host(:focus-within) header {
       position: absolute;
       opacity: 1;
-      transform: translate(0, -80px);
       box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
         0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
       transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
         opacity 250ms linear;
+    }
+
+    :host(:focus-within:not([noaction])) header {
+      transform: translate(0, -80px);
+    }
+
+    :host(:focus-within[noaction]) header {
+      transform: translate(0, -40px);
     }
   `;
 }
