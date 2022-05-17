@@ -31,6 +31,9 @@ export class ActionIcon extends LitElement {
   /** highlight pane with dotted outline */
   @property({ type: Boolean })
   highlighted = false;
+  /** disables CSS adoption to action buttons */
+  @property({ type: Boolean })
+  hideActions = false;
 
   async firstUpdated(): Promise<void> {
     this.tabIndex = 0;
@@ -75,16 +78,6 @@ export class ActionIcon extends LitElement {
       --mdc-icon-size: 64px;
     }
 
-    :host(:focus-within) ::slotted([slot='icon']),
-    :host(:focus-within) mwc-icon {
-      outline-style: solid;
-      outline-width: 4px;
-      transform: scale(0.8);
-      transition: all 250ms linear;
-      box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
-        0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
-    }
-
     :host([secondary]) ::slotted([slot='icon']),
     :host([secondary]) mwc-icon {
       outline-color: var(--mdc-theme-secondary);
@@ -94,6 +87,20 @@ export class ActionIcon extends LitElement {
     :host([highlighted]) mwc-icon {
       outline-style: dotted;
       outline-width: 2px;
+    }
+
+    :host(:focus-within) ::slotted([slot='icon']),
+    :host(:focus-within) mwc-icon {
+      outline-style: solid;
+      outline-width: 4px;
+    }
+
+    :host(:focus-within:not([hideActions])) ::slotted([slot='icon']),
+    :host(:focus-within:not([hideActions])) mwc-icon {
+      transform: scale(0.8);
+      transition: all 250ms linear;
+      box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+        0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
     }
 
     ::slotted([slot='icon']:hover),
@@ -178,6 +185,10 @@ export class ActionIcon extends LitElement {
         opacity 200ms linear;
     }
 
+    :host([secondary]) header {
+      background-color: var(--mdc-theme-secondary);
+    }
+
     :host(:hover) header {
       position: absolute;
       opacity: 1;
@@ -191,11 +202,18 @@ export class ActionIcon extends LitElement {
     :host(:focus-within) header {
       position: absolute;
       opacity: 1;
-      transform: translate(0, -80px);
       box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
         0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
       transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
         opacity 250ms linear;
+    }
+
+    :host(:focus-within:not([hideActions])) header {
+      transform: translate(0, -80px);
+    }
+
+    :host(:focus-within[hideActions]) header {
+      transform: translate(0, -40px);
     }
   `;
 }

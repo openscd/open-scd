@@ -29,3 +29,23 @@ snapshots["web component rendering Function element with missing desc and type a
 `;
 /* end snapshot web component rendering Function element with missing desc and type attribute looks like the latest snapshot */
 
+snapshots["web component rendering Function element with existing LNode children looks like the latest snapshot"] = 
+`<action-pane
+  highlighted=""
+  icon="functions"
+  label="bay2Func"
+  secondary=""
+  tabindex="0"
+>
+  <div class="container lnode">
+    <l-node-editor>
+    </l-node-editor>
+    <l-node-editor>
+    </l-node-editor>
+    <l-node-editor>
+    </l-node-editor>
+  </div>
+</action-pane>
+`;
+/* end snapshot web component rendering Function element with existing LNode children looks like the latest snapshot */
+

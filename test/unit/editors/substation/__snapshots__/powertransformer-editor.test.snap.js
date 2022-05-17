@@ -155,3 +155,65 @@ snapshots["powertransformer-editor rendered as action pane with EqFunction child
 `;
 /* end snapshot powertransformer-editor rendered as action pane with EqFunction childrend looks like the latest snapshot */
 
+snapshots["powertransformer-editor rendered as action pane with LNode childrend looks like the latest snapshot"] = 
+`<action-pane
+  label="myPtr1"
+  tabindex="0"
+>
+  <mwc-icon
+    slot="icon"
+    style="width:24px;height:24px"
+  >
+  </mwc-icon>
+  <abbr
+    slot="action"
+    title="[lnode.tooltip]"
+  >
+    <mwc-icon-button
+      icon="account_tree"
+      mini=""
+      slot="action"
+    >
+    </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="action"
+    title="[edit]"
+  >
+    <mwc-icon-button
+      icon="edit"
+      mini=""
+      slot="action"
+    >
+    </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="action"
+    title="[move]"
+  >
+    <mwc-icon-button
+      icon="forward"
+      mini=""
+      slot="action"
+    >
+    </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="action"
+    title="[remove]"
+  >
+    <mwc-icon-button
+      icon="delete"
+      mini=""
+      slot="action"
+    >
+    </mwc-icon-button>
+  </abbr>
+  <div class="container lnode">
+    <l-node-editor>
+    </l-node-editor>
+  </div>
+</action-pane>
+`;
+/* end snapshot powertransformer-editor rendered as action pane with LNode childrend looks like the latest snapshot */
+

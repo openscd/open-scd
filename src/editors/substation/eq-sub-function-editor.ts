@@ -5,6 +5,7 @@ import {
   property,
   customElement,
   state,
+  css,
 } from 'lit-element';
 
 import '../../action-pane.js';
@@ -38,9 +39,31 @@ export class EqSubFunctionEditor extends LitElement {
     )}`;
   }
 
+  private renderLNodes(): TemplateResult {
+    const lNodes = getChildElementsByTagName(this.element, 'LNode');
+
+    return lNodes.length
+      ? html`<div class="container lnode">
+          ${lNodes.map(
+            lNode => html`<l-node-editor .element=${lNode}></l-node-editor>`
+          )}
+        </div>`
+      : html``;
+  }
+
   render(): TemplateResult {
     return html`<action-pane label="${this.header}" icon="functions" secondary
-      >${this.renderEqSubFunctions()}</action-pane
+      >${this.renderLNodes()}${this.renderEqSubFunctions()}</action-pane
     >`;
   }
+
+  static styles = css`
+    .container.lnode {
+      display: grid;
+      grid-gap: 12px;
+      padding: 8px 12px 16px;
+      box-sizing: border-box;
+      grid-template-columns: repeat(auto-fit, minmax(64px, auto));
+    }
+  `;
 }
