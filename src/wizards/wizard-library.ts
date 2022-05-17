@@ -22,6 +22,7 @@ import { editTrgOpsWizard } from './trgops.js';
 import { createDaWizard } from './da.js';
 import { editDAIWizard } from './dai.js';
 import { editGseControlWizard } from './gsecontrol.js';
+import { editCompasSCLWizard } from "../compas-wizards/scl.js";
 
 type SclElementWizard = (element: Element, instanceElement?: Element) => Wizard | undefined;
 
@@ -401,7 +402,7 @@ export const wizards: Record<
     create: emptyWizard,
   },
   SCL: {
-    edit: emptyWizard,
+    edit: editCompasSCLWizard,
     create: emptyWizard,
   },
   SDI: {
