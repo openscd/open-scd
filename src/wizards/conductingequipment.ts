@@ -248,13 +248,36 @@ export function createAction(parent: Element): WizardActor {
       desc,
     });
 
-    if (proxyType === 'ERS')
-      element.appendChild(
-        createElement(parent.ownerDocument, 'Terminal', {
-          name: 'T1',
-          cNodeName: 'grounded',
-        })
-      );
+    if (proxyType !== 'ERS') return [{ new: { parent, element } }];
+
+    const groundNode = parent
+      .closest('VoltageLevel')
+      ?.querySelector('ConnectivityNode[name="grounded"]');
+
+    const substationName = groundNode
+      ? groundNode.closest('Substation')?.getAttribute('name') ?? null
+      : parent.closest('Substation')?.getAttribute('name') ?? null;
+    const voltageLevelName = groundNode
+      ? groundNode.closest('VoltageLevel')?.getAttribute('name') ?? null
+      : parent.closest('VoltageLevel')?.getAttribute('name') ?? null;
+    const bayName = groundNode
+      ? groundNode.closest('Bay')?.getAttribute('name') ?? null
+      : parent.closest('Bay')?.getAttribute('name') ?? null;
+    const connectivityNode =
+      bayName && voltageLevelName && substationName
+        ? substationName + '/' + voltageLevelName + '/' + bayName + '/grounded'
+        : null;
+
+    element.appendChild(
+      createElement(parent.ownerDocument, 'Terminal', {
+        name: 'T1',
+        cNodeName: 'grounded',
+        substationName,
+        voltageLevelName,
+        bayName,
+        connectivityNode,
+      })
+    );
 
     const action = {
       new: {
@@ -263,7 +286,25 @@ export function createAction(parent: Element): WizardActor {
       },
     };
 
-    return [action];
+    if (groundNode) return [action];
+
+    const cNodeElement = createElement(
+      parent.ownerDocument,
+      'ConnectivityNode',
+      {
+        name: 'grounded',
+        pathName: connectivityNode,
+      }
+    );
+
+    const cNodeAction = {
+      new: {
+        parent,
+        element: cNodeElement,
+      },
+    };
+
+    return [action, cNodeAction];
   };
 }
 
