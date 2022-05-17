@@ -80,6 +80,7 @@ export class LNodeEditor extends LitElement {
       label="${this.header}"
       ?secondary=${this.missingIedReference}
       ?highlighted=${this.missingIedReference}
+      hideActions
       ><mwc-icon slot="icon"
         >${getLNodeIcon(this.element)}</mwc-icon
       ></action-icon
