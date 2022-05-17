@@ -352,6 +352,12 @@ export const en = {
       noSampledValuesSelected: 'No control block selected',
     },
   },
+  communication104: {
+    view: {
+      valuesView: 'Values',
+      networkView: 'Network',
+    }
+  },
   'enum-val': {
     wizard: {
       title: {

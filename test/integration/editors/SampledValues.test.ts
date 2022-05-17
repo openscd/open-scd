@@ -1,10 +1,10 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../../../mock-wizard.js';
+import '../../mock-wizard.js';
 
-import SampledValues from '../../../../src/editors/SampledValues.js';
-import { Editing } from '../../../../src/Editing.js';
-import { Wizarding } from '../../../../src/Wizarding.js';
+import SampledValues from '../../../src/editors/SampledValues.js';
+import { Editing } from '../../../src/Editing.js';
+import { Wizarding } from '../../../src/Wizarding.js';
 
 describe('Sampled Values Plugin', () => {
   customElements.define('smv-plugin', Wizarding(Editing(SampledValues)));

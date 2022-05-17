@@ -355,6 +355,12 @@ export const de: Translations = {
       noSampledValuesSelected: 'Keinen Kontrollblock ausgewählt',
     },
   },
+  communication104: {
+    view: {
+      valuesView: 'Values',
+      networkView: 'Network',
+    }
+  },
   'enum-val': {
     wizard: {
       title: {

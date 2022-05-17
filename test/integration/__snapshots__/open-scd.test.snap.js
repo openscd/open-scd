@@ -659,6 +659,21 @@ snapshots["open-scd looks like its snapshot"] =
       hasmeta=""
       left=""
       mwc-list-item=""
+      tabindex="-1"
+      value="/src/editors/Communication104.js"
+    >
+      <mwc-icon slot="meta">
+        settings_ethernet
+      </mwc-icon>
+      104
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
       selected=""
       tabindex="-1"
       value="/src/editors/Templates.js"
