@@ -33,7 +33,7 @@ export class ActionIcon extends LitElement {
   highlighted = false;
   /** disables CSS adoption to action buttons */
   @property({ type: Boolean })
-  noaction = false;
+  hideActions = false;
 
   async firstUpdated(): Promise<void> {
     this.tabIndex = 0;
@@ -95,8 +95,8 @@ export class ActionIcon extends LitElement {
       outline-width: 4px;
     }
 
-    :host(:focus-within:not([noaction])) ::slotted([slot='icon']),
-    :host(:focus-within:not([noaction])) mwc-icon {
+    :host(:focus-within:not([hideActions])) ::slotted([slot='icon']),
+    :host(:focus-within:not([hideActions])) mwc-icon {
       transform: scale(0.8);
       transition: all 250ms linear;
       box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
@@ -208,11 +208,11 @@ export class ActionIcon extends LitElement {
         opacity 250ms linear;
     }
 
-    :host(:focus-within:not([noaction])) header {
+    :host(:focus-within:not([hideActions])) header {
       transform: translate(0, -80px);
     }
 
-    :host(:focus-within[noaction]) header {
+    :host(:focus-within[hideActions]) header {
       transform: translate(0, -40px);
     }
   `;

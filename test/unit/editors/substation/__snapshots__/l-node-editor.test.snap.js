@@ -3,8 +3,8 @@ export const snapshots = {};
 
 snapshots["web component rendering LNode element as reference to a LN/LN0 within IED  looks like the latest snapshot"] = 
 `<action-icon
+  hideactions=""
   label="IED1 CircuitBreaker_CB1/ XCBR 1"
-  noaction=""
   tabindex="0"
 >
   <mwc-icon slot="icon">
@@ -15,9 +15,9 @@ snapshots["web component rendering LNode element as reference to a LN/LN0 within
 
 snapshots["web component rendering LNode element as instance of a LNodeType only looks like the latest snapshot"] = 
 `<action-icon
+  hideactions=""
   highlighted=""
   label="DC XSWI 1"
-  noaction=""
   secondary=""
   tabindex="0"
 >
