@@ -12,22 +12,24 @@ import '@material/mwc-icon';
 import '@material/mwc-list/mwc-list-item';
 
 import '../../filtered-list.js';
-import { compareNames, getNameAttribute } from '../../foundation.js';
+import { compareNames, getNameAttribute, newWizardEvent } from '../../foundation.js';
 import { newGOOSESelectEvent, styles } from './foundation.js';
 import { gooseIcon } from '../../icons/icons.js';
+import { wizards } from '../../wizards/wizard-library.js';
+import { classMap } from 'lit-html/directives/class-map';
 
-let selectedGooseMsg: Element | undefined;
+let selectedGseControl: Element | undefined;
 let selectedDataSet: Element | undefined | null;
 
 function onOpenDocResetSelectedGooseMsg() {
-  selectedGooseMsg = undefined;
+  selectedGseControl = undefined;
   selectedDataSet = undefined;
 }
 addEventListener('open-doc', onOpenDocResetSelectedGooseMsg);
 
 /** An sub element for showing all published GOOSE messages per IED. */
-@customElement('publisher-goose-list')
-export class PublisherGOOSEList extends LitElement {
+@customElement('goose-publisher-list')
+export class GoosePublisherList extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
 
@@ -52,37 +54,55 @@ export class PublisherGOOSEList extends LitElement {
     );
   }
 
-  private onGooseSelect(element: Element): void {
-    const ln = element.parentElement;
+  private onGooseSelect(gseControl: Element): void {
+    if (gseControl == selectedGseControl) return;
+
+    const ln = gseControl.parentElement;
     const dataset = ln?.querySelector(
-      `DataSet[name=${element.getAttribute('datSet')}]`
+      `DataSet[name=${gseControl.getAttribute('datSet')}]`
     );
 
-    selectedGooseMsg = element;
+    selectedGseControl = gseControl;
     selectedDataSet = dataset;
 
     this.dispatchEvent(
       newGOOSESelectEvent(
-        selectedGooseMsg,
+        selectedGseControl,
         selectedDataSet!
       )
     );
+
+    this.requestUpdate();
   }
 
-  renderGoose(element: Element): TemplateResult {
+  renderGoose(gseControl: Element): TemplateResult {
     return html`<mwc-list-item
-      @click=${() => this.onGooseSelect(element)}
+      @click=${() => this.onGooseSelect(gseControl)}
       graphic="large"
+      hasMeta
     >
-      <span>${element.getAttribute('name')}</span>
       <mwc-icon slot="graphic">${gooseIcon}</mwc-icon>
+      <span>${gseControl.getAttribute('name')}</span>
+      <mwc-icon-button
+        class="${classMap({
+          hidden: gseControl !== selectedGseControl,
+        })}"
+        slot="meta"
+        icon="edit"
+        @click=${() => this.openEditWizard(gseControl)}
+      ></mwc-icon-button>
     </mwc-list-item>`;
+  }
+  
+  private openEditWizard(gseControl: Element): void {
+    const wizard = wizards['GSEControl'].edit(gseControl);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
   protected firstUpdated(): void {
     this.dispatchEvent(
       newGOOSESelectEvent(
-        selectedGooseMsg,
+        selectedGseControl,
         selectedDataSet ?? undefined
       )
     );
@@ -100,8 +120,8 @@ export class PublisherGOOSEList extends LitElement {
                 <mwc-icon slot="graphic">developer_board</mwc-icon>
               </mwc-list-item>
               <li divider role="separator"></li>
-              ${this.getGSEControls(ied).map(control =>
-                this.renderGoose(control)
+              ${this.getGSEControls(ied).map(gseControl =>
+                this.renderGoose(gseControl)
               )}
             `
         )}
@@ -111,5 +131,13 @@ export class PublisherGOOSEList extends LitElement {
 
   static styles = css`
     ${styles}
+
+    mwc-list-item {
+      --mdc-list-item-meta-size: 48px;
+    }
+
+    mwc-icon-button.hidden {
+      display: none;
+    }
   `;
 }

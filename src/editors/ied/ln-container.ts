@@ -2,7 +2,6 @@ import {
   css,
   customElement,
   html,
-  LitElement,
   property,
   query,
   TemplateResult,
@@ -16,16 +15,11 @@ import { translate } from 'lit-translate';
 import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 import { until } from 'lit-html/directives/until';
 import { Nsdoc } from '../../foundation/nsdoc.js';
+import { Container } from './foundation.js';
 
 /** [[`IED`]] plugin subeditor for editing `LN` and `LN0` element. */
 @customElement('ln-container')
-export class LNContainer extends LitElement {
-  @property({ attribute: false })
-  element!: Element;
-
-  @property()
-  ancestors: Element[] = [];
-
+export class LNContainer extends Container {
   @property()
   nsdoc!: Nsdoc;
 
@@ -82,7 +76,7 @@ export class LNContainer extends LitElement {
           .element=${dO}
           .instanceElement=${this.getInstanceElement(dO)}
           .nsdoc=${this.nsdoc}
-          .ancestors=${[this.element, ...this.ancestors]}
+          .ancestors=${[...this.ancestors, this.element]}
         ></do-container>
         `) : nothing}
     </action-pane>`;

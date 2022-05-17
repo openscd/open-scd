@@ -4,15 +4,19 @@ import { get, translate } from 'lit-translate';
 import '../wizard-textfield.js';
 import {
   cloneElement,
+  ComplexAction,
   createElement,
   EditorAction,
   getMultiplier,
   getValue,
   patterns,
+  SimpleAction,
   Wizard,
   WizardActor,
   WizardInputElement,
 } from '../foundation.js';
+
+import { updateReferences } from "./foundation/references.js";
 
 const initial = {
   nomFreq: '50',
@@ -144,7 +148,7 @@ function getVoltageAction(
   Voltage: string | null,
   multiplier: string | null,
   voltageLevel: Element
-): EditorAction {
+): SimpleAction {
   if (oldVoltage === null) {
     const element = createElement(voltageLevel.ownerDocument, 'Voltage', {
       unit: 'V',
@@ -187,8 +191,8 @@ export function updateAction(element: Element): WizardActor {
     const Voltage = getValue(inputs.find(i => i.label === 'Voltage')!);
     const multiplier = getMultiplier(inputs.find(i => i.label === 'Voltage')!);
 
-    let voltageLevelAction: EditorAction | null;
-    let voltageAction: EditorAction | null;
+    let voltageLevelAction: SimpleAction | null;
+    let voltageAction: SimpleAction | null;
 
     if (
       name === element.getAttribute('name') &&
@@ -226,10 +230,17 @@ export function updateAction(element: Element): WizardActor {
       );
     }
 
-    const actions: EditorAction[] = [];
-    if (voltageLevelAction) actions.push(voltageLevelAction);
-    if (voltageAction) actions.push(voltageAction);
-    return actions;
+    const complexAction: ComplexAction = {
+      actions: [],
+      title: get('voltagelevel.action.updateVoltagelevel', {name}),
+    };
+    if (voltageLevelAction) complexAction.actions.push(voltageLevelAction);
+    if (voltageAction) complexAction.actions.push(voltageAction);
+    complexAction.actions.push(...updateReferences(
+      element,
+      element.getAttribute('name'),
+      name));
+    return complexAction.actions.length ? [complexAction] : [];
   };
 }
 

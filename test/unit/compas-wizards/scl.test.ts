@@ -12,7 +12,7 @@ import {
   expectWizardNoUpdateAction,
   fetchDoc,
   setWizardTextFieldValue,
-} from '../wizards/foundation.js';
+} from '../wizards/test-support.js';
 import {
   editCompasSCLWizard,
   updateSCL

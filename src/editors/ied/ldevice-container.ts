@@ -2,7 +2,6 @@ import {
   css,
   customElement,
   html,
-  LitElement,
   property,
   query,
   TemplateResult,
@@ -16,16 +15,11 @@ import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 import { translate } from 'lit-translate';
 import { Nsdoc } from '../../foundation/nsdoc.js';
 import { logicalDeviceIcon } from '../../icons/ied-icons.js';
+import { Container } from './foundation.js';
 
 /** [[`IED`]] plugin subeditor for editing `LDevice` element. */
 @customElement('ldevice-container')
-export class LDeviceContainer extends LitElement {
-  @property({ attribute: false })
-  element!: Element;
-
-  @property()
-  ancestors: Element[] = [];
-
+export class LDeviceContainer extends Container {
   @property()
   nsdoc!: Nsdoc;
   
@@ -60,7 +54,7 @@ export class LDeviceContainer extends LitElement {
         ${this.toggleButton?.on ? lnElements.map(ln => html`<ln-container
             .element=${ln}
             .nsdoc=${this.nsdoc}
-            .ancestors=${[this.element, ...this.ancestors]}
+            .ancestors=${[...this.ancestors, this.element]}
           ></ln-container>
           `) : nothing}
       </div>

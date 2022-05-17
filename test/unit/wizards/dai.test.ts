@@ -15,7 +15,7 @@ import {
   fetchDoc,
   newWizard,
   setWizardTextFieldValue,
-} from './foundation.js';
+} from './test-support.js';
 import { editDAIWizard, updateValue } from '../../../src/wizards/dai.js';
 
 describe('Wizards for SCL element DAI', () => {

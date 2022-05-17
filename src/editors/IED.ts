@@ -5,6 +5,7 @@ import '@material/mwc-select';
 import '@material/mwc-list/mwc-list-item';
 
 import './ied/ied-container.js'
+import './ied/element-path.js'
 import './substation/zeroline-pane.js';
 
 import { translate } from 'lit-translate';
@@ -49,7 +50,9 @@ export default class IedPlugin extends LitElement {
   }
 
   private get selectedIed(): Element | undefined {
-    if (iedEditorSelectedIed === undefined) {
+    // When there is no IED selected, or the selected IED has no parent (IED has been removed)
+    // select the first IED from the List.
+    if (iedEditorSelectedIed === undefined || iedEditorSelectedIed.parentElement === null) {
       const iedList = this.alphabeticOrderedIeds;
       if (iedList.length > 0) {
         iedEditorSelectedIed = iedList[0];
@@ -68,22 +71,25 @@ export default class IedPlugin extends LitElement {
     if (iedList.length > 0) {
       return html `
         <section>
-          <mwc-select
-            id="iedSelect"
-            label="${translate("iededitor.searchHelper")}"
-            @selected=${this.onSelect}>
-            ${iedList.map(
-              ied =>
-                html`
-                  <mwc-list-item
-                    ?selected=${ied == this.selectedIed}
-                    value="${getNameAttribute(ied)}"
-                  >${getNameAttribute(ied)} ${ied.hasAttribute('desc') ? translate('iededitor.searchHelperDesc', {
-                    description: getDescriptionAttribute(ied)!,
-                  }) : ''}
-                  </mwc-list-item>`
-            )}
-          </mwc-select>
+          <div class="header">
+            <mwc-select
+              class="iedSelect"
+              label="${translate("iededitor.searchHelper")}"
+              @selected=${this.onSelect}>
+              ${iedList.map(
+                ied =>
+                  html`
+                    <mwc-list-item
+                      ?selected=${ied == this.selectedIed}
+                      value="${getNameAttribute(ied)}"
+                    >${getNameAttribute(ied)} ${ied.hasAttribute('desc') ? translate('iededitor.searchHelperDesc', {
+                      description: getDescriptionAttribute(ied)!,
+                    }) : ''}
+                    </mwc-list-item>`
+              )}
+            </mwc-select>
+            <element-path class="elementPath"></element-path>
+          </div>
           <ied-container
             .element=${this.selectedIed}
             .nsdoc=${this.nsdoc}
@@ -105,9 +111,18 @@ export default class IedPlugin extends LitElement {
       padding: 8px 12px 16px;
     }
 
-    #iedSelect {
+    .iedSelect {
       width: 35vw;
       padding-bottom: 20px;
+    }
+
+    .header {
+      display: flex;
+    }
+
+    .elementPath {
+      margin-left: auto;
+      padding-right: 12px;
     }
 
     h1 {

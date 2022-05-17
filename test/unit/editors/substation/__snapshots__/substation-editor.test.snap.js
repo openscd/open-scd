@@ -189,7 +189,7 @@ snapshots["substation-editor with readonly property looks like the latest snapsh
 `;
 /* end snapshot substation-editor with readonly property looks like the latest snapshot */
 
-snapshots["substation-editor with function filter deactivated shows connected Function`s in the Substation looks like the latest snapshot"] = 
+snapshots["substation-editor with function filter deactivated looks like the latest snapshot"] = 
 `<action-pane
   label="AA1 - Substation"
   tabindex="0"
@@ -277,9 +277,13 @@ snapshots["substation-editor with function filter deactivated shows connected Fu
   </abbr>
   <function-editor>
   </function-editor>
+  <div class="ptrContent">
+    <powertransformer-editor showfunctions="">
+    </powertransformer-editor>
+  </div>
   <voltage-level-editor showfunctions="">
   </voltage-level-editor>
 </action-pane>
 `;
-/* end snapshot substation-editor with function filter deactivated shows connected Function`s in the Substation looks like the latest snapshot */
+/* end snapshot substation-editor with function filter deactivated looks like the latest snapshot */
 

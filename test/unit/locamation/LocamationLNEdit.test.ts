@@ -1,7 +1,7 @@
 import {expect, fixture, html} from "@open-wc/testing";
 
 import {MockWizard} from "../../mock-wizard.js";
-import {fetchDoc, setWizardTextFieldValue} from "../wizards/foundation.js";
+import {fetchDoc, setWizardTextFieldValue} from "../wizards/test-support.js";
 import {initializeNsdoc, Nsdoc} from "../../../src/foundation/nsdoc.js";
 import {WizardTextField} from "../../../src/wizard-textfield.js";
 import {ComplexAction, isSimple, isReplace, Replace, WizardAction} from "../../../src/foundation.js";

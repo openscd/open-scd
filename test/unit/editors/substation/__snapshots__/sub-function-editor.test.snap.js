@@ -8,8 +8,8 @@ snapshots["web component rendering SubFunction element with complete attribute s
   secondary=""
   tabindex="0"
 >
-  <subfunction-editor>
-  </subfunction-editor>
+  <sub-function-editor>
+  </sub-function-editor>
 </action-pane>
 `;
 /* end snapshot web component rendering SubFunction element with complete attribute set and existing children looks like the latest snapshot */

@@ -1,15 +1,19 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
-import '../../../../src/wizard-textfield.js';
 import {
   WizardInputElement,
   isCreate,
   isReplace,
-} from '../../../../src/foundation.js';
-import { updateNamingAction } from '../../../../src/wizards/foundation/actions.js';
-import { createAction } from '../../../../src/wizards/substation.js';
+  WizardActor,
+  ComplexAction,
+  isSimple
+} from '../../../src/foundation.js';
 
-describe('SubstationEditor', () => {
+import '../../../src/wizard-textfield.js';
+import { createAction } from '../../../src/wizards/bay.js';
+import { replaceNamingAttributeWithReferencesAction } from '../../../src/wizards/foundation/actions.js';
+
+describe('BayEditor', () => {
   const noOp = () => {
     return;
   };
@@ -31,11 +35,18 @@ describe('SubstationEditor', () => {
     );
   });
 
+  function getAndValidComplexAction(wizardActor: WizardActor): ComplexAction {
+    const editorActions = wizardActor(inputs, newWizard());
+    expect(editorActions.length).to.equal(1);
+    expect(editorActions[0]).to.not.satisfy(isSimple);
+    return <ComplexAction>editorActions[0];
+  }
+
   describe('createAction', () => {
     let parent: Element;
     beforeEach(() => {
       parent = new DOMParser().parseFromString(
-        '<SCL></SCL>',
+        '<Voltage Level></Voltage Level>',
         'application/xml'
       ).documentElement;
     });
@@ -50,33 +61,35 @@ describe('SubstationEditor', () => {
     let element: Element;
     beforeEach(() => {
       element = new DOMParser().parseFromString(
-        '<Substation></Substation>',
+        '<Bay></Bay>',
         'application/xml'
       ).documentElement;
     });
 
     it('returns a WizardAction which retruns one EditorAction', () => {
-      const wizardAction = updateNamingAction(element);
-      expect(wizardAction(inputs, newWizard()).length).to.equal(1);
+      const wizardAction = replaceNamingAttributeWithReferencesAction(element, 'bay.action.updateBay');
+      const complexAction = getAndValidComplexAction(wizardAction);
+      expect(complexAction.actions.length).to.equal(1);
     });
 
     it('returns a WizardAction which returns an Update EditorAction', () => {
-      const wizardAction = updateNamingAction(element);
-      expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isReplace);
+      const wizardAction = replaceNamingAttributeWithReferencesAction(element, 'bay.action.updateBay');
+      const complexAction = getAndValidComplexAction(wizardAction);
+      expect(complexAction.actions[0]).to.satisfy(isReplace);
     });
 
-    describe('with no change in element Substation', () => {
+    describe('with no change in element Bay', () => {
       let element: Element;
       beforeEach(() => {
         element = new DOMParser().parseFromString(
-          `<Substation name="" desc="">
-              </Substation>`,
+          `<Bay name="" desc="">
+              </Bay>`,
           'application/xml'
         ).documentElement;
       });
 
       it('returns a WizardAction which returns empty EditorAction array', () => {
-        const wizardAction = updateNamingAction(element);
+        const wizardAction = replaceNamingAttributeWithReferencesAction(element, 'bay.action.updateBay');
         expect(wizardAction(inputs, newWizard()).length).to.equal(0);
       });
     });

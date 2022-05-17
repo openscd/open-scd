@@ -1,7 +1,6 @@
 import {
   customElement,
   html,
-  LitElement,
   property,
   query,
   TemplateResult,
@@ -17,25 +16,16 @@ import { getDescriptionAttribute, getNameAttribute, newWizardEvent } from '../..
 import { translate } from 'lit-translate';
 import { Nsdoc } from '../../foundation/nsdoc.js';
 import { createDoInfoWizard } from "./do-wizard.js";
-import { findDOTypeElement, getInstanceDAElement } from "./foundation.js";
+import { Container, findDOTypeElement, getInstanceDAElement } from "./foundation.js";
 
 /** [[`IED`]] plugin subeditor for editing `DO` element. */
 @customElement('do-container')
-export class DOContainer extends LitElement {
-  /**
-   * The DO itself.
-   */
-  @property({ attribute: false })
-  element!: Element;
-
+export class DOContainer extends Container {
   /**
    * The optional DOI of this DO.
    */
   @property({ attribute: false })
   instanceElement!: Element;
-
-  @property()
-  ancestors: Element[] = [];
 
   @property()
   nsdoc!: Nsdoc;
@@ -118,14 +108,14 @@ export class DOContainer extends LitElement {
           .element=${daElement}
           .instanceElement=${getInstanceDAElement(this.instanceElement, daElement)}
           .nsdoc=${this.nsdoc}
-          .ancestors=${[this.element, ...this.ancestors]}
+          .ancestors=${[...this.ancestors, this.element]}
         ></da-container>`) : nothing}
       ${this.toggleButton?.on ? doElements.map(doElement =>
         html`<do-container
           .element=${doElement}
           .instanceElement=${this.getInstanceDOElement(doElement)}
           .nsdoc=${this.nsdoc}
-          .ancestors=${[this.element, ...this.ancestors]}
+          .ancestors=${[...this.ancestors, this.element]}
         ></do-container>`) : nothing}
     </action-pane>
     `;

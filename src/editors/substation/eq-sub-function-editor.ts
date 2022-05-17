@@ -8,17 +8,16 @@ import {
 } from 'lit-element';
 
 import '../../action-pane.js';
-import './subfunction-editor.js';
 import { getChildElementsByTagName } from '../../foundation.js';
 
-/** Pane rendering `SubFunction` element with its children */
-@customElement('subfunction-editor')
-export class SubFunctionEditor extends LitElement {
-  /** The edited `SubFunction` element */
+/** Pane rendering `EqSubFunction` element with its children */
+@customElement('eq-sub-function-editor')
+export class EqSubFunctionEditor extends LitElement {
+  /** The edited `EqSubFunction` element */
   @property({ attribute: false })
   element!: Element;
   @state()
-  get header(): string {
+  private get header(): string {
     const name = this.element.getAttribute('name');
     const desc = this.element.getAttribute('desc');
     const type = this.element.getAttribute('type');
@@ -26,17 +25,22 @@ export class SubFunctionEditor extends LitElement {
     return `${name}${desc ? ` - ${desc}` : ''}${type ? ` (${type})` : ''}`;
   }
 
-  renderSubFunctions(): TemplateResult {
-    const subfunctions = getChildElementsByTagName(this.element, 'SubFunction');
-    return html` ${subfunctions.map(
-      subFunction =>
-        html`<subfunction-editor .element=${subFunction}></subfunction-editor>`
+  private renderEqSubFunctions(): TemplateResult {
+    const eqSubFunctions = getChildElementsByTagName(
+      this.element,
+      'EqSubFunction'
+    );
+    return html` ${eqSubFunctions.map(
+      eqSubFunction =>
+        html`<eq-sub-function-editor
+          .element=${eqSubFunction}
+        ></eq-sub-function-editor>`
     )}`;
   }
 
   render(): TemplateResult {
     return html`<action-pane label="${this.header}" icon="functions" secondary
-      >${this.renderSubFunctions()}</action-pane
+      >${this.renderEqSubFunctions()}</action-pane
     >`;
   }
 }

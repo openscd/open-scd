@@ -7,6 +7,7 @@ import {
   css,
   query,
 } from 'lit-element';
+import { classMap } from 'lit-html/directives/class-map';
 import { translate } from 'lit-translate';
 
 import '@material/mwc-icon-button';
@@ -50,7 +51,7 @@ export class VoltageLevelEditor extends LitElement {
   element!: Element;
   @property({ type: Boolean })
   readonly = false;
-  /** Wheter `Function` and `SubFunction` are rendered */
+  /** Whether `Function` and `SubFunction` are rendered */
   @property({ type: Boolean })
   showfunctions = false;
 
@@ -139,11 +140,17 @@ export class VoltageLevelEditor extends LitElement {
       ) ?? []
     );
     return pwts?.length
-      ? html`<div id="powertransformercontainer">
+      ? html`<div
+          class="${classMap({
+            ptrContent: true,
+            actionicon: !this.showfunctions,
+          })}"
+        >
           ${pwts.map(
             pwt =>
               html`<powertransformer-editor
                 .element=${pwt}
+                ?showfunctions=${this.showfunctions}
               ></powertransformer-editor>`
           )}
         </div>`

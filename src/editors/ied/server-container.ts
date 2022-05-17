@@ -2,7 +2,6 @@ import {
   css,
   customElement,
   html,
-  LitElement,
   property,
   TemplateResult,
 } from 'lit-element';
@@ -14,16 +13,11 @@ import './ldevice-container.js';
 import { Nsdoc } from '../../foundation/nsdoc.js';
 import { serverIcon } from '../../icons/ied-icons.js';
 import { getDescriptionAttribute } from "../../foundation.js";
+import { Container } from './foundation.js';
 
 /** [[`IED`]] plugin subeditor for editing `Server` element. */
 @customElement('server-container')
-export class ServerContainer extends LitElement {
-  @property({ attribute: false })
-  element!: Element;
-
-  @property()
-  ancestors: Element[] = [];
-
+export class ServerContainer extends Container {
   @property()
   nsdoc!: Nsdoc;
 
@@ -40,7 +34,7 @@ export class ServerContainer extends LitElement {
         html`<ldevice-container
           .element=${server}
           .nsdoc=${this.nsdoc}
-          .ancestors=${[this.element, ...this.ancestors]}
+          .ancestors=${[...this.ancestors, this.element]}
         ></ldevice-container>`)}
     </action-pane>`;
   }

@@ -6,7 +6,7 @@ import { MockWizard } from '../../mock-wizard.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   ComplexAction,
-  isSimple, Replace,
+  isSimple,
   WizardInputElement,
 } from '../../../src/foundation.js';
 
@@ -18,7 +18,7 @@ import {
   fetchDoc,
   newWizard,
   setWizardTextFieldValue,
-} from './foundation.js';
+} from './test-support.js';
 import { updateNamingAttributeWithReferencesAction } from "../../../src/wizards/foundation/actions.js";
 import {
   createAction,

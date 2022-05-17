@@ -195,7 +195,7 @@ snapshots["voltage-level-editor with readonly property looks like the latest sna
 `;
 /* end snapshot voltage-level-editor with readonly property looks like the latest snapshot */
 
-snapshots["voltage-level-editor with function filter deactivated shows connected Function`s in the Substation looks like the latest snapshot"] = 
+snapshots["voltage-level-editor with function filter deactivated looks like the latest snapshot"] = 
 `<action-pane
   label="E1 - Voltage Level
     (110.0 kV)"
@@ -284,11 +284,15 @@ snapshots["voltage-level-editor with function filter deactivated shows connected
   </abbr>
   <function-editor>
   </function-editor>
+  <div class="ptrContent">
+    <powertransformer-editor showfunctions="">
+    </powertransformer-editor>
+  </div>
   <div id="bayContainer">
     <bay-editor showfunctions="">
     </bay-editor>
   </div>
 </action-pane>
 `;
-/* end snapshot voltage-level-editor with function filter deactivated shows connected Function`s in the Substation looks like the latest snapshot */
+/* end snapshot voltage-level-editor with function filter deactivated looks like the latest snapshot */
 

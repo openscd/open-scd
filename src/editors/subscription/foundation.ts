@@ -9,6 +9,14 @@ export enum SubscribeStatus {
   None,
 }
 
+/**
+ * Enumeration stating the current view of the Subscription plugin.
+ */
+export enum View {
+  GOOSE_PUBLISHER,
+  GOOSE_SUBSCRIBER
+}
+
 export interface GOOSESelectDetail {
   gseControl: Element | undefined;
   dataset: Element | undefined;
@@ -27,16 +35,48 @@ export function newGOOSESelectEvent(
   });
 }
 
-export interface IEDSubscriptionDetail {
+export interface IEDSelectDetail {
+  ied: Element | undefined;
+}
+export type IEDSelectEvent = CustomEvent<IEDSelectDetail>;
+export function newIEDSelectEvent(
+  ied: Element | undefined,
+  eventInitDict?: CustomEventInit<IEDSelectDetail>
+): IEDSelectEvent {
+  return new CustomEvent<IEDSelectDetail>('ied-select', {
+    bubbles: true,
+    composed: true,
+    ...eventInitDict,
+    detail: { ied, ...eventInitDict?.detail },
+  });
+}
+
+export interface ViewDetail {
+  view: View;
+}
+export type ViewEvent = CustomEvent<ViewDetail>;
+export function newViewEvent(
+  view: View,
+  eventInitDict?: CustomEventInit<ViewDetail>
+): ViewEvent {
+  return new CustomEvent<ViewDetail>('view', {
+    bubbles: true,
+    composed: true,
+    ...eventInitDict,
+    detail: { view, ...eventInitDict?.detail },
+  });
+}
+
+export interface SubscriptionDetail {
   element: Element;
   subscribeStatus: SubscribeStatus;
 }
-export type IEDSubscriptionEvent = CustomEvent<IEDSubscriptionDetail>;
-export function newIEDSubscriptionEvent(
+export type SubscriptionEvent = CustomEvent<SubscriptionDetail>;
+export function newSubscriptionEvent(
   element: Element,
   subscribeStatus: SubscribeStatus
-): IEDSubscriptionEvent {
-  return new CustomEvent<IEDSubscriptionDetail>('ied-subscription', {
+): SubscriptionEvent {
+  return new CustomEvent<SubscriptionDetail>('subscription', {
     bubbles: true,
     composed: true,
     detail: { element, subscribeStatus },
@@ -114,6 +154,8 @@ export const styles = css`
 declare global {
   interface ElementEventMap {
     ['goose-dataset']: GOOSESelectEvent;
-    ['ied-subscription']: IEDSubscriptionEvent;
+    ['subscription']: SubscriptionEvent;
+    ['ied-select']: IEDSelectEvent;
+    ['view']: ViewEvent;
   }
 }

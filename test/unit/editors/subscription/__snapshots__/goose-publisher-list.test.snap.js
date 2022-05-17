@@ -1,7 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["publisher-goose-list looks like the latest snapshot"] = 
+snapshots["goose-publisher-list looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
     [subscription.publisherGoose.title]
@@ -28,26 +28,40 @@ snapshots["publisher-goose-list looks like the latest snapshot"] =
     <mwc-list-item
       aria-disabled="false"
       graphic="large"
+      hasmeta=""
       mwc-list-item=""
       tabindex="0"
     >
+      <mwc-icon slot="graphic">
+      </mwc-icon>
       <span>
         GCB
       </span>
-      <mwc-icon slot="graphic">
-      </mwc-icon>
+      <mwc-icon-button
+        class="hidden"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
       graphic="large"
+      hasmeta=""
       mwc-list-item=""
       tabindex="-1"
     >
+      <mwc-icon slot="graphic">
+      </mwc-icon>
       <span>
         GCB2
       </span>
-      <mwc-icon slot="graphic">
-      </mwc-icon>
+      <mwc-icon-button
+        class="hidden"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
@@ -70,14 +84,21 @@ snapshots["publisher-goose-list looks like the latest snapshot"] =
     <mwc-list-item
       aria-disabled="false"
       graphic="large"
+      hasmeta=""
       mwc-list-item=""
       tabindex="-1"
     >
+      <mwc-icon slot="graphic">
+      </mwc-icon>
       <span>
         GCB
       </span>
-      <mwc-icon slot="graphic">
-      </mwc-icon>
+      <mwc-icon-button
+        class="hidden"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
@@ -100,9 +121,9 @@ snapshots["publisher-goose-list looks like the latest snapshot"] =
   </filtered-list>
 </section>
 `;
-/* end snapshot publisher-goose-list looks like the latest snapshot */
+/* end snapshot goose-publisher-list looks like the latest snapshot */
 
-snapshots["publisher-goose-list looks like the latest snapshot without a doc loaded"] = 
+snapshots["goose-publisher-list looks like the latest snapshot without a doc loaded"] = 
 `<section tabindex="0">
   <h1>
     [subscription.publisherGoose.title]
@@ -111,5 +132,5 @@ snapshots["publisher-goose-list looks like the latest snapshot without a doc loa
   </filtered-list>
 </section>
 `;
-/* end snapshot publisher-goose-list looks like the latest snapshot without a doc loaded */
+/* end snapshot goose-publisher-list looks like the latest snapshot without a doc loaded */
 

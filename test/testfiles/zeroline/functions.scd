@@ -10,6 +10,7 @@
         <Function name="myFunc" desc="myDesc" type="myFuncType">
 			<SubFunction name="mySubFunc"/>
 		</Function>
+		<PowerTransformer name="myPtr1" type="PTR"/>
 		<VoltageLevel name="E1" desc="Voltage Level" nomFreq="50.0" numPhases="3">
 			<Voltage unit="V" multiplier="k">110.0</Voltage>
             <Function name="voltLvName">
@@ -19,6 +20,11 @@
 					</SubFunction>
 				</SubFunction> 
             </Function>
+			<PowerTransformer name="myPtr2" type="PTR">
+				<EqFunction name="myEqFuncPtr2">
+                    <EqSubFunction name="myEqSubFunc"/> 
+                </EqFunction> 
+			</PowerTransformer>
 			<Bay name="COUPLING_BAY" desc="Bay">
 				<Function name="bayName">
 					<SubFunction name="myBaySubFunc" desc="myDesc" type="myBaySubFuncType"/>
@@ -26,8 +32,26 @@
 				<Function name="bay2Func">
 					<SubFunction name="myBaySubFunc" desc="myDesc" type="myBaySubFuncType"/>
 				</Function>
-                <ConductingEquipment>
-                    <EqFunction name="myEqFunc">
+				<PowerTransformer name="myPtr3" type="PTR"/>
+                <ConductingEquipment name="QA1" desc="some desc" type="CRB">
+                    <EqFunction name="myEqFuncQA1" desc="funcForQA1" type="eqFuncType">
+                        <EqSubFunction name="myEqSubFunc">
+							<EqSubFunction name="myEqSubSubFunction" desc="my desc" type="sometype"/>
+						</EqSubFunction> 
+                    </EqFunction> 
+                </ConductingEquipment>
+				<ConductingEquipment name="QB1" type="DIS">
+                    <EqFunction name="myEqFuncQB1">
+                        <EqSubFunction name="myEqSubFunc"/> 
+                    </EqFunction> 
+                </ConductingEquipment>
+				<ConductingEquipment name="QB1" type="DIS">
+                    <EqFunction name="myEqFuncQB1">
+                        <EqSubFunction name="myEqSubFunc"/> 
+                    </EqFunction> 
+                </ConductingEquipment>
+				<ConductingEquipment name="QC9" type="DIS">
+                    <EqFunction name="myEqFuncQC9">
                         <EqSubFunction name="myEqSubFunc"/> 
                     </EqFunction> 
                 </ConductingEquipment>

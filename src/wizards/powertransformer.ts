@@ -11,7 +11,7 @@ import {
   WizardInputElement,
 } from '../foundation.js';
 
-import { updateNamingAction } from "./foundation/actions.js";
+import { replaceNamingAction } from "./foundation/actions.js";
 
 const defaultPowerTransformerType = 'PTR';
 
@@ -103,7 +103,7 @@ export function editPowerTransformerWizard(element: Element): Wizard {
       primary: {
         icon: 'edit',
         label: get('save'),
-        action: updateNamingAction(element),
+        action: replaceNamingAction(element),
       },
       content: renderPowerTransformerWizard(
         element.getAttribute('name'),

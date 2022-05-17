@@ -8,7 +8,7 @@ import {
 } from 'lit-element';
 
 import '../../action-pane.js';
-import './subfunction-editor.js';
+import './sub-function-editor.js';
 import { getChildElementsByTagName } from '../../foundation.js';
 
 /** Pane rendering `Function` element with its children */
@@ -18,7 +18,7 @@ export class FunctionEditor extends LitElement {
   @property({ attribute: false })
   element!: Element;
   @state()
-  get header(): string {
+  private get header(): string {
     const name = this.element.getAttribute('name');
     const desc = this.element.getAttribute('desc');
     const type = this.element.getAttribute('type');
@@ -26,11 +26,13 @@ export class FunctionEditor extends LitElement {
     return `${name}${desc ? ` - ${desc}` : ''}${type ? ` (${type})` : ''}`;
   }
 
-  renderSubFunctions(): TemplateResult {
+  private renderSubFunctions(): TemplateResult {
     const subfunctions = getChildElementsByTagName(this.element, 'SubFunction');
     return html` ${subfunctions.map(
       subFunction =>
-        html`<subfunction-editor .element=${subFunction}></subfunction-editor>`
+        html`<sub-function-editor
+          .element=${subFunction}
+        ></sub-function-editor>`
     )}`;
   }
 
