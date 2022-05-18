@@ -9,6 +9,41 @@ snapshots["web component rendering EqFunction element with complete attribute se
   secondary=""
   tabindex="0"
 >
+  <abbr
+    slot="action"
+    style="position:relative;"
+    title="[add]"
+  >
+    <mwc-icon-button icon="playlist_add">
+    </mwc-icon-button>
+    <mwc-menu
+      corner="BOTTOM_RIGHT"
+      menucorner="END"
+    >
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="0"
+        value="LNode"
+      >
+        <span>
+          LNode
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="EqSubFunction"
+      >
+        <span>
+          EqSubFunction
+        </span>
+      </mwc-list-item>
+    </mwc-menu>
+  </abbr>
   <eq-sub-function-editor>
   </eq-sub-function-editor>
 </action-pane>
@@ -23,6 +58,41 @@ snapshots["web component rendering EqFunction element with missing desc and type
   secondary=""
   tabindex="0"
 >
+  <abbr
+    slot="action"
+    style="position:relative;"
+    title="[add]"
+  >
+    <mwc-icon-button icon="playlist_add">
+    </mwc-icon-button>
+    <mwc-menu
+      corner="BOTTOM_RIGHT"
+      menucorner="END"
+    >
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="0"
+        value="LNode"
+      >
+        <span>
+          LNode
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="EqSubFunction"
+      >
+        <span>
+          EqSubFunction
+        </span>
+      </mwc-list-item>
+    </mwc-menu>
+  </abbr>
   <eq-sub-function-editor>
   </eq-sub-function-editor>
 </action-pane>

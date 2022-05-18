@@ -25,6 +25,7 @@ import { editTrgOpsWizard } from './trgops.js';
 import { createDaWizard } from './da.js';
 import { editDAIWizard } from './dai.js';
 import { createFunctionWizard } from './function.js';
+import { createEqSubFunctionWizard } from './eqsubfunction.js';
 
 type SclElementWizard = (
   element: Element,
@@ -192,7 +193,7 @@ export const wizards: Record<
   },
   EqSubFunction: {
     edit: emptyWizard,
-    create: emptyWizard,
+    create: createEqSubFunctionWizard,
   },
   ExtRef: {
     edit: emptyWizard,
