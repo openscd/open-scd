@@ -27,9 +27,7 @@ import {
 /** Defining view outside the class, which makes it persistent. */
 let selectedViewCommunication104Plugin: View = View.VALUES;
 
-/** An editor [[`plugin`]] for editing the `IED` section. */
 export default class Communication104Plugin extends LitElement {
-  /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property()
   doc!: XMLDocument;
 
@@ -39,7 +37,7 @@ export default class Communication104Plugin extends LitElement {
   @query('#byNetworkRadio')
   byNetworkRadio!: RadioListItem;
 
-  @query('div[class="container"]')
+  @query('div#containers')
   listDiv!: Element;
 
   constructor() {
@@ -58,49 +56,42 @@ export default class Communication104Plugin extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<div>
-      <mwc-formfield label="${translate('communication104.view.valuesView')}">
-        <mwc-radio
-          id="byValuesRadio"
-          name="view"
-          value="values"
-          @checked=${() => this.listDiv.dispatchEvent(newViewEvent(View.VALUES))}
-        ></mwc-radio>
-      </mwc-formfield>
-      <mwc-formfield label="${translate('communication104.view.networkView')}">
-        <mwc-radio
-          id="byNetworkRadio"
-          name="view"
-          value="network"
-          @checked=${() => this.listDiv.dispatchEvent(newViewEvent(View.NETWORK))}
-        ></mwc-radio>
-      </mwc-formfield>
-      <div class="container">
-        ${selectedViewCommunication104Plugin == View.VALUES
-            ? html`<values-104-container class="row" .doc=${this.doc}></values-104-container>`
-            : html`<network-104-container class="row" .doc=${this.doc}></network-104-container>`
-        }
-      </div>
-    </div>`;
+    return html `
+      <section>
+        <div>
+          <mwc-formfield label="${translate('communication104.view.valuesView')}">
+            <mwc-radio
+              id="byValuesRadio"
+              name="view"
+              value="values"
+              @checked=${() => this.listDiv.dispatchEvent(newViewEvent(View.VALUES))}
+            ></mwc-radio>
+          </mwc-formfield>
+          <mwc-formfield label="${translate('communication104.view.networkView')}">
+            <mwc-radio
+              id="byNetworkRadio"
+              name="view"
+              value="network"
+              @checked=${() => this.listDiv.dispatchEvent(newViewEvent(View.NETWORK))}
+            ></mwc-radio>
+          </mwc-formfield>
+          <div id="containers">
+            ${selectedViewCommunication104Plugin == View.VALUES
+                ? html`<values-104-container .doc=${this.doc}></values-104-container>`
+                : html`<network-104-container .doc=${this.doc}></network-104-container>`
+            }
+          </div>
+        </div>
+      </section>`;
   }
 
   static styles = css`
-     :host {
+    :host {
       width: 100vw;
     }
 
-    .container {
-      display: flex;
-      padding: 8px 6px 16px;
-      height: 86vh;
-    }
-
-    .row {
-      flex: 50%;
-      margin: 0px 6px 0px;
-      min-width: 300px;
-      height: 100%;
-      overflow-y: scroll;
+    section {
+      padding: 8px 12px 16px;
     }
  `;
 }

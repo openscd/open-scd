@@ -356,9 +356,10 @@ export const de: Translations = {
     },
   },
   communication104: {
+    toggleChildElements: '???',
     view: {
-      valuesView: 'Values',
-      networkView: 'Network',
+      valuesView: '???',
+      networkView: '???',
     }
   },
   'enum-val': {

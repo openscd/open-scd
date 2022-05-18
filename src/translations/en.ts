@@ -353,6 +353,7 @@ export const en = {
     },
   },
   communication104: {
+    toggleChildElements: 'Toggle child elements',
     view: {
       valuesView: 'Values',
       networkView: 'Network',

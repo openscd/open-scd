@@ -1,13 +1,30 @@
-import {css, customElement, html, LitElement, TemplateResult} from "lit-element";
+import {
+  customElement,
+  html,
+  LitElement,
+  property,
+  TemplateResult
+} from "lit-element";
+
+import { getNameAttribute } from "../../foundation.js";
+
+import './ied-container.js';
 
 @customElement('values-104-container')
-export class ValuesContainer extends LitElement {
-  render(): TemplateResult {
-    return html`
-      <p>Values Container</p>
-    `;
+export class Values104Container extends LitElement {
+  @property()
+  doc!: XMLDocument;
+
+  private getIEDElements(): Element[] {
+    return Array.from(this.doc.querySelectorAll('IED'))
+      .sort((ied1, ied2) => (getNameAttribute(ied1) ?? '').localeCompare(getNameAttribute(ied2) ?? '') )
   }
 
-  static styles = css`
-  `;
+  render(): TemplateResult {
+    return html `
+      ${this.getIEDElements().map(iedElement => {
+        return html `<ied-104-container .element="${iedElement}"></ied-104-container>`;
+      })}
+    `;
+  }
 }
