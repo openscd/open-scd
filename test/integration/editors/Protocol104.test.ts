@@ -2,16 +2,16 @@ import { html, fixture, expect } from '@open-wc/testing';
 
 import '../../mock-wizard.js';
 
-import Communication104 from '../../../src/editors/Communication104.js';
+import Protocol104 from '../../../src/editors/Protocol104.js';
 import { Editing } from '../../../src/Editing.js';
 import { Wizarding } from '../../../src/Wizarding.js';
 
-describe('Communication 104 Plugin', () => {
+describe('Protocol 104 Plugin', () => {
   customElements.define(
-    'communication104-plugin',
-    Wizarding(Editing(Communication104))
+    'protocol104-plugin',
+    Wizarding(Editing(Protocol104))
   );
-  let element: Communication104;
+  let element: Protocol104;
   let doc: XMLDocument;
 
   beforeEach(async () => {
@@ -20,7 +20,7 @@ describe('Communication 104 Plugin', () => {
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
     element = await fixture(
-      html`<communication104-plugin .doc=${doc}></communication104-plugin>`
+      html`<protocol104-plugin .doc=${doc}></protocol104-plugin>`
     );
   });
 

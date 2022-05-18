@@ -43,7 +43,7 @@ export const officialPlugins = [
   },
   {
     name: '104',
-    src: '/src/editors/Communication104.js',
+    src: '/src/editors/Protocol104.js',
     icon: 'settings_ethernet',
     default: false,
     kind: 'editor',

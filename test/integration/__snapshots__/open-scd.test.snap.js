@@ -660,7 +660,7 @@ snapshots["open-scd looks like its snapshot"] =
       left=""
       mwc-list-item=""
       tabindex="-1"
-      value="/src/editors/Communication104.js"
+      value="/src/editors/Protocol104.js"
     >
       <mwc-icon slot="meta">
         settings_ethernet

@@ -37,7 +37,7 @@ export class Ied104Container extends LitElement {
   private get daiElements(): Element[] {
     return Array.from(this.element.querySelectorAll('DAI > Private[type="IEC_60870_5_104"]'))
       .map(daiPrivateElement => daiPrivateElement.parentElement!)
-      .sort((dai1, dai2) => this.createFullPath(dai1).localeCompare(this.createFullPath(dai2)) );
+      .sort((dai1, dai2) => this.getFullPath(dai1).localeCompare(this.getFullPath(dai2)) );
   }
 
   protected firstUpdated(): void {
@@ -56,7 +56,7 @@ export class Ied104Container extends LitElement {
     return html`${name}${desc ? html` &mdash; ${desc}` : nothing}`;
   }
 
-  private createFullPath(daiElement: Element): string {
+  private getFullPath(daiElement: Element): string {
     let path = daiElement.getAttribute('name') ?? '';
     let parent = daiElement.parentElement;
 
@@ -108,7 +108,7 @@ export class Ied104Container extends LitElement {
       return html`
         <action-pane .label="${this.header()}">
           <mwc-icon slot="icon">developer_board</mwc-icon>
-          <abbr slot="action" title="${translate('communication104.toggleChildElements')}">
+          <abbr slot="action" title="${translate('protocol104.toggleChildElements')}">
             <mwc-icon-button-toggle
               id="toggleButton"
               on
@@ -123,7 +123,7 @@ export class Ied104Container extends LitElement {
                 ${dais.map(daiElement => {
                     return html`
                       <mwc-list-item tabindex="0" twoLine hasMeta>
-                        <span>${this.createFullPath(daiElement)}</span>
+                        <span>${this.getFullPath(daiElement)}</span>
                         <span slot="secondary">${this.get104DetailsLine(daiElement)}</span>
                         <span slot="meta">
                           <mwc-icon-button

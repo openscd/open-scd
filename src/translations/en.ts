@@ -352,7 +352,7 @@ export const en = {
       noSampledValuesSelected: 'No control block selected',
     },
   },
-  communication104: {
+  protocol104: {
     toggleChildElements: 'Toggle child elements',
     view: {
       valuesView: 'Values',
