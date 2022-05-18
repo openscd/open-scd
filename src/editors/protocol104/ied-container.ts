@@ -25,9 +25,36 @@ import '../../action-pane.js';
 
 import {
   getCdcValue,
-  getFullPath
+  getFullPath,
+  PRIVATE_TYPE_104
 } from "./foundation/foundation.js";
 
+/**
+ * Retrieve all the 104 information from the passed DAI Element, like the CDC Values and attributes
+ * of the Address Element of the 104. The values are joined together separated by a comma.
+ *
+ * @param daiElement - The DAI Element for which to retrieve the 104 Information.
+ * @returns A string with all details joined together.
+ */
+function get104DetailsLine(daiElement: Element): string {
+  const values = [];
+
+  const cdcValue = getCdcValue(daiElement);
+  if (cdcValue) values.push(`cdc: ${cdcValue}`);
+
+  const privateElement = daiElement.querySelector(`Private[type="${PRIVATE_TYPE_104}"] > Address`);
+  if (privateElement) {
+    if (privateElement.hasAttribute('casdu')) values.push(`casdu: ${privateElement.getAttribute('casdu')}`);
+    if (privateElement.hasAttribute('ioa')) values.push(`ioa: ${privateElement.getAttribute('ioa')}`);
+    if (privateElement.hasAttribute('ti')) values.push(`ti: ${privateElement.getAttribute('ti')}`);
+  }
+  return values.join(', ');
+}
+
+/**
+ * Container showing all the DAI Elements, related to the 104 Protocol, of the passed IED Element in a filtered list.
+ * The DAI Element can be edited by pressing the Edit button at the end of the line.
+ */
 @customElement('ied-104-container')
 export class Ied104Container extends LitElement {
   @property()
@@ -37,7 +64,7 @@ export class Ied104Container extends LitElement {
   toggleButton!: IconButtonToggle | undefined;
 
   private getDaiElements(): Element[] {
-    return Array.from(this.element.querySelectorAll('DAI > Private[type="IEC_60870_5_104"]'))
+    return Array.from(this.element.querySelectorAll(`DAI > Private[type="${PRIVATE_TYPE_104}"]`))
       .map(daiPrivateElement => daiPrivateElement.parentElement!)
       .sort((dai1, dai2) => getFullPath(dai1).localeCompare(getFullPath(dai2)) );
   }
@@ -56,21 +83,6 @@ export class Ied104Container extends LitElement {
     const desc = getDescriptionAttribute(this.element);
 
     return html`${name}${desc ? html` &mdash; ${desc}` : nothing}`;
-  }
-
-  private get104DetailsLine(daiElement: Element): string {
-    const values = [];
-
-    const cdcValue = getCdcValue(daiElement);
-    if (cdcValue) values.push(`cdc: ${cdcValue}`);
-
-    const privateElement = daiElement.querySelector('Private[type="IEC_60870_5_104"] > Address');
-    if (privateElement) {
-      if (privateElement.hasAttribute('casdu')) values.push(`casdu: ${privateElement.getAttribute('casdu')}`);
-      if (privateElement.hasAttribute('ioa')) values.push(`ioa: ${privateElement.getAttribute('ioa')}`);
-      if (privateElement.hasAttribute('ti')) values.push(`ti: ${privateElement.getAttribute('ti')}`);
-    }
-    return values.join(', ');
   }
 
   render(): TemplateResult {
@@ -94,7 +106,7 @@ export class Ied104Container extends LitElement {
                   return html`
                     <mwc-list-item tabindex="0" twoLine hasMeta>
                       <span>${getFullPath(daiElement)}</span>
-                      <span slot="secondary">${this.get104DetailsLine(daiElement)}</span>
+                      <span slot="secondary">${get104DetailsLine(daiElement)}</span>
                       <span slot="meta">
                         <mwc-icon-button
                           icon="edit"

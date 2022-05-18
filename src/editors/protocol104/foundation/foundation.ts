@@ -3,6 +3,17 @@ import {
   getNameAttribute
 } from "../../../foundation.js";
 
+export const PRIVATE_TYPE_104 = "IEC_60870_5_104";
+
+/**
+ * Retrieve the full path as wanted for the IED Container in the 104 Plugin, meaning we go higher in the
+ * hierarchy until the parent found is the IED, this element is excluded, because the containers are group per
+ * IED.
+ * From all parent between the DAI and IED the name or likely attributes are used to define a unique name.
+ *
+ * @param daiElement - The DAI Element for which the full path needs to be defined.
+ * @returns The full path shown to the user for a DAI Element.
+ */
 export function getFullPath(daiElement: Element): string {
   let path = daiElement.getAttribute('name') ?? '';
   let parent = daiElement.parentElement;
@@ -32,6 +43,14 @@ export function getFullPath(daiElement: Element): string {
   return path;
 }
 
+/**
+ * Retrieve the CDC Value that belongs to a DAI Element, meaning, using the DOI/LN Elements to
+ * search for a DO Element, which is again used to find the DO/DOType Element. The DOType Element
+ * finally holds the attribute 'cdc'.
+ *
+ * @param daiElement - The DAI Element to start the search for the CDC Value.
+ * @returns The CDC Value from the DOType Element.
+ */
 export function getCdcValue(daiElement: Element): string | null {
   const lnElement = daiElement.closest('LN0, LN');
   const doiElement = daiElement.closest('DOI');
@@ -49,8 +68,8 @@ export function getCdcValue(daiElement: Element): string | null {
   return null;
 }
 
-  /**
- * Enumeration stating the current view of the 104 plugin.
+/**
+ * Enumeration stating the active view of the 104 plugin.
  */
 export enum View {
   VALUES,

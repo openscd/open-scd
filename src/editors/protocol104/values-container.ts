@@ -10,6 +10,12 @@ import { getNameAttribute } from "../../foundation.js";
 
 import './ied-container.js';
 
+import { PRIVATE_TYPE_104 } from "./foundation/foundation.js";
+
+/**
+ * Container that will render an 'ied-104-container' for every IED which contains DAI Elements related to the
+ * 104 Protocol. 
+ */
 @customElement('values-104-container')
 export class Values104Container extends LitElement {
   @property()
@@ -17,7 +23,7 @@ export class Values104Container extends LitElement {
 
   private getIEDElements(): Element[] {
     return Array.from(this.doc.querySelectorAll('IED'))
-      .filter(ied => ied.querySelectorAll('DAI > Private[type="IEC_60870_5_104"]').length > 0)
+      .filter(ied => ied.querySelectorAll(`DAI > Private[type="${PRIVATE_TYPE_104}"]`).length > 0)
       .sort((ied1, ied2) => (getNameAttribute(ied1) ?? '').localeCompare(getNameAttribute(ied2) ?? '') )
   }
 
