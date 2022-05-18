@@ -120,7 +120,7 @@
 							</DAI>
 						</DOI>
 					</LN0>
-					<LN prefix="" lnClass="GGIO" inst="2" lnType="SE_GGIO_SET_default_V001">
+					<LN prefix="PPRE" lnClass="GGIO" inst="2" lnType="SE_GGIO_SET_default_V001">
 						<DOI name="Beh">
 							<DAI name="stVal">
 								<Private type="IEC_60870_5_104">
@@ -795,6 +795,8 @@
 			</Server>
 		</AccessPoint>
 	</IED>
+  <IED name="B3" desc="">
+  </IED>
 	<DataTypeTemplates>
 		<LNodeType iedType="SE_Spec_SET" lnClass="GAPC" id="SE_GAPC_SET_V001">
 			<DO name="Beh" type="SE_ENS_V001" desc="Behaviour"/>

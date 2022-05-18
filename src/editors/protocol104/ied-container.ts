@@ -18,13 +18,15 @@ import '@material/mwc-list/mwc-list-item';
 
 import {
   getDescriptionAttribute,
-  getInstanceAttribute,
   getNameAttribute,
 } from "../../foundation.js";
 
 import '../../action-pane.js';
 
-import { getCdcValue } from "./foundation/foundation.js";
+import {
+  getCdcValue,
+  getFullPath
+} from "./foundation/foundation.js";
 
 @customElement('ied-104-container')
 export class Ied104Container extends LitElement {
@@ -34,10 +36,10 @@ export class Ied104Container extends LitElement {
   @query('#toggleButton')
   toggleButton!: IconButtonToggle | undefined;
 
-  private get daiElements(): Element[] {
+  private getDaiElements(): Element[] {
     return Array.from(this.element.querySelectorAll('DAI > Private[type="IEC_60870_5_104"]'))
       .map(daiPrivateElement => daiPrivateElement.parentElement!)
-      .sort((dai1, dai2) => this.getFullPath(dai1).localeCompare(this.getFullPath(dai2)) );
+      .sort((dai1, dai2) => getFullPath(dai1).localeCompare(getFullPath(dai2)) );
   }
 
   protected firstUpdated(): void {
@@ -56,37 +58,6 @@ export class Ied104Container extends LitElement {
     return html`${name}${desc ? html` &mdash; ${desc}` : nothing}`;
   }
 
-  private getFullPath(daiElement: Element): string {
-    let path = daiElement.getAttribute('name') ?? '';
-    let parent = daiElement.parentElement;
-
-    while (parent && parent.tagName != 'IED') {
-      let value: string | undefined;
-      switch (parent.tagName) {
-        case 'LN':
-        case 'LN0': {
-          const prefix = parent.getAttribute('prefix');
-          const inst = getInstanceAttribute(parent);
-          value = `${prefix ? prefix + '-' : ''}${parent.getAttribute('lnClass')}${inst ? '-' + inst : ''}`;
-          break;
-        }
-        case 'LDevice': {
-          value = getNameAttribute(parent) ?? getInstanceAttribute(parent);
-          break;
-        }
-        default: {
-          // Just add the name to the list
-          value = getNameAttribute(parent);
-        }
-      }
-
-      path = (value ? value + ' / ' : '') + path;
-      parent = parent.parentElement;
-    }
-
-    return path;
-  }
-
   private get104DetailsLine(daiElement: Element): string {
     const values = [];
 
@@ -103,44 +74,41 @@ export class Ied104Container extends LitElement {
   }
 
   render(): TemplateResult {
-    const dais = this.daiElements;
-    if (dais.length > 0) {
-      return html`
-        <action-pane .label="${this.header()}">
-          <mwc-icon slot="icon">developer_board</mwc-icon>
-          <abbr slot="action" title="${translate('protocol104.toggleChildElements')}">
-            <mwc-icon-button-toggle
-              id="toggleButton"
-              on
-              onIcon="keyboard_arrow_up"
-              offIcon="keyboard_arrow_down"
-              @click=${() => this.requestUpdate()}>
-            </mwc-icon-button-toggle>
-          </abbr>
-          ${this.toggleButton?.on
-            ? html`
-              <filtered-list id="dailist">
-                ${dais.map(daiElement => {
-                    return html`
-                      <mwc-list-item tabindex="0" twoLine hasMeta>
-                        <span>${this.getFullPath(daiElement)}</span>
-                        <span slot="secondary">${this.get104DetailsLine(daiElement)}</span>
-                        <span slot="meta">
-                          <mwc-icon-button
-                            icon="edit"
-                            @click=${() => this.openEditWizard()}>
-                          </mwc-icon-button>
-                        </span>
-                      </mwc-list-item>
-                    `;
-                  }
-                )}
-              </filtered-list>`
-            : nothing}
-        </action-pane>
-      `;
-    }
-    return html ``;
+    const dais = this.getDaiElements();
+    return html`
+      <action-pane .label="${this.header()}">
+        <mwc-icon slot="icon">developer_board</mwc-icon>
+        <abbr slot="action" title="${translate('protocol104.toggleChildElements')}">
+          <mwc-icon-button-toggle
+            id="toggleButton"
+            on
+            onIcon="keyboard_arrow_up"
+            offIcon="keyboard_arrow_down"
+            @click=${() => this.requestUpdate()}>
+          </mwc-icon-button-toggle>
+        </abbr>
+        ${this.toggleButton?.on
+          ? html`
+            <filtered-list id="dailist">
+              ${dais.map(daiElement => {
+                  return html`
+                    <mwc-list-item tabindex="0" twoLine hasMeta>
+                      <span>${getFullPath(daiElement)}</span>
+                      <span slot="secondary">${this.get104DetailsLine(daiElement)}</span>
+                      <span slot="meta">
+                        <mwc-icon-button
+                          icon="edit"
+                          @click=${() => this.openEditWizard()}>
+                        </mwc-icon-button>
+                      </span>
+                    </mwc-list-item>
+                  `;
+                }
+              )}
+            </filtered-list>`
+          : nothing}
+      </action-pane>
+    `;
   }
 
   static styles = css`

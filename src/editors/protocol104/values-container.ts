@@ -17,6 +17,7 @@ export class Values104Container extends LitElement {
 
   private getIEDElements(): Element[] {
     return Array.from(this.doc.querySelectorAll('IED'))
+      .filter(ied => ied.querySelectorAll('DAI > Private[type="IEC_60870_5_104"]').length > 0)
       .sort((ied1, ied2) => (getNameAttribute(ied1) ?? '').localeCompare(getNameAttribute(ied2) ?? '') )
   }
 

@@ -77,8 +77,8 @@ export default class Communication104Plugin extends LitElement {
           </mwc-formfield>
           <div id="containers">
             ${selectedViewProtocol104Plugin == View.VALUES
-                ? html`<values-104-container .doc=${this.doc}></values-104-container>`
-                : html`<network-104-container .doc=${this.doc}></network-104-container>`
+                ? html `<values-104-container .doc=${this.doc}></values-104-container>`
+                : html `<network-104-container .doc=${this.doc}></network-104-container>`
             }
           </div>
         </div>

@@ -1,3 +1,37 @@
+import {
+  getInstanceAttribute,
+  getNameAttribute
+} from "../../../foundation.js";
+
+export function getFullPath(daiElement: Element): string {
+  let path = daiElement.getAttribute('name') ?? '';
+  let parent = daiElement.parentElement;
+
+  while (parent && parent.tagName != 'IED') {
+    let value: string | undefined;
+    switch (parent.tagName) {
+      case 'LN':
+      case 'LN0': {
+        const prefix = parent.getAttribute('prefix');
+        const inst = getInstanceAttribute(parent);
+        value = `${prefix ? prefix + '-' : ''}${parent.getAttribute('lnClass')}${inst ? '-' + inst : ''}`;
+        break;
+      }
+      case 'LDevice': {
+        value = getNameAttribute(parent) ?? getInstanceAttribute(parent);
+        break;
+      }
+      default: {
+        // Just add the name to the list
+        value = getNameAttribute(parent);
+      }
+    }
+    path = (value ? value + ' / ' : '') + path;
+    parent = parent.parentElement;
+  }
+  return path;
+}
+
 export function getCdcValue(daiElement: Element): string | null {
   const lnElement = daiElement.closest('LN0, LN');
   const doiElement = daiElement.closest('DOI');
