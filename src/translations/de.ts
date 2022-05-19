@@ -355,10 +355,11 @@ export const de: Translations = {
       noSampledValuesSelected: 'Keinen Kontrollblock ausgewählt',
     },
   },
-  communication104: {
+  protocol104: {
+    toggleChildElements: '???',
     view: {
-      valuesView: 'Values',
-      networkView: 'Network',
+      valuesView: '???',
+      networkView: '???',
     }
   },
   'enum-val': {
