@@ -8,30 +8,33 @@ import { FunctionEditor } from '../../../../src/editors/substation/function-edit
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
 
 describe('function-editor wizarding editing integration', () => {
-  describe('open create wizard for element SubFunction', () => {
-    let doc: XMLDocument;
-    let parent: MockWizardEditor;
-    let element: FunctionEditor | null;
+  let doc: XMLDocument;
+  let parent: MockWizardEditor;
+  let element: FunctionEditor | null;
 
+  beforeEach(async () => {
+    doc = await fetch('/test/testfiles/zeroline/functions.scd')
+      .then(response => response.text())
+      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+    parent = <MockWizardEditor>(
+      await fixture(
+        html`<mock-wizard-editor
+          ><function-editor
+            .element=${doc.querySelector('Function')}
+          ></function-editor
+        ></mock-wizard-editor>`
+      )
+    );
+
+    element = parent.querySelector('function-editor');
+  });
+
+  describe('open create wizard for element SubFunction', () => {
     let nameField: WizardTextField;
     let primaryAction: HTMLElement;
 
     beforeEach(async () => {
-      doc = await fetch('/test/testfiles/zeroline/functions.scd')
-        .then(response => response.text())
-        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      parent = <MockWizardEditor>(
-        await fixture(
-          html`<mock-wizard-editor
-            ><function-editor
-              .element=${doc.querySelector('Function')}
-            ></function-editor
-          ></mock-wizard-editor>`
-        )
-      );
-
-      element = parent.querySelector('function-editor');
-
       (<HTMLElement>(
         element?.shadowRoot?.querySelector('mwc-list-item[value="SubFunction"]')
       )).click();
@@ -82,6 +85,29 @@ describe('function-editor wizarding editing integration', () => {
           'Substation > Function > SubFunction[name="someNewFunction"]'
         )
       ).to.exist;
+    });
+  });
+
+  describe('has a delete icon button that', () => {
+    let deleteButton: HTMLElement;
+
+    beforeEach(async () => {
+      deleteButton = <HTMLElement>(
+        element?.shadowRoot?.querySelector('mwc-icon-button[icon="delete"]')
+      );
+      await parent.updateComplete;
+    });
+
+    it('removes the attached Function element from the document', async () => {
+      expect(
+        doc.querySelector('Substation[name="AA1"] > Function[name="myFunc"]')
+      ).to.exist;
+
+      await deleteButton.click();
+
+      expect(
+        doc.querySelector('Substation[name="AA1"] > Function[name="myFunc"]')
+      ).to.not.exist;
     });
   });
 });
