@@ -26,6 +26,7 @@ import { createDaWizard } from './da.js';
 import { editDAIWizard } from './dai.js';
 import { editGseControlWizard } from './gsecontrol.js';
 import { createFunctionWizard } from './function.js';
+import { createSubFunctionWizard } from './subfunction.js';
 
 type SclElementWizard = (
   element: Element,
@@ -477,7 +478,7 @@ export const wizards: Record<
   },
   SubFunction: {
     edit: emptyWizard,
-    create: emptyWizard,
+    create: createSubFunctionWizard,
   },
   SubNetwork: {
     edit: editSubNetworkWizard,

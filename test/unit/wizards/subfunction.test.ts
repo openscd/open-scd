@@ -10,7 +10,7 @@ import {
   isCreate,
   WizardInputElement,
 } from '../../../src/foundation.js';
-import { createFunctionWizard } from '../../../src/wizards/function.js';
+import { createSubFunctionWizard } from '../../../src/wizards/subfunction.js';
 
 describe('Wizards for SCL Function element', () => {
   let doc: XMLDocument;
@@ -33,7 +33,7 @@ describe('Wizards for SCL Function element', () => {
 
   describe('define an create wizard that', () => {
     beforeEach(async () => {
-      const wizard = createFunctionWizard(doc.querySelector('Substation')!);
+      const wizard = createSubFunctionWizard(doc.querySelector('Function')!);
       element.workflow.push(() => wizard);
       await element.requestUpdate();
 
