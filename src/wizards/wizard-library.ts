@@ -26,9 +26,9 @@ import { createDaWizard } from './da.js';
 import { editDAIWizard } from './dai.js';
 import { editGseControlWizard } from './gsecontrol.js';
 import { createFunctionWizard } from './function.js';
+import { createEqSubFunctionWizard } from './eqsubfunction.js';
 import { createEqFunctionWizard } from './eqfunction.js';
 import { createSubFunctionWizard } from './subfunction.js';
-
 
 type SclElementWizard = (
   element: Element,
@@ -196,7 +196,7 @@ export const wizards: Record<
   },
   EqSubFunction: {
     edit: emptyWizard,
-    create: emptyWizard,
+    create: createEqSubFunctionWizard,
   },
   ExtRef: {
     edit: emptyWizard,
