@@ -416,6 +416,17 @@ snapshots["voltage-level-editor with function filter deactivated and existing LN
           Bay
         </span>
       </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="Function"
+      >
+        <span>
+          Function
+        </span>
+      </mwc-list-item>
     </mwc-menu>
   </abbr>
   <div class="container lnode">

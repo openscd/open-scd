@@ -428,6 +428,17 @@ snapshots["bay-editor with existing LNode children looks like the latest snapsho
           ConductingEquipment
         </span>
       </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="Function"
+      >
+        <span>
+          Function
+        </span>
+      </mwc-list-item>
     </mwc-menu>
   </abbr>
   <div class="container lnode">
