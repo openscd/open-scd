@@ -15,15 +15,25 @@ import {
   voltageLevelCreateWizard,
   voltageLevelEditWizard,
 } from './voltagelevel.js';
-import { createPowerTransformerWizard, editPowerTransformerWizard } from './powertransformer.js';
+import {
+  createPowerTransformerWizard,
+  editPowerTransformerWizard,
+} from './powertransformer.js';
 import { editSubNetworkWizard } from './subnetwork.js';
 import { editIEDWizard } from './ied.js';
 import { editTrgOpsWizard } from './trgops.js';
 import { createDaWizard } from './da.js';
 import { editDAIWizard } from './dai.js';
 import { editGseControlWizard } from './gsecontrol.js';
+import { createFunctionWizard } from './function.js';
+import { createEqSubFunctionWizard } from './eqsubfunction.js';
+import { createEqFunctionWizard } from './eqfunction.js';
+import { createSubFunctionWizard } from './subfunction.js';
 
-type SclElementWizard = (element: Element, instanceElement?: Element) => Wizard | undefined;
+type SclElementWizard = (
+  element: Element,
+  instanceElement?: Element
+) => Wizard | undefined;
 
 export function emptyWizard(): Wizard | undefined {
   return;
@@ -182,11 +192,11 @@ export const wizards: Record<
   },
   EqFunction: {
     edit: emptyWizard,
-    create: emptyWizard,
+    create: createEqFunctionWizard,
   },
   EqSubFunction: {
     edit: emptyWizard,
-    create: emptyWizard,
+    create: createEqSubFunctionWizard,
   },
   ExtRef: {
     edit: emptyWizard,
@@ -202,7 +212,7 @@ export const wizards: Record<
   },
   Function: {
     edit: emptyWizard,
-    create: emptyWizard,
+    create: createFunctionWizard,
   },
   GeneralEquipment: {
     edit: emptyWizard,
@@ -470,7 +480,7 @@ export const wizards: Record<
   },
   SubFunction: {
     edit: emptyWizard,
-    create: emptyWizard,
+    create: createSubFunctionWizard,
   },
   SubNetwork: {
     edit: editSubNetworkWizard,

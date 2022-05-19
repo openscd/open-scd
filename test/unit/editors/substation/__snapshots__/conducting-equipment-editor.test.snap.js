@@ -90,6 +90,41 @@ snapshots["conducting-equipment-editor rendered as action pane looks like the la
     >
     </mwc-icon-button>
   </abbr>
+  <abbr
+    slot="action"
+    style="position:relative;"
+    title="[add]"
+  >
+    <mwc-icon-button icon="playlist_add">
+    </mwc-icon-button>
+    <mwc-menu
+      corner="BOTTOM_RIGHT"
+      menucorner="END"
+    >
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="LNode"
+      >
+        <span>
+          LNode
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="EqFunction"
+      >
+        <span>
+          EqFunction
+        </span>
+      </mwc-list-item>
+    </mwc-menu>
+  </abbr>
 </action-pane>
 `;
 /* end snapshot conducting-equipment-editor rendered as action pane looks like the latest snapshot */
@@ -147,6 +182,41 @@ snapshots["conducting-equipment-editor rendered as action pane with EqFunction c
       slot="action"
     >
     </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="action"
+    style="position:relative;"
+    title="[add]"
+  >
+    <mwc-icon-button icon="playlist_add">
+    </mwc-icon-button>
+    <mwc-menu
+      corner="BOTTOM_RIGHT"
+      menucorner="END"
+    >
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="0"
+        value="LNode"
+      >
+        <span>
+          LNode
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="EqFunction"
+      >
+        <span>
+          EqFunction
+        </span>
+      </mwc-list-item>
+    </mwc-menu>
   </abbr>
   <eq-function-editor>
   </eq-function-editor>
@@ -207,6 +277,41 @@ snapshots["conducting-equipment-editor rendered as action pane with LNode childr
       slot="action"
     >
     </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="action"
+    style="position:relative;"
+    title="[add]"
+  >
+    <mwc-icon-button icon="playlist_add">
+    </mwc-icon-button>
+    <mwc-menu
+      corner="BOTTOM_RIGHT"
+      menucorner="END"
+    >
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="0"
+        value="LNode"
+      >
+        <span>
+          LNode
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="EqFunction"
+      >
+        <span>
+          EqFunction
+        </span>
+      </mwc-list-item>
+    </mwc-menu>
   </abbr>
   <div class="container lnode">
     <l-node-editor>

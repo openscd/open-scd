@@ -9,6 +9,52 @@ snapshots["web component rendering Function element with complete attribute set 
   secondary=""
   tabindex="0"
 >
+  <abbr
+    slot="action"
+    style="position:relative;"
+    title="[add]"
+  >
+    <mwc-icon-button icon="playlist_add">
+    </mwc-icon-button>
+    <mwc-menu
+      corner="BOTTOM_RIGHT"
+      menucorner="END"
+    >
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="0"
+        value="LNode"
+      >
+        <span>
+          LNode
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="SubFunction"
+      >
+        <span>
+          SubFunction
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="ConductingEquipment"
+      >
+        <span>
+          ConductingEquipment
+        </span>
+      </mwc-list-item>
+    </mwc-menu>
+  </abbr>
   <sub-function-editor>
   </sub-function-editor>
 </action-pane>
@@ -23,6 +69,52 @@ snapshots["web component rendering Function element with missing desc and type a
   secondary=""
   tabindex="0"
 >
+  <abbr
+    slot="action"
+    style="position:relative;"
+    title="[add]"
+  >
+    <mwc-icon-button icon="playlist_add">
+    </mwc-icon-button>
+    <mwc-menu
+      corner="BOTTOM_RIGHT"
+      menucorner="END"
+    >
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="0"
+        value="LNode"
+      >
+        <span>
+          LNode
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="SubFunction"
+      >
+        <span>
+          SubFunction
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="ConductingEquipment"
+      >
+        <span>
+          ConductingEquipment
+        </span>
+      </mwc-list-item>
+    </mwc-menu>
+  </abbr>
   <sub-function-editor>
   </sub-function-editor>
 </action-pane>
@@ -37,6 +129,52 @@ snapshots["web component rendering Function element with existing LNode children
   secondary=""
   tabindex="0"
 >
+  <abbr
+    slot="action"
+    style="position:relative;"
+    title="[add]"
+  >
+    <mwc-icon-button icon="playlist_add">
+    </mwc-icon-button>
+    <mwc-menu
+      corner="BOTTOM_RIGHT"
+      menucorner="END"
+    >
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="0"
+        value="LNode"
+      >
+        <span>
+          LNode
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="SubFunction"
+      >
+        <span>
+          SubFunction
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="ConductingEquipment"
+      >
+        <span>
+          ConductingEquipment
+        </span>
+      </mwc-list-item>
+    </mwc-menu>
+  </abbr>
   <div class="container lnode">
     <l-node-editor>
     </l-node-editor>

@@ -342,4 +342,77 @@ describe('bay-editor wizarding editing integration', () => {
       );
     });
   });
+
+  describe('open create wizard for element Function', () => {
+    let doc: XMLDocument;
+    let parent: MockWizardEditor;
+    let element: BayEditor | null;
+
+    let nameField: WizardTextField;
+    let primaryAction: HTMLElement;
+
+    beforeEach(async () => {
+      doc = await fetch('/test/testfiles/zeroline/functions.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+      parent = <MockWizardEditor>(
+        await fixture(
+          html`<mock-wizard-editor
+            ><bay-editor .element=${doc.querySelector('Bay')}></bay-editor
+          ></mock-wizard-editor>`
+        )
+      );
+
+      element = parent.querySelector('bay-editor');
+
+      (<HTMLElement>(
+        element?.shadowRoot?.querySelector('mwc-list-item[value="Function"]')
+      )).click();
+      await parent.updateComplete;
+
+      nameField = <WizardTextField>(
+        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
+      );
+
+      primaryAction = <HTMLElement>(
+        parent.wizardUI.dialog?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      );
+    });
+
+    it('does not add Function if name attribute is not unique', async () => {
+      expect(
+        doc.querySelector('Bay[name="COUPLING_BAY"] > Function[name="bayName"]')
+      ).to.exist;
+
+      nameField.value = 'bayName';
+      primaryAction.click();
+      await parent.updateComplete;
+
+      expect(
+        doc.querySelectorAll(
+          'Bay[name="COUPLING_BAY"] > Function[name="bayName"]'
+        ).length
+      ).to.equal(1);
+    });
+
+    it('does add Function if name attribute is unique', async () => {
+      expect(
+        doc.querySelector(
+          'Bay[name="COUPLING_BAY"] > Function[name="someNewFunction"]'
+        )
+      ).to.not.exist;
+
+      nameField.value = 'someNewFunction';
+      await parent.updateComplete;
+      primaryAction.click();
+
+      expect(
+        doc.querySelector(
+          'Bay[name="COUPLING_BAY"] > Function[name="someNewFunction"]'
+        )
+      ).to.exist;
+    });
+  });
 });
