@@ -8,32 +8,34 @@ import { EqSubFunctionEditor } from '../../../../src/editors/substation/eq-sub-f
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
 
 describe('eq-sub-function-editor wizarding editing integration', () => {
-  describe('open create wizard for element EqSubFunction', () => {
-    let doc: XMLDocument;
-    let parent: MockWizardEditor;
-    let element: EqSubFunctionEditor | null;
+  let doc: XMLDocument;
+  let parent: MockWizardEditor;
+  let element: EqSubFunctionEditor | null;
 
+  beforeEach(async () => {
+    doc = await fetch('/test/testfiles/zeroline/functions.scd')
+      .then(response => response.text())
+      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+    parent = <MockWizardEditor>(
+      await fixture(
+        html`<mock-wizard-editor
+          ><eq-sub-function-editor
+            .element=${doc.querySelector(
+              'ConductingEquipment[name="QA1"] EqSubFunction'
+            )}
+          ></eq-sub-function-editor
+        ></mock-wizard-editor>`
+      )
+    );
+
+    element = parent.querySelector('eq-sub-function-editor');
+  });
+
+  describe('open create wizard for element EqSubFunction', () => {
     let nameField: WizardTextField;
     let primaryAction: HTMLElement;
 
     beforeEach(async () => {
-      doc = await fetch('/test/testfiles/zeroline/functions.scd')
-        .then(response => response.text())
-        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      parent = <MockWizardEditor>(
-        await fixture(
-          html`<mock-wizard-editor
-            ><eq-sub-function-editor
-              .element=${doc.querySelector(
-                'ConductingEquipment[name="QA1"] EqSubFunction'
-              )}
-            ></eq-sub-function-editor
-          ></mock-wizard-editor>`
-        )
-      );
-
-      element = parent.querySelector('eq-sub-function-editor');
-
       (<HTMLElement>(
         element?.shadowRoot?.querySelector(
           'mwc-list-item[value="EqSubFunction"]'
@@ -86,6 +88,33 @@ describe('eq-sub-function-editor wizarding editing integration', () => {
           'ConductingEquipment[name="QA1"] EqSubFunction[name="someNewEqSubFunction"]'
         )
       ).to.exist;
+    });
+  });
+
+  describe('has a delete icon button that', () => {
+    let deleteButton: HTMLElement;
+
+    beforeEach(async () => {
+      deleteButton = <HTMLElement>(
+        element?.shadowRoot?.querySelector('mwc-icon-button[icon="delete"]')
+      );
+      await parent.updateComplete;
+    });
+
+    it('removes the attached Function element from the document', async () => {
+      expect(
+        doc.querySelector(
+          'ConductingEquipment[name="QA1"] EqSubFunction[name="myEqSubSubFunction"]'
+        )
+      ).to.exist;
+
+      await deleteButton.click();
+
+      expect(
+        doc.querySelector(
+          'ConductingEquipment[name="QA1"] EqSubFunction[name="myEqSubSubFunction"]'
+        )
+      ).to.not.exist;
     });
   });
 });
