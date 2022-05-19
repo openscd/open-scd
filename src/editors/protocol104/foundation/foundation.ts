@@ -85,13 +85,11 @@ export interface ViewDetail {
 export type ViewEvent = CustomEvent<ViewDetail>;
 export function newViewEvent(
   view: View,
-  eventInitDict?: CustomEventInit<ViewDetail>
 ): ViewEvent {
   return new CustomEvent<ViewDetail>(VIEW_EVENT_NAME, {
     bubbles: true,
     composed: true,
-    ...eventInitDict,
-    detail: { view, ...eventInitDict?.detail },
+    detail: { view },
   });
 }
 

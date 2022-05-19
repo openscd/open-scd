@@ -14,7 +14,7 @@ import { PRIVATE_TYPE_104 } from "./foundation/foundation.js";
 
 /**
  * Container that will render an 'ied-104-container' for every IED which contains DAI Elements related to the
- * 104 Protocol. 
+ * 104 Protocol.
  */
 @customElement('values-104-container')
 export class Values104Container extends LitElement {
