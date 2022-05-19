@@ -10,9 +10,9 @@ import {
   isCreate,
   WizardInputElement,
 } from '../../../src/foundation.js';
-import { createFunctionWizard } from '../../../src/wizards/function.js';
+import { createEqFunctionWizard } from '../../../src/wizards/eqfunction.js';
 
-describe('Wizards for SCL Function element', () => {
+describe('Wizards for SCL EqFunction element', () => {
   let doc: XMLDocument;
   let element: MockWizard;
   let inputs: WizardInputElement[];
@@ -33,7 +33,9 @@ describe('Wizards for SCL Function element', () => {
 
   describe('define an create wizard that', () => {
     beforeEach(async () => {
-      const wizard = createFunctionWizard(doc.querySelector('Substation')!);
+      const wizard = createEqFunctionWizard(
+        doc.querySelector('ConductingEquipment')!
+      );
       element.workflow.push(() => wizard);
       await element.requestUpdate();
 

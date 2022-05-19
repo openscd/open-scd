@@ -1,7 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Wizards for SCL Function element define an create wizard that looks like the the latest snapshot"] = 
+snapshots["Wizards for SCL EqFunction element define an create wizard that looks like the the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="close"
   heading="[wizard.title.add]"
@@ -48,5 +48,5 @@ snapshots["Wizards for SCL Function element define an create wizard that looks l
   </mwc-button>
 </mwc-dialog>
 `;
-/* end snapshot Wizards for SCL Function element define an create wizard that looks like the the latest snapshot */
+/* end snapshot Wizards for SCL EqFunction element define an create wizard that looks like the the latest snapshot */
 
