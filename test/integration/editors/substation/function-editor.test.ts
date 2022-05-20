@@ -93,7 +93,7 @@ describe('function-editor wizarding editing integration', () => {
     let primaryAction: HTMLElement;
 
     beforeEach(async () => {
-      element.element = doc.querySelector(
+      element!.element = doc.querySelector(
         'Bay[name="COUPLING_BAY"] > Function[name="bayName"]'
       )!;
 
