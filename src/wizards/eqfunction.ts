@@ -1,13 +1,65 @@
 import { get } from 'lit-translate';
 
 import {
+  cloneElement,
   createElement,
   getValue,
+  SimpleAction,
   Wizard,
   WizardActor,
   WizardInputElement,
 } from '../foundation.js';
 import { contentFunctionWizard } from './function.js';
+
+function updateEqFunctionAction(element: Element): WizardActor {
+  return (inputs: WizardInputElement[]): SimpleAction[] => {
+    const functionAttrs: Record<string, string | null> = {};
+    const functionKeys = ['name', 'desc', 'type'];
+    functionKeys.forEach(key => {
+      functionAttrs[key] = getValue(inputs.find(i => i.label === key)!);
+    });
+
+    if (
+      functionKeys.some(key => functionAttrs[key] !== element.getAttribute(key))
+    ) {
+      const newElement = cloneElement(element, functionAttrs);
+      return [
+        {
+          old: { element },
+          new: { element: newElement },
+        },
+      ];
+    }
+
+    return [];
+  };
+}
+
+export function editEqFunctionWizard(element: Element): Wizard {
+  const name = element.getAttribute('name');
+  const desc = element.getAttribute('desc');
+  const type = element.getAttribute('type');
+  const reservedNames: string[] = [];
+
+  return [
+    {
+      title: get('wizard.title.edit', { tagName: 'EqFunction' }),
+      primary: {
+        icon: 'save',
+        label: get('save'),
+        action: updateEqFunctionAction(element),
+      },
+      content: [
+        ...contentFunctionWizard({
+          name,
+          desc,
+          type,
+          reservedNames,
+        }),
+      ],
+    },
+  ];
+}
 
 function createEqFunctionAction(parent: Element): WizardActor {
   return (inputs: WizardInputElement[]) => {
