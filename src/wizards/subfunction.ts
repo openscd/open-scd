@@ -1,13 +1,67 @@
 import { get } from 'lit-translate';
 
 import {
+  cloneElement,
   createElement,
   getValue,
+  SimpleAction,
   Wizard,
   WizardActor,
   WizardInputElement,
 } from '../foundation.js';
 import { contentFunctionWizard } from './function.js';
+
+function updateSubFunctionAction(element: Element): WizardActor {
+  return (inputs: WizardInputElement[]): SimpleAction[] => {
+    const subfunctionAttrs: Record<string, string | null> = {};
+    const subFunctionKeys = ['name', 'desc', 'type'];
+    subFunctionKeys.forEach(key => {
+      subfunctionAttrs[key] = getValue(inputs.find(i => i.label === key)!);
+    });
+
+    if (
+      subFunctionKeys.some(
+        key => subfunctionAttrs[key] !== element.getAttribute(key)
+      )
+    ) {
+      const newElement = cloneElement(element, subfunctionAttrs);
+      return [
+        {
+          old: { element },
+          new: { element: newElement },
+        },
+      ];
+    }
+
+    return [];
+  };
+}
+
+export function editSubFunctionWizard(element: Element): Wizard {
+  const name = element.getAttribute('name');
+  const desc = element.getAttribute('desc');
+  const type = element.getAttribute('type');
+  const reservedNames: string[] = [];
+
+  return [
+    {
+      title: get('wizard.title.edit', { tagName: 'SubFunction' }),
+      primary: {
+        icon: 'save',
+        label: get('save'),
+        action: updateSubFunctionAction(element),
+      },
+      content: [
+        ...contentFunctionWizard({
+          name,
+          desc,
+          type,
+          reservedNames,
+        }),
+      ],
+    },
+  ];
+}
 
 function createSubFunctionAction(parent: Element): WizardActor {
   return (inputs: WizardInputElement[]) => {
