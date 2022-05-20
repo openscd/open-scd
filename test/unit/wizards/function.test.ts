@@ -8,9 +8,14 @@ import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   Create,
   isCreate,
+  isReplace,
+  Replace,
   WizardInputElement,
 } from '../../../src/foundation.js';
-import { createFunctionWizard } from '../../../src/wizards/function.js';
+import {
+  createFunctionWizard,
+  editFunctionWizard,
+} from '../../../src/wizards/function.js';
 
 describe('Wizards for SCL Function element', () => {
   let doc: XMLDocument;
@@ -49,7 +54,7 @@ describe('Wizards for SCL Function element', () => {
     });
 
     it('looks like the the latest snapshot', async () =>
-      expect(element.wizardUI.dialog).dom.to.equalSnapshot());
+      await expect(element.wizardUI.dialog).dom.to.equalSnapshot());
 
     it('does not accept empty name attribute', async () => {
       await primaryAction.click();
@@ -97,6 +102,84 @@ describe('Wizards for SCL Function element', () => {
       );
       expect(createAction.new.element).to.have.attribute('desc', 'SomeDesc');
       expect(createAction.new.element).to.have.attribute('type', 'SomeType');
+    });
+  });
+
+  describe('define an edit wizard that', () => {
+    beforeEach(async () => {
+      const wizard = editFunctionWizard(doc.querySelector('Function')!);
+      element.workflow.push(() => wizard);
+      await element.requestUpdate();
+
+      inputs = Array.from(element.wizardUI.inputs);
+
+      primaryAction = <HTMLElement>(
+        element.wizardUI.dialog?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      );
+
+      await element.wizardUI.requestUpdate(); // make sure wizard is rendered
+    });
+
+    it('looks like the the latest snapshot', async () =>
+      await expect(element.wizardUI.dialog).dom.to.equalSnapshot());
+
+    it('does not accept empty name attribute', async () => {
+      inputs[0].value = '';
+      await element.requestUpdate();
+
+      await primaryAction.click();
+
+      expect(actionEvent).to.not.have.been.called;
+    });
+
+    it('does not trigger action without changes', async () => {
+      await primaryAction.click();
+
+      expect(actionEvent).to.not.have.been.called;
+    });
+
+    it('triggers simple replace action updating name attribute', async () => {
+      inputs[0].value = 'someNonEmptyName';
+      await element.requestUpdate();
+      await primaryAction.click();
+
+      expect(actionEvent).to.be.calledOnce;
+      const action = actionEvent.args[0][0].detail.action;
+      expect(action).to.satisfy(isReplace);
+      const createAction = <Replace>action;
+
+      expect(createAction.new.element).to.have.attribute(
+        'name',
+        'someNonEmptyName'
+      );
+    });
+
+    it('triggers simple replace action updating desc attribute', async () => {
+      inputs[1].value = 'someDesc';
+      await element.requestUpdate();
+      await primaryAction.click();
+
+      expect(actionEvent).to.be.calledOnce;
+      const action = actionEvent.args[0][0].detail.action;
+      expect(action).to.satisfy(isReplace);
+      const createAction = <Replace>action;
+
+      expect(createAction.new.element).to.have.attribute('desc', 'someDesc');
+    });
+
+    it('triggers simple replace action updating type attribute', async () => {
+      inputs[2].value = 'someType';
+      await element.requestUpdate();
+      await primaryAction.click();
+
+      expect(actionEvent).to.be.calledOnce;
+      const action = actionEvent.args[0][0].detail.action;
+      expect(action).to.satisfy(isReplace);
+      const createAction = <Replace>action;
+
+      expect(createAction.new.element).to.have.attribute('type', 'someType');
     });
   });
 });
