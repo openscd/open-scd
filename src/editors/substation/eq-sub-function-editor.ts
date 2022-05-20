@@ -53,6 +53,11 @@ export class EqSubFunctionEditor extends LitElement {
   @query('mwc-menu') addMenu!: Menu;
   @query('mwc-icon-button[icon="playlist_add"]') addButton!: IconButton;
 
+  private openEditWizard(): void {
+    const wizard = wizards['EqSubFunction'].edit(this.element);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
+
   remove(): void {
     if (this.element.parentElement)
       this.dispatchEvent(
@@ -111,6 +116,11 @@ export class EqSubFunctionEditor extends LitElement {
 
   render(): TemplateResult {
     return html`<action-pane label="${this.header}" icon="functions" secondary
+      ><abbr slot="action" title="${translate('edit')}">
+        <mwc-icon-button
+          icon="edit"
+          @click=${() => this.openEditWizard()}
+        ></mwc-icon-button> </abbr
       ><abbr slot="action" title="${translate('remove')}">
         <mwc-icon-button
           icon="delete"

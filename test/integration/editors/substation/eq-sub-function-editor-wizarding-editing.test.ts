@@ -91,6 +91,67 @@ describe('eq-sub-function-editor wizarding editing integration', () => {
     });
   });
 
+  describe('open edit wizard', () => {
+    let nameField: WizardTextField;
+    let primaryAction: HTMLElement;
+
+    beforeEach(async () => {
+      element!.element = doc.querySelector(
+        'ConductingEquipment[name="QA1"] EqSubFunction[name="myEqSubSubFunction"]'
+      )!;
+
+      (<HTMLElement>(
+        element?.shadowRoot?.querySelector('mwc-icon-button[icon="edit"]')
+      )).click();
+      await parent.updateComplete;
+
+      nameField = <WizardTextField>(
+        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
+      );
+
+      primaryAction = <HTMLElement>(
+        parent.wizardUI.dialog?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      );
+    });
+
+    it('does not update EqSubFunction if name attribute is not unique', async () => {
+      expect(
+        doc.querySelectorAll(
+          'ConductingEquipment[name="QA1"] EqSubFunction[name="myEqFunc2"]'
+        )
+      ).to.lengthOf(1);
+
+      nameField.value = 'myEqFunc2';
+      primaryAction.click();
+      await parent.updateComplete;
+
+      expect(
+        doc.querySelectorAll(
+          'ConductingEquipment[name="QA1"] EqSubFunction[name="myEqFunc2"]'
+        )
+      ).to.lengthOf(1);
+    });
+
+    it('does update EqSubFunction if name attribute is unique', async () => {
+      nameField.value = 'someNewFunction';
+      await parent.updateComplete;
+      primaryAction.click();
+
+      expect(
+        doc.querySelector(
+          'ConductingEquipment[name="QA1"] EqSubFunction[name="someNewFunction"]'
+        )
+      ).to.exist;
+      expect(
+        doc.querySelector(
+          'ConductingEquipment[name="QA1"] EqSubFunction[name="myEqSubSubFunction"]'
+        )
+      ).to.not.exist;
+    });
+  });
+
   describe('has a delete icon button that', () => {
     let deleteButton: HTMLElement;
 
