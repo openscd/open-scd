@@ -11,6 +11,7 @@ import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
 import '../filtered-list.js';
 import {
+  Create,
   createElement,
   EditorAction,
   getChildElementsByTagName,
@@ -22,6 +23,112 @@ import {
   WizardActor,
   WizardInputElement,
 } from '../foundation.js';
+
+function getUniqueLnInst(parent: Element, lnClass: string): number {
+  const lnInsts = Array.from(
+    parent.querySelectorAll(`LNode[lnClass="${lnClass}"]`)
+  )
+    .map(lNode => Number.parseInt(lNode.getAttribute('lnInst')!))
+    .sort((a, b) => a - b);
+
+  if (lnInsts.length === 0) return 1;
+
+  for (let i = 1; i < 99; i++) {
+    if (lnInsts[i - 1] !== i) return i;
+  }
+
+  return NaN;
+}
+
+function createLNodeAction(parent: Element): WizardActor {
+  return (
+    inputs: WizardInputElement[],
+    wizard: Element,
+    list?: List | null
+  ): EditorAction[] => {
+    const selectedLNodeTypes = <Element[]>list!.items
+      .filter(item => item.selected)
+      .map(item => item.value)
+      .map(identity => {
+        return parent.ownerDocument.querySelector(
+          selector('LNodeType', identity)
+        );
+      })
+      .filter(item => item !== null);
+
+    const clonedParent = <Element>parent.cloneNode(true); //for multiple selection of same lnClass
+
+    const createActions: Create[] = <Create[]>selectedLNodeTypes
+      .map(selectedLNodeType => {
+        const lnClass = selectedLNodeType.getAttribute('lnClass');
+        if (!lnClass) return null;
+
+        const uniqueLnInst = getUniqueLnInst(clonedParent, lnClass);
+        if (isNaN(uniqueLnInst) || uniqueLnInst > 99) return null;
+
+        const existLLN0 =
+          clonedParent.querySelector('LNode[lnClass="LLN0"]') !== null;
+        if (lnClass === 'LLN0' && existLLN0) return null;
+
+        const lnInst = lnClass === 'LLN0' ? '' : `${uniqueLnInst}`;
+
+        const element = createElement(parent.ownerDocument, 'LNode', {
+          iedName: 'None',
+          ldInst: null,
+          prefix: null,
+          lnClass,
+          lnInst,
+          lnType: selectedLNodeType.getAttribute('id')!,
+        });
+
+        clonedParent.appendChild(element); //for multiple selection of same lnClass
+
+        return { new: { parent, element } };
+      })
+      .filter(action => action);
+
+    return createActions;
+  };
+}
+
+/** @returns a Wizard for creating `LNode` instances within parent. */
+export function createLNodeWizard(parent: Element): Wizard {
+  const lNodeTypes = Array.from(
+    parent.ownerDocument.querySelectorAll('LNodeType')
+  );
+
+  return [
+    {
+      title: get('wizard.title.add', { tagName: 'LNode' }),
+      primary: {
+        icon: 'save',
+        label: get('save'),
+        action: createLNodeAction(parent),
+      },
+      content: [
+        html`<filtered-list multi
+          >${lNodeTypes.map(lNodeType => {
+            const isDesabled =
+              (lNodeType.getAttribute('lnClass') === 'LLN0' &&
+                parent.querySelector('LNode[lnClass="LLN0"]') !== null) ||
+              (lNodeType.getAttribute('lnClass') === 'LPHD' &&
+                parent.querySelector('LNode[lnClass="LPHD"]') !== null);
+
+            return html`<mwc-check-list-item
+              twoline
+              value="${identity(lNodeType)}"
+              ?disabled=${isDesabled}
+              ><span>${lNodeType.getAttribute('lnClass')}</span
+              ><span slot="secondary"
+                >${identity(lNodeType)}</span
+              ></mwc-check-list-item
+            >`;
+          })}</filtered-list
+        >`,
+      ],
+    },
+  ];
+}
 
 /** Description of a `ListItem` representing an `IED` or `LN[0]` */
 interface ItemDescription {
