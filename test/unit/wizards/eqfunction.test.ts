@@ -146,6 +146,14 @@ describe('Wizards for SCL EqFunction element', () => {
       expect(actionEvent).to.not.have.been.called;
     });
 
+    it('does not trigger action if name attribute is not unique', async () => {
+      inputs[0].value = 'myEqFuncQB2';
+      primaryAction.click();
+      await element.updateComplete;
+
+      expect(actionEvent).to.not.have.been.called;
+    });
+
     it('triggers simple replace action updating name attribute', async () => {
       inputs[0].value = 'someNonEmptyName';
       await element.requestUpdate();
