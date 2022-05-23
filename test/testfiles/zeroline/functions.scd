@@ -31,7 +31,7 @@
                 </EqFunction> 
 			</PowerTransformer>
 			<Bay name="COUPLING_BAY" desc="Bay">
-				<Function name="bayName">
+				<Function name="bayName" desc="myDesc" type="myFuncType">
 					<SubFunction name="myBaySubFunc" desc="myDesc" type="myBaySubFuncType">
 						<LNode iedName="None" prefix="DC" lnClass="XSWI" lnInst="1"/>
 						<LNode iedName="None" prefix="DC" lnClass="CSWI" lnInst="1"/>
