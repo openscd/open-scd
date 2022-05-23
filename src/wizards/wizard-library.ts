@@ -26,7 +26,10 @@ import { createDaWizard } from './da.js';
 import { editDAIWizard } from './dai.js';
 import { editGseControlWizard } from './gsecontrol.js';
 import { createFunctionWizard, editFunctionWizard } from './function.js';
-import { createEqSubFunctionWizard } from './eqsubfunction.js';
+import {
+  createEqSubFunctionWizard,
+  editEqSubFunctionWizard,
+} from './eqsubfunction.js';
 import { createEqFunctionWizard, editEqFunctionWizard } from './eqfunction.js';
 import {
   createSubFunctionWizard,
@@ -198,7 +201,7 @@ export const wizards: Record<
     create: createEqFunctionWizard,
   },
   EqSubFunction: {
-    edit: emptyWizard,
+    edit: editEqSubFunctionWizard,
     create: createEqSubFunctionWizard,
   },
   ExtRef: {

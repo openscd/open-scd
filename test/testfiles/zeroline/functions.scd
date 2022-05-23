@@ -52,42 +52,43 @@
 					<EqFunction name="myEqFuncQA1" desc="funcForQA1" type="eqFuncType">
                         <EqSubFunction name="myEqSubFunc">
     						<EqSubFunction name="myEqSubSubFunction" desc="my desc" type="sometype"/>
+							<EqSubFunction name="myEqFunc2"/>
     					</EqSubFunction>
                     </EqFunction>
                 </ConductingEquipment>
     			<ConductingEquipment name="QB1" type="DIS">
                     <EqFunction name="myEqFuncQB1">
                         <EqSubFunction name="myEqSubFunc">
-							<LNode iedName="None" prefix="DC" lnClass="XSWI" lnInst="1"/>
-							<LNode iedName="None" prefix="DC" lnClass="CSWI" lnInst="1"/>
-							<LNode iedName="None" prefix="DC" lnClass="CILO" lnInst="1"/>
-						</EqSubFunction>
+    						<LNode iedName="None" prefix="DC" lnClass="XSWI" lnInst="1"/>
+    						<LNode iedName="None" prefix="DC" lnClass="CSWI" lnInst="1"/>
+    						<LNode iedName="None" prefix="DC" lnClass="CILO" lnInst="1"/>
+    					</EqSubFunction>
                     </EqFunction>
                 </ConductingEquipment>
     			<ConductingEquipment name="QB2" type="DIS">
                     <EqFunction name="myEqFuncQB1">
                         <LNode iedName="None" prefix="DC" lnClass="XSWI" lnInst="1"/>
-						<LNode iedName="None" prefix="DC" lnClass="CSWI" lnInst="1"/>
-						<LNode iedName="None" prefix="DC" lnClass="CILO" lnInst="1"/>
+    					<LNode iedName="None" prefix="DC" lnClass="CSWI" lnInst="1"/>
+    					<LNode iedName="None" prefix="DC" lnClass="CILO" lnInst="1"/>
                     </EqFunction>
                 </ConductingEquipment>
     			<ConductingEquipment name="QC9" type="DIS">
-					<LNode iedName="IED1" ldInst="CircuitBreaker_CB1" prefix="" lnClass="XCBR" lnInst="1"/>
-					<LNode iedName="IED1" ldInst="CircuitBreaker_CB1" prefix="" lnClass="CSWI" lnInst="1"/>
-					<LNode iedName="IED1" ldInst="CircuitBreaker_CB1" prefix="" lnClass="CILO" lnInst="1"/>
+    				<LNode iedName="IED1" ldInst="CircuitBreaker_CB1" prefix="" lnClass="XCBR" lnInst="1"/>
+    				<LNode iedName="IED1" ldInst="CircuitBreaker_CB1" prefix="" lnClass="CSWI" lnInst="1"/>
+    				<LNode iedName="IED1" ldInst="CircuitBreaker_CB1" prefix="" lnClass="CILO" lnInst="1"/>
                 </ConductingEquipment>
     		</Bay>
-			<Bay name="Q01" desc="Bay with LNode">
-				<LNode iedName="IED1" ldInst="CircuitBreaker_CB1" prefix="" lnClass="XCBR" lnInst="1"/>
-				<LNode iedName="IED1" ldInst="CircuitBreaker_CB1" prefix="" lnClass="CSWI" lnInst="1"/>
-				<LNode iedName="IED1" ldInst="CircuitBreaker_CB1" prefix="" lnClass="CILO" lnInst="1"/>
+    		<Bay name="Q01" desc="Bay with LNode">
+    			<LNode iedName="IED1" ldInst="CircuitBreaker_CB1" prefix="" lnClass="XCBR" lnInst="1"/>
+    			<LNode iedName="IED1" ldInst="CircuitBreaker_CB1" prefix="" lnClass="CSWI" lnInst="1"/>
+    			<LNode iedName="IED1" ldInst="CircuitBreaker_CB1" prefix="" lnClass="CILO" lnInst="1"/>
             </Bay>
     	</VoltageLevel>
-		<VoltageLevel name="J1" desc="Voltage Level with LNode">
-			<LNode iedName="IED1" ldInst="CircuitBreaker_CB1" prefix="" lnClass="XCBR" lnInst="1"/>
-			<LNode iedName="IED1" ldInst="CircuitBreaker_CB1" prefix="" lnClass="CSWI" lnInst="1"/>
-			<LNode iedName="IED1" ldInst="CircuitBreaker_CB1" prefix="" lnClass="CILO" lnInst="1"/>
-		</VoltageLevel>
+    	<VoltageLevel name="J1" desc="Voltage Level with LNode">
+    		<LNode iedName="IED1" ldInst="CircuitBreaker_CB1" prefix="" lnClass="XCBR" lnInst="1"/>
+    		<LNode iedName="IED1" ldInst="CircuitBreaker_CB1" prefix="" lnClass="CSWI" lnInst="1"/>
+    		<LNode iedName="IED1" ldInst="CircuitBreaker_CB1" prefix="" lnClass="CILO" lnInst="1"/>
+    	</VoltageLevel>
     </Substation>
     <IED name="IED1" type="DummyIED" manufacturer="DummyManufactorer" configVersion="1" originalSclVersion="2007" originalSclRevision="B" owner="DummyOwner">
     	<Services>
@@ -517,4 +518,5 @@
     		<EnumVal ord="8">process</EnumVal>
     	</EnumType>
     </DataTypeTemplates>
+
 </SCL>
