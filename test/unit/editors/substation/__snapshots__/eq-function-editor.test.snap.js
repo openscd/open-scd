@@ -11,6 +11,13 @@ snapshots["web component rendering EqFunction element with complete attribute se
 >
   <abbr
     slot="action"
+    title="[edit]"
+  >
+    <mwc-icon-button icon="edit">
+    </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="action"
     title="[remove]"
   >
     <mwc-icon-button icon="delete">
@@ -67,6 +74,13 @@ snapshots["web component rendering EqFunction element with missing desc and type
 >
   <abbr
     slot="action"
+    title="[edit]"
+  >
+    <mwc-icon-button icon="edit">
+    </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="action"
     title="[remove]"
   >
     <mwc-icon-button icon="delete">
@@ -121,6 +135,13 @@ snapshots["web component rendering EqFunction element with existing LNode childr
   secondary=""
   tabindex="0"
 >
+  <abbr
+    slot="action"
+    title="[edit]"
+  >
+    <mwc-icon-button icon="edit">
+    </mwc-icon-button>
+  </abbr>
   <abbr
     slot="action"
     title="[remove]"
