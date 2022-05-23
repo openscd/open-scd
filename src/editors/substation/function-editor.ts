@@ -13,6 +13,7 @@ import '../../action-pane.js';
 import './sub-function-editor.js';
 import {
   getChildElementsByTagName,
+  newActionEvent,
   newWizardEvent,
   SCLTag,
   tags,
@@ -48,6 +49,18 @@ export class FunctionEditor extends LitElement {
 
   @query('mwc-menu') addMenu!: Menu;
   @query('mwc-icon-button[icon="playlist_add"]') addButton!: IconButton;
+
+  remove(): void {
+    if (this.element.parentElement)
+      this.dispatchEvent(
+        newActionEvent({
+          old: {
+            parent: this.element.parentElement,
+            element: this.element,
+          },
+        })
+      );
+  }
 
   private openCreateWizard(tagName: string): void {
     const wizard = wizards[<SCLTag>tagName].create(this.element!);
@@ -96,6 +109,11 @@ export class FunctionEditor extends LitElement {
       icon="functions"
       secondary
       highlighted
+      ><abbr slot="action" title="${translate('remove')}">
+        <mwc-icon-button
+          icon="delete"
+          @click=${() => this.remove()}
+        ></mwc-icon-button> </abbr
       ><abbr
         slot="action"
         style="position:relative;"

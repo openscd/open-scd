@@ -11,6 +11,13 @@ snapshots["web component rendering Function element with complete attribute set 
 >
   <abbr
     slot="action"
+    title="[remove]"
+  >
+    <mwc-icon-button icon="delete">
+    </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="action"
     style="position:relative;"
     title="[add]"
   >
@@ -71,6 +78,13 @@ snapshots["web component rendering Function element with missing desc and type a
 >
   <abbr
     slot="action"
+    title="[remove]"
+  >
+    <mwc-icon-button icon="delete">
+    </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="action"
     style="position:relative;"
     title="[add]"
   >
@@ -129,6 +143,13 @@ snapshots["web component rendering Function element with existing LNode children
   secondary=""
   tabindex="0"
 >
+  <abbr
+    slot="action"
+    title="[remove]"
+  >
+    <mwc-icon-button icon="delete">
+    </mwc-icon-button>
+  </abbr>
   <abbr
     slot="action"
     style="position:relative;"

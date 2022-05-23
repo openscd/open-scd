@@ -8,32 +8,34 @@ import { SubFunctionEditor } from '../../../../src/editors/substation/sub-functi
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
 
 describe('sub-function-editor wizarding editing integration', () => {
-  describe('open create wizard for element SubFunction', () => {
-    let doc: XMLDocument;
-    let parent: MockWizardEditor;
-    let element: SubFunctionEditor | null;
+  let doc: XMLDocument;
+  let parent: MockWizardEditor;
+  let element: SubFunctionEditor | null;
 
+  beforeEach(async () => {
+    doc = await fetch('/test/testfiles/zeroline/functions.scd')
+      .then(response => response.text())
+      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+    parent = <MockWizardEditor>(
+      await fixture(
+        html`<mock-wizard-editor
+          ><sub-function-editor
+            .element=${doc.querySelector(
+              'Function[name="voltLvName"] > SubFunction'
+            )}
+          ></sub-function-editor
+        ></mock-wizard-editor>`
+      )
+    );
+
+    element = parent.querySelector('sub-function-editor');
+  });
+
+  describe('open create wizard for element SubFunction', () => {
     let nameField: WizardTextField;
     let primaryAction: HTMLElement;
 
     beforeEach(async () => {
-      doc = await fetch('/test/testfiles/zeroline/functions.scd')
-        .then(response => response.text())
-        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      parent = <MockWizardEditor>(
-        await fixture(
-          html`<mock-wizard-editor
-            ><sub-function-editor
-              .element=${doc.querySelector(
-                'Function[name="voltLvName"] > SubFunction'
-              )}
-            ></sub-function-editor
-          ></mock-wizard-editor>`
-        )
-      );
-
-      element = parent.querySelector('sub-function-editor');
-
       (<HTMLElement>(
         element?.shadowRoot?.querySelector('mwc-list-item[value="SubFunction"]')
       )).click();
@@ -84,6 +86,27 @@ describe('sub-function-editor wizarding editing integration', () => {
           'Function[name="voltLvName"] > SubFunction > SubFunction[name="someNewSubFunction"]'
         )
       ).to.exist;
+    });
+  });
+
+  describe('has a delete icon button that', () => {
+    let deleteButton: HTMLElement;
+
+    beforeEach(async () => {
+      deleteButton = <HTMLElement>(
+        element?.shadowRoot?.querySelector('mwc-icon-button[icon="delete"]')
+      );
+      await parent.updateComplete;
+    });
+
+    it('removes the attached SubFunction element from the document', async () => {
+      expect(doc.querySelector('Function[name="voltLvName"] > SubFunction')).to
+        .exist;
+
+      await deleteButton.click();
+
+      expect(doc.querySelector('Function[name="voltLvName"] > SubFunction')).to
+        .not.exist;
     });
   });
 });

@@ -10,6 +10,13 @@ snapshots["web component rendering SubFunction element with complete attribute s
 >
   <abbr
     slot="action"
+    title="[remove]"
+  >
+    <mwc-icon-button icon="delete">
+    </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="action"
     style="position:relative;"
     title="[add]"
   >
@@ -69,6 +76,13 @@ snapshots["web component rendering SubFunction element with missing desc and typ
 >
   <abbr
     slot="action"
+    title="[remove]"
+  >
+    <mwc-icon-button icon="delete">
+    </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="action"
     style="position:relative;"
     title="[add]"
   >
@@ -124,6 +138,13 @@ snapshots["web component rendering SubFunction element with existing LNode child
   secondary=""
   tabindex="0"
 >
+  <abbr
+    slot="action"
+    title="[remove]"
+  >
+    <mwc-icon-button icon="delete">
+    </mwc-icon-button>
+  </abbr>
   <abbr
     slot="action"
     style="position:relative;"

@@ -10,6 +10,13 @@ snapshots["web component rendering EqSubFunction element with complete attribute
 >
   <abbr
     slot="action"
+    title="[remove]"
+  >
+    <mwc-icon-button icon="delete">
+    </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="action"
     style="position:relative;"
     title="[add]"
   >
@@ -54,6 +61,13 @@ snapshots["web component rendering EqSubFunction element with missing desc and t
   secondary=""
   tabindex="0"
 >
+  <abbr
+    slot="action"
+    title="[remove]"
+  >
+    <mwc-icon-button icon="delete">
+    </mwc-icon-button>
+  </abbr>
   <abbr
     slot="action"
     style="position:relative;"
@@ -102,6 +116,13 @@ snapshots["web component rendering EqSubFunction element with existing LNode chi
   secondary=""
   tabindex="0"
 >
+  <abbr
+    slot="action"
+    title="[remove]"
+  >
+    <mwc-icon-button icon="delete">
+    </mwc-icon-button>
+  </abbr>
   <abbr
     slot="action"
     style="position:relative;"

@@ -21,6 +21,7 @@ import { Menu } from '@material/mwc-menu';
 import '../../action-pane.js';
 import {
   getChildElementsByTagName,
+  newActionEvent,
   newWizardEvent,
   SCLTag,
   tags,
@@ -51,6 +52,18 @@ export class EqSubFunctionEditor extends LitElement {
 
   @query('mwc-menu') addMenu!: Menu;
   @query('mwc-icon-button[icon="playlist_add"]') addButton!: IconButton;
+
+  remove(): void {
+    if (this.element.parentElement)
+      this.dispatchEvent(
+        newActionEvent({
+          old: {
+            parent: this.element.parentElement,
+            element: this.element,
+          },
+        })
+      );
+  }
 
   private openCreateWizard(tagName: string): void {
     const wizard = wizards[<SCLTag>tagName].create(this.element!);
@@ -98,6 +111,11 @@ export class EqSubFunctionEditor extends LitElement {
 
   render(): TemplateResult {
     return html`<action-pane label="${this.header}" icon="functions" secondary
+      ><abbr slot="action" title="${translate('remove')}">
+        <mwc-icon-button
+          icon="delete"
+          @click=${() => this.remove()}
+        ></mwc-icon-button> </abbr
       ><abbr
         slot="action"
         style="position:relative;"
