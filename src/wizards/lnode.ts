@@ -17,11 +17,13 @@ import {
   getChildElementsByTagName,
   identity,
   isPublic,
+  newWizardEvent,
   referencePath,
   selector,
   Wizard,
   WizardActor,
   WizardInputElement,
+  WizardMenuActor,
 } from '../foundation.js';
 
 function getUniqueLnInst(parent: Element, lnClass: string): number {
@@ -91,15 +93,28 @@ function createLNodeAction(parent: Element): WizardActor {
   };
 }
 
-/** @returns a Wizard for creating `LNode` instances within parent. */
-export function createLNodeWizard(parent: Element): Wizard {
+function openLNodeReferenceWizard(parent: Element): WizardMenuActor {
+  return (wizard: Element): void => {
+    wizard.dispatchEvent(newWizardEvent());
+    wizard.dispatchEvent(newWizardEvent(lNodeReferenceWizard(parent)));
+  };
+}
+
+function lNodeInstanceWizard(parent: Element): Wizard {
   const lNodeTypes = Array.from(
     parent.ownerDocument.querySelectorAll('LNodeType')
   );
 
   return [
     {
-      title: get('wizard.title.add', { tagName: 'LNode' }),
+      title: get('lnode.wizard.title.selectLNodeTypes'),
+      menuActions: [
+        {
+          icon: '',
+          label: get('lnode.wizard.reference'),
+          action: openLNodeReferenceWizard(parent),
+        },
+      ],
       primary: {
         icon: 'save',
         label: get('save'),
@@ -110,9 +125,13 @@ export function createLNodeWizard(parent: Element): Wizard {
           >${lNodeTypes.map(lNodeType => {
             const isDesabled =
               (lNodeType.getAttribute('lnClass') === 'LLN0' &&
-                parent.querySelector('LNode[lnClass="LLN0"]') !== null) ||
+                getChildElementsByTagName(parent, 'LNode').some(
+                  lnode => lnode.getAttribute('lnClass') === 'LLN0'
+                )) ||
               (lNodeType.getAttribute('lnClass') === 'LPHD' &&
-                parent.querySelector('LNode[lnClass="LPHD"]') !== null);
+                getChildElementsByTagName(parent, 'LNode').some(
+                  lnode => lnode.getAttribute('lnClass') === 'LPHD'
+                ));
 
             return html`<mwc-check-list-item
               twoline
@@ -120,7 +139,9 @@ export function createLNodeWizard(parent: Element): Wizard {
               ?disabled=${isDesabled}
               ><span>${lNodeType.getAttribute('lnClass')}</span
               ><span slot="secondary"
-                >${identity(lNodeType)}</span
+                >${isDesabled
+                  ? get('lnode.wizard.uniquewarning')
+                  : identity(lNodeType)}</span
               ></mwc-check-list-item
             >`;
           })}</filtered-list
@@ -375,26 +396,50 @@ function renderIEDPage(element: Element): TemplateResult {
     </mwc-list-item>`;
 }
 
-/** @returns a Wizard for editing `element`'s `LNode` children. */
-export function lNodeWizard(element: Element): Wizard {
+function openLNodeInstanceWizard(parent: Element): WizardMenuActor {
+  return (wizard: Element): void => {
+    wizard.dispatchEvent(newWizardEvent());
+    wizard.dispatchEvent(newWizardEvent(lNodeInstanceWizard(parent)));
+  };
+}
+
+function lNodeReferenceWizard(parent: Element): Wizard {
   return [
     {
       title: get('lnode.wizard.title.selectIEDs'),
-      element,
-      content: [renderIEDPage(element)],
+      menuActions: [
+        {
+          icon: '',
+          label: get('lnode.wizard.instance'),
+          action: openLNodeInstanceWizard(parent),
+        },
+      ],
+      content: [renderIEDPage(parent)],
     },
     {
-      initial: Array.from(element.children).some(
+      initial: Array.from(parent.children).some(
         child => child.tagName === 'LNode'
       ),
       title: get('lnode.wizard.title.selectLNs'),
-      element,
       primary: {
         icon: 'save',
         label: get('save'),
-        action: lNodeWizardAction(element),
+        action: lNodeWizardAction(parent),
       },
       content: [html`<filtered-list multi id="lnList"></filtered-list>`],
     },
   ];
+}
+
+/** @returns a Wizard for editing `element`'s `LNode` children. */
+export function lNodeWizard(parent: Element): Wizard {
+  if (
+    parent.tagName === 'Function' ||
+    parent.tagName === 'SubFunction' ||
+    parent.tagName === 'EqFunction' ||
+    parent.tagName === 'EqSubFunction'
+  )
+    return lNodeInstanceWizard(parent);
+
+  return lNodeReferenceWizard(parent);
 }

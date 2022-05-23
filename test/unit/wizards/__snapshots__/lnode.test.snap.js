@@ -1,13 +1,32 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Wizards for LNode element contain a create wizard that with existing LLN0 and LPHD instances looks like the latest snapshot"] = 
+snapshots["Wizards for LNode element contain a LNode instantiate wizard that with existing LLN0 and LPHD instances looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="close"
-  heading="[wizard.title.add]"
+  heading="[lnode.wizard.title.selectLNodeTypes]"
   open=""
-  style="--mdc-dialog-min-width:calc(100% + 0px)"
+  style="--mdc-dialog-min-width:calc(100% + 48px)"
 >
+  <nav>
+    <mwc-icon-button icon="more_vert">
+    </mwc-icon-button>
+    <mwc-menu
+      class="actions-menu"
+      corner="BOTTOM_RIGHT"
+      menucorner="END"
+    >
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <span>
+          [lnode.wizard.reference]
+        </span>
+      </mwc-list-item>
+    </mwc-menu>
+  </nav>
   <div id="wizard-content">
     <filtered-list multi="">
       <mwc-check-list-item
@@ -23,7 +42,7 @@ snapshots["Wizards for LNode element contain a create wizard that with existing 
           LLN0
         </span>
         <span slot="secondary">
-          #Dummy.LLN0
+          [lnode.wizard.uniquewarning]
         </span>
       </mwc-check-list-item>
       <mwc-check-list-item
@@ -39,7 +58,7 @@ snapshots["Wizards for LNode element contain a create wizard that with existing 
           LPHD
         </span>
         <span slot="secondary">
-          #Dummy.LPHD1
+          [lnode.wizard.uniquewarning]
         </span>
       </mwc-check-list-item>
       <mwc-check-list-item
@@ -150,15 +169,34 @@ snapshots["Wizards for LNode element contain a create wizard that with existing 
   </mwc-button>
 </mwc-dialog>
 `;
-/* end snapshot Wizards for LNode element contain a create wizard that with existing LLN0 and LPHD instances looks like the latest snapshot */
+/* end snapshot Wizards for LNode element contain a LNode instantiate wizard that with existing LLN0 and LPHD instances looks like the latest snapshot */
 
-snapshots["Wizards for LNode element contain a create wizard that with existing LLN0 but missing LPHD instances looks like the latest snapshot"] = 
+snapshots["Wizards for LNode element contain a LNode instantiate wizard that with existing LLN0 but missing LPHD instances looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="close"
-  heading="[wizard.title.add]"
+  heading="[lnode.wizard.title.selectLNodeTypes]"
   open=""
-  style="--mdc-dialog-min-width:calc(100% + 0px)"
+  style="--mdc-dialog-min-width:calc(100% + 48px)"
 >
+  <nav>
+    <mwc-icon-button icon="more_vert">
+    </mwc-icon-button>
+    <mwc-menu
+      class="actions-menu"
+      corner="BOTTOM_RIGHT"
+      menucorner="END"
+    >
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <span>
+          [lnode.wizard.reference]
+        </span>
+      </mwc-list-item>
+    </mwc-menu>
+  </nav>
   <div id="wizard-content">
     <filtered-list multi="">
       <mwc-check-list-item
@@ -174,7 +212,7 @@ snapshots["Wizards for LNode element contain a create wizard that with existing 
           LLN0
         </span>
         <span slot="secondary">
-          #Dummy.LLN0
+          [lnode.wizard.uniquewarning]
         </span>
       </mwc-check-list-item>
       <mwc-check-list-item
@@ -300,15 +338,34 @@ snapshots["Wizards for LNode element contain a create wizard that with existing 
   </mwc-button>
 </mwc-dialog>
 `;
-/* end snapshot Wizards for LNode element contain a create wizard that with existing LLN0 but missing LPHD instances looks like the latest snapshot */
+/* end snapshot Wizards for LNode element contain a LNode instantiate wizard that with existing LLN0 but missing LPHD instances looks like the latest snapshot */
 
-snapshots["Wizards for LNode element contain a create wizard that with missing LLN0 and LPHD instances looks like the latest snapshot"] = 
+snapshots["Wizards for LNode element contain a LNode instantiate wizard that with missing LLN0 and LPHD instances looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="close"
-  heading="[wizard.title.add]"
+  heading="[lnode.wizard.title.selectLNodeTypes]"
   open=""
-  style="--mdc-dialog-min-width:calc(100% + 0px)"
+  style="--mdc-dialog-min-width:calc(100% + 48px)"
 >
+  <nav>
+    <mwc-icon-button icon="more_vert">
+    </mwc-icon-button>
+    <mwc-menu
+      class="actions-menu"
+      corner="BOTTOM_RIGHT"
+      menucorner="END"
+    >
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <span>
+          [lnode.wizard.reference]
+        </span>
+      </mwc-list-item>
+    </mwc-menu>
+  </nav>
   <div id="wizard-content">
     <filtered-list multi="">
       <mwc-check-list-item
@@ -449,5 +506,270 @@ snapshots["Wizards for LNode element contain a create wizard that with missing L
   </mwc-button>
 </mwc-dialog>
 `;
-/* end snapshot Wizards for LNode element contain a create wizard that with missing LLN0 and LPHD instances looks like the latest snapshot */
+/* end snapshot Wizards for LNode element contain a LNode instantiate wizard that with missing LLN0 and LPHD instances looks like the latest snapshot */
+
+snapshots["Wizards for LNode element contain a LNode reference create wizard that with references to existing logical nodes looks like the latest snapshot"] = 
+`<mwc-dialog
+  defaultaction="close"
+  heading="[lnode.wizard.title.selectLNs]"
+  open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
+>
+  <div id="wizard-content">
+    <filtered-list
+      id="lnList"
+      multi=""
+    >
+      <mwc-check-list-item
+        mwc-list-item=""
+        selected=""
+        twoline=""
+        value="IED2>>CBSW> XSWI 2"
+      >
+        <span>
+          XSWI2
+        </span>
+        <span slot="secondary">
+          IED2 |
+        CBSW
+        </span>
+      </mwc-check-list-item>
+      <mwc-check-list-item
+        mwc-list-item=""
+        twoline=""
+        value="IED2>>CBSW> XCBR 1"
+      >
+        <span>
+          XCBR1
+        </span>
+        <span slot="secondary">
+          IED2 |
+        CBSW
+        </span>
+      </mwc-check-list-item>
+      <mwc-check-list-item
+        mwc-list-item=""
+        twoline=""
+        value="IED2>>CBSW> XSWI 1"
+      >
+        <span>
+          XSWI1
+        </span>
+        <span slot="secondary">
+          IED2 |
+        CBSW
+        </span>
+      </mwc-check-list-item>
+      <mwc-check-list-item
+        mwc-list-item=""
+        twoline=""
+        value="IED2>>CBSW> GGIO 1"
+      >
+        <span>
+          GGIO1
+        </span>
+        <span slot="secondary">
+          IED2 |
+        CBSW
+        </span>
+      </mwc-check-list-item>
+      <mwc-check-list-item
+        mwc-list-item=""
+        twoline=""
+        value="IED2>>CircuitBreaker_CB1"
+      >
+        <span>
+          LLN0
+        </span>
+        <span slot="secondary">
+          IED2 |
+        CircuitBreaker_CB1
+        </span>
+      </mwc-check-list-item>
+      <mwc-check-list-item
+        mwc-list-item=""
+        twoline=""
+        value="IED2>>CircuitBreaker_CB1> XCBR 1"
+      >
+        <span>
+          XCBR1
+        </span>
+        <span slot="secondary">
+          IED2 |
+        CircuitBreaker_CB1
+        </span>
+      </mwc-check-list-item>
+      <mwc-check-list-item
+        mwc-list-item=""
+        twoline=""
+        value="IED2>>CircuitBreaker_CB1> CSWI 1"
+      >
+        <span>
+          CSWI1
+        </span>
+        <span slot="secondary">
+          IED2 |
+        CircuitBreaker_CB1
+        </span>
+      </mwc-check-list-item>
+      <mwc-check-list-item
+        disabled=""
+        mwc-list-item=""
+        twoline=""
+        value="IED2>>CBSW"
+      >
+        <span>
+          LLN0
+          <mwc-icon style="--mdc-icon-size: 1em;">
+            account_tree
+          </mwc-icon>
+          /AA1/E1/COUPLING_BAY
+        </span>
+        <span slot="secondary">
+          IED2 |
+        CBSW
+        </span>
+      </mwc-check-list-item>
+      <mwc-check-list-item
+        disabled=""
+        mwc-list-item=""
+        twoline=""
+        value="IED2>>CBSW> LPHD 1"
+      >
+        <span>
+          LPHD1
+          <mwc-icon style="--mdc-icon-size: 1em;">
+            account_tree
+          </mwc-icon>
+          /AA1/E1/COUPLING_BAY
+        </span>
+        <span slot="secondary">
+          IED2 |
+        CBSW
+        </span>
+      </mwc-check-list-item>
+      <mwc-check-list-item
+        disabled=""
+        mwc-list-item=""
+        twoline=""
+        value="IED2>>CBSW> XSWI 3"
+      >
+        <span>
+          XSWI3
+          <mwc-icon style="--mdc-icon-size: 1em;">
+            account_tree
+          </mwc-icon>
+          /AA1/E1/COUPLING_BAY
+        </span>
+        <span slot="secondary">
+          IED2 |
+        CBSW
+        </span>
+      </mwc-check-list-item>
+    </filtered-list>
+  </div>
+  <mwc-button
+    dialogaction="prev"
+    icon="navigate_before"
+    label="[lnode.wizard.title.selectIEDs]"
+    slot="secondaryAction"
+  >
+  </mwc-button>
+  <mwc-button
+    dialogaction="close"
+    label="[cancel]"
+    slot="secondaryAction"
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+  </mwc-button>
+  <mwc-button
+    icon="save"
+    label="[save]"
+    slot="primaryAction"
+    trailingicon=""
+  >
+  </mwc-button>
+</mwc-dialog>
+`;
+/* end snapshot Wizards for LNode element contain a LNode reference create wizard that with references to existing logical nodes looks like the latest snapshot */
+
+snapshots["Wizards for LNode element contain a LNode reference create wizard that with missing references to existing logical nodes looks like the latest snapshot"] = 
+`<mwc-dialog
+  defaultaction="close"
+  heading="[lnode.wizard.title.selectIEDs]"
+  open=""
+  style="--mdc-dialog-min-width:calc(100% + 48px)"
+>
+  <nav>
+    <mwc-icon-button icon="more_vert">
+    </mwc-icon-button>
+    <mwc-menu
+      class="actions-menu"
+      corner="BOTTOM_RIGHT"
+      menucorner="END"
+    >
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <span>
+          [lnode.wizard.instance]
+        </span>
+      </mwc-list-item>
+    </mwc-menu>
+  </nav>
+  <div id="wizard-content">
+    <filtered-list
+      disablecheckall=""
+      id="iedList"
+      multi=""
+    >
+      <mwc-check-list-item
+        aria-disabled="false"
+        graphic="control"
+        mwc-list-item=""
+        tabindex="0"
+        value="IED1"
+      >
+        IED1
+      </mwc-check-list-item>
+      <mwc-check-list-item
+        aria-disabled="false"
+        graphic="control"
+        mwc-list-item=""
+        tabindex="-1"
+        value="IED2"
+      >
+        IED2
+      </mwc-check-list-item>
+      <mwc-check-list-item
+        aria-disabled="false"
+        graphic="control"
+        mwc-list-item=""
+        tabindex="-1"
+        value="IED3"
+      >
+        IED3
+      </mwc-check-list-item>
+    </filtered-list>
+  </div>
+  <mwc-button
+    dialogaction="close"
+    label="[cancel]"
+    slot="secondaryAction"
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+  </mwc-button>
+  <mwc-button
+    dialogaction="next"
+    icon="navigate_next"
+    label="[lnode.wizard.title.selectLNs]"
+    slot="primaryAction"
+    trailingicon=""
+  >
+  </mwc-button>
+</mwc-dialog>
+`;
+/* end snapshot Wizards for LNode element contain a LNode reference create wizard that with missing references to existing logical nodes looks like the latest snapshot */
 

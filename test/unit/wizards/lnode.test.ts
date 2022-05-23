@@ -6,7 +6,7 @@ import { MockWizardEditor } from '../../mock-wizard-editor.js';
 
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
-import { createLNodeWizard } from '../../../src/wizards/lnode.js';
+import { lNodeWizard } from '../../../src/wizards/lnode.js';
 import { Create, isCreate } from '../../../src/foundation.js';
 
 describe('Wizards for LNode element', () => {
@@ -28,10 +28,10 @@ describe('Wizards for LNode element', () => {
     window.addEventListener('editor-action', actionEvent);
   });
 
-  describe('contain a create wizard that', () => {
+  describe('contain a LNode instantiate wizard that', () => {
     describe('with existing LLN0 and LPHD instances', () => {
       beforeEach(async () => {
-        const wizard = createLNodeWizard(
+        const wizard = lNodeWizard(
           doc.querySelector('Function[name="parentFunction"]')!
         );
         element.workflow.push(() => wizard);
@@ -44,7 +44,7 @@ describe('Wizards for LNode element', () => {
 
     describe('with existing LLN0 but missing LPHD instances', () => {
       beforeEach(async () => {
-        const wizard = createLNodeWizard(
+        const wizard = lNodeWizard(
           doc.querySelector('SubFunction[name="circuitBreaker"]')!
         );
         element.workflow.push(() => wizard);
@@ -57,7 +57,7 @@ describe('Wizards for LNode element', () => {
 
     describe('with missing LLN0 and LPHD instances', () => {
       beforeEach(async () => {
-        const wizard = createLNodeWizard(
+        const wizard = lNodeWizard(
           doc.querySelector('SubFunction[name="disconnector"]')!
         );
         element.workflow.push(() => wizard);
@@ -73,7 +73,7 @@ describe('Wizards for LNode element', () => {
       let listItems: ListItemBase[];
 
       beforeEach(async () => {
-        const wizard = createLNodeWizard(
+        const wizard = lNodeWizard(
           doc.querySelector('SubFunction[name="disconnector"]')!
         );
         element.workflow.push(() => wizard);
@@ -161,6 +161,32 @@ describe('Wizards for LNode element', () => {
         const action = <Create>actionEvent.args[0][0].detail.action;
         expect(action.new.element).to.have.attribute('lnInst', '');
       });
+    });
+  });
+
+  describe('contain a LNode reference create wizard that', () => {
+    describe('with references to existing logical nodes', () => {
+      beforeEach(async () => {
+        const wizard = lNodeWizard(
+          doc.querySelector('ConductingEquipment[name="QB1"]')!
+        );
+        element.workflow.push(() => wizard);
+        await element.requestUpdate();
+      });
+
+      it('looks like the latest snapshot', async () =>
+        await expect(element.wizardUI.dialog).to.equalSnapshot());
+    });
+
+    describe('with missing references to existing logical nodes', () => {
+      beforeEach(async () => {
+        const wizard = lNodeWizard(doc.querySelector('Substation')!);
+        element.workflow.push(() => wizard);
+        await element.requestUpdate();
+      });
+
+      it('looks like the latest snapshot', async () =>
+        await expect(element.wizardUI.dialog).to.equalSnapshot());
     });
   });
 });

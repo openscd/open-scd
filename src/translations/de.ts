@@ -324,11 +324,11 @@ export const de: Translations = {
     none: 'Keine Verbindung vorhanden',
     publisherGoose: {
       title: 'GOOSE-Publizierer',
-      subscriberTitle: 'Verbunden mit {{ selected }}'
+      subscriberTitle: 'Verbunden mit {{ selected }}',
     },
     subscriberGoose: {
       title: 'IED-Publizierer',
-      publisherTitle: 'GOOSE(s) verbunden mit {{selected}}'
+      publisherTitle: 'GOOSE(s) verbunden mit {{selected}}',
     },
     subscriber: {
       subscribed: 'Verbunden',
@@ -338,9 +338,9 @@ export const de: Translations = {
       noIedSelected: 'Keine IED ausgewählt',
     },
     view: {
-      publisherView: "Zeigt verbundene IED(s) der ausgewählten GOOSE",
-      subscriberView: "Zeigt verbundene GOOSE(s) des ausgewählten IED"
-    }
+      publisherView: 'Zeigt verbundene IED(s) der ausgewählten GOOSE',
+      subscriberView: 'Zeigt verbundene GOOSE(s) des ausgewählten IED',
+    },
   },
   sampledvalues: {
     none: 'Keine Verbindung vorhanden',
@@ -460,8 +460,12 @@ export const de: Translations = {
         selectIEDs: 'Auswahl IEDs',
         selectLDs: 'Auswahl logische Geräte',
         selectLNs: 'Auswahl logische Knoten',
+        selectLNodeTypes: 'Auswahl logische Knoten Type',
       },
       placeholder: 'Bitte laden Sie eine SCL-Datei, die IED-Elemente enthält.',
+      uniquewarning: 'Logische Knoten Klasse existiert bereits',
+      reference: 'Reference auf bestehenden logischen Knoten erstellen',
+      instance: 'Referenz auf logischen Knoten Typ erstellen',
     },
     tooltip: 'Referenz zu logischen Knoten erstellen',
   },

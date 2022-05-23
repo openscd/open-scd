@@ -314,7 +314,7 @@ export const wizards: Record<
   },
   LNode: {
     edit: lNodeWizard,
-    create: createLNodeWizard,
+    create: lNodeWizard,
   },
   LNodeType: {
     edit: emptyWizard,

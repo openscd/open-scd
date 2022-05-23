@@ -321,11 +321,11 @@ export const en = {
     none: 'None',
     publisherGoose: {
       title: 'GOOSE Publisher',
-      subscriberTitle: 'Subscriber of {{ selected }}'
+      subscriberTitle: 'Subscriber of {{ selected }}',
     },
     subscriberGoose: {
       title: 'GOOSE Subscriber',
-      publisherTitle: 'GOOSE(s) subscribed by {{selected}}'
+      publisherTitle: 'GOOSE(s) subscribed by {{selected}}',
     },
     subscriber: {
       subscribed: 'Subscribed',
@@ -335,9 +335,9 @@ export const en = {
       noIedSelected: 'No IED selected',
     },
     view: {
-      publisherView: "Show subscriber IED(s) per selected GOOSE",
-      subscriberView: "Show subscribed GOOSE publisher for selected IED"
-    }
+      publisherView: 'Show subscriber IED(s) per selected GOOSE',
+      subscriberView: 'Show subscribed GOOSE publisher for selected IED',
+    },
   },
   sampledvalues: {
     none: 'none',
@@ -457,8 +457,12 @@ export const en = {
         selectIEDs: 'Select IEDs',
         selectLDs: 'Select logical devices',
         selectLNs: 'Select logical nodes',
+        selectLNodeTypes: 'Select logical node types',
       },
       placeholder: 'Please load an SCL file that contains IED elements.',
+      uniquewarning: 'Logical node class already exist',
+      reference: 'Add reference to existing logical node',
+      instance: 'Add reference to logical node type',
     },
     tooltip: 'Create logical nodes reference',
   },
