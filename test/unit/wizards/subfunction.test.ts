@@ -108,7 +108,9 @@ describe('Wizards for SCL Function element', () => {
   describe('define an edit wizard that', () => {
     beforeEach(async () => {
       const wizard = editSubFunctionWizard(
-        doc.querySelector('VoltageLevel SubFunction')!
+        doc.querySelector(
+          'Bay[name="COUPLING_BAY"] > Function[name="bayName"] > SubFunction[name="myBaySubFunc"]'
+        )!
       );
       element.workflow.push(() => wizard);
       await element.requestUpdate();
@@ -138,6 +140,14 @@ describe('Wizards for SCL Function element', () => {
 
     it('does not trigger action without changes', async () => {
       await primaryAction.click();
+
+      expect(actionEvent).to.not.have.been.called;
+    });
+
+    it('does not trigger action if name attribute is not unique', async () => {
+      inputs[0].value = 'mySubFunc2';
+      primaryAction.click();
+      await element.updateComplete;
 
       expect(actionEvent).to.not.have.been.called;
     });
