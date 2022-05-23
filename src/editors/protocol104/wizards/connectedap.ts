@@ -17,10 +17,7 @@ import {
   createElement,
   ComplexAction,
 } from '../../../foundation.js';
-import {
-  typePattern,
-} from '../../../wizards/foundation/p-types.js';
-import { pTypes104, stationTypeOptions } from './foundation/p-types.js';
+import { pTypes104, stationTypeOptions, typePattern } from './foundation/p-types.js';
 
 function isEqualAddress(oldAddress: Element, newAddress: Element): boolean {
   return Array.from(oldAddress.querySelectorAll('Address > P')).every(pType =>
