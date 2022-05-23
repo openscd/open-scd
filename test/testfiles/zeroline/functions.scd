@@ -31,19 +31,23 @@
                 </EqFunction> 
 			</PowerTransformer>
 			<Bay name="COUPLING_BAY" desc="Bay">
-				<Function name="bayName">
+				<Function name="bayName" desc="myDesc" type="myFuncType">
 					<SubFunction name="myBaySubFunc" desc="myDesc" type="myBaySubFuncType">
 						<LNode iedName="None" prefix="DC" lnClass="XSWI" lnInst="1"/>
 						<LNode iedName="None" prefix="DC" lnClass="CSWI" lnInst="1"/>
 						<LNode iedName="None" prefix="DC" lnClass="CILO" lnInst="1"/>
 					</SubFunction>
+					<SubFunction name="mySubFunc2"/>
 				</Function>
 				<Function name="bay2Func">
 					<LNode iedName="None" prefix="DC" lnClass="XSWI" lnInst="1"/>
 					<LNode iedName="None" prefix="DC" lnClass="CSWI" lnInst="1"/>
 					<LNode iedName="None" prefix="DC" lnClass="CILO" lnInst="1"/>
 				</Function>
-				<PowerTransformer name="myPtr3" type="PTR"/>
+				<PowerTransformer name="myPtr3" type="PTR">
+					<EqFunction name="myEqFuncQB3" desc="myDesc" type="myType"/>
+            		<EqFunction name="myEqFuncQB2"/>
+				</PowerTransformer>
                 <ConductingEquipment name="QA1" desc="some desc" type="CRB">
 					<EqFunction name="myEqFuncQA1" desc="funcForQA1" type="eqFuncType">
                         <EqSubFunction name="myEqSubFunc">

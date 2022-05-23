@@ -2,8 +2,11 @@ import { html, TemplateResult } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
 import {
+  cloneElement,
   createElement,
+  getChildElementsByTagName,
   getValue,
+  SimpleAction,
   Wizard,
   WizardActor,
   WizardInputElement,
@@ -41,6 +44,61 @@ export function contentFunctionWizard(
       helper="${translate('scl.type')}"
       nullable
     ></wizard-textfield>`,
+  ];
+}
+
+function updateFunctionAction(element: Element): WizardActor {
+  return (inputs: WizardInputElement[]): SimpleAction[] => {
+    const functionAttrs: Record<string, string | null> = {};
+    const functionKeys = ['name', 'desc', 'type'];
+    functionKeys.forEach(key => {
+      functionAttrs[key] = getValue(inputs.find(i => i.label === key)!);
+    });
+
+    if (
+      functionKeys.some(key => functionAttrs[key] !== element.getAttribute(key))
+    ) {
+      const newElement = cloneElement(element, functionAttrs);
+      return [
+        {
+          old: { element },
+          new: { element: newElement },
+        },
+      ];
+    }
+
+    return [];
+  };
+}
+
+export function editFunctionWizard(element: Element): Wizard {
+  const name = element.getAttribute('name');
+  const desc = element.getAttribute('desc');
+  const type = element.getAttribute('type');
+  const reservedNames: string[] = getChildElementsByTagName(
+    element.parentElement!,
+    'Function'
+  )
+    .filter(sibling => sibling !== element)
+    .map(sibling => sibling.getAttribute('name')!);
+
+  return [
+    {
+      title: get('wizard.title.edit', { tagName: 'Function' }),
+      primary: {
+        icon: 'save',
+        label: get('save'),
+        action: updateFunctionAction(element),
+      },
+      content: [
+        ...contentFunctionWizard({
+          name,
+          desc,
+          type,
+          reservedNames,
+        }),
+      ],
+    },
   ];
 }
 
