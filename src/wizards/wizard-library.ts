@@ -28,7 +28,10 @@ import { editGseControlWizard } from './gsecontrol.js';
 import { createFunctionWizard, editFunctionWizard } from './function.js';
 import { createEqSubFunctionWizard } from './eqsubfunction.js';
 import { createEqFunctionWizard } from './eqfunction.js';
-import { createSubFunctionWizard } from './subfunction.js';
+import {
+  createSubFunctionWizard,
+  editSubFunctionWizard,
+} from './subfunction.js';
 
 type SclElementWizard = (
   element: Element,
@@ -479,7 +482,7 @@ export const wizards: Record<
     create: emptyWizard,
   },
   SubFunction: {
-    edit: emptyWizard,
+    edit: editSubFunctionWizard,
     create: createSubFunctionWizard,
   },
   SubNetwork: {
