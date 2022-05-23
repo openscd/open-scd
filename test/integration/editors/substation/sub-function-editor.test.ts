@@ -89,6 +89,67 @@ describe('sub-function-editor wizarding editing integration', () => {
     });
   });
 
+  describe('open edit wizard', () => {
+    let nameField: WizardTextField;
+    let primaryAction: HTMLElement;
+
+    beforeEach(async () => {
+      element!.element = doc.querySelector<Element>(
+        'Bay[name="COUPLING_BAY"] > Function[name="bayName"] > SubFunction[name="myBaySubFunc"]'
+      )!;
+
+      (<HTMLElement>(
+        element?.shadowRoot?.querySelector('mwc-icon-button[icon="edit"]')
+      )).click();
+      await parent.updateComplete;
+
+      nameField = <WizardTextField>(
+        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
+      );
+
+      primaryAction = <HTMLElement>(
+        parent.wizardUI.dialog?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      );
+    });
+
+    it('does not update SubFunction if name attribute is not unique', async () => {
+      expect(
+        doc.querySelectorAll(
+          'Bay[name="COUPLING_BAY"] SubFunction[name="mySubFunc2"]'
+        )
+      ).to.lengthOf(1);
+
+      nameField.value = 'mySubFunc2';
+      primaryAction.click();
+      await parent.updateComplete;
+
+      expect(
+        doc.querySelectorAll(
+          'Bay[name="COUPLING_BAY"] SubFunction[name="mySubFunc2"]'
+        )
+      ).to.lengthOf(1);
+    });
+
+    it('does update SubFunction if name attribute is unique', async () => {
+      nameField.value = 'someNewFunction';
+      await parent.updateComplete;
+      primaryAction.click();
+
+      expect(
+        doc.querySelector(
+          'Bay[name="COUPLING_BAY"] > Function[name="bayName"] > SubFunction[name="someNewFunction"]'
+        )
+      ).to.exist;
+      expect(
+        doc.querySelector(
+          'Bay[name="COUPLING_BAY"] > Function[name="bayName"] > SubFunction[name="myBaySubFunc"]'
+        )
+      ).to.not.exist;
+    });
+  });
+
   describe('has a delete icon button that', () => {
     let deleteButton: HTMLElement;
 

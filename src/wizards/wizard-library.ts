@@ -25,10 +25,13 @@ import { editTrgOpsWizard } from './trgops.js';
 import { createDaWizard } from './da.js';
 import { editDAIWizard } from './dai.js';
 import { editGseControlWizard } from './gsecontrol.js';
-import { createFunctionWizard } from './function.js';
+import { createFunctionWizard, editFunctionWizard } from './function.js';
 import { createEqSubFunctionWizard } from './eqsubfunction.js';
 import { createEqFunctionWizard, editEqFunctionWizard } from './eqfunction.js';
-import { createSubFunctionWizard } from './subfunction.js';
+import {
+  createSubFunctionWizard,
+  editSubFunctionWizard,
+} from './subfunction.js';
 
 type SclElementWizard = (
   element: Element,
@@ -211,7 +214,7 @@ export const wizards: Record<
     create: emptyWizard,
   },
   Function: {
-    edit: emptyWizard,
+    edit: editFunctionWizard,
     create: createFunctionWizard,
   },
   GeneralEquipment: {
@@ -479,7 +482,7 @@ export const wizards: Record<
     create: emptyWizard,
   },
   SubFunction: {
-    edit: emptyWizard,
+    edit: editSubFunctionWizard,
     create: createSubFunctionWizard,
   },
   SubNetwork: {
