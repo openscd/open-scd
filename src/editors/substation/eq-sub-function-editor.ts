@@ -149,6 +149,11 @@ export class EqSubFunctionEditor extends LitElement {
   }
 
   static styles = css`
+    abbr {
+      text-decoration: none;
+      border-bottom: none;
+    }
+
     .container.lnode {
       display: grid;
       grid-gap: 12px;

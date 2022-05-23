@@ -3,6 +3,7 @@ import { get } from 'lit-translate';
 import {
   cloneElement,
   createElement,
+  getChildElementsByTagName,
   getValue,
   SimpleAction,
   Wizard,
@@ -39,7 +40,12 @@ export function editEqSubFunctionWizard(element: Element): Wizard {
   const name = element.getAttribute('name');
   const desc = element.getAttribute('desc');
   const type = element.getAttribute('type');
-  const reservedNames: string[] = [];
+  const reservedNames: string[] = getChildElementsByTagName(
+    element.parentElement!,
+    'EqSubFunction'
+  )
+    .filter(sibling => sibling !== element)
+    .map(sibling => sibling.getAttribute('name')!);
 
   return [
     {

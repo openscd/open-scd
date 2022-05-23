@@ -110,7 +110,9 @@ describe('Wizards for SCL EqSubFunction element', () => {
   describe('define an edit wizard that', () => {
     beforeEach(async () => {
       const wizard = editEqSubFunctionWizard(
-        doc.querySelector('EqSubFunction[name="myEqSubSubFunction"]')!
+        doc.querySelector(
+          'ConductingEquipment[name="QA1"] EqSubFunction[name="myEqSubSubFunction"]'
+        )!
       );
       element.workflow.push(() => wizard);
       await element.requestUpdate();
@@ -140,6 +142,14 @@ describe('Wizards for SCL EqSubFunction element', () => {
 
     it('does not trigger action without changes', async () => {
       await primaryAction.click();
+
+      expect(actionEvent).to.not.have.been.called;
+    });
+
+    it('does not trigger action if name attribute is not unique', async () => {
+      inputs[0].value = 'myEqFunc2';
+      primaryAction.click();
+      await element.updateComplete;
 
       expect(actionEvent).to.not.have.been.called;
     });
