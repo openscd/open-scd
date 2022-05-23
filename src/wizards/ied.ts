@@ -17,6 +17,7 @@ import {
   Wizard,
   WizardActor,
   WizardInputElement,
+  WizardMenuActor,
 } from '../foundation.js';
 import { patterns } from './foundation/limits.js';
 
