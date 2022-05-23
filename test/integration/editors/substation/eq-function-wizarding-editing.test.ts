@@ -91,6 +91,67 @@ describe('eq-function-editor wizarding editing integration', () => {
     });
   });
 
+  describe('open edit wizard', () => {
+    let nameField: WizardTextField;
+    let primaryAction: HTMLElement;
+
+    beforeEach(async () => {
+      element!.element = doc.querySelector(
+        'PowerTransformer[name="myPtr3"] > EqFunction[name="myEqFuncQB3"]'
+      )!;
+
+      (<HTMLElement>(
+        element?.shadowRoot?.querySelector('mwc-icon-button[icon="edit"]')
+      )).click();
+      await parent.updateComplete;
+
+      nameField = <WizardTextField>(
+        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
+      );
+
+      primaryAction = <HTMLElement>(
+        parent.wizardUI.dialog?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      );
+    });
+
+    it('does not update Function if name attribute is not unique', async () => {
+      expect(
+        doc.querySelectorAll(
+          'PowerTransformer[name="myPtr3"] > EqFunction[name="myEqFuncQB2"]'
+        )
+      ).to.lengthOf(1);
+
+      nameField.value = 'myEqFuncQB2';
+      primaryAction.click();
+      await parent.updateComplete;
+
+      expect(
+        doc.querySelectorAll(
+          'PowerTransformer[name="myPtr3"] > EqFunction[name="myEqFuncQB2"]'
+        )
+      ).to.lengthOf(1);
+    });
+
+    it('does update Function if name attribute is unique', async () => {
+      nameField.value = 'someNewFunction';
+      await parent.updateComplete;
+      primaryAction.click();
+
+      expect(
+        doc.querySelector(
+          'PowerTransformer[name="myPtr3"] > EqFunction[name="someNewFunction"]'
+        )
+      ).to.exist;
+      expect(
+        doc.querySelector(
+          'PowerTransformer[name="myPtr3"] > EqFunction[name="myEqFuncQB3"]'
+        )
+      ).to.not.exist;
+    });
+  });
+
   describe('has a delete icon button that', () => {
     let deleteButton: HTMLElement;
 
