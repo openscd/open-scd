@@ -28,20 +28,18 @@ import {
 } from '../foundation.js';
 
 const maxLnInst = 99;
+const lnInstRange = Array(maxLnInst)
+  .fill(1)
+  .map((_, i) => `${i + 1}`);
 
-function getUniqueLnInst(parent: Element, lnClass: string): number {
-  const lnInsts = getChildElementsByTagName(parent, 'LNode')
-    .filter(lnode => lnode.getAttribute('lnClass') === lnClass)
-    .map(lNode => Number.parseInt(lNode.getAttribute('lnInst')!))
-    .sort((a, b) => a - b);
+function getUniqueLnInst(parent: Element, lnClass: string): string | undefined {
+  const lnInsts = new Set(
+    getChildElementsByTagName(parent, 'LNode')
+      .filter(lnode => lnode.getAttribute('lnClass') === lnClass)
+      .map(lNode => lNode.getAttribute('lnInst')!)
+  );
 
-  if (lnInsts.length === 0) return 1;
-
-  for (let i = 1; i <= maxLnInst; i++) {
-    if (lnInsts[i - 1] !== i) return i;
-  }
-
-  return NaN;
+  return lnInstRange.find(lnInst => !lnInsts.has(lnInst));
 }
 
 function createLNodeAction(parent: Element): WizardActor {
@@ -68,7 +66,7 @@ function createLNodeAction(parent: Element): WizardActor {
         if (!lnClass) return null;
 
         const uniqueLnInst = getUniqueLnInst(clonedParent, lnClass);
-        if (isNaN(uniqueLnInst)) {
+        if (!uniqueLnInst) {
           wizard.dispatchEvent(
             newLogEvent({
               kind: 'error',
@@ -107,7 +105,7 @@ function createLNodeAction(parent: Element): WizardActor {
           return;
         }
 
-        const lnInst = lnClass === 'LLN0' ? '' : `${uniqueLnInst}`;
+        const lnInst = lnClass === 'LLN0' ? '' : uniqueLnInst;
 
         const element = createElement(parent.ownerDocument, 'LNode', {
           iedName: 'None',
