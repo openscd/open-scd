@@ -179,16 +179,16 @@ describe('Wizards for LNode element', () => {
       });
 
       it('does set iedName, lnCalss, lnInst and lnType', async () => {
-        listItems[4].selected = true;
+        listItems[2].selected = true;
 
         await primaryAction.click();
 
         expect(actionEvent).to.have.be.calledOnce;
         const action = <Create>actionEvent.args[0][0].detail.action;
         expect(action.new.element).to.have.attribute('iedName', 'None');
-        expect(action.new.element).to.have.attribute('lnClass', 'CILO');
+        expect(action.new.element).to.have.attribute('lnClass', 'XCBR');
         expect(action.new.element).to.have.attribute('lnInst', '1');
-        expect(action.new.element).to.have.attribute('lnType', 'Dummy.CILO');
+        expect(action.new.element).to.have.attribute('lnType', 'Dummy.XCBR1');
       });
 
       it('does not set ldInst and prefix', async () => {
@@ -209,7 +209,7 @@ describe('Wizards for LNode element', () => {
 
         expect(actionEvent).to.have.be.calledOnce;
         const action = <Create>actionEvent.args[0][0].detail.action;
-        expect(action.new.element).to.have.attribute('lnInst', '1');
+        expect(action.new.element).to.have.attribute('lnInst', '2');
       });
 
       it('makes sure that lnInst is unique if several LNodeType with same lnClass are selected', async () => {
@@ -221,8 +221,8 @@ describe('Wizards for LNode element', () => {
         expect(actionEvent).to.have.be.calledTwice;
         const action1 = <Create>actionEvent.args[0][0].detail.action;
         const action2 = <Create>actionEvent.args[1][0].detail.action;
-        expect(action1.new.element).to.have.attribute('lnInst', '1');
-        expect(action2.new.element).to.have.attribute('lnInst', '2');
+        expect(action1.new.element).to.have.attribute('lnInst', '2');
+        expect(action2.new.element).to.have.attribute('lnInst', '4');
       });
 
       it('does add empty string to LNode with lnClass LLN0', async () => {

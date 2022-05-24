@@ -37,7 +37,12 @@
 						<LNode iedName="None" lnClass="XCBR" lnInst="1" lnType="Dummy.XCBR1"/>
 						<LNode iedName="None" lnClass="CILO" lnInst="1" lnType="Dummy.CILO"/>
 					</SubFunction>
-					<SubFunction name="disconnector" type="DIS"/>
+					<SubFunction name="disconnector" type="DIS">
+						<LNode iedName="None" lnClass="CSWI" lnInst="1" lnType="Dummy.CILO"/>
+						<LNode iedName="None" lnClass="CSWI" lnInst="3" lnType="Dummy.CILO"/>
+						<LNode iedName="None" lnClass="CSWI" lnInst="5" lnType="Dummy.CILO"/>
+						<LNode iedName="None" lnClass="CILO" lnInst="1" lnType="Dummy.CILO"/>
+					</SubFunction>
 				</Function>
 			</Bay>
 		</VoltageLevel>
