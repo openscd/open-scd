@@ -11,14 +11,15 @@ import {
   EditorAction,
   identity,
   isPublic,
+  newActionEvent,
+  newSubWizardEvent,
   newWizardEvent,
   Wizard,
-  WizardAction,
   WizardActor,
   WizardInputElement,
-  WizardMenuActor
+  WizardMenuActor,
 } from '../foundation.js';
-import { patterns } from "./foundation/limits.js";
+import { patterns } from './foundation/limits.js';
 
 import { updateNamingAttributeWithReferencesAction } from "./foundation/actions.js";
 import { deleteReferences } from "./foundation/references.js";
@@ -129,13 +130,16 @@ export function removeIEDWizard(element: Element): Wizard | null {
 
 export function editIEDWizard(element: Element): Wizard {
   function removeIED(element: Element): WizardMenuActor {
-    return (): WizardAction[] => {
-      const wizard = removeIEDWizard(element);
-      if (wizard) {
-        return [() => wizard];
-      }
+    return (wizard: Element): void => {
+      const removeWizard = removeIEDWizard(element);
+      if (removeWizard)
+        wizard.dispatchEvent(newSubWizardEvent(() => removeWizard));
+
       // If no Wizard is needed, just remove the element.
-      return [{ old: { parent: element.parentElement!, element } }];
+      wizard.dispatchEvent(
+        newActionEvent({ old: { parent: element.parentElement!, element } })
+      );
+      wizard.dispatchEvent(newWizardEvent());
     };
   }
 

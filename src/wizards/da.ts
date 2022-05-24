@@ -12,6 +12,8 @@ import {
   EditorAction,
   getValue,
   isPublic,
+  newActionEvent,
+  newWizardEvent,
   Wizard,
   WizardActor,
   WizardInputElement,
@@ -21,8 +23,11 @@ import { getValAction, wizardContent } from './abstractda.js';
 import { functionalConstraintEnum } from './foundation/enums.js';
 
 function remove(element: Element): WizardMenuActor {
-  return (): EditorAction[] => {
-    return [{ old: { parent: element.parentElement!, element } }];
+  return (wizard: Element): void => {
+    wizard.dispatchEvent(
+      newActionEvent({ old: { parent: element.parentElement!, element } })
+    );
+    wizard.dispatchEvent(newWizardEvent());
   };
 }
 

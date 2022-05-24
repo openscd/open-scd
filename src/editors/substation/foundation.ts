@@ -297,6 +297,14 @@ export const styles = css`
     grid-template-columns: repeat(auto-fit, minmax(64px, auto));
   }
 
+  .container.lnode {
+    display: grid;
+    grid-gap: 12px;
+    padding: 8px 12px 16px;
+    box-sizing: border-box;
+    grid-template-columns: repeat(auto-fit, minmax(64px, auto));
+  }
+
   powertransformer-editor[showfunctions] {
     margin: 4px 8px 16px;
   }
