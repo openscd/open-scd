@@ -32,14 +32,28 @@ const lnInstRange = Array(maxLnInst)
   .fill(1)
   .map((_, i) => `${i + 1}`);
 
-function getUniqueLnInst(parent: Element, lnClass: string): string | undefined {
-  const lnInsts = new Set(
-    getChildElementsByTagName(parent, 'LNode')
-      .filter(lnode => lnode.getAttribute('lnClass') === lnClass)
-      .map(lNode => lNode.getAttribute('lnInst')!)
-  );
+function uniqueLnInstGenerator(
+  parent: Element
+): (lnClass: string) => string | undefined {
+  const generators = new Map<string, () => string | undefined>();
 
-  return lnInstRange.find(lnInst => !lnInsts.has(lnInst));
+  return (lnClass: string) => {
+    if (!generators.has(lnClass)) {
+      const lnInsts = new Set(
+        getChildElementsByTagName(parent, 'LNode')
+          .filter(lnode => lnode.getAttribute('lnClass') === lnClass)
+          .map(lNode => lNode.getAttribute('lnInst')!)
+      );
+
+      generators.set(lnClass, () => {
+        const uniqueLnInst = lnInstRange.find(lnInst => !lnInsts.has(lnInst));
+        if (uniqueLnInst) lnInsts.add(uniqueLnInst);
+        return uniqueLnInst;
+      });
+    }
+
+    return generators.get(lnClass)!();
+  };
 }
 
 function createLNodeAction(parent: Element): WizardActor {
@@ -58,14 +72,15 @@ function createLNodeAction(parent: Element): WizardActor {
       })
       .filter(item => item !== null);
 
-    const clonedParent = <Element>parent.cloneNode(true); //for multiple selection of same lnClass
+    const lnInstGenerator = uniqueLnInstGenerator(parent);
 
     const createActions: Create[] = <Create[]>selectedLNodeTypes
       .map(selectedLNodeType => {
         const lnClass = selectedLNodeType.getAttribute('lnClass');
         if (!lnClass) return null;
 
-        const uniqueLnInst = getUniqueLnInst(clonedParent, lnClass);
+        const uniqueLnInst = lnInstGenerator(lnClass);
+
         if (!uniqueLnInst) {
           wizard.dispatchEvent(
             newLogEvent({
@@ -115,8 +130,6 @@ function createLNodeAction(parent: Element): WizardActor {
           lnInst,
           lnType: selectedLNodeType.getAttribute('id')!,
         });
-
-        clonedParent.appendChild(element); //for multiple selection of same lnClass
 
         return { new: { parent, element } };
       })

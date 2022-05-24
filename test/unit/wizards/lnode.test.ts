@@ -71,7 +71,7 @@ describe('Wizards for LNode element', () => {
         it('triggers error log massage when duplicate LLN0 classes are added', async () => {
           listItems[0].selected = true;
 
-          await primaryAction.click();
+          primaryAction.click();
 
           expect(logEvent).to.have.be.calledOnce;
           expect(logEvent.args[0][0].detail.message).to.contain(
@@ -82,7 +82,7 @@ describe('Wizards for LNode element', () => {
         it('triggers error log massage when duplicate LPHD classes are added', async () => {
           listItems[1].selected = true;
 
-          await primaryAction.click();
+          primaryAction.click();
 
           expect(logEvent).to.have.be.calledOnce;
           expect(logEvent.args[0][0].detail.message).to.contain(
@@ -105,7 +105,7 @@ describe('Wizards for LNode element', () => {
 
           listItems[4].selected = true;
 
-          await primaryAction.click();
+          primaryAction.click();
 
           expect(logEvent).to.have.be.calledOnce;
           expect(logEvent.args[0][0].detail.message).to.contain(
