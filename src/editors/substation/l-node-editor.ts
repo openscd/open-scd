@@ -75,7 +75,7 @@ export class LNodeEditor extends LitElement {
     return this.element.getAttribute('iedName') === 'None' ?? false;
   }
 
-  private removeAction(): void {
+  remove(): void {
     if (this.element)
       this.dispatchEvent(
         newActionEvent({
@@ -97,7 +97,7 @@ export class LNodeEditor extends LitElement {
         slot="action"
         mini
         icon="delete"
-        @click="${() => this.removeAction()}}"
+        @click="${() => this.remove()}}"
       ></mwc-fab
     ></action-icon>`;
   }
