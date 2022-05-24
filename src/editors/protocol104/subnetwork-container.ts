@@ -16,7 +16,7 @@ import {
 } from '../../foundation.js';
 
 /** [[`104`]] subeditor for a `SubNetwork` element. */
-@customElement('subnetwork-104-editor')
+@customElement('subnetwork-104-container')
 export class SubNetworkEditor extends LitElement {
   /** SCL element SubNetwork */
   @property({ attribute: false })

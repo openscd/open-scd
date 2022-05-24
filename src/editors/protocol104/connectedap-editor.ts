@@ -18,11 +18,6 @@ export class ConnectedAPEditor extends LitElement {
   /** SCL element ConnectedAP */
   @property({ attribute: false })
   element!: Element;
-  /** ConnectedAP attribute apName */
-  @property({ type: String })
-  get apName(): string {
-    return this.element.getAttribute('apName') ?? 'UNDEFINED';
-  }
 
   private openEditWizard(): void {
     this.dispatchEvent(newWizardEvent(editConnectedAp104Wizard(this.element)));
@@ -43,7 +38,7 @@ export class ConnectedAPEditor extends LitElement {
 
   render(): TemplateResult {
     return html`
-      <action-icon label="${this.apName}" icon="settings_input_hdmi"
+      <action-icon label="${this.element.getAttribute('apName') ?? 'UNDEFINED'}" icon="settings_input_hdmi"
         ><mwc-fab
           slot="action"
           mini

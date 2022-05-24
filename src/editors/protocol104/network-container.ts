@@ -3,7 +3,7 @@ import { get } from "lit-translate";
 import { createElement, getNameAttribute, newActionEvent, newWizardEvent } from "../../foundation.js";
 import { createSubNetworkWizard } from "../../wizards/subnetwork.js";
 
-import './subnetwork-editor.js';
+import './subnetwork-container.js';
 
 @customElement('network-104-container')
 export class Network104Container extends LitElement {
@@ -42,9 +42,9 @@ export class Network104Container extends LitElement {
     ${this.getSubNetworkElements()
       .map(
         subnetwork =>
-          html`<subnetwork-104-editor
+          html`<subnetwork-104-container
             .element=${subnetwork}
-          ></subnetwork-104-editor>`
+          ></subnetwork-104-container>`
       )}
     </section>`;
   }
