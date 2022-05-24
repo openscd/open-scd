@@ -7,7 +7,7 @@ import {
 } from './conductingequipment.js';
 import { editConnectivityNodeWizard } from './connectivitynode.js';
 import { createFCDAsWizard } from './fcda.js';
-import { createLNodeWizard, lNodeWizard } from './lnode.js';
+import { lNodeWizard } from './lnode.js';
 import { editOptFieldsWizard } from './optfields.js';
 import { createSubstationWizard, substationEditWizard } from './substation.js';
 import { editTerminalWizard } from './terminal.js';
