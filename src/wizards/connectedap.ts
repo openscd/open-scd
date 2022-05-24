@@ -27,6 +27,9 @@ import {
 } from '../foundation.js';
 import {
   getTypes,
+  pTypes104,
+  stationTypeOptions,
+  typeDescriptiveNameKeys,
   typeMaxLength,
   typeNullable,
   typePattern,
@@ -162,7 +165,7 @@ function createAddressElement(
   return element;
 }
 
-function updateConnectedApAction(parent: Element): WizardActor {
+export function updateConnectedApAction(parent: Element): WizardActor {
   return (inputs: WizardInputElement[], wizard: Element): EditorAction[] => {
     const typeRestriction: boolean =
       (<Checkbox>wizard.shadowRoot?.querySelector('#typeRestriction'))
@@ -239,6 +242,44 @@ export function editConnectedApWizard(element: Element): Wizard {
                   `Address > P[type="${ptype}"]`
                 )?.innerHTML ?? null}
                 maxLength="${ifDefined(typeMaxLength[ptype])}"
+              ></wizard-textfield>`
+          )}`,
+      ],
+    },
+  ];
+}/** @returns single page [[`Wizard`]] to edit SCL element ConnectedAP for the 104 plugin. */
+export function editConnectedAp104Wizard(element: Element): Wizard {
+  return [
+    {
+      title: get('wizard.title.edit', { tagName: element.tagName }),
+      element,
+      primary: {
+        icon: 'save',
+        label: get('save'),
+        action: updateConnectedApAction(element),
+      },
+      content: [
+        html`<wizard-select
+          label="StationType"
+          .maybeValue=${element.querySelector(
+            `Address > P[type="StationType"]`
+          )?.innerHTML ?? null}
+          required
+          helper="${translate(typeDescriptiveNameKeys["StationType"])}"
+          >${stationTypeOptions.map(
+            option =>
+              html`<mwc-list-item value="${option}">${option}</mwc-list-item>`
+          )}</wizard-select>
+          ${pTypes104.map(
+            ptype =>
+              html`<wizard-textfield
+                required
+                label="${ptype}"
+                pattern="${ifDefined(typePattern[ptype])}"
+                .maybeValue=${element.querySelector(
+                  `Address > P[type="${ptype}"]`
+                )?.innerHTML ?? null}
+                helper="${translate(typeDescriptiveNameKeys[ptype])}"
               ></wizard-textfield>`
           )}`,
       ],

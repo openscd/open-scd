@@ -56,6 +56,17 @@ const pTypes2007B4: string[] = [
   'IP-ClassOfTraffic',
 ];
 
+export const pTypes104: string[] = [
+  'IP',
+  'IP-SUBNET',
+  'W-FACTOR',
+  'K-FACTOR',
+  'TIMEOUT-0',
+  'TIMEOUT-1',
+  'TIMEOUT-2',
+  'TIMEOUT-3'
+];
+
 export const pTypesGSESMV: string[] = [
   'MAC-Address',
   'APPID',
@@ -75,6 +86,8 @@ const typeBase = {
   port: '0|([1-9][0-9]{0,3})|([1-5][0-9]{4,4})|(6[0-4][0-9]{3,3})|(65[0-4][0-9]{2,2})|(655[0-2][0-9])|(6553[0-5])',
   IPv6: '([0-9a-f]{1,4}:){7}[0-9a-f]{1,4}',
   IPv6sub: '/[1-9]|/[1-9][0-9]|/1[0-1][0-9]|/12[0-7]',
+  Factor: '[1-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-9][0-9][0-9][0-9]|[1-3][0-2][0-7][0-6][0-7]',
+  timeout: '[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]'
 };
 
 /** Patterns from IEC 61850-6 for all `P` elements */
@@ -109,6 +122,12 @@ export const typePattern: Partial<Record<string, string>> = {
   'IPv6-IGMPv3Src': typeBase.IPv6,
   'IP-IGMPv3Sr': typeBase.IP,
   'IP-ClassOfTraffic': typeBase.OSI,
+  'W-FACTOR': typeBase.Factor,
+  'K-FACTOR': typeBase.Factor,
+  'TIMEOUT-0': typeBase.timeout,
+  'TIMEOUT-1': typeBase.timeout,
+  'TIMEOUT-2': typeBase.timeout,
+  'TIMEOUT-3': typeBase.timeout
 };
 
 /** Whether `P` element is required within `Address` */
@@ -154,4 +173,22 @@ export const typeMaxLength: Partial<Record<string, number>> = {
   'OSI-AE-Invoke': 5,
   'OSI-NSAP': 40,
   'IP-ClassOfTraffic': 2,
+};
+
+export const stationTypeOptions: string[] = [
+  'controlling-station',
+  'controlled-station'
+]
+
+/** Max length definition for all `P` element */
+export const typeDescriptiveNameKeys: Record<string, string> = {
+  'StationType': 'protocol104.network.connectedap.stationType',
+  'IP': 'protocol104.network.connectedap.ip',
+  'IP-SUBNET': 'protocol104.network.connectedap.ipSubnet',
+  'W-FACTOR': 'protocol104.network.connectedap.wFactor',
+  'K-FACTOR': 'protocol104.network.connectedap.kFactor',
+  'TIMEOUT-0': 'protocol104.network.connectedap.timeout0',
+  'TIMEOUT-1': 'protocol104.network.connectedap.timeout1',
+  'TIMEOUT-2': 'protocol104.network.connectedap.timeout2',
+  'TIMEOUT-3': 'protocol104.network.connectedap.timeout3',
 };
