@@ -360,6 +360,19 @@ export const de: Translations = {
     view: {
       valuesView: '???',
       networkView: '???',
+    },
+    network: {
+      connectedap: {
+        stationType: '???',
+        ip: '???',
+        ipSubnet: '???',
+        wFactor: '???',
+        kFactor: '???',
+        timeout0: '???',
+        timeout1: '???',
+        timeout2: '???',
+        timeout3: '???'
+      }
     }
   },
   'enum-val': {

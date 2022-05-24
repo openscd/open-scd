@@ -1,6 +1,6 @@
 import { html } from 'lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined';
-import { get } from 'lit-translate';
+import { get, translate } from 'lit-translate';
 
 import '@material/mwc-formfield';
 import '@material/mwc-list/mwc-list-item';
@@ -17,7 +17,7 @@ import {
   createElement,
   ComplexAction,
 } from '../../../foundation.js';
-import { pTypes104, stationTypeOptions, typePattern } from './foundation/p-types.js';
+import { pTypes104, stationTypeOptions, typeDescriptiveNameKeys, typePattern } from './foundation/p-types.js';
 
 function isEqualAddress(oldAddress: Element, newAddress: Element): boolean {
   return Array.from(oldAddress.querySelectorAll('Address > P')).every(pType =>
@@ -114,6 +114,7 @@ export function editConnectedApWizard(element: Element): Wizard {
             `Address > P[type="StationType"]`
           )?.innerHTML ?? null}
           required
+          helper="${translate(typeDescriptiveNameKeys["StationType"])}"
           >${stationTypeOptions.map(
             option =>
               html`<mwc-list-item value="${option}">${option}</mwc-list-item>`
@@ -127,6 +128,7 @@ export function editConnectedApWizard(element: Element): Wizard {
                 .maybeValue=${element.querySelector(
                   `Address > P[type="${ptype}"]`
                 )?.innerHTML ?? null}
+                helper="${translate(typeDescriptiveNameKeys[ptype])}"
               ></wizard-textfield>`
           )}`,
       ],

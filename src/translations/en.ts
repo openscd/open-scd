@@ -357,6 +357,19 @@ export const en = {
     view: {
       valuesView: 'Values',
       networkView: 'Network',
+    },
+    network: {
+      connectedap: {
+        stationType: 'Type of station',
+        ip: 'IP address of the logical link',
+        ipSubnet: 'Subnetwork mask of the IP address of the logical link',
+        wFactor: 'W factor of the logical link',
+        kFactor: 'K factor of the logical link',
+        timeout0: 'Time-out in seconds of connection establishment',
+        timeout1: 'Time-out in seconds of sent or test APDUs',
+        timeout2: 'Time-out in seconds for acknowledges in case of no data messages',
+        timeout3: 'Time-out in seconds for sending test frames in case of a long idle state'
+      }
     }
   },
   'enum-val': {
