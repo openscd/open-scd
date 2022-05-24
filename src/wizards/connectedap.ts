@@ -266,7 +266,8 @@ export function editConnectedAp104Wizard(element: Element): Wizard {
           )?.innerHTML ?? null}
           required
           helper="${translate(typeDescriptiveNameKeys["StationType"])}"
-          >${stationTypeOptions.map(
+          >
+          ${stationTypeOptions.map(
             option =>
               html`<mwc-list-item value="${option}">${option}</mwc-list-item>`
           )}</wizard-select>

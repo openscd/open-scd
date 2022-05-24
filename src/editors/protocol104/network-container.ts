@@ -42,9 +42,9 @@ export class Network104Container extends LitElement {
     ${this.getSubNetworkElements()
       .map(
         subnetwork =>
-          html`<subnetwork-editor
+          html`<subnetwork-104-editor
             .element=${subnetwork}
-          ></subnetwork-editor>`
+          ></subnetwork-104-editor>`
       )}
     </section>`;
   }

@@ -13,7 +13,7 @@ import { newWizardEvent, newActionEvent } from '../../foundation.js';
 import { editConnectedAp104Wizard } from '../../wizards/connectedap.js';
 
 /** [[`104`]] subeditor for a `ConnectedAP` element. */
-@customElement('connectedap-editor')
+@customElement('connectedap-104-editor')
 export class ConnectedAPEditor extends LitElement {
   /** SCL element ConnectedAP */
   @property({ attribute: false })

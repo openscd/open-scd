@@ -16,28 +16,12 @@ import {
 } from '../../foundation.js';
 
 /** [[`104`]] subeditor for a `SubNetwork` element. */
-@customElement('subnetwork-editor')
+@customElement('subnetwork-104-editor')
 export class SubNetworkEditor extends LitElement {
   /** SCL element SubNetwork */
   @property({ attribute: false })
   element!: Element;
-  /** SubNetwork attribute name */
-  @property()
-  get name(): string {
-    return this.element.getAttribute('name') ?? 'UNDEFINED';
-  }
-  /** SubNetwork attribute desc */
-  @property()
-  get desc(): string | null {
-    return this.element.getAttribute('desc') ?? null;
-  }
-  /** SubNetwork attribute type */
-  @property()
-  get type(): string | null {
-    return this.element.getAttribute('type') ?? null;
-  }
-  /** SubNetwork child elements BitRate label */
-  @property()
+  
   get bitrate(): string | null {
     const bitRate = this.element.querySelector('BitRate');
     if (bitRate === null) return null;
@@ -60,27 +44,32 @@ export class SubNetworkEditor extends LitElement {
             ) ?? []
           ).map(
             connectedAP =>
-              html`<connectedap-editor
+              html`<connectedap-104-editor
                 class="${connectedAP.parentElement !== this.element
                   ? 'disabled'
                   : ''}"
                 .element=${connectedAP}
-              ></connectedap-editor>`
+              ></connectedap-104-editor>`
           )}
         </action-pane>`
       );
   }
 
   private subNetworkSpecs(): string {
-    if (!this.type && !this.bitrate) return '';
+    const type = this.element.getAttribute('type') ?? null;
 
-    return `(${this.type}${
-      this.type && this.bitrate ? ` — ${this.bitrate}` : ``
+    if (!type && !this.bitrate) return '';
+
+    return `(${type}${
+      type && this.bitrate ? ` — ${this.bitrate}` : ``
     })`;
   }
 
   private header(): string {
-    return ` ${this.name} ${this.desc === null ? '' : `— ${this.desc}`}
+    const desc = this.element.getAttribute('desc') ?? null;
+    const name = this.element.getAttribute('name') ?? undefined;
+
+    return ` ${name} ${desc === null ? '' : `— ${desc}`}
     ${this.subNetworkSpecs()}`;
   }
 
