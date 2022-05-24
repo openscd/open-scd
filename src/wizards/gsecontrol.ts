@@ -23,11 +23,10 @@ import {
   identity,
   isPublic,
   MenuAction,
-  newActionEvent,
   newSubWizardEvent,
-  newWizardEvent,
   selector,
   Wizard,
+  WizardAction,
   WizardActor,
   WizardInputElement,
   WizardMenuActor,
@@ -433,22 +432,22 @@ export function removeGseControlAction(element: Element): ComplexAction | null {
 }
 
 export function removeGseControl(element: Element): WizardMenuActor {
-  return (wizard: Element): void => {
+  return (): WizardAction[] => {
     const complexAction = removeGseControlAction(element);
-    if (complexAction) wizard.dispatchEvent(newActionEvent(complexAction));
-    wizard.dispatchEvent(newWizardEvent());
+    if (complexAction) return [complexAction];
+    return [];
   };
 }
 
 function openDataSetWizard(element: Element): WizardMenuActor {
-  return (wizard: Element): void => {
-    wizard.dispatchEvent(newSubWizardEvent(() => editDataSetWizard(element)));
+  return (): WizardAction[] => {
+    return [() => editDataSetWizard(element)];
   };
 }
 
 function openGseWizard(element: Element): WizardMenuActor {
-  return (wizard: Element): void => {
-    wizard.dispatchEvent(newSubWizardEvent(() => editGseWizard(element)));
+  return (): WizardAction[] => {
+    return [() => editGseWizard(element)];
   };
 }
 

@@ -4,7 +4,6 @@ import {
   html,
   LitElement,
   property,
-  query,
   TemplateResult,
 } from 'lit-element';
 import { translate } from 'lit-translate';
@@ -12,33 +11,18 @@ import { translate } from 'lit-translate';
 import '@material/mwc-fab';
 import '@material/mwc-icon';
 import '@material/mwc-icon-button';
-import '@material/mwc-menu';
-import { Menu } from '@material/mwc-menu';
-import { IconButton } from '@material/mwc-icon-button';
-import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 import '../../action-icon.js';
 import '../../action-pane.js';
 import './eq-function-editor.js';
-import './l-node-editor.js';
-import { startMove, getIcon, styles } from './foundation.js';
+import { startMove, getIcon } from './foundation.js';
 import {
   getChildElementsByTagName,
   newActionEvent,
   newWizardEvent,
-  SCLTag,
-  tags,
 } from '../../foundation.js';
 import { BayEditor } from './bay-editor.js';
-import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
-
-function childTags(element: Element | null | undefined): SCLTag[] {
-  if (!element) return [];
-
-  return tags[<SCLTag>element.tagName].children.filter(
-    child => wizards[child].create !== emptyWizard
-  );
-}
+import { wizards } from '../../wizards/wizard-library.js';
 
 /** [[`SubstationEditor`]] subeditor for a `ConductingEquipment` element. */
 @customElement('conducting-equipment-editor')
@@ -55,9 +39,6 @@ export class ConductingEquipmentEditor extends LitElement {
   @property({ type: Boolean })
   showfunctions = false;
 
-  @query('mwc-menu') addMenu!: Menu;
-  @query('mwc-icon-button[icon="playlist_add"]') addButton!: IconButton;
-
   private openEditWizard(): void {
     const wizard = wizards['ConductingEquipment'].edit(this.element);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
@@ -65,12 +46,6 @@ export class ConductingEquipmentEditor extends LitElement {
 
   private openLNodeWizard(): void {
     const wizard = wizards['LNode'].edit(this.element);
-    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
-  }
-
-  private openCreateWizard(tagName: string): void {
-    const wizard = wizards[<SCLTag>tagName].create(this.element!);
-
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
@@ -87,23 +62,6 @@ export class ConductingEquipmentEditor extends LitElement {
       );
   }
 
-  firstUpdated(): void {
-    if (this.addMenu && this.addButton)
-      this.addMenu.anchor = <HTMLElement>this.addButton;
-  }
-
-  private renderLNodes(): TemplateResult {
-    const lNodes = getChildElementsByTagName(this.element, 'LNode');
-
-    return lNodes.length
-      ? html`<div class="container lnode">
-          ${lNodes.map(
-            lNode => html`<l-node-editor .element=${lNode}></l-node-editor>`
-          )}
-        </div>`
-      : html``;
-  }
-
   renderEqFunctions(): TemplateResult {
     if (!this.showfunctions) return html``;
 
@@ -112,15 +70,6 @@ export class ConductingEquipmentEditor extends LitElement {
       eqFunction =>
         html`<eq-function-editor .element=${eqFunction}></eq-function-editor>`
     )}`;
-  }
-
-  private renderAddButtons(): TemplateResult[] {
-    return childTags(this.element).map(
-      child =>
-        html`<mwc-list-item value="${child}"
-          ><span>${child}</span></mwc-list-item
-        >`
-    );
   }
 
   renderContentPane(): TemplateResult {
@@ -158,26 +107,8 @@ export class ConductingEquipmentEditor extends LitElement {
           mini
           icon="delete"
           @click="${() => this.remove()}}"
-        ></mwc-icon-button> </abbr
-      ><abbr
-        slot="action"
-        style="position:relative;"
-        title="${translate('add')}"
-      >
-        <mwc-icon-button
-          icon="playlist_add"
-          @click=${() => (this.addMenu.open = true)}
-        ></mwc-icon-button
-        ><mwc-menu
-          corner="BOTTOM_RIGHT"
-          menuCorner="END"
-          @selected=${(e: Event) => {
-            const tagName = (<ListItem>(<Menu>e.target).selected).value;
-            this.openCreateWizard(tagName);
-          }}
-          >${this.renderAddButtons()}</mwc-menu
-        >
-      </abbr>`;
+        ></mwc-icon-button>
+      </abbr> `;
   }
 
   renderContentIcon(): TemplateResult {
@@ -212,7 +143,7 @@ export class ConductingEquipmentEditor extends LitElement {
   render(): TemplateResult {
     if (this.showfunctions)
       return html`<action-pane label="${this.name}"
-        >${this.renderContentPane()}${this.renderLNodes()}${this.renderEqFunctions()}</action-pane
+        >${this.renderContentPane()}${this.renderEqFunctions()}</action-pane
       >`;
 
     return html`<action-icon label="${this.name}"
@@ -221,8 +152,6 @@ export class ConductingEquipmentEditor extends LitElement {
   }
 
   static styles = css`
-    ${styles}
-
     :host(.moving) {
       opacity: 0.3;
     }

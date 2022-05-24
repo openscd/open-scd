@@ -49,20 +49,4 @@ describe('voltage-level-editor', () => {
       await expect(element).shadowDom.to.equalSnapshot();
     });
   });
-
-  describe('with function filter deactivated and existing LNode children', () => {
-    beforeEach(async () => {
-      doc = await fetch('/test/testfiles/zeroline/functions.scd')
-        .then(response => response.text())
-        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-
-      element.element = doc.querySelector('VoltageLevel[name="J1"]')!;
-      element.showfunctions = true;
-      await element.requestUpdate();
-    });
-
-    it('looks like the latest snapshot', async () => {
-      await expect(element).shadowDom.to.equalSnapshot();
-    });
-  });
 });

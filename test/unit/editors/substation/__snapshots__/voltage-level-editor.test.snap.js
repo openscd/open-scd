@@ -86,17 +86,6 @@ snapshots["voltage-level-editor looks like the latest snapshot"] =
           Bay
         </span>
       </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="menuitem"
-        tabindex="-1"
-        value="Function"
-      >
-        <span>
-          Function
-        </span>
-      </mwc-list-item>
     </mwc-menu>
   </abbr>
   <div id="bayContainer">
@@ -192,17 +181,6 @@ snapshots["voltage-level-editor with readonly property looks like the latest sna
       >
         <span>
           Bay
-        </span>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="menuitem"
-        tabindex="-1"
-        value="Function"
-      >
-        <span>
-          Function
         </span>
       </mwc-list-item>
     </mwc-menu>
@@ -302,17 +280,6 @@ snapshots["voltage-level-editor with function filter deactivated looks like the 
           Bay
         </span>
       </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="menuitem"
-        tabindex="-1"
-        value="Function"
-      >
-        <span>
-          Function
-        </span>
-      </mwc-list-item>
     </mwc-menu>
   </abbr>
   <function-editor>
@@ -324,122 +291,8 @@ snapshots["voltage-level-editor with function filter deactivated looks like the 
   <div id="bayContainer">
     <bay-editor showfunctions="">
     </bay-editor>
-    <bay-editor showfunctions="">
-    </bay-editor>
   </div>
 </action-pane>
 `;
 /* end snapshot voltage-level-editor with function filter deactivated looks like the latest snapshot */
-
-snapshots["voltage-level-editor with function filter deactivated and existing LNode children looks like the latest snapshot"] = 
-`<action-pane
-  label="J1 - Voltage Level with LNode
-    "
-  tabindex="0"
->
-  <abbr
-    slot="action"
-    title="[lnode.tooltip]"
-  >
-    <mwc-icon-button icon="account_tree">
-    </mwc-icon-button>
-  </abbr>
-  <abbr
-    slot="action"
-    title="[duplicate]"
-  >
-    <mwc-icon-button icon="content_copy">
-    </mwc-icon-button>
-  </abbr>
-  <abbr
-    slot="action"
-    title="[edit]"
-  >
-    <mwc-icon-button icon="edit">
-    </mwc-icon-button>
-  </abbr>
-  <abbr
-    slot="action"
-    title="[move]"
-  >
-    <mwc-icon-button icon="forward">
-    </mwc-icon-button>
-  </abbr>
-  <abbr
-    slot="action"
-    title="[remove]"
-  >
-    <mwc-icon-button icon="delete">
-    </mwc-icon-button>
-  </abbr>
-  <abbr
-    slot="action"
-    style="position:relative;"
-    title="[add]"
-  >
-    <mwc-icon-button icon="playlist_add">
-    </mwc-icon-button>
-    <mwc-menu
-      corner="BOTTOM_RIGHT"
-      menucorner="END"
-    >
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="menuitem"
-        tabindex="0"
-        value="LNode"
-      >
-        <span>
-          LNode
-        </span>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="menuitem"
-        tabindex="-1"
-        value="PowerTransformer"
-      >
-        <span>
-          PowerTransformer
-        </span>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="menuitem"
-        tabindex="-1"
-        value="Bay"
-      >
-        <span>
-          Bay
-        </span>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="menuitem"
-        tabindex="-1"
-        value="Function"
-      >
-        <span>
-          Function
-        </span>
-      </mwc-list-item>
-    </mwc-menu>
-  </abbr>
-  <div class="container lnode">
-    <l-node-editor>
-    </l-node-editor>
-    <l-node-editor>
-    </l-node-editor>
-    <l-node-editor>
-    </l-node-editor>
-  </div>
-  <div id="bayContainer">
-  </div>
-</action-pane>
-`;
-/* end snapshot voltage-level-editor with function filter deactivated and existing LNode children looks like the latest snapshot */
 

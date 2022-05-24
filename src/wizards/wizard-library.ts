@@ -15,31 +15,15 @@ import {
   voltageLevelCreateWizard,
   voltageLevelEditWizard,
 } from './voltagelevel.js';
-import {
-  createPowerTransformerWizard,
-  editPowerTransformerWizard,
-} from './powertransformer.js';
+import { createPowerTransformerWizard, editPowerTransformerWizard } from './powertransformer.js';
 import { editSubNetworkWizard } from './subnetwork.js';
 import { editIEDWizard } from './ied.js';
 import { editTrgOpsWizard } from './trgops.js';
 import { createDaWizard } from './da.js';
 import { editDAIWizard } from './dai.js';
 import { editGseControlWizard } from './gsecontrol.js';
-import { createFunctionWizard, editFunctionWizard } from './function.js';
-import {
-  createEqSubFunctionWizard,
-  editEqSubFunctionWizard,
-} from './eqsubfunction.js';
-import { createEqFunctionWizard, editEqFunctionWizard } from './eqfunction.js';
-import {
-  createSubFunctionWizard,
-  editSubFunctionWizard,
-} from './subfunction.js';
 
-type SclElementWizard = (
-  element: Element,
-  instanceElement?: Element
-) => Wizard | undefined;
+type SclElementWizard = (element: Element, instanceElement?: Element) => Wizard | undefined;
 
 export function emptyWizard(): Wizard | undefined {
   return;
@@ -197,12 +181,12 @@ export const wizards: Record<
     create: emptyWizard,
   },
   EqFunction: {
-    edit: editEqFunctionWizard,
-    create: createEqFunctionWizard,
+    edit: emptyWizard,
+    create: emptyWizard,
   },
   EqSubFunction: {
-    edit: editEqSubFunctionWizard,
-    create: createEqSubFunctionWizard,
+    edit: emptyWizard,
+    create: emptyWizard,
   },
   ExtRef: {
     edit: emptyWizard,
@@ -217,8 +201,8 @@ export const wizards: Record<
     create: emptyWizard,
   },
   Function: {
-    edit: editFunctionWizard,
-    create: createFunctionWizard,
+    edit: emptyWizard,
+    create: emptyWizard,
   },
   GeneralEquipment: {
     edit: emptyWizard,
@@ -485,8 +469,8 @@ export const wizards: Record<
     create: emptyWizard,
   },
   SubFunction: {
-    edit: editSubFunctionWizard,
-    create: createSubFunctionWizard,
+    edit: emptyWizard,
+    create: emptyWizard,
   },
   SubNetwork: {
     edit: editSubNetworkWizard,

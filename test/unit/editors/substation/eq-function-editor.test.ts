@@ -42,21 +42,4 @@ describe('web component rendering EqFunction element', () => {
     it('looks like the latest snapshot', async () =>
       await expect(element).shadowDom.to.equalSnapshot());
   });
-
-  describe('with existing LNode children', () => {
-    beforeEach(async () => {
-      element = <EqFunctionEditor>(
-        await fixture(
-          html`<eq-function-editor
-            .element=${doc.querySelector(
-              'ConductingEquipment[name="QB2"] EqFunction'
-            )}
-          ></eq-function-editor>`
-        )
-      );
-    });
-
-    it('looks like the latest snapshot', async () =>
-      await expect(element).shadowDom.to.equalSnapshot());
-  });
 });

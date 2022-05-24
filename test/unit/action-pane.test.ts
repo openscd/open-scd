@@ -23,6 +23,8 @@ describe('action-pane', () => {
     expect(element.shadowRoot?.querySelector('h2')).to.not.exist;
     expect(element.shadowRoot?.querySelector('h3')).to.not.exist;
     expect(element.shadowRoot?.querySelector('h4')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h5')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h6')).to.not.exist;
   });
 
   it('renders the header as <h1> with level 1', async () => {
@@ -32,6 +34,8 @@ describe('action-pane', () => {
     expect(element.shadowRoot?.querySelector('h2')).to.not.exist;
     expect(element.shadowRoot?.querySelector('h3')).to.not.exist;
     expect(element.shadowRoot?.querySelector('h4')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h5')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h6')).to.not.exist;
   });
 
   it('renders the header as <h2> with level 2', async () => {
@@ -41,6 +45,8 @@ describe('action-pane', () => {
     expect(element.shadowRoot?.querySelector('h1')).to.not.exist;
     expect(element.shadowRoot?.querySelector('h3')).to.not.exist;
     expect(element.shadowRoot?.querySelector('h4')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h5')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h6')).to.not.exist;
   });
 
   it('renders the header as <h3> with level 3', async () => {
@@ -50,6 +56,8 @@ describe('action-pane', () => {
     expect(element.shadowRoot?.querySelector('h1')).to.not.exist;
     expect(element.shadowRoot?.querySelector('h2')).to.not.exist;
     expect(element.shadowRoot?.querySelector('h4')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h5')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h6')).to.not.exist;
   });
 
   it('renders the header as <h4> with level 4', async () => {
@@ -59,15 +67,41 @@ describe('action-pane', () => {
     expect(element.shadowRoot?.querySelector('h1')).to.not.exist;
     expect(element.shadowRoot?.querySelector('h2')).to.not.exist;
     expect(element.shadowRoot?.querySelector('h3')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h5')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h6')).to.not.exist;
   });
 
-  it('renders the header as <h4> for levels > 4', async () => {
-    element.level = 7;
+  it('renders the header as <h5> with level 5', async () => {
+    element.level = 5;
     await element.updateComplete;
-    expect(element.shadowRoot?.querySelector('h4')).to.exist;
+    expect(element.shadowRoot?.querySelector('h5')).to.exist;
     expect(element.shadowRoot?.querySelector('h1')).to.not.exist;
     expect(element.shadowRoot?.querySelector('h2')).to.not.exist;
     expect(element.shadowRoot?.querySelector('h3')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h4')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h6')).to.not.exist;
+  });
+
+  it('renders the header as <h6> with level 6', async () => {
+    element.level = 6;
+    await element.updateComplete;
+    expect(element.shadowRoot?.querySelector('h6')).to.exist;
+    expect(element.shadowRoot?.querySelector('h1')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h2')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h3')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h4')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h5')).to.not.exist;
+  });
+
+  it('renders the header as <h6> for levels > 6', async () => {
+    element.level = 7;
+    await element.updateComplete;
+    expect(element.shadowRoot?.querySelector('h6')).to.exist;
+    expect(element.shadowRoot?.querySelector('h1')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h2')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h3')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h4')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h5')).to.not.exist;
   });
 
   it('renders the header as <h1> for levels < 1', async () => {
@@ -77,6 +111,8 @@ describe('action-pane', () => {
     expect(element.shadowRoot?.querySelector('h2')).to.not.exist;
     expect(element.shadowRoot?.querySelector('h3')).to.not.exist;
     expect(element.shadowRoot?.querySelector('h4')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h5')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h6')).to.not.exist;
   });
 
   it('does not set contrasted class property with odd level', async () => {

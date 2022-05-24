@@ -105,20 +105,6 @@ describe('powertransformer-editor', () => {
         await expect(element).shadowDom.to.equalSnapshot());
     });
 
-    describe('with LNode childrend', () => {
-      beforeEach(async () => {
-        const doc = await fetch('/test/testfiles/zeroline/functions.scd')
-          .then(response => response.text())
-          .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-
-        element.element = doc.querySelector('PowerTransformer[name="myPtr1"]')!;
-        await element.requestUpdate();
-      });
-
-      it('looks like the latest snapshot', async () =>
-        await expect(element).shadowDom.to.equalSnapshot());
-    });
-
     it('triggers edit wizard for Linking LNode element on action button click', async () => {
       (<HTMLElement>(
         element.shadowRoot?.querySelector(

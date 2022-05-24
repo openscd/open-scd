@@ -44,22 +44,4 @@ describe('web component rendering SubFunction element', () => {
       await expect(element).shadowDom.to.equalSnapshot();
     });
   });
-
-  describe('with existing LNode children', () => {
-    beforeEach(async () => {
-      element = <SubFunctionEditor>(
-        await fixture(
-          html`<sub-function-editor
-            .element=${doc.querySelector(
-              'Bay[name="COUPLING_BAY"] SubFunction'
-            )}
-          ></sub-function-editor>`
-        )
-      );
-    });
-
-    it('looks like the latest snapshot', async () => {
-      await expect(element).shadowDom.to.equalSnapshot();
-    });
-  });
 });

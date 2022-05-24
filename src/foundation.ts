@@ -293,7 +293,7 @@ interface WizardInputCheckbox extends WizardInputBase {
 }
 
 /** @returns [[`WizardAction`]]s to dispatch on [[`WizardDialog`]] menu action. */
-export type WizardMenuActor = (wizard: Element) => void;
+export type WizardMenuActor = () => WizardAction[];
 
 /** User interactions rendered in the wizard-dialog menu */
 export interface MenuAction {

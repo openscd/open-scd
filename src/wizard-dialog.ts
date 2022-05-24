@@ -42,6 +42,7 @@ import {
   identity,
   WizardInput,
   WizardMenuActor,
+  newSubWizardEvent,
 } from './foundation.js';
 
 function renderWizardInput(
@@ -213,11 +214,20 @@ export class WizardDialog extends LitElement {
     return true;
   }
 
-  /** Triggers menu action callback */
-  async menuAct(action?: WizardMenuActor): Promise<void> {
-    if (!action) return;
+  /** Triggers sub-wizard or editor-action with valid manu action */
+  async menuAct(action?: WizardMenuActor): Promise<boolean> {
+    if (!action) return false;
 
-    action(this);
+    const wizardActions = action();
+
+    wizardActions.forEach(wa => {
+      if (isWizardFactory(wa)) this.dispatchEvent(newSubWizardEvent(wa));
+      else {
+        this.dispatchEvent(newWizardEvent());
+        this.dispatchEvent(newActionEvent(wa));
+      }
+    });
+    return true;
   }
 
   private onClosed(ae: CustomEvent<{ action: string } | null>): void {

@@ -30,9 +30,8 @@ import {
   getUniqueElementName,
   ComplexAction,
   WizardMenuActor,
+  WizardAction,
   MenuAction,
-  newActionEvent,
-  newWizardEvent,
 } from '../foundation.js';
 import { FilteredList } from '../filtered-list.js';
 import { FinderList } from '../finder-list.js';
@@ -547,36 +546,34 @@ export function reportControlCopyToIedSelector(element: Element): Wizard {
 }
 
 function openIedsSelector(element: Element): WizardMenuActor {
-  return (wizard: Element): void => {
-    wizard.dispatchEvent(
-      newSubWizardEvent(() => reportControlCopyToIedSelector(element))
-    );
+  return (): WizardAction[] => {
+    return [() => reportControlCopyToIedSelector(element)];
   };
 }
 
 export function removeReportControl(element: Element): WizardMenuActor {
-  return (wizard: Element): void => {
+  return (): WizardAction[] => {
     const complexAction = removeReportControlAction(element);
-    if (complexAction) wizard.dispatchEvent(newActionEvent(complexAction));
-    wizard.dispatchEvent(newWizardEvent());
+    if (complexAction) return [complexAction];
+    return [];
   };
 }
 
 function openDataSetWizard(element: Element): WizardMenuActor {
-  return (wizard: Element): void => {
-    wizard.dispatchEvent(newSubWizardEvent(() => editDataSetWizard(element)));
+  return (): WizardAction[] => {
+    return [() => editDataSetWizard(element)];
   };
 }
 
 function openTrgOpsWizard(element: Element): WizardMenuActor {
-  return (wizard: Element): void => {
-    wizard.dispatchEvent(newSubWizardEvent(() => editTrgOpsWizard(element)));
+  return (): WizardAction[] => {
+    return [() => editTrgOpsWizard(element)];
   };
 }
 
 function openOptFieldsWizard(element: Element): WizardMenuActor {
-  return (wizard: Element): void => {
-    wizard.dispatchEvent(newSubWizardEvent(() => editOptFieldsWizard(element)));
+  return (): WizardAction[] => {
+    return [() => editOptFieldsWizard(element)];
   };
 }
 

@@ -18,13 +18,12 @@ import {
   WizardActor,
   WizardInputElement,
   WizardMenuActor,
-  newSubWizardEvent,
 } from '../foundation.js';
 import { createFCDAsWizard } from './fcda.js';
 
 function openFcdaWizard(element: Element): WizardMenuActor {
-  return (wizard: Element): void => {
-    wizard.dispatchEvent(newSubWizardEvent(() => createFCDAsWizard(element)));
+  return (): WizardAction[] => {
+    return [() => createFCDAsWizard(element)];
   };
 }
 

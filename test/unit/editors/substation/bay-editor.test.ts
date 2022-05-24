@@ -47,20 +47,4 @@ describe('bay-editor', () => {
       await expect(element).shadowDom.to.equalSnapshot();
     });
   });
-
-  describe('with existing LNode children', () => {
-    beforeEach(async () => {
-      doc = await fetch('/test/testfiles/zeroline/functions.scd')
-        .then(response => response.text())
-        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-
-      element.element = doc.querySelector('Bay[name="Q01"]')!;
-      element.showfunctions = true;
-      await element.requestUpdate();
-    });
-
-    it('looks like the latest snapshot', async () => {
-      await expect(element).shadowDom.to.equalSnapshot();
-    });
-  });
 });

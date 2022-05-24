@@ -8,8 +8,6 @@ import {
   EditorAction,
   getValue,
   isPublic,
-  newActionEvent,
-  newWizardEvent,
   Wizard,
   WizardActor,
   WizardInputElement,
@@ -18,11 +16,8 @@ import {
 import { getValAction, wizardContent } from './abstractda.js';
 
 function remove(element: Element): WizardMenuActor {
-  return (wizard: Element): void => {
-    wizard.dispatchEvent(
-      newActionEvent({ old: { parent: element.parentElement!, element } })
-    );
-    wizard.dispatchEvent(newWizardEvent());
+  return (): EditorAction[] => {
+    return [{ old: { parent: element.parentElement!, element } }];
   };
 }
 

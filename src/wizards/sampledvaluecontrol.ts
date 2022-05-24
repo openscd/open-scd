@@ -19,11 +19,10 @@ import {
   identity,
   isPublic,
   MenuAction,
-  newActionEvent,
   newSubWizardEvent,
-  newWizardEvent,
   selector,
   Wizard,
+  WizardAction,
   WizardActor,
   WizardInputElement,
   WizardMenuActor,
@@ -196,28 +195,28 @@ function contentSampledValueControlWizard(
 }
 
 function removeSampledValueControl(element: Element): WizardMenuActor {
-  return (wizard: Element): void => {
+  return (): WizardAction[] => {
     const complexAction = removeSampledValueControlAction(element);
-    if (complexAction) wizard.dispatchEvent(newActionEvent(complexAction));
-    wizard.dispatchEvent(newWizardEvent());
+    if (complexAction) return [complexAction];
+    return [];
   };
 }
 
 function openDataSetWizard(element: Element): WizardMenuActor {
-  return (wizard: Element): void => {
-    wizard.dispatchEvent(newSubWizardEvent(() => editDataSetWizard(element)));
+  return (): WizardAction[] => {
+    return [() => editDataSetWizard(element)];
   };
 }
 
 function openSmvOptsWizard(element: Element): WizardMenuActor {
-  return (wizard: Element): void => {
-    wizard.dispatchEvent(newSubWizardEvent(() => editSmvOptsWizard(element)));
+  return (): WizardAction[] => {
+    return [() => editSmvOptsWizard(element)];
   };
 }
 
 function openSMvWizard(element: Element): WizardMenuActor {
-  return (wizard: Element): void => {
-    wizard.dispatchEvent(newSubWizardEvent(() => editSMvWizard(element)));
+  return (): WizardAction[] => {
+    return [() => editSMvWizard(element)];
   };
 }
 

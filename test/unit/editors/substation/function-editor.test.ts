@@ -44,22 +44,4 @@ describe('web component rendering Function element', () => {
       await expect(element).shadowDom.to.equalSnapshot();
     });
   });
-
-  describe('with existing LNode children', () => {
-    beforeEach(async () => {
-      element = <FunctionEditor>(
-        await fixture(
-          html`<function-editor
-            .element=${doc.querySelector(
-              'Bay[name="COUPLING_BAY"] Function[name="bay2Func"]'
-            )}
-          ></function-editor>`
-        )
-      );
-    });
-
-    it('looks like the latest snapshot', async () => {
-      await expect(element).shadowDom.to.equalSnapshot();
-    });
-  });
 });

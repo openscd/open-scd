@@ -22,13 +22,13 @@ import {
   getValue,
   identity,
   isPublic,
-  newActionEvent,
   newSubWizardEvent,
   newWizardEvent,
   patterns,
   Replace,
   selector,
   Wizard,
+  WizardAction,
   WizardActor,
   WizardInputElement,
   WizardMenuActor,
@@ -44,17 +44,14 @@ import {
 } from './foundation.js';
 
 function remove(element: Element): WizardMenuActor {
-  return (wizard: Element): void => {
-    wizard.dispatchEvent(
-      newActionEvent({ old: { parent: element.parentElement!, element } })
-    );
-    wizard.dispatchEvent(newWizardEvent());
+  return (): EditorAction[] => {
+    return [{ old: { parent: element.parentElement!, element } }];
   };
 }
 
 function openAddDo(parent: Element): WizardMenuActor {
-  return (wizard: Element): void => {
-    wizard.dispatchEvent(newSubWizardEvent(() => dOWizard({ parent })!));
+  return (): WizardAction[] => {
+    return [() => dOWizard({ parent })!];
   };
 }
 

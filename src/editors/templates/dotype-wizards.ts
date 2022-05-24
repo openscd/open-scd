@@ -19,12 +19,11 @@ import {
   getValue,
   identity,
   isPublic,
-  newActionEvent,
   newSubWizardEvent,
-  newWizardEvent,
   Replace,
   selector,
   Wizard,
+  WizardAction,
   WizardActor,
   WizardInputElement,
   WizardMenuActor,
@@ -41,11 +40,8 @@ import {
 } from './foundation.js';
 
 function remove(element: Element): WizardMenuActor {
-  return (wizard: Element): void => {
-    wizard.dispatchEvent(
-      newActionEvent({ old: { parent: element.parentElement!, element } })
-    );
-    wizard.dispatchEvent(newWizardEvent());
+  return (): EditorAction[] => {
+    return [{ old: { parent: element.parentElement!, element } }];
   };
 }
 
@@ -300,14 +296,14 @@ export function createDOTypeWizard(
 }
 
 function openAddSdo(parent: Element): WizardMenuActor {
-  return (wizard: Element): void => {
-    wizard.dispatchEvent(newSubWizardEvent(() => sDOWizard({ parent })!));
+  return (): WizardAction[] => {
+    return [() => sDOWizard({ parent })!];
   };
 }
 
 function openAddDa(parent: Element): WizardMenuActor {
-  return (wizard: Element): void => {
-    wizard.dispatchEvent(newSubWizardEvent(() => createDaWizard(parent)!));
+  return (): WizardAction[] => {
+    return [() => createDaWizard(parent)!];
   };
 }
 

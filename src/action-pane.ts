@@ -79,8 +79,12 @@ export class ActionPane extends LitElement {
         return html`<h2>${content}</h2>`;
       case 3:
         return html`<h3>${content}</h3>`;
-      default:
+      case 4:
         return html`<h4>${content}</h4>`;
+      case 5:
+        return html`<h5>${content}</h5>`;
+      default:
+        return html`<h6>${content}</h6>`;
     }
   }
 
@@ -146,7 +150,9 @@ export class ActionPane extends LitElement {
     h1,
     h2,
     h3,
-    h4 {
+    h4,
+    h5,
+    h6 {
       color: var(--mdc-theme-on-surface);
       font-family: 'Roboto', sans-serif;
       font-weight: 300;
