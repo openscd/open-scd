@@ -17,6 +17,7 @@ import {
   getChildElementsByTagName,
   identity,
   isPublic,
+  newLogEvent,
   newWizardEvent,
   referencePath,
   selector,
@@ -26,16 +27,17 @@ import {
   WizardMenuActor,
 } from '../foundation.js';
 
+const maxLnInst = 99;
+
 function getUniqueLnInst(parent: Element, lnClass: string): number {
-  const lnInsts = Array.from(
-    parent.querySelectorAll(`LNode[lnClass="${lnClass}"]`)
-  )
+  const lnInsts = getChildElementsByTagName(parent, 'LNode')
+    .filter(lnode => lnode.getAttribute('lnClass') === lnClass)
     .map(lNode => Number.parseInt(lNode.getAttribute('lnInst')!))
     .sort((a, b) => a - b);
 
   if (lnInsts.length === 0) return 1;
 
-  for (let i = 1; i < 99; i++) {
+  for (let i = 1; i <= maxLnInst; i++) {
     if (lnInsts[i - 1] !== i) return i;
   }
 
@@ -66,11 +68,44 @@ function createLNodeAction(parent: Element): WizardActor {
         if (!lnClass) return null;
 
         const uniqueLnInst = getUniqueLnInst(clonedParent, lnClass);
-        if (isNaN(uniqueLnInst) || uniqueLnInst > 99) return null;
+        if (isNaN(uniqueLnInst)) {
+          wizard.dispatchEvent(
+            newLogEvent({
+              kind: 'error',
+              title: get('lnode.log.title', { lnClass }),
+              message: get('lnode.log.nonuniquelninst'),
+            })
+          );
+          return;
+        }
 
-        const existLLN0 =
-          clonedParent.querySelector('LNode[lnClass="LLN0"]') !== null;
-        if (lnClass === 'LLN0' && existLLN0) return null;
+        const hasLLN0 = getChildElementsByTagName(parent, 'LNode').some(
+          lnode => lnode.getAttribute('lnClass') === 'LLN0'
+        );
+        if (lnClass === 'LLN0' && hasLLN0) {
+          wizard.dispatchEvent(
+            newLogEvent({
+              kind: 'error',
+              title: get('lnode.log.title', { lnClass }),
+              message: get('lnode.log.uniqueln0', { lnClass }),
+            })
+          );
+          return;
+        }
+
+        const hasLPHD = getChildElementsByTagName(parent, 'LNode').some(
+          lnode => lnode.getAttribute('lnClass') === 'LPHD'
+        );
+        if (lnClass === 'LPHD' && hasLPHD) {
+          wizard.dispatchEvent(
+            newLogEvent({
+              kind: 'error',
+              title: get('lnode.log.title', { lnClass }),
+              message: get('lnode.log.uniqueln0', { lnClass }),
+            })
+          );
+          return;
+        }
 
         const lnInst = lnClass === 'LLN0' ? '' : `${uniqueLnInst}`;
 
@@ -123,7 +158,7 @@ function lNodeInstanceWizard(parent: Element): Wizard {
       content: [
         html`<filtered-list multi
           >${lNodeTypes.map(lNodeType => {
-            const isDesabled =
+            const isDisabled =
               (lNodeType.getAttribute('lnClass') === 'LLN0' &&
                 getChildElementsByTagName(parent, 'LNode').some(
                   lnode => lnode.getAttribute('lnClass') === 'LLN0'
@@ -136,10 +171,10 @@ function lNodeInstanceWizard(parent: Element): Wizard {
             return html`<mwc-check-list-item
               twoline
               value="${identity(lNodeType)}"
-              ?disabled=${isDesabled}
+              ?disabled=${isDisabled}
               ><span>${lNodeType.getAttribute('lnClass')}</span
               ><span slot="secondary"
-                >${isDesabled
+                >${isDisabled
                   ? get('lnode.wizard.uniquewarning')
                   : identity(lNodeType)}</span
               ></mwc-check-list-item

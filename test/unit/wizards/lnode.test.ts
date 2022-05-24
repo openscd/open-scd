@@ -14,6 +14,7 @@ describe('Wizards for LNode element', () => {
   let doc: Document;
 
   let actionEvent: SinonSpy;
+  let logEvent: SinonSpy;
 
   beforeEach(async () => {
     doc = await fetch('/test/testfiles/lnodewizard.scd')
@@ -26,6 +27,8 @@ describe('Wizards for LNode element', () => {
 
     actionEvent = spy();
     window.addEventListener('editor-action', actionEvent);
+    logEvent = spy();
+    window.addEventListener('log', logEvent);
   });
 
   describe('contain a LNode instantiate wizard that', () => {
@@ -40,6 +43,76 @@ describe('Wizards for LNode element', () => {
 
       it('looks like the latest snapshot', async () =>
         await expect(element.wizardUI.dialog).to.equalSnapshot());
+
+      describe('has a primary action that', () => {
+        let primaryAction: HTMLElement;
+        let listItems: ListItemBase[];
+
+        beforeEach(async () => {
+          const wizard = lNodeWizard(
+            doc.querySelector('SubFunction[name="disconnector"]')!
+          );
+          element.workflow.push(() => wizard);
+          await element.requestUpdate();
+
+          primaryAction = <HTMLElement>(
+            element.wizardUI.dialog?.querySelector(
+              'mwc-button[slot="primaryAction"]'
+            )
+          );
+
+          listItems = Array.from(
+            element.wizardUI!.dialog!.querySelectorAll<ListItemBase>(
+              'mwc-check-list-item'
+            )
+          );
+        });
+
+        it('triggers error log massage when duplicate LLN0 classes are added', async () => {
+          listItems[0].selected = true;
+
+          await primaryAction.click();
+
+          expect(logEvent).to.have.be.calledOnce;
+          expect(logEvent.args[0][0].detail.message).to.contain(
+            'lnode.log.uniqueln0'
+          );
+        });
+
+        it('triggers error log massage when duplicate LPHD classes are added', async () => {
+          listItems[1].selected = true;
+
+          await primaryAction.click();
+
+          expect(logEvent).to.have.be.calledOnce;
+          expect(logEvent.args[0][0].detail.message).to.contain(
+            'lnode.log.uniqueln0'
+          );
+        });
+
+        it('trigger error log message when not unique lnInst can be find', async () => {
+          const parent = doc.querySelector('SubFunction[name="disconnector"]')!
+            .parentElement!;
+          for (let i = 1; i <= 99; i++) {
+            const element = <Element>(
+              doc.createElementNS(doc.documentElement.namespaceURI, 'LNode')
+            );
+
+            element.setAttribute('lnClass', 'CILO');
+            element.setAttribute('lnInst', `${i}`);
+            parent.appendChild(element);
+          }
+
+          listItems[4].selected = true;
+
+          await primaryAction.click();
+
+          expect(logEvent).to.have.be.calledOnce;
+          expect(logEvent.args[0][0].detail.message).to.contain(
+            'lnode.log.nonuniquelninst'
+          );
+        });
+      });
     });
 
     describe('with existing LLN0 but missing LPHD instances', () => {
