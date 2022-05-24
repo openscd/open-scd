@@ -773,3 +773,140 @@ snapshots["Wizards for LNode element contain a LNode reference create wizard tha
 `;
 /* end snapshot Wizards for LNode element contain a LNode reference create wizard that with missing references to existing logical nodes looks like the latest snapshot */
 
+snapshots["Wizards for LNode element contain a edit wizard that for a type reference looks like the latest snapshot"] = 
+`<mwc-dialog
+  defaultaction="close"
+  heading="[wizard.title.edit]"
+  open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
+>
+  <div id="wizard-content">
+    <wizard-textfield
+      disabled=""
+      helper="[scl.iedName]"
+      helperpersistent=""
+      label="iedName"
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      helper="[scl.ldInst]"
+      helperpersistent=""
+      label="ldInst"
+      nullable=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      helper="[scl.prefix]"
+      helperpersistent=""
+      label="prefix"
+      maxlength="11"
+      nullable=""
+      pattern="[A-Za-z][0-9,A-Z,a-z_]*"
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      helper="[scl.lnClass]"
+      helperpersistent=""
+      label="lnClass"
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      helper="[scl.lnInst]"
+      helperpersistent=""
+      label="lnInst"
+      max="99"
+      min="1"
+      type="number"
+    >
+    </wizard-textfield>
+  </div>
+  <mwc-button
+    dialogaction="close"
+    label="[cancel]"
+    slot="secondaryAction"
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+  </mwc-button>
+  <mwc-button
+    icon="save"
+    label="[save]"
+    slot="primaryAction"
+    trailingicon=""
+  >
+  </mwc-button>
+</mwc-dialog>
+`;
+/* end snapshot Wizards for LNode element contain a edit wizard that for a type reference looks like the latest snapshot */
+
+snapshots["Wizards for LNode element contain a edit wizard that for a IED reference looks like the latest snapshot"] = 
+`<mwc-dialog
+  defaultaction="close"
+  heading="[wizard.title.edit]"
+  open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
+>
+  <div id="wizard-content">
+    <wizard-textfield
+      disabled=""
+      helper="[scl.iedName]"
+      helperpersistent=""
+      label="iedName"
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      helper="[scl.ldInst]"
+      helperpersistent=""
+      label="ldInst"
+      nullable=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      helper="[scl.prefix]"
+      helperpersistent=""
+      label="prefix"
+      maxlength="11"
+      nullable=""
+      pattern="[A-Za-z][0-9,A-Z,a-z_]*"
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      helper="[scl.lnClass]"
+      helperpersistent=""
+      label="lnClass"
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      helper="[scl.lnInst]"
+      helperpersistent=""
+      label="lnInst"
+      max="99"
+      min="1"
+      type="number"
+    >
+    </wizard-textfield>
+  </div>
+  <mwc-button
+    dialogaction="close"
+    label="[cancel]"
+    slot="secondaryAction"
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+  </mwc-button>
+  <mwc-button
+    icon="save"
+    label="[save]"
+    slot="primaryAction"
+    trailingicon=""
+  >
+  </mwc-button>
+</mwc-dialog>
+`;
+/* end snapshot Wizards for LNode element contain a edit wizard that for a IED reference looks like the latest snapshot */
+

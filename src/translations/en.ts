@@ -58,6 +58,10 @@ export const en = {
     sampleRate: 'Add sample rate to SMV packet',
     security: 'Potential future use. e.g. digital signature',
     synchSourceId: 'Add sync source id to SMV packet',
+    iedName: 'Referenced IED',
+    ldInst: 'Referenced Logical Device',
+    prefix: 'Prefix of the Logical Node',
+    lnInst: 'Instance of the Logical Node',
   },
   settings: {
     title: 'Settings',
