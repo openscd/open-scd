@@ -60,7 +60,7 @@
 		</VoltageLevel>
 	</Substation>
 	<Communication>
-		<SubNetwork type="T104" name="W1" desc="">
+		<SubNetwork type="104" name="W1" desc="">
 			<ConnectedAP iedName="B1" apName="AP1">
 				<Address>
 					<P type="RG1-LL1-IP">192.128.0.1</P>
@@ -85,6 +85,19 @@
 			<ConnectedAP iedName="B2" apName="AP1">
 				<Address>
 					<P type="IP">192.128.0.10</P>
+					<P type="IP-SUBNET">255.255.255.0</P>
+					<P type="W-FACTOR">8</P>
+					<P type="K-FACTOR">12</P>
+					<P type="TIMEOUT-0">30</P>
+					<P type="TIMEOUT-1">15</P>
+					<P type="TIMEOUT-2">10</P>
+					<P type="TIMEOUT-3">20</P>
+					<P type="StationType">controlled-station</P>
+				</Address>
+			</ConnectedAP>
+			<ConnectedAP iedName="B2" apName="AP2">
+				<Address>
+					<P type="IP">192.128.0.11</P>
 					<P type="IP-SUBNET">255.255.255.0</P>
 					<P type="W-FACTOR">8</P>
 					<P type="K-FACTOR">12</P>

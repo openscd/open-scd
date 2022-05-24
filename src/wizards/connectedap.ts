@@ -259,15 +259,21 @@ export function editConnectedAp104Wizard(element: Element): Wizard {
         action: updateConnectedApAction(element),
       },
       content: [
-        html`<wizard-select
-          label="StationType"
-          .maybeValue=${element.querySelector(
-            `Address > P[type="StationType"]`
-          )?.innerHTML ?? null}
-          required
-          helper="${translate(typeDescriptiveNameKeys["StationType"])}"
-          >
-          ${stationTypeOptions.map(
+        html`<mwc-formfield
+            label="${translate('connectedap.wizard.addschemainsttype')}"
+            ><mwc-checkbox
+              id="typeRestriction"
+              ?checked=${hasTypeRestriction(element)}
+            ></mwc-checkbox>
+          </mwc-formfield>
+          <wizard-select
+            label="StationType"
+            .maybeValue=${element.querySelector(
+              `Address > P[type="StationType"]`
+            )?.innerHTML ?? null}
+            required
+            helper="${translate(typeDescriptiveNameKeys["StationType"])}"
+          >${stationTypeOptions.map(
             option =>
               html`<mwc-list-item value="${option}">${option}</mwc-list-item>`
           )}</wizard-select>
