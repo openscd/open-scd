@@ -21,29 +21,27 @@ describe('Wizards for SCL element ConnectedAP', () => {
   beforeEach(async () => {
     element = <MockWizard>await fixture(html`<mock-wizard></mock-wizard>`);
 
+    doc = await fetch('/test/testfiles/104-protocol.scd')
+      .then(response => response.text())
+      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+    const wizard = editConnectedAp104Wizard(doc.querySelector('SubNetwork[type="104"] > ConnectedAP[apName="AP2"]')!);
+    element.workflow.push(() => wizard);
+    await element.requestUpdate();
+
+    inputs = Array.from(element.wizardUI.inputs);
+
+    primaryAction = <HTMLElement>(
+      element.wizardUI.dialog?.querySelector(
+        'mwc-button[slot="primaryAction"]'
+      )
+    );
+
     actionEvent = spy();
     window.addEventListener('editor-action', actionEvent);
   });
 
   describe('include an edit wizard that', () => {
-    beforeEach(async () => {
-      doc = await fetch('/test/testfiles/104-protocol.scd')
-        .then(response => response.text())
-        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-
-      const wizard = editConnectedAp104Wizard(doc.querySelector('SubNetwork[type="104"] > ConnectedAP[apName="AP2"]')!);
-      element.workflow.push(() => wizard);
-      await element.requestUpdate();
-
-      inputs = Array.from(element.wizardUI.inputs);
-
-      primaryAction = <HTMLElement>(
-        element.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="primaryAction"]'
-        )
-      );
-    });
-
     it('does not edit any P element with unchanged wizard inputs', async () => {
       primaryAction.click();
       await element.requestUpdate();
