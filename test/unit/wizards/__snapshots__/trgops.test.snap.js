@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["Wizards for SCL TrgOps element define an edit wizard that looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[wizard.title.edit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"

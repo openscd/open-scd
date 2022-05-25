@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["conducting-equipment-editor wizarding integration looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[conductingequipment.wizard.title.edit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"

@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["Wizards for SCL element IED edit IED looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[ied.wizard.title.edit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 48px)"
@@ -70,7 +70,7 @@ snapshots["Wizards for SCL element IED edit IED looks like the latest snapshot"]
 
 snapshots["Wizards for SCL element IED remove IED looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[ied.wizard.title.delete]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"

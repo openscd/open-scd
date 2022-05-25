@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["create wizard for FCDA element with a valid SCL file looks like the last snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[wizard.title.add]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"

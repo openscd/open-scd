@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["Wizards for LNode element contain a LNode instantiate wizard that with existing LLN0 and LPHD instances looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[lnode.wizard.title.selectLNodeTypes]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 48px)"
@@ -173,7 +173,7 @@ snapshots["Wizards for LNode element contain a LNode instantiate wizard that wit
 
 snapshots["Wizards for LNode element contain a LNode instantiate wizard that with existing LLN0 but missing LPHD instances looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[lnode.wizard.title.selectLNodeTypes]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 48px)"
@@ -342,7 +342,7 @@ snapshots["Wizards for LNode element contain a LNode instantiate wizard that wit
 
 snapshots["Wizards for LNode element contain a LNode instantiate wizard that with missing LLN0 and LPHD instances looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[lnode.wizard.title.selectLNodeTypes]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 48px)"
@@ -510,7 +510,7 @@ snapshots["Wizards for LNode element contain a LNode instantiate wizard that wit
 
 snapshots["Wizards for LNode element contain a LNode reference create wizard that with references to existing logical nodes looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[lnode.wizard.title.selectLNs]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -695,7 +695,7 @@ snapshots["Wizards for LNode element contain a LNode reference create wizard tha
 
 snapshots["Wizards for LNode element contain a LNode reference create wizard that with missing references to existing logical nodes looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[lnode.wizard.title.selectIEDs]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 48px)"
