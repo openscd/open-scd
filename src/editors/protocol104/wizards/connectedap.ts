@@ -1,5 +1,4 @@
 import { html } from 'lit-element';
-import { ifDefined } from 'lit-html/directives/if-defined';
 import { translate, get } from 'lit-translate';
 
 import '@material/mwc-checkbox';
@@ -13,8 +12,9 @@ import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import '../../../wizard-textfield.js';
 import '../../../filtered-list.js';
-import { pTypes104, stationTypeOptions, typeDescriptiveNameKeys, typePattern } from '../foundation/p-types.js';
+import { pTypes104, stationTypeOptions, typeDescriptiveNameKeys } from '../foundation/p-types.js';
 import { compareNames, ComplexAction, createElement, EditorAction, getValue, identity, isPublic, Wizard, WizardActor, WizardInputElement } from '../../../foundation.js';
+import { createPTextField, createTypeRestrictionCheckbox } from '../../../wizards/connectedap.js';
 
 interface AccessPointDescription {
   element: Element;
@@ -188,12 +188,6 @@ export function updateConnectedApAction(parent: Element): WizardActor {
   };
 }
 
-function hasTypeRestriction(element: Element): boolean {
-  return Array.from(element.querySelectorAll('Address > P'))
-    .filter(p => isPublic(p))
-    .some(pType => pType.getAttribute('xsi:type'));
-}
-
 /** @returns single page [[`Wizard`]] to edit SCL element ConnectedAP for the 104 plugin. */
 export function editConnectedAp104Wizard(element: Element): Wizard {
   return [
@@ -206,13 +200,7 @@ export function editConnectedAp104Wizard(element: Element): Wizard {
         action: updateConnectedApAction(element),
       },
       content: [
-        html`<mwc-formfield
-            label="${translate('connectedap.wizard.addschemainsttype')}"
-            ><mwc-checkbox
-              id="typeRestriction"
-              ?checked=${hasTypeRestriction(element)}
-            ></mwc-checkbox>
-          </mwc-formfield>
+        html`${createTypeRestrictionCheckbox(element)}
           <wizard-select
             label="StationType"
             .maybeValue=${element.querySelector(
@@ -225,16 +213,8 @@ export function editConnectedAp104Wizard(element: Element): Wizard {
               html`<mwc-list-item value="${option}">${option}</mwc-list-item>`
           )}</wizard-select>
           ${pTypes104.map(
-            ptype =>
-              html`<wizard-textfield
-                required
-                label="${ptype}"
-                pattern="${ifDefined(typePattern[ptype])}"
-                .maybeValue=${element.querySelector(
-                  `Address > P[type="${ptype}"]`
-                )?.innerHTML ?? null}
-                helper="${translate(typeDescriptiveNameKeys[ptype])}"
-              ></wizard-textfield>`
+            pType =>
+              html`${createPTextField(element, pType)}`
           )}`,
       ],
     },

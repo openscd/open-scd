@@ -10,7 +10,7 @@ import '@material/mwc-fab';
 
 import '../../action-icon.js';
 import { newWizardEvent, newActionEvent } from '../../foundation.js';
-import { editConnectedAp104Wizard } from '../../wizards/connectedap.js';
+import { editConnectedAp104Wizard } from './wizards/connectedap.js';
 
 /** [[`104`]] subeditor for a `ConnectedAP` element. */
 @customElement('connectedap-104-editor')
