@@ -354,10 +354,23 @@ export const en = {
   },
   protocol104: {
     toggleChildElements: 'Toggle child elements',
+    missing: 'No IED with 104 Addresses',
     view: {
       valuesView: 'Values',
       networkView: 'Network',
-    }
+    },
+    wizard: {
+      title: {
+        doiInfo: 'DOI Info',
+        addressEdit: 'Edit 104 Address',
+      },
+      casduHelper: 'CASDU Value',
+      ioaHelper: 'IOA Value',
+      expectedValueHelper: 'Expected Value',
+      unitMultiplierHelper: 'Unit Multiplier',
+      scaleMultiplierHelper: 'Scale Multiplier',
+      scaleOffsetHelper: 'Scale Offset',
+    },
   },
   'enum-val': {
     wizard: {

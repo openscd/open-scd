@@ -18,44 +18,10 @@ snapshots["ied-104-container - IED with DAI Elements looks like the latest snaps
     >
     </mwc-icon-button-toggle>
   </abbr>
-  <filtered-list id="dailist">
-    <mwc-list-item
-      aria-disabled="false"
-      hasmeta=""
-      mwc-list-item=""
-      tabindex="0"
-      twoline=""
-    >
-      <span>
-        AP1 / LD0 / LLN0 / Beh / stVal
-      </span>
-      <span slot="secondary">
-        cdc: ENS, casdu: 1, ioa: 1, ti: 35
-      </span>
-      <span slot="meta">
-        <mwc-icon-button icon="edit">
-        </mwc-icon-button>
-      </span>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      hasmeta=""
-      mwc-list-item=""
-      tabindex="0"
-      twoline=""
-    >
-      <span>
-        AP1 / LD0 / PPRE-GGIO-2 / Beh / stVal
-      </span>
-      <span slot="secondary">
-        cdc: ENS, casdu: 1, ioa: 2, ti: 35
-      </span>
-      <span slot="meta">
-        <mwc-icon-button icon="edit">
-        </mwc-icon-button>
-      </span>
-    </mwc-list-item>
-  </filtered-list>
+  <doi-104-container>
+  </doi-104-container>
+  <doi-104-container>
+  </doi-104-container>
 </action-pane>
 `;
 /* end snapshot ied-104-container - IED with DAI Elements looks like the latest snapshot */
@@ -77,8 +43,6 @@ snapshots["ied-104-container - IED without DAI Elements looks like the latest sn
     >
     </mwc-icon-button-toggle>
   </abbr>
-  <filtered-list id="dailist">
-  </filtered-list>
 </action-pane>
 `;
 /* end snapshot ied-104-container - IED without DAI Elements looks like the latest snapshot */

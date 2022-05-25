@@ -14,6 +14,7 @@ import {
   WizardInputElement,
 } from '../../../src/foundation.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
+import { WizardSelect } from "../../../src/wizard-select.js";
 
 const noOp = () => {
   return;
@@ -26,6 +27,17 @@ export const newWizard = (done = noOp) => {
 
 export async function setWizardTextFieldValue(
   field: WizardTextField,
+  value: string | null
+): Promise<void> {
+  if (field.nullSwitch && !field.nullSwitch.checked) {
+    field.nullSwitch?.click();
+  }
+  field.maybeValue = value;
+  await field.requestUpdate();
+}
+
+export async function setWizardSelectValue(
+  field: WizardSelect,
   value: string | null
 ): Promise<void> {
   if (field.nullSwitch && !field.nullSwitch.checked) {
