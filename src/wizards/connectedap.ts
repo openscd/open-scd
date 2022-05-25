@@ -190,7 +190,7 @@ function createAddressElement(
   return element;
 }
 
-export function updateConnectedApAction(parent: Element): WizardActor {
+function updateConnectedApAction(parent: Element): WizardActor {
   return (inputs: WizardInputElement[], wizard: Element): EditorAction[] => {
     const typeRestriction: boolean =
       (<Checkbox>wizard.shadowRoot?.querySelector('#typeRestriction'))
