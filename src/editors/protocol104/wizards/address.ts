@@ -27,12 +27,12 @@ import {
   hasUnitMultiplierField
 } from "../foundation/foundation.js";
 
-export function updateValue(element: Element): WizardActor {
+export function updateValue(addressElement: Element): WizardActor {
   return (inputs: WizardInputElement[]): EditorAction[] => {
-    const doiElement = element.closest('DOI');
+    const doiElement = addressElement.closest('DOI');
 
     const cdc = getCdcValue(doiElement!) ?? '';
-    const ti = element.getAttribute('ti') ?? '';
+    const ti = addressElement.getAttribute('ti') ?? '';
 
     const casdu = getValue(inputs.find(i => i.label === 'casdu')!)!;
     const ioa = getValue(inputs.find(i => i.label === 'ioa')!);
@@ -54,17 +54,17 @@ export function updateValue(element: Element): WizardActor {
         : null);
 
     if (
-      casdu === element.getAttribute('casdu') &&
-      ioa === element.getAttribute('ioa') &&
-      expectedValue === element.getAttribute('expectedValue') &&
-      unitMultiplier === element.getAttribute('unitMultiplier') &&
-      scaleMultiplier === element.getAttribute('scaleMultiplier') &&
-      scaleOffset === element.getAttribute('scaleOffset')
+      casdu === addressElement.getAttribute('casdu') &&
+      ioa === addressElement.getAttribute('ioa') &&
+      expectedValue === addressElement.getAttribute('expectedValue') &&
+      unitMultiplier === addressElement.getAttribute('unitMultiplier') &&
+      scaleMultiplier === addressElement.getAttribute('scaleMultiplier') &&
+      scaleOffset === addressElement.getAttribute('scaleOffset')
     ) {
       return [];
     }
 
-    const newElement = cloneElement(element,
+    const newElement = cloneElement(addressElement,
       {
         casdu,
         ioa,
@@ -74,19 +74,19 @@ export function updateValue(element: Element): WizardActor {
         scaleOffset,
       });
 
-    return [{ old: { element: element! }, new: { element: newElement } }];
+    return [{ old: { element: addressElement! }, new: { element: newElement } }];
   };
 }
 
 export function renderDAIWizard(
-  element: Element
+  addressElement: Element
 ): TemplateResult[] {
-  const daiElement = element.closest('DAI');
+  const daiElement = addressElement.closest('DAI');
   const doiElement = daiElement!.closest('DOI');
   const iedElement = doiElement!.closest('IED');
 
   const cdc = getCdcValue(doiElement!) ?? '';
-  const ti = element.getAttribute('ti') ?? '';
+  const ti = addressElement.getAttribute('ti') ?? '';
 
   // Add the basic fields to the list.
   const fields: TemplateResult[] = [
@@ -120,12 +120,12 @@ export function renderDAIWizard(
           </mwc-textarea>`,
     html `<wizard-textfield
             label="casdu"
-            .maybeValue=${element.getAttribute('casdu')}
+            .maybeValue=${addressElement.getAttribute('casdu')}
             helper="${translate('protocol104.wizard.casduHelper')}">
           </wizard-textfield>`,
     html `<wizard-textfield
             label="ioa"
-            .maybeValue=${element.getAttribute('ioa')}
+            .maybeValue=${addressElement.getAttribute('ioa')}
             helper="${translate('protocol104.wizard.ioaHelper')}">
           </wizard-textfield>`,
     html `<wizard-textfield
@@ -140,7 +140,7 @@ export function renderDAIWizard(
     fields.push(html `
       <wizard-textfield
         label="expectedValue"
-        .maybeValue=${element.getAttribute('expectedValue')}
+        .maybeValue=${addressElement.getAttribute('expectedValue')}
         helper="${translate('protocol104.wizard.expectedValueHelper')}"
         pattern="${patterns.integer}"
         nullable>
@@ -154,7 +154,7 @@ export function renderDAIWizard(
     fields.push(html `
       <wizard-select
         label="unitMultiplier"
-        .maybeValue=${element.getAttribute('unitMultiplier')}
+        .maybeValue=${addressElement.getAttribute('unitMultiplier')}
         helper="${translate('protocol104.wizard.unitMultiplierHelper')}"
         fixedMenuPosition
         nullable>
@@ -171,7 +171,7 @@ export function renderDAIWizard(
     fields.push(html `
       <wizard-textfield
         label="scaleMultiplier"
-        .maybeValue=${element.getAttribute('scaleMultiplier')}
+        .maybeValue=${addressElement.getAttribute('scaleMultiplier')}
         helper="${translate('protocol104.wizard.scaleMultiplierHelper')}"
         pattern="${patterns.decimal}"
         nullable>
@@ -180,28 +180,28 @@ export function renderDAIWizard(
     fields.push(html `
       <wizard-textfield
         label="scaleOffset"
-        .maybeValue=${element.getAttribute('scaleOffset')}
+        .maybeValue=${addressElement.getAttribute('scaleOffset')}
         helper="${translate('protocol104.wizard.scaleOffsetHelper')}"
         pattern="${patterns.decimal}"
         nullable>
       </wizard-textfield>`);
   }
 
-  if (element.hasAttribute('inverted')) {
+  if (addressElement.hasAttribute('inverted')) {
     fields.push(html `
       <wizard-textfield
         label="inverted"
-        .maybeValue=${element.getAttribute('inverted')}
+        .maybeValue=${addressElement.getAttribute('inverted')}
         disabled
         readonly>
       </wizard-textfield>`);
   }
 
-  if (element.hasAttribute('check')) {
+  if (addressElement.hasAttribute('check')) {
     fields.push(html `
       <wizard-textfield
         label="check"
-        .maybeValue=${element.getAttribute('check')}
+        .maybeValue=${addressElement.getAttribute('check')}
         disabled
         readonly>
       </wizard-textfield>`);
@@ -210,17 +210,17 @@ export function renderDAIWizard(
   return fields;
 }
 
-export function editAddressWizard(element: Element): Wizard {
+export function editAddressWizard(addressElement: Element): Wizard {
   return [
     {
       title: get('protocol104.wizard.title.addressEdit'),
-      element: element,
+      element: addressElement,
       primary: {
         icon: 'edit',
         label: get('save'),
-        action: updateValue(element),
+        action: updateValue(addressElement),
       },
-      content: renderDAIWizard(element),
+      content: renderDAIWizard(addressElement),
     },
   ];
 }

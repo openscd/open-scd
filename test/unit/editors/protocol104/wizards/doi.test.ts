@@ -6,7 +6,7 @@ import '../../../../mock-wizard.js';
 
 import { WizardInputElement } from "../../../../../src/foundation.js";
 
-import { showDoiInfoWizard } from "../../../../../src/editors/protocol104/wizards/doi.js";
+import { showDOIInfoWizard } from "../../../../../src/editors/protocol104/wizards/doi.js";
 
 import { fetchDoc } from "../../../wizards/test-support.js";
 
@@ -25,7 +25,7 @@ describe('Wizards for 104 DOI Element', () => {
     beforeEach(async () => {
       doi = doc.querySelector('IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] DOI[name="Mod"]')!;
 
-      const wizard = showDoiInfoWizard(doi);
+      const wizard = showDOIInfoWizard(doi);
       element.workflow.push(() => wizard);
       await element.requestUpdate();
       inputs = Array.from(element.wizardUI.inputs);

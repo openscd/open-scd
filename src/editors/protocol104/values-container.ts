@@ -7,7 +7,7 @@ import {
   TemplateResult
 } from "lit-element";
 
-import {compareNames, getNameAttribute} from "../../foundation.js";
+import { compareNames } from "../../foundation.js";
 
 import './ied-container.js';
 

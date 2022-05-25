@@ -27,8 +27,7 @@ import {
 import './doi-container.js';
 
 /**
- * Container showing all the DAI Elements, related to the 104 Protocol, of the passed IED Element in a filtered list.
- * The DAI Element can be edited by pressing the Edit button at the end of the line.
+ * Container showing all the DOI Elements, related to the 104 Protocol, of the passed IED Element in a container.
  */
 @customElement('ied-104-container')
 export class Ied104Container extends LitElement {

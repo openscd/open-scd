@@ -28,7 +28,7 @@ import {
   PRIVATE_TYPE_104
 } from "./foundation/foundation.js";
 import { editAddressWizard } from "./wizards/address.js";
-import { showDoiInfoWizard } from "./wizards/doi.js";
+import { showDOIInfoWizard } from "./wizards/doi.js";
 
 
 /**
@@ -63,7 +63,7 @@ export class Doi104Container extends LitElement {
   }
 
   private openEditTiWizard(): void {
-    this.dispatchEvent(newWizardEvent(showDoiInfoWizard(this.element)));
+    this.dispatchEvent(newWizardEvent(showDOIInfoWizard(this.element)));
   }
 
   private static get104DetailsLine(address: Element): string {

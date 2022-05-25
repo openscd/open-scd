@@ -1,5 +1,5 @@
 import { html, TemplateResult } from 'lit-element';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-textarea';
 
@@ -54,7 +54,7 @@ export function renderDAIWizard(doiElement: Element): TemplateResult[] {
   return fields;
 }
 
-export function showDoiInfoWizard(doiElement: Element): Wizard {
+export function showDOIInfoWizard(doiElement: Element): Wizard {
   function close() {
     return function () {
       document
