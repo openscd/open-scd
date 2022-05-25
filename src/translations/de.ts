@@ -62,8 +62,8 @@ export const de: Translations = {
     synchSourceId: 'Identität der Zeitquelle zu Telegram hinzufügen',
     iedName: 'Referenziertes IED',
     ldInst: 'Referenziertes logisches Gerät',
-    prefix: 'Präfix des logischen Knoten',
-    lnInst: 'Instanz des logischen Knoten',
+    prefix: 'Präfix des logischen Knotens',
+    lnInst: 'Instanz des logischen Knotens',
   },
   settings: {
     title: 'Einstellungen',
