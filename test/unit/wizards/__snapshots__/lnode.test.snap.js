@@ -775,7 +775,7 @@ snapshots["Wizards for LNode element contain a LNode reference create wizard tha
 
 snapshots["Wizards for LNode element contain a edit wizard that for a type reference looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[wizard.title.edit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -843,7 +843,7 @@ snapshots["Wizards for LNode element contain a edit wizard that for a type refer
 
 snapshots["Wizards for LNode element contain a edit wizard that for a IED reference looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[wizard.title.edit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
