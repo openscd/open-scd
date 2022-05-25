@@ -11,27 +11,10 @@ import { Checkbox } from '@material/mwc-checkbox';
 import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
-import '../wizard-textfield.js';
-import '../filtered-list.js';
-import {
-  EditorAction,
-  Wizard,
-  WizardActor,
-  WizardInputElement,
-  compareNames,
-  getValue,
-  createElement,
-  ComplexAction,
-  isPublic,
-  identity,
-} from '../foundation.js';
-import {
-  getTypes,
-  typeMaxLength,
-  typeNullable,
-  typePattern,
-} from './foundation/p-types.js';
-import { pTypes104, stationTypeOptions, typeDescriptiveNameKeys } from '../editors/protocol104/foundation/p-types.js';
+import '../../../wizard-textfield.js';
+import '../../../filtered-list.js';
+import { pTypes104, stationTypeOptions, typeDescriptiveNameKeys, typePattern } from '../foundation/p-types.js';
+import { compareNames, ComplexAction, createElement, EditorAction, getValue, identity, isPublic, Wizard, WizardActor, WizardInputElement } from '../../../foundation.js';
 
 interface AccessPointDescription {
   element: Element;
@@ -209,42 +192,6 @@ function hasTypeRestriction(element: Element): boolean {
   return Array.from(element.querySelectorAll('Address > P'))
     .filter(p => isPublic(p))
     .some(pType => pType.getAttribute('xsi:type'));
-}
-
-/** @returns single page [[`Wizard`]] to edit SCL element ConnectedAP. */
-export function editConnectedApWizard(element: Element): Wizard {
-  return [
-    {
-      title: get('wizard.title.edit', { tagName: element.tagName }),
-      element,
-      primary: {
-        icon: 'save',
-        label: get('save'),
-        action: updateConnectedApAction(element),
-      },
-      content: [
-        html`<mwc-formfield
-            label="${translate('connectedap.wizard.addschemainsttype')}"
-            ><mwc-checkbox
-              id="typeRestriction"
-              ?checked=${hasTypeRestriction(element)}
-            ></mwc-checkbox></mwc-formfield
-          >${getTypes(element).map(
-            ptype =>
-              html`<wizard-textfield
-                required
-                label="${ptype}"
-                pattern="${ifDefined(typePattern[ptype])}"
-                ?nullable=${typeNullable[ptype]}
-                .maybeValue=${element.querySelector(
-                  `Address > P[type="${ptype}"]`
-                )?.innerHTML ?? null}
-                maxLength="${ifDefined(typeMaxLength[ptype])}"
-              ></wizard-textfield>`
-          )}`,
-      ],
-    },
-  ];
 }
 
 /** @returns single page [[`Wizard`]] to edit SCL element ConnectedAP for the 104 plugin. */
