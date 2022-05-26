@@ -662,7 +662,9 @@ function kDCSelector(tagName: SCLTag, identity: string): string {
 }
 
 function associationIdentity(e: Element): string {
-  return `${identity(e.parentElement)}>${e.getAttribute('associationID')??''}`;
+  return `${identity(e.parentElement)}>${
+    e.getAttribute('associationID') ?? ''
+  }`;
 }
 
 function associationSelector(tagName: SCLTag, identity: string): string {
@@ -2754,6 +2756,37 @@ export function getChildElementsByTagName(
   return Array.from(element.children).filter(
     element => element.tagName === tag
   );
+}
+
+/** maxumum allow number for `lnInst` attribute */
+const maxLnInst = 99;
+const lnInstRange = Array(maxLnInst)
+  .fill(1)
+  .map((_, i) => `${i + 1}`);
+
+/** generator function returning unique `lnInst` for a `lnClass` `LNode` element */
+export function newLnInstGenerator(
+  parent: Element
+): (lnClass: string) => string | undefined {
+  const generators = new Map<string, () => string | undefined>();
+
+  return (lnClass: string) => {
+    if (!generators.has(lnClass)) {
+      const lnInsts = new Set(
+        getChildElementsByTagName(parent, 'LNode')
+          .filter(lnode => lnode.getAttribute('lnClass') === lnClass)
+          .map(lNode => lNode.getAttribute('lnInst')!)
+      );
+
+      generators.set(lnClass, () => {
+        const uniqueLnInst = lnInstRange.find(lnInst => !lnInsts.has(lnInst));
+        if (uniqueLnInst) lnInsts.add(uniqueLnInst);
+        return uniqueLnInst;
+      });
+    }
+
+    return generators.get(lnClass)!();
+  };
 }
 
 declare global {

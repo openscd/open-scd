@@ -25,6 +25,7 @@ import {
   cloneElement,
   depth,
   getUniqueElementName,
+  newLnInstGenerator,
 } from '../../src/foundation.js';
 
 import { MockAction } from './mock-actions.js';
@@ -603,5 +604,73 @@ describe('foundation', () => {
 
     it('returns Infinity if given a circularly defined object or array', () =>
       expect(depth(circular)).to.not.be.finite);
+  });
+
+  describe('generator function for new `lnInst` attribute', () => {
+    let lnInstGenerator: (lnClass: string) => string | undefined;
+    let parent: Element;
+
+    describe('with existing unique lnInst', () => {
+      beforeEach(() => {
+        parent = new DOMParser().parseFromString(
+          `<Function name="someName">
+            <LNode name="None" lnClass="CSWI" lnInst="1"/>
+            <LNode name="None" lnClass="XCBR" lnInst="1"/>
+            <LNode name="None" lnClass="CILO" lnInst="1"/>
+            <LNode name="None" lnClass="CSWI" lnInst="2"/>
+            <LNode name="None" lnClass="PDIS" lnInst="1"/>
+            <LNode name="None" lnClass="CSWI" lnInst="5"/>
+            <LNode name="None" lnClass="CSWI" lnInst="6"/>
+            <LNode name="None" lnClass="CSWI" lnInst="8"/>
+          </Function>`,
+          'application/xml'
+        ).documentElement;
+
+        lnInstGenerator = newLnInstGenerator(parent);
+      });
+
+      it('returns unique lnInst called once', () =>
+        expect(lnInstGenerator('CSWI')).to.equal('3'));
+
+      it('returns unique lnInst called several times', () => {
+        expect(lnInstGenerator('CSWI')).to.equal('3');
+        expect(lnInstGenerator('CSWI')).to.equal('4');
+        expect(lnInstGenerator('CSWI')).to.equal('7');
+        expect(lnInstGenerator('CSWI')).to.equal('9');
+      });
+
+      it('returns unique lnInst called several times', () => {
+        expect(lnInstGenerator('CSWI')).to.equal('3');
+        expect(lnInstGenerator('CSWI')).to.equal('4');
+        expect(lnInstGenerator('CSWI')).to.equal('7');
+        expect(lnInstGenerator('CSWI')).to.equal('9');
+      });
+    });
+
+    describe('with missing unique lnInst for lnClass PDIS', () => {
+      beforeEach(() => {
+        parent = new DOMParser().parseFromString(
+          `<Function name="someName">
+          </Function>`,
+          'application/xml'
+        ).documentElement;
+
+        for (let i = 1; i <= 99; i++) {
+          const lNode = new DOMParser().parseFromString(
+            `<LNode iedName="None" lnClass="PDIS" lnInst="${i}" />`,
+            'application/xml'
+          ).documentElement;
+          parent.appendChild(lNode);
+        }
+
+        lnInstGenerator = newLnInstGenerator(parent);
+      });
+
+      it('return undefined for the lnClass PDIS', () =>
+        expect(lnInstGenerator('PDIS')).to.be.undefined);
+
+      it('return unique lnInst for another lnClass', () =>
+        expect(lnInstGenerator('CSWI')).to.equal('1'));
+    });
   });
 });
