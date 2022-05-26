@@ -8,7 +8,13 @@ import {
 } from 'lit-element';
 
 import '../../action-icon.js';
-import { identity, newActionEvent, newWizardEvent } from '../../foundation.js';
+import {
+  cloneElement,
+  identity,
+  newActionEvent,
+  newLnInstGenerator,
+  newWizardEvent,
+} from '../../foundation.js';
 import {
   automationLogicalNode,
   controlLogicalNode,
@@ -75,6 +81,27 @@ export class LNodeEditor extends LitElement {
   private get missingIedReference(): boolean {
     return this.element.getAttribute('iedName') === 'None' ?? false;
   }
+  @state()
+  private get isIedRef(): boolean {
+    return this.element.getAttribute('iedName') !== 'None';
+  }
+
+  private cloneLNodeElement(): void {
+    const lnClass = this.element.getAttribute('lnClass');
+    if (!lnClass) return;
+
+    const uniqueLnInst = newLnInstGenerator(this.element.parentElement!)(
+      lnClass
+    );
+    if (!uniqueLnInst) return;
+
+    const newElement = cloneElement(this.element, { lnInst: uniqueLnInst });
+    this.dispatchEvent(
+      newActionEvent({
+        new: { parent: this.element.parentElement!, element: newElement },
+      })
+    );
+  }
 
   private openEditWizard(): void {
     const wizard = wizards['LNode'].edit(this.element);
@@ -111,6 +138,14 @@ export class LNodeEditor extends LitElement {
         icon="delete"
         @click="${() => this.remove()}}"
       ></mwc-fab
-    ></action-icon>`;
+      >${this.isIedRef
+        ? html``
+        : html`<mwc-fab
+            slot="action"
+            mini
+            icon="content_copy"
+            @click=${() => this.cloneLNodeElement()}
+          ></mwc-fab>`}
+    </action-icon>`;
   }
 }

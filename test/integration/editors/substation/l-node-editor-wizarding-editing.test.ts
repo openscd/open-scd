@@ -113,4 +113,56 @@ describe('l-node-editor wizarding editing integration', () => {
       ).to.have.attribute('lnInst', '31');
     });
   });
+
+  describe('has a copy content icon button that', () => {
+    let contentCopyButton: HTMLElement;
+
+    beforeEach(async () => {
+      element!.element = doc.querySelector(
+        'SubFunction[name="mySubFunc2"] > LNode[lnClass="XSWI"]'
+      )!;
+      await parent.updateComplete;
+
+      contentCopyButton = <HTMLElement>(
+        element?.shadowRoot?.querySelector('mwc-fab[icon="content_copy"]')
+      );
+      await parent.updateComplete;
+    });
+
+    it('adds new LNode element', async () => {
+      contentCopyButton.click();
+      await parent.updateComplete;
+
+      expect(
+        doc.querySelectorAll(
+          'SubFunction[name="mySubFunc2"] > LNode[lnClass="XSWI"]'
+        )
+      ).to.have.lengthOf(3);
+    });
+
+    it('makes sure the lnInst is always unique', async () => {
+      contentCopyButton.click();
+      contentCopyButton.click();
+      contentCopyButton.click();
+      await parent.updateComplete;
+
+      expect(
+        doc.querySelectorAll(
+          'SubFunction[name="mySubFunc2"] > LNode[lnClass="XSWI"]'
+        )
+      ).to.have.lengthOf(5);
+
+      const lnInsts = Array.from(
+        doc.querySelectorAll(
+          'SubFunction[name="mySubFunc2"] > LNode[lnClass="XSWI"]'
+        )
+      ).map(lNode => lNode.getAttribute('lnInst')!);
+
+      const duplicates = lnInsts.filter(
+        (item, index) => lnInsts.indexOf(item) !== index
+      );
+
+      expect(duplicates).to.lengthOf(0);
+    });
+  });
 });
