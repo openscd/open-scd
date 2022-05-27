@@ -36,7 +36,11 @@ import { maxLength, patterns } from './foundation/limits.js';
 import { editSMvWizard } from './smv.js';
 import { contentSmvOptsWizard, editSmvOptsWizard } from './smvopts.js';
 import { editDataSetWizard } from './dataset.js';
-import { dataAttributePicker, iEDPicker } from './foundation/finder.js';
+import {
+  dataAttributePicker,
+  iEDPicker,
+  sampledValueDataPicker,
+} from './foundation/finder.js';
 import { FinderList } from '../finder-list.js';
 import {
   getConnectedAP,
@@ -387,7 +391,7 @@ export function createSampledValueControlWizard(ln0OrLn: Element): Wizard {
             label: get('save'),
             action: createSampledValueControlAction(ln0OrLn),
           },
-          content: [server ? dataAttributePicker(server) : html``],
+          content: [server ? sampledValueDataPicker(server) : html``],
         },
       ]
     : [
