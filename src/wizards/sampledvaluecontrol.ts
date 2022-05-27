@@ -154,12 +154,14 @@ function contentSampledValueControlWizard(
       pattern="${patterns.normalizedString}"
       helper="${translate('scl.desc')}"
     ></wizard-textfield>`,
-    html`<wizard-checkbox
-      label="multicast"
-      .maybeValue=${options.multicast}
-      helper="${translate('scl.multicast')}"
-      disabled
-    ></wizard-checkbox>`,
+    options.multicast === 'true'
+      ? html``
+      : html`<wizard-checkbox
+          label="multicast"
+          .maybeValue=${options.multicast}
+          helper="${translate('scl.multicast')}"
+          disabled
+        ></wizard-checkbox>`,
     html`<wizard-textfield
       label="smvID"
       .maybeValue=${options.smvID}
@@ -524,6 +526,13 @@ function updateSampledValueControlAction(element: Element): WizardActor {
     ];
 
     attributeKeys.forEach(key => {
+      const missingMulticast =
+        key === 'multicast' && !inputs.find(i => i.label === key);
+      if (missingMulticast) {
+        attributes['multicast'] = 'true';
+        return;
+      }
+
       attributes[key] = getValue(inputs.find(i => i.label === key)!);
     });
 

@@ -19,6 +19,7 @@ import {
 import fc, { integer } from 'fast-check';
 import { inverseRegExp, regExp, regexString } from '../../foundation.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
+import { WizardCheckbox } from '../../../src/wizard-checkbox.js';
 
 describe('Wizards for SCL element SampledValueControl', () => {
   let doc: XMLDocument;
@@ -40,237 +41,295 @@ describe('Wizards for SCL element SampledValueControl', () => {
   });
 
   describe('define an edit wizard that', () => {
-    beforeEach(async () => {
-      const wizard = editSampledValueControlWizard(
-        doc.querySelector('SampledValueControl')!
-      );
-      element.workflow.push(() => wizard);
-      await element.requestUpdate();
+    describe('with muticast attribute set to false - deprecated', () => {
+      beforeEach(async () => {
+        const wizard = editSampledValueControlWizard(
+          doc.querySelector('SampledValueControl[multicast="false"]')!
+        );
+        element.workflow.push(() => wizard);
+        await element.requestUpdate();
 
-      inputs = Array.from(element.wizardUI.inputs);
+        inputs = Array.from(element.wizardUI.inputs);
 
-      primaryAction = <HTMLElement>(
-        element.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="primaryAction"]'
-        )
-      );
+        primaryAction = <HTMLElement>(
+          element.wizardUI.dialog?.querySelector(
+            'mwc-button[slot="primaryAction"]'
+          )
+        );
 
-      await element.wizardUI.requestUpdate(); // make sure wizard is rendered
+        await element.wizardUI.requestUpdate(); // make sure wizard is rendered
+      });
+
+      it('looks like the latest snapshot', async () => {
+        await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
+      }).timeout(5000);
+
+      it('update a SampledValueControl element when only multicast attribute changed', async () => {
+        (<WizardCheckbox>(<unknown>inputs[2])).checked = true;
+
+        primaryAction.click();
+        await element.requestUpdate();
+        expect(actionEvent).to.be.calledOnce;
+
+        const action = actionEvent.args[0][0].detail.action;
+        expect(action).to.satisfy(isReplace);
+
+        const updateAction = <Replace>action;
+        expect(updateAction.old.element).to.have.attribute(
+          'multicast',
+          'false'
+        );
+        expect(updateAction.new.element).to.have.attribute('multicast', 'true');
+      });
     });
 
-    it('looks like the latest snapshot', async () => {
-      await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
-    }).timeout(5000);
+    describe(' with multicast set to treu', () => {
+      beforeEach(async () => {
+        const wizard = editSampledValueControlWizard(
+          doc.querySelector('SampledValueControl[multicast="true"]')!
+        );
+        element.workflow.push(() => wizard);
+        await element.requestUpdate();
 
-    it('edits name attribute only for valid inputs', async () => {
-      await fc.assert(
-        fc.asyncProperty(regexString(regExp.tAsciName, 1, 32), async name => {
-          inputs[0].value = name;
-          await (<WizardTextField>inputs[0]).requestUpdate();
-          expect(inputs[0].checkValidity()).to.be.true;
-        })
-      );
-    });
+        inputs = Array.from(element.wizardUI.inputs);
 
-    it('rejects name attribute starting with decimals', async () => {
-      await fc.assert(
-        fc.asyncProperty(regexString(regExp.decimal, 1, 1), async name => {
-          inputs[0].value = name;
-          await (<WizardTextField>inputs[0]).requestUpdate();
-          expect(inputs[0].checkValidity()).to.be.false;
-        })
-      );
-    });
+        primaryAction = <HTMLElement>(
+          element.wizardUI.dialog?.querySelector(
+            'mwc-button[slot="primaryAction"]'
+          )
+        );
 
-    it('edits smpRate attribute only for valid inputs', async () => {
-      await fc.assert(
-        fc.asyncProperty(
-          integer({ min: 0 }).map(num => `${num}`),
-          async smpRate => {
-            inputs[5].value = smpRate;
-            await (<WizardTextField>inputs[5]).requestUpdate();
-            expect(inputs[5].checkValidity()).to.be.true;
-          }
-        )
-      );
-    });
+        await element.wizardUI.requestUpdate(); // make sure wizard is rendered
+      });
 
-    it('rejects smpRate attribute in case input is not unsigned int', async () => {
-      await fc.assert(
-        fc.asyncProperty(regexString(inverseRegExp.uint, 1), async smpRate => {
-          inputs[5].value = smpRate;
-          await (<WizardTextField>inputs[5]).requestUpdate();
-          expect(inputs[5].checkValidity()).to.be.false;
-        })
-      );
-    });
+      it('looks like the latest snapshot', async () => {
+        await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
+      }).timeout(5000);
 
-    it('edits nofASDU attribute only for valid inputs', async () => {
-      const input = <WizardTextField>inputs[6];
-      input.nullSwitch?.click();
-      await input.requestUpdate();
+      it('edits name attribute only for valid inputs', async () => {
+        await fc.assert(
+          fc.asyncProperty(regexString(regExp.tAsciName, 1, 32), async name => {
+            inputs[0].value = name;
+            await (<WizardTextField>inputs[0]).requestUpdate();
+            expect(inputs[0].checkValidity()).to.be.true;
+          })
+        );
+      });
 
-      await fc.assert(
-        fc.asyncProperty(
-          integer({ min: 0 }).map(num => `${num}`),
-          async nofASDU => {
-            input.value = nofASDU;
-            await input.requestUpdate();
-            expect(input.checkValidity()).to.be.true;
-          }
-        )
-      );
-    });
+      it('rejects name attribute starting with decimals', async () => {
+        await fc.assert(
+          fc.asyncProperty(regexString(regExp.decimal, 1, 1), async name => {
+            inputs[0].value = name;
+            await (<WizardTextField>inputs[0]).requestUpdate();
+            expect(inputs[0].checkValidity()).to.be.false;
+          })
+        );
+      });
 
-    it('rejects nofASDU attribute in case input is not unsigned int', async () => {
-      const input = <WizardTextField>inputs[6];
-      input.nullSwitch?.click();
-      await input.requestUpdate();
+      it('edits smpRate attribute only for valid inputs', async () => {
+        await fc.assert(
+          fc.asyncProperty(
+            integer({ min: 0 }).map(num => `${num}`),
+            async smpRate => {
+              inputs[4].value = smpRate;
+              await (<WizardTextField>inputs[4]).requestUpdate();
+              expect(inputs[4].checkValidity()).to.be.true;
+            }
+          )
+        );
+      });
 
-      await fc.assert(
-        fc.asyncProperty(regexString(inverseRegExp.uint, 1), async nofASDU => {
-          input.value = nofASDU;
-          await input.requestUpdate();
-          expect(input.checkValidity()).to.be.false;
-        })
-      );
-    });
+      it('rejects smpRate attribute in case input is not unsigned int', async () => {
+        await fc.assert(
+          fc.asyncProperty(
+            regexString(inverseRegExp.uint, 1),
+            async smpRate => {
+              inputs[4].value = smpRate;
+              await (<WizardTextField>inputs[4]).requestUpdate();
+              expect(inputs[4].checkValidity()).to.be.false;
+            }
+          )
+        );
+      });
 
-    it('does not update the SampledValueControl element when no attribute has changed', async () => {
-      primaryAction.click();
-      await element.requestUpdate();
-      expect(actionEvent.notCalled).to.be.true;
-    });
+      it('edits nofASDU attribute only for valid inputs', async () => {
+        const input = <WizardTextField>inputs[5];
+        input.nullSwitch?.click();
+        await input.requestUpdate();
 
-    it('update a SampledValueControl element when only name attribute changed', async () => {
-      const input = <WizardTextField>inputs[0];
-      input.value = 'myNewCbName';
-      await input.requestUpdate();
+        await fc.assert(
+          fc.asyncProperty(
+            integer({ min: 0 }).map(num => `${num}`),
+            async nofASDU => {
+              input.value = nofASDU;
+              await input.requestUpdate();
+              expect(input.checkValidity()).to.be.true;
+            }
+          )
+        );
+      });
 
-      primaryAction.click();
-      await element.requestUpdate();
-      expect(actionEvent).to.be.calledOnce;
+      it('rejects nofASDU attribute in case input is not unsigned int', async () => {
+        const input = <WizardTextField>inputs[5];
+        input.nullSwitch?.click();
+        await input.requestUpdate();
 
-      const action = actionEvent.args[0][0].detail.action;
-      expect(action).to.satisfy(isReplace);
+        await fc.assert(
+          fc.asyncProperty(
+            regexString(inverseRegExp.uint, 1),
+            async nofASDU => {
+              input.value = nofASDU;
+              await input.requestUpdate();
+              expect(input.checkValidity()).to.be.false;
+            }
+          )
+        );
+      });
 
-      const updateAction = <Replace>action;
-      expect(updateAction.old.element).to.have.attribute('name', 'MSVCB01');
-      expect(updateAction.new.element).to.have.attribute('name', 'myNewCbName');
-    });
+      it('does not update the SampledValueControl element when no attribute has changed', async () => {
+        primaryAction.click();
+        await element.requestUpdate();
+        expect(actionEvent.notCalled).to.be.true;
+      });
 
-    it('update a SampledValueControl element when only desc attribute changed', async () => {
-      const input = <WizardTextField>inputs[1];
-      input.nullSwitch?.click();
-      input.value = 'myDesc';
-      await input.requestUpdate();
+      it('update a SampledValueControl element when only name attribute changed', async () => {
+        const input = <WizardTextField>inputs[0];
+        input.value = 'myNewCbName';
+        await input.requestUpdate();
 
-      primaryAction.click();
-      await element.requestUpdate();
-      expect(actionEvent).to.be.calledOnce;
+        primaryAction.click();
+        await element.requestUpdate();
+        expect(actionEvent).to.be.calledOnce;
 
-      const action = actionEvent.args[0][0].detail.action;
-      expect(action).to.satisfy(isReplace);
+        const action = actionEvent.args[0][0].detail.action;
+        expect(action).to.satisfy(isReplace);
 
-      const updateAction = <Replace>action;
-      expect(updateAction.old.element).to.not.have.attribute('desc');
-      expect(updateAction.new.element).to.have.attribute('desc', 'myDesc');
-    });
+        const updateAction = <Replace>action;
+        expect(updateAction.old.element).to.have.attribute('name', 'MSVCB01');
+        expect(updateAction.new.element).to.have.attribute(
+          'name',
+          'myNewCbName'
+        );
+      });
 
-    it('update a SampledValueControl element when smvID attribute changed', async () => {
-      const input = <WizardTextField>inputs[3];
-      input.value = 'myNewType/ID';
-      await input.requestUpdate();
+      it('update a SampledValueControl element when only desc attribute changed', async () => {
+        const input = <WizardTextField>inputs[1];
+        input.nullSwitch?.click();
+        input.value = 'myDesc';
+        await input.requestUpdate();
 
-      primaryAction.click();
-      await element.requestUpdate();
-      expect(actionEvent).to.be.calledOnce;
+        primaryAction.click();
+        await element.requestUpdate();
+        expect(actionEvent).to.be.calledOnce;
 
-      const action = actionEvent.args[0][0].detail.action;
-      expect(action).to.satisfy(isReplace);
+        const action = actionEvent.args[0][0].detail.action;
+        expect(action).to.satisfy(isReplace);
 
-      const updateAction = <Replace>action;
-      expect(updateAction.old.element).to.have.attribute(
-        'smvID',
-        'some/reference'
-      );
-      expect(updateAction.new.element).to.have.attribute(
-        'smvID',
-        'myNewType/ID'
-      );
-    });
+        const updateAction = <Replace>action;
+        expect(updateAction.old.element).to.not.have.attribute('desc');
+        expect(updateAction.new.element).to.have.attribute('desc', 'myDesc');
+      });
 
-    it('update a SampledValueControl element when smpMod attribute changed', async () => {
-      const input = <WizardTextField>inputs[4];
-      input.nullSwitch?.click();
-      input.value = 'SmpPerSec';
-      await input.requestUpdate();
+      it('update a SampledValueControl element when smvID attribute changed', async () => {
+        const input = <WizardTextField>inputs[2];
+        input.value = 'myNewType/ID';
+        await input.requestUpdate();
 
-      primaryAction.click();
-      await element.requestUpdate();
-      expect(actionEvent).to.be.calledOnce;
+        primaryAction.click();
+        await element.requestUpdate();
+        expect(actionEvent).to.be.calledOnce;
 
-      const action = actionEvent.args[0][0].detail.action;
-      expect(action).to.satisfy(isReplace);
+        const action = actionEvent.args[0][0].detail.action;
+        expect(action).to.satisfy(isReplace);
 
-      const updateAction = <Replace>action;
-      expect(updateAction.old.element).to.not.have.attribute('smpMod');
-      expect(updateAction.new.element).to.have.attribute('smpMod', 'SmpPerSec');
-    });
+        const updateAction = <Replace>action;
+        expect(updateAction.old.element).to.have.attribute(
+          'smvID',
+          'some/reference'
+        );
+        expect(updateAction.new.element).to.have.attribute(
+          'smvID',
+          'myNewType/ID'
+        );
+      });
 
-    it('update a SampledValueControl element when smpRate attribute changed', async () => {
-      const input = <WizardTextField>inputs[5];
-      input.value = '4000';
-      await input.requestUpdate();
+      it('update a SampledValueControl element when smpMod attribute changed', async () => {
+        const input = <WizardTextField>inputs[3];
+        input.nullSwitch?.click();
+        input.value = 'SmpPerSec';
+        await input.requestUpdate();
 
-      primaryAction.click();
-      await element.requestUpdate();
-      expect(actionEvent).to.be.calledOnce;
+        primaryAction.click();
+        await element.requestUpdate();
+        expect(actionEvent).to.be.calledOnce;
 
-      const action = actionEvent.args[0][0].detail.action;
-      expect(action).to.satisfy(isReplace);
+        const action = actionEvent.args[0][0].detail.action;
+        expect(action).to.satisfy(isReplace);
 
-      const updateAction = <Replace>action;
-      expect(updateAction.old.element).to.have.attribute('smpRate', '80');
-      expect(updateAction.new.element).to.have.attribute('smpRate', '4000');
-    });
+        const updateAction = <Replace>action;
+        expect(updateAction.old.element).to.not.have.attribute('smpMod');
+        expect(updateAction.new.element).to.have.attribute(
+          'smpMod',
+          'SmpPerSec'
+        );
+      });
 
-    it('update a SampledValueControl element when nofASDU attribute changed', async () => {
-      const input = <WizardTextField>inputs[6];
-      input.value = '2';
-      await input.requestUpdate();
+      it('update a SampledValueControl element when smpRate attribute changed', async () => {
+        const input = <WizardTextField>inputs[4];
+        input.value = '4000';
+        await input.requestUpdate();
 
-      primaryAction.click();
-      await element.requestUpdate();
-      expect(actionEvent).to.be.calledOnce;
+        primaryAction.click();
+        await element.requestUpdate();
+        expect(actionEvent).to.be.calledOnce;
 
-      const action = actionEvent.args[0][0].detail.action;
-      expect(action).to.satisfy(isReplace);
+        const action = actionEvent.args[0][0].detail.action;
+        expect(action).to.satisfy(isReplace);
 
-      const updateAction = <Replace>action;
-      expect(updateAction.old.element).to.have.attribute('nofASDU', '1');
-      expect(updateAction.new.element).to.have.attribute('nofASDU', '2');
-    });
+        const updateAction = <Replace>action;
+        expect(updateAction.old.element).to.have.attribute('smpRate', '80');
+        expect(updateAction.new.element).to.have.attribute('smpRate', '4000');
+      });
 
-    it('updates the SampledValueEnable element when securityEnabled changed', async () => {
-      const input = <WizardTextField>inputs[7];
-      input.nullSwitch?.click();
-      input.value = 'Signature';
-      await input.requestUpdate();
+      it('update a SampledValueControl element when nofASDU attribute changed', async () => {
+        const input = <WizardTextField>inputs[5];
+        input.value = '2';
+        await input.requestUpdate();
 
-      primaryAction.click();
-      await element.requestUpdate();
-      expect(actionEvent).to.be.calledOnce;
+        primaryAction.click();
+        await element.requestUpdate();
+        expect(actionEvent).to.be.calledOnce;
 
-      const action = actionEvent.args[0][0].detail.action;
-      expect(action).to.satisfy(isReplace);
+        const action = actionEvent.args[0][0].detail.action;
+        expect(action).to.satisfy(isReplace);
 
-      const updateAction = <Replace>action;
-      expect(updateAction.old.element).to.not.have.attribute('securityEnabled');
-      expect(updateAction.new.element).to.have.attribute(
-        'securityEnabled',
-        'Signature'
-      );
+        const updateAction = <Replace>action;
+        expect(updateAction.old.element).to.have.attribute('nofASDU', '1');
+        expect(updateAction.new.element).to.have.attribute('nofASDU', '2');
+      });
+
+      it('updates the SampledValueEnable element when securityEnabled changed', async () => {
+        const input = <WizardTextField>inputs[6];
+        input.nullSwitch?.click();
+        input.value = 'Signature';
+        await input.requestUpdate();
+
+        primaryAction.click();
+        await element.requestUpdate();
+        expect(actionEvent).to.be.calledOnce;
+
+        const action = actionEvent.args[0][0].detail.action;
+        expect(action).to.satisfy(isReplace);
+
+        const updateAction = <Replace>action;
+        expect(updateAction.old.element).to.not.have.attribute(
+          'securityEnabled'
+        );
+        expect(updateAction.new.element).to.have.attribute(
+          'securityEnabled',
+          'Signature'
+        );
+      });
     });
 
     describe('contains a remove button that', () => {

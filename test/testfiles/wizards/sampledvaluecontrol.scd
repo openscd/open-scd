@@ -307,7 +307,7 @@
                             <FCDA ldInst="MU01" prefix="U01N" lnClass="TVTR" lnInst="4" doName="Vol" daName="instMag.i" fc="MX"/>
                             <FCDA ldInst="MU01" prefix="U01N" lnClass="TVTR" lnInst="4" doName="Vol" daName="q" fc="MX"/>
                         </DataSet>
-    				<SampledValueControl smvID="IED3_SMVID" multicast="true" smpRate="80" nofASDU="1" confRev="1" name="MSVCB01" datSet="PhsMeas1">
+    				<SampledValueControl smvID="IED3_SMVID" multicast="false" smpRate="80" nofASDU="1" confRev="1" name="MSVCB01" datSet="PhsMeas1">
     					<SmvOpts/>
     				</SampledValueControl>
     				</LN0>
