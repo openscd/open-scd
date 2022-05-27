@@ -99,8 +99,24 @@ export type Plugin = {
   position?: MenuPosition;
   installed: boolean;
   official?: boolean;
-  content: TemplateResult;
+  content?: TemplateResult;
 };
+
+type InstalledOfficialPlugin = {
+  src: string;
+  official: true;
+  installed: boolean;
+};
+
+function withoutContent<P extends Plugin | InstalledOfficialPlugin>(
+  plugin: P
+): P {
+  return { ...plugin, content: undefined };
+}
+
+function storePlugins(plugins: Array<Plugin | InstalledOfficialPlugin>) {
+  localStorage.setItem('plugins', JSON.stringify(plugins.map(withoutContent)));
+}
 
 export const pluginIcons: Record<PluginKind | MenuPosition, string> = {
   editor: 'tab',
@@ -112,17 +128,14 @@ export const pluginIcons: Record<PluginKind | MenuPosition, string> = {
 };
 
 function resetPlugins(): void {
-  localStorage.setItem(
-    'plugins',
-    JSON.stringify(
-      officialPlugins.map(plugin => {
-        return {
-          src: plugin.src,
-          installed: plugin.default ?? false,
-          official: true,
-        };
-      })
-    )
+  storePlugins(
+    officialPlugins.map(plugin => {
+      return {
+        src: plugin.src,
+        installed: plugin.default ?? false,
+        official: true,
+      };
+    })
   );
 }
 
@@ -214,35 +227,33 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
 
     private setPlugins(indices: Set<number>) {
       const newPlugins = this.plugins.map((plugin, index) => {
-        return { ...plugin, installed: indices.has(index), content: undefined };
+        return { ...plugin, installed: indices.has(index) };
       });
-      localStorage.setItem('plugins', JSON.stringify(newPlugins));
+      storePlugins(newPlugins);
       this.requestUpdate();
     }
 
     private updatePlugins() {
-      const stored: (
-        | Plugin
-        | { src: string; installed: boolean; official: true }
-      )[] = this.storedPlugins;
+      const stored: Plugin[] = this.storedPlugins;
       const officialStored = stored.filter(p => p.official);
-      const newOfficial = officialPlugins
-        .filter(p => !officialStored.find(o => o.src === p.src))
-        .map(plugin => {
-          return {
-            src: plugin.src,
-            installed: plugin.default ?? false,
-            official: true as const,
-          };
-        });
+      const newOfficial: Array<Plugin | InstalledOfficialPlugin> =
+        officialPlugins
+          .filter(p => !officialStored.find(o => o.src === p.src))
+          .map(plugin => {
+            return {
+              src: plugin.src,
+              installed: plugin.default ?? false,
+              official: true as const,
+            };
+          });
       const oldOfficial = officialStored.filter(
         p => !officialPlugins.find(o => p.src === o.src)
       );
-      const newPlugins = stored.filter(
+      const newPlugins: Array<Plugin | InstalledOfficialPlugin> = stored.filter(
         p => !oldOfficial.find(o => p.src === o.src)
       );
       newOfficial.map(p => newPlugins.push(p));
-      localStorage.setItem('plugins', JSON.stringify(newPlugins));
+      storePlugins(newPlugins);
     }
 
     private addExternalPlugin(plugin: Omit<Plugin, 'content'>): void {
@@ -250,7 +261,7 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
 
       const newPlugins: Omit<Plugin, 'content'>[] = this.storedPlugins;
       newPlugins.push(plugin);
-      localStorage.setItem('plugins', JSON.stringify(newPlugins));
+      storePlugins(newPlugins);
     }
 
     private addContent(plugin: Omit<Plugin, 'content'>): Plugin {
