@@ -27,7 +27,7 @@ interface MenuItem {
   actionItem?: boolean;
   action?: (event: CustomEvent<ActionDetail>) => void;
   disabled?: () => boolean;
-  content?: () => TemplateResult;
+  content?: TemplateResult;
   kind: string;
 }
 
@@ -245,7 +245,7 @@ export function Hosting<
           ${me.hint
             ? html`<span slot="secondary"><tt>${me.hint}</tt></span>`
             : ''}
-          ${me.content ? me.content() : ''}
+          ${me.content ?? ''}
         </mwc-list-item>
       `;
     }
@@ -309,7 +309,7 @@ export function Hosting<
         </mwc-drawer>
 
         ${this.doc
-          ? this.editors[this.activeTab].content()
+          ? this.editors[this.activeTab].content
           : html`<div class="landing">
               ${(<MenuItem[]>this.menu.filter(mi => mi !== 'divider')).map(
                 (mi: MenuItem, index) =>
