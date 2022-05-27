@@ -1,8 +1,5 @@
-import { html as litHtml, query, TemplateResult } from 'lit-element';
+import { html, query, TemplateResult } from 'lit-element';
 import { translate } from 'lit-translate';
-import wrapHtml from 'carehtml';
-
-const html = wrapHtml(litHtml);
 
 import '@material/mwc-button';
 import '@material/mwc-dialog';
@@ -23,10 +20,55 @@ import { Select } from '@material/mwc-select';
 import { Switch } from '@material/mwc-switch';
 import { TextField } from '@material/mwc-textfield';
 
-import { ifImplemented, LitElementConstructor, Mixin } from './foundation.js';
+import { ifImplemented, Mixin } from './foundation.js';
 import { EditingElement } from './Editing.js';
 import { officialPlugins } from '../public/js/plugins.js';
-import { initializeNsdoc } from './foundation/nsdoc.js';
+
+/**
+ * Hashes `str` using cyrb64 analogous to
+ * https://github.com/bryc/code/blob/master/jshash/experimental/cyrb53.js .
+ * @returns a valid customElement tagName containing the hash.
+ */
+function pluginTag(str: string, seed = 0) {
+  let h1 = 0xdeadbeef ^ seed,
+    h2 = 0x41c6ce57 ^ seed;
+  for (let i = 0, ch; i < str.length; i++) {
+    ch = str.charCodeAt(i);
+    h1 = Math.imul(h1 ^ ch, 2654435761);
+    h2 = Math.imul(h2 ^ ch, 1597334677);
+  }
+  h1 =
+    Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^
+    Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+  h2 =
+    Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^
+    Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+  return (
+    'oscd-plugin' +
+    ((h2 >>> 0).toString(16).padStart(8, '0') +
+      (h1 >>> 0).toString(16).padStart(8, '0'))
+  );
+}
+
+function staticTagHtml(
+  oldStrings: ReadonlyArray<string>,
+  ...oldArgs: unknown[]
+) {
+  const strings = [...oldStrings];
+  const args = [...oldArgs];
+  const firstString = strings.shift();
+  const secondString = strings.shift();
+  const firstArg = args.shift();
+
+  const lastString = strings.pop();
+  const penultimateString = strings.pop();
+  const lastArg = args.pop();
+
+  strings.unshift(`${firstString}${firstArg}${secondString}`);
+  strings.push(`${penultimateString}${lastArg}${lastString}`);
+
+  return html(<TemplateStringsArray>(<unknown>strings), ...args);
+}
 
 type PluginKind = 'editor' | 'menu' | 'validator';
 const menuPosition = ['top', 'middle', 'bottom'] as const;
@@ -41,7 +83,7 @@ export type Plugin = {
   position?: MenuPosition;
   installed: boolean;
   official?: boolean;
-  content: () => Promise<TemplateResult>;
+  content: () => TemplateResult;
 };
 
 export const pluginIcons: Record<PluginKind | MenuPosition, string> = {
@@ -89,7 +131,7 @@ function compareNeedsDoc(a: Plugin, b: Plugin): -1 | 0 | 1 {
   return a.requireDoc ? 1 : -1;
 }
 
-const loadedPlugins = new Map<string, LitElementConstructor>();
+const loadedPlugins = new Set<string>();
 
 /** Mixin that manages Plugins in `localStorage` */
 export type PluggingElement = Mixin<typeof Plugging>;
@@ -198,19 +240,20 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
     private addContent(plugin: Omit<Plugin, 'content'>): Plugin {
       return {
         ...plugin,
-        content: async (): Promise<TemplateResult> => {
-          if (!loadedPlugins.has(plugin.src))
-            loadedPlugins.set(
-              plugin.src,
-              await import(plugin.src).then(mod => mod.default)
+        content: (): TemplateResult => {
+          const tag = pluginTag(plugin.src);
+          if (!loadedPlugins.has(tag)) {
+            loadedPlugins.add(tag);
+            import(plugin.src).then(mod =>
+              customElements.define(tag, mod.default)
             );
-          return html`<${loadedPlugins.get(plugin.src)}
+          }
+          return staticTagHtml`<${tag}
             .doc=${this.doc}
             .docName=${this.docName}
             .docId=${this.docId}
             .pluginId=${plugin.src}
-            .nsdoc=${await initializeNsdoc()}
-          ></${loadedPlugins.get(plugin.src)}>`;
+          ></${tag}>`;
         },
       };
     }
