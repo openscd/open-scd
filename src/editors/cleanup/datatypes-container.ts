@@ -43,7 +43,7 @@ import { editDaTypeWizard } from '../templates/datype-wizards.js';
 import { dOTypeWizard } from '../templates/dotype-wizards.js';
 import { eNumTypeEditWizard } from '../templates/enumtype-wizard.js';
 
-import { cleanSCLItems, identitySort, uniq } from './foundation.js';
+import { cleanSCLItems, identitySort, uniq, countBy } from './foundation.js';
 
 type templateType = 'EnumType' | 'DAType' | 'DOType' | 'LNodeType';
 
@@ -79,8 +79,8 @@ export class CleanupDataTypes extends LitElement {
   @queryAll('mwc-check-list-item.cleanupListItem')
   cleanupListItems: NodeList | undefined;
 
-  @query('.cleanupAddressCheckbox')
-  cleanupAddressCheckbox: Checkbox | undefined;
+  @query('.cleanSubTypesCheckbox')
+  cleanSubTypesCheckbox: Checkbox | undefined;
 
   @query('.tDATypeFilter')
   cleanupGSEControlFilter!: Button;
@@ -194,6 +194,80 @@ export class CleanupDataTypes extends LitElement {
   }
 
   /**
+   * Looks for Sub Data Object references within Data Objects. Each SDO is then
+   * catalogued and the algorithm compares the cleanup selection against total number of the
+   * elements in the document. If all usages are in the selection then a DOType which
+   * is referenced in an SDO can also be removed and these types are returned.
+   * @param dOType - A type to see if subtypes are defined which could be removed
+   * @param searchNodes - A selection of nodes whose DO Types should be examined.
+   * @returns A collection of SCL Elements only used in the selected DOs which can be removed.
+   */
+  private getUnusedSDOReferencedTypes(searchNodes: Element[]): Element[] | [] {
+    let usedSDOTypes: string[] = [];
+    let sdoTypes: string[] = [];
+    // catalogue all SDOs in selection
+    searchNodes
+      .filter(node => node.tagName === 'DOType')
+      .forEach(doType => {
+        sdoTypes = Array.from(doType.querySelectorAll('SDO')).map(
+          sdo => sdo.getAttribute('type')!
+        );
+        usedSDOTypes = usedSDOTypes.concat(sdoTypes);
+      });
+    // compare qty of SDO used in selection versus those used in document
+    const removableItems: Element[] | [] = [];
+    countBy(usedSDOTypes).forEach((doQty: number, doType: string) => {
+      console.log(doType, doQty);
+      const docUsage = Array.from(
+        this.doc.querySelectorAll(`DataTypeTemplates SDO[type="${doType}"]`)
+      ).filter(isPublic);
+      // if equal, all SDOs are in the selection
+      if (doQty === docUsage.length) {
+        removableItems.push(
+          this.doc.querySelector(`DataTypeTemplates DOType[id="${doType}"]`)!
+        );
+      }
+    });
+    return removableItems;
+  }
+
+  /**
+   * Looks for other DA references within BDA objects. Each BDA is then
+   * catalogued and the algorithm compares the cleanup selection against total number of the
+   * elements in the document. If all usages are in the selection then a DAType which
+   * is referenced in a BDA can also be removed and these types are returned.
+   * @param searchNodes - A selection of nodes whose BDA elements should be examined.
+   * @returns A collection of SCL Elements only used in the selected DAs which can be removed.
+   */
+  private getUnusedBDAReferencedTypes(searchNodes: Element[]): Element[] | [] {
+    let usedBDAStructTypes: string[] = [];
+    let bdaStructTypes: string[] = [];
+    // catalogue all SDOs in selection
+    searchNodes
+      .filter(node => node.tagName === 'DAType')
+      .forEach(daType => {
+        bdaStructTypes = Array.from(
+          daType.querySelectorAll('BDA[bType="Struct"]')
+        ).map(bda => bda.getAttribute('type')!);
+        usedBDAStructTypes = usedBDAStructTypes.concat(bdaStructTypes);
+      });
+    // compare qty of BDA used in selection versus those used in document
+    const removableItems: Element[] | [] = [];
+    countBy(usedBDAStructTypes).forEach((bdaQty: number, bdaType: string) => {
+      const docUsage = Array.from(
+        this.doc.querySelectorAll(`DataTypeTemplates BDA[type="${bdaType}"]`)
+      ).filter(isPublic);
+      // if equal, all BDAs are in the selection
+      if (bdaQty === docUsage.length) {
+        removableItems.push(
+          this.doc.querySelector(`DataTypeTemplates DAType[id="${bdaType}"]`)!
+        );
+      }
+    });
+    return removableItems;
+  }
+
+  /**
    * Provide delete button the data type cleanup container.
    * @returns html for the Delete Button of this container.
    */
@@ -209,9 +283,18 @@ export class CleanupDataTypes extends LitElement {
       (Array.isArray(this.selectedDataTypeItems) &&
         !this.selectedDataTypeItems.length)}
       @click=${(e: MouseEvent) => {
-        const cleanItems = Array.from(
+        let cleanItems = Array.from(
           (<Set<number>>this.selectedDataTypeItems).values()
         ).map(index => this.unreferencedDataTypes[index]);
+
+        if (this.cleanSubTypesCheckbox!.checked === true) {
+          cleanItems = cleanItems.concat(
+            this.getUnusedSDOReferencedTypes(cleanItems)
+          );
+          cleanItems = cleanItems.concat(
+            this.getUnusedBDAReferencedTypes(cleanItems)
+          );
+        }
 
         const dataTypeItemsDeleteActions = cleanSCLItems(cleanItems);
         dataTypeItemsDeleteActions.forEach(deleteAction =>
@@ -258,7 +341,7 @@ export class CleanupDataTypes extends LitElement {
    */
   private selectionContainsDOOrDAType() {
     return Array.from(<Set<number>>this.selectedDataTypeItems).some(item =>
-      ['DOType', 'DAType'].includes(this.unreferencedDataTypes[item].tagName)
+      ['DOType', 'DAType'].includes(this.unreferencedDataTypes[item]?.tagName)
     );
   }
 
@@ -322,7 +405,7 @@ export class CleanupDataTypes extends LitElement {
         >
           <mwc-checkbox
             checked
-            class="cleanupCascadeCheckbox"
+            class="cleanSubTypesCheckbox"
             ?disabled=${(<Set<number>>this.selectedDataTypeItems).size === 0 ||
             !(
               (<Set<number>>this.selectedDataTypeItems).size !== 0 &&
