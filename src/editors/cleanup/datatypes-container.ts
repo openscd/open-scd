@@ -25,7 +25,6 @@ import { List, MWCListIndex } from '@material/mwc-list';
 import '../../filtered-list.js';
 
 import {
-  Delete,
   identity,
   isPublic,
   newSubWizardEvent,
@@ -83,16 +82,16 @@ export class CleanupDataTypes extends LitElement {
   cleanSubTypesCheckbox: Checkbox | undefined;
 
   @query('.tDATypeFilter')
-  cleanupGSEControlFilter!: Button;
+  cleanupDATypeFilter!: Button;
 
   @query('.tEnumTypeFilter')
-  cleanupSampledValueControlFilter!: Button;
+  cleanupEnumTypeFilter!: Button;
 
-  @query('.tLNodeType')
-  cleanupLogControlFilter!: Button;
+  @query('.tLNodeTypeFilter')
+  cleanupLNodeTypeFilter!: Button;
 
-  @query('.tDOType')
-  cleanupReportControlFilter!: Button;
+  @query('.tDOTypeFilter')
+  cleanupDOTypeFilter!: Button;
 
   /**
    * Toggle the class hidden in the unused data type list for use by filter buttons.
@@ -217,7 +216,6 @@ export class CleanupDataTypes extends LitElement {
     // compare qty of SDO used in selection versus those used in document
     const removableItems: Element[] | [] = [];
     countBy(usedSDOTypes).forEach((doQty: number, doType: string) => {
-      console.log(doType, doQty);
       const docUsage = Array.from(
         this.doc.querySelectorAll(`DataTypeTemplates SDO[type="${doType}"]`)
       ).filter(isPublic);
@@ -242,7 +240,7 @@ export class CleanupDataTypes extends LitElement {
   private getUnusedBDAReferencedTypes(searchNodes: Element[]): Element[] | [] {
     let usedBDAStructTypes: string[] = [];
     let bdaStructTypes: string[] = [];
-    // catalogue all SDOs in selection
+    // catalogue all BDAs in selection
     searchNodes
       .filter(node => node.tagName === 'DAType')
       .forEach(daType => {
@@ -268,6 +266,27 @@ export class CleanupDataTypes extends LitElement {
   }
 
   /**
+   * Get items from selection list and and any subtypes.
+   * @returns An array of SCL elements representing selected items and subtypes as required .
+   */
+  public getCleanItems(): Element[] {
+    let cleanItems = Array.from(
+      (<Set<number>>this.selectedDataTypeItems).values()
+    ).map(index => this.unreferencedDataTypes[index]);
+
+    if (this.cleanSubTypesCheckbox!.checked === true) {
+      cleanItems = cleanItems.concat(
+        this.getUnusedSDOReferencedTypes(cleanItems)
+      );
+      cleanItems = cleanItems.concat(
+        this.getUnusedBDAReferencedTypes(cleanItems)
+      );
+    }
+    console.log(cleanItems)
+    return cleanItems;
+  }
+
+  /**
    * Provide delete button the data type cleanup container.
    * @returns html for the Delete Button of this container.
    */
@@ -283,20 +302,7 @@ export class CleanupDataTypes extends LitElement {
       (Array.isArray(this.selectedDataTypeItems) &&
         !this.selectedDataTypeItems.length)}
       @click=${(e: MouseEvent) => {
-        let cleanItems = Array.from(
-          (<Set<number>>this.selectedDataTypeItems).values()
-        ).map(index => this.unreferencedDataTypes[index]);
-
-        if (this.cleanSubTypesCheckbox!.checked === true) {
-          cleanItems = cleanItems.concat(
-            this.getUnusedSDOReferencedTypes(cleanItems)
-          );
-          cleanItems = cleanItems.concat(
-            this.getUnusedBDAReferencedTypes(cleanItems)
-          );
-        }
-
-        const dataTypeItemsDeleteActions = cleanSCLItems(cleanItems);
+        const dataTypeItemsDeleteActions = cleanSCLItems(this.getCleanItems());
         dataTypeItemsDeleteActions.forEach(deleteAction =>
           e.target?.dispatchEvent(newActionEvent(deleteAction))
         );
@@ -447,6 +453,17 @@ export class CleanupDataTypes extends LitElement {
     .editItem,
     .cautionItem {
       --mdc-icon-size: 16px;
+    }
+
+    .editItem {
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    .cleanupListItem:hover .editItem {
+      visibility: visible;
+      opacity: 1;
+      transition: visibility 0s, opacity 0.5s linear;
     }
 
     .cautionItem {
