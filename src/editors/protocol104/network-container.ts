@@ -1,9 +1,9 @@
 import {css, customElement, html, LitElement, property, TemplateResult} from "lit-element";
 import { get } from "lit-translate";
 import { createElement, getNameAttribute, newActionEvent, newWizardEvent } from "../../foundation.js";
-import { createSubNetworkWizard } from "../../wizards/subnetwork.js";
 
 import './subnetwork-container.js';
+import { createSubNetworkWizard } from "./wizards/subnetwork.js";
 
 @customElement('network-104-container')
 export class Network104Container extends LitElement {
@@ -38,7 +38,8 @@ export class Network104Container extends LitElement {
       icon="add"
       label="${get('subnetwork.wizard.title.add')}"
       @click=${() => this.openCreateSubNetworkWizard()}
-    ></mwc-fab><section>
+    ></mwc-fab>
+    <section>
     ${this.getSubNetworkElements()
       .map(
         subnetwork =>
@@ -58,6 +59,10 @@ export class Network104Container extends LitElement {
       position: fixed;
       bottom: 32px;
       right: 32px;
+    }
+
+    subnetwork-104-container {
+      margin: 8px 12px 16px;
     }
   `;
 }
