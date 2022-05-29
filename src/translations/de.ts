@@ -526,6 +526,8 @@ export const de: Translations = {
     action: {
       addaddress: 'SMV bearbeitet ({{identity}})',
     },
+    missingaccp:
+      'AccessPoint is nicht verbunden. SMV kann nicht hinzugefügt werden.',
   },
   subscriber: {
     title: 'Subscriber Update',

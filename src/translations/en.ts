@@ -522,6 +522,7 @@ export const en = {
     action: {
       addaddress: 'Edit SMV ({{identity}})',
     },
+    missingaccp: 'AccessPoint is not connected. SMV cannot be created.',
   },
   subscriber: {
     title: 'Subscriber update',

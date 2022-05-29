@@ -433,7 +433,7 @@ export function createSampledValueControlWizard(ln0OrLn: Element): Wizard {
                       font-family: 'Roboto', sans-serif;
                       font-weight: 300;"
             >
-              ${translate('gse.missingaccp')}
+              ${translate('smv.missingaccp')}
             </h3>`,
           ],
         },
