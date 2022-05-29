@@ -4,7 +4,7 @@ import { createElement, EditorAction, getMultiplier, getValue, patterns, Wizard,
 
 import '../../../wizard-textfield.js';
 
-/** Initial attribute values suggested for `SubNetwork` creation */
+/** Initial attribute values suggested for `SubNetwork` creation for the 104 plugin */
 const initial = {
   type: '104',
   bitrate: '100',
