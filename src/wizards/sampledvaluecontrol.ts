@@ -229,6 +229,13 @@ function createSampledValueControlAction(parent: Element): WizardActor {
       'securityEnabled',
     ];
     sampledValueControlKeys.forEach(key => {
+      const missingMulticast =
+        key === 'multicast' && !inputs.find(i => i.label === key);
+      if (missingMulticast) {
+        sampledValueControlAttrs['multicast'] = 'true';
+        return;
+      }
+
       sampledValueControlAttrs[key] = getValue(
         inputs.find(i => i.label === key)!
       );
