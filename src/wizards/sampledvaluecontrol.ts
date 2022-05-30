@@ -465,7 +465,7 @@ function openSampledValueControlCreateWizard(doc: XMLDocument): WizardActor {
   };
 }
 
-export function gseControlParentSelector(doc: XMLDocument): Wizard {
+export function sampledValueControlParentSelector(doc: XMLDocument): Wizard {
   return [
     {
       title: get('samvpledvaluecontrol.wizard.location'),
@@ -488,7 +488,7 @@ function prepareSampledValueControlCreateWizard(
         () => createSampledValueControlWizard(anyParent.querySelector('LN0')!),
       ];
 
-    return [() => gseControlParentSelector(anyParent.ownerDocument)];
+    return [() => sampledValueControlParentSelector(anyParent.ownerDocument)];
   };
 }
 
