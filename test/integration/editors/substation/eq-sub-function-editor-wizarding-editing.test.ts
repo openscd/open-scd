@@ -3,6 +3,8 @@ import { fixture, html, expect } from '@open-wc/testing';
 import '../../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../../mock-wizard-editor.js';
 
+import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
+
 import '../../../../src/editors/substation/eq-sub-function-editor.js';
 import { EqSubFunctionEditor } from '../../../../src/editors/substation/eq-sub-function-editor.js';
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
@@ -11,6 +13,8 @@ describe('eq-sub-function-editor wizarding editing integration', () => {
   let doc: XMLDocument;
   let parent: MockWizardEditor;
   let element: EqSubFunctionEditor | null;
+
+  let primaryAction: HTMLElement;
 
   beforeEach(async () => {
     doc = await fetch('/test/testfiles/zeroline/functions.scd')
@@ -33,7 +37,6 @@ describe('eq-sub-function-editor wizarding editing integration', () => {
 
   describe('open create wizard for element EqSubFunction', () => {
     let nameField: WizardTextField;
-    let primaryAction: HTMLElement;
 
     beforeEach(async () => {
       (<HTMLElement>(
@@ -149,6 +152,47 @@ describe('eq-sub-function-editor wizarding editing integration', () => {
           'ConductingEquipment[name="QA1"] EqSubFunction[name="myEqSubSubFunction"]'
         )
       ).to.not.exist;
+    });
+  });
+
+  describe('open create wizard for element LNode', () => {
+    let listItems: ListItemBase[];
+
+    beforeEach(async () => {
+      (<HTMLElement>(
+        element?.shadowRoot?.querySelector('mwc-list-item[value="LNode"]')
+      )).click();
+      await parent.updateComplete;
+
+      listItems = Array.from(
+        parent.wizardUI!.dialog!.querySelectorAll<ListItemBase>(
+          'mwc-check-list-item'
+        )
+      );
+
+      primaryAction = <HTMLElement>(
+        parent.wizardUI.dialog?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      );
+    });
+
+    it('add selected LNode instances to SubFcuntion parent', async () => {
+      listItems[3].selected = true;
+      listItems[5].selected = true;
+
+      await primaryAction.click();
+
+      expect(
+        doc.querySelector(
+          'ConductingEquipment[name="QA1"] EqSubFunction > LNode[iedName="None"][lnClass="CSWI"][lnInst="1"]'
+        )
+      ).to.exist;
+      expect(
+        doc.querySelector(
+          'ConductingEquipment[name="QA1"] EqSubFunction > LNode[iedName="None"][lnClass="CSWI"][lnInst="2"]'
+        )
+      ).to.exist;
     });
   });
 

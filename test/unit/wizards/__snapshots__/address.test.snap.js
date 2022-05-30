@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["address renderGseSmvAddress looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="title"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"

@@ -21,16 +21,17 @@ import {
 } from '../foundation.js';
 import { patterns } from './foundation/limits.js';
 
-import { updateNamingAttributeWithReferencesAction } from "./foundation/actions.js";
-import { deleteReferences } from "./foundation/references.js";
-import { emptyInputsDeleteActions } from "../foundation/ied.js";
+import { updateNamingAttributeWithReferencesAction } from './foundation/actions.js';
+import { deleteReferences } from './foundation/references.js';
+import { emptyInputsDeleteActions } from '../foundation/ied.js';
 
-const iedNamePattern = "[A-Za-z][0-9A-Za-z_]{0,2}|" +
-  "[A-Za-z][0-9A-Za-z_]{4,63}|" +
-  "[A-MO-Za-z][0-9A-Za-z_]{3}|" +
-  "N[0-9A-Za-np-z_][0-9A-Za-z_]{2}|" +
-  "No[0-9A-Za-mo-z_][0-9A-Za-z_]|" +
-  "Non[0-9A-Za-df-z_]";
+const iedNamePattern =
+  '[A-Za-z][0-9A-Za-z_]{0,2}|' +
+  '[A-Za-z][0-9A-Za-z_]{4,63}|' +
+  '[A-MO-Za-z][0-9A-Za-z_]{3}|' +
+  'N[0-9A-Za-np-z_][0-9A-Za-z_]{2}|' +
+  'No[0-9A-Za-mo-z_][0-9A-Za-z_]|' +
+  'Non[0-9A-Za-df-z_]';
 
 export function renderIEDWizard(
   name: string | null,
@@ -59,26 +60,26 @@ export function renderIEDWizard(
 }
 
 function renderIEDReferencesWizard(references: Delete[]): TemplateResult[] {
-  return [html `
-      <section>
-        <h1>${translate('ied.wizard.title.references')}</h1>
-        <mwc-list>
-          ${references.map(reference => {
-            const oldElement = <Element>reference.old.element
-            return html `
-              <mwc-list-item noninteractive twoline>
-                <span>${oldElement.tagName}</span>
-                <span slot="secondary">${identity(<Element>reference.old.element)}</span>
-              </mwc-list-item>`;
-          })}
-        </mwc-list>
-      </section>`];
+  return [
+    html` <section>
+      <h1>${translate('ied.wizard.title.references')}</h1>
+      <mwc-list>
+        ${references.map(reference => {
+          const oldElement = <Element>reference.old.element;
+          return html` <mwc-list-item noninteractive twoline>
+            <span>${oldElement.tagName}</span>
+            <span slot="secondary"
+              >${identity(<Element>reference.old.element)}</span
+            >
+          </mwc-list-item>`;
+        })}
+      </mwc-list>
+    </section>`,
+  ];
 }
 
 export function reservedNamesIED(currentElement: Element): string[] {
-  return Array.from(
-    currentElement.parentNode!.querySelectorAll('IED')
-  )
+  return Array.from(currentElement.parentNode!.querySelectorAll('IED'))
     .filter(isPublic)
     .map(ied => ied.getAttribute('name') ?? '')
     .filter(name => name !== currentElement.getAttribute('name'));
@@ -92,21 +93,24 @@ export function removeIEDAndReferences(element: Element): WizardActor {
     // Get Delete Actions for other elements that also need to be removed
     const referencesDeleteActions = deleteReferences(element);
     // Use the ExtRef Elements to check if after removing the ExtRef there are empty Inputs that can also be removed.
-    const extRefsDeleteActions = referencesDeleteActions
-      .filter(deleteAction => (<Element>deleteAction.old.element).tagName === 'ExtRef')
-    const inputsDeleteActions = emptyInputsDeleteActions(extRefsDeleteActions)
+    const extRefsDeleteActions = referencesDeleteActions.filter(
+      deleteAction => (<Element>deleteAction.old.element).tagName === 'ExtRef'
+    );
+    const inputsDeleteActions = emptyInputsDeleteActions(extRefsDeleteActions);
 
     // Create Complex Action to remove IED and all references.
     const name = element.getAttribute('name') ?? 'Unknown';
     const complexAction: ComplexAction = {
       actions: [],
-      title: get('ied.action.deleteied', {name}),
+      title: get('ied.action.deleteied', { name }),
     };
-    complexAction.actions.push({ old: { parent: element.parentElement!, element } });
+    complexAction.actions.push({
+      old: { parent: element.parentElement!, element },
+    });
     complexAction.actions.push(...referencesDeleteActions);
     complexAction.actions.push(...inputsDeleteActions);
     return [complexAction];
-  }
+  };
 }
 
 export function removeIEDWizard(element: Element): Wizard | null {
@@ -157,7 +161,10 @@ export function editIEDWizard(element: Element): Wizard {
       primary: {
         icon: 'edit',
         label: get('save'),
-        action: updateNamingAttributeWithReferencesAction(element, 'ied.action.updateied'),
+        action: updateNamingAttributeWithReferencesAction(
+          element,
+          'ied.action.updateied'
+        ),
       },
       content: renderIEDWizard(
         element.getAttribute('name'),

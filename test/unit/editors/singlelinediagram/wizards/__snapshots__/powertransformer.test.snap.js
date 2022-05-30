@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["Wizards for SCL element Power Transformer (X/Y) looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[powertransformer.wizard.title.edit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"

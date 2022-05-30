@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["Wizards for SCL element SubNetwork include an edit wizard that with existing BitRate child element looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[wizard.title.edit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -62,7 +62,7 @@ snapshots["Wizards for SCL element SubNetwork include an edit wizard that with e
 
 snapshots["Wizards for SCL element SubNetwork include an edit wizard that with missing BitRate child element looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[wizard.title.edit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -122,7 +122,7 @@ snapshots["Wizards for SCL element SubNetwork include an edit wizard that with m
 
 snapshots["Wizards for SCL element SubNetwork include an create wizard that looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[wizard.title.add]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"

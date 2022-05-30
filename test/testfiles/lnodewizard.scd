@@ -28,6 +28,22 @@
                 <ConnectivityNode pathName="AA1/E1/COUPLING_BAY/L2" name="L2"/>
 			</Bay>
 			<Bay name="Bay2" desc="Bay2">
+				<Function name="parentFunction" type="Protection">
+					<LNode iedName="None" lnClass="LLN0" lnInst="" lnType="Dummy.LLN0"/>
+					<LNode iedName="None" lnClass="LPHD" lnInst="1" lnType="Dummy.LPHD1"/>
+					<SubFunction name="circuitBreaker" type="CBR">
+						<LNode iedName="None" lnClass="LLN0" lnInst="" lnType="Dummy.LLN0"/>
+						<LNode iedName="None" lnClass="CSWI" lnInst="1" lnType="Dummy.CSWI"/>
+						<LNode iedName="None" lnClass="XCBR" lnInst="1" lnType="Dummy.XCBR1"/>
+						<LNode iedName="None" lnClass="CILO" lnInst="1" lnType="Dummy.CILO"/>
+					</SubFunction>
+					<SubFunction name="disconnector" type="DIS">
+						<LNode iedName="None" lnClass="CSWI" lnInst="1" lnType="Dummy.CILO"/>
+						<LNode iedName="None" lnClass="CSWI" lnInst="3" lnType="Dummy.CILO"/>
+						<LNode iedName="None" lnClass="CSWI" lnInst="5" lnType="Dummy.CILO"/>
+						<LNode iedName="None" lnClass="CILO" lnInst="1" lnType="Dummy.CILO"/>
+					</SubFunction>
+				</Function>
 			</Bay>
 		</VoltageLevel>
 		<VoltageLevel name="J1" desc="Voltage Level">
