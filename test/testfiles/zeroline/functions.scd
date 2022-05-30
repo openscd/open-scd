@@ -37,7 +37,12 @@
 						<LNode iedName="None" prefix="DC" lnClass="CSWI" lnInst="1"/>
 						<LNode iedName="None" prefix="DC" lnClass="CILO" lnInst="1"/>
 					</SubFunction>
-					<SubFunction name="mySubFunc2"/>
+					<SubFunction name="mySubFunc2">
+						<LNode iedName="None" prefix="DC" lnClass="XSWI" lnInst="1"/>
+						<LNode iedName="None" prefix="DC" lnClass="CSWI" lnInst="1"/>
+						<LNode iedName="None" prefix="DC" lnClass="CILO" lnInst="1"/>
+						<LNode iedName="None" prefix="DC" lnClass="XSWI" lnInst="3"/>
+					</SubFunction>
 				</Function>
 				<Function name="bay2Func">
 					<LNode iedName="None" prefix="DC" lnClass="XSWI" lnInst="1"/>

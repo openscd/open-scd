@@ -45,6 +45,12 @@ snapshots["web component rendering LNode element as instance of a LNodeType only
     slot="action"
   >
   </mwc-fab>
+  <mwc-fab
+    icon="content_copy"
+    mini=""
+    slot="action"
+  >
+  </mwc-fab>
 </action-icon>
 `;
 /* end snapshot web component rendering LNode element as instance of a LNodeType only looks like the latest snapshot */

@@ -27,37 +27,9 @@ import {
   WizardActor,
   WizardInputElement,
   WizardMenuActor,
+  newLnInstGenerator,
 } from '../foundation.js';
 import { patterns } from './foundation/limits.js';
-
-const maxLnInst = 99;
-const lnInstRange = Array(maxLnInst)
-  .fill(1)
-  .map((_, i) => `${i + 1}`);
-
-function uniqueLnInstGenerator(
-  parent: Element
-): (lnClass: string) => string | undefined {
-  const generators = new Map<string, () => string | undefined>();
-
-  return (lnClass: string) => {
-    if (!generators.has(lnClass)) {
-      const lnInsts = new Set(
-        getChildElementsByTagName(parent, 'LNode')
-          .filter(lnode => lnode.getAttribute('lnClass') === lnClass)
-          .map(lNode => lNode.getAttribute('lnInst')!)
-      );
-
-      generators.set(lnClass, () => {
-        const uniqueLnInst = lnInstRange.find(lnInst => !lnInsts.has(lnInst));
-        if (uniqueLnInst) lnInsts.add(uniqueLnInst);
-        return uniqueLnInst;
-      });
-    }
-
-    return generators.get(lnClass)!();
-  };
-}
 
 function createLNodeAction(parent: Element): WizardActor {
   return (
@@ -75,7 +47,7 @@ function createLNodeAction(parent: Element): WizardActor {
       })
       .filter(item => item !== null);
 
-    const lnInstGenerator = uniqueLnInstGenerator(parent);
+    const lnInstGenerator = newLnInstGenerator(parent);
 
     const createActions: Create[] = <Create[]>selectedLNodeTypes
       .map(selectedLNodeType => {
