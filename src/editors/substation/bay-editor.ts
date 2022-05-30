@@ -72,7 +72,7 @@ export class BayEditor extends LitElement {
 
   /** Opens a [[`WizardDialog`]] for editing `LNode` connections. */
   openLNodeWizard(): void {
-    const wizard = wizards['LNode'].edit(this.element);
+    const wizard = wizards['LNode'].create(this.element);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 

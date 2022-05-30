@@ -9,6 +9,12 @@ snapshots["web component rendering LNode element as reference to a LN/LN0 within
   <mwc-icon slot="icon">
   </mwc-icon>
   <mwc-fab
+    icon="edit"
+    mini=""
+    slot="action"
+  >
+  </mwc-fab>
+  <mwc-fab
     icon="delete"
     mini=""
     slot="action"
@@ -27,6 +33,12 @@ snapshots["web component rendering LNode element as instance of a LNodeType only
 >
   <mwc-icon slot="icon">
   </mwc-icon>
+  <mwc-fab
+    icon="edit"
+    mini=""
+    slot="action"
+  >
+  </mwc-fab>
   <mwc-fab
     icon="delete"
     mini=""

@@ -8,7 +8,7 @@ import {
 } from 'lit-element';
 
 import '../../action-icon.js';
-import { identity, newActionEvent } from '../../foundation.js';
+import { identity, newActionEvent, newWizardEvent } from '../../foundation.js';
 import {
   automationLogicalNode,
   controlLogicalNode,
@@ -27,6 +27,7 @@ import {
   systemLogicalNode,
   transformerLogicalNode,
 } from '../../icons/lnode.js';
+import { wizards } from '../../wizards/wizard-library.js';
 
 export function getLNodeIcon(lNode: Element): TemplateResult {
   const lnClassGroup = lNode.getAttribute('lnClass')?.charAt(0) ?? '';
@@ -75,6 +76,11 @@ export class LNodeEditor extends LitElement {
     return this.element.getAttribute('iedName') === 'None' ?? false;
   }
 
+  private openEditWizard(): void {
+    const wizard = wizards['LNode'].edit(this.element);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
+
   remove(): void {
     if (this.element)
       this.dispatchEvent(
@@ -93,6 +99,12 @@ export class LNodeEditor extends LitElement {
       ?secondary=${this.missingIedReference}
       ?highlighted=${this.missingIedReference}
       ><mwc-icon slot="icon">${getLNodeIcon(this.element)}</mwc-icon
+      ><mwc-fab
+        slot="action"
+        mini
+        icon="edit"
+        @click="${() => this.openEditWizard()}}"
+      ></mwc-fab
       ><mwc-fab
         slot="action"
         mini

@@ -1,4 +1,5 @@
 import { expect, fixture, html } from '@open-wc/testing';
+import fc from 'fast-check';
 import { SinonSpy, spy } from 'sinon';
 
 import '../../mock-wizard-editor.js';
@@ -6,12 +7,21 @@ import { MockWizardEditor } from '../../mock-wizard-editor.js';
 
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
-import { lNodeWizard } from '../../../src/wizards/lnode.js';
-import { Create, isCreate } from '../../../src/foundation.js';
+import { WizardTextField } from '../../../src/wizard-textfield.js';
+import {
+  Create,
+  isCreate,
+  Replace,
+  WizardInputElement,
+} from '../../../src/foundation.js';
+import { regExp, regexString } from '../../foundation.js';
+import { editLNodeWizard, lNodeWizard } from '../../../src/wizards/lnode.js';
 
 describe('Wizards for LNode element', () => {
   let element: MockWizardEditor;
   let doc: Document;
+
+  let primaryAction: HTMLElement;
 
   let actionEvent: SinonSpy;
   let logEvent: SinonSpy;
@@ -254,6 +264,127 @@ describe('Wizards for LNode element', () => {
     describe('with missing references to existing logical nodes', () => {
       beforeEach(async () => {
         const wizard = lNodeWizard(doc.querySelector('Substation')!);
+        element.workflow.push(() => wizard);
+        await element.requestUpdate();
+      });
+
+      it('looks like the latest snapshot', async () =>
+        await expect(element.wizardUI.dialog).to.equalSnapshot());
+    });
+  });
+
+  describe('contain a edit wizard that', () => {
+    let inputs: WizardInputElement[];
+
+    describe('for a type reference', () => {
+      beforeEach(async () => {
+        const wizard = editLNodeWizard(
+          doc.querySelector('SubFunction[name="disconnector"] > LNode')!
+        );
+        element.workflow.push(() => wizard);
+        await element.requestUpdate();
+
+        inputs = Array.from(element.wizardUI.inputs);
+
+        primaryAction = <HTMLElement>(
+          element.wizardUI.dialog?.querySelector(
+            'mwc-button[slot="primaryAction"]'
+          )
+        );
+
+        await element.updateComplete;
+      });
+
+      it('looks like the latest snapshot', async () =>
+        await expect(element.wizardUI.dialog).to.equalSnapshot());
+
+      it('edits prefix attribute only for valid inputs', async () => {
+        await fc.assert(
+          fc.asyncProperty(regexString(regExp.tAsciName, 1, 11), async name => {
+            inputs[2].value = name;
+            await (<WizardTextField>inputs[2]).requestUpdate();
+            expect(inputs[2].checkValidity()).to.be.true;
+          })
+        );
+      });
+
+      it('rejects name attribute starting with decimals', async () => {
+        await fc.assert(
+          fc.asyncProperty(regexString(regExp.decimal, 1, 1), async name => {
+            inputs[2].value = name;
+            await (<WizardTextField>inputs[2]).requestUpdate();
+            expect(inputs[2].checkValidity()).to.be.false;
+          })
+        );
+      });
+
+      it('rejects negative integrers for lnInst attribute', async () => {
+        inputs[4].value = '-1';
+        await (<WizardTextField>inputs[4]).requestUpdate();
+        expect(inputs[4].checkValidity()).to.be.false;
+      });
+
+      it('rejects 0 for lnInst attribute', async () => {
+        inputs[4].value = '0';
+        await (<WizardTextField>inputs[4]).requestUpdate();
+        expect(inputs[4].checkValidity()).to.be.false;
+      });
+
+      it('rejects positve integrers bigger 100 for lnInst attribute', async () => {
+        inputs[4].value = '100';
+        await (<WizardTextField>inputs[4]).requestUpdate();
+        expect(inputs[4].checkValidity()).to.be.false;
+      });
+
+      it('rejects non unique lnInst attribute', async () => {
+        inputs[4].value = '3';
+        await (<WizardTextField>inputs[4]).requestUpdate();
+        expect(inputs[4].checkValidity()).to.be.false;
+      });
+
+      it('does not update the LNode element when no attribute has changed', async () => {
+        primaryAction.click();
+        await element.requestUpdate();
+        expect(actionEvent.notCalled).to.be.true;
+      });
+
+      it('update a LNode element on prefix attribute changed', async () => {
+        const input = <WizardTextField>inputs[2];
+
+        input.nullSwitch?.click();
+        input.value = 'somepref';
+
+        primaryAction.click();
+        await element.requestUpdate();
+        expect(actionEvent).to.be.calledOnce;
+
+        const action = <Replace>actionEvent.args[0][0].detail.action;
+
+        expect(action.old.element).to.not.have.attribute('prefix');
+        expect(action.new.element).to.have.attribute('prefix', 'somepref');
+      });
+
+      it('update a ReportControl element when only desc attribute changed', async () => {
+        const input = <WizardTextField>inputs[4];
+        input.value = '34';
+        await input.requestUpdate();
+
+        primaryAction.click();
+        await element.requestUpdate();
+        expect(actionEvent).to.be.calledOnce;
+
+        const action = <Replace>actionEvent.args[0][0].detail.action;
+
+        expect(action.old.element).to.have.attribute('lnInst', '1');
+        expect(action.new.element).to.have.attribute('lnInst', '34');
+      });
+    });
+
+    describe('for a IED reference', () => {
+      beforeEach(async () => {
+        const wizard = editLNodeWizard(
+          doc.querySelector('Bay[name="COUPLING_BAY"] > LNode')!
+        );
         element.workflow.push(() => wizard);
         await element.requestUpdate();
       });
