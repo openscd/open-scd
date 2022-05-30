@@ -82,7 +82,7 @@ export class LNodeEditor extends LitElement {
     return this.element.getAttribute('iedName') === 'None' ?? false;
   }
   @state()
-  private get isIedRef(): boolean {
+  private get isIEDReference(): boolean {
     return this.element.getAttribute('iedName') !== 'None';
   }
 
@@ -138,7 +138,7 @@ export class LNodeEditor extends LitElement {
         icon="delete"
         @click="${() => this.remove()}}"
       ></mwc-fab
-      >${this.isIedRef
+      >${this.isIEDReference
         ? html``
         : html`<mwc-fab
             slot="action"

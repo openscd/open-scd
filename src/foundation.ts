@@ -2758,13 +2758,19 @@ export function getChildElementsByTagName(
   );
 }
 
-/** maxumum allow number for `lnInst` attribute */
+/** maximum value for `lnInst` attribute */
 const maxLnInst = 99;
 const lnInstRange = Array(maxLnInst)
   .fill(1)
   .map((_, i) => `${i + 1}`);
 
-/** generator function returning unique `lnInst` for a `lnClass` `LNode` element */
+/**
+ * @param parent - The LNodes' parent element to be scanned once for `lnInst`
+ * values already in use. Be sure to create a new generator every time the
+ * children of this element change.
+ * @returns a function generating increasing unused `lnInst` values for
+ * `lnClass` LNodes within `parent` on subsequent invocations
+ */
 export function newLnInstGenerator(
   parent: Element
 ): (lnClass: string) => string | undefined {
