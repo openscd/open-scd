@@ -354,6 +354,7 @@ export const en = {
   },
   protocol104: {
     toggleChildElements: 'Toggle child elements',
+    missing: 'No IED with 104 Addresses',
     view: {
       valuesView: 'Values',
       networkView: 'Network',
@@ -370,7 +371,19 @@ export const en = {
         timeout2: 'Time-out in seconds for acknowledges in case of no data messages',
         timeout3: 'Time-out in seconds for sending test frames in case of a long idle state'
       }
-    }
+    },
+    wizard: {
+      title: {
+        doiInfo: 'DOI Info',
+        addressEdit: 'Edit 104 Address',
+      },
+      casduHelper: 'CASDU Value',
+      ioaHelper: 'IOA Value',
+      expectedValueHelper: 'Expected Value',
+      unitMultiplierHelper: 'Unit Multiplier',
+      scaleMultiplierHelper: 'Scale Multiplier',
+      scaleOffsetHelper: 'Scale Offset',
+    },
   },
   'enum-val': {
     wizard: {

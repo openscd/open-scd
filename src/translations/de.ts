@@ -357,6 +357,7 @@ export const de: Translations = {
   },
   protocol104: {
     toggleChildElements: '???',
+    missing: '???',
     view: {
       valuesView: '???',
       networkView: '???',
@@ -373,7 +374,19 @@ export const de: Translations = {
         timeout2: '???',
         timeout3: '???'
       }
-    }
+    },
+    wizard: {
+      title: {
+        doiInfo: '???',
+        addressEdit: '???',
+      },
+      casduHelper: '???',
+      ioaHelper: '???',
+      expectedValueHelper: '???',
+      unitMultiplierHelper: '???',
+      scaleMultiplierHelper: '???',
+      scaleOffsetHelper: '???',
+    },
   },
   'enum-val': {
     wizard: {

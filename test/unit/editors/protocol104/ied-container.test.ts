@@ -11,7 +11,7 @@ describe('ied-104-container -', () => {
   let element: Ied104Container;
 
   beforeEach(async () => {
-    document = await fetch('/test/testfiles/104-protocol.scd')
+    document = await fetch('/test/testfiles/104/valid-addresses-case1.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
   });
@@ -26,11 +26,11 @@ describe('ied-104-container -', () => {
       await element.requestUpdate();
     });
 
-    it('getDaiElements will return a list which is alphabetically ordered', () => {
-      const dais = element['getDaiElements']();
-      expect(dais.length).to.be.equals(2);
-      expect(getFullPath(dais[0])).to.be.equals('AP1 / LD0 / LLN0 / Beh / stVal');
-      expect(getFullPath(dais[1])).to.be.equals('AP1 / LD0 / PPRE-GGIO-2 / Beh / stVal');
+    it('getDoiElements will return a list which is alphabetically ordered', () => {
+      const dois = element['getDoiElements']();
+      expect(dois.length).to.be.equals(2);
+      expect(getFullPath(dois[0], 'IED')).to.be.equals('AP1 / LD0 / LLN0 / Beh');
+      expect(getFullPath(dois[1], 'IED')).to.be.equals('AP1 / LD0 / PPRE-GGIO-2 / Beh');
     });
 
     it('looks like the latest snapshot', async () => {

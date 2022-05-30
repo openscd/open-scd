@@ -21,7 +21,7 @@ describe('Wizards for SCL element ConnectedAP', () => {
   beforeEach(async () => {
     element = <MockWizard>await fixture(html`<mock-wizard></mock-wizard>`);
 
-    doc = await fetch('/test/testfiles/104-protocol.scd')
+    doc = await fetch('/test/testfiles/104/valid-subnetwork.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 

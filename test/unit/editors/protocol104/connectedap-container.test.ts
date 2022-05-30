@@ -10,7 +10,7 @@ describe('connectedap-104-editor', () => {
   let connectedAP: Element;
 
   beforeEach(async () => {
-    document = await fetch('/test/testfiles/104-protocol.scd')
+    document = await fetch('/test/testfiles/104/valid-subnetwork.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
