@@ -23,6 +23,7 @@ import { TextField } from '@material/mwc-textfield';
 import { ifImplemented, Mixin } from './foundation.js';
 import { EditingElement } from './Editing.js';
 import { officialPlugins } from '../public/js/plugins.js';
+import { initializeNsdoc } from './foundation/nsdoc.js';
 
 const pluginTags = new Map<string, string>();
 /**
@@ -277,6 +278,7 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
             .docName=${this.docName}
             .docId=${this.docId}
             .pluginId=${plugin.src}
+            .nsdoc=${initializeNsdoc()}
           ></${tag}>`,
       };
     }
