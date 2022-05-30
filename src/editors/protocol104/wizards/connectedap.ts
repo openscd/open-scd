@@ -12,9 +12,27 @@ import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import '../../../wizard-textfield.js';
 import '../../../filtered-list.js';
-import { pTypes104, stationTypeOptions, typeDescriptiveNameKeys } from '../foundation/p-types.js';
-import { compareNames, ComplexAction, createElement, EditorAction, getValue, identity, isPublic, Wizard, WizardActor, WizardInputElement } from '../../../foundation.js';
-import { createPTextField, createTypeRestrictionCheckbox } from '../../../wizards/connectedap.js';
+import {
+  pTypes104,
+  stationTypeOptions,
+  typeDescriptiveNameKeys
+} from '../foundation/p-types.js';
+import {
+  compareNames,
+  ComplexAction,
+  createElement,
+  EditorAction,
+  getValue,
+  identity,
+  isPublic,
+  Wizard,
+  WizardActor,
+  WizardInputElement
+} from '../../../foundation.js';
+import {
+  createPTextField,
+  createTypeRestrictionCheckbox
+} from '../../../wizards/connectedap.js';
 
 interface AccessPointDescription {
   element: Element;
@@ -97,14 +115,14 @@ export function createConnectedApWizard(element: Element): Wizard {
       content: [
         html` <filtered-list id="apList" multi
           >${accessPoints.map(accesspoint => {
-            const id = identity(accesspoint.element);
+          const id = identity(accesspoint.element);
 
-            return html`<mwc-check-list-item
+          return html`<mwc-check-list-item
               value="${id}"
               ?disabled=${accesspoint.connected}
               ><span>${id}</span></mwc-check-list-item
             >`;
-          })}
+        })}
         </filtered-list>`,
       ],
     },
@@ -204,18 +222,18 @@ export function editConnectedAp104Wizard(element: Element): Wizard {
           <wizard-select
             label="StationType"
             .maybeValue=${element.querySelector(
-              `Address > P[type="StationType"]`
-            )?.innerHTML ?? null}
+          `Address > P[type="StationType"]`
+        )?.innerHTML ?? null}
             required
             helper="${translate(typeDescriptiveNameKeys["StationType"])}"
           >${stationTypeOptions.map(
-            option =>
-              html`<mwc-list-item value="${option}">${option}</mwc-list-item>`
-          )}</wizard-select>
+          option =>
+            html`<mwc-list-item value="${option}">${option}</mwc-list-item>`
+        )}</wizard-select>
           ${pTypes104.map(
-            pType =>
-              html`${createPTextField(element, pType)}`
-          )}`,
+          pType =>
+            html`${createPTextField(element, pType)}`
+        )}`,
       ],
     },
   ];

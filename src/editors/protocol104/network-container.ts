@@ -1,8 +1,20 @@
-import {css, customElement, html, LitElement, property, TemplateResult} from "lit-element";
 import { get } from "lit-translate";
-import { createElement, getNameAttribute, newActionEvent, newWizardEvent } from "../../foundation.js";
+import {
+  css,
+  customElement,
+  html,
+  LitElement,
+  property,
+  TemplateResult
+} from "lit-element";
 
 import './subnetwork-container.js';
+import {
+  compareNames,
+  createElement,
+  newActionEvent,
+  newWizardEvent
+} from "../../foundation.js";
 import { createSubNetworkWizard } from "./wizards/subnetwork.js";
 
 @customElement('network-104-container')
@@ -13,7 +25,7 @@ export class Network104Container extends LitElement {
   private getSubNetworkElements(): Element[] {
     return Array.from(this.doc.querySelectorAll('Communication > SubNetwork') ?? [])
       .filter(network => network.getAttribute('type') === '104')
-      .sort((network1, network2) => (getNameAttribute(network1) ?? '').localeCompare(getNameAttribute(network2) ?? '') )
+      .sort((a,b) => compareNames(a,b));
   }
 
   /** Opens a [[`WizardDialog`]] for creating a new `SubNetwork` element. */
@@ -33,7 +45,7 @@ export class Network104Container extends LitElement {
   }
 
   render(): TemplateResult {
-    return html `<mwc-fab
+    return html`<mwc-fab
       extended
       icon="add"
       label="${get('subnetwork.wizard.title.add')}"
@@ -41,12 +53,12 @@ export class Network104Container extends LitElement {
     ></mwc-fab>
     <section>
     ${this.getSubNetworkElements()
-      .map(
-        subnetwork =>
-          html`<subnetwork-104-container
+        .map(
+          subnetwork =>
+            html`<subnetwork-104-container
             .element=${subnetwork}
           ></subnetwork-104-container>`
-      )}
+        )}
     </section>`;
   }
 

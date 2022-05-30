@@ -10,10 +10,7 @@ import {
 import '@material/mwc-icon-button';
 
 import './connectedap-editor.js';
-import {
-  
-  compareNames,
-} from '../../foundation.js';
+import { compareNames } from '../../foundation.js';
 
 /** [[`104`]] subeditor for a `SubNetwork` element. */
 @customElement('subnetwork-104-container')

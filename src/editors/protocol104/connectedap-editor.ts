@@ -14,7 +14,7 @@ import { editConnectedAp104Wizard } from './wizards/connectedap.js';
 
 /** [[`104`]] subeditor for a `ConnectedAP` element. */
 @customElement('connectedap-104-editor')
-export class ConnectedAPEditor extends LitElement {
+export class ConnectedAP104Editor extends LitElement {
   /** SCL element ConnectedAP */
   @property({ attribute: false })
   element!: Element;
