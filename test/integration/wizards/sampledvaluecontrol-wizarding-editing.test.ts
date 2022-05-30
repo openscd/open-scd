@@ -7,8 +7,12 @@ import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import { FilteredList } from '../../../src/filtered-list.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
-import { selectSampledValueControlWizard } from '../../../src/wizards/sampledvaluecontrol.js';
+import {
+  createSampledValueControlWizard,
+  selectSampledValueControlWizard,
+} from '../../../src/wizards/sampledvaluecontrol.js';
 import { WizardCheckbox } from '../../../src/wizard-checkbox.js';
+import { FinderList } from '../../../src/finder-list.js';
 
 describe('Wizards for SCL element SampledValueControl', () => {
   let doc: XMLDocument;
@@ -69,6 +73,26 @@ describe('Wizards for SCL element SampledValueControl', () => {
       expect(nameField.value).to.equal(
         doc.querySelectorAll('SampledValueControl')[0].getAttribute('name')
       );
+    });
+
+    describe('has an add SampledValueControl primary button that', () => {
+      let iEDPicker: FinderList;
+
+      beforeEach(async () => {
+        (<HTMLElement>(
+          element.wizardUI.dialog?.querySelector(
+            'mwc-button[slot="primaryAction"]'
+          )
+        )).click();
+        await new Promise(resolve => setTimeout(resolve, 50)); // await animation
+
+        iEDPicker = <FinderList>(
+          element.wizardUI.dialog?.querySelector('finder-list')
+        );
+      });
+
+      it('opens a potential list of host IEDs for the SampledValueControl element', async () =>
+        expect(iEDPicker).to.exist);
     });
   });
 
@@ -305,6 +329,66 @@ describe('Wizards for SCL element SampledValueControl', () => {
           .to.not.exist;
         expect(doc.querySelector('SMV[cbName="MSVCB01"]')).to.not.exist;
       });
+    });
+  });
+
+  describe('defines a create wizards that', () => {
+    let primaryAction: HTMLElement;
+
+    beforeEach(async () => {
+      const wizard = createSampledValueControlWizard(
+        doc.querySelector('IED[name="IED3"] LN0')!
+      );
+      element.workflow.push(() => wizard);
+      await element.requestUpdate();
+
+      (<WizardTextField>(
+        element.wizardUI.dialogs[0].querySelector(
+          'wizard-textfield[label="smvID"]'
+        )
+      )).maybeValue = 'wer'; // is empty string per default that must be non empty
+
+      primaryAction = <HTMLElement>(
+        element.wizardUI.dialogs[3]?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      );
+    });
+
+    it('creates a new instance of a SampledValueControl element', () => {
+      expect(
+        doc.querySelectorAll('IED[name="IED3"] LN0 > SampledValueControl')
+      ).to.have.lengthOf(1);
+
+      primaryAction.click();
+
+      expect(
+        doc.querySelectorAll('IED[name="IED3"] LN0 > SampledValueControl')
+      ).to.have.lengthOf(2);
+    });
+
+    it('creates a new instance of a DataSet element referenced from SampledValueControl', () => {
+      expect(
+        doc.querySelectorAll('IED[name="IED3"] LN0 > DataSet')
+      ).to.have.lengthOf(1);
+
+      primaryAction.click();
+
+      expect(
+        doc.querySelectorAll('IED[name="IED3"] LN0 > DataSet')
+      ).to.have.lengthOf(2);
+    });
+
+    it('creates a new instance of a SMV element', () => {
+      expect(
+        doc.querySelectorAll('ConnectedAP[iedName="IED3"][apName="P1"] SMV')
+      ).to.have.lengthOf(1);
+
+      primaryAction.click();
+
+      expect(
+        doc.querySelectorAll('ConnectedAP[iedName="IED3"][apName="P1"] SMV')
+      ).to.have.lengthOf(2);
     });
   });
 });
