@@ -41,3 +41,4 @@
 
 ## 8. [Communication section](https://github.com/openscd/open-scd/wiki/Communication)
 
+## 9. [CoMPAS Versions Editor](https://github.com/openscd/open-scd/wiki/CoMPAS-Versions-Editor)
