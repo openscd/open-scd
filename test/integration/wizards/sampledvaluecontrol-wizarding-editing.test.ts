@@ -28,71 +28,119 @@ describe('Wizards for SCL element SampledValueControl', () => {
   describe('define a select wizards that ', () => {
     let sampledValueControlList: FilteredList;
 
-    beforeEach(async () => {
-      const wizard = selectSampledValueControlWizard(doc.documentElement);
-      element.workflow.push(() => wizard);
-      await element.requestUpdate();
-
-      sampledValueControlList = <FilteredList>(
-        element.wizardUI.dialog?.querySelector('filtered-list')
-      );
-      await sampledValueControlList.updateComplete;
-    });
-
-    it('shows all SampledValueControl elements within a project', () =>
-      expect(sampledValueControlList.items.length).to.equal(
-        doc.querySelectorAll('SampledValueControl').length
-      ));
-
-    it('allows to filter SampledValueControl elements per IED', async () => {
-      const wizard = selectSampledValueControlWizard(doc.querySelector('IED')!);
-      element.workflow.pop();
-      element.workflow.push(() => wizard);
-      await element.requestUpdate();
-
-      sampledValueControlList = <FilteredList>(
-        element.wizardUI.dialog?.querySelector('filtered-list')
-      );
-      await sampledValueControlList.updateComplete;
-
-      expect(sampledValueControlList.items.length).to.equal(
-        doc.querySelector('IED')!.querySelectorAll('SampledValueControl').length
-      );
-    });
-
-    it('opens edit wizard for selected SampledValueControl element on click', async () => {
-      const reportItem = <ListItemBase>sampledValueControlList.items[0];
-      reportItem.click();
-      await new Promise(resolve => setTimeout(resolve, 20)); // await animation
-
-      const nameField = <WizardTextField>(
-        element.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
-      );
-      await nameField.requestUpdate();
-
-      expect(nameField.value).to.equal(
-        doc.querySelectorAll('SampledValueControl')[0].getAttribute('name')
-      );
-    });
-
-    describe('has an add SampledValueControl primary button that', () => {
-      let iEDPicker: FinderList;
-
+    describe('with the document element as input', () => {
       beforeEach(async () => {
-        (<HTMLElement>(
-          element.wizardUI.dialog?.querySelector(
-            'mwc-button[slot="primaryAction"]'
-          )
-        )).click();
-        await new Promise(resolve => setTimeout(resolve, 50)); // await animation
+        const wizard = selectSampledValueControlWizard(doc.documentElement);
+        element.workflow.push(() => wizard);
+        await element.requestUpdate();
 
-        iEDPicker = <FinderList>(
-          element.wizardUI.dialog?.querySelector('finder-list')
+        sampledValueControlList = <FilteredList>(
+          element.wizardUI.dialog?.querySelector('filtered-list')
+        );
+        await sampledValueControlList.updateComplete;
+      });
+
+      it('shows all SampledValueControl elements within a project', () =>
+        expect(sampledValueControlList.items.length).to.equal(
+          doc.querySelectorAll('SampledValueControl').length
+        ));
+
+      it('opens edit wizard for selected SampledValueControl element on click', async () => {
+        const reportItem = <ListItemBase>sampledValueControlList.items[0];
+        reportItem.click();
+        await new Promise(resolve => setTimeout(resolve, 20)); // await animation
+
+        const nameField = <WizardTextField>(
+          element.wizardUI.dialog?.querySelector(
+            'wizard-textfield[label="name"]'
+          )
+        );
+        await nameField.requestUpdate();
+
+        expect(nameField.value).to.equal(
+          doc.querySelectorAll('SampledValueControl')[0].getAttribute('name')
         );
       });
 
-      it('opens a potential list of host IEDs for the SampledValueControl element', async () =>
-        expect(iEDPicker).to.exist);
+      describe('has an add SampledValueControl primary button that', () => {
+        let iEDPicker: FinderList;
+
+        beforeEach(async () => {
+          (<HTMLElement>(
+            element.wizardUI.dialog?.querySelector(
+              'mwc-button[slot="primaryAction"]'
+            )
+          )).click();
+          await new Promise(resolve => setTimeout(resolve, 50)); // await animation
+
+          iEDPicker = <FinderList>(
+            element.wizardUI.dialog?.querySelector('finder-list')
+          );
+        });
+
+        it('opens a potential list of host IEDs for the SampledValueControl element', async () =>
+          expect(iEDPicker).to.exist);
+      });
+    });
+
+    describe('with a specific IED as input', () => {
+      beforeEach(async () => {
+        const wizard = selectSampledValueControlWizard(
+          doc.querySelector('IED[name="IED3"]')!
+        );
+        element.workflow.push(() => wizard);
+        await element.requestUpdate();
+
+        sampledValueControlList = <FilteredList>(
+          element.wizardUI.dialog?.querySelector('filtered-list')
+        );
+        await sampledValueControlList.updateComplete;
+      });
+
+      it('shows all SampledValueControl elements within an IED', () =>
+        expect(sampledValueControlList.items.length).to.equal(
+          doc.querySelectorAll('IED[name="IED3"] SampledValueControl').length
+        ));
+
+      it('opens edit wizard for selected SampledValueControl element on click', async () => {
+        const reportItem = <ListItemBase>sampledValueControlList.items[0];
+        reportItem.click();
+        await new Promise(resolve => setTimeout(resolve, 20)); // await animation
+
+        const nameField = <WizardTextField>(
+          element.wizardUI.dialog?.querySelector(
+            'wizard-textfield[label="name"]'
+          )
+        );
+        await nameField.requestUpdate();
+
+        expect(nameField.value).to.equal(
+          doc.querySelectorAll('SampledValueControl')[0].getAttribute('name')
+        );
+      });
+
+      describe('has an add SampledValueControl primary button that', () => {
+        let nameField: WizardTextField;
+        beforeEach(async () => {
+          const primaryAction = <HTMLElement>(
+            element.wizardUI.dialog?.querySelector(
+              'mwc-button[slot="primaryAction"]'
+            )
+          );
+
+          primaryAction.click();
+          await new Promise(resolve => setTimeout(resolve, 20)); // await animation
+
+          nameField = <WizardTextField>(
+            element.wizardUI.dialog?.querySelector(
+              'wizard-textfield[label="name"]'
+            )
+          );
+        });
+
+        it('opens the create wizard for the SampledValueControl element', async () =>
+          expect(nameField).to.exist);
+      });
     });
   });
 
