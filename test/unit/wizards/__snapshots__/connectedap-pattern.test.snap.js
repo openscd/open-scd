@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that for Edition 1 projects looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[wizard.title.edit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -131,7 +131,7 @@ snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that f
 
 snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that for Edition 2 projects looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[wizard.title.edit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -307,7 +307,7 @@ snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that f
 
 snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that for Edition 2.1 projects looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[wizard.title.edit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"

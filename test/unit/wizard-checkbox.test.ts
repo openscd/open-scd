@@ -3,7 +3,7 @@ import { html, fixture, expect } from '@open-wc/testing';
 import '../../src/wizard-checkbox.js';
 import { WizardCheckbox } from '../../src/wizard-checkbox.js';
 
-describe('wizard-textfield', () => {
+describe('wizard-checkbox', () => {
   let element: WizardCheckbox;
   beforeEach(async () => {
     element = await fixture(html`<wizard-checkbox></wizard-checkbox>`);
@@ -13,7 +13,8 @@ describe('wizard-textfield', () => {
     it('does not render a null value switch', () =>
       expect(element.nullSwitch).to.not.exist);
 
-    it('is enabled', () => expect(element).to.have.property('disabled', false));
+    it('is enabled', () =>
+      expect(element.checkbox).to.have.property('disabled', false));
 
     it('is un-checked', () =>
       expect(element.checkbox).to.have.property('checked', false));
@@ -45,11 +46,11 @@ describe('wizard-textfield', () => {
 
     it('disables itself on switch toggle', async () => {
       expect(element).to.have.property('maybeValue', 'false');
-      expect(element).to.have.property('disabled', false);
+      expect(element.checkbox).to.have.property('disabled', false);
       element.nullSwitch!.click();
       await element.updateComplete;
       expect(element).to.have.property('maybeValue', null);
-      expect(element).to.have.property('disabled', true);
+      expect(element.checkbox).to.have.property('disabled', true);
     });
 
     it('remembers its previous value on switch toggle', async () => {
@@ -59,7 +60,7 @@ describe('wizard-textfield', () => {
       await element.updateComplete;
       element.nullSwitch!.click();
       await element.updateComplete;
-      expect(element).to.have.property('disabled', false);
+      expect(element.checkbox).to.have.property('disabled', false);
       expect(element).to.have.property('maybeValue', 'true');
     });
 
@@ -72,11 +73,11 @@ describe('wizard-textfield', () => {
       it('enables itself on switch toggle', async () => {
         element.nullSwitch?.click();
         await element.updateComplete;
-        expect(element).to.have.property('disabled', false);
+        expect(element.checkbox).to.have.property('disabled', false);
       });
 
       it('has a disabled checkbox', () =>
-        expect(element).to.have.property('disabled', true));
+        expect(element.checkbox).to.have.property('disabled', true));
 
       it('is false per default', () =>
         expect(element.checkbox).to.have.property('checked', false));
@@ -97,6 +98,35 @@ describe('wizard-textfield', () => {
 
       it('returns null', () =>
         expect(element).to.have.property('maybeValue', null));
+    });
+  });
+
+  describe('disabled', () => {
+    beforeEach(async () => {
+      element = await fixture(
+        html`<wizard-checkbox
+          value=${'true'}
+          nullable
+          disabled
+        ></wizard-checkbox>`
+      );
+
+      await element.updateComplete;
+    });
+
+    it('disables checkbox', () =>
+      expect(element.checkbox).to.have.property('disabled', true));
+
+    it('disables null switch', () =>
+      expect(element.nullSwitch).to.have.property('disabled', true));
+
+    it('turns off null switch', async () => {
+      element.nullSwitch?.click();
+      await element.updateComplete;
+      element.nullSwitch?.click();
+      await element.updateComplete;
+
+      expect(element.checkbox).to.have.property('disabled', true);
     });
   });
 });

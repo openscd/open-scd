@@ -7,7 +7,7 @@ import {
 } from './conductingequipment.js';
 import { editConnectivityNodeWizard } from './connectivitynode.js';
 import { createFCDAsWizard } from './fcda.js';
-import { lNodeWizard } from './lnode.js';
+import { editLNodeWizard, lNodeWizard } from './lnode.js';
 import { editOptFieldsWizard } from './optfields.js';
 import { createSubstationWizard, substationEditWizard } from './substation.js';
 import { editTerminalWizard } from './terminal.js';
@@ -15,16 +15,32 @@ import {
   voltageLevelCreateWizard,
   voltageLevelEditWizard,
 } from './voltagelevel.js';
-import { createPowerTransformerWizard, editPowerTransformerWizard } from './powertransformer.js';
+import {
+  createPowerTransformerWizard,
+  editPowerTransformerWizard,
+} from './powertransformer.js';
 import { editSubNetworkWizard } from './subnetwork.js';
 import { editIEDWizard } from './ied.js';
 import { editTrgOpsWizard } from './trgops.js';
 import { createDaWizard } from './da.js';
 import { editDAIWizard } from './dai.js';
 import { editGseControlWizard } from './gsecontrol.js';
+import { createFunctionWizard, editFunctionWizard } from './function.js';
+import {
+  createEqSubFunctionWizard,
+  editEqSubFunctionWizard,
+} from './eqsubfunction.js';
+import { createEqFunctionWizard, editEqFunctionWizard } from './eqfunction.js';
+import {
+  createSubFunctionWizard,
+  editSubFunctionWizard,
+} from './subfunction.js';
 import { editCompasSCLWizard } from "../compas-wizards/scl.js";
 
-type SclElementWizard = (element: Element, instanceElement?: Element) => Wizard | undefined;
+type SclElementWizard = (
+  element: Element,
+  instanceElement?: Element
+) => Wizard | undefined;
 
 export function emptyWizard(): Wizard | undefined {
   return;
@@ -182,12 +198,12 @@ export const wizards: Record<
     create: emptyWizard,
   },
   EqFunction: {
-    edit: emptyWizard,
-    create: emptyWizard,
+    edit: editEqFunctionWizard,
+    create: createEqFunctionWizard,
   },
   EqSubFunction: {
-    edit: emptyWizard,
-    create: emptyWizard,
+    edit: editEqSubFunctionWizard,
+    create: createEqSubFunctionWizard,
   },
   ExtRef: {
     edit: emptyWizard,
@@ -202,8 +218,8 @@ export const wizards: Record<
     create: emptyWizard,
   },
   Function: {
-    edit: emptyWizard,
-    create: emptyWizard,
+    edit: editFunctionWizard,
+    create: createFunctionWizard,
   },
   GeneralEquipment: {
     edit: emptyWizard,
@@ -298,7 +314,7 @@ export const wizards: Record<
     create: emptyWizard,
   },
   LNode: {
-    edit: lNodeWizard,
+    edit: editLNodeWizard,
     create: lNodeWizard,
   },
   LNodeType: {
@@ -470,8 +486,8 @@ export const wizards: Record<
     create: emptyWizard,
   },
   SubFunction: {
-    edit: emptyWizard,
-    create: emptyWizard,
+    edit: editSubFunctionWizard,
+    create: createSubFunctionWizard,
   },
   SubNetwork: {
     edit: editSubNetworkWizard,

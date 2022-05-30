@@ -58,6 +58,10 @@ export const en = {
     sampleRate: 'Add sample rate to SMV packet',
     security: 'Potential future use. e.g. digital signature',
     synchSourceId: 'Add sync source id to SMV packet',
+    iedName: 'Referenced IED',
+    ldInst: 'Referenced Logical Device',
+    prefix: 'Prefix of the Logical Node',
+    lnInst: 'Instance of the Logical Node',
   },
   settings: {
     title: 'Settings',
@@ -321,11 +325,11 @@ export const en = {
     none: 'None',
     publisherGoose: {
       title: 'GOOSE Publisher',
-      subscriberTitle: 'Subscriber of {{ selected }}'
+      subscriberTitle: 'Subscriber of {{ selected }}',
     },
     subscriberGoose: {
       title: 'GOOSE Subscriber',
-      publisherTitle: 'GOOSE(s) subscribed by {{selected}}'
+      publisherTitle: 'GOOSE(s) subscribed by {{selected}}',
     },
     subscriber: {
       subscribed: 'Subscribed',
@@ -335,9 +339,9 @@ export const en = {
       noIedSelected: 'No IED selected',
     },
     view: {
-      publisherView: "Show subscriber IED(s) per selected GOOSE",
-      subscriberView: "Show subscribed GOOSE publisher for selected IED"
-    }
+      publisherView: 'Show subscriber IED(s) per selected GOOSE',
+      subscriberView: 'Show subscribed GOOSE publisher for selected IED',
+    },
   },
   sampledvalues: {
     none: 'none',
@@ -457,8 +461,17 @@ export const en = {
         selectIEDs: 'Select IEDs',
         selectLDs: 'Select logical devices',
         selectLNs: 'Select logical nodes',
+        selectLNodeTypes: 'Select logical node types',
       },
       placeholder: 'Please load an SCL file that contains IED elements.',
+      uniquewarning: 'Logical node class already exists',
+      reference: 'Add reference to existing logical node',
+      instance: 'Add reference to logical node type',
+    },
+    log: {
+      title: 'Cannot add LNode of class {{lnClass}}',
+      nonuniquelninst: 'Cannot find unique lnInst',
+      uniqueln0: 'Only one instance of {{lnClass}} allowed',
     },
     tooltip: 'Create logical nodes reference',
   },

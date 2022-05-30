@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["clientln wizards createClientLnWizard looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[commmap.connectToIED]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -339,7 +339,7 @@ snapshots["clientln wizards createClientLnWizard looks like the latest snapshot"
 
 snapshots["clientln wizards selectClientLnWizard looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="IED2>>CBSW> XSWI 2>ReportCb - IED1"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"

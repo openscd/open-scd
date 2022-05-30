@@ -1,9 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Wizards for SCL element (CoMPAS) edit scl looks like the latest snapshot"] = 
+snapshots["Wizards for SCL element (CoMPAS) edit scl looks like the latest snapshot"] =
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[compas.scl.wizardTitle]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"

@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["Wizards for Locamation Plugin to edit the selected Logical Node -  starting screen as wizard -  looks like the latest snapshot"] =
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[locamation.vmu.ln.editTitle]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"

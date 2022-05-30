@@ -252,6 +252,10 @@
 						</DataSet>
 						<GSEControl type="GOOSE" appID="0002" fixedOffs="false" confRev="1" name="GCB" datSet="GooseDataSet1">
 						</GSEControl>
+						<Inputs>
+							<ExtRef iedName="IED1" ldInst="Disconnectors" prefix="DC" lnClass="XSWI" lnInst="1" doName="Pos" daName="stVal"/>
+							<ExtRef iedName="IED1" ldInst="Disconnectors" prefix="DC" lnClass="XSWI" lnInst="1" doName="Pos" daName="q"/>
+						</Inputs>
 					</LN0>
 					<LN lnClass="LPHD" inst="1" lnType="Dummy.LPHD1"/>
 					<LN lnClass="XCBR" inst="1" lnType="Dummy.XCBR1">

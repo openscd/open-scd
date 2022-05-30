@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["DAType wizards defines a createDATypeWizard looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[datype.wizard.title.add]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -616,7 +616,7 @@ snapshots["DAType wizards defines a createDATypeWizard looks like the latest sna
 
 snapshots["DAType wizards defines a dATypeWizard looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[datype.wizard.title.edit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 48px)"

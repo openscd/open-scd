@@ -206,6 +206,17 @@ export class CleanupDatasets extends LitElement {
       --mdc-icon-size: 16px;
     }
 
+    .editItem {
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    .checkListItem:hover .editItem {
+      visibility: visible;
+      opacity: 1;
+      transition: visibility 0s, opacity 0.5s linear;
+    }
+
     .cleanupDeleteButton {
       float: right;
     }
