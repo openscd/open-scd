@@ -401,63 +401,6 @@ snapshots["Wizards for SCL element SampledValueControl define an edit wizard tha
 `;
 /* end snapshot Wizards for SCL element SampledValueControl define an edit wizard that  with multicast set to treu looks like the latest snapshot */
 
-snapshots["Wizards for SCL element SampledValueControl define a select wizard that looks like the latest snapshot"] = 
-`<mwc-dialog
-  defaultaction="close"
-  heading="[wizard.title.select]"
-  open=""
-  style="--mdc-dialog-min-width:calc(100% + 0px)"
->
-  <div id="wizard-content">
-    <filtered-list>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="0"
-        twoline=""
-        value="IED2>>CBSW>MSVCB01"
-      >
-        <span>
-          MSVCB01
-        </span>
-        <span slot="secondary">
-          IED2>>CBSW>MSVCB01
-        </span>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-        twoline=""
-        value="IED3>>MU01>MSVCB01"
-      >
-        <span>
-          MSVCB01
-        </span>
-        <span slot="secondary">
-          IED3>>MU01>MSVCB01
-        </span>
-      </mwc-list-item>
-    </filtered-list>
-  </div>
-  <mwc-button
-    dialogaction="close"
-    label="[cancel]"
-    slot="secondaryAction"
-    style="--mdc-theme-primary: var(--mdc-theme-error)"
-  >
-  </mwc-button>
-  <mwc-button
-    icon="add"
-    label="Sampled Value Control Block"
-    slot="primaryAction"
-    trailingicon=""
-  >
-  </mwc-button>
-</mwc-dialog>
-`;
-/* end snapshot Wizards for SCL element SampledValueControl define a select wizard that looks like the latest snapshot */
-
 snapshots["Wizards for SCL element SampledValueControl define an create wizard that with existing ConnectedAP element in the Communication section the first page looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="close"
@@ -805,4 +748,61 @@ snapshots["Wizards for SCL element SampledValueControl define an create wizard t
 </mwc-dialog>
 `;
 /* end snapshot Wizards for SCL element SampledValueControl define an create wizard that with missing ConnectedAP element in the Communication section the third page having a warning message  */
+
+snapshots["Wizards for SCL element SampledValueControl define a select wizard that looks like the latest snapshot"] = 
+`<mwc-dialog
+  defaultaction="close"
+  heading="[wizard.title.select]"
+  open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
+>
+  <div id="wizard-content">
+    <filtered-list>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="0"
+        twoline=""
+        value="IED2>>CBSW>MSVCB01"
+      >
+        <span>
+          MSVCB01
+        </span>
+        <span slot="secondary">
+          IED2>>CBSW>MSVCB01
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="IED3>>MU01>MSVCB01"
+      >
+        <span>
+          MSVCB01
+        </span>
+        <span slot="secondary">
+          IED3>>MU01>MSVCB01
+        </span>
+      </mwc-list-item>
+    </filtered-list>
+  </div>
+  <mwc-button
+    dialogaction="close"
+    label="[cancel]"
+    slot="secondaryAction"
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+  </mwc-button>
+  <mwc-button
+    icon="add"
+    label="[scl.SampledValueControl]"
+    slot="primaryAction"
+    trailingicon=""
+  >
+  </mwc-button>
+</mwc-dialog>
+`;
+/* end snapshot Wizards for SCL element SampledValueControl define a select wizard that looks like the latest snapshot */
 

@@ -58,6 +58,7 @@ export const en = {
     sampleRate: 'Add sample rate to SMV packet',
     security: 'Potential future use. e.g. digital signature',
     synchSourceId: 'Add sync source id to SMV packet',
+    SampledValueControl: 'Sampled Value Control Block',
   },
   settings: {
     title: 'Settings',

@@ -639,7 +639,7 @@ export function selectSampledValueControlWizard(element: Element): Wizard {
   const primary = element.querySelector('LN0')
     ? {
         icon: 'add',
-        label: 'Sampled Value Control Block',
+        label: get('scl.SampledValueControl'),
         action: prepareSampledValueControlCreateWizard(element),
       }
     : undefined;
