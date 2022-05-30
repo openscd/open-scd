@@ -15,7 +15,7 @@ describe('Protocol 104 Plugin', () => {
   let doc: XMLDocument;
 
   beforeEach(async () => {
-    doc = await fetch('/test/testfiles/104-protocol.scd')
+    doc = await fetch('/test/testfiles/104/valid-subnetwork.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
