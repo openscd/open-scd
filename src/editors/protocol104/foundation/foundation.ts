@@ -11,14 +11,15 @@ export const PRIVATE_TYPE_104 = "IEC_60870_5_104";
  * IED.
  * From all parent between the DAI and IED the name or likely attributes are used to define a unique name.
  *
- * @param daiElement - The DAI Element for which the full path needs to be defined.
+ * @param element - The DAI Element for which the full path needs to be defined.
+ * @param topLevelTagName - Name of the Tag to stop at when travelling through the parents (excluding).
  * @returns The full path shown to the user for a DAI Element.
  */
-export function getFullPath(daiElement: Element): string {
-  let path = daiElement.getAttribute('name') ?? '';
-  let parent = daiElement.parentElement;
+export function getFullPath(element: Element, topLevelTagName: string): string {
+  let path = getNameAttribute(element) ?? '';
+  let parent = element.parentElement;
 
-  while (parent && parent.tagName != 'IED') {
+  while (parent && parent.tagName != topLevelTagName) {
     let value: string | undefined;
     switch (parent.tagName) {
       case 'LN':
@@ -48,24 +49,61 @@ export function getFullPath(daiElement: Element): string {
  * search for a DO Element, which is again used to find the DO/DOType Element. The DOType Element
  * finally holds the attribute 'cdc'.
  *
- * @param daiElement - The DAI Element to start the search for the CDC Value.
+ * @param doiElement - The DOI Element to start the search for the CDC Value.
  * @returns The CDC Value from the DOType Element.
  */
-export function getCdcValue(daiElement: Element): string | null {
-  const lnElement = daiElement.closest('LN0, LN');
-  const doiElement = daiElement.closest('DOI');
-  if (lnElement && doiElement) {
+export function getCdcValue(doiElement: Element): string | null {
+  const lnElement = doiElement.closest('LN0, LN');
+  if (lnElement) {
     const lnType = lnElement.getAttribute('lnType');
     const doName = doiElement.getAttribute('name');
 
-    const doElement = daiElement.ownerDocument.querySelector(`LNodeType[id="${lnType}"] > DO[name="${doName}"]`)
+    const doElement = doiElement.ownerDocument.querySelector(`LNodeType[id="${lnType}"] > DO[name="${doName}"]`)
     if (doElement) {
       const doType = doElement.getAttribute('type');
-      const doTypeElement = daiElement.ownerDocument.querySelector(`DOType[id="${doType}"]`)
+      const doTypeElement = doiElement.ownerDocument.querySelector(`DOType[id="${doType}"]`)
       return (doTypeElement ? doTypeElement.getAttribute('cdc') : null);
     }
   }
   return null;
+}
+
+/**
+ * Indicates if the combination cdc/ti should handle/process the attribute "expected" of the Address Element.
+ *
+ * @param cdc - The Common Data Class.
+ * @param ti  - The TI Value.
+ * @returns true, if the combination should handle/process the attribute "expected".
+ */
+export function hasExpectedValueField(cdc: string, ti: string): boolean {
+  return (cdc === 'ENC' && ['30', '45', '58'].includes(ti))
+    || (cdc === 'ENG' && ['45', '58'].includes(ti))
+    || (cdc === 'ENS' && ti === '30')
+    || (cdc === 'INS' && ti === '30');
+}
+
+/**
+ * Indicates if the combination cdc/ti should handle/process the attribute "unitMultiplier" of the Address Element.
+ *
+ * @param cdc - The Common Data Class.
+ * @param ti  - The TI Value.
+ * @returns true, if the combination should handle/process the attribute "unitMultiplier".
+ */
+export function hasUnitMultiplierField(cdc: string, ti: string): boolean {
+  return (cdc === 'MV' && ['35', '36'].includes(ti))
+    || (cdc === 'INS' && ti === '35');
+}
+
+/**
+ * Indicates if the combination cdc/ti should handle/process the attributes "scaleMultiplier" and "scaleOffset" of
+ * the Address Element.
+ *
+ * @param cdc - The Common Data Class.
+ * @param ti  - The TI Value.
+ * @returns true, if the combination should handle/process the attributes "scaleMultiplier" and "scaleOffset".
+ */
+export function hasScaleFields(cdc: string, ti: string): boolean {
+  return (cdc === 'MV' && ['35', '36'].includes(ti));
 }
 
 /**

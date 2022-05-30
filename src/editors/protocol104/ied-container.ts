@@ -13,47 +13,21 @@ import { nothing } from "lit-html";
 import { IconButtonToggle } from "@material/mwc-icon-button-toggle";
 
 import '@material/mwc-icon';
-import '@material/mwc-icon-button';
-import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-icon-button-toggle';
 
-import {
-  getDescriptionAttribute,
-  getNameAttribute,
-} from "../../foundation.js";
+import { getDescriptionAttribute, getNameAttribute } from "../../foundation.js";
 
 import '../../action-pane.js';
 
 import {
-  getCdcValue,
   getFullPath,
   PRIVATE_TYPE_104
 } from "./foundation/foundation.js";
 
-/**
- * Retrieve all the 104 information from the passed DAI Element, like the CDC Values and attributes
- * of the Address Element of the 104. The values are joined together separated by a comma.
- *
- * @param daiElement - The DAI Element for which to retrieve the 104 Information.
- * @returns A string with all details joined together.
- */
-function get104DetailsLine(daiElement: Element): string {
-  const values = [];
-
-  const cdcValue = getCdcValue(daiElement);
-  if (cdcValue) values.push(`cdc: ${cdcValue}`);
-
-  const privateElement = daiElement.querySelector(`Private[type="${PRIVATE_TYPE_104}"] > Address`);
-  if (privateElement) {
-    if (privateElement.hasAttribute('casdu')) values.push(`casdu: ${privateElement.getAttribute('casdu')}`);
-    if (privateElement.hasAttribute('ioa')) values.push(`ioa: ${privateElement.getAttribute('ioa')}`);
-    if (privateElement.hasAttribute('ti')) values.push(`ti: ${privateElement.getAttribute('ti')}`);
-  }
-  return values.join(', ');
-}
+import './doi-container.js';
 
 /**
- * Container showing all the DAI Elements, related to the 104 Protocol, of the passed IED Element in a filtered list.
- * The DAI Element can be edited by pressing the Edit button at the end of the line.
+ * Container showing all the DOI Elements, related to the 104 Protocol, of the passed IED Element in a container.
  */
 @customElement('ied-104-container')
 export class Ied104Container extends LitElement {
@@ -63,18 +37,13 @@ export class Ied104Container extends LitElement {
   @query('#toggleButton')
   toggleButton!: IconButtonToggle | undefined;
 
-  private getDaiElements(): Element[] {
-    return Array.from(this.element.querySelectorAll(`DAI > Private[type="${PRIVATE_TYPE_104}"]`))
-      .map(daiPrivateElement => daiPrivateElement.parentElement!)
-      .sort((dai1, dai2) => getFullPath(dai1).localeCompare(getFullPath(dai2)) );
+  private getDoiElements(): Element[] {
+    return Array.from(this.element.querySelectorAll(`DOI`))
+      .filter(doiElement => doiElement.querySelector(`DAI > Private[type="${PRIVATE_TYPE_104}"]`) !== null)
+      .sort((doi1, doi2) => getFullPath(doi1, 'IED').localeCompare(getFullPath(doi2, 'IED')) );
   }
 
   protected firstUpdated(): void {
-    this.requestUpdate();
-  }
-
-  private openEditWizard(): void {
-    // TODO: Implemented by next story to start editing the private values of 104.
     this.requestUpdate();
   }
 
@@ -85,8 +54,16 @@ export class Ied104Container extends LitElement {
     return html`${name}${desc ? html` &mdash; ${desc}` : nothing}`;
   }
 
+  private renderDoiList(): TemplateResult {
+    const dois = this.getDoiElements();
+    return html `${dois.map(doiElement => {
+        return html`
+          <doi-104-container .element="${doiElement}"></doi-104-container>
+        `;
+    })}`;
+  }
+
   render(): TemplateResult {
-    const dais = this.getDaiElements();
     return html`
       <action-pane .label="${this.header()}">
         <mwc-icon slot="icon">developer_board</mwc-icon>
@@ -100,24 +77,7 @@ export class Ied104Container extends LitElement {
           </mwc-icon-button-toggle>
         </abbr>
         ${this.toggleButton?.on
-          ? html`
-            <filtered-list id="dailist">
-              ${dais.map(daiElement => {
-                  return html`
-                    <mwc-list-item tabindex="0" twoLine hasMeta>
-                      <span>${getFullPath(daiElement)}</span>
-                      <span slot="secondary">${get104DetailsLine(daiElement)}</span>
-                      <span slot="meta">
-                        <mwc-icon-button
-                          icon="edit"
-                          @click=${() => this.openEditWizard()}>
-                        </mwc-icon-button>
-                      </span>
-                    </mwc-list-item>
-                  `;
-                }
-              )}
-            </filtered-list>`
+          ? html `${this.renderDoiList()}`
           : nothing}
       </action-pane>
     `;
@@ -127,10 +87,6 @@ export class Ied104Container extends LitElement {
     abbr {
       text-decoration: none;
       border-bottom: none;
-    }
-
-    mwc-list-item {
-      --mdc-list-item-meta-size: 48px;
     }
   `;
 }
