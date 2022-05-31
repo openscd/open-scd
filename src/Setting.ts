@@ -19,6 +19,7 @@ import './WizardDivider.js';
 import { WizardDialog } from './wizard-dialog.js';
 
 import { iec6185072, iec6185073, iec6185074, iec6185081 } from "./validators/templates/foundation.js";
+import { initializeNsdoc, Nsdoc } from './foundation/nsdoc.js';
 
 export type Settings = {
   language: Language;
@@ -91,6 +92,9 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
         'IEC 61850-8-1': this.getSetting('IEC 61850-8-1')
       };
     }
+    /** Object containing all *.nsdoc files and a function extracting element's label form them*/
+    @property({ attribute: false })
+    nsdoc: Nsdoc = initializeNsdoc();
 
     /**
      * Get the versions of the current OpenSCD NSD files.
@@ -160,6 +164,8 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
         ?.querySelector<WizardDialog>('wizard-dialog')
         ?.requestUpdate();
       this.requestUpdate();
+
+      this.nsdoc = initializeNsdoc(); // update nsdoc
     }
 
     private onClosing(ae: CustomEvent<{ action: string } | null>): void {
@@ -253,6 +259,7 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
       }
 
       this.setSetting(id as keyof Settings, event.detail.nsdoc);
+      this.nsdoc = initializeNsdoc(); // update nsdoc
     }
 
     /**
