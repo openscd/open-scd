@@ -1,5 +1,4 @@
-import { html, TemplateResult } from 'lit-element';
-import { ifDefined } from 'lit-html/directives/if-defined';
+import { html } from 'lit-element';
 import { translate, get } from 'lit-translate';
 
 import '@material/mwc-checkbox';
@@ -11,26 +10,29 @@ import { Checkbox } from '@material/mwc-checkbox';
 import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
-import '../wizard-textfield.js';
-import '../filtered-list.js';
+import '../../../wizard-textfield.js';
+import '../../../filtered-list.js';
 import {
+  pTypes104,
+  stationTypeOptions,
+  typeDescriptiveNameKeys
+} from '../foundation/p-types.js';
+import {
+  compareNames,
+  ComplexAction,
+  createElement,
   EditorAction,
+  getValue,
+  identity,
+  isPublic,
   Wizard,
   WizardActor,
-  WizardInputElement,
-  compareNames,
-  getValue,
-  createElement,
-  ComplexAction,
-  isPublic,
-  identity,
-} from '../foundation.js';
+  WizardInputElement
+} from '../../../foundation.js';
 import {
-  getTypes,
-  typeMaxLength,
-  typeNullable,
-  typePattern,
-} from './foundation/p-types.js';
+  createPTextField,
+  createTypeRestrictionCheckbox
+} from '../../../wizards/connectedap.js';
 
 interface AccessPointDescription {
   element: Element;
@@ -85,34 +87,6 @@ function existConnectedAp(accesspoint: Element): boolean {
   return (connAp && isPublic(connAp)) ?? false;
 }
 
-/**
- * Creates a TypeRestriction checkbox for a given ConnectedAP wizard.
- * @param element - The ConnectedAP of the wizard.
- * @returns The checkbox within a formfield.
- */
-export function createTypeRestrictionCheckbox(element: Element): TemplateResult {
-  return html`<mwc-formfield
-    label="${translate('connectedap.wizard.addschemainsttype')}"
-    ><mwc-checkbox
-      id="typeRestriction"
-      ?checked=${hasTypeRestriction(element)}
-    ></mwc-checkbox>
-  </mwc-formfield>`
-}
-
-export function createPTextField(element: Element, pType: string): TemplateResult {
-  return html`<wizard-textfield
-    required
-    label="${pType}"
-    pattern="${ifDefined(typePattern[pType])}"
-    ?nullable=${typeNullable[pType]}
-    .maybeValue=${element.querySelector(
-      `Address > P[type="${pType}"]`
-    )?.innerHTML ?? null}
-    maxLength="${ifDefined(typeMaxLength[pType])}"
-  ></wizard-textfield>`
-}
-
 /** @returns single page  [[`Wizard`]] for creating SCL element ConnectedAP. */
 export function createConnectedApWizard(element: Element): Wizard {
   const doc = element.ownerDocument;
@@ -141,14 +115,14 @@ export function createConnectedApWizard(element: Element): Wizard {
       content: [
         html` <filtered-list id="apList" multi
           >${accessPoints.map(accesspoint => {
-            const id = identity(accesspoint.element);
+          const id = identity(accesspoint.element);
 
-            return html`<mwc-check-list-item
+          return html`<mwc-check-list-item
               value="${id}"
               ?disabled=${accesspoint.connected}
               ><span>${id}</span></mwc-check-list-item
             >`;
-          })}
+        })}
         </filtered-list>`,
       ],
     },
@@ -190,7 +164,7 @@ function createAddressElement(
   return element;
 }
 
-function updateConnectedApAction(parent: Element): WizardActor {
+export function updateConnectedApAction(parent: Element): WizardActor {
   return (inputs: WizardInputElement[], wizard: Element): EditorAction[] => {
     const typeRestriction: boolean =
       (<Checkbox>wizard.shadowRoot?.querySelector('#typeRestriction'))
@@ -232,14 +206,8 @@ function updateConnectedApAction(parent: Element): WizardActor {
   };
 }
 
-function hasTypeRestriction(element: Element): boolean {
-  return Array.from(element.querySelectorAll('Address > P'))
-    .filter(p => isPublic(p))
-    .some(pType => pType.getAttribute('xsi:type'));
-}
-
-/** @returns single page [[`Wizard`]] to edit SCL element ConnectedAP. */
-export function editConnectedApWizard(element: Element): Wizard {
+/** @returns single page [[`Wizard`]] to edit SCL element ConnectedAP for the 104 plugin. */
+export function editConnectedAp104Wizard(element: Element): Wizard {
   return [
     {
       title: get('wizard.title.edit', { tagName: element.tagName }),
@@ -251,9 +219,21 @@ export function editConnectedApWizard(element: Element): Wizard {
       },
       content: [
         html`${createTypeRestrictionCheckbox(element)}
-          ${getTypes(element).map(
-            pType => html`${createPTextField(element, pType)}`
-          )}`,
+          <wizard-select
+            label="StationType"
+            .maybeValue=${element.querySelector(
+          `Address > P[type="StationType"]`
+        )?.innerHTML ?? null}
+            required
+            helper="${translate(typeDescriptiveNameKeys["StationType"])}"
+          >${stationTypeOptions.map(
+          option =>
+            html`<mwc-list-item value="${option}">${option}</mwc-list-item>`
+        )}</wizard-select>
+          ${pTypes104.map(
+          pType =>
+            html`${createPTextField(element, pType)}`
+        )}`,
       ],
     },
   ];
