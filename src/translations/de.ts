@@ -357,13 +357,15 @@ export const de: Translations = {
   },
   protocol104: {
     toggleChildElements: '???',
-    missing: '???',
-    removeAddresses: '???',
-    removedAddresses: '???',
-    addedAddress: '???',
     view: {
       valuesView: '???',
       networkView: '???',
+    },
+    values: {
+      missing: '???',
+      removeAddresses: '???',
+      removedAddresses: '???',
+      addedAddress: '???',
     },
     network: {
       connectedap: {

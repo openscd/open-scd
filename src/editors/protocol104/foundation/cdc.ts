@@ -5,7 +5,7 @@ import {addPrefixAndNamespaceToDocument, createPrivateAddress, createPrivateElem
 /**
  * List of supported Common Data Classes in the 104 protocol.
  */
-export const supportedCdcTypes = ['DPS', 'INS', 'MV', 'SPS'] as const;
+export const supportedCdcTypes = ['ACT', 'ASG', 'BCR', 'CMV', 'DPS', 'ING', 'INS', 'MV', 'SEC', 'SPG', 'SPS'] as const;
 export type SupportedCdcType = typeof supportedCdcTypes[number];
 
 type CreateFunction = (daiElement: Element, selectedTi: string) => Create[];
@@ -32,10 +32,63 @@ export const cdcProcessings: Record<
     }>,
   }
   > = {
+  ACT: {
+    monitor: {
+      '30': {
+        filter: 'DAI[name="general"], DAI[name="phsA"], DAI[name="phsB"], DAI[name="phsC"], DAI[name="neut"]',
+        create: createSingleAddressAction
+      },
+      '39': {
+        filter: 'DAI[name="general"]',
+        create: createSingleAddressAction
+      }
+    },
+    control: {}
+  },
+  ASG: {
+    monitor: {
+      '63': {
+        filter: 'SDI[name="setMag"] > DAI[name="f"]',
+        create: createSingleAddressAction
+      }
+    },
+    control: {}
+  },
+  BCR: {
+    monitor: {
+      '37': {
+        filter: 'DAI[name="actVal"], DAI[name="frVal"]',
+        create: createSingleAddressAction
+      },
+    },
+    control: {}
+  },
+  CMV: {
+    monitor: {
+      '35': {
+        filter: 'SDI[name="mag"] > DAI[name="i"], SDI[name="ang"] > DAI[name="i"]',
+        create: createSingleAddressAction
+      },
+      '36': {
+        filter: 'SDI[name="mag"] > DAI[name="f"], SDI[name="ang"] > DAI[name="f"]',
+        create: createSingleAddressAction
+      }
+    },
+    control: {}
+  },
   DPS: {
     monitor: {
       '31': {
         filter: 'DAI[name="stVal"]',
+        create: createSingleAddressAction
+      }
+    },
+    control: {}
+  },
+  ING: {
+    monitor: {
+      '62': {
+        filter: 'DAI[name="setVal"]',
         create: createSingleAddressAction
       }
     },
@@ -66,6 +119,24 @@ export const cdcProcessings: Record<
       },
       '36': {
         filter: 'SDI[name="mag"] > DAI[name="f"]',
+        create: createSingleAddressAction
+      }
+    },
+    control: {}
+  },
+  SEC: {
+    monitor: {
+      '37': {
+        filter: 'DAI[name="cnt"]',
+        create: createSingleAddressAction
+      }
+    },
+    control: {}
+  },
+  SPG: {
+    monitor: {
+      '58': {
+        filter: 'DAI[name="setVal"]',
         create: createSingleAddressAction
       }
     },

@@ -64,11 +64,15 @@ function createAddressActionFromDoi(doc: XMLDocument): WizardActor {
     const cdc = getCdcValue(doiElement) ?? '';
     const cdcProcessing = cdcProcessings[<SupportedCdcType>cdc];
     if (cdcProcessing === undefined) {
+      // Close wizard nothing to do anymore.
+      wizard.dispatchEvent(newWizardEvent());
       return [];
     }
 
     const monitorTis = Object.keys(cdcProcessing.monitor);
     if (monitorTis.length == 0) {
+      // Close wizard nothing to do anymore.
+      wizard.dispatchEvent(newWizardEvent());
       return [];
     }
     if (monitorTis.length > 1) {
@@ -78,26 +82,30 @@ function createAddressActionFromDoi(doc: XMLDocument): WizardActor {
 
     const monitorTi = monitorTis[0];
     // There is only one TI available to select from, so the new Address element can be created.
-    const daiElement = doiElement.querySelector(cdcProcessing.monitor[monitorTi].filter);
-    if (!daiElement) {
+    const daiElements = doiElement.querySelectorAll(cdcProcessing.monitor[monitorTi].filter);
+    if (daiElements.length <= 0) {
+      // Close wizard nothing to do anymore.
+      wizard.dispatchEvent(newWizardEvent());
       return [];
     }
 
     const complexAction: ComplexAction = {
       actions: [],
-      title: get('protocol104.addedAddress', { name: getFullPath(daiElement, 'DOI') }),
+      title: get('protocol104.values.addedAddress', { name: getFullPath(doiElement, 'IED') }),
     };
     if (cdcProcessing.monitor[monitorTi]) {
-      const createActions = cdcProcessing.monitor[monitorTi].create(daiElement, monitorTi);
-      complexAction.actions.push(...createActions);
+      daiElements.forEach(daiElement => {
+        const createActions = cdcProcessing.monitor[monitorTi].create(daiElement, monitorTi);
+        complexAction.actions.push(...createActions);
 
-      createActions.forEach(createAction => {
-        const privateElement = <Element>createAction.new.element;
-        Array.from(privateElement.querySelectorAll('Address'))
-          .forEach(addressElement => {
-            wizard.dispatchEvent(newWizardEvent(editAddressWizard(daiElement, addressElement)));
-          })
-      })
+        createActions.forEach(createAction => {
+          const privateElement = <Element>createAction.new.element;
+          Array.from(privateElement.querySelectorAll('Address'))
+            .forEach(addressElement => {
+              wizard.dispatchEvent(newWizardEvent(editAddressWizard(daiElement, addressElement)));
+            });
+        });
+      });
     }
     return [complexAction];
   };

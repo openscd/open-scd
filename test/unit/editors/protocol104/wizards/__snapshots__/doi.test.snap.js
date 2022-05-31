@@ -1,7 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Wizards for 104 DOI Element show 104 DOI Info looks like the latest snapshot"] = 
+snapshots["Wizards for 104 DOI Element show 104 DOI Info looks like the latest snapshot"] =
 `<mwc-dialog
   defaultaction="close"
   heading="[protocol104.wizard.title.doiInfo]"
@@ -23,7 +23,7 @@ snapshots["Wizards for 104 DOI Element show 104 DOI Info looks like the latest s
         tabindex="-1"
       >
         <span>
-          [protocol104.removeAddresses]
+          [protocol104.values.removeAddresses]
         </span>
         <mwc-icon slot="graphic">
           delete

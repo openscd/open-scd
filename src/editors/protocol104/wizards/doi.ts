@@ -71,7 +71,7 @@ export function remove104Private(doiElement: Element): WizardMenuActor {
   if (privateElements.length > 0) {
     const complexAction: ComplexAction = {
       actions: [],
-      title: get('protocol104.removedAddresses',
+      title: get('protocol104.values.removedAddresses',
         { name: getFullPath(doiElement, 'SCL'),
           nrOfAddresses: privateElements.length
         }),
@@ -102,7 +102,7 @@ export function showDOIInfoWizard(doiElement: Element): Wizard {
       title: get('protocol104.wizard.title.doiInfo'),
       menuActions: [
         {
-          label: get('protocol104.removeAddresses'),
+          label: get('protocol104.values.removeAddresses'),
           icon: 'delete',
           action: remove104Private(doiElement),
         },

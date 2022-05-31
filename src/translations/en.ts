@@ -354,13 +354,15 @@ export const en = {
   },
   protocol104: {
     toggleChildElements: 'Toggle child elements',
-    missing: 'No IED with 104 Addresses',
-    removeAddresses: 'Remove all address',
-    removedAddresses: 'Removed Addresses from DOI "{{ name }}" ({{ nrOfAddresses }})',
-    addedAddress: 'Added 104 Address(es) to DAI "{{ name }}',
     view: {
       valuesView: 'Values',
       networkView: 'Network',
+    },
+    values: {
+      missing: 'No IED with 104 Addresses',
+      removeAddresses: 'Remove all address',
+      removedAddresses: 'Removed Addresses from DOI "{{ name }}" ({{ nrOfAddresses }})',
+      addedAddress: 'Added 104 Address(es) to DOI "{{ name }}',
     },
     network: {
       connectedap: {

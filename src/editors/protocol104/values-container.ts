@@ -56,7 +56,7 @@ export class Values104Container extends LitElement {
     }
     return html `
       <h1>
-        <span style="color: var(--base1)">${translate('protocol104.missing')}</span>
+        <span style="color: var(--base1)">${translate('protocol104.values.missing')}</span>
       </h1>`;
   }
 
