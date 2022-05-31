@@ -10,11 +10,13 @@ import {
 import '@material/mwc-icon-button';
 
 import './connectedap-editor.js';
-import { compareNames } from '../../foundation.js';
+import { compareNames, newWizardEvent } from '../../foundation.js';
+import { translate } from 'lit-translate';
+import { createConnectedApWizard } from './wizards/connectedap.js';
 
 /** [[`104`]] subeditor for a `SubNetwork` element. */
 @customElement('subnetwork-104-container')
-export class SubNetworkEditor extends LitElement {
+export class SubNetwork104Container extends LitElement {
   /** SCL element SubNetwork */
   @property({ attribute: false })
   element!: Element;
@@ -26,6 +28,10 @@ export class SubNetworkEditor extends LitElement {
     const m = bitRate.getAttribute('multiplier');
     const unit = m === null ? 'b/s' : ' ' + m + 'b/s';
     return bitRateValue ? bitRateValue + unit : null;
+  }
+
+  private openConnectedAPwizard(): void {
+    this.dispatchEvent(newWizardEvent(createConnectedApWizard(this.element)));
   }
 
   private renderIedContainer(): TemplateResult[] {
@@ -72,6 +78,12 @@ export class SubNetworkEditor extends LitElement {
 
   render(): TemplateResult {
     return html`<action-pane label="${this.header()}">
+      <abbr slot="action" title="${translate('add')}">
+        <mwc-icon-button
+          icon="playlist_add"
+          @click="${() => this.openConnectedAPwizard()}"
+        ></mwc-icon-button>
+      </abbr>
       <div id="iedContainer">${this.renderIedContainer()}</div>
     </action-pane> `;
   }
