@@ -31,7 +31,7 @@ const pluginTags = new Map<string, string>();
  * https://github.com/bryc/code/blob/master/jshash/experimental/cyrb53.js .
  * @returns a valid customElement tagName containing the URI hash.
  */
-function pluginTag(uri: string) {
+function pluginTag(uri: string): string {
   if (!pluginTags.has(uri)) {
     let h1 = 0xdeadbeef,
       h2 = 0x41c6ce57;
@@ -57,14 +57,23 @@ function pluginTag(uri: string) {
 }
 
 /**
- * Passes its arguments to LitElement's `html` tag after baking the first and
- * last binding into the first two and last two static strings, respectively.
- * Throws unless the first and last bindings contain identical strings.
+ * This is a template literal tag function. See:
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates
+ *
+ * Passes its arguments to LitElement's `html` tag after combining the first and
+ * last expressions with the first two and last two static strings.
+ * Throws unless the first and last expressions are identical strings.
+ *
+ * We need this to get around the expression location limitations documented in
+ * https://lit.dev/docs/templates/expressions/#expression-locations
+ *
+ * After upgrading to Lit 2 we can use their static HTML functions instead:
+ * https://lit.dev/docs/api/static-html/
  */
 function staticTagHtml(
   oldStrings: ReadonlyArray<string>,
   ...oldArgs: unknown[]
-) {
+): TemplateResult {
   const args = [...oldArgs];
   const firstArg = args.shift();
   const lastArg = args.pop();
