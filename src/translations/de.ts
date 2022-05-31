@@ -358,6 +358,9 @@ export const de: Translations = {
   protocol104: {
     toggleChildElements: '???',
     missing: '???',
+    removeAddresses: '???',
+    removedAddresses: '???',
+    addedAddress: '???',
     view: {
       valuesView: '???',
       networkView: '???',
@@ -366,9 +369,11 @@ export const de: Translations = {
       title: {
         doiInfo: '???',
         addressEdit: '???',
+        addAddress: '???',
       },
       casduHelper: '???',
       ioaHelper: '???',
+      monitorTiHelper: '???',
       expectedValueHelper: '???',
       unitMultiplierHelper: '???',
       scaleMultiplierHelper: '???',

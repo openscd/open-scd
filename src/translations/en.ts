@@ -355,6 +355,9 @@ export const en = {
   protocol104: {
     toggleChildElements: 'Toggle child elements',
     missing: 'No IED with 104 Addresses',
+    removeAddresses: 'Remove all address',
+    removedAddresses: 'Removed Addresses from DOI "{{ name }}" ({{ nrOfAddresses }})',
+    addedAddress: 'Added 104 Address(es) to DAI "{{ name }}',
     view: {
       valuesView: 'Values',
       networkView: 'Network',
@@ -363,9 +366,11 @@ export const en = {
       title: {
         doiInfo: 'DOI Info',
         addressEdit: 'Edit 104 Address',
+        addAddress: 'Add 104 Address',
       },
       casduHelper: 'CASDU Value',
       ioaHelper: 'IOA Value',
+      monitorTiHelper: 'Monitor TI Value',
       expectedValueHelper: 'Expected Value',
       unitMultiplierHelper: 'Unit Multiplier',
       scaleMultiplierHelper: 'Scale Multiplier',

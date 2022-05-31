@@ -6,8 +6,31 @@ snapshots["Wizards for 104 DOI Element show 104 DOI Info looks like the latest s
   defaultaction="close"
   heading="[protocol104.wizard.title.doiInfo]"
   open=""
-  style="--mdc-dialog-min-width:calc(100% + 0px)"
+  style="--mdc-dialog-min-width:calc(100% + 48px)"
 >
+  <nav>
+    <mwc-icon-button icon="more_vert">
+    </mwc-icon-button>
+    <mwc-menu
+      class="actions-menu"
+      corner="BOTTOM_RIGHT"
+      menucorner="END"
+    >
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <span>
+          [protocol104.removeAddresses]
+        </span>
+        <mwc-icon slot="graphic">
+          delete
+        </mwc-icon>
+      </mwc-list-item>
+    </mwc-menu>
+  </nav>
   <div id="wizard-content">
     <wizard-textfield
       disabled=""

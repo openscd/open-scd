@@ -42,11 +42,13 @@ snapshots["Wizards for 104 Address Element edit basic 104 Address looks like the
     <wizard-textfield
       helper="[protocol104.wizard.casduHelper]"
       label="casdu"
+      required=""
     >
     </wizard-textfield>
     <wizard-textfield
       helper="[protocol104.wizard.ioaHelper]"
       label="ioa"
+      required=""
     >
     </wizard-textfield>
     <wizard-textfield
@@ -115,11 +117,13 @@ snapshots["Wizards for 104 Address Element edit 104 Address with expected value 
     <wizard-textfield
       helper="[protocol104.wizard.casduHelper]"
       label="casdu"
+      required=""
     >
     </wizard-textfield>
     <wizard-textfield
       helper="[protocol104.wizard.ioaHelper]"
       label="ioa"
+      required=""
     >
     </wizard-textfield>
     <wizard-textfield
@@ -195,11 +199,13 @@ snapshots["Wizards for 104 Address Element edit 104 Address with unit multiplier
     <wizard-textfield
       helper="[protocol104.wizard.casduHelper]"
       label="casdu"
+      required=""
     >
     </wizard-textfield>
     <wizard-textfield
       helper="[protocol104.wizard.ioaHelper]"
       label="ioa"
+      required=""
     >
     </wizard-textfield>
     <wizard-textfield
@@ -476,11 +482,13 @@ snapshots["Wizards for 104 Address Element edit 104 Address with scale fields lo
     <wizard-textfield
       helper="[protocol104.wizard.casduHelper]"
       label="casdu"
+      required=""
     >
     </wizard-textfield>
     <wizard-textfield
       helper="[protocol104.wizard.ioaHelper]"
       label="ioa"
+      required=""
     >
     </wizard-textfield>
     <wizard-textfield

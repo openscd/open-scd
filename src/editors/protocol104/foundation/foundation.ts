@@ -69,6 +69,35 @@ export function getCdcValue(doiElement: Element): string | null {
 }
 
 /**
+ * All available Address attributes that can be displayed.
+ */
+const addressAttributes = [
+  'casdu',
+  'ioa',
+  'ti',
+  'expectedValue',
+  'unitMultiplier',
+  'scaleMultiplier',
+  'scaleOffset',
+  'inverted',
+  'check',
+];
+
+/**
+ * Create a string to display all information about a 104 Address element.
+ * A list of attributes is used to determine what can be displayed if available.
+ *
+ * @param address - The Address element from which to retrieve all attribute values.
+ * @returns A string to display with all attribute values.
+ */
+export function get104DetailsLine(address: Element): string {
+  return addressAttributes
+    .filter(attrName => address.hasAttribute(attrName))
+    .map(attrName => `${attrName}: ${address.getAttribute(attrName)}`)
+    .join(', ');
+}
+
+/**
  * Indicates if the combination cdc/ti should handle/process the attribute "expected" of the Address Element.
  *
  * @param cdc - The Common Data Class.

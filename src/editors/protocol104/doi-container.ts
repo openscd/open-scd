@@ -23,12 +23,14 @@ import { newWizardEvent } from "../../foundation.js";
 import '../../action-pane.js';
 
 import {
+  get104DetailsLine,
   getCdcValue,
   getFullPath,
   PRIVATE_TYPE_104
 } from "./foundation/foundation.js";
 import { editAddressWizard } from "./wizards/address.js";
 import { showDOIInfoWizard } from "./wizards/doi.js";
+import {  } from "./foundation/private.js";
 
 
 /**
@@ -58,28 +60,12 @@ export class Doi104Container extends LitElement {
     this.requestUpdate();
   }
 
-  private openEditAddressWizard(addressElement: Element): void {
-    this.dispatchEvent(newWizardEvent(editAddressWizard(addressElement)));
+  private openEditAddressWizard(daiElement: Element, addressElement: Element): void {
+    this.dispatchEvent(newWizardEvent(editAddressWizard(daiElement, addressElement)));
   }
 
   private openEditTiWizard(): void {
     this.dispatchEvent(newWizardEvent(showDOIInfoWizard(this.element)));
-  }
-
-  private static get104DetailsLine(address: Element): string {
-    const values = [];
-
-    if (address.hasAttribute('casdu')) values.push(`casdu: ${address.getAttribute('casdu')}`);
-    if (address.hasAttribute('ioa')) values.push(`ioa: ${address.getAttribute('ioa')}`);
-    if (address.hasAttribute('ti')) values.push(`ti: ${address.getAttribute('ti')}`);
-    if (address.hasAttribute('expectedValue')) values.push(`expectedValue: ${address.getAttribute('expectedValue')}`);
-    if (address.hasAttribute('unitMultiplier')) values.push(`unitMultiplier: ${address.getAttribute('unitMultiplier')}`);
-    if (address.hasAttribute('scaleMultiplier')) values.push(`scaleMultiplier: ${address.getAttribute('scaleMultiplier')}`);
-    if (address.hasAttribute('scaleOffset')) values.push(`scaleOffset: ${address.getAttribute('scaleOffset')}`);
-    if (address.hasAttribute('inverted')) values.push(`inverted: ${address.getAttribute('inverted')}`);
-    if (address.hasAttribute('check')) values.push(`check: ${address.getAttribute('check')}`);
-
-    return values.join(", ");
   }
 
   private header(): TemplateResult {
@@ -95,11 +81,11 @@ export class Doi104Container extends LitElement {
       return html`
             <mwc-list-item graphic="icon" hasMeta>
               <span slot="graphic">&nbsp;</span>
-              <span>${Doi104Container.get104DetailsLine(addressElement)}</span>
+              <span>${get104DetailsLine(addressElement)}</span>
               <span slot="meta">
                 <mwc-icon-button
                   icon="edit"
-                  @click=${() => this.openEditAddressWizard(addressElement)}>
+                  @click=${() => this.openEditAddressWizard(daiElement, addressElement)}>
                 </mwc-icon-button>
               </span>
             </mwc-list-item>

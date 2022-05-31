@@ -6,13 +6,17 @@ import {
   property,
   TemplateResult
 } from "lit-element";
+import { get, translate } from "lit-translate";
 
-import { compareNames } from "../../foundation.js";
+import {
+  compareNames,
+  newWizardEvent
+} from "../../foundation.js";
 
 import './ied-container.js';
 
 import { PRIVATE_TYPE_104 } from "./foundation/foundation.js";
-import {translate} from "lit-translate";
+import { selectDoiWizard } from "./wizards/selectDoi.js";
 
 /**
  * Container that will render an 'ied-104-container' for every IED which contains DAI Elements related to the
@@ -29,6 +33,12 @@ export class Values104Container extends LitElement {
       .sort((a,b) => compareNames(a,b));
   }
 
+
+  /** Opens a [[`WizardDialog`]] for creating a new `Substation` element. */
+  private openCreateAddressWizard(): void {
+    this.dispatchEvent(newWizardEvent(selectDoiWizard(this.doc)));
+  }
+
   render(): TemplateResult {
     const ieds = this.getIEDElements();
     if (ieds.length > 0) {
@@ -36,7 +46,13 @@ export class Values104Container extends LitElement {
         ${ieds.map(iedElement => {
           return html `<ied-104-container .element="${iedElement}"></ied-104-container>`;
         })}
-      `;
+        <h1>
+          <mwc-fab extended
+                   icon="add"
+                   label="${get('protocol104.wizard.title.addAddress')}"
+                   @click=${() => this.openCreateAddressWizard()}>
+          </mwc-fab>
+        </h1>      `;
     }
     return html `
       <h1>
@@ -45,6 +61,12 @@ export class Values104Container extends LitElement {
   }
 
   static styles = css `
+    mwc-fab {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+    }
+
     h1 {
       color: var(--mdc-theme-on-surface);
       font-family: 'Roboto', sans-serif;
