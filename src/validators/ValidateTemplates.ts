@@ -19,6 +19,22 @@ export default class ValidateTemplates extends LitElement {
   @property()
   pluginId!: string;
 
+  dispatch(detail: ValidationResult): void {
+    const kind = (<LogDetail>detail).kind;
+    const title = (<LogDetailBase>detail).title;
+    const message = (<LogDetailBase>detail).message;
+
+    if (kind) this.dispatchEvent(newLogEvent(<LogDetail>detail));
+    else
+      this.dispatchEvent(
+        newIssueEvent({
+          validatorId: this.pluginId,
+          title,
+          message,
+        })
+      );
+  }
+
   async validate(): Promise<void> {
     const promises: Promise<void>[] = [];
 
@@ -29,7 +45,7 @@ export default class ValidateTemplates extends LitElement {
     ];
 
     if (!(version === '2007' && revision === 'B' && Number(release) > 3)) {
-      document.querySelector('open-scd')?.dispatchEvent(
+      this.dispatchEvent(
         newIssueEvent({
           validatorId: this.pluginId,
           title: get('diag.missingnsd'),

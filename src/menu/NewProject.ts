@@ -29,14 +29,10 @@ export default class NewProjectPlugin extends LitElement {
         .value
     );
 
-    document
-      .querySelector('open-scd')
-      ?.dispatchEvent(newLogEvent({ kind: 'reset' }));
-    document
-      .querySelector('open-scd')
-      ?.dispatchEvent(
-        newOpenDocEvent(newEmptySCD(docName.slice(0, -4), version), docName)
-      );
+    this.dispatchEvent(newLogEvent({ kind: 'reset' }));
+    this.dispatchEvent(
+      newOpenDocEvent(newEmptySCD(docName.slice(0, -4), version), docName)
+    );
 
     return [{ actions: [], title: '', derived: true }];
   }
@@ -75,8 +71,6 @@ export default class NewProjectPlugin extends LitElement {
   }
 
   async run(): Promise<void> {
-    document
-      .querySelector('open-scd')
-      ?.dispatchEvent(newWizardEvent(this.newProjectWizard()));
+    this.dispatchEvent(newWizardEvent(this.newProjectWizard()));
   }
 }

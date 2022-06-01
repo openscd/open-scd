@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["ValidateTemplates OpenSCD integration test  with issues in the DataTypeTemplates section pushes issues to the diagnostics pane that look like the latest snapshot"] = 
 `<mwc-dialog
-  heading="Diagnostics"
+  heading="[diag.name]"
   id="diagnostic"
 >
   <filtered-list
@@ -23,7 +23,7 @@ snapshots["ValidateTemplates OpenSCD integration test  with issues in the DataTy
       role="separator"
     >
     </li>
-    <abbr title="lnClass CSWI is missing mandatory child DO Pos
+    <abbr title="[validator.templates.mandatoryChild]
 #Dummy.CSWI > Pos">
       <mwc-list-item
         aria-disabled="false"
@@ -32,14 +32,14 @@ snapshots["ValidateTemplates OpenSCD integration test  with issues in the DataTy
         twoline=""
       >
         <span>
-          lnClass CSWI is missing mandatory child DO Pos
+          [validator.templates.mandatoryChild]
         </span>
         <span slot="secondary">
           #Dummy.CSWI > Pos
         </span>
       </mwc-list-item>
     </abbr>
-    <abbr title="lnClass CILO is missing mandatory child DO Beh
+    <abbr title="[validator.templates.mandatoryChild]
 #Dummy.CILO > Beh">
       <mwc-list-item
         aria-disabled="false"
@@ -48,14 +48,14 @@ snapshots["ValidateTemplates OpenSCD integration test  with issues in the DataTy
         twoline=""
       >
         <span>
-          lnClass CILO is missing mandatory child DO Beh
+          [validator.templates.mandatoryChild]
         </span>
         <span slot="secondary">
           #Dummy.CILO > Beh
         </span>
       </mwc-list-item>
     </abbr>
-    <abbr title="lnClass XSWI is missing mandatory child DO SwTyp
+    <abbr title="[validator.templates.mandatoryChild]
 #Dummy.XSWI1 > SwTyp">
       <mwc-list-item
         aria-disabled="false"
@@ -64,14 +64,14 @@ snapshots["ValidateTemplates OpenSCD integration test  with issues in the DataTy
         twoline=""
       >
         <span>
-          lnClass XSWI is missing mandatory child DO SwTyp
+          [validator.templates.mandatoryChild]
         </span>
         <span slot="secondary">
           #Dummy.XSWI1 > SwTyp
         </span>
       </mwc-list-item>
     </abbr>
-    <abbr title="The attribute type is required but missing in DO
+    <abbr title="[validator.templates.missingAttribute]
 #Dummy.invalidChild>NamPlt">
       <mwc-list-item
         aria-disabled="false"
@@ -80,14 +80,14 @@ snapshots["ValidateTemplates OpenSCD integration test  with issues in the DataTy
         twoline=""
       >
         <span>
-          The attribute type is required but missing in DO
+          [validator.templates.missingAttribute]
         </span>
         <span slot="secondary">
           #Dummy.invalidChild>NamPlt
         </span>
       </mwc-list-item>
     </abbr>
-    <abbr title="The attribute lnClass is required but missing in LNodeType
+    <abbr title="[validator.templates.missingAttribute]
 #Dummy.MissingLnClass">
       <mwc-list-item
         aria-disabled="false"
@@ -96,14 +96,14 @@ snapshots["ValidateTemplates OpenSCD integration test  with issues in the DataTy
         twoline=""
       >
         <span>
-          The attribute lnClass is required but missing in LNodeType
+          [validator.templates.missingAttribute]
         </span>
         <span slot="secondary">
           #Dummy.MissingLnClass
         </span>
       </mwc-list-item>
     </abbr>
-    <abbr title="DO:stVal has a invalid reference - type attribute cannot be connected to a template
+    <abbr title="[validator.templates.missingReference]
 #Dummy.LLN0.Mod>stVal">
       <mwc-list-item
         aria-disabled="false"
@@ -112,14 +112,14 @@ snapshots["ValidateTemplates OpenSCD integration test  with issues in the DataTy
         twoline=""
       >
         <span>
-          DO:stVal has a invalid reference - type attribute cannot be connected to a template
+          [validator.templates.missingReference]
         </span>
         <span slot="secondary">
           #Dummy.LLN0.Mod>stVal
         </span>
       </mwc-list-item>
     </abbr>
-    <abbr title="DO:stVal has a invalid reference - type attribute cannot be connected to a template
+    <abbr title="[validator.templates.missingReference]
 #Dummy.LLN0.Beh>stVal">
       <mwc-list-item
         aria-disabled="false"
@@ -128,14 +128,14 @@ snapshots["ValidateTemplates OpenSCD integration test  with issues in the DataTy
         twoline=""
       >
         <span>
-          DO:stVal has a invalid reference - type attribute cannot be connected to a template
+          [validator.templates.missingReference]
         </span>
         <span slot="secondary">
           #Dummy.LLN0.Beh>stVal
         </span>
       </mwc-list-item>
     </abbr>
-    <abbr title="Common Data Class ENS is missing mandatory child DA stVal
+    <abbr title="[validator.templates.mandatoryChild]
 #Dummy.LLN0.Health">
       <mwc-list-item
         aria-disabled="false"
@@ -144,14 +144,14 @@ snapshots["ValidateTemplates OpenSCD integration test  with issues in the DataTy
         twoline=""
       >
         <span>
-          Common Data Class ENS is missing mandatory child DA stVal
+          [validator.templates.mandatoryChild]
         </span>
         <span slot="secondary">
           #Dummy.LLN0.Health
         </span>
       </mwc-list-item>
     </abbr>
-    <abbr title="Common Data Class SPC is missing mandatory child DA SBO
+    <abbr title="[validator.templates.mandatoryChild]
 #Dummy.SPC2">
       <mwc-list-item
         aria-disabled="false"
@@ -160,14 +160,14 @@ snapshots["ValidateTemplates OpenSCD integration test  with issues in the DataTy
         twoline=""
       >
         <span>
-          Common Data Class SPC is missing mandatory child DA SBO
+          [validator.templates.mandatoryChild]
         </span>
         <span slot="secondary">
           #Dummy.SPC2
         </span>
       </mwc-list-item>
     </abbr>
-    <abbr title="Common Data Class SPC is missing mandatory child DA SBOw
+    <abbr title="[validator.templates.mandatoryChild]
 #Dummy.SPC1">
       <mwc-list-item
         aria-disabled="false"
@@ -176,14 +176,14 @@ snapshots["ValidateTemplates OpenSCD integration test  with issues in the DataTy
         twoline=""
       >
         <span>
-          Common Data Class SPC is missing mandatory child DA SBOw
+          [validator.templates.mandatoryChild]
         </span>
         <span slot="secondary">
           #Dummy.SPC1
         </span>
       </mwc-list-item>
     </abbr>
-    <abbr title="Common Data Class SPC is missing mandatory child DA Cancel
+    <abbr title="[validator.templates.mandatoryChild]
 #Dummy.SPC8">
       <mwc-list-item
         aria-disabled="false"
@@ -192,14 +192,14 @@ snapshots["ValidateTemplates OpenSCD integration test  with issues in the DataTy
         twoline=""
       >
         <span>
-          Common Data Class SPC is missing mandatory child DA Cancel
+          [validator.templates.mandatoryChild]
         </span>
         <span slot="secondary">
           #Dummy.SPC8
         </span>
       </mwc-list-item>
     </abbr>
-    <abbr title="Common Data Class SPC is missing mandatory child DA Oper
+    <abbr title="[validator.templates.mandatoryChild]
 #Dummy.SPC3">
       <mwc-list-item
         aria-disabled="false"
@@ -208,14 +208,14 @@ snapshots["ValidateTemplates OpenSCD integration test  with issues in the DataTy
         twoline=""
       >
         <span>
-          Common Data Class SPC is missing mandatory child DA Oper
+          [validator.templates.mandatoryChild]
         </span>
         <span slot="secondary">
           #Dummy.SPC3
         </span>
       </mwc-list-item>
     </abbr>
-    <abbr title="Common Data Class DPC is missing mandatory child DA t
+    <abbr title="[validator.templates.mandatoryChild]
 #Dummy.XCBR1.Pos">
       <mwc-list-item
         aria-disabled="false"
@@ -224,14 +224,14 @@ snapshots["ValidateTemplates OpenSCD integration test  with issues in the DataTy
         twoline=""
       >
         <span>
-          Common Data Class DPC is missing mandatory child DA t
+          [validator.templates.mandatoryChild]
         </span>
         <span slot="secondary">
           #Dummy.XCBR1.Pos
         </span>
       </mwc-list-item>
     </abbr>
-    <abbr title="Common Data Class DPC is missing mandatory child DA ctlModel
+    <abbr title="[validator.templates.mandatoryChild]
 #Dummy.CSWI.Pos1">
       <mwc-list-item
         aria-disabled="false"
@@ -240,14 +240,14 @@ snapshots["ValidateTemplates OpenSCD integration test  with issues in the DataTy
         twoline=""
       >
         <span>
-          Common Data Class DPC is missing mandatory child DA ctlModel
+          [validator.templates.mandatoryChild]
         </span>
         <span slot="secondary">
           #Dummy.CSWI.Pos1
         </span>
       </mwc-list-item>
     </abbr>
-    <abbr title="The attribute cdc is incorrect in the element DOType.
+    <abbr title="[validator.templates.incorrectAttribute]
 #Dummy.XCBR1.badNamPlt">
       <mwc-list-item
         aria-disabled="false"
@@ -256,14 +256,14 @@ snapshots["ValidateTemplates OpenSCD integration test  with issues in the DataTy
         twoline=""
       >
         <span>
-          The attribute cdc is incorrect in the element DOType.
+          [validator.templates.incorrectAttribute]
         </span>
         <span slot="secondary">
           #Dummy.XCBR1.badNamPlt
         </span>
       </mwc-list-item>
     </abbr>
-    <abbr title="The attribute cdc is required but missing in DOType
+    <abbr title="[validator.templates.missingAttribute]
 #Dummy.MissingCDC">
       <mwc-list-item
         aria-disabled="false"
@@ -272,14 +272,14 @@ snapshots["ValidateTemplates OpenSCD integration test  with issues in the DataTy
         twoline=""
       >
         <span>
-          The attribute cdc is required but missing in DOType
+          [validator.templates.missingAttribute]
         </span>
         <span slot="secondary">
           #Dummy.MissingCDC
         </span>
       </mwc-list-item>
     </abbr>
-    <abbr title="The attribute type is required but missing in DA
+    <abbr title="[validator.templates.missingAttribute]
 #Dummy.MissingType>SBOw">
       <mwc-list-item
         aria-disabled="false"
@@ -288,14 +288,14 @@ snapshots["ValidateTemplates OpenSCD integration test  with issues in the DataTy
         twoline=""
       >
         <span>
-          The attribute type is required but missing in DA
+          [validator.templates.missingAttribute]
         </span>
         <span slot="secondary">
           #Dummy.MissingType>SBOw
         </span>
       </mwc-list-item>
     </abbr>
-    <abbr title="The attribute type is required but missing in DA
+    <abbr title="[validator.templates.missingAttribute]
 #Dummy.MissingType>Oper">
       <mwc-list-item
         aria-disabled="false"
@@ -304,14 +304,14 @@ snapshots["ValidateTemplates OpenSCD integration test  with issues in the DataTy
         twoline=""
       >
         <span>
-          The attribute type is required but missing in DA
+          [validator.templates.missingAttribute]
         </span>
         <span slot="secondary">
           #Dummy.MissingType>Oper
         </span>
       </mwc-list-item>
     </abbr>
-    <abbr title="The attribute type is required but missing in DA
+    <abbr title="[validator.templates.missingAttribute]
 #Dummy.MissingType>Cancel">
       <mwc-list-item
         aria-disabled="false"
@@ -320,14 +320,14 @@ snapshots["ValidateTemplates OpenSCD integration test  with issues in the DataTy
         twoline=""
       >
         <span>
-          The attribute type is required but missing in DA
+          [validator.templates.missingAttribute]
         </span>
         <span slot="secondary">
           #Dummy.MissingType>Cancel
         </span>
       </mwc-list-item>
     </abbr>
-    <abbr title="The attribute type is required but missing in SDO
+    <abbr title="[validator.templates.missingAttribute]
 #Dummy.badWYE>phsA">
       <mwc-list-item
         aria-disabled="false"
@@ -336,14 +336,14 @@ snapshots["ValidateTemplates OpenSCD integration test  with issues in the DataTy
         twoline=""
       >
         <span>
-          The attribute type is required but missing in SDO
+          [validator.templates.missingAttribute]
         </span>
         <span slot="secondary">
           #Dummy.badWYE>phsA
         </span>
       </mwc-list-item>
     </abbr>
-    <abbr title="DO:ctlVal has a invalid reference - type attribute cannot be connected to a template
+    <abbr title="[validator.templates.missingReference]
 #Dummy.LLN0.Mod.SBOw>ctlVal">
       <mwc-list-item
         aria-disabled="false"
@@ -352,14 +352,14 @@ snapshots["ValidateTemplates OpenSCD integration test  with issues in the DataTy
         twoline=""
       >
         <span>
-          DO:ctlVal has a invalid reference - type attribute cannot be connected to a template
+          [validator.templates.missingReference]
         </span>
         <span slot="secondary">
           #Dummy.LLN0.Mod.SBOw>ctlVal
         </span>
       </mwc-list-item>
     </abbr>
-    <abbr title="DO:ctlVal has a invalid reference - type attribute cannot be connected to a template
+    <abbr title="[validator.templates.missingReference]
 #Dummy.LLN0.Mod.Cancel>ctlVal">
       <mwc-list-item
         aria-disabled="false"
@@ -368,14 +368,14 @@ snapshots["ValidateTemplates OpenSCD integration test  with issues in the DataTy
         twoline=""
       >
         <span>
-          DO:ctlVal has a invalid reference - type attribute cannot be connected to a template
+          [validator.templates.missingReference]
         </span>
         <span slot="secondary">
           #Dummy.LLN0.Mod.Cancel>ctlVal
         </span>
       </mwc-list-item>
     </abbr>
-    <abbr title="DAType Dummy.Operfalse is missing mandatory child BDA ctlNum
+    <abbr title="[validator.templates.mandatoryChild]
 #Dummy.Operfalse">
       <mwc-list-item
         aria-disabled="false"
@@ -384,14 +384,14 @@ snapshots["ValidateTemplates OpenSCD integration test  with issues in the DataTy
         twoline=""
       >
         <span>
-          DAType Dummy.Operfalse is missing mandatory child BDA ctlNum
+          [validator.templates.mandatoryChild]
         </span>
         <span slot="secondary">
           #Dummy.Operfalse
         </span>
       </mwc-list-item>
     </abbr>
-    <abbr title="DAType Dummy.SBOwfalse is missing mandatory child BDA origin
+    <abbr title="[validator.templates.mandatoryChild]
 #Dummy.SBOwfalse">
       <mwc-list-item
         aria-disabled="false"
@@ -400,14 +400,14 @@ snapshots["ValidateTemplates OpenSCD integration test  with issues in the DataTy
         twoline=""
       >
         <span>
-          DAType Dummy.SBOwfalse is missing mandatory child BDA origin
+          [validator.templates.mandatoryChild]
         </span>
         <span slot="secondary">
           #Dummy.SBOwfalse
         </span>
       </mwc-list-item>
     </abbr>
-    <abbr title="DAType Dummy.Cancelfalse is missing mandatory child BDA ctlVal
+    <abbr title="[validator.templates.mandatoryChild]
 #Dummy.Cancelfalse">
       <mwc-list-item
         aria-disabled="false"
@@ -416,14 +416,14 @@ snapshots["ValidateTemplates OpenSCD integration test  with issues in the DataTy
         twoline=""
       >
         <span>
-          DAType Dummy.Cancelfalse is missing mandatory child BDA ctlVal
+          [validator.templates.mandatoryChild]
         </span>
         <span slot="secondary">
           #Dummy.Cancelfalse
         </span>
       </mwc-list-item>
     </abbr>
-    <abbr title="DAType Dummy.ScaledValueConfig is missing mandatory child BDA scaleFactor
+    <abbr title="[validator.templates.mandatoryChild]
 #Dummy.ScaledValueConfig">
       <mwc-list-item
         aria-disabled="false"
@@ -432,14 +432,14 @@ snapshots["ValidateTemplates OpenSCD integration test  with issues in the DataTy
         twoline=""
       >
         <span>
-          DAType Dummy.ScaledValueConfig is missing mandatory child BDA scaleFactor
+          [validator.templates.mandatoryChild]
         </span>
         <span slot="secondary">
           #Dummy.ScaledValueConfig
         </span>
       </mwc-list-item>
     </abbr>
-    <abbr title="DO:SIUnit has a invalid reference - type attribute cannot be connected to a template
+    <abbr title="[validator.templates.missingReference]
 #Dummy.unit>SIUnit">
       <mwc-list-item
         aria-disabled="false"
@@ -448,14 +448,14 @@ snapshots["ValidateTemplates OpenSCD integration test  with issues in the DataTy
         twoline=""
       >
         <span>
-          DO:SIUnit has a invalid reference - type attribute cannot be connected to a template
+          [validator.templates.missingReference]
         </span>
         <span slot="secondary">
           #Dummy.unit>SIUnit
         </span>
       </mwc-list-item>
     </abbr>
-    <abbr title="DO:multiplier has a invalid reference - type attribute cannot be connected to a template
+    <abbr title="[validator.templates.missingReference]
 #Dummy.unit>multiplier">
       <mwc-list-item
         aria-disabled="false"
@@ -464,7 +464,7 @@ snapshots["ValidateTemplates OpenSCD integration test  with issues in the DataTy
         twoline=""
       >
         <span>
-          DO:multiplier has a invalid reference - type attribute cannot be connected to a template
+          [validator.templates.missingReference]
         </span>
         <span slot="secondary">
           #Dummy.unit>multiplier
@@ -476,7 +476,7 @@ snapshots["ValidateTemplates OpenSCD integration test  with issues in the DataTy
     dialogaction="close"
     slot="primaryAction"
   >
-    Close
+    [close]
   </mwc-button>
 </mwc-dialog>
 `;
@@ -484,7 +484,7 @@ snapshots["ValidateTemplates OpenSCD integration test  with issues in the DataTy
 
 snapshots["ValidateTemplates OpenSCD integration test  with schema version smaller \"2007B3\" pushes a specific issue to the diagnostics pane that look like the latest snapshot"] = 
 `<mwc-dialog
-  heading="Diagnostics"
+  heading="[diag.name]"
   id="diagnostic"
 >
   <filtered-list
@@ -504,7 +504,7 @@ snapshots["ValidateTemplates OpenSCD integration test  with schema version small
       role="separator"
     >
     </li>
-    <abbr title="Cannot validate DataTypeTemplates. The version of the project must be higher than or equal to 2007B3
+    <abbr title="[diag.missingnsd]
 ">
       <mwc-list-item
         aria-disabled="false"
@@ -512,7 +512,7 @@ snapshots["ValidateTemplates OpenSCD integration test  with schema version small
         tabindex="-1"
       >
         <span>
-          Cannot validate DataTypeTemplates. The version of the project must be higher than or equal to 2007B3
+          [diag.missingnsd]
         </span>
         <span slot="secondary">
         </span>
@@ -523,7 +523,7 @@ snapshots["ValidateTemplates OpenSCD integration test  with schema version small
     dialogaction="close"
     slot="primaryAction"
   >
-    Close
+    [close]
   </mwc-button>
 </mwc-dialog>
 `;

@@ -1,24 +1,20 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../../src/open-scd.js';
+import '../../mock-wizard-editor.js';
+import { MockWizardEditor } from '../../mock-wizard-editor.js';
+
 import NewProjectPlugin from '../../../src/menu/NewProject.js';
-import { OpenSCD } from '../../../src/open-scd.js';
 
 describe('NewProject loader', () => {
   customElements.define('new-project-plugin', NewProjectPlugin);
-  let parent: OpenSCD;
+  let parent: MockWizardEditor;
   let element: NewProjectPlugin;
 
   beforeEach(async () => {
     parent = await fixture(html`
-      <open-scd><new-project-plugin></new-project-plugin></open-scd>
-
-      <link href="public/google/fonts/roboto-v27.css" rel="stylesheet" />
-      <link href="public/google/fonts/roboto-mono-v13.css" rel="stylesheet" />
-      <link
-        href="public/google/icons/material-icons-outlined.css"
-        rel="stylesheet"
-      />
+      <mock-wizard-editor
+        ><new-project-plugin></new-project-plugin
+      ></mock-wizard-editor>
     `);
 
     element = <NewProjectPlugin>parent.querySelector('new-project-plugin')!;
