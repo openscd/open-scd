@@ -386,6 +386,7 @@ export const en = {
       casduHelper: 'CASDU Value',
       ioaHelper: 'IOA Value',
       monitorTiHelper: 'Monitor TI Value',
+      controlTiHelper: 'Control TI Value',
       expectedValueHelper: 'Expected Value',
       unitMultiplierHelper: 'Unit Multiplier',
       scaleMultiplierHelper: 'Scale Multiplier',

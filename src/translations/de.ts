@@ -389,6 +389,7 @@ export const de: Translations = {
       casduHelper: '???',
       ioaHelper: '???',
       monitorTiHelper: '???',
+      controlTiHelper: '???',
       expectedValueHelper: '???',
       unitMultiplierHelper: '???',
       scaleMultiplierHelper: '???',

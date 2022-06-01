@@ -1,7 +1,11 @@
 import {
+  Create,
   getInstanceAttribute,
-  getNameAttribute
+  getNameAttribute,
+  newWizardEvent
 } from "../../../foundation.js";
+import { editAddressWizard } from "../wizards/address.js";
+import {CreateFunction} from "./cdc";
 
 export const PRIVATE_TYPE_104 = "IEC_60870_5_104";
 
@@ -133,6 +137,32 @@ export function hasUnitMultiplierField(cdc: string, ti: string): boolean {
  */
 export function hasScaleFields(cdc: string, ti: string): boolean {
   return (cdc === 'MV' && ['35', '36'].includes(ti));
+}
+
+export function createActions(
+  doiElement: Element,
+  wizard: Element,
+  ti: string,
+  filter: string,
+  createFunction: CreateFunction
+): Create[] {
+  const actions: Create[] = [];
+  const daiMonitorElements = doiElement.querySelectorAll(filter);
+  if (daiMonitorElements.length > 0) {
+    daiMonitorElements.forEach(daiElement => {
+      const createActions = createFunction(daiElement, ti);
+      actions.push(...createActions);
+
+      createActions.forEach(createAction => {
+        const privateElement = <Element>createAction.new.element;
+        Array.from(privateElement.querySelectorAll('Address'))
+          .forEach(addressElement => {
+            wizard.dispatchEvent(newWizardEvent(editAddressWizard(daiElement, addressElement)));
+          });
+      });
+    });
+  }
+  return actions;
 }
 
 /**
