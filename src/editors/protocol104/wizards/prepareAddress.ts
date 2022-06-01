@@ -52,8 +52,8 @@ export function createAddressAction(doiElement: Element, monitorTis: string[], c
       }
     }
 
-    const ctlModel = getValue(inputs.find(i => i.label === 'ctlModel')!);
-    if (controlTis.length > 0 && ctlModel !== 'status-only') {
+    const ctlModel = getCtlModel(doiElement);
+    if (controlTis.length > 0 && ctlModel !== null && ctlModel !== 'status-only') {
       const selectedControlTi = getValue(inputs.find(i => i.label === 'controlTi')!) ?? '';
       if (cdcProcessing.control[selectedControlTi]) {
         complexAction.actions.push(
@@ -82,7 +82,7 @@ export function prepareAddressWizard(doiElement: Element): Wizard {
 
   function renderTiWizard(): TemplateResult[] {
     const iedElement = doiElement.closest('IED');
-    const fullpath = getFullPath(doiElement, 'IED');
+    const fullPath = getFullPath(doiElement, 'IED');
 
     // Add the basic fields to the list.
     const fields = [
@@ -94,7 +94,7 @@ export function prepareAddressWizard(doiElement: Element): Wizard {
             </wizard-textfield>`,
       html `<mwc-textarea
               label="DOI"
-              value="${fullpath}"
+              value="${fullPath}"
               rows="2"
               cols="40"
               readonly
@@ -106,6 +106,16 @@ export function prepareAddressWizard(doiElement: Element): Wizard {
               disabled
               readonly>
             </wizard-textfield>`];
+
+    const ctlModel = getCtlModel(doiElement);
+    if (ctlModel !== null) {
+      fields.push(html `<wizard-textfield
+                          label="ctlModel"
+                          .maybeValue=${ctlModel}
+                          disabled
+                          readonly>
+                        </wizard-textfield>`);
+    }
 
     if (monitorTis.length > 0) {
       fields.push(html `<wizard-divider></wizard-divider>`)
@@ -134,16 +144,7 @@ export function prepareAddressWizard(doiElement: Element): Wizard {
       }
     }
 
-    const ctlModel = getCtlModel(doiElement);
-    if (ctlModel !== null) {
-      fields.push(html `<wizard-textfield
-                          label="ctlModel"
-                          .maybeValue=${ctlModel}
-                          disabled
-                          readonly>
-                        </wizard-textfield>`);
-    }
-    if (controlTis.length > 0 && ctlModel !== 'status-only') {
+    if (controlTis.length > 0 && ctlModel !== null && ctlModel !== 'status-only') {
       fields.push(html `<wizard-divider></wizard-divider>`)
       if (controlTis.length > 1) {
         fields.push(
