@@ -1,6 +1,12 @@
 import { get, translate } from "lit-translate";
 import { html, TemplateResult } from "lit-element";
 
+import {Switch} from "@material/mwc-switch";
+
+import '@material/mwc-formfield';
+import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-switch';
+
 import '../../../wizard-textfield.js';
 import '../../../WizardDivider.js';
 
@@ -21,7 +27,12 @@ import {
   getCtlModel,
   getFullPath
 } from "../foundation/foundation.js";
-import { cdcProcessings, SupportedCdcType } from "../foundation/cdc.js";
+import {cdcProcessings, SupportedCdcType, TiInformation} from "../foundation/cdc.js";
+
+function getSwitchValue(wizard: Element, name: string): boolean {
+  const switchElement = wizard.shadowRoot?.querySelector<Switch>(`mwc-switch[id="${name}"`);
+  return switchElement?.checked ?? false;
+}
 
 export function createAddressAction(doiElement: Element, monitorTis: string[], controlTis: string[]): WizardActor {
   return (inputs: WizardInputElement[], wizard: Element): EditorAction[] => {
@@ -37,26 +48,22 @@ export function createAddressAction(doiElement: Element, monitorTis: string[], c
     };
     if (monitorTis.length > 0) {
       const selectedMonitorTi = getValue(inputs.find(i => i.label === 'monitorTi')!) ?? '';
-      if (cdcProcessing.monitor[selectedMonitorTi]) {
-        const filter = cdcProcessing.monitor[selectedMonitorTi].filter;
-        filters.push(filter);
-        const createFunction = cdcProcessing.monitor[selectedMonitorTi].create;
-        complexAction.actions.push(
-          ...createActions(doiElement, wizard, selectedMonitorTi, filter, createFunction)
-        );
+      const monitorInverted = getSwitchValue(wizard, 'monitorInverted');
+      const tiInformation = cdcProcessing.monitor[selectedMonitorTi];
+      if (tiInformation) {
+        filters.push(tiInformation.filter);
+        complexAction.actions.push(...createActions(doiElement, wizard, selectedMonitorTi, monitorInverted, tiInformation));
       }
     }
 
     const ctlModel = getCtlModel(doiElement);
     if (controlTis.length > 0 && ctlModel !== null && ctlModel !== 'status-only') {
       const selectedControlTi = getValue(inputs.find(i => i.label === 'controlTi')!) ?? '';
-      if (cdcProcessing.control[selectedControlTi]) {
-        const filter = cdcProcessing.control[selectedControlTi].filter;
-        filters.push(filter);
-        const createFunction = cdcProcessing.control[selectedControlTi].create;
-        complexAction.actions.push(
-          ...createActions(doiElement, wizard, selectedControlTi, filter, createFunction)
-        );
+      const controlInverted = getSwitchValue(wizard, 'controlInverted');
+      const tiInformation = cdcProcessing.control[selectedControlTi];
+      if (tiInformation) {
+        filters.push(tiInformation.filter);
+        complexAction.actions.push(...createActions(doiElement, wizard, selectedControlTi, controlInverted, tiInformation));
       }
     }
 
@@ -74,6 +81,16 @@ export function createAddressAction(doiElement: Element, monitorTis: string[], c
     }));
     return [];
   }
+}
+
+export function disableInvertedSwitch(tiInformations: Record<string, TiInformation>): boolean {
+  let disableSwitch = true;
+  Object.values(tiInformations).forEach(tiInformation => {
+    if (tiInformation.inverted === true) {
+      disableSwitch = false;
+    }
+  });
+  return disableSwitch;
 }
 
 export function prepareAddressWizard(doiElement: Element): Wizard {
@@ -145,6 +162,12 @@ export function prepareAddressWizard(doiElement: Element): Wizard {
                   disabled>
                 </wizard-textfield>`);
       }
+      fields.push(
+        html `<mwc-formfield label="${translate('protocol104.wizard.monitorInverted')}">
+                <mwc-switch id="monitorInverted"
+                            .disabled="${disableInvertedSwitch(cdcProcessing.monitor)}">
+                </mwc-switch>
+              </mwc-formfield>`);
     }
 
     if (controlTis.length > 0 && ctlModel !== null && ctlModel !== 'status-only') {
@@ -172,6 +195,12 @@ export function prepareAddressWizard(doiElement: Element): Wizard {
                   disabled>
                 </wizard-textfield>`);
       }
+      fields.push(
+        html `<mwc-formfield label="${translate('protocol104.wizard.controlInverted')}">
+                <mwc-switch id="controlInverted"
+                            .disabled="${disableInvertedSwitch(cdcProcessing.control)}">
+                </mwc-switch>
+              </mwc-formfield>`);
     }
     return fields;
   }

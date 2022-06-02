@@ -5,7 +5,7 @@ import {
   newWizardEvent
 } from "../../../foundation.js";
 import { editAddressWizard } from "../wizards/address.js";
-import { CreateFunction } from "./cdc.js";
+import {CreateFunction, TiInformation} from "./cdc.js";
 
 export const PRIVATE_TYPE_104 = "IEC_60870_5_104";
 
@@ -183,22 +183,24 @@ export function getCtlModel(doiElement: Element): string | null {
  * @param doiElement     - The DOI Element.
  * @param wizard         - The Wizard to dispatch the Open Wizard event on.
  * @param ti             - The TI Value set on the new Address Elements.
- * @param filter         - The Filter used to find the DAI Elements.
- * @param createFunction - The Function used to create the new Private/Address Elements.
+ * @param inverted       - Indicates if the Engineer want to create inverted Address Elements, if applicable.
+ * @param tiInformation  - Information about how to create the Address Elements for the passed TI.
  * @returns A list of Create Action that will be added to the complex action.
  */
 export function createActions(
   doiElement: Element,
   wizard: Element,
   ti: string,
-  filter: string,
-  createFunction: CreateFunction
+  inverted: boolean,
+  tiInformation: TiInformation
 ): Create[] {
   const actions: Create[] = [];
-  const daiMonitorElements = doiElement.querySelectorAll(filter);
+  const daiMonitorElements = doiElement.querySelectorAll(tiInformation.filter);
   if (daiMonitorElements.length > 0) {
     daiMonitorElements.forEach(daiElement => {
-      const createActions = createFunction(daiElement, ti);
+      const createActions = tiInformation.create(daiElement, ti,
+        (tiInformation.inverted ? inverted : false) // If the TI Allows it and the Engineer selected it, true will be passed.
+      );
       actions.push(...createActions);
 
       createActions.forEach(createAction => {

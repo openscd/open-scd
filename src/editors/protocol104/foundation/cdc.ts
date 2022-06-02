@@ -11,7 +11,12 @@ export const supportedCdcTypes =
     'SEC', 'SPC', 'SPG', 'SPS'] as const;
 export type SupportedCdcType = typeof supportedCdcTypes[number];
 
-export type CreateFunction = (daiElement: Element, selectedTi: string) => Create[];
+export type CreateFunction = (daiElement: Element, selectedTi: string, inverted: boolean) => Create[];
+export interface TiInformation {
+  filter: string;
+  create: CreateFunction;
+  inverted?: boolean;
+}
 
 /**
  * Record with configuration information on how to create Address elements for the 104 protocol.
@@ -25,14 +30,8 @@ export type CreateFunction = (daiElement: Element, selectedTi: string) => Create
 export const cdcProcessings: Record<
   SupportedCdcType,
   {
-    monitor: Record<string, {
-      filter: string;
-      create: CreateFunction;
-    }>,
-    control: Record<string, {
-      filter: string;
-      create: CreateFunction;
-    }>,
+    monitor: Record<string, TiInformation>,
+    control: Record<string, TiInformation>,
   }
   > = {
   ACT: {
@@ -43,11 +42,12 @@ export const cdcProcessings: Record<
           ':scope > DAI[name="phsB"], ' +
           ':scope > DAI[name="phsC"], ' +
           ':scope > DAI[name="neut"]',
-        create: createSingleAddressAction
+        create: createSimpleAddressAction,
+        inverted: true
       },
       '39': {
         filter: ':scope > DAI[name="general"]',
-        create: createSingleAddressAction
+        create: createSimpleAddressAction
       }
     },
     control: {}
@@ -56,13 +56,13 @@ export const cdcProcessings: Record<
     monitor: {
       '36': {
         filter: ':scope > SDI[name="mxVal"] > DAI[name="f"]',
-        create: createSingleAddressAction
+        create: createSimpleAddressAction
       },
     },
     control: {
       '63': {
         filter: ':scope > SDI[name="Oper"] > SDI[name="ctlVal"] > DAI[name="f"]',
-        create: createSingleAddressAction
+        create: createSimpleAddressAction
       },
     }
   },
@@ -70,7 +70,7 @@ export const cdcProcessings: Record<
     monitor: {
       '63': {
         filter: ':scope > SDI[name="setMag"] > DAI[name="f"]',
-        create: createSingleAddressAction
+        create: createSimpleAddressAction
       }
     },
     control: {}
@@ -79,13 +79,13 @@ export const cdcProcessings: Record<
     monitor: {
       '36': {
         filter: ':scope > SDI[name="mxVal"] > DAI[name="f"]',
-        create: createSingleAddressAction
+        create: createSimpleAddressAction
       },
     },
     control: {
       '60': {
         filter: ':scope > SDI[name="Oper"] > DAI[name="ctlVal"]',
-        create: createSingleAddressAction
+        create: createSimpleAddressAction
       },
     }
   },
@@ -94,7 +94,7 @@ export const cdcProcessings: Record<
       '37': {
         filter: ':scope > DAI[name="actVal"], ' +
           ':scope > DAI[name="frVal"]',
-        create: createSingleAddressAction
+        create: createSimpleAddressAction
       },
     },
     control: {}
@@ -103,13 +103,13 @@ export const cdcProcessings: Record<
     monitor: {
       '32': {
         filter: ':scope > SDI[name="valWTr"] > DAI[name="posVal"]',
-        create: createSingleAddressAction
+        create: createSimpleAddressAction
       },
     },
     control: {
       '60': {
         filter: ':scope > SDI[name="Oper"] > DAI[name=“ctlVal”]',
-        create: createSingleAddressAction
+        create: createSimpleAddressAction
       },
     }
   },
@@ -118,12 +118,12 @@ export const cdcProcessings: Record<
       '35': {
         filter: ':scope > SDI[name="mag"] > DAI[name="i"], ' +
           ':scope > SDI[name="ang"] > DAI[name="i"]',
-        create: createSingleAddressAction
+        create: createSimpleAddressAction
       },
       '36': {
         filter: ':scope > SDI[name="mag"] > DAI[name="f"], ' +
           ':scope > SDI[name="ang"] > DAI[name="f"]',
-        create: createSingleAddressAction
+        create: createSimpleAddressAction
       }
     },
     control: {}
@@ -132,13 +132,13 @@ export const cdcProcessings: Record<
     monitor: {
       '31': {
         filter: ':scope > DAI[name="stVal"]',
-        create: createSingleAddressAction
+        create: createSimpleAddressAction
       },
     },
     control: {
       '59': {
         filter: ':scope > SDI[name="Oper"] > DAI[name="ctlVal"]',
-        create: createSingleAddressAction
+        create: createSimpleAddressAction
       },
     }
   },
@@ -146,7 +146,7 @@ export const cdcProcessings: Record<
     monitor: {
       '31': {
         filter: ':scope > DAI[name="stVal"]',
-        create: createSingleAddressAction
+        create: createSimpleAddressAction
       }
     },
     control: {}
@@ -155,13 +155,13 @@ export const cdcProcessings: Record<
     monitor: {
       '35': {
         filter: ':scope > DAI[name="stVal"]',
-        create: createSingleAddressAction
+        create: createSimpleAddressAction
       },
     },
     control: {
       '62': {
         filter: ':scope > SDI[name="Oper"] > DAI[name="ctlVal"]',
-        create: createSingleAddressAction
+        create: createSimpleAddressAction
       },
     }
   },
@@ -169,7 +169,7 @@ export const cdcProcessings: Record<
     monitor: {
       '62': {
         filter: ':scope > DAI[name="setVal"]',
-        create: createSingleAddressAction
+        create: createSimpleAddressAction
       }
     },
     control: {}
@@ -178,15 +178,16 @@ export const cdcProcessings: Record<
     monitor: {
       '30': {
         filter: ':scope > DAI[name="stVal"]',
-        create: createInvertedAddressAction
+        create: createSimpleAddressAction,
+        inverted: true
       },
       '33': {
         filter: ':scope > DAI[name="stVal"]',
-        create: createSingleAddressAction
+        create: createSimpleAddressAction
       },
       '35': {
         filter: ':scope > DAI[name="stVal"]',
-        create: createSingleAddressAction
+        create: createSimpleAddressAction
       }
     },
     control: {}
@@ -195,13 +196,13 @@ export const cdcProcessings: Record<
     monitor: {
       '32': {
         filter: ':scope > SDI[name="valWTr"] > DAI[name="posVal"]',
-        create: createSingleAddressAction
+        create: createSimpleAddressAction
       },
     },
     control: {
       '62': {
         filter: ':scope > SDI[name="Oper"] > DAI[name="ctlVal"]',
-        create: createSingleAddressAction
+        create: createSimpleAddressAction
       },
     }
   },
@@ -209,11 +210,11 @@ export const cdcProcessings: Record<
     monitor: {
       '35': {
         filter: ':scope > SDI[name="mag"] > DAI[name="i"]',
-        create: createSingleAddressAction
+        create: createSimpleAddressAction
       },
       '36': {
         filter: ':scope > SDI[name="mag"] > DAI[name="f"]',
-        create: createSingleAddressAction
+        create: createSimpleAddressAction
       }
     },
     control: {}
@@ -222,7 +223,7 @@ export const cdcProcessings: Record<
     monitor: {
       '37': {
         filter: ':scope > DAI[name="cnt"]',
-        create: createSingleAddressAction
+        create: createSimpleAddressAction
       }
     },
     control: {}
@@ -231,13 +232,14 @@ export const cdcProcessings: Record<
     monitor: {
       '30': {
         filter: ':scope > DAI[name="stVal"]',
-        create: createSingleAddressAction
+        create: createSimpleAddressAction,
+        inverted: true
       },
     },
     control: {
       '58': {
         filter: ':scope > SDI[name="Oper"] > DAI[name="ctlVal"]',
-        create: createSingleAddressAction
+        create: createSimpleAddressAction
       },
     }
   },
@@ -245,7 +247,7 @@ export const cdcProcessings: Record<
     monitor: {
       '58': {
         filter: ':scope > DAI[name="setVal"]',
-        create: createSingleAddressAction
+        create: createSimpleAddressAction
       }
     },
     control: {}
@@ -254,7 +256,8 @@ export const cdcProcessings: Record<
     monitor: {
       '30': {
         filter: ':scope > DAI[name="stVal"]',
-        create: createSingleAddressAction
+        create: createSimpleAddressAction,
+        inverted: true
       }
     },
     control: {}
@@ -262,34 +265,21 @@ export const cdcProcessings: Record<
 };
 
 /**
- * Create a new SCL Private element and add one 104 Address element below this.
+ * Create a new SCL Private element and add 104 Address element(s) below this.
  * Set the attribute value of 'ti' to the passed ti value.
  *
  * @param daiElement - The DAI Element to use to set namespace on the root element and create new elements.
  * @param ti         - The value to be set on the attribute 'ti'.
+ * @param inverted   - Indicates if extra Address Elements should be created with 'inverted=true'.
  */
-function createSingleAddressAction(daiElement: Element, ti: string): Create[] {
+function createSimpleAddressAction(daiElement: Element, ti: string, inverted: boolean): Create[] {
   addPrefixAndNamespaceToDocument(daiElement);
 
   const privateElement = createPrivateElement(daiElement);
   createPrivateAddress(daiElement, privateElement, ti);
-  return [{new: {parent: daiElement, element: privateElement}}];
-}
-
-/**
- * Create a new SCL Private element and add two 104 Address elements, one without the attribute 'inverted' meaning
- * 'false' and the other element with the attribute 'inverted' to 'true'.
- * Also set the attribute value of 'ti' to the passed ti value.
- *
- * @param daiElement - The DAI Element to use to set namespace on the root element and create new elements.
- * @param ti         - The value to be set on the attribute 'ti'.
- */
-function createInvertedAddressAction(daiElement: Element, ti: string): Create[] {
-  addPrefixAndNamespaceToDocument(daiElement);
-
-  const privateElement = createPrivateElement(daiElement);
-  createPrivateAddress(daiElement, privateElement, ti);
-  const invertedAddressElement = createPrivateAddress(daiElement, privateElement, ti);
-  invertedAddressElement.setAttribute('inverted', 'true');
+  if (inverted) {
+    const invertedAddressElement = createPrivateAddress(daiElement, privateElement, ti);
+    invertedAddressElement.setAttribute('inverted', 'true');
+  }
   return [{new: {parent: daiElement, element: privateElement}}];
 }
