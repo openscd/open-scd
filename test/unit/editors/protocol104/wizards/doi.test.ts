@@ -17,7 +17,7 @@ describe('Wizards for 104 DOI Element', () => {
   let inputs: WizardInputElement[];
 
   beforeEach(async () => {
-    doc = await fetchDoc('/test/testfiles/104/valid-addresses-case1.scd');
+    doc = await fetchDoc('/test/testfiles/104/valid-addresses.scd');
     element = await fixture(html`<mock-wizard></mock-wizard>`);
   });
 

@@ -34,7 +34,7 @@ function filterAvailableDoiElement(child: Element): boolean {
     }).length > 0;
 }
 
-function getDataChildren(parent: Element): Element[] {
+export function getDataChildren(parent: Element): Element[] {
   let children;
   if (parent.tagName === 'IED') {
     children = Array.from(parent.querySelectorAll('LDevice'));

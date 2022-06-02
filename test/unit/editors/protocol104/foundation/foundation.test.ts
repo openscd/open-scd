@@ -17,7 +17,7 @@ describe('foundation', () => {
   let document: XMLDocument;
 
   beforeEach(async () => {
-    document = await fetch('/test/testfiles/104/valid-addresses-case1.scd')
+    document = await fetch('/test/testfiles/104/valid-addresses.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
   });
