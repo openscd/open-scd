@@ -2,7 +2,10 @@ import { expect } from "@open-wc/testing";
 
 import {
   get104DetailsLine,
-  getCdcValue, getCtlModel, getDaiElement, getDaiValue,
+  getCdcValue,
+  getCtlModel,
+  getDaiElement,
+  getDaiValue,
   getFullPath,
   hasExpectedValueField,
   hasScaleFields,
