@@ -38,7 +38,11 @@ export const cdcProcessings: Record<
   ACT: {
     monitor: {
       '30': {
-        filter: ':scope > DAI[name="general"], :scope > DAI[name="phsA"], :scope > DAI[name="phsB"], :scope > DAI[name="phsC"], :scope > DAI[name="neut"]',
+        filter: ':scope > DAI[name="general"], ' +
+          ':scope > DAI[name="phsA"], ' +
+          ':scope > DAI[name="phsB"], ' +
+          ':scope > DAI[name="phsC"], ' +
+          ':scope > DAI[name="neut"]',
         create: createSingleAddressAction
       },
       '39': {
@@ -88,7 +92,8 @@ export const cdcProcessings: Record<
   BCR: {
     monitor: {
       '37': {
-        filter: ':scope > DAI[name="actVal"], :scope > DAI[name="frVal"]',
+        filter: ':scope > DAI[name="actVal"], ' +
+          ':scope > DAI[name="frVal"]',
         create: createSingleAddressAction
       },
     },
@@ -111,11 +116,13 @@ export const cdcProcessings: Record<
   CMV: {
     monitor: {
       '35': {
-        filter: ':scope > SDI[name="mag"] > DAI[name="i"], :scope > SDI[name="ang"] > DAI[name="i"]',
+        filter: ':scope > SDI[name="mag"] > DAI[name="i"], ' +
+          ':scope > SDI[name="ang"] > DAI[name="i"]',
         create: createSingleAddressAction
       },
       '36': {
-        filter: ':scope > SDI[name="mag"] > DAI[name="f"], :scope > SDI[name="ang"] > DAI[name="f"]',
+        filter: ':scope > SDI[name="mag"] > DAI[name="f"], ' +
+          ':scope > SDI[name="ang"] > DAI[name="f"]',
         create: createSingleAddressAction
       }
     },
@@ -229,7 +236,8 @@ export const cdcProcessings: Record<
     },
     control: {
       '58': {
-        filter: ':scope > SDI[name="Oper"] > DAI[name="ctlVal"], :scope > SDI[name="Oper"] > DAI[name="Check"]',
+        filter: ':scope > SDI[name="Oper"] > DAI[name="ctlVal"], ' +
+          ':scope > SDI[name="Oper"] > DAI[name="Check"]',
         create: createSingleAddressAction
       },
     }
