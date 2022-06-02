@@ -236,8 +236,7 @@ export const cdcProcessings: Record<
     },
     control: {
       '58': {
-        filter: ':scope > SDI[name="Oper"] > DAI[name="ctlVal"], ' +
-          ':scope > SDI[name="Oper"] > DAI[name="Check"]',
+        filter: ':scope > SDI[name="Oper"] > DAI[name="ctlVal"]',
         create: createSingleAddressAction
       },
     }
