@@ -1,11 +1,13 @@
 import { expect } from "@open-wc/testing";
 
 import {
+  get104DetailsLine,
   getCdcValue,
   getFullPath,
   hasExpectedValueField,
   hasScaleFields,
-  hasUnitMultiplierField
+  hasUnitMultiplierField,
+  PRIVATE_TYPE_104
 } from "../../../../../src/editors/protocol104/foundation/foundation.js";
 
 describe('foundation', () => {
@@ -17,23 +19,57 @@ describe('foundation', () => {
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
   });
 
-  it('getFullPath returns expected value', () => {
-    // Basic test to see if path is created correctly.
-    let daiElement = document.querySelector('IED[name="B2"] LN0[lnType="SE_LLN0_SET_default_V001"] DOI[name="Beh"]');
-    expect(getFullPath(daiElement!, 'IED')).to.be.equals('AP1 / LD0 / LLN0 / Beh');
+  describe('get104DetailsLine', () => {
+    const FIRST_PRIV_ADDRESS_QUERY = `> Private[type="${PRIVATE_TYPE_104}"] > Address`;
 
-    // Test with an LN Element which has a prefix and inst set.
-    daiElement = document.querySelector('IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] DAI[name="ctlVal"]');
-    expect(getFullPath(daiElement!, 'DOI')).to.be.equals('Oper / ctlVal');
+    it('returns basic fields', () => {
+      const daiElement = document.querySelector(
+        `IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] DAI[name="ctlVal"] ${FIRST_PRIV_ADDRESS_QUERY}`);
+      expect(get104DetailsLine(daiElement!)).to.be.equals('casdu: 100, ioa: 4, ti: 62');
+    });
+
+    it('returns expectedValue fields', () => {
+      const daiElement = document.querySelector(
+        `IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] DOI[name="Health"] DAI[name="stVal"] ${FIRST_PRIV_ADDRESS_QUERY}`);
+      expect(get104DetailsLine(daiElement!)).to.be.equals('casdu: 101, ioa: 1, ti: 30, expectedValue: 1');
+    });
+
+    it('returns check fields', () => {
+      const daiElement = document.querySelector(
+        `IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] DOI[name="DPCSO1"] DAI[name="Check"] ${FIRST_PRIV_ADDRESS_QUERY}`);
+      expect(get104DetailsLine(daiElement!)).to.be.equals('casdu: 202, ioa: 3, ti: 58, check: interlocking');
+    });
+
+    it('returns inverted fields', () => {
+      const daiElement = document.querySelector(
+        `IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] DOI[name="Ind2"] DAI[name="stVal"] ${FIRST_PRIV_ADDRESS_QUERY}`);
+      expect(get104DetailsLine(daiElement!)).to.be.equals('casdu: 1, ioa: 2, ti: 30, inverted: true');
+    });
   });
 
-  it('getCdcValue returns expected value', () => {
-    // Basic test to see if CDC is retrieved correctly.
-    let daiElement = document.querySelector('IED[name="B2"] LN0[lnType="SE_LLN0_SET_default_V001"] DOI[name="Beh"]');
-    expect(getCdcValue(daiElement!)).to.be.equals('ENS');
+  describe('getFullPath', () => {
+    it('returns expected value for DOI Element', () => {
+      const doiElement = document.querySelector('IED[name="B2"] LN0[lnType="SE_LLN0_SET_default_V001"] DOI[name="Beh"]');
+      expect(getFullPath(doiElement!, 'IED')).to.be.equals('AP1 / LD0 / LLN0 / Beh');
+    });
 
-    daiElement = document.querySelector('IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] DOI[name="Mod"]');
-    expect(getCdcValue(daiElement!)).to.be.equals('ENC');
+    it('returns expected value for DAI Element', () => {
+      const daiElement = document.querySelector('IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] DAI[name="ctlVal"]');
+      expect(getFullPath(daiElement!, 'DOI')).to.be.equals('Oper / ctlVal');
+    });
+  });
+
+  describe('getCdcValue', () => {
+    it('returns expected value for CDC "ENS"', () => {
+      // Basic test to see if CDC is retrieved correctly.
+      const doiElement = document.querySelector('IED[name="B2"] LN0[lnType="SE_LLN0_SET_default_V001"] DOI[name="Beh"]');
+      expect(getCdcValue(doiElement!)).to.be.equals('ENS');
+    });
+    it('returns expected value for CDC "ENC"', () => {
+      // Basic test to see if CDC is retrieved correctly.
+      const doiElement = document.querySelector('IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] DOI[name="Mod"]');
+      expect(getCdcValue(doiElement!)).to.be.equals('ENC');
+    });
   });
 
   it('hasExpectedValueField should return expected boolean', () => {

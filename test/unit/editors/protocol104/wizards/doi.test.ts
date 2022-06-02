@@ -4,9 +4,9 @@ import { MockWizard } from "../../../../mock-wizard.js";
 
 import '../../../../mock-wizard.js';
 
-import { WizardInputElement } from "../../../../../src/foundation.js";
+import { ComplexAction, isSimple, WizardInputElement } from "../../../../../src/foundation.js";
 
-import { showDOIInfoWizard } from "../../../../../src/editors/protocol104/wizards/doi.js";
+import { remove104Private, showDOIInfoWizard } from "../../../../../src/editors/protocol104/wizards/doi.js";
 
 import { fetchDoc } from "../../../wizards/test-support.js";
 
@@ -34,5 +34,25 @@ describe('Wizards for 104 DOI Element', () => {
     it('looks like the latest snapshot', async () => {
       await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
     });
+  });
+
+  describe('remove 104 Private elements', () => {
+    it('return expected number of Delete Actions when there are 104 Private elements', () => {
+      doi = doc.querySelector('IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] DOI[name="Mod"]')!;
+      const actions = remove104Private(doi)();
+
+      expect(actions.length).to.equal(1);
+      expect(actions[0]).to.not.satisfy(isSimple);
+
+      const complexAction = <ComplexAction>actions[0];
+      expect(complexAction.actions.length).to.equal(2);
+    })
+
+    it('return no Delete Actions when there are no 104 Private elements', () => {
+      doi = doc.querySelector('IED[name="B1"] LN[lnType="SE_GSAL_SET_V001"] DOI[name="OpCntRs"]')!;
+      const actions = remove104Private(doi)();
+
+      expect(actions.length).to.equal(0);
+    })
   });
 });

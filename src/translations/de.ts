@@ -357,10 +357,15 @@ export const de: Translations = {
   },
   protocol104: {
     toggleChildElements: '???',
-    missing: '???',
     view: {
       valuesView: '???',
       networkView: '???',
+    },
+    values: {
+      missing: '???',
+      removeAddresses: '???',
+      removedAddresses: '???',
+      addedAddress: '???',
     },
     network: {
       connectedap: {
@@ -379,9 +384,11 @@ export const de: Translations = {
       title: {
         doiInfo: '???',
         addressEdit: '???',
+        addAddress: '???',
       },
       casduHelper: '???',
       ioaHelper: '???',
+      monitorTiHelper: '???',
       expectedValueHelper: '???',
       unitMultiplierHelper: '???',
       scaleMultiplierHelper: '???',

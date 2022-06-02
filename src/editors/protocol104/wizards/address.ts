@@ -27,9 +27,12 @@ import {
   hasUnitMultiplierField
 } from "../foundation/foundation.js";
 
-export function updateValue(addressElement: Element): WizardActor {
+export function updateValue(
+  daiElement: Element,
+  addressElement: Element
+): WizardActor {
   return (inputs: WizardInputElement[]): EditorAction[] => {
-    const doiElement = addressElement.closest('DOI');
+    const doiElement = daiElement.closest('DOI');
 
     const cdc = getCdcValue(doiElement!) ?? '';
     const ti = addressElement.getAttribute('ti') ?? '';
@@ -79,9 +82,9 @@ export function updateValue(addressElement: Element): WizardActor {
 }
 
 export function renderDAIWizard(
+  daiElement: Element,
   addressElement: Element
 ): TemplateResult[] {
-  const daiElement = addressElement.closest('DAI');
   const doiElement = daiElement!.closest('DOI');
   const iedElement = doiElement!.closest('IED');
 
@@ -92,7 +95,7 @@ export function renderDAIWizard(
   const fields: TemplateResult[] = [
     html `<wizard-textfield
             label="IED"
-            .maybeValue=${getNameAttribute(iedElement!)}
+            .maybeValue="${getNameAttribute(iedElement!)}"
             disabled
             readonly>
           </wizard-textfield>`,
@@ -106,7 +109,7 @@ export function renderDAIWizard(
           </mwc-textarea>`,
     html `<wizard-textfield
             label="cdc"
-            .maybeValue=${cdc}
+            .maybeValue="${cdc}"
             disabled
             readonly>
           </wizard-textfield>`,
@@ -120,13 +123,15 @@ export function renderDAIWizard(
           </mwc-textarea>`,
     html `<wizard-textfield
             label="casdu"
-            .maybeValue=${addressElement.getAttribute('casdu')}
-            helper="${translate('protocol104.wizard.casduHelper')}">
+            .maybeValue="${addressElement.getAttribute('casdu')}"
+            helper="${translate('protocol104.wizard.casduHelper')}"
+            required>
           </wizard-textfield>`,
     html `<wizard-textfield
             label="ioa"
-            .maybeValue=${addressElement.getAttribute('ioa')}
-            helper="${translate('protocol104.wizard.ioaHelper')}">
+            .maybeValue="${addressElement.getAttribute('ioa')}"
+            helper="${translate('protocol104.wizard.ioaHelper')}"
+            required>
           </wizard-textfield>`,
     html `<wizard-textfield
             label="ti"
@@ -140,7 +145,7 @@ export function renderDAIWizard(
     fields.push(html `
       <wizard-textfield
         label="expectedValue"
-        .maybeValue=${addressElement.getAttribute('expectedValue')}
+        .maybeValue="${addressElement.getAttribute('expectedValue')}"
         helper="${translate('protocol104.wizard.expectedValueHelper')}"
         pattern="${patterns.integer}"
         nullable>
@@ -154,7 +159,7 @@ export function renderDAIWizard(
     fields.push(html `
       <wizard-select
         label="unitMultiplier"
-        .maybeValue=${addressElement.getAttribute('unitMultiplier')}
+        .maybeValue="${addressElement.getAttribute('unitMultiplier')}"
         helper="${translate('protocol104.wizard.unitMultiplierHelper')}"
         fixedMenuPosition
         nullable>
@@ -171,7 +176,7 @@ export function renderDAIWizard(
     fields.push(html `
       <wizard-textfield
         label="scaleMultiplier"
-        .maybeValue=${addressElement.getAttribute('scaleMultiplier')}
+        .maybeValue="${addressElement.getAttribute('scaleMultiplier')}"
         helper="${translate('protocol104.wizard.scaleMultiplierHelper')}"
         pattern="${patterns.decimal}"
         nullable>
@@ -180,7 +185,7 @@ export function renderDAIWizard(
     fields.push(html `
       <wizard-textfield
         label="scaleOffset"
-        .maybeValue=${addressElement.getAttribute('scaleOffset')}
+        .maybeValue="${addressElement.getAttribute('scaleOffset')}"
         helper="${translate('protocol104.wizard.scaleOffsetHelper')}"
         pattern="${patterns.decimal}"
         nullable>
@@ -191,7 +196,7 @@ export function renderDAIWizard(
     fields.push(html `
       <wizard-textfield
         label="inverted"
-        .maybeValue=${addressElement.getAttribute('inverted')}
+        .maybeValue="${addressElement.getAttribute('inverted')}"
         disabled
         readonly>
       </wizard-textfield>`);
@@ -201,7 +206,7 @@ export function renderDAIWizard(
     fields.push(html `
       <wizard-textfield
         label="check"
-        .maybeValue=${addressElement.getAttribute('check')}
+        .maybeValue="${addressElement.getAttribute('check')}"
         disabled
         readonly>
       </wizard-textfield>`);
@@ -210,7 +215,7 @@ export function renderDAIWizard(
   return fields;
 }
 
-export function editAddressWizard(addressElement: Element): Wizard {
+export function editAddressWizard(daiElement: Element, addressElement: Element): Wizard {
   return [
     {
       title: get('protocol104.wizard.title.addressEdit'),
@@ -218,9 +223,9 @@ export function editAddressWizard(addressElement: Element): Wizard {
       primary: {
         icon: 'edit',
         label: get('save'),
-        action: updateValue(addressElement),
+        action: updateValue(daiElement, addressElement),
       },
-      content: renderDAIWizard(addressElement),
+      content: renderDAIWizard(daiElement, addressElement),
     },
   ];
 }
