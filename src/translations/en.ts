@@ -383,6 +383,9 @@ export const en = {
         addressEdit: 'Edit 104 Address',
         addAddress: 'Add 104 Address',
       },
+      error: {
+        addAddressError: 'No DAI Elements found or create to add Address Elements to. (CDC: {{ cdc }}, Filter: {{ filter }})',
+      },
       casduHelper: 'CASDU Value',
       ioaHelper: 'IOA Value',
       monitorTiHelper: 'Monitor TI Value',

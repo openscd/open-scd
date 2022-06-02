@@ -386,6 +386,9 @@ export const de: Translations = {
         addressEdit: '???',
         addAddress: '???',
       },
+      error: {
+        addAddressError: '???. (CDC: {{ cdc }}, Filter: {{ filter }})',
+      },
       casduHelper: '???',
       ioaHelper: '???',
       monitorTiHelper: '???',

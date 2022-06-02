@@ -8,7 +8,7 @@ import {
   ComplexAction,
   EditorAction,
   getNameAttribute,
-  getValue,
+  getValue, newLogEvent,
   newWizardEvent,
   Wizard,
   WizardActor,
@@ -18,23 +18,17 @@ import {
 import {
   createActions,
   getCdcValue,
+  getCtlModel,
   getFullPath
 } from "../foundation/foundation.js";
 import { cdcProcessings, SupportedCdcType } from "../foundation/cdc.js";
-
-export function getCtlModel(doiElement: Element): string | null {
-  const valElement = doiElement.querySelector('DAI[name="ctlModel"] > Val');
-  if (valElement) {
-    return valElement.textContent;
-  }
-  return null;
-}
 
 export function createAddressAction(doiElement: Element, monitorTis: string[], controlTis: string[]): WizardActor {
   return (inputs: WizardInputElement[], wizard: Element): EditorAction[] => {
     // Close previous wizard to prevent it from showing.
     wizard.dispatchEvent(newWizardEvent());
 
+    const filters: string[] = [];
     const cdc = getCdcValue(doiElement) ?? '';
     const cdcProcessing = cdcProcessings[<SupportedCdcType>cdc];
     const complexAction: ComplexAction = {
@@ -44,11 +38,12 @@ export function createAddressAction(doiElement: Element, monitorTis: string[], c
     if (monitorTis.length > 0) {
       const selectedMonitorTi = getValue(inputs.find(i => i.label === 'monitorTi')!) ?? '';
       if (cdcProcessing.monitor[selectedMonitorTi]) {
+        const filter = cdcProcessing.monitor[selectedMonitorTi].filter;
+        filters.push(filter);
+        const createFunction = cdcProcessing.monitor[selectedMonitorTi].create;
         complexAction.actions.push(
-          ...createActions(
-            doiElement, wizard, selectedMonitorTi,
-            cdcProcessing.monitor[selectedMonitorTi].filter,
-            cdcProcessing.monitor[selectedMonitorTi].create))
+          ...createActions(doiElement, wizard, selectedMonitorTi, filter, createFunction)
+        );
       }
     }
 
@@ -56,19 +51,27 @@ export function createAddressAction(doiElement: Element, monitorTis: string[], c
     if (controlTis.length > 0 && ctlModel !== null && ctlModel !== 'status-only') {
       const selectedControlTi = getValue(inputs.find(i => i.label === 'controlTi')!) ?? '';
       if (cdcProcessing.control[selectedControlTi]) {
+        const filter = cdcProcessing.control[selectedControlTi].filter;
+        filters.push(filter);
+        const createFunction = cdcProcessing.control[selectedControlTi].create;
         complexAction.actions.push(
-          ...createActions(
-            doiElement, wizard, selectedControlTi,
-            cdcProcessing.control[selectedControlTi].filter,
-            cdcProcessing.control[selectedControlTi].create))
+          ...createActions(doiElement, wizard, selectedControlTi, filter, createFunction)
+        );
       }
     }
 
     if (complexAction.actions.length > 0) {
       return [complexAction];
     }
-    // There are no Address elements created for any DAI, so just close the wizard.
+    // There are no Address elements created for any DAI. Log error and close window.
     wizard.dispatchEvent(newWizardEvent());
+    wizard.dispatchEvent(newLogEvent({
+      kind: "error",
+      title: get("protocol104.wizard.error.addAddressError", {
+        filter: filters.map(filter => filter.replace(':scope >', '')).join(', '),
+        cdc
+      }),
+    }));
     return [];
   }
 }

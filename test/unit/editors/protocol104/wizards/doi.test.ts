@@ -23,7 +23,22 @@ describe('Wizards for 104 DOI Element', () => {
 
   describe('show 104 DOI Info', () => {
     beforeEach(async () => {
-      doi = doc.querySelector('IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] DOI[name="Mod"]')!;
+      doi = doc.querySelector('IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] DOI[name="CntVal1"]')!;
+
+      const wizard = showDOIInfoWizard(doi);
+      element.workflow.push(() => wizard);
+      await element.requestUpdate();
+      inputs = Array.from(element.wizardUI.inputs);
+    });
+
+    it('looks like the latest snapshot', async () => {
+      await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
+    });
+  });
+
+  describe('show 104 DOI Info with ctlModel', () => {
+    beforeEach(async () => {
+      doi = doc.querySelector('IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] DOI[name="CmdBlk"]')!;
 
       const wizard = showDOIInfoWizard(doi);
       element.workflow.push(() => wizard);
