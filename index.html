@@ -4,7 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="Description" content="Open Substation Communication Designer is a bottom-up system configuration tool for projects described using IEC 61850-6 Edition 2 or greater.">
+  <meta name="Description"
+    content="Open Substation Communication Designer is a bottom-up system configuration tool for projects described using IEC 61850-6 Edition 2 or greater.">
   <base href="/">
 
   <!-- Original URL from Google: https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&family=Roboto:wght@300;400;500&display=swap -->
@@ -36,6 +37,15 @@
   <script>
     if ('serviceWorker' in navigator)
       navigator.serviceWorker.register('/sw.js');
+  </script>
+  <script>
+    const openScd = document.querySelector("open-scd");
+    addEventListener("beforeunload", e => {
+      if (openScd && openScd.doc) {
+        e.preventDefault();
+        return e.returnValue = "Are you sure you want to exit?";
+      }
+    });
   </script>
 </body>
 
