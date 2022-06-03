@@ -26,6 +26,7 @@ import {
   getValue,
   identity,
   isPublic,
+  newWizardEvent,
   Wizard,
   WizardActor,
   WizardInputElement
@@ -223,6 +224,17 @@ export function editConnectedAp104Wizard(element: Element, redundancy?: boolean)
           <mwc-switch
             id="redundancy"
             ?checked=${redundancy}
+            @change=${() => {
+              document.querySelector('open-scd')!.dispatchEvent(newWizardEvent());
+              document.querySelector('open-scd')!.dispatchEvent(
+                newWizardEvent(
+                  editConnectedAp104Wizard(
+                    element,
+                    !redundancy
+                  )
+                )
+              );
+            }}
           ></mwc-switch>
         </mwc-formfield>
         <wizard-divider></wizard-divider>
