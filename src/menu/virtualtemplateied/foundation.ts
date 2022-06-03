@@ -98,3 +98,71 @@ export function getUniqueFunctionName(element: Element): string {
 
   return shortestIdentities([identity(element) as string, ...sameNamed])[0];
 }
+type AnyLNDescription = {
+  lnClass: string;
+  inst: string;
+  prefix: string | null;
+  lnType: string;
+};
+
+export type LDeviceDescription = {
+  validLdInst: string;
+  anyLNs: AnyLNDescription[];
+};
+
+export type VirtualIEDDescription = {
+  manufacturer: string;
+  desc: string | null;
+  apName: string;
+  lDevices: LDeviceDescription[];
+};
+
+/** @returns schema valid SPECIFICATION type IED based on virtualIED object  */
+export function getSpecificationIED(
+  ownerDocument: Document,
+  virtualIED: VirtualIEDDescription
+): Element {
+  const ied = createElement(ownerDocument, 'IED', {
+    name: 'SPECIFICATION',
+    desc: virtualIED.desc,
+    manufacturer: virtualIED.manufacturer,
+  });
+
+  const accessPoint = createElement(ownerDocument, 'AccessPoint', {
+    name: virtualIED.apName,
+  });
+
+  const server = createElement(ownerDocument, 'Server', {});
+
+  // next two line required for schema validity
+  const authentication = createElement(ownerDocument, 'Authentication', {});
+  server.appendChild(authentication);
+
+  Object.values(virtualIED.lDevices).forEach(lDeviceDesc => {
+    const lDevice = createElement(ownerDocument, 'LDevice', {
+      inst: lDeviceDesc.validLdInst,
+    });
+
+    lDeviceDesc.anyLNs.forEach(anyLNDesc => {
+      const anyLN = createElement(
+        ownerDocument,
+        anyLNDesc.lnClass === 'LLN0' ? 'LN0' : 'LN',
+        {
+          prefix: anyLNDesc.prefix,
+          lnClass: anyLNDesc.lnClass,
+          inst: anyLNDesc.inst,
+          lnType: anyLNDesc.lnType,
+        }
+      );
+
+      lDevice.appendChild(anyLN);
+    });
+
+    server.appendChild(lDevice);
+  });
+
+  ied.appendChild(accessPoint);
+  accessPoint.appendChild(server);
+
+  return ied;
+}

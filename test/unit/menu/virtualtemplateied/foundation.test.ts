@@ -4,8 +4,10 @@ import { identity } from '../../../../src/foundation.js';
 import {
   getFunctionNamingPrefix,
   getNonLeafParent,
+  getSpecificationIED,
   getUniqueFunctionName,
   isLeafFunction,
+  VirtualIEDDescription,
 } from '../../../../src/menu/virtualtemplateied/foundation.js';
 
 describe('foundation for virtual IED creation', () => {
@@ -186,5 +188,79 @@ describe('foundation for virtual IED creation', () => {
       expect(getUniqueFunctionName(doc.querySelector('Bay')!)).to.equal(
         identity(doc.querySelector('Bay'))
       ));
+  });
+
+  describe('getUniqueFunctionName function', () => {
+    let doc: XMLDocument;
+
+    beforeEach(async () => {
+      doc = await fetch('/test/testfiles/virtualied/specificfromfunctions.ssd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+    });
+
+    it('return unique name for function type element', () =>
+      expect(
+        getUniqueFunctionName(
+          doc.querySelector('EqFunction[name="Disconnector"]')!
+        )
+      ).to.equal('Q01_QB1_Disconnector'));
+
+    it('return unique name for another function type element', () =>
+      expect(
+        getUniqueFunctionName(
+          doc.querySelector('EqFunction[name="Earth_Switch"]')!
+        )
+      ).to.equal('E1_Q01_QC9_Earth_Switch'));
+
+    it('return function type element name if already unique in project', () =>
+      expect(
+        getUniqueFunctionName(
+          doc.querySelector('Function[name="Distance_Protection"]')!
+        )
+      ).to.equal('Distance_Protection'));
+
+    it('return identity string in case input element is not function type element', () =>
+      expect(getUniqueFunctionName(doc.querySelector('Bay')!)).to.equal(
+        identity(doc.querySelector('Bay'))
+      ));
+  });
+
+  describe('getSpecificationIED function', () => {
+    let doc: XMLDocument;
+    let virtualIED: VirtualIEDDescription;
+
+    beforeEach(async () => {
+      doc = await fetch('/test/testfiles/virtualied/specificfromfunctions.ssd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+      virtualIED = {
+        manufacturer: 'some manufactorer',
+        desc: null,
+        apName: 'P1',
+        lDevices: [
+          {
+            validLdInst: 'someProtection',
+            anyLNs: [
+              { lnClass: 'LLN0', inst: '', prefix: null, lnType: 'someLLN0' },
+              { lnClass: 'PTOC', inst: '1', prefix: 'IDD', lnType: 'somePTOC' },
+            ],
+          },
+          {
+            validLdInst: 'someControl',
+            anyLNs: [
+              { lnClass: 'LLN0', inst: '', prefix: null, lnType: 'someLLN0' },
+              { lnClass: 'CSWI', inst: '1', prefix: '', lnType: 'someCSWI' },
+            ],
+          },
+        ],
+      };
+    });
+
+    it('looks like the latest snapshot', async () =>
+      await expect(
+        getSpecificationIED(doc, virtualIED)
+      ).dom.to.equalSnapshot());
   });
 });
