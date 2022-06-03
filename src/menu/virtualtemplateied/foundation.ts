@@ -42,3 +42,51 @@ export function getFunctionNamingPrefix(lNode: Element): string {
     ? lNode.parentElement?.getAttribute('name') ?? ''
     : '';
 }
+
+function canFunctionBeConvertedToLDevice(element: Element): boolean {
+  if (!functionTypeElementTags.includes(element.tagName)) return true;
+
+  return (
+    !isLeafFunction(element) &&
+    getChildElementsByTagName(element, 'LNode').length > 1
+  );
+}
+
+function shortestIdentities(identities: string[]): string[] {
+  const lengths = identities.map(identity => identity.split('>').length);
+  const maxLength = Math.max(...lengths);
+
+  let i = 1;
+  while (i <= maxLength) {
+    const next = identities.map(identity =>
+      identity.split('>').slice(-i).join('_')
+    );
+    if (new Set(next).size === next.length) return next;
+    i++;
+  }
+
+  return identities.map(identity => identity.split('>').join('_'));
+}
+
+export function getUniqueFunctionName(element: Element): string {
+  if (!functionTypeElementTags.includes(element.tagName)) {
+    const id = identity(element);
+    return typeof id === 'string' ? id : '';
+  }
+
+  const name = element.getAttribute('name');
+  if (!name) return identity(element) as string;
+
+  const sameNamed = Array.from(
+    element.ownerDocument.querySelectorAll(functionTypeSelector)
+  )
+    .filter(functionElement => canFunctionBeConvertedToLDevice(functionElement))
+    .filter(
+      functionElement =>
+        functionElement !== element &&
+        functionElement.getAttribute('name') === name
+    )
+    .map(functionElement => identity(functionElement) as string);
+
+  return shortestIdentities([identity(element) as string, ...sameNamed])[0];
+}

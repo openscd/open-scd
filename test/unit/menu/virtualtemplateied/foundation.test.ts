@@ -1,8 +1,10 @@
 import { expect } from '@open-wc/testing';
+import { identity } from '../../../../src/foundation.js';
 
 import {
   getFunctionNamingPrefix,
   getNonLeafParent,
+  getUniqueFunctionName,
   isLeafFunction,
 } from '../../../../src/menu/virtualtemplateied/foundation.js';
 
@@ -147,6 +149,42 @@ describe('foundation for virtual IED creation', () => {
     it('returns empty string if no valid string exist', () =>
       expect(getFunctionNamingPrefix(nonLeafSubFunctionsLNode)).to.be.equal(
         ''
+      ));
+  });
+
+  describe('getUniqueFunctionName function', () => {
+    let doc: XMLDocument;
+
+    beforeEach(async () => {
+      doc = await fetch('/test/testfiles/virtualied/specificfromfunctions.ssd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+    });
+
+    it('return unique name for function type element', () =>
+      expect(
+        getUniqueFunctionName(
+          doc.querySelector('EqFunction[name="Disconnector"]')!
+        )
+      ).to.equal('Q01_QB1_Disconnector'));
+
+    it('return unique name for another function type element', () =>
+      expect(
+        getUniqueFunctionName(
+          doc.querySelector('EqFunction[name="Earth_Switch"]')!
+        )
+      ).to.equal('E1_Q01_QC9_Earth_Switch'));
+
+    it('return function type element name if already unique in project', () =>
+      expect(
+        getUniqueFunctionName(
+          doc.querySelector('Function[name="Distance_Protection"]')!
+        )
+      ).to.equal('Distance_Protection'));
+
+    it('return identity string in case input element is not function type element', () =>
+      expect(getUniqueFunctionName(doc.querySelector('Bay')!)).to.equal(
+        identity(doc.querySelector('Bay'))
       ));
   });
 });
