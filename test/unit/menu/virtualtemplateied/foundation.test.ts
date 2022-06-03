@@ -1,6 +1,9 @@
 import { expect } from '@open-wc/testing';
 
-import { isLeafFunction } from '../../../../src/menu/virtualtemplateied/foundation.js';
+import {
+  getNonLeafParent,
+  isLeafFunction,
+} from '../../../../src/menu/virtualtemplateied/foundation.js';
 
 describe('foundation for virtual IED creation', () => {
   describe('function checking for leaf function type elements', () => {
@@ -54,5 +57,44 @@ describe('foundation for virtual IED creation', () => {
 
     it('returns true for non-leaf SubFunction element', () =>
       expect(isLeafFunction(nonLeafEqSubFunction)).to.be.false);
+  });
+
+  describe('getNonLeafParent function', () => {
+    let invalidParantTag: Element;
+    let directParent: Element;
+    let directParentsLNode: Element | null;
+    let leafParent: Element;
+    let leafParentsLNode: Element | null;
+
+    beforeEach(() => {
+      invalidParantTag = new DOMParser().parseFromString(
+        '<Element name="someElement"><LNode/></Element>',
+        'application/xml'
+      ).documentElement;
+
+      directParent = new DOMParser().parseFromString(
+        '<SubFunction name="leafFunction"><LNode/><LNode/></SubFunction>',
+        'application/xml'
+      ).documentElement;
+      directParentsLNode = directParent.querySelector('LNode');
+
+      leafParent = new DOMParser().parseFromString(
+        '<Function name="onLeaf"><SubFunction name="leafFunction"><LNode/></SubFunction></Function>',
+        'application/xml'
+      ).documentElement;
+      leafParentsLNode = leafParent.querySelector('LNode');
+    });
+
+    it('return null for null inputs', () =>
+      expect(getNonLeafParent(null)).to.be.null);
+
+    it('returns null for invalid closest parent tag', () =>
+      expect(getNonLeafParent(invalidParantTag)).to.be.null);
+
+    it('returns null for invalid parent tag', () =>
+      expect(getNonLeafParent(directParentsLNode)).to.equal(directParent));
+
+    it('returns null for invalid parent tag', () =>
+      expect(getNonLeafParent(leafParentsLNode)).to.equal(leafParent));
   });
 });
