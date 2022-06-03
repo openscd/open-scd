@@ -32,3 +32,13 @@ export function getNonLeafParent(element: Element | null): Element | null {
 
   return directParent;
 }
+
+/** @returns prefix of LNode element acc. to IEC 61850-6-100 */
+export function getFunctionNamingPrefix(lNode: Element): string {
+  const lNodesPrefix = lNode.getAttribute('prefix');
+  if (lNodesPrefix) return lNodesPrefix;
+
+  return isLeafFunction(lNode.parentElement)
+    ? lNode.parentElement?.getAttribute('name') ?? ''
+    : '';
+}

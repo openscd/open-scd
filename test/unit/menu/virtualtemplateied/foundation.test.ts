@@ -1,6 +1,7 @@
 import { expect } from '@open-wc/testing';
 
 import {
+  getFunctionNamingPrefix,
   getNonLeafParent,
   isLeafFunction,
 } from '../../../../src/menu/virtualtemplateied/foundation.js';
@@ -96,5 +97,56 @@ describe('foundation for virtual IED creation', () => {
 
     it('returns null for invalid parent tag', () =>
       expect(getNonLeafParent(leafParentsLNode)).to.equal(leafParent));
+  });
+
+  describe('getFunctionNamingPrefix function', () => {
+    let lNodeWithPrefix: Element;
+    let lNodeWithOutPrefix: Element;
+    let leafSubFunction: Element;
+    let leafSubFunctionsLNode: Element;
+    let nonLeafSubFunction: Element;
+    let nonLeafSubFunctionsLNode: Element;
+
+    beforeEach(() => {
+      lNodeWithPrefix = new DOMParser().parseFromString(
+        '<LNode prefix=""/>',
+        'application/xml'
+      ).documentElement;
+
+      lNodeWithOutPrefix = new DOMParser().parseFromString(
+        '<LNode />',
+        'application/xml'
+      ).documentElement;
+
+      leafSubFunction = new DOMParser().parseFromString(
+        '<SubFunction name="leafFunction"><LNode/></SubFunction>',
+        'application/xml'
+      ).documentElement;
+      leafSubFunctionsLNode = leafSubFunction.querySelector('LNode')!;
+
+      nonLeafSubFunction = new DOMParser().parseFromString(
+        '<SubFunction name="leafFunction"><LNode/><LNode/></SubFunction>',
+        'application/xml'
+      ).documentElement;
+      nonLeafSubFunctionsLNode = nonLeafSubFunction.querySelector('LNode')!;
+    });
+
+    it('return prefix attribute if present in LNode', () =>
+      expect(getFunctionNamingPrefix(lNodeWithPrefix)).to.equal(
+        lNodeWithPrefix.getAttribute('prefix')
+      ));
+
+    it('return empty string if no valid prefix exist', () =>
+      expect(getFunctionNamingPrefix(lNodeWithOutPrefix)).to.equal(''));
+
+    it('returns leaf SubFunction name for missing prefix attribute', () =>
+      expect(getFunctionNamingPrefix(leafSubFunctionsLNode)).to.be.equal(
+        'leafFunction'
+      ));
+
+    it('returns empty string if no valid string exist', () =>
+      expect(getFunctionNamingPrefix(nonLeafSubFunctionsLNode)).to.be.equal(
+        ''
+      ));
   });
 });
