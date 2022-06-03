@@ -29,6 +29,7 @@
 				</ConductingEquipment>
 				<ConnectivityNode name="grounded" pathName="AA1/E1/Q01/grounded"/>
 				<Function name="Timed_Overcurrent">
+					<LNode iedName="None" lnClass="LLN0" lnInst="" lnType="OpenSCD_LLN01" prefix=""/>
 					<LNode iedName="None" lnClass="PTOC" lnInst="2" lnType="OpenSCD_PTOC" prefix="ID_"/>
 					<LNode iedName="None" lnClass="PTOC" lnInst="1" lnType="OpenSCD_PTOC" prefix="IDD_"/>
 				</Function>
@@ -81,7 +82,15 @@
 		</VoltageLevel>
 	</Substation>
 	<DataTypeTemplates>
-		<LNodeType lnClass="LLN0" id="OpenSCD_LLN0" desc="Logical device LN: parent">
+		<LNodeType lnClass="LLN0" id="OpenSCD_LLN0" desc="some LLN0">
+			<DO name="Mod" type="OpenSCD_ENC_Mod"/>
+			<DO name="Beh" type="OpenSCD_ENS_Beh"/>
+			<DO name="Health" type="OpenSCD_ENS_Health"/>
+			<DO name="NamPlt" type="OpenSCD_LPL_LD"/>
+			<DO name="LocKey" type="OpenSCD_SPS_simple"/>
+			<DO name="Loc" type="OpenSCD_SPS_simple"/>
+		</LNodeType>
+		<LNodeType lnClass="LLN0" id="OpenSCD_LLN01" desc="some other LLN0">
 			<DO name="Mod" type="OpenSCD_ENC_Mod"/>
 			<DO name="Beh" type="OpenSCD_ENS_Beh"/>
 			<DO name="Health" type="OpenSCD_ENS_Health"/>
