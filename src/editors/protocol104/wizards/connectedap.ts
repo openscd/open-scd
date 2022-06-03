@@ -2,6 +2,7 @@ import { html } from 'lit-element';
 import { translate, get } from 'lit-translate';
 
 import '@material/mwc-checkbox';
+import '@material/mwc-switch';
 import '@material/mwc-formfield';
 import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-list/mwc-check-list-item';
@@ -207,33 +208,45 @@ export function updateConnectedApAction(parent: Element): WizardActor {
 }
 
 /** @returns single page [[`Wizard`]] to edit SCL element ConnectedAP for the 104 plugin. */
-export function editConnectedAp104Wizard(element: Element): Wizard {
+export function editConnectedAp104Wizard(element: Element, redundancy?: boolean): Wizard {
   return [
     {
       title: get('wizard.title.edit', { tagName: element.tagName }),
       element,
       primary: {
         icon: 'save',
-        label: get('save'),
+        label: get('save'), 
         action: updateConnectedApAction(element),
       },
       content: [
-        html`${createTypeRestrictionCheckbox(element)}
-          <wizard-select
-            label="StationType"
-            .maybeValue=${element.querySelector(
-          `Address > P[type="StationType"]`
-        )?.innerHTML ?? null}
-            required
-            helper="${translate(typeDescriptiveNameKeys["StationType"])}"
-          >${stationTypeOptions.map(
-          option =>
-            html`<mwc-list-item value="${option}">${option}</mwc-list-item>`
-        )}</wizard-select>
-          ${pTypes104.map(
-          pType =>
-            html`${createPTextField(element, pType)}`
-        )}`,
+        html`<mwc-formfield label="${get('protocol104.network.connectedap.redundancy.title')}">
+          <mwc-switch
+            id="redundancy"
+            ?checked=${redundancy}
+          ></mwc-switch>
+        </mwc-formfield>
+        <wizard-divider></wizard-divider>
+        ${createTypeRestrictionCheckbox(element)}
+        <wizard-select
+          label="StationType"
+          .maybeValue=${element.querySelector(
+            `Address > P[type="StationType"]`
+          )?.innerHTML ?? null}
+          required
+          fixedMenuPosition
+          helper="${translate(typeDescriptiveNameKeys["StationType"])}"
+        >
+          ${stationTypeOptions.map(
+            option => html`<mwc-list-item value="${option}">${option}</mwc-list-item>`
+          )}
+        </wizard-select>
+        ${redundancy
+          ? html`<h3>${get('protocol104.network.connectedap.redundancy.groupTitle')}</h3>
+            <h5>All kinds of groups...</h5>`
+          : html`${pTypes104.map(
+            pType => html`${createPTextField(element, pType)}`
+          )}`}
+        `,
       ],
     },
   ];

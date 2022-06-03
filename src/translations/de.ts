@@ -364,6 +364,10 @@ export const de: Translations = {
     },
     network: {
       connectedap: {
+        redundancy: {
+          title: "???",
+          groupTitle: "???"
+        },
         stationType: '???',
         ip: '???',
         ipSubnet: '???',

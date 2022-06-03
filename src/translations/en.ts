@@ -361,6 +361,10 @@ export const en = {
     },
     network: {
       connectedap: {
+        redundancy: {
+          title: "Redundancy",
+          groupTitle: "Redundancy groups"
+        },
         stationType: 'Type of station',
         ip: 'IP address of the logical link',
         ipSubnet: 'Subnetwork mask of the IP address of the logical link',

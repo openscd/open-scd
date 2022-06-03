@@ -20,7 +20,14 @@ export class ConnectedAP104Editor extends LitElement {
   element!: Element;
 
   private openEditWizard(): void {
-    this.dispatchEvent(newWizardEvent(editConnectedAp104Wizard(this.element)));
+    this.dispatchEvent(
+      newWizardEvent(
+        editConnectedAp104Wizard(
+          this.element,
+          this.element.querySelectorAll('Address > P[type^="RG"]').length >= 8
+        )
+      )
+    );
   }
 
   remove(): void {
