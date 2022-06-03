@@ -1,9 +1,17 @@
+import {
+  createElement,
+  getChildElementsByTagName,
+  identity,
+} from '../../foundation.js';
+
 const functionTypeElementTags = [
   'Function',
   'SubFunction',
   'EqFunction',
   'EqSubFunction',
 ];
+
+const functionTypeSelector = functionTypeElementTags.join(',');
 
 /**
  * @param element - Some element Function, SubFunction, EqFunction or EqSubFunction
