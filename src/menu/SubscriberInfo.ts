@@ -2,7 +2,6 @@ import { LitElement } from 'lit-element';
 import { get } from 'lit-translate';
 import {
   createElement,
-  getReference,
   getVersion,
   newActionEvent,
   SimpleAction,
@@ -51,7 +50,7 @@ function addIEDName(extRef: Element, gseControl: Element): Element | null {
         ldInst: lDevice.getAttribute('inst') ?? '',
         prefix: anyln.getAttribute('prefix') ?? '',
         lnClass: anyln.getAttribute('lnClass') ?? '',
-        lnInst: anyln.getAttribute('inst') ?? '',
+        lnInst: anyln.getAttribute('inst') || null,
       }
     );
     iedName.innerHTML = ied.getAttribute('name')!;
@@ -139,7 +138,6 @@ export function createMissingIEDNameSubscriberInfo(
         new: {
           parent: controlBlock,
           element: iedName!,
-          reference: getReference(controlBlock, 'IEDName'),
         },
       });
     });

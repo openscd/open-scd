@@ -1,5 +1,7 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
+import '@material/mwc-list/mwc-list-item';
+
 import '../../src/wizard-select.js';
 import { WizardSelect } from '../../src/wizard-select.js';
 
@@ -76,6 +78,36 @@ describe('wizard-select', () => {
 
       it('returns null', () =>
         expect(element).to.have.property('maybeValue', null));
+    });
+  });
+
+  describe('disabled', () => {
+    beforeEach(async () => {
+      element = await fixture(html`<wizard-select
+        .maybeValue=${'three'}
+        nullable
+        disabled
+        >${items.map(
+          item => html`<mwc-list-item value="${item}">${item}</mwc-list-item>`
+        )}</wizard-select
+      >`);
+
+      await element.updateComplete;
+    });
+
+    it('disables select', () =>
+      expect(element).to.have.property('disabled', true));
+
+    it('disables null switch', () =>
+      expect(element.nullSwitch).to.have.property('disabled', true));
+
+    it('turns off null switch', async () => {
+      element.nullSwitch?.click();
+      await element.updateComplete;
+      element.nullSwitch?.click();
+      await element.updateComplete;
+
+      expect(element).to.have.property('disabled', true);
     });
   });
 });

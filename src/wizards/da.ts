@@ -1,23 +1,35 @@
 import { html, TemplateResult } from 'lit-html';
 import { get, translate } from 'lit-translate';
 
+import '@material/mwc-button';
+import '@material/mwc-list/mwc-list-item';
+
+import '../wizard-checkbox.js';
+import '../wizard-select.js';
 import {
   cloneElement,
   createElement,
   EditorAction,
-  getReference,
   getValue,
   isPublic,
   newActionEvent,
   newWizardEvent,
-  SCLTag,
   Wizard,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
+  WizardMenuActor,
 } from '../foundation.js';
-
 import { getValAction, wizardContent } from './abstractda.js';
 import { functionalConstraintEnum } from './foundation/enums.js';
+
+function remove(element: Element): WizardMenuActor {
+  return (wizard: Element): void => {
+    wizard.dispatchEvent(
+      newActionEvent({ old: { parent: element.parentElement!, element } })
+    );
+    wizard.dispatchEvent(newWizardEvent());
+  };
+}
 
 export function renderDa(
   fc: string,
@@ -37,47 +49,29 @@ export function renderDa(
           html`<mwc-list-item value="${fcOption}">${fcOption}</mwc-list-item>`
       )}</wizard-select
     >`,
-    html`<wizard-select
+    html`<wizard-checkbox
       label="dchg"
       .maybeValue=${dchg}
-      helper="${translate('scl.valImport')}"
+      helper="${translate('scl.dchg')}"
       nullable
-      required
-      fixedMenuPosition
-      >${['true', 'false'].map(
-        option =>
-          html`<mwc-list-item value="${option}">${option}</mwc-list-item>`
-      )}</wizard-select
-    >`,
-    html`<wizard-select
+    ></wizard-checkbox>`,
+    html`<wizard-checkbox
       label="qchg"
       .maybeValue=${qchg}
-      helper="${translate('scl.valImport')}"
+      helper="${translate('scl.qchg')}"
       nullable
-      required
-      fixedMenuPosition
-      >${['true', 'false'].map(
-        option =>
-          html`<mwc-list-item value="${option}">${option}</mwc-list-item>`
-      )}</wizard-select
-    >`,
-    html`<wizard-select
+    ></wizard-checkbox>`,
+    html`<wizard-checkbox
       label="dupd"
       .maybeValue=${dupd}
-      helper="${translate('scl.valImport')}"
+      helper="${translate('scl.dupd')}"
       nullable
-      required
-      fixedMenuPosition
-      >${['true', 'false'].map(
-        option =>
-          html`<mwc-list-item value="${option}">${option}</mwc-list-item>`
-      )}</wizard-select
-    >`,
+    ></wizard-checkbox>`,
   ];
 }
 
 export function updateDaAction(element: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const bType = getValue(inputs.find(i => i.label === 'bType')!)!;
@@ -165,25 +159,6 @@ export function editDAWizard(element: Element): Wizard {
   const qchg = element.getAttribute('qchg');
   const dupd = element.getAttribute('dupd');
 
-  const deleteButton = html`<mwc-button
-    icon="delete"
-    trailingIcon
-    label="${translate('remove')}"
-    @click=${(e: MouseEvent) => {
-      e.target!.dispatchEvent(newWizardEvent());
-      e.target!.dispatchEvent(
-        newActionEvent({
-          old: {
-            parent: element.parentElement!,
-            element: element,
-            reference: element.nextSibling,
-          },
-        })
-      );
-    }}
-    fullwidth
-  ></mwc-button>`;
-
   const types = Array.from(doc.querySelectorAll('DAType, EnumType'))
     .filter(isPublic)
     .filter(type => type.getAttribute('id'));
@@ -199,8 +174,14 @@ export function editDAWizard(element: Element): Wizard {
         label: get('save'),
         action: updateDaAction(element),
       },
+      menuActions: [
+        {
+          icon: 'delete',
+          label: get('remove'),
+          action: remove(element),
+        },
+      ],
       content: [
-        deleteButton,
         ...wizardContent(
           name,
           desc,
@@ -220,7 +201,7 @@ export function editDAWizard(element: Element): Wizard {
 }
 
 export function createDaAction(parent: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const bType = getValue(inputs.find(i => i.label === 'bType')!)!;
@@ -267,7 +248,6 @@ export function createDaAction(parent: Element): WizardActor {
       new: {
         parent,
         element,
-        reference: getReference(parent, <SCLTag>element.tagName),
       },
     });
 

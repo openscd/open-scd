@@ -1,18 +1,23 @@
 import { html, render, TemplateResult } from 'lit-html';
 import { translate } from 'lit-translate';
 
-import { createElement, EditorAction } from '../foundation.js';
-import { maxLength, patterns } from './foundation/limits.js';
-import { predefinedBasicTypeEnum, valKindEnum } from './foundation/enums.js';
-
-import { WizardSelect } from '../wizard-select.js';
-import { WizardTextField } from '../wizard-textfield.js';
-
+import '@material/mwc-list/mwc-list-item';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { SelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { Select } from '@material/mwc-select';
 
+import '../wizard-checkbox.js';
+import '../wizard-select.js';
+import '../wizard-textfield.js';
+import { createElement, EditorAction } from '../foundation.js';
+import { WizardSelect } from '../wizard-select.js';
+import { WizardTextField } from '../wizard-textfield.js';
+import { maxLength, patterns } from './foundation/limits.js';
+import { predefinedBasicTypeEnum, valKindEnum } from './foundation/enums.js';
+
 function selectType(e: SelectedEvent, data: Element, Val: string | null): void {
+  if (!e.target || !(e.target as Select).parentElement) return;
+
   const typeSelected = (<Select>e.target).selected?.value;
   const selectedBType = (<WizardSelect>(
     (<Select>e.target).parentElement!.querySelector(
@@ -171,20 +176,13 @@ export function wizardContent(
           >`
       )}</wizard-select
     >`,
-    html`<wizard-select
+    html`<wizard-checkbox
       label="valImport"
       .maybeValue=${valImport}
       helper="${translate('scl.valImport')}"
       nullable
       required
-      fixedMenuPosition
-      >${['true', 'false'].map(
-        valImportOption =>
-          html`<mwc-list-item value="${valImportOption}"
-            >${valImportOption}</mwc-list-item
-          >`
-      )}</wizard-select
-    >`,
+    ></wizard-checkbox>`,
     html`<wizard-select
       label="Val"
       .maybeValue=${Val}

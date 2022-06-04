@@ -1,4 +1,9 @@
 import { expect, fixture, html } from '@open-wc/testing';
+
+import '../../mock-wizard.js';
+import { MockWizard } from '../../mock-wizard.js';
+
+import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   ComplexAction,
   Create,
@@ -6,18 +11,16 @@ import {
   isCreate,
   isDelete,
   isSimple,
-  isUpdate,
-  Update,
+  isReplace,
+  Replace,
   Wizard,
-  WizardInput,
+  WizardInputElement,
 } from '../../../src/foundation.js';
-import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   editGseWizard,
   getMTimeAction,
   updateGSEAction,
 } from '../../../src/wizards/gse.js';
-import { MockWizard } from '../../mock-wizard.js';
 
 describe('gse wizards', () => {
   let doc: XMLDocument;
@@ -25,7 +28,7 @@ describe('gse wizards', () => {
 
   beforeEach(async () => {
     element = await fixture(html`<mock-wizard></mock-wizard>`);
-    doc = await fetch('/base/test/testfiles/wizards/gsecontrol.scd')
+    doc = await fetch('/test/testfiles/wizards/gsecontrol.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
   });
@@ -35,17 +38,17 @@ describe('gse wizards', () => {
       const wizard = editGseWizard(
         doc.querySelector('GSE[ldInst="CircuitBreaker_CB1"][cbName="GCB"]')!
       );
-      element.workflow.push(wizard);
+      element.workflow.push(() => wizard);
       await element.requestUpdate();
     });
     it('looks like the latest snapshot', async () => {
-      expect(element.wizardUI.dialog).to.equalSnapshot();
+      await expect(element.wizardUI.dialog).to.equalSnapshot();
     }).timeout(5000);
   });
 
   describe('updateGSEAction', () => {
     let gse: Element;
-    let inputs: WizardInput[];
+    let inputs: WizardInputElement[];
     let wizard: Wizard;
 
     const noOp = () => {
@@ -64,7 +67,7 @@ describe('gse wizards', () => {
       wizard = editGseWizard(
         doc.querySelector('GSE[ldInst="CircuitBreaker_CB1"][cbName="GCB"]')!
       );
-      element.workflow.push(wizard);
+      element.workflow.push(() => wizard);
       await element.requestUpdate();
       inputs = Array.from(element.wizardUI.inputs);
       await element.requestUpdate();
@@ -87,8 +90,8 @@ describe('gse wizards', () => {
       expect(actions.length).to.equal(2);
       expect(actions[0]).to.satisfy(isDelete);
       expect(actions[1]).to.satisfy(isCreate);
-      const oldElement = (<Delete>actions[0]).old.element;
-      const newElement = (<Create>actions[1]).new.element;
+      const oldElement = <Element>(<Delete>actions[0]).old.element;
+      const newElement = <Element>(<Create>actions[1]).new.element;
       expect(
         oldElement.querySelector('P[type="MAC-Address"]')?.textContent?.trim()
       ).to.equal('01-0C-CD-01-00-10');
@@ -107,8 +110,8 @@ describe('gse wizards', () => {
       expect(actions.length).to.equal(2);
       expect(actions[0]).to.satisfy(isDelete);
       expect(actions[1]).to.satisfy(isCreate);
-      const oldElement = (<Delete>actions[0]).old.element;
-      const newElement = (<Create>actions[1]).new.element;
+      const oldElement = <Element>(<Delete>actions[0]).old.element;
+      const newElement = <Element>(<Create>actions[1]).new.element;
       expect(
         oldElement.querySelector('P[type="APPID"]')?.textContent?.trim()
       ).to.equal('0010');
@@ -127,8 +130,8 @@ describe('gse wizards', () => {
       expect(actions.length).to.equal(2);
       expect(actions[0]).to.satisfy(isDelete);
       expect(actions[1]).to.satisfy(isCreate);
-      const oldElement = (<Delete>actions[0]).old.element;
-      const newElement = (<Create>actions[1]).new.element;
+      const oldElement = <Element>(<Delete>actions[0]).old.element;
+      const newElement = <Element>(<Create>actions[1]).new.element;
       expect(
         oldElement.querySelector('P[type="VLAN-ID"]')?.textContent?.trim()
       ).to.equal('005');
@@ -147,8 +150,8 @@ describe('gse wizards', () => {
       expect(actions.length).to.equal(2);
       expect(actions[0]).to.satisfy(isDelete);
       expect(actions[1]).to.satisfy(isCreate);
-      const oldElement = (<Delete>actions[0]).old.element;
-      const newElement = (<Create>actions[1]).new.element;
+      const oldElement = <Element>(<Delete>actions[0]).old.element;
+      const newElement = <Element>(<Create>actions[1]).new.element;
       expect(
         oldElement.querySelector('P[type="VLAN-PRIORITY"]')?.textContent?.trim()
       ).to.equal('4');
@@ -165,8 +168,8 @@ describe('gse wizards', () => {
       expect(complexAction[0]).to.not.satisfy(isSimple);
       const actions = (<ComplexAction>complexAction[0]).actions;
       expect(actions.length).to.equal(1);
-      expect(actions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>actions[0];
+      expect(actions[0]).to.satisfy(isReplace);
+      const updateAction = <Replace>actions[0];
       expect(updateAction.old.element.textContent?.trim()).to.equal('10');
       expect(updateAction.new.element.textContent?.trim()).to.equal('15');
     });
@@ -179,8 +182,8 @@ describe('gse wizards', () => {
       expect(complexAction[0]).to.not.satisfy(isSimple);
       const actions = (<ComplexAction>complexAction[0]).actions;
       expect(actions.length).to.equal(1);
-      expect(actions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>actions[0];
+      expect(actions[0]).to.satisfy(isReplace);
+      const updateAction = <Replace>actions[0];
       expect(updateAction.old.element.textContent?.trim()).to.equal('10000');
       expect(updateAction.new.element.textContent?.trim()).to.equal('65');
     });
@@ -202,8 +205,8 @@ describe('gse wizards', () => {
 
     it('updates a MinTime child element when chenged', () => {
       const editorAction = getMTimeAction('MinTime', oldMinTime, '654', gse);
-      expect(editorAction).to.satisfy(isUpdate);
-      expect((<Update>editorAction).new.element.textContent?.trim()).to.equal(
+      expect(editorAction).to.satisfy(isReplace);
+      expect((<Replace>editorAction).new.element.textContent?.trim()).to.equal(
         '654'
       );
     });
@@ -226,8 +229,8 @@ describe('gse wizards', () => {
         '1234123',
         gse
       );
-      expect(editorAction).to.satisfy(isUpdate);
-      expect((<Update>editorAction).new.element.textContent?.trim()).to.equal(
+      expect(editorAction).to.satisfy(isReplace);
+      expect((<Replace>editorAction).new.element.textContent?.trim()).to.equal(
         '1234123'
       );
     });

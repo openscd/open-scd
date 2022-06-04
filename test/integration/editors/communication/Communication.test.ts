@@ -1,8 +1,11 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
+import '../../../mock-wizard.js';
+import { MockWizard } from '../../../mock-wizard.js';
+
 import Communication from '../../../../src/editors/Communication.js';
 import { Editing } from '../../../../src/Editing.js';
-import { Wizarding, WizardingElement } from '../../../../src/Wizarding.js';
+import { Wizarding } from '../../../../src/Wizarding.js';
 
 describe('Communication Plugin', () => {
   customElements.define(
@@ -17,8 +20,8 @@ describe('Communication Plugin', () => {
   });
 
   describe('without a doc loaded', () => {
-    it('looks like the latest snapshot', () => {
-      expect(element).shadowDom.to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
     });
   });
 
@@ -26,7 +29,7 @@ describe('Communication Plugin', () => {
     let doc: XMLDocument;
     let element: Communication;
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+      doc = await fetch('/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       element = await fixture(
@@ -40,14 +43,14 @@ describe('Communication Plugin', () => {
 
   describe('with a doc loaded missing a communication section', () => {
     let doc: XMLDocument;
-    let parent: WizardingElement;
+    let parent: MockWizard;
     let fab: HTMLElement;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/missingCommunication.scd')
+      doc = await fetch('/test/testfiles/missingCommunication.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      parent = <WizardingElement>(
+      parent = <MockWizard>(
         await fixture(
           html`<mock-wizard
             ><communication-plugin .doc=${doc}></communication-plugin

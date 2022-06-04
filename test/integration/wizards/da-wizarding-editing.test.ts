@@ -1,13 +1,16 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import TemplatesPlugin from '../../../src/editors/Templates.js';
+import '../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../mock-wizard-editor.js';
 
-import { Select } from '@material/mwc-select';
-import { WizardTextField } from '../../../src/wizard-textfield.js';
+import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
+
 import { FilteredList } from '../../../src/filtered-list.js';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
+import TemplatesPlugin from '../../../src/editors/Templates.js';
 import { WizardSelect } from '../../../src/wizard-select.js';
+import { WizardTextField } from '../../../src/wizard-textfield.js';
+import { WizardCheckbox } from '../../../src/wizard-checkbox.js';
 
 describe('DA wizarding editing integration', () => {
   if (customElements.get('templates-editor') === undefined)
@@ -26,7 +29,7 @@ describe('DA wizarding editing integration', () => {
 
     templates = <TemplatesPlugin>parent.querySelector('templates-editor')!;
 
-    doc = await fetch('/base/test/testfiles/templates/dotypes.scd')
+    doc = await fetch('/test/testfiles/templates/dotypes.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     templates.doc = doc;
@@ -64,21 +67,28 @@ describe('DA wizarding editing integration', () => {
         )
       );
       deleteButton = <HTMLElement>(
-        parent.wizardUI.dialog?.querySelector('mwc-button[icon="delete"]')
+        Array.from(
+          parent.wizardUI.dialog!.querySelectorAll<ListItemBase>(
+            'mwc-menu > mwc-list-item'
+          )
+        ).find(item => item.innerHTML.includes('[remove]'))
       );
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
+
     it('edits DA attributes name', async () => {
       expect(
         doc.querySelector('DOType[id="Dummy.LLN0.Mod"] > DA[name="stVal"]')
       ).to.exist;
       nameField.value = 'newCtlVal';
+
       await parent.requestUpdate();
       primayAction.click();
       await parent.requestUpdate();
+
       expect(
         doc.querySelector('DOType[id="Dummy.LLN0.Mod"] > DA[name="stVal"]')
       ).to.not.exist;
@@ -86,6 +96,7 @@ describe('DA wizarding editing integration', () => {
         doc.querySelector('DOType[id="Dummy.LLN0.Mod"] > DA[name="newCtlVal"]')
       ).to.exist;
     });
+
     it('deletes the DA element on delete button click', async () => {
       expect(
         doc.querySelector('DOType[id="Dummy.LLN0.Mod"] > DA[name="stVal"]')
@@ -93,8 +104,10 @@ describe('DA wizarding editing integration', () => {
       expect(
         doc.querySelectorAll('DOType[id="Dummy.LLN0.Mod"] > DA').length
       ).to.equal(14);
+
       deleteButton.click();
       await parent.requestUpdate();
+
       expect(
         doc.querySelector('DOType[id="Dummy.LLN0.Mod"] > DA[name="stVal"]')
       ).to.not.exist;
@@ -102,12 +115,15 @@ describe('DA wizarding editing integration', () => {
         doc.querySelectorAll('DOType[id="Dummy.LLN0.Mod"] > DA').length
       ).to.equal(13);
     });
+
     it('does not edit DA element without changes', async () => {
       const originData = (<Element>(
         doc.querySelector('DOType[id="Dummy.LLN0.Mod"] > DA[name="stVal"]')
       )).cloneNode(true);
+
       primayAction.click();
       await parent.requestUpdate();
+
       expect(
         originData.isEqualNode(
           doc.querySelector('DOType[id="Dummy.LLN0.Mod"] > DA[name="stVal"]')
@@ -121,9 +137,8 @@ describe('DA wizarding editing integration', () => {
     let descField: WizardTextField;
     let sAddrField: WizardTextField;
     let bTypeSelect: WizardSelect;
-    let typeSelect: WizardSelect;
     let valKindSelect: WizardSelect;
-    let valImportSelect: WizardSelect;
+    let valImportSelect: WizardCheckbox;
     let fcSelect: WizardSelect;
     let primayAction: HTMLElement;
 
@@ -133,11 +148,15 @@ describe('DA wizarding editing integration', () => {
       )).click();
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
       (<HTMLElement>(
-        parent.wizardUI.dialog?.querySelectorAll(
-          'mwc-button[icon="playlist_add"]'
-        )[1]
+        Array.from(
+          parent.wizardUI.dialog!.querySelectorAll<ListItemBase>(
+            'mwc-menu > mwc-list-item'
+          )
+        ).find(item => item.innerHTML.includes('[scl.DA]'))
       )).click();
+
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
@@ -153,15 +172,12 @@ describe('DA wizarding editing integration', () => {
       bTypeSelect = <WizardSelect>(
         parent.wizardUI.dialog?.querySelector('wizard-select[label="bType"]')
       );
-      typeSelect = <WizardSelect>(
-        parent.wizardUI.dialog?.querySelector('wizard-select[label="type"]')
-      );
       valKindSelect = <WizardSelect>(
         parent.wizardUI.dialog?.querySelector('wizard-select[label="valKind"]')
       );
-      valImportSelect = <WizardSelect>(
+      valImportSelect = <WizardCheckbox>(
         parent.wizardUI.dialog?.querySelector(
-          'wizard-select[label="valImport"]'
+          'wizard-checkbox[label="valImport"]'
         )
       );
       fcSelect = <WizardSelect>(
@@ -174,8 +190,8 @@ describe('DA wizarding editing integration', () => {
       );
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
     it('creates a new DA element', async () => {
       expect(
@@ -217,7 +233,7 @@ describe('DA wizarding editing integration', () => {
       valKindSelect.nullable = false;
       valKindSelect.value = 'RO';
       valImportSelect.nullable = false;
-      valImportSelect.value = 'true';
+      valImportSelect.maybeValue = 'true';
       fcSelect.value = 'ST';
 
       await parent.requestUpdate();

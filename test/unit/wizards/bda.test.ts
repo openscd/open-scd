@@ -1,20 +1,19 @@
 import { expect, fixture, html } from '@open-wc/testing';
+
+import '../../mock-wizard.js';
 import { MockWizard } from '../../mock-wizard.js';
-
-import {
-  Create,
-  isCreate,
-  isUpdate,
-  Update,
-  Wizard,
-  WizardInput,
-} from '../../../src/foundation.js';
-
-import { wizardContent } from '../../../src/wizards/abstractda.js';
 
 import { WizardSelect } from '../../../src/wizard-select.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
-
+import {
+  Create,
+  isCreate,
+  isReplace,
+  Replace,
+  Wizard,
+  WizardInputElement,
+} from '../../../src/foundation.js';
+import { wizardContent } from '../../../src/wizards/abstractda.js';
 import { createBDaAction, updateBDaAction } from '../../../src/wizards/bda.js';
 
 describe('bda wizards', () => {
@@ -30,7 +29,7 @@ describe('bda wizards', () => {
       ).documentElement
     );
 
-    let inputs: WizardInput[];
+    let inputs: WizardInputElement[];
     let wizard: Wizard;
 
     const noOp = () => {
@@ -44,7 +43,7 @@ describe('bda wizards', () => {
 
     beforeEach(async () => {
       element = await fixture(html`<mock-wizard></mock-wizard>`);
-      doc = await fetch('/base/test/testfiles/wizards/abstractda.scd')
+      doc = await fetch('/test/testfiles/wizards/abstractda.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       data = doc.querySelector('DataTypeTemplates')!;
@@ -66,7 +65,7 @@ describe('bda wizards', () => {
           ),
         },
       ];
-      element.workflow.push(wizard);
+      element.workflow.push(() => wizard);
       await element.requestUpdate();
       inputs = Array.from(element.wizardUI.inputs);
       await element.requestUpdate();
@@ -81,7 +80,7 @@ describe('bda wizards', () => {
       await (<WizardTextField>inputs[0]).requestUpdate();
       const editorAction = updateBDaAction(bda);
       expect(editorAction(inputs, newWizard()).length).to.equal(1);
-      expect(editorAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
+      expect(editorAction(inputs, newWizard())[0]).to.satisfy(isReplace);
     });
     it('update a BDA element when only desc attribute changed', async () => {
       const input = <WizardTextField>inputs[1];
@@ -90,22 +89,22 @@ describe('bda wizards', () => {
       await input.requestUpdate();
       const editorAction = updateBDaAction(bda);
       expect(editorAction(inputs, newWizard()).length).to.equal(1);
-      expect(editorAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
+      expect(editorAction(inputs, newWizard())[0]).to.satisfy(isReplace);
     });
     it('update a BDA element when only bType attribute changed', async () => {
       inputs[2].value = 'BOOLEAN';
       await (<WizardSelect>inputs[2]).requestUpdate();
       const editorAction = updateBDaAction(bda);
       expect(editorAction(inputs, newWizard()).length).to.equal(1);
-      expect(editorAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
+      expect(editorAction(inputs, newWizard())[0]).to.satisfy(isReplace);
     });
     it('update a BDA element when type attribute changed to null', async () => {
       inputs[2].value = 'BOOLEAN';
       await (<WizardSelect>inputs[2]).requestUpdate();
       const editorAction = updateBDaAction(bda);
       expect(editorAction(inputs, newWizard()).length).to.equal(1);
-      expect(editorAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>editorAction(inputs, newWizard())[0];
+      expect(editorAction(inputs, newWizard())[0]).to.satisfy(isReplace);
+      const updateAction = <Replace>editorAction(inputs, newWizard())[0];
       expect(updateAction.old.element).to.have.attribute('type');
       expect(updateAction.new.element).to.not.have.attribute('type');
     });
@@ -117,8 +116,8 @@ describe('bda wizards', () => {
       const editorAction = updateBDaAction(bda);
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
-      expect(updateActions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>updateActions[0];
+      expect(updateActions[0]).to.satisfy(isReplace);
+      const updateAction = <Replace>updateActions[0];
       expect(updateAction.old.element).to.not.have.attribute('sAddr');
       expect(updateAction.new.element).to.have.attribute('sAddr', 'mysAddr');
     });
@@ -130,21 +129,21 @@ describe('bda wizards', () => {
       const editorAction = updateBDaAction(bda);
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
-      expect(updateActions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>updateActions[0];
+      expect(updateActions[0]).to.satisfy(isReplace);
+      const updateAction = <Replace>updateActions[0];
       expect(updateAction.old.element).to.not.have.attribute('valKind');
       expect(updateAction.new.element).to.have.attribute('valKind', 'RO');
     });
     it('update a BDA element when valImport attribute changed', async () => {
       const input = <WizardTextField>inputs[6];
       input.nullSwitch?.click();
-      input.value = 'true';
+      input.maybeValue = 'true';
       await input.requestUpdate();
       const editorAction = updateBDaAction(bda);
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
-      expect(updateActions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>updateActions[0];
+      expect(updateActions[0]).to.satisfy(isReplace);
+      const updateAction = <Replace>updateActions[0];
       expect(updateAction.old.element).to.not.have.attribute('valImport');
       expect(updateAction.new.element).to.have.attribute('valImport', 'true');
     });
@@ -159,7 +158,9 @@ describe('bda wizards', () => {
       expect(updateActions[0]).to.satisfy(isCreate);
       const updateAction = <Create>updateActions[0];
       expect(
-        updateAction.new.element.querySelector('Val')?.textContent?.trim()
+        (<Element>updateAction.new.element)
+          .querySelector('Val')
+          ?.textContent?.trim()
       ).to.not.equal('bay-control');
     });
   });
@@ -176,7 +177,7 @@ describe('bda wizards', () => {
       ).documentElement
     );
 
-    let inputs: WizardInput[];
+    let inputs: WizardInputElement[];
     let wizard: Wizard;
 
     const noOp = () => {
@@ -190,7 +191,7 @@ describe('bda wizards', () => {
 
     beforeEach(async () => {
       element = await fixture(html`<mock-wizard></mock-wizard>`);
-      doc = await fetch('/base/test/testfiles/wizards/abstractda.scd')
+      doc = await fetch('/test/testfiles/wizards/abstractda.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       data = doc.querySelector('DataTypeTemplates')!;
@@ -212,7 +213,7 @@ describe('bda wizards', () => {
           ),
         },
       ];
-      element.workflow.push(wizard);
+      element.workflow.push(() => wizard);
       await element.requestUpdate();
       inputs = Array.from(element.wizardUI.inputs);
       await element.requestUpdate();
@@ -280,7 +281,9 @@ describe('bda wizards', () => {
       expect(editorAction(inputs, newWizard())[0]).to.satisfy(isCreate);
       const createAction = <Create>editorAction(inputs, newWizard())[0];
       expect(
-        createAction.new.element.querySelector('Val')?.textContent?.trim()
+        (<Element>createAction.new.element)
+          .querySelector('Val')
+          ?.textContent?.trim()
       ).to.equal('8123');
     });
   });

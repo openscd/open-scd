@@ -2,6 +2,213 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.17.0](https://github.com/openscd/open-scd/compare/v0.16.0...v0.17.0) (2022-05-30)
+
+
+### Features
+
+* **editor/substation/l-node-editor:** add remove button ([#771](https://github.com/openscd/open-scd/issues/771)) ([7966f0f](https://github.com/openscd/open-scd/commits/7966f0f383bee611b1f840f3222075b56dbe9498))
+* **editors/substation:** add read-only l-node-editor ([#730](https://github.com/openscd/open-scd/issues/730)) ([ecfeb5d](https://github.com/openscd/open-scd/commits/ecfeb5d03a7b36493a10193541afbd3a2edd0e9a)), closes [#752](https://github.com/openscd/open-scd/issues/752)
+* **editors/substation:** remove button to function type editors ([#761](https://github.com/openscd/open-scd/issues/761)) ([ce9dea1](https://github.com/openscd/open-scd/commits/ce9dea1ce9365ff115b14e1174166c466e884539))
+* **editors/subtation:** allow instantiation of LNode from LNodeType's ([#766](https://github.com/openscd/open-scd/issues/766)) ([8ee23fc](https://github.com/openscd/open-scd/commits/8ee23fc8a5c3b3f9dfd57f4d445e9da744edd850))
+* **wizards/function:** add create wizards for Function, SubFunction, EqFunction and EqSubFunction element ([#731](https://github.com/openscd/open-scd/issues/731)) ([774add7](https://github.com/openscd/open-scd/commits/774add7510c4b909fab4e0d09f173cf7d3726027)), closes [#733](https://github.com/openscd/open-scd/issues/733) [#737](https://github.com/openscd/open-scd/issues/737) [#757](https://github.com/openscd/open-scd/issues/757)
+* **wizards/lnode:** add edit wizard ([#778](https://github.com/openscd/open-scd/issues/778)) ([965f10a](https://github.com/openscd/open-scd/commits/965f10a1d7a9c66fdc4e74265e265fdc950c3a09))
+* **wizards/substation/l-node-editor:** add duplicate button ([#782](https://github.com/openscd/open-scd/issues/782)) ([7470e2d](https://github.com/openscd/open-scd/commits/7470e2d0f657002222d771243d4cb609649f5f80))
+* **wizards:** add function type create wizards ([#768](https://github.com/openscd/open-scd/issues/768)) ([6e9c928](https://github.com/openscd/open-scd/commits/6e9c928bc09f7e05282d88c7967840e0b441d811)), closes [#762](https://github.com/openscd/open-scd/issues/762) [#763](https://github.com/openscd/open-scd/issues/763) [#764](https://github.com/openscd/open-scd/issues/764) [#765](https://github.com/openscd/open-scd/issues/765)
+
+
+### Bug Fixes
+
+* **menu/subscriberinfo:** fix lnInst attribute for lnClass LLN0 ([#749](https://github.com/openscd/open-scd/issues/749)) ([2f0bad9](https://github.com/openscd/open-scd/commits/2f0bad905cdc6450c1eec95d3c3a4755afb3098a))
+* **wizard-diagram, wizard-select, wizard-checkbox:**  disabled attribute ([#781](https://github.com/openscd/open-scd/issues/781)) ([528db27](https://github.com/openscd/open-scd/commits/528db27992173630a22056e50bd7c56903a6a283))
+* **wizards/conductingequipment:** on create earth switch add missing ground cNode ([#753](https://github.com/openscd/open-scd/issues/753)) ([8f89f27](https://github.com/openscd/open-scd/commits/8f89f27c6a66316c1b7941fa313ba85d08b1256d))
+
+## [0.16.0](https://github.com/openscd/open-scd/compare/v0.15.0...v0.16.0) (2022-05-16)
+
+
+### Features
+
+* **editor/ied:** Add wizard/action to remove IED including references ([#732](https://github.com/openscd/open-scd/issues/732)) ([bba9b3c](https://github.com/openscd/open-scd/commits/bba9b3c7154a6e7d81a0776d10b1a41738bad388))
+* **editor/ied:** Show the technical path to a DO/DA ([15c4f7b](https://github.com/openscd/open-scd/commits/15c4f7bd3124c4f734b00f1b52d579eec1c08d89))
+* **editors/substation:** show read-only `EqFunction` and `EqSubFunction` ([#720](https://github.com/openscd/open-scd/issues/720)) ([52a49ce](https://github.com/openscd/open-scd/commits/52a49cec947332204ffb519c47ee4aca27b5af05)), closes [#722](https://github.com/openscd/open-scd/issues/722) [#726](https://github.com/openscd/open-scd/issues/726)
+* **Subscription:** Add edit button or hyperlink to GSEControl dialog in the Subscription Editor ([5c19822](https://github.com/openscd/open-scd/commits/5c1982220504092e666ed177a05a295b2ce4130c))
+* **Subscription:** Select by Subscriber in Subscriptions Editor ([b1f2d12](https://github.com/openscd/open-scd/commits/b1f2d1295343002dd440ef3b8cc369d168be456d))
+
+## [0.15.0](https://github.com/openscd/open-scd/compare/v0.14.0...v0.15.0) (2022-05-02)
+
+
+### Features
+
+* **iededitor:** Added implementation to change enum values in IED Editor. ([865f7ab](https://github.com/openscd/open-scd/commits/865f7ab33f7361b8f481be2c47f77b0fe1f05e81))
+* **substation:** read only Function and SubFunction container ([#700](https://github.com/openscd/open-scd/issues/700)) ([3d7b2ef](https://github.com/openscd/open-scd/commits/3d7b2ef5c4950d2341973bac70ae4a658a00f859)), closes [#706](https://github.com/openscd/open-scd/issues/706)
+* **wizards/dai:** Change DAI values ([#687](https://github.com/openscd/open-scd/issues/687)) ([3689ef2](https://github.com/openscd/open-scd/commits/3689ef26253ba3c352f0bd758b9abdbc17fe9c33))
+* **wizards/gsecontrol:** add create wizards ([#654](https://github.com/openscd/open-scd/issues/654)) ([887f46f](https://github.com/openscd/open-scd/commits/887f46f5e3bc885cfad1f9e18a2d5f58161fbb44))
+* **wizards:** Changed label of rptID ([#697](https://github.com/openscd/open-scd/issues/697)) ([10f3f0b](https://github.com/openscd/open-scd/commits/10f3f0bdea05328838196914f62290e4ca6c76bc))
+
+
+### Bug Fixes
+
+* **wizard-dialog:** avoid header overlap with extra action buttons ([#703](https://github.com/openscd/open-scd/issues/703)) ([ffe7859](https://github.com/openscd/open-scd/commits/ffe7859b4d67873339658d1a216cc0a8dabfb687))
+* **wizard-dialog:** remove initialFocus from action buttons ([#702](https://github.com/openscd/open-scd/issues/702)) ([a4783ab](https://github.com/openscd/open-scd/commits/a4783ab46e350e5ed1af64102bd3a78e95fc2c93))
+
+## [0.14.0](https://github.com/openscd/open-scd/compare/v0.13.0...v0.14.0) (2022-04-21)
+
+
+### Features
+
+* **editors/cleanup:** remove unused control blocks ([#620](https://github.com/openscd/open-scd/issues/620)) ([e63f11f](https://github.com/openscd/open-scd/commits/e63f11f9e5e2130b273506eff2567ec31a890f57))
+* **editors/Subscription:** When undo / redo actions Subscription / SMV plugin, lists are not refreshed ([7889be9](https://github.com/openscd/open-scd/commits/7889be93b7d8f76042cc08656392b83f1b82dada))
+
+
+### Bug Fixes
+
+* **editors/subscription:** several styling issues ([#661](https://github.com/openscd/open-scd/issues/661)) ([b9f5555](https://github.com/openscd/open-scd/commits/b9f5555c4c01c7ba29cfca12dd5f0b318abee861))
+* **editors:** Changed selectors in Substation and IED Editors and updated IED and Substation Wizards. ([#671](https://github.com/openscd/open-scd/issues/671)) ([33b590a](https://github.com/openscd/open-scd/commits/33b590abdedca12d1029d950654d8d6673124e8f))
+* **filtered-list:** allow filter nested list-item s ([#660](https://github.com/openscd/open-scd/issues/660)) ([1ea37c5](https://github.com/openscd/open-scd/commits/1ea37c5c490de52b538201d3a4fb39291b239771))
+
+## [0.13.0](https://github.com/openscd/open-scd/compare/v0.11.0...v0.13.0) (2022-04-04)
+
+
+### Features
+
+* **Editing:** check globally for ID uniqueness ([c2b14fb](https://github.com/openscd/open-scd/commits/c2b14fb337adb9f55874dbb3add0aefda8622946))
+* **editors/cleanup:** unreferenced DataSet ([#568](https://github.com/openscd/open-scd/issues/568)) ([edc133c](https://github.com/openscd/open-scd/commits/edc133cdecce61abf53d043bc45292d1a1a36c7c))
+* **editors/subscriber:** use filtered lists ([#638](https://github.com/openscd/open-scd/issues/638)) ([f255bfb](https://github.com/openscd/open-scd/commits/f255bfb4f205239413f12f7c47e221e739cefdce))
+* **editors/Substation:** Add PowerTransformer Components to Substation Editor ([22555b6](https://github.com/openscd/open-scd/commits/22555b6713c9f2c8e882269ffce9a826d016e87b))
+* **editors/template/lnodetype-wizards:** make use of -7-420 NSD ([0a2d5a4](https://github.com/openscd/open-scd/commits/0a2d5a40c50d5a0cc66fd7c5b31f6493aa7c4600))
+* **ied-editor/ln-node:** Changed description of LN Node in IED Editor ([#647](https://github.com/openscd/open-scd/issues/647)) ([9a655e8](https://github.com/openscd/open-scd/commits/9a655e88d1a8341ec56a83c6af540e77f4e9c280))
+* **plugins/IED:** Add icon set to IED editor containers ([9878259](https://github.com/openscd/open-scd/commits/9878259665be2e34bd99dd1d5f72c1944b3dca1f))
+* **plugins/SampledValues:** Create Sampled Values tab in Subscription plugin ([f94b042](https://github.com/openscd/open-scd/commits/f94b0422253940785a0982ae72910f1bbbc2ac62))
+* **plugins/SampledValues:** Small bug fix + Added Integration tests ([a58f305](https://github.com/openscd/open-scd/commits/a58f305c78a65c056c617e9f09e8d648f4aaf610))
+* **plugins/Subscription:** Create 'Subscription' plugin for GOOSE subscriptions  ([25fae6f](https://github.com/openscd/open-scd/commits/25fae6fc42ad76f269ef029848d5cae6329eee33))
+* **wizard-dialog:** allow used-defined actions in menu ([f8c5a93](https://github.com/openscd/open-scd/commits/f8c5a93100e4c7e922627337ffee32f6169b12cf))
+* **wizard-dialog:** wizard-dialog content definition through `WizardInput` objects ([5f3a7a7](https://github.com/openscd/open-scd/commits/5f3a7a7c4a74bffb5e800b8c75bffdbdb3213e15))
+* **wizards/reportcontrol:** add copy to other IEDs  ([#632](https://github.com/openscd/open-scd/issues/632)) ([1850dfa](https://github.com/openscd/open-scd/commits/1850dfa6c77669fd47ac36379a32267dc54ef913))
+
+
+### Bug Fixes
+
+* **action-pane:** adjust css rules for icon slot ([#594](https://github.com/openscd/open-scd/issues/594)) ([8bc0549](https://github.com/openscd/open-scd/commits/8bc0549bc791ef6b7fe0b1dfd4d5a6f1dfccde2d))
+* **editors/template:** on id attribute update adopt references as well ([#590](https://github.com/openscd/open-scd/issues/590)) ([af246dd](https://github.com/openscd/open-scd/commits/af246ddcde907688081aaa20d295faeb978b0a6f))
+* **editors/template:** properly update xxxType list after add/editing ([#582](https://github.com/openscd/open-scd/issues/582)) ([2e11cc8](https://github.com/openscd/open-scd/commits/2e11cc8c277d31dd693ae54656e1c3b4cd23f8f3))
+* **wizard-dialog:** make sure to close on non empty editor action ([8fb125c](https://github.com/openscd/open-scd/commits/8fb125c1c353feb37a4c988d59a608090fb0425b))
+* **wizards/subnetwork:** incorrect title for create wizard ([#645](https://github.com/openscd/open-scd/issues/645)) ([0210913](https://github.com/openscd/open-scd/commits/0210913cc8eef9cf06d1071a146072ba24e80df0))
+
+## [0.12.0](https://github.com/openscd/open-scd/compare/v0.11.0...v0.12.0) (2022-03-21)
+
+
+### Features
+
+* **Editing:** check globally for ID uniqueness ([c2b14fb](https://github.com/openscd/open-scd/commits/c2b14fb337adb9f55874dbb3add0aefda8622946))
+* **editors/cleanup:** unreferenced DataSet ([#568](https://github.com/openscd/open-scd/issues/568)) ([edc133c](https://github.com/openscd/open-scd/commits/edc133cdecce61abf53d043bc45292d1a1a36c7c))
+* **editors/Substation:** Add PowerTransformer Components to Substation Editor ([22555b6](https://github.com/openscd/open-scd/commits/22555b6713c9f2c8e882269ffce9a826d016e87b))
+* **editors/template/lnodetype-wizards:** make use of -7-420 NSD ([0a2d5a4](https://github.com/openscd/open-scd/commits/0a2d5a40c50d5a0cc66fd7c5b31f6493aa7c4600))
+* **plugins/IED:** Add icon set to IED editor containers ([9878259](https://github.com/openscd/open-scd/commits/9878259665be2e34bd99dd1d5f72c1944b3dca1f))
+* **plugins/SampledValues:** Create Sampled Values tab in Subscription plugin ([f94b042](https://github.com/openscd/open-scd/commits/f94b0422253940785a0982ae72910f1bbbc2ac62))
+* **plugins/SampledValues:** Small bug fix + Added Integration tests ([a58f305](https://github.com/openscd/open-scd/commits/a58f305c78a65c056c617e9f09e8d648f4aaf610))
+* **plugins/Subscription:** Create 'Subscription' plugin for GOOSE subscriptions  ([25fae6f](https://github.com/openscd/open-scd/commits/25fae6fc42ad76f269ef029848d5cae6329eee33))
+* **wizard-dialog:** allow used-defined actions in menu ([f8c5a93](https://github.com/openscd/open-scd/commits/f8c5a93100e4c7e922627337ffee32f6169b12cf))
+
+
+### Bug Fixes
+
+* **action-pane:** adjust css rules for icon slot ([#594](https://github.com/openscd/open-scd/issues/594)) ([8bc0549](https://github.com/openscd/open-scd/commits/8bc0549bc791ef6b7fe0b1dfd4d5a6f1dfccde2d))
+* **editors/template:** on id attribute update adopt references as well ([#590](https://github.com/openscd/open-scd/issues/590)) ([af246dd](https://github.com/openscd/open-scd/commits/af246ddcde907688081aaa20d295faeb978b0a6f))
+* **editors/template:** properly update xxxType list after add/editing ([#582](https://github.com/openscd/open-scd/issues/582)) ([2e11cc8](https://github.com/openscd/open-scd/commits/2e11cc8c277d31dd693ae54656e1c3b4cd23f8f3))
+* **wizard-dialog:** make sure to close on non empty editor action ([8fb125c](https://github.com/openscd/open-scd/commits/8fb125c1c353feb37a4c988d59a608090fb0425b))
+
+## [0.11.0](https://github.com/openscd/open-scd/compare/v0.10.0...v0.11.0) (2022-03-08)
+
+
+### Features
+
+* **plugins/IED:** Added Functional Constraint value to DA Container. ([f389c2c](https://github.com/openscd/open-scd/commits/f389c2cf7595f9c2486dff0ef0f40a5feff028fb))
+* **wizards/reportcontrol:** add create wizard ([#544](https://github.com/openscd/open-scd/issues/544)) ([546419f](https://github.com/openscd/open-scd/commits/546419f31afe82ebf1315e2acce59e11f97d8ca8))
+* **wizards/smvopts:** add edit wizard ([#547](https://github.com/openscd/open-scd/issues/547)) ([10343c6](https://github.com/openscd/open-scd/commits/10343c605bcaf31c59d108b33838990a9615eaa4))
+
+
+### Bug Fixes
+
+* **editors/template:** create element with NS definition ([#567](https://github.com/openscd/open-scd/issues/567)) ([6fe49d2](https://github.com/openscd/open-scd/commits/6fe49d234df4730bc7838f6e597312e60171b0d5))
+* **editors/template:** three minor issues ([#565](https://github.com/openscd/open-scd/issues/565)) ([f00092a](https://github.com/openscd/open-scd/commits/f00092a96d78f2c86c94d4978b2886489e14c952))
+* **Settings:** remove 'undefined' when no NSDoc version can be read ([d557d26](https://github.com/openscd/open-scd/commits/d557d264ed7a65370d774f174b0ad77c01ba934d))
+* **wizard/foundation/limits:** abstractDataAttributeName ([#573](https://github.com/openscd/open-scd/issues/573)) ([179cad1](https://github.com/openscd/open-scd/commits/179cad1f0d05846111a9d868b800465c7e2bc0a5))
+
+## [0.10.0](https://github.com/openscd/open-scd/compare/v0.9.0...v0.10.0) (2022-02-21)
+
+
+### Features
+
+* **editors/IED:** display IED data attributes namespace description ([#522](https://github.com/openscd/open-scd/issues/522)) ([02b8d97](https://github.com/openscd/open-scd/commits/02b8d97ddb066a1c0134b97aa1e50243f2628048)), closes [#516](https://github.com/openscd/open-scd/issues/516)
+* **Settings:** Handle difference in version before uploading nsdoc file ([#541](https://github.com/openscd/open-scd/issues/541)) ([2e470cb](https://github.com/openscd/open-scd/commits/2e470cb3da26adc46c111840d4c9322eb3af14b1))
+* **wizard-checkbox:** web component for xs:boolean XML attributes ([#537](https://github.com/openscd/open-scd/issues/537)) ([2b11ae8](https://github.com/openscd/open-scd/commits/2b11ae8ddcfb43a01f7b5d6fe7dae1bee128da39))
+* **wizard/sampledvaluecontrol:** allow removing including referenced elements ([#536](https://github.com/openscd/open-scd/issues/536)) ([1940571](https://github.com/openscd/open-scd/commits/194057113de4398209f963262fb8135fd9f5bc03))
+
+## [0.9.0](https://github.com/openscd/open-scd/compare/v0.8.2...v0.9.0) (2022-02-04)
+
+
+### Features
+
+* **settings:** load nsdoc to local storage ([#502](https://github.com/openscd/open-scd/issues/502)) ([659aa8e](https://github.com/openscd/open-scd/commits/659aa8ef3459ab8f513df2cf7971a02753a3a21b)), closes [#516](https://github.com/openscd/open-scd/issues/516)
+* **wizards/reportcontrol:** added new IED wizard to update name/description ([#494](https://github.com/openscd/open-scd/issues/494)) ([110c83d](https://github.com/openscd/open-scd/commits/110c83d658f9c2a0f0c273249aefbee0f50fcfc1))
+* **wizards/reportcontrol:** allow basic ReportControl manipulation capability ([#505](https://github.com/openscd/open-scd/issues/505)) ([943b8dc](https://github.com/openscd/open-scd/commits/943b8dc2b82e6039bd6de99aabbfd10e31527256)), closes [#438](https://github.com/openscd/open-scd/issues/438) [#492](https://github.com/openscd/open-scd/issues/492) [#493](https://github.com/openscd/open-scd/issues/493) [#499](https://github.com/openscd/open-scd/issues/499)
+* **wizards/sampledvaluecontrol:** add edit wizards accessable from selection ([#510](https://github.com/openscd/open-scd/issues/510)) ([fa468b7](https://github.com/openscd/open-scd/commits/fa468b714b714623031fdd754a0056a9cd793214))
+* **wizards/smv:** add edit wizard and allow access from sampledvaluecontrol wizard ([#519](https://github.com/openscd/open-scd/issues/519)) ([aff0367](https://github.com/openscd/open-scd/commits/aff036776eba7434d619de20a67f8f07b3b3c5c7))
+
+
+### Bug Fixes
+
+* **editors/SingleLineDiagram:** added check if a substation is available/selected before drawing ([4eabdb3](https://github.com/openscd/open-scd/commits/4eabdb3ac9fdc2f2db2ebb2058bd8675592e12d6))
+* **editors:** In IED and SLD Editors fixed preserving the selection (IED or Substation) ([#501](https://github.com/openscd/open-scd/issues/501)) ([b10df43](https://github.com/openscd/open-scd/commits/b10df4364e4c5b8c1f4cb14766f1e50c1d6af567))
+* **menu/Help:** incorrect import of markup parser ([#531](https://github.com/openscd/open-scd/issues/531)) ([b6f7ea1](https://github.com/openscd/open-scd/commits/b6f7ea1024a30d7ed0f1f3af5bf42536f0f82fb5))
+* **wizards/fcda:** make sure lnInst is non empty string ([#512](https://github.com/openscd/open-scd/issues/512)) ([f8d2dc7](https://github.com/openscd/open-scd/commits/f8d2dc75a804b06c2e4f1178d0f9768b967ea806))
+
+### [0.8.2](https://github.com/openscd/open-scd/compare/v0.8.1...v0.8.2) (2022-01-15)
+
+
+### Bug Fixes
+
+* **Help:** hot-fix incorrect import statement ([c3baa84](https://github.com/openscd/open-scd/commits/c3baa847e1446bf4f2d3b2ad74834228dfc96d08))
+
+### [0.8.1](https://github.com/openscd/open-scd/compare/v0.8.0...v0.8.1) (2022-01-15)
+
+
+### Features
+
+* **editors/ied:** add read only data model structure ([#423](https://github.com/openscd/open-scd/issues/423)) ([fa15c7a](https://github.com/openscd/open-scd/commits/fa15c7a598f92c2af7237c3e9e1060d453b2162d)), closes [#454](https://github.com/openscd/open-scd/issues/454)
+* **editors/ied:** Add toggle for LDevice child elements ([#484](https://github.com/openscd/open-scd/issues/484)) ([9385506](https://github.com/openscd/open-scd/commits/9385506d3f5356bf0523eb3678c13d6b38c17ba9))
+* **editors/ied:** Changed icon of IED Editor ([#481](https://github.com/openscd/open-scd/issues/481)) ([be4c8ca](https://github.com/openscd/open-scd/commits/be4c8ca60e6817739094a92a77ef82c1c3911f2c))
+* **editors/SingleLineDiagram:** allow selecting the Substation element ([#449](https://github.com/openscd/open-scd/issues/449)) ([d09efec](https://github.com/openscd/open-scd/commits/d09efec1eccdf2363ed1db22c2558b9cc25b9395))
+* **editors/SingleLineDiagram:** allow updating X/Y coordinates in SLD for Busbar/ConductingEquipment/PowerTransformer ([#455](https://github.com/openscd/open-scd/issues/455)) ([dfae9b0](https://github.com/openscd/open-scd/commits/dfae9b0deda74cd12785b0a55a9298e91ec21b01))
+* **foundation:** allow dynamic wizards ([#471](https://github.com/openscd/open-scd/issues/471)) ([64a27d5](https://github.com/openscd/open-scd/commits/64a27d5875d2362b1796e811f909e13af7995c33))
+* **UpdateDescriptionSEL:** add menu type plugin for SEL specific IEDs ([#424](https://github.com/openscd/open-scd/issues/424)) ([12c9123](https://github.com/openscd/open-scd/commits/12c912301f8a918f27ef55b702a0334f76e96a45))
+* **zeroline:** show SampledValueControl for IED and whole project ([#477](https://github.com/openscd/open-scd/issues/477)) ([0253adc](https://github.com/openscd/open-scd/commits/0253adc3d696cd806eff23534114c122d27bb979))
+
+
+### Bug Fixes
+
+* **editors/template/lnodetype:** fix incorrect pattern for lnClass ([#469](https://github.com/openscd/open-scd/issues/469)) ([55e0c7e](https://github.com/openscd/open-scd/commits/55e0c7e999536bbd58b574be1ab93237974dfb87))
+* **wizards/fcda:** remove incorrect iedName from FCDA ([#446](https://github.com/openscd/open-scd/issues/446)) ([eae9f6e](https://github.com/openscd/open-scd/commits/eae9f6edc313bf293caa31ed3f82d5261a9ef5f3))
+
+## [0.8.0](https://github.com/openscd/open-scd/compare/v0.7.1...v0.8.0) (2021-12-10)
+
+
+### Features
+
+* **menu/UpdateDescritionABB:** update ABB ExtRef with internal signal description ([#374](https://github.com/openscd/open-scd/issues/374)) ([a3aecf7](https://github.com/openscd/open-scd/commits/a3aecf739ce22abfc1243b1f94a069cc05ad9b86))
+* **SingleLineDiagram:** open onclick ConductingEquipment edit wizard ([fd025a2](https://github.com/openscd/open-scd/commits/fd025a2b1b40e6fea11f91b2a4843ec665c179fa))
+* **templates/dotype-wizard:** add cdc field in create wizard ([#330](https://github.com/openscd/open-scd/issues/330)) ([0298ac5](https://github.com/openscd/open-scd/commits/0298ac51f3c6494fac7d470eff8f1939a56bdb55))
+* **validators/validatetemplate:** trigger validators with editor action ([#300](https://github.com/openscd/open-scd/issues/300)) ([13fbd18](https://github.com/openscd/open-scd/commits/13fbd1873f486aabc1e7c8de58b7544cf7da2eb8))
+* **wizards/dataset:** delete deselected FCDA ([#358](https://github.com/openscd/open-scd/issues/358)) ([c94826d](https://github.com/openscd/open-scd/commits/c94826d856ae9d89224f9e56dbf0a67b4bb7977c))
+* **wizards/fcda:** add data(FCDA) to existing DataSets ([#338](https://github.com/openscd/open-scd/issues/338)) ([423166e](https://github.com/openscd/open-scd/commits/423166ee728571d07d33887b55463799579fe72e)), closes [#339](https://github.com/openscd/open-scd/issues/339) [#345](https://github.com/openscd/open-scd/issues/345)
+
+
+### Bug Fixes
+
+* **editor-container:** minor UI issues ([#371](https://github.com/openscd/open-scd/issues/371)) ([81e1d3d](https://github.com/openscd/open-scd/commits/81e1d3d5c627d075386575253608f6cfe8abdbae))
+* **editor-container:** some UI related issues ([#357](https://github.com/openscd/open-scd/issues/357)) ([1b054b6](https://github.com/openscd/open-scd/commits/1b054b66b91b97876ee79f746ee08b9b18c74cff))
+* **templates/lnodetype-wizard:** deselect optional DOTypes at LNode creation ([#326](https://github.com/openscd/open-scd/issues/326)) ([09e7af5](https://github.com/openscd/open-scd/commits/09e7af5708dba8490ee60ecbe204f4a06dd7b7ce))
+
 ### [0.7.1](https://github.com/openscd/open-scd/compare/v0.7.0...v0.7.1) (2021-10-18)
 
 

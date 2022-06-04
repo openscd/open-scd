@@ -1,18 +1,18 @@
 import { html, TemplateResult } from 'lit-html';
 import { get, translate } from 'lit-translate';
 
+import '../wizard-textfield.js';
 import {
   createElement,
   EditorAction,
-  getReference,
   getValue,
   Wizard,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
 } from '../foundation.js';
-import { updateNamingAction } from './foundation/actions.js';
+import { replaceNamingAttributeWithReferencesAction } from './foundation/actions.js';
 
-function render(name: string | null, desc: string | null): TemplateResult[] {
+export function renderBayWizard(name: string | null, desc: string | null): TemplateResult[] {
   return [
     html`<wizard-textfield
       label="name"
@@ -32,7 +32,7 @@ function render(name: string | null, desc: string | null): TemplateResult[] {
 }
 
 export function createAction(parent: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!);
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const element = createElement(parent.ownerDocument, 'Bay', {
@@ -44,7 +44,6 @@ export function createAction(parent: Element): WizardActor {
       new: {
         parent,
         element,
-        reference: getReference(parent, 'Bay'),
       },
     };
 
@@ -62,7 +61,7 @@ export function createBayWizard(parent: Element): Wizard {
         label: get('add'),
         action: createAction(parent),
       },
-      content: render('', ''),
+      content: renderBayWizard('', ''),
     },
   ];
 }
@@ -75,9 +74,9 @@ export function editBayWizard(element: Element): Wizard {
       primary: {
         icon: 'edit',
         label: get('save'),
-        action: updateNamingAction(element),
+        action: replaceNamingAttributeWithReferencesAction(element, 'bay.action.updateBay'),
       },
-      content: render(
+      content: renderBayWizard(
         element.getAttribute('name'),
         element.getAttribute('desc')
       ),

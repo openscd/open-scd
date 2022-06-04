@@ -1,17 +1,18 @@
-import { html, fixture, expect } from '@open-wc/testing';
-
 import { registerTranslateConfig, use } from 'lit-translate';
 
-import { Button } from '@material/mwc-button';
+import { html, fixture, expect } from '@open-wc/testing';
 
-import { SettingElement, defaults } from '../../src/Setting.js';
 import './mock-setter.js';
+import { MockSetter } from './mock-setter.js';
+
+import { Button } from '@material/mwc-button';
+import { defaults } from '../../src/Setting.js';
 
 describe('SettingElement', () => {
-  let element: SettingElement;
+  let element: MockSetter;
   beforeEach(async () => {
     localStorage.clear();
-    element = <SettingElement>await fixture(html`<mock-setter></mock-setter>`);
+    element = <MockSetter>await fixture(html`<mock-setter></mock-setter>`);
   });
 
   it('initially has default settings', () =>
@@ -46,6 +47,45 @@ describe('SettingElement', () => {
       element.settingsUI.querySelector('mwc-button[dialogAction="reset"]')
     )).click();
     expect(element).to.have.deep.property('settings', defaults);
+  });
+
+  it('saves chosen .nsdoc file and looks like latest snapshot', async () => {
+    element.settingsUI.show();
+    await element.settingsUI.updateComplete;
+
+    const nsdocFile = await fetch('/test/testfiles/nsdoc/IEC_61850-7-2.nsdoc')
+      .then(response => response.text())
+
+    element.setSetting('IEC 61850-7-2', nsdocFile);
+
+    await element.requestUpdate();
+    await element.updateComplete;
+
+    expect(localStorage.getItem('IEC 61850-7-2')).to.eql(nsdocFile);
+    expect(element).shadowDom.to.equalSnapshot();
+  });
+
+  it('deletes a chosen .nsdoc file and looks like latest snapshot', async () => {
+    element.settingsUI.show();
+    await element.settingsUI.updateComplete;
+
+    const nsdocFile = await fetch('/test/testfiles/nsdoc/IEC_61850-7-2.nsdoc')
+      .then(response => response.text())
+
+    element.setSetting('IEC 61850-7-2', nsdocFile);
+
+    await element.requestUpdate();
+    await element.updateComplete;
+
+    (<Button>(
+      element.settingsUI.querySelector('mwc-icon[id="deleteNsdocItem"]')
+    )).click();
+
+    await element.requestUpdate();
+    await element.updateComplete;
+
+    expect(localStorage.getItem('IEC 61850-7-2')).to.equal(null);
+    expect(element).shadowDom.to.equalSnapshot();
   });
 }).afterAll(() => {
   registerTranslateConfig({ empty: key => `[${key}]` });

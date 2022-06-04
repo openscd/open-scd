@@ -1,13 +1,15 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import TemplatesPlugin from '../../../../src/editors/Templates.js';
+import '../../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../../mock-wizard-editor.js';
 
-import { Select } from '@material/mwc-select';
-import { WizardTextField } from '../../../../src/wizard-textfield.js';
-import { FilteredList } from '../../../../src/filtered-list.js';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
-import { Switch } from '@material/mwc-switch';
+import { Select } from '@material/mwc-select';
+
+import { FilteredList } from '../../../../src/filtered-list.js';
+import TemplatesPlugin from '../../../../src/editors/Templates.js';
+import { WizardTextField } from '../../../../src/wizard-textfield.js';
+import { WizardCheckbox } from '../../../../src/wizard-checkbox.js';
 
 describe('LNodeType wizards', () => {
   if (customElements.get('templates-editor') === undefined)
@@ -26,7 +28,7 @@ describe('LNodeType wizards', () => {
 
     templates = <TemplatesPlugin>parent.querySelector('templates-editor')!;
 
-    doc = await fetch('/base/test/testfiles/templates/dotypes.scd')
+    doc = await fetch('/test/testfiles/templates/dotypes.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     templates.doc = doc;
@@ -56,12 +58,12 @@ describe('LNodeType wizards', () => {
         )
       );
       deleteButton = <HTMLElement>(
-        parent.wizardUI.dialog?.querySelector('mwc-button[icon="delete"]')
+        parent.wizardUI.dialog?.querySelector('mwc-menu > mwc-list-item')
       );
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
     it('edits LNodeType attributes id', async () => {
       expect(doc.querySelector('LNodeType[id="Dummy.CSWI"]')).to.exist;
@@ -94,7 +96,6 @@ describe('LNodeType wizards', () => {
 
   describe('defines a createLNodeTypeWizard', () => {
     let selector: Select;
-    let autoimport: Switch;
     let idField: WizardTextField;
     let primayAction: HTMLElement;
     beforeEach(async () => {
@@ -119,9 +120,15 @@ describe('LNodeType wizards', () => {
       );
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
+
+    it('uses -7-4 and -7-420 namespace for lnClass suggestion', () =>
+      expect(
+        selector.items.filter(item => !item.noninteractive && !item.twoline)
+      ).to.have.lengthOf(215));
+
     it('recursively add missing! subsequent DOType elements', async () => {
       expect(doc.querySelector('LNodeType[id="myCSWI"]')).to.not.exist;
       expect(doc.querySelector('DOType[id="OpenSCD_ENC_Mod"]')).to.not.exist;
@@ -157,6 +164,7 @@ describe('LNodeType wizards', () => {
         1
       );
     }).timeout(5000);
+
     it('recursively add missing! subsequent DAType elements', async () => {
       expect(doc.querySelector('LNodeType[id="myCSWI"]')).to.not.exist;
       expect(doc.querySelector('DAType[id="OpenSCD_Originator"]')).to.not.exist;
@@ -199,6 +207,7 @@ describe('LNodeType wizards', () => {
         doc.querySelectorAll('DAType[id="OpenSCD_PulseConfig"]').length
       ).to.equal(1);
     }).timeout(5000);
+
     it('recursively add missing! subsequent EnumType elements', async () => {
       expect(doc.querySelector('LNodeType[id="myCSWI"]')).to.not.exist;
       expect(doc.querySelector('EnumType[id="OriginatorCategoryKind"]')).to.not
@@ -231,6 +240,7 @@ describe('LNodeType wizards', () => {
         doc.querySelectorAll('EnumType[id="OutputSignalKind"]').length
       ).to.equal(1);
     }).timeout(5000);
+
     it('respects the sequence defined in the standard', async () => {
       selector.value = '#OpenSCD_CSWI_noPB';
       await parent.requestUpdate(); // selector updates autoimport
@@ -286,8 +296,8 @@ describe('LNodeType wizards', () => {
         spsId = sps?.getAttribute('id') ?? '';
       });
 
-      it('looks like the latest snapshot', () => {
-        expect(parent.wizardUI.dialog).to.equalSnapshot();
+      it('looks like the latest snapshot', async () => {
+        await expect(parent.wizardUI.dialog).to.equalSnapshot();
       });
 
       it('filters the type selection for each DO to fit the cdc', () => {
@@ -310,6 +320,7 @@ describe('LNodeType wizards', () => {
           )
         ).to.not.exist;
       });
+
       it('adds new LNodeType with correct id and lnClass', async () => {
         beh.value = ensId;
         enaOpn.value = spsId;
@@ -326,6 +337,7 @@ describe('LNodeType wizards', () => {
           )
         ).to.exist;
       });
+
       it('adds selected DOs to new LNodeType', async () => {
         beh.value = ensId;
         enaOpn.value = spsId;
@@ -337,17 +349,17 @@ describe('LNodeType wizards', () => {
 
         expect(
           doc.querySelector(
-            `LNodeType[id="myGeneralLNodeType"][lnClass="CILO"] > DO[name="Beh"][bType="Struct"][type="${ensId}"]`
+            `LNodeType[id="myGeneralLNodeType"][lnClass="CILO"] > DO[name="Beh"]:not([bType])[type="${ensId}"]`
           )
         ).to.exist;
         expect(
           doc.querySelector(
-            `LNodeType[id="myGeneralLNodeType"][lnClass="CILO"] > DO[name="EnaOpn"][bType="Struct"][type="${spsId}"]`
+            `LNodeType[id="myGeneralLNodeType"][lnClass="CILO"] > DO[name="EnaOpn"]:not([bType])[type="${spsId}"]`
           )
         ).to.exist;
         expect(
           doc.querySelector(
-            `LNodeType[id="myGeneralLNodeType"][lnClass="CILO"] > DO[name="EnaCls"][bType="Struct"][type="${spsId}"]`
+            `LNodeType[id="myGeneralLNodeType"][lnClass="CILO"] > DO[name="EnaCls"]:not([bType])[type="${spsId}"]`
           )
         ).to.exist;
       });
@@ -359,7 +371,7 @@ describe('LNodeType wizards', () => {
     let descField: WizardTextField;
     let typeSelect: Select;
     let accessControlField: WizardTextField;
-    let transientSelect: Select;
+    let transientSelect: WizardCheckbox;
     let primaryAction: HTMLElement;
     let deleteButton: HTMLElement;
 
@@ -391,8 +403,10 @@ describe('LNodeType wizards', () => {
       typeSelect = <Select>(
         parent.wizardUI.dialog?.querySelector('mwc-select[label="type"]')
       );
-      transientSelect = <Select>(
-        parent.wizardUI.dialog?.querySelector('mwc-select[label="transient"]')
+      transientSelect = <WizardCheckbox>(
+        parent.wizardUI.dialog?.querySelector(
+          'wizard-checkbox[label="transient"]'
+        )
       );
       primaryAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
@@ -400,12 +414,12 @@ describe('LNodeType wizards', () => {
         )
       );
       deleteButton = <HTMLElement>(
-        parent.wizardUI.dialog?.querySelector('mwc-button[icon="delete"]')
+        parent.wizardUI.dialog?.querySelector('mwc-menu > mwc-list-item')
       );
     });
 
     it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+      expect(parent.wizardUI.dialog).to;
     });
     it('edits DO attributes name', async () => {
       expect(doc.querySelector('LNodeType[id="Dummy.LLN0"] > DO[name="Mod"]'))
@@ -431,7 +445,7 @@ describe('LNodeType wizards', () => {
       typeSelect.value = 'Dummy.CMV';
       accessControlField.nullable = false;
       accessControlField.maybeValue = 'myAccessControl';
-      transientSelect.value = 'true';
+      transientSelect.maybeValue = 'true';
 
       await parent.requestUpdate();
       primaryAction.click();
@@ -481,7 +495,7 @@ describe('LNodeType wizards', () => {
     let descField: WizardTextField;
     let typeSelect: Select;
     let accessControlField: WizardTextField;
-    let transientSelect: Select;
+    let transientSelect: WizardCheckbox;
     let primaryAction: HTMLElement;
 
     beforeEach(async () => {
@@ -491,9 +505,7 @@ describe('LNodeType wizards', () => {
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       (<HTMLElement>(
-        parent.wizardUI.dialog?.querySelectorAll(
-          'mwc-button[icon="playlist_add"]'
-        )[0]
+        parent.wizardUI.dialog?.querySelectorAll('mwc-menu > mwc-list-item')[1]
       )).click();
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
@@ -512,8 +524,10 @@ describe('LNodeType wizards', () => {
       typeSelect = <Select>(
         parent.wizardUI.dialog?.querySelector('mwc-select[label="type"]')
       );
-      transientSelect = <Select>(
-        parent.wizardUI.dialog?.querySelector('mwc-select[label="transient"]')
+      transientSelect = <WizardCheckbox>(
+        parent.wizardUI.dialog?.querySelector(
+          'wizard-checkbox[label="transient"]'
+        )
       );
       primaryAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
@@ -522,8 +536,8 @@ describe('LNodeType wizards', () => {
       );
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
     it('creates a new DO element', async () => {
       expect(
@@ -551,7 +565,7 @@ describe('LNodeType wizards', () => {
       typeSelect.value = 'Dummy.CMV';
       accessControlField.nullable = false;
       accessControlField.maybeValue = 'myAccessControl';
-      transientSelect.value = 'true';
+      transientSelect.maybeValue = 'true';
 
       await parent.requestUpdate();
       primaryAction.click();

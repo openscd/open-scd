@@ -15,6 +15,16 @@ export function newEmptySCD(
   return new DOMParser().parseFromString(markup, 'application/xml');
 }
 
+export const SCL_NAMESPACE= "http://www.iec.ch/61850/2003/SCL";
+
+/**
+ * Check if the namespace of the passed element is the standard SCL Namespace.
+ * @param element - The element to check.
+ */
+export function isSCLNamespace(element: Element): boolean {
+  return element.namespaceURI === SCL_NAMESPACE;
+}
+
 export interface ValidationError {
   file: string;
   line: number;
@@ -2367,9 +2377,9 @@ export const schemas = {
   <xs:annotation>
     <xs:documentation xml:lang="en">
 			SCL schema version "2007" revision "B" release 1,  for IEC 61850-6 Ed. 2.1. Draft 2014-07-18.
-			
+
 			COPYRIGHT (c) IEC, 2014. All rights reserved. Disclaimer: The IEC disclaims liability for any personal injury, property or other damages of any nature whatsoever, whether special, indirect, consequential or compensatory, directly or indirectly resulting from this software and the document upon which its methods are based, use of, or reliance upon.
-			
+
 			Implemented Ed. 2 Tissues: 658, 668, 687, 768, 779, 789, 804, 806, 807, 822, 824, 845, 853, 855, 856, 857, 886, 936, 1175, 1189, 1208.
 			Tissues not relevant for the SCL schema: 660, 661 (Ed.3), 663, 678, 699, 700, 705, 706 (Ed.3), 718, 719, 721, 731, 733, 752, 769, 787, 788, 815, 823, 825, 837, 847, 865, 873, 883, 884, 885, 901, 914, 915, 918, 927 (Ed.3), 930, 938, 949, 961, 1048, 1054, 1059, 1118, 1130, 1131, 1147, 1161, 1168, 1170 (Ed.3), 1173, 1188, 1195, 1200, 1204, 1207, 1221, 1224, 1241 (Ed.3), 1255, 1257 (Ed.3), 1284.
 		</xs:documentation>
@@ -2444,7 +2454,7 @@ export const schemas = {
   <xs:annotation>
     <xs:documentation xml:lang="en">
 			SCL schema version "2007" revision "B" release 1,  for IEC 61850-6 Ed. 2.1. Draft 2014-07-18.
-			
+
 			COPYRIGHT (c) IEC, 2014. All rights reserved. Disclaimer: The IEC disclaims liability for any personal injury, property or other damages of any nature whatsoever, whether special, indirect, consequential or compensatory, directly or indirectly resulting from this software and the document upon which its methods are based, use of, or reliance upon.
 		</xs:documentation>
   </xs:annotation>
@@ -3174,7 +3184,7 @@ export const schemas = {
   <xs:annotation>
     <xs:documentation xml:lang="en">
 			SCL schema version "2007" revision "B" release 1,  for IEC 61850-6 Ed. 2.1. Draft 2014-07-18.
-			
+
 			COPYRIGHT (c) IEC, 2014. All rights reserved. Disclaimer: The IEC disclaims liability for any personal injury, property or other damages of any nature whatsoever, whether special, indirect, consequential or compensatory, directly or indirectly resulting from this software and the document upon which its methods are based, use of, or reliance upon.
 		</xs:documentation>
   </xs:annotation>
@@ -3325,7 +3335,7 @@ export const schemas = {
   <xs:annotation>
     <xs:documentation xml:lang="en">
 			SCL schema version "2007" revision "B" release 1,  for IEC 61850-6 Ed. 2.1. Draft 2014-07-18.
-			
+
 			COPYRIGHT (c) IEC, 2014. All rights reserved. Disclaimer: The IEC disclaims liability for any personal injury, property or other damages of any nature whatsoever, whether special, indirect, consequential or compensatory, directly or indirectly resulting from this software and the document upon which its methods are based, use of, or reliance upon.
 		</xs:documentation>
   </xs:annotation>
@@ -4021,7 +4031,7 @@ export const schemas = {
   <xs:annotation>
     <xs:documentation xml:lang="en">
 			SCL schema version "2007" revision "B" release 1,  for IEC 61850-6 Ed. 2.1. Draft 2014-07-18.
-			
+
 			COPYRIGHT (c) IEC, 2014. All rights reserved. Disclaimer: The IEC disclaims liability for any personal injury, property or other damages of any nature whatsoever, whether special, indirect, consequential or compensatory, directly or indirectly resulting from this software and the document upon which its methods are based, use of, or reliance upon.
 		</xs:documentation>
   </xs:annotation>
@@ -4203,7 +4213,7 @@ export const schemas = {
   <xs:annotation>
     <xs:documentation xml:lang="en">
 			SCL schema version "2007" revision "B" release 1,  for IEC 61850-6 Ed. 2.1. Draft 2014-07-18.
-			
+
 			COPYRIGHT (c) IEC, 2014. All rights reserved. Disclaimer: The IEC disclaims liability for any personal injury, property or other damages of any nature whatsoever, whether special, indirect, consequential or compensatory, directly or indirectly resulting from this software and the document upon which its methods are based, use of, or reliance upon.
 		</xs:documentation>
   </xs:annotation>
@@ -5090,7 +5100,7 @@ export const schemas = {
   <xs:annotation>
     <xs:documentation xml:lang="en">
 			SCL schema version "2007" revision "B" release 1,  for IEC 61850-6 Ed. 2.1. Draft 2014-07-18.
-			
+
 			COPYRIGHT (c) IEC, 2014. All rights reserved. Disclaimer: The IEC disclaims liability for any personal injury, property or other damages of any nature whatsoever, whether special, indirect, consequential or compensatory, directly or indirectly resulting from this software and the document upon which its methods are based, use of, or reliance upon.
 		</xs:documentation>
   </xs:annotation>
@@ -5449,7 +5459,7 @@ export const schemas = {
   <xs:annotation>
     <xs:documentation xml:lang="en">
 			SCL schema version "2007" revision "B" release 1,  for IEC 61850-6 Ed. 2.1. Draft 2014-07-18.
-			
+
 			COPYRIGHT (c) IEC, 2014. All rights reserved. Disclaimer: The IEC disclaims liability for any personal injury, property or other damages of any nature whatsoever, whether special, indirect, consequential or compensatory, directly or indirectly resulting from this software and the document upon which its methods are based, use of, or reliance upon.
 		</xs:documentation>
   </xs:annotation>

@@ -1,9 +1,20 @@
+import { html, property, query, TemplateResult } from 'lit-element';
+import { translate } from 'lit-translate';
+
+import '@material/mwc-drawer';
+import '@material/mwc-icon';
+import '@material/mwc-icon-button';
+import '@material/mwc-linear-progress';
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-tab';
+import '@material/mwc-tab-bar';
+import '@material/mwc-top-app-bar-fixed';
+
 import { Drawer } from '@material/mwc-drawer';
 import { ActionDetail, List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
-import { html, property, query, TemplateResult } from 'lit-element';
-import { until } from 'lit-html/directives/until';
-import { translate } from 'lit-translate';
+
 import { Mixin, newPendingStateEvent } from './foundation.js';
 import { LoggingElement } from './Logging.js';
 import { Plugin, PluggingElement, pluginIcons } from './Plugging.js';
@@ -16,7 +27,7 @@ interface MenuItem {
   actionItem?: boolean;
   action?: (event: CustomEvent<ActionDetail>) => void;
   disabled?: () => boolean;
-  content?: () => Promise<TemplateResult>;
+  content?: TemplateResult;
   kind: string;
 }
 
@@ -234,12 +245,7 @@ export function Hosting<
           ${me.hint
             ? html`<span slot="secondary"><tt>${me.hint}</tt></span>`
             : ''}
-          ${me.content
-            ? until(
-                me.content(),
-                html`<mwc-linear-progress indeterminate></mwc-linear-progress>`
-              )
-            : ''}
+          ${me.content ?? ''}
         </mwc-list-item>
       `;
     }
@@ -303,11 +309,7 @@ export function Hosting<
         </mwc-drawer>
 
         ${this.doc
-          ? until(
-              this.editors[this.activeTab] &&
-                this.editors[this.activeTab].content(),
-              html`<mwc-linear-progress indeterminate></mwc-linear-progress>`
-            )
+          ? this.editors[this.activeTab].content
           : html`<div class="landing">
               ${(<MenuItem[]>this.menu.filter(mi => mi !== 'divider')).map(
                 (mi: MenuItem, index) =>

@@ -1,11 +1,12 @@
 import { expect } from '@open-wc/testing';
+
 import { dOValidator } from '../../../../src/validators/templates/dosdo.js';
 
 describe('do or sdo validator', () => {
   let doc: XMLDocument;
 
   beforeEach(async () => {
-    doc = await fetch('/base/test/testfiles/validators/doandsdotestfile.scd')
+    doc = await fetch('/test/testfiles/validators/doandsdotestfile.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
   });

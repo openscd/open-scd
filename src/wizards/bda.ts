@@ -1,25 +1,33 @@
-import { html } from 'lit-html';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
+
+import '@material/mwc-button';
 
 import {
   cloneElement,
   createElement,
   EditorAction,
-  getReference,
   getValue,
   isPublic,
   newActionEvent,
   newWizardEvent,
-  SCLTag,
   Wizard,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
+  WizardMenuActor,
 } from '../foundation.js';
-
 import { getValAction, wizardContent } from './abstractda.js';
 
+function remove(element: Element): WizardMenuActor {
+  return (wizard: Element): void => {
+    wizard.dispatchEvent(
+      newActionEvent({ old: { parent: element.parentElement!, element } })
+    );
+    wizard.dispatchEvent(newWizardEvent());
+  };
+}
+
 export function updateBDaAction(element: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const bType = getValue(inputs.find(i => i.label === 'bType')!)!;
@@ -81,24 +89,6 @@ export function updateBDaAction(element: Element): WizardActor {
 export function editBDAWizard(element: Element): Wizard {
   const doc = element.ownerDocument;
   const type = element.getAttribute('type');
-  const deleteButton = html`<mwc-button
-    icon="delete"
-    trailingIcon
-    label="${translate('remove')}"
-    @click=${(e: MouseEvent) => {
-      e.target!.dispatchEvent(newWizardEvent());
-      e.target!.dispatchEvent(
-        newActionEvent({
-          old: {
-            parent: element.parentElement!,
-            element: element,
-            reference: element.nextSibling,
-          },
-        })
-      );
-    }}
-    fullwidth
-  ></mwc-button>`;
   const name = element.getAttribute('name');
   const desc = element.getAttribute('desc');
   const bType = element.getAttribute('bType') ?? '';
@@ -122,8 +112,14 @@ export function editBDAWizard(element: Element): Wizard {
         label: get('save'),
         action: updateBDaAction(element),
       },
+      menuActions: [
+        {
+          icon: 'delete',
+          label: get('remove'),
+          action: remove(element),
+        },
+      ],
       content: [
-        deleteButton,
         ...wizardContent(
           name,
           desc,
@@ -142,7 +138,7 @@ export function editBDAWizard(element: Element): Wizard {
 }
 
 export function createBDaAction(parent: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const bType = getValue(inputs.find(i => i.label === 'bType')!)!;
@@ -186,7 +182,6 @@ export function createBDaAction(parent: Element): WizardActor {
         new: {
           parent,
           element,
-          reference: getReference(parent, <SCLTag>element.tagName),
         },
       },
     ];

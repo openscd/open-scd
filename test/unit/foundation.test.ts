@@ -13,7 +13,7 @@ import {
   isMove,
   isSame,
   isSimple,
-  isUpdate,
+  isReplace,
   newActionEvent,
   newPendingStateEvent,
   newWizardEvent,
@@ -23,6 +23,9 @@ import {
   SCLTag,
   getChildElementsByTagName,
   cloneElement,
+  depth,
+  getUniqueElementName,
+  newLnInstGenerator,
 } from '../../src/foundation.js';
 
 import { MockAction } from './mock-actions.js';
@@ -41,12 +44,12 @@ describe('foundation', () => {
 
   beforeEach(async () => {
     scl1 = (
-      await fetch('/base/test/testfiles/valid2007B4.scd')
+      await fetch('/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'))
     ).documentElement;
     scl2 = (
-      await fetch('/base/test/testfiles/valid2003.scd')
+      await fetch('/test/testfiles/valid2003.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'))
     ).documentElement;
@@ -64,8 +67,8 @@ describe('foundation', () => {
       expect(MockAction.cre).to.satisfy(isCreate);
       expect(MockAction.del).to.satisfy(isDelete);
       expect(MockAction.mov).to.satisfy(isMove);
-      expect(MockAction.upd).to.satisfy(isUpdate);
-
+      expect(MockAction.upd).to.satisfy(isReplace);
+      isReplace;
       expect(MockAction.cre).to.satisfy(isSimple);
       expect(MockAction.del).to.satisfy(isSimple);
       expect(MockAction.mov).to.satisfy(isSimple);
@@ -73,16 +76,16 @@ describe('foundation', () => {
 
       expect(MockAction.cre).to.not.satisfy(isDelete);
       expect(MockAction.cre).to.not.satisfy(isMove);
-      expect(MockAction.cre).to.not.satisfy(isUpdate);
-
+      expect(MockAction.cre).to.not.satisfy(isReplace);
+      isReplace;
       expect(MockAction.del).to.not.satisfy(isCreate);
       expect(MockAction.del).to.not.satisfy(isMove);
-      expect(MockAction.del).to.not.satisfy(isUpdate);
-
+      expect(MockAction.del).to.not.satisfy(isReplace);
+      isReplace;
       expect(MockAction.mov).to.not.satisfy(isCreate);
       expect(MockAction.mov).to.not.satisfy(isDelete);
-      expect(MockAction.mov).to.not.satisfy(isUpdate);
-
+      expect(MockAction.mov).to.not.satisfy(isReplace);
+      isReplace;
       expect(MockAction.upd).to.not.satisfy(isCreate);
       expect(MockAction.upd).to.not.satisfy(isDelete);
       expect(MockAction.upd).to.not.satisfy(isMove);
@@ -94,8 +97,9 @@ describe('foundation', () => {
       expect(MockAction.complex).to.not.satisfy(isCreate);
       expect(MockAction.complex).to.not.satisfy(isDelete);
       expect(MockAction.complex).to.not.satisfy(isMove);
-      expect(MockAction.complex).to.not.satisfy(isUpdate);
+      expect(MockAction.complex).to.not.satisfy(isReplace);
     });
+    isReplace;
 
     describe('invert', () => {
       it('turns Create into Delete and vice versa', () => {
@@ -108,8 +112,9 @@ describe('foundation', () => {
       });
 
       it('turns Update into Update', () => {
-        expect(invert(MockAction.upd)).to.satisfy(isUpdate);
+        expect(invert(MockAction.upd)).to.satisfy(isReplace);
       });
+      isReplace;
 
       it('inverts components of complex actions in reverse order', () => {
         const action = MockAction.complex;
@@ -148,12 +153,19 @@ describe('foundation', () => {
   });
 
   describe('WizardEvent', () => {
-    it('optionally bears a wizard in its detail', () => {
+    it('optionally bears a wizard factory in its detail', () => {
       expect(newWizardEvent()).property('detail').property('wizard').to.be.null;
       expect(newWizardEvent([]))
         .property('detail')
         .property('wizard')
-        .to.be.an('array').and.to.be.empty;
+        .to.be.a('function');
+    });
+
+    it('allows to dispatch dynamic wizards', () => {
+      expect(newWizardEvent(() => []))
+        .property('detail')
+        .property('wizard')
+        .to.be.a('function');
     });
   });
 
@@ -427,7 +439,7 @@ describe('foundation', () => {
   describe('findControlBlocks', () => {
     let doc: Document;
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/comm-map.scd')
+      doc = await fetch('/test/testfiles/comm-map.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     });
@@ -456,10 +468,30 @@ describe('foundation', () => {
     });
   });
 
+  describe('getUniqueElementName', () => {
+    let parent: Element;
+    beforeEach(() => {
+      const testDoc = new DOMParser().parseFromString(
+        '<Parent>' +
+          '<Child name="newChild1"/><Child name="newChild2"/>' +
+          '<Child2 name="newChild3"/><Child2 name="newChild21"/>' +
+          '</Parent>',
+        'application/xml'
+      );
+      parent = testDoc.querySelector<Element>('Parent')!;
+    });
+
+    it('returns unique name for Child', () =>
+      expect(getUniqueElementName(parent, 'Child')).to.equal('newChild3'));
+
+    it('returns unique name for Child2', () =>
+      expect(getUniqueElementName(parent, 'Child2')).to.equal('newChild22'));
+  });
+
   describe('findFCDAs', () => {
     let doc: Document;
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/comm-map.scd')
+      doc = await fetch('/test/testfiles/comm-map.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     });
@@ -492,7 +524,7 @@ describe('foundation', () => {
   describe('getChildElementsByTagName', () => {
     let doc: Document;
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/lnodewizard.scd')
+      doc = await fetch('/test/testfiles/lnodewizard.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     });
@@ -543,6 +575,102 @@ describe('foundation', () => {
       const newElement = cloneElement(element, { attr1, attr2 });
       expect(newElement.attributes.length).to.equal(1);
       expect(newElement).to.not.have.attribute('attr1');
+    });
+  });
+
+  describe('depth', () => {
+    const circular = { a: { b: {} }, c: {} };
+    circular.a.b = circular;
+
+    const fiveDeep: unknown = [
+      'first level',
+      2,
+      {
+        a: 'second level',
+        b: 2,
+        c: [
+          'third level',
+          { a: 'fourth level', b: 2, c: { a: 'fifth level!' } },
+        ],
+      },
+      'test',
+    ];
+
+    it("returns the given object's or array's depth", () =>
+      expect(depth(<Record<string, unknown>>fiveDeep)).to.equal(5));
+
+    it('returns zero if given something other than an object or array', () =>
+      expect(depth(<Record<string, unknown>>(<unknown>'test'))).to.equal(0));
+
+    it('returns Infinity if given a circularly defined object or array', () =>
+      expect(depth(circular)).to.not.be.finite);
+  });
+
+  describe('generator function for new `lnInst` attribute', () => {
+    let lnInstGenerator: (lnClass: string) => string | undefined;
+    let parent: Element;
+
+    describe('with existing unique lnInst', () => {
+      beforeEach(() => {
+        parent = new DOMParser().parseFromString(
+          `<Function name="someName">
+            <LNode name="None" lnClass="CSWI" lnInst="1"/>
+            <LNode name="None" lnClass="XCBR" lnInst="1"/>
+            <LNode name="None" lnClass="CILO" lnInst="1"/>
+            <LNode name="None" lnClass="CSWI" lnInst="2"/>
+            <LNode name="None" lnClass="PDIS" lnInst="1"/>
+            <LNode name="None" lnClass="CSWI" lnInst="5"/>
+            <LNode name="None" lnClass="CSWI" lnInst="6"/>
+            <LNode name="None" lnClass="CSWI" lnInst="8"/>
+          </Function>`,
+          'application/xml'
+        ).documentElement;
+
+        lnInstGenerator = newLnInstGenerator(parent);
+      });
+
+      it('returns unique lnInst called once', () =>
+        expect(lnInstGenerator('CSWI')).to.equal('3'));
+
+      it('returns unique lnInst called several times', () => {
+        expect(lnInstGenerator('CSWI')).to.equal('3');
+        expect(lnInstGenerator('CSWI')).to.equal('4');
+        expect(lnInstGenerator('CSWI')).to.equal('7');
+        expect(lnInstGenerator('CSWI')).to.equal('9');
+      });
+
+      it('returns unique lnInst called several times', () => {
+        expect(lnInstGenerator('CSWI')).to.equal('3');
+        expect(lnInstGenerator('CSWI')).to.equal('4');
+        expect(lnInstGenerator('CSWI')).to.equal('7');
+        expect(lnInstGenerator('CSWI')).to.equal('9');
+      });
+    });
+
+    describe('with missing unique lnInst for lnClass PDIS', () => {
+      beforeEach(() => {
+        parent = new DOMParser().parseFromString(
+          `<Function name="someName">
+          </Function>`,
+          'application/xml'
+        ).documentElement;
+
+        for (let i = 1; i <= 99; i++) {
+          const lNode = new DOMParser().parseFromString(
+            `<LNode iedName="None" lnClass="PDIS" lnInst="${i}" />`,
+            'application/xml'
+          ).documentElement;
+          parent.appendChild(lNode);
+        }
+
+        lnInstGenerator = newLnInstGenerator(parent);
+      });
+
+      it('return undefined for the lnClass PDIS', () =>
+        expect(lnInstGenerator('PDIS')).to.be.undefined);
+
+      it('return unique lnInst for another lnClass', () =>
+        expect(lnInstGenerator('CSWI')).to.equal('1'));
     });
   });
 });

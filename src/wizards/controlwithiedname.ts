@@ -1,5 +1,12 @@
 import { html } from 'lit-element';
 import { get } from 'lit-translate';
+
+import '@material/mwc-icon';
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-check-list-item';
+import { List } from '@material/mwc-list';
+
+import '../filtered-list.js';
 import {
   createElement,
   EditorAction,
@@ -8,12 +15,10 @@ import {
   Wizard,
   WizardAction,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
 } from '../foundation.js';
 
-import { List } from '@material/mwc-list';
-
-import { inputIcon } from '../icons.js';
+import { inputIcon } from '../icons/icons.js';
 import {
   getSourceReferences,
   openCommunicationMappingWizard,
@@ -144,7 +149,7 @@ function disconnectExtRefs(extRefs: Element[]): EditorAction[] {
 
 function disconnect(extRef: Element[]): WizardActor {
   return (
-    inputs: WizardInput[],
+    inputs: WizardInputElement[],
     wizard: Element,
     list?: List | null
   ): WizardAction[] => {

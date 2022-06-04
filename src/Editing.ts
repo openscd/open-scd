@@ -6,19 +6,23 @@ import {
   Delete,
   EditorAction,
   EditorActionEvent,
+  getReference,
   isCreate,
   isDelete,
   isMove,
   isSimple,
-  isUpdate,
+  isReplace,
   LitElementConstructor,
   Mixin,
   Move,
   newLogEvent,
   newValidateEvent,
   OpenDocEvent,
+  SCLTag,
   SimpleAction,
+  Replace,
   Update,
+  isUpdate,
 } from './foundation.js';
 
 /** Mixin that edits an `XML` `doc`, listening to [[`EditorActionEvent`]]s */
@@ -40,15 +44,22 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
     private checkCreateValidity(create: Create): boolean {
       if (create.checkValidity !== undefined) return create.checkValidity();
 
-      const invalid =
+      if (
+        !(create.new.element instanceof Element) ||
+        !(create.new.parent instanceof Element)
+      )
+        return true;
+
+      const invalidNaming =
         create.new.element.hasAttribute('name') &&
         Array.from(create.new.parent.children).some(
           elm =>
-            elm.tagName === create.new.element.tagName &&
-            elm.getAttribute('name') === create.new.element.getAttribute('name')
+            elm.tagName === (<Element>create.new.element).tagName &&
+            elm.getAttribute('name') ===
+              (<Element>create.new.element).getAttribute('name')
         );
 
-      if (invalid)
+      if (invalidNaming) {
         this.dispatchEvent(
           newLogEvent({
             kind: 'error',
@@ -66,41 +77,94 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
           })
         );
 
-      return !invalid;
+        return false;
+      }
+
+      const invalidId =
+        create.new.element.hasAttribute('id') &&
+        Array.from(
+          create.new.parent.ownerDocument.querySelectorAll(
+            'LNodeType, DOType, DAType, EnumType'
+          )
+        ).some(
+          elm =>
+            elm.getAttribute('id') ===
+            (<Element>create.new.element).getAttribute('id')
+        );
+
+      if (invalidId) {
+        this.dispatchEvent(
+          newLogEvent({
+            kind: 'error',
+            title: get('editing.error.create', {
+              name: create.new.element.tagName,
+            }),
+            message: get('editing.error.idClash', {
+              id: create.new.element.getAttribute('id')!,
+            }),
+          })
+        );
+
+        return false;
+      }
+
+      return true;
     }
 
     private onCreate(action: Create) {
       if (!this.checkCreateValidity(action)) return false;
+
+      if (
+        action.new.reference === undefined &&
+        action.new.element instanceof Element &&
+        action.new.parent instanceof Element
+      )
+        action.new.reference = getReference(
+          action.new.parent,
+          <SCLTag>action.new.element.tagName
+        );
+      else action.new.reference = action.new.reference ?? null;
 
       action.new.parent.insertBefore(action.new.element, action.new.reference);
       return true;
     }
 
     private logCreate(action: Create) {
+      const name =
+        action.new.element instanceof Element
+          ? action.new.element.tagName
+          : get('editing.node');
+
       this.dispatchEvent(
         newLogEvent({
           kind: 'action',
-          title: get('editing.created', {
-            name: action.new.element.tagName,
-          }),
-          action: action,
+          title: get('editing.created', { name }),
+          action,
         })
       );
     }
 
     private onDelete(action: Delete) {
-      action.old.element.remove();
+      if (!action.old.reference)
+        action.old.reference = action.old.element.nextSibling;
+
+      if (action.old.element.parentNode !== action.old.parent) return false;
+
+      action.old.parent.removeChild(action.old.element);
       return true;
     }
 
     private logDelete(action: Delete) {
+      const name =
+        action.old.element instanceof Element
+          ? action.old.element.tagName
+          : get('editing.node');
+
       this.dispatchEvent(
         newLogEvent({
           kind: 'action',
-          title: get('editing.deleted', {
-            name: action.old.element.tagName,
-          }),
-          action: action,
+          title: get('editing.deleted', { name }),
+          action,
         })
       );
     }
@@ -138,6 +202,15 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
     private onMove(action: Move) {
       if (!this.checkMoveValidity(action)) return false;
 
+      if (!action.old.reference)
+        action.old.reference = action.old.element.nextSibling;
+
+      if (action.new.reference === undefined)
+        action.new.reference = getReference(
+          action.new.parent,
+          <SCLTag>action.old.element.tagName
+        );
+
       action.new.parent.insertBefore(action.old.element, action.new.reference);
       return true;
     }
@@ -154,61 +227,172 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       );
     }
 
-    private checkUpdateValidity(update: Update): boolean {
-      if (update.checkValidity !== undefined) return update.checkValidity();
+    private checkReplaceValidity(replace: Replace): boolean {
+      if (replace.checkValidity !== undefined) return replace.checkValidity();
 
-      const invalid =
-        update.new.element.hasAttribute('name') &&
-        update.new.element.getAttribute('name') !==
-          update.old.element.getAttribute('name') &&
-        Array.from(update.old.element.parentElement?.children ?? []).some(
+      const invalidNaming =
+        replace.new.element.hasAttribute('name') &&
+        replace.new.element.getAttribute('name') !==
+          replace.old.element.getAttribute('name') &&
+        Array.from(replace.old.element.parentElement?.children ?? []).some(
           elm =>
-            elm.tagName === update.new.element.tagName &&
-            elm.getAttribute('name') === update.new.element.getAttribute('name')
+            elm.tagName === replace.new.element.tagName &&
+            elm.getAttribute('name') ===
+              replace.new.element.getAttribute('name')
         );
 
-      if (invalid)
+      if (invalidNaming) {
         this.dispatchEvent(
           newLogEvent({
             kind: 'error',
             title: get('editing.error.update', {
-              name: update.new.element.tagName,
+              name: replace.new.element.tagName,
             }),
             message: get('editing.error.nameClash', {
-              parent: update.old.element.parentElement!.tagName,
-              child: update.new.element.tagName,
-              name: update.new.element.getAttribute('name')!,
+              parent: replace.old.element.parentElement!.tagName,
+              child: replace.new.element.tagName,
+              name: replace.new.element.getAttribute('name')!,
             }),
           })
         );
 
-      return !invalid;
+        return false;
+      }
+
+      const invalidId =
+        replace.new.element.hasAttribute('id') &&
+        replace.new.element.getAttribute('id') !==
+          replace.old.element.getAttribute('id') &&
+        Array.from(
+          replace.new.element.ownerDocument.querySelectorAll(
+            'LNodeType, DOType, DAType, EnumType'
+          )
+        ).some(
+          elm =>
+            elm.getAttribute('id') ===
+            (<Element>replace.new.element).getAttribute('id')
+        );
+
+      if (invalidId) {
+        this.dispatchEvent(
+          newLogEvent({
+            kind: 'error',
+            title: get('editing.error.update', {
+              name: replace.new.element.tagName,
+            }),
+            message: get('editing.error.idClash', {
+              id: replace.new.element.getAttribute('id')!,
+            }),
+          })
+        );
+
+        return false;
+      }
+
+      return true;
     }
 
-    private onUpdate(action: Update) {
-      if (!this.checkUpdateValidity(action)) return false;
+    private onReplace(action: Replace) {
+      if (!this.checkReplaceValidity(action)) return false;
 
       action.new.element.append(...Array.from(action.old.element.children));
       action.old.element.replaceWith(action.new.element);
       return true;
     }
 
-    private logUpdate(action: Update) {
+    private logUpdate(action: Replace | Update) {
+      const name = isReplace(action)
+        ? action.new.element.tagName
+        : (action as Update).element.tagName;
+
       this.dispatchEvent(
         newLogEvent({
           kind: 'action',
           title: get('editing.updated', {
-            name: action.new.element.tagName,
+            name,
           }),
           action: action,
         })
       );
     }
 
+    private checkUpdateValidity(update: Update): boolean {
+      if (update.checkValidity !== undefined) return update.checkValidity();
+
+      if (update.oldAttributes['name'] !== update.newAttributes['name']) {
+        const invalidNaming = Array.from(
+          update.element.parentElement?.children ?? []
+        ).some(
+          elm =>
+            elm.tagName === update.element.tagName &&
+            elm.getAttribute('name') === update.newAttributes['name']
+        );
+
+        if (invalidNaming) {
+          this.dispatchEvent(
+            newLogEvent({
+              kind: 'error',
+              title: get('editing.error.update', {
+                name: update.element.tagName,
+              }),
+              message: get('editing.error.nameClash', {
+                parent: update.element.parentElement!.tagName,
+                child: update.element.tagName,
+                name: update.newAttributes['name']!,
+              }),
+            })
+          );
+
+          return false;
+        }
+      }
+
+      const invalidId =
+        update.newAttributes['id'] &&
+        Array.from(
+          update.element.ownerDocument.querySelectorAll(
+            'LNodeType, DOType, DAType, EnumType'
+          )
+        ).some(elm => elm.getAttribute('id') === update.newAttributes['id']);
+
+      if (invalidId) {
+        this.dispatchEvent(
+          newLogEvent({
+            kind: 'error',
+            title: get('editing.error.update', {
+              name: update.element.tagName,
+            }),
+            message: get('editing.error.idClash', {
+              id: update.newAttributes['id']!,
+            }),
+          })
+        );
+
+        return false;
+      }
+
+      return true;
+    }
+
+    private onUpdate(action: Update) {
+      if (!this.checkUpdateValidity(action)) return false;
+
+      Array.from(action.element.attributes).forEach(attr =>
+        action.element.removeAttributeNode(attr)
+      );
+
+      Object.entries(action.newAttributes).forEach(([key, value]) => {
+        if (value) action.element.setAttribute(key, value);
+      });
+
+      return true;
+    }
+
     private onSimpleAction(action: SimpleAction) {
       if (isMove(action)) return this.onMove(action as Move);
       else if (isCreate(action)) return this.onCreate(action as Create);
       else if (isDelete(action)) return this.onDelete(action as Delete);
+      else if (isReplace(action)) return this.onReplace(action as Replace);
       else if (isUpdate(action)) return this.onUpdate(action as Update);
     }
 
@@ -216,6 +400,7 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       if (isMove(action)) this.logMove(action as Move);
       else if (isCreate(action)) this.logCreate(action as Create);
       else if (isDelete(action)) this.logDelete(action as Delete);
+      else if (isReplace(action)) this.logUpdate(action as Replace);
       else if (isUpdate(action)) this.logUpdate(action as Update);
     }
 

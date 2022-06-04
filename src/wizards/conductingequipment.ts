@@ -1,17 +1,21 @@
 import { html, TemplateResult } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
+import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-select';
+
+import '../wizard-textfield.js';
 import {
   createElement,
+  crossProduct,
   EditorAction,
-  getReference,
   getValue,
   isPublic,
   Wizard,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
 } from '../foundation.js';
-import { updateNamingAction } from './foundation/actions.js';
+import { replaceNamingAction } from './foundation/actions.js';
 
 const types: Partial<Record<string, string>> = {
   // standard
@@ -46,14 +50,135 @@ const types: Partial<Record<string, string>> = {
   TCR: 'Thyristor Controlled Reactive Component',
 };
 
-function typeStr(condEq: Element): string {
-  return condEq.getAttribute('type') === 'DIS' &&
-    condEq.querySelector('Terminal')?.getAttribute('cNodeName') === 'grounded'
-    ? 'ERS'
-    : condEq.getAttribute('type') ?? '';
+/**
+ * Finds LN within IED based on LNode from Substation SCL section.
+ * @param lNode - LNode in Substation SCL section.
+ * @returns - LN in the IED SCL section.
+ */
+function getLogicalNodeInstance(lNode: Element | null): Element | null {
+  if (!lNode) return null;
+  const [lnInst, lnClass, iedName, ldInst, prefix] = [
+    'lnInst',
+    'lnClass',
+    'iedName',
+    'ldInst',
+    'prefix',
+  ].map(attribute => lNode?.getAttribute(attribute));
+  const iedSelector = [`IED[name="${iedName}"]`, 'IED'];
+  const lDevicePath = ['AccessPoint > Server'];
+  const lNSelector = [
+    `LDevice[inst="${ldInst}"] > LN[inst="${lnInst}"][lnClass="${lnClass}"]`,
+  ];
+  const lNPrefixSelector =
+    prefix && prefix !== ''
+      ? [`[prefix="${prefix}"]`]
+      : ['[prefix=""]', ':not(prefix)'];
+  return lNode.ownerDocument.querySelector(
+    crossProduct(
+      iedSelector,
+      [' > '],
+      lDevicePath,
+      [' > '],
+      lNSelector,
+      lNPrefixSelector
+    )
+      .map(strings => strings.join(''))
+      .join(',')
+  );
 }
 
-function typeName(condEq: Element): string {
+/**
+ * Searches DataTypeTemplates for SwTyp:stVal from an LN or LNode reference.
+ * @param lNorlNode - SCL IED Logical Node or LNode from Substation section.
+ * @returns - value of stVal data attribute if found.
+ */
+function getSwitchTypeValueFromDTT(lNorlNode: Element): string | undefined {
+  const rootNode = lNorlNode?.ownerDocument;
+  const lNodeType = lNorlNode.getAttribute('lnType');
+  const lnClass = lNorlNode.getAttribute('lnClass');
+  const dObj = rootNode.querySelector(
+    `DataTypeTemplates > LNodeType[id="${lNodeType}"][lnClass="${lnClass}"] > DO[name="SwTyp"]`
+  );
+  if (dObj) {
+    const dORef = dObj.getAttribute('type');
+    return rootNode
+      .querySelector(
+        `DataTypeTemplates > DOType[id="${dORef}"] > DA[name="stVal"] > Val`
+      )
+      ?.innerHTML.trim();
+  }
+  // definition missing
+  return undefined;
+}
+
+/**
+ * Finds whether a logical node has the SwTyp:stVal data attribute.
+ * @param lN - logical node within the IED section.
+ * @returns - value of type as a string.
+ */
+function getSwitchTypeValue(lN: Element): string | undefined {
+  const daInstantiated = lN.querySelector(
+    'DOI[name="SwTyp"] > DAI[name="stVal"]'
+  );
+  // definition is on instantiated object
+  if (daInstantiated) {
+    return daInstantiated.querySelector('Val')?.innerHTML.trim();
+    // definition must be on the data object type
+  } else {
+    return getSwitchTypeValueFromDTT(lN);
+  }
+}
+
+/**
+ * Returns true if any terminal of the ConductingEquipment has a connectivity node name 'grounded'.
+ * @param condEq - SCL ConductingEquipment.
+ * @returns if any terminal of the ConductingEquipment is grounded.
+ */
+function containsGroundedTerminal(condEq: Element): boolean {
+  return Array.from(condEq.querySelectorAll('Terminal')).some(
+    t => t.getAttribute('cNodeName') === 'grounded'
+  );
+}
+
+/**
+ * Looks to see if the Conducting Equipment contains an XSWI LN. If so, check if the XSWI definition
+ * includes SwTyp and if stVal indicates an Earth/Earthing Switch by looking at either the IED or the
+ * DataTypeTemplates.
+ * @param condEq - SCL ConductingEquipment.
+ * @returns true if an earth switch is found, false otherwise.
+ */
+function containsEarthSwitchDefinition(condEq: Element): boolean {
+  const lNodeXSWI = condEq.querySelector('LNode[lnClass="XSWI"]');
+  const lN = getLogicalNodeInstance(lNodeXSWI);
+  let swTypVal;
+  if (lN) {
+    swTypVal = getSwitchTypeValue(lN);
+  } else if (lNodeXSWI) {
+    swTypVal = getSwitchTypeValueFromDTT(lNodeXSWI);
+  }
+  return swTypVal
+    ? ['Earthing Switch', 'High Speed Earthing Switch'].includes(swTypVal)
+    : false;
+}
+
+/**
+ * Find the type of an SCL conducting equipment. For earth switches derive this from terminals or XSWI logical node definition.
+ * @param condEq - SCL ConductingEquipment
+ * @returns  Three letter primary apparatus device type as defined in IEC 61850-6.
+ */
+export function typeStr(condEq: Element): string {
+  if (
+    condEq.getAttribute('type') === 'DIS' &&
+    (containsGroundedTerminal(condEq) || containsEarthSwitchDefinition(condEq))
+  ) {
+    // these checks only carried out for a three phase system
+    return 'ERS';
+  } else {
+    return condEq.getAttribute('type') ?? '';
+  }
+}
+
+export function typeName(condEq: Element): string {
   return types[typeStr(condEq)] ?? get('conductingequipment.unknownType');
 }
 
@@ -83,7 +208,7 @@ function renderTypeSelector(
       </mwc-select>`;
 }
 
-function render(
+export function renderConductingEquipmentWizard(
   name: string | null,
   desc: string | null,
   option: 'edit' | 'create',
@@ -111,7 +236,7 @@ function render(
 }
 
 export function createAction(parent: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!);
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const proxyType = getValue(inputs.find(i => i.label === 'type')!);
@@ -123,32 +248,78 @@ export function createAction(parent: Element): WizardActor {
       desc,
     });
 
-    if (proxyType === 'ERS')
-      element.appendChild(
-        createElement(parent.ownerDocument, 'Terminal', {
-          name: 'T1',
-          cNodeName: 'grounded',
-        })
-      );
+    if (proxyType !== 'ERS') return [{ new: { parent, element } }];
+
+    const groundNode = parent
+      .closest('VoltageLevel')
+      ?.querySelector('ConnectivityNode[name="grounded"]');
+
+    const substationName = groundNode
+      ? groundNode.closest('Substation')?.getAttribute('name') ?? null
+      : parent.closest('Substation')?.getAttribute('name') ?? null;
+    const voltageLevelName = groundNode
+      ? groundNode.closest('VoltageLevel')?.getAttribute('name') ?? null
+      : parent.closest('VoltageLevel')?.getAttribute('name') ?? null;
+    const bayName = groundNode
+      ? groundNode.closest('Bay')?.getAttribute('name') ?? null
+      : parent.closest('Bay')?.getAttribute('name') ?? null;
+    const connectivityNode =
+      bayName && voltageLevelName && substationName
+        ? substationName + '/' + voltageLevelName + '/' + bayName + '/grounded'
+        : null;
+
+    element.appendChild(
+      createElement(parent.ownerDocument, 'Terminal', {
+        name: 'T1',
+        cNodeName: 'grounded',
+        substationName,
+        voltageLevelName,
+        bayName,
+        connectivityNode,
+      })
+    );
 
     const action = {
       new: {
         parent,
         element,
-        reference: getReference(parent, 'ConductingEquipment'),
       },
     };
 
-    return [action];
+    if (groundNode) return [action];
+
+    const cNodeElement = createElement(
+      parent.ownerDocument,
+      'ConnectivityNode',
+      {
+        name: 'grounded',
+        pathName: connectivityNode,
+      }
+    );
+
+    const cNodeAction = {
+      new: {
+        parent,
+        element: cNodeElement,
+      },
+    };
+
+    return [action, cNodeAction];
   };
 }
 
-export function createConductingEquipmentWizard(parent: Element): Wizard {
-  const reservedNames = Array.from(
-    parent.querySelectorAll('ConductingEquipment')
-  )
+export function reservedNamesConductingEquipment(
+  parent: Element,
+  currentName?: string | null
+): string[] {
+  return Array.from(parent.querySelectorAll('ConductingEquipment'))
     .filter(isPublic)
-    .map(condEq => condEq.getAttribute('name') ?? '');
+    .map(condEq => condEq.getAttribute('name') ?? '')
+    .filter(name => currentName && name !== currentName);
+}
+
+export function createConductingEquipmentWizard(parent: Element): Wizard {
+  const reservedNames = reservedNamesConductingEquipment(parent);
 
   return [
     {
@@ -159,18 +330,22 @@ export function createConductingEquipmentWizard(parent: Element): Wizard {
         label: get('add'),
         action: createAction(parent),
       },
-      content: render('', '', 'create', '', reservedNames),
+      content: renderConductingEquipmentWizard(
+        '',
+        '',
+        'create',
+        '',
+        reservedNames
+      ),
     },
   ];
 }
 
 export function editConductingEquipmentWizard(element: Element): Wizard {
-  const reservedNames = Array.from(
-    element.parentNode!.querySelectorAll('ConductingEquipment')
-  )
-    .filter(isPublic)
-    .map(condEq => condEq.getAttribute('name') ?? '')
-    .filter(name => name !== element.getAttribute('name'));
+  const reservedNames = reservedNamesConductingEquipment(
+    <Element>element.parentNode!,
+    element.getAttribute('name')
+  );
 
   return [
     {
@@ -179,9 +354,9 @@ export function editConductingEquipmentWizard(element: Element): Wizard {
       primary: {
         icon: 'edit',
         label: get('save'),
-        action: updateNamingAction(element),
+        action: replaceNamingAction(element),
       },
-      content: render(
+      content: renderConductingEquipmentWizard(
         element.getAttribute('name'),
         element.getAttribute('desc'),
         'edit',

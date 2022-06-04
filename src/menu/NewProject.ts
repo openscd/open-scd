@@ -1,21 +1,24 @@
 import { html, LitElement } from 'lit-element';
 import { get } from 'lit-translate';
 
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-radio-list-item';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
+import '../wizard-textfield.js';
 import {
   EditorAction,
   newLogEvent,
   newOpenDocEvent,
   newWizardEvent,
   Wizard,
-  WizardInput,
+  WizardInputElement,
 } from '../foundation.js';
 import { newEmptySCD, SupportedVersion } from '../schemas.js';
 
 export default class NewProjectPlugin extends LitElement {
   private createNewProject(
-    inputs: WizardInput[],
+    inputs: WizardInputElement[],
     wizard: Element
   ): EditorAction[] {
     const docName = inputs[0].value?.match(/\.s[sc]d$/i)

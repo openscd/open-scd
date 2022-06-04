@@ -1,8 +1,11 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import TemplatesPlugin from '../../../../src/editors/Templates.js';
+import '../../../mock-wizard-editor.js';
+import { MockWizardEditor } from '../../../mock-wizard-editor.js';
+
 import { Editing, EditingElement } from '../../../../src/Editing.js';
 import { Wizarding, WizardingElement } from '../../../../src/Wizarding.js';
+import TemplatesPlugin from '../../../../src/editors/Templates.js';
 
 describe('Templates Plugin', () => {
   customElements.define(
@@ -15,35 +18,35 @@ describe('Templates Plugin', () => {
   });
 
   describe('without a doc loaded', () => {
-    it('looks like the latest snapshot', () => {
-      expect(element).shadowDom.to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
     });
   });
 
   describe('with a doc loaded', () => {
     let doc: XMLDocument;
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/templates/datypes.scd')
+      doc = await fetch('/test/testfiles/templates/datypes.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       element.doc = doc;
       await element.updateComplete;
     });
-    it('looks like the latest snapshot', () => {
-      expect(element).shadowDom.to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
     });
   });
 
   describe('with a doc loaded missing a datatypetemplates section', () => {
     let doc: XMLDocument;
-    let parent: WizardingElement & EditingElement;
+    let parent: MockWizardEditor;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/templates/missingdatatypes.scd')
+      doc = await fetch('/test/testfiles/templates/missingdatatypes.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-      parent = <WizardingElement & EditingElement>(
+      parent = <MockWizardEditor>(
         await fixture(
           html`<mock-wizard-editor
             ><templates-plugin .doc=${doc}></templates-plugin
@@ -71,7 +74,7 @@ describe('Templates Plugin', () => {
     let parent: WizardingElement & EditingElement;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/templates/datypes.scd')
+      doc = await fetch('/test/testfiles/templates/datypes.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(

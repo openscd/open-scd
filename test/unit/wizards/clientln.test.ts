@@ -1,10 +1,14 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
+import '../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../mock-wizard-editor.js';
-import { ZerolinePane } from '../../../src/zeroline-pane.js';
-import { IedEditor } from '../../../src/zeroline/ied-editor.js';
+
 import { List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
+
+import '../../../src/editors/substation/zeroline-pane.js';
+import { IedEditor } from '../../../src/editors/substation/ied-editor.js';
+import { ZerolinePane } from '../../../src/editors/substation/zeroline-pane.js';
 
 describe('clientln wizards', () => {
   let doc: Document;
@@ -12,7 +16,7 @@ describe('clientln wizards', () => {
   let element: ZerolinePane;
 
   beforeEach(async () => {
-    doc = await fetch('/base/test/testfiles/comm-map.scd')
+    doc = await fetch('/test/testfiles/comm-map.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
@@ -54,7 +58,7 @@ describe('clientln wizards', () => {
     });
 
     it('looks like the latest snapshot', async () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     }).timeout(5000);
 
     it('add ClientLN referencing to logical nodes in AccessPoint', async () => {
@@ -180,8 +184,8 @@ describe('clientln wizards', () => {
       await parent.updateComplete;
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
 
     it('filteres ClientLNs to one receiving IED', async () => {

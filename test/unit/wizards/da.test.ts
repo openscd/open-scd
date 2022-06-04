@@ -1,26 +1,24 @@
 import { expect, fixture, html } from '@open-wc/testing';
+
+import '../../mock-wizard.js';
 import { MockWizard } from '../../mock-wizard.js';
 
+import { wizardContent } from '../../../src/wizards/abstractda.js';
+import { WizardSelect } from '../../../src/wizard-select.js';
+import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   Create,
   isCreate,
-  isUpdate,
-  Update,
+  isReplace,
+  Replace,
   Wizard,
-  WizardInput,
+  WizardInputElement,
 } from '../../../src/foundation.js';
-
-import { wizardContent } from '../../../src/wizards/abstractda.js';
-
-import { WizardSelect } from '../../../src/wizard-select.js';
-import { WizardTextField } from '../../../src/wizard-textfield.js';
-
 import {
   createDaAction,
   renderDa,
   updateDaAction,
 } from '../../../src/wizards/da.js';
-import { createBDaAction } from '../../../src/wizards/bda.js';
 
 describe('da wizards', () => {
   describe('updateDaAction', () => {
@@ -35,7 +33,7 @@ describe('da wizards', () => {
       ).documentElement
     );
 
-    let inputs: WizardInput[];
+    let inputs: WizardInputElement[];
     let wizard: Wizard;
 
     const noOp = () => {
@@ -49,7 +47,7 @@ describe('da wizards', () => {
 
     beforeEach(async () => {
       element = await fixture(html`<mock-wizard></mock-wizard>`);
-      doc = await fetch('/base/test/testfiles/wizards/abstractda.scd')
+      doc = await fetch('/test/testfiles/wizards/abstractda.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       data = doc.querySelector('DataTypeTemplates')!;
@@ -74,7 +72,7 @@ describe('da wizards', () => {
           ],
         },
       ];
-      element.workflow.push(wizard);
+      element.workflow.push(() => wizard);
       await element.requestUpdate();
       inputs = Array.from(element.wizardUI.inputs);
       await element.requestUpdate();
@@ -89,7 +87,7 @@ describe('da wizards', () => {
       await (<WizardTextField>inputs[0]).requestUpdate();
       const editorAction = updateDaAction(da);
       expect(editorAction(inputs, newWizard()).length).to.equal(1);
-      expect(editorAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
+      expect(editorAction(inputs, newWizard())[0]).to.satisfy(isReplace);
     });
     it('update a DA element when only desc attribute changed', async () => {
       const input = <WizardTextField>inputs[1];
@@ -98,22 +96,22 @@ describe('da wizards', () => {
       await input.requestUpdate();
       const editorAction = updateDaAction(da);
       expect(editorAction(inputs, newWizard()).length).to.equal(1);
-      expect(editorAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
+      expect(editorAction(inputs, newWizard())[0]).to.satisfy(isReplace);
     });
     it('update a DA element when only bType attribute changed', async () => {
       inputs[2].value = 'BOOLEAN';
       await (<WizardSelect>inputs[2]).requestUpdate();
       const editorAction = updateDaAction(da);
       expect(editorAction(inputs, newWizard()).length).to.equal(1);
-      expect(editorAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
+      expect(editorAction(inputs, newWizard())[0]).to.satisfy(isReplace);
     });
     it('update a DA element when type attribute changed to null', async () => {
       inputs[2].value = 'BOOLEAN';
       await (<WizardSelect>inputs[2]).requestUpdate();
       const editorAction = updateDaAction(da);
       expect(editorAction(inputs, newWizard()).length).to.equal(1);
-      expect(editorAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>editorAction(inputs, newWizard())[0];
+      expect(editorAction(inputs, newWizard())[0]).to.satisfy(isReplace);
+      const updateAction = <Replace>editorAction(inputs, newWizard())[0];
       expect(updateAction.old.element).to.have.attribute('type');
       expect(updateAction.new.element).to.not.have.attribute('type');
     });
@@ -125,8 +123,8 @@ describe('da wizards', () => {
       const editorAction = updateDaAction(da);
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
-      expect(updateActions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>updateActions[0];
+      expect(updateActions[0]).to.satisfy(isReplace);
+      const updateAction = <Replace>updateActions[0];
       expect(updateAction.old.element).to.not.have.attribute('sAddr');
       expect(updateAction.new.element).to.have.attribute('sAddr', 'mysAddr');
     });
@@ -138,21 +136,21 @@ describe('da wizards', () => {
       const editorAction = updateDaAction(da);
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
-      expect(updateActions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>updateActions[0];
+      expect(updateActions[0]).to.satisfy(isReplace);
+      const updateAction = <Replace>updateActions[0];
       expect(updateAction.old.element).to.not.have.attribute('valKind');
       expect(updateAction.new.element).to.have.attribute('valKind', 'RO');
     });
     it('update a DA element when valImport attribute changed', async () => {
       const input = <WizardSelect>inputs[6];
       input.nullSwitch?.click();
-      input.value = 'true';
+      input.maybeValue = 'true';
       await input.requestUpdate();
       const editorAction = updateDaAction(da);
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
-      expect(updateActions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>updateActions[0];
+      expect(updateActions[0]).to.satisfy(isReplace);
+      const updateAction = <Replace>updateActions[0];
       expect(updateAction.old.element).to.not.have.attribute('valImport');
       expect(updateAction.new.element).to.have.attribute('valImport', 'true');
     });
@@ -167,7 +165,9 @@ describe('da wizards', () => {
       expect(updateActions[0]).to.satisfy(isCreate);
       const updateAction = <Create>updateActions[0];
       expect(
-        updateAction.new.element.querySelector('Val')?.textContent?.trim()
+        (<Element>updateAction.new.element)
+          .querySelector('Val')
+          ?.textContent?.trim()
       ).to.not.equal('direct-with-normal-security');
     });
     it('update a DA element when fc attribute changed', async () => {
@@ -177,47 +177,47 @@ describe('da wizards', () => {
       const editorAction = updateDaAction(da);
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
-      expect(updateActions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>updateActions[0];
+      expect(updateActions[0]).to.satisfy(isReplace);
+      const updateAction = <Replace>updateActions[0];
       expect(updateAction.old.element).to.have.attribute('fc', 'CF');
       expect(updateAction.new.element).to.have.attribute('fc', 'ST');
     });
     it('update a DA element when dchg attribute changed', async () => {
       const input = <WizardSelect>inputs[10];
       input.nullSwitch?.click();
-      input.value = 'true';
+      input.maybeValue = 'true';
       await input.requestUpdate();
       const editorAction = updateDaAction(da);
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
-      expect(updateActions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>updateActions[0];
+      expect(updateActions[0]).to.satisfy(isReplace);
+      const updateAction = <Replace>updateActions[0];
       expect(updateAction.old.element).to.not.have.attribute('dchg');
       expect(updateAction.new.element).to.have.attribute('dchg', 'true');
     });
     it('update a DA element when qchg attribute changed', async () => {
       const input = <WizardSelect>inputs[11];
       input.nullSwitch?.click();
-      input.value = 'true';
+      input.maybeValue = 'true';
       await input.requestUpdate();
       const editorAction = updateDaAction(da);
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
-      expect(updateActions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>updateActions[0];
+      expect(updateActions[0]).to.satisfy(isReplace);
+      const updateAction = <Replace>updateActions[0];
       expect(updateAction.old.element).to.not.have.attribute('qchg');
       expect(updateAction.new.element).to.have.attribute('qchg', 'true');
     });
     it('update a DA element when dupd attribute changed', async () => {
       const input = <WizardSelect>inputs[12];
       input.nullSwitch?.click();
-      input.value = 'true';
+      input.maybeValue = 'true';
       await input.requestUpdate();
       const editorAction = updateDaAction(da);
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
-      expect(updateActions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>updateActions[0];
+      expect(updateActions[0]).to.satisfy(isReplace);
+      const updateAction = <Replace>updateActions[0];
       expect(updateAction.old.element).to.not.have.attribute('dupd');
       expect(updateAction.new.element).to.have.attribute('dupd', 'true');
     });
@@ -235,7 +235,7 @@ describe('da wizards', () => {
       ).documentElement
     );
 
-    let inputs: WizardInput[];
+    let inputs: WizardInputElement[];
     let wizard: Wizard;
 
     const noOp = () => {
@@ -249,7 +249,7 @@ describe('da wizards', () => {
 
     beforeEach(async () => {
       element = await fixture(html`<mock-wizard></mock-wizard>`);
-      doc = await fetch('/base/test/testfiles/wizards/abstractda.scd')
+      doc = await fetch('/test/testfiles/wizards/abstractda.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       data = doc.querySelector('DataTypeTemplates')!;
@@ -274,7 +274,7 @@ describe('da wizards', () => {
           ],
         },
       ];
-      element.workflow.push(wizard);
+      element.workflow.push(() => wizard);
       await element.requestUpdate();
       inputs = Array.from(element.wizardUI.inputs);
       await element.requestUpdate();
@@ -322,13 +322,13 @@ describe('da wizards', () => {
       valImport.value = 'false';
       await valImport.requestUpdate();
       dchg.nullSwitch?.click();
-      dchg.value = 'true';
+      dchg.maybeValue = 'true';
       await dchg.requestUpdate();
       qchg.nullSwitch?.click();
-      qchg.value = 'false';
+      qchg.maybeValue = 'false';
       await qchg.requestUpdate();
       dupd.nullSwitch?.click();
-      dupd.value = 'true';
+      dupd.maybeValue = 'true';
       await dupd.requestUpdate();
 
       const editorAction = createDaAction(daType);
@@ -361,7 +361,9 @@ describe('da wizards', () => {
       expect(editorAction(inputs, newWizard())[0]).to.satisfy(isCreate);
       const createAction = <Create>editorAction(inputs, newWizard())[0];
       expect(
-        createAction.new.element.querySelector('Val')?.textContent?.trim()
+        (<Element>createAction.new.element)
+          .querySelector('Val')
+          ?.textContent?.trim()
       ).to.equal('8123');
     });
   });

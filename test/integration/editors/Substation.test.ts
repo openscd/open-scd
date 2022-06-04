@@ -1,9 +1,11 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
 import '../../mock-wizard.js';
+import { MockWizard } from '../../mock-wizard.js';
+
 import { Editing } from '../../../src/Editing.js';
 import Substation from '../../../src/editors/Substation.js';
-import { Wizarding, WizardingElement } from '../../../src/Wizarding.js';
+import { Wizarding } from '../../../src/Wizarding.js';
 
 describe('Substation Plugin', () => {
   customElements.define('substation-plugin', Wizarding(Editing(Substation)));
@@ -13,8 +15,8 @@ describe('Substation Plugin', () => {
   });
 
   describe('without a doc loaded', () => {
-    it('looks like the latest snapshot', () => {
-      expect(element).shadowDom.to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
     });
   });
 
@@ -22,7 +24,7 @@ describe('Substation Plugin', () => {
     let doc: XMLDocument;
     let element: Substation;
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+      doc = await fetch('/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       element = await fixture(
@@ -36,13 +38,13 @@ describe('Substation Plugin', () => {
 
   describe('with a doc loaded missing a substation section', () => {
     let doc: XMLDocument;
-    let parent: WizardingElement;
+    let parent: MockWizard;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/missingSubstation.scd')
+      doc = await fetch('/test/testfiles/missingSubstation.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      parent = <WizardingElement>(
+      parent = <MockWizard>(
         await fixture(
           html`<mock-wizard
             ><substation-plugin .doc=${doc}></substation-plugin

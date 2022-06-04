@@ -1,10 +1,11 @@
 import { LitElement, html, TemplateResult, property, css } from 'lit-element';
 import { get } from 'lit-translate';
 
+import '@material/mwc-fab';
+
+import './substation/zeroline-pane.js';
 import { newWizardEvent } from '../foundation.js';
 import { wizards } from '../wizards/wizard-library.js';
-
-import '../zeroline-pane.js';
 
 /** An editor [[`plugin`]] for editing the `Substation` section. */
 export default class SubstationPlugin extends LitElement {

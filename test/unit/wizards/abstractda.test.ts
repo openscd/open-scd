@@ -1,20 +1,23 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import fc from 'fast-check';
+
+import '../../mock-wizard.js';
+import { MockWizard } from '../../mock-wizard.js';
+
+import { WizardSelect } from '../../../src/wizard-select.js';
+import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   Create,
   isCreate,
   isDelete,
-  isUpdate,
-  Update,
+  isReplace,
+  Replace,
 } from '../../../src/foundation.js';
-import { WizardSelect } from '../../../src/wizard-select.js';
-import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   getValAction,
   wizardContent,
 } from '../../../src/wizards/abstractda.js';
 import { regExp, regexString } from '../../foundation.js';
-import { MockWizard } from '../../mock-wizard.js';
 
 describe('abstractda wizards', () => {
   describe('getValAction', () => {
@@ -29,11 +32,11 @@ describe('abstractda wizards', () => {
 
     it('updates a Val child element when changed', () => {
       const editorAction = getValAction(oldVal, 'newVal', abstractda);
-      expect(editorAction).to.satisfy(isUpdate);
+      expect(editorAction).to.satisfy(isReplace);
     });
 
     it('properly updates an new Val', () => {
-      const editorAction = <Update>getValAction(oldVal, 'newVal', abstractda);
+      const editorAction = <Replace>getValAction(oldVal, 'newVal', abstractda);
       expect(editorAction.new.element.textContent?.trim()).to.equal('newVal');
     });
 
@@ -67,7 +70,7 @@ describe('abstractda wizards', () => {
 
     beforeEach(async () => {
       element = await fixture(html`<mock-wizard></mock-wizard>`);
-      doc = await fetch('/base/test/testfiles/wizards/abstractda.scd')
+      doc = await fetch('/test/testfiles/wizards/abstractda.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       data = doc.querySelector('DataTypeTemplates')!;
@@ -95,7 +98,7 @@ describe('abstractda wizards', () => {
           ),
         },
       ];
-      element.workflow.push(wizard);
+      element.workflow.push(() => wizard);
       await element.requestUpdate();
       nameTextField = element.wizardUI.dialog!.querySelector<WizardTextField>(
         'wizard-textfield[label="name"]'
@@ -114,8 +117,8 @@ describe('abstractda wizards', () => {
       )!;
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(element.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(element.wizardUI.dialog).to.equalSnapshot();
     });
 
     it('edits name attribute only for valid inputs', async () => {

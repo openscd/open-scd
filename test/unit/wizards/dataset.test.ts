@@ -1,86 +1,110 @@
 import { expect, fixture, html } from '@open-wc/testing';
+import { SinonSpy, spy } from 'sinon';
 
-import {
-  isUpdate,
-  Update,
-  Wizard,
-  WizardInput,
-} from '../../../src/foundation.js';
-import { WizardTextField } from '../../../src/wizard-textfield.js';
-
-import {
-  editDataSetWizard,
-  updateDataSetAction,
-} from '../../../src/wizards/dataset.js';
-
+import '../../mock-wizard.js';
 import { MockWizard } from '../../mock-wizard.js';
+
+import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
+
+import { editDataSetWizard } from '../../../src/wizards/dataset.js';
+import { WizardTextField } from '../../../src/wizard-textfield.js';
+import {
+  Delete,
+  isDelete,
+  isReplace,
+  Replace,
+  Wizard,
+  WizardInputElement,
+} from '../../../src/foundation.js';
 
 describe('dataset wizards', () => {
   let doc: XMLDocument;
   let element: MockWizard;
+  let wizardEvent: SinonSpy;
+  let actionEvent: SinonSpy;
 
   beforeEach(async () => {
     element = await fixture(html`<mock-wizard></mock-wizard>`);
-    doc = await fetch('/base/test/testfiles/wizards/gsecontrol.scd')
+    doc = await fetch('/test/testfiles/wizards/gsecontrol.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
   });
 
-  describe('editDataSetWizard', () => {
+  describe('include a dataset edit wizard', () => {
     beforeEach(async () => {
       const wizard = editDataSetWizard(
         doc.querySelector('IED[name="IED2"] DataSet[name="GooseDataSet1"]')!
       );
-      element.workflow.push(wizard);
+      element.workflow.push(() => wizard);
       await element.requestUpdate();
+
+      wizardEvent = spy();
+      window.addEventListener('wizard', wizardEvent);
+      actionEvent = spy();
+      window.addEventListener('editor-action', actionEvent);
     });
-    it('looks like the latest snapshot', async () => {
-      expect(element.wizardUI.dialog).to.equalSnapshot();
-    }).timeout(5000);
-  });
 
-  describe('updateDataSetAction', () => {
-    let dataSet: Element;
-    let inputs: WizardInput[];
-    let wizard: Wizard;
+    it('looks like the latest snapshot', async () =>
+      await expect(element.wizardUI.dialog).to.equalSnapshot()).timeout(5000);
 
-    const noOp = () => {
-      return;
-    };
-    const newWizard = (done = noOp) => {
-      const element = document.createElement('mwc-dialog');
-      element.close = done;
-      return element;
-    };
+    it('allows to add a new FCDA on add FCDA button click', async () => {
+      const addButton = <HTMLElement>(
+        Array.from(
+          element.wizardUI.dialog!.querySelectorAll<ListItemBase>(
+            'mwc-menu > mwc-list-item'
+          )
+        ).find(item => item.innerHTML.includes('dataset.fcda.add'))
+      );
+      await addButton.click();
+      expect(wizardEvent).to.be.calledOnce;
+    });
 
     describe('with stand alone DataSet', () => {
+      let dataSet: Element;
+      let wizard: Wizard;
+      let inputs: WizardInputElement[];
+      let primaryAction: HTMLElement;
+
       beforeEach(async () => {
-        const ln0 = <Element>(
+        dataSet = <Element>(
           new DOMParser().parseFromString(
-            `<LN0 lnClass="LLN0" lnType="mytype"><DataSet name="myDS"></DataSet></LN0>`,
+            `<DataSet name="myDS"></DataSet>`,
             'application/xml'
           ).documentElement
         );
-        dataSet = ln0.querySelector('DataSet')!;
         wizard = editDataSetWizard(dataSet);
-        element.workflow.push(wizard);
+        element.workflow.length = 0;
+        element.workflow.push(() => wizard);
         await element.requestUpdate();
         inputs = Array.from(element.wizardUI.inputs);
         await element.requestUpdate();
+
+        primaryAction = <HTMLElement>(
+          element.wizardUI.dialog?.querySelector(
+            'mwc-button[slot="primaryAction"]'
+          )
+        );
       });
 
-      it('does not update a DataSet element when no attribute has changed', () => {
-        const editorAction = updateDataSetAction(dataSet);
-        expect(editorAction(inputs, newWizard())).to.be.empty;
+      it('does not update a DataSet element when no attribute has changed', async () => {
+        primaryAction.click();
+        await element.requestUpdate();
+        expect(actionEvent.notCalled).to.be.true;
       });
+
       it('update a DataSet element when only name attribute changed', async () => {
         const input = <WizardTextField>inputs[0];
         input.value = 'myNewDataSetName';
         await input.requestUpdate();
-        const editorAction = updateDataSetAction(dataSet);
-        const updateActions = editorAction(inputs, newWizard());
-        expect(updateActions[0]).to.satisfy(isUpdate);
-        const updateAction = <Update>updateActions[0];
+
+        primaryAction.click();
+        await element.requestUpdate();
+        expect(actionEvent).to.be.calledOnce;
+
+        const action = actionEvent.args[0][0].detail.action;
+        expect(action).to.satisfy(isReplace);
+
+        const updateAction = <Replace>action;
         expect(updateAction.old.element).to.have.attribute('name', 'myDS');
         expect(updateAction.new.element).to.have.attribute(
           'name',
@@ -88,30 +112,64 @@ describe('dataset wizards', () => {
         );
       });
     });
+
     describe('with connected DataSet', () => {
+      let dataSet: Element;
+      let wizard: Wizard;
+      let inputs: WizardInputElement[];
+      let primaryAction: HTMLElement;
+      let firstFCDA: HTMLElement;
+      let thirdFCDA: HTMLElement;
+
       beforeEach(async () => {
         dataSet = doc.querySelector(
           'IED[name="IED2"] DataSet[name="GooseDataSet1"]'
         )!;
         wizard = editDataSetWizard(dataSet);
-        element.workflow.push(wizard);
+        element.workflow.length = 0;
+        element.workflow.push(() => wizard);
         await element.requestUpdate();
         inputs = Array.from(element.wizardUI.inputs);
         await element.requestUpdate();
+
+        primaryAction = <HTMLElement>(
+          element.wizardUI.dialog?.querySelector(
+            'mwc-button[slot="primaryAction"]'
+          )
+        );
+
+        firstFCDA = <HTMLElement>(
+          element.wizardUI.dialog?.querySelector(
+            'filtered-list>mwc-check-list-item'
+          )
+        );
+
+        thirdFCDA = <HTMLElement>(
+          element.wizardUI.dialog?.querySelector(
+            'filtered-list>mwc-check-list-item:nth-child(3)'
+          )
+        );
       });
 
-      it('does not update a DataSet element when no attribute has changed', () => {
-        const editorAction = updateDataSetAction(dataSet);
-        expect(editorAction(inputs, newWizard())).to.be.empty;
+      it('does not update a DataSet element when no attribute has changed', async () => {
+        primaryAction.click();
+        await element.requestUpdate();
+        expect(actionEvent.notCalled).to.be.true;
       });
+
       it('update a DataSet element when only name attribute changed', async () => {
         const input = <WizardTextField>inputs[0];
         input.value = 'myNewDataSetName';
         await input.requestUpdate();
-        const editorAction = updateDataSetAction(dataSet);
-        const updateActions = editorAction(inputs, newWizard());
-        expect(updateActions[0]).to.satisfy(isUpdate);
-        const updateAction = <Update>updateActions[0];
+
+        primaryAction.click();
+        await element.requestUpdate();
+        expect(actionEvent).to.be.calledThrice;
+
+        const action = actionEvent.args[0][0].detail.action;
+        expect(action).to.satisfy(isReplace);
+
+        const updateAction = <Replace>action;
         expect(updateAction.old.element).to.have.attribute(
           'name',
           'GooseDataSet1'
@@ -121,38 +179,96 @@ describe('dataset wizards', () => {
           'myNewDataSetName'
         );
       });
-      it('update a DataSet of the referenced control blocks', async () => {
+
+      it('update a DataSet of all referenced control blocks', async () => {
         const input = <WizardTextField>inputs[0];
         input.value = 'myNewDataSetName';
         await input.requestUpdate();
-        const editorAction = updateDataSetAction(dataSet);
-        const updateActions = editorAction(inputs, newWizard());
-        for (const updateAction of updateActions) {
-          if (updateActions[0] !== updateAction) {
-            expect(updateAction).to.satisfy(isUpdate);
-            expect((<Update>updateAction).old.element).to.have.attribute(
-              'datSet',
-              'GooseDataSet1'
-            );
-            expect((<Update>updateAction).new.element).to.have.attribute(
-              'datSet',
-              'myNewDataSetName'
-            );
-          }
+
+        primaryAction.click();
+        await element.requestUpdate();
+        expect(actionEvent).to.be.calledThrice;
+
+        for (let i = 1; i < actionEvent.args.length; i++) {
+          const action = actionEvent.args[i][0].detail.action;
+          expect(action).to.satisfy(isReplace);
+
+          const updateAction = <Replace>action;
+          expect(updateAction.old.element).to.have.attribute(
+            'datSet',
+            'GooseDataSet1'
+          );
+          expect(updateAction.new.element).to.have.attribute(
+            'datSet',
+            'myNewDataSetName'
+          );
         }
       });
+
       it('update a DataSet element when only desc attribute changed', async () => {
         const input = <WizardTextField>inputs[1];
         input.nullSwitch?.click();
         input.value = 'myDesc';
         await input.requestUpdate();
-        const editorAction = updateDataSetAction(dataSet);
-        const updateActions = editorAction(inputs, newWizard());
-        expect(updateActions.length).to.equal(1);
-        expect(updateActions[0]).to.satisfy(isUpdate);
-        const updateAction = <Update>updateActions[0];
+
+        primaryAction.click();
+        await element.requestUpdate();
+        expect(actionEvent).to.be.calledOnce;
+
+        const action = actionEvent.args[0][0].detail.action;
+        expect(action).to.satisfy(isReplace);
+
+        const updateAction = <Replace>action;
         expect(updateAction.old.element).to.not.have.attribute('desc');
         expect(updateAction.new.element).to.have.attribute('desc', 'myDesc');
+      });
+
+      it('removes all unselected FCDA child elements', async () => {
+        firstFCDA.click();
+        thirdFCDA.click();
+        await element.requestUpdate();
+
+        primaryAction.click();
+        await element.requestUpdate();
+        expect(actionEvent).to.be.calledTwice;
+
+        const action = actionEvent.args[0][0].detail.action;
+        expect(action).to.satisfy(isDelete);
+
+        const updateAction = <Delete>action;
+        expect(updateAction.old.element).to.have.attribute('ldInst', 'CBSW');
+        expect(updateAction.old.element).to.have.attribute('prefix', '');
+        expect(updateAction.old.element).to.have.attribute('lnClass', 'XSWI');
+        expect(updateAction.old.element).to.have.attribute('lnInst', '2');
+        expect(updateAction.old.element).to.have.attribute('doName', 'Pos');
+        expect(updateAction.old.element).to.have.attribute('daName', 'stVal');
+      });
+
+      it('removes all unselected FCDA child elements', async () => {
+        firstFCDA.click();
+        thirdFCDA.click();
+        await element.requestUpdate();
+
+        primaryAction.click();
+        await element.requestUpdate();
+        expect(actionEvent).to.be.calledTwice;
+
+        const action = actionEvent.args[1][0].detail.action;
+        expect(action).to.satisfy(isDelete);
+
+        const updateAction = <Delete>action;
+        expect(updateAction.old.element).to.have.attribute('ldInst', 'CBSW');
+        expect(updateAction.old.element).to.have.attribute('prefix', '');
+        expect(updateAction.old.element).to.have.attribute('lnClass', 'XSWI');
+        expect(updateAction.old.element).to.have.attribute('lnInst', '2');
+        expect(updateAction.old.element).to.have.attribute(
+          'doName',
+          'OpSlc.dsd'
+        );
+        expect(updateAction.old.element).to.have.attribute(
+          'daName',
+          'sasd.ads.asd'
+        );
       });
     });
   });

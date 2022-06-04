@@ -8,6 +8,10 @@ import {
 } from 'lit-element';
 import { translate, get } from 'lit-translate';
 
+import '@material/mwc-icon-button';
+import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-menu';
+import '@material/mwc-switch';
 import { IconButton } from '@material/mwc-icon-button';
 import { Menu } from '@material/mwc-menu';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
@@ -73,6 +77,9 @@ export class WizardTextField extends TextField {
   @property({ type: Array })
   reservedValues: string[] = [];
 
+  // FIXME: workaround to allow disable of the whole component - need basic refactor
+  private disabledSwitch = false;
+
   @query('mwc-switch') nullSwitch?: Switch;
   @query('mwc-menu') multiplierMenu?: Menu;
   @query('mwc-icon-button') multiplierButton?: IconButton;
@@ -117,13 +124,19 @@ export class WizardTextField extends TextField {
     return super.checkValidity();
   }
 
+  constructor() {
+    super();
+
+    this.disabledSwitch = this.hasAttribute('disabled');
+  }
+
   renderUnitSelector(): TemplateResult {
     if (this.multipliers.length && this.unit)
       return html`<div style="position:relative;">
         <mwc-icon-button
           style="margin:5px;"
           icon="more"
-          ?disabled=${this.null}
+          ?disabled=${this.null || this.disabledSwitch}
           @click=${() => this.multiplierMenu?.show()}
         ></mwc-icon-button>
         <mwc-menu
@@ -152,6 +165,7 @@ export class WizardTextField extends TextField {
       return html`<mwc-switch
         style="margin-left: 12px;"
         ?checked=${!this.null}
+        ?disabled=${this.disabledSwitch}
         @change=${() => {
           this.null = !this.nullSwitch!.checked;
         }}

@@ -1,11 +1,14 @@
-import { List } from '@material/mwc-list';
-import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { css, html, LitElement, query, TemplateResult } from 'lit-element';
 import { get } from 'lit-translate';
+
+import '@material/mwc-list/mwc-check-list-item';
+import { List } from '@material/mwc-list';
+import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
+
+import '../filtered-list.js';
 import {
   createElement,
   EditorAction,
-  getReference,
   identity,
   newActionEvent,
   newLogEvent,
@@ -93,7 +96,6 @@ function addCommunicationElements(
       new: {
         parent: doc.querySelector(':root')!,
         element: communication,
-        reference: getReference(doc.querySelector(':root')!, 'Communication'),
       },
     });
 
@@ -125,7 +127,6 @@ function addCommunicationElements(
         new: {
           parent: communication,
           element: subNetwork,
-          reference: getReference(communication, 'SubNetwork'),
         },
       });
       createdSubNetworks.push(subNetwork);
@@ -135,7 +136,6 @@ function addCommunicationElements(
       new: {
         parent: subNetwork,
         element,
-        reference: getReference(subNetwork, 'ConnectedAP'),
       },
     });
   });
@@ -206,10 +206,6 @@ function addEnumType(
     new: {
       parent: doc.querySelector(':root > DataTypeTemplates')!,
       element: enumType,
-      reference: getReference(
-        doc.querySelector(':root > DataTypeTemplates')!,
-        'EnumType'
-      ),
     },
   };
 }
@@ -245,10 +241,6 @@ function addDAType(
     new: {
       parent: doc.querySelector(':root > DataTypeTemplates')!,
       element: daType,
-      reference: getReference(
-        doc.querySelector(':root > DataTypeTemplates')!,
-        'DAType'
-      ),
     },
   };
 }
@@ -284,10 +276,6 @@ function addDOType(
     new: {
       parent: doc.querySelector(':root > DataTypeTemplates')!,
       element: doType,
-      reference: getReference(
-        doc.querySelector(':root > DataTypeTemplates')!,
-        'DOType'
-      ),
     },
   };
 }
@@ -324,10 +312,6 @@ function addLNodeType(
     new: {
       parent: doc.querySelector(':root > DataTypeTemplates')!,
       element: lNodeType,
-      reference: getReference(
-        doc.querySelector('DataTypeTemplates')!,
-        'LNodeType'
-      ),
     },
   };
 }
@@ -398,7 +382,6 @@ export async function importIED(
     new: {
       parent: doc!.querySelector(':root')!,
       element: ied,
-      reference: getReference(doc!.querySelector(':root')!, 'IED'),
     },
   });
 
@@ -484,7 +467,6 @@ export default class ImportingIedPlugin extends LitElement {
           new: {
             parent: doc.documentElement,
             element,
-            reference: getReference(doc.documentElement, 'DataTypeTemplates'),
           },
         })
       );

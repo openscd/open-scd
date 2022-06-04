@@ -1,5 +1,8 @@
-import { html } from 'lit-html';
+import { html } from 'lit-element';
 import { get, translate } from 'lit-translate';
+
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-check-list-item';
 
 import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
@@ -8,10 +11,9 @@ import {
   compareNames,
   createElement,
   EditorAction,
-  getReference,
   Wizard,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
 } from '../../foundation.js';
 
 let bayNum = 1;
@@ -167,7 +169,7 @@ function createBayElement(
 
 function guessBasedOnCSWI(doc: XMLDocument): WizardActor {
   return (
-    inputs: WizardInput[],
+    inputs: WizardInputElement[],
     wizard: Element,
     list?: List | null
   ): EditorAction[] => {
@@ -205,7 +207,6 @@ function guessBasedOnCSWI(doc: XMLDocument): WizardActor {
       new: {
         parent: substation,
         element: voltageLevel,
-        reference: getReference(substation, 'VoltageLevel'),
       },
     });
 

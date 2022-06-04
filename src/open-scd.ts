@@ -7,35 +7,7 @@ import {
   TemplateResult,
 } from 'lit-element';
 
-import '@material/mwc-button';
-import '@material/mwc-checkbox';
-import '@material/mwc-circular-progress-four-color';
-import '@material/mwc-dialog';
-import '@material/mwc-drawer';
-import '@material/mwc-fab';
-import '@material/mwc-formfield';
-import '@material/mwc-icon';
-import '@material/mwc-icon-button';
-import '@material/mwc-icon-button-toggle';
-import '@material/mwc-linear-progress';
-import '@material/mwc-list';
-import '@material/mwc-list/mwc-check-list-item';
-import '@material/mwc-list/mwc-list-item';
-import '@material/mwc-list/mwc-radio-list-item';
-import '@material/mwc-menu';
-import '@material/mwc-select';
-import '@material/mwc-snackbar';
-import '@material/mwc-switch';
-import '@material/mwc-tab';
-import '@material/mwc-tab-bar';
-import '@material/mwc-textfield';
-import '@material/mwc-top-app-bar-fixed';
-
-import './filtered-list.js';
-import './wizard-dialog.js';
-import './wizard-textfield.js';
-import './wizard-select.js';
-import './finder-pane.js';
+import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 import { newOpenDocEvent, newPendingStateEvent } from './foundation.js';
 import { getTheme } from './themes.js';
@@ -47,8 +19,6 @@ import { Plugging } from './Plugging.js';
 import { Setting } from './Setting.js';
 import { Waiting } from './Waiting.js';
 import { Wizarding } from './Wizarding.js';
-
-import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 /** The `<open-scd>` custom element is the main entry point of the
  * Open Substation Configuration Designer. */
@@ -164,12 +134,12 @@ export class OpenSCD extends Hosting(
     }
 
     .landing {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
       position: absolute;
-      top: calc(50vh - 82px);
-      left: calc(50vw - 184px);
+      text-align: center;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
     }
 
     .landing_icon:hover {

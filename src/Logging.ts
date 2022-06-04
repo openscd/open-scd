@@ -6,10 +6,20 @@ import {
   TemplateResult,
 } from 'lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined';
+import { get, translate } from 'lit-translate';
 
+import '@material/mwc-button';
+import '@material/mwc-dialog';
+import '@material/mwc-icon';
+import '@material/mwc-icon-button';
+import '@material/mwc-icon-button-toggle';
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-snackbar';
 import { Dialog } from '@material/mwc-dialog';
 import { Snackbar } from '@material/mwc-snackbar';
 
+import './filtered-list.js';
 import {
   CommitEntry,
   ifImplemented,
@@ -25,8 +35,7 @@ import {
   OpenDocEvent,
   SclhistoryEntry,
 } from './foundation.js';
-import { get, translate } from 'lit-translate';
-import { getFilterIcon, iconColors } from './icons.js';
+import { getFilterIcon, iconColors } from './icons/icons.js';
 import { Plugin } from './Plugging.js';
 
 const icons = {
@@ -236,8 +245,8 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
 
       this.undo = this.undo.bind(this);
       this.redo = this.redo.bind(this);
-
       this.onLog = this.onLog.bind(this);
+
       this.addEventListener('log', this.onLog);
       this.addEventListener('issue', this.onIssue);
       this.addEventListener('open-doc', this.onLoadHistoryFromDoc);

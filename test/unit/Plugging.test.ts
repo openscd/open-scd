@@ -1,20 +1,20 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import { PluggingElement } from '../../src/Plugging.js';
-
 import './mock-plugger.js';
+import { MockPlugger } from './mock-plugger.js';
+
 import { TextField } from '@material/mwc-textfield';
 
 describe('PluggingElement', () => {
-  let element: PluggingElement;
+  let element: MockPlugger;
   let doc: XMLDocument;
 
   afterEach(() => localStorage.clear());
   beforeEach(async () => {
-    doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+    doc = await fetch('/test/testfiles/valid2007B4.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-    element = <PluggingElement>(
+    element = <MockPlugger>(
       await fixture(
         html`<mock-plugger .doc=${doc} docName="testDoc"></mock-plugger>`
       )
@@ -22,7 +22,7 @@ describe('PluggingElement', () => {
   });
 
   it('stores default plugins on load', () =>
-    expect(element).property('editors').to.have.lengthOf(3));
+    expect(element).property('editors').to.have.lengthOf(5));
 
   describe('plugin manager dialog', () => {
     let firstEditorPlugin: HTMLElement;
@@ -49,7 +49,7 @@ describe('PluggingElement', () => {
     it('disables deselected plugins', async () => {
       firstEditorPlugin.click();
       await element.updateComplete;
-      expect(element).property('editors').to.have.lengthOf(2);
+      expect(element).property('editors').to.have.lengthOf(4);
     });
 
     it('enables selected plugins', async () => {
@@ -57,7 +57,7 @@ describe('PluggingElement', () => {
       await element.updateComplete;
       (<HTMLElement>element.pluginList.firstElementChild).click();
       await element.updateComplete;
-      expect(element).property('editors').to.have.lengthOf(3);
+      expect(element).property('editors').to.have.lengthOf(5);
     });
 
     it('resets plugins to default on reset button click', async () => {
@@ -65,7 +65,7 @@ describe('PluggingElement', () => {
       await element.updateComplete;
       resetAction.click();
       await element.updateComplete;
-      expect(element).property('editors').to.have.lengthOf(3);
+      expect(element).property('editors').to.have.lengthOf(5);
     });
 
     it('opens the custom plugin dialog on add button click', async () => {
@@ -139,7 +139,7 @@ describe('PluggingElement', () => {
       await name.updateComplete;
       primaryAction.click();
       await element.updateComplete;
-      expect(element.editors).to.have.lengthOf(4);
+      expect(element.editors).to.have.lengthOf(6);
     });
     it('adds a new menu kind plugin on add button click', async () => {
       const lengthMenuKindPlugins = element.menuEntries.length;

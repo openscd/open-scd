@@ -1,20 +1,18 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '@material/mwc-list/mwc-check-list-item';
-import '@material/mwc-list/mwc-list';
+import '../../../mock-wizard-editor.js';
+import { MockWizardEditor } from '../../../mock-wizard-editor.js';
+
 import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import { lNodeWizard } from '../../../../src/wizards/lnode.js';
 
-import '../../../mock-wizard.js';
-import { MockWizardEditor } from '../../../mock-wizard-editor.js';
-
 describe('lnodewizard', () => {
   let element: MockWizardEditor;
   let doc: Document;
   beforeEach(async () => {
-    doc = await fetch('/base/test/testfiles/lnodewizard.scd')
+    doc = await fetch('/test/testfiles/lnodewizard.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
   });
@@ -23,7 +21,8 @@ describe('lnodewizard', () => {
     element = <MockWizardEditor>(
       await fixture(html`<mock-wizard-editor></mock-wizard-editor>`)
     );
-    element.workflow.push(lNodeWizard(doc.querySelector('Bay')!));
+    const wizard = lNodeWizard(doc.querySelector('Bay')!);
+    element.workflow.push(() => wizard);
     await element.requestUpdate();
   });
 

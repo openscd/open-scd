@@ -1,23 +1,24 @@
 import { fixture, html, expect } from '@open-wc/testing';
 import fc from 'fast-check';
 
-import { regexString, regExp, inverseRegExp } from '../../../foundation.js';
-import { WizardingElement } from '../../../../src/Wizarding.js';
-
 import '../../../mock-wizard.js';
+import { MockWizard } from '../../../mock-wizard.js';
 
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
+
+import '../../../../src/editors/communication/subnetwork-editor.js';
+import { regexString, regExp, inverseRegExp } from '../../../foundation.js';
 
 describe('subnetwork-editor wizarding integration', () => {
   describe('edit/add Subnetwork wizard', () => {
     let doc: XMLDocument;
-    let parent: WizardingElement;
+    let parent: MockWizard;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+      doc = await fetch('/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      parent = <WizardingElement>(
+      parent = <MockWizard>(
         await fixture(
           html`<mock-wizard
             ><subnetwork-editor
@@ -34,8 +35,8 @@ describe('subnetwork-editor wizarding integration', () => {
       )).click();
       await parent.updateComplete;
     });
-    it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
     describe('the first input element', () => {
       it('edits the attribute name', async () => {
@@ -104,58 +105,6 @@ describe('subnetwork-editor wizarding integration', () => {
           )
         );
       });
-    });
-  });
-  describe('add ConnectedAP wizard', () => {
-    let doc: XMLDocument;
-    let parent: WizardingElement;
-
-    beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
-        .then(response => response.text())
-        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      parent = <WizardingElement>(
-        await fixture(
-          html`<mock-wizard
-            ><subnetwork-editor
-              .element=${doc.querySelector('SubNetwork')}
-            ></subnetwork-editor
-          ></mock-wizard>`
-        )
-      );
-
-      (<HTMLElement>(
-        parent
-          ?.querySelector('subnetwork-editor')
-          ?.shadowRoot?.querySelector('mwc-icon-button[icon="playlist_add"]')
-      )).click();
-      await parent.updateComplete;
-    });
-    it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
-    });
-    it('display all access point in the project', async () => {
-      expect(parent.wizardUI.dialog).to.exist;
-      expect(parent.wizardUI.dialogs.length).to.equal(1);
-      expect(
-        parent.wizardUI.dialog?.querySelectorAll('mwc-check-list-item').length
-      ).to.equal(doc.querySelectorAll(':root > IED > AccessPoint').length);
-    });
-    it('only allows to select non-connected access points', async () => {
-      expect(
-        Array.from(
-          parent.wizardUI.dialog!.querySelectorAll('mwc-check-list-item')
-        ).filter(item => item.disabled).length
-      ).to.equal(3);
-    });
-    it('sorts non-conneted access points to the top', async () => {
-      expect(
-        (<ListItemBase>(
-          parent.wizardUI.dialog!.querySelector(
-            'mwc-check-list-item:nth-child(1)'
-          )
-        )).value
-      ).to.equal('{"iedName":"IED3","apName":"P2"}');
     });
   });
 });

@@ -1,13 +1,16 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import TemplatesPlugin from '../../../src/editors/Templates.js';
+import '../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../mock-wizard-editor.js';
 
-import { Select } from '@material/mwc-select';
-import { WizardTextField } from '../../../src/wizard-textfield.js';
-import { FilteredList } from '../../../src/filtered-list.js';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
+import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
+
+import { FilteredList } from '../../../src/filtered-list.js';
 import { WizardSelect } from '../../../src/wizard-select.js';
+import { WizardTextField } from '../../../src/wizard-textfield.js';
+import TemplatesPlugin from '../../../src/editors/Templates.js';
+import { WizardCheckbox } from '../../../src/wizard-checkbox.js';
 
 describe('BDA wizarding editing integration', () => {
   if (customElements.get('templates-editor') === undefined)
@@ -26,7 +29,7 @@ describe('BDA wizarding editing integration', () => {
 
     templates = <TemplatesPlugin>parent.querySelector('templates-editor')!;
 
-    doc = await fetch('/base/test/testfiles/templates/datypes.scd')
+    doc = await fetch('/test/testfiles/templates/datypes.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     templates.doc = doc;
@@ -64,13 +67,18 @@ describe('BDA wizarding editing integration', () => {
         )
       );
       deleteButton = <HTMLElement>(
-        parent.wizardUI.dialog?.querySelector('mwc-button[icon="delete"]')
+        Array.from(
+          parent.wizardUI.dialog!.querySelectorAll<ListItemBase>(
+            'mwc-menu > mwc-list-item'
+          )
+        ).find(item => item.innerHTML.includes('[remove]'))
       );
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
+
     it('edits BDA element', async () => {
       expect(
         doc.querySelector(
@@ -92,6 +100,7 @@ describe('BDA wizarding editing integration', () => {
         )
       ).to.exist;
     });
+
     it('deletes the BDA element on delete button click', async () => {
       expect(
         doc.querySelector(
@@ -120,7 +129,7 @@ describe('BDA wizarding editing integration', () => {
     let sAddrField: WizardTextField;
     let bTypeSelect: WizardSelect;
     let valKindSelect: WizardSelect;
-    let valImportSelect: WizardSelect;
+    let valImportSelect: WizardCheckbox;
     let primayAction: HTMLElement;
 
     beforeEach(async () => {
@@ -130,7 +139,7 @@ describe('BDA wizarding editing integration', () => {
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       (<HTMLElement>(
-        parent.wizardUI.dialog?.querySelector('mwc-button[icon="playlist_add"]')
+        parent.wizardUI.dialog?.querySelectorAll('mwc-menu > mwc-list-item')[1]
       )).click();
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
@@ -150,9 +159,9 @@ describe('BDA wizarding editing integration', () => {
       valKindSelect = <WizardSelect>(
         parent.wizardUI.dialog?.querySelector('wizard-select[label="valKind"]')
       );
-      valImportSelect = <WizardSelect>(
+      valImportSelect = <WizardCheckbox>(
         parent.wizardUI.dialog?.querySelector(
-          'wizard-select[label="valImport"]'
+          'wizard-checkbox[label="valImport"]'
         )
       );
       primayAction = <HTMLElement>(
@@ -162,8 +171,8 @@ describe('BDA wizarding editing integration', () => {
       );
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
     it('creates a new BDA element', async () => {
       expect(
@@ -201,7 +210,7 @@ describe('BDA wizarding editing integration', () => {
       valKindSelect.nullable = false;
       valKindSelect.value = 'RO';
       valImportSelect.nullable = false;
-      valImportSelect.value = 'true';
+      valImportSelect.maybeValue = 'true';
 
       await parent.requestUpdate();
       primayAction.click();

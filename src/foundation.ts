@@ -8,8 +8,9 @@ import AceEditor from 'ace-custom-element';
 
 import { WizardTextField } from './wizard-textfield.js';
 import { WizardSelect } from './wizard-select.js';
+import { WizardCheckbox } from './wizard-checkbox.js';
 
-export type SimpleAction = Create | Update | Delete | Move;
+export type SimpleAction = Update | Create | Replace | Delete | Move;
 export type ComplexAction = {
   actions: SimpleAction[];
   title: string;
@@ -19,63 +20,76 @@ export type ComplexAction = {
 export type EditorAction = SimpleAction | ComplexAction;
 /** Inserts `new.element` to `new.parent` before `new.reference`. */
 export interface Create {
-  new: { parent: Element; element: Element; reference: Node | null };
+  new: { parent: Node; element: Node; reference?: Node | null };
   derived?: boolean;
   checkValidity?: () => boolean;
 }
 /** Removes `old.element` from `old.parent` before `old.reference`. */
 export interface Delete {
-  old: { parent: Element; element: Element; reference: Node | null };
+  old: { parent: Node; element: Node; reference?: Node | null };
   derived?: boolean;
   checkValidity?: () => boolean;
 }
 /** Reparents of `old.element` to `new.parent` before `new.reference`. */
 export interface Move {
-  old: { parent: Element; element: Element; reference: Node | null };
-  new: { parent: Element; reference: Node | null };
+  old: { parent: Element; element: Element; reference?: Node | null };
+  new: { parent: Element; reference?: Node | null };
   derived?: boolean;
   checkValidity?: () => boolean;
 }
 /** Replaces `old.element` with `new.element`, keeping element children. */
-export interface Update {
+export interface Replace {
   old: { element: Element };
   new: { element: Element };
+  derived?: boolean;
+  checkValidity?: () => boolean;
+}
+/** Swaps `element`s `oldAttributes` with `newAttributes` */
+export interface Update {
+  element: Element;
+  oldAttributes: Record<string, string | null>;
+  newAttributes: Record<string, string | null>;
   derived?: boolean;
   checkValidity?: () => boolean;
 }
 
 export function isCreate(action: EditorAction): action is Create {
   return (
-    (action as Update).old === undefined &&
+    (action as Replace).old === undefined &&
     (action as Create).new?.parent !== undefined &&
-    (action as Create).new?.element !== undefined &&
-    (action as Create).new?.reference !== undefined
+    (action as Create).new?.element !== undefined
   );
 }
 export function isDelete(action: EditorAction): action is Delete {
   return (
     (action as Delete).old?.parent !== undefined &&
     (action as Delete).old?.element !== undefined &&
-    (action as Delete).old?.reference !== undefined &&
-    (action as Update).new === undefined
+    (action as Replace).new === undefined
   );
 }
 export function isMove(action: EditorAction): action is Move {
   return (
     (action as Move).old?.parent !== undefined &&
     (action as Move).old?.element !== undefined &&
-    (action as Move).old?.reference !== undefined &&
     (action as Move).new?.parent !== undefined &&
-    (action as Update).new?.element == undefined &&
-    (action as Move).new?.reference !== undefined
+    (action as Replace).new?.element == undefined
+  );
+}
+export function isReplace(action: EditorAction): action is Replace {
+  return (
+    (action as Move).old?.parent === undefined &&
+    (action as Replace).old?.element !== undefined &&
+    (action as Move).new?.parent === undefined &&
+    (action as Replace).new?.element !== undefined
   );
 }
 export function isUpdate(action: EditorAction): action is Update {
   return (
-    (action as Move).old?.parent === undefined &&
-    (action as Update).old?.element !== undefined &&
-    (action as Move).new?.parent === undefined &&
-    (action as Update).new?.element !== undefined
+    (action as Replace).old === undefined &&
+    (action as Replace).new === undefined &&
+    (action as Update).element !== undefined &&
+    (action as Update).newAttributes !== undefined &&
+    (action as Update).oldAttributes !== undefined
   );
 }
 export function isSimple(action: EditorAction): action is SimpleAction {
@@ -112,9 +126,28 @@ export function invert(action: EditorAction): EditorAction {
       new: { parent: action.old.parent, reference: action.old.reference },
       ...metaData,
     };
-  else if (isUpdate(action))
+  else if (isReplace(action))
     return { new: action.old, old: action.new, ...metaData };
+  else if (isUpdate(action))
+    return {
+      element: action.element,
+      oldAttributes: action.newAttributes,
+      newAttributes: action.oldAttributes,
+      ...metaData,
+    };
   else return unreachable('Unknown EditorAction type in invert.');
+}
+//** return `Update` action for `element` adding `oldAttributes` */
+export function createUpdateAction(
+  element: Element,
+  newAttributes: Record<string, string | null>
+): Update {
+  const oldAttributes: Record<string, string | null> = {};
+  Array.from(element.attributes).forEach(attr => {
+    oldAttributes[attr.name] = attr.value;
+  });
+
+  return { element, oldAttributes, newAttributes };
 }
 
 /** Represents some intended modification of a `Document` being edited. */
@@ -137,8 +170,8 @@ export function newActionEvent<T extends EditorAction>(
 }
 
 export const wizardInputSelector =
-  'wizard-textfield, mwc-textfield, ace-editor, mwc-select,wizard-select';
-export type WizardInput =
+  'wizard-textfield, mwc-textfield, ace-editor, mwc-select,wizard-select, wizard-checkbox';
+export type WizardInputElement =
   | WizardTextField
   | TextField
   | (AceEditor & { checkValidity: () => boolean; label: string })
@@ -146,52 +179,133 @@ export type WizardInput =
   | Select
   | WizardSelect;
 
-export type WizardAction = EditorAction | (() => Wizard);
+export type WizardAction = EditorAction | WizardFactory;
 
 /** @returns [[`EditorAction`]]s to dispatch on [[`WizardDialog`]] commit. */
 export type WizardActor = (
-  inputs: WizardInput[],
+  inputs: WizardInputElement[],
   wizard: Element,
   list?: List | null
 ) => WizardAction[];
 
-export function isWizard(
-  wizardAction: WizardAction
-): wizardAction is () => Wizard {
-  return typeof wizardAction === 'function';
+export function isWizardFactory(
+  maybeFactory: WizardAction | Wizard | null
+): maybeFactory is WizardFactory {
+  return typeof maybeFactory === 'function';
 }
 
 /** @returns the validity of `input` depending on type. */
-export function checkValidity(input: WizardInput): boolean {
+export function checkValidity(input: WizardInputElement): boolean {
   if (input instanceof WizardTextField || input instanceof Select)
     return input.checkValidity();
   else return true;
 }
 
 /** reports the validity of `input` depending on type. */
-export function reportValidity(input: WizardInput): boolean {
+export function reportValidity(input: WizardInputElement): boolean {
   if (input instanceof WizardTextField || input instanceof Select)
     return input.reportValidity();
   else return true;
 }
 
 /** @returns the `value` or `maybeValue` of `input` depending on type. */
-export function getValue(input: WizardInput): string | null {
-  if (input instanceof WizardTextField || input instanceof WizardSelect)
+export function getValue(input: WizardInputElement): string | null {
+  if (
+    input instanceof WizardTextField ||
+    input instanceof WizardSelect ||
+    input instanceof WizardCheckbox
+  )
     return input.maybeValue;
   else return input.value ?? null;
 }
 
 /** @returns the `multiplier` of `input` if available. */
-export function getMultiplier(input: WizardInput): string | null {
+export function getMultiplier(input: WizardInputElement): string | null {
   if (input instanceof WizardTextField) return input.multiplier;
   else return null;
+}
+
+/** Inputs as `TextField`, `Select` or `Checkbox `used in`wizard-dialog` */
+export type WizardInput =
+  | WizardInputTextField
+  | WizardInputSelect
+  | WizardInputCheckbox;
+
+interface WizardInputBase {
+  /** maps attribute key */
+  label: string;
+  /** maps attribute value */
+  maybeValue: string | null;
+  /** whether attribute is optional */
+  nullable?: boolean;
+  /** whether the input shall be disabled */
+  disabled?: boolean;
+  /** helper text */
+  helper?: string;
+  /** initial focused element in `wizard-dialog` (once per dialog) */
+  dialogInitialFocus?: boolean;
+}
+
+interface WizardInputTextField extends WizardInputBase {
+  kind: 'TextField';
+  /** wether the input might be empty string */
+  required?: boolean;
+  /** pattern definition from schema */
+  pattern?: string;
+  /** minimal characters allowed */
+  minLength?: number;
+  /** maximal characters allowed */
+  maxLength?: number;
+  /** message text explaining invalid inputs */
+  validationMessage?: string;
+  /** suffix definition - overwrites unit multiplier definition */
+  suffix?: string;
+  /** SI unit for specific suffix definition */
+  unit?: string;
+  /** in comibination with unit defines specific suffix */
+  multiplier?: string | null;
+  /** array of multipliers allowed for the input */
+  multipliers?: (string | null)[];
+  /** used for specific input type e.g. number */
+  type?: string;
+  /** minimal valid number in combination with type number */
+  min?: number;
+  /** maximal valid number in combination with type number */
+  max?: number;
+  /** value displaxed when input is nulled */
+  default?: string;
+}
+
+interface WizardInputSelect extends WizardInputBase {
+  kind: 'Select';
+  /** selectabled values */
+  values: string[];
+  /** value displayed with input is nulled */
+  default?: string;
+  /** message explaining invalid inputs */
+  valadationMessage?: string;
+}
+
+interface WizardInputCheckbox extends WizardInputBase {
+  kind: 'Checkbox';
+  /** wether checkbox is checked with nulled input */
+  default?: boolean;
+}
+
+/** @returns [[`WizardAction`]]s to dispatch on [[`WizardDialog`]] menu action. */
+export type WizardMenuActor = (wizard: Element) => void;
+
+/** User interactions rendered in the wizard-dialog menu */
+export interface MenuAction {
+  label: string;
+  icon?: string;
+  action: WizardMenuActor;
 }
 
 /** Represents a page of a wizard dialog */
 export interface WizardPage {
   title: string;
-  content?: TemplateResult[];
+  content?: (TemplateResult | WizardInput)[];
   primary?: {
     icon: string;
     label: string;
@@ -205,25 +319,45 @@ export interface WizardPage {
   };
   initial?: boolean;
   element?: Element;
+  menuActions?: MenuAction[];
 }
 export type Wizard = WizardPage[];
+export type WizardFactory = () => Wizard;
 
 /** If `wizard === null`, close the current wizard, else queue `wizard`. */
 export interface WizardDetail {
-  wizard: Wizard | null;
+  wizard: WizardFactory | null;
   subwizard?: boolean;
 }
 export type WizardEvent = CustomEvent<WizardDetail>;
 export function newWizardEvent(
-  wizard: Wizard | null = null,
+  wizardOrFactory?: Wizard | WizardFactory,
   eventInitDict?: CustomEventInit<Partial<WizardDetail>>
 ): WizardEvent {
+  if (!wizardOrFactory)
+    return new CustomEvent<WizardDetail>('wizard', {
+      bubbles: true,
+      composed: true,
+      ...eventInitDict,
+      detail: { wizard: null, ...eventInitDict?.detail },
+    });
+
+  const wizard = isWizardFactory(wizardOrFactory)
+    ? wizardOrFactory
+    : () => wizardOrFactory;
+
   return new CustomEvent<WizardDetail>('wizard', {
     bubbles: true,
     composed: true,
     ...eventInitDict,
     detail: { wizard, ...eventInitDict?.detail },
   });
+}
+
+export function newSubWizardEvent(
+  wizardOrFactory?: Wizard | WizardFactory
+): WizardEvent {
+  return newWizardEvent(wizardOrFactory, { detail: { subwizard: true } });
 }
 
 type InfoEntryKind = 'info' | 'warning' | 'error';
@@ -363,6 +497,46 @@ export function referencePath(element: Element): string {
   return path;
 }
 
+/**
+ * Extract the 'name' attribute from the given XML element.
+ * @param element - The element to extract name from.
+ * @returns the name, or undefined if there is no name.
+ */
+export function getNameAttribute(element: Element): string | undefined {
+  const name = element.getAttribute('name');
+  return name ? name : undefined;
+}
+
+/**
+ * Extract the 'desc' attribute from the given XML element.
+ * @param element - The element to extract description from.
+ * @returns the name, or undefined if there is no description.
+ */
+export function getDescriptionAttribute(element: Element): string | undefined {
+  const name = element.getAttribute('desc');
+  return name ? name : undefined;
+}
+
+/**
+ * Extract the 'pathName' attribute from the given XML element.
+ * @param element - The element to extract path name from.
+ * @returns the name, or undefined if there is no path name.
+ */
+export function getPathNameAttribute(element: Element): string | undefined {
+  const name = element.getAttribute('pathName');
+  return name ? name : undefined;
+}
+
+/**
+ * Extract the 'inst' attribute from the given XML element.
+ * @param element - The element to extract instance from.
+ * @returns the instance, or undefined if there is no instance.
+ */
+export function getInstanceAttribute(element: Element): string | undefined {
+  const inst = element.getAttribute('inst');
+  return inst ? inst : undefined;
+}
+
 export function pathParts(identity: string): [string, string] {
   const path = identity.split('>');
   const end = path.pop() ?? '';
@@ -488,7 +662,9 @@ function kDCSelector(tagName: SCLTag, identity: string): string {
 }
 
 function associationIdentity(e: Element): string {
-  return `${identity(e.parentElement)}>${e.getAttribute('associationID')}`;
+  return `${identity(e.parentElement)}>${
+    e.getAttribute('associationID') ?? ''
+  }`;
 }
 
 function associationSelector(tagName: SCLTag, identity: string): string {
@@ -592,7 +768,7 @@ function fCDASelector(tagName: SCLTag, identity: string): string {
   const [ldInst, prefix, lnClass, lnInst] = childIdentity.split(/[ /.]/);
 
   const matchDoDa = childIdentity.match(
-    /.([A-Z][a-z0-9.]*) ([A-Za-z0-9.]*) \(/
+    /.([A-Z][A-Za-z0-9.]*) ([A-Za-z0-9.]*) \(/
   );
   const doName = matchDoDa && matchDoDa[1] ? matchDoDa[1] : '';
   const daName = matchDoDa && matchDoDa[2] ? matchDoDa[2] : '';
@@ -682,14 +858,14 @@ function extRefIdentity(e: Element): string | number {
   ].map(name => e.getAttribute(name));
 
   const cbPath = srcCBName
-    ? `${serviceType}:${srcCBName} ${srcLDInst ?? ''}/${
-        srcPrefix ?? ''
-      } ${srcLNClass} ${srcLNInst ?? ''}`
+    ? `${serviceType}:${srcCBName} ${srcLDInst ?? ''}/${srcPrefix ?? ''} ${
+        srcLNClass ?? ''
+      } ${srcLNInst ?? ''}`
     : '';
   const dataPath = `${iedName} ${ldInst}/${prefix ?? ''} ${lnClass} ${
     lnInst ?? ''
   } ${doName} ${daName ? daName : ''}`;
-  return `${parentIdentity}>${cbPath} ${dataPath}${
+  return `${parentIdentity}>${cbPath ? cbPath + ' ' : ''}${dataPath}${
     intAddr ? '@' + `${intAddr}` : ''
   }`;
 }
@@ -2417,7 +2593,7 @@ export type Mixin<T extends (...args: any[]) => any> = InstanceType<
 const nameStartChar =
   '[:_A-Za-z]|[\u00C0-\u00D6]|[\u00D8-\u00F6]|[\u00F8-\u02FF]|[\u0370-\u037D]' +
   '|[\u037F-\u1FFF]|[\u200C-\u200D]|[\u2070-\u218F]|[\u2C00-\u2FEF]' +
-  '|[\u3001-\uD7FF]|[\uF900-\uFDCF]|[\uFDF0-\uFFFD]|[\u{10000}\\-\u{EFFFF}]';
+  '|[\u3001-\uD7FF]|[\uF900-\uFDCF]|[\uFDF0-\uFFFD]';
 const nameChar =
   nameStartChar + '|[.0-9-]|\u00B7|[\u0300-\u036F]|[\u203F-\u2040]';
 const name = nameStartChar + '(' + nameChar + ')*';
@@ -2426,19 +2602,18 @@ const nmToken = '(' + nameChar + ')+';
 export const patterns = {
   string:
     '([\u0009-\u000A]|[\u000D]|[\u0020-\u007E]|[\u0085]|[\u00A0-\uD7FF]' +
-    '|[\uE000-\uFFFD]|[\u{10000}\\-\u{10FFFF}])*',
+    '|[\uE000-\uFFFD])*',
   normalizedString:
-    '([\u0020-\u007E]|[\u0085]|[\u00A0-\uD7FF]|[\uE000-\uFFFD]' +
-    '|[\u{10000}\\-\u{10FFFF}])*',
+    '([\u0020-\u007E]|[\u0085]|[\u00A0-\uD7FF]|[\uE000-\uFFFD])*',
   name,
   nmToken,
   names: name + '( ' + name + ')*',
   nmTokens: nmToken + '( ' + nmToken + ')*',
-  decimal: '((-|\\+)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+))',
-  unsigned: '\\+?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)',
+  decimal: '[+-]?[0-9]+(([.][0-9]*)?|([.][0-9]+))',
+  unsigned: '[+]?[0-9]+(([.][0-9]*)?|([.][0-9]+))',
   alphanumericFirstUpperCase: '[A-Z][0-9,A-Z,a-z]*',
   alphanumericFirstLowerCase: '[a-z][0-9,A-Z,a-z]*',
-  lnClass: '[A-Z]{4,4}',
+  lnClass: '(LLN0)|[A-Z]{4,4}',
 };
 
 /** Sorts selected `ListItem`s to the top and disabled ones to the bottom. */
@@ -2446,13 +2621,15 @@ export function compareNames(a: Element | string, b: Element | string): number {
   if (typeof a === 'string' && typeof b === 'string') return a.localeCompare(b);
 
   if (typeof a === 'object' && typeof b === 'string')
-    return a.getAttribute('name')!.localeCompare(b);
+    return (a.getAttribute('name') ?? '').localeCompare(b);
 
   if (typeof a === 'string' && typeof b === 'object')
     return a.localeCompare(b.getAttribute('name')!);
 
   if (typeof a === 'object' && typeof b === 'object')
-    return a.getAttribute('name')!.localeCompare(b.getAttribute('name')!);
+    return (a.getAttribute('name') ?? '').localeCompare(
+      b.getAttribute('name') ?? ''
+    );
 
   return 0;
 }
@@ -2468,6 +2645,38 @@ export function crossProduct<T>(...arrays: T[][]): T[][] {
     (a, b) => <T[][]>a.flatMap(d => b.map(e => [d, e].flat())),
     [[]]
   );
+}
+
+/** @returns the depth of `t` if it is an object or array, zero otherwise. */
+export function depth(t: Record<string, unknown>, mem = new WeakSet()): number {
+  if (mem.has(t)) return Infinity;
+  else
+    switch (t?.constructor) {
+      case Object:
+      case Array:
+        mem.add(t);
+        return (
+          1 +
+          Math.max(
+            -1,
+            ...Object.values(t).map(_ => depth(<Record<string, unknown>>_, mem))
+          )
+        );
+      default:
+        return 0;
+    }
+}
+
+export function getUniqueElementName(
+  parent: Element,
+  tagName: string,
+  iteration = 1
+): string {
+  const newName = 'new' + tagName + iteration;
+  const child = parent.querySelector(`:scope > ${tagName}[name="${newName}"]`);
+
+  if (!child) return newName;
+  else return getUniqueElementName(parent, tagName, ++iteration);
 }
 
 export function findFCDAs(extRef: Element): Element[] {
@@ -2547,6 +2756,43 @@ export function getChildElementsByTagName(
   return Array.from(element.children).filter(
     element => element.tagName === tag
   );
+}
+
+/** maximum value for `lnInst` attribute */
+const maxLnInst = 99;
+const lnInstRange = Array(maxLnInst)
+  .fill(1)
+  .map((_, i) => `${i + 1}`);
+
+/**
+ * @param parent - The LNodes' parent element to be scanned once for `lnInst`
+ * values already in use. Be sure to create a new generator every time the
+ * children of this element change.
+ * @returns a function generating increasing unused `lnInst` values for
+ * `lnClass` LNodes within `parent` on subsequent invocations
+ */
+export function newLnInstGenerator(
+  parent: Element
+): (lnClass: string) => string | undefined {
+  const generators = new Map<string, () => string | undefined>();
+
+  return (lnClass: string) => {
+    if (!generators.has(lnClass)) {
+      const lnInsts = new Set(
+        getChildElementsByTagName(parent, 'LNode')
+          .filter(lnode => lnode.getAttribute('lnClass') === lnClass)
+          .map(lNode => lNode.getAttribute('lnInst')!)
+      );
+
+      generators.set(lnClass, () => {
+        const uniqueLnInst = lnInstRange.find(lnInst => !lnInsts.has(lnInst));
+        if (uniqueLnInst) lnInsts.add(uniqueLnInst);
+        return uniqueLnInst;
+      });
+    }
+
+    return generators.get(lnClass)!();
+  };
 }
 
 declare global {

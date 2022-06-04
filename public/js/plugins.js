@@ -7,12 +7,39 @@ export const officialPlugins = [
     kind: 'editor',
   },
   {
+    name: 'IED',
+    src: '/src/editors/IED.js',
+    icon: 'developer_board',
+    default: false,
+    kind: 'editor',
+  },
+  {
+    name: 'Single Line Diagram',
+    src: '/src/editors/SingleLineDiagram.js',
+    icon: 'edit',
+    default: false,
+    kind: 'editor',
+  },
+  {
+    name: 'Subscription',
+    src: '/src/editors/Subscription.js',
+    icon: 'link',
+    default: true,
+    kind: 'editor',
+  },
+  {
+    name: 'Sampled Values Subscriber',
+    src: '/src/editors/SampledValues.js',
+    icon: 'link',
+    default: true,
+    kind: 'editor',
+  },
+  {
     name: 'Communication',
     src: '/src/editors/Communication.js',
     icon: 'settings_ethernet',
     default: true,
     kind: 'editor',
-
   },
   {
     name: 'Templates',
@@ -80,6 +107,22 @@ export const officialPlugins = [
     position: 'middle'
   },
   {
+    name: 'Update desc (ABB)',
+    src: '/src/menu/UpdateDescriptionABB.js',
+    default: false,
+    kind: 'menu',
+    requireDoc: true,
+    position: 'middle'
+  },
+  {
+    name: 'Update desc (SEL)',
+    src: '/src/menu/UpdateDescriptionSEL.js',
+    default: false,
+    kind: 'menu',
+    requireDoc: true,
+    position: 'middle'
+  },
+  {
     name: 'Merge Project',
     src: '/src/menu/Merge.js',
     icon: 'merge_type',
@@ -96,6 +139,13 @@ export const officialPlugins = [
     kind: 'menu',
     requireDoc: true,
     position: 'middle'
+  },
+  {
+    name: 'Cleanup',
+    src: '/src/editors/Cleanup.js',
+    icon: 'cleaning_services',
+    default: false,
+    kind: 'editor',
   },
   {
     name: 'Help',

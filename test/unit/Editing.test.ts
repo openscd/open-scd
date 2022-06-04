@@ -1,24 +1,27 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import { EditingElement } from '../../src/Editing.js';
-import { mockSCD } from './mock-document.js';
-import { newActionEvent } from '../../src/foundation.js';
 import './mock-editor.js';
+import { MockEditor } from './mock-editor.js';
+
+import { createUpdateAction, newActionEvent } from '../../src/foundation.js';
 
 describe('EditingElement', () => {
-  let elm: EditingElement;
+  let elm: MockEditor;
+  let doc: XMLDocument;
   let parent: Element;
   let element: Element;
   let reference: Node | null;
 
   beforeEach(async () => {
-    const doc = mockSCD();
-    elm = <EditingElement>(
+    doc = await fetch('/test/testfiles/Editing.scd')
+      .then(response => response.text())
+      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+    elm = <MockEditor>(
       await fixture(html`<mock-editor .doc=${doc}></mock-editor>`)
     );
 
-    parent = elm.doc!.querySelector('parent1')!;
-    element = parent.querySelector('child1')!;
+    parent = elm.doc!.querySelector('VoltageLevel[name="E1"]')!;
+    element = parent.querySelector('Bay[name="Q01"]')!;
     reference = element.nextSibling;
   });
 
@@ -27,12 +30,105 @@ describe('EditingElement', () => {
       newActionEvent({
         new: {
           parent,
-          element: elm.doc!.createElement('child3'),
+          element: elm.doc!.createElement('newBay'),
           reference: null,
         },
       })
     );
-    expect(elm.doc!.querySelector('child3')).to.not.be.null;
+    expect(elm.doc!.querySelector('newBay')).to.not.be.null;
+  });
+
+  it('creates an Node on receiving a Create Action', () => {
+    const testNode = document.createTextNode('myTestNode');
+
+    elm.dispatchEvent(
+      newActionEvent({
+        new: {
+          parent,
+          element: testNode,
+        },
+      })
+    );
+    expect(parent.lastChild).to.equal(testNode);
+  });
+
+  it('creates the Node based on the reference definition', () => {
+    const testNode = document.createTextNode('myTestNode');
+
+    elm.dispatchEvent(
+      newActionEvent({
+        new: {
+          parent,
+          element: testNode,
+          reference: parent.firstChild,
+        },
+      })
+    );
+    expect(parent.firstChild).to.equal(testNode);
+  });
+
+  it('triggers getReference with missing reference on Create Action', () => {
+    elm.dispatchEvent(
+      newActionEvent({
+        new: {
+          parent,
+          element: elm.doc!.createElement('Bay'),
+        },
+      })
+    );
+    expect(parent.querySelector('Bay')?.nextElementSibling).to.equal(
+      parent.querySelector('Bay[name="Q01"]')
+    );
+  });
+
+  it('ignores getReference with existing reference on Create Action', () => {
+    const newElement = elm.doc!.createElement('Bay');
+    newElement?.setAttribute('name', 'Q03');
+
+    elm.dispatchEvent(
+      newActionEvent({
+        new: {
+          parent,
+          element: newElement,
+          reference: parent.querySelector('Bay[name="Q02"]'),
+        },
+      })
+    );
+    expect(
+      parent.querySelector('Bay[name="Q03"]')?.nextElementSibling
+    ).to.equal(parent.querySelector('Bay[name="Q02"]'));
+  });
+
+  it('does not creates an element on name attribute conflict', () => {
+    const newElement = elm.doc!.createElement('Bay');
+    newElement?.setAttribute('name', 'Q01');
+
+    elm.dispatchEvent(
+      newActionEvent({
+        new: {
+          parent,
+          element: newElement,
+          reference: null,
+        },
+      })
+    );
+    expect(parent.querySelectorAll('Bay[name="Q01"]').length).to.be.equal(1);
+  });
+
+  it('does not creates an element on id attribute conflict', () => {
+    const newElement = elm.doc!.createElement('DOType');
+    newElement?.setAttribute('id', 'testId');
+
+    elm.dispatchEvent(
+      newActionEvent({
+        new: {
+          parent: doc.querySelector('DataTypeTemplates')!,
+          element: newElement,
+          reference: null,
+        },
+      })
+    );
+    expect(doc.querySelector('DOType')).to.be.null;
   });
 
   it('deletes an element on receiving a Delete action', () => {
@@ -45,25 +141,121 @@ describe('EditingElement', () => {
         },
       })
     );
-    expect(elm.doc!.querySelector('parent1 > child1')).to.be.null;
+    expect(elm.doc!.querySelector('VoltageLevel[name="E1"] > Bay[name="Q01"]'))
+      .to.be.null;
   });
 
-  it('updates an element on receiving an Update action', () => {
+  it('deletes a Node on receiving a Delete action', () => {
+    const testNode = document.createTextNode('myTestNode');
+    parent.appendChild(testNode);
+    expect(testNode.parentNode).to.be.equal(parent);
+
+    elm.dispatchEvent(
+      newActionEvent({
+        old: {
+          parent,
+          element: testNode,
+        },
+      })
+    );
+
+    expect(parent.lastChild).to.not.equal(testNode);
+    expect(testNode.parentNode).to.be.null;
+  });
+
+  it('correctly handles incorrect delete action definition', () => {
+    const testNode = document.createTextNode('myTestNode');
+    expect(testNode.parentNode).to.null;
+
+    elm.dispatchEvent(
+      newActionEvent({
+        old: {
+          parent,
+          element: testNode,
+        },
+      })
+    );
+
+    expect(parent.lastChild).to.not.equal(testNode);
+    expect(testNode.parentNode).to.null;
+  });
+
+  it('replaces an element on receiving an Replace action', () => {
     elm.dispatchEvent(
       newActionEvent({
         old: {
           element,
         },
         new: {
-          element: elm.doc!.createElement('child3'),
+          element: elm.doc!.createElement('newBay'),
         },
       })
     );
-    expect(parent.querySelector('child1')).to.be.null;
-    expect(parent.querySelector('child3')).to.not.be.null;
-    expect(parent.querySelector('child3')?.nextElementSibling).to.equal(
-      parent.querySelector('child2')
+    expect(parent.querySelector('Bay[name="Q01"]')).to.be.null;
+    expect(parent.querySelector('newBay')).to.not.be.null;
+    expect(parent.querySelector('newBay')?.nextElementSibling).to.equal(
+      parent.querySelector('Bay[name="Q02"]')
     );
+  });
+
+  it('does not replace an element with name conflict', () => {
+    const newElement = elm.doc!.createElement('Bay');
+    newElement?.setAttribute('name', 'Q02');
+
+    elm.dispatchEvent(
+      newActionEvent({
+        old: {
+          element,
+        },
+        new: {
+          element: newElement,
+        },
+      })
+    );
+    expect(parent.querySelector('Bay[name="Q01"]')).to.not.null;
+    expect(
+      parent.querySelector('Bay[name="Q01"]')?.nextElementSibling
+    ).to.equal(parent.querySelector('Bay[name="Q02"]'));
+  });
+
+  it('replaces id defined element on receiving Replace action', () => {
+    expect(doc.querySelector('LNodeType[id="testId"]')).to.not.be.null;
+
+    const newElement = doc.createElement('LNodeType');
+    newElement?.setAttribute('id', 'testId3');
+
+    elm.dispatchEvent(
+      newActionEvent({
+        old: {
+          element: doc.querySelector('LNodeType[id="testId"]')!,
+        },
+        new: {
+          element: newElement,
+        },
+      })
+    );
+    expect(doc.querySelector('LNodeType[id="testId"]')).to.be.null;
+    expect(doc.querySelector('LNodeType[id="testId3"]')).to.not.be.null;
+  });
+
+  it('does not replace an element with name conflict', () => {
+    expect(doc.querySelector('LNodeType[id="testId"]')).to.not.be.null;
+
+    const newElement = elm.doc!.createElement('LNodeType');
+    newElement?.setAttribute('id', 'testId1');
+
+    elm.dispatchEvent(
+      newActionEvent({
+        old: {
+          element: doc.querySelector('LNodeType[id="testId"]')!,
+        },
+        new: {
+          element: newElement,
+        },
+      })
+    );
+    expect(doc.querySelector('LNodeType[id="testId"]')).to.not.be.null;
+    expect(doc.querySelector('LNodeType[id="testId1"]')).to.be.null;
   });
 
   it('moves an element on receiving a Move action', () => {
@@ -75,17 +267,117 @@ describe('EditingElement', () => {
           reference,
         },
         new: {
-          parent: elm.doc!.querySelector('parent2')!,
+          parent: elm.doc!.querySelector('VoltageLevel[name="J1"]')!,
           reference: null,
         },
       })
     );
-    expect(parent.querySelector('child1')).to.be.null;
-    expect(elm.doc!.querySelector('parent2 > child1')).to.not.be.null;
+    expect(parent.querySelector('Bay[name="Q01"]')).to.be.null;
+    expect(elm.doc!.querySelector('VoltageLevel[name="J1"] > Bay[name="Q01"]'))
+      .to.not.be.null;
+  });
+
+  it('triggers getReference with missing reference on Move action', () => {
+    elm.dispatchEvent(
+      newActionEvent({
+        old: {
+          parent,
+          element,
+          reference,
+        },
+        new: {
+          parent: elm.doc!.querySelector('VoltageLevel[name="J1"]')!,
+        },
+      })
+    );
+    expect(parent.querySelector('Bay[name="Q01"]')).to.be.null;
+    expect(elm.doc!.querySelector('VoltageLevel[name="J1"] > Bay[name="Q01"]'))
+      .to.not.be.null;
+    expect(
+      elm.doc!.querySelector('VoltageLevel[name="J1"] > Bay[name="Q01"]')
+        ?.nextElementSibling
+    ).to.equal(elm.doc!.querySelector('VoltageLevel[name="J1"] > Function'));
+  });
+
+  it('does not move an element with name conflict', () => {
+    elm.dispatchEvent(
+      newActionEvent({
+        old: {
+          parent,
+          element,
+          reference,
+        },
+        new: {
+          parent: elm.doc!.querySelector('VoltageLevel[name="J1"]')!,
+          reference: null,
+        },
+      })
+    );
+    expect(parent.querySelector('Bay[name="Q01"]')).to.be.null;
+    expect(elm.doc!.querySelector('VoltageLevel[name="J1"] > Bay[name="Q01"]'))
+      .to.not.be.null;
+    expect(
+      elm.doc!.querySelector('VoltageLevel[name="J1"] > Bay[name="Q01"]')
+        ?.nextElementSibling
+    ).to.be.null;
+  });
+
+  it('updates an element on receiving an Update action', () => {
+    const newAttributes: Record<string, string | null> = {};
+    newAttributes['name'] = 'Q03';
+
+    elm.dispatchEvent(
+      newActionEvent(createUpdateAction(element, newAttributes))
+    );
+
+    expect(element.parentElement).to.equal(parent);
+    expect(element).to.have.attribute('name', 'Q03');
+    expect(element).to.not.have.attribute('desc');
+  });
+
+  it('not update an element with id conflict', () => {
+    const newAttributes: Record<string, string | null> = {};
+    newAttributes['id'] = 'testId1';
+
+    elm.dispatchEvent(
+      newActionEvent(
+        createUpdateAction(doc.querySelector('LNodeType')!, newAttributes)
+      )
+    );
+
+    expect(doc.querySelector('LNodeType[id="testId"]')).to.exist;
+    expect(doc.querySelector('LNodeType[id="testId1"]')).to.not.exist;
+  });
+
+  it('does not update an element with name conflict', () => {
+    const newAttributes: Record<string, string | null> = {};
+    newAttributes['name'] = 'Q02';
+
+    elm.dispatchEvent(
+      newActionEvent(createUpdateAction(element, newAttributes))
+    );
+
+    expect(element.parentElement).to.equal(parent);
+    expect(element).to.have.attribute('name', 'Q01');
+    expect(element).to.have.attribute('desc', 'Bay');
+  });
+
+  it('does not update an element with id conflict', () => {
+    const newAttributes: Record<string, string | null> = {};
+    newAttributes['id'] = 'testId1';
+
+    elm.dispatchEvent(
+      newActionEvent(
+        createUpdateAction(doc.querySelector('LNodeType')!, newAttributes)
+      )
+    );
+
+    expect(doc.querySelector('LNodeType[id="testId"]')).to.exist;
+    expect(doc.querySelector('LNodeType[id="testId1"]')).to.not.exist;
   });
 
   it('carries out subactions sequentially on receiving a ComplexAction', () => {
-    const child3 = elm.doc!.createElement('child3');
+    const child3 = elm.doc!.createElement('newBay');
     elm.dispatchEvent(
       newActionEvent({
         title: 'Test complex action',
@@ -101,14 +393,15 @@ describe('EditingElement', () => {
               reference,
             },
             new: {
-              parent: elm.doc!.querySelector('parent2')!,
+              parent: elm.doc!.querySelector('VoltageLevel[name="J1"]')!,
               reference: null,
             },
           },
         ],
       })
     );
-    expect(parent.querySelector('child1')).to.be.null;
-    expect(elm.doc!.querySelector('parent2 > child3')).to.not.be.null;
+    expect(parent.querySelector('Bay[name="Q01"]')).to.be.null;
+    expect(elm.doc!.querySelector('VoltageLevel[name="J1"] > newBay')).to.not.be
+      .null;
   });
 });

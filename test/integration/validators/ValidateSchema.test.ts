@@ -1,12 +1,14 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import { IssueDetail, LogEntry } from '../../../src/foundation.js';
-
+import '../../../src/open-scd.js';
 import { OpenSCD } from '../../../src/open-scd.js';
 import ValidateSchema from '../../../src/validators/ValidateSchema.js';
+import { IssueDetail, LogEntry } from '../../../src/foundation.js';
 
 describe('ValidateSchema plugin', () => {
-  customElements.define('validate-schema', ValidateSchema);
+  if (customElements.get('') === undefined)
+    customElements.define('validate-schema', ValidateSchema);
+
   let parent: OpenSCD;
   let element: ValidateSchema;
 
@@ -15,7 +17,7 @@ describe('ValidateSchema plugin', () => {
 
   describe('for valid SCL files', () => {
     beforeEach(async () => {
-      valid2007B4 = await fetch('/base/test/testfiles/valid2007B.scd')
+      valid2007B4 = await fetch('/test/testfiles/valid2007B.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
@@ -41,7 +43,7 @@ describe('ValidateSchema plugin', () => {
 
     it('zeroissues indication looks like the latest snapshot', async () => {
       await parent.requestUpdate();
-      expect(parent.diagnosticUI).to.equalSnapshot();
+      await expect(parent.diagnosticUI).to.equalSnapshot();
     });
 
     it('indicates successful schema validation in the diagnoses pane', async () => {
@@ -66,7 +68,7 @@ describe('ValidateSchema plugin', () => {
 
   describe('for invalid SCL files', () => {
     beforeEach(async () => {
-      invalid2007B = await fetch('/base/test/testfiles/invalid2007B.scd')
+      invalid2007B = await fetch('/test/testfiles/invalid2007B.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
@@ -104,7 +106,7 @@ describe('ValidateSchema plugin', () => {
 
     it('pushes issues to the diagnostics pane that look like the latest snapshot', async () => {
       await parent.requestUpdate();
-      expect(parent.diagnosticUI).to.equalSnapshot();
+      await expect(parent.diagnosticUI).to.equalSnapshot();
     });
 
     it('generates error messages in the log', async () => {

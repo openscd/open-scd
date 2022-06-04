@@ -1,17 +1,8 @@
-import { css, html, TemplateResult } from 'lit-element';
-import { ifDefined } from 'lit-html/directives/if-defined';
+import { css } from 'lit-element';
 
-import {
-  cloneElement,
-  Create,
-  EditorAction,
-  getReference,
-  getValue,
-  isPublic,
-  SCLTag,
-  WizardActor,
-  WizardInput,
-} from '../../foundation.js';
+import '@material/mwc-list/mwc-list-item';
+
+import { Create, isPublic } from '../../foundation.js';
 
 export interface UpdateOptions {
   identity: string | null;
@@ -30,29 +21,12 @@ export function isCreateOptions(
   return (<CreateOptions>options).parent !== undefined;
 }
 
-export function updateIDNamingAction(element: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
-    const id = getValue(inputs.find(i => i.label === 'id')!)!;
-    const desc = getValue(inputs.find(i => i.label === 'desc')!);
-
-    if (
-      id === element.getAttribute('id') &&
-      desc === element.getAttribute('desc')
-    )
-      return [];
-
-    const newElement = cloneElement(element, { id, desc });
-
-    return [{ old: { element }, new: { element: newElement } }];
-  };
-}
-
 function containsCreateAction(actions: Create[], newAction: Create): boolean {
   return !actions.some(
     action =>
       action.new.parent === newAction.new.parent &&
-      action.new.element.getAttribute('id') ===
-        newAction.new.element.getAttribute('id')
+      (<Element>action.new.element).getAttribute('id') ===
+        (<Element>newAction.new.element).getAttribute('id')
   );
 }
 
@@ -98,25 +72,11 @@ export function addReferencedDataTypes(
       new: {
         parent,
         element: <Element>adjacent.cloneNode(true),
-        reference: getReference(parent, <SCLTag>adjacent.tagName),
       },
     });
   });
 
   return actions;
-}
-
-export function buildListFromStringArray(
-  list: (string | null)[],
-  selected: string | null
-): TemplateResult[] {
-  return list.map(
-    item => html`<mwc-list-item
-      value=${ifDefined(item === null ? undefined : item)}
-      ?selected=${item === selected}
-      >${item}</mwc-list-item
-    >`
-  );
 }
 
 /** Common `CSS` styles used by DataTypeTemplate subeditors */

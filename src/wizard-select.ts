@@ -6,8 +6,8 @@ import {
   query,
   TemplateResult,
 } from 'lit-element';
-import { get } from 'lit-translate';
 
+import '@material/mwc-switch';
 import { Switch } from '@material/mwc-switch';
 import { Select } from '@material/mwc-select';
 
@@ -49,6 +49,9 @@ export class WizardSelect extends Select {
   @property({ type: Array })
   reservedValues: string[] = [];
 
+  // FIXME: workaround to allow disable of the whole component - need basic refactor
+  private disabledSwitch = false;
+
   @query('mwc-switch') nullSwitch?: Switch;
 
   private nulled: string | null = null;
@@ -76,11 +79,18 @@ export class WizardSelect extends Select {
     return super.checkValidity();
   }
 
+  constructor() {
+    super();
+
+    this.disabledSwitch = this.hasAttribute('disabled');
+  }
+
   renderSwitch(): TemplateResult {
     if (this.nullable) {
       return html`<mwc-switch
         style="margin-left: 12px;"
         ?checked=${!this.null}
+        ?disabled=${this.disabledSwitch}
         @change=${() => {
           this.null = !this.nullSwitch!.checked;
         }}

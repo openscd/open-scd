@@ -1,19 +1,21 @@
 import { html, TemplateResult } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
+import '@material/mwc-checkbox';
+import '@material/mwc-formfield';
+
+import '../wizard-textfield.js';
 import {
   createElement,
   EditorAction,
-  getReference,
   getValue,
   newWizardEvent,
   Wizard,
   WizardActor,
-  WizardInput,
+  WizardInputElement,
 } from '../foundation.js';
-import { updateNamingAction } from './foundation/actions.js';
-
 import { guessVoltageLevel } from '../editors/substation/guess-wizard.js';
+import { updateNamingAttributeWithReferencesAction } from "./foundation/actions.js";
 
 function render(
   name: string,
@@ -44,7 +46,7 @@ function render(
 }
 
 export function createAction(parent: Element): WizardActor {
-  return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
+  return (inputs: WizardInputElement[], wizard: Element): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!);
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const guess = wizard.shadowRoot?.querySelector('mwc-checkbox')?.checked;
@@ -58,7 +60,6 @@ export function createAction(parent: Element): WizardActor {
       new: {
         parent,
         element,
-        reference: getReference(parent, 'Substation'),
       },
     };
 
@@ -96,7 +97,7 @@ export function substationEditWizard(element: Element): Wizard {
       primary: {
         icon: 'edit',
         label: get('save'),
-        action: updateNamingAction(element),
+        action: updateNamingAttributeWithReferencesAction(element, 'substation.action.updatesubstation'),
       },
       content: render(
         element.getAttribute('name') ?? '',

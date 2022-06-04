@@ -3,8 +3,8 @@ import {
   ifImplemented,
   LitElementConstructor,
   Mixin,
-  Wizard,
   WizardEvent,
+  WizardFactory,
 } from './foundation.js';
 
 import './wizard-dialog.js';
@@ -18,13 +18,12 @@ export function Wizarding<TBase extends LitElementConstructor>(Base: TBase) {
   class WizardingElement extends Base {
     /** FIFO queue of [[`Wizard`]]s to display. */
     @internalProperty()
-    workflow: Wizard[] = [];
+    workflow: WizardFactory[] = [];
 
     @query('wizard-dialog') wizardUI!: WizardDialog;
 
     private onWizard(we: WizardEvent) {
       const wizard = we.detail.wizard;
-      if (wizard?.length === 0) return;
       if (wizard === null) this.workflow.shift();
       else if (we.detail.subwizard) this.workflow.unshift(wizard);
       else this.workflow.push(wizard);
@@ -49,7 +48,7 @@ export function Wizarding<TBase extends LitElementConstructor>(Base: TBase) {
 
     render(): TemplateResult {
       return html`${ifImplemented(super.render())}
-        <wizard-dialog .wizard=${this.workflow[0] ?? []}></wizard-dialog>`;
+        <wizard-dialog .wizard=${this.workflow[0]?.() ?? []}></wizard-dialog>`;
     }
   }
 

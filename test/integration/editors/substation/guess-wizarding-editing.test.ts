@@ -1,26 +1,24 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../../mock-wizard-editor.js';
 import '../../../mock-wizard.js';
-
-import '@material/mwc-list/mwc-check-list-item';
-import '@material/mwc-list/mwc-list';
-
-import { EditingElement } from '../../../../src/Editing.js';
 import { MockWizard } from '../../../mock-wizard.js';
+import '../../../mock-wizard-editor.js';
+import { MockWizardEditor } from '../../../mock-wizard-editor.js';
+
 import { guessVoltageLevel } from '../../../../src/editors/substation/guess-wizard.js';
-import { WizardingElement } from '../../../../src/Wizarding.js';
 
 describe('guess-wizard-integration', () => {
   let element: MockWizard;
   let validSCL: XMLDocument;
   beforeEach(async () => {
-    validSCL = await fetch('/base/test/testfiles/valid2007B4.scd')
+    validSCL = await fetch('/test/testfiles/valid2007B4.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     validSCL.querySelector('Substation')!.innerHTML = '';
     element = <MockWizard>await fixture(html`<mock-wizard></mock-wizard>`);
-    element.workflow.push(guessVoltageLevel(validSCL));
+
+    const wizard = guessVoltageLevel(validSCL);
+    element.workflow.push(() => wizard);
     await element.requestUpdate();
   });
 
@@ -72,18 +70,21 @@ describe('guess-wizard-integration', () => {
 });
 
 describe('guess-wizarding-editing-integration', () => {
-  let element: WizardingElement & EditingElement;
+  let element: MockWizardEditor;
   let validSCL: XMLDocument;
   beforeEach(async () => {
-    validSCL = await fetch('/base/test/testfiles/valid2007B4.scd')
+    validSCL = await fetch('/test/testfiles/valid2007B4.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     validSCL.querySelector('Substation')!.innerHTML = '';
-    element = <WizardingElement & EditingElement>(
+    element = <MockWizardEditor>(
       await fixture(html`<mock-wizard-editor></mock-wizard-editor>`)
     );
-    element.workflow.push(guessVoltageLevel(validSCL));
+
+    const wizard = guessVoltageLevel(validSCL);
+    element.workflow.push(() => wizard);
     await element.requestUpdate();
+
     (<HTMLElement>(
       element.wizardUI.dialog!.querySelector(
         '#ctlModelList > mwc-check-list-item:nth-child(5)'

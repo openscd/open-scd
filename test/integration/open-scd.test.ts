@@ -1,8 +1,8 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import { OpenSCD } from '../../src/open-scd.js';
 import '../../src/open-scd.js';
 import { newEmptySCD } from '../../src/schemas.js';
+import { OpenSCD } from '../../src/open-scd.js';
 
 describe('open-scd', () => {
   let element: OpenSCD;
@@ -10,23 +10,25 @@ describe('open-scd', () => {
   let validSCL: string;
 
   beforeEach(async () => {
-    invalidSCL = await fetch('/base/test/testfiles/invalid2007B.scd').then(
+    localStorage.clear();
+
+    invalidSCL = await fetch('/test/testfiles/invalid2007B.scd').then(
       response => response.text()
     );
-    validSCL = await fetch('/base/test/testfiles/valid2007B4.scd').then(
-      response => response.text()
+    validSCL = await fetch('/test/testfiles/valid2007B4.scd').then(response =>
+      response.text()
     );
     element = await fixture(html`
       <open-scd></open-scd>
 
-      <link href="public/google/fonts/roboto-v27.css" rel="stylesheet">
-      <link href="public/google/fonts/roboto-mono-v13.css" rel="stylesheet">
-      <link href="public/google/icons/material-icons-outlined.css" rel="stylesheet">
+      <link href="public/google/fonts/roboto-v27.css" rel="stylesheet" />
+      <link href="public/google/fonts/roboto-mono-v13.css" rel="stylesheet" />
+      <link href="public/google/icons/material-icons-outlined.css" rel="stylesheet" />
     `);
   });
 
-  it('looks like its snapshot', () => {
-    expect(element).shadowDom.to.equalSnapshot();
+  it('looks like its snapshot', async () => {
+    await expect(element).shadowDom.to.equalSnapshot();
   });
 
   it('opens the menu on navigation icon click', async () => {
