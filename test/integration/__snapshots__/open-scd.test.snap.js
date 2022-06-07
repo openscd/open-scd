@@ -675,6 +675,22 @@ snapshots["open-scd looks like its snapshot"] =
       hasmeta=""
       left=""
       mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/editors/TemplatesProt.js"
+    >
+      <mwc-icon slot="meta">
+        copy_all
+      </mwc-icon>
+      Templates2
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
       tabindex="-1"
       value="/src/editors/Cleanup.js"
     >

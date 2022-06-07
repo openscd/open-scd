@@ -126,7 +126,7 @@ function createDoAction(parent: Element): WizardActor {
   };
 }
 
-function dOWizard(options: WizardOptions): Wizard | undefined {
+export function dOWizard(options: WizardOptions): Wizard | undefined {
   const doc = (<UpdateOptions>options).doc
     ? (<UpdateOptions>options).doc
     : (<CreateOptions>options).parent.ownerDocument;

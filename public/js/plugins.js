@@ -49,6 +49,13 @@ export const officialPlugins = [
     kind: 'editor',
   },
   {
+    name: 'Templates2',
+    src: '/src/editors/TemplatesProt.js',
+    icon: 'copy_all',
+    default: true,
+    kind: 'editor',
+  },
+  {
     name: 'Open project',
     src: '/src/menu/OpenProject.js',
     icon: 'folder_open',

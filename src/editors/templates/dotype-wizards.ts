@@ -95,7 +95,7 @@ function createSDoAction(parent: Element): WizardActor {
   };
 }
 
-function sDOWizard(options: WizardOptions): Wizard | undefined {
+export function sDOWizard(options: WizardOptions): Wizard | undefined {
   const doc = (<UpdateOptions>options).doc
     ? (<UpdateOptions>options).doc
     : (<CreateOptions>options).parent.ownerDocument;
