@@ -26,7 +26,7 @@ snapshots["Wizards for SCL element Substation edit existing Substation looks lik
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -67,7 +67,7 @@ snapshots["Wizards for SCL element Substation add new Substation looks like the 
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
