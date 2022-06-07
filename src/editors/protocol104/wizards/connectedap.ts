@@ -208,6 +208,27 @@ export function updateConnectedApAction(parent: Element): WizardActor {
   };
 }
 
+function getRedundancyGroups(element: Element): Element[] {
+  const addresses = [];
+  let numberOfRedundancyGroup = 1;
+
+  // TODO: Less querying
+  while (element.querySelectorAll(`Address > P[type^="RG${numberOfRedundancyGroup}"]`).length == 8) {
+    const address = createElement(element.ownerDocument, 'Address', {
+      'number': `${numberOfRedundancyGroup}`
+    });
+
+    element.querySelectorAll(`Address > P[type^="RG${numberOfRedundancyGroup}"]`).forEach(p => {
+      address.appendChild(p.cloneNode());
+    });
+
+    addresses.push(address);
+    numberOfRedundancyGroup++;
+  }
+
+  return addresses;
+}
+
 /** @returns single page [[`Wizard`]] to edit SCL element ConnectedAP for the 104 plugin. */
 export function editConnectedAp104Wizard(element: Element, redundancy?: boolean): Wizard {
   return [
@@ -254,7 +275,11 @@ export function editConnectedAp104Wizard(element: Element, redundancy?: boolean)
         </wizard-select>
         ${redundancy
           ? html`<h3>${get('protocol104.network.connectedap.redundancy.groupTitle')}</h3>
-            <h5>All kinds of groups...</h5>`
+            <mwc-list>
+              ${getRedundancyGroups(element).map(
+                group => html`<mwc-list-item>Redundancy Group ${group.getAttribute('number')}</mwc-list-item>`
+              )}
+            </mwc-list>`
           : html`${pTypes104.map(
             pType => html`${createPTextField(element, pType)}`
           )}`}
