@@ -5,10 +5,13 @@ import {addPrefixAndNamespaceToDocument, createPrivateAddress, createPrivateElem
 /**
  * List of supported Common Data Classes in the 104 protocol.
  */
-export const supportedCdcTypes = ['ACT', 'ASG', 'BCR', 'CMV', 'DPS', 'ING', 'INS', 'MV', 'SEC', 'SPG', 'SPS'] as const;
+export const supportedCdcTypes =
+  [ 'ACT', 'APC', 'ASG', 'BAC', 'BCR', 'BSC', 'CMV',
+    'DPC', 'DPS', 'INC', 'ING', 'INS', 'ISC', 'MV',
+    'SEC', 'SPC', 'SPG', 'SPS'] as const;
 export type SupportedCdcType = typeof supportedCdcTypes[number];
 
-type CreateFunction = (daiElement: Element, selectedTi: string) => Create[];
+export type CreateFunction = (daiElement: Element, selectedTi: string) => Create[];
 
 /**
  * Record with configuration information on how to create Address elements for the 104 protocol.
@@ -35,60 +38,137 @@ export const cdcProcessings: Record<
   ACT: {
     monitor: {
       '30': {
-        filter: 'DAI[name="general"], DAI[name="phsA"], DAI[name="phsB"], DAI[name="phsC"], DAI[name="neut"]',
+        filter: ':scope > DAI[name="general"], ' +
+          ':scope > DAI[name="phsA"], ' +
+          ':scope > DAI[name="phsB"], ' +
+          ':scope > DAI[name="phsC"], ' +
+          ':scope > DAI[name="neut"]',
         create: createSingleAddressAction
       },
       '39': {
-        filter: 'DAI[name="general"]',
+        filter: ':scope > DAI[name="general"]',
         create: createSingleAddressAction
       }
     },
     control: {}
+  },
+  APC: {
+    monitor: {
+      '36': {
+        filter: ':scope > SDI[name="mxVal"] > DAI[name="f"]',
+        create: createSingleAddressAction
+      },
+    },
+    control: {
+      '63': {
+        filter: ':scope > SDI[name="Oper"] > SDI[name="ctlVal"] > DAI[name="f"]',
+        create: createSingleAddressAction
+      },
+    }
   },
   ASG: {
     monitor: {
       '63': {
-        filter: 'SDI[name="setMag"] > DAI[name="f"]',
+        filter: ':scope > SDI[name="setMag"] > DAI[name="f"]',
         create: createSingleAddressAction
       }
     },
     control: {}
+  },
+  BAC: {
+    monitor: {
+      '36': {
+        filter: ':scope > SDI[name="mxVal"] > DAI[name="f"]',
+        create: createSingleAddressAction
+      },
+    },
+    control: {
+      '60': {
+        filter: ':scope > SDI[name="Oper"] > DAI[name="ctlVal"]',
+        create: createSingleAddressAction
+      },
+    }
   },
   BCR: {
     monitor: {
       '37': {
-        filter: 'DAI[name="actVal"], DAI[name="frVal"]',
+        filter: ':scope > DAI[name="actVal"], ' +
+          ':scope > DAI[name="frVal"]',
         create: createSingleAddressAction
       },
     },
     control: {}
+  },
+  BSC: {
+    monitor: {
+      '32': {
+        filter: ':scope > SDI[name="valWTr"] > DAI[name="posVal"]',
+        create: createSingleAddressAction
+      },
+    },
+    control: {
+      '60': {
+        filter: ':scope > SDI[name="Oper"] > DAI[name=“ctlVal”]',
+        create: createSingleAddressAction
+      },
+    }
   },
   CMV: {
     monitor: {
       '35': {
-        filter: 'SDI[name="mag"] > DAI[name="i"], SDI[name="ang"] > DAI[name="i"]',
+        filter: ':scope > SDI[name="mag"] > DAI[name="i"], ' +
+          ':scope > SDI[name="ang"] > DAI[name="i"]',
         create: createSingleAddressAction
       },
       '36': {
-        filter: 'SDI[name="mag"] > DAI[name="f"], SDI[name="ang"] > DAI[name="f"]',
+        filter: ':scope > SDI[name="mag"] > DAI[name="f"], ' +
+          ':scope > SDI[name="ang"] > DAI[name="f"]',
         create: createSingleAddressAction
       }
     },
     control: {}
+  },
+  DPC: {
+    monitor: {
+      '31': {
+        filter: ':scope > DAI[name="stVal"]',
+        create: createSingleAddressAction
+      },
+    },
+    control: {
+      '59': {
+        filter: ':scope > SDI[name="Oper"] > DAI[name="ctlVal"]',
+        create: createSingleAddressAction
+      },
+    }
   },
   DPS: {
     monitor: {
       '31': {
-        filter: 'DAI[name="stVal"]',
+        filter: ':scope > DAI[name="stVal"]',
         create: createSingleAddressAction
       }
     },
     control: {}
   },
+  INC: {
+    monitor: {
+      '35': {
+        filter: ':scope > DAI[name="stVal"]',
+        create: createSingleAddressAction
+      },
+    },
+    control: {
+      '62': {
+        filter: ':scope > SDI[name="Oper"] > DAI[name="ctlVal"]',
+        create: createSingleAddressAction
+      },
+    }
+  },
   ING: {
     monitor: {
       '62': {
-        filter: 'DAI[name="setVal"]',
+        filter: ':scope > DAI[name="setVal"]',
         create: createSingleAddressAction
       }
     },
@@ -97,28 +177,42 @@ export const cdcProcessings: Record<
   INS: {
     monitor: {
       '30': {
-        filter: 'DAI[name="stVal"]',
+        filter: ':scope > DAI[name="stVal"]',
         create: createInvertedAddressAction
       },
       '33': {
-        filter: 'DAI[name="stVal"]',
+        filter: ':scope > DAI[name="stVal"]',
         create: createSingleAddressAction
       },
       '35': {
-        filter: 'DAI[name="stVal"]',
+        filter: ':scope > DAI[name="stVal"]',
         create: createSingleAddressAction
       }
     },
     control: {}
   },
+  ISC: {
+    monitor: {
+      '32': {
+        filter: ':scope > SDI[name="valWTr"] > DAI[name="posVal"]',
+        create: createSingleAddressAction
+      },
+    },
+    control: {
+      '62': {
+        filter: ':scope > SDI[name="Oper"] > DAI[name="ctlVal"]',
+        create: createSingleAddressAction
+      },
+    }
+  },
   MV: {
     monitor: {
       '35': {
-        filter: 'SDI[name="mag"] > DAI[name="i"]',
+        filter: ':scope > SDI[name="mag"] > DAI[name="i"]',
         create: createSingleAddressAction
       },
       '36': {
-        filter: 'SDI[name="mag"] > DAI[name="f"]',
+        filter: ':scope > SDI[name="mag"] > DAI[name="f"]',
         create: createSingleAddressAction
       }
     },
@@ -127,16 +221,30 @@ export const cdcProcessings: Record<
   SEC: {
     monitor: {
       '37': {
-        filter: 'DAI[name="cnt"]',
+        filter: ':scope > DAI[name="cnt"]',
         create: createSingleAddressAction
       }
     },
     control: {}
   },
+  SPC: {
+    monitor: {
+      '30': {
+        filter: ':scope > DAI[name="stVal"]',
+        create: createSingleAddressAction
+      },
+    },
+    control: {
+      '58': {
+        filter: ':scope > SDI[name="Oper"] > DAI[name="ctlVal"]',
+        create: createSingleAddressAction
+      },
+    }
+  },
   SPG: {
     monitor: {
       '58': {
-        filter: 'DAI[name="setVal"]',
+        filter: ':scope > DAI[name="setVal"]',
         create: createSingleAddressAction
       }
     },
@@ -145,7 +253,7 @@ export const cdcProcessings: Record<
   SPS: {
     monitor: {
       '30': {
-        filter: 'DAI[name="stVal"]',
+        filter: ':scope > DAI[name="stVal"]',
         create: createSingleAddressAction
       }
     },

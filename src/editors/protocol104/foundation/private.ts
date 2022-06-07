@@ -2,7 +2,6 @@ export const PROTOCOL_104_PRIVATE = "IEC_60870_5_104";
 export const PROTOCOL_104_NS = "http://www.iec.ch/61850-80-1/2007/IEC_60870-5-104";
 export const PROTOCOL_104_PREFIX = "IEC_60870_5_104";
 
-
 /**
  * Will add the namespace of the 104 Protocol to the Root Element of the Document (SCL) as prefix to
  * be used with all 104 elements (Address).

@@ -14,6 +14,7 @@ import '../../../wizard-textfield.js';
 
 import {
   getCdcValue,
+  getCtlModel,
   getFullPath,
   PRIVATE_TYPE_104
 } from "../foundation/foundation.js";
@@ -58,6 +59,16 @@ export function renderDOIWizard(doiElement: Element): TemplateResult[] {
                         readonly>
                       </wizard-textfield>`
     );
+  }
+
+  const ctlModel = getCtlModel(doiElement);
+  if (ctlModel !== null) {
+    fields.push(html `<wizard-textfield
+                          label="ctlModel"
+                          .maybeValue=${ctlModel}
+                          disabled
+                          readonly>
+                        </wizard-textfield>`);
   }
 
   return fields;

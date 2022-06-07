@@ -3,6 +3,9 @@ import { expect } from "@open-wc/testing";
 import {
   get104DetailsLine,
   getCdcValue,
+  getCtlModel,
+  getDaiElement,
+  getDaiValue,
   getFullPath,
   hasExpectedValueField,
   hasScaleFields,
@@ -14,7 +17,7 @@ describe('foundation', () => {
   let document: XMLDocument;
 
   beforeEach(async () => {
-    document = await fetch('/test/testfiles/104/valid-addresses-case1.scd')
+    document = await fetch('/test/testfiles/104/valid-addresses.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
   });
@@ -69,6 +72,45 @@ describe('foundation', () => {
       // Basic test to see if CDC is retrieved correctly.
       const doiElement = document.querySelector('IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] DOI[name="Mod"]');
       expect(getCdcValue(doiElement!)).to.be.equals('ENC');
+    });
+  });
+
+  describe('getDaiElement', () => {
+    it('returns expected DAI Element', () => {
+      const doiElement = document.querySelector('IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] DOI[name="Mod"]');
+      const result = getDaiElement(doiElement!, 'ctlModel');
+      expect(result).to.be.not.null;
+    });
+    it('returns null if DAI not found', () => {
+      const doiElement = document.querySelector('IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] DOI[name="Mod"]');
+      const result = getDaiElement(doiElement!, 'Unknown');
+      expect(result).to.be.null;
+    });
+  });
+
+  describe('getDaiValue', () => {
+    it('returns expected DAI Value', () => {
+      const doiElement = document.querySelector('IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] DOI[name="Mod"]');
+      const result = getDaiValue(doiElement!, 'ctlModel');
+      expect(result).to.be.equal('direct-with-normal-security');
+    });
+    it('returns null if DAI not found', () => {
+      const doiElement = document.querySelector('IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] DOI[name="Mod"]');
+      const result = getDaiValue(doiElement!, 'Unknown');
+      expect(result).to.be.null;
+    });
+  });
+
+  describe('getCtlModel', () => {
+    it('returns expected CtlModel Value', () => {
+      const doiElement = document.querySelector('IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] DOI[name="Mod"]');
+      const result = getCtlModel(doiElement!);
+      expect(result).to.be.equal('direct-with-normal-security');
+    });
+    it('returns null if DAI not found', () => {
+      const doiElement = document.querySelector('IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] DOI[name="Beh"]');
+      const result = getCtlModel(doiElement!);
+      expect(result).to.be.null;
     });
   });
 

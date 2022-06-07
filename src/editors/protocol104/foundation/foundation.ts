@@ -1,7 +1,11 @@
 import {
+  Create,
   getInstanceAttribute,
-  getNameAttribute
+  getNameAttribute,
+  newWizardEvent
 } from "../../../foundation.js";
+import { editAddressWizard } from "../wizards/address.js";
+import { CreateFunction } from "./cdc.js";
 
 export const PRIVATE_TYPE_104 = "IEC_60870_5_104";
 
@@ -133,6 +137,80 @@ export function hasUnitMultiplierField(cdc: string, ti: string): boolean {
  */
 export function hasScaleFields(cdc: string, ti: string): boolean {
   return (cdc === 'MV' && ['35', '36'].includes(ti));
+}
+
+/**
+ * Search for a DAI Element below the passed DOI Element.
+ *
+ * @param doiElement - The DOI Element to search on.
+ * @param name       - The name of the DAI Element to search for.
+ * @returns The found DAI Element or null, if not found.
+ */
+export function getDaiElement(doiElement: Element, name: string): Element | null {
+  return doiElement.querySelector(`:scope > DAI[name="${name}"]`);
+}
+
+/**
+ * Search for the Value of a DAI Element below the passed DOI Element.
+ *
+ * @param doiElement - The DOI Element to search on.
+ * @param name       - The name of the DAI Element to search for.
+ * @returns The value (Val) of the found DAI Element or null, if not found.
+ */
+export function getDaiValue(doiElement: Element, name: string): string | null {
+  const daiElement = getDaiElement(doiElement, name);
+  if (daiElement) {
+    return daiElement.querySelector(':scope > Val')?.textContent ?? null;
+  }
+  return null;
+}
+
+/**
+ * Search for the DAI Element 'ctlModel', this one indicates if control Addresses need to be created.
+ *
+ * @param doiElement - The DOI Element.
+ * @returns The value of the CtlModel.
+ */
+export function getCtlModel(doiElement: Element): string | null {
+  return getDaiValue(doiElement, 'ctlModel');
+}
+
+/**
+ * Create a list of Create Actions using the parameters passed. First search for the DAI Elements
+ * that can be effected. Next create the action and add it to this list, also start the Edit
+ * Address Element wizard for all Address Elements created.
+ *
+ * @param doiElement     - The DOI Element.
+ * @param wizard         - The Wizard to dispatch the Open Wizard event on.
+ * @param ti             - The TI Value set on the new Address Elements.
+ * @param filter         - The Filter used to find the DAI Elements.
+ * @param createFunction - The Function used to create the new Private/Address Elements.
+ * @returns A list of Create Action that will be added to the complex action.
+ */
+export function createActions(
+  doiElement: Element,
+  wizard: Element,
+  ti: string,
+  filter: string,
+  createFunction: CreateFunction
+): Create[] {
+  const actions: Create[] = [];
+  const daiMonitorElements = doiElement.querySelectorAll(filter);
+  if (daiMonitorElements.length > 0) {
+    daiMonitorElements.forEach(daiElement => {
+      const createActions = createFunction(daiElement, ti);
+      actions.push(...createActions);
+
+      createActions.forEach(createAction => {
+        const privateElement = <Element>createAction.new.element;
+        Array.from(privateElement.querySelectorAll('Address'))
+          .forEach(addressElement => {
+            wizard.dispatchEvent(newWizardEvent(editAddressWizard(daiElement, addressElement)));
+          });
+      });
+    });
+  }
+  return actions;
 }
 
 /**

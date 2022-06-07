@@ -17,13 +17,28 @@ describe('Wizards for 104 DOI Element', () => {
   let inputs: WizardInputElement[];
 
   beforeEach(async () => {
-    doc = await fetchDoc('/test/testfiles/104/valid-addresses-case1.scd');
+    doc = await fetchDoc('/test/testfiles/104/valid-addresses.scd');
     element = await fixture(html`<mock-wizard></mock-wizard>`);
   });
 
   describe('show 104 DOI Info', () => {
     beforeEach(async () => {
-      doi = doc.querySelector('IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] DOI[name="Mod"]')!;
+      doi = doc.querySelector('IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] DOI[name="CntVal1"]')!;
+
+      const wizard = showDOIInfoWizard(doi);
+      element.workflow.push(() => wizard);
+      await element.requestUpdate();
+      inputs = Array.from(element.wizardUI.inputs);
+    });
+
+    it('looks like the latest snapshot', async () => {
+      await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
+    });
+  });
+
+  describe('show 104 DOI Info with ctlModel', () => {
+    beforeEach(async () => {
+      doi = doc.querySelector('IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] DOI[name="CmdBlk"]')!;
 
       const wizard = showDOIInfoWizard(doi);
       element.workflow.push(() => wizard);
