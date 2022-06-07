@@ -20,7 +20,7 @@ import { Select } from '@material/mwc-select';
 import { Switch } from '@material/mwc-switch';
 import { TextField } from '@material/mwc-textfield';
 
-import { ifImplemented, Mixin } from './foundation.js';
+import { newPendingStateEvent, ifImplemented, Mixin } from './foundation.js';
 import { EditingElement } from './Editing.js';
 import { officialPlugins } from '../public/js/plugins.js';
 import { Nsdoc } from './foundation/nsdoc.js';
@@ -281,7 +281,13 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
       const tag = pluginTag(plugin.src);
       if (!loadedPlugins.has(tag)) {
         loadedPlugins.add(tag);
-        import(plugin.src).then(mod => customElements.define(tag, mod.default));
+        this.dispatchEvent(
+          newPendingStateEvent(
+            import(plugin.src).then(mod =>
+              customElements.define(tag, mod.default)
+            )
+          )
+        );
       }
       return {
         ...plugin,

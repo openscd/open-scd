@@ -1076,7 +1076,6 @@ snapshots["open-scd looks like its snapshot"] =
   </mwc-button>
 </mwc-dialog>
 <mwc-circular-progress-four-color
-  closed=""
   density="0"
   indeterminate=""
   progress="0"
