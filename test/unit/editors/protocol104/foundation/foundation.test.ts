@@ -7,7 +7,6 @@ import {
   getDaiElement,
   getDaiValue,
   getFullPath,
-  hasExpectedValueField,
   hasScaleFields,
   hasUnitMultiplierField,
   PRIVATE_TYPE_104
@@ -112,19 +111,6 @@ describe('foundation', () => {
       const result = getCtlModel(doiElement!);
       expect(result).to.be.null;
     });
-  });
-
-  it('hasExpectedValueField should return expected boolean', () => {
-    expect(hasExpectedValueField('ENC', '45')).to.be.true;
-    expect(hasExpectedValueField('ENG', '45')).to.be.true;
-    expect(hasExpectedValueField('ENS', '30')).to.be.true;
-    expect(hasExpectedValueField('INS', '30')).to.be.true;
-
-    expect(hasExpectedValueField('ENG', '49')).to.be.false;
-    expect(hasExpectedValueField('ENG', '49')).to.be.false;
-    expect(hasExpectedValueField('ENS', '35')).to.be.false;
-    expect(hasExpectedValueField('INS', '35')).to.be.false;
-    expect(hasExpectedValueField('MV', '35')).to.be.false;
   });
 
   it('hasUnitMultiplierField should return expected boolean', () => {
