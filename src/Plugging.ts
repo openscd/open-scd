@@ -226,7 +226,7 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
     private get storedPlugins(): Plugin[] {
       return <Plugin[]>(
         JSON.parse(localStorage.getItem('plugins') ?? '[]', (key, value) =>
-          value.src ? this.addContent(value) : value
+          value.src && value.installed ? this.addContent(value) : value
         )
       );
     }

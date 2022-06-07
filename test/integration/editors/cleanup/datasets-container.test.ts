@@ -70,12 +70,12 @@ describe('cleanup-editor integration: dataset removal', () => {
       await element.cleanupButton!.click();
       // the correct number of DataSets should remain
       const remainingDataSetCountCheck =
-        doc.querySelectorAll(
+        element.doc.querySelectorAll(
           ':root > IED > AccessPoint > Server > LDevice > LN0 > DataSet, :root > IED > AccessPoint > Server > LDevice > LN > DataSet'
         ).length === 6;
       // those DataSets selected had best be gone
       const datasetsCorrectlyRemoved =
-        doc.querySelectorAll(
+        element.doc.querySelectorAll(
           'DataSet[name="GooseDataSet2"], DataSet[name="PhsMeas2"]'
         ).length === 0;
       expect(remainingDataSetCountCheck && datasetsCorrectlyRemoved).to.equal(

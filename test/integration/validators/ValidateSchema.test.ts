@@ -5,6 +5,27 @@ import { OpenSCD } from '../../../src/open-scd.js';
 import ValidateSchema from '../../../src/validators/ValidateSchema.js';
 import { IssueDetail, LogEntry } from '../../../src/foundation.js';
 
+import { officialPlugins } from '../../../public/js/plugins.js';
+
+const plugins = officialPlugins
+  .map(plugin => ({
+    ...plugin,
+    default: false,
+    installed: false,
+    official: true,
+  }))
+  .concat([
+    {
+      name: 'Substation',
+      src: '/src/editors/Substation.ts',
+      icon: 'margin',
+      default: true,
+      kind: 'editor',
+      installed: true,
+      official: false,
+    },
+  ]);
+
 describe('ValidateSchema plugin', () => {
   if (customElements.get('') === undefined)
     customElements.define('validate-schema', ValidateSchema);
@@ -20,6 +41,8 @@ describe('ValidateSchema plugin', () => {
       valid2007B4 = await fetch('/test/testfiles/valid2007B.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+      localStorage.setItem('plugins', JSON.stringify(plugins));
 
       parent = await fixture(html`
         <open-scd .doc=${valid2007B4} .docName=${'valid2007B4'}
