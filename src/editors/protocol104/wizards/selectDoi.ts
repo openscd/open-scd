@@ -6,7 +6,7 @@ import '../../../finder-list.js';
 import { getDisplayString, getReader } from "../../../wizards/foundation/finder.js";
 import { FinderList } from "../../../finder-list.js";
 import {
-  compareNames,
+  compareNames, identity,
   newSubWizardEvent,
   selector,
   Wizard,
@@ -41,7 +41,7 @@ export function getDataChildren(parent: Element): Element[] {
   } else {
     children = Array.from(parent.children)
       .filter(child => ['IED', 'LDevice', 'LN0', 'LN', 'DOI'].includes(child.tagName))
-      .sort((a,b) => compareNames(a,b));
+      .sort((a,b) => compareNames(`${identity(a)}`,`${identity(b)}`));
   }
 
   return children.filter(filterAvailableDoiElement);
