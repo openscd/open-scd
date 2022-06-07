@@ -68,8 +68,8 @@ export const regExp = {
 };
 
 export const inverseRegExp = {
-  unsigned: /[^0-9.+]|.[^0-9.]/,
-  decimal: /[^0-9.+-]|.[^0-9.]/,
-  integer: /[^0-9+-]/,
-  uint: /[^0-9+]/,
+  unsigned: /[^0-9.eE+]|.[^0-9.eE]/,
+  decimal: /[^0-9.eE+-]|.[^0-9.eE]/,
+  integer: /[^0-9eE+-]/,
+  uint: /[^0-9eE+]/,
 };
