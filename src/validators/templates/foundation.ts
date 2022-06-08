@@ -94,7 +94,7 @@ export async function validateChildren(
   const children = Array.from(element.children);
 
   for (const child of children) {
-    const validator = await tagValidator[child.tagName];
+    const validator = tagValidator[child.tagName];
     if (!validator) continue;
 
     const childIssues = await validator(child);

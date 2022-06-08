@@ -198,7 +198,7 @@ describe('EditingElement', () => {
     );
   });
 
-  it('does not replace an element with name conflict', () => {
+  it('does not replace an element in case of name conflict', () => {
     const newElement = elm.doc!.createElement('Bay');
     newElement?.setAttribute('name', 'Q02');
 
@@ -212,7 +212,7 @@ describe('EditingElement', () => {
         },
       })
     );
-    expect(parent.querySelector('Bay[name="Q01"]')).to.not.null;
+    expect(parent.querySelector('Bay[name="Q01"]')).to.not.be.null;
     expect(
       parent.querySelector('Bay[name="Q01"]')?.nextElementSibling
     ).to.equal(parent.querySelector('Bay[name="Q02"]'));
@@ -234,11 +234,11 @@ describe('EditingElement', () => {
         },
       })
     );
-    expect(doc.querySelector('LNodeType[id="testId"]')).to.be.null;
-    expect(doc.querySelector('LNodeType[id="testId3"]')).to.not.be.null;
+    expect(elm.doc!.querySelector('LNodeType[id="testId"]')).to.be.null;
+    expect(elm.doc!.querySelector('LNodeType[id="testId3"]')).to.not.be.null;
   });
 
-  it('does not replace an element with name conflict', () => {
+  it('does not replace an element in case of id conflict', () => {
     expect(doc.querySelector('LNodeType[id="testId"]')).to.not.be.null;
 
     const newElement = elm.doc!.createElement('LNodeType');
@@ -254,8 +254,8 @@ describe('EditingElement', () => {
         },
       })
     );
-    expect(doc.querySelector('LNodeType[id="testId"]')).to.not.be.null;
-    expect(doc.querySelector('LNodeType[id="testId1"]')).to.be.null;
+    expect(elm.doc!.querySelector('LNodeType[id="testId"]')).to.not.be.null;
+    expect(elm.doc!.querySelector('LNodeType[id="testId1"]')).to.be.null;
   });
 
   it('moves an element on receiving a Move action', () => {
@@ -299,7 +299,7 @@ describe('EditingElement', () => {
     ).to.equal(elm.doc!.querySelector('VoltageLevel[name="J1"] > Function'));
   });
 
-  it('does not move an element with name conflict', () => {
+  it('does not move an element in case of name conflict', () => {
     elm.dispatchEvent(
       newActionEvent({
         old: {
@@ -335,21 +335,7 @@ describe('EditingElement', () => {
     expect(element).to.not.have.attribute('desc');
   });
 
-  it('not update an element with id conflict', () => {
-    const newAttributes: Record<string, string | null> = {};
-    newAttributes['id'] = 'testId1';
-
-    elm.dispatchEvent(
-      newActionEvent(
-        createUpdateAction(doc.querySelector('LNodeType')!, newAttributes)
-      )
-    );
-
-    expect(doc.querySelector('LNodeType[id="testId"]')).to.exist;
-    expect(doc.querySelector('LNodeType[id="testId1"]')).to.not.exist;
-  });
-
-  it('does not update an element with name conflict', () => {
+  it('does not update an element in case of name conflict', () => {
     const newAttributes: Record<string, string | null> = {};
     newAttributes['name'] = 'Q02';
 
@@ -362,7 +348,7 @@ describe('EditingElement', () => {
     expect(element).to.have.attribute('desc', 'Bay');
   });
 
-  it('does not update an element with id conflict', () => {
+  it('does not update an element in case of id conflict', () => {
     const newAttributes: Record<string, string | null> = {};
     newAttributes['id'] = 'testId1';
 
@@ -372,8 +358,8 @@ describe('EditingElement', () => {
       )
     );
 
-    expect(doc.querySelector('LNodeType[id="testId"]')).to.exist;
-    expect(doc.querySelector('LNodeType[id="testId1"]')).to.not.exist;
+    expect(elm.doc!.querySelector('LNodeType[id="testId"]')).to.exist;
+    expect(elm.doc!.querySelector('LNodeType[id="testId1"]')).to.not.exist;
   });
 
   it('carries out subactions sequentially on receiving a ComplexAction', () => {

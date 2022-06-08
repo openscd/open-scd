@@ -308,7 +308,7 @@ export function Hosting<
           </mwc-top-app-bar-fixed>
         </mwc-drawer>
 
-        ${this.doc
+        ${this.doc && this.editors[this.activeTab]?.content
           ? this.editors[this.activeTab].content
           : html`<div class="landing">
               ${(<MenuItem[]>this.menu.filter(mi => mi !== 'divider')).map(

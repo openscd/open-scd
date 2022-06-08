@@ -83,7 +83,7 @@ export const officialPlugins = [
     position: 'top'
   },
   {
-    name: 'Validate project',
+    name: 'Validate Schema',
     src: '/src/validators/ValidateSchema.js',
     icon: 'rule_folder',
     default: true,
