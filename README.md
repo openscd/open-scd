@@ -46,6 +46,13 @@ We provide the following `npm` scripts for your convenience:
 - `npm run doc` builds HTML documentation into the `doc` directory
 - `npm run build` builds a deployable version of the project into the `dist` directory
 
+### Code style
+
+There is a configuration for ESLint and Prettier that is used to check and format the code.
+
+There are extensions for VSCode and IntelliJ IDEA. 
+Use and configure these extensions for your IDE to make your live easier.
+
 ## License
 
 The [IEC 61850](https://webstore.iec.ch/publication/63319) XSD and NSD code components used are
