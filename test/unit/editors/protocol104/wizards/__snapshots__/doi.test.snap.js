@@ -1,9 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Wizards for 104 DOI Element show 104 DOI Info looks like the latest snapshot"] =
+snapshots["Wizards for 104 DOI Element show 104 DOI Info looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[protocol104.wizard.title.doiInfo]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 48px)"
@@ -70,9 +70,9 @@ snapshots["Wizards for 104 DOI Element show 104 DOI Info looks like the latest s
 `;
 /* end snapshot Wizards for 104 DOI Element show 104 DOI Info looks like the latest snapshot */
 
-snapshots["Wizards for 104 DOI Element show 104 DOI Info with ctlModel looks like the latest snapshot"] =
+snapshots["Wizards for 104 DOI Element show 104 DOI Info with ctlModel looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[protocol104.wizard.title.doiInfo]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 48px)"

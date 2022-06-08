@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["Wizards for 104 Address Element edit basic 104 Address looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[protocol104.wizard.title.addressEdit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -78,7 +78,7 @@ snapshots["Wizards for 104 Address Element edit basic 104 Address looks like the
 
 snapshots["Wizards for 104 Address Element edit 104 Address with expected value looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[protocol104.wizard.title.addressEdit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -160,7 +160,7 @@ snapshots["Wizards for 104 Address Element edit 104 Address with expected value 
 
 snapshots["Wizards for 104 Address Element edit 104 Address with unit multiplier looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[protocol104.wizard.title.addressEdit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -443,7 +443,7 @@ snapshots["Wizards for 104 Address Element edit 104 Address with unit multiplier
 
 snapshots["Wizards for 104 Address Element edit 104 Address with scale fields looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[protocol104.wizard.title.addressEdit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"

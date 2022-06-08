@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["SubNetwork 104 wizard include an create wizard that looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[wizard.title.add]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
