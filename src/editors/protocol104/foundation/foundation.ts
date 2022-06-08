@@ -2,12 +2,13 @@ import {
   Create,
   getInstanceAttribute,
   getNameAttribute,
-  newWizardEvent
-} from "../../../foundation.js";
-import { editAddressWizard } from "../wizards/address.js";
-import { TiInformation } from "./cdc.js";
+  newWizardEvent,
+} from '../../../foundation.js';
+import { editAddressWizard } from '../wizards/address.js';
+import { TiInformation } from './cdc.js';
+import { getEnumVal } from './private';
 
-export const PRIVATE_TYPE_104 = "IEC_60870_5_104";
+export const PRIVATE_TYPE_104 = 'IEC_60870_5_104';
 
 /**
  * Retrieve the full path as wanted for the IED Container in the 104 Plugin, meaning we go higher in the
@@ -30,7 +31,9 @@ export function getFullPath(element: Element, topLevelTagName: string): string {
       case 'LN0': {
         const prefix = parent.getAttribute('prefix');
         const inst = getInstanceAttribute(parent);
-        value = `${prefix ? prefix + '-' : ''}${parent.getAttribute('lnClass')}${inst ? '-' + inst : ''}`;
+        value = `${prefix ? prefix + '-' : ''}${parent.getAttribute(
+          'lnClass'
+        )}${inst ? '-' + inst : ''}`;
         break;
       }
       case 'LDevice': {
@@ -62,11 +65,15 @@ export function getCdcValue(doiElement: Element): string | null {
     const lnType = lnElement.getAttribute('lnType');
     const doName = doiElement.getAttribute('name');
 
-    const doElement = doiElement.ownerDocument.querySelector(`LNodeType[id="${lnType}"] > DO[name="${doName}"]`)
+    const doElement = doiElement.ownerDocument.querySelector(
+      `LNodeType[id="${lnType}"] > DO[name="${doName}"]`
+    );
     if (doElement) {
       const doType = doElement.getAttribute('type');
-      const doTypeElement = doiElement.ownerDocument.querySelector(`DOType[id="${doType}"]`)
-      return (doTypeElement ? doTypeElement.getAttribute('cdc') : null);
+      const doTypeElement = doiElement.ownerDocument.querySelector(
+        `DOType[id="${doType}"]`
+      );
+      return doTypeElement ? doTypeElement.getAttribute('cdc') : null;
     }
   }
   return null;
@@ -94,10 +101,25 @@ const addressAttributes = [
  * @param address - The Address element from which to retrieve all attribute values.
  * @returns A string to display with all attribute values.
  */
-export function get104DetailsLine(address: Element): string {
+export function get104DetailsLine(
+  daiElement: Element,
+  address: Element
+): string {
   return addressAttributes
     .filter(attrName => address.hasAttribute(attrName))
-    .map(attrName => `${attrName}: ${address.getAttribute(attrName)}`)
+    .map(attrName => {
+      const value = address.getAttribute(attrName)!;
+      if (attrName === 'expectedValue') {
+        const enumValue = getEnumVal(
+          daiElement.ownerDocument,
+          daiElement,
+          value
+        );
+        return `${attrName}: ${value}${enumValue ? ` (${enumValue})` : ``}`;
+      } else {
+        return `${attrName}: ${value}`;
+      }
+    })
     .join(', ');
 }
 
@@ -109,8 +131,10 @@ export function get104DetailsLine(address: Element): string {
  * @returns true, if the combination should handle/process the attribute "unitMultiplier".
  */
 export function hasUnitMultiplierField(cdc: string, ti: string): boolean {
-  return (cdc === 'MV' && ['35', '36'].includes(ti))
-    || (cdc === 'INS' && ti === '35');
+  return (
+    (cdc === 'MV' && ['35', '36'].includes(ti)) ||
+    (cdc === 'INS' && ti === '35')
+  );
 }
 
 /**
@@ -122,7 +146,7 @@ export function hasUnitMultiplierField(cdc: string, ti: string): boolean {
  * @returns true, if the combination should handle/process the attributes "scaleMultiplier" and "scaleOffset".
  */
 export function hasScaleFields(cdc: string, ti: string): boolean {
-  return (cdc === 'MV' && ['35', '36'].includes(ti));
+  return cdc === 'MV' && ['35', '36'].includes(ti);
 }
 
 /**
@@ -132,7 +156,10 @@ export function hasScaleFields(cdc: string, ti: string): boolean {
  * @param name       - The name of the DAI Element to search for.
  * @returns The found DAI Element or null, if not found.
  */
-export function getDaiElement(doiElement: Element, name: string): Element | null {
+export function getDaiElement(
+  doiElement: Element,
+  name: string
+): Element | null {
   return doiElement.querySelector(`:scope > DAI[name="${name}"]`);
 }
 
@@ -184,17 +211,24 @@ export function createActions(
   const daiElements = doiElement.querySelectorAll(tiInformation.filter);
   if (daiElements.length > 0) {
     daiElements.forEach(daiElement => {
-      const createActions = tiInformation.create(daiElement, ti,
-        (tiInformation.inverted ? inverted : false) // If the TI Allows it and the Engineer selected it, true will be passed.
+      const createActions = tiInformation.create(
+        daiElement,
+        ti,
+        tiInformation.inverted ? inverted : false // If the TI Allows it and the Engineer selected it, true will be passed.
       );
       actions.push(...createActions);
 
       createActions.forEach(createAction => {
         const privateElement = <Element>createAction.new.element;
-        Array.from(privateElement.querySelectorAll('Address'))
-          .forEach(addressElement => {
-            wizard.dispatchEvent(newWizardEvent(() => editAddressWizard(daiElement, addressElement)));
-          });
+        Array.from(privateElement.querySelectorAll('Address')).forEach(
+          addressElement => {
+            wizard.dispatchEvent(
+              newWizardEvent(() =>
+                editAddressWizard(daiElement, addressElement)
+              )
+            );
+          }
+        );
       });
     });
   }
@@ -229,10 +263,15 @@ export function createCheckActions(
 
           createActions.forEach(createAction => {
             const privateElement = <Element>createAction.new.element;
-            Array.from(privateElement.querySelectorAll('Address'))
-              .forEach(addressElement => {
-                wizard.dispatchEvent(newWizardEvent(() => editAddressWizard(daiElement, addressElement)));
-              });
+            Array.from(privateElement.querySelectorAll('Address')).forEach(
+              addressElement => {
+                wizard.dispatchEvent(
+                  newWizardEvent(() =>
+                    editAddressWizard(daiElement, addressElement)
+                  )
+                );
+              }
+            );
           });
         }
       });
@@ -246,7 +285,7 @@ export function createCheckActions(
  */
 export enum View {
   VALUES,
-  NETWORK
+  NETWORK,
 }
 
 export const VIEW_EVENT_NAME = 'view-change-104-plugin';
@@ -256,9 +295,7 @@ export interface ViewDetail {
   view: View;
 }
 export type ViewEvent = CustomEvent<ViewDetail>;
-export function newViewEvent(
-  view: View,
-): ViewEvent {
+export function newViewEvent(view: View): ViewEvent {
   return new CustomEvent<ViewDetail>(VIEW_EVENT_NAME, {
     bubbles: true,
     composed: true,
