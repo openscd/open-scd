@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["EnumType wizards defines a createEnumTypeWizard looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[enum.wizard.title.add]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -1368,7 +1368,7 @@ snapshots["EnumType wizards defines a createEnumTypeWizard looks like the latest
 
 snapshots["EnumType wizards defines an eNumTypeEditWizard looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[enum.wizard.title.edit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 48px)"
@@ -1528,7 +1528,7 @@ snapshots["EnumType wizards defines an eNumTypeEditWizard looks like the latest 
 
 snapshots["EnumType wizards defines a eNumValWizard to edit an existing EnumVal looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[enum-val.wizard.title.edit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 48px)"
@@ -1602,7 +1602,7 @@ snapshots["EnumType wizards defines a eNumValWizard to edit an existing EnumVal 
 
 snapshots["EnumType wizards defines a eNumValWizard to create a new EnumVal element looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[enum-val.wizard.title.add]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"

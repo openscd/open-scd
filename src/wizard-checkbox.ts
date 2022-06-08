@@ -40,6 +40,9 @@ export class WizardCheckbox extends LitElement {
       this.checked = check === 'true' ? true : false;
     }
   }
+  /** Disables component including null switch */
+  @property({ type: Boolean })
+  disabled = false;
 
   private isNull = false;
 
@@ -66,7 +69,7 @@ export class WizardCheckbox extends LitElement {
   }
 
   @state()
-  disabled = false;
+  private deactivateCheckbox = false;
   @state()
   get formfieldLabel(): string {
     return this.helper ? `${this.helper} (${this.label})` : this.label;
@@ -81,14 +84,14 @@ export class WizardCheckbox extends LitElement {
     if (this.nulled === null) return;
     this.checked = this.nulled;
     this.nulled = null;
-    this.disabled = false;
+    this.deactivateCheckbox = false;
   }
 
   private disable(): void {
     if (this.nulled !== null) return;
     this.nulled = this.checked;
     this.checked = this.defaultChecked;
-    this.disabled = true;
+    this.deactivateCheckbox = true;
   }
 
   firstUpdated(): void {
@@ -100,6 +103,7 @@ export class WizardCheckbox extends LitElement {
       return html`<mwc-switch
         style="margin-left: 12px;"
         ?checked=${!this.null}
+        ?disabled=${this.disabled}
         @change=${() => {
           this.null = !this.nullSwitch!.checked;
         }}
@@ -114,12 +118,12 @@ export class WizardCheckbox extends LitElement {
         <div style="flex: auto;">
           <mwc-formfield
             label="${this.formfieldLabel}"
-            style="${this.disabled
+            style="${this.deactivateCheckbox || this.disabled
               ? `--mdc-theme-text-primary-on-background:rgba(0, 0, 0, 0.38)`
               : ``}"
             ><mwc-checkbox
               ?checked=${this.initChecked}
-              ?disabled=${this.disabled}
+              ?disabled=${this.deactivateCheckbox || this.disabled}
             ></mwc-checkbox
           ></mwc-formfield>
         </div>

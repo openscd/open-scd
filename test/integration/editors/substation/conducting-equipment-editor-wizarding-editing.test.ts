@@ -205,4 +205,82 @@ describe('conducting-equipment-editor wizarding editing integration', () => {
       expect(doc.querySelector('ConductingEquipment[name="QA1"]')).to.not.exist;
     });
   });
+
+  describe('open create wizard for element EqFunction', () => {
+    let doc: XMLDocument;
+    let parent: MockWizardEditor;
+    let element: ConductingEquipmentEditor | null;
+
+    let nameField: WizardTextField;
+    let primaryAction: HTMLElement;
+
+    beforeEach(async () => {
+      doc = await fetch('/test/testfiles/zeroline/functions.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+      parent = <MockWizardEditor>(
+        await fixture(
+          html`<mock-wizard-editor
+            ><conducting-equipment-editor
+              .element=${doc.querySelector('ConductingEquipment')}
+              ?showfunctions=${true}
+            ></conducting-equipment-editor
+          ></mock-wizard-editor>`
+        )
+      );
+
+      element = parent.querySelector('conducting-equipment-editor');
+
+      (<HTMLElement>(
+        element?.shadowRoot?.querySelector('mwc-list-item[value="EqFunction"]')
+      )).click();
+      await parent.updateComplete;
+
+      nameField = <WizardTextField>(
+        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
+      );
+
+      primaryAction = <HTMLElement>(
+        parent.wizardUI.dialog?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      );
+    });
+
+    it('does not add EqFunction if name attribute is not unique', async () => {
+      expect(
+        doc.querySelector(
+          'ConductingEquipment > EqFunction[name="myEqFuncQA1"]'
+        )
+      ).to.exist;
+
+      nameField.value = 'myEqFuncQA1';
+      primaryAction.click();
+      await parent.updateComplete;
+
+      expect(
+        doc.querySelectorAll(
+          'ConductingEquipment > EqFunction[name="myEqFuncQA1"]'
+        ).length
+      ).to.equal(1);
+    });
+
+    it('does add EqFunction if name attribute is unique', async () => {
+      expect(
+        doc.querySelector(
+          'ConductingEquipment > EqFunction[name="someNewFunction"]'
+        )
+      ).to.not.exist;
+
+      nameField.value = 'someNewFunction';
+      await parent.updateComplete;
+      primaryAction.click();
+
+      expect(
+        doc.querySelector(
+          'ConductingEquipment > EqFunction[name="someNewFunction"]'
+        )
+      ).to.exist;
+    });
+  });
 });

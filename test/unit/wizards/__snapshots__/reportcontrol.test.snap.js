@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["Wizards for SCL ReportControl element define an edit wizard that for complete ReportControl element looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[wizard.title.edit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 48px)"
@@ -174,7 +174,7 @@ snapshots["Wizards for SCL ReportControl element define an edit wizard that for 
 
 snapshots["Wizards for SCL ReportControl element define an edit wizard that for ReportControl with missing child elements and referenced DataSet looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[wizard.title.edit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 48px)"
@@ -304,7 +304,7 @@ snapshots["Wizards for SCL ReportControl element define an edit wizard that for 
 
 snapshots["Wizards for SCL ReportControl element define a select wizard that with existing ReportControl element looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[wizard.title.select]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -417,7 +417,7 @@ snapshots["Wizards for SCL ReportControl element define a select wizard that wit
 
 snapshots["Wizards for SCL ReportControl element define a select wizard that with invalid parent looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[wizard.title.select]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -439,7 +439,7 @@ snapshots["Wizards for SCL ReportControl element define a select wizard that wit
 
 snapshots["Wizards for SCL ReportControl element define an create wizard that the first page looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[wizard.title.add]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -531,7 +531,7 @@ snapshots["Wizards for SCL ReportControl element define an create wizard that th
 
 snapshots["Wizards for SCL ReportControl element define an create wizard that the second page looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[scl.TrgOps]"
   style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
@@ -595,7 +595,7 @@ snapshots["Wizards for SCL ReportControl element define an create wizard that th
 
 snapshots["Wizards for SCL ReportControl element define an create wizard that the third page looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[scl.OptFields]"
   style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
@@ -677,7 +677,7 @@ snapshots["Wizards for SCL ReportControl element define an create wizard that th
 
 snapshots["Wizards for SCL ReportControl element define an create wizard that the forth page looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[dataset.fcda.add]"
   style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
@@ -712,7 +712,7 @@ snapshots["Wizards for SCL ReportControl element define an create wizard that th
 
 snapshots["Wizards for SCL ReportControl element define a wizard to select the control block reference looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[report.wizard.location]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -741,7 +741,7 @@ snapshots["Wizards for SCL ReportControl element define a wizard to select the c
 
 snapshots["Wizards for SCL ReportControl element define copy to other IED selector looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[report.wizard.location]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"

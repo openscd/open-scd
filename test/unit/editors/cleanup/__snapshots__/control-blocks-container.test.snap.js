@@ -134,19 +134,19 @@ snapshots["Cleanup: Control Blocks Container With a test file loaded looks like 
         </span>
         <span>
           <mwc-icon-button
-            class="editItem"
-            icon="edit"
-            label="Edit"
-          >
-          </mwc-icon-button>
-        </span>
-        <span>
-          <mwc-icon-button
             class="cautionItem"
             disabled=""
             icon="warning_amber"
             label="warning"
             title="[cleanup.unreferencedControls.addressDefinitionTooltip]"
+          >
+          </mwc-icon-button>
+        </span>
+        <span>
+          <mwc-icon-button
+            class="editItem"
+            icon="edit"
+            label="Edit"
           >
           </mwc-icon-button>
         </span>
@@ -174,18 +174,18 @@ snapshots["Cleanup: Control Blocks Container With a test file loaded looks like 
         </span>
         <span>
           <mwc-icon-button
-            class="editItem"
-            icon="edit"
-            label="Edit"
+            class="cautionItem"
+            icon="warning_amber"
+            label="warning"
+            title="[cleanup.unreferencedControls.addressDefinitionTooltip]"
           >
           </mwc-icon-button>
         </span>
         <span>
           <mwc-icon-button
-            class="cautionItem"
-            icon="warning_amber"
-            label="warning"
-            title="[cleanup.unreferencedControls.addressDefinitionTooltip]"
+            class="editItem"
+            icon="edit"
+            label="Edit"
           >
           </mwc-icon-button>
         </span>
@@ -213,20 +213,20 @@ snapshots["Cleanup: Control Blocks Container With a test file loaded looks like 
         </span>
         <span>
           <mwc-icon-button
-            class="editItem"
-            disabled=""
-            icon="edit"
-            label="Edit"
-          >
-          </mwc-icon-button>
-        </span>
-        <span>
-          <mwc-icon-button
             class="cautionItem"
             disabled=""
             icon="warning_amber"
             label="warning"
             title="[cleanup.unreferencedControls.addressDefinitionTooltip]"
+          >
+          </mwc-icon-button>
+        </span>
+        <span>
+          <mwc-icon-button
+            class="editItem"
+            disabled=""
+            icon="edit"
+            label="Edit"
           >
           </mwc-icon-button>
         </span>
@@ -254,19 +254,19 @@ snapshots["Cleanup: Control Blocks Container With a test file loaded looks like 
         </span>
         <span>
           <mwc-icon-button
-            class="editItem"
-            icon="edit"
-            label="Edit"
-          >
-          </mwc-icon-button>
-        </span>
-        <span>
-          <mwc-icon-button
             class="cautionItem"
             disabled=""
             icon="warning_amber"
             label="warning"
             title="[cleanup.unreferencedControls.addressDefinitionTooltip]"
+          >
+          </mwc-icon-button>
+        </span>
+        <span>
+          <mwc-icon-button
+            class="editItem"
+            icon="edit"
+            label="Edit"
           >
           </mwc-icon-button>
         </span>
@@ -294,18 +294,18 @@ snapshots["Cleanup: Control Blocks Container With a test file loaded looks like 
         </span>
         <span>
           <mwc-icon-button
-            class="editItem"
-            icon="edit"
-            label="Edit"
+            class="cautionItem"
+            icon="warning_amber"
+            label="warning"
+            title="[cleanup.unreferencedControls.addressDefinitionTooltip]"
           >
           </mwc-icon-button>
         </span>
         <span>
           <mwc-icon-button
-            class="cautionItem"
-            icon="warning_amber"
-            label="warning"
-            title="[cleanup.unreferencedControls.addressDefinitionTooltip]"
+            class="editItem"
+            icon="edit"
+            label="Edit"
           >
           </mwc-icon-button>
         </span>

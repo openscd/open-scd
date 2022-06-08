@@ -85,6 +85,17 @@ snapshots["substation-editor looks like the latest snapshot"] =
           VoltageLevel
         </span>
       </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="Function"
+      >
+        <span>
+          Function
+        </span>
+      </mwc-list-item>
     </mwc-menu>
   </abbr>
   <voltage-level-editor>
@@ -177,6 +188,17 @@ snapshots["substation-editor with readonly property looks like the latest snapsh
       >
         <span>
           VoltageLevel
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="Function"
+      >
+        <span>
+          Function
         </span>
       </mwc-list-item>
     </mwc-menu>
@@ -273,14 +295,35 @@ snapshots["substation-editor with function filter deactivated looks like the lat
           VoltageLevel
         </span>
       </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="Function"
+      >
+        <span>
+          Function
+        </span>
+      </mwc-list-item>
     </mwc-menu>
   </abbr>
+  <div class="container lnode">
+    <l-node-editor>
+    </l-node-editor>
+    <l-node-editor>
+    </l-node-editor>
+    <l-node-editor>
+    </l-node-editor>
+  </div>
   <function-editor>
   </function-editor>
   <div class="ptrContent">
     <powertransformer-editor showfunctions="">
     </powertransformer-editor>
   </div>
+  <voltage-level-editor showfunctions="">
+  </voltage-level-editor>
   <voltage-level-editor showfunctions="">
   </voltage-level-editor>
 </action-pane>

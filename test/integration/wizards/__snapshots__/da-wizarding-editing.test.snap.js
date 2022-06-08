@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["DA wizarding editing integration defines a editDaWizard to edit an existing DA looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[da.wizard.title.edit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 48px)"
@@ -820,7 +820,7 @@ snapshots["DA wizarding editing integration defines a editDaWizard to edit an ex
 
 snapshots["DA wizarding editing integration defines a createDaWizard to create a new DA element looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[da.wizard.title.edit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
