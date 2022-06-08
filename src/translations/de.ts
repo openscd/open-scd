@@ -377,6 +377,11 @@ export const de: Translations = {
         timeout1: '???',
         timeout2: '???',
         timeout3: '???'
+      },
+      redundancygroup: {
+        title: {
+          edit: '???'
+        }
       }
     },
     wizard: {

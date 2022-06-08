@@ -374,6 +374,11 @@ export const en = {
         timeout1: 'Time-out in seconds of sent or test APDUs',
         timeout2: 'Time-out in seconds for acknowledges in case of no data messages',
         timeout3: 'Time-out in seconds for sending test frames in case of a long idle state'
+      },
+      redundancygroup: {
+        title: {
+          edit: 'Edit Redundancy group'
+        }
       }
     },
     wizard: {

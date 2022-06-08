@@ -1,4 +1,4 @@
-import { html } from 'lit-element';
+import { html, TemplateResult } from 'lit-element';
 import { translate, get } from 'lit-translate';
 
 import '@material/mwc-checkbox';
@@ -16,7 +16,8 @@ import '../../../filtered-list.js';
 import {
   pTypes104,
   stationTypeOptions,
-  typeDescriptiveNameKeys
+  typeDescriptiveNameKeys,
+  typePattern
 } from '../foundation/p-types.js';
 import {
   compareNames,
@@ -32,9 +33,12 @@ import {
   WizardInputElement
 } from '../../../foundation.js';
 import {
-  createPTextField,
   createTypeRestrictionCheckbox
 } from '../../../wizards/connectedap.js';
+import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
+import { editRedundancyGroup104Wizard } from './redundancygroup.js';
+import { ifDefined } from 'lit-html/directives/if-defined';
+import { typeMaxLength, typeNullable } from '../../../wizards/foundation/p-types.js';
 
 interface AccessPointDescription {
   element: Element;
@@ -90,7 +94,7 @@ function existConnectedAp(accesspoint: Element): boolean {
 }
 
 /** @returns single page  [[`Wizard`]] for creating SCL element ConnectedAP. */
-export function createConnectedApWizard(element: Element): Wizard {
+export function createConnectedAp104Wizard(element: Element): Wizard {
   const doc = element.ownerDocument;
 
   const accessPoints = Array.from(doc.querySelectorAll(':root > IED'))
@@ -219,7 +223,7 @@ function getRedundancyGroups(element: Element): Element[] {
     });
 
     element.querySelectorAll(`Address > P[type^="RG${numberOfRedundancyGroup}"]`).forEach(p => {
-      address.appendChild(p.cloneNode());
+      address.appendChild(p.cloneNode(true));
     });
 
     addresses.push(address);
@@ -229,8 +233,23 @@ function getRedundancyGroups(element: Element): Element[] {
   return addresses;
 }
 
+export function createPTextField(element: Element, pType: string): TemplateResult {
+  return html`<wizard-textfield
+    required
+    label="${pType}"
+    pattern="${ifDefined(typePattern[pType])}"
+    ?nullable=${typeNullable[pType]}
+    .maybeValue=${element.querySelector(
+      `Address > P[type="${pType}"]`
+    )?.innerHTML ?? null}
+    maxLength="${ifDefined(typeMaxLength[pType])}"
+  ></wizard-textfield>`
+}
+
 /** @returns single page [[`Wizard`]] to edit SCL element ConnectedAP for the 104 plugin. */
 export function editConnectedAp104Wizard(element: Element, redundancy?: boolean): Wizard {
+  const redundancyGroups = getRedundancyGroups(element);
+
   return [
     {
       title: get('wizard.title.edit', { tagName: element.tagName }),
@@ -275,8 +294,19 @@ export function editConnectedAp104Wizard(element: Element, redundancy?: boolean)
         </wizard-select>
         ${redundancy
           ? html`<h3>${get('protocol104.network.connectedap.redundancy.groupTitle')}</h3>
-            <mwc-list>
-              ${getRedundancyGroups(element).map(
+            <mwc-list
+              @selected=${(e: SingleSelectedEvent) => {
+                e.target!.dispatchEvent(
+                  newWizardEvent(
+                    editRedundancyGroup104Wizard(redundancyGroups[e.detail.index]), {
+                      detail: {
+                        subwizard: true
+                      }
+                    }
+                  )
+                );
+              }}>
+              ${redundancyGroups.map(
                 group => html`<mwc-list-item>Redundancy Group ${group.getAttribute('number')}</mwc-list-item>`
               )}
             </mwc-list>`
