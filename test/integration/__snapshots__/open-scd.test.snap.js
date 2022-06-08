@@ -121,7 +121,7 @@ snapshots["open-scd looks like its snapshot"] =
         rule_folder
       </mwc-icon>
       <span>
-        Validate project
+        Validate Schema
       </span>
       <oscd-plugin3aa68346726da1cd>
       </oscd-plugin3aa68346726da1cd>
@@ -774,7 +774,7 @@ snapshots["open-scd looks like its snapshot"] =
       <mwc-icon slot="meta">
         rule_folder
       </mwc-icon>
-      Validate project
+      Validate Schema
     </mwc-check-list-item>
     <mwc-check-list-item
       aria-disabled="false"
