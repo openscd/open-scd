@@ -72,7 +72,7 @@ export class BayEditor extends LitElement {
 
   /** Opens a [[`WizardDialog`]] for editing `LNode` connections. */
   openLNodeWizard(): void {
-    const wizard = wizards['LNode'].edit(this.element);
+    const wizard = wizards['LNode'].create(this.element);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
@@ -97,6 +97,20 @@ export class BayEditor extends LitElement {
 
   firstUpdated(): void {
     this.addMenu.anchor = <HTMLElement>this.addButton;
+  }
+
+  private renderLNodes(): TemplateResult {
+    if (!this.showfunctions) return html``;
+
+    const lNodes = getChildElementsByTagName(this.element, 'LNode');
+
+    return lNodes.length
+      ? html`<div class="container lnode">
+          ${lNodes.map(
+            lNode => html`<l-node-editor .element=${lNode}></l-node-editor>`
+          )}
+        </div>`
+      : html``;
   }
 
   renderFunctions(): TemplateResult {
@@ -177,7 +191,7 @@ export class BayEditor extends LitElement {
           >${this.renderAddButtons()}</mwc-menu
         >
       </abbr>
-      ${this.renderIedContainer()} ${this.renderFunctions()}
+      ${this.renderIedContainer()}${this.renderLNodes()}${this.renderFunctions()}
       <div
         class="${classMap({
           content: true,

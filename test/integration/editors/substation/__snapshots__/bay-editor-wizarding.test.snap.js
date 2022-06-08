@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["bay-editor wizarding integration looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[bay.wizard.title.edit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"

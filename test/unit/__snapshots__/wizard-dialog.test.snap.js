@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["wizard-dialog with user defined menu actions set looks like its snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="Page 1"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 48px)"

@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.17.0](https://github.com/openscd/open-scd/compare/v0.16.0...v0.17.0) (2022-05-30)
+
+
+### Features
+
+* **editor/substation/l-node-editor:** add remove button ([#771](https://github.com/openscd/open-scd/issues/771)) ([7966f0f](https://github.com/openscd/open-scd/commits/7966f0f383bee611b1f840f3222075b56dbe9498))
+* **editors/substation:** add read-only l-node-editor ([#730](https://github.com/openscd/open-scd/issues/730)) ([ecfeb5d](https://github.com/openscd/open-scd/commits/ecfeb5d03a7b36493a10193541afbd3a2edd0e9a)), closes [#752](https://github.com/openscd/open-scd/issues/752)
+* **editors/substation:** remove button to function type editors ([#761](https://github.com/openscd/open-scd/issues/761)) ([ce9dea1](https://github.com/openscd/open-scd/commits/ce9dea1ce9365ff115b14e1174166c466e884539))
+* **editors/subtation:** allow instantiation of LNode from LNodeType's ([#766](https://github.com/openscd/open-scd/issues/766)) ([8ee23fc](https://github.com/openscd/open-scd/commits/8ee23fc8a5c3b3f9dfd57f4d445e9da744edd850))
+* **wizards/function:** add create wizards for Function, SubFunction, EqFunction and EqSubFunction element ([#731](https://github.com/openscd/open-scd/issues/731)) ([774add7](https://github.com/openscd/open-scd/commits/774add7510c4b909fab4e0d09f173cf7d3726027)), closes [#733](https://github.com/openscd/open-scd/issues/733) [#737](https://github.com/openscd/open-scd/issues/737) [#757](https://github.com/openscd/open-scd/issues/757)
+* **wizards/lnode:** add edit wizard ([#778](https://github.com/openscd/open-scd/issues/778)) ([965f10a](https://github.com/openscd/open-scd/commits/965f10a1d7a9c66fdc4e74265e265fdc950c3a09))
+* **wizards/substation/l-node-editor:** add duplicate button ([#782](https://github.com/openscd/open-scd/issues/782)) ([7470e2d](https://github.com/openscd/open-scd/commits/7470e2d0f657002222d771243d4cb609649f5f80))
+* **wizards:** add function type create wizards ([#768](https://github.com/openscd/open-scd/issues/768)) ([6e9c928](https://github.com/openscd/open-scd/commits/6e9c928bc09f7e05282d88c7967840e0b441d811)), closes [#762](https://github.com/openscd/open-scd/issues/762) [#763](https://github.com/openscd/open-scd/issues/763) [#764](https://github.com/openscd/open-scd/issues/764) [#765](https://github.com/openscd/open-scd/issues/765)
+
+
+### Bug Fixes
+
+* **menu/subscriberinfo:** fix lnInst attribute for lnClass LLN0 ([#749](https://github.com/openscd/open-scd/issues/749)) ([2f0bad9](https://github.com/openscd/open-scd/commits/2f0bad905cdc6450c1eec95d3c3a4755afb3098a))
+* **wizard-diagram, wizard-select, wizard-checkbox:**  disabled attribute ([#781](https://github.com/openscd/open-scd/issues/781)) ([528db27](https://github.com/openscd/open-scd/commits/528db27992173630a22056e50bd7c56903a6a283))
+* **wizards/conductingequipment:** on create earth switch add missing ground cNode ([#753](https://github.com/openscd/open-scd/issues/753)) ([8f89f27](https://github.com/openscd/open-scd/commits/8f89f27c6a66316c1b7941fa313ba85d08b1256d))
+
 ## [0.16.0](https://github.com/openscd/open-scd/compare/v0.15.0...v0.16.0) (2022-05-16)
 
 

@@ -25,6 +25,7 @@
 					<Terminal connectivityNode="AA1/E1/COUPLING_BAY/grounded" name="T1" substationName="AA1" voltageLevelName="E1" bayName="COUPLING_BAY" cNodeName="grounded"/>
 				</ConductingEquipment>
                 <ConnectivityNode pathName="AA1/E1/COUPLING_BAY/L2" name="L2"/>
+				<ConnectivityNode pathName="AA1/E1/COUPLING_BAY/grounded" name="grounded"/>
 			</Bay>
 			<Bay name="Bay2" desc="Bay2">
 			</Bay>

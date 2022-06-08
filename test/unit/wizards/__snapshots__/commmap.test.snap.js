@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["communication mapping wizard looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[commmap.title]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -11,9 +11,11 @@ snapshots["communication mapping wizard looks like the latest snapshot"] =
   <div id="wizard-content">
     <filtered-list>
       <mwc-list-item
+        aria-disabled="false"
         graphic="icon"
         hasmeta=""
         mwc-list-item=""
+        tabindex="0"
         twoline=""
       >
         <span>
@@ -36,9 +38,11 @@ snapshots["communication mapping wizard looks like the latest snapshot"] =
         </mwc-icon>
       </mwc-list-item>
       <mwc-list-item
+        aria-disabled="false"
         graphic="icon"
         hasmeta=""
         mwc-list-item=""
+        tabindex="-1"
         twoline=""
       >
         <span>
@@ -61,9 +65,11 @@ snapshots["communication mapping wizard looks like the latest snapshot"] =
         </mwc-icon>
       </mwc-list-item>
       <mwc-list-item
+        aria-disabled="false"
         graphic="icon"
         hasmeta=""
         mwc-list-item=""
+        tabindex="-1"
         twoline=""
       >
         <span>
@@ -86,9 +92,11 @@ snapshots["communication mapping wizard looks like the latest snapshot"] =
         </mwc-icon>
       </mwc-list-item>
       <mwc-list-item
+        aria-disabled="false"
         graphic="icon"
         hasmeta=""
         mwc-list-item=""
+        tabindex="-1"
         twoline=""
       >
         <span>
@@ -111,9 +119,11 @@ snapshots["communication mapping wizard looks like the latest snapshot"] =
         </mwc-icon>
       </mwc-list-item>
       <mwc-list-item
+        aria-disabled="false"
         graphic="icon"
         hasmeta=""
         mwc-list-item=""
+        tabindex="-1"
         twoline=""
       >
         <span>
@@ -136,9 +146,11 @@ snapshots["communication mapping wizard looks like the latest snapshot"] =
         </mwc-icon>
       </mwc-list-item>
       <mwc-list-item
+        aria-disabled="false"
         graphic="icon"
         hasmeta=""
         mwc-list-item=""
+        tabindex="-1"
         twoline=""
       >
         <span>

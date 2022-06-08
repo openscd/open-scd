@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["Wizards for SCL element Power Transformer edit existing Power Transformer looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[powertransformer.wizard.title.edit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -51,7 +51,7 @@ snapshots["Wizards for SCL element Power Transformer edit existing Power Transfo
 
 snapshots["Wizards for SCL element Power Transformer add new Power Transformer looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[powertransformer.wizard.title.add]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"

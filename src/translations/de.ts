@@ -60,6 +60,10 @@ export const de: Translations = {
     sampleRate: 'Abtastrate zu Telegram hinzufügen',
     security: 'Potentiel in Zukunft für z.B. digitale Signature',
     synchSourceId: 'Identität der Zeitquelle zu Telegram hinzufügen',
+    iedName: 'Referenziertes IED',
+    ldInst: 'Referenziertes logisches Gerät',
+    prefix: 'Präfix des logischen Knotens',
+    lnInst: 'Instanz des logischen Knotens',
   },
   settings: {
     title: 'Einstellungen',
@@ -324,11 +328,11 @@ export const de: Translations = {
     none: 'Keine Verbindung vorhanden',
     publisherGoose: {
       title: 'GOOSE-Publizierer',
-      subscriberTitle: 'Verbunden mit {{ selected }}'
+      subscriberTitle: 'Verbunden mit {{ selected }}',
     },
     subscriberGoose: {
       title: 'IED-Publizierer',
-      publisherTitle: 'GOOSE(s) verbunden mit {{selected}}'
+      publisherTitle: 'GOOSE(s) verbunden mit {{selected}}',
     },
     subscriber: {
       subscribed: 'Verbunden',
@@ -338,9 +342,9 @@ export const de: Translations = {
       noIedSelected: 'Keine IED ausgewählt',
     },
     view: {
-      publisherView: "Zeigt verbundene IED(s) der ausgewählten GOOSE",
-      subscriberView: "Zeigt verbundene GOOSE(s) des ausgewählten IED"
-    }
+      publisherView: 'Zeigt verbundene IED(s) der ausgewählten GOOSE',
+      subscriberView: 'Zeigt verbundene GOOSE(s) des ausgewählten IED',
+    },
   },
   sampledvalues: {
     none: 'Keine Verbindung vorhanden',
@@ -506,8 +510,17 @@ export const de: Translations = {
         selectIEDs: 'Auswahl IEDs',
         selectLDs: 'Auswahl logische Geräte',
         selectLNs: 'Auswahl logische Knoten',
+        selectLNodeTypes: 'Auswahl logische Knoten Type',
       },
       placeholder: 'Bitte laden Sie eine SCL-Datei, die IED-Elemente enthält.',
+      uniquewarning: 'Logische Knoten Klasse existiert bereits',
+      reference: 'Referenz auf bestehenden logischen Knoten erstellen',
+      instance: 'Referenz auf logischen Knoten Typ erstellen',
+    },
+    log: {
+      title: 'LNode vom Type {{lnClass}} kann nicht hinzugefügt werden',
+      nonuniquelninst: 'Keine eindeutige Instanz (lnInst)',
+      uniqueln0: 'Nur eine Instanz von {{lnClass}} zulässig',
     },
     tooltip: 'Referenz zu logischen Knoten erstellen',
   },
