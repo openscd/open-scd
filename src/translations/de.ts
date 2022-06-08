@@ -457,11 +457,13 @@ export const de: Translations = {
     wizard: {
       valueHelper: 'Der Wert sollte vom Typ sein {{type}}',
       title: {
-        edit: 'Edit {{daiName}}',
+        create: 'DAI "{{daiName}}" hinzufügen',
+        edit: 'DAI "{{daiName}}" bearbeiten',
       },
     },
     action: {
-      updatedai: 'DAI "{{daiName}} bearbeitet"',
+      createdai: 'DAI "{{daiName}}" hinzugefügt',
+      updatedai: 'DAI "{{daiName}}" bearbeitet',
     },
   },
   sdo: {

@@ -454,10 +454,12 @@ export const en = {
     wizard: {
       valueHelper: 'Value should be of type {{type}}',
       title: {
-        edit: 'Edit {{daiName}}',
+        create: 'Create DAI "{{daiName}}"',
+        edit: 'Edit DAI "{{daiName}}"',
       },
     },
     action: {
+      createdai: 'Created DAI "{{daiName}}"',
       updatedai: 'Edited DAI "{{daiName}}"',
     },
   },

@@ -33,7 +33,7 @@ describe('Global SCL related functions including', () => {
     fcda2.setAttribute('fc', 'ST');
   });
 
-  describe('a fnuction that checks FCDA reference validity in IED that', () => {
+  describe('a function that checks FCDA reference validity in IED that', () => {
     it('return false for invalid LDevice instance', () => {
       fcda1.setAttribute('ldInst', 'ldInst');
       expect(existFcdaReference(fcda1, ied)).to.be.false;
