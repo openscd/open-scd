@@ -12,9 +12,12 @@ export const supportedCdcTypes =
 export type SupportedCdcType = typeof supportedCdcTypes[number];
 
 export type CreateFunction = (daiElement: Element, selectedTi: string, inverted: boolean) => Create[];
+export type CreateCheckFunction = (daiElement: Element, selectedTi: string) => Create[];
 export interface TiInformation {
   filter: string;
   create: CreateFunction;
+  checkFilter?: string;
+  checkCreate?: CreateCheckFunction;
   inverted?: boolean;
 }
 
@@ -62,7 +65,9 @@ export const cdcProcessings: Record<
     control: {
       '63': {
         filter: ':scope > SDI[name="Oper"] > SDI[name="ctlVal"] > DAI[name="f"]',
-        create: createAddressAction
+        create: createAddressAction,
+        checkFilter: ':scope > SDI[name="Oper"] > DAI[name="Check"]',
+        checkCreate: createCheckAddressAction,
       },
     }
   },
@@ -85,7 +90,9 @@ export const cdcProcessings: Record<
     control: {
       '60': {
         filter: ':scope > SDI[name="Oper"] > DAI[name="ctlVal"]',
-        create: createAddressAction
+        create: createAddressAction,
+        checkFilter: ':scope > SDI[name="Oper"] > DAI[name="Check"]',
+        checkCreate: createCheckAddressAction,
       },
     }
   },
@@ -109,7 +116,9 @@ export const cdcProcessings: Record<
     control: {
       '60': {
         filter: ':scope > SDI[name="Oper"] > DAI[name=“ctlVal”]',
-        create: createAddressAction
+        create: createAddressAction,
+        checkFilter: ':scope > SDI[name="Oper"] > DAI[name="Check"]',
+        checkCreate: createCheckAddressAction,
       },
     }
   },
@@ -132,13 +141,15 @@ export const cdcProcessings: Record<
     monitor: {
       '31': {
         filter: ':scope > DAI[name="stVal"]',
-        create: createAddressAction
+        create: createAddressAction,
       },
     },
     control: {
       '59': {
         filter: ':scope > SDI[name="Oper"] > DAI[name="ctlVal"]',
-        create: createAddressAction
+        create: createAddressAction,
+        checkFilter: ':scope > SDI[name="Oper"] > DAI[name="Check"]',
+        checkCreate: createCheckAddressAction,
       },
     }
   },
@@ -161,7 +172,9 @@ export const cdcProcessings: Record<
     control: {
       '62': {
         filter: ':scope > SDI[name="Oper"] > DAI[name="ctlVal"]',
-        create: createAddressAction
+        create: createAddressAction,
+        checkFilter: ':scope > SDI[name="Oper"] > DAI[name="Check"]',
+        checkCreate: createCheckAddressAction,
       },
     }
   },
@@ -202,7 +215,9 @@ export const cdcProcessings: Record<
     control: {
       '62': {
         filter: ':scope > SDI[name="Oper"] > DAI[name="ctlVal"]',
-        create: createAddressAction
+        create: createAddressAction,
+        checkFilter: ':scope > SDI[name="Oper"] > DAI[name="Check"]',
+        checkCreate: createCheckAddressAction,
       },
     }
   },
@@ -239,7 +254,9 @@ export const cdcProcessings: Record<
     control: {
       '58': {
         filter: ':scope > SDI[name="Oper"] > DAI[name="ctlVal"]',
-        create: createAddressAction
+        create: createAddressAction,
+        checkFilter: ':scope > SDI[name="Oper"] > DAI[name="Check"]',
+        checkCreate: createCheckAddressAction,
       },
     }
   },
@@ -281,5 +298,25 @@ function createAddressAction(daiElement: Element, ti: string, inverted: boolean)
     const invertedAddressElement = createPrivateAddress(daiElement, privateElement, ti);
     invertedAddressElement.setAttribute('inverted', 'true');
   }
+  return [{new: {parent: daiElement, element: privateElement}}];
+}
+
+
+/**
+ * Create a new SCL Private element and add 104 Address element(s) below this.
+ * Set the attribute value of 'ti' to the passed ti value.
+ *
+ * @param daiElement - The DAI Element to use to set namespace on the root element and create new elements.
+ * @param ti         - The value to be set on the attribute 'ti'.
+ */
+function createCheckAddressAction(daiElement: Element, ti: string): Create[] {
+  addPrefixAndNamespaceToDocument(daiElement);
+
+  const privateElement = createPrivateElement(daiElement);
+  let addressElement = createPrivateAddress(daiElement, privateElement, ti);
+  addressElement.setAttribute('check', 'interlocking');
+  addressElement = createPrivateAddress(daiElement, privateElement, ti);
+  addressElement.setAttribute('check', 'synchrocheck');
+
   return [{new: {parent: daiElement, element: privateElement}}];
 }

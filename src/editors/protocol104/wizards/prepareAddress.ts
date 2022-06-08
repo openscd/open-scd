@@ -23,6 +23,7 @@ import {
 
 import {
   createActions,
+  createCheckActions,
   getCdcValue,
   getCtlModel,
   getFullPath
@@ -46,6 +47,8 @@ export function createAddressAction(doiElement: Element, monitorTis: string[], c
       actions: [],
       title: get('protocol104.values.addedAddress', { name: getFullPath(doiElement, 'IED') }),
     };
+
+    // Create all Monitor Addresses
     if (monitorTis.length > 0) {
       const selectedMonitorTi = getValue(inputs.find(i => i.label === 'monitorTi')!) ?? '';
       const monitorInverted = getSwitchValue(wizard, 'monitorInverted');
@@ -54,8 +57,14 @@ export function createAddressAction(doiElement: Element, monitorTis: string[], c
         filters.push(tiInformation.filter);
         complexAction.actions.push(...createActions(doiElement, wizard, selectedMonitorTi, monitorInverted, tiInformation));
       }
+
+      const monitorCheck = getSwitchValue(wizard, 'monitorCheck');
+      if (monitorCheck) {
+        complexAction.actions.push(...createCheckActions(doiElement, wizard, selectedMonitorTi, tiInformation));
+      }
     }
 
+    // Create all Control Addresses
     const ctlModel = getCtlModel(doiElement);
     if (controlTis.length > 0 && ctlModel !== null && ctlModel !== 'status-only') {
       const selectedControlTi = getValue(inputs.find(i => i.label === 'controlTi')!) ?? '';
@@ -64,6 +73,11 @@ export function createAddressAction(doiElement: Element, monitorTis: string[], c
       if (tiInformation) {
         filters.push(tiInformation.filter);
         complexAction.actions.push(...createActions(doiElement, wizard, selectedControlTi, controlInverted, tiInformation));
+      }
+
+      const controlCheck = getSwitchValue(wizard, 'controlCheck');
+      if (controlCheck) {
+        complexAction.actions.push(...createCheckActions(doiElement, wizard, selectedControlTi, tiInformation));
       }
     }
 
@@ -81,6 +95,16 @@ export function createAddressAction(doiElement: Element, monitorTis: string[], c
     }));
     return [];
   }
+}
+
+export function disableCheckSwitch(tiInformations: Record<string, TiInformation>): boolean {
+  let disableSwitch = true;
+  Object.values(tiInformations).forEach(tiInformation => {
+    if (tiInformation.checkFilter && tiInformation.checkCreate) {
+      disableSwitch = false;
+    }
+  });
+  return disableSwitch;
 }
 
 export function disableInvertedSwitch(tiInformations: Record<string, TiInformation>): boolean {
@@ -168,6 +192,12 @@ export function prepareAddressWizard(doiElement: Element): Wizard {
                             .disabled="${disableInvertedSwitch(cdcProcessing.monitor)}">
                 </mwc-switch>
               </mwc-formfield>`);
+      fields.push(
+        html `<mwc-formfield label="${translate('protocol104.wizard.monitorCheck')}">
+                <mwc-switch id="monitorCheck"
+                            .disabled="${disableCheckSwitch(cdcProcessing.monitor)}">
+                </mwc-switch>
+              </mwc-formfield>`);
     }
 
     if (controlTis.length > 0 && ctlModel !== null && ctlModel !== 'status-only') {
@@ -199,6 +229,12 @@ export function prepareAddressWizard(doiElement: Element): Wizard {
         html `<mwc-formfield label="${translate('protocol104.wizard.controlInverted')}">
                 <mwc-switch id="controlInverted"
                             .disabled="${disableInvertedSwitch(cdcProcessing.control)}">
+                </mwc-switch>
+              </mwc-formfield>`);
+      fields.push(
+        html `<mwc-formfield label="${translate('protocol104.wizard.controlCheck')}">
+                <mwc-switch id="controlCheck"
+                            .disabled="${disableCheckSwitch(cdcProcessing.control)}">
                 </mwc-switch>
               </mwc-formfield>`);
     }

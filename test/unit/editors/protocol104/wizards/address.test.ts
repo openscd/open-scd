@@ -78,17 +78,6 @@ describe('Wizards for 104 Address Element', () => {
       inputs = Array.from(element.wizardUI.inputs);
     });
 
-    it('update expected value field should be updated in document', async function () {
-      await setWizardTextFieldValue(<WizardTextField>inputs[5], '10'); // Expected Value Field
-
-      const updateAction = executeWizardReplaceAction(
-        updateValue(dai, address),
-        inputs
-      );
-      expect(updateAction.old.element).to.have.attribute('expectedValue', '1');
-      expect(updateAction.new.element).to.have.attribute('expectedValue', '10');
-    });
-
     it('looks like the latest snapshot', async () => {
       await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
     });

@@ -133,10 +133,9 @@ snapshots["Wizards for 104 Address Element edit 104 Address with expected value 
     >
     </wizard-textfield>
     <wizard-textfield
-      helper="[protocol104.wizard.expectedValueHelper]"
+      disabled=""
       label="expectedValue"
-      nullable=""
-      pattern="[+-]?[0-9]+([0-9]*)"
+      readonly=""
     >
     </wizard-textfield>
   </div>

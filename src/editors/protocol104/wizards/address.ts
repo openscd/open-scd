@@ -22,7 +22,6 @@ import '../../../wizard-select.js';
 import {
   getCdcValue,
   getFullPath,
-  hasExpectedValueField,
   hasScaleFields,
   hasUnitMultiplierField
 } from "../foundation/foundation.js";
@@ -39,10 +38,6 @@ export function updateValue(
 
     const casdu = getValue(inputs.find(i => i.label === 'casdu')!)!;
     const ioa = getValue(inputs.find(i => i.label === 'ioa')!);
-    const expectedValue =
-      ( hasExpectedValueField(cdc, ti)
-        ? getValue(inputs.find(i => i.label === 'expectedValue')!)
-        : null);
     const unitMultiplier =
       ( hasUnitMultiplierField(cdc, ti)
         ? getValue(inputs.find(i => i.label === 'unitMultiplier')!)
@@ -59,7 +54,6 @@ export function updateValue(
     if (
       casdu === addressElement.getAttribute('casdu') &&
       ioa === addressElement.getAttribute('ioa') &&
-      expectedValue === addressElement.getAttribute('expectedValue') &&
       unitMultiplier === addressElement.getAttribute('unitMultiplier') &&
       scaleMultiplier === addressElement.getAttribute('scaleMultiplier') &&
       scaleOffset === addressElement.getAttribute('scaleOffset')
@@ -71,7 +65,6 @@ export function updateValue(
       {
         casdu,
         ioa,
-        expectedValue,
         unitMultiplier,
         scaleMultiplier,
         scaleOffset,
@@ -141,17 +134,6 @@ export function renderDAIWizard(
           </wizard-textfield>`,
   ];
 
-  if (hasExpectedValueField(cdc, ti)) {
-    fields.push(html `
-      <wizard-textfield
-        label="expectedValue"
-        .maybeValue="${addressElement.getAttribute('expectedValue')}"
-        helper="${translate('protocol104.wizard.expectedValueHelper')}"
-        pattern="${patterns.integer}"
-        nullable>
-      </wizard-textfield>`);
-  }
-
   if (hasUnitMultiplierField(cdc, ti)) {
     const allowedMultipliers = ["m", "k", "M", "mu", "y", "z", "a",
       "f", "p", "n", "c", "d", "da", "h", "G", "T", "P", "E", "Z", "Y"];
@@ -189,6 +171,16 @@ export function renderDAIWizard(
         helper="${translate('protocol104.wizard.scaleOffsetHelper')}"
         pattern="${patterns.decimal}"
         nullable>
+      </wizard-textfield>`);
+  }
+
+  if (addressElement.hasAttribute('expectedValue')) {
+    fields.push(html `
+      <wizard-textfield
+        label="expectedValue"
+        .maybeValue="${addressElement.getAttribute('expectedValue')}"
+        disabled
+        readonly>
       </wizard-textfield>`);
   }
 
