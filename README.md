@@ -51,7 +51,7 @@ We provide the following `npm` scripts for your convenience:
 There is a configuration for ESLint and Prettier that is used to check and format the code.
 
 There are extensions for VSCode and IntelliJ IDEA. 
-Use and configure these extensions for your IDE to make your live easier.
+Use and configure these extensions for your IDE to make your life easier.
 
 ## License
 
