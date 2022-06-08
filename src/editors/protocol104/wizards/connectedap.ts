@@ -27,6 +27,7 @@ import {
   getValue,
   identity,
   isPublic,
+  newSubWizardEvent,
   newWizardEvent,
   Wizard,
   WizardActor,
@@ -170,7 +171,7 @@ function createAddressElement(
   return element;
 }
 
-export function updateConnectedApAction(parent: Element): WizardActor {
+export function updateConnectedApAction(parent: Element, redundancy?: boolean): WizardActor {
   return (inputs: WizardInputElement[], wizard: Element): EditorAction[] => {
     const typeRestriction: boolean =
       (<Checkbox>wizard.shadowRoot?.querySelector('#typeRestriction'))
@@ -186,7 +187,20 @@ export function updateConnectedApAction(parent: Element): WizardActor {
         apName: parent.getAttribute('apName') ?? '',
       }),
     };
-    if (oldAddress !== null && !isEqualAddress(oldAddress, newAddress)) {
+    // When we have a redundanct ConnectedAP, we are only interested in the StationType value.
+    // All redundancy group actions are done in those wizards itself.
+    if (redundancy) {
+      const stationTypeValue = getValue(inputs.find(i => i.label === 'StationType')!)!;
+      const stationTypeElement = oldAddress?.querySelector('P[type="StationType"]');
+      stationTypeElement!.textContent = stationTypeValue;
+
+      complexAction.actions.push({
+        new: {
+          parent: parent,
+          element: oldAddress!,
+        },
+      });
+    } else if (oldAddress !== null && !isEqualAddress(oldAddress, newAddress)) {
       //address & child elements P are changed: cannot use replace editor action
       complexAction.actions.push({
         old: {
@@ -212,25 +226,15 @@ export function updateConnectedApAction(parent: Element): WizardActor {
   };
 }
 
-function getRedundancyGroups(element: Element): Element[] {
-  const addresses = [];
-  let numberOfRedundancyGroup = 1;
+function getRedundancyGroups(element: Element): number[] {
+  const groupNumbers = [];
+  let groupNumber = 1;
 
-  // TODO: Less querying
-  while (element.querySelectorAll(`Address > P[type^="RG${numberOfRedundancyGroup}"]`).length == 8) {
-    const address = createElement(element.ownerDocument, 'Address', {
-      'number': `${numberOfRedundancyGroup}`
-    });
-
-    element.querySelectorAll(`Address > P[type^="RG${numberOfRedundancyGroup}"]`).forEach(p => {
-      address.appendChild(p.cloneNode(true));
-    });
-
-    addresses.push(address);
-    numberOfRedundancyGroup++;
+  while (element.querySelectorAll(`Address > P[type^="RG${groupNumber}"]`).length == 8) {
+    groupNumbers.push(groupNumber++);
   }
 
-  return addresses;
+  return groupNumbers;
 }
 
 export function createPTextField(element: Element, pType: string): TemplateResult {
@@ -248,8 +252,6 @@ export function createPTextField(element: Element, pType: string): TemplateResul
 
 /** @returns single page [[`Wizard`]] to edit SCL element ConnectedAP for the 104 plugin. */
 export function editConnectedAp104Wizard(element: Element, redundancy?: boolean): Wizard {
-  const redundancyGroups = getRedundancyGroups(element);
-
   return [
     {
       title: get('wizard.title.edit', { tagName: element.tagName }),
@@ -257,7 +259,7 @@ export function editConnectedAp104Wizard(element: Element, redundancy?: boolean)
       primary: {
         icon: 'save',
         label: get('save'), 
-        action: updateConnectedApAction(element),
+        action: updateConnectedApAction(element, redundancy),
       },
       content: [
         html`<mwc-formfield label="${get('protocol104.network.connectedap.redundancy.title')}">
@@ -297,17 +299,13 @@ export function editConnectedAp104Wizard(element: Element, redundancy?: boolean)
             <mwc-list
               @selected=${(e: SingleSelectedEvent) => {
                 e.target!.dispatchEvent(
-                  newWizardEvent(
-                    editRedundancyGroup104Wizard(redundancyGroups[e.detail.index]), {
-                      detail: {
-                        subwizard: true
-                      }
-                    }
+                  newSubWizardEvent(
+                    editRedundancyGroup104Wizard(element.querySelector('Address')!, e.detail.index+1)
                   )
                 );
               }}>
-              ${redundancyGroups.map(
-                group => html`<mwc-list-item>Redundancy Group ${group.getAttribute('number')}</mwc-list-item>`
+              ${getRedundancyGroups(element).map(
+                number => html`<mwc-list-item>Redundancy Group ${number}</mwc-list-item>`
               )}
             </mwc-list>`
           : html`${pTypes104.map(
