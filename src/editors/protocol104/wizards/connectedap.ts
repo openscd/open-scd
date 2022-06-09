@@ -252,6 +252,7 @@ export function createPTextField(element: Element, pType: string): TemplateResul
 
 /** @returns single page [[`Wizard`]] to edit SCL element ConnectedAP for the 104 plugin. */
 export function editConnectedAp104Wizard(element: Element, redundancy?: boolean): Wizard {
+  const redundancyGroupNumbers = getRedundancyGroupNumbers(element);
   return [
     {
       title: get('wizard.title.edit', { tagName: element.tagName }),
@@ -298,15 +299,16 @@ export function editConnectedAp104Wizard(element: Element, redundancy?: boolean)
           ? html`<h3>${get('protocol104.network.connectedap.redundancy.groupTitle')}</h3>
             <mwc-list
               @selected=${(e: SingleSelectedEvent) => {
+                const redundancyGroupNumber = ++e.detail.index;
                 e.target!.dispatchEvent(
                   newSubWizardEvent(
-                    editRedundancyGroup104Wizard(element.querySelector('Address')!, e.detail.index+1)
+                    editRedundancyGroup104Wizard(element, redundancyGroupNumber)
                   )
                 );
               }}>
-              ${getRedundancyGroupNumbers(element).map(
+              ${redundancyGroupNumbers.length != 0 ? redundancyGroupNumbers.map(
                 number => html`<mwc-list-item>Redundancy Group ${number}</mwc-list-item>`
-              )}
+              ) : html`<p>${get('protocol104.network.connectedap.redundancy.noRedundancyGroupsAvailable')}</p>`}
             </mwc-list>`
           : html`${pTypes104.map(
             pType => html`${createPTextField(element, pType)}`

@@ -9,27 +9,30 @@ import {
   cloneElement,
   EditorAction,
   getValue,
+  newSubWizardEvent,
   Wizard,
   WizardActor,
   WizardInputElement
 } from '../../../foundation.js';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { typeMaxLength, typeNullable } from '../../../wizards/foundation/p-types.js';
+import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
+import { editLogicLink104Wizard } from './logiclink.js';
 
 export function updateRedundancyGroupAction(parent: Element, redundancyGroupNumber: number): WizardActor {
   return (inputs: WizardInputElement[]): EditorAction[] => {
     const wFactorValue = getValue(inputs.find(i => i.label === 'W-FACTOR')!)!;
-    const wFactorElement = parent.querySelector(`P[type="RG${redundancyGroupNumber}-W-FACTOR"]`);
+    const wFactorElement = parent.querySelector(`Address > P[type="RG${redundancyGroupNumber}-W-FACTOR"]`);
     const kFactorValue = getValue(inputs.find(i => i.label === 'K-FACTOR')!)!;
-    const kFactorElement = parent.querySelector(`P[type="RG${redundancyGroupNumber}-K-FACTOR"]`);
+    const kFactorElement = parent.querySelector(`Address > P[type="RG${redundancyGroupNumber}-K-FACTOR"]`);
     const timeout0Value = getValue(inputs.find(i => i.label === 'TIMEOUT-0')!)!;
-    const timeout0Element = parent.querySelector(`P[type="RG${redundancyGroupNumber}-TIMEOUT-0"]`);
+    const timeout0Element = parent.querySelector(`Address > P[type="RG${redundancyGroupNumber}-TIMEOUT-0"]`);
     const timeout1Value = getValue(inputs.find(i => i.label === 'TIMEOUT-1')!)!;
-    const timeout1Element = parent.querySelector(`P[type="RG${redundancyGroupNumber}-TIMEOUT-1"]`);
+    const timeout1Element = parent.querySelector(`Address > P[type="RG${redundancyGroupNumber}-TIMEOUT-1"]`);
     const timeout2Value = getValue(inputs.find(i => i.label === 'TIMEOUT-2')!)!;
-    const timeout2Element = parent.querySelector(`P[type="RG${redundancyGroupNumber}-TIMEOUT-2"]`);
+    const timeout2Element = parent.querySelector(`Address > P[type="RG${redundancyGroupNumber}-TIMEOUT-2"]`);
     const timeout3Value = getValue(inputs.find(i => i.label === 'TIMEOUT-3')!)!;
-    const timeout3Element = parent.querySelector(`P[type="RG${redundancyGroupNumber}-TIMEOUT-3"]`);
+    const timeout3Element = parent.querySelector(`Address > P[type="RG${redundancyGroupNumber}-TIMEOUT-3"]`);
 
     if (
       wFactorValue === wFactorElement?.textContent &&
@@ -73,7 +76,7 @@ export function createRedundancyGroupPTextField(element: Element, pType: string,
     pattern="${ifDefined(typePattern[pType])}"
     ?nullable=${typeNullable[pType]}
     .maybeValue=${element.querySelector(
-      `P[type$="RG${redundancyGroupNumber}-${pType}"]`
+      `Address > P[type$="RG${redundancyGroupNumber}-${pType}"]`
     )?.innerHTML ?? null}
     maxLength="${ifDefined(typeMaxLength[pType])}"
   ></wizard-textfield>`
@@ -91,6 +94,7 @@ function getLogicLinkNumbers(element: Element, redundancyGroupNumber: number): n
 }
 
 export function editRedundancyGroup104Wizard(element: Element, redundancyGroupNumber: number): Wizard {
+  const logicLinkNumbers = getLogicLinkNumbers(element, redundancyGroupNumber);
   return [
     {
       title: get('protocol104.network.redundancygroup.title.edit'),
@@ -110,10 +114,18 @@ export function editRedundancyGroup104Wizard(element: Element, redundancyGroupNu
           pType => html`${createRedundancyGroupPTextField(element, pType, redundancyGroupNumber)}`
         )}
         <h3>${get('protocol104.network.redundancygroup.logiclink.groupTitle')}</h3>
-        <mwc-list>
-          ${getLogicLinkNumbers(element, redundancyGroupNumber).map(
+        <mwc-list
+          @selected=${(e: SingleSelectedEvent) => {
+            const logicLinkNumber = ++e.detail.index;
+            e.target!.dispatchEvent(
+              newSubWizardEvent(
+                editLogicLink104Wizard(element, redundancyGroupNumber, logicLinkNumber)
+              )
+            );
+          }}>
+          ${logicLinkNumbers.length != 0 ? logicLinkNumbers.map(
             number => html`<mwc-list-item>Logic Link ${number}</mwc-list-item>`
-          )}
+          ) : html`<p>${get('protocol104.network.redundancygroup.logiclink.noLogicLinksAvailable')}</p>`}
         </mwc-list>`,
       ],
     },

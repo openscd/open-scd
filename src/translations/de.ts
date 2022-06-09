@@ -366,7 +366,8 @@ export const de: Translations = {
       connectedap: {
         redundancy: {
           title: "???",
-          groupTitle: "???"
+          groupTitle: "???",
+          noRedundancyGroupsAvailable: "???"
         },
         stationType: '???',
         ip: '???',
@@ -384,7 +385,8 @@ export const de: Translations = {
         },
         redundancyGroupNumber: '???',
         logiclink: {
-          groupTitle: '???'
+          groupTitle: '???',
+          noLogicLinksAvailable: '???'
         }
       },
       logiclink: {

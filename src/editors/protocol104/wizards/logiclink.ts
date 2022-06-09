@@ -20,9 +20,9 @@ import { typeMaxLength, typeNullable } from '../../../wizards/foundation/p-types
 export function updateLogicLinkAction(parent: Element, redundancyGroupNumber: number, logicLinkNumber: number): WizardActor {
   return (inputs: WizardInputElement[]): EditorAction[] => {
     const ipValue = getValue(inputs.find(i => i.label === 'IP')!)!;
-    const ipElement = parent.querySelector(`P[type="RG${redundancyGroupNumber}-LL${logicLinkNumber}-IP"]`);
+    const ipElement = parent.querySelector(`Address > P[type="RG${redundancyGroupNumber}-LL${logicLinkNumber}-IP"]`);
     const ipSubnetValue = getValue(inputs.find(i => i.label === 'IP-SUBNET')!)!;
-    const ipSubnetElement = parent.querySelector(`P[type="RG${redundancyGroupNumber}-LL${logicLinkNumber}-IP-SUBNET"]`);
+    const ipSubnetElement = parent.querySelector(`Address > P[type="RG${redundancyGroupNumber}-LL${logicLinkNumber}-IP-SUBNET"]`);
 
     if (
       ipValue === ipElement?.textContent &&
@@ -50,7 +50,7 @@ export function createLogicLinkPTextField(element: Element, pType: string, redun
     pattern="${ifDefined(typePattern[pType])}"
     ?nullable=${typeNullable[pType]}
     .maybeValue=${element.querySelector(
-      `P[type$="RG${redundancyGroupNumber}-LL${logicLinkNumber}-${pType}"]`
+      `Address > P[type$="RG${redundancyGroupNumber}-LL${logicLinkNumber}-${pType}"]`
     )?.innerHTML ?? null}
     maxLength="${ifDefined(typeMaxLength[pType])}"
   ></wizard-textfield>`
