@@ -363,22 +363,25 @@ export const de: Translations = {
       networkView: '???',
     },
     network: {
-      connectedap: {
-        redundancy: {
-          title: "???",
-          groupTitle: "???",
-          noRedundancyGroupsAvailable: "???",
-          addRedundancyGroup: '???'
-        },
-        stationType: '???',
-        ip: '???',
-        ipSubnet: '???',
-        wFactor: '???',
-        kFactor: '???',
-        timeout0: '???',
-        timeout1: '???',
-        timeout2: '???',
-        timeout3: '???'
+      connectedAp: {
+        wizard: {
+          title: {
+            edit: '???'
+          },
+          redundancySwitchLabel: '???',
+          redundancyGroupTitle: '???',
+          noRedundancyGroupsAvailable: '???',
+          addRedundancyGroup: '???',
+          stationTypeHelper: '???',
+          ipHelper: '???',
+          ipSubnetHelper: '???',
+          wFactorHelper: '???',
+          kFactorHelper: '???',
+          timeout0Helper: '???',
+          timeout1Helper: '???',
+          timeout2Helper: '???',
+          timeout3Helper: '???'
+        }
       },
       redundancyGroup: {
         wizard: {

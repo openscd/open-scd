@@ -1,9 +1,10 @@
 import { html, TemplateResult } from 'lit-element';
-import { get } from 'lit-translate';
+import { get, translate } from 'lit-translate';
 
 import '../../../wizard-textfield.js';
 import {
   pTypesLogicLink104,
+  typeDescriptiveNameKeys,
   typePattern,
 } from '../foundation/p-types.js';
 import {
@@ -54,6 +55,7 @@ export function createLogicLinkPTextField(element: Element, pType: string, redun
       `Address > P[type$="RG${redundancyGroupNumber}-LL${logicLinkNumber}-${pType}"]`
     )?.innerHTML ?? null}
     maxLength="${ifDefined(typeMaxLength[pType])}"
+    helper="${translate(typeDescriptiveNameKeys[pType])}"
   ></wizard-textfield>`
 }
 

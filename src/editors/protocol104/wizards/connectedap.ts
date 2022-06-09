@@ -39,9 +39,9 @@ import {
   createTypeRestrictionCheckbox
 } from '../../../wizards/connectedap.js';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
-import { editRedundancyGroup104Wizard } from './redundancygroup.js';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { typeMaxLength, typeNullable } from '../../../wizards/foundation/p-types.js';
+import { editRedundancyGroup104Wizard } from './redundancygroup.js';
 
 interface AccessPointDescription {
   element: Element;
@@ -264,12 +264,12 @@ export function editConnectedAp104Wizard(element: Element, redundancy?: boolean)
   const redundancyGroupNumbers = getRedundancyGroupNumbers(element);
   return [
     {
-      title: get('wizard.title.edit', { tagName: element.tagName }),
+      title: get('protocol104.network.connectedAp.wizard.title.edit'),
       element,
       menuActions: [
         {
           icon: 'add',
-          label: get('protocol104.network.connectedap.redundancy.addRedundancyGroup'),
+          label: get('protocol104.network.connectedAp.wizard.addRedundancyGroup'),
           action: openRedundancyGroupWizard(element),
         },
       ],
@@ -279,7 +279,7 @@ export function editConnectedAp104Wizard(element: Element, redundancy?: boolean)
         action: updateConnectedApAction(element, redundancy),
       },
       content: [
-        html`<mwc-formfield label="${get('protocol104.network.connectedap.redundancy.title')}">
+        html`<mwc-formfield label="${get('protocol104.network.connectedAp.wizard.redundancySwitchLabel')}">
           <mwc-switch
             id="redundancy"
             ?checked=${redundancy}
@@ -312,7 +312,7 @@ export function editConnectedAp104Wizard(element: Element, redundancy?: boolean)
           )}
         </wizard-select>
         ${redundancy
-          ? html`<h3>${get('protocol104.network.connectedap.redundancy.groupTitle')}</h3>
+          ? html`<h3>${get('protocol104.network.connectedAp.wizard.redundancyGroupTitle')}</h3>
             <mwc-list
               @selected=${(e: SingleSelectedEvent) => {
                 const redundancyGroupNumber = ++e.detail.index;
@@ -324,7 +324,7 @@ export function editConnectedAp104Wizard(element: Element, redundancy?: boolean)
               }}>
               ${redundancyGroupNumbers.length != 0 ? redundancyGroupNumbers.map(
                 number => html`<mwc-list-item>Redundancy Group ${number}</mwc-list-item>`
-              ) : html`<p>${get('protocol104.network.connectedap.redundancy.noRedundancyGroupsAvailable')}</p>`}
+              ) : html`<p>${get('protocol104.network.connectedAp.wizard.noRedundancyGroupsAvailable')}</p>`}
             </mwc-list>`
           : html`${pTypes104.map(
             pType => html`${createPTextField(element, pType)}`

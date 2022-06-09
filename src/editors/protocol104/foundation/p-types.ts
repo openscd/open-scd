@@ -46,15 +46,14 @@ export const stationTypeOptions: string[] = [
   'controlled-station'
 ]
 
-/** Max length definition for all `P` element */
 export const typeDescriptiveNameKeys: Record<string, string> = {
-  'StationType': 'protocol104.network.connectedap.stationType',
-  'IP': 'protocol104.network.connectedap.ip',
-  'IP-SUBNET': 'protocol104.network.connectedap.ipSubnet',
-  'W-FACTOR': 'protocol104.network.connectedap.wFactor',
-  'K-FACTOR': 'protocol104.network.connectedap.kFactor',
-  'TIMEOUT-0': 'protocol104.network.connectedap.timeout0',
-  'TIMEOUT-1': 'protocol104.network.connectedap.timeout1',
-  'TIMEOUT-2': 'protocol104.network.connectedap.timeout2',
-  'TIMEOUT-3': 'protocol104.network.connectedap.timeout3',
+  'StationType': 'protocol104.network.connectedAp.wizard.stationTypeHelper',
+  'IP': 'protocol104.network.connectedAp.wizard.ipHelper',
+  'IP-SUBNET': 'protocol104.network.connectedAp.wizard.ipSubnetHelper',
+  'W-FACTOR': 'protocol104.network.connectedAp.wizard.wFactorHelper',
+  'K-FACTOR': 'protocol104.network.connectedAp.wizard.kFactorHelper',
+  'TIMEOUT-0': 'protocol104.network.connectedAp.wizard.timeout0Helper',
+  'TIMEOUT-1': 'protocol104.network.connectedAp.wizard.timeout1Helper',
+  'TIMEOUT-2': 'protocol104.network.connectedAp.wizard.timeout2Helper',
+  'TIMEOUT-3': 'protocol104.network.connectedAp.wizard.timeout3Helper',
 };

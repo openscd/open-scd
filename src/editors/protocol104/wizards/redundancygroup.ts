@@ -1,9 +1,9 @@
 import { html, TemplateResult } from 'lit-element';
-import { get } from 'lit-translate';
+import { get, translate } from 'lit-translate';
 
 import '../../../wizard-textfield.js';
 import {
-  pTypesRedundancyGroup104, typePattern,
+  pTypesRedundancyGroup104, typeDescriptiveNameKeys, typePattern,
 } from '../foundation/p-types.js';
 import {
   cloneElement,
@@ -81,6 +81,7 @@ export function createRedundancyGroupPTextField(element: Element, pType: string,
       `Address > P[type$="RG${redundancyGroupNumber}-${pType}"]`
     )?.innerHTML ?? null}
     maxLength="${ifDefined(typeMaxLength[pType])}"
+    helper="${translate(typeDescriptiveNameKeys[pType])}"
   ></wizard-textfield>`
 }
 
