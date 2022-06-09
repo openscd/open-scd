@@ -1,8 +1,8 @@
-import { html, fixture, expect } from '@open-wc/testing';
+import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../../../src/editors/protocol104/ied-container.js'
+import '../../../../src/editors/protocol104/ied-container.js';
 
-import { getFullPath } from "../../../../src/editors/protocol104/foundation/foundation.js";
+import { getFullPath } from '../../../../src/editors/protocol104/foundation/foundation.js';
 import { Ied104Container } from '../../../../src/editors/protocol104/ied-container.js';
 
 describe('ied-104-container -', () => {
@@ -27,10 +27,14 @@ describe('ied-104-container -', () => {
     });
 
     it('getDoiElements will return a list which is alphabetically ordered', () => {
-      const dois = element['getDoiElements']();
+      const dois = element.doiElements;
       expect(dois.length).to.be.equals(2);
-      expect(getFullPath(dois[0], 'IED')).to.be.equals('AP1 / LD0 / LLN0 / Beh');
-      expect(getFullPath(dois[1], 'IED')).to.be.equals('AP1 / LD0 / PPRE-GGIO-2 / Beh');
+      expect(getFullPath(dois[0], 'IED')).to.be.equals(
+        'AP1 / LD0 / LLN0 / Beh'
+      );
+      expect(getFullPath(dois[1], 'IED')).to.be.equals(
+        'AP1 / LD0 / PPRE-GGIO-2 / Beh'
+      );
     });
 
     it('looks like the latest snapshot', async () => {

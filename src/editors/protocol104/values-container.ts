@@ -4,19 +4,16 @@ import {
   html,
   LitElement,
   property,
-  TemplateResult
-} from "lit-element";
-import { get, translate } from "lit-translate";
+  TemplateResult,
+} from 'lit-element';
+import { get, translate } from 'lit-translate';
 
-import {
-  compareNames,
-  newWizardEvent
-} from "../../foundation.js";
+import { compareNames, newWizardEvent } from '../../foundation.js';
 
 import './ied-container.js';
 
-import { PRIVATE_TYPE_104 } from "./foundation/foundation.js";
-import { selectDoiWizard } from "./wizards/selectDoi.js";
+import { PRIVATE_TYPE_104 } from './foundation/foundation.js';
+import { selectDoiWizard } from './wizards/selectDoi.js';
 
 /**
  * Container that will render an 'ied-104-container' for every IED which contains DAI Elements related to the
@@ -27,12 +24,16 @@ export class Values104Container extends LitElement {
   @property()
   doc!: XMLDocument;
 
-  private getIEDElements(): Element[] {
+  @property()
+  get iedElements(): Element[] {
     return Array.from(this.doc.querySelectorAll('IED'))
-      .filter(ied => ied.querySelectorAll(`DAI > Private[type="${PRIVATE_TYPE_104}"]`).length > 0)
-      .sort((a,b) => compareNames(a,b));
+      .filter(
+        ied =>
+          ied.querySelectorAll(`DAI > Private[type="${PRIVATE_TYPE_104}"]`)
+            .length > 0
+      )
+      .sort((a, b) => compareNames(a, b));
   }
-
 
   /** Opens a [[`WizardDialog`]] for creating a new `Substation` element. */
   private openCreateAddressWizard(): void {
@@ -40,27 +41,33 @@ export class Values104Container extends LitElement {
   }
 
   render(): TemplateResult {
-    const ieds = this.getIEDElements();
+    const ieds = this.iedElements;
     if (ieds.length > 0) {
-      return html `
+      return html`
         ${ieds.map(iedElement => {
-          return html `<ied-104-container .element="${iedElement}"></ied-104-container>`;
+          return html`<ied-104-container
+            .element="${iedElement}"
+          ></ied-104-container>`;
         })}
         <h1>
-          <mwc-fab extended
-                   icon="add"
-                   label="${get('protocol104.wizard.title.addAddress')}"
-                   @click=${() => this.openCreateAddressWizard()}>
+          <mwc-fab
+            extended
+            icon="add"
+            label="${get('protocol104.wizard.title.addAddress')}"
+            @click=${() => this.openCreateAddressWizard()}
+          >
           </mwc-fab>
-        </h1>      `;
+        </h1>
+      `;
     }
-    return html `
-      <h1>
-        <span style="color: var(--base1)">${translate('protocol104.values.missing')}</span>
-      </h1>`;
+    return html` <h1>
+      <span style="color: var(--base1)"
+        >${translate('protocol104.values.missing')}</span
+      >
+    </h1>`;
   }
 
-  static styles = css `
+  static styles = css`
     mwc-fab {
       position: fixed;
       bottom: 32px;

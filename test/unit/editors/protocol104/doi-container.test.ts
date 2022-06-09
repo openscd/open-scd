@@ -30,14 +30,14 @@ describe('doi-104-container -', () => {
     });
 
     it('getDaiElements will return a list which is ordered on full path', () => {
-      const dais = element['getDaiElements']();
+      const dais = element.daiElements;
       expect(dais.length).to.be.equals(2);
       expect(getFullPath(dais[0], 'DOI')).to.be.equals('Oper / ctlVal');
       expect(getFullPath(dais[1], 'DOI')).to.be.equals('stVal');
     });
 
     it('getAddressElements will return a list', () => {
-      const dai = element['getDaiElements']()[0];
+      const dai = element.daiElements[0];
       const addresses = element['getAddressElements'](dai);
       expect(addresses.length).to.be.equals(1);
       expect(get104DetailsLine(dai, addresses[0])).to.be.equals(

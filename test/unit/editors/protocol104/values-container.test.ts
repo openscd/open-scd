@@ -1,6 +1,6 @@
-import { html, fixture, expect } from '@open-wc/testing';
+import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../../../src/editors/protocol104/values-container.js'
+import '../../../../src/editors/protocol104/values-container.js';
 import { Values104Container } from '../../../../src/editors/protocol104/values-container.js';
 
 describe('values-104-container', () => {
@@ -14,7 +14,7 @@ describe('values-104-container', () => {
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
       element = await fixture(
-        html `<values-104-container .doc=${document}></values-104-container>`
+        html`<values-104-container .doc=${document}></values-104-container>`
       );
     });
 
@@ -23,7 +23,7 @@ describe('values-104-container', () => {
     });
 
     it('getIEDElements will return a list which is alphabetically ordered', () => {
-      const ieds = element['getIEDElements']();
+      const ieds = element.iedElements;
       expect(ieds.length).to.be.equals(2);
       expect(ieds[0].getAttribute('name')).to.be.equals('B1');
       expect(ieds[1].getAttribute('name')).to.be.equals('B2');
@@ -37,7 +37,7 @@ describe('values-104-container', () => {
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
       element = await fixture(
-        html `<values-104-container .doc=${document}></values-104-container>`
+        html`<values-104-container .doc=${document}></values-104-container>`
       );
     });
 

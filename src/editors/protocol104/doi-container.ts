@@ -43,7 +43,8 @@ export class Doi104Container extends LitElement {
   @query('#toggleButton')
   toggleButton!: IconButtonToggle | undefined;
 
-  private getDaiElements(): Element[] {
+  @property()
+  get daiElements(): Element[] {
     return Array.from(this.element.querySelectorAll(`DAI`))
       .filter(
         daiElement =>
@@ -84,7 +85,8 @@ export class Doi104Container extends LitElement {
     this.dispatchEvent(newWizardEvent(showDOIInfoWizard(this.element)));
   }
 
-  private header(): TemplateResult {
+  @property()
+  get header(): TemplateResult {
     const fullPath = getFullPath(this.element, 'IED');
     const cdc = getCdcValue(this.element);
 
@@ -112,7 +114,7 @@ export class Doi104Container extends LitElement {
   }
 
   private renderDaiList(): TemplateResult {
-    const daiElements = this.getDaiElements();
+    const daiElements = this.daiElements;
     return html`${daiElements.map(daiElement => {
       return html`
         <mwc-list-item noninteractive>
@@ -125,7 +127,7 @@ export class Doi104Container extends LitElement {
 
   render(): TemplateResult {
     return html`
-      <action-pane .label="${this.header()}">
+      <action-pane .label="${this.header}">
         <abbr slot="action" title="${translate('edit')}">
           <mwc-icon-button
             icon="info"
