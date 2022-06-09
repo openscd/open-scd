@@ -367,7 +367,8 @@ export const de: Translations = {
         redundancy: {
           title: "???",
           groupTitle: "???",
-          noRedundancyGroupsAvailable: "???"
+          noRedundancyGroupsAvailable: "???",
+          addRedundancyGroup: '???'
         },
         stationType: '???',
         ip: '???',
@@ -386,7 +387,8 @@ export const de: Translations = {
         redundancyGroupNumber: '???',
         logiclink: {
           groupTitle: '???',
-          noLogicLinksAvailable: '???'
+          noLogicLinksAvailable: '???',
+          addLogicLink: '???'
         }
       },
       logiclink: {

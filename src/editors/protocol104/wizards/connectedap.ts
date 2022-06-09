@@ -30,8 +30,10 @@ import {
   newSubWizardEvent,
   newWizardEvent,
   Wizard,
+  WizardAction,
   WizardActor,
-  WizardInputElement
+  WizardInputElement,
+  WizardMenuActor
 } from '../../../foundation.js';
 import {
   createTypeRestrictionCheckbox
@@ -250,6 +252,13 @@ export function createPTextField(element: Element, pType: string): TemplateResul
   ></wizard-textfield>`
 }
 
+function openRedundancyGroupWizard(element: Element): WizardMenuActor {
+  return (): WizardAction[] => {
+    //return [() => createFCDAsWizard(element)];
+    return [];
+  };
+}
+
 /** @returns single page [[`Wizard`]] to edit SCL element ConnectedAP for the 104 plugin. */
 export function editConnectedAp104Wizard(element: Element, redundancy?: boolean): Wizard {
   const redundancyGroupNumbers = getRedundancyGroupNumbers(element);
@@ -257,6 +266,13 @@ export function editConnectedAp104Wizard(element: Element, redundancy?: boolean)
     {
       title: get('wizard.title.edit', { tagName: element.tagName }),
       element,
+      menuActions: [
+        {
+          icon: 'add',
+          label: get('protocol104.network.connectedap.redundancy.addRedundancyGroup'),
+          action: openRedundancyGroupWizard(element),
+        },
+      ],
       primary: {
         icon: 'save',
         label: get('save'), 

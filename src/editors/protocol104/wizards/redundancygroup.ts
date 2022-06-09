@@ -11,8 +11,10 @@ import {
   getValue,
   newSubWizardEvent,
   Wizard,
+  WizardAction,
   WizardActor,
-  WizardInputElement
+  WizardInputElement,
+  WizardMenuActor
 } from '../../../foundation.js';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { typeMaxLength, typeNullable } from '../../../wizards/foundation/p-types.js';
@@ -93,12 +95,37 @@ function getLogicLinkNumbers(element: Element, redundancyGroupNumber: number): n
   return groupNumbers;
 }
 
+function openLogicLinkWizard(element: Element): WizardMenuActor {
+  return (): WizardAction[] => {
+    //return [() => createFCDAsWizard(element)];
+    return [];
+  };
+}
+
+function remove(element: Element): WizardMenuActor {
+  return (): EditorAction[] => {
+    return [];
+  };
+}
+
 export function editRedundancyGroup104Wizard(element: Element, redundancyGroupNumber: number): Wizard {
   const logicLinkNumbers = getLogicLinkNumbers(element, redundancyGroupNumber);
   return [
     {
       title: get('protocol104.network.redundancygroup.title.edit'),
       element,
+      menuActions: [
+        {
+          icon: 'add',
+          label: get('protocol104.network.redundancygroup.logiclink.addLogicLink'),
+          action: openLogicLinkWizard(element),
+        },
+        {
+          icon: 'delete',
+          label: get('remove'),
+          action: remove(element),
+        },
+      ],
       primary: {
         icon: 'save',
         label: get('save'), 

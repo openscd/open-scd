@@ -12,7 +12,8 @@ import {
   getValue,
   Wizard,
   WizardActor,
-  WizardInputElement
+  WizardInputElement,
+  WizardMenuActor
 } from '../../../foundation.js';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { typeMaxLength, typeNullable } from '../../../wizards/foundation/p-types.js';
@@ -56,11 +57,24 @@ export function createLogicLinkPTextField(element: Element, pType: string, redun
   ></wizard-textfield>`
 }
 
+function remove(element: Element): WizardMenuActor {
+  return (): EditorAction[] => {
+    return [];
+  };
+}
+
 export function editLogicLink104Wizard(element: Element, redundancyGroupNumber: number, logicLinkNumber: number): Wizard {
   return [
     {
       title: get('protocol104.network.logiclink.title.edit'),
       element,
+      menuActions: [
+        {
+          icon: 'delete',
+          label: get('remove'),
+          action: remove(element),
+        },
+      ],
       primary: {
         icon: 'save',
         label: get('save'), 

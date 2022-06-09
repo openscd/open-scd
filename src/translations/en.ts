@@ -364,7 +364,8 @@ export const en = {
         redundancy: {
           title: 'Redundancy',
           groupTitle: 'Redundancy groups',
-          noRedundancyGroupsAvailable: 'No redundancy groups available'
+          noRedundancyGroupsAvailable: 'No redundancy groups available',
+          addRedundancyGroup: 'Add redundancy group'
         },
         stationType: 'Type of station',
         ip: 'IP address of the logical link',
@@ -383,7 +384,8 @@ export const en = {
         redundancyGroupNumber: 'Redundancy group number',
         logiclink: {
           groupTitle: 'Logic Links',
-          noLogicLinksAvailable: 'No logic links available'
+          noLogicLinksAvailable: 'No logic links available',
+          addLogicLink: 'Add logic link'
         }
       },
       logiclink: {
