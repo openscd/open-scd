@@ -199,4 +199,37 @@ describe('wizard-textfield', () => {
         expect(element).to.have.property('maybeValue', null));
     });
   });
+
+  describe('disabled', () => {
+    beforeEach(async () => {
+      element = await fixture(html`<wizard-textfield
+        .maybeValue=${'someValue'}
+        .multipliers=${[null, 'G', 'M', 'k', '', 'm']}
+        .multiplier=${'k'}
+        .unit=${'V'}
+        nullable
+        disabled
+      ></wizard-textfield>`);
+
+      await element.updateComplete;
+    });
+
+    it('disables text field', () =>
+      expect(element).to.have.property('disabled', true));
+
+    it('disables null switch', () =>
+      expect(element.nullSwitch).to.have.property('disabled', true));
+
+    it('disables null button', () =>
+      expect(element.multiplierButton).to.have.property('disabled', true));
+
+    it('turns off null switch', async () => {
+      element.nullSwitch?.click();
+      await element.updateComplete;
+      element.nullSwitch?.click();
+      await element.updateComplete;
+
+      expect(element).to.have.property('disabled', true);
+    });
+  });
 });

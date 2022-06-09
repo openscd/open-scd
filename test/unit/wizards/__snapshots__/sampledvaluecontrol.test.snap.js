@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["Wizards for SCL element SampledValueControl define an edit wizard that with muticast attribute set to false - deprecated looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[wizard.title.edit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 48px)"
@@ -751,7 +751,7 @@ snapshots["Wizards for SCL element SampledValueControl define an create wizard t
 
 snapshots["Wizards for SCL element SampledValueControl define a select wizard that looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[wizard.title.select]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"

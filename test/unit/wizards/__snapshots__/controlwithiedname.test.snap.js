@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["selectExtRefWizard looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="IED3>>MU01>MSVCB01 - IED1"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"

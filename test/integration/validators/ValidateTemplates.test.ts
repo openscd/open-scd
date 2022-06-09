@@ -13,6 +13,38 @@ describe('ValidateTemplates OpenSCD integration test ', () => {
 
   let doc: XMLDocument;
 
+  describe('with a valid DataTypeTemplates section', () => {
+    beforeEach(async () => {
+      doc = await fetch('/test/testfiles/validators/zeroissues.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+      parent = await fixture(html`
+        <open-scd .doc=${doc}
+          ><validate-templates .doc=${doc}></validate-templates
+        ></open-scd>
+
+        <link href="public/google/fonts/roboto-v27.css" rel="stylesheet" />
+        <link href="public/google/fonts/roboto-mono-v13.css" rel="stylesheet" />
+        <link
+          href="public/google/icons/material-icons-outlined.css"
+          rel="stylesheet"
+        />
+      `);
+      element = <ValidateTemplates>parent.querySelector('validate-templates')!;
+      element.pluginId = '/src/validators/ValidateTemplates.js';
+
+      await element.validate();
+      await parent.workDone;
+    });
+
+    it('shows a "No errors" message in the diagnostics pane', async () => {
+      await parent.requestUpdate();
+      expect(parent.diagnosticUI).to.contain.text('No errors');
+      await expect(parent.diagnosticUI).to.equalSnapshot();
+    });
+  });
+
   describe('with issues in the DataTypeTemplates section', () => {
     beforeEach(async () => {
       doc = await fetch('/test/testfiles/validators/datatypetemplateerrors.scd')
@@ -72,13 +104,13 @@ describe('ValidateTemplates OpenSCD integration test ', () => {
       await element.validate();
       await parent.workDone;
     });
-    it('generates only one specific in the diagnostics pane', async () => {
+    it('shows only one message in the diagnostics pane', async () => {
       const issues = parent.diagnoses.get(
         '/src/validators/ValidateTemplates.js'
       );
       expect(issues?.length).to.equal(1);
     }).timeout(1000);
-    it('pushes a specific issue to the diagnostics pane that look like the latest snapshot', async () => {
+    it('looks like the latest snapshot', async () => {
       await parent.requestUpdate();
       await expect(parent.diagnosticUI).to.equalSnapshot();
     });

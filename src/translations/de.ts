@@ -61,6 +61,10 @@ export const de: Translations = {
     security: 'Potentiel in Zukunft für z.B. digitale Signature',
     synchSourceId: 'Identität der Zeitquelle zu Telegram hinzufügen',
     SampledValueControl: 'Sampled Value Kontrollblock',
+    iedName: 'Referenziertes IED',
+    ldInst: 'Referenziertes logisches Gerät',
+    prefix: 'Präfix des logischen Knotens',
+    lnInst: 'Instanz des logischen Knotens',
   },
   settings: {
     title: 'Einstellungen',
@@ -406,11 +410,13 @@ export const de: Translations = {
     wizard: {
       valueHelper: 'Der Wert sollte vom Typ sein {{type}}',
       title: {
-        edit: 'Edit {{daiName}}',
+        create: 'DAI "{{daiName}}" hinzufügen',
+        edit: 'DAI "{{daiName}}" bearbeiten',
       },
     },
     action: {
-      updatedai: 'DAI "{{daiName}} bearbeitet"',
+      createdai: 'DAI "{{daiName}}" hinzugefügt',
+      updatedai: 'DAI "{{daiName}}" bearbeitet',
     },
   },
   sdo: {
@@ -461,8 +467,17 @@ export const de: Translations = {
         selectIEDs: 'Auswahl IEDs',
         selectLDs: 'Auswahl logische Geräte',
         selectLNs: 'Auswahl logische Knoten',
+        selectLNodeTypes: 'Auswahl logische Knoten Type',
       },
       placeholder: 'Bitte laden Sie eine SCL-Datei, die IED-Elemente enthält.',
+      uniquewarning: 'Logische Knoten Klasse existiert bereits',
+      reference: 'Referenz auf bestehenden logischen Knoten erstellen',
+      instance: 'Referenz auf logischen Knoten Typ erstellen',
+    },
+    log: {
+      title: 'LNode vom Type {{lnClass}} kann nicht hinzugefügt werden',
+      nonuniquelninst: 'Keine eindeutige Instanz (lnInst)',
+      uniqueln0: 'Nur eine Instanz von {{lnClass}} zulässig',
     },
     tooltip: 'Referenz zu logischen Knoten erstellen',
   },

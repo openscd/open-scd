@@ -174,11 +174,15 @@ export class WizardDialog extends LitElement {
   }
 
   prev(): void {
-    if (this.pageIndex > 0) this.pageIndex--;
+    if (this.pageIndex <= 0) return;
+    this.pageIndex--;
+    this.dialog?.show();
   }
+
   async next(): Promise<void> {
     if (dialogValid(this.dialog)) {
       if (this.wizard.length > this.pageIndex + 1) this.pageIndex++;
+      this.dialog?.show();
     } else {
       this.dialog?.show();
       await this.dialog?.updateComplete;
@@ -295,8 +299,7 @@ export class WizardDialog extends LitElement {
         : 0;
 
     return html`<mwc-dialog
-      defaultAction="close"
-      ?open=${index === this.pageIndex}
+      defaultAction="next"
       heading=${page.title}
       @closed=${this.onClosed}
       style="--mdc-dialog-min-width:calc(100% + ${extraWidth}px)"

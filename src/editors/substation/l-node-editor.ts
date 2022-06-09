@@ -8,7 +8,13 @@ import {
 } from 'lit-element';
 
 import '../../action-icon.js';
-import { identity, newActionEvent } from '../../foundation.js';
+import {
+  cloneElement,
+  identity,
+  newActionEvent,
+  newLnInstGenerator,
+  newWizardEvent,
+} from '../../foundation.js';
 import {
   automationLogicalNode,
   controlLogicalNode,
@@ -27,6 +33,7 @@ import {
   systemLogicalNode,
   transformerLogicalNode,
 } from '../../icons/lnode.js';
+import { wizards } from '../../wizards/wizard-library.js';
 
 export function getLNodeIcon(lNode: Element): TemplateResult {
   const lnClassGroup = lNode.getAttribute('lnClass')?.charAt(0) ?? '';
@@ -74,6 +81,32 @@ export class LNodeEditor extends LitElement {
   private get missingIedReference(): boolean {
     return this.element.getAttribute('iedName') === 'None' ?? false;
   }
+  @state()
+  private get isIEDReference(): boolean {
+    return this.element.getAttribute('iedName') !== 'None';
+  }
+
+  private cloneLNodeElement(): void {
+    const lnClass = this.element.getAttribute('lnClass');
+    if (!lnClass) return;
+
+    const uniqueLnInst = newLnInstGenerator(this.element.parentElement!)(
+      lnClass
+    );
+    if (!uniqueLnInst) return;
+
+    const newElement = cloneElement(this.element, { lnInst: uniqueLnInst });
+    this.dispatchEvent(
+      newActionEvent({
+        new: { parent: this.element.parentElement!, element: newElement },
+      })
+    );
+  }
+
+  private openEditWizard(): void {
+    const wizard = wizards['LNode'].edit(this.element);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
 
   remove(): void {
     if (this.element)
@@ -96,9 +129,23 @@ export class LNodeEditor extends LitElement {
       ><mwc-fab
         slot="action"
         mini
+        icon="edit"
+        @click="${() => this.openEditWizard()}}"
+      ></mwc-fab
+      ><mwc-fab
+        slot="action"
+        mini
         icon="delete"
         @click="${() => this.remove()}}"
       ></mwc-fab
-    ></action-icon>`;
+      >${this.isIEDReference
+        ? html``
+        : html`<mwc-fab
+            slot="action"
+            mini
+            icon="content_copy"
+            @click=${() => this.cloneLNodeElement()}
+          ></mwc-fab>`}
+    </action-icon>`;
   }
 }

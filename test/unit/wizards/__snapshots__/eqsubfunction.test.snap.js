@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["Wizards for SCL EqSubFunction element define an create wizard that looks like the the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[wizard.title.add]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -52,7 +52,7 @@ snapshots["Wizards for SCL EqSubFunction element define an create wizard that lo
 
 snapshots["Wizards for SCL EqSubFunction element define an edit wizard that looks like the the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[wizard.title.edit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"

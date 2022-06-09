@@ -65,8 +65,10 @@ describe('Subscription Plugin', () => {
 
       describe('and subscribing an unsubscribed IED', () => {
         it('initially no ExtRefs are available in the subscriber IED', async () => {
-          const extRefs = doc.querySelectorAll('IED[name="IED3"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED2"], ' +
-            'IED[name="IED3"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED2"]');
+          const extRefs = doc.querySelectorAll(
+            'IED[name="IED3"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED2"], ' +
+              'IED[name="IED3"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED2"]'
+          );
           expect(extRefs.length).to.eql(0);
         });
 
@@ -99,16 +101,20 @@ describe('Subscription Plugin', () => {
           (<HTMLElement>ied).click();
           await element.updateComplete;
 
-          const extRefs = doc.querySelectorAll('IED[name="IED3"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED2"], ' +
-            'IED[name="IED3"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED2"]');
+          const extRefs = element.doc.querySelectorAll(
+            'IED[name="IED3"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED2"], ' +
+              'IED[name="IED3"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED2"]'
+          );
           expect(extRefs.length).to.eql(3);
         });
       });
 
       describe('and unsubscribing a subscribed IED', () => {
         it('initially all the ExtRefs are available in the subscriber IED', async () => {
-          const extRefs = doc.querySelectorAll('IED[name="IED1"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED2"], ' +
-            'IED[name="IED1"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED2"]');
+          const extRefs = doc.querySelectorAll(
+            'IED[name="IED1"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED2"], ' +
+              'IED[name="IED1"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED2"]'
+          );
           expect(extRefs.length).to.eql(3);
         });
 
@@ -141,16 +147,20 @@ describe('Subscription Plugin', () => {
           (<HTMLElement>ied).click();
           await element.updateComplete;
 
-          const extRefs = doc.querySelectorAll('IED[name="IED1"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED2"], ' +
-            'IED[name="IED1"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED2"]');
+          const extRefs = doc.querySelectorAll(
+            'IED[name="IED1"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED2"], ' +
+              'IED[name="IED1"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED2"]'
+          );
           expect(extRefs.length).to.eql(0);
         });
       });
 
       describe('and subscribing a partially subscribed IED', () => {
         it('initially only 2 ExtRefs are available in the subscriber IED', async () => {
-          const extRefs = doc.querySelectorAll('IED[name="IED4"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED2"],' +
-            'IED[name="IED4"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED2"]');
+          const extRefs = doc.querySelectorAll(
+            'IED[name="IED4"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED2"],' +
+              'IED[name="IED4"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED2"]'
+          );
           expect(extRefs.length).to.eql(2);
         });
 
@@ -183,8 +193,10 @@ describe('Subscription Plugin', () => {
           (<HTMLElement>ied).click();
           await element.updateComplete;
 
-          const extRefs = doc.querySelectorAll('IED[name="IED4"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED2"],' +
-            'IED[name="IED4"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED2"]');
+          const extRefs = element.doc.querySelectorAll(
+            'IED[name="IED4"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED2"],' +
+              'IED[name="IED4"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED2"]'
+          );
           expect(extRefs.length).to.eql(5);
         });
       });
@@ -197,7 +209,7 @@ describe('Subscription Plugin', () => {
       (<HTMLElement>radioButton).click();
       await element.updateComplete;
     });
-    
+
     describe('initially', () => {
       it('the plugin looks like the latest snapshot', async () => {
         await expect(element).shadowDom.to.equalSnapshot();
@@ -227,8 +239,10 @@ describe('Subscription Plugin', () => {
 
       describe('and subscribing a unsubscribed GOOSE message', () => {
         it('initially no ExtRefs are available in the subscriber IED', async () => {
-          const extRefs = doc.querySelectorAll('IED[name="IED2"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED4"], ' +
-            'IED[name="IED2"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED4"]');
+          const extRefs = doc.querySelectorAll(
+            'IED[name="IED2"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED4"], ' +
+              'IED[name="IED2"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED4"]'
+          );
           expect(extRefs.length).to.eql(0);
         });
 
@@ -261,8 +275,10 @@ describe('Subscription Plugin', () => {
           (<HTMLElement>goose).click();
           await element.updateComplete;
 
-          const extRefs = doc.querySelectorAll('IED[name="IED2"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED4"], ' +
-            'IED[name="IED2"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED4"]');
+          const extRefs = element.doc.querySelectorAll(
+            'IED[name="IED2"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED4"], ' +
+              'IED[name="IED2"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED4"]'
+          );
           expect(extRefs.length).to.eql(5);
         });
       });
@@ -278,11 +294,12 @@ describe('Subscription Plugin', () => {
 
           (<HTMLElement>goose).click();
           await element.updateComplete;
-
         });
         it('initially all ExtRefs are available in the subscriber IED', async () => {
-          const extRefs = doc.querySelectorAll('IED[name="IED2"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED4"], ' +
-            'IED[name="IED2"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED4"]');
+          const extRefs = element.doc.querySelectorAll(
+            'IED[name="IED2"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED4"], ' +
+              'IED[name="IED2"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED4"]'
+          );
           expect(extRefs.length).to.eql(5);
         });
 
@@ -323,16 +340,20 @@ describe('Subscription Plugin', () => {
           (<HTMLElement>goose).click();
           await element.updateComplete;
 
-          const extRefs = doc.querySelectorAll('IED[name="IED2"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED4"], ' +
-            'IED[name="IED2"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED4"]');
+          const extRefs = doc.querySelectorAll(
+            'IED[name="IED2"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED4"], ' +
+              'IED[name="IED2"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED4"]'
+          );
           expect(extRefs.length).to.eql(0);
         });
       });
 
       describe('and subscribing a partially subscribed GOOSE message', () => {
         it('initially some ExtRefs are available in the subscriber IED', async () => {
-          const extRefs = doc.querySelectorAll('IED[name="IED2"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED1"], ' +
-            'IED[name="IED2"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED1"]');
+          const extRefs = doc.querySelectorAll(
+            'IED[name="IED2"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED1"], ' +
+              'IED[name="IED2"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED1"]'
+          );
           expect(extRefs.length).to.eql(4);
         });
 
@@ -365,8 +386,10 @@ describe('Subscription Plugin', () => {
           (<HTMLElement>goose).click();
           await element.updateComplete;
 
-          const extRefs = doc.querySelectorAll('IED[name="IED2"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED1"], ' +
-            'IED[name="IED2"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED1"]');
+          const extRefs = element.doc.querySelectorAll(
+            'IED[name="IED2"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED1"], ' +
+              'IED[name="IED2"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED1"]'
+          );
           expect(extRefs.length).to.eql(9);
         });
       });

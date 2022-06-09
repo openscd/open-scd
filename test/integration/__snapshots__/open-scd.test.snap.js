@@ -32,8 +32,8 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         Open project
       </span>
-      <mwc-linear-progress indeterminate="">
-      </mwc-linear-progress>
+      <oscd-plugina2b400fc5f053cb1>
+      </oscd-plugina2b400fc5f053cb1>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
@@ -49,8 +49,8 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         New project
       </span>
-      <mwc-linear-progress indeterminate="">
-      </mwc-linear-progress>
+      <oscd-plugin679d81826289fb9a>
+      </oscd-plugin679d81826289fb9a>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="true"
@@ -67,8 +67,8 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         Save project
       </span>
-      <mwc-linear-progress indeterminate="">
-      </mwc-linear-progress>
+      <oscd-plugin1cb4a5367ff1f6a1>
+      </oscd-plugin1cb4a5367ff1f6a1>
     </mwc-list-item>
     <li
       divider=""
@@ -121,10 +121,10 @@ snapshots["open-scd looks like its snapshot"] =
         rule_folder
       </mwc-icon>
       <span>
-        Validate project
+        Validate Schema
       </span>
-      <mwc-linear-progress indeterminate="">
-      </mwc-linear-progress>
+      <oscd-plugin3aa68346726da1cd>
+      </oscd-plugin3aa68346726da1cd>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="true"
@@ -141,8 +141,8 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         Validate Templates
       </span>
-      <mwc-linear-progress indeterminate="">
-      </mwc-linear-progress>
+      <oscd-plugin186320cdd626e422>
+      </oscd-plugin186320cdd626e422>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
@@ -195,8 +195,8 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         Import IEDs
       </span>
-      <mwc-linear-progress indeterminate="">
-      </mwc-linear-progress>
+      <oscd-plugin4fed39e69404009b>
+      </oscd-plugin4fed39e69404009b>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="true"
@@ -213,8 +213,8 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         Subscriber Update
       </span>
-      <mwc-linear-progress indeterminate="">
-      </mwc-linear-progress>
+      <oscd-plugin90bf5c90b69b347b>
+      </oscd-plugin90bf5c90b69b347b>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="true"
@@ -231,8 +231,8 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         Merge Project
       </span>
-      <mwc-linear-progress indeterminate="">
-      </mwc-linear-progress>
+      <oscd-plugin2b4693cc19da2446>
+      </oscd-plugin2b4693cc19da2446>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="true"
@@ -249,8 +249,8 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         Update Substation
       </span>
-      <mwc-linear-progress indeterminate="">
-      </mwc-linear-progress>
+      <oscd-plugin2a662bacb120083f>
+      </oscd-plugin2a662bacb120083f>
     </mwc-list-item>
     <li
       divider=""
@@ -287,8 +287,8 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         Help
       </span>
-      <mwc-linear-progress indeterminate="">
-      </mwc-linear-progress>
+      <oscd-plugin48ab1a46d409bed9>
+      </oscd-plugin48ab1a46d409bed9>
     </mwc-list-item>
     <li
       divider=""
@@ -774,7 +774,7 @@ snapshots["open-scd looks like its snapshot"] =
       <mwc-icon slot="meta">
         rule_folder
       </mwc-icon>
-      Validate project
+      Validate Schema
     </mwc-check-list-item>
     <mwc-check-list-item
       aria-disabled="false"
