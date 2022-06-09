@@ -378,7 +378,17 @@ export const en = {
       redundancygroup: {
         title: {
           edit: 'Edit Redundancy group'
+        },
+        redundancyGroupNumber: 'Redundancy group number',
+        logiclink: {
+          groupTitle: 'Logic Links'
         }
+      },
+      logiclink: {
+        title: {
+          edit: 'Edit Logic link'
+        },
+        logicLinkNumber: 'Logic link number'
       }
     },
     wizard: {

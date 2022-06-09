@@ -73,10 +73,21 @@ export function createRedundancyGroupPTextField(element: Element, pType: string,
     pattern="${ifDefined(typePattern[pType])}"
     ?nullable=${typeNullable[pType]}
     .maybeValue=${element.querySelector(
-      `P[type$="${redundancyGroupNumber}-${pType}"]`
+      `P[type$="RG${redundancyGroupNumber}-${pType}"]`
     )?.innerHTML ?? null}
     maxLength="${ifDefined(typeMaxLength[pType])}"
   ></wizard-textfield>`
+}
+
+function getLogicLinkNumbers(element: Element, redundancyGroupNumber: number): number[] {
+  const groupNumbers = [];
+  let groupNumber = 1;
+
+  while (element.querySelectorAll(`Address > P[type^="RG${redundancyGroupNumber}-LL${groupNumber}"]`).length == 2) {
+    groupNumbers.push(groupNumber++);
+  }
+
+  return groupNumbers;
 }
 
 export function editRedundancyGroup104Wizard(element: Element, redundancyGroupNumber: number): Wizard {
@@ -92,12 +103,18 @@ export function editRedundancyGroup104Wizard(element: Element, redundancyGroupNu
       content: [
         html`<wizard-textfield
           readOnly
-          label="Redundancy group number"
+          label="${get('protocol104.network.redundancygroup.redundancyGroupNumber')}"
           .maybeValue=${redundancyGroupNumber}
         ></wizard-textfield>
         ${pTypesRedundancyGroup104.map(
           pType => html`${createRedundancyGroupPTextField(element, pType, redundancyGroupNumber)}`
-        )}`,
+        )}
+        <h3>${get('protocol104.network.redundancygroup.logiclink.groupTitle')}</h3>
+        <mwc-list>
+          ${getLogicLinkNumbers(element, redundancyGroupNumber).map(
+            number => html`<mwc-list-item>Logic Link ${number}</mwc-list-item>`
+          )}
+        </mwc-list>`,
       ],
     },
   ];

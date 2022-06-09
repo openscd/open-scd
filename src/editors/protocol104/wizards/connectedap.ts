@@ -226,11 +226,11 @@ export function updateConnectedApAction(parent: Element, redundancy?: boolean): 
   };
 }
 
-function getRedundancyGroups(element: Element): number[] {
+function getRedundancyGroupNumbers(element: Element): number[] {
   const groupNumbers = [];
   let groupNumber = 1;
 
-  while (element.querySelectorAll(`Address > P[type^="RG${groupNumber}"]`).length == 8) {
+  while (element.querySelectorAll(`Address > P[type^="RG${groupNumber}"]`).length >= 8) {
     groupNumbers.push(groupNumber++);
   }
 
@@ -304,7 +304,7 @@ export function editConnectedAp104Wizard(element: Element, redundancy?: boolean)
                   )
                 );
               }}>
-              ${getRedundancyGroups(element).map(
+              ${getRedundancyGroupNumbers(element).map(
                 number => html`<mwc-list-item>Redundancy Group ${number}</mwc-list-item>`
               )}
             </mwc-list>`

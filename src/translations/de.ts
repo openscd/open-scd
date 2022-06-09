@@ -381,7 +381,17 @@ export const de: Translations = {
       redundancygroup: {
         title: {
           edit: '???'
+        },
+        redundancyGroupNumber: '???',
+        logiclink: {
+          groupTitle: '???'
         }
+      },
+      logiclink: {
+        title: {
+          edit: '???'
+        },
+        logicLinkNumber: '???'
       }
     },
     wizard: {
