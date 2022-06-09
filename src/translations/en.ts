@@ -377,15 +377,15 @@ export const en = {
         timeout2: 'Time-out in seconds for acknowledges in case of no data messages',
         timeout3: 'Time-out in seconds for sending test frames in case of a long idle state'
       },
-      redundancygroup: {
-        title: {
-          edit: 'Edit Redundancy group'
-        },
-        redundancyGroupNumber: 'Redundancy group number',
-        logiclink: {
-          groupTitle: 'Logic Links',
-          noLogicLinksAvailable: 'No logic links available',
-          addLogicLink: 'Add logic link'
+      redundancyGroup: {
+        wizard: {
+          title: {
+            edit: 'Edit Redundancy Group'
+          },
+          redundancyGroupNumberLabel: 'Redundancy Group number',
+          logicLinkGroupTitle: 'Logic Links',
+          noLogicLinksAvailable: 'No Logic Links available',
+          addLogicLink: 'Add Logic Link'
         }
       },
       logicLink: {

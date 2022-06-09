@@ -112,11 +112,11 @@ export function editRedundancyGroup104Wizard(element: Element, redundancyGroupNu
   const logicLinkNumbers = getLogicLinkNumbers(element, redundancyGroupNumber);
   return [
     {
-      title: get('protocol104.network.redundancygroup.title.edit'),
+      title: get('protocol104.network.redundancyGroup.wizard.title.edit'),
       menuActions: [
         {
           icon: 'add',
-          label: get('protocol104.network.redundancygroup.logiclink.addLogicLink'),
+          label: get('protocol104.network.redundancyGroup.wizard.addLogicLink'),
           action: openLogicLinkWizard(element),
         },
         {
@@ -133,13 +133,13 @@ export function editRedundancyGroup104Wizard(element: Element, redundancyGroupNu
       content: [
         html`<wizard-textfield
           readOnly
-          label="${get('protocol104.network.redundancygroup.redundancyGroupNumber')}"
+          label="${get('protocol104.network.redundancyGroup.wizard.redundancyGroupNumberLabel')}"
           .maybeValue=${redundancyGroupNumber}
         ></wizard-textfield>
         ${pTypesRedundancyGroup104.map(
           pType => html`${createRedundancyGroupPTextField(element, pType, redundancyGroupNumber)}`
         )}
-        <h3>${get('protocol104.network.redundancygroup.logiclink.groupTitle')}</h3>
+        <h3>${get('protocol104.network.redundancyGroup.wizard.logicLinkGroupTitle')}</h3>
         <mwc-list
           @selected=${(e: SingleSelectedEvent) => {
             const logicLinkNumber = ++e.detail.index;
@@ -151,7 +151,7 @@ export function editRedundancyGroup104Wizard(element: Element, redundancyGroupNu
           }}>
           ${logicLinkNumbers.length != 0 ? logicLinkNumbers.map(
             number => html`<mwc-list-item>Logic Link ${number}</mwc-list-item>`
-          ) : html`<p>${get('protocol104.network.redundancygroup.logiclink.noLogicLinksAvailable')}</p>`}
+          ) : html`<p>${get('protocol104.network.redundancyGroup.wizard.noLogicLinksAvailable')}</p>`}
         </mwc-list>`,
       ],
     },

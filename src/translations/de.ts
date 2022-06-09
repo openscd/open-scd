@@ -380,13 +380,13 @@ export const de: Translations = {
         timeout2: '???',
         timeout3: '???'
       },
-      redundancygroup: {
-        title: {
-          edit: '???'
-        },
-        redundancyGroupNumber: '???',
-        logiclink: {
-          groupTitle: '???',
+      redundancyGroup: {
+        wizard: {
+          title: {
+            edit: '???'
+          },
+          redundancyGroupNumberLabel: '???',
+          logicLinkGroupTitle: '???',
           noLogicLinksAvailable: '???',
           addLogicLink: '???'
         }
