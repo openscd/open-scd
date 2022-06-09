@@ -5,9 +5,8 @@ import {
   createAddressElements,
   createPrivateAddress,
   createPrivateElement,
-  getEnumOrds,
-  isEnumDataAttribute,
 } from './private.js';
+import { getEnumOrds, isEnumDataAttribute } from './foundation.js';
 
 /**
  * List of supported Common Data Classes in the 104 protocol.
@@ -404,4 +403,30 @@ function createCheckAddressAction(daiElement: Element, ti: string): Create[] {
   privateElement.append(addressElement);
 
   return [{ new: { parent: daiElement, element: privateElement } }];
+}
+
+/**
+ * Indicates if the combination cdc/ti should handle/process the attribute "unitMultiplier" of the Address Element.
+ *
+ * @param cdc - The Common Data Class.
+ * @param ti  - The TI Value.
+ * @returns true, if the combination should handle/process the attribute "unitMultiplier".
+ */
+export function hasUnitMultiplierField(cdc: string, ti: string): boolean {
+  return (
+    (cdc === 'MV' && ['35', '36'].includes(ti)) ||
+    (cdc === 'INS' && ti === '35')
+  );
+}
+
+/**
+ * Indicates if the combination cdc/ti should handle/process the attributes "scaleMultiplier" and "scaleOffset" of
+ * the Address Element.
+ *
+ * @param cdc - The Common Data Class.
+ * @param ti  - The TI Value.
+ * @returns true, if the combination should handle/process the attributes "scaleMultiplier" and "scaleOffset".
+ */
+export function hasScaleFields(cdc: string, ti: string): boolean {
+  return cdc === 'MV' && ['35', '36'].includes(ti);
 }

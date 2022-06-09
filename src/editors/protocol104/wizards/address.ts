@@ -21,11 +21,33 @@ import '../../../wizard-select.js';
 
 import {
   getCdcValue,
+  getEnumVal,
   getFullPath,
-  hasScaleFields,
-  hasUnitMultiplierField,
 } from '../foundation/foundation.js';
-import { getEnumVal } from '../foundation/private';
+import { hasScaleFields, hasUnitMultiplierField } from '../foundation/cdc.js';
+
+const allowedMultipliers = [
+  'm',
+  'k',
+  'M',
+  'mu',
+  'y',
+  'z',
+  'a',
+  'f',
+  'p',
+  'n',
+  'c',
+  'd',
+  'da',
+  'h',
+  'G',
+  'T',
+  'P',
+  'E',
+  'Z',
+  'Y',
+];
 
 export function updateValue(
   daiElement: Element,
@@ -131,29 +153,6 @@ export function renderDAIWizard(
   ];
 
   if (hasUnitMultiplierField(cdc, ti)) {
-    const allowedMultipliers = [
-      'm',
-      'k',
-      'M',
-      'mu',
-      'y',
-      'z',
-      'a',
-      'f',
-      'p',
-      'n',
-      'c',
-      'd',
-      'da',
-      'h',
-      'G',
-      'T',
-      'P',
-      'E',
-      'Z',
-      'Y',
-    ];
-
     fields.push(html`<wizard-select
       label="unitMultiplier"
       .maybeValue="${addressElement.getAttribute('unitMultiplier')}"

@@ -138,6 +138,12 @@ snapshots["Wizards for 104 Address Element edit 104 Address with expected value 
       readonly=""
     >
     </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      label="enumValue"
+      readonly=""
+    >
+    </wizard-textfield>
   </div>
   <mwc-button
     dialogaction="close"

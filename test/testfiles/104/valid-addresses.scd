@@ -1,60 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<SCL xmlns="http://www.iec.ch/61850/2003/SCL" xmlns:SET="http://www.schneider-electric.com/TSF/CBS/Privates" xmlns:SET-Adr="http://www.schneider-electric.com/SET/SYD/LegacyAddress/IsTransmitted" xmlns:eTr_104="http://www.iec.ch/61850-80-1/2007/IEC_60870-5-104" xmlns:eTr_6-100="http://www.iec.ch/61850/2019/SCL/6-100" xmlns:eTr_90-2="http://www.iec.ch/61850-90-2/2015/SCL" xmlns:eTr_Modbus="http://www.schneider-electric.com/SET/SYD/Modbus" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2007" revision="B" release="4" xsi:schemaLocation="http://www.iec.ch/61850/2003/SCL SCL.xsd" eTr_6-100:version="2019" eTr_6-100:revision="B" eTr_6-100:release="1">
+<SCL xmlns="http://www.iec.ch/61850/2003/SCL" xmlns:eTr_104="http://www.iec.ch/61850-80-1/2007/IEC_60870-5-104" version="2007" revision="B" release="4">
 	<Header id="80-1 example" version="0" revision="1" toolID="SchneiderElectric-SET" nameStructure="IEDName"/>
 	<Substation name="S1" desc="">
 		<VoltageLevel name="F1" desc="">
 			<Voltage unit="V" multiplier="k">110</Voltage>
 			<Bay name="Q1" desc="">
 				<LNode iedName="B1" ldInst="LD0" lnClass="GAPC" lnInst="1" lnType="SE_GAPC_SET_V001">
-					<Private type="eIEC61850-6-100">
-						<eTr_6-100:LNodeSpecNaming sPrefix="" sLnInst="1"/>
-					</Private>
 				</LNode>
 				<LNode iedName="B1" ldInst="LD0" lnClass="GGIO" lnInst="1" lnType="SE_GGIO_SET_V002">
-					<Private type="eIEC61850-6-100">
-						<eTr_6-100:LNodeSpecNaming sPrefix="" sLnInst="1"/>
-					</Private>
 				</LNode>
 				<LNode iedName="B1" ldInst="LD0" lnClass="MMXU" lnInst="1" lnType="SE_MMXU_SET_V001">
-					<Private type="eIEC61850-6-100">
-						<eTr_6-100:LNodeSpecNaming sPrefix="" sLnInst="1"/>
-					</Private>
 				</LNode>
 				<LNode iedName="B1" ldInst="LD0" lnClass="MSQI" lnInst="1" lnType="SE_MSQI_SET_V001">
-					<Private type="eIEC61850-6-100">
-						<eTr_6-100:LNodeSpecNaming sPrefix="" sLnInst="1"/>
-					</Private>
 				</LNode>
 				<LNode iedName="B1" ldInst="LD0" lnClass="MHAN" lnInst="1" lnType="SE_MHAN_SET_V001">
-					<Private type="eIEC61850-6-100">
-						<eTr_6-100:LNodeSpecNaming sPrefix="" sLnInst="1"/>
-					</Private>
 				</LNode>
 				<LNode iedName="B1" ldInst="LD0" lnClass="GSAL" lnInst="1" lnType="SE_GSAL_SET_V001">
-					<Private type="eIEC61850-6-100">
-						<eTr_6-100:LNodeSpecNaming sPrefix="" sLnInst="1"/>
-					</Private>
 				</LNode>
 				<LNode iedName="B1" ldInst="LD0" lnClass="MFLK" lnInst="1" lnType="SE_MFLK_SET_V001">
-					<Private type="eIEC61850-6-100">
-						<eTr_6-100:LNodeSpecNaming sPrefix="" sLnInst="1"/>
-					</Private>
 				</LNode>
 				<LNode iedName="B1" ldInst="LD0" lnClass="YEFN" lnInst="1" lnType="SE_YEFN_SET_V001">
-					<Private type="eIEC61850-6-100">
-						<eTr_6-100:LNodeSpecNaming sPrefix="" sLnInst="1"/>
-					</Private>
 				</LNode>
 				<LNode iedName="B1" ldInst="LD0" lnClass="LLN0" lnType="SE_LLN0_SET_V001"/>
 				<LNode iedName="B1" ldInst="LD0" lnClass="TCTR" lnInst="1" lnType="SE_TCTR_SET_V001">
-					<Private type="eIEC61850-6-100">
-						<eTr_6-100:LNodeSpecNaming sPrefix="" sLnInst="1"/>
-					</Private>
 				</LNode>
 				<LNode iedName="B2" ldInst="LD0" lnClass="GGIO" lnInst="2">
-					<Private type="eIEC61850-6-100">
-						<eTr_6-100:LNodeSpecNaming sPrefix="" sLnInst="2"/>
-					</Private>
 				</LNode>
 			</Bay>
 		</VoltageLevel>
@@ -176,7 +146,6 @@
 						<DOI name="Beh">
 							<DAI name="stVal">
 								<Private type="IEC_60870_5_104">
-									<SET-Adr:IsTransmitted/>
 									<eTr_104:Address casdu="1" ioa="2" ti="35"/>
 								</Private>
 							</DAI>
@@ -186,7 +155,6 @@
 						<DOI name="Beh">
 							<DAI name="stVal">
 								<Private type="IEC_60870_5_104">
-									<SET-Adr:IsTransmitted/>
 									<eTr_104:Address casdu="1" ioa="2" ti="35"/>
 								</Private>
 							</DAI>
@@ -214,7 +182,6 @@
 							<SDI name="Oper">
 								<DAI name="ctlVal">
 									<Private type="IEC_60870_5_104">
-										<SET-Adr:IsTransmitted/>
 										<eTr_104:Address casdu="100" ioa="4" ti="62"/>
 									</Private>
 								</DAI>
@@ -224,7 +191,6 @@
 							</DAI>
 							<DAI name="stVal">
 								<Private type="IEC_60870_5_104">
-									<SET-Adr:IsTransmitted/>
 									<eTr_104:Address casdu="100" ioa="3" ti="35"/>
 								</Private>
 							</DAI>
@@ -232,7 +198,6 @@
 						<DOI name="Beh">
 							<DAI name="stVal">
 								<Private type="IEC_60870_5_104">
-									<SET-Adr:IsTransmitted/>
 									<eTr_104:Address casdu="100" ioa="1" ti="35"/>
 								</Private>
 							</DAI>
@@ -240,7 +205,6 @@
 						<DOI name="MltLev">
 							<DAI name="setVal">
 								<Private type="IEC_60870_5_104">
-									<SET-Adr:IsTransmitted/>
 									<eTr_104:Address casdu="301" ioa="1" ti="58"/>
 								</Private>
 							</DAI>
@@ -248,7 +212,6 @@
 						<DOI name="Health">
 							<DAI name="stVal">
 								<Private type="IEC_60870_5_104">
-									<SET-Adr:IsTransmitted/>
 									<eTr_104:Address casdu="101" ioa="1" ti="30" expectedValue="1"/>
 									<eTr_104:Address casdu="101" ioa="2" ti="30" expectedValue="2"/>
 									<eTr_104:Address casdu="101" ioa="3" ti="30" expectedValue="3"/>
@@ -261,13 +224,11 @@
 							<SDI name="crvPts">
 								<DAI name="xVal">
 									<Private type="IEC_60870_5_104">
-										<SET-Adr:IsTransmitted/>
 										<eTr_104:Address casdu="305" ioa="1" ti="63"/>
 									</Private>
 								</DAI>
 								<DAI name="yVal">
 									<Private type="IEC_60870_5_104">
-										<SET-Adr:IsTransmitted/>
 										<eTr_104:Address casdu="305" ioa="3" ti="63"/>
 									</Private>
 								</DAI>
@@ -278,7 +239,6 @@
 						<DOI name="Op">
 							<DAI name="general">
 								<Private type="IEC_60870_5_104">
-									<SET-Adr:IsTransmitted/>
 									<eTr_104:Address casdu="4" ioa="1" ti="39"/>
 								</Private>
 							</DAI>
@@ -286,7 +246,6 @@
 						<DOI name="Str">
 							<DAI name="general">
 								<Private type="IEC_60870_5_104">
-									<SET-Adr:IsTransmitted/>
 									<eTr_104:Address casdu="5" ioa="1" ti="40"/>
 								</Private>
 							</DAI>
@@ -295,7 +254,6 @@
 							<SDI name="setMag">
 								<DAI name="i">
 									<Private type="IEC_60870_5_104">
-										<SET-Adr:IsTransmitted/>
 										<eTr_104:Address casdu="304" ioa="1" ti="62"/>
 									</Private>
 								</DAI>
@@ -306,7 +264,6 @@
 						<DOI name="PhPcbLl">
 							<DAI name="hstVal">
 								<Private type="IEC_60870_5_104">
-									<SET-Adr:IsTransmitted/>
 									<eTr_104:Address casdu="8" ioa="1" ti="33"/>
 								</Private>
 							</DAI>
@@ -317,7 +274,6 @@
 									<SDI name="mag">
 										<DAI name="f">
 											<Private type="IEC_60870_5_104">
-												<SET-Adr:IsTransmitted/>
 												<eTr_104:Address casdu="60" ioa="1" ti="36"/>
 											</Private>
 										</DAI>
@@ -331,7 +287,6 @@
 									<SDI name="mag">
 										<DAI name="f">
 											<Private type="IEC_60870_5_104">
-												<SET-Adr:IsTransmitted/>
 												<eTr_104:Address casdu="70" ioa="1" ti="36"/>
 											</Private>
 										</DAI>
@@ -347,7 +302,6 @@
 									<SDI name="mag">
 										<DAI name="f">
 											<Private type="IEC_60870_5_104">
-												<SET-Adr:IsTransmitted/>
 												<eTr_104:Address casdu="50" ioa="1" ti="36"/>
 											</Private>
 										</DAI>
@@ -363,7 +317,6 @@
 									<SDI name="mag">
 										<DAI name="f">
 											<Private type="IEC_60870_5_104">
-												<SET-Adr:IsTransmitted/>
 												<eTr_104:Address casdu="40" ioa="1" ti="36"/>
 											</Private>
 										</DAI>
@@ -393,7 +346,6 @@
 							<SDI name="mag">
 								<DAI name="f">
 									<Private type="IEC_60870_5_104">
-										<SET-Adr:IsTransmitted/>
 										<eTr_104:Address casdu="9" ioa="1" ti="36"/>
 									</Private>
 								</DAI>
@@ -405,7 +357,6 @@
 									<SDI name="mag">
 										<DAI name="f">
 											<Private type="IEC_60870_5_104">
-												<SET-Adr:IsTransmitted/>
 												<eTr_104:Address casdu="20" ioa="1" ti="36"/>
 											</Private>
 										</DAI>
@@ -417,7 +368,6 @@
 									<SDI name="mag">
 										<DAI name="f">
 											<Private type="IEC_60870_5_104">
-												<SET-Adr:IsTransmitted/>
 												<eTr_104:Address casdu="20" ioa="2" ti="36"/>
 											</Private>
 										</DAI>
@@ -429,7 +379,6 @@
 									<SDI name="mag">
 										<DAI name="f">
 											<Private type="IEC_60870_5_104">
-												<SET-Adr:IsTransmitted/>
 												<eTr_104:Address casdu="20" ioa="3" ti="36"/>
 											</Private>
 										</DAI>
@@ -441,7 +390,6 @@
 									<SDI name="mag">
 										<DAI name="f">
 											<Private type="IEC_60870_5_104">
-												<SET-Adr:IsTransmitted/>
 												<eTr_104:Address casdu="20" ioa="4" ti="36"/>
 											</Private>
 										</DAI>
@@ -455,7 +403,6 @@
 									<SDI name="mag">
 										<DAI name="f">
 											<Private type="IEC_60870_5_104">
-												<SET-Adr:IsTransmitted/>
 												<eTr_104:Address casdu="30" ioa="1" ti="36"/>
 											</Private>
 										</DAI>
@@ -467,7 +414,6 @@
 									<SDI name="mag">
 										<DAI name="f">
 											<Private type="IEC_60870_5_104">
-												<SET-Adr:IsTransmitted/>
 												<eTr_104:Address casdu="30" ioa="2" ti="36"/>
 											</Private>
 										</DAI>
@@ -479,7 +425,6 @@
 									<SDI name="mag">
 										<DAI name="f">
 											<Private type="IEC_60870_5_104">
-												<SET-Adr:IsTransmitted/>
 												<eTr_104:Address casdu="30" ioa="3" ti="36"/>
 											</Private>
 										</DAI>
@@ -497,7 +442,6 @@
 						<DOI name="AuthFail">
 							<DAI name="cnt">
 								<Private type="IEC_60870_5_104">
-									<SET-Adr:IsTransmitted/>
 									<eTr_104:Address casdu="6" ioa="1" ti="37"/>
 								</Private>
 							</DAI>
@@ -508,7 +452,6 @@
 							<SDI name="valWTr">
 								<DAI name="posVal">
 									<Private type="IEC_60870_5_104">
-										<SET-Adr:IsTransmitted/>
 										<eTr_104:Address casdu="204" ioa="1" ti="32"/>
 									</Private>
 								</DAI>
@@ -516,7 +459,6 @@
 							<SDI name="Oper">
 								<DAI name="ctlVal">
 									<Private type="IEC_60870_5_104">
-										<SET-Adr:IsTransmitted/>
 										<eTr_104:Address casdu="204" ioa="2" ti="60"/>
 									</Private>
 								</DAI>
@@ -529,7 +471,6 @@
 							<SDI name="valWTr">
 								<DAI name="posVal">
 									<Private type="IEC_60870_5_104">
-										<SET-Adr:IsTransmitted/>
 										<eTr_104:Address casdu="205" ioa="1" ti="32"/>
 									</Private>
 								</DAI>
@@ -537,7 +478,6 @@
 							<SDI name="Oper">
 								<DAI name="ctlVal">
 									<Private type="IEC_60870_5_104">
-										<SET-Adr:IsTransmitted/>
 										<eTr_104:Address casdu="205" ioa="2" ti="62"/>
 									</Private>
 								</DAI>
@@ -550,7 +490,6 @@
 							<SDI name="mxVal">
 								<DAI name="f">
 									<Private type="IEC_60870_5_104">
-										<SET-Adr:IsTransmitted/>
 										<eTr_104:Address casdu="206" ioa="1" ti="36"/>
 									</Private>
 								</DAI>
@@ -559,7 +498,6 @@
 								<SDI name="ctlVal">
 									<DAI name="f">
 										<Private type="IEC_60870_5_104">
-											<SET-Adr:IsTransmitted/>
 											<eTr_104:Address casdu="206" ioa="2" ti="63"/>
 										</Private>
 									</DAI>
@@ -573,7 +511,6 @@
 							<SDI name="mxVal">
 								<DAI name="f">
 									<Private type="IEC_60870_5_104">
-										<SET-Adr:IsTransmitted/>
 										<eTr_104:Address casdu="207" ioa="1" ti="36"/>
 									</Private>
 								</DAI>
@@ -581,7 +518,6 @@
 							<SDI name="Oper">
 								<DAI name="ctlVal">
 									<Private type="IEC_60870_5_104">
-										<SET-Adr:IsTransmitted/>
 										<eTr_104:Address casdu="207" ioa="2" ti="60"/>
 									</Private>
 								</DAI>
@@ -596,7 +532,6 @@
 							<SDI name="Oper">
 								<DAI name="ctlVal">
 									<Private type="IEC_60870_5_104">
-										<SET-Adr:IsTransmitted/>
 										<eTr_104:Address casdu="201" ioa="2" ti="58"/>
 									</Private>
 								</DAI>
@@ -606,7 +541,6 @@
 							</DAI>
 							<DAI name="stVal">
 								<Private type="IEC_60870_5_104">
-									<SET-Adr:IsTransmitted/>
 									<eTr_104:Address casdu="201" ioa="1" ti="30"/>
 								</Private>
 							</DAI>
@@ -615,13 +549,11 @@
 							<SDI name="Oper">
 								<DAI name="ctlVal">
 									<Private type="IEC_60870_5_104">
-										<SET-Adr:IsTransmitted/>
 										<eTr_104:Address casdu="202" ioa="2" ti="59"/>
 									</Private>
 								</DAI>
 								<DAI name="Check">
 									<Private type="IEC_60870_5_104">
-										<SET-Adr:IsTransmitted/>
 										<eTr_104:Address casdu="202" ioa="3" ti="58" check="interlocking"/>
 										<eTr_104:Address casdu="202" ioa="4" ti="58" check="synchrocheck"/>
 									</Private>
@@ -632,7 +564,6 @@
 							</DAI>
 							<DAI name="stVal">
 								<Private type="IEC_60870_5_104">
-									<SET-Adr:IsTransmitted/>
 									<eTr_104:Address casdu="202" ioa="1" ti="31"/>
 								</Private>
 							</DAI>
@@ -641,7 +572,6 @@
 							<SDI name="Oper">
 								<DAI name="ctlVal">
 									<Private type="IEC_60870_5_104">
-										<SET-Adr:IsTransmitted/>
 										<eTr_104:Address casdu="203" ioa="2" ti="62"/>
 									</Private>
 								</DAI>
@@ -651,7 +581,6 @@
 							</DAI>
 							<DAI name="stVal">
 								<Private type="IEC_60870_5_104">
-									<SET-Adr:IsTransmitted/>
 									<eTr_104:Address casdu="203" ioa="1" ti="33"/>
 								</Private>
 							</DAI>
@@ -660,7 +589,6 @@
 							<SDI name="Oper">
 								<DAI name="ctlVal">
 									<Private type="IEC_60870_5_104">
-										<SET-Adr:IsTransmitted/>
 										<eTr_104:Address casdu="202" ioa="12" ti="58" expectedValue="1"/>
 										<eTr_104:Address casdu="202" ioa="13" ti="58" expectedValue="2"/>
 									</Private>
@@ -671,7 +599,6 @@
 							</DAI>
 							<DAI name="stVal">
 								<Private type="IEC_60870_5_104">
-									<SET-Adr:IsTransmitted/>
 									<eTr_104:Address casdu="202" ioa="10" ti="30" expectedValue="1"/>
 									<eTr_104:Address casdu="202" ioa="11" ti="30" expectedValue="2"/>
 								</Private>
@@ -681,7 +608,6 @@
 							<SDI name="Oper">
 								<DAI name="ctlVal">
 									<Private type="IEC_60870_5_104">
-										<SET-Adr:IsTransmitted/>
 										<eTr_104:Address casdu="208" ioa="2" ti="58" expectedValue="1"/>
 										<eTr_104:Address casdu="208" ioa="3" ti="58" expectedValue="2"/>
 										<eTr_104:Address casdu="208" ioa="4" ti="58" expectedValue="3"/>
@@ -695,7 +621,6 @@
 							</DAI>
 							<DAI name="stVal">
 								<Private type="IEC_60870_5_104">
-									<SET-Adr:IsTransmitted/>
 									<eTr_104:Address casdu="208" ioa="1" ti="35"/>
 								</Private>
 							</DAI>
@@ -706,7 +631,6 @@
 							</DAI>
 							<DAI name="stVal">
 								<Private type="IEC_60870_5_104">
-									<SET-Adr:IsTransmitted/>
 									<eTr_104:Address casdu="201" ioa="11" ti="30"/>
 								</Private>
 							</DAI>
@@ -715,7 +639,6 @@
 							<SDI name="Oper">
 								<DAI name="ctlVal">
 									<Private type="IEC_60870_5_104">
-										<SET-Adr:IsTransmitted/>
 										<eTr_104:Address casdu="201" ioa="22" ti="58"/>
 									</Private>
 								</DAI>
@@ -725,7 +648,6 @@
 							</DAI>
 							<DAI name="stVal">
 								<Private type="IEC_60870_5_104">
-									<SET-Adr:IsTransmitted/>
 									<eTr_104:Address casdu="201" ioa="21" ti="30"/>
 								</Private>
 							</DAI>
@@ -734,7 +656,6 @@
 							<SDI name="Oper">
 								<DAI name="ctlVal">
 									<Private type="IEC_60870_5_104">
-										<SET-Adr:IsTransmitted/>
 										<eTr_104:Address casdu="201" ioa="32" ti="58"/>
 									</Private>
 								</DAI>
@@ -744,7 +665,6 @@
 							</DAI>
 							<DAI name="stVal">
 								<Private type="IEC_60870_5_104">
-									<SET-Adr:IsTransmitted/>
 									<eTr_104:Address casdu="201" ioa="31" ti="30"/>
 								</Private>
 							</DAI>
@@ -753,7 +673,6 @@
 							<SDI name="Oper">
 								<DAI name="ctlVal">
 									<Private type="IEC_60870_5_104">
-										<SET-Adr:IsTransmitted/>
 										<eTr_104:Address casdu="201" ioa="42" ti="58"/>
 									</Private>
 								</DAI>
@@ -763,7 +682,6 @@
 							</DAI>
 							<DAI name="stVal">
 								<Private type="IEC_60870_5_104">
-									<SET-Adr:IsTransmitted/>
 									<eTr_104:Address casdu="201" ioa="41" ti="30"/>
 								</Private>
 							</DAI>
@@ -772,7 +690,6 @@
 							<SDI name="Oper">
 								<DAI name="ctlVal">
 									<Private type="IEC_60870_5_104">
-										<SET-Adr:IsTransmitted/>
 										<eTr_104:Address casdu="201" ioa="52" ti="58"/>
 									</Private>
 								</DAI>
@@ -782,7 +699,6 @@
 							</DAI>
 							<DAI name="stVal">
 								<Private type="IEC_60870_5_104">
-									<SET-Adr:IsTransmitted/>
 									<eTr_104:Address casdu="201" ioa="51" ti="30"/>
 								</Private>
 							</DAI>
@@ -790,7 +706,6 @@
 						<DOI name="Ind1">
 							<DAI name="stVal">
 								<Private type="IEC_60870_5_104">
-									<SET-Adr:IsTransmitted/>
 									<eTr_104:Address casdu="1" ioa="1" ti="30"/>
 								</Private>
 							</DAI>
@@ -798,7 +713,6 @@
 						<DOI name="DInd1">
 							<DAI name="stVal">
 								<Private type="IEC_60870_5_104">
-									<SET-Adr:IsTransmitted/>
 									<eTr_104:Address casdu="2" ioa="1" ti="31"/>
 								</Private>
 							</DAI>
@@ -806,7 +720,6 @@
 						<DOI name="IntIn1">
 							<DAI name="stVal">
 								<Private type="IEC_60870_5_104">
-									<SET-Adr:IsTransmitted/>
 									<eTr_104:Address casdu="3" ioa="1" ti="35"/>
 								</Private>
 							</DAI>
@@ -814,7 +727,6 @@
 						<DOI name="CntVal1">
 							<DAI name="actVal">
 								<Private type="IEC_60870_5_104">
-									<SET-Adr:IsTransmitted/>
 									<eTr_104:Address casdu="7" ioa="1" ti="37"/>
 								</Private>
 							</DAI>
@@ -822,7 +734,6 @@
 						<DOI name="NumSubIntv">
 							<DAI name="setVal">
 								<Private type="IEC_60870_5_104">
-									<SET-Adr:IsTransmitted/>
 									<eTr_104:Address casdu="302" ioa="1" ti="62"/>
 								</Private>
 							</DAI>
@@ -830,7 +741,6 @@
 						<DOI name="ClcRfTyp">
 							<DAI name="setVal">
 								<Private type="IEC_60870_5_104">
-									<SET-Adr:IsTransmitted/>
 									<eTr_104:Address casdu="303" ioa="1" ti="62"/>
 								</Private>
 							</DAI>
@@ -838,7 +748,6 @@
 						<DOI name="Ind2">
 							<DAI name="stVal">
 								<Private type="IEC_60870_5_104">
-									<SET-Adr:IsTransmitted/>
 									<eTr_104:Address casdu="1" ioa="2" ti="30" inverted="true"/>
 								</Private>
 							</DAI>
@@ -846,7 +755,6 @@
 						<DOI name="DInd2">
 							<DAI name="stVal">
 								<Private type="IEC_60870_5_104">
-									<SET-Adr:IsTransmitted/>
 									<eTr_104:Address casdu="2" ioa="3" ti="30" expectedValue="1"/>
 									<eTr_104:Address casdu="2" ioa="4" ti="30" expectedValue="2"/>
 								</Private>
