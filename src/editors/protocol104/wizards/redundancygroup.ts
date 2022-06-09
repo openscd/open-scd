@@ -113,7 +113,6 @@ export function editRedundancyGroup104Wizard(element: Element, redundancyGroupNu
   return [
     {
       title: get('protocol104.network.redundancygroup.title.edit'),
-      element,
       menuActions: [
         {
           icon: 'add',

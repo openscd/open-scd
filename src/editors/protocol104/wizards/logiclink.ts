@@ -67,7 +67,6 @@ export function editLogicLink104Wizard(element: Element, redundancyGroupNumber: 
   return [
     {
       title: get('protocol104.network.logicLink.wizard.title.edit'),
-      element,
       menuActions: [
         {
           icon: 'delete',
