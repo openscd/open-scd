@@ -40,6 +40,18 @@ export class Values104Container extends LitElement {
     this.dispatchEvent(newWizardEvent(selectDoiWizard(this.doc)));
   }
 
+  private renderAddButton(): TemplateResult {
+    return html`<h1>
+      <mwc-fab
+        extended
+        icon="add"
+        label="${get('protocol104.wizard.title.addAddress')}"
+        @click=${() => this.openCreateAddressWizard()}
+      >
+      </mwc-fab>
+    </h1>`;
+  }
+
   render(): TemplateResult {
     const ieds = this.iedElements;
     if (ieds.length > 0) {
@@ -49,22 +61,15 @@ export class Values104Container extends LitElement {
             .element="${iedElement}"
           ></ied-104-container>`;
         })}
-        <h1>
-          <mwc-fab
-            extended
-            icon="add"
-            label="${get('protocol104.wizard.title.addAddress')}"
-            @click=${() => this.openCreateAddressWizard()}
-          >
-          </mwc-fab>
-        </h1>
+        ${this.renderAddButton()}
       `;
     }
     return html` <h1>
-      <span style="color: var(--base1)"
-        >${translate('protocol104.values.missing')}</span
-      >
-    </h1>`;
+        <span style="color: var(--base1)"
+          >${translate('protocol104.values.missing')}</span
+        >
+      </h1>
+      ${this.renderAddButton()}`;
   }
 
   static styles = css`

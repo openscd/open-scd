@@ -103,11 +103,7 @@ export function get104DetailsLine(
     .map(attrName => {
       const value = address.getAttribute(attrName)!;
       if (attrName === 'expectedValue') {
-        const enumValue = getEnumVal(
-          daiElement.ownerDocument,
-          daiElement,
-          value
-        );
+        const enumValue = getEnumVal(daiElement, value);
         return `${attrName}: ${value}${enumValue ? ` (${enumValue})` : ``}`;
       } else {
         return `${attrName}: ${value}`;
@@ -155,50 +151,81 @@ export function getCtlModel(doiElement: Element): string | null {
   return getDaiValue(doiElement, 'ctlModel');
 }
 
-function buildInstanceChain(daiElement: Element) {
+/**
+ * Create a Array of Elements from the DOI Element to the passed daiElement.
+ * This will contain of course the DOI Element, followed by zero or more SDI Elements
+ * and finally the DAI Element with which we started.
+ *
+ * @param daiElement - The DAI Element to start walking to the LN(0) Element through parents.
+ */
+function buildInstanceChain(daiElement: Element): Element[] {
   const instanceElementChain: Element[] = [daiElement];
   let child = daiElement;
   if (child.parentElement) {
+    // While the parent element exists and the parent that was processed isn't the LN(0) Element continue.
     do {
       child = child.parentElement;
       instanceElementChain.unshift(child);
-    } while (!['LN', 'LN0'].includes(child.tagName) && child.parentElement);
+    } while (child.tagName !== 'DOI' && child.parentElement);
   }
   return instanceElementChain;
 }
 
+/**
+ * Use the initialed elements (DOI/SDI/DAI) to make the same chain containing the template elements like
+ * DO/SDO/DA/BDA. This way all needed configuration values can be retrieved from the templates.
+ *
+ * @param doc           - The document which will be used to search different template elements.
+ * @param instanceChain - The chain created from the LN(0) to the DAI in the IED.
+ */
 function buildTemplateChainFromInstanceElements(
-  document: Document,
+  doc: Document,
   instanceChain: Element[]
 ): Element[] {
   const templateChain: Element[] = [];
   let typeElement: Element | null;
   instanceChain.forEach(element => {
-    if (['LN', 'LN0'].includes(element.tagName)) {
-      const typeId = element.getAttribute('lnType') ?? '';
-      typeElement = document.querySelector(`LNodeType[id="${typeId}"]`);
-    } else if (element.tagName === 'DOI') {
-      const name = element.getAttribute('name');
-      const doElement = typeElement?.querySelector(
-        `:scope > DO[name="${name}"]`
-      );
-      if (doElement) {
-        templateChain.push(doElement);
+    if (element.tagName === 'DOI') {
+      // The LN Element will only be used as starting point to find the LNodeType.
+      const lnElement = element.closest('LN, LN0')!;
+      const typeId = lnElement.getAttribute('lnType') ?? '';
+      typeElement = doc.querySelector(`LNodeType[id="${typeId}"]`);
 
-        const typeId = doElement.getAttribute('type') ?? '';
-        typeElement = document.querySelector(`DOType[id="${typeId}"]`);
+      if (typeElement) {
+        // Next search for the DO Element below the LNodeType Element.
+        const name = element.getAttribute('name');
+        const doElement = typeElement.querySelector(
+          `:scope > DO[name="${name}"]`
+        );
+        if (doElement) {
+          templateChain.push(doElement);
+
+          // For the next element search the DOType that is linked to the DO Element.
+          const typeId = doElement.getAttribute('type') ?? '';
+          typeElement = doc.querySelector(`DOType[id="${typeId}"]`);
+        } else {
+          typeElement = null;
+        }
       }
     } else if (['SDI', 'DAI'].includes(element.tagName)) {
-      const name = element.getAttribute('name');
-      const daElement = typeElement?.querySelector(
-        `:scope > DA[name="${name}"], :scope > BDA[name="${name}"]`
-      );
-      if (daElement) {
-        templateChain.push(daElement);
+      if (typeElement) {
+        // Search for the DA Element below the DOType or DAType from the previous Element
+        const name = element.getAttribute('name');
+        const daElement = typeElement?.querySelector(
+          `:scope > DA[name="${name}"], :scope > BDA[name="${name}"]`
+        );
+        if (daElement) {
+          templateChain.push(daElement);
 
-        if (daElement.getAttribute('bType') === 'Struct') {
-          const typeId = element.getAttribute('type') ?? '';
-          typeElement = document.querySelector(`DAType[id="${typeId}"]`);
+          if (daElement.getAttribute('bType') === 'Struct') {
+            // Only if the bType is a struct we need to search for the DAType for the next element.
+            const typeId = element.getAttribute('type') ?? '';
+            typeElement = doc.querySelector(`DAType[id="${typeId}"]`);
+          } else {
+            typeElement = null;
+          }
+        } else {
+          typeElement = null;
         }
       }
     }
@@ -206,18 +233,21 @@ function buildTemplateChainFromInstanceElements(
   return templateChain;
 }
 
-function getDaElement(
-  document: Document,
-  daiElement: Element
-): Element | undefined {
+/**
+ * Retrieve the DA or BDA Element that's linked to the DAI Element passed.
+ *
+ * @param daiElement - The DAI Element for which to search the linked DA Element.
+ */
+function getDaElement(daiElement: Element): Element | undefined {
   // First step is to create the list of instance elements
   const instanceChain = buildInstanceChain(daiElement);
   // Next step is to build the Template Chain from the instance elements
   const templateChain = buildTemplateChainFromInstanceElements(
-    document,
+    daiElement.ownerDocument,
     instanceChain
   );
   if (templateChain.length > 0) {
+    // The needed DA Element is the last Element from the Chain.
     const daElement = templateChain.pop();
     if (['DA', 'BDA'].includes(daElement!.tagName)) {
       return daElement;
@@ -226,23 +256,24 @@ function getDaElement(
   return undefined;
 }
 
-export function isEnumDataAttribute(
-  document: Document,
-  daiElement: Element
-): boolean {
-  const daElement = getDaElement(document, daiElement);
-  if (daElement) {
-    return daElement!.getAttribute('bType') === 'Enum';
-  }
-  return false;
+/**
+ * Check if the DA Element that's linked to the DA Element is of the bType 'Enum'.
+ *
+ * @param daiElement - The DAI Element for which to check.
+ */
+export function isEnumDataAttribute(daiElement: Element): boolean {
+  const daElement = getDaElement(daiElement);
+  return daElement?.getAttribute('bType') === 'Enum' ?? false;
 }
 
-export function getEnumVal(
-  document: Document,
-  daiElement: Element,
-  ord: string
-): string | null {
-  const daElement = getDaElement(document, daiElement);
+/**
+ * Retrieve the value of the Enum with passed 'ord' configured with the passed DAI Element.
+ *
+ * @param daiElement - The DAI Element that is configured as Enum Type.
+ * @param ord        - The value of the attribute 'ord' to search the value of.
+ */
+export function getEnumVal(daiElement: Element, ord: string): string | null {
+  const daElement = getDaElement(daiElement);
   if (daElement) {
     const enumType = daElement!.getAttribute('type');
     const enumVal = daiElement.ownerDocument.querySelector(
@@ -255,9 +286,14 @@ export function getEnumVal(
   return null;
 }
 
-export function getEnumOrds(document: Document, daiElement: Element): string[] {
+/**
+ * Retrieve all the 'ord' value the EnumType has configured with his values.
+ *
+ * @param daiElement - The DAI Element that is configured as Enum Type.
+ */
+export function getEnumOrds(daiElement: Element): string[] {
   const ords: string[] = [];
-  const daElement = getDaElement(document, daiElement);
+  const daElement = getDaElement(daiElement);
   if (daElement) {
     const enumType = daElement.getAttribute('type');
     const enumVals = daiElement.ownerDocument.querySelectorAll(

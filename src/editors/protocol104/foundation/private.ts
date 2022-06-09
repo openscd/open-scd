@@ -7,10 +7,10 @@ export const PROTOCOL_104_PREFIX = 'IEC_60870_5_104';
  * Will add the namespace of the 104 Protocol to the Root Element of the Document (SCL) as prefix to
  * be used with all 104 elements (Address).
  *
- * @param element - Element to get the Document and Root Element from.
+ * @param document - The Owner Document used to registered the namespace.
  */
-export function addPrefixAndNamespaceToDocument(element: Element): void {
-  const rootElement = element.ownerDocument.firstElementChild!;
+export function addPrefixAndNamespaceToDocument(document: Document): void {
+  const rootElement = document.firstElementChild!;
   if (!rootElement.hasAttribute('xmlns:' + PROTOCOL_104_PREFIX)) {
     rootElement.setAttributeNS(
       'http://www.w3.org/2000/xmlns/',
@@ -23,11 +23,11 @@ export function addPrefixAndNamespaceToDocument(element: Element): void {
 /**
  * Create an SCL Private Element with the type set to the 104 Protocol.
  *
- * @param daiElement - The DAI Element used to create the new element from.
+ * @param document - The Owner Document used to create the new Private Element with.
  * @returns The created Private Element, <b>not</b> yet added to the DAI Element.
  */
-export function createPrivateElement(daiElement: Element): Element {
-  const privateElement = daiElement.ownerDocument.createElement('Private');
+export function createPrivateElement(document: Document): Element {
+  const privateElement = document.createElement('Private');
   privateElement.setAttribute('type', PROTOCOL_104_PRIVATE);
   return privateElement;
 }

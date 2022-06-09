@@ -341,9 +341,9 @@ function createAddressAction(
   ti: string,
   inverted: boolean
 ): Create[] {
-  addPrefixAndNamespaceToDocument(daiElement);
+  addPrefixAndNamespaceToDocument(daiElement.ownerDocument);
 
-  const privateElement = createPrivateElement(daiElement);
+  const privateElement = createPrivateElement(daiElement.ownerDocument);
   privateElement.append(
     ...createAddressElements(daiElement.ownerDocument, ti, inverted)
   );
@@ -364,11 +364,11 @@ function createAddressWithExpectValueAction(
   ti: string,
   inverted: boolean
 ): Create[] {
-  addPrefixAndNamespaceToDocument(daiElement);
+  addPrefixAndNamespaceToDocument(daiElement.ownerDocument);
 
-  const privateElement = createPrivateElement(daiElement);
-  if (isEnumDataAttribute(daiElement.ownerDocument, daiElement)) {
-    getEnumOrds(daiElement.ownerDocument, daiElement).forEach(ord =>
+  const privateElement = createPrivateElement(daiElement.ownerDocument);
+  if (isEnumDataAttribute(daiElement)) {
+    getEnumOrds(daiElement).forEach(ord =>
       privateElement.append(
         ...createAddressElements(daiElement.ownerDocument, ti, inverted, ord)
       )
@@ -390,9 +390,9 @@ function createAddressWithExpectValueAction(
  * @returns An array of Create Action that the wizard action will return.
  */
 function createCheckAddressAction(daiElement: Element, ti: string): Create[] {
-  addPrefixAndNamespaceToDocument(daiElement);
+  addPrefixAndNamespaceToDocument(daiElement.ownerDocument);
 
-  const privateElement = createPrivateElement(daiElement);
+  const privateElement = createPrivateElement(daiElement.ownerDocument);
 
   let addressElement = createPrivateAddress(daiElement.ownerDocument, ti);
   addressElement.setAttribute('check', 'interlocking');

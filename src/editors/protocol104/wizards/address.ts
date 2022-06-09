@@ -201,11 +201,7 @@ export function renderDAIWizard(
       </wizard-textfield>`);
       fields.push(html`<wizard-textfield
         label="enumValue"
-        .maybeValue="${getEnumVal(
-          daiElement.ownerDocument,
-          daiElement,
-          expectedValue
-        )}"
+        .maybeValue="${getEnumVal(daiElement, expectedValue)}"
         disabled
         readonly
       >
