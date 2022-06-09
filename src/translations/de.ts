@@ -391,11 +391,13 @@ export const de: Translations = {
           addLogicLink: '???'
         }
       },
-      logiclink: {
-        title: {
-          edit: '???'
-        },
-        logicLinkNumber: '???'
+      logicLink: {
+        wizard: {
+          title: {
+            edit: '???'
+          },
+          logicLinkNumberLabel: '???'
+        }
       }
     },
     wizard: {

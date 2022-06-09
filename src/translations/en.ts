@@ -388,11 +388,13 @@ export const en = {
           addLogicLink: 'Add logic link'
         }
       },
-      logiclink: {
-        title: {
-          edit: 'Edit Logic link'
-        },
-        logicLinkNumber: 'Logic link number'
+      logicLink: {
+        wizard: {
+          title: {
+            edit: 'Edit Logic Link'
+          },
+          logicLinkNumberLabel: 'Logic Link number'
+        }
       }
     },
     wizard: {

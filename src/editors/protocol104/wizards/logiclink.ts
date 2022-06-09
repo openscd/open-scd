@@ -66,7 +66,7 @@ function remove(element: Element): WizardMenuActor {
 export function editLogicLink104Wizard(element: Element, redundancyGroupNumber: number, logicLinkNumber: number): Wizard {
   return [
     {
-      title: get('protocol104.network.logiclink.title.edit'),
+      title: get('protocol104.network.logicLink.wizard.title.edit'),
       element,
       menuActions: [
         {
@@ -83,7 +83,7 @@ export function editLogicLink104Wizard(element: Element, redundancyGroupNumber: 
       content: [
         html`<wizard-textfield
           readOnly
-          label="${get('protocol104.network.logiclink.logicLinkNumber')}"
+          label="${get('protocol104.network.logicLink.wizard.logicLinkNumberLabel')}"
           .maybeValue=${logicLinkNumber}
         ></wizard-textfield>
         ${pTypesLogicLink104.map(
