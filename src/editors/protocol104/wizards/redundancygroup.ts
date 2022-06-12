@@ -104,9 +104,18 @@ function openLogicLinkWizard(element: Element): WizardMenuActor {
   };
 }
 
-function remove(element: Element): WizardMenuActor {
+function remove(element: Element, redundancyGroupNumber: number): WizardMenuActor {
   return (): EditorAction[] => {
-    return [];
+    const deleteElements: EditorAction[] = [];
+    const addressElement = element.querySelector('Address');
+    
+    addressElement!.querySelectorAll(`P[type^="RG${redundancyGroupNumber}-"]`).forEach(p => {
+      deleteElements.push(
+        { old: { parent: addressElement!, element: p! } }
+      )
+    });
+
+    return deleteElements;
   };
 }
 
@@ -128,7 +137,7 @@ export function editRedundancyGroup104Wizard(element: Element, redundancyGroupNu
         {
           icon: 'delete',
           label: get('remove'),
-          action: remove(element),
+          action: remove(element, redundancyGroupNumber),
         },
       ],
       primary: {
@@ -159,7 +168,7 @@ export function editRedundancyGroup104Wizard(element: Element, redundancyGroupNu
             );
           }}>
           ${logicLinkNumbers.length != 0
-            ? logicLinkNumbers.map(logicLinkNumber => html`${renderLogicLinkListItem(logicLinkNumber)}`)
+            ? logicLinkNumbers.map(number => html`${renderLogicLinkListItem(number)}`)
             : html`<p>${get('protocol104.network.redundancyGroup.wizard.noLogicLinksAvailable')}</p>`}
         </mwc-list>`,
       ],

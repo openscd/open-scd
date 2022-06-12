@@ -229,12 +229,14 @@ export function updateConnectedApAction(parent: Element, redundancy?: boolean): 
 }
 
 function getRedundancyGroupNumbers(element: Element): number[] {
-  const groupNumbers = [];
-  let groupNumber = 1;
+  const groupNumbers: number[] = [];
 
-  while (element.querySelectorAll(`Address > P[type^="RG${groupNumber}"]`).length >= 8) {
-    groupNumbers.push(groupNumber++);
-  }
+  element.querySelectorAll(`Address > P[type^="RG"]`).forEach(p => {
+    const redundancyGroupPart = p.getAttribute('type')?.split('-')[0];
+    const number = Number(redundancyGroupPart?.substring(2));
+    
+    if (!groupNumbers.includes(number)) groupNumbers.push(number)
+  })
 
   return groupNumbers;
 }
@@ -257,6 +259,10 @@ function openRedundancyGroupWizard(element: Element): WizardMenuActor {
     //return [() => createFCDAsWizard(element)];
     return [];
   };
+}
+
+function renderRedundancyGroupListItem(redundancyGroupNumber: number): TemplateResult {
+  return html`<mwc-list-item>Redundancy Group ${redundancyGroupNumber}</mwc-list-item>`;
 }
 
 /** @returns single page [[`Wizard`]] to edit SCL element ConnectedAP for the 104 plugin. */
@@ -315,16 +321,18 @@ export function editConnectedAp104Wizard(element: Element, redundancy?: boolean)
           ? html`<h3>${get('protocol104.network.connectedAp.wizard.redundancyGroupTitle')}</h3>
             <mwc-list
               @selected=${(e: SingleSelectedEvent) => {
-                const redundancyGroupNumber = ++e.detail.index;
                 e.target!.dispatchEvent(
                   newSubWizardEvent(
-                    editRedundancyGroup104Wizard(element, redundancyGroupNumber)
+                    editRedundancyGroup104Wizard(
+                      element,
+                      redundancyGroupNumbers[e.detail.index]
+                    )
                   )
                 );
               }}>
-              ${redundancyGroupNumbers.length != 0 ? redundancyGroupNumbers.map(
-                number => html`<mwc-list-item>Redundancy Group ${number}</mwc-list-item>`
-              ) : html`<p>${get('protocol104.network.connectedAp.wizard.noRedundancyGroupsAvailable')}</p>`}
+              ${redundancyGroupNumbers.length != 0
+                ? redundancyGroupNumbers.map(number => html`${renderRedundancyGroupListItem(number)}`)
+                : html`<p>${get('protocol104.network.connectedAp.wizard.noRedundancyGroupsAvailable')}</p>`}
             </mwc-list>`
           : html`${pTypes104.map(
             pType => html`${createPTextField(element, pType)}`

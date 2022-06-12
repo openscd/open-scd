@@ -59,12 +59,12 @@ export function createLogicLinkPTextField(element: Element, pType: string, redun
   ></wizard-textfield>`
 }
 
-export function removeLogicLinkGroup(element: Element, redundancyGroupNumber: number, logicLinkNumber: number): WizardMenuActor {
-  const addressElement = element.querySelector('Address');
-  const ipElement = addressElement!.querySelector(`P[type="RG${redundancyGroupNumber}-LL${logicLinkNumber}-IP"]`);
-  const ipSubnetElement = addressElement!.querySelector(`P[type="RG${redundancyGroupNumber}-LL${logicLinkNumber}-IP-SUBNET"]`);
-
+export function remove(element: Element, redundancyGroupNumber: number, logicLinkNumber: number): WizardMenuActor {
   return (): EditorAction[] => {
+    const addressElement = element.querySelector('Address');
+    const ipElement = addressElement!.querySelector(`P[type="RG${redundancyGroupNumber}-LL${logicLinkNumber}-IP"]`);
+    const ipSubnetElement = addressElement!.querySelector(`P[type="RG${redundancyGroupNumber}-LL${logicLinkNumber}-IP-SUBNET"]`);
+
     return [
       { old: { parent: addressElement!, element: ipElement! } },
       { old: { parent: addressElement!, element: ipSubnetElement! } }
@@ -80,7 +80,7 @@ export function editLogicLink104Wizard(element: Element, redundancyGroupNumber: 
         {
           icon: 'delete',
           label: get('remove'),
-          action: removeLogicLinkGroup(element, redundancyGroupNumber, logicLinkNumber),
+          action: remove(element, redundancyGroupNumber, logicLinkNumber),
         },
       ],
       primary: {
