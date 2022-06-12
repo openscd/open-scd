@@ -368,7 +368,7 @@ export const en = {
           redundancySwitchLabel: 'Redundancy',
           redundancyGroupTitle: 'Redundancy Groups',
           noRedundancyGroupsAvailable: 'No redundancy groups available',
-          addRedundancyGroup: 'Add redundancy group',
+          addRedundancyGroup: 'Add Redundancy Group',
           stationTypeHelper: 'Type of station',
           ipHelper: 'IP address of the logical link',
           ipSubnetHelper: 'Subnetwork mask of the IP address of the logical link',
