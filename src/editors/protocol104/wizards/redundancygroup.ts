@@ -86,19 +86,20 @@ export function createRedundancyGroupPTextField(element: Element, pType: string,
 }
 
 function getLogicLinkNumbers(element: Element, redundancyGroupNumber: number): number[] {
-  const groupNumbers = [];
-  let groupNumber = 1;
+  const groupNumbers: number[] = [];
 
-  while (element.querySelectorAll(`Address > P[type^="RG${redundancyGroupNumber}-LL${groupNumber}"]`).length == 2) {
-    groupNumbers.push(groupNumber++);
-  }
+  element.querySelectorAll(`Address > P[type^="RG${redundancyGroupNumber}-LL"]`).forEach(p => {
+    const logicLinkPart = p.getAttribute('type')?.split('-')[1];
+    const number = Number(logicLinkPart?.substring(2));
+    
+    if (!groupNumbers.includes(number)) groupNumbers.push(number)
+  })
 
   return groupNumbers;
 }
 
 function openLogicLinkWizard(element: Element): WizardMenuActor {
   return (): WizardAction[] => {
-    //return [() => createFCDAsWizard(element)];
     return [];
   };
 }
@@ -107,6 +108,10 @@ function remove(element: Element): WizardMenuActor {
   return (): EditorAction[] => {
     return [];
   };
+}
+
+function renderLogicLinkListItem(logicLinkNumber: number): TemplateResult {
+  return html`<mwc-list-item>Logic Link ${logicLinkNumber}</mwc-list-item>`;
 }
 
 export function editRedundancyGroup104Wizard(element: Element, redundancyGroupNumber: number): Wizard {
@@ -143,16 +148,19 @@ export function editRedundancyGroup104Wizard(element: Element, redundancyGroupNu
         <h3>${get('protocol104.network.redundancyGroup.wizard.logicLinkGroupTitle')}</h3>
         <mwc-list
           @selected=${(e: SingleSelectedEvent) => {
-            const logicLinkNumber = ++e.detail.index;
             e.target!.dispatchEvent(
               newSubWizardEvent(
-                editLogicLink104Wizard(element, redundancyGroupNumber, logicLinkNumber)
+                editLogicLink104Wizard(
+                  element,
+                  redundancyGroupNumber,
+                  logicLinkNumbers[e.detail.index]
+                )
               )
             );
           }}>
-          ${logicLinkNumbers.length != 0 ? logicLinkNumbers.map(
-            number => html`<mwc-list-item>Logic Link ${number}</mwc-list-item>`
-          ) : html`<p>${get('protocol104.network.redundancyGroup.wizard.noLogicLinksAvailable')}</p>`}
+          ${logicLinkNumbers.length != 0
+            ? logicLinkNumbers.map(logicLinkNumber => html`${renderLogicLinkListItem(logicLinkNumber)}`)
+            : html`<p>${get('protocol104.network.redundancyGroup.wizard.noLogicLinksAvailable')}</p>`}
         </mwc-list>`,
       ],
     },
