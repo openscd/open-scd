@@ -33,38 +33,6 @@ export function createPrivateElement(document: Document): Element {
 }
 
 /**
- * Creates one or two Address Elements, depending on the value of inverted.
- *
- * @param document      - The Owner Document used to create the new Address Element with.
- * @param ti            - The value to be set on the attribute 'ti'.
- * @param inverted      - Indicates if extra Address Elements should be created with 'inverted=true'.
- * @param expectedValue - The optional value of the attribute 'expectedValue' if needed.
- * @returns Array of one or two Address Elements created.
- */
-export function createAddressElements(
-  document: Document,
-  ti: string,
-  inverted: boolean,
-  expectedValue?: string
-): Element[] {
-  const addressElements: Element[] = [];
-  const addressElement = createPrivateAddress(document, ti);
-  if (expectedValue) {
-    addressElement.setAttribute('expectedValue', expectedValue);
-  }
-  addressElements.push(addressElement);
-  if (inverted) {
-    const addressElement = createPrivateAddress(document, ti);
-    addressElement.setAttribute('inverted', 'true');
-    if (expectedValue) {
-      addressElement.setAttribute('expectedValue', expectedValue);
-    }
-    addressElements.push(addressElement);
-  }
-  return addressElements;
-}
-
-/**
  * Create a 104 Address element which can be added to the Private element.
  * The attribute 'ti' will also be set to value passed.
  *

@@ -1,25 +1,25 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import { MockWizard } from "../../../../mock-wizard.js";
+import { MockWizard } from '../../../../mock-wizard.js';
 
 import '../../../../mock-wizard.js';
 
-import { WizardInputElement } from "../../../../../src/foundation.js";
-import { WizardTextField } from "../../../../../src/wizard-textfield.js";
-import { WizardSelect } from "../../../../../src/wizard-select.js";
+import { WizardInputElement } from '../../../../../src/foundation.js';
+import { WizardTextField } from '../../../../../src/wizard-textfield.js';
+import { WizardSelect } from '../../../../../src/wizard-select.js';
 
 import {
   executeWizardReplaceAction,
   expectWizardNoUpdateAction,
   fetchDoc,
   setWizardSelectValue,
-  setWizardTextFieldValue
-} from "../../../wizards/test-support.js";
+  setWizardTextFieldValue,
+} from '../../../wizards/test-support.js';
 
 import {
   editAddressWizard,
-  updateValue
-} from "../../../../../src/editors/protocol104/wizards/address.js";
+  updateValue,
+} from '../../../../../src/editors/protocol104/wizards/address.js';
 
 describe('Wizards for 104 Address Element', () => {
   let doc: XMLDocument;
@@ -35,7 +35,9 @@ describe('Wizards for 104 Address Element', () => {
 
   describe('edit basic 104 Address', () => {
     beforeEach(async () => {
-      address = doc.querySelector('IED[name="B2"] LN0[lnClass="LLN0"] DAI[name="stVal"] Address')!;
+      address = doc.querySelector(
+        'IED[name="B2"] LN0[lnClass="LLN0"] DAI[name="stVal"] Address'
+      )!;
       dai = address.closest('DAI')!;
 
       const wizard = editAddressWizard(dai, address);
@@ -69,7 +71,9 @@ describe('Wizards for 104 Address Element', () => {
 
   describe('edit 104 Address with expected value', () => {
     beforeEach(async () => {
-      address = doc.querySelector('IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] DOI[name="Mod"] DAI[name="ctlVal"] Address[ioa="2"]')!;
+      address = doc.querySelector(
+        'IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] DOI[name="Mod"] DAI[name="ctlVal"] Address[ioa="2"]'
+      )!;
       dai = address.closest('DAI')!;
 
       const wizard = editAddressWizard(dai, address);
@@ -85,7 +89,9 @@ describe('Wizards for 104 Address Element', () => {
 
   describe('edit 104 Address with unit multiplier', () => {
     beforeEach(async () => {
-      address = doc.querySelector('IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] DOI[name="IntIn1"] DAI[name="stVal"] Address')!;
+      address = doc.querySelector(
+        'IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] DOI[name="IntIn1"] DAI[name="stVal"] Address'
+      )!;
       dai = address.closest('DAI')!;
 
       const wizard = editAddressWizard(dai, address);
@@ -112,7 +118,9 @@ describe('Wizards for 104 Address Element', () => {
 
   describe('edit 104 Address with scale fields', () => {
     beforeEach(async () => {
-      address = doc.querySelector('IED[name="B1"] LN[lnType="SE_MMXU_SET_V001"] DOI[name="Hz"] DAI[name="f"] Address')!;
+      address = doc.querySelector(
+        'IED[name="B1"] LN[lnType="SE_MMXU_SET_V001"] DOI[name="Hz"] DAI[name="f"] Address'
+      )!;
       dai = address.closest('DAI')!;
 
       const wizard = editAddressWizard(dai, address);
@@ -130,9 +138,51 @@ describe('Wizards for 104 Address Element', () => {
         inputs
       );
       expect(updateAction.old.element).to.not.have.attribute('scaleMultiplier');
-      expect(updateAction.new.element).to.have.attribute('scaleMultiplier', '1.234');
+      expect(updateAction.new.element).to.have.attribute(
+        'scaleMultiplier',
+        '1.234'
+      );
       expect(updateAction.old.element).to.not.have.attribute('scaleOffset');
-      expect(updateAction.new.element).to.have.attribute('scaleOffset', '2.345');
+      expect(updateAction.new.element).to.have.attribute(
+        'scaleOffset',
+        '2.345'
+      );
+    });
+
+    it('looks like the latest snapshot', async () => {
+      await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
+    });
+  });
+
+  describe('edit 104 Address with inverted value', () => {
+    beforeEach(async () => {
+      address = doc.querySelector(
+        'IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] DOI[name="Ind2"] DAI[name="stVal"] Address[inverted="true"]'
+      )!;
+      dai = address.closest('DAI')!;
+
+      const wizard = editAddressWizard(dai, address);
+      element.workflow.push(() => wizard);
+      await element.requestUpdate();
+      inputs = Array.from(element.wizardUI.inputs);
+    });
+
+    it('looks like the latest snapshot', async () => {
+      await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
+    });
+  });
+
+  describe('edit 104 Address with check value', () => {
+    beforeEach(async () => {
+      address = doc.querySelector(
+        'IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] DOI[name="DPCSO1"] DAI[name="Check"] Address[check="interlocking"]'
+      )!;
+      dai = address.closest('DAI')!;
+
+      const wizard = editAddressWizard(dai, address);
+      element.workflow.push(() => wizard);
+      await element.requestUpdate();
+      inputs = Array.from(element.wizardUI.inputs);
     });
 
     it('looks like the latest snapshot', async () => {

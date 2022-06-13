@@ -4,9 +4,13 @@ import {
   get104DetailsLine,
   getCdcValue,
   getCtlModel,
+  getDaElement,
   getDaiElement,
   getDaiValue,
+  getEnumOrds,
+  getEnumVal,
   getFullPath,
+  isEnumDataAttribute,
   PRIVATE_TYPE_104,
 } from '../../../../../src/editors/protocol104/foundation/foundation.js';
 
@@ -97,6 +101,7 @@ describe('foundation', () => {
       );
       expect(getCdcValue(doiElement!)).to.be.equals('ENS');
     });
+
     it('returns expected value for CDC "ENC"', () => {
       // Basic test to see if CDC is retrieved correctly.
       const doiElement = document.querySelector(
@@ -114,6 +119,7 @@ describe('foundation', () => {
       const result = getDaiElement(doiElement!, 'ctlModel');
       expect(result).to.be.not.null;
     });
+
     it('returns null if DAI not found', () => {
       const doiElement = document.querySelector(
         'IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] DOI[name="Mod"]'
@@ -131,6 +137,7 @@ describe('foundation', () => {
       const result = getDaiValue(doiElement!, 'ctlModel');
       expect(result).to.be.equal('direct-with-normal-security');
     });
+
     it('returns null if DAI not found', () => {
       const doiElement = document.querySelector(
         'IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] DOI[name="Mod"]'
@@ -148,12 +155,100 @@ describe('foundation', () => {
       const result = getCtlModel(doiElement!);
       expect(result).to.be.equal('direct-with-normal-security');
     });
+
     it('returns null if DAI not found', () => {
       const doiElement = document.querySelector(
         'IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] DOI[name="Beh"]'
       );
       const result = getCtlModel(doiElement!);
       expect(result).to.be.null;
+    });
+  });
+
+  describe('getDaElement', () => {
+    it('returns expected DA Element', () => {
+      const daiElement = document.querySelector(
+        'IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] > DOI[name="Mod"] DAI[name="ctlVal"]'
+      );
+      const daElement = getDaElement(daiElement!);
+      expect(daElement).to.be.not.null;
+      expect(daElement?.getAttribute('type')).to.be.equal('SE_Oper_V003');
+    });
+
+    it('returns expected Enum DA Element', () => {
+      const daiElement = document.querySelector(
+        'IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] > DOI[name="ClcRfTyp"] > DAI[name="setVal"]'
+      );
+      const daElement = getDaElement(daiElement!);
+      expect(daElement).to.be.not.null;
+      expect(daElement?.getAttribute('bType')).to.be.equal('Enum');
+      expect(daElement?.getAttribute('type')).to.be.equal('SE_setVal_V001');
+    });
+  });
+
+  describe('isEnumDataAttribute', () => {
+    it('returns to not be an Enum Type', () => {
+      const daiElement = document.querySelector(
+        'IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] > DOI[name="Mod"] DAI[name="ctlVal"]'
+      );
+      const result = isEnumDataAttribute(daiElement!);
+      expect(result).to.be.false;
+    });
+
+    it('returns to be an Enum Type', () => {
+      const daiElement = document.querySelector(
+        'IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] > DOI[name="ClcRfTyp"] > DAI[name="setVal"]'
+      );
+      const result = isEnumDataAttribute(daiElement!);
+      expect(result).to.be.true;
+    });
+  });
+
+  describe('getEnumVal', () => {
+    it('returns expected Enum Value', () => {
+      const daiElement = document.querySelector(
+        'IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] > DOI[name="ClcRfTyp"] > DAI[name="setVal"]'
+      );
+      const result = getEnumVal(daiElement!, '1');
+      expect(result).to.be.equal('MS');
+    });
+
+    it('returns null, because unbknown Ord Value passed', () => {
+      const daiElement = document.querySelector(
+        'IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] > DOI[name="ClcRfTyp"] > DAI[name="setVal"]'
+      );
+      const result = getEnumVal(daiElement!, '99');
+      expect(result).to.be.null;
+    });
+
+    it('returns null, because not an Enum Type', () => {
+      const daiElement = document.querySelector(
+        'IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] > DOI[name="Mod"] DAI[name="ctlVal"]'
+      );
+      const result = getEnumVal(daiElement!, '1');
+      expect(result).to.be.null;
+    });
+  });
+
+  describe('getEnumOrds', () => {
+    it('returns empty list, because no Enum Type', () => {
+      const daiElement = document.querySelector(
+        'IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] > DOI[name="Mod"] DAI[name="ctlVal"]'
+      );
+      const result = getEnumOrds(daiElement!);
+      expect(result).to.be.empty;
+    });
+
+    it('returns correct list of Ord', () => {
+      const daiElement = document.querySelector(
+        'IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] > DOI[name="ClcRfTyp"] > DAI[name="setVal"]'
+      );
+      const result = getEnumOrds(daiElement!);
+      expect(result).to.be.not.empty;
+      expect(result.length).to.be.equal(8);
+      result.forEach((value, index) =>
+        expect(result[index]).to.be.equal('' + (index + 1))
+      );
     });
   });
 });

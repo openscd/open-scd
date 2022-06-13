@@ -1,9 +1,17 @@
-import { expect } from '@open-wc/testing';
+import { expect, fixture, html } from '@open-wc/testing';
 
-import { getDataChildren } from "../../../../../src/editors/protocol104/wizards/selectDoi.js";
+import { MockWizard } from '../../../../mock-wizard.js';
+
+import '../../../../mock-wizard.js';
+
+import {
+  getDataChildren,
+  selectDoiWizard,
+} from '../../../../../src/editors/protocol104/wizards/selectDoi.js';
 
 describe('data model nodes child getter', () => {
   let doc: XMLDocument;
+  let element: MockWizard;
 
   describe('getDataChildren', () => {
     beforeEach(async () => {
@@ -44,11 +52,27 @@ describe('data model nodes child getter', () => {
     });
 
     it('returns referenced children for LN', () => {
-      const parent = doc.querySelector('IED[name="B1"] LDevice[inst="LD0"] > LN0[lnClass="LLN0"]')!;
+      const parent = doc.querySelector(
+        'IED[name="B1"] LDevice[inst="LD0"] > LN0[lnClass="LLN0"]'
+      )!;
       expect(getDataChildren(parent)).to.not.be.empty;
       expect(getDataChildren(parent).length).to.equal(1);
       expect(getDataChildren(parent)[0].tagName).to.be.equal('DOI');
       expect(getDataChildren(parent)[0]).to.have.attribute('name', 'MltLev');
+    });
+  });
+
+  describe('show DO(I) Picker', () => {
+    beforeEach(async () => {
+      element = await fixture(html`<mock-wizard></mock-wizard>`);
+
+      const wizard = selectDoiWizard(doc);
+      element.workflow.push(() => wizard);
+      await element.requestUpdate();
+    });
+
+    it('looks like the latest snapshot', async () => {
+      await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
     });
   });
 });

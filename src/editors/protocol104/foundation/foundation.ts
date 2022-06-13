@@ -238,7 +238,7 @@ function buildTemplateChainFromInstanceElements(
  *
  * @param daiElement - The DAI Element for which to search the linked DA Element.
  */
-function getDaElement(daiElement: Element): Element | undefined {
+export function getDaElement(daiElement: Element): Element | undefined {
   // First step is to create the list of instance elements
   const instanceChain = buildInstanceChain(daiElement);
   // Next step is to build the Template Chain from the instance elements
@@ -257,13 +257,22 @@ function getDaElement(daiElement: Element): Element | undefined {
 }
 
 /**
- * Check if the DA Element that's linked to the DA Element is of the bType 'Enum'.
+ * Check if the DA Element is of the bType 'Enum'.
+ *
+ * @param daElement - The DA Element for which to check.
+ */
+function isEnumType(daElement: Element | undefined) {
+  return daElement?.getAttribute('bType') === 'Enum' ?? false;
+}
+
+/**
+ * Check if the DA Element that's linked to the DAI Element is of the bType 'Enum'.
  *
  * @param daiElement - The DAI Element for which to check.
  */
 export function isEnumDataAttribute(daiElement: Element): boolean {
   const daElement = getDaElement(daiElement);
-  return daElement?.getAttribute('bType') === 'Enum' ?? false;
+  return isEnumType(daElement);
 }
 
 /**
@@ -274,7 +283,7 @@ export function isEnumDataAttribute(daiElement: Element): boolean {
  */
 export function getEnumVal(daiElement: Element, ord: string): string | null {
   const daElement = getDaElement(daiElement);
-  if (daElement) {
+  if (isEnumType(daElement)) {
     const enumType = daElement!.getAttribute('type');
     const enumVal = daiElement.ownerDocument.querySelector(
       `EnumType[id="${enumType}"] > EnumVal[ord="${ord}"]`
@@ -294,8 +303,8 @@ export function getEnumVal(daiElement: Element, ord: string): string | null {
 export function getEnumOrds(daiElement: Element): string[] {
   const ords: string[] = [];
   const daElement = getDaElement(daiElement);
-  if (daElement) {
-    const enumType = daElement.getAttribute('type');
+  if (isEnumType(daElement)) {
+    const enumType = daElement!.getAttribute('type');
     const enumVals = daiElement.ownerDocument.querySelectorAll(
       `EnumType[id="${enumType}"] > EnumVal`
     );
