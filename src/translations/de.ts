@@ -397,7 +397,8 @@ export const de: Translations = {
       logicLink: {
         wizard: {
           title: {
-            edit: '???'
+            edit: '???',
+            add: '???'
           },
           logicLinkNumberLabel: '???'
         }

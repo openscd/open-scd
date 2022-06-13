@@ -19,7 +19,7 @@ import {
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { typeMaxLength, typeNullable } from '../../../wizards/foundation/p-types.js';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
-import { editLogicLink104Wizard } from './logiclink.js';
+import { editLogicLinkWizard } from './logiclink.js';
 
 export function updateRedundancyGroupAction(parent: Element, redundancyGroupNumber: number): WizardActor {
   return (inputs: WizardInputElement[]): EditorAction[] => {
@@ -159,7 +159,7 @@ export function editRedundancyGroup104Wizard(element: Element, redundancyGroupNu
           @selected=${(e: SingleSelectedEvent) => {
             e.target!.dispatchEvent(
               newSubWizardEvent(
-                editLogicLink104Wizard(
+                editLogicLinkWizard(
                   element,
                   redundancyGroupNumber,
                   logicLinkNumbers[e.detail.index]

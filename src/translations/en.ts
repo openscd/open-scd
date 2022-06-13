@@ -394,7 +394,8 @@ export const en = {
       logicLink: {
         wizard: {
           title: {
-            edit: 'Edit Logic Link'
+            edit: 'Edit Logic Link',
+            add: 'Add Logic Link'
           },
           logicLinkNumberLabel: 'Logic Link number'
         }
