@@ -368,7 +368,7 @@ export const en = {
           redundancySwitchLabel: 'Redundancy',
           redundancyGroupTitle: 'Redundancy Groups',
           noRedundancyGroupsAvailable: 'No redundancy groups available',
-          addRedundancyGroup: 'Add Redundancy Group',
+          addRedundancyGroup: 'Redundancy Group',
           stationTypeHelper: 'Type of station',
           ipHelper: 'IP address of the logical link',
           ipSubnetHelper: 'Subnetwork mask of the IP address of the logical link',
@@ -383,7 +383,8 @@ export const en = {
       redundancyGroup: {
         wizard: {
           title: {
-            edit: 'Edit Redundancy Group'
+            edit: 'Edit Redundancy Group',
+            add: 'Add Redundancy Group'
           },
           redundancyGroupNumberLabel: 'Redundancy Group number',
           logicLinkGroupTitle: 'Logic Links',

@@ -19,6 +19,7 @@ import {
 } from '../../../foundation.js';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { typeMaxLength, typeNullable } from '../../../wizards/foundation/p-types.js';
+import { createCreateTextField } from './foundation.js';
 
 export function editLogicLinkWizard(parent: Element, rGNumber: number, lLNumber: number): Wizard {
   return [
@@ -99,6 +100,32 @@ export function remove(parent: Element, rGNumber: number, lLNumber: number): Wiz
   };
 }
 
+function editLogicLinkAction(parent: Element, rGNumber: number, lLNumber: number): WizardActor {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
+    const ipValue = getValue(inputs.find(i => i.label === 'IP')!)!;
+    const ipElement = parent.querySelector(`Address > P[type="RG${rGNumber}-LL${lLNumber}-IP"]`);
+    const ipSubnetValue = getValue(inputs.find(i => i.label === 'IP-SUBNET')!)!;
+    const ipSubnetElement = parent.querySelector(`Address > P[type="RG${rGNumber}-LL${lLNumber}-IP-SUBNET"]`);
+
+    if (
+      ipValue === ipElement?.textContent &&
+      ipSubnetValue === ipSubnetElement?.textContent
+    ) {
+      return [];
+    }
+
+    const ipElementClone = cloneElement(ipElement!, {});
+    ipElementClone.textContent = ipValue;
+    const ipSubnetElementClone = cloneElement(ipSubnetElement!, {});
+    ipSubnetElementClone.textContent = ipSubnetValue;
+
+    return [
+      { old: { element: ipElement! }, new: { element: ipElementClone }, },
+      { old: { element: ipSubnetElement! }, new: { element: ipSubnetElementClone }, }
+    ];
+  };
+}
+
 function createLogicLinkAction(parent: Element, rGNumber: number, lLNumber: number): WizardActor {
   return (inputs: WizardInputElement[]): EditorAction[] => {
     const addressParent = parent.querySelector('Address')!;
@@ -128,48 +155,6 @@ function createLogicLinkAction(parent: Element, rGNumber: number, lLNumber: numb
       }
     ];
   };
-}
-
-function editLogicLinkAction(parent: Element, rGNumber: number, lLNumber: number): WizardActor {
-  return (inputs: WizardInputElement[]): EditorAction[] => {
-    const ipValue = getValue(inputs.find(i => i.label === 'IP')!)!;
-    const ipElement = parent.querySelector(`Address > P[type="RG${rGNumber}-LL${lLNumber}-IP"]`);
-    const ipSubnetValue = getValue(inputs.find(i => i.label === 'IP-SUBNET')!)!;
-    const ipSubnetElement = parent.querySelector(`Address > P[type="RG${rGNumber}-LL${lLNumber}-IP-SUBNET"]`);
-
-    if (
-      ipValue === ipElement?.textContent &&
-      ipSubnetValue === ipSubnetElement?.textContent
-    ) {
-      return [];
-    }
-
-    const ipElementClone = cloneElement(ipElement!, {});
-    ipElementClone.textContent = ipValue;
-    const ipSubnetElementClone = cloneElement(ipSubnetElement!, {});
-    ipSubnetElementClone.textContent = ipSubnetValue;
-
-    return [
-      { old: { element: ipElement! }, new: { element: ipElementClone }, },
-      { old: { element: ipSubnetElement! }, new: { element: ipSubnetElementClone }, }
-    ];
-  };
-}
-
-/**
- * Create a wizard-textfield element for the Create wizard.
- * @param pType - The type of P a Text Field has to be created for.
- * @returns - A Text Field created for a specific type for the Create wizard.
- */
-function createCreateTextField(pType: string): TemplateResult {
-  return html`<wizard-textfield
-    required
-    label="${pType}"
-    pattern="${ifDefined(typePattern[pType])}"
-    ?nullable=${typeNullable[pType]}
-    maxLength="${ifDefined(typeMaxLength[pType])}"
-    helper="${translate(typeDescriptiveNameKeys[pType])}"
-  ></wizard-textfield>`
 }
 
 /**

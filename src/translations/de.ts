@@ -386,7 +386,8 @@ export const de: Translations = {
       redundancyGroup: {
         wizard: {
           title: {
-            edit: '???'
+            edit: '???',
+            add: '???'
           },
           redundancyGroupNumberLabel: '???',
           logicLinkGroupTitle: '???',

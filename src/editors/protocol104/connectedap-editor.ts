@@ -10,7 +10,7 @@ import '@material/mwc-fab';
 
 import '../../action-icon.js';
 import { newWizardEvent, newActionEvent } from '../../foundation.js';
-import { editConnectedAp104Wizard } from './wizards/connectedap.js';
+import { editConnectedApWizard } from './wizards/connectedap.js';
 
 /** [[`104`]] subeditor for a `ConnectedAP` element. */
 @customElement('connectedap-104-editor')
@@ -21,8 +21,8 @@ export class ConnectedAP104Editor extends LitElement {
 
   private openEditWizard(): void {
     this.dispatchEvent(
-      newWizardEvent(
-        editConnectedAp104Wizard(
+      newWizardEvent(() =>
+        editConnectedApWizard(
           this.element,
           this.element.querySelectorAll('Address > P[type^="RG"]').length >= 8
         )

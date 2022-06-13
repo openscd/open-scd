@@ -3,10 +3,10 @@ import { SinonSpy, spy } from 'sinon';
 
 import '../../../../mock-wizard.js';
 
-import { Delete, EditorAction, isDelete, isReplace, Replace, WizardInputElement } from '../../../../../src/foundation.js';
+import { Create, Delete, EditorAction, isCreate, isDelete, isReplace, Replace, WizardInputElement } from '../../../../../src/foundation.js';
 import { MockWizard } from '../../../../mock-wizard.js';
 import { WizardTextField } from '../../../../../src/wizard-textfield.js';
-import { editRedundancyGroupWizard } from '../../../../../src/editors/protocol104/wizards/redundancygroup.js';
+import { createRedundancyGroupWizard, editRedundancyGroupWizard } from '../../../../../src/editors/protocol104/wizards/redundancygroup.js';
 
 describe('Wizards for the Redundancy Group SCL element group', () => {
   let doc: XMLDocument;
@@ -115,6 +115,74 @@ describe('Wizards for the Redundancy Group SCL element group', () => {
       const timeout3 = <EditorAction>actionEvent.args[7][0].detail.action;
       expect(timeout3).to.satisfy(isDelete);
       expect((<Delete>timeout3).old.element.textContent).to.eql('20');
+    });
+  });
+
+  describe('include a create wizard that', () => {
+    beforeEach(async () => {
+      const wizard = createRedundancyGroupWizard(doc.querySelector('SubNetwork[type="104"] > ConnectedAP[iedName="B1"][apName="AP1"]')!, [1, 2]);
+      element.workflow.push(() => wizard);
+      await element.requestUpdate();
+
+      inputs = Array.from(element.wizardUI.inputs);
+
+      primaryAction = <HTMLElement>(
+        element.wizardUI.dialog?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      );
+    });
+
+    it('looks like the latest snapshot', async () => {
+      await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
+    });
+
+    it('doesn\'t trigger a create editor action on primary action without all fields being filled in', async () => {
+      const ipElement = <WizardTextField>inputs.find(input => input.label === 'K-FACTOR');
+      ipElement.value = '8';
+      await ipElement.requestUpdate();
+
+      primaryAction.click();
+      await element.requestUpdate();
+
+      expect(actionEvent).to.not.have.been.called;
+    });
+
+    it('triggers a create editor action on primary action with all fields being filled in', async () => {
+      (<WizardTextField>inputs.find(input => input.label === 'W-FACTOR')).value = "5";
+      (<WizardTextField>inputs.find(input => input.label === 'K-FACTOR')).value = "9";
+      (<WizardTextField>inputs.find(input => input.label === 'TIMEOUT-0')).value = "15";
+      (<WizardTextField>inputs.find(input => input.label === 'TIMEOUT-1')).value = "20";
+      (<WizardTextField>inputs.find(input => input.label === 'TIMEOUT-2')).value = "25";
+      (<WizardTextField>inputs.find(input => input.label === 'TIMEOUT-3')).value = "30";
+      await element.requestUpdate();
+
+      primaryAction.click();
+      await element.requestUpdate();
+      
+      const wFactorAction = <EditorAction>actionEvent.args[0][0].detail.action;
+      expect(wFactorAction).to.satisfy(isCreate);
+      expect((<Create>wFactorAction).new.element.textContent).to.eql('5');
+      
+      const kFactorAction = <EditorAction>actionEvent.args[1][0].detail.action;
+      expect(kFactorAction).to.satisfy(isCreate);
+      expect((<Create>kFactorAction).new.element.textContent).to.eql('9');
+      
+      const timeout0Action = <EditorAction>actionEvent.args[2][0].detail.action;
+      expect(timeout0Action).to.satisfy(isCreate);
+      expect((<Create>timeout0Action).new.element.textContent).to.eql('15');
+      
+      const timeout1Action = <EditorAction>actionEvent.args[3][0].detail.action;
+      expect(timeout1Action).to.satisfy(isCreate);
+      expect((<Create>timeout1Action).new.element.textContent).to.eql('20');
+      
+      const timeout2Action = <EditorAction>actionEvent.args[4][0].detail.action;
+      expect(timeout2Action).to.satisfy(isCreate);
+      expect((<Create>timeout2Action).new.element.textContent).to.eql('25');
+      
+      const timeout3Action = <EditorAction>actionEvent.args[5][0].detail.action;
+      expect(timeout3Action).to.satisfy(isCreate);
+      expect((<Create>timeout3Action).new.element.textContent).to.eql('30');
     });
   });
 });

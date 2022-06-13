@@ -7,6 +7,7 @@ import {
 } from '../foundation/p-types.js';
 import {
   cloneElement,
+  createElement,
   EditorAction,
   getValue,
   newSubWizardEvent,
@@ -20,8 +21,91 @@ import { ifDefined } from 'lit-html/directives/if-defined';
 import { typeMaxLength, typeNullable } from '../../../wizards/foundation/p-types.js';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { createLogicLinkWizard, editLogicLinkWizard } from './logiclink.js';
+import { createCreateTextField } from './foundation.js';
 
-export function editRedundancyGroupAction(parent: Element, rGNumber: number): WizardActor {
+export function editRedundancyGroupWizard(parent: Element, rGNumber: number): Wizard {
+  const usedLLNumbers = getLogicLinkNumbers(parent, rGNumber);
+  return [
+    {
+      title: get('protocol104.network.redundancyGroup.wizard.title.edit'),
+      menuActions: [
+        {
+          icon: 'playlist_add',
+          label: get('protocol104.network.redundancyGroup.wizard.addLogicLink'),
+          action: openLogicLinkWizard(parent, rGNumber, usedLLNumbers),
+        },
+        {
+          icon: 'delete',
+          label: get('remove'),
+          action: remove(parent, rGNumber),
+        },
+      ],
+      primary: {
+        icon: 'save',
+        label: get('save'), 
+        action: editRedundancyGroupAction(parent, rGNumber),
+      },
+      content: [
+        html`<wizard-textfield
+          readOnly
+          label="${get('protocol104.network.redundancyGroup.wizard.redundancyGroupNumberLabel')}"
+          .maybeValue=${rGNumber}
+        ></wizard-textfield>
+        ${pTypesRedundancyGroup104.map(
+          pType => html`${createEditTextField(parent, pType, rGNumber)}`
+        )}
+        <h3>${get('protocol104.network.redundancyGroup.wizard.logicLinkGroupTitle')}</h3>
+        <mwc-list
+          @selected=${(e: SingleSelectedEvent) => {
+            e.target!.dispatchEvent(
+              newSubWizardEvent(() =>
+                editLogicLinkWizard(
+                  parent,
+                  rGNumber,
+                  usedLLNumbers[e.detail.index]
+                )
+              )
+            );
+          }}>
+          ${usedLLNumbers.length != 0
+            ? usedLLNumbers.map(number => html`<mwc-list-item>Logic Link ${number}</mwc-list-item>`)
+            : html`<p>${get('protocol104.network.redundancyGroup.wizard.noLogicLinksAvailable')}</p>`}
+        </mwc-list>`,
+      ],
+    },
+  ];
+}
+
+export function createRedundancyGroupWizard(parent: Element, occupiedRGNumbers: number[]): Wizard {
+  // Calculate the first available number for the Logic Link group.
+  let rGNumber = 1;
+  while (occupiedRGNumbers.find(n => n == rGNumber)) {
+    rGNumber++;
+  }
+
+  return [
+    {
+      title: get('protocol104.network.redundancyGroup.wizard.title.add'),
+      primary: {
+        icon: '',
+        label: get('save'),
+        action: createRedundancyGroupAction(parent, rGNumber),
+      },
+      content: [
+        html`<wizard-textfield
+          readOnly
+          label="${get('protocol104.network.redundancyGroup.wizard.redundancyGroupNumberLabel')}"
+          value="${rGNumber}"
+        ></wizard-textfield>
+        ${pTypesRedundancyGroup104.map(
+          pType => html`${createCreateTextField(pType)}`
+        )}`
+      ],
+    },
+  ];
+}
+
+function editRedundancyGroupAction(parent: Element, rGNumber: number): WizardActor {
   return (inputs: WizardInputElement[]): EditorAction[] => {
     const wFactorValue = getValue(inputs.find(i => i.label === 'W-FACTOR')!)!;
     const wFactorElement = parent.querySelector(`Address > P[type="RG${rGNumber}-W-FACTOR"]`);
@@ -71,57 +155,49 @@ export function editRedundancyGroupAction(parent: Element, rGNumber: number): Wi
   };
 }
 
-export function editRedundancyGroupWizard(parent: Element, rGNumber: number): Wizard {
-  const usedLLNumbers = getLogicLinkNumbers(parent, rGNumber);
-  return [
-    {
-      title: get('protocol104.network.redundancyGroup.wizard.title.edit'),
-      menuActions: [
-        {
-          icon: 'playlist_add',
-          label: get('protocol104.network.redundancyGroup.wizard.addLogicLink'),
-          action: openLogicLinkWizard(parent, rGNumber, usedLLNumbers),
-        },
-        {
-          icon: 'delete',
-          label: get('remove'),
-          action: remove(parent, rGNumber),
-        },
-      ],
-      primary: {
-        icon: 'save',
-        label: get('save'), 
-        action: editRedundancyGroupAction(parent, rGNumber),
-      },
-      content: [
-        html`<wizard-textfield
-          readOnly
-          label="${get('protocol104.network.redundancyGroup.wizard.redundancyGroupNumberLabel')}"
-          .maybeValue=${rGNumber}
-        ></wizard-textfield>
-        ${pTypesRedundancyGroup104.map(
-          pType => html`${createRedundancyGroupPTextField(parent, pType, rGNumber)}`
-        )}
-        <h3>${get('protocol104.network.redundancyGroup.wizard.logicLinkGroupTitle')}</h3>
-        <mwc-list
-          @selected=${(e: SingleSelectedEvent) => {
-            e.target!.dispatchEvent(
-              newSubWizardEvent(() =>
-                editLogicLinkWizard(
-                  parent,
-                  rGNumber,
-                  usedLLNumbers[e.detail.index]
-                )
-              )
-            );
-          }}>
-          ${usedLLNumbers.length != 0
-            ? usedLLNumbers.map(number => html`<mwc-list-item>Logic Link ${number}</mwc-list-item>`)
-            : html`<p>${get('protocol104.network.redundancyGroup.wizard.noLogicLinksAvailable')}</p>`}
-        </mwc-list>`,
-      ],
-    },
-  ];
+function createRedundancyGroupAction(parent: Element, rGNumber: number): WizardActor {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
+    const addressParent = parent.querySelector('Address')!;
+
+    const wFactorElement = createElement(parent.ownerDocument, 'P', {
+      type: `RG${rGNumber}-W-FACTOR`
+    });
+    wFactorElement.textContent = getValue(inputs.find(i => i.label === 'W-FACTOR')!)!;
+
+    const kFactorElement = createElement(parent.ownerDocument, 'P', {
+      type: `RG${rGNumber}-K-FACTOR`
+    });
+    kFactorElement.textContent = getValue(inputs.find(i => i.label === 'K-FACTOR')!)!;
+
+    const timeout0Element = createElement(parent.ownerDocument, 'P', {
+      type: `RG${rGNumber}-TIMEOUT-0`
+    });
+    timeout0Element.textContent = getValue(inputs.find(i => i.label === 'TIMEOUT-0')!)!;
+
+    const timeout1Element = createElement(parent.ownerDocument, 'P', {
+      type: `RG${rGNumber}-TIMEOUT-1`
+    });
+    timeout1Element.textContent = getValue(inputs.find(i => i.label === 'TIMEOUT-1')!)!;
+
+    const timeout2Element = createElement(parent.ownerDocument, 'P', {
+      type: `RG${rGNumber}-TIMEOUT-2`
+    });
+    timeout2Element.textContent = getValue(inputs.find(i => i.label === 'TIMEOUT-2')!)!;
+
+    const timeout3Element = createElement(parent.ownerDocument, 'P', {
+      type: `RG${rGNumber}-TIMEOUT-3`
+    });
+    timeout3Element.textContent = getValue(inputs.find(i => i.label === 'TIMEOUT-3')!)!;
+
+    return [
+      { new: { parent: addressParent, element: wFactorElement } },
+      { new: { parent: addressParent, element: kFactorElement } },
+      { new: { parent: addressParent, element: timeout0Element } },
+      { new: { parent: addressParent, element: timeout1Element } },
+      { new: { parent: addressParent, element: timeout2Element } },
+      { new: { parent: addressParent, element: timeout3Element } }
+    ];
+  };
 }
 
 function openLogicLinkWizard(parent: Element, rGNumber: number, lLNumber: number[]): WizardMenuActor {
@@ -177,7 +253,7 @@ function getLogicLinkNumbers(parent: Element, rGNumber: number): number[] {
  * @param rGNumber - The Redundancy Group number of the Text Field used in the type.
  * @returns - A Text Field created for a specific type for the Edit wizard.
  */
-function createRedundancyGroupPTextField(parent: Element, pType: string, rGNumber: number): TemplateResult {
+function createEditTextField(parent: Element, pType: string, rGNumber: number): TemplateResult {
   return html`<wizard-textfield
     required
     label="${pType}"
