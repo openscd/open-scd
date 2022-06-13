@@ -322,7 +322,7 @@ export function editConnectedAp104Wizard(element: Element, redundancy?: boolean)
             <mwc-list
               @selected=${(e: SingleSelectedEvent) => {
                 e.target!.dispatchEvent(
-                  newSubWizardEvent(
+                  newSubWizardEvent(() =>
                     editRedundancyGroupWizard(
                       element,
                       redundancyGroupNumbers[e.detail.index]

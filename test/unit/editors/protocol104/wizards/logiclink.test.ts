@@ -3,10 +3,10 @@ import { SinonSpy, spy } from 'sinon';
 
 import '../../../../mock-wizard.js';
 
-import { Delete, EditorAction, isDelete, isReplace, Replace, WizardInputElement } from '../../../../../src/foundation.js';
+import { Delete, EditorAction, isCreate, isDelete, isReplace, Replace, WizardInputElement } from '../../../../../src/foundation.js';
 import { MockWizard } from '../../../../mock-wizard.js';
 import { WizardTextField } from '../../../../../src/wizard-textfield.js';
-import { editLogicLinkWizard } from '../../../../../src/editors/protocol104/wizards/logiclink.js';
+import { createLogicLinkWizard, editLogicLinkWizard } from '../../../../../src/editors/protocol104/wizards/logiclink.js';
 
 describe('Wizards for the Logic Link SCL element group', () => {
   let doc: XMLDocument;
@@ -90,6 +90,53 @@ describe('Wizards for the Logic Link SCL element group', () => {
       const secondAction = <EditorAction>actionEvent.args[1][0].detail.action;
       expect(secondAction).to.satisfy(isDelete);
       expect((<Delete>secondAction).old.element.textContent).to.eql('255.255.255.0');
+    });
+  });
+
+  describe('include a create wizard that', () => {
+    beforeEach(async () => {
+      const wizard = createLogicLinkWizard(doc.querySelector('SubNetwork[type="104"] > ConnectedAP[iedName="B1"][apName="AP1"]')!, 1, [1, 2]);
+      element.workflow.push(() => wizard);
+      await element.requestUpdate();
+
+      inputs = Array.from(element.wizardUI.inputs);
+
+      primaryAction = <HTMLElement>(
+        element.wizardUI.dialog?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      );
+    });
+
+    it('looks like the latest snapshot', async () => {
+      await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
+    });
+
+    it('doesn\'t trigger a create editor action on primary action without all fields being filled in', async () => {
+      const ipElement = <WizardTextField>inputs.find(input => input.label === 'IP');
+      ipElement.value = '192.168.0.1';
+      await ipElement.requestUpdate();
+
+      primaryAction.click();
+      await element.requestUpdate();
+
+      expect(actionEvent).to.not.have.been.called;
+    });
+
+    it('triggers a create editor action on primary action with all fields being filled in', async () => {
+      const ipElement = <WizardTextField>inputs.find(input => input.label === 'IP');
+      ipElement.value = '192.168.0.1';
+
+      const ipSubNetElement = <WizardTextField>inputs.find(input => input.label === 'IP-SUBNET');
+      ipSubNetElement.value = '255.255.255.0';
+      await element.requestUpdate();
+
+      primaryAction.click();
+      await element.requestUpdate();
+
+      expect(actionEvent).to.be.called;
+      expect(actionEvent.args[0][0].detail.action).to.satisfy(isCreate);
+      expect(actionEvent.args[1][0].detail.action).to.satisfy(isCreate);
     });
   });
 });

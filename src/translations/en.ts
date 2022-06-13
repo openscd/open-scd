@@ -388,7 +388,7 @@ export const en = {
           redundancyGroupNumberLabel: 'Redundancy Group number',
           logicLinkGroupTitle: 'Logic Links',
           noLogicLinksAvailable: 'No Logic Links available',
-          addLogicLink: 'Add Logic Link'
+          addLogicLink: 'Logic Link'
         }
       },
       logicLink: {
