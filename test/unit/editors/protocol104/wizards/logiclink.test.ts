@@ -49,7 +49,7 @@ describe('Wizards for the Logic Link SCL element group', () => {
       expect(actionEvent).to.not.have.been.called;
     });
 
-    it('does not trigger a complex editor action to update P elements(s) when not all fields are filled in', async () => {
+    it('does not trigger a editor action to update P elements(s) when not all fields are filled in', async () => {
       input = <WizardTextField>inputs.find(input => input.label === 'IP-SUBNET');
       input.value = '';
       await input.requestUpdate();
@@ -74,7 +74,7 @@ describe('Wizards for the Logic Link SCL element group', () => {
       expect((<Replace>action).new.element.innerHTML).to.eql('192.128.0.12');
     });
 
-    it('properly deletes a full logic link group', async () => {
+    it('properly deletes a full Logic Link group', async () => {
       const deleteAction = <HTMLElement>(
         element.wizardUI.dialog?.querySelector(
           'mwc-menu > mwc-list-item'

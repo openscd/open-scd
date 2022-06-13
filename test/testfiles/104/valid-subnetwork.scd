@@ -76,7 +76,7 @@
 					<P type="RG2-W-FACTOR">8</P>
 					<P type="RG2-K-FACTOR">12</P>
 					<P type="RG2-TIMEOUT-0">30</P>
-					<P type="RG2-TIMEOUT-1">15</P>
+					<P type="RG2-TIMEOUT-1">3</P>
 					<P type="RG2-TIMEOUT-2">10</P>
 					<P type="RG2-TIMEOUT-3">20</P>
 					<P type="StationType">controlled-station</P>

@@ -41,7 +41,7 @@ import {
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { typeMaxLength, typeNullable } from '../../../wizards/foundation/p-types.js';
-import { editRedundancyGroup104Wizard } from './redundancygroup.js';
+import { editRedundancyGroupWizard } from './redundancygroup.js';
 
 interface AccessPointDescription {
   element: Element;
@@ -323,7 +323,7 @@ export function editConnectedAp104Wizard(element: Element, redundancy?: boolean)
               @selected=${(e: SingleSelectedEvent) => {
                 e.target!.dispatchEvent(
                   newSubWizardEvent(
-                    editRedundancyGroup104Wizard(
+                    editRedundancyGroupWizard(
                       element,
                       redundancyGroupNumbers[e.detail.index]
                     )
