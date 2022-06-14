@@ -156,7 +156,7 @@ snapshots["Wizards for SCL ReportControl element define an edit wizard that for 
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -286,7 +286,7 @@ snapshots["Wizards for SCL ReportControl element define an edit wizard that for 
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -399,7 +399,7 @@ snapshots["Wizards for SCL ReportControl element define a select wizard that wit
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -428,7 +428,7 @@ snapshots["Wizards for SCL ReportControl element define a select wizard that wit
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -512,7 +512,7 @@ snapshots["Wizards for SCL ReportControl element define an create wizard that th
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -576,7 +576,7 @@ snapshots["Wizards for SCL ReportControl element define an create wizard that th
   </mwc-button>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -658,7 +658,7 @@ snapshots["Wizards for SCL ReportControl element define an create wizard that th
   </mwc-button>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -694,7 +694,7 @@ snapshots["Wizards for SCL ReportControl element define an create wizard that th
   </mwc-button>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -723,7 +723,7 @@ snapshots["Wizards for SCL ReportControl element define a wizard to select the c
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -847,7 +847,7 @@ snapshots["Wizards for SCL ReportControl element define copy to other IED select
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >

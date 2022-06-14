@@ -220,9 +220,7 @@ export default class UpdateDescriptionSel extends LitElement {
       .filter(ied => isPublic(ied))
       .flatMap(ied => addDescriptionToSEL(ied, signalList));
 
-    document
-      .querySelector('open-scd')
-      ?.dispatchEvent(newWizardEvent(createLogWizard(this.doc, items)));
+    this.dispatchEvent(newWizardEvent(createLogWizard(this.doc, items)));
   }
 
   private async onFileInput(e: Event): Promise<void> {

@@ -42,7 +42,7 @@ snapshots["Wizards for SCL element SMV include an edit wizard that looks like th
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >

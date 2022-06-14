@@ -52,7 +52,7 @@ snapshots["Wizards for SCL element ConnectedAP include a create wizard that look
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >

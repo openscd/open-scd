@@ -33,7 +33,9 @@ npm start
 
 This will start a local development server and open a browser window which will automatically be reloaded as soon as you save any changes to your local source code files.
 
-If you use VSCode to develop, we recommend you install and use the [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extensions in order to automatically lint and format your code as you edit it.
+### Linting & Formatting
+
+If you use VSCode to develop, we recommend you install and use the [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extensions in order to automatically lint and format your code as you edit it. There are similar plugins available for using [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) from within other IDEs and text editors.
 
 ### Scripts
 
@@ -45,13 +47,6 @@ We provide the following `npm` scripts for your convenience:
 - `npm run format` runs the formatter (formats your code in a unified way)
 - `npm run doc` builds HTML documentation into the `doc` directory
 - `npm run build` builds a deployable version of the project into the `dist` directory
-
-### Code style
-
-There is a configuration for ESLint and Prettier that is used to check and format the code.
-
-There are extensions for VSCode and IntelliJ IDEA. 
-Use and configure these extensions for your IDE to make your life easier.
 
 ## License
 

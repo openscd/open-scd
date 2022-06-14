@@ -50,7 +50,7 @@ snapshots["wizard-dialog with user defined menu actions set looks like its snaps
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >

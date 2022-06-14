@@ -14,12 +14,8 @@ export default class OpenProjectPlugin extends LitElement {
     const docName = file.name;
     const doc = new DOMParser().parseFromString(text, 'application/xml');
 
-    document
-      .querySelector('open-scd')!
-      .dispatchEvent(newLogEvent({ kind: 'reset' }));
-    document
-      .querySelector('open-scd')!
-      .dispatchEvent(newOpenDocEvent(doc, docName));
+    this.dispatchEvent(newLogEvent({ kind: 'reset' }));
+    this.dispatchEvent(newOpenDocEvent(doc, docName));
     this.pluginFileUI.onchange = null;
   }
 
