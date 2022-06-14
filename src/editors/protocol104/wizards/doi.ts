@@ -165,11 +165,6 @@ export function showDOIInfoWizard(doiElement: Element): Wizard {
           action: remove104Private(doiElement),
         },
       ],
-      secondary: {
-        icon: '',
-        label: get('close'),
-        action: close(),
-      },
       content: renderDOIWizard(doiElement),
     },
   ];
