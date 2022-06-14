@@ -3,7 +3,7 @@ import { SinonSpy, spy } from 'sinon';
 
 import '../../../../mock-wizard.js';
 
-import { Delete, EditorAction, isCreate, isDelete, isReplace, Replace, WizardInputElement } from '../../../../../src/foundation.js';
+import { ComplexAction, Create, Delete, isCreate, isDelete, isReplace, Replace, WizardInputElement } from '../../../../../src/foundation.js';
 import { MockWizard } from '../../../../mock-wizard.js';
 import { WizardTextField } from '../../../../../src/wizard-textfield.js';
 import { createLogicLinkWizard, editLogicLinkWizard } from '../../../../../src/editors/protocol104/wizards/logiclink.js';
@@ -67,11 +67,15 @@ describe('Wizards for the Logic Link SCL element group', () => {
 
       primaryAction.click();
       await element.requestUpdate();
+      
+      const complexAction = <ComplexAction>actionEvent.args[0][0].detail.action;
+      expect(complexAction.title).to.contain('edit');
+      expect(complexAction.actions).to.have.lengthOf(1);
 
-      const action = <EditorAction>actionEvent.args[0][0].detail.action;
+      const action = complexAction.actions[0];
       expect(action).to.satisfy(isReplace);
-      expect((<Replace>action).old.element.innerHTML).to.eql('192.128.0.2');
-      expect((<Replace>action).new.element.innerHTML).to.eql('192.128.0.12');
+      expect((<Replace>(action)).old.element.textContent).to.eql('192.128.0.2');
+      expect((<Replace>(action)).new.element.textContent).to.eql('192.128.0.12');
     });
 
     it('properly deletes a full Logic Link group', async () => {
@@ -84,12 +88,17 @@ describe('Wizards for the Logic Link SCL element group', () => {
       deleteAction.click();
       await element.requestUpdate();
 
-      const firstAction = <EditorAction>actionEvent.args[0][0].detail.action;
+      const complexAction = <ComplexAction>actionEvent.args[0][0].detail.action;
+      expect(complexAction.title).to.contain('remove');
+      expect(complexAction.actions).to.have.lengthOf(2);
+
+      const firstAction = complexAction.actions[0];
       expect(firstAction).to.satisfy(isDelete);
-      expect((<Delete>firstAction).old.element.textContent).to.eql('192.128.0.2');
-      const secondAction = <EditorAction>actionEvent.args[1][0].detail.action;
+      expect((<Delete>(firstAction)).old.element.textContent).to.eql('192.128.0.2');
+
+      const secondAction = complexAction.actions[1];
       expect(secondAction).to.satisfy(isDelete);
-      expect((<Delete>secondAction).old.element.textContent).to.eql('255.255.255.0');
+      expect((<Delete>(secondAction)).old.element.textContent).to.eql('255.255.255.0');
     });
   });
 
@@ -134,9 +143,17 @@ describe('Wizards for the Logic Link SCL element group', () => {
       primaryAction.click();
       await element.requestUpdate();
 
-      expect(actionEvent).to.be.called;
-      expect(actionEvent.args[0][0].detail.action).to.satisfy(isCreate);
-      expect(actionEvent.args[1][0].detail.action).to.satisfy(isCreate);
+      const complexAction = <ComplexAction>actionEvent.args[0][0].detail.action;
+      expect(complexAction.title).to.contain('add');
+      expect(complexAction.actions).to.have.lengthOf(2);
+
+      const firstAction = complexAction.actions[0];
+      expect(firstAction).to.satisfy(isCreate);
+      expect((<Create>(firstAction)).new.element.textContent).to.eql('192.168.0.1');
+
+      const secondAction = complexAction.actions[1];
+      expect(secondAction).to.satisfy(isCreate);
+      expect((<Create>(secondAction)).new.element.textContent).to.eql('255.255.255.0');
     });
   });
 });

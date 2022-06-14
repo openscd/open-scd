@@ -399,6 +399,9 @@ export const de: Translations = {
             add: '???'
           },
           redundancyGroupNumberLabel: '???',
+          addedLRedundancyGroup: '??? {{ rGNumber }} ? SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+          edittedRedundancyGroup: '??? {{ rGNumber }} ? SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+          removedRedundancyGroup: '??? {{ rGNumber }} ? SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
           logicLinkGroupTitle: '???',
           noLogicLinksAvailable: '???',
           addLogicLink: '???'
@@ -410,7 +413,10 @@ export const de: Translations = {
             edit: '???',
             add: '???'
           },
-          logicLinkNumberLabel: '???'
+          logicLinkNumberLabel: '???',
+          addedLogicLink: '??? SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+          edittedLogicLink: '??? SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+          removedLogicLink: '??? SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
         }
       }
     },

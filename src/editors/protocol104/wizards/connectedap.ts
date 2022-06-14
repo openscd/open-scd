@@ -28,8 +28,8 @@ import {
   identity,
   isPublic,
   newSubWizardEvent,
+  newWizardEvent,
   Wizard,
-  WizardAction,
   WizardActor,
   WizardInputElement,
   WizardMenuActor
@@ -39,8 +39,8 @@ import {
 } from '../../../wizards/connectedap.js';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { ifDefined } from 'lit-html/directives/if-defined';
-import { typeMaxLength, typeNullable } from '../../../wizards/foundation/p-types.js';
-import { createRedundancyGroupWizard, editRedundancyGroupWizard } from './redundancygroup.js';
+import { typeMaxLength } from '../../../wizards/foundation/p-types.js';
+import { createRedundancyGroupWizard, editRedundancyGroupWizard } from './redundancyGroup.js';
 
 interface AccessPointDescription {
   element: Element;
@@ -197,8 +197,9 @@ export function editConnectedApWizard(parent: Element, redundancy?: boolean): Wi
             id="redundancy"
             ?checked=${redundancy}
             @change=${(event: Event) => {
+              event.target!.dispatchEvent(newWizardEvent());
               event.target!.dispatchEvent(
-                newSubWizardEvent(
+                newSubWizardEvent(() =>
                   editConnectedApWizard(
                     parent,
                     !redundancy
@@ -305,8 +306,8 @@ function editConnectedApAction(parent: Element, redundancy?: boolean): WizardAct
 }
 
 function openRedundancyGroupWizard(element: Element, rGNumbers: number[]): WizardMenuActor {
-  return (): WizardAction[] => {
-    return [() => createRedundancyGroupWizard(element, rGNumbers)];
+  return (wizard: Element): void => {
+    wizard.dispatchEvent(newSubWizardEvent(createRedundancyGroupWizard(element, rGNumbers)));
   };
 }
 
@@ -339,7 +340,6 @@ function createEditTextField(parent: Element, pType: string): TemplateResult {
     required
     label="${pType}"
     pattern="${ifDefined(typePattern[pType])}"
-    ?nullable=${typeNullable[pType]}
     .maybeValue=${parent.querySelector(
       `Address > P[type="${pType}"]`
     )?.innerHTML ?? null}

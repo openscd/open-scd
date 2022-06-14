@@ -9,16 +9,20 @@ import {
 } from '../foundation/p-types.js';
 import {
   cloneElement,
+  ComplexAction,
   createElement,
   EditorAction,
   getValue,
+  newActionEvent,
+  newWizardEvent,
+  SimpleAction,
   Wizard,
   WizardActor,
   WizardInputElement,
   WizardMenuActor
 } from '../../../foundation.js';
 import { ifDefined } from 'lit-html/directives/if-defined';
-import { typeMaxLength, typeNullable } from '../../../wizards/foundation/p-types.js';
+import { typeMaxLength } from '../../../wizards/foundation/p-types.js';
 import { createCreateTextField } from './foundation.js';
 
 export function editLogicLinkWizard(parent: Element, rGNumber: number, lLNumber: number): Wizard {
@@ -64,7 +68,7 @@ export function createLogicLinkWizard(parent: Element, rGNumber: number, occupie
       primary: {
         icon: '',
         label: get('save'),
-        action: createLogicLinkAction(parent, rGNumber, lLNumber),
+        action: addLogicLinkAction(parent, rGNumber, lLNumber),
       },
       content: [
         html`<wizard-textfield
@@ -87,73 +91,97 @@ export function createLogicLinkWizard(parent: Element, rGNumber: number, occupie
  * @param lLNumber - The Logic Link Group number of all the P elements to remove.
  * @returns - Removing all P elements belonging to a Logic Link group.
  */
-export function remove(parent: Element, rGNumber: number, lLNumber: number): WizardMenuActor {
-  return (): EditorAction[] => {
+function remove(parent: Element, rGNumber: number, lLNumber: number): WizardMenuActor {
+  return (wizard: Element): void => {
     const addressElement = parent.querySelector('Address');
-    const ipElement = addressElement!.querySelector(`P[type="RG${rGNumber}-LL${lLNumber}-IP"]`);
-    const ipSubnetElement = addressElement!.querySelector(`P[type="RG${rGNumber}-LL${lLNumber}-IP-SUBNET"]`);
 
-    return [
-      { old: { parent: addressElement!, element: ipElement! } },
-      { old: { parent: addressElement!, element: ipSubnetElement! } }
-    ];
+    const complexAction: ComplexAction = {
+      actions: [{
+        old: {
+          parent: addressElement!,
+          element: addressElement!.querySelector(`P[type="RG${rGNumber}-LL${lLNumber}-IP"]`)! 
+        }
+      },{
+        old: {
+          parent: addressElement!,
+          element: addressElement!.querySelector(`P[type="RG${rGNumber}-LL${lLNumber}-IP-SUBNET"]`)!
+        }
+      }],
+      title: get('protocol104.network.logicLink.wizard.removedLogicLink', {
+        subNetworkName: parent.parentElement!.getAttribute('name')!,
+        apName: parent.getAttribute('apName')!,
+        iedName:  parent.getAttribute('iedName')!
+      }),
+    };
+    
+    wizard.dispatchEvent(newActionEvent(complexAction));
+    wizard.dispatchEvent(newWizardEvent());
   };
 }
 
 function editLogicLinkAction(parent: Element, rGNumber: number, lLNumber: number): WizardActor {
   return (inputs: WizardInputElement[]): EditorAction[] => {
-    const ipValue = getValue(inputs.find(i => i.label === 'IP')!)!;
-    const ipElement = parent.querySelector(`Address > P[type="RG${rGNumber}-LL${lLNumber}-IP"]`);
-    const ipSubnetValue = getValue(inputs.find(i => i.label === 'IP-SUBNET')!)!;
-    const ipSubnetElement = parent.querySelector(`Address > P[type="RG${rGNumber}-LL${lLNumber}-IP-SUBNET"]`);
+    const actions: SimpleAction[] = [];
 
-    if (
-      ipValue === ipElement?.textContent &&
-      ipSubnetValue === ipSubnetElement?.textContent
-    ) {
-      return [];
-    }
+    pTypesLogicLink104.forEach(type => {
+      const inputValue = getValue(inputs.find(i => i.label === type)!)!;
+      const elementOriginal = parent.querySelector(`Address > P[type="RG${rGNumber}-LL${lLNumber}-${type}"]`);
 
-    const ipElementClone = cloneElement(ipElement!, {});
-    ipElementClone.textContent = ipValue;
-    const ipSubnetElementClone = cloneElement(ipSubnetElement!, {});
-    ipSubnetElementClone.textContent = ipSubnetValue;
+      if (inputValue !== elementOriginal?.textContent) {
+        const elementClone = cloneElement(elementOriginal!, {});
+        elementClone.textContent = inputValue;
 
-    return [
-      { old: { element: ipElement! }, new: { element: ipElementClone }, },
-      { old: { element: ipSubnetElement! }, new: { element: ipSubnetElementClone }, }
-    ];
+        actions.push({
+          old: {
+            element: elementOriginal!
+          },
+          new: {
+            element: elementClone
+          }
+        });
+      }
+    });
+
+    return actions.length != 0
+      ? [{
+          actions,
+          title: get('protocol104.network.logicLink.wizard.edittedLogicLink', {
+            subNetworkName: parent.parentElement!.getAttribute('name')!,
+            apName: parent.getAttribute('apName')!,
+            iedName:  parent.getAttribute('iedName')!
+          }),
+        }]
+      : [];
   };
 }
 
-function createLogicLinkAction(parent: Element, rGNumber: number, lLNumber: number): WizardActor {
+function addLogicLinkAction(parent: Element, rGNumber: number, lLNumber: number): WizardActor {
   return (inputs: WizardInputElement[]): EditorAction[] => {
     const addressParent = parent.querySelector('Address')!;
+    const complexAction: ComplexAction = {
+      actions: [],
+      title: get('protocol104.network.logicLink.wizard.addedLogicLink', {
+        subNetworkName: parent.parentElement!.getAttribute('name')!,
+        apName: parent.getAttribute('apName')!,
+        iedName:  parent.getAttribute('iedName')!
+      }),
+    };
 
-    const ipElement = createElement(parent.ownerDocument, 'P', {
-      type: `RG${rGNumber}-LL${lLNumber}-IP`
-    });
-    ipElement.textContent = getValue(inputs.find(i => i.label === 'IP')!)!;
-
-    const ipSubnetElement = createElement(parent.ownerDocument, 'P', {
-      type: `RG${rGNumber}-LL${lLNumber}-IP-SUBNET`
-    });
-    ipSubnetElement.textContent = getValue(inputs.find(i => i.label === 'IP-SUBNET')!)!;
-
-    return [
-      {
+    pTypesLogicLink104.forEach(type => {
+      const element = createElement(parent.ownerDocument, 'P', {
+        type: `RG${rGNumber}-LL${lLNumber}-${type}`
+      });
+      element.textContent = getValue(inputs.find(i => i.label === type)!)!;
+      
+      complexAction.actions.push({
         new: {
           parent: addressParent,
-          element: ipElement,
-        },
-      },
-      {
-        new: {
-          parent: addressParent,
-          element: ipSubnetElement,
-        },
-      }
-    ];
+          element: element,
+        }
+      });
+    });
+
+    return [complexAction];
   };
 }
 
@@ -170,7 +198,6 @@ function createEditTextField(parent: Element, pType: string, rGNumber: number, l
     required
     label="${pType}"
     pattern="${ifDefined(typePattern[pType])}"
-    ?nullable=${typeNullable[pType]}
     .maybeValue=${parent.querySelector(
       `Address > P[type$="RG${rGNumber}-LL${lLNumber}-${pType}"]`
     )?.innerHTML ?? null}
