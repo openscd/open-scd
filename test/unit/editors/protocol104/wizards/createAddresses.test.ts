@@ -4,7 +4,7 @@ import { MockWizard } from '../../../../mock-wizard.js';
 
 import '../../../../mock-wizard.js';
 
-import { prepareAddressWizard } from '../../../../../src/editors/protocol104/wizards/prepareAddress.js';
+import { createAddressesWizard } from '../../../../../src/editors/protocol104/wizards/createAddresses.js';
 
 import { fetchDoc } from '../../../wizards/test-support.js';
 
@@ -24,7 +24,7 @@ describe('Wizards for preparing 104 Address Creation', () => {
         'IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] DOI[name="MltLev"]'
       )!;
 
-      const wizard = prepareAddressWizard(doiElement);
+      const wizard = createAddressesWizard(doiElement);
       element.workflow.push(() => wizard);
       await element.requestUpdate();
     });
@@ -40,7 +40,7 @@ describe('Wizards for preparing 104 Address Creation', () => {
         'IED[name="B1"] LN[lnType="SE_GAPC_SET_V001"] DOI[name="Op"]'
       )!;
 
-      const wizard = prepareAddressWizard(doiElement);
+      const wizard = createAddressesWizard(doiElement);
       element.workflow.push(() => wizard);
       await element.requestUpdate();
     });
@@ -56,7 +56,7 @@ describe('Wizards for preparing 104 Address Creation', () => {
         'IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] DOI[name="SPCSO1"]'
       )!;
 
-      const wizard = prepareAddressWizard(doiElement);
+      const wizard = createAddressesWizard(doiElement);
       element.workflow.push(() => wizard);
       await element.requestUpdate();
     });
@@ -72,7 +72,7 @@ describe('Wizards for preparing 104 Address Creation', () => {
         'IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] DOI[name="SPCSO2"]'
       )!;
 
-      const wizard = prepareAddressWizard(doiElement);
+      const wizard = createAddressesWizard(doiElement);
       element.workflow.push(() => wizard);
       await element.requestUpdate();
     });

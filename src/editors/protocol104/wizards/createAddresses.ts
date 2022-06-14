@@ -41,7 +41,7 @@ function getSwitchValue(wizard: Element, name: string): boolean {
   return switchElement?.checked ?? false;
 }
 
-export function createAddressAction(
+export function createAddressesAction(
   doiElement: Element,
   monitorTis: string[],
   controlTis: string[]
@@ -173,14 +173,14 @@ export function disableInvertedSwitch(
   return disableSwitch;
 }
 
-export function prepareAddressWizard(doiElement: Element): Wizard {
+export function createAddressesWizard(doiElement: Element): Wizard {
   const cdc = getCdcValue(doiElement) ?? '';
   const cdcProcessing = cdcProcessings[<SupportedCdcType>cdc];
 
   const monitorTis = Object.keys(cdcProcessing.monitor);
   const controlTis = Object.keys(cdcProcessing.control);
 
-  function renderTiWizard(): TemplateResult[] {
+  function renderCreateAddressesWizard(): TemplateResult[] {
     const iedElement = doiElement.closest('IED');
     const fullPath = getFullPath(doiElement, 'IED');
 
@@ -333,9 +333,9 @@ export function prepareAddressWizard(doiElement: Element): Wizard {
       primary: {
         icon: 'add',
         label: get('add'),
-        action: createAddressAction(doiElement, monitorTis, controlTis),
+        action: createAddressesAction(doiElement, monitorTis, controlTis),
       },
-      content: renderTiWizard(),
+      content: renderCreateAddressesWizard(),
     },
   ];
 }

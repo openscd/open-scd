@@ -364,8 +364,9 @@ export const en = {
     },
     values: {
       missing: 'No IED with 104 Addresses',
-      removeAddresses: 'Remove all address',
-      removedAddresses: 'Removed Addresses from DOI "{{ name }}" ({{ nrOfAddresses }})',
+      removeAddresses: 'Remove all addresses',
+      removedAddresses:
+        'Removed Addresses from DOI "{{ name }}" ({{ nrOfAddresses }})',
       addedAddress: 'Added 104 Address(es) to DOI "{{ name }}',
     },
     network: {
@@ -377,9 +378,11 @@ export const en = {
         kFactor: 'K factor of the logical link',
         timeout0: 'Time-out in seconds of connection establishment',
         timeout1: 'Time-out in seconds of sent or test APDUs',
-        timeout2: 'Time-out in seconds for acknowledges in case of no data messages',
-        timeout3: 'Time-out in seconds for sending test frames in case of a long idle state'
-      }
+        timeout2:
+          'Time-out in seconds for acknowledges in case of no data messages',
+        timeout3:
+          'Time-out in seconds for sending test frames in case of a long idle state',
+      },
     },
     wizard: {
       title: {
@@ -388,7 +391,8 @@ export const en = {
         addAddress: 'Add 104 Address',
       },
       error: {
-        addAddressError: 'No DAI Elements found or create to add Address Elements to. (CDC: {{ cdc }}, Filter: {{ filter }})',
+        addAddressError:
+          'No DA(I) Element(s) found to add Private Address Elements on. (CDC: {{ cdc }}, Filter: {{ filter }})',
       },
       casduHelper: 'CASDU Value',
       ioaHelper: 'IOA Value',

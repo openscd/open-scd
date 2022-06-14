@@ -18,7 +18,7 @@ import {
 
 import {
   editAddressWizard,
-  updateValue,
+  updateAddressValue,
 } from '../../../../../src/editors/protocol104/wizards/address.js';
 
 describe('Wizards for 104 Address Element', () => {
@@ -51,7 +51,7 @@ describe('Wizards for 104 Address Element', () => {
       await setWizardTextFieldValue(<WizardTextField>inputs[3], '21'); // IOA Field
 
       const updateAction = executeWizardReplaceAction(
-        updateValue(dai, address),
+        updateAddressValue(dai, address),
         inputs
       );
       expect(updateAction.old.element).to.have.attribute('casdu', '1');
@@ -61,7 +61,7 @@ describe('Wizards for 104 Address Element', () => {
     });
 
     it('when no fields changed there will be no update action', async function () {
-      expectWizardNoUpdateAction(updateValue(dai, address), inputs);
+      expectWizardNoUpdateAction(updateAddressValue(dai, address), inputs);
     });
 
     it('looks like the latest snapshot', async () => {
@@ -104,7 +104,7 @@ describe('Wizards for 104 Address Element', () => {
       await setWizardSelectValue(<WizardSelect>inputs[5], 'k'); // Unit Multiplier Field
 
       const updateAction = executeWizardReplaceAction(
-        updateValue(dai, address),
+        updateAddressValue(dai, address),
         inputs
       );
       expect(updateAction.old.element).to.not.have.attribute('unitMultiplier');
@@ -134,7 +134,7 @@ describe('Wizards for 104 Address Element', () => {
       await setWizardTextFieldValue(<WizardTextField>inputs[7], '2.345'); // Scale Offset Field
 
       const updateAction = executeWizardReplaceAction(
-        updateValue(dai, address),
+        updateAddressValue(dai, address),
         inputs
       );
       expect(updateAction.old.element).to.not.have.attribute('scaleMultiplier');
