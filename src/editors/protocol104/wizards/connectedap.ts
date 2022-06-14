@@ -40,7 +40,7 @@ import {
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { typeMaxLength } from '../../../wizards/foundation/p-types.js';
-import { createRedundancyGroupWizard, editRedundancyGroupWizard } from './redundancyGroup.js';
+import { createRedundancyGroupWizard, editRedundancyGroupWizard } from './redundancygroup.js';
 
 interface AccessPointDescription {
   element: Element;

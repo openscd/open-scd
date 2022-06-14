@@ -6,7 +6,7 @@ import '../../../../mock-wizard.js';
 import { ComplexAction, Create, Delete, isCreate, isDelete, isReplace, Replace, WizardInputElement } from '../../../../../src/foundation.js';
 import { MockWizard } from '../../../../mock-wizard.js';
 import { WizardTextField } from '../../../../../src/wizard-textfield.js';
-import { createRedundancyGroupWizard, editRedundancyGroupWizard } from '../../../../../src/editors/protocol104/wizards/redundancyGroup.js';
+import { createRedundancyGroupWizard, editRedundancyGroupWizard } from '../../../../../src/editors/protocol104/wizards/redundancygroup.js';
 
 describe('Wizards for the Redundancy Group SCL element group', () => {
   let doc: XMLDocument;
