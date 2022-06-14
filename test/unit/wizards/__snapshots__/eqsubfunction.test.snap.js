@@ -34,7 +34,7 @@ snapshots["Wizards for SCL EqSubFunction element define an create wizard that lo
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -81,7 +81,7 @@ snapshots["Wizards for SCL EqSubFunction element define an edit wizard that look
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >

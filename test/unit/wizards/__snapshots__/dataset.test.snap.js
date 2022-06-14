@@ -82,7 +82,7 @@ snapshots["dataset wizards include a dataset edit wizard looks like the latest s
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >

@@ -44,7 +44,7 @@ snapshots["Wizards for SCL element SubNetwork include an edit wizard that with e
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -104,7 +104,7 @@ snapshots["Wizards for SCL element SubNetwork include an edit wizard that with m
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -162,7 +162,7 @@ snapshots["Wizards for SCL element SubNetwork include an create wizard that look
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >

@@ -1350,7 +1350,7 @@ snapshots["EnumType wizards defines a createEnumTypeWizard looks like the latest
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -1510,7 +1510,7 @@ snapshots["EnumType wizards defines an eNumTypeEditWizard looks like the latest 
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -1584,7 +1584,7 @@ snapshots["EnumType wizards defines a eNumValWizard to edit an existing EnumVal 
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -1634,7 +1634,7 @@ snapshots["EnumType wizards defines a eNumValWizard to create a new EnumVal elem
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >

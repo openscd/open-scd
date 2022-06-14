@@ -95,9 +95,10 @@ snapshots["with no ancestors looks like the latest snapshot"] =
     </mwc-textfield>
   </div>
   <mwc-button
-    icon=""
+    dialogaction="close"
     label="[close]"
     slot="secondaryAction"
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
   </mwc-button>
 </mwc-dialog>
@@ -198,9 +199,10 @@ snapshots["with a DO element looks like the latest snapshot"] =
     </mwc-textfield>
   </div>
   <mwc-button
-    icon=""
+    dialogaction="close"
     label="[close]"
     slot="secondaryAction"
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
   </mwc-button>
 </mwc-dialog>
@@ -301,9 +303,10 @@ snapshots["with a DO element and DOI Element looks like the latest snapshot"] =
     </mwc-textfield>
   </div>
   <mwc-button
-    icon=""
+    dialogaction="close"
     label="[close]"
     slot="secondaryAction"
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
   </mwc-button>
 </mwc-dialog>

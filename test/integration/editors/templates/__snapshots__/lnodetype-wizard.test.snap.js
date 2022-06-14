@@ -147,7 +147,7 @@ snapshots["LNodeType wizards defines a lNodeTypeHelperWizard looks like the late
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -4334,7 +4334,7 @@ snapshots["LNodeType wizards defines a createLNodeTypeWizard looks like the late
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -4669,7 +4669,7 @@ snapshots["LNodeType wizards defines a createLNodeTypeWizard opens a createLNode
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -4869,7 +4869,7 @@ snapshots["LNodeType wizards defines a dOWizard to create a new DO element looks
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >

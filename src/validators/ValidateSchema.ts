@@ -53,7 +53,7 @@ export default class ValidateSchema extends LitElement {
           const parts = e.data.message.split(': ', 2);
           const description = parts[1] ? parts[1] : parts[0];
           const qualifiedTag = parts[1] ? ' (' + parts[0] + ')' : '';
-          document.querySelector('open-scd')!.dispatchEvent(
+          this.dispatchEvent(
             newIssueEvent({
               title: description,
               validatorId: this.pluginId,
@@ -69,7 +69,7 @@ export default class ValidateSchema extends LitElement {
             })
           );
         } else if (!isValidationResult(e.data)) {
-          document.querySelector('open-scd')!.dispatchEvent(
+          this.dispatchEvent(
             newLogEvent({
               title: get('validator.schema.fatal'),
               kind: 'error',
@@ -102,7 +102,7 @@ export default class ValidateSchema extends LitElement {
     );
 
     if (!result.valid) {
-      document.querySelector('open-scd')!.dispatchEvent(
+      this.dispatchEvent(
         newLogEvent({
           kind: 'warning',
           title: get('validator.schema.invalid', { name: result.file }),
@@ -111,13 +111,13 @@ export default class ValidateSchema extends LitElement {
       throw new Error(get('validator.schema.invalid', { name: result.file }));
     }
 
-    document.querySelector('open-scd')!.dispatchEvent(
+    this.dispatchEvent(
       newLogEvent({
         kind: 'info',
         title: get('validator.schema.valid', { name: result.file }),
       })
     );
-    document.querySelector('open-scd')!.dispatchEvent(
+    this.dispatchEvent(
       newIssueEvent({
         validatorId: this.pluginId,
         title: get('validator.schema.valid', { name: result.file }),
