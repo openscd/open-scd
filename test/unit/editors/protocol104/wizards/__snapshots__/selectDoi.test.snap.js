@@ -14,7 +14,7 @@ snapshots["data model nodes child getter show DO(I) Picker looks like the latest
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >

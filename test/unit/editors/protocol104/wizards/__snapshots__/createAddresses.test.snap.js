@@ -48,7 +48,7 @@ snapshots["Wizards for preparing 104 Address Creation show prepare 104 Address c
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -133,7 +133,7 @@ snapshots["Wizards for preparing 104 Address Creation show prepare 104 Address c
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -202,7 +202,7 @@ snapshots["Wizards for preparing 104 Address Creation show prepare 104 Address c
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -286,7 +286,7 @@ snapshots["Wizards for preparing 104 Address Creation show prepare 104 Address c
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
