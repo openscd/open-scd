@@ -60,7 +60,7 @@ snapshots["Wizards for SCL OptFields element define an edit wizard that looks li
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >

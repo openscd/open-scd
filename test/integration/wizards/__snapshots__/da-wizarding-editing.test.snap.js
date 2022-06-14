@@ -802,7 +802,7 @@ snapshots["DA wizarding editing integration defines a editDaWizard to edit an ex
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -1521,7 +1521,7 @@ snapshots["DA wizarding editing integration defines a createDaWizard to create a
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >

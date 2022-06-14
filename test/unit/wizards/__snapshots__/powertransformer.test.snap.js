@@ -33,7 +33,7 @@ snapshots["Wizards for SCL element Power Transformer edit existing Power Transfo
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -81,7 +81,7 @@ snapshots["Wizards for SCL element Power Transformer add new Power Transformer l
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
