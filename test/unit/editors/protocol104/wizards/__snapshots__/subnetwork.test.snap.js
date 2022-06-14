@@ -43,7 +43,7 @@ snapshots["SubNetwork 104 wizard include an create wizard that looks like the la
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
