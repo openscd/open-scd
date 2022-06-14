@@ -36,6 +36,12 @@ const iedNamePattern =
 export function renderIEDWizard(
   name: string | null,
   desc: string | null,
+  type: string | null,
+  manufacturer: string | null,
+  configVersion: string | null,
+  originalSclVersion: string | null,
+  engRight: string | null,
+  owner: string | null,
   reservedNames: string[]
 ): TemplateResult[] {
   return [
@@ -56,6 +62,56 @@ export function renderIEDWizard(
       helper="${translate('ied.wizard.descHelper')}"
       pattern="${patterns.normalizedString}"
     ></wizard-textfield>`,
+    html`<wizard-textfield
+      label="type"
+      .maybeValue=${type}
+      readOnly
+      ?disabled="${type==null}"
+      helper="${translate('ied.wizard.typeHelper')}"
+      pattern="${patterns.normalizedString}"
+    ></wizard-textfield>`,
+    html`<wizard-textfield
+      label="manufacturer"
+      .maybeValue=${manufacturer}
+      readOnly
+      ?disabled="${manufacturer==null}"
+      helper="${translate('ied.wizard.manufacturerHelper')}"
+      pattern="${patterns.normalizedString}"
+    ></wizard-textfield>`,
+    html`<wizard-textfield
+    label="configVersion"
+      .maybeValue=${configVersion}
+      readOnly
+      ?disabled="${configVersion==null}"
+      helper="${translate('ied.wizard.configVersionHelper')}"
+      pattern="${patterns.normalizedString}"
+    ></wizard-textfield>`,
+    html`<wizard-textfield
+    label="originalSclVersion"
+      .maybeValue=${originalSclVersion}
+      defaultValue="2003"
+      readOnly
+      ?disabled="${originalSclVersion==null}"
+      helper="${translate('ied.wizard.originalSclVersionHelper')}"
+      pattern="${patterns.normalizedString}"
+    ></wizard-textfield>`,
+    html`<wizard-textfield
+    label="engRight"
+      .maybeValue=${engRight}
+      defaultValue="full"
+      readOnly
+      ?disabled="${engRight==null}"
+      helper="${translate('ied.wizard.engRightHelper')}"
+      pattern="${patterns.normalizedString}"
+    ></wizard-textfield>`,
+    html`<wizard-textfield
+    label="owner"
+      .maybeValue=${owner}
+      readOnly
+      ?disabled="${owner==null}"
+      helper="${translate('ied.wizard.ownerHelper')}"
+      pattern="${patterns.normalizedString}"
+    ></wizard-textfield>`
   ];
 }
 
@@ -76,6 +132,13 @@ function renderIEDReferencesWizard(references: Delete[]): TemplateResult[] {
       </mwc-list>
     </section>`,
   ];
+}
+
+function validatedVersionAttribute(element: Element): string | null {
+  const values = [element.getAttribute('originalSclVersion'), element.getAttribute('originalSclRevision'), element.getAttribute('originalSclRelease')]
+  if(values[0]===null) return null;
+  else if(values[0]==="2003") return values[0];
+  else return "".concat(values[0] || "", values[1] || "", values[2] || "");
 }
 
 export function reservedNamesIED(currentElement: Element): string[] {
@@ -169,6 +232,12 @@ export function editIEDWizard(element: Element): Wizard {
       content: renderIEDWizard(
         element.getAttribute('name'),
         element.getAttribute('desc'),
+        element.getAttribute('type'),
+        element.getAttribute('manufacturer'),
+        element.getAttribute('configVersion'),
+        validatedVersionAttribute(element),
+        element.getAttribute('engRight'),
+        element.getAttribute('owner'),
         reservedNamesIED(element)
       ),
     },
