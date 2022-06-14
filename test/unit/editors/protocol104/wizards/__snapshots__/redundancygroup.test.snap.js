@@ -60,7 +60,7 @@ snapshots["Wizards for the Redundancy Group SCL element group include a create w
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >

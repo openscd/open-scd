@@ -32,7 +32,7 @@ snapshots["Wizards for the Logic Link SCL element group include a create wizard 
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
