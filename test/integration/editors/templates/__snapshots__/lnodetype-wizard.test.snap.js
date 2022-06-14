@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["LNodeType wizards defines a lNodeTypeHelperWizard looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[lnodetype.wizard.title.edit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 48px)"
@@ -165,7 +165,7 @@ snapshots["LNodeType wizards defines a lNodeTypeHelperWizard looks like the late
 
 snapshots["LNodeType wizards defines a createLNodeTypeWizard looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[lnodetype.wizard.title.add]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -4352,7 +4352,7 @@ snapshots["LNodeType wizards defines a createLNodeTypeWizard looks like the late
 
 snapshots["LNodeType wizards defines a createLNodeTypeWizard opens a createLNodeTypeHelperWizard looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[lnodetype.wizard.title.select]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -4687,7 +4687,7 @@ snapshots["LNodeType wizards defines a createLNodeTypeWizard opens a createLNode
 
 snapshots["LNodeType wizards defines a dOWizard to create a new DO element looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[do.wizard.title.add]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"

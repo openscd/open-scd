@@ -423,8 +423,17 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
 
       this.dispatchEvent(newValidateEvent());
 
-      for (const element of event.composedPath())
-        if (element instanceof LitElement) element.requestUpdate();
+      if (!this.doc) return;
+
+      const newDoc = document.implementation.createDocument(
+        this.doc.lookupNamespaceURI(''),
+        this.doc.documentElement.tagName,
+        this.doc.doctype
+      );
+
+      // change the document object reference to enable reactive updates
+      newDoc.documentElement.replaceWith(this.doc.documentElement);
+      this.doc = newDoc;
     }
 
     private async onOpenDoc(event: OpenDocEvent) {

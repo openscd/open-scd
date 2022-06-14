@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["gse wizards editGseWizard looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[wizard.title.edit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"

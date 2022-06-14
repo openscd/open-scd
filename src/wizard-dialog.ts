@@ -42,7 +42,6 @@ import {
   identity,
   WizardInput,
   WizardMenuActor,
-  newSubWizardEvent,
 } from './foundation.js';
 
 function renderWizardInput(
@@ -175,11 +174,15 @@ export class WizardDialog extends LitElement {
   }
 
   prev(): void {
-    if (this.pageIndex > 0) this.pageIndex--;
+    if (this.pageIndex <= 0) return;
+    this.pageIndex--;
+    this.dialog?.show();
   }
+
   async next(): Promise<void> {
     if (dialogValid(this.dialog)) {
       if (this.wizard.length > this.pageIndex + 1) this.pageIndex++;
+      this.dialog?.show();
     } else {
       this.dialog?.show();
       await this.dialog?.updateComplete;
@@ -214,20 +217,11 @@ export class WizardDialog extends LitElement {
     return true;
   }
 
-  /** Triggers sub-wizard or editor-action with valid manu action */
-  async menuAct(action?: WizardMenuActor): Promise<boolean> {
-    if (!action) return false;
+  /** Triggers menu action callback */
+  async menuAct(action?: WizardMenuActor): Promise<void> {
+    if (!action) return;
 
-    const wizardActions = action();
-
-    wizardActions.forEach(wa => {
-      if (isWizardFactory(wa)) this.dispatchEvent(newSubWizardEvent(wa));
-      else {
-        this.dispatchEvent(newWizardEvent());
-        this.dispatchEvent(newActionEvent(wa));
-      }
-    });
-    return true;
+    action(this);
   }
 
   private onClosed(ae: CustomEvent<{ action: string } | null>): void {
@@ -305,8 +299,7 @@ export class WizardDialog extends LitElement {
         : 0;
 
     return html`<mwc-dialog
-      defaultAction="close"
-      ?open=${index === this.pageIndex}
+      defaultAction="next"
       heading=${page.title}
       @closed=${this.onClosed}
       style="--mdc-dialog-min-width:calc(100% + ${extraWidth}px)"

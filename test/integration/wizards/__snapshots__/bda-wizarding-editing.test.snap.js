@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["BDA wizarding editing integration defines a editBDaWizard to edit an existing BDA looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[bda.wizard.title.edit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 48px)"
@@ -631,7 +631,7 @@ snapshots["BDA wizarding editing integration defines a editBDaWizard to edit an 
 
 snapshots["BDA wizarding editing integration defines a createBDaWizard to create a new BDA element looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[bda.wizard.title.edit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"

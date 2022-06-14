@@ -19,7 +19,7 @@ import { WizardSelect } from "../../../src/wizard-select.js";
 const noOp = () => {
   return;
 };
-export const newWizard = (done = noOp) => {
+export const newWizard = (done = noOp): Element => {
   const element = document.createElement('mwc-dialog');
   element.close = done;
   return element;
@@ -155,7 +155,7 @@ export async function fetchDoc(docName: string): Promise<XMLDocument> {
 
 export function expectDeleteAction(
   simpleAction: SimpleAction,
-  tagName: string,
+  tagName: string
 ): void {
   expect(simpleAction).to.satisfy(isDelete);
 

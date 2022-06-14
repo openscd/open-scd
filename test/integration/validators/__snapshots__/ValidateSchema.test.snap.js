@@ -49,7 +49,7 @@ snapshots["ValidateSchema plugin for invalid SCL files pushes issues to the diag
       noninteractive=""
       tabindex="-1"
     >
-      Validate project
+      Validate Schema
     </mwc-list-item>
     <li
       divider=""

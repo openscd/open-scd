@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["with no ancestors looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[iededitor.wizard.doTitle]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -106,7 +106,7 @@ snapshots["with no ancestors looks like the latest snapshot"] =
 
 snapshots["with a DO element looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[iededitor.wizard.doTitle]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -209,7 +209,7 @@ snapshots["with a DO element looks like the latest snapshot"] =
 
 snapshots["with a DO element and DOI Element looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[iededitor.wizard.doTitle]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"

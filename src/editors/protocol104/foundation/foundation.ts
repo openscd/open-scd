@@ -1,7 +1,11 @@
 import {
+  Create,
   getInstanceAttribute,
-  getNameAttribute
+  getNameAttribute,
+  newWizardEvent
 } from "../../../foundation.js";
+import { editAddressWizard } from "../wizards/address.js";
+import { TiInformation } from "./cdc.js";
 
 export const PRIVATE_TYPE_104 = "IEC_60870_5_104";
 
@@ -69,17 +73,32 @@ export function getCdcValue(doiElement: Element): string | null {
 }
 
 /**
- * Indicates if the combination cdc/ti should handle/process the attribute "expected" of the Address Element.
- *
- * @param cdc - The Common Data Class.
- * @param ti  - The TI Value.
- * @returns true, if the combination should handle/process the attribute "expected".
+ * All available Address attributes that can be displayed.
  */
-export function hasExpectedValueField(cdc: string, ti: string): boolean {
-  return (cdc === 'ENC' && ['30', '45', '58'].includes(ti))
-    || (cdc === 'ENG' && ['45', '58'].includes(ti))
-    || (cdc === 'ENS' && ti === '30')
-    || (cdc === 'INS' && ti === '30');
+const addressAttributes = [
+  'casdu',
+  'ioa',
+  'ti',
+  'expectedValue',
+  'unitMultiplier',
+  'scaleMultiplier',
+  'scaleOffset',
+  'inverted',
+  'check',
+];
+
+/**
+ * Create a string to display all information about a 104 Address element.
+ * A list of attributes is used to determine what can be displayed if available.
+ *
+ * @param address - The Address element from which to retrieve all attribute values.
+ * @returns A string to display with all attribute values.
+ */
+export function get104DetailsLine(address: Element): string {
+  return addressAttributes
+    .filter(attrName => address.hasAttribute(attrName))
+    .map(attrName => `${attrName}: ${address.getAttribute(attrName)}`)
+    .join(', ');
 }
 
 /**
@@ -104,6 +123,122 @@ export function hasUnitMultiplierField(cdc: string, ti: string): boolean {
  */
 export function hasScaleFields(cdc: string, ti: string): boolean {
   return (cdc === 'MV' && ['35', '36'].includes(ti));
+}
+
+/**
+ * Search for a DAI Element below the passed DOI Element.
+ *
+ * @param doiElement - The DOI Element to search on.
+ * @param name       - The name of the DAI Element to search for.
+ * @returns The found DAI Element or null, if not found.
+ */
+export function getDaiElement(doiElement: Element, name: string): Element | null {
+  return doiElement.querySelector(`:scope > DAI[name="${name}"]`);
+}
+
+/**
+ * Search for the Value of a DAI Element below the passed DOI Element.
+ *
+ * @param doiElement - The DOI Element to search on.
+ * @param name       - The name of the DAI Element to search for.
+ * @returns The value (Val) of the found DAI Element or null, if not found.
+ */
+export function getDaiValue(doiElement: Element, name: string): string | null {
+  const daiElement = getDaiElement(doiElement, name);
+  if (daiElement) {
+    return daiElement.querySelector(':scope > Val')?.textContent ?? null;
+  }
+  return null;
+}
+
+/**
+ * Search for the DAI Element 'ctlModel', this one indicates if control Addresses need to be created.
+ *
+ * @param doiElement - The DOI Element.
+ * @returns The value of the CtlModel.
+ */
+export function getCtlModel(doiElement: Element): string | null {
+  return getDaiValue(doiElement, 'ctlModel');
+}
+
+/**
+ * Create a list of Create Actions using the parameters passed. First search for the DAI Elements
+ * that can be effected. Next create the action and add it to this list, also start the Edit
+ * Address Element wizard for all Address Elements created.
+ *
+ * @param doiElement     - The DOI Element.
+ * @param wizard         - The Wizard to dispatch the Open Wizard event on.
+ * @param ti             - The TI Value set on the new Address Elements.
+ * @param inverted       - Indicates if the Engineer want to create inverted Address Elements, if applicable.
+ * @param tiInformation  - Information about how to create the Address Elements for the passed TI.
+ * @returns A list of Create Action that will be added to the complex action.
+ */
+export function createActions(
+  doiElement: Element,
+  wizard: Element,
+  ti: string,
+  inverted: boolean,
+  tiInformation: TiInformation
+): Create[] {
+  const actions: Create[] = [];
+  const daiElements = doiElement.querySelectorAll(tiInformation.filter);
+  if (daiElements.length > 0) {
+    daiElements.forEach(daiElement => {
+      const createActions = tiInformation.create(daiElement, ti,
+        (tiInformation.inverted ? inverted : false) // If the TI Allows it and the Engineer selected it, true will be passed.
+      );
+      actions.push(...createActions);
+
+      createActions.forEach(createAction => {
+        const privateElement = <Element>createAction.new.element;
+        Array.from(privateElement.querySelectorAll('Address'))
+          .forEach(addressElement => {
+            wizard.dispatchEvent(newWizardEvent(() => editAddressWizard(daiElement, addressElement)));
+          });
+      });
+    });
+  }
+  return actions;
+}
+
+/**
+ * Create a list of Create Actions using the parameters passed. First search for the DAI Elements [name="Check"].
+ * Next create the action and add it to this list, also start the Edit Address Element wizard for all Address Elements
+ * created.
+ *
+ * @param doiElement     - The DOI Element.
+ * @param wizard         - The Wizard to dispatch the Open Wizard event on.
+ * @param ti             - The TI Value set on the new Address Elements.
+ * @param tiInformation  - Information about how to create the Address Elements for the passed TI.
+ * @returns A list of Create Action that will be added to the complex action.
+ */
+export function createCheckActions(
+  doiElement: Element,
+  wizard: Element,
+  ti: string,
+  tiInformation: TiInformation
+): Create[] {
+  const actions: Create[] = [];
+  if (tiInformation.checkFilter) {
+    const daiElements = doiElement.querySelectorAll(tiInformation.checkFilter);
+    if (daiElements.length > 0) {
+      daiElements.forEach(daiElement => {
+        if (tiInformation.checkCreate) {
+          const createActions = tiInformation.checkCreate(daiElement, ti);
+          actions.push(...createActions);
+
+          createActions.forEach(createAction => {
+            const privateElement = <Element>createAction.new.element;
+            Array.from(privateElement.querySelectorAll('Address'))
+              .forEach(addressElement => {
+                wizard.dispatchEvent(newWizardEvent(() => editAddressWizard(daiElement, addressElement)));
+              });
+          });
+        }
+      });
+    }
+  }
+  return actions;
 }
 
 /**

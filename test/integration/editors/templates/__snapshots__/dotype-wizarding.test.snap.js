@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["DOType wizards defines a createDOTypeWizard looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[dotype.wizard.title.add]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -719,7 +719,7 @@ snapshots["DOType wizards defines a createDOTypeWizard looks like the latest sna
 
 snapshots["DOType wizards defines a dOTypeWizard looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[dotype.wizard.title.edit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 48px)"
@@ -1034,7 +1034,7 @@ snapshots["DOType wizards defines a dOTypeWizard looks like the latest snapshot"
 
 snapshots["DOType wizards defines a sDOWizard to edit an existing SDO looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[sdo.wizard.title.edit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 48px)"
@@ -1246,7 +1246,7 @@ snapshots["DOType wizards defines a sDOWizard to edit an existing SDO looks like
 
 snapshots["DOType wizards defines a sDOWizard to create a new SDO element looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[sdo.wizard.title.add]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"

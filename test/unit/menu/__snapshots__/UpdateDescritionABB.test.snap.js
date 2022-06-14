@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["Update method for desc attributes in ABB IEDs working on SCL files without manufacturer ABB creates an empty wizard indicating not found desc updates"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[wizard.title.add]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -32,7 +32,7 @@ snapshots["Update method for desc attributes in ABB IEDs working on SCL files wi
 
 snapshots["Update method for desc attributes in ABB IEDs working on SCL files containing manufacturer ABB creates a wizard with all valid desc update possibilities"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[wizard.title.add]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"

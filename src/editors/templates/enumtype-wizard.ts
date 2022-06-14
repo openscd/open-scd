@@ -18,12 +18,13 @@ import {
   getValue,
   identity,
   isPublic,
+  newActionEvent,
   newSubWizardEvent,
+  newWizardEvent,
   patterns,
   Replace,
   selector,
   Wizard,
-  WizardAction,
   WizardActor,
   WizardInputElement,
   WizardMenuActor,
@@ -31,8 +32,11 @@ import {
 import { CreateOptions, UpdateOptions, WizardOptions } from './foundation.js';
 
 function remove(element: Element): WizardMenuActor {
-  return (): EditorAction[] => {
-    return [{ old: { parent: element.parentElement!, element } }];
+  return (wizard: Element): void => {
+    wizard.dispatchEvent(
+      newActionEvent({ old: { parent: element.parentElement!, element } })
+    );
+    wizard.dispatchEvent(newWizardEvent());
   };
 }
 
@@ -250,8 +254,8 @@ export function createEnumTypeWizard(
 }
 
 function openAddEnumVal(parent: Element): WizardMenuActor {
-  return (): WizardAction[] => {
-    return [() => eNumValWizard({ parent })];
+  return (wizard: Element): void => {
+    wizard.dispatchEvent(newSubWizardEvent(() => eNumValWizard({ parent })));
   };
 }
 

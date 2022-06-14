@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["Wizards for 104 Address Element edit basic 104 Address looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[protocol104.wizard.title.addressEdit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -42,11 +42,13 @@ snapshots["Wizards for 104 Address Element edit basic 104 Address looks like the
     <wizard-textfield
       helper="[protocol104.wizard.casduHelper]"
       label="casdu"
+      required=""
     >
     </wizard-textfield>
     <wizard-textfield
       helper="[protocol104.wizard.ioaHelper]"
       label="ioa"
+      required=""
     >
     </wizard-textfield>
     <wizard-textfield
@@ -76,7 +78,7 @@ snapshots["Wizards for 104 Address Element edit basic 104 Address looks like the
 
 snapshots["Wizards for 104 Address Element edit 104 Address with expected value looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[protocol104.wizard.title.addressEdit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -115,11 +117,13 @@ snapshots["Wizards for 104 Address Element edit 104 Address with expected value 
     <wizard-textfield
       helper="[protocol104.wizard.casduHelper]"
       label="casdu"
+      required=""
     >
     </wizard-textfield>
     <wizard-textfield
       helper="[protocol104.wizard.ioaHelper]"
       label="ioa"
+      required=""
     >
     </wizard-textfield>
     <wizard-textfield
@@ -129,10 +133,9 @@ snapshots["Wizards for 104 Address Element edit 104 Address with expected value 
     >
     </wizard-textfield>
     <wizard-textfield
-      helper="[protocol104.wizard.expectedValueHelper]"
+      disabled=""
       label="expectedValue"
-      nullable=""
-      pattern="[+-]?[0-9]+([0-9]*)"
+      readonly=""
     >
     </wizard-textfield>
   </div>
@@ -156,7 +159,7 @@ snapshots["Wizards for 104 Address Element edit 104 Address with expected value 
 
 snapshots["Wizards for 104 Address Element edit 104 Address with unit multiplier looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[protocol104.wizard.title.addressEdit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -195,11 +198,13 @@ snapshots["Wizards for 104 Address Element edit 104 Address with unit multiplier
     <wizard-textfield
       helper="[protocol104.wizard.casduHelper]"
       label="casdu"
+      required=""
     >
     </wizard-textfield>
     <wizard-textfield
       helper="[protocol104.wizard.ioaHelper]"
       label="ioa"
+      required=""
     >
     </wizard-textfield>
     <wizard-textfield
@@ -437,7 +442,7 @@ snapshots["Wizards for 104 Address Element edit 104 Address with unit multiplier
 
 snapshots["Wizards for 104 Address Element edit 104 Address with scale fields looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[protocol104.wizard.title.addressEdit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -476,11 +481,13 @@ snapshots["Wizards for 104 Address Element edit 104 Address with scale fields lo
     <wizard-textfield
       helper="[protocol104.wizard.casduHelper]"
       label="casdu"
+      required=""
     >
     </wizard-textfield>
     <wizard-textfield
       helper="[protocol104.wizard.ioaHelper]"
       label="ioa"
+      required=""
     >
     </wizard-textfield>
     <wizard-textfield

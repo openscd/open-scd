@@ -58,7 +58,7 @@ describe('Templates Plugin', () => {
     it('has a mwc-fab', () => {
       expect(element.shadowRoot?.querySelector('mwc-fab')).to.exist;
     });
-    it('adding a DataTypeTemplates on click()', async () => {
+    it('adds a DataTypeTemplates on floating action button click', async () => {
       expect(doc.querySelector('DataTypeTemplates')).to.not.exist;
       (<HTMLElement>(
         parent
@@ -66,7 +66,11 @@ describe('Templates Plugin', () => {
           ?.shadowRoot?.querySelector('mwc-fab')
       )).click();
       await parent.updateComplete;
-      expect(doc.querySelector('DataTypeTemplates')).to.exist;
+      expect(
+        parent!
+          .querySelector<EditingElement>('templates-plugin')!
+          .doc!.querySelector('DataTypeTemplates')
+      ).to.exist;
     });
   });
   describe('with a doc loaded having a datatypetemplates section', () => {

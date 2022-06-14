@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["Update method for desc attributes in SEL IEDs working on SCL files containing manufacturer SEL using a semicolon separated file creates filtered list with all proposed desc attribute updates"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="Add desc"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -144,7 +144,7 @@ snapshots["Update method for desc attributes in SEL IEDs working on SCL files co
 
 snapshots["Update method for desc attributes in SEL IEDs working on SCL files containing manufacturer SEL using a comma separated (CSV) file creates filtered list with all proposed desc attribute updates"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="Add desc"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"

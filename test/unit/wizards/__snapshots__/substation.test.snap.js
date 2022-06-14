@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["Wizards for SCL element Substation edit existing Substation looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[substation.wizard.title.edit]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -44,7 +44,7 @@ snapshots["Wizards for SCL element Substation edit existing Substation looks lik
 
 snapshots["Wizards for SCL element Substation add new Substation looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[substation.wizard.title.add]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
