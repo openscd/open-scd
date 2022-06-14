@@ -28,7 +28,6 @@ import {
   identity,
   isPublic,
   newSubWizardEvent,
-  newWizardEvent,
   Wizard,
   WizardAction,
   WizardActor,
@@ -197,10 +196,9 @@ export function editConnectedApWizard(parent: Element, redundancy?: boolean): Wi
           <mwc-switch
             id="redundancy"
             ?checked=${redundancy}
-            @change=${() => {
-              document.querySelector('open-scd')!.dispatchEvent(newWizardEvent());
-              document.querySelector('open-scd')!.dispatchEvent(
-                newWizardEvent(
+            @change=${(event: Event) => {
+              event.target!.dispatchEvent(
+                newSubWizardEvent(
                   editConnectedApWizard(
                     parent,
                     !redundancy
