@@ -20,6 +20,7 @@ import {
   typePattern
 } from '../foundation/p-types.js';
 import {
+  cloneElement,
   compareNames,
   ComplexAction,
   createElement,
@@ -179,13 +180,13 @@ export function editConnectedApWizard(parent: Element, redundancy?: boolean): Wi
     {
       title: get('protocol104.network.connectedAp.wizard.title.edit'),
       element: parent,
-      menuActions: [
-        {
+      menuActions: redundancy
+      ? [{
           icon: 'playlist_add',
           label: get('protocol104.network.connectedAp.wizard.addRedundancyGroup'),
           action: openRedundancyGroupWizard(parent, redundancyGroupNumbers),
-        },
-      ],
+        }]
+      : undefined,
       primary: {
         icon: 'save',
         label: get('save'), 
@@ -270,14 +271,18 @@ function editConnectedApAction(parent: Element, redundancy?: boolean): WizardAct
     // All redundancy group actions are done in those wizards itself.
     if (redundancy) {
       const stationTypeValue = getValue(inputs.find(i => i.label === 'StationType')!)!;
-      const stationTypeElement = oldAddress?.querySelector('P[type="StationType"]');
-      stationTypeElement!.textContent = stationTypeValue;
+      const originalElement = oldAddress?.querySelector('P[type="StationType"]');
+
+      const elementClone = cloneElement(originalElement!, {});
+      elementClone!.textContent = stationTypeValue;
 
       complexAction.actions.push({
-        new: {
-          parent: parent,
-          element: oldAddress!,
+        old: {
+          element: originalElement!
         },
+        new: {
+          element: elementClone
+        }
       });
     } else if (oldAddress !== null && !isEqualAddress(oldAddress, newAddress)) {
       //address & child elements P are changed: cannot use replace editor action
