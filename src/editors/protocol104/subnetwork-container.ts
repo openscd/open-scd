@@ -12,7 +12,7 @@ import '@material/mwc-icon-button';
 import './connectedap-editor.js';
 import { compareNames, newWizardEvent } from '../../foundation.js';
 import { translate } from 'lit-translate';
-import { createConnectedAp104Wizard } from './wizards/connectedap.js';
+import { createConnectedApWizard } from './wizards/connectedap.js';
 
 /** [[`104`]] subeditor for a `SubNetwork` element. */
 @customElement('subnetwork-104-container')
@@ -31,7 +31,7 @@ export class SubNetwork104Container extends LitElement {
   }
 
   private openConnectedAPwizard(): void {
-    this.dispatchEvent(newWizardEvent(createConnectedAp104Wizard(this.element)));
+    this.dispatchEvent(newWizardEvent(createConnectedApWizard(this.element)));
   }
 
   private renderIedContainer(): TemplateResult[] {

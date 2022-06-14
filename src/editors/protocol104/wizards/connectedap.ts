@@ -96,7 +96,7 @@ function existConnectedAp(accesspoint: Element): boolean {
 }
 
 /** @returns single page  [[`Wizard`]] for creating SCL element ConnectedAP. */
-export function createConnectedAp104Wizard(element: Element): Wizard {
+export function createConnectedApWizard(element: Element): Wizard {
   const doc = element.ownerDocument;
 
   const accessPoints = Array.from(doc.querySelectorAll(':root > IED'))

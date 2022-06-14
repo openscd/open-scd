@@ -1,7 +1,7 @@
 import { html, TemplateResult } from "lit-element";
 import { ifDefined } from "lit-html/directives/if-defined";
 import { translate } from "lit-translate";
-import { typeMaxLength, typeNullable } from "../../../wizards/foundation/p-types.js";
+import { typeMaxLength } from "../../../wizards/foundation/p-types.js";
 import { typeDescriptiveNameKeys, typePattern } from "../foundation/p-types.js";
 
 
@@ -15,7 +15,6 @@ export function createCreateTextField(pType: string): TemplateResult {
     required
     label="${pType}"
     pattern="${ifDefined(typePattern[pType])}"
-    ?nullable=${typeNullable[pType]}
     maxLength="${ifDefined(typeMaxLength[pType])}"
     helper="${translate(typeDescriptiveNameKeys[pType])}"
   ></wizard-textfield>`
