@@ -42,7 +42,7 @@ snapshots["conducting-equipment-editor wizarding integration looks like the late
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >

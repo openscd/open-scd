@@ -56,7 +56,7 @@ snapshots["gsecontrol wizards selectGseControlWizard looks like the latest snaps
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -168,7 +168,7 @@ snapshots["gsecontrol wizards renderGseAttribute looks like the latest snapshot"
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -322,7 +322,7 @@ snapshots["gsecontrol wizards editGseControlWizard looks like the latest snapsho
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -439,7 +439,7 @@ snapshots["gsecontrol wizards define an create wizard that with existing Connect
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -522,7 +522,7 @@ snapshots["gsecontrol wizards define an create wizard that with existing Connect
   </mwc-button>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -558,7 +558,7 @@ snapshots["gsecontrol wizards define an create wizard that with existing Connect
   </mwc-button>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -596,7 +596,7 @@ snapshots["gsecontrol wizards define an create wizard that with missing Connecte
   </mwc-button>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -626,7 +626,7 @@ snapshots["gsecontrol wizards define a wizard to select the control block refere
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >

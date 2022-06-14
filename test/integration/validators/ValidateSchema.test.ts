@@ -1,7 +1,8 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../../src/open-scd.js';
-import { OpenSCD } from '../../../src/open-scd.js';
+import '../../mock-editor-logger.js';
+import { MockEditorLogger } from '../../mock-editor-logger.js';
+
 import ValidateSchema from '../../../src/validators/ValidateSchema.js';
 import { IssueDetail, LogEntry } from '../../../src/foundation.js';
 
@@ -30,7 +31,7 @@ describe('ValidateSchema plugin', () => {
   if (customElements.get('') === undefined)
     customElements.define('validate-schema', ValidateSchema);
 
-  let parent: OpenSCD;
+  let parent: MockEditorLogger;
   let element: ValidateSchema;
 
   let valid2007B4: XMLDocument;
@@ -45,19 +46,12 @@ describe('ValidateSchema plugin', () => {
       localStorage.setItem('plugins', JSON.stringify(plugins));
 
       parent = await fixture(html`
-        <open-scd .doc=${valid2007B4} .docName=${'valid2007B4'}
+        <mock-editor-logger
           ><validate-schema
             .doc=${valid2007B4}
             .docName=${'valid2007B4'}
           ></validate-schema
-        ></open-scd>
-
-        <link href="public/google/fonts/roboto-v27.css" rel="stylesheet" />
-        <link href="public/google/fonts/roboto-mono-v13.css" rel="stylesheet" />
-        <link
-          href="public/google/icons/material-icons-outlined.css"
-          rel="stylesheet"
-        />
+        ></mock-editor-logger>
       `);
       element = <ValidateSchema>parent.querySelector('validate-schema')!;
       element.pluginId = '/src/validators/ValidateSchema.js';
@@ -71,21 +65,19 @@ describe('ValidateSchema plugin', () => {
 
     it('indicates successful schema validation in the diagnoses pane', async () => {
       await element.validate();
-      await parent.workDone;
 
       const lastEntry = <IssueDetail[]>(
         parent.diagnoses.get('/src/validators/ValidateSchema.js')
       );
       expect(lastEntry.length).to.equal(1);
-      expect(lastEntry[0].title).to.contain('validation successful');
+      expect(lastEntry[0].title).to.contain('[validator.schema.valid]');
     }).timeout(15000);
 
     it('indicates successful schema validation in the log', async () => {
       await element.validate();
-      await parent.workDone;
       const lastEntry = <LogEntry>parent.history.pop();
       expect(lastEntry.kind).to.equal('info');
-      expect(lastEntry.title).to.contain('validation successful');
+      expect(lastEntry.title).to.contain('[validator.schema.valid]');
     }).timeout(15000);
   });
 
@@ -96,19 +88,12 @@ describe('ValidateSchema plugin', () => {
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
       parent = await fixture(html`
-        <open-scd .doc=${invalid2007B} .docName=${'invalid2007B'}
+        <mock-editor-logger
           ><validate-schema
             .doc=${invalid2007B}
             .docName=${'invalid2007B'}
           ></validate-schema
-        ></open-scd>
-
-        <link href="public/google/fonts/roboto-v27.css" rel="stylesheet" />
-        <link href="public/google/fonts/roboto-mono-v13.css" rel="stylesheet" />
-        <link
-          href="public/google/icons/material-icons-outlined.css"
-          rel="stylesheet"
-        />
+        ></mock-editor-logger>
       `);
 
       element = <ValidateSchema>parent.querySelector('validate-schema')!;
@@ -120,7 +105,6 @@ describe('ValidateSchema plugin', () => {
       } catch (e) {
         e;
       }
-      await parent.workDone;
     });
     it('create issues in diagnose', async () => {
       const issues = parent.diagnoses.get('/src/validators/ValidateSchema.js');
@@ -135,7 +119,7 @@ describe('ValidateSchema plugin', () => {
     it('generates error messages in the log', async () => {
       const lastEntry = <LogEntry>parent.history.pop();
       expect(lastEntry.kind).to.equal('warning');
-      expect(lastEntry.title).to.contain('validation failed');
+      expect(lastEntry.title).to.contain('[validator.schema.invalid]');
     }).timeout(5000);
   });
 });
