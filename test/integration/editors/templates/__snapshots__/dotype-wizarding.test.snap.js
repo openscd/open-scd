@@ -701,7 +701,7 @@ snapshots["DOType wizards defines a createDOTypeWizard looks like the latest sna
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -1016,7 +1016,7 @@ snapshots["DOType wizards defines a dOTypeWizard looks like the latest snapshot"
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -1228,7 +1228,7 @@ snapshots["DOType wizards defines a sDOWizard to edit an existing SDO looks like
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -1414,7 +1414,7 @@ snapshots["DOType wizards defines a sDOWizard to create a new SDO element looks 
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >

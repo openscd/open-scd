@@ -113,7 +113,7 @@ snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that f
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -289,7 +289,7 @@ snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that f
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -528,7 +528,7 @@ snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that f
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >

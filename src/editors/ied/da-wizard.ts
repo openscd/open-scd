@@ -1,6 +1,6 @@
-import { html } from "lit-element";
-import { TemplateResult } from "lit-html";
-import { get, translate } from "lit-translate";
+import { html } from 'lit-element';
+import { TemplateResult } from 'lit-html';
+import { get, translate } from 'lit-translate';
 
 import '@material/mwc-textarea';
 import '@material/mwc-textfield';
@@ -10,15 +10,15 @@ import {
   getInstanceAttribute,
   getNameAttribute,
   newWizardEvent,
-  Wizard
-} from "../../foundation.js";
-import { Nsdoc } from "../../foundation/nsdoc.js";
+  Wizard,
+} from '../../foundation.js';
+import { Nsdoc } from '../../foundation/nsdoc.js';
 import {
   findDOTypeElement,
   findElement,
   findLogicaNodeElement,
-  getValueElement
-} from "./foundation.js";
+  getValueElement,
+} from './foundation.js';
 
 function renderFields(
   element: Element,
@@ -34,7 +34,7 @@ function renderFields(
   const doTypeElement = findDOTypeElement(doElement);
 
   return [
-    html `
+    html`
       <mwc-textarea
         label="${translate('iededitor.wizard.nsdocDescription')}"
         value="${nsdoc.getDataDescription(element, ancestors).label}"
@@ -42,151 +42,157 @@ function renderFields(
         cols="50"
         id="nsdocDescription"
         readonly
-        disabled>
+        disabled
+      >
       </mwc-textarea>
     `,
-    html `
+    html`
       <mwc-textfield
         label="${translate('iededitor.wizard.daName')}"
         value="${getNameAttribute(element) ?? '-'}"
         id="daName"
         readonly
-        disabled>
+        disabled
+      >
       </mwc-textfield>
     `,
-    html `
+    html`
       <mwc-textfield
         label="${translate('iededitor.wizard.daiDescription')}"
-        value="${(instanceElement
-          ? getDescriptionAttribute(instanceElement)??'-'
-          : '-')}"
+        value="${instanceElement
+          ? getDescriptionAttribute(instanceElement) ?? '-'
+          : '-'}"
         id="daiDescription"
         readonly
-        disabled>
+        disabled
+      >
       </mwc-textfield>
     `,
-    html `
+    html`
       <mwc-textfield
         label="${translate('iededitor.wizard.daFc')}"
         value="${element.getAttribute('fc') ?? '-'}"
         id="daFc"
         readonly
-        disabled>
+        disabled
+      >
       </mwc-textfield>
     `,
-    html `
+    html`
       <mwc-textfield
         label="${translate('iededitor.wizard.daBType')}"
         value="${element.getAttribute('bType') ?? '-'}"
         id="daBType"
         readonly
-        disabled>
+        disabled
+      >
       </mwc-textfield>
     `,
-    html `
+    html`
       <mwc-textfield
         label="${translate('iededitor.wizard.daValue')}"
-        value="${( instanceElement
+        value="${instanceElement
           ? getValueElement(instanceElement)?.textContent ?? '-'
-          : getValueElement(element)?.textContent ?? '-')}"
+          : getValueElement(element)?.textContent ?? '-'}"
         id="daValue"
         readonly
-        disabled>
+        disabled
+      >
       </mwc-textfield>
     `,
-    html `
-      <br/>
-    `,
-    html `
+    html` <br /> `,
+    html`
       <mwc-textfield
         label="${translate('iededitor.wizard.doName')}"
-        value="${(doElement
-          ? getNameAttribute(doElement) ?? '-'
-          : '-')}"
+        value="${doElement ? getNameAttribute(doElement) ?? '-' : '-'}"
         id="doName"
         readonly
-        disabled>
+        disabled
+      >
       </mwc-textfield>
     `,
-    html `
+    html`
       <mwc-textfield
         label="${translate('iededitor.wizard.doCdc')}"
         value="${doTypeElement?.getAttribute('cdc') ?? '-'}"
         id="doCdc"
         readonly
-        disabled>
+        disabled
+      >
       </mwc-textfield>
     `,
-    html `
-      <br/>
-    `,
-    html `
+    html` <br /> `,
+    html`
       <mwc-textfield
         label="${translate('iededitor.wizard.lnPrefix')}"
-        value="${(logicalNodeElement
+        value="${logicalNodeElement
           ? logicalNodeElement.getAttribute('prefix') ?? '-'
-          : '-')}"
+          : '-'}"
         id="lnPrefix"
         readonly
-        disabled>
+        disabled
+      >
       </mwc-textfield>
     `,
-    html `
+    html`
       <mwc-textfield
         label="${translate('iededitor.wizard.lnDescription')}"
-        value="${( logicalNodeElement
+        value="${logicalNodeElement
           ? nsdoc.getDataDescription(logicalNodeElement, ancestors).label
-          : '-')}"
+          : '-'}"
         id="lnPrefix"
         readonly
-        disabled>
+        disabled
+      >
       </mwc-textfield>
     `,
-    html `
+    html`
       <mwc-textfield
         label="${translate('iededitor.wizard.lnInst')}"
-        value="${(logicalNodeElement
+        value="${logicalNodeElement
           ? getInstanceAttribute(logicalNodeElement) ?? '-'
-          : '-')}"
+          : '-'}"
         id="lnInst"
         readonly
-        disabled>
+        disabled
+      >
       </mwc-textfield>
     `,
-    html `
-      <br/>
-    `,
-    html `
+    html` <br /> `,
+    html`
       <mwc-textfield
         label="${translate('iededitor.wizard.lDevice')}"
-        value="${(lDeviceElement
-      ? getNameAttribute(lDeviceElement) ?? getInstanceAttribute(lDeviceElement) ?? '-'
-      : '-')}"
+        value="${lDeviceElement
+          ? getNameAttribute(lDeviceElement) ??
+            getInstanceAttribute(lDeviceElement) ??
+            '-'
+          : '-'}"
         id="lDevice"
         readonly
-        disabled>
+        disabled
+      >
       </mwc-textfield>
     `,
-    html `
+    html`
       <mwc-textfield
         label="${translate('iededitor.wizard.accessPoint')}"
-        value="${(accessPointElement
-          ? getNameAttribute(accessPointElement)??'-'
-          : '-')}"
+        value="${accessPointElement
+          ? getNameAttribute(accessPointElement) ?? '-'
+          : '-'}"
         id="accessPoint"
         readonly
-        disabled>
+        disabled
+      >
       </mwc-textfield>
     `,
-    html `
+    html`
       <mwc-textfield
         label="${translate('iededitor.wizard.ied')}"
-        value="${(iedElement
-      ? getNameAttribute(iedElement)??'-'
-      : '-')}"
+        value="${iedElement ? getNameAttribute(iedElement) ?? '-' : '-'}"
         id="ied"
         readonly
-        disabled>
+        disabled
+      >
       </mwc-textfield>
     `,
   ];
@@ -198,26 +204,10 @@ export function createDaInfoWizard(
   ancestors: Element[],
   nsdoc: Nsdoc
 ): Wizard {
-  function close() {
-    return function () {
-      document
-        .querySelector('open-scd')!
-        .dispatchEvent(newWizardEvent());
-      return [];
-    };
-  }
-
   return [
     {
       title: get('iededitor.wizard.daTitle'),
-      secondary: {
-        icon: '',
-        label: get('close'),
-        action: close(),
-      },
-      content: [
-        ...renderFields(element, instanceElement, ancestors, nsdoc)
-      ],
+      content: [...renderFields(element, instanceElement, ancestors, nsdoc)],
     },
   ];
 }

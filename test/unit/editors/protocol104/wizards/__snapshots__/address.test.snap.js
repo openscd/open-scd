@@ -60,7 +60,7 @@ snapshots["Wizards for 104 Address Element edit basic 104 Address looks like the
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -147,7 +147,7 @@ snapshots["Wizards for 104 Address Element edit 104 Address with expected value 
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -430,7 +430,7 @@ snapshots["Wizards for 104 Address Element edit 104 Address with unit multiplier
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -729,7 +729,7 @@ snapshots["Wizards for 104 Address Element edit 104 Address with scale fields lo
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >

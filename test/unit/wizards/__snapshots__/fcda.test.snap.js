@@ -14,7 +14,7 @@ snapshots["create wizard for FCDA element with a valid SCL file looks like the l
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
