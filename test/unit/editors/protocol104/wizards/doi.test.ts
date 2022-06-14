@@ -24,10 +24,10 @@ describe('Wizards for 104 DOI Element', () => {
     element = await fixture(html`<mock-wizard></mock-wizard>`);
   });
 
-  describe('show 104 DOI Info', () => {
+  describe('show 104 DOI Basic Info (Known CDC Monitor Only)', () => {
     beforeEach(async () => {
       doiElement = doc.querySelector(
-        'IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] DOI[name="CntVal1"]'
+        'IED[name="B1"] LN[lnType="SE_GAPC_SET_V001"] DOI[name="Op"]'
       )!;
 
       const wizard = showDOIInfoWizard(doiElement);
@@ -40,10 +40,26 @@ describe('Wizards for 104 DOI Element', () => {
     });
   });
 
-  describe('show 104 DOI Info with ctlModel', () => {
+  describe('show 104 DOI Basic Info with ctlModel (Known CDC Monitor and Control)', () => {
     beforeEach(async () => {
       doiElement = doc.querySelector(
         'IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] DOI[name="CmdBlk"]'
+      )!;
+
+      const wizard = showDOIInfoWizard(doiElement);
+      element.workflow.push(() => wizard);
+      await element.requestUpdate();
+    });
+
+    it('looks like the latest snapshot', async () => {
+      await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
+    });
+  });
+
+  describe('show 104 DOI Basic Info (Unknown CDC)', () => {
+    beforeEach(async () => {
+      doiElement = doc.querySelector(
+        'IED[name="B1"] LN[lnType="SE_GAPC_SET_V001"] DOI[name="Str"]'
       )!;
 
       const wizard = showDOIInfoWizard(doiElement);
