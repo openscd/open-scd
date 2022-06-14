@@ -49,6 +49,51 @@ snapshots["Wizards for SCL element IED edit IED looks like the latest snapshot"]
       pattern="([ -~]|[]|[ -퟿]|[-�])*"
     >
     </wizard-textfield>
+    <wizard-textfield
+      helper="[ied.wizard.typeHelper]"
+      label="type"
+      pattern="([ -~]|[]|[ -퟿]|[-�])*"
+      readonly=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      helper="[ied.wizard.manufacturerHelper]"
+      label="manufacturer"
+      pattern="([ -~]|[]|[ -퟿]|[-�])*"
+      readonly=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      helper="[ied.wizard.configVersionHelper]"
+      label="configVersion"
+      pattern="([ -~]|[]|[ -퟿]|[-�])*"
+      readonly=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      defaultvalue="2003"
+      helper="[ied.wizard.originalSclVersionHelper]"
+      label="originalSclVersion"
+      pattern="([ -~]|[]|[ -퟿]|[-�])*"
+      readonly=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      defaultvalue="full"
+      disabled=""
+      helper="[ied.wizard.engRightHelper]"
+      label="engRight"
+      pattern="([ -~]|[]|[ -퟿]|[-�])*"
+      readonly=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      helper="[ied.wizard.ownerHelper]"
+      label="owner"
+      pattern="([ -~]|[]|[ -퟿]|[-�])*"
+      readonly=""
+    >
+    </wizard-textfield>
   </div>
   <mwc-button
     dialogaction="close"
