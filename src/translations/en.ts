@@ -227,6 +227,12 @@ export const en = {
     wizard: {
       nameHelper: 'IED name',
       descHelper: 'IED description',
+      typeHelper: 'IED type',
+      manufacturerHelper: 'IED manufacturer',
+      configVersionHelper: 'IED configuration version',
+      originalSclVersionHelper: 'IED schema version',
+      engRightHelper: 'IED engineering right',
+      ownerHelper: 'IED owner',
       title: {
         edit: 'Edit IED',
         delete: 'Remove IED with references',

@@ -230,6 +230,12 @@ export const de: Translations = {
     wizard: {
       nameHelper: 'Name des IED',
       descHelper: 'Beschreibung des IED',
+      typeHelper: '??',
+      manufacturerHelper: '??',
+      configVersionHelper: '??',
+      originalSclVersionHelper: '??',
+      engRightHelper: '??',
+      ownerHelper: '??',
       title: {
         edit: 'IED bearbeiten',
         delete: 'IED mit Abhängigkeiten entfernen',
