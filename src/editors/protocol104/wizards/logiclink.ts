@@ -96,23 +96,22 @@ function remove(parent: Element, rGNumber: number, lLNumber: number): WizardMenu
     const addressElement = parent.querySelector('Address');
 
     const complexAction: ComplexAction = {
-      actions: [{
-        old: {
-          parent: addressElement!,
-          element: addressElement!.querySelector(`P[type="RG${rGNumber}-LL${lLNumber}-IP"]`)! 
-        }
-      },{
-        old: {
-          parent: addressElement!,
-          element: addressElement!.querySelector(`P[type="RG${rGNumber}-LL${lLNumber}-IP-SUBNET"]`)!
-        }
-      }],
+      actions: [],
       title: get('protocol104.network.logicLink.wizard.removedLogicLink', {
         subNetworkName: parent.parentElement!.getAttribute('name')!,
         apName: parent.getAttribute('apName')!,
         iedName:  parent.getAttribute('iedName')!
       }),
     };
+    
+    addressElement!.querySelectorAll(`P[type^="RG${rGNumber}-LL${lLNumber}-"]`).forEach(p => {
+      complexAction.actions.push({
+        old: {
+          parent: addressElement!,
+          element: p!
+        }
+      });
+    });
     
     wizard.dispatchEvent(newActionEvent(complexAction));
     wizard.dispatchEvent(newWizardEvent());

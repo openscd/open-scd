@@ -14,6 +14,7 @@ import {
   newActionEvent,
   newSubWizardEvent,
   newWizardEvent,
+  SimpleAction,
   Wizard,
   WizardActor,
   WizardInputElement,
@@ -91,7 +92,7 @@ export function createRedundancyGroupWizard(parent: Element, occupiedRGNumbers: 
       primary: {
         icon: '',
         label: get('save'),
-        action: createRedundancyGroupAction(parent, rGNumber),
+        action: addRedundancyGroupAction(parent, rGNumber),
       },
       content: [
         html`<wizard-textfield
@@ -105,97 +106,6 @@ export function createRedundancyGroupWizard(parent: Element, occupiedRGNumbers: 
       ],
     },
   ];
-}
-
-function editRedundancyGroupAction(parent: Element, rGNumber: number): WizardActor {
-  return (inputs: WizardInputElement[]): EditorAction[] => {
-    const complexAction: ComplexAction = {
-      actions: [],
-      title: get('protocol104.network.redundancyGroup.wizard.edittedRedundancyGroup', {
-        rGNumber,
-        subNetworkName: parent.parentElement!.getAttribute('name')!,
-        apName: parent.getAttribute('apName')!,
-        iedName:  parent.getAttribute('iedName')!
-      }),
-    };
-
-    const wFactorValue = getValue(inputs.find(i => i.label === 'W-FACTOR')!)!;
-    const wFactorElement = parent.querySelector(`Address > P[type="RG${rGNumber}-W-FACTOR"]`);
-    const kFactorValue = getValue(inputs.find(i => i.label === 'K-FACTOR')!)!;
-    const kFactorElement = parent.querySelector(`Address > P[type="RG${rGNumber}-K-FACTOR"]`);
-    const timeout0Value = getValue(inputs.find(i => i.label === 'TIMEOUT-0')!)!;
-    const timeout0Element = parent.querySelector(`Address > P[type="RG${rGNumber}-TIMEOUT-0"]`);
-    const timeout1Value = getValue(inputs.find(i => i.label === 'TIMEOUT-1')!)!;
-    const timeout1Element = parent.querySelector(`Address > P[type="RG${rGNumber}-TIMEOUT-1"]`);
-    const timeout2Value = getValue(inputs.find(i => i.label === 'TIMEOUT-2')!)!;
-    const timeout2Element = parent.querySelector(`Address > P[type="RG${rGNumber}-TIMEOUT-2"]`);
-    const timeout3Value = getValue(inputs.find(i => i.label === 'TIMEOUT-3')!)!;
-    const timeout3Element = parent.querySelector(`Address > P[type="RG${rGNumber}-TIMEOUT-3"]`);
-
-    if (
-      wFactorValue === wFactorElement?.textContent &&
-      kFactorValue === kFactorElement?.textContent &&
-      timeout0Value === timeout0Element?.textContent &&
-      timeout1Value === timeout1Element?.textContent &&
-      timeout2Value === timeout2Element?.textContent &&
-      timeout3Value === timeout3Element?.textContent
-    ) {
-      return [];
-    }
-
-    const wFactorClone = cloneElement(wFactorElement!, {});
-    wFactorClone.textContent = wFactorValue;
-    const kFactorClone = cloneElement(kFactorElement!, {});
-    kFactorClone.textContent = kFactorValue;
-    const timeout0Clone = cloneElement(timeout0Element!, {});
-    timeout0Clone.textContent = timeout0Value;
-    const timeout1Clone = cloneElement(timeout1Element!, {});
-    timeout1Clone.textContent = timeout1Value;
-    const timeout2Clone = cloneElement(timeout2Element!, {});
-    timeout2Clone.textContent = timeout2Value;
-    const timeout3Clone = cloneElement(timeout3Element!, {});
-    timeout3Clone.textContent = timeout3Value;
-
-    complexAction.actions.push(
-      { old: { element: wFactorElement! }, new: { element: wFactorClone }, },
-      { old: { element: kFactorElement! }, new: { element: kFactorClone }, },
-      { old: { element: timeout0Element! }, new: { element: timeout0Clone }, },
-      { old: { element: timeout1Element! }, new: { element: timeout1Clone }, },
-      { old: { element: timeout2Element! }, new: { element: timeout2Clone }, },
-      { old: { element: timeout3Element! }, new: { element: timeout3Clone }, }
-    );
-
-    return [complexAction];
-  };
-}
-
-function createRedundancyGroupAction(parent: Element, rGNumber: number): WizardActor {
-  return (inputs: WizardInputElement[]): EditorAction[] => {
-    const complexAction: ComplexAction = {
-      actions: [],
-      title: get('protocol104.network.redundancyGroup.wizard.addedLRedundancyGroup', {
-        rGNumber,
-        subNetworkName: parent.parentElement!.getAttribute('name')!,
-        apName: parent.getAttribute('apName')!,
-        iedName:  parent.getAttribute('iedName')!
-      }),
-    };
-
-    pTypesRedundancyGroup104.forEach(type => {
-      const pElement = createElement(parent.ownerDocument, 'P', {
-        type: `RG${rGNumber}-${type}`
-      });
-      pElement.textContent = getValue(inputs.find(i => i.label === type)!)!;
-      complexAction.actions.push({
-        new: {
-          parent: parent.querySelector('Address')!,
-          element: pElement
-        }
-      });
-    });
-
-    return [complexAction];
-  };
 }
 
 function openLogicLinkWizard(parent: Element, rGNumber: number, lLNumber: number[]): WizardMenuActor {
@@ -225,13 +135,83 @@ function remove(parent: Element, rGNumber: number): WizardMenuActor {
     };
     
     addressElement!.querySelectorAll(`P[type^="RG${rGNumber}-"]`).forEach(p => {
-      complexAction.actions.push(
-        { old: { parent: addressElement!, element: p! } }
-      )
+      complexAction.actions.push({
+        old: {
+          parent: addressElement!,
+          element: p!
+        }
+      });
     });
     
     wizard.dispatchEvent(newActionEvent(complexAction));
     wizard.dispatchEvent(newWizardEvent());
+  };
+}
+
+function editRedundancyGroupAction(parent: Element, rGNumber: number): WizardActor {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
+    const actions: SimpleAction[] = [];
+
+    pTypesRedundancyGroup104.forEach(type => {
+      const inputValue = getValue(inputs.find(i => i.label === type)!)!;
+      const elementOriginal = parent.querySelector(`Address > P[type="RG${rGNumber}-${type}"]`);
+
+      if (inputValue !== elementOriginal?.textContent) {
+        const elementClone = cloneElement(elementOriginal!, {});
+        elementClone.textContent = inputValue;
+
+        actions.push({
+          old: {
+            element: elementOriginal!
+          },
+          new: {
+            element: elementClone
+          }
+        });
+      }
+    });
+
+    return actions.length != 0
+      ? [{
+          actions,
+          title: get('protocol104.network.redundancyGroup.wizard.edittedRedundancyGroup', {
+            rGNumber,
+            subNetworkName: parent.parentElement!.getAttribute('name')!,
+            apName: parent.getAttribute('apName')!,
+            iedName:  parent.getAttribute('iedName')!
+          }),
+        }]
+      : [];
+  };
+}
+
+function addRedundancyGroupAction(parent: Element, rGNumber: number): WizardActor {
+  return (inputs: WizardInputElement[]): EditorAction[] => {
+    const complexAction: ComplexAction = {
+      actions: [],
+      title: get('protocol104.network.redundancyGroup.wizard.addedLRedundancyGroup', {
+        rGNumber,
+        subNetworkName: parent.parentElement!.getAttribute('name')!,
+        apName: parent.getAttribute('apName')!,
+        iedName:  parent.getAttribute('iedName')!
+      }),
+    };
+
+    pTypesRedundancyGroup104.forEach(type => {
+      const pElement = createElement(parent.ownerDocument, 'P', {
+        type: `RG${rGNumber}-${type}`
+      });
+      pElement.textContent = getValue(inputs.find(i => i.label === type)!)!;
+
+      complexAction.actions.push({
+        new: {
+          parent: parent.querySelector('Address')!,
+          element: pElement
+        }
+      });
+    });
+
+    return [complexAction];
   };
 }
 

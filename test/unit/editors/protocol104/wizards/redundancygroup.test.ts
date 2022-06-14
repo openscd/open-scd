@@ -3,7 +3,7 @@ import { SinonSpy, spy } from 'sinon';
 
 import '../../../../mock-wizard.js';
 
-import { Create, Delete, EditorAction, isCreate, isDelete, isReplace, Replace, WizardInputElement } from '../../../../../src/foundation.js';
+import { ComplexAction, Create, Delete, EditorAction, isCreate, isDelete, isReplace, Replace, WizardInputElement } from '../../../../../src/foundation.js';
 import { MockWizard } from '../../../../mock-wizard.js';
 import { WizardTextField } from '../../../../../src/wizard-textfield.js';
 import { createRedundancyGroupWizard, editRedundancyGroupWizard } from '../../../../../src/editors/protocol104/wizards/redundancyGroup.js';
@@ -67,11 +67,15 @@ describe('Wizards for the Redundancy Group SCL element group', () => {
 
       primaryAction.click();
       await element.requestUpdate();
+      
+      const complexAction = <ComplexAction>actionEvent.args[0][0].detail.action;
+      expect(complexAction.title).to.contain('edit');
+      expect(complexAction.actions).to.have.lengthOf(1);
 
-      const action = <EditorAction>actionEvent.args[3][0].detail.action;
+      const action = complexAction.actions[0];
       expect(action).to.satisfy(isReplace);
-      expect((<Replace>action).old.element.innerHTML).to.eql('3');
-      expect((<Replace>action).new.element.innerHTML).to.eql('18');
+      expect((<Replace>(action)).old.element.textContent).to.eql('3');
+      expect((<Replace>(action)).new.element.textContent).to.eql('18');
     });
 
     it('properly deletes a full Redundancy Group', async () => {
@@ -84,37 +88,41 @@ describe('Wizards for the Redundancy Group SCL element group', () => {
       deleteAction.click();
       await element.requestUpdate();
 
-      const ip = <EditorAction>actionEvent.args[0][0].detail.action;
+      const complexAction = <ComplexAction>actionEvent.args[0][0].detail.action;
+      expect(complexAction.title).to.contain('remove');
+      expect(complexAction.actions).to.have.lengthOf(8);
+
+      const ip = complexAction.actions[0];
       expect(ip).to.satisfy(isDelete);
-      expect((<Delete>ip).old.element.textContent).to.eql('192.128.0.2');
+      expect((<Delete>(ip)).old.element.textContent).to.eql('192.128.0.2');
 
-      const ipSubnet = <EditorAction>actionEvent.args[1][0].detail.action;
-      expect(ipSubnet).to.satisfy(isDelete);
-      expect((<Delete>ipSubnet).old.element.textContent).to.eql('255.255.255.0');
+      const subNet = complexAction.actions[1];
+      expect(subNet).to.satisfy(isDelete);
+      expect((<Delete>(subNet)).old.element.textContent).to.eql('255.255.255.0');
 
-      const wFactor = <EditorAction>actionEvent.args[2][0].detail.action;
+      const wFactor = complexAction.actions[2];
       expect(wFactor).to.satisfy(isDelete);
-      expect((<Delete>wFactor).old.element.textContent).to.eql('8');
-      
-      const kFactor = <EditorAction>actionEvent.args[3][0].detail.action;
+      expect((<Delete>(wFactor)).old.element.textContent).to.eql('8');
+
+      const kFactor = complexAction.actions[3];
       expect(kFactor).to.satisfy(isDelete);
-      expect((<Delete>kFactor).old.element.textContent).to.eql('12');
-      
-      const timeout0 = <EditorAction>actionEvent.args[4][0].detail.action;
+      expect((<Delete>(kFactor)).old.element.textContent).to.eql('12');
+
+      const timeout0 = complexAction.actions[4];
       expect(timeout0).to.satisfy(isDelete);
-      expect((<Delete>timeout0).old.element.textContent).to.eql('30');
-      
-      const timeout1 = <EditorAction>actionEvent.args[5][0].detail.action;
+      expect((<Delete>(timeout0)).old.element.textContent).to.eql('30');
+
+      const timeout1 = complexAction.actions[5];
       expect(timeout1).to.satisfy(isDelete);
-      expect((<Delete>timeout1).old.element.textContent).to.eql('3');
-      
-      const timeout2 = <EditorAction>actionEvent.args[6][0].detail.action;
+      expect((<Delete>(timeout1)).old.element.textContent).to.eql('3');
+
+      const timeout2 = complexAction.actions[6];
       expect(timeout2).to.satisfy(isDelete);
-      expect((<Delete>timeout2).old.element.textContent).to.eql('10');
-      
-      const timeout3 = <EditorAction>actionEvent.args[7][0].detail.action;
+      expect((<Delete>(timeout2)).old.element.textContent).to.eql('10');
+
+      const timeout3 = complexAction.actions[7];
       expect(timeout3).to.satisfy(isDelete);
-      expect((<Delete>timeout3).old.element.textContent).to.eql('20');
+      expect((<Delete>(timeout3)).old.element.textContent).to.eql('20');
     });
   });
 
@@ -159,30 +167,34 @@ describe('Wizards for the Redundancy Group SCL element group', () => {
 
       primaryAction.click();
       await element.requestUpdate();
-      
-      const wFactorAction = <EditorAction>actionEvent.args[0][0].detail.action;
-      expect(wFactorAction).to.satisfy(isCreate);
-      expect((<Create>wFactorAction).new.element.textContent).to.eql('5');
-      
-      const kFactorAction = <EditorAction>actionEvent.args[1][0].detail.action;
-      expect(kFactorAction).to.satisfy(isCreate);
-      expect((<Create>kFactorAction).new.element.textContent).to.eql('9');
-      
-      const timeout0Action = <EditorAction>actionEvent.args[2][0].detail.action;
-      expect(timeout0Action).to.satisfy(isCreate);
-      expect((<Create>timeout0Action).new.element.textContent).to.eql('15');
-      
-      const timeout1Action = <EditorAction>actionEvent.args[3][0].detail.action;
-      expect(timeout1Action).to.satisfy(isCreate);
-      expect((<Create>timeout1Action).new.element.textContent).to.eql('20');
-      
-      const timeout2Action = <EditorAction>actionEvent.args[4][0].detail.action;
-      expect(timeout2Action).to.satisfy(isCreate);
-      expect((<Create>timeout2Action).new.element.textContent).to.eql('25');
-      
-      const timeout3Action = <EditorAction>actionEvent.args[5][0].detail.action;
-      expect(timeout3Action).to.satisfy(isCreate);
-      expect((<Create>timeout3Action).new.element.textContent).to.eql('30');
+
+      const complexAction = <ComplexAction>actionEvent.args[0][0].detail.action;
+      expect(complexAction.title).to.contain('add');
+      expect(complexAction.actions).to.have.lengthOf(6);
+
+      const wFactor = complexAction.actions[0];
+      expect(wFactor).to.satisfy(isCreate);
+      expect((<Create>(wFactor)).new.element.textContent).to.eql('5');
+
+      const kFactor = complexAction.actions[1];
+      expect(kFactor).to.satisfy(isCreate);
+      expect((<Create>(kFactor)).new.element.textContent).to.eql('9');
+
+      const timeout0 = complexAction.actions[2];
+      expect(timeout0).to.satisfy(isCreate);
+      expect((<Create>(timeout0)).new.element.textContent).to.eql('15');
+
+      const timeout1 = complexAction.actions[3];
+      expect(timeout1).to.satisfy(isCreate);
+      expect((<Create>(timeout1)).new.element.textContent).to.eql('20');
+
+      const timeout2 = complexAction.actions[4];
+      expect(timeout2).to.satisfy(isCreate);
+      expect((<Create>(timeout2)).new.element.textContent).to.eql('25');
+
+      const timeout3 = complexAction.actions[5];
+      expect(timeout3).to.satisfy(isCreate);
+      expect((<Create>(timeout3)).new.element.textContent).to.eql('30');
     });
   });
 });

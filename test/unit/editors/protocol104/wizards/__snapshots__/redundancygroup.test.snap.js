@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["Wizards for the Redundancy Group SCL element group include a create wizard that looks like the latest snapshot"] = 
 `<mwc-dialog
-  defaultaction="close"
+  defaultaction="next"
   heading="[protocol104.network.redundancyGroup.wizard.title.add]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
