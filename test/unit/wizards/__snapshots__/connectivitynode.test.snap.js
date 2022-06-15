@@ -29,7 +29,7 @@ snapshots["Wizards for SCL element ConnectivityNode looks like the latest snapsh
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >

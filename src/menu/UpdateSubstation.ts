@@ -90,8 +90,7 @@ export default class UpdateSubstationPlugin extends LitElement {
     if (file)
       file.text().then(text => {
         const doc = new DOMParser().parseFromString(text, 'application/xml');
-        // FIXME: Dirty hack should not be necessary!
-        document.querySelector('open-scd')!.dispatchEvent(
+        this.dispatchEvent(
           newWizardEvent(
             mergeWizard(
               // FIXME: doesn't work with multiple Substations!

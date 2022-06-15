@@ -613,7 +613,7 @@ snapshots["BDA wizarding editing integration defines a editBDaWizard to edit an 
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -1150,7 +1150,7 @@ snapshots["BDA wizarding editing integration defines a createBDaWizard to create
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >

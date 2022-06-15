@@ -12,13 +12,23 @@ import { Dialog } from '@material/mwc-dialog';
 import { Select } from '@material/mwc-select';
 import { Switch } from '@material/mwc-switch';
 
-import { ifImplemented, LitElementConstructor, Mixin, newLogEvent } from './foundation.js';
+import {
+  ifImplemented,
+  LitElementConstructor,
+  Mixin,
+  newLogEvent,
+} from './foundation.js';
 import { Language, languages, loader } from './translations/loader.js';
 
 import './WizardDivider.js';
 import { WizardDialog } from './wizard-dialog.js';
 
-import { iec6185072, iec6185073, iec6185074, iec6185081 } from "./validators/templates/foundation.js";
+import {
+  iec6185072,
+  iec6185073,
+  iec6185074,
+  iec6185081,
+} from './validators/templates/foundation.js';
 import { initializeNsdoc, Nsdoc } from './foundation/nsdoc.js';
 
 export type Settings = {
@@ -39,21 +49,21 @@ export const defaults: Settings = {
   'IEC 61850-7-2': undefined,
   'IEC 61850-7-3': undefined,
   'IEC 61850-7-4': undefined,
-  'IEC 61850-8-1': undefined
+  'IEC 61850-8-1': undefined,
 };
 
 type NsdVersion = {
-  version: string | undefined,
-  revision: string | undefined,
-  release: string | undefined
-}
+  version: string | undefined;
+  revision: string | undefined;
+  release: string | undefined;
+};
 
 type NsdVersions = {
   'IEC 61850-7-2': NsdVersion;
   'IEC 61850-7-3': NsdVersion;
   'IEC 61850-7-4': NsdVersion;
   'IEC 61850-8-1': NsdVersion;
-}
+};
 
 /** Represents a document to be opened. */
 export interface LoadNsdocDetail {
@@ -89,7 +99,7 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
         'IEC 61850-7-2': this.getSetting('IEC 61850-7-2'),
         'IEC 61850-7-3': this.getSetting('IEC 61850-7-3'),
         'IEC 61850-7-4': this.getSetting('IEC 61850-7-4'),
-        'IEC 61850-8-1': this.getSetting('IEC 61850-8-1')
+        'IEC 61850-8-1': this.getSetting('IEC 61850-8-1'),
       };
     }
     /** Object containing all *.nsdoc files and a function extracting element's label form them*/
@@ -101,8 +111,18 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
      * @returns Current version, revision and release for all current OpenSCD NSD files.
      */
     private async nsdVersions(): Promise<NsdVersions> {
-      const [nsd72, nsd73, nsd74, nsd81] = await Promise.all([iec6185072, iec6185073, iec6185074, iec6185081]);
-      const [nsd72Ns, nsd73Ns, nsd74Ns, nsd81Ns] = [nsd72.querySelector('NS'), nsd73.querySelector('NS'), nsd74.querySelector('NS'), nsd81.querySelector('ServiceNS')];
+      const [nsd72, nsd73, nsd74, nsd81] = await Promise.all([
+        iec6185072,
+        iec6185073,
+        iec6185074,
+        iec6185081,
+      ]);
+      const [nsd72Ns, nsd73Ns, nsd74Ns, nsd81Ns] = [
+        nsd72.querySelector('NS'),
+        nsd73.querySelector('NS'),
+        nsd74.querySelector('NS'),
+        nsd81.querySelector('ServiceNS'),
+      ];
 
       return {
         'IEC 61850-7-2': {
@@ -124,8 +144,8 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
           version: nsd81Ns?.getAttribute('version') ?? undefined,
           revision: nsd81Ns?.getAttribute('revision') ?? undefined,
           release: nsd81Ns?.getAttribute('release') ?? undefined,
-        }
-      }
+        },
+      };
     }
 
     @query('#settings')
@@ -189,15 +209,26 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     private renderFileSelect(): TemplateResult {
-      return html `
-        <input id="nsdoc-file" accept=".nsdoc" type="file" hidden required multiple
-          @change=${(evt: Event) => this.uploadNsdocFile(evt)}}>
-        <mwc-button label="${translate('settings.selectFileButton')}"
-                    id="selectFileButton"
-                    @click=${() => {
-                      const input = <HTMLInputElement | null>this.shadowRoot!.querySelector("#nsdoc-file");
-                      input?.click();
-                    }}>
+      return html`
+        <input
+          id="nsdoc-file"
+          accept=".nsdoc"
+          type="file"
+          hidden
+          required
+          multiple
+          @change="${(evt: Event) => this.uploadNsdocFile(evt)}}"
+        />
+        <mwc-button
+          label="${translate('settings.selectFileButton')}"
+          id="selectFileButton"
+          @click=${() => {
+            const input = <HTMLInputElement | null>(
+              this.shadowRoot!.querySelector('#nsdoc-file')
+            );
+            input?.click();
+          }}
+        >
         </mwc-button>
       `;
     }
@@ -210,11 +241,7 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
       if (files.length == 0) return;
       for (const file of files) {
         const text = await file.text();
-        document
-          .querySelector('open-scd')!
-          .dispatchEvent(
-            newLoadNsdocEvent(text, file.name)
-          );
+        this.dispatchEvent(newLoadNsdocEvent(text, file.name));
       }
 
       this.nsdocFileUI.value = '';
@@ -222,17 +249,20 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     private async onLoadNsdoc(event: LoadNsdocEvent) {
-      const nsdocElement = this.parseToXmlObject(event.detail.nsdoc).querySelector('NSDoc');
+      const nsdocElement = this.parseToXmlObject(
+        event.detail.nsdoc
+      ).querySelector('NSDoc');
 
       const id = nsdocElement?.getAttribute('id');
       if (!id) {
-        document
-          .querySelector('open-scd')!
-          .dispatchEvent(
-            newLogEvent({ kind: 'error', title: get('settings.invalidFileNoIdFound', {
-              filename: event.detail.filename
-            }) })
-          );
+        this.dispatchEvent(
+          newLogEvent({
+            kind: 'error',
+            title: get('settings.invalidFileNoIdFound', {
+              filename: event.detail.filename,
+            }),
+          })
+        );
         return;
       }
 
@@ -241,20 +271,21 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
       const nsdocVersion = {
         version: nsdocElement!.getAttribute('version') ?? '',
         revision: nsdocElement!.getAttribute('revision') ?? '',
-        release: nsdocElement!.getAttribute('release') ?? ''
-      }
+        release: nsdocElement!.getAttribute('release') ?? '',
+      };
 
       if (!this.isEqual(nsdVersion, nsdocVersion)) {
-        document
-          .querySelector('open-scd')!
-          .dispatchEvent(
-            newLogEvent({ kind: 'error', title: get('settings.invalidNsdocVersion', {
-                id: id,
-                filename: event.detail.filename,
-                nsdVersion: `${nsdVersion.version}${nsdVersion.revision}${nsdVersion.release}`,
-                nsdocVersion: `${nsdocVersion.version}${nsdocVersion.revision}${nsdocVersion.release}`
-              }) })
-          );
+        this.dispatchEvent(
+          newLogEvent({
+            kind: 'error',
+            title: get('settings.invalidNsdocVersion', {
+              id: id,
+              filename: event.detail.filename,
+              nsdVersion: `${nsdVersion.version}${nsdVersion.revision}${nsdVersion.release}`,
+              nsdocVersion: `${nsdocVersion.version}${nsdocVersion.revision}${nsdocVersion.release}`,
+            }),
+          })
+        );
         return;
       }
 
@@ -269,7 +300,11 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
      * @returns Are they equal or not.
      */
     private isEqual(versionA: NsdVersion, versionB: NsdVersion): boolean {
-      return versionA.version == versionB.version && versionA.revision == versionB.revision && versionA.release == versionB.release;
+      return (
+        versionA.version == versionB.version &&
+        versionA.revision == versionB.revision &&
+        versionA.release == versionB.release
+      );
     }
 
     /**
@@ -290,14 +325,32 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
         nsdRelease = nsdoc?.getAttribute('release');
       }
 
-      return html`<mwc-list-item id=${key} graphic="avatar" hasMeta twoline .disabled=${!nsdSetting}>
+      return html`<mwc-list-item
+        id=${key}
+        graphic="avatar"
+        hasMeta
+        twoline
+        .disabled=${!nsdSetting}
+      >
         <span>${key}</span>
-        ${nsdSetting ? html`<span slot="secondary">${nsdVersion}${nsdRevision}${nsdRelease}</span>` :
-          html``}
-        ${nsdSetting ? html`<mwc-icon slot="graphic" style="color:green;">done</mwc-icon>` :
-          html`<mwc-icon slot="graphic" style="color:red;">close</mwc-icon>`}
-        ${nsdSetting ? html`<mwc-icon id="deleteNsdocItem" slot="meta" @click=${() => {this.removeSetting(key)}}>delete</mwc-icon>` :
-          html``}
+        ${nsdSetting
+          ? html`<span slot="secondary"
+              >${nsdVersion}${nsdRevision}${nsdRelease}</span
+            >`
+          : html``}
+        ${nsdSetting
+          ? html`<mwc-icon slot="graphic" style="color:green;">done</mwc-icon>`
+          : html`<mwc-icon slot="graphic" style="color:red;">close</mwc-icon>`}
+        ${nsdSetting
+          ? html`<mwc-icon
+              id="deleteNsdocItem"
+              slot="meta"
+              @click=${() => {
+                this.removeSetting(key);
+              }}
+              >delete</mwc-icon
+            >`
+          : html``}
       </mwc-list-item>`;
     }
 

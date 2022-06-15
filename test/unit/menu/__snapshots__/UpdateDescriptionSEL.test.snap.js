@@ -4,7 +4,7 @@ export const snapshots = {};
 snapshots["Update method for desc attributes in SEL IEDs working on SCL files containing manufacturer SEL using a semicolon separated file creates filtered list with all proposed desc attribute updates"] = 
 `<mwc-dialog
   defaultaction="next"
-  heading="Add desc"
+  heading="[wizard.title.add]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
@@ -126,14 +126,14 @@ snapshots["Update method for desc attributes in SEL IEDs working on SCL files co
   </div>
   <mwc-button
     dialogaction="close"
-    label="Cancel"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
   </mwc-button>
   <mwc-button
     icon="save"
-    label="Save"
+    label="[save]"
     slot="primaryAction"
     trailingicon=""
   >
@@ -145,7 +145,7 @@ snapshots["Update method for desc attributes in SEL IEDs working on SCL files co
 snapshots["Update method for desc attributes in SEL IEDs working on SCL files containing manufacturer SEL using a comma separated (CSV) file creates filtered list with all proposed desc attribute updates"] = 
 `<mwc-dialog
   defaultaction="next"
-  heading="Add desc"
+  heading="[wizard.title.add]"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
@@ -267,14 +267,14 @@ snapshots["Update method for desc attributes in SEL IEDs working on SCL files co
   </div>
   <mwc-button
     dialogaction="close"
-    label="Cancel"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
   </mwc-button>
   <mwc-button
     icon="save"
-    label="Save"
+    label="[save]"
     slot="primaryAction"
     trailingicon=""
   >
