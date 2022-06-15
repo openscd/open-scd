@@ -182,7 +182,7 @@ function editRedundancyGroupAction(parent: Element, rGNumber: number): WizardAct
     return actions.length != 0
       ? [{
           actions,
-          title: get('protocol104.network.redundancyGroup.wizard.edittedRedundancyGroup', {
+          title: get('protocol104.network.redundancyGroup.wizard.editedRedundancyGroup', {
             rGNumber,
             subNetworkName: parent.parentElement!.getAttribute('name')!,
             apName: parent.getAttribute('apName')!,

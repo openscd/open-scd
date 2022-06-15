@@ -154,7 +154,7 @@ function editLogicLinkAction(parent: Element, rGNumber: number, lLNumber: number
     return actions.length != 0
       ? [{
           actions,
-          title: get('protocol104.network.logicLink.wizard.edittedLogicLink', {
+          title: get('protocol104.network.logicLink.wizard.editedLogicLink', {
             subNetworkName: parent.parentElement!.getAttribute('name')!,
             apName: parent.getAttribute('apName')!,
             iedName:  parent.getAttribute('iedName')!

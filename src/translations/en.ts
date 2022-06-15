@@ -397,7 +397,7 @@ export const en = {
           },
           redundancyGroupNumberLabel: 'Redundancy Group number',
           addedLRedundancyGroup: 'Added Redundancy Group {{ rGNumber }} from SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
-          edittedRedundancyGroup: 'Editted Redundancy Group {{ rGNumber }} from SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+          editedRedundancyGroup: 'Edited Redundancy Group {{ rGNumber }} from SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
           removedRedundancyGroup: 'Removed Redundancy Group {{ rGNumber }} from SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
           logicLinkGroupTitle: 'Logic Links',
           noLogicLinksAvailable: 'No Logic Links available',
@@ -412,7 +412,7 @@ export const en = {
           },
           logicLinkNumberLabel: 'Logic Link number',
           addedLogicLink: 'Added Logic Link group from SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
-          edittedLogicLink: 'Editted Logic Link group from SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+          editedLogicLink: 'Edited Logic Link group from SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
           removedLogicLink: 'Removed Logic Link group from SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
         }
       }
