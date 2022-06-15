@@ -24,7 +24,7 @@ export class ConnectedAP104Editor extends LitElement {
       newWizardEvent(() =>
         editConnectedApWizard(
           this.element,
-          this.element.querySelectorAll('Address > P[type^="RG"]').length >= 8
+          this.element.querySelectorAll('Address > P[type^="RG"]').length > 0
         )
       )
     );

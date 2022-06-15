@@ -78,6 +78,25 @@ describe('Wizards for the Redundancy Group SCL element group', () => {
       expect((<Replace>(action)).new.element.textContent).to.eql('18');
     });
 
+    it('properly creates a P element if not present', async () => {
+      doc.querySelector('Communication > SubNetwork[name="W1"] > ConnectedAP[iedName="B1"] > Address > P[type="RG2-TIMEOUT-2"]')?.remove();
+
+      input = <WizardTextField>inputs.find(input => input.label === 'TIMEOUT-2');
+      input.value = '77';
+      await input.requestUpdate();
+
+      primaryAction.click();
+      await element.requestUpdate();
+      
+      const complexAction = <ComplexAction>actionEvent.args[0][0].detail.action;
+      expect(complexAction.title).to.contain('edit');
+      expect(complexAction.actions).to.have.lengthOf(1);
+
+      const action = complexAction.actions[0];
+      expect(action).to.satisfy(isCreate);
+      expect((<Create>(action)).new.element.textContent).to.eql('77');
+    });
+
     it('properly deletes a full Redundancy Group', async () => {
       const deleteAction = <HTMLElement>(
         element.wizardUI.dialog?.querySelectorAll(

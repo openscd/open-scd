@@ -33,7 +33,9 @@ export function editRedundancyGroupWizard(parent: Element, rGNumber: number): Wi
         {
           icon: 'playlist_add',
           label: get('protocol104.network.redundancyGroup.wizard.addLogicLink'),
-          action: openLogicLinkWizard(parent, rGNumber, usedLLNumbers),
+          action: (wizard: Element): void => {
+            wizard.dispatchEvent(newSubWizardEvent(createLogicLinkWizard(parent, rGNumber, usedLLNumbers)));
+          },
         },
         {
           icon: 'delete',
@@ -108,12 +110,6 @@ export function createRedundancyGroupWizard(parent: Element, occupiedRGNumbers: 
   ];
 }
 
-function openLogicLinkWizard(parent: Element, rGNumber: number, lLNumber: number[]): WizardMenuActor {
-  return (wizard: Element): void => {
-    wizard.dispatchEvent(newSubWizardEvent(createLogicLinkWizard(parent, rGNumber, lLNumber)));
-  };
-}
-
 /**
  * Remove all P elements belonging to a single Redundancy Group.
  * @param parent - The parent element of the P elements to remove.
@@ -156,7 +152,19 @@ function editRedundancyGroupAction(parent: Element, rGNumber: number): WizardAct
       const inputValue = getValue(inputs.find(i => i.label === type)!)!;
       const elementOriginal = parent.querySelector(`Address > P[type="RG${rGNumber}-${type}"]`);
 
-      if (inputValue !== elementOriginal?.textContent) {
+      if (elementOriginal == null) {
+        const pElement = createElement(parent.ownerDocument, 'P', {
+          type: `RG${rGNumber}-${type}`
+        });
+        pElement.textContent = inputValue;
+  
+        actions.push({
+          new: {
+            parent: parent.querySelector('Address')!,
+            element: pElement
+          }
+        });
+      } else if (inputValue !== elementOriginal?.textContent) {
         const elementClone = cloneElement(elementOriginal!, {});
         elementClone.textContent = inputValue;
 

@@ -124,7 +124,19 @@ function editLogicLinkAction(parent: Element, rGNumber: number, lLNumber: number
       const inputValue = getValue(inputs.find(i => i.label === type)!)!;
       const elementOriginal = parent.querySelector(`Address > P[type="RG${rGNumber}-LL${lLNumber}-${type}"]`);
 
-      if (inputValue !== elementOriginal?.textContent) {
+      if (elementOriginal == null) {
+        const element = createElement(parent.ownerDocument, 'P', {
+          type: `RG${rGNumber}-LL${lLNumber}-${type}`
+        });
+        element.textContent = getValue(inputs.find(i => i.label === type)!)!;
+        
+        actions.push({
+          new: {
+            parent: parent.querySelector('Address')!,
+            element: element,
+          }
+        });
+      } else if (inputValue !== elementOriginal?.textContent) {
         const elementClone = cloneElement(elementOriginal!, {});
         elementClone.textContent = inputValue;
 
@@ -154,7 +166,6 @@ function editLogicLinkAction(parent: Element, rGNumber: number, lLNumber: number
 
 function addLogicLinkAction(parent: Element, rGNumber: number, lLNumber: number): WizardActor {
   return (inputs: WizardInputElement[]): EditorAction[] => {
-    const addressParent = parent.querySelector('Address')!;
     const complexAction: ComplexAction = {
       actions: [],
       title: get('protocol104.network.logicLink.wizard.addedLogicLink', {
@@ -172,7 +183,7 @@ function addLogicLinkAction(parent: Element, rGNumber: number, lLNumber: number)
       
       complexAction.actions.push({
         new: {
-          parent: addressParent,
+          parent: parent.querySelector('Address')!,
           element: element,
         }
       });

@@ -78,6 +78,25 @@ describe('Wizards for the Logic Link SCL element group', () => {
       expect((<Replace>(action)).new.element.textContent).to.eql('192.128.0.12');
     });
 
+    it('properly creates a P element if not present', async () => {
+      doc.querySelector('Communication > SubNetwork[name="W1"] > ConnectedAP[iedName="B1"] > Address > P[type="RG2-LL1-IP-SUBNET"]')?.remove();
+
+      input = <WizardTextField>inputs.find(input => input.label === 'IP-SUBNET');
+      input.value = '200.200.200.2';
+      await input.requestUpdate();
+
+      primaryAction.click();
+      await element.requestUpdate();
+      
+      const complexAction = <ComplexAction>actionEvent.args[0][0].detail.action;
+      expect(complexAction.title).to.contain('edit');
+      expect(complexAction.actions).to.have.lengthOf(1);
+
+      const action = complexAction.actions[0];
+      expect(action).to.satisfy(isCreate);
+      expect((<Create>(action)).new.element.textContent).to.eql('200.200.200.2');
+    });
+
     it('properly deletes a full Logic Link group', async () => {
       const deleteAction = <HTMLElement>(
         element.wizardUI.dialog?.querySelector(
