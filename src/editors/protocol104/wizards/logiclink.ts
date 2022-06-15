@@ -1,11 +1,9 @@
-import { html, TemplateResult } from 'lit-element';
-import { get, translate } from 'lit-translate';
+import { html } from 'lit-element';
+import { get } from 'lit-translate';
 
 import '../../../wizard-textfield.js';
 import {
-  pTypesLogicLink104,
-  typeDescriptiveNameKeys,
-  typePattern,
+  pTypesLogicLink104
 } from '../foundation/p-types.js';
 import {
   cloneElement,
@@ -21,9 +19,7 @@ import {
   WizardInputElement,
   WizardMenuActor
 } from '../../../foundation.js';
-import { ifDefined } from 'lit-html/directives/if-defined';
-import { typeMaxLength } from '../../../wizards/foundation/p-types.js';
-import { createCreateTextField } from './foundation.js';
+import { createNetworkTextField } from '../foundation/foundation.js';
 
 export function editLogicLinkWizard(parent: Element, rGNumber: number, lLNumber: number): Wizard {
   return [
@@ -48,7 +44,9 @@ export function editLogicLinkWizard(parent: Element, rGNumber: number, lLNumber:
           .maybeValue=${lLNumber}
         ></wizard-textfield>
         ${pTypesLogicLink104.map(
-          pType => html`${createEditTextField(parent, pType, rGNumber, lLNumber)}`
+          pType => html`${createNetworkTextField(pType, parent.querySelector(
+            `Address > P[type$="RG${rGNumber}-LL${lLNumber}-${pType}"]`
+          )?.innerHTML)}`
         )}`
       ],
     },
@@ -77,7 +75,7 @@ export function createLogicLinkWizard(parent: Element, rGNumber: number, occupie
           value="${lLNumber}"
         ></wizard-textfield>
         ${pTypesLogicLink104.map(
-          pType => html`${createCreateTextField(pType)}`
+          pType => html`${createNetworkTextField(pType)}`
         )}`
       ],
     },
@@ -182,25 +180,4 @@ function addLogicLinkAction(parent: Element, rGNumber: number, lLNumber: number)
 
     return [complexAction];
   };
-}
-
-/**
- * Create a wizard-textfield element for the Edit wizard.
- * @param parent - The parent element of the P to create. 
- * @param pType - The type of P a Text Field has to be created for.
- * @param rGNumber - The Redundancy Group number of the Text Field used in the type.
- * @param lLNumber - The Logic Link Group number of the Text Field used in the type.
- * @returns - A Text Field created for a specific type for the Edit wizard.
- */
-function createEditTextField(parent: Element, pType: string, rGNumber: number, lLNumber: number): TemplateResult {
-  return html`<wizard-textfield
-    required
-    label="${pType}"
-    pattern="${ifDefined(typePattern[pType])}"
-    .maybeValue=${parent.querySelector(
-      `Address > P[type$="RG${rGNumber}-LL${lLNumber}-${pType}"]`
-    )?.innerHTML ?? null}
-    maxLength="${ifDefined(typeMaxLength[pType])}"
-    helper="${translate(typeDescriptiveNameKeys[pType])}"
-  ></wizard-textfield>`
 }

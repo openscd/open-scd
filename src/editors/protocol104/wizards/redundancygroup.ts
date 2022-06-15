@@ -1,9 +1,9 @@
-import { html, TemplateResult } from 'lit-element';
-import { get, translate } from 'lit-translate';
+import { html } from 'lit-element';
+import { get } from 'lit-translate';
 
 import '../../../wizard-textfield.js';
 import {
-  pTypesRedundancyGroup104, typeDescriptiveNameKeys, typePattern,
+  pTypesRedundancyGroup104
 } from '../foundation/p-types.js';
 import {
   cloneElement,
@@ -20,11 +20,9 @@ import {
   WizardInputElement,
   WizardMenuActor
 } from '../../../foundation.js';
-import { ifDefined } from 'lit-html/directives/if-defined';
-import { typeMaxLength } from '../../../wizards/foundation/p-types.js';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { createLogicLinkWizard, editLogicLinkWizard } from './logiclink.js';
-import { createCreateTextField } from './foundation.js';
+import { createNetworkTextField } from '../foundation/foundation.js';
 
 export function editRedundancyGroupWizard(parent: Element, rGNumber: number): Wizard {
   const usedLLNumbers = getLogicLinkNumbers(parent, rGNumber);
@@ -55,7 +53,9 @@ export function editRedundancyGroupWizard(parent: Element, rGNumber: number): Wi
           .maybeValue=${rGNumber}
         ></wizard-textfield>
         ${pTypesRedundancyGroup104.map(
-          pType => html`${createEditTextField(parent, pType, rGNumber)}`
+          pType => html`${createNetworkTextField(pType, parent.querySelector(
+            `Address > P[type$="RG${rGNumber}-${pType}"]`
+          )?.innerHTML)}`
         )}
         <h3>${get('protocol104.network.redundancyGroup.wizard.logicLinkGroupTitle')}</h3>
         <mwc-list
@@ -101,7 +101,7 @@ export function createRedundancyGroupWizard(parent: Element, occupiedRGNumbers: 
           value="${rGNumber}"
         ></wizard-textfield>
         ${pTypesRedundancyGroup104.map(
-          pType => html`${createCreateTextField(pType)}`
+          pType => html`${createNetworkTextField(pType)}`
         )}`
       ],
     },
@@ -232,24 +232,4 @@ function getLogicLinkNumbers(parent: Element, rGNumber: number): number[] {
   })
 
   return usedNumbers.sort();
-}
-
-/**
- * Create a wizard-textfield element for the Edit wizard.
- * @param parent - The parent element of the P to create. 
- * @param pType - The type of P a Text Field has to be created for.
- * @param rGNumber - The Redundancy Group number of the Text Field used in the type.
- * @returns - A Text Field created for a specific type for the Edit wizard.
- */
-function createEditTextField(parent: Element, pType: string, rGNumber: number): TemplateResult {
-  return html`<wizard-textfield
-    required
-    label="${pType}"
-    pattern="${ifDefined(typePattern[pType])}"
-    .maybeValue=${parent.querySelector(
-      `Address > P[type$="RG${rGNumber}-${pType}"]`
-    )?.innerHTML ?? null}
-    maxLength="${ifDefined(typeMaxLength[pType])}"
-    helper="${translate(typeDescriptiveNameKeys[pType])}"
-  ></wizard-textfield>`
 }
