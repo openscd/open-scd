@@ -195,7 +195,7 @@ snapshots["Wizards for SCL element SampledValueControl define an edit wizard tha
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -385,7 +385,7 @@ snapshots["Wizards for SCL element SampledValueControl define an edit wizard tha
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -586,7 +586,7 @@ snapshots["Wizards for SCL element SampledValueControl define an create wizard t
   </mwc-button>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -655,7 +655,7 @@ snapshots["Wizards for SCL element SampledValueControl define an create wizard t
   </mwc-button>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -694,7 +694,7 @@ snapshots["Wizards for SCL element SampledValueControl define an create wizard t
   </mwc-button>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -732,7 +732,7 @@ snapshots["Wizards for SCL element SampledValueControl define an create wizard t
   </mwc-button>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
