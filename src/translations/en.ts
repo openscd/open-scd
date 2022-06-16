@@ -373,7 +373,7 @@ export const en = {
       connectedAp: {
         wizard: {
           title: {
-            edit: 'Edit ConnectedAP'
+            edit: 'Edit ConnectedAP',
           },
           redundancySwitchLabel: 'Redundancy',
           redundancyGroupTitle: 'Redundancy Groups',
@@ -381,42 +381,51 @@ export const en = {
           addRedundancyGroup: 'Redundancy Group',
           stationTypeHelper: 'Type of station',
           ipHelper: 'IP address of the logical link',
-          ipSubnetHelper: 'Subnetwork mask of the IP address of the logical link',
+          ipSubnetHelper:
+            'Subnetwork mask of the IP address of the logical link',
           wFactorHelper: 'W factor of the logical link',
           kFactorHelper: 'K factor of the logical link',
           timeout0Helper: 'Time-out in seconds of connection establishment',
           timeout1Helper: 'Time-out in seconds of sent or test APDUs',
-          timeout2Helper: 'Time-out in seconds for acknowledges in case of no data messages',
-          timeout3Helper: 'Time-out in seconds for sending test frames in case of a long idle state'
-        }
+          timeout2Helper:
+            'Time-out in seconds for acknowledges in case of no data messages',
+          timeout3Helper:
+            'Time-out in seconds for sending test frames in case of a long idle state',
+        },
       },
       redundancyGroup: {
         wizard: {
           title: {
             edit: 'Edit Redundancy Group',
-            add: 'Add Redundancy Group'
+            add: 'Add Redundancy Group',
           },
           redundancyGroupNumberLabel: 'Redundancy Group number',
-          addedLRedundancyGroup: 'Added Redundancy Group {{ rGNumber }} from SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
-          editedRedundancyGroup: 'Edited Redundancy Group {{ rGNumber }} from SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
-          removedRedundancyGroup: 'Removed Redundancy Group {{ rGNumber }} from SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+          addedLRedundancyGroup:
+            'Added Redundancy Group {{ rGNumber }} from SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+          editedRedundancyGroup:
+            'Edited Redundancy Group {{ rGNumber }} from SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+          removedRedundancyGroup:
+            'Removed Redundancy Group {{ rGNumber }} from SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
           logicLinkGroupTitle: 'Logic Links',
           noLogicLinksAvailable: 'No Logic Links available',
-          addLogicLink: 'Logic Link'
-        }
+          addLogicLink: 'Logic Link',
+        },
       },
       logicLink: {
         wizard: {
           title: {
             edit: 'Edit Logic Link',
-            add: 'Add Logic Link'
+            add: 'Add Logic Link',
           },
           logicLinkNumberLabel: 'Logic Link number',
-          addedLogicLink: 'Added Logic Link group from SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
-          editedLogicLink: 'Edited Logic Link group from SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
-          removedLogicLink: 'Removed Logic Link group from SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
-        }
-      }
+          addedLogicLink:
+            'Added Logic Link group from SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+          editedLogicLink:
+            'Edited Logic Link group from SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+          removedLogicLink:
+            'Removed Logic Link group from SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+        },
+      },
     },
     wizard: {
       title: {
