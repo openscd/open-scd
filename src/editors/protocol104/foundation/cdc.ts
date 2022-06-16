@@ -1,6 +1,8 @@
 import {
   Create,
   getNameAttribute,
+  getTypeAttribute,
+  newLogEvent,
   newWizardEvent,
 } from '../../../foundation.js';
 
@@ -10,8 +12,18 @@ import {
   createPrivateElement,
   getPrivateElement,
 } from './private.js';
-import { getEnumOrds, isEnumDataAttribute } from './foundation.js';
-import { editAddressWizard } from '../wizards/address';
+import {
+  findElementInOriginalLNStructure,
+  getCdcValueFromDOElement,
+  getEnumOrds,
+  isEnumDataAttribute,
+} from './foundation.js';
+import { editAddressWizard } from '../wizards/address.js';
+import {
+  determineUninitializedStructure,
+  initializeElements,
+} from '../../../foundation/dai.js';
+import { get } from 'lit-translate';
 
 /**
  * List of supported Common Data Classes in the 104 protocol.
@@ -41,6 +53,7 @@ export type SupportedCdcType = typeof supportedCdcTypes[number];
 
 export type CreateFunction = (
   lnElement: Element,
+  lnClonedElement: Element,
   doElement: Element,
   wizard: Element,
   ti: string,
@@ -49,6 +62,7 @@ export type CreateFunction = (
 ) => Create[];
 export type CreateCheckFunction = (
   lnElement: Element,
+  lnClonedElement: Element,
   doElement: Element,
   wizard: Element,
   ti: string,
@@ -352,6 +366,7 @@ export const cdcProcessings: Record<
  */
 function createAddressAction(
   lnElement: Element,
+  lnClonedElement: Element,
   doElement: Element,
   wizard: Element,
   ti: string,
@@ -360,7 +375,17 @@ function createAddressAction(
 ): Create[] {
   const actions: Create[] = [];
 
-  const daiElements = findOrCreateDaiElements(lnElement, doElement, daPaths);
+  const [initializeActions, daiElements] = findOrCreateDaiElements(
+    lnElement,
+    lnClonedElement,
+    doElement,
+    wizard,
+    daPaths
+  );
+  if (initializeActions.length > 0) {
+    actions.push(...initializeActions);
+  }
+
   if (daiElements.length > 0) {
     addPrefixAndNamespaceToDocument(lnElement.ownerDocument);
 
@@ -374,7 +399,7 @@ function createAddressAction(
     });
   }
 
-  startEditWizards(wizard, actions);
+  startEditWizards(wizard, lnElement, lnClonedElement, doElement, actions);
   return actions;
 }
 
@@ -392,6 +417,7 @@ function createAddressAction(
  */
 function createAddressWithExpectValueAction(
   lnElement: Element,
+  lnClonedElement: Element,
   doElement: Element,
   wizard: Element,
   ti: string,
@@ -399,7 +425,17 @@ function createAddressWithExpectValueAction(
   inverted: boolean
 ): Create[] {
   const actions: Create[] = [];
-  const daiElements = findOrCreateDaiElements(lnElement, doElement, daPaths);
+
+  const [initializeActions, daiElements] = findOrCreateDaiElements(
+    lnElement,
+    lnClonedElement,
+    doElement,
+    wizard,
+    daPaths
+  );
+  if (initializeActions.length > 0) {
+    actions.push(...initializeActions);
+  }
   if (daiElements.length > 0) {
     addPrefixAndNamespaceToDocument(lnElement.ownerDocument);
 
@@ -426,7 +462,7 @@ function createAddressWithExpectValueAction(
     });
   }
 
-  startEditWizards(wizard, actions);
+  startEditWizards(wizard, lnElement, lnClonedElement, doElement, actions);
   return actions;
 }
 
@@ -443,13 +479,24 @@ function createAddressWithExpectValueAction(
  */
 function createCheckAddressAction(
   lnElement: Element,
+  lnClonedElement: Element,
   doElement: Element,
   wizard: Element,
   ti: string,
   daPaths: DaSelector[]
 ): Create[] {
   const actions: Create[] = [];
-  const daiElements = findOrCreateDaiElements(lnElement, doElement, daPaths);
+
+  const [initializeActions, daiElements] = findOrCreateDaiElements(
+    lnElement,
+    lnClonedElement,
+    doElement,
+    wizard,
+    daPaths
+  );
+  if (initializeActions.length > 0) {
+    actions.push(...initializeActions);
+  }
   if (daiElements.length > 0) {
     addPrefixAndNamespaceToDocument(lnElement.ownerDocument);
 
@@ -475,7 +522,7 @@ function createCheckAddressAction(
     });
   }
 
-  startEditWizards(wizard, actions);
+  startEditWizards(wizard, lnElement, lnClonedElement, doElement, actions);
   return actions;
 }
 
@@ -533,7 +580,13 @@ export function createAddressElements(
   return addressElements;
 }
 
-function startEditWizards(wizard: Element, actions: Create[]): void {
+function startEditWizards(
+  wizard: Element,
+  lnElement: Element,
+  lnClonedElement: Element,
+  doElement: Element,
+  actions: Create[]
+): void {
   actions.forEach(createAction => {
     const newElement = <Element>createAction.new.element;
     let addressElements: Element[];
@@ -544,29 +597,123 @@ function startEditWizards(wizard: Element, actions: Create[]): void {
     }
     const parentElement = <Element>createAction.new.parent;
     const daiElement = parentElement.closest('DAI');
-    addressElements.forEach(addressElement => {
-      wizard.dispatchEvent(
-        newWizardEvent(() => editAddressWizard(daiElement!, addressElement))
-      );
-    });
+    if (daiElement) {
+      const iedElement = lnElement.closest('IED')!;
+      const doiElement = lnClonedElement.querySelector(
+        `:scope > DOI[name="${getNameAttribute(doElement)}"]`
+      )!;
+
+      addressElements.forEach(addressElement => {
+        wizard.dispatchEvent(
+          newWizardEvent(() =>
+            editAddressWizard(
+              iedElement,
+              doiElement,
+              daiElement,
+              addressElement
+            )
+          )
+        );
+      });
+    }
   });
+}
+
+function createTemplateStructure(
+  doElement: Element,
+  daPath: DaSelector
+): Element[] | null {
+  let templateStructure: Element[] | null = [doElement];
+
+  const doc = doElement.ownerDocument;
+  const doType = doElement.getAttribute('type') ?? '';
+  let typeElement = doc.querySelector(`DOType[id="${doType}"]`);
+
+  daPath.path.forEach(name => {
+    // There should be a DOType or DAType set for the current element in the list.
+    if (!typeElement) {
+      templateStructure = null;
+      return;
+    }
+    const daElement = typeElement.querySelector(
+      `:scope > DA[name="${name}"], :scope > BDA[name="${name}"]`
+    );
+    // If there is no DA/BDA Element found the structure is incorrect, so just stop.
+    if (daElement === null) {
+      templateStructure = null;
+      return;
+    }
+    templateStructure!.push(daElement);
+
+    const bType = daElement.getAttribute('bType') ?? '';
+    if (bType === 'Struct') {
+      const type = daElement.getAttribute('type') ?? '';
+      typeElement = doc.querySelector(`DAType[id="${type}"]`);
+    } else {
+      typeElement = null;
+    }
+  });
+  return templateStructure;
 }
 
 function findOrCreateDaiElements(
   lnElement: Element,
+  lnClonedElement: Element,
   doElement: Element,
+  wizard: Element,
   daPaths: DaSelector[]
-): Element[] {
+): [Create[], Element[]] {
   const daiElements: Element[] = [];
-  const filters =
-    daPaths.map(daPath => createDaiFilter(doElement, daPath)) ?? [];
-  filters.forEach(filter => {
-    const foundDaiElements = lnElement.querySelectorAll(filter);
+  const actions: Create[] = [];
+
+  daPaths.forEach(daPath => {
+    const filter = createDaiFilter(doElement, daPath);
+    const foundDaiElements = lnClonedElement.querySelectorAll(filter);
     if (foundDaiElements.length > 0) {
       daiElements.push(...Array.from(foundDaiElements));
+    } else {
+      const templateStructure = createTemplateStructure(doElement, daPath);
+      if (templateStructure) {
+        const [parentClonedElement, uninitializedTemplateStructure] =
+          determineUninitializedStructure(lnClonedElement, templateStructure);
+        // Next create all missing elements (DOI/SDI/DOI)
+        const newElement = initializeElements(uninitializedTemplateStructure);
+
+        // Always add it to the cloned LN Structure.
+        parentClonedElement.append(newElement);
+
+        // If the parent is the LN Element then use the original LN Element in the action.
+        const parentElement = findElementInOriginalLNStructure(
+          lnElement,
+          parentClonedElement
+        );
+        if (parentElement) {
+          actions.push({ new: { parent: parentElement, element: newElement } });
+        }
+
+        if (newElement.tagName === 'DAI') {
+          daiElements.push(newElement);
+        } else {
+          const daiElement = newElement.querySelector('DAI')!;
+          daiElements.push(daiElement);
+        }
+      } else {
+        const cdc = getCdcValueFromDOElement(doElement) ?? '';
+        const doType = getTypeAttribute(doElement) ?? '';
+        wizard.dispatchEvent(
+          newLogEvent({
+            kind: 'error',
+            title: get('protocol104.wizard.error.addAddressError', {
+              structure: daPath.path.join(' > '),
+              cdc,
+              doType,
+            }),
+          })
+        );
+      }
     }
   });
-  return daiElements;
+  return [actions, daiElements];
 }
 
 function createDaiFilter(doElement: Element, daPath: DaSelector): string {
@@ -581,17 +728,6 @@ function createDaiFilter(doElement: Element, daPath: DaSelector): string {
   });
   return filter;
 }
-// wizard.dispatchEvent(
-//   newLogEvent({
-//     kind: 'error',
-//     title: get('protocol104.wizard.error.addAddressError', {
-//       filter: filters
-//         .map(filter => filter.replace(':scope >', ''))
-//         .join(', '),
-//       cdc,
-//     }),
-//   })
-// );
 
 /**
  * Indicates if the combination cdc/ti should handle/process the attribute "unitMultiplier" of the Address Element.

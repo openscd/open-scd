@@ -1,3 +1,5 @@
+import { SCL_NAMESPACE } from '../../../schemas.js';
+
 export const PROTOCOL_104_PRIVATE = 'IEC_60870_5_104';
 export const PROTOCOL_104_NS =
   'http://www.iec.ch/61850-80-1/2007/IEC_60870-5-104';
@@ -37,7 +39,7 @@ export function getPrivateElement(daiElement: Element): Element | null {
  * @returns The created Private Element, <b>not</b> yet added to the DAI Element.
  */
 export function createPrivateElement(document: Document): Element {
-  const privateElement = document.createElement('Private');
+  const privateElement = document.createElementNS(SCL_NAMESPACE, 'Private');
   privateElement.setAttribute('type', PROTOCOL_104_PRIVATE);
   return privateElement;
 }

@@ -16,6 +16,7 @@ import { TiInformation } from './cdc.js';
  */
 export function createActions(
   lnElement: Element,
+  lnClonedElement: Element,
   doElement: Element,
   wizard: Element,
   ti: string,
@@ -24,6 +25,7 @@ export function createActions(
 ): Create[] {
   return tiInformation.create(
     lnElement,
+    lnClonedElement,
     doElement,
     wizard,
     ti,
@@ -47,6 +49,7 @@ export function createActions(
  */
 export function createCheckActions(
   lnElement: Element,
+  lnClonedElement: Element,
   doElement: Element,
   wizard: Element,
   ti: string,
@@ -55,6 +58,7 @@ export function createCheckActions(
   if (tiInformation.checkDaPaths && tiInformation.checkCreate) {
     return tiInformation.checkCreate(
       lnElement,
+      lnClonedElement,
       doElement,
       wizard,
       ti,

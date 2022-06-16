@@ -14,7 +14,7 @@ import { SCL_NAMESPACE } from '../schemas.js';
 export function determineUninitializedStructure(
   parentElement: Element,
   templateStructure: Element[]
-): [Element | null, Element[]] {
+): [Element, Element[]] {
   const templateElement = templateStructure.shift();
   if (templateStructure.length > 0) {
     // If there are still Template Elements we didn't reach the DAI Element, so continue checking if any DOI/SDI

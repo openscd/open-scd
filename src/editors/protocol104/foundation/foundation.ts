@@ -205,6 +205,16 @@ export function getDoElement(
   return null;
 }
 
+export function getDoElements(lnElement: Element): Element[] {
+  const lnType = lnElement.getAttribute('lnType');
+  if (lnType) {
+    return Array.from(
+      lnElement.ownerDocument.querySelectorAll(`LNodeType[id="${lnType}"] > DO`)
+    );
+  }
+  return [];
+}
+
 /**
  * Search for the DAI Element 'ctlModel', this one indicates if control Addresses need to be created.
  *
@@ -392,6 +402,50 @@ export function getEnumOrds(daiElement: Element): string[] {
       .map(valElement => ords.push(valElement.getAttribute('ord')!));
   }
   return ords;
+}
+
+/**
+ * Search for the Element passed from the Cloned LN Structure in the original LN Structure.
+ * If that element exists in the original LN Structure it will be returned.
+ * If the cloned Element is a new Element 'null' will be returned.
+ *
+ * @param lnElement     - The original LN Element with the existing Elements.
+ * @param clonedElement - The Element to search for in the existing structure using its key.
+ * @returns The original element found or null if it didn't exist before.
+ */
+export function findElementInOriginalLNStructure(
+  lnElement: Element,
+  clonedElement: Element
+): Element | null {
+  if (['LN0', 'LN'].includes(clonedElement.tagName)) {
+    return lnElement;
+  }
+
+  // First create a list of elements from the Cloned Element to the Cloned LN Element.
+  const clonedElements: Element[] = [];
+  let currentElement: Element | null | undefined = clonedElement;
+  while (currentElement && !['LN0', 'LN'].includes(currentElement.tagName)) {
+    clonedElements.unshift(currentElement!);
+    currentElement = currentElement?.parentElement;
+  }
+
+  // Walk through the list of Cloned Elements and walk the original LN Structure.
+  let parentElement: Element | null = lnElement;
+  while (parentElement != null && clonedElements.length > 0) {
+    // Get the first Cloned Element from the list and search the element on the original structure
+    const childElement = clonedElements.shift();
+    if (childElement) {
+      // Below the LN there are only DOI/SDI/DAI Elements we need to search for.
+      // The parent can be an LN, DOI or SDI Element.
+      const name = getNameAttribute(childElement);
+      parentElement = parentElement.querySelector(
+        `:scope > DOI[name="${name}"], :scope > SDI[name="${name}"], :scope > DAI[name="${name}"]`
+      );
+    } else {
+      parentElement = null;
+    }
+  }
+  return parentElement;
 }
 
 /**

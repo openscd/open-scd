@@ -62,10 +62,14 @@ export class Doi104Container extends LitElement {
       daiElement.querySelectorAll(
         `Private[type="${PROTOCOL_104_PRIVATE}"] > Address`
       )
-    ).sort((addr1, addr2) =>
-      (addr1.getAttribute('ioa') ?? '').localeCompare(
-        addr2.getAttribute('ioa') ?? ''
-      )
+    ).sort(
+      (addr1, addr2) =>
+        (addr1.getAttribute('casdu') ?? '').localeCompare(
+          addr2.getAttribute('casdu') ?? ''
+        ) &&
+        (addr1.getAttribute('ioa') ?? '').localeCompare(
+          addr2.getAttribute('ioa') ?? ''
+        )
     );
   }
 
@@ -77,8 +81,12 @@ export class Doi104Container extends LitElement {
     daiElement: Element,
     addressElement: Element
   ): void {
+    const doiElement = daiElement.closest('DOI')!;
+    const iedElement = doiElement.closest('IED')!;
     this.dispatchEvent(
-      newWizardEvent(editAddressWizard(daiElement, addressElement))
+      newWizardEvent(
+        editAddressWizard(iedElement, doiElement, daiElement, addressElement)
+      )
     );
   }
 

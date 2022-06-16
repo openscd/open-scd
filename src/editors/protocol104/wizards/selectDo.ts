@@ -10,6 +10,7 @@ import {
 import { FinderList, Path } from '../../../finder-list.js';
 import {
   compareNames,
+  getNameAttribute,
   identity,
   newSubWizardEvent,
   selector,
@@ -18,74 +19,97 @@ import {
   WizardInputElement,
 } from '../../../foundation.js';
 import { createAddressesWizard } from './createAddresses.js';
-import { cdcProcessings } from '../foundation/cdc.js';
+import { SupportedCdcType, supportedCdcTypes } from '../foundation/cdc.js';
+import { PROTOCOL_104_PRIVATE } from '../foundation/private.js';
+import { getDoElements } from '../foundation/foundation.js';
 
-// function filterAvailableDoiElement(child: Element): boolean {
-//   let doiElements: Element[];
-//   if (child.tagName === 'DOI') {
-//     doiElements = [child];
-//   } else {
-//     doiElements = Array.from(child.querySelectorAll('DOI'));
-//   }
-//
-//   return (
-//     doiElements
-//       .filter(
-//         subChild =>
-//           subChild.querySelectorAll(`DAI > Private[type="${PROTOCOL_104_PRIVATE}"] > Address`)
-//             .length <= 0
-//       )
-//       .filter(doiElement => {
-//         const cdc = getCdcValue(doiElement) ?? '';
-//         return supportedCdcTypes.includes(<SupportedCdcType>cdc);
-//       }).length > 0
-//   );
-// }
-
-function filterOnSupportedCDC(child: Element): boolean {
+/**
+ * Check if there are DO Elements that aren't initiated and are supported by the 104 protocol available.
+ *
+ * @param parent - The parent element of the child, mainly needed to link the LN Element to the DO Elements.
+ * @param child  - The child to check if it should still be displayed in the finder list.
+ */
+function filterAvailableDOElements(parent: Element, child: Element): boolean {
   if (child.tagName === 'DO') {
-    // For a DO Element we will retrieve the DO Type and check if that CDC Value is supported for the 104.
+    // First check if this DO Element is supported by the 104 Protocol.
     const doType = child.getAttribute('type') ?? '';
     const doTypeElement = child.ownerDocument.querySelector(
       `DOType[id="${doType}"]`
     );
     const cdc = doTypeElement?.getAttribute('cdc') ?? '';
-    return Object.keys(cdcProcessings).includes(cdc);
-  } else if (['LN0', 'LN'].includes(child.tagName)) {
-    const lnType = child.getAttribute('lnType') ?? '';
+    if (!supportedCdcTypes.includes(<SupportedCdcType>cdc)) {
+      return false;
+    }
+
+    // Use the parent (LN) to find the DOI that's linked to the DO Element
+    const doName = getNameAttribute(child);
     return (
       Array.from(
-        child.ownerDocument.querySelectorAll(`LNodeType[id="${lnType}"] > DO`)
-      ).filter(filterOnSupportedCDC).length > 0
+        parent.querySelectorAll(
+          `:scope > DOI[name="${doName}"] DAI > Private[type="${PROTOCOL_104_PRIVATE}"] > Address`
+        )
+      ).length <= 0
     );
   } else {
+    // For other elements create a list of LN Elements for processing the DO Element from the LN Elements.
+    let lnElements: Element[];
+    if (['LN0', 'LN'].includes(child.tagName)) {
+      lnElements = [child];
+    } else {
+      // For the other Elements we will just retrieve all the DOI Elements.
+      lnElements = Array.from(child.querySelectorAll('LN0, LN'));
+    }
+
+    // If after filtering there are still LN/DO Element(s) to be displayed, this element will be included.
     return (
-      Array.from(child.querySelectorAll(`LN0, LN`)).filter(filterOnSupportedCDC)
-        .length > 0
+      lnElements.filter(
+        lnElement =>
+          // Check if there are available DO Elements that aren't initiated and supported by 104 protocol
+          getDoElements(lnElement).filter(doElement =>
+            filterAvailableDOElements(lnElement, doElement)
+          ).length > 0
+      ).length > 0
     );
   }
 }
 
+/**
+ * Retrieve the Data Children needed for the filter-list to display, the elements shown are
+ * 'IED' -&gt; 'AccessPoint' -&gt; 'LDevice' -&gt; 'LN(0)' -&gt; 'DO'.
+ *
+ * @param parent - The previous element selected, starting with SCL Element.
+ */
 export function getDataChildren(parent: Element): Element[] {
   let children;
   if (['LN0', 'LN'].includes(parent.tagName)) {
+    // For LN Element we will not search for the children, but the DO Element linked to LN from the Template Section.
     const lnType = parent.getAttribute('lnType') ?? '';
     children = Array.from(
       parent.ownerDocument.querySelectorAll(`LNodeType[id="${lnType}"] > DO`)
     ).sort((a, b) => compareNames(`${identity(a)}`, `${identity(b)}`));
-  } else if (parent.tagName === 'IED') {
+  } else if (parent.tagName === 'AccessPoint') {
+    // From the Access Point we will skip directly to the LDevice Element and skip the Server element.
     children = Array.from(parent.querySelectorAll('LDevice')).sort((a, b) =>
       compareNames(`${identity(a)}`, `${identity(b)}`)
     );
   } else {
+    // The other element, just retrieve the children and if the tagName is one we need return that child.
     children = Array.from(parent.children)
-      .filter(child => ['IED', 'LN0', 'LN'].includes(child.tagName))
+      .filter(child =>
+        ['IED', 'AccessPoint', 'LN0', 'LN'].includes(child.tagName)
+      )
       .sort((a, b) => compareNames(`${identity(a)}`, `${identity(b)}`));
   }
 
-  return children.filter(filterOnSupportedCDC);
+  return children.filter(child => filterAvailableDOElements(parent, child));
 }
 
+/**
+ * Action executed when 'next' is pressed. It will start the 'create address'-wizard when a DO Element
+ * is selected, otherwise nothing happens.
+ *
+ * @param doc - The XML Document loaded to search element in.
+ */
 function openPrepareAddressWizard(doc: XMLDocument): WizardActor {
   return (_: WizardInputElement[], wizard: Element) => {
     const finder = wizard.shadowRoot?.querySelector<FinderList>('finder-list');
@@ -93,8 +117,8 @@ function openPrepareAddressWizard(doc: XMLDocument): WizardActor {
 
     if (path.length === 0) return [];
 
-    const doElement = getElement(doc, path, ['DO']);
-    const lnElement = getElement(doc, path, ['LN0', 'LN']);
+    const doElement = checkAndGetLastElementFromPath(doc, path, ['DO']);
+    const lnElement = checkAndGetLastElementFromPath(doc, path, ['LN0', 'LN']);
 
     if (lnElement && doElement) {
       wizard.dispatchEvent(
@@ -105,7 +129,15 @@ function openPrepareAddressWizard(doc: XMLDocument): WizardActor {
   };
 }
 
-function getElement(
+/**
+ * Simple function to retrieve the next element from the path selected.
+ * Also check if that element is the expected element.
+ *
+ * @param doc         - The XML Document to be used for querying.
+ * @param path        - The array of selected element to pop the last element name from.
+ * @param expectedTag - The tagname expected to be found when popping the lats element.
+ */
+function checkAndGetLastElementFromPath(
   doc: XMLDocument,
   path: Path,
   expectedTag: string[]
@@ -116,8 +148,14 @@ function getElement(
   return doc.querySelector(selector(tagName, id));
 }
 
+/**
+ * Start a Finder List to select a DO that can be initiated to be used for the 104 protocol.
+ *
+ * @param doc - The XML Document loaded.
+ * @returns The Wizard to be displayed in a dialog.
+ */
 export function selectDoWizard(doc: Document): Wizard {
-  function doPicker(doc: XMLDocument): TemplateResult {
+  function renderTemplate(doc: XMLDocument): TemplateResult {
     return html` <finder-list
       path="${JSON.stringify(['SCL: '])}"
       .read=${getReader(doc, getDataChildren)}
@@ -135,7 +173,7 @@ export function selectDoWizard(doc: Document): Wizard {
         label: get('next'),
         action: openPrepareAddressWizard(doc),
       },
-      content: [doPicker(doc)],
+      content: [renderTemplate(doc)],
     },
   ];
 }

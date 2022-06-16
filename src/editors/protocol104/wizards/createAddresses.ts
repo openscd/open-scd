@@ -59,6 +59,9 @@ export function createAddressesAction(
       }),
     };
 
+    // Create a Deep Clone of the LN Element, to keep track on which structure is initialized.
+    const lnClonedElement = <Element>lnElement.cloneNode(true);
+
     // Create all Monitor Addresses
     const selectedMonitorTi =
       getValue(inputs.find(i => i.label === 'monitorTi')!) ?? '';
@@ -68,6 +71,7 @@ export function createAddressesAction(
       complexAction.actions.push(
         ...createActions(
           lnElement,
+          lnClonedElement,
           doElement,
           wizard,
           selectedMonitorTi,
@@ -82,6 +86,7 @@ export function createAddressesAction(
       complexAction.actions.push(
         ...createCheckActions(
           lnElement,
+          lnClonedElement,
           doElement,
           wizard,
           selectedMonitorTi,
@@ -103,6 +108,7 @@ export function createAddressesAction(
           complexAction.actions.push(
             ...createActions(
               lnElement,
+              lnClonedElement,
               doElement,
               wizard,
               selectedControlTi,
@@ -117,6 +123,7 @@ export function createAddressesAction(
           complexAction.actions.push(
             ...createCheckActions(
               lnElement,
+              lnClonedElement,
               doElement,
               wizard,
               selectedControlTi,

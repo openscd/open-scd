@@ -50,13 +50,12 @@ const allowedMultipliers = [
 ];
 
 export function updateAddressValue(
+  doiElement: Element,
   daiElement: Element,
   addressElement: Element
 ): WizardActor {
   return (inputs: WizardInputElement[]): EditorAction[] => {
-    const doiElement = daiElement.closest('DOI');
-
-    const cdc = getCdcValueFromDOIElement(doiElement!) ?? '';
+    const cdc = getCdcValueFromDOIElement(doiElement) ?? '';
     const ti = addressElement.getAttribute('ti') ?? '';
 
     const casdu = getValue(inputs.find(i => i.label === 'casdu')!)!;
@@ -96,31 +95,27 @@ export function updateAddressValue(
 }
 
 export function editAddressWizard(
+  iedElement: Element,
+  doiElement: Element,
   daiElement: Element,
   addressElement: Element
 ): Wizard {
-  function renderAddressWizard(
-    daiElement: Element,
-    addressElement: Element
-  ): TemplateResult[] {
-    const doiElement = daiElement!.closest('DOI');
-    const iedElement = doiElement!.closest('IED');
-
-    const cdc = getCdcValueFromDOIElement(doiElement!) ?? '';
+  function renderAddressWizard(): TemplateResult[] {
+    const cdc = getCdcValueFromDOIElement(doiElement) ?? '';
     const ti = addressElement.getAttribute('ti') ?? '';
 
     // Add the basic fields to the list.
     const fields: TemplateResult[] = [
       html`<wizard-textfield
         label="IED"
-        .maybeValue="${getNameAttribute(iedElement!)}"
+        .maybeValue="${getNameAttribute(iedElement)}"
         disabled
         readonly
       >
       </wizard-textfield>`,
       html`<mwc-textarea
         label="DOI"
-        value="${getFullPath(doiElement!, 'IED')}"
+        value="${getFullPath(doiElement, 'IED')}"
         rows="2"
         cols="40"
         readonly
@@ -243,9 +238,9 @@ export function editAddressWizard(
       primary: {
         icon: 'edit',
         label: get('save'),
-        action: updateAddressValue(daiElement, addressElement),
+        action: updateAddressValue(doiElement, daiElement, addressElement),
       },
-      content: renderAddressWizard(daiElement, addressElement),
+      content: renderAddressWizard(),
     },
   ];
 }

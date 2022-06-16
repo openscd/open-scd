@@ -433,7 +433,8 @@ export const de: Translations = {
         addAddress: '???',
       },
       error: {
-        addAddressError: '???. (CDC: {{ cdc }}, Filter: {{ filter }})',
+        addAddressError:
+          '???. (DO: "{{ doType }}", CDC: "{{ cdc }}", Structure: "{{ structure }}")',
       },
       casduHelper: '???',
       ioaHelper: '???',

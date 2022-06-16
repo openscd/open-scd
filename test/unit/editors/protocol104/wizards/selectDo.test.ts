@@ -37,6 +37,16 @@ describe('data model nodes child getter', () => {
       const parent = doc.querySelector('IED[name="B1"]')!;
       expect(getDataChildren(parent)).to.not.be.empty;
       expect(getDataChildren(parent).length).to.be.equal(1);
+      expect(getDataChildren(parent)[0].tagName).to.be.equal('AccessPoint');
+      expect(getDataChildren(parent)[0]).to.have.attribute('name', 'AP1');
+    });
+
+    it('returns direct children for a AccessPoint', () => {
+      const parent = doc.querySelector(
+        'IED[name="B1"] > AccessPoint[name="AP1"]'
+      )!;
+      expect(getDataChildren(parent)).to.not.be.empty;
+      expect(getDataChildren(parent).length).to.be.equal(1);
       expect(getDataChildren(parent)[0].tagName).to.be.equal('LDevice');
       expect(getDataChildren(parent)[0]).to.have.attribute('inst', 'LD0');
     });
@@ -44,7 +54,7 @@ describe('data model nodes child getter', () => {
     it('returns direct children for a LDevice', () => {
       const parent = doc.querySelector('IED[name="B1"] LDevice[inst="LD0"]')!;
       expect(getDataChildren(parent)).to.not.be.empty;
-      expect(getDataChildren(parent).length).to.be.equal(6);
+      expect(getDataChildren(parent).length).to.be.equal(7);
       expect(getDataChildren(parent)[0].tagName).to.be.equal('LN0');
       expect(getDataChildren(parent)[0]).to.have.attribute('lnClass', 'LLN0');
       expect(getDataChildren(parent)[1].tagName).to.be.equal('LN');
