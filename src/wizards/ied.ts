@@ -39,7 +39,7 @@ export function renderIEDWizard(
   type: string | null,
   manufacturer: string | null,
   configVersion: string | null,
-  originalSclVersion: string | null,
+  originalSclVersion: string,
   engRight: string | null,
   owner: string | null,
   reservedNames: string[]
@@ -120,11 +120,10 @@ function renderIEDReferencesWizard(references: Delete[]): TemplateResult[] {
   ];
 }
 
-function validatedVersionAttribute(element: Element): string | null {
-  const values = [element.getAttribute('originalSclVersion'), element.getAttribute('originalSclRevision'), element.getAttribute('originalSclRelease')]
-  if(values[0]===null) return null;
-  else if(values[0]==="2003") return values[0];
-  else return "".concat(values[0] || "", values[1] || "", values[2] || "");
+function validatedVersionAttribute(element: Element): string {
+  return (element.getAttribute('originalSclVersion') ?? '') 
+    .concat(element.getAttribute('originalSclRevision') ?? '')
+    .concat(element.getAttribute('originalSclRelease') ?? '')
 }
 
 export function reservedNamesIED(currentElement: Element): string[] {
