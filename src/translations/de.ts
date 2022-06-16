@@ -372,16 +372,52 @@ export const de: Translations = {
       addedAddress: '???',
     },
     network: {
-      connectedap: {
-        stationType: '???',
-        ip: '???',
-        ipSubnet: '???',
-        wFactor: '???',
-        kFactor: '???',
-        timeout0: '???',
-        timeout1: '???',
-        timeout2: '???',
-        timeout3: '???'
+      connectedAp: {
+        wizard: {
+          title: {
+            edit: '???'
+          },
+          redundancySwitchLabel: '???',
+          redundancyGroupTitle: '???',
+          noRedundancyGroupsAvailable: '???',
+          addRedundancyGroup: '???',
+          stationTypeHelper: '???',
+          ipHelper: '???',
+          ipSubnetHelper: '???',
+          wFactorHelper: '???',
+          kFactorHelper: '???',
+          timeout0Helper: '???',
+          timeout1Helper: '???',
+          timeout2Helper: '???',
+          timeout3Helper: '???'
+        }
+      },
+      redundancyGroup: {
+        wizard: {
+          title: {
+            edit: '???',
+            add: '???'
+          },
+          redundancyGroupNumberLabel: '???',
+          addedLRedundancyGroup: '??? {{ rGNumber }} ? SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+          editedRedundancyGroup: '??? {{ rGNumber }} ? SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+          removedRedundancyGroup: '??? {{ rGNumber }} ? SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+          logicLinkGroupTitle: '???',
+          noLogicLinksAvailable: '???',
+          addLogicLink: '???'
+        }
+      },
+      logicLink: {
+        wizard: {
+          title: {
+            edit: '???',
+            add: '???'
+          },
+          logicLinkNumberLabel: '???',
+          addedLogicLink: '??? SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+          editedLogicLink: '??? SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+          removedLogicLink: '??? SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+        }
       }
     },
     wizard: {
