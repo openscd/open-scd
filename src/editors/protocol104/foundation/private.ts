@@ -21,6 +21,16 @@ export function addPrefixAndNamespaceToDocument(document: Document): void {
 }
 
 /**
+ * Get the SCL Private Element with the type set to the 104 Protocol.
+ *
+ * @param daiElement - The DAI Element to search for the 104 Private Element.
+ * @returns The found Private Element or null if not there.
+ */
+export function getPrivateElement(daiElement: Element): Element | null {
+  return daiElement.querySelector(`Private[type="${PROTOCOL_104_PRIVATE}"]`);
+}
+
+/**
  * Create an SCL Private Element with the type set to the 104 Protocol.
  *
  * @param document - The Owner Document used to create the new Private Element with.

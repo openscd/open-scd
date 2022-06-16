@@ -1,7 +1,5 @@
 import { getInstanceAttribute, getNameAttribute } from '../../../foundation.js';
 
-export const PRIVATE_TYPE_104 = 'IEC_60870_5_104';
-
 /**
  * Retrieve the full path as wanted for the IED Container in the 104 Plugin, meaning we go higher in the
  * hierarchy until the parent found is the IED, this element is excluded, because the containers are group per
@@ -13,34 +11,39 @@ export const PRIVATE_TYPE_104 = 'IEC_60870_5_104';
  * @returns The full path shown to the user for a DAI Element.
  */
 export function getFullPath(element: Element, topLevelTagName: string): string {
-  let path = getNameAttribute(element) ?? '';
-  let parent = element.parentElement;
+  let currentElement: Element | null = element;
+  const paths: string[] = [];
 
-  while (parent && parent.tagName != topLevelTagName) {
+  do {
     let value: string | undefined;
-    switch (parent.tagName) {
+    switch (currentElement.tagName) {
       case 'LN':
       case 'LN0': {
-        const prefix = parent.getAttribute('prefix');
-        const inst = getInstanceAttribute(parent);
-        value = `${prefix ? prefix + '-' : ''}${parent.getAttribute(
+        const prefix = currentElement.getAttribute('prefix');
+        const inst = getInstanceAttribute(currentElement);
+        value = `${prefix ? prefix + '-' : ''}${currentElement.getAttribute(
           'lnClass'
         )}${inst ? '-' + inst : ''}`;
         break;
       }
       case 'LDevice': {
-        value = getNameAttribute(parent) ?? getInstanceAttribute(parent);
+        value =
+          getNameAttribute(currentElement) ??
+          getInstanceAttribute(currentElement);
         break;
       }
       default: {
         // Just add the name to the list
-        value = getNameAttribute(parent);
+        value = getNameAttribute(currentElement);
       }
     }
-    path = (value ? value + ' / ' : '') + path;
-    parent = parent.parentElement;
-  }
-  return path;
+    if (value) {
+      paths.unshift(value);
+    }
+    currentElement = currentElement.parentElement;
+  } while (currentElement && currentElement.tagName != topLevelTagName);
+
+  return paths.join(' / ');
 }
 
 /**
@@ -51,7 +54,7 @@ export function getFullPath(element: Element, topLevelTagName: string): string {
  * @param doiElement - The DOI Element to start the search for the CDC Value.
  * @returns The CDC Value from the DOType Element.
  */
-export function getCdcValue(doiElement: Element): string | null {
+export function getCdcValueFromDOIElement(doiElement: Element): string | null {
   const lnElement = doiElement.closest('LN0, LN');
   if (lnElement) {
     const lnType = lnElement.getAttribute('lnType');
@@ -61,14 +64,18 @@ export function getCdcValue(doiElement: Element): string | null {
       `LNodeType[id="${lnType}"] > DO[name="${doName}"]`
     );
     if (doElement) {
-      const doType = doElement.getAttribute('type');
-      const doTypeElement = doiElement.ownerDocument.querySelector(
-        `DOType[id="${doType}"]`
-      );
-      return doTypeElement ? doTypeElement.getAttribute('cdc') : null;
+      return getCdcValueFromDOElement(doElement);
     }
   }
   return null;
+}
+
+export function getCdcValueFromDOElement(doElement: Element): string | null {
+  const doType = doElement.getAttribute('type');
+  const doTypeElement = doElement.ownerDocument.querySelector(
+    `DOType[id="${doType}"]`
+  );
+  return doTypeElement ? doTypeElement.getAttribute('cdc') : null;
 }
 
 /**
@@ -115,6 +122,38 @@ export function get104DetailsLine(
 /**
  * Search for a DAI Element below the passed DOI Element.
  *
+ * @param doElement - The DO Element to search on.
+ * @param name      - The name of the DA Element to search for.
+ * @returns The found DA Element or null, if not found.
+ */
+export function getDaElement(doElement: Element, name: string): Element | null {
+  const doType = doElement.getAttribute('type');
+  if (doType) {
+    return doElement.ownerDocument.querySelector(
+      `DOType[id="${doType}"] > DA[name="${name}"]`
+    );
+  }
+  return null;
+}
+
+/**
+ * Search for the Value of a DAI Element below the passed DOI Element.
+ *
+ * @param doElement - The DO Element to search on.
+ * @param name      - The name of the DA Element to search for.
+ * @returns The value (Val) of the found DA Element or null, if not found.
+ */
+export function getDaValue(doElement: Element, name: string): string | null {
+  const daElement = getDaElement(doElement, name);
+  if (daElement) {
+    return daElement.querySelector(':scope > Val')?.textContent ?? null;
+  }
+  return null;
+}
+
+/**
+ * Search for a DAI Element below the passed DOI Element.
+ *
  * @param doiElement - The DOI Element to search on.
  * @param name       - The name of the DAI Element to search for.
  * @returns The found DAI Element or null, if not found.
@@ -141,14 +180,47 @@ export function getDaiValue(doiElement: Element, name: string): string | null {
   return null;
 }
 
+export function getDoiElement(
+  lnElement: Element,
+  doName: string
+): Element | null {
+  return lnElement.querySelector(`DOI[name="${doName}"]`);
+}
+
+export function getDoElement(
+  lnElement: Element,
+  doName: string
+): Element | null {
+  const lnType = lnElement.getAttribute('lnType');
+  if (lnType) {
+    return lnElement.ownerDocument.querySelector(
+      `LNodeType[id="${lnType}"] > DO[name="${doName}"]`
+    );
+  }
+  return null;
+}
+
 /**
  * Search for the DAI Element 'ctlModel', this one indicates if control Addresses need to be created.
  *
- * @param doiElement - The DOI Element.
+ * @param lnElement - The LN Element.
+ * @param doElement - The DO Element.
  * @returns The value of the CtlModel.
  */
-export function getCtlModel(doiElement: Element): string | null {
-  return getDaiValue(doiElement, 'ctlModel');
+export function getCtlModel(
+  lnElement: Element,
+  doElement: Element
+): string | null {
+  const doName = getNameAttribute(doElement);
+  if (doName) {
+    const doiElement = getDoiElement(lnElement, doName);
+    if (doiElement) {
+      return getDaiValue(doiElement, 'ctlModel');
+    } else {
+      return getDaValue(doElement, 'ctlModel');
+    }
+  }
+  return null;
 }
 
 /**
@@ -238,7 +310,9 @@ function buildTemplateChainFromInstanceElements(
  *
  * @param daiElement - The DAI Element for which to search the linked DA Element.
  */
-export function getDaElement(daiElement: Element): Element | undefined {
+export function getDaElementByDaiElement(
+  daiElement: Element
+): Element | undefined {
   // First step is to create the list of instance elements
   const instanceChain = buildInstanceChain(daiElement);
   // Next step is to build the Template Chain from the instance elements
@@ -271,7 +345,7 @@ function isEnumType(daElement: Element | undefined) {
  * @param daiElement - The DAI Element for which to check.
  */
 export function isEnumDataAttribute(daiElement: Element): boolean {
-  const daElement = getDaElement(daiElement);
+  const daElement = getDaElementByDaiElement(daiElement);
   return isEnumType(daElement);
 }
 
@@ -282,7 +356,7 @@ export function isEnumDataAttribute(daiElement: Element): boolean {
  * @param ord        - The value of the attribute 'ord' to search the value of.
  */
 export function getEnumVal(daiElement: Element, ord: string): string | null {
-  const daElement = getDaElement(daiElement);
+  const daElement = getDaElementByDaiElement(daiElement);
   if (isEnumType(daElement)) {
     const enumType = daElement!.getAttribute('type');
     const enumVal = daiElement.ownerDocument.querySelector(
@@ -302,7 +376,7 @@ export function getEnumVal(daiElement: Element, ord: string): string | null {
  */
 export function getEnumOrds(daiElement: Element): string[] {
   const ords: string[] = [];
-  const daElement = getDaElement(daiElement);
+  const daElement = getDaElementByDaiElement(daiElement);
   if (isEnumType(daElement)) {
     const enumType = daElement!.getAttribute('type');
     const enumVals = daiElement.ownerDocument.querySelectorAll(

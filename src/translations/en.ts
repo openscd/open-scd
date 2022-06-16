@@ -367,7 +367,8 @@ export const en = {
       removeAddresses: 'Remove all addresses',
       removedAddresses:
         'Removed Addresses from DOI "{{ name }}" ({{ nrOfAddresses }})',
-      addedAddress: 'Added 104 Address(es) to DOI "{{ name }}',
+      addedAddress:
+        'Added 104 Address(es) to DO "{{ name }} on LN(0) "{{ lnName }}"',
     },
     network: {
       connectedap: {

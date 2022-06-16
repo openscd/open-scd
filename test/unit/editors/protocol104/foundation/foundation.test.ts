@@ -2,17 +2,18 @@ import { expect } from '@open-wc/testing';
 
 import {
   get104DetailsLine,
-  getCdcValue,
+  getCdcValueFromDOIElement,
   getCtlModel,
-  getDaElement,
+  getDaElementByDaiElement,
   getDaiElement,
   getDaiValue,
+  getDoElement,
   getEnumOrds,
   getEnumVal,
   getFullPath,
   isEnumDataAttribute,
-  PRIVATE_TYPE_104,
 } from '../../../../../src/editors/protocol104/foundation/foundation.js';
+import { PROTOCOL_104_PRIVATE } from '../../../../../src/editors/protocol104/foundation/private.js';
 
 describe('foundation', () => {
   let document: XMLDocument;
@@ -24,7 +25,7 @@ describe('foundation', () => {
   });
 
   describe('get104DetailsLine', () => {
-    const FIRST_PRIV_ADDRESS_QUERY = `:scope > Private[type="${PRIVATE_TYPE_104}"] > Address`;
+    const FIRST_PRIV_ADDRESS_QUERY = `:scope > Private[type="${PROTOCOL_104_PRIVATE}"] > Address`;
 
     it('returns basic fields', () => {
       const daiElement = document.querySelector(
@@ -99,7 +100,7 @@ describe('foundation', () => {
       const doiElement = document.querySelector(
         'IED[name="B2"] LN0[lnType="SE_LLN0_SET_default_V001"] DOI[name="Beh"]'
       );
-      expect(getCdcValue(doiElement!)).to.be.equals('ENS');
+      expect(getCdcValueFromDOIElement(doiElement!)).to.be.equals('ENS');
     });
 
     it('returns expected value for CDC "ENC"', () => {
@@ -107,7 +108,7 @@ describe('foundation', () => {
       const doiElement = document.querySelector(
         'IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] DOI[name="Mod"]'
       );
-      expect(getCdcValue(doiElement!)).to.be.equals('ENC');
+      expect(getCdcValueFromDOIElement(doiElement!)).to.be.equals('ENC');
     });
   });
 
@@ -149,28 +150,30 @@ describe('foundation', () => {
 
   describe('getCtlModel', () => {
     it('returns expected CtlModel Value', () => {
-      const doiElement = document.querySelector(
-        'IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] DOI[name="Mod"]'
+      const lnElement = document.querySelector(
+        'IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"]'
       );
-      const result = getCtlModel(doiElement!);
+      const doElement = getDoElement(lnElement!, 'Mod');
+      const result = getCtlModel(lnElement!, doElement!);
       expect(result).to.be.equal('direct-with-normal-security');
     });
 
     it('returns null if DAI not found', () => {
-      const doiElement = document.querySelector(
-        'IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] DOI[name="Beh"]'
+      const lnElement = document.querySelector(
+        'IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"]'
       );
-      const result = getCtlModel(doiElement!);
+      const doElement = getDoElement(lnElement!, 'Beh');
+      const result = getCtlModel(lnElement!, doElement!);
       expect(result).to.be.null;
     });
   });
 
-  describe('getDaElement', () => {
+  describe('getDaElementByDaiElement', () => {
     it('returns expected DA Element', () => {
       const daiElement = document.querySelector(
         'IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] > DOI[name="Mod"] DAI[name="ctlVal"]'
       );
-      const daElement = getDaElement(daiElement!);
+      const daElement = getDaElementByDaiElement(daiElement!);
       expect(daElement).to.be.not.null;
       expect(daElement?.getAttribute('type')).to.be.equal('SE_Oper_V003');
     });
@@ -179,7 +182,7 @@ describe('foundation', () => {
       const daiElement = document.querySelector(
         'IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] > DOI[name="ClcRfTyp"] > DAI[name="setVal"]'
       );
-      const daElement = getDaElement(daiElement!);
+      const daElement = getDaElementByDaiElement(daiElement!);
       expect(daElement).to.be.not.null;
       expect(daElement?.getAttribute('bType')).to.be.equal('Enum');
       expect(daElement?.getAttribute('type')).to.be.equal('SE_setVal_V001');

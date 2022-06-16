@@ -6,8 +6,8 @@ import '../../../../mock-wizard.js';
 
 import {
   getDataChildren,
-  selectDoiWizard,
-} from '../../../../../src/editors/protocol104/wizards/selectDoi.js';
+  selectDoWizard,
+} from '../../../../../src/editors/protocol104/wizards/selectDo.js';
 
 describe('data model nodes child getter', () => {
   let doc: XMLDocument;
@@ -57,16 +57,16 @@ describe('data model nodes child getter', () => {
       )!;
       expect(getDataChildren(parent)).to.not.be.empty;
       expect(getDataChildren(parent).length).to.equal(1);
-      expect(getDataChildren(parent)[0].tagName).to.be.equal('DOI');
+      expect(getDataChildren(parent)[0].tagName).to.be.equal('DO');
       expect(getDataChildren(parent)[0]).to.have.attribute('name', 'MltLev');
     });
   });
 
-  describe('show DO(I) Picker', () => {
+  describe('show DO Picker', () => {
     beforeEach(async () => {
       element = await fixture(html`<mock-wizard></mock-wizard>`);
 
-      const wizard = selectDoiWizard(doc);
+      const wizard = selectDoWizard(doc);
       element.workflow.push(() => wizard);
       await element.requestUpdate();
     });

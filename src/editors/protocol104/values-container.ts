@@ -12,8 +12,8 @@ import { compareNames, newWizardEvent } from '../../foundation.js';
 
 import './ied-container.js';
 
-import { PRIVATE_TYPE_104 } from './foundation/foundation.js';
-import { selectDoiWizard } from './wizards/selectDoi.js';
+import { selectDoWizard } from './wizards/selectDo.js';
+import { PROTOCOL_104_PRIVATE } from './foundation/private.js';
 
 /**
  * Container that will render an 'ied-104-container' for every IED which contains DAI Elements related to the
@@ -29,15 +29,16 @@ export class Values104Container extends LitElement {
     return Array.from(this.doc.querySelectorAll('IED'))
       .filter(
         ied =>
-          ied.querySelectorAll(`DAI > Private[type="${PRIVATE_TYPE_104}"]`)
-            .length > 0
+          ied.querySelectorAll(
+            `DAI > Private[type="${PROTOCOL_104_PRIVATE}"] > Address`
+          ).length > 0
       )
       .sort((a, b) => compareNames(a, b));
   }
 
   /** Opens a [[`WizardDialog`]] for creating a new `Substation` element. */
   private openCreateAddressWizard(): void {
-    this.dispatchEvent(newWizardEvent(selectDoiWizard(this.doc)));
+    this.dispatchEvent(newWizardEvent(selectDoWizard(this.doc)));
   }
 
   private renderAddButton(): TemplateResult {

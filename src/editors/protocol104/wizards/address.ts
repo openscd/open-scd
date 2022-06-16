@@ -20,7 +20,7 @@ import '../../../wizard-textfield.js';
 import '../../../wizard-select.js';
 
 import {
-  getCdcValue,
+  getCdcValueFromDOIElement,
   getEnumVal,
   getFullPath,
 } from '../foundation/foundation.js';
@@ -56,7 +56,7 @@ export function updateAddressValue(
   return (inputs: WizardInputElement[]): EditorAction[] => {
     const doiElement = daiElement.closest('DOI');
 
-    const cdc = getCdcValue(doiElement!) ?? '';
+    const cdc = getCdcValueFromDOIElement(doiElement!) ?? '';
     const ti = addressElement.getAttribute('ti') ?? '';
 
     const casdu = getValue(inputs.find(i => i.label === 'casdu')!)!;
@@ -106,7 +106,7 @@ export function editAddressWizard(
     const doiElement = daiElement!.closest('DOI');
     const iedElement = doiElement!.closest('IED');
 
-    const cdc = getCdcValue(doiElement!) ?? '';
+    const cdc = getCdcValueFromDOIElement(doiElement!) ?? '';
     const ti = addressElement.getAttribute('ti') ?? '';
 
     // Add the basic fields to the list.

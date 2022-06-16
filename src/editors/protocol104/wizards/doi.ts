@@ -15,12 +15,13 @@ import {
 import '../../../wizard-textfield.js';
 
 import {
-  getCdcValue,
+  getCdcValueFromDOIElement,
   getCtlModel,
+  getDoElement,
   getFullPath,
-  PRIVATE_TYPE_104,
 } from '../foundation/foundation.js';
 import { cdcProcessings, SupportedCdcType } from '../foundation/cdc.js';
+import { PROTOCOL_104_PRIVATE } from '../foundation/private.js';
 
 function renderTiOverview(foundTis: string[], label: string): TemplateResult {
   if (foundTis.length > 0) {
@@ -38,7 +39,7 @@ function renderTiOverview(foundTis: string[], label: string): TemplateResult {
 export function renderDOIWizard(doiElement: Element): TemplateResult[] {
   const iedElement = doiElement.closest('IED');
   const fullpath = getFullPath(doiElement, 'IED');
-  const cdc = getCdcValue(doiElement);
+  const cdc = getCdcValueFromDOIElement(doiElement);
 
   // Add the basic fields to the list.
   const fields: TemplateResult[] = [
@@ -67,15 +68,22 @@ export function renderDOIWizard(doiElement: Element): TemplateResult[] {
     </wizard-textfield>`,
   ];
 
-  const ctlModel = getCtlModel(doiElement);
-  if (ctlModel !== null) {
-    fields.push(html`<wizard-textfield
-      label="ctlModel"
-      .maybeValue=${ctlModel}
-      disabled
-      readonly
-    >
-    </wizard-textfield>`);
+  const lnElement = doiElement.closest('LN0, LN');
+  const doName = getNameAttribute(doiElement);
+  if (lnElement && doName) {
+    const doElement = getDoElement(lnElement, doName);
+    if (doElement) {
+      const ctlModel = getCtlModel(lnElement, doElement);
+      if (ctlModel !== null) {
+        fields.push(html` <wizard-textfield
+          label="ctlModel"
+          .maybeValue=${ctlModel}
+          disabled
+          readonly
+        >
+        </wizard-textfield>`);
+      }
+    }
   }
 
   let monitorTis: string[] = [];
@@ -95,7 +103,7 @@ export function renderDOIWizard(doiElement: Element): TemplateResult[] {
 
   let foundTis = Array.from(
     doiElement.querySelectorAll(
-      `DAI > Private[type="${PRIVATE_TYPE_104}"] > Address`
+      `DAI > Private[type="${PROTOCOL_104_PRIVATE}"] > Address`
     )
   )
     .filter(element => element.getAttribute('ti') !== '')
@@ -122,7 +130,7 @@ export function remove104Private(doiElement: Element): WizardMenuActor {
     // The 104 Private Element only contains Address Elements, so we can remove all the 104 Private Elements
     // to remove all the Address Elements also.
     const privateElements = doiElement.querySelectorAll(
-      `DAI > Private[type="${PRIVATE_TYPE_104}"]`
+      `DAI > Private[type="${PROTOCOL_104_PRIVATE}"] > Address`
     );
     if (privateElements.length > 0) {
       const complexAction: ComplexAction = {
@@ -148,13 +156,6 @@ export function remove104Private(doiElement: Element): WizardMenuActor {
 }
 
 export function showDOIInfoWizard(doiElement: Element): Wizard {
-  function close() {
-    return function () {
-      document.querySelector('open-scd')!.dispatchEvent(newWizardEvent());
-      return [];
-    };
-  }
-
   return [
     {
       title: get('protocol104.wizard.title.doiInfo'),

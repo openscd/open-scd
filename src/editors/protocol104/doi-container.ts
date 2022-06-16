@@ -24,12 +24,12 @@ import '../../action-pane.js';
 
 import {
   get104DetailsLine,
-  getCdcValue,
+  getCdcValueFromDOIElement,
   getFullPath,
-  PRIVATE_TYPE_104,
 } from './foundation/foundation.js';
 import { editAddressWizard } from './wizards/address.js';
 import { showDOIInfoWizard } from './wizards/doi.js';
+import { PROTOCOL_104_PRIVATE } from './foundation/private.js';
 
 /**
  * Container showing all the DAI Elements, related to the 104 Protocol, of the passed DOI Element in a list.
@@ -48,8 +48,9 @@ export class Doi104Container extends LitElement {
     return Array.from(this.element.querySelectorAll(`DAI`))
       .filter(
         daiElement =>
-          daiElement.querySelector(`Private[type="${PRIVATE_TYPE_104}"]`) !==
-          null
+          daiElement.querySelector(
+            `Private[type="${PROTOCOL_104_PRIVATE}"] > Address`
+          ) !== null
       )
       .sort((dai1, dai2) =>
         getFullPath(dai1, 'DOI').localeCompare(getFullPath(dai2, 'DOI'))
@@ -59,7 +60,7 @@ export class Doi104Container extends LitElement {
   private getAddressElements(daiElement: Element): Element[] {
     return Array.from(
       daiElement.querySelectorAll(
-        `Private[type="${PRIVATE_TYPE_104}"] > Address`
+        `Private[type="${PROTOCOL_104_PRIVATE}"] > Address`
       )
     ).sort((addr1, addr2) =>
       (addr1.getAttribute('ioa') ?? '').localeCompare(
@@ -88,7 +89,7 @@ export class Doi104Container extends LitElement {
   @property()
   get header(): TemplateResult {
     const fullPath = getFullPath(this.element, 'IED');
-    const cdc = getCdcValue(this.element);
+    const cdc = getCdcValueFromDOIElement(this.element);
 
     return html`${fullPath}${cdc ? html` (${cdc})` : nothing}`;
   }
