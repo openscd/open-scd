@@ -51,7 +51,7 @@ describe('foundation', () => {
         'ACT',
         '30'
       );
-      expect(actions.length).to.be.equals(0);
+      expect(actions).to.be.empty;
       expect(actionEvent).to.have.not.been.called;
     });
 
@@ -61,8 +61,8 @@ describe('foundation', () => {
         'SPG',
         '58'
       );
-      expect(actions.length).to.be.equals(1);
-      expect(actionEvent).to.have.been.callCount(1);
+      expect(actions.length).to.be.equal(1);
+      expect(actionEvent).to.have.been.calledOnce;
     });
 
     it('returns a multiple address create action', () => {
@@ -71,7 +71,7 @@ describe('foundation', () => {
         'ENG',
         '58'
       );
-      expect(actions.length).to.be.equals(1);
+      expect(actions.length).to.be.equal(1);
       expect(actionEvent).to.have.been.callCount(8);
     });
   });
@@ -102,7 +102,7 @@ describe('foundation', () => {
         'ISC',
         '62'
       );
-      expect(actions.length).to.be.equals(0);
+      expect(actions).to.be.empty;
       expect(actionEvent).to.have.not.been.called;
     });
 
@@ -112,8 +112,8 @@ describe('foundation', () => {
         'DPC',
         '59'
       );
-      expect(actions.length).to.be.equals(1);
-      expect(actionEvent).to.have.been.callCount(2);
+      expect(actions.length).to.be.equal(1);
+      expect(actionEvent).to.have.been.calledTwice;
     });
   });
 });

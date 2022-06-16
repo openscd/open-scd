@@ -24,9 +24,9 @@ describe('values-104-container', () => {
 
     it('getIEDElements will return a list which is alphabetically ordered', () => {
       const ieds = element.iedElements;
-      expect(ieds.length).to.be.equals(2);
-      expect(ieds[0].getAttribute('name')).to.be.equals('B1');
-      expect(ieds[1].getAttribute('name')).to.be.equals('B2');
+      expect(ieds.length).to.be.equal(2);
+      expect(ieds[0].getAttribute('name')).to.be.equal('B1');
+      expect(ieds[1].getAttribute('name')).to.be.equal('B2');
     });
   });
 

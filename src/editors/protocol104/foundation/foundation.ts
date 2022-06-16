@@ -1,4 +1,9 @@
+import { html, TemplateResult } from 'lit-element';
+import { ifDefined } from 'lit-html/directives/if-defined.js';
+import { translate } from 'lit-translate';
 import { getInstanceAttribute, getNameAttribute } from '../../../foundation.js';
+import { typeMaxLength } from '../../../wizards/foundation/p-types.js';
+import { typeDescriptiveNameKeys, typePattern } from './p-types.js';
 
 /**
  * Retrieve the full path as wanted for the IED Container in the 104 Plugin, meaning we go higher in the
@@ -387,6 +392,25 @@ export function getEnumOrds(daiElement: Element): string[] {
       .map(valElement => ords.push(valElement.getAttribute('ord')!));
   }
   return ords;
+}
+
+/**
+ * Create a wizard-textfield element for the wizards within the Network part of the 104 plugin.
+ * @param pType - The type of P a Text Field has to be created for.
+ * @returns - A Text Field created for a specific type for the Create wizard.
+ */
+export function createNetworkTextField(
+  pType: string,
+  maybeValue?: string
+): TemplateResult {
+  return html`<wizard-textfield
+    required
+    label="${pType}"
+    pattern="${ifDefined(typePattern[pType])}"
+    .maybeValue=${maybeValue ?? null}
+    maxLength="${ifDefined(typeMaxLength[pType])}"
+    helper="${translate(typeDescriptiveNameKeys[pType])}"
+  ></wizard-textfield>`;
 }
 
 /**
