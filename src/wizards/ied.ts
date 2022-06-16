@@ -64,53 +64,39 @@ export function renderIEDWizard(
     ></wizard-textfield>`,
     html`<wizard-textfield
       label="type"
-      .maybeValue=${type}
+      .maybeValue=${type || "-"}
       readOnly
-      ?disabled="${type==null}"
-      helper="${translate('ied.wizard.typeHelper')}"
-      pattern="${patterns.normalizedString}"
+      disabled
     ></wizard-textfield>`,
     html`<wizard-textfield
       label="manufacturer"
-      .maybeValue=${manufacturer}
+      .maybeValue=${manufacturer || "-"}
       readOnly
-      ?disabled="${manufacturer==null}"
-      helper="${translate('ied.wizard.manufacturerHelper')}"
-      pattern="${patterns.normalizedString}"
+      disabled
     ></wizard-textfield>`,
     html`<wizard-textfield
     label="configVersion"
-      .maybeValue=${configVersion}
+      .maybeValue=${configVersion || "-"}
       readOnly
-      ?disabled="${configVersion==null}"
-      helper="${translate('ied.wizard.configVersionHelper')}"
-      pattern="${patterns.normalizedString}"
+      disabled
     ></wizard-textfield>`,
     html`<wizard-textfield
     label="originalSclVersion"
-      .maybeValue=${originalSclVersion}
-      defaultValue="2003"
+      .maybeValue=${originalSclVersion || "-"}
       readOnly
-      ?disabled="${originalSclVersion==null}"
-      helper="${translate('ied.wizard.originalSclVersionHelper')}"
-      pattern="${patterns.normalizedString}"
+      disabled
     ></wizard-textfield>`,
     html`<wizard-textfield
     label="engRight"
-      .maybeValue=${engRight}
-      defaultValue="full"
+      .maybeValue=${engRight || "-"}
       readOnly
-      ?disabled="${engRight==null}"
-      helper="${translate('ied.wizard.engRightHelper')}"
-      pattern="${patterns.normalizedString}"
+      disabled
     ></wizard-textfield>`,
     html`<wizard-textfield
     label="owner"
-      .maybeValue=${owner}
+      .maybeValue=${owner || "-"}
       readOnly
-      ?disabled="${owner==null}"
-      helper="${translate('ied.wizard.ownerHelper')}"
-      pattern="${patterns.normalizedString}"
+      disabled
     ></wizard-textfield>`
   ];
 }
