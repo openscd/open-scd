@@ -1,18 +1,47 @@
-import { Create } from "../../../foundation.js";
+import { Create } from '../../../foundation.js';
 
-import {addPrefixAndNamespaceToDocument, createPrivateAddress, createPrivateElement} from "./private.js";
+import {
+  addPrefixAndNamespaceToDocument,
+  createPrivateAddress,
+  createPrivateElement,
+} from './private.js';
+import { getEnumOrds, isEnumDataAttribute } from './foundation.js';
 
 /**
  * List of supported Common Data Classes in the 104 protocol.
  */
-export const supportedCdcTypes =
-  [ 'ACT', 'APC', 'ASG', 'BAC', 'BCR', 'BSC', 'CMV',
-    'DPC', 'DPS', 'INC', 'ING', 'INS', 'ISC', 'MV',
-    'SEC', 'SPC', 'SPG', 'SPS'] as const;
+export const supportedCdcTypes = [
+  'ACT',
+  'APC',
+  'ASG',
+  'BAC',
+  'BCR',
+  'BSC',
+  'CMV',
+  'DPC',
+  'DPS',
+  'ENG',
+  'INC',
+  'ING',
+  'INS',
+  'ISC',
+  'MV',
+  'SEC',
+  'SPC',
+  'SPG',
+  'SPS',
+] as const;
 export type SupportedCdcType = typeof supportedCdcTypes[number];
 
-export type CreateFunction = (daiElement: Element, selectedTi: string, inverted: boolean) => Create[];
-export type CreateCheckFunction = (daiElement: Element, selectedTi: string) => Create[];
+export type CreateFunction = (
+  daiElement: Element,
+  selectedTi: string,
+  inverted: boolean
+) => Create[];
+export type CreateCheckFunction = (
+  daiElement: Element,
+  selectedTi: string
+) => Create[];
 export interface TiInformation {
   filter: string;
   create: CreateFunction;
@@ -33,58 +62,60 @@ export interface TiInformation {
 export const cdcProcessings: Record<
   SupportedCdcType,
   {
-    monitor: Record<string, TiInformation>,
-    control: Record<string, TiInformation>,
+    monitor: Record<string, TiInformation>;
+    control: Record<string, TiInformation>;
   }
-  > = {
+> = {
   ACT: {
     monitor: {
       '30': {
-        filter: ':scope > DAI[name="general"], ' +
+        filter:
+          ':scope > DAI[name="general"], ' +
           ':scope > DAI[name="phsA"], ' +
           ':scope > DAI[name="phsB"], ' +
           ':scope > DAI[name="phsC"], ' +
           ':scope > DAI[name="neut"]',
         create: createAddressAction,
-        inverted: true
+        inverted: true,
       },
       '39': {
         filter: ':scope > DAI[name="general"]',
-        create: createAddressAction
-      }
+        create: createAddressAction,
+      },
     },
-    control: {}
+    control: {},
   },
   APC: {
     monitor: {
       '36': {
         filter: ':scope > SDI[name="mxVal"] > DAI[name="f"]',
-        create: createAddressAction
+        create: createAddressAction,
       },
     },
     control: {
       '63': {
-        filter: ':scope > SDI[name="Oper"] > SDI[name="ctlVal"] > DAI[name="f"]',
+        filter:
+          ':scope > SDI[name="Oper"] > SDI[name="ctlVal"] > DAI[name="f"]',
         create: createAddressAction,
         checkFilter: ':scope > SDI[name="Oper"] > DAI[name="Check"]',
         checkCreate: createCheckAddressAction,
       },
-    }
+    },
   },
   ASG: {
     monitor: {
       '63': {
         filter: ':scope > SDI[name="setMag"] > DAI[name="f"]',
-        create: createAddressAction
-      }
+        create: createAddressAction,
+      },
     },
-    control: {}
+    control: {},
   },
   BAC: {
     monitor: {
       '36': {
         filter: ':scope > SDI[name="mxVal"] > DAI[name="f"]',
-        create: createAddressAction
+        create: createAddressAction,
       },
     },
     control: {
@@ -94,23 +125,22 @@ export const cdcProcessings: Record<
         checkFilter: ':scope > SDI[name="Oper"] > DAI[name="Check"]',
         checkCreate: createCheckAddressAction,
       },
-    }
+    },
   },
   BCR: {
     monitor: {
       '37': {
-        filter: ':scope > DAI[name="actVal"], ' +
-          ':scope > DAI[name="frVal"]',
-        create: createAddressAction
+        filter: ':scope > DAI[name="actVal"], ' + ':scope > DAI[name="frVal"]',
+        create: createAddressAction,
       },
     },
-    control: {}
+    control: {},
   },
   BSC: {
     monitor: {
       '32': {
         filter: ':scope > SDI[name="valWTr"] > DAI[name="posVal"]',
-        create: createAddressAction
+        create: createAddressAction,
       },
     },
     control: {
@@ -120,22 +150,24 @@ export const cdcProcessings: Record<
         checkFilter: ':scope > SDI[name="Oper"] > DAI[name="Check"]',
         checkCreate: createCheckAddressAction,
       },
-    }
+    },
   },
   CMV: {
     monitor: {
       '35': {
-        filter: ':scope > SDI[name="mag"] > DAI[name="i"], ' +
+        filter:
+          ':scope > SDI[name="mag"] > DAI[name="i"], ' +
           ':scope > SDI[name="ang"] > DAI[name="i"]',
-        create: createAddressAction
+        create: createAddressAction,
       },
       '36': {
-        filter: ':scope > SDI[name="mag"] > DAI[name="f"], ' +
+        filter:
+          ':scope > SDI[name="mag"] > DAI[name="f"], ' +
           ':scope > SDI[name="ang"] > DAI[name="f"]',
-        create: createAddressAction
-      }
+        create: createAddressAction,
+      },
     },
-    control: {}
+    control: {},
   },
   DPC: {
     monitor: {
@@ -151,22 +183,35 @@ export const cdcProcessings: Record<
         checkFilter: ':scope > SDI[name="Oper"] > DAI[name="Check"]',
         checkCreate: createCheckAddressAction,
       },
-    }
+    },
   },
   DPS: {
     monitor: {
       '31': {
         filter: ':scope > DAI[name="stVal"]',
-        create: createAddressAction
-      }
+        create: createAddressAction,
+      },
     },
-    control: {}
+    control: {},
+  },
+  ENG: {
+    monitor: {
+      '58': {
+        filter: ':scope > DAI[name="setVal"]',
+        create: createAddressWithExpectValueAction,
+      },
+      '62': {
+        filter: ':scope > DAI[name="setVal"]',
+        create: createAddressAction,
+      },
+    },
+    control: {},
   },
   INC: {
     monitor: {
       '35': {
         filter: ':scope > DAI[name="stVal"]',
-        create: createAddressAction
+        create: createAddressAction,
       },
     },
     control: {
@@ -176,40 +221,40 @@ export const cdcProcessings: Record<
         checkFilter: ':scope > SDI[name="Oper"] > DAI[name="Check"]',
         checkCreate: createCheckAddressAction,
       },
-    }
+    },
   },
   ING: {
     monitor: {
       '62': {
         filter: ':scope > DAI[name="setVal"]',
-        create: createAddressAction
-      }
+        create: createAddressAction,
+      },
     },
-    control: {}
+    control: {},
   },
   INS: {
     monitor: {
       '30': {
         filter: ':scope > DAI[name="stVal"]',
         create: createAddressAction,
-        inverted: true
+        inverted: true,
       },
       '33': {
         filter: ':scope > DAI[name="stVal"]',
-        create: createAddressAction
+        create: createAddressAction,
       },
       '35': {
         filter: ':scope > DAI[name="stVal"]',
-        create: createAddressAction
-      }
+        create: createAddressAction,
+      },
     },
-    control: {}
+    control: {},
   },
   ISC: {
     monitor: {
       '32': {
         filter: ':scope > SDI[name="valWTr"] > DAI[name="posVal"]',
-        create: createAddressAction
+        create: createAddressAction,
       },
     },
     control: {
@@ -219,36 +264,36 @@ export const cdcProcessings: Record<
         checkFilter: ':scope > SDI[name="Oper"] > DAI[name="Check"]',
         checkCreate: createCheckAddressAction,
       },
-    }
+    },
   },
   MV: {
     monitor: {
       '35': {
         filter: ':scope > SDI[name="mag"] > DAI[name="i"]',
-        create: createAddressAction
+        create: createAddressAction,
       },
       '36': {
         filter: ':scope > SDI[name="mag"] > DAI[name="f"]',
-        create: createAddressAction
-      }
+        create: createAddressAction,
+      },
     },
-    control: {}
+    control: {},
   },
   SEC: {
     monitor: {
       '37': {
         filter: ':scope > DAI[name="cnt"]',
-        create: createAddressAction
-      }
+        create: createAddressAction,
+      },
     },
-    control: {}
+    control: {},
   },
   SPC: {
     monitor: {
       '30': {
         filter: ':scope > DAI[name="stVal"]',
         create: createAddressAction,
-        inverted: true
+        inverted: true,
       },
     },
     control: {
@@ -258,49 +303,82 @@ export const cdcProcessings: Record<
         checkFilter: ':scope > SDI[name="Oper"] > DAI[name="Check"]',
         checkCreate: createCheckAddressAction,
       },
-    }
+    },
   },
   SPG: {
     monitor: {
       '58': {
         filter: ':scope > DAI[name="setVal"]',
-        create: createAddressAction
-      }
+        create: createAddressAction,
+      },
     },
-    control: {}
+    control: {},
   },
   SPS: {
     monitor: {
       '30': {
         filter: ':scope > DAI[name="stVal"]',
         create: createAddressAction,
-        inverted: true
-      }
+        inverted: true,
+      },
     },
-    control: {}
+    control: {},
   },
 };
 
 /**
- * Create a new SCL Private element and add 104 Address element(s) below this.
+ * Creates a new SCL Private element and add 104 Address element(s) below this.
  * Set the attribute value of 'ti' to the passed ti value.
  *
  * @param daiElement - The DAI Element to use to set namespace on the root element and create new elements.
  * @param ti         - The value to be set on the attribute 'ti'.
  * @param inverted   - Indicates if extra Address Elements should be created with 'inverted=true'.
+ * @returns An array of Create Action that the wizard action will return.
  */
-function createAddressAction(daiElement: Element, ti: string, inverted: boolean): Create[] {
-  addPrefixAndNamespaceToDocument(daiElement);
+function createAddressAction(
+  daiElement: Element,
+  ti: string,
+  inverted: boolean
+): Create[] {
+  addPrefixAndNamespaceToDocument(daiElement.ownerDocument);
 
-  const privateElement = createPrivateElement(daiElement);
-  createPrivateAddress(daiElement, privateElement, ti);
-  if (inverted) {
-    const invertedAddressElement = createPrivateAddress(daiElement, privateElement, ti);
-    invertedAddressElement.setAttribute('inverted', 'true');
-  }
-  return [{new: {parent: daiElement, element: privateElement}}];
+  const privateElement = createPrivateElement(daiElement.ownerDocument);
+  privateElement.append(
+    ...createAddressElements(daiElement.ownerDocument, ti, inverted)
+  );
+  return [{ new: { parent: daiElement, element: privateElement } }];
 }
 
+/**
+ * Creates a new SCL Private element and add 104 Address element(s) below this.
+ * Set the attribute value of 'ti' to the passed ti value.
+ *
+ * @param daiElement - The DAI Element to use to set namespace on the root element and create new elements.
+ * @param ti         - The value to be set on the attribute 'ti'.
+ * @param inverted   - Indicates if extra Address Elements should be created with 'inverted=true'.
+ * @returns An array of Create Action that the wizard action will return.
+ */
+function createAddressWithExpectValueAction(
+  daiElement: Element,
+  ti: string,
+  inverted: boolean
+): Create[] {
+  addPrefixAndNamespaceToDocument(daiElement.ownerDocument);
+
+  const privateElement = createPrivateElement(daiElement.ownerDocument);
+  if (isEnumDataAttribute(daiElement)) {
+    getEnumOrds(daiElement).forEach(ord =>
+      privateElement.append(
+        ...createAddressElements(daiElement.ownerDocument, ti, inverted, ord)
+      )
+    );
+  } else {
+    privateElement.append(
+      ...createAddressElements(daiElement.ownerDocument, ti, inverted)
+    );
+  }
+  return [{ new: { parent: daiElement, element: privateElement } }];
+}
 
 /**
  * Create a new SCL Private element and add 104 Address element(s) below this.
@@ -308,15 +386,78 @@ function createAddressAction(daiElement: Element, ti: string, inverted: boolean)
  *
  * @param daiElement - The DAI Element to use to set namespace on the root element and create new elements.
  * @param ti         - The value to be set on the attribute 'ti'.
+ * @returns An array of Create Action that the wizard action will return.
  */
 function createCheckAddressAction(daiElement: Element, ti: string): Create[] {
-  addPrefixAndNamespaceToDocument(daiElement);
+  addPrefixAndNamespaceToDocument(daiElement.ownerDocument);
 
-  const privateElement = createPrivateElement(daiElement);
-  let addressElement = createPrivateAddress(daiElement, privateElement, ti);
+  const privateElement = createPrivateElement(daiElement.ownerDocument);
+
+  let addressElement = createPrivateAddress(daiElement.ownerDocument, ti);
   addressElement.setAttribute('check', 'interlocking');
-  addressElement = createPrivateAddress(daiElement, privateElement, ti);
-  addressElement.setAttribute('check', 'synchrocheck');
+  privateElement.append(addressElement);
 
-  return [{new: {parent: daiElement, element: privateElement}}];
+  addressElement = createPrivateAddress(daiElement.ownerDocument, ti);
+  addressElement.setAttribute('check', 'synchrocheck');
+  privateElement.append(addressElement);
+
+  return [{ new: { parent: daiElement, element: privateElement } }];
+}
+
+/**
+ * Creates one or two Address Elements, depending on the value of inverted.
+ *
+ * @param document      - The Owner Document used to create the new Address Element with.
+ * @param ti            - The value to be set on the attribute 'ti'.
+ * @param inverted      - Indicates if extra Address Elements should be created with 'inverted=true'.
+ * @param expectedValue - The optional value of the attribute 'expectedValue' if needed.
+ * @returns Array of one or two Address Elements created.
+ */
+export function createAddressElements(
+  document: Document,
+  ti: string,
+  inverted: boolean,
+  expectedValue?: string
+): Element[] {
+  const addressElements: Element[] = [];
+  const addressElement = createPrivateAddress(document, ti);
+  if (expectedValue) {
+    addressElement.setAttribute('expectedValue', expectedValue);
+  }
+  addressElements.push(addressElement);
+  if (inverted) {
+    const addressElement = createPrivateAddress(document, ti);
+    addressElement.setAttribute('inverted', 'true');
+    if (expectedValue) {
+      addressElement.setAttribute('expectedValue', expectedValue);
+    }
+    addressElements.push(addressElement);
+  }
+  return addressElements;
+}
+
+/**
+ * Indicates if the combination cdc/ti should handle/process the attribute "unitMultiplier" of the Address Element.
+ *
+ * @param cdc - The Common Data Class.
+ * @param ti  - The TI Value.
+ * @returns true, if the combination should handle/process the attribute "unitMultiplier".
+ */
+export function hasUnitMultiplierField(cdc: string, ti: string): boolean {
+  return (
+    (cdc === 'MV' && ['35', '36'].includes(ti)) ||
+    (cdc === 'INS' && ti === '35')
+  );
+}
+
+/**
+ * Indicates if the combination cdc/ti should handle/process the attributes "scaleMultiplier" and "scaleOffset" of
+ * the Address Element.
+ *
+ * @param cdc - The Common Data Class.
+ * @param ti  - The TI Value.
+ * @returns true, if the combination should handle/process the attributes "scaleMultiplier" and "scaleOffset".
+ */
+export function hasScaleFields(cdc: string, ti: string): boolean {
+  return cdc === 'MV' && ['35', '36'].includes(ti);
 }

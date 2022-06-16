@@ -375,7 +375,7 @@ export const de: Translations = {
       connectedAp: {
         wizard: {
           title: {
-            edit: '???'
+            edit: '???',
           },
           redundancySwitchLabel: '???',
           redundancyGroupTitle: '???',
@@ -389,36 +389,42 @@ export const de: Translations = {
           timeout0Helper: '???',
           timeout1Helper: '???',
           timeout2Helper: '???',
-          timeout3Helper: '???'
-        }
+          timeout3Helper: '???',
+        },
       },
       redundancyGroup: {
         wizard: {
           title: {
             edit: '???',
-            add: '???'
+            add: '???',
           },
           redundancyGroupNumberLabel: '???',
-          addedLRedundancyGroup: '??? {{ rGNumber }} ? SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
-          editedRedundancyGroup: '??? {{ rGNumber }} ? SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
-          removedRedundancyGroup: '??? {{ rGNumber }} ? SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+          addedLRedundancyGroup:
+            '??? {{ rGNumber }} ? SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+          editedRedundancyGroup:
+            '??? {{ rGNumber }} ? SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+          removedRedundancyGroup:
+            '??? {{ rGNumber }} ? SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
           logicLinkGroupTitle: '???',
           noLogicLinksAvailable: '???',
-          addLogicLink: '???'
-        }
+          addLogicLink: '???',
+        },
       },
       logicLink: {
         wizard: {
           title: {
             edit: '???',
-            add: '???'
+            add: '???',
           },
           logicLinkNumberLabel: '???',
-          addedLogicLink: '??? SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
-          editedLogicLink: '??? SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
-          removedLogicLink: '??? SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
-        }
-      }
+          addedLogicLink:
+            '??? SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+          editedLogicLink:
+            '??? SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+          removedLogicLink:
+            '??? SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+        },
+      },
     },
     wizard: {
       title: {

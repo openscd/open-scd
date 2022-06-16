@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<SCL xmlns="http://www.iec.ch/61850/2003/SCL" xmlns:SET="http://www.schneider-electric.com/TSF/CBS/Privates" xmlns:SET-Adr="http://www.schneider-electric.com/SET/SYD/LegacyAddress/IsTransmitted" xmlns:eTr_104="http://www.iec.ch/61850-80-1/2007/IEC_60870-5-104" xmlns:eTr_6-100="http://www.iec.ch/61850/2019/SCL/6-100" xmlns:eTr_90-2="http://www.iec.ch/61850-90-2/2015/SCL" xmlns:eTr_Modbus="http://www.schneider-electric.com/SET/SYD/Modbus" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2007" revision="B" release="4" xsi:schemaLocation="http://www.iec.ch/61850/2003/SCL SCL.xsd" eTr_6-100:version="2019" eTr_6-100:revision="B" eTr_6-100:release="1">
+<SCL xmlns="http://www.iec.ch/61850/2003/SCL" version="2007" revision="B" release="4">
 	<Header id="80-1 example" version="0" revision="1" toolID="SchneiderElectric-SET" nameStructure="IEDName"/>
 	<Substation name="S1" desc="">
 		<VoltageLevel name="F1" desc="">

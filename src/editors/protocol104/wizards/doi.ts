@@ -20,6 +20,20 @@ import {
   getFullPath,
   PRIVATE_TYPE_104,
 } from '../foundation/foundation.js';
+import { cdcProcessings, SupportedCdcType } from '../foundation/cdc.js';
+
+function renderTiOverview(foundTis: string[], label: string): TemplateResult {
+  if (foundTis.length > 0) {
+    return html` <wizard-textfield
+      label="${label}"
+      .maybeValue=${foundTis.join(', ')}
+      disabled
+      readonly
+    >
+    </wizard-textfield>`;
+  }
+  return html``;
+}
 
 export function renderDOIWizard(doiElement: Element): TemplateResult[] {
   const iedElement = doiElement.closest('IED');
@@ -44,24 +58,14 @@ export function renderDOIWizard(doiElement: Element): TemplateResult[] {
       disabled
     >
     </mwc-textarea>`,
-    html`<wizard-textfield label="cdc" .maybeValue=${cdc} disabled readonly>
-    </wizard-textfield>`,
-  ];
-
-  const firstAddressElement = doiElement.querySelector(
-    `DAI > Private[type="${PRIVATE_TYPE_104}"] > Address`
-  );
-  if (firstAddressElement) {
-    const ti = firstAddressElement.getAttribute('ti');
-
-    fields.push(html`<wizard-textfield
-      label="ti"
-      .maybeValue=${ti}
+    html`<wizard-textfield
+      label="Common Data Class"
+      .maybeValue=${cdc}
       disabled
       readonly
     >
-    </wizard-textfield>`);
-  }
+    </wizard-textfield>`,
+  ];
 
   const ctlModel = getCtlModel(doiElement);
   if (ctlModel !== null) {
@@ -74,6 +78,42 @@ export function renderDOIWizard(doiElement: Element): TemplateResult[] {
     </wizard-textfield>`);
   }
 
+  let monitorTis: string[] = [];
+  let controlTis: string[] = [];
+  const cdcProcessing = cdcProcessings[<SupportedCdcType>cdc];
+  fields.push(html`<wizard-textfield
+    label="104 Configuration available"
+    .maybeValue=${cdcProcessing !== undefined}
+    disabled
+    readonly
+  >
+  </wizard-textfield>`);
+  if (cdcProcessing) {
+    monitorTis = Object.keys(cdcProcessing.monitor);
+    controlTis = Object.keys(cdcProcessing.control);
+  }
+
+  let foundTis = Array.from(
+    doiElement.querySelectorAll(
+      `DAI > Private[type="${PRIVATE_TYPE_104}"] > Address`
+    )
+  )
+    .filter(element => element.getAttribute('ti') !== '')
+    .map(element => element.getAttribute('ti')!);
+  // Remove duplicates from the array.
+  foundTis = [...new Set(foundTis)];
+
+  const foundMonitorTis = foundTis.filter(ti => monitorTis.includes(ti));
+  const foundControlTis = foundTis.filter(ti => controlTis.includes(ti));
+  const otherTis = foundTis
+    .filter(ti => !foundMonitorTis.includes(ti))
+    .filter(ti => !foundControlTis.includes(ti));
+
+  fields.push(renderTiOverview(monitorTis, 'Available Monitor TIs'));
+  fields.push(renderTiOverview(foundMonitorTis, 'Found Monitor TIs'));
+  fields.push(renderTiOverview(controlTis, 'Available Control TIs'));
+  fields.push(renderTiOverview(foundControlTis, 'Found Control TIs'));
+  fields.push(renderTiOverview(otherTis, 'Other TIs'));
   return fields;
 }
 
@@ -125,11 +165,6 @@ export function showDOIInfoWizard(doiElement: Element): Wizard {
           action: remove104Private(doiElement),
         },
       ],
-      secondary: {
-        icon: '',
-        label: get('close'),
-        action: close(),
-      },
       content: renderDOIWizard(doiElement),
     },
   ];

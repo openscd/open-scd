@@ -1,8 +1,11 @@
-import { html, fixture, expect } from '@open-wc/testing';
+import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../../../src/editors/protocol104/doi-container.js'
+import '../../../../src/editors/protocol104/doi-container.js';
 
-import { get104DetailsLine, getFullPath } from "../../../../src/editors/protocol104/foundation/foundation.js";
+import {
+  get104DetailsLine,
+  getFullPath,
+} from '../../../../src/editors/protocol104/foundation/foundation.js';
 import { Doi104Container } from '../../../../src/editors/protocol104/doi-container.js';
 
 describe('doi-104-container -', () => {
@@ -27,17 +30,19 @@ describe('doi-104-container -', () => {
     });
 
     it('getDaiElements will return a list which is ordered on full path', () => {
-      const dais = element['getDaiElements']();
-      expect(dais.length).to.be.equals(2);
-      expect(getFullPath(dais[0], 'DOI')).to.be.equals('Oper / ctlVal');
-      expect(getFullPath(dais[1], 'DOI')).to.be.equals('stVal');
+      const dais = element.daiElements;
+      expect(dais.length).to.be.equal(2);
+      expect(getFullPath(dais[0], 'DOI')).to.be.equal('Oper / ctlVal');
+      expect(getFullPath(dais[1], 'DOI')).to.be.equal('stVal');
     });
 
     it('getAddressElements will return a list', () => {
-      const dai = element['getDaiElements']()[0];
+      const dai = element.daiElements[0];
       const addresses = element['getAddressElements'](dai);
-      expect(addresses.length).to.be.equals(1);
-      expect(get104DetailsLine(addresses[0])).to.be.equals('casdu: 201, ioa: 2, ti: 58');
+      expect(addresses.length).to.be.equal(1);
+      expect(get104DetailsLine(dai, addresses[0])).to.be.equal(
+        'casdu: 201, ioa: 2, ti: 58'
+      );
     });
 
     it('looks like the latest snapshot', async () => {

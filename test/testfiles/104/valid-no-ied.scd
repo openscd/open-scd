@@ -1,61 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<SCL xmlns="http://www.iec.ch/61850/2003/SCL" xmlns:SET="http://www.schneider-electric.com/TSF/CBS/Privates" xmlns:SET-Adr="http://www.schneider-electric.com/SET/SYD/LegacyAddress/IsTransmitted" xmlns:eTr_104="http://www.iec.ch/61850-80-1/2007/IEC_60870-5-104" xmlns:eTr_6-100="http://www.iec.ch/61850/2019/SCL/6-100" xmlns:eTr_90-2="http://www.iec.ch/61850-90-2/2015/SCL" xmlns:eTr_Modbus="http://www.schneider-electric.com/SET/SYD/Modbus" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2007" revision="B" release="4" xsi:schemaLocation="http://www.iec.ch/61850/2003/SCL SCL.xsd" eTr_6-100:version="2019" eTr_6-100:revision="B" eTr_6-100:release="1">
+<SCL xmlns="http://www.iec.ch/61850/2003/SCL" xmlns:IEC_60870_5_104="http://www.iec.ch/61850-80-1/2007/IEC_60870-5-104" version="2007" revision="B" release="4">
 	<Header id="80-1 example" version="0" revision="1" toolID="SchneiderElectric-SET" nameStructure="IEDName"/>
 	<Substation name="S1" desc="">
+    <Private type="LEAVE PRIVATE HERE FOR TESTING">
+      <IEC_60870_5_104:Address casdu="4" ioa="1" ti="39"/>
+    </Private>
 		<VoltageLevel name="F1" desc="">
 			<Voltage unit="V" multiplier="k">110</Voltage>
 			<Bay name="Q1" desc="">
-				<LNode iedName="B1" ldInst="LD0" lnClass="GAPC" lnInst="1" lnType="SE_GAPC_SET_V001">
-					<Private type="eIEC61850-6-100">
-						<eTr_6-100:LNodeSpecNaming sPrefix="" sLnInst="1"/>
-					</Private>
-				</LNode>
-				<LNode iedName="B1" ldInst="LD0" lnClass="GGIO" lnInst="1" lnType="SE_GGIO_SET_V002">
-					<Private type="eIEC61850-6-100">
-						<eTr_6-100:LNodeSpecNaming sPrefix="" sLnInst="1"/>
-					</Private>
-				</LNode>
-				<LNode iedName="B1" ldInst="LD0" lnClass="MMXU" lnInst="1" lnType="SE_MMXU_SET_V001">
-					<Private type="eIEC61850-6-100">
-						<eTr_6-100:LNodeSpecNaming sPrefix="" sLnInst="1"/>
-					</Private>
-				</LNode>
-				<LNode iedName="B1" ldInst="LD0" lnClass="MSQI" lnInst="1" lnType="SE_MSQI_SET_V001">
-					<Private type="eIEC61850-6-100">
-						<eTr_6-100:LNodeSpecNaming sPrefix="" sLnInst="1"/>
-					</Private>
-				</LNode>
-				<LNode iedName="B1" ldInst="LD0" lnClass="MHAN" lnInst="1" lnType="SE_MHAN_SET_V001">
-					<Private type="eIEC61850-6-100">
-						<eTr_6-100:LNodeSpecNaming sPrefix="" sLnInst="1"/>
-					</Private>
-				</LNode>
-				<LNode iedName="B1" ldInst="LD0" lnClass="GSAL" lnInst="1" lnType="SE_GSAL_SET_V001">
-					<Private type="eIEC61850-6-100">
-						<eTr_6-100:LNodeSpecNaming sPrefix="" sLnInst="1"/>
-					</Private>
-				</LNode>
-				<LNode iedName="B1" ldInst="LD0" lnClass="MFLK" lnInst="1" lnType="SE_MFLK_SET_V001">
-					<Private type="eIEC61850-6-100">
-						<eTr_6-100:LNodeSpecNaming sPrefix="" sLnInst="1"/>
-					</Private>
-				</LNode>
-				<LNode iedName="B1" ldInst="LD0" lnClass="YEFN" lnInst="1" lnType="SE_YEFN_SET_V001">
-					<Private type="eIEC61850-6-100">
-						<eTr_6-100:LNodeSpecNaming sPrefix="" sLnInst="1"/>
-					</Private>
-				</LNode>
+				<LNode iedName="B1" ldInst="LD0" lnClass="GAPC" lnInst="1" lnType="SE_GAPC_SET_V001">				</LNode>
+				<LNode iedName="B1" ldInst="LD0" lnClass="GGIO" lnInst="1" lnType="SE_GGIO_SET_V002">				</LNode>
+				<LNode iedName="B1" ldInst="LD0" lnClass="MMXU" lnInst="1" lnType="SE_MMXU_SET_V001">				</LNode>
+				<LNode iedName="B1" ldInst="LD0" lnClass="MSQI" lnInst="1" lnType="SE_MSQI_SET_V001">				</LNode>
+				<LNode iedName="B1" ldInst="LD0" lnClass="MHAN" lnInst="1" lnType="SE_MHAN_SET_V001">				</LNode>
+				<LNode iedName="B1" ldInst="LD0" lnClass="GSAL" lnInst="1" lnType="SE_GSAL_SET_V001">				</LNode>
+				<LNode iedName="B1" ldInst="LD0" lnClass="MFLK" lnInst="1" lnType="SE_MFLK_SET_V001">				</LNode>
+				<LNode iedName="B1" ldInst="LD0" lnClass="YEFN" lnInst="1" lnType="SE_YEFN_SET_V001">				</LNode>
 				<LNode iedName="B1" ldInst="LD0" lnClass="LLN0" lnType="SE_LLN0_SET_V001"/>
-				<LNode iedName="B1" ldInst="LD0" lnClass="TCTR" lnInst="1" lnType="SE_TCTR_SET_V001">
-					<Private type="eIEC61850-6-100">
-						<eTr_6-100:LNodeSpecNaming sPrefix="" sLnInst="1"/>
-					</Private>
-				</LNode>
-				<LNode iedName="B2" ldInst="LD0" lnClass="GGIO" lnInst="2">
-					<Private type="eIEC61850-6-100">
-						<eTr_6-100:LNodeSpecNaming sPrefix="" sLnInst="2"/>
-					</Private>
-				</LNode>
+				<LNode iedName="B1" ldInst="LD0" lnClass="TCTR" lnInst="1" lnType="SE_TCTR_SET_V001">				</LNode>
+				<LNode iedName="B2" ldInst="LD0" lnClass="GGIO" lnInst="2">				</LNode>
 			</Bay>
 		</VoltageLevel>
 	</Substation>

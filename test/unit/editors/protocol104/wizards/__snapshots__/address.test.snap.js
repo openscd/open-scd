@@ -138,6 +138,12 @@ snapshots["Wizards for 104 Address Element edit 104 Address with expected value 
       readonly=""
     >
     </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      label="enumValue"
+      readonly=""
+    >
+    </wizard-textfield>
   </div>
   <mwc-button
     dialogaction="close"
@@ -738,4 +744,166 @@ snapshots["Wizards for 104 Address Element edit 104 Address with scale fields lo
 </mwc-dialog>
 `;
 /* end snapshot Wizards for 104 Address Element edit 104 Address with scale fields looks like the latest snapshot */
+
+snapshots["Wizards for 104 Address Element edit 104 Address with inverted value looks like the latest snapshot"] = 
+`<mwc-dialog
+  defaultaction="next"
+  heading="[protocol104.wizard.title.addressEdit]"
+  open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
+>
+  <div id="wizard-content">
+    <wizard-textfield
+      disabled=""
+      label="IED"
+      readonly=""
+    >
+    </wizard-textfield>
+    <mwc-textarea
+      cols="40"
+      disabled=""
+      label="DOI"
+      readonly=""
+      rows="2"
+      value="AP1 / LD0 / GGIO-1 / Ind2"
+    >
+    </mwc-textarea>
+    <wizard-textfield
+      disabled=""
+      label="cdc"
+      readonly=""
+    >
+    </wizard-textfield>
+    <mwc-textarea
+      cols="40"
+      disabled=""
+      label="DAI"
+      readonly=""
+      rows="2"
+      value="stVal"
+    >
+    </mwc-textarea>
+    <wizard-textfield
+      helper="[protocol104.wizard.casduHelper]"
+      label="casdu"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      helper="[protocol104.wizard.ioaHelper]"
+      label="ioa"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      label="ti"
+      readonly=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      label="inverted"
+      readonly=""
+    >
+    </wizard-textfield>
+  </div>
+  <mwc-button
+    dialogaction="close"
+    label="[close]"
+    slot="secondaryAction"
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+  </mwc-button>
+  <mwc-button
+    icon="edit"
+    label="[save]"
+    slot="primaryAction"
+    trailingicon=""
+  >
+  </mwc-button>
+</mwc-dialog>
+`;
+/* end snapshot Wizards for 104 Address Element edit 104 Address with inverted value looks like the latest snapshot */
+
+snapshots["Wizards for 104 Address Element edit 104 Address with check value looks like the latest snapshot"] = 
+`<mwc-dialog
+  defaultaction="next"
+  heading="[protocol104.wizard.title.addressEdit]"
+  open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
+>
+  <div id="wizard-content">
+    <wizard-textfield
+      disabled=""
+      label="IED"
+      readonly=""
+    >
+    </wizard-textfield>
+    <mwc-textarea
+      cols="40"
+      disabled=""
+      label="DOI"
+      readonly=""
+      rows="2"
+      value="AP1 / LD0 / GGIO-1 / DPCSO1"
+    >
+    </mwc-textarea>
+    <wizard-textfield
+      disabled=""
+      label="cdc"
+      readonly=""
+    >
+    </wizard-textfield>
+    <mwc-textarea
+      cols="40"
+      disabled=""
+      label="DAI"
+      readonly=""
+      rows="2"
+      value="Oper / Check"
+    >
+    </mwc-textarea>
+    <wizard-textfield
+      helper="[protocol104.wizard.casduHelper]"
+      label="casdu"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      helper="[protocol104.wizard.ioaHelper]"
+      label="ioa"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      label="ti"
+      readonly=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      label="check"
+      readonly=""
+    >
+    </wizard-textfield>
+  </div>
+  <mwc-button
+    dialogaction="close"
+    label="[close]"
+    slot="secondaryAction"
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+  </mwc-button>
+  <mwc-button
+    icon="edit"
+    label="[save]"
+    slot="primaryAction"
+    trailingicon=""
+  >
+  </mwc-button>
+</mwc-dialog>
+`;
+/* end snapshot Wizards for 104 Address Element edit 104 Address with check value looks like the latest snapshot */
 

@@ -1,18 +1,11 @@
-import { html, TemplateResult } from "lit-element";
-import { ifDefined } from "lit-html/directives/if-defined.js";
-import { translate } from "lit-translate";
-import {
-  Create,
-  getInstanceAttribute,
-  getNameAttribute,
-  newWizardEvent
-} from "../../../foundation.js";
-import { typeMaxLength } from "../../../wizards/foundation/p-types.js";
-import { editAddressWizard } from "../wizards/address.js";
-import { TiInformation } from "./cdc.js";
-import { typeDescriptiveNameKeys, typePattern } from "./p-types.js";
+import { html, TemplateResult } from 'lit-element';
+import { ifDefined } from 'lit-html/directives/if-defined.js';
+import { translate } from 'lit-translate';
+import { getInstanceAttribute, getNameAttribute } from '../../../foundation.js';
+import { typeMaxLength } from '../../../wizards/foundation/p-types.js';
+import { typeDescriptiveNameKeys, typePattern } from './p-types.js';
 
-export const PRIVATE_TYPE_104 = "IEC_60870_5_104";
+export const PRIVATE_TYPE_104 = 'IEC_60870_5_104';
 
 /**
  * Retrieve the full path as wanted for the IED Container in the 104 Plugin, meaning we go higher in the
@@ -35,7 +28,9 @@ export function getFullPath(element: Element, topLevelTagName: string): string {
       case 'LN0': {
         const prefix = parent.getAttribute('prefix');
         const inst = getInstanceAttribute(parent);
-        value = `${prefix ? prefix + '-' : ''}${parent.getAttribute('lnClass')}${inst ? '-' + inst : ''}`;
+        value = `${prefix ? prefix + '-' : ''}${parent.getAttribute(
+          'lnClass'
+        )}${inst ? '-' + inst : ''}`;
         break;
       }
       case 'LDevice': {
@@ -67,11 +62,15 @@ export function getCdcValue(doiElement: Element): string | null {
     const lnType = lnElement.getAttribute('lnType');
     const doName = doiElement.getAttribute('name');
 
-    const doElement = doiElement.ownerDocument.querySelector(`LNodeType[id="${lnType}"] > DO[name="${doName}"]`)
+    const doElement = doiElement.ownerDocument.querySelector(
+      `LNodeType[id="${lnType}"] > DO[name="${doName}"]`
+    );
     if (doElement) {
       const doType = doElement.getAttribute('type');
-      const doTypeElement = doiElement.ownerDocument.querySelector(`DOType[id="${doType}"]`)
-      return (doTypeElement ? doTypeElement.getAttribute('cdc') : null);
+      const doTypeElement = doiElement.ownerDocument.querySelector(
+        `DOType[id="${doType}"]`
+      );
+      return doTypeElement ? doTypeElement.getAttribute('cdc') : null;
     }
   }
   return null;
@@ -96,38 +95,26 @@ const addressAttributes = [
  * Create a string to display all information about a 104 Address element.
  * A list of attributes is used to determine what can be displayed if available.
  *
- * @param address - The Address element from which to retrieve all attribute values.
+ * @param daiElement - The DAI Element used if the attribute 'expectedValue' exists to retrieve the Enum Value.
+ * @param address    - The Address element from which to retrieve all attribute values.
  * @returns A string to display with all attribute values.
  */
-export function get104DetailsLine(address: Element): string {
+export function get104DetailsLine(
+  daiElement: Element,
+  address: Element
+): string {
   return addressAttributes
     .filter(attrName => address.hasAttribute(attrName))
-    .map(attrName => `${attrName}: ${address.getAttribute(attrName)}`)
+    .map(attrName => {
+      const value = address.getAttribute(attrName)!;
+      if (attrName === 'expectedValue') {
+        const enumValue = getEnumVal(daiElement, value);
+        return `${attrName}: ${value}${enumValue ? ` (${enumValue})` : ``}`;
+      } else {
+        return `${attrName}: ${value}`;
+      }
+    })
     .join(', ');
-}
-
-/**
- * Indicates if the combination cdc/ti should handle/process the attribute "unitMultiplier" of the Address Element.
- *
- * @param cdc - The Common Data Class.
- * @param ti  - The TI Value.
- * @returns true, if the combination should handle/process the attribute "unitMultiplier".
- */
-export function hasUnitMultiplierField(cdc: string, ti: string): boolean {
-  return (cdc === 'MV' && ['35', '36'].includes(ti))
-    || (cdc === 'INS' && ti === '35');
-}
-
-/**
- * Indicates if the combination cdc/ti should handle/process the attributes "scaleMultiplier" and "scaleOffset" of
- * the Address Element.
- *
- * @param cdc - The Common Data Class.
- * @param ti  - The TI Value.
- * @returns true, if the combination should handle/process the attributes "scaleMultiplier" and "scaleOffset".
- */
-export function hasScaleFields(cdc: string, ti: string): boolean {
-  return (cdc === 'MV' && ['35', '36'].includes(ti));
 }
 
 /**
@@ -137,7 +124,10 @@ export function hasScaleFields(cdc: string, ti: string): boolean {
  * @param name       - The name of the DAI Element to search for.
  * @returns The found DAI Element or null, if not found.
  */
-export function getDaiElement(doiElement: Element, name: string): Element | null {
+export function getDaiElement(
+  doiElement: Element,
+  name: string
+): Element | null {
   return doiElement.querySelector(`:scope > DAI[name="${name}"]`);
 }
 
@@ -167,83 +157,167 @@ export function getCtlModel(doiElement: Element): string | null {
 }
 
 /**
- * Create a list of Create Actions using the parameters passed. First search for the DAI Elements
- * that can be effected. Next create the action and add it to this list, also start the Edit
- * Address Element wizard for all Address Elements created.
+ * Create a Array of Elements from the DOI Element to the passed daiElement.
+ * This will contain of course the DOI Element, followed by zero or more SDI Elements
+ * and finally the DAI Element with which we started.
  *
- * @param doiElement     - The DOI Element.
- * @param wizard         - The Wizard to dispatch the Open Wizard event on.
- * @param ti             - The TI Value set on the new Address Elements.
- * @param inverted       - Indicates if the Engineer want to create inverted Address Elements, if applicable.
- * @param tiInformation  - Information about how to create the Address Elements for the passed TI.
- * @returns A list of Create Action that will be added to the complex action.
+ * @param daiElement - The DAI Element to start walking to the LN(0) Element through parents.
  */
-export function createActions(
-  doiElement: Element,
-  wizard: Element,
-  ti: string,
-  inverted: boolean,
-  tiInformation: TiInformation
-): Create[] {
-  const actions: Create[] = [];
-  const daiElements = doiElement.querySelectorAll(tiInformation.filter);
-  if (daiElements.length > 0) {
-    daiElements.forEach(daiElement => {
-      const createActions = tiInformation.create(daiElement, ti,
-        (tiInformation.inverted ? inverted : false) // If the TI Allows it and the Engineer selected it, true will be passed.
-      );
-      actions.push(...createActions);
-
-      createActions.forEach(createAction => {
-        const privateElement = <Element>createAction.new.element;
-        Array.from(privateElement.querySelectorAll('Address'))
-          .forEach(addressElement => {
-            wizard.dispatchEvent(newWizardEvent(() => editAddressWizard(daiElement, addressElement)));
-          });
-      });
-    });
+function buildInstanceChain(daiElement: Element): Element[] {
+  const instanceElementChain: Element[] = [daiElement];
+  let child = daiElement;
+  if (child.parentElement) {
+    // While the parent element exists and the parent that was processed isn't the LN(0) Element continue.
+    do {
+      child = child.parentElement;
+      instanceElementChain.unshift(child);
+    } while (child.tagName !== 'DOI' && child.parentElement);
   }
-  return actions;
+  return instanceElementChain;
 }
 
 /**
- * Create a list of Create Actions using the parameters passed. First search for the DAI Elements [name="Check"].
- * Next create the action and add it to this list, also start the Edit Address Element wizard for all Address Elements
- * created.
+ * Use the initialed elements (DOI/SDI/DAI) to make the same chain containing the template elements like
+ * DO/SDO/DA/BDA. This way all needed configuration values can be retrieved from the templates.
  *
- * @param doiElement     - The DOI Element.
- * @param wizard         - The Wizard to dispatch the Open Wizard event on.
- * @param ti             - The TI Value set on the new Address Elements.
- * @param tiInformation  - Information about how to create the Address Elements for the passed TI.
- * @returns A list of Create Action that will be added to the complex action.
+ * @param doc           - The document which will be used to search different template elements.
+ * @param instanceChain - The chain created from the LN(0) to the DAI in the IED.
  */
-export function createCheckActions(
-  doiElement: Element,
-  wizard: Element,
-  ti: string,
-  tiInformation: TiInformation
-): Create[] {
-  const actions: Create[] = [];
-  if (tiInformation.checkFilter) {
-    const daiElements = doiElement.querySelectorAll(tiInformation.checkFilter);
-    if (daiElements.length > 0) {
-      daiElements.forEach(daiElement => {
-        if (tiInformation.checkCreate) {
-          const createActions = tiInformation.checkCreate(daiElement, ti);
-          actions.push(...createActions);
+function buildTemplateChainFromInstanceElements(
+  doc: Document,
+  instanceChain: Element[]
+): Element[] {
+  const templateChain: Element[] = [];
+  let typeElement: Element | null;
+  instanceChain.forEach(element => {
+    if (element.tagName === 'DOI') {
+      // The LN Element will only be used as starting point to find the LNodeType.
+      const lnElement = element.closest('LN, LN0')!;
+      const typeId = lnElement.getAttribute('lnType') ?? '';
+      typeElement = doc.querySelector(`LNodeType[id="${typeId}"]`);
 
-          createActions.forEach(createAction => {
-            const privateElement = <Element>createAction.new.element;
-            Array.from(privateElement.querySelectorAll('Address'))
-              .forEach(addressElement => {
-                wizard.dispatchEvent(newWizardEvent(() => editAddressWizard(daiElement, addressElement)));
-              });
-          });
+      if (typeElement) {
+        // Next search for the DO Element below the LNodeType Element.
+        const name = element.getAttribute('name');
+        const doElement = typeElement.querySelector(
+          `:scope > DO[name="${name}"]`
+        );
+        if (doElement) {
+          templateChain.push(doElement);
+
+          // For the next element search the DOType that is linked to the DO Element.
+          const typeId = doElement.getAttribute('type') ?? '';
+          typeElement = doc.querySelector(`DOType[id="${typeId}"]`);
+        } else {
+          typeElement = null;
         }
-      });
+      }
+    } else if (['SDI', 'DAI'].includes(element.tagName)) {
+      if (typeElement) {
+        // Search for the DA Element below the DOType or DAType from the previous Element
+        const name = element.getAttribute('name');
+        const daElement = typeElement?.querySelector(
+          `:scope > DA[name="${name}"], :scope > BDA[name="${name}"]`
+        );
+        if (daElement) {
+          templateChain.push(daElement);
+
+          if (daElement.getAttribute('bType') === 'Struct') {
+            // Only if the bType is a struct we need to search for the DAType for the next element.
+            const typeId = element.getAttribute('type') ?? '';
+            typeElement = doc.querySelector(`DAType[id="${typeId}"]`);
+          } else {
+            typeElement = null;
+          }
+        } else {
+          typeElement = null;
+        }
+      }
+    }
+  });
+  return templateChain;
+}
+
+/**
+ * Retrieve the DA or BDA Element that's linked to the DAI Element passed.
+ *
+ * @param daiElement - The DAI Element for which to search the linked DA Element.
+ */
+export function getDaElement(daiElement: Element): Element | undefined {
+  // First step is to create the list of instance elements
+  const instanceChain = buildInstanceChain(daiElement);
+  // Next step is to build the Template Chain from the instance elements
+  const templateChain = buildTemplateChainFromInstanceElements(
+    daiElement.ownerDocument,
+    instanceChain
+  );
+  if (templateChain.length > 0) {
+    // The needed DA Element is the last Element from the Chain.
+    const daElement = templateChain.pop();
+    if (['DA', 'BDA'].includes(daElement!.tagName)) {
+      return daElement;
     }
   }
-  return actions;
+  return undefined;
+}
+
+/**
+ * Check if the DA Element is of the bType 'Enum'.
+ *
+ * @param daElement - The DA Element for which to check.
+ */
+function isEnumType(daElement: Element | undefined) {
+  return daElement?.getAttribute('bType') === 'Enum' ?? false;
+}
+
+/**
+ * Check if the DA Element that's linked to the DAI Element is of the bType 'Enum'.
+ *
+ * @param daiElement - The DAI Element for which to check.
+ */
+export function isEnumDataAttribute(daiElement: Element): boolean {
+  const daElement = getDaElement(daiElement);
+  return isEnumType(daElement);
+}
+
+/**
+ * Retrieve the value of the Enum with passed 'ord' configured with the passed DAI Element.
+ *
+ * @param daiElement - The DAI Element that is configured as Enum Type.
+ * @param ord        - The value of the attribute 'ord' to search the value of.
+ */
+export function getEnumVal(daiElement: Element, ord: string): string | null {
+  const daElement = getDaElement(daiElement);
+  if (isEnumType(daElement)) {
+    const enumType = daElement!.getAttribute('type');
+    const enumVal = daiElement.ownerDocument.querySelector(
+      `EnumType[id="${enumType}"] > EnumVal[ord="${ord}"]`
+    );
+    if (enumVal) {
+      return enumVal.textContent;
+    }
+  }
+  return null;
+}
+
+/**
+ * Retrieve all the 'ord' value the EnumType has configured with his values.
+ *
+ * @param daiElement - The DAI Element that is configured as Enum Type.
+ */
+export function getEnumOrds(daiElement: Element): string[] {
+  const ords: string[] = [];
+  const daElement = getDaElement(daiElement);
+  if (isEnumType(daElement)) {
+    const enumType = daElement!.getAttribute('type');
+    const enumVals = daiElement.ownerDocument.querySelectorAll(
+      `EnumType[id="${enumType}"] > EnumVal`
+    );
+    Array.from(enumVals)
+      .filter(valElement => valElement.getAttribute('ord'))
+      .map(valElement => ords.push(valElement.getAttribute('ord')!));
+  }
+  return ords;
 }
 
 /**
@@ -251,7 +325,10 @@ export function createCheckActions(
  * @param pType - The type of P a Text Field has to be created for.
  * @returns - A Text Field created for a specific type for the Create wizard.
  */
-export function createNetworkTextField(pType: string, maybeValue?: string): TemplateResult {
+export function createNetworkTextField(
+  pType: string,
+  maybeValue?: string
+): TemplateResult {
   return html`<wizard-textfield
     required
     label="${pType}"
@@ -259,7 +336,7 @@ export function createNetworkTextField(pType: string, maybeValue?: string): Temp
     .maybeValue=${maybeValue ?? null}
     maxLength="${ifDefined(typeMaxLength[pType])}"
     helper="${translate(typeDescriptiveNameKeys[pType])}"
-  ></wizard-textfield>`
+  ></wizard-textfield>`;
 }
 
 /**
@@ -267,7 +344,7 @@ export function createNetworkTextField(pType: string, maybeValue?: string): Temp
  */
 export enum View {
   VALUES,
-  NETWORK
+  NETWORK,
 }
 
 export const VIEW_EVENT_NAME = 'view-change-104-plugin';
@@ -277,9 +354,7 @@ export interface ViewDetail {
   view: View;
 }
 export type ViewEvent = CustomEvent<ViewDetail>;
-export function newViewEvent(
-  view: View,
-): ViewEvent {
+export function newViewEvent(view: View): ViewEvent {
   return new CustomEvent<ViewDetail>(VIEW_EVENT_NAME, {
     bubbles: true,
     composed: true,

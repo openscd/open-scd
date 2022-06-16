@@ -21,12 +21,35 @@ import '../../../wizard-select.js';
 
 import {
   getCdcValue,
+  getEnumVal,
   getFullPath,
-  hasScaleFields,
-  hasUnitMultiplierField
-} from "../foundation/foundation.js";
+} from '../foundation/foundation.js';
+import { hasScaleFields, hasUnitMultiplierField } from '../foundation/cdc.js';
 
-export function updateValue(
+const allowedMultipliers = [
+  'm',
+  'k',
+  'M',
+  'mu',
+  'y',
+  'z',
+  'a',
+  'f',
+  'p',
+  'n',
+  'c',
+  'd',
+  'da',
+  'h',
+  'G',
+  'T',
+  'P',
+  'E',
+  'Z',
+  'Y',
+];
+
+export function updateAddressValue(
   daiElement: Element,
   addressElement: Element
 ): WizardActor {
@@ -38,18 +61,15 @@ export function updateValue(
 
     const casdu = getValue(inputs.find(i => i.label === 'casdu')!)!;
     const ioa = getValue(inputs.find(i => i.label === 'ioa')!);
-    const unitMultiplier =
-      ( hasUnitMultiplierField(cdc, ti)
-        ? getValue(inputs.find(i => i.label === 'unitMultiplier')!)
-        : null);
-    const scaleMultiplier =
-      ( hasScaleFields(cdc, ti)
-        ? getValue(inputs.find(i => i.label === 'scaleMultiplier')!)
-        : null);
-    const scaleOffset =
-      ( hasScaleFields(cdc, ti)
-        ? getValue(inputs.find(i => i.label === 'scaleOffset')!)
-        : null);
+    const unitMultiplier = hasUnitMultiplierField(cdc, ti)
+      ? getValue(inputs.find(i => i.label === 'unitMultiplier')!)
+      : null;
+    const scaleMultiplier = hasScaleFields(cdc, ti)
+      ? getValue(inputs.find(i => i.label === 'scaleMultiplier')!)
+      : null;
+    const scaleOffset = hasScaleFields(cdc, ti)
+      ? getValue(inputs.find(i => i.label === 'scaleOffset')!)
+      : null;
 
     if (
       casdu === addressElement.getAttribute('casdu') &&
@@ -61,153 +81,161 @@ export function updateValue(
       return [];
     }
 
-    const newElement = cloneElement(addressElement,
-      {
-        casdu,
-        ioa,
-        unitMultiplier,
-        scaleMultiplier,
-        scaleOffset,
-      });
+    const newElement = cloneElement(addressElement, {
+      casdu,
+      ioa,
+      unitMultiplier,
+      scaleMultiplier,
+      scaleOffset,
+    });
 
-    return [{ old: { element: addressElement! }, new: { element: newElement } }];
+    return [
+      { old: { element: addressElement! }, new: { element: newElement } },
+    ];
   };
 }
 
-export function renderDAIWizard(
+export function editAddressWizard(
   daiElement: Element,
   addressElement: Element
-): TemplateResult[] {
-  const doiElement = daiElement!.closest('DOI');
-  const iedElement = doiElement!.closest('IED');
+): Wizard {
+  function renderAddressWizard(
+    daiElement: Element,
+    addressElement: Element
+  ): TemplateResult[] {
+    const doiElement = daiElement!.closest('DOI');
+    const iedElement = doiElement!.closest('IED');
 
-  const cdc = getCdcValue(doiElement!) ?? '';
-  const ti = addressElement.getAttribute('ti') ?? '';
+    const cdc = getCdcValue(doiElement!) ?? '';
+    const ti = addressElement.getAttribute('ti') ?? '';
 
-  // Add the basic fields to the list.
-  const fields: TemplateResult[] = [
-    html `<wizard-textfield
-            label="IED"
-            .maybeValue="${getNameAttribute(iedElement!)}"
-            disabled
-            readonly>
-          </wizard-textfield>`,
-    html `<mwc-textarea
-            label="DOI"
-            value="${getFullPath(doiElement!, 'IED')}"
-            rows="2"
-            cols="40"
-            readonly
-            disabled>
-          </mwc-textarea>`,
-    html `<wizard-textfield
-            label="cdc"
-            .maybeValue="${cdc}"
-            disabled
-            readonly>
-          </wizard-textfield>`,
-    html `<mwc-textarea
-            label="DAI"
-            value="${getFullPath(daiElement!, 'DOI')}"
-            rows="2"
-            cols="40"
-            readonly
-            disabled>
-          </mwc-textarea>`,
-    html `<wizard-textfield
-            label="casdu"
-            .maybeValue="${addressElement.getAttribute('casdu')}"
-            helper="${translate('protocol104.wizard.casduHelper')}"
-            required>
-          </wizard-textfield>`,
-    html `<wizard-textfield
-            label="ioa"
-            .maybeValue="${addressElement.getAttribute('ioa')}"
-            helper="${translate('protocol104.wizard.ioaHelper')}"
-            required>
-          </wizard-textfield>`,
-    html `<wizard-textfield
-            label="ti"
-            .maybeValue=${ti}
-            disabled
-            readonly>
-          </wizard-textfield>`,
-  ];
+    // Add the basic fields to the list.
+    const fields: TemplateResult[] = [
+      html`<wizard-textfield
+        label="IED"
+        .maybeValue="${getNameAttribute(iedElement!)}"
+        disabled
+        readonly
+      >
+      </wizard-textfield>`,
+      html`<mwc-textarea
+        label="DOI"
+        value="${getFullPath(doiElement!, 'IED')}"
+        rows="2"
+        cols="40"
+        readonly
+        disabled
+      >
+      </mwc-textarea>`,
+      html`<wizard-textfield label="cdc" .maybeValue="${cdc}" disabled readonly>
+      </wizard-textfield>`,
+      html`<mwc-textarea
+        label="DAI"
+        value="${getFullPath(daiElement!, 'DOI')}"
+        rows="2"
+        cols="40"
+        readonly
+        disabled
+      >
+      </mwc-textarea>`,
+      html`<wizard-textfield
+        label="casdu"
+        .maybeValue="${addressElement.getAttribute('casdu')}"
+        helper="${translate('protocol104.wizard.casduHelper')}"
+        required
+      >
+      </wizard-textfield>`,
+      html`<wizard-textfield
+        label="ioa"
+        .maybeValue="${addressElement.getAttribute('ioa')}"
+        helper="${translate('protocol104.wizard.ioaHelper')}"
+        required
+      >
+      </wizard-textfield>`,
+      html`<wizard-textfield label="ti" .maybeValue=${ti} disabled readonly>
+      </wizard-textfield>`,
+    ];
 
-  if (hasUnitMultiplierField(cdc, ti)) {
-    const allowedMultipliers = ["m", "k", "M", "mu", "y", "z", "a",
-      "f", "p", "n", "c", "d", "da", "h", "G", "T", "P", "E", "Z", "Y"];
-
-    fields.push(html `
-      <wizard-select
+    if (hasUnitMultiplierField(cdc, ti)) {
+      fields.push(html`<wizard-select
         label="unitMultiplier"
         .maybeValue="${addressElement.getAttribute('unitMultiplier')}"
         helper="${translate('protocol104.wizard.unitMultiplierHelper')}"
         fixedMenuPosition
-        nullable>
+        nullable
+      >
         ${allowedMultipliers.map(
           multiplier =>
-            html `<mwc-list-item value="${multiplier}">
-                    <span>${multiplier}</span>
-                  </mwc-list-item>`
+            html`<mwc-list-item value="${multiplier}">
+              <span>${multiplier}</span>
+            </mwc-list-item>`
         )}
       </wizard-select>`);
-  }
+    }
 
-  if (hasScaleFields(cdc, ti)) {
-    fields.push(html `
-      <wizard-textfield
+    if (hasScaleFields(cdc, ti)) {
+      fields.push(html`<wizard-textfield
         label="scaleMultiplier"
         .maybeValue="${addressElement.getAttribute('scaleMultiplier')}"
         helper="${translate('protocol104.wizard.scaleMultiplierHelper')}"
         pattern="${patterns.decimal}"
-        nullable>
+        nullable
+      >
       </wizard-textfield>`);
 
-    fields.push(html `
-      <wizard-textfield
+      fields.push(html`<wizard-textfield
         label="scaleOffset"
         .maybeValue="${addressElement.getAttribute('scaleOffset')}"
         helper="${translate('protocol104.wizard.scaleOffsetHelper')}"
         pattern="${patterns.decimal}"
-        nullable>
+        nullable
+      >
       </wizard-textfield>`);
-  }
+    }
 
-  if (addressElement.hasAttribute('expectedValue')) {
-    fields.push(html `
-      <wizard-textfield
-        label="expectedValue"
-        .maybeValue="${addressElement.getAttribute('expectedValue')}"
-        disabled
-        readonly>
-      </wizard-textfield>`);
-  }
+    if (addressElement.hasAttribute('expectedValue')) {
+      const expectedValue = addressElement.getAttribute('expectedValue');
+      if (expectedValue) {
+        fields.push(html`<wizard-textfield
+          label="expectedValue"
+          .maybeValue="${expectedValue}"
+          disabled
+          readonly
+        >
+        </wizard-textfield>`);
+        fields.push(html`<wizard-textfield
+          label="enumValue"
+          .maybeValue="${getEnumVal(daiElement, expectedValue)}"
+          disabled
+          readonly
+        >
+        </wizard-textfield>`);
+      }
+    }
 
-  if (addressElement.hasAttribute('inverted')) {
-    fields.push(html `
-      <wizard-textfield
+    if (addressElement.hasAttribute('inverted')) {
+      fields.push(html`<wizard-textfield
         label="inverted"
         .maybeValue="${addressElement.getAttribute('inverted')}"
         disabled
-        readonly>
+        readonly
+      >
       </wizard-textfield>`);
-  }
+    }
 
-  if (addressElement.hasAttribute('check')) {
-    fields.push(html `
-      <wizard-textfield
+    if (addressElement.hasAttribute('check')) {
+      fields.push(html`<wizard-textfield
         label="check"
         .maybeValue="${addressElement.getAttribute('check')}"
         disabled
-        readonly>
+        readonly
+      >
       </wizard-textfield>`);
+    }
+
+    return fields;
   }
 
-  return fields;
-}
-
-export function editAddressWizard(daiElement: Element, addressElement: Element): Wizard {
   return [
     {
       title: get('protocol104.wizard.title.addressEdit'),
@@ -215,9 +243,9 @@ export function editAddressWizard(daiElement: Element, addressElement: Element):
       primary: {
         icon: 'edit',
         label: get('save'),
-        action: updateValue(daiElement, addressElement),
+        action: updateAddressValue(daiElement, addressElement),
       },
-      content: renderDAIWizard(daiElement, addressElement),
+      content: renderAddressWizard(daiElement, addressElement),
     },
   ];
 }
