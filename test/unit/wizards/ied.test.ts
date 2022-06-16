@@ -48,27 +48,27 @@ describe('Wizards for SCL element IED', () => {
     });
     it('contains a wizard-textfield with a non-empty "type" value', async () => {
       expect((<WizardTextField[]>inputs).find(textField => textField.label == "type")?.value).not.to
-        .be("-");
+        .be.equal("-");
     });
     it('contains a wizard-textfield with a non-empty "manufacturer" value', async () => {
       expect((<WizardTextField[]>inputs).find(textField => textField.label == "manufacturer")?.value).not.to
-        .be("-");
+        .be.equal("-");
     });
     it('contains a wizard-textfield with a non-empty "configVersion" value', async () => {
       expect((<WizardTextField[]>inputs).find(textField => textField.label == "configVersion")?.value).not.to
-        .be("-");
+        .be.equal("-");
     });
     it('contains a wizard-textfield with a non-empty "originalSclVersion" value', async () => {
       expect((<WizardTextField[]>inputs).find(textField => textField.label == "originalSclVersion")?.value).not.to
-        .be("-");
+        .be.equal("-");
     });
     it('contains a wizard-textfield with an empty "engRight" value', async () => {
       expect((<WizardTextField[]>inputs).find(textField => textField.label == "engRight")?.value).to
-        .be("-");
+        .be.equal("-");
     });
     it('contains a wizard-textfield with a non-empty "owner" value', async () => {
       expect((<WizardTextField[]>inputs).find(textField => textField.label == "owner")?.value).not.to
-        .be("-");
+        .be.equal("-");
     });
     it('update name should be updated in document', async function () {
       await setWizardTextFieldValue(<WizardTextField>inputs[0], 'OtherIED3');
