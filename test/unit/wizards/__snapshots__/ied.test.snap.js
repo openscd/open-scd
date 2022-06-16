@@ -49,6 +49,42 @@ snapshots["Wizards for SCL element IED edit IED looks like the latest snapshot"]
       pattern="([ -~]|[]|[ -퟿]|[-�])*"
     >
     </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      label="type"
+      readonly=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      label="manufacturer"
+      readonly=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      label="configVersion"
+      readonly=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      label="originalSclVersion"
+      readonly=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      label="engRight"
+      readonly=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      label="owner"
+      readonly=""
+    >
+    </wizard-textfield>
   </div>
   <mwc-button
     dialogaction="close"

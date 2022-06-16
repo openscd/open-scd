@@ -36,6 +36,12 @@ const iedNamePattern =
 export function renderIEDWizard(
   name: string | null,
   desc: string | null,
+  type: string | null,
+  manufacturer: string | null,
+  configVersion: string | null,
+  originalSclVersion: string,
+  engRight: string | null,
+  owner: string | null,
   reservedNames: string[]
 ): TemplateResult[] {
   return [
@@ -56,6 +62,42 @@ export function renderIEDWizard(
       helper="${translate('ied.wizard.descHelper')}"
       pattern="${patterns.normalizedString}"
     ></wizard-textfield>`,
+    html`<wizard-textfield
+      label="type"
+      .maybeValue=${type || "-"}
+      readOnly
+      disabled
+    ></wizard-textfield>`,
+    html`<wizard-textfield
+      label="manufacturer"
+      .maybeValue=${manufacturer || "-"}
+      readOnly
+      disabled
+    ></wizard-textfield>`,
+    html`<wizard-textfield
+    label="configVersion"
+      .maybeValue=${configVersion || "-"}
+      readOnly
+      disabled
+    ></wizard-textfield>`,
+    html`<wizard-textfield
+    label="originalSclVersion"
+      .maybeValue=${originalSclVersion || "-"}
+      readOnly
+      disabled
+    ></wizard-textfield>`,
+    html`<wizard-textfield
+    label="engRight"
+      .maybeValue=${engRight || "-"}
+      readOnly
+      disabled
+    ></wizard-textfield>`,
+    html`<wizard-textfield
+    label="owner"
+      .maybeValue=${owner || "-"}
+      readOnly
+      disabled
+    ></wizard-textfield>`
   ];
 }
 
@@ -76,6 +118,12 @@ function renderIEDReferencesWizard(references: Delete[]): TemplateResult[] {
       </mwc-list>
     </section>`,
   ];
+}
+
+function validatedVersionAttribute(element: Element): string {
+  return (element.getAttribute('originalSclVersion') ?? '') 
+    .concat(element.getAttribute('originalSclRevision') ?? '')
+    .concat(element.getAttribute('originalSclRelease') ?? '')
 }
 
 export function reservedNamesIED(currentElement: Element): string[] {
@@ -169,6 +217,12 @@ export function editIEDWizard(element: Element): Wizard {
       content: renderIEDWizard(
         element.getAttribute('name'),
         element.getAttribute('desc'),
+        element.getAttribute('type'),
+        element.getAttribute('manufacturer'),
+        element.getAttribute('configVersion'),
+        validatedVersionAttribute(element),
+        element.getAttribute('engRight'),
+        element.getAttribute('owner'),
         reservedNamesIED(element)
       ),
     },
