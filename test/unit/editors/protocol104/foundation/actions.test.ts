@@ -51,7 +51,7 @@ describe('foundation', () => {
         'ACT',
         '30'
       );
-      expect(actions.length).to.be.equals(0);
+      expect(actions).to.be.empty;
       expect(actionEvent).to.have.not.been.called;
     });
 
@@ -62,7 +62,7 @@ describe('foundation', () => {
         '58'
       );
       expect(actions.length).to.be.equals(1);
-      expect(actionEvent).to.have.been.callCount(1);
+      expect(actionEvent).to.have.been.calledOnce;
     });
 
     it('returns a multiple address create action', () => {
@@ -102,7 +102,7 @@ describe('foundation', () => {
         'ISC',
         '62'
       );
-      expect(actions.length).to.be.equals(0);
+      expect(actions).to.be.empty;
       expect(actionEvent).to.have.not.been.called;
     });
 
@@ -113,7 +113,7 @@ describe('foundation', () => {
         '59'
       );
       expect(actions.length).to.be.equals(1);
-      expect(actionEvent).to.have.been.callCount(2);
+      expect(actionEvent).to.have.been.calledTwice;
     });
   });
 });
