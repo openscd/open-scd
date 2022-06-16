@@ -33,7 +33,7 @@ describe('foundation', () => {
       const addressElement = daiElement!.querySelector(
         FIRST_PRIV_ADDRESS_QUERY
       );
-      expect(get104DetailsLine(daiElement!, addressElement!)).to.be.equals(
+      expect(get104DetailsLine(daiElement!, addressElement!)).to.be.equal(
         'casdu: 100, ioa: 4, ti: 62'
       );
     });
@@ -45,7 +45,7 @@ describe('foundation', () => {
       const addressElement = daiElement!.querySelector(
         FIRST_PRIV_ADDRESS_QUERY
       );
-      expect(get104DetailsLine(daiElement!, addressElement!)).to.be.equals(
+      expect(get104DetailsLine(daiElement!, addressElement!)).to.be.equal(
         'casdu: 101, ioa: 1, ti: 30, expectedValue: 1 (Ok)'
       );
     });
@@ -57,7 +57,7 @@ describe('foundation', () => {
       const addressElement = daiElement!.querySelector(
         FIRST_PRIV_ADDRESS_QUERY
       );
-      expect(get104DetailsLine(daiElement!, addressElement!)).to.be.equals(
+      expect(get104DetailsLine(daiElement!, addressElement!)).to.be.equal(
         'casdu: 202, ioa: 3, ti: 58, check: interlocking'
       );
     });
@@ -69,7 +69,7 @@ describe('foundation', () => {
       const addressElement = daiElement!.querySelector(
         FIRST_PRIV_ADDRESS_QUERY
       );
-      expect(get104DetailsLine(daiElement!, addressElement!)).to.be.equals(
+      expect(get104DetailsLine(daiElement!, addressElement!)).to.be.equal(
         'casdu: 1, ioa: 2, ti: 30, inverted: true'
       );
     });
@@ -80,7 +80,7 @@ describe('foundation', () => {
       const doiElement = document.querySelector(
         'IED[name="B2"] LN0[lnType="SE_LLN0_SET_default_V001"] DOI[name="Beh"]'
       );
-      expect(getFullPath(doiElement!, 'IED')).to.be.equals(
+      expect(getFullPath(doiElement!, 'IED')).to.be.equal(
         'AP1 / LD0 / LLN0 / Beh'
       );
     });
@@ -89,7 +89,7 @@ describe('foundation', () => {
       const daiElement = document.querySelector(
         'IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] DAI[name="ctlVal"]'
       );
-      expect(getFullPath(daiElement!, 'DOI')).to.be.equals('Oper / ctlVal');
+      expect(getFullPath(daiElement!, 'DOI')).to.be.equal('Oper / ctlVal');
     });
   });
 
@@ -99,7 +99,7 @@ describe('foundation', () => {
       const doiElement = document.querySelector(
         'IED[name="B2"] LN0[lnType="SE_LLN0_SET_default_V001"] DOI[name="Beh"]'
       );
-      expect(getCdcValue(doiElement!)).to.be.equals('ENS');
+      expect(getCdcValue(doiElement!)).to.be.equal('ENS');
     });
 
     it('returns expected value for CDC "ENC"', () => {
@@ -107,7 +107,7 @@ describe('foundation', () => {
       const doiElement = document.querySelector(
         'IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] DOI[name="Mod"]'
       );
-      expect(getCdcValue(doiElement!)).to.be.equals('ENC');
+      expect(getCdcValue(doiElement!)).to.be.equal('ENC');
     });
   });
 

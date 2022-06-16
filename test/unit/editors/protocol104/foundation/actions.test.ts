@@ -61,7 +61,7 @@ describe('foundation', () => {
         'SPG',
         '58'
       );
-      expect(actions.length).to.be.equals(1);
+      expect(actions.length).to.be.equal(1);
       expect(actionEvent).to.have.been.calledOnce;
     });
 
@@ -71,7 +71,7 @@ describe('foundation', () => {
         'ENG',
         '58'
       );
-      expect(actions.length).to.be.equals(1);
+      expect(actions.length).to.be.equal(1);
       expect(actionEvent).to.have.been.callCount(8);
     });
   });
@@ -112,7 +112,7 @@ describe('foundation', () => {
         'DPC',
         '59'
       );
-      expect(actions.length).to.be.equals(1);
+      expect(actions.length).to.be.equal(1);
       expect(actionEvent).to.have.been.calledTwice;
     });
   });

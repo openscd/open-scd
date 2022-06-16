@@ -25,7 +25,7 @@ describe('foundation', () => {
       const sclElement = document.querySelector('SCL')!;
       expect(
         sclElement.getAttribute('xmlns:' + PROTOCOL_104_PREFIX)
-      ).to.be.equals(PROTOCOL_104_NS);
+      ).to.be.equal(PROTOCOL_104_NS);
     });
 
     it('do nothing when prefix exists', async () => {
@@ -36,14 +36,14 @@ describe('foundation', () => {
       let sclElement = document.querySelector('SCL')!;
       expect(
         sclElement.getAttribute('xmlns:' + PROTOCOL_104_PREFIX)
-      ).to.be.equals(PROTOCOL_104_NS);
+      ).to.be.equal(PROTOCOL_104_NS);
 
       addPrefixAndNamespaceToDocument(document);
 
       sclElement = document.querySelector('SCL')!;
       expect(
         sclElement.getAttribute('xmlns:' + PROTOCOL_104_PREFIX)
-      ).to.be.equals(PROTOCOL_104_NS);
+      ).to.be.equal(PROTOCOL_104_NS);
     });
   });
 
@@ -51,8 +51,8 @@ describe('foundation', () => {
     it('new private element is created with correct type', async () => {
       const privateElement = createPrivateElement(document);
 
-      expect(privateElement.tagName).to.be.equals('Private');
-      expect(privateElement.getAttribute('type')).to.be.equals(
+      expect(privateElement.tagName).to.be.equal('Private');
+      expect(privateElement.getAttribute('type')).to.be.equal(
         PROTOCOL_104_PRIVATE
       );
     });
@@ -64,9 +64,9 @@ describe('foundation', () => {
 
       const addressElement = createPrivateAddress(document, ti);
 
-      expect(addressElement.tagName).to.be.equals('Address');
-      expect(addressElement.namespaceURI).to.be.equals(PROTOCOL_104_NS);
-      expect(addressElement.getAttribute('ti')).to.be.equals(ti);
+      expect(addressElement.tagName).to.be.equal('Address');
+      expect(addressElement.namespaceURI).to.be.equal(PROTOCOL_104_NS);
+      expect(addressElement.getAttribute('ti')).to.be.equal(ti);
     });
   });
 });

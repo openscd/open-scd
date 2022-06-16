@@ -28,11 +28,9 @@ describe('ied-104-container -', () => {
 
     it('getDoiElements will return a list which is alphabetically ordered', () => {
       const dois = element.doiElements;
-      expect(dois.length).to.be.equals(2);
-      expect(getFullPath(dois[0], 'IED')).to.be.equals(
-        'AP1 / LD0 / LLN0 / Beh'
-      );
-      expect(getFullPath(dois[1], 'IED')).to.be.equals(
+      expect(dois.length).to.be.equal(2);
+      expect(getFullPath(dois[0], 'IED')).to.be.equal('AP1 / LD0 / LLN0 / Beh');
+      expect(getFullPath(dois[1], 'IED')).to.be.equal(
         'AP1 / LD0 / PPRE-GGIO-2 / Beh'
       );
     });
