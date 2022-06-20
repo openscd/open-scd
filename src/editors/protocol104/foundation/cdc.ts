@@ -713,7 +713,17 @@ function findOrCreateDaiElements(
     const foundDaiElements = lnClonedElement.querySelectorAll(filter);
     if (foundDaiElements.length > 0) {
       // Existing DAI Element found, so use that Element.
-      daiElements.push(...Array.from(foundDaiElements));
+      foundDaiElements.forEach(clonedDaiElement => {
+        const daiElement = findElementInOriginalLNStructure(
+          lnElement,
+          clonedDaiElement
+        );
+        if (daiElement) {
+          daiElements.push(daiElement);
+        } else {
+          daiElements.push(clonedDaiElement);
+        }
+      });
     } else {
       // DAI Element doesn't exist yet, so create the structure using the DA Path.
       const templateStructure = createTemplateStructure(doElement, daPath);

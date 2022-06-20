@@ -18,6 +18,7 @@ import {
 } from '../../../../../src/editors/protocol104/wizards/createAddresses.js';
 
 import { fetchDoc } from '../../../wizards/test-support.js';
+import { Switch } from '@material/mwc-switch';
 
 describe('Wizards for preparing 104 Address Creation', () => {
   let doc: XMLDocument;
@@ -27,7 +28,7 @@ describe('Wizards for preparing 104 Address Creation', () => {
   let inputs: WizardInputElement[];
 
   beforeEach(async () => {
-    doc = await fetchDoc('/test/testfiles/104/valid-addresses.scd');
+    doc = await fetchDoc('/test/testfiles/104/valid-empty-addresses.scd');
     element = await fixture(html`<mock-wizard></mock-wizard>`);
   });
 
@@ -76,7 +77,7 @@ describe('Wizards for preparing 104 Address Creation', () => {
         lnElement,
         doElement,
         false
-      )(inputs, element);
+      )(inputs, element.wizardUI);
 
       expectCreateActions(actions, 1);
     });
@@ -98,7 +99,7 @@ describe('Wizards for preparing 104 Address Creation', () => {
         lnElement,
         doElement,
         false
-      )(inputs, element);
+      )(inputs, element.wizardUI);
 
       expectCreateActions(actions, 1);
     });
@@ -121,7 +122,7 @@ describe('Wizards for preparing 104 Address Creation', () => {
         lnElement,
         doElement,
         false
-      )(inputs, element);
+      )(inputs, element.wizardUI);
 
       expectCreateActions(actions, 1);
     });
@@ -139,14 +140,30 @@ describe('Wizards for preparing 104 Address Creation', () => {
       );
     });
 
-    it('when processing the request, the expected Create Actions are returned', () => {
+    it('when processing the request without Check Selected, the expected Create Actions are returned', () => {
       const actions = createAddressesAction(
         lnElement,
         doElement,
-        false
-      )(inputs, element);
+        true
+      )(inputs, element.wizardUI);
 
-      expectCreateActions(actions, 1);
+      expectCreateActions(actions, 2);
+    });
+
+    it('when processing the request with Check Selected, the expected Create Actions are returned', async () => {
+      const switchElement = element.wizardUI.dialog!.querySelector<Switch>(
+        `mwc-switch[id="controlCheck"]`
+      )!;
+      switchElement.checked = true;
+      await element.requestUpdate();
+
+      const actions = createAddressesAction(
+        lnElement,
+        doElement,
+        true
+      )(inputs, element.wizardUI);
+
+      expectCreateActions(actions, 3);
     });
 
     it('looks like the latest snapshot', async () => {
