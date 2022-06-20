@@ -356,12 +356,13 @@ export const cdcProcessings: Record<
  * Creates a new SCL Private element and add 104 Address element(s) below this.
  * Set the attribute value of 'ti' to the passed ti value.
  *
- * @param lnElement - The LN(0) Element.
- * @param doElement - The DO Element.
- * @param wizard    - Wizard Element to dispatch events on.
- * @param ti        - The value to be set on the attribute 'ti'.
- * @param daPaths   - The Array of DAI Elements to search or create and add the Private Element on.
- * @param inverted  - Indicates if extra Address Elements should be created with 'inverted=true'.
+ * @param lnElement       - The LN(0) Element.
+ * @param lnClonedElement - The Cloned LN Element, used to create new structure and determine which Create actions are needed.
+ * @param doElement       - The DO Element.
+ * @param wizard          - Wizard Element to dispatch events on.
+ * @param ti              - The value to be set on the attribute 'ti'.
+ * @param daPaths         - The Array of DAI Elements to search or create and add the Private Element on.
+ * @param inverted        - Indicates if extra Address Elements should be created with 'inverted=true'.
  * @returns An array of Create Action that the wizard action will return.
  */
 function createAddressAction(
@@ -407,12 +408,13 @@ function createAddressAction(
  * Creates a new SCL Private element and add 104 Address element(s) below this.
  * Set the attribute value of 'ti' to the passed ti value.
  *
- * @param lnElement - The LN(0) Element.
- * @param doElement - The DO Element.
- * @param wizard    - Wizard Element to dispatch events on.
- * @param ti        - The value to be set on the attribute 'ti'.
- * @param daPaths   - The Array of DAI Elements to search or create and add the Private Element on.
- * @param inverted  - Indicates if extra Address Elements should be created with 'inverted=true'.
+ * @param lnElement       - The LN(0) Element.
+ * @param lnClonedElement - The Cloned LN Element, used to create new structure and determine which Create actions are needed.
+ * @param doElement       - The DO Element.
+ * @param wizard          - Wizard Element to dispatch events on.
+ * @param ti              - The value to be set on the attribute 'ti'.
+ * @param daPaths         - The Array of DAI Elements to search or create and add the Private Element on.
+ * @param inverted        - Indicates if extra Address Elements should be created with 'inverted=true'.
  * @returns An array of Create Action that the wizard action will return.
  */
 function createAddressWithExpectValueAction(
@@ -470,11 +472,12 @@ function createAddressWithExpectValueAction(
  * Create a new SCL Private element and add 104 Address element(s) below this.
  * Set the attribute value of 'ti' to the passed ti value.
  *
- * @param lnElement - The LN(0) Element.
- * @param doElement - The DO Element.
- * @param wizard    - Wizard Element to dispatch events on.
- * @param ti        - The value to be set on the attribute 'ti'.
- * @param daPaths   - The Array of DAI Elements to search or create and add the Private Element on.
+ * @param lnElement       - The LN(0) Element.
+ * @param lnClonedElement - The Cloned LN Element, used to create new structure and determine which Create actions are needed.
+ * @param doElement       - The DO Element.
+ * @param wizard          - Wizard Element to dispatch events on.
+ * @param ti              - The value to be set on the attribute 'ti'.
+ * @param daPaths         - The Array of DAI Elements to search or create and add the Private Element on.
  * @returns An array of Create Action that the wizard action will return.
  */
 function createCheckAddressAction(
@@ -526,6 +529,14 @@ function createCheckAddressAction(
   return actions;
 }
 
+/**
+ * Create or update the 104 Private Element, if the Private already exists, the new Address Elements are
+ * added, otherwise a new Private Element is created to which the Address Elements are added.
+ * The correct Create Action is returned.
+ *
+ * @param daiElement      - The DAI Element which will hold the new or existing Private Element
+ * @param addressElements - The Address Elements to be created with Create Actions.
+ */
 export function createActionsForPrivate(
   daiElement: Element,
   addressElements: Element[]
@@ -580,6 +591,16 @@ export function createAddressElements(
   return addressElements;
 }
 
+/**
+ * Use all Create Action to determine which Address Elements are created and start an Edit Address Wizard
+ * for every Address Element found.
+ *
+ * @param wizard          - The current Wizard used to dispatch the new Wizards on.
+ * @param lnElement       - The LN Element used to search for specific parent elements.
+ * @param lnClonedElement - The cloned LN Element to search for child elements.
+ * @param doElement       - The DO Element for which the Address Elements where created.
+ * @param actions         - The list of all the Create Actions.
+ */
 function startEditWizards(
   wizard: Element,
   lnElement: Element,
@@ -588,6 +609,7 @@ function startEditWizards(
   actions: Create[]
 ): void {
   actions.forEach(createAction => {
+    // Loop over all Actions and collect all Address Elements in an Array.
     const newElement = <Element>createAction.new.element;
     let addressElements: Element[];
     if (newElement.tagName === 'Address') {
@@ -619,6 +641,15 @@ function startEditWizards(
   });
 }
 
+/**
+ * Use the DA Path configuration of a Common Data Class to search for all DO/BDA/DA Elements to create
+ * a structure for which DOI/SDI/DAI Elements should be created later. Null will be returned when an invalid
+ * Template Structure is described by the DA Path.
+ *
+ * @param doElement - The DO Element to start searching for DA/BDA Elements.
+ * @param daPath    - The (B)DA Elements to find in the template structure.
+ * @returns List of Elements starting with the DO Element followed by one or more (B)DA Elements describing the structure.
+ */
 function createTemplateStructure(
   doElement: Element,
   daPath: DaSelector
@@ -656,6 +687,16 @@ function createTemplateStructure(
   return templateStructure;
 }
 
+/**
+ * Search for existing DAI Elements below the DO Element matching the DA Paths passed or create the DAI Element
+ * if the DA Path doesn't exist yet.
+ *
+ * @param lnElement       - The LN(0) Element.
+ * @param lnClonedElement - The Cloned LN Element, used to create new structure and determine which Create actions are needed.
+ * @param doElement       - The DO Element.
+ * @param wizard          - The current Wizard to dispatch Log Events, if needed.
+ * @param daPaths         - The DA Structures for which the DAI Structure needs to be created below the DO Element.
+ */
 function findOrCreateDaiElements(
   lnElement: Element,
   lnClonedElement: Element,
@@ -666,12 +707,15 @@ function findOrCreateDaiElements(
   const daiElements: Element[] = [];
   const actions: Create[] = [];
 
+  // Start searching and creating for each DA Path passed.
   daPaths.forEach(daPath => {
     const filter = createDaiFilter(doElement, daPath);
     const foundDaiElements = lnClonedElement.querySelectorAll(filter);
     if (foundDaiElements.length > 0) {
+      // Existing DAI Element found, so use that Element.
       daiElements.push(...Array.from(foundDaiElements));
     } else {
+      // DAI Element doesn't exist yet, so create the structure using the DA Path.
       const templateStructure = createTemplateStructure(doElement, daPath);
       if (templateStructure) {
         const [parentClonedElement, uninitializedTemplateStructure] =
@@ -682,7 +726,9 @@ function findOrCreateDaiElements(
         // Always add it to the cloned LN Structure.
         parentClonedElement.append(newElement);
 
-        // If the parent is the LN Element then use the original LN Element in the action.
+        // Search if the parent already exists in the current LN Element Structure.
+        // If so we will add a new Create Action for it.
+        // If it is already there because one of the parents of the parent is used in a Create Action.
         const parentElement = findElementInOriginalLNStructure(
           lnElement,
           parentClonedElement
@@ -691,6 +737,7 @@ function findOrCreateDaiElements(
           actions.push({ new: { parent: parentElement, element: newElement } });
         }
 
+        // Add new DAI Elements to the list to return.
         if (newElement.tagName === 'DAI') {
           daiElements.push(newElement);
         } else {
@@ -698,6 +745,7 @@ function findOrCreateDaiElements(
           daiElements.push(daiElement);
         }
       } else {
+        // The DA Path can't be mapped on the Template structure of the current document.
         const cdc = getCdcValueFromDOElement(doElement) ?? '';
         const doType = getTypeAttribute(doElement) ?? '';
         wizard.dispatchEvent(
@@ -716,14 +764,21 @@ function findOrCreateDaiElements(
   return [actions, daiElements];
 }
 
+/**
+ * Use the DO Element and a DA Selector to create a CSS Query to search for a DAI Element
+ * below the LN Element.
+ *
+ * @param doElement - The DO Element for which to search a DOI Element.
+ * @param daPath    - The DA Selector to create the query to find the SDI/DAI Elements.
+ */
 function createDaiFilter(doElement: Element, daPath: DaSelector): string {
   const doName = getNameAttribute(doElement);
   let filter = `:scope > DOI[name="${doName}"] > `;
   daPath.path.forEach((value, index) => {
     if (index < daPath.path.length - 1) {
-      filter = filter + `SDI[name="${value}"] > `;
+      filter = `${filter} SDI[name="${value}"] > `;
     } else {
-      filter = filter + `DAI[name="${value}"]`;
+      filter = `${filter} DAI[name="${value}"]`;
     }
   });
   return filter;

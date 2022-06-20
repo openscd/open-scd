@@ -18,15 +18,21 @@ snapshots["Wizards for preparing 104 Address Creation show prepare 104 Address c
     <mwc-textarea
       cols="40"
       disabled=""
-      label="DOI"
+      label="LN(0)"
       readonly=""
       rows="2"
-      value="AP1 / LD0 / LLN0 / MltLev"
+      value="AP1 / LD0 / LLN0"
     >
     </mwc-textarea>
     <wizard-textfield
       disabled=""
-      label="cdc"
+      label="DO"
+      readonly=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      label="Common Data Class"
       readonly=""
     >
     </wizard-textfield>
@@ -81,15 +87,21 @@ snapshots["Wizards for preparing 104 Address Creation show prepare 104 Address c
     <mwc-textarea
       cols="40"
       disabled=""
-      label="DOI"
+      label="LN(0)"
       readonly=""
       rows="2"
-      value="AP1 / LD0 / GAPC-1 / Op"
+      value="AP1 / LD0 / GAPC-1"
     >
     </mwc-textarea>
     <wizard-textfield
       disabled=""
-      label="cdc"
+      label="DO"
+      readonly=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      label="Common Data Class"
       readonly=""
     >
     </wizard-textfield>
@@ -166,21 +178,21 @@ snapshots["Wizards for preparing 104 Address Creation show prepare 104 Address c
     <mwc-textarea
       cols="40"
       disabled=""
-      label="DOI"
+      label="LN(0)"
       readonly=""
       rows="2"
-      value="AP1 / LD0 / GGIO-1 / SPCSO1"
+      value="AP1 / LD0 / GGIO-1"
     >
     </mwc-textarea>
     <wizard-textfield
       disabled=""
-      label="cdc"
+      label="DO"
       readonly=""
     >
     </wizard-textfield>
     <wizard-textfield
       disabled=""
-      label="ctlModel"
+      label="Common Data Class"
       readonly=""
     >
     </wizard-textfield>
@@ -199,6 +211,14 @@ snapshots["Wizards for preparing 104 Address Creation show prepare 104 Address c
       <mwc-switch id="monitorCheck">
       </mwc-switch>
     </mwc-formfield>
+    <wizard-divider>
+    </wizard-divider>
+    <wizard-textfield
+      disabled=""
+      label="ctlModel"
+      readonly=""
+    >
+    </wizard-textfield>
   </div>
   <mwc-button
     dialogaction="close"
@@ -235,21 +255,21 @@ snapshots["Wizards for preparing 104 Address Creation show prepare 104 Address c
     <mwc-textarea
       cols="40"
       disabled=""
-      label="DOI"
+      label="LN(0)"
       readonly=""
       rows="2"
-      value="AP1 / LD0 / GGIO-1 / SPCSO2"
+      value="AP1 / LD0 / GGIO-1"
     >
     </mwc-textarea>
     <wizard-textfield
       disabled=""
-      label="cdc"
+      label="DO"
       readonly=""
     >
     </wizard-textfield>
     <wizard-textfield
       disabled=""
-      label="ctlModel"
+      label="Common Data Class"
       readonly=""
     >
     </wizard-textfield>
@@ -270,6 +290,12 @@ snapshots["Wizards for preparing 104 Address Creation show prepare 104 Address c
     </mwc-formfield>
     <wizard-divider>
     </wizard-divider>
+    <wizard-textfield
+      disabled=""
+      label="ctlModel"
+      readonly=""
+    >
+    </wizard-textfield>
     <wizard-textfield
       disabled=""
       label="controlTi"

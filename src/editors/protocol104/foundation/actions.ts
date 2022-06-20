@@ -6,12 +6,13 @@ import { TiInformation } from './cdc.js';
  * that can be effected. Next create the action and add it to this list, also start the Edit
  * Address Element wizard for all Address Elements created.
  *
- * @param lnElement      - The LN Element.
- * @param doElement      - The DO Element.
- * @param wizard         - The Wizard to dispatch the Open Wizard event on.
- * @param ti             - The TI Value set on the new Address Elements.
- * @param inverted       - Indicates if the Engineer want to create inverted Address Elements, if applicable.
- * @param tiInformation  - Information about how to create the Address Elements for the passed TI.
+ * @param lnElement       - The LN Element.
+ * @param lnClonedElement - The Cloned LN Element, used to create new structure and determine which Create actions are needed.
+ * @param doElement       - The DO Element.
+ * @param wizard          - The Wizard to dispatch the Open Wizard event on.
+ * @param ti              - The TI Value set on the new Address Elements.
+ * @param inverted        - Indicates if the Engineer want to create inverted Address Elements, if applicable.
+ * @param tiInformation   - Information about how to create the Address Elements for the passed TI.
  * @returns A list of Create Action that will be added to the complex action.
  */
 export function createActions(
@@ -40,11 +41,12 @@ export function createActions(
  * Next create the action and add it to this list, also start the Edit Address Element wizard for all Address Elements
  * created.
  *
- * @param lnElement      - The LN Element.
- * @param doElement      - The DO Element.
- * @param wizard         - The Wizard to dispatch the Open Wizard event on.
- * @param ti             - The TI Value set on the new Address Elements.
- * @param tiInformation  - Information about how to create the Address Elements for the passed TI.
+ * @param lnElement       - The LN Element.
+ * @param lnClonedElement - The Cloned LN Element, used to create new structure and determine which Create actions are needed.
+ * @param doElement       - The DO Element.
+ * @param wizard          - The Wizard to dispatch the Open Wizard event on.
+ * @param ti              - The TI Value set on the new Address Elements.
+ * @param tiInformation   - Information about how to create the Address Elements for the passed TI.
  * @returns A list of Create Action that will be added to the complex action.
  */
 export function createCheckActions(

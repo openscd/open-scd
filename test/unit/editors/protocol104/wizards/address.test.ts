@@ -25,6 +25,8 @@ describe('Wizards for 104 Address Element', () => {
   let doc: XMLDocument;
   let address: Element;
   let dai: Element;
+  let doi: Element;
+  let ied: Element;
   let element: MockWizard;
   let inputs: WizardInputElement[];
 
@@ -33,17 +35,23 @@ describe('Wizards for 104 Address Element', () => {
     element = await fixture(html`<mock-wizard></mock-wizard>`);
   });
 
+  async function prepareWizard(daiQuery: string): Promise<void> {
+    address = doc.querySelector(daiQuery)!;
+    dai = address.closest('DAI')!;
+    doi = dai.closest('DOI')!;
+    ied = dai.closest('IED')!;
+
+    const wizard = editAddressWizard(ied, doi, dai, address);
+    element.workflow.push(() => wizard);
+    await element.requestUpdate();
+    inputs = Array.from(element.wizardUI.inputs);
+  }
+
   describe('edit basic 104 Address', () => {
     beforeEach(async () => {
-      address = doc.querySelector(
+      await prepareWizard(
         'IED[name="B2"] LN0[lnClass="LLN0"] DAI[name="stVal"] Address'
-      )!;
-      dai = address.closest('DAI')!;
-
-      const wizard = editAddressWizard(dai, address);
-      element.workflow.push(() => wizard);
-      await element.requestUpdate();
-      inputs = Array.from(element.wizardUI.inputs);
+      );
     });
 
     it('update basic fields should be updated in document', async function () {
@@ -51,7 +59,7 @@ describe('Wizards for 104 Address Element', () => {
       await setWizardTextFieldValue(<WizardTextField>inputs[3], '21'); // IOA Field
 
       const updateAction = executeWizardReplaceAction(
-        updateAddressValue(dai, address),
+        updateAddressValue(doi, dai, address),
         inputs
       );
       expect(updateAction.old.element).to.have.attribute('casdu', '1');
@@ -61,7 +69,7 @@ describe('Wizards for 104 Address Element', () => {
     });
 
     it('when no fields changed there will be no update action', async function () {
-      expectWizardNoUpdateAction(updateAddressValue(dai, address), inputs);
+      expectWizardNoUpdateAction(updateAddressValue(doi, dai, address), inputs);
     });
 
     it('looks like the latest snapshot', async () => {
@@ -71,15 +79,9 @@ describe('Wizards for 104 Address Element', () => {
 
   describe('edit 104 Address with expected value', () => {
     beforeEach(async () => {
-      address = doc.querySelector(
+      await prepareWizard(
         'IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] DOI[name="Mod"] DAI[name="ctlVal"] Address[ioa="2"]'
-      )!;
-      dai = address.closest('DAI')!;
-
-      const wizard = editAddressWizard(dai, address);
-      element.workflow.push(() => wizard);
-      await element.requestUpdate();
-      inputs = Array.from(element.wizardUI.inputs);
+      );
     });
 
     it('looks like the latest snapshot', async () => {
@@ -89,22 +91,16 @@ describe('Wizards for 104 Address Element', () => {
 
   describe('edit 104 Address with unit multiplier', () => {
     beforeEach(async () => {
-      address = doc.querySelector(
+      await prepareWizard(
         'IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] DOI[name="IntIn1"] DAI[name="stVal"] Address'
-      )!;
-      dai = address.closest('DAI')!;
-
-      const wizard = editAddressWizard(dai, address);
-      element.workflow.push(() => wizard);
-      await element.requestUpdate();
-      inputs = Array.from(element.wizardUI.inputs);
+      );
     });
 
     it('update unit multiplier field should be updated in document', async function () {
       await setWizardSelectValue(<WizardSelect>inputs[5], 'k'); // Unit Multiplier Field
 
       const updateAction = executeWizardReplaceAction(
-        updateAddressValue(dai, address),
+        updateAddressValue(doi, dai, address),
         inputs
       );
       expect(updateAction.old.element).to.not.have.attribute('unitMultiplier');
@@ -118,15 +114,9 @@ describe('Wizards for 104 Address Element', () => {
 
   describe('edit 104 Address with scale fields', () => {
     beforeEach(async () => {
-      address = doc.querySelector(
+      await prepareWizard(
         'IED[name="B1"] LN[lnType="SE_MMXU_SET_V001"] DOI[name="Hz"] DAI[name="f"] Address'
-      )!;
-      dai = address.closest('DAI')!;
-
-      const wizard = editAddressWizard(dai, address);
-      element.workflow.push(() => wizard);
-      await element.requestUpdate();
-      inputs = Array.from(element.wizardUI.inputs);
+      );
     });
 
     it('update scale fields should be updated in document', async function () {
@@ -134,7 +124,7 @@ describe('Wizards for 104 Address Element', () => {
       await setWizardTextFieldValue(<WizardTextField>inputs[7], '2.345'); // Scale Offset Field
 
       const updateAction = executeWizardReplaceAction(
-        updateAddressValue(dai, address),
+        updateAddressValue(doi, dai, address),
         inputs
       );
       expect(updateAction.old.element).to.not.have.attribute('scaleMultiplier');
@@ -156,15 +146,9 @@ describe('Wizards for 104 Address Element', () => {
 
   describe('edit 104 Address with inverted value', () => {
     beforeEach(async () => {
-      address = doc.querySelector(
+      await prepareWizard(
         'IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] DOI[name="Ind2"] DAI[name="stVal"] Address[inverted="true"]'
-      )!;
-      dai = address.closest('DAI')!;
-
-      const wizard = editAddressWizard(dai, address);
-      element.workflow.push(() => wizard);
-      await element.requestUpdate();
-      inputs = Array.from(element.wizardUI.inputs);
+      );
     });
 
     it('looks like the latest snapshot', async () => {
@@ -174,15 +158,9 @@ describe('Wizards for 104 Address Element', () => {
 
   describe('edit 104 Address with check value', () => {
     beforeEach(async () => {
-      address = doc.querySelector(
+      await prepareWizard(
         'IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] DOI[name="DPCSO1"] DAI[name="Check"] Address[check="interlocking"]'
-      )!;
-      dai = address.closest('DAI')!;
-
-      const wizard = editAddressWizard(dai, address);
-      element.workflow.push(() => wizard);
-      await element.requestUpdate();
-      inputs = Array.from(element.wizardUI.inputs);
+      );
     });
 
     it('looks like the latest snapshot', async () => {

@@ -188,24 +188,22 @@ export function editAddressWizard(
       </wizard-textfield>`);
     }
 
-    if (addressElement.hasAttribute('expectedValue')) {
-      const expectedValue = addressElement.getAttribute('expectedValue');
-      if (expectedValue) {
-        fields.push(html`<wizard-textfield
-          label="expectedValue"
-          .maybeValue="${expectedValue}"
-          disabled
-          readonly
-        >
-        </wizard-textfield>`);
-        fields.push(html`<wizard-textfield
-          label="enumValue"
-          .maybeValue="${getEnumVal(daiElement, expectedValue)}"
-          disabled
-          readonly
-        >
-        </wizard-textfield>`);
-      }
+    const expectedValue = addressElement.getAttribute('expectedValue');
+    if (expectedValue) {
+      fields.push(html`<wizard-textfield
+        label="expectedValue"
+        .maybeValue="${expectedValue}"
+        disabled
+        readonly
+      >
+      </wizard-textfield>`);
+      fields.push(html`<wizard-textfield
+        label="enumValue"
+        .maybeValue="${getEnumVal(daiElement, expectedValue)}"
+        disabled
+        readonly
+      >
+      </wizard-textfield>`);
     }
 
     if (addressElement.hasAttribute('inverted')) {

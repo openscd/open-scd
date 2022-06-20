@@ -2,31 +2,83 @@ import { expect, fixture, html } from '@open-wc/testing';
 
 import { MockWizard } from '../../../../mock-wizard.js';
 
+import {
+  ComplexAction,
+  isCreate,
+  isSimple,
+  WizardAction,
+  WizardInputElement,
+} from '../../../../../src/foundation.js';
+
 import '../../../../mock-wizard.js';
 
-import { createAddressesWizard } from '../../../../../src/editors/protocol104/wizards/createAddresses.js';
+import {
+  createAddressesAction,
+  createAddressesWizard,
+} from '../../../../../src/editors/protocol104/wizards/createAddresses.js';
 
 import { fetchDoc } from '../../../wizards/test-support.js';
 
 describe('Wizards for preparing 104 Address Creation', () => {
   let doc: XMLDocument;
-  let doiElement: Element;
+  let lnElement: Element;
+  let doElement: Element;
   let element: MockWizard;
+  let inputs: WizardInputElement[];
 
   beforeEach(async () => {
     doc = await fetchDoc('/test/testfiles/104/valid-addresses.scd');
     element = await fixture(html`<mock-wizard></mock-wizard>`);
   });
 
+  async function prepareWizard(
+    queryLnSelector: string,
+    doName: string
+  ): Promise<void> {
+    lnElement = doc.querySelector(queryLnSelector)!;
+    const lnType = lnElement.getAttribute('lnType')!;
+    doElement = doc.querySelector(
+      `LNodeType[id="${lnType}"] > DO[name="${doName}"]`
+    )!;
+
+    const wizard = createAddressesWizard(lnElement, doElement);
+    element.workflow.push(() => wizard);
+    await element.requestUpdate();
+    inputs = Array.from(element.wizardUI.inputs);
+  }
+
+  function expectCreateActions(
+    actions: WizardAction[],
+    expectedCreateActions: number
+  ): void {
+    // We always first expect a ComplexAction.
+    expect(actions).to.have.length(1);
+    expect(actions[0]).to.not.satisfy(isSimple);
+
+    // Next check the number of Actions and if they are all Create Actions.
+    const createActions = (<ComplexAction>actions[0]).actions;
+    expect(createActions).to.have.length(expectedCreateActions);
+    createActions.forEach(createAction => {
+      expect(createAction).to.satisfy(isCreate);
+    });
+  }
+
   describe('show prepare 104 Address creation (single monitor TI only)', () => {
     beforeEach(async () => {
-      doiElement = doc.querySelector(
-        'IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] DOI[name="MltLev"]'
-      )!;
+      await prepareWizard(
+        'IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"]',
+        'MltLev'
+      );
+    });
 
-      const wizard = createAddressesWizard(doiElement);
-      element.workflow.push(() => wizard);
-      await element.requestUpdate();
+    it('when processing the request, the expected Create Actions are returned', () => {
+      const actions = createAddressesAction(
+        lnElement,
+        doElement,
+        false
+      )(inputs, element);
+
+      expectCreateActions(actions, 1);
     });
 
     it('looks like the latest snapshot', async () => {
@@ -36,13 +88,19 @@ describe('Wizards for preparing 104 Address Creation', () => {
 
   describe('show prepare 104 Address creation (multi monitor TI only)', () => {
     beforeEach(async () => {
-      doiElement = doc.querySelector(
-        'IED[name="B1"] LN[lnType="SE_GAPC_SET_V001"] DOI[name="Op"]'
-      )!;
+      await prepareWizard('IED[name="B1"] LN[lnType="SE_GAPC_SET_V001"]', 'Op');
+    });
 
-      const wizard = createAddressesWizard(doiElement);
-      element.workflow.push(() => wizard);
-      await element.requestUpdate();
+    it('when processing the request, the expected Create Actions are returned', () => {
+      inputs[3].value = '39';
+
+      const actions = createAddressesAction(
+        lnElement,
+        doElement,
+        false
+      )(inputs, element);
+
+      expectCreateActions(actions, 1);
     });
 
     it('looks like the latest snapshot', async () => {
@@ -52,13 +110,20 @@ describe('Wizards for preparing 104 Address Creation', () => {
 
   describe('show prepare 104 Address creation (single monitor TI with CtlModel)', () => {
     beforeEach(async () => {
-      doiElement = doc.querySelector(
-        'IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] DOI[name="SPCSO1"]'
-      )!;
+      await prepareWizard(
+        'IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"]',
+        'SPCSO1'
+      );
+    });
 
-      const wizard = createAddressesWizard(doiElement);
-      element.workflow.push(() => wizard);
-      await element.requestUpdate();
+    it('when processing the request, the expected Create Actions are returned', () => {
+      const actions = createAddressesAction(
+        lnElement,
+        doElement,
+        false
+      )(inputs, element);
+
+      expectCreateActions(actions, 1);
     });
 
     it('looks like the latest snapshot', async () => {
@@ -68,13 +133,20 @@ describe('Wizards for preparing 104 Address Creation', () => {
 
   describe('show prepare 104 Address creation (single monitor TI and single control TI with CtlModel)', () => {
     beforeEach(async () => {
-      doiElement = doc.querySelector(
-        'IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] DOI[name="SPCSO2"]'
-      )!;
+      await prepareWizard(
+        'IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"]',
+        'SPCSO2'
+      );
+    });
 
-      const wizard = createAddressesWizard(doiElement);
-      element.workflow.push(() => wizard);
-      await element.requestUpdate();
+    it('when processing the request, the expected Create Actions are returned', () => {
+      const actions = createAddressesAction(
+        lnElement,
+        doElement,
+        false
+      )(inputs, element);
+
+      expectCreateActions(actions, 1);
     });
 
     it('looks like the latest snapshot', async () => {
