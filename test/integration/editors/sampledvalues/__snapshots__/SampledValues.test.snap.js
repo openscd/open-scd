@@ -1,7 +1,38 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Sampled Values Plugin initially the Sampled Values list looks like the latest snapshot"] = 
+snapshots["Sampled Values Plugin in SMV Publisher view initially the plugin looks like the latest snapshot"] = 
+`<div>
+  <mwc-formfield label="[sampledvalues.view.publisherView]">
+    <mwc-radio
+      checked=""
+      id="bySmvRadio"
+      name="view"
+      value="goose"
+    >
+    </mwc-radio>
+  </mwc-formfield>
+  <mwc-formfield label="[sampledvalues.view.publisherView]">
+    <mwc-radio
+      id="byIedRadio"
+      name="view"
+      value="ied"
+    >
+    </mwc-radio>
+  </mwc-formfield>
+  <div class="container">
+    <sampled-values-list class="row">
+    </sampled-values-list>
+    <subscriber-ied-list-smv class="row">
+    </subscriber-ied-list-smv>
+  </div>
+</div>
+<wizard-dialog>
+</wizard-dialog>
+`;
+/* end snapshot Sampled Values Plugin in SMV Publisher view initially the plugin looks like the latest snapshot */
+
+snapshots["Sampled Values Plugin in SMV Publisher view initially the Sampled Values list looks like the latest snapshot"] = 
 `<section>
   <h1>
     [sampledvalues.sampledValuesList.title]
@@ -40,9 +71,9 @@ snapshots["Sampled Values Plugin initially the Sampled Values list looks like th
   </mwc-list>
 </section>
 `;
-/* end snapshot Sampled Values Plugin initially the Sampled Values list looks like the latest snapshot */
+/* end snapshot Sampled Values Plugin in SMV Publisher view initially the Sampled Values list looks like the latest snapshot */
 
-snapshots["Sampled Values Plugin initially the IED list looks like the latest snapshot"] = 
+snapshots["Sampled Values Plugin in SMV Publisher view initially the IED list looks like the latest snapshot"] = 
 `<section>
   <h1>
     [sampledvalues.subscriberIed.title]
@@ -60,9 +91,9 @@ snapshots["Sampled Values Plugin initially the IED list looks like the latest sn
   </mwc-list>
 </section>
 `;
-/* end snapshot Sampled Values Plugin initially the IED list looks like the latest snapshot */
+/* end snapshot Sampled Values Plugin in SMV Publisher view initially the IED list looks like the latest snapshot */
 
-snapshots["Sampled Values Plugin when selecting a Sampled Values message the list on the right will initially show the subscribed / partially subscribed / not subscribed IEDs"] = 
+snapshots["Sampled Values Plugin in SMV Publisher view when selecting a Sampled Values message the list on the right will initially show the subscribed / partially subscribed / not subscribed IEDs"] = 
 `<section>
   <h1>
     [sampledvalues.subscriberIed.title]
@@ -125,9 +156,9 @@ snapshots["Sampled Values Plugin when selecting a Sampled Values message the lis
   </div>
 </section>
 `;
-/* end snapshot Sampled Values Plugin when selecting a Sampled Values message the list on the right will initially show the subscribed / partially subscribed / not subscribed IEDs */
+/* end snapshot Sampled Values Plugin in SMV Publisher view when selecting a Sampled Values message the list on the right will initially show the subscribed / partially subscribed / not subscribed IEDs */
 
-snapshots["Sampled Values Plugin when selecting a Sampled Values message and you subscribe a non-subscribed IED it looks like the latest snapshot"] = 
+snapshots["Sampled Values Plugin in SMV Publisher view when selecting a Sampled Values message and you subscribe a non-subscribed IED it looks like the latest snapshot"] = 
 `<section>
   <h1>
     [sampledvalues.subscriberIed.title]
@@ -190,9 +221,9 @@ snapshots["Sampled Values Plugin when selecting a Sampled Values message and you
   </div>
 </section>
 `;
-/* end snapshot Sampled Values Plugin when selecting a Sampled Values message and you subscribe a non-subscribed IED it looks like the latest snapshot */
+/* end snapshot Sampled Values Plugin in SMV Publisher view when selecting a Sampled Values message and you subscribe a non-subscribed IED it looks like the latest snapshot */
 
-snapshots["Sampled Values Plugin when selecting a Sampled Values message and you unsubscribe a subscribed IED it looks like the latest snapshot"] = 
+snapshots["Sampled Values Plugin in SMV Publisher view when selecting a Sampled Values message and you unsubscribe a subscribed IED it looks like the latest snapshot"] = 
 `<section>
   <h1>
     [sampledvalues.subscriberIed.title]
@@ -255,9 +286,9 @@ snapshots["Sampled Values Plugin when selecting a Sampled Values message and you
   </div>
 </section>
 `;
-/* end snapshot Sampled Values Plugin when selecting a Sampled Values message and you unsubscribe a subscribed IED it looks like the latest snapshot */
+/* end snapshot Sampled Values Plugin in SMV Publisher view when selecting a Sampled Values message and you unsubscribe a subscribed IED it looks like the latest snapshot */
 
-snapshots["Sampled Values Plugin when selecting a Sampled Values message and you subscribe a partially subscribed IED it looks like the latest snapshot"] = 
+snapshots["Sampled Values Plugin in SMV Publisher view when selecting a Sampled Values message and you subscribe a partially subscribed IED it looks like the latest snapshot"] = 
 `<section>
   <h1>
     [sampledvalues.subscriberIed.title]
@@ -320,5 +351,5 @@ snapshots["Sampled Values Plugin when selecting a Sampled Values message and you
   </div>
 </section>
 `;
-/* end snapshot Sampled Values Plugin when selecting a Sampled Values message and you subscribe a partially subscribed IED it looks like the latest snapshot */
+/* end snapshot Sampled Values Plugin in SMV Publisher view when selecting a Sampled Values message and you subscribe a partially subscribed IED it looks like the latest snapshot */
 
