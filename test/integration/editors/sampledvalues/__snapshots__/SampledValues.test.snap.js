@@ -21,8 +21,8 @@ snapshots["Sampled Values Plugin in SMV Publisher view initially the plugin look
     </mwc-radio>
   </mwc-formfield>
   <div class="container">
-    <sampled-values-list class="row">
-    </sampled-values-list>
+    <smv-publisher-list class="row">
+    </smv-publisher-list>
     <subscriber-ied-list-smv class="row">
     </subscriber-ied-list-smv>
   </div>
@@ -45,6 +45,42 @@ snapshots["Sampled Values Plugin in SMV Publisher view initially the Sampled Val
       tabindex="-1"
     >
       <span class="iedListTitle">
+        IED1
+      </span>
+      <mwc-icon slot="graphic">
+        developer_board
+      </mwc-icon>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="icon"
+      noninteractive=""
+      tabindex="-1"
+    >
+      <span class="iedListTitle">
+        IED2
+      </span>
+      <mwc-icon slot="graphic">
+        developer_board
+      </mwc-icon>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="icon"
+      noninteractive=""
+      tabindex="-1"
+    >
+      <span class="iedListTitle">
         IED3
       </span>
       <mwc-icon slot="graphic">
@@ -59,15 +95,40 @@ snapshots["Sampled Values Plugin in SMV Publisher view initially the Sampled Val
     <mwc-list-item
       aria-disabled="false"
       graphic="large"
+      hasmeta=""
       mwc-list-item=""
       tabindex="0"
     >
+      <mwc-icon slot="graphic">
+      </mwc-icon>
       <span>
         MSVCB01
       </span>
+      <mwc-icon-button
+        class="hidden"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="icon"
+      noninteractive=""
+      tabindex="-1"
+    >
+      <span class="iedListTitle">
+        IED4
+      </span>
       <mwc-icon slot="graphic">
+        developer_board
       </mwc-icon>
     </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
   </mwc-list>
 </section>
 `;

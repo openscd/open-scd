@@ -1,3 +1,5 @@
+import { compareNames } from "../foundation.js";
+
 export enum View {
   PUBLISHER,
   SUBSCRIBER
@@ -23,4 +25,12 @@ declare global {
   interface ElementEventMap {
     ['view']: ViewEvent;
   }
+}
+
+export function getOrderedIeds(doc: XMLDocument): Element[] {
+  return doc
+    ? Array.from(doc.querySelectorAll(':root > IED')).sort((a, b) =>
+        compareNames(a, b)
+      )
+    : [];
 }

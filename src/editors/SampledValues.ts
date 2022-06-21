@@ -3,7 +3,7 @@ import { LitElement, html, TemplateResult, property, css, query } from 'lit-elem
 import '@material/mwc-fab';
 
 import './sampledvalues/subscriber-ied-list-smv.js';
-import './sampledvalues/sampled-values-list.js';
+import './sampledvalues/smv-publisher-list.js';
 import { RadioListItem } from '@material/mwc-list/mwc-radio-list-item.js';
 import { newViewEvent, View, ViewEvent } from './foundation.js';
 import { translate } from 'lit-translate';
@@ -60,8 +60,8 @@ export default class SampledValuesPlugin extends LitElement {
       </mwc-formfield>
       <div class="container">
         ${view == View.PUBLISHER
-          ? html`<sampled-values-list class="row" .doc=${this.doc}></sampled-values-list>`
-          : html`<sampled-values-list class="row" .doc=${this.doc}></sampled-values-list>`
+          ? html`<smv-publisher-list class="row" .doc=${this.doc}></smv-publisher-list>`
+          : html`<smv-publisher-list class="row" .doc=${this.doc}></smv-publisher-list>`
         }
         <subscriber-ied-list-smv
           class="row"

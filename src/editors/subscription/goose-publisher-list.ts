@@ -12,11 +12,12 @@ import '@material/mwc-icon';
 import '@material/mwc-list/mwc-list-item';
 
 import '../../filtered-list.js';
-import { compareNames, getNameAttribute, newWizardEvent } from '../../foundation.js';
+import { getNameAttribute, newWizardEvent } from '../../foundation.js';
 import { newGOOSESelectEvent, styles } from './foundation.js';
 import { gooseIcon } from '../../icons/icons.js';
 import { wizards } from '../../wizards/wizard-library.js';
 import { classMap } from 'lit-html/directives/class-map';
+import { getOrderedIeds } from '../foundation.js';
 
 let selectedGseControl: Element | undefined;
 let selectedDataSet: Element | undefined | null;
@@ -33,28 +34,7 @@ export class GoosePublisherList extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
 
-  private get ieds(): Element[] {
-    return this.doc
-      ? Array.from(this.doc.querySelectorAll(':root > IED')).sort((a, b) =>
-          compareNames(a, b)
-        )
-      : [];
-  }
-
-  /**
-   * Get all the published GOOSE messages.
-   * @param ied - The IED to search through.
-   * @returns All the published GOOSE messages of this specific IED.
-   */
-  private getGSEControls(ied: Element): Element[] {
-    return Array.from(
-      ied.querySelectorAll(
-        ':scope > AccessPoint > Server > LDevice > LN0 > GSEControl'
-      )
-    );
-  }
-
-  private onGooseSelect(gseControl: Element): void {
+  private onSelect(gseControl: Element): void {
     if (gseControl == selectedGseControl) return;
 
     const ln = gseControl.parentElement;
@@ -77,7 +57,7 @@ export class GoosePublisherList extends LitElement {
 
   renderGoose(gseControl: Element): TemplateResult {
     return html`<mwc-list-item
-      @click=${() => this.onGooseSelect(gseControl)}
+      @click=${() => this.onSelect(gseControl)}
       graphic="large"
       hasMeta
     >
@@ -112,18 +92,20 @@ export class GoosePublisherList extends LitElement {
     return html` <section tabindex="0">
       <h1>${translate('subscription.publisherGoose.title')}</h1>
       <filtered-list>
-        ${this.ieds.map(
-          ied =>
-            html`
-              <mwc-list-item noninteractive graphic="icon">
-                <span>${getNameAttribute(ied)}</span>
-                <mwc-icon slot="graphic">developer_board</mwc-icon>
-              </mwc-list-item>
-              <li divider role="separator"></li>
-              ${this.getGSEControls(ied).map(gseControl =>
-                this.renderGoose(gseControl)
-              )}
-            `
+        ${getOrderedIeds(this.doc).map(ied =>
+          html`
+            <mwc-list-item noninteractive graphic="icon">
+              <span>${getNameAttribute(ied)}</span>
+              <mwc-icon slot="graphic">developer_board</mwc-icon>
+            </mwc-list-item>
+            <li divider role="separator"></li>
+            ${Array.from(
+                ied.querySelectorAll(
+                  ':scope > AccessPoint > Server > LDevice > LN0 > GSEControl'
+                )
+              ).map(control => this.renderGoose(control))
+            }
+          `
         )}
       </filtered-list>
     </section>`;
