@@ -9,14 +9,6 @@ export enum SubscribeStatus {
   None,
 }
 
-/**
- * Enumeration stating the current view of the Subscription plugin.
- */
-export enum View {
-  GOOSE_PUBLISHER,
-  GOOSE_SUBSCRIBER
-}
-
 export interface GOOSESelectDetail {
   gseControl: Element | undefined;
   dataset: Element | undefined;
@@ -48,22 +40,6 @@ export function newIEDSelectEvent(
     composed: true,
     ...eventInitDict,
     detail: { ied, ...eventInitDict?.detail },
-  });
-}
-
-export interface ViewDetail {
-  view: View;
-}
-export type ViewEvent = CustomEvent<ViewDetail>;
-export function newViewEvent(
-  view: View,
-  eventInitDict?: CustomEventInit<ViewDetail>
-): ViewEvent {
-  return new CustomEvent<ViewDetail>('view', {
-    bubbles: true,
-    composed: true,
-    ...eventInitDict,
-    detail: { view, ...eventInitDict?.detail },
   });
 }
 
@@ -156,6 +132,5 @@ declare global {
     ['goose-dataset']: GOOSESelectEvent;
     ['subscription']: SubscriptionEvent;
     ['ied-select']: IEDSelectEvent;
-    ['view']: ViewEvent;
   }
 }

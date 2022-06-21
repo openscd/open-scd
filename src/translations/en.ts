@@ -341,7 +341,7 @@ export const en = {
     view: {
       publisherView: 'Show subscriber IED(s) per selected GOOSE',
       subscriberView: 'Show subscribed GOOSE publisher for selected IED',
-    },
+    }
   },
   sampledvalues: {
     none: 'none',
@@ -355,6 +355,10 @@ export const en = {
       partiallySubscribed: 'Partially subscribed',
       noSampledValuesSelected: 'No control block selected',
     },
+    view: {
+      publisherView: 'Show subscriber IED(s) per selected Sampled Value',
+      subscriberView: 'Show subscribed Sampled Value(s) publisher for selected IED',
+    }
   },
   'enum-val': {
     wizard: {

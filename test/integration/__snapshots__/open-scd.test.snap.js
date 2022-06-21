@@ -618,7 +618,7 @@ snapshots["open-scd looks like its snapshot"] =
       <mwc-icon slot="meta">
         link
       </mwc-icon>
-      Subscription
+      Subscriber (GOOSE)
     </mwc-check-list-item>
     <mwc-check-list-item
       aria-disabled="false"
@@ -634,7 +634,7 @@ snapshots["open-scd looks like its snapshot"] =
       <mwc-icon slot="meta">
         link
       </mwc-icon>
-      Sampled Values Subscriber
+      Subscriber (SMV)
     </mwc-check-list-item>
     <mwc-check-list-item
       aria-disabled="false"

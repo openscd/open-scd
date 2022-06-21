@@ -27,13 +27,12 @@ import {
   styles,
   SubscribeStatus,
   IEDSelectEvent,
-  View,
-  ViewEvent,
 } from './foundation.js';
 import {
   emptyInputsDeleteActions,
   getFcdaReferences
 } from "../../foundation/ied.js";
+import { View, ViewEvent } from '../foundation.js';
 
 /**
  * An element within this list has 2 properties:
@@ -46,7 +45,7 @@ interface ListElement {
 }
 
 /** Defining view outside the class, which makes it persistent. */
-let view: View = View.GOOSE_PUBLISHER;
+let view: View = View.PUBLISHER;
 
 /** An sub element for subscribing and unsubscribing IEDs to GOOSE messages. */
 @customElement('subscriber-list')
@@ -226,7 +225,7 @@ export class SubscriberList extends LitElement {
   private async onSubscriptionEvent(event: SubscriptionEvent) {
     let elementToSubscribe = event.detail.element;
 
-    if (view == View.GOOSE_SUBSCRIBER) {
+    if (view == View.SUBSCRIBER) {
       const dataSetName = event.detail.element.getAttribute('datSet');
       this.currentUsedDataset = event.detail.element.parentElement?.querySelector(`DataSet[name="${dataSetName}"]`);
       this.currentGooseIEDName = event.detail.element.closest('IED')?.getAttribute('name');
@@ -355,7 +354,7 @@ export class SubscriberList extends LitElement {
       hasMeta
       >
       <span>${
-        view == View.GOOSE_PUBLISHER
+        view == View.PUBLISHER
         ? element.getAttribute('name')
         : element.getAttribute('name') + ` (${element.closest('IED')?.getAttribute('name')})`
       }</span>
@@ -416,7 +415,7 @@ export class SubscriberList extends LitElement {
   renderTitle(): TemplateResult {
     const gseControlName = this.currentSelectedGseControl?.getAttribute('name') ?? undefined;
 
-    return view == View.GOOSE_PUBLISHER
+    return view == View.PUBLISHER
       ? html`<h1>
           ${translate('subscription.publisherGoose.subscriberTitle', {
             selected: gseControlName
@@ -452,7 +451,7 @@ export class SubscriberList extends LitElement {
             </div>`
           : html`<mwc-list>
               <mwc-list-item noninteractive>
-                <span>${view == View.GOOSE_PUBLISHER
+                <span>${view == View.PUBLISHER
                   ? translate('subscription.subscriber.noGooseMessageSelected')
                   : translate('subscription.subscriber.noIedSelected')}</span>
               </mwc-list-item>

@@ -13,7 +13,7 @@ import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 
 import { compareNames, getNameAttribute } from '../../foundation.js';
-import { newSampledValuesSelectEvent, styles } from './foundation.js';
+import { newSmvSelectEvent, styles } from './foundation.js';
 import { smvIcon } from '../../icons/icons.js';
 
 let selectedSmvMsg: Element | undefined;
@@ -62,7 +62,7 @@ export class SampledValuesList extends LitElement {
     selectedDataSet = dataset;
 
     this.dispatchEvent(
-      newSampledValuesSelectEvent(
+      newSmvSelectEvent(
         selectedSmvMsg,
         selectedDataSet!
       )
@@ -78,7 +78,7 @@ export class SampledValuesList extends LitElement {
 
   protected firstUpdated(): void {
     this.dispatchEvent(
-      newSampledValuesSelectEvent(
+      newSmvSelectEvent(
         selectedSmvMsg,
         selectedDataSet ?? undefined
       )

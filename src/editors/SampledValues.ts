@@ -1,9 +1,15 @@
-import { LitElement, html, TemplateResult, property, css } from 'lit-element';
+import { LitElement, html, TemplateResult, property, css, query } from 'lit-element';
 
 import '@material/mwc-fab';
 
 import './sampledvalues/subscriber-ied-list-smv.js';
 import './sampledvalues/sampled-values-list.js';
+import { RadioListItem } from '@material/mwc-list/mwc-radio-list-item.js';
+import { newViewEvent, View, ViewEvent } from './foundation.js';
+import { translate } from 'lit-translate';
+
+/** Defining view outside the class, which makes it persistent. */
+let view: View = View.PUBLISHER;
 
 /** An editor [[`plugin`]] for subscribing IEDs to Sampled Values. */
 export default class SampledValuesPlugin extends LitElement {
@@ -11,15 +17,57 @@ export default class SampledValuesPlugin extends LitElement {
   @property()
   doc!: XMLDocument;
 
+  @query('#bySmvRadio')
+  bySmvRadio!: RadioListItem;
+
+  @query('#byIedRadio')
+  byIedRadio!: RadioListItem;
+
+  @query('div[class="container"]')
+  listDiv!: Element;
+
+  constructor() {
+    super();
+    this.addEventListener('view', (evt: ViewEvent) => {
+      view = evt.detail.view;
+      this.requestUpdate();
+    });
+  }
+
+  firstUpdated(): void {
+    view == View.PUBLISHER
+      ? this.bySmvRadio.setAttribute('checked', '')
+      : this.byIedRadio.setAttribute('checked', '')
+  }
+
   render(): TemplateResult {
-    return html`
-    <div id="containerTemplates">
-      <section>
-        <sampled-values-list .doc=${this.doc}></sampled-values-list>
-      </section>
-      <section>
-        <subscriber-ied-list-smv .doc=${this.doc}></subscriber-ied-list-smv>
-      </section>
+    return html`<div>
+      <mwc-formfield label="${translate('sampledvalues.view.publisherView')}">
+        <mwc-radio
+          id="bySmvRadio"
+          name="view"
+          value="goose"
+          @checked=${() => this.listDiv.dispatchEvent(newViewEvent(View.PUBLISHER))}
+        ></mwc-radio>
+      </mwc-formfield>
+      <mwc-formfield label="${translate('sampledvalues.view.publisherView')}">
+        <mwc-radio
+          id="byIedRadio"
+          name="view"
+          value="ied"
+          @checked=${() => this.listDiv.dispatchEvent(newViewEvent(View.SUBSCRIBER))}
+        ></mwc-radio>
+      </mwc-formfield>
+      <div class="container">
+        ${view == View.PUBLISHER
+          ? html`<sampled-values-list class="row" .doc=${this.doc}></sampled-values-list>`
+          : html`<sampled-values-list class="row" .doc=${this.doc}></sampled-values-list>`
+        }
+        <subscriber-ied-list-smv
+          class="row"
+          .doc=${this.doc}
+        ></subscriber-ied-list-smv>
+      </div>
     </div>`;
   }
 
@@ -28,22 +76,18 @@ export default class SampledValuesPlugin extends LitElement {
       width: 100vw;
     }
 
-    section {
-      width: 49vw;
+    .container {
+      display: flex;
+      padding: 8px 6px 16px;
+      height: 86vh;
     }
 
-    #containerTemplates {
-      display: grid;
-      grid-gap: 12px;
-      padding: 8px 12px 16px;
-      box-sizing: border-box;
-      grid-template-columns: repeat(auto-fit, minmax(316px, auto));
-    }
-
-    @media (max-width: 387px) {
-      #containerTemplates {
-        grid-template-columns: repeat(auto-fit, minmax(196px, auto));
-      }
+    .row {
+      flex: 50%;
+      margin: 0px 6px 0px;
+      min-width: 300px;
+      height: 100%;
+      overflow-y: scroll;
     }
   `;
 }

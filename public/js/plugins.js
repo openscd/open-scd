@@ -21,14 +21,14 @@ export const officialPlugins = [
     kind: 'editor',
   },
   {
-    name: 'Subscription',
+    name: 'Subscriber (GOOSE)',
     src: '/src/editors/Subscription.js',
     icon: 'link',
     default: true,
     kind: 'editor',
   },
   {
-    name: 'Sampled Values Subscriber',
+    name: 'Subscriber (SMV)',
     src: '/src/editors/SampledValues.js',
     icon: 'link',
     default: true,

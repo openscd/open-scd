@@ -21,7 +21,7 @@ import {
   newActionEvent,
 } from '../../foundation.js';
 import {
-  SampledValuesSelectEvent,
+  SmvSelectEvent,
   IEDSampledValuesSubscriptionEvent,
   styles,
   SubscribeStatus,
@@ -69,7 +69,7 @@ export class SubscriberIEDListSmv extends LitElement {
     this.onSampledValuesDataSetEvent = this.onSampledValuesDataSetEvent.bind(this);
     this.onIEDSubscriptionEvent = this.onIEDSubscriptionEvent.bind(this);
 
-    const parentDiv = this.closest('div[id="containerTemplates"]');
+    const parentDiv = this.closest('div[class="container"]');
     if (parentDiv) {
       parentDiv.addEventListener(
         'sampled-values-select',
@@ -87,8 +87,8 @@ export class SubscriberIEDListSmv extends LitElement {
    * all FCDAs are covered, or partly FCDAs are covered.
    * @param event - Incoming event.
    */
-  private async onSampledValuesDataSetEvent(event: SampledValuesSelectEvent) {
-    this.currentSampledValuesControl = event.detail.sampledValuesControl;
+  private async onSampledValuesDataSetEvent(event: SmvSelectEvent) {
+    this.currentSampledValuesControl = event.detail.smvControl;
     this.currentDataset = event.detail.dataset;
     this.currentSampledValuesIEDName = this.currentSampledValuesControl
       ?.closest('IED')

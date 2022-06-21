@@ -9,21 +9,21 @@ export enum SubscribeStatus {
   None,
 }
 
-export interface SampledValuesSelectDetail {
-  sampledValuesControl: Element | undefined;
+export interface SmvSelectDetail {
+  smvControl: Element | undefined;
   dataset: Element | undefined;
 }
-export type SampledValuesSelectEvent = CustomEvent<SampledValuesSelectDetail>;
-export function newSampledValuesSelectEvent(
-  sampledValuesControl: Element | undefined,
+export type SmvSelectEvent = CustomEvent<SmvSelectDetail>;
+export function newSmvSelectEvent(
+  smvControl: Element | undefined,
   dataset: Element | undefined,
-  eventInitDict?: CustomEventInit<SampledValuesSelectDetail>
-): SampledValuesSelectEvent {
-  return new CustomEvent<SampledValuesSelectDetail>('sampled-values-select', {
+  eventInitDict?: CustomEventInit<SmvSelectDetail>
+): SmvSelectEvent {
+  return new CustomEvent<SmvSelectDetail>('sampled-values-select', {
     bubbles: true,
     composed: true,
     ...eventInitDict,
-    detail: { sampledValuesControl, dataset, ...eventInitDict?.detail },
+    detail: { smvControl: smvControl, dataset, ...eventInitDict?.detail },
   });
 }
 
@@ -109,7 +109,7 @@ export const styles = css`
 
 declare global {
   interface ElementEventMap {
-    ['sampled-values-select']: SampledValuesSelectEvent;
+    ['sampled-values-select']: SmvSelectEvent;
     ['ied-smv-subscription']: IEDSampledValuesSubscriptionEvent;
   }
 }
