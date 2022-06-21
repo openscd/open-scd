@@ -23,8 +23,8 @@ function onOpenDocResetSelectedGooseMsg() {
 }
 addEventListener('open-doc', onOpenDocResetSelectedGooseMsg);
 
-@customElement('goose-subscriber-list')
-export class GooseSubscriberList extends LitElement {
+@customElement('smv-subscriber-list')
+export class SmvSubscriberList extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
 

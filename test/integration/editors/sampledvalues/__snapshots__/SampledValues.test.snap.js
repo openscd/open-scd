@@ -33,7 +33,7 @@ snapshots["Sampled Values Plugin in SMV Publisher view initially the plugin look
 /* end snapshot Sampled Values Plugin in SMV Publisher view initially the plugin looks like the latest snapshot */
 
 snapshots["Sampled Values Plugin in SMV Publisher view initially the Sampled Values list looks like the latest snapshot"] = 
-`<section>
+`<section tabindex="0">
   <h1>
     [sampledvalues.sampledValuesList.title]
   </h1>

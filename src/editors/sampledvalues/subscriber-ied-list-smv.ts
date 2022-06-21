@@ -24,12 +24,12 @@ import {
   SmvSelectEvent,
   IEDSampledValuesSubscriptionEvent,
   styles,
-  SubscribeStatus,
 } from './foundation.js';
 import {
   emptyInputsDeleteActions,
   getFcdaReferences
 } from "../../foundation/ied.js";
+import { SubscribeStatus } from '../foundation.js';
 
 /**
  * An IED within this IED list has 2 properties:

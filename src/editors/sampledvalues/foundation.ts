@@ -1,13 +1,5 @@
 import { css } from 'lit-element';
-
-/**
- * Enumeration stating the Subscribe status of a IED to a GOOSE.
- */
-export enum SubscribeStatus {
-  Full,
-  Partial,
-  None,
-}
+import { SubscribeStatus } from '../foundation.js';
 
 export interface SmvSelectDetail {
   smvControl: Element | undefined;

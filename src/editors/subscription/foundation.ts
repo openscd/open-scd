@@ -1,13 +1,5 @@
 import { css } from 'lit-element';
-
-/**
- * Enumeration stating the Subscribe status of a IED to a GOOSE.
- */
-export enum SubscribeStatus {
-  Full,
-  Partial,
-  None,
-}
+import { SubscribeStatus } from '../foundation.js';
 
 export interface GOOSESelectDetail {
   gseControl: Element | undefined;
@@ -24,22 +16,6 @@ export function newGOOSESelectEvent(
     composed: true,
     ...eventInitDict,
     detail: { gseControl, dataset, ...eventInitDict?.detail },
-  });
-}
-
-export interface IEDSelectDetail {
-  ied: Element | undefined;
-}
-export type IEDSelectEvent = CustomEvent<IEDSelectDetail>;
-export function newIEDSelectEvent(
-  ied: Element | undefined,
-  eventInitDict?: CustomEventInit<IEDSelectDetail>
-): IEDSelectEvent {
-  return new CustomEvent<IEDSelectDetail>('ied-select', {
-    bubbles: true,
-    composed: true,
-    ...eventInitDict,
-    detail: { ied, ...eventInitDict?.detail },
   });
 }
 
@@ -131,6 +107,5 @@ declare global {
   interface ElementEventMap {
     ['goose-dataset']: GOOSESelectEvent;
     ['subscription']: SubscriptionEvent;
-    ['ied-select']: IEDSelectEvent;
   }
 }

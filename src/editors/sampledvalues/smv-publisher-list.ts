@@ -49,6 +49,8 @@ export class SampledValuesList extends LitElement {
         selectedDataSet!
       )
     );
+    
+    this.requestUpdate();
   }
 
   renderSmv(smvControl: Element): TemplateResult {
@@ -84,7 +86,7 @@ export class SampledValuesList extends LitElement {
   }
 
   render(): TemplateResult {
-    return html` <section>
+    return html` <section tabindex="0">
       <h1>${translate('sampledvalues.sampledValuesList.title')}</h1>
       <mwc-list>
         ${getOrderedIeds(this.doc).map(ied =>

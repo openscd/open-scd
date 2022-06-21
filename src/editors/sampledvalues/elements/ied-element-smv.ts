@@ -9,7 +9,8 @@ import {
 import '@material/mwc-icon';
 import '@material/mwc-list/mwc-list-item';
 
-import { newIEDSampledValuesSubscriptionEvent, SubscribeStatus } from '../foundation.js';
+import { newIEDSampledValuesSubscriptionEvent } from '../foundation.js';
+import { SubscribeStatus } from '../../foundation.js';
 
 @customElement('ied-element-smv')
 export class IEDElementSmv extends LitElement {
