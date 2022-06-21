@@ -13,7 +13,6 @@ import '@material/mwc-list/mwc-list-item';
 
 import './ied/ied-container.js';
 import './ied/element-path.js';
-import './substation/zeroline-pane.js';
 
 import { translate } from 'lit-translate';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
@@ -91,23 +90,25 @@ export default class IedPlugin extends LitElement {
             label="${translate('iededitor.searchHelper')}"
             @selected=${this.onSelect}
           >
-            ${iedList.map(
-              ied =>
-                html` <mwc-list-item
-                  ?selected=${ied == this.selectedIed}
-                  value="${getNameAttribute(ied)}"
-                  >${getNameAttribute(ied)}
-                  ${getDescriptionAttribute(ied)
-                    ? translate('iededitor.searchHelperDesc', {
-                        description: getDescriptionAttribute(ied)!,
-                      })
-                    : ''}
-                </mwc-list-item>`
-            )}
+            ${iedList.map(ied => {
+              const name = getNameAttribute(ied);
+              const descr = getDescriptionAttribute(ied);
+              return html` <mwc-list-item
+                ?selected=${ied == this.selectedIed}
+                value="${name}"
+                >${name}
+                ${descr
+                  ? translate('iededitor.searchHelperDesc', {
+                      description: descr,
+                    })
+                  : ''}
+              </mwc-list-item>`;
+            })}
           </mwc-select>
           <element-path class="elementPath"></element-path>
         </div>
         <ied-container
+          .doc=${this.doc}
           .element=${this.selectedIed}
           .nsdoc=${this.nsdoc}
         ></ied-container>

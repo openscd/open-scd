@@ -14,7 +14,6 @@ import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 
 import '../../action-pane.js';
 import { getNameAttribute, newWizardEvent } from '../../foundation.js';
-import { Nsdoc } from '../../foundation/nsdoc.js';
 import { wizards } from '../../wizards/wizard-library.js';
 import { DaiValidationTypes, getCustomField } from './foundation/foundation.js';
 import { createDaInfoWizard } from './da-wizard.js';
@@ -37,9 +36,6 @@ export class DAContainer extends Container {
    */
   @property({ attribute: false })
   instanceElement!: Element;
-
-  @property()
-  nsdoc!: Nsdoc;
 
   @query('#toggleButton')
   toggleButton: IconButtonToggle | undefined;
@@ -196,6 +192,7 @@ export class DAContainer extends Container {
           ? this.getBDAElements().map(
               bdaElement =>
                 html`<da-container
+                  .doc=${this.doc}
                   .element=${bdaElement}
                   .instanceElement=${getInstanceDAElement(
                     this.instanceElement,

@@ -6,17 +6,25 @@ import {
   TemplateResult,
 } from 'lit-element';
 import { nothing } from 'lit-html';
+import { translate } from 'lit-translate';
 
 import '@material/mwc-icon-button-toggle';
 import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 
 import '../../action-pane.js';
 import './da-container.js';
-import { getDescriptionAttribute, getNameAttribute, newWizardEvent } from '../../foundation.js';
-import { translate } from 'lit-translate';
-import { Nsdoc } from '../../foundation/nsdoc.js';
-import { createDoInfoWizard } from "./do-wizard.js";
-import { Container, findDOTypeElement, getInstanceDAElement } from "./foundation.js";
+
+import {
+  getDescriptionAttribute,
+  getNameAttribute,
+  newWizardEvent,
+} from '../../foundation.js';
+import { createDoInfoWizard } from './do-wizard.js';
+import {
+  Container,
+  findDOTypeElement,
+  getInstanceDAElement,
+} from './foundation.js';
 
 /** [[`IED`]] plugin subeditor for editing `DO` element. */
 @customElement('do-container')
@@ -26,9 +34,6 @@ export class DOContainer extends Container {
    */
   @property({ attribute: false })
   instanceElement!: Element;
-
-  @property()
-  nsdoc!: Nsdoc;
 
   @query('#toggleButton') toggleButton: IconButtonToggle | undefined;
 
@@ -50,7 +55,7 @@ export class DOContainer extends Container {
   private getDOElements(): Element[] {
     const doType = findDOTypeElement(this.element);
     if (doType != null) {
-      return Array.from(doType.querySelectorAll(':scope > SDO'))
+      return Array.from(doType.querySelectorAll(':scope > SDO'));
     }
     return [];
   }
@@ -61,9 +66,11 @@ export class DOContainer extends Container {
    */
   private getDAElements(): Element[] {
     const type = this.element.getAttribute('type') ?? undefined;
-    const doType =  this.element.closest('SCL')!.querySelector(`:root > DataTypeTemplates > DOType[id="${type}"]`);
+    const doType = this.element
+      .closest('SCL')!
+      .querySelector(`:root > DataTypeTemplates > DOType[id="${type}"]`);
     if (doType != null) {
-      return Array.from(doType!.querySelectorAll(':scope > DA'))
+      return Array.from(doType!.querySelectorAll(':scope > DA'));
     }
     return [];
   }
@@ -76,7 +83,9 @@ export class DOContainer extends Container {
   private getInstanceDOElement(dO: Element): Element | null {
     const sdoName = getNameAttribute(dO);
     if (this.instanceElement) {
-      return this.instanceElement.querySelector(`:scope > SDI[name="${sdoName}"]`)
+      return this.instanceElement.querySelector(
+        `:scope > SDI[name="${sdoName}"]`
+      );
     }
     return null;
   }
@@ -85,39 +94,67 @@ export class DOContainer extends Container {
     const daElements = this.getDAElements();
     const doElements = this.getDOElements();
 
-    return html`<action-pane .label="${this.header()}" icon="${this.instanceElement != null ? 'done' : ''}">
+    return html`<action-pane
+      .label="${this.header()}"
+      icon="${this.instanceElement != null ? 'done' : ''}"
+    >
       <abbr slot="action">
         <mwc-icon-button
           title=${this.nsdoc.getDataDescription(this.element).label}
           icon="info"
-          @click=${() => this.dispatchEvent(newWizardEvent(
-            createDoInfoWizard(this.element, this.instanceElement, this.ancestors, this.nsdoc)))}
+          @click=${() =>
+            this.dispatchEvent(
+              newWizardEvent(
+                createDoInfoWizard(
+                  this.element,
+                  this.instanceElement,
+                  this.ancestors,
+                  this.nsdoc
+                )
+              )
+            )}
         ></mwc-icon-button>
       </abbr>
-      ${daElements.length > 0 || doElements.length > 0 ?
-        html`<abbr slot="action" title="${translate('iededitor.toggleChildElements')}">
-          <mwc-icon-button-toggle
-            id="toggleButton"
-            onIcon="keyboard_arrow_up"
-            offIcon="keyboard_arrow_down"
-            @click=${()=>this.requestUpdate()}
-          ></mwc-icon-button-toggle>
-        </abbr>` : nothing}
-      ${this.toggleButton?.on ? daElements.map(daElement =>
-        html`<da-container
-          .element=${daElement}
-          .instanceElement=${getInstanceDAElement(this.instanceElement, daElement)}
-          .nsdoc=${this.nsdoc}
-          .ancestors=${[...this.ancestors, this.element]}
-        ></da-container>`) : nothing}
-      ${this.toggleButton?.on ? doElements.map(doElement =>
-        html`<do-container
-          .element=${doElement}
-          .instanceElement=${this.getInstanceDOElement(doElement)}
-          .nsdoc=${this.nsdoc}
-          .ancestors=${[...this.ancestors, this.element]}
-        ></do-container>`) : nothing}
-    </action-pane>
-    `;
+      ${daElements.length > 0 || doElements.length > 0
+        ? html`<abbr
+            slot="action"
+            title="${translate('iededitor.toggleChildElements')}"
+          >
+            <mwc-icon-button-toggle
+              id="toggleButton"
+              onIcon="keyboard_arrow_up"
+              offIcon="keyboard_arrow_down"
+              @click=${() => this.requestUpdate()}
+            ></mwc-icon-button-toggle>
+          </abbr>`
+        : nothing}
+      ${this.toggleButton?.on
+        ? daElements.map(
+            daElement =>
+              html`<da-container
+                .doc=${this.doc}
+                .element=${daElement}
+                .instanceElement=${getInstanceDAElement(
+                  this.instanceElement,
+                  daElement
+                )}
+                .nsdoc=${this.nsdoc}
+                .ancestors=${[...this.ancestors, this.element]}
+              ></da-container>`
+          )
+        : nothing}
+      ${this.toggleButton?.on
+        ? doElements.map(
+            doElement =>
+              html`<do-container
+                .doc=${this.doc}
+                .element=${doElement}
+                .instanceElement=${this.getInstanceDOElement(doElement)}
+                .nsdoc=${this.nsdoc}
+                .ancestors=${[...this.ancestors, this.element]}
+              ></do-container>`
+          )
+        : nothing}
+    </action-pane> `;
   }
 }
