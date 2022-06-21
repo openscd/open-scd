@@ -2,7 +2,6 @@ import {
   css,
   customElement,
   html,
-  LitElement,
   property,
   TemplateResult,
 } from 'lit-element';
@@ -14,16 +13,14 @@ import './ied-container.js';
 
 import { selectDoWizard } from './wizards/selectDo.js';
 import { PROTOCOL_104_PRIVATE } from './foundation/private.js';
+import { Base104Container } from './base-container.js';
 
 /**
  * Container that will render an 'ied-104-container' for every IED which contains DAI Elements related to the
  * 104 Protocol.
  */
 @customElement('values-104-container')
-export class Values104Container extends LitElement {
-  @property()
-  doc!: XMLDocument;
-
+export class Values104Container extends Base104Container {
   @property()
   get iedElements(): Element[] {
     return Array.from(this.doc.querySelectorAll('IED'))
@@ -59,6 +56,7 @@ export class Values104Container extends LitElement {
       return html`
         ${ieds.map(iedElement => {
           return html`<ied-104-container
+            .doc="${this.doc}"
             .element="${iedElement}"
           ></ied-104-container>`;
         })}

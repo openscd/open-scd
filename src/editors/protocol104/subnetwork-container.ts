@@ -1,10 +1,9 @@
 import {
-  LitElement,
-  TemplateResult,
+  css,
   customElement,
   html,
   property,
-  css,
+  TemplateResult,
 } from 'lit-element';
 
 import '@material/mwc-icon-button';
@@ -13,14 +12,15 @@ import './connectedap-editor.js';
 import { compareNames, newWizardEvent } from '../../foundation.js';
 import { translate } from 'lit-translate';
 import { createConnectedApWizard } from './wizards/connectedap.js';
+import { Base104Container } from './base-container.js';
 
 /** [[`104`]] subeditor for a `SubNetwork` element. */
 @customElement('subnetwork-104-container')
-export class SubNetwork104Container extends LitElement {
+export class SubNetwork104Container extends Base104Container {
   /** SCL element SubNetwork */
   @property({ attribute: false })
   element!: Element;
-  
+
   get bitrate(): string | null {
     const bitRate = this.element.querySelector('BitRate');
     if (bitRate === null) return null;
@@ -51,6 +51,7 @@ export class SubNetwork104Container extends LitElement {
                 class="${connectedAP.parentElement !== this.element
                   ? 'disabled'
                   : ''}"
+                .doc="${this.doc}"
                 .element=${connectedAP}
               ></connectedap-104-editor>`
           )}
@@ -63,9 +64,7 @@ export class SubNetwork104Container extends LitElement {
 
     if (!type && !this.bitrate) return '';
 
-    return `(${type}${
-      type && this.bitrate ? ` — ${this.bitrate}` : ``
-    })`;
+    return `(${type}${type && this.bitrate ? ` — ${this.bitrate}` : ``})`;
   }
 
   private header(): string {

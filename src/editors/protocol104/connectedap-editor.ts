@@ -1,20 +1,15 @@
-import {
-  LitElement,
-  TemplateResult,
-  customElement,
-  html,
-  property,
-} from 'lit-element';
+import { customElement, html, property, TemplateResult } from 'lit-element';
 
 import '@material/mwc-fab';
 
 import '../../action-icon.js';
-import { newWizardEvent, newActionEvent } from '../../foundation.js';
+import { newActionEvent, newWizardEvent } from '../../foundation.js';
 import { editConnectedApWizard } from './wizards/connectedap.js';
+import { Base104Container } from './base-container.js';
 
 /** [[`104`]] subeditor for a `ConnectedAP` element. */
 @customElement('connectedap-104-editor')
-export class ConnectedAP104Editor extends LitElement {
+export class ConnectedAP104Editor extends Base104Container {
   /** SCL element ConnectedAP */
   @property({ attribute: false })
   element!: Element;
@@ -45,7 +40,9 @@ export class ConnectedAP104Editor extends LitElement {
 
   render(): TemplateResult {
     return html`
-      <action-icon label="${this.element.getAttribute('apName') ?? 'UNDEFINED'}" icon="settings_input_hdmi"
+      <action-icon
+        label="${this.element.getAttribute('apName') ?? 'UNDEFINED'}"
+        icon="settings_input_hdmi"
         ><mwc-fab
           slot="action"
           mini
