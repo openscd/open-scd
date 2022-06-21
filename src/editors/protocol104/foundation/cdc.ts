@@ -1,11 +1,29 @@
-import { Create } from '../../../foundation.js';
+import {
+  Create,
+  getNameAttribute,
+  getTypeAttribute,
+  newLogEvent,
+  newWizardEvent,
+} from '../../../foundation.js';
 
 import {
   addPrefixAndNamespaceToDocument,
   createPrivateAddress,
   createPrivateElement,
+  getPrivateElement,
 } from './private.js';
-import { getEnumOrds, isEnumDataAttribute } from './foundation.js';
+import {
+  findElementInOriginalLNStructure,
+  getCdcValueFromDOElement,
+  getEnumOrds,
+  isEnumDataAttribute,
+} from './foundation.js';
+import { editAddressWizard } from '../wizards/address.js';
+import {
+  determineUninitializedStructure,
+  initializeElements,
+} from '../../../foundation/dai.js';
+import { get } from 'lit-translate';
 
 /**
  * List of supported Common Data Classes in the 104 protocol.
@@ -34,18 +52,30 @@ export const supportedCdcTypes = [
 export type SupportedCdcType = typeof supportedCdcTypes[number];
 
 export type CreateFunction = (
-  daiElement: Element,
-  selectedTi: string,
+  lnElement: Element,
+  lnClonedElement: Element,
+  doElement: Element,
+  wizard: Element,
+  ti: string,
+  daPaths: DaSelector[],
   inverted: boolean
 ) => Create[];
 export type CreateCheckFunction = (
-  daiElement: Element,
-  selectedTi: string
+  lnElement: Element,
+  lnClonedElement: Element,
+  doElement: Element,
+  wizard: Element,
+  ti: string,
+  daPaths: DaSelector[]
 ) => Create[];
+
+export interface DaSelector {
+  path: string[];
+}
 export interface TiInformation {
-  filter: string;
+  daPaths: DaSelector[];
   create: CreateFunction;
-  checkFilter?: string;
+  checkDaPaths?: DaSelector[];
   checkCreate?: CreateCheckFunction;
   inverted?: boolean;
 }
@@ -69,17 +99,18 @@ export const cdcProcessings: Record<
   ACT: {
     monitor: {
       '30': {
-        filter:
-          ':scope > DAI[name="general"], ' +
-          ':scope > DAI[name="phsA"], ' +
-          ':scope > DAI[name="phsB"], ' +
-          ':scope > DAI[name="phsC"], ' +
-          ':scope > DAI[name="neut"]',
+        daPaths: [
+          { path: ['general'] },
+          { path: ['phsA'] },
+          { path: ['phsB'] },
+          { path: ['phsC'] },
+          { path: ['neut'] },
+        ],
         create: createAddressAction,
         inverted: true,
       },
       '39': {
-        filter: ':scope > DAI[name="general"]',
+        daPaths: [{ path: ['general'] }],
         create: createAddressAction,
       },
     },
@@ -88,16 +119,15 @@ export const cdcProcessings: Record<
   APC: {
     monitor: {
       '36': {
-        filter: ':scope > SDI[name="mxVal"] > DAI[name="f"]',
+        daPaths: [{ path: ['mxVal', 'f'] }],
         create: createAddressAction,
       },
     },
     control: {
       '63': {
-        filter:
-          ':scope > SDI[name="Oper"] > SDI[name="ctlVal"] > DAI[name="f"]',
+        daPaths: [{ path: ['Oper', 'ctlVal', 'f'] }],
         create: createAddressAction,
-        checkFilter: ':scope > SDI[name="Oper"] > DAI[name="Check"]',
+        checkDaPaths: [{ path: ['Oper', 'Check'] }],
         checkCreate: createCheckAddressAction,
       },
     },
@@ -105,7 +135,7 @@ export const cdcProcessings: Record<
   ASG: {
     monitor: {
       '63': {
-        filter: ':scope > SDI[name="setMag"] > DAI[name="f"]',
+        daPaths: [{ path: ['setMag', 'f'] }],
         create: createAddressAction,
       },
     },
@@ -114,15 +144,15 @@ export const cdcProcessings: Record<
   BAC: {
     monitor: {
       '36': {
-        filter: ':scope > SDI[name="mxVal"] > DAI[name="f"]',
+        daPaths: [{ path: ['mxVal', 'f'] }],
         create: createAddressAction,
       },
     },
     control: {
       '60': {
-        filter: ':scope > SDI[name="Oper"] > DAI[name="ctlVal"]',
+        daPaths: [{ path: ['Oper', 'ctlVal'] }],
         create: createAddressAction,
-        checkFilter: ':scope > SDI[name="Oper"] > DAI[name="Check"]',
+        checkDaPaths: [{ path: ['Oper', 'Check'] }],
         checkCreate: createCheckAddressAction,
       },
     },
@@ -130,7 +160,7 @@ export const cdcProcessings: Record<
   BCR: {
     monitor: {
       '37': {
-        filter: ':scope > DAI[name="actVal"], ' + ':scope > DAI[name="frVal"]',
+        daPaths: [{ path: ['actVal'] }, { path: ['frVal'] }],
         create: createAddressAction,
       },
     },
@@ -139,15 +169,15 @@ export const cdcProcessings: Record<
   BSC: {
     monitor: {
       '32': {
-        filter: ':scope > SDI[name="valWTr"] > DAI[name="posVal"]',
+        daPaths: [{ path: ['valWTr', 'posVal'] }],
         create: createAddressAction,
       },
     },
     control: {
       '60': {
-        filter: ':scope > SDI[name="Oper"] > DAI[name=“ctlVal”]',
+        daPaths: [{ path: ['Oper', 'ctlVal'] }],
         create: createAddressAction,
-        checkFilter: ':scope > SDI[name="Oper"] > DAI[name="Check"]',
+        checkDaPaths: [{ path: ['Oper', 'Check'] }],
         checkCreate: createCheckAddressAction,
       },
     },
@@ -155,15 +185,11 @@ export const cdcProcessings: Record<
   CMV: {
     monitor: {
       '35': {
-        filter:
-          ':scope > SDI[name="mag"] > DAI[name="i"], ' +
-          ':scope > SDI[name="ang"] > DAI[name="i"]',
+        daPaths: [{ path: ['mag', 'i'] }, { path: ['ang', 'i'] }],
         create: createAddressAction,
       },
       '36': {
-        filter:
-          ':scope > SDI[name="mag"] > DAI[name="f"], ' +
-          ':scope > SDI[name="ang"] > DAI[name="f"]',
+        daPaths: [{ path: ['mag', 'f'] }, { path: ['ang', 'f'] }],
         create: createAddressAction,
       },
     },
@@ -172,15 +198,15 @@ export const cdcProcessings: Record<
   DPC: {
     monitor: {
       '31': {
-        filter: ':scope > DAI[name="stVal"]',
+        daPaths: [{ path: ['stVal'] }],
         create: createAddressAction,
       },
     },
     control: {
       '59': {
-        filter: ':scope > SDI[name="Oper"] > DAI[name="ctlVal"]',
+        daPaths: [{ path: ['Oper', 'ctlVal'] }],
         create: createAddressAction,
-        checkFilter: ':scope > SDI[name="Oper"] > DAI[name="Check"]',
+        checkDaPaths: [{ path: ['Oper', 'Check'] }],
         checkCreate: createCheckAddressAction,
       },
     },
@@ -188,7 +214,7 @@ export const cdcProcessings: Record<
   DPS: {
     monitor: {
       '31': {
-        filter: ':scope > DAI[name="stVal"]',
+        daPaths: [{ path: ['stVal'] }],
         create: createAddressAction,
       },
     },
@@ -197,11 +223,11 @@ export const cdcProcessings: Record<
   ENG: {
     monitor: {
       '58': {
-        filter: ':scope > DAI[name="setVal"]',
+        daPaths: [{ path: ['setVal'] }],
         create: createAddressWithExpectValueAction,
       },
       '62': {
-        filter: ':scope > DAI[name="setVal"]',
+        daPaths: [{ path: ['setVal'] }],
         create: createAddressAction,
       },
     },
@@ -210,15 +236,15 @@ export const cdcProcessings: Record<
   INC: {
     monitor: {
       '35': {
-        filter: ':scope > DAI[name="stVal"]',
+        daPaths: [{ path: ['stVal'] }],
         create: createAddressAction,
       },
     },
     control: {
       '62': {
-        filter: ':scope > SDI[name="Oper"] > DAI[name="ctlVal"]',
+        daPaths: [{ path: ['Oper', 'ctlVal'] }],
         create: createAddressAction,
-        checkFilter: ':scope > SDI[name="Oper"] > DAI[name="Check"]',
+        checkDaPaths: [{ path: ['Oper', 'Check'] }],
         checkCreate: createCheckAddressAction,
       },
     },
@@ -226,7 +252,7 @@ export const cdcProcessings: Record<
   ING: {
     monitor: {
       '62': {
-        filter: ':scope > DAI[name="setVal"]',
+        daPaths: [{ path: ['setVal'] }],
         create: createAddressAction,
       },
     },
@@ -235,16 +261,16 @@ export const cdcProcessings: Record<
   INS: {
     monitor: {
       '30': {
-        filter: ':scope > DAI[name="stVal"]',
+        daPaths: [{ path: ['stVal'] }],
         create: createAddressAction,
         inverted: true,
       },
       '33': {
-        filter: ':scope > DAI[name="stVal"]',
+        daPaths: [{ path: ['stVal'] }],
         create: createAddressAction,
       },
       '35': {
-        filter: ':scope > DAI[name="stVal"]',
+        daPaths: [{ path: ['stVal'] }],
         create: createAddressAction,
       },
     },
@@ -253,15 +279,15 @@ export const cdcProcessings: Record<
   ISC: {
     monitor: {
       '32': {
-        filter: ':scope > SDI[name="valWTr"] > DAI[name="posVal"]',
+        daPaths: [{ path: ['valWTr', 'posVal'] }],
         create: createAddressAction,
       },
     },
     control: {
       '62': {
-        filter: ':scope > SDI[name="Oper"] > DAI[name="ctlVal"]',
+        daPaths: [{ path: ['Oper', 'ctlVal'] }],
         create: createAddressAction,
-        checkFilter: ':scope > SDI[name="Oper"] > DAI[name="Check"]',
+        checkDaPaths: [{ path: ['Oper', 'Check'] }],
         checkCreate: createCheckAddressAction,
       },
     },
@@ -269,11 +295,11 @@ export const cdcProcessings: Record<
   MV: {
     monitor: {
       '35': {
-        filter: ':scope > SDI[name="mag"] > DAI[name="i"]',
+        daPaths: [{ path: ['mag', 'i'] }],
         create: createAddressAction,
       },
       '36': {
-        filter: ':scope > SDI[name="mag"] > DAI[name="f"]',
+        daPaths: [{ path: ['mag', 'f'] }],
         create: createAddressAction,
       },
     },
@@ -282,7 +308,7 @@ export const cdcProcessings: Record<
   SEC: {
     monitor: {
       '37': {
-        filter: ':scope > DAI[name="cnt"]',
+        daPaths: [{ path: ['cnt'] }],
         create: createAddressAction,
       },
     },
@@ -291,16 +317,16 @@ export const cdcProcessings: Record<
   SPC: {
     monitor: {
       '30': {
-        filter: ':scope > DAI[name="stVal"]',
+        daPaths: [{ path: ['stVal'] }],
         create: createAddressAction,
         inverted: true,
       },
     },
     control: {
       '58': {
-        filter: ':scope > SDI[name="Oper"] > DAI[name="ctlVal"]',
+        daPaths: [{ path: ['Oper', 'ctlVal'] }],
         create: createAddressAction,
-        checkFilter: ':scope > SDI[name="Oper"] > DAI[name="Check"]',
+        checkDaPaths: [{ path: ['Oper', 'Check'] }],
         checkCreate: createCheckAddressAction,
       },
     },
@@ -308,7 +334,7 @@ export const cdcProcessings: Record<
   SPG: {
     monitor: {
       '58': {
-        filter: ':scope > DAI[name="setVal"]',
+        daPaths: [{ path: ['setVal'] }],
         create: createAddressAction,
       },
     },
@@ -317,7 +343,7 @@ export const cdcProcessings: Record<
   SPS: {
     monitor: {
       '30': {
-        filter: ':scope > DAI[name="stVal"]',
+        daPaths: [{ path: ['stVal'] }],
         create: createAddressAction,
         inverted: true,
       },
@@ -330,78 +356,206 @@ export const cdcProcessings: Record<
  * Creates a new SCL Private element and add 104 Address element(s) below this.
  * Set the attribute value of 'ti' to the passed ti value.
  *
- * @param daiElement - The DAI Element to use to set namespace on the root element and create new elements.
- * @param ti         - The value to be set on the attribute 'ti'.
- * @param inverted   - Indicates if extra Address Elements should be created with 'inverted=true'.
+ * @param lnElement       - The LN(0) Element.
+ * @param lnClonedElement - The Cloned LN Element, used to create new structure and determine which Create actions are needed.
+ * @param doElement       - The DO Element.
+ * @param wizard          - Wizard Element to dispatch events on.
+ * @param ti              - The value to be set on the attribute 'ti'.
+ * @param daPaths         - The Array of DAI Elements to search or create and add the Private Element on.
+ * @param inverted        - Indicates if extra Address Elements should be created with 'inverted=true'.
  * @returns An array of Create Action that the wizard action will return.
  */
 function createAddressAction(
-  daiElement: Element,
+  lnElement: Element,
+  lnClonedElement: Element,
+  doElement: Element,
+  wizard: Element,
   ti: string,
+  daPaths: DaSelector[],
   inverted: boolean
 ): Create[] {
-  addPrefixAndNamespaceToDocument(daiElement.ownerDocument);
+  const actions: Create[] = [];
 
-  const privateElement = createPrivateElement(daiElement.ownerDocument);
-  privateElement.append(
-    ...createAddressElements(daiElement.ownerDocument, ti, inverted)
+  const [initializeActions, daiElements] = findOrCreateDaiElements(
+    lnElement,
+    lnClonedElement,
+    doElement,
+    wizard,
+    daPaths
   );
-  return [{ new: { parent: daiElement, element: privateElement } }];
+  if (initializeActions.length > 0) {
+    actions.push(...initializeActions);
+  }
+
+  if (daiElements.length > 0) {
+    addPrefixAndNamespaceToDocument(lnElement.ownerDocument);
+
+    daiElements.forEach(daiElement => {
+      const addressElements = createAddressElements(
+        daiElement.ownerDocument,
+        ti,
+        inverted
+      );
+      actions.push(...createActionsForPrivate(daiElement, addressElements));
+    });
+  }
+
+  startEditWizards(wizard, lnElement, lnClonedElement, doElement, actions);
+  return actions;
 }
 
 /**
  * Creates a new SCL Private element and add 104 Address element(s) below this.
  * Set the attribute value of 'ti' to the passed ti value.
  *
- * @param daiElement - The DAI Element to use to set namespace on the root element and create new elements.
- * @param ti         - The value to be set on the attribute 'ti'.
- * @param inverted   - Indicates if extra Address Elements should be created with 'inverted=true'.
+ * @param lnElement       - The LN(0) Element.
+ * @param lnClonedElement - The Cloned LN Element, used to create new structure and determine which Create actions are needed.
+ * @param doElement       - The DO Element.
+ * @param wizard          - Wizard Element to dispatch events on.
+ * @param ti              - The value to be set on the attribute 'ti'.
+ * @param daPaths         - The Array of DAI Elements to search or create and add the Private Element on.
+ * @param inverted        - Indicates if extra Address Elements should be created with 'inverted=true'.
  * @returns An array of Create Action that the wizard action will return.
  */
 function createAddressWithExpectValueAction(
-  daiElement: Element,
+  lnElement: Element,
+  lnClonedElement: Element,
+  doElement: Element,
+  wizard: Element,
   ti: string,
+  daPaths: DaSelector[],
   inverted: boolean
 ): Create[] {
-  addPrefixAndNamespaceToDocument(daiElement.ownerDocument);
+  const actions: Create[] = [];
 
-  const privateElement = createPrivateElement(daiElement.ownerDocument);
-  if (isEnumDataAttribute(daiElement)) {
-    getEnumOrds(daiElement).forEach(ord =>
-      privateElement.append(
-        ...createAddressElements(daiElement.ownerDocument, ti, inverted, ord)
-      )
-    );
-  } else {
-    privateElement.append(
-      ...createAddressElements(daiElement.ownerDocument, ti, inverted)
-    );
+  const [initializeActions, daiElements] = findOrCreateDaiElements(
+    lnElement,
+    lnClonedElement,
+    doElement,
+    wizard,
+    daPaths
+  );
+  if (initializeActions.length > 0) {
+    actions.push(...initializeActions);
   }
-  return [{ new: { parent: daiElement, element: privateElement } }];
+  if (daiElements.length > 0) {
+    addPrefixAndNamespaceToDocument(lnElement.ownerDocument);
+
+    const addressElements: Element[] = [];
+    daiElements.forEach(daiElement => {
+      if (isEnumDataAttribute(daiElement)) {
+        getEnumOrds(daiElement).forEach(ord =>
+          addressElements.push(
+            ...createAddressElements(
+              daiElement.ownerDocument,
+              ti,
+              inverted,
+              ord
+            )
+          )
+        );
+      } else {
+        addressElements.push(
+          ...createAddressElements(daiElement.ownerDocument, ti, inverted)
+        );
+      }
+
+      actions.push(...createActionsForPrivate(daiElement, addressElements));
+    });
+  }
+
+  startEditWizards(wizard, lnElement, lnClonedElement, doElement, actions);
+  return actions;
 }
 
 /**
  * Create a new SCL Private element and add 104 Address element(s) below this.
  * Set the attribute value of 'ti' to the passed ti value.
  *
- * @param daiElement - The DAI Element to use to set namespace on the root element and create new elements.
- * @param ti         - The value to be set on the attribute 'ti'.
+ * @param lnElement       - The LN(0) Element.
+ * @param lnClonedElement - The Cloned LN Element, used to create new structure and determine which Create actions are needed.
+ * @param doElement       - The DO Element.
+ * @param wizard          - Wizard Element to dispatch events on.
+ * @param ti              - The value to be set on the attribute 'ti'.
+ * @param daPaths         - The Array of DAI Elements to search or create and add the Private Element on.
  * @returns An array of Create Action that the wizard action will return.
  */
-function createCheckAddressAction(daiElement: Element, ti: string): Create[] {
-  addPrefixAndNamespaceToDocument(daiElement.ownerDocument);
+function createCheckAddressAction(
+  lnElement: Element,
+  lnClonedElement: Element,
+  doElement: Element,
+  wizard: Element,
+  ti: string,
+  daPaths: DaSelector[]
+): Create[] {
+  const actions: Create[] = [];
 
-  const privateElement = createPrivateElement(daiElement.ownerDocument);
+  const [initializeActions, daiElements] = findOrCreateDaiElements(
+    lnElement,
+    lnClonedElement,
+    doElement,
+    wizard,
+    daPaths
+  );
+  if (initializeActions.length > 0) {
+    actions.push(...initializeActions);
+  }
+  if (daiElements.length > 0) {
+    addPrefixAndNamespaceToDocument(lnElement.ownerDocument);
 
-  let addressElement = createPrivateAddress(daiElement.ownerDocument, ti);
-  addressElement.setAttribute('check', 'interlocking');
-  privateElement.append(addressElement);
+    daiElements.forEach(daiElement => {
+      const address1Element = createPrivateAddress(
+        daiElement.ownerDocument,
+        ti
+      );
+      address1Element.setAttribute('check', 'interlocking');
 
-  addressElement = createPrivateAddress(daiElement.ownerDocument, ti);
-  addressElement.setAttribute('check', 'synchrocheck');
-  privateElement.append(addressElement);
+      const address2Element = createPrivateAddress(
+        daiElement.ownerDocument,
+        ti
+      );
+      address2Element.setAttribute('check', 'synchrocheck');
 
-  return [{ new: { parent: daiElement, element: privateElement } }];
+      actions.push(
+        ...createActionsForPrivate(daiElement, [
+          address1Element,
+          address2Element,
+        ])
+      );
+    });
+  }
+
+  startEditWizards(wizard, lnElement, lnClonedElement, doElement, actions);
+  return actions;
+}
+
+/**
+ * Create or update the 104 Private Element, if the Private already exists, the new Address Elements are
+ * added, otherwise a new Private Element is created to which the Address Elements are added.
+ * The correct Create Action is returned.
+ *
+ * @param daiElement      - The DAI Element which will hold the new or existing Private Element
+ * @param addressElements - The Address Elements to be created with Create Actions.
+ */
+export function createActionsForPrivate(
+  daiElement: Element,
+  addressElements: Element[]
+): Create[] {
+  const actions: Create[] = [];
+  let privateElement = getPrivateElement(daiElement);
+  if (privateElement) {
+    addressElements.forEach(addressElement => {
+      actions.push({
+        new: { parent: privateElement!, element: addressElement },
+      });
+    });
+  } else {
+    privateElement = createPrivateElement(daiElement.ownerDocument);
+    privateElement.append(...addressElements);
+
+    actions.push({ new: { parent: daiElement, element: privateElement } });
+  }
+  return actions;
 }
 
 /**
@@ -425,6 +579,7 @@ export function createAddressElements(
     addressElement.setAttribute('expectedValue', expectedValue);
   }
   addressElements.push(addressElement);
+
   if (inverted) {
     const addressElement = createPrivateAddress(document, ti);
     addressElement.setAttribute('inverted', 'true');
@@ -434,6 +589,209 @@ export function createAddressElements(
     addressElements.push(addressElement);
   }
   return addressElements;
+}
+
+/**
+ * Use all Create Action to determine which Address Elements are created and start an Edit Address Wizard
+ * for every Address Element found.
+ *
+ * @param wizard          - The current Wizard used to dispatch the new Wizards on.
+ * @param lnElement       - The LN Element used to search for specific parent elements.
+ * @param lnClonedElement - The cloned LN Element to search for child elements.
+ * @param doElement       - The DO Element for which the Address Elements where created.
+ * @param actions         - The list of all the Create Actions.
+ */
+function startEditWizards(
+  wizard: Element,
+  lnElement: Element,
+  lnClonedElement: Element,
+  doElement: Element,
+  actions: Create[]
+): void {
+  actions.forEach(createAction => {
+    // Loop over all Actions and collect all Address Elements in an Array.
+    const newElement = <Element>createAction.new.element;
+    let addressElements: Element[];
+    if (newElement.tagName === 'Address') {
+      addressElements = [newElement];
+    } else {
+      addressElements = Array.from(newElement.querySelectorAll('Address'));
+    }
+    const parentElement = <Element>createAction.new.parent;
+    const daiElement = parentElement.closest('DAI');
+    if (daiElement) {
+      const iedElement = lnElement.closest('IED')!;
+      const doiElement = lnClonedElement.querySelector(
+        `:scope > DOI[name="${getNameAttribute(doElement)}"]`
+      )!;
+
+      addressElements.forEach(addressElement => {
+        wizard.dispatchEvent(
+          newWizardEvent(() =>
+            editAddressWizard(
+              iedElement,
+              doiElement,
+              daiElement,
+              addressElement
+            )
+          )
+        );
+      });
+    }
+  });
+}
+
+/**
+ * Use the DA Path configuration of a Common Data Class to search for all DO/BDA/DA Elements to create
+ * a structure for which DOI/SDI/DAI Elements should be created later. Null will be returned when an invalid
+ * Template Structure is described by the DA Path.
+ *
+ * @param doElement - The DO Element to start searching for DA/BDA Elements.
+ * @param daPath    - The (B)DA Elements to find in the template structure.
+ * @returns List of Elements starting with the DO Element followed by one or more (B)DA Elements describing the structure.
+ */
+function createTemplateStructure(
+  doElement: Element,
+  daPath: DaSelector
+): Element[] | null {
+  let templateStructure: Element[] | null = [doElement];
+
+  const doc = doElement.ownerDocument;
+  const doType = doElement.getAttribute('type') ?? '';
+  let typeElement = doc.querySelector(`DOType[id="${doType}"]`);
+
+  daPath.path.forEach(name => {
+    // There should be a DOType or DAType set for the current element in the list.
+    if (!typeElement) {
+      templateStructure = null;
+      return;
+    }
+    const daElement = typeElement.querySelector(
+      `:scope > DA[name="${name}"], :scope > BDA[name="${name}"]`
+    );
+    // If there is no DA/BDA Element found the structure is incorrect, so just stop.
+    if (daElement === null) {
+      templateStructure = null;
+      return;
+    }
+    templateStructure!.push(daElement);
+
+    const bType = daElement.getAttribute('bType') ?? '';
+    if (bType === 'Struct') {
+      const type = daElement.getAttribute('type') ?? '';
+      typeElement = doc.querySelector(`DAType[id="${type}"]`);
+    } else {
+      typeElement = null;
+    }
+  });
+  return templateStructure;
+}
+
+/**
+ * Search for existing DAI Elements below the DO Element matching the DA Paths passed or create the DAI Element
+ * if the DA Path doesn't exist yet.
+ *
+ * @param lnElement       - The LN(0) Element.
+ * @param lnClonedElement - The Cloned LN Element, used to create new structure and determine which Create actions are needed.
+ * @param doElement       - The DO Element.
+ * @param wizard          - The current Wizard to dispatch Log Events, if needed.
+ * @param daPaths         - The DA Structures for which the DAI Structure needs to be created below the DO Element.
+ */
+function findOrCreateDaiElements(
+  lnElement: Element,
+  lnClonedElement: Element,
+  doElement: Element,
+  wizard: Element,
+  daPaths: DaSelector[]
+): [Create[], Element[]] {
+  const daiElements: Element[] = [];
+  const actions: Create[] = [];
+
+  // Start searching and creating for each DA Path passed.
+  daPaths.forEach(daPath => {
+    const filter = createDaiFilter(doElement, daPath);
+    const foundDaiElements = lnClonedElement.querySelectorAll(filter);
+    if (foundDaiElements.length > 0) {
+      // Existing DAI Element found, so use that Element.
+      foundDaiElements.forEach(clonedDaiElement => {
+        const daiElement = findElementInOriginalLNStructure(
+          lnElement,
+          clonedDaiElement
+        );
+        if (daiElement) {
+          daiElements.push(daiElement);
+        } else {
+          daiElements.push(clonedDaiElement);
+        }
+      });
+    } else {
+      // DAI Element doesn't exist yet, so create the structure using the DA Path.
+      const templateStructure = createTemplateStructure(doElement, daPath);
+      if (templateStructure) {
+        const [parentClonedElement, uninitializedTemplateStructure] =
+          determineUninitializedStructure(lnClonedElement, templateStructure);
+        // Next create all missing elements (DOI/SDI/DOI)
+        const newElement = initializeElements(uninitializedTemplateStructure);
+
+        // Always add it to the cloned LN Structure.
+        parentClonedElement.append(newElement);
+
+        // Search if the parent already exists in the current LN Element Structure.
+        // If so we will add a new Create Action for it.
+        // If it is already there because one of the parents of the parent is used in a Create Action.
+        const parentElement = findElementInOriginalLNStructure(
+          lnElement,
+          parentClonedElement
+        );
+        if (parentElement) {
+          actions.push({ new: { parent: parentElement, element: newElement } });
+        }
+
+        // Add new DAI Elements to the list to return.
+        if (newElement.tagName === 'DAI') {
+          daiElements.push(newElement);
+        } else {
+          const daiElement = newElement.querySelector('DAI')!;
+          daiElements.push(daiElement);
+        }
+      } else {
+        // The DA Path can't be mapped on the Template structure of the current document.
+        const cdc = getCdcValueFromDOElement(doElement) ?? '';
+        const doType = getTypeAttribute(doElement) ?? '';
+        wizard.dispatchEvent(
+          newLogEvent({
+            kind: 'error',
+            title: get('protocol104.wizard.error.addAddressError', {
+              structure: daPath.path.join(' > '),
+              cdc,
+              doType,
+            }),
+          })
+        );
+      }
+    }
+  });
+  return [actions, daiElements];
+}
+
+/**
+ * Use the DO Element and a DA Selector to create a CSS Query to search for a DAI Element
+ * below the LN Element.
+ *
+ * @param doElement - The DO Element for which to search a DOI Element.
+ * @param daPath    - The DA Selector to create the query to find the SDI/DAI Elements.
+ */
+function createDaiFilter(doElement: Element, daPath: DaSelector): string {
+  const doName = getNameAttribute(doElement);
+  let filter = `:scope > DOI[name="${doName}"] > `;
+  daPath.path.forEach((value, index) => {
+    if (index < daPath.path.length - 1) {
+      filter = `${filter} SDI[name="${value}"] > `;
+    } else {
+      filter = `${filter} DAI[name="${value}"]`;
+    }
+  });
+  return filter;
 }
 
 /**

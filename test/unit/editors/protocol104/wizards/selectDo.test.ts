@@ -6,8 +6,8 @@ import '../../../../mock-wizard.js';
 
 import {
   getDataChildren,
-  selectDoiWizard,
-} from '../../../../../src/editors/protocol104/wizards/selectDoi.js';
+  selectDoWizard,
+} from '../../../../../src/editors/protocol104/wizards/selectDo.js';
 
 describe('data model nodes child getter', () => {
   let doc: XMLDocument;
@@ -37,6 +37,16 @@ describe('data model nodes child getter', () => {
       const parent = doc.querySelector('IED[name="B1"]')!;
       expect(getDataChildren(parent)).to.not.be.empty;
       expect(getDataChildren(parent).length).to.be.equal(1);
+      expect(getDataChildren(parent)[0].tagName).to.be.equal('AccessPoint');
+      expect(getDataChildren(parent)[0]).to.have.attribute('name', 'AP1');
+    });
+
+    it('returns direct children for a AccessPoint', () => {
+      const parent = doc.querySelector(
+        'IED[name="B1"] > AccessPoint[name="AP1"]'
+      )!;
+      expect(getDataChildren(parent)).to.not.be.empty;
+      expect(getDataChildren(parent).length).to.be.equal(1);
       expect(getDataChildren(parent)[0].tagName).to.be.equal('LDevice');
       expect(getDataChildren(parent)[0]).to.have.attribute('inst', 'LD0');
     });
@@ -44,7 +54,7 @@ describe('data model nodes child getter', () => {
     it('returns direct children for a LDevice', () => {
       const parent = doc.querySelector('IED[name="B1"] LDevice[inst="LD0"]')!;
       expect(getDataChildren(parent)).to.not.be.empty;
-      expect(getDataChildren(parent).length).to.be.equal(6);
+      expect(getDataChildren(parent).length).to.be.equal(7);
       expect(getDataChildren(parent)[0].tagName).to.be.equal('LN0');
       expect(getDataChildren(parent)[0]).to.have.attribute('lnClass', 'LLN0');
       expect(getDataChildren(parent)[1].tagName).to.be.equal('LN');
@@ -57,16 +67,16 @@ describe('data model nodes child getter', () => {
       )!;
       expect(getDataChildren(parent)).to.not.be.empty;
       expect(getDataChildren(parent).length).to.equal(1);
-      expect(getDataChildren(parent)[0].tagName).to.be.equal('DOI');
+      expect(getDataChildren(parent)[0].tagName).to.be.equal('DO');
       expect(getDataChildren(parent)[0]).to.have.attribute('name', 'MltLev');
     });
   });
 
-  describe('show DO(I) Picker', () => {
+  describe('show DO Picker', () => {
     beforeEach(async () => {
       element = await fixture(html`<mock-wizard></mock-wizard>`);
 
-      const wizard = selectDoiWizard(doc);
+      const wizard = selectDoWizard(doc);
       element.workflow.push(() => wizard);
       await element.requestUpdate();
     });

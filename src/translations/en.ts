@@ -367,7 +367,8 @@ export const en = {
       removeAddresses: 'Remove all addresses',
       removedAddresses:
         'Removed Addresses from DOI "{{ name }}" ({{ nrOfAddresses }})',
-      addedAddress: 'Added 104 Address(es) to DOI "{{ name }}',
+      addedAddress:
+        'Added 104 Address(es) to DO "{{ name }}" on LN(0) "{{ lnName }}"',
     },
     network: {
       connectedAp: {
@@ -435,7 +436,7 @@ export const en = {
       },
       error: {
         addAddressError:
-          'No DA(I) Element(s) found to add Private Address Elements on. (CDC: {{ cdc }}, Filter: {{ filter }})',
+          'Invalid Template Structure, unable to create DAI Element. (DO: "{{ doType }}", CDC: "{{ cdc }}", DAI: "{{ structure }}")',
       },
       casduHelper: 'CASDU Value',
       ioaHelper: 'IOA Value',

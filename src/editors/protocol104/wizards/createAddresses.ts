@@ -15,7 +15,6 @@ import {
   EditorAction,
   getNameAttribute,
   getValue,
-  newLogEvent,
   newWizardEvent,
   Wizard,
   WizardActor,
@@ -23,7 +22,7 @@ import {
 } from '../../../foundation.js';
 
 import {
-  getCdcValue,
+  getCdcValueFromDOElement,
   getCtlModel,
   getFullPath,
 } from '../foundation/foundation.js';
@@ -42,109 +41,104 @@ function getSwitchValue(wizard: Element, name: string): boolean {
 }
 
 export function createAddressesAction(
-  doiElement: Element,
-  monitorTis: string[],
-  controlTis: string[]
+  lnElement: Element,
+  doElement: Element,
+  hasControlTis: boolean
 ): WizardActor {
   return (inputs: WizardInputElement[], wizard: Element): EditorAction[] => {
-    // Close previous wizard to prevent it from showing.
+    // Close previous wizard (SelectDO) to prevent it from showing after saving.
     wizard.dispatchEvent(newWizardEvent());
 
-    const filters: string[] = [];
-    const cdc = getCdcValue(doiElement) ?? '';
+    const cdc = getCdcValueFromDOElement(doElement) ?? '';
     const cdcProcessing = cdcProcessings[<SupportedCdcType>cdc];
     const complexAction: ComplexAction = {
       actions: [],
       title: get('protocol104.values.addedAddress', {
-        name: getFullPath(doiElement, 'IED'),
+        name: getNameAttribute(doElement) ?? 'Unknown',
+        lnName: getFullPath(lnElement, 'IED'),
       }),
     };
 
-    // Create all Monitor Addresses
-    if (monitorTis.length > 0) {
-      const selectedMonitorTi =
-        getValue(inputs.find(i => i.label === 'monitorTi')!) ?? '';
-      const monitorInverted = getSwitchValue(wizard, 'monitorInverted');
-      const tiInformation = cdcProcessing.monitor[selectedMonitorTi];
-      if (tiInformation) {
-        filters.push(tiInformation.filter);
-        complexAction.actions.push(
-          ...createActions(
-            doiElement,
-            wizard,
-            selectedMonitorTi,
-            monitorInverted,
-            tiInformation
-          )
-        );
-      }
+    // Create a Deep Clone of the LN Element, to keep track on which structure is initialized.
+    const lnClonedElement = <Element>lnElement.cloneNode(true);
 
-      const monitorCheck = getSwitchValue(wizard, 'monitorCheck');
-      if (monitorCheck) {
-        complexAction.actions.push(
-          ...createCheckActions(
-            doiElement,
-            wizard,
-            selectedMonitorTi,
-            tiInformation
-          )
-        );
-      }
+    // Create all Monitor Addresses
+    const selectedMonitorTi =
+      getValue(inputs.find(i => i.label === 'monitorTi')!) ?? '';
+    const monitorInverted = getSwitchValue(wizard, 'monitorInverted');
+    const tiInformation = cdcProcessing.monitor[selectedMonitorTi];
+    if (tiInformation) {
+      complexAction.actions.push(
+        ...createActions(
+          lnElement,
+          lnClonedElement,
+          doElement,
+          wizard,
+          selectedMonitorTi,
+          monitorInverted,
+          tiInformation
+        )
+      );
+    }
+
+    const monitorCheck = getSwitchValue(wizard, 'monitorCheck');
+    if (monitorCheck) {
+      complexAction.actions.push(
+        ...createCheckActions(
+          lnElement,
+          lnClonedElement,
+          doElement,
+          wizard,
+          selectedMonitorTi,
+          tiInformation
+        )
+      );
     }
 
     // Create all Control Addresses
-    const ctlModel = getCtlModel(doiElement);
-    if (
-      controlTis.length > 0 &&
-      ctlModel !== null &&
-      ctlModel !== 'status-only'
-    ) {
-      const selectedControlTi =
-        getValue(inputs.find(i => i.label === 'controlTi')!) ?? '';
-      const controlInverted = getSwitchValue(wizard, 'controlInverted');
-      const tiInformation = cdcProcessing.control[selectedControlTi];
-      if (tiInformation) {
-        filters.push(tiInformation.filter);
-        complexAction.actions.push(
-          ...createActions(
-            doiElement,
-            wizard,
-            selectedControlTi,
-            controlInverted,
-            tiInformation
-          )
-        );
-      }
+    if (hasControlTis) {
+      const ctlModel = getCtlModel(lnElement, doElement);
+      if (ctlModel !== null && ctlModel !== 'status-only') {
+        const selectedControlTi =
+          getValue(inputs.find(i => i.label === 'controlTi')!) ?? '';
+        const controlInverted = getSwitchValue(wizard, 'controlInverted');
 
-      const controlCheck = getSwitchValue(wizard, 'controlCheck');
-      if (controlCheck) {
-        complexAction.actions.push(
-          ...createCheckActions(
-            doiElement,
-            wizard,
-            selectedControlTi,
-            tiInformation
-          )
-        );
+        const tiInformation = cdcProcessing.control[selectedControlTi];
+        if (tiInformation) {
+          complexAction.actions.push(
+            ...createActions(
+              lnElement,
+              lnClonedElement,
+              doElement,
+              wizard,
+              selectedControlTi,
+              controlInverted,
+              tiInformation
+            )
+          );
+        }
+
+        const controlCheck = getSwitchValue(wizard, 'controlCheck');
+        if (controlCheck) {
+          complexAction.actions.push(
+            ...createCheckActions(
+              lnElement,
+              lnClonedElement,
+              doElement,
+              wizard,
+              selectedControlTi,
+              tiInformation
+            )
+          );
+        }
       }
     }
 
     if (complexAction.actions.length > 0) {
       return [complexAction];
     }
-    // There are no Address elements created for any DAI. Log error and close window.
+    // There are no Address elements created for any DAI, close window.
     wizard.dispatchEvent(newWizardEvent());
-    wizard.dispatchEvent(
-      newLogEvent({
-        kind: 'error',
-        title: get('protocol104.wizard.error.addAddressError', {
-          filter: filters
-            .map(filter => filter.replace(':scope >', ''))
-            .join(', '),
-          cdc,
-        }),
-      })
-    );
     return [];
   };
 }
@@ -154,7 +148,7 @@ export function disableCheckSwitch(
 ): boolean {
   let disableSwitch = true;
   Object.values(tiInfo).forEach(tiInformation => {
-    if (tiInformation.checkFilter && tiInformation.checkCreate) {
+    if (tiInformation.checkDaPaths && tiInformation.checkCreate) {
       disableSwitch = false;
     }
   });
@@ -173,28 +167,32 @@ export function disableInvertedSwitch(
   return disableSwitch;
 }
 
-export function createAddressesWizard(doiElement: Element): Wizard {
-  const cdc = getCdcValue(doiElement) ?? '';
+export function createAddressesWizard(
+  lnElement: Element,
+  doElement: Element
+): Wizard {
+  const cdc = getCdcValueFromDOElement(doElement) ?? '';
   const cdcProcessing = cdcProcessings[<SupportedCdcType>cdc];
 
   const monitorTis = Object.keys(cdcProcessing.monitor);
   const controlTis = Object.keys(cdcProcessing.control);
 
   function renderCreateAddressesWizard(): TemplateResult[] {
-    const iedElement = doiElement.closest('IED');
-    const fullPath = getFullPath(doiElement, 'IED');
+    const doName = getNameAttribute(doElement) ?? '';
+    const iedElement = lnElement.closest('IED');
+    const fullPath = getFullPath(lnElement, 'IED');
 
     // Add the basic fields to the list.
     const fields = [
       html`<wizard-textfield
         label="IED"
-        .maybeValue=${getNameAttribute(iedElement!)}
+        .maybeValue="${getNameAttribute(iedElement!)}"
         disabled
         readonly
       >
       </wizard-textfield>`,
       html`<mwc-textarea
-        label="DOI"
+        label="LN(0)"
         value="${fullPath}"
         rows="2"
         cols="40"
@@ -202,20 +200,21 @@ export function createAddressesWizard(doiElement: Element): Wizard {
         disabled
       >
       </mwc-textarea>`,
-      html`<wizard-textfield label="cdc" .maybeValue=${cdc} disabled readonly>
-      </wizard-textfield>`,
-    ];
-
-    const ctlModel = getCtlModel(doiElement);
-    if (ctlModel !== null) {
-      fields.push(html`<wizard-textfield
-        label="ctlModel"
-        .maybeValue=${ctlModel}
+      html`<wizard-textfield
+        label="DO"
+        .maybeValue="${doName}"
         disabled
         readonly
       >
-      </wizard-textfield>`);
-    }
+      </wizard-textfield>`,
+      html`<wizard-textfield
+        label="Common Data Class"
+        .maybeValue=${cdc}
+        disabled
+        readonly
+      >
+      </wizard-textfield>`,
+    ];
 
     if (monitorTis.length > 0) {
       fields.push(html`<wizard-divider></wizard-divider>`);
@@ -269,60 +268,70 @@ export function createAddressesWizard(doiElement: Element): Wizard {
       );
     }
 
-    if (
-      controlTis.length > 0 &&
-      ctlModel !== null &&
-      ctlModel !== 'status-only'
-    ) {
-      fields.push(html`<wizard-divider></wizard-divider>`);
-      if (controlTis.length > 1) {
+    if (controlTis.length > 0) {
+      fields.push(html` <wizard-divider></wizard-divider>`);
+
+      const ctlModel = getCtlModel(lnElement, doElement);
+      if (ctlModel !== null) {
+        fields.push(html` <wizard-textfield
+          label="ctlModel"
+          .maybeValue=${ctlModel}
+          disabled
+          readonly
+        >
+        </wizard-textfield>`);
+      }
+
+      if (ctlModel !== null && ctlModel !== 'status-only') {
+        if (controlTis.length > 1) {
+          fields.push(
+            html` <wizard-select
+              label="controlTi"
+              helper="${translate('protocol104.wizard.controlTiHelper')}"
+              fixedMenuPosition
+              required
+            >
+              ${controlTis.map(
+                controlTi =>
+                  html` <mwc-list-item value="${controlTi}">
+                    <span>${controlTi}</span>
+                  </mwc-list-item>`
+              )}
+            </wizard-select>`
+          );
+        } else {
+          fields.push(
+            html` <wizard-textfield
+              label="controlTi"
+              .maybeValue=${controlTis[0] ? controlTis[0] : ''}
+              disabled
+            >
+            </wizard-textfield>`
+          );
+        }
         fields.push(
-          html`<wizard-select
-            label="controlTi"
-            helper="${translate('protocol104.wizard.controlTiHelper')}"
-            fixedMenuPosition
-            required
+          html` <mwc-formfield
+            label="${translate('protocol104.wizard.controlInverted')}"
           >
-            ${controlTis.map(
-              controlTi =>
-                html` <mwc-list-item value="${controlTi}">
-                  <span>${controlTi}</span>
-                </mwc-list-item>`
-            )}
-          </wizard-select>`
+            <mwc-switch
+              id="controlInverted"
+              .disabled="${disableInvertedSwitch(cdcProcessing.control)}"
+            >
+            </mwc-switch>
+          </mwc-formfield>`
         );
-      } else {
         fields.push(
-          html`<wizard-textfield
-            label="controlTi"
-            .maybeValue=${controlTis[0] ? controlTis[0] : ''}
-            disabled
+          html` <mwc-formfield
+            label="${translate('protocol104.wizard.controlCheck')}"
           >
-          </wizard-textfield>`
+            <mwc-switch
+              id="controlCheck"
+              .disabled="${disableCheckSwitch(cdcProcessing.control)}"
+            >
+            </mwc-switch>
+          </mwc-formfield>`
         );
       }
-      fields.push(
-        html`<mwc-formfield
-          label="${translate('protocol104.wizard.controlInverted')}"
-        >
-          <mwc-switch
-            id="controlInverted"
-            .disabled="${disableInvertedSwitch(cdcProcessing.control)}"
-          >
-          </mwc-switch>
-        </mwc-formfield>`
-      );
-      fields.push(
-        html`<mwc-formfield
-          label="${translate('protocol104.wizard.controlCheck')}"
-        >
-          <mwc-switch
-            id="controlCheck"
-            .disabled="${disableCheckSwitch(cdcProcessing.control)}"
-          >
-          </mwc-switch>
-        </mwc-formfield>`
-      );
     }
     return fields;
   }
@@ -333,7 +342,11 @@ export function createAddressesWizard(doiElement: Element): Wizard {
       primary: {
         icon: 'add',
         label: get('add'),
-        action: createAddressesAction(doiElement, monitorTis, controlTis),
+        action: createAddressesAction(
+          lnElement,
+          doElement,
+          controlTis.length > 0
+        ),
       },
       content: renderCreateAddressesWizard(),
     },

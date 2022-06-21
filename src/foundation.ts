@@ -537,6 +537,16 @@ export function getInstanceAttribute(element: Element): string | undefined {
   return inst ? inst : undefined;
 }
 
+/**
+ * Extract the 'type' attribute from the given XML element.
+ * @param element - The element to extract instance from.
+ * @returns the value, or undefined if there is no instance.
+ */
+export function getTypeAttribute(element: Element): string | undefined {
+  const inst = element.getAttribute('type');
+  return inst ? inst : undefined;
+}
+
 export function pathParts(identity: string): [string, string] {
   const path = identity.split('>');
   const end = path.pop() ?? '';

@@ -19,9 +19,10 @@ import { getDescriptionAttribute, getNameAttribute } from '../../foundation.js';
 
 import '../../action-pane.js';
 
-import { getFullPath, PRIVATE_TYPE_104 } from './foundation/foundation.js';
+import { getFullPath } from './foundation/foundation.js';
 
 import './doi-container.js';
+import { PROTOCOL_104_PRIVATE } from './foundation/private.js';
 
 /**
  * Container showing all the DOI Elements, related to the 104 Protocol, of the passed IED Element in a container.
@@ -40,7 +41,7 @@ export class Ied104Container extends LitElement {
       .filter(
         doiElement =>
           doiElement.querySelector(
-            `DAI > Private[type="${PRIVATE_TYPE_104}"]`
+            `DAI > Private[type="${PROTOCOL_104_PRIVATE}"] > Address`
           ) !== null
       )
       .sort((doi1, doi2) =>

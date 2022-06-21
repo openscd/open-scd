@@ -109,7 +109,7 @@ describe('Wizards for 104 DOI Element', () => {
 
       remove104Private(doiElement)(wizard);
 
-      expectComplexAction(2);
+      expectComplexAction(6);
     });
   });
 });
