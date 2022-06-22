@@ -10,7 +10,7 @@ export function newSmvSelectEvent(
   dataset: Element | undefined,
   eventInitDict?: CustomEventInit<SmvSelectDetail>
 ): SmvSelectEvent {
-  return new CustomEvent<SmvSelectDetail>('sampled-values-select', {
+  return new CustomEvent<SmvSelectDetail>('smv-select', {
     bubbles: true,
     composed: true,
     ...eventInitDict,
@@ -36,7 +36,7 @@ export function newIEDSampledValuesSubscriptionEvent(
 
 declare global {
   interface ElementEventMap {
-    ['sampled-values-select']: SmvSelectEvent;
+    ['smv-select']: SmvSelectEvent;
     ['ied-smv-subscription']: IEDSampledValuesSubscriptionEvent;
   }
 }

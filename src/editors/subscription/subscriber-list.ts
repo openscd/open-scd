@@ -79,7 +79,7 @@ export class SubscriberList extends LitElement {
 
     const parentDiv = this.closest('.container');
     if (parentDiv) {
-      parentDiv.addEventListener('goose-dataset', this.onGOOSEDataSetEvent);
+      parentDiv.addEventListener('goose-select', this.onGOOSEDataSetEvent);
       parentDiv.addEventListener('subscription', this.onSubscriptionEvent);
       parentDiv.addEventListener('ied-select', this.onIEDSelectEvent);
       parentDiv.addEventListener('view', this.onViewChange);

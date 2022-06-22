@@ -71,7 +71,7 @@ export class SubscriberIEDListSmv extends LitElement {
     const parentDiv = this.closest('div[class="container"]');
     if (parentDiv) {
       parentDiv.addEventListener(
-        'sampled-values-select',
+        'smv-select',
         this.onSampledValuesDataSetEvent
       );
       parentDiv.addEventListener(

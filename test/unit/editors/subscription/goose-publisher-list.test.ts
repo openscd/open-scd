@@ -9,6 +9,7 @@ describe('goose-publisher-list', () => {
   let validSCL: XMLDocument;
   
   let wizardEvent: SinonSpy;
+  let selectEvent: SinonSpy;
 
   beforeEach(async () => {
     validSCL = await fetch('/test/testfiles/valid2007B4.scd')
@@ -17,6 +18,9 @@ describe('goose-publisher-list', () => {
 
     wizardEvent = spy();
     window.addEventListener('wizard', wizardEvent);
+
+    selectEvent = spy();
+    window.addEventListener('goose-select', selectEvent);
 
     element = await fixture(html`<goose-publisher-list
       .doc=${validSCL}
@@ -31,6 +35,27 @@ describe('goose-publisher-list', () => {
     element = await fixture(html`<goose-publisher-list></goose-publisher-list>`);
 
     await expect(element).shadowDom.to.equalSnapshot();
+  });
+
+  it('triggers a newGOOSESelectEvent when a list item is clicked', async () => {
+    selectEvent.resetHistory();
+
+    const listItem = Array.from(
+      element.shadowRoot?.querySelectorAll('mwc-list-item[graphic="large"]') ?? []
+    ).filter(a =>
+      a.innerHTML.includes('GCB')
+    )[0];
+
+    (<HTMLElement>(listItem)).click();
+    await element.updateComplete;
+
+    expect(selectEvent).to.have.be.calledOnce;
+    expect(selectEvent.args[0][0].detail.gseControl).to.eql(
+      validSCL.querySelector('IED[name="IED1"] > AccessPoint > Server > LDevice > LN0 > GSEControl[name="GCB"]')
+    );
+    expect(selectEvent.args[0][0].detail.dataset).to.eql(
+      validSCL.querySelector('IED[name="IED1"] > AccessPoint > Server > LDevice > LN0 > DataSet[name="GooseDataSet1"]')
+    );
   });
 
   it('triggers edit wizard when the Edit button of a GseControl is pressed', async () => {

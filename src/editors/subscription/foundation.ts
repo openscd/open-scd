@@ -10,7 +10,7 @@ export function newGOOSESelectEvent(
   dataset: Element | undefined,
   eventInitDict?: CustomEventInit<GOOSESelectDetail>
 ): GOOSESelectEvent {
-  return new CustomEvent<GOOSESelectDetail>('goose-dataset', {
+  return new CustomEvent<GOOSESelectDetail>('goose-select', {
     bubbles: true,
     composed: true,
     ...eventInitDict,
@@ -36,7 +36,7 @@ export function newSubscriptionEvent(
 
 declare global {
   interface ElementEventMap {
-    ['goose-dataset']: GOOSESelectEvent;
+    ['goose-select']: GOOSESelectEvent;
     ['subscription']: SubscriptionEvent;
   }
 }
