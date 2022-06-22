@@ -13,9 +13,9 @@ import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 
 import { getNameAttribute, newWizardEvent } from '../../foundation.js';
-import { newSmvSelectEvent, styles } from './foundation.js';
+import { newSmvSelectEvent } from './foundation.js';
 import { smvIcon } from '../../icons/icons.js';
-import { getOrderedIeds } from '../foundation.js';
+import { getOrderedIeds, styles } from '../foundation.js';
 import { classMap } from 'lit-html/directives/class-map.js';
 import { wizards } from '../../wizards/wizard-library.js';
 
@@ -49,7 +49,7 @@ export class SampledValuesList extends LitElement {
         selectedDataSet!
       )
     );
-    
+
     this.requestUpdate();
   }
 
@@ -92,7 +92,7 @@ export class SampledValuesList extends LitElement {
         ${getOrderedIeds(this.doc).map(ied =>
             html`
               <mwc-list-item noninteractive graphic="icon">
-                <span class="iedListTitle">${getNameAttribute(ied)}</span>
+                <span>${getNameAttribute(ied)}</span>
                 <mwc-icon slot="graphic">developer_board</mwc-icon>
               </mwc-list-item>
               <li divider role="separator"></li>

@@ -44,7 +44,7 @@ snapshots["Sampled Values Plugin in SMV Publisher view initially the Sampled Val
       noninteractive=""
       tabindex="-1"
     >
-      <span class="iedListTitle">
+      <span>
         IED1
       </span>
       <mwc-icon slot="graphic">
@@ -62,7 +62,7 @@ snapshots["Sampled Values Plugin in SMV Publisher view initially the Sampled Val
       noninteractive=""
       tabindex="-1"
     >
-      <span class="iedListTitle">
+      <span>
         IED2
       </span>
       <mwc-icon slot="graphic">
@@ -80,7 +80,7 @@ snapshots["Sampled Values Plugin in SMV Publisher view initially the Sampled Val
       noninteractive=""
       tabindex="-1"
     >
-      <span class="iedListTitle">
+      <span>
         IED3
       </span>
       <mwc-icon slot="graphic">
@@ -117,7 +117,7 @@ snapshots["Sampled Values Plugin in SMV Publisher view initially the Sampled Val
       noninteractive=""
       tabindex="-1"
     >
-      <span class="iedListTitle">
+      <span>
         IED4
       </span>
       <mwc-icon slot="graphic">

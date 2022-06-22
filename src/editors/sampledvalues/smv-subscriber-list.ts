@@ -13,8 +13,7 @@ import '@material/mwc-list/mwc-list-item';
 
 import '../../filtered-list.js';
 import { getNameAttribute } from '../../foundation.js';
-import { styles } from './foundation.js';
-import { getOrderedIeds, newIEDSelectEvent } from '../foundation.js';
+import { getOrderedIeds, newIEDSelectEvent, styles } from '../foundation.js';
 
 let selectedIed: Element | undefined;
 

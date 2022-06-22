@@ -13,11 +13,11 @@ import '@material/mwc-list/mwc-list-item';
 
 import '../../filtered-list.js';
 import { getNameAttribute, newWizardEvent } from '../../foundation.js';
-import { newGOOSESelectEvent, styles } from './foundation.js';
+import { newGOOSESelectEvent } from './foundation.js';
 import { gooseIcon } from '../../icons/icons.js';
 import { wizards } from '../../wizards/wizard-library.js';
 import { classMap } from 'lit-html/directives/class-map';
-import { getOrderedIeds } from '../foundation.js';
+import { getOrderedIeds, styles } from '../foundation.js';
 
 let selectedGseControl: Element | undefined;
 let selectedDataSet: Element | undefined | null;

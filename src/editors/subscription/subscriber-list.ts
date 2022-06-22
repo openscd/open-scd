@@ -24,13 +24,12 @@ import {
   newSubscriptionEvent,
   GOOSESelectEvent,
   SubscriptionEvent,
-  styles,
 } from './foundation.js';
 import {
   emptyInputsDeleteActions,
   getFcdaReferences
 } from "../../foundation/ied.js";
-import { IEDSelectEvent, SubscribeStatus, View, ViewEvent } from '../foundation.js';
+import { IEDSelectEvent, styles, SubscribeStatus, View, ViewEvent } from '../foundation.js';
 
 /**
  * An element within this list has 2 properties:
