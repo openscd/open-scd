@@ -2,10 +2,10 @@ import { html, fixture, expect } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
 import '../../../../../src/editors/subscription/sampledvalues/ied-list.js'
-import { IedListSmv } from '../../../../../src/editors/subscription/sampledvalues/ied-list.js';
+import { IedList } from '../../../../../src/editors/subscription/sampledvalues/ied-list.js';
 
 describe('ied-list-smv', () => {
-  let element: IedListSmv;
+  let element: IedList;
   let validSCL: XMLDocument;
   
   let selectEvent: SinonSpy;

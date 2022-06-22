@@ -2,10 +2,10 @@ import { html, fixture, expect } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
 import '../../../../../src/editors/subscription/goose/ied-list.js'
-import { IedListGoose } from '../../../../../src/editors/subscription/goose/ied-list.js';
+import { IedList } from '../../../../../src/editors/subscription/goose/ied-list.js';
 
 describe('ied-list', () => {
-  let element: IedListGoose;
+  let element: IedList;
   let validSCL: XMLDocument;
   
   let selectEvent: SinonSpy;

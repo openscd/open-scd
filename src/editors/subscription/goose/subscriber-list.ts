@@ -45,7 +45,7 @@ interface ListElement {
 let view: View = View.PUBLISHER;
 
 /** An sub element for subscribing and unsubscribing IEDs to GOOSE messages. */
-@customElement('subscriber-list')
+@customElement('subscriber-list-goose')
 export class SubscriberList extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;

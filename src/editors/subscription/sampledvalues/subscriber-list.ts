@@ -41,8 +41,8 @@ interface IED {
 }
 
 /** An sub element for subscribing and unsubscribing IEDs to Sampled Values messages. */
-@customElement('subscriber-ied-list-smv')
-export class SubscriberIEDListSmv extends LitElement {
+@customElement('subscriber-list-smv')
+export class SubscriberList extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
 

@@ -23,8 +23,8 @@ snapshots["Subscription Plugin in GOOSE Publisher view initially the plugin look
   <div class="container">
     <goose-list class="row">
     </goose-list>
-    <subscriber-list class="row">
-    </subscriber-list>
+    <subscriber-list-goose class="row">
+    </subscriber-list-goose>
   </div>
 </div>
 <wizard-dialog>
@@ -646,8 +646,8 @@ snapshots["Subscription Plugin in GOOSE Subscriber view initially the plugin loo
   <div class="container">
     <ied-list-goose class="row">
     </ied-list-goose>
-    <subscriber-list class="row">
-    </subscriber-list>
+    <subscriber-list-goose class="row">
+    </subscriber-list-goose>
   </div>
 </div>
 <wizard-dialog>

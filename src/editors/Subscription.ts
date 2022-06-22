@@ -67,10 +67,10 @@ export default class SubscriptionABBPlugin extends LitElement {
           ? html`<goose-list class="row" .doc=${this.doc}></goose-list>`
           : html`<ied-list-goose class="row" .doc=${this.doc}></ied-list-goose>`
         }
-        <subscriber-list
+        <subscriber-list-goose
           class="row"
           .doc=${this.doc}
-        ></subscriber-list>
+        ></subscriber-list-goose>
       </div>
     </div>`;
   }

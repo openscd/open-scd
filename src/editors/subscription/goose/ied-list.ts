@@ -23,7 +23,7 @@ function onOpenDocResetSelectedGooseMsg() {
 addEventListener('open-doc', onOpenDocResetSelectedGooseMsg);
 
 @customElement('ied-list-goose')
-export class IedListGoose extends LitElement {
+export class IedList extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
 

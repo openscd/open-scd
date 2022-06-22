@@ -2,7 +2,7 @@ import { LitElement, html, TemplateResult, property, css, query } from 'lit-elem
 
 import '@material/mwc-fab';
 
-import './subscription/sampledvalues/subscriber-ied-list-smv.js';
+import './subscription/sampledvalues/subscriber-list.js';
 import './subscription/sampledvalues/smv-list.js';
 import './subscription/sampledvalues/ied-list.js';
 
@@ -65,10 +65,10 @@ export default class SampledValuesPlugin extends LitElement {
           ? html`<smv-list class="row" .doc=${this.doc}></smv-list>`
           : html`<ied-list-smv class="row" .doc=${this.doc}></ied-list-smv>`
         }
-        <subscriber-ied-list-smv
+        <subscriber-list-smv
           class="row"
           .doc=${this.doc}
-        ></subscriber-ied-list-smv>
+        ></subscriber-list-smv>
       </div>
     </div>`;
   }

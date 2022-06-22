@@ -38,7 +38,7 @@ describe('Subscription Plugin', () => {
 
       it('the IED list looks like the latest snapshot', async () => {
         await expect(
-          element.shadowRoot?.querySelector('subscriber-list')
+          getSubscriberList()
         ).shadowDom.to.equalSnapshot();
       });
     });
@@ -59,7 +59,7 @@ describe('Subscription Plugin', () => {
 
       it('the list on the right will initially show the subscribed / partially subscribed / not subscribed IEDs', async () => {
         await expect(
-          element.shadowRoot?.querySelector('subscriber-list')
+          getSubscriberList()
         ).shadowDom.to.equalSnapshot();
       });
 
@@ -74,8 +74,7 @@ describe('Subscription Plugin', () => {
 
         it('it looks like the latest snapshot', async () => {
           const ied = Array.from(
-            element.shadowRoot
-              ?.querySelector('subscriber-list')
+            getSubscriberList()
               ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
           ).filter(item => !item.noninteractive)[2];
 
@@ -87,14 +86,13 @@ describe('Subscription Plugin', () => {
           await element.updateComplete;
 
           await expect(
-            element.shadowRoot?.querySelector('subscriber-list')
+            getSubscriberList()
           ).shadowDom.to.equalSnapshot();
         });
 
         it('adds the required ExtRefs to the subscriber IED', async () => {
           const ied = Array.from(
-            element.shadowRoot
-              ?.querySelector('subscriber-list')
+            getSubscriberList()
               ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
           ).filter(item => !item.noninteractive)[2];
 
@@ -120,8 +118,7 @@ describe('Subscription Plugin', () => {
 
         it('it looks like the latest snapshot', async () => {
           const ied = Array.from(
-            element.shadowRoot
-              ?.querySelector('subscriber-list')
+            getSubscriberList()
               ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
           ).filter(item => !item.noninteractive)[0];
 
@@ -133,14 +130,13 @@ describe('Subscription Plugin', () => {
           await element.updateComplete;
 
           await expect(
-            element.shadowRoot?.querySelector('subscriber-list')
+            getSubscriberList()
           ).shadowDom.to.equalSnapshot();
         });
 
         it('removes the required ExtRefs from the subscriber IED', async () => {
           const ied = Array.from(
-            element.shadowRoot
-              ?.querySelector('subscriber-list')
+            getSubscriberList()
               ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
           ).filter(item => !item.noninteractive)[0];
 
@@ -166,8 +162,7 @@ describe('Subscription Plugin', () => {
 
         it('it looks like the latest snapshot', async () => {
           const ied = Array.from(
-            element.shadowRoot
-              ?.querySelector('subscriber-list')
+            getSubscriberList()
               ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
           ).filter(item => !item.noninteractive)[1];
 
@@ -179,14 +174,13 @@ describe('Subscription Plugin', () => {
           await element.updateComplete;
 
           await expect(
-            element.shadowRoot?.querySelector('subscriber-list')
+            getSubscriberList()
           ).shadowDom.to.equalSnapshot();
         });
 
         it('adds the required ExtRefs to the subscriber IED', async () => {
           const ied = Array.from(
-            element.shadowRoot
-              ?.querySelector('subscriber-list')
+            getSubscriberList()
               ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
           ).filter(item => !item.noninteractive)[1];
 
@@ -233,7 +227,7 @@ describe('Subscription Plugin', () => {
 
       it('the list on the right will initially show the subscribed / partially subscribed / not subscribed IEDs', async () => {
         await expect(
-          element.shadowRoot?.querySelector('subscriber-list')
+          getSubscriberList()
         ).shadowDom.to.equalSnapshot();
       });
 
@@ -248,8 +242,7 @@ describe('Subscription Plugin', () => {
 
         it('it looks like the latest snapshot', async () => {
           const goose = Array.from(
-            element.shadowRoot
-              ?.querySelector('subscriber-list')
+            getSubscriberList()
               ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
           ).filter(item => !item.noninteractive)[1];
 
@@ -261,14 +254,13 @@ describe('Subscription Plugin', () => {
           await element.updateComplete;
 
           await expect(
-            element.shadowRoot?.querySelector('subscriber-list')
+            getSubscriberList()
           ).shadowDom.to.equalSnapshot();
         });
 
         it('adds the required ExtRefs to the subscriber IED', async () => {
           const goose = Array.from(
-            element.shadowRoot
-              ?.querySelector('subscriber-list')
+            getSubscriberList()
               ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
           ).filter(item => !item.noninteractive)[1];
 
@@ -287,8 +279,7 @@ describe('Subscription Plugin', () => {
         beforeEach(async () => {
           // Subscribing a GOOSE message
           const goose = Array.from(
-            element.shadowRoot
-              ?.querySelector('subscriber-list')
+            getSubscriberList()
               ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
           ).filter(item => !item.noninteractive)[1];
 
@@ -309,8 +300,7 @@ describe('Subscription Plugin', () => {
           await element.updateComplete;
 
           const goose = Array.from(
-            element.shadowRoot
-              ?.querySelector('subscriber-list')
+            getSubscriberList()
               ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
           ).filter(item => !item.noninteractive)[0];
 
@@ -322,7 +312,7 @@ describe('Subscription Plugin', () => {
           await element.updateComplete;
 
           await expect(
-            element.shadowRoot?.querySelector('subscriber-list')
+            getSubscriberList()
           ).shadowDom.to.equalSnapshot();
         });
 
@@ -332,8 +322,7 @@ describe('Subscription Plugin', () => {
           await element.updateComplete;
 
           const goose = Array.from(
-            element.shadowRoot
-              ?.querySelector('subscriber-list')
+            getSubscriberList()
               ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
           ).filter(item => !item.noninteractive)[0];
 
@@ -359,8 +348,7 @@ describe('Subscription Plugin', () => {
 
         it('it looks like the latest snapshot', async () => {
           const goose = Array.from(
-            element.shadowRoot
-              ?.querySelector('subscriber-list')
+            getSubscriberList()
               ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
           ).filter(item => !item.noninteractive)[0];
 
@@ -372,14 +360,13 @@ describe('Subscription Plugin', () => {
           await element.updateComplete;
 
           await expect(
-            element.shadowRoot?.querySelector('subscriber-list')
+            getSubscriberList()
           ).shadowDom.to.equalSnapshot();
         });
 
         it('adds the required ExtRefs to the subscriber IED', async () => {
           const goose = Array.from(
-            element.shadowRoot
-              ?.querySelector('subscriber-list')
+            getSubscriberList()
               ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
           ).filter(item => !item.noninteractive)[0];
 
@@ -395,4 +382,8 @@ describe('Subscription Plugin', () => {
       });
     });
   });
+
+  function getSubscriberList() {
+    return element.shadowRoot?.querySelector('subscriber-list-goose');
+  }
 });
