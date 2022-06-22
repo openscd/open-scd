@@ -5,8 +5,9 @@ import '@material/mwc-radio';
 import '@material/mwc-formfield';
 
 import './subscription/goose/subscriber-list.js';
-import './subscription/goose/goose-publisher-list.js';
-import './subscription/goose/goose-subscriber-list.js';
+import './subscription/goose/goose-list.js';
+import './subscription/goose/ied-list.js';
+
 import { translate } from 'lit-translate';
 import { RadioListItem } from '@material/mwc-list/mwc-radio-list-item';
 import { newViewEvent, View, ViewEvent } from './subscription/foundation.js';
@@ -63,8 +64,8 @@ export default class SubscriptionABBPlugin extends LitElement {
       </mwc-formfield>
       <div class="container">
         ${view == View.PUBLISHER
-          ? html`<goose-publisher-list class="row" .doc=${this.doc}></goose-publisher-list>`
-          : html`<goose-subscriber-list class="row" .doc=${this.doc}></goose-subscriber-list>`
+          ? html`<goose-list class="row" .doc=${this.doc}></goose-list>`
+          : html`<ied-list-goose class="row" .doc=${this.doc}></ied-list-goose>`
         }
         <subscriber-list
           class="row"

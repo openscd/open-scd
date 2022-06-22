@@ -21,8 +21,8 @@ snapshots["Subscription Plugin in GOOSE Publisher view initially the plugin look
     </mwc-radio>
   </mwc-formfield>
   <div class="container">
-    <goose-publisher-list class="row">
-    </goose-publisher-list>
+    <goose-list class="row">
+    </goose-list>
     <subscriber-list class="row">
     </subscriber-list>
   </div>
@@ -644,8 +644,8 @@ snapshots["Subscription Plugin in GOOSE Subscriber view initially the plugin loo
     </mwc-radio>
   </mwc-formfield>
   <div class="container">
-    <goose-subscriber-list class="row">
-    </goose-subscriber-list>
+    <ied-list-goose class="row">
+    </ied-list-goose>
     <subscriber-list class="row">
     </subscriber-list>
   </div>

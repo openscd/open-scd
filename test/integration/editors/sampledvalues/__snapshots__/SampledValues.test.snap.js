@@ -21,8 +21,8 @@ snapshots["Sampled Values Plugin in SMV Publisher view initially the plugin look
     </mwc-radio>
   </mwc-formfield>
   <div class="container">
-    <smv-publisher-list class="row">
-    </smv-publisher-list>
+    <smv-list class="row">
+    </smv-list>
     <subscriber-ied-list-smv class="row">
     </subscriber-ied-list-smv>
   </div>

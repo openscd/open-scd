@@ -1,11 +1,11 @@
 import { html, fixture, expect } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
-import '../../../../src/editors/subscription/goose/goose-publisher-list.js'
-import { GoosePublisherList } from '../../../../src/editors/subscription/goose/goose-publisher-list.js';
+import '../../../../../src/editors/subscription/goose/goose-list.js'
+import { GooseList } from '../../../../../src/editors/subscription/goose/goose-list.js';
 
-describe('goose-publisher-list', () => {
-  let element: GoosePublisherList;
+describe('goose-list', () => {
+  let element: GooseList;
   let validSCL: XMLDocument;
   
   let wizardEvent: SinonSpy;
@@ -22,9 +22,9 @@ describe('goose-publisher-list', () => {
     selectEvent = spy();
     window.addEventListener('goose-select', selectEvent);
 
-    element = await fixture(html`<goose-publisher-list
+    element = await fixture(html`<goose-list
       .doc=${validSCL}
-    ></goose-publisher-list>`);
+    ></goose-list>`);
   });
 
   it('looks like the latest snapshot with a document loaded', async () => {
@@ -32,7 +32,7 @@ describe('goose-publisher-list', () => {
   });
 
   it('looks like the latest snapshot without a doc loaded', async () => {
-    element = await fixture(html`<goose-publisher-list></goose-publisher-list>`);
+    element = await fixture(html`<goose-list></goose-list>`);
     await expect(element).shadowDom.to.equalSnapshot();
   });
 

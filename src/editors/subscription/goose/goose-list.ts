@@ -29,8 +29,8 @@ function onOpenDocResetSelectedGooseMsg() {
 addEventListener('open-doc', onOpenDocResetSelectedGooseMsg);
 
 /** An sub element for showing all published GOOSE messages per IED. */
-@customElement('goose-publisher-list')
-export class GoosePublisherList extends LitElement {
+@customElement('goose-list')
+export class GooseList extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
 

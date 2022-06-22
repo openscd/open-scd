@@ -1,11 +1,11 @@
 import { html, fixture, expect } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
-import '../../../../src/editors/subscription/sampledvalues/smv-subscriber-list.js'
-import { SmvSubscriberList } from '../../../../src/editors/subscription/sampledvalues/smv-subscriber-list.js';
+import '../../../../../src/editors/subscription/goose/ied-list.js'
+import { IedListGoose } from '../../../../../src/editors/subscription/goose/ied-list.js';
 
-describe('smv-subscriber-list', () => {
-  let element: SmvSubscriberList;
+describe('ied-list', () => {
+  let element: IedListGoose;
   let validSCL: XMLDocument;
   
   let selectEvent: SinonSpy;
@@ -18,9 +18,9 @@ describe('smv-subscriber-list', () => {
     selectEvent = spy();
     window.addEventListener('ied-select', selectEvent);
 
-    element = await fixture(html`<smv-subscriber-list
+    element = await fixture(html`<ied-list-goose
       .doc=${validSCL}
-    ></smv-subscriber-list>`);
+    ></ied-list-goose>`);
   });
 
   it('looks like the latest snapshot with a document loaded', async () => {
@@ -28,7 +28,7 @@ describe('smv-subscriber-list', () => {
   });
 
   it('looks like the latest snapshot without a doc loaded', async () => {
-    element = await fixture(html`<smv-subscriber-list></smv-subscriber-list>`);
+    element = await fixture(html`<ied-list-goose></ied-list-goose>`);
     await expect(element).shadowDom.to.equalSnapshot();
   });
 

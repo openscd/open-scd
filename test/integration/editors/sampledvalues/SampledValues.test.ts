@@ -26,7 +26,7 @@ describe('Sampled Values Plugin', () => {
       });
       
       it('the Sampled Values list looks like the latest snapshot', async () => {
-        await expect(element.shadowRoot?.querySelector('smv-publisher-list')).shadowDom.to.equalSnapshot();
+        await expect(element.shadowRoot?.querySelector('smv-list')).shadowDom.to.equalSnapshot();
       });
   
       it('the IED list looks like the latest snapshot', async () => {
@@ -36,7 +36,7 @@ describe('Sampled Values Plugin', () => {
   
     describe('when selecting a Sampled Values message', () => {
       beforeEach(async () => {
-        const smvMsg = element.shadowRoot?.querySelector('smv-publisher-list')
+        const smvMsg = element.shadowRoot?.querySelector('smv-list')
         ?.shadowRoot?.querySelectorAll('mwc-list-item')[3];
   
         (<HTMLElement>(smvMsg)).click();

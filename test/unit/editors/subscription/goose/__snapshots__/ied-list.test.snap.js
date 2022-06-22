@@ -1,7 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["goose-subscriber-list looks like the latest snapshot with a document loaded"] = 
+snapshots["ied-list looks like the latest snapshot with a document loaded"] = 
 `<section tabindex="0">
   <h1>
     [subscription.subscriberGoose.title]
@@ -49,9 +49,9 @@ snapshots["goose-subscriber-list looks like the latest snapshot with a document 
   </filtered-list>
 </section>
 `;
-/* end snapshot goose-subscriber-list looks like the latest snapshot with a document loaded */
+/* end snapshot ied-list looks like the latest snapshot with a document loaded */
 
-snapshots["goose-subscriber-list looks like the latest snapshot without a doc loaded"] = 
+snapshots["ied-list looks like the latest snapshot without a doc loaded"] = 
 `<section tabindex="0">
   <h1>
     [subscription.subscriberGoose.title]
@@ -60,5 +60,5 @@ snapshots["goose-subscriber-list looks like the latest snapshot without a doc lo
   </filtered-list>
 </section>
 `;
-/* end snapshot goose-subscriber-list looks like the latest snapshot without a doc loaded */
+/* end snapshot ied-list looks like the latest snapshot without a doc loaded */
 

@@ -32,7 +32,7 @@ describe('Subscription Plugin', () => {
 
       it('the GOOSE list looks like the latest snapshot', async () => {
         await expect(
-          element.shadowRoot?.querySelector('goose-publisher-list')
+          element.shadowRoot?.querySelector('goose-list')
         ).shadowDom.to.equalSnapshot();
       });
 
@@ -49,7 +49,7 @@ describe('Subscription Plugin', () => {
       beforeEach(async () => {
         goose = Array.from(
           element.shadowRoot
-            ?.querySelector('goose-publisher-list')
+            ?.querySelector('goose-list')
             ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
         ).filter(item => !item.noninteractive)[2];
 
@@ -223,7 +223,7 @@ describe('Subscription Plugin', () => {
         // Selecting one of the IEDs
         ied = Array.from(
           element.shadowRoot
-            ?.querySelector('goose-subscriber-list')
+            ?.querySelector('ied-list-goose')
             ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
         ).filter(item => !item.noninteractive)[1];
 
