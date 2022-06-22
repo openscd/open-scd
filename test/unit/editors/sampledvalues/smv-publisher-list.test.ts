@@ -1,8 +1,8 @@
 import { html, fixture, expect } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
-import '../../../../src/editors/sampledvalues/smv-publisher-list.js'
-import { SmvPublisherList } from '../../../../src/editors/sampledvalues/smv-publisher-list.js';
+import '../../../../src/editors/subscription/sampledvalues/smv-publisher-list.js'
+import { SmvPublisherList } from '../../../../src/editors/subscription/sampledvalues/smv-publisher-list.js';
 
 describe('smv-publisher-list', () => {
   let element: SmvPublisherList;

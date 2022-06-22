@@ -19,7 +19,7 @@ import {
   createElement,
   Delete,
   newActionEvent,
-} from '../../foundation.js';
+} from '../../../foundation.js';
 import {
   SmvSelectEvent,
   IEDSampledValuesSubscriptionEvent,
@@ -27,7 +27,7 @@ import {
 import {
   emptyInputsDeleteActions,
   getFcdaReferences
-} from "../../foundation/ied.js";
+} from "../../../foundation/ied.js";
 import { styles, SubscribeStatus } from '../foundation.js';
 
 /**

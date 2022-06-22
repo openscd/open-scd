@@ -4,12 +4,12 @@ import '@material/mwc-fab';
 import '@material/mwc-radio';
 import '@material/mwc-formfield';
 
-import './subscription/subscriber-list.js';
-import './subscription/goose-publisher-list.js';
-import './subscription/goose-subscriber-list.js';
+import './subscription/goose/subscriber-list.js';
+import './subscription/goose/goose-publisher-list.js';
+import './subscription/goose/goose-subscriber-list.js';
 import { translate } from 'lit-translate';
 import { RadioListItem } from '@material/mwc-list/mwc-radio-list-item';
-import { newViewEvent, View, ViewEvent } from './foundation.js';
+import { newViewEvent, View, ViewEvent } from './subscription/foundation.js';
 
 /** Defining view outside the class, which makes it persistent. */
 let view: View = View.PUBLISHER;

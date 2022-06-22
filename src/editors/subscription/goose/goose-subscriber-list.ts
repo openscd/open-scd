@@ -11,8 +11,8 @@ import { translate } from 'lit-translate';
 import '@material/mwc-icon';
 import '@material/mwc-list/mwc-list-item';
 
-import '../../filtered-list.js';
-import { getNameAttribute } from '../../foundation.js';
+import '../../../filtered-list.js';
+import { getNameAttribute } from '../../../foundation.js';
 import { getOrderedIeds, newIEDSelectEvent, styles } from '../foundation.js';
 
 let selectedIed: Element | undefined;
@@ -22,8 +22,8 @@ function onOpenDocResetSelectedGooseMsg() {
 }
 addEventListener('open-doc', onOpenDocResetSelectedGooseMsg);
 
-@customElement('smv-subscriber-list')
-export class SmvSubscriberList extends LitElement {
+@customElement('goose-subscriber-list')
+export class GooseSubscriberList extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
 

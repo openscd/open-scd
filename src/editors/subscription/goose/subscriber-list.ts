@@ -13,13 +13,13 @@ import '@material/mwc-icon';
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 
-import '../../filtered-list.js';
+import '../../../filtered-list.js';
 import {
   Create,
   createElement,
   Delete,
   newActionEvent,
-} from '../../foundation.js';
+} from '../../../foundation.js';
 import {
   newSubscriptionEvent,
   GOOSESelectEvent,
@@ -28,7 +28,7 @@ import {
 import {
   emptyInputsDeleteActions,
   getFcdaReferences
-} from "../../foundation/ied.js";
+} from "../../../foundation/ied.js";
 import { IEDSelectEvent, styles, SubscribeStatus, View, ViewEvent } from '../foundation.js';
 
 /**

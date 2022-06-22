@@ -1,8 +1,8 @@
 import { html, fixture, expect } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
-import '../../../../src/editors/subscription/goose-subscriber-list.js'
-import { GooseSubscriberList } from '../../../../src/editors/subscription/goose-subscriber-list.js';
+import '../../../../src/editors/subscription/goose/goose-subscriber-list.js'
+import { GooseSubscriberList } from '../../../../src/editors/subscription/goose/goose-subscriber-list.js';
 
 describe('goose-subscriber-list', () => {
   let element: GooseSubscriberList;

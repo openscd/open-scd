@@ -2,11 +2,11 @@ import { LitElement, html, TemplateResult, property, css, query } from 'lit-elem
 
 import '@material/mwc-fab';
 
-import './sampledvalues/subscriber-ied-list-smv.js';
-import './sampledvalues/smv-publisher-list.js';
-import './sampledvalues/smv-subscriber-list.js';
+import './subscription/sampledvalues/subscriber-ied-list-smv.js';
+import './subscription/sampledvalues/smv-publisher-list.js';
+import './subscription/sampledvalues/smv-subscriber-list.js';
 import { RadioListItem } from '@material/mwc-list/mwc-radio-list-item.js';
-import { newViewEvent, View, ViewEvent } from './foundation.js';
+import { newViewEvent, View, ViewEvent } from './subscription/foundation.js';
 import { translate } from 'lit-translate';
 
 /** Defining view outside the class, which makes it persistent. */

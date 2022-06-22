@@ -12,12 +12,12 @@ import '@material/mwc-icon';
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 
-import { getNameAttribute, newWizardEvent } from '../../foundation.js';
+import { getNameAttribute, newWizardEvent } from '../../../foundation.js';
 import { newSmvSelectEvent } from './foundation.js';
-import { smvIcon } from '../../icons/icons.js';
+import { smvIcon } from '../../../icons/icons.js';
 import { getOrderedIeds, styles } from '../foundation.js';
 import { classMap } from 'lit-html/directives/class-map.js';
-import { wizards } from '../../wizards/wizard-library.js';
+import { wizards } from '../../../wizards/wizard-library.js';
 
 let selectedSmvMsg: Element | undefined;
 let selectedDataSet: Element | undefined | null;
