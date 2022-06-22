@@ -1,31 +1,24 @@
-import { get } from "lit-translate";
-import {
-  css,
-  customElement,
-  html,
-  LitElement,
-  property,
-  TemplateResult
-} from "lit-element";
+import { get } from 'lit-translate';
+import { css, customElement, html, TemplateResult } from 'lit-element';
 
 import './subnetwork-container.js';
 import {
   compareNames,
   createElement,
   newActionEvent,
-  newWizardEvent
-} from "../../foundation.js";
-import { createSubNetworkWizard } from "./wizards/subnetwork.js";
+  newWizardEvent,
+} from '../../foundation.js';
+import { createSubNetworkWizard } from './wizards/subnetwork.js';
+import { Base104Container } from './base-container.js';
 
 @customElement('network-104-container')
-export class Network104Container extends LitElement {
-  @property()
-  doc!: XMLDocument;
-
+export class Network104Container extends Base104Container {
   private getSubNetworkElements(): Element[] {
-    return Array.from(this.doc.querySelectorAll('Communication > SubNetwork') ?? [])
+    return Array.from(
+      this.doc.querySelectorAll('Communication > SubNetwork') ?? []
+    )
       .filter(network => network.getAttribute('type') === '104')
-      .sort((a,b) => compareNames(a,b));
+      .sort((a, b) => compareNames(a, b));
   }
 
   /** Opens a [[`WizardDialog`]] for creating a new `SubNetwork` element. */
@@ -46,27 +39,27 @@ export class Network104Container extends LitElement {
 
   render(): TemplateResult {
     return html`<mwc-fab
-      extended
-      icon="add"
-      label="${get('subnetwork.wizard.title.add')}"
-      @click=${() => this.openCreateSubNetworkWizard()}
-    ></mwc-fab>
-    <section>
-    ${this.getSubNetworkElements()
-        .map(
+        extended
+        icon="add"
+        label="${get('subnetwork.wizard.title.add')}"
+        @click=${() => this.openCreateSubNetworkWizard()}
+      ></mwc-fab>
+      <section>
+        ${this.getSubNetworkElements().map(
           subnetwork =>
             html`<subnetwork-104-container
-            .element=${subnetwork}
-          ></subnetwork-104-container>`
+              .doc="${this.doc}"
+              .element=${subnetwork}
+            ></subnetwork-104-container>`
         )}
-    </section>`;
+      </section>`;
   }
 
   static styles = css`
     :host {
       width: 100vw;
     }
-    
+
     mwc-fab {
       position: fixed;
       bottom: 32px;

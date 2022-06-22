@@ -2,7 +2,6 @@ import {
   css,
   customElement,
   html,
-  LitElement,
   property,
   query,
   TemplateResult,
@@ -30,13 +29,14 @@ import {
 import { editAddressWizard } from './wizards/address.js';
 import { showDOIInfoWizard } from './wizards/doi.js';
 import { PROTOCOL_104_PRIVATE } from './foundation/private.js';
+import { Base104Container } from './base-container.js';
 
 /**
  * Container showing all the DAI Elements, related to the 104 Protocol, of the passed DOI Element in a list.
  * The DAI Element can be edited by pressing the Edit button at the end of the line.
  */
 @customElement('doi-104-container')
-export class Doi104Container extends LitElement {
+export class Doi104Container extends Base104Container {
   @property()
   element!: Element;
 

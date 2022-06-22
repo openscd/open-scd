@@ -2,7 +2,6 @@ import {
   css,
   customElement,
   html,
-  LitElement,
   property,
   query,
   TemplateResult,
@@ -23,12 +22,13 @@ import { getFullPath } from './foundation/foundation.js';
 
 import './doi-container.js';
 import { PROTOCOL_104_PRIVATE } from './foundation/private.js';
+import { Base104Container } from './base-container.js';
 
 /**
  * Container showing all the DOI Elements, related to the 104 Protocol, of the passed IED Element in a container.
  */
 @customElement('ied-104-container')
-export class Ied104Container extends LitElement {
+export class Ied104Container extends Base104Container {
   @property()
   element!: Element;
 
@@ -65,7 +65,8 @@ export class Ied104Container extends LitElement {
     const dois = this.doiElements;
     return html`${dois.map(doiElement => {
       return html`
-        <doi-104-container .element="${doiElement}"></doi-104-container>
+        <doi-104-container .doc="${this.doc}" .element="${doiElement}">
+        </doi-104-container>
       `;
     })}`;
   }
