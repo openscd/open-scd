@@ -23,14 +23,19 @@ describe('smv-publisher-list', () => {
     ></smv-publisher-list>`);
   });
 
-  it('looks like the latest snapshot', async () => {
+  it('looks like the latest snapshot with a document loaded', async () => {
     await expect(element).shadowDom.to.equalSnapshot();
   });
 
   it('looks like the latest snapshot without a doc loaded', async () => {
     element = await fixture(html`<smv-publisher-list></smv-publisher-list>`);
-
     await expect(element).shadowDom.to.equalSnapshot();
+  });
+
+  it('sends a newSmvSelectEvent on first update', async () => {
+    expect(selectEvent).to.have.be.calledOnce;
+    expect(selectEvent.args[0][0].detail.smvControl).to.be.undefined;
+    expect(selectEvent.args[0][0].detail.dataset).to.be.undefined;
   });
 
   it('triggers a newSmvSelectEvent when a list item is clicked', async () => {

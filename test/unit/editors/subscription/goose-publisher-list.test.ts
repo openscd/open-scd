@@ -27,14 +27,19 @@ describe('goose-publisher-list', () => {
     ></goose-publisher-list>`);
   });
 
-  it('looks like the latest snapshot', async () => {
+  it('looks like the latest snapshot with a document loaded', async () => {
     await expect(element).shadowDom.to.equalSnapshot();
   });
 
   it('looks like the latest snapshot without a doc loaded', async () => {
     element = await fixture(html`<goose-publisher-list></goose-publisher-list>`);
-
     await expect(element).shadowDom.to.equalSnapshot();
+  });
+
+  it('sends a newGOOSESelectEvent on first update', async () => {
+    expect(selectEvent).to.have.be.calledOnce;
+    expect(selectEvent.args[0][0].detail.gseControl).to.be.undefined;
+    expect(selectEvent.args[0][0].detail.dataset).to.be.undefined;
   });
 
   it('triggers a newGOOSESelectEvent when a list item is clicked', async () => {
