@@ -4,8 +4,6 @@ import fc from 'fast-check';
 import '../../../mock-wizard.js';
 import { MockWizard } from '../../../mock-wizard.js';
 
-import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
-
 import '../../../../src/editors/communication/subnetwork-editor.js';
 import { regexString, regExp, inverseRegExp } from '../../../foundation.js';
 
@@ -22,6 +20,7 @@ describe('subnetwork-editor wizarding integration', () => {
         await fixture(
           html`<mock-wizard
             ><subnetwork-editor
+              .doc=${doc}
               .element=${doc.querySelector('SubNetwork')}
             ></subnetwork-editor
           ></mock-wizard>`
