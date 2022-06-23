@@ -1,5 +1,6 @@
 import { html, TemplateResult } from 'lit-element';
 import { get, translate } from 'lit-translate';
+import { live } from 'lit-html/directives/live';
 
 import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-select';
@@ -25,7 +26,6 @@ import {
   getFullPath,
 } from '../foundation/foundation.js';
 import { hasScaleFields, hasUnitMultiplierField } from '../foundation/cdc.js';
-import { live } from 'lit-html/directives/live';
 
 const allowedMultipliers = [
   'm',
