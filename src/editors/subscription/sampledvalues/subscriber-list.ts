@@ -103,7 +103,57 @@ export class SubscriberList extends LitElement {
    * @param event - Incoming event.
    */
   private async onIEDSelectEvent(event: IEDSelectEvent) {
-    console.log(event);
+    if (!event.detail.ied) return;
+    this.currentSelectedIed = event.detail.ied!;
+
+    this.resetElements();
+
+    const subscribedInputs = this.currentSelectedIed.querySelectorAll(`LN0 > Inputs, LN > Inputs`);
+
+    this.doc.querySelectorAll('SampledValueControl').forEach(control => {
+      const ied = control.closest('IED')!;
+
+      if (ied.getAttribute('name') == this.currentSelectedIed?.getAttribute('name')) return;
+
+      /** If no Inputs is available, it's automatically available. */
+      if (subscribedInputs.length == 0) {
+        this.availableElements.push({ element: control });
+        return;
+      }
+
+      let numberOfLinkedExtRefs = 0;
+      const dataSet = ied.querySelector(`DataSet[name="${control.getAttribute('datSet')}"]`);
+
+      if (!dataSet) return;
+
+      dataSet!.querySelectorAll('FCDA').forEach(fcda => {
+        subscribedInputs.forEach(inputs => {
+          if (
+            inputs.querySelector(
+              `ExtRef[iedName=${ied.getAttribute('name')}]` +
+                `${getFcdaReferences(fcda)}`
+            )
+          ) {
+            numberOfLinkedExtRefs++;
+          }
+        });
+      });
+
+      if (numberOfLinkedExtRefs == 0) {
+        this.availableElements.push({ element: control });
+        return;
+      }
+
+      if (
+        numberOfLinkedExtRefs >=
+        dataSet!.querySelectorAll('FCDA').length
+      ) {
+        this.subscribedElements.push({ element: control });
+      } else {
+        this.availableElements.push({ element: control, partial: true });
+      }
+    })
+
     this.requestUpdate();
   }
 
@@ -180,17 +230,26 @@ export class SubscriberList extends LitElement {
    * @param event - Incoming event.
    */
   private async onIEDSubscriptionEvent(event: SmvSubscriptionEvent) {
+    let iedToSubscribe = event.detail.ied;
+
+    if (view == View.SUBSCRIBER) {
+      const dataSetName = event.detail.ied.getAttribute('datSet');
+      this.currentUsedDataset = event.detail.ied.parentElement?.querySelector(`DataSet[name="${dataSetName}"]`);
+      this.currentSmvIedName = event.detail.ied.closest('IED')?.getAttribute('name');
+      iedToSubscribe = this.currentSelectedIed!;
+    }
+
     switch (event.detail.subscribeStatus) {
       case SubscribeStatus.Full: {
-        this.unsubscribe(event.detail.ied);
+        this.unsubscribe(iedToSubscribe);
         break;
       }
       case SubscribeStatus.Partial: {
-        this.subscribe(event.detail.ied);
+        this.subscribe(iedToSubscribe);
         break;
       }
       case SubscribeStatus.None: {
-        this.subscribe(event.detail.ied);
+        this.subscribe(iedToSubscribe);
         break;
       }
     }

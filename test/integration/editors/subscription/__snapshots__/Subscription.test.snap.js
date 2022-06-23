@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["Subscription Plugin in GOOSE Publisher view initially the plugin looks like the latest snapshot"] = 
 `<div>
-  <mwc-formfield label="[subscription.view.publisherView]">
+  <mwc-formfield label="[subscription.goose.view.publisherView]">
     <mwc-radio
       checked=""
       id="byGooseRadio"
@@ -12,7 +12,7 @@ snapshots["Subscription Plugin in GOOSE Publisher view initially the plugin look
     >
     </mwc-radio>
   </mwc-formfield>
-  <mwc-formfield label="[subscription.view.subscriberView]">
+  <mwc-formfield label="[subscription.goose.view.subscriberView]">
     <mwc-radio
       id="byIedRadio"
       name="view"
@@ -35,7 +35,7 @@ snapshots["Subscription Plugin in GOOSE Publisher view initially the plugin look
 snapshots["Subscription Plugin in GOOSE Publisher view initially the GOOSE list looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.publisherGoose.title]
+    [subscription.goose.publisherGoose.title]
   </h1>
   <filtered-list>
     <mwc-list-item
@@ -213,7 +213,7 @@ snapshots["Subscription Plugin in GOOSE Publisher view initially the GOOSE list 
 snapshots["Subscription Plugin in GOOSE Publisher view initially the IED list looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.publisherGoose.subscriberTitle]
+    [subscription.goose.publisherGoose.subscriberTitle]
   </h1>
   <mwc-list>
     <mwc-list-item
@@ -222,7 +222,7 @@ snapshots["Subscription Plugin in GOOSE Publisher view initially the IED list lo
       tabindex="-1"
     >
       <span>
-        [subscription.subscriber.noGooseMessageSelected]
+        [subscription.subscriber.noControlBlockSelected]
       </span>
     </mwc-list-item>
   </mwc-list>
@@ -233,7 +233,7 @@ snapshots["Subscription Plugin in GOOSE Publisher view initially the IED list lo
 snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE message the list on the right will initially show the subscribed / partially subscribed / not subscribed IEDs"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.publisherGoose.subscriberTitle]
+    [subscription.goose.publisherGoose.subscriberTitle]
   </h1>
   <div class="subscriberWrapper">
     <filtered-list id="subscribedIeds">
@@ -330,7 +330,7 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
 snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE message and subscribing an unsubscribed IED it looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.publisherGoose.subscriberTitle]
+    [subscription.goose.publisherGoose.subscriberTitle]
   </h1>
   <div class="subscriberWrapper">
     <filtered-list id="subscribedIeds">
@@ -429,7 +429,7 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
 snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE message and unsubscribing a subscribed IED it looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.publisherGoose.subscriberTitle]
+    [subscription.goose.publisherGoose.subscriberTitle]
   </h1>
   <div class="subscriberWrapper">
     <filtered-list id="subscribedIeds">
@@ -528,7 +528,7 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
 snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE message and subscribing a partially subscribed IED it looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.publisherGoose.subscriberTitle]
+    [subscription.goose.publisherGoose.subscriberTitle]
   </h1>
   <div class="subscriberWrapper">
     <filtered-list id="subscribedIeds">
@@ -626,7 +626,7 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
 
 snapshots["Subscription Plugin in GOOSE Subscriber view initially the plugin looks like the latest snapshot"] = 
 `<div>
-  <mwc-formfield label="[subscription.view.publisherView]">
+  <mwc-formfield label="[subscription.goose.view.publisherView]">
     <mwc-radio
       id="byGooseRadio"
       name="view"
@@ -634,7 +634,7 @@ snapshots["Subscription Plugin in GOOSE Subscriber view initially the plugin loo
     >
     </mwc-radio>
   </mwc-formfield>
-  <mwc-formfield label="[subscription.view.subscriberView]">
+  <mwc-formfield label="[subscription.goose.view.subscriberView]">
     <mwc-radio
       checked=""
       id="byIedRadio"
@@ -658,7 +658,7 @@ snapshots["Subscription Plugin in GOOSE Subscriber view initially the plugin loo
 snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED the list on the right will initially show the subscribed / partially subscribed / not subscribed IEDs"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.subscriberGoose.publisherTitle]
+    [subscription.goose.subscriberGoose.publisherTitle]
   </h1>
   <div class="subscriberWrapper">
     <filtered-list id="subscribedIeds">
@@ -751,7 +751,7 @@ snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED th
 snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED and subscribing a unsubscribed GOOSE message it looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.subscriberGoose.publisherTitle]
+    [subscription.goose.subscriberGoose.publisherTitle]
   </h1>
   <div class="subscriberWrapper">
     <filtered-list id="subscribedIeds">
@@ -840,7 +840,7 @@ snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED an
 snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED and unsubscribing a subscribed GOOSE message it looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.subscriberGoose.publisherTitle]
+    [subscription.goose.subscriberGoose.publisherTitle]
   </h1>
   <div class="subscriberWrapper">
     <filtered-list id="subscribedIeds">
@@ -930,7 +930,7 @@ snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED an
 snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED and subscribing a partially subscribed GOOSE message it looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.subscriberGoose.publisherTitle]
+    [subscription.goose.subscriberGoose.publisherTitle]
   </h1>
   <div class="subscriberWrapper">
     <filtered-list id="subscribedIeds">
