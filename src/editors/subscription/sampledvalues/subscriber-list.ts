@@ -315,7 +315,7 @@ export class SubscriberList extends LitElement {
   renderUnSubscribers(elements: ListElement[]): TemplateResult {
     return html`<mwc-list-item noninteractive>
         <span class="iedListTitle"
-          >${translate('sampledValues.subscriber.availableToSubscribe')}</span
+          >${translate('subscription.subscriber.availableToSubscribe')}</span
         >
       </mwc-list-item>
       <li divider role="separator"></li>
@@ -324,14 +324,14 @@ export class SubscriberList extends LitElement {
             this.renderSubscriber(SubscribeStatus.None, element.element)
           )
         : html`<mwc-list-item graphic="avatar" noninteractive>
-            <span>${translate('sampledValues.none')}</span>
+            <span>${translate('subscription.none')}</span>
           </mwc-list-item>`}`;
   }
 
   renderPartiallySubscribers(elements: ListElement[]): TemplateResult {
     return html`<mwc-list-item noninteractive>
         <span class="iedListTitle"
-          >${translate('sampledValues.subscriber.partiallySubscribed')}</span
+          >${translate('subscription.subscriber.partiallySubscribed')}</span
         >
       </mwc-list-item>
       <li divider role="separator"></li>
@@ -340,14 +340,14 @@ export class SubscriberList extends LitElement {
             this.renderSubscriber(SubscribeStatus.Partial, element.element)
           )
         : html`<mwc-list-item graphic="avatar" noninteractive>
-            <span>${translate('sampledValues.none')}</span>
+            <span>${translate('subscription.none')}</span>
           </mwc-list-item>`}`;
   }
 
   renderFullSubscribers(): TemplateResult {
     return html`<mwc-list-item noninteractive>
         <span class="iedListTitle"
-          >${translate('sampledValues.subscriber.subscribed')}</span
+          >${translate('subscription.subscriber.subscribed')}</span
         >
       </mwc-list-item>
       <li divider role="separator"></li>
@@ -356,7 +356,7 @@ export class SubscriberList extends LitElement {
             this.renderSubscriber(SubscribeStatus.Full, element.element)
           )
         : html`<mwc-list-item graphic="avatar" noninteractive>
-            <span>${translate('sampledValues.none')}</span>
+            <span>${translate('subscription.none')}</span>
           </mwc-list-item>`}`;
   }
 
@@ -365,14 +365,14 @@ export class SubscriberList extends LitElement {
 
     return view == View.PUBLISHER
       ? html`<h1>
-          ${translate('sampledValues.publisherSmv.subscriberTitle', {
+          ${translate('subscription.smv.publisherSmv.subscriberTitle', {
             selected: gseControlName
               ? this.currentSmvIedName + ' > ' + gseControlName
               : 'Sampled Value',
           })}
         </h1>`
       : html`<h1>
-          ${translate('sampledValues.subscriberSmv.publisherTitle', {
+          ${translate('subscription.smv.subscriberSmv.publisherTitle', {
             selected: this.currentSelectedIed
             ? this.currentSelectedIed.getAttribute('name')!
             : 'IED',
@@ -400,8 +400,8 @@ export class SubscriberList extends LitElement {
           : html`<mwc-list>
               <mwc-list-item noninteractive>
                 <span>${view == View.PUBLISHER
-                  ? translate('sampledValues.subscriber.noSampledValuesSelected')
-                  : translate('sampledValues.subscriber.noIedSelected')}</span>
+                  ? translate('subscription.subscriber.noControlBlockSelected')
+                  : translate('subscription.subscriber.noIedSelected')}</span>
               </mwc-list-item>
             </mwc-list>
           </div>`}

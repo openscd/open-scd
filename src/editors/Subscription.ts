@@ -46,7 +46,7 @@ export default class SubscriptionABBPlugin extends LitElement {
 
   render(): TemplateResult {
     return html`<div>
-      <mwc-formfield label="${translate('subscription.view.publisherView')}">
+      <mwc-formfield label="${translate('subscription.goose.view.publisherView')}">
         <mwc-radio
           id="byGooseRadio"
           name="view"
@@ -54,7 +54,7 @@ export default class SubscriptionABBPlugin extends LitElement {
           @checked=${() => this.listDiv.dispatchEvent(newViewEvent(View.PUBLISHER))}
         ></mwc-radio>
       </mwc-formfield>
-      <mwc-formfield label="${translate('subscription.view.subscriberView')}">
+      <mwc-formfield label="${translate('subscription.goose.view.subscriberView')}">
         <mwc-radio
           id="byIedRadio"
           name="view"

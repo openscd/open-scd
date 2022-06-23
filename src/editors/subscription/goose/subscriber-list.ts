@@ -426,14 +426,14 @@ export class SubscriberList extends LitElement {
 
     return view == View.PUBLISHER
       ? html`<h1>
-          ${translate('subscription.publisherGoose.subscriberTitle', {
+          ${translate('subscription.goose.publisherGoose.subscriberTitle', {
             selected: gseControlName
               ? this.currentGooseIedName + ' > ' + gseControlName
               : 'GOOSE',
           })}
         </h1>`
       : html`<h1>
-          ${translate('subscription.subscriberGoose.publisherTitle', {
+          ${translate('subscription.goose.subscriberGoose.publisherTitle', {
             selected: this.currentSelectedIed
             ? this.currentSelectedIed.getAttribute('name')!
             : 'IED',
@@ -461,7 +461,7 @@ export class SubscriberList extends LitElement {
           : html`<mwc-list>
               <mwc-list-item noninteractive>
                 <span>${view == View.PUBLISHER
-                  ? translate('subscription.subscriber.noGooseMessageSelected')
+                  ? translate('subscription.subscriber.noControlBlockSelected')
                   : translate('subscription.subscriber.noIedSelected')}</span>
               </mwc-list-item>
             </mwc-list>

@@ -87,8 +87,8 @@ export class SmvPublisherList extends LitElement {
 
   render(): TemplateResult {
     return html` <section tabindex="0">
-      <h1>${translate('sampledValues.publisherSmv.title')}</h1>
-      <mwc-list>
+      <h1>${translate('subscription.smv.publisherSmv.title')}</h1>
+      <filtered-list>
         ${getOrderedIeds(this.doc).map(ied =>
             html`
               <mwc-list-item noninteractive graphic="icon">
@@ -104,7 +104,7 @@ export class SmvPublisherList extends LitElement {
               }
             `
         )}
-      </mwc-list>
+      </filtered-list>
     </section>`;
   }
 

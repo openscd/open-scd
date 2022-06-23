@@ -44,7 +44,7 @@ export default class SampledValuesPlugin extends LitElement {
 
   render(): TemplateResult {
     return html`<div>
-      <mwc-formfield label="${translate('sampledValues.view.publisherView')}">
+      <mwc-formfield label="${translate('subscription.smv.view.publisherView')}">
         <mwc-radio
           id="bySmvRadio"
           name="view"
@@ -52,7 +52,7 @@ export default class SampledValuesPlugin extends LitElement {
           @checked=${() => this.listDiv.dispatchEvent(newViewEvent(View.PUBLISHER))}
         ></mwc-radio>
       </mwc-formfield>
-      <mwc-formfield label="${translate('sampledValues.view.publisherView')}">
+      <mwc-formfield label="${translate('subscription.smv.view.publisherView')}">
         <mwc-radio
           id="byIedRadio"
           name="view"
