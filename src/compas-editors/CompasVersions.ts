@@ -44,11 +44,11 @@ export default class CompasVersionsPlugin extends LitElement {
   docName!: string;
 
   @property()
-  itemHistory!: Element[];
+  historyItem!: Element[];
 
   firstUpdated(): void {
     if (!this.docId) {
-      this.itemHistory = [];
+      this.historyItem = [];
     } else {
       this.fetchData()
     }
@@ -58,10 +58,10 @@ export default class CompasVersionsPlugin extends LitElement {
     const type = getTypeFromDocName(this.docName);
     CompasSclDataService().listVersions(type, this.docId)
       .then(xmlResponse => {
-        this.itemHistory = Array.from(xmlResponse.querySelectorAll('HistoryItem') ?? []);
+        this.historyItem = Array.from(xmlResponse.querySelectorAll('HistoryItem') ?? []);
       })
       .catch(() => {
-        this.itemHistory = [];
+        this.historyItem = [];
       });
   }
 
@@ -169,13 +169,13 @@ export default class CompasVersionsPlugin extends LitElement {
   }
 
   render(): TemplateResult {
-    if (!this.itemHistory) {
+    if (!this.historyItem) {
       return html `
         <compas-loading></compas-loading>
       `
     }
 
-    if (this.itemHistory.length <= 0) {
+    if (this.historyItem.length <= 0) {
       return html `
         <mwc-list>
           <mwc-list-item>
@@ -221,7 +221,7 @@ export default class CompasVersionsPlugin extends LitElement {
                     @selected=${(evt: MultiSelectedEvent) => {
                       selectedVersionsOnCompasVersionsEditor = evt.detail.index;
                     }}>
-            ${this.itemHistory.map( (item, index, items) => {
+            ${this.historyItem.map( (item, index, items) => {
                 const version = getElementByName(item, SDS_NAMESPACE, "Version")!.textContent ?? '';
                 if (items.length - 1 === index) {
                   return html`<mwc-check-list-item value="${version}"
