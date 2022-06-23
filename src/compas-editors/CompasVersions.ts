@@ -1,5 +1,6 @@
 import { css, html, LitElement, property, TemplateResult } from 'lit-element';
 import { get, translate } from 'lit-translate';
+import { nothing } from 'lit-html';
 
 import '@material/mwc-fab';
 import '@material/mwc-icon';
@@ -43,11 +44,11 @@ export default class CompasVersionsPlugin extends LitElement {
   docName!: string;
 
   @property()
-  scls!: Element[];
+  historyItem!: Element[];
 
   firstUpdated(): void {
     if (!this.docId) {
-      this.scls = [];
+      this.historyItem = [];
     } else {
       this.fetchData()
     }
@@ -57,10 +58,10 @@ export default class CompasVersionsPlugin extends LitElement {
     const type = getTypeFromDocName(this.docName);
     CompasSclDataService().listVersions(type, this.docId)
       .then(xmlResponse => {
-        this.scls = Array.from(xmlResponse.querySelectorAll('Item') ?? []);
+        this.historyItem = Array.from(xmlResponse.querySelectorAll('HistoryItem') ?? []);
       })
       .catch(() => {
-        this.scls = [];
+        this.historyItem = [];
       });
   }
 
@@ -148,14 +149,33 @@ export default class CompasVersionsPlugin extends LitElement {
     return sclName!.textContent ?? 'unknown';
   }
 
+  private renderLineInfo(item: Element): TemplateResult {
+    let element = getElementByName(item, SDS_NAMESPACE, "Name");
+    if (element === null) {
+      element = getElementByName(item, SDS_NAMESPACE, "Id");
+    }
+    const name = element!.textContent ?? '';
+    const version = getElementByName(item, SDS_NAMESPACE, "Version")!.textContent ?? '';
+    const who = getElementByName(item, SDS_NAMESPACE, "Who")!.textContent ?? '';
+    const when = getElementByName(item, SDS_NAMESPACE, "When")!.textContent ?? '';
+    const what = getElementByName(item, SDS_NAMESPACE, "What")!.textContent ?? '';
+
+    return html`<span>${name} (Version: ${version})</span>
+        <span slot="secondary">
+            Who: "${who ? who : '-'}",
+            When: "${when ? when : '-'}",
+            What: "${what ? what : '-'}"
+        </span>`;
+  }
+
   render(): TemplateResult {
-    if (!this.scls) {
+    if (!this.historyItem) {
       return html `
         <compas-loading></compas-loading>
       `
     }
 
-    if (this.scls.length <= 0) {
+    if (this.historyItem.length <= 0) {
       return html `
         <mwc-list>
           <mwc-list-item>
@@ -201,19 +221,15 @@ export default class CompasVersionsPlugin extends LitElement {
                     @selected=${(evt: MultiSelectedEvent) => {
                       selectedVersionsOnCompasVersionsEditor = evt.detail.index;
                     }}>
-            ${this.scls.map( (item, index, items) => {
-                let element = getElementByName(item, SDS_NAMESPACE, "Name");
-                if (element === null) {
-                  element = getElementByName(item, SDS_NAMESPACE, "Id");
-                }
-                const name = element!.textContent ?? '';
+            ${this.historyItem.map( (item, index, items) => {
                 const version = getElementByName(item, SDS_NAMESPACE, "Version")!.textContent ?? '';
                 if (items.length - 1 === index) {
                   return html`<mwc-check-list-item value="${version}"
                                                    tabindex="0"
                                                    graphic="icon"
+                                                   twoline
                                                    .selected=${selectedVersionsOnCompasVersionsEditor.has(index)}>
-                                ${name} (${version})
+                                ${this.renderLineInfo(item)}
                                 <span slot="graphic">
                                   <mwc-icon @click=${() => {
                                               this.confirmRestoreVersionCompas(version);
@@ -224,8 +240,9 @@ export default class CompasVersionsPlugin extends LitElement {
                 return html`<mwc-check-list-item value="${version}"
                                                  tabindex="0"
                                                  graphic="icon"
+                                                 twoline
                                                  .selected=${selectedVersionsOnCompasVersionsEditor.has(index)}>
-                                ${name} (${version})
+                                ${this.renderLineInfo(item)}
                                 <span slot="graphic">
                                   <mwc-icon @click=${() => {
                                               this.confirmRestoreVersionCompas(version);

@@ -29,23 +29,32 @@ export const BASIC_ITEM_LIST_RESPONSE = `
                 </Item>
              </ListResponse>`;
 
-export const VERSION_ENTRY_ELEMENT_NAME = 'Item';
+export const VERSION_ENTRY_ELEMENT_NAME = 'HistoryItem';
 export const BASIC_VERSIONS_LIST_RESPONSE = `
              <ListResponse xmlns="${SDS_NAMESPACE}">
-                <Item>
+                <HistoryItem>
                   <Id>3b572a56-51cc-479b-97fd-e404ebf9ae67</Id>
                   <Name>demo_station1</Name>
                   <Version>1.0.0</Version>
-                </Item>
-                <Item>
+                  <Who>Mr Editor</Who>
+                  <When>2021-11-22T03:47:00+01:00</When>
+                  <What>SCL created, test configuration for station 0001</What>
+                </HistoryItem>
+                <HistoryItem>
                   <Id>3b572a56-51cc-479b-97fd-e404ebf9ae67</Id>
                   <Name>demo_station1</Name>
                   <Version>2.0.0</Version>
-                </Item>
-                <Item>
+                  <Who>Mr Editor</Who>
+                  <When>2021-11-22T03:47:16+01:00</When>
+                  <What>SCL updated, Updated the Station with breakers</What>
+                </HistoryItem>
+                <HistoryItem>
                   <Id>3b572a56-51cc-479b-97fd-e404ebf9ae67</Id>
                   <Version>2.1.0</Version>
-                </Item>
+                  <Who>Mr Editor</Who>
+                  <When>2021-11-22T03:47:18+01:00</When>
+                  <What>SCL updated, Updated the Station with breakers</What>
+                </HistoryItem>
              </ListResponse>`;
 
 export function stubFetchResponseFunction(element: any,

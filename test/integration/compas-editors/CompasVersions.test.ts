@@ -41,7 +41,7 @@ describe('compas-versions-plugin', () => {
         });
 
       await element;
-      await waitUntil(() => element.scls !== undefined);
+      await waitUntil(() => element.historyItem !== undefined);
     });
 
     afterEach(() => {
@@ -85,11 +85,11 @@ describe('compas-versions-plugin', () => {
 
       stub = stubFetchResponseFunction(element, FETCH_FUNCTION, undefined, VERSION_ENTRY_ELEMENT_NAME,
         (result: Element[]) => {
-          element.scls = result;
+          element.historyItem = result;
         });
 
       await element;
-      await waitUntil(() => element.scls !== undefined);
+      await waitUntil(() => element.historyItem !== undefined);
     });
 
     afterEach(() => {
@@ -110,11 +110,11 @@ describe('compas-versions-plugin', () => {
 
       stub = stubFetchResponseFunction(element, FETCH_FUNCTION, BASIC_VERSIONS_LIST_RESPONSE, VERSION_ENTRY_ELEMENT_NAME,
         (result: Element[]) => {
-          element.scls = result;
+          element.historyItem = result;
         });
 
       await element;
-      await waitUntil(() => element.scls !== undefined);
+      await waitUntil(() => element.historyItem !== undefined);
     });
 
     afterEach(() => {
