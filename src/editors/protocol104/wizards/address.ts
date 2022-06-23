@@ -25,6 +25,7 @@ import {
   getFullPath,
 } from '../foundation/foundation.js';
 import { hasScaleFields, hasUnitMultiplierField } from '../foundation/cdc.js';
+import { live } from 'lit-html/directives/live';
 
 const allowedMultipliers = [
   'm',
@@ -135,14 +136,14 @@ export function editAddressWizard(
       </mwc-textarea>`,
       html`<wizard-textfield
         label="casdu"
-        .maybeValue="${addressElement.getAttribute('casdu')}"
+        .maybeValue="${live(addressElement.getAttribute('casdu') ?? '')}"
         helper="${translate('protocol104.wizard.casduHelper')}"
         required
       >
       </wizard-textfield>`,
       html`<wizard-textfield
         label="ioa"
-        .maybeValue="${addressElement.getAttribute('ioa')}"
+        .maybeValue="${live(addressElement.getAttribute('ioa') ?? '')}"
         helper="${translate('protocol104.wizard.ioaHelper')}"
         required
       >
