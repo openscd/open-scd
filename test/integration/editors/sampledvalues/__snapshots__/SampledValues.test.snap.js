@@ -159,14 +159,14 @@ snapshots["Sampled Values Plugin in Sampled Values Publisher view when selecting
   <h1>
     [subscription.smv.publisherSmv.subscriberTitle]
   </h1>
-  <div class="subscriberWrapper">
-    <filtered-list id="subscribedIeds">
+  <div class="wrapper">
+    <filtered-list>
       <mwc-list-item
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.subscribed]
         </span>
       </mwc-list-item>
@@ -194,7 +194,7 @@ snapshots["Sampled Values Plugin in Sampled Values Publisher view when selecting
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.partiallySubscribed]
         </span>
       </mwc-list-item>
@@ -222,7 +222,7 @@ snapshots["Sampled Values Plugin in Sampled Values Publisher view when selecting
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.availableToSubscribe]
         </span>
       </mwc-list-item>
@@ -256,14 +256,14 @@ snapshots["Sampled Values Plugin in Sampled Values Publisher view when selecting
   <h1>
     [subscription.smv.publisherSmv.subscriberTitle]
   </h1>
-  <div class="subscriberWrapper">
-    <filtered-list id="subscribedIeds">
+  <div class="wrapper">
+    <filtered-list>
       <mwc-list-item
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.subscribed]
         </span>
       </mwc-list-item>
@@ -291,7 +291,7 @@ snapshots["Sampled Values Plugin in Sampled Values Publisher view when selecting
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.partiallySubscribed]
         </span>
       </mwc-list-item>
@@ -319,7 +319,7 @@ snapshots["Sampled Values Plugin in Sampled Values Publisher view when selecting
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.availableToSubscribe]
         </span>
       </mwc-list-item>
@@ -355,14 +355,14 @@ snapshots["Sampled Values Plugin in Sampled Values Publisher view when selecting
   <h1>
     [subscription.smv.publisherSmv.subscriberTitle]
   </h1>
-  <div class="subscriberWrapper">
-    <filtered-list id="subscribedIeds">
+  <div class="wrapper">
+    <filtered-list>
       <mwc-list-item
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.subscribed]
         </span>
       </mwc-list-item>
@@ -392,7 +392,7 @@ snapshots["Sampled Values Plugin in Sampled Values Publisher view when selecting
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.partiallySubscribed]
         </span>
       </mwc-list-item>
@@ -420,7 +420,7 @@ snapshots["Sampled Values Plugin in Sampled Values Publisher view when selecting
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.availableToSubscribe]
         </span>
       </mwc-list-item>
@@ -454,14 +454,14 @@ snapshots["Sampled Values Plugin in Sampled Values Publisher view when selecting
   <h1>
     [subscription.smv.publisherSmv.subscriberTitle]
   </h1>
-  <div class="subscriberWrapper">
-    <filtered-list id="subscribedIeds">
+  <div class="wrapper">
+    <filtered-list>
       <mwc-list-item
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.subscribed]
         </span>
       </mwc-list-item>
@@ -489,7 +489,7 @@ snapshots["Sampled Values Plugin in Sampled Values Publisher view when selecting
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.partiallySubscribed]
         </span>
       </mwc-list-item>
@@ -519,7 +519,7 @@ snapshots["Sampled Values Plugin in Sampled Values Publisher view when selecting
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.availableToSubscribe]
         </span>
       </mwc-list-item>

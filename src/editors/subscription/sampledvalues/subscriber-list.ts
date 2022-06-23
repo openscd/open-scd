@@ -2,9 +2,7 @@ import {
   css,
   customElement,
   html,
-  LitElement,
   property,
-  query,
   TemplateResult,
 } from 'lit-element';
 import { translate } from 'lit-translate';
@@ -13,6 +11,7 @@ import '@material/mwc-icon';
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 
+import '../../../filtered-list.js';
 import {
   Create,
   createElement,
@@ -28,46 +27,22 @@ import {
   emptyInputsDeleteActions,
   getFcdaReferences
 } from "../../../foundation/ied.js";
-import { IEDSelectEvent, styles, SubscribeStatus, View, ViewEvent } from '../foundation.js';
-
-/**
- * An IED within this IED list has 2 properties:
- * - The IED element itself.
- * - A 'partial' property indicating if the Sampled Value is fully initialized or partially.
- */
-interface ListElement {
-  element: Element;
-  partial?: boolean;
-}
+import { IEDSelectEvent, ListElement, styles, SubscriberListContainer, SubscribeStatus, View, ViewEvent } from '../foundation.js';
 
 /** Defining view outside the class, which makes it persistent. */
 let view: View = View.PUBLISHER;
 
 /** An sub element for subscribing and unsubscribing IEDs to Sampled Values messages. */
 @customElement('subscriber-list-smv')
-export class SubscriberList extends LitElement {
+export class SubscriberList extends SubscriberListContainer {
   @property({ attribute: false })
   doc!: XMLDocument;
 
   /** Current selected Sampled Values element (when in GOOSE Publisher view) */
   currentSelectedSmvControl: Element | undefined;
 
-  /** Current selected IED (when in GOOSE Subscriber view) */
-  currentSelectedIed: Element | undefined;
-
-  /** The current used dataset for subscribing / unsubscribing */
-  currentUsedDataset: Element | undefined | null;
-
   /** The name of the IED belonging to the current selected Sampled Values */
   currentSmvIedName: string | undefined | null;
-
-  /** List holding all current subscribed Elements. */
-  subscribedElements: ListElement[] = [];
-
-  /** List holding all current avaialble Elements which are not subscribed. */
-  availableElements: ListElement[] = [];
-
-  @query('div') subscriberWrapper!: Element;
 
   constructor() {
     super();
@@ -97,11 +72,6 @@ export class SubscriberList extends LitElement {
     }
   }
 
-  /**
-   * When an IEDSelectEvent is received, check for all Sampled Values if
-   * all FCDAs are covered, or partly FCDAs are covered.
-   * @param event - Incoming event.
-   */
   private async onIEDSelectEvent(event: IEDSelectEvent) {
     if (!event.detail.ied) return;
     this.currentSelectedIed = event.detail.ied!;
@@ -157,11 +127,6 @@ export class SubscriberList extends LitElement {
     this.requestUpdate();
   }
 
-  /**
-   * When a SampledValuesSelectEvent is received, check for all IEDs if
-   * all FCDAs are covered, or partly FCDAs are covered.
-   * @param event - Incoming event.
-   */
   private async onSmvSelectEvent(event: SmvSelectEvent) {
     this.currentSelectedSmvControl = event.detail.smvControl;
     this.currentUsedDataset = event.detail.dataset;
@@ -225,10 +190,6 @@ export class SubscriberList extends LitElement {
     this.requestUpdate();
   }
 
-  /**
-   * When a IEDSubscriptionEvent is received, check if
-   * @param event - Incoming event.
-   */
   private async onIEDSubscriptionEvent(event: SmvSubscriptionEvent) {
     let iedToSubscribe = event.detail.ied;
 
@@ -265,10 +226,6 @@ export class SubscriberList extends LitElement {
     this.requestUpdate();
   }
 
-  /**
-   * Full subscribe a given IED to the current dataset.
-   * @param ied - Given IED to subscribe.
-   */
   private async subscribe(ied: Element): Promise<void> {
     if (!ied.querySelector('LN0')) return;
 
@@ -313,11 +270,7 @@ export class SubscriberList extends LitElement {
     }
   }
 
-  /**
-   * Unsubscribing a given IED to the current dataset.
-   * @param ied - Given IED to unsubscribe.
-   */
-  private unsubscribe(ied: Element): void {
+  private async unsubscribe(ied: Element): Promise<void> {
     const actions: Delete[] = [];
     ied.querySelectorAll('LN0 > Inputs, LN > Inputs').forEach(inputs => {
       this.currentUsedDataset!.querySelectorAll('FCDA').forEach(fcda => {
@@ -341,17 +294,6 @@ export class SubscriberList extends LitElement {
     );
   }
 
-  private resetElements() {
-    this.subscribedElements = [];
-    this.availableElements = [];
-  }
-
-  protected updated(): void {
-    if (this.subscriberWrapper) {
-      this.subscriberWrapper.scrollTo(0, 0);
-    }
-  }
-
   renderSubscriber(status: SubscribeStatus, element: Element): TemplateResult {
     return html` <mwc-list-item
       @click=${() => {
@@ -373,7 +315,7 @@ export class SubscriberList extends LitElement {
 
   renderUnSubscribers(elements: ListElement[]): TemplateResult {
     return html`<mwc-list-item noninteractive>
-        <span class="iedListTitle"
+        <span
           >${translate('subscription.subscriber.availableToSubscribe')}</span
         >
       </mwc-list-item>
@@ -389,7 +331,7 @@ export class SubscriberList extends LitElement {
 
   renderPartiallySubscribers(elements: ListElement[]): TemplateResult {
     return html`<mwc-list-item noninteractive>
-        <span class="iedListTitle"
+        <span
           >${translate('subscription.subscriber.partiallySubscribed')}</span
         >
       </mwc-list-item>
@@ -405,7 +347,7 @@ export class SubscriberList extends LitElement {
 
   renderFullSubscribers(): TemplateResult {
     return html`<mwc-list-item noninteractive>
-        <span class="iedListTitle"
+        <span
           >${translate('subscription.subscriber.subscribed')}</span
         >
       </mwc-list-item>
@@ -445,8 +387,8 @@ export class SubscriberList extends LitElement {
         ${this.renderTitle()}
         ${this.availableElements.length != 0 ||
           this.subscribedElements.length != 0
-          ? html`<div class="subscriberWrapper">
-              <filtered-list id="subscribedIeds">
+          ? html`<div class="wrapper">
+              <filtered-list>
                 ${this.renderFullSubscribers()}
                 ${this.renderPartiallySubscribers(this.availableElements.filter(
                   element => element.partial
@@ -471,19 +413,9 @@ export class SubscriberList extends LitElement {
   static styles = css`
     ${styles}
 
-    h1 {
-      overflow: unset;
-      white-space: unset;
-      text-overflow: unset;
-    }
-
-    .subscriberWrapper {
+    .wrapper {
       height: 100vh;
       overflow-y: scroll;
-    }
-
-    .iedListTitle {
-      font-weight: bold;
     }
   `;
 }

@@ -1,4 +1,4 @@
-import { css } from "lit-element";
+import { css, LitElement, query } from "lit-element";
 import { compareNames } from "../../foundation.js";
 
 export enum View {
@@ -53,6 +53,43 @@ export function getOrderedIeds(doc: XMLDocument): Element[] {
         compareNames(a, b)
       )
     : [];
+}
+
+/**
+ * An element within this list has 2 properties:
+ * - The element itself, either a GSEControl or an IED at this point.
+ * - A 'partial' property indicating if the GOOSE is fully initialized or partially.
+ */
+export interface ListElement {
+  element: Element;
+  partial?: boolean;
+}
+
+export class SubscriberListContainer extends LitElement {
+  /** List holding all current subscribed Elements. */
+  subscribedElements: ListElement[] = [];
+
+  /** List holding all current avaialble Elements which are not subscribed. */
+  availableElements: ListElement[] = [];
+
+  /** Current selected IED (when in Subscriber view) */
+  currentSelectedIed: Element | undefined;
+
+  /** The current used dataset for subscribing / unsubscribing */
+  currentUsedDataset: Element | undefined | null;
+
+  @query('div') subscriberWrapper!: Element;
+
+  protected updated(): void {
+    if (this.subscriberWrapper) {
+      this.subscriberWrapper.scrollTo(0, 0);
+    }
+  }
+
+  protected resetElements(): void {
+    this.subscribedElements = [];
+    this.availableElements = [];
+  }
 }
 
 /** Common `CSS` styles used by DataTypeTemplate subeditors */

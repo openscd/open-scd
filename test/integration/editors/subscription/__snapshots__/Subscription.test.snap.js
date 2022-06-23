@@ -235,14 +235,14 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
   <h1>
     [subscription.goose.publisherGoose.subscriberTitle]
   </h1>
-  <div class="subscriberWrapper">
-    <filtered-list id="subscribedIeds">
+  <div class="wrapper">
+    <filtered-list>
       <mwc-list-item
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.subscribed]
         </span>
       </mwc-list-item>
@@ -270,7 +270,7 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.partiallySubscribed]
         </span>
       </mwc-list-item>
@@ -298,7 +298,7 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.availableToSubscribe]
         </span>
       </mwc-list-item>
@@ -332,14 +332,14 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
   <h1>
     [subscription.goose.publisherGoose.subscriberTitle]
   </h1>
-  <div class="subscriberWrapper">
-    <filtered-list id="subscribedIeds">
+  <div class="wrapper">
+    <filtered-list>
       <mwc-list-item
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.subscribed]
         </span>
       </mwc-list-item>
@@ -367,7 +367,7 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.partiallySubscribed]
         </span>
       </mwc-list-item>
@@ -395,7 +395,7 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.availableToSubscribe]
         </span>
       </mwc-list-item>
@@ -431,14 +431,14 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
   <h1>
     [subscription.goose.publisherGoose.subscriberTitle]
   </h1>
-  <div class="subscriberWrapper">
-    <filtered-list id="subscribedIeds">
+  <div class="wrapper">
+    <filtered-list>
       <mwc-list-item
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.subscribed]
         </span>
       </mwc-list-item>
@@ -468,7 +468,7 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.partiallySubscribed]
         </span>
       </mwc-list-item>
@@ -496,7 +496,7 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.availableToSubscribe]
         </span>
       </mwc-list-item>
@@ -530,14 +530,14 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
   <h1>
     [subscription.goose.publisherGoose.subscriberTitle]
   </h1>
-  <div class="subscriberWrapper">
-    <filtered-list id="subscribedIeds">
+  <div class="wrapper">
+    <filtered-list>
       <mwc-list-item
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.subscribed]
         </span>
       </mwc-list-item>
@@ -565,7 +565,7 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.partiallySubscribed]
         </span>
       </mwc-list-item>
@@ -595,7 +595,7 @@ snapshots["Subscription Plugin in GOOSE Publisher view when selecting a GOOSE me
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.availableToSubscribe]
         </span>
       </mwc-list-item>
@@ -660,14 +660,14 @@ snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED th
   <h1>
     [subscription.goose.subscriberGoose.publisherTitle]
   </h1>
-  <div class="subscriberWrapper">
-    <filtered-list id="subscribedIeds">
+  <div class="wrapper">
+    <filtered-list>
       <mwc-list-item
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.subscribed]
         </span>
       </mwc-list-item>
@@ -691,7 +691,7 @@ snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED th
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.partiallySubscribed]
         </span>
       </mwc-list-item>
@@ -719,7 +719,7 @@ snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED th
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.availableToSubscribe]
         </span>
       </mwc-list-item>
@@ -753,14 +753,14 @@ snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED an
   <h1>
     [subscription.goose.subscriberGoose.publisherTitle]
   </h1>
-  <div class="subscriberWrapper">
-    <filtered-list id="subscribedIeds">
+  <div class="wrapper">
+    <filtered-list>
       <mwc-list-item
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.subscribed]
         </span>
       </mwc-list-item>
@@ -786,7 +786,7 @@ snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED an
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.partiallySubscribed]
         </span>
       </mwc-list-item>
@@ -814,7 +814,7 @@ snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED an
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.availableToSubscribe]
         </span>
       </mwc-list-item>
@@ -842,14 +842,14 @@ snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED an
   <h1>
     [subscription.goose.subscriberGoose.publisherTitle]
   </h1>
-  <div class="subscriberWrapper">
-    <filtered-list id="subscribedIeds">
+  <div class="wrapper">
+    <filtered-list>
       <mwc-list-item
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.subscribed]
         </span>
       </mwc-list-item>
@@ -871,7 +871,7 @@ snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED an
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.partiallySubscribed]
         </span>
       </mwc-list-item>
@@ -900,7 +900,7 @@ snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED an
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.availableToSubscribe]
         </span>
       </mwc-list-item>
@@ -932,14 +932,14 @@ snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED an
   <h1>
     [subscription.goose.subscriberGoose.publisherTitle]
   </h1>
-  <div class="subscriberWrapper">
-    <filtered-list id="subscribedIeds">
+  <div class="wrapper">
+    <filtered-list>
       <mwc-list-item
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.subscribed]
         </span>
       </mwc-list-item>
@@ -965,7 +965,7 @@ snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED an
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.partiallySubscribed]
         </span>
       </mwc-list-item>
@@ -987,7 +987,7 @@ snapshots["Subscription Plugin in GOOSE Subscriber view when selecting an IED an
         noninteractive=""
         tabindex="-1"
       >
-        <span class="iedListTitle">
+        <span>
           [subscription.subscriber.availableToSubscribe]
         </span>
       </mwc-list-item>
