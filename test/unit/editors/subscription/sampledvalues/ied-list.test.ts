@@ -42,8 +42,8 @@ describe('ied-list-smv', () => {
 
     const listItem = Array.from(
       element.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
-    ).filter(a =>
-      a.innerHTML.includes('IED2')
+    ).filter(listItem =>
+      listItem.innerHTML.includes('IED2')
     )[0];
 
     (<HTMLElement>(listItem)).click();

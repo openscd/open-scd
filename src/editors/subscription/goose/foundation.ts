@@ -18,25 +18,25 @@ export function newGOOSESelectEvent(
   });
 }
 
-export interface SubscriptionDetail {
-  element: Element;
+export interface GooseSubscriptionDetail {
+  ied: Element;
   subscribeStatus: SubscribeStatus;
 }
-export type SubscriptionEvent = CustomEvent<SubscriptionDetail>;
-export function newSubscriptionEvent(
-  element: Element,
+export type GooseSubscriptionEvent = CustomEvent<GooseSubscriptionDetail>;
+export function newGooseSubscriptionEvent(
+  ied: Element,
   subscribeStatus: SubscribeStatus
-): SubscriptionEvent {
-  return new CustomEvent<SubscriptionDetail>('subscription', {
+): GooseSubscriptionEvent {
+  return new CustomEvent<GooseSubscriptionDetail>('goose-subscription', {
     bubbles: true,
     composed: true,
-    detail: { element, subscribeStatus },
+    detail: { ied: ied, subscribeStatus },
   });
 }
 
 declare global {
   interface ElementEventMap {
     ['goose-select']: GOOSESelectEvent;
-    ['subscription']: SubscriptionEvent;
+    ['goose-subscription']: GooseSubscriptionEvent;
   }
 }

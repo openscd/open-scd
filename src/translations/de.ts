@@ -346,17 +346,23 @@ export const de: Translations = {
       subscriberView: 'Zeigt verbundene GOOSE(s) des ausgewählten IED'
     },
   },
-  sampledvalues: {
+  sampledValues: {
     none: 'Keine Verbindung vorhanden',
-    sampledValuesList: {
-      title: 'Sampled Values',
+    publisherSmv: {
+      title: '???',
+      subscriberTitle: '??? {{ selected }}',
     },
-    subscriberIed: {
+    subscriberSmv: {
+      title: '???',
+      publisherTitle: '??? {{selected}}',
+    },
+    subscriber: {
       title: 'Verbunden mit {{ selected }}',
       subscribed: 'Verbunden',
       availableToSubscribe: 'Kann verbunden werden',
       partiallySubscribed: 'Teilweise verbunden',
       noSampledValuesSelected: 'Keinen Kontrollblock ausgewählt',
+      noIedSelected: 'Keine IED ausgewählt'
     },
     view: {
       publisherView: 'Zeigt verbundene IED(s) der ausgewählten Sampled Value',

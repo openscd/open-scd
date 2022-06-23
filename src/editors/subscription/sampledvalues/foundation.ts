@@ -18,16 +18,16 @@ export function newSmvSelectEvent(
   });
 }
 
-export interface IEDSampledValuesSubscriptionDetail {
+export interface SmvSubscriptionDetail {
   ied: Element;
   subscribeStatus: SubscribeStatus;
 }
-export type IEDSampledValuesSubscriptionEvent = CustomEvent<IEDSampledValuesSubscriptionDetail>;
-export function newIEDSampledValuesSubscriptionEvent(
+export type SmvSubscriptionEvent = CustomEvent<SmvSubscriptionDetail>;
+export function newSmvSubscriptionEvent(
   ied: Element,
   subscribeStatus: SubscribeStatus
-): IEDSampledValuesSubscriptionEvent {
-  return new CustomEvent<IEDSampledValuesSubscriptionDetail>('ied-smv-subscription', {
+): SmvSubscriptionEvent {
+  return new CustomEvent<SmvSubscriptionDetail>('smv-subscription', {
     bubbles: true,
     composed: true,
     detail: { ied, subscribeStatus },
@@ -37,6 +37,6 @@ export function newIEDSampledValuesSubscriptionEvent(
 declare global {
   interface ElementEventMap {
     ['smv-select']: SmvSelectEvent;
-    ['ied-smv-subscription']: IEDSampledValuesSubscriptionEvent;
+    ['smv-subscription']: SmvSubscriptionEvent;
   }
 }

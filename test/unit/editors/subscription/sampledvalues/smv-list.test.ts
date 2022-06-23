@@ -43,8 +43,8 @@ describe('smv-list', () => {
 
     const listItem = Array.from(
       element.shadowRoot?.querySelectorAll('mwc-list-item[graphic="large"]') ?? []
-    ).filter(a =>
-      a.innerHTML.includes('MSVCB01')
+    ).filter(listItem =>
+      listItem.innerHTML.includes('MSVCB01')
     )[0];
 
     (<HTMLElement>(listItem)).click();

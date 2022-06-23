@@ -21,9 +21,9 @@ import {
   newActionEvent,
 } from '../../../foundation.js';
 import {
-  newSubscriptionEvent,
+  newGooseSubscriptionEvent,
   GOOSESelectEvent,
-  SubscriptionEvent,
+  GooseSubscriptionEvent,
 } from './foundation.js';
 import {
   emptyInputsDeleteActions,
@@ -60,7 +60,7 @@ export class SubscriberList extends LitElement {
   currentUsedDataset: Element | undefined | null;
 
   /** The name of the IED belonging to the current selected GOOSE */
-  currentGooseIEDName: string | undefined | null;
+  currentGooseIedName: string | undefined | null;
 
   /** List holding all current subscribed Elements. */
   subscribedElements: ListElement[] = [];
@@ -72,17 +72,29 @@ export class SubscriberList extends LitElement {
 
   constructor() {
     super();
-    this.onGOOSEDataSetEvent = this.onGOOSEDataSetEvent.bind(this);
-    this.onSubscriptionEvent = this.onSubscriptionEvent.bind(this);
     this.onIEDSelectEvent = this.onIEDSelectEvent.bind(this);
+    this.onGOOSESelectEvent = this.onGOOSESelectEvent.bind(this);
+    this.onGooseSubscriptionEvent = this.onGooseSubscriptionEvent.bind(this);
     this.onViewChange = this.onViewChange.bind(this);
 
     const parentDiv = this.closest('.container');
     if (parentDiv) {
-      parentDiv.addEventListener('goose-select', this.onGOOSEDataSetEvent);
-      parentDiv.addEventListener('subscription', this.onSubscriptionEvent);
-      parentDiv.addEventListener('ied-select', this.onIEDSelectEvent);
-      parentDiv.addEventListener('view', this.onViewChange);
+      parentDiv.addEventListener(
+        'ied-select',
+        this.onIEDSelectEvent
+      );
+      parentDiv.addEventListener(
+        'goose-select',
+        this.onGOOSESelectEvent
+      );
+      parentDiv.addEventListener(
+        'goose-subscription',
+        this.onGooseSubscriptionEvent
+      );
+      parentDiv.addEventListener(
+        'view',
+        this.onViewChange
+      );
     }
   }
 
@@ -151,19 +163,19 @@ export class SubscriberList extends LitElement {
    * all FCDAs are covered, or partly FCDAs are covered.
    * @param event - Incoming event.
    */
-  private async onGOOSEDataSetEvent(event: GOOSESelectEvent) {
+  private async onGOOSESelectEvent(event: GOOSESelectEvent) {
     if (!event.detail.dataset || !event.detail.gseControl) return;
 
     this.currentSelectedGseControl = event.detail.gseControl;
     this.currentUsedDataset = event.detail.dataset;
-    this.currentGooseIEDName = this.currentSelectedGseControl
+    this.currentGooseIedName = this.currentSelectedGseControl
       ?.closest('IED')
       ?.getAttribute('name');
 
     this.resetElements();
 
     Array.from(this.doc.querySelectorAll(':root > IED'))
-      .filter(ied => ied.getAttribute('name') != this.currentGooseIEDName)
+      .filter(ied => ied.getAttribute('name') != this.currentGooseIedName)
       .forEach(ied => {
         const inputElements = ied.querySelectorAll(`LN0 > Inputs, LN > Inputs`);
 
@@ -184,7 +196,7 @@ export class SubscriberList extends LitElement {
           inputElements.forEach(inputs => {
             if (
               inputs.querySelector(
-                `ExtRef[iedName=${this.currentGooseIEDName}]` +
+                `ExtRef[iedName=${this.currentGooseIedName}]` +
                   `${getFcdaReferences(fcda)}`
               )
             ) {
@@ -219,27 +231,27 @@ export class SubscriberList extends LitElement {
    * When a SubscriptionEvent is received, check if
    * @param event - Incoming event.
    */
-  private async onSubscriptionEvent(event: SubscriptionEvent) {
-    let elementToSubscribe = event.detail.element;
+  private async onGooseSubscriptionEvent(event: GooseSubscriptionEvent) {
+    let iedToSubscribe = event.detail.ied;
 
     if (view == View.SUBSCRIBER) {
-      const dataSetName = event.detail.element.getAttribute('datSet');
-      this.currentUsedDataset = event.detail.element.parentElement?.querySelector(`DataSet[name="${dataSetName}"]`);
-      this.currentGooseIEDName = event.detail.element.closest('IED')?.getAttribute('name');
-      elementToSubscribe = this.currentSelectedIed!;
+      const dataSetName = event.detail.ied.getAttribute('datSet');
+      this.currentUsedDataset = event.detail.ied.parentElement?.querySelector(`DataSet[name="${dataSetName}"]`);
+      this.currentGooseIedName = event.detail.ied.closest('IED')?.getAttribute('name');
+      iedToSubscribe = this.currentSelectedIed!;
     }
 
     switch (event.detail.subscribeStatus) {
       case SubscribeStatus.Full: {
-        this.unsubscribe(elementToSubscribe);
+        this.unsubscribe(iedToSubscribe);
         break;
       }
       case SubscribeStatus.Partial: {
-        this.subscribe(elementToSubscribe);
+        this.subscribe(iedToSubscribe);
         break;
       }
       case SubscribeStatus.None: {
-        this.subscribe(elementToSubscribe);
+        this.subscribe(iedToSubscribe);
         break;
       }
     }
@@ -270,12 +282,12 @@ export class SubscriberList extends LitElement {
     this.currentUsedDataset!.querySelectorAll('FCDA').forEach(fcda => {
       if (
         !inputsElement!.querySelector(
-          `ExtRef[iedName=${this.currentGooseIEDName}]` +
+          `ExtRef[iedName=${this.currentGooseIedName}]` +
             `${getFcdaReferences(fcda)}`
         )
       ) {
         const extRef = createElement(ied.ownerDocument, 'ExtRef', {
-          iedName: this.currentGooseIEDName!,
+          iedName: this.currentGooseIedName!,
           serviceType: 'GOOSE',
           ldInst: fcda.getAttribute('ldInst') ?? '',
           lnClass: fcda.getAttribute('lnClass') ?? '',
@@ -312,7 +324,7 @@ export class SubscriberList extends LitElement {
     ied.querySelectorAll('LN0 > Inputs, LN > Inputs').forEach(inputs => {
       this.currentUsedDataset!.querySelectorAll('FCDA').forEach(fcda => {
         const extRef = inputs.querySelector(
-          `ExtRef[iedName=${this.currentGooseIEDName}]` +
+          `ExtRef[iedName=${this.currentGooseIedName}]` +
             `${getFcdaReferences(fcda)}`
         );
 
@@ -345,7 +357,7 @@ export class SubscriberList extends LitElement {
   renderSubscriber(status: SubscribeStatus, element: Element): TemplateResult {
     return html` <mwc-list-item
       @click=${() => {
-        this.dispatchEvent(newSubscriptionEvent(element, status ?? SubscribeStatus.None));
+        this.dispatchEvent(newGooseSubscriptionEvent(element, status ?? SubscribeStatus.None));
       }}
       graphic="avatar"
       hasMeta
@@ -416,7 +428,7 @@ export class SubscriberList extends LitElement {
       ? html`<h1>
           ${translate('subscription.publisherGoose.subscriberTitle', {
             selected: gseControlName
-              ? this.currentGooseIEDName + ' > ' + gseControlName
+              ? this.currentGooseIedName + ' > ' + gseControlName
               : 'GOOSE',
           })}
         </h1>`

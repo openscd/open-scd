@@ -343,17 +343,23 @@ export const en = {
       subscriberView: 'Show subscribed GOOSE publisher for selected IED',
     }
   },
-  sampledvalues: {
-    none: 'none',
-    sampledValuesList: {
-      title: 'Sampled Values',
+  sampledValues: {
+    none: 'None',
+    publisherSmv: {
+      title: 'Sampled Values Publisher',
+      subscriberTitle: 'Subscriber of {{ selected }}',
     },
-    subscriberIed: {
+    subscriberSmv: {
+      title: 'Sampled Values Subscriber',
+      publisherTitle: 'Sampled Value(s) subscribed by {{selected}}',
+    },
+    subscriber: {
       title: 'Subscriber of {{ selected }}',
       subscribed: 'Subscribed',
       availableToSubscribe: 'Available to subscribe',
       partiallySubscribed: 'Partially subscribed',
       noSampledValuesSelected: 'No control block selected',
+      noIedSelected: 'No IED selected',
     },
     view: {
       publisherView: 'Show subscriber IED(s) per selected Sampled Value',

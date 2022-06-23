@@ -4,7 +4,7 @@ export const snapshots = {};
 snapshots["ied-list-smv looks like the latest snapshot with a document loaded"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.subscriberGoose.title]
+    [sampledValues.subscriberSmv.title]
   </h1>
   <filtered-list>
     <mwc-list-item
@@ -54,7 +54,7 @@ snapshots["ied-list-smv looks like the latest snapshot with a document loaded"] 
 snapshots["ied-list-smv looks like the latest snapshot without a doc loaded"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.subscriberGoose.title]
+    [sampledValues.subscriberSmv.title]
   </h1>
   <filtered-list>
   </filtered-list>

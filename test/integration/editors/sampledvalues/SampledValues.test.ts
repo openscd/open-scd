@@ -5,6 +5,7 @@ import '../../../mock-wizard.js';
 import SampledValues from '../../../../src/editors/SampledValues.js';
 import { Editing } from '../../../../src/Editing.js';
 import { Wizarding } from '../../../../src/Wizarding.js';
+import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 
 describe('Sampled Values Plugin', () => {
   customElements.define('smv-plugin', Wizarding(Editing(SampledValues)));
@@ -57,11 +58,9 @@ describe('Sampled Values Plugin', () => {
   
       describe('and you subscribe a non-subscribed IED', () => {
         it('it looks like the latest snapshot', async () => {
-          const ied = getSubscriberList()
-            ?.shadowRoot?.querySelectorAll('ied-element-smv')[2].shadowRoot
-            ?.querySelector('mwc-list-item');
-  
-          (<HTMLElement>(ied)).click();
+          (<HTMLElement>(
+            getItemFromSubscriberList('IED2')
+          )).click();
           await element.updateComplete;
 
           await expect(
@@ -72,11 +71,9 @@ describe('Sampled Values Plugin', () => {
   
       describe('and you unsubscribe a subscribed IED', () => {
         it('it looks like the latest snapshot', async () => {
-          const ied = getSubscriberList()
-            ?.shadowRoot?.querySelectorAll('ied-element-smv')[0].shadowRoot
-            ?.querySelector('mwc-list-item');
-  
-          (<HTMLElement>(ied)).click();
+          (<HTMLElement>(
+            getItemFromSubscriberList('IED1')
+          )).click();
           await element.updateComplete;
 
           await expect(
@@ -87,11 +84,9 @@ describe('Sampled Values Plugin', () => {
   
       describe('and you subscribe a partially subscribed IED', () => {
         it('it looks like the latest snapshot', async () => {
-          const ied = getSubscriberList()
-            ?.shadowRoot?.querySelectorAll('ied-element-smv')[1].shadowRoot
-            ?.querySelector('mwc-list-item');
-  
-          (<HTMLElement>(ied)).click();
+          (<HTMLElement>(
+            getItemFromSubscriberList('IED4')
+          )).click();
           await element.updateComplete;
 
           await expect(
@@ -104,5 +99,13 @@ describe('Sampled Values Plugin', () => {
 
   function getSubscriberList() {
     return element.shadowRoot?.querySelector('subscriber-list-smv');
+  }
+
+  function getItemFromSubscriberList(textInListItem: string): ListItem | undefined {
+    return Array.from(
+      getSubscriberList()!.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
+    ).filter(listItem =>
+      listItem.innerHTML.includes(textInListItem)
+    )[0] ?? undefined;
   }
 });

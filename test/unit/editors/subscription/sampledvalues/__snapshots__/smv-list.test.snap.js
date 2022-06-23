@@ -4,7 +4,7 @@ export const snapshots = {};
 snapshots["smv-list looks like the latest snapshot with a document loaded"] = 
 `<section tabindex="0">
   <h1>
-    [sampledvalues.sampledValuesList.title]
+    [sampledValues.publisherSmv.title]
   </h1>
   <mwc-list>
     <mwc-list-item
@@ -88,7 +88,7 @@ snapshots["smv-list looks like the latest snapshot with a document loaded"] =
 snapshots["smv-list looks like the latest snapshot without a doc loaded"] = 
 `<section tabindex="0">
   <h1>
-    [sampledvalues.sampledValuesList.title]
+    [sampledValues.publisherSmv.title]
   </h1>
   <mwc-list>
   </mwc-list>

@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["Sampled Values Plugin in Sampled Values Publisher view initially the plugin looks like the latest snapshot"] = 
 `<div>
-  <mwc-formfield label="[sampledvalues.view.publisherView]">
+  <mwc-formfield label="[sampledValues.view.publisherView]">
     <mwc-radio
       checked=""
       id="bySmvRadio"
@@ -12,7 +12,7 @@ snapshots["Sampled Values Plugin in Sampled Values Publisher view initially the 
     >
     </mwc-radio>
   </mwc-formfield>
-  <mwc-formfield label="[sampledvalues.view.publisherView]">
+  <mwc-formfield label="[sampledValues.view.publisherView]">
     <mwc-radio
       id="byIedRadio"
       name="view"
@@ -35,7 +35,7 @@ snapshots["Sampled Values Plugin in Sampled Values Publisher view initially the 
 snapshots["Sampled Values Plugin in Sampled Values Publisher view initially the Sampled Values list looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [sampledvalues.sampledValuesList.title]
+    [sampledValues.publisherSmv.title]
   </h1>
   <mwc-list>
     <mwc-list-item
@@ -135,9 +135,9 @@ snapshots["Sampled Values Plugin in Sampled Values Publisher view initially the 
 /* end snapshot Sampled Values Plugin in Sampled Values Publisher view initially the Sampled Values list looks like the latest snapshot */
 
 snapshots["Sampled Values Plugin in Sampled Values Publisher view initially the IED list looks like the latest snapshot"] = 
-`<section>
+`<section tabindex="0">
   <h1>
-    [sampledvalues.subscriberIed.title]
+    [sampledValues.publisherSmv.subscriberTitle]
   </h1>
   <mwc-list>
     <mwc-list-item
@@ -145,8 +145,8 @@ snapshots["Sampled Values Plugin in Sampled Values Publisher view initially the 
       noninteractive=""
       tabindex="-1"
     >
-      <span class="iedListTitle">
-        [sampledvalues.subscriberIed.noSampledValuesSelected]
+      <span>
+        [sampledValues.subscriber.noSampledValuesSelected]
       </span>
     </mwc-list-item>
   </mwc-list>
@@ -155,19 +155,19 @@ snapshots["Sampled Values Plugin in Sampled Values Publisher view initially the 
 /* end snapshot Sampled Values Plugin in Sampled Values Publisher view initially the IED list looks like the latest snapshot */
 
 snapshots["Sampled Values Plugin in Sampled Values Publisher view when selecting a Sampled Values message the list on the right will initially show the subscribed / partially subscribed / not subscribed IEDs"] = 
-`<section>
+`<section tabindex="0">
   <h1>
-    [sampledvalues.subscriberIed.title]
+    [sampledValues.publisherSmv.subscriberTitle]
   </h1>
   <div class="subscriberWrapper">
-    <mwc-list>
+    <filtered-list id="subscribedIeds">
       <mwc-list-item
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
       >
         <span class="iedListTitle">
-          [sampledvalues.subscriberIed.subscribed]
+          [sampledValues.subscriber.subscribed]
         </span>
       </mwc-list-item>
       <li
@@ -175,17 +175,27 @@ snapshots["Sampled Values Plugin in Sampled Values Publisher view when selecting
         role="separator"
       >
       </li>
-      <ied-element-smv>
-      </ied-element-smv>
-    </mwc-list>
-    <mwc-list>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="avatar"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="0"
+      >
+        <span>
+          IED1
+        </span>
+        <mwc-icon slot="graphic">
+          clear
+        </mwc-icon>
+      </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
       >
         <span class="iedListTitle">
-          [sampledvalues.subscriberIed.partiallySubscribed]
+          [sampledValues.subscriber.partiallySubscribed]
         </span>
       </mwc-list-item>
       <li
@@ -193,17 +203,27 @@ snapshots["Sampled Values Plugin in Sampled Values Publisher view when selecting
         role="separator"
       >
       </li>
-      <ied-element-smv>
-      </ied-element-smv>
-    </mwc-list>
-    <mwc-list>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="avatar"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <span>
+          IED4
+        </span>
+        <mwc-icon slot="graphic">
+          add
+        </mwc-icon>
+      </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
       >
         <span class="iedListTitle">
-          [sampledvalues.subscriberIed.availableToSubscribe]
+          [sampledValues.subscriber.availableToSubscribe]
         </span>
       </mwc-list-item>
       <li
@@ -211,28 +231,40 @@ snapshots["Sampled Values Plugin in Sampled Values Publisher view when selecting
         role="separator"
       >
       </li>
-      <ied-element-smv>
-      </ied-element-smv>
-    </mwc-list>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="avatar"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <span>
+          IED2
+        </span>
+        <mwc-icon slot="graphic">
+          add
+        </mwc-icon>
+      </mwc-list-item>
+    </filtered-list>
   </div>
 </section>
 `;
 /* end snapshot Sampled Values Plugin in Sampled Values Publisher view when selecting a Sampled Values message the list on the right will initially show the subscribed / partially subscribed / not subscribed IEDs */
 
 snapshots["Sampled Values Plugin in Sampled Values Publisher view when selecting a Sampled Values message and you subscribe a non-subscribed IED it looks like the latest snapshot"] = 
-`<section>
+`<section tabindex="0">
   <h1>
-    [sampledvalues.subscriberIed.title]
+    [sampledValues.publisherSmv.subscriberTitle]
   </h1>
   <div class="subscriberWrapper">
-    <mwc-list>
+    <filtered-list id="subscribedIeds">
       <mwc-list-item
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
       >
         <span class="iedListTitle">
-          [sampledvalues.subscriberIed.subscribed]
+          [sampledValues.subscriber.subscribed]
         </span>
       </mwc-list-item>
       <li
@@ -240,17 +272,27 @@ snapshots["Sampled Values Plugin in Sampled Values Publisher view when selecting
         role="separator"
       >
       </li>
-      <ied-element-smv>
-      </ied-element-smv>
-    </mwc-list>
-    <mwc-list>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="avatar"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <span>
+          IED1
+        </span>
+        <mwc-icon slot="graphic">
+          clear
+        </mwc-icon>
+      </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
       >
         <span class="iedListTitle">
-          [sampledvalues.subscriberIed.partiallySubscribed]
+          [sampledValues.subscriber.partiallySubscribed]
         </span>
       </mwc-list-item>
       <li
@@ -258,17 +300,27 @@ snapshots["Sampled Values Plugin in Sampled Values Publisher view when selecting
         role="separator"
       >
       </li>
-      <ied-element-smv>
-      </ied-element-smv>
-    </mwc-list>
-    <mwc-list>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="avatar"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <span>
+          IED4
+        </span>
+        <mwc-icon slot="graphic">
+          add
+        </mwc-icon>
+      </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
       >
         <span class="iedListTitle">
-          [sampledvalues.subscriberIed.availableToSubscribe]
+          [sampledValues.subscriber.availableToSubscribe]
         </span>
       </mwc-list-item>
       <li
@@ -276,28 +328,42 @@ snapshots["Sampled Values Plugin in Sampled Values Publisher view when selecting
         role="separator"
       >
       </li>
-      <ied-element-smv>
-      </ied-element-smv>
-    </mwc-list>
+      <mwc-list-item
+        aria-disabled="false"
+        aria-selected="true"
+        graphic="avatar"
+        hasmeta=""
+        mwc-list-item=""
+        selected=""
+        tabindex="0"
+      >
+        <span>
+          IED2
+        </span>
+        <mwc-icon slot="graphic">
+          add
+        </mwc-icon>
+      </mwc-list-item>
+    </filtered-list>
   </div>
 </section>
 `;
 /* end snapshot Sampled Values Plugin in Sampled Values Publisher view when selecting a Sampled Values message and you subscribe a non-subscribed IED it looks like the latest snapshot */
 
 snapshots["Sampled Values Plugin in Sampled Values Publisher view when selecting a Sampled Values message and you unsubscribe a subscribed IED it looks like the latest snapshot"] = 
-`<section>
+`<section tabindex="0">
   <h1>
-    [sampledvalues.subscriberIed.title]
+    [sampledValues.publisherSmv.subscriberTitle]
   </h1>
   <div class="subscriberWrapper">
-    <mwc-list>
+    <filtered-list id="subscribedIeds">
       <mwc-list-item
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
       >
         <span class="iedListTitle">
-          [sampledvalues.subscriberIed.subscribed]
+          [sampledValues.subscriber.subscribed]
         </span>
       </mwc-list-item>
       <li
@@ -305,17 +371,29 @@ snapshots["Sampled Values Plugin in Sampled Values Publisher view when selecting
         role="separator"
       >
       </li>
-      <ied-element-smv>
-      </ied-element-smv>
-    </mwc-list>
-    <mwc-list>
+      <mwc-list-item
+        aria-disabled="false"
+        aria-selected="true"
+        graphic="avatar"
+        hasmeta=""
+        mwc-list-item=""
+        selected=""
+        tabindex="0"
+      >
+        <span>
+          IED1
+        </span>
+        <mwc-icon slot="graphic">
+          clear
+        </mwc-icon>
+      </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
       >
         <span class="iedListTitle">
-          [sampledvalues.subscriberIed.partiallySubscribed]
+          [sampledValues.subscriber.partiallySubscribed]
         </span>
       </mwc-list-item>
       <li
@@ -323,17 +401,27 @@ snapshots["Sampled Values Plugin in Sampled Values Publisher view when selecting
         role="separator"
       >
       </li>
-      <ied-element-smv>
-      </ied-element-smv>
-    </mwc-list>
-    <mwc-list>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="avatar"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <span>
+          IED4
+        </span>
+        <mwc-icon slot="graphic">
+          add
+        </mwc-icon>
+      </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
       >
         <span class="iedListTitle">
-          [sampledvalues.subscriberIed.availableToSubscribe]
+          [sampledValues.subscriber.availableToSubscribe]
         </span>
       </mwc-list-item>
       <li
@@ -341,28 +429,40 @@ snapshots["Sampled Values Plugin in Sampled Values Publisher view when selecting
         role="separator"
       >
       </li>
-      <ied-element-smv>
-      </ied-element-smv>
-    </mwc-list>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="avatar"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <span>
+          IED2
+        </span>
+        <mwc-icon slot="graphic">
+          add
+        </mwc-icon>
+      </mwc-list-item>
+    </filtered-list>
   </div>
 </section>
 `;
 /* end snapshot Sampled Values Plugin in Sampled Values Publisher view when selecting a Sampled Values message and you unsubscribe a subscribed IED it looks like the latest snapshot */
 
 snapshots["Sampled Values Plugin in Sampled Values Publisher view when selecting a Sampled Values message and you subscribe a partially subscribed IED it looks like the latest snapshot"] = 
-`<section>
+`<section tabindex="0">
   <h1>
-    [sampledvalues.subscriberIed.title]
+    [sampledValues.publisherSmv.subscriberTitle]
   </h1>
   <div class="subscriberWrapper">
-    <mwc-list>
+    <filtered-list id="subscribedIeds">
       <mwc-list-item
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
       >
         <span class="iedListTitle">
-          [sampledvalues.subscriberIed.subscribed]
+          [sampledValues.subscriber.subscribed]
         </span>
       </mwc-list-item>
       <li
@@ -370,17 +470,27 @@ snapshots["Sampled Values Plugin in Sampled Values Publisher view when selecting
         role="separator"
       >
       </li>
-      <ied-element-smv>
-      </ied-element-smv>
-    </mwc-list>
-    <mwc-list>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="avatar"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <span>
+          IED1
+        </span>
+        <mwc-icon slot="graphic">
+          clear
+        </mwc-icon>
+      </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
       >
         <span class="iedListTitle">
-          [sampledvalues.subscriberIed.partiallySubscribed]
+          [sampledValues.subscriber.partiallySubscribed]
         </span>
       </mwc-list-item>
       <li
@@ -388,17 +498,29 @@ snapshots["Sampled Values Plugin in Sampled Values Publisher view when selecting
         role="separator"
       >
       </li>
-      <ied-element-smv>
-      </ied-element-smv>
-    </mwc-list>
-    <mwc-list>
+      <mwc-list-item
+        aria-disabled="false"
+        aria-selected="true"
+        graphic="avatar"
+        hasmeta=""
+        mwc-list-item=""
+        selected=""
+        tabindex="0"
+      >
+        <span>
+          IED4
+        </span>
+        <mwc-icon slot="graphic">
+          add
+        </mwc-icon>
+      </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
       >
         <span class="iedListTitle">
-          [sampledvalues.subscriberIed.availableToSubscribe]
+          [sampledValues.subscriber.availableToSubscribe]
         </span>
       </mwc-list-item>
       <li
@@ -406,9 +528,21 @@ snapshots["Sampled Values Plugin in Sampled Values Publisher view when selecting
         role="separator"
       >
       </li>
-      <ied-element-smv>
-      </ied-element-smv>
-    </mwc-list>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="avatar"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <span>
+          IED2
+        </span>
+        <mwc-icon slot="graphic">
+          add
+        </mwc-icon>
+      </mwc-list-item>
+    </filtered-list>
   </div>
 </section>
 `;
