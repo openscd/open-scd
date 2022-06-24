@@ -4,7 +4,7 @@ import { SinonSpy, spy } from 'sinon';
 import '../../../../../src/editors/subscription/goose/ied-list.js'
 import { IedList } from '../../../../../src/editors/subscription/goose/ied-list.js';
 
-describe('ied-list', () => {
+describe('ied-list-goose', () => {
   let element: IedList;
   let validSCL: XMLDocument;
   
