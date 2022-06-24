@@ -24,7 +24,7 @@ addEventListener('open-doc', onOpenDocResetSelectedGooseMsg);
 
 @customElement('ied-list-goose')
 export class IedList extends LitElement {
-  @property({ attribute: false })
+  @property()
   doc!: XMLDocument;
 
   private onIedSelect(element: Element): void {

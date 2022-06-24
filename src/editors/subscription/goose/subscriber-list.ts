@@ -3,7 +3,6 @@ import {
   customElement,
   html,
   property,
-  query,
   TemplateResult,
 } from 'lit-element';
 import { translate } from 'lit-translate';
@@ -36,7 +35,7 @@ let view: View = View.PUBLISHER;
 /** An sub element for subscribing and unsubscribing IEDs to GOOSE messages. */
 @customElement('subscriber-list-goose')
 export class SubscriberList extends SubscriberListContainer {
-  @property({ attribute: false })
+  @property()
   doc!: XMLDocument;
 
   /** Current selected GOOSE message (when in GOOSE Publisher view) */
@@ -44,8 +43,6 @@ export class SubscriberList extends SubscriberListContainer {
 
   /** The name of the IED belonging to the current selected GOOSE */
   currentGooseIedName: string | undefined | null;
-
-  @query('div') subscriberWrapper!: Element;
 
   constructor() {
     super();

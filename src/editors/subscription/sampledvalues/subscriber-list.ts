@@ -35,7 +35,7 @@ let view: View = View.PUBLISHER;
 /** An sub element for subscribing and unsubscribing IEDs to Sampled Values messages. */
 @customElement('subscriber-list-smv')
 export class SubscriberList extends SubscriberListContainer {
-  @property({ attribute: false })
+  @property()
   doc!: XMLDocument;
 
   /** Current selected Sampled Values element (when in GOOSE Publisher view) */

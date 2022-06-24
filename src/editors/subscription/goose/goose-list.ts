@@ -31,7 +31,7 @@ addEventListener('open-doc', onOpenDocResetSelectedGooseMsg);
 /** An sub element for showing all published GOOSE messages per IED. */
 @customElement('goose-list')
 export class GooseList extends LitElement {
-  @property({ attribute: false })
+  @property()
   doc!: XMLDocument;
 
   private onSelect(gseControl: Element): void {

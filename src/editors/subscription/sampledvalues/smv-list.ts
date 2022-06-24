@@ -31,7 +31,7 @@ addEventListener('open-doc', onOpenDocResetSelectedSmvMsg);
 /** An sub element for showing all Sampled Values per IED. */
 @customElement('smv-list')
 export class SmvPublisherList extends LitElement {
-  @property({ attribute: false })
+  @property()
   doc!: XMLDocument;
 
   private onSelect(smvControl: Element) {
