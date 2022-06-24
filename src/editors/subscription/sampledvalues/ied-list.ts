@@ -37,7 +37,7 @@ export class IedList extends LitElement {
     );
   }
 
-  protected firstUpdated(): void {
+  protected updated(): void {
     this.dispatchEvent(
       newIEDSelectEvent(
         selectedIed

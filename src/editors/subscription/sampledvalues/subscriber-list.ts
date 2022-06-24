@@ -128,8 +128,11 @@ export class SubscriberList extends SubscriberListContainer {
   }
 
   private async onSmvSelectEvent(event: SmvSelectEvent) {
+    if (!event.detail.dataset || !event.detail.smvControl) return;
+
     this.currentSelectedSmvControl = event.detail.smvControl;
     this.currentUsedDataset = event.detail.dataset;
+
     this.currentSmvIedName = this.currentSelectedSmvControl
       ?.closest('IED')
       ?.getAttribute('name');

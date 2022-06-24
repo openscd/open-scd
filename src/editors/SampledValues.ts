@@ -19,11 +19,11 @@ export default class SampledValuesPlugin extends LitElement {
   @property()
   doc!: XMLDocument;
 
-  @query('#bySmvRadio')
-  bySmvRadio!: RadioListItem;
+  @query('#smvPublisherView')
+  smvPublisherView!: RadioListItem;
 
-  @query('#byIedRadio')
-  byIedRadio!: RadioListItem;
+  @query('#smvSubscriberView')
+  smvSubscriberView!: RadioListItem;
 
   @query('div[class="container"]')
   listDiv!: Element;
@@ -38,26 +38,26 @@ export default class SampledValuesPlugin extends LitElement {
 
   firstUpdated(): void {
     view == View.PUBLISHER
-      ? this.bySmvRadio.setAttribute('checked', '')
-      : this.byIedRadio.setAttribute('checked', '')
+      ? this.smvPublisherView.setAttribute('checked', '')
+      : this.smvSubscriberView.setAttribute('checked', '')
   }
 
   render(): TemplateResult {
     return html`<div>
       <mwc-formfield label="${translate('subscription.smv.view.publisherView')}">
         <mwc-radio
-          id="bySmvRadio"
+          id="smvPublisherView"
           name="view"
-          value="goose"
-          @checked=${() => this.listDiv.dispatchEvent(newViewEvent(View.PUBLISHER))}
+          value="smv"
+          @click=${() => this.listDiv.dispatchEvent(newViewEvent(View.PUBLISHER))}
         ></mwc-radio>
       </mwc-formfield>
-      <mwc-formfield label="${translate('subscription.smv.view.publisherView')}">
+      <mwc-formfield label="${translate('subscription.smv.view.subscriberView')}">
         <mwc-radio
-          id="byIedRadio"
+          id="smvSubscriberView"
           name="view"
           value="ied"
-          @checked=${() => this.listDiv.dispatchEvent(newViewEvent(View.SUBSCRIBER))}
+          @click=${() => this.listDiv.dispatchEvent(newViewEvent(View.SUBSCRIBER))}
         ></mwc-radio>
       </mwc-formfield>
       <div class="container">

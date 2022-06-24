@@ -76,7 +76,7 @@ export class SmvPublisherList extends LitElement {
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
-  protected firstUpdated(): void {
+  protected updated(): void {
     this.dispatchEvent(
       newSmvSelectEvent(
         selectedSmvMsg,

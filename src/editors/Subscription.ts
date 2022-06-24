@@ -21,11 +21,11 @@ export default class SubscriptionABBPlugin extends LitElement {
   @property()
   doc!: XMLDocument;
 
-  @query('#byGooseRadio')
-  byGooseRadio!: RadioListItem;
+  @query('#goosePublisherView')
+  goosePublisherView!: RadioListItem;
 
-  @query('#byIedRadio')
-  byIedRadio!: RadioListItem;
+  @query('#gooseSubscriberView')
+  gooseSubscriberView!: RadioListItem;
 
   @query('div[class="container"]')
   listDiv!: Element;
@@ -40,26 +40,26 @@ export default class SubscriptionABBPlugin extends LitElement {
 
   firstUpdated(): void {
     view == View.PUBLISHER
-      ? this.byGooseRadio.setAttribute('checked', '')
-      : this.byIedRadio.setAttribute('checked', '')
+      ? this.goosePublisherView.setAttribute('checked', '')
+      : this.gooseSubscriberView.setAttribute('checked', '')
   }
 
   render(): TemplateResult {
     return html`<div>
       <mwc-formfield label="${translate('subscription.goose.view.publisherView')}">
         <mwc-radio
-          id="byGooseRadio"
+          id="goosePublisherView"
           name="view"
           value="goose"
-          @checked=${() => this.listDiv.dispatchEvent(newViewEvent(View.PUBLISHER))}
+          @click=${() => this.listDiv.dispatchEvent(newViewEvent(View.PUBLISHER))}
         ></mwc-radio>
       </mwc-formfield>
       <mwc-formfield label="${translate('subscription.goose.view.subscriberView')}">
         <mwc-radio
-          id="byIedRadio"
+          id="gooseSubscriberView"
           name="view"
           value="ied"
-          @checked=${() => this.listDiv.dispatchEvent(newViewEvent(View.SUBSCRIBER))}
+          @click=${() => this.listDiv.dispatchEvent(newViewEvent(View.SUBSCRIBER))}
         ></mwc-radio>
       </mwc-formfield>
       <div class="container">

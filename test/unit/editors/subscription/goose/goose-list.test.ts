@@ -52,7 +52,6 @@ describe('goose-list', () => {
     )[0];
 
     (<HTMLElement>(listItem)).click();
-    await element.updateComplete;
 
     expect(selectEvent).to.have.be.calledOnce;
     expect(selectEvent.args[0][0].detail.gseControl).to.eql(

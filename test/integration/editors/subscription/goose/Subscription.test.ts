@@ -37,7 +37,7 @@ describe('Subscription Plugin', () => {
         ).shadowDom.to.equalSnapshot();
       });
 
-      it('the IED list looks like the latest snapshot', async () => {
+      it('the subscriber list looks like the latest snapshot', async () => {
         await expect(
           getSubscriberList()
         ).shadowDom.to.equalSnapshot();
@@ -66,19 +66,14 @@ describe('Subscription Plugin', () => {
 
       describe('and subscribing an unsubscribed IED', () => {
         it('initially no ExtRefs are available in the subscriber IED', async () => {
-          const extRefs = doc.querySelectorAll(
+          expect(element.doc.querySelectorAll(
             'IED[name="IED3"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED2"], ' +
               'IED[name="IED3"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED2"]'
-          );
-          expect(extRefs.length).to.eql(0);
+          ).length).to.eql(0);
         });
 
         it('it looks like the latest snapshot', async () => {
           (<HTMLElement>getItemFromSubscriberList('IED3')).click();
-          await element.updateComplete;
-
-          // Re select the GOOSE
-          (<HTMLElement>goose).click();
           await element.updateComplete;
 
           await expect(
@@ -88,31 +83,24 @@ describe('Subscription Plugin', () => {
 
         it('adds the required ExtRefs to the subscriber IED', async () => {
           (<HTMLElement>getItemFromSubscriberList('IED3')).click();
-          await element.updateComplete;
-
-          const extRefs = element.doc.querySelectorAll(
+          
+          expect(element.doc.querySelectorAll(
             'IED[name="IED3"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED2"], ' +
               'IED[name="IED3"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED2"]'
-          );
-          expect(extRefs.length).to.eql(3);
+          ).length).to.eql(3);
         });
       });
 
       describe('and unsubscribing a subscribed IED', () => {
         it('initially all the ExtRefs are available in the subscriber IED', async () => {
-          const extRefs = doc.querySelectorAll(
+          expect(element.doc.querySelectorAll(
             'IED[name="IED1"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED2"], ' +
               'IED[name="IED1"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED2"]'
-          );
-          expect(extRefs.length).to.eql(3);
+          ).length).to.eql(3);
         });
 
         it('it looks like the latest snapshot', async () => {
           (<HTMLElement>getItemFromSubscriberList('IED1')).click();
-          await element.updateComplete;
-
-          // Re select the GOOSE
-          (<HTMLElement>goose).click();
           await element.updateComplete;
 
           await expect(
@@ -122,19 +110,17 @@ describe('Subscription Plugin', () => {
 
         it('removes the required ExtRefs from the subscriber IED', async () => {
           (<HTMLElement>getItemFromSubscriberList('IED1')).click();
-          await element.updateComplete;
 
-          const extRefs = doc.querySelectorAll(
+          expect(element.doc.querySelectorAll(
             'IED[name="IED1"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED2"], ' +
               'IED[name="IED1"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED2"]'
-          );
-          expect(extRefs.length).to.eql(0);
+          ).length).to.eql(0);
         });
       });
 
       describe('and subscribing a partially subscribed IED', () => {
         it('initially only 2 ExtRefs are available in the subscriber IED', async () => {
-          const extRefs = doc.querySelectorAll(
+          const extRefs = element.doc.querySelectorAll(
             'IED[name="IED4"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED2"],' +
               'IED[name="IED4"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED2"]'
           );
@@ -145,10 +131,6 @@ describe('Subscription Plugin', () => {
           (<HTMLElement>getItemFromSubscriberList('IED4')).click();
           await element.updateComplete;
 
-          // Re select the GOOSE
-          (<HTMLElement>goose).click();
-          await element.updateComplete;
-
           await expect(
             getSubscriberList()
           ).shadowDom.to.equalSnapshot();
@@ -156,7 +138,6 @@ describe('Subscription Plugin', () => {
 
         it('adds the required ExtRefs to the subscriber IED', async () => {
           (<HTMLElement>getItemFromSubscriberList('IED4')).click();
-          await element.updateComplete;
 
           const extRefs = element.doc.querySelectorAll(
             'IED[name="IED4"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED2"],' +
@@ -170,14 +151,29 @@ describe('Subscription Plugin', () => {
 
   describe('in Subscriber view', () => {
     beforeEach(async () => {
-      const radioButton = element.shadowRoot?.querySelector('#byIedRadio');
-      (<HTMLElement>radioButton).click();
+      (<HTMLElement>
+        element.shadowRoot?.querySelector('#gooseSubscriberView')
+      ).click();
       await element.updateComplete;
     });
 
     describe('initially', () => {
       it('the plugin looks like the latest snapshot', async () => {
-        await expect(element).shadowDom.to.equalSnapshot();
+        await expect(
+          element
+        ).shadowDom.to.equalSnapshot();
+      });
+      
+      it('the IED list looks like the latest snapshot', async () => {
+        await expect(
+          element.shadowRoot?.querySelector('ied-list-goose')
+        ).shadowDom.to.equalSnapshot();
+      });
+  
+      it('the subscriber list looks like the latest snapshot', async () => {
+        await expect(
+          getSubscriberList()
+        ).shadowDom.to.equalSnapshot();
       });
     });
 
@@ -185,7 +181,6 @@ describe('Subscription Plugin', () => {
       let ied: HTMLElement;
 
       beforeEach(async () => {
-        // Selecting one of the IEDs
         ied = Array.from(
           element.shadowRoot
             ?.querySelector('ied-list-goose')
@@ -196,7 +191,7 @@ describe('Subscription Plugin', () => {
         await element.updateComplete;
       });
 
-      it('the list on the right will initially show the subscribed / partially subscribed / not subscribed IEDs', async () => {
+      it('the subscriber list will initially show the subscribed / partially subscribed / not subscribed IEDs', async () => {
         await expect(
           getSubscriberList()
         ).shadowDom.to.equalSnapshot();
@@ -204,19 +199,14 @@ describe('Subscription Plugin', () => {
 
       describe('and subscribing a unsubscribed GOOSE message', () => {
         it('initially no ExtRefs are available in the subscriber IED', async () => {
-          const extRefs = doc.querySelectorAll(
+          expect(element.doc.querySelectorAll(
             'IED[name="IED2"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED4"], ' +
               'IED[name="IED2"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED4"]'
-          );
-          expect(extRefs.length).to.eql(0);
+          ).length).to.eql(0);
         });
 
         it('it looks like the latest snapshot', async () => {
           (<HTMLElement>getItemFromSubscriberList('IED4')).click();
-          await element.updateComplete;
-
-          // Re select the IED
-          (<HTMLElement>ied).click();
           await element.updateComplete;
 
           await expect(
@@ -226,13 +216,11 @@ describe('Subscription Plugin', () => {
 
         it('adds the required ExtRefs to the subscriber IED', async () => {
           (<HTMLElement>getItemFromSubscriberList('IED4')).click();
-          await element.updateComplete;
 
-          const extRefs = element.doc.querySelectorAll(
+          expect(element.doc.querySelectorAll(
             'IED[name="IED2"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED4"], ' +
               'IED[name="IED2"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED4"]'
-          );
-          expect(extRefs.length).to.eql(5);
+          ).length).to.eql(5);
         });
       });
 
@@ -241,24 +229,16 @@ describe('Subscription Plugin', () => {
           (<HTMLElement>getItemFromSubscriberList('IED4')).click();
           await element.updateComplete;
         });
+
         it('initially all ExtRefs are available in the subscriber IED', async () => {
-          const extRefs = element.doc.querySelectorAll(
+          expect(element.doc.querySelectorAll(
             'IED[name="IED2"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED4"], ' +
               'IED[name="IED2"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED4"]'
-          );
-          expect(extRefs.length).to.eql(5);
+          ).length).to.eql(5);
         });
 
         it('it looks like the latest snapshot', async () => {
-          // Re select the IED
-          (<HTMLElement>ied).click();
-          await element.updateComplete;
-
           (<HTMLElement>getItemFromSubscriberList('IED4')).click();
-          await element.updateComplete;
-
-          // Re select the IED
-          (<HTMLElement>ied).click();
           await element.updateComplete;
 
           await expect(
@@ -267,14 +247,9 @@ describe('Subscription Plugin', () => {
         });
 
         it('removes the required ExtRefs to the subscriber IED', async () => {
-          // Re select the IED
-          (<HTMLElement>ied).click();
-          await element.updateComplete;
-
           (<HTMLElement>getItemFromSubscriberList('IED4')).click();
-          await element.updateComplete;
 
-          const extRefs = doc.querySelectorAll(
+          const extRefs = element.doc.querySelectorAll(
             'IED[name="IED2"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED4"], ' +
               'IED[name="IED2"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED4"]'
           );
@@ -295,10 +270,6 @@ describe('Subscription Plugin', () => {
           (<HTMLElement>getItemFromSubscriberList('IED1')).click();
           await element.updateComplete;
 
-          // Re select the IED
-          (<HTMLElement>ied).click();
-          await element.updateComplete;
-
           await expect(
             getSubscriberList()
           ).shadowDom.to.equalSnapshot();
@@ -306,13 +277,11 @@ describe('Subscription Plugin', () => {
 
         it('adds the required ExtRefs to the subscriber IED', async () => {
           (<HTMLElement>getItemFromSubscriberList('IED1')).click();
-          await element.updateComplete;
 
-          const extRefs = element.doc.querySelectorAll(
+          expect(element.doc.querySelectorAll(
             'IED[name="IED2"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED1"], ' +
               'IED[name="IED2"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED1"]'
-          );
-          expect(extRefs.length).to.eql(9);
+          ).length).to.eql(9);
         });
       });
     });
