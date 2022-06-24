@@ -1,10 +1,18 @@
-import { LitElement, property } from "lit-element";
-import { getInstanceAttribute, getNameAttribute } from "../../foundation.js";
+import { LitElement, property } from 'lit-element';
+
+import { getInstanceAttribute, getNameAttribute } from '../../foundation.js';
+import { Nsdoc } from '../../foundation/nsdoc.js';
 
 /** Base class for all containers inside the IED Editor. */
 export class Container extends LitElement {
+  @property()
+  doc!: XMLDocument;
+
   @property({ attribute: false })
   element!: Element;
+
+  @property()
+  nsdoc!: Nsdoc;
 
   @property()
   ancestors: Element[] = [];
@@ -12,16 +20,14 @@ export class Container extends LitElement {
   constructor() {
     super();
 
-    this.addEventListener('focus', (event) => {
+    this.addEventListener('focus', event => {
       event.stopPropagation();
-      const pathOfAncestorNames = this.ancestors.map(ancestor => getTitleForElementPath(ancestor)!);
+      const pathOfAncestorNames = this.ancestors.map(
+        ancestor => getTitleForElementPath(ancestor)!
+      );
       pathOfAncestorNames.push(getTitleForElementPath(this.element)!);
 
-      this.dispatchEvent(
-        newFullElementPathEvent(
-          pathOfAncestorNames
-        )
-      );
+      this.dispatchEvent(newFullElementPathEvent(pathOfAncestorNames));
     });
 
     this.addEventListener('blur', () => {
@@ -40,9 +46,11 @@ export class Container extends LitElement {
  * @param tagName - The Tag-name of the element to search for.
  * @returns The found element with the tag-name or null if not found.
  */
-export function findElement(ancestors: Element[], tagName: string): Element | null {
-  return ancestors
-    .find(element => element.tagName === tagName) ?? null;
+export function findElement(
+  ancestors: Element[],
+  tagName: string
+): Element | null {
+  return ancestors.find(element => element.tagName === tagName) ?? null;
 }
 
 /**
@@ -66,7 +74,9 @@ export function findLogicaNodeElement(ancestors: Element[]): Element | null {
 export function findDOTypeElement(element: Element | null): Element | null {
   if (element && element.hasAttribute('type')) {
     const type = element.getAttribute('type');
-    return element.closest('SCL')!.querySelector(`:root > DataTypeTemplates > DOType[id="${type}"]`);
+    return element
+      .closest('SCL')!
+      .querySelector(`:root > DataTypeTemplates > DOType[id="${type}"]`);
   }
   return null;
 }
@@ -77,14 +87,17 @@ export function findDOTypeElement(element: Element | null): Element | null {
  * @param da             - The (B)DA object to search with.
  * @returns The optional SDI / DAI element.
  */
-export function getInstanceDAElement(parentInstance: Element | null, da: Element): Element | null {
+export function getInstanceDAElement(
+  parentInstance: Element | null,
+  da: Element
+): Element | null {
   if (parentInstance) {
     const daName = getNameAttribute(da);
     const bType = da.getAttribute('bType');
     if (bType == 'Struct') {
-      return parentInstance.querySelector(`:scope > SDI[name="${daName}"]`)
+      return parentInstance.querySelector(`:scope > SDI[name="${daName}"]`);
     }
-    return parentInstance.querySelector(`:scope > DAI[name="${daName}"]`)
+    return parentInstance.querySelector(`:scope > DAI[name="${daName}"]`);
   }
   return null;
 }
@@ -96,7 +109,7 @@ export function getTitleForElementPath(element: Element): string {
       return element.getAttribute('lnClass')!;
     }
     case 'LDevice': {
-      return (getNameAttribute(element) ?? getInstanceAttribute(element))!
+      return (getNameAttribute(element) ?? getInstanceAttribute(element))!;
     }
     case 'Server': {
       return 'Server';
