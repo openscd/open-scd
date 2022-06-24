@@ -1,10 +1,10 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../../../mock-wizard.js';
+import '../../../../mock-wizard.js';
 
-import SampledValues from '../../../../src/editors/SampledValues.js';
-import { Editing } from '../../../../src/Editing.js';
-import { Wizarding } from '../../../../src/Wizarding.js';
+import SampledValues from '../../../../../src/editors/SampledValues.js';
+import { Editing } from '../../../../../src/Editing.js';
+import { Wizarding } from '../../../../../src/Wizarding.js';
 import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 
 describe('Sampled Values Plugin', () => {
@@ -20,7 +20,7 @@ describe('Sampled Values Plugin', () => {
     element = await fixture(html`<smv-plugin .doc=${doc} ></smv-plugin>`);
   });
 
-  describe('in Sampled Values Publisher view', () => {
+  describe('in Publisher view', () => {
     describe('initially', () => {
       it('the plugin looks like the latest snapshot', async () => {
         await expect(
@@ -42,11 +42,16 @@ describe('Sampled Values Plugin', () => {
     });
   
     describe('when selecting a Sampled Values message', () => {
+      let smv: HTMLElement;
+
       beforeEach(async () => {
-        const smvMsg = element.shadowRoot?.querySelector('smv-list')
-        ?.shadowRoot?.querySelectorAll('mwc-list-item')[3];
+        smv = Array.from(
+          element.shadowRoot
+            ?.querySelector('smv-list')
+            ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
+        ).filter(item => !item.noninteractive)[0];
   
-        (<HTMLElement>(smvMsg)).click();
+        (<HTMLElement>(smv)).click();
         await element.updateComplete;
       });
   
@@ -56,11 +61,17 @@ describe('Sampled Values Plugin', () => {
         ).shadowDom.to.equalSnapshot();
       });
   
-      describe('and you subscribe a non-subscribed IED', () => {
+      describe('and subscribing an unsubscribed IED', () => {
+        it('initially no ExtRefs are available in the subscriber IED', async () => {
+          const extRefs = doc.querySelectorAll(
+            'IED[name="IED2"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED3"], ' +
+              'IED[name="IED2"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED3"]'
+          );
+          expect(extRefs.length).to.eql(0);
+        });
+
         it('it looks like the latest snapshot', async () => {
-          (<HTMLElement>(
-            getItemFromSubscriberList('IED2')
-          )).click();
+          (<HTMLElement>getItemFromSubscriberList('IED2')).click();
           await element.updateComplete;
 
           await expect(
@@ -71,9 +82,7 @@ describe('Sampled Values Plugin', () => {
   
       describe('and you unsubscribe a subscribed IED', () => {
         it('it looks like the latest snapshot', async () => {
-          (<HTMLElement>(
-            getItemFromSubscriberList('IED1')
-          )).click();
+          (<HTMLElement>getItemFromSubscriberList('IED1')).click();
           await element.updateComplete;
 
           await expect(
@@ -84,9 +93,7 @@ describe('Sampled Values Plugin', () => {
   
       describe('and you subscribe a partially subscribed IED', () => {
         it('it looks like the latest snapshot', async () => {
-          (<HTMLElement>(
-            getItemFromSubscriberList('IED4')
-          )).click();
+          (<HTMLElement>getItemFromSubscriberList('IED4')).click();
           await element.updateComplete;
 
           await expect(

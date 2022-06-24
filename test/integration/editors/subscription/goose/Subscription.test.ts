@@ -1,10 +1,11 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../../../mock-wizard.js';
+import '../../../../mock-wizard.js';
 
-import Subscription from '../../../../src/editors/Subscription.js';
-import { Editing } from '../../../../src/Editing.js';
-import { Wizarding } from '../../../../src/Wizarding.js';
+import Subscription from '../../../../../src/editors/Subscription.js';
+import { Editing } from '../../../../../src/Editing.js';
+import { Wizarding } from '../../../../../src/Wizarding.js';
+import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 
 describe('Subscription Plugin', () => {
   customElements.define(
@@ -24,7 +25,7 @@ describe('Subscription Plugin', () => {
     );
   });
 
-  describe('in GOOSE Publisher view', () => {
+  describe('in Publisher view', () => {
     describe('initially', () => {
       it('the plugin looks like the latest snapshot', async () => {
         await expect(element).shadowDom.to.equalSnapshot();
@@ -73,12 +74,7 @@ describe('Subscription Plugin', () => {
         });
 
         it('it looks like the latest snapshot', async () => {
-          const ied = Array.from(
-            getSubscriberList()
-              ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
-          ).filter(item => !item.noninteractive)[2];
-
-          (<HTMLElement>ied).click();
+          (<HTMLElement>getItemFromSubscriberList('IED3')).click();
           await element.updateComplete;
 
           // Re select the GOOSE
@@ -91,12 +87,7 @@ describe('Subscription Plugin', () => {
         });
 
         it('adds the required ExtRefs to the subscriber IED', async () => {
-          const ied = Array.from(
-            getSubscriberList()
-              ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
-          ).filter(item => !item.noninteractive)[2];
-
-          (<HTMLElement>ied).click();
+          (<HTMLElement>getItemFromSubscriberList('IED3')).click();
           await element.updateComplete;
 
           const extRefs = element.doc.querySelectorAll(
@@ -117,12 +108,7 @@ describe('Subscription Plugin', () => {
         });
 
         it('it looks like the latest snapshot', async () => {
-          const ied = Array.from(
-            getSubscriberList()
-              ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
-          ).filter(item => !item.noninteractive)[0];
-
-          (<HTMLElement>ied).click();
+          (<HTMLElement>getItemFromSubscriberList('IED1')).click();
           await element.updateComplete;
 
           // Re select the GOOSE
@@ -135,12 +121,7 @@ describe('Subscription Plugin', () => {
         });
 
         it('removes the required ExtRefs from the subscriber IED', async () => {
-          const ied = Array.from(
-            getSubscriberList()
-              ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
-          ).filter(item => !item.noninteractive)[0];
-
-          (<HTMLElement>ied).click();
+          (<HTMLElement>getItemFromSubscriberList('IED1')).click();
           await element.updateComplete;
 
           const extRefs = doc.querySelectorAll(
@@ -161,12 +142,7 @@ describe('Subscription Plugin', () => {
         });
 
         it('it looks like the latest snapshot', async () => {
-          const ied = Array.from(
-            getSubscriberList()
-              ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
-          ).filter(item => !item.noninteractive)[1];
-
-          (<HTMLElement>ied).click();
+          (<HTMLElement>getItemFromSubscriberList('IED4')).click();
           await element.updateComplete;
 
           // Re select the GOOSE
@@ -179,12 +155,7 @@ describe('Subscription Plugin', () => {
         });
 
         it('adds the required ExtRefs to the subscriber IED', async () => {
-          const ied = Array.from(
-            getSubscriberList()
-              ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
-          ).filter(item => !item.noninteractive)[1];
-
-          (<HTMLElement>ied).click();
+          (<HTMLElement>getItemFromSubscriberList('IED4')).click();
           await element.updateComplete;
 
           const extRefs = element.doc.querySelectorAll(
@@ -197,7 +168,7 @@ describe('Subscription Plugin', () => {
     });
   });
 
-  describe('in GOOSE Subscriber view', () => {
+  describe('in Subscriber view', () => {
     beforeEach(async () => {
       const radioButton = element.shadowRoot?.querySelector('#byIedRadio');
       (<HTMLElement>radioButton).click();
@@ -241,12 +212,7 @@ describe('Subscription Plugin', () => {
         });
 
         it('it looks like the latest snapshot', async () => {
-          const goose = Array.from(
-            getSubscriberList()
-              ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
-          ).filter(item => !item.noninteractive)[1];
-
-          (<HTMLElement>goose).click();
+          (<HTMLElement>getItemFromSubscriberList('IED4')).click();
           await element.updateComplete;
 
           // Re select the IED
@@ -259,12 +225,7 @@ describe('Subscription Plugin', () => {
         });
 
         it('adds the required ExtRefs to the subscriber IED', async () => {
-          const goose = Array.from(
-            getSubscriberList()
-              ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
-          ).filter(item => !item.noninteractive)[1];
-
-          (<HTMLElement>goose).click();
+          (<HTMLElement>getItemFromSubscriberList('IED4')).click();
           await element.updateComplete;
 
           const extRefs = element.doc.querySelectorAll(
@@ -277,13 +238,7 @@ describe('Subscription Plugin', () => {
 
       describe('and unsubscribing a subscribed GOOSE message', () => {
         beforeEach(async () => {
-          // Subscribing a GOOSE message
-          const goose = Array.from(
-            getSubscriberList()
-              ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
-          ).filter(item => !item.noninteractive)[1];
-
-          (<HTMLElement>goose).click();
+          (<HTMLElement>getItemFromSubscriberList('IED4')).click();
           await element.updateComplete;
         });
         it('initially all ExtRefs are available in the subscriber IED', async () => {
@@ -299,12 +254,7 @@ describe('Subscription Plugin', () => {
           (<HTMLElement>ied).click();
           await element.updateComplete;
 
-          const goose = Array.from(
-            getSubscriberList()
-              ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
-          ).filter(item => !item.noninteractive)[0];
-
-          (<HTMLElement>goose).click();
+          (<HTMLElement>getItemFromSubscriberList('IED4')).click();
           await element.updateComplete;
 
           // Re select the IED
@@ -321,12 +271,7 @@ describe('Subscription Plugin', () => {
           (<HTMLElement>ied).click();
           await element.updateComplete;
 
-          const goose = Array.from(
-            getSubscriberList()
-              ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
-          ).filter(item => !item.noninteractive)[0];
-
-          (<HTMLElement>goose).click();
+          (<HTMLElement>getItemFromSubscriberList('IED4')).click();
           await element.updateComplete;
 
           const extRefs = doc.querySelectorAll(
@@ -347,12 +292,7 @@ describe('Subscription Plugin', () => {
         });
 
         it('it looks like the latest snapshot', async () => {
-          const goose = Array.from(
-            getSubscriberList()
-              ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
-          ).filter(item => !item.noninteractive)[0];
-
-          (<HTMLElement>goose).click();
+          (<HTMLElement>getItemFromSubscriberList('IED1')).click();
           await element.updateComplete;
 
           // Re select the IED
@@ -365,12 +305,7 @@ describe('Subscription Plugin', () => {
         });
 
         it('adds the required ExtRefs to the subscriber IED', async () => {
-          const goose = Array.from(
-            getSubscriberList()
-              ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
-          ).filter(item => !item.noninteractive)[0];
-
-          (<HTMLElement>goose).click();
+          (<HTMLElement>getItemFromSubscriberList('IED1')).click();
           await element.updateComplete;
 
           const extRefs = element.doc.querySelectorAll(
@@ -385,5 +320,13 @@ describe('Subscription Plugin', () => {
 
   function getSubscriberList() {
     return element.shadowRoot?.querySelector('subscriber-list-goose');
+  }
+
+  function getItemFromSubscriberList(textInListItem: string): ListItem | undefined {
+    return Array.from(
+      getSubscriberList()!.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
+    ).filter(listItem =>
+      listItem.innerHTML.includes(textInListItem)
+    )[0] ?? undefined;
   }
 });
