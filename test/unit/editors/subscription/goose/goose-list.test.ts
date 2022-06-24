@@ -8,16 +8,12 @@ describe('goose-list', () => {
   let element: GooseList;
   let validSCL: XMLDocument;
   
-  let wizardEvent: SinonSpy;
   let selectEvent: SinonSpy;
 
   beforeEach(async () => {
     validSCL = await fetch('/test/testfiles/valid2007B4.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-
-    wizardEvent = spy();
-    window.addEventListener('wizard', wizardEvent);
 
     selectEvent = spy();
     window.addEventListener('goose-select', selectEvent);
@@ -62,7 +58,10 @@ describe('goose-list', () => {
     );
   });
 
-  it('triggers edit wizard when the Edit button of a GseControl is pressed', async () => {
+  it('triggers edit wizard when the Edit button of a GOOSE list item is pressed', async () => {
+    const wizardEvent = spy();
+    window.addEventListener('wizard', wizardEvent);
+
     expect(element.shadowRoot?.querySelector('mwc-list-item[graphic="large"] > mwc-icon-button[class="hidden"]')).to.not.be.null;
 
     (<HTMLElement>(
