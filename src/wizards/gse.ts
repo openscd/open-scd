@@ -15,7 +15,7 @@ import {
   WizardActor,
   WizardInputElement,
 } from '../foundation.js';
-import { contentGseWizard, updateAddress } from './address.js';
+import { contentGseOrSmvWizard, updateAddress } from './address.js';
 
 export function getMTimeAction(
   type: 'MinTime' | 'MaxTime',
@@ -146,7 +146,7 @@ export function editGseWizard(element: Element): Wizard {
         action: updateGSEAction(element),
       },
       content: [
-        ...contentGseWizard({ hasInstType, attributes }),
+        ...contentGseOrSmvWizard({ hasInstType, attributes }),
         html`<wizard-textfield
           label="MinTime"
           .maybeValue=${minTime}

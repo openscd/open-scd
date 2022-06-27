@@ -11,7 +11,7 @@ import {
   WizardActor,
   WizardInputElement,
 } from '../foundation.js';
-import { contentGseWizard, updateAddress } from './address.js';
+import { contentGseOrSmvWizard, updateAddress } from './address.js';
 
 export function updateSmvAction(element: Element): WizardActor {
   return (inputs: WizardInputElement[], wizard: Element): WizardAction[] => {
@@ -71,7 +71,7 @@ export function editSMvWizard(element: Element): Wizard {
         icon: 'edit',
         action: updateSmvAction(element),
       },
-      content: [...contentGseWizard({ hasInstType, attributes })],
+      content: [...contentGseOrSmvWizard({ hasInstType, attributes })],
     },
   ];
 }
