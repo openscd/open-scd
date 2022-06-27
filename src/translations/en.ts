@@ -364,7 +364,7 @@ export const en = {
     },
     values: {
       missing: 'No IED with 104 Addresses',
-      removeAddresses: 'Remove all addresses',
+      removeAddresses: 'Remove all Addresses',
       removedAddresses:
         'Removed Addresses from DOI "{{ name }}" ({{ nrOfAddresses }})',
       addedAddress:
