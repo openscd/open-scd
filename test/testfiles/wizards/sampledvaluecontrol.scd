@@ -307,7 +307,7 @@
                             <FCDA ldInst="MU01" prefix="U01N" lnClass="TVTR" lnInst="4" doName="Vol" daName="instMag.i" fc="MX"/>
                             <FCDA ldInst="MU01" prefix="U01N" lnClass="TVTR" lnInst="4" doName="Vol" daName="q" fc="MX"/>
                         </DataSet>
-    				<SampledValueControl smvID="IED3_SMVID" multicast="true" smpRate="80" nofASDU="1" confRev="1" name="MSVCB01" datSet="PhsMeas1">
+    				<SampledValueControl smvID="IED3_SMVID" multicast="false" smpRate="80" nofASDU="1" confRev="1" name="MSVCB01" datSet="PhsMeas1">
     					<SmvOpts/>
     				</SampledValueControl>
     				</LN0>
@@ -323,6 +323,42 @@
     		</Server>
     	</AccessPoint>
     	<AccessPoint name="P2">
+    	</AccessPoint>
+    </IED>
+	<IED name="IED4" type="DummyIED" manufacturer="DummyManufactorer" configVersion="1" originalSclVersion="2007" originalSclRevision="B" owner="DummyOwner">
+    	<Services>
+    		<DynAssociation />
+    		<GetDirectory />
+    		<GetDataObjectDefinition />
+    		<DataObjectDirectory />
+    		<GetDataSetValue />
+    		<SetDataSetValue />
+    		<DataSetDirectory />
+    		<ConfDataSet modify="false" max="3" />
+    		<DynDataSet max="42" />
+    		<ReadWrite />
+    		<ConfReportControl bufConf="false" max="10"/>
+    		<GetCBValues />
+    		<ReportSettings rptID="Dyn" optFields="Dyn" bufTime="Dyn" trgOps="Dyn" intgPd="Dyn" resvTms="true" owner="true" />
+    		<GOOSE max="1" />
+    		<GSSE max="0" />
+    		<ConfLNs fixPrefix="true" fixLnInst="true" />
+    	</Services>
+    	<AccessPoint name="P1">
+    		<Server>
+    			<Authentication none="true" />
+    			<LDevice inst="MU01">
+    				<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0.two" />
+                    <LN prefix="I01A" lnClass="TCTR" inst="1" lnType="DummyTCTR" />
+                    <LN prefix="I01B" lnClass="TCTR" inst="2" lnType="DummyTCTR" />
+                    <LN prefix="I01C" lnClass="TCTR" inst="3" lnType="DummyTCTR" />
+                    <LN prefix="I01N" lnClass="TCTR" inst="4" lnType="DummyTCTR" />
+                    <LN prefix="U01A" lnClass="TVTR" inst="1" lnType="DummyTVTR" />
+                    <LN prefix="U01B" lnClass="TVTR" inst="2" lnType="DummyTVTR" />
+                    <LN prefix="U01C" lnClass="TVTR" inst="3" lnType="DummyTVTR" />
+                    <LN prefix="U01N" lnClass="TVTR" inst="4" lnType="DummyTVTR" />
+    			</LDevice>
+    		</Server>
     	</AccessPoint>
     </IED>
     <DataTypeTemplates>
@@ -580,5 +616,4 @@
     		<EnumVal ord="8">process</EnumVal>
     	</EnumType>
     </DataTypeTemplates>
-
 </SCL>
