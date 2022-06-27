@@ -2,9 +2,7 @@ import { html } from 'lit-element';
 import { get } from 'lit-translate';
 
 import '../../../wizard-textfield.js';
-import {
-  pTypesRedundancyGroup104
-} from '../foundation/p-types.js';
+import { pTypesRedundancyGroup104 } from '../foundation/p-types.js';
 import {
   cloneElement,
   ComplexAction,
@@ -18,13 +16,19 @@ import {
   Wizard,
   WizardActor,
   WizardInputElement,
-  WizardMenuActor
+  WizardMenuActor,
 } from '../../../foundation.js';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { createLogicLinkWizard, editLogicLinkWizard } from './logiclink.js';
-import { createNetworkTextField } from '../foundation/foundation.js';
+import {
+  createNetworkTextField,
+  getTypeAttribute,
+} from '../foundation/foundation.js';
 
-export function editRedundancyGroupWizard(parent: Element, rGNumber: number): Wizard {
+export function editRedundancyGroupWizard(
+  parent: Element,
+  rGNumber: number
+): Wizard {
   const usedLLNumbers = getLogicLinkNumbers(parent, rGNumber);
   return [
     {
@@ -34,7 +38,11 @@ export function editRedundancyGroupWizard(parent: Element, rGNumber: number): Wi
           icon: 'playlist_add',
           label: get('protocol104.network.redundancyGroup.wizard.addLogicLink'),
           action: (wizard: Element): void => {
-            wizard.dispatchEvent(newSubWizardEvent(createLogicLinkWizard(parent, rGNumber, usedLLNumbers)));
+            wizard.dispatchEvent(
+              newSubWizardEvent(
+                createLogicLinkWizard(parent, rGNumber, usedLLNumbers)
+              )
+            );
           },
         },
         {
@@ -45,43 +53,64 @@ export function editRedundancyGroupWizard(parent: Element, rGNumber: number): Wi
       ],
       primary: {
         icon: 'save',
-        label: get('save'), 
+        label: get('save'),
         action: editRedundancyGroupAction(parent, rGNumber),
       },
       content: [
         html`<wizard-textfield
-          readOnly
-          label="${get('protocol104.network.redundancyGroup.wizard.redundancyGroupNumberLabel')}"
-          .maybeValue=${rGNumber}
-        ></wizard-textfield>
-        ${pTypesRedundancyGroup104.map(
-          pType => html`${createNetworkTextField(pType, parent.querySelector(
-            `Address > P[type$="RG${rGNumber}-${pType}"]`
-          )?.innerHTML)}`
-        )}
-        <h3>${get('protocol104.network.redundancyGroup.wizard.logicLinkGroupTitle')}</h3>
-        <mwc-list
-          @selected=${(e: SingleSelectedEvent) => {
-            e.target!.dispatchEvent(
-              newSubWizardEvent(() =>
-                editLogicLinkWizard(
-                  parent,
-                  rGNumber,
-                  usedLLNumbers[e.detail.index]
+            readOnly
+            label="${get(
+              'protocol104.network.redundancyGroup.wizard.redundancyGroupNumberLabel'
+            )}"
+            .maybeValue=${rGNumber}
+          ></wizard-textfield>
+          ${pTypesRedundancyGroup104.map(
+            pType =>
+              html`${createNetworkTextField(
+                pType,
+                parent.querySelector(
+                  `Address > P[type$="RG${rGNumber}-${pType}"]`
+                )?.innerHTML
+              )}`
+          )}
+          <h3>
+            ${get(
+              'protocol104.network.redundancyGroup.wizard.logicLinkGroupTitle'
+            )}
+          </h3>
+          <mwc-list
+            @selected=${(e: SingleSelectedEvent) => {
+              e.target!.dispatchEvent(
+                newSubWizardEvent(() =>
+                  editLogicLinkWizard(
+                    parent,
+                    rGNumber,
+                    usedLLNumbers[e.detail.index]
+                  )
                 )
-              )
-            );
-          }}>
-          ${usedLLNumbers.length != 0
-            ? usedLLNumbers.map(number => html`<mwc-list-item>Logic Link ${number}</mwc-list-item>`)
-            : html`<p>${get('protocol104.network.redundancyGroup.wizard.noLogicLinksAvailable')}</p>`}
-        </mwc-list>`,
+              );
+            }}
+          >
+            ${usedLLNumbers.length != 0
+              ? usedLLNumbers.map(
+                  number =>
+                    html`<mwc-list-item>Logic Link ${number}</mwc-list-item>`
+                )
+              : html`<p>
+                  ${get(
+                    'protocol104.network.redundancyGroup.wizard.noLogicLinksAvailable'
+                  )}
+                </p>`}
+          </mwc-list>`,
       ],
     },
   ];
 }
 
-export function createRedundancyGroupWizard(parent: Element, occupiedRGNumbers: number[]): Wizard {
+export function createRedundancyGroupWizard(
+  parent: Element,
+  occupiedRGNumbers: number[]
+): Wizard {
   // Calculate the first available number for the Logic Link group.
   let rGNumber = 1;
   while (occupiedRGNumbers.find(n => n == rGNumber)) {
@@ -98,13 +127,15 @@ export function createRedundancyGroupWizard(parent: Element, occupiedRGNumbers: 
       },
       content: [
         html`<wizard-textfield
-          readOnly
-          label="${get('protocol104.network.redundancyGroup.wizard.redundancyGroupNumberLabel')}"
-          value="${rGNumber}"
-        ></wizard-textfield>
-        ${pTypesRedundancyGroup104.map(
-          pType => html`${createNetworkTextField(pType)}`
-        )}`
+            readOnly
+            label="${get(
+              'protocol104.network.redundancyGroup.wizard.redundancyGroupNumberLabel'
+            )}"
+            value="${rGNumber}"
+          ></wizard-textfield>
+          ${pTypesRedundancyGroup104.map(
+            pType => html`${createNetworkTextField(pType)}`
+          )}`,
       ],
     },
   ];
@@ -122,47 +153,55 @@ function remove(parent: Element, rGNumber: number): WizardMenuActor {
 
     const complexAction: ComplexAction = {
       actions: [],
-      title: get('protocol104.network.redundancyGroup.wizard.removedRedundancyGroup', {
-        rGNumber,
-        subNetworkName: parent.parentElement!.getAttribute('name')!,
-        apName: parent.getAttribute('apName')!,
-        iedName:  parent.getAttribute('iedName')!
-      }),
+      title: get(
+        'protocol104.network.redundancyGroup.wizard.removedRedundancyGroup',
+        {
+          rGNumber,
+          subNetworkName: parent.parentElement!.getAttribute('name')!,
+          apName: parent.getAttribute('apName')!,
+          iedName: parent.getAttribute('iedName')!,
+        }
+      ),
     };
-    
+
     addressElement!.querySelectorAll(`P[type^="RG${rGNumber}-"]`).forEach(p => {
       complexAction.actions.push({
         old: {
           parent: addressElement!,
-          element: p!
-        }
+          element: p!,
+        },
       });
     });
-    
+
     wizard.dispatchEvent(newActionEvent(complexAction));
     wizard.dispatchEvent(newWizardEvent());
   };
 }
 
-function editRedundancyGroupAction(parent: Element, rGNumber: number): WizardActor {
+function editRedundancyGroupAction(
+  parent: Element,
+  rGNumber: number
+): WizardActor {
   return (inputs: WizardInputElement[]): EditorAction[] => {
     const actions: SimpleAction[] = [];
 
     pTypesRedundancyGroup104.forEach(type => {
       const inputValue = getValue(inputs.find(i => i.label === type)!)!;
-      const elementOriginal = parent.querySelector(`Address > P[type="RG${rGNumber}-${type}"]`);
+      const elementOriginal = parent.querySelector(
+        `Address > P[type="RG${rGNumber}-${type}"]`
+      );
 
       if (elementOriginal == null) {
         const pElement = createElement(parent.ownerDocument, 'P', {
-          type: `RG${rGNumber}-${type}`
+          type: `RG${rGNumber}-${type}`,
         });
         pElement.textContent = inputValue;
-  
+
         actions.push({
           new: {
             parent: parent.querySelector('Address')!,
-            element: pElement
-          }
+            element: pElement,
+          },
         });
       } else if (inputValue !== elementOriginal?.textContent) {
         const elementClone = cloneElement(elementOriginal!, {});
@@ -170,52 +209,63 @@ function editRedundancyGroupAction(parent: Element, rGNumber: number): WizardAct
 
         actions.push({
           old: {
-            element: elementOriginal!
+            element: elementOriginal!,
           },
           new: {
-            element: elementClone
-          }
+            element: elementClone,
+          },
         });
       }
     });
 
     return actions.length != 0
-      ? [{
-          actions,
-          title: get('protocol104.network.redundancyGroup.wizard.editedRedundancyGroup', {
-            rGNumber,
-            subNetworkName: parent.parentElement!.getAttribute('name')!,
-            apName: parent.getAttribute('apName')!,
-            iedName:  parent.getAttribute('iedName')!
-          }),
-        }]
+      ? [
+          {
+            actions,
+            title: get(
+              'protocol104.network.redundancyGroup.wizard.editedRedundancyGroup',
+              {
+                rGNumber,
+                subNetworkName: parent.parentElement!.getAttribute('name')!,
+                apName: parent.getAttribute('apName')!,
+                iedName: parent.getAttribute('iedName')!,
+              }
+            ),
+          },
+        ]
       : [];
   };
 }
 
-function addRedundancyGroupAction(parent: Element, rGNumber: number): WizardActor {
+function addRedundancyGroupAction(
+  parent: Element,
+  rGNumber: number
+): WizardActor {
   return (inputs: WizardInputElement[]): EditorAction[] => {
     const complexAction: ComplexAction = {
       actions: [],
-      title: get('protocol104.network.redundancyGroup.wizard.addedLRedundancyGroup', {
-        rGNumber,
-        subNetworkName: parent.parentElement!.getAttribute('name')!,
-        apName: parent.getAttribute('apName')!,
-        iedName:  parent.getAttribute('iedName')!
-      }),
+      title: get(
+        'protocol104.network.redundancyGroup.wizard.addedLRedundancyGroup',
+        {
+          rGNumber,
+          subNetworkName: parent.parentElement!.getAttribute('name')!,
+          apName: parent.getAttribute('apName')!,
+          iedName: parent.getAttribute('iedName')!,
+        }
+      ),
     };
 
     pTypesRedundancyGroup104.forEach(type => {
       const pElement = createElement(parent.ownerDocument, 'P', {
-        type: `RG${rGNumber}-${type}`
+        type: `RG${rGNumber}-${type}`,
       });
       pElement.textContent = getValue(inputs.find(i => i.label === type)!)!;
 
       complexAction.actions.push({
         new: {
           parent: parent.querySelector('Address')!,
-          element: pElement
-        }
+          element: pElement,
+        },
       });
     });
 
@@ -232,12 +282,14 @@ function addRedundancyGroupAction(parent: Element, rGNumber: number): WizardActo
 function getLogicLinkNumbers(parent: Element, rGNumber: number): number[] {
   const usedNumbers: number[] = [];
 
-  parent.querySelectorAll(`Address > P[type^="RG${rGNumber}-LL"]`).forEach(p => {
-    const logicLinkPart = p.getAttribute('type')?.split('-')[1];
-    const number = Number(logicLinkPart?.substring(2));
-    
-    if (!usedNumbers.includes(number)) usedNumbers.push(number)
-  })
+  parent
+    .querySelectorAll(`Address > P[type^="RG${rGNumber}-LL"]`)
+    .forEach(p => {
+      const logicLinkPart = getTypeAttribute(p)?.split('-')[1];
+      const number = Number(logicLinkPart?.substring(2));
+
+      if (!usedNumbers.includes(number)) usedNumbers.push(number);
+    });
 
   return usedNumbers.sort();
 }

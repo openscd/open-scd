@@ -10,6 +10,7 @@ import {
 } from '../../foundation.js';
 import { createSubNetworkWizard } from './wizards/subnetwork.js';
 import { Base104Container } from './base-container.js';
+import { getTypeAttribute } from './foundation/foundation.js';
 
 @customElement('network-104-container')
 export class Network104Container extends Base104Container {
@@ -17,7 +18,7 @@ export class Network104Container extends Base104Container {
     return Array.from(
       this.doc.querySelectorAll('Communication > SubNetwork') ?? []
     )
-      .filter(network => network.getAttribute('type') === '104')
+      .filter(network => getTypeAttribute(network) === '104')
       .sort((a, b) => compareNames(a, b));
   }
 

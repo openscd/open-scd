@@ -13,6 +13,7 @@ import { compareNames, newWizardEvent } from '../../foundation.js';
 import { translate } from 'lit-translate';
 import { createConnectedApWizard } from './wizards/connectedap.js';
 import { Base104Container } from './base-container.js';
+import { getTypeAttribute } from './foundation/foundation.js';
 
 /** [[`104`]] subeditor for a `SubNetwork` element. */
 @customElement('subnetwork-104-container')
@@ -60,7 +61,7 @@ export class SubNetwork104Container extends Base104Container {
   }
 
   private subNetworkSpecs(): string {
-    const type = this.element.getAttribute('type') ?? null;
+    const type = getTypeAttribute(this.element) ?? null;
 
     if (!type && !this.bitrate) return '';
 

@@ -141,7 +141,7 @@ export function sampledValueDataPicker(server: Element): TemplateResult {
   return html`<finder-list
     multi
     paths=${JSON.stringify([['Server: ' + identity(server)]])}
-    .read=${getReader(server, getSMVDataChildren)}
+    .read=${getReader(server.ownerDocument, getSMVDataChildren)}
     .getDisplayString=${getDisplayString}
     .getTitle=${(path: string[]) => path[path.length - 1]}
   ></finder-list>`;

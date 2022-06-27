@@ -10,7 +10,6 @@ import {
   getChildElementsByTagName,
   getNameAttribute,
   getReference,
-  getTypeAttribute,
   getUniqueElementName,
   identity,
   ifImplemented,
@@ -496,15 +495,6 @@ describe('foundation', () => {
         'LNodeType[id="Dummy.LLN0"] > DO[type="Dummy.LLN0.Mod"]'
       )!;
       expect(getNameAttribute(doElement)).to.be.equal('Mod');
-    });
-  });
-
-  describe('getTypeAttribute', () => {
-    it('expect the correct value of the type attribute', () => {
-      const doElement = scl1.querySelector(
-        'LNodeType[id="Dummy.LLN0"] > DO[name="Mod"]'
-      )!;
-      expect(getTypeAttribute(doElement)).to.be.equal('Dummy.LLN0.Mod');
     });
   });
 

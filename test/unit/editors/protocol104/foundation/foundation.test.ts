@@ -11,15 +11,16 @@ import {
   getEnumOrds,
   getEnumVal,
   getFullPath,
+  getTypeAttribute,
   isEnumDataAttribute,
 } from '../../../../../src/editors/protocol104/foundation/foundation.js';
 import { PROTOCOL_104_PRIVATE } from '../../../../../src/editors/protocol104/foundation/private.js';
 
 describe('foundation', () => {
-  let document: XMLDocument;
+  let doc: XMLDocument;
 
   beforeEach(async () => {
-    document = await fetch('/test/testfiles/104/valid-addresses.scd')
+    doc = await fetch('/test/testfiles/104/valid-addresses.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
   });
@@ -28,7 +29,7 @@ describe('foundation', () => {
     const FIRST_PRIV_ADDRESS_QUERY = `:scope > Private[type="${PROTOCOL_104_PRIVATE}"] > Address`;
 
     it('returns basic fields', () => {
-      const daiElement = document.querySelector(
+      const daiElement = doc.querySelector(
         `IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] DAI[name="ctlVal"]`
       );
       const addressElement = daiElement!.querySelector(
@@ -40,7 +41,7 @@ describe('foundation', () => {
     });
 
     it('returns expectedValue fields', () => {
-      const daiElement = document.querySelector(
+      const daiElement = doc.querySelector(
         `IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] DOI[name="Health"] DAI[name="stVal"]`
       );
       const addressElement = daiElement!.querySelector(
@@ -52,7 +53,7 @@ describe('foundation', () => {
     });
 
     it('returns check fields', () => {
-      const daiElement = document.querySelector(
+      const daiElement = doc.querySelector(
         `IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] DOI[name="DPCSO1"] DAI[name="Check"]`
       );
       const addressElement = daiElement!.querySelector(
@@ -64,7 +65,7 @@ describe('foundation', () => {
     });
 
     it('returns inverted fields', () => {
-      const daiElement = document.querySelector(
+      const daiElement = doc.querySelector(
         `IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] DOI[name="Ind2"] DAI[name="stVal"]`
       );
       const addressElement = daiElement!.querySelector(
@@ -76,9 +77,18 @@ describe('foundation', () => {
     });
   });
 
+  describe('getTypeAttribute', () => {
+    it('expect the correct value of the type attribute', () => {
+      const doElement = doc.querySelector(
+        'LNodeType[id="SE_GGIO_SET_V002"] > DO[name="Beh"]'
+      )!;
+      expect(getTypeAttribute(doElement)).to.be.equal('SE_ENS_V001');
+    });
+  });
+
   describe('getFullPath', () => {
     it('returns expected value for DOI Element', () => {
-      const doiElement = document.querySelector(
+      const doiElement = doc.querySelector(
         'IED[name="B2"] LN0[lnType="SE_LLN0_SET_default_V001"] DOI[name="Beh"]'
       );
       expect(getFullPath(doiElement!, 'IED')).to.be.equal(
@@ -87,7 +97,7 @@ describe('foundation', () => {
     });
 
     it('returns expected value for DAI Element', () => {
-      const daiElement = document.querySelector(
+      const daiElement = doc.querySelector(
         'IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] DAI[name="ctlVal"]'
       );
       expect(getFullPath(daiElement!, 'DOI')).to.be.equal('Oper / ctlVal');
@@ -97,7 +107,7 @@ describe('foundation', () => {
   describe('getCdcValue', () => {
     it('returns expected value for CDC "ENS"', () => {
       // Basic test to see if CDC is retrieved correctly.
-      const doiElement = document.querySelector(
+      const doiElement = doc.querySelector(
         'IED[name="B2"] LN0[lnType="SE_LLN0_SET_default_V001"] DOI[name="Beh"]'
       );
       expect(getCdcValueFromDOIElement(doiElement!)).to.be.equal('ENS');
@@ -105,7 +115,7 @@ describe('foundation', () => {
 
     it('returns expected value for CDC "ENC"', () => {
       // Basic test to see if CDC is retrieved correctly.
-      const doiElement = document.querySelector(
+      const doiElement = doc.querySelector(
         'IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] DOI[name="Mod"]'
       );
       expect(getCdcValueFromDOIElement(doiElement!)).to.be.equal('ENC');
@@ -114,7 +124,7 @@ describe('foundation', () => {
 
   describe('getDaiElement', () => {
     it('returns expected DAI Element', () => {
-      const doiElement = document.querySelector(
+      const doiElement = doc.querySelector(
         'IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] DOI[name="Mod"]'
       );
       const result = getDaiElement(doiElement!, 'ctlModel');
@@ -122,7 +132,7 @@ describe('foundation', () => {
     });
 
     it('returns null if DAI not found', () => {
-      const doiElement = document.querySelector(
+      const doiElement = doc.querySelector(
         'IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] DOI[name="Mod"]'
       );
       const result = getDaiElement(doiElement!, 'Unknown');
@@ -132,7 +142,7 @@ describe('foundation', () => {
 
   describe('getDaiValue', () => {
     it('returns expected DAI Value', () => {
-      const doiElement = document.querySelector(
+      const doiElement = doc.querySelector(
         'IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] DOI[name="Mod"]'
       );
       const result = getDaiValue(doiElement!, 'ctlModel');
@@ -140,7 +150,7 @@ describe('foundation', () => {
     });
 
     it('returns null if DAI not found', () => {
-      const doiElement = document.querySelector(
+      const doiElement = doc.querySelector(
         'IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] DOI[name="Mod"]'
       );
       const result = getDaiValue(doiElement!, 'Unknown');
@@ -150,7 +160,7 @@ describe('foundation', () => {
 
   describe('getCtlModel', () => {
     it('returns expected CtlModel Value', () => {
-      const lnElement = document.querySelector(
+      const lnElement = doc.querySelector(
         'IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"]'
       );
       const doElement = getDoElement(lnElement!, 'Mod');
@@ -159,7 +169,7 @@ describe('foundation', () => {
     });
 
     it('returns null if DAI not found', () => {
-      const lnElement = document.querySelector(
+      const lnElement = doc.querySelector(
         'IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"]'
       );
       const doElement = getDoElement(lnElement!, 'Beh');
@@ -170,7 +180,7 @@ describe('foundation', () => {
 
   describe('getDaElementByDaiElement', () => {
     it('returns expected DA Element', () => {
-      const daiElement = document.querySelector(
+      const daiElement = doc.querySelector(
         'IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] > DOI[name="Mod"] DAI[name="ctlVal"]'
       );
       const daElement = getDaElementByDaiElement(daiElement!);
@@ -179,7 +189,7 @@ describe('foundation', () => {
     });
 
     it('returns expected Enum DA Element', () => {
-      const daiElement = document.querySelector(
+      const daiElement = doc.querySelector(
         'IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] > DOI[name="ClcRfTyp"] > DAI[name="setVal"]'
       );
       const daElement = getDaElementByDaiElement(daiElement!);
@@ -191,7 +201,7 @@ describe('foundation', () => {
 
   describe('isEnumDataAttribute', () => {
     it('returns to not be an Enum Type', () => {
-      const daiElement = document.querySelector(
+      const daiElement = doc.querySelector(
         'IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] > DOI[name="Mod"] DAI[name="ctlVal"]'
       );
       const result = isEnumDataAttribute(daiElement!);
@@ -199,7 +209,7 @@ describe('foundation', () => {
     });
 
     it('returns to be an Enum Type', () => {
-      const daiElement = document.querySelector(
+      const daiElement = doc.querySelector(
         'IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] > DOI[name="ClcRfTyp"] > DAI[name="setVal"]'
       );
       const result = isEnumDataAttribute(daiElement!);
@@ -209,7 +219,7 @@ describe('foundation', () => {
 
   describe('getEnumVal', () => {
     it('returns expected Enum Value', () => {
-      const daiElement = document.querySelector(
+      const daiElement = doc.querySelector(
         'IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] > DOI[name="ClcRfTyp"] > DAI[name="setVal"]'
       );
       const result = getEnumVal(daiElement!, '1');
@@ -217,7 +227,7 @@ describe('foundation', () => {
     });
 
     it('returns null, because unbknown Ord Value passed', () => {
-      const daiElement = document.querySelector(
+      const daiElement = doc.querySelector(
         'IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] > DOI[name="ClcRfTyp"] > DAI[name="setVal"]'
       );
       const result = getEnumVal(daiElement!, '99');
@@ -225,7 +235,7 @@ describe('foundation', () => {
     });
 
     it('returns null, because not an Enum Type', () => {
-      const daiElement = document.querySelector(
+      const daiElement = doc.querySelector(
         'IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] > DOI[name="Mod"] DAI[name="ctlVal"]'
       );
       const result = getEnumVal(daiElement!, '1');
@@ -235,7 +245,7 @@ describe('foundation', () => {
 
   describe('getEnumOrds', () => {
     it('returns empty list, because no Enum Type', () => {
-      const daiElement = document.querySelector(
+      const daiElement = doc.querySelector(
         'IED[name="B1"] LN0[lnType="SE_LLN0_SET_V001"] > DOI[name="Mod"] DAI[name="ctlVal"]'
       );
       const result = getEnumOrds(daiElement!);
@@ -243,7 +253,7 @@ describe('foundation', () => {
     });
 
     it('returns correct list of Ord', () => {
-      const daiElement = document.querySelector(
+      const daiElement = doc.querySelector(
         'IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] > DOI[name="ClcRfTyp"] > DAI[name="setVal"]'
       );
       const result = getEnumOrds(daiElement!);

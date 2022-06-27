@@ -76,7 +76,7 @@ export function getCdcValueFromDOIElement(doiElement: Element): string | null {
 }
 
 export function getCdcValueFromDOElement(doElement: Element): string | null {
-  const doType = doElement.getAttribute('type');
+  const doType = getTypeAttribute(doElement);
   const doTypeElement = doElement.ownerDocument.querySelector(
     `DOType[id="${doType}"]`
   );
@@ -125,6 +125,16 @@ export function get104DetailsLine(
 }
 
 /**
+ * Extract the 'type' attribute from the given XML element.
+ * @param element - The element to extract instance from.
+ * @returns the value, or undefined if there is no instance.
+ */
+export function getTypeAttribute(element: Element): string | undefined {
+  const type = element.getAttribute('type');
+  return type ? type : undefined;
+}
+
+/**
  * Search for a DAI Element below the passed DOI Element.
  *
  * @param doElement - The DO Element to search on.
@@ -132,7 +142,7 @@ export function get104DetailsLine(
  * @returns The found DA Element or null, if not found.
  */
 export function getDaElement(doElement: Element, name: string): Element | null {
-  const doType = doElement.getAttribute('type');
+  const doType = getTypeAttribute(doElement);
   if (doType) {
     return doElement.ownerDocument.querySelector(
       `DOType[id="${doType}"] > DA[name="${name}"]`
@@ -288,7 +298,7 @@ function buildTemplateChainFromInstanceElements(
           templateChain.push(doElement);
 
           // For the next element search the DOType that is linked to the DO Element.
-          const typeId = doElement.getAttribute('type') ?? '';
+          const typeId = getTypeAttribute(doElement) ?? '';
           typeElement = doc.querySelector(`DOType[id="${typeId}"]`);
         } else {
           typeElement = null;
@@ -306,7 +316,7 @@ function buildTemplateChainFromInstanceElements(
 
           if (daElement.getAttribute('bType') === 'Struct') {
             // Only if the bType is a struct we need to search for the DAType for the next element.
-            const typeId = element.getAttribute('type') ?? '';
+            const typeId = getTypeAttribute(element) ?? '';
             typeElement = doc.querySelector(`DAType[id="${typeId}"]`);
           } else {
             typeElement = null;
@@ -373,7 +383,7 @@ export function isEnumDataAttribute(daiElement: Element): boolean {
 export function getEnumVal(daiElement: Element, ord: string): string | null {
   const daElement = getDaElementByDaiElement(daiElement);
   if (isEnumType(daElement)) {
-    const enumType = daElement!.getAttribute('type');
+    const enumType = getTypeAttribute(daElement!);
     const enumVal = daiElement.ownerDocument.querySelector(
       `EnumType[id="${enumType}"] > EnumVal[ord="${ord}"]`
     );
@@ -393,7 +403,7 @@ export function getEnumOrds(daiElement: Element): string[] {
   const ords: string[] = [];
   const daElement = getDaElementByDaiElement(daiElement);
   if (isEnumType(daElement)) {
-    const enumType = daElement!.getAttribute('type');
+    const enumType = getTypeAttribute(daElement!);
     const enumVals = daiElement.ownerDocument.querySelectorAll(
       `EnumType[id="${enumType}"] > EnumVal`
     );

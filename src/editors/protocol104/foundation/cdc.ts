@@ -1,7 +1,6 @@
 import {
   Create,
   getNameAttribute,
-  getTypeAttribute,
   newLogEvent,
   newWizardEvent,
 } from '../../../foundation.js';
@@ -16,6 +15,7 @@ import {
   findElementInOriginalLNStructure,
   getCdcValueFromDOElement,
   getEnumOrds,
+  getTypeAttribute,
   isEnumDataAttribute,
 } from './foundation.js';
 import { editAddressWizard } from '../wizards/address.js';
@@ -657,7 +657,7 @@ function createTemplateStructure(
   let templateStructure: Element[] | null = [doElement];
 
   const doc = doElement.ownerDocument;
-  const doType = doElement.getAttribute('type') ?? '';
+  const doType = getTypeAttribute(doElement) ?? '';
   let typeElement = doc.querySelector(`DOType[id="${doType}"]`);
 
   daPath.path.forEach(name => {
@@ -678,7 +678,7 @@ function createTemplateStructure(
 
     const bType = daElement.getAttribute('bType') ?? '';
     if (bType === 'Struct') {
-      const type = daElement.getAttribute('type') ?? '';
+      const type = getTypeAttribute(daElement) ?? '';
       typeElement = doc.querySelector(`DAType[id="${type}"]`);
     } else {
       typeElement = null;
