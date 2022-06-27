@@ -574,7 +574,7 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
