@@ -1,5 +1,6 @@
 import { html, TemplateResult } from 'lit-element';
 import { get, translate } from 'lit-translate';
+import { ifDefined } from 'lit-html/directives/if-defined';
 
 import '@material/mwc-checkbox';
 import '@material/mwc-switch';
@@ -7,12 +8,15 @@ import '@material/mwc-formfield';
 import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-list/mwc-check-list-item';
 import '@material/mwc-icon';
+
 import { Checkbox } from '@material/mwc-checkbox';
 import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
+import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
 import '../../../wizard-textfield.js';
 import '../../../filtered-list.js';
+
 import {
   pTypes104,
   stationTypeOptions,
@@ -35,15 +39,11 @@ import {
   WizardInputElement,
   WizardMenuActor,
 } from '../../../foundation.js';
-import { createTypeRestrictionCheckbox } from '../../../wizards/connectedap.js';
-import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
-import { ifDefined } from 'lit-html/directives/if-defined';
-import { typeMaxLength } from '../../../wizards/foundation/p-types.js';
+import { getTypeAttribute } from '../foundation/foundation.js';
 import {
   createRedundancyGroupWizard,
   editRedundancyGroupWizard,
 } from './redundancygroup.js';
-import { getTypeAttribute } from '../foundation/foundation';
 
 interface AccessPointDescription {
   element: Element;
@@ -383,6 +383,21 @@ function createEditTextField(parent: Element, pType: string): TemplateResult {
     pattern="${ifDefined(typePattern[pType])}"
     .maybeValue=${parent.querySelector(`Address > P[type="${pType}"]`)
       ?.innerHTML ?? null}
-    maxLength="${ifDefined(typeMaxLength[pType])}"
   ></wizard-textfield>`;
+}
+
+function createTypeRestrictionCheckbox(element: Element): TemplateResult {
+  return html`<mwc-formfield
+    label="${translate('connectedap.wizard.addschemainsttype')}"
+    ><mwc-checkbox
+      id="typeRestriction"
+      ?checked=${hasTypeRestriction(element)}
+    ></mwc-checkbox>
+  </mwc-formfield>`;
+}
+
+function hasTypeRestriction(element: Element): boolean {
+  return Array.from(element.querySelectorAll('Address > P'))
+    .filter(p => isPublic(p))
+    .some(pType => pType.getAttribute('xsi:type'));
 }

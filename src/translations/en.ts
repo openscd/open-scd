@@ -403,11 +403,11 @@ export const en = {
           },
           redundancyGroupNumberLabel: 'Redundancy Group number',
           addedLRedundancyGroup:
-            'Added Redundancy Group {{ rGNumber }} from SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+            'Added Redundancy Group {{ rGNumber }} from SubNetwork (name="{{ subNetworkName }}") and ConnectedAP (AccessPoint Name="{{ apName }}", IED Name="{{ iedName }}")',
           editedRedundancyGroup:
-            'Edited Redundancy Group {{ rGNumber }} from SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+            'Edited Redundancy Group {{ rGNumber }} from SubNetwork (name="{{ subNetworkName }}") and ConnectedAP (AccessPoint Name="{{ apName }}", IED Name="{{ iedName }}")',
           removedRedundancyGroup:
-            'Removed Redundancy Group {{ rGNumber }} from SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+            'Removed Redundancy Group {{ rGNumber }} from SubNetwork (name="{{ subNetworkName }}") and ConnectedAP (AccessPoint Name="{{ apName }}", IED Name="{{ iedName }}")',
           logicLinkGroupTitle: 'Logic Links',
           noLogicLinksAvailable: 'No Logic Links available',
           addLogicLink: 'Logic Link',
@@ -421,11 +421,11 @@ export const en = {
           },
           logicLinkNumberLabel: 'Logic Link number',
           addedLogicLink:
-            'Added Logic Link group from SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+            'Added Logic Link group to SubNetwork (name="{{ subNetworkName }}") and ConnectedAP (AccessPoint Name="{{ apName }}", IED Name="{{ iedName }}")',
           editedLogicLink:
-            'Edited Logic Link group from SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+            'Edited Logic Link group from SubNetwork (name="{{ subNetworkName }}") and ConnectedAP (AccessPoint Name="{{ apName }}", IED Name="{{ iedName }}")',
           removedLogicLink:
-            'Removed Logic Link group from SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+            'Removed Logic Link group from SubNetwork (name="{{ subNetworkName }}") and ConnectedAP (AccessPoint Name="{{ apName }}", IED Name="{{ iedName }}")',
         },
       },
     },
