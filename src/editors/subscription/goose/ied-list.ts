@@ -30,35 +30,28 @@ export class IedList extends LitElement {
   private onIedSelect(element: Element): void {
     selectedIed = element;
 
-    this.dispatchEvent(
-      newIEDSelectEvent(
-        selectedIed
-      )
-    );
+    this.dispatchEvent(newIEDSelectEvent(selectedIed));
   }
 
   protected updated(): void {
-    this.dispatchEvent(
-      newIEDSelectEvent(
-        selectedIed
-      )
-    );
+    this.dispatchEvent(newIEDSelectEvent(selectedIed));
   }
 
   render(): TemplateResult {
     return html` <section tabindex="0">
       <h1>${translate('subscription.goose.subscriberGoose.title')}</h1>
       <filtered-list>
-        ${getOrderedIeds(this.doc).map(ied =>
-          html`
-            <mwc-list-item
-              @click=${() => this.onIedSelect(ied)}
-              graphic="icon"
-            >
-              <span>${getNameAttribute(ied)}</span>
-              <mwc-icon slot="graphic">developer_board</mwc-icon>
-            </mwc-list-item>
-          `
+        ${getOrderedIeds(this.doc).map(
+          ied =>
+            html`
+              <mwc-list-item
+                @click=${() => this.onIedSelect(ied)}
+                graphic="icon"
+              >
+                <span>${getNameAttribute(ied)}</span>
+                <mwc-icon slot="graphic">developer_board</mwc-icon>
+              </mwc-list-item>
+            `
         )}
       </filtered-list>
     </section>`;

@@ -43,12 +43,7 @@ export class SmvPublisherList extends LitElement {
     selectedSmvMsg = smvControl;
     selectedDataSet = dataset;
 
-    this.dispatchEvent(
-      newSmvSelectEvent(
-        selectedSmvMsg,
-        selectedDataSet!
-      )
-    );
+    this.dispatchEvent(newSmvSelectEvent(selectedSmvMsg, selectedDataSet!));
 
     this.requestUpdate();
   }
@@ -57,7 +52,8 @@ export class SmvPublisherList extends LitElement {
     return html`<mwc-list-item
       @click=${() => this.onSelect(smvControl)}
       graphic="large"
-      hasMeta>
+      hasMeta
+    >
       <mwc-icon slot="graphic">${smvIcon}</mwc-icon>
       <span>${smvControl.getAttribute('name')}</span>
       <mwc-icon-button
@@ -70,7 +66,7 @@ export class SmvPublisherList extends LitElement {
       ></mwc-icon-button>
     </mwc-list-item>`;
   }
-  
+
   private openEditWizard(smvControl: Element): void {
     const wizard = wizards['SampledValueControl'].edit(smvControl);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
@@ -78,10 +74,7 @@ export class SmvPublisherList extends LitElement {
 
   protected updated(): void {
     this.dispatchEvent(
-      newSmvSelectEvent(
-        selectedSmvMsg,
-        selectedDataSet ?? undefined
-      )
+      newSmvSelectEvent(selectedSmvMsg, selectedDataSet ?? undefined)
     );
   }
 
@@ -89,7 +82,8 @@ export class SmvPublisherList extends LitElement {
     return html` <section tabindex="0">
       <h1>${translate('subscription.smv.publisherSmv.title')}</h1>
       <filtered-list>
-        ${getOrderedIeds(this.doc).map(ied =>
+        ${getOrderedIeds(this.doc).map(
+          ied =>
             html`
               <mwc-list-item noninteractive graphic="icon">
                 <span>${getNameAttribute(ied)}</span>
@@ -97,11 +91,10 @@ export class SmvPublisherList extends LitElement {
               </mwc-list-item>
               <li divider role="separator"></li>
               ${Array.from(
-                  ied.querySelectorAll(
-                    ':scope > AccessPoint > Server > LDevice > LN0 > SampledValueControl'
-                  )
-                ).map(control => this.renderSmv(control))
-              }
+                ied.querySelectorAll(
+                  ':scope > AccessPoint > Server > LDevice > LN0 > SampledValueControl'
+                )
+              ).map(control => this.renderSmv(control))}
             `
         )}
       </filtered-list>

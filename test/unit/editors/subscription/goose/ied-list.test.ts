@@ -1,13 +1,13 @@
 import { html, fixture, expect } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
-import '../../../../../src/editors/subscription/goose/ied-list.js'
+import '../../../../../src/editors/subscription/goose/ied-list.js';
 import { IedList } from '../../../../../src/editors/subscription/goose/ied-list.js';
 
 describe('ied-list-goose', () => {
   let element: IedList;
   let validSCL: XMLDocument;
-  
+
   let selectEvent: SinonSpy;
 
   beforeEach(async () => {
@@ -42,11 +42,9 @@ describe('ied-list-goose', () => {
 
     const listItem = Array.from(
       element.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
-    ).filter(a =>
-      a.innerHTML.includes('IED2')
-    )[0];
+    ).filter(a => a.innerHTML.includes('IED2'))[0];
 
-    (<HTMLElement>(listItem)).click();
+    (<HTMLElement>listItem).click();
     await element.updateComplete;
 
     expect(selectEvent).to.have.be.calledOnce;

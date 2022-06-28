@@ -1,6 +1,6 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../../../../../src/editors/subscription/goose/subscriber-list.js'
+import '../../../../../src/editors/subscription/goose/subscriber-list.js';
 import { SubscriberList } from '../../../../../src/editors/subscription/goose/subscriber-list.js';
 
 describe('subscriber-list-goose', () => {

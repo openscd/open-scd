@@ -25,9 +25,17 @@ import {
 } from './foundation.js';
 import {
   emptyInputsDeleteActions,
-  getFcdaReferences
-} from "../../../foundation/ied.js";
-import { IEDSelectEvent, ListElement, styles, SubscriberListContainer, SubscribeStatus, View, ViewEvent } from '../foundation.js';
+  getFcdaReferences,
+} from '../../../foundation/ied.js';
+import {
+  IEDSelectEvent,
+  ListElement,
+  styles,
+  SubscriberListContainer,
+  SubscribeStatus,
+  View,
+  ViewEvent,
+} from '../foundation.js';
 
 /** Defining view outside the class, which makes it persistent. */
 let view: View = View.PUBLISHER;
@@ -53,22 +61,13 @@ export class SubscriberList extends SubscriberListContainer {
 
     const parentDiv = this.closest('.container');
     if (parentDiv) {
-      parentDiv.addEventListener(
-        'ied-select',
-        this.onIEDSelectEvent
-      );
-      parentDiv.addEventListener(
-        'goose-select',
-        this.onGOOSESelectEvent
-      );
+      parentDiv.addEventListener('ied-select', this.onIEDSelectEvent);
+      parentDiv.addEventListener('goose-select', this.onGOOSESelectEvent);
       parentDiv.addEventListener(
         'goose-subscription',
         this.onGooseSubscriptionEvent
       );
-      parentDiv.addEventListener(
-        'view',
-        this.onViewChange
-      );
+      parentDiv.addEventListener('view', this.onViewChange);
     }
   }
 
@@ -78,12 +77,18 @@ export class SubscriberList extends SubscriberListContainer {
 
     this.resetElements();
 
-    const subscribedInputs = this.currentSelectedIed.querySelectorAll(`LN0 > Inputs, LN > Inputs`);
+    const subscribedInputs = this.currentSelectedIed.querySelectorAll(
+      `LN0 > Inputs, LN > Inputs`
+    );
 
     this.doc.querySelectorAll('GSEControl').forEach(control => {
       const ied = control.closest('IED')!;
 
-      if (ied.getAttribute('name') == this.currentSelectedIed?.getAttribute('name')) return;
+      if (
+        ied.getAttribute('name') ==
+        this.currentSelectedIed?.getAttribute('name')
+      )
+        return;
 
       /** If no Inputs is available, it's automatically available. */
       if (subscribedInputs.length == 0) {
@@ -92,7 +97,9 @@ export class SubscriberList extends SubscriberListContainer {
       }
 
       let numberOfLinkedExtRefs = 0;
-      const dataSet = ied.querySelector(`DataSet[name="${control.getAttribute('datSet')}"]`);
+      const dataSet = ied.querySelector(
+        `DataSet[name="${control.getAttribute('datSet')}"]`
+      );
 
       if (!dataSet) return;
 
@@ -114,15 +121,12 @@ export class SubscriberList extends SubscriberListContainer {
         return;
       }
 
-      if (
-        numberOfLinkedExtRefs >=
-        dataSet!.querySelectorAll('FCDA').length
-      ) {
+      if (numberOfLinkedExtRefs >= dataSet!.querySelectorAll('FCDA').length) {
         this.subscribedElements.push({ element: control });
       } else {
         this.availableElements.push({ element: control, partial: true });
       }
-    })
+    });
 
     this.requestUpdate();
   }
@@ -156,7 +160,7 @@ export class SubscriberList extends SubscriberListContainer {
         /**
          * Count all the linked ExtRefs.
          */
-         this.currentUsedDataset!.querySelectorAll('FCDA').forEach(fcda => {
+        this.currentUsedDataset!.querySelectorAll('FCDA').forEach(fcda => {
           inputElements.forEach(inputs => {
             if (
               inputs.querySelector(
@@ -196,8 +200,12 @@ export class SubscriberList extends SubscriberListContainer {
 
     if (view == View.SUBSCRIBER) {
       const dataSetName = event.detail.ied.getAttribute('datSet');
-      this.currentUsedDataset = event.detail.ied.parentElement?.querySelector(`DataSet[name="${dataSetName}"]`);
-      this.currentGooseIedName = event.detail.ied.closest('IED')?.getAttribute('name');
+      this.currentUsedDataset = event.detail.ied.parentElement?.querySelector(
+        `DataSet[name="${dataSetName}"]`
+      );
+      this.currentGooseIedName = event.detail.ied
+        .closest('IED')
+        ?.getAttribute('name');
       iedToSubscribe = this.currentSelectedIed!;
     }
 
@@ -222,7 +230,7 @@ export class SubscriberList extends SubscriberListContainer {
 
     this.currentSelectedIed = undefined;
     this.currentSelectedGseControl = undefined;
-    
+
     this.resetElements();
     this.requestUpdate();
   }
@@ -298,16 +306,19 @@ export class SubscriberList extends SubscriberListContainer {
   renderSubscriber(status: SubscribeStatus, element: Element): TemplateResult {
     return html` <mwc-list-item
       @click=${() => {
-        this.dispatchEvent(newGooseSubscriptionEvent(element, status ?? SubscribeStatus.None));
+        this.dispatchEvent(
+          newGooseSubscriptionEvent(element, status ?? SubscribeStatus.None)
+        );
       }}
       graphic="avatar"
       hasMeta
+    >
+      <span
+        >${view == View.PUBLISHER
+          ? element.getAttribute('name')
+          : element.getAttribute('name') +
+            ` (${element.closest('IED')?.getAttribute('name')})`}</span
       >
-      <span>${
-        view == View.PUBLISHER
-        ? element.getAttribute('name')
-        : element.getAttribute('name') + ` (${element.closest('IED')?.getAttribute('name')})`
-      }</span>
       <mwc-icon slot="graphic"
         >${status == SubscribeStatus.Full ? html`clear` : html`add`}</mwc-icon
       >
@@ -332,9 +343,7 @@ export class SubscriberList extends SubscriberListContainer {
 
   renderPartiallySubscribers(elements: ListElement[]): TemplateResult {
     return html`<mwc-list-item noninteractive>
-        <span
-          >${translate('subscription.subscriber.partiallySubscribed')}</span
-        >
+        <span>${translate('subscription.subscriber.partiallySubscribed')}</span>
       </mwc-list-item>
       <li divider role="separator"></li>
       ${elements.length > 0
@@ -348,9 +357,7 @@ export class SubscriberList extends SubscriberListContainer {
 
   renderFullSubscribers(): TemplateResult {
     return html`<mwc-list-item noninteractive>
-        <span
-          >${translate('subscription.subscriber.subscribed')}</span
-        >
+        <span>${translate('subscription.subscriber.subscribed')}</span>
       </mwc-list-item>
       <li divider role="separator"></li>
       ${this.subscribedElements.length > 0
@@ -363,7 +370,8 @@ export class SubscriberList extends SubscriberListContainer {
   }
 
   renderTitle(): TemplateResult {
-    const gseControlName = this.currentSelectedGseControl?.getAttribute('name') ?? undefined;
+    const gseControlName =
+      this.currentSelectedGseControl?.getAttribute('name') ?? undefined;
 
     return view == View.PUBLISHER
       ? html`<h1>
@@ -376,8 +384,8 @@ export class SubscriberList extends SubscriberListContainer {
       : html`<h1>
           ${translate('subscription.goose.subscriberGoose.publisherTitle', {
             selected: this.currentSelectedIed
-            ? this.currentSelectedIed.getAttribute('name')!
-            : 'IED',
+              ? this.currentSelectedIed.getAttribute('name')!
+              : 'IED',
           })}
         </h1>`;
   }
@@ -387,23 +395,27 @@ export class SubscriberList extends SubscriberListContainer {
       <section tabindex="0">
         ${this.renderTitle()}
         ${this.availableElements.length != 0 ||
-          this.subscribedElements.length != 0
+        this.subscribedElements.length != 0
           ? html`<div class="wrapper">
               <filtered-list>
                 ${this.renderFullSubscribers()}
-                ${this.renderPartiallySubscribers(this.availableElements.filter(
-                  element => element.partial
-                ))}
-                ${this.renderUnSubscribers(this.availableElements.filter(
-                  element => !element.partial
-                ))}
+                ${this.renderPartiallySubscribers(
+                  this.availableElements.filter(element => element.partial)
+                )}
+                ${this.renderUnSubscribers(
+                  this.availableElements.filter(element => !element.partial)
+                )}
               </filtered-list>
             </div>`
           : html`<mwc-list>
               <mwc-list-item noninteractive>
-                <span>${view == View.PUBLISHER
-                  ? translate('subscription.subscriber.noControlBlockSelected')
-                  : translate('subscription.subscriber.noIedSelected')}</span>
+                <span>${
+                  view == View.PUBLISHER
+                    ? translate(
+                        'subscription.subscriber.noControlBlockSelected'
+                      )
+                    : translate('subscription.subscriber.noIedSelected')
+                }</span>
               </mwc-list-item>
             </mwc-list>
           </div>`}

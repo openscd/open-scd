@@ -344,8 +344,8 @@ export const de: Translations = {
       },
       view: {
         publisherView: 'Zeigt verbundene IED(s) der ausgewählten GOOSE',
-        subscriberView: 'Zeigt verbundene GOOSE(s) des ausgewählten IED'
-      }
+        subscriberView: 'Zeigt verbundene GOOSE(s) des ausgewählten IED',
+      },
     },
     smv: {
       publisherSmv: {
@@ -358,9 +358,10 @@ export const de: Translations = {
       },
       view: {
         publisherView: 'Zeigt verbundene IED(s) der ausgewählten Sampled Value',
-        subscriberView: 'Zeigt verbundene Sampled Value(s) des ausgewählten IED'
-      }
-    }
+        subscriberView:
+          'Zeigt verbundene Sampled Value(s) des ausgewählten IED',
+      },
+    },
   },
   'enum-val': {
     wizard: {

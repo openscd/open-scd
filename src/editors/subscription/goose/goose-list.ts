@@ -46,10 +46,7 @@ export class GooseList extends LitElement {
     selectedDataSet = dataset;
 
     this.dispatchEvent(
-      newGOOSESelectEvent(
-        selectedGseControl,
-        selectedDataSet!
-      )
+      newGOOSESelectEvent(selectedGseControl, selectedDataSet!)
     );
 
     this.requestUpdate();
@@ -73,7 +70,7 @@ export class GooseList extends LitElement {
       ></mwc-icon-button>
     </mwc-list-item>`;
   }
-  
+
   private openEditWizard(gseControl: Element): void {
     const wizard = wizards['GSEControl'].edit(gseControl);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
@@ -81,10 +78,7 @@ export class GooseList extends LitElement {
 
   protected updated(): void {
     this.dispatchEvent(
-      newGOOSESelectEvent(
-        selectedGseControl,
-        selectedDataSet ?? undefined
-      )
+      newGOOSESelectEvent(selectedGseControl, selectedDataSet ?? undefined)
     );
   }
 
@@ -92,20 +86,20 @@ export class GooseList extends LitElement {
     return html` <section tabindex="0">
       <h1>${translate('subscription.goose.publisherGoose.title')}</h1>
       <filtered-list>
-        ${getOrderedIeds(this.doc).map(ied =>
-          html`
-            <mwc-list-item noninteractive graphic="icon">
-              <span>${getNameAttribute(ied)}</span>
-              <mwc-icon slot="graphic">developer_board</mwc-icon>
-            </mwc-list-item>
-            <li divider role="separator"></li>
-            ${Array.from(
+        ${getOrderedIeds(this.doc).map(
+          ied =>
+            html`
+              <mwc-list-item noninteractive graphic="icon">
+                <span>${getNameAttribute(ied)}</span>
+                <mwc-icon slot="graphic">developer_board</mwc-icon>
+              </mwc-list-item>
+              <li divider role="separator"></li>
+              ${Array.from(
                 ied.querySelectorAll(
                   ':scope > AccessPoint > Server > LDevice > LN0 > GSEControl'
                 )
-              ).map(control => this.renderGoose(control))
-            }
-          `
+              ).map(control => this.renderGoose(control))}
+            `
         )}
       </filtered-list>
     </section>`;

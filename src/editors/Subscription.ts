@@ -1,4 +1,11 @@
-import { LitElement, html, TemplateResult, property, css, query } from 'lit-element';
+import {
+  LitElement,
+  html,
+  TemplateResult,
+  property,
+  css,
+  query,
+} from 'lit-element';
 
 import '@material/mwc-fab';
 import '@material/mwc-radio';
@@ -41,32 +48,40 @@ export default class SubscriptionABBPlugin extends LitElement {
   firstUpdated(): void {
     view == View.PUBLISHER
       ? this.goosePublisherView.setAttribute('checked', '')
-      : this.gooseSubscriberView.setAttribute('checked', '')
+      : this.gooseSubscriberView.setAttribute('checked', '');
   }
 
   render(): TemplateResult {
     return html`<div>
-      <mwc-formfield label="${translate('subscription.goose.view.publisherView')}">
+      <mwc-formfield
+        label="${translate('subscription.goose.view.publisherView')}"
+      >
         <mwc-radio
           id="goosePublisherView"
           name="view"
           value="goose"
-          @click=${() => this.listDiv.dispatchEvent(newViewEvent(View.PUBLISHER))}
+          @click=${() =>
+            this.listDiv.dispatchEvent(newViewEvent(View.PUBLISHER))}
         ></mwc-radio>
       </mwc-formfield>
-      <mwc-formfield label="${translate('subscription.goose.view.subscriberView')}">
+      <mwc-formfield
+        label="${translate('subscription.goose.view.subscriberView')}"
+      >
         <mwc-radio
           id="gooseSubscriberView"
           name="view"
           value="ied"
-          @click=${() => this.listDiv.dispatchEvent(newViewEvent(View.SUBSCRIBER))}
+          @click=${() =>
+            this.listDiv.dispatchEvent(newViewEvent(View.SUBSCRIBER))}
         ></mwc-radio>
       </mwc-formfield>
       <div class="container">
         ${view == View.PUBLISHER
           ? html`<goose-list class="row" .doc=${this.doc}></goose-list>`
-          : html`<ied-list-goose class="row" .doc=${this.doc}></ied-list-goose>`
-        }
+          : html`<ied-list-goose
+              class="row"
+              .doc=${this.doc}
+            ></ied-list-goose>`}
         <subscriber-list-goose
           class="row"
           .doc=${this.doc}

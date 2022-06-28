@@ -1,15 +1,15 @@
-import { css, LitElement, query } from "lit-element";
-import { compareNames } from "../../foundation.js";
+import { css, LitElement, query } from 'lit-element';
+import { compareNames } from '../../foundation.js';
 
 export enum View {
   PUBLISHER,
-  SUBSCRIBER
+  SUBSCRIBER,
 }
 
 /**
  * Enumeration stating the Subscribe status of a IED to a GOOSE or Sampled Value.
  */
- export enum SubscribeStatus {
+export enum SubscribeStatus {
   Full,
   Partial,
   None,

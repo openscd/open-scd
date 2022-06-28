@@ -1,4 +1,11 @@
-import { LitElement, html, TemplateResult, property, css, query } from 'lit-element';
+import {
+  LitElement,
+  html,
+  TemplateResult,
+  property,
+  css,
+  query,
+} from 'lit-element';
 
 import '@material/mwc-fab';
 
@@ -39,36 +46,38 @@ export default class SampledValuesPlugin extends LitElement {
   firstUpdated(): void {
     view == View.PUBLISHER
       ? this.smvPublisherView.setAttribute('checked', '')
-      : this.smvSubscriberView.setAttribute('checked', '')
+      : this.smvSubscriberView.setAttribute('checked', '');
   }
 
   render(): TemplateResult {
     return html`<div>
-      <mwc-formfield label="${translate('subscription.smv.view.publisherView')}">
+      <mwc-formfield
+        label="${translate('subscription.smv.view.publisherView')}"
+      >
         <mwc-radio
           id="smvPublisherView"
           name="view"
           value="smv"
-          @click=${() => this.listDiv.dispatchEvent(newViewEvent(View.PUBLISHER))}
+          @click=${() =>
+            this.listDiv.dispatchEvent(newViewEvent(View.PUBLISHER))}
         ></mwc-radio>
       </mwc-formfield>
-      <mwc-formfield label="${translate('subscription.smv.view.subscriberView')}">
+      <mwc-formfield
+        label="${translate('subscription.smv.view.subscriberView')}"
+      >
         <mwc-radio
           id="smvSubscriberView"
           name="view"
           value="ied"
-          @click=${() => this.listDiv.dispatchEvent(newViewEvent(View.SUBSCRIBER))}
+          @click=${() =>
+            this.listDiv.dispatchEvent(newViewEvent(View.SUBSCRIBER))}
         ></mwc-radio>
       </mwc-formfield>
       <div class="container">
         ${view == View.PUBLISHER
           ? html`<smv-list class="row" .doc=${this.doc}></smv-list>`
-          : html`<ied-list-smv class="row" .doc=${this.doc}></ied-list-smv>`
-        }
-        <subscriber-list-smv
-          class="row"
-          .doc=${this.doc}
-        ></subscriber-list-smv>
+          : html`<ied-list-smv class="row" .doc=${this.doc}></ied-list-smv>`}
+        <subscriber-list-smv class="row" .doc=${this.doc}></subscriber-list-smv>
       </div>
     </div>`;
   }

@@ -1,13 +1,13 @@
 import { html, fixture, expect } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
-import '../../../../../src/editors/subscription/sampledvalues/smv-list.js'
+import '../../../../../src/editors/subscription/sampledvalues/smv-list.js';
 import { SmvPublisherList } from '../../../../../src/editors/subscription/sampledvalues/smv-list.js';
 
 describe('smv-list', () => {
   let element: SmvPublisherList;
   let validSCL: XMLDocument;
-  
+
   let selectEvent: SinonSpy;
 
   beforeEach(async () => {
@@ -18,9 +18,7 @@ describe('smv-list', () => {
     selectEvent = spy();
     window.addEventListener('smv-select', selectEvent);
 
-    element = await fixture(html`<smv-list
-      .doc=${validSCL}
-    ></smv-list>`);
+    element = await fixture(html`<smv-list .doc=${validSCL}></smv-list>`);
   });
 
   it('looks like the latest snapshot with a document loaded', async () => {
@@ -42,19 +40,22 @@ describe('smv-list', () => {
     selectEvent.resetHistory();
 
     const listItem = Array.from(
-      element.shadowRoot?.querySelectorAll('mwc-list-item[graphic="large"]') ?? []
-    ).filter(listItem =>
-      listItem.innerHTML.includes('MSVCB01')
-    )[0];
+      element.shadowRoot?.querySelectorAll('mwc-list-item[graphic="large"]') ??
+        []
+    ).filter(listItem => listItem.innerHTML.includes('MSVCB01'))[0];
 
-    (<HTMLElement>(listItem)).click();
+    (<HTMLElement>listItem).click();
 
     expect(selectEvent).to.have.be.calledOnce;
     expect(selectEvent.args[0][0].detail.smvControl).to.eql(
-      validSCL.querySelector('IED[name="IED3"] > AccessPoint > Server > LDevice > LN0 > SampledValueControl[name="MSVCB01"]')
+      validSCL.querySelector(
+        'IED[name="IED3"] > AccessPoint > Server > LDevice > LN0 > SampledValueControl[name="MSVCB01"]'
+      )
     );
     expect(selectEvent.args[0][0].detail.dataset).to.eql(
-      validSCL.querySelector('IED[name="IED3"] > AccessPoint > Server > LDevice > LN0 > DataSet[name="PhsMeas1"]')
+      validSCL.querySelector(
+        'IED[name="IED3"] > AccessPoint > Server > LDevice > LN0 > DataSet[name="PhsMeas1"]'
+      )
     );
   });
 });

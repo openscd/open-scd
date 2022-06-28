@@ -1,6 +1,6 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../../../../../src/editors/subscription/sampledvalues/subscriber-list.js'
+import '../../../../../src/editors/subscription/sampledvalues/subscriber-list.js';
 import { SubscriberList } from '../../../../../src/editors/subscription/sampledvalues/subscriber-list.js';
 
 describe('subscriber-list-smv', () => {
