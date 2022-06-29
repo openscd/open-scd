@@ -162,7 +162,7 @@ describe('Subscription Plugin', () => {
 
       it('the IED list looks like the latest snapshot', async () => {
         await expect(
-          element.shadowRoot?.querySelector('ied-list-goose')
+          element.shadowRoot?.querySelector('ied-list')
         ).shadowDom.to.equalSnapshot();
       });
 
@@ -177,7 +177,7 @@ describe('Subscription Plugin', () => {
       beforeEach(async () => {
         ied = Array.from(
           element.shadowRoot
-            ?.querySelector('ied-list-goose')
+            ?.querySelector('ied-list')
             ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
         ).filter(item => !item.noninteractive)[1];
 

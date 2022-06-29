@@ -599,8 +599,8 @@ snapshots["Sampled Values Plugin in Subscriber view initially the plugin looks l
     </mwc-radio>
   </mwc-formfield>
   <div class="container">
-    <ied-list-smv class="row">
-    </ied-list-smv>
+    <ied-list class="row">
+    </ied-list>
     <subscriber-list-smv class="row">
     </subscriber-list-smv>
   </div>

@@ -22,14 +22,14 @@ export const officialPlugins = [
   },
   {
     name: 'Subscriber (GOOSE)',
-    src: '/src/editors/Subscription.js',
+    src: '/src/editors/GooseControlSubscription.js',
     icon: 'link',
     default: true,
     kind: 'editor',
   },
   {
     name: 'Subscriber (SMV)',
-    src: '/src/editors/SampledValues.js',
+    src: '/src/editors/SampledValuesSubscription.js',
     icon: 'link',
     default: true,
     kind: 'editor',

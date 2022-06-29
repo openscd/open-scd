@@ -22,7 +22,7 @@ function onOpenDocResetSelectedGooseMsg() {
 }
 addEventListener('open-doc', onOpenDocResetSelectedGooseMsg);
 
-@customElement('ied-list-smv')
+@customElement('ied-list')
 export class IedList extends LitElement {
   @property()
   doc!: XMLDocument;

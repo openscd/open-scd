@@ -76,10 +76,7 @@ export default class GooseControlSubscriptionPlugin extends LitElement {
       <div class="container">
         ${view == View.PUBLISHER
           ? html`<goose-list class="row" .doc=${this.doc}></goose-list>`
-          : html`<ied-list-goose
-              class="row"
-              .doc=${this.doc}
-            ></ied-list-goose>`}
+          : html`<ied-list class="row" .doc=${this.doc}></ied-list>`}
         <subscriber-list-goose
           class="row"
           .doc=${this.doc}

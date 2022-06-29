@@ -4,7 +4,7 @@ import { SinonSpy, spy } from 'sinon';
 import '../../../../../src/editors/subscription/sampledvalues/ied-list.js';
 import { IedList } from '../../../../../src/editors/subscription/sampledvalues/ied-list.js';
 
-describe('ied-list-smv', () => {
+describe('ied-list', () => {
   let element: IedList;
   let validSCL: XMLDocument;
 
@@ -18,9 +18,9 @@ describe('ied-list-smv', () => {
     selectEvent = spy();
     window.addEventListener('ied-select', selectEvent);
 
-    element = await fixture(html`<ied-list-smv
+    element = await fixture(html`<ied-list
       .doc=${validSCL}
-    ></ied-list-smv>`);
+    ></ied-list>`);
   });
 
   it('looks like the latest snapshot with a document loaded', async () => {
@@ -28,7 +28,7 @@ describe('ied-list-smv', () => {
   });
 
   it('looks like the latest snapshot without a doc loaded', async () => {
-    element = await fixture(html`<ied-list-smv></ied-list-smv>`);
+    element = await fixture(html`<ied-list></ied-list>`);
     await expect(element).shadowDom.to.equalSnapshot();
   });
 

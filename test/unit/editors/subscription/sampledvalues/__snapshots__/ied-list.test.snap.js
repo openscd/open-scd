@@ -1,7 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["ied-list-smv looks like the latest snapshot with a document loaded"] = 
+snapshots["ied-list looks like the latest snapshot with a document loaded"] = 
 `<section tabindex="0">
   <h1>
     [subscription.smv.subscriberSmv.title]
@@ -49,9 +49,9 @@ snapshots["ied-list-smv looks like the latest snapshot with a document loaded"] 
   </filtered-list>
 </section>
 `;
-/* end snapshot ied-list-smv looks like the latest snapshot with a document loaded */
+/* end snapshot ied-list looks like the latest snapshot with a document loaded */
 
-snapshots["ied-list-smv looks like the latest snapshot without a doc loaded"] = 
+snapshots["ied-list looks like the latest snapshot without a doc loaded"] = 
 `<section tabindex="0">
   <h1>
     [subscription.smv.subscriberSmv.title]
@@ -60,5 +60,5 @@ snapshots["ied-list-smv looks like the latest snapshot without a doc loaded"] =
   </filtered-list>
 </section>
 `;
-/* end snapshot ied-list-smv looks like the latest snapshot without a doc loaded */
+/* end snapshot ied-list looks like the latest snapshot without a doc loaded */
 

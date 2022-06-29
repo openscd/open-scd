@@ -613,7 +613,7 @@ snapshots["open-scd looks like its snapshot"] =
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/editors/Subscription.js"
+      value="/src/editors/GooseControlSubscription.js"
     >
       <mwc-icon slot="meta">
         link
@@ -629,7 +629,7 @@ snapshots["open-scd looks like its snapshot"] =
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/editors/SampledValues.js"
+      value="/src/editors/SampledValuesSubscription.js"
     >
       <mwc-icon slot="meta">
         link

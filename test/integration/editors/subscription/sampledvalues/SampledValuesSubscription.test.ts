@@ -162,7 +162,7 @@ describe('Sampled Values Plugin', () => {
 
       it('the IED list looks like the latest snapshot', async () => {
         await expect(
-          element.shadowRoot?.querySelector('ied-list-smv')
+          element.shadowRoot?.querySelector('ied-list')
         ).shadowDom.to.equalSnapshot();
       });
 
@@ -177,7 +177,7 @@ describe('Sampled Values Plugin', () => {
       beforeEach(async () => {
         ied = Array.from(
           element.shadowRoot
-            ?.querySelector('ied-list-smv')
+            ?.querySelector('ied-list')
             ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
         ).filter(item => !item.noninteractive)[1];
 
