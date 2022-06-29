@@ -327,37 +327,42 @@ export const de: Translations = {
   },
   subscription: {
     none: 'Keine Verbindung vorhanden',
-    publisherGoose: {
-      title: 'GOOSE-Publizierer',
-      subscriberTitle: 'Verbunden mit {{ selected }}',
-    },
-    subscriberGoose: {
-      title: 'IED-Publizierer',
-      publisherTitle: 'GOOSE(s) verbunden mit {{selected}}',
-    },
     subscriber: {
       subscribed: 'Verbunden',
       availableToSubscribe: 'Kann verbunden werden',
       partiallySubscribed: 'Teilweise verbunden',
-      noGooseMessageSelected: 'Keine GOOSE ausgewählt',
+      noControlBlockSelected: 'Keine Kontrollblock ausgewählt',
       noIedSelected: 'Keine IED ausgewählt',
     },
-    view: {
-      publisherView: 'Zeigt verbundene IED(s) der ausgewählten GOOSE',
-      subscriberView: 'Zeigt verbundene GOOSE(s) des ausgewählten IED',
+    goose: {
+      publisherGoose: {
+        title: 'GOOSE-Publizierer',
+        subscriberTitle: 'Verbunden mit {{ selected }}',
+      },
+      subscriberGoose: {
+        publisherTitle: 'GOOSE(s) verbunden mit {{selected}}',
+      },
+      view: {
+        publisherView: 'Zeigt verbundene IED(s) der ausgewählten GOOSE',
+        subscriberView: 'Zeigt verbundene GOOSE(s) des ausgewählten IED',
+      },
     },
-  },
-  sampledvalues: {
-    none: 'Keine Verbindung vorhanden',
-    sampledValuesList: {
-      title: 'Sampled Values',
+    smv: {
+      publisherSmv: {
+        title: 'SampledValue-Publizierer',
+        subscriberTitle: 'Verbunden mit {{ selected }}',
+      },
+      subscriberSmv: {
+        publisherTitle: 'Verbunden mit {{selected}}',
+      },
+      view: {
+        publisherView: 'Zeigt verbundene IED(s) der ausgewählten Sampled Value',
+        subscriberView:
+          'Zeigt verbundene Sampled Value(s) des ausgewählten IED',
+      },
     },
-    subscriberIed: {
-      title: 'Verbunden mit {{ selected }}',
-      subscribed: 'Verbunden',
-      availableToSubscribe: 'Kann verbunden werden',
-      partiallySubscribed: 'Teilweise verbunden',
-      noSampledValuesSelected: 'Keinen Kontrollblock ausgewählt',
+    iedList: {
+      title: 'IEDs',
     },
   },
   protocol104: {

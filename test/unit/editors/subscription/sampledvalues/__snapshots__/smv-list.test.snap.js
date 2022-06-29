@@ -1,10 +1,10 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["goose-publisher-list looks like the latest snapshot"] = 
+snapshots["smv-list looks like the latest snapshot with a document loaded"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.publisherGoose.title]
+    [subscription.smv.publisherSmv.title]
   </h1>
   <filtered-list>
     <mwc-list-item
@@ -27,44 +27,6 @@ snapshots["goose-publisher-list looks like the latest snapshot"] =
     </li>
     <mwc-list-item
       aria-disabled="false"
-      graphic="large"
-      hasmeta=""
-      mwc-list-item=""
-      tabindex="0"
-    >
-      <mwc-icon slot="graphic">
-      </mwc-icon>
-      <span>
-        GCB
-      </span>
-      <mwc-icon-button
-        class="hidden"
-        icon="edit"
-        slot="meta"
-      >
-      </mwc-icon-button>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      graphic="large"
-      hasmeta=""
-      mwc-list-item=""
-      tabindex="-1"
-    >
-      <mwc-icon slot="graphic">
-      </mwc-icon>
-      <span>
-        GCB2
-      </span>
-      <mwc-icon-button
-        class="hidden"
-        icon="edit"
-        slot="meta"
-      >
-      </mwc-icon-button>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
       graphic="icon"
       noninteractive=""
       tabindex="-1"
@@ -83,25 +45,6 @@ snapshots["goose-publisher-list looks like the latest snapshot"] =
     </li>
     <mwc-list-item
       aria-disabled="false"
-      graphic="large"
-      hasmeta=""
-      mwc-list-item=""
-      tabindex="-1"
-    >
-      <mwc-icon slot="graphic">
-      </mwc-icon>
-      <span>
-        GCB
-      </span>
-      <mwc-icon-button
-        class="hidden"
-        icon="edit"
-        slot="meta"
-      >
-      </mwc-icon-button>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
       graphic="icon"
       noninteractive=""
       tabindex="-1"
@@ -118,19 +61,38 @@ snapshots["goose-publisher-list looks like the latest snapshot"] =
       role="separator"
     >
     </li>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="large"
+      hasmeta=""
+      mwc-list-item=""
+      tabindex="0"
+    >
+      <mwc-icon slot="graphic">
+      </mwc-icon>
+      <span>
+        MSVCB01
+      </span>
+      <mwc-icon-button
+        class="hidden"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
+    </mwc-list-item>
   </filtered-list>
 </section>
 `;
-/* end snapshot goose-publisher-list looks like the latest snapshot */
+/* end snapshot smv-list looks like the latest snapshot with a document loaded */
 
-snapshots["goose-publisher-list looks like the latest snapshot without a doc loaded"] = 
+snapshots["smv-list looks like the latest snapshot without a doc loaded"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.publisherGoose.title]
+    [subscription.smv.publisherSmv.title]
   </h1>
   <filtered-list>
   </filtered-list>
 </section>
 `;
-/* end snapshot goose-publisher-list looks like the latest snapshot without a doc loaded */
+/* end snapshot smv-list looks like the latest snapshot without a doc loaded */
 

@@ -2,9 +2,7 @@ import {
   css,
   customElement,
   html,
-  LitElement,
   property,
-  query,
   TemplateResult,
 } from 'lit-element';
 import { translate } from 'lit-translate';
@@ -13,100 +11,84 @@ import '@material/mwc-icon';
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 
-import '../../filtered-list.js';
+import '../../../filtered-list.js';
 import {
   Create,
   createElement,
   Delete,
   newActionEvent,
-} from '../../foundation.js';
+} from '../../../foundation.js';
 import {
-  newSubscriptionEvent,
-  GOOSESelectEvent,
-  SubscriptionEvent,
-  styles,
-  SubscribeStatus,
-  IEDSelectEvent,
-  View,
-  ViewEvent,
+  newSmvSubscriptionEvent,
+  SmvSelectEvent,
+  SmvSubscriptionEvent,
 } from './foundation.js';
 import {
   emptyInputsDeleteActions,
-  getFcdaReferences
-} from "../../foundation/ied.js";
-
-/**
- * An element within this list has 2 properties:
- * - The element itself, either a GSEControl or an IED at this point.
- * - A 'partial' property indicating if the GOOSE is fully initialized or partially.
- */
-interface ListElement {
-  element: Element;
-  partial?: boolean;
-}
+  getFcdaReferences,
+} from '../../../foundation/ied.js';
+import {
+  IEDSelectEvent,
+  ListElement,
+  styles,
+  SubscriberListContainer,
+  SubscribeStatus,
+  View,
+  ViewEvent,
+} from '../foundation.js';
 
 /** Defining view outside the class, which makes it persistent. */
-let view: View = View.GOOSE_PUBLISHER;
+let view: View = View.PUBLISHER;
 
-/** An sub element for subscribing and unsubscribing IEDs to GOOSE messages. */
-@customElement('subscriber-list')
-export class SubscriberList extends LitElement {
-  @property({ attribute: false })
+/** An sub element for subscribing and unsubscribing IEDs to Sampled Values messages. */
+@customElement('subscriber-list-smv')
+export class SubscriberList extends SubscriberListContainer {
+  @property()
   doc!: XMLDocument;
 
-  /** Current selected GOOSE message (when in GOOSE Publisher view) */
-  currentSelectedGseControl: Element | undefined;
+  /** Current selected Sampled Values element (when in GOOSE Publisher view) */
+  currentSelectedSmvControl: Element | undefined;
 
-  /** Current selected IED (when in GOOSE Subscriber view) */
-  currentSelectedIed: Element | undefined;
-
-  /** The current used dataset for subscribing / unsubscribing */
-  currentUsedDataset: Element | undefined | null;
-
-  /** The name of the IED belonging to the current selected GOOSE */
-  currentGooseIEDName: string | undefined | null;
-
-  /** List holding all current subscribed Elements. */
-  subscribedElements: ListElement[] = [];
-
-  /** List holding all current avaialble Elements which are not subscribed. */
-  availableElements: ListElement[] = [];
-
-  @query('div') subscriberWrapper!: Element;
+  /** The name of the IED belonging to the current selected Sampled Values */
+  currentSmvIedName: string | undefined | null;
 
   constructor() {
     super();
-    this.onGOOSEDataSetEvent = this.onGOOSEDataSetEvent.bind(this);
-    this.onSubscriptionEvent = this.onSubscriptionEvent.bind(this);
     this.onIEDSelectEvent = this.onIEDSelectEvent.bind(this);
+    this.onSmvSelectEvent = this.onSmvSelectEvent.bind(this);
+    this.onIEDSubscriptionEvent = this.onIEDSubscriptionEvent.bind(this);
     this.onViewChange = this.onViewChange.bind(this);
 
     const parentDiv = this.closest('.container');
     if (parentDiv) {
-      parentDiv.addEventListener('goose-dataset', this.onGOOSEDataSetEvent);
-      parentDiv.addEventListener('subscription', this.onSubscriptionEvent);
       parentDiv.addEventListener('ied-select', this.onIEDSelectEvent);
+      parentDiv.addEventListener('smv-select', this.onSmvSelectEvent);
+      parentDiv.addEventListener(
+        'smv-subscription',
+        this.onIEDSubscriptionEvent
+      );
       parentDiv.addEventListener('view', this.onViewChange);
     }
   }
 
-  /**
-   * When an IEDSelectEvent is received, check for all GOOSE messages if
-   * all FCDAs are covered, or partly FCDAs are covered.
-   * @param event - Incoming event.
-   */
   private async onIEDSelectEvent(event: IEDSelectEvent) {
     if (!event.detail.ied) return;
     this.currentSelectedIed = event.detail.ied!;
 
     this.resetElements();
 
-    const subscribedInputs = this.currentSelectedIed.querySelectorAll(`LN0 > Inputs, LN > Inputs`);
+    const subscribedInputs = this.currentSelectedIed.querySelectorAll(
+      `LN0 > Inputs, LN > Inputs`
+    );
 
-    this.doc.querySelectorAll('GSEControl').forEach(control => {
+    this.doc.querySelectorAll('SampledValueControl').forEach(control => {
       const ied = control.closest('IED')!;
 
-      if (ied.getAttribute('name') == this.currentSelectedIed?.getAttribute('name')) return;
+      if (
+        ied.getAttribute('name') ==
+        this.currentSelectedIed?.getAttribute('name')
+      )
+        return;
 
       /** If no Inputs is available, it's automatically available. */
       if (subscribedInputs.length == 0) {
@@ -115,7 +97,9 @@ export class SubscriberList extends LitElement {
       }
 
       let numberOfLinkedExtRefs = 0;
-      const dataSet = ied.querySelector(`DataSet[name="${control.getAttribute('datSet')}"]`);
+      const dataSet = ied.querySelector(
+        `DataSet[name="${control.getAttribute('datSet')}"]`
+      );
 
       if (!dataSet) return;
 
@@ -137,37 +121,31 @@ export class SubscriberList extends LitElement {
         return;
       }
 
-      if (
-        numberOfLinkedExtRefs >=
-        dataSet!.querySelectorAll('FCDA').length
-      ) {
+      if (numberOfLinkedExtRefs >= dataSet!.querySelectorAll('FCDA').length) {
         this.subscribedElements.push({ element: control });
       } else {
         this.availableElements.push({ element: control, partial: true });
       }
-    })
+    });
 
     this.requestUpdate();
   }
 
-  /**
-   * When a GOOSEDataSetEvent is received, check for all IEDs if
-   * all FCDAs are covered, or partly FCDAs are covered.
-   * @param event - Incoming event.
-   */
-  private async onGOOSEDataSetEvent(event: GOOSESelectEvent) {
-    if (!event.detail.dataset || !event.detail.gseControl) return;
+  private async onSmvSelectEvent(event: SmvSelectEvent) {
+    if (!event.detail.dataset || !event.detail.smvControl) return;
 
-    this.currentSelectedGseControl = event.detail.gseControl;
+    this.currentSelectedSmvControl = event.detail.smvControl;
     this.currentUsedDataset = event.detail.dataset;
-    this.currentGooseIEDName = this.currentSelectedGseControl
+
+    this.currentSmvIedName = this.currentSelectedSmvControl
       ?.closest('IED')
       ?.getAttribute('name');
 
-    this.resetElements();
+    this.subscribedElements = [];
+    this.availableElements = [];
 
     Array.from(this.doc.querySelectorAll(':root > IED'))
-      .filter(ied => ied.getAttribute('name') != this.currentGooseIEDName)
+      .filter(ied => ied.getAttribute('name') != this.currentSmvIedName)
       .forEach(ied => {
         const inputElements = ied.querySelectorAll(`LN0 > Inputs, LN > Inputs`);
 
@@ -184,11 +162,11 @@ export class SubscriberList extends LitElement {
         /**
          * Count all the linked ExtRefs.
          */
-         this.currentUsedDataset!.querySelectorAll('FCDA').forEach(fcda => {
+        this.currentUsedDataset!.querySelectorAll('FCDA').forEach(fcda => {
           inputElements.forEach(inputs => {
             if (
               inputs.querySelector(
-                `ExtRef[iedName=${this.currentGooseIEDName}]` +
+                `ExtRef[iedName=${this.currentSmvIedName}]` +
                   `${getFcdaReferences(fcda)}`
               )
             ) {
@@ -219,31 +197,31 @@ export class SubscriberList extends LitElement {
     this.requestUpdate();
   }
 
-  /**
-   * When a SubscriptionEvent is received, check if
-   * @param event - Incoming event.
-   */
-  private async onSubscriptionEvent(event: SubscriptionEvent) {
-    let elementToSubscribe = event.detail.element;
+  private async onIEDSubscriptionEvent(event: SmvSubscriptionEvent) {
+    let iedToSubscribe = event.detail.ied;
 
-    if (view == View.GOOSE_SUBSCRIBER) {
-      const dataSetName = event.detail.element.getAttribute('datSet');
-      this.currentUsedDataset = event.detail.element.parentElement?.querySelector(`DataSet[name="${dataSetName}"]`);
-      this.currentGooseIEDName = event.detail.element.closest('IED')?.getAttribute('name');
-      elementToSubscribe = this.currentSelectedIed!;
+    if (view == View.SUBSCRIBER) {
+      const dataSetName = event.detail.ied.getAttribute('datSet');
+      this.currentUsedDataset = event.detail.ied.parentElement?.querySelector(
+        `DataSet[name="${dataSetName}"]`
+      );
+      this.currentSmvIedName = event.detail.ied
+        .closest('IED')
+        ?.getAttribute('name');
+      iedToSubscribe = this.currentSelectedIed!;
     }
 
     switch (event.detail.subscribeStatus) {
       case SubscribeStatus.Full: {
-        this.unsubscribe(elementToSubscribe);
+        this.unsubscribe(iedToSubscribe);
         break;
       }
       case SubscribeStatus.Partial: {
-        this.subscribe(elementToSubscribe);
+        this.subscribe(iedToSubscribe);
         break;
       }
       case SubscribeStatus.None: {
-        this.subscribe(elementToSubscribe);
+        this.subscribe(iedToSubscribe);
         break;
       }
     }
@@ -253,16 +231,12 @@ export class SubscriberList extends LitElement {
     view = event.detail.view;
 
     this.currentSelectedIed = undefined;
-    this.currentSelectedGseControl = undefined;
-    
+    this.currentSelectedSmvControl = undefined;
+
     this.resetElements();
     this.requestUpdate();
   }
 
-  /**
-   * Full subscribe a given IED to the current dataset.
-   * @param ied - Given IED to subscribe.
-   */
   private async subscribe(ied: Element): Promise<void> {
     if (!ied.querySelector('LN0')) return;
 
@@ -274,13 +248,13 @@ export class SubscriberList extends LitElement {
     this.currentUsedDataset!.querySelectorAll('FCDA').forEach(fcda => {
       if (
         !inputsElement!.querySelector(
-          `ExtRef[iedName=${this.currentGooseIEDName}]` +
+          `ExtRef[iedName=${this.currentSmvIedName}]` +
             `${getFcdaReferences(fcda)}`
         )
       ) {
         const extRef = createElement(ied.ownerDocument, 'ExtRef', {
-          iedName: this.currentGooseIEDName!,
-          serviceType: 'GOOSE',
+          iedName: this.currentSmvIedName!,
+          serviceType: 'SMV',
           ldInst: fcda.getAttribute('ldInst') ?? '',
           lnClass: fcda.getAttribute('lnClass') ?? '',
           lnInst: fcda.getAttribute('lnInst') ?? '',
@@ -297,9 +271,9 @@ export class SubscriberList extends LitElement {
 
     /** If the IED doesn't have a Inputs element, just append it to the first LN0 element. */
     const title = 'Connect';
-    if (inputsElement.parentElement) {
+    if (inputsElement.parentElement)
       this.dispatchEvent(newActionEvent({ title, actions }));
-    } else {
+    else {
       const inputAction: Create = {
         new: { parent: ied.querySelector('LN0')!, element: inputsElement },
       };
@@ -307,16 +281,12 @@ export class SubscriberList extends LitElement {
     }
   }
 
-  /**
-   * Unsubscribing a given IED to the current dataset.
-   * @param ied - Given IED to unsubscribe.
-   */
-  private unsubscribe(ied: Element): void {
+  private async unsubscribe(ied: Element): Promise<void> {
     const actions: Delete[] = [];
     ied.querySelectorAll('LN0 > Inputs, LN > Inputs').forEach(inputs => {
       this.currentUsedDataset!.querySelectorAll('FCDA').forEach(fcda => {
         const extRef = inputs.querySelector(
-          `ExtRef[iedName=${this.currentGooseIEDName}]` +
+          `ExtRef[iedName=${this.currentSmvIedName}]` +
             `${getFcdaReferences(fcda)}`
         );
 
@@ -335,30 +305,22 @@ export class SubscriberList extends LitElement {
     );
   }
 
-  private resetElements() {
-    this.subscribedElements = [];
-    this.availableElements = [];
-  }
-
-  protected updated(): void {
-    if (this.subscriberWrapper) {
-      this.subscriberWrapper.scrollTo(0, 0);
-    }
-  }
-
   renderSubscriber(status: SubscribeStatus, element: Element): TemplateResult {
     return html` <mwc-list-item
       @click=${() => {
-        this.dispatchEvent(newSubscriptionEvent(element, status ?? SubscribeStatus.None));
+        this.dispatchEvent(
+          newSmvSubscriptionEvent(element, status ?? SubscribeStatus.None)
+        );
       }}
       graphic="avatar"
       hasMeta
+    >
+      <span
+        >${view == View.PUBLISHER
+          ? element.getAttribute('name')
+          : element.getAttribute('name') +
+            ` (${element.closest('IED')?.getAttribute('name')})`}</span
       >
-      <span>${
-        view == View.GOOSE_PUBLISHER
-        ? element.getAttribute('name')
-        : element.getAttribute('name') + ` (${element.closest('IED')?.getAttribute('name')})`
-      }</span>
       <mwc-icon slot="graphic"
         >${status == SubscribeStatus.Full ? html`clear` : html`add`}</mwc-icon
       >
@@ -367,7 +329,7 @@ export class SubscriberList extends LitElement {
 
   renderUnSubscribers(elements: ListElement[]): TemplateResult {
     return html`<mwc-list-item noninteractive>
-        <span class="iedListTitle"
+        <span
           >${translate('subscription.subscriber.availableToSubscribe')}</span
         >
       </mwc-list-item>
@@ -383,9 +345,7 @@ export class SubscriberList extends LitElement {
 
   renderPartiallySubscribers(elements: ListElement[]): TemplateResult {
     return html`<mwc-list-item noninteractive>
-        <span class="iedListTitle"
-          >${translate('subscription.subscriber.partiallySubscribed')}</span
-        >
+        <span>${translate('subscription.subscriber.partiallySubscribed')}</span>
       </mwc-list-item>
       <li divider role="separator"></li>
       ${elements.length > 0
@@ -399,9 +359,7 @@ export class SubscriberList extends LitElement {
 
   renderFullSubscribers(): TemplateResult {
     return html`<mwc-list-item noninteractive>
-        <span class="iedListTitle"
-          >${translate('subscription.subscriber.subscribed')}</span
-        >
+        <span>${translate('subscription.subscriber.subscribed')}</span>
       </mwc-list-item>
       <li divider role="separator"></li>
       ${this.subscribedElements.length > 0
@@ -414,21 +372,22 @@ export class SubscriberList extends LitElement {
   }
 
   renderTitle(): TemplateResult {
-    const gseControlName = this.currentSelectedGseControl?.getAttribute('name') ?? undefined;
+    const gseControlName =
+      this.currentSelectedSmvControl?.getAttribute('name') ?? undefined;
 
-    return view == View.GOOSE_PUBLISHER
+    return view == View.PUBLISHER
       ? html`<h1>
-          ${translate('subscription.publisherGoose.subscriberTitle', {
+          ${translate('subscription.smv.publisherSmv.subscriberTitle', {
             selected: gseControlName
-              ? this.currentGooseIEDName + ' > ' + gseControlName
-              : 'GOOSE',
+              ? this.currentSmvIedName + ' > ' + gseControlName
+              : 'Sampled Value',
           })}
         </h1>`
       : html`<h1>
-          ${translate('subscription.subscriberGoose.publisherTitle', {
+          ${translate('subscription.smv.subscriberSmv.publisherTitle', {
             selected: this.currentSelectedIed
-            ? this.currentSelectedIed.getAttribute('name')!
-            : 'IED',
+              ? this.currentSelectedIed.getAttribute('name')!
+              : 'IED',
           })}
         </h1>`;
   }
@@ -438,23 +397,27 @@ export class SubscriberList extends LitElement {
       <section tabindex="0">
         ${this.renderTitle()}
         ${this.availableElements.length != 0 ||
-          this.subscribedElements.length != 0
-          ? html`<div class="subscriberWrapper">
-              <filtered-list id="subscribedIeds">
+        this.subscribedElements.length != 0
+          ? html`<div class="wrapper">
+              <filtered-list>
                 ${this.renderFullSubscribers()}
-                ${this.renderPartiallySubscribers(this.availableElements.filter(
-                  element => element.partial
-                ))}
-                ${this.renderUnSubscribers(this.availableElements.filter(
-                  element => !element.partial
-                ))}
+                ${this.renderPartiallySubscribers(
+                  this.availableElements.filter(element => element.partial)
+                )}
+                ${this.renderUnSubscribers(
+                  this.availableElements.filter(element => !element.partial)
+                )}
               </filtered-list>
             </div>`
           : html`<mwc-list>
               <mwc-list-item noninteractive>
-                <span>${view == View.GOOSE_PUBLISHER
-                  ? translate('subscription.subscriber.noGooseMessageSelected')
-                  : translate('subscription.subscriber.noIedSelected')}</span>
+                <span>${
+                  view == View.PUBLISHER
+                    ? translate(
+                        'subscription.subscriber.noControlBlockSelected'
+                      )
+                    : translate('subscription.subscriber.noIedSelected')
+                }</span>
               </mwc-list-item>
             </mwc-list>
           </div>`}
@@ -464,5 +427,10 @@ export class SubscriberList extends LitElement {
 
   static styles = css`
     ${styles}
+
+    .wrapper {
+      height: 100vh;
+      overflow-y: scroll;
+    }
   `;
 }

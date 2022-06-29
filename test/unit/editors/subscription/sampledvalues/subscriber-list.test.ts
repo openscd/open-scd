@@ -1,9 +1,9 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../../../../src/editors/subscription/subscriber-list.js'
-import { SubscriberList } from '../../../../src/editors/subscription/subscriber-list.js';
+import '../../../../../src/editors/subscription/sampledvalues/subscriber-list.js';
+import { SubscriberList } from '../../../../../src/editors/subscription/sampledvalues/subscriber-list.js';
 
-describe('subscriber-list', () => {
+describe('subscriber-list-smv', () => {
   let element: SubscriberList;
   let validSCL: XMLDocument;
 
@@ -12,9 +12,9 @@ describe('subscriber-list', () => {
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-    element = await fixture(html`<subscriber-list
+    element = await fixture(html`<subscriber-list-smv
       .doc=${validSCL}
-    ></subscriber-list>`);
+    ></subscriber-list-smv>`);
   });
 
   it('initially looks like the latest snapshot', async () => {
