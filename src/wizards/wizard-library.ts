@@ -35,6 +35,7 @@ import {
   createSubFunctionWizard,
   editSubFunctionWizard,
 } from './subfunction.js';
+import { editSampledValueControlWizard } from './sampledvaluecontrol.js';
 
 type SclElementWizard = (
   element: Element,
@@ -409,7 +410,7 @@ export const wizards: Record<
     create: emptyWizard,
   },
   SampledValueControl: {
-    edit: emptyWizard,
+    edit: editSampledValueControlWizard,
     create: emptyWizard,
   },
   SecPerSamples: {
