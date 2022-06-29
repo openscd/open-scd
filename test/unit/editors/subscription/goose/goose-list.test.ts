@@ -30,13 +30,13 @@ describe('goose-list', () => {
     await expect(element).shadowDom.to.equalSnapshot();
   });
 
-  it('sends a newGOOSESelectEvent on first update', async () => {
+  it('sends a newGOOSESelectEvent on first update', () => {
     expect(selectEvent).to.have.be.calledOnce;
     expect(selectEvent.args[0][0].detail.gseControl).to.be.undefined;
     expect(selectEvent.args[0][0].detail.dataset).to.be.undefined;
   });
 
-  it('triggers a newGOOSESelectEvent when a list item is clicked', async () => {
+  it('triggers a newGOOSESelectEvent when a list item is clicked', () => {
     selectEvent.resetHistory();
 
     const listItem = Array.from(

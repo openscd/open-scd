@@ -32,7 +32,7 @@ describe('ied-list', () => {
     await expect(element).shadowDom.to.equalSnapshot();
   });
 
-  it('sends a newIEDSelectEvent on first update', async () => {
+  it('sends a newIEDSelectEvent on first update', () => {
     expect(selectEvent).to.have.be.calledOnce;
     expect(selectEvent.args[0][0].detail.ied).to.be.undefined;
   });

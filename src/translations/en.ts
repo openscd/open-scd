@@ -336,7 +336,7 @@ export const en = {
         subscriberTitle: 'Subscriber of {{ selected }}',
       },
       subscriberGoose: {
-        title: 'GOOSE Subscriber',
+        title: 'IEDs',
         publisherTitle: 'GOOSE(s) subscribed by {{selected}}',
       },
       view: {
@@ -350,7 +350,7 @@ export const en = {
         subscriberTitle: 'Subscriber of {{ selected }}',
       },
       subscriberSmv: {
-        title: 'Sampled Values Subscriber',
+        title: 'IEDs',
         publisherTitle: 'Sampled Value(s) subscribed by {{selected}}',
       },
       view: {

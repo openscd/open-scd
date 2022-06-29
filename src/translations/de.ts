@@ -339,7 +339,7 @@ export const de: Translations = {
         subscriberTitle: 'Verbunden mit {{ selected }}',
       },
       subscriberGoose: {
-        title: 'IED-Publizierer',
+        title: 'IEDs',
         publisherTitle: 'GOOSE(s) verbunden mit {{selected}}',
       },
       view: {
@@ -349,12 +349,12 @@ export const de: Translations = {
     },
     smv: {
       publisherSmv: {
-        title: '???',
-        subscriberTitle: '??? {{ selected }}',
+        title: 'SampledValue-Publizierer',
+        subscriberTitle: 'Verbunden mit {{ selected }}',
       },
       subscriberSmv: {
-        title: '???',
-        publisherTitle: '??? {{selected}}',
+        title: 'IEDs',
+        publisherTitle: 'Verbunden mit {{selected}}',
       },
       view: {
         publisherView: 'Zeigt verbundene IED(s) der ausgewählten Sampled Value',

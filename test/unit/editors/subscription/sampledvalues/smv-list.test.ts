@@ -30,13 +30,13 @@ describe('smv-list', () => {
     await expect(element).shadowDom.to.equalSnapshot();
   });
 
-  it('sends a newSmvSelectEvent on first update', async () => {
+  it('sends a newSmvSelectEvent on first update', () => {
     expect(selectEvent).to.have.be.calledOnce;
     expect(selectEvent.args[0][0].detail.smvControl).to.be.undefined;
     expect(selectEvent.args[0][0].detail.dataset).to.be.undefined;
   });
 
-  it('triggers a newSmvSelectEvent when a list item is clicked', async () => {
+  it('triggers a newSmvSelectEvent when a list item is clicked', () => {
     selectEvent.resetHistory();
 
     const listItem = Array.from(

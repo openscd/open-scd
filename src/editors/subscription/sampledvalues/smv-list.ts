@@ -48,6 +48,17 @@ export class SmvPublisherList extends LitElement {
     this.requestUpdate();
   }
 
+  private openEditWizard(smvControl: Element): void {
+    const wizard = wizards['SampledValueControl'].edit(smvControl);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
+
+  protected updated(): void {
+    this.dispatchEvent(
+      newSmvSelectEvent(selectedSmvMsg, selectedDataSet ?? undefined)
+    );
+  }
+
   renderSmv(smvControl: Element): TemplateResult {
     return html`<mwc-list-item
       @click=${() => this.onSelect(smvControl)}
@@ -65,17 +76,6 @@ export class SmvPublisherList extends LitElement {
         @click=${() => this.openEditWizard(smvControl)}
       ></mwc-icon-button>
     </mwc-list-item>`;
-  }
-
-  private openEditWizard(smvControl: Element): void {
-    const wizard = wizards['SampledValueControl'].edit(smvControl);
-    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
-  }
-
-  protected updated(): void {
-    this.dispatchEvent(
-      newSmvSelectEvent(selectedSmvMsg, selectedDataSet ?? undefined)
-    );
   }
 
   render(): TemplateResult {
