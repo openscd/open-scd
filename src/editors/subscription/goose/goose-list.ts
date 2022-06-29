@@ -7,6 +7,7 @@ import {
   TemplateResult,
 } from 'lit-element';
 import { translate } from 'lit-translate';
+import { classMap } from 'lit-html/directives/class-map';
 
 import '@material/mwc-icon';
 import '@material/mwc-list/mwc-list-item';
@@ -16,7 +17,6 @@ import { getNameAttribute, newWizardEvent } from '../../../foundation.js';
 import { newGOOSESelectEvent } from './foundation.js';
 import { gooseIcon } from '../../../icons/icons.js';
 import { wizards } from '../../../wizards/wizard-library.js';
-import { classMap } from 'lit-html/directives/class-map';
 import { getOrderedIeds, styles } from '../foundation.js';
 
 let selectedGseControl: Element | undefined;

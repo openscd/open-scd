@@ -6,33 +6,29 @@ import {
   css,
   query,
 } from 'lit-element';
-
-import '@material/mwc-fab';
-import '@material/mwc-radio';
-import '@material/mwc-formfield';
-
-import './subscription/goose/subscriber-list.js';
-import './subscription/goose/goose-list.js';
-import './subscription/goose/ied-list.js';
-
 import { translate } from 'lit-translate';
-import { RadioListItem } from '@material/mwc-list/mwc-radio-list-item';
+
+import { RadioListItem } from '@material/mwc-list/mwc-radio-list-item.js';
+
+import './subscription/sampledvalues/subscriber-list.js';
+import './subscription/sampledvalues/smv-list.js';
+import './subscription/sampledvalues/ied-list.js';
 import { newViewEvent, View, ViewEvent } from './subscription/foundation.js';
 
 /** Defining view outside the class, which makes it persistent. */
 let view: View = View.PUBLISHER;
 
-/** An editor [[`plugin`]] for subscribing IEDs to GOOSE messages using the ABB subscription method. */
-export default class SubscriptionABBPlugin extends LitElement {
+/** An editor [[`plugin`]] for subscribing IEDs to Sampled Values. */
+export default class SampledValuesSubscriberPlugin extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property()
   doc!: XMLDocument;
 
-  @query('#goosePublisherView')
-  goosePublisherView!: RadioListItem;
+  @query('#smvPublisherView')
+  smvPublisherView!: RadioListItem;
 
-  @query('#gooseSubscriberView')
-  gooseSubscriberView!: RadioListItem;
+  @query('#smvSubscriberView')
+  smvSubscriberView!: RadioListItem;
 
   @query('div[class="container"]')
   listDiv!: Element;
@@ -47,28 +43,28 @@ export default class SubscriptionABBPlugin extends LitElement {
 
   firstUpdated(): void {
     view == View.PUBLISHER
-      ? this.goosePublisherView.setAttribute('checked', '')
-      : this.gooseSubscriberView.setAttribute('checked', '');
+      ? this.smvPublisherView.setAttribute('checked', '')
+      : this.smvSubscriberView.setAttribute('checked', '');
   }
 
   render(): TemplateResult {
     return html`<div>
       <mwc-formfield
-        label="${translate('subscription.goose.view.publisherView')}"
+        label="${translate('subscription.smv.view.publisherView')}"
       >
         <mwc-radio
-          id="goosePublisherView"
+          id="smvPublisherView"
           name="view"
-          value="goose"
+          value="smv"
           @click=${() =>
             this.listDiv.dispatchEvent(newViewEvent(View.PUBLISHER))}
         ></mwc-radio>
       </mwc-formfield>
       <mwc-formfield
-        label="${translate('subscription.goose.view.subscriberView')}"
+        label="${translate('subscription.smv.view.subscriberView')}"
       >
         <mwc-radio
-          id="gooseSubscriberView"
+          id="smvSubscriberView"
           name="view"
           value="ied"
           @click=${() =>
@@ -77,15 +73,9 @@ export default class SubscriptionABBPlugin extends LitElement {
       </mwc-formfield>
       <div class="container">
         ${view == View.PUBLISHER
-          ? html`<goose-list class="row" .doc=${this.doc}></goose-list>`
-          : html`<ied-list-goose
-              class="row"
-              .doc=${this.doc}
-            ></ied-list-goose>`}
-        <subscriber-list-goose
-          class="row"
-          .doc=${this.doc}
-        ></subscriber-list-goose>
+          ? html`<smv-list class="row" .doc=${this.doc}></smv-list>`
+          : html`<ied-list-smv class="row" .doc=${this.doc}></ied-list-smv>`}
+        <subscriber-list-smv class="row" .doc=${this.doc}></subscriber-list-smv>
       </div>
     </div>`;
   }
