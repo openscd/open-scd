@@ -2,9 +2,9 @@
  *  Supported Editions are 1 (2003), 2 (2007B) and 2.1 (2007B4)
  */
 export function getTypes(element: Element): string[] {
-  if (!element.ownerDocument) return [];
+  if (!element.ownerDocument.documentElement) return [];
 
-  const scl: Element = element.ownerDocument.querySelector(':root')!;
+  const scl: Element = element.ownerDocument.documentElement;
 
   const type =
     (scl.getAttribute('version') ?? '2003') +

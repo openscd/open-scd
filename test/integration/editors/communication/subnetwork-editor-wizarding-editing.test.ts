@@ -28,10 +28,10 @@ describe('subnetwork-editor wizarding editing integration', () => {
         await fixture(
           html`<mock-wizard-editor
             ><subnetwork-editor
+              .doc=${doc}
               .element=${doc.querySelector('SubNetwork')}
             ></subnetwork-editor>
-            ></mock-wizard-editor
-          >`
+          </mock-wizard-editor>`
         )
       );
       element = parent.querySelector('subnetwork-editor');
@@ -68,6 +68,7 @@ describe('subnetwork-editor wizarding editing integration', () => {
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       expect(parent.wizardUI.dialog).to.not.exist;
     });
+
     it('does not change name attribute if not unique within parent element', async () => {
       const oldName = nameField.value;
       nameField.value = 'ProcessBus';
@@ -77,6 +78,7 @@ describe('subnetwork-editor wizarding editing integration', () => {
         oldName
       );
     });
+
     it('changes name attribute on primary action', async () => {
       nameField.value = 'newSubNetwork';
       primaryAction.click();
@@ -84,7 +86,9 @@ describe('subnetwork-editor wizarding editing integration', () => {
       expect(doc.querySelector('SubNetwork')?.getAttribute('name')).to.equal(
         'newSubNetwork'
       );
+      await expect(element).shadowDom.to.equalSnapshot();
     });
+
     it('changes desc attribute on primary action', async () => {
       descField.value = 'newDesc';
       primaryAction.click();
@@ -92,7 +96,9 @@ describe('subnetwork-editor wizarding editing integration', () => {
       expect(doc.querySelector('SubNetwork')?.getAttribute('desc')).to.equal(
         'newDesc'
       );
+      await expect(element).shadowDom.to.equalSnapshot();
     });
+
     it('deletes desc attribute if wizard-textfield is deactivated', async () => {
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       descField.nullSwitch!.click();
@@ -100,7 +106,9 @@ describe('subnetwork-editor wizarding editing integration', () => {
       primaryAction.click();
       await parent.updateComplete;
       expect(doc.querySelector('SubNetwork')?.getAttribute('desc')).to.be.null;
+      await expect(element).shadowDom.to.equalSnapshot();
     });
+
     it('changes type attribute on primary action', async () => {
       typeField.value = 'newType';
       primaryAction.click();
@@ -108,7 +116,9 @@ describe('subnetwork-editor wizarding editing integration', () => {
       expect(doc.querySelector('SubNetwork')?.getAttribute('type')).to.equal(
         'newType'
       );
+      await expect(element).shadowDom.to.equalSnapshot();
     });
+
     it('deletes type attribute if wizard-textfield is deactivated', async () => {
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       typeField.nullSwitch!.click();
@@ -116,13 +126,17 @@ describe('subnetwork-editor wizarding editing integration', () => {
       primaryAction.click();
       await parent.updateComplete;
       expect(doc.querySelector('SubNetwork')?.getAttribute('type')).to.be.null;
+      await expect(element).shadowDom.to.equalSnapshot();
     });
+
     it('changes BitRate value on primary action', async () => {
       bitRateField.value = '20.0';
       primaryAction.click();
       await parent.updateComplete;
       expect(doc.querySelector('BitRate')?.innerHTML).to.equal('20.0');
+      await expect(element).shadowDom.to.equalSnapshot();
     });
+
     it('changes BitRate multiplier on primary action', async () => {
       bitRateField.multiplier = 'M';
       primaryAction.click();
@@ -133,7 +147,9 @@ describe('subnetwork-editor wizarding editing integration', () => {
       expect(doc.querySelector('BitRate')?.getAttribute('unit')).to.equal(
         'b/s'
       );
+      await expect(element).shadowDom.to.equalSnapshot();
     });
+
     it('deletes BitRate element if voltage wizard-textfield is deactivated', async () => {
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       bitRateField.nullSwitch!.click();
@@ -142,6 +158,7 @@ describe('subnetwork-editor wizarding editing integration', () => {
       await parent.updateComplete;
       expect(doc.querySelector('SubNetwork')?.querySelector('BitRate')).to.be
         .null;
+      await expect(element).shadowDom.to.equalSnapshot();
     });
   });
   describe('remove action', () => {
@@ -158,6 +175,7 @@ describe('subnetwork-editor wizarding editing integration', () => {
         await fixture(
           html`<mock-wizard-editor
             ><subnetwork-editor
+              .doc=${doc}
               .element=${doc.querySelector('SubNetwork[name="StationBus"]')}
             ></subnetwork-editor
           ></mock-wizard-editor>`
@@ -170,13 +188,16 @@ describe('subnetwork-editor wizarding editing integration', () => {
         element?.shadowRoot?.querySelector('mwc-icon-button[icon="delete"]')
       );
     });
+
     it('removes SubNetwork on clicking delete button', async () => {
       expect(doc.querySelector('SubNetwork[name="StationBus"]')).to.exist;
       deleteButton.click();
       await parent.updateComplete;
       expect(doc.querySelector('SubNetwork[name="StationBus"]')).to.not.exist;
+      await expect(element).shadowDom.to.equalSnapshot();
     });
   });
+
   describe('add ConnectedAP action', () => {
     let doc: XMLDocument;
     let parent: MockWizardEditor;
@@ -192,6 +213,7 @@ describe('subnetwork-editor wizarding editing integration', () => {
         await fixture(
           html`<mock-wizard-editor
             ><subnetwork-editor
+              .doc=${doc}
               .element=${doc.querySelector('SubNetwork[name="StationBus"]')}
             ></subnetwork-editor
           ></mock-wizard-editor>`
@@ -218,6 +240,7 @@ describe('subnetwork-editor wizarding editing integration', () => {
         )
       );
     });
+
     it('add ConnectedAP on primary action', async () => {
       expect(
         doc.querySelector(
@@ -233,6 +256,7 @@ describe('subnetwork-editor wizarding editing integration', () => {
           ':root > Communication > SubNetwork[name="StationBus"] > ConnectedAP[iedName="IED3"][apName="P2"]'
         )
       ).to.exist;
+      await expect(element).shadowDom.to.equalSnapshot();
     });
   });
 });

@@ -1323,7 +1323,7 @@ function sCLIdentity(): string {
 }
 
 function sCLSelector(): string {
-  return 'SCL';
+  return ':root';
 }
 
 function namingIdentity(e: Element): string {

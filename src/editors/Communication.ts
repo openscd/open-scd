@@ -62,6 +62,7 @@ export default class CommunicationPlugin extends LitElement {
           .map(
             subnetwork =>
               html`<subnetwork-editor
+                .doc=${this.doc}
                 .element=${subnetwork}
               ></subnetwork-editor>`
           )}

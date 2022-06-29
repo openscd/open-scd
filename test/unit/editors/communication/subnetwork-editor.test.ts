@@ -15,7 +15,10 @@ describe('subnetwork-editor', () => {
     subNetwork = validSCL.querySelector('SubNetwork')!;
     element = <SubNetworkEditor>(
       await fixture(
-        html`<subnetwork-editor .element=${subNetwork}></subnetwork-editor>`
+        html`<subnetwork-editor
+          .doc=${validSCL}
+          .element=${subNetwork}
+        ></subnetwork-editor>`
       )
     );
   });
@@ -44,7 +47,7 @@ describe('subnetwork-editor', () => {
   });
 
   it('has a BitRate property', () =>
-    expect(element).to.have.property('bitrate', '100.0b/s'));
+    expect(element).to.have.property('bitrate', '100.0 b/s'));
 
   it('includes multiplier to bitrate property', async () => {
     const bitrate = subNetwork.querySelector('BitRate');
