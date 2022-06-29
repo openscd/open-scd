@@ -556,6 +556,21 @@ export default class SingleLineDiagramPlugin extends LitElement {
 
     .sldContainer {
       overflow: hidden;
+      height: 85vh;
+    }
+
+    @media (max-height: 1200px) {
+      .sldContainer {
+        overflow: hidden;
+        max-height: 82vh;
+      }
+    }
+
+    @media (max-height: 1000px) {
+      .sldContainer {
+        overflow: hidden;
+        max-height: 79vh;
+      }
     }
 
     g {
