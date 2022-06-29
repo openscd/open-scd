@@ -6,10 +6,11 @@ import { ActionPane } from '../../src/action-pane.js';
 
 describe('action-pane', () => {
   let element: ActionPane;
+  const label = 'test label';
 
   beforeEach(async () => {
     element = await fixture(
-      html`<action-pane header="test header"></action-pane>`
+      html`<action-pane header="test header" label="${label}"></action-pane>`
     );
     await element.updateComplete;
   });
@@ -77,6 +78,38 @@ describe('action-pane', () => {
     expect(element.shadowRoot?.querySelector('h2')).to.not.exist;
     expect(element.shadowRoot?.querySelector('h3')).to.not.exist;
     expect(element.shadowRoot?.querySelector('h4')).to.not.exist;
+  });
+
+  it('renders the title on the <h1>', async () => {
+    element.level = 1;
+    await element.updateComplete;
+    expect(
+      element.shadowRoot?.querySelector('h1')!.getAttribute('title')
+    ).to.be.equals(label);
+  });
+
+  it('renders the title on the <h2>', async () => {
+    element.level = 2;
+    await element.updateComplete;
+    expect(
+      element.shadowRoot?.querySelector('h2')!.getAttribute('title')
+    ).to.be.equals(label);
+  });
+
+  it('renders the title on the <h3>', async () => {
+    element.level = 3;
+    await element.updateComplete;
+    expect(
+      element.shadowRoot?.querySelector('h3')!.getAttribute('title')
+    ).to.be.equals(label);
+  });
+
+  it('renders the title on the <h4>', async () => {
+    element.level = 4;
+    await element.updateComplete;
+    expect(
+      element.shadowRoot?.querySelector('h4')!.getAttribute('title')
+    ).to.be.equals(label);
   });
 
   it('does not set contrasted class property with odd level', async () => {
