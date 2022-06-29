@@ -11,9 +11,9 @@ import { translate } from 'lit-translate';
 import '@material/mwc-icon';
 import '@material/mwc-list/mwc-list-item';
 
-import '../../../filtered-list.js';
-import { getNameAttribute } from '../../../foundation.js';
-import { getOrderedIeds, newIEDSelectEvent, styles } from '../foundation.js';
+import '../../filtered-list.js';
+import { getNameAttribute } from '../../foundation.js';
+import { getOrderedIeds, newIEDSelectEvent, styles } from './foundation.js';
 
 let selectedIed: Element | undefined;
 
@@ -39,7 +39,7 @@ export class IedList extends LitElement {
 
   render(): TemplateResult {
     return html` <section tabindex="0">
-      <h1>${translate('subscription.goose.subscriberGoose.title')}</h1>
+      <h1>${translate('subscription.iedList.title')}</h1>
       <filtered-list>
         ${getOrderedIeds(this.doc).map(
           ied =>

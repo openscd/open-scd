@@ -339,7 +339,6 @@ export const de: Translations = {
         subscriberTitle: 'Verbunden mit {{ selected }}',
       },
       subscriberGoose: {
-        title: 'IEDs',
         publisherTitle: 'GOOSE(s) verbunden mit {{selected}}',
       },
       view: {
@@ -353,7 +352,6 @@ export const de: Translations = {
         subscriberTitle: 'Verbunden mit {{ selected }}',
       },
       subscriberSmv: {
-        title: 'IEDs',
         publisherTitle: 'Verbunden mit {{selected}}',
       },
       view: {
@@ -361,6 +359,9 @@ export const de: Translations = {
         subscriberView:
           'Zeigt verbundene Sampled Value(s) des ausgewählten IED',
       },
+    },
+    iedList: {
+      title: 'IEDs',
     },
   },
   'enum-val': {

@@ -14,7 +14,7 @@ import { RadioListItem } from '@material/mwc-list/mwc-radio-list-item';
 
 import './subscription/goose/subscriber-list.js';
 import './subscription/goose/goose-list.js';
-import './subscription/goose/ied-list.js';
+import './subscription/ied-list.js';
 import { newViewEvent, View, ViewEvent } from './subscription/foundation.js';
 
 /** Defining view outside the class, which makes it persistent. */

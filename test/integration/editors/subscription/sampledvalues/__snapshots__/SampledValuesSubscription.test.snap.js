@@ -613,7 +613,7 @@ snapshots["Sampled Values Plugin in Subscriber view initially the plugin looks l
 snapshots["Sampled Values Plugin in Subscriber view initially the IED list looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.smv.subscriberSmv.title]
+    [subscription.iedList.title]
   </h1>
   <filtered-list>
     <mwc-list-item

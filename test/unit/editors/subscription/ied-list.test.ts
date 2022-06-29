@@ -1,8 +1,8 @@
 import { html, fixture, expect } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
-import '../../../../../src/editors/subscription/sampledvalues/ied-list.js';
-import { IedList } from '../../../../../src/editors/subscription/sampledvalues/ied-list.js';
+import '../../../../src/editors/subscription/ied-list.js';
+import { IedList } from '../../../../src/editors/subscription/ied-list.js';
 
 describe('ied-list', () => {
   let element: IedList;

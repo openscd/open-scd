@@ -336,7 +336,6 @@ export const en = {
         subscriberTitle: 'Subscriber of {{ selected }}',
       },
       subscriberGoose: {
-        title: 'IEDs',
         publisherTitle: 'GOOSE(s) subscribed by {{selected}}',
       },
       view: {
@@ -350,7 +349,6 @@ export const en = {
         subscriberTitle: 'Subscriber of {{ selected }}',
       },
       subscriberSmv: {
-        title: 'IEDs',
         publisherTitle: 'Sampled Value(s) subscribed by {{selected}}',
       },
       view: {
@@ -358,6 +356,9 @@ export const en = {
         subscriberView:
           'Show subscribed Sampled Value(s) publisher for selected IED',
       },
+    },
+    iedList: {
+      title: 'IEDs',
     },
   },
   'enum-val': {

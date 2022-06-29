@@ -12,7 +12,7 @@ import { RadioListItem } from '@material/mwc-list/mwc-radio-list-item.js';
 
 import './subscription/sampledvalues/subscriber-list.js';
 import './subscription/sampledvalues/smv-list.js';
-import './subscription/sampledvalues/ied-list.js';
+import './subscription/ied-list.js';
 import { newViewEvent, View, ViewEvent } from './subscription/foundation.js';
 
 /** Defining view outside the class, which makes it persistent. */
