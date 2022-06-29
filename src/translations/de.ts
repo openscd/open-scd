@@ -60,6 +60,7 @@ export const de: Translations = {
     sampleRate: 'Abtastrate zu Telegram hinzufügen',
     security: 'Potentiel in Zukunft für z.B. digitale Signature',
     synchSourceId: 'Identität der Zeitquelle zu Telegram hinzufügen',
+    SampledValueControl: 'Sampled Value Kontrollblock',
     iedName: 'Referenziertes IED',
     ldInst: 'Referenziertes logisches Gerät',
     prefix: 'Präfix des logischen Knotens',
@@ -205,25 +206,25 @@ export const de: Translations = {
     searchHelper: 'IED auswählen',
     searchHelperDesc: '({{description}})',
     missing: 'Kein IED vorhanden',
-    toggleChildElements: '???',
+    toggleChildElements: 'Kindelemente umschalten',
     wizard: {
-      daTitle: '???',
-      doTitle: '???',
-      nsdocDescription: 'Beschreibung',
+      daTitle: 'DA Informationen anzeigen',
+      doTitle: 'DO Informationen anzeigen',
+      nsdocDescription: 'NSDoc Beschreibung',
       doiDescription: 'Beschreibung des DOI',
       daiDescription: 'Beschreibung des DAI',
       ied: 'IED',
-      accessPoint: '???',
-      lDevice: '???',
-      lnPrefix: '???',
-      lnDescription: 'Beschreibung des LN',
-      lnInst: '???',
-      doName: '???',
-      doCdc: '???',
-      daName: '???',
-      daFc: '???',
-      daBType: '???',
-      daValue: '???',
+      accessPoint: 'Zugangspunkt',
+      lDevice: 'Logisches Gerät',
+      lnPrefix: 'LN Präfix',
+      lnDescription: 'LN Beschreibung',
+      lnInst: 'LN Instanz',
+      doName: 'DO Name',
+      doCdc: 'DO Common Data Class',
+      daName: 'DA Name',
+      daFc: 'DA Functional Constraint',
+      daBType: 'DA Typ',
+      daValue: 'DA Wert',
     },
   },
   ied: {
@@ -362,6 +363,99 @@ export const de: Translations = {
     },
     iedList: {
       title: 'IEDs',
+    },
+  },
+  protocol104: {
+    toggleChildElements: 'Kindelemente umschalten',
+    view: {
+      valuesView: 'Werte',
+      networkView: 'Netzwerk',
+    },
+    values: {
+      missing: 'Kein IED mit 104 Adressen',
+      removeAddresses: 'Alle Adressen entfernen',
+      removedAddresses:
+        '{{ nrOfAddresses }} Addressen von DOI "{{ name }}" entfernt',
+      addedAddress:
+        '104-Addressen zu DO "{{ name }}" in LN(0) "{{ lnName }}" hinzugefügt',
+    },
+    network: {
+      connectedAp: {
+        wizard: {
+          title: {
+            edit: 'ConnectedAP bearbeiten',
+          },
+          redundancySwitchLabel: 'Redundanz',
+          redundancyGroupTitle: 'Redundanzgruppen',
+          noRedundancyGroupsAvailable: 'Keine Redundanzgruppen verfügbar',
+          addRedundancyGroup: 'Redundanzruppe hinzufügen',
+          stationTypeHelper: 'Anlagentyp',
+          ipHelper: 'IP Adresse',
+          ipSubnetHelper: 'Subnetzmaske',
+          wFactorHelper: '???',
+          kFactorHelper: '???',
+          timeout0Helper: 'Time-out Verbindungsaufbau in Sekunden',
+          timeout1Helper: '???',
+          timeout2Helper: '???',
+          timeout3Helper: '???',
+        },
+      },
+      redundancyGroup: {
+        wizard: {
+          title: {
+            edit: 'Redundanzgruppe bearbeiten',
+            add: 'Redundanzgruppe hinzufügen',
+          },
+          redundancyGroupNumberLabel: 'Redundanzgruppennummer',
+          addedLRedundancyGroup:
+            '??? {{ rGNumber }} ? SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+          editedRedundancyGroup:
+            '??? {{ rGNumber }} ? SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+          removedRedundancyGroup:
+            '??? {{ rGNumber }} ? SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+          logicLinkGroupTitle: '???',
+          noLogicLinksAvailable: '???',
+          addLogicLink: '???',
+        },
+      },
+      logicLink: {
+        wizard: {
+          title: {
+            edit: '???',
+            add: '???',
+          },
+          logicLinkNumberLabel: '???',
+          addedLogicLink:
+            '??? SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+          editedLogicLink:
+            '??? SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+          removedLogicLink:
+            '??? SubNetwork[name="{{ subNetworkName }}"] > ConnectedAP[apName="{{ apName }}"][iedName="{{ iedName }}"]',
+        },
+      },
+    },
+    wizard: {
+      title: {
+        doiInfo: 'DOI Information',
+        addressEdit: '104-Adresse bearbeiten',
+        addAddress: '104-Adresse hinzufügen',
+      },
+      error: {
+        addAddressError:
+          'Invalide Template Struktur, DAI kann nicht hinzugefügt werden (DO: "{{ doType }}", CDC: "{{ cdc }}", Structure: "{{ structure }}")',
+      },
+      casduHelper: 'CASDU Wert',
+      ioaHelper: 'IOA Wert',
+      monitorTiHelper: 'TI Wert überwachen',
+      monitorInverted: '???',
+      monitorCheck: '???',
+      controlTiHelper: '???',
+      controlInverted: '???',
+      controlCheck: '???',
+      expectedValueHelper: '???',
+      unitMultiplierHelper: '???',
+      scaleMultiplierHelper: '???',
+      scaleOffsetHelper: '???',
     },
   },
   'enum-val': {
@@ -546,6 +640,8 @@ export const de: Translations = {
     action: {
       addaddress: 'SMV bearbeitet ({{identity}})',
     },
+    missingaccp:
+      'AccessPoint is nicht verbunden. SMV kann nicht hinzugefügt werden.',
   },
   subscriber: {
     title: 'Subscriber Update',
@@ -622,6 +718,11 @@ export const de: Translations = {
   },
   gsecontrol: {
     wizard: { location: 'Ablageort der GOOSE wählen' },
+  },
+  samvpledvaluecontrol: {
+    wizard: {
+      location: 'Ablageort des Select Sampled Value Control Block wählen',
+    },
   },
   add: 'Hinzufügen',
   new: 'Neu',

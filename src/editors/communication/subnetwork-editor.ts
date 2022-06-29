@@ -22,32 +22,34 @@ import { wizards } from '../../wizards/wizard-library.js';
 /** [[`Communication`]] subeditor for a `SubNetwork` element. */
 @customElement('subnetwork-editor')
 export class SubNetworkEditor extends LitElement {
+  @property({ attribute: false })
+  doc!: XMLDocument;
   /** SCL element SubNetwork */
   @property({ attribute: false })
   element!: Element;
   /** SubNetwork attribute name */
-  @property()
+  @property({ type: String })
   get name(): string {
     return this.element.getAttribute('name') ?? 'UNDEFINED';
   }
   /** SubNetwork attribute desc */
-  @property()
+  @property({ type: String })
   get desc(): string | null {
     return this.element.getAttribute('desc') ?? null;
   }
   /** SubNetwork attribute type */
-  @property()
+  @property({ type: String })
   get type(): string | null {
     return this.element.getAttribute('type') ?? null;
   }
   /** SubNetwork child elements BitRate label */
-  @property()
+  @property({ type: String })
   get bitrate(): string | null {
     const bitRate = this.element.querySelector('BitRate');
     if (bitRate === null) return null;
     const bitRateValue = bitRate.textContent ?? '';
     const m = bitRate.getAttribute('multiplier');
-    const unit = m === null ? 'b/s' : ' ' + m + 'b/s';
+    const unit = ` ${m ?? ''}b/s`;
     return bitRateValue ? bitRateValue + unit : null;
   }
 
@@ -73,7 +75,7 @@ export class SubNetworkEditor extends LitElement {
       );
   }
 
-  private renderIedContainer(): TemplateResult[] {
+  private renderIEDs(): TemplateResult[] {
     return Array.from(this.element.querySelectorAll(':scope > ConnectedAP'))
       .map(connAP => connAP.getAttribute('iedName')!)
       .filter((v, i, a) => a.indexOf(v) === i)
@@ -106,7 +108,7 @@ export class SubNetworkEditor extends LitElement {
   }
 
   private header(): string {
-    return ` ${this.name} ${this.desc === null ? '' : `— ${this.desc}`}
+    return `${this.name} ${this.desc === null ? '' : `— ${this.desc}`}
     ${this.subNetworkSpecs()}`;
   }
 
@@ -122,14 +124,15 @@ export class SubNetworkEditor extends LitElement {
         <mwc-icon-button
           icon="delete"
           @click=${() => this.remove()}
-        ></mwc-icon-button> </abbr
-      ><abbr slot="action" title="${translate('add')}">
+        ></mwc-icon-button>
+      </abbr>
+      <abbr slot="action" title="${translate('add')}">
         <mwc-icon-button
           icon="playlist_add"
           @click="${() => this.openConnectedAPwizard()}"
         ></mwc-icon-button>
       </abbr>
-      <div id="iedContainer">${this.renderIedContainer()}</div>
+      <div id="iedContainer">${this.renderIEDs()}</div>
     </action-pane> `;
   }
 

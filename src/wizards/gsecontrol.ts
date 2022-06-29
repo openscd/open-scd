@@ -35,7 +35,7 @@ import {
 import { maxLength, patterns } from './foundation/limits.js';
 import { editDataSetWizard } from './dataset.js';
 import { editGseWizard } from './gse.js';
-import { securityEnableEnum } from './foundation/enums.js';
+import { securityEnabledEnum } from './foundation/enums.js';
 import { dataAttributePicker, iEDPicker } from './foundation/finder.js';
 import { FinderList } from '../finder-list.js';
 import { newFCDA } from './fcda.js';
@@ -45,7 +45,7 @@ import {
   uniqueAppId,
   uniqueMacAddress,
 } from './foundation/scl.js';
-import { contentGseWizard, createAddressElement } from './address.js';
+import { contentGseOrSmvWizard, createAddressElement } from './address.js';
 
 interface ContentOptions {
   name: string | null;
@@ -119,7 +119,7 @@ export function contentGseControlWizard(
       nullable
       required
       helper="${translate('scl.securityEnable')}"
-      >${securityEnableEnum.map(
+      >${securityEnabledEnum.map(
         type => html`<mwc-list-item value="${type}">${type}</mwc-list-item>`
       )}</wizard-select
     >`,
@@ -267,7 +267,7 @@ export function createGseControlWizard(ln0OrLn: Element): Wizard {
         {
           title: get('wizard.title.add', { tagName: 'GSE' }),
           content: [
-            ...contentGseWizard({ hasInstType, attributes }),
+            ...contentGseOrSmvWizard({ hasInstType, attributes }),
             html`<wizard-textfield
               label="MinTime"
               .maybeValue=${minTime}

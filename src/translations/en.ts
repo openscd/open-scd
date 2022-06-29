@@ -58,6 +58,7 @@ export const en = {
     sampleRate: 'Add sample rate to SMV packet',
     security: 'Potential future use. e.g. digital signature',
     synchSourceId: 'Add sync source id to SMV packet',
+    SampledValueControl: 'Sampled Value Control Block',
     iedName: 'Referenced IED',
     ldInst: 'Referenced Logical Device',
     prefix: 'Prefix of the Logical Node',
@@ -361,6 +362,102 @@ export const en = {
       title: 'IEDs',
     },
   },
+  protocol104: {
+    toggleChildElements: 'Toggle child elements',
+    view: {
+      valuesView: 'Values',
+      networkView: 'Network',
+    },
+    values: {
+      missing: 'No IED with 104 Addresses',
+      removeAddresses: 'Remove all Addresses',
+      removedAddresses:
+        'Removed Addresses from DOI "{{ name }}" ({{ nrOfAddresses }})',
+      addedAddress:
+        'Added 104 Address(es) to DO "{{ name }}" on LN(0) "{{ lnName }}"',
+    },
+    network: {
+      connectedAp: {
+        wizard: {
+          title: {
+            edit: 'Edit ConnectedAP',
+          },
+          redundancySwitchLabel: 'Redundancy',
+          redundancyGroupTitle: 'Redundancy Groups',
+          noRedundancyGroupsAvailable: 'No redundancy groups available',
+          addRedundancyGroup: 'Redundancy Group',
+          stationTypeHelper: 'Type of station',
+          ipHelper: 'IP address of the logical link',
+          ipSubnetHelper:
+            'Subnetwork mask of the IP address of the logical link',
+          wFactorHelper: 'W factor of the logical link',
+          kFactorHelper: 'K factor of the logical link',
+          timeout0Helper: 'Time-out in seconds of connection establishment',
+          timeout1Helper: 'Time-out in seconds of sent or test APDUs',
+          timeout2Helper:
+            'Time-out in seconds for acknowledges in case of no data messages',
+          timeout3Helper:
+            'Time-out in seconds for sending test frames in case of a long idle state',
+        },
+      },
+      redundancyGroup: {
+        wizard: {
+          title: {
+            edit: 'Edit Redundancy Group',
+            add: 'Add Redundancy Group',
+          },
+          redundancyGroupNumberLabel: 'Redundancy Group number',
+          addedLRedundancyGroup:
+            'Added Redundancy Group {{ rGNumber }} from SubNetwork (name="{{ subNetworkName }}") and ConnectedAP (AccessPoint Name="{{ apName }}", IED Name="{{ iedName }}")',
+          editedRedundancyGroup:
+            'Edited Redundancy Group {{ rGNumber }} from SubNetwork (name="{{ subNetworkName }}") and ConnectedAP (AccessPoint Name="{{ apName }}", IED Name="{{ iedName }}")',
+          removedRedundancyGroup:
+            'Removed Redundancy Group {{ rGNumber }} from SubNetwork (name="{{ subNetworkName }}") and ConnectedAP (AccessPoint Name="{{ apName }}", IED Name="{{ iedName }}")',
+          logicLinkGroupTitle: 'Logic Links',
+          noLogicLinksAvailable: 'No Logic Links available',
+          addLogicLink: 'Logic Link',
+        },
+      },
+      logicLink: {
+        wizard: {
+          title: {
+            edit: 'Edit Logic Link',
+            add: 'Add Logic Link',
+          },
+          logicLinkNumberLabel: 'Logic Link number',
+          addedLogicLink:
+            'Added Logic Link group to SubNetwork (name="{{ subNetworkName }}") and ConnectedAP (AccessPoint Name="{{ apName }}", IED Name="{{ iedName }}")',
+          editedLogicLink:
+            'Edited Logic Link group from SubNetwork (name="{{ subNetworkName }}") and ConnectedAP (AccessPoint Name="{{ apName }}", IED Name="{{ iedName }}")',
+          removedLogicLink:
+            'Removed Logic Link group from SubNetwork (name="{{ subNetworkName }}") and ConnectedAP (AccessPoint Name="{{ apName }}", IED Name="{{ iedName }}")',
+        },
+      },
+    },
+    wizard: {
+      title: {
+        doiInfo: 'DOI Info',
+        addressEdit: 'Edit 104 Address',
+        addAddress: 'Add 104 Address',
+      },
+      error: {
+        addAddressError:
+          'Invalid Template Structure, unable to create DAI Element. (DO: "{{ doType }}", CDC: "{{ cdc }}", DAI: "{{ structure }}")',
+      },
+      casduHelper: 'CASDU Value',
+      ioaHelper: 'IOA Value',
+      monitorTiHelper: 'Monitor TI Value',
+      monitorInverted: 'Created Inverted Addresses (Monitor)',
+      monitorCheck: 'Create Check Addresses (Monitor)',
+      controlTiHelper: 'Control TI Value',
+      controlInverted: 'Created Inverted Addresses (Control)',
+      controlCheck: 'Create Check Addresses (Control)',
+      expectedValueHelper: 'Expected Value',
+      unitMultiplierHelper: 'Unit Multiplier',
+      scaleMultiplierHelper: 'Scale Multiplier',
+      scaleOffsetHelper: 'Scale Offset',
+    },
+  },
   'enum-val': {
     wizard: {
       title: {
@@ -542,6 +639,7 @@ export const en = {
     action: {
       addaddress: 'Edit SMV ({{identity}})',
     },
+    missingaccp: 'AccessPoint is not connected. SMV cannot be created.',
   },
   subscriber: {
     title: 'Subscriber update',
@@ -616,6 +714,9 @@ export const en = {
   },
   gsecontrol: {
     wizard: { location: 'Select GOOSE Control Block Location' },
+  },
+  samvpledvaluecontrol: {
+    wizard: { location: 'Select Sampled Value Control Block Location' },
   },
   add: 'Add',
   new: 'New',

@@ -14,7 +14,9 @@ interface ContentOptions {
   attributes: Record<string, string | null>;
 }
 
-export function contentGseWizard(content: ContentOptions): TemplateResult[] {
+export function contentGseOrSmvWizard(
+  content: ContentOptions
+): TemplateResult[] {
   return [
     html`<mwc-formfield
       label="${translate('connectedap.wizard.addschemainsttype')}"
