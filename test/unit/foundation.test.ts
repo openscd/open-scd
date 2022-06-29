@@ -1,31 +1,32 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
 import {
+  cloneElement,
   ComplexAction,
+  depth,
   EditorAction,
-  identity,
   findControlBlocks,
   findFCDAs,
+  getChildElementsByTagName,
+  getNameAttribute,
+  getReference,
+  getUniqueElementName,
+  identity,
   ifImplemented,
   invert,
   isCreate,
   isDelete,
   isMove,
+  isReplace,
   isSame,
   isSimple,
-  isReplace,
   newActionEvent,
+  newLnInstGenerator,
   newPendingStateEvent,
   newWizardEvent,
+  SCLTag,
   selector,
   tags,
-  getReference,
-  SCLTag,
-  getChildElementsByTagName,
-  cloneElement,
-  depth,
-  getUniqueElementName,
-  newLnInstGenerator,
 } from '../../src/foundation.js';
 
 import { MockAction } from './mock-actions.js';
@@ -486,6 +487,15 @@ describe('foundation', () => {
 
     it('returns unique name for Child2', () =>
       expect(getUniqueElementName(parent, 'Child2')).to.equal('newChild22'));
+  });
+
+  describe('getNameAttribute', () => {
+    it('expect the correct value of the name attribute', () => {
+      const doElement = scl1.querySelector(
+        'LNodeType[id="Dummy.LLN0"] > DO[type="Dummy.LLN0.Mod"]'
+      )!;
+      expect(getNameAttribute(doElement)).to.be.equal('Mod');
+    });
   });
 
   describe('findFCDAs', () => {

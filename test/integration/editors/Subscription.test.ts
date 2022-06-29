@@ -1,10 +1,10 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../../../mock-wizard.js';
+import '../../mock-wizard.js';
 
-import Subscription from '../../../../src/editors/Subscription.js';
-import { Editing } from '../../../../src/Editing.js';
-import { Wizarding } from '../../../../src/Wizarding.js';
+import Subscription from '../../../src/editors/Subscription.js';
+import { Editing } from '../../../src/Editing.js';
+import { Wizarding } from '../../../src/Wizarding.js';
 
 describe('Subscription Plugin', () => {
   customElements.define(

@@ -42,6 +42,13 @@ export const officialPlugins = [
     kind: 'editor',
   },
   {
+    name: '104',
+    src: '/src/editors/Protocol104.js',
+    icon: 'settings_ethernet',
+    default: false,
+    kind: 'editor',
+  },
+  {
     name: 'Templates',
     src: '/src/editors/Templates.js',
     icon: 'copy_all',

@@ -114,7 +114,7 @@ export class DAContainer extends Container {
     // Next create all missing elements (DOI/SDI/DOI)
     const newElement = initializeElements(uninitializedTemplateStructure);
 
-    if (parentElement && newElement) {
+    if (newElement) {
       const wizard = createDAIWizard(parentElement, newElement, this.element);
       if (wizard) this.dispatchEvent(newWizardEvent(wizard));
     }

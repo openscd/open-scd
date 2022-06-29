@@ -5,19 +5,19 @@ import '../../finder-list.js';
 import { Directory } from '../../finder-list.js';
 import { identity, isPublic, selector } from '../../foundation.js';
 
-function getDisplayString(entry: string): string {
+export function getDisplayString(entry: string): string {
   if (entry.startsWith('IED:')) return entry.replace(/^.*:/, '').trim();
   if (entry.startsWith('LN0:')) return 'LLN0';
   return entry.replace(/^.*>/, '').trim();
 }
 
-function getReader(
-  server: Element,
+export function getReader(
+  doc: Document,
   getChildren: (element: Element) => Element[]
 ): (path: string[]) => Promise<Directory> {
   return async (path: string[]) => {
     const [tagName, id] = path[path.length - 1]?.split(': ', 2);
-    const element = server.ownerDocument.querySelector(selector(tagName, id));
+    const element = doc.querySelector(selector(tagName, id));
 
     if (!element)
       return { path, header: html`<p>${translate('error')}</p>`, entries: [] };
@@ -42,7 +42,7 @@ function getIED(parent: Element): Element[] {
 export function iEDPicker(doc: XMLDocument): TemplateResult {
   return html`<finder-list
     path="${JSON.stringify(['SCL: '])}"
-    .read=${getReader(doc.querySelector('SCL')!, getIED)}
+    .read=${getReader(doc, getIED)}
     .getDisplayString=${getDisplayString}
     .getTitle=${(path: string[]) => path[path.length - 1]}
   ></finder-list>`;
@@ -52,7 +52,7 @@ export function iEDsPicker(doc: XMLDocument): TemplateResult {
   return html`<finder-list
     multi
     path="${JSON.stringify(['SCL: '])}"
-    .read=${getReader(doc.querySelector('SCL')!, getIED)}
+    .read=${getReader(doc, getIED)}
     .getDisplayString=${getDisplayString}
     .getTitle=${(path: string[]) => path[path.length - 1]}
   ></finder-list>`;
@@ -83,7 +83,7 @@ export function dataAttributePicker(server: Element): TemplateResult {
   return html`<finder-list
     multi
     .paths=${[['Server: ' + identity(server)]]}
-    .read=${getReader(server, getDataModelChildren)}
+    .read=${getReader(server.ownerDocument, getDataModelChildren)}
     .getDisplayString=${getDisplayString}
     .getTitle=${(path: string[]) => path[path.length - 1]}
   ></finder-list>`;
@@ -141,7 +141,7 @@ export function sampledValueDataPicker(server: Element): TemplateResult {
   return html`<finder-list
     multi
     paths=${JSON.stringify([['Server: ' + identity(server)]])}
-    .read=${getReader(server, getSMVDataChildren)}
+    .read=${getReader(server.ownerDocument, getSMVDataChildren)}
     .getDisplayString=${getDisplayString}
     .getTitle=${(path: string[]) => path[path.length - 1]}
   ></finder-list>`;

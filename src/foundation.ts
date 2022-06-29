@@ -170,7 +170,7 @@ export function newActionEvent<T extends EditorAction>(
 }
 
 export const wizardInputSelector =
-  'wizard-textfield, mwc-textfield, ace-editor, mwc-select,wizard-select, wizard-checkbox';
+  'wizard-textfield, mwc-textfield, ace-editor, mwc-select, wizard-select, wizard-checkbox';
 export type WizardInputElement =
   | WizardTextField
   | TextField
@@ -2611,6 +2611,7 @@ export const patterns = {
   nmTokens: nmToken + '( ' + nmToken + ')*',
   decimal: '[+-]?[0-9]+(([.][0-9]*)?|([.][0-9]+))',
   unsigned: '[+]?[0-9]+(([.][0-9]*)?|([.][0-9]+))',
+  integer: '[+-]?[0-9]+([0-9]*)',
   alphanumericFirstUpperCase: '[A-Z][0-9,A-Z,a-z]*',
   alphanumericFirstLowerCase: '[a-z][0-9,A-Z,a-z]*',
   lnClass: '(LLN0)|[A-Z]{4,4}',
