@@ -1,6 +1,5 @@
-import { css, html, LitElement, property, TemplateResult } from 'lit-element';
+import {css, html, LitElement, property, PropertyValues, TemplateResult} from 'lit-element';
 import { get, translate } from 'lit-translate';
-import { nothing } from 'lit-html';
 
 import '@material/mwc-fab';
 import '@material/mwc-icon';
@@ -44,18 +43,24 @@ export default class CompasVersionsPlugin extends LitElement {
   docName!: string;
 
   @property()
-  historyItem!: Element[];
+  historyItem: Element[] | undefined;
 
-  firstUpdated(): void {
-    if (!this.docId) {
-      this.historyItem = [];
-    } else {
-      this.fetchData()
+  protected updated(_changedProperties: PropertyValues): void {
+    super.updated(_changedProperties);
+
+    // When the document is updated, we also will retrieve the history again, because probably it has changed.
+    if (_changedProperties.has('doc')) {
+      if (!this.docId) {
+        this.historyItem = [];
+      } else {
+        this.fetchData()
+      }
     }
   }
 
   fetchData(): void {
     const type = getTypeFromDocName(this.docName);
+    this.historyItem = undefined;
     CompasSclDataService().listVersions(type, this.docId)
       .then(xmlResponse => {
         this.historyItem = Array.from(xmlResponse.querySelectorAll('HistoryItem') ?? []);
