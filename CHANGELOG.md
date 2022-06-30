@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.18.0](https://github.com/openscd/open-scd/compare/v0.17.0...v0.18.0) (2022-06-30)
+
+
+### Features
+
+* **104-plugin:** add some German translations ([5b0a43b](https://github.com/openscd/open-scd/commits/5b0a43bd7d438580007c52db7057b1cce4b55ba5))
+* **104/values:** Added List of IEDs and 104-related DAI to values screen. ([adbc4a4](https://github.com/openscd/open-scd/commits/adbc4a4da06f9b5dadd27de686e70409ea86c57d))
+* **editors/104:** Show/edit subnetworks without redundancy ([638fbf4](https://github.com/openscd/open-scd/commits/638fbf42ffa74eb63f83f5033dd25ddf32e04c5e))
+* **plugins/SampledValues:** Switch publisher and subscriber in SV subscription editor ([a5ce813](https://github.com/openscd/open-scd/commits/a5ce813fb27c597b7f8bd8399b92c5d884ba1b5e))
+* prevent losing data on user navigation ([#800](https://github.com/openscd/open-scd/issues/800)) ([8ffcbbb](https://github.com/openscd/open-scd/commits/8ffcbbb21263e70f43d791434d88a9e21641fc30))
+* **wizards/ied:** added new textfields for IED properties  ([#822](https://github.com/openscd/open-scd/issues/822)) ([1cd6fb7](https://github.com/openscd/open-scd/commits/1cd6fb72b0ecae47106425ecff1b1d8523f7d50e))
+* **wizards/sampledvaluecontrol:** add create wizard ([#744](https://github.com/openscd/open-scd/issues/744)) ([f510446](https://github.com/openscd/open-scd/commits/f510446da42d20b45c57b41c4463a663b6bc712d))
+
+
+### Bug Fixes
+
+* **communication:** display changes to ConnectedAPs in SubNetworks ([#819](https://github.com/openscd/open-scd/issues/819)) ([f082d20](https://github.com/openscd/open-scd/commits/f082d20871641f4819fc9623eb88d5b126bb5936))
+* **editing:** reactively update after changes to doc ([#814](https://github.com/openscd/open-scd/issues/814)) ([78e8f0f](https://github.com/openscd/open-scd/commits/78e8f0f655e039580e2c26f4d42517a6d40f3862))
+* **iededitor:** Refreshing components after update IED or DAI Element ([67f5ed4](https://github.com/openscd/open-scd/commits/67f5ed43931c807b1f244f8cc5dd291919020abf))
+
 ## [0.17.0](https://github.com/openscd/open-scd/compare/v0.16.0...v0.17.0) (2022-05-30)
 
 
