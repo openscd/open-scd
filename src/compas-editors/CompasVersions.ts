@@ -45,20 +45,16 @@ export default class CompasVersionsPlugin extends LitElement {
   @property()
   historyItem: Element[] | undefined;
 
-  firstUpdated(): void {
-    if (!this.docId) {
-      this.historyItem = [];
-    } else {
-      this.fetchData()
-    }
-  }
-
   protected updated(_changedProperties: PropertyValues): void {
     super.updated(_changedProperties);
 
     // When the document is updated, we also will retrieve the history again, because probably it has changed.
     if (_changedProperties.has('doc')) {
-      this.firstUpdated();
+      if (!this.docId) {
+        this.historyItem = [];
+      } else {
+        this.fetchData()
+      }
     }
   }
 
