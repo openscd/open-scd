@@ -37,15 +37,15 @@ export default class CompasAutoAlignmentElement extends LitElement {
     if (this.valid()) {
       await CompasSclAutoAlignmentService().updateSCL(this.doc, this.getSelectedValues())
         .then(sclDocument => {
-          dispatchEventOnOpenScd(newLogEvent({kind: 'reset'}));
-          dispatchEventOnOpenScd(
+          this.dispatchEvent(newLogEvent({kind: 'reset'}));
+          this.dispatchEvent(
             newOpenDocEvent(
               sclDocument,
               this.docName,
               {detail: {docId: this.docId}}
             ));
 
-          dispatchEventOnOpenScd(
+          this.dispatchEvent(
             newLogEvent({
               kind: 'info',
               title: get('compas.autoAlignment.success')

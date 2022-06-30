@@ -1,7 +1,13 @@
-import { css } from 'lit-element';
+import { css, LitElement, query } from 'lit-element';
+import { compareNames } from '../../foundation.js';
+
+export enum View {
+  PUBLISHER,
+  SUBSCRIBER,
+}
 
 /**
- * Enumeration stating the Subscribe status of a IED to a GOOSE.
+ * Enumeration stating the Subscribe status of a IED to a GOOSE or Sampled Value.
  */
 export enum SubscribeStatus {
   Full,
@@ -9,29 +15,19 @@ export enum SubscribeStatus {
   None,
 }
 
-/**
- * Enumeration stating the current view of the Subscription plugin.
- */
-export enum View {
-  GOOSE_PUBLISHER,
-  GOOSE_SUBSCRIBER
+export interface ViewDetail {
+  view: View;
 }
-
-export interface GOOSESelectDetail {
-  gseControl: Element | undefined;
-  dataset: Element | undefined;
-}
-export type GOOSESelectEvent = CustomEvent<GOOSESelectDetail>;
-export function newGOOSESelectEvent(
-  gseControl: Element | undefined,
-  dataset: Element | undefined,
-  eventInitDict?: CustomEventInit<GOOSESelectDetail>
-): GOOSESelectEvent {
-  return new CustomEvent<GOOSESelectDetail>('goose-dataset', {
+export type ViewEvent = CustomEvent<ViewDetail>;
+export function newViewEvent(
+  view: View,
+  eventInitDict?: CustomEventInit<ViewDetail>
+): ViewEvent {
+  return new CustomEvent<ViewDetail>('view', {
     bubbles: true,
     composed: true,
     ...eventInitDict,
-    detail: { gseControl, dataset, ...eventInitDict?.detail },
+    detail: { view, ...eventInitDict?.detail },
   });
 }
 
@@ -51,36 +47,49 @@ export function newIEDSelectEvent(
   });
 }
 
-export interface ViewDetail {
-  view: View;
-}
-export type ViewEvent = CustomEvent<ViewDetail>;
-export function newViewEvent(
-  view: View,
-  eventInitDict?: CustomEventInit<ViewDetail>
-): ViewEvent {
-  return new CustomEvent<ViewDetail>('view', {
-    bubbles: true,
-    composed: true,
-    ...eventInitDict,
-    detail: { view, ...eventInitDict?.detail },
-  });
+export function getOrderedIeds(doc: XMLDocument): Element[] {
+  return doc
+    ? Array.from(doc.querySelectorAll(':root > IED')).sort((a, b) =>
+        compareNames(a, b)
+      )
+    : [];
 }
 
-export interface SubscriptionDetail {
+/**
+ * An element within this list has 2 properties:
+ * - The element itself, either a GSEControl or an IED at this point.
+ * - A 'partial' property indicating if the GOOSE is fully initialized or partially.
+ */
+export interface ListElement {
   element: Element;
-  subscribeStatus: SubscribeStatus;
+  partial?: boolean;
 }
-export type SubscriptionEvent = CustomEvent<SubscriptionDetail>;
-export function newSubscriptionEvent(
-  element: Element,
-  subscribeStatus: SubscribeStatus
-): SubscriptionEvent {
-  return new CustomEvent<SubscriptionDetail>('subscription', {
-    bubbles: true,
-    composed: true,
-    detail: { element, subscribeStatus },
-  });
+
+export class SubscriberListContainer extends LitElement {
+  /** List holding all current subscribed Elements. */
+  subscribedElements: ListElement[] = [];
+
+  /** List holding all current avaialble Elements which are not subscribed. */
+  availableElements: ListElement[] = [];
+
+  /** Current selected IED (when in Subscriber view) */
+  currentSelectedIed: Element | undefined;
+
+  /** The current used dataset for subscribing / unsubscribing */
+  currentUsedDataset: Element | undefined | null;
+
+  @query('div') subscriberWrapper!: Element;
+
+  protected updated(): void {
+    if (this.subscriberWrapper) {
+      this.subscriberWrapper.scrollTo(0, 0);
+    }
+  }
+
+  protected resetElements(): void {
+    this.subscribedElements = [];
+    this.availableElements = [];
+  }
 }
 
 /** Common `CSS` styles used by DataTypeTemplate subeditors */
@@ -153,9 +162,7 @@ export const styles = css`
 
 declare global {
   interface ElementEventMap {
-    ['goose-dataset']: GOOSESelectEvent;
-    ['subscription']: SubscriptionEvent;
-    ['ied-select']: IEDSelectEvent;
     ['view']: ViewEvent;
+    ['ied-select']: IEDSelectEvent;
   }
 }

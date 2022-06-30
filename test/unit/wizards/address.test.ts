@@ -15,7 +15,7 @@ import {
   WizardInputElement,
 } from '../../../src/foundation.js';
 import {
-  contentGseWizard,
+  contentGseOrSmvWizard,
   updateAddress,
 } from '../../../src/wizards/address.js';
 
@@ -70,7 +70,7 @@ describe('address', () => {
       const wizard = [
         {
           title: 'title',
-          content: contentGseWizard({ hasInstType, attributes }),
+          content: contentGseOrSmvWizard({ hasInstType, attributes }),
         },
       ];
 
@@ -109,7 +109,7 @@ describe('address', () => {
         wizard = [
           {
             title: 'asdas',
-            content: contentGseWizard({ hasInstType, attributes }),
+            content: contentGseOrSmvWizard({ hasInstType, attributes }),
           },
         ];
         element.workflow.push(() => wizard);
@@ -210,7 +210,7 @@ describe('address', () => {
         wizard = [
           {
             title: 'asdas',
-            content: contentGseWizard({ hasInstType, attributes }),
+            content: contentGseOrSmvWizard({ hasInstType, attributes }),
           },
         ];
         element.workflow.push(() => wizard);

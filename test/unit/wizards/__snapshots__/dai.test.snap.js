@@ -20,7 +20,7 @@ snapshots["Wizards for SCL element DAI edit existing DAI looks like the latest s
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >

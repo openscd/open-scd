@@ -14,7 +14,7 @@ snapshots["Wizards for Locamation Plugin to edit the selected Logical Node -  st
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >

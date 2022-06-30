@@ -21,15 +21,15 @@ export const officialPlugins = [
     kind: 'editor',
   },
   {
-    name: 'Subscription',
-    src: '/src/editors/Subscription.js',
+    name: 'Subscriber (GOOSE)',
+    src: '/src/editors/GooseControlSubscription.js',
     icon: 'link',
     default: true,
     kind: 'editor',
   },
   {
-    name: 'Sampled Values Subscriber',
-    src: '/src/editors/SampledValues.js',
+    name: 'Subscriber (SMV)',
+    src: '/src/editors/SampledValuesSubscription.js',
     icon: 'link',
     default: true,
     kind: 'editor',
@@ -39,6 +39,13 @@ export const officialPlugins = [
     src: '/src/editors/Communication.js',
     icon: 'settings_ethernet',
     default: true,
+    kind: 'editor',
+  },
+  {
+    name: '104',
+    src: '/src/editors/Protocol104.js',
+    icon: 'settings_ethernet',
+    default: false,
     kind: 'editor',
   },
   {
@@ -62,7 +69,7 @@ export const officialPlugins = [
     default: true,
     kind: 'menu',
     requireDoc: false,
-    position: 'top'
+    position: 'top',
   },
   {
     name: 'New project',
@@ -71,7 +78,7 @@ export const officialPlugins = [
     default: true,
     kind: 'menu',
     requireDoc: false,
-    position: 'top'
+    position: 'top',
   },
   {
     name: 'Project from CIM',
@@ -107,7 +114,7 @@ export const officialPlugins = [
     default: true,
     kind: 'menu',
     requireDoc: true,
-    position: 'top'
+    position: 'top',
   },
   {
     name: 'Validate using OCL',
@@ -117,7 +124,7 @@ export const officialPlugins = [
     kind: 'validator',
   },
   {
-    name: 'Validate project',
+    name: 'Validate Schema',
     src: '/src/validators/ValidateSchema.js',
     icon: 'rule_folder',
     default: true,
@@ -128,7 +135,7 @@ export const officialPlugins = [
     src: '/src/validators/ValidateTemplates.js',
     icon: 'rule_folder',
     default: true,
-    kind: 'validator'
+    kind: 'validator',
   },
   {
     name: 'Import IEDs',
@@ -137,7 +144,7 @@ export const officialPlugins = [
     default: true,
     kind: 'menu',
     requireDoc: true,
-    position: 'middle'
+    position: 'middle',
   },
   {
     name: 'Subscriber Update',
@@ -145,7 +152,7 @@ export const officialPlugins = [
     default: true,
     kind: 'menu',
     requireDoc: true,
-    position: 'middle'
+    position: 'middle',
   },
   {
     name: 'Update desc (ABB)',
@@ -153,7 +160,7 @@ export const officialPlugins = [
     default: false,
     kind: 'menu',
     requireDoc: true,
-    position: 'middle'
+    position: 'middle',
   },
   {
     name: 'Update desc (SEL)',
@@ -161,7 +168,7 @@ export const officialPlugins = [
     default: false,
     kind: 'menu',
     requireDoc: true,
-    position: 'middle'
+    position: 'middle',
   },
   {
     name: 'Merge Project',
@@ -170,7 +177,7 @@ export const officialPlugins = [
     default: true,
     kind: 'menu',
     requireDoc: true,
-    position: 'middle'
+    position: 'middle',
   },
   {
     name: 'Update Substation',
@@ -179,7 +186,7 @@ export const officialPlugins = [
     default: true,
     kind: 'menu',
     requireDoc: true,
-    position: 'middle'
+    position: 'middle',
   },
   {
     name: 'Cleanup',
@@ -222,6 +229,6 @@ export const officialPlugins = [
     default: true,
     kind: 'menu',
     requireDoc: false,
-    position: 'bottom'
+    position: 'bottom',
   },
 ];

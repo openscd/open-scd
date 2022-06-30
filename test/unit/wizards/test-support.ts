@@ -14,11 +14,12 @@ import {
   WizardInputElement,
 } from '../../../src/foundation.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
+import { WizardSelect } from "../../../src/wizard-select.js";
 
 const noOp = () => {
   return;
 };
-export const newWizard = (done = noOp) => {
+export const newWizard = (done = noOp): Element => {
   const element = document.createElement('mwc-dialog');
   element.close = done;
   return element;
@@ -26,6 +27,17 @@ export const newWizard = (done = noOp) => {
 
 export async function setWizardTextFieldValue(
   field: WizardTextField,
+  value: string | null
+): Promise<void> {
+  if (field.nullSwitch && !field.nullSwitch.checked) {
+    field.nullSwitch?.click();
+  }
+  field.maybeValue = value;
+  await field.requestUpdate();
+}
+
+export async function setWizardSelectValue(
+  field: WizardSelect,
   value: string | null
 ): Promise<void> {
   if (field.nullSwitch && !field.nullSwitch.checked) {
@@ -143,7 +155,7 @@ export async function fetchDoc(docName: string): Promise<XMLDocument> {
 
 export function expectDeleteAction(
   simpleAction: SimpleAction,
-  tagName: string,
+  tagName: string
 ): void {
   expect(simpleAction).to.satisfy(isDelete);
 

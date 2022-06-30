@@ -10,25 +10,6 @@ import { validateChildren } from './templates/foundation.js';
 
 type ValidationResult = LogDetailBase | LogDetail;
 
-export function dispatch(detail: ValidationResult, validatorId: string): void {
-  const kind = (<LogDetail>detail).kind;
-  const title = (<LogDetailBase>detail).title;
-  const message = (<LogDetailBase>detail).message;
-
-  if (kind)
-    document
-      .querySelector('open-scd')
-      ?.dispatchEvent(newLogEvent(<LogDetail>detail));
-  else
-    document.querySelector('open-scd')?.dispatchEvent(
-      newIssueEvent({
-        validatorId,
-        title,
-        message,
-      })
-    );
-}
-
 export default class ValidateTemplates extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
@@ -37,6 +18,22 @@ export default class ValidateTemplates extends LitElement {
 
   @property()
   pluginId!: string;
+
+  dispatch(detail: ValidationResult): void {
+    const kind = (<LogDetail>detail).kind;
+    const title = (<LogDetailBase>detail).title;
+    const message = (<LogDetailBase>detail).message;
+
+    if (kind) this.dispatchEvent(newLogEvent(<LogDetail>detail));
+    else
+      this.dispatchEvent(
+        newIssueEvent({
+          validatorId: this.pluginId,
+          title,
+          message,
+        })
+      );
+  }
 
   async validate(): Promise<void> {
     const promises: Promise<void>[] = [];
@@ -48,7 +45,7 @@ export default class ValidateTemplates extends LitElement {
     ];
 
     if (!(version === '2007' && revision === 'B' && Number(release) > 3)) {
-      document.querySelector('open-scd')?.dispatchEvent(
+      this.dispatchEvent(
         newIssueEvent({
           validatorId: this.pluginId,
           title: get('diag.missingnsd'),
@@ -61,12 +58,19 @@ export default class ValidateTemplates extends LitElement {
     const data = this.doc.querySelector('DataTypeTemplates');
     if (!data) return;
 
-    const issuesTemaplte = await validateChildren(data);
-    if (issuesTemaplte.length === 0)
-      issuesTemaplte.push({
+    const templateIssues = await validateChildren(data);
+    if (templateIssues.length === 0)
+      templateIssues.push({
         title: get('diag.zeroissues'),
       });
 
-    issuesTemaplte.forEach(error => dispatch(error, this.pluginId));
+    templateIssues.forEach(error =>
+      this.dispatchEvent(
+        newIssueEvent({
+          ...error,
+          validatorId: this.pluginId,
+        })
+      )
+    );
   }
 }

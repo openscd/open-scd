@@ -1,6 +1,53 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
+snapshots["ValidateTemplates OpenSCD integration test  with a valid DataTypeTemplates section shows a \"No errors\" message in the diagnostics pane"] = 
+`<mwc-dialog
+  heading="Diagnostics"
+  id="diagnostic"
+>
+  <filtered-list
+    id="content"
+    wrapfocus=""
+  >
+    <mwc-list-item
+      aria-disabled="false"
+      noninteractive=""
+      tabindex="-1"
+    >
+      Validate Templates
+    </mwc-list-item>
+    <li
+      divider=""
+      padded=""
+      role="separator"
+    >
+    </li>
+    <abbr title="No errors found in the project
+undefined">
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <span>
+          No errors found in the project
+        </span>
+        <span slot="secondary">
+        </span>
+      </mwc-list-item>
+    </abbr>
+  </filtered-list>
+  <mwc-button
+    dialogaction="close"
+    slot="primaryAction"
+  >
+    Close
+  </mwc-button>
+</mwc-dialog>
+`;
+/* end snapshot ValidateTemplates OpenSCD integration test  with a valid DataTypeTemplates section shows a "No errors" message in the diagnostics pane */
+
 snapshots["ValidateTemplates OpenSCD integration test  with issues in the DataTypeTemplates section pushes issues to the diagnostics pane that look like the latest snapshot"] = 
 `<mwc-dialog
   heading="Diagnostics"
@@ -482,7 +529,7 @@ snapshots["ValidateTemplates OpenSCD integration test  with issues in the DataTy
 `;
 /* end snapshot ValidateTemplates OpenSCD integration test  with issues in the DataTypeTemplates section pushes issues to the diagnostics pane that look like the latest snapshot */
 
-snapshots["ValidateTemplates OpenSCD integration test  with schema version smaller \"2007B3\" pushes a specific issue to the diagnostics pane that look like the latest snapshot"] = 
+snapshots["ValidateTemplates OpenSCD integration test  with schema version smaller \"2007B3\" looks like the latest snapshot"] = 
 `<mwc-dialog
   heading="Diagnostics"
   id="diagnostic"
@@ -527,5 +574,5 @@ snapshots["ValidateTemplates OpenSCD integration test  with schema version small
   </mwc-button>
 </mwc-dialog>
 `;
-/* end snapshot ValidateTemplates OpenSCD integration test  with schema version smaller "2007B3" pushes a specific issue to the diagnostics pane that look like the latest snapshot */
+/* end snapshot ValidateTemplates OpenSCD integration test  with schema version smaller "2007B3" looks like the latest snapshot */
 

@@ -24,8 +24,7 @@ export default class ImportFromApiPlugin extends LitElement {
   }
 
   async run(): Promise<void> {
-    document
-      .querySelector('open-scd')
+    this
       ?.dispatchEvent(newWizardEvent(this.importFromApiWizard()));
   }
 }

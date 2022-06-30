@@ -1,5 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
+import '../../../mock-editor-logger.js';
+import { MockEditorLogger } from '../../../mock-editor-logger.js';
 import '../../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../../mock-wizard-editor.js';
 
@@ -7,7 +9,6 @@ import { CheckListItem } from '@material/mwc-list/mwc-check-list-item';
 
 import '../../../../src/open-scd.js';
 import ImportingIedPlugin, {prepareImportIEDs} from '../../../../src/menu/ImportIEDs.js';
-import { OpenSCD } from '../../../../src/open-scd.js';
 
 describe('ImportIedsPlugin', () => {
   customElements.define('import-ieds-plugin', ImportingIedPlugin);
@@ -177,12 +178,14 @@ describe('ImportIedsPlugin', () => {
     let doc: XMLDocument;
     let importDoc: XMLDocument;
 
-    let parent: OpenSCD;
+    let parent: MockEditorLogger;
     let element: ImportingIedPlugin;
 
     beforeEach(async () => {
       parent = await fixture(
-        html`<open-scd><import-ieds-plugin></import-ieds-plugin></open-scd>>`
+        html`<mock-editor-logger
+          ><import-ieds-plugin></import-ieds-plugin
+        ></mock-editor-logger>`
       );
 
       element = <ImportingIedPlugin>parent.querySelector('import-ieds-plugin')!;
@@ -201,7 +204,7 @@ describe('ImportIedsPlugin', () => {
       await prepareImportIEDs(element.parent, importDoc, doc);
 
       expect(parent.history[0].kind).to.equal('error');
-      expect(parent.history[0].title).to.equal('No IED element in the file');
+      expect(parent.history[0].title).to.equal('[import.log.missingied]');
     });
     it('throws duplicate ied name error', async () => {
       importDoc = await fetch('/test/testfiles/importieds/dublicate.iid')
@@ -210,9 +213,7 @@ describe('ImportIedsPlugin', () => {
       await prepareImportIEDs(element.parent, importDoc, doc);
 
       expect(parent.history[0].kind).to.equal('error');
-      expect(parent.history[0].title).to.equal(
-        'IED element IED2 already in the file'
-      );
+      expect(parent.history[0].title).to.equal('[import.log.nouniqueied]');
     });
     it('throws parser error', async () => {
       importDoc = await fetch('/test/testfiles/importieds/parsererror.iid')
@@ -221,7 +222,7 @@ describe('ImportIedsPlugin', () => {
       await prepareImportIEDs(element.parent, importDoc, doc);
 
       expect(parent.history[0].kind).to.equal('error');
-      expect(parent.history[0].title).to.equal('Parser error');
+      expect(parent.history[0].title).to.equal('[import.log.parsererror]');
     });
   });
 });

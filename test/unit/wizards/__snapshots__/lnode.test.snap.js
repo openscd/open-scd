@@ -155,7 +155,7 @@ snapshots["Wizards for LNode element contain a LNode instantiate wizard that wit
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -324,7 +324,7 @@ snapshots["Wizards for LNode element contain a LNode instantiate wizard that wit
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -492,7 +492,7 @@ snapshots["Wizards for LNode element contain a LNode instantiate wizard that wit
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -677,7 +677,7 @@ snapshots["Wizards for LNode element contain a LNode reference create wizard tha
   </mwc-button>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -756,7 +756,7 @@ snapshots["Wizards for LNode element contain a LNode reference create wizard tha
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -825,7 +825,7 @@ snapshots["Wizards for LNode element contain a edit wizard that for a type refer
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -894,7 +894,7 @@ snapshots["Wizards for LNode element contain a edit wizard that for a IED refere
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >

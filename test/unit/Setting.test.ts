@@ -53,8 +53,9 @@ describe('SettingElement', () => {
     element.settingsUI.show();
     await element.settingsUI.updateComplete;
 
-    const nsdocFile = await fetch('/test/testfiles/nsdoc/IEC_61850-7-2.nsdoc')
-      .then(response => response.text())
+    const nsdocFile = await fetch(
+      '/test/testfiles/nsdoc/IEC_61850-7-2.nsdoc'
+    ).then(response => response.text());
 
     element.setSetting('IEC 61850-7-2', nsdocFile);
 
@@ -69,8 +70,9 @@ describe('SettingElement', () => {
     element.settingsUI.show();
     await element.settingsUI.updateComplete;
 
-    const nsdocFile = await fetch('/test/testfiles/nsdoc/IEC_61850-7-2.nsdoc')
-      .then(response => response.text())
+    const nsdocFile = await fetch(
+      '/test/testfiles/nsdoc/IEC_61850-7-2.nsdoc'
+    ).then(response => response.text());
 
     element.setSetting('IEC 61850-7-2', nsdocFile);
 

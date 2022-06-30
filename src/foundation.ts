@@ -1340,7 +1340,7 @@ function sCLIdentity(): string {
 }
 
 function sCLSelector(): string {
-  return 'SCL';
+  return ':root';
 }
 
 function namingIdentity(e: Element): string {
@@ -2628,6 +2628,7 @@ export const patterns = {
   nmTokens: nmToken + '( ' + nmToken + ')*',
   decimal: '[+-]?[0-9]+(([.][0-9]*)?|([.][0-9]+))',
   unsigned: '[+]?[0-9]+(([.][0-9]*)?|([.][0-9]+))',
+  integer: '[+-]?[0-9]+([0-9]*)',
   alphanumericFirstUpperCase: '[A-Z][0-9,A-Z,a-z]*',
   alphanumericFirstLowerCase: '[a-z][0-9,A-Z,a-z]*',
   lnClass: '(LLN0)|[A-Z]{4,4}',

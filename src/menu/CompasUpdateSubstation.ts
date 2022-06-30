@@ -18,7 +18,7 @@ export default class CompasUpdateSubstationMenuPlugin extends LitElement {
         title: get('compas.updateSubstation.title'),
         content: [
           html`<compas-open @docRetrieved=${(evt: DocRetrievedEvent) => {
-                                             mergeSubstation(doc, evt.detail.doc);
+                                             mergeSubstation(this, doc, evt.detail.doc);
                                              parent.dispatchEvent(newWizardEvent());
                                            }}>
                </compas-open>

@@ -598,7 +598,7 @@ snapshots["DAType wizards defines a createDATypeWizard looks like the latest sna
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -767,7 +767,7 @@ snapshots["DAType wizards defines a dATypeWizard looks like the latest snapshot"
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >

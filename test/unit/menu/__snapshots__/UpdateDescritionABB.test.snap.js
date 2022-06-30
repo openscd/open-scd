@@ -14,7 +14,7 @@ snapshots["Update method for desc attributes in ABB IEDs working on SCL files wi
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -75,7 +75,7 @@ snapshots["Update method for desc attributes in ABB IEDs working on SCL files co
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >

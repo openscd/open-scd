@@ -1,7 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["with no ancestors looks like the latest snapshot"] =
+snapshots["with no ancestors looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="next"
   heading="[iededitor.wizard.daTitle]"
@@ -128,17 +128,17 @@ snapshots["with no ancestors looks like the latest snapshot"] =
     </mwc-textfield>
   </div>
   <mwc-button
-    icon=""
+    dialogaction="close"
     label="[close]"
     slot="secondaryAction"
-    style=""
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
   </mwc-button>
 </mwc-dialog>
 `;
 /* end snapshot with no ancestors looks like the latest snapshot */
 
-snapshots["with a DA element looks like the latest snapshot"] =
+snapshots["with a DA element looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="next"
   heading="[iededitor.wizard.daTitle]"
@@ -265,17 +265,17 @@ snapshots["with a DA element looks like the latest snapshot"] =
     </mwc-textfield>
   </div>
   <mwc-button
-    icon=""
+    dialogaction="close"
     label="[close]"
     slot="secondaryAction"
-    style=""
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
   </mwc-button>
 </mwc-dialog>
 `;
 /* end snapshot with a DA element looks like the latest snapshot */
 
-snapshots["with a BDA element looks like the latest snapshot"] =
+snapshots["with a BDA element looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="next"
   heading="[iededitor.wizard.daTitle]"
@@ -402,17 +402,17 @@ snapshots["with a BDA element looks like the latest snapshot"] =
     </mwc-textfield>
   </div>
   <mwc-button
-    icon=""
+    dialogaction="close"
     label="[close]"
     slot="secondaryAction"
-    style=""
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
   </mwc-button>
 </mwc-dialog>
 `;
 /* end snapshot with a BDA element looks like the latest snapshot */
 
-snapshots["with a DA element and DAI Element looks like the latest snapshot"] =
+snapshots["with a DA element and DAI Element looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="next"
   heading="[iededitor.wizard.daTitle]"
@@ -539,10 +539,10 @@ snapshots["with a DA element and DAI Element looks like the latest snapshot"] =
     </mwc-textfield>
   </div>
   <mwc-button
-    icon=""
+    dialogaction="close"
     label="[close]"
     slot="secondaryAction"
-    style=""
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
   </mwc-button>
 </mwc-dialog>

@@ -79,9 +79,8 @@ export function isValidReference(
   );
 }
 
-export function mergeSubstation(currentDoc: Document, docWithSubstation: Document): void {
-  // FIXME: Dirty hack should not be necessary!
-  document.querySelector('open-scd')!.dispatchEvent(
+export function mergeSubstation(element: Element, currentDoc: Document, docWithSubstation: Document): void {
+  element.dispatchEvent(
     newWizardEvent(
       mergeWizard(
         // FIXME: doesn't work with multiple Substations!
@@ -129,7 +128,7 @@ export default class UpdateSubstationPlugin extends LitElement {
 
     const text = await file.text()
     const doc = new DOMParser().parseFromString(text, 'application/xml');
-    mergeSubstation(this.doc, doc);
+    mergeSubstation(this, this.doc, doc);
     this.pluginFileUI.onchange = null;
   }
 

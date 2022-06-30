@@ -1,4 +1,4 @@
-import { html } from 'lit-element';
+import { html, TemplateResult } from 'lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { translate, get } from 'lit-translate';
 
@@ -83,6 +83,34 @@ function existConnectedAp(accesspoint: Element): boolean {
   );
 
   return (connAp && isPublic(connAp)) ?? false;
+}
+
+/**
+ * Creates a TypeRestriction checkbox for a given ConnectedAP wizard.
+ * @param element - The ConnectedAP of the wizard.
+ * @returns The checkbox within a formfield.
+ */
+export function createTypeRestrictionCheckbox(element: Element): TemplateResult {
+  return html`<mwc-formfield
+    label="${translate('connectedap.wizard.addschemainsttype')}"
+    ><mwc-checkbox
+      id="typeRestriction"
+      ?checked=${hasTypeRestriction(element)}
+    ></mwc-checkbox>
+  </mwc-formfield>`
+}
+
+export function createPTextField(element: Element, pType: string): TemplateResult {
+  return html`<wizard-textfield
+    required
+    label="${pType}"
+    pattern="${ifDefined(typePattern[pType])}"
+    ?nullable=${typeNullable[pType]}
+    .maybeValue=${element.querySelector(
+      `Address > P[type="${pType}"]`
+    )?.innerHTML ?? null}
+    maxLength="${ifDefined(typeMaxLength[pType])}"
+  ></wizard-textfield>`
 }
 
 /** @returns single page  [[`Wizard`]] for creating SCL element ConnectedAP. */
@@ -222,24 +250,9 @@ export function editConnectedApWizard(element: Element): Wizard {
         action: updateConnectedApAction(element),
       },
       content: [
-        html`<mwc-formfield
-            label="${translate('connectedap.wizard.addschemainsttype')}"
-            ><mwc-checkbox
-              id="typeRestriction"
-              ?checked=${hasTypeRestriction(element)}
-            ></mwc-checkbox></mwc-formfield
-          >${getTypes(element).map(
-            ptype =>
-              html`<wizard-textfield
-                required
-                label="${ptype}"
-                pattern="${ifDefined(typePattern[ptype])}"
-                ?nullable=${typeNullable[ptype]}
-                .maybeValue=${element.querySelector(
-                  `Address > P[type="${ptype}"]`
-                )?.innerHTML ?? null}
-                maxLength="${ifDefined(typeMaxLength[ptype])}"
-              ></wizard-textfield>`
+        html`${createTypeRestrictionCheckbox(element)}
+          ${getTypes(element).map(
+            pType => html`${createPTextField(element, pType)}`
           )}`,
       ],
     },

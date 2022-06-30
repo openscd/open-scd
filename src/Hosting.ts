@@ -1,5 +1,4 @@
 import { html, property, query, TemplateResult } from 'lit-element';
-import { until } from 'lit-html/directives/until';
 import { translate } from 'lit-translate';
 
 import '@material/mwc-drawer';
@@ -31,7 +30,7 @@ interface MenuItem {
   actionItem?: boolean;
   action?: (event: CustomEvent<ActionDetail>) => void;
   disabled?: () => boolean;
-  content?: () => Promise<TemplateResult>;
+  content?: TemplateResult;
   kind: string;
 }
 
@@ -258,12 +257,7 @@ export function Hosting<
           ${me.hint
             ? html`<span slot="secondary"><tt>${me.hint}</tt></span>`
             : ''}
-          ${me.content
-            ? until(
-                me.content(),
-                html`<mwc-linear-progress indeterminate></mwc-linear-progress>`
-              )
-            : ''}
+          ${me.content ?? ''}
         </mwc-list-item>
       `;
     }
@@ -329,12 +323,8 @@ export function Hosting<
           </mwc-top-app-bar-fixed>
         </mwc-drawer>
 
-        ${this.doc
-          ? until(
-              this.editors[this.activeTab] &&
-                this.editors[this.activeTab].content(),
-              html`<mwc-linear-progress indeterminate></mwc-linear-progress>`
-            )
+        ${this.doc && this.editors[this.activeTab]?.content
+          ? this.editors[this.activeTab].content
           : html`<div class="landing">
               ${(<MenuItem[]>this.menu.filter(mi => mi !== 'divider')).map(
                 (mi: MenuItem, index) =>

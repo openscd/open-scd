@@ -33,7 +33,9 @@ npm start
 
 This will start a local development server and open a browser window which will automatically be reloaded as soon as you save any changes to your local source code files.
 
-If you use VSCode to develop, we recommend you install and use the [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extensions in order to automatically lint and format your code as you edit it.
+### Linting & Formatting
+
+If you use VSCode to develop, we recommend you install and use the [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extensions in order to automatically lint and format your code as you edit it. There are similar plugins available for using [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) from within other IDEs and text editors.
 
 ### Scripts
 

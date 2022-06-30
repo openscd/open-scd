@@ -1,8 +1,9 @@
 import {expect, fixture, html} from '@open-wc/testing';
 import {SinonSpy, spy} from 'sinon';
 
-import '../../../src/open-scd.js';
-import { OpenSCD } from '../../../src/open-scd.js';
+import '../../mock-wizard-editor.js';
+import { MockWizardEditor } from '../../mock-wizard-editor.js';
+
 import { ComplexAction, isSimple, isReplace } from '../../../src/foundation.js';
 import UpdateDescriptionSel from '../../../src/menu/UpdateDescriptionSEL.js';
 
@@ -10,7 +11,7 @@ describe('Update method for desc attributes in SEL IEDs', () => {
   if (customElements.get('update-description-sel') === undefined)
     customElements.define('update-description-sel', UpdateDescriptionSel);
 
-  let parent: OpenSCD;
+  let parent: MockWizardEditor;
   let element: UpdateDescriptionSel;
 
   let wizardAction: SinonSpy;
@@ -20,7 +21,9 @@ describe('Update method for desc attributes in SEL IEDs', () => {
 
   beforeEach(async () => {
     parent = await fixture(html`
-      <open-scd><update-description-sel></update-description-sel></open-scd>
+      <mock-wizard-editor
+        ><update-description-sel></update-description-sel
+      ></mock-wizard-editor>
     `);
     await parent.requestUpdate();
     await parent.updateComplete;

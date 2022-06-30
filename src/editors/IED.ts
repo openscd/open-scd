@@ -1,16 +1,26 @@
-import { css, html, LitElement, property, state, TemplateResult } from 'lit-element';
+import {
+  css,
+  html,
+  LitElement,
+  property,
+  state,
+  TemplateResult,
+} from 'lit-element';
 
 import '@material/mwc-fab';
 import '@material/mwc-select';
 import '@material/mwc-list/mwc-list-item';
 
-import './ied/ied-container.js'
-import './ied/element-path.js'
-import './substation/zeroline-pane.js';
+import './ied/ied-container.js';
+import './ied/element-path.js';
 
 import { translate } from 'lit-translate';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
-import { compareNames, getDescriptionAttribute, getNameAttribute } from '../foundation.js';
+import {
+  compareNames,
+  getDescriptionAttribute,
+  getNameAttribute,
+} from '../foundation.js';
 import { Nsdoc } from '../foundation/nsdoc.js';
 
 /*
@@ -37,10 +47,11 @@ export default class IedPlugin extends LitElement {
   @property()
   nsdoc!: Nsdoc;
 
-  private get alphabeticOrderedIeds() : Element[] {
-    return (this.doc)
-      ? Array.from(this.doc.querySelectorAll(':root > IED'))
-             .sort((a,b) => compareNames(a,b))
+  private get alphabeticOrderedIeds(): Element[] {
+    return this.doc
+      ? Array.from(this.doc.querySelectorAll(':root > IED')).sort((a, b) =>
+          compareNames(a, b)
+        )
       : [];
   }
 
@@ -52,7 +63,10 @@ export default class IedPlugin extends LitElement {
   private get selectedIed(): Element | undefined {
     // When there is no IED selected, or the selected IED has no parent (IED has been removed)
     // select the first IED from the List.
-    if (iedEditorSelectedIed === undefined || iedEditorSelectedIed.parentElement === null) {
+    if (
+      iedEditorSelectedIed === undefined ||
+      iedEditorSelectedIed.parentElement === null
+    ) {
       const iedList = this.alphabeticOrderedIeds;
       if (iedList.length > 0) {
         iedEditorSelectedIed = iedList[0];
@@ -63,43 +77,46 @@ export default class IedPlugin extends LitElement {
 
   private onSelect(event: SingleSelectedEvent): void {
     this.selectedIed = this.alphabeticOrderedIeds[event.detail.index];
-    this.requestUpdate("selectedIed");
+    this.requestUpdate('selectedIed');
   }
 
   render(): TemplateResult {
     const iedList = this.alphabeticOrderedIeds;
     if (iedList.length > 0) {
-      return html `
-        <section>
-          <div class="header">
-            <mwc-select
-              class="iedSelect"
-              label="${translate("iededitor.searchHelper")}"
-              @selected=${this.onSelect}>
-              ${iedList.map(
-                ied =>
-                  html`
-                    <mwc-list-item
-                      ?selected=${ied == this.selectedIed}
-                      value="${getNameAttribute(ied)}"
-                    >${getNameAttribute(ied)} ${ied.hasAttribute('desc') ? translate('iededitor.searchHelperDesc', {
-                      description: getDescriptionAttribute(ied)!,
-                    }) : ''}
-                    </mwc-list-item>`
-              )}
-            </mwc-select>
-            <element-path class="elementPath"></element-path>
-          </div>
-          <ied-container
-            .element=${this.selectedIed}
-            .nsdoc=${this.nsdoc}
-          ></ied-container>
-        </section>`;
+      return html`<section>
+        <div class="header">
+          <mwc-select
+            class="iedSelect"
+            label="${translate('iededitor.searchHelper')}"
+            @selected=${this.onSelect}
+          >
+            ${iedList.map(ied => {
+              const name = getNameAttribute(ied);
+              const descr = getDescriptionAttribute(ied);
+              return html` <mwc-list-item
+                ?selected=${ied == this.selectedIed}
+                value="${name}"
+                >${name}
+                ${descr
+                  ? translate('iededitor.searchHelperDesc', {
+                      description: descr,
+                    })
+                  : ''}
+              </mwc-list-item>`;
+            })}
+          </mwc-select>
+          <element-path class="elementPath"></element-path>
+        </div>
+        <ied-container
+          .doc=${this.doc}
+          .element=${this.selectedIed}
+          .nsdoc=${this.nsdoc}
+        ></ied-container>
+      </section>`;
     }
-    return html `
-          <h1>
-            <span style="color: var(--base1)">${translate('iededitor.missing')}</span>
-          </h1>`;
+    return html`<h1>
+      <span style="color: var(--base1)">${translate('iededitor.missing')}</span>
+    </h1>`;
   }
 
   static styles = css`
