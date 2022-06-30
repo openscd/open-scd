@@ -20,6 +20,9 @@ import { LoggingElement } from './Logging.js';
 import { Plugin, PluggingElement, pluginIcons } from './Plugging.js';
 import { SettingElement } from './Setting.js';
 
+import { UserInfoEvent } from './foundation.js';
+import { string } from 'fast-check';
+
 interface MenuItem {
   icon: string;
   name: string;
@@ -32,7 +35,7 @@ interface MenuItem {
 }
 
 interface Validator {
-  validate: () => Promise<void>;
+  validate: (manual?: boolean) => Promise<void>;
 }
 
 interface MenuPlugin {
@@ -53,6 +56,9 @@ export function Hosting<
     activeTab = 0;
     @property({ attribute: false })
     validated: Promise<void> = Promise.resolve();
+
+    @property({ type: string})
+    username: string | undefined;
 
     private shouldValidate = false;
 
@@ -141,7 +147,7 @@ export function Hosting<
                   (<unknown>(
                     (<List>ae.target).items[ae.detail.index].lastElementChild
                   ))
-                )).validate()
+                )).validate(true)
               )
             );
           },
@@ -207,6 +213,10 @@ export function Hosting<
       ];
     }
 
+    private onUserInfo(event: UserInfoEvent) {
+      this.username = event.detail.name;
+    }
+
     constructor(...args: any[]) {
       super(...args);
 
@@ -224,11 +234,13 @@ export function Hosting<
             .querySelector('mwc-list')!
             .items.filter(item => item.className === 'validator')
             .map(item =>
-              (<Validator>(<unknown>item.lastElementChild)).validate()
+              (<Validator>(<unknown>item.lastElementChild)).validate(false)
             )
         ).then();
         this.dispatchEvent(newPendingStateEvent(this.validated));
       });
+
+      this.addEventListener('userinfo', this.onUserInfo);
     }
 
     renderMenuItem(me: MenuItem | 'divider'): TemplateResult {
@@ -296,6 +308,9 @@ export function Hosting<
               @click=${() => (this.menuUI.open = true)}
             ></mwc-icon-button>
             <div slot="title" id="title">${this.docName}</div>
+            ${this.username != undefined
+              ? html`<span id="userField" slot="actionItems" style="font-family:Roboto" >${translate('userinfo.loggedInAs', {name: this.username})}</span>`
+              : ``}
             ${this.menu.map(this.renderActionItem)}
             ${this.doc
               ? html`<mwc-tab-bar

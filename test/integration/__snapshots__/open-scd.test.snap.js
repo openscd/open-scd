@@ -32,8 +32,8 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         Open project
       </span>
-      <oscd-plugina2b400fc5f053cb1>
-      </oscd-plugina2b400fc5f053cb1>
+      <oscd-plugin8377febe1fad1914>
+      </oscd-plugin8377febe1fad1914>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
@@ -53,6 +53,23 @@ snapshots["open-scd looks like its snapshot"] =
       </oscd-plugin679d81826289fb9a>
     </mwc-list-item>
     <mwc-list-item
+      aria-disabled="false"
+      class="top"
+      graphic="icon"
+      iconid="input"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        input
+      </mwc-icon>
+      <span>
+        Project from CIM
+      </span>
+      <oscd-plugin87f72fdec2017c78>
+      </oscd-plugin87f72fdec2017c78>
+    </mwc-list-item>
+    <mwc-list-item
       aria-disabled="true"
       class="top"
       disabled=""
@@ -67,8 +84,26 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         Save project
       </span>
-      <oscd-plugin1cb4a5367ff1f6a1>
-      </oscd-plugin1cb4a5367ff1f6a1>
+      <oscd-plugin25aae78ff326102f>
+      </oscd-plugin25aae78ff326102f>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      class="top"
+      disabled=""
+      graphic="icon"
+      iconid="save"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        save
+      </mwc-icon>
+      <span>
+        Save project as
+      </span>
+      <oscd-plugin78931a53cad7ad3a>
+      </oscd-plugin78931a53cad7ad3a>
     </mwc-list-item>
     <li
       divider=""
@@ -107,6 +142,24 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         Redo
       </span>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      class="validator"
+      disabled=""
+      graphic="icon"
+      iconid="rule_folder"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        rule_folder
+      </mwc-icon>
+      <span>
+        Validate using OCL
+      </span>
+      <oscd-plugine36e411de62aaf96>
+      </oscd-plugine36e411de62aaf96>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="true"
@@ -195,8 +248,8 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         Import IEDs
       </span>
-      <oscd-plugin4fed39e69404009b>
-      </oscd-plugin4fed39e69404009b>
+      <oscd-pluginb15ea127292dd242>
+      </oscd-pluginb15ea127292dd242>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="true"
@@ -231,8 +284,8 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         Merge Project
       </span>
-      <oscd-plugin2b4693cc19da2446>
-      </oscd-plugin2b4693cc19da2446>
+      <oscd-plugin6b332766ae5e2b11>
+      </oscd-plugin6b332766ae5e2b11>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="true"
@@ -249,8 +302,26 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         Update Substation
       </span>
-      <oscd-plugin2a662bacb120083f>
-      </oscd-plugin2a662bacb120083f>
+      <oscd-plugin049834abc330641d>
+      </oscd-plugin049834abc330641d>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      class="middle"
+      disabled=""
+      graphic="icon"
+      iconid="dashboard"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        dashboard
+      </mwc-icon>
+      <span>
+        Auto Align SLD
+      </span>
+      <oscd-pluginc69b878585292aa9>
+      </oscd-pluginc69b878585292aa9>
     </mwc-list-item>
     <li
       divider=""
@@ -272,6 +343,23 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         Settings
       </span>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="middle"
+      graphic="icon"
+      iconid="settings"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        settings
+      </mwc-icon>
+      <span>
+        CoMPAS Settings
+      </span>
+      <oscd-plugin8a88d78e372c97aa>
+      </oscd-plugin8a88d78e372c97aa>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
@@ -367,6 +455,14 @@ snapshots["open-scd looks like its snapshot"] =
   >
     <div class="landing_label">
       New project
+    </div>
+  </mwc-icon-button>
+  <mwc-icon-button
+    class="landing_icon"
+    icon="input"
+  >
+    <div class="landing_label">
+      Project from CIM
     </div>
   </mwc-icon-button>
 </div>
@@ -581,6 +677,7 @@ snapshots["open-scd looks like its snapshot"] =
       hasmeta=""
       left=""
       mwc-list-item=""
+      selected=""
       tabindex="-1"
       value="/src/editors/IED.js"
     >
@@ -596,6 +693,7 @@ snapshots["open-scd looks like its snapshot"] =
       hasmeta=""
       left=""
       mwc-list-item=""
+      selected=""
       tabindex="-1"
       value="/src/editors/SingleLineDiagram.js"
     >
@@ -690,6 +788,22 @@ snapshots["open-scd looks like its snapshot"] =
       hasmeta=""
       left=""
       mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/compas-editors/CompasVersions.js"
+    >
+      <mwc-icon slot="meta">
+        copy_all
+      </mwc-icon>
+      CoMPAS Versions
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
       tabindex="-1"
       value="/src/editors/Cleanup.js"
     >
@@ -730,7 +844,7 @@ snapshots["open-scd looks like its snapshot"] =
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/menu/OpenProject.js"
+      value="/src/menu/CompasOpen.js"
     >
       <mwc-icon slot="meta">
         folder_open
@@ -762,12 +876,59 @@ snapshots["open-scd looks like its snapshot"] =
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/menu/SaveProject.js"
+      value="/src/menu/CompasCimMapping.js"
+    >
+      <mwc-icon slot="meta">
+        input
+      </mwc-icon>
+      Project from CIM
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      tabindex="-1"
+      value="/src/menu/CompasImportFromApi.js"
+    >
+      <mwc-icon slot="meta">
+        cloud_download
+      </mwc-icon>
+      Import from API
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/menu/CompasSave.js"
     >
       <mwc-icon slot="meta">
         save
       </mwc-icon>
       Save project
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/menu/CompasSaveAs.js"
+    >
+      <mwc-icon slot="meta">
+        save
+      </mwc-icon>
+      Save project as
     </mwc-check-list-item>
     <li
       divider=""
@@ -775,6 +936,22 @@ snapshots["open-scd looks like its snapshot"] =
       role="separator"
     >
     </li>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/validators/CompasValidateSchema.js"
+    >
+      <mwc-icon slot="meta">
+        rule_folder
+      </mwc-icon>
+      Validate using OCL
+    </mwc-check-list-item>
     <mwc-check-list-item
       aria-disabled="false"
       class="official"
@@ -822,7 +999,7 @@ snapshots["open-scd looks like its snapshot"] =
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/menu/ImportIEDs.js"
+      value="/src/menu/CompasImportIEDs.js"
     >
       <mwc-icon slot="meta">
         snippet_folder
@@ -884,7 +1061,7 @@ snapshots["open-scd looks like its snapshot"] =
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/menu/Merge.js"
+      value="/src/menu/CompasMerge.js"
     >
       <mwc-icon slot="meta">
         merge_type
@@ -900,12 +1077,43 @@ snapshots["open-scd looks like its snapshot"] =
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/menu/UpdateSubstation.js"
+      value="/src/menu/CompasUpdateSubstation.js"
     >
       <mwc-icon slot="meta">
         merge_type
       </mwc-icon>
       Update Substation
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/menu/CompasAutoAlignment.js"
+    >
+      <mwc-icon slot="meta">
+        dashboard
+      </mwc-icon>
+      Auto Align SLD
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      tabindex="-1"
+      value="/src/menu/LocamationVMU.js"
+    >
+      <mwc-icon slot="meta">
+        edit_note
+      </mwc-icon>
+      Locamation VMU
     </mwc-check-list-item>
     <li
       divider=""
@@ -913,6 +1121,22 @@ snapshots["open-scd looks like its snapshot"] =
       role="separator"
     >
     </li>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/menu/CompasSettings.js"
+    >
+      <mwc-icon slot="meta">
+        settings
+      </mwc-icon>
+      CoMPAS Settings
+    </mwc-check-list-item>
     <mwc-check-list-item
       aria-disabled="false"
       class="official"
@@ -1152,19 +1376,6 @@ snapshots["open-scd looks like its snapshot"] =
     <h3>
       Uploaded NSDoc files
     </h3>
-    <input
-      accept=".nsdoc"
-      hidden=""
-      id="nsdoc-file"
-      multiple=""
-      required=""
-      type="file"
-    >
-    <mwc-button
-      id="selectFileButton"
-      label="Select file"
-    >
-    </mwc-button>
   </section>
   <mwc-list id="nsdocList">
     <mwc-list-item
@@ -1270,6 +1481,10 @@ snapshots["open-scd looks like its snapshot"] =
     Save
   </mwc-button>
 </mwc-dialog>
+<compas-session-expiring-dialog>
+</compas-session-expiring-dialog>
+<compas-session-expired-dialog>
+</compas-session-expired-dialog>
 `;
 /* end snapshot open-scd looks like its snapshot */
 
