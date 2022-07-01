@@ -27,6 +27,7 @@ import {
   getUniqueFunctionName,
   LDeviceDescription,
 } from './virtualtemplateied/foundation.js';
+import { Select } from '@material/mwc-select';
 
 export type FunctionElementDescription = {
   uniqueName: string;
@@ -49,7 +50,7 @@ function getLDeviceDescriptions(
       const lLN0 = selectedLLN0s.find(selectedLLN0 =>
         selectedLLN0.includes(functionDescription.uniqueName)
       )!;
-      const lnType = lLN0?.split(' ')[0];
+      const lnType = lLN0?.split(': ')[1];
 
       lDeviceDescriptions.push({
         validLdInst: functionDescription.uniqueName,
@@ -113,9 +114,7 @@ function createSpecificationIEDAction(
     if (!selectedLNode.length) return [];
 
     const selectedLLN0s = Array.from(
-      wizard.shadowRoot?.querySelectorAll<CheckListItem>(
-        'mwc-radio-list-item[selected]'
-      ) ?? []
+      wizard.shadowRoot?.querySelectorAll<Select>('mwc-select') ?? []
     ).map(selectedItem => selectedItem.value);
 
     const manufacturer = getValue(
@@ -141,33 +140,34 @@ function renderLLN0s(
   functionID: string,
   lLN0Types: Element[],
   lNode?: Element
-): TemplateResult[] {
-  if (!lNode && !lLN0Types.length) return [html``];
+): TemplateResult {
+  if (!lNode && !lLN0Types.length) return html``;
 
   if (lNode)
-    return [
-      html`<mwc-radio-list-item
-        group="${functionID}"
-        value="${functionID} ${lNode.getAttribute('lnType')}"
-        twoline
-        selected
-        ><span>LLN0</span
-        ><span slot="secondary">${lNode.getAttribute('lnType')}</span>
-      </mwc-radio-list-item>`,
-    ];
-
-  return lLN0Types.map(lLN0Type => {
-    return html`<mwc-radio-list-item
-      group="${functionID}"
-      value="${functionID} ${lLN0Type.getAttribute('id')}"
-      twoline
-      ?selected=${lLN0Types[0] === lLN0Type}
-      ><span>${'LLN0'}</span
-      ><span slot="secondary"
-        >${lLN0Type.getAttribute('id')}</span
-      ></mwc-radio-list-item
+    return html`<mwc-select
+      disabled
+      naturalMenuWidth
+      value="${functionID + ': ' + lNode.getAttribute('lnType')}"
+      style="width:100%"
+      label="LLN0"
+      >${html`<mwc-list-item
+        value="${functionID + ': ' + lNode.getAttribute('lnType')}"
+        >${lNode.getAttribute('lnType')}
+      </mwc-list-item>`}</mwc-select
     >`;
-  });
+
+  return html`<mwc-select
+    naturalMenuWidth
+    style="width:100%"
+    label="LLN0"
+    value="${functionID + ': ' + lLN0Types[0].getAttribute('id')}"
+    >${lLN0Types.map(lLN0Type => {
+      return html`<mwc-list-item
+        value="${functionID + ': ' + lLN0Type.getAttribute('id')}"
+        >${lLN0Type.getAttribute('id')}</mwc-list-item
+      >`;
+    })}</mwc-select
+  >`;
 }
 
 /** renders `LNode` elements */
@@ -226,14 +226,18 @@ function createSpecificationIEDFromFunctionWizard(doc: XMLDocument): Wizard {
         html`<filtered-list multi
           >${Object.entries(functionElementDescriptions).flatMap(
             ([id, functionDescription]) => [
-              html`<mwc-list-item twoline noninteractive value="${id}"
+              html`<mwc-list-item
+                twoline
+                noninteractive
+                value="${id}"
+                style="font-weight:500"
                 ><span>${functionDescription.uniqueName}</span
                 ><span slot="secondary"
                   >${existValidLLN0 ? id : 'Invalid LD: Missing LLN0'}</span
                 ></mwc-list-item
               >`,
               html`<li padded divider role="separator"></li>`,
-              ...renderLLN0s(
+              renderLLN0s(
                 functionDescription.uniqueName,
                 lln0s,
                 functionDescription.lln0

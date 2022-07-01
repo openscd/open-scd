@@ -81,15 +81,6 @@ describe('Plugin that creates with some user input a virtual template IED - SPEC
     expect(editorAction).to.not.have.been.called;
   });
 
-  it('does not trigger any actions with missing input fields', () => {
-    inputs[0].value = 'SomeCompanyName';
-    inputs[2].value = 'P1';
-
-    primaryAction.click();
-
-    expect(editorAction).to.not.have.been.called;
-  });
-
   it('does trigger an create actions if at least one LNode is selected', async () => {
     inputs[0].value = 'SomeCompanyName';
     inputs[2].value = 'P1';

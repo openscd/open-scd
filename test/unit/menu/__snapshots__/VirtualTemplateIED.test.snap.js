@@ -29,6 +29,7 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
       <mwc-list-item
         aria-disabled="false"
         noninteractive=""
+        style="font-weight:500"
         tabindex="-1"
         twoline=""
         value="AA1>E1>Q01>QC9>Earth_Switch"
@@ -46,44 +47,34 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
         role="separator"
       >
       </li>
-      <mwc-radio-list-item
-        aria-disabled="false"
-        graphic="control"
-        group="E1_Q01_QC9_Earth_Switch"
-        mwc-list-item=""
-        selected=""
-        tabindex="0"
-        twoline=""
-        value="E1_Q01_QC9_Earth_Switch OpenSCD_LLN0"
+      <mwc-select
+        label="LLN0"
+        naturalmenuwidth=""
+        style="width:100%"
+        value="E1_Q01_QC9_Earth_Switch: OpenSCD_LLN0"
       >
-        <span>
-          LLN0
-        </span>
-        <span slot="secondary">
+        <mwc-list-item
+          aria-disabled="false"
+          mwc-list-item=""
+          tabindex="-1"
+          value="E1_Q01_QC9_Earth_Switch: OpenSCD_LLN0"
+        >
           OpenSCD_LLN0
-        </span>
-      </mwc-radio-list-item>
-      <mwc-radio-list-item
-        aria-disabled="false"
-        graphic="control"
-        group="E1_Q01_QC9_Earth_Switch"
-        mwc-list-item=""
-        tabindex="-1"
-        twoline=""
-        value="E1_Q01_QC9_Earth_Switch OpenSCD_LLN01"
-      >
-        <span>
-          LLN0
-        </span>
-        <span slot="secondary">
+        </mwc-list-item>
+        <mwc-list-item
+          aria-disabled="false"
+          mwc-list-item=""
+          tabindex="-1"
+          value="E1_Q01_QC9_Earth_Switch: OpenSCD_LLN01"
+        >
           OpenSCD_LLN01
-        </span>
-      </mwc-radio-list-item>
+        </mwc-list-item>
+      </mwc-select>
       <mwc-check-list-item
         aria-disabled="false"
         graphic="control"
         mwc-list-item=""
-        tabindex="-1"
+        tabindex="0"
         value="AA1>E1>Q01>QC9>Earth_Switch>(CSWI OpenSCD_CSWI)"
       >
         CSWI 1
@@ -109,6 +100,7 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
       <mwc-list-item
         aria-disabled="false"
         noninteractive=""
+        style="font-weight:500"
         tabindex="-1"
         twoline=""
         value="AA1>E1>Q01>QB1>Disconnector"
@@ -126,39 +118,29 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
         role="separator"
       >
       </li>
-      <mwc-radio-list-item
-        aria-disabled="false"
-        graphic="control"
-        group="Q01_QB1_Disconnector"
-        mwc-list-item=""
-        selected=""
-        tabindex="-1"
-        twoline=""
-        value="Q01_QB1_Disconnector OpenSCD_LLN0"
+      <mwc-select
+        label="LLN0"
+        naturalmenuwidth=""
+        style="width:100%"
+        value="Q01_QB1_Disconnector: OpenSCD_LLN0"
       >
-        <span>
-          LLN0
-        </span>
-        <span slot="secondary">
+        <mwc-list-item
+          aria-disabled="false"
+          mwc-list-item=""
+          tabindex="-1"
+          value="Q01_QB1_Disconnector: OpenSCD_LLN0"
+        >
           OpenSCD_LLN0
-        </span>
-      </mwc-radio-list-item>
-      <mwc-radio-list-item
-        aria-disabled="false"
-        graphic="control"
-        group="Q01_QB1_Disconnector"
-        mwc-list-item=""
-        tabindex="-1"
-        twoline=""
-        value="Q01_QB1_Disconnector OpenSCD_LLN01"
-      >
-        <span>
-          LLN0
-        </span>
-        <span slot="secondary">
+        </mwc-list-item>
+        <mwc-list-item
+          aria-disabled="false"
+          mwc-list-item=""
+          tabindex="-1"
+          value="Q01_QB1_Disconnector: OpenSCD_LLN01"
+        >
           OpenSCD_LLN01
-        </span>
-      </mwc-radio-list-item>
+        </mwc-list-item>
+      </mwc-select>
       <mwc-check-list-item
         aria-disabled="false"
         graphic="control"
@@ -189,6 +171,7 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
       <mwc-list-item
         aria-disabled="false"
         noninteractive=""
+        style="font-weight:500"
         tabindex="-1"
         twoline=""
         value="AA1>E1>Q01>QA1>Circuit_Breaker"
@@ -206,39 +189,29 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
         role="separator"
       >
       </li>
-      <mwc-radio-list-item
-        aria-disabled="false"
-        graphic="control"
-        group="Circuit_Breaker"
-        mwc-list-item=""
-        selected=""
-        tabindex="-1"
-        twoline=""
-        value="Circuit_Breaker OpenSCD_LLN0"
+      <mwc-select
+        label="LLN0"
+        naturalmenuwidth=""
+        style="width:100%"
+        value="Circuit_Breaker: OpenSCD_LLN0"
       >
-        <span>
-          LLN0
-        </span>
-        <span slot="secondary">
+        <mwc-list-item
+          aria-disabled="false"
+          mwc-list-item=""
+          tabindex="-1"
+          value="Circuit_Breaker: OpenSCD_LLN0"
+        >
           OpenSCD_LLN0
-        </span>
-      </mwc-radio-list-item>
-      <mwc-radio-list-item
-        aria-disabled="false"
-        graphic="control"
-        group="Circuit_Breaker"
-        mwc-list-item=""
-        tabindex="-1"
-        twoline=""
-        value="Circuit_Breaker OpenSCD_LLN01"
-      >
-        <span>
-          LLN0
-        </span>
-        <span slot="secondary">
+        </mwc-list-item>
+        <mwc-list-item
+          aria-disabled="false"
+          mwc-list-item=""
+          tabindex="-1"
+          value="Circuit_Breaker: OpenSCD_LLN01"
+        >
           OpenSCD_LLN01
-        </span>
-      </mwc-radio-list-item>
+        </mwc-list-item>
+      </mwc-select>
       <mwc-check-list-item
         aria-disabled="false"
         graphic="control"
@@ -269,6 +242,7 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
       <mwc-list-item
         aria-disabled="false"
         noninteractive=""
+        style="font-weight:500"
         tabindex="-1"
         twoline=""
         value="AA1>E1>Q01>Timed_Overcurrent"
@@ -286,23 +260,22 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
         role="separator"
       >
       </li>
-      <mwc-radio-list-item
-        aria-disabled="false"
-        graphic="control"
-        group="Timed_Overcurrent"
-        mwc-list-item=""
-        selected=""
-        tabindex="-1"
-        twoline=""
-        value="Timed_Overcurrent OpenSCD_LLN01"
+      <mwc-select
+        disabled=""
+        label="LLN0"
+        naturalmenuwidth=""
+        style="width:100%"
+        value="Timed_Overcurrent: OpenSCD_LLN01"
       >
-        <span>
-          LLN0
-        </span>
-        <span slot="secondary">
+        <mwc-list-item
+          aria-disabled="false"
+          mwc-list-item=""
+          tabindex="-1"
+          value="Timed_Overcurrent: OpenSCD_LLN01"
+        >
           OpenSCD_LLN01
-        </span>
-      </mwc-radio-list-item>
+        </mwc-list-item>
+      </mwc-select>
       <mwc-check-list-item
         aria-disabled="false"
         graphic="control"
@@ -324,6 +297,7 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
       <mwc-list-item
         aria-disabled="false"
         noninteractive=""
+        style="font-weight:500"
         tabindex="-1"
         twoline=""
         value="AA1>E1>Q01>Distance_Protection"
@@ -341,39 +315,29 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
         role="separator"
       >
       </li>
-      <mwc-radio-list-item
-        aria-disabled="false"
-        graphic="control"
-        group="Distance_Protection"
-        mwc-list-item=""
-        selected=""
-        tabindex="-1"
-        twoline=""
-        value="Distance_Protection OpenSCD_LLN0"
+      <mwc-select
+        label="LLN0"
+        naturalmenuwidth=""
+        style="width:100%"
+        value="Distance_Protection: OpenSCD_LLN0"
       >
-        <span>
-          LLN0
-        </span>
-        <span slot="secondary">
+        <mwc-list-item
+          aria-disabled="false"
+          mwc-list-item=""
+          tabindex="-1"
+          value="Distance_Protection: OpenSCD_LLN0"
+        >
           OpenSCD_LLN0
-        </span>
-      </mwc-radio-list-item>
-      <mwc-radio-list-item
-        aria-disabled="false"
-        graphic="control"
-        group="Distance_Protection"
-        mwc-list-item=""
-        tabindex="-1"
-        twoline=""
-        value="Distance_Protection OpenSCD_LLN01"
-      >
-        <span>
-          LLN0
-        </span>
-        <span slot="secondary">
+        </mwc-list-item>
+        <mwc-list-item
+          aria-disabled="false"
+          mwc-list-item=""
+          tabindex="-1"
+          value="Distance_Protection: OpenSCD_LLN01"
+        >
           OpenSCD_LLN01
-        </span>
-      </mwc-radio-list-item>
+        </mwc-list-item>
+      </mwc-select>
       <mwc-check-list-item
         aria-disabled="false"
         graphic="control"
@@ -413,6 +377,7 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
       <mwc-list-item
         aria-disabled="false"
         noninteractive=""
+        style="font-weight:500"
         tabindex="-1"
         twoline=""
         value="AA1>E1>Q02>QB1>Disconnector"
@@ -430,39 +395,29 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
         role="separator"
       >
       </li>
-      <mwc-radio-list-item
-        aria-disabled="false"
-        graphic="control"
-        group="Q02_QB1_Disconnector"
-        mwc-list-item=""
-        selected=""
-        tabindex="-1"
-        twoline=""
-        value="Q02_QB1_Disconnector OpenSCD_LLN0"
+      <mwc-select
+        label="LLN0"
+        naturalmenuwidth=""
+        style="width:100%"
+        value="Q02_QB1_Disconnector: OpenSCD_LLN0"
       >
-        <span>
-          LLN0
-        </span>
-        <span slot="secondary">
+        <mwc-list-item
+          aria-disabled="false"
+          mwc-list-item=""
+          tabindex="-1"
+          value="Q02_QB1_Disconnector: OpenSCD_LLN0"
+        >
           OpenSCD_LLN0
-        </span>
-      </mwc-radio-list-item>
-      <mwc-radio-list-item
-        aria-disabled="false"
-        graphic="control"
-        group="Q02_QB1_Disconnector"
-        mwc-list-item=""
-        tabindex="-1"
-        twoline=""
-        value="Q02_QB1_Disconnector OpenSCD_LLN01"
-      >
-        <span>
-          LLN0
-        </span>
-        <span slot="secondary">
+        </mwc-list-item>
+        <mwc-list-item
+          aria-disabled="false"
+          mwc-list-item=""
+          tabindex="-1"
+          value="Q02_QB1_Disconnector: OpenSCD_LLN01"
+        >
           OpenSCD_LLN01
-        </span>
-      </mwc-radio-list-item>
+        </mwc-list-item>
+      </mwc-select>
       <mwc-check-list-item
         aria-disabled="false"
         graphic="control"
@@ -493,6 +448,7 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
       <mwc-list-item
         aria-disabled="false"
         noninteractive=""
+        style="font-weight:500"
         tabindex="-1"
         twoline=""
         value="AA1>J1>Q01>QC9>Earth_Switch"
@@ -510,39 +466,29 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
         role="separator"
       >
       </li>
-      <mwc-radio-list-item
-        aria-disabled="false"
-        graphic="control"
-        group="J1_Q01_QC9_Earth_Switch"
-        mwc-list-item=""
-        selected=""
-        tabindex="-1"
-        twoline=""
-        value="J1_Q01_QC9_Earth_Switch OpenSCD_LLN0"
+      <mwc-select
+        label="LLN0"
+        naturalmenuwidth=""
+        style="width:100%"
+        value="J1_Q01_QC9_Earth_Switch: OpenSCD_LLN0"
       >
-        <span>
-          LLN0
-        </span>
-        <span slot="secondary">
+        <mwc-list-item
+          aria-disabled="false"
+          mwc-list-item=""
+          tabindex="-1"
+          value="J1_Q01_QC9_Earth_Switch: OpenSCD_LLN0"
+        >
           OpenSCD_LLN0
-        </span>
-      </mwc-radio-list-item>
-      <mwc-radio-list-item
-        aria-disabled="false"
-        graphic="control"
-        group="J1_Q01_QC9_Earth_Switch"
-        mwc-list-item=""
-        tabindex="-1"
-        twoline=""
-        value="J1_Q01_QC9_Earth_Switch OpenSCD_LLN01"
-      >
-        <span>
-          LLN0
-        </span>
-        <span slot="secondary">
+        </mwc-list-item>
+        <mwc-list-item
+          aria-disabled="false"
+          mwc-list-item=""
+          tabindex="-1"
+          value="J1_Q01_QC9_Earth_Switch: OpenSCD_LLN01"
+        >
           OpenSCD_LLN01
-        </span>
-      </mwc-radio-list-item>
+        </mwc-list-item>
+      </mwc-select>
       <mwc-check-list-item
         aria-disabled="false"
         graphic="control"
@@ -603,7 +549,7 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
         <LN0
           inst=""
           lnClass="LLN0"
-          lnType="E1_Q01_QC9_Earth_Switch"
+          lnType="OpenSCD_LLN0"
         >
         </LN0>
         <LN
@@ -632,7 +578,7 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
         <LN0
           inst=""
           lnClass="LLN0"
-          lnType="Timed_Overcurrent"
+          lnType="OpenSCD_LLN01"
         >
         </LN0>
         <LN
@@ -654,7 +600,7 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
         <LN0
           inst=""
           lnClass="LLN0"
-          lnType="Q02_QB1_Disconnector"
+          lnType="OpenSCD_LLN0"
         >
         </LN0>
         <LN
