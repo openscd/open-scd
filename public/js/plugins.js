@@ -56,6 +56,13 @@ export const officialPlugins = [
     kind: 'editor',
   },
   {
+    name: 'Publisher',
+    src: '/src/editors/Publisher.js',
+    icon: 'publish',
+    default: false,
+    kind: 'editor',
+  },
+  {
     name: 'Open project',
     src: '/src/menu/OpenProject.js',
     icon: 'folder_open',
