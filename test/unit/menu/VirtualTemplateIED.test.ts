@@ -1,27 +1,22 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
-import '../../mock-wizard.js';
-import { MockWizard } from '../../mock-wizard.js';
-
-import {
-  Create,
-  isCreate,
-  WizardInputElement,
-} from '../../../src/foundation.js';
+import { Create, isCreate } from '../../../src/foundation.js';
 import VirtualTemplateIED from '../../../src/menu/VirtualTemplateIED.js';
 import { CheckListItem } from '@material/mwc-list/mwc-check-list-item';
+import { WizardTextField } from '../../../src/wizard-textfield.js';
 
 describe('Plugin that creates with some user input a virtual template IED - SPECIFICATION', () => {
   if (customElements.get('virtual-template-i-e-d') === undefined)
     customElements.define('virtual-template-i-e-d', VirtualTemplateIED);
 
   let doc: XMLDocument;
-  let parent: MockWizard;
   let element: VirtualTemplateIED;
 
+  let manufacturer: WizardTextField;
+  let apName: WizardTextField;
+
   let primaryAction: HTMLElement;
-  let inputs: WizardInputElement[];
   let checkItems: CheckListItem[];
 
   let editorAction: SinonSpy;
@@ -31,35 +26,33 @@ describe('Plugin that creates with some user input a virtual template IED - SPEC
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-    parent = await fixture(html`
-      <mock-wizard
-        ><virtual-template-i-e-d .doc=${doc}></virtual-template-i-e-d
-      ></mock-wizard>
+    element = await fixture(html`
+      <virtual-template-i-e-d .doc=${doc}></virtual-template-i-e-d>
     `);
-
-    element = <VirtualTemplateIED>(
-      parent.querySelector('virtual-template-i-e-d')!
-    );
 
     editorAction = spy();
     window.addEventListener('editor-action', editorAction);
 
     element.run();
-    await parent.requestUpdate();
-
-    inputs = Array.from(parent.wizardUI.inputs);
+    await element.requestUpdate();
 
     checkItems = Array.from(
-      parent.wizardUI.dialog?.querySelectorAll('mwc-check-list-item') ?? []
+      element.dialog.querySelectorAll('mwc-check-list-item') ?? []
     );
+    manufacturer = element.dialog.querySelector<WizardTextField>(
+      'wizard-textfield[label="manufacturer"]'
+    )!;
+    apName = element.dialog.querySelector<WizardTextField>(
+      'wizard-textfield[label="AccessPoint name"]'
+    )!;
 
     primaryAction = <HTMLElement>(
-      parent.wizardUI.dialog?.querySelector('mwc-button[slot="primaryAction"]')
+      element.dialog.querySelector('mwc-button[slot="primaryAction"]')
     );
   });
 
   it('looks like the latest snapshot', async () =>
-    await expect(parent.wizardUI.dialog).dom.to.equalSnapshot());
+    await expect(element.dialog).dom.to.equalSnapshot());
 
   it('shows all LNode that is not class LLN0 as check list items', () =>
     expect(checkItems.length).to.equal(
@@ -73,8 +66,8 @@ describe('Plugin that creates with some user input a virtual template IED - SPEC
   });
 
   it('does not trigger any actions with missing input fields', () => {
-    inputs[0].value = 'SomeCompanyName';
-    inputs[2].value = 'P1';
+    manufacturer.value = 'SomeCompanyName';
+    apName.value = 'P1';
 
     primaryAction.click();
 
@@ -82,12 +75,12 @@ describe('Plugin that creates with some user input a virtual template IED - SPEC
   });
 
   it('does trigger an create actions if at least one LNode is selected', async () => {
-    inputs[0].value = 'SomeCompanyName';
-    inputs[2].value = 'P1';
+    manufacturer.value = 'SomeCompanyName';
+    apName.value = 'P1';
 
     checkItems[1].selected = true;
 
-    await parent.requestUpdate();
+    await element.requestUpdate();
 
     primaryAction.click();
 
@@ -95,8 +88,8 @@ describe('Plugin that creates with some user input a virtual template IED - SPEC
   });
 
   it('allows to add more than one SPECIFICATION type IED to the document', async () => {
-    inputs[0].value = 'SomeCompanyName';
-    inputs[2].value = 'P1';
+    manufacturer.value = 'SomeCompanyName';
+    apName.value = 'P1';
 
     checkItems[1].selected = true;
 
@@ -112,9 +105,24 @@ describe('Plugin that creates with some user input a virtual template IED - SPEC
     expect(createAction.checkValidity!()).to.be.true;
   });
 
+  it('enables primary action button only with required information', async () => {
+    expect(primaryAction).to.have.attribute('disabled');
+
+    manufacturer.value = 'SomeCompanyName';
+    apName.value = 'P1';
+    await element.requestUpdate();
+
+    expect(primaryAction).to.have.attribute('disabled');
+
+    checkItems[1].selected = true;
+    await element.requestUpdate();
+
+    expect(primaryAction).to.not.have.attribute('disabled');
+  });
+
   it('IEDs data model show selected logical nodes and its structure', async () => {
-    inputs[0].value = 'SomeCompanyName';
-    inputs[2].value = 'P1';
+    manufacturer.value = 'SomeCompanyName';
+    apName.value = 'P1';
 
     checkItems[1].selected = true;
     checkItems[10].selected = true;
