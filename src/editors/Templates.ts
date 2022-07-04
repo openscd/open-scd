@@ -51,7 +51,7 @@ const nsd7420 = fetch('public/xml/IEC_61850-7-420_2019A4.nsd')
 /** An editor [[`plugin`]] for editing the `DataTypeTemplates` section. */
 export default class TemplatesPlugin extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
-  @property()
+  @property({ attribute: false })
   doc!: XMLDocument;
 
   async openCreateLNodeTypeWizard(): Promise<void> {
@@ -181,7 +181,7 @@ export default class TemplatesPlugin extends LitElement {
           </h1>
           <filtered-list
             id="lnodetypelist"
-            @selected=${(e: SingleSelectedEvent) =>
+            @action=${(e: SingleSelectedEvent) =>
               this.openLNodeTypeWizard(
                 (<ListItem>(<List>e.target).selected).value
               )}
@@ -221,7 +221,7 @@ export default class TemplatesPlugin extends LitElement {
           </h1>
           <filtered-list
             id="dotypelist"
-            @selected=${(e: SingleSelectedEvent) =>
+            @action=${(e: SingleSelectedEvent) =>
               this.openDOTypeWizard(
                 (<ListItem>(<List>e.target).selected).value
               )}
@@ -260,7 +260,7 @@ export default class TemplatesPlugin extends LitElement {
           </h1>
           <filtered-list
             id="datypelist"
-            @selected=${(e: SingleSelectedEvent) =>
+            @action=${(e: SingleSelectedEvent) =>
               this.openDATypeWizard(
                 (<ListItem>(<List>e.target).selected).value
               )}
@@ -296,7 +296,7 @@ export default class TemplatesPlugin extends LitElement {
           </h1>
           <filtered-list
             id="enumtypelist"
-            @selected=${(e: SingleSelectedEvent) =>
+            @action=${(e: SingleSelectedEvent) =>
               this.openEnumTypeWizard(
                 (<ListItem>(<List>e.target).selected).value
               )}
