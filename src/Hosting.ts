@@ -73,7 +73,7 @@ export function Hosting<
               newPendingStateEvent(
                 (<MenuPlugin>(
                   (<unknown>(
-                    (<List>ae.target).items[ae.detail.index].lastElementChild
+                    (<List>ae.target).items[ae.detail.index].nextElementSibling
                   ))
                 )).run()
               )
@@ -94,7 +94,7 @@ export function Hosting<
               newPendingStateEvent(
                 (<MenuPlugin>(
                   (<unknown>(
-                    (<List>ae.target).items[ae.detail.index].lastElementChild
+                    (<List>ae.target).items[ae.detail.index].nextElementSibling
                   ))
                 )).run()
               )
@@ -115,7 +115,7 @@ export function Hosting<
               newPendingStateEvent(
                 (<MenuPlugin>(
                   (<unknown>(
-                    (<List>ae.target).items[ae.detail.index].lastElementChild
+                    (<List>ae.target).items[ae.detail.index].nextElementSibling
                   ))
                 )).run()
               )
@@ -139,7 +139,7 @@ export function Hosting<
               newPendingStateEvent(
                 (<Validator>(
                   (<unknown>(
-                    (<List>ae.target).items[ae.detail.index].lastElementChild
+                    (<List>ae.target).items[ae.detail.index].nextElementSibling
                   ))
                 )).validate()
               )
@@ -224,7 +224,7 @@ export function Hosting<
             .querySelector('mwc-list')!
             .items.filter(item => item.className === 'validator')
             .map(item =>
-              (<Validator>(<unknown>item.lastElementChild)).validate()
+              (<Validator>(<unknown>item.nextElementSibling)).validate()
             )
         ).then();
         this.dispatchEvent(newPendingStateEvent(this.validated));
@@ -245,8 +245,8 @@ export function Hosting<
           ${me.hint
             ? html`<span slot="secondary"><tt>${me.hint}</tt></span>`
             : ''}
-          ${me.content ?? ''}
         </mwc-list-item>
+        ${me.content ?? ''}
       `;
     }
 
@@ -280,10 +280,14 @@ export function Hosting<
             : ''}
           <mwc-list
             wrapFocus
-            @action=${(ae: CustomEvent<ActionDetail>) =>
-              (<MenuItem>(
-                this.menu.filter(item => item !== 'divider')[ae.detail.index]
-              ))?.action?.(ae)}
+            @action=${(ae: CustomEvent<ActionDetail>) => {
+              //FIXME: dirty hack to be fixed in open-scd-core
+              //       if clause not neccassary when oscd... compenents in open-scd not list
+              if (ae.target instanceof List)
+                (<MenuItem>(
+                  this.menu.filter(item => item !== 'divider')[ae.detail.index]
+                ))?.action?.(ae);
+            }}
           >
             ${this.menu.map(this.renderMenuItem)}
           </mwc-list>

@@ -170,5 +170,13 @@ export class OpenSCD extends Hosting(
       margin-left: -30px;
       font-family: 'Roboto', sans-serif;
     }
+
+    .plugin.menu {
+      display: flex;
+    }
+
+    .plugin.validator {
+      display: flex;
+    }
   `;
 }
