@@ -28,6 +28,9 @@ import {
   getFcdaReferences,
 } from '../../../foundation/ied.js';
 import {
+  canCreateValidExtRef,
+  createExtRefElement,
+  existExtRef,
   IEDSelectEvent,
   ListElement,
   styles,
@@ -43,7 +46,7 @@ let view: View = View.PUBLISHER;
 /** An sub element for subscribing and unsubscribing IEDs to GOOSE messages. */
 @customElement('subscriber-list-goose')
 export class SubscriberList extends SubscriberListContainer {
-  @property()
+  @property({ attribute: false })
   doc!: XMLDocument;
 
   /** Current selected GOOSE message (when in GOOSE Publisher view) */
@@ -196,14 +199,16 @@ export class SubscriberList extends SubscriberListContainer {
   }
 
   private async onGooseSubscriptionEvent(event: GooseSubscriptionEvent) {
-    let iedToSubscribe = event.detail.ied;
+    let iedToSubscribe = event.detail.element;
 
     if (view == View.SUBSCRIBER) {
-      const dataSetName = event.detail.ied.getAttribute('datSet');
-      this.currentUsedDataset = event.detail.ied.parentElement?.querySelector(
-        `DataSet[name="${dataSetName}"]`
-      );
-      this.currentGooseIedName = event.detail.ied
+      const dataSetName = event.detail.element.getAttribute('datSet');
+      this.currentUsedDataset =
+        event.detail.element.parentElement?.querySelector(
+          `DataSet[name="${dataSetName}"]`
+        );
+      this.currentSelectedGseControl = event.detail.element;
+      this.currentGooseIedName = event.detail.element
         .closest('IED')
         ?.getAttribute('name');
       iedToSubscribe = this.currentSelectedIed!;
@@ -245,21 +250,13 @@ export class SubscriberList extends SubscriberListContainer {
     const actions: Create[] = [];
     this.currentUsedDataset!.querySelectorAll('FCDA').forEach(fcda => {
       if (
-        !inputsElement!.querySelector(
-          `ExtRef[iedName=${this.currentGooseIedName}]` +
-            `${getFcdaReferences(fcda)}`
-        )
+        !existExtRef(inputsElement!, fcda) &&
+        canCreateValidExtRef(fcda, this.currentSelectedGseControl)
       ) {
-        const extRef = createElement(ied.ownerDocument, 'ExtRef', {
-          iedName: this.currentGooseIedName!,
-          serviceType: 'GOOSE',
-          ldInst: fcda.getAttribute('ldInst') ?? '',
-          lnClass: fcda.getAttribute('lnClass') ?? '',
-          lnInst: fcda.getAttribute('lnInst') ?? '',
-          prefix: fcda.getAttribute('prefix') ?? '',
-          doName: fcda.getAttribute('doName') ?? '',
-          daName: fcda.getAttribute('daName') ?? '',
-        });
+        const extRef = createExtRefElement(
+          this.currentSelectedGseControl,
+          fcda
+        );
 
         if (inputsElement?.parentElement)
           actions.push({ new: { parent: inputsElement!, element: extRef } });

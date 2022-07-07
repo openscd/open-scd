@@ -1,5 +1,6 @@
 import { css, LitElement, query } from 'lit-element';
-import { compareNames } from '../../foundation.js';
+import { compareNames, createElement } from '../../foundation.js';
+import { getFcdaReferences } from '../../foundation/ied.js';
 
 export enum View {
   PUBLISHER,
@@ -44,6 +45,122 @@ export function newIEDSelectEvent(
     composed: true,
     ...eventInitDict,
     detail: { ied, ...eventInitDict?.detail },
+  });
+}
+
+export function existExtRef(parentInputs: Element, fcda: Element): boolean {
+  const iedName = fcda.closest('IED')?.getAttribute('name');
+  if (!iedName) return false;
+
+  return !!parentInputs.querySelector(
+    `ExtRef[iedName=${iedName}]` + `${getFcdaReferences(fcda)}`
+  );
+}
+
+export function canCreateValidExtRef(
+  fcda: Element,
+  controlBlock: Element | undefined
+): boolean {
+  const iedName = fcda.closest('IED')?.getAttribute('name');
+  const [ldInst, lnClass, lnInst, doName] = [
+    'ldInst',
+    'lnClass',
+    'lnInst',
+    'doName',
+  ].map(attr => fcda.getAttribute(attr));
+
+  if (!iedName || !ldInst || !lnClass || !lnInst || !doName) return false;
+
+  if (controlBlock === undefined) return true; //for serviceType `Poll`
+
+  const srcLDInst = controlBlock.closest('LDevice')?.getAttribute('inst');
+  const srcLNClass = controlBlock.closest('LN0,LN')?.getAttribute('lnClass');
+  const srcLNInst = controlBlock.closest('LN0,LN')?.getAttribute('inst');
+  const srcCBName = controlBlock.getAttribute('name');
+
+  if (
+    !srcLDInst ||
+    !srcLNClass ||
+    !srcCBName ||
+    typeof srcLNInst !== 'string' //empty string is allowed in `LN0`
+  )
+    return false;
+
+  return true;
+}
+
+const serviceTypes: Partial<Record<string, string>> = {
+  ReportControl: 'Report',
+  GSEControl: 'GOOSE',
+  SampledValueControl: 'SMV',
+};
+
+/**
+ * @param controlBlock - `ReportControl`, `GSEControl` or `SamepldValueControl` source element
+ * @param fCDA - the source data. can be data attribute or data obejct (missing daName)
+ * @returns ExtRef element
+ */
+export function createExtRefElement(
+  controlBlock: Element | undefined,
+  fCDA: Element
+): Element {
+  const iedName = fCDA.closest('IED')?.getAttribute('name') ?? null;
+  const [ldInst, prefix, lnClass, lnInst, doName, daName] = [
+    'ldInst',
+    'prefix',
+    'lnClass',
+    'lnInst',
+    'doName',
+    'daName',
+  ].map(attr => fCDA.getAttribute(attr));
+  if (fCDA.ownerDocument.documentElement.getAttribute('version') !== '2007')
+    //Ed1 does not define serviceType and its MCD attribute starting with src...
+    return createElement(fCDA.ownerDocument, 'ExtRef', {
+      iedName,
+      ldInst,
+      lnClass,
+      lnInst,
+      prefix,
+      doName,
+      daName,
+    });
+
+  if (!controlBlock || !serviceTypes[controlBlock.tagName])
+    //for invalid control block tag name assume polling
+    return createElement(fCDA.ownerDocument, 'ExtRef', {
+      iedName,
+      serviceType: 'Poll',
+      ldInst,
+      lnClass,
+      lnInst,
+      prefix,
+      doName,
+      daName,
+    });
+
+  // default is empty string as attributes are mendaroty acc to IEC 61850-6 >Ed2
+  const srcLDInst = controlBlock.closest('LDevice')?.getAttribute('inst') ?? '';
+  const srcPrefix =
+    controlBlock.closest('LN0,LN')?.getAttribute('prefix') ?? '';
+  const srcLNClass =
+    controlBlock.closest('LN0,LN')?.getAttribute('lnClass') ?? '';
+  const srcLNInst = controlBlock.closest('LN0,LN')?.getAttribute('inst') ?? '';
+  const srcCBName = controlBlock.getAttribute('name') ?? '';
+
+  return createElement(fCDA.ownerDocument, 'ExtRef', {
+    iedName,
+    serviceType: serviceTypes[controlBlock.tagName]!,
+    ldInst,
+    lnClass,
+    lnInst,
+    prefix,
+    doName,
+    daName,
+    srcLDInst,
+    srcPrefix,
+    srcLNClass,
+    srcLNInst,
+    srcCBName,
   });
 }
 

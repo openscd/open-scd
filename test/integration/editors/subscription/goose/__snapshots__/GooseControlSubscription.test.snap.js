@@ -1,41 +1,41 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Sampled Values Plugin in Publisher view initially the plugin looks like the latest snapshot"] = 
+snapshots["GOOSE subscriber plugin in Publisher view per dafault the plugin itsself looks like the latest snapshot"] = 
 `<div>
-  <mwc-formfield label="[subscription.smv.view.publisherView]">
+  <mwc-formfield label="[subscription.goose.view.publisherView]">
     <mwc-radio
       checked=""
-      id="smvPublisherView"
+      id="goosePublisherView"
       name="view"
-      value="smv"
+      value="goose"
     >
     </mwc-radio>
   </mwc-formfield>
-  <mwc-formfield label="[subscription.smv.view.subscriberView]">
+  <mwc-formfield label="[subscription.goose.view.subscriberView]">
     <mwc-radio
-      id="smvSubscriberView"
+      id="gooseSubscriberView"
       name="view"
       value="ied"
     >
     </mwc-radio>
   </mwc-formfield>
   <div class="container">
-    <smv-list class="row">
-    </smv-list>
-    <subscriber-list-smv class="row">
-    </subscriber-list-smv>
+    <goose-list class="row">
+    </goose-list>
+    <subscriber-list-goose class="row">
+    </subscriber-list-goose>
   </div>
 </div>
 <wizard-dialog>
 </wizard-dialog>
 `;
-/* end snapshot Sampled Values Plugin in Publisher view initially the plugin looks like the latest snapshot */
+/* end snapshot GOOSE subscriber plugin in Publisher view per dafault the plugin itsself looks like the latest snapshot */
 
-snapshots["Sampled Values Plugin in Publisher view initially the Sampled Values list looks like the latest snapshot"] = 
+snapshots["GOOSE subscriber plugin in Publisher view per dafault the right hand side GSEControl list looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.smv.publisherSmv.title]
+    [subscription.goose.publisherGoose.title]
   </h1>
   <filtered-list>
     <mwc-list-item
@@ -58,6 +58,44 @@ snapshots["Sampled Values Plugin in Publisher view initially the Sampled Values 
     </li>
     <mwc-list-item
       aria-disabled="false"
+      graphic="large"
+      hasmeta=""
+      mwc-list-item=""
+      tabindex="0"
+    >
+      <mwc-icon slot="graphic">
+      </mwc-icon>
+      <span>
+        GCB
+      </span>
+      <mwc-icon-button
+        class="hidden"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="large"
+      hasmeta=""
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+      </mwc-icon>
+      <span>
+        GCB2
+      </span>
+      <mwc-icon-button
+        class="hidden"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
       graphic="icon"
       noninteractive=""
       tabindex="-1"
@@ -76,6 +114,25 @@ snapshots["Sampled Values Plugin in Publisher view initially the Sampled Values 
     </li>
     <mwc-list-item
       aria-disabled="false"
+      graphic="large"
+      hasmeta=""
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+      </mwc-icon>
+      <span>
+        GCB
+      </span>
+      <mwc-icon-button
+        class="hidden"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
       graphic="icon"
       noninteractive=""
       tabindex="-1"
@@ -92,25 +149,6 @@ snapshots["Sampled Values Plugin in Publisher view initially the Sampled Values 
       role="separator"
     >
     </li>
-    <mwc-list-item
-      aria-disabled="false"
-      graphic="large"
-      hasmeta=""
-      mwc-list-item=""
-      tabindex="0"
-    >
-      <mwc-icon slot="graphic">
-      </mwc-icon>
-      <span>
-        MSVCB01
-      </span>
-      <mwc-icon-button
-        class="hidden"
-        icon="edit"
-        slot="meta"
-      >
-      </mwc-icon-button>
-    </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
       graphic="icon"
@@ -139,7 +177,26 @@ snapshots["Sampled Values Plugin in Publisher view initially the Sampled Values 
       <mwc-icon slot="graphic">
       </mwc-icon>
       <span>
-        MSVCB02
+        GCB
+      </span>
+      <mwc-icon-button
+        class="hidden"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="large"
+      hasmeta=""
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+      </mwc-icon>
+      <span>
+        GCB2
       </span>
       <mwc-icon-button
         class="hidden"
@@ -151,12 +208,12 @@ snapshots["Sampled Values Plugin in Publisher view initially the Sampled Values 
   </filtered-list>
 </section>
 `;
-/* end snapshot Sampled Values Plugin in Publisher view initially the Sampled Values list looks like the latest snapshot */
+/* end snapshot GOOSE subscriber plugin in Publisher view per dafault the right hand side GSEControl list looks like the latest snapshot */
 
-snapshots["Sampled Values Plugin in Publisher view initially the subscriber list looks like the latest snapshot"] = 
+snapshots["GOOSE subscriber plugin in Publisher view per dafault the left hand side subscriber IED list looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.smv.publisherSmv.subscriberTitle]
+    [subscription.goose.publisherGoose.subscriberTitle]
   </h1>
   <mwc-list>
     <mwc-list-item
@@ -171,12 +228,12 @@ snapshots["Sampled Values Plugin in Publisher view initially the subscriber list
   </mwc-list>
 </section>
 `;
-/* end snapshot Sampled Values Plugin in Publisher view initially the subscriber list looks like the latest snapshot */
+/* end snapshot GOOSE subscriber plugin in Publisher view per dafault the left hand side subscriber IED list looks like the latest snapshot */
 
-snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Values message the list on the right will initially show the subscribed / partially subscribed / not subscribed IEDs"] = 
+snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE message the left hand side subscriber IED list looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.smv.publisherSmv.subscriberTitle]
+    [subscription.goose.publisherGoose.subscriberTitle]
   </h1>
   <div class="wrapper">
     <filtered-list>
@@ -258,7 +315,7 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
         tabindex="-1"
       >
         <span>
-          IED2
+          IED3
         </span>
         <mwc-icon slot="graphic">
           add
@@ -268,12 +325,228 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
   </div>
 </section>
 `;
-/* end snapshot Sampled Values Plugin in Publisher view when selecting a Sampled Values message the list on the right will initially show the subscribed / partially subscribed / not subscribed IEDs */
+/* end snapshot GOOSE subscriber plugin in Publisher view with a selected GOOSE message the left hand side subscriber IED list looks like the latest snapshot */
 
-snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Values message and subscribing an unsubscribed IED it looks like the latest snapshot"] = 
+snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE message for unsubscribed IEDs after clicking on the IEDs list element the left hand side subscriber IED list looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.smv.publisherSmv.subscriberTitle]
+    [subscription.goose.publisherGoose.subscriberTitle]
+  </h1>
+  <div class="wrapper">
+    <filtered-list>
+      <mwc-list-item
+        aria-disabled="false"
+        noninteractive=""
+        tabindex="-1"
+      >
+        <span>
+          [subscription.subscriber.subscribed]
+        </span>
+      </mwc-list-item>
+      <li
+        divider=""
+        role="separator"
+      >
+      </li>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="avatar"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="0"
+      >
+        <span>
+          IED1
+        </span>
+        <mwc-icon slot="graphic">
+          clear
+        </mwc-icon>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="avatar"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <span>
+          IED3
+        </span>
+        <mwc-icon slot="graphic">
+          clear
+        </mwc-icon>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        noninteractive=""
+        tabindex="-1"
+      >
+        <span>
+          [subscription.subscriber.partiallySubscribed]
+        </span>
+      </mwc-list-item>
+      <li
+        divider=""
+        role="separator"
+      >
+      </li>
+      <mwc-list-item
+        aria-disabled="false"
+        aria-selected="false"
+        graphic="avatar"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <span>
+          IED4
+        </span>
+        <mwc-icon slot="graphic">
+          add
+        </mwc-icon>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        noninteractive=""
+        tabindex="-1"
+      >
+        <span>
+          [subscription.subscriber.availableToSubscribe]
+        </span>
+      </mwc-list-item>
+      <li
+        divider=""
+        role="separator"
+      >
+      </li>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="avatar"
+        noninteractive=""
+        tabindex="-1"
+      >
+        <span>
+          [subscription.none]
+        </span>
+      </mwc-list-item>
+    </filtered-list>
+  </div>
+</section>
+`;
+/* end snapshot GOOSE subscriber plugin in Publisher view with a selected GOOSE message for unsubscribed IEDs after clicking on the IEDs list element the left hand side subscriber IED list looks like the latest snapshot */
+
+snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE message for subscribed IEDs after clicking on the IEDs list element looks like the latest snapshot"] = 
+`<section tabindex="0">
+  <h1>
+    [subscription.goose.publisherGoose.subscriberTitle]
+  </h1>
+  <div class="wrapper">
+    <filtered-list>
+      <mwc-list-item
+        aria-disabled="false"
+        noninteractive=""
+        tabindex="-1"
+      >
+        <span>
+          [subscription.subscriber.subscribed]
+        </span>
+      </mwc-list-item>
+      <li
+        divider=""
+        role="separator"
+      >
+      </li>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="avatar"
+        noninteractive=""
+        tabindex="-1"
+      >
+        <span>
+          [subscription.none]
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        noninteractive=""
+        tabindex="-1"
+      >
+        <span>
+          [subscription.subscriber.partiallySubscribed]
+        </span>
+      </mwc-list-item>
+      <li
+        divider=""
+        role="separator"
+      >
+      </li>
+      <mwc-list-item
+        aria-disabled="false"
+        aria-selected="false"
+        graphic="avatar"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <span>
+          IED4
+        </span>
+        <mwc-icon slot="graphic">
+          add
+        </mwc-icon>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        noninteractive=""
+        tabindex="-1"
+      >
+        <span>
+          [subscription.subscriber.availableToSubscribe]
+        </span>
+      </mwc-list-item>
+      <li
+        divider=""
+        role="separator"
+      >
+      </li>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="avatar"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <span>
+          IED1
+        </span>
+        <mwc-icon slot="graphic">
+          add
+        </mwc-icon>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="avatar"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <span>
+          IED3
+        </span>
+        <mwc-icon slot="graphic">
+          add
+        </mwc-icon>
+      </mwc-list-item>
+    </filtered-list>
+  </div>
+</section>
+`;
+/* end snapshot GOOSE subscriber plugin in Publisher view with a selected GOOSE message for subscribed IEDs after clicking on the IEDs list element looks like the latest snapshot */
+
+snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE message for partially subscribed IEDs after clicking on the IEDs list element it looks like the latest snapshot"] = 
+`<section tabindex="0">
+  <h1>
+    [subscription.goose.publisherGoose.subscriberTitle]
   </h1>
   <div class="wrapper">
     <filtered-list>
@@ -306,215 +579,12 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
         </mwc-icon>
       </mwc-list-item>
       <mwc-list-item
-        graphic="avatar"
-        hasmeta=""
-        mwc-list-item=""
-      >
-        <span>
-          IED2
-        </span>
-        <mwc-icon slot="graphic">
-          clear
-        </mwc-icon>
-      </mwc-list-item>
-      <mwc-list-item
         aria-disabled="false"
-        noninteractive=""
-        tabindex="-1"
-      >
-        <span>
-          [subscription.subscriber.partiallySubscribed]
-        </span>
-      </mwc-list-item>
-      <li
-        divider=""
-        role="separator"
-      >
-      </li>
-      <mwc-list-item
-        aria-disabled="false"
+        aria-selected="false"
         graphic="avatar"
         hasmeta=""
         mwc-list-item=""
         tabindex="-1"
-      >
-        <span>
-          IED4
-        </span>
-        <mwc-icon slot="graphic">
-          add
-        </mwc-icon>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        noninteractive=""
-        tabindex="-1"
-      >
-        <span>
-          [subscription.subscriber.availableToSubscribe]
-        </span>
-      </mwc-list-item>
-      <li
-        divider=""
-        role="separator"
-      >
-      </li>
-      <mwc-list-item
-        graphic="avatar"
-        noninteractive=""
-      >
-        <span>
-          [subscription.none]
-        </span>
-      </mwc-list-item>
-    </filtered-list>
-  </div>
-</section>
-`;
-/* end snapshot Sampled Values Plugin in Publisher view when selecting a Sampled Values message and subscribing an unsubscribed IED it looks like the latest snapshot */
-
-snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Values message and you unsubscribe a subscribed IED it looks like the latest snapshot"] = 
-`<section tabindex="0">
-  <h1>
-    [subscription.smv.publisherSmv.subscriberTitle]
-  </h1>
-  <div class="wrapper">
-    <filtered-list>
-      <mwc-list-item
-        aria-disabled="false"
-        noninteractive=""
-        tabindex="-1"
-      >
-        <span>
-          [subscription.subscriber.subscribed]
-        </span>
-      </mwc-list-item>
-      <li
-        divider=""
-        role="separator"
-      >
-      </li>
-      <mwc-list-item
-        graphic="avatar"
-        noninteractive=""
-      >
-        <span>
-          [subscription.none]
-        </span>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        noninteractive=""
-        tabindex="-1"
-      >
-        <span>
-          [subscription.subscriber.partiallySubscribed]
-        </span>
-      </mwc-list-item>
-      <li
-        divider=""
-        role="separator"
-      >
-      </li>
-      <mwc-list-item
-        aria-disabled="false"
-        graphic="avatar"
-        hasmeta=""
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <span>
-          IED4
-        </span>
-        <mwc-icon slot="graphic">
-          add
-        </mwc-icon>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        noninteractive=""
-        tabindex="-1"
-      >
-        <span>
-          [subscription.subscriber.availableToSubscribe]
-        </span>
-      </mwc-list-item>
-      <li
-        divider=""
-        role="separator"
-      >
-      </li>
-      <mwc-list-item
-        aria-disabled="false"
-        graphic="avatar"
-        hasmeta=""
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <span>
-          IED1
-        </span>
-        <mwc-icon slot="graphic">
-          add
-        </mwc-icon>
-      </mwc-list-item>
-      <mwc-list-item
-        graphic="avatar"
-        hasmeta=""
-        mwc-list-item=""
-      >
-        <span>
-          IED2
-        </span>
-        <mwc-icon slot="graphic">
-          add
-        </mwc-icon>
-      </mwc-list-item>
-    </filtered-list>
-  </div>
-</section>
-`;
-/* end snapshot Sampled Values Plugin in Publisher view when selecting a Sampled Values message and you unsubscribe a subscribed IED it looks like the latest snapshot */
-
-snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Values message and you subscribe a partially subscribed IED it looks like the latest snapshot"] = 
-`<section tabindex="0">
-  <h1>
-    [subscription.smv.publisherSmv.subscriberTitle]
-  </h1>
-  <div class="wrapper">
-    <filtered-list>
-      <mwc-list-item
-        aria-disabled="false"
-        noninteractive=""
-        tabindex="-1"
-      >
-        <span>
-          [subscription.subscriber.subscribed]
-        </span>
-      </mwc-list-item>
-      <li
-        divider=""
-        role="separator"
-      >
-      </li>
-      <mwc-list-item
-        aria-disabled="false"
-        graphic="avatar"
-        hasmeta=""
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <span>
-          IED1
-        </span>
-        <mwc-icon slot="graphic">
-          clear
-        </mwc-icon>
-      </mwc-list-item>
-      <mwc-list-item
-        graphic="avatar"
-        hasmeta=""
-        mwc-list-item=""
       >
         <span>
           IED4
@@ -538,8 +608,10 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
       >
       </li>
       <mwc-list-item
+        aria-disabled="false"
         graphic="avatar"
         noninteractive=""
+        tabindex="-1"
       >
         <span>
           [subscription.none]
@@ -567,7 +639,7 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
         tabindex="-1"
       >
         <span>
-          IED2
+          IED3
         </span>
         <mwc-icon slot="graphic">
           add
@@ -577,22 +649,22 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
   </div>
 </section>
 `;
-/* end snapshot Sampled Values Plugin in Publisher view when selecting a Sampled Values message and you subscribe a partially subscribed IED it looks like the latest snapshot */
+/* end snapshot GOOSE subscriber plugin in Publisher view with a selected GOOSE message for partially subscribed IEDs after clicking on the IEDs list element it looks like the latest snapshot */
 
-snapshots["Sampled Values Plugin in Subscriber view initially the plugin looks like the latest snapshot"] = 
+snapshots["GOOSE subscriber plugin in Subscriber view per default the plugin itsself looks like the latest snapshot"] = 
 `<div>
-  <mwc-formfield label="[subscription.smv.view.publisherView]">
+  <mwc-formfield label="[subscription.goose.view.publisherView]">
     <mwc-radio
-      checked=""
-      id="smvPublisherView"
+      id="goosePublisherView"
       name="view"
-      value="smv"
+      value="goose"
     >
     </mwc-radio>
   </mwc-formfield>
-  <mwc-formfield label="[subscription.smv.view.subscriberView]">
+  <mwc-formfield label="[subscription.goose.view.subscriberView]">
     <mwc-radio
-      id="smvSubscriberView"
+      checked=""
+      id="gooseSubscriberView"
       name="view"
       value="ied"
     >
@@ -601,16 +673,16 @@ snapshots["Sampled Values Plugin in Subscriber view initially the plugin looks l
   <div class="container">
     <ied-list class="row">
     </ied-list>
-    <subscriber-list-smv class="row">
-    </subscriber-list-smv>
+    <subscriber-list-goose class="row">
+    </subscriber-list-goose>
   </div>
 </div>
 <wizard-dialog>
 </wizard-dialog>
 `;
-/* end snapshot Sampled Values Plugin in Subscriber view initially the plugin looks like the latest snapshot */
+/* end snapshot GOOSE subscriber plugin in Subscriber view per default the plugin itsself looks like the latest snapshot */
 
-snapshots["Sampled Values Plugin in Subscriber view initially the IED list looks like the latest snapshot"] = 
+snapshots["GOOSE subscriber plugin in Subscriber view per default the right hand side IEDs list looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
     [subscription.iedList.title]
@@ -671,12 +743,12 @@ snapshots["Sampled Values Plugin in Subscriber view initially the IED list looks
   </filtered-list>
 </section>
 `;
-/* end snapshot Sampled Values Plugin in Subscriber view initially the IED list looks like the latest snapshot */
+/* end snapshot GOOSE subscriber plugin in Subscriber view per default the right hand side IEDs list looks like the latest snapshot */
 
-snapshots["Sampled Values Plugin in Subscriber view initially the subscriber list looks like the latest snapshot"] = 
+snapshots["GOOSE subscriber plugin in Subscriber view per default the left hand side subscriber IED list looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.smv.subscriberSmv.publisherTitle]
+    [subscription.goose.subscriberGoose.publisherTitle]
   </h1>
   <mwc-list>
     <mwc-list-item
@@ -691,12 +763,12 @@ snapshots["Sampled Values Plugin in Subscriber view initially the subscriber lis
   </mwc-list>
 </section>
 `;
-/* end snapshot Sampled Values Plugin in Subscriber view initially the subscriber list looks like the latest snapshot */
+/* end snapshot GOOSE subscriber plugin in Subscriber view per default the left hand side subscriber IED list looks like the latest snapshot */
 
-snapshots["Sampled Values Plugin in Subscriber view when selecting an IED the subscriber list will initially show the subscribed / partially subscribed / not subscribed IEDs"] = 
+snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED the left hand side subscriber IED list looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.smv.subscriberSmv.publisherTitle]
+    [subscription.goose.subscriberGoose.publisherTitle]
   </h1>
   <div class="wrapper">
     <filtered-list>
@@ -746,7 +818,7 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED the su
         tabindex="0"
       >
         <span>
-          MSVCB02 (IED4)
+          GCB (IED1)
         </span>
         <mwc-icon slot="graphic">
           add
@@ -774,7 +846,7 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED the su
         tabindex="-1"
       >
         <span>
-          MSVCB01 (IED3)
+          GCB (IED4)
         </span>
         <mwc-icon slot="graphic">
           add
@@ -784,12 +856,12 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED the su
   </div>
 </section>
 `;
-/* end snapshot Sampled Values Plugin in Subscriber view when selecting an IED the subscriber list will initially show the subscribed / partially subscribed / not subscribed IEDs */
+/* end snapshot GOOSE subscriber plugin in Subscriber view with a selected IED the left hand side subscriber IED list looks like the latest snapshot */
 
-snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and subscribing a unsubscribed Sampled Value message clicking on a SampledValueControl list item it looks like the latest snapshot"] = 
+snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for unsubscribed GSEControl s clicking on the GSEControl list item the left hand side subscriber IED list looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.smv.subscriberSmv.publisherTitle]
+    [subscription.goose.subscriberGoose.publisherTitle]
   </h1>
   <div class="wrapper">
     <filtered-list>
@@ -812,10 +884,10 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and su
         graphic="avatar"
         hasmeta=""
         mwc-list-item=""
-        tabindex="-1"
+        tabindex="0"
       >
         <span>
-          MSVCB01 (IED3)
+          GCB (IED4)
         </span>
         <mwc-icon slot="graphic">
           clear
@@ -844,7 +916,7 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and su
         tabindex="-1"
       >
         <span>
-          MSVCB02 (IED4)
+          GCB (IED1)
         </span>
         <mwc-icon slot="graphic">
           add
@@ -878,12 +950,12 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and su
   </div>
 </section>
 `;
-/* end snapshot Sampled Values Plugin in Subscriber view when selecting an IED and subscribing a unsubscribed Sampled Value message clicking on a SampledValueControl list item it looks like the latest snapshot */
+/* end snapshot GOOSE subscriber plugin in Subscriber view with a selected IED for unsubscribed GSEControl s clicking on the GSEControl list item the left hand side subscriber IED list looks like the latest snapshot */
 
-snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and unsubscribing a subscribed Sampled Value message it looks like the latest snapshot"] = 
+snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for subscribed GSEControl s clicking on the GSEControl list item the left hand side subscriber IED list looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.smv.subscriberSmv.publisherTitle]
+    [subscription.goose.subscriberGoose.publisherTitle]
   </h1>
   <div class="wrapper">
     <filtered-list>
@@ -902,8 +974,10 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and un
       >
       </li>
       <mwc-list-item
+        aria-disabled="false"
         graphic="avatar"
         noninteractive=""
+        tabindex="-1"
       >
         <span>
           [subscription.none]
@@ -929,10 +1003,10 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and un
         graphic="avatar"
         hasmeta=""
         mwc-list-item=""
-        tabindex="-1"
+        tabindex="0"
       >
         <span>
-          MSVCB02 (IED4)
+          GCB (IED1)
         </span>
         <mwc-icon slot="graphic">
           add
@@ -953,12 +1027,14 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and un
       >
       </li>
       <mwc-list-item
+        aria-disabled="false"
         graphic="avatar"
         hasmeta=""
         mwc-list-item=""
+        tabindex="-1"
       >
         <span>
-          MSVCB01 (IED3)
+          GCB (IED4)
         </span>
         <mwc-icon slot="graphic">
           add
@@ -968,12 +1044,12 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and un
   </div>
 </section>
 `;
-/* end snapshot Sampled Values Plugin in Subscriber view when selecting an IED and unsubscribing a subscribed Sampled Value message it looks like the latest snapshot */
+/* end snapshot GOOSE subscriber plugin in Subscriber view with a selected IED for subscribed GSEControl s clicking on the GSEControl list item the left hand side subscriber IED list looks like the latest snapshot */
 
-snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and subscribing a partially subscribed Sampled Value message it looks like the latest snapshot"] = 
+snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for partially subscribed GSEControl s clicking on the GSEControl list item the left hand side subscriber IED list looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.smv.subscriberSmv.publisherTitle]
+    [subscription.goose.subscriberGoose.publisherTitle]
   </h1>
   <div class="wrapper">
     <filtered-list>
@@ -992,12 +1068,15 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and su
       >
       </li>
       <mwc-list-item
+        aria-disabled="false"
+        aria-selected="false"
         graphic="avatar"
         hasmeta=""
         mwc-list-item=""
+        tabindex="0"
       >
         <span>
-          MSVCB02 (IED4)
+          GCB (IED1)
         </span>
         <mwc-icon slot="graphic">
           clear
@@ -1018,8 +1097,10 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and su
       >
       </li>
       <mwc-list-item
+        aria-disabled="false"
         graphic="avatar"
         noninteractive=""
+        tabindex="-1"
       >
         <span>
           [subscription.none]
@@ -1047,7 +1128,7 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and su
         tabindex="-1"
       >
         <span>
-          MSVCB01 (IED3)
+          GCB (IED4)
         </span>
         <mwc-icon slot="graphic">
           add
@@ -1057,5 +1138,99 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and su
   </div>
 </section>
 `;
-/* end snapshot Sampled Values Plugin in Subscriber view when selecting an IED and subscribing a partially subscribed Sampled Value message it looks like the latest snapshot */
+/* end snapshot GOOSE subscriber plugin in Subscriber view with a selected IED for partially subscribed GSEControl s clicking on the GSEControl list item the left hand side subscriber IED list looks like the latest snapshot */
+
+snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for unsubscribed GSEControl s clicking on a GSEControl list item the left hand side subscriber IED list looks like the latest snapshot"] = 
+`<section tabindex="0">
+  <h1>
+    [subscription.goose.subscriberGoose.publisherTitle]
+  </h1>
+  <div class="wrapper">
+    <filtered-list>
+      <mwc-list-item
+        aria-disabled="false"
+        noninteractive=""
+        tabindex="-1"
+      >
+        <span>
+          [subscription.subscriber.subscribed]
+        </span>
+      </mwc-list-item>
+      <li
+        divider=""
+        role="separator"
+      >
+      </li>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="avatar"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="0"
+      >
+        <span>
+          GCB (IED4)
+        </span>
+        <mwc-icon slot="graphic">
+          clear
+        </mwc-icon>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        noninteractive=""
+        tabindex="-1"
+      >
+        <span>
+          [subscription.subscriber.partiallySubscribed]
+        </span>
+      </mwc-list-item>
+      <li
+        divider=""
+        role="separator"
+      >
+      </li>
+      <mwc-list-item
+        aria-disabled="false"
+        aria-selected="false"
+        graphic="avatar"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <span>
+          GCB (IED1)
+        </span>
+        <mwc-icon slot="graphic">
+          add
+        </mwc-icon>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        noninteractive=""
+        tabindex="-1"
+      >
+        <span>
+          [subscription.subscriber.availableToSubscribe]
+        </span>
+      </mwc-list-item>
+      <li
+        divider=""
+        role="separator"
+      >
+      </li>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="avatar"
+        noninteractive=""
+        tabindex="-1"
+      >
+        <span>
+          [subscription.none]
+        </span>
+      </mwc-list-item>
+    </filtered-list>
+  </div>
+</section>
+`;
+/* end snapshot GOOSE subscriber plugin in Subscriber view with a selected IED for unsubscribed GSEControl s clicking on a GSEControl list item the left hand side subscriber IED list looks like the latest snapshot */
 
