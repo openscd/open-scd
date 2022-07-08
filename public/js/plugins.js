@@ -113,6 +113,15 @@ export const officialPlugins = [
     position: 'middle',
   },
   {
+    name: 'Create Virtual IED',
+    src: '/src/menu/VirtualTemplateIED.js',
+    icon: 'developer_board',
+    default: false,
+    kind: 'menu',
+    requireDoc: true,
+    position: 'middle'
+  },
+  {
     name: 'Subscriber Update',
     src: '/src/menu/SubscriberInfo.js',
     default: true,
