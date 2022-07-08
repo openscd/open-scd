@@ -6,7 +6,7 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
-import { compareNames, identity } from '../../foundation.js';
+import { compareNames, identity, isPublic } from '../../foundation.js';
 
 @customElement('data-set-editor')
 export class DataSetEditor extends LitElement {
@@ -18,6 +18,7 @@ export class DataSetEditor extends LitElement {
     return html`<filtered-list
       >${Array.from(this.doc.querySelectorAll('IED'))
         .sort(compareNames)
+        .filter(isPublic)
         .flatMap(ied => {
           const ieditem = html`<mwc-list-item
               class="listitem header"

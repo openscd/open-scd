@@ -11,7 +11,7 @@ import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-icon';
 
 import '../../filtered-list.js';
-import { compareNames, identity } from '../../foundation.js';
+import { compareNames, identity, isPublic } from '../../foundation.js';
 import { smvIcon } from '../../icons/icons.js';
 
 @customElement('sampled-value-control-editor')
@@ -24,6 +24,7 @@ export class SampledValueControlEditor extends LitElement {
     return html`<filtered-list
       >${Array.from(this.doc.querySelectorAll('IED'))
         .sort(compareNames)
+        .filter(isPublic)
         .flatMap(ied => {
           const ieditem = html`<mwc-list-item
               class="listitem header"

@@ -121,6 +121,7 @@ export class FilteredList extends ListBase {
 
   render(): TemplateResult {
     return html`<div id="tfcontainer">
+        <slot name="additionalFilter"></slot>
         <abbr title="${this.searchFieldLabel ?? translate('filter')}"
           ><mwc-textfield
             label="${this.searchFieldLabel ?? ''}"
