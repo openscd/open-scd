@@ -42,7 +42,7 @@ export class GseControlEditor extends LitElement {
         if (iED) newIedSelection.push(iED);
       }
     );
-    this.selectedIEDs = newIedSelection;
+    this.selectedIEDs = newIedSelection.sort(compareNames);
   }
 
   toggleIedFilterList(): void {
@@ -55,51 +55,73 @@ export class GseControlEditor extends LitElement {
       .sort(compareNames)
       .filter(isPublic);
 
-    return html`<filtered-list
-      ><mwc-icon-button
-        slot="additionalFilter"
-        icon="filter_list"
-        @click=${this.toggleIedFilterList}
-      ></mwc-icon-button
+    return html`<div>
+      <filtered-list
+        filternoninteractive
+        class="${classMap({
+          tobefilteredlist: true,
+          withcontent: !this.iedFilterHidden,
+        })}"
+        ><mwc-icon-button
+          slot="headerright"
+          class="${classMap({
+            openfilter: true,
+            hidden: !this.iedFilterHidden,
+          })}"
+          icon="filter_list"
+          @click=${this.toggleIedFilterList}
+        ></mwc-icon-button
+        >${this.selectedIEDs.flatMap(ied => {
+          const ieditem = html`<mwc-list-item
+              class="listitem header"
+              noninteractive
+              graphic="icon"
+            >
+              <span>${ied.getAttribute('name')}</span>
+              <mwc-icon slot="graphic">developer_board</mwc-icon>
+            </mwc-list-item>
+            <li divider role="separator"></li>`;
+
+          const gseControls = Array.from(
+            ied.querySelectorAll('GSEControl')
+          ).map(
+            reportCb =>
+              html`<mwc-list-item
+                twoline
+                value="${identity(reportCb)}"
+                graphic="icon"
+                ><span>${reportCb.getAttribute('name')}</span
+                ><span slot="secondary">${identity(reportCb)}</span>
+                <mwc-icon slot="graphic">${gooseIcon}</mwc-icon>
+              </mwc-list-item>`
+          );
+
+          return [ieditem, ...gseControls];
+        })}</filtered-list
       ><filtered-list
+        class="filtermenu"
         multi
         class="${classMap({
+          filtermenu: true,
           hidden: this.iedFilterHidden,
-          iedlist: true,
         })}"
         @selected=${this.filterIeds}
+        ><mwc-icon-button
+          slot="headerleft"
+          icon="close"
+          @click=${this.toggleIedFilterList}
+        ></mwc-icon-button
         >${iEDs.map(
           iED =>
-            html`<mwc-check-list-item value="${identity(iED)}" selected
-              >${iED.getAttribute('name')}</mwc-check-list-item
+            html`<mwc-check-list-item twoline value="${identity(iED)}" selected
+              ><slot>${iED.getAttribute('name')}</slot
+              ><slot slot="secondary"
+                >${iED.getAttribute('manufacturer')}</slot
+              ></mwc-check-list-item
             >`
         )}</filtered-list
-      >${this.selectedIEDs.flatMap(ied => {
-        const ieditem = html`<mwc-list-item
-            class="listitem header"
-            noninteractive
-            graphic="icon"
-          >
-            <span>${ied.getAttribute('name')}</span>
-            <mwc-icon slot="graphic">developer_board</mwc-icon>
-          </mwc-list-item>
-          <li divider role="separator"></li>`;
-
-        const gseControls = Array.from(ied.querySelectorAll('GSEControl')).map(
-          reportCb =>
-            html`<mwc-list-item
-              twoline
-              value="${identity(reportCb)}"
-              graphic="icon"
-              ><span>${reportCb.getAttribute('name')}</span
-              ><span slot="secondary">${identity(reportCb)}</span>
-              <mwc-icon slot="graphic">${gooseIcon}</mwc-icon>
-            </mwc-list-item>`
-        );
-
-        return [ieditem, ...gseControls];
-      })}</filtered-list
-    >`;
+      >
+    </div>`;
   }
 
   render(): TemplateResult {
@@ -112,15 +134,45 @@ export class GseControlEditor extends LitElement {
       background-color: var(--mdc-theme-surface);
     }
 
+    div {
+      display: flex;
+      flex-direction: column;
+    }
+
     .listitem.header {
       font-weight: 500;
     }
 
-    .iedlist {
-      position: sticky;
+    .tobefilteredlist.withcontent {
+      width: calc(100% - 318px);
     }
 
-    .hidden {
+    .tobefilteredlist {
+      width: calc(100% - 16px);
+      transition: display;
+      transition-duration: 0s;
+      transition-timing-function: ease;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 250ms;
+    }
+
+    .filtermenu.hidden {
+      display: none;
+      right: -300px;
+    }
+
+    .filtermenu {
+      position: absolute;
+      right: 0px;
+      width: 300px;
+      margin-left: 1px;
+      height: 100%;
+      ransition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 250ms;
+      transition-property: right;
+    }
+
+    .openfilter.hidden {
       display: none;
     }
   `;

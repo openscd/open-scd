@@ -50,6 +50,9 @@ export class FilteredList extends ListBase {
   /** Whether the check all option (checkbox next to search text field) is activated */
   @property({ type: Boolean })
   disableCheckAll = false;
+  /** Whether noninteractive list items are filterable */
+  @property({ type: Boolean })
+  filternoninteractive = false;
 
   @state()
   private get existCheckListItem(): boolean {
@@ -87,7 +90,10 @@ export class FilteredList extends ListBase {
         'mwc-list-item, mwc-check-list-item, mwc-radio-list-item'
       )
     )
-      .filter(item => !(item as ListItemBase).noninteractive)
+      .filter(
+        item =>
+          this.filternoninteractive || !(item as ListItemBase).noninteractive
+      )
       .forEach(item =>
         hideFiltered(item as ListItemBase, this.searchField.value)
       );
@@ -121,9 +127,9 @@ export class FilteredList extends ListBase {
 
   render(): TemplateResult {
     return html`<div id="tfcontainer">
-        <slot name="additionalFilter"></slot>
-        <abbr title="${this.searchFieldLabel ?? translate('filter')}"
-          ><mwc-textfield
+        <abbr title="${this.searchFieldLabel ?? translate('filter')}">
+          <slot name="headerleft"></slot>
+          <mwc-textfield
             label="${this.searchFieldLabel ?? ''}"
             iconTrailing="search"
             outlined
@@ -131,6 +137,7 @@ export class FilteredList extends ListBase {
           ></mwc-textfield
         ></abbr>
         ${this.renderCheckAll()}
+        <slot name="headerright"></slot>
       </div>
       ${super.render()}`;
   }
