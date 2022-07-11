@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.19.0](https://github.com/openscd/open-scd/compare/v0.18.0...v0.19.0) (2022-07-11)
+
+
+### Features
+
+* **editors/publisher:** filter for control blocks and DataSets ([#844](https://github.com/openscd/open-scd/issues/844)) ([4c663d0](https://github.com/openscd/open-scd/commits/4c663d0374129894eb61168404e0d47aab28694f))
+* **editors:** Show label of Action Pane also as tool-tip ([#838](https://github.com/openscd/open-scd/issues/838)) ([492778f](https://github.com/openscd/open-scd/commits/492778ff02812a06e96df775f1040f96b24642be))
+* **menu/VirtualTemplateIED:** automatically create virtual IEDs ([#806](https://github.com/openscd/open-scd/issues/806)) ([dc59736](https://github.com/openscd/open-scd/commits/dc59736111c73450cebb3b1f9963886f3dc94d90))
+
+
+### Bug Fixes
+
+* **editor/subscriber:** make sure to add all mendatory attributes to ExtRef ([b814c00](https://github.com/openscd/open-scd/commits/b814c007514e18f1aacb6698eb2c747459d6f5da))
+* **editors/substation:** update on action ([#852](https://github.com/openscd/open-scd/issues/852)) ([7af5b5c](https://github.com/openscd/open-scd/commits/7af5b5c2e74841cb75629b10f1349dd96ae86ab2))
+* **editors/template:** make sure that edit wizards are always opened ([#845](https://github.com/openscd/open-scd/issues/845)) ([15c2d3b](https://github.com/openscd/open-scd/commits/15c2d3b08c1d2ef20e0b7e239c1e0a6056ed4d30))
+* **Pluggin/Hosting:** allow using own dialogs in menu plugins ([#843](https://github.com/openscd/open-scd/issues/843)) ([a9bad36](https://github.com/openscd/open-scd/commits/a9bad366bec77060a1f4efa4622a3d5b356753fc))
+
 ## [0.18.0](https://github.com/openscd/open-scd/compare/v0.17.0...v0.18.0) (2022-06-30)
 
 
