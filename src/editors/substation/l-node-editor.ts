@@ -62,6 +62,9 @@ const lnClassIcons: Partial<Record<string, TemplateResult>> = {
 /** Pane rendering `LNode` element with its children */
 @customElement('l-node-editor')
 export class LNodeEditor extends LitElement {
+  /** The document being edited as provided to editor by [[`Zeroline`]]. */
+  @property({ attribute: false })
+  doc!: XMLDocument;
   /** The edited `LNode` element */
   @property({ attribute: false })
   element!: Element;

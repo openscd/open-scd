@@ -19,11 +19,14 @@ import { newActionEvent, newWizardEvent } from '../../foundation.js';
 import { selectGseControlWizard } from '../../wizards/gsecontrol.js';
 import { selectSampledValueControlWizard } from '../../wizards/sampledvaluecontrol.js';
 import { selectReportControlWizard } from '../../wizards/reportcontrol.js';
-import { removeIEDWizard } from "../../wizards/ied.js";
+import { removeIEDWizard } from '../../wizards/ied.js';
 
 /** [[`SubstationEditor`]] subeditor for a child-less `IED` element. */
 @customElement('ied-editor')
 export class IedEditor extends LitElement {
+  /** The document being edited as provided to editor by [[`Zeroline`]]. */
+  @property({ attribute: false })
+  doc!: XMLDocument;
   /** SCL element IED */
   @property({ attribute: false })
   element!: Element;
@@ -72,7 +75,11 @@ export class IedEditor extends LitElement {
       this.dispatchEvent(newWizardEvent(() => wizard));
     } else {
       // If no Wizard is needed, just remove the element.
-      this.dispatchEvent(newActionEvent({ old: { parent: this.element.parentElement!, element: this.element } }));
+      this.dispatchEvent(
+        newActionEvent({
+          old: { parent: this.element.parentElement!, element: this.element },
+        })
+      );
     }
   }
 
@@ -89,7 +96,7 @@ export class IedEditor extends LitElement {
         slot="action"
         class="delete"
         mini
-        @click="${() => this.removeIED() }"
+        @click="${() => this.removeIED()}"
         icon="delete"
       ></mwc-fab
       ><mwc-fab
@@ -116,7 +123,8 @@ export class IedEditor extends LitElement {
         class="selectgse"
         mini
         @click="${() => this.openGseControlSelection()}"
-      ><mwc-icon slot="icon">${gooseIcon}</mwc-icon></mwc-fab
-    ></action-icon> `;
+        ><mwc-icon slot="icon">${gooseIcon}</mwc-icon></mwc-fab
+      ></action-icon
+    > `;
   }
 }
