@@ -40,7 +40,7 @@ describe('compas-versions-plugin', () => {
           // Should not be called.
         });
 
-      await element;
+      await element.updateComplete;
       await waitUntil(() => element.historyItem !== undefined);
     });
 
@@ -65,7 +65,7 @@ describe('compas-versions-plugin', () => {
           // Do nothing, so loading... will be displayed.
         });
 
-      await element;
+      await element.updateComplete;
     });
 
     afterEach(() => {
@@ -88,7 +88,7 @@ describe('compas-versions-plugin', () => {
           element.historyItem = result;
         });
 
-      await element;
+      await element.updateComplete;
       await waitUntil(() => element.historyItem !== undefined);
     });
 
@@ -113,7 +113,7 @@ describe('compas-versions-plugin', () => {
           element.historyItem = result;
         });
 
-      await element;
+      await element.updateComplete;
       await waitUntil(() => element.historyItem !== undefined);
     });
 

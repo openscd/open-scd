@@ -1,4 +1,11 @@
-import {css, html, LitElement, property, PropertyValues, TemplateResult} from 'lit-element';
+import {
+  css,
+  html,
+  LitElement,
+  property,
+  PropertyValues,
+  TemplateResult
+} from 'lit-element';
 import { get, translate } from 'lit-translate';
 
 import '@material/mwc-fab';
@@ -8,30 +15,21 @@ import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-list/mwc-check-list-item';
 
-import { newLogEvent, newWizardEvent, Wizard } from "../foundation.js";
+import {
+  newLogEvent,
+  newOpenDocEvent,
+  newWizardEvent,
+  Wizard
+} from "../foundation.js";
 import { MultiSelectedEvent } from "@material/mwc-list/mwc-list-foundation";
 
 import { CompasSclDataService, SDS_NAMESPACE } from "../compas-services/CompasSclDataService.js";
 import { createLogEvent } from "../compas-services/foundation.js";
-import {
-  dispatchEventOnOpenScd,
-  getOpenScdElement,
-  getTypeFromDocName,
-  updateDocumentInOpenSCD
-} from "../compas/foundation.js";
+import { getTypeFromDocName, updateDocumentInOpenSCD} from "../compas/foundation.js";
 import { addVersionToCompasWizard } from "../compas/CompasUploadVersion.js";
 import { compareWizard } from "../compas/CompasCompareDialog.js";
 import { getElementByName, styles } from './foundation.js';
 import { wizards } from "../wizards/wizard-library.js";
-
-// Save the selection for the current document.
-let selectedVersionsOnCompasVersionsEditor: Set<number> = new Set();
-// We will also add an Event Listener when a new document is opened. We then want to reset the selection.
-function resetSelection(): void {
-  // When a new document is loaded the selection will be reset.
-  selectedVersionsOnCompasVersionsEditor = new Set();
-}
-addEventListener('open-doc', resetSelection);
 
 /** An editor [[`plugin`]] for selecting the `Substation` section. */
 export default class CompasVersionsPlugin extends LitElement {
@@ -45,11 +43,14 @@ export default class CompasVersionsPlugin extends LitElement {
   @property()
   historyItem: Element[] | undefined;
 
+  selectedVersionsOnCompasVersionsEditor: Set<number> = new Set();
+
   protected updated(_changedProperties: PropertyValues): void {
     super.updated(_changedProperties);
 
     // When the document is updated, we also will retrieve the history again, because probably it has changed.
     if (_changedProperties.has('doc')) {
+      this.selectedVersionsOnCompasVersionsEditor = new Set();
       if (!this.docId) {
         this.historyItem = [];
       } else {
@@ -59,37 +60,149 @@ export default class CompasVersionsPlugin extends LitElement {
   }
 
   fetchData(): void {
-    const type = getTypeFromDocName(this.docName);
     this.historyItem = undefined;
-    CompasSclDataService().listVersions(type, this.docId)
-      .then(xmlResponse => {
-        this.historyItem = Array.from(xmlResponse.querySelectorAll('HistoryItem') ?? []);
-      })
-      .catch(() => {
-        this.historyItem = [];
-      });
+    if (!this.docId) {
+      this.historyItem = [];
+    } else {
+      const type = getTypeFromDocName(this.docName);
+      CompasSclDataService().listVersions(type, this.docId)
+        .then(xmlResponse => {
+          this.historyItem = Array.from(xmlResponse.querySelectorAll('HistoryItem') ?? []);
+        })
+        .catch(() => {
+          this.historyItem = [];
+        });
+    }
   }
 
-  confirmDeleteCompas(): void {
-    this.dispatchEvent(newWizardEvent(confirmDeleteCompasWizard(this.docName, this.docId)));
+  private addVersionWizard(): Wizard {
+    return addVersionToCompasWizard({docId: this.docId, docName: this.docName})
   }
 
-  addVersionCompasToCompas(): void {
-    this.dispatchEvent(newWizardEvent(addVersionToCompasWizard({docId: this.docId, docName: this.docName})));
+  private confirmRestoreVersionWizard(version: string): Wizard {
+    function openScl(plugin: CompasVersionsPlugin) {
+      return function () {
+        const type = getTypeFromDocName(plugin.docName);
+
+        CompasSclDataService().getSclDocumentVersion(type, plugin.docId, version)
+          .then(sclDocument => {
+            updateDocumentInOpenSCD(sclDocument);
+
+            plugin.dispatchEvent(
+              newLogEvent({
+                kind: 'info',
+                title: get('compas.versions.restoreVersionSuccess', {version : version})
+              }));
+          })
+          .catch(createLogEvent);
+
+        // Close the Restore Dialog.
+        plugin.dispatchEvent(newWizardEvent());
+
+        return [];
+      }
+    }
+
+    return [
+      {
+        title: get('compas.versions.confirmRestoreTitle'),
+        primary: {
+          icon: '',
+          label: get('compas.versions.confirmButton'),
+          action: openScl(this),
+        },
+        content: [
+          html`<span>${translate('compas.versions.confirmRestore', {version : version})}</span>`,
+        ],
+      },
+    ];
   }
 
-  confirmRestoreVersionCompas(version: string): void {
-    this.dispatchEvent(newWizardEvent(confirmRestoreVersionCompasWizard(this.docName, this.docId, version)));
+  private confirmDeleteProjectWizard(): Wizard {
+    function deleteScl(plugin: CompasVersionsPlugin) {
+      return function () {
+        const type = getTypeFromDocName(plugin.docName);
+
+        CompasSclDataService()
+          .deleteSclDocument(type, plugin.docId)
+          .then (() => {
+            plugin.fetchData();
+
+            plugin.dispatchEvent(newOpenDocEvent(plugin.doc, plugin.docName, {detail: {docId: ''}}));
+            plugin.dispatchEvent(
+              newLogEvent({
+                kind: 'info',
+                title: get('compas.versions.deleteSuccess')
+              }));
+          })
+          .catch(createLogEvent);
+
+        // Close the Restore Dialog.
+        plugin.dispatchEvent(newWizardEvent());
+
+        return [];
+      }
+    }
+
+    return [
+      {
+        title: get('compas.versions.confirmDeleteTitle'),
+        primary: {
+          icon: '',
+          label: get('compas.versions.confirmButton'),
+          action: deleteScl(this),
+        },
+        content: [
+          html`<span>${translate('compas.versions.confirmDelete')}</span>`,
+        ],
+      },
+    ];
   }
 
-  confirmDeleteVersionCompas(version: string): void {
-    this.dispatchEvent(newWizardEvent(confirmDeleteVersionCompasWizard(this.docName, this.docId, version)));
+  private confirmDeleteVersionWizard(version: string): Wizard {
+    function deleteSclVersion(plugin: CompasVersionsPlugin) {
+      return function () {
+        const type = getTypeFromDocName(plugin.docName);
+
+        CompasSclDataService()
+          .deleteSclDocumentVersion(type, plugin.docId, version)
+          .then(() => {
+            plugin.fetchData();
+
+            plugin.dispatchEvent(
+              newLogEvent({
+                kind: 'info',
+                title: get('compas.versions.deleteVersionSuccess', {version : version})
+              }));
+          })
+          .catch(createLogEvent);
+
+        // Close the Restore Dialog.
+        plugin.dispatchEvent(newWizardEvent());
+
+        return [];
+      }
+    }
+
+    return [
+      {
+        title: get('compas.versions.confirmDeleteVersionTitle'),
+        primary: {
+          icon: '',
+          label: get('compas.versions.confirmButton'),
+          action: deleteSclVersion(this),
+        },
+        content: [
+          html`<span>${translate('compas.versions.confirmDeleteVersion', {version : version})}</span>`,
+        ],
+      },
+    ];
   }
 
   private getSelectedVersions(): Array<string> {
     const selectedVersions: Array<string> = [];
     const listItems = this.shadowRoot!.querySelectorAll('mwc-check-list-item');
-    selectedVersionsOnCompasVersionsEditor.forEach(index => {
+    this.selectedVersionsOnCompasVersionsEditor.forEach(index => {
         selectedVersions.push(listItems.item(index).value);
       });
     return selectedVersions;
@@ -107,7 +220,7 @@ export default class CompasVersionsPlugin extends LitElement {
           {title: get('compas.compare.title', {oldVersion: oldVersion, newVersion: 'current'})})));
     } else {
       this.dispatchEvent(newWizardEvent(
-        showMessageWizard(get("compas.versions.selectOneVersionsTitle"),
+        this.showMessageWizard(get("compas.versions.selectOneVersionsTitle"),
           get("compas.versions.selectOneVersionsMessage", {size: selectedVersions.length}))));
     }
   }
@@ -126,9 +239,20 @@ export default class CompasVersionsPlugin extends LitElement {
           {title: get('compas.compare.title', {oldVersion: oldVersion, newVersion: newVersion})})));
     } else {
       this.dispatchEvent(newWizardEvent(
-        showMessageWizard(get("compas.versions.selectTwoVersionsTitle"),
+        this.showMessageWizard(get("compas.versions.selectTwoVersionsTitle"),
           get("compas.versions.selectTwoVersionsMessage", {size: selectedVersions.length}))));
     }
+  }
+
+  private showMessageWizard(title: string, message: string): Wizard {
+    return [
+      {
+        title: title,
+        content: [
+          html`<span>${message}</span>`,
+        ],
+      },
+    ];
   }
 
   private async getVersion(version: string) {
@@ -183,11 +307,12 @@ export default class CompasVersionsPlugin extends LitElement {
     if (this.historyItem.length <= 0) {
       return html `
         <mwc-list>
-          <mwc-list-item>
-            <span style="color: var(--base1)">${translate('compas.noSclVersions')}</span>
+          <mwc-list-item id="no-scl-versions">
+            <span>${translate('compas.noSclVersions')}</span>
           </mwc-list-item>
         </mwc-list>`
     }
+
     return html`
       <h1>
         ${translate('compas.versions.sclInfo',
@@ -198,7 +323,7 @@ export default class CompasVersionsPlugin extends LitElement {
           <abbr title="${translate('compas.versions.addVersionButton')}">
             <mwc-icon-button icon="playlist_add"
                              @click=${() => {
-                               this.addVersionCompasToCompas();
+                               this.dispatchEvent(newWizardEvent(this.addVersionWizard()));
                              }}></mwc-icon-button>
           </abbr>
         </nav>
@@ -206,7 +331,7 @@ export default class CompasVersionsPlugin extends LitElement {
           <abbr title="${translate('compas.versions.deleteProjectButton')}">
             <mwc-icon-button icon="delete_forever"
                              @click=${() => {
-                               this.confirmDeleteCompas();
+                               this.dispatchEvent(newWizardEvent(this.confirmDeleteProjectWizard()));
                              }}></mwc-icon-button>
           </abbr>
         </nav>
@@ -224,7 +349,7 @@ export default class CompasVersionsPlugin extends LitElement {
           </h1>
           <mwc-list multi
                     @selected=${(evt: MultiSelectedEvent) => {
-                      selectedVersionsOnCompasVersionsEditor = evt.detail.index;
+                      this.selectedVersionsOnCompasVersionsEditor = evt.detail.index;
                     }}>
             ${this.historyItem.map( (item, index, items) => {
                 const version = getElementByName(item, SDS_NAMESPACE, "Version")!.textContent ?? '';
@@ -233,12 +358,12 @@ export default class CompasVersionsPlugin extends LitElement {
                                                    tabindex="0"
                                                    graphic="icon"
                                                    twoline
-                                                   .selected=${selectedVersionsOnCompasVersionsEditor.has(index)}>
+                                                   .selected=${this.selectedVersionsOnCompasVersionsEditor.has(index)}>
                                 ${this.renderLineInfo(item)}
                                 <span slot="graphic">
                                   <mwc-icon @click=${() => {
-                                              this.confirmRestoreVersionCompas(version);
-                                            }}>restore</mwc-icon>
+                                      this.dispatchEvent(newWizardEvent(this.confirmRestoreVersionWizard(version)));
+                                    }}>restore</mwc-icon>
                                 </span>
                               </mwc-check-list-item>`
                 }
@@ -246,15 +371,15 @@ export default class CompasVersionsPlugin extends LitElement {
                                                  tabindex="0"
                                                  graphic="icon"
                                                  twoline
-                                                 .selected=${selectedVersionsOnCompasVersionsEditor.has(index)}>
+                                                 .selected=${this.selectedVersionsOnCompasVersionsEditor.has(index)}>
                                 ${this.renderLineInfo(item)}
                                 <span slot="graphic">
                                   <mwc-icon @click=${() => {
-                                              this.confirmRestoreVersionCompas(version);
-                                            }}>restore</mwc-icon>
+                                    this.dispatchEvent(newWizardEvent(this.confirmRestoreVersionWizard(version)));
+                                  }}>restore</mwc-icon>
                                   <mwc-icon @click=${() => {
-                                              this.confirmDeleteVersionCompas(version);
-                                            }}>delete</mwc-icon>
+                                    this.dispatchEvent(newWizardEvent(this.confirmDeleteVersionWizard(version)));
+                                  }}>delete</mwc-icon>
                                 </span>
                             </mwc-check-list-item>`
             })}
@@ -273,6 +398,10 @@ export default class CompasVersionsPlugin extends LitElement {
 
   static styles = css`
     ${styles}
+
+    mwc-list-item#no-scl-versions > span {
+      color: var(--base1)
+    }
 
     :host {
       width: 100vw;
@@ -314,134 +443,4 @@ export default class CompasVersionsPlugin extends LitElement {
       margin: 5px 5px 5px 5px
     }
   `;
-}
-
-function confirmDeleteCompasWizard(docName: string, docId: string): Wizard {
-  function deleteScl(docName: string, docId: string) {
-    return function () {
-      const type = getTypeFromDocName(docName);
-
-      CompasSclDataService()
-        .deleteSclDocument(type, docId)
-        .then (() => {
-          const openScd = getOpenScdElement();
-          if (openScd !== null) {
-            openScd.docId = '';
-            openScd.dispatchEvent(
-              newLogEvent({
-                kind: 'info',
-                title: get('compas.versions.deleteSuccess')
-              }));
-          }
-        })
-        .catch(createLogEvent);
-
-      // Close the Restore Dialog.
-      dispatchEventOnOpenScd(newWizardEvent());
-
-      return [];
-    }
-  }
-
-  return [
-    {
-      title: get('compas.versions.confirmDeleteTitle'),
-      primary: {
-        icon: '',
-        label: get('compas.versions.confirmButton'),
-        action: deleteScl(docName, docId),
-      },
-      content: [
-        html`<span>${translate('compas.versions.confirmDelete')}</span>`,
-      ],
-    },
-  ];
-}
-
-function confirmRestoreVersionCompasWizard(docName: string, docId: string, version: string): Wizard {
-  function openScl(docName: string, docId: string, version: string) {
-    return function () {
-      const type = getTypeFromDocName(docName);
-
-      CompasSclDataService().getSclDocumentVersion(type, docId, version)
-        .then(sclDocument => {
-          updateDocumentInOpenSCD(sclDocument);
-
-          dispatchEventOnOpenScd(
-            newLogEvent({
-              kind: 'info',
-              title: get('compas.versions.restoreVersionSuccess', {version : version})
-            }));
-        })
-        .catch(createLogEvent);
-
-      // Close the Restore Dialog.
-      dispatchEventOnOpenScd(newWizardEvent());
-
-      return [];
-    }
-  }
-
-  return [
-    {
-      title: get('compas.versions.confirmRestoreTitle'),
-      primary: {
-        icon: '',
-        label: get('compas.versions.confirmButton'),
-        action: openScl(docName, docId, version),
-      },
-      content: [
-        html`<span>${translate('compas.versions.confirmRestore', {version : version})}</span>`,
-      ],
-    },
-  ];
-}
-
-function confirmDeleteVersionCompasWizard(docName: string, docId: string, version: string): Wizard {
-  function deleteSclVersion(docName: string, docId: string, version: string) {
-    return function () {
-      const type = getTypeFromDocName(docName);
-
-      CompasSclDataService()
-        .deleteSclDocumentVersion(type, docId, version)
-        .then(() => {
-          dispatchEventOnOpenScd(
-            newLogEvent({
-              kind: 'info',
-              title: get('compas.versions.deleteVersionSuccess', {version : version})
-            }));
-        })
-        .catch(createLogEvent);
-
-      // Close the Restore Dialog.
-      dispatchEventOnOpenScd(newWizardEvent());
-
-      return [];
-    }
-  }
-
-  return [
-    {
-      title: get('compas.versions.confirmDeleteVersionTitle'),
-      primary: {
-        icon: '',
-        label: get('compas.versions.confirmButton'),
-        action: deleteSclVersion(docName, docId, version),
-      },
-      content: [
-        html`<span>${translate('compas.versions.confirmDeleteVersion', {version : version})}</span>`,
-      ],
-    },
-  ];
-}
-
-function showMessageWizard(title: string, message: string): Wizard {
-  return [
-    {
-      title: title,
-      content: [
-        html`<span>${message}</span>`,
-      ],
-    },
-  ];
 }

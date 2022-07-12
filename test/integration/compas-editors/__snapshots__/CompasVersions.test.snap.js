@@ -5,10 +5,11 @@ snapshots["compas-versions-plugin no-compas-document looks like the latest snaps
 `<mwc-list>
   <mwc-list-item
     aria-disabled="false"
+    id="no-scl-versions"
     mwc-list-item=""
     tabindex="0"
   >
-    <span style="color: var(--base1)">
+    <span>
       [compas.noSclVersions]
     </span>
   </mwc-list-item>
@@ -30,10 +31,11 @@ snapshots["compas-versions-plugin no-items-in-list looks like the latest snapsho
 `<mwc-list>
   <mwc-list-item
     aria-disabled="false"
+    id="no-scl-versions"
     mwc-list-item=""
     tabindex="0"
   >
-    <span style="color: var(--base1)">
+    <span>
       [compas.noSclVersions]
     </span>
   </mwc-list-item>
