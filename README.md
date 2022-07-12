@@ -1,8 +1,8 @@
-# `OpenSCD`
+# `OpenSCD CoMPAS Edition`
 
-[![Build Status](https://travis-ci.org/openscd/open-scd.svg?branch=main)](https://travis-ci.org/openscd/open-scd)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fopenscd%2Fopen-scd.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fopenscd%2Fopen-scd?ref=badge_shield)
-[![Built with open-wc recommendations](https://img.shields.io/badge/built%20with-open--wc-blue.svg)](https://github.com/open-wc)
+[![NodeJS Build Github Action Status](<https://img.shields.io/github/workflow/status/com-pas/compas-open-scd/NodeJS%20Build?logo=GitHub>)](https://github.com/com-pas/compas-open-scd/actions?query=workflow%3A%22NodeJS+Build%22)
+[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/5925/badge)](https://bestpractices.coreinfrastructure.org/projects/5925)
+[![Slack](https://raw.githubusercontent.com/com-pas/compas-architecture/master/public/LFEnergy-slack.svg)](http://lfenergy.slack.com/)
 
 Open Substation Communication Designer is an editor for SCL files as described in `IEC 61850-6`.
 
@@ -48,6 +48,25 @@ We provide the following `npm` scripts for your convenience:
 - `npm run doc` builds HTML documentation into the `doc` directory
 - `npm run build` builds a deployable version of the project into the `dist` directory
 
+### Docker
+It's also possible to run OpenSCD CoMPAS Edition as a docker. Of every release a docker image is created and pushed to Docker Hub.
+To run the docker container use the following command.
+
+```
+docker run -it --rm -d -p 8080:80 --name compas-open-scd lfenergy/compas-open-scd:latest
+```
+Now open a browser and go to "http://localhost:8080". OpenSCD is shown.
+
+### CoMPAS Service
+
+During development, it is sometimes handy to use running backend services, like CIM Mapping or SCL Data Service.
+The problem is that these services need an Authorization Header to work. Normally these are injected by a reverse proxy 
+or something like that. 
+
+There is a work-around and that is using the ModHeader Extension of the Browser (Chrome, Firefox, ...).
+With this extension the header 'Authorization' can be added with a value 'Bearer <access token>'. 
+The AccessToken can be retrieved from a running KeyCloak instance. 
+
 ## License
 
 The [IEC 61850](https://webstore.iec.ch/publication/63319) XSD and NSD code components used are
@@ -57,4 +76,3 @@ This project is licensed under the [Apache License 2.0](LICENSE.md).
 
 &copy; 2020-2022 OMICRON electronics GmbH
 
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fopenscd%2Fopen-scd.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fopenscd%2Fopen-scd?ref=badge_large)
