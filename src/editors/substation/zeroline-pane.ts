@@ -186,6 +186,7 @@ export class ZerolinePane extends LitElement {
               .map(
                 substation =>
                   html`<substation-editor
+                    .doc=${this.doc}
                     .element=${substation}
                     .getAttachedIeds=${this.getAttachedIeds}
                     ?readonly=${this.readonly}

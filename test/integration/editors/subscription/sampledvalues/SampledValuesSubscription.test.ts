@@ -41,14 +41,27 @@ describe('Sampled Values Plugin', () => {
     });
 
     describe('when selecting a Sampled Values message', () => {
+      const nthSampledValueStream = 0;
+      let fCDAs: Element[];
+      let smvControlBlock: Element;
+
       let smv: HTMLElement;
 
       beforeEach(async () => {
+        smvControlBlock = doc.querySelectorAll('SampledValueControl')[
+          nthSampledValueStream
+        ];
+        fCDAs = Array.from(
+          smvControlBlock.parentElement?.querySelectorAll(
+            `DataSet[name="${smvControlBlock.getAttribute('datSet')}"] > FCDA`
+          ) ?? []
+        );
+
         smv = Array.from(
           element.shadowRoot
             ?.querySelector('smv-list')
             ?.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
-        ).filter(item => !item.noninteractive)[0];
+        ).filter(item => !item.noninteractive)[nthSampledValueStream];
 
         (<HTMLElement>smv).click();
         await element.updateComplete;
@@ -83,7 +96,57 @@ describe('Sampled Values Plugin', () => {
               'IED[name="IED2"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED3"], ' +
                 'IED[name="IED2"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED3"]'
             ).length
-          ).to.eql(16);
+          ).to.eql(fCDAs.length);
+        });
+
+        it('makes sure that Ed1 attributes are added properly', async () => {
+          (<HTMLElement>getItemFromSubscriberList('IED2')).click();
+          await element.requestUpdate();
+
+          fCDAs.forEach(
+            fcda =>
+              expect(
+                element.doc.querySelector(
+                  `IED[name="IED2"] ExtRef[iedName="IED3"][ldInst="${fcda.getAttribute(
+                    'ldInst'
+                  )}"][prefix="${fcda.getAttribute(
+                    'prefix'
+                  )}"][lnClass="${fcda.getAttribute(
+                    'lnClass'
+                  )}"][lnInst="${fcda.getAttribute(
+                    'lnInst'
+                  )}"][doName="${fcda.getAttribute(
+                    'doName'
+                  )}"][daName="${fcda.getAttribute('daName')}"]`
+                )
+              ).to.exist
+          );
+        });
+
+        it('makes sure that Ed2 attributes are added properly', async () => {
+          (<HTMLElement>getItemFromSubscriberList('IED2')).click();
+          await element.requestUpdate();
+
+          fCDAs.forEach(
+            fcda =>
+              expect(
+                element.doc.querySelector(
+                  `IED[name="IED2"] ExtRef[iedName="IED3"][srcLDInst="${fcda
+                    .closest('LDevice')
+                    ?.getAttribute('inst')}"][srcPrefix="${
+                    fcda.closest('LN0')?.getAttribute('prefix') ?? '' //prefix is mendatory in ExtRef!!
+                  }"][srcLNClass="${fcda
+                    .closest('LN0')
+                    ?.getAttribute('lnClass')}"][srcLNInst="${fcda
+                    .closest('LN0')
+                    ?.getAttribute(
+                      'inst'
+                    )}"][srcCBName="${smvControlBlock.getAttribute(
+                    'name'
+                  )}"][serviceType="SMV"]`
+                )
+              ).to.exist
+          );
         });
       });
 
@@ -199,22 +262,81 @@ describe('Sampled Values Plugin', () => {
           ).to.eql(0);
         });
 
-        it('it looks like the latest snapshot', async () => {
-          (<HTMLElement>getItemFromSubscriberList('MSVCB01')).click();
-          await element.updateComplete;
+        describe('clicking on a SampledValueControl list item', () => {
+          let fCDAs: Element[];
+          let smvControlBlock: Element;
 
-          await expect(getSubscriberList()).shadowDom.to.equalSnapshot();
-        });
+          beforeEach(async () => {
+            smvControlBlock = element.doc.querySelector(
+              'IED[name="IED3"] SampledValueControl[name="MSVCB01"]'
+            )!;
+            fCDAs = Array.from(
+              smvControlBlock.parentElement?.querySelectorAll(
+                `DataSet[name="${smvControlBlock.getAttribute(
+                  'datSet'
+                )}"] > FCDA`
+              ) ?? []
+            );
 
-        it('adds the required ExtRefs to the subscriber IED', async () => {
-          (<HTMLElement>getItemFromSubscriberList('MSVCB01')).click();
+            (<HTMLElement>getItemFromSubscriberList('MSVCB01')).click();
+            await element.requestUpdate();
+          });
 
-          expect(
-            element.doc.querySelectorAll(
-              'IED[name="IED2"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED3"], ' +
-                'IED[name="IED2"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED3"]'
-            ).length
-          ).to.eql(16);
+          it('it looks like the latest snapshot', async () =>
+            await expect(getSubscriberList()).shadowDom.to.equalSnapshot());
+
+          it('adds the required ExtRefs to the subscriber IED', async () => {
+            expect(
+              element.doc.querySelectorAll(
+                'IED[name="IED2"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED3"], ' +
+                  'IED[name="IED2"] > AccessPoint > Server > LDevice > LN > Inputs > ExtRef[iedName="IED3"]'
+              ).length
+            ).to.eql(fCDAs.length);
+          });
+
+          it('makes sure that Ed1 attributes are added properly', async () => {
+            fCDAs.forEach(
+              fcda =>
+                expect(
+                  element.doc.querySelector(
+                    `IED[name="IED2"] ExtRef[iedName="IED3"][ldInst="${fcda.getAttribute(
+                      'ldInst'
+                    )}"][prefix="${fcda.getAttribute(
+                      'prefix'
+                    )}"][lnClass="${fcda.getAttribute(
+                      'lnClass'
+                    )}"][lnInst="${fcda.getAttribute(
+                      'lnInst'
+                    )}"][doName="${fcda.getAttribute(
+                      'doName'
+                    )}"][daName="${fcda.getAttribute('daName')}"]`
+                  )
+                ).to.exist
+            );
+          });
+
+          it('makes sure that Ed2 attributes are added properly', async () => {
+            fCDAs.forEach(
+              fcda =>
+                expect(
+                  element.doc.querySelector(
+                    `IED[name="IED2"] ExtRef[iedName="IED3"][srcLDInst="${fcda
+                      .closest('LDevice')
+                      ?.getAttribute('inst')}"][srcPrefix="${
+                      fcda.closest('LN0')?.getAttribute('prefix') ?? '' //prefix is mendatory in ExtRef!!
+                    }"][srcLNClass="${fcda
+                      .closest('LN0')
+                      ?.getAttribute('lnClass')}"][srcLNInst="${fcda
+                      .closest('LN0')
+                      ?.getAttribute(
+                        'inst'
+                      )}"][srcCBName="${smvControlBlock.getAttribute(
+                      'name'
+                    )}"][serviceType="SMV"]`
+                  )
+                ).to.exist
+            );
+          });
         });
       });
 

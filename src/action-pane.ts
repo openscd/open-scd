@@ -72,15 +72,17 @@ export class ActionPane extends LitElement {
       <nav><slot name="action"></slot></nav>`;
 
     const headingLevel = Math.floor(Math.max(this.level, 1));
+    // Sometimes a TemplateResult is passed in as Label, not a string. So only when it's a string show a title.
+    const title = typeof this.label === 'string' ? this.label : '';
     switch (headingLevel) {
       case 1:
-        return html`<h1>${content}</h1>`;
+        return html`<h1 title="${title}">${content}</h1>`;
       case 2:
-        return html`<h2>${content}</h2>`;
+        return html`<h2 title="${title}">${content}</h2>`;
       case 3:
-        return html`<h3>${content}</h3>`;
+        return html`<h3 title="${title}">${content}</h3>`;
       default:
-        return html`<h4>${content}</h4>`;
+        return html`<h4 title="${title}">${content}</h4>`;
     }
   }
 

@@ -32,9 +32,9 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         Open project
       </span>
-      <oscd-plugin8377febe1fad1914>
-      </oscd-plugin8377febe1fad1914>
     </mwc-list-item>
+    <oscd-plugin8377febe1fad1914 class="plugin">
+    </oscd-plugin8377febe1fad1914>
     <mwc-list-item
       aria-disabled="false"
       class="top"
@@ -49,9 +49,9 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         New project
       </span>
-      <oscd-plugin679d81826289fb9a>
-      </oscd-plugin679d81826289fb9a>
     </mwc-list-item>
+    <oscd-plugin679d81826289fb9a class="plugin">
+    </oscd-plugin679d81826289fb9a>
     <mwc-list-item
       aria-disabled="false"
       class="top"
@@ -66,9 +66,9 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         Project from CIM
       </span>
-      <oscd-plugin87f72fdec2017c78>
-      </oscd-plugin87f72fdec2017c78>
     </mwc-list-item>
+    <oscd-plugin87f72fdec2017c78 class="plugin">
+    </oscd-plugin87f72fdec2017c78>
     <mwc-list-item
       aria-disabled="true"
       class="top"
@@ -84,9 +84,9 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         Save project
       </span>
-      <oscd-plugin25aae78ff326102f>
-      </oscd-plugin25aae78ff326102f>
     </mwc-list-item>
+    <oscd-plugin25aae78ff326102f class="plugin">
+    </oscd-plugin25aae78ff326102f>
     <mwc-list-item
       aria-disabled="true"
       class="top"
@@ -102,9 +102,9 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         Save project as
       </span>
-      <oscd-plugin78931a53cad7ad3a>
-      </oscd-plugin78931a53cad7ad3a>
     </mwc-list-item>
+    <oscd-plugin78931a53cad7ad3a class="plugin">
+    </oscd-plugin78931a53cad7ad3a>
     <li
       divider=""
       padded=""
@@ -158,9 +158,9 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         Validate using OCL
       </span>
-      <oscd-plugine36e411de62aaf96>
-      </oscd-plugine36e411de62aaf96>
     </mwc-list-item>
+    <oscd-plugine36e411de62aaf96 class="plugin">
+    </oscd-plugine36e411de62aaf96>
     <mwc-list-item
       aria-disabled="true"
       class="validator"
@@ -176,9 +176,9 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         Validate Schema
       </span>
-      <oscd-plugin3aa68346726da1cd>
-      </oscd-plugin3aa68346726da1cd>
     </mwc-list-item>
+    <oscd-plugin3aa68346726da1cd class="plugin">
+    </oscd-plugin3aa68346726da1cd>
     <mwc-list-item
       aria-disabled="true"
       class="validator"
@@ -194,9 +194,9 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         Validate Templates
       </span>
-      <oscd-plugin186320cdd626e422>
-      </oscd-plugin186320cdd626e422>
     </mwc-list-item>
+    <oscd-plugin186320cdd626e422 class="plugin">
+    </oscd-plugin186320cdd626e422>
     <mwc-list-item
       aria-disabled="false"
       class="static"
@@ -248,9 +248,9 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         Import IEDs
       </span>
-      <oscd-pluginb15ea127292dd242>
-      </oscd-pluginb15ea127292dd242>
     </mwc-list-item>
+    <oscd-pluginb15ea127292dd242 class="plugin">
+    </oscd-pluginb15ea127292dd242>
     <mwc-list-item
       aria-disabled="true"
       class="middle"
@@ -266,9 +266,9 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         Subscriber Update
       </span>
-      <oscd-plugin90bf5c90b69b347b>
-      </oscd-plugin90bf5c90b69b347b>
     </mwc-list-item>
+    <oscd-plugin90bf5c90b69b347b class="plugin">
+    </oscd-plugin90bf5c90b69b347b>
     <mwc-list-item
       aria-disabled="true"
       class="middle"
@@ -284,9 +284,9 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         Merge Project
       </span>
-      <oscd-plugin6b332766ae5e2b11>
-      </oscd-plugin6b332766ae5e2b11>
     </mwc-list-item>
+    <oscd-plugin6b332766ae5e2b11 class="plugin">
+    </oscd-plugin6b332766ae5e2b11>
     <mwc-list-item
       aria-disabled="true"
       class="middle"
@@ -302,9 +302,9 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         Update Substation
       </span>
-      <oscd-plugin049834abc330641d>
-      </oscd-plugin049834abc330641d>
     </mwc-list-item>
+    <oscd-plugin049834abc330641d class="plugin">
+    </oscd-plugin049834abc330641d>
     <mwc-list-item
       aria-disabled="true"
       class="middle"
@@ -320,9 +320,9 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         Auto Align SLD
       </span>
-      <oscd-pluginc69b878585292aa9>
-      </oscd-pluginc69b878585292aa9>
     </mwc-list-item>
+    <oscd-pluginc69b878585292aa9 class="plugin">
+    </oscd-pluginc69b878585292aa9>
     <li
       divider=""
       padded=""
@@ -358,9 +358,9 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         CoMPAS Settings
       </span>
-      <oscd-plugin8a88d78e372c97aa>
-      </oscd-plugin8a88d78e372c97aa>
     </mwc-list-item>
+    <oscd-plugin8a88d78e372c97aa class="plugin">
+    </oscd-plugin8a88d78e372c97aa>
     <mwc-list-item
       aria-disabled="false"
       class="middle"
@@ -375,9 +375,9 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         Help
       </span>
-      <oscd-plugin48ab1a46d409bed9>
-      </oscd-plugin48ab1a46d409bed9>
     </mwc-list-item>
+    <oscd-plugin48ab1a46d409bed9 class="plugin">
+    </oscd-plugin48ab1a46d409bed9>
     <li
       divider=""
       padded=""
@@ -805,6 +805,21 @@ snapshots["open-scd looks like its snapshot"] =
       left=""
       mwc-list-item=""
       tabindex="-1"
+      value="/src/editors/Publisher.js"
+    >
+      <mwc-icon slot="meta">
+        publish
+      </mwc-icon>
+      Publisher
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      tabindex="-1"
       value="/src/editors/Cleanup.js"
     >
       <mwc-icon slot="meta">
@@ -1005,6 +1020,21 @@ snapshots["open-scd looks like its snapshot"] =
         snippet_folder
       </mwc-icon>
       Import IEDs
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      tabindex="-1"
+      value="/src/menu/VirtualTemplateIED.js"
+    >
+      <mwc-icon slot="meta">
+        developer_board
+      </mwc-icon>
+      Create Virtual IED
     </mwc-check-list-item>
     <mwc-check-list-item
       aria-disabled="false"

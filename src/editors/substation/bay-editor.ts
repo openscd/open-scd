@@ -41,6 +41,9 @@ function childTags(element: Element | null | undefined): SCLTag[] {
 /** [[`SubstationEditor`]] subeditor for a `Bay` element. */
 @customElement('bay-editor')
 export class BayEditor extends LitElement {
+  /** The document being edited as provided to editor by [[`Zeroline`]]. */
+  @property({ attribute: false })
+  doc!: XMLDocument;
   @property({ attribute: false })
   element!: Element;
   @property({ type: Boolean })
@@ -107,7 +110,11 @@ export class BayEditor extends LitElement {
     return lNodes.length
       ? html`<div class="container lnode">
           ${lNodes.map(
-            lNode => html`<l-node-editor .element=${lNode}></l-node-editor>`
+            lNode =>
+              html`<l-node-editor
+                .doc=${this.doc}
+                .element=${lNode}
+              ></l-node-editor>`
           )}
         </div>`
       : html``;
@@ -118,7 +125,11 @@ export class BayEditor extends LitElement {
 
     const functions = getChildElementsByTagName(this.element, 'Function');
     return html` ${functions.map(
-      fUnction => html`<function-editor .element=${fUnction}></function-editor>`
+      fUnction =>
+        html`<function-editor
+          .doc=${this.doc}
+          .element=${fUnction}
+        ></function-editor>`
     )}`;
   }
 
@@ -126,7 +137,10 @@ export class BayEditor extends LitElement {
     const ieds = this.getAttachedIeds?.(this.element) ?? [];
     return ieds?.length
       ? html`<div id="iedcontainer">
-          ${ieds.map(ied => html`<ied-editor .element=${ied}></ied-editor>`)}
+          ${ieds.map(
+            ied =>
+              html`<ied-editor .doc=${this.doc} .element=${ied}></ied-editor>`
+          )}
         </div>`
       : html``;
   }
@@ -203,6 +217,7 @@ export class BayEditor extends LitElement {
         ).map(
           pwt =>
             html`<powertransformer-editor
+              .doc=${this.doc}
               .element=${pwt}
               ?showfunctions=${this.showfunctions}
             ></powertransformer-editor>`
@@ -212,6 +227,7 @@ export class BayEditor extends LitElement {
         ).map(
           voltageLevel =>
             html`<conducting-equipment-editor
+              .doc=${this.doc}
               .element=${voltageLevel}
               ?readonly=${this.readonly}
               ?showfunctions=${this.showfunctions}

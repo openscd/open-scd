@@ -19,18 +19,18 @@ export function newSmvSelectEvent(
 }
 
 export interface SmvSubscriptionDetail {
-  ied: Element;
+  element: Element;
   subscribeStatus: SubscribeStatus;
 }
 export type SmvSubscriptionEvent = CustomEvent<SmvSubscriptionDetail>;
 export function newSmvSubscriptionEvent(
-  ied: Element,
+  element: Element,
   subscribeStatus: SubscribeStatus
 ): SmvSubscriptionEvent {
   return new CustomEvent<SmvSubscriptionDetail>('smv-subscription', {
     bubbles: true,
     composed: true,
-    detail: { ied, subscribeStatus },
+    detail: { element, subscribeStatus },
   });
 }
 

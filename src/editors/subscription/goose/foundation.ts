@@ -19,18 +19,18 @@ export function newGOOSESelectEvent(
 }
 
 export interface GooseSubscriptionDetail {
-  ied: Element;
+  element: Element;
   subscribeStatus: SubscribeStatus;
 }
 export type GooseSubscriptionEvent = CustomEvent<GooseSubscriptionDetail>;
 export function newGooseSubscriptionEvent(
-  ied: Element,
+  element: Element,
   subscribeStatus: SubscribeStatus
 ): GooseSubscriptionEvent {
   return new CustomEvent<GooseSubscriptionDetail>('goose-subscription', {
     bubbles: true,
     composed: true,
-    detail: { ied: ied, subscribeStatus },
+    detail: { element, subscribeStatus },
   });
 }
 

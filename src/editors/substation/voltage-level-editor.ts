@@ -47,6 +47,9 @@ function childTags(element: Element | null | undefined): SCLTag[] {
 /** [[`Substation`]] subeditor for a `VoltageLevel` element. */
 @customElement('voltage-level-editor')
 export class VoltageLevelEditor extends LitElement {
+  /** The document being edited as provided to editor by [[`Zeroline`]]. */
+  @property({ attribute: false })
+  doc!: XMLDocument;
   @property({ attribute: false })
   element!: Element;
   @property({ type: Boolean })
@@ -123,7 +126,11 @@ export class VoltageLevelEditor extends LitElement {
     return lNodes.length
       ? html`<div class="container lnode">
           ${lNodes.map(
-            lNode => html`<l-node-editor .element=${lNode}></l-node-editor>`
+            lNode =>
+              html`<l-node-editor
+                .doc=${this.doc}
+                .element=${lNode}
+              ></l-node-editor>`
           )}
         </div>`
       : html``;
@@ -134,7 +141,11 @@ export class VoltageLevelEditor extends LitElement {
 
     const functions = getChildElementsByTagName(this.element, 'Function');
     return html` ${functions.map(
-      fUnction => html`<function-editor .element=${fUnction}></function-editor>`
+      fUnction =>
+        html`<function-editor
+          .doc=${this.doc}
+          .element=${fUnction}
+        ></function-editor>`
     )}`;
   }
 
@@ -142,7 +153,10 @@ export class VoltageLevelEditor extends LitElement {
     const ieds = this.getAttachedIeds?.(this.element) ?? [];
     return ieds?.length
       ? html`<div id="iedcontainer">
-          ${ieds.map(ied => html`<ied-editor .element=${ied}></ied-editor>`)}
+          ${ieds.map(
+            ied =>
+              html`<ied-editor .doc=${this.doc} .element=${ied}></ied-editor>`
+          )}
         </div>`
       : html``;
   }
@@ -163,6 +177,7 @@ export class VoltageLevelEditor extends LitElement {
           ${pwts.map(
             pwt =>
               html`<powertransformer-editor
+                .doc=${this.doc}
                 .element=${pwt}
                 ?showfunctions=${this.showfunctions}
               ></powertransformer-editor>`
@@ -237,6 +252,7 @@ export class VoltageLevelEditor extends LitElement {
       <div id="bayContainer">
         ${Array.from(this.element?.querySelectorAll(selectors.Bay) ?? []).map(
           bay => html`<bay-editor
+            .doc=${this.doc}
             .element=${bay}
             .getAttachedIeds=${this.getAttachedIeds}
             ?readonly=${this.readonly}

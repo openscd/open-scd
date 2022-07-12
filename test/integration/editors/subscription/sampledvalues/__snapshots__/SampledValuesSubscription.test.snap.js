@@ -786,7 +786,7 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED the su
 `;
 /* end snapshot Sampled Values Plugin in Subscriber view when selecting an IED the subscriber list will initially show the subscribed / partially subscribed / not subscribed IEDs */
 
-snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and subscribing a unsubscribed Sampled Value message it looks like the latest snapshot"] = 
+snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and subscribing a unsubscribed Sampled Value message clicking on a SampledValueControl list item it looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
     [subscription.smv.subscriberSmv.publisherTitle]
@@ -808,9 +808,11 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and su
       >
       </li>
       <mwc-list-item
+        aria-disabled="false"
         graphic="avatar"
         hasmeta=""
         mwc-list-item=""
+        tabindex="-1"
       >
         <span>
           MSVCB01 (IED3)
@@ -835,6 +837,7 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and su
       </li>
       <mwc-list-item
         aria-disabled="false"
+        aria-selected="false"
         graphic="avatar"
         hasmeta=""
         mwc-list-item=""
@@ -862,8 +865,10 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and su
       >
       </li>
       <mwc-list-item
+        aria-disabled="false"
         graphic="avatar"
         noninteractive=""
+        tabindex="-1"
       >
         <span>
           [subscription.none]
@@ -873,7 +878,7 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and su
   </div>
 </section>
 `;
-/* end snapshot Sampled Values Plugin in Subscriber view when selecting an IED and subscribing a unsubscribed Sampled Value message it looks like the latest snapshot */
+/* end snapshot Sampled Values Plugin in Subscriber view when selecting an IED and subscribing a unsubscribed Sampled Value message clicking on a SampledValueControl list item it looks like the latest snapshot */
 
 snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and unsubscribing a subscribed Sampled Value message it looks like the latest snapshot"] = 
 `<section tabindex="0">

@@ -1,4 +1,5 @@
 import { html, query, TemplateResult } from 'lit-element';
+import { classMap } from 'lit-html/directives/class-map';
 import { translate } from 'lit-translate';
 
 import '@material/mwc-button';
@@ -291,6 +292,12 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
             .docId=${this.docId}
             .pluginId=${plugin.src}
             .nsdoc=${this.nsdoc}
+            class="${classMap({
+              plugin: true,
+              menu: plugin.kind === 'menu',
+              validator: plugin.kind === 'validator',
+              editor: plugin.kind === 'editor',
+            })}"
           ></${tag}>`,
       };
     }

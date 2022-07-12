@@ -35,6 +35,9 @@ function childTags(element: Element | null | undefined): SCLTag[] {
 /** Pane rendering `Function` element with its children */
 @customElement('function-editor')
 export class FunctionEditor extends LitElement {
+  /** The document being edited as provided to editor by [[`Zeroline`]]. */
+  @property({ attribute: false })
+  doc!: XMLDocument;
   /** The edited `Function` element */
   @property({ attribute: false })
   element!: Element;
@@ -83,7 +86,11 @@ export class FunctionEditor extends LitElement {
     return lNodes.length
       ? html`<div class="container lnode">
           ${lNodes.map(
-            lNode => html`<l-node-editor .element=${lNode}></l-node-editor>`
+            lNode =>
+              html`<l-node-editor
+                .doc=${this.doc}
+                .element=${lNode}
+              ></l-node-editor>`
           )}
         </div>`
       : html``;
@@ -94,6 +101,7 @@ export class FunctionEditor extends LitElement {
     return html` ${subfunctions.map(
       subFunction =>
         html`<sub-function-editor
+          .doc=${this.doc}
           .element=${subFunction}
         ></sub-function-editor>`
     )}`;

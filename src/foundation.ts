@@ -615,19 +615,21 @@ function lNodeSelector(tagName: SCLTag, identity: string): string {
   if (identity.endsWith(')')) {
     const [parentIdentity, childIdentity] = pathParts(identity);
     const [lnClass, lnType] = childIdentity
-      .substring(1, identity.length - 2)
+      .substring(1, childIdentity.length - 1)
       .split(' ');
 
     if (!lnClass || !lnType) return voidSelector;
 
-    return tags[tagName].parents
-      .map(
-        parentTag =>
-          `${selector(
-            parentTag,
-            parentIdentity
-          )}>${tagName}[iedName="None"][lnClass="${lnClass}"][lnType="${lnType}"]`
-      )
+    const parentSelectors = tags[tagName].parents.flatMap(parentTag =>
+      selector(parentTag, parentIdentity).split(',')
+    );
+
+    return crossProduct(
+      parentSelectors,
+      ['>'],
+      [`${tagName}[iedName="None"][lnClass="${lnClass}"][lnType="${lnType}"]`]
+    )
+      .map(strings => strings.join(''))
       .join(',');
   }
 

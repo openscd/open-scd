@@ -63,6 +63,13 @@ export const officialPlugins = [
     kind: 'editor',
   },
   {
+    name: 'Publisher',
+    src: '/src/editors/Publisher.js',
+    icon: 'publish',
+    default: false,
+    kind: 'editor',
+  },
+  {
     name: 'Open project',
     src: '/src/menu/CompasOpen.js',
     icon: 'folder_open',
@@ -145,6 +152,15 @@ export const officialPlugins = [
     kind: 'menu',
     requireDoc: true,
     position: 'middle',
+  },
+  {
+    name: 'Create Virtual IED',
+    src: '/src/menu/VirtualTemplateIED.js',
+    icon: 'developer_board',
+    default: false,
+    kind: 'menu',
+    requireDoc: true,
+    position: 'middle'
   },
   {
     name: 'Subscriber Update',

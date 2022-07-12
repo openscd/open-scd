@@ -44,6 +44,9 @@ function childTags(element: Element | null | undefined): SCLTag[] {
 /** [[`SubstationEditor`]] subeditor for a child-less `PowerTransformer` element. */
 @customElement('powertransformer-editor')
 export class PowerTransformerEditor extends LitElement {
+  /** The document being edited as provided to editor by [[`Zeroline`]]. */
+  @property({ attribute: false })
+  doc!: XMLDocument;
   /** SCL element PowerTransformer */
   @property({ attribute: false })
   element!: Element;
@@ -100,7 +103,11 @@ export class PowerTransformerEditor extends LitElement {
     return lNodes.length
       ? html`<div class="container lnode">
           ${lNodes.map(
-            lNode => html`<l-node-editor .element=${lNode}></l-node-editor>`
+            lNode =>
+              html`<l-node-editor
+                .doc=${this.doc}
+                .element=${lNode}
+              ></l-node-editor>`
           )}
         </div>`
       : html``;
@@ -112,7 +119,10 @@ export class PowerTransformerEditor extends LitElement {
     const eqFunctions = getChildElementsByTagName(this.element, 'EqFunction');
     return html` ${eqFunctions.map(
       eqFunction =>
-        html`<eq-function-editor .element=${eqFunction}></eq-function-editor>`
+        html`<eq-function-editor
+          .doc=${this.doc}
+          .element=${eqFunction}
+        ></eq-function-editor>`
     )}`;
   }
 

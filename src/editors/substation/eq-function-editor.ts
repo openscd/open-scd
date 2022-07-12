@@ -39,6 +39,9 @@ function childTags(element: Element | null | undefined): SCLTag[] {
 /** Pane rendering `EqFunction` element with its children */
 @customElement('eq-function-editor')
 export class EqFunctionEditor extends LitElement {
+  /** The document being edited as provided to editor by [[`Zeroline`]]. */
+  @property({ attribute: false })
+  doc!: XMLDocument;
   /** The edited `EqFunction` element */
   @property({ attribute: false })
   element!: Element;
@@ -87,7 +90,11 @@ export class EqFunctionEditor extends LitElement {
     return lNodes.length
       ? html`<div class="container lnode">
           ${lNodes.map(
-            lNode => html`<l-node-editor .element=${lNode}></l-node-editor>`
+            lNode =>
+              html`<l-node-editor
+                .doc=${this.doc}
+                .element=${lNode}
+              ></l-node-editor>`
           )}
         </div>`
       : html``;
@@ -101,6 +108,7 @@ export class EqFunctionEditor extends LitElement {
     return html` ${eqSubFunctions.map(
       eqSubFunction =>
         html`<eq-sub-function-editor
+          .doc=${this.doc}
           .element=${eqSubFunction}
         ></eq-sub-function-editor>`
     )}`;
