@@ -282,7 +282,6 @@ export class CleanupDataTypes extends LitElement {
         this.getUnusedBDAReferencedTypes(cleanItems)
       );
     }
-    console.log(cleanItems)
     return cleanItems;
   }
 
