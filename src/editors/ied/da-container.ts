@@ -59,7 +59,7 @@ export class DAContainer extends Container {
    */
   private getValue(): TemplateResult {
     if (this.instanceElement) {
-      return html`<b
+      return html`<b style="word-break: break-word; white-space: pre-wrap;"
         >${getValueElement(this.instanceElement)?.textContent?.trim() ?? ''}</b
       >`;
     }
