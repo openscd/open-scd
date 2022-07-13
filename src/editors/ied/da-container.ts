@@ -213,11 +213,10 @@ export class DAContainer extends Container {
       color: var(--mdc-theme-on-surface);
       font-family: 'Roboto', sans-serif;
       font-weight: 300;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
       margin: 0px;
       padding-left: 0.3em;
+      word-break: break-word; 
+      white-space: pre-wrap;
     }
 
     mwc-icon-button {
