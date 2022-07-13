@@ -267,7 +267,7 @@ export class CleanupDataTypes extends LitElement {
 
   /**
    * Get items from selection list and and any subtypes.
-   * @returns An array of SCL elements representing selected items and subtypes as required .
+   * @returns An array of SCL elements representing selected items and subtypes as required.
    */
   public getCleanItems(): Element[] {
     let cleanItems = Array.from(
