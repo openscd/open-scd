@@ -101,7 +101,7 @@ export function getDataChildren(parent: Element): Element[] {
   } else if (parent.tagName === 'AccessPoint') {
     // From the Access Point we will skip directly to the LDevice Element and skip the Server element.
     // Or retrieve the LN Elements directly below the AccessPoint.
-    children = Array.from(parent.querySelectorAll('LDevice, LN'))
+    children = Array.from(parent.querySelectorAll('LDevice, :scope > LN'))
       .filter(child => filterAvailableElements(child))
       .sort((a, b) => compareNames(`${identity(a)}`, `${identity(b)}`));
   } else {
