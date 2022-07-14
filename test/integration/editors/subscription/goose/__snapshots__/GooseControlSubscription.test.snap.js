@@ -43,6 +43,7 @@ snapshots["GOOSE subscriber plugin in Publisher view per dafault the right hand 
       graphic="icon"
       noninteractive=""
       tabindex="-1"
+      value="IED1>>CircuitBreaker_CB1>GCBIED1>>CircuitBreaker_CB1>GCB2"
     >
       <span>
         IED1
@@ -62,6 +63,7 @@ snapshots["GOOSE subscriber plugin in Publisher view per dafault the right hand 
       hasmeta=""
       mwc-list-item=""
       tabindex="0"
+      value="IED1>>CircuitBreaker_CB1>GCB"
     >
       <mwc-icon slot="graphic">
       </mwc-icon>
@@ -81,6 +83,7 @@ snapshots["GOOSE subscriber plugin in Publisher view per dafault the right hand 
       hasmeta=""
       mwc-list-item=""
       tabindex="-1"
+      value="IED1>>CircuitBreaker_CB1>GCB2"
     >
       <mwc-icon slot="graphic">
       </mwc-icon>
@@ -99,6 +102,7 @@ snapshots["GOOSE subscriber plugin in Publisher view per dafault the right hand 
       graphic="icon"
       noninteractive=""
       tabindex="-1"
+      value="IED2>>CBSW>GCB"
     >
       <span>
         IED2
@@ -118,6 +122,7 @@ snapshots["GOOSE subscriber plugin in Publisher view per dafault the right hand 
       hasmeta=""
       mwc-list-item=""
       tabindex="-1"
+      value="IED2>>CBSW>GCB"
     >
       <mwc-icon slot="graphic">
       </mwc-icon>
@@ -136,6 +141,7 @@ snapshots["GOOSE subscriber plugin in Publisher view per dafault the right hand 
       graphic="icon"
       noninteractive=""
       tabindex="-1"
+      value=""
     >
       <span>
         IED3
@@ -154,6 +160,7 @@ snapshots["GOOSE subscriber plugin in Publisher view per dafault the right hand 
       graphic="icon"
       noninteractive=""
       tabindex="-1"
+      value="IED4>>CircuitBreaker_CB1>GCBIED4>>CircuitBreaker_CB1>GCB2"
     >
       <span>
         IED4
@@ -173,6 +180,7 @@ snapshots["GOOSE subscriber plugin in Publisher view per dafault the right hand 
       hasmeta=""
       mwc-list-item=""
       tabindex="-1"
+      value="IED4>>CircuitBreaker_CB1>GCB"
     >
       <mwc-icon slot="graphic">
       </mwc-icon>
@@ -192,6 +200,7 @@ snapshots["GOOSE subscriber plugin in Publisher view per dafault the right hand 
       hasmeta=""
       mwc-list-item=""
       tabindex="-1"
+      value="IED4>>CircuitBreaker_CB1>GCB2"
     >
       <mwc-icon slot="graphic">
       </mwc-icon>
@@ -241,6 +250,7 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value="IED1"
       >
         <span>
           [subscription.subscriber.subscribed]
@@ -269,6 +279,7 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value="IED4"
       >
         <span>
           [subscription.subscriber.partiallySubscribed]
@@ -297,6 +308,7 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value="IED3"
       >
         <span>
           [subscription.subscriber.availableToSubscribe]
@@ -338,6 +350,7 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value="IED1IED3"
       >
         <span>
           [subscription.subscriber.subscribed]
@@ -380,6 +393,7 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value="IED4"
       >
         <span>
           [subscription.subscriber.partiallySubscribed]
@@ -409,6 +423,7 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value=""
       >
         <span>
           [subscription.subscriber.availableToSubscribe]
@@ -446,6 +461,7 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value=""
       >
         <span>
           [subscription.subscriber.subscribed]
@@ -470,6 +486,7 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value="IED4"
       >
         <span>
           [subscription.subscriber.partiallySubscribed]
@@ -499,6 +516,7 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value="IED1IED3"
       >
         <span>
           [subscription.subscriber.availableToSubscribe]
@@ -554,6 +572,7 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value="IED1IED4"
       >
         <span>
           [subscription.subscriber.subscribed]
@@ -597,6 +616,7 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value=""
       >
         <span>
           [subscription.subscriber.partiallySubscribed]
@@ -621,6 +641,7 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value="IED3"
       >
         <span>
           [subscription.subscriber.availableToSubscribe]
@@ -776,6 +797,7 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED the le
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value=""
       >
         <span>
           [subscription.subscriber.subscribed]
@@ -800,6 +822,7 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED the le
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value="IED1>>CircuitBreaker_CB1>GCB"
       >
         <span>
           [subscription.subscriber.partiallySubscribed]
@@ -828,6 +851,7 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED the le
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value="IED4>>CircuitBreaker_CB1>GCB"
       >
         <span>
           [subscription.subscriber.availableToSubscribe]
@@ -858,7 +882,7 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED the le
 `;
 /* end snapshot GOOSE subscriber plugin in Subscriber view with a selected IED the left hand side subscriber IED list looks like the latest snapshot */
 
-snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for unsubscribed GSEControl s clicking on the GSEControl list item the left hand side subscriber IED list looks like the latest snapshot"] = 
+snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for unsubscribed GSEControl s clicking on a GSEControl list item the left hand side subscriber IED list looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
     [subscription.goose.subscriberGoose.publisherTitle]
@@ -869,6 +893,7 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for un
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value="IED4>>CircuitBreaker_CB1>GCB"
       >
         <span>
           [subscription.subscriber.subscribed]
@@ -897,6 +922,7 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for un
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value="IED1>>CircuitBreaker_CB1>GCB"
       >
         <span>
           [subscription.subscriber.partiallySubscribed]
@@ -926,6 +952,7 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for un
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value=""
       >
         <span>
           [subscription.subscriber.availableToSubscribe]
@@ -950,7 +977,7 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for un
   </div>
 </section>
 `;
-/* end snapshot GOOSE subscriber plugin in Subscriber view with a selected IED for unsubscribed GSEControl s clicking on the GSEControl list item the left hand side subscriber IED list looks like the latest snapshot */
+/* end snapshot GOOSE subscriber plugin in Subscriber view with a selected IED for unsubscribed GSEControl s clicking on a GSEControl list item the left hand side subscriber IED list looks like the latest snapshot */
 
 snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for subscribed GSEControl s clicking on the GSEControl list item the left hand side subscriber IED list looks like the latest snapshot"] = 
 `<section tabindex="0">
@@ -963,6 +990,7 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for su
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value=""
       >
         <span>
           [subscription.subscriber.subscribed]
@@ -987,6 +1015,7 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for su
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value="IED1>>CircuitBreaker_CB1>GCB"
       >
         <span>
           [subscription.subscriber.partiallySubscribed]
@@ -1016,6 +1045,7 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for su
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value="IED4>>CircuitBreaker_CB1>GCB"
       >
         <span>
           [subscription.subscriber.availableToSubscribe]
@@ -1057,6 +1087,7 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for pa
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value="IED1>>CircuitBreaker_CB1>GCB"
       >
         <span>
           [subscription.subscriber.subscribed]
@@ -1086,6 +1117,7 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for pa
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value=""
       >
         <span>
           [subscription.subscriber.partiallySubscribed]
@@ -1110,6 +1142,7 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for pa
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value="IED4>>CircuitBreaker_CB1>GCB"
       >
         <span>
           [subscription.subscriber.availableToSubscribe]
@@ -1139,98 +1172,4 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for pa
 </section>
 `;
 /* end snapshot GOOSE subscriber plugin in Subscriber view with a selected IED for partially subscribed GSEControl s clicking on the GSEControl list item the left hand side subscriber IED list looks like the latest snapshot */
-
-snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for unsubscribed GSEControl s clicking on a GSEControl list item the left hand side subscriber IED list looks like the latest snapshot"] = 
-`<section tabindex="0">
-  <h1>
-    [subscription.goose.subscriberGoose.publisherTitle]
-  </h1>
-  <div class="wrapper">
-    <filtered-list>
-      <mwc-list-item
-        aria-disabled="false"
-        noninteractive=""
-        tabindex="-1"
-      >
-        <span>
-          [subscription.subscriber.subscribed]
-        </span>
-      </mwc-list-item>
-      <li
-        divider=""
-        role="separator"
-      >
-      </li>
-      <mwc-list-item
-        aria-disabled="false"
-        graphic="avatar"
-        hasmeta=""
-        mwc-list-item=""
-        tabindex="0"
-      >
-        <span>
-          GCB (IED4)
-        </span>
-        <mwc-icon slot="graphic">
-          clear
-        </mwc-icon>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        noninteractive=""
-        tabindex="-1"
-      >
-        <span>
-          [subscription.subscriber.partiallySubscribed]
-        </span>
-      </mwc-list-item>
-      <li
-        divider=""
-        role="separator"
-      >
-      </li>
-      <mwc-list-item
-        aria-disabled="false"
-        aria-selected="false"
-        graphic="avatar"
-        hasmeta=""
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <span>
-          GCB (IED1)
-        </span>
-        <mwc-icon slot="graphic">
-          add
-        </mwc-icon>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        noninteractive=""
-        tabindex="-1"
-      >
-        <span>
-          [subscription.subscriber.availableToSubscribe]
-        </span>
-      </mwc-list-item>
-      <li
-        divider=""
-        role="separator"
-      >
-      </li>
-      <mwc-list-item
-        aria-disabled="false"
-        graphic="avatar"
-        noninteractive=""
-        tabindex="-1"
-      >
-        <span>
-          [subscription.none]
-        </span>
-      </mwc-list-item>
-    </filtered-list>
-  </div>
-</section>
-`;
-/* end snapshot GOOSE subscriber plugin in Subscriber view with a selected IED for unsubscribed GSEControl s clicking on a GSEControl list item the left hand side subscriber IED list looks like the latest snapshot */
 

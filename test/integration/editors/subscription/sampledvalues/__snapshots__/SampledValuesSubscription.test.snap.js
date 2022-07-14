@@ -43,6 +43,7 @@ snapshots["Sampled Values Plugin in Publisher view initially the Sampled Values 
       graphic="icon"
       noninteractive=""
       tabindex="-1"
+      value=""
     >
       <span>
         IED1
@@ -61,6 +62,7 @@ snapshots["Sampled Values Plugin in Publisher view initially the Sampled Values 
       graphic="icon"
       noninteractive=""
       tabindex="-1"
+      value=""
     >
       <span>
         IED2
@@ -79,6 +81,7 @@ snapshots["Sampled Values Plugin in Publisher view initially the Sampled Values 
       graphic="icon"
       noninteractive=""
       tabindex="-1"
+      value="IED3>>MU01>MSVCB01"
     >
       <span>
         IED3
@@ -98,6 +101,7 @@ snapshots["Sampled Values Plugin in Publisher view initially the Sampled Values 
       hasmeta=""
       mwc-list-item=""
       tabindex="0"
+      value="IED3>>MU01>MSVCB01"
     >
       <mwc-icon slot="graphic">
       </mwc-icon>
@@ -116,6 +120,7 @@ snapshots["Sampled Values Plugin in Publisher view initially the Sampled Values 
       graphic="icon"
       noninteractive=""
       tabindex="-1"
+      value="IED4>>CircuitBreaker_CB1>MSVCB02"
     >
       <span>
         IED4
@@ -135,6 +140,7 @@ snapshots["Sampled Values Plugin in Publisher view initially the Sampled Values 
       hasmeta=""
       mwc-list-item=""
       tabindex="-1"
+      value="IED4>>CircuitBreaker_CB1>MSVCB02"
     >
       <mwc-icon slot="graphic">
       </mwc-icon>
@@ -184,6 +190,7 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value="IED1"
       >
         <span>
           [subscription.subscriber.subscribed]
@@ -212,6 +219,7 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value="IED4"
       >
         <span>
           [subscription.subscriber.partiallySubscribed]
@@ -240,6 +248,7 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value="IED2"
       >
         <span>
           [subscription.subscriber.availableToSubscribe]
@@ -281,6 +290,7 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value="IED1IED2"
       >
         <span>
           [subscription.subscriber.subscribed]
@@ -321,6 +331,7 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value="IED4"
       >
         <span>
           [subscription.subscriber.partiallySubscribed]
@@ -349,6 +360,7 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value=""
       >
         <span>
           [subscription.subscriber.availableToSubscribe]
@@ -384,6 +396,7 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value=""
       >
         <span>
           [subscription.subscriber.subscribed]
@@ -406,6 +419,7 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value="IED4"
       >
         <span>
           [subscription.subscriber.partiallySubscribed]
@@ -434,6 +448,7 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value="IED1IED2"
       >
         <span>
           [subscription.subscriber.availableToSubscribe]
@@ -487,6 +502,7 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value="IED1IED4"
       >
         <span>
           [subscription.subscriber.subscribed]
@@ -527,6 +543,7 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value=""
       >
         <span>
           [subscription.subscriber.partiallySubscribed]
@@ -549,6 +566,7 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value="IED2"
       >
         <span>
           [subscription.subscriber.availableToSubscribe]
@@ -704,6 +722,7 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED the su
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value=""
       >
         <span>
           [subscription.subscriber.subscribed]
@@ -728,6 +747,7 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED the su
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value="IED4>>CircuitBreaker_CB1>MSVCB02"
       >
         <span>
           [subscription.subscriber.partiallySubscribed]
@@ -756,6 +776,7 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED the su
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value="IED3>>MU01>MSVCB01"
       >
         <span>
           [subscription.subscriber.availableToSubscribe]
@@ -797,6 +818,7 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and su
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value="IED3>>MU01>MSVCB01"
       >
         <span>
           [subscription.subscriber.subscribed]
@@ -825,6 +847,7 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and su
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value="IED4>>CircuitBreaker_CB1>MSVCB02"
       >
         <span>
           [subscription.subscriber.partiallySubscribed]
@@ -854,6 +877,7 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and su
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value=""
       >
         <span>
           [subscription.subscriber.availableToSubscribe]
@@ -891,6 +915,7 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and un
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value=""
       >
         <span>
           [subscription.subscriber.subscribed]
@@ -913,6 +938,7 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and un
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value="IED4>>CircuitBreaker_CB1>MSVCB02"
       >
         <span>
           [subscription.subscriber.partiallySubscribed]
@@ -942,6 +968,7 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and un
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value="IED3>>MU01>MSVCB01"
       >
         <span>
           [subscription.subscriber.availableToSubscribe]
@@ -981,6 +1008,7 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and su
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value="IED4>>CircuitBreaker_CB1>MSVCB02"
       >
         <span>
           [subscription.subscriber.subscribed]
@@ -1007,6 +1035,7 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and su
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value=""
       >
         <span>
           [subscription.subscriber.partiallySubscribed]
@@ -1029,6 +1058,7 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and su
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
+        value="IED3>>MU01>MSVCB01"
       >
         <span>
           [subscription.subscriber.availableToSubscribe]

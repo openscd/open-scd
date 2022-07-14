@@ -12,6 +12,7 @@ snapshots["goose-list looks like the latest snapshot with a document loaded"] =
       graphic="icon"
       noninteractive=""
       tabindex="-1"
+      value="IED1>>CircuitBreaker_CB1>GCBIED1>>CircuitBreaker_CB1>GCB2"
     >
       <span>
         IED1
@@ -31,6 +32,7 @@ snapshots["goose-list looks like the latest snapshot with a document loaded"] =
       hasmeta=""
       mwc-list-item=""
       tabindex="0"
+      value="IED1>>CircuitBreaker_CB1>GCB"
     >
       <mwc-icon slot="graphic">
       </mwc-icon>
@@ -50,6 +52,7 @@ snapshots["goose-list looks like the latest snapshot with a document loaded"] =
       hasmeta=""
       mwc-list-item=""
       tabindex="-1"
+      value="IED1>>CircuitBreaker_CB1>GCB2"
     >
       <mwc-icon slot="graphic">
       </mwc-icon>
@@ -68,6 +71,7 @@ snapshots["goose-list looks like the latest snapshot with a document loaded"] =
       graphic="icon"
       noninteractive=""
       tabindex="-1"
+      value="IED2>>CBSW>GCB"
     >
       <span>
         IED2
@@ -87,6 +91,7 @@ snapshots["goose-list looks like the latest snapshot with a document loaded"] =
       hasmeta=""
       mwc-list-item=""
       tabindex="-1"
+      value="IED2>>CBSW>GCB"
     >
       <mwc-icon slot="graphic">
       </mwc-icon>
@@ -105,6 +110,7 @@ snapshots["goose-list looks like the latest snapshot with a document loaded"] =
       graphic="icon"
       noninteractive=""
       tabindex="-1"
+      value=""
     >
       <span>
         IED3
