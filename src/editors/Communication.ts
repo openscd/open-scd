@@ -18,21 +18,28 @@ export default class CommunicationPlugin extends LitElement {
   @property()
   doc!: XMLDocument;
 
-  private createCommunication(): void {
+  /**
+   * Creates the Communication Element and returns the created Element
+   * @returns {Element} Communication `Element`
+   */
+  private createCommunication(): Element {
+    const element: Element = createElement(this.doc, 'Communication', {});
     this.dispatchEvent(
       newActionEvent({
         new: {
           parent: this.doc.documentElement,
-          element: createElement(this.doc, 'Communication', {}),
+          element: element,
         },
       })
     );
+    return element;
   }
 
   /** Opens a [[`WizardDialog`]] for creating a new `SubNetwork` element. */
   private openCreateSubNetworkWizard(): void {
-    const parent = this.doc.querySelector(':root > Communication');
-    if (!parent) this.createCommunication();
+    const parent =
+      this.doc.querySelector(':root > Communication') ||
+      this.createCommunication();
 
     this.dispatchEvent(newWizardEvent(createSubNetworkWizard(parent!)));
   }

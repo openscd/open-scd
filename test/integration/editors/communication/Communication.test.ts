@@ -6,6 +6,8 @@ import { MockWizard } from '../../../mock-wizard.js';
 import Communication from '../../../../src/editors/Communication.js';
 import { Editing } from '../../../../src/Editing.js';
 import { Wizarding } from '../../../../src/Wizarding.js';
+import { Dialog } from '@material/mwc-dialog';
+import { WizardTextField } from '../../../../src/wizard-textfield.js';
 
 describe('Communication Plugin', () => {
   customElements.define(
@@ -72,6 +74,29 @@ describe('Communication Plugin', () => {
       fab.click();
       await parent.updateComplete;
       expect(parent.wizardUI.dialogs.length).to.equal(1);
+    });
+  
+    it('Should create a Communication Element', async () => {
+          expect(parent.wizardUI.dialogs.length).to.equal(0);
+          fab.click();
+          await parent.updateComplete;
+          expect(parent.wizardUI.dialogs.length).to.equal(1);
+
+          const dialog: Dialog = parent.wizardUI.dialogs.item(0);
+
+          const nameInput: WizardTextField = dialog.querySelector<WizardTextField>('wizard-textfield[label="name"]')!;
+
+          nameInput.value = 'Test';
+
+          const saveButton: HTMLElement = dialog.querySelector('mwc-button[slot="primaryAction"]')!;
+
+          await parent.updateComplete;
+
+          saveButton.click();
+
+          await parent.updateComplete;
+
+          expect(parent.wizardUI.dialogs.length).to.equal(0);
     });
   });
 });
