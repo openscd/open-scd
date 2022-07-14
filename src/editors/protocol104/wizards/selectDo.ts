@@ -21,7 +21,10 @@ import {
 import { createAddressesWizard } from './createAddresses.js';
 import { SupportedCdcType, supportedCdcTypes } from '../foundation/cdc.js';
 import { PROTOCOL_104_PRIVATE } from '../foundation/private.js';
-import { getDoElements, getTypeAttribute } from '../foundation/foundation.js';
+import {
+  getCdcValueFromDOElement,
+  getDoElements,
+} from '../foundation/foundation.js';
 
 /**
  * Check if there are DO Elements that aren't initiated and are supported by the 104 protocol available.
@@ -32,16 +35,13 @@ import { getDoElements, getTypeAttribute } from '../foundation/foundation.js';
 function filterAvailableDOElements(parent: Element, child: Element): boolean {
   if (child.tagName === 'DO') {
     // First check if this DO Element is supported by the 104 Protocol.
-    const doType = getTypeAttribute(child) ?? '';
-    const doTypeElement = child.ownerDocument.querySelector(
-      `DOType[id="${doType}"]`
-    );
-    const cdc = doTypeElement?.getAttribute('cdc') ?? '';
+    const cdc = getCdcValueFromDOElement(child) ?? '';
     if (!supportedCdcTypes.includes(<SupportedCdcType>cdc)) {
       return false;
     }
 
     // Use the parent (LN) to find the DOI that's linked to the DO Element
+    // And check if there is DOI if it doesn't already contain Address Elements for the 104 Protocol.
     const doName = getNameAttribute(child);
     return (
       Array.from(
@@ -85,11 +85,14 @@ export function getDataChildren(parent: Element): Element[] {
     // For LN Element we will not search for the children, but the DO Element linked to LN from the Template Section.
     const lnType = parent.getAttribute('lnType') ?? '';
     children = Array.from(
-      parent.ownerDocument.querySelectorAll(`LNodeType[id="${lnType}"] > DO`)
+      parent.ownerDocument.querySelectorAll(
+        `:root > DataTypeTemplates > LNodeType[id="${lnType}"] > DO`
+      )
     ).sort((a, b) => compareNames(`${identity(a)}`, `${identity(b)}`));
   } else if (parent.tagName === 'AccessPoint') {
     // From the Access Point we will skip directly to the LDevice Element and skip the Server element.
-    children = Array.from(parent.querySelectorAll('LDevice')).sort((a, b) =>
+    // Or retrieve the LN Elements directly below the AccessPoint.
+    children = Array.from(parent.querySelectorAll('LDevice, LN')).sort((a, b) =>
       compareNames(`${identity(a)}`, `${identity(b)}`)
     );
   } else {
