@@ -53,8 +53,15 @@ const iconMapping = {
   LNodeType: <iconType>'lNIcon',
 };
 
+const filterClassMapping: Record<string, string> = {
+  EnumType: 'enum-type',
+  DAType: 'da-type',
+  DOType: 'do-type',
+  LNodeType: 'lnode-type',
+};
+
 /** An editor component for cleaning SCL DataType templates. */
-@customElement('cleanup-datatypes')
+@customElement('cleanup-data-types')
 export class CleanupDataTypes extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property()
@@ -69,39 +76,29 @@ export class CleanupDataTypes extends LitElement {
   @property()
   selectedDataTypeItems: MWCListIndex | [] = [];
 
-  @query('.deleteButton')
+  @query('.delete-button')
   cleanButton!: Button;
 
-  @query('.cleanupList')
+  @query('.cleanup-list')
   cleanupList: List | undefined;
 
-  @queryAll('mwc-check-list-item.cleanupListItem')
+  @queryAll('mwc-check-list-item.cleanup-list-item')
   cleanupListItems: NodeList | undefined;
 
-  @query('.cleanSubTypesCheckbox')
+  @query('.clean-sub-types-checkbox')
   cleanSubTypesCheckbox: Checkbox | undefined;
 
-  @query('.tDATypeFilter')
+  @query('.t-da-type-filter')
   cleanupDATypeFilter!: Button;
 
-  @query('.tEnumTypeFilter')
+  @query('.t-enum-type-filter')
   cleanupEnumTypeFilter!: Button;
 
-  @query('.tLNodeTypeFilter')
+  @query('.t-lnode-type-filter')
   cleanupLNodeTypeFilter!: Button;
 
-  @query('.tDOTypeFilter')
+  @query('.t-do-type-filter')
   cleanupDOTypeFilter!: Button;
-
-  /**
-   * Toggle the class hidden in the unused data type list for use by filter buttons.
-   * @param selectorType - class for selection to toggle the hidden class used by the list.
-   */
-  private toggleHiddenClass(selectorType: string) {
-    this.cleanupList!.querySelectorAll(`.${selectorType}`).forEach(element => {
-      element.classList.toggle('hidden');
-    });
-  }
 
   /**
    * Initial update after container is loaded.
@@ -109,6 +106,17 @@ export class CleanupDataTypes extends LitElement {
   async firstUpdated(): Promise<void> {
     this.cleanupList?.addEventListener('selected', () => {
       this.selectedDataTypeItems = this.cleanupList!.index;
+    });
+  }
+
+  /**
+   * Toggle the class hidden in the unused data type list for use by filter buttons to ensure selection works correctly.
+   * @param selectorType - class for selection to toggle the hidden class used by the list.
+   */
+  private toggleHiddenClass(selectorType: string) {
+    console.log(`.${selectorType}`);
+    this.cleanupList!.querySelectorAll(`.${selectorType}`).forEach(element => {
+      element.classList.toggle('hidden');
     });
   }
 
@@ -126,14 +134,55 @@ export class CleanupDataTypes extends LitElement {
       slot="graphic"
       label="filter"
       ?on=${initialState}
-      class="t${dataType}Filter filter"
-      @click="${(e: MouseEvent) => {
-        e.stopPropagation();
-        this.toggleHiddenClass(`t${dataType}`);
-      }}"
+      class="t-${filterClassMapping[dataType]}-filter filter"
+      @click=${() => {
+        this.toggleHiddenClass(`t-${filterClassMapping[dataType]}`);
+      }}
       >${getFilterIcon(iconMapping[dataType], true)}
       ${getFilterIcon(iconMapping[dataType], false)}
-    </mwc-icon-button-toggle> `;
+    </mwc-icon-button-toggle>`;
+  }
+
+  /**
+   * Opens an editor for a given data type.
+   * @param dType - SCL datatype element.
+   */
+  private openDataTypeEditor(dType: Element) {
+    if (dType.tagName === 'LNodeType') {
+      this.dispatchEvent(
+        newSubWizardEvent(lNodeTypeWizard(<string>identity(dType), this.doc))
+      );
+    } else if (dType.tagName === 'DAType') {
+      this.dispatchEvent(
+        newSubWizardEvent(editDaTypeWizard(<string>identity(dType), this.doc))
+      );
+    } else if (dType.tagName === 'DOType') {
+      this.dispatchEvent(
+        newSubWizardEvent(dOTypeWizard(<string>identity(dType), this.doc))
+      );
+    } else if (dType.tagName === 'EnumType') {
+      this.dispatchEvent(
+        newSubWizardEvent(eNumTypeEditWizard(<string>identity(dType), this.doc))
+      );
+    }
+  }
+
+  /**
+   * Return secondary descriptive parameter for a data type.
+   * @param dType - SCL datatype element.
+   * @returns string with secondary descriptive parameter for a data type
+   */
+  private getDataTypeSecondaryText(dType: Element): string | null | undefined {
+    if (dType.tagName === 'LNodeType') {
+      return dType.getAttribute('lnClass');
+    } else if (dType.tagName === 'DAType') {
+      return dType.getAttribute('desc');
+    } else if (dType.tagName === 'DOType') {
+      return dType.getAttribute('cdc');
+    } else if (dType.tagName === 'EnumType') {
+      return dType.getAttribute('desc');
+    }
+    return 'Unknown';
   }
 
   /**
@@ -144,48 +193,19 @@ export class CleanupDataTypes extends LitElement {
   private renderListItem(dType: Element): TemplateResult {
     return html`<mwc-check-list-item
       twoline
-      class="cleanupListItem t${dType.tagName}"
+      class="cleanup-list-item t-${filterClassMapping[dType.tagName]}"
       value="${identity(dType)}"
       graphic="large"
-      ><span class="unreferencedControl">${dType.getAttribute('id')!} </span>
+      ><span class="unreferenced-control">${dType.getAttribute('id')!} </span>
       <span>
         <mwc-icon-button
           label="Edit"
           icon="edit"
-          class="editItem"
-          @click="${(e: MouseEvent) => {
-            e.stopPropagation();
-            if (dType.tagName === 'LNodeType') {
-              e.target?.dispatchEvent(
-                newSubWizardEvent(
-                  lNodeTypeWizard(<string>identity(dType), this.doc)
-                )
-              );
-            } else if (dType.tagName === 'DAType') {
-              e.target?.dispatchEvent(
-                newSubWizardEvent(
-                  editDaTypeWizard(<string>identity(dType), this.doc)
-                )
-              );
-            } else if (dType.tagName === 'DOType') {
-              e.target?.dispatchEvent(
-                newSubWizardEvent(
-                  dOTypeWizard(<string>identity(dType), this.doc)
-                )
-              );
-            } else if (dType.tagName === 'EnumType') {
-              e.target?.dispatchEvent(
-                newSubWizardEvent(
-                  eNumTypeEditWizard(<string>identity(dType), this.doc)
-                )
-              );
-            }
-          }}}"
+          class="edit-item"
+          @click="${() => this.openDataTypeEditor(dType)}"
         ></mwc-icon-button>
       </span>
-      <span slot="secondary"
-        >${dType.getAttribute('lnClass') ?? 'Unknown'}
-      </span>
+      <span slot="secondary">${this.getDataTypeSecondaryText(dType)} </span>
       <mwc-icon slot="graphic"
         >${dataTypeTemplateIcons[dType.tagName]}</mwc-icon
       >
@@ -293,17 +313,17 @@ export class CleanupDataTypes extends LitElement {
     return html`<mwc-button
       outlined
       icon="delete"
-      class="deleteButton"
+      class="delete-button"
       label="${translate('cleanup.unreferencedDataTypes.deleteButton')} (${(<
         Set<number>
       >this.selectedDataTypeItems).size || '0'})"
       ?disabled=${(<Set<number>>this.selectedDataTypeItems).size === 0 ||
       (Array.isArray(this.selectedDataTypeItems) &&
         !this.selectedDataTypeItems.length)}
-      @click=${(e: MouseEvent) => {
+      @click=${() => {
         const dataTypeItemsDeleteActions = cleanSCLItems(this.getCleanItems());
         dataTypeItemsDeleteActions.forEach(deleteAction =>
-          e.target?.dispatchEvent(newActionEvent(deleteAction))
+          this.dispatchEvent(newActionEvent(deleteAction))
         );
       }}
     ></mwc-button>`;
@@ -341,20 +361,10 @@ export class CleanupDataTypes extends LitElement {
   }
 
   /**
-   * Checks if the list selection includes DOType or DAType elements which may have SDO or DA[bType=Struct] which references sub-elements.
-   * @returns true if the selection contains DOType or DAType elements.
+   * Find unused types by scanning the SCL and comparing with the DataTypeTemplates.
+   * @returns an array of unreferenced elements
    */
-  private selectionContainsDOOrDAType() {
-    return Array.from(<Set<number>>this.selectedDataTypeItems).some(item =>
-      ['DOType', 'DAType'].includes(this.unreferencedDataTypes[item]?.tagName)
-    );
-  }
-
-  /**
-   * Render a user selectable table of unreferenced DataTypes if any exist.
-   * @returns html for table and action button.
-   */
-  private renderUnreferencedDataTypes() {
+  private getUnusedTypes() {
     const unreferencedLNTypes = this.getUnusedType(
       'LN, LN0',
       'lnType',
@@ -371,11 +381,19 @@ export class CleanupDataTypes extends LitElement {
       'type',
       'EnumType'
     );
-    this.unreferencedDataTypes = unreferencedLNTypes.concat(
+    return unreferencedLNTypes.concat(
       unreferencedDOTypes,
       unreferencedDATypes,
       unreferencedEnumTypes
     );
+  }
+
+  /**
+   * Render a user selectable table of unreferenced DataTypes if any exist.
+   * @returns html for table and action button.
+   */
+  private renderUnreferencedDataTypes() {
+    this.unreferencedDataTypes = this.getUnusedTypes();
 
     return html`
       <div>
@@ -394,29 +412,21 @@ export class CleanupDataTypes extends LitElement {
         ${this.renderFilterIconButton('DOType')}
         ${this.renderFilterIconButton('DAType')}
         ${this.renderFilterIconButton('EnumType')}
-        <filtered-list multi class="cleanupList"
+        <filtered-list multi class="cleanup-list"
           >${Array.from(
-            this.unreferencedDataTypes.map(uType => this.renderListItem(uType))
+            this.unreferencedDataTypes.map(type => this.renderListItem(type))
           )}
         </filtered-list>
       </div>
       <footer>
         ${this.renderDeleteButton()}
         <mwc-formfield
-          class="removeFromCommunication"
+          class="remove-from-communication"
           label="${translate(
             'cleanup.unreferencedDataTypes.alsoRemoveSubTypes'
           )}"
         >
-          <mwc-checkbox
-            checked
-            class="cleanSubTypesCheckbox"
-            ?disabled=${(<Set<number>>this.selectedDataTypeItems).size === 0 ||
-            !(
-              (<Set<number>>this.selectedDataTypeItems).size !== 0 &&
-              this.selectionContainsDOOrDAType()
-            )}
-          ></mwc-checkbox
+          <mwc-checkbox checked class="clean-sub-types-checkbox"></mwc-checkbox
         ></mwc-formfield>
       </footer>
     `;
@@ -449,32 +459,23 @@ export class CleanupDataTypes extends LitElement {
       }
     }
 
-    .editItem,
-    .cautionItem {
+    .edit-item {
       --mdc-icon-size: 16px;
-    }
-
-    .editItem {
       visibility: hidden;
       opacity: 0;
     }
 
-    .cleanupListItem:hover .editItem {
+    .cleanup-list-item:hover .edit-item {
       visibility: visible;
       opacity: 1;
       transition: visibility 0s, opacity 0.5s linear;
     }
 
-    .cautionItem {
-      color: var(--yellow);
-    }
-
-    .cautionItem[disabled],
-    .editItem[disabled] {
+    .edit-item[disabled] {
       display: none;
     }
 
-    .deleteButton {
+    .delete-button {
       float: right;
     }
 
@@ -493,36 +494,37 @@ export class CleanupDataTypes extends LitElement {
       overflow-y: scroll;
     }
 
-    .tDATypeFilter[on],
-    .tEnumTypeFilter[on],
-    .tLNodeTypeFilter[on],
-    .tDOTypeFilter[on] {
+    /* filter itself changes colour after click */
+    .t-da-type-filter[on],
+    .t-enum-type-filter[on],
+    .t-lnode-type-filter[on],
+    .t-do-type-filter[on] {
       color: var(--secondary);
       opacity: 1;
     }
 
-    /* items are disabled if the filter is deselected */
-    .tDAType,
-    .tEnumType,
-    .tLogControl,
-    .tReportControl {
+    /* filter disabled, Material Design guidelines for opacity */
+    .t-da-type-filter,
+    .t-enum-type-filter,
+    .t-lnode-type-filter,
+    .t-do-type-filter {
+      opacity: 0.38;
+    }
+
+    /* filter items are disabled by default (if the filter is deselected) */
+    .t-da-type,
+    .t-enum-type,
+    .t-lnode-type,
+    .t-do-type {
       display: none;
     }
 
-    /* items enabled if filter is selected */
-    .tDATypeFilter[on] ~ .cleanupList > .tDAType,
-    .tEnumTypeFilter[on] ~ .cleanupList > .tEnumType,
-    .tLNodeTypeFilter[on] ~ .cleanupList > .tLNodeType,
-    .tDOTypeFilter[on] ~ .cleanupList > .tDOType {
+    /* filter items enabled when filter is selected */
+    .t-da-type-filter[on] ~ .cleanup-list > .t-da-type,
+    .t-enum-type-filter[on] ~ .cleanup-list > .t-enum-type,
+    .t-lnode-type-filter[on] ~ .cleanup-list > .t-lnode-type,
+    .t-do-type-filter[on] ~ .cleanup-list > .t-do-type {
       display: flex;
-    }
-
-    /* filter disabled, Material Design guidelines for opacity */
-    .tDATypeFilter,
-    .tEnumTypeFilter,
-    .tLNodeTypeFilter,
-    .tDOTypeFilter {
-      opacity: 0.38;
     }
   `;
 }

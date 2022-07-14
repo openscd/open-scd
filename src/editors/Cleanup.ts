@@ -19,7 +19,7 @@ export default class Cleanup extends LitElement {
       <div class="cleanup">
         <cleanup-datasets .doc=${this.doc}></cleanup-datasets>
         <cleanup-control-blocks .doc=${this.doc}></cleanup-control-blocks>
-        <cleanup-datatypes .doc=${this.doc}></cleanup-datatypes>
+        <cleanup-data-types .doc=${this.doc}></cleanup-data-types>
       </div>
     `;
   }
@@ -43,7 +43,7 @@ export default class Cleanup extends LitElement {
       }
     }
 
-    cleanup-datasets, cleanup-control-blocks, cleanup-datatypes {
+    cleanup-datasets, cleanup-control-blocks, cleanup-data-types {
       display: flex;
       flex: 1;
       flex-direction: column;

@@ -16,42 +16,42 @@ snapshots["Cleanup: DataTypes Container without a doc loaded looks like the late
       </abbr>
     </h1>
     <mwc-icon-button-toggle
-      class="filter tLNodeTypeFilter"
+      class="filter t-lnode-type-filter"
       label="filter"
       on=""
       slot="graphic"
     >
     </mwc-icon-button-toggle>
     <mwc-icon-button-toggle
-      class="filter tDOTypeFilter"
+      class="filter t-do-type-filter"
       label="filter"
       on=""
       slot="graphic"
     >
     </mwc-icon-button-toggle>
     <mwc-icon-button-toggle
-      class="filter tDATypeFilter"
+      class="filter t-da-type-filter"
       label="filter"
       on=""
       slot="graphic"
     >
     </mwc-icon-button-toggle>
     <mwc-icon-button-toggle
-      class="filter tEnumTypeFilter"
+      class="filter t-enum-type-filter"
       label="filter"
       on=""
       slot="graphic"
     >
     </mwc-icon-button-toggle>
     <filtered-list
-      class="cleanupList"
+      class="cleanup-list"
       multi=""
     >
     </filtered-list>
   </div>
   <footer>
     <mwc-button
-      class="deleteButton"
+      class="delete-button"
       disabled=""
       icon="delete"
       label="[cleanup.unreferencedDataTypes.deleteButton] (0)"
@@ -59,13 +59,12 @@ snapshots["Cleanup: DataTypes Container without a doc loaded looks like the late
     >
     </mwc-button>
     <mwc-formfield
-      class="removeFromCommunication"
+      class="remove-from-communication"
       label="[cleanup.unreferencedDataTypes.alsoRemoveSubTypes]"
     >
       <mwc-checkbox
         checked=""
-        class="cleanSubTypesCheckbox"
-        disabled=""
+        class="clean-sub-types-checkbox"
       >
       </mwc-checkbox>
     </mwc-formfield>
@@ -91,52 +90,52 @@ snapshots["Cleanup: DataTypes Container With a test file loaded looks like the l
       </abbr>
     </h1>
     <mwc-icon-button-toggle
-      class="filter tLNodeTypeFilter"
+      class="filter t-lnode-type-filter"
       label="filter"
       on=""
       slot="graphic"
     >
     </mwc-icon-button-toggle>
     <mwc-icon-button-toggle
-      class="filter tDOTypeFilter"
+      class="filter t-do-type-filter"
       label="filter"
       on=""
       slot="graphic"
     >
     </mwc-icon-button-toggle>
     <mwc-icon-button-toggle
-      class="filter tDATypeFilter"
+      class="filter t-da-type-filter"
       label="filter"
       on=""
       slot="graphic"
     >
     </mwc-icon-button-toggle>
     <mwc-icon-button-toggle
-      class="filter tEnumTypeFilter"
+      class="filter t-enum-type-filter"
       label="filter"
       on=""
       slot="graphic"
     >
     </mwc-icon-button-toggle>
     <filtered-list
-      class="cleanupList"
+      class="cleanup-list"
       multi=""
     >
       <mwc-check-list-item
         aria-disabled="false"
-        class="cleanupListItem tLNodeType"
+        class="cleanup-list-item t-lnode-type"
         graphic="large"
         mwc-list-item=""
         tabindex="0"
         twoline=""
         value="#NotUsedTVTR"
       >
-        <span class="unreferencedControl">
+        <span class="unreferenced-control">
           NotUsedTVTR
         </span>
         <span>
           <mwc-icon-button
-            class="editItem"
+            class="edit-item"
             icon="edit"
             label="Edit"
           >
@@ -150,130 +149,127 @@ snapshots["Cleanup: DataTypes Container With a test file loaded looks like the l
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="cleanupListItem tDOType"
+        class="cleanup-list-item t-do-type"
         graphic="large"
         mwc-list-item=""
         tabindex="-1"
         twoline=""
         value="#NotUsedDummy.SPS"
       >
-        <span class="unreferencedControl">
+        <span class="unreferenced-control">
           NotUsedDummy.SPS
         </span>
         <span>
           <mwc-icon-button
-            class="editItem"
+            class="edit-item"
             icon="edit"
             label="Edit"
           >
           </mwc-icon-button>
         </span>
         <span slot="secondary">
-          Unknown
+          SPS
         </span>
         <mwc-icon slot="graphic">
         </mwc-icon>
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="cleanupListItem tDOType"
+        class="cleanup-list-item t-do-type"
         graphic="large"
         mwc-list-item=""
         tabindex="-1"
         twoline=""
         value="#WYE_2_3"
       >
-        <span class="unreferencedControl">
+        <span class="unreferenced-control">
           WYE_2_3
         </span>
         <span>
           <mwc-icon-button
-            class="editItem"
+            class="edit-item"
             icon="edit"
             label="Edit"
           >
           </mwc-icon-button>
         </span>
         <span slot="secondary">
-          Unknown
+          WYE
         </span>
         <mwc-icon slot="graphic">
         </mwc-icon>
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="cleanupListItem tDAType"
+        class="cleanup-list-item t-da-type"
         graphic="large"
         mwc-list-item=""
         tabindex="-1"
         twoline=""
         value="#NotUsedDummy.LPHD1.Sim.Cancel"
       >
-        <span class="unreferencedControl">
+        <span class="unreferenced-control">
           NotUsedDummy.LPHD1.Sim.Cancel
         </span>
         <span>
           <mwc-icon-button
-            class="editItem"
+            class="edit-item"
             icon="edit"
             label="Edit"
           >
           </mwc-icon-button>
         </span>
         <span slot="secondary">
-          Unknown
         </span>
         <mwc-icon slot="graphic">
         </mwc-icon>
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="cleanupListItem tDAType"
+        class="cleanup-list-item t-da-type"
         graphic="large"
         mwc-list-item=""
         tabindex="-1"
         twoline=""
         value="#OnlySubUsedVector_0"
       >
-        <span class="unreferencedControl">
+        <span class="unreferenced-control">
           OnlySubUsedVector_0
         </span>
         <span>
           <mwc-icon-button
-            class="editItem"
+            class="edit-item"
             icon="edit"
             label="Edit"
           >
           </mwc-icon-button>
         </span>
         <span slot="secondary">
-          Unknown
         </span>
         <mwc-icon slot="graphic">
         </mwc-icon>
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="cleanupListItem tEnumType"
+        class="cleanup-list-item t-enum-type"
         graphic="large"
         mwc-list-item=""
         tabindex="-1"
         twoline=""
         value="#NotUsedDir"
       >
-        <span class="unreferencedControl">
+        <span class="unreferenced-control">
           NotUsedDir
         </span>
         <span>
           <mwc-icon-button
-            class="editItem"
+            class="edit-item"
             icon="edit"
             label="Edit"
           >
           </mwc-icon-button>
         </span>
         <span slot="secondary">
-          Unknown
         </span>
         <mwc-icon slot="graphic">
         </mwc-icon>
@@ -282,7 +278,7 @@ snapshots["Cleanup: DataTypes Container With a test file loaded looks like the l
   </div>
   <footer>
     <mwc-button
-      class="deleteButton"
+      class="delete-button"
       disabled=""
       icon="delete"
       label="[cleanup.unreferencedDataTypes.deleteButton] (0)"
@@ -290,13 +286,12 @@ snapshots["Cleanup: DataTypes Container With a test file loaded looks like the l
     >
     </mwc-button>
     <mwc-formfield
-      class="removeFromCommunication"
+      class="remove-from-communication"
       label="[cleanup.unreferencedDataTypes.alsoRemoveSubTypes]"
     >
       <mwc-checkbox
         checked=""
-        class="cleanSubTypesCheckbox"
-        disabled=""
+        class="clean-sub-types-checkbox"
       >
       </mwc-checkbox>
     </mwc-formfield>

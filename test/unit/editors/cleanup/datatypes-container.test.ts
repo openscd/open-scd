@@ -10,14 +10,14 @@ import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 
 describe('Cleanup: DataTypes Container', () => {
   customElements.define(
-    'cleanup-plugin-datatypes',
+    'cleanup-plugin-data-types',
     Wizarding(Editing(CleanupDataTypes))
   );
   let element: CleanupDataTypes;
 
   beforeEach(async () => {
     element = await fixture(
-      html`<cleanup-plugin-datatypes></cleanup-plugin-datatypes>`
+      html`<cleanup-plugin-data-types></cleanup-plugin-data-types>`
     );
   });
 
@@ -34,9 +34,9 @@ describe('Cleanup: DataTypes Container', () => {
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       element = await fixture(
-        html`<cleanup-plugin-datatypes
+        html`<cleanup-plugin-data-types
           .doc="${doc}"
-        ></cleanup-plugin-datatypes>`
+        ></cleanup-plugin-data-types>`
       );
       await element.updateComplete;
     });
@@ -71,7 +71,7 @@ describe('Cleanup: DataTypes Container', () => {
 
     it('after clicking select all the button is not disabled', async () => {
       const checkbox = element
-        .shadowRoot!.querySelector('.cleanupList')!
+        .shadowRoot!.querySelector('.cleanup-list')!
         .shadowRoot!.querySelector('.checkall')!
         .querySelector('mwc-checkbox')!;
       await checkbox.click();

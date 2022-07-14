@@ -9,7 +9,7 @@ import { cleanSCLItems } from '../../../../src/editors/cleanup/foundation.js';
 
 describe('cleanup-editor integration: unreferenced control blocks', () => {
   customElements.define(
-    'cleanup-plugin-datatypes',
+    'cleanup-plugin-data-types',
     Wizarding(Editing(CleanupDataTypes))
   );
   let element: CleanupDataTypes;
@@ -17,9 +17,9 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
   describe('without a doc loaded', () => {
     beforeEach(async () => {
       element = await fixture(
-        html`<cleanup-plugin-datatypes
+        html`<cleanup-plugin-data-types
           .doc="${null}"
-        ></cleanup-plugin-datatypes>`
+        ></cleanup-plugin-data-types>`
       );
       await element.updateComplete;
     });
@@ -36,9 +36,9 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       element = await fixture(
-        html`<cleanup-plugin-datatypes
+        html`<cleanup-plugin-data-types
           .doc="${doc}"
-        ></cleanup-plugin-datatypes>`
+        ></cleanup-plugin-data-types>`
       );
       await element.updateComplete;
     });
@@ -49,7 +49,7 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
       await element.cleanupEnumTypeFilter.click();
       // select all items and update list
       const checkbox = element
-        .shadowRoot!.querySelector('.cleanupList')!
+        .shadowRoot!.querySelector('.cleanup-list')!
         .shadowRoot!.querySelector('mwc-formfield')!
         .querySelector('mwc-checkbox')!;
       await checkbox.click();
@@ -58,9 +58,9 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
       await element.cleanButton.click();
 
       // the correct number of LNodeTypes should remain
-      expect(doc.querySelectorAll('LNodeType')).to.have.length(12);
+      expect(element.doc.querySelectorAll('LNodeType')).to.have.length(12);
       expect(
-        doc.querySelectorAll('LNodeType[id="NotUsedTVTR"]')
+        element.doc.querySelectorAll('LNodeType[id="NotUsedTVTR"]')
       ).to.have.length(0);
     });
 
@@ -70,7 +70,7 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
       await element.cleanupEnumTypeFilter.click();
       // select all items and update list
       const checkbox = element
-        .shadowRoot!.querySelector('.cleanupList')!
+        .shadowRoot!.querySelector('.cleanup-list')!
         .shadowRoot!.querySelector('mwc-formfield')!
         .querySelector('mwc-checkbox')!;
       await checkbox.click();
@@ -79,36 +79,13 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
       await element.cleanButton.click();
 
       // the correct number of DOTypes should remain (we actually remove 3 here)
-      expect(doc.querySelectorAll('DOType')).to.have.lengthOf(23);
+      expect(element.doc.querySelectorAll('DOType')).to.have.lengthOf(23);
       expect(
-        doc.querySelectorAll(
+        element.doc.querySelectorAll(
           'DOType[id="NotUsedDummy.SPS"], DOType[name="WYE_2_3"], DOType[id="CMV_1"]'
         )
       ).to.have.lengthOf(0);
     });
-
-    // it('correctly removes two DOTypes and one referenced via an SDO from the SCL', async () => {
-    //   await element.cleanupLNodeTypeFilter.click();
-    //   await element.cleanupDATypeFilter.click();
-    //   await element.cleanupEnumTypeFilter.click();
-    //   // select all items and update list
-    //   const checkbox = element
-    //     .shadowRoot!.querySelector('.cleanupList')!
-    //     .shadowRoot!.querySelector('mwc-formfield')!
-    //     .querySelector('mwc-checkbox')!;
-    //   await checkbox.click();
-    //   await element.cleanupList?.layout();
-
-    //   await element.cleanButton.click();
-
-    //   // the correct number of DOTypes should remain (we actually remove 3 here)
-    //   expect(doc.querySelectorAll('DOType')).to.have.lengthOf(24);
-    //   expect(
-    //     doc.querySelectorAll(
-    //       'DOType[id="NotUsedDummy.SPS"], DOType[id="WYE_2_3"], DOType[id="CMV_1"]'
-    //     )
-    //   ).to.have.lengthOf(0);
-    // });
 
     it('correctly removes two DATypes and one referenced via a BDA from the SCL', async () => {
       await element.cleanupLNodeTypeFilter.click();
@@ -116,7 +93,7 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
       await element.cleanupEnumTypeFilter.click();
       // select all items and update list
       const checkbox = element
-        .shadowRoot!.querySelector('.cleanupList')!
+        .shadowRoot!.querySelector('.cleanup-list')!
         .shadowRoot!.querySelector('mwc-formfield')!
         .querySelector('mwc-checkbox')!;
       await checkbox.click();
@@ -125,9 +102,9 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
       await element.cleanButton.click();
 
       // the correct number of DATypes should remain (we actually remove 3 here)
-      expect(doc.querySelectorAll('DAType')).to.have.lengthOf(13);
+      expect(element.doc.querySelectorAll('DAType')).to.have.lengthOf(13);
       expect(
-        doc.querySelectorAll(
+        element.doc.querySelectorAll(
           'DAType[id="NotUsedDummy.LPHD1.Sim.Cancel"], DAType[id="OnlySubUsedVector_0"], DAType[id="AnalogValue_0"]'
         )
       ).to.have.lengthOf(0);
@@ -139,7 +116,7 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
       await element.cleanupDATypeFilter.click();
       // select all items and update list
       const checkbox = element
-        .shadowRoot!.querySelector('.cleanupList')!
+        .shadowRoot!.querySelector('.cleanup-list')!
         .shadowRoot!.querySelector('mwc-formfield')!
         .querySelector('mwc-checkbox')!;
       await checkbox.click();
@@ -148,9 +125,9 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
       await element.cleanButton.click();
 
       // the correct number of EnumTypes should remain (we remove 1 here)
-      expect(doc.querySelectorAll('EnumType')).to.have.lengthOf(7);
+      expect(element.doc.querySelectorAll('EnumType')).to.have.lengthOf(7);
       expect(
-        doc.querySelectorAll(
+        element.doc.querySelectorAll(
           'EnumType[id="NotUsedDir"]'
         )
       ).to.have.lengthOf(0);
@@ -169,7 +146,7 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
         await element.cleanupEnumTypeFilter.click();
         // select all items and update list
         const checkbox = element
-          .shadowRoot!.querySelector('.cleanupList')!
+          .shadowRoot!.querySelector('.cleanup-list')!
           .shadowRoot!.querySelector('mwc-formfield')!
           .querySelector('mwc-checkbox')!;
         await checkbox.click();
@@ -178,13 +155,13 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
         await element.cleanButton.click();
 
         // the correct number of DOTypes should remain (we remove 2 here)
-        expect(doc.querySelectorAll('DOType')).to.have.lengthOf(24);
+        expect(element.doc.querySelectorAll('DOType')).to.have.lengthOf(24);
         expect(
-          doc.querySelectorAll(
+          element.doc.querySelectorAll(
             'DOType[id="NotUsedDummy.SPS"], DOType[id="WYE_2_3"]'
           )
         ).to.have.lengthOf(0);
-        expect(doc.querySelectorAll('DOType[id="CMV_1"]')).to.have.lengthOf(1);
+        expect(element.doc.querySelectorAll('DOType[id="CMV_1"]')).to.have.lengthOf(1);
       });
 
       it('correctly removes two DATypes and _not_ one referenced via a BDA from the SCL', async () => {
@@ -193,7 +170,7 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
         await element.cleanupEnumTypeFilter.click();
         // select all items and update list
         const checkbox = element
-          .shadowRoot!.querySelector('.cleanupList')!
+          .shadowRoot!.querySelector('.cleanup-list')!
           .shadowRoot!.querySelector('mwc-formfield')!
           .querySelector('mwc-checkbox')!;
         await checkbox.click();
@@ -202,14 +179,14 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
         await element.cleanButton.click();
 
         // the correct number of DATypes should remain (we remove 2 here)
-        expect(doc.querySelectorAll('DAType')).to.have.lengthOf(14);
+        expect(element.doc.querySelectorAll('DAType')).to.have.lengthOf(14);
         expect(
-          doc.querySelectorAll(
+          element.doc.querySelectorAll(
             'DAType[id="NotUsedDummy.LPHD1.Sim.Cancel"], DAType[id="OnlySubUsedVector_0"]'
           )
         ).to.have.lengthOf(0);
         expect(
-          doc.querySelectorAll('DAType[id="AnalogValue_0"]')
+          element.doc.querySelectorAll('DAType[id="AnalogValue_0"]')
         ).to.have.lengthOf(1);
       });
     });
@@ -219,7 +196,7 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
         await element.cleanupLNodeTypeFilter.click();
         // select all items and update list
         const checkbox = element
-          .shadowRoot!.querySelector('.cleanupList')!
+          .shadowRoot!.querySelector('.cleanup-list')!
           .shadowRoot!.querySelector('mwc-formfield')!
           .querySelector('mwc-checkbox')!;
         await checkbox.click();
@@ -237,7 +214,7 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
         await element.cleanupDOTypeFilter.click();
         // select all items and update list
         const checkbox = element
-          .shadowRoot!.querySelector('.cleanupList')!
+          .shadowRoot!.querySelector('.cleanup-list')!
           .shadowRoot!.querySelector('mwc-formfield')!
           .querySelector('mwc-checkbox')!;
         await checkbox.click();
@@ -255,7 +232,7 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
         await element.cleanupDATypeFilter.click();
         // select all items and update list
         const checkbox = element
-          .shadowRoot!.querySelector('.cleanupList')!
+          .shadowRoot!.querySelector('.cleanup-list')!
           .shadowRoot!.querySelector('mwc-formfield')!
           .querySelector('mwc-checkbox')!;
         await checkbox.click();
@@ -273,7 +250,7 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
         await element.cleanupEnumTypeFilter.click();
         // select all items and update list
         const checkbox = element
-          .shadowRoot!.querySelector('.cleanupList')!
+          .shadowRoot!.querySelector('.cleanup-list')!
           .shadowRoot!.querySelector('mwc-formfield')!
           .querySelector('mwc-checkbox')!;
         await checkbox.click();

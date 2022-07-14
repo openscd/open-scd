@@ -16,42 +16,42 @@ snapshots["cleanup-editor integration: unreferenced control blocks without a doc
       </abbr>
     </h1>
     <mwc-icon-button-toggle
-      class="filter tLNodeTypeFilter"
+      class="filter t-lnode-type-filter"
       label="filter"
       on=""
       slot="graphic"
     >
     </mwc-icon-button-toggle>
     <mwc-icon-button-toggle
-      class="filter tDOTypeFilter"
+      class="filter t-do-type-filter"
       label="filter"
       on=""
       slot="graphic"
     >
     </mwc-icon-button-toggle>
     <mwc-icon-button-toggle
-      class="filter tDATypeFilter"
+      class="filter t-da-type-filter"
       label="filter"
       on=""
       slot="graphic"
     >
     </mwc-icon-button-toggle>
     <mwc-icon-button-toggle
-      class="filter tEnumTypeFilter"
+      class="filter t-enum-type-filter"
       label="filter"
       on=""
       slot="graphic"
     >
     </mwc-icon-button-toggle>
     <filtered-list
-      class="cleanupList"
+      class="cleanup-list"
       multi=""
     >
     </filtered-list>
   </div>
   <footer>
     <mwc-button
-      class="deleteButton"
+      class="delete-button"
       disabled=""
       icon="delete"
       label="[cleanup.unreferencedDataTypes.deleteButton] (0)"
@@ -59,13 +59,12 @@ snapshots["cleanup-editor integration: unreferenced control blocks without a doc
     >
     </mwc-button>
     <mwc-formfield
-      class="removeFromCommunication"
+      class="remove-from-communication"
       label="[cleanup.unreferencedDataTypes.alsoRemoveSubTypes]"
     >
       <mwc-checkbox
         checked=""
-        class="cleanSubTypesCheckbox"
-        disabled=""
+        class="clean-sub-types-checkbox"
       >
       </mwc-checkbox>
     </mwc-formfield>
