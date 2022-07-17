@@ -20,9 +20,11 @@ import '@material/mwc-checkbox';
 
 import { Button } from '@material/mwc-button';
 import { Checkbox } from '@material/mwc-checkbox';
-import { List, MWCListIndex } from '@material/mwc-list';
+import { MWCListIndex } from '@material/mwc-list';
 
-import '../../filtered-list.js';
+import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
+
+import { FilteredList } from '../../filtered-list.js';
 
 import {
   Delete,
@@ -92,7 +94,7 @@ export class CleanupControlBlocks extends LitElement {
   cleanButton!: Button;
 
   @query('.cleanupList')
-  cleanupList: List | undefined;
+  cleanupList: FilteredList | undefined;
 
   @queryAll('mwc-check-list-item.cleanupListItem')
   cleanupListItems: NodeList | undefined;
@@ -101,25 +103,40 @@ export class CleanupControlBlocks extends LitElement {
   cleanupAddressCheckbox: Checkbox | undefined;
 
   @query('.tGSEControlFilter')
-  cleanupGSEControlFilter!: Button;
+  cleanupGSEControlFilter!: IconButtonToggle;
 
   @query('.tSampledValueControlFilter')
-  cleanupSampledValueControlFilter!: Button;
+  cleanupSampledValueControlFilter!: IconButtonToggle;
 
   @query('.tLogControlFilter')
-  cleanupLogControlFilter!: Button;
+  cleanupLogControlFilter!: IconButtonToggle;
 
   @query('.tReportControlFilter')
-  cleanupReportControlFilter!: Button;
+  cleanupReportControlFilter!: IconButtonToggle;
+
+  filterMapping: Record<string, IconButtonToggle> | null = null;
 
   /**
    * Toggle the class hidden in the unused controls list for use by filter buttons.
    * @param selectorType - class for selection to toggle the hidden class used by the list.
    */
-  private toggleHiddenClass(selectorType: string) {
-    this.cleanupList!.querySelectorAll(`.${selectorType}`).forEach(element => {
-      element.classList.toggle('hidden');
-    });
+  private hideFilterItems(selectorType: string) {
+    // the filter when _off_ hides the items
+    if (this.filterMapping![selectorType].on === false) {
+      this.cleanupList!.querySelectorAll(`.${selectorType}`).forEach(
+        element => {
+          element.classList.add('hidden');
+        }
+      );
+    } else if (this.filterMapping![selectorType].on === true) {
+      this.cleanupList!.querySelectorAll(`.${selectorType}`).forEach(
+        element => {
+          element.classList.remove('hidden');
+        }
+      );
+    }
+    // re-filter according to filter input text
+    this.cleanupList!.updateFilter();
   }
 
   /**
@@ -129,7 +146,13 @@ export class CleanupControlBlocks extends LitElement {
     this.cleanupList?.addEventListener('selected', () => {
       this.selectedControlItems = this.cleanupList!.index;
     });
-    this.toggleHiddenClass('tReportControl');
+    this.filterMapping = {
+      tGSEControl: this.cleanupGSEControlFilter,
+      tSampledValueControl: this.cleanupSampledValueControlFilter,
+      tLogControl: this.cleanupLogControlFilter,
+      tReportControl: this.cleanupReportControlFilter,
+    };
+    this.hideFilterItems('tReportControl');
   }
 
   /**
@@ -149,7 +172,7 @@ export class CleanupControlBlocks extends LitElement {
       class="t${controlType}Filter"
       @click="${(e: MouseEvent) => {
         e.stopPropagation();
-        this.toggleHiddenClass(`t${controlType}`);
+        this.hideFilterItems(`t${controlType}`);
       }}"
       >${getFilterIcon(iconMapping[controlType], true)}
       ${getFilterIcon(iconMapping[controlType], false)}
@@ -413,6 +436,16 @@ export class CleanupControlBlocks extends LitElement {
     .tLogControlFilter[on] ~ .cleanupList > .tLogControl,
     .tReportControlFilter[on] ~ .cleanupList > .tReportControl {
       display: flex;
+    }
+
+    /* items removed if they are in fact hidden due to a text search (with higher specificity than the above display:flex rule) */
+    .tGSEControlFilter[on] ~ .cleanupList > .tGSEControl.hidden,
+    .tSampledValueControlFilter[on]
+      ~ .cleanupList
+      > .tSampledValueControl.hidden,
+    .tLogControlFilter[on] ~ .cleanupList > .tLogControl.hidden,
+    .tReportControlFilter[on] ~ .cleanupList > .tReportControl.hidden {
+      display: none;
     }
 
     /* filter disabled, Material Design guidelines for opacity */

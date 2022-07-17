@@ -93,6 +93,12 @@ export class FilteredList extends ListBase {
       );
   }
 
+  public updateFilter(): void {
+    if (this.searchField && this.searchField.value !== '') {
+      this.onFilterInput();
+    }
+  }
+
   protected onListItemConnected(e: CustomEvent): void {
     super.onListItemConnected(e);
     this.requestUpdate();
