@@ -404,7 +404,7 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       else if (isUpdate(action)) this.logUpdate(action as Update);
     }
 
-    private onAction(event: EditorActionEvent<EditorAction>) {
+    private async onAction(event: EditorActionEvent<EditorAction>) {
       if (isSimple(event.detail.action)) {
         if (this.onSimpleAction(event.detail.action))
           this.logSimpleAction(event.detail.action);
@@ -433,6 +433,7 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       newDoc.documentElement.replaceWith(this.doc.documentElement);
       this.doc = newDoc;
 
+      await this.updateComplete;
       this.dispatchEvent(newValidateEvent());
     }
 
