@@ -71,5 +71,9 @@ export class ReportControlEditor extends LitElement {
     .listitem.header {
       font-weight: 500;
     }
+
+    mwc-list-item.hidden[noninteractive] + li[divider] {
+      display: none;
+    }
   `;
 }

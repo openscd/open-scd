@@ -129,5 +129,9 @@ export class GooseList extends LitElement {
     mwc-icon-button.hidden {
       display: none;
     }
+
+    mwc-list-item.hidden[noninteractive] + li[divider] {
+      display: none;
+    }
   `;
 }
