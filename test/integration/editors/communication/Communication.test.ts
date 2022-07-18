@@ -86,8 +86,6 @@ describe('Communication Plugin', () => {
           await fab.click();
           await new Promise(resolve => setTimeout(resolve, 100)); // await animation
           await parent.updateComplete;
-
-          expect(parent.wizardUI.dialogs.length).to.equal(1);
           
           const dialog: Dialog = parent.wizardUI.dialog!;
           expect(dialog).to.not.be.undefined;
