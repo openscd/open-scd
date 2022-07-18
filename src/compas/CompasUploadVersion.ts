@@ -1,5 +1,5 @@
-import {customElement, html, LitElement, TemplateResult} from "lit-element";
-import {get, translate} from "lit-translate";
+import { customElement, html, LitElement, TemplateResult } from 'lit-element';
+import { get, translate } from 'lit-translate';
 
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
@@ -10,17 +10,17 @@ import {
   newPendingStateEvent,
   newWizardEvent,
   Wizard,
-  WizardInputElement
-} from "../foundation.js";
+  WizardInputElement,
+} from '../foundation.js';
 
 import '../wizard-textfield.js';
 
-import {CompasExistsIn} from "./CompasExistsIn.js";
-import {CompasSclDataService} from "../compas-services/CompasSclDataService.js";
-import {createLogEvent} from "../compas-services/foundation.js";
-import {dispatchEventOnOpenScd, getTypeFromDocName, updateDocumentInOpenSCD} from "./foundation.js";
-import {CompasChangeSetRadiogroup} from "./CompasChangeSetRadiogroup.js";
-import {CompasCommentElement} from "./CompasComment.js";
+import { CompasExistsIn } from './CompasExistsIn.js';
+import { CompasSclDataService } from '../compas-services/CompasSclDataService.js';
+import { createLogEvent } from '../compas-services/foundation.js';
+import { getTypeFromDocName, updateDocumentInOpenSCD } from './foundation.js';
+import { CompasChangeSetRadiogroup } from './CompasChangeSetRadiogroup.js';
+import { CompasCommentElement } from './CompasComment.js';
 
 import './CompasChangeSetRadiogroup.js';
 import './CompasComment.js';
@@ -28,26 +28,36 @@ import './CompasLoading.js';
 
 @customElement('compas-upload-version')
 export class CompasUploadVersionElement extends CompasExistsIn(LitElement) {
-  getSclFileField() : HTMLInputElement {
-    return <HTMLInputElement>this.shadowRoot!.querySelector('input[id="scl-file"]');
+  getSclFileField(): HTMLInputElement {
+    return <HTMLInputElement>(
+      this.shadowRoot!.querySelector('input[id="scl-file"]')
+    );
   }
 
-  getSclFilenameField() : HTMLInputElement {
-    return <HTMLInputElement>this.shadowRoot!.querySelector('wizard-textfield[id="filename"]');
+  getSclFilenameField(): HTMLInputElement {
+    return <HTMLInputElement>(
+      this.shadowRoot!.querySelector('wizard-textfield[id="filename"]')
+    );
   }
 
   getChangeSetRadiogroup(): CompasChangeSetRadiogroup {
-    return (<CompasChangeSetRadiogroup>this.shadowRoot!.querySelector('compas-changeset-radiogroup'))
+    return <CompasChangeSetRadiogroup>(
+      this.shadowRoot!.querySelector('compas-changeset-radiogroup')
+    );
   }
 
-  getCommentField() : CompasCommentElement {
-    return (<CompasCommentElement>this.shadowRoot!.querySelector('compas-comment'))
+  getCommentField(): CompasCommentElement {
+    return <CompasCommentElement>(
+      this.shadowRoot!.querySelector('compas-comment')
+    );
   }
 
   valid(): boolean {
-    return this.getChangeSetRadiogroup().valid()
-      && this.getSclFileField().checkValidity()
-      && this.getSclFilenameField().checkValidity();
+    return (
+      this.getChangeSetRadiogroup().valid() &&
+      this.getSclFileField().checkValidity() &&
+      this.getSclFilenameField().checkValidity()
+    );
   }
 
   public async updateDocumentInCompas(): Promise<void> {
@@ -61,56 +71,71 @@ export class CompasUploadVersionElement extends CompasExistsIn(LitElement) {
     const text = await file.text();
     const doc = new DOMParser().parseFromString(text, 'application/xml');
 
-    await CompasSclDataService().updateSclDocument(docType, this.docId!,
-      {changeSet: changeSet!, comment: comment, doc: doc})
+    await CompasSclDataService()
+      .updateSclDocument(docType, this.docId!, {
+        changeSet: changeSet!,
+        comment: comment,
+        doc: doc,
+      })
       .then(sclDocument => {
-        updateDocumentInOpenSCD(sclDocument);
+        updateDocumentInOpenSCD(this, sclDocument);
 
-        dispatchEventOnOpenScd(
+        this.dispatchEvent(
           newLogEvent({
             kind: 'info',
-            title: get('compas.uploadVersion.updateSuccess')
-          }));
+            title: get('compas.uploadVersion.updateSuccess'),
+          })
+        );
 
         // Close the Save Dialog.
-        dispatchEventOnOpenScd(newWizardEvent());
+        this.dispatchEvent(newWizardEvent());
       })
-      .catch(createLogEvent);
+      .catch(reason => createLogEvent(this, reason));
   }
 
   render(): TemplateResult {
     if (this.existInCompas === undefined) {
-      return html `
-        <compas-loading></compas-loading>
-      `
+      return html` <compas-loading></compas-loading> `;
     }
 
     if (!this.existInCompas) {
-      return html `
+      return html`
         <mwc-list>
-          <mwc-list-item>${translate("compas.notExists")}</mwc-list-item>
+          <mwc-list-item>${translate('compas.notExists')}</mwc-list-item>
         </mwc-list>
-      `
+      `;
     }
 
     const docType = getTypeFromDocName(this.docName);
     return html`
-      <input id="scl-file" accept=".${docType.toLowerCase()}" type="file" hidden required
-             @change=${() => {
-               const file = this.getSclFileField()?.files?.item(0);
-               const input = this.getSclFilenameField();
-               input.value = file?.name??'';
-             }}
+      <input
+        id="scl-file"
+        accept=".${docType.toLowerCase()}"
+        type="file"
+        hidden
+        required
+        @change=${() => {
+          const file = this.getSclFileField()?.files?.item(0);
+          const input = this.getSclFilenameField();
+          input.value = file?.name ?? '';
+        }}
+      />
+      <wizard-textfield
+        id="filename"
+        required
+        readonly
+        label="${translate('compas.uploadVersion.filename')}"
       >
-      <wizard-textfield id="filename" required readonly
-                        label="${translate('compas.uploadVersion.filename')}">
       </wizard-textfield>
 
-      <mwc-button label="${translate('compas.uploadVersion.selectButton')}"
-                  @click=${() => {
-                    const input = <HTMLInputElement | null>this.shadowRoot!.querySelector("#scl-file");
-                    input?.click();
-                  }}
+      <mwc-button
+        label="${translate('compas.uploadVersion.selectButton')}"
+        @click=${() => {
+          const input = <HTMLInputElement | null>(
+            this.shadowRoot!.querySelector('#scl-file')
+          );
+          input?.click();
+        }}
       >
       </mwc-button>
 
@@ -121,18 +146,26 @@ export class CompasUploadVersionElement extends CompasExistsIn(LitElement) {
 }
 
 export interface AddToCompasWizardOptions {
-  docId: string,
-  docName: string
+  docId: string;
+  docName: string;
 }
-export function addVersionToCompasWizard(saveToOptions: AddToCompasWizardOptions): Wizard {
+export function addVersionToCompasWizard(
+  saveToOptions: AddToCompasWizardOptions
+): Wizard {
   function uploadToCompas() {
     return function (inputs: WizardInputElement[], wizard: Element) {
-      const compasAddTo = <CompasUploadVersionElement>wizard.shadowRoot!.querySelector('compas-upload-version')
-      if (!compasAddTo.valid()) {
+      const compasUploadVersionElement = <CompasUploadVersionElement>(
+        wizard.shadowRoot!.querySelector('compas-upload-version')
+      );
+      if (!compasUploadVersionElement.valid()) {
         return [];
       }
 
-      dispatchEventOnOpenScd(newPendingStateEvent(compasAddTo.updateDocumentInCompas()));
+      compasUploadVersionElement.dispatchEvent(
+        newPendingStateEvent(
+          compasUploadVersionElement.updateDocumentInCompas()
+        )
+      );
       return [];
     };
   }
@@ -146,10 +179,13 @@ export function addVersionToCompasWizard(saveToOptions: AddToCompasWizardOptions
         action: uploadToCompas(),
       },
       content: [
-        html `
-          <compas-upload-version .docName="${saveToOptions.docName}" .docId="${saveToOptions.docId}"/>
-        ` ],
+        html`
+          <compas-upload-version
+            .docName="${saveToOptions.docName}"
+            .docId="${saveToOptions.docId}"
+          />
+        `,
+      ],
     },
   ];
 }
-

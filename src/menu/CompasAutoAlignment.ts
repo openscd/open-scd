@@ -1,27 +1,37 @@
-import {html, LitElement} from 'lit-element';
-import {get} from "lit-translate";
+import { html, LitElement } from 'lit-element';
+import { get } from 'lit-translate';
 
-import {newPendingStateEvent, newWizardEvent, Wizard, WizardInputElement} from '../foundation.js';
+import {
+  newPendingStateEvent,
+  newWizardEvent,
+  Wizard,
+  WizardInputElement,
+} from '../foundation.js';
 
-import CompasAutoAlignmentElement from "../compas/CompasAutoAlignment.js";
-import {dispatchEventOnOpenScd} from "../compas/foundation.js";
+import CompasAutoAlignmentElement from '../compas/CompasAutoAlignment.js';
 
-import "../compas/CompasAutoAlignment.js";
+import '../compas/CompasAutoAlignment.js';
 
 export default class CompasAutoAlignmentMenuPlugin extends LitElement {
   doc!: XMLDocument;
   docName!: string;
   docId?: string;
 
-  private autoAlignmentCompasWizard(): Wizard {
+  private autoAlignmentCompasWizard(
+    plugin: CompasAutoAlignmentMenuPlugin
+  ): Wizard {
     function execute() {
       return function (inputs: WizardInputElement[], wizard: Element) {
-        const compasAutoAlignmentElement = <CompasAutoAlignmentElement>wizard.shadowRoot!.querySelector('compas-auto-alignment')
+        const compasAutoAlignmentElement = <CompasAutoAlignmentElement>(
+          wizard.shadowRoot!.querySelector('compas-auto-alignment')
+        );
         if (!compasAutoAlignmentElement.valid()) {
           return [];
         }
 
-        dispatchEventOnOpenScd(newPendingStateEvent(compasAutoAlignmentElement.execute()));
+        plugin.dispatchEvent(
+          newPendingStateEvent(compasAutoAlignmentElement.execute())
+        );
         return [];
       };
     }
@@ -35,8 +45,12 @@ export default class CompasAutoAlignmentMenuPlugin extends LitElement {
           action: execute(),
         },
         content: [
-          html `
-            <compas-auto-alignment .doc="${this.doc}" .docName="${this.docName}" .docId="${this.docId}">
+          html`
+            <compas-auto-alignment
+              .doc="${this.doc}"
+              .docName="${this.docName}"
+              .docId="${this.docId}"
+            >
             </compas-auto-alignment>
           `,
         ],
@@ -45,6 +59,6 @@ export default class CompasAutoAlignmentMenuPlugin extends LitElement {
   }
 
   async run(): Promise<void> {
-    this.dispatchEvent(newWizardEvent(this.autoAlignmentCompasWizard()));
+    this.dispatchEvent(newWizardEvent(this.autoAlignmentCompasWizard(this)));
   }
 }

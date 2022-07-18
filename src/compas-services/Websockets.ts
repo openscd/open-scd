@@ -1,8 +1,7 @@
-import { newPendingStateEvent } from "../foundation.js";
-import { dispatchEventOnOpenScd } from "../compas/foundation.js";
-import { createLogEvent, parseXml } from "./foundation.js";
+import { newPendingStateEvent } from '../foundation.js';
+import { createLogEvent, parseXml } from './foundation.js';
 
-export function Websockets(serviceName: string) {
+export function Websockets(element: Element, serviceName: string) {
   let websocket: WebSocket | undefined;
 
   function sleep(sleepTime: number): Promise<unknown> {
@@ -16,31 +15,35 @@ export function Websockets(serviceName: string) {
   }
 
   return {
-    execute(url: string, request: string,
-            onMessageCallback: (doc: Document) => void,
-            onCloseCallback?: () => void) {
+    execute(
+      url: string,
+      request: string,
+      onMessageCallback: (doc: Document) => void,
+      onCloseCallback?: () => void
+    ) {
       websocket = new WebSocket(url);
 
       websocket.onopen = () => {
         websocket?.send(request);
       };
 
-      websocket.onmessage = (evt) => {
+      websocket.onmessage = evt => {
         parseXml(evt.data)
           .then(doc => {
             onMessageCallback(doc);
             websocket?.close();
           })
           .catch(reason => {
-            createLogEvent(reason);
+            createLogEvent(element, reason);
             websocket?.close();
           });
       };
 
       websocket.onerror = () => {
-        createLogEvent(
-          { message: `Websocket Error in service "${serviceName}"`,
-            type: 'Error'})
+        createLogEvent(element, {
+          message: `Websocket Error in service "${serviceName}"`,
+          type: 'Error',
+        });
         websocket?.close();
       };
 
@@ -49,9 +52,9 @@ export function Websockets(serviceName: string) {
         if (onCloseCallback) {
           onCloseCallback();
         }
-      }
+      };
 
-      dispatchEventOnOpenScd(newPendingStateEvent(waitUntilValidated()))
-    }
-  }
+      element.dispatchEvent(newPendingStateEvent(waitUntilValidated()));
+    },
+  };
 }

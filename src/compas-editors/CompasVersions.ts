@@ -4,7 +4,7 @@ import {
   LitElement,
   property,
   PropertyValues,
-  TemplateResult
+  TemplateResult,
 } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
@@ -19,25 +19,31 @@ import {
   newLogEvent,
   newOpenDocEvent,
   newWizardEvent,
-  Wizard
-} from "../foundation.js";
-import { MultiSelectedEvent } from "@material/mwc-list/mwc-list-foundation";
+  Wizard,
+} from '../foundation.js';
+import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
-import { CompasSclDataService, SDS_NAMESPACE } from "../compas-services/CompasSclDataService.js";
-import { createLogEvent } from "../compas-services/foundation.js";
-import { getTypeFromDocName, updateDocumentInOpenSCD} from "../compas/foundation.js";
-import { addVersionToCompasWizard } from "../compas/CompasUploadVersion.js";
-import { compareWizard } from "../compas/CompasCompareDialog.js";
+import {
+  CompasSclDataService,
+  SDS_NAMESPACE,
+} from '../compas-services/CompasSclDataService.js';
+import { createLogEvent } from '../compas-services/foundation.js';
+import {
+  getTypeFromDocName,
+  updateDocumentInOpenSCD,
+} from '../compas/foundation.js';
+import { addVersionToCompasWizard } from '../compas/CompasUploadVersion.js';
+import { compareWizard } from '../compas/CompasCompareDialog.js';
 import { getElementByName, styles } from './foundation.js';
-import { wizards } from "../wizards/wizard-library.js";
+import { wizards } from '../wizards/wizard-library.js';
 
 /** An editor [[`plugin`]] for selecting the `Substation` section. */
 export default class CompasVersionsPlugin extends LitElement {
   @property()
   doc!: XMLDocument;
-  @property({type: String})
+  @property({ type: String })
   docId!: string;
-  @property({type: String})
+  @property({ type: String })
   docName!: string;
 
   @property()
@@ -54,7 +60,7 @@ export default class CompasVersionsPlugin extends LitElement {
       if (!this.docId) {
         this.historyItem = [];
       } else {
-        this.fetchData()
+        this.fetchData();
       }
     }
   }
@@ -65,9 +71,12 @@ export default class CompasVersionsPlugin extends LitElement {
       this.historyItem = [];
     } else {
       const type = getTypeFromDocName(this.docName);
-      CompasSclDataService().listVersions(type, this.docId)
+      CompasSclDataService()
+        .listVersions(type, this.docId)
         .then(xmlResponse => {
-          this.historyItem = Array.from(xmlResponse.querySelectorAll('HistoryItem') ?? []);
+          this.historyItem = Array.from(
+            xmlResponse.querySelectorAll('HistoryItem') ?? []
+          );
         })
         .catch(() => {
           this.historyItem = [];
@@ -76,7 +85,10 @@ export default class CompasVersionsPlugin extends LitElement {
   }
 
   private addVersionWizard(): Wizard {
-    return addVersionToCompasWizard({docId: this.docId, docName: this.docName})
+    return addVersionToCompasWizard({
+      docId: this.docId,
+      docName: this.docName,
+    });
   }
 
   private confirmRestoreVersionWizard(version: string): Wizard {
@@ -84,23 +96,27 @@ export default class CompasVersionsPlugin extends LitElement {
       return function () {
         const type = getTypeFromDocName(plugin.docName);
 
-        CompasSclDataService().getSclDocumentVersion(type, plugin.docId, version)
+        CompasSclDataService()
+          .getSclDocumentVersion(type, plugin.docId, version)
           .then(sclDocument => {
-            updateDocumentInOpenSCD(sclDocument);
+            updateDocumentInOpenSCD(plugin, sclDocument);
 
             plugin.dispatchEvent(
               newLogEvent({
                 kind: 'info',
-                title: get('compas.versions.restoreVersionSuccess', {version : version})
-              }));
+                title: get('compas.versions.restoreVersionSuccess', {
+                  version: version,
+                }),
+              })
+            );
           })
-          .catch(createLogEvent);
+          .catch(reason => createLogEvent(plugin, reason));
 
         // Close the Restore Dialog.
         plugin.dispatchEvent(newWizardEvent());
 
         return [];
-      }
+      };
     }
 
     return [
@@ -112,7 +128,11 @@ export default class CompasVersionsPlugin extends LitElement {
           action: openScl(this),
         },
         content: [
-          html`<span>${translate('compas.versions.confirmRestore', {version : version})}</span>`,
+          html`<span
+            >${translate('compas.versions.confirmRestore', {
+              version: version,
+            })}</span
+          >`,
         ],
       },
     ];
@@ -125,23 +145,28 @@ export default class CompasVersionsPlugin extends LitElement {
 
         CompasSclDataService()
           .deleteSclDocument(type, plugin.docId)
-          .then (() => {
+          .then(() => {
             plugin.fetchData();
 
-            plugin.dispatchEvent(newOpenDocEvent(plugin.doc, plugin.docName, {detail: {docId: ''}}));
+            plugin.dispatchEvent(
+              newOpenDocEvent(plugin.doc, plugin.docName, {
+                detail: { docId: '' },
+              })
+            );
             plugin.dispatchEvent(
               newLogEvent({
                 kind: 'info',
-                title: get('compas.versions.deleteSuccess')
-              }));
+                title: get('compas.versions.deleteSuccess'),
+              })
+            );
           })
-          .catch(createLogEvent);
+          .catch(reason => createLogEvent(plugin, reason));
 
         // Close the Restore Dialog.
         plugin.dispatchEvent(newWizardEvent());
 
         return [];
-      }
+      };
     }
 
     return [
@@ -172,16 +197,19 @@ export default class CompasVersionsPlugin extends LitElement {
             plugin.dispatchEvent(
               newLogEvent({
                 kind: 'info',
-                title: get('compas.versions.deleteVersionSuccess', {version : version})
-              }));
+                title: get('compas.versions.deleteVersionSuccess', {
+                  version: version,
+                }),
+              })
+            );
           })
-          .catch(createLogEvent);
+          .catch(reason => createLogEvent(plugin, reason));
 
         // Close the Restore Dialog.
         plugin.dispatchEvent(newWizardEvent());
 
         return [];
-      }
+      };
     }
 
     return [
@@ -193,7 +221,11 @@ export default class CompasVersionsPlugin extends LitElement {
           action: deleteSclVersion(this),
         },
         content: [
-          html`<span>${translate('compas.versions.confirmDeleteVersion', {version : version})}</span>`,
+          html`<span
+            >${translate('compas.versions.confirmDeleteVersion', {
+              version: version,
+            })}</span
+          >`,
         ],
       },
     ];
@@ -203,8 +235,8 @@ export default class CompasVersionsPlugin extends LitElement {
     const selectedVersions: Array<string> = [];
     const listItems = this.shadowRoot!.querySelectorAll('mwc-check-list-item');
     this.selectedVersionsOnCompasVersionsEditor.forEach(index => {
-        selectedVersions.push(listItems.item(index).value);
-      });
+      selectedVersions.push(listItems.item(index).value);
+    });
     return selectedVersions;
   }
 
@@ -215,13 +247,27 @@ export default class CompasVersionsPlugin extends LitElement {
       const oldScl = await this.getVersion(oldVersion);
       const newScl = this.doc.documentElement;
 
-      this.dispatchEvent(newWizardEvent(
-        compareWizard(oldScl, newScl,
-          {title: get('compas.compare.title', {oldVersion: oldVersion, newVersion: 'current'})})));
+      this.dispatchEvent(
+        newWizardEvent(
+          compareWizard(this, oldScl, newScl, {
+            title: get('compas.compare.title', {
+              oldVersion: oldVersion,
+              newVersion: 'current',
+            }),
+          })
+        )
+      );
     } else {
-      this.dispatchEvent(newWizardEvent(
-        this.showMessageWizard(get("compas.versions.selectOneVersionsTitle"),
-          get("compas.versions.selectOneVersionsMessage", {size: selectedVersions.length}))));
+      this.dispatchEvent(
+        newWizardEvent(
+          this.showMessageWizard(
+            get('compas.versions.selectOneVersionsTitle'),
+            get('compas.versions.selectOneVersionsMessage', {
+              size: selectedVersions.length,
+            })
+          )
+        )
+      );
     }
   }
 
@@ -234,13 +280,27 @@ export default class CompasVersionsPlugin extends LitElement {
       const oldScl = await this.getVersion(oldVersion);
       const newScl = await this.getVersion(newVersion);
 
-      this.dispatchEvent(newWizardEvent(
-        compareWizard(oldScl, newScl,
-          {title: get('compas.compare.title', {oldVersion: oldVersion, newVersion: newVersion})})));
+      this.dispatchEvent(
+        newWizardEvent(
+          compareWizard(this, oldScl, newScl, {
+            title: get('compas.compare.title', {
+              oldVersion: oldVersion,
+              newVersion: newVersion,
+            }),
+          })
+        )
+      );
     } else {
-      this.dispatchEvent(newWizardEvent(
-        this.showMessageWizard(get("compas.versions.selectTwoVersionsTitle"),
-          get("compas.versions.selectTwoVersionsMessage", {size: selectedVersions.length}))));
+      this.dispatchEvent(
+        newWizardEvent(
+          this.showMessageWizard(
+            get('compas.versions.selectTwoVersionsTitle'),
+            get('compas.versions.selectTwoVersionsMessage', {
+              size: selectedVersions.length,
+            })
+          )
+        )
+      );
     }
   }
 
@@ -248,16 +308,15 @@ export default class CompasVersionsPlugin extends LitElement {
     return [
       {
         title: title,
-        content: [
-          html`<span>${message}</span>`,
-        ],
+        content: [html`<span>${message}</span>`],
       },
     ];
   }
 
   private async getVersion(version: string) {
     const type = getTypeFromDocName(this.docName);
-    return CompasSclDataService().getSclDocumentVersion(type, this.docId, version)
+    return CompasSclDataService()
+      .getSclDocumentVersion(type, this.docId, version)
       .then(sclDocument => {
         return Promise.resolve(sclDocument.documentElement);
       });
@@ -274,133 +333,174 @@ export default class CompasVersionsPlugin extends LitElement {
   }
 
   private getCurrentName(): string {
-    const sclName = this.doc.querySelector('SCL > Private[type="compas_scl"] > SclName');
+    const sclName = this.doc.querySelector(
+      'SCL > Private[type="compas_scl"] > SclName'
+    );
     return sclName!.textContent ?? 'unknown';
   }
 
   private renderLineInfo(item: Element): TemplateResult {
-    let element = getElementByName(item, SDS_NAMESPACE, "Name");
+    let element = getElementByName(item, SDS_NAMESPACE, 'Name');
     if (element === null) {
-      element = getElementByName(item, SDS_NAMESPACE, "Id");
+      element = getElementByName(item, SDS_NAMESPACE, 'Id');
     }
     const name = element!.textContent ?? '';
-    const version = getElementByName(item, SDS_NAMESPACE, "Version")!.textContent ?? '';
-    const who = getElementByName(item, SDS_NAMESPACE, "Who")!.textContent ?? '';
-    const when = getElementByName(item, SDS_NAMESPACE, "When")!.textContent ?? '';
-    const what = getElementByName(item, SDS_NAMESPACE, "What")!.textContent ?? '';
+    const version =
+      getElementByName(item, SDS_NAMESPACE, 'Version')!.textContent ?? '';
+    const who = getElementByName(item, SDS_NAMESPACE, 'Who')!.textContent ?? '';
+    const when =
+      getElementByName(item, SDS_NAMESPACE, 'When')!.textContent ?? '';
+    const what =
+      getElementByName(item, SDS_NAMESPACE, 'What')!.textContent ?? '';
 
     return html`<span>${name} (Version: ${version})</span>
-        <span slot="secondary">
-            Who: "${who ? who : '-'}",
-            When: "${when ? when : '-'}",
-            What: "${what ? what : '-'}"
-        </span>`;
+      <span slot="secondary">
+        Who: "${who ? who : '-'}", When: "${when ? when : '-'}", What:
+        "${what ? what : '-'}"
+      </span>`;
   }
 
   render(): TemplateResult {
     if (!this.historyItem) {
-      return html `
-        <compas-loading></compas-loading>
-      `
+      return html` <compas-loading></compas-loading> `;
     }
 
     if (this.historyItem.length <= 0) {
-      return html `
-        <mwc-list>
-          <mwc-list-item id="no-scl-versions">
-            <span>${translate('compas.noSclVersions')}</span>
-          </mwc-list-item>
-        </mwc-list>`
+      return html` <mwc-list>
+        <mwc-list-item id="no-scl-versions">
+          <span>${translate('compas.noSclVersions')}</span>
+        </mwc-list-item>
+      </mwc-list>`;
     }
 
-    return html`
-      <h1>
-        ${translate('compas.versions.sclInfo',
-          { name: this.getCurrentName(),
-            version: this.getCurrentVersion()
-          })}
+    return html` <h1>
+        ${translate('compas.versions.sclInfo', {
+          name: this.getCurrentName(),
+          version: this.getCurrentVersion(),
+        })}
         <nav>
           <abbr title="${translate('compas.versions.addVersionButton')}">
-            <mwc-icon-button icon="playlist_add"
-                             @click=${() => {
-                               this.dispatchEvent(newWizardEvent(this.addVersionWizard()));
-                             }}></mwc-icon-button>
+            <mwc-icon-button
+              icon="playlist_add"
+              @click=${() => {
+                this.dispatchEvent(newWizardEvent(this.addVersionWizard()));
+              }}
+            ></mwc-icon-button>
           </abbr>
         </nav>
         <nav>
           <abbr title="${translate('compas.versions.deleteProjectButton')}">
-            <mwc-icon-button icon="delete_forever"
-                             @click=${() => {
-                               this.dispatchEvent(newWizardEvent(this.confirmDeleteProjectWizard()));
-                             }}></mwc-icon-button>
+            <mwc-icon-button
+              icon="delete_forever"
+              @click=${() => {
+                this.dispatchEvent(
+                  newWizardEvent(this.confirmDeleteProjectWizard())
+                );
+              }}
+            ></mwc-icon-button>
           </abbr>
         </nav>
         <nav>
           <abbr title="${translate('edit')}">
-            <mwc-icon-button icon="edit"
-                             @click=${() => this.openEditWizard()}></mwc-icon-button>
+            <mwc-icon-button
+              icon="edit"
+              @click=${() => this.openEditWizard()}
+            ></mwc-icon-button>
           </abbr>
         </nav>
       </h1>
       <div id="containerCompasVersions">
         <section tabindex="0">
-          <h1>
-            ${translate('compas.versions.title')}
-          </h1>
-          <mwc-list multi
-                    @selected=${(evt: MultiSelectedEvent) => {
-                      this.selectedVersionsOnCompasVersionsEditor = evt.detail.index;
-                    }}>
-            ${this.historyItem.map( (item, index, items) => {
-                const version = getElementByName(item, SDS_NAMESPACE, "Version")!.textContent ?? '';
-                if (items.length - 1 === index) {
-                  return html`<mwc-check-list-item value="${version}"
-                                                   tabindex="0"
-                                                   graphic="icon"
-                                                   twoline
-                                                   .selected=${this.selectedVersionsOnCompasVersionsEditor.has(index)}>
-                                ${this.renderLineInfo(item)}
-                                <span slot="graphic">
-                                  <mwc-icon @click=${() => {
-                                      this.dispatchEvent(newWizardEvent(this.confirmRestoreVersionWizard(version)));
-                                    }}>restore</mwc-icon>
-                                </span>
-                              </mwc-check-list-item>`
-                }
-                return html`<mwc-check-list-item value="${version}"
-                                                 tabindex="0"
-                                                 graphic="icon"
-                                                 twoline
-                                                 .selected=${this.selectedVersionsOnCompasVersionsEditor.has(index)}>
-                                ${this.renderLineInfo(item)}
-                                <span slot="graphic">
-                                  <mwc-icon @click=${() => {
-                                    this.dispatchEvent(newWizardEvent(this.confirmRestoreVersionWizard(version)));
-                                  }}>restore</mwc-icon>
-                                  <mwc-icon @click=${() => {
-                                    this.dispatchEvent(newWizardEvent(this.confirmDeleteVersionWizard(version)));
-                                  }}>delete</mwc-icon>
-                                </span>
-                            </mwc-check-list-item>`
+          <h1>${translate('compas.versions.title')}</h1>
+          <mwc-list
+            multi
+            @selected=${(evt: MultiSelectedEvent) => {
+              this.selectedVersionsOnCompasVersionsEditor = evt.detail.index;
+            }}
+          >
+            ${this.historyItem.map((item, index, items) => {
+              const version =
+                getElementByName(item, SDS_NAMESPACE, 'Version')!.textContent ??
+                '';
+              if (items.length - 1 === index) {
+                return html`<mwc-check-list-item
+                  value="${version}"
+                  tabindex="0"
+                  graphic="icon"
+                  twoline
+                  .selected=${this.selectedVersionsOnCompasVersionsEditor.has(
+                    index
+                  )}
+                >
+                  ${this.renderLineInfo(item)}
+                  <span slot="graphic">
+                    <mwc-icon
+                      @click=${() => {
+                        this.dispatchEvent(
+                          newWizardEvent(
+                            this.confirmRestoreVersionWizard(version)
+                          )
+                        );
+                      }}
+                      >restore</mwc-icon
+                    >
+                  </span>
+                </mwc-check-list-item>`;
+              }
+              return html`<mwc-check-list-item
+                value="${version}"
+                tabindex="0"
+                graphic="icon"
+                twoline
+                .selected=${this.selectedVersionsOnCompasVersionsEditor.has(
+                  index
+                )}
+              >
+                ${this.renderLineInfo(item)}
+                <span slot="graphic">
+                  <mwc-icon
+                    @click=${() => {
+                      this.dispatchEvent(
+                        newWizardEvent(
+                          this.confirmRestoreVersionWizard(version)
+                        )
+                      );
+                    }}
+                    >restore</mwc-icon
+                  >
+                  <mwc-icon
+                    @click=${() => {
+                      this.dispatchEvent(
+                        newWizardEvent(this.confirmDeleteVersionWizard(version))
+                      );
+                    }}
+                    >delete</mwc-icon
+                  >
+                </span>
+              </mwc-check-list-item>`;
             })}
           </mwc-list>
         </section>
-        <mwc-fab extended
-                 icon="compare"
-                 label="${translate('compas.versions.compareCurrentButton')}"
-                 @click=${this.compareCurrentVersion}></mwc-fab>
-        <mwc-fab extended
-                 icon="compare"
-                 label="${translate('compas.versions.compareButton')}"
-                 @click=${this.compareVersions}></mwc-fab>
-      </div>`
+        <mwc-fab
+          extended
+          icon="compare"
+          label="${translate('compas.versions.compareCurrentButton')}"
+          @click=${this.compareCurrentVersion}
+        ></mwc-fab>
+        <mwc-fab
+          extended
+          icon="compare"
+          label="${translate('compas.versions.compareButton')}"
+          @click=${this.compareVersions}
+        ></mwc-fab>
+      </div>`;
   }
 
   static styles = css`
     ${styles}
 
     mwc-list-item#no-scl-versions > span {
-      color: var(--base1)
+      color: var(--base1);
     }
 
     :host {
@@ -440,7 +540,7 @@ export default class CompasVersionsPlugin extends LitElement {
 
     mwc-fab {
       float: right;
-      margin: 5px 5px 5px 5px
+      margin: 5px 5px 5px 5px;
     }
   `;
 }

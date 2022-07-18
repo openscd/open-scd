@@ -1,12 +1,16 @@
-import {html, LitElement} from 'lit-element';
-import {get} from "lit-translate";
+import { html, LitElement } from 'lit-element';
+import { get } from 'lit-translate';
 
-import {newPendingStateEvent, newWizardEvent, Wizard, WizardInputElement} from '../foundation.js';
+import {
+  newPendingStateEvent,
+  newWizardEvent,
+  Wizard,
+  WizardInputElement,
+} from '../foundation.js';
 
-import CompasSaveElement from "../compas/CompasSave.js";
-import {dispatchEventOnOpenScd} from "../compas/foundation.js";
+import CompasSaveElement from '../compas/CompasSave.js';
 
-import "../compas/CompasSave.js";
+import '../compas/CompasSave.js';
 
 export default class CompasSaveMenuPlugin extends LitElement {
   doc!: XMLDocument;
@@ -14,14 +18,16 @@ export default class CompasSaveMenuPlugin extends LitElement {
   docId?: string;
 
   private saveToCompasWizard(): Wizard {
-    function saveToCompas() {
+    function saveToCompas(plugin: CompasSaveMenuPlugin) {
       return function (inputs: WizardInputElement[], wizard: Element) {
-        const compasSave = <CompasSaveElement>wizard.shadowRoot!.querySelector('compas-save')
+        const compasSave = <CompasSaveElement>(
+          wizard.shadowRoot!.querySelector('compas-save')
+        );
         if (!compasSave.valid()) {
           return [];
         }
 
-        dispatchEventOnOpenScd(newPendingStateEvent(compasSave.saveToCompas()));
+        plugin.dispatchEvent(newPendingStateEvent(compasSave.saveToCompas()));
         return [];
       };
     }
@@ -32,11 +38,15 @@ export default class CompasSaveMenuPlugin extends LitElement {
         primary: {
           icon: 'save',
           label: get('save'),
-          action: saveToCompas(),
+          action: saveToCompas(this),
         },
         content: [
-          html `<compas-save .doc="${this.doc}" .docName="${this.docName}" .docId="${this.docId}">
-                </compas-save>`
+          html`<compas-save
+            .doc="${this.doc}"
+            .docName="${this.docName}"
+            .docId="${this.docId}"
+          >
+          </compas-save>`,
         ],
       },
     ];
@@ -46,5 +56,3 @@ export default class CompasSaveMenuPlugin extends LitElement {
     this.dispatchEvent(newWizardEvent(this.saveToCompasWizard()));
   }
 }
-
-

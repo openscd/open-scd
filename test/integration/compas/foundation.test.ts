@@ -1,8 +1,8 @@
-import {expect, fixture, html} from '@open-wc/testing';
+import { expect, fixture, html } from '@open-wc/testing';
 
-import {updateDocumentInOpenSCD} from "../../../src/compas/foundation.js";
+import { updateDocumentInOpenSCD } from '../../../src/compas/foundation.js';
 
-import {OpenSCD} from "../../../src/open-scd.js";
+import { OpenSCD } from '../../../src/open-scd.js';
 import '../../../src/open-scd.js';
 import { newUserInfoEvent } from '../../../src/foundation.js';
 
@@ -10,9 +10,7 @@ describe('compas-foundation', () => {
   let element: OpenSCD;
 
   beforeEach(async () => {
-    element = await fixture(
-        html`<open-scd></open-scd>`
-    );
+    element = await fixture(html`<open-scd></open-scd>`);
   });
 
   it('when loaded the document should be on open-scd component', async () => {
@@ -20,7 +18,7 @@ describe('compas-foundation', () => {
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-    updateDocumentInOpenSCD(doc);
+    updateDocumentInOpenSCD(element, doc);
     await element.updateComplete;
 
     expect(element.doc).to.be.not.undefined;
@@ -29,11 +27,14 @@ describe('compas-foundation', () => {
   });
 
   it('when UserInfoEvent event is dispatched, the username is shown in OpenSCD', async () => {
-    expect(element.shadowRoot!.querySelector('span[id="userField"]')).to.be.null;
+    expect(element.shadowRoot!.querySelector('span[id="userField"]')).to.be
+      .null;
 
-    element.dispatchEvent(newUserInfoEvent("Henk"));
+    element.dispatchEvent(newUserInfoEvent('Henk'));
     await element.updateComplete;
 
-    expect(element.shadowRoot!.querySelector('span[id="userField"]')!.textContent).to.be.equal('Logged in as Henk')
+    expect(
+      element.shadowRoot!.querySelector('span[id="userField"]')!.textContent
+    ).to.be.equal('Logged in as Henk');
   });
 });
