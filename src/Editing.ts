@@ -1,4 +1,4 @@
-import { LitElement, property } from 'lit-element';
+import { property } from 'lit-element';
 import { get } from 'lit-translate';
 
 import {
@@ -421,8 +421,6 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
         );
       }
 
-      this.dispatchEvent(newValidateEvent());
-
       if (!this.doc) return;
 
       const newDoc = document.implementation.createDocument(
@@ -434,6 +432,8 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       // change the document object reference to enable reactive updates
       newDoc.documentElement.replaceWith(this.doc.documentElement);
       this.doc = newDoc;
+
+      this.dispatchEvent(newValidateEvent());
     }
 
     private async onOpenDoc(event: OpenDocEvent) {
