@@ -98,7 +98,6 @@ describe('Communication Plugin', () => {
           await saveButton.click();
           await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
-          expect(parent.wizardUI.dialog).not.to.exist;
           expect(element.doc.querySelector('Communication')).not.is.null;
           expect(element.doc.querySelector('Communication > SubNetwork[name="Test"]')).to.exist;
     });
