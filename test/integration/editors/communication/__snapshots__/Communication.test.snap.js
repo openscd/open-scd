@@ -13,8 +13,6 @@ snapshots["Communication Plugin without a doc loaded looks like the latest snaps
   >
   </mwc-fab>
 </h1>
-<wizard-dialog>
-</wizard-dialog>
 `;
 /* end snapshot Communication Plugin without a doc loaded looks like the latest snapshot */
 

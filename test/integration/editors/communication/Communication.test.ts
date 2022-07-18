@@ -1,18 +1,16 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../../../mock-wizard.js';
-import { MockWizard } from '../../../mock-wizard.js';
+import '../../../mock-wizard-editor.js';
+import { MockWizardEditor } from '../../../mock-wizard-editor.js';
 
-import Communication from '../../../../src/editors/Communication.js';
-import { Editing } from '../../../../src/Editing.js';
-import { Wizarding } from '../../../../src/Wizarding.js';
+import Communication from '../../../../src/editors/Communication.js'; 
 import { Dialog } from '@material/mwc-dialog';
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
 
 describe('Communication Plugin', () => {
   customElements.define(
     'communication-plugin',
-    Wizarding(Editing(Communication))
+    Communication
   );
   let element: Communication;
   beforeEach(async () => {
@@ -45,18 +43,23 @@ describe('Communication Plugin', () => {
 
   describe('with a doc loaded missing a communication section', () => {
     let doc: XMLDocument;
-    let parent: MockWizard;
+    let parent: MockWizardEditor;
     let fab: HTMLElement;
+    let element: Communication;
 
     beforeEach(async () => {
       doc = await fetch('/test/testfiles/missingCommunication.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      parent = <MockWizard>(
+      
+      element = await fixture(
+        html`<communication-plugin .doc="${doc}"></communication-plugin>`
+      );
+
+      parent = <MockWizardEditor>(
         await fixture(
-          html`<mock-wizard
-            ><communication-plugin .doc=${doc}></communication-plugin
-          ></mock-wizard>`
+          html`<mock-wizard-editor
+            >${element}/mock-wizard-editor>`
         )
       );
       await element.updateComplete;
@@ -78,25 +81,28 @@ describe('Communication Plugin', () => {
   
     it('Should create a Communication Element', async () => {
           expect(parent.wizardUI.dialogs.length).to.equal(0);
-          fab.click();
-          await parent.updateComplete;
-          expect(parent.wizardUI.dialogs.length).to.equal(1);
+          expect(element.doc.querySelector('Communication')).is.null;
 
-          const dialog: Dialog = parent.wizardUI.dialogs.item(0);
+          await fab.click();
+          await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+          await parent.updateComplete;
+
+          expect(parent.wizardUI.dialogs.length).to.equal(1);
+          
+          const dialog: Dialog = parent.wizardUI.dialog!;
+          expect(dialog).to.not.be.undefined;
 
           const nameInput: WizardTextField = dialog.querySelector<WizardTextField>('wizard-textfield[label="name"]')!;
-
           nameInput.value = 'Test';
+          await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
           const saveButton: HTMLElement = dialog.querySelector('mwc-button[slot="primaryAction"]')!;
+          await saveButton.click();
+          await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
-          await parent.updateComplete;
-
-          saveButton.click();
-
-          await parent.updateComplete;
-
-          expect(parent.wizardUI.dialogs.length).to.equal(0);
+          expect(parent.wizardUI.dialog).not.to.exist;
+          expect(element.doc.querySelector('Communication')).not.is.null;
+          expect(element.doc.querySelector('Communication > SubNetwork[name="Test"]')).to.exist;
     });
   });
 });

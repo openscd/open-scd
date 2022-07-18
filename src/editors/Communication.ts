@@ -37,8 +37,7 @@ export default class CommunicationPlugin extends LitElement {
 
   /** Opens a [[`WizardDialog`]] for creating a new `SubNetwork` element. */
   private openCreateSubNetworkWizard(): void {
-    const parent =
-      this.doc.querySelector(':root > Communication') ||
+    const parent =this.doc.querySelector(':root > Communication') ||
       this.createCommunication();
 
     this.dispatchEvent(newWizardEvent(createSubNetworkWizard(parent!)));
