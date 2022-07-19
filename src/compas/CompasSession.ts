@@ -1,16 +1,22 @@
-import {css, customElement, html, LitElement, property, TemplateResult} from "lit-element";
-import {translate, translateUnsafeHTML} from "lit-translate";
-import {Dialog} from "@material/mwc-dialog";
+import {
+  css,
+  customElement,
+  html,
+  LitElement,
+  property,
+  TemplateResult,
+} from 'lit-element';
+import { translate, translateUnsafeHTML } from 'lit-translate';
+import { Dialog } from '@material/mwc-dialog';
 
 import '@material/mwc-dialog';
 import '@material/mwc-button';
 
-import {saveDocumentToFile} from "../file.js";
-import {dispatchEventOnOpenScd, getOpenScdElement} from "./foundation.js";
+import { saveDocumentToFile } from '../file.js';
 
-import {CompasUserInfoService} from "../compas-services/CompasUserInfoService.js";
-import {newUserInfoEvent} from "../foundation.js";
-import {createLogEvent} from "../compas-services/foundation.js";
+import { CompasUserInfoService } from '../compas-services/CompasUserInfoService.js';
+import { newUserInfoEvent } from '../foundation.js';
+import { createLogEvent } from '../compas-services/foundation.js';
 
 @customElement('compas-session-expiring-dialog')
 export class CompasSessionExpiringDialogElement extends LitElement {
@@ -21,20 +27,34 @@ export class CompasSessionExpiringDialogElement extends LitElement {
 
   private expiringSessionWarningTimer: NodeJS.Timeout | null = null;
 
+  private static getOpenScdElement(): Element | null {
+    return document.querySelector('open-scd');
+  }
+
   static getElement(): CompasSessionExpiringDialogElement {
-    return (<CompasSessionExpiringDialogElement>getOpenScdElement()!
-      .shadowRoot!.querySelector('compas-session-expiring-dialog'));
+    return <CompasSessionExpiringDialogElement>(
+      this.getOpenScdElement()!.shadowRoot!.querySelector(
+        'compas-session-expiring-dialog'
+      )
+    );
   }
 
   resetTimer(): void {
     if (this.expiringSessionWarningTimer) {
       clearTimeout(this.expiringSessionWarningTimer);
     }
-    this.expiringSessionWarningTimer = setTimeout(showExpiringSessionWarning, this.expiringSessionWarning);
+    this.expiringSessionWarningTimer = setTimeout(
+      showExpiringSessionWarning,
+      this.expiringSessionWarning
+    );
   }
 
   private getDialog(): Dialog {
-    return <Dialog>this.shadowRoot!.querySelector('mwc-dialog[id="compasSessionExpiringDialog"]');
+    return <Dialog>(
+      this.shadowRoot!.querySelector(
+        'mwc-dialog[id="compasSessionExpiringDialog"]'
+      )
+    );
   }
 
   show(): void {
@@ -53,12 +73,20 @@ export class CompasSessionExpiringDialogElement extends LitElement {
 
   render(): TemplateResult {
     return html`
-      <mwc-dialog id="compasSessionExpiringDialog"
-                  heading="${translate('compas.session.headingExpiring')}"
-                  scrimClickAction="">
-        <div>${translateUnsafeHTML('compas.session.explainExpiring',
-          {timeTillExpire: ((this.expiredSessionMessage - this.expiringSessionWarning) / 60 / 1000),
-           expiringSessionWarning: (this.expiringSessionWarning / 60 / 1000)})}</div>
+      <mwc-dialog
+        id="compasSessionExpiringDialog"
+        heading="${translate('compas.session.headingExpiring')}"
+        scrimClickAction=""
+      >
+        <div>
+          ${translateUnsafeHTML('compas.session.explainExpiring', {
+            timeTillExpire:
+              (this.expiredSessionMessage - this.expiringSessionWarning) /
+              60 /
+              1000,
+            expiringSessionWarning: this.expiringSessionWarning / 60 / 1000,
+          })}
+        </div>
         <mwc-button slot="primaryAction" dialogAction="close">
           ${translate('compas.session.continue')}
         </mwc-button>
@@ -70,7 +98,7 @@ export class CompasSessionExpiringDialogElement extends LitElement {
     #compasSessionExpiringDialog {
       --mdc-dialog-max-width: 800px;
     }
-  `
+  `;
 }
 
 @customElement('compas-session-expired-dialog')
@@ -84,20 +112,34 @@ export class CompasSessionExpiredDialogElement extends LitElement {
 
   private expiredSessionMessageTimer: NodeJS.Timeout | null = null;
 
+  private static getOpenScdElement(): Element | null {
+    return document.querySelector('open-scd');
+  }
+
   static getElement(): CompasSessionExpiredDialogElement {
-    return (<CompasSessionExpiredDialogElement>getOpenScdElement()!
-      .shadowRoot!.querySelector('compas-session-expired-dialog'));
+    return <CompasSessionExpiredDialogElement>(
+      this.getOpenScdElement()!.shadowRoot!.querySelector(
+        'compas-session-expired-dialog'
+      )
+    );
   }
 
   resetTimer(): void {
     if (this.expiredSessionMessageTimer) {
       clearTimeout(this.expiredSessionMessageTimer);
     }
-    this.expiredSessionMessageTimer = setTimeout(showExpiredSessionMessage, this.expiredSessionMessage);
+    this.expiredSessionMessageTimer = setTimeout(
+      showExpiredSessionMessage,
+      this.expiredSessionMessage
+    );
   }
 
   private getDialog(): Dialog {
-    return <Dialog>this.shadowRoot!.querySelector('mwc-dialog[id="compasSessionExpiredDialog"]');
+    return <Dialog>(
+      this.shadowRoot!.querySelector(
+        'mwc-dialog[id="compasSessionExpiredDialog"]'
+      )
+    );
   }
 
   show(): void {
@@ -119,25 +161,34 @@ export class CompasSessionExpiredDialogElement extends LitElement {
   }
 
   render(): TemplateResult {
-    const expiredSessionMessage = (this.expiredSessionMessage / 60  / 1000);
+    const expiredSessionMessage = this.expiredSessionMessage / 60 / 1000;
     return html`
       <mwc-dialog id="compasSessionExpiredDialog"
                   heading="${translate('compas.session.headingExpired')}"
                   scrimClickAction=""
                   escapeKeyAction=""">
-        <div>${(this.doc == null) ?
-                  translateUnsafeHTML('compas.session.explainExpiredWithoutProject',
-                                        {expiredSessionMessage: expiredSessionMessage}) :
-                  translateUnsafeHTML('compas.session.explainExpiredWithProject',
-                                        {expiredSessionMessage: expiredSessionMessage}) }
+        <div>${
+          this.doc == null
+            ? translateUnsafeHTML(
+                'compas.session.explainExpiredWithoutProject',
+                { expiredSessionMessage: expiredSessionMessage }
+              )
+            : translateUnsafeHTML('compas.session.explainExpiredWithProject', {
+                expiredSessionMessage: expiredSessionMessage,
+              })
+        }
         </div>
-        ${(this.doc !== null) ?
-             html `<mwc-button slot="primaryAction"
-                               @click=${() => this.save()}
-                               ?disabled=${this.doc == null}>
-                     ${translate('compas.session.saveProject')}
-                   </mwc-button>` :
-             html `` }
+        ${
+          this.doc !== null
+            ? html`<mwc-button
+                slot="primaryAction"
+                @click=${() => this.save()}
+                ?disabled=${this.doc == null}
+              >
+                ${translate('compas.session.saveProject')}
+              </mwc-button>`
+            : html``
+        }
       </mwc-dialog>
     `;
   }
@@ -146,13 +197,19 @@ export class CompasSessionExpiredDialogElement extends LitElement {
     #compasSessionExpiredDialog {
       --mdc-dialog-max-width: 1024px;
     }
-  `
+  `;
 }
 
-export function renderCompasSessionDialogs(doc: Document | null, docName: string): TemplateResult {
-  return html `
+export function renderCompasSessionDialogs(
+  doc: Document | null,
+  docName: string
+): TemplateResult {
+  return html`
     <compas-session-expiring-dialog></compas-session-expiring-dialog>
-    <compas-session-expired-dialog .doc="${doc}" .docName="${docName}"></compas-session-expired-dialog>
+    <compas-session-expired-dialog
+      .doc="${doc}"
+      .docName="${docName}"
+    ></compas-session-expired-dialog>
   `;
 }
 
@@ -167,8 +224,10 @@ function schedulePing() {
   if (pingTimer === null) {
     // Every minute we will send a Ping to the CoMPAS Services while the user is still active.
     // This to keep the connection alive so long the user is working.
-    CompasUserInfoService().ping().finally(() => console.debug('Ping executed.'))
-    pingTimer = setTimeout(resetKeepAlivePing, (60 * 1000));
+    CompasUserInfoService()
+      .ping()
+      .finally(() => console.debug('Ping executed.'));
+    pingTimer = setTimeout(resetKeepAlivePing, 60 * 1000);
   }
 }
 
@@ -198,31 +257,43 @@ function registerEvents() {
   window.addEventListener('keydown', resetTimer);
 }
 
-export function setSessionTimeouts(sessionWarning: number, sessionExpires: number): void {
+export function setSessionTimeouts(
+  sessionWarning: number,
+  sessionExpires: number
+): void {
   const expiringSessionWarning = sessionWarning * 60 * 1000;
   const expiredSessionMessage = sessionExpires * 60 * 1000;
 
-  CompasSessionExpiringDialogElement.getElement().expiringSessionWarning = expiringSessionWarning;
-  CompasSessionExpiringDialogElement.getElement().expiredSessionMessage = expiredSessionMessage;
-  CompasSessionExpiredDialogElement.getElement().expiredSessionMessage = expiredSessionMessage;
+  CompasSessionExpiringDialogElement.getElement().expiringSessionWarning =
+    expiringSessionWarning;
+  CompasSessionExpiringDialogElement.getElement().expiredSessionMessage =
+    expiredSessionMessage;
+  CompasSessionExpiredDialogElement.getElement().expiredSessionMessage =
+    expiredSessionMessage;
   resetTimer();
   registerEvents();
 }
 
 export async function retrieveUserInfo(): Promise<void> {
-  await CompasUserInfoService().getCompasUserInfo()
+  const openScd = document.querySelector('open-scd');
+  await CompasUserInfoService()
+    .getCompasUserInfo()
     .then(response => {
-      const name = response.querySelectorAll("Name").item(0)?.textContent;
+      const name = response.querySelectorAll('Name').item(0)?.textContent;
       if (name !== null) {
-        dispatchEventOnOpenScd(newUserInfoEvent(name));
+        openScd!.dispatchEvent(newUserInfoEvent(name));
       }
 
-      const sessionWarning = response.querySelectorAll("SessionWarning").item(0)?.textContent??"15";
-      const sessionExpires = response.querySelectorAll("SessionExpires").item(0)?.textContent??"10";
+      const sessionWarning =
+        response.querySelectorAll('SessionWarning').item(0)?.textContent ??
+        '15';
+      const sessionExpires =
+        response.querySelectorAll('SessionExpires').item(0)?.textContent ??
+        '10';
       setSessionTimeouts(parseInt(sessionWarning), parseInt(sessionExpires));
     })
     .catch(reason => {
-      createLogEvent(reason);
+      createLogEvent(openScd!, reason);
       setSessionTimeouts(10, 15);
     });
 }

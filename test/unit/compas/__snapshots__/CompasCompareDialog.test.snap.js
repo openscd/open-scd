@@ -30,8 +30,8 @@ snapshots["compas-compare-dialog rendering full compare dialog looks like the la
       </span>
       <span slot="secondary">
         3.0.0
-                        ↶
-                        3.1.0
+                ↶
+                3.1.0
       </span>
       <mwc-icon slot="meta">
         edit
@@ -77,7 +77,8 @@ snapshots["compas-compare-dialog rendering full compare dialog looks like the la
       noninteractive=""
       tabindex="-1"
     >
-      [compas.compare.attributes] VoltageLevel (_d6056127-34f1-43a9-b029-23fddb913bd5>S4 110kV)
+      [compas.compare.attributes] VoltageLevel
+                (_d6056127-34f1-43a9-b029-23fddb913bd5>S4 110kV)
     </mwc-list-item>
     <li
       divider=""
@@ -108,7 +109,8 @@ snapshots["compas-compare-dialog rendering full compare dialog looks like the la
       noninteractive=""
       tabindex="-1"
     >
-      [compas.compare.children] VoltageLevel (_d6056127-34f1-43a9-b029-23fddb913bd5>S4 110kV)
+      [compas.compare.children] VoltageLevel
+                (_d6056127-34f1-43a9-b029-23fddb913bd5>S4 110kV)
     </mwc-list-item>
     <li
       divider=""
@@ -141,7 +143,8 @@ snapshots["compas-compare-dialog rendering full compare dialog looks like the la
       noninteractive=""
       tabindex="-1"
     >
-      [compas.compare.attributes] ConductingEquipment (_d6056127-34f1-43a9-b029-23fddb913bd5>S4 110kV>BAY_L5_0>BREAKER1)
+      [compas.compare.attributes] ConductingEquipment
+                (_d6056127-34f1-43a9-b029-23fddb913bd5>S4 110kV>BAY_L5_0>BREAKER1)
     </mwc-list-item>
     <li
       divider=""

@@ -1,13 +1,13 @@
-import {html, LitElement} from 'lit-element';
-import {get} from "lit-translate";
+import { html, LitElement } from 'lit-element';
+import { get } from 'lit-translate';
 
-import {newWizardEvent, Wizard, WizardInputElement} from '../foundation.js';
+import { newWizardEvent, Wizard, WizardInputElement } from '../foundation.js';
 
-import {CompasSettingsElement} from "../compas/CompasSettings.js";
-import {retrieveUserInfo} from "../compas/CompasSession.js";
-import {loadNsdocFiles} from "../compas/CompasNsdoc.js";
+import { CompasSettingsElement } from '../compas/CompasSettings.js';
+import { retrieveUserInfo } from '../compas/CompasSession.js';
+import { loadNsdocFiles } from '../compas/CompasNsdoc.js';
 
-import "../compas/CompasSettings.js";
+import '../compas/CompasSettings.js';
 
 export default class CompasSettingsMenuPlugin extends LitElement {
   async run(): Promise<void> {
@@ -18,7 +18,9 @@ export default class CompasSettingsMenuPlugin extends LitElement {
 export function compasSettingWizard(): Wizard {
   function save() {
     return function (inputs: WizardInputElement[], wizard: Element) {
-      const compasSettingsElement = <CompasSettingsElement>wizard.shadowRoot!.querySelector('compas-settings')
+      const compasSettingsElement = <CompasSettingsElement>(
+        wizard.shadowRoot!.querySelector('compas-settings')
+      );
       if (compasSettingsElement.save()) {
         compasSettingsElement.close();
       }
@@ -34,9 +36,7 @@ export function compasSettingWizard(): Wizard {
         label: get('save'),
         action: save(),
       },
-      content: [
-        html`<compas-settings></compas-settings>`,
-      ],
+      content: [html`<compas-settings></compas-settings>`],
     },
   ];
 }
@@ -45,4 +45,3 @@ export function compasSettingWizard(): Wizard {
 retrieveUserInfo();
 // And we will start loading the Nsdoc Files from the Compas Backend Service.
 loadNsdocFiles();
-

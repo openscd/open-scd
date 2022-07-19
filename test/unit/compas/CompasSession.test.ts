@@ -1,13 +1,11 @@
-import {expect, fixture, html} from "@open-wc/testing";
+import { expect, fixture, html } from '@open-wc/testing';
 
 import {
   CompasSessionExpiredDialogElement,
   CompasSessionExpiringDialogElement,
-  resetTimer,
-  setSessionTimeouts
-} from "../../../src/compas/CompasSession.js";
+} from '../../../src/compas/CompasSession.js';
 
-import "../../../src/compas/CompasSession.js";
+import '../../../src/compas/CompasSession.js';
 
 describe('compas-session', () => {
   describe('Dialog when almost expired', () => {
@@ -15,8 +13,7 @@ describe('compas-session', () => {
 
     beforeEach(async () => {
       element = await fixture(
-        html`
-          <compas-session-expiring-dialog></compas-session-expiring-dialog>`
+        html` <compas-session-expiring-dialog></compas-session-expiring-dialog>`
       );
     });
 
@@ -30,8 +27,7 @@ describe('compas-session', () => {
 
     beforeEach(async () => {
       element = await fixture(
-        html`
-          <compas-session-expired-dialog></compas-session-expired-dialog>`
+        html` <compas-session-expired-dialog></compas-session-expired-dialog>`
       );
     });
 
@@ -47,8 +43,10 @@ describe('compas-session', () => {
 
     beforeEach(async () => {
       element = await fixture(
-        html`
-          <compas-session-expired-dialog .doc="${doc}" .docName="${docName}"></compas-session-expired-dialog>`
+        html` <compas-session-expired-dialog
+          .doc="${doc}"
+          .docName="${docName}"
+        ></compas-session-expired-dialog>`
       );
     });
 

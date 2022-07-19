@@ -1,28 +1,29 @@
-import {html, LitElement} from 'lit-element';
-import {get} from "lit-translate";
+import { html, LitElement } from 'lit-element';
+import { get } from 'lit-translate';
 
-import {newWizardEvent, Wizard} from '../foundation.js';
+import { newWizardEvent, Wizard } from '../foundation.js';
 
-import {DocRetrievedEvent} from "../compas/CompasOpen.js";
-import {mergeSubstation} from "./UpdateSubstation.js";
+import { DocRetrievedEvent } from '../compas/CompasOpen.js';
+import { mergeSubstation } from './UpdateSubstation.js';
 
-import "../compas/CompasOpen.js";
+import '../compas/CompasOpen.js';
 
 export default class CompasUpdateSubstationMenuPlugin extends LitElement {
   doc!: XMLDocument;
   parent!: HTMLElement;
 
-  private substationCompasWizard(parent: HTMLElement, doc: Document): Wizard {
+  private substationCompasWizard(): Wizard {
     return [
       {
         title: get('compas.updateSubstation.title'),
         content: [
-          html`<compas-open @docRetrieved=${(evt: DocRetrievedEvent) => {
-                                             mergeSubstation(this, doc, evt.detail.doc);
-                                             parent.dispatchEvent(newWizardEvent());
-                                           }}>
-               </compas-open>
-          `,
+          html`<compas-open
+            @docRetrieved=${(evt: DocRetrievedEvent) => {
+              mergeSubstation(this, this.doc, evt.detail.doc);
+              this.dispatchEvent(newWizardEvent());
+            }}
+          >
+          </compas-open> `,
         ],
       },
     ];
@@ -33,6 +34,6 @@ export default class CompasUpdateSubstationMenuPlugin extends LitElement {
   }
 
   async run(): Promise<void> {
-    this.dispatchEvent(newWizardEvent(this.substationCompasWizard(this.parent, this.doc)));
+    this.dispatchEvent(newWizardEvent(this.substationCompasWizard()));
   }
 }
