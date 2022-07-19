@@ -43,7 +43,7 @@ snapshots["GOOSE subscriber plugin in Publisher view per dafault the right hand 
       graphic="icon"
       noninteractive=""
       tabindex="-1"
-      value="IED1>>CircuitBreaker_CB1>GCBIED1>>CircuitBreaker_CB1>GCB2"
+      value="IED1>>CircuitBreaker_CB1>GCB IED1>>CircuitBreaker_CB1>GCB2"
     >
       <span>
         IED1
@@ -160,7 +160,7 @@ snapshots["GOOSE subscriber plugin in Publisher view per dafault the right hand 
       graphic="icon"
       noninteractive=""
       tabindex="-1"
-      value="IED4>>CircuitBreaker_CB1>GCBIED4>>CircuitBreaker_CB1>GCB2"
+      value="IED4>>CircuitBreaker_CB1>GCB IED4>>CircuitBreaker_CB1>GCB2"
     >
       <span>
         IED4
@@ -350,7 +350,7 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
-        value="IED1IED3"
+        value="IED1 IED3"
       >
         <span>
           [subscription.subscriber.subscribed]
@@ -516,7 +516,7 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
-        value="IED1IED3"
+        value="IED1 IED3"
       >
         <span>
           [subscription.subscriber.availableToSubscribe]
@@ -572,7 +572,7 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
-        value="IED1IED4"
+        value="IED1 IED4"
       >
         <span>
           [subscription.subscriber.subscribed]

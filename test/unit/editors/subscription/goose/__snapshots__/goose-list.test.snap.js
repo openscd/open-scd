@@ -12,7 +12,7 @@ snapshots["goose-list looks like the latest snapshot with a document loaded"] =
       graphic="icon"
       noninteractive=""
       tabindex="-1"
-      value="IED1>>CircuitBreaker_CB1>GCBIED1>>CircuitBreaker_CB1>GCB2"
+      value="IED1>>CircuitBreaker_CB1>GCB IED1>>CircuitBreaker_CB1>GCB2"
     >
       <span>
         IED1

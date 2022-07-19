@@ -333,7 +333,7 @@ export class SubscriberList extends SubscriberListContainer {
             const id = identity(element.element) as string;
             return typeof id === 'string' ? id : '';
           })
-          .join('')}"
+          .join(' ')}"
       >
         <span
           >${translate('subscription.subscriber.availableToSubscribe')}</span
@@ -357,7 +357,7 @@ export class SubscriberList extends SubscriberListContainer {
             const id = identity(element.element) as string;
             return typeof id === 'string' ? id : '';
           })
-          .join('')}"
+          .join(' ')}"
       >
         <span>${translate('subscription.subscriber.partiallySubscribed')}</span>
       </mwc-list-item>
@@ -379,7 +379,7 @@ export class SubscriberList extends SubscriberListContainer {
             const id = identity(element.element) as string;
             return typeof id === 'string' ? id : '';
           })
-          .join('')}"
+          .join(' ')}"
       >
         <span>${translate('subscription.subscriber.subscribed')}</span>
       </mwc-list-item>

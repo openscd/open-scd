@@ -290,7 +290,7 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
-        value="IED1IED2"
+        value="IED1 IED2"
       >
         <span>
           [subscription.subscriber.subscribed]
@@ -448,7 +448,7 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
-        value="IED1IED2"
+        value="IED1 IED2"
       >
         <span>
           [subscription.subscriber.availableToSubscribe]
@@ -502,7 +502,7 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
-        value="IED1IED4"
+        value="IED1 IED4"
       >
         <span>
           [subscription.subscriber.subscribed]

@@ -43,7 +43,7 @@ snapshots["Editor for DataSet element looks like the latest snapshot"] =
     graphic="icon"
     noninteractive=""
     tabindex="-1"
-    value="IED2>>CBSW>GooseDataSet1IED2>>CBSW> XSWI 1>dataSetIED2>>CBSW> XSWI 2>dataSet"
+    value="IED2>>CBSW>GooseDataSet1 IED2>>CBSW> XSWI 1>dataSet IED2>>CBSW> XSWI 2>dataSet"
   >
     <span>
       IED2

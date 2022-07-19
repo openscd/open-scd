@@ -28,7 +28,7 @@ export class DataSetEditor extends LitElement {
                   const id = identity(element) as string;
                   return typeof id === 'string' ? id : '';
                 })
-                .join('')}"
+                .join(' ')}"
             >
               <span>${ied.getAttribute('name')}</span>
               <mwc-icon slot="graphic">developer_board</mwc-icon>

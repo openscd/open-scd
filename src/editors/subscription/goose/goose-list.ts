@@ -102,7 +102,7 @@ export class GooseList extends LitElement {
                     const id = identity(element) as string;
                     return typeof id === 'string' ? id : '';
                   })
-                  .join('')}"
+                  .join(' ')}"
               >
                 <span>${getNameAttribute(ied)}</span>
                 <mwc-icon slot="graphic">developer_board</mwc-icon>
