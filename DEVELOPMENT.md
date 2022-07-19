@@ -37,11 +37,11 @@ using [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) from wi
 We provide the following `npm` scripts for your convenience:
 
 - `npm start` runs `CoMPAS OpenSCD` for development, reloading on file changes
-- `npm test` runs the test suite with Karma
+- `npm test` runs the test suite with Web Test Runner
 - `npm run lint` runs the linter (fixes problems in your code)
 - `npm run format` runs the formatter (formats your code in a unified way)
 - `npm run doc` builds HTML documentation into the `doc` directory
-- `npm run build` builds a deployable version of the project into the `dist` directory
+- `npm run build` builds a deployable version of the project into the `build` directory
 
 ## Docker
 
