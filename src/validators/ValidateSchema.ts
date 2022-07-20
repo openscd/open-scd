@@ -44,6 +44,8 @@ export default class ValidateSchema extends LitElement {
       });
     }
 
+    validators[xsdName] = validate;
+
     return new Promise((resolve, reject) => {
       worker.addEventListener('message', (e: MessageEvent<WorkerMessage>) => {
         if (isLoadSchemaResult(e.data)) {
