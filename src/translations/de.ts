@@ -151,6 +151,11 @@ export const de: Translations = {
     noMultiplier: 'keiner',
     unique: 'Darf sich nicht wiederholen',
   },
+  compare: {
+    compareButton: '???',
+    attributes: '??? {{ elementName }}',
+    children: '??? {{ elementName }}',
+  },
   log: {
     name: 'Protokoll',
     placeholder:
@@ -457,6 +462,14 @@ export const de: Translations = {
       scaleMultiplierHelper: '???',
       scaleOffsetHelper: '???',
     },
+  },
+  'compare-ied': {
+    title: '???',
+    projectIedTitle: '???',
+    templateIedTitle: '???',
+    selectIedButton: '???',
+    selectTemplateButton: '???',
+    noDiff: '??? "{{ projectIedName }}" ??? "{{ templateIedName }}"',
   },
   'enum-val': {
     wizard: {

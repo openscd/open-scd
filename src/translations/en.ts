@@ -129,6 +129,11 @@ export const en = {
     noMultiplier: 'none',
     unique: 'Must be unique',
   },
+  compare: {
+    compareButton: 'Compare',
+    attributes: 'Attributes from {{ elementName }}',
+    children: 'Child elements from {{ elementName }}',
+  },
   log: {
     name: 'Log',
     placeholder: 'Edits, errors, and other notifications will show up here.',
@@ -457,6 +462,15 @@ export const en = {
       scaleMultiplierHelper: 'Scale Multiplier',
       scaleOffsetHelper: 'Scale Offset',
     },
+  },
+  'compare-ied': {
+    title: 'Compare IED with IED from template project',
+    projectIedTitle: 'IED in project',
+    templateIedTitle: 'IED in template project',
+    selectIedButton: 'Select IED',
+    selectTemplateButton: 'Select template project',
+    noDiff:
+      'No differences between the project IED "{{ projectIedName }}" and template IED "{{ templateIedName }}"',
   },
   'enum-val': {
     wizard: {
