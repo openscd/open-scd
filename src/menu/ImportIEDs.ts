@@ -489,10 +489,10 @@ export default class ImportingIedPlugin extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<input multiple @change=${(event: Event) =>
-      this.loadIedFiles(
-        event
-      )} id="importied-plugin-input" accept=".sed,.scd,.ssd,.iid,.cid,.icd" type="file"></input>`;
+    return html`<input multiple @change=${(event: Event) => {
+      this.loadIedFiles(event);
+      (<HTMLInputElement>event.target).value = '';
+    }} id="importied-plugin-input" accept=".sed,.scd,.ssd,.iid,.cid,.icd" type="file"></input>`;
   }
 
   static styles = css`
