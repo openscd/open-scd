@@ -9,6 +9,7 @@ snapshots["Editor for DataSet element looks like the latest snapshot"] =
     graphic="icon"
     noninteractive=""
     tabindex="-1"
+    value="IED1>>CircuitBreaker_CB1>GooseDataSet1"
   >
     <span>
       IED1
@@ -42,6 +43,7 @@ snapshots["Editor for DataSet element looks like the latest snapshot"] =
     graphic="icon"
     noninteractive=""
     tabindex="-1"
+    value="IED2>>CBSW>GooseDataSet1 IED2>>CBSW> XSWI 1>dataSet IED2>>CBSW> XSWI 2>dataSet"
   >
     <span>
       IED2
@@ -103,6 +105,7 @@ snapshots["Editor for DataSet element looks like the latest snapshot"] =
     graphic="icon"
     noninteractive=""
     tabindex="-1"
+    value="IED3>>MU01>PhsMeas1"
   >
     <span>
       IED3

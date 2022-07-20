@@ -9,6 +9,7 @@ snapshots["Editor for SampledValueControl element looks like the latest snapshot
     graphic="icon"
     noninteractive=""
     tabindex="-1"
+    value=""
   >
     <span>
       IED1
@@ -28,6 +29,7 @@ snapshots["Editor for SampledValueControl element looks like the latest snapshot
     graphic="icon"
     noninteractive=""
     tabindex="-1"
+    value=""
   >
     <span>
       IED2
@@ -47,6 +49,7 @@ snapshots["Editor for SampledValueControl element looks like the latest snapshot
     graphic="icon"
     noninteractive=""
     tabindex="-1"
+    value="IED3>>MU01>MSVCB01"
   >
     <span>
       IED3

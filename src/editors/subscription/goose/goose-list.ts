@@ -13,7 +13,11 @@ import '@material/mwc-icon';
 import '@material/mwc-list/mwc-list-item';
 
 import '../../../filtered-list.js';
-import { getNameAttribute, newWizardEvent } from '../../../foundation.js';
+import {
+  getNameAttribute,
+  identity,
+  newWizardEvent,
+} from '../../../foundation.js';
 import { newGOOSESelectEvent } from './foundation.js';
 import { gooseIcon } from '../../../icons/icons.js';
 import { wizards } from '../../../wizards/wizard-library.js';
@@ -31,7 +35,7 @@ addEventListener('open-doc', onOpenDocResetSelectedGooseMsg);
 /** An sub element for showing all published GOOSE messages per IED. */
 @customElement('goose-list')
 export class GooseList extends LitElement {
-  @property()
+  @property({ attribute: false })
   doc!: XMLDocument;
 
   private onSelect(gseControl: Element): void {
@@ -57,6 +61,7 @@ export class GooseList extends LitElement {
       @click=${() => this.onSelect(gseControl)}
       graphic="large"
       hasMeta
+      value="${identity(gseControl)}"
     >
       <mwc-icon slot="graphic">${gooseIcon}</mwc-icon>
       <span>${gseControl.getAttribute('name')}</span>
@@ -89,7 +94,16 @@ export class GooseList extends LitElement {
         ${getOrderedIeds(this.doc).map(
           ied =>
             html`
-              <mwc-list-item noninteractive graphic="icon">
+              <mwc-list-item
+                noninteractive
+                graphic="icon"
+                value="${Array.from(ied.querySelectorAll('GSEControl'))
+                  .map(element => {
+                    const id = identity(element) as string;
+                    return typeof id === 'string' ? id : '';
+                  })
+                  .join(' ')}"
+              >
                 <span>${getNameAttribute(ied)}</span>
                 <mwc-icon slot="graphic">developer_board</mwc-icon>
               </mwc-list-item>
@@ -113,6 +127,10 @@ export class GooseList extends LitElement {
     }
 
     mwc-icon-button.hidden {
+      display: none;
+    }
+
+    mwc-list-item.hidden[noninteractive] + li[divider] {
       display: none;
     }
   `;
