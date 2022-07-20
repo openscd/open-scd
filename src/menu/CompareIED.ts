@@ -39,7 +39,7 @@ export default class CompareIEDPlugin extends LitElement {
   selectedTemplateIed: Element | undefined;
 
   @query('mwc-dialog')
-  private dialog!: Dialog;
+  dialog!: Dialog;
 
   @query('#template-file')
   private templateFileUI!: HTMLInputElement;
