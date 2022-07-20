@@ -12,6 +12,7 @@ snapshots["smv-list looks like the latest snapshot with a document loaded"] =
       graphic="icon"
       noninteractive=""
       tabindex="-1"
+      value=""
     >
       <span>
         IED1
@@ -30,6 +31,7 @@ snapshots["smv-list looks like the latest snapshot with a document loaded"] =
       graphic="icon"
       noninteractive=""
       tabindex="-1"
+      value=""
     >
       <span>
         IED2
@@ -48,6 +50,7 @@ snapshots["smv-list looks like the latest snapshot with a document loaded"] =
       graphic="icon"
       noninteractive=""
       tabindex="-1"
+      value="IED3>>MU01>MSVCB01"
     >
       <span>
         IED3
@@ -67,6 +70,7 @@ snapshots["smv-list looks like the latest snapshot with a document loaded"] =
       hasmeta=""
       mwc-list-item=""
       tabindex="0"
+      value="IED3>>MU01>MSVCB01"
     >
       <mwc-icon slot="graphic">
       </mwc-icon>

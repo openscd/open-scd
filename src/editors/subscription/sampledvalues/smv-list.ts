@@ -12,7 +12,11 @@ import '@material/mwc-icon';
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 
-import { getNameAttribute, newWizardEvent } from '../../../foundation.js';
+import {
+  getNameAttribute,
+  identity,
+  newWizardEvent,
+} from '../../../foundation.js';
 import { newSmvSelectEvent } from './foundation.js';
 import { smvIcon } from '../../../icons/icons.js';
 import { getOrderedIeds, styles } from '../foundation.js';
@@ -31,7 +35,7 @@ addEventListener('open-doc', onOpenDocResetSelectedSmvMsg);
 /** An sub element for showing all Sampled Values per IED. */
 @customElement('smv-list')
 export class SmvPublisherList extends LitElement {
-  @property()
+  @property({ attribute: false })
   doc!: XMLDocument;
 
   private onSelect(smvControl: Element) {
@@ -64,6 +68,7 @@ export class SmvPublisherList extends LitElement {
       @click=${() => this.onSelect(smvControl)}
       graphic="large"
       hasMeta
+      value="${identity(smvControl)}"
     >
       <mwc-icon slot="graphic">${smvIcon}</mwc-icon>
       <span>${smvControl.getAttribute('name')}</span>
@@ -85,7 +90,16 @@ export class SmvPublisherList extends LitElement {
         ${getOrderedIeds(this.doc).map(
           ied =>
             html`
-              <mwc-list-item noninteractive graphic="icon">
+              <mwc-list-item
+                noninteractive
+                graphic="icon"
+                value="${Array.from(ied.querySelectorAll('SampledValueControl'))
+                  .map(element => {
+                    const id = identity(element) as string;
+                    return typeof id === 'string' ? id : '';
+                  })
+                  .join(' ')}"
+              >
                 <span>${getNameAttribute(ied)}</span>
                 <mwc-icon slot="graphic">developer_board</mwc-icon>
               </mwc-list-item>
@@ -109,6 +123,10 @@ export class SmvPublisherList extends LitElement {
     }
 
     mwc-icon-button.hidden {
+      display: none;
+    }
+
+    mwc-list-item.hidden[noninteractive] + li[divider] {
       display: none;
     }
   `;

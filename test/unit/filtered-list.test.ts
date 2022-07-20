@@ -31,7 +31,7 @@ describe('filtered-list', () => {
           ><div>
             <mwc-radio-list-item><span>nestedItem6</span></mwc-radio-list-item>
           </div></abbr
-        ><mwc-list-item noninteractive><span>item7</span></mwc-list-item>
+        ><mwc-list-item value="valueItem7"></mwc-list-item>
       </filtered-list>`
     );
   });
@@ -149,7 +149,7 @@ describe('filtered-list', () => {
       expect(element.children[3].classList.contains('hidden')).to.be.true;
       expect(element.children[4].classList.contains('hidden')).to.be.true;
       expect(element.children[5].classList.contains('hidden')).to.be.true;
-      expect(element.children[6].classList.contains('hidden')).to.be.false;
+      expect(element.children[6].classList.contains('hidden')).to.be.true;
     });
 
     it('uses space as logic AND ', async () => {
@@ -163,7 +163,7 @@ describe('filtered-list', () => {
       expect(element.children[3].classList.contains('hidden')).to.be.true;
       expect(element.children[4].classList.contains('hidden')).to.be.true;
       expect(element.children[5].classList.contains('hidden')).to.be.true;
-      expect(element.children[6].classList.contains('hidden')).to.be.false;
+      expect(element.children[6].classList.contains('hidden')).to.be.true;
     });
 
     it('nested mwc-list-item elements', async () => {
@@ -177,7 +177,7 @@ describe('filtered-list', () => {
       expect(element.children[3].classList.contains('hidden')).to.be.true;
       expect(element.children[4].classList.contains('hidden')).to.be.false;
       expect(element.children[5].classList.contains('hidden')).to.be.true;
-      expect(element.children[6].classList.contains('hidden')).to.be.false;
+      expect(element.children[6].classList.contains('hidden')).to.be.true;
     });
 
     it('nested mwc-radio-list-item elements', async () => {
@@ -191,10 +191,10 @@ describe('filtered-list', () => {
       expect(element.children[3].classList.contains('hidden')).to.be.true;
       expect(element.children[4].classList.contains('hidden')).to.be.true;
       expect(element.children[5].classList.contains('hidden')).to.be.false;
-      expect(element.children[6].classList.contains('hidden')).to.be.false;
+      expect(element.children[6].classList.contains('hidden')).to.be.true;
     });
 
-    it('onyl on noninteractive list itmes', async () => {
+    it('items value attribute', async () => {
       element.searchField.value = 'item7';
       element.onFilterInput();
       element.requestUpdate();
