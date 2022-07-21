@@ -2,7 +2,7 @@
 export const snapshots = {};
 
 snapshots["Compare IED Plugin show template project selection dialog looks like its latest snapshot"] = 
-`<mwc-dialog heading="[compare-ied.title]">
+`<mwc-dialog heading="[compare-ied.selectProjectTitle]">
   <div>
     <input
       accept=".sed,.scd,.ssd,.isd,.iid,.cid,.icd"
@@ -26,7 +26,7 @@ snapshots["Compare IED Plugin show template project selection dialog looks like 
 /* end snapshot Compare IED Plugin show template project selection dialog looks like its latest snapshot */
 
 snapshots["Compare IED Plugin show ied selection lists dialog looks like its latest snapshot"] = 
-`<mwc-dialog heading="[compare-ied.title]">
+`<mwc-dialog heading="[compare-ied.selectIedTitle]">
   <div class="splitContainer">
     <div>
       <div>
@@ -149,7 +149,7 @@ snapshots["Compare IED Plugin show ied selection lists dialog looks like its lat
 /* end snapshot Compare IED Plugin show ied selection lists dialog looks like its latest snapshot */
 
 snapshots["Compare IED Plugin show compare dialog with no differences looks like its latest snapshot"] = 
-`<mwc-dialog heading="[compare-ied.title]">
+`<mwc-dialog heading="[compare-ied.resultTitle]">
   [compare-ied.noDiff]
   <mwc-button
     icon="arrow_back"
@@ -170,14 +170,20 @@ snapshots["Compare IED Plugin show compare dialog with no differences looks like
 /* end snapshot Compare IED Plugin show compare dialog with no differences looks like its latest snapshot */
 
 snapshots["Compare IED Plugin show compare dialog with copied IED looks like its latest snapshot"] = 
-`<mwc-dialog heading="[compare-ied.title]">
+`<mwc-dialog heading="[compare-ied.resultTitle]">
   <mwc-list multi="">
     <mwc-list-item
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
+      twoline=""
     >
-      [compare.attributes]
+      <span class="resultTitle">
+        [compare.attributes]
+      </span>
+      <span slot="secondary">
+        FieldC_QA1_QB1_QB2_QCX
+      </span>
     </mwc-list-item>
     <li
       divider=""
@@ -197,9 +203,9 @@ snapshots["Compare IED Plugin show compare dialog with copied IED looks like its
         name
       </span>
       <span slot="secondary">
-        FieldC_QA1_QB1_QB2_QC9
+        FieldC_QA1_QB1_QB2_QCX
                   ↶
-                  FieldC_QA1_QB1_QB2_QCX
+                  FieldC_QA1_QB1_QB2_QC9
       </span>
       <mwc-icon slot="meta">
         edit
@@ -225,14 +231,20 @@ snapshots["Compare IED Plugin show compare dialog with copied IED looks like its
 /* end snapshot Compare IED Plugin show compare dialog with copied IED looks like its latest snapshot */
 
 snapshots["Compare IED Plugin show compare dialog with differences looks like its latest snapshot"] = 
-`<mwc-dialog heading="[compare-ied.title]">
+`<mwc-dialog heading="[compare-ied.resultTitle]">
   <mwc-list multi="">
     <mwc-list-item
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
+      twoline=""
     >
-      [compare.children]
+      <span class="resultTitle">
+        [compare.children]
+      </span>
+      <span slot="secondary">
+        FieldA_QA1_QB1_QB2_QC9>>CBSW> LPHD 1
+      </span>
     </mwc-list-item>
     <li
       divider=""
@@ -255,7 +267,7 @@ snapshots["Compare IED Plugin show compare dialog with differences looks like it
         FieldA_QA1_QB1_QB2_QC9>>CBSW> LPHD 1>PhyHealth
       </span>
       <mwc-icon slot="meta">
-        add
+        delete
       </mwc-icon>
     </mwc-list-item>
   </mwc-list>
@@ -264,8 +276,14 @@ snapshots["Compare IED Plugin show compare dialog with differences looks like it
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
+      twoline=""
     >
-      [compare.attributes]
+      <span class="resultTitle">
+        [compare.attributes]
+      </span>
+      <span slot="secondary">
+        FieldA_QA1_QB1_QB2_QC9>>CBSW> LPHD 1>PhyNam>vendor> 0
+      </span>
     </mwc-list-item>
     <li
       divider=""
@@ -285,9 +303,9 @@ snapshots["Compare IED Plugin show compare dialog with differences looks like it
         value
       </span>
       <span slot="secondary">
-        Some value
+        Other value
                   ↶
-                  Other value
+                  Some value
       </span>
       <mwc-icon slot="meta">
         edit

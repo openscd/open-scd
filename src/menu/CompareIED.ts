@@ -6,7 +6,7 @@ import {
   query,
   TemplateResult,
 } from 'lit-element';
-import { translate } from 'lit-translate';
+import { get, translate } from 'lit-translate';
 
 import '@material/mwc-dialog';
 import '@material/mwc-list';
@@ -140,8 +140,8 @@ export default class CompareIEDPlugin extends LitElement {
 
   protected renderCompare(): TemplateResult {
     return html`${renderDiff(
-      this.selectedTemplateIed!,
-      this.selectedProjectIed!
+      this.selectedProjectIed!,
+      this.selectedTemplateIed!
     ) ??
     html`${translate('compare-ied.noDiff', {
       projectIedName: identity(this.selectedProjectIed!),
@@ -204,11 +204,11 @@ export default class CompareIEDPlugin extends LitElement {
       ${this.renderCloseButton()}`;
   }
 
-  private renderDialog(content: TemplateResult): TemplateResult {
-    return html`<mwc-dialog
-      heading="${translate('compare-ied.title')}"
-      @closed=${this.onClosed}
-    >
+  private renderDialog(
+    content: TemplateResult,
+    heading: string
+  ): TemplateResult {
+    return html`<mwc-dialog heading="${heading}" @closed=${this.onClosed}>
       ${content}
     </mwc-dialog>`;
   }
@@ -217,11 +217,20 @@ export default class CompareIEDPlugin extends LitElement {
     if (!this.doc) return html``;
 
     if (this.selectedProjectIed && this.selectedTemplateIed) {
-      return this.renderDialog(this.renderCompare());
+      return this.renderDialog(
+        this.renderCompare(),
+        get('compare-ied.resultTitle')
+      );
     } else if (this.templateDoc) {
-      return this.renderDialog(this.renderIEDLists());
+      return this.renderDialog(
+        this.renderIEDLists(),
+        get('compare-ied.selectIedTitle')
+      );
     } else {
-      return this.renderDialog(this.renderSelectTemplateFile());
+      return this.renderDialog(
+        this.renderSelectTemplateFile(),
+        get('compare-ied.selectProjectTitle')
+      );
     }
   }
 
@@ -242,6 +251,10 @@ export default class CompareIEDPlugin extends LitElement {
       min-width: 300px;
       height: 100%;
       overflow-y: auto;
+    }
+
+    .resultTitle {
+      font-weight: bold;
     }
   `;
 }

@@ -464,9 +464,11 @@ export const en = {
     },
   },
   'compare-ied': {
-    title: 'Compare IED with IED from template project',
-    projectIedTitle: 'IED in project',
-    templateIedTitle: 'IED in template project',
+    selectProjectTitle: 'Select template project to Compare IED with',
+    selectIedTitle: 'Select IED for comparison',
+    resultTitle: 'Compared IED with IED from template project',
+    projectIedTitle: 'IEDs in project',
+    templateIedTitle: 'IEDs in template project',
     selectIedButton: 'Select IED',
     selectTemplateButton: 'Select template project',
     noDiff:

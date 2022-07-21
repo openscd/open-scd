@@ -7,6 +7,7 @@ import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-icon';
 
 import { identity } from '../foundation.js';
+import { nothing } from 'lit-html';
 
 export type Diff<T> =
   | { oldValue: T; newValue: null }
@@ -24,23 +25,23 @@ function describe(element: Element): string {
 }
 
 /**
- * Check if there are any attribute values changed between the old and new element.
+ * Check if there are any attribute values changed between the two elements.
  *
- * @param oldElement - The old element to check the attributes from.
- * @param newElement - The new element to check the attributes to.
+ * @param elementToBeCompared     - The element to check for differences.
+ * @param elementToCompareAgainst - The element used to check against.
  */
 export function diffSclAttributes(
-  oldElement: Element,
-  newElement: Element
+  elementToBeCompared: Element,
+  elementToCompareAgainst: Element
 ): [string, Diff<string>][] {
   const attrDiffs: [string, Diff<string>][] = [];
 
   // First check if there is any text inside the element and there should be no child elements.
-  const oldText = oldElement.textContent?.trim() ?? '';
-  const newText = newElement.textContent?.trim() ?? '';
+  const oldText = elementToBeCompared.textContent?.trim() ?? '';
+  const newText = elementToCompareAgainst.textContent?.trim() ?? '';
   if (
-    oldElement.childElementCount === 0 &&
-    newElement.childElementCount === 0 &&
+    elementToBeCompared.childElementCount === 0 &&
+    elementToCompareAgainst.childElementCount === 0 &&
     newText !== oldText
   ) {
     attrDiffs.push(['value', { oldValue: oldText, newValue: newText }]);
@@ -48,15 +49,20 @@ export function diffSclAttributes(
 
   // Next check if there are any difference between attributes.
   const attributeNames = new Set(
-    newElement.getAttributeNames().concat(oldElement.getAttributeNames())
+    elementToCompareAgainst
+      .getAttributeNames()
+      .concat(elementToBeCompared.getAttributeNames())
   );
   for (const name of attributeNames) {
-    if (newElement.getAttribute(name) !== oldElement.getAttribute(name)) {
+    if (
+      elementToCompareAgainst.getAttribute(name) !==
+      elementToBeCompared.getAttribute(name)
+    ) {
       attrDiffs.push([
         name,
         <Diff<string>>{
-          newValue: newElement.getAttribute(name),
-          oldValue: oldElement.getAttribute(name),
+          newValue: elementToCompareAgainst.getAttribute(name),
+          oldValue: elementToBeCompared.getAttribute(name),
         },
       ]);
     }
@@ -100,35 +106,36 @@ export function isSame(newValue: Element, oldValue: Element): boolean {
  * from the new element.
  * <b>Remark</b>: Private elements are ignored.
  *
- * @param oldElement - The old element to retrieve the children from.
- * @param newElement - The new element to retrieve the children from.
+ * @param elementToBeCompared     - The element to check for differences.
+ * @param elementToCompareAgainst - The element used to check against.
  */
 export function diffSclChilds(
-  oldElement: Element,
-  newElement: Element
+  elementToBeCompared: Element,
+  elementToCompareAgainst: Element
 ): Diff<Element>[] {
   const childDiffs: Diff<Element>[] = [];
-  const oldChildren = Array.from(oldElement.children);
-  const newChildren = Array.from(newElement.children);
+  const childrenToBeCompared = Array.from(elementToBeCompared.children);
+  const childrenToCompareTo = Array.from(elementToCompareAgainst.children);
 
-  newChildren.forEach(newValue => {
-    if (!newValue.closest('Private')) {
-      const twinIndex = oldChildren.findIndex(ourChild =>
-        isSame(newValue, ourChild)
+  childrenToCompareTo.forEach(newElement => {
+    if (!newElement.closest('Private')) {
+      const twinIndex = childrenToBeCompared.findIndex(ourChild =>
+        isSame(newElement, ourChild)
       );
-      const oldValue = twinIndex > -1 ? oldChildren[twinIndex] : null;
+      const oldElement =
+        twinIndex > -1 ? childrenToBeCompared[twinIndex] : null;
 
-      if (oldValue) {
-        oldChildren.splice(twinIndex, 1);
-        childDiffs.push({ newValue, oldValue });
+      if (oldElement) {
+        childrenToBeCompared.splice(twinIndex, 1);
+        childDiffs.push({ newValue: newElement, oldValue: oldElement });
       } else {
-        childDiffs.push({ newValue: newValue, oldValue: null });
+        childDiffs.push({ newValue: newElement, oldValue: null });
       }
     }
   });
-  oldChildren.forEach(oldValue => {
-    if (!oldValue.closest('Private')) {
-      childDiffs.push({ newValue: null, oldValue });
+  childrenToBeCompared.forEach(oldElement => {
+    if (!oldElement.closest('Private')) {
+      childDiffs.push({ newValue: null, oldValue: oldElement });
     }
   });
   return childDiffs;
@@ -138,28 +145,29 @@ export function diffSclChilds(
  * Generate HTML (TemplateResult) containing all the differences between the two elements passed.
  * If null is returned there are no differences between the two elements.
  *
- * @param oldElement - The old element to check for differences.
- * @param newElement - The new element which is checked against the old element for differences.
+ * @param elementToBeCompared     - The element to check for differences.
+ * @param elementToCompareAgainst - The element used to check against.
  */
 export function renderDiff(
-  oldElement: Element,
-  newElement: Element
+  elementToBeCompared: Element,
+  elementToCompareAgainst: Element
 ): TemplateResult | null {
   // Determine the ID from the current tag. These can be numbers or strings.
-  let idTitle = identity(oldElement).toString();
-  if (idTitle && idTitle !== '' && idTitle !== 'NaN') {
-    idTitle = '(' + idTitle + ')';
-  } else {
-    idTitle = '';
+  let idTitle: string | undefined = identity(elementToBeCompared).toString();
+  if (idTitle === 'NaN') {
+    idTitle = undefined;
   }
 
   // First get all differences in attributes and text for the current 2 elements.
   const attrDiffs: [string, Diff<string>][] = diffSclAttributes(
-    oldElement,
-    newElement
+    elementToBeCompared,
+    elementToCompareAgainst
   );
   // Next check which elements are added, deleted or in both elements.
-  const childDiffs: Diff<Element>[] = diffSclChilds(oldElement, newElement);
+  const childDiffs: Diff<Element>[] = diffSclChilds(
+    elementToBeCompared,
+    elementToCompareAgainst
+  );
 
   const childAddedOrDeleted: Diff<Element>[] = [];
   const childToCompare: Diff<Element>[] = [];
@@ -185,10 +193,15 @@ export function renderDiff(
     return html` ${attrDiffs.length > 0 || childAddedOrDeleted.length > 0
       ? html` <mwc-list multi>
           ${attrDiffs.length > 0
-            ? html` <mwc-list-item noninteractive
-                  >${translate('compare.attributes', {
-                    elementName: `${oldElement.tagName} ${idTitle}`,
-                  })}
+            ? html` <mwc-list-item noninteractive ?twoline="${idTitle}">
+                  <span class="resultTitle">
+                    ${translate('compare.attributes', {
+                      elementName: elementToBeCompared.tagName,
+                    })}
+                  </span>
+                  ${idTitle
+                    ? html`<span slot="secondary">${idTitle}</span>`
+                    : nothing}
                 </mwc-list-item>
                 <li padded divider role="separator"></li>`
             : ''}
@@ -209,10 +222,15 @@ export function renderDiff(
               </mwc-list-item>`
           )}
           ${childAddedOrDeleted.length > 0
-            ? html` <mwc-list-item noninteractive
-                  >${translate('compare.children', {
-                    elementName: `${oldElement.tagName} ${idTitle}`,
-                  })}
+            ? html` <mwc-list-item noninteractive ?twoline="${idTitle}">
+                  <span class="resultTitle">
+                    ${translate('compare.children', {
+                      elementName: elementToBeCompared.tagName,
+                    })}
+                  </span>
+                  ${idTitle
+                    ? html`<span slot="secondary">${idTitle}</span>`
+                    : nothing}
                 </mwc-list-item>
                 <li padded divider role="separator"></li>`
             : ''}

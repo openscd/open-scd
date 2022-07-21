@@ -8,8 +8,14 @@ snapshots["compas-compare-dialog renderDiff child is added, so check latest snap
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
+      twoline=""
     >
-      [compare.children]
+      <span class="resultTitle">
+        [compare.children]
+      </span>
+      <span slot="secondary">
+        Substation 1>S1 30kV
+      </span>
     </mwc-list-item>
     <li
       divider=""
@@ -32,7 +38,7 @@ snapshots["compas-compare-dialog renderDiff child is added, so check latest snap
         Substation 1>S1 30kV>BUSBAR12
       </span>
       <mwc-icon slot="meta">
-        add
+        delete
       </mwc-icon>
     </mwc-list-item>
   </mwc-list>
@@ -47,8 +53,14 @@ snapshots["compas-compare-dialog renderDiff child is removed and attribute added
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
+      twoline=""
     >
-      [compare.attributes]
+      <span class="resultTitle">
+        [compare.attributes]
+      </span>
+      <span slot="secondary">
+        Substation 1>S1 110kV
+      </span>
     </mwc-list-item>
     <li
       divider=""
@@ -71,15 +83,21 @@ snapshots["compas-compare-dialog renderDiff child is removed and attribute added
         Extra Voltage Level
       </span>
       <mwc-icon slot="meta">
-        add
+        delete
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
+      twoline=""
     >
-      [compare.children]
+      <span class="resultTitle">
+        [compare.children]
+      </span>
+      <span slot="secondary">
+        Substation 1>S1 110kV
+      </span>
     </mwc-list-item>
     <li
       divider=""
@@ -102,7 +120,7 @@ snapshots["compas-compare-dialog renderDiff child is removed and attribute added
         Substation 1>S1 110kV>BAY_T3_1
       </span>
       <mwc-icon slot="meta">
-        delete
+        add
       </mwc-icon>
     </mwc-list-item>
   </mwc-list>
@@ -111,8 +129,14 @@ snapshots["compas-compare-dialog renderDiff child is removed and attribute added
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
+      twoline=""
     >
-      [compare.attributes]
+      <span class="resultTitle">
+        [compare.attributes]
+      </span>
+      <span slot="secondary">
+        Substation 1>S1 110kV>BUSBAR6
+      </span>
     </mwc-list-item>
     <li
       divider=""
@@ -135,7 +159,7 @@ snapshots["compas-compare-dialog renderDiff child is removed and attribute added
         Busbar 6
       </span>
       <mwc-icon slot="meta">
-        delete
+        add
       </mwc-icon>
     </mwc-list-item>
   </mwc-list>
@@ -144,8 +168,14 @@ snapshots["compas-compare-dialog renderDiff child is removed and attribute added
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
+      twoline=""
     >
-      [compare.attributes]
+      <span class="resultTitle">
+        [compare.attributes]
+      </span>
+      <span slot="secondary">
+        Substation 1>S1 110kV>BAY_L1_0
+      </span>
     </mwc-list-item>
     <li
       divider=""
@@ -165,9 +195,9 @@ snapshots["compas-compare-dialog renderDiff child is removed and attribute added
         desc
       </span>
       <span slot="secondary">
-        First Bays
+        First Bay
                   ↶
-                  First Bay
+                  First Bays
       </span>
       <mwc-icon slot="meta">
         edit

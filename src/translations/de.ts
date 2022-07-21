@@ -464,9 +464,11 @@ export const de: Translations = {
     },
   },
   'compare-ied': {
-    title: 'Vergleiche IED mit Vorlage',
-    projectIedTitle: 'IED Name aus Projekt',
-    templateIedTitle: 'IED Name aus Vorlage',
+    selectProjectTitle: '???',
+    selectIedTitle: '???',
+    resultTitle: 'Vergleiche IED mit Vorlage',
+    projectIedTitle: 'IEDs im Projekt',
+    templateIedTitle: 'IEDs aus Vorlage',
     selectIedButton: 'IED auswählen',
     selectTemplateButton: 'Vorlage auswählen',
     noDiff:

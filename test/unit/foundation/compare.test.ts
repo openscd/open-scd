@@ -74,7 +74,7 @@ describe('compas-compare-dialog', () => {
         'VoltageLevel[name="S1 30kV"]'
       );
 
-      const same = isSame(oldVoltageLevel!, newVoltageLevel!);
+      const same = isSame(newVoltageLevel!, oldVoltageLevel!);
       expect(same).to.be.true;
     });
 
@@ -94,11 +94,11 @@ describe('compas-compare-dialog', () => {
       const voltageLevel = oldSclElement.querySelector(
         'VoltageLevel[name="S1 30kV"]'
       );
-      const substation = oldSclElement.querySelector(
+      const differentVoltageLevel = oldSclElement.querySelector(
         'VoltageLevel[name="S1 380kV"]'
       );
 
-      const same = isSame(voltageLevel!, substation!);
+      const same = isSame(differentVoltageLevel!, voltageLevel!);
       expect(same).to.be.false;
     });
   });
@@ -113,8 +113,8 @@ describe('compas-compare-dialog', () => {
       );
 
       const diffAttributes = diffSclAttributes(
-        oldVoltageLevel!,
-        newVoltageLevel!
+        newVoltageLevel!,
+        oldVoltageLevel!
       );
       expect(diffAttributes).to.have.length(0);
     });
@@ -128,13 +128,13 @@ describe('compas-compare-dialog', () => {
       );
 
       const diffAttributes = diffSclAttributes(
-        oldVoltageLevel!,
-        newVoltageLevel!
+        newVoltageLevel!,
+        oldVoltageLevel!
       );
       expect(diffAttributes).to.have.length(1);
       expect(diffAttributes[0][0]).to.be.equal('desc');
-      expect(diffAttributes[0][1].oldValue).to.be.null;
-      expect(diffAttributes[0][1].newValue).to.be.equal('Extra Voltage Level');
+      expect(diffAttributes[0][1].newValue).to.be.null;
+      expect(diffAttributes[0][1].oldValue).to.be.equal('Extra Voltage Level');
     });
 
     it('only name changed on copied element', () => {
@@ -145,11 +145,11 @@ describe('compas-compare-dialog', () => {
         'Substation[name="Substation 1 (Copy)"]'
       );
 
-      const diffAttributes = diffSclAttributes(oldSubstation!, newSubstation!);
+      const diffAttributes = diffSclAttributes(newSubstation!, oldSubstation!);
       expect(diffAttributes).to.have.length(1);
       expect(diffAttributes[0][0]).to.be.equal('name');
-      expect(diffAttributes[0][1].oldValue).to.be.equal('Substation 1');
-      expect(diffAttributes[0][1].newValue).to.be.equal('Substation 1 (Copy)');
+      expect(diffAttributes[0][1].newValue).to.be.equal('Substation 1');
+      expect(diffAttributes[0][1].oldValue).to.be.equal('Substation 1 (Copy)');
     });
   });
 
@@ -162,7 +162,7 @@ describe('compas-compare-dialog', () => {
         'VoltageLevel[name="S1 380kV"]'
       );
 
-      const diffChilds = diffSclChilds(oldVoltageLevel!, newVoltageLevel!);
+      const diffChilds = diffSclChilds(newVoltageLevel!, oldVoltageLevel!);
       expect(diffChilds).to.have.length(5);
 
       const updatedChilds = diffChilds.filter(
@@ -179,7 +179,7 @@ describe('compas-compare-dialog', () => {
         'Substation[name="Substation 1 (Copy)"]'
       );
 
-      const diffChilds = diffSclChilds(oldSubstation!, newSubstation!);
+      const diffChilds = diffSclChilds(newSubstation!, oldSubstation!);
       expect(diffChilds).to.have.length(3);
 
       const updatedChilds = diffChilds.filter(
@@ -190,34 +190,34 @@ describe('compas-compare-dialog', () => {
 
     it('one child is added', () => {
       const oldVoltageLevel = oldSclElement.querySelector(
-        'VoltageLevel[name="S1 30kV"]'
+        'VoltageLevel[name="S1 110kV"]'
       );
       const newVoltageLevel = newSclElement.querySelector(
-        'VoltageLevel[name="S1 30kV"]'
+        'VoltageLevel[name="S1 110kV"]'
       );
 
-      const diffChilds = diffSclChilds(oldVoltageLevel!, newVoltageLevel!);
-      expect(diffChilds).to.have.length(5);
+      const diffChilds = diffSclChilds(newVoltageLevel!, oldVoltageLevel!);
+      expect(diffChilds).to.have.length(7);
 
-      const addedBay = diffChilds.filter(diff => diff.oldValue === null);
-      expect(addedBay).to.have.length(1);
-      expect(addedBay[0].newValue?.tagName).to.be.equal('Bay');
+      const removedBay = diffChilds.filter(diff => diff.oldValue === null);
+      expect(removedBay).to.have.length(1);
+      expect(removedBay[0].newValue?.tagName).to.be.equal('Bay');
     });
 
     it('one child is removed', () => {
       const oldVoltageLevel = oldSclElement.querySelector(
-        'VoltageLevel[name="S1 110kV"]'
+        'VoltageLevel[name="S1 30kV"]'
       );
       const newVoltageLevel = newSclElement.querySelector(
-        'VoltageLevel[name="S1 110kV"]'
+        'VoltageLevel[name="S1 30kV"]'
       );
 
-      const diffChilds = diffSclChilds(oldVoltageLevel!, newVoltageLevel!);
-      expect(diffChilds).to.have.length(7);
+      const diffChilds = diffSclChilds(newVoltageLevel!, oldVoltageLevel!);
+      expect(diffChilds).to.have.length(5);
 
-      const removedBay = diffChilds.filter(diff => diff.newValue === null);
-      expect(removedBay).to.have.length(1);
-      expect(removedBay[0].oldValue?.tagName).to.be.equal('Bay');
+      const addedBay = diffChilds.filter(diff => diff.newValue === null);
+      expect(addedBay).to.have.length(1);
+      expect(addedBay[0].oldValue?.tagName).to.be.equal('Bay');
     });
   });
 
@@ -230,7 +230,7 @@ describe('compas-compare-dialog', () => {
         'VoltageLevel[name="S1 380kV"]'
       );
 
-      const templateResult = renderDiff(oldVoltageLevel!, newVoltageLevel!);
+      const templateResult = renderDiff(newVoltageLevel!, oldVoltageLevel!);
       expect(templateResult).to.be.null;
     });
 
@@ -242,7 +242,7 @@ describe('compas-compare-dialog', () => {
         'VoltageLevel[name="S1 30kV"]'
       );
 
-      const templateResult = renderDiff(oldVoltageLevel!, newVoltageLevel!);
+      const templateResult = renderDiff(newVoltageLevel!, oldVoltageLevel!);
       expect(templateResult).to.be.not.null;
 
       const element = fixtureSync(html`<div>${templateResult}</div>`);
@@ -258,7 +258,7 @@ describe('compas-compare-dialog', () => {
         'VoltageLevel[name="S1 110kV"]'
       );
 
-      const templateResult = renderDiff(oldVoltageLevel!, newVoltageLevel!);
+      const templateResult = renderDiff(newVoltageLevel!, oldVoltageLevel!);
       expect(templateResult).to.be.not.null;
 
       const element = fixtureSync(html`<div>${templateResult}</div>`);
