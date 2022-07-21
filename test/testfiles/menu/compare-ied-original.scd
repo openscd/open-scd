@@ -115,40 +115,6 @@
 			</Server>
 		</AccessPoint>
 	</IED>
-	<IED name="FieldD_QA1_QB1_QB2_QC9" type="ISIO 200 Circuit Breaker and Disconnector Interface" manufacturer="OMICRON" configVersion="1" originalSclVersion="2007" originalSclRevision="B" owner="TrainingIEC61850">
-		<AccessPoint name="P1">
-			<Server>
-				<Authentication none="true"/>
-				<LDevice inst="CBSW">
-					<LN0 lnClass="LLN0" inst="" lnType="FieldA_QA1_QB1_QB2_QC9CBSW.LLN0">
-						<DataSet name="GooseDataSet1">
-							<FCDA ldInst="CBSW" prefix="" lnClass="XCBR" lnInst="1" doName="Pos" daName="stVal" fc="ST"/>
-							<FCDA ldInst="CBSW" prefix="" lnClass="XCBR" lnInst="1" doName="Pos" daName="q" fc="ST"/>
-							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="1" doName="Pos" daName="stVal" fc="ST"/>
-							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="1" doName="Pos" daName="q" fc="ST"/>
-							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="2" doName="Pos" daName="stVal" fc="ST"/>
-							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="2" doName="Pos" daName="q" fc="ST"/>
-							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="3" doName="Pos" daName="stVal" fc="ST"/>
-							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="3" doName="Pos" daName="q" fc="ST"/>
-						</DataSet>
-						<GSEControl type="GOOSE" appID="FieldC_QA1_QB1_QB2_QC9" fixedOffs="false" confRev="1" name="GCB" datSet="GooseDataSet1"/>
-					</LN0>
-					<LN lnClass="LPHD" inst="1" lnType="FieldA_QA1_QB1_QB2_QC9CBSW.LPHD1">
-					</LN>
-					<LN lnClass="XCBR" inst="1" lnType="FieldA_QA1_QB1_QB2_QC9CBSW.XCBR1">
-					</LN>
-					<LN lnClass="XSWI" inst="1" lnType="FieldA_QA1_QB1_QB2_QC9CBSW.XSWI1">
-					</LN>
-					<LN lnClass="XSWI" inst="2" lnType="FieldA_QA1_QB1_QB2_QC9CBSW.XSWI1">
-					</LN>
-					<LN lnClass="XSWI" inst="3" lnType="FieldA_QA1_QB1_QB2_QC9CBSW.XSWI1">
-					</LN>
-					<LN lnClass="GGIO" inst="1" lnType="FieldA_QA1_QB1_QB2_QC9CBSW.GGIO1">
-					</LN>
-				</LDevice>
-			</Server>
-		</AccessPoint>
-	</IED>
 	<DataTypeTemplates>
 		<LNodeType lnClass="GGIO" id="FieldA_QA1_QB1_QB2_QC9CBSW.GGIO1">
 			<DO name="Beh" type="FieldA_QA1_QB1_QB2_QC9CBSW.LLN0.Beh"/>

@@ -6,7 +6,7 @@ import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-icon';
 
-import { identity, isSame } from '../foundation.js';
+import { identity } from '../foundation.js';
 
 export type Diff<T> =
   | { oldValue: T; newValue: null }
@@ -36,8 +36,8 @@ export function diffSclAttributes(
   const attrDiffs: [string, Diff<string>][] = [];
 
   // First check if there is any text inside the element and there should be no child elements.
-  const oldText = oldElement.textContent ?? '';
-  const newText = newElement.textContent ?? '';
+  const oldText = oldElement.textContent?.trim() ?? '';
+  const newText = newElement.textContent?.trim() ?? '';
   if (
     oldElement.childElementCount === 0 &&
     newElement.childElementCount === 0 &&
@@ -62,6 +62,36 @@ export function diffSclAttributes(
     }
   }
   return attrDiffs;
+}
+
+/**
+ * Function to retrieve the identity to compare 2 children on the same level.
+ * This means we only need to last part of the Identity string to compare the children.
+ *
+ * @param element - The element to retrieve the identity from.
+ */
+export function identityForCompare(element: Element): string | number {
+  let identityOfElement = identity(element);
+  if (typeof identityOfElement === 'string') {
+    identityOfElement = identityOfElement.split('>').pop() ?? '';
+  }
+  return identityOfElement;
+}
+
+/**
+ * Custom method for comparing to check if 2 elements are the same. Because they are on the same level
+ * we don't need to compare the full identity, we just compare the part of the Element itself.
+ *
+ * <b>Remark</b>Private elements are already filtered out, so we don't need to bother them.
+ *
+ * @param newValue - The new element to compare with the old element.
+ * @param oldValue - The old element to which the new element is compared.
+ */
+export function isSame(newValue: Element, oldValue: Element): boolean {
+  return (
+    newValue.tagName === oldValue.tagName &&
+    identityForCompare(newValue) === identityForCompare(oldValue)
+  );
 }
 
 /**

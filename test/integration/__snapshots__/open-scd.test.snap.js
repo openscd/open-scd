@@ -252,24 +252,6 @@ snapshots["open-scd looks like its snapshot"] =
     </mwc-list-item>
     <oscd-plugin2a662bacb120083f class="plugin">
     </oscd-plugin2a662bacb120083f>
-    <mwc-list-item
-      aria-disabled="true"
-      class="middle"
-      disabled=""
-      graphic="icon"
-      iconid="compare_arrows"
-      mwc-list-item=""
-      tabindex="-1"
-    >
-      <mwc-icon slot="graphic">
-        compare_arrows
-      </mwc-icon>
-      <span>
-        Compare IED
-      </span>
-    </mwc-list-item>
-    <oscd-plugin46ae7b6e93fe0f90 class="plugin">
-    </oscd-plugin46ae7b6e93fe0f90>
     <li
       divider=""
       padded=""
@@ -962,7 +944,6 @@ snapshots["open-scd looks like its snapshot"] =
       hasmeta=""
       left=""
       mwc-list-item=""
-      selected=""
       tabindex="-1"
       value="/src/menu/CompareIED.js"
     >

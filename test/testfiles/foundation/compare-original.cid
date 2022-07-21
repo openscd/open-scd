@@ -15,7 +15,7 @@
 			<Hitem revision="" version="3.0.0" what="SCL updated" when="2021-11-11T10:53:06+01:00" who="Mr Editor"/>
 		</History>
 	</Header>
-	<Substation desc="Substation 1" name="_af9a4ae3-ba2e-4c34-8e47-5af894ee20f4">
+	<Substation desc="Substation 1 (desc)" name="Substation 1">
 		<VoltageLevel name="S1 380kV">
 			<Voltage multiplier="k" unit="V">380.0</Voltage>
 			<Bay name="BUSBAR10">

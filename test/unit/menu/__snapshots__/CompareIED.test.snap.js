@@ -70,6 +70,17 @@ snapshots["Compare IED Plugin show ied selection lists dialog looks like its lat
               FieldC_QA1_QB1_QB2_QC9
             </span>
           </mwc-list-item>
+          <mwc-list-item
+            aria-disabled="false"
+            left=""
+            mwc-list-item=""
+            tabindex="-1"
+            value="FieldC_QA1_QB1_QB2_QCX"
+          >
+            <span>
+              FieldC_QA1_QB1_QB2_QCX
+            </span>
+          </mwc-list-item>
         </mwc-list>
       </div>
     </div>
@@ -115,17 +126,6 @@ snapshots["Compare IED Plugin show ied selection lists dialog looks like its lat
               FieldC_QA1_QB1_QB2_QC9
             </span>
           </mwc-list-item>
-          <mwc-list-item
-            aria-disabled="false"
-            left=""
-            mwc-list-item=""
-            tabindex="-1"
-            value="FieldD_QA1_QB1_QB2_QC9"
-          >
-            <span>
-              FieldD_QA1_QB1_QB2_QC9
-            </span>
-          </mwc-list-item>
         </mwc-list>
       </div>
     </div>
@@ -168,6 +168,61 @@ snapshots["Compare IED Plugin show compare dialog with no differences looks like
 </mwc-dialog>
 `;
 /* end snapshot Compare IED Plugin show compare dialog with no differences looks like its latest snapshot */
+
+snapshots["Compare IED Plugin show compare dialog with copied IED looks like its latest snapshot"] = 
+`<mwc-dialog heading="[compare-ied.title]">
+  <mwc-list multi="">
+    <mwc-list-item
+      aria-disabled="false"
+      noninteractive=""
+      tabindex="-1"
+    >
+      [compare.attributes]
+    </mwc-list-item>
+    <li
+      divider=""
+      padded=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      tabindex="0"
+      twoline=""
+    >
+      <span>
+        name
+      </span>
+      <span slot="secondary">
+        FieldC_QA1_QB1_QB2_QC9
+                  ↶
+                  FieldC_QA1_QB1_QB2_QCX
+      </span>
+      <mwc-icon slot="meta">
+        edit
+      </mwc-icon>
+    </mwc-list-item>
+  </mwc-list>
+  <mwc-button
+    icon="arrow_back"
+    label="[compare-ied.selectIedButton]"
+    slot="primaryAction"
+    trailingicon=""
+  >
+  </mwc-button>
+  <mwc-button
+    dialogaction="close"
+    label="[close]"
+    slot="secondaryAction"
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+  </mwc-button>
+</mwc-dialog>
+`;
+/* end snapshot Compare IED Plugin show compare dialog with copied IED looks like its latest snapshot */
 
 snapshots["Compare IED Plugin show compare dialog with differences looks like its latest snapshot"] = 
 `<mwc-dialog heading="[compare-ied.title]">

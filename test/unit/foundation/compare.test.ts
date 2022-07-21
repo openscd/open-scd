@@ -1,11 +1,14 @@
 import { expect, fixtureSync } from '@open-wc/testing';
 
+import { html } from 'lit-element';
+
 import {
   diffSclAttributes,
   diffSclChilds,
+  identityForCompare,
+  isSame,
   renderDiff,
 } from '../../../src/foundation/compare.js';
-import { html } from 'lit-element';
 
 describe('compas-compare-dialog', () => {
   let oldSclElement: Element;
@@ -24,6 +27,80 @@ describe('compas-compare-dialog', () => {
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'))
       .then(document => document.documentElement);
+  });
+
+  describe('identityForCompare', () => {
+    it('will return the identity of the sub element, not the full identity', () => {
+      const voltageLevel = oldSclElement.querySelector(
+        'VoltageLevel[name="S1 30kV"]'
+      );
+
+      const result = identityForCompare(voltageLevel!);
+      expect(result).to.be.equal('S1 30kV');
+    });
+
+    it('will return the identity of the main element, meaning the full identity', () => {
+      const substation = oldSclElement.querySelector(
+        'Substation[name="Substation 1"]'
+      );
+
+      const result = identityForCompare(substation!);
+      expect(result).to.be.equal('Substation 1');
+    });
+
+    it('will return the NaN of the root element', () => {
+      const substation = oldSclElement.querySelector('SCL');
+
+      const result = identityForCompare(substation!);
+      expect(result).to.be.NaN;
+    });
+  });
+
+  describe('isSame', () => {
+    it('will return true when the same elements are passed', () => {
+      const voltageLevel = oldSclElement.querySelector(
+        'VoltageLevel[name="S1 30kV"]'
+      );
+
+      const same = isSame(voltageLevel!, voltageLevel!);
+      expect(same).to.be.true;
+    });
+
+    it('will return true when the same elements from different sources are passed', () => {
+      const oldVoltageLevel = oldSclElement.querySelector(
+        'VoltageLevel[name="S1 30kV"]'
+      );
+      const newVoltageLevel = newSclElement.querySelector(
+        'VoltageLevel[name="S1 30kV"]'
+      );
+
+      const same = isSame(oldVoltageLevel!, newVoltageLevel!);
+      expect(same).to.be.true;
+    });
+
+    it('will return false when the different type of elements are passed', () => {
+      const voltageLevel = oldSclElement.querySelector(
+        'VoltageLevel[name="S1 30kV"]'
+      );
+      const substation = oldSclElement.querySelector(
+        'Substation[name="Substation 1"]'
+      );
+
+      const same = isSame(voltageLevel!, substation!);
+      expect(same).to.be.false;
+    });
+
+    it('will return false when the different elements of the same type are passed', () => {
+      const voltageLevel = oldSclElement.querySelector(
+        'VoltageLevel[name="S1 30kV"]'
+      );
+      const substation = oldSclElement.querySelector(
+        'VoltageLevel[name="S1 380kV"]'
+      );
+
+      const same = isSame(voltageLevel!, substation!);
+      expect(same).to.be.false;
+    });
   });
 
   describe('diffSclAttributes', () => {
@@ -59,6 +136,21 @@ describe('compas-compare-dialog', () => {
       expect(diffAttributes[0][1].oldValue).to.be.null;
       expect(diffAttributes[0][1].newValue).to.be.equal('Extra Voltage Level');
     });
+
+    it('only name changed on copied element', () => {
+      const oldSubstation = oldSclElement.querySelector(
+        'Substation[name="Substation 1"]'
+      );
+      const newSubstation = newSclElement.querySelector(
+        'Substation[name="Substation 1 (Copy)"]'
+      );
+
+      const diffAttributes = diffSclAttributes(oldSubstation!, newSubstation!);
+      expect(diffAttributes).to.have.length(1);
+      expect(diffAttributes[0][0]).to.be.equal('name');
+      expect(diffAttributes[0][1].oldValue).to.be.equal('Substation 1');
+      expect(diffAttributes[0][1].newValue).to.be.equal('Substation 1 (Copy)');
+    });
   });
 
   describe('diffSclChilds', () => {
@@ -77,6 +169,23 @@ describe('compas-compare-dialog', () => {
         diff => diff.newValue !== null && diff.oldValue !== null
       );
       expect(updatedChilds).to.have.length(5);
+    });
+
+    it('all children can be updated of a copied element', () => {
+      const oldSubstation = oldSclElement.querySelector(
+        'Substation[name="Substation 1"]'
+      );
+      const newSubstation = newSclElement.querySelector(
+        'Substation[name="Substation 1 (Copy)"]'
+      );
+
+      const diffChilds = diffSclChilds(oldSubstation!, newSubstation!);
+      expect(diffChilds).to.have.length(3);
+
+      const updatedChilds = diffChilds.filter(
+        diff => diff.newValue !== null && diff.oldValue !== null
+      );
+      expect(updatedChilds).to.have.length(3);
     });
 
     it('one child is added', () => {

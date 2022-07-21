@@ -58,11 +58,11 @@ describe('Compare IED Plugin', () => {
     });
 
     it('expect the correct number of IEDs from project', () => {
-      expect(plugin.ieds).to.have.length(3);
+      expect(plugin.ieds).to.have.length(4);
     });
 
     it('expect the correct number of IEDs from template project', () => {
-      expect(plugin.templateIeds).to.have.length(4);
+      expect(plugin.templateIeds).to.have.length(3);
     });
 
     it('after closing the dialog everything set to undefined', async () => {
@@ -98,6 +98,33 @@ describe('Compare IED Plugin', () => {
       plugin.templateDoc = template;
       plugin.selectedProjectIed =
         doc.querySelector('IED[name="FieldC_QA1_QB1_QB2_QC9"]') ?? undefined;
+      plugin.selectedTemplateIed =
+        template.querySelector('IED[name="FieldC_QA1_QB1_QB2_QC9"]') ??
+        undefined;
+      plugin.run();
+      await plugin.requestUpdate();
+    });
+
+    it('looks like its latest snapshot', async () => {
+      await expect(plugin.dialog).to.equalSnapshot();
+    });
+  });
+
+  describe('show compare dialog with copied IED', () => {
+    beforeEach(async () => {
+      const doc = await fetch('/test/testfiles/menu/compare-ied-changed.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+      const template = await fetch(
+        '/test/testfiles/menu/compare-ied-original.scd'
+      )
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+      plugin.doc = doc;
+      plugin.templateDoc = template;
+      plugin.selectedProjectIed =
+        doc.querySelector('IED[name="FieldC_QA1_QB1_QB2_QCX"]') ?? undefined;
       plugin.selectedTemplateIed =
         template.querySelector('IED[name="FieldC_QA1_QB1_QB2_QC9"]') ??
         undefined;
