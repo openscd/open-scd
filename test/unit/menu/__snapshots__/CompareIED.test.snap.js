@@ -203,9 +203,9 @@ snapshots["Compare IED Plugin show compare dialog with copied IED looks like its
         name
       </span>
       <span slot="secondary">
-        FieldC_QA1_QB1_QB2_QCX
-                  ↶
-                  FieldC_QA1_QB1_QB2_QC9
+        FieldC_QA1_QB1_QB2_QC9
+                  ↷
+                  FieldC_QA1_QB1_QB2_QCX
       </span>
       <mwc-icon slot="meta">
         edit
@@ -267,7 +267,7 @@ snapshots["Compare IED Plugin show compare dialog with differences looks like it
         FieldA_QA1_QB1_QB2_QC9>>CBSW> LPHD 1>PhyHealth
       </span>
       <mwc-icon slot="meta">
-        delete
+        add
       </mwc-icon>
     </mwc-list-item>
   </mwc-list>
@@ -303,9 +303,9 @@ snapshots["Compare IED Plugin show compare dialog with differences looks like it
         value
       </span>
       <span slot="secondary">
-        Other value
-                  ↶
-                  Some value
+        Some value
+                  ↷
+                  Other value
       </span>
       <mwc-icon slot="meta">
         edit

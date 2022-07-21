@@ -38,7 +38,7 @@ snapshots["compas-compare-dialog renderDiff child is added, so check latest snap
         Substation 1>S1 30kV>BUSBAR12
       </span>
       <mwc-icon slot="meta">
-        delete
+        add
       </mwc-icon>
     </mwc-list-item>
   </mwc-list>
@@ -83,7 +83,7 @@ snapshots["compas-compare-dialog renderDiff child is removed and attribute added
         Extra Voltage Level
       </span>
       <mwc-icon slot="meta">
-        delete
+        add
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -120,7 +120,7 @@ snapshots["compas-compare-dialog renderDiff child is removed and attribute added
         Substation 1>S1 110kV>BAY_T3_1
       </span>
       <mwc-icon slot="meta">
-        add
+        delete
       </mwc-icon>
     </mwc-list-item>
   </mwc-list>
@@ -159,7 +159,7 @@ snapshots["compas-compare-dialog renderDiff child is removed and attribute added
         Busbar 6
       </span>
       <mwc-icon slot="meta">
-        add
+        delete
       </mwc-icon>
     </mwc-list-item>
   </mwc-list>
@@ -195,9 +195,9 @@ snapshots["compas-compare-dialog renderDiff child is removed and attribute added
         desc
       </span>
       <span slot="secondary">
-        First Bay
-                  ↶
-                  First Bays
+        First Bays
+                  ↷
+                  First Bay
       </span>
       <mwc-icon slot="meta">
         edit

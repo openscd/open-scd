@@ -67,10 +67,10 @@ describe('compas-compare-dialog', () => {
     });
 
     it('will return true when the same elements from different sources are passed', () => {
-      const oldVoltageLevel = oldSclElement.querySelector(
+      const newVoltageLevel = newSclElement.querySelector(
         'VoltageLevel[name="S1 30kV"]'
       );
-      const newVoltageLevel = newSclElement.querySelector(
+      const oldVoltageLevel = oldSclElement.querySelector(
         'VoltageLevel[name="S1 30kV"]'
       );
 
@@ -105,10 +105,10 @@ describe('compas-compare-dialog', () => {
 
   describe('diffSclAttributes', () => {
     it('no attributes changed', () => {
-      const oldVoltageLevel = oldSclElement.querySelector(
+      const newVoltageLevel = newSclElement.querySelector(
         'VoltageLevel[name="S1 30kV"]'
       );
-      const newVoltageLevel = newSclElement.querySelector(
+      const oldVoltageLevel = oldSclElement.querySelector(
         'VoltageLevel[name="S1 30kV"]'
       );
 
@@ -120,10 +120,10 @@ describe('compas-compare-dialog', () => {
     });
 
     it('one attribute has changed', () => {
-      const oldVoltageLevel = oldSclElement.querySelector(
+      const newVoltageLevel = newSclElement.querySelector(
         'VoltageLevel[name="S1 110kV"]'
       );
-      const newVoltageLevel = newSclElement.querySelector(
+      const oldVoltageLevel = oldSclElement.querySelector(
         'VoltageLevel[name="S1 110kV"]'
       );
 
@@ -133,32 +133,32 @@ describe('compas-compare-dialog', () => {
       );
       expect(diffAttributes).to.have.length(1);
       expect(diffAttributes[0][0]).to.be.equal('desc');
-      expect(diffAttributes[0][1].newValue).to.be.null;
-      expect(diffAttributes[0][1].oldValue).to.be.equal('Extra Voltage Level');
+      expect(diffAttributes[0][1].oldValue).to.be.null;
+      expect(diffAttributes[0][1].newValue).to.be.equal('Extra Voltage Level');
     });
 
     it('only name changed on copied element', () => {
-      const oldSubstation = oldSclElement.querySelector(
-        'Substation[name="Substation 1"]'
-      );
       const newSubstation = newSclElement.querySelector(
         'Substation[name="Substation 1 (Copy)"]'
+      );
+      const oldSubstation = oldSclElement.querySelector(
+        'Substation[name="Substation 1"]'
       );
 
       const diffAttributes = diffSclAttributes(newSubstation!, oldSubstation!);
       expect(diffAttributes).to.have.length(1);
       expect(diffAttributes[0][0]).to.be.equal('name');
-      expect(diffAttributes[0][1].newValue).to.be.equal('Substation 1');
-      expect(diffAttributes[0][1].oldValue).to.be.equal('Substation 1 (Copy)');
+      expect(diffAttributes[0][1].oldValue).to.be.equal('Substation 1');
+      expect(diffAttributes[0][1].newValue).to.be.equal('Substation 1 (Copy)');
     });
   });
 
   describe('diffSclChilds', () => {
     it('all children can be updated', () => {
-      const oldVoltageLevel = oldSclElement.querySelector(
+      const newVoltageLevel = newSclElement.querySelector(
         'VoltageLevel[name="S1 380kV"]'
       );
-      const newVoltageLevel = newSclElement.querySelector(
+      const oldVoltageLevel = oldSclElement.querySelector(
         'VoltageLevel[name="S1 380kV"]'
       );
 
@@ -172,11 +172,11 @@ describe('compas-compare-dialog', () => {
     });
 
     it('all children can be updated of a copied element', () => {
-      const oldSubstation = oldSclElement.querySelector(
-        'Substation[name="Substation 1"]'
-      );
       const newSubstation = newSclElement.querySelector(
         'Substation[name="Substation 1 (Copy)"]'
+      );
+      const oldSubstation = oldSclElement.querySelector(
+        'Substation[name="Substation 1"]'
       );
 
       const diffChilds = diffSclChilds(newSubstation!, oldSubstation!);
@@ -189,44 +189,44 @@ describe('compas-compare-dialog', () => {
     });
 
     it('one child is added', () => {
-      const oldVoltageLevel = oldSclElement.querySelector(
-        'VoltageLevel[name="S1 110kV"]'
-      );
       const newVoltageLevel = newSclElement.querySelector(
-        'VoltageLevel[name="S1 110kV"]'
-      );
-
-      const diffChilds = diffSclChilds(newVoltageLevel!, oldVoltageLevel!);
-      expect(diffChilds).to.have.length(7);
-
-      const removedBay = diffChilds.filter(diff => diff.oldValue === null);
-      expect(removedBay).to.have.length(1);
-      expect(removedBay[0].newValue?.tagName).to.be.equal('Bay');
-    });
-
-    it('one child is removed', () => {
-      const oldVoltageLevel = oldSclElement.querySelector(
         'VoltageLevel[name="S1 30kV"]'
       );
-      const newVoltageLevel = newSclElement.querySelector(
+      const oldVoltageLevel = oldSclElement.querySelector(
         'VoltageLevel[name="S1 30kV"]'
       );
 
       const diffChilds = diffSclChilds(newVoltageLevel!, oldVoltageLevel!);
       expect(diffChilds).to.have.length(5);
 
-      const addedBay = diffChilds.filter(diff => diff.newValue === null);
+      const addedBay = diffChilds.filter(diff => diff.oldValue === null);
       expect(addedBay).to.have.length(1);
-      expect(addedBay[0].oldValue?.tagName).to.be.equal('Bay');
+      expect(addedBay[0].newValue?.tagName).to.be.equal('Bay');
+    });
+
+    it('one child is removed', () => {
+      const newVoltageLevel = newSclElement.querySelector(
+        'VoltageLevel[name="S1 110kV"]'
+      );
+      const oldVoltageLevel = oldSclElement.querySelector(
+        'VoltageLevel[name="S1 110kV"]'
+      );
+
+      const diffChilds = diffSclChilds(newVoltageLevel!, oldVoltageLevel!);
+      expect(diffChilds).to.have.length(7);
+
+      const removedBay = diffChilds.filter(diff => diff.newValue === null);
+      expect(removedBay).to.have.length(1);
+      expect(removedBay[0].oldValue?.tagName).to.be.equal('Bay');
     });
   });
 
   describe('renderDiff', () => {
     it('no changes, so no template is returned', async () => {
-      const oldVoltageLevel = oldSclElement.querySelector(
+      const newVoltageLevel = newSclElement.querySelector(
         'VoltageLevel[name="S1 380kV"]'
       );
-      const newVoltageLevel = newSclElement.querySelector(
+      const oldVoltageLevel = oldSclElement.querySelector(
         'VoltageLevel[name="S1 380kV"]'
       );
 
@@ -235,10 +235,10 @@ describe('compas-compare-dialog', () => {
     });
 
     it('child is added, so check latest snapshot', async () => {
-      const oldVoltageLevel = oldSclElement.querySelector(
+      const newVoltageLevel = newSclElement.querySelector(
         'VoltageLevel[name="S1 30kV"]'
       );
-      const newVoltageLevel = newSclElement.querySelector(
+      const oldVoltageLevel = oldSclElement.querySelector(
         'VoltageLevel[name="S1 30kV"]'
       );
 
@@ -251,10 +251,10 @@ describe('compas-compare-dialog', () => {
     });
 
     it('child is removed and attribute added/removed/updated, so check latest snapshot', async () => {
-      const oldVoltageLevel = oldSclElement.querySelector(
+      const newVoltageLevel = newSclElement.querySelector(
         'VoltageLevel[name="S1 110kV"]'
       );
-      const newVoltageLevel = newSclElement.querySelector(
+      const oldVoltageLevel = oldSclElement.querySelector(
         'VoltageLevel[name="S1 110kV"]'
       );
 

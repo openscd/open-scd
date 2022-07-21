@@ -37,14 +37,14 @@ export function diffSclAttributes(
   const attrDiffs: [string, Diff<string>][] = [];
 
   // First check if there is any text inside the element and there should be no child elements.
-  const oldText = elementToBeCompared.textContent?.trim() ?? '';
-  const newText = elementToCompareAgainst.textContent?.trim() ?? '';
+  const newText = elementToBeCompared.textContent?.trim() ?? '';
+  const oldText = elementToCompareAgainst.textContent?.trim() ?? '';
   if (
     elementToBeCompared.childElementCount === 0 &&
     elementToCompareAgainst.childElementCount === 0 &&
     newText !== oldText
   ) {
-    attrDiffs.push(['value', { oldValue: oldText, newValue: newText }]);
+    attrDiffs.push(['value', { newValue: newText, oldValue: oldText }]);
   }
 
   // Next check if there are any difference between attributes.
@@ -61,8 +61,8 @@ export function diffSclAttributes(
       attrDiffs.push([
         name,
         <Diff<string>>{
-          newValue: elementToCompareAgainst.getAttribute(name),
-          oldValue: elementToBeCompared.getAttribute(name),
+          newValue: elementToBeCompared.getAttribute(name),
+          oldValue: elementToCompareAgainst.getAttribute(name),
         },
       ]);
     }
@@ -117,23 +117,22 @@ export function diffSclChilds(
   const childrenToBeCompared = Array.from(elementToBeCompared.children);
   const childrenToCompareTo = Array.from(elementToCompareAgainst.children);
 
-  childrenToCompareTo.forEach(newElement => {
+  childrenToBeCompared.forEach(newElement => {
     if (!newElement.closest('Private')) {
-      const twinIndex = childrenToBeCompared.findIndex(ourChild =>
+      const twinIndex = childrenToCompareTo.findIndex(ourChild =>
         isSame(newElement, ourChild)
       );
-      const oldElement =
-        twinIndex > -1 ? childrenToBeCompared[twinIndex] : null;
+      const oldElement = twinIndex > -1 ? childrenToCompareTo[twinIndex] : null;
 
       if (oldElement) {
-        childrenToBeCompared.splice(twinIndex, 1);
+        childrenToCompareTo.splice(twinIndex, 1);
         childDiffs.push({ newValue: newElement, oldValue: oldElement });
       } else {
         childDiffs.push({ newValue: newElement, oldValue: null });
       }
     }
   });
-  childrenToBeCompared.forEach(oldElement => {
+  childrenToCompareTo.forEach(oldElement => {
     if (!oldElement.closest('Private')) {
       childDiffs.push({ newValue: null, oldValue: oldElement });
     }
@@ -181,7 +180,7 @@ export function renderDiff(
 
   // These children exist in both old and new element, let's check if there are any difference in the children.
   const childToCompareTemplates = childToCompare
-    .map(diff => renderDiff(diff.oldValue!, diff.newValue!))
+    .map(diff => renderDiff(diff.newValue!, diff.oldValue!))
     .filter(result => result !== null);
 
   // If there are difference generate the HTML otherwise just return null.
@@ -213,7 +212,7 @@ export function renderDiff(
                 <span>${name}</span>
                 <span slot="secondary">
                   ${diff.oldValue ?? ''}
-                  ${diff.oldValue && diff.newValue ? html`&cularr;` : ' '}
+                  ${diff.oldValue && diff.newValue ? html`&curarr;` : ' '}
                   ${diff.newValue ?? ''}
                 </span>
                 <mwc-icon slot="meta">

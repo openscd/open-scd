@@ -7,16 +7,21 @@ describe('Compare IED Plugin', () => {
     customElements.define('compare-ied', CompareIEDPlugin);
 
   let plugin: CompareIEDPlugin;
+  let doc: XMLDocument;
+  let template: XMLDocument;
 
   beforeEach(async () => {
     plugin = await fixture(html`<compare-ied></compare-ied>`);
+    doc = await fetch('/test/testfiles/menu/compare-ied-changed.scd')
+      .then(response => response.text())
+      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+    template = await fetch('/test/testfiles/menu/compare-ied-original.scd')
+      .then(response => response.text())
+      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
   });
 
   describe('show template project selection dialog', () => {
     beforeEach(async () => {
-      const doc = await fetch('/test/testfiles/menu/compare-ied-changed.scd')
-        .then(response => response.text())
-        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       plugin.doc = doc;
       plugin.run();
       await plugin.requestUpdate();
@@ -42,15 +47,6 @@ describe('Compare IED Plugin', () => {
 
   describe('show ied selection lists dialog', () => {
     beforeEach(async () => {
-      const doc = await fetch('/test/testfiles/menu/compare-ied-changed.scd')
-        .then(response => response.text())
-        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      const template = await fetch(
-        '/test/testfiles/menu/compare-ied-original.scd'
-      )
-        .then(response => response.text())
-        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-
       plugin.doc = doc;
       plugin.templateDoc = template;
       plugin.run();
@@ -85,15 +81,6 @@ describe('Compare IED Plugin', () => {
 
   describe('show compare dialog with no differences', () => {
     beforeEach(async () => {
-      const doc = await fetch('/test/testfiles/menu/compare-ied-changed.scd')
-        .then(response => response.text())
-        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      const template = await fetch(
-        '/test/testfiles/menu/compare-ied-original.scd'
-      )
-        .then(response => response.text())
-        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-
       plugin.doc = doc;
       plugin.templateDoc = template;
       plugin.selectedProjectIed =
@@ -112,15 +99,6 @@ describe('Compare IED Plugin', () => {
 
   describe('show compare dialog with copied IED', () => {
     beforeEach(async () => {
-      const doc = await fetch('/test/testfiles/menu/compare-ied-changed.scd')
-        .then(response => response.text())
-        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      const template = await fetch(
-        '/test/testfiles/menu/compare-ied-original.scd'
-      )
-        .then(response => response.text())
-        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-
       plugin.doc = doc;
       plugin.templateDoc = template;
       plugin.selectedProjectIed =
@@ -139,15 +117,6 @@ describe('Compare IED Plugin', () => {
 
   describe('show compare dialog with differences', () => {
     beforeEach(async () => {
-      const doc = await fetch('/test/testfiles/menu/compare-ied-changed.scd')
-        .then(response => response.text())
-        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      const template = await fetch(
-        '/test/testfiles/menu/compare-ied-original.scd'
-      )
-        .then(response => response.text())
-        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-
       plugin.doc = doc;
       plugin.templateDoc = template;
       plugin.selectedProjectIed =
