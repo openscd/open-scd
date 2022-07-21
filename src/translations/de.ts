@@ -152,9 +152,9 @@ export const de: Translations = {
     unique: 'Darf sich nicht wiederholen',
   },
   compare: {
-    compareButton: '???',
-    attributes: '??? {{ elementName }}',
-    children: '??? {{ elementName }}',
+    compareButton: 'Starte Vergleich',
+    attributes: 'Attribute von {{ elementName }}',
+    children: 'Kindelemente von {{ elementName }}',
   },
   log: {
     name: 'Protokoll',
@@ -464,12 +464,13 @@ export const de: Translations = {
     },
   },
   'compare-ied': {
-    title: '???',
-    projectIedTitle: '???',
-    templateIedTitle: '???',
-    selectIedButton: '???',
-    selectTemplateButton: '???',
-    noDiff: '??? "{{ projectIedName }}" ??? "{{ templateIedName }}"',
+    title: 'Vergleiche IED mit Vorlage',
+    projectIedTitle: 'IED Name aus Projekt',
+    templateIedTitle: 'IED Name aus Vorlage',
+    selectIedButton: 'IED auswählen',
+    selectTemplateButton: 'Vorlage auswählen',
+    noDiff:
+      'Keine Unterschiede zwischen IED Projekt "{{ projectIedName }}" und IED aus Vorlage "{{ templateIedName }}" gefunden',
   },
   'enum-val': {
     wizard: {
