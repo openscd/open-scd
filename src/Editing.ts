@@ -419,7 +419,7 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
             action: event.detail.action,
           })
         );
-      }
+      } else return;
 
       if (!this.doc) return;
 

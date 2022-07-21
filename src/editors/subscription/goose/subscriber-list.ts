@@ -16,6 +16,7 @@ import {
   Create,
   createElement,
   Delete,
+  identity,
   newActionEvent,
 } from '../../../foundation.js';
 import {
@@ -323,7 +324,15 @@ export class SubscriberList extends SubscriberListContainer {
   }
 
   renderUnSubscribers(elements: ListElement[]): TemplateResult {
-    return html`<mwc-list-item noninteractive>
+    return html`<mwc-list-item
+        noninteractive
+        value="${elements
+          .map(element => {
+            const id = identity(element.element) as string;
+            return typeof id === 'string' ? id : '';
+          })
+          .join(' ')}"
+      >
         <span
           >${translate('subscription.subscriber.availableToSubscribe')}</span
         >
@@ -339,7 +348,15 @@ export class SubscriberList extends SubscriberListContainer {
   }
 
   renderPartiallySubscribers(elements: ListElement[]): TemplateResult {
-    return html`<mwc-list-item noninteractive>
+    return html`<mwc-list-item
+        noninteractive
+        value="${elements
+          .map(element => {
+            const id = identity(element.element) as string;
+            return typeof id === 'string' ? id : '';
+          })
+          .join(' ')}"
+      >
         <span>${translate('subscription.subscriber.partiallySubscribed')}</span>
       </mwc-list-item>
       <li divider role="separator"></li>
@@ -353,7 +370,15 @@ export class SubscriberList extends SubscriberListContainer {
   }
 
   renderFullSubscribers(): TemplateResult {
-    return html`<mwc-list-item noninteractive>
+    return html`<mwc-list-item
+        noninteractive
+        value="${this.subscribedElements
+          .map(element => {
+            const id = identity(element.element) as string;
+            return typeof id === 'string' ? id : '';
+          })
+          .join(' ')}"
+      >
         <span>${translate('subscription.subscriber.subscribed')}</span>
       </mwc-list-item>
       <li divider role="separator"></li>

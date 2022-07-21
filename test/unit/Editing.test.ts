@@ -1,4 +1,5 @@
 import { html, fixture, expect } from '@open-wc/testing';
+import { SinonSpy, spy } from 'sinon';
 
 import './mock-editor.js';
 import { MockEditor } from './mock-editor.js';
@@ -12,6 +13,8 @@ describe('EditingElement', () => {
   let element: Element;
   let reference: Node | null;
 
+  let validateEvent: SinonSpy;
+
   beforeEach(async () => {
     doc = await fetch('/test/testfiles/Editing.scd')
       .then(response => response.text())
@@ -23,6 +26,9 @@ describe('EditingElement', () => {
     parent = elm.doc!.querySelector('VoltageLevel[name="E1"]')!;
     element = parent.querySelector('Bay[name="Q01"]')!;
     reference = element.nextSibling;
+
+    validateEvent = spy();
+    window.addEventListener('validate', validateEvent);
   });
 
   it('creates an element on receiving a Create Action', () => {
@@ -389,5 +395,58 @@ describe('EditingElement', () => {
     expect(parent.querySelector('Bay[name="Q01"]')).to.be.null;
     expect(elm.doc!.querySelector('VoltageLevel[name="J1"] > newBay')).to.not.be
       .null;
+  });
+
+  it('triggers a validation event on receiving a ComplexAction', async () => {
+    const child3 = elm.doc!.createElement('newBay');
+    elm.dispatchEvent(
+      newActionEvent({
+        title: 'Test complex action',
+        actions: [
+          {
+            old: { element },
+            new: { element: child3 },
+          },
+          {
+            old: {
+              parent,
+              element: child3,
+              reference,
+            },
+            new: {
+              parent: elm.doc!.querySelector('VoltageLevel[name="J1"]')!,
+              reference: null,
+            },
+          },
+        ],
+      })
+    );
+    await elm.updateComplete;
+
+    expect(validateEvent).to.be.calledOnce;
+  });
+
+  it('does not exchange doc with empty complex action', async () => {
+    elm.dispatchEvent(
+      newActionEvent({
+        title: 'Test complex action',
+        actions: [],
+      })
+    );
+    await elm.updateComplete;
+
+    expect(doc).to.equal(elm.doc);
+  });
+
+  it('does not trigger validation with empty complex action', async () => {
+    elm.dispatchEvent(
+      newActionEvent({
+        title: 'Test complex action',
+        actions: [],
+      })
+    );
+    await elm.updateComplete;
+
+    expect(validateEvent).to.not.been.called;
   });
 });
