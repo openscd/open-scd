@@ -63,6 +63,13 @@ export const officialPlugins = [
     kind: 'editor',
   },
   {
+    name: 'Cleanup',
+    src: '/src/editors/Cleanup.js',
+    icon: 'cleaning_services',
+    default: false,
+    kind: 'editor',
+  },
+  {
     name: 'Open project',
     src: '/src/menu/OpenProject.js',
     icon: 'folder_open',
@@ -119,7 +126,7 @@ export const officialPlugins = [
     default: false,
     kind: 'menu',
     requireDoc: true,
-    position: 'middle'
+    position: 'middle',
   },
   {
     name: 'Subscriber Update',
@@ -164,11 +171,13 @@ export const officialPlugins = [
     position: 'middle',
   },
   {
-    name: 'Cleanup',
-    src: '/src/editors/Cleanup.js',
-    icon: 'cleaning_services',
+    name: 'Compare IED',
+    src: '/src/menu/CompareIED.js',
+    icon: 'compare_arrows',
     default: false,
-    kind: 'editor',
+    kind: 'menu',
+    requireDoc: true,
+    position: 'middle',
   },
   {
     name: 'Help',
