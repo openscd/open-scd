@@ -113,7 +113,7 @@ export class ZerolinePane extends LitElement {
 
     return ieds.length
       ? html`<div id="iedcontainer">
-          ${ieds.map(ied => html`<ied-editor .element=${ied}></ied-editor>`)}
+          ${ieds.map(ied => html`<ied-editor .doc=${this.doc} .element=${ied}></ied-editor>`)}
         </div>`
       : html``;
   }

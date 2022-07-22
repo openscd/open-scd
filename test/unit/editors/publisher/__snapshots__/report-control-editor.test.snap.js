@@ -9,6 +9,7 @@ snapshots["Editor for ReportControl element looks like the latest snapshot"] =
     graphic="icon"
     noninteractive=""
     tabindex="-1"
+    value=""
   >
     <span>
       IED1
@@ -28,6 +29,7 @@ snapshots["Editor for ReportControl element looks like the latest snapshot"] =
     graphic="icon"
     noninteractive=""
     tabindex="-1"
+    value="IED2>>CBSW> XSWI 1>ReportCb IED2>>CBSW> XSWI 2>ReportCb"
   >
     <span>
       IED2
@@ -81,6 +83,7 @@ snapshots["Editor for ReportControl element looks like the latest snapshot"] =
     graphic="icon"
     noninteractive=""
     tabindex="-1"
+    value=""
   >
     <span>
       IED3

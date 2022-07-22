@@ -33,6 +33,9 @@ npm start
 
 This will start a local development server and open a browser window which will automatically be reloaded as soon as you save any changes to your local source code files.
 
+### TypeDoc
+This project uses [TypeDoc](https://typedoc.org/) to transform documentation comments in the source code into a rendered HTML document that can be queried and navigated through. If you want to consult the generated documentation for the TypeScript components, mixins, modules and other relevant artifacts of this project, you can [do it here](https://openscd.github.io/doc/).
+
 ### Linting & Formatting
 
 If you use VSCode to develop, we recommend you install and use the [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extensions in order to automatically lint and format your code as you edit it. There are similar plugins available for using [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) from within other IDEs and text editors.
@@ -55,6 +58,6 @@ distributed under their [end user license agreement](CC-EULA.pdf).
 
 This project is licensed under the [Apache License 2.0](LICENSE.md).
 
-&copy; 2020-2022 OMICRON electronics GmbH
+&copy; 2020-2022 OMICRON electronics GmbH, Jakob Vogelsang, TransnetBW GmbH, Alliander N.V., and others
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fopenscd%2Fopen-scd.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fopenscd%2Fopen-scd?ref=badge_large)
