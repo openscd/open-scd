@@ -192,7 +192,7 @@ export function renderDiff(
     return html` ${attrDiffs.length > 0 || childAddedOrDeleted.length > 0
       ? html` <mwc-list multi>
           ${attrDiffs.length > 0
-            ? html` <mwc-list-item noninteractive ?twoline="${idTitle}">
+            ? html` <mwc-list-item noninteractive ?twoline=${!!idTitle}>
                   <span class="resultTitle">
                     ${translate('compare.attributes', {
                       elementName: elementToBeCompared.tagName,
@@ -221,7 +221,7 @@ export function renderDiff(
               </mwc-list-item>`
           )}
           ${childAddedOrDeleted.length > 0
-            ? html` <mwc-list-item noninteractive ?twoline="${idTitle}">
+            ? html` <mwc-list-item noninteractive ?twoline=${!!idTitle}>
                   <span class="resultTitle">
                     ${translate('compare.children', {
                       elementName: elementToBeCompared.tagName,
