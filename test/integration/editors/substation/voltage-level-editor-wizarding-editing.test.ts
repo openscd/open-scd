@@ -6,6 +6,44 @@ import { MockWizardEditor } from '../../../mock-wizard-editor.js';
 import '../../../../src/editors/substation/voltage-level-editor.js';
 import { VoltageLevelEditor } from '../../../../src/editors/substation/voltage-level-editor.js';
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
+import { ListItemBase } from '@material/mwc-list/mwc-list-item-base.js';
+import { MenuBase } from '@material/mwc-menu/mwc-menu-base.js';
+
+const openAndCancelMenu: (
+  parent: MockWizardEditor,
+  element: VoltageLevelEditor
+) => Promise<void> = (
+  parent: MockWizardEditor,
+  element: VoltageLevelEditor
+): Promise<void> =>
+  new Promise(async resolve => {
+    expect(parent.wizardUI.dialog).to.be.undefined;
+
+    element?.shadowRoot?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!.click();
+    const powerTransformerMenuItem: ListItemBase =
+      element?.shadowRoot?.querySelector<ListItemBase>(
+        `mwc-list-item[value='PowerTransformer']`
+      )!;
+
+      console.log(powerTransformerMenuItem);
+    powerTransformerMenuItem.click();
+    await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
+    expect(parent.wizardUI.dialog).to.exist;
+
+    const secondaryAction: HTMLElement = <HTMLElement>(
+      parent.wizardUI.dialog?.querySelector(
+        'mwc-button[slot="secondaryAction"]'
+      )
+    );
+
+    secondaryAction.click();
+    await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
+    expect(parent.wizardUI.dialog).to.be.undefined;
+
+    return resolve();
+  });
 
 describe('voltage-level-editor wizarding editing integration', () => {
   describe('edit wizard', () => {
@@ -170,6 +208,37 @@ describe('voltage-level-editor wizarding editing integration', () => {
         .null;
     });
   });
+
+  describe('Open add wizard', () => {
+    let doc: XMLDocument;
+    let parent: MockWizardEditor;
+    let element: VoltageLevelEditor | null;
+
+    beforeEach(async () => {
+      doc = await fetch('/test/testfiles/valid2007B4.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+      parent = <MockWizardEditor>(
+        await fixture(
+          html`<mock-wizard-editor
+            ><voltage-level-editor
+            .element=${doc.querySelector('VoltageLevel[name="E1"]')}
+            ></voltage-level-editor
+          ></mock-wizard-editor>`
+        )
+      );
+
+      element = parent.querySelector('voltage-level-editor');
+
+      await parent.updateComplete;
+    });
+
+    it('Should open the same wizard for the second time', async () => {
+      await openAndCancelMenu(parent, element!);
+      await openAndCancelMenu(parent, element!);
+    });
+  });
+
   describe('open add bay wizard', () => {
     let doc: XMLDocument;
     let parent: MockWizardEditor;
