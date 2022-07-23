@@ -734,6 +734,10 @@ export const en = {
   samvpledvaluecontrol: {
     wizard: { location: 'Select Sampled Value Control Block Location' },
   },
+  publisher: {
+    selectbutton: 'Select other {{type}}',
+    nodataset: 'No DataSet referenced',
+  },
   add: 'Add',
   new: 'New',
   remove: 'Remove',
