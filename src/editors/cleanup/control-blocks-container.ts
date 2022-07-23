@@ -10,6 +10,7 @@ import {
   query,
   queryAll,
 } from 'lit-element';
+import { classMap } from 'lit-html/directives/class-map';
 import { translate } from 'lit-translate';
 
 import '@material/mwc-button';
@@ -118,7 +119,7 @@ export class CleanupControlBlocks extends LitElement {
    */
   private toggleHiddenClass(selectorType: string) {
     this.cleanupList!.querySelectorAll(`.${selectorType}`).forEach(element => {
-      element.classList.toggle('hidden');
+      element.classList.toggle('hiddenontypefilter');
     });
   }
 
@@ -164,7 +165,13 @@ export class CleanupControlBlocks extends LitElement {
   private renderListItem(controlBlock: Element): TemplateResult {
     return html`<mwc-check-list-item
       twoline
-      class="cleanupListItem t${controlBlock.tagName}"
+      class="${classMap({
+        cleanupListItem: true,
+        tReportControl: controlBlock.tagName === 'ReportControl',
+        tLogControl: controlBlock.tagName === 'LogControl',
+        tGSEControl: controlBlock.tagName === 'GSEControl',
+        tSampledValueControl: controlBlock.tagName === 'SampledValueControl',
+      })}"
       value="${identity(controlBlock)}"
       graphic="large"
       ><span class="unreferencedControl"
@@ -401,20 +408,10 @@ export class CleanupControlBlocks extends LitElement {
       opacity: 1;
     }
 
-    /* items are disabled if the filter is deselected */
-    .tGSEControl,
-    .tSampledValueControl,
-    .tLogControl,
-    .tReportControl {
+    /* Make sure to type filter here
+    .hidden is set on string filter in filtered-list and must always filter*/
+    .cleanupListItem.hiddenontypefilter:not(.hidden) {
       display: none;
-    }
-
-    /* items enabled if filter is selected */
-    .tGSEControlFilter[on] ~ .cleanupList > .tGSEControl,
-    .tSampledValueControlFilter[on] ~ .cleanupList > .tSampledValueControl,
-    .tLogControlFilter[on] ~ .cleanupList > .tLogControl,
-    .tReportControlFilter[on] ~ .cleanupList > .tReportControl {
-      display: flex;
     }
 
     /* filter disabled, Material Design guidelines for opacity */
