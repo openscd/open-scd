@@ -76,7 +76,7 @@ function getCommAddress(controlBlock: Element): Element | null | undefined {
 @customElement('cleanup-control-blocks')
 export class CleanupControlBlocks extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
-  @property()
+  @property({ attribute: false })
   doc!: XMLDocument;
 
   @property({ type: Boolean })
@@ -85,7 +85,7 @@ export class CleanupControlBlocks extends LitElement {
   @property({ type: Array })
   unreferencedControls: Element[] = [];
 
-  @property()
+  @property({ attribute: false })
   selectedControlItems: MWCListIndex | [] = [];
 
   @query('.deleteButton')
@@ -228,13 +228,15 @@ export class CleanupControlBlocks extends LitElement {
    * @returns html for the Delete Button of this container.
    */
   private renderDeleteButton(): TemplateResult {
+    const sizeSelectedItems = (<Set<number>>this.selectedControlItems).size;
+
     return html`<mwc-button
       outlined
       icon="delete"
       class="deleteButton"
-      label="${translate('cleanup.unreferencedControls.deleteButton')} (${(<
-        Set<number>
-      >this.selectedControlItems).size || '0'})"
+      label="${translate(
+        'cleanup.unreferencedControls.deleteButton'
+      )} (${sizeSelectedItems || '0'})"
       ?disabled=${(<Set<number>>this.selectedControlItems).size === 0 ||
       (Array.isArray(this.selectedControlItems) &&
         !this.selectedControlItems.length)}
