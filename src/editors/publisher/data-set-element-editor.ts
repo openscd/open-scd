@@ -33,7 +33,10 @@ export class DataSetElementEditor extends LitElement {
   render(): TemplateResult {
     if (this.element)
       return html`<div class="content">
-        <h2>${identity(this.element)}</h2>
+        <h2>
+          <div>DataSet</div>
+          <div class="headersubtitle">${identity(this.element)}</div>
+        </h2>
         <wizard-textfield
           label="name"
           .maybeValue=${this.name}
@@ -49,12 +52,26 @@ export class DataSetElementEditor extends LitElement {
         >
         </wizard-textfield>
         <filtered-list
-          >${Array.from(this.element.querySelectorAll('FCDA')).map(
-            fcda =>
-              html`<mwc-list-item selected value="${identity(fcda)}"
-                >${(<string>identity(fcda)).split('>').pop()}</mwc-list-item
-              >`
-          )}</filtered-list
+          >${Array.from(this.element.querySelectorAll('FCDA')).map(fcda => {
+            const [ldInst, prefix, lnClass, lnInst, doName, daName] = [
+              'ldInst',
+              'prefix',
+              'lnClass',
+              'lnInst',
+              'doName',
+              'daName',
+            ].map(attributeName => fcda.getAttribute(attributeName) ?? '');
+
+            return html`<mwc-list-item
+              selected
+              twoline
+              value="${identity(fcda)}"
+              ><span>${doName + '.' + daName}</span
+              ><span slot="secondary"
+                >${ldInst + '/' + prefix + lnClass + lnInst}</span
+              >
+            </mwc-list-item>`;
+          })}</filtered-list
         >
       </div>`;
 
@@ -79,13 +96,18 @@ export class DataSetElementEditor extends LitElement {
       color: var(--mdc-theme-on-surface);
       font-family: 'Roboto', sans-serif;
       font-weight: 300;
+
+      margin: 0px;
+      padding-left: 0.3em;
+      transition: background-color 150ms linear;
+    }
+
+    .headersubtitle {
+      font-size: 16px;
+      font-weight: 200;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
-      margin: 0px;
-      line-height: 48px;
-      padding-left: 0.3em;
-      transition: background-color 150ms linear;
     }
 
     *[iconTrailing='search'] {

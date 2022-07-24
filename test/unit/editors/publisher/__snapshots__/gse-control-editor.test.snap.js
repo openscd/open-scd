@@ -1,7 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Editor for GSEControl element initialy looks like the latest snapshot"] = 
+snapshots["Editor for GSEControl element initially looks like the latest snapshot"] = 
 `<mwc-button
   label="[publisher.selectbutton]"
   outlined=""
@@ -126,7 +126,7 @@ snapshots["Editor for GSEControl element initialy looks like the latest snapshot
   </filtered-list>
 </div>
 `;
-/* end snapshot Editor for GSEControl element initialy looks like the latest snapshot */
+/* end snapshot Editor for GSEControl element initially looks like the latest snapshot */
 
 snapshots["Editor for GSEControl element with a selected GSEControl looks like the latest snapshot"] = 
 `<mwc-button

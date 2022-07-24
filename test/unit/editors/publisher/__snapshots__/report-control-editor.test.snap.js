@@ -1,7 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Editor for ReportControl element initialy looks like the latest snapshot"] = 
+snapshots["Editor for ReportControl element initially looks like the latest snapshot"] = 
 `<mwc-button
   label="[publisher.selectbutton]"
   outlined=""
@@ -109,7 +109,7 @@ snapshots["Editor for ReportControl element initialy looks like the latest snaps
   </filtered-list>
 </div>
 `;
-/* end snapshot Editor for ReportControl element initialy looks like the latest snapshot */
+/* end snapshot Editor for ReportControl element initially looks like the latest snapshot */
 
 snapshots["Editor for ReportControl element with a selected ReportControl looks like the latest snapshot"] = 
 `<mwc-button

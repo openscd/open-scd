@@ -17,7 +17,7 @@ describe('Editor for ReportControl element', () => {
     );
   });
 
-  it('initialy looks like the latest snapshot', async () =>
+  it('initially looks like the latest snapshot', async () =>
     await expect(element).shadowDom.to.equalSnapshot());
 
   describe('with a selected ReportControl', () => {
