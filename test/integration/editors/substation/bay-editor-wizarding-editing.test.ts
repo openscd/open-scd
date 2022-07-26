@@ -7,6 +7,42 @@ import '../../../../src/editors/substation/bay-editor.js';
 import { BayEditor } from '../../../../src/editors/substation/bay-editor.js';
 import { Select } from '@material/mwc-select';
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
+import { MenuBase } from '@material/mwc-menu/mwc-menu-base.js';
+import { ListItemBase } from '@material/mwc-list/mwc-list-item-base.js';
+
+const openAndCancelMenu: (
+  parent: MockWizardEditor,
+  element: BayEditor
+) => Promise<void> = (
+  parent: MockWizardEditor,
+  element: BayEditor
+): Promise<void> =>
+  new Promise(async resolve => {
+    expect(parent.wizardUI.dialog).to.be.undefined;
+
+    element?.shadowRoot?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!.click();
+    const lnodeMenuItem: ListItemBase =
+      element?.shadowRoot?.querySelector<ListItemBase>(
+        `mwc-list-item[value='LNode']`
+      )!;
+    lnodeMenuItem.click();
+    await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
+    expect(parent.wizardUI.dialog).to.exist;
+
+    const secondaryAction: HTMLElement = <HTMLElement>(
+      parent.wizardUI.dialog?.querySelector(
+        'mwc-button[slot="secondaryAction"]'
+      )
+    );
+
+    secondaryAction.click();
+    await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
+    expect(parent.wizardUI.dialog).to.be.undefined;
+
+    return resolve();
+  });
 
 describe('bay-editor wizarding editing integration', () => {
   describe('edit wizard', () => {
@@ -413,6 +449,36 @@ describe('bay-editor wizarding editing integration', () => {
           'Bay[name="COUPLING_BAY"] > Function[name="someNewFunction"]'
         )
       ).to.exist;
+    });
+  });
+
+  describe('Open add wizard', () => {
+    let doc: XMLDocument;
+    let parent: MockWizardEditor;
+    let element: BayEditor | null;
+
+    beforeEach(async () => {
+      doc = await fetch('/test/testfiles/zeroline/functions.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+      parent = <MockWizardEditor>(
+        await fixture(
+          html`<mock-wizard-editor
+            ><bay-editor
+              .element=${doc.querySelector('Bay')}
+            ></bay-editor
+          ></mock-wizard-editor>`
+        )
+      );
+
+      element = parent.querySelector('bay-editor');
+
+      await parent.updateComplete;
+    });
+
+    it('Should open the same wizard for the second time', async () => {
+      await openAndCancelMenu(parent, element!);
+      await openAndCancelMenu(parent, element!);
     });
   });
 });
