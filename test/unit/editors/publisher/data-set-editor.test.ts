@@ -17,6 +17,21 @@ describe('Editor for DataSet element', () => {
     );
   });
 
-  it('looks like the latest snapshot', async () =>
+  it('initially looks like the latest snapshot', async () =>
     await expect(element).shadowDom.to.equalSnapshot());
+
+  describe('with a selected DataSet', () => {
+    beforeEach(async () => {
+      (
+        element.shadowRoot?.querySelector(
+          '.selectionlist > mwc-list-item:not([noninteractive])'
+        ) as HTMLElement
+      ).click();
+
+      await element.updateComplete;
+    });
+
+    it('looks like the latest snapshot', async () =>
+      await expect(element).shadowDom.to.equalSnapshot());
+  });
 });
