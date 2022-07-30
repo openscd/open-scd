@@ -221,6 +221,8 @@ snapshots["Editor for ReportControl element with a selected ReportControl looks 
     </li>
   </filtered-list>
   <div class="elementeditorcontainer">
+    <report-control-element-editor filtered="">
+    </report-control-element-editor>
     <data-set-element-editor>
     </data-set-element-editor>
   </div>

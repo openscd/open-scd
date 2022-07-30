@@ -113,5 +113,9 @@ export class DataSetEditor extends LitElement {
 
   static styles = css`
     ${styles}
+
+    data-set-element-editor {
+      flex: auto;
+    }
   `;
 }
