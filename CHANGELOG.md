@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.20.0](https://github.com/openscd/open-scd/compare/v0.19.0...v0.20.0) (2022-07-31)
+
+
+### Features
+
+* **editors/publisher:** add read only data set element editor ([#911](https://github.com/openscd/open-scd/issues/911)) ([45b5440](https://github.com/openscd/open-scd/commits/45b5440970b515e6d344f53f851c974267eaf961))
+* **filtered-list:** filter on list item value ([#876](https://github.com/openscd/open-scd/issues/876)) ([9d7916b](https://github.com/openscd/open-scd/commits/9d7916bc684b338a076a84060ae317e4bf00cb83))
+* **menu/compareied:** compares two IED elements with one another ([#903](https://github.com/openscd/open-scd/issues/903)) ([cb07c07](https://github.com/openscd/open-scd/commits/cb07c071a554ee46780472566f2cfe5fa4b7dd10))
+
+
+### Bug Fixes
+
+* Adding Subnetwork to a configuration without a Communication Element failed for the first time ([c1d2086](https://github.com/openscd/open-scd/commits/c1d2086ec5b12edef0b3c16e3e1855cf40fbf7b3))
+* Adding Subnetwork to a configuration without a Communication Element failed for the first time ([4af30c2](https://github.com/openscd/open-scd/commits/4af30c29765a3658b25d639bac6133ca1fd8595a))
+* Adding Subnetwork to a configuration without a Communication Element failed for the first time ([617e72d](https://github.com/openscd/open-scd/commits/617e72d210869450611f5c8c75a41dbc2b6be9d1))
+* Adding Subnetwork to a configuration without a Communication Element failed for the first time ([5a8e659](https://github.com/openscd/open-scd/commits/5a8e6592dd5e2e8410c4e5e949f66b8e3890bf99))
+* **editing:** don't validate after no-op action ([#889](https://github.com/openscd/open-scd/issues/889)) ([b93dab2](https://github.com/openscd/open-scd/commits/b93dab2a3367807959fd4fe7fe33f5ce99bfea41))
+* **editing:** wait for new doc before validating ([#879](https://github.com/openscd/open-scd/issues/879)) ([1548282](https://github.com/openscd/open-scd/commits/1548282e124285b1cfd4bdaf1e58d8b815ff93bd))
+* **editor/104:** Small improvements and fix. ([#874](https://github.com/openscd/open-scd/issues/874)) ([eb22280](https://github.com/openscd/open-scd/commits/eb222802b70162c7748938b593b15dd35312b96c))
+* **editor/ied:** fixed styling how DA(I) values are displayed. ([#872](https://github.com/openscd/open-scd/issues/872)) ([7a12d77](https://github.com/openscd/open-scd/commits/7a12d77447fcf2f24a8b7f3e2549ce1626f41774))
+* **editor/SingleLineDiagram:** Fixed redrawing when new document loaded ([ccd8ff0](https://github.com/openscd/open-scd/commits/ccd8ff031ac73d9882a98a8a3d80b940e31cf84b))
+* **editor/substation:** Updated IED name is shown in IED container ([cff0bb7](https://github.com/openscd/open-scd/commits/cff0bb71a9a0cc404115ec52fd4302921bc45f35))
+* **editors/substation:** make sure add new child menu always open its create wizard ([#912](https://github.com/openscd/open-scd/issues/912)) ([ed0e71d](https://github.com/openscd/open-scd/commits/ed0e71d5579cfc539036adc6120ae62a4d763ab6))
+* **menu/importieds:** Accept multiple IEDs from same file in import IEDs. Closes [#897](https://github.com/openscd/open-scd/issues/897) ([#900](https://github.com/openscd/open-scd/issues/900)) ([44b4f87](https://github.com/openscd/open-scd/commits/44b4f87c64ef1311fcfa8cbd6f9771301dd5be19))
+* **mergeWizard:** insert element at valid position ([#888](https://github.com/openscd/open-scd/issues/888)) ([027462c](https://github.com/openscd/open-scd/commits/027462cedaa419c2832741563721d5b8d9c49652))
+
 ## [0.19.0](https://github.com/openscd/open-scd/compare/v0.18.0...v0.19.0) (2022-07-11)
 
 
