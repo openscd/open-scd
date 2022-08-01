@@ -19,8 +19,6 @@ export class ReportControlElementEditor extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property({ attribute: false })
   element!: Element;
-  @property({ type: Boolean, reflect: true })
-  filtered = true;
 
   private renderOptFieldsContent(): TemplateResult {
     const [
@@ -91,16 +89,12 @@ export class ReportControlElementEditor extends LitElement {
   }
 
   private renderChildElements(): TemplateResult {
-    if (this.filtered) return html``;
-
     return html`<div class="content">
       ${this.renderTrgOpsContent()}${this.renderOptFieldsContent()}
     </div>`;
   }
 
   private renderReportControlContent(): TemplateResult {
-    if (this.filtered) return html``;
-
     const [name, desc, buffered, rptID, indexed, bufTime, intgPd] = [
       'name',
       'desc',
@@ -186,12 +180,6 @@ export class ReportControlElementEditor extends LitElement {
             <div>ReportControl</div>
             <div class="headersubtitle">${identity(this.element)}</div>
           </div>
-          <mwc-icon-button-toggle
-            id="toggleButton"
-            onIcon="keyboard_arrow_up"
-            offIcon="keyboard_arrow_down"
-            @click=${() => (this.filtered = !this.filtered)}
-          ></mwc-icon-button-toggle>
         </h2>
         <div class="parentcontent">
           ${this.renderReportControlContent()}${this.renderChildElements()}
@@ -210,13 +198,13 @@ export class ReportControlElementEditor extends LitElement {
       grid-template-columns: repeat(auto-fit, minmax(316px, auto));
     }
 
+    .content {
+      border-left: thick solid var(--mdc-theme-on-primary);
+    }
+
     .content > * {
       display: block;
       margin: 4px 8px 16px;
-    }
-
-    mwc-icon-button-toggle {
-      position: relative;
     }
 
     h2,

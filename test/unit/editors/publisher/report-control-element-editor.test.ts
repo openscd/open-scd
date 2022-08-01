@@ -22,25 +22,6 @@ describe('Editor for ReportControl element and its direct children', () => {
           .element=${reportControl}
         ></report-control-element-editor>`
       );
-
-      element.filtered = false;
-      await element.requestUpdate();
-    });
-
-    it('looks like the latest snapshot', async () =>
-      await expect(element).shadowDom.to.equalSnapshot());
-  });
-
-  describe('with filtered property set', () => {
-    beforeEach(async () => {
-      const reportControl = doc.querySelector('ReportControl')!;
-
-      element = await fixture(
-        html`<report-control-element-editor
-          .element=${reportControl}
-          ?filtered=${true}
-        ></report-control-element-editor>`
-      );
     });
 
     it('looks like the latest snapshot', async () =>

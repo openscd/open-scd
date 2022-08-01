@@ -58,12 +58,12 @@ export class ReportControlEditor extends LitElement {
   private renderElementEditorContainer(): TemplateResult {
     if (this.selectedReportControl !== undefined)
       return html`<div class="elementeditorcontainer">
-        <report-control-element-editor
-          .element=${this.selectedReportControl}
-        ></report-control-element-editor>
         <data-set-element-editor
           .element=${this.selectedDataSet!}
         ></data-set-element-editor>
+        <report-control-element-editor
+          .element=${this.selectedReportControl}
+        ></report-control-element-editor>
       </div>`;
 
     return html``;
@@ -142,20 +142,12 @@ export class ReportControlEditor extends LitElement {
       grid-template-columns: repeat(3, 1fr);
     }
 
+    data-set-element-editor {
+      grid-column: 1 / 2;
+    }
+
     report-control-element-editor {
-      grid-column: 1 / 3;
-    }
-
-    report-control-element-editor[filtered] {
-      grid-column: 1 / 4;
-    }
-
-    report-control-element-editor:not([filtered]) ~ data-set-element-editor {
-      grid-column: 3 / 4;
-    }
-
-    report-control-element-editor[filtered] ~ data-set-element-editor {
-      grid-column: 1 / 4;
+      grid-column: 2 / 4;
     }
 
     @media (max-width: 950px) {

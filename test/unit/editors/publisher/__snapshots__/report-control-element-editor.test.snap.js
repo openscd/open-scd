@@ -11,12 +11,6 @@ snapshots["Editor for ReportControl element and its direct children with valid R
       IED2>>CBSW> XSWI 1>ReportCb
     </div>
   </div>
-  <mwc-icon-button-toggle
-    id="toggleButton"
-    officon="keyboard_arrow_down"
-    onicon="keyboard_arrow_up"
-  >
-  </mwc-icon-button-toggle>
 </h2>
 <div class="parentcontent">
   <div class="content">
@@ -173,26 +167,4 @@ snapshots["Editor for ReportControl element and its direct children with valid R
 </div>
 `;
 /* end snapshot Editor for ReportControl element and its direct children with valid ReportControl looks like the latest snapshot */
-
-snapshots["Editor for ReportControl element and its direct children with filtered property set looks like the latest snapshot"] = 
-`<h2 style="display: flex;">
-  <div style="flex:auto">
-    <div>
-      ReportControl
-    </div>
-    <div class="headersubtitle">
-      IED2>>CBSW> XSWI 1>ReportCb
-    </div>
-  </div>
-  <mwc-icon-button-toggle
-    id="toggleButton"
-    officon="keyboard_arrow_down"
-    onicon="keyboard_arrow_up"
-  >
-  </mwc-icon-button-toggle>
-</h2>
-<div class="parentcontent">
-</div>
-`;
-/* end snapshot Editor for ReportControl element and its direct children with filtered property set looks like the latest snapshot */
 
