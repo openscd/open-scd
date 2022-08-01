@@ -36,6 +36,7 @@ import {
   editSubFunctionWizard,
 } from './subfunction.js';
 import { editSampledValueControlWizard } from './sampledvaluecontrol.js';
+import { editCompasSCLWizard } from "../compas-wizards/scl.js";
 
 type SclElementWizard = (
   element: Element,
@@ -418,7 +419,7 @@ export const wizards: Record<
     create: emptyWizard,
   },
   SCL: {
-    edit: emptyWizard,
+    edit: editCompasSCLWizard,
     create: emptyWizard,
   },
   SDI: {
