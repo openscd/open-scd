@@ -33,7 +33,7 @@ snapshots["open-scd looks like its snapshot"] =
         Open project
       </span>
     </mwc-list-item>
-    <oscd-plugin8377febe1fad1914 class="menu plugin">
+    <oscd-plugin8377febe1fad1914 class="plugin">
     </oscd-plugin8377febe1fad1914>
     <mwc-list-item
       aria-disabled="false"
@@ -50,7 +50,7 @@ snapshots["open-scd looks like its snapshot"] =
         New project
       </span>
     </mwc-list-item>
-    <oscd-plugin679d81826289fb9a class="menu plugin">
+    <oscd-plugin679d81826289fb9a class="plugin">
     </oscd-plugin679d81826289fb9a>
     <mwc-list-item
       aria-disabled="false"
@@ -67,7 +67,7 @@ snapshots["open-scd looks like its snapshot"] =
         Project from CIM
       </span>
     </mwc-list-item>
-    <oscd-plugin87f72fdec2017c78 class="menu plugin">
+    <oscd-plugin87f72fdec2017c78 class="plugin">
     </oscd-plugin87f72fdec2017c78>
     <mwc-list-item
       aria-disabled="true"
@@ -85,7 +85,7 @@ snapshots["open-scd looks like its snapshot"] =
         Save project
       </span>
     </mwc-list-item>
-    <oscd-plugin25aae78ff326102f class="menu plugin">
+    <oscd-plugin25aae78ff326102f class="plugin">
     </oscd-plugin25aae78ff326102f>
     <mwc-list-item
       aria-disabled="true"
@@ -103,7 +103,7 @@ snapshots["open-scd looks like its snapshot"] =
         Save project as
       </span>
     </mwc-list-item>
-    <oscd-plugin78931a53cad7ad3a class="menu plugin">
+    <oscd-plugin78931a53cad7ad3a class="plugin">
     </oscd-plugin78931a53cad7ad3a>
     <li
       divider=""
@@ -159,7 +159,7 @@ snapshots["open-scd looks like its snapshot"] =
         Validate using OCL
       </span>
     </mwc-list-item>
-    <oscd-plugine36e411de62aaf96 class="plugin validator">
+    <oscd-plugine36e411de62aaf96 class="plugin">
     </oscd-plugine36e411de62aaf96>
     <mwc-list-item
       aria-disabled="true"
@@ -177,7 +177,7 @@ snapshots["open-scd looks like its snapshot"] =
         Validate Schema
       </span>
     </mwc-list-item>
-    <oscd-plugin3aa68346726da1cd class="plugin validator">
+    <oscd-plugin3aa68346726da1cd class="plugin">
     </oscd-plugin3aa68346726da1cd>
     <mwc-list-item
       aria-disabled="true"
@@ -195,7 +195,7 @@ snapshots["open-scd looks like its snapshot"] =
         Validate Templates
       </span>
     </mwc-list-item>
-    <oscd-plugin186320cdd626e422 class="plugin validator">
+    <oscd-plugin186320cdd626e422 class="plugin">
     </oscd-plugin186320cdd626e422>
     <mwc-list-item
       aria-disabled="false"
@@ -249,7 +249,7 @@ snapshots["open-scd looks like its snapshot"] =
         Import IEDs
       </span>
     </mwc-list-item>
-    <oscd-pluginb15ea127292dd242 class="menu plugin">
+    <oscd-pluginb15ea127292dd242 class="plugin">
     </oscd-pluginb15ea127292dd242>
     <mwc-list-item
       aria-disabled="true"
@@ -267,7 +267,7 @@ snapshots["open-scd looks like its snapshot"] =
         Subscriber Update
       </span>
     </mwc-list-item>
-    <oscd-plugin90bf5c90b69b347b class="menu plugin">
+    <oscd-plugin90bf5c90b69b347b class="plugin">
     </oscd-plugin90bf5c90b69b347b>
     <mwc-list-item
       aria-disabled="true"
@@ -285,7 +285,7 @@ snapshots["open-scd looks like its snapshot"] =
         Merge Project
       </span>
     </mwc-list-item>
-    <oscd-plugin6b332766ae5e2b11 class="menu plugin">
+    <oscd-plugin6b332766ae5e2b11 class="plugin">
     </oscd-plugin6b332766ae5e2b11>
     <mwc-list-item
       aria-disabled="true"
@@ -303,7 +303,7 @@ snapshots["open-scd looks like its snapshot"] =
         Update Substation
       </span>
     </mwc-list-item>
-    <oscd-plugin049834abc330641d class="menu plugin">
+    <oscd-plugin049834abc330641d class="plugin">
     </oscd-plugin049834abc330641d>
     <mwc-list-item
       aria-disabled="true"
@@ -321,7 +321,7 @@ snapshots["open-scd looks like its snapshot"] =
         Auto Align SLD
       </span>
     </mwc-list-item>
-    <oscd-pluginc69b878585292aa9 class="menu plugin">
+    <oscd-pluginc69b878585292aa9 class="plugin">
     </oscd-pluginc69b878585292aa9>
     <li
       divider=""
@@ -359,7 +359,7 @@ snapshots["open-scd looks like its snapshot"] =
         CoMPAS Settings
       </span>
     </mwc-list-item>
-    <oscd-plugin8a88d78e372c97aa class="menu plugin">
+    <oscd-plugin8a88d78e372c97aa class="plugin">
     </oscd-plugin8a88d78e372c97aa>
     <mwc-list-item
       aria-disabled="false"
@@ -376,7 +376,7 @@ snapshots["open-scd looks like its snapshot"] =
         Help
       </span>
     </mwc-list-item>
-    <oscd-plugin48ab1a46d409bed9 class="menu plugin">
+    <oscd-plugin48ab1a46d409bed9 class="plugin">
     </oscd-plugin48ab1a46d409bed9>
     <li
       divider=""
