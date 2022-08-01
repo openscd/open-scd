@@ -21,56 +21,63 @@ import {
 import { createAddressesWizard } from './createAddresses.js';
 import { SupportedCdcType, supportedCdcTypes } from '../foundation/cdc.js';
 import { PROTOCOL_104_PRIVATE } from '../foundation/private.js';
-import { getDoElements, getTypeAttribute } from '../foundation/foundation.js';
+import {
+  getCdcValueFromDOElement,
+  getDoElements,
+} from '../foundation/foundation.js';
 
 /**
- * Check if there are DO Elements that aren't initiated and are supported by the 104 protocol available.
+ * Check if the passed DO Element is supported by the 104 protocol and isn't initiated.
  *
- * @param parent - The parent element of the child, mainly needed to link the LN Element to the DO Elements.
+ * @param lnElement - The LN Element used to search for Address Element below DOI, if available.
+ * @param doElement - The DO Element to check.
+ */
+function filterAvailableDOElements(
+  lnElement: Element,
+  doElement: Element
+): boolean {
+  // First check if this DO Element is supported by the 104 Protocol.
+  const cdc = getCdcValueFromDOElement(doElement) ?? '';
+  if (!supportedCdcTypes.includes(<SupportedCdcType>cdc)) {
+    return false;
+  }
+
+  // Use the parent (LN) to find the DOI that's linked to the DO Element
+  // And check if there is DOI if it doesn't already contain Address Elements for the 104 Protocol.
+  const doName = getNameAttribute(doElement);
+  return (
+    lnElement.querySelectorAll(
+      `:scope > DOI[name="${doName}"] DAI > Private[type="${PROTOCOL_104_PRIVATE}"] > Address`
+    ).length <= 0
+  );
+}
+
+/**
+ * Check if there are DO Elements that aren't initiated and are supported by the 104 protocol. If this is the
+ * case the Element can be shown in the Finder.
+ *
  * @param child  - The child to check if it should still be displayed in the finder list.
  */
-function filterAvailableDOElements(parent: Element, child: Element): boolean {
-  if (child.tagName === 'DO') {
-    // First check if this DO Element is supported by the 104 Protocol.
-    const doType = getTypeAttribute(child) ?? '';
-    const doTypeElement = child.ownerDocument.querySelector(
-      `DOType[id="${doType}"]`
-    );
-    const cdc = doTypeElement?.getAttribute('cdc') ?? '';
-    if (!supportedCdcTypes.includes(<SupportedCdcType>cdc)) {
-      return false;
-    }
-
-    // Use the parent (LN) to find the DOI that's linked to the DO Element
-    const doName = getNameAttribute(child);
-    return (
-      Array.from(
-        parent.querySelectorAll(
-          `:scope > DOI[name="${doName}"] DAI > Private[type="${PROTOCOL_104_PRIVATE}"] > Address`
-        )
-      ).length <= 0
-    );
+function filterAvailableElements(child: Element): boolean {
+  // For other elements create a list of LN Elements for processing the DO Element from the LN Elements.
+  let lnElements: Element[];
+  if (['LN0', 'LN'].includes(child.tagName)) {
+    lnElements = [child];
   } else {
-    // For other elements create a list of LN Elements for processing the DO Element from the LN Elements.
-    let lnElements: Element[];
-    if (['LN0', 'LN'].includes(child.tagName)) {
-      lnElements = [child];
-    } else {
-      // For the other Elements we will just retrieve all the DOI Elements.
-      lnElements = Array.from(child.querySelectorAll('LN0, LN'));
-    }
-
-    // If after filtering there are still LN/DO Element(s) to be displayed, this element will be included.
-    return (
-      lnElements.filter(
-        lnElement =>
-          // Check if there are available DO Elements that aren't initiated and supported by 104 protocol
-          getDoElements(lnElement).filter(doElement =>
-            filterAvailableDOElements(lnElement, doElement)
-          ).length > 0
-      ).length > 0
-    );
+    // For the other Elements we will just retrieve all the DOI Elements.
+    lnElements = Array.from(child.querySelectorAll('LN0, LN'));
   }
+
+  // If after filtering there are still LN/DO Element(s) to be displayed, this element will be included.
+  return (
+    lnElements.filter(
+      lnElement =>
+        // Check if there are available DO Elements that aren't initiated and supported by 104 protocol
+        getDoElements(lnElement).filter(doElement =>
+          filterAvailableDOElements(lnElement, doElement)
+        ).length > 0
+    ).length > 0
+  );
 }
 
 /**
@@ -85,23 +92,29 @@ export function getDataChildren(parent: Element): Element[] {
     // For LN Element we will not search for the children, but the DO Element linked to LN from the Template Section.
     const lnType = parent.getAttribute('lnType') ?? '';
     children = Array.from(
-      parent.ownerDocument.querySelectorAll(`LNodeType[id="${lnType}"] > DO`)
-    ).sort((a, b) => compareNames(`${identity(a)}`, `${identity(b)}`));
+      parent.ownerDocument.querySelectorAll(
+        `:root > DataTypeTemplates > LNodeType[id="${lnType}"] > DO`
+      )
+    )
+      .filter(child => filterAvailableDOElements(parent, child))
+      .sort((a, b) => compareNames(`${identity(a)}`, `${identity(b)}`));
   } else if (parent.tagName === 'AccessPoint') {
     // From the Access Point we will skip directly to the LDevice Element and skip the Server element.
-    children = Array.from(parent.querySelectorAll('LDevice')).sort((a, b) =>
-      compareNames(`${identity(a)}`, `${identity(b)}`)
-    );
+    // Or retrieve the LN Elements directly below the AccessPoint.
+    children = Array.from(parent.querySelectorAll('LDevice, :scope > LN'))
+      .filter(child => filterAvailableElements(child))
+      .sort((a, b) => compareNames(`${identity(a)}`, `${identity(b)}`));
   } else {
     // The other element, just retrieve the children and if the tagName is one we need return that child.
     children = Array.from(parent.children)
       .filter(child =>
         ['IED', 'AccessPoint', 'LN0', 'LN'].includes(child.tagName)
       )
+      .filter(child => filterAvailableElements(child))
       .sort((a, b) => compareNames(`${identity(a)}`, `${identity(b)}`));
   }
 
-  return children.filter(child => filterAvailableDOElements(parent, child));
+  return children;
 }
 
 /**

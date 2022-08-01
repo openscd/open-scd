@@ -66,7 +66,7 @@ export function getCdcValueFromDOIElement(doiElement: Element): string | null {
     const doName = doiElement.getAttribute('name');
 
     const doElement = doiElement.ownerDocument.querySelector(
-      `LNodeType[id="${lnType}"] > DO[name="${doName}"]`
+      `:root > DataTypeTemplates > LNodeType[id="${lnType}"] > DO[name="${doName}"]`
     );
     if (doElement) {
       return getCdcValueFromDOElement(doElement);
@@ -78,7 +78,7 @@ export function getCdcValueFromDOIElement(doiElement: Element): string | null {
 export function getCdcValueFromDOElement(doElement: Element): string | null {
   const doType = getTypeAttribute(doElement);
   const doTypeElement = doElement.ownerDocument.querySelector(
-    `DOType[id="${doType}"]`
+    `:root > DataTypeTemplates > DOType[id="${doType}"]`
   );
   return doTypeElement ? doTypeElement.getAttribute('cdc') : null;
 }
@@ -145,7 +145,7 @@ export function getDaElement(doElement: Element, name: string): Element | null {
   const doType = getTypeAttribute(doElement);
   if (doType) {
     return doElement.ownerDocument.querySelector(
-      `DOType[id="${doType}"] > DA[name="${name}"]`
+      `:root > DataTypeTemplates > DOType[id="${doType}"] > DA[name="${name}"]`
     );
   }
   return null;
@@ -199,7 +199,7 @@ export function getDoiElement(
   lnElement: Element,
   doName: string
 ): Element | null {
-  return lnElement.querySelector(`DOI[name="${doName}"]`);
+  return lnElement.querySelector(`:scope > DOI[name="${doName}"]`);
 }
 
 export function getDoElement(
@@ -209,7 +209,7 @@ export function getDoElement(
   const lnType = lnElement.getAttribute('lnType');
   if (lnType) {
     return lnElement.ownerDocument.querySelector(
-      `LNodeType[id="${lnType}"] > DO[name="${doName}"]`
+      `:root > DataTypeTemplates > LNodeType[id="${lnType}"] > DO[name="${doName}"]`
     );
   }
   return null;
@@ -219,7 +219,9 @@ export function getDoElements(lnElement: Element): Element[] {
   const lnType = lnElement.getAttribute('lnType');
   if (lnType) {
     return Array.from(
-      lnElement.ownerDocument.querySelectorAll(`LNodeType[id="${lnType}"] > DO`)
+      lnElement.ownerDocument.querySelectorAll(
+        `:root > DataTypeTemplates > LNodeType[id="${lnType}"] > DO`
+      )
     );
   }
   return [];
@@ -286,7 +288,9 @@ function buildTemplateChainFromInstanceElements(
       // The LN Element will only be used as starting point to find the LNodeType.
       const lnElement = element.closest('LN, LN0')!;
       const typeId = lnElement.getAttribute('lnType') ?? '';
-      typeElement = doc.querySelector(`LNodeType[id="${typeId}"]`);
+      typeElement = doc.querySelector(
+        `:root > DataTypeTemplates > LNodeType[id="${typeId}"]`
+      );
 
       if (typeElement) {
         // Next search for the DO Element below the LNodeType Element.
@@ -299,7 +303,9 @@ function buildTemplateChainFromInstanceElements(
 
           // For the next element search the DOType that is linked to the DO Element.
           const typeId = getTypeAttribute(doElement) ?? '';
-          typeElement = doc.querySelector(`DOType[id="${typeId}"]`);
+          typeElement = doc.querySelector(
+            `:root > DataTypeTemplates > DOType[id="${typeId}"]`
+          );
         } else {
           typeElement = null;
         }
@@ -317,7 +323,9 @@ function buildTemplateChainFromInstanceElements(
           if (daElement.getAttribute('bType') === 'Struct') {
             // Only if the bType is a struct we need to search for the DAType for the next element.
             const typeId = getTypeAttribute(element) ?? '';
-            typeElement = doc.querySelector(`DAType[id="${typeId}"]`);
+            typeElement = doc.querySelector(
+              `:root > DataTypeTemplates > DAType[id="${typeId}"]`
+            );
           } else {
             typeElement = null;
           }
@@ -385,7 +393,7 @@ export function getEnumVal(daiElement: Element, ord: string): string | null {
   if (isEnumType(daElement)) {
     const enumType = getTypeAttribute(daElement!);
     const enumVal = daiElement.ownerDocument.querySelector(
-      `EnumType[id="${enumType}"] > EnumVal[ord="${ord}"]`
+      `:root > DataTypeTemplates > EnumType[id="${enumType}"] > EnumVal[ord="${ord}"]`
     );
     if (enumVal) {
       return enumVal.textContent;
@@ -405,7 +413,7 @@ export function getEnumOrds(daiElement: Element): string[] {
   if (isEnumType(daElement)) {
     const enumType = getTypeAttribute(daElement!);
     const enumVals = daiElement.ownerDocument.querySelectorAll(
-      `EnumType[id="${enumType}"] > EnumVal`
+      `:root > DataTypeTemplates > EnumType[id="${enumType}"] > EnumVal`
     );
     Array.from(enumVals)
       .filter(valElement => valElement.getAttribute('ord'))

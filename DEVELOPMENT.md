@@ -32,6 +32,9 @@ and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.pretti
 automatically lint and format your code as you edit it. There are similar plugins available for
 using [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) from within other IDEs and text editors.
 
+## TypeDoc
+This project uses [TypeDoc](https://typedoc.org/) to transform documentation comments in the source code into a rendered HTML document that can be queried and navigated through. If you want to consult the generated documentation for the TypeScript components, mixins, modules and other relevant artifacts of this project, you can [do it here](https://openscd.github.io/doc/).
+
 ## Scripts
 
 We provide the following `npm` scripts for your convenience:

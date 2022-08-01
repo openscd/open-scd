@@ -1121,6 +1121,21 @@ snapshots["open-scd looks like its snapshot"] =
       hasmeta=""
       left=""
       mwc-list-item=""
+      tabindex="-1"
+      value="/src/menu/CompareIED.js"
+    >
+      <mwc-icon slot="meta">
+        compare_arrows
+      </mwc-icon>
+      Compare IED
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
       selected=""
       tabindex="-1"
       value="/src/menu/CompasAutoAlignment.js"

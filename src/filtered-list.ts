@@ -30,7 +30,13 @@ function hideFiltered(item: ListItemBase, searchText: string): void {
   const childInnerText = Array.from(item.children)
     .map(child => (<HTMLElement>child).innerText)
     .join('\n');
-  const filterTarget: string = (itemInnerText + childInnerText).toUpperCase();
+  const value = item.value;
+
+  const filterTarget: string = (
+    itemInnerText +
+    childInnerText +
+    value
+  ).toUpperCase();
 
   const terms: string[] = searchText.toUpperCase().split(' ');
 
@@ -86,11 +92,9 @@ export class FilteredList extends ListBase {
       this.querySelectorAll(
         'mwc-list-item, mwc-check-list-item, mwc-radio-list-item'
       )
-    )
-      .filter(item => !(item as ListItemBase).noninteractive)
-      .forEach(item =>
-        hideFiltered(item as ListItemBase, this.searchField.value)
-      );
+    ).forEach(item =>
+      hideFiltered(item as ListItemBase, this.searchField.value)
+    );
   }
 
   protected onListItemConnected(e: CustomEvent): void {

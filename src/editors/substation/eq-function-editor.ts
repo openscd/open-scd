@@ -151,7 +151,7 @@ export class EqFunctionEditor extends LitElement {
         ><mwc-menu
           corner="BOTTOM_RIGHT"
           menuCorner="END"
-          @selected=${(e: Event) => {
+          @action=${(e: Event) => {
             const tagName = (<ListItem>(<Menu>e.target).selected).value;
             this.openCreateWizard(tagName);
           }}

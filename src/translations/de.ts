@@ -151,6 +151,11 @@ export const de: Translations = {
     noMultiplier: 'keiner',
     unique: 'Darf sich nicht wiederholen',
   },
+  compare: {
+    compareButton: 'Starte Vergleich',
+    attributes: 'Attribute von {{ elementName }}',
+    children: 'Kindelemente von {{ elementName }}',
+  },
   log: {
     name: 'Protokoll',
     placeholder:
@@ -458,6 +463,17 @@ export const de: Translations = {
       scaleOffsetHelper: '???',
     },
   },
+  'compare-ied': {
+    selectProjectTitle: 'Lade IEDs aus Vorlage',
+    selectIedTitle: 'IEDs zum Vergleich auswählen',
+    resultTitle: 'Vergleiche IED mit Vorlage',
+    projectIedTitle: 'IEDs im Projekt',
+    templateIedTitle: 'IEDs aus Vorlage',
+    selectIedButton: 'IED auswählen',
+    selectTemplateButton: 'Vorlage auswählen',
+    noDiff:
+      'Keine Unterschiede zwischen IED Projekt "{{ projectIedName }}" und IED aus Vorlage "{{ templateIedName }}" gefunden',
+  },
   'enum-val': {
     wizard: {
       title: {
@@ -723,6 +739,10 @@ export const de: Translations = {
     wizard: {
       location: 'Ablageort des Select Sampled Value Control Block wählen',
     },
+  },
+  publisher: {
+    selectbutton: '{{type}} auswählen',
+    nodataset: 'Kein verbundener Datensatz',
   },
   userinfo: {
     loggedInAs: '???'
