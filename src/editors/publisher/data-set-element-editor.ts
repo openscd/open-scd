@@ -18,6 +18,10 @@ import { identity } from '../../foundation.js';
 
 @customElement('data-set-element-editor')
 export class DataSetElementEditor extends LitElement {
+  /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
+  @property({ attribute: false })
+  doc!: XMLDocument;
+  /** The element being edited as provided to plugins by [[`OpenSCD`]]. */
   @property({ attribute: false })
   element!: Element | null;
 
@@ -47,17 +51,21 @@ export class DataSetElementEditor extends LitElement {
       </wizard-textfield>
       <filtered-list
         >${Array.from(this.element!.querySelectorAll('FCDA')).map(fcda => {
-          const [ldInst, prefix, lnClass, lnInst, doName, daName] = [
+          const [ldInst, prefix, lnClass, lnInst, doName, daName, fc] = [
             'ldInst',
             'prefix',
             'lnClass',
             'lnInst',
             'doName',
             'daName',
+            'fc',
           ].map(attributeName => fcda.getAttribute(attributeName) ?? '');
 
           return html`<mwc-list-item selected twoline value="${identity(fcda)}"
-            ><span>${doName + '.' + daName}</span
+            ><span
+              >${doName}${daName
+                ? '.' + daName + ' ' + '[' + fc + ']'
+                : ' ' + '[' + fc + ']'}</span
             ><span slot="secondary"
               >${ldInst + '/' + prefix + lnClass + lnInst}</span
             >
@@ -77,7 +85,10 @@ export class DataSetElementEditor extends LitElement {
       </div>`;
 
     return html`<div class="content">
-      <h2>${translate('publisher.nodataset')}</h2>
+      <h2>
+        <div>DataSet</div>
+        <div class="headersubtitle">${translate('publisher.nodataset')}</div>
+      </h2>
     </div>`;
   }
 

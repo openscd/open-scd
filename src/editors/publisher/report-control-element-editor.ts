@@ -18,6 +18,9 @@ import { maxLength, patterns } from '../../wizards/foundation/limits.js';
 export class ReportControlElementEditor extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property({ attribute: false })
+  doc!: XMLDocument;
+  /** The element being edited as provided to plugins by [[`OpenSCD`]]. */
+  @property({ attribute: false })
   element!: Element;
 
   private renderOptFieldsContent(): TemplateResult {
@@ -226,6 +229,12 @@ export class ReportControlElementEditor extends LitElement {
 
     *[iconTrailing='search'] {
       --mdc-shape-small: 28px;
+    }
+
+    @media (max-width: 950px) {
+      .content {
+        border-left: 0px solid var(--mdc-theme-on-primary);
+      }
     }
   `;
 }

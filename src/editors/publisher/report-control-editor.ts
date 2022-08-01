@@ -28,7 +28,20 @@ import { styles } from './foundation.js';
 export class ReportControlEditor extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property({ attribute: false })
-  doc!: XMLDocument;
+  set doc(newDoc: XMLDocument) {
+    if (this._doc === newDoc) return;
+
+    this.selectedDataSet = undefined;
+    this.selectedReportControl = undefined;
+
+    this._doc = newDoc;
+
+    this.requestUpdate();
+  }
+  get doc(): XMLDocument {
+    return this._doc;
+  }
+  private _doc!: XMLDocument;
 
   @state()
   selectedReportControl?: Element;
@@ -59,9 +72,11 @@ export class ReportControlEditor extends LitElement {
     if (this.selectedReportControl !== undefined)
       return html`<div class="elementeditorcontainer">
         <data-set-element-editor
+          .doc=${this.doc}
           .element=${this.selectedDataSet!}
         ></data-set-element-editor>
         <report-control-element-editor
+          .doc=${this.doc}
           .element=${this.selectedReportControl}
         ></report-control-element-editor>
       </div>`;
