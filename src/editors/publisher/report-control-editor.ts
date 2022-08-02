@@ -16,6 +16,7 @@ import { Button } from '@material/mwc-button';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 import './data-set-element-editor.js';
+import './report-control-element-editor.js';
 import '../../filtered-list.js';
 import { FilteredList } from '../../filtered-list.js';
 
@@ -27,10 +28,25 @@ import { styles } from './foundation.js';
 export class ReportControlEditor extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property({ attribute: false })
-  doc!: XMLDocument;
+  set doc(newDoc: XMLDocument) {
+    if (this._doc === newDoc) return;
+
+    this.selectedDataSet = undefined;
+    this.selectedReportControl = undefined;
+
+    this._doc = newDoc;
+
+    this.requestUpdate();
+  }
+  get doc(): XMLDocument {
+    return this._doc;
+  }
+  private _doc!: XMLDocument;
 
   @state()
-  selectedReportControl?: Element | null;
+  selectedReportControl?: Element;
+  @state()
+  selectedDataSet?: Element | null;
 
   @query('.selectionlist') selectionList!: FilteredList;
   @query('mwc-button') selectReportControlButton!: Button;
@@ -38,11 +54,15 @@ export class ReportControlEditor extends LitElement {
   private selectReportControl(evt: Event): void {
     const id = ((evt.target as FilteredList).selected as ListItem).value;
     const reportControl = this.doc.querySelector(selector('ReportControl', id));
+    if (!reportControl) return;
 
-    if (reportControl) {
-      this.selectedReportControl = reportControl.parentElement?.querySelector(
-        `DataSet[name="${reportControl.getAttribute('datSet')}"]`
-      );
+    this.selectedReportControl = reportControl;
+
+    if (this.selectedReportControl) {
+      this.selectedDataSet =
+        this.selectedReportControl.parentElement?.querySelector(
+          `DataSet[name="${this.selectedReportControl.getAttribute('datSet')}"]`
+        );
       (evt.target as FilteredList).classList.add('hidden');
       this.selectReportControlButton.classList.remove('hidden');
     }
@@ -52,8 +72,13 @@ export class ReportControlEditor extends LitElement {
     if (this.selectedReportControl !== undefined)
       return html`<div class="elementeditorcontainer">
         <data-set-element-editor
-          .element=${this.selectedReportControl}
+          .doc=${this.doc}
+          .element=${this.selectedDataSet!}
         ></data-set-element-editor>
+        <report-control-element-editor
+          .doc=${this.doc}
+          .element=${this.selectedReportControl}
+        ></report-control-element-editor>
       </div>`;
 
     return html``;
@@ -120,5 +145,30 @@ export class ReportControlEditor extends LitElement {
 
   static styles = css`
     ${styles}
+
+    .elementeditorcontainer {
+      flex: 65%;
+      margin: 4px 8px 4px 4px;
+      background-color: var(--mdc-theme-surface);
+      overflow-y: scroll;
+      display: grid;
+      grid-gap: 12px;
+      padding: 8px 12px 16px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    data-set-element-editor {
+      grid-column: 1 / 2;
+    }
+
+    report-control-element-editor {
+      grid-column: 2 / 4;
+    }
+
+    @media (max-width: 950px) {
+      .elementeditorcontainer {
+        display: block;
+      }
+    }
   `;
 }

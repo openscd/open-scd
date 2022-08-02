@@ -121,5 +121,9 @@ export class GseControlEditor extends LitElement {
 
   static styles = css`
     ${styles}
+
+    data-set-element-editor {
+      flex: auto;
+    }
   `;
 }

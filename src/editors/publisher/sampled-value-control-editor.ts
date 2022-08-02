@@ -125,5 +125,9 @@ export class SampledValueControlEditor extends LitElement {
 
   static styles = css`
     ${styles}
+
+    data-set-element-editor {
+      flex: auto;
+    }
   `;
 }
