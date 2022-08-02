@@ -487,7 +487,7 @@ describe('Wizards for SCL element ReportControl', () => {
           `IED[name="IED5"] DataSet[name="${rpControl.getAttribute('datSet')}"]`
         );
         expect(dataSet).to.exist;
-        expect(dataSet!.children).to.have.lengthOf(2);
+        expect(dataSet!.children).to.have.lengthOf(3);
       });
     });
 
