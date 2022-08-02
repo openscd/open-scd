@@ -257,6 +257,8 @@ snapshots["Editor for GSEControl element with a selected GSEControl looks like t
   <div class="elementeditorcontainer">
     <data-set-element-editor>
     </data-set-element-editor>
+    <gse-control-element-editor>
+    </gse-control-element-editor>
   </div>
 </div>
 `;
