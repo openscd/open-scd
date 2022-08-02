@@ -101,7 +101,7 @@ export const officialPlugins = [
     default: true,
     kind: 'menu',
     requireDoc: false,
-    position: 'top'
+    position: 'top',
   },
   {
     name: 'Import from API',
@@ -110,7 +110,7 @@ export const officialPlugins = [
     default: false,
     kind: 'menu',
     requireDoc: false,
-    position: 'top'
+    position: 'top',
   },
   {
     name: 'Save project',
@@ -119,7 +119,7 @@ export const officialPlugins = [
     default: true,
     kind: 'menu',
     requireDoc: true,
-    position: 'top'
+    position: 'top',
   },
   {
     name: 'Save project as',
@@ -227,7 +227,16 @@ export const officialPlugins = [
     default: true,
     kind: 'menu',
     requireDoc: true,
-    position: 'middle'
+    position: 'middle',
+  },
+  {
+    name: 'Export IED Params',
+    src: '/src/menu/ExportIEDParams.js',
+    icon: 'download',
+    default: false,
+    kind: 'menu',
+    requireDoc: true,
+    position: 'middle',
   },
   {
     name: 'Locamation VMU',
@@ -236,7 +245,7 @@ export const officialPlugins = [
     default: false,
     kind: 'menu',
     requireDoc: true,
-    position: 'middle'
+    position: 'middle',
   },
   {
     name: 'CoMPAS Settings',
@@ -245,7 +254,7 @@ export const officialPlugins = [
     default: true,
     kind: 'menu',
     requireDoc: false,
-    position: 'bottom'
+    position: 'bottom',
   },
   {
     name: 'Help',
