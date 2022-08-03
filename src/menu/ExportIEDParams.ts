@@ -5,55 +5,53 @@ import { stringify } from 'csv-stringify/browser/esm/sync';
 import { compareNames } from '../foundation.js';
 
 import { stripExtensionFromName } from '../compas/foundation.js';
+import { get } from 'lit-translate';
 
-import settings from '../../public/conf/export-ied-parameters.json';
+type ColumnSettings = {
+  header: string;
+  attributeName?: string;
+  selector?: string;
+  useOwnerDocument?: boolean;
+  dataAttributePath?: string[];
+};
 
-function getDataElement(typeElement: Element, name: string): Element | null {
-  if (typeElement.tagName === 'LNodeType') {
-    return typeElement.querySelector(`:scope > DO[name="${name}"]`);
-  } else if (typeElement.tagName === 'DOType') {
-    return typeElement.querySelector(
-      `:scope > SDO[name="${name}"], :scope > DA[name="${name}"]`
-    );
-  } else {
-    return typeElement.querySelector(`:scope > BDA[name="${name}"]`);
-  }
-}
+export type Settings = {
+  columns: ColumnSettings[];
+};
 
-function getValue(element: Element, attributeName: string | undefined): string {
-  if (attributeName) {
-    return element.getAttribute(attributeName) ?? '';
-  }
-  return element.textContent ?? '';
-}
-
-function getSelector(selector: string, iedName: string) {
-  return selector.replace('{{ iedName }}', iedName);
-}
-
-function getElements(
-  iedElement: Element,
-  selector: string | undefined,
-  useOwnerDocument: boolean
-): Element[] {
-  let elements: Element[] = [iedElement];
-  if (selector) {
-    const iedName = iedElement.getAttribute('name') ?? '';
-    const substitutedSelector = getSelector(selector, iedName);
-    if (useOwnerDocument) {
-      elements = Array.from(
-        iedElement.ownerDocument.querySelectorAll(substitutedSelector)
-      );
-    } else {
-      elements = Array.from(iedElement.querySelectorAll(substitutedSelector));
-    }
-  }
-  return elements;
-}
-
-export default class ExportIEDParametersPlugin extends LitElement {
+export default class ExportIEDParamsPlugin extends LitElement {
   @property() doc!: XMLDocument;
   @property() docName!: string;
+
+  get ieds(): Element[] {
+    return Array.from(this.doc.querySelectorAll(`IED`));
+  }
+
+  private getSelector(selector: string, iedName: string) {
+    return selector.replace(/{{\s*iedName\s*}}/, iedName);
+  }
+
+  private getDataElement(typeElement: Element, name: string): Element | null {
+    if (typeElement.tagName === 'LNodeType') {
+      return typeElement.querySelector(`:scope > DO[name="${name}"]`);
+    } else if (typeElement.tagName === 'DOType') {
+      return typeElement.querySelector(
+        `:scope > SDO[name="${name}"], :scope > DA[name="${name}"]`
+      );
+    } else {
+      return typeElement.querySelector(`:scope > BDA[name="${name}"]`);
+    }
+  }
+
+  private getValue(
+    element: Element,
+    attributeName: string | undefined
+  ): string {
+    if (attributeName) {
+      return element.getAttribute(attributeName) ?? '';
+    }
+    return element.textContent ?? '';
+  }
 
   private getTypeElement(lastElement: Element | null): Element | null {
     if (lastElement) {
@@ -72,20 +70,20 @@ export default class ExportIEDParametersPlugin extends LitElement {
   }
 
   private getDataAttributeTemplateValue(
-    element: Element,
+    lnElement: Element,
     dataAttributePath: string[]
   ): string | null {
     // This is only useful if the element to start from is the LN(0) Element.
-    if (['LN', 'LN0'].includes(element.tagName)) {
+    if (['LN', 'LN0'].includes(lnElement.tagName)) {
       // Search LNodeType Element that is linked to the LN(0) Element.
-      const type = element.getAttribute('lnType');
+      const type = lnElement.getAttribute('lnType');
       let typeElement = this.doc.querySelector(`LNodeType[id="${type}"]`);
       let lastElement: Element | null = null;
 
       // Now start search through the Template section jumping between the type elements.
       dataAttributePath.forEach(name => {
         if (typeElement) {
-          lastElement = getDataElement(typeElement, name);
+          lastElement = this.getDataElement(typeElement, name);
           typeElement = this.getTypeElement(lastElement);
         }
       });
@@ -134,46 +132,80 @@ export default class ExportIEDParametersPlugin extends LitElement {
     return value ?? '';
   }
 
-  private content(): string[][] {
-    return Array.from(this.doc.querySelectorAll(`IED`))
-      .sort(compareNames)
-      .map(iedElement => {
-        return settings.columns.map(value => {
-          const elements = getElements(
-            iedElement,
-            value.selector,
-            value.useOwnerDocument ?? false
-          );
-
-          return elements
-            .map(element => {
-              if (value.dataAttributePath) {
-                return this.getDataAttributeValue(
-                  element,
-                  value.dataAttributePath
-                );
-              }
-              return getValue(element, value.attributeName);
-            })
-            .filter(value => value!)
-            .join(' / ');
-        });
-      });
+  private getElements(
+    iedElement: Element,
+    selector: string | undefined,
+    useOwnerDocument: boolean
+  ): Element[] {
+    let elements: Element[] = [iedElement];
+    if (selector) {
+      const iedName = iedElement.getAttribute('name') ?? '';
+      const substitutedSelector = this.getSelector(selector, iedName);
+      if (useOwnerDocument) {
+        elements = Array.from(
+          iedElement.ownerDocument.querySelectorAll(substitutedSelector)
+        );
+      } else {
+        elements = Array.from(iedElement.querySelectorAll(substitutedSelector));
+      }
+    }
+    return elements;
   }
 
-  private columnHeaders(): string[] {
+  private contentIED(settings: Settings, iedElement: Element): string[] {
+    return settings.columns.map(value => {
+      const elements = this.getElements(
+        iedElement,
+        value.selector,
+        value.useOwnerDocument ?? false
+      );
+
+      return elements
+        .map(element => {
+          if (value.dataAttributePath) {
+            return this.getDataAttributeValue(element, value.dataAttributePath);
+          }
+          return this.getValue(element, value.attributeName);
+        })
+        .filter(value => value!)
+        .join(' / ');
+    });
+  }
+
+  private content(settings: Settings): string[][] {
+    const ieds = this.ieds;
+    if (ieds.length > 0) {
+      return ieds
+        .sort(compareNames)
+        .map(iedElement => this.contentIED(settings, iedElement));
+    }
+    return [[get('compas.exportIEDParams.noIEDs')]];
+  }
+
+  private columnHeaders(settings: Settings): string[] {
     return settings.columns.map(value => value.header);
   }
 
+  async getSettings(): Promise<Settings> {
+    return await import('../../public/conf/export-ied-parameters.json').then(
+      module => module.default
+    );
+  }
+
   async run(): Promise<void> {
-    const content = stringify(this.content(), {
+    // Import the JSON Configuration needed for the import.
+    const settings = await this.getSettings();
+
+    // Create the content using a CSV Writer.
+    const content = stringify(this.content(settings), {
       header: true,
-      columns: this.columnHeaders(),
+      columns: this.columnHeaders(settings),
     });
     const blob = new Blob([content], {
       type: 'text/csv',
     });
 
+    // Push the data back to the user.
     const a = document.createElement('a');
     a.download = stripExtensionFromName(this.docName) + '-ied-parameters.csv';
     a.href = URL.createObjectURL(blob);

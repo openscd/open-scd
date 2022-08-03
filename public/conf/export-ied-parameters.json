@@ -6,6 +6,7 @@
     "",
     "A selector can be defined to search for a Element, if no selector is defined, the IED Element is used.",
     "If the useOwnerDocument is set to true, the selector will be used on the whole document, otherwise the IED Element",
+    "There is a variable 'iedName' being replaced before executing the selector, put this between '{{' an '}}'.",
     "",
     "If a attributeName is defined that attribute will be retrieved from the elements found by the selector.",
     "If a dataAttributePath is defined, the selector should return a LN(0) Element and the path is then used to search for a DAI/DA Value."
@@ -31,57 +32,62 @@
     },
     {
       "header": "IL1 Primary rated current",
-      "selector": "AccessPoint > Server > LDevice[inst=\"LD0\"] > LN[prefix=\"IL1\"][lnClass=\"TCTR\"]",
+      "selector": "AccessPoint > Server > LDevice > LN[prefix=\"IL1\"][lnClass=\"TCTR\"]",
       "dataAttributePath": ["ARtg", "setMag", "f"]
     },
     {
       "header": "IL1 Network Nominal Current",
-      "selector": "AccessPoint > Server > LDevice[inst=\"LD0\"] > LN[prefix=\"IL1\"][lnClass=\"TCTR\"]",
+      "selector": "AccessPoint > Server > LDevice > LN[prefix=\"IL1\"][lnClass=\"TCTR\"]",
       "dataAttributePath": ["ARtgNom", "setMag", "f"]
     },
     {
       "header": "IL1 Secondary rated current",
-      "selector": "AccessPoint > Server > LDevice[inst=\"LD0\"] > LN[prefix=\"IL1\"][lnClass=\"TCTR\"]",
-      "dataAttributePath": ["ARtgSec", "setVal"]
-    },
-    {
-      "header": "IL1 Rated Secondary Value",
-      "selector": "AccessPoint > Server > LDevice[inst=\"LD0\"] > LN[prefix=\"IL1\"][lnClass=\"TCTR\"]",
-      "dataAttributePath": ["VRtgSec", "setMag", "f"]
+      "selector": "AccessPoint > Server > LDevice > LN[prefix=\"IL1\"][lnClass=\"TCTR\"]",
+      "dataAttributePath": ["ARtgSec", "stVal"]
     },
     {
       "header": "RES Primary rated current",
-      "selector": "AccessPoint > Server > LDevice[inst=\"LD0\"] > LN[prefix=\"RES\"][lnClass=\"TCTR\"]",
+      "selector": "AccessPoint > Server > LDevice > LN[prefix=\"RES\"][lnClass=\"TCTR\"]",
       "dataAttributePath": ["ARtg", "setMag", "f"]
     },
     {
       "header": "RES Network Nominal Current",
-      "selector": "AccessPoint > Server > LDevice[inst=\"LD0\"] > LN[prefix=\"RES\"][lnClass=\"TCTR\"]",
+      "selector": "AccessPoint > Server > LDevice > LN[prefix=\"RES\"][lnClass=\"TCTR\"]",
       "dataAttributePath": ["ARtgNom", "setMag", "f"]
     },
     {
       "header": "RES Secondary rated current",
-      "selector": "AccessPoint > Server > LDevice[inst=\"LD0\"] > LN[prefix=\"RES\"][lnClass=\"TCTR\"]",
-      "dataAttributePath": ["ARtgSec", "setVal"]
-    },
-    {
-      "header": "RES Rated Secondary Value",
-      "selector": "AccessPoint > Server > LDevice[inst=\"LD0\"] > LN[prefix=\"RES\"][lnClass=\"TCTR\"]",
-      "dataAttributePath": ["VRtgSec", "setMag", "f"]
+      "selector": "AccessPoint > Server > LDevice > LN[prefix=\"RES\"][lnClass=\"TCTR\"]",
+      "dataAttributePath": ["ARtgSec", "stVal"]
     },
     {
       "header": "UL1 Primary rated voltage",
-      "selector": "AccessPoint > Server > LDevice[inst=\"LD0\"] > LN[lnClass=\"TVTR\"]",
+      "selector": "AccessPoint > Server > LDevice > LN[prefix=\"UL1\"][lnClass=\"TVTR\"]",
       "dataAttributePath": ["VRtg", "setMag", "f"]
     },
     {
       "header": "UL1 Secondary rated voltage",
-      "selector": "AccessPoint > Server > LDevice[inst=\"LD0\"] > LN[lnClass=\"TVTR\"]",
-      "dataAttributePath": ["VRtgScy", "setMag", "f"]
+      "selector": "AccessPoint > Server > LDevice > LN[prefix=\"UL1\"][lnClass=\"TVTR\"]",
+      "dataAttributePath": ["VRtgSec", "stVal"]
     },
     {
       "header": "UL1 Devision ratio",
-      "selector": "AccessPoint > Server > LDevice[inst=\"LD0\"] > LN[lnClass=\"TVTR\"]",
+      "selector": "AccessPoint > Server > LDevice > LN[prefix=\"UL1\"][lnClass=\"TVTR\"]",
+      "dataAttributePath": ["Rat", "setMag", "f"]
+    },
+    {
+      "header": "RES Primary rated voltage",
+      "selector": "AccessPoint > Server > LDevice > LN[prefix=\"RES\"][lnClass=\"TVTR\"]",
+      "dataAttributePath": ["VRtg", "setMag", "f"]
+    },
+    {
+      "header": "RES Secondary rated voltage",
+      "selector": "AccessPoint > Server > LDevice > LN[prefix=\"RES\"][lnClass=\"TVTR\"]",
+      "dataAttributePath": ["VRtgSec", "stVal"]
+    },
+    {
+      "header": "RES Devision ratio",
+      "selector": "AccessPoint > Server > LDevice > LN[prefix=\"RES\"][lnClass=\"TVTR\"]",
       "dataAttributePath": ["Rat", "setMag", "f"]
     },
     {
