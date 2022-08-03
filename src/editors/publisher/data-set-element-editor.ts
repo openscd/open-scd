@@ -4,6 +4,7 @@ import {
   html,
   LitElement,
   property,
+  query,
   state,
   TemplateResult,
 } from 'lit-element';
@@ -13,6 +14,8 @@ import '@material/mwc-list/mwc-list-item';
 
 import '../../wizard-textfield.js';
 import '../../filtered-list.js';
+import './code-editor-dialog.js';
+import { CodeEditorDialog } from './code-editor-dialog.js';
 
 import { identity } from '../../foundation.js';
 
@@ -33,6 +36,8 @@ export class DataSetElementEditor extends LitElement {
   private get desc(): string | null {
     return this.element ? this.element.getAttribute('desc') : 'UNDEFINED';
   }
+
+  @query('code-editor-dialog') codeEditor!: CodeEditorDialog;
 
   private renderContent(): TemplateResult {
     return html`<wizard-textfield
@@ -77,10 +82,18 @@ export class DataSetElementEditor extends LitElement {
   render(): TemplateResult {
     if (this.element)
       return html`<div class="content">
-        <h2>
-          <div>DataSet</div>
-          <div class="headersubtitle">${identity(this.element)}</div>
+        <h2 style="display: flex; flex-direction: row">
+          <div style="flex:auto">
+            <div>DataSet</div>
+            <div class="headersubtitle">${identity(this.element)}</div>
+          </div>
+          <mwc-icon-button
+            style="float:right"
+            icon="code"
+            @click=${() => (this.codeEditor.open = true)}
+          ></mwc-icon-button>
         </h2>
+        <code-editor-dialog .element=${this.element}></code-editor-dialog>
         ${this.renderContent()}
       </div>`;
 

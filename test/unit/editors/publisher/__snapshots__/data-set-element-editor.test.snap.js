@@ -3,14 +3,23 @@ export const snapshots = {};
 
 snapshots["Editor for DataSet element with valid DataSet looks like the latest snapshot"] = 
 `<div class="content">
-  <h2>
-    <div>
-      DataSet
+  <h2 style="display: flex; flex-direction: row">
+    <div style="flex:auto">
+      <div>
+        DataSet
+      </div>
+      <div class="headersubtitle">
+        IED2>>CBSW>GooseDataSet1
+      </div>
     </div>
-    <div class="headersubtitle">
-      IED2>>CBSW>GooseDataSet1
-    </div>
+    <mwc-icon-button
+      icon="code"
+      style="float:right"
+    >
+    </mwc-icon-button>
   </h2>
+  <code-editor-dialog>
+  </code-editor-dialog>
   <wizard-textfield
     helper="[scl.name]"
     label="name"

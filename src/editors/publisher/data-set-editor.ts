@@ -29,8 +29,14 @@ export class DataSetEditor extends LitElement {
   set doc(newDoc: XMLDocument) {
     if (this._doc === newDoc) return;
 
-    this.selectedDataSet = undefined;
-    if (this.selectionList && this.selectionList.selected)
+    const newDataSet = this._selectedDataSetId
+      ? newDoc.querySelector(selector('DataSet', this._selectedDataSetId))
+      : null;
+
+    if (newDataSet) this.selectedDataSet = newDataSet;
+    else this.selectedDataSet = undefined;
+
+    if (!newDataSet && this.selectionList && this.selectionList.selected)
       (this.selectionList.selected as ListItem).selected = false;
 
     this._doc = newDoc;
@@ -43,7 +49,17 @@ export class DataSetEditor extends LitElement {
   private _doc!: XMLDocument;
 
   @state()
-  selectedDataSet?: Element;
+  set selectedDataSet(newSelection: Element | undefined) {
+    this._selectedDataSet = newSelection;
+    this._selectedDataSetId = identity(this._selectedDataSet ?? null);
+
+    this.requestUpdate();
+  }
+  get selectedDataSet(): Element | undefined {
+    return this._selectedDataSet;
+  }
+  private _selectedDataSet?: Element;
+  private _selectedDataSetId?: string | number;
 
   @query('.selectionlist') selectionList!: FilteredList;
   @query('mwc-button') selectDataSetButton!: Button;
