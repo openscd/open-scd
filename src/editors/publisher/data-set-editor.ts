@@ -26,7 +26,21 @@ import { styles } from './foundation.js';
 export class DataSetEditor extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property({ attribute: false })
-  doc!: XMLDocument;
+  set doc(newDoc: XMLDocument) {
+    if (this._doc === newDoc) return;
+
+    this.selectedDataSet = undefined;
+    if (this.selectionList && this.selectionList.selected)
+      (this.selectionList.selected as ListItem).selected = false;
+
+    this._doc = newDoc;
+
+    this.requestUpdate();
+  }
+  get doc(): XMLDocument {
+    return this._doc;
+  }
+  private _doc!: XMLDocument;
 
   @state()
   selectedDataSet?: Element;

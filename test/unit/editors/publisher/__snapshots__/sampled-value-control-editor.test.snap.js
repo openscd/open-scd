@@ -189,6 +189,8 @@ snapshots["Editor for SampledValueControl element with a selected SampledValueCo
   <div class="elementeditorcontainer">
     <data-set-element-editor>
     </data-set-element-editor>
+    <sampled-value-control-element-editor>
+    </sampled-value-control-element-editor>
   </div>
 </div>
 `;

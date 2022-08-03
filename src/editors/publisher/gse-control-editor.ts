@@ -33,6 +33,8 @@ export class GseControlEditor extends LitElement {
 
     this.selectedDataSet = undefined;
     this.selectedGseControl = undefined;
+    if (this.selectionList && this.selectionList.selected)
+      (this.selectionList.selected as ListItem).selected = false;
 
     this._doc = newDoc;
 
