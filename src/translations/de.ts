@@ -745,7 +745,7 @@ export const de: Translations = {
     nodataset: 'Kein verbundener Datensatz',
   },
   userinfo: {
-    loggedInAs: '???'
+    loggedInAs: '???',
   },
   add: 'Hinzufügen',
   new: 'Neu',
@@ -773,7 +773,7 @@ export const de: Translations = {
     notExists: '???',
     noSclTypes: '???',
     noScls: '???',
-    noSclVersions: "???",
+    noSclVersions: '???',
     comment: '???',
     error: {
       type: '???',
@@ -786,7 +786,7 @@ export const de: Translations = {
       patch: '???',
     },
     import: {
-      title: '???'
+      title: '???',
     },
     open: {
       title: '???',
@@ -830,8 +830,8 @@ export const de: Translations = {
       title: '???',
       sclInfo: '???: {{name}}, ???: {{version}}',
       addVersionButton: '???',
-      confirmRestoreTitle: "???",
-      confirmRestore: "??? {{version}}?",
+      confirmRestoreTitle: '???',
+      confirmRestore: '??? {{version}}?',
       restoreVersionSuccess: '??? {{version}}',
       deleteProjectButton: '???',
       confirmDeleteTitle: '???',
@@ -840,13 +840,13 @@ export const de: Translations = {
       confirmDeleteVersionTitle: '???',
       confirmDeleteVersion: '??? {{version}}?',
       deleteVersionSuccess: '??? {{version}}',
-      confirmButton: "???",
-      compareButton: "???",
-      selectTwoVersionsTitle: "???",
-      selectTwoVersionsMessage: "???",
+      confirmButton: '???',
+      compareButton: '???',
+      selectTwoVersionsTitle: '???',
+      selectTwoVersionsMessage: '???',
       compareCurrentButton: '???',
-      selectOneVersionsTitle: "???",
-      selectOneVersionsMessage: "???",
+      selectOneVersionsTitle: '???',
+      selectOneVersionsMessage: '???',
     },
     scl: {
       wizardTitle: '???',
@@ -864,6 +864,9 @@ export const de: Translations = {
       cimMappingServiceUrl: 'CoMPAS CIM Mapping Service URL',
       sclAutoAlignmentServiceUrl: 'CoMPAS SCL Auto Alignment Service URL',
       useWebsockets: '???',
+    },
+    exportIEDParams: {
+      noIEDs: 'Keine IEDs in Projekt',
     },
     session: {
       headingExpiring: '???',
