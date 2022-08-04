@@ -45,7 +45,7 @@
     {
       "header": "IL1 Secondary rated current",
       "selector": "AccessPoint > Server > LDevice > LN[prefix=\"IL1\"][lnClass=\"TCTR\"]",
-      "dataAttributePath": ["ARtgSec", "stVal"]
+      "dataAttributePath": ["ARtgSec", "setVal"]
     },
     {
       "header": "RES Primary rated current",
@@ -60,7 +60,7 @@
     {
       "header": "RES Secondary rated current",
       "selector": "AccessPoint > Server > LDevice > LN[prefix=\"RES\"][lnClass=\"TCTR\"]",
-      "dataAttributePath": ["ARtgSec", "stVal"]
+      "dataAttributePath": ["ARtgSec", "setVal"]
     },
     {
       "header": "UL1 Primary rated voltage",
@@ -70,7 +70,7 @@
     {
       "header": "UL1 Secondary rated voltage",
       "selector": "AccessPoint > Server > LDevice > LN[prefix=\"UL1\"][lnClass=\"TVTR\"]",
-      "dataAttributePath": ["VRtgSec", "stVal"]
+      "dataAttributePath": ["VRtgSec", "setVal"]
     },
     {
       "header": "UL1 Devision ratio",
@@ -85,7 +85,7 @@
     {
       "header": "RES Secondary rated voltage",
       "selector": "AccessPoint > Server > LDevice > LN[prefix=\"RES\"][lnClass=\"TVTR\"]",
-      "dataAttributePath": ["VRtgSec", "stVal"]
+      "dataAttributePath": ["VRtgSec", "setVal"]
     },
     {
       "header": "RES Devision ratio",

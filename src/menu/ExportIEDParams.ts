@@ -40,18 +40,21 @@ export default class ExportIEDParamsPlugin extends LitElement {
    * Find the DO/DA/BDA element with the passed name defined below the type element passed.
    * Depending on the type of Type element the query will search for the DO/DA/BDA element.
    *
-   * @param typeElement - The type element, this can be a LNodeType, DOType or DAType element.
-   * @param name        - The name of the element to search for below the type element.
+   * @param dataTypeTemplate - The type element, this can be a LNodeType, DOType or DAType element.
+   * @param name             - The name of the element to search for below the type element.
    */
-  private getDataElement(typeElement: Element, name: string): Element | null {
-    if (typeElement.tagName === 'LNodeType') {
-      return typeElement.querySelector(`:scope > DO[name="${name}"]`);
-    } else if (typeElement.tagName === 'DOType') {
-      return typeElement.querySelector(
+  private getDataTypeChildElement(
+    dataTypeTemplate: Element,
+    name: string
+  ): Element | null {
+    if (dataTypeTemplate.tagName === 'LNodeType') {
+      return dataTypeTemplate.querySelector(`:scope > DO[name="${name}"]`);
+    } else if (dataTypeTemplate.tagName === 'DOType') {
+      return dataTypeTemplate.querySelector(
         `:scope > SDO[name="${name}"], :scope > DA[name="${name}"]`
       );
     } else {
-      return typeElement.querySelector(`:scope > BDA[name="${name}"]`);
+      return dataTypeTemplate.querySelector(`:scope > BDA[name="${name}"]`);
     }
   }
 
@@ -75,17 +78,19 @@ export default class ExportIEDParamsPlugin extends LitElement {
    * Use the DO/SDO/DA/BDA data element to search for the type element. In case of the DO/SDO a DOType is search
    * for and otherwise a DAType is searched for if the data element is a struct type.
    *
-   * @param lastElement - The data element to retrieve its type definition.
+   * @param leafElement - The data element to retrieve its type definition.
    */
-  private getTypeElement(lastElement: Element | null): Element | null {
-    if (lastElement) {
-      if (['DO', 'SDO'].includes(lastElement.tagName)) {
-        const type = lastElement.getAttribute('type') ?? '';
+  private getDataTypeTemplateElement(
+    leafElement: Element | null
+  ): Element | null {
+    if (leafElement) {
+      if (['DO', 'SDO'].includes(leafElement.tagName)) {
+        const type = leafElement.getAttribute('type') ?? '';
         return this.doc.querySelector(`DOType[id="${type}"]`);
       } else {
-        const bType = lastElement.getAttribute('bType') ?? '';
+        const bType = leafElement.getAttribute('bType') ?? '';
         if (bType === 'Struct') {
-          const type = lastElement.getAttribute('type') ?? '';
+          const type = leafElement.getAttribute('type') ?? '';
           return this.doc.querySelector(`DAType[id="${type}"]`);
         }
       }
@@ -111,20 +116,20 @@ export default class ExportIEDParamsPlugin extends LitElement {
     ) {
       // Search LNodeType Element that is linked to the LN(0) Element.
       const type = lnElement.getAttribute('lnType');
-      let typeElement = this.doc.querySelector(`LNodeType[id="${type}"]`);
-      let lastElement: Element | null = null;
+      let dataTypeTemplate = this.doc.querySelector(`LNodeType[id="${type}"]`);
+      let leafElement: Element | null = null;
 
       // Now start search through the Template section jumping between the type elements.
       dataAttributePath.forEach(name => {
-        if (typeElement) {
-          lastElement = this.getDataElement(typeElement, name);
-          typeElement = this.getTypeElement(lastElement);
+        if (dataTypeTemplate) {
+          leafElement = this.getDataTypeChildElement(dataTypeTemplate, name);
+          dataTypeTemplate = this.getDataTypeTemplateElement(leafElement);
         }
       });
 
-      if (lastElement) {
-        const valElement = (<Element>lastElement).querySelector('Val');
-        return valElement?.textContent ?? null;
+      if (leafElement) {
+        const valElement = (<Element>leafElement).querySelector('Val');
+        return valElement?.textContent?.trim() ?? null;
       }
     }
     return null;
@@ -160,7 +165,7 @@ export default class ExportIEDParamsPlugin extends LitElement {
         .join(' > ');
 
       const daiValueElement = lnElement.querySelector(daiSelector + ' Val');
-      return daiValueElement?.textContent ?? null;
+      return daiValueElement?.textContent?.trim() ?? null;
     }
     return null;
   }

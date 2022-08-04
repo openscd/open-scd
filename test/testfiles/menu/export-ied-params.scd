@@ -73,7 +73,7 @@
               </SDI>
             </DOI>
             <DOI name="ARtgSec">
-              <DAI name="stVal">
+              <DAI name="setVal">
                 <Val>5</Val>
               </DAI>
             </DOI>
@@ -131,7 +131,7 @@
               </SDI>
             </DOI>
             <DOI name="ARtgSec">
-              <DAI name="stVal">
+              <DAI name="setVal">
                 <Val>5</Val>
               </DAI>
             </DOI>
@@ -162,7 +162,7 @@
               </SDI>
             </DOI>
             <DOI name="VRtgSec">
-              <DAI name="stVal">
+              <DAI name="setVal">
                 <Val>200</Val>
               </DAI>
             </DOI>
@@ -193,7 +193,7 @@
               </SDI>
             </DOI>
             <DOI name="VRtgSec">
-              <DAI name="stVal">
+              <DAI name="setVal">
                 <Val>200</Val>
               </DAI>
             </DOI>
@@ -236,7 +236,7 @@
               </SDI>
             </DOI>
             <DOI name="ARtgSec">
-              <DAI name="stVal">
+              <DAI name="setVal">
                 <Val>5</Val>
               </DAI>
             </DOI>
@@ -294,7 +294,7 @@
               </SDI>
             </DOI>
             <DOI name="ARtgSec">
-              <DAI name="stVal">
+              <DAI name="setVal">
                 <Val>10</Val>
               </DAI>
             </DOI>
@@ -325,7 +325,7 @@
               </SDI>
             </DOI>
             <DOI name="VRtgSec">
-              <DAI name="stVal">
+              <DAI name="setVal">
                 <Val>200</Val>
               </DAI>
             </DOI>
@@ -356,7 +356,7 @@
               </SDI>
             </DOI>
             <DOI name="VRtgSec">
-              <DAI name="stVal">
+              <DAI name="setVal">
                 <Val>250</Val>
               </DAI>
             </DOI>
@@ -410,7 +410,7 @@
       <DA name="t" bType="Timestamp" fc="SP"/>
     </DOType>
     <DOType cdc="INS" id="Dummy.ING">
-      <DA name="stVal" bType="INT32" dchg="true" fc="ST"/>
+      <DA name="setVal" bType="INT32" dchg="true" fc="SP"/>
       <DA name="q" bType="Quality" qchg="true" fc="ST"/>
       <DA name="t" bType="Timestamp" fc="ST"/>
       <DA name="d" bType="VisString255" fc="DC"/>

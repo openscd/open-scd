@@ -866,7 +866,7 @@ export const de: Translations = {
       useWebsockets: '???',
     },
     exportIEDParams: {
-      noIEDs: '???',
+      noIEDs: 'Keine IEDs in Projekt',
     },
     session: {
       headingExpiring: '???',

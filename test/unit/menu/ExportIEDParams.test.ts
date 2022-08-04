@@ -48,11 +48,14 @@ describe('Export IED Params Plugin -', () => {
     });
   });
 
-  describe('retrieve the data template element from a type element (getDataElement) -', () => {
+  describe('retrieve the data template element from a type element (getDataTypeChildElement) -', () => {
     it('when called with a LNodeType element and a known name is passed then correct DO Element returned', () => {
       const typeElement = doc.querySelector('LNodeType[id="Dummy.TVTR"]');
 
-      const dataElement = plugin['getDataElement'](typeElement!, 'Beh');
+      const dataElement = plugin['getDataTypeChildElement'](
+        typeElement!,
+        'Beh'
+      );
       expect(dataElement).to.be.not.null;
       expect(dataElement?.tagName).to.be.equal('DO');
       expect(dataElement).to.have.attribute('type', 'OpenSCD_ENS_Beh');
@@ -61,14 +64,17 @@ describe('Export IED Params Plugin -', () => {
     it('when called with a LNodeType element and a unknown name is passed then null returned', () => {
       const typeElement = doc.querySelector('LNodeType[id="Dummy.TVTR"]');
 
-      const dataElement = plugin['getDataElement'](typeElement!, 'Unknown');
+      const dataElement = plugin['getDataTypeChildElement'](
+        typeElement!,
+        'Unknown'
+      );
       expect(dataElement).to.be.null;
     });
 
     it('when called with a DOType element and a known name is passed then correct DO Element returned', () => {
       const typeElement = doc.querySelector('DOType[id="Dummy.ASG"]');
 
-      const dataElement = plugin['getDataElement'](typeElement!, 'q');
+      const dataElement = plugin['getDataTypeChildElement'](typeElement!, 'q');
       expect(dataElement).to.be.not.null;
       expect(dataElement?.tagName).to.be.equal('DA');
       expect(dataElement).to.have.attribute('bType', 'Quality');
@@ -77,16 +83,22 @@ describe('Export IED Params Plugin -', () => {
     it('when called with a DOType element and a unknown name is passed then null returned', () => {
       const typeElement = doc.querySelector('DOType[id="Dummy.ASG"]');
 
-      const dataElement = plugin['getDataElement'](typeElement!, 'Unknown');
+      const dataElement = plugin['getDataTypeChildElement'](
+        typeElement!,
+        'Unknown'
+      );
       expect(dataElement).to.be.null;
     });
 
-    it('when called with a DAType element and a known name is passed then correct DO Element returned', () => {
+    it('when called with a DAType element and a known name is passed then correct BDA Element returned', () => {
       const typeElement = doc.querySelector(
         'DAType[id="OpenSCD_Cancel_BehaviourModeKind"]'
       );
 
-      const dataElement = plugin['getDataElement'](typeElement!, 'ctlNum');
+      const dataElement = plugin['getDataTypeChildElement'](
+        typeElement!,
+        'ctlNum'
+      );
       expect(dataElement).to.be.not.null;
       expect(dataElement?.tagName).to.be.equal('BDA');
       expect(dataElement).to.have.attribute('bType', 'INT8U');
@@ -97,29 +109,32 @@ describe('Export IED Params Plugin -', () => {
         'DAType[id="OpenSCD_Cancel_BehaviourModeKind"]'
       );
 
-      const dataElement = plugin['getDataElement'](typeElement!, 'Unknown');
+      const dataElement = plugin['getDataTypeChildElement'](
+        typeElement!,
+        'Unknown'
+      );
       expect(dataElement).to.be.null;
     });
   });
 
-  describe('retrieve the type element from a data element (getTypeElement) -', () => {
+  describe('retrieve the type element from a data element (getDataTypeTemplateElement) -', () => {
     it('when passing a DO Element then the DOType Element is returned', () => {
       const doElement = doc.querySelector(
         'LNodeType[id="Dummy.TCTR"] > DO[name="Rat"]'
       );
 
-      const typeElement = plugin['getTypeElement'](doElement);
+      const typeElement = plugin['getDataTypeTemplateElement'](doElement);
       expect(typeElement).to.be.not.null;
       expect(typeElement?.tagName).to.be.equal('DOType');
       expect(typeElement).to.have.attribute('cdc', 'ASG');
     });
 
-    it('when passing a DA Element then the DOType Element is returned', () => {
+    it('when passing a DA Element then the DAType Element is returned', () => {
       const daElement = doc.querySelector(
         'DOType[id="OpenSCD_ENC_Mod"] > DA[name="Oper"]'
       );
 
-      const typeElement = plugin['getTypeElement'](daElement);
+      const typeElement = plugin['getDataTypeTemplateElement'](daElement);
       expect(typeElement).to.be.not.null;
       expect(typeElement?.tagName).to.be.equal('DAType');
       expect(typeElement).to.have.attribute(
@@ -193,7 +208,7 @@ describe('Export IED Params Plugin -', () => {
     it('when something else as a LN element is passed then null is returned', () => {
       const value = plugin['getDataAttributeTemplateValue'](iedElement, [
         'ARtgSec',
-        'stVal',
+        'setVal',
       ]);
 
       expect(value).to.be.null;
@@ -214,7 +229,7 @@ describe('Export IED Params Plugin -', () => {
     it('when a instance value is defined then that value is returned', () => {
       const value = plugin['getDataAttributeInstanceValue'](lnElement, [
         'ARtgSec',
-        'stVal',
+        'setVal',
       ]);
 
       expect(value).to.be.equal('5');
@@ -238,7 +253,7 @@ describe('Export IED Params Plugin -', () => {
     it('when something else as a LN element is passed then null is returned', () => {
       const value = plugin['getDataAttributeInstanceValue'](iedElement, [
         'ARtgSec',
-        'stVal',
+        'setVal',
       ]);
 
       expect(value).to.be.null;
@@ -257,7 +272,7 @@ describe('Export IED Params Plugin -', () => {
     it('when a instance value is defined then that value is returned', () => {
       const value = plugin['getDataAttributeValue'](lnElement, [
         'ARtgSec',
-        'stVal',
+        'setVal',
       ]);
 
       expect(value).to.be.equal('5');
