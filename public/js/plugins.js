@@ -230,6 +230,15 @@ export const officialPlugins = [
     position: 'middle',
   },
   {
+    name: 'Export IED Params',
+    src: '/src/menu/ExportIEDParams.js',
+    icon: 'download',
+    default: false,
+    kind: 'menu',
+    requireDoc: true,
+    position: 'middle',
+  },
+  {
     name: 'Locamation VMU',
     src: '/src/menu/LocamationVMU.js',
     icon: 'edit_note',

@@ -864,6 +864,9 @@ export const en = {
       sclAutoAlignmentServiceUrl: 'CoMPAS SCL Auto Alignment Service URL',
       useWebsockets: 'Use Websockets',
     },
+    exportIEDParams: {
+      noIEDs: 'No IEDs found',
+    },
     session: {
       headingExpiring: 'Your session is about to expire!',
       explainExpiring:

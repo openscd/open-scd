@@ -867,6 +867,9 @@ export const de: Translations = {
       sclAutoAlignmentServiceUrl: 'CoMPAS SCL Auto Alignment Service URL',
       useWebsockets: '???',
     },
+    exportIEDParams: {
+      noIEDs: 'Keine IEDs in Projekt',
+    },
     session: {
       headingExpiring: '???',
       explainExpiring: '???',

@@ -1,0 +1,106 @@
+{
+  "comments": [
+    "This file contains the configuration for exporting IED Information to a CSV File.",
+    "Each column can be defined below in the section \"columns\".",
+    "A Column must at least have a \"header\" defined.",
+    "",
+    "A selector can be defined to search for a Element, if no selector is defined, the IED Element is used.",
+    "If the useOwnerDocument is set to true, the selector will be used on the whole document, otherwise on the IED Element",
+    "There is a variable 'iedName' being replaced before executing the selector, put this between '{{' an '}}'.",
+    "If a dataAttributePath is defined, the selector should return a LN(0) Element and the path is then used to search for a DAI/DA Element.",
+    "The dataAttributePath should at least contain 2 names, because the minimum is always a DO(I) followed by a DA(I) element.",
+    "",
+    "If a attributeName is defined that attribute will be retrieved from the elements found by the selector.",
+    "Otherwise the text content of the elements is retrieved."
+  ],
+  "columns": [
+    {
+      "header": "IED Name",
+      "attributeName": "name"
+    },
+    {
+      "header": "IP address",
+      "selector": "Communication > SubNetwork > ConnectedAP[iedName=\"{{ iedName }}\"] > Address:first-child > P[type=\"IP\"]",
+      "useOwnerDocument": true
+    },
+    {
+      "header": "Subnetmask",
+      "selector": "Communication > SubNetwork > ConnectedAP[iedName=\"{{ iedName }}\"] > Address:first-child > P[type=\"IP-SUBNET\"]",
+      "useOwnerDocument": true
+    },
+    {
+      "header": "IED Description",
+      "attributeName": "desc"
+    },
+    {
+      "header": "IL1 Primary rated current",
+      "selector": "AccessPoint > Server > LDevice > LN[prefix=\"IL1\"][lnClass=\"TCTR\"]",
+      "dataAttributePath": ["ARtg", "setMag", "f"]
+    },
+    {
+      "header": "IL1 Network Nominal Current",
+      "selector": "AccessPoint > Server > LDevice > LN[prefix=\"IL1\"][lnClass=\"TCTR\"]",
+      "dataAttributePath": ["ARtgNom", "setMag", "f"]
+    },
+    {
+      "header": "IL1 Secondary rated current",
+      "selector": "AccessPoint > Server > LDevice > LN[prefix=\"IL1\"][lnClass=\"TCTR\"]",
+      "dataAttributePath": ["ARtgSec", "setVal"]
+    },
+    {
+      "header": "RES Primary rated current",
+      "selector": "AccessPoint > Server > LDevice > LN[prefix=\"RES\"][lnClass=\"TCTR\"]",
+      "dataAttributePath": ["ARtg", "setMag", "f"]
+    },
+    {
+      "header": "RES Network Nominal Current",
+      "selector": "AccessPoint > Server > LDevice > LN[prefix=\"RES\"][lnClass=\"TCTR\"]",
+      "dataAttributePath": ["ARtgNom", "setMag", "f"]
+    },
+    {
+      "header": "RES Secondary rated current",
+      "selector": "AccessPoint > Server > LDevice > LN[prefix=\"RES\"][lnClass=\"TCTR\"]",
+      "dataAttributePath": ["ARtgSec", "setVal"]
+    },
+    {
+      "header": "UL1 Primary rated voltage",
+      "selector": "AccessPoint > Server > LDevice > LN[prefix=\"UL1\"][lnClass=\"TVTR\"]",
+      "dataAttributePath": ["VRtg", "setMag", "f"]
+    },
+    {
+      "header": "UL1 Secondary rated voltage",
+      "selector": "AccessPoint > Server > LDevice > LN[prefix=\"UL1\"][lnClass=\"TVTR\"]",
+      "dataAttributePath": ["VRtgSec", "setVal"]
+    },
+    {
+      "header": "UL1 Devision ratio",
+      "selector": "AccessPoint > Server > LDevice > LN[prefix=\"UL1\"][lnClass=\"TVTR\"]",
+      "dataAttributePath": ["Rat", "setMag", "f"]
+    },
+    {
+      "header": "RES Primary rated voltage",
+      "selector": "AccessPoint > Server > LDevice > LN[prefix=\"RES\"][lnClass=\"TVTR\"]",
+      "dataAttributePath": ["VRtg", "setMag", "f"]
+    },
+    {
+      "header": "RES Secondary rated voltage",
+      "selector": "AccessPoint > Server > LDevice > LN[prefix=\"RES\"][lnClass=\"TVTR\"]",
+      "dataAttributePath": ["VRtgSec", "setVal"]
+    },
+    {
+      "header": "RES Devision ratio",
+      "selector": "AccessPoint > Server > LDevice > LN[prefix=\"RES\"][lnClass=\"TVTR\"]",
+      "dataAttributePath": ["Rat", "setMag", "f"]
+    },
+    {
+      "header": "Vendor",
+      "selector": "AccessPoint > Server > LDevice > LN[lnClass=\"LPHD\"]",
+      "dataAttributePath": ["PhyNam", "vendor"]
+    },
+    {
+      "header": "Model",
+      "selector": "AccessPoint > Server > LDevice > LN[lnClass=\"LPHD\"]",
+      "dataAttributePath": ["PhyNam", "model"]
+    }
+  ]
+}

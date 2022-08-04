@@ -1172,6 +1172,21 @@ snapshots["open-scd looks like its snapshot"] =
       left=""
       mwc-list-item=""
       tabindex="-1"
+      value="/src/menu/ExportIEDParams.js"
+    >
+      <mwc-icon slot="meta">
+        download
+      </mwc-icon>
+      Export IED Params
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      tabindex="-1"
       value="/src/menu/LocamationVMU.js"
     >
       <mwc-icon slot="meta">
