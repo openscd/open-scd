@@ -1,10 +1,10 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
 import ExportIEDParamsPlugin, {
-  Settings,
+  Configuration,
 } from '../../../src/menu/ExportIEDParams.js';
 
-describe('Export IED Params Plugin - ', () => {
+describe('Export IED Params Plugin -', () => {
   if (customElements.get('export-ied-params') === undefined)
     customElements.define('export-ied-params', ExportIEDParamsPlugin);
 
@@ -21,7 +21,7 @@ describe('Export IED Params Plugin - ', () => {
     plugin.doc = doc;
   });
 
-  describe('determine selector - ', () => {
+  describe('determine selector (getSelector) -', () => {
     it('when no variable in string then same string returned', () => {
       const selector = 'LN[lnClass="TCTR"]';
       expect(plugin['getSelector'](selector, 'IED1')).to.be.equal(selector);
@@ -48,7 +48,7 @@ describe('Export IED Params Plugin - ', () => {
     });
   });
 
-  describe('retrieve the data template element from a type element - ', () => {
+  describe('retrieve the data template element from a type element (getDataElement) -', () => {
     it('when called with a LNodeType element and a known name is passed then correct DO Element returned', () => {
       const typeElement = doc.querySelector('LNodeType[id="Dummy.TVTR"]');
 
@@ -102,7 +102,7 @@ describe('Export IED Params Plugin - ', () => {
     });
   });
 
-  describe('retrieve the type element from a data element', () => {
+  describe('retrieve the type element from a data element (getTypeElement) -', () => {
     it('when passing a DO Element then the DOType Element is returned', () => {
       const doElement = doc.querySelector(
         'LNodeType[id="Dummy.TCTR"] > DO[name="Rat"]'
@@ -129,7 +129,7 @@ describe('Export IED Params Plugin - ', () => {
     });
   });
 
-  describe('retrieving the value of a attribute of text content -', () => {
+  describe('retrieving the value of a attribute of text content (getValue) -', () => {
     it('when called with known attribute then the value of attribute is returned', () => {
       const iedElement = doc.querySelector('IED[name="IED1"]');
 
@@ -164,20 +164,170 @@ describe('Export IED Params Plugin - ', () => {
     });
   });
 
-  describe('create a line of data for a single IED', () => {
-    let settings: Settings;
+  describe('retrieve the template value linked to a LN(0) element (getDataAttributeTemplateValue) -', () => {
+    let iedElement: Element;
+    let lnElement: Element;
+
+    beforeEach(() => {
+      iedElement = doc.querySelector('IED[name="IED1"]')!;
+      lnElement = iedElement.querySelector(
+        'LN[prefix="RES"][lnClass="TCTR"][inst="1"]'
+      )!;
+    });
+
+    it('when a known path is passed then the value of the template is returned', () => {
+      const value = plugin['getDataAttributeTemplateValue'](lnElement, [
+        'Mod',
+        'ctlModel',
+      ]);
+
+      expect(value).to.be.equal('sbo-with-enhanced-security');
+    });
+
+    it('when no (complete) attribute path is passed then null is returned', () => {
+      const value = plugin['getDataAttributeTemplateValue'](lnElement, []);
+
+      expect(value).to.be.null;
+    });
+
+    it('when something else as a LN element is passed then null is returned', () => {
+      const value = plugin['getDataAttributeTemplateValue'](iedElement, [
+        'ARtgSec',
+        'stVal',
+      ]);
+
+      expect(value).to.be.null;
+    });
+  });
+
+  describe('retrieve the instance value below a LN(0) element (getDataAttributeInstanceValue) -', () => {
+    let iedElement: Element;
+    let lnElement: Element;
+
+    beforeEach(() => {
+      iedElement = doc.querySelector('IED[name="IED1"]')!;
+      lnElement = iedElement.querySelector(
+        'LN[prefix="RES"][lnClass="TCTR"][inst="1"]'
+      )!;
+    });
+
+    it('when a instance value is defined then that value is returned', () => {
+      const value = plugin['getDataAttributeInstanceValue'](lnElement, [
+        'ARtgSec',
+        'stVal',
+      ]);
+
+      expect(value).to.be.equal('5');
+    });
+
+    it('when no instance value is defined then null will be returned', () => {
+      const value = plugin['getDataAttributeInstanceValue'](lnElement, [
+        'Mod',
+        'ctlModel',
+      ]);
+
+      expect(value).to.be.null;
+    });
+
+    it('when no (complete) attribute path is passed then null is returned', () => {
+      const value = plugin['getDataAttributeInstanceValue'](lnElement, []);
+
+      expect(value).to.be.null;
+    });
+
+    it('when something else as a LN element is passed then null is returned', () => {
+      const value = plugin['getDataAttributeInstanceValue'](iedElement, [
+        'ARtgSec',
+        'stVal',
+      ]);
+
+      expect(value).to.be.null;
+    });
+  });
+
+  describe('retrieve the value below a LN(0) element (getDataAttributeValue) -', () => {
+    let lnElement: Element;
+
+    beforeEach(() => {
+      lnElement = doc.querySelector(
+        'IED[name="IED1"] LN[prefix="RES"][lnClass="TCTR"][inst="1"]'
+      )!;
+    });
+
+    it('when a instance value is defined then that value is returned', () => {
+      const value = plugin['getDataAttributeValue'](lnElement, [
+        'ARtgSec',
+        'stVal',
+      ]);
+
+      expect(value).to.be.equal('5');
+    });
+
+    it('when a template value is defined then that value is returned', () => {
+      const value = plugin['getDataAttributeValue'](lnElement, [
+        'Mod',
+        'ctlModel',
+      ]);
+
+      expect(value).to.be.equal('sbo-with-enhanced-security');
+    });
+  });
+
+  describe('retrieve the elements to search retrieve the value from (getElements) -', () => {
+    let iedElement: Element;
+
+    beforeEach(() => {
+      iedElement = doc.querySelector('IED[name="IED1"]')!;
+    });
+
+    it('when no selector is passed then the IED element is returned', () => {
+      const elements = plugin['getElements'](iedElement, undefined, false);
+
+      expect(elements).to.have.length(1);
+      expect(elements[0]).to.be.equal(iedElement);
+    });
+
+    it('when selector to search below the IED is passed then the expected elements are returned', () => {
+      const elements = plugin['getElements'](
+        iedElement,
+        'LN[prefix="RES"][lnClass="TCTR"][inst="1"]',
+        false
+      );
+
+      expect(elements).to.have.length(1);
+      const lnElement = elements[0];
+      expect(lnElement.tagName).to.be.equal('LN');
+      expect(lnElement).to.have.attribute('lnType', 'Dummy.TCTR');
+    });
+
+    it('when selector to search in the document is passed then the expected elements are returned', () => {
+      const elements = plugin['getElements'](
+        iedElement,
+        'Communication ConnectedAP[iedName="{{ iedName }}"]',
+        true
+      );
+
+      expect(elements).to.have.length(1);
+      const lnElement = elements[0];
+      expect(lnElement.tagName).to.be.equal('ConnectedAP');
+      expect(lnElement).to.have.attribute('apName', 'A1');
+    });
+  });
+
+  describe('create a line of data for a single IED (cvsLine) -', () => {
+    let configuration: Configuration;
 
     beforeEach(async () => {
       const jsonContent = await fetch(
-        '../../../public/conf/export-ied-parameters.json'
+        '../../../public/conf/export-ied-params.json'
       ).then(response => response.text());
-      settings = JSON.parse(jsonContent);
+      configuration = JSON.parse(jsonContent);
     });
 
     it('when passing IED1 then the expected String Array is returned', () => {
       const iedElement = doc.querySelector('IED[name="IED1"]');
 
-      const values = plugin['contentIED'](settings, iedElement!);
+      const values = plugin['cvsLine'](configuration, iedElement!);
       expect(values).to.have.length(18);
       expect(values[0]).to.be.equal('IED1');
       expect(values[1]).to.be.equal('192.168.210.134');
@@ -202,7 +352,7 @@ describe('Export IED Params Plugin - ', () => {
     it('when passing IED2 then the expected String Array is returned', () => {
       const iedElement = doc.querySelector('IED[name="IED2"]');
 
-      const values = plugin['contentIED'](settings, iedElement!);
+      const values = plugin['cvsLine'](configuration, iedElement!);
       expect(values).to.have.length(18);
       expect(values[0]).to.be.equal('IED2');
       expect(values[1]).to.be.empty;
@@ -225,34 +375,34 @@ describe('Export IED Params Plugin - ', () => {
     });
   });
 
-  describe('create the header line using the settings file', () => {
-    let settings: Settings;
+  describe('create the header line using the configuration file (columnHeaders) -', () => {
+    let configuration: Configuration;
 
     beforeEach(async () => {
       const jsonContent = await fetch(
-        '../../../public/conf/export-ied-parameters.json'
+        '../../../public/conf/export-ied-params.json'
       ).then(response => response.text());
-      settings = JSON.parse(jsonContent);
+      configuration = JSON.parse(jsonContent);
     });
 
-    it('when called then the expected headers are returned from the settings file', () => {
-      const headers = plugin['columnHeaders'](settings);
+    it('when called then the expected headers are returned from the configuration file', () => {
+      const headers = plugin['columnHeaders'](configuration);
       expect(headers).to.have.length(18);
     });
   });
 
-  describe('create a line for each IED in the document', () => {
-    let settings: Settings;
+  describe('create a line for each IED in the document (cvsLines) -', () => {
+    let configuration: Configuration;
 
     beforeEach(async () => {
       const jsonContent = await fetch(
-        '../../../public/conf/export-ied-parameters.json'
+        '../../../public/conf/export-ied-params.json'
       ).then(response => response.text());
-      settings = JSON.parse(jsonContent);
+      configuration = JSON.parse(jsonContent);
     });
 
     it('when passing a document with IEDs then the expected number of lines are returned', () => {
-      const content = plugin['content'](settings);
+      const content = plugin['cvsLines'](configuration);
 
       expect(content).to.have.length(2);
     });
@@ -263,7 +413,7 @@ describe('Export IED Params Plugin - ', () => {
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       plugin.doc = doc;
 
-      const content = plugin['content'](settings);
+      const content = plugin['cvsLines'](configuration);
 
       // One line returned
       expect(content).to.have.length(1);

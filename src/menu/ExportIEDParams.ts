@@ -7,7 +7,8 @@ import { compareNames } from '../foundation.js';
 import { stripExtensionFromName } from '../compas/foundation.js';
 import { get } from 'lit-translate';
 
-type ColumnSettings = {
+// Structure of the Configuration file defined by both types.
+type ColumnConfiguration = {
   header: string;
   attributeName?: string;
   selector?: string;
@@ -15,10 +16,14 @@ type ColumnSettings = {
   dataAttributePath?: string[];
 };
 
-export type Settings = {
-  columns: ColumnSettings[];
+export type Configuration = {
+  columns: ColumnConfiguration[];
 };
 
+/**
+ * Menu item to create a CSV File containing a line per IED holding the parameters of that IED.
+ * Which columns are being returned is configured in the file 'public/conf/export-ied-params.json'.
+ */
 export default class ExportIEDParamsPlugin extends LitElement {
   @property() doc!: XMLDocument;
   @property() docName!: string;
@@ -31,6 +36,13 @@ export default class ExportIEDParamsPlugin extends LitElement {
     return selector.replace(/{{\s*iedName\s*}}/, iedName);
   }
 
+  /**
+   * Find the DO/DA/BDA element with the passed name defined below the type element passed.
+   * Depending on the type of Type element the query will search for the DO/DA/BDA element.
+   *
+   * @param typeElement - The type element, this can be a LNodeType, DOType or DAType element.
+   * @param name        - The name of the element to search for below the type element.
+   */
   private getDataElement(typeElement: Element, name: string): Element | null {
     if (typeElement.tagName === 'LNodeType') {
       return typeElement.querySelector(`:scope > DO[name="${name}"]`);
@@ -43,6 +55,12 @@ export default class ExportIEDParamsPlugin extends LitElement {
     }
   }
 
+  /**
+   * Retrieve the value that will be added to the CSV file. If an attribute name is passed the value of the
+   * attribute is returned. Otherwise, the textContent of the element is returned.
+   * @param element       - The element to retrieve the value from.
+   * @param attributeName - Optional the name of the attribute.
+   */
   private getValue(
     element: Element,
     attributeName: string | undefined
@@ -53,6 +71,12 @@ export default class ExportIEDParamsPlugin extends LitElement {
     return element.textContent ?? '';
   }
 
+  /**
+   * Use the DO/SDO/DA/BDA data element to search for the type element. In case of the DO/SDO a DOType is search
+   * for and otherwise a DAType is searched for if the data element is a struct type.
+   *
+   * @param lastElement - The data element to retrieve its type definition.
+   */
   private getTypeElement(lastElement: Element | null): Element | null {
     if (lastElement) {
       if (['DO', 'SDO'].includes(lastElement.tagName)) {
@@ -69,12 +93,22 @@ export default class ExportIEDParamsPlugin extends LitElement {
     return null;
   }
 
+  /**
+   * Search for the DO/SDO/DA/BDA element in the Template section of the document using the path array passed.
+   * The LN element is the starting point for the search in the Template section.
+   *
+   * @param lnElement         - The LN Element used as starting point in the Template section.
+   * @param dataAttributePath - The list of elements to search for, the names of the elements.
+   */
   private getDataAttributeTemplateValue(
     lnElement: Element,
     dataAttributePath: string[]
   ): string | null {
     // This is only useful if the element to start from is the LN(0) Element.
-    if (['LN', 'LN0'].includes(lnElement.tagName)) {
+    if (
+      ['LN', 'LN0'].includes(lnElement.tagName) &&
+      dataAttributePath.length >= 2
+    ) {
       // Search LNodeType Element that is linked to the LN(0) Element.
       const type = lnElement.getAttribute('lnType');
       let typeElement = this.doc.querySelector(`LNodeType[id="${type}"]`);
@@ -96,42 +130,68 @@ export default class ExportIEDParamsPlugin extends LitElement {
     return null;
   }
 
+  /**
+   * Search for the DAI element below the LN element using the path passed. The list of names is converted
+   * to a CSS Selector to search for the DAI Element and its Val Element.
+   *
+   * @param lnElement         - The LN Element used as starting point for the search.
+   * @param dataAttributePath - The names of the DOI/SDI/DAI Elements to search for.
+   */
   private getDataAttributeInstanceValue(
-    element: Element,
+    lnElement: Element,
     dataAttributePath: string[]
   ): string | null {
-    const daiSelector = dataAttributePath
-      .slice()
-      .reverse()
-      .map((path, index) => {
-        if (index === 0) {
-          return `DAI[name="${path}"]`;
-        } else if (index === dataAttributePath.length - 1) {
-          return `DOI[name="${path}"]`;
-        }
-        return `SDI[name="${path}"]`;
-      })
-      .reverse()
-      .join(' > ');
+    if (
+      ['LN', 'LN0'].includes(lnElement.tagName) &&
+      dataAttributePath.length >= 2
+    ) {
+      const daiSelector = dataAttributePath
+        .map((path, index) => {
+          if (index === 0) {
+            // The first element is always a DOI element.
+            return `DOI[name="${path}"]`;
+          } else if (index === dataAttributePath.length - 1) {
+            // The last element is always a DAI element.
+            return `DAI[name="${path}"]`;
+          }
+          // Every element(s) between the DOI and DAI element is always a SDI element.
+          return `SDI[name="${path}"]`;
+        })
+        .join(' > ');
 
-    const daiValueElement = element.querySelector(daiSelector + ' Val');
-    if (daiValueElement) {
-      return daiValueElement.textContent;
+      const daiValueElement = lnElement.querySelector(daiSelector + ' Val');
+      return daiValueElement?.textContent ?? null;
     }
     return null;
   }
 
+  /**
+   * First check if there is an instance element found (DAI) found, otherwise search in the Template section.
+   *
+   * @param lnElement         - The LN Element used as starting point for the search.
+   * @param dataAttributePath - The names of the DO(I)/SD(I)/DA(I) Elements to search for.
+   */
   private getDataAttributeValue(
-    element: Element,
+    lnElement: Element,
     dataAttributePath: string[]
   ): string {
-    let value = this.getDataAttributeInstanceValue(element, dataAttributePath);
+    let value = this.getDataAttributeInstanceValue(
+      lnElement,
+      dataAttributePath
+    );
     if (!value) {
-      value = this.getDataAttributeTemplateValue(element, dataAttributePath);
+      value = this.getDataAttributeTemplateValue(lnElement, dataAttributePath);
     }
     return value ?? '';
   }
 
+  /**
+   * Retrieve the list of elements found by the selector or if no selector defined the IED element.
+   *
+   * @param iedElement       - The IED element that will be used to search below if useOwnerDocument is false.
+   * @param selector         - If passed the CSS selector to search for the elements.
+   * @param useOwnerDocument - If false will use the IED element to search below, otherwise the full document.
+   */
   private getElements(
     iedElement: Element,
     selector: string | undefined,
@@ -152,54 +212,76 @@ export default class ExportIEDParamsPlugin extends LitElement {
     return elements;
   }
 
-  private contentIED(settings: Settings, iedElement: Element): string[] {
-    return settings.columns.map(value => {
+  /**
+   * Create a single line of values for the CSV File.
+   *
+   * @param configuration - The configuration with values to retrieve.
+   * @param iedElement    - The IED Element for which to retrieve the values.
+   */
+  private cvsLine(configuration: Configuration, iedElement: Element): string[] {
+    return configuration.columns.map(column => {
       const elements = this.getElements(
         iedElement,
-        value.selector,
-        value.useOwnerDocument ?? false
+        column.selector,
+        column.useOwnerDocument ?? false
       );
 
       return elements
         .map(element => {
-          if (value.dataAttributePath) {
-            return this.getDataAttributeValue(element, value.dataAttributePath);
+          if (column.dataAttributePath) {
+            return this.getDataAttributeValue(
+              element,
+              column.dataAttributePath
+            );
           }
-          return this.getValue(element, value.attributeName);
+          return this.getValue(element, column.attributeName);
         })
         .filter(value => value!)
         .join(' / ');
     });
   }
 
-  private content(settings: Settings): string[][] {
+  /**
+   * Create the full content of the CSV file, for each IED found a line of values is returned.
+   *
+   * @param configuration - The configuration of the values to retrieve.
+   */
+  private cvsLines(configuration: Configuration): string[][] {
     const ieds = this.ieds;
     if (ieds.length > 0) {
       return ieds
         .sort(compareNames)
-        .map(iedElement => this.contentIED(settings, iedElement));
+        .map(iedElement => this.cvsLine(configuration, iedElement));
     }
     return [[get('compas.exportIEDParams.noIEDs')]];
   }
 
-  private columnHeaders(settings: Settings): string[] {
-    return settings.columns.map(value => value.header);
+  /**
+   * Return the headers values from the configuration.
+   *
+   * @param configuration - The configuration containing the header names.
+   */
+  private columnHeaders(configuration: Configuration): string[] {
+    return configuration.columns.map(column => column.header);
   }
 
-  async getSettings(): Promise<Settings> {
-    return await import('../../public/conf/export-ied-parameters.json').then(
+  /**
+   * Read the configuration file.
+   */
+  async getConfiguration(): Promise<Configuration> {
+    return await import('../../public/conf/export-ied-params.json').then(
       module => module.default
     );
   }
 
   async run(): Promise<void> {
-    // Import the JSON Configuration needed for the import.
-    const settings = await this.getSettings();
+    // Retrieve the JSON Configuration.
+    const configuration = await this.getConfiguration();
 
-    // Create the content using a CSV Writer.
-    const content = stringify(this.content(settings), {
+    // Create the content using a CSV Library.
+    const content = stringify(this.cvsLines(configuration), {
       header: true,
-      columns: this.columnHeaders(settings),
+      columns: this.columnHeaders(configuration),
     });
     const blob = new Blob([content], {
       type: 'text/csv',
@@ -207,7 +289,7 @@ export default class ExportIEDParamsPlugin extends LitElement {
 
     // Push the data back to the user.
     const a = document.createElement('a');
-    a.download = stripExtensionFromName(this.docName) + '-ied-parameters.csv';
+    a.download = stripExtensionFromName(this.docName) + '-ied-params.csv';
     a.href = URL.createObjectURL(blob);
     a.dataset.downloadurl = ['text/csv', a.download, a.href].join(':');
     a.style.display = 'none';

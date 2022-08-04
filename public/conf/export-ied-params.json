@@ -1,15 +1,17 @@
 {
   "comments": [
-    "This file contains configuration for exporting IED Information to a CSV File.",
+    "This file contains the configuration for exporting IED Information to a CSV File.",
     "Each column can be defined below in the section \"columns\".",
     "A Column must at least have a \"header\" defined.",
     "",
     "A selector can be defined to search for a Element, if no selector is defined, the IED Element is used.",
-    "If the useOwnerDocument is set to true, the selector will be used on the whole document, otherwise the IED Element",
+    "If the useOwnerDocument is set to true, the selector will be used on the whole document, otherwise on the IED Element",
     "There is a variable 'iedName' being replaced before executing the selector, put this between '{{' an '}}'.",
+    "If a dataAttributePath is defined, the selector should return a LN(0) Element and the path is then used to search for a DAI/DA Element.",
+    "The dataAttributePath should at least contain 2 names, because the minimum is always a DO(I) followed by a DA(I) element.",
     "",
     "If a attributeName is defined that attribute will be retrieved from the elements found by the selector.",
-    "If a dataAttributePath is defined, the selector should return a LN(0) Element and the path is then used to search for a DAI/DA Value."
+    "Otherwise the text content of the elements is retrieved."
   ],
   "columns": [
     {
