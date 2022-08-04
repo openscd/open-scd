@@ -11,7 +11,7 @@
   "scripts": {
     "start": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds\"",
     "test": "tsc && wtr --coverage",
-    "test:watch": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wtr --watch\"",
+    "test:watch": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wtr --watch --coverage\"",
     "analyze": "cem analyze --litelement",
     "build": "tsc && tsc foundation.ts --declaration --emitDeclarationOnly --outDir dist && npm run analyze -- --exclude dist && typedoc --out dist/doc foundation.ts",
     "prepublish": "npm run build",
@@ -44,6 +44,7 @@
   "customElements": "custom-elements.json",
   "eslintConfig": {
     "parser": "@typescript-eslint/parser",
+    "parserOptions": { "lib": ["es2018", "dom"] },
     "extends": [
       "@open-wc",
       "prettier"
@@ -55,7 +56,10 @@
     "rules": {
       "no-unused-vars": "off",
       "@typescript-eslint/no-unused-vars": [
-        "error"
+        "error",
+        {
+          "destructuredArrayIgnorePattern": "^_"
+        }
       ],
       "import/no-unresolved": "off",
       "import/extensions": [
