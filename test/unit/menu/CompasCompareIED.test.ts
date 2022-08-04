@@ -23,7 +23,7 @@ describe('Compas Compare IED Plugin', () => {
       await plugin.requestUpdate();
     });
 
-    it('after closing the dialog everything set to undefined', async () => {
+    it('after closing the dialog everything stays undefined', async () => {
       expect(plugin.templateDoc).to.be.undefined;
       expect(plugin.selectedProjectIed).to.be.undefined;
       expect(plugin.selectedTemplateIed).to.be.undefined;
