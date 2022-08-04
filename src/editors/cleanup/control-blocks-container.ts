@@ -120,6 +120,8 @@ export class CleanupControlBlocks extends LitElement {
   private toggleHiddenClass(selectorType: string) {
     this.cleanupList!.querySelectorAll(`.${selectorType}`).forEach(element => {
       element.classList.toggle('hiddenontypefilter');
+      if (element.hasAttribute('disabled')) element.removeAttribute('disabled');
+      else element.setAttribute('disabled', 'true');
     });
   }
 
