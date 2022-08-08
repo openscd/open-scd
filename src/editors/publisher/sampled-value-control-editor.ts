@@ -17,6 +17,7 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 import './data-set-element-editor.js';
 import '../../filtered-list.js';
+import './sampled-value-control-element-editor.js';
 import { FilteredList } from '../../filtered-list.js';
 
 import { compareNames, identity, selector } from '../../foundation.js';
@@ -27,10 +28,27 @@ import { styles } from './foundation.js';
 export class SampledValueControlEditor extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property({ attribute: false })
-  doc!: XMLDocument;
+  set doc(newDoc: XMLDocument) {
+    if (this._doc === newDoc) return;
+
+    this.selectedDataSet = undefined;
+    this.selectedSampledValueControl = undefined;
+    if (this.selectionList && this.selectionList.selected)
+      (this.selectionList.selected as ListItem).selected = false;
+
+    this._doc = newDoc;
+
+    this.requestUpdate();
+  }
+  get doc(): XMLDocument {
+    return this._doc;
+  }
+  private _doc!: XMLDocument;
 
   @state()
-  selectedSampledValueControl?: Element | null;
+  selectedSampledValueControl?: Element;
+  @state()
+  selectedDataSet?: Element | null;
 
   @query('.selectionlist') selectionList!: FilteredList;
   @query('mwc-button') selectSampledValueControlButton!: Button;
@@ -40,12 +58,15 @@ export class SampledValueControlEditor extends LitElement {
     const smvControl = this.doc.querySelector(
       selector('SampledValueControl', id)
     );
+    if (!smvControl) return;
+
+    this.selectedSampledValueControl = smvControl;
 
     if (smvControl) {
-      this.selectedSampledValueControl =
+      this.selectedDataSet =
         smvControl.parentElement?.querySelector(
           `DataSet[name="${smvControl.getAttribute('datSet')}"]`
-        );
+        ) ?? null;
       (evt.target as FilteredList).classList.add('hidden');
       this.selectSampledValueControlButton.classList.remove('hidden');
     }
@@ -55,8 +76,12 @@ export class SampledValueControlEditor extends LitElement {
     if (this.selectedSampledValueControl !== undefined)
       return html`<div class="elementeditorcontainer">
         <data-set-element-editor
-          .element=${this.selectedSampledValueControl}
+          .element=${this.selectedDataSet!}
         ></data-set-element-editor>
+        <sampled-value-control-element-editor
+          .doc=${this.doc}
+          .element=${this.selectedSampledValueControl}
+        ></sampled-value-control-element-editor>
       </div>`;
 
     return html``;
@@ -126,8 +151,29 @@ export class SampledValueControlEditor extends LitElement {
   static styles = css`
     ${styles}
 
+    .elementeditorcontainer {
+      flex: 65%;
+      margin: 4px 8px 4px 4px;
+      background-color: var(--mdc-theme-surface);
+      overflow-y: scroll;
+      display: grid;
+      grid-gap: 12px;
+      padding: 8px 12px 16px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
     data-set-element-editor {
-      flex: auto;
+      grid-column: 1 / 2;
+    }
+
+    sampled-value-control-element-editor {
+      grid-column: 2 / 4;
+    }
+
+    @media (max-width: 950px) {
+      .elementeditorcontainer {
+        display: block;
+      }
     }
   `;
 }
