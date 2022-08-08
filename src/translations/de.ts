@@ -84,6 +84,7 @@ export const de: Translations = {
     new: 'Neues projekt',
     title: 'Menü',
     viewLog: 'Protokoll anzeigen',
+    viewSclHistory: 'View SCL history',
     viewDiag: 'Daignose anzeigen',
   },
   wizard: {
@@ -164,6 +165,9 @@ export const de: Translations = {
       show: 'Anzeigen',
       placeholder: 'Keine Fehler',
     },
+  },
+  history: {
+    name: 'SCL History',
   },
   diag: {
     name: 'Daignoseübersicht',

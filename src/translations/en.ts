@@ -82,6 +82,7 @@ export const en = {
     new: 'New project',
     title: 'Menu',
     viewLog: 'View log',
+    viewSclHistory: 'View SCL history',
     viewDiag: 'View diagnostics',
   },
   wizard: {
@@ -141,6 +142,9 @@ export const en = {
       show: 'Show',
       placeholder: 'No errors',
     },
+  },
+  history: {
+    name: 'SCL History',
   },
   diag: {
     name: 'Diagnostics',
