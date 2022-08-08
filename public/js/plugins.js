@@ -187,6 +187,15 @@ export const officialPlugins = [
     position: 'middle',
   },
   {
+    name: 'Show SCL History',
+    src: '/src/menu/SclHistory.js',
+    icon: 'history_toggle_off',
+    default: true,
+    kind: 'menu',
+    requireDoc: true,
+    position: 'bottom',
+  },
+  {
     name: 'Help',
     src: '/src/menu/Help.js',
     icon: 'help',

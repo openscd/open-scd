@@ -362,13 +362,7 @@ export function newSubWizardEvent(
 
 type InfoEntryKind = 'info' | 'warning' | 'error';
 
-export type LogEntryType =
-  | 'info'
-  | 'warning'
-  | 'error'
-  | 'action'
-  | 'reset'
-  | 'sclhistory';
+export type LogEntryType = 'info' | 'warning' | 'error' | 'action' | 'reset';
 
 /** The basic information contained in each [[`LogEntry`]]. */
 export interface LogDetailBase {
@@ -384,10 +378,6 @@ export interface CommitDetail extends LogDetailBase {
 export interface InfoDetail extends LogDetailBase {
   kind: InfoEntryKind;
   cause?: LogEntry;
-}
-/** A [[`LogEntry`]] create from the HItem Line (History) of the SCD File */
-export interface SclhistoryDetail extends LogDetailBase {
-  kind: 'sclhistory';
 }
 
 export interface ResetDetail {
@@ -431,9 +421,8 @@ interface Timestamped {
 
 export type CommitEntry = Timestamped & CommitDetail;
 export type InfoEntry = Timestamped & InfoDetail;
-export type SclhistoryEntry = Timestamped & SclhistoryDetail;
 
-export type LogEntry = InfoEntry | CommitEntry | SclhistoryEntry;
+export type LogEntry = InfoEntry | CommitEntry;
 
 /** Represents some work pending completion, upon which `promise` resolves. */
 export interface PendingStateDetail {
