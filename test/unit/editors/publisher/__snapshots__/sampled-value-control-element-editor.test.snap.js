@@ -1,7 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Editor for SampledValueControl element its referenced elements with multicast attribute set to false - deprecated looks like the latest snapshot"] = 
+snapshots["Editor for SampledValueControl element its referenced elements with deprecated multicast attribute set to false looks like the latest snapshot"] = 
 `<h2 style="display: flex;">
   <div style="flex:auto">
     <div>
@@ -133,7 +133,7 @@ snapshots["Editor for SampledValueControl element its referenced elements with m
   </div>
   <div class="content">
     <h3>
-      Optional Fields
+      [publisher.smv.smvopts]
     </h3>
     <wizard-checkbox
       helper="[scl.refreshTime]"
@@ -166,7 +166,7 @@ snapshots["Editor for SampledValueControl element its referenced elements with m
     >
     </wizard-checkbox>
     <h3>
-      Communication Settings (SMV)
+      [publisher.smv.commsetting]
     </h3>
     <mwc-formfield label="[connectedap.wizard.addschemainsttype]">
       <mwc-checkbox id="instType">
@@ -201,7 +201,7 @@ snapshots["Editor for SampledValueControl element its referenced elements with m
   </div>
 </div>
 `;
-/* end snapshot Editor for SampledValueControl element its referenced elements with multicast attribute set to false - deprecated looks like the latest snapshot */
+/* end snapshot Editor for SampledValueControl element its referenced elements with deprecated multicast attribute set to false looks like the latest snapshot */
 
 snapshots["Editor for SampledValueControl element its referenced elements with multicast SampledValueControl looks like the latest snapshot"] = 
 `<h2 style="display: flex;">
@@ -329,7 +329,7 @@ snapshots["Editor for SampledValueControl element its referenced elements with m
   </div>
   <div class="content">
     <h3>
-      Optional Fields
+      [publisher.smv.smvopts]
     </h3>
     <wizard-checkbox
       helper="[scl.refreshTime]"
@@ -363,10 +363,10 @@ snapshots["Editor for SampledValueControl element its referenced elements with m
     </wizard-checkbox>
     <h3>
       <div>
-        Communication Settings (SMV)
+        [publisher.smv.commsetting]
       </div>
       <div class="headersubtitle">
-        No connection to SubNetwork
+        [publisher.smv.noconnectionap]
       </div>
     </h3>
   </div>

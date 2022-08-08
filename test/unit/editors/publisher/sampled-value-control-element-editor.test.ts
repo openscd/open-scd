@@ -13,7 +13,7 @@ describe('Editor for SampledValueControl element its referenced elements', () =>
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
   });
 
-  describe('with multicast attribute set to false - deprecated', () => {
+  describe('with deprecated multicast attribute set to false', () => {
     beforeEach(async () => {
       const sampledValueControl = doc.querySelector(
         'SampledValueControl[multicast="false"]'

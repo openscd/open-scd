@@ -743,6 +743,11 @@ export const de: Translations = {
   publisher: {
     selectbutton: '{{type}} auswählen',
     nodataset: 'Kein verbundener Datensatz',
+    smv: {
+      commsetting: 'Kommunikationsparameter (SMV)',
+      noconnectedap: 'Fehlende Verbindung zu einem Netzwerk',
+      smvopts: 'Optionale Felder',
+    },
   },
   add: 'Hinzufügen',
   new: 'Neu',

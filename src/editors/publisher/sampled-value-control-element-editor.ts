@@ -29,7 +29,7 @@ export class SampledValueControlElementEditor extends LitElement {
   @property({ attribute: false })
   element!: Element;
   @property({ attribute: false })
-  get sMV(): Element | null | undefined {
+  get sMV(): Element | null {
     const cbName = this.element.getAttribute('name');
     const iedName = this.element.closest('IED')?.getAttribute('name');
     const apName = this.element.closest('AccessPoint')?.getAttribute('name');
@@ -46,8 +46,10 @@ export class SampledValueControlElementEditor extends LitElement {
     const sMV = this.sMV;
     if (!sMV)
       return html` <h3>
-        <div>Communication Settings (SMV)</div>
-        <div class="headersubtitle">No connection to SubNetwork</div>
+        <div>${translate('publisher.smv.commsetting')}</div>
+        <div class="headersubtitle">
+          ${translate('publisher.smv.noconnectionap')}
+        </div>
       </h3>`;
 
     const hasInstType = Array.from(sMV.querySelectorAll('Address > P')).some(
@@ -59,11 +61,12 @@ export class SampledValueControlElementEditor extends LitElement {
     ['MAC-Address', 'APPID', 'VLAN-ID', 'VLAN-PRIORITY'].forEach(key => {
       if (!attributes[key])
         attributes[key] =
-          sMV.querySelector(`Address > P[type="${key}"]`)?.innerHTML.trim() ??
-          null;
+          sMV
+            .querySelector(`Address > P[type="${key}"]`)
+            ?.textContent?.trim() ?? null;
     });
 
-    return html` <h3>Communication Settings (SMV)</h3>
+    return html` <h3>${translate('publisher.smv.commsetting')}</h3>
       <mwc-formfield
         label="${translate('connectedap.wizard.addschemainsttype')}"
         ><mwc-checkbox
@@ -93,7 +96,7 @@ export class SampledValueControlElementEditor extends LitElement {
       attr => this.element.querySelector('SmvOpts')?.getAttribute(attr) ?? null
     );
 
-    return html`<h3>Optional Fields</h3>
+    return html`<h3>${translate('publisher.smv.smvopts')}</h3>
       ${Object.entries({
         refreshTime,
         sampleRate,
