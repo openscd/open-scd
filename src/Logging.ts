@@ -43,7 +43,7 @@ const icons = {
   warning: 'warning',
   error: 'report',
   action: 'history',
-  sclhistory: 'history_toggle_off',
+  // sclhistory: 'history_toggle_off',
 };
 
 function getPluginName(src: string): string {
@@ -111,58 +111,6 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         .findIndex(entry => entry.kind == 'action');
       if (index >= 0) index += this.currentAction + 1;
       return index;
-    }
-
-    private convertToDate(when: string | null): Date | null {
-      const convertedTime = new Date(when ?? '');
-      if (!isNaN(convertedTime.getTime())) {
-        return convertedTime;
-      }
-      return null;
-    }
-
-    private createMessage(
-      who: string | null,
-      why: string | null
-    ): string | undefined {
-      let message = who;
-      if (message !== null && why !== null) {
-        message += ' : ' + why;
-      } else if (why !== null) {
-        message = why;
-      }
-      return message ?? undefined;
-    }
-
-    private createSclHistoryEntry(
-      who: string | null,
-      what: string | null,
-      why: string | null,
-      when: string | null
-    ): SclhistoryEntry {
-      return {
-        kind: 'sclhistory',
-        title: what ?? 'UNDEFINED',
-        message: this.createMessage(who, why),
-        time: this.convertToDate(when),
-      };
-    }
-
-    private async onLoadHistoryFromDoc(event: OpenDocEvent) {
-      const doc = event.detail.doc;
-
-      Array.from(
-        doc.querySelectorAll(':root > Header > History > Hitem')
-      ).forEach(historyItem => {
-        this.history.push(
-          this.createSclHistoryEntry(
-            historyItem.getAttribute('who'),
-            historyItem.getAttribute('what'),
-            historyItem.getAttribute('why'),
-            historyItem.getAttribute('when')
-          )
-        );
-      });
     }
 
     private onIssue(de: IssueEvent): void {
@@ -249,7 +197,6 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
 
       this.addEventListener('log', this.onLog);
       this.addEventListener('issue', this.onIssue);
-      this.addEventListener('open-doc', this.onLoadHistoryFromDoc);
     }
 
     renderLogEntry(
