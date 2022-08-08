@@ -43,7 +43,6 @@ const icons = {
   warning: 'warning',
   error: 'report',
   action: 'history',
-  // sclhistory: 'history_toggle_off',
 };
 
 function getPluginName(src: string): string {
