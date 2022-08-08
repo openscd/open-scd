@@ -1,6 +1,7 @@
 import { expect } from '@open-wc/testing';
 
 import {
+  compareVersions,
   getTypeFromDocName,
   stripExtensionFromName,
 } from '../../../src/compas/foundation.js';
@@ -36,6 +37,43 @@ describe('compas-foundation', () => {
     it('when name is passed with length 3 the same name is returned', () => {
       const name = 'sml';
       expect(stripExtensionFromName(name)).to.be.equal(name);
+    });
+  });
+
+  describe('compareVersions', () => {
+    it('when comparing non version strings, nothing is changed', () => {
+      expect(compareVersions('bbb', 'aaa')).to.be.equal(0);
+      expect(compareVersions('aaa', 'bbb')).to.be.equal(0);
+      expect(compareVersions('a.a.a', 'b.b.b')).to.be.equal(0);
+    });
+
+    it('when comparing same versions then 0 returned', () => {
+      expect(compareVersions('1.2.3', '1.2.3')).to.be.equal(0);
+      expect(compareVersions('10.2.3', '10.2.3')).to.be.equal(0);
+    });
+
+    it('when comparing two versions with different major digits then the major versions are leading', () => {
+      expect(compareVersions('1.3.0', '2.0.0')).to.be.equal(-1);
+      expect(compareVersions('1.3.0', '10.0.0')).to.be.equal(-1);
+
+      expect(compareVersions('2.0.0', '1.3.0')).to.be.equal(1);
+      expect(compareVersions('10.0.0', '1.3.0')).to.be.equal(1);
+    });
+
+    it('when comparing two versions with different minor digits then the minor versions are leading', () => {
+      expect(compareVersions('1.3.0', '1.4.0')).to.be.equal(-1);
+      expect(compareVersions('1.3.0', '1.10.0')).to.be.equal(-1);
+
+      expect(compareVersions('1.4.0', '1.3.0')).to.be.equal(1);
+      expect(compareVersions('1.10.0', '1.3.0')).to.be.equal(1);
+    });
+
+    it('when comparing two versions with different patch digits then the patch versions are leading', () => {
+      expect(compareVersions('1.1.3', '1.1.4')).to.be.equal(-1);
+      expect(compareVersions('1.1.3', '1.1.10')).to.be.equal(-1);
+
+      expect(compareVersions('1.1.4', '1.1.3')).to.be.equal(1);
+      expect(compareVersions('1.1.10', '1.1.3')).to.be.equal(1);
     });
   });
 });

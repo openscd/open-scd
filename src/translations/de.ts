@@ -854,6 +854,8 @@ export const de: Translations = {
     },
     compare: {
       title: '???',
+      titleCurrent: '???',
+      noDiff: '???',
       attributes: 'Attribute',
       children: 'Kindelemente',
     },

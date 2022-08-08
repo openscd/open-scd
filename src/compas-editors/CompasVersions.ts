@@ -15,13 +15,15 @@ import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-list/mwc-check-list-item';
 
+import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
+
 import {
   newLogEvent,
   newOpenDocEvent,
   newWizardEvent,
   Wizard,
 } from '../foundation.js';
-import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
+import { renderDiff } from '../foundation/compare.js';
 
 import {
   CompasSclDataService,
@@ -29,13 +31,48 @@ import {
 } from '../compas-services/CompasSclDataService.js';
 import { createLogEvent } from '../compas-services/foundation.js';
 import {
+  compareVersions,
   getTypeFromDocName,
   updateDocumentInOpenSCD,
 } from '../compas/foundation.js';
 import { addVersionToCompasWizard } from '../compas/CompasUploadVersion.js';
-import { compareWizard } from '../compas/CompasCompareDialog.js';
 import { getElementByName, styles } from './foundation.js';
 import { wizards } from '../wizards/wizard-library.js';
+
+interface CompareOptions {
+  title: string;
+}
+
+function compareWizard(
+  plugin: Element,
+  oldElement: Element,
+  newElement: Element,
+  options: CompareOptions
+): Wizard {
+  function renderDialogContent(): TemplateResult {
+    return html` ${renderDiff(newElement, oldElement) ??
+    html`${translate('compas.compare.noDiff')}`}`;
+  }
+
+  function close() {
+    return function () {
+      plugin.dispatchEvent(newWizardEvent());
+      return [];
+    };
+  }
+
+  return [
+    {
+      title: options.title,
+      secondary: {
+        icon: '',
+        label: get('close'),
+        action: close(),
+      },
+      content: [renderDialogContent()],
+    },
+  ];
+}
 
 /** An editor [[`plugin`]] for selecting the `Substation` section. */
 export default class CompasVersionsPlugin extends LitElement {
@@ -244,15 +281,15 @@ export default class CompasVersionsPlugin extends LitElement {
     const selectedVersions = this.getSelectedVersions();
     if (selectedVersions.length === 1) {
       const oldVersion = selectedVersions[0];
+
       const oldScl = await this.getVersion(oldVersion);
       const newScl = this.doc.documentElement;
 
       this.dispatchEvent(
         newWizardEvent(
           compareWizard(this, oldScl, newScl, {
-            title: get('compas.compare.title', {
+            title: get('compas.compare.titleCurrent', {
               oldVersion: oldVersion,
-              newVersion: 'current',
             }),
           })
         )
@@ -274,8 +311,9 @@ export default class CompasVersionsPlugin extends LitElement {
   async compareVersions(): Promise<void> {
     const selectedVersions = this.getSelectedVersions();
     if (selectedVersions.length === 2) {
-      const oldVersion = selectedVersions[0];
-      const newVersion = selectedVersions[1];
+      const sortedVersions = selectedVersions.slice().sort(compareVersions);
+      const oldVersion = sortedVersions[0];
+      const newVersion = sortedVersions[1];
 
       const oldScl = await this.getVersion(oldVersion);
       const newScl = await this.getVersion(newVersion);

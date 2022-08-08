@@ -850,7 +850,9 @@ export const en = {
       filenameHelper: 'Filename used by CoMPAS when saving to a filesystem',
     },
     compare: {
-      title: 'Compare version {{oldVersion}} with version {{newVersion}}',
+      title: 'Compare version {{newVersion}} against version {{oldVersion}}',
+      titleCurrent: 'Compare current project against version {{oldVersion}}',
+      noDiff: 'No difference between versions',
       attributes: 'Attributes from',
       children: 'Child elements from',
     },

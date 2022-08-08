@@ -213,9 +213,9 @@ export const officialPlugins = [
   },
   {
     name: 'Compare IED',
-    src: '/src/menu/CompareIED.js',
+    src: '/src/menu/CompasCompareIED.js',
     icon: 'compare_arrows',
-    default: false,
+    default: true,
     kind: 'menu',
     requireDoc: true,
     position: 'middle',
