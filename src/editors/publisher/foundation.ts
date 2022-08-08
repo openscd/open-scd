@@ -1,5 +1,19 @@
 import { css } from 'lit-element';
 
+import { identity, selector } from '../../foundation.js';
+
+export function updateElementReference(
+  newDoc: XMLDocument,
+  oldElement: Element
+): Element | null {
+  if (!oldElement || !oldElement.closest('SCL')) return null;
+
+  const id = identity(oldElement);
+  const newElement = newDoc.querySelector(selector(oldElement.tagName, id));
+
+  return newElement;
+}
+
 export const styles = css`
   .content {
     display: flex;

@@ -22,28 +22,13 @@ import { FilteredList } from '../../filtered-list.js';
 
 import { gooseIcon } from '../../icons/icons.js';
 import { compareNames, identity, selector } from '../../foundation.js';
-import { styles } from './foundation.js';
+import { styles, updateElementReference } from './foundation.js';
 
 @customElement('gse-control-editor')
 export class GseControlEditor extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property({ attribute: false })
-  set doc(newDoc: XMLDocument) {
-    if (this._doc === newDoc) return;
-
-    this.selectedDataSet = undefined;
-    this.selectedGseControl = undefined;
-    if (this.selectionList && this.selectionList.selected)
-      (this.selectionList.selected as ListItem).selected = false;
-
-    this._doc = newDoc;
-
-    this.requestUpdate();
-  }
-  get doc(): XMLDocument {
-    return this._doc;
-  }
-  private _doc!: XMLDocument;
+  doc!: XMLDocument;
 
   @state()
   selectedGseControl?: Element;
@@ -52,6 +37,26 @@ export class GseControlEditor extends LitElement {
 
   @query('.selectionlist') selectionList!: FilteredList;
   @query('mwc-button') selectGSEControlButton!: Button;
+
+  /** Resets selected GOOSE and its DataSet, if not existing in new doc */
+  update(props: Map<string | number | symbol, unknown>): void {
+    if (props.has('doc') && this.selectedGseControl) {
+      const newGseControl = updateElementReference(
+        this.doc,
+        this.selectedGseControl
+      );
+
+      this.selectedGseControl = newGseControl ?? undefined;
+      this.selectedDataSet = this.selectedGseControl
+        ? updateElementReference(this.doc, this.selectedDataSet!)
+        : undefined;
+
+      if (!newGseControl && this.selectionList && this.selectionList.selected)
+        (this.selectionList.selected as ListItem).selected = false;
+    }
+
+    super.update(props);
+  }
 
   private selectGSEControl(evt: Event): void {
     const id = ((evt.target as FilteredList).selected as ListItem).value;
