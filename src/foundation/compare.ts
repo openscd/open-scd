@@ -14,6 +14,54 @@ export type Diff<T> =
   | { oldValue: null; newValue: T }
   | { oldValue: T; newValue: T };
 
+
+/**
+ * Type to filter out a difference based on `tagName`.`attributeName`
+  *
+  * The matcher can be a boolean or a `consumer` that returns a boolean
+*/
+export type DiffFilter<T> = {
+  [selector: string]: DiffFilterSelector<T>
+}
+
+interface DiffFilterSelector<T> {
+  full?: DiffFilterConsumer<T>,
+  attributes?: {
+    [name: string]: DiffFilterConsumer<T>
+  }
+}
+
+/**
+ * Consumer to match if a diff should be filtered out.
+ */
+type DiffFilterConsumer<T> = boolean | ((value: T | null) => boolean);
+
+
+function getDiffFilterSelector(elementToBeCompared: Element, rootElementToBeCompared: Element, filters: DiffFilter<Element>): DiffFilterSelector<Element> | undefined {
+  const querySelector : string | undefined = rootElementToBeCompared === elementToBeCompared ? ':root' : Object.keys(filters)
+    .find((selector) => Array.from(rootElementToBeCompared.querySelectorAll(selector)).includes(elementToBeCompared));
+
+  return querySelector ? filters[querySelector!] : undefined;
+}
+
+function shouldFilterElement(element: Element, filter: DiffFilterSelector<Element> | undefined): boolean {
+  if (!filter || !filter.full) {
+    return false;
+  }
+  const consumer: DiffFilterConsumer<Element> = filter!.full!;
+
+  return typeof consumer === 'boolean' ? consumer : consumer(element);
+}
+
+function shouldFilterAttribute(element: Element, attribute: string, filter: DiffFilterSelector<Element> | undefined): boolean {
+  if (!filter || !filter.attributes || !filter.attributes![attribute]) {
+    return false;
+  }
+  const consumer: DiffFilterConsumer<Element> = filter!.attributes![attribute];
+
+  return typeof consumer === 'boolean' ? consumer : consumer(element);
+}
+
 /**
  * Returns the description of the Element that differs.
  *
@@ -32,8 +80,14 @@ function describe(element: Element): string {
  */
 export function diffSclAttributes(
   elementToBeCompared: Element,
-  elementToCompareAgainst: Element
+  elementToCompareAgainst: Element,
+  ignoreDiffs?: DiffFilter<Element>,
+  rootElementToBeCompared?: Element,
+  rootElementToCompareAgainst?: Element
 ): [string, Diff<string>][] {
+  rootElementToBeCompared = rootElementToBeCompared || elementToBeCompared;
+  rootElementToCompareAgainst = rootElementToCompareAgainst || elementToCompareAgainst;
+
   const attrDiffs: [string, Diff<string>][] = [];
 
   // First check if there is any text inside the element and there should be no child elements.
@@ -44,7 +98,11 @@ export function diffSclAttributes(
     elementToCompareAgainst.childElementCount === 0 &&
     newText !== oldText
   ) {
-    attrDiffs.push(['value', { newValue: newText, oldValue: oldText }]);
+    const diffFilter = getDiffFilterSelector(elementToBeCompared, rootElementToBeCompared!, ignoreDiffs || {});
+    const shouldFilter: boolean = shouldFilterAttribute(elementToBeCompared, 'value', diffFilter);
+    if (!shouldFilter) {
+      attrDiffs.push(['value', { newValue: newText, oldValue: oldText }]);
+    }
   }
 
   // Next check if there are any difference between attributes.
@@ -54,7 +112,10 @@ export function diffSclAttributes(
       .concat(elementToBeCompared.getAttributeNames())
   );
   for (const name of attributeNames) {
+    const diffFilter = getDiffFilterSelector(elementToBeCompared, rootElementToBeCompared!, ignoreDiffs || {});
+    const shouldFilter: boolean = shouldFilterAttribute(elementToBeCompared, name, diffFilter);
     if (
+      !shouldFilter &&
       elementToCompareAgainst.getAttribute(name) !==
       elementToBeCompared.getAttribute(name)
     ) {
@@ -111,31 +172,46 @@ export function isSame(newValue: Element, oldValue: Element): boolean {
  */
 export function diffSclChilds(
   elementToBeCompared: Element,
-  elementToCompareAgainst: Element
+  elementToCompareAgainst: Element,
+  ignoreDiffs?: DiffFilter<Element>,
+  rootElementToBeCompared?: Element,
+  rootElementToCompareAgainst?: Element
 ): Diff<Element>[] {
+  rootElementToBeCompared = rootElementToBeCompared || elementToBeCompared;
+  rootElementToCompareAgainst = rootElementToCompareAgainst || elementToCompareAgainst;
+
   const childDiffs: Diff<Element>[] = [];
   const childrenToBeCompared = Array.from(elementToBeCompared.children);
   const childrenToCompareTo = Array.from(elementToCompareAgainst.children);
 
   childrenToBeCompared.forEach(newElement => {
     if (!newElement.closest('Private')) {
-      const twinIndex = childrenToCompareTo.findIndex(ourChild =>
-        isSame(newElement, ourChild)
-      );
-      const oldElement = twinIndex > -1 ? childrenToCompareTo[twinIndex] : null;
+      const diffFilter = getDiffFilterSelector(newElement, rootElementToBeCompared!, ignoreDiffs || {});
+      const shouldFilter: boolean = shouldFilterElement(newElement, diffFilter);
+      if (!shouldFilter) {
+        const twinIndex = childrenToCompareTo.findIndex(ourChild =>
+          isSame(newElement, ourChild)
+        );
+        const oldElement = twinIndex > -1 ? childrenToCompareTo[twinIndex] : null;
 
-      if (oldElement) {
-        childrenToCompareTo.splice(twinIndex, 1);
-        childDiffs.push({ newValue: newElement, oldValue: oldElement });
-      } else {
-        childDiffs.push({ newValue: newElement, oldValue: null });
+          if (oldElement) {
+            childrenToCompareTo.splice(twinIndex, 1);
+            childDiffs.push({ newValue: newElement, oldValue: oldElement });
+          } else {
+            childDiffs.push({ newValue: newElement, oldValue: null });
+          }
       }
     }
   });
   childrenToCompareTo.forEach(oldElement => {
-    if (!oldElement.closest('Private')) {
-      childDiffs.push({ newValue: null, oldValue: oldElement });
-    }
+      if (!oldElement.closest('Private')) {
+        const diffFilter = getDiffFilterSelector(oldElement, rootElementToCompareAgainst!, ignoreDiffs || {});
+        const shouldFilter: boolean = shouldFilterElement(oldElement, diffFilter);
+        if (!shouldFilter) {
+          childDiffs.push({ newValue: null, oldValue: oldElement });
+        }
+      }
+
   });
   return childDiffs;
 }
@@ -149,7 +225,10 @@ export function diffSclChilds(
  */
 export function renderDiff(
   elementToBeCompared: Element,
-  elementToCompareAgainst: Element
+  elementToCompareAgainst: Element,
+  ignoreDiffs: DiffFilter<Element> = {},
+  rootElementToBeCompared?: Element,
+  rootElementToCompareAgainst?: Element
 ): TemplateResult | null {
   // Determine the ID from the current tag. These can be numbers or strings.
   let idTitle: string | undefined = identity(elementToBeCompared).toString();
@@ -157,15 +236,25 @@ export function renderDiff(
     idTitle = undefined;
   }
 
-  // First get all differences in attributes and text for the current 2 elements.
+  // Set the root elements if they are not defined yet
+  rootElementToBeCompared = rootElementToBeCompared || elementToBeCompared;
+  rootElementToCompareAgainst = rootElementToCompareAgainst || elementToCompareAgainst;
+
   const attrDiffs: [string, Diff<string>][] = diffSclAttributes(
     elementToBeCompared,
-    elementToCompareAgainst
+    elementToCompareAgainst,
+    ignoreDiffs,
+    rootElementToBeCompared,
+    rootElementToCompareAgainst
   );
+
   // Next check which elements are added, deleted or in both elements.
   const childDiffs: Diff<Element>[] = diffSclChilds(
     elementToBeCompared,
-    elementToCompareAgainst
+    elementToCompareAgainst,
+    ignoreDiffs,
+    rootElementToBeCompared,
+    rootElementToCompareAgainst
   );
 
   const childAddedOrDeleted: Diff<Element>[] = [];
@@ -180,7 +269,7 @@ export function renderDiff(
 
   // These children exist in both old and new element, let's check if there are any difference in the children.
   const childToCompareTemplates = childToCompare
-    .map(diff => renderDiff(diff.newValue!, diff.oldValue!))
+    .map(diff => renderDiff(diff.newValue!, diff.oldValue!, ignoreDiffs, rootElementToBeCompared, rootElementToCompareAgainst))
     .filter(result => result !== null);
 
   // If there are difference generate the HTML otherwise just return null.

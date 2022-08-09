@@ -3,6 +3,7 @@ import { expect, fixtureSync } from '@open-wc/testing';
 import { html } from 'lit-element';
 
 import {
+  DiffFilter,
   diffSclAttributes,
   diffSclChilds,
   identityForCompare,
@@ -265,5 +266,49 @@ describe('compas-compare-dialog', () => {
       await element;
       await expect(element).to.equalSnapshot();
     });
+
+    it('child is added, but is ignored', async () => {
+      const newVoltageLevel = newSclElement.querySelector(
+        'VoltageLevel[name="S1 30kV"]'
+      );
+      const oldVoltageLevel = oldSclElement.querySelector(
+        'VoltageLevel[name="S1 30kV"]'
+      );
+
+      const ignoreDiffs: DiffFilter<Element> = {
+        'Bay': {
+          full: true
+        }
+      }
+      const templateResult = renderDiff(newVoltageLevel!, oldVoltageLevel!, ignoreDiffs);
+
+      expect(templateResult).to.be.null;
+    });
+
+    it('attribute is updated, but is ignored, so check latest snapshot', async () => {
+      const newVoltageLevel = newSclElement.querySelector(
+        'VoltageLevel[name="S1 110kV"]'
+      );
+      const oldVoltageLevel = oldSclElement.querySelector(
+        'VoltageLevel[name="S1 110kV"]'
+      );
+      const ignoreDiffs: DiffFilter<Element> = {
+        'Bay': {
+          full: false,
+          attributes: {
+            'desc': true
+          }
+        }
+      };
+
+      const templateResult = renderDiff(newVoltageLevel!, oldVoltageLevel!, ignoreDiffs);
+
+      expect(templateResult).to.be.not.null;
+
+      const element = fixtureSync(html`<div>${templateResult}</div>`);
+      await element;
+      await expect(element).to.equalSnapshot();
+    });
+
   });
 });

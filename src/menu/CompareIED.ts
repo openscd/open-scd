@@ -4,6 +4,7 @@ import {
   LitElement,
   property,
   query,
+  state,
   TemplateResult,
 } from 'lit-element';
 import { get, translate } from 'lit-translate';
@@ -11,6 +12,8 @@ import { get, translate } from 'lit-translate';
 import '@material/mwc-dialog';
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-formfield';
+import '@material/mwc-checkbox';
 
 import { Dialog } from '@material/mwc-dialog';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
@@ -23,7 +26,7 @@ import {
   newPendingStateEvent,
   selector,
 } from '../foundation.js';
-import { renderDiff } from '../foundation/compare.js';
+import { DiffFilter, renderDiff } from '../foundation/compare.js';
 
 export default class CompareIEDPlugin extends LitElement {
   @property({ attribute: false })
@@ -37,6 +40,9 @@ export default class CompareIEDPlugin extends LitElement {
 
   @property({ attribute: false })
   selectedTemplateIed: Element | undefined;
+
+  @state()
+  filterMutables: boolean = true;
 
   @query('mwc-dialog')
   dialog!: Dialog;
@@ -138,10 +144,66 @@ export default class CompareIEDPlugin extends LitElement {
     ></mwc-button>`;
   }
 
+  protected renderFilterCheckbox(): TemplateResult {
+    return html`<mwc-formfield
+      label="Filter mutables">
+        <mwc-checkbox
+          ?checked=${this.filterMutables}
+          @change=${() => this.filterMutables = !this.filterMutables}>
+        </mwc-checkbox>
+      </mwc-formfield>
+      `
+  }
   protected renderCompare(): TemplateResult {
-    return html`${renderDiff(
+    const ignoreDiffs: DiffFilter<Element> = {
+    };
+
+    if (this.filterMutables) {
+      ignoreDiffs[':root'] = {
+        attributes: {
+          'name': true
+        }
+      }
+
+      ignoreDiffs['P'] = {
+        full: true
+      }
+
+      ignoreDiffs[`LN[lnClass='TCTR'] DOI[name='Rat'] SDI[name='setMag'] Val`] = {
+        full: true
+      }
+
+      ignoreDiffs[`LN[lnClass='TCTR'] DOI[name='ARtg'] SDI[name='setMag'] Val`] = {
+        full: true
+      }
+
+      ignoreDiffs[`LN[lnClass='TCTR'] DOI[name='ARtgNom'] SDI[name='setMag'] Val`] = {
+        full: true
+      }
+
+      ignoreDiffs[`LN[lnClass='TCTR'] DOI[name='ARtgSec'] DAI[name='setVal'] Val`] = {
+        full: true
+      }
+
+      ignoreDiffs[`LN[lnClass='TVTR'] DOI[name='VRtg'] SDI[name='setMag'] Val`] = {
+        full: true
+      }
+
+      ignoreDiffs[`LN[lnClass='TVTR'] DOI[name='Rat'] SDI[name='setMag'] Val`] = {
+        full: true
+      }
+
+      ignoreDiffs[`LN[lnClass='TVTR'] DOI[name='VRtgSec'] DAI[name='setVal'] Val`] = {
+        full: true
+      }
+    }
+
+    return html`
+      ${this.renderFilterCheckbox()}
+      ${renderDiff(
       this.selectedProjectIed!,
-      this.selectedTemplateIed!
+      this.selectedTemplateIed!,
+      ignoreDiffs
     ) ??
     html`${translate('compare-ied.noDiff', {
       projectIedName: identity(this.selectedProjectIed!),
