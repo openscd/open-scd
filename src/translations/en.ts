@@ -363,6 +363,11 @@ export const en = {
           'Show subscribed Sampled Value(s) publisher for selected IED',
       },
     },
+    smvLaterBinding: {
+      svcList: {
+        noSvcFound: 'No Sampled Value Controls found',
+      },
+    },
     iedList: {
       title: 'IEDs',
     },

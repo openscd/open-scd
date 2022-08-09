@@ -35,8 +35,8 @@ export const officialPlugins = [
     kind: 'editor',
   },
   {
-    name: 'Subscribe Later Binding (SMV)',
-    src: '/src/editors/SMVSubscribeLaterBinding.js',
+    name: 'Subscriber Later Binding (SMV)',
+    src: '/src/editors/SMVSubscriberLaterBinding.js',
     icon: 'link',
     default: false,
     kind: 'editor',

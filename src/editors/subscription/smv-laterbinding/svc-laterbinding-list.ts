@@ -7,19 +7,22 @@ import {
   TemplateResult,
 } from 'lit-element';
 import { nothing } from 'lit-html';
+import { translate } from 'lit-translate';
 
 import '@material/mwc-icon';
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 
 import {
+  compareNames,
   getNameAttribute,
   identity,
   newWizardEvent,
 } from '../../../foundation.js';
 import { smvIcon } from '../../../icons/icons.js';
-import { styles } from '../foundation.js';
 import { wizards } from '../../../wizards/wizard-library.js';
+
+import { styles } from '../foundation.js';
 
 /** A sub element for showing all Sampled Value Controls. */
 @customElement('svc-later-binding-list')
@@ -28,7 +31,12 @@ export class SVCLaterBindingList extends LitElement {
   doc!: XMLDocument;
 
   getSvcElements(): Element[] {
-    return Array.from(this.doc.querySelectorAll('LN0 > SampledValueControl'));
+    if (this.doc) {
+      return Array.from(
+        this.doc.querySelectorAll('LN0 > SampledValueControl')
+      ).sort((a, b) => compareNames(`${identity(a)}`, `${identity(b)}`));
+    }
+    return [];
   }
 
   getFcdaElements(svcElement: Element): Element[] {
@@ -38,7 +46,7 @@ export class SVCLaterBindingList extends LitElement {
         lnElement.querySelectorAll(
           `:scope > DataSet[name=${svcElement.getAttribute('datSet')}] > FCDA`
         )
-      );
+      ).sort((a, b) => compareNames(`${identity(a)}`, `${identity(b)}`));
     }
     return [];
   }
@@ -52,6 +60,7 @@ export class SVCLaterBindingList extends LitElement {
     return html`<mwc-list-item
       graphic="large"
       twoline
+      class="subitem"
       value="${identity(fcdaElement)}"
     >
       <span>
@@ -75,35 +84,40 @@ export class SVCLaterBindingList extends LitElement {
   }
 
   render(): TemplateResult {
+    const svcElements = this.getSvcElements();
     return html` <section tabindex="0">
-      <filtered-list>
-        ${this.getSvcElements().map(svcElement => {
-          const fcdaElements = this.getFcdaElements(svcElement);
-          return html`
-            <mwc-list-item
-              noninteractive
-              graphic="icon"
-              twoline
-              hasMeta
-              value="${identity(svcElement)} ${fcdaElements
-                .map(fcdaElement => identity(fcdaElement) as string)
-                .join(' ')}"
-            >
-              <mwc-icon-button
-                slot="meta"
-                icon="edit"
-                class="interactive"
-                @click=${() => this.openEditWizard(svcElement)}
-              ></mwc-icon-button>
-              <span>${getNameAttribute(svcElement)}</span>
-              <span slot="secondary">${identity(svcElement)}</span>
-              <mwc-icon slot="graphic">${smvIcon}</mwc-icon>
-            </mwc-list-item>
-            <li divider role="separator"></li>
-            ${fcdaElements.map(fcdaElement => this.renderFCDA(fcdaElement))}
-          `;
-        })}
-      </filtered-list>
+      ${svcElements.length > 0
+        ? html` <filtered-list>
+            ${svcElements.map(svcElement => {
+              const fcdaElements = this.getFcdaElements(svcElement);
+              return html`
+                <mwc-list-item
+                  noninteractive
+                  graphic="icon"
+                  twoline
+                  hasMeta
+                  value="${identity(svcElement)} ${fcdaElements
+                    .map(fcdaElement => identity(fcdaElement) as string)
+                    .join(' ')}"
+                >
+                  <mwc-icon-button
+                    slot="meta"
+                    icon="edit"
+                    class="interactive"
+                    @click=${() => this.openEditWizard(svcElement)}
+                  ></mwc-icon-button>
+                  <span>${getNameAttribute(svcElement)}</span>
+                  <span slot="secondary">${identity(svcElement)}</span>
+                  <mwc-icon slot="graphic">${smvIcon}</mwc-icon>
+                </mwc-list-item>
+                <li divider role="separator"></li>
+                ${fcdaElements.map(fcdaElement => this.renderFCDA(fcdaElement))}
+              `;
+            })}
+          </filtered-list>`
+        : html`<h1>
+            ${translate('subscription.smvLaterBinding.svcList.noSvcFound')}
+          </h1>`}
     </section>`;
   }
 
@@ -124,6 +138,10 @@ export class SVCLaterBindingList extends LitElement {
 
     .interactive {
       pointer-events: all;
+    }
+
+    .subitem {
+      padding-left: var(--mdc-list-side-padding, 16px);
     }
   `;
 }
