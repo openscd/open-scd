@@ -148,7 +148,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       };
     }
 
-    private async onLoadHistoryFromDoc(event: OpenDocEvent) {
+    private onLoadHistoryFromDoc(event: OpenDocEvent) {
       const doc = event.detail.doc;
 
       Array.from(
