@@ -21,6 +21,7 @@ export default class PublisherPlugin extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property({ attribute: false })
   doc!: XMLDocument;
+
   @state()
   private publisherType: 'Report' | 'GOOSE' | 'SampledValue' | 'DataSet' =
     'GOOSE';

@@ -18,6 +18,10 @@ import { identity } from '../../foundation.js';
 
 @customElement('data-set-element-editor')
 export class DataSetElementEditor extends LitElement {
+  /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
+  @property({ attribute: false })
+  doc!: XMLDocument;
+  /** The element being edited as provided to plugins by [[`OpenSCD`]]. */
   @property({ attribute: false })
   element!: Element | null;
 
@@ -30,6 +34,46 @@ export class DataSetElementEditor extends LitElement {
     return this.element ? this.element.getAttribute('desc') : 'UNDEFINED';
   }
 
+  private renderContent(): TemplateResult {
+    return html`<wizard-textfield
+        label="name"
+        .maybeValue=${this.name}
+        helper="${translate('scl.name')}"
+        required
+      >
+      </wizard-textfield>
+      <wizard-textfield
+        label="desc"
+        .maybeValue=${this.desc}
+        helper="${translate('scl.desc')}"
+        nullable
+      >
+      </wizard-textfield>
+      <filtered-list
+        >${Array.from(this.element!.querySelectorAll('FCDA')).map(fcda => {
+          const [ldInst, prefix, lnClass, lnInst, doName, daName, fc] = [
+            'ldInst',
+            'prefix',
+            'lnClass',
+            'lnInst',
+            'doName',
+            'daName',
+            'fc',
+          ].map(attributeName => fcda.getAttribute(attributeName) ?? '');
+
+          return html`<mwc-list-item selected twoline value="${identity(fcda)}"
+            ><span
+              >${doName}${daName
+                ? '.' + daName + ' ' + '[' + fc + ']'
+                : ' ' + '[' + fc + ']'}</span
+            ><span slot="secondary"
+              >${ldInst + '/' + prefix + lnClass + lnInst}</span
+            >
+          </mwc-list-item>`;
+        })}</filtered-list
+      >`;
+  }
+
   render(): TemplateResult {
     if (this.element)
       return html`<div class="content">
@@ -37,46 +81,14 @@ export class DataSetElementEditor extends LitElement {
           <div>DataSet</div>
           <div class="headersubtitle">${identity(this.element)}</div>
         </h2>
-        <wizard-textfield
-          label="name"
-          .maybeValue=${this.name}
-          helper="${translate('scl.name')}"
-          required
-        >
-        </wizard-textfield>
-        <wizard-textfield
-          label="desc"
-          .maybeValue=${this.desc}
-          helper="${translate('scl.desc')}"
-          nullable
-        >
-        </wizard-textfield>
-        <filtered-list
-          >${Array.from(this.element.querySelectorAll('FCDA')).map(fcda => {
-            const [ldInst, prefix, lnClass, lnInst, doName, daName] = [
-              'ldInst',
-              'prefix',
-              'lnClass',
-              'lnInst',
-              'doName',
-              'daName',
-            ].map(attributeName => fcda.getAttribute(attributeName) ?? '');
-
-            return html`<mwc-list-item
-              selected
-              twoline
-              value="${identity(fcda)}"
-              ><span>${doName + '.' + daName}</span
-              ><span slot="secondary"
-                >${ldInst + '/' + prefix + lnClass + lnInst}</span
-              >
-            </mwc-list-item>`;
-          })}</filtered-list
-        >
+        ${this.renderContent()}
       </div>`;
 
     return html`<div class="content">
-      <h2>${translate('publisher.nodataset')}</h2>
+      <h2>
+        <div>DataSet</div>
+        <div class="headersubtitle">${translate('publisher.nodataset')}</div>
+      </h2>
     </div>`;
   }
 

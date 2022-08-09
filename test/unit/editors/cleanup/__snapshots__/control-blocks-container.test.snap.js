@@ -241,8 +241,9 @@ snapshots["Cleanup: Control Blocks Container With a test file loaded looks like 
         </mwc-icon>
       </mwc-check-list-item>
       <mwc-check-list-item
-        aria-disabled="false"
-        class="cleanupListItem hidden tReportControl"
+        aria-disabled="true"
+        class="cleanupListItem hiddenontypefilter tReportControl"
+        disabled=""
         graphic="large"
         mwc-list-item=""
         tabindex="-1"

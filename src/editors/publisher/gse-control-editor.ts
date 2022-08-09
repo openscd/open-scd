@@ -3,7 +3,8 @@ import {
   customElement,
   html,
   LitElement,
-  property as state,
+  property,
+  state,
   query,
   TemplateResult,
 } from 'lit-element';
@@ -15,6 +16,7 @@ import { Button } from '@material/mwc-button';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 import './data-set-element-editor.js';
+import './gse-control-element-editor.js';
 import '../../filtered-list.js';
 import { FilteredList } from '../../filtered-list.js';
 
@@ -25,11 +27,28 @@ import { styles } from './foundation.js';
 @customElement('gse-control-editor')
 export class GseControlEditor extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
-  @state({ attribute: false })
-  doc!: XMLDocument;
+  @property({ attribute: false })
+  set doc(newDoc: XMLDocument) {
+    if (this._doc === newDoc) return;
+
+    this.selectedDataSet = undefined;
+    this.selectedGseControl = undefined;
+    if (this.selectionList && this.selectionList.selected)
+      (this.selectionList.selected as ListItem).selected = false;
+
+    this._doc = newDoc;
+
+    this.requestUpdate();
+  }
+  get doc(): XMLDocument {
+    return this._doc;
+  }
+  private _doc!: XMLDocument;
 
   @state()
-  selectedGseControl?: Element | null;
+  selectedGseControl?: Element;
+  @state()
+  selectedDataSet?: Element | null;
 
   @query('.selectionlist') selectionList!: FilteredList;
   @query('mwc-button') selectGSEControlButton!: Button;
@@ -37,9 +56,12 @@ export class GseControlEditor extends LitElement {
   private selectGSEControl(evt: Event): void {
     const id = ((evt.target as FilteredList).selected as ListItem).value;
     const gseControl = this.doc.querySelector(selector('GSEControl', id));
+    if (!gseControl) return;
+
+    this.selectedGseControl = gseControl;
 
     if (gseControl) {
-      this.selectedGseControl = gseControl.parentElement?.querySelector(
+      this.selectedDataSet = gseControl.parentElement?.querySelector(
         `DataSet[name="${gseControl.getAttribute('datSet')}"]`
       );
       (evt.target as FilteredList).classList.add('hidden');
@@ -51,8 +73,12 @@ export class GseControlEditor extends LitElement {
     if (this.selectedGseControl !== undefined)
       return html`<div class="elementeditorcontainer">
         <data-set-element-editor
-          .element=${this.selectedGseControl}
+          .element=${this.selectedDataSet!}
         ></data-set-element-editor>
+        <gse-control-element-editor
+          .doc=${this.doc}
+          .element=${this.selectedGseControl}
+        ></gse-control-element-editor>
       </div>`;
 
     return html``;
@@ -121,5 +147,30 @@ export class GseControlEditor extends LitElement {
 
   static styles = css`
     ${styles}
+
+    .elementeditorcontainer {
+      flex: 65%;
+      margin: 4px 8px 4px 4px;
+      background-color: var(--mdc-theme-surface);
+      overflow-y: scroll;
+      display: grid;
+      grid-gap: 12px;
+      padding: 8px 12px 16px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    data-set-element-editor {
+      grid-column: 1 / 2;
+    }
+
+    gse-control-element-editor {
+      grid-column: 2 / 4;
+    }
+
+    @media (max-width: 950px) {
+      .elementeditorcontainer {
+        display: block;
+      }
+    }
   `;
 }

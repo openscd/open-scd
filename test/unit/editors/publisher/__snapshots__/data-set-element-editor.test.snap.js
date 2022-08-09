@@ -8,7 +8,7 @@ snapshots["Editor for DataSet element with valid DataSet looks like the latest s
       DataSet
     </div>
     <div class="headersubtitle">
-      IED1>>CircuitBreaker_CB1>GooseDataSet1
+      IED2>>CBSW>GooseDataSet1
     </div>
   </h2>
   <wizard-textfield
@@ -32,13 +32,13 @@ snapshots["Editor for DataSet element with valid DataSet looks like the latest s
       selected=""
       tabindex="0"
       twoline=""
-      value="IED1>>CircuitBreaker_CB1>GooseDataSet1>CircuitBreaker_CB1/ XCBR 1.Pos stVal (ST)"
+      value="IED2>>CBSW>GooseDataSet1>CBSW/ XSWI 2.Pos stVal (ST)"
     >
       <span>
-        Pos.stVal
+        Pos.stVal [ST]
       </span>
       <span slot="secondary">
-        CircuitBreaker_CB1/XCBR1
+        CBSW/XSWI2
       </span>
     </mwc-list-item>
     <mwc-list-item
@@ -47,13 +47,13 @@ snapshots["Editor for DataSet element with valid DataSet looks like the latest s
       selected=""
       tabindex="-1"
       twoline=""
-      value="IED1>>CircuitBreaker_CB1>GooseDataSet1>CircuitBreaker_CB1/ XCBR 1.Pos q (ST)"
+      value="IED2>>CBSW>GooseDataSet1>CBSW/ XSWI 2.Pos q (ST)"
     >
       <span>
-        Pos.q
+        Pos.q [ST]
       </span>
       <span slot="secondary">
-        CircuitBreaker_CB1/XCBR1
+        CBSW/XSWI2
       </span>
     </mwc-list-item>
     <mwc-list-item
@@ -62,13 +62,13 @@ snapshots["Editor for DataSet element with valid DataSet looks like the latest s
       selected=""
       tabindex="-1"
       twoline=""
-      value="IED1>>CircuitBreaker_CB1>GooseDataSet1>CircuitBreaker_CB1/ CSWI 1.Pos stVal (ST)"
+      value="IED2>>CBSW>GooseDataSet1>CBSW/ XSWI 2.OpSlc.dsd sasd.ads.asd (ST)"
     >
       <span>
-        Pos.stVal
+        OpSlc.dsd.sasd.ads.asd [ST]
       </span>
       <span slot="secondary">
-        CircuitBreaker_CB1/CSWI1
+        CBSW/XSWI2
       </span>
     </mwc-list-item>
     <mwc-list-item
@@ -77,28 +77,13 @@ snapshots["Editor for DataSet element with valid DataSet looks like the latest s
       selected=""
       tabindex="-1"
       twoline=""
-      value="IED1>>CircuitBreaker_CB1>GooseDataSet1>Disconnectors/DC XSWI 1.Pos stVal (ST)"
+      value="IED2>>CBSW>GooseDataSet1>CBSW/ XSWI 2.Pos  (ST)"
     >
       <span>
-        Pos.stVal
+        Pos [ST]
       </span>
       <span slot="secondary">
-        Disconnectors/DCXSWI1
-      </span>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      mwc-list-item=""
-      selected=""
-      tabindex="-1"
-      twoline=""
-      value="IED1>>CircuitBreaker_CB1>GooseDataSet1>Disconnectors/DC XSWI 1.Pos q (ST)"
-    >
-      <span>
-        Pos.q
-      </span>
-      <span slot="secondary">
-        Disconnectors/DCXSWI1
+        CBSW/XSWI2
       </span>
     </mwc-list-item>
   </filtered-list>
@@ -109,7 +94,12 @@ snapshots["Editor for DataSet element with valid DataSet looks like the latest s
 snapshots["Editor for DataSet element with nulled DataSet looks like the latest snapshot"] = 
 `<div class="content">
   <h2>
-    [publisher.nodataset]
+    <div>
+      DataSet
+    </div>
+    <div class="headersubtitle">
+      [publisher.nodataset]
+    </div>
   </h2>
 </div>
 `;

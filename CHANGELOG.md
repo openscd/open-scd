@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.21.0](https://github.com/openscd/open-scd/compare/v0.20.0...v0.21.0) (2022-08-08)
+
+
+### Features
+
+* **editors/publisher:** add read only gse-control-element-editor ([#917](https://github.com/openscd/open-scd/issues/917)) ([2aee3cc](https://github.com/openscd/open-scd/commits/2aee3ccb78cbe1c18a2b55769b130e196bc45869))
+* **editors/publisher:** add sampled-value-control-element-editor ([#920](https://github.com/openscd/open-scd/issues/920)) ([e95dfc5](https://github.com/openscd/open-scd/commits/e95dfc509b710dafc53f2980f5ac93e303cc995d))
+* **plugin:** add read-only report-control-element-editor ([#913](https://github.com/openscd/open-scd/issues/913)) ([21732c9](https://github.com/openscd/open-scd/commits/21732c984c5af0e1a31424f3485cb98ccaa70f6a))
+
+
+### Bug Fixes
+
+* **editors/cleanup:** Fix filter issue with in cleanup plugin ([#910](https://github.com/openscd/open-scd/issues/910)) ([92e7390](https://github.com/openscd/open-scd/commits/92e7390a9cfb42d25858578b71bf935304cc4691))
+
 ## [0.20.0](https://github.com/openscd/open-scd/compare/v0.19.0...v0.20.0) (2022-07-31)
 
 

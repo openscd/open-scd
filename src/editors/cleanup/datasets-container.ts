@@ -38,7 +38,7 @@ import { cleanSCLItems, identitySort } from './foundation.js';
 @customElement('cleanup-datasets')
 export class CleanupDatasets extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
-  @property()
+  @property({ attribute: false })
   doc!: XMLDocument;
 
   @property({ type: Boolean })
@@ -47,7 +47,7 @@ export class CleanupDatasets extends LitElement {
   @property({ type: Array })
   unreferencedDataSets: Element[] = [];
 
-  @property()
+  @property({ attribute: false })
   selectedDatasetItems: MWCListIndex | [] = [];
 
   @query('.deleteButton')
@@ -107,13 +107,15 @@ export class CleanupDatasets extends LitElement {
    * @returns html for the Delete Button of this container.
    */
   private renderDeleteButton(): TemplateResult {
+    const sizeSelectedItems = (<Set<number>>this.selectedDatasetItems).size;
+
     return html` <mwc-button
       outlined
       icon="delete"
       class="deleteButton cleanupDeleteButton"
-      label="${translate('cleanup.unreferencedDataSets.deleteButton')} (${(<
-        Set<number>
-      >this.selectedDatasetItems).size || '0'})"
+      label="${translate(
+        'cleanup.unreferencedDataSets.deleteButton'
+      )} (${sizeSelectedItems || '0'})"
       ?disabled=${(<Set<number>>this.selectedDatasetItems).size === 0 ||
       (Array.isArray(this.selectedDatasetItems) &&
         !this.selectedDatasetItems.length)}

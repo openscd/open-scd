@@ -8,7 +8,7 @@ describe('Editor for DataSet element', () => {
   let element: DataSetElementEditor;
 
   beforeEach(async () => {
-    doc = await fetch('/test/testfiles/valid2007B4.scd')
+    doc = await fetch('/test/testfiles/wizards/reportcontrol.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
   });
