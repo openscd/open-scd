@@ -155,45 +155,50 @@ export default class CompareIEDPlugin extends LitElement {
       `
   }
   protected renderCompare(): TemplateResult {
-    const ignoreDiffs: DiffFilter<Element> = {
+    const filterToIgnore: DiffFilter<Element> = {
     };
 
     if (this.filterMutables) {
-      ignoreDiffs[':root'] = {
+      const tctrClass = `LN[lnClass='TCTR']`;
+      const tvtrClass = `LN[lnClass='TVTR']`;
+      const setMag = `SDI[name='setMag'] Val`;
+      const setVal =`DAI[name='setVal'] Val`;
+
+      filterToIgnore[':root'] = {
         attributes: {
           'name': true
         }
       }
 
-      ignoreDiffs['P'] = {
+      filterToIgnore['P'] = {
         full: true
       }
 
-      ignoreDiffs[`LN[lnClass='TCTR'] DOI[name='Rat'] SDI[name='setMag'] Val`] = {
+      filterToIgnore[`${tctrClass} DOI[name='Rat'] ${setMag}`] = {
         full: true
       }
 
-      ignoreDiffs[`LN[lnClass='TCTR'] DOI[name='ARtg'] SDI[name='setMag'] Val`] = {
+      filterToIgnore[`${tctrClass} DOI[name='ARtg'] ${setMag}`] = {
         full: true
       }
 
-      ignoreDiffs[`LN[lnClass='TCTR'] DOI[name='ARtgNom'] SDI[name='setMag'] Val`] = {
+      filterToIgnore[`${tctrClass} DOI[name='ARtgNom'] ${setMag}`] = {
         full: true
       }
 
-      ignoreDiffs[`LN[lnClass='TCTR'] DOI[name='ARtgSec'] DAI[name='setVal'] Val`] = {
+      filterToIgnore[`${tctrClass} DOI[name='ARtgSec'] ${setVal}`] = {
         full: true
       }
 
-      ignoreDiffs[`LN[lnClass='TVTR'] DOI[name='VRtg'] SDI[name='setMag'] Val`] = {
+      filterToIgnore[`${tvtrClass} DOI[name='VRtg'] ${setMag}`] = {
         full: true
       }
 
-      ignoreDiffs[`LN[lnClass='TVTR'] DOI[name='Rat'] SDI[name='setMag'] Val`] = {
+      filterToIgnore[`${tvtrClass} DOI[name='Rat'] ${setMag}`] = {
         full: true
       }
 
-      ignoreDiffs[`LN[lnClass='TVTR'] DOI[name='VRtgSec'] DAI[name='setVal'] Val`] = {
+      filterToIgnore[`${tvtrClass} DOI[name='VRtgSec'] ${setVal}`] = {
         full: true
       }
     }
@@ -203,7 +208,7 @@ export default class CompareIEDPlugin extends LitElement {
       ${renderDiff(
       this.selectedProjectIed!,
       this.selectedTemplateIed!,
-      ignoreDiffs
+      filterToIgnore
     ) ??
     html`${translate('compare-ied.noDiff', {
       projectIedName: identity(this.selectedProjectIed!),
