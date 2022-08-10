@@ -366,6 +366,11 @@ export const de: Translations = {
           'Zeigt verbundene Sampled Value(s) des ausgewählten IED',
       },
     },
+    smvLaterBinding: {
+      svcList: {
+        noSvcFound: 'Kein Sampled-Value-Kontrolblock im Projekt',
+      },
+    },
     iedList: {
       title: 'IEDs',
     },
