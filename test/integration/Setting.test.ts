@@ -1,4 +1,4 @@
-import { html, fixture, expect } from '@open-wc/testing';
+import { expect, fixture, html } from '@open-wc/testing';
 
 import '../mock-setter-logger.js';
 import { MockSetterLogger } from '../mock-setter-logger.js';
@@ -28,8 +28,9 @@ describe('Setting', () => {
     await element.updateComplete;
 
     expect(localStorage.getItem('IEC 61850-7-2')).to.eql(nsdocFile);
+    // Create a snapshot of the Settings Dialog only, not the whole Mock Component.
     await expect(
-      element.querySelector('mwc-dialog[id="settings"]')
+      element.shadowRoot!.querySelector('mwc-dialog[id="settings"]')
     ).to.equalSnapshot();
   });
 

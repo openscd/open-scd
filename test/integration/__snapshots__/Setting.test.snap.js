@@ -2,46 +2,186 @@
 export const snapshots = {};
 
 snapshots["Setting upload .nsdoc file using event and looks like latest snapshot"] = 
-`<div
-  aria-describedby="content"
-  aria-labelledby="title"
-  aria-modal="true"
-  class="mdc-dialog mdc-dialog--open mdc-dialog--opening mdc-dialog--scrollable"
-  role="alertdialog"
+`<mwc-dialog
+  heading="Settings"
+  id="settings"
+  open=""
 >
-  <div class="mdc-dialog__container">
-    <div class="mdc-dialog__surface">
-      <h2
-        class="mdc-dialog__title"
-        id="title"
+  <form>
+    <mwc-select
+      fixedmenuposition=""
+      icon="language"
+      id="language"
+      label="Language"
+    >
+      <mwc-list-item
+        aria-disabled="false"
+        aria-selected="true"
+        graphic="icon"
+        mwc-list-item=""
+        role="option"
+        selected=""
+        tabindex="0"
+        value="en"
       >
-        Settings
-      </h2>
-      <div
-        class="mdc-dialog__content"
-        id="content"
+        English
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="de"
       >
-        <slot id="contentSlot">
-        </slot>
-      </div>
-      <footer
-        class="mdc-dialog__actions"
-        id="actions"
+        German (Deutsch)
+      </mwc-list-item>
+    </mwc-select>
+    <mwc-formfield label="Dark theme">
+      <mwc-switch id="dark">
+      </mwc-switch>
+    </mwc-formfield>
+    <mwc-formfield label="Pro mode">
+      <mwc-switch id="mode">
+      </mwc-switch>
+    </mwc-formfield>
+    <mwc-formfield label="Show IEDs in substation editor">
+      <mwc-switch id="showieds">
+      </mwc-switch>
+    </mwc-formfield>
+  </form>
+  <wizard-divider>
+  </wizard-divider>
+  <section>
+    <h3>
+      Uploaded NSDoc files
+    </h3>
+    <input
+      accept=".nsdoc"
+      hidden=""
+      id="nsdoc-file"
+      multiple=""
+      required=""
+      type="file"
+    >
+    <mwc-button
+      id="selectFileButton"
+      label="Select file"
+    >
+    </mwc-button>
+  </section>
+  <mwc-list id="nsdocList">
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="avatar"
+      hasmeta=""
+      id="IEC 61850-7-2"
+      mwc-list-item=""
+      tabindex="0"
+      twoline=""
+    >
+      <span>
+        IEC 61850-7-2
+      </span>
+      <span slot="secondary">
+        2007B3
+      </span>
+      <mwc-icon
+        slot="graphic"
+        style="color:green;"
       >
-        <span>
-          <slot name="secondaryAction">
-          </slot>
-        </span>
-        <span>
-          <slot name="primaryAction">
-          </slot>
-        </span>
-      </footer>
-    </div>
-  </div>
-  <div class="mdc-dialog__scrim">
-  </div>
-</div>
+        done
+      </mwc-icon>
+      <mwc-icon
+        id="deleteNsdocItem"
+        slot="meta"
+      >
+        delete
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="avatar"
+      hasmeta=""
+      id="IEC 61850-7-3"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+    >
+      <span>
+        IEC 61850-7-3
+      </span>
+      <mwc-icon
+        slot="graphic"
+        style="color:red;"
+      >
+        close
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="avatar"
+      hasmeta=""
+      id="IEC 61850-7-4"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+    >
+      <span>
+        IEC 61850-7-4
+      </span>
+      <mwc-icon
+        slot="graphic"
+        style="color:red;"
+      >
+        close
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="avatar"
+      hasmeta=""
+      id="IEC 61850-8-1"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+    >
+      <span>
+        IEC 61850-8-1
+      </span>
+      <mwc-icon
+        slot="graphic"
+        style="color:red;"
+      >
+        close
+      </mwc-icon>
+    </mwc-list-item>
+  </mwc-list>
+  <mwc-button
+    dialogaction="close"
+    slot="secondaryAction"
+  >
+    Cancel
+  </mwc-button>
+  <mwc-button
+    dialogaction="reset"
+    slot="secondaryAction"
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+    Reset
+  </mwc-button>
+  <mwc-button
+    dialogaction="save"
+    icon="save"
+    slot="primaryAction"
+    trailingicon=""
+  >
+    Save
+  </mwc-button>
+</mwc-dialog>
 `;
 /* end snapshot Setting upload .nsdoc file using event and looks like latest snapshot */
 
