@@ -30,7 +30,7 @@ export class SVCLaterBindingList extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
 
-  getSvcElements(): Element[] {
+  private getSvcElements(): Element[] {
     if (this.doc) {
       return Array.from(
         this.doc.querySelectorAll('LN0 > SampledValueControl')
@@ -39,7 +39,7 @@ export class SVCLaterBindingList extends LitElement {
     return [];
   }
 
-  getFcdaElements(svcElement: Element): Element[] {
+  private getFcdaElements(svcElement: Element): Element[] {
     const lnElement = svcElement.parentElement;
     if (lnElement) {
       return Array.from(
@@ -56,12 +56,12 @@ export class SVCLaterBindingList extends LitElement {
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
-  renderFCDA(fcdaElement: Element): TemplateResult {
+  renderFCDA(svcElement: Element, fcdaElement: Element): TemplateResult {
     return html`<mwc-list-item
       graphic="large"
       twoline
       class="subitem"
-      value="${identity(fcdaElement)}"
+      value="${identity(svcElement)} ${identity(fcdaElement)}"
     >
       <span>
         ${fcdaElement.getAttribute('doName')}${fcdaElement.hasAttribute(
@@ -111,7 +111,9 @@ export class SVCLaterBindingList extends LitElement {
                   <mwc-icon slot="graphic">${smvIcon}</mwc-icon>
                 </mwc-list-item>
                 <li divider role="separator"></li>
-                ${fcdaElements.map(fcdaElement => this.renderFCDA(fcdaElement))}
+                ${fcdaElements.map(fcdaElement =>
+                  this.renderFCDA(svcElement, fcdaElement)
+                )}
               `;
             })}
           </filtered-list>`

@@ -24,9 +24,7 @@ export default class SMVSubscribeLaterBindingPlugin extends LitElement {
     }
 
     .container {
-      display: flex;
       padding: 8px 6px 16px;
-      height: 86vh;
     }
 
     .column {

@@ -368,7 +368,7 @@ export const de: Translations = {
     },
     smvLaterBinding: {
       svcList: {
-        noSvcFound: '????',
+        noSvcFound: 'Kein Sampled-Value-Kontrolblock im Projekt',
       },
     },
     iedList: {
