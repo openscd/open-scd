@@ -14,21 +14,20 @@ export type Diff<T> =
   | { oldValue: null; newValue: T }
   | { oldValue: T; newValue: T };
 
-
 /**
  * Type to filter out a difference based on `tagName`.`attributeName`
-  *
-  * The matcher can be a boolean or a `consumer` that returns a boolean
-*/
+ *
+ * The matcher can be a boolean or a `consumer` that returns a boolean
+ */
 export type DiffFilter<T> = {
-  [selector: string]: DiffFilterSelector<T>
-}
+  [selector: string]: DiffFilterSelector<T>;
+};
 
 interface DiffFilterSelector<T> {
-  full?: DiffFilterConsumer<T>,
+  full?: DiffFilterConsumer<T>;
   attributes?: {
-    [name: string]: DiffFilterConsumer<T>
-  }
+    [name: string]: DiffFilterConsumer<T>;
+  };
 }
 
 /**
@@ -36,15 +35,27 @@ interface DiffFilterSelector<T> {
  */
 type DiffFilterConsumer<T> = boolean | ((value: T | null) => boolean);
 
-
-function getDiffFilterSelector(elementToBeCompared: Element, rootElementToBeCompared: Element, filters: DiffFilter<Element>): DiffFilterSelector<Element> | undefined {
-  const querySelector : string | undefined = rootElementToBeCompared === elementToBeCompared ? ':root' : Object.keys(filters)
-    .find((selector) => Array.from(rootElementToBeCompared.querySelectorAll(selector)).includes(elementToBeCompared));
+function getDiffFilterSelector(
+  elementToBeCompared: Element,
+  rootElementToBeCompared: Element,
+  filters: DiffFilter<Element>
+): DiffFilterSelector<Element> | undefined {
+  const querySelector: string | undefined =
+    rootElementToBeCompared === elementToBeCompared
+      ? ':root'
+      : Object.keys(filters).find(selector =>
+          Array.from(
+            rootElementToBeCompared.querySelectorAll(selector)
+          ).includes(elementToBeCompared)
+        );
 
   return querySelector ? filters[querySelector!] : undefined;
 }
 
-function shouldFilterElement(element: Element, filter: DiffFilterSelector<Element> | undefined): boolean {
+function shouldFilterElement(
+  element: Element,
+  filter: DiffFilterSelector<Element> | undefined
+): boolean {
   if (!filter || !filter.full) {
     return false;
   }
@@ -53,7 +64,11 @@ function shouldFilterElement(element: Element, filter: DiffFilterSelector<Elemen
   return typeof consumer === 'boolean' ? consumer : consumer(element);
 }
 
-function shouldFilterAttribute(element: Element, attribute: string, filter: DiffFilterSelector<Element> | undefined): boolean {
+function shouldFilterAttribute(
+  element: Element,
+  attribute: string,
+  filter: DiffFilterSelector<Element> | undefined
+): boolean {
   if (!filter || !filter.attributes || !filter.attributes![attribute]) {
     return false;
   }
@@ -81,12 +96,13 @@ function describe(element: Element): string {
 export function diffSclAttributes(
   elementToBeCompared: Element,
   elementToCompareAgainst: Element,
-  ignoreDiffs?: DiffFilter<Element>,
+  filterToIgnore?: DiffFilter<Element>,
   rootElementToBeCompared?: Element,
   rootElementToCompareAgainst?: Element
 ): [string, Diff<string>][] {
   rootElementToBeCompared = rootElementToBeCompared || elementToBeCompared;
-  rootElementToCompareAgainst = rootElementToCompareAgainst || elementToCompareAgainst;
+  rootElementToCompareAgainst =
+    rootElementToCompareAgainst || elementToCompareAgainst;
 
   const attrDiffs: [string, Diff<string>][] = [];
 
@@ -98,8 +114,16 @@ export function diffSclAttributes(
     elementToCompareAgainst.childElementCount === 0 &&
     newText !== oldText
   ) {
-    const diffFilter = getDiffFilterSelector(elementToBeCompared, rootElementToBeCompared!, ignoreDiffs || {});
-    const shouldFilter: boolean = shouldFilterAttribute(elementToBeCompared, 'value', diffFilter);
+    const shouldFilter: boolean = shouldFilterAttribute(
+      elementToBeCompared,
+      'value',
+      getDiffFilterSelector(
+        elementToBeCompared,
+        rootElementToBeCompared,
+        filterToIgnore || {}
+      )
+    );
+
     if (!shouldFilter) {
       attrDiffs.push(['value', { newValue: newText, oldValue: oldText }]);
     }
@@ -112,12 +136,19 @@ export function diffSclAttributes(
       .concat(elementToBeCompared.getAttributeNames())
   );
   for (const name of attributeNames) {
-    const diffFilter = getDiffFilterSelector(elementToBeCompared, rootElementToBeCompared!, ignoreDiffs || {});
-    const shouldFilter: boolean = shouldFilterAttribute(elementToBeCompared, name, diffFilter);
+    const shouldFilter: boolean = shouldFilterAttribute(
+      elementToBeCompared,
+      name,
+      getDiffFilterSelector(
+        elementToBeCompared,
+        rootElementToBeCompared,
+        filterToIgnore || {}
+      )
+    );
     if (
       !shouldFilter &&
       elementToCompareAgainst.getAttribute(name) !==
-      elementToBeCompared.getAttribute(name)
+        elementToBeCompared.getAttribute(name)
     ) {
       attrDiffs.push([
         name,
@@ -173,12 +204,13 @@ export function isSame(newValue: Element, oldValue: Element): boolean {
 export function diffSclChilds(
   elementToBeCompared: Element,
   elementToCompareAgainst: Element,
-  ignoreDiffs?: DiffFilter<Element>,
+  filterToIgnore?: DiffFilter<Element>,
   rootElementToBeCompared?: Element,
   rootElementToCompareAgainst?: Element
 ): Diff<Element>[] {
   rootElementToBeCompared = rootElementToBeCompared || elementToBeCompared;
-  rootElementToCompareAgainst = rootElementToCompareAgainst || elementToCompareAgainst;
+  rootElementToCompareAgainst =
+    rootElementToCompareAgainst || elementToCompareAgainst;
 
   const childDiffs: Diff<Element>[] = [];
   const childrenToBeCompared = Array.from(elementToBeCompared.children);
@@ -186,32 +218,44 @@ export function diffSclChilds(
 
   childrenToBeCompared.forEach(newElement => {
     if (!newElement.closest('Private')) {
-      const diffFilter = getDiffFilterSelector(newElement, rootElementToBeCompared!, ignoreDiffs || {});
-      const shouldFilter: boolean = shouldFilterElement(newElement, diffFilter);
+      const shouldFilter: boolean = shouldFilterElement(
+        newElement,
+        getDiffFilterSelector(
+          newElement,
+          rootElementToBeCompared!,
+          filterToIgnore || {}
+        )
+      );
       if (!shouldFilter) {
         const twinIndex = childrenToCompareTo.findIndex(ourChild =>
           isSame(newElement, ourChild)
         );
-        const oldElement = twinIndex > -1 ? childrenToCompareTo[twinIndex] : null;
+        const oldElement =
+          twinIndex > -1 ? childrenToCompareTo[twinIndex] : null;
 
-          if (oldElement) {
-            childrenToCompareTo.splice(twinIndex, 1);
-            childDiffs.push({ newValue: newElement, oldValue: oldElement });
-          } else {
-            childDiffs.push({ newValue: newElement, oldValue: null });
-          }
+        if (oldElement) {
+          childrenToCompareTo.splice(twinIndex, 1);
+          childDiffs.push({ newValue: newElement, oldValue: oldElement });
+        } else {
+          childDiffs.push({ newValue: newElement, oldValue: null });
+        }
       }
     }
   });
   childrenToCompareTo.forEach(oldElement => {
-      if (!oldElement.closest('Private')) {
-        const diffFilter = getDiffFilterSelector(oldElement, rootElementToCompareAgainst!, ignoreDiffs || {});
-        const shouldFilter: boolean = shouldFilterElement(oldElement, diffFilter);
-        if (!shouldFilter) {
-          childDiffs.push({ newValue: null, oldValue: oldElement });
-        }
+    if (!oldElement.closest('Private')) {
+      const shouldFilter: boolean = shouldFilterElement(
+        oldElement,
+        getDiffFilterSelector(
+          oldElement,
+          rootElementToCompareAgainst!,
+          filterToIgnore || {}
+        )
+      );
+      if (!shouldFilter) {
+        childDiffs.push({ newValue: null, oldValue: oldElement });
       }
-
+    }
   });
   return childDiffs;
 }
@@ -226,7 +270,7 @@ export function diffSclChilds(
 export function renderDiff(
   elementToBeCompared: Element,
   elementToCompareAgainst: Element,
-  ignoreDiffs: DiffFilter<Element> = {},
+  filterToIgnore: DiffFilter<Element> = {},
   rootElementToBeCompared?: Element,
   rootElementToCompareAgainst?: Element
 ): TemplateResult | null {
@@ -238,12 +282,13 @@ export function renderDiff(
 
   // Set the root elements if they are not defined yet
   rootElementToBeCompared = rootElementToBeCompared || elementToBeCompared;
-  rootElementToCompareAgainst = rootElementToCompareAgainst || elementToCompareAgainst;
+  rootElementToCompareAgainst =
+    rootElementToCompareAgainst || elementToCompareAgainst;
 
   const attrDiffs: [string, Diff<string>][] = diffSclAttributes(
     elementToBeCompared,
     elementToCompareAgainst,
-    ignoreDiffs,
+    filterToIgnore,
     rootElementToBeCompared,
     rootElementToCompareAgainst
   );
@@ -252,7 +297,7 @@ export function renderDiff(
   const childDiffs: Diff<Element>[] = diffSclChilds(
     elementToBeCompared,
     elementToCompareAgainst,
-    ignoreDiffs,
+    filterToIgnore,
     rootElementToBeCompared,
     rootElementToCompareAgainst
   );
@@ -269,7 +314,15 @@ export function renderDiff(
 
   // These children exist in both old and new element, let's check if there are any difference in the children.
   const childToCompareTemplates = childToCompare
-    .map(diff => renderDiff(diff.newValue!, diff.oldValue!, ignoreDiffs, rootElementToBeCompared, rootElementToCompareAgainst))
+    .map(diff =>
+      renderDiff(
+        diff.newValue!,
+        diff.oldValue!,
+        filterToIgnore,
+        rootElementToBeCompared,
+        rootElementToCompareAgainst
+      )
+    )
     .filter(result => result !== null);
 
   // If there are difference generate the HTML otherwise just return null.
@@ -278,21 +331,26 @@ export function renderDiff(
     attrDiffs.length > 0 ||
     childAddedOrDeleted.length > 0
   ) {
-    return html` ${attrDiffs.length > 0 || childAddedOrDeleted.length > 0
-      ? html` <mwc-list multi>
-          ${attrDiffs.length > 0
-            ? html` <mwc-list-item noninteractive ?twoline=${!!idTitle}>
+    return html` ${
+      attrDiffs.length > 0 || childAddedOrDeleted.length > 0
+        ? html` <mwc-list multi>
+          ${
+            attrDiffs.length > 0
+              ? html` <mwc-list-item noninteractive ?twoline=${!!idTitle}>
                   <span class="resultTitle">
                     ${translate('compare.attributes', {
                       elementName: elementToBeCompared.tagName,
                     })}
                   </span>
-                  ${idTitle
-                    ? html`<span slot="secondary">${idTitle}</span>`
-                    : nothing}
+                  ${
+                    idTitle
+                      ? html`<span slot="secondary">${idTitle}</span>`
+                      : nothing
+                  }
                 </mwc-list-item>
                 <li padded divider role="separator"></li>`
-            : ''}
+              : ''
+          }
           ${repeat(
             attrDiffs,
             e => e,
@@ -309,19 +367,23 @@ export function renderDiff(
                 </mwc-icon>
               </mwc-list-item>`
           )}
-          ${childAddedOrDeleted.length > 0
-            ? html` <mwc-list-item noninteractive ?twoline=${!!idTitle}>
+          ${
+            childAddedOrDeleted.length > 0
+              ? html` <mwc-list-item noninteractive ?twoline=${!!idTitle}>
                   <span class="resultTitle">
                     ${translate('compare.children', {
                       elementName: elementToBeCompared.tagName,
                     })}
                   </span>
-                  ${idTitle
-                    ? html`<span slot="secondary">${idTitle}</span>`
-                    : nothing}
+                  ${
+                    idTitle
+                      ? html`<span slot="secondary">${idTitle}</span>`
+                      : nothing
+                  }
                 </mwc-list-item>
                 <li padded divider role="separator"></li>`
-            : ''}
+              : ''
+          }
           ${repeat(
             childAddedOrDeleted,
             e => e,
@@ -329,9 +391,11 @@ export function renderDiff(
               html` <mwc-list-item twoline left hasMeta>
                 <span>${diff.oldValue?.tagName ?? diff.newValue?.tagName}</span>
                 <span slot="secondary">
-                  ${diff.oldValue
-                    ? describe(diff.oldValue)
-                    : describe(diff.newValue)}
+                  ${
+                    diff.oldValue
+                      ? describe(diff.oldValue)
+                      : describe(diff.newValue)
+                  }
                 </span>
                 <mwc-icon slot="meta">
                   ${diff.oldValue ? 'delete' : 'add'}
@@ -339,7 +403,8 @@ export function renderDiff(
               </mwc-list-item>`
           )}
         </mwc-list>`
-      : ''}
+        : ''
+    }
     ${childToCompareTemplates}`;
   }
   return null;
