@@ -40,7 +40,7 @@ snapshots["smv-list looks like the latest snapshot with a document loaded"] =
       mwc-list-item=""
       tabindex="0"
       twoline=""
-      value="SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)"
+      value="SMV_Publisher>>CurrentTransformer>currentOnly SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)"
     >
       <span>
         AmpSv.instMag.i
@@ -61,7 +61,7 @@ snapshots["smv-list looks like the latest snapshot with a document loaded"] =
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)"
+      value="SMV_Publisher>>CurrentTransformer>currentOnly SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)"
     >
       <span>
         AmpSv.q
@@ -82,7 +82,7 @@ snapshots["smv-list looks like the latest snapshot with a document loaded"] =
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L2 TCTR 1.AmpSv instMag.i (MX)"
+      value="SMV_Publisher>>CurrentTransformer>currentOnly SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L2 TCTR 1.AmpSv instMag.i (MX)"
     >
       <span>
         AmpSv.instMag.i
@@ -103,7 +103,7 @@ snapshots["smv-list looks like the latest snapshot with a document loaded"] =
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L2 TCTR 1.AmpSv q (MX)"
+      value="SMV_Publisher>>CurrentTransformer>currentOnly SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L2 TCTR 1.AmpSv q (MX)"
     >
       <span>
         AmpSv.q
@@ -124,7 +124,7 @@ snapshots["smv-list looks like the latest snapshot with a document loaded"] =
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L3 TCTR 1.AmpSv instMag.i (MX)"
+      value="SMV_Publisher>>CurrentTransformer>currentOnly SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L3 TCTR 1.AmpSv instMag.i (MX)"
     >
       <span>
         AmpSv.instMag.i
@@ -145,7 +145,7 @@ snapshots["smv-list looks like the latest snapshot with a document loaded"] =
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L3 TCTR 1.AmpSv q (MX)"
+      value="SMV_Publisher>>CurrentTransformer>currentOnly SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L3 TCTR 1.AmpSv q (MX)"
     >
       <span>
         AmpSv.q
@@ -195,7 +195,7 @@ snapshots["smv-list looks like the latest snapshot with a document loaded"] =
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)"
+      value="SMV_Publisher>>CurrentTransformer>fullSmv SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)"
     >
       <span>
         AmpSv.instMag.i
@@ -216,7 +216,7 @@ snapshots["smv-list looks like the latest snapshot with a document loaded"] =
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)"
+      value="SMV_Publisher>>CurrentTransformer>fullSmv SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)"
     >
       <span>
         AmpSv.q
@@ -237,7 +237,7 @@ snapshots["smv-list looks like the latest snapshot with a document loaded"] =
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 1.AmpSv instMag.i (MX)"
+      value="SMV_Publisher>>CurrentTransformer>fullSmv SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 1.AmpSv instMag.i (MX)"
     >
       <span>
         AmpSv.instMag.i
@@ -258,7 +258,7 @@ snapshots["smv-list looks like the latest snapshot with a document loaded"] =
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 1.AmpSv q (MX)"
+      value="SMV_Publisher>>CurrentTransformer>fullSmv SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 1.AmpSv q (MX)"
     >
       <span>
         AmpSv.q
@@ -279,7 +279,7 @@ snapshots["smv-list looks like the latest snapshot with a document loaded"] =
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 1.AmpSv instMag.i (MX)"
+      value="SMV_Publisher>>CurrentTransformer>fullSmv SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 1.AmpSv instMag.i (MX)"
     >
       <span>
         AmpSv.instMag.i
@@ -300,7 +300,7 @@ snapshots["smv-list looks like the latest snapshot with a document loaded"] =
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 1.AmpSv q (MX)"
+      value="SMV_Publisher>>CurrentTransformer>fullSmv SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 1.AmpSv q (MX)"
     >
       <span>
         AmpSv.q
@@ -321,7 +321,7 @@ snapshots["smv-list looks like the latest snapshot with a document loaded"] =
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)"
+      value="SMV_Publisher>>CurrentTransformer>fullSmv SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)"
     >
       <span>
         VolSv.instMag.i
@@ -342,7 +342,7 @@ snapshots["smv-list looks like the latest snapshot with a document loaded"] =
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L1 TVTR 1.VolSv q (MX)"
+      value="SMV_Publisher>>CurrentTransformer>fullSmv SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L1 TVTR 1.VolSv q (MX)"
     >
       <span>
         VolSv.q
@@ -363,7 +363,7 @@ snapshots["smv-list looks like the latest snapshot with a document loaded"] =
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L2 TVTR 1.VolSv instMag.i (MX)"
+      value="SMV_Publisher>>CurrentTransformer>fullSmv SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L2 TVTR 1.VolSv instMag.i (MX)"
     >
       <span>
         VolSv.instMag.i
@@ -384,7 +384,7 @@ snapshots["smv-list looks like the latest snapshot with a document loaded"] =
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L2 TVTR 1.VolSv q (MX)"
+      value="SMV_Publisher>>CurrentTransformer>fullSmv SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L2 TVTR 1.VolSv q (MX)"
     >
       <span>
         VolSv.q
@@ -405,7 +405,7 @@ snapshots["smv-list looks like the latest snapshot with a document loaded"] =
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L3 TVTR 1.VolSv instMag.i (MX)"
+      value="SMV_Publisher>>CurrentTransformer>fullSmv SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L3 TVTR 1.VolSv instMag.i (MX)"
     >
       <span>
         VolSv.instMag.i
@@ -426,7 +426,7 @@ snapshots["smv-list looks like the latest snapshot with a document loaded"] =
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L3 TVTR 1.VolSv q (MX)"
+      value="SMV_Publisher>>CurrentTransformer>fullSmv SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L3 TVTR 1.VolSv q (MX)"
     >
       <span>
         VolSv.q
@@ -476,7 +476,7 @@ snapshots["smv-list looks like the latest snapshot with a document loaded"] =
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)"
+      value="SMV_Publisher>>CurrentTransformer>voltageOnly SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)"
     >
       <span>
         VolSv.instMag.i
@@ -497,7 +497,7 @@ snapshots["smv-list looks like the latest snapshot with a document loaded"] =
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L1 TVTR 1.VolSv q (MX)"
+      value="SMV_Publisher>>CurrentTransformer>voltageOnly SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L1 TVTR 1.VolSv q (MX)"
     >
       <span>
         VolSv.q
@@ -518,7 +518,7 @@ snapshots["smv-list looks like the latest snapshot with a document loaded"] =
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L2 TVTR 1.VolSv instMag.i (MX)"
+      value="SMV_Publisher>>CurrentTransformer>voltageOnly SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L2 TVTR 1.VolSv instMag.i (MX)"
     >
       <span>
         VolSv.instMag.i
@@ -539,7 +539,7 @@ snapshots["smv-list looks like the latest snapshot with a document loaded"] =
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L2 TVTR 1.VolSv q (MX)"
+      value="SMV_Publisher>>CurrentTransformer>voltageOnly SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L2 TVTR 1.VolSv q (MX)"
     >
       <span>
         VolSv.q
@@ -560,7 +560,7 @@ snapshots["smv-list looks like the latest snapshot with a document loaded"] =
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L3 TVTR 1.VolSv instMag.i (MX)"
+      value="SMV_Publisher>>CurrentTransformer>voltageOnly SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L3 TVTR 1.VolSv instMag.i (MX)"
     >
       <span>
         VolSv.instMag.i
@@ -581,7 +581,7 @@ snapshots["smv-list looks like the latest snapshot with a document loaded"] =
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L3 TVTR 1.VolSv q (MX)"
+      value="SMV_Publisher>>CurrentTransformer>voltageOnly SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L3 TVTR 1.VolSv q (MX)"
     >
       <span>
         VolSv.q
