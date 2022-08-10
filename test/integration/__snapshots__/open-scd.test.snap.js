@@ -306,8 +306,8 @@ snapshots["open-scd looks like its snapshot"] =
         Show SCL History
       </span>
     </mwc-list-item>
-    <oscd-plugin9139dd4d669146ca class="plugin">
-    </oscd-plugin9139dd4d669146ca>
+    <oscd-plugina5aa56c7c6319526 class="plugin">
+    </oscd-plugina5aa56c7c6319526>
     <li
       divider=""
       padded=""
@@ -1014,7 +1014,7 @@ snapshots["open-scd looks like its snapshot"] =
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/menu/History.js"
+      value="/src/menu/SclHistory.js"
     >
       <mwc-icon slot="meta">
         history_toggle_off
