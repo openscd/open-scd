@@ -28,7 +28,9 @@ describe('Setting', () => {
     await element.updateComplete;
 
     expect(localStorage.getItem('IEC 61850-7-2')).to.eql(nsdocFile);
-    await expect(element).shadowDom.to.equalSnapshot();
+    await expect(
+      element.querySelector('mwc-dialog[id="settings"]')
+    ).to.equalSnapshot();
   });
 
   it('upload invalid .nsdoc file using event and log event fired', async () => {

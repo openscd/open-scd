@@ -167,7 +167,8 @@ export const de: Translations = {
     },
   },
   history: {
-    name: 'SCL History',
+    name: '????',
+    noEntries: '????',
   },
   diag: {
     name: 'Daignoseübersicht',

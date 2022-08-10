@@ -145,6 +145,7 @@ export const en = {
   },
   history: {
     name: 'SCL History',
+    noEntries: 'No SCL history entries',
   },
   diag: {
     name: 'Diagnostics',

@@ -10,18 +10,17 @@ import { translate } from 'lit-translate';
 
 import '@material/mwc-button';
 import '@material/mwc-dialog';
-import '@material/mwc-icon';
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 import { Dialog } from '@material/mwc-dialog';
 
-export default class History extends LitElement {
+export default class SclHistoryPlugin extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
 
   @query('#historyLog') historyLog!: Dialog;
 
-  public createMessage(
+  private createMessage(
     who: string | null,
     why: string | null
   ): string | undefined {
@@ -35,9 +34,12 @@ export default class History extends LitElement {
   }
 
   get sclHistory(): Element[] {
-    return Array.from(
-      this.doc.querySelectorAll(':root > Header > History > Hitem')
-    );
+    if (this.doc) {
+      return Array.from(
+        this.doc.querySelectorAll(':root > Header > History > Hitem')
+      );
+    }
+    return [];
   }
 
   async run(): Promise<void> {
@@ -68,14 +70,12 @@ export default class History extends LitElement {
         .reverse()
         .map(this.renderSclHistoryEntry, this);
     else
-      return html`<mwc-list-item disabled graphic="icon">
-        <span>${translate('log.placeholder')}</span>
-        <mwc-icon slot="graphic">info</mwc-icon>
+      return html`<mwc-list-item disabled>
+        <span>${translate('sclHistory.noEntries')}</span>
       </mwc-list-item>`;
   }
 
   render(): TemplateResult {
-    if (!this.doc) return html``;
     return html` <mwc-dialog
       id="historyLog"
       heading="${translate('history.name')}"
