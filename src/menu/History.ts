@@ -1,16 +1,19 @@
-import { html, property, query, TemplateResult, LitElement } from 'lit-element';
-import { ifDefined } from 'lit-html/directives/if-defined';
+import {
+  html,
+  css,
+  property,
+  query,
+  TemplateResult,
+  LitElement,
+} from 'lit-element';
 import { translate } from 'lit-translate';
 
 import '@material/mwc-button';
 import '@material/mwc-dialog';
-import '@material/mwc-icon'
+import '@material/mwc-icon';
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 import { Dialog } from '@material/mwc-dialog';
-
-import { ifImplemented, SclhistoryEntry } from '../foundation.js';
-import { iconColors } from '../icons/icons.js';
 
 export default class History extends LitElement {
   @property({ attribute: false })
@@ -18,15 +21,7 @@ export default class History extends LitElement {
 
   @query('#historyLog') historyLog!: Dialog;
 
-  private convertToDate(when: string | null): Date | null {
-    const convertedTime = new Date(when ?? '');
-    if (!isNaN(convertedTime.getTime())) {
-      return convertedTime;
-    }
-    return null;
-  }
-
-  private createMessage(
+  public createMessage(
     who: string | null,
     why: string | null
   ): string | undefined {
@@ -39,30 +34,9 @@ export default class History extends LitElement {
     return message ?? undefined;
   }
 
-  private createSclHistoryEntry(
-    who: string | null,
-    what: string | null,
-    why: string | null,
-    when: string | null
-  ): SclhistoryEntry {
-    return {
-      kind: 'sclhistory',
-      title: what ?? 'UNDEFINED',
-      message: this.createMessage(who, why),
-      time: this.convertToDate(when),
-    };
-  }
-
-  get sclHistory(): SclhistoryEntry[] {
+  get sclHistory(): Element[] {
     return Array.from(
       this.doc.querySelectorAll(':root > Header > History > Hitem')
-    ).map(historyItem => 
-      this.createSclHistoryEntry(
-        historyItem.getAttribute('who'),
-        historyItem.getAttribute('what'),
-        historyItem.getAttribute('why'),
-        historyItem.getAttribute('when')
-      )
     );
   }
 
@@ -70,25 +44,19 @@ export default class History extends LitElement {
     this.historyLog.open = true;
   }
 
-  renderSclHistoryEntry(entry: SclhistoryEntry): TemplateResult {
-    return html` <abbr title="${entry.title}">
-      <mwc-list-item
-        class="${entry.kind}"
-        graphic="icon"
-        ?twoline=${!!entry.message}
-      >
+  renderSclHistoryEntry(element: Element): TemplateResult {
+    const message = this.createMessage(
+      element.getAttribute('who'),
+      element.getAttribute('why')
+    );
+    const title = element.getAttribute('what');
+    return html` <abbr title="${title}">
+      <mwc-list-item class="sclHistory" ?twoline=${!!message}>
         <span>
-          <tt>${entry.time?.toLocaleString()}</tt>
-          ${entry.title}</span
+          <tt>${element.getAttribute('when')}</tt>
+          ${title}</span
         >
-        <span slot="secondary">${entry.message}</span>
-        <mwc-icon
-          slot="graphic"
-          style="--mdc-theme-text-icon-on-background:var(${ifDefined(
-            iconColors[entry.kind]
-          )})"
-          >history_toggle_off</mwc-icon
-        >
+        <span slot="secondary">${message}</span>
       </mwc-list-item></abbr
     >`;
   }
@@ -108,17 +76,28 @@ export default class History extends LitElement {
 
   render(): TemplateResult {
     if (!this.doc) return html``;
-    return html`${ifImplemented(super.render())}
-      <style>
-        #historyLogContent {
-          --mdc-dialog-min-width: 92vw;
-        }
-      </style>
-      <mwc-dialog id="historyLog" heading="${translate('history.name')}">
-        <mwc-list id="historyLogContent" wrapFocus>${this.renderSclHistory()}</mwc-list>
-        <mwc-button slot="secondaryAction" dialogaction="close"
-          >${translate('close')}</mwc-button
-        >
-      </mwc-dialog>`;
+    return html` <mwc-dialog
+      id="historyLog"
+      heading="${translate('history.name')}"
+    >
+      <mwc-list id="historyLogContent" wrapFocus
+        >${this.renderSclHistory()}</mwc-list
+      >
+      <mwc-button slot="secondaryAction" dialogaction="close"
+        >${translate('close')}</mwc-button
+      >
+    </mwc-dialog>`;
   }
+
+  static styles = css`
+    .sclHistory {
+      display: flex;
+    }
+    #historyLog {
+      --mdc-dialog-min-width: 92vw;
+    }
+    abbr {
+      text-decoration: none;
+    }
+  `;
 }

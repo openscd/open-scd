@@ -32,8 +32,6 @@ import {
   LogEvent,
   Mixin,
   newActionEvent,
-  OpenDocEvent,
-  SclhistoryEntry,
 } from './foundation.js';
 import { getFilterIcon, iconColors } from './icons/icons.js';
 import { Plugin } from './Plugging.js';
@@ -276,9 +274,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
 
     private renderFilterButtons() {
       return (<LogEntryType[]>Object.keys(icons)).map(
-        kind => html`<mwc-icon-button-toggle
-          id="${kind}filter"
-          ?on=${kind !== 'sclhistory'}
+        kind => html`<mwc-icon-button-toggle id="${kind}filter" on
           >${getFilterIcon(kind, false)}
           ${getFilterIcon(kind, true)}</mwc-icon-button-toggle
         >`
@@ -308,8 +304,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
           #content mwc-list-item.info,
           #content mwc-list-item.warning,
           #content mwc-list-item.error,
-          #content mwc-list-item.action,
-          #content mwc-list-item.sclhistory {
+          #content mwc-list-item.action {
             display: none;
           }
           #infofilter[on] ~ #content mwc-list-item.info {
@@ -322,9 +317,6 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
             display: flex;
           }
           #actionfilter[on] ~ #content mwc-list-item.action {
-            display: flex;
-          }
-          #sclhistoryfilter[on] ~ #content mwc-list-item.sclhistory {
             display: flex;
           }
 
