@@ -165,7 +165,7 @@ snapshots["testing sclHistory dialog with no document looks like its latest snap
       tabindex="0"
     >
       <span>
-        [sclHistory.noEntries]
+        [history.noEntries]
       </span>
     </mwc-list-item>
   </mwc-list>
@@ -196,7 +196,7 @@ snapshots["testing sclHistory dialog with a document without SCL history items l
       tabindex="0"
     >
       <span>
-        [sclHistory.noEntries]
+        [history.noEntries]
       </span>
     </mwc-list-item>
   </mwc-list>

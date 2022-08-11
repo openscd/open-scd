@@ -71,7 +71,7 @@ export default class SclHistoryPlugin extends LitElement {
         .map(this.renderSclHistoryEntry, this);
     else
       return html`<mwc-list-item disabled>
-        <span>${translate('sclHistory.noEntries')}</span>
+        <span>${translate('history.noEntries')}</span>
       </mwc-list-item>`;
   }
 
