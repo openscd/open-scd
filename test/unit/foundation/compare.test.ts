@@ -115,7 +115,9 @@ describe('compas-compare-dialog', () => {
 
       const diffAttributes = diffSclAttributes(
         newVoltageLevel!,
-        oldVoltageLevel!
+        oldVoltageLevel!,
+        {},
+        newVoltageLevel!
       );
       expect(diffAttributes).to.have.length(0);
     });
@@ -130,7 +132,9 @@ describe('compas-compare-dialog', () => {
 
       const diffAttributes = diffSclAttributes(
         newVoltageLevel!,
-        oldVoltageLevel!
+        oldVoltageLevel!,
+        {},
+        newVoltageLevel!
       );
       expect(diffAttributes).to.have.length(1);
       expect(diffAttributes[0][0]).to.be.equal('desc');
@@ -146,7 +150,7 @@ describe('compas-compare-dialog', () => {
         'Substation[name="Substation 1"]'
       );
 
-      const diffAttributes = diffSclAttributes(newSubstation!, oldSubstation!);
+      const diffAttributes = diffSclAttributes(newSubstation!, oldSubstation!, {}, newSubstation!);
       expect(diffAttributes).to.have.length(1);
       expect(diffAttributes[0][0]).to.be.equal('name');
       expect(diffAttributes[0][1].oldValue).to.be.equal('Substation 1');
@@ -163,7 +167,7 @@ describe('compas-compare-dialog', () => {
         'VoltageLevel[name="S1 380kV"]'
       );
 
-      const diffChilds = diffSclChilds(newVoltageLevel!, oldVoltageLevel!);
+      const diffChilds = diffSclChilds(newVoltageLevel!, oldVoltageLevel!, {}, newVoltageLevel!, oldVoltageLevel!);
       expect(diffChilds).to.have.length(5);
 
       const updatedChilds = diffChilds.filter(
@@ -180,7 +184,7 @@ describe('compas-compare-dialog', () => {
         'Substation[name="Substation 1"]'
       );
 
-      const diffChilds = diffSclChilds(newSubstation!, oldSubstation!);
+      const diffChilds = diffSclChilds(newSubstation!, oldSubstation!, {}, newSclElement, oldSclElement);
       expect(diffChilds).to.have.length(3);
 
       const updatedChilds = diffChilds.filter(
@@ -197,7 +201,7 @@ describe('compas-compare-dialog', () => {
         'VoltageLevel[name="S1 30kV"]'
       );
 
-      const diffChilds = diffSclChilds(newVoltageLevel!, oldVoltageLevel!);
+      const diffChilds = diffSclChilds(newVoltageLevel!, oldVoltageLevel!, {}, newSclElement, oldSclElement);
       expect(diffChilds).to.have.length(5);
 
       const addedBay = diffChilds.filter(diff => diff.oldValue === null);
@@ -213,7 +217,7 @@ describe('compas-compare-dialog', () => {
         'VoltageLevel[name="S1 110kV"]'
       );
 
-      const diffChilds = diffSclChilds(newVoltageLevel!, oldVoltageLevel!);
+      const diffChilds = diffSclChilds(newVoltageLevel!, oldVoltageLevel!, {}, newVoltageLevel!, oldVoltageLevel!);
       expect(diffChilds).to.have.length(7);
 
       const removedBay = diffChilds.filter(diff => diff.newValue === null);

@@ -54,11 +54,11 @@ describe('Compare IED Plugin', () => {
     });
 
     it('expect the correct number of IEDs from project', () => {
-      expect(plugin.ieds).to.have.length(4);
+      expect(plugin.ieds).to.have.length(5);
     });
 
     it('expect the correct number of IEDs from template project', () => {
-      expect(plugin.templateIeds).to.have.length(3);
+      expect(plugin.templateIeds).to.have.length(4);
     });
 
     it('after closing the dialog everything set to undefined', async () => {
@@ -149,13 +149,6 @@ describe('Compare IED Plugin', () => {
 
   describe('show compare dialog with ignorable differences', () => {
     beforeEach(async () => {
-      doc = await fetch('/test/testfiles/VS737-withchanges.scd')
-      .then(response => response.text())
-      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-    template = await fetch('/test/testfiles/VS737-template.scd')
-      .then(response => response.text())
-      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-
       plugin.doc = doc;
       plugin.templateDoc = template;
 

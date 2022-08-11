@@ -19,7 +19,7 @@ export type Diff<T> =
  *
  * The matcher can be a boolean or a `consumer` that returns a boolean
  */
-export type DiffFilter<T> = {
+export interface DiffFilter<T> {
   [selector: string]: DiffFilterSelector<T>;
 };
 
@@ -42,7 +42,7 @@ function getDiffFilterSelector(
 ): DiffFilterSelector<Element> | undefined {
   const querySelector: string | undefined =
     rootElementToBeCompared === elementToBeCompared
-      ? ':root'
+      ? ':scope'
       : Object.keys(filters).find(selector =>
           Array.from(
             rootElementToBeCompared.querySelectorAll(selector)
@@ -96,13 +96,9 @@ function describe(element: Element): string {
 export function diffSclAttributes(
   elementToBeCompared: Element,
   elementToCompareAgainst: Element,
-  filterToIgnore?: DiffFilter<Element>,
-  rootElementToBeCompared?: Element,
-  rootElementToCompareAgainst?: Element
+  filterToIgnore: DiffFilter<Element>,
+  searchElementToBeCompared: Element,
 ): [string, Diff<string>][] {
-  rootElementToBeCompared = rootElementToBeCompared || elementToBeCompared;
-  rootElementToCompareAgainst =
-    rootElementToCompareAgainst || elementToCompareAgainst;
 
   const attrDiffs: [string, Diff<string>][] = [];
 
@@ -114,13 +110,12 @@ export function diffSclAttributes(
     elementToCompareAgainst.childElementCount === 0 &&
     newText !== oldText
   ) {
-    const shouldFilter: boolean = shouldFilterAttribute(
+    const shouldFilter: boolean = shouldFilterElement(
       elementToBeCompared,
-      'value',
       getDiffFilterSelector(
         elementToBeCompared,
-        rootElementToBeCompared,
-        filterToIgnore || {}
+        searchElementToBeCompared,
+        filterToIgnore
       )
     );
 
@@ -141,8 +136,8 @@ export function diffSclAttributes(
       name,
       getDiffFilterSelector(
         elementToBeCompared,
-        rootElementToBeCompared,
-        filterToIgnore || {}
+        searchElementToBeCompared,
+        filterToIgnore
       )
     );
     if (
@@ -204,14 +199,10 @@ export function isSame(newValue: Element, oldValue: Element): boolean {
 export function diffSclChilds(
   elementToBeCompared: Element,
   elementToCompareAgainst: Element,
-  filterToIgnore?: DiffFilter<Element>,
-  rootElementToBeCompared?: Element,
-  rootElementToCompareAgainst?: Element
+  filterToIgnore: DiffFilter<Element>,
+  searchElementToBeCompared: Element,
+  searchElementToCompareAgainst: Element
 ): Diff<Element>[] {
-  rootElementToBeCompared = rootElementToBeCompared || elementToBeCompared;
-  rootElementToCompareAgainst =
-    rootElementToCompareAgainst || elementToCompareAgainst;
-
   const childDiffs: Diff<Element>[] = [];
   const childrenToBeCompared = Array.from(elementToBeCompared.children);
   const childrenToCompareTo = Array.from(elementToCompareAgainst.children);
@@ -222,8 +213,8 @@ export function diffSclChilds(
         newElement,
         getDiffFilterSelector(
           newElement,
-          rootElementToBeCompared!,
-          filterToIgnore || {}
+          searchElementToBeCompared,
+          filterToIgnore 
         )
       );
       if (!shouldFilter) {
@@ -248,8 +239,8 @@ export function diffSclChilds(
         oldElement,
         getDiffFilterSelector(
           oldElement,
-          rootElementToCompareAgainst!,
-          filterToIgnore || {}
+          searchElementToCompareAgainst,
+          filterToIgnore
         )
       );
       if (!shouldFilter) {
@@ -271,8 +262,8 @@ export function renderDiff(
   elementToBeCompared: Element,
   elementToCompareAgainst: Element,
   filterToIgnore: DiffFilter<Element> = {},
-  rootElementToBeCompared?: Element,
-  rootElementToCompareAgainst?: Element
+  searchElementToBeCompared?: Element,
+  searchElementToCompareAgainst?: Element
 ): TemplateResult | null {
   // Determine the ID from the current tag. These can be numbers or strings.
   let idTitle: string | undefined = identity(elementToBeCompared).toString();
@@ -281,16 +272,15 @@ export function renderDiff(
   }
 
   // Set the root elements if they are not defined yet
-  rootElementToBeCompared = rootElementToBeCompared || elementToBeCompared;
-  rootElementToCompareAgainst =
-    rootElementToCompareAgainst || elementToCompareAgainst;
+  searchElementToBeCompared = searchElementToBeCompared || elementToBeCompared;
+  searchElementToCompareAgainst =
+    searchElementToCompareAgainst || elementToCompareAgainst;
 
   const attrDiffs: [string, Diff<string>][] = diffSclAttributes(
     elementToBeCompared,
     elementToCompareAgainst,
     filterToIgnore,
-    rootElementToBeCompared,
-    rootElementToCompareAgainst
+    searchElementToBeCompared,
   );
 
   // Next check which elements are added, deleted or in both elements.
@@ -298,8 +288,8 @@ export function renderDiff(
     elementToBeCompared,
     elementToCompareAgainst,
     filterToIgnore,
-    rootElementToBeCompared,
-    rootElementToCompareAgainst
+    searchElementToBeCompared,
+    searchElementToCompareAgainst
   );
 
   const childAddedOrDeleted: Diff<Element>[] = [];
@@ -319,8 +309,8 @@ export function renderDiff(
         diff.newValue!,
         diff.oldValue!,
         filterToIgnore,
-        rootElementToBeCompared,
-        rootElementToCompareAgainst
+        searchElementToBeCompared,
+        searchElementToCompareAgainst
       )
     )
     .filter(result => result !== null);

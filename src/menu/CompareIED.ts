@@ -28,6 +28,49 @@ import {
 } from '../foundation.js';
 import { DiffFilter, renderDiff } from '../foundation/compare.js';
 
+const tctrClass = `LN[lnClass='TCTR']`;
+const tvtrClass = `LN[lnClass='TVTR']`;
+const setMag = `SDI[name='setMag'] Val`;
+const setVal =`DAI[name='setVal'] Val`;
+
+const filterToIgnore: DiffFilter<Element> = {
+  ':scope': {
+    attributes: {
+      'name': true
+    }
+  },
+  'P': {
+    full: true
+  }
+};
+
+filterToIgnore[`${tctrClass} DOI[name='Rat'] ${setMag}`] = {
+  full: true
+}
+
+filterToIgnore[`${tctrClass} DOI[name='ARtg'] ${setMag}`] = {
+  full: true
+}
+
+filterToIgnore[`${tctrClass} DOI[name='ARtgNom'] ${setMag}`] = {
+  full: true
+}
+
+filterToIgnore[`${tctrClass} DOI[name='ARtgSec'] ${setVal}`] = {
+  full: true
+}
+
+filterToIgnore[`${tvtrClass} DOI[name='VRtg'] ${setMag}`] = {
+  full: true
+}
+
+filterToIgnore[`${tvtrClass} DOI[name='Rat'] ${setMag}`] = {
+  full: true
+}
+
+filterToIgnore[`${tvtrClass} DOI[name='VRtgSec'] ${setVal}`] = {
+  full: true
+}
 export default class CompareIEDPlugin extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
@@ -146,7 +189,7 @@ export default class CompareIEDPlugin extends LitElement {
 
   protected renderFilterCheckbox(): TemplateResult {
     return html`<mwc-formfield
-      label="Filter mutables">
+      label="${translate('compare.filterMutables')}">
         <mwc-checkbox
           ?checked=${this.filterMutables}
           @change=${() => this.filterMutables = !this.filterMutables}>
@@ -155,60 +198,14 @@ export default class CompareIEDPlugin extends LitElement {
       `
   }
   protected renderCompare(): TemplateResult {
-    const filterToIgnore: DiffFilter<Element> = {
-    };
-
-    if (this.filterMutables) {
-      const tctrClass = `LN[lnClass='TCTR']`;
-      const tvtrClass = `LN[lnClass='TVTR']`;
-      const setMag = `SDI[name='setMag'] Val`;
-      const setVal =`DAI[name='setVal'] Val`;
-
-      filterToIgnore[':root'] = {
-        attributes: {
-          'name': true
-        }
-      }
-
-      filterToIgnore['P'] = {
-        full: true
-      }
-
-      filterToIgnore[`${tctrClass} DOI[name='Rat'] ${setMag}`] = {
-        full: true
-      }
-
-      filterToIgnore[`${tctrClass} DOI[name='ARtg'] ${setMag}`] = {
-        full: true
-      }
-
-      filterToIgnore[`${tctrClass} DOI[name='ARtgNom'] ${setMag}`] = {
-        full: true
-      }
-
-      filterToIgnore[`${tctrClass} DOI[name='ARtgSec'] ${setVal}`] = {
-        full: true
-      }
-
-      filterToIgnore[`${tvtrClass} DOI[name='VRtg'] ${setMag}`] = {
-        full: true
-      }
-
-      filterToIgnore[`${tvtrClass} DOI[name='Rat'] ${setMag}`] = {
-        full: true
-      }
-
-      filterToIgnore[`${tvtrClass} DOI[name='VRtgSec'] ${setVal}`] = {
-        full: true
-      }
-    }
+    const filter: DiffFilter<Element> = this.filterMutables ? filterToIgnore : {}
 
     return html`
       ${this.renderFilterCheckbox()}
       ${renderDiff(
       this.selectedProjectIed!,
       this.selectedTemplateIed!,
-      filterToIgnore
+      filter
     ) ??
     html`${translate('compare-ied.noDiff', {
       projectIedName: identity(this.selectedProjectIed!),

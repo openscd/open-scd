@@ -81,6 +81,17 @@ snapshots["Compare IED Plugin show ied selection lists dialog looks like its lat
               FieldC_QA1_QB1_QB2_QCX
             </span>
           </mwc-list-item>
+          <mwc-list-item
+            aria-disabled="false"
+            left=""
+            mwc-list-item=""
+            tabindex="-1"
+            value="IED1"
+          >
+            <span>
+              IED1
+            </span>
+          </mwc-list-item>
         </mwc-list>
       </div>
     </div>
@@ -124,6 +135,17 @@ snapshots["Compare IED Plugin show ied selection lists dialog looks like its lat
           >
             <span>
               FieldC_QA1_QB1_QB2_QC9
+            </span>
+          </mwc-list-item>
+          <mwc-list-item
+            aria-disabled="false"
+            left=""
+            mwc-list-item=""
+            tabindex="-1"
+            value="SPECIFICATION"
+          >
+            <span>
+              SPECIFICATION
             </span>
           </mwc-list-item>
         </mwc-list>
