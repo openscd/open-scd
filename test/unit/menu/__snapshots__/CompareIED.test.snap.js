@@ -172,7 +172,7 @@ snapshots["Compare IED Plugin show ied selection lists dialog looks like its lat
 
 snapshots["Compare IED Plugin show compare dialog with no differences looks like its latest snapshot"] =
 `<mwc-dialog heading="[compare-ied.resultTitle]">
-  <mwc-formfield label="Filter mutables">
+  <mwc-formfield label="[compare.filterMutables]">
     <mwc-checkbox checked="">
     </mwc-checkbox>
   </mwc-formfield>
@@ -197,7 +197,7 @@ snapshots["Compare IED Plugin show compare dialog with no differences looks like
 
 snapshots["Compare IED Plugin show compare dialog with copied IED looks like its latest snapshot"] =
 `<mwc-dialog heading="[compare-ied.resultTitle]">
-  <mwc-formfield label="Filter mutables">
+  <mwc-formfield label="[compare.filterMutables]">
     <mwc-checkbox>
     </mwc-checkbox>
   </mwc-formfield>
@@ -262,7 +262,7 @@ snapshots["Compare IED Plugin show compare dialog with copied IED looks like its
 
 snapshots["Compare IED Plugin show compare dialog with differences looks like its latest snapshot"] =
 `<mwc-dialog heading="[compare-ied.resultTitle]">
-  <mwc-formfield label="Filter mutables">
+  <mwc-formfield label="[compare.filterMutables]">
     <mwc-checkbox checked="">
     </mwc-checkbox>
   </mwc-formfield>
@@ -369,7 +369,7 @@ snapshots["Compare IED Plugin show compare dialog with ignorable differences loo
   heading="[compare-ied.resultTitle]"
   open=""
 >
-  <mwc-formfield label="Filter mutables">
+  <mwc-formfield label="[compare.filterMutables]">
     <mwc-checkbox checked="">
     </mwc-checkbox>
   </mwc-formfield>
@@ -601,7 +601,7 @@ snapshots["Compare IED Plugin show compare dialog with ignorable differences no 
   heading="[compare-ied.resultTitle]"
   open=""
 >
-  <mwc-formfield label="Filter mutables">
+  <mwc-formfield label="[compare.filterMutables]">
     <mwc-checkbox>
     </mwc-checkbox>
   </mwc-formfield>
