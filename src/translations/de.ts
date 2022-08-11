@@ -166,8 +166,8 @@ export const de: Translations = {
     },
   },
   history: {
-    name: '????',
-    noEntries: '????',
+    name: 'SCL History',
+    noEntries: 'Keine Einträge in der SCL History',
   },
   diag: {
     name: 'Daignoseübersicht',
