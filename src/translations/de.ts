@@ -84,7 +84,6 @@ export const de: Translations = {
     new: 'Neues projekt',
     title: 'Menü',
     viewLog: 'Protokoll anzeigen',
-    viewSclHistory: 'View SCL history',
     viewDiag: 'Daignose anzeigen',
   },
   wizard: {
