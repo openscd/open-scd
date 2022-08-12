@@ -165,6 +165,10 @@ export const de: Translations = {
       placeholder: 'Keine Fehler',
     },
   },
+  history: {
+    name: 'SCL History',
+    noEntries: 'Keine Einträge in der SCL History',
+  },
   diag: {
     name: 'Daignoseübersicht',
     zeroissues: 'Es konnten keine Fehler in dem Projekt gefunden werden.',
