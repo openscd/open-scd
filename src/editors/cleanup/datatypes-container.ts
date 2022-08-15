@@ -42,7 +42,7 @@ import { editDaTypeWizard } from '../templates/datype-wizards.js';
 import { dOTypeWizard } from '../templates/dotype-wizards.js';
 import { eNumTypeEditWizard } from '../templates/enumtype-wizard.js';
 
-import { cleanSCLItems, identitySort, uniq, countBy } from './foundation.js';
+import { cleanSCLItems, identitySort, uniq } from './foundation.js';
 
 type templateType = 'EnumType' | 'DAType' | 'DOType' | 'LNodeType';
 
@@ -114,7 +114,6 @@ export class CleanupDataTypes extends LitElement {
    * @param selectorType - class for selection to toggle the hidden class used by the list.
    */
   private toggleHiddenClass(selectorType: string) {
-    console.log(`.${selectorType}`);
     this.cleanupList!.querySelectorAll(`.${selectorType}`).forEach(element => {
       element.classList.toggle('hidden');
     });
@@ -213,76 +212,73 @@ export class CleanupDataTypes extends LitElement {
   }
 
   /**
-   * Looks for Sub Data Object references within Data Objects. Each SDO is then
-   * catalogued and the algorithm compares the cleanup selection against total number of the
-   * elements in the document. If all usages are in the selection then a DOType which
-   * is referenced in an SDO can also be removed and these types are returned.
-   * @param dOType - A type to see if subtypes are defined which could be removed
-   * @param searchNodes - A selection of nodes whose DO Types should be examined.
-   * @returns A collection of SCL Elements only used in the selected DOs which can be removed.
+   * Recurses through all datatype templates and indexes their usage.
+   * @returns a map of data type templates usage.
    */
-  private getUnusedSDOReferencedTypes(searchNodes: Element[]): Element[] | [] {
-    let usedSDOTypes: string[] = [];
-    let sdoTypes: string[] = [];
-    // catalogue all SDOs in selection
-    searchNodes
-      .filter(node => node.tagName === 'DOType')
-      .forEach(doType => {
-        sdoTypes = Array.from(doType.querySelectorAll('SDO')).map(
-          sdo => sdo.getAttribute('type')!
-        );
-        usedSDOTypes = usedSDOTypes.concat(sdoTypes);
-      });
-    // compare qty of SDO used in selection versus those used in document
-    const removableItems: Element[] | [] = [];
-    countBy(usedSDOTypes).forEach((doQty: number, doType: string) => {
-      const docUsage = Array.from(
-        this.doc.querySelectorAll(`DataTypeTemplates SDO[type="${doType}"]`)
-      ).filter(isPublic);
-      // if equal, all SDOs are in the selection
-      if (doQty === docUsage.length) {
-        removableItems.push(
-          this.doc.querySelector(`DataTypeTemplates DOType[id="${doType}"]`)!
+  private indexDataTypeTemplates() {
+    const dataTypeTemplates = this.doc.querySelector(
+      ':root > DataTypeTemplates'
+    )!;
+    const allUsages = this.fetchTree(dataTypeTemplates);
+    const dataTypeFrequencyUsage = new Map<string, number>();
+    // make frequency count of datatype ids
+    allUsages.forEach(item => {
+      const itemType = item!.getAttribute('id');
+      if (itemType !== null) {
+        dataTypeFrequencyUsage.set(
+          itemType!,
+          (dataTypeFrequencyUsage.get(itemType!) || 0) + 1
         );
       }
     });
-    return removableItems;
+    return dataTypeFrequencyUsage;
   }
 
   /**
-   * Looks for other DA references within BDA objects. Each BDA is then
-   * catalogued and the algorithm compares the cleanup selection against total number of the
-   * elements in the document. If all usages are in the selection then a DAType which
-   * is referenced in a BDA can also be removed and these types are returned.
-   * @param searchNodes - A selection of nodes whose BDA elements should be examined.
-   * @returns A collection of SCL Elements only used in the selected DAs which can be removed.
+   * Given a datatype reference return the appropriate datatype object or null.
+   * @param element - the SCL Element for which a datatype is required.
+   * @returns either the datatype or null.
    */
-  private getUnusedBDAReferencedTypes(searchNodes: Element[]): Element[] | [] {
-    let usedBDAStructTypes: string[] = [];
-    let bdaStructTypes: string[] = [];
-    // catalogue all BDAs in selection
-    searchNodes
-      .filter(node => node.tagName === 'DAType')
-      .forEach(daType => {
-        bdaStructTypes = Array.from(
-          daType.querySelectorAll('BDA[bType="Struct"]')
-        ).map(bda => bda.getAttribute('type')!);
-        usedBDAStructTypes = usedBDAStructTypes.concat(bdaStructTypes);
-      });
-    // compare qty of BDA used in selection versus those used in document
-    const removableItems: Element[] | [] = [];
-    countBy(usedBDAStructTypes).forEach((bdaQty: number, bdaType: string) => {
-      const docUsage = Array.from(
-        this.doc.querySelectorAll(`DataTypeTemplates BDA[type="${bdaType}"]`)
-      ).filter(isPublic);
-      // if equal, all BDAs are in the selection
-      if (bdaQty === docUsage.length) {
-        removableItems.push(
-          this.doc.querySelector(`DataTypeTemplates DAType[id="${bdaType}"]`)!
-        );
-      }
-    });
-    return removableItems;
+  private getSubTypes(element: Element): Element | null {
+    const dataTypeTemplates = this.doc.querySelector(
+      ':root > DataTypeTemplates'
+    );
+    const type = element.getAttribute('type');
+    if (element.tagName === 'DO' || element.tagName === 'SDO') {
+      return dataTypeTemplates!.querySelector(`DOType[id="${type}"]`);
+    } else if (element.tagName === 'DA' || element.tagName === 'BDA') {
+      return dataTypeTemplates!.querySelector(`DAType[id="${type}"]`);
+    }
+    return null;
+  }
+
+  /**
+   * Recurses from an initial element to find all child references (with duplicates).
+   * @param rootElement - root SCL Element for which all child datatype references are required.
+   * @returns all SCL element datatypes traversed.
+   */
+  private fetchTree(rootElement: Element): (Element | undefined)[] {
+    const elementStack = [rootElement];
+    const traversedElements: (Element | undefined)[] = [];
+    
+    // A max stack depth is defined to avoid recursive references.
+    const MAX_STACK_DEPTH = 10000
+    while ((elementStack.length > 0) && (elementStack.length < MAX_STACK_DEPTH)) {
+      const currentElement = elementStack.pop();
+      traversedElements.push(currentElement);
+
+      Array.from(currentElement!.querySelectorAll('DO, SDO, DA, BDA'))
+        .filter(isPublic)
+        .forEach(element => {
+          const newElements = this.getSubTypes(element);
+          if (newElements !== null) {
+            elementStack.unshift(newElements);
+          }
+        });
+    }
+    // remove root element - it is not a datatype itself
+    traversedElements.shift();
+    return traversedElements;
   }
 
   /**
@@ -290,17 +286,39 @@ export class CleanupDataTypes extends LitElement {
    * @returns An array of SCL elements representing selected items and subtypes as required.
    */
   public getCleanItems(): Element[] {
-    let cleanItems = Array.from(
+    const cleanItems = Array.from(
       (<Set<number>>this.selectedDataTypeItems).values()
     ).map(index => this.unreferencedDataTypes[index]);
 
     if (this.cleanSubTypesCheckbox!.checked === true) {
-      cleanItems = cleanItems.concat(
-        this.getUnusedSDOReferencedTypes(cleanItems)
-      );
-      cleanItems = cleanItems.concat(
-        this.getUnusedBDAReferencedTypes(cleanItems)
-      );
+      const dataTypeTemplates = this.doc.querySelector(
+        ':root > DataTypeTemplates'
+      )!;
+      const dataTypeUsageCounter= this.indexDataTypeTemplates();
+
+      //  update index to allow checking for no longer used DataTypeTemplates
+      cleanItems.forEach(item => {
+        const childDataTypeTemplates = this.fetchTree(item);
+        childDataTypeTemplates.forEach(element => {
+          const type = element!.getAttribute('id')!;
+          if (dataTypeUsageCounter!.has(type)) {
+            dataTypeUsageCounter?.set(
+              type,
+              dataTypeUsageCounter.get(type)! - 1
+            );
+          }
+        });
+      });
+
+      // locate from index consequentially unused DataTypeTemplates
+      // and add to items to be removed
+      dataTypeUsageCounter?.forEach((count, dataTypeId) => {
+        if (count === 0) {
+          cleanItems.push(
+            dataTypeTemplates.querySelector(`[id="${dataTypeId}"]`)!
+          );
+        }
+      });
     }
     return cleanItems;
   }
