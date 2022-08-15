@@ -10,6 +10,7 @@ import {
   query,
   queryAll,
 } from 'lit-element';
+import { classMap } from 'lit-html/directives/class-map';
 import { translate } from 'lit-translate';
 
 import '@material/mwc-button';
@@ -64,7 +65,7 @@ const filterClassMapping: Record<string, string> = {
 @customElement('cleanup-data-types')
 export class CleanupDataTypes extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
-  @property()
+  @property({ attribute: false })
   doc!: XMLDocument;
 
   @property({ type: Boolean })
@@ -73,7 +74,7 @@ export class CleanupDataTypes extends LitElement {
   @property({ type: Array })
   unreferencedDataTypes: Element[] = [];
 
-  @property()
+  @property({ attribute: false })
   selectedDataTypeItems: MWCListIndex | [] = [];
 
   @query('.delete-button')
@@ -115,7 +116,9 @@ export class CleanupDataTypes extends LitElement {
    */
   private toggleHiddenClass(selectorType: string) {
     this.cleanupList!.querySelectorAll(`.${selectorType}`).forEach(element => {
-      element.classList.toggle('hidden');
+      element.classList.toggle('hiddenontypefilter');
+      if (element.hasAttribute('disabled')) element.removeAttribute('disabled');
+      else element.setAttribute('disabled', 'true');
     });
   }
 
@@ -192,7 +195,13 @@ export class CleanupDataTypes extends LitElement {
   private renderListItem(dType: Element): TemplateResult {
     return html`<mwc-check-list-item
       twoline
-      class="cleanup-list-item t-${filterClassMapping[dType.tagName]}"
+      class="${classMap({
+        cleanupListItem: true,
+        't-lnode-type': dType.tagName === 'LNodeType',
+        't-do-type': dType.tagName === 'DOType',
+        't-da-type': dType.tagName === 'DAType',
+        't-enum-type': dType.tagName === 'EnumType',
+      })}"
       value="${identity(dType)}"
       graphic="large"
       ><span class="unreferenced-control">${dType.getAttribute('id')!} </span>
@@ -260,10 +269,10 @@ export class CleanupDataTypes extends LitElement {
   private fetchTree(rootElement: Element): (Element | undefined)[] {
     const elementStack = [rootElement];
     const traversedElements: (Element | undefined)[] = [];
-    
+
     // A max stack depth is defined to avoid recursive references.
-    const MAX_STACK_DEPTH = 10000
-    while ((elementStack.length > 0) && (elementStack.length < MAX_STACK_DEPTH)) {
+    const MAX_STACK_DEPTH = 10000;
+    while (elementStack.length > 0 && elementStack.length < MAX_STACK_DEPTH) {
       const currentElement = elementStack.pop();
       traversedElements.push(currentElement);
 
@@ -294,7 +303,7 @@ export class CleanupDataTypes extends LitElement {
       const dataTypeTemplates = this.doc.querySelector(
         ':root > DataTypeTemplates'
       )!;
-      const dataTypeUsageCounter= this.indexDataTypeTemplates();
+      const dataTypeUsageCounter = this.indexDataTypeTemplates();
 
       //  update index to allow checking for no longer used DataTypeTemplates
       cleanItems.forEach(item => {
@@ -530,19 +539,8 @@ export class CleanupDataTypes extends LitElement {
     }
 
     /* filter items are disabled by default (if the filter is deselected) */
-    .t-da-type,
-    .t-enum-type,
-    .t-lnode-type,
-    .t-do-type {
+    .cleanupListItem.hiddenontypefilter:not(:disabled) {
       display: none;
-    }
-
-    /* filter items enabled when filter is selected */
-    .t-da-type-filter[on] ~ .cleanup-list > .t-da-type,
-    .t-enum-type-filter[on] ~ .cleanup-list > .t-enum-type,
-    .t-lnode-type-filter[on] ~ .cleanup-list > .t-lnode-type,
-    .t-do-type-filter[on] ~ .cleanup-list > .t-do-type {
-      display: flex;
     }
   `;
 }
