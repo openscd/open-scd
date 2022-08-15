@@ -261,9 +261,23 @@ export function diffSclChilds(
 export function renderDiff(
   elementToBeCompared: Element,
   elementToCompareAgainst: Element,
+  filterToIgnore: DiffFilter<Element> = {}
+): TemplateResult | null {
+  return renderDiffInternal(
+    elementToBeCompared, 
+    elementToCompareAgainst,
+    filterToIgnore,
+    elementToBeCompared,
+    elementToCompareAgainst
+  );
+}
+
+function renderDiffInternal(
+  elementToBeCompared: Element,
+  elementToCompareAgainst: Element,
   filterToIgnore: DiffFilter<Element> = {},
-  searchElementToBeCompared?: Element,
-  searchElementToCompareAgainst?: Element
+  searchElementToBeCompared: Element,
+  searchElementToCompareAgainst: Element
 ): TemplateResult | null {
   // Determine the ID from the current tag. These can be numbers or strings.
   let idTitle: string | undefined = identity(elementToBeCompared).toString();
@@ -305,7 +319,7 @@ export function renderDiff(
   // These children exist in both old and new element, let's check if there are any difference in the children.
   const childToCompareTemplates = childToCompare
     .map(diff =>
-      renderDiff(
+      renderDiffInternal(
         diff.newValue!,
         diff.oldValue!,
         filterToIgnore,
