@@ -59,25 +59,5 @@ describe('Cleanup: DataTypes Container', () => {
       await element.cleanupList!.layout();
       expect(element.cleanButton).to.have.property('disabled', false);
     });
-
-    it('after selecting and deselecting an item the remove button is disabled', async () => {
-      const firstCheckListItem = element.cleanupListItems!.item(0);
-      await (<ListItem>firstCheckListItem!).click();
-      await element.cleanupList!.layout();
-      await (<ListItem>firstCheckListItem!).click();
-      await element.cleanupList!.layout();
-      expect(element.cleanButton).to.have.property('disabled', true);
-    });
-
-    it('after clicking select all the button is not disabled', async () => {
-      const checkbox = element
-        .shadowRoot!.querySelector('.cleanup-list')!
-        .shadowRoot!.querySelector('.checkall')!
-        .querySelector('mwc-checkbox')!;
-      await checkbox.click();
-      await element.cleanupList?.layout();
-      expect(element.cleanButton).to.have.property('disabled', false);
-    });
-
   });
 });

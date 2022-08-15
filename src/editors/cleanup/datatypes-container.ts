@@ -196,7 +196,7 @@ export class CleanupDataTypes extends LitElement {
     return html`<mwc-check-list-item
       twoline
       class="${classMap({
-        cleanupListItem: true,
+        'cleanup-list-item': true,
         't-lnode-type': dType.tagName === 'LNodeType',
         't-do-type': dType.tagName === 'DOType',
         't-da-type': dType.tagName === 'DAType',
