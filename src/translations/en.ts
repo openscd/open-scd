@@ -371,6 +371,7 @@ export const en = {
       extRefList: {
         title:
           'Selected Sampled Value Control "{{ svcName }}" / FCDA "{{ fcdaName }}"',
+        noSelection: 'No data attribute selected',
         noSubscribedExtRefs: 'No subscribed ExtRefs',
         noAvailableExtRefs: 'No available ExtRefs to subscribe',
       },

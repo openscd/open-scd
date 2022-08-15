@@ -46,7 +46,7 @@ export class ExtRefLaterBindingList extends LitElement {
     }
   }
 
-  private getExtRefsElements(): Element[] {
+  private getExtRefElements(): Element[] {
     if (this.doc) {
       return Array.from(this.doc.querySelectorAll('ExtRef'))
         .filter(element => element.hasAttribute('intAddr'))
@@ -61,14 +61,14 @@ export class ExtRefLaterBindingList extends LitElement {
     return [];
   }
 
-  private getSubscribedExtRefsElements(): Element[] {
-    return this.getExtRefsElements().filter(element =>
+  private getSubscribedExtRefElements(): Element[] {
+    return this.getExtRefElements().filter(element =>
       this.isSubscribedTo(element)
     );
   }
 
-  private getAvailableExtRefsElements(): Element[] {
-    return this.getExtRefsElements().filter(
+  private getAvailableExtRefElements(): Element[] {
+    return this.getExtRefElements().filter(
       element => !this.isSubscribed(element)
     );
   }
@@ -132,12 +132,13 @@ export class ExtRefLaterBindingList extends LitElement {
   }
 
   /**
-   * Certain ExtRef Elements are not allowed to be subscribed to by this plugin.
-   * They are using a deprecated way which isn't support in this plugin.
+   * The data attribute check using attributes pLN, pDO, pDA and pServT is not supported yet by this plugin.
+   * To make sure the user does not do anything prohibited, this type of ExtRef cannot be manipulated for the time being.
+   * (Will be updated in the future).
    *
    * @param extRefElement - The Ext Ref Element to check.
    */
-  private disableExtRefItem(extRefElement: Element): boolean {
+  private unsupportedExtRefElement(extRefElement: Element): boolean {
     return (
       extRefElement.hasAttribute('pLN') ||
       extRefElement.hasAttribute('pDO') ||
@@ -163,7 +164,7 @@ export class ExtRefLaterBindingList extends LitElement {
   }
 
   private renderSubscribedExtRefs(): TemplateResult {
-    const subscribedExtRefs = this.getSubscribedExtRefsElements();
+    const subscribedExtRefs = this.getSubscribedExtRefElements();
     return html`
       <mwc-list-item
         noninteractive
@@ -205,7 +206,7 @@ export class ExtRefLaterBindingList extends LitElement {
   }
 
   private renderAvailableExtRefs(): TemplateResult {
-    const availableExtRefs = this.getAvailableExtRefsElements();
+    const availableExtRefs = this.getAvailableExtRefElements();
     return html`
       <mwc-list-item
         noninteractive
@@ -227,7 +228,7 @@ export class ExtRefLaterBindingList extends LitElement {
         ? html`${availableExtRefs.map(
             extRefElement => html` <mwc-list-item
               graphic="large"
-              .disabled=${this.disableExtRefItem(extRefElement)}
+              ?disabled=${this.unsupportedExtRefElement(extRefElement)}
               twoline
               value="${identity(extRefElement)}"
             >
@@ -251,14 +252,20 @@ export class ExtRefLaterBindingList extends LitElement {
 
   render(): TemplateResult {
     return html` <section tabindex="0">
-      ${this.renderTitle()}
       ${this.currentSelectedSvcElement && this.currentSelectedFcdaElement
         ? html`
+            ${this.renderTitle()}
             <filtered-list>
               ${this.renderSubscribedExtRefs()} ${this.renderAvailableExtRefs()}
             </filtered-list>
           `
-        : nothing}
+        : html`
+            <h1>
+              ${translate(
+                'subscription.smvLaterBinding.extRefList.noSelection'
+              )}
+            </h1>
+          `}
     </section>`;
   }
 

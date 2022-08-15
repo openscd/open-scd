@@ -49,7 +49,7 @@ export class SVCLaterBindingList extends LitElement {
     super();
 
     this.resetSelection = this.resetSelection.bind(this);
-    window.addEventListener('open-doc', this.resetSelection);
+    parent.addEventListener('open-doc', this.resetSelection);
   }
 
   private getSvcElements(): Element[] {
@@ -180,6 +180,10 @@ export class SVCLaterBindingList extends LitElement {
 
     mwc-list-item.hidden[noninteractive] + li[divider] {
       display: none;
+    }
+
+    mwc-list-item {
+      --mdc-list-item-meta-size: 48px;
     }
 
     .interactive {
