@@ -372,7 +372,16 @@ export const de: Translations = {
     },
     smvLaterBinding: {
       svcList: {
+        title: 'Sampled Values and verknüpfte Datensätze im Projekt',
         noSvcFound: 'Kein Sampled-Value-Kontrolblock im Projekt',
+      },
+      extRefList: {
+        title:
+          'Ausgewählter Sampled Value Datenpunkt "{{ svcName }}" / "{{ fcdaName }}"',
+        noSelection: 'Kein Daten-Attribut ausgewählt',
+        noSubscribedExtRefs: 'Keine verknüpften externen Referenzen',
+        noAvailableExtRefs:
+          'Keine externen externen Referenzen vom Type "Later Binding"',
       },
     },
     iedList: {

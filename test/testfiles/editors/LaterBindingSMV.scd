@@ -79,12 +79,12 @@
 					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
 					<LN prefix="" lnClass="PTRC" inst="1" lnType="Summy.PTRC">
 						<Inputs>
-							<ExtRef intAddr="AmpSv;TCTR1/AmpSv/instMag.i" desc="MeasPoint.CT1"/>
-							<ExtRef intAddr="AmpSv;TCTR1/AmpSv/q" desc="MeasPoint.CT1"/>
-							<ExtRef intAddr="AmpSv;TCTR2/AmpSv/instMag.i" desc="MeasPoint.CT2"/>
-							<ExtRef intAddr="AmpSv;TCTR2/AmpSv/q" desc="MeasPoint.CT1"/>
-							<ExtRef intAddr="AmpSv;TCTR3/AmpSv/instMag.i" desc="MeasPoint.CT3"/>
-							<ExtRef intAddr="AmpSv;TCTR3/AmpSv/q" desc="MeasPoint.CT1"/>
+              <ExtRef intAddr="AmpSv;TCTR1/AmpSv/instMag.i" desc="MeasPoint.CT1" iedName="SMV_Publisher" ldInst="CurrentTransformer" prefix="L1" lnClass="TCTR" lnInst="1" doName="AmpSv" daName="instMag.i"/>
+              <ExtRef intAddr="AmpSv;TCTR1/AmpSv/q" desc="MeasPoint.CT1" iedName="SMV_Publisher" ldInst="CurrentTransformer" prefix="L1" lnClass="TCTR" lnInst="1" doName="AmpSv" daName="q"/>
+              <ExtRef intAddr="AmpSv;TCTR2/AmpSv/instMag.i" desc="MeasPoint.CT2"/>
+              <ExtRef intAddr="AmpSv;TCTR2/AmpSv/q" desc="MeasPoint.CT1" iedName="SMV_Publisher" ldInst="CurrentTransformer" prefix="L1" lnClass="TCTR" lnInst="1" doName="AmpSv" daName="q"/>
+              <ExtRef intAddr="AmpSv;TCTR3/AmpSv/instMag.i" desc="MeasPoint.CT3"/>
+              <ExtRef intAddr="AmpSv;TCTR3/AmpSv/q" desc="MeasPoint.CT1" iedName="SMV_Publisher" ldInst="CurrentTransformer" prefix="L1" lnClass="TCTR" lnInst="1" doName="AmpSv" daName="q"/>
 						</Inputs>
 					</LN>
 				</LDevice>
@@ -92,13 +92,13 @@
 					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
 					<LN prefix="" lnClass="PTRC" inst="1" lnType="Summy.PTRC">
 						<Inputs>
-							<ExtRef intAddr="VolSv;TVTR1/VolSv/instMag.i" desc="MeasPoint.VT1"/>
-							<ExtRef intAddr="VolSv;TVTR1/VolSv/q" desc="MeasPoint.VT1"/>
-							<ExtRef intAddr="VolSv;TVTR2/VolSv/instMag.i" desc="MeasPoint.VT2"/>
-							<ExtRef intAddr="VolSv;TVTR2/VolSv/q" desc="MeasPoint.VT1"/>
-							<ExtRef intAddr="VolSv;TVTR3/VolSv/instMag.i" desc="MeasPoint.VT3"/>
-							<ExtRef intAddr="VolSv;TVTR3/VolSv/q" desc="MeasPoint.VT1"/>
-							<ExtRef intAddr="someRestrictedExtRef" desc="Restricted To AmpSV" pLN="TCTR" pDO="AmpSV" pDA="instMag.i"/>
+              <ExtRef intAddr="VolSv;TVTR1/VolSv/instMag.i" desc="MeasPoint.VT1" iedName="SMV_Publisher" ldInst="VoltageTransformer" prefix="L1" lnClass="TVTR" lnInst="1" doName="VolSv" daName="instMag.i"/>
+              <ExtRef intAddr="VolSv;TVTR1/VolSv/q" desc="MeasPoint.VT1"/>
+              <ExtRef intAddr="VolSv;TVTR2/VolSv/instMag.i" desc="MeasPoint.VT2"/>
+              <ExtRef intAddr="VolSv;TVTR2/VolSv/q" desc="MeasPoint.VT1"/>
+              <ExtRef intAddr="VolSv;TVTR3/VolSv/instMag.i" desc="MeasPoint.VT3"/>
+              <ExtRef intAddr="VolSv;TVTR3/VolSv/q" desc="MeasPoint.VT1"/>
+              <ExtRef intAddr="someRestrictedExtRef" desc="Restricted To AmpSV" pLN="TCTR" pDO="AmpSV" pDA="instMag.i"/>
 						</Inputs>
 					</LN>
 				</LDevice>
