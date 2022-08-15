@@ -538,8 +538,9 @@ export class CleanupDataTypes extends LitElement {
       opacity: 0.38;
     }
 
-    /* filter items are disabled by default (if the filter is deselected) */
-    .cleanupListItem.hiddenontypefilter:not(:disabled) {
+    /* Make sure to type filter here
+    .hidden is set on string filter in filtered-list and must always filter*/
+    .cleanupListItem.hiddenontypefilter:not(.hidden) {
       display: none;
     }
   `;
