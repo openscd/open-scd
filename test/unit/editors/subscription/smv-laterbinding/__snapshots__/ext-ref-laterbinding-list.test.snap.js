@@ -5,7 +5,7 @@ snapshots[
   'smv-list looks like the latest snapshot without a doc loaded'
 ] = `<section tabindex="0">
   <h1>
-    [subscription.smvLaterBinding.extRefList.title]
+    [subscription.smvLaterBinding.extRefList.noSelection]
   </h1>
 </section>
 `;
@@ -15,7 +15,7 @@ snapshots[
   'smv-list with document loaded looks like the latest snapshot, but no event fired'
 ] = `<section tabindex="0">
   <h1>
-    [subscription.smvLaterBinding.extRefList.title]
+    [subscription.smvLaterBinding.extRefList.noSelection]
   </h1>
 </section>
 `;
@@ -437,8 +437,9 @@ snapshots[
 </section>
 `;
 /* end snapshot smv-list with document loaded when SVC has a single subscriptions looks like the latest snapshot,  */
-snapshots["smv-list when SVC has a multiple subscriptions looks like the latest snapshot, "] = 
-`<section tabindex="0">
+snapshots[
+  'smv-list when SVC has a multiple subscriptions looks like the latest snapshot, '
+] = `<section tabindex="0">
   <h1>
     [subscription.smvLaterBinding.extRefList.title]
   </h1>
@@ -681,4 +682,3 @@ snapshots["smv-list when SVC has a multiple subscriptions looks like the latest 
 </section>
 `;
 /* end snapshot smv-list when SVC has a multiple subscriptions looks like the latest snapshot,  */
-

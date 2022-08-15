@@ -67,11 +67,11 @@ describe('smv-list', () => {
       });
 
       it('expect the correct number of subscribed elements', () => {
-        expect(element['getSubscribedExtRefsElements']().length).to.be.equal(0);
+        expect(element['getSubscribedExtRefElements']().length).to.be.equal(0);
       });
 
       it('expect the correct number of available elements', () => {
-        expect(element['getAvailableExtRefsElements']().length).to.be.equal(8);
+        expect(element['getAvailableExtRefElements']().length).to.be.equal(8);
       });
 
       it('looks like the latest snapshot, when SVC has no subscriptions', async () => {
@@ -93,11 +93,11 @@ describe('smv-list', () => {
       });
 
       it('expect the correct number of subscribed elements', () => {
-        expect(element['getSubscribedExtRefsElements']().length).to.be.equal(1);
+        expect(element['getSubscribedExtRefElements']().length).to.be.equal(1);
       });
 
       it('expect the correct number of available elements', () => {
-        expect(element['getAvailableExtRefsElements']().length).to.be.equal(8);
+        expect(element['getAvailableExtRefElements']().length).to.be.equal(8);
       });
 
       it('looks like the latest snapshot, ', async () => {
@@ -120,11 +120,11 @@ describe('smv-list', () => {
     });
 
     it('expect the correct number of subscribed elements', () => {
-      expect(element['getSubscribedExtRefsElements']().length).to.be.equal(3);
+      expect(element['getSubscribedExtRefElements']().length).to.be.equal(3);
     });
 
     it('expect the correct number of available elements', () => {
-      expect(element['getAvailableExtRefsElements']().length).to.be.equal(8);
+      expect(element['getAvailableExtRefElements']().length).to.be.equal(8);
     });
 
     it('looks like the latest snapshot, ', async () => {
