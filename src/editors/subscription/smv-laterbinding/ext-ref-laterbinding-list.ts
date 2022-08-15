@@ -82,8 +82,6 @@ export class ExtRefLaterBindingList extends LitElement {
     this.currentIedElement = this.currentSelectedFcdaElement
       ? this.currentSelectedFcdaElement.closest('IED') ?? undefined
       : undefined;
-
-    await this.requestUpdate();
   }
 
   private sameAttributeValue(
