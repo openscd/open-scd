@@ -133,7 +133,7 @@ export const en = {
     compareButton: 'Compare',
     attributes: 'Attributes from {{ elementName }}',
     children: 'Child elements from {{ elementName }}',
-    filterMutables: 'Filter project specific settings'
+    filterMutables: 'Filter project specific differences'
   },
   log: {
     name: 'Log',

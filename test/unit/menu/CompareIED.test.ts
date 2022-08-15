@@ -1,6 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
 import CompareIEDPlugin from '../../../src/menu/CompareIED.js';
+import { PlainCompareList } from '../../../src/plain-compare-list.js';
 
 describe('Compare IED Plugin', () => {
   if (customElements.get('compare-ied') === undefined)
@@ -109,7 +110,6 @@ describe('Compare IED Plugin', () => {
     });
 
     it('looks like its latest snapshot', async () => {
-      plugin.filterMutables = false;
       await plugin.requestUpdate();
       plugin.run();
       await expect(plugin.dialog).to.equalSnapshot();
@@ -137,7 +137,6 @@ describe('Compare IED Plugin', () => {
       plugin['onClosed']();
       await plugin.requestUpdate();
 
-      // expect(plugin.templateDoc).to.be.undefined;
       expect(plugin.selectedProjectIed).to.be.undefined;
       expect(plugin.selectedTemplateIed).to.be.undefined;
     });
@@ -165,12 +164,5 @@ describe('Compare IED Plugin', () => {
       expect (plugin.dialog).to.equalSnapshot();
     });
 
-    it('no mutables are filtered, it looks like its snapshot', async () => {
-      plugin.filterMutables = false;
-      plugin.run();
-      await plugin.requestUpdate();
-
-      expect (plugin.dialog).to.equalSnapshot();
-    });
   })
 });
