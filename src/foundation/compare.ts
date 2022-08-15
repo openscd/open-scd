@@ -323,6 +323,88 @@ export function renderDiff(
   ) {
     return html` ${
       attrDiffs.length > 0 || childAddedOrDeleted.length > 0
+        ? html `<div class="container">
+            <div class="list__container">
+              <mwc-list multi>
+                ${
+                  attrDiffs.length > 0
+                    ? html` <mwc-list-item noninteractive ?twoline=${!!idTitle}>
+                        <span class="resultTitle">
+                          ${translate('compare.attributes', {
+                            elementName: elementToBeCompared.tagName,
+                          })}
+                        </span>
+                        ${
+                          idTitle
+                            ? html`<span slot="secondary">${idTitle}</span>`
+                            : nothing
+                        }
+                      </mwc-list-item>
+                      <li padded divider role="separator"></li>`
+                    : ''
+                }
+                ${repeat(
+                  attrDiffs,
+                  e => e,
+                  ([name, diff]) => {
+                    if (!diff.oldValue) {
+                      return html ``
+                    }
+
+                    return html `<mwc-list-item twoline right hasMeta>
+                        <span>${name}</span>
+                        <span slot="secondary">
+                          ${diff.oldValue}
+                        </span>
+                      </mwc-list-item>`
+                  }
+                )}
+              </mwc-list>
+            </div>
+            <div class="list__container">
+              <mwc-list multi>
+              ${
+                attrDiffs.length > 0
+                  ? html` <mwc-list-item noninteractive ?twoline=${!!idTitle}>
+                      <span class="resultTitle">
+                        ${translate('compare.attributes', {
+                          elementName: elementToBeCompared.tagName,
+                        })}
+                      </span>
+                      ${
+                        idTitle
+                          ? html`<span slot="secondary">${idTitle}</span>`
+                          : nothing
+                      }
+                    </mwc-list-item>
+                    <li padded divider role="separator"></li>`
+                  : ''
+              }
+              ${repeat(
+                attrDiffs,
+                e => e,
+                ([name, diff]) => {
+                  if (!diff.newValue) {
+                    return html ``
+                  }
+
+                  return html `<mwc-list-item twoline left hasMeta>
+                      <span>${name}</span>
+                      <span slot="secondary">
+                        ${diff.newValue}
+                      </span>
+                    </mwc-list-item>`
+                }
+              )}
+              </mwc-list>
+            </div>
+          </div>`
+        : ''
+    }
+    ${childToCompareTemplates}`;
+/*
+    return html` ${
+      attrDiffs.length > 0 || childAddedOrDeleted.length > 0
         ? html` <mwc-list multi>
           ${
             attrDiffs.length > 0
@@ -396,6 +478,7 @@ export function renderDiff(
         : ''
     }
     ${childToCompareTemplates}`;
+    */
   }
   return null;
 }

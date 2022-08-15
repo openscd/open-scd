@@ -320,5 +320,13 @@ export default class CompareIEDPlugin extends LitElement {
     .resultTitle {
       font-weight: bold;
     }
+
+    .container {
+      display: flex;
+    }
+
+    .list__container {
+      flex: 50;
+    }
   `;
 }
