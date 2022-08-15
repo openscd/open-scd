@@ -1,4 +1,4 @@
-import { html, fixture, expect } from '@open-wc/testing';
+import { expect, fixture, html } from '@open-wc/testing';
 
 import '../../../../mock-wizard.js';
 
@@ -27,8 +27,8 @@ describe('GOOSE subscriber plugin', () => {
   });
 
   describe('in Publisher view', () => {
-    describe('per dafault', () => {
-      describe('the plugin itsself', () => {
+    describe('per default', () => {
+      describe('the plugin itself', () => {
         it('looks like the latest snapshot', async () => {
           await expect(element).shadowDom.to.equalSnapshot();
         });

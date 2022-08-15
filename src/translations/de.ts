@@ -368,7 +368,13 @@ export const de: Translations = {
     },
     smvLaterBinding: {
       svcList: {
+        title: '???',
         noSvcFound: 'Kein Sampled-Value-Kontrolblock im Projekt',
+      },
+      extRefList: {
+        title: '???? "{{ svcName }}" / "{{ fcdaName }}"',
+        noSubscribedExtRefs: '????',
+        noAvailableExtRefs: '????',
       },
     },
     iedList: {

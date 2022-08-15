@@ -365,7 +365,14 @@ export const en = {
     },
     smvLaterBinding: {
       svcList: {
+        title: 'List of Sampled Values Controls with linked FCDAs',
         noSvcFound: 'No Sampled Value Controls found',
+      },
+      extRefList: {
+        title:
+          'Selected Sampled Value Control "{{ svcName }}" / FCDA "{{ fcdaName }}"',
+        noSubscribedExtRefs: 'No subscribed ExtRefs',
+        noAvailableExtRefs: 'No available ExtRefs to subscribe',
       },
     },
     iedList: {

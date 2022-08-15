@@ -1,8 +1,22 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["smv-list looks like the latest snapshot with a document loaded"] = 
-`<section tabindex="0">
+snapshots[
+  'smv-list without a doc loaded looks like the latest snapshot'
+] = `<section tabindex="0">
+  <h1>
+    [subscription.smvLaterBinding.svcList.noSvcFound]
+  </h1>
+</section>
+`;
+/* end snapshot smv-list without a doc loaded looks like the latest snapshot */
+
+snapshots[
+  'smv-list with a doc loaded looks like the latest snapshot'
+] = `<section tabindex="0">
+  <h1>
+    [subscription.smvLaterBinding.svcList.title]
+  </h1>
   <filtered-list>
     <mwc-list-item
       aria-disabled="false"
@@ -598,14 +612,4 @@ snapshots["smv-list looks like the latest snapshot with a document loaded"] =
   </filtered-list>
 </section>
 `;
-/* end snapshot smv-list looks like the latest snapshot with a document loaded */
-
-snapshots["smv-list looks like the latest snapshot without a doc loaded"] = 
-`<section tabindex="0">
-  <h1>
-    [subscription.smvLaterBinding.svcList.noSvcFound]
-  </h1>
-</section>
-`;
-/* end snapshot smv-list looks like the latest snapshot without a doc loaded */
-
+/* end snapshot smv-list with a doc loaded looks like the latest snapshot */
