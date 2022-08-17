@@ -1,8 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["open-scd looks like its snapshot"] = 
-`<mwc-drawer
+snapshots['open-scd looks like its snapshot'] = `<mwc-drawer
   class="mdc-theme--surface"
   hasheader=""
   id="menu"
@@ -659,6 +658,7 @@ snapshots["open-scd looks like its snapshot"] =
       hasmeta=""
       left=""
       mwc-list-item=""
+      selected=""
       tabindex="-1"
       value="/src/editors/SMVSubscriberLaterBinding.js"
     >
@@ -1364,4 +1364,3 @@ snapshots["open-scd looks like its snapshot"] =
 </mwc-dialog>
 `;
 /* end snapshot open-scd looks like its snapshot */
-

@@ -22,7 +22,7 @@ describe('PluggingElement', () => {
   });
 
   it('stores default plugins on load', () =>
-    expect(element).property('editors').to.have.lengthOf(5));
+    expect(element).property('editors').to.have.lengthOf(6));
 
   describe('plugin manager dialog', () => {
     let firstEditorPlugin: HTMLElement;
@@ -49,7 +49,7 @@ describe('PluggingElement', () => {
     it('disables deselected plugins', async () => {
       firstEditorPlugin.click();
       await element.updateComplete;
-      expect(element).property('editors').to.have.lengthOf(4);
+      expect(element).property('editors').to.have.lengthOf(5);
     });
 
     it('enables selected plugins', async () => {
@@ -57,7 +57,7 @@ describe('PluggingElement', () => {
       await element.updateComplete;
       (<HTMLElement>element.pluginList.firstElementChild).click();
       await element.updateComplete;
-      expect(element).property('editors').to.have.lengthOf(5);
+      expect(element).property('editors').to.have.lengthOf(6);
     });
 
     it('resets plugins to default on reset button click', async () => {
@@ -65,7 +65,7 @@ describe('PluggingElement', () => {
       await element.updateComplete;
       resetAction.click();
       await element.updateComplete;
-      expect(element).property('editors').to.have.lengthOf(5);
+      expect(element).property('editors').to.have.lengthOf(6);
     });
 
     it('opens the custom plugin dialog on add button click', async () => {
@@ -139,7 +139,7 @@ describe('PluggingElement', () => {
       await name.updateComplete;
       primaryAction.click();
       await element.updateComplete;
-      expect(element.editors).to.have.lengthOf(6);
+      expect(element.editors).to.have.lengthOf(7);
     });
     it('adds a new menu kind plugin on add button click', async () => {
       const lengthMenuKindPlugins = element.menuEntries.length;

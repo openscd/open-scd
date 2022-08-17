@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'smv-list looks like the latest snapshot without a doc loaded'
-] = `<section tabindex="0">
+snapshots["smv-list looks like the latest snapshot without a doc loaded"] = 
+`<section tabindex="0">
   <h1>
     [subscription.smvLaterBinding.extRefList.noSelection]
   </h1>
@@ -11,9 +10,8 @@ snapshots[
 `;
 /* end snapshot smv-list looks like the latest snapshot without a doc loaded */
 
-snapshots[
-  'smv-list with document loaded looks like the latest snapshot, but no event fired'
-] = `<section tabindex="0">
+snapshots["smv-list with document loaded looks like the latest snapshot, but no event fired"] = 
+`<section tabindex="0">
   <h1>
     [subscription.smvLaterBinding.extRefList.noSelection]
   </h1>
@@ -21,9 +19,8 @@ snapshots[
 `;
 /* end snapshot smv-list with document loaded looks like the latest snapshot, but no event fired */
 
-snapshots[
-  'smv-list with document loaded when SVC has no subscriptions looks like the latest snapshot, when SVC has no subscriptions'
-] = `<section tabindex="0">
+snapshots["smv-list with document loaded when SVC has no subscriptions looks like the latest snapshot, when SVC has no subscriptions"] = 
+`<section tabindex="0">
   <h1>
     [subscription.smvLaterBinding.extRefList.title]
   </h1>
@@ -224,9 +221,8 @@ snapshots[
 `;
 /* end snapshot smv-list with document loaded when SVC has no subscriptions looks like the latest snapshot, when SVC has no subscriptions */
 
-snapshots[
-  'smv-list with document loaded when SVC has a single subscriptions looks like the latest snapshot, '
-] = `<section tabindex="0">
+snapshots["smv-list with document loaded when SVC has a single subscriptions looks like the latest snapshot, "] = 
+`<section tabindex="0">
   <h1>
     [subscription.smvLaterBinding.extRefList.title]
   </h1>
@@ -235,7 +231,7 @@ snapshots[
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-      value="MeasPoint.CT1 SMV_Subscriber>>Overvoltage> PTRC 1>SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv instMag.i@AmpSv;TCTR1/AmpSv/instMag.i"
+      value="MeasPoint.CT1 SMV_Subscriber>>Overvoltage> PTRC 1>SMV:currentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv instMag.i@AmpSv;TCTR1/AmpSv/instMag.i"
     >
       <span>
         [subscription.subscriber.subscribed]
@@ -252,14 +248,14 @@ snapshots[
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber>>Overvoltage> PTRC 1>SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv instMag.i@AmpSv;TCTR1/AmpSv/instMag.i"
+      value="SMV_Subscriber>>Overvoltage> PTRC 1>SMV:currentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv instMag.i@AmpSv;TCTR1/AmpSv/instMag.i"
     >
       <span>
         AmpSv;TCTR1/AmpSv/instMag.i
                  (MeasPoint.CT1)
       </span>
       <span slot="secondary">
-        SMV_Subscriber>>Overvoltage> PTRC 1>SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv instMag.i@AmpSv;TCTR1/AmpSv/instMag.i
+        SMV_Subscriber>>Overvoltage> PTRC 1>SMV:currentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv instMag.i@AmpSv;TCTR1/AmpSv/instMag.i
       </span>
       <mwc-icon slot="graphic">
         swap_horiz
@@ -437,9 +433,9 @@ snapshots[
 </section>
 `;
 /* end snapshot smv-list with document loaded when SVC has a single subscriptions looks like the latest snapshot,  */
-snapshots[
-  'smv-list when SVC has a multiple subscriptions looks like the latest snapshot, '
-] = `<section tabindex="0">
+
+snapshots["smv-list when SVC has a multiple subscriptions looks like the latest snapshot, "] = 
+`<section tabindex="0">
   <h1>
     [subscription.smvLaterBinding.extRefList.title]
   </h1>
@@ -448,7 +444,7 @@ snapshots[
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-      value="MeasPoint.CT1 SMV_Subscriber>>Overvoltage> PTRC 1>SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv q@AmpSv;TCTR1/AmpSv/q MeasPoint.CT1 SMV_Subscriber>>Overvoltage> PTRC 1>SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv q@AmpSv;TCTR2/AmpSv/q MeasPoint.CT1 SMV_Subscriber>>Overvoltage> PTRC 1>SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv q@AmpSv;TCTR3/AmpSv/q"
+      value="MeasPoint.CT1 SMV_Subscriber>>Overvoltage> PTRC 1>SMV:currentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv q@AmpSv;TCTR1/AmpSv/q MeasPoint.CT1 SMV_Subscriber>>Overvoltage> PTRC 1>SMV:currentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv q@AmpSv;TCTR2/AmpSv/q MeasPoint.CT1 SMV_Subscriber>>Overvoltage> PTRC 1>SMV:currentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv q@AmpSv;TCTR3/AmpSv/q"
     >
       <span>
         [subscription.subscriber.subscribed]
@@ -465,14 +461,14 @@ snapshots[
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber>>Overvoltage> PTRC 1>SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv q@AmpSv;TCTR1/AmpSv/q"
+      value="SMV_Subscriber>>Overvoltage> PTRC 1>SMV:currentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv q@AmpSv;TCTR1/AmpSv/q"
     >
       <span>
         AmpSv;TCTR1/AmpSv/q
                  (MeasPoint.CT1)
       </span>
       <span slot="secondary">
-        SMV_Subscriber>>Overvoltage> PTRC 1>SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv q@AmpSv;TCTR1/AmpSv/q
+        SMV_Subscriber>>Overvoltage> PTRC 1>SMV:currentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv q@AmpSv;TCTR1/AmpSv/q
       </span>
       <mwc-icon slot="graphic">
         swap_horiz
@@ -481,14 +477,14 @@ snapshots[
     <mwc-list-item
       graphic="large"
       twoline=""
-      value="SMV_Subscriber>>Overvoltage> PTRC 1>SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv q@AmpSv;TCTR2/AmpSv/q"
+      value="SMV_Subscriber>>Overvoltage> PTRC 1>SMV:currentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv q@AmpSv;TCTR2/AmpSv/q"
     >
       <span>
         AmpSv;TCTR2/AmpSv/q
                  (MeasPoint.CT1)
       </span>
       <span slot="secondary">
-        SMV_Subscriber>>Overvoltage> PTRC 1>SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv q@AmpSv;TCTR2/AmpSv/q
+        SMV_Subscriber>>Overvoltage> PTRC 1>SMV:currentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv q@AmpSv;TCTR2/AmpSv/q
       </span>
       <mwc-icon slot="graphic">
         swap_horiz
@@ -497,14 +493,14 @@ snapshots[
     <mwc-list-item
       graphic="large"
       twoline=""
-      value="SMV_Subscriber>>Overvoltage> PTRC 1>SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv q@AmpSv;TCTR3/AmpSv/q"
+      value="SMV_Subscriber>>Overvoltage> PTRC 1>SMV:currentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv q@AmpSv;TCTR3/AmpSv/q"
     >
       <span>
         AmpSv;TCTR3/AmpSv/q
                  (MeasPoint.CT1)
       </span>
       <span slot="secondary">
-        SMV_Subscriber>>Overvoltage> PTRC 1>SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv q@AmpSv;TCTR3/AmpSv/q
+        SMV_Subscriber>>Overvoltage> PTRC 1>SMV:currentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv q@AmpSv;TCTR3/AmpSv/q
       </span>
       <mwc-icon slot="graphic">
         swap_horiz
@@ -682,3 +678,4 @@ snapshots[
 </section>
 `;
 /* end snapshot smv-list when SVC has a multiple subscriptions looks like the latest snapshot,  */
+

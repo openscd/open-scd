@@ -11,13 +11,16 @@ import { nothing } from 'lit-html';
 import { translate } from 'lit-translate';
 
 import {
+  cloneElement,
   compareNames,
   getDescriptionAttribute,
   getNameAttribute,
   identity,
+  newActionEvent,
+  Replace,
 } from '../../../foundation.js';
 
-import { styles } from '../foundation.js';
+import { styles, updateExtRefElement } from '../foundation.js';
 import { FcdaSelectEvent, getFcdaTitleValue } from './foundation.js';
 
 /**
@@ -147,6 +150,60 @@ export class ExtRefLaterBindingList extends LitElement {
     );
   }
 
+  /**
+   * Unsubscribing means removing a list of attributes from the ExtRef Element.
+   *
+   * @param extRefElement - The Ext Ref Element to clean from attributes.
+   */
+  private unsubscribe(extRefElement: Element): Replace {
+    const clonedExtRefElement = cloneElement(extRefElement, {
+      iedName: null,
+      ldInst: null,
+      prefix: null,
+      lnClass: null,
+      lnInst: null,
+      doName: null,
+      daName: null,
+      serviceType: null,
+      srcLDInst: null,
+      srcPrefix: null,
+      srcLNClass: null,
+      srcLNInst: null,
+      srcCBName: null,
+    });
+
+    return {
+      old: { element: extRefElement },
+      new: { element: clonedExtRefElement },
+    };
+  }
+
+  /**
+   * Subscribing means copying a list of attributes from the FCDA Element (and others) to the ExtRef Element.
+   *
+   * @param extRefElement - The Ext Ref Element to add the attributes to.
+   */
+  private subscribe(extRefElement: Element): Replace | null {
+    if (
+      !this.currentIedElement ||
+      !this.currentSelectedFcdaElement ||
+      !this.currentSelectedSvcElement!
+    ) {
+      return null;
+    }
+
+    return {
+      old: { element: extRefElement },
+      new: {
+        element: updateExtRefElement(
+          extRefElement,
+          this.currentSelectedSvcElement,
+          this.currentSelectedFcdaElement
+        ),
+      },
+    };
+  }
+
   private renderTitle(): TemplateResult {
     const svcName = this.currentSelectedSvcElement
       ? getNameAttribute(this.currentSelectedSvcElement)
@@ -185,6 +242,11 @@ export class ExtRefLaterBindingList extends LitElement {
             extRefElement => html` <mwc-list-item
               graphic="large"
               twoline
+              @click=${() => {
+                this.dispatchEvent(
+                  newActionEvent(this.unsubscribe(extRefElement))
+                );
+              }}
               value="${identity(extRefElement)}"
             >
               <span>
@@ -230,6 +292,12 @@ export class ExtRefLaterBindingList extends LitElement {
               graphic="large"
               ?disabled=${this.unsupportedExtRefElement(extRefElement)}
               twoline
+              @click=${() => {
+                const replaceAction = this.subscribe(extRefElement);
+                if (replaceAction) {
+                  this.dispatchEvent(newActionEvent(replaceAction));
+                }
+              }}
               value="${identity(extRefElement)}"
             >
               <span>

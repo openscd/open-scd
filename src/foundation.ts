@@ -486,6 +486,16 @@ export function referencePath(element: Element): string {
   return path;
 }
 
+export type SclEdition = '2003' | '2007B' | '2007B4';
+export function getSclEdition(doc: Document): SclEdition {
+  const scl: Element = doc.documentElement;
+  const edition =
+    (scl.getAttribute('version') ?? '2003') +
+    (scl.getAttribute('revision') ?? '') +
+    (scl.getAttribute('release') ?? '');
+  return <SclEdition>edition;
+}
+
 /**
  * Extract the 'name' attribute from the given XML element.
  * @param element - The element to extract name from.
