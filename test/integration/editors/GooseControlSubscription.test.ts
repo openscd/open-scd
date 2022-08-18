@@ -1,12 +1,12 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../../../mock-wizard.js';
+import '../../mock-wizard.js';
 
 import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 
-import { Editing } from '../../../../../src/Editing.js';
-import { Wizarding } from '../../../../../src/Wizarding.js';
-import GooseControlSubscriptionPlugin from '../../../../../src/editors/GooseControlSubscription.js';
+import { Editing } from '../../../src/Editing.js';
+import { Wizarding } from '../../../src/Wizarding.js';
+import GooseControlSubscriptionPlugin from '../../../src/editors/GooseControlSubscription.js';
 
 describe('GOOSE subscriber plugin', () => {
   customElements.define(
@@ -140,10 +140,8 @@ describe('GOOSE subscriber plugin', () => {
                       fcda.closest('LN0')?.getAttribute('prefix') ?? '' //prefix is mendatory in ExtRef!!
                     }"][srcLNClass="${fcda
                       .closest('LN0')
-                      ?.getAttribute('lnClass')}"][srcLNInst="${fcda
-                      .closest('LN0')
                       ?.getAttribute(
-                        'inst'
+                        'lnClass'
                       )}"][srcCBName="${gseControlBlock.getAttribute(
                       'name'
                     )}"][serviceType="GOOSE"]`
@@ -335,10 +333,8 @@ describe('GOOSE subscriber plugin', () => {
                       fcda.closest('LN0')?.getAttribute('prefix') ?? '' //prefix is mendatory in ExtRef!!
                     }"][srcLNClass="${fcda
                       .closest('LN0')
-                      ?.getAttribute('lnClass')}"][srcLNInst="${fcda
-                      .closest('LN0')
                       ?.getAttribute(
-                        'inst'
+                        'lnClass'
                       )}"][srcCBName="${gseControlBlock.getAttribute(
                       'name'
                     )}"][serviceType="GOOSE"]`

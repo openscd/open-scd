@@ -1,47 +1,11 @@
-<SCL xmlns="http://www.iec.ch/61850/2003/SCL" version="2007" revision="B" release="4">
+<SCL xmlns="http://www.iec.ch/61850/2003/SCL">
 	<Header id="project"/>
 	<Substation name="AA1" desc="">
-		<VoltageLevel name="E1" desc="" nomFreq="50" numPhases="3">
+		<VoltageLevel name="E1" desc="">
 			<Voltage unit="V" multiplier="k">110</Voltage>
 			<Bay name="Q01" desc="">
-				<ConductingEquipment name="B5" type="VTR" desc="">
-					<EqFunction name="CurrentTransformer">
-						<EqSubFunction name="L3">
-							<LNode iedName="None" lnClass="TCTR" lnInst="1" lnType="Dummy.TCTR"/>
-						</EqSubFunction>
-						<EqSubFunction name="L2">
-							<LNode iedName="None" lnClass="TCTR" lnInst="1" lnType="Dummy.TCTR"/>
-						</EqSubFunction>
-						<EqSubFunction name="RES">
-							<LNode iedName="None" lnClass="TCTR" lnInst="1" lnType="Dummy.TCTR"/>
-						</EqSubFunction>
-						<EqSubFunction name="L1">
-							<LNode iedName="None" lnClass="TCTR" lnInst="1" lnType="Dummy.TCTR"/>
-						</EqSubFunction>
-					</EqFunction>
-				</ConductingEquipment>
-				<ConductingEquipment name="B1" type="CTR" desc="">
-					<EqFunction name="VoltageTransformer">
-						<EqSubFunction name="L3">
-							<LNode iedName="None" lnClass="TVTR" lnInst="1" lnType="Dummy.TVTR"/>
-						</EqSubFunction>
-						<EqSubFunction name="L2">
-							<LNode iedName="None" lnClass="TVTR" lnInst="1" lnType="Dummy.TVTR"/>
-						</EqSubFunction>
-						<EqSubFunction name="RES">
-							<LNode iedName="None" lnClass="TVTR" lnInst="1" lnType="Dummy.TVTR"/>
-						</EqSubFunction>
-						<EqSubFunction name="L1">
-							<LNode iedName="None" lnClass="TVTR" lnInst="1" lnType="Dummy.TVTR"/>
-						</EqSubFunction>
-					</EqFunction>
-				</ConductingEquipment>
-				<Function name="Overvoltage">
-					<LNode iedName="None" lnClass="PTRC" lnInst="1" lnType="Summy.PTRC"/>
-				</Function>
-				<Function name="Overcurrent">
-					<LNode iedName="None" lnClass="PTRC" lnInst="1" lnType="Summy.PTRC"/>
-				</Function>
+				<ConductingEquipment name="B5" type="VTR" desc=""/>
+				<ConductingEquipment name="B1" type="CTR" desc=""/>
 			</Bay>
 		</VoltageLevel>
 	</Substation>
@@ -52,26 +16,26 @@
 			<ConnectedAP iedName="SMV_Publisher" apName="AP1">
 				<SMV ldInst="CurrentTransformer" cbName="fullSmv">
 					<Address>
-						<P type="MAC-Address" xsi:type="tP_MAC-Address" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">01-0C-CD-04-00-02</P>
-						<P type="APPID" xsi:type="tP_APPID" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">0003</P>
+						<P xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="MAC-Address" xsi:type="tP_MAC-Address">01-0C-CD-04-00-02</P>
+						<P xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="APPID" xsi:type="tP_APPID">0003</P>
 					</Address>
 				</SMV>
 				<SMV ldInst="CurrentTransformer" cbName="voltageOnly">
 					<Address>
-						<P type="MAC-Address" xsi:type="tP_MAC-Address" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">01-0C-CD-04-00-01</P>
-						<P type="APPID" xsi:type="tP_APPID" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">0002</P>
+						<P xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="MAC-Address" xsi:type="tP_MAC-Address">01-0C-CD-04-00-01</P>
+						<P xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="APPID" xsi:type="tP_APPID">0002</P>
 					</Address>
 				</SMV>
 				<SMV ldInst="CurrentTransformer" cbName="currentOnly">
 					<Address>
-						<P type="MAC-Address" xsi:type="tP_MAC-Address" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">01-0C-CD-04-00-00</P>
-						<P type="APPID" xsi:type="tP_APPID" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">0001</P>
+						<P xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="MAC-Address" xsi:type="tP_MAC-Address">01-0C-CD-04-00-00</P>
+						<P xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="APPID" xsi:type="tP_APPID">0001</P>
 					</Address>
 				</SMV>
 			</ConnectedAP>
 		</SubNetwork>
 	</Communication>
-	<IED xmlns="http://www.iec.ch/61850/2003/SCL" name="SMV_Subscriber" manufacturer="Dummy">
+	<IED name="SMV_Subscriber" manufacturer="Dummy">
 		<AccessPoint name="AP1">
 			<Server>
 				<Authentication/>
@@ -79,12 +43,12 @@
 					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
 					<LN prefix="" lnClass="PTRC" inst="1" lnType="Summy.PTRC">
 						<Inputs>
-              <ExtRef intAddr="AmpSv;TCTR1/AmpSv/instMag.i" desc="MeasPoint.CT1" iedName="SMV_Publisher" ldInst="CurrentTransformer" prefix="L1" lnClass="TCTR" lnInst="1" doName="AmpSv" daName="instMag.i"/>
-              <ExtRef intAddr="AmpSv;TCTR1/AmpSv/q" desc="MeasPoint.CT1" iedName="SMV_Publisher" ldInst="CurrentTransformer" prefix="L1" lnClass="TCTR" lnInst="1" doName="AmpSv" daName="q"/>
-              <ExtRef intAddr="AmpSv;TCTR2/AmpSv/instMag.i" desc="MeasPoint.CT2"/>
-              <ExtRef intAddr="AmpSv;TCTR2/AmpSv/q" desc="MeasPoint.CT1" iedName="SMV_Publisher" ldInst="CurrentTransformer" prefix="L1" lnClass="TCTR" lnInst="1" doName="AmpSv" daName="q"/>
-              <ExtRef intAddr="AmpSv;TCTR3/AmpSv/instMag.i" desc="MeasPoint.CT3"/>
-              <ExtRef intAddr="AmpSv;TCTR3/AmpSv/q" desc="MeasPoint.CT1" iedName="SMV_Publisher" ldInst="CurrentTransformer" prefix="L1" lnClass="TCTR" lnInst="1" doName="AmpSv" daName="q"/>
+							<ExtRef intAddr="AmpSv;TCTR1/AmpSv/instMag.i" iedName="SMV_Publisher" ldInst="CurrentTransformer" prefix="L1" lnClass="TCTR" lnInst="1" doName="AmpSv" daName="instMag.i"/>
+							<ExtRef intAddr="AmpSv;TCTR1/AmpSv/q" iedName="SMV_Publisher" ldInst="CurrentTransformer" prefix="L1" lnClass="TCTR" lnInst="1" doName="AmpSv" daName="q"/>
+							<ExtRef intAddr="AmpSv;TCTR2/AmpSv/instMag.i"/>
+							<ExtRef intAddr="AmpSv;TCTR2/AmpSv/q" iedName="SMV_Publisher" ldInst="CurrentTransformer" prefix="L1" lnClass="TCTR" lnInst="1" doName="AmpSv" daName="q"/>
+							<ExtRef intAddr="AmpSv;TCTR3/AmpSv/instMag.i"/>
+							<ExtRef intAddr="AmpSv;TCTR3/AmpSv/q" iedName="SMV_Publisher" ldInst="CurrentTransformer" prefix="L1" lnClass="TCTR" lnInst="1" doName="AmpSv" daName="q"/>
 						</Inputs>
 					</LN>
 				</LDevice>
@@ -92,13 +56,12 @@
 					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
 					<LN prefix="" lnClass="PTRC" inst="1" lnType="Summy.PTRC">
 						<Inputs>
-              <ExtRef intAddr="VolSv;TVTR1/VolSv/instMag.i" desc="MeasPoint.VT1" iedName="SMV_Publisher" ldInst="VoltageTransformer" prefix="L1" lnClass="TVTR" lnInst="1" doName="VolSv" daName="instMag.i"/>
-              <ExtRef intAddr="VolSv;TVTR1/VolSv/q" desc="MeasPoint.VT1"/>
-              <ExtRef intAddr="VolSv;TVTR2/VolSv/instMag.i" desc="MeasPoint.VT2"/>
-              <ExtRef intAddr="VolSv;TVTR2/VolSv/q" desc="MeasPoint.VT1"/>
-              <ExtRef intAddr="VolSv;TVTR3/VolSv/instMag.i" desc="MeasPoint.VT3"/>
-              <ExtRef intAddr="VolSv;TVTR3/VolSv/q" desc="MeasPoint.VT1"/>
-              <ExtRef intAddr="someRestrictedExtRef" desc="Restricted To AmpSV" pLN="TCTR" pDO="AmpSV" pDA="instMag.i"/>
+							<ExtRef intAddr="VolSv;TVTR1/VolSv/instMag.i" iedName="SMV_Publisher" ldInst="VoltageTransformer" prefix="L1" lnClass="TVTR" lnInst="1" doName="VolSv" daName="instMag.i"/>
+							<ExtRef intAddr="VolSv;TVTR1/VolSv/q"/>
+							<ExtRef intAddr="VolSv;TVTR2/VolSv/instMag.i"/>
+							<ExtRef intAddr="VolSv;TVTR2/VolSv/q"/>
+							<ExtRef intAddr="VolSv;TVTR3/VolSv/instMag.i"/>
+							<ExtRef intAddr="VolSv;TVTR3/VolSv/q"/>
 						</Inputs>
 					</LN>
 				</LDevice>
@@ -141,14 +104,14 @@
 							<FCDA ldInst="CurrentTransformer" prefix="L3" lnClass="TCTR" lnInst="1" doName="AmpSv" daName="instMag.i" fc="MX"/>
 							<FCDA ldInst="CurrentTransformer" prefix="L3" lnClass="TCTR" lnInst="1" doName="AmpSv" daName="q" fc="MX"/>
 						</DataSet>
-						<SampledValueControl name="fullSmv" multicast="true" smvID="smv3" smpMod="SmpPerPeriod" smpRate="80" nofASDU="1" confRev="1" datSet="fullSmvsDataSet">
-							<SmvOpts sampleRate="true" dataSet="true" synchSourceId="true"/>
+						<SampledValueControl name="fullSmv" multicast="true" smvID="smv3" smpRate="80" nofASDU="1" confRev="1" datSet="fullSmvsDataSet">
+							<SmvOpts sampleRate="true" dataRef="true" sampleSynchronized="true"/>
 						</SampledValueControl>
-						<SampledValueControl name="voltageOnly" multicast="true" smvID="smv2" smpMod="SmpPerPeriod" smpRate="80" nofASDU="1" confRev="1" datSet="voltageOnlysDataSet">
-							<SmvOpts sampleRate="true" dataSet="true" synchSourceId="true"/>
+						<SampledValueControl name="voltageOnly" multicast="true" smvID="smv2" smpRate="80" nofASDU="1" confRev="1" datSet="voltageOnlysDataSet">
+							<SmvOpts sampleRate="true" dataRef="true" sampleSynchronized="true"/>
 						</SampledValueControl>
-						<SampledValueControl name="currentOnly" multicast="true" smvID="firstSMV" smpMod="SmpPerPeriod" smpRate="80" nofASDU="1" confRev="1" datSet="currentOnlysDataSet">
-							<SmvOpts sampleRate="true" dataSet="true" synchSourceId="true"/>
+						<SampledValueControl name="currentOnly" multicast="true" smvID="firstSMV" smpRate="80" nofASDU="1" confRev="1" datSet="currentOnlysDataSet">
+							<SmvOpts sampleRate="true" dataRef="true" sampleSynchronized="true"/>
 						</SampledValueControl>
 					</LN0>
 					<LN prefix="L3" lnClass="TCTR" inst="1" lnType="Dummy.TCTR"/>
@@ -362,7 +325,6 @@
 			<BDA name="ctlNum" bType="INT8U"/>
 			<BDA name="T" bType="Timestamp"/>
 			<BDA name="Test" bType="BOOLEAN"/>
-			<ProtNs type="8-MMS">IEC 61850-8-1:2003</ProtNs>
 		</DAType>
 		<DAType id="OpenSCD_OperSBOw_BehaviourModeKind">
 			<BDA name="ctlVal" bType="Enum" type="BehaviourModeKind"/>
@@ -371,7 +333,6 @@
 			<BDA name="T" bType="Timestamp"/>
 			<BDA name="Test" bType="BOOLEAN"/>
 			<BDA name="Check" bType="Check"/>
-			<ProtNs type="8-MMS">IEC 61850-8-1:2003</ProtNs>
 		</DAType>
 		<DAType id="OpenSCD_Originator">
 			<BDA name="orCat" bType="Enum" type="OriginatorCategoryKind"/>

@@ -11,7 +11,7 @@ describe('smv-list', () => {
   let doc: XMLDocument;
 
   beforeEach(async () => {
-    doc = await fetch('/test/testfiles/editors/LaterBindingSMV.scd')
+    doc = await fetch('/test/testfiles/editors/LaterBindingSMV2007B4.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
   });
