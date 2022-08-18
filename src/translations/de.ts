@@ -391,6 +391,12 @@ export const de: Translations = {
           noCtrlFound: '???',
         },
       },
+      GSEControl: {
+        ctrlList: {
+          title: '???',
+          noCtrlFound: '???',
+        },
+      },
     },
     iedList: {
       title: 'IEDs',

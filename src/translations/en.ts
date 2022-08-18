@@ -387,6 +387,12 @@ export const en = {
           noCtrlFound: 'No Sampled Value Controls found',
         },
       },
+      GSEControl: {
+        ctrlList: {
+          title: 'List of Goose Controls with linked FCDAs',
+          noCtrlFound: 'No Goose Controls found',
+        },
+      },
     },
     iedList: {
       title: 'IEDs',
