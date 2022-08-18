@@ -1,6 +1,6 @@
 import { css, html, LitElement, property, TemplateResult } from 'lit-element';
 
-import './subscription/smv-laterbinding/svc-laterbinding-list.js';
+import './subscription/later-binding/later-binding-list.js';
 import './subscription/smv-laterbinding/ext-ref-laterbinding-list.js';
 
 /** An editor [[`plugin`]] for Subscribe Later Binding (SMV). */
@@ -11,8 +11,12 @@ export default class SMVSubscribeLaterBindingPlugin extends LitElement {
   render(): TemplateResult {
     return html`<div>
       <div class="container">
-        <svc-later-binding-list class="column" .doc=${this.doc}>
-        </svc-later-binding-list>
+        <later-binding-list
+          class="column"
+          .doc=${this.doc}
+          controlTag="SampledValueControl"
+        >
+        </later-binding-list>
         <extref-later-binding-list class="column" .doc=${this.doc}>
         </extref-later-binding-list>
       </div>

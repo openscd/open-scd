@@ -384,6 +384,14 @@ export const de: Translations = {
           'Keine externen externen Referenzen vom Type "Later Binding"',
       },
     },
+    laterBinding: {
+      SampledValueControl: {
+        ctrlList: {
+          title: '???',
+          noCtrlFound: '???',
+        },
+      },
+    },
     iedList: {
       title: 'IEDs',
     },

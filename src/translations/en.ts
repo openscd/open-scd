@@ -380,6 +380,14 @@ export const en = {
         noAvailableExtRefs: 'No available ExtRefs to subscribe',
       },
     },
+    laterBinding: {
+      SampledValueControl: {
+        ctrlList: {
+          title: 'List of Sampled Values Controls with linked FCDAs',
+          noCtrlFound: 'No Sampled Value Controls found',
+        },
+      },
+    },
     iedList: {
       title: 'IEDs',
     },
