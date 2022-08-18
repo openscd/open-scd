@@ -28,7 +28,7 @@ describe('SMV Subscribe Later Binding plugin', () => {
     await element.requestUpdate();
   });
 
-  it('when subscribing a available ExtRef then the list are changed', async () => {
+  it('when subscribing an available ExtRef then the list are changed', async () => {
     const svcListElement = getSvcLaterBindingList();
     const extRefListElement = getExtrefLaterBindingList();
 

@@ -3,7 +3,7 @@ import {
   cloneElement,
   compareNames,
   createElement,
-  getSclEdition,
+  getSclSchemaVersion,
 } from '../../foundation.js';
 import { getFcdaReferences } from '../../foundation/ied.js';
 
@@ -122,7 +122,7 @@ export function createExtRefElement(
     'daName',
   ].map(attr => fcdaElement.getAttribute(attr));
 
-  if (getSclEdition(fcdaElement.ownerDocument) === '2003') {
+  if (getSclSchemaVersion(fcdaElement.ownerDocument) === '2003') {
     // Edition 2003(1) does not define serviceType and its MCD attribute starting with src...
     return createElement(fcdaElement.ownerDocument, 'ExtRef', {
       iedName,
@@ -156,8 +156,7 @@ export function createExtRefElement(
     controlElement.closest('LN0,LN')?.getAttribute('prefix') ?? '';
   const srcLNClass =
     controlElement.closest('LN0,LN')?.getAttribute('lnClass') ?? '';
-  const srcLNInst =
-    controlElement.closest('LN0,LN')?.getAttribute('inst') ?? null;
+  const srcLNInst = controlElement.closest('LN0,LN')?.getAttribute('inst');
   const srcCBName = controlElement.getAttribute('name') ?? '';
 
   return createElement(fcdaElement.ownerDocument, 'ExtRef', {
@@ -178,7 +177,7 @@ export function createExtRefElement(
 }
 
 /**
- * Create a clone of the passed ExtRefElement and updated or set the required attributes oon the cloned element
+ * Create a clone of the passed ExtRefElement and updated or set the required attributes on the cloned element
  * depending on the Edition and type of Control Element.
  *
  * @param extRefElement  - The ExtRef Element to clone and update.
@@ -201,7 +200,7 @@ export function updateExtRefElement(
     'daName',
   ].map(attr => fcdaElement.getAttribute(attr));
 
-  if (getSclEdition(fcdaElement.ownerDocument) === '2003') {
+  if (getSclSchemaVersion(fcdaElement.ownerDocument) === '2003') {
     // Edition 2003(1) does not define serviceType and its MCD attribute starting with src...
     return cloneElement(extRefElement, {
       iedName,
@@ -245,8 +244,7 @@ export function updateExtRefElement(
     controlElement.closest('LN0,LN')?.getAttribute('prefix') ?? '';
   const srcLNClass =
     controlElement.closest('LN0,LN')?.getAttribute('lnClass') ?? '';
-  const srcLNInst =
-    controlElement.closest('LN0,LN')?.getAttribute('inst') ?? null;
+  const srcLNInst = controlElement.closest('LN0,LN')?.getAttribute('inst');
   const srcCBName = controlElement.getAttribute('name') ?? '';
 
   return cloneElement(extRefElement, {

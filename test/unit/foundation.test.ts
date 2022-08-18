@@ -10,7 +10,7 @@ import {
   getChildElementsByTagName,
   getNameAttribute,
   getReference,
-  getSclEdition,
+  getSclSchemaVersion,
   getUniqueElementName,
   identity,
   ifImplemented,
@@ -617,28 +617,28 @@ describe('foundation', () => {
       expect(depth(circular)).to.not.be.finite);
   });
 
-  describe('getSclEdition', () => {
+  describe('getSclSchemaVersion', () => {
     let doc: Document;
 
     it('when passing a SCL 2003 Document then correct edition is returned', async () => {
       doc = await fetch('/test/testfiles/valid2003.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      expect(getSclEdition(doc)).to.be.equal('2003');
+      expect(getSclSchemaVersion(doc)).to.be.equal('2003');
     });
 
     it('when passing a SCL 2007B Document then correct edition is returned', async () => {
       doc = await fetch('/test/testfiles/valid2007B.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      expect(getSclEdition(doc)).to.be.equal('2007B');
+      expect(getSclSchemaVersion(doc)).to.be.equal('2007B');
     });
 
     it('when passing a SCL 2007B4 Document then correct edition is returned', async () => {
       doc = await fetch('/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      expect(getSclEdition(doc)).to.be.equal('2007B4');
+      expect(getSclSchemaVersion(doc)).to.be.equal('2007B4');
     });
   });
 
