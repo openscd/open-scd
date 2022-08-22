@@ -154,6 +154,157 @@
       </Server>
     </AccessPoint>
   </IED>
+  	<IED name="IED1" manufacturer="DummyManu">
+		<AccessPoint name="A1">
+			<Server>
+				<Authentication/>
+				<LDevice inst="CurrentTransformer_RES">
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
+					<LN prefix="" lnClass="TCTR" inst="1" lnType="Dummy.TCTR">
+						<DOI name="HzRtg">
+							<SDI name="setMag">
+								<DAI name="i">
+									<Val>60</Val>
+								</DAI>
+							</SDI>
+						</DOI>
+						<DOI name="ARtgSec">
+							<DAI name="setVal">
+								<Val>5</Val>
+							</DAI>
+						</DOI>
+						<DOI name="ARtgNom">
+							<SDI name="setMag">
+								<DAI name="f">
+									<Val>100</Val>
+								</DAI>
+							</SDI>
+						</DOI>
+						<DOI name="Rat">
+							<SDI name="setMag">
+								<DAI name="f">
+									<Val>20</Val>
+								</DAI>
+							</SDI>
+						</DOI>
+						<DOI name="ARtg">
+							<SDI name="setMag">
+								<DAI name="f">
+									<Val>100</Val>
+								</DAI>
+							</SDI>
+						</DOI>
+					</LN>
+				</LDevice>
+				<LDevice inst="CurrentTransformer_L1">
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0">
+						<DOI name="NamPlt">
+							<DAI name="vendor">
+								<Val>SomeOtherVendor</Val>
+							</DAI>
+						</DOI>
+					</LN0>
+					<LN prefix="" lnClass="TCTR" inst="1" lnType="Dummy.TCTR">
+						<DOI name="HzRtg">
+							<SDI name="setMag">
+								<DAI name="i">
+									<Val>60</Val>
+								</DAI>
+							</SDI>
+						</DOI>
+						<DOI name="ARtg">
+							<SDI name="setMag">
+								<DAI name="f">
+									<Val>1000</Val>
+								</DAI>
+							</SDI>
+						</DOI>
+						<DOI name="ARtgNom">
+							<SDI name="setMag">
+								<DAI name="f">
+									<Val>1000</Val>
+								</DAI>
+							</SDI>
+						</DOI>
+						<DOI name="ARtgSec">
+							<DAI name="setVal">
+								<Val>5</Val>
+							</DAI>
+						</DOI>
+						<DOI name="Rat">
+							<SDI name="setMag">
+								<DAI name="f">
+									<Val>200</Val>
+								</DAI>
+							</SDI>
+						</DOI>
+					</LN>
+				</LDevice>
+				<LDevice inst="VoltageTransformer_RES">
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
+					<LN prefix="" lnClass="TVTR" inst="1" lnType="Dummy.TVTR">
+						<DOI name="HzRtg">
+							<SDI name="setMag">
+								<DAI name="i">
+									<Val>60</Val>
+								</DAI>
+							</SDI>
+						</DOI>
+						<DOI name="VRtg">
+							<SDI name="setMag">
+								<DAI name="f">
+									<Val>5000</Val>
+								</DAI>
+							</SDI>
+						</DOI>
+						<DOI name="VRtgSec">
+							<DAI name="setVal">
+								<Val>200</Val>
+							</DAI>
+						</DOI>
+						<DOI name="Rat">
+							<SDI name="setMag">
+								<DAI name="f">
+									<Val>25</Val>
+								</DAI>
+							</SDI>
+						</DOI>
+					</LN>
+				</LDevice>
+				<LDevice inst="VoltageTransformer_L1">
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
+					<LN prefix="" lnClass="TVTR" inst="1" lnType="Dummy.TVTR">
+						<DOI name="HzRtg">
+							<SDI name="setMag">
+								<DAI name="i">
+									<Val>60</Val>
+								</DAI>
+							</SDI>
+						</DOI>
+						<DOI name="VRtg">
+							<SDI name="setMag">
+								<DAI name="f">
+									<Val>10000</Val>
+								</DAI>
+							</SDI>
+						</DOI>
+						<DOI name="VRtgSec">
+							<DAI name="setVal">
+								<Val>200</Val>
+							</DAI>
+						</DOI>
+						<DOI name="Rat">
+							<SDI name="setMag">
+								<DAI name="f">
+									<Val>500</Val>
+								</DAI>
+							</SDI>
+						</DOI>
+					</LN>
+				</LDevice>
+			</Server>
+		</AccessPoint>
+	</IED>
 	<DataTypeTemplates>
 		<LNodeType lnClass="GGIO" id="FieldA_QA1_QB1_QB2_QC9CBSW.GGIO1">
 			<DO name="Beh" type="FieldA_QA1_QB1_QB2_QC9CBSW.LLN0.Beh"/>
