@@ -38,7 +38,7 @@ export const officialPlugins = [
     name: 'Subscriber Later Binding (SMV)',
     src: '/src/editors/SMVSubscriberLaterBinding.js',
     icon: 'link',
-    default: false,
+    default: true,
     kind: 'editor',
   },
   {
@@ -185,6 +185,15 @@ export const officialPlugins = [
     kind: 'menu',
     requireDoc: true,
     position: 'middle',
+  },
+  {
+    name: 'Show SCL History',
+    src: '/src/menu/SclHistory.js',
+    icon: 'history_toggle_off',
+    default: true,
+    kind: 'menu',
+    requireDoc: true,
+    position: 'bottom',
   },
   {
     name: 'Help',
