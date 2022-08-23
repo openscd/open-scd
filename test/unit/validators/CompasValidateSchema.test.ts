@@ -73,7 +73,7 @@ describe('CompasValidateSchema', () => {
         </svs:ValidationErrors>
         <svs:ValidationErrors>
           <svs:Message></svs:Message>
-          <svs:RuleName>Now Message Rule</svs:RuleName>
+          <svs:RuleName>No Message Rule</svs:RuleName>
           <svs:Linenumber>1</svs:Linenumber>
         </svs:ValidationErrors>
       </svs:SclValidateResponse>
@@ -102,7 +102,7 @@ describe('CompasValidateSchema', () => {
     });
 
     it('when no message exists in response then default message returned as title', () => {
-      const validationError = getValidationError('Now Message Rule');
+      const validationError = getValidationError('No Message Rule');
 
       const result = element['createTitle'](validationError);
       expect(result).to.be.equal('No validation message');
