@@ -60,7 +60,6 @@ export const iconColors: { [key: string]: string;} = {
   warning: '--yellow',
   error: '--red',
   action: '--blue',
-  sclhistory: '--cyan',
 };
 
 export function getFilterIcon(

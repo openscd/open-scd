@@ -54,11 +54,11 @@ describe('Compare IED Plugin', () => {
     });
 
     it('expect the correct number of IEDs from project', () => {
-      expect(plugin.ieds).to.have.length(4);
+      expect(plugin.ieds).to.have.length(5);
     });
 
     it('expect the correct number of IEDs from template project', () => {
-      expect(plugin.templateIeds).to.have.length(3);
+      expect(plugin.templateIeds).to.have.length(4);
     });
 
     it('after closing the dialog everything set to undefined', async () => {
@@ -106,11 +106,12 @@ describe('Compare IED Plugin', () => {
       plugin.selectedTemplateIed =
         template.querySelector('IED[name="FieldC_QA1_QB1_QB2_QC9"]') ??
         undefined;
-      plugin.run();
-      await plugin.requestUpdate();
     });
 
     it('looks like its latest snapshot', async () => {
+      plugin.filterMutables = false;
+      await plugin.requestUpdate();
+      plugin.run();
       await expect(plugin.dialog).to.equalSnapshot();
     });
   });
@@ -145,4 +146,31 @@ describe('Compare IED Plugin', () => {
       await expect(plugin.dialog).to.equalSnapshot();
     });
   });
+
+  describe('show compare dialog with ignorable differences', () => {
+    beforeEach(async () => {
+      plugin.doc = doc;
+      plugin.templateDoc = template;
+
+      plugin.selectedProjectIed =
+        doc.querySelector('IED[name="IED1"]') ?? undefined;
+      plugin.selectedTemplateIed =
+        template.querySelector('IED[name="SPECIFICATION"]') ?? undefined;
+    });
+
+    it('looks like its snapshot', async () => {
+      plugin.run();
+      await plugin.requestUpdate();
+
+      expect (plugin.dialog).to.equalSnapshot();
+    });
+
+    it('no mutables are filtered, it looks like its snapshot', async () => {
+      plugin.filterMutables = false;
+      plugin.run();
+      await plugin.requestUpdate();
+
+      expect (plugin.dialog).to.equalSnapshot();
+    });
+  })
 });

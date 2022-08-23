@@ -1,8 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["open-scd looks like its snapshot"] = 
-`<mwc-drawer
+snapshots['open-scd looks like its snapshot'] = `<mwc-drawer
   class="mdc-theme--surface"
   hasheader=""
   id="menu"
@@ -396,6 +395,24 @@ snapshots["open-scd looks like its snapshot"] =
     </mwc-list-item>
     <oscd-plugin48ab1a46d409bed9 class="plugin">
     </oscd-plugin48ab1a46d409bed9>
+    <mwc-list-item
+      aria-disabled="true"
+      class="middle"
+      disabled=""
+      graphic="icon"
+      iconid="history_toggle_off"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        history_toggle_off
+      </mwc-icon>
+      <span>
+        Show SCL History
+      </span>
+    </mwc-list-item>
+    <oscd-plugina5aa56c7c6319526 class="plugin">
+    </oscd-plugina5aa56c7c6319526>
     <li
       divider=""
       padded=""
@@ -507,8 +524,6 @@ snapshots["open-scd looks like its snapshot"] =
     id="actionfilter"
     on=""
   >
-  </mwc-icon-button-toggle>
-  <mwc-icon-button-toggle id="sclhistoryfilter">
   </mwc-icon-button-toggle>
   <mwc-list
     id="content"
@@ -751,6 +766,22 @@ snapshots["open-scd looks like its snapshot"] =
         link
       </mwc-icon>
       Subscriber (SMV)
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/editors/SMVSubscriberLaterBinding.js"
+    >
+      <mwc-icon slot="meta">
+        link
+      </mwc-icon>
+      Subscriber Later Binding (SMV)
     </mwc-check-list-item>
     <mwc-check-list-item
       aria-disabled="false"
@@ -1232,6 +1263,22 @@ snapshots["open-scd looks like its snapshot"] =
       </mwc-icon>
       Help
     </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/menu/SclHistory.js"
+    >
+      <mwc-icon slot="meta">
+        history_toggle_off
+      </mwc-icon>
+      Show SCL History
+    </mwc-check-list-item>
   </mwc-list>
   <mwc-button
     icon="refresh"
@@ -1566,4 +1613,3 @@ snapshots["open-scd looks like its snapshot"] =
 </compas-session-expired-dialog>
 `;
 /* end snapshot open-scd looks like its snapshot */
-

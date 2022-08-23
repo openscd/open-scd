@@ -1,7 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["compas-compare-dialog renderDiff child is added, so check latest snapshot"] = 
+snapshots["compas-compare-dialog renderDiff child is added, so check latest snapshot"] =
 `<div>
   <mwc-list multi="">
     <mwc-list-item
@@ -46,7 +46,7 @@ snapshots["compas-compare-dialog renderDiff child is added, so check latest snap
 `;
 /* end snapshot compas-compare-dialog renderDiff child is added, so check latest snapshot */
 
-snapshots["compas-compare-dialog renderDiff child is removed and attribute added/removed/updated, so check latest snapshot"] = 
+snapshots["compas-compare-dialog renderDiff child is removed and attribute added/removed/updated, so check latest snapshot"] =
 `<div>
   <mwc-list multi="">
     <mwc-list-item
@@ -207,4 +207,148 @@ snapshots["compas-compare-dialog renderDiff child is removed and attribute added
 </div>
 `;
 /* end snapshot compas-compare-dialog renderDiff child is removed and attribute added/removed/updated, so check latest snapshot */
+
+snapshots["compas-compare-dialog renderDiff child is added, but is ignored, so check latest snapshot"] =
+`<div>
+  <mwc-list multi="">
+    <mwc-list-item
+      aria-disabled="false"
+      noninteractive=""
+      tabindex="-1"
+      twoline=""
+    >
+      <span class="resultTitle">
+        [compare.children]
+      </span>
+      <span slot="secondary">
+        Substation 1>S1 30kV
+      </span>
+    </mwc-list-item>
+    <li
+      divider=""
+      padded=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      tabindex="0"
+      twoline=""
+    >
+      <span>
+        Bay
+      </span>
+      <span slot="secondary">
+        Substation 1>S1 30kV>BUSBAR12
+      </span>
+      <mwc-icon slot="meta">
+        add
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+    >
+      <span>
+        Bay
+      </span>
+      <span slot="secondary">
+        Substation 1>S1 30kV>BUSBAR9
+      </span>
+      <mwc-icon slot="meta">
+        delete
+      </mwc-icon>
+    </mwc-list-item>
+  </mwc-list>
+</div>
+`;
+/* end snapshot compas-compare-dialog renderDiff child is added, but is ignored, so check latest snapshot */
+snapshots["compas-compare-dialog renderDiff attribute is updated, but is ignored, so check latest snapshot"] =
+`<div>
+  <mwc-list multi="">
+    <mwc-list-item
+      aria-disabled="false"
+      noninteractive=""
+      tabindex="-1"
+      twoline=""
+    >
+      <span class="resultTitle">
+        [compare.attributes]
+      </span>
+      <span slot="secondary">
+        Substation 1>S1 110kV
+      </span>
+    </mwc-list-item>
+    <li
+      divider=""
+      padded=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      tabindex="0"
+      twoline=""
+    >
+      <span>
+        desc
+      </span>
+      <span slot="secondary">
+        Extra Voltage Level
+      </span>
+      <mwc-icon slot="meta">
+        add
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      noninteractive=""
+      tabindex="-1"
+      twoline=""
+    >
+      <span class="resultTitle">
+        [compare.children]
+      </span>
+      <span slot="secondary">
+        Substation 1>S1 110kV
+      </span>
+    </mwc-list-item>
+    <li
+      divider=""
+      padded=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+    >
+      <span>
+        Bay
+      </span>
+      <span slot="secondary">
+        Substation 1>S1 110kV>BAY_T3_1
+      </span>
+      <mwc-icon slot="meta">
+        delete
+      </mwc-icon>
+    </mwc-list-item>
+  </mwc-list>
+</div>
+`;
+/* end snapshot compas-compare-dialog renderDiff attribute is updated, but is ignored, so check latest snapshot */
 

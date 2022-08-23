@@ -8,7 +8,6 @@ import {
   CommitEntry,
   newIssueEvent,
   newLogEvent,
-  newOpenDocEvent,
 } from '../../src/foundation.js';
 
 describe('LoggingElement', () => {
@@ -215,93 +214,6 @@ describe('LoggingElement', () => {
             expect(element.redo()).to.be.false);
         });
       });
-    });
-  });
-
-  describe('when loading file with history items', () => {
-    beforeEach(async () => {
-      const doc = await fetch('/test/testfiles/history.scd')
-        .then(response => response.text())
-        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-
-      element.dispatchEvent(newOpenDocEvent(doc, 'history.scd'));
-      await element.requestUpdate();
-    });
-
-    it('has 7 items in the history list', () => {
-      expect(element.history.length).to.be.equal(7);
-    });
-
-    it('expect the correct values of the first line (with valid when and no why)', () => {
-      expect(element.history.length).to.be.equal(7);
-      expect(element.history[0].kind).to.be.equal('sclhistory');
-      expect(element.history[0].title).to.satisfy((msg: string) =>
-        msg.startsWith('SCD created from CIM File(s):')
-      );
-      expect(element.history[0].message).to.be.equal('Test User 1');
-      expect(element.history[0].time).to.be.not.null;
-    });
-
-    it('expect the correct values of the third line (with no when and no why)', () => {
-      expect(element.history.length).to.be.equal(7);
-      expect(element.history[2].kind).to.be.equal('sclhistory');
-      expect(element.history[2].title).to.satisfy((msg: string) =>
-        msg.startsWith('SCD updated, ')
-      );
-      expect(element.history[2].message).to.be.equal('Test User 1');
-      expect(element.history[2].time).to.be.null;
-    });
-
-    it('expect the correct values of the forth line (with invalid when, but valid why)', () => {
-      expect(element.history.length).to.be.equal(7);
-      expect(element.history[3].kind).to.be.equal('sclhistory');
-      expect(element.history[3].title).to.satisfy((msg: string) =>
-        msg.startsWith('SCD updated, ')
-      );
-      expect(element.history[3].message).to.be.equal(
-        'Test User 1 : Small correction in substation'
-      );
-      expect(element.history[3].time).to.be.null;
-    });
-
-    it('expect the correct message values (with missing who)', () => {
-      expect(element.history.length).to.be.equal(7);
-      expect(element.history[4].kind).to.be.equal('sclhistory');
-      expect(element.history[4].title).to.satisfy((msg: string) =>
-        msg.startsWith('SCD updated, ')
-      );
-      expect(element.history[4].message).to.be.equal(
-        'Small correction in substation'
-      );
-      expect(element.history[4].time).to.be.null;
-    });
-
-    it('expect undefined message (with missing who and why)', () => {
-      expect(element.history.length).to.be.equal(7);
-      expect(element.history[5].kind).to.be.equal('sclhistory');
-      expect(element.history[5].title).to.satisfy((msg: string) =>
-        msg.startsWith('SCD updated, ')
-      );
-      expect(element.history[5].message).to.be.undefined;
-      expect(element.history[5].time).to.be.null;
-    });
-
-    it('expect undefined title (with invalid what)', () => {
-      expect(element.history.length).to.be.equal(7);
-      expect(element.history[6].kind).to.be.equal('sclhistory');
-      expect(element.history[6].title).to.satisfy((msg: string) =>
-        msg.startsWith('UNDEFINED')
-      );
-      expect(element.history[6].message).to.be.equal(
-        'Test User 1 : Small correction in substation'
-      );
-      expect(element.history[6].time).to.be.null;
-    });
-
-    it('can reset its history', async () => {
-      element.dispatchEvent(newLogEvent({ kind: 'reset' }));
-      await element.requestUpdate();
-      expect(element).property('history').to.be.empty;
     });
   });
 

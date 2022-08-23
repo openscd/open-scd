@@ -133,6 +133,7 @@ export const en = {
     compareButton: 'Compare',
     attributes: 'Attributes from {{ elementName }}',
     children: 'Child elements from {{ elementName }}',
+    filterMutables: 'Filter project specific settings'
   },
   log: {
     name: 'Log',
@@ -141,6 +142,10 @@ export const en = {
       show: 'Show',
       placeholder: 'No errors',
     },
+  },
+  history: {
+    name: 'SCL History',
+    noEntries: 'No SCL history entries',
   },
   diag: {
     name: 'Diagnostics',
@@ -361,6 +366,19 @@ export const en = {
         publisherView: 'Show subscriber IED(s) per selected Sampled Value',
         subscriberView:
           'Show subscribed Sampled Value(s) publisher for selected IED',
+      },
+    },
+    smvLaterBinding: {
+      svcList: {
+        title: 'List of Sampled Values Controls with linked FCDAs',
+        noSvcFound: 'No Sampled Value Controls found',
+      },
+      extRefList: {
+        title:
+          'Selected Sampled Value data "{{ svcName }}" / FCDA "{{ fcdaName }}"',
+        noSelection: 'No data attribute selected',
+        noSubscribedExtRefs: 'No subscribed ExtRefs',
+        noAvailableExtRefs: 'No available ExtRefs to subscribe',
       },
     },
     iedList: {

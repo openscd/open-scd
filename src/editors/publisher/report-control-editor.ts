@@ -22,28 +22,13 @@ import { FilteredList } from '../../filtered-list.js';
 
 import { compareNames, identity, selector } from '../../foundation.js';
 import { reportIcon } from '../../icons/icons.js';
-import { styles } from './foundation.js';
+import { styles, updateElementReference } from './foundation.js';
 
 @customElement('report-control-editor')
 export class ReportControlEditor extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property({ attribute: false })
-  set doc(newDoc: XMLDocument) {
-    if (this._doc === newDoc) return;
-
-    this.selectedDataSet = undefined;
-    this.selectedReportControl = undefined;
-    if (this.selectionList && this.selectionList.selected)
-      (this.selectionList.selected as ListItem).selected = false;
-
-    this._doc = newDoc;
-
-    this.requestUpdate();
-  }
-  get doc(): XMLDocument {
-    return this._doc;
-  }
-  private _doc!: XMLDocument;
+  doc!: XMLDocument;
 
   @state()
   selectedReportControl?: Element;
@@ -52,6 +37,30 @@ export class ReportControlEditor extends LitElement {
 
   @query('.selectionlist') selectionList!: FilteredList;
   @query('mwc-button') selectReportControlButton!: Button;
+
+  /** Resets selected Report and its DataSet, if not existing in new doc */
+  update(props: Map<string | number | symbol, unknown>): void {
+    if (props.has('doc') && this.selectedReportControl) {
+      const newReportControl = updateElementReference(
+        this.doc,
+        this.selectedReportControl
+      );
+
+      this.selectedReportControl = newReportControl ?? undefined;
+      this.selectedDataSet = this.selectedReportControl
+        ? updateElementReference(this.doc, this.selectedDataSet!)
+        : undefined;
+
+      if (
+        !newReportControl &&
+        this.selectionList &&
+        this.selectionList.selected
+      )
+        (this.selectionList.selected as ListItem).selected = false;
+    }
+
+    super.update(props);
+  }
 
   private selectReportControl(evt: Event): void {
     const id = ((evt.target as FilteredList).selected as ListItem).value;
