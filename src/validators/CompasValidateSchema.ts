@@ -78,17 +78,17 @@ export default class CompasValidateSchema extends LitElement {
   private createTitle(validationError: Element): string {
     const message = validationError
       .getElementsByTagNameNS(SVS_NAMESPACE, 'Message')!
-      .item(0)!.textContent;
+      .item(0)?.textContent;
     return message ? message : 'No validation message';
   }
 
   private createMessage(validationError: Element): string | undefined {
     const ruleName = validationError
       .getElementsByTagNameNS(SVS_NAMESPACE, 'RuleName')!
-      .item(0)!.textContent;
+      .item(0)?.textContent;
     const linenumber = validationError
       .getElementsByTagNameNS(SVS_NAMESPACE, 'Linenumber')!
-      .item(0)!.textContent;
+      .item(0)?.textContent;
 
     if (!ruleName && !linenumber) {
       return undefined;

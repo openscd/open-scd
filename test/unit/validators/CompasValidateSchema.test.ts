@@ -73,7 +73,11 @@ describe('CompasValidateSchema', () => {
         </svs:ValidationErrors>
         <svs:ValidationErrors>
           <svs:Message></svs:Message>
-          <svs:RuleName>No Message Rule</svs:RuleName>
+          <svs:RuleName>Rule 2</svs:RuleName>
+          <svs:Linenumber>1</svs:Linenumber>
+        </svs:ValidationErrors>
+        <svs:ValidationErrors>
+          <svs:RuleName>Rule 3</svs:RuleName>
           <svs:Linenumber>1</svs:Linenumber>
         </svs:ValidationErrors>
       </svs:SclValidateResponse>
@@ -102,7 +106,14 @@ describe('CompasValidateSchema', () => {
     });
 
     it('when no message exists in response then default message returned as title', () => {
-      const validationError = getValidationError('No Message Rule');
+      const validationError = getValidationError('Rule 2');
+
+      const result = element['createTitle'](validationError);
+      expect(result).to.be.equal('No validation message');
+    });
+
+    it('when no message element exists in response then default message returned as title', () => {
+      const validationError = getValidationError('Rule 3');
 
       const result = element['createTitle'](validationError);
       expect(result).to.be.equal('No validation message');
@@ -131,6 +142,9 @@ describe('CompasValidateSchema', () => {
           <svs:Message>Message 4</svs:Message>
           <svs:RuleName>Rule 4</svs:RuleName>
           <svs:Linenumber>4</svs:Linenumber>
+        </svs:ValidationErrors>
+        <svs:ValidationErrors>
+          <svs:Message>Message 5</svs:Message>
         </svs:ValidationErrors>
       </svs:SclValidateResponse>
     `;
@@ -176,6 +190,13 @@ describe('CompasValidateSchema', () => {
 
       const result = element['createMessage'](validationError);
       expect(result).to.be.equal('Rule: Rule 4, Linenumber: 4');
+    });
+
+    it('when both rule name and linenumber elements are missing then undefined returned', () => {
+      const validationError = getValidationError('Message 5');
+
+      const result = element['createMessage'](validationError);
+      expect(result).to.be.undefined;
     });
   });
 });
