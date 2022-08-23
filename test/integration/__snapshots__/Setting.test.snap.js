@@ -56,19 +56,6 @@ snapshots["Setting upload .nsdoc file using event and looks like latest snapshot
     <h3>
       Uploaded NSDoc files
     </h3>
-    <input
-      accept=".nsdoc"
-      hidden=""
-      id="nsdoc-file"
-      multiple=""
-      required=""
-      type="file"
-    >
-    <mwc-button
-      id="selectFileButton"
-      label="Select file"
-    >
-    </mwc-button>
   </section>
   <mwc-list id="nsdocList">
     <mwc-list-item
