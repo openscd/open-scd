@@ -1,10 +1,10 @@
-import { html, fixture, expect } from '@open-wc/testing';
+import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../../../mock-wizard.js';
+import '../../mock-wizard.js';
 
-import SampledValuesSubscriptionPlugin from '../../../../../src/editors/SampledValuesSubscription.js';
-import { Editing } from '../../../../../src/Editing.js';
-import { Wizarding } from '../../../../../src/Wizarding.js';
+import SampledValuesSubscriptionPlugin from '../../../src/editors/SampledValuesSubscription.js';
+import { Editing } from '../../../src/Editing.js';
+import { Wizarding } from '../../../src/Wizarding.js';
 import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 
 describe('Sampled Values Plugin', () => {
@@ -137,10 +137,8 @@ describe('Sampled Values Plugin', () => {
                     fcda.closest('LN0')?.getAttribute('prefix') ?? '' //prefix is mendatory in ExtRef!!
                   }"][srcLNClass="${fcda
                     .closest('LN0')
-                    ?.getAttribute('lnClass')}"][srcLNInst="${fcda
-                    .closest('LN0')
                     ?.getAttribute(
-                      'inst'
+                      'lnClass'
                     )}"][srcCBName="${smvControlBlock.getAttribute(
                     'name'
                   )}"][serviceType="SMV"]`
@@ -326,10 +324,8 @@ describe('Sampled Values Plugin', () => {
                       fcda.closest('LN0')?.getAttribute('prefix') ?? '' //prefix is mendatory in ExtRef!!
                     }"][srcLNClass="${fcda
                       .closest('LN0')
-                      ?.getAttribute('lnClass')}"][srcLNInst="${fcda
-                      .closest('LN0')
                       ?.getAttribute(
-                        'inst'
+                        'lnClass'
                       )}"][srcCBName="${smvControlBlock.getAttribute(
                       'name'
                     )}"][serviceType="SMV"]`

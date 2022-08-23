@@ -1173,3 +1173,241 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for pa
 `;
 /* end snapshot GOOSE subscriber plugin in Subscriber view with a selected IED for partially subscribed GSEControl s clicking on the GSEControl list item the left hand side subscriber IED list looks like the latest snapshot */
 
+snapshots["GOOSE subscriber plugin in Publisher view per default the plugin itself looks like the latest snapshot"] = 
+`<div>
+  <mwc-formfield label="[subscription.goose.view.publisherView]">
+    <mwc-radio
+      checked=""
+      id="goosePublisherView"
+      name="view"
+      value="goose"
+    >
+    </mwc-radio>
+  </mwc-formfield>
+  <mwc-formfield label="[subscription.goose.view.subscriberView]">
+    <mwc-radio
+      id="gooseSubscriberView"
+      name="view"
+      value="ied"
+    >
+    </mwc-radio>
+  </mwc-formfield>
+  <div class="container">
+    <goose-list class="row">
+    </goose-list>
+    <subscriber-list-goose class="row">
+    </subscriber-list-goose>
+  </div>
+</div>
+<wizard-dialog>
+</wizard-dialog>
+`;
+/* end snapshot GOOSE subscriber plugin in Publisher view per default the plugin itself looks like the latest snapshot */
+
+snapshots["GOOSE subscriber plugin in Publisher view per default the right hand side GSEControl list looks like the latest snapshot"] = 
+`<section tabindex="0">
+  <h1>
+    [subscription.goose.publisherGoose.title]
+  </h1>
+  <filtered-list>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="icon"
+      noninteractive=""
+      tabindex="-1"
+      value="IED1>>CircuitBreaker_CB1>GCB IED1>>CircuitBreaker_CB1>GCB2"
+    >
+      <span>
+        IED1
+      </span>
+      <mwc-icon slot="graphic">
+        developer_board
+      </mwc-icon>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="large"
+      hasmeta=""
+      mwc-list-item=""
+      tabindex="0"
+      value="IED1>>CircuitBreaker_CB1>GCB"
+    >
+      <mwc-icon slot="graphic">
+      </mwc-icon>
+      <span>
+        GCB
+      </span>
+      <mwc-icon-button
+        class="hidden"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="large"
+      hasmeta=""
+      mwc-list-item=""
+      tabindex="-1"
+      value="IED1>>CircuitBreaker_CB1>GCB2"
+    >
+      <mwc-icon slot="graphic">
+      </mwc-icon>
+      <span>
+        GCB2
+      </span>
+      <mwc-icon-button
+        class="hidden"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="icon"
+      noninteractive=""
+      tabindex="-1"
+      value="IED2>>CBSW>GCB"
+    >
+      <span>
+        IED2
+      </span>
+      <mwc-icon slot="graphic">
+        developer_board
+      </mwc-icon>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="large"
+      hasmeta=""
+      mwc-list-item=""
+      tabindex="-1"
+      value="IED2>>CBSW>GCB"
+    >
+      <mwc-icon slot="graphic">
+      </mwc-icon>
+      <span>
+        GCB
+      </span>
+      <mwc-icon-button
+        class="hidden"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="icon"
+      noninteractive=""
+      tabindex="-1"
+      value=""
+    >
+      <span>
+        IED3
+      </span>
+      <mwc-icon slot="graphic">
+        developer_board
+      </mwc-icon>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="icon"
+      noninteractive=""
+      tabindex="-1"
+      value="IED4>>CircuitBreaker_CB1>GCB IED4>>CircuitBreaker_CB1>GCB2"
+    >
+      <span>
+        IED4
+      </span>
+      <mwc-icon slot="graphic">
+        developer_board
+      </mwc-icon>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="large"
+      hasmeta=""
+      mwc-list-item=""
+      tabindex="-1"
+      value="IED4>>CircuitBreaker_CB1>GCB"
+    >
+      <mwc-icon slot="graphic">
+      </mwc-icon>
+      <span>
+        GCB
+      </span>
+      <mwc-icon-button
+        class="hidden"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="large"
+      hasmeta=""
+      mwc-list-item=""
+      tabindex="-1"
+      value="IED4>>CircuitBreaker_CB1>GCB2"
+    >
+      <mwc-icon slot="graphic">
+      </mwc-icon>
+      <span>
+        GCB2
+      </span>
+      <mwc-icon-button
+        class="hidden"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
+    </mwc-list-item>
+  </filtered-list>
+</section>
+`;
+/* end snapshot GOOSE subscriber plugin in Publisher view per default the right hand side GSEControl list looks like the latest snapshot */
+
+snapshots["GOOSE subscriber plugin in Publisher view per default the left hand side subscriber IED list looks like the latest snapshot"] = 
+`<section tabindex="0">
+  <h1>
+    [subscription.goose.publisherGoose.subscriberTitle]
+  </h1>
+  <mwc-list>
+    <mwc-list-item
+      aria-disabled="false"
+      noninteractive=""
+      tabindex="-1"
+    >
+      <span>
+        [subscription.subscriber.noControlBlockSelected]
+      </span>
+    </mwc-list-item>
+  </mwc-list>
+</section>
+`;
+/* end snapshot GOOSE subscriber plugin in Publisher view per default the left hand side subscriber IED list looks like the latest snapshot */
+

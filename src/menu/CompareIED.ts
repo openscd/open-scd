@@ -4,6 +4,7 @@ import {
   LitElement,
   property,
   query,
+  state,
   TemplateResult,
 } from 'lit-element';
 import { get, translate } from 'lit-translate';
@@ -11,6 +12,8 @@ import { get, translate } from 'lit-translate';
 import '@material/mwc-dialog';
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-formfield';
+import '@material/mwc-checkbox';
 
 import { Dialog } from '@material/mwc-dialog';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
@@ -23,8 +26,51 @@ import {
   newPendingStateEvent,
   selector,
 } from '../foundation.js';
-import { renderDiff } from '../foundation/compare.js';
+import { DiffFilter, renderDiff } from '../foundation/compare.js';
 
+const tctrClass = `LN[lnClass='TCTR']`;
+const tvtrClass = `LN[lnClass='TVTR']`;
+const setMag = `SDI[name='setMag'] Val`;
+const setVal =`DAI[name='setVal'] Val`;
+
+const filterToIgnore: DiffFilter<Element> = {
+  ':scope': {
+    attributes: {
+      'name': true
+    }
+  },
+  'P': {
+    full: true
+  }
+};
+
+filterToIgnore[`${tctrClass} DOI[name='Rat'] ${setMag}`] = {
+  full: true
+}
+
+filterToIgnore[`${tctrClass} DOI[name='ARtg'] ${setMag}`] = {
+  full: true
+}
+
+filterToIgnore[`${tctrClass} DOI[name='ARtgNom'] ${setMag}`] = {
+  full: true
+}
+
+filterToIgnore[`${tctrClass} DOI[name='ARtgSec'] ${setVal}`] = {
+  full: true
+}
+
+filterToIgnore[`${tvtrClass} DOI[name='VRtg'] ${setMag}`] = {
+  full: true
+}
+
+filterToIgnore[`${tvtrClass} DOI[name='Rat'] ${setMag}`] = {
+  full: true
+}
+
+filterToIgnore[`${tvtrClass} DOI[name='VRtgSec'] ${setVal}`] = {
+  full: true
+}
 export default class CompareIEDPlugin extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
@@ -37,6 +83,9 @@ export default class CompareIEDPlugin extends LitElement {
 
   @property({ attribute: false })
   selectedTemplateIed: Element | undefined;
+
+  @state()
+  filterMutables: boolean = true;
 
   @query('mwc-dialog')
   dialog!: Dialog;
@@ -138,10 +187,25 @@ export default class CompareIEDPlugin extends LitElement {
     ></mwc-button>`;
   }
 
+  protected renderFilterCheckbox(): TemplateResult {
+    return html`<mwc-formfield
+      label="${translate('compare.filterMutables')}">
+        <mwc-checkbox
+          ?checked=${this.filterMutables}
+          @change=${() => this.filterMutables = !this.filterMutables}>
+        </mwc-checkbox>
+      </mwc-formfield>
+      `
+  }
   protected renderCompare(): TemplateResult {
-    return html`${renderDiff(
+    const filter: DiffFilter<Element> = this.filterMutables ? filterToIgnore : {}
+
+    return html`
+      ${this.renderFilterCheckbox()}
+      ${renderDiff(
       this.selectedProjectIed!,
-      this.selectedTemplateIed!
+      this.selectedTemplateIed!,
+      filter
     ) ??
     html`${translate('compare-ied.noDiff', {
       projectIedName: identity(this.selectedProjectIed!),
