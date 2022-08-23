@@ -4,7 +4,6 @@ about: Suggest an idea for this project
 title: ''
 labels: 'Kind: Enhancement'
 assignees: ''
-
 ---
 
 **Is your feature request related to a problem? Please describe.**
@@ -21,3 +20,6 @@ Have a specific UI gesture in mind? If you want to discuss this first, please pr
 
 **Additional information**
 For further reading including e.g parts of IEC 61850, Tissues or other sources that triggered your feature wish
+
+**Test Files**
+If possible provide a file that can be used to test the feature and explain what is the outcome of the test with the test file
