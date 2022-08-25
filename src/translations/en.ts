@@ -367,31 +367,27 @@ export const en = {
           'Show subscribed Sampled Value(s) publisher for selected IED',
       },
     },
-    smvLaterBinding: {
-      svcList: {
-        title: 'List of Sampled Values Controls with linked FCDAs',
-        noSvcFound: 'No Sampled Value Controls found',
-      },
-      extRefList: {
-        title:
-          'Selected Sampled Value data "{{ svcName }}" / FCDA "{{ fcdaName }}"',
-        noSelection: 'No data attribute selected',
-        noSubscribedExtRefs: 'No subscribed ExtRefs',
-        noAvailableExtRefs: 'No available ExtRefs to subscribe',
-      },
-    },
     laterBinding: {
       SampledValueControl: {
-        ctrlList: {
+        controlBlockList: {
           title: 'List of Sampled Values Controls with linked FCDAs',
-          noCtrlFound: 'No Sampled Value Controls found',
+          noControlBlockFound: 'No Sampled Value Controls found',
         },
       },
       GSEControl: {
-        ctrlList: {
+        controlBlockList: {
           title: 'List of Goose Controls with linked FCDAs',
-          noCtrlFound: 'No Goose Controls found',
+          noControlBlockFound: 'No Goose Controls found',
         },
+      },
+      extRefList: {
+        SampledValueControl: {
+          title:
+            'Selected Sampled Value data "{{ svcName }}" / FCDA "{{ fcdaName }}"',
+        },
+        noSelection: 'No data attribute selected',
+        noSubscribedExtRefs: 'No subscribed ExtRefs',
+        noAvailableExtRefs: 'No available ExtRefs to subscribe',
       },
     },
     iedList: {
