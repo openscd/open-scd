@@ -27,13 +27,13 @@ describe('CompasValidateSchema', () => {
         <svs:ValidationErrors>
           <svs:Message>Message 1</svs:Message>
           <svs:RuleName>Rule 1</svs:RuleName>
-          <svs:Linenumber>1</svs:Linenumber>
+          <svs:LineNumber>1</svs:LineNumber>
           <svs:ColumnNumber>1</svs:ColumnNumber>
         </svs:ValidationErrors>
         <svs:ValidationErrors>
           <svs:Message>Message 2</svs:Message>
           <svs:RuleName>Rule 2</svs:RuleName>
-          <svs:Linenumber>2</svs:Linenumber>
+          <svs:LineNumber>2</svs:LineNumber>
           <svs:ColumnNumber>2</svs:ColumnNumber>
         </svs:ValidationErrors>
       </svs:SclValidateResponse>
@@ -71,18 +71,18 @@ describe('CompasValidateSchema', () => {
         <svs:ValidationErrors>
           <svs:Message>Message 1</svs:Message>
           <svs:RuleName>Rule 1</svs:RuleName>
-          <svs:Linenumber>1</svs:Linenumber>
+          <svs:LineNumber>1</svs:LineNumber>
           <svs:ColumnNumber>2</svs:ColumnNumber>
         </svs:ValidationErrors>
         <svs:ValidationErrors>
           <svs:Message></svs:Message>
           <svs:RuleName>Rule 2</svs:RuleName>
-          <svs:Linenumber>1</svs:Linenumber>
+          <svs:LineNumber>1</svs:LineNumber>
           <svs:ColumnNumber>2</svs:ColumnNumber>
         </svs:ValidationErrors>
         <svs:ValidationErrors>
           <svs:RuleName>Rule 3</svs:RuleName>
-          <svs:Linenumber>1</svs:Linenumber>
+          <svs:LineNumber>1</svs:LineNumber>
           <svs:ColumnNumber>2</svs:ColumnNumber>
         </svs:ValidationErrors>
       </svs:SclValidateResponse>
@@ -131,31 +131,31 @@ describe('CompasValidateSchema', () => {
         <svs:ValidationErrors>
           <svs:Message>Message 1</svs:Message>
           <svs:RuleName></svs:RuleName>
-          <svs:Linenumber></svs:Linenumber>
+          <svs:LineNumber></svs:LineNumber>
           <svs:ColumnNumber></svs:ColumnNumber>
         </svs:ValidationErrors>
         <svs:ValidationErrors>
           <svs:Message>Message 2</svs:Message>
           <svs:RuleName>Rule 2</svs:RuleName>
-          <svs:Linenumber></svs:Linenumber>
+          <svs:LineNumber></svs:LineNumber>
           <svs:ColumnNumber></svs:ColumnNumber>
         </svs:ValidationErrors>
         <svs:ValidationErrors>
           <svs:Message>Message 3</svs:Message>
           <svs:RuleName></svs:RuleName>
-          <svs:Linenumber>3</svs:Linenumber>
+          <svs:LineNumber>3</svs:LineNumber>
           <svs:ColumnNumber></svs:ColumnNumber>
         </svs:ValidationErrors>
         <svs:ValidationErrors>
           <svs:Message>Message 4</svs:Message>
           <svs:RuleName></svs:RuleName>
-          <svs:Linenumber></svs:Linenumber>
+          <svs:LineNumber></svs:LineNumber>
           <svs:ColumnNumber>4</svs:ColumnNumber>
         </svs:ValidationErrors>
         <svs:ValidationErrors>
           <svs:Message>Message 5</svs:Message>
           <svs:RuleName>Rule 5</svs:RuleName>
-          <svs:Linenumber>5</svs:Linenumber>
+          <svs:LineNumber>5</svs:LineNumber>
           <svs:ColumnNumber>55</svs:ColumnNumber>
         </svs:ValidationErrors>
         <svs:ValidationErrors>
@@ -179,7 +179,7 @@ describe('CompasValidateSchema', () => {
       )[0];
     }
 
-    it('when both rule name, linenumber and column number are missing then undefined returned', () => {
+    it('when both rule name, line number and column number are missing then undefined returned', () => {
       const validationError = getValidationError('Message 1');
 
       const result = element['createMessage'](validationError);
@@ -193,7 +193,7 @@ describe('CompasValidateSchema', () => {
       expect(result).to.be.equal('Rule: Rule 2');
     });
 
-    it('when only linenumber is filled then Linenumber string returned', () => {
+    it('when only line number is filled then Line number string returned', () => {
       const validationError = getValidationError('Message 3');
 
       const result = element['createMessage'](validationError);
@@ -207,7 +207,7 @@ describe('CompasValidateSchema', () => {
       expect(result).to.be.equal('Column: 4');
     });
 
-    it('when rule name, linenumber and column number are filled then full message returned', () => {
+    it('when rule name, line number and column number are filled then full message returned', () => {
       const validationError = getValidationError('Message 5');
 
       const result = element['createMessage'](validationError);
