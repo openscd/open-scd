@@ -66,12 +66,12 @@ export class FCDALaterBindingList extends LitElement {
     return [];
   }
 
-  private getFcdaElements(controlBlockElement: Element): Element[] {
-    const lnElement = controlBlockElement.parentElement;
+  private getFcdaElements(controlElement: Element): Element[] {
+    const lnElement = controlElement.parentElement;
     if (lnElement) {
       return Array.from(
         lnElement.querySelectorAll(
-          `:scope > DataSet[name=${controlBlockElement.getAttribute(
+          `:scope > DataSet[name=${controlElement.getAttribute(
             'datSet'
           )}] > FCDA`
         )
@@ -80,8 +80,8 @@ export class FCDALaterBindingList extends LitElement {
     return [];
   }
 
-  private openEditWizard(controlBlockElement: Element): void {
-    const wizard = wizards[this.controlTag].edit(controlBlockElement);
+  private openEditWizard(controlElement: Element): void {
+    const wizard = wizards[this.controlTag].edit(controlElement);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
@@ -90,10 +90,10 @@ export class FCDALaterBindingList extends LitElement {
     this.selectedFcdaElement = undefined;
   }
 
-  private onFcdaSelect(controlBlockElement: Element, fcdaElement: Element) {
+  private onFcdaSelect(controlElement: Element, fcdaElement: Element) {
     this.resetSelection();
 
-    this.selectedControlElement = controlBlockElement;
+    this.selectedControlElement = controlElement;
     this.selectedFcdaElement = fcdaElement;
   }
 
@@ -115,16 +115,13 @@ export class FCDALaterBindingList extends LitElement {
     }
   }
 
-  renderFCDA(
-    controlBlockElement: Element,
-    fcdaElement: Element
-  ): TemplateResult {
+  renderFCDA(controlElement: Element, fcdaElement: Element): TemplateResult {
     return html`<mwc-list-item
       graphic="large"
       twoline
       class="subitem"
-      @click=${() => this.onFcdaSelect(controlBlockElement, fcdaElement)}
-      value="${identity(controlBlockElement)} ${identity(fcdaElement)}"
+      @click=${() => this.onFcdaSelect(controlElement, fcdaElement)}
+      value="${identity(controlElement)} ${identity(fcdaElement)}"
     >
       <span>${getFcdaTitleValue(fcdaElement)}</span>
       <span slot="secondary">
@@ -150,15 +147,15 @@ export class FCDALaterBindingList extends LitElement {
               )}
             </h1>
             <filtered-list>
-              ${controlElements.map(controlBlockElement => {
-                const fcdaElements = this.getFcdaElements(controlBlockElement);
+              ${controlElements.map(controlElement => {
+                const fcdaElements = this.getFcdaElements(controlElement);
                 return html`
                   <mwc-list-item
                     noninteractive
                     graphic="icon"
                     twoline
                     hasMeta
-                    value="${identity(controlBlockElement)} ${fcdaElements
+                    value="${identity(controlElement)} ${fcdaElements
                       .map(fcdaElement => identity(fcdaElement) as string)
                       .join(' ')}"
                   >
@@ -166,22 +163,20 @@ export class FCDALaterBindingList extends LitElement {
                       slot="meta"
                       icon="edit"
                       class="interactive"
-                      @click=${() => this.openEditWizard(controlBlockElement)}
+                      @click=${() => this.openEditWizard(controlElement)}
                     ></mwc-icon-button>
                     <span
-                      >${getNameAttribute(controlBlockElement)}
-                      ${getDescriptionAttribute(controlBlockElement)
-                        ? html`${getDescriptionAttribute(controlBlockElement)}`
+                      >${getNameAttribute(controlElement)}
+                      ${getDescriptionAttribute(controlElement)
+                        ? html`${getDescriptionAttribute(controlElement)}`
                         : nothing}</span
                     >
-                    <span slot="secondary"
-                      >${identity(controlBlockElement)}</span
-                    >
+                    <span slot="secondary">${identity(controlElement)}</span>
                     <mwc-icon slot="graphic">${smvIcon}</mwc-icon>
                   </mwc-list-item>
                   <li divider role="separator"></li>
                   ${fcdaElements.map(fcdaElement =>
-                    this.renderFCDA(controlBlockElement, fcdaElement)
+                    this.renderFCDA(controlElement, fcdaElement)
                   )}
                 `;
               })}
