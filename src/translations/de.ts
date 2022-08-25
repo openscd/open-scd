@@ -155,6 +155,7 @@ export const de: Translations = {
     compareButton: 'Starte Vergleich',
     attributes: 'Attribute von {{ elementName }}',
     children: 'Kindelemente von {{ elementName }}',
+    filterMutables: 'Projektspzifische Unterschiede ausblenden'
   },
   log: {
     name: 'Protokoll',
