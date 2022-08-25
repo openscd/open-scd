@@ -19,13 +19,13 @@ import {
   WizardInputElement,
 } from '../../../src/foundation.js';
 import {
-  editGseControlWizard,
-  removeGseControlAction,
   contentGseControlWizard,
+  createGseControlWizard,
+  editGseControlWizard,
+  gseControlParentSelector,
+  removeGseControlAction,
   selectGseControlWizard,
   updateGseControlAction,
-  gseControlParentSelector,
-  createGseControlWizard,
 } from '../../../src/wizards/gsecontrol.js';
 import { regExp, regexString } from '../../foundation.js';
 import { FinderList } from '../../../src/finder-list.js';
@@ -413,7 +413,7 @@ describe('gsecontrol wizards', () => {
 
         const actions = (<ComplexAction>actionEvent.args[0][0].detail.action)
           .actions;
-        expect(actions.length).to.equal(3);
+        expect(actions.length).to.equal(6);
         const action = actions[0];
         expect(action).to.satisfy(isCreate);
         const createAction = <Create>action;
@@ -427,7 +427,7 @@ describe('gsecontrol wizards', () => {
 
         const actions = (<ComplexAction>actionEvent.args[0][0].detail.action)
           .actions;
-        expect(actions.length).to.equal(3);
+        expect(actions.length).to.equal(6);
         const action = actions[0];
         expect(action).to.satisfy(isCreate);
         const createAction = <Create>action;
@@ -439,8 +439,8 @@ describe('gsecontrol wizards', () => {
 
         const actions = (<ComplexAction>actionEvent.args[0][0].detail.action)
           .actions;
-        expect(actions.length).to.equal(3);
-        const action = actions[2];
+        expect(actions.length).to.equal(6);
+        const action = actions[5];
         expect(action).to.satisfy(isCreate);
         const createAction = <Create>action;
         expect((<Element>createAction.new.element).tagName).to.equal('DataSet');
@@ -449,10 +449,17 @@ describe('gsecontrol wizards', () => {
       it('referenced DataSet element not having any FCDA per default', async () => {
         await primaryAction.click();
 
-        const createAction = <Create>(
-          (<ComplexAction>actionEvent.args[0][0].detail.action).actions[2]
-        );
-        expect((<Element>createAction.new.element).children).to.be.empty;
+        const actions = (<ComplexAction>actionEvent.args[0][0].detail.action)
+          .actions;
+        expect(actions.length).to.equal(6);
+
+        actions.forEach(action => {
+          expect(action).to.satisfy(isCreate);
+          const createAction = <Create>action;
+          expect((<Element>createAction.new.element).tagName).to.not.equal(
+            'FCDA'
+          );
+        });
       });
 
       it('referenced DataSet element saving selected FCDA', async () => {
@@ -469,13 +476,13 @@ describe('gsecontrol wizards', () => {
 
         await primaryAction.click();
 
-        const createAction = <Create>(
-          (<ComplexAction>actionEvent.args[0][0].detail.action).actions[2]
-        );
-        expect((<Element>createAction.new.element).children).to.not.be.empty;
-        expect((<Element>createAction.new.element).children).to.have.lengthOf(
-          1
-        );
+        const actions = (<ComplexAction>actionEvent.args[0][0].detail.action)
+          .actions;
+        expect(actions.length).to.equal(7);
+        const action = actions[6];
+        expect(action).to.satisfy(isCreate);
+        const createAction = <Create>action;
+        expect((<Element>createAction.new.element).tagName).to.equal('FCDA');
       });
 
       it('complex action adding GSE element in the Communication section', async () => {
@@ -483,7 +490,7 @@ describe('gsecontrol wizards', () => {
 
         const actions = (<ComplexAction>actionEvent.args[0][0].detail.action)
           .actions;
-        expect(actions.length).to.equal(3);
+        expect(actions.length).to.equal(6);
         const action = actions[1];
         expect(action).to.satisfy(isCreate);
         const createAction = <Create>action;
@@ -531,6 +538,45 @@ describe('gsecontrol wizards', () => {
         expect(actionEvent).to.be.calledOnce;
         const action = actionEvent.args[0][0].detail.action;
         expect(action).to.not.satisfy(isSimple);
+      });
+
+      it('referenced DataSet element not having any FCDA per default', async () => {
+        await primaryAction.click();
+
+        const actions = (<ComplexAction>actionEvent.args[0][0].detail.action)
+          .actions;
+        expect(actions.length).to.equal(2);
+
+        actions.forEach(action => {
+          expect(action).to.satisfy(isCreate);
+          const createAction = <Create>action;
+          expect((<Element>createAction.new.element).tagName).to.not.equal(
+            'FCDA'
+          );
+        });
+      });
+
+      it('referenced DataSet element saving selected FCDA', async () => {
+        const path = [
+          'Server: IED4>P1',
+          'LDevice: IED4>>MU01',
+          'LN0: IED4>>MU01',
+          'DO: #Dummy.LLN0.two>Beh',
+          'DA: #Dummy.LLN0.Beh>stVal',
+        ];
+
+        dataPicker.paths = [path];
+        await element.requestUpdate();
+
+        await primaryAction.click();
+
+        const actions = (<ComplexAction>actionEvent.args[0][0].detail.action)
+          .actions;
+        expect(actions.length).to.equal(3);
+        const action = actions[2];
+        expect(action).to.satisfy(isCreate);
+        const createAction = <Create>action;
+        expect((<Element>createAction.new.element).tagName).to.equal('FCDA');
       });
 
       it('complex action NOT adding GSE element in the Communication section', async () => {
