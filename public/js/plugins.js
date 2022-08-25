@@ -28,6 +28,13 @@ export const officialPlugins = [
     kind: 'editor',
   },
   {
+    name: 'Subscriber Later Binding (GOOSE)',
+    src: '/src/editors/GooseSubscriberLaterBinding.js',
+    icon: 'link',
+    default: false,
+    kind: 'editor',
+  },
+  {
     name: 'Subscriber (SMV)',
     src: '/src/editors/SampledValuesSubscription.js',
     icon: 'link',
