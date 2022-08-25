@@ -20,33 +20,33 @@ import '../../filtered-list.js';
 import { FilteredList } from '../../filtered-list.js';
 
 import { compareNames, identity, selector } from '../../foundation.js';
-import { styles } from './foundation.js';
+import { styles, updateElementReference } from './foundation.js';
 
 @customElement('data-set-editor')
 export class DataSetEditor extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property({ attribute: false })
-  set doc(newDoc: XMLDocument) {
-    if (this._doc === newDoc) return;
-
-    this.selectedDataSet = undefined;
-    if (this.selectionList && this.selectionList.selected)
-      (this.selectionList.selected as ListItem).selected = false;
-
-    this._doc = newDoc;
-
-    this.requestUpdate();
-  }
-  get doc(): XMLDocument {
-    return this._doc;
-  }
-  private _doc!: XMLDocument;
+  doc!: XMLDocument;
 
   @state()
   selectedDataSet?: Element;
 
   @query('.selectionlist') selectionList!: FilteredList;
   @query('mwc-button') selectDataSetButton!: Button;
+
+  /** Resets selected GOOSE, if not existing in new doc */
+  update(props: Map<string | number | symbol, unknown>): void {
+    if (props.has('doc') && this.selectedDataSet) {
+      const newDataSet = updateElementReference(this.doc, this.selectedDataSet);
+
+      this.selectedDataSet = newDataSet ?? undefined;
+
+      if (!newDataSet && this.selectionList && this.selectionList.selected)
+        (this.selectionList.selected as ListItem).selected = false;
+    }
+
+    super.update(props);
+  }
 
   private selectDataSet(evt: Event): void {
     const id = ((evt.target as FilteredList).selected as ListItem).value;
