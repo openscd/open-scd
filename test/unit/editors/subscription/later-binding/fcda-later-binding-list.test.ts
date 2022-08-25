@@ -5,22 +5,18 @@ import { MockWizardEditor } from '../../../../mock-wizard-editor.js';
 
 import { WizardTextField } from '../../../../../src/wizard-textfield.js';
 
-import '../../../../../src/editors/subscription/smv-laterbinding/svc-laterbinding-list.js';
-import { SVCLaterBindingList } from '../../../../../src/editors/subscription/smv-laterbinding/svc-laterbinding-list.js';
+import '../../../../../src/editors/subscription/later-binding/fcda-later-binding-list.js';
+import { FCDALaterBindingList } from '../../../../../src/editors/subscription/later-binding/fcda-later-binding-list.js';
 import { SinonSpy, spy } from 'sinon';
 
-describe('smv-list', () => {
+describe('fcda-list', () => {
   let parent: MockWizardEditor;
-  let element: SVCLaterBindingList;
+  let element: FCDALaterBindingList;
   let doc: XMLDocument;
 
   let selectEvent: SinonSpy;
 
   beforeEach(async () => {
-    doc = await fetch('/test/testfiles/editors/LaterBindingSMV2007B4.scd')
-      .then(response => response.text())
-      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-
     selectEvent = spy();
     window.addEventListener('fcda-select', selectEvent);
   });
@@ -29,12 +25,12 @@ describe('smv-list', () => {
     beforeEach(async () => {
       parent = await fixture(html`
         <mock-wizard-editor>
-          <svc-later-binding-list></svc-later-binding-list>
+          <fcda-later-binding-list></fcda-later-binding-list>
         </mock-wizard-editor>
       `);
 
-      element = <SVCLaterBindingList>(
-        parent.querySelector('svc-later-binding-list')!
+      element = <FCDALaterBindingList>(
+        parent.querySelector('fcda-later-binding-list')!
       );
       await element.requestUpdate();
     });
@@ -45,23 +41,29 @@ describe('smv-list', () => {
 
     it('looks like the latest snapshot', async () => {
       element = await fixture(
-        html`<svc-later-binding-list></svc-later-binding-list>`
+        html`<fcda-later-binding-list></fcda-later-binding-list>`
       );
 
       await expect(element).shadowDom.to.equalSnapshot();
     });
   });
 
-  describe('with a doc loaded', () => {
+  describe('with a SampledValueControl doc loaded', () => {
     beforeEach(async () => {
+      doc = await fetch('/test/testfiles/editors/LaterBindingSMV2007B4.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = await fixture(html`
         <mock-wizard-editor>
-          <svc-later-binding-list .doc=${doc}></svc-later-binding-list>
+          <fcda-later-binding-list
+            .doc=${doc}
+            controlTag="SampledValueControl"
+          ></fcda-later-binding-list>
         </mock-wizard-editor>
       `);
 
-      element = <SVCLaterBindingList>(
-        parent.querySelector('svc-later-binding-list')!
+      element = <FCDALaterBindingList>(
+        parent.querySelector('fcda-later-binding-list')!
       );
       await element.requestUpdate();
     });
@@ -75,7 +77,7 @@ describe('smv-list', () => {
       )).click();
       await parent.updateComplete;
 
-      // Select the first list item that has an edit button, this should be an SVC Element.
+      // Select the name input field, this should have the same value as the first SampledValueControl in the IED.
       const nameField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
       );
@@ -116,6 +118,47 @@ describe('smv-list', () => {
             'FCDA[ldInst="CurrentTransformer"][prefix="L1"][lnClass="TCTR"][lnInst="1"][doName="AmpSv"][daName="instMag.i"][fc="MX"]'
         )
       );
+    });
+
+    it('looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
+    });
+  });
+
+  describe('with a GSEControl doc loaded', () => {
+    beforeEach(async () => {
+      doc = await fetch('/test/testfiles/valid2007B4ForSubscription.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+      parent = await fixture(html`
+        <mock-wizard-editor>
+          <fcda-later-binding-list
+            .doc=${doc}
+            controlTag="GSEControl"
+          ></fcda-later-binding-list>
+        </mock-wizard-editor>
+      `);
+
+      element = <FCDALaterBindingList>(
+        parent.querySelector('fcda-later-binding-list')!
+      );
+      await element.requestUpdate();
+    });
+
+    it('the GOOSE editor is opened', async () => {
+      // Select the first list item that has an edit button, this should be an SVC Element.
+      await (<HTMLElement>(
+        element?.shadowRoot?.querySelector(
+          'mwc-list-item > mwc-icon-button[icon="edit"]'
+        )
+      )).click();
+      await parent.updateComplete;
+
+      // Select the name input field, this should have the same value as the first GSEControl in the IED.
+      const nameField = <WizardTextField>(
+        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
+      );
+      expect(nameField.value).to.be.equal('GCB');
     });
 
     it('looks like the latest snapshot', async () => {

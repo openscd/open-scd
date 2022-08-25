@@ -4,7 +4,7 @@ export const snapshots = {};
 snapshots["smv-list looks like the latest snapshot without a doc loaded"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.smvLaterBinding.extRefList.noSelection]
+    [subscription.laterBinding.extRefList.noSelection]
   </h1>
 </section>
 `;
@@ -13,7 +13,7 @@ snapshots["smv-list looks like the latest snapshot without a doc loaded"] =
 snapshots["smv-list with document loaded looks like the latest snapshot, but no event fired"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.smvLaterBinding.extRefList.noSelection]
+    [subscription.laterBinding.extRefList.noSelection]
   </h1>
 </section>
 `;
@@ -22,7 +22,7 @@ snapshots["smv-list with document loaded looks like the latest snapshot, but no 
 snapshots["smv-list with document loaded when SVC has no subscriptions looks like the latest snapshot, when SVC has no subscriptions"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.smvLaterBinding.extRefList.title]
+    [subscription.laterBinding.extRefList.SampledValueControl.title]
   </h1>
   <filtered-list>
     <mwc-list-item
@@ -46,7 +46,7 @@ snapshots["smv-list with document loaded when SVC has no subscriptions looks lik
       noninteractive=""
       tabindex="-1"
     >
-      [subscription.smvLaterBinding.extRefList.noSubscribedExtRefs]
+      [subscription.laterBinding.extRefList.noSubscribedExtRefs]
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
@@ -224,7 +224,7 @@ snapshots["smv-list with document loaded when SVC has no subscriptions looks lik
 snapshots["smv-list with document loaded when SVC has a single subscriptions looks like the latest snapshot, "] = 
 `<section tabindex="0">
   <h1>
-    [subscription.smvLaterBinding.extRefList.title]
+    [subscription.laterBinding.extRefList.SampledValueControl.title]
   </h1>
   <filtered-list>
     <mwc-list-item
@@ -437,7 +437,7 @@ snapshots["smv-list with document loaded when SVC has a single subscriptions loo
 snapshots["smv-list when SVC has a multiple subscriptions looks like the latest snapshot, "] = 
 `<section tabindex="0">
   <h1>
-    [subscription.smvLaterBinding.extRefList.title]
+    [subscription.laterBinding.extRefList.SampledValueControl.title]
   </h1>
   <filtered-list>
     <mwc-list-item
