@@ -213,10 +213,13 @@ export class ExtRefLaterBindingList extends LitElement {
       : undefined;
 
     return html`<h1>
-      ${translate('subscription.smvLaterBinding.extRefList.title', {
-        svcName: svcName ?? '-',
-        fcdaName: fcdaName ?? '-',
-      })}
+      ${translate(
+        'subscription.laterBinding.extRefList.SampledValueControl.title',
+        {
+          svcName: svcName ?? '-',
+          fcdaName: fcdaName ?? '-',
+        }
+      )}
     </h1>`;
   }
 
@@ -261,7 +264,7 @@ export class ExtRefLaterBindingList extends LitElement {
           )}`
         : html`<mwc-list-item graphic="large" noninteractive>
             ${translate(
-              'subscription.smvLaterBinding.extRefList.noSubscribedExtRefs'
+              'subscription.laterBinding.extRefList.noSubscribedExtRefs'
             )}
           </mwc-list-item>`}
     `;
@@ -312,7 +315,7 @@ export class ExtRefLaterBindingList extends LitElement {
           )}`
         : html`<mwc-list-item graphic="large" noninteractive>
             ${translate(
-              'subscription.smvLaterBinding.extRefList.noAvailableExtRefs'
+              'subscription.laterBinding.extRefList.noAvailableExtRefs'
             )}
           </mwc-list-item>`}
     `;
@@ -329,9 +332,7 @@ export class ExtRefLaterBindingList extends LitElement {
           `
         : html`
             <h1>
-              ${translate(
-                'subscription.smvLaterBinding.extRefList.noSelection'
-              )}
+              ${translate('subscription.laterBinding.extRefList.noSelection')}
             </h1>
           `}
     </section>`;

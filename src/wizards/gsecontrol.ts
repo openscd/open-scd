@@ -27,6 +27,7 @@ import {
   newSubWizardEvent,
   newWizardEvent,
   selector,
+  SimpleAction,
   Wizard,
   WizardActor,
   WizardInputElement,
@@ -128,7 +129,9 @@ export function contentGseControlWizard(
 
 function createGseControlAction(parent: Element): WizardActor {
   return (inputs: WizardInputElement[], wizard: Element) => {
-    // create ReportControl element
+    const actions: SimpleAction[] = [];
+
+    // Create ReportControl element
     const gseControlAttrs: Record<string, string | null> = {};
     const gseControlKeys = [
       'name',
@@ -153,52 +156,56 @@ function createGseControlAction(parent: Element): WizardActor {
       'GSEControl',
       gseControlAttrs
     );
+    actions.push({ new: { parent, element: gseControl } });
 
-    // create GSE element with connected AccessPoint
-    let gse: Element | null = null;
-    let gseParent: Element | null = null;
+    // Create GSE element with connected AccessPoint
     if (isAccessPointConnected(parent)) {
+      // Get `GSE`'s ``ConnectedAP`` parent
+      const gseParent = getConnectedAP(parent);
+      // Create the new GSE Element.
+      const gse = createElement(parent.ownerDocument, 'GSE', {
+        ldInst: parent.closest('LDevice')?.getAttribute('inst') ?? '',
+        cbName: gseControlAttrs['name']!,
+      });
+      actions.push({ new: { parent: gseParent!, element: gse } });
+
+      // Create Address Element
       const instType: boolean =
         (<Checkbox>wizard.shadowRoot?.querySelector('#instType'))?.checked ??
         false;
-
       const gseAttrs: Record<string, string | null> = {};
       const gseKeys = ['MAC-Address', 'APPID', 'VLAN-ID', 'VLAN-PRIORITY'];
       gseKeys.forEach(key => {
         gseAttrs[key] = getValue(inputs.find(i => i.label === key)!);
       });
-      const minTime = getValue(inputs.find(i => i.label === 'MinTime')!);
-      const maxTime = getValue(inputs.find(i => i.label === 'MaxTime')!);
-
-      gse = createElement(parent.ownerDocument, 'GSE', {
-        ldInst: parent.closest('LDevice')?.getAttribute('inst') ?? '',
-        cbName: gseControlAttrs['name']!,
-      });
       const address = createAddressElement(gseAttrs, gse, instType);
+      actions.push({ new: { parent: gse, element: address } });
 
-      const MinTime = createElement(parent.ownerDocument, 'MinTime', {
+      // Create MinTime Element
+      const minTime = getValue(inputs.find(i => i.label === 'MinTime')!);
+      const minTimeElement = createElement(parent.ownerDocument, 'MinTime', {
         unit: 's',
         multiplier: 'm',
       });
-      MinTime.textContent = minTime;
-      const MaxTime = createElement(parent.ownerDocument, 'MaxTime', {
+      minTimeElement.textContent = minTime;
+      actions.push({ new: { parent: gse, element: minTimeElement } });
+
+      // Create MaxTime Element
+      const maxTime = getValue(inputs.find(i => i.label === 'MaxTime')!);
+      const maxTimeElement = createElement(parent.ownerDocument, 'MaxTime', {
         unit: 's',
         multiplier: 'm',
       });
-      MaxTime.textContent = maxTime;
-
-      gse.appendChild(address);
-      gse.appendChild(MaxTime);
-      gse.appendChild(MinTime);
-
-      // get `GSE`'s ``ConnectedAP`` parent
-      gseParent = getConnectedAP(parent);
+      maxTimeElement.textContent = maxTime;
+      actions.push({ new: { parent: gse, element: maxTimeElement } });
     }
 
     //add empty dataset that can be filled later
     const dataSet = createElement(parent.ownerDocument, 'DataSet', {
       name: dataSetName,
     });
+    actions.push({ new: { parent, element: dataSet } });
+
     const finder = wizard.shadowRoot!.querySelector<FinderList>('finder-list');
     const paths = finder?.paths ?? [];
 
@@ -207,27 +214,15 @@ function createGseControlAction(parent: Element): WizardActor {
 
       if (!element) continue;
 
-      dataSet.appendChild(element);
+      actions.push({ new: { parent: dataSet, element } });
     }
 
-    const complexAction = gse
-      ? {
-          title: 'Create GSEControl',
-          actions: [
-            { new: { parent, element: gseControl } },
-            { new: { parent: gseParent!, element: gse } },
-            { new: { parent, element: dataSet } },
-          ],
-        }
-      : {
-          title: 'Create GSEControl',
-          actions: [
-            { new: { parent, element: gseControl } },
-            { new: { parent, element: dataSet } },
-          ],
-        };
-
-    return [complexAction];
+    return [
+      {
+        title: get('editing.created', { name: 'GSEControl' }),
+        actions,
+      },
+    ];
   };
 }
 
