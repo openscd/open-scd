@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Wizards for SCL element DAI edit existing DAI looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'Wizards for SCL element DAI edit existing DAI looks like the latest snapshot'
+] = `<mwc-dialog
   defaultaction="next"
   heading="[dai.wizard.title.edit]"
   open=""
@@ -11,6 +12,7 @@ snapshots["Wizards for SCL element DAI edit existing DAI looks like the latest s
   <div id="wizard-content">
     <wizard-textfield
       helper="[dai.wizard.valueHelper]"
+      id="Val"
       label="Val"
       max="255"
       min="0"
@@ -35,4 +37,3 @@ snapshots["Wizards for SCL element DAI edit existing DAI looks like the latest s
 </mwc-dialog>
 `;
 /* end snapshot Wizards for SCL element DAI edit existing DAI looks like the latest snapshot */
-
