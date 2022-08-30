@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<SCL version="2007" revision="B" release="4" xmlns:sxy="http://www.iec.ch/61850/2003/SCLcoordinates" xmlns="http://www.iec.ch/61850/2003/SCL" xmlns:txy="http://www.iec.ch/61850/2003/Terminal" xmlns:scl="http://www.iec.ch/61850/2003/SCL" xsi:schemaLocation="http://www.iec.ch/61850/2003/SCL SCL.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:IEC_60870_5_104="http://www.iec.ch/61850-80-1/2007/SCL">
+<SCL xmlns="http://www.iec.ch/61850/2003/SCL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2007" revision="B" release="4" xsi:schemaLocation="http://www.iec.ch/61850/2003/SCL SCL.xsd">
 	<Header id="TrainingIEC61850" version="1" revision="143" toolID="IEC 61850 System Configurator, Version: V5.90 " nameStructure="IEDName">
 		<Text>TrainingIEC61850</Text>
 		<History>
-			<Hitem version="1" revision="143" when="Wednesday, September 25, 2019 9:11:36 AM" who="Licenced User: OMICRON electronics GmbH JakVog00 Machine: JAKVOG00LW01 User: JakVog00" what="Station is upgraded from IEC 61850 System Configurator, Version: V5.80 HF1 to V5.90 ." why="IEC 61850 System Configurator Automatic Startup: Insert Comment" />
+			<Hitem version="1" revision="143" when="Wednesday, September 25, 2019 9:11:36 AM" who="Licenced User: OMICRON electronics GmbH JakVog00 Machine: JAKVOG00LW01 User: JakVog00" what="Station is upgraded from IEC 61850 System Configurator, Version: V5.80 HF1 to V5.90 ." why="IEC 61850 System Configurator Automatic Startup: Insert Comment"/>
 		</History>
 	</Header>
-  <Substation name="AA1" desc="Substation">
-    <VoltageLevel name="E1" desc="Voltage Level" nomFreq="50.0" numPhases="3">
-      <Voltage unit="V" multiplier="k">110.0</Voltage>
-      <Bay name="COUPLING_BAY" desc="Bay">
-        <Private type="dummyType">
-          <ekaf:LNode xmlns:ekaf="http://www.dummyURL.com/dummyNS" iedName="IED2" ldInst="CBSWr" lnClass="LPHD" lnInst="1"/>
-        </Private>
-        <LNode iedName="IED2" ldInst="CBSW" lnClass="LPHD" lnInst="1"/>
-        <LNode iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="3"/>
-        <ConductingEquipment type="CBR" name="QA1" desc="coupling field ciscuit breaker"/>
-        <ConductingEquipment type="DIS" name="QB1" desc="busbar disconnector QB1">
-          <LNode iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="2"/>
-        </ConductingEquipment>
-        <ConductingEquipment type="DIS" name="QB2" desc="busbar disconnector QB2"/>
-        <ConductingEquipment type="DIS" name="QC11" desc="busbar earth switch QC11">
-          <Terminal name="T1" connectivityNode="AA1/E1/COUPLING_BAY/L2" substationName="AA1" voltageLevelName="E1" bayName="COUPLING_BAY" cNodeName="L2"/>
-          <Terminal connectivityNode="AA1/E1/COUPLING_BAY/grounded" name="T2" substationName="AA1" voltageLevelName="E1" bayName="COUPLING_BAY" cNodeName="grounded"/>
-        </ConductingEquipment>
-        <ConductingEquipment type="DIS" name="QC21" desc="busbar disconnector Q12">
-          <Terminal connectivityNode="AA1/E1/COUPLING_BAY/grounded" name="T1" substationName="AA1" voltageLevelName="E1" bayName="COUPLING_BAY" cNodeName="grounded"/>
-        </ConductingEquipment>
-        <ConnectivityNode pathName="AA1/E1/COUPLING_BAY/L2" name="L2"/>
-      </Bay>
-      <Bay name="Bay2" desc="Bay2">
-      </Bay>
-    </VoltageLevel>
-    <VoltageLevel name="J1" desc="Voltage Level">
-      <Voltage unit="V" multiplier="k">20</Voltage>
-      <Bay name="Bay1" desc="Bay1">
-      </Bay>
-    </VoltageLevel>
-  </Substation>
+	<Substation name="AA1" desc="Substation">
+		<VoltageLevel name="E1" desc="Voltage Level" nomFreq="50.0" numPhases="3">
+			<Voltage unit="V" multiplier="k">110.0</Voltage>
+			<Bay name="COUPLING_BAY" desc="Bay">
+				<Private type="dummyType">
+					<ekaf:LNode xmlns:ekaf="http://www.dummyURL.com/dummyNS" iedName="IED2" ldInst="CBSWr" lnClass="LPHD" lnInst="1"/>
+				</Private>
+				<LNode iedName="IED2" ldInst="CBSW" lnClass="LPHD" lnInst="1"/>
+				<LNode iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="3"/>
+				<ConductingEquipment type="CBR" name="QA1" desc="coupling field ciscuit breaker"/>
+				<ConductingEquipment type="DIS" name="QB1" desc="busbar disconnector QB1">
+					<LNode iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="2"/>
+				</ConductingEquipment>
+				<ConductingEquipment type="DIS" name="QB2" desc="busbar disconnector QB2"/>
+				<ConductingEquipment type="DIS" name="QC11" desc="busbar earth switch QC11">
+					<Terminal name="T1" connectivityNode="AA1/E1/COUPLING_BAY/L2" substationName="AA1" voltageLevelName="E1" bayName="COUPLING_BAY" cNodeName="L2"/>
+					<Terminal connectivityNode="AA1/E1/COUPLING_BAY/grounded" name="T2" substationName="AA1" voltageLevelName="E1" bayName="COUPLING_BAY" cNodeName="grounded"/>
+				</ConductingEquipment>
+				<ConductingEquipment type="DIS" name="QC21" desc="busbar disconnector Q12">
+					<Terminal connectivityNode="AA1/E1/COUPLING_BAY/grounded" name="T1" substationName="AA1" voltageLevelName="E1" bayName="COUPLING_BAY" cNodeName="grounded"/>
+				</ConductingEquipment>
+				<ConnectivityNode pathName="AA1/E1/COUPLING_BAY/L2" name="L2"/>
+			</Bay>
+			<Bay name="Bay2" desc="Bay2">
+			</Bay>
+		</VoltageLevel>
+		<VoltageLevel name="J1" desc="Voltage Level">
+			<Voltage unit="V" multiplier="k">20</Voltage>
+			<Bay name="Bay1" desc="Bay1">
+			</Bay>
+		</VoltageLevel>
+	</Substation>
 	<Communication>
 		<SubNetwork name="StationBus" desc="desc" type="8-MMS">
 			<BitRate unit="b/s">100.0</BitRate>
@@ -90,53 +90,62 @@
 					<P type="OSI-TSEL">0001</P>
 				</Address>
 				<SMV ldInst="MU01" cbName="MSVCB01">
-                    <Address>
-                        <P type="MAC-Address">01-0C-CD-04-00-20</P>
-                        <P type="VLAN-ID">007</P>
-                        <P type="VLAN-PRIORITY">4</P>
-                        <P type="APPID">4002</P>
-                    </Address>
-                </SMV>
+					<Address>
+						<P type="MAC-Address">01-0C-CD-04-00-20</P>
+						<P type="VLAN-ID">007</P>
+						<P type="VLAN-PRIORITY">4</P>
+						<P type="APPID">4002</P>
+					</Address>
+				</SMV>
 			</ConnectedAP>
 		</SubNetwork>
 	</Communication>
 	<IED name="IED1" type="DummyIED" manufacturer="DummyManufactorer" configVersion="1" originalSclVersion="2007" originalSclRevision="B" owner="DummyOwner">
 		<Services>
-			<DynAssociation />
-			<GetDirectory />
-			<GetDataObjectDefinition />
-			<DataObjectDirectory />
-			<GetDataSetValue />
-			<SetDataSetValue />
-			<DataSetDirectory />
-			<ConfDataSet modify="false" max="3" />
-			<DynDataSet max="42" />
-			<ReadWrite />
+			<DynAssociation/>
+			<GetDirectory/>
+			<GetDataObjectDefinition/>
+			<DataObjectDirectory/>
+			<GetDataSetValue/>
+			<SetDataSetValue/>
+			<DataSetDirectory/>
+			<ConfDataSet modify="false" max="3"/>
+			<DynDataSet max="42"/>
+			<ReadWrite/>
 			<ConfReportControl bufConf="false" max="10"/>
-			<GetCBValues />
-			<ReportSettings rptID="Dyn" optFields="Dyn" bufTime="Dyn" trgOps="Dyn" intgPd="Dyn" resvTms="true" owner="true" />
-			<GOOSE max="1" />
-			<GSSE max="0" />
-			<ConfLNs fixPrefix="true" fixLnInst="true" />
+			<GetCBValues/>
+			<ReportSettings rptID="Dyn" optFields="Dyn" bufTime="Dyn" trgOps="Dyn" intgPd="Dyn" resvTms="true" owner="true"/>
+			<GOOSE max="1"/>
+			<GSSE max="0"/>
+			<ConfLNs fixPrefix="true" fixLnInst="true"/>
 		</Services>
 		<AccessPoint name="P1">
 			<Server>
-				<Authentication none="true" />
+				<Authentication none="true"/>
 				<LDevice inst="CircuitBreaker_CB1">
 					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0">
 						<DataSet name="GooseDataSet1">
-                            <FCDA ldInst="CircuitBreaker_CB1" prefix="" lnClass="XCBR" lnInst="1" doName="Pos" daName="stVal" fc="ST"/>
-                            <FCDA ldInst="CircuitBreaker_CB1" prefix="" lnClass="XCBR" lnInst="1" doName="Pos" daName="q" fc="ST"/>
+							<FCDA ldInst="CircuitBreaker_CB1" prefix="" lnClass="XCBR" lnInst="1" doName="Pos" daName="stVal" fc="ST"/>
+							<FCDA ldInst="CircuitBreaker_CB1" prefix="" lnClass="XCBR" lnInst="1" doName="Pos" daName="q" fc="ST"/>
 							<FCDA ldInst="CircuitBreaker_CB1" prefix="" lnClass="CSWI" lnInst="1" doName="Pos" daName="stVal" fc="ST"/>
-                            <FCDA ldInst="Disconnectors" prefix="DC" lnClass="XSWI" lnInst="1" doName="Pos" daName="stVal" fc="ST"/>
-                            <FCDA ldInst="Disconnectors" prefix="DC" lnClass="XSWI" lnInst="1" doName="Pos" daName="q" fc="ST"/>
-                        </DataSet>
+							<FCDA ldInst="Disconnectors" prefix="DC" lnClass="XSWI" lnInst="1" doName="Pos" daName="stVal" fc="ST"/>
+							<FCDA ldInst="Disconnectors" prefix="DC" lnClass="XSWI" lnInst="1" doName="Pos" daName="q" fc="ST"/>
+						</DataSet>
 						<GSEControl type="GOOSE" appID="0001" fixedOffs="false" confRev="1" name="GCB" datSet="GooseDataSet1">
 							<IEDName apRef="P1" ldInst="CircuitBreaker_CB1" lnClass="CSWI" lnInst="1">IED2</IEDName>
 						</GSEControl>
 						<GSEControl type="GOOSE" appID="0003" fixedOffs="false" confRev="1" name="GCB2"/>
 					</LN0>
 					<LN lnClass="XCBR" inst="1" lnType="Dummy.XCBR1">
+						<DOI name="Beh">
+							<DAI name="stVal">
+							</DAI>
+							<DAI name="integer">
+								<Val></Val>
+							</DAI>
+              <DAI name="t">
+              </DAI>
+						</DOI>
 						<DOI name="Pos">
 							<DAI name="ctlModel">
 								<Val>status-only</Val>
@@ -159,16 +168,16 @@
 					</LN>
 					<LN prefix="CB" lnClass="CSWI" inst="2" lnType="Dummy.CSWIwithoutCtlModel">
 						<DOI name="Beh">
-								<DAI name="integer">
-    								<Val>5</Val>
-								</DAI>
+							<DAI name="integer">
+								<Val>5</Val>
+							</DAI>
 						</DOI>
 						<DOI name="Pos">
 							<SDI name="pulseConfig">
 								<DAI name="numPls">
-    								<Val>1</Val>
+									<Val>1</Val>
 								</DAI>
-                            </SDI>
+							</SDI>
 							<DAI name="ctlModel">
 								<Val>sbo-with-enhanced-security</Val>
 							</DAI>
@@ -222,26 +231,26 @@
 	</IED>
 	<IED name="IED2" type="DummyIED" manufacturer="DummyManufactorer" configVersion="1" originalSclVersion="2007" originalSclRevision="B" owner="DummyOwner">
 		<Services>
-			<DynAssociation />
-			<GetDirectory />
-			<GetDataObjectDefinition />
-			<DataObjectDirectory />
-			<GetDataSetValue />
-			<SetDataSetValue />
-			<DataSetDirectory />
-			<ConfDataSet modify="false" max="3" />
-			<DynDataSet max="42" />
-			<ReadWrite />
-			<ConfReportControl max="10" />
-			<GetCBValues />
-			<ReportSettings rptID="Dyn" optFields="Dyn" bufTime="Dyn" trgOps="Dyn" intgPd="Dyn" resvTms="true" owner="true" />
-			<GOOSE max="1" />
-			<GSSE max="0" />
-			<ConfLNs fixPrefix="true" fixLnInst="true" />
+			<DynAssociation/>
+			<GetDirectory/>
+			<GetDataObjectDefinition/>
+			<DataObjectDirectory/>
+			<GetDataSetValue/>
+			<SetDataSetValue/>
+			<DataSetDirectory/>
+			<ConfDataSet modify="false" max="3"/>
+			<DynDataSet max="42"/>
+			<ReadWrite/>
+			<ConfReportControl max="10"/>
+			<GetCBValues/>
+			<ReportSettings rptID="Dyn" optFields="Dyn" bufTime="Dyn" trgOps="Dyn" intgPd="Dyn" resvTms="true" owner="true"/>
+			<GOOSE max="1"/>
+			<GSSE max="0"/>
+			<ConfLNs fixPrefix="true" fixLnInst="true"/>
 		</Services>
 		<AccessPoint name="P1">
 			<Server>
-				<Authentication />
+				<Authentication/>
 				<LDevice inst="CBSW">
 					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0">
 						<Private type="dummyType">
@@ -265,9 +274,9 @@
 					</LN>
 					<LN lnClass="XSWI" inst="1" lnType="Dummy.XSWI1">
 						<DataSet name="dataSet">
-                            <FCDA ldInst="CBSW" lnClass="XSWI" lnInst="1" doName="Pos" daName="stVal" fc="ST"/>
-                            <FCDA ldInst="CBSW" lnClass="XSWI" lnInst="1" doName="Pos" daName="q" fc="ST"/>
-                        </DataSet>
+							<FCDA ldInst="CBSW" lnClass="XSWI" lnInst="1" doName="Pos" daName="stVal" fc="ST"/>
+							<FCDA ldInst="CBSW" lnClass="XSWI" lnInst="1" doName="Pos" daName="q" fc="ST"/>
+						</DataSet>
 						<ReportControl rptID="IED2/CBSW/XSWI/SwitchGearBRCB" confRev="9" buffered="true" bufTime="100" indexed="true" intgPd="0" name="ReportCb" datSet="dataSet">
 							<TrgOps dchg="true" qchg="true" dupd="false" period="false" gi="true"/>
 							<OptFields seqNum="true" timeStamp="true" dataSet="true" reasonCode="true" dataRef="false" entryID="false" configRef="true" bufOvfl="false"/>
@@ -333,65 +342,65 @@
 						</Inputs>
 					</LN>
 				</LDevice>
-        <Association iedName="IED1"/>
+				<Association iedName="IED1"/>
 			</Server>
 		</AccessPoint>
 	</IED>
 	<IED name="IED3" type="DummyIED" manufacturer="DummyManufactorer" configVersion="1" originalSclVersion="2007" originalSclRevision="B" owner="DummyOwner">
 		<Services>
-			<DynAssociation />
-			<GetDirectory />
-			<GetDataObjectDefinition />
-			<DataObjectDirectory />
-			<GetDataSetValue />
-			<SetDataSetValue />
-			<DataSetDirectory />
-			<ConfDataSet modify="false" max="3" />
-			<DynDataSet max="42" />
-			<ReadWrite />
+			<DynAssociation/>
+			<GetDirectory/>
+			<GetDataObjectDefinition/>
+			<DataObjectDirectory/>
+			<GetDataSetValue/>
+			<SetDataSetValue/>
+			<DataSetDirectory/>
+			<ConfDataSet modify="false" max="3"/>
+			<DynDataSet max="42"/>
+			<ReadWrite/>
 			<ConfReportControl bufConf="false" max="10"/>
-			<GetCBValues />
-			<ReportSettings rptID="Dyn" optFields="Dyn" bufTime="Dyn" trgOps="Dyn" intgPd="Dyn" resvTms="true" owner="true" />
-			<GOOSE max="1" />
-			<GSSE max="0" />
-			<ConfLNs fixPrefix="true" fixLnInst="true" />
+			<GetCBValues/>
+			<ReportSettings rptID="Dyn" optFields="Dyn" bufTime="Dyn" trgOps="Dyn" intgPd="Dyn" resvTms="true" owner="true"/>
+			<GOOSE max="1"/>
+			<GSSE max="0"/>
+			<ConfLNs fixPrefix="true" fixLnInst="true"/>
 		</Services>
 		<AccessPoint name="P1">
 			<Server>
-				<Authentication none="true" />
+				<Authentication none="true"/>
 				<LDevice inst="MU01">
 					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0.two">
-					<DataSet name="PhsMeas1">
-                            <FCDA ldInst="MU01" prefix="I01A" lnClass="TCTR" lnInst="1" doName="Amp" daName="instMag.i" fc="MX"/>
-                            <FCDA ldInst="MU01" prefix="I01A" lnClass="TCTR" lnInst="1" doName="Amp" daName="q" fc="MX"/>
-                            <FCDA ldInst="MU01" prefix="I01B" lnClass="TCTR" lnInst="2" doName="Amp" daName="instMag.i" fc="MX"/>
-                            <FCDA ldInst="MU01" prefix="I01B" lnClass="TCTR" lnInst="2" doName="Amp" daName="q" fc="MX"/>
-                            <FCDA ldInst="MU01" prefix="I01C" lnClass="TCTR" lnInst="3" doName="Amp" daName="instMag.i" fc="MX"/>
-                            <FCDA ldInst="MU01" prefix="I01C" lnClass="TCTR" lnInst="3" doName="Amp" daName="q" fc="MX"/>
-                            <FCDA ldInst="MU01" prefix="I01N" lnClass="TCTR" lnInst="4" doName="Amp" daName="instMag.i" fc="MX"/>
-                            <FCDA ldInst="MU01" prefix="I01N" lnClass="TCTR" lnInst="4" doName="Amp" daName="q" fc="MX"/>
-                            <FCDA ldInst="MU01" prefix="U01A" lnClass="TVTR" lnInst="1" doName="Vol" daName="instMag.i" fc="MX"/>
-                            <FCDA ldInst="MU01" prefix="U01A" lnClass="TVTR" lnInst="1" doName="Vol" daName="q" fc="MX"/>
-                            <FCDA ldInst="MU01" prefix="U01B" lnClass="TVTR" lnInst="2" doName="Vol" daName="instMag.i" fc="MX"/>
-                            <FCDA ldInst="MU01" prefix="U01B" lnClass="TVTR" lnInst="2" doName="Vol" daName="q" fc="MX"/>
-                            <FCDA ldInst="MU01" prefix="U01C" lnClass="TVTR" lnInst="3" doName="Vol" daName="instMag.i" fc="MX"/>
-                            <FCDA ldInst="MU01" prefix="U01C" lnClass="TVTR" lnInst="3" doName="Vol" daName="q" fc="MX"/>
-                            <FCDA ldInst="MU01" prefix="U01N" lnClass="TVTR" lnInst="4" doName="Vol" daName="instMag.i" fc="MX"/>
-                            <FCDA ldInst="MU01" prefix="U01N" lnClass="TVTR" lnInst="4" doName="Vol" daName="q" fc="MX"/>
-                        </DataSet>
-					<SampledValueControl smvID="IED3_SMVID" multicast="true" smpRate="80" nofASDU="1" confRev="1" name="MSVCB01" datSet="PhsMeas1">
-						<IEDName>IED2</IEDName>
-            <SmvOpts/>
-					</SampledValueControl>
+						<DataSet name="PhsMeas1">
+							<FCDA ldInst="MU01" prefix="I01A" lnClass="TCTR" lnInst="1" doName="Amp" daName="instMag.i" fc="MX"/>
+							<FCDA ldInst="MU01" prefix="I01A" lnClass="TCTR" lnInst="1" doName="Amp" daName="q" fc="MX"/>
+							<FCDA ldInst="MU01" prefix="I01B" lnClass="TCTR" lnInst="2" doName="Amp" daName="instMag.i" fc="MX"/>
+							<FCDA ldInst="MU01" prefix="I01B" lnClass="TCTR" lnInst="2" doName="Amp" daName="q" fc="MX"/>
+							<FCDA ldInst="MU01" prefix="I01C" lnClass="TCTR" lnInst="3" doName="Amp" daName="instMag.i" fc="MX"/>
+							<FCDA ldInst="MU01" prefix="I01C" lnClass="TCTR" lnInst="3" doName="Amp" daName="q" fc="MX"/>
+							<FCDA ldInst="MU01" prefix="I01N" lnClass="TCTR" lnInst="4" doName="Amp" daName="instMag.i" fc="MX"/>
+							<FCDA ldInst="MU01" prefix="I01N" lnClass="TCTR" lnInst="4" doName="Amp" daName="q" fc="MX"/>
+							<FCDA ldInst="MU01" prefix="U01A" lnClass="TVTR" lnInst="1" doName="Vol" daName="instMag.i" fc="MX"/>
+							<FCDA ldInst="MU01" prefix="U01A" lnClass="TVTR" lnInst="1" doName="Vol" daName="q" fc="MX"/>
+							<FCDA ldInst="MU01" prefix="U01B" lnClass="TVTR" lnInst="2" doName="Vol" daName="instMag.i" fc="MX"/>
+							<FCDA ldInst="MU01" prefix="U01B" lnClass="TVTR" lnInst="2" doName="Vol" daName="q" fc="MX"/>
+							<FCDA ldInst="MU01" prefix="U01C" lnClass="TVTR" lnInst="3" doName="Vol" daName="instMag.i" fc="MX"/>
+							<FCDA ldInst="MU01" prefix="U01C" lnClass="TVTR" lnInst="3" doName="Vol" daName="q" fc="MX"/>
+							<FCDA ldInst="MU01" prefix="U01N" lnClass="TVTR" lnInst="4" doName="Vol" daName="instMag.i" fc="MX"/>
+							<FCDA ldInst="MU01" prefix="U01N" lnClass="TVTR" lnInst="4" doName="Vol" daName="q" fc="MX"/>
+						</DataSet>
+						<SampledValueControl smvID="IED3_SMVID" multicast="true" smpRate="80" nofASDU="1" confRev="1" name="MSVCB01" datSet="PhsMeas1">
+							<IEDName>IED2</IEDName>
+							<SmvOpts/>
+						</SampledValueControl>
 					</LN0>
-                    <LN prefix="I01A" lnClass="TCTR" inst="1" lnType="DummyTCTR" />
-                    <LN prefix="I01B" lnClass="TCTR" inst="2" lnType="DummyTCTR" />
-                    <LN prefix="I01C" lnClass="TCTR" inst="3" lnType="DummyTCTR" />
-                    <LN prefix="I01N" lnClass="TCTR" inst="4" lnType="DummyTCTR" />
-                    <LN prefix="U01A" lnClass="TVTR" inst="1" lnType="DummyTVTR" />
-                    <LN prefix="U01B" lnClass="TVTR" inst="2" lnType="DummyTVTR" />
-                    <LN prefix="U01C" lnClass="TVTR" inst="3" lnType="DummyTVTR" />
-                    <LN prefix="U01N" lnClass="TVTR" inst="4" lnType="DummyTVTR" />
+					<LN prefix="I01A" lnClass="TCTR" inst="1" lnType="DummyTCTR"/>
+					<LN prefix="I01B" lnClass="TCTR" inst="2" lnType="DummyTCTR"/>
+					<LN prefix="I01C" lnClass="TCTR" inst="3" lnType="DummyTCTR"/>
+					<LN prefix="I01N" lnClass="TCTR" inst="4" lnType="DummyTCTR"/>
+					<LN prefix="U01A" lnClass="TVTR" inst="1" lnType="DummyTVTR"/>
+					<LN prefix="U01B" lnClass="TVTR" inst="2" lnType="DummyTVTR"/>
+					<LN prefix="U01C" lnClass="TVTR" inst="3" lnType="DummyTVTR"/>
+					<LN prefix="U01N" lnClass="TVTR" inst="4" lnType="DummyTVTR"/>
 				</LDevice>
 			</Server>
 		</AccessPoint>
@@ -400,250 +409,252 @@
 	</IED>
 	<DataTypeTemplates>
 		<LNodeType lnClass="LLN0" id="Dummy.LLN0">
-			<DO name="Mod" type="Dummy.LLN0.Mod" />
-			<DO name="ExtendedMod" type="Dummy.LLN0.ExtendedMod" />
-			<DO name="Beh" type="Dummy.LLN0.Beh" />
-			<DO name="Health" type="Dummy.LLN0.Health" />
-			<DO name="NamPlt" type="Dummy.LLN0.NamPlt" />
+			<DO name="Mod" type="Dummy.LLN0.Mod"/>
+			<DO name="ExtendedMod" type="Dummy.LLN0.ExtendedMod"/>
+			<DO name="Beh" type="Dummy.LLN0.Beh"/>
+			<DO name="Health" type="Dummy.LLN0.Health"/>
+			<DO name="NamPlt" type="Dummy.LLN0.NamPlt"/>
 		</LNodeType>
 		<LNodeType lnClass="LLN0" id="Dummy.LLN0.two">
-			<DO name="Mod" type="Dummy.LLN0.Mod" />
-			<DO name="Beh" type="Dummy.LLN0.Beh" />
-			<DO name="Health" type="Dummy.LLN0.Health" />
-			<DO name="NamPlt" type="Dummy.LLN0.NamPlt" />
+			<DO name="Mod" type="Dummy.LLN0.Mod"/>
+			<DO name="Beh" type="Dummy.LLN0.Beh"/>
+			<DO name="Health" type="Dummy.LLN0.Health"/>
+			<DO name="NamPlt" type="Dummy.LLN0.NamPlt"/>
 		</LNodeType>
 		<LNodeType lnClass="LPHD" id="Dummy.LPHD1">
-			<DO name="PhyNam" type="Dummy.LPHD1.PhyNam" />
-			<DO name="PhyHealth" type="Dummy.LLN0.Health" />
-			<DO name="Proxy" type="Dummy.SPS" />
-			<DO name="Sim" type="Dummy.LPHD1.Sim" />
+			<DO name="PhyNam" type="Dummy.LPHD1.PhyNam"/>
+			<DO name="PhyHealth" type="Dummy.LLN0.Health"/>
+			<DO name="Proxy" type="Dummy.SPS"/>
+			<DO name="Sim" type="Dummy.LPHD1.Sim"/>
 		</LNodeType>
 		<LNodeType lnClass="XCBR" id="Dummy.XCBR1">
-			<DO name="Beh" type="Dummy.LLN0.Beh" />
-			<DO name="NamPlt" type="Dummy.XCBR1.NamPlt" />
-			<DO name="Loc" type="Dummy.SPS" />
-			<DO name="OpCnt" type="Dummy.XCBR1.OpCnt" />
-			<DO name="Pos" type="Dummy.XCBR1.Pos" />
-			<DO name="BlkOpn" type="Dummy.XCBR1.BlkOpn" />
-			<DO name="BlkCls" type="Dummy.XCBR1.BlkOpn" />
+			<DO name="Beh" type="Dummy.LLN0.Beh"/>
+			<DO name="NamPlt" type="Dummy.XCBR1.NamPlt"/>
+			<DO name="Loc" type="Dummy.SPS"/>
+			<DO name="OpCnt" type="Dummy.XCBR1.OpCnt"/>
+			<DO name="Pos" type="Dummy.XCBR1.Pos"/>
+			<DO name="BlkOpn" type="Dummy.XCBR1.BlkOpn"/>
+			<DO name="BlkCls" type="Dummy.XCBR1.BlkOpn"/>
 		</LNodeType>
 		<LNodeType lnClass="CSWI" id="Dummy.CSWI">
-			<DO name="Beh" type="Dummy.LLN0.Beh" />
-			<DO name="NamPlt" type="Dummy.XCBR1.NamPlt" />
-			<DO name="Loc" type="Dummy.SPS" />
-			<DO name="OpCnt" type="Dummy.XCBR1.OpCnt" />
-			<DO name="Pos" type="Dummy.CSWI.Pos1" />
+			<DO name="Beh" type="Dummy.LLN0.Beh"/>
+			<DO name="NamPlt" type="Dummy.XCBR1.NamPlt"/>
+			<DO name="Loc" type="Dummy.SPS"/>
+			<DO name="OpCnt" type="Dummy.XCBR1.OpCnt"/>
+			<DO name="Pos" type="Dummy.CSWI.Pos1"/>
 		</LNodeType>
 		<LNodeType lnClass="CILO" id="Dummy.CILO">
-			<DO name="Beh" type="Dummy.LLN0.Beh" />
-			<DO name="NamPlt" type="Dummy.XCBR1.NamPlt" />
+			<DO name="Beh" type="Dummy.LLN0.Beh"/>
+			<DO name="NamPlt" type="Dummy.XCBR1.NamPlt"/>
 			<DO name="EnaOpn" type="Dummy.SPS"/>
-            <DO name="EnaCls" type="Dummy.SPS"/>
+			<DO name="EnaCls" type="Dummy.SPS"/>
 		</LNodeType>
 		<LNodeType lnClass="CSWI" id="Dummy.CSWIwithoutCtlModel">
-			<DO name="Beh" type="Dummy.LLN0.Beh" />
-			<DO name="NamPlt" type="Dummy.XCBR1.NamPlt" />
-			<DO name="Loc" type="Dummy.SPS" />
-			<DO name="OpCnt" type="Dummy.XCBR1.OpCnt" />
-			<DO name="Pos" type="Dummy.CSWI.Pos2" />
+			<DO name="Beh" type="Dummy.LLN0.Beh"/>
+			<DO name="NamPlt" type="Dummy.XCBR1.NamPlt"/>
+			<DO name="Loc" type="Dummy.SPS"/>
+			<DO name="OpCnt" type="Dummy.XCBR1.OpCnt"/>
+			<DO name="Pos" type="Dummy.CSWI.Pos2"/>
 		</LNodeType>
 		<LNodeType lnClass="XSWI" id="Dummy.XSWI1">
-			<DO name="Beh" type="Dummy.LLN0.Beh" />
-			<DO name="NamPlt" type="Dummy.XCBR1.NamPlt" />
-			<DO name="Loc" type="Dummy.SPS" />
-			<DO name="OpCnt" type="Dummy.XCBR1.OpCnt" />
-			<DO name="Pos" type="Dummy.XCBR1.Pos" />
-			<DO name="BlkOpn" type="Dummy.XCBR1.BlkOpn" />
-			<DO name="BlkCls" type="Dummy.XCBR1.BlkOpn" />
+			<DO name="Beh" type="Dummy.LLN0.Beh"/>
+			<DO name="NamPlt" type="Dummy.XCBR1.NamPlt"/>
+			<DO name="Loc" type="Dummy.SPS"/>
+			<DO name="OpCnt" type="Dummy.XCBR1.OpCnt"/>
+			<DO name="Pos" type="Dummy.XCBR1.Pos"/>
+			<DO name="BlkOpn" type="Dummy.XCBR1.BlkOpn"/>
+			<DO name="BlkCls" type="Dummy.XCBR1.BlkOpn"/>
 		</LNodeType>
 		<LNodeType lnClass="GGIO" id="Dummy.GGIO1">
-			<DO name="Beh" type="Dummy.LLN0.Beh" />
-			<DO name="NamPlt" type="Dummy.XCBR1.NamPlt" />
-			<DO name="Ind1" type="Dummy.SPS" />
-			<DO name="SPCSO1" type="Dummy.LPHD1.Sim" />
+			<DO name="Beh" type="Dummy.LLN0.Beh"/>
+			<DO name="NamPlt" type="Dummy.XCBR1.NamPlt"/>
+			<DO name="Ind1" type="Dummy.SPS"/>
+			<DO name="SPCSO1" type="Dummy.LPHD1.Sim"/>
 		</LNodeType>
 		<LNodeType lnClass="TCTR" id="DummyTCTR">
-            <DO name="Mod" type="Dummy.LLN0.Mod"/>
-            <DO name="Beh" type="Dummy.LLN0.Beh"/>
-            <DO name="NamPlt" type="Dummy.XCBR1.NamPlt"/>
-            <DO name="Amp" type="DummySAV"/>
-        </LNodeType>
+			<DO name="Mod" type="Dummy.LLN0.Mod"/>
+			<DO name="Beh" type="Dummy.LLN0.Beh"/>
+			<DO name="NamPlt" type="Dummy.XCBR1.NamPlt"/>
+			<DO name="Amp" type="DummySAV"/>
+		</LNodeType>
 		<LNodeType lnClass="TVTR" id="DummyTVTR">
-            <DO name="Mod" type="Dummy.LLN0.Mod"/>
-            <DO name="Beh" type="Dummy.LLN0.Beh"/>
-            <DO name="NamPlt" type="Dummy.XCBR1.NamPlt"/>
-            <DO name="Vol" type="DummySAV"/>
-        </LNodeType>
+			<DO name="Mod" type="Dummy.LLN0.Mod"/>
+			<DO name="Beh" type="Dummy.LLN0.Beh"/>
+			<DO name="NamPlt" type="Dummy.XCBR1.NamPlt"/>
+			<DO name="Vol" type="DummySAV"/>
+		</LNodeType>
 		<DOType cdc="SAV" id="DummySAV">
-            <DA fc="MX" name="instMag" bType="Struct" type="AnalogueValue_i"/>
-            <DA fc="MX" qchg="true" name="q" bType="Quality"/>
-            <DA fc="CF" name="sVC" bType="Struct" type="ScaledValueConfig"/>
-        </DOType>
+			<DA fc="MX" name="instMag" bType="Struct" type="AnalogueValue_i"/>
+			<DA fc="MX" qchg="true" name="q" bType="Quality"/>
+			<DA fc="CF" name="sVC" bType="Struct" type="ScaledValueConfig"/>
+		</DOType>
 		<DOType cdc="ENC" id="Dummy.LLN0.Mod">
-			<DA fc="ST" name="stVal" bType="Enum" type="Dummy_Beh" />
-			<DA fc="ST" name="q" bType="Quality" />
-			<DA fc="ST" name="t" bType="Timestamp" />
-			<DA fc="ST" name="stSeld" bType="BOOLEAN" />
-			<DA fc="OR" name="opRcvd" bType="BOOLEAN" />
-			<DA fc="OR" name="opOk" bType="BOOLEAN" />
-			<DA fc="OR" name="tOpOk" bType="Timestamp" />
-			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel" />
-			<DA fc="CF" name="sboTimeout" bType="INT32U" />
-			<DA fc="CF" name="operTimeout" bType="INT32U" />
-			<DA fc="CO" name="SBO" bType="ObjRef" />
-			<DA fc="CO" name="SBOw" bType="Struct" type="Dummy.LLN0.Mod.SBOw" />
-			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.LLN0.Mod.SBOw" />
-			<DA fc="CO" name="Cancel" bType="Struct" type="Dummy.LLN0.Mod.Cancel" />
+			<DA fc="ST" name="stVal" bType="Enum" type="Dummy_Beh"/>
+			<DA fc="ST" name="q" bType="Quality"/>
+			<DA fc="ST" name="t" bType="Timestamp"/>
+			<DA fc="ST" name="stSeld" bType="BOOLEAN"/>
+			<DA fc="OR" name="opRcvd" bType="BOOLEAN"/>
+			<DA fc="OR" name="opOk" bType="BOOLEAN"/>
+			<DA fc="OR" name="tOpOk" bType="Timestamp"/>
+			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel"/>
+			<DA fc="CF" name="sboTimeout" bType="INT32U"/>
+			<DA fc="CF" name="operTimeout" bType="INT32U"/>
+			<DA fc="CO" name="SBO" bType="ObjRef"/>
+			<DA fc="CO" name="SBOw" bType="Struct" type="Dummy.LLN0.Mod.SBOw"/>
+			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.LLN0.Mod.SBOw"/>
+			<DA fc="CO" name="Cancel" bType="Struct" type="Dummy.LLN0.Mod.Cancel"/>
 		</DOType>
 		<DOType cdc="ENC" id="Dummy.LLN0.ExtendedMod">
 			<SDO fc="ST" name="someSdo" type="someSdoType"/>
-			<DA fc="ST" name="stVal" bType="Enum" type="Dummy_Beh" />
-			<DA fc="ST" name="q" bType="Quality" />
-			<DA fc="ST" name="t" bType="Timestamp" />
-			<DA fc="ST" name="stSeld" bType="BOOLEAN" />
-			<DA fc="OR" name="opRcvd" bType="BOOLEAN" />
-			<DA fc="OR" name="opOk" bType="BOOLEAN" />
-			<DA fc="OR" name="tOpOk" bType="Timestamp" />
-			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel" />
-			<DA fc="CF" name="sboTimeout" bType="INT32U" />
-			<DA fc="CF" name="operTimeout" bType="INT32U" />
-			<DA fc="CO" name="SBO" bType="ObjRef" />
-			<DA fc="CO" name="SBOw" bType="Struct" type="Dummy.LLN0.Mod.SBOw" />
-			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.LLN0.Mod.SBOw" />
-			<DA fc="CO" name="Cancel" bType="Struct" type="Dummy.LLN0.Mod.Cancel" />
+			<DA fc="ST" name="stVal" bType="Enum" type="Dummy_Beh"/>
+			<DA fc="ST" name="q" bType="Quality"/>
+			<DA fc="ST" name="t" bType="Timestamp"/>
+			<DA fc="ST" name="stSeld" bType="BOOLEAN"/>
+			<DA fc="OR" name="opRcvd" bType="BOOLEAN"/>
+			<DA fc="OR" name="opOk" bType="BOOLEAN"/>
+			<DA fc="OR" name="tOpOk" bType="Timestamp"/>
+			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel"/>
+			<DA fc="CF" name="sboTimeout" bType="INT32U"/>
+			<DA fc="CF" name="operTimeout" bType="INT32U"/>
+			<DA fc="CO" name="SBO" bType="ObjRef"/>
+			<DA fc="CO" name="SBOw" bType="Struct" type="Dummy.LLN0.Mod.SBOw"/>
+			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.LLN0.Mod.SBOw"/>
+			<DA fc="CO" name="Cancel" bType="Struct" type="Dummy.LLN0.Mod.Cancel"/>
 		</DOType>
 		<DOType cdc="CMV" id="someSdoType">
 			<DA fc="MX" qchg="true" name="q" bType="Quality"/>
 			<DA fc="MX" name="t" bType="Timestamp"/>
 		</DOType>
 		<DOType cdc="ENS" id="Dummy.LLN0.Beh">
-			<DA fc="ST" name="integer" bType="INT8U" />
-			<DA fc="ST" name="stVal" bType="Enum" type="Dummy_Beh" />
-			<DA fc="ST" name="q" bType="Quality" />
-			<DA fc="ST" name="t" bType="Timestamp" />
+			<DA fc="ST" name="integer" bType="INT8U">
+        <Val>21</Val>
+      </DA>
+			<DA fc="ST" name="stVal" bType="Enum" type="Dummy_Beh"/>
+			<DA fc="ST" name="q" bType="Quality"/>
+			<DA fc="ST" name="t" bType="Timestamp"/>
 		</DOType>
 		<DOType cdc="ENS" id="Dummy.LLN0.Health">
-			<DA fc="ST" name="stVal" bType="Enum" type="Dummy_Health" />
-			<DA fc="ST" name="q" bType="Quality" />
-			<DA fc="ST" name="t" bType="Timestamp" />
+			<DA fc="ST" name="stVal" bType="Enum" type="Dummy_Health"/>
+			<DA fc="ST" name="q" bType="Quality"/>
+			<DA fc="ST" name="t" bType="Timestamp"/>
 		</DOType>
 		<DOType cdc="LPL" id="Dummy.LLN0.NamPlt">
-			<DA fc="DC" name="vendor" bType="VisString255" />
-			<DA fc="DC" name="swRev" bType="VisString255" />
-			<DA fc="DC" name="d" bType="VisString255" />
-			<DA fc="DC" name="configRev" bType="VisString255" />
-			<DA fc="EX" name="ldNs" bType="VisString255" />
+			<DA fc="DC" name="vendor" bType="VisString255"/>
+			<DA fc="DC" name="swRev" bType="VisString255"/>
+			<DA fc="DC" name="d" bType="VisString255"/>
+			<DA fc="DC" name="configRev" bType="VisString255"/>
+			<DA fc="EX" name="ldNs" bType="VisString255"/>
 		</DOType>
 		<DOType cdc="DPL" id="Dummy.LPHD1.PhyNam">
-			<DA fc="DC" name="vendor" bType="VisString255" />
-			<DA fc="DC" name="hwRev" bType="VisString255" />
-			<DA fc="DC" name="swRev" bType="VisString255" />
-			<DA fc="DC" name="serNum" bType="VisString255" />
-			<DA fc="DC" name="model" bType="VisString255" />
+			<DA fc="DC" name="vendor" bType="VisString255"/>
+			<DA fc="DC" name="hwRev" bType="VisString255"/>
+			<DA fc="DC" name="swRev" bType="VisString255"/>
+			<DA fc="DC" name="serNum" bType="VisString255"/>
+			<DA fc="DC" name="model" bType="VisString255"/>
 		</DOType>
 		<DOType cdc="SPC" id="Dummy.LPHD1.Sim">
-			<DA fc="ST" name="stVal" bType="BOOLEAN" />
-			<DA fc="ST" name="q" bType="Quality" />
-			<DA fc="ST" name="t" bType="Timestamp" />
-			<DA fc="ST" name="stSeld" bType="BOOLEAN" />
-			<DA fc="OR" name="opRcvd" bType="BOOLEAN" />
-			<DA fc="OR" name="opOk" bType="BOOLEAN" />
-			<DA fc="OR" name="tOpOk" bType="Timestamp" />
-			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel" />
-			<DA fc="CF" name="sboTimeout" bType="INT32U" />
-			<DA fc="CF" name="operTimeout" bType="INT32U" />
-			<DA fc="DC" name="d" bType="VisString255" />
-			<DA fc="CO" name="SBO" bType="ObjRef" />
-			<DA fc="CO" name="SBOw" bType="Struct" type="Dummy.LPHD1.Sim.SBOw" />
-			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.LPHD1.Sim.SBOw" />
-			<DA fc="CO" name="Cancel" bType="Struct" type="Dummy.LPHD1.Sim.Cancel" />
+			<DA fc="ST" name="stVal" bType="BOOLEAN"/>
+			<DA fc="ST" name="q" bType="Quality"/>
+			<DA fc="ST" name="t" bType="Timestamp"/>
+			<DA fc="ST" name="stSeld" bType="BOOLEAN"/>
+			<DA fc="OR" name="opRcvd" bType="BOOLEAN"/>
+			<DA fc="OR" name="opOk" bType="BOOLEAN"/>
+			<DA fc="OR" name="tOpOk" bType="Timestamp"/>
+			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel"/>
+			<DA fc="CF" name="sboTimeout" bType="INT32U"/>
+			<DA fc="CF" name="operTimeout" bType="INT32U"/>
+			<DA fc="DC" name="d" bType="VisString255"/>
+			<DA fc="CO" name="SBO" bType="ObjRef"/>
+			<DA fc="CO" name="SBOw" bType="Struct" type="Dummy.LPHD1.Sim.SBOw"/>
+			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.LPHD1.Sim.SBOw"/>
+			<DA fc="CO" name="Cancel" bType="Struct" type="Dummy.LPHD1.Sim.Cancel"/>
 		</DOType>
 		<DOType cdc="DPC" id="Dummy.XCBR1.Pos">
-			<DA fc="ST" name="stVal" bType="Dbpos" />
-			<DA fc="ST" name="q" bType="Quality" />
-			<DA fc="ST" name="t" bType="Timestamp" />
-			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel" />
-			<DA fc="DC" name="d" bType="VisString255" />
+			<DA fc="ST" name="stVal" bType="Dbpos"/>
+			<DA fc="ST" name="q" bType="Quality"/>
+			<DA fc="ST" name="t" bType="Timestamp"/>
+			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel"/>
+			<DA fc="DC" name="d" bType="VisString255"/>
 		</DOType>
 		<DOType cdc="DPC" id="Dummy.CSWI.Pos1">
-			<DA fc="ST" name="stVal" bType="Dbpos" />
-			<DA fc="ST" name="q" bType="Quality" />
-			<DA fc="ST" name="t" bType="Timestamp" />
+			<DA fc="ST" name="stVal" bType="Dbpos"/>
+			<DA fc="ST" name="q" bType="Quality"/>
+			<DA fc="ST" name="t" bType="Timestamp"/>
 			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel">
 				<Val>sbo-with-enhanced-security</Val>
 			</DA>
-			<DA fc="DC" name="d" bType="VisString255" />
+			<DA fc="DC" name="d" bType="VisString255"/>
 		</DOType>
 		<DOType cdc="DPC" id="Dummy.CSWI.Pos2">
-			<DA fc="ST" name="stVal" bType="Dbpos" />
-			<DA fc="ST" name="q" bType="Quality" />
-			<DA fc="ST" name="t" bType="Timestamp" />
+			<DA fc="ST" name="stVal" bType="Dbpos"/>
+			<DA fc="ST" name="q" bType="Quality"/>
+			<DA fc="ST" name="t" bType="Timestamp"/>
 			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel"/>
-			<DA fc="DC" name="d" bType="VisString255" />
+			<DA fc="DC" name="d" bType="VisString255"/>
 		</DOType>
 		<DOType cdc="INS" id="Dummy.XCBR1.OpCnt">
-			<DA fc="ST" name="stVal" bType="INT32" />
-			<DA fc="ST" name="q" bType="Quality" />
-			<DA fc="ST" name="t" bType="Timestamp" />
+			<DA fc="ST" name="stVal" bType="INT32"/>
+			<DA fc="ST" name="q" bType="Quality"/>
+			<DA fc="ST" name="t" bType="Timestamp"/>
 		</DOType>
 		<DOType cdc="LPL" id="Dummy.XCBR1.NamPlt">
-			<DA fc="DC" name="vendor" bType="VisString255" />
-			<DA fc="DC" name="swRev" bType="VisString255" />
-			<DA fc="DC" name="d" bType="VisString255" />
+			<DA fc="DC" name="vendor" bType="VisString255"/>
+			<DA fc="DC" name="swRev" bType="VisString255"/>
+			<DA fc="DC" name="d" bType="VisString255"/>
 		</DOType>
 		<DOType cdc="SPC" id="Dummy.XCBR1.BlkOpn">
-			<DA fc="ST" name="stVal" bType="BOOLEAN" />
-			<DA fc="ST" name="q" bType="Quality" />
-			<DA fc="ST" name="t" bType="Timestamp" />
-			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel" />
-			<DA fc="DC" name="d" bType="VisString255" />
+			<DA fc="ST" name="stVal" bType="BOOLEAN"/>
+			<DA fc="ST" name="q" bType="Quality"/>
+			<DA fc="ST" name="t" bType="Timestamp"/>
+			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel"/>
+			<DA fc="DC" name="d" bType="VisString255"/>
 		</DOType>
 		<DOType cdc="SPS" id="Dummy.SPS">
-            <DA fc="ST" dchg="true" name="stVal" bType="BOOLEAN"/>
-            <DA fc="ST" qchg="true" name="q" bType="Quality"/>
-            <DA fc="ST" name="t" bType="Timestamp"/>
-        </DOType>
+			<DA fc="ST" dchg="true" name="stVal" bType="BOOLEAN"/>
+			<DA fc="ST" qchg="true" name="q" bType="Quality"/>
+			<DA fc="ST" name="t" bType="Timestamp"/>
+		</DOType>
 		<DAType id="AnalogueValue_i">
-            <BDA name="i" bType="INT32"/>
-        </DAType>
+			<BDA name="i" bType="INT32"/>
+		</DAType>
 		<DAType id="ScaledValueConfig">
-            <BDA name="scaleFactor" bType="FLOAT32"/>
-            <BDA name="offset" bType="FLOAT32"/>
-        </DAType>
+			<BDA name="scaleFactor" bType="FLOAT32"/>
+			<BDA name="offset" bType="FLOAT32"/>
+		</DAType>
 		<DAType id="Dummy_origin">
-			<BDA name="orCat" bType="Enum" type="Dummy_orCategory" />
-			<BDA name="orIdent" bType="Octet64" />
+			<BDA name="orCat" bType="Enum" type="Dummy_orCategory"/>
+			<BDA name="orIdent" bType="Octet64"/>
 		</DAType>
 		<DAType id="Dummy.LLN0.Mod.SBOw">
-			<BDA name="ctlVal" bType="Enum" type="Dummy_Beh" />
-			<BDA name="origin" bType="Struct" type="Dummy_origin" />
-			<BDA name="ctlNum" bType="INT8U" />
-			<BDA name="T" bType="Timestamp" />
-			<BDA name="Test" bType="BOOLEAN" />
-			<BDA name="Check" bType="Check" />
+			<BDA name="ctlVal" bType="Enum" type="Dummy_Beh"/>
+			<BDA name="origin" bType="Struct" type="Dummy_origin"/>
+			<BDA name="ctlNum" bType="INT8U"/>
+			<BDA name="T" bType="Timestamp"/>
+			<BDA name="Test" bType="BOOLEAN"/>
+			<BDA name="Check" bType="Check"/>
 			<ProtNs>IEC 61850-8-1:2003</ProtNs>
 		</DAType>
 		<DAType id="Dummy.LLN0.Mod.Cancel">
-			<BDA name="ctlVal" bType="Enum" type="Dummy_Beh" />
-			<BDA name="origin" bType="Struct" type="Dummy_origin" />
-			<BDA name="ctlNum" bType="INT8U" />
-			<BDA name="T" bType="Timestamp" />
-			<BDA name="Test" bType="BOOLEAN" />
+			<BDA name="ctlVal" bType="Enum" type="Dummy_Beh"/>
+			<BDA name="origin" bType="Struct" type="Dummy_origin"/>
+			<BDA name="ctlNum" bType="INT8U"/>
+			<BDA name="T" bType="Timestamp"/>
+			<BDA name="Test" bType="BOOLEAN"/>
 		</DAType>
 		<DAType id="Dummy.LPHD1.Sim.SBOw">
-			<BDA name="ctlVal" bType="BOOLEAN" />
-			<BDA name="origin" bType="Struct" type="Dummy_origin" />
-			<BDA name="ctlNum" bType="INT8U" />
-			<BDA name="T" bType="Timestamp" />
-			<BDA name="Test" bType="BOOLEAN" />
-			<BDA name="Check" bType="Check" />
+			<BDA name="ctlVal" bType="BOOLEAN"/>
+			<BDA name="origin" bType="Struct" type="Dummy_origin"/>
+			<BDA name="ctlNum" bType="INT8U"/>
+			<BDA name="T" bType="Timestamp"/>
+			<BDA name="Test" bType="BOOLEAN"/>
+			<BDA name="Check" bType="Check"/>
 		</DAType>
 		<DAType id="Dummy.LPHD1.Sim.Cancel">
-			<BDA name="ctlVal" bType="BOOLEAN" />
-			<BDA name="origin" bType="Struct" type="Dummy_origin" />
-			<BDA name="ctlNum" bType="INT8U" />
-			<BDA name="T" bType="Timestamp" />
-			<BDA name="Test" bType="BOOLEAN" />
+			<BDA name="ctlVal" bType="BOOLEAN"/>
+			<BDA name="origin" bType="Struct" type="Dummy_origin"/>
+			<BDA name="ctlNum" bType="INT8U"/>
+			<BDA name="T" bType="Timestamp"/>
+			<BDA name="Test" bType="BOOLEAN"/>
 		</DAType>
 		<EnumType id="Dummy_ctlModel">
 			<EnumVal ord="0">status-only</EnumVal>
@@ -653,12 +664,12 @@
 			<EnumVal ord="4">sbo-with-enhanced-security</EnumVal>
 		</EnumType>
 		<EnumType id="Dummy_Beh">
-            <EnumVal ord="1">on</EnumVal>
-            <EnumVal ord="2">blocked</EnumVal>
-            <EnumVal ord="3">test</EnumVal>
-            <EnumVal ord="4">test/blocked</EnumVal>
-            <EnumVal ord="5">off</EnumVal>
-        </EnumType>
+			<EnumVal ord="1">on</EnumVal>
+			<EnumVal ord="2">blocked</EnumVal>
+			<EnumVal ord="3">test</EnumVal>
+			<EnumVal ord="4">test/blocked</EnumVal>
+			<EnumVal ord="5">off</EnumVal>
+		</EnumType>
 		<EnumType id="Dummy_Health">
 			<EnumVal ord="1">Ok</EnumVal>
 			<EnumVal ord="2">Warning</EnumVal>
