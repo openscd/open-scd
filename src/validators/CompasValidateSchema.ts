@@ -86,18 +86,21 @@ export default class CompasValidateSchema extends LitElement {
     const ruleName = validationError
       .getElementsByTagNameNS(SVS_NAMESPACE, 'RuleName')!
       .item(0)?.textContent;
-    const linenumber = validationError
-      .getElementsByTagNameNS(SVS_NAMESPACE, 'Linenumber')!
+    const lineNumber = validationError
+      .getElementsByTagNameNS(SVS_NAMESPACE, 'LineNumber')!
+      .item(0)?.textContent;
+    const columnNumber = validationError
+      .getElementsByTagNameNS(SVS_NAMESPACE, 'ColumnNumber')!
       .item(0)?.textContent;
 
-    if (!ruleName && !linenumber) {
+    const messageParts: string[] = [];
+    if (ruleName) messageParts.push(`Rule: ${ruleName}`);
+    if (lineNumber) messageParts.push(`Line: ${lineNumber}`);
+    if (columnNumber) messageParts.push(`Column: ${columnNumber}`);
+
+    if (messageParts.length == 0) {
       return undefined;
     }
-
-    return (
-      `${ruleName ? `Rule: ${ruleName}` : ``}` +
-      `${ruleName && linenumber ? `, ` : ``}` +
-      `${linenumber ? `Linenumber: ${linenumber}` : ``}`
-    );
+    return messageParts.join(', ');
   }
 }
