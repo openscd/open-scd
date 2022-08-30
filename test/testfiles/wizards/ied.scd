@@ -526,7 +526,9 @@
 			<DA fc="MX" name="t" bType="Timestamp"/>
 		</DOType>
 		<DOType cdc="ENS" id="Dummy.LLN0.Beh">
-			<DA fc="ST" name="integer" bType="INT8U"/>
+			<DA fc="ST" name="integer" bType="INT8U">
+        <Val>21</Val>
+      </DA>
 			<DA fc="ST" name="stVal" bType="Enum" type="Dummy_Beh"/>
 			<DA fc="ST" name="q" bType="Quality"/>
 			<DA fc="ST" name="t" bType="Timestamp"/>

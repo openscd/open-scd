@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'Wizards for SCL element DAI create DAI with existing Val Element looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for SCL element DAI create DAI with existing Val Element looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[dai.wizard.title.create]"
   open=""
@@ -17,6 +16,13 @@ snapshots[
       max="255"
       min="0"
       type="number"
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      id="daVal"
+      label="DA Template Value"
+      readonly=""
     >
     </wizard-textfield>
   </div>
@@ -38,9 +44,8 @@ snapshots[
 `;
 /* end snapshot Wizards for SCL element DAI create DAI with existing Val Element looks like the latest snapshot */
 
-snapshots[
-  'Wizards for SCL element DAI create DAI without Val Element looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for SCL element DAI create DAI without Val Element looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[dai.wizard.title.create]"
   open=""
@@ -79,9 +84,8 @@ snapshots[
 `;
 /* end snapshot Wizards for SCL element DAI create DAI without Val Element looks like the latest snapshot */
 
-snapshots[
-  'Wizards for SCL element DAI edit existing DAI with Val Element looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for SCL element DAI edit existing DAI with Val Element looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[dai.wizard.title.edit]"
   open=""
@@ -95,6 +99,13 @@ snapshots[
       max="255"
       min="0"
       type="number"
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      id="daVal"
+      label="DA Template Value"
+      readonly=""
     >
     </wizard-textfield>
   </div>
@@ -116,9 +127,8 @@ snapshots[
 `;
 /* end snapshot Wizards for SCL element DAI edit existing DAI with Val Element looks like the latest snapshot */
 
-snapshots[
-  'Wizards for SCL element DAI edit existing DAI without Val Element looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for SCL element DAI edit existing DAI without Val Element looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[dai.wizard.title.edit]"
   open=""
@@ -189,3 +199,4 @@ snapshots[
 </mwc-dialog>
 `;
 /* end snapshot Wizards for SCL element DAI edit existing DAI without Val Element looks like the latest snapshot */
+

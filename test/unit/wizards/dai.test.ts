@@ -82,7 +82,7 @@ describe('Wizards for SCL element DAI', () => {
       )!;
 
       element = await fixture(html`<mock-wizard></mock-wizard>`);
-      const wizard = createDAIWizard(dai.closest('DOI')!, dai, da);
+      const wizard = createDAIWizard(doi, dai, da);
       element.workflow.push(() => wizard);
       await element.requestUpdate();
       inputs = Array.from(element.wizardUI.inputs);
@@ -93,7 +93,7 @@ describe('Wizards for SCL element DAI', () => {
       await setWizardTextFieldValue(<WizardTextField>inputs[1], '');
 
       const complexActions = createValue(
-        dai.closest('DOI')!,
+        doi,
         da,
         dai,
         dai
