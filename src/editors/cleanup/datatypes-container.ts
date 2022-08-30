@@ -255,8 +255,10 @@ export class CleanupDataTypes extends LitElement {
     const type = element.getAttribute('type');
     if (element.tagName === 'DO' || element.tagName === 'SDO') {
       return dataTypeTemplates!.querySelector(`DOType[id="${type}"]`);
-    } else if (element.tagName === 'DA' || element.tagName === 'BDA') {
+    } else if ((element.tagName === 'DA' || element.tagName === 'BDA') && element.getAttribute('bType') === 'Struct') {
       return dataTypeTemplates!.querySelector(`DAType[id="${type}"]`);
+    } else if ((element.tagName === 'DA' || element.tagName === 'BDA') && element.getAttribute('bType') === 'Enum') {
+      return dataTypeTemplates!.querySelector(`EnumType[id="${type}"]`);
     }
     return null;
   }
