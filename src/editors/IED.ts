@@ -3,39 +3,31 @@ import {
   html,
   LitElement,
   property,
+  PropertyValues,
   state,
   TemplateResult,
 } from 'lit-element';
+import { translate } from 'lit-translate';
 
 import '@material/mwc-fab';
 import '@material/mwc-select';
 import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-list/mwc-check-list-item';
+import '@material/mwc-list/mwc-radio-list-item';
+
+import '../oscd-filter-button.js';
+import { SelectedItemsChangedEvent } from '../oscd-filter-button.js';
 
 import './ied/ied-container.js';
 import './ied/element-path.js';
 
-import { translate } from 'lit-translate';
-import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import {
   compareNames,
   getDescriptionAttribute,
   getNameAttribute,
 } from '../foundation.js';
 import { Nsdoc } from '../foundation/nsdoc.js';
-
-/*
- * We need a variable outside the plugin to save the selected IED, because the Plugin is created
- * more than once during working with the IED Editor, for instance when opening a Wizard to edit the IED.
- */
-let iedEditorSelectedIed: Element | undefined;
-/*
- * We will also add an Event Listener when a new document is opened. We then want to reset the selection
- * so setting it to undefined will set the selected IED again on the first in the list.
- */
-function onOpenDocResetSelectedIed() {
-  iedEditorSelectedIed = undefined;
-}
-addEventListener('open-doc', onOpenDocResetSelectedIed);
+import { nothing } from 'lit-html';
 
 /** An editor [[`plugin`]] for editing the `IED` section. */
 export default class IedPlugin extends LitElement {
@@ -47,7 +39,37 @@ export default class IedPlugin extends LitElement {
   @property()
   nsdoc!: Nsdoc;
 
-  private get alphabeticOrderedIeds(): Element[] {
+  @property()
+  selectedIEDs: string[] = [];
+
+  @property()
+  selectedLNClasses: string[] = [];
+
+  protected updated(_changedProperties: PropertyValues): void {
+    super.updated(_changedProperties);
+
+    // When the document is updated, we reset the selected IED.
+    if (_changedProperties.has('doc')) {
+      const iedList = this.iedList;
+      if (iedList.length > 0) {
+        const iedName = getNameAttribute(iedList[0]);
+        if (iedName) {
+          this.selectedIEDs = [iedName];
+        }
+      }
+    }
+
+    if (
+      _changedProperties.has('doc') ||
+      _changedProperties.has('selectedIEDs')
+    ) {
+      this.selectedLNClasses = this.lnClassList.map(
+        lnClassInfo => lnClassInfo[0]
+      );
+    }
+  }
+
+  private get iedList(): Element[] {
     return this.doc
       ? Array.from(this.doc.querySelectorAll(':root > IED')).sort((a, b) =>
           compareNames(a, b)
@@ -55,61 +77,102 @@ export default class IedPlugin extends LitElement {
       : [];
   }
 
-  @state()
-  private set selectedIed(element: Element | undefined) {
-    iedEditorSelectedIed = element;
+  private get lnClassList(): string[][] {
+    const currentIed = this.getSelectedIed();
+    const uniqueLNClassList: string[] = [];
+    if (currentIed) {
+      return Array.from(currentIed.querySelectorAll('LN0, LN'))
+        .filter(element => element.getAttribute('lnClass'))
+        .filter(element => {
+          const lnClass = element.getAttribute('lnClass') ?? '';
+          if (uniqueLNClassList.includes(lnClass)) {
+            return false;
+          }
+          uniqueLNClassList.push(lnClass);
+          return true;
+        })
+        .map(element => {
+          const lnClass = element.getAttribute('lnClass');
+          const label = this.nsdoc.getDataDescription(element).label;
+          return [lnClass, label];
+        }) as string[][];
+    }
+    return [];
   }
 
-  private get selectedIed(): Element | undefined {
+  @state()
+  private getSelectedIed(): Element | undefined {
     // When there is no IED selected, or the selected IED has no parent (IED has been removed)
     // select the first IED from the List.
-    if (
-      iedEditorSelectedIed === undefined ||
-      iedEditorSelectedIed.parentElement === null
-    ) {
-      const iedList = this.alphabeticOrderedIeds;
-      if (iedList.length > 0) {
-        iedEditorSelectedIed = iedList[0];
-      }
+    if (this.selectedIEDs.length >= 1) {
+      const iedList = this.iedList;
+      return iedList.filter(element => {
+        const iedName = getNameAttribute(element);
+        return this.selectedIEDs[0] === iedName;
+      })[0];
     }
-    return iedEditorSelectedIed;
-  }
-
-  private onSelect(event: SingleSelectedEvent): void {
-    this.selectedIed = this.alphabeticOrderedIeds[event.detail.index];
-    this.requestUpdate('selectedIed');
+    return undefined;
   }
 
   render(): TemplateResult {
-    const iedList = this.alphabeticOrderedIeds;
+    const iedList = this.iedList;
     if (iedList.length > 0) {
       return html`<section>
         <div class="header">
-          <mwc-select
-            class="iedSelect"
-            label="${translate('iededitor.searchHelper')}"
-            @selected=${this.onSelect}
+          <h1>${translate('filter')}</h1>
+
+          <oscd-filter-button
+            .header=${translate('iededitor.iedSelector')}
+            .selectedItems=${this.selectedIEDs}
+            @selected-items-changed="${(e: SelectedItemsChangedEvent) =>
+              (this.selectedIEDs = e.detail.selectedItems)}"
+            icon="developer_board"
           >
             ${iedList.map(ied => {
               const name = getNameAttribute(ied);
               const descr = getDescriptionAttribute(ied);
-              return html` <mwc-list-item
-                ?selected=${ied == this.selectedIed}
+              const type = ied.getAttribute('type');
+              const manufacturer = ied.getAttribute('manufacturer');
+              return html` <mwc-radio-list-item
                 value="${name}"
-                >${name}
-                ${descr
-                  ? translate('iededitor.searchHelperDesc', {
-                      description: descr,
-                    })
-                  : ''}
-              </mwc-list-item>`;
+                ?twoline="${type && manufacturer}"
+                ?selected="${this.selectedIEDs.includes(name ?? '')}"
+              >
+                ${name} ${descr ? html` (${descr})` : html``}
+                <span slot="secondary">
+                  ${type} ${type && manufacturer ? html`&mdash;` : nothing}
+                  ${manufacturer}
+                </span>
+              </mwc-radio-list-item>`;
             })}
-          </mwc-select>
+          </oscd-filter-button>
+
+          <oscd-filter-button
+            .header="${translate('iededitor.lnFilter')}"
+            .selectedItems=${this.selectedLNClasses}
+            @selected-items-changed="${(e: SelectedItemsChangedEvent) =>
+              (this.selectedLNClasses = e.detail.selectedItems)}"
+            icon="smart_button"
+            multi="true"
+          >
+            ${this.lnClassList.map(lnClassInfo => {
+              const value = lnClassInfo[0];
+              const label = lnClassInfo[1];
+              return html`<mwc-check-list-item
+                value="${value}"
+                ?selected="${this.selectedLNClasses.includes(value)}"
+              >
+                ${label}
+              </mwc-check-list-item>`;
+            })}
+          </oscd-filter-button>
+
           <element-path class="elementPath"></element-path>
         </div>
         <ied-container
           .doc=${this.doc}
-          .element=${this.selectedIed}
+          .element=${this.getSelectedIed()}
+          .selectedLNClasses=${this.selectedLNClasses}
           .nsdoc=${this.nsdoc}
         ></ied-container>
       </section>`;
@@ -128,9 +191,8 @@ export default class IedPlugin extends LitElement {
       padding: 8px 12px 16px;
     }
 
-    .iedSelect {
-      width: 35vw;
-      padding-bottom: 20px;
+    oscd-filter-button {
+      padding-left: 20px;
     }
 
     .header {

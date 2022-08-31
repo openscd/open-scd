@@ -1,4 +1,10 @@
-import { css, customElement, html, TemplateResult } from 'lit-element';
+import {
+  css,
+  customElement,
+  html,
+  property,
+  TemplateResult,
+} from 'lit-element';
 import { nothing } from 'lit-html';
 
 import { getDescriptionAttribute, getNameAttribute } from '../../foundation.js';
@@ -12,6 +18,9 @@ import { Container } from './foundation.js';
 /** [[`IED`]] plugin subeditor for editing `AccessPoint` element. */
 @customElement('access-point-container')
 export class AccessPointContainer extends Container {
+  @property()
+  selectedLNClasses: string[] = [];
+
   private header(): TemplateResult {
     const name = getNameAttribute(this.element);
     const desc = getDescriptionAttribute(this.element);
@@ -28,6 +37,7 @@ export class AccessPointContainer extends Container {
             .doc=${this.doc}
             .element=${server}
             .nsdoc=${this.nsdoc}
+            .selectedLNClasses=${this.selectedLNClasses}
             .ancestors=${[...this.ancestors, this.element]}
           ></server-container>`
       )}

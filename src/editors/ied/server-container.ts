@@ -1,4 +1,10 @@
-import { css, customElement, html, TemplateResult } from 'lit-element';
+import {
+  css,
+  customElement,
+  html,
+  property,
+  TemplateResult,
+} from 'lit-element';
 import { nothing } from 'lit-html';
 
 import '../../action-pane.js';
@@ -10,6 +16,9 @@ import { Container } from './foundation.js';
 /** [[`IED`]] plugin subeditor for editing `Server` element. */
 @customElement('server-container')
 export class ServerContainer extends Container {
+  @property()
+  selectedLNClasses: string[] = [];
+
   private header(): TemplateResult {
     const desc = getDescriptionAttribute(this.element);
 
@@ -25,6 +34,7 @@ export class ServerContainer extends Container {
             .doc=${this.doc}
             .element=${server}
             .nsdoc=${this.nsdoc}
+            .selectedLNClasses=${this.selectedLNClasses}
             .ancestors=${[...this.ancestors, this.element]}
           ></ldevice-container>`
       )}

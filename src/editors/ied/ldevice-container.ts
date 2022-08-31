@@ -1,4 +1,11 @@
-import { css, customElement, html, query, TemplateResult } from 'lit-element';
+import {
+  css,
+  customElement,
+  html,
+  property,
+  query,
+  TemplateResult,
+} from 'lit-element';
 import { nothing } from 'lit-html';
 import { translate } from 'lit-translate';
 
@@ -19,6 +26,9 @@ import { Container } from './foundation.js';
 /** [[`IED`]] plugin subeditor for editing `LDevice` element. */
 @customElement('ldevice-container')
 export class LDeviceContainer extends Container {
+  @property()
+  selectedLNClasses: string[] = [];
+
   @query('#toggleButton') toggleButton!: IconButtonToggle | undefined;
 
   private header(): TemplateResult {
@@ -36,7 +46,10 @@ export class LDeviceContainer extends Container {
   render(): TemplateResult {
     const lnElements = Array.from(
       this.element.querySelectorAll(':scope > LN,LN0')
-    );
+    ).filter(element => {
+      const lnClass = element.getAttribute('lnClass') ?? '';
+      return this.selectedLNClasses.includes(lnClass);
+    });
 
     return html`<action-pane .label="${this.header()}">
       <mwc-icon slot="icon">${logicalDeviceIcon}</mwc-icon>

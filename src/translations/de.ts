@@ -155,7 +155,7 @@ export const de: Translations = {
     compareButton: 'Starte Vergleich',
     attributes: 'Attribute von {{ elementName }}',
     children: 'Kindelemente von {{ elementName }}',
-    filterMutables: 'Projektspzifische Unterschiede ausblenden'
+    filterMutables: 'Projektspzifische Unterschiede ausblenden',
   },
   log: {
     name: 'Protokoll',
@@ -213,8 +213,8 @@ export const de: Translations = {
     },
   },
   iededitor: {
-    searchHelper: 'IED auswählen',
-    searchHelperDesc: '({{description}})',
+    iedSelector: 'IED auswählen',
+    lnFilter: '???',
     missing: 'Kein IED vorhanden',
     toggleChildElements: 'Kindelemente umschalten',
     wizard: {
