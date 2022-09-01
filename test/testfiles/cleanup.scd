@@ -624,6 +624,12 @@
 			<DA fc="ST" name="q" bType="Quality"/>
 			<DA fc="ST" name="t" bType="Timestamp"/>
 		</DOType>
+		<!-- If this is removed, so also should the Dummy_Health_Unused Enum be -->
+		<DOType cdc="ENS" id="Dummy.LLN0.Health.Unused">
+			<DA fc="ST" name="stVal" bType="Enum" type="Dummy_Health_Unused"/>
+			<DA fc="ST" name="q" bType="Quality"/>
+			<DA fc="ST" name="t" bType="Timestamp"/>
+		</DOType>
 		<DOType cdc="LPL" id="Dummy.LLN0.NamPlt">
 			<DA fc="DC" name="vendor" bType="VisString255"/>
 			<DA fc="DC" name="swRev" bType="VisString255"/>
@@ -871,6 +877,11 @@
 			<EnumVal ord="5">off</EnumVal>
 		</EnumType>
 		<EnumType id="Dummy_Health">
+			<EnumVal ord="1">Ok</EnumVal>
+			<EnumVal ord="2">Warning</EnumVal>
+			<EnumVal ord="3">Alarm</EnumVal>
+		</EnumType>
+		<EnumType id="Dummy_Health_Unused">
 			<EnumVal ord="1">Ok</EnumVal>
 			<EnumVal ord="2">Warning</EnumVal>
 			<EnumVal ord="3">Alarm</EnumVal>

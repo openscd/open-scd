@@ -110,7 +110,7 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
       ).to.have.lengthOf(0);
     });
 
-    it('correctly removes one EnumType', async () => {
+    it('correctly removes two EnumTypes', async () => {
       await element.cleanupLNodeTypeFilter.click();
       await element.cleanupDOTypeFilter.click();
       await element.cleanupDATypeFilter.click();
@@ -124,8 +124,8 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
 
       await element.cleanButton.click();
 
-      // the correct number of EnumTypes should remain (we remove 1 here)
-      expect(element.doc.querySelectorAll('EnumType')).to.have.lengthOf(7);
+      // the correct number of EnumTypes should remain (we remove 2 here)
+      expect(element.doc.querySelectorAll('EnumType')).to.have.lengthOf(8);
       expect(
         element.doc.querySelectorAll(
           'EnumType[id="NotUsedDir"]'
@@ -203,9 +203,9 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
         await element.cleanupList?.layout();
       });
 
-      it('creates 7 delete actions (DOx3, DAx3, ENx1)', () => {
+      it('creates 9 delete actions (DOx4, DAx3, ENx2)', () => {
         const deleteActions = cleanSCLItems(element.getCleanItems());
-        expect(deleteActions.length).to.equal(7);
+        expect(deleteActions.length).to.equal(9);
       });
     });
 
@@ -239,9 +239,9 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
         element.cleanupList?.layout();
       });
 
-      it('creates 5 Delete Actions (LNx1, DOx3, ENx1)', async () => {
+      it('creates 7 Delete Actions (LNx1, DOx4, ENx2)', async () => {
         const deleteActions = cleanSCLItems(element.getCleanItems());
-        expect(deleteActions.length).to.equal(5);
+        expect(deleteActions.length).to.equal(7);
       });
     });
 
@@ -257,9 +257,9 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
         element.cleanupList?.layout();
       });
 
-      it('creates 7 Delete Actions (LNx1, DOx3, DAx3)', async () => {
+      it('creates 9 Delete Actions (LNx1, DOx4, DAx3, ENx1)', async () => {
         const deleteActions = cleanSCLItems(element.getCleanItems());
-        expect(deleteActions.length).to.equal(7);
+        expect(deleteActions.length).to.equal(9);
       });
     });
   });

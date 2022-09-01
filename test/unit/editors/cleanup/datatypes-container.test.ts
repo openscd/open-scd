@@ -46,7 +46,7 @@ describe('Cleanup: DataTypes Container', () => {
     });
 
     it('creates correct number of checkboxes for the expected unreferenced datatypes', () => {
-      expect(Array.from(element.unreferencedDataTypes!).length).to.equal(6);
+      expect(Array.from(element.unreferencedDataTypes!).length).to.equal(7);
     });
 
     it('has the remove button disabled by default', () => {
