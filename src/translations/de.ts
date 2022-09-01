@@ -791,6 +791,7 @@ export const de: Translations = {
   cancel: 'Abbrechen',
   close: 'Schließen',
   filter: 'Filter',
+  filters: 'Filters',
   undo: 'Rückgängig',
   redo: 'Wiederholen',
   duplicate: 'Klonen',

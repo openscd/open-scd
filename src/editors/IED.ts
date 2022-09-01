@@ -39,36 +39,13 @@ export default class IedPlugin extends LitElement {
   @property()
   nsdoc!: Nsdoc;
 
-  @property()
+  @state()
   selectedIEDs: string[] = [];
 
-  @property()
+  @state()
   selectedLNClasses: string[] = [];
 
-  protected updated(_changedProperties: PropertyValues): void {
-    super.updated(_changedProperties);
-
-    // When the document is updated, we reset the selected IED.
-    if (_changedProperties.has('doc')) {
-      const iedList = this.iedList;
-      if (iedList.length > 0) {
-        const iedName = getNameAttribute(iedList[0]);
-        if (iedName) {
-          this.selectedIEDs = [iedName];
-        }
-      }
-    }
-
-    if (
-      _changedProperties.has('doc') ||
-      _changedProperties.has('selectedIEDs')
-    ) {
-      this.selectedLNClasses = this.lnClassList.map(
-        lnClassInfo => lnClassInfo[0]
-      );
-    }
-  }
-
+  @state()
   private get iedList(): Element[] {
     return this.doc
       ? Array.from(this.doc.querySelectorAll(':root > IED')).sort((a, b) =>
@@ -77,8 +54,9 @@ export default class IedPlugin extends LitElement {
       : [];
   }
 
+  @state()
   private get lnClassList(): string[][] {
-    const currentIed = this.getSelectedIed();
+    const currentIed = this.selectedIed;
     const uniqueLNClassList: string[] = [];
     if (currentIed) {
       return Array.from(currentIed.querySelectorAll('LN0, LN'))
@@ -101,7 +79,7 @@ export default class IedPlugin extends LitElement {
   }
 
   @state()
-  private getSelectedIed(): Element | undefined {
+  private get selectedIed(): Element | undefined {
     // When there is no IED selected, or the selected IED has no parent (IED has been removed)
     // select the first IED from the List.
     if (this.selectedIEDs.length >= 1) {
@@ -114,18 +92,44 @@ export default class IedPlugin extends LitElement {
     return undefined;
   }
 
+  protected updated(_changedProperties: PropertyValues): void {
+    super.updated(_changedProperties);
+
+    // When the document is updated, we reset the selected IED.
+    if (_changedProperties.has('doc') || _changedProperties.has('nsdoc')) {
+      this.selectedIEDs = [];
+      this.selectedLNClasses = [];
+
+      const iedList = this.iedList;
+      if (iedList.length > 0) {
+        const iedName = getNameAttribute(iedList[0]);
+        if (iedName) {
+          this.selectedIEDs = [iedName];
+        }
+      }
+      this.selectedLNClasses = this.lnClassList.map(
+        lnClassInfo => lnClassInfo[0]
+      );
+    }
+  }
+
   render(): TemplateResult {
     const iedList = this.iedList;
     if (iedList.length > 0) {
       return html`<section>
         <div class="header">
-          <h1>${translate('filter')}</h1>
+          <h1>${translate('filters')}:</h1>
 
           <oscd-filter-button
             .header=${translate('iededitor.iedSelector')}
             .selectedItems=${this.selectedIEDs}
-            @selected-items-changed="${(e: SelectedItemsChangedEvent) =>
-              (this.selectedIEDs = e.detail.selectedItems)}"
+            @selected-items-changed="${(e: SelectedItemsChangedEvent) => {
+              this.selectedIEDs = e.detail.selectedItems;
+              this.selectedLNClasses = this.lnClassList.map(
+                lnClassInfo => lnClassInfo[0]
+              );
+              this.requestUpdate('selectedIed');
+            }}"
             icon="developer_board"
           >
             ${iedList.map(ied => {
@@ -150,8 +154,10 @@ export default class IedPlugin extends LitElement {
           <oscd-filter-button
             .header="${translate('iededitor.lnFilter')}"
             .selectedItems=${this.selectedLNClasses}
-            @selected-items-changed="${(e: SelectedItemsChangedEvent) =>
-              (this.selectedLNClasses = e.detail.selectedItems)}"
+            @selected-items-changed="${(e: SelectedItemsChangedEvent) => {
+              this.selectedLNClasses = e.detail.selectedItems;
+              this.requestUpdate('selectedIed');
+            }}"
             icon="smart_button"
             multi="true"
           >
@@ -169,9 +175,10 @@ export default class IedPlugin extends LitElement {
 
           <element-path class="elementPath"></element-path>
         </div>
+
         <ied-container
           .doc=${this.doc}
-          .element=${this.getSelectedIed()}
+          .element=${this.selectedIed}
           .selectedLNClasses=${this.selectedLNClasses}
           .nsdoc=${this.nsdoc}
         ></ied-container>
@@ -191,17 +198,8 @@ export default class IedPlugin extends LitElement {
       padding: 8px 12px 16px;
     }
 
-    oscd-filter-button {
-      padding-left: 20px;
-    }
-
     .header {
       display: flex;
-    }
-
-    .elementPath {
-      margin-left: auto;
-      padding-right: 12px;
     }
 
     h1 {
@@ -214,6 +212,11 @@ export default class IedPlugin extends LitElement {
       margin: 0px;
       line-height: 48px;
       padding-left: 0.3em;
+    }
+
+    .elementPath {
+      margin-left: auto;
+      padding-right: 12px;
     }
   `;
 }

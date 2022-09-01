@@ -43,13 +43,17 @@ export class LDeviceContainer extends Container {
     this.requestUpdate();
   }
 
+  private get lnElements(): Element[] {
+    return Array.from(this.element.querySelectorAll(':scope > LN,LN0')).filter(
+      element => {
+        const lnClass = element.getAttribute('lnClass') ?? '';
+        return this.selectedLNClasses.includes(lnClass);
+      }
+    );
+  }
+
   render(): TemplateResult {
-    const lnElements = Array.from(
-      this.element.querySelectorAll(':scope > LN,LN0')
-    ).filter(element => {
-      const lnClass = element.getAttribute('lnClass') ?? '';
-      return this.selectedLNClasses.includes(lnClass);
-    });
+    const lnElements = this.lnElements;
 
     return html`<action-pane .label="${this.header()}">
       <mwc-icon slot="icon">${logicalDeviceIcon}</mwc-icon>

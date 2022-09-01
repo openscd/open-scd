@@ -2,134 +2,94 @@ import {
   css,
   customElement,
   html,
-  LitElement,
   property,
   query,
-  state,
   TemplateResult,
+  unsafeCSS,
 } from 'lit-element';
-import { render } from 'lit-html';
-import { classMap } from 'lit-html/directives/class-map';
-import { get } from 'lit-translate';
+import { get, translate } from 'lit-translate';
 
 import '@material/mwc-icon-button';
-
-import { Menu } from '@material/mwc-menu';
-import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
-import {
-  MultiSelectedEvent,
-  SingleSelectedEvent,
-} from '@material/mwc-list/mwc-list-foundation';
+import '@material/mwc-dialog';
 
 import './filtered-list.js';
 
 import { FilteredList } from './filtered-list.js';
+import { Dialog } from '@material/mwc-dialog';
 
-/** Sorts selected `ListItem`s to the top and disabled ones to the bottom. */
-function compareSelection(a: ListItemBase, b: ListItemBase): number {
-  if (a.disabled !== b.disabled) return b.disabled ? -1 : 1;
-  if (a.selected !== b.selected) return a.selected ? -1 : 1;
-  return 0;
-}
+// /** Sorts selected `ListItem`s to the top and disabled ones to the bottom. */
+// function compareSelection(a: ListItemBase, b: ListItemBase): number {
+//   if (a.disabled !== b.disabled) return b.disabled ? -1 : 1;
+//   if (a.selected !== b.selected) return a.selected ? -1 : 1;
+//   return 0;
+// }
 
 /**
  * A mwc-list with mwc-textfield that filters the list items for given or separated terms
  */
 @customElement('oscd-filter-button')
-export class FilterButton extends LitElement {
-  header!: TemplateResult | string;
+export class FilterButton extends FilteredList {
   @property()
-  selectedItems: string[] = [];
-  @property({ type: Boolean })
-  multi = false;
+  header!: TemplateResult | string;
   @property()
   icon!: string;
 
-  @state()
-  private hideList = true;
-
-  @query('filtered-list')
-  private filteredList!: FilteredList;
+  @query('#filterDialog')
+  private filterDialog!: Dialog;
 
   private toggleList(): void {
-    this.hideList = !this.hideList;
+    this.filterDialog.show();
+    //
+    // if (this.multi) {
+    //   const sortedItems = this.items
+    //     .sort((itemA, itemB) =>
+    //       (itemA.textContent ?? '').localeCompare(itemB.textContent ?? '')
+    //     )
+    //     .sort(compareSelection);
+    //   render(html`${sortedItems}`, this);
+    // }
+  }
 
-    if (this.multi && !this.hideList) {
-      const sortedItems = this.filteredList.items
-        .sort((itemA, itemB) =>
-          (itemA.textContent ?? '').localeCompare(itemB.textContent ?? '')
-        )
-        .sort(compareSelection);
-      render(html`${sortedItems}`, this.filteredList);
+  private onClosing(): void {
+    const selectedItems: string[] = [];
+    if (this.selected) {
+      if (this.selected instanceof Array) {
+        this.selected.forEach(item => selectedItems.push(item.value));
+        this.dispatchEvent(newSelectedItemsChangedEvent(selectedItems));
+      } else {
+        selectedItems.push(this.selected.value);
+        this.dispatchEvent(newSelectedItemsChangedEvent(selectedItems));
+      }
     }
-  }
-
-  private selectSingleItem(evt: SingleSelectedEvent): void {
-    this.selectedItems = [this.filteredList.items[evt.detail.index].value];
-    this.fireSelectionChangedEvent();
-  }
-
-  private selectMultiItem(evt: MultiSelectedEvent): void {
-    this.selectedItems = ((evt.target as Menu).selected as ListItemBase[]).map(
-      item => item.value
-    );
-    this.fireSelectionChangedEvent();
-  }
-
-  private fireSelectionChangedEvent() {
-    this.dispatchEvent(newSelectedItemsChangedEvent(this.selectedItems));
   }
 
   render(): TemplateResult {
     return html`
       <mwc-icon-button icon="${this.icon}" @click=${this.toggleList}>
       </mwc-icon-button>
-      <div
-        class="${classMap({
-          listContainer: true,
-          hidden: this.hideList,
-        })}"
+      <mwc-dialog
+        id="filterDialog"
+        heading="${this.header ? this.header : get('filter')}"
+        scrimClickAction=""
+        @closing="${() => this.onClosing()}"
       >
-        <h1>${this.header ? this.header : get('filter')}</h1>
-        <filtered-list
-          ?multi="${this.multi}"
-          @selected=${this.multi ? this.selectMultiItem : this.selectSingleItem}
-        >
-          <slot></slot>
-        </filtered-list>
-      </div>
+        ${super.render()}
+        <mwc-button slot="primaryAction" dialogAction="close">
+          ${translate('close')}
+        </mwc-button>
+      </mwc-dialog>
     `;
   }
 
   static styles = css`
+    ${unsafeCSS(FilteredList.styles)}
+
     mwc-icon-button {
-      padding: 8px;
-    }
-
-    h1 {
       color: var(--mdc-theme-on-surface);
-      font-family: 'Roboto', sans-serif;
-      font-weight: 300;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      margin: 0px;
-      line-height: 48px;
-      padding-left: 0.3em;
     }
 
-    div.listContainer {
-      box-shadow: 2px 2px 6px 6px var(--mdc-dialog-heading-ink-color);
-      position: absolute;
-      max-width: calc(100% - 200px);
-      max-height: calc(100% - 240px);
-      background-color: var(--mdc-theme-surface);
-      overflow-y: auto;
-      z-index: 5;
-    }
-
-    .hidden {
-      display: none;
+    mwc-dialog {
+      --mdc-dialog-max-height: calc(100vh - 150px);
     }
   `;
 }
@@ -138,7 +98,7 @@ export interface SelectedItemsChangedDetail {
   selectedItems: string[];
 }
 export type SelectedItemsChangedEvent = CustomEvent<SelectedItemsChangedDetail>;
-export function newSelectedItemsChangedEvent(
+function newSelectedItemsChangedEvent(
   selectedItems: string[],
   eventInitDict?: CustomEventInit<SelectedItemsChangedDetail>
 ): SelectedItemsChangedEvent {

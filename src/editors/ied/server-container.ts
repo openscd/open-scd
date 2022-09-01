@@ -1,10 +1,4 @@
-import {
-  css,
-  customElement,
-  html,
-  property,
-  TemplateResult,
-} from 'lit-element';
+import { customElement, html, property, TemplateResult } from 'lit-element';
 import { nothing } from 'lit-html';
 
 import '../../action-pane.js';
@@ -40,6 +34,4 @@ export class ServerContainer extends Container {
       )}
     </action-pane>`;
   }
-
-  static styles = css``;
 }

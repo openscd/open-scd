@@ -784,6 +784,7 @@ export const en = {
   cancel: 'Cancel',
   close: 'Close',
   filter: 'Filter',
+  filters: 'Filters',
   undo: 'Undo',
   redo: 'Redo',
   duplicate: 'Clone',

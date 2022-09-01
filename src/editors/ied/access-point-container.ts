@@ -28,7 +28,18 @@ export class AccessPointContainer extends Container {
     return html`${name}${desc ? html` &mdash; ${desc}` : nothing}`;
   }
 
+  private get lnElements(): Element[] {
+    return Array.from(this.element.querySelectorAll(':scope > LN,LN0')).filter(
+      element => {
+        const lnClass = element.getAttribute('lnClass') ?? '';
+        return this.selectedLNClasses.includes(lnClass);
+      }
+    );
+  }
+
   render(): TemplateResult {
+    const lnElements = this.lnElements;
+
     return html`<action-pane .label="${this.header()}">
       <mwc-icon slot="icon">${accessPointIcon}</mwc-icon>
       ${Array.from(this.element.querySelectorAll(':scope > Server')).map(
@@ -41,8 +52,31 @@ export class AccessPointContainer extends Container {
             .ancestors=${[...this.ancestors, this.element]}
           ></server-container>`
       )}
+      <div id="lnContainer">
+        ${lnElements.map(
+          ln => html`<ln-container
+            .doc=${this.doc}
+            .element=${ln}
+            .nsdoc=${this.nsdoc}
+            .ancestors=${[...this.ancestors, this.element]}
+          ></ln-container> `
+        )}
+      </div>
     </action-pane>`;
   }
 
-  static styles = css``;
+  static styles = css`
+    #lnContainer {
+      display: grid;
+      grid-gap: 12px;
+      box-sizing: border-box;
+      grid-template-columns: repeat(auto-fit, minmax(316px, auto));
+    }
+
+    @media (max-width: 387px) {
+      #lnContainer {
+        grid-template-columns: repeat(auto-fit, minmax(196px, auto));
+      }
+    }
+  `;
 }
