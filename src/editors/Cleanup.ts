@@ -31,7 +31,7 @@ export default class Cleanup extends LitElement {
       width: 100vw;
     }
 
-    @media (max-width: 800px) {
+    @media (max-width: 799px) {
       .cleanup {
         flex-direction: column;
       }
@@ -48,9 +48,6 @@ export default class Cleanup extends LitElement {
       flex: 1;
       flex-direction: column;
       justify-content: space-between;
-      /* any more than 700px and distance between check box and item is too great */
-      max-width: 700px;
-
     }
 
     .cleanup {
