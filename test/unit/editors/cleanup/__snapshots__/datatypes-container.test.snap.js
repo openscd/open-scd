@@ -80,7 +80,7 @@ snapshots["Cleanup: DataTypes Container With a test file loaded looks like the l
   <div>
     <h1>
       [cleanup.unreferencedDataTypes.title]
-          (6)
+          (7)
       <abbr slot="action">
         <mwc-icon-button
           icon="info"
@@ -143,6 +143,32 @@ snapshots["Cleanup: DataTypes Container With a test file loaded looks like the l
         </span>
         <span slot="secondary">
           TVTR
+        </span>
+        <mwc-icon slot="graphic">
+        </mwc-icon>
+      </mwc-check-list-item>
+      <mwc-check-list-item
+        aria-disabled="false"
+        class="cleanup-list-item t-do-type"
+        graphic="large"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#Dummy.LLN0.Health.Unused"
+      >
+        <span class="unreferenced-control">
+          Dummy.LLN0.Health.Unused
+        </span>
+        <span>
+          <mwc-icon-button
+            class="edit-item"
+            icon="edit"
+            label="Edit"
+          >
+          </mwc-icon-button>
+        </span>
+        <span slot="secondary">
+          ENS
         </span>
         <mwc-icon slot="graphic">
         </mwc-icon>
