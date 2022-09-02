@@ -133,6 +133,7 @@ export const en = {
     compareButton: 'Compare',
     attributes: 'Attributes from {{ elementName }}',
     children: 'Child elements from {{ elementName }}',
+    filterMutables: 'Filter project specific settings'
   },
   log: {
     name: 'Log',
@@ -367,9 +368,27 @@ export const en = {
           'Show subscribed Sampled Value(s) publisher for selected IED',
       },
     },
-    smvLaterBinding: {
-      svcList: {
-        noSvcFound: 'No Sampled Value Controls found',
+    laterBinding: {
+      SampledValueControl: {
+        controlBlockList: {
+          title: 'List of Sampled Values Controls with linked FCDAs',
+          noControlBlockFound: 'No Sampled Value Controls found',
+        },
+      },
+      GSEControl: {
+        controlBlockList: {
+          title: 'List of Goose Controls with linked FCDAs',
+          noControlBlockFound: 'No Goose Controls found',
+        },
+      },
+      extRefList: {
+        SampledValueControl: {
+          title:
+            'Selected Sampled Value data "{{ svcName }}" / FCDA "{{ fcdaName }}"',
+        },
+        noSelection: 'No data attribute selected',
+        noSubscribedExtRefs: 'No subscribed ExtRefs',
+        noAvailableExtRefs: 'No available ExtRefs to subscribe',
       },
     },
     iedList: {

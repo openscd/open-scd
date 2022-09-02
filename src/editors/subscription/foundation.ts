@@ -1,5 +1,10 @@
 import { css, LitElement, query } from 'lit-element';
-import { compareNames, createElement } from '../../foundation.js';
+import {
+  cloneElement,
+  compareNames,
+  createElement,
+  getSclSchemaVersion,
+} from '../../foundation.js';
 import { getFcdaReferences } from '../../foundation/ied.js';
 
 export enum View {
@@ -96,15 +101,18 @@ const serviceTypes: Partial<Record<string, string>> = {
 };
 
 /**
- * @param controlBlock - `ReportControl`, `GSEControl` or `SamepldValueControl` source element
- * @param fCDA - the source data. can be data attribute or data obejct (missing daName)
- * @returns ExtRef element
+ * Create a new ExtRef Element depending on the SCL Edition copy attributes from the Control Element,
+ * FCDA Element and related Elements.
+ *
+ * @param controlElement - `ReportControl`, `GSEControl` or `SampledValueControl` source element
+ * @param fcdaElement    - The source data attribute element.
+ * @returns The new created ExtRef element, which can be added to the document.
  */
 export function createExtRefElement(
-  controlBlock: Element | undefined,
-  fCDA: Element
+  controlElement: Element | undefined,
+  fcdaElement: Element
 ): Element {
-  const iedName = fCDA.closest('IED')?.getAttribute('name') ?? null;
+  const iedName = fcdaElement.closest('IED')?.getAttribute('name') ?? null;
   const [ldInst, prefix, lnClass, lnInst, doName, daName] = [
     'ldInst',
     'prefix',
@@ -112,10 +120,11 @@ export function createExtRefElement(
     'lnInst',
     'doName',
     'daName',
-  ].map(attr => fCDA.getAttribute(attr));
-  if (fCDA.ownerDocument.documentElement.getAttribute('version') !== '2007')
-    //Ed1 does not define serviceType and its MCD attribute starting with src...
-    return createElement(fCDA.ownerDocument, 'ExtRef', {
+  ].map(attr => fcdaElement.getAttribute(attr));
+
+  if (getSclSchemaVersion(fcdaElement.ownerDocument) === '2003') {
+    // Edition 2003(1) does not define serviceType and its MCD attribute starting with src...
+    return createElement(fcdaElement.ownerDocument, 'ExtRef', {
       iedName,
       ldInst,
       lnClass,
@@ -124,10 +133,11 @@ export function createExtRefElement(
       doName,
       daName,
     });
+  }
 
-  if (!controlBlock || !serviceTypes[controlBlock.tagName])
+  if (!controlElement || !serviceTypes[controlElement.tagName]) {
     //for invalid control block tag name assume polling
-    return createElement(fCDA.ownerDocument, 'ExtRef', {
+    return createElement(fcdaElement.ownerDocument, 'ExtRef', {
       iedName,
       serviceType: 'Poll',
       ldInst,
@@ -137,19 +147,21 @@ export function createExtRefElement(
       doName,
       daName,
     });
+  }
 
-  // default is empty string as attributes are mendaroty acc to IEC 61850-6 >Ed2
-  const srcLDInst = controlBlock.closest('LDevice')?.getAttribute('inst') ?? '';
+  // default is empty string as attributes are mandatory acc to IEC 61850-6 >Ed2
+  const srcLDInst =
+    controlElement.closest('LDevice')?.getAttribute('inst') ?? '';
   const srcPrefix =
-    controlBlock.closest('LN0,LN')?.getAttribute('prefix') ?? '';
+    controlElement.closest('LN0,LN')?.getAttribute('prefix') ?? '';
   const srcLNClass =
-    controlBlock.closest('LN0,LN')?.getAttribute('lnClass') ?? '';
-  const srcLNInst = controlBlock.closest('LN0,LN')?.getAttribute('inst') ?? '';
-  const srcCBName = controlBlock.getAttribute('name') ?? '';
+    controlElement.closest('LN0,LN')?.getAttribute('lnClass') ?? '';
+  const srcLNInst = controlElement.closest('LN0,LN')?.getAttribute('inst');
+  const srcCBName = controlElement.getAttribute('name') ?? '';
 
-  return createElement(fCDA.ownerDocument, 'ExtRef', {
+  return createElement(fcdaElement.ownerDocument, 'ExtRef', {
     iedName,
-    serviceType: serviceTypes[controlBlock.tagName]!,
+    serviceType: serviceTypes[controlElement.tagName]!,
     ldInst,
     lnClass,
     lnInst,
@@ -159,7 +171,95 @@ export function createExtRefElement(
     srcLDInst,
     srcPrefix,
     srcLNClass,
-    srcLNInst,
+    srcLNInst: srcLNInst ? srcLNInst : null,
+    srcCBName,
+  });
+}
+
+/**
+ * Create a clone of the passed ExtRefElement and updated or set the required attributes on the cloned element
+ * depending on the Edition and type of Control Element.
+ *
+ * @param extRefElement  - The ExtRef Element to clone and update.
+ * @param controlElement - `ReportControl`, `GSEControl` or `SampledValueControl` source element
+ * @param fcdaElement    - The source data attribute element.
+ * @returns A cloned ExtRef Element with updated information to be used for example in a Replace Action.
+ */
+export function updateExtRefElement(
+  extRefElement: Element,
+  controlElement: Element | undefined,
+  fcdaElement: Element
+): Element {
+  const iedName = fcdaElement.closest('IED')?.getAttribute('name') ?? null;
+  const [ldInst, prefix, lnClass, lnInst, doName, daName] = [
+    'ldInst',
+    'prefix',
+    'lnClass',
+    'lnInst',
+    'doName',
+    'daName',
+  ].map(attr => fcdaElement.getAttribute(attr));
+
+  if (getSclSchemaVersion(fcdaElement.ownerDocument) === '2003') {
+    // Edition 2003(1) does not define serviceType and its MCD attribute starting with src...
+    return cloneElement(extRefElement, {
+      iedName,
+      serviceType: null,
+      ldInst,
+      lnClass,
+      lnInst,
+      prefix,
+      doName,
+      daName,
+      srcLDInst: null,
+      srcPrefix: null,
+      srcLNClass: null,
+      srcLNInst: null,
+      srcCBName: null,
+    });
+  }
+
+  if (!controlElement || !serviceTypes[controlElement.tagName]) {
+    //for invalid control block tag name assume polling
+    return cloneElement(extRefElement, {
+      iedName,
+      serviceType: 'Poll',
+      ldInst,
+      lnClass,
+      lnInst,
+      prefix,
+      doName,
+      daName,
+      srcLDInst: null,
+      srcPrefix: null,
+      srcLNClass: null,
+      srcLNInst: null,
+      srcCBName: null,
+    });
+  }
+
+  const srcLDInst =
+    controlElement.closest('LDevice')?.getAttribute('inst') ?? '';
+  const srcPrefix =
+    controlElement.closest('LN0,LN')?.getAttribute('prefix') ?? '';
+  const srcLNClass =
+    controlElement.closest('LN0,LN')?.getAttribute('lnClass') ?? '';
+  const srcLNInst = controlElement.closest('LN0,LN')?.getAttribute('inst');
+  const srcCBName = controlElement.getAttribute('name') ?? '';
+
+  return cloneElement(extRefElement, {
+    iedName,
+    serviceType: serviceTypes[controlElement.tagName]!,
+    ldInst,
+    lnClass,
+    lnInst,
+    prefix,
+    doName,
+    daName,
+    srcLDInst,
+    srcPrefix,
+    srcLNClass,
+    srcLNInst: srcLNInst ? srcLNInst : null,
     srcCBName,
   });
 }

@@ -1,25 +1,25 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import SMVSubscribeLaterBindingPlugin from '../../../src/editors/SMVSubscriberLaterBinding.js';
+import GooseSubscriberLaterBinding from '../../../src/editors/GooseSubscriberLaterBinding.js';
 
 describe('SMV Subscribe Later Binding Plugin', () => {
   customElements.define(
-    'smv-subscribe-later-binding-plugin',
-    SMVSubscribeLaterBindingPlugin
+    'goose-subscriber-later-binding-plugin',
+    GooseSubscriberLaterBinding
   );
 
-  let element: SMVSubscribeLaterBindingPlugin;
+  let element: GooseSubscriberLaterBinding;
   let doc: XMLDocument;
 
   beforeEach(async () => {
-    doc = await fetch('/test/testfiles/editors/LaterBindingSMV2007B4.scd')
+    doc = await fetch('/test/testfiles/valid2007B4ForSubscription.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
     element = await fixture(
-      html`<smv-subscribe-later-binding-plugin
+      html`<goose-subscriber-later-binding-plugin
         .doc="${doc}"
-      ></smv-subscribe-later-binding-plugin>`
+      ></goose-subscriber-later-binding-plugin>`
     );
   });
 

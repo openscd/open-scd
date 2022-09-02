@@ -155,6 +155,7 @@ export const de: Translations = {
     compareButton: 'Starte Vergleich',
     attributes: 'Attribute von {{ elementName }}',
     children: 'Kindelemente von {{ elementName }}',
+    filterMutables: 'Projektspzifische Unterschiede ausblenden'
   },
   log: {
     name: 'Protokoll',
@@ -370,9 +371,28 @@ export const de: Translations = {
           'Zeigt verbundene Sampled Value(s) des ausgewählten IED',
       },
     },
-    smvLaterBinding: {
-      svcList: {
-        noSvcFound: 'Kein Sampled-Value-Kontrolblock im Projekt',
+    laterBinding: {
+      SampledValueControl: {
+        controlBlockList: {
+          title: 'Sampled Values and verknüpfte Datensätze im Projekt',
+          noControlBlockFound: 'Kein Sampled-Value-Kontrolblock im Projekt',
+        },
+      },
+      GSEControl: {
+        controlBlockList: {
+          title: '???',
+          noControlBlockFound: '???',
+        },
+      },
+      extRefList: {
+        SampledValueControl: {
+          title:
+            'Ausgewählter Sampled Value Datenpunkt "{{ svcName }}" / "{{ fcdaName }}"',
+        },
+        noSelection: 'Kein Daten-Attribut ausgewählt',
+        noSubscribedExtRefs: 'Keine verknüpften externen Referenzen',
+        noAvailableExtRefs:
+          'Keine externen externen Referenzen vom Type "Later Binding"',
       },
     },
     iedList: {
