@@ -90,7 +90,7 @@ export class GooseList extends LitElement {
   render(): TemplateResult {
     return html` <section tabindex="0">
       <h1>${translate('subscription.goose.publisher.title')}</h1>
-      <filtered-list>
+      <filtered-list activatable>
         ${getOrderedIeds(this.doc).map(
           ied =>
             html`
