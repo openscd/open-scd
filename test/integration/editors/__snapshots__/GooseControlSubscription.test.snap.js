@@ -692,7 +692,10 @@ snapshots["GOOSE subscriber plugin in Subscriber view per default the plugin its
     </mwc-radio>
   </mwc-formfield>
   <div class="container">
-    <ied-list class="row">
+    <ied-list
+      class="row"
+      title-for-translation="subscription.goose.subscriberGoose.iedListTitle"
+    >
     </ied-list>
     <subscriber-list-goose class="row">
     </subscriber-list-goose>
@@ -706,7 +709,7 @@ snapshots["GOOSE subscriber plugin in Subscriber view per default the plugin its
 snapshots["GOOSE subscriber plugin in Subscriber view per default the right hand side IEDs list looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.iedList.title]
+    [subscription.goose.subscriberGoose.iedListTitle]
   </h1>
   <filtered-list>
     <mwc-list-item

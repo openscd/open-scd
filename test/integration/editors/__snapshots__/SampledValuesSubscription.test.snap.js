@@ -617,7 +617,10 @@ snapshots["Sampled Values Plugin in Subscriber view initially the plugin looks l
     </mwc-radio>
   </mwc-formfield>
   <div class="container">
-    <ied-list class="row">
+    <ied-list
+      class="row"
+      title-for-translation="subscription.smv.subscriberSmv.iedListTitle"
+    >
     </ied-list>
     <subscriber-list-smv class="row">
     </subscriber-list-smv>
@@ -631,7 +634,7 @@ snapshots["Sampled Values Plugin in Subscriber view initially the plugin looks l
 snapshots["Sampled Values Plugin in Subscriber view initially the IED list looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.iedList.title]
+    [subscription.smv.subscriberSmv.iedListTitle]
   </h1>
   <filtered-list>
     <mwc-list-item
