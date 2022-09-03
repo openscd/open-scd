@@ -346,53 +346,53 @@ export const de: Translations = {
     },
     goose: {
       publisherGoose: {
-        title: 'GOOSE-Publizierer',
-        subscriberTitle: 'Verbunden mit {{ selected }}',
+        title: 'GOOSE-Verlag',
+        subscriberTitle: 'Bei {{ selected }} abonnierte IEDs',
       },
       subscriberGoose: {
-        publisherTitle: 'GOOSE(s) verbunden mit {{selected}}',
+        iedListTitle: 'GOOSE-Abonnenten',
+        publisherTitle: 'GOOSE Messages abonniert bei {{ selected }}',
       },
       view: {
-        publisherView: 'Zeigt verbundene IED(s) der ausgewählten GOOSE',
-        subscriberView: 'Zeigt verbundene GOOSE(s) des ausgewählten IED',
+        publisherView: 'Herausgeber | Teilnehmer',
+        subscriberView: 'Teilnehmer | Herausgeber',
       },
     },
     smv: {
       publisherSmv: {
-        title: 'SampledValue-Publizierer',
-        subscriberTitle: 'Verbunden mit {{ selected }}',
+        title: 'Stichprobenwert-Publisher',
+        subscriberTitle: 'IEDs, die bei {{ selected }} abonniert',
       },
       subscriberSmv: {
-        publisherTitle: 'Verbunden mit {{selected}}',
+        iedListTitle: 'Sampled Value-Abonnenten',
+        publisherTitle: 'Sampled Value Messages abonniert bei {{ selected }}',
       },
       view: {
-        publisherView: 'Zeigt verbundene IED(s) der ausgewählten Sampled Value',
-        subscriberView:
-          'Zeigt verbundene Sampled Value(s) des ausgewählten IED',
+        publisherView: 'Herausgeber | Teilnehmer',
+        subscriberView: 'Teilnehmer | Herausgeber',
       },
     },
     laterBinding: {
       SampledValueControl: {
         controlBlockList: {
-          title: 'Sampled Values and verknüpfte Datensätze im Projekt',
-          noControlBlockFound: 'Kein Sampled-Value-Kontrolblock im Projekt',
+          title: 'Meldungen mit abgetasteten Werten',
+          noControlBlockFound: 'Keine Sampled Value Messages gefunden',
         },
       },
       GSEControl: {
         controlBlockList: {
-          title: '???',
-          noControlBlockFound: '???',
+          title: 'GOOSE-Meldungen',
+          noControlBlockFound: 'Keine GOOSE-Nachrichten gefunden',
         },
       },
       extRefList: {
         title:
-          'Ausgewählter {{ controlTag }} Datenpunkt "{{ svcName }}" / "{{ fcdaName }}"',
-        noSelection: 'Kein Daten-Attribut ausgewählt',
-        noSubscribedExtRefs: 'Keine verknüpften externen Referenzen',
-        noAvailableExtRefs:
-          'Keine externen externen Referenzen vom Type "Later Binding"',
+          'Ausgewählter {{ controlTag }} /  Datenpunkt {{ controlElementName }} / {{lDeviceName}} / {{lNodeName}} / {{ fcdaName }}"',
       },
-    },
+        noSelection: 'Kein Daten-Attribut ausgewählt',
+        noSubscribedExtRefs: 'Keine abonnierten Eingänge',
+        noAvailableExtRefs: 'Keine verfügbaren Eingaben zum Abonnieren',
+      },
     iedList: {
       title: 'IEDs',
     },
@@ -745,8 +745,8 @@ export const de: Translations = {
       deleteButton: 'Ausgewählte Datentypen entfernen',
       tooltip:
         'Datentypen, die nicht in einem logischen Knoten oder einem anderen verwendeten Datentyp referenziert werden',
-        alsoRemoveSubTypes: 'Entfernen Sie auch Untertypen'
-    }
+      alsoRemoveSubTypes: 'Entfernen Sie auch Untertypen',
+    },
   },
   controlblock: {
     action: {

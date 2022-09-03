@@ -239,6 +239,14 @@ export class ExtRefLaterBindingList extends LitElement {
     const controlElementName = this.currentSelectedControlElement
       ? getNameAttribute(this.currentSelectedControlElement)
       : undefined;
+    const lDeviceName = this.currentSelectedFcdaElement
+      ? this.currentSelectedFcdaElement.getAttribute('ldInst')
+      : undefined;
+    const lNodeName = `${this.currentSelectedFcdaElement?.getAttribute(
+      'prefix'
+    )} ${this.currentSelectedFcdaElement?.getAttribute(
+      'lnClass'
+    )} ${this.currentSelectedFcdaElement?.getAttribute('lnInst')}`;
     const fcdaName = this.currentSelectedFcdaElement
       ? getFcdaTitleValue(this.currentSelectedFcdaElement)
       : undefined;
@@ -249,6 +257,8 @@ export class ExtRefLaterBindingList extends LitElement {
         {
           controlTag: this.controlTag,
           controlElementName: controlElementName ?? '-',
+          lDeviceName: lDeviceName ?? '-',
+          lNodeName: lNodeName ?? '-',
           fcdaName: fcdaName ?? '-',
         }
       )}
@@ -372,6 +382,10 @@ export class ExtRefLaterBindingList extends LitElement {
 
   static styles = css`
     ${styles}
+
+    h1 {
+      white-space: normal;  
+    }
 
     mwc-list-item.hidden[noninteractive] + li[divider] {
       display: none;

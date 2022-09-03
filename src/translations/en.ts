@@ -343,52 +343,53 @@ export const en = {
     },
     goose: {
       publisherGoose: {
-        title: 'GOOSE Publisher',
-        subscriberTitle: 'Subscriber of {{ selected }}',
+        title: 'GOOSE Publishers',
+        subscriberTitle: 'IEDs subscribed to {{ selected }}',
       },
       subscriberGoose: {
-        publisherTitle: 'GOOSE(s) subscribed by {{selected}}',
+        iedListTitle: 'GOOSE Subscribers',
+        publisherTitle: 'GOOSE Messages subscribed to {{selected}}',
       },
       view: {
-        publisherView: 'Show subscriber IED(s) per selected GOOSE',
-        subscriberView: 'Show subscribed GOOSE publisher for selected IED',
+        publisherView: 'Publisher | Subscriber',
+        subscriberView: 'Subscriber | Publisher',
       },
     },
     smv: {
       publisherSmv: {
-        title: 'Sampled Values Publisher',
-        subscriberTitle: 'Subscriber of {{ selected }}',
+        title: '    ',
+        subscriberTitle: 'IEDs subscribed to {{ selected }}',
       },
       subscriberSmv: {
-        publisherTitle: 'Sampled Value(s) subscribed by {{selected}}',
+        iedListTitle: 'Sampled Value Subscribers',
+        publisherTitle: 'Sampled Value Messages subscribed to {{ selected }}',
       },
       view: {
-        publisherView: 'Show subscriber IED(s) per selected Sampled Value',
-        subscriberView:
-          'Show subscribed Sampled Value(s) publisher for selected IED',
+        publisherView: 'Publisher | Subscriber',
+        subscriberView: 'Subscriber | Publisher',
       },
     },
     laterBinding: {
       SampledValueControl: {
         controlBlockList: {
-          title: 'List of Sampled Values Controls with linked FCDAs',
-          noControlBlockFound: 'No Sampled Value Controls found',
+          title: 'Sampled Value Messages',
+          noControlBlockFound: 'No Sampled Value Messages found',
         },
       },
       GSEControl: {
         controlBlockList: {
-          title: 'List of Goose Controls with linked FCDAs',
-          noControlBlockFound: 'No Goose Controls found',
+          title: 'GOOSE Messages',
+          noControlBlockFound: 'No GOOSE Messages found',
         },
       },
       extRefList: {
-        title:
-          'Selected {{ controlTag }} data "{{ controlElementName }}" / FCDA "{{ fcdaName }}"',
+          title:
+            'Inputs available for {{ controlTag }} / {{ controlElementName }} / {{lDeviceName}} / {{lNodeName}} / {{ fcdaName }}',
+        },
         noSelection: 'No data attribute selected',
-        noSubscribedExtRefs: 'No subscribed ExtRefs',
-        noAvailableExtRefs: 'No available ExtRefs to subscribe',
+        noSubscribedExtRefs: 'No subscribed inputs',
+        noAvailableExtRefs: 'No available inputs to subscribe',
       },
-    },
     iedList: {
       title: 'IEDs',
     },
@@ -742,8 +743,8 @@ export const en = {
       deleteButton: 'Remove Selected Data Types',
       tooltip:
         'Data Types which are not referenced in a Logical Node or other used Data Type',
-        alsoRemoveSubTypes: 'Also remove subtypes'
-    }
+      alsoRemoveSubTypes: 'Also remove subtypes',
+    },
   },
   controlblock: {
     action: {
