@@ -266,6 +266,12 @@ export class ExtRefLaterBindingList extends LitElement {
                 this.dispatchEvent(
                   newActionEvent(this.unsubscribe(extRefElement))
                 );
+                this.dispatchEvent(
+                  new CustomEvent('lb-subscription-change', {
+                    bubbles: true,
+                    composed: true,
+                  })
+                );
               }}
               value="${identity(extRefElement)}"
             >
@@ -317,6 +323,12 @@ export class ExtRefLaterBindingList extends LitElement {
                 if (replaceAction) {
                   this.dispatchEvent(newActionEvent(replaceAction));
                 }
+                this.dispatchEvent(
+                  new CustomEvent('lb-subscription-change', {
+                    bubbles: true,
+                    composed: true,
+                  })
+                );
               }}
               value="${identity(extRefElement)}"
             >
