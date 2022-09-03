@@ -37,7 +37,7 @@ snapshots["Sampled Values Plugin in Publisher view initially the Sampled Values 
   <h1>
     [subscription.smv.publisherSmv.title]
   </h1>
-  <filtered-list>
+  <filtered-list activatable="">
     <mwc-list-item
       aria-disabled="false"
       graphic="icon"
@@ -633,7 +633,7 @@ snapshots["Sampled Values Plugin in Subscriber view initially the IED list looks
   <h1>
     [subscription.iedList.title]
   </h1>
-  <filtered-list>
+  <filtered-list activatable="">
     <mwc-list-item
       aria-disabled="false"
       graphic="icon"

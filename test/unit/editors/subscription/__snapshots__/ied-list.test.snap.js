@@ -6,7 +6,7 @@ snapshots["ied-list looks like the latest snapshot with a document loaded"] =
   <h1>
     [subscription.iedList.title]
   </h1>
-  <filtered-list>
+  <filtered-list activatable="">
     <mwc-list-item
       aria-disabled="false"
       graphic="icon"
@@ -56,7 +56,7 @@ snapshots["ied-list looks like the latest snapshot without a doc loaded"] =
   <h1>
     [subscription.iedList.title]
   </h1>
-  <filtered-list>
+  <filtered-list activatable="">
   </filtered-list>
 </section>
 `;
