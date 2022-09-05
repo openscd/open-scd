@@ -1,6 +1,6 @@
-import { html, fixture, expect } from '@open-wc/testing';
+import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../../../src/editors/ied/server-container.js'
+import '../../../../src/editors/ied/server-container.js';
 import { ServerContainer } from '../../../../src/editors/ied/server-container.js';
 
 describe('server-container', () => {
@@ -8,12 +8,16 @@ describe('server-container', () => {
   let validSCL: XMLDocument;
 
   beforeEach(async () => {
-    validSCL = await fetch('/test/testfiles/valid2007B4.scd')
+    validSCL = await fetch(
+      '/test/testfiles/valid2007B4withIEDModifications.scd'
+    )
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
     element = await fixture(html`<server-container
-      .element=${validSCL.querySelector('IED[name="IED1"] > AccessPoint[name="P1"] > Server')}
+      .element=${validSCL.querySelector(
+        'IED[name="IED1"] > AccessPoint[name="P1"] > Server'
+      )}
     ></server-container>`);
   });
 

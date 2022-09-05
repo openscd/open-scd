@@ -3,7 +3,9 @@ import {
   customElement,
   html,
   property,
+  PropertyValues,
   query,
+  state,
   TemplateResult,
 } from 'lit-element';
 import { nothing } from 'lit-html';
@@ -29,7 +31,8 @@ export class LDeviceContainer extends Container {
   @property()
   selectedLNClasses: string[] = [];
 
-  @query('#toggleButton') toggleButton!: IconButtonToggle | undefined;
+  @query('#toggleButton')
+  toggleButton!: IconButtonToggle | undefined;
 
   private header(): TemplateResult {
     const nameOrInst =
@@ -43,6 +46,16 @@ export class LDeviceContainer extends Container {
     this.requestUpdate();
   }
 
+  protected updated(_changedProperties: PropertyValues): void {
+    super.updated(_changedProperties);
+
+    // When the LN Classes filter is updated, we also want to trigger rendering for the LN Elements.
+    if (_changedProperties.has('selectedLNClasses')) {
+      this.requestUpdate('lnElements');
+    }
+  }
+
+  @state()
   private get lnElements(): Element[] {
     return Array.from(this.element.querySelectorAll(':scope > LN,LN0')).filter(
       element => {

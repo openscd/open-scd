@@ -1,19 +1,21 @@
-import { expect } from "@open-wc/testing";
+import { expect } from '@open-wc/testing';
 
 import {
   findDOTypeElement,
   findElement,
   findLogicaNodeElement,
   getInstanceDAElement,
-  getValueElement
-} from "../../../../src/editors/ied/foundation.js";
-import { getAncestorsFromDA, getAncestorsFromDO } from "./test-support.js";
+  getValueElement,
+} from '../../../../src/editors/ied/foundation.js';
+import { getAncestorsFromDA, getAncestorsFromDO } from './test-support.js';
 
 describe('ied-foundation', async () => {
   let validSCL: Document;
 
   beforeEach(async () => {
-    validSCL = await fetch('/test/testfiles/valid2007B4withIEDModifications.scd')
+    validSCL = await fetch(
+      '/test/testfiles/valid2007B4withIEDModifications.scd'
+    )
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
   });
@@ -23,7 +25,9 @@ describe('ied-foundation', async () => {
     let ancestors: Element[];
 
     beforeEach(async () => {
-      daElement = validSCL.querySelector('DataTypeTemplates > DOType[id="Dummy.XCBR1.Pos"] > DA[name="ctlModel"]')!;
+      daElement = validSCL.querySelector(
+        'DataTypeTemplates > DOType[id="Dummy.XCBR1.Pos"] > DA[name="ctlModel"]'
+      )!;
       ancestors = getAncestorsFromDA(daElement, 'Dummy.XCBR1.Pos');
     });
 
@@ -41,7 +45,9 @@ describe('ied-foundation', async () => {
 
   describe('findLogicaNodeElement', async () => {
     it('will find LN Element in list', async () => {
-      const daElement = validSCL.querySelector('DataTypeTemplates > DOType[id="Dummy.XCBR1.Pos"] > DA[name="ctlModel"]')!;
+      const daElement = validSCL.querySelector(
+        'DataTypeTemplates > DOType[id="Dummy.XCBR1.Pos"] > DA[name="ctlModel"]'
+      )!;
       const ancestors = getAncestorsFromDA(daElement, 'Dummy.XCBR1.Pos');
 
       const lnElement = findLogicaNodeElement(ancestors);
@@ -50,7 +56,9 @@ describe('ied-foundation', async () => {
     });
 
     it('will find LN0 Element in list', async () => {
-      const doElement = validSCL.querySelector('DataTypeTemplates > LNodeType[id="Dummy.LLN0"] > DO[name="Mod"]')!;
+      const doElement = validSCL.querySelector(
+        'DataTypeTemplates > LNodeType[id="Dummy.LLN0"] > DO[name="Mod"]'
+      )!;
       const ancestors = getAncestorsFromDO(doElement);
 
       const lnElement = findLogicaNodeElement(ancestors);
@@ -66,16 +74,20 @@ describe('ied-foundation', async () => {
 
   describe('findDOTypeElement', async () => {
     it('will find DOType Element', async () => {
-      const doElement = validSCL.querySelector('DataTypeTemplates > LNodeType[id="Dummy.LLN0"] > DO[name="Mod"]')!;
+      const doElement = validSCL.querySelector(
+        'DataTypeTemplates > LNodeType[id="Dummy.LLN0"] > DO[name="Mod"]'
+      )!;
 
       const doTypeElement = findDOTypeElement(doElement);
       expect(doTypeElement).to.be.not.null;
       expect(doTypeElement?.tagName).to.be.equal('DOType');
-      expect(doTypeElement?.getAttribute('cdc')).to.be.equal('ENC')
+      expect(doTypeElement?.getAttribute('cdc')).to.be.equal('ENC');
     });
 
     it('will not find DOType Element and return null', async () => {
-      const doElement = validSCL.querySelector('DataTypeTemplates > LNodeType[id="Dummy.LLN0"] > DO[name="Mod"]')!;
+      const doElement = validSCL.querySelector(
+        'DataTypeTemplates > LNodeType[id="Dummy.LLN0"] > DO[name="Mod"]'
+      )!;
       doElement.removeAttribute('type');
 
       const doTypeElement = findDOTypeElement(doElement);
@@ -87,8 +99,10 @@ describe('ied-foundation', async () => {
     let daiElement: Element;
 
     beforeEach(async () => {
-      daiElement = validSCL.querySelector(':root > IED[name="IED2"] > AccessPoint[name="P1"] > Server > ' +
-        'LDevice[inst="CircuitBreaker_CB1"] > LN[lnType="Dummy.XCBR1"] > DOI[name="Pos"]> DAI[name="ctlModel"]')!;
+      daiElement = validSCL.querySelector(
+        ':root > IED[name="IED2"] > AccessPoint[name="P1"] > Server > ' +
+          'LDevice[inst="CircuitBreaker_CB1"] > LN[lnType="Dummy.XCBR1"] > DOI[name="Pos"]> DAI[name="ctlModel"]'
+      )!;
     });
 
     it('will find the val child of the element', async () => {
@@ -98,7 +112,7 @@ describe('ied-foundation', async () => {
     });
 
     it('will not find the val element of the element and return null', async () => {
-      daiElement.querySelector('Val')!.remove()
+      daiElement.querySelector('Val')!.remove();
 
       const iedElement = getValueElement(daiElement);
       expect(iedElement).to.be.null;
@@ -107,9 +121,13 @@ describe('ied-foundation', async () => {
 
   describe('getInstanceDAElement', () => {
     it('will return a DAI when a DA has a valid instance element.', async () => {
-      const doi = validSCL.querySelector('IED[name="IED1"] > AccessPoint[name="P1"] > Server > ' +
-        'LDevice[inst="CircuitBreaker_CB1"] > LN[lnClass="CSWI"] > DOI[name="Pos"]')
-      const da = validSCL.querySelector('DataTypeTemplates > DOType[id="Dummy.CSWI.Pos2"] > DA[name="ctlModel"]')
+      const doi = validSCL.querySelector(
+        'IED[name="IED1"] > AccessPoint[name="P1"] > Server > ' +
+          'LDevice[inst="CircuitBreaker_CB1"] > LN[lnClass="CSWI"] > DOI[name="Pos"]'
+      );
+      const da = validSCL.querySelector(
+        'DataTypeTemplates > DOType[id="Dummy.CSWI.Pos2"] > DA[name="ctlModel"]'
+      );
 
       const dai = getInstanceDAElement(doi, da!);
       expect(dai).to.not.be.null;
@@ -117,17 +135,23 @@ describe('ied-foundation', async () => {
       expect(dai?.getAttribute('name')).to.eql('ctlModel');
     });
 
-    it('will returns null if there\'s no DAI available within a DOI.', async () => {
-      const doi = validSCL.querySelector('IED[name="IED1"] > AccessPoint[name="P1"] > Server > ' +
-        'LDevice[inst="CircuitBreaker_CB1"] > LN[lnClass="CSWI"] > DOI[name="Pos"]')
-      const da = validSCL.querySelector('DataTypeTemplates > DOType[id="Dummy.CSWI.Pos2"] > DA[name="d"]')
+    it("will returns null if there's no DAI available within a DOI.", async () => {
+      const doi = validSCL.querySelector(
+        'IED[name="IED1"] > AccessPoint[name="P1"] > Server > ' +
+          'LDevice[inst="CircuitBreaker_CB1"] > LN[lnClass="CSWI"] > DOI[name="Pos"]'
+      );
+      const da = validSCL.querySelector(
+        'DataTypeTemplates > DOType[id="Dummy.CSWI.Pos2"] > DA[name="d"]'
+      );
 
       const dai = getInstanceDAElement(doi, da!);
       expect(dai).to.be.null;
     });
 
     it('will returns null if no root DOI is available.', async () => {
-      const da = validSCL.querySelector('DataTypeTemplates > DOType[id="Dummy.CSWI.Pos2"] > DA[name="d"]')
+      const da = validSCL.querySelector(
+        'DataTypeTemplates > DOType[id="Dummy.CSWI.Pos2"] > DA[name="d"]'
+      );
 
       const dai = getInstanceDAElement(null, da!);
       expect(dai).to.be.null;

@@ -3,6 +3,8 @@ import {
   customElement,
   html,
   property,
+  PropertyValues,
+  state,
   TemplateResult,
 } from 'lit-element';
 import { nothing } from 'lit-html';
@@ -28,6 +30,16 @@ export class AccessPointContainer extends Container {
     return html`${name}${desc ? html` &mdash; ${desc}` : nothing}`;
   }
 
+  protected updated(_changedProperties: PropertyValues): void {
+    super.updated(_changedProperties);
+
+    // When the LN Classes filter is updated, we also want to trigger rendering for the LN Elements.
+    if (_changedProperties.has('selectedLNClasses')) {
+      this.requestUpdate('lnElements');
+    }
+  }
+
+  @state()
   private get lnElements(): Element[] {
     return Array.from(this.element.querySelectorAll(':scope > LN')).filter(
       element => {

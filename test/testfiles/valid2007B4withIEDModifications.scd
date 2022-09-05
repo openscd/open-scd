@@ -399,6 +399,18 @@
 		<AccessPoint name="P2">
 		</AccessPoint>
 	</IED>
+  <IED name="IED4" type="DummyIED" manufacturer="DummyManufactorer" configVersion="1" originalSclVersion="2007" originalSclRevision="B" owner="DummyOwner">
+    <AccessPoint name="P1">
+      <LN prefix="I01A" lnClass="TCTR" inst="1" lnType="DummyTCTR" />
+      <LN prefix="I01B" lnClass="TCTR" inst="2" lnType="DummyTCTR" />
+      <LN prefix="I01C" lnClass="TCTR" inst="3" lnType="DummyTCTR" />
+      <LN prefix="I01N" lnClass="TCTR" inst="4" lnType="DummyTCTR" />
+      <LN prefix="U01A" lnClass="TVTR" inst="1" lnType="DummyTVTR" />
+      <LN prefix="U01B" lnClass="TVTR" inst="2" lnType="DummyTVTR" />
+      <LN prefix="U01C" lnClass="TVTR" inst="3" lnType="DummyTVTR" />
+      <LN prefix="U01N" lnClass="TVTR" inst="4" lnType="DummyTVTR" />
+    </AccessPoint>
+  </IED>
 	<DataTypeTemplates>
 		<LNodeType lnClass="tHardeClass" id="lnTypeWithoutDOs">
 		</LNodeType>
