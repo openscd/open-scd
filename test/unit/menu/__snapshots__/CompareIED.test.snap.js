@@ -1,7 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Compare IED Plugin show template project selection dialog looks like its latest snapshot"] = 
+snapshots["Compare IED Plugin show template project selection dialog looks like its latest snapshot"] =
 `<mwc-dialog heading="[compare-ied.selectProjectTitle]">
   <div>
     <input
@@ -25,7 +25,7 @@ snapshots["Compare IED Plugin show template project selection dialog looks like 
 `;
 /* end snapshot Compare IED Plugin show template project selection dialog looks like its latest snapshot */
 
-snapshots["Compare IED Plugin show ied selection lists dialog looks like its latest snapshot"] = 
+snapshots["Compare IED Plugin show ied selection lists dialog looks like its latest snapshot"] =
 `<mwc-dialog heading="[compare-ied.selectIedTitle]">
   <div class="splitContainer">
     <div>
@@ -170,7 +170,7 @@ snapshots["Compare IED Plugin show ied selection lists dialog looks like its lat
 `;
 /* end snapshot Compare IED Plugin show ied selection lists dialog looks like its latest snapshot */
 
-snapshots["Compare IED Plugin show compare dialog with no differences looks like its latest snapshot"] = 
+snapshots["Compare IED Plugin show compare dialog with no differences looks like its latest snapshot"] =
 `<mwc-dialog heading="[compare-ied.resultTitle]">
   <plain-compare-list>
   </plain-compare-list>
@@ -192,7 +192,7 @@ snapshots["Compare IED Plugin show compare dialog with no differences looks like
 `;
 /* end snapshot Compare IED Plugin show compare dialog with no differences looks like its latest snapshot */
 
-snapshots["Compare IED Plugin show compare dialog with differences looks like its latest snapshot"] = 
+snapshots["Compare IED Plugin show compare dialog with differences looks like its latest snapshot"] =
 `<mwc-dialog heading="[compare-ied.resultTitle]">
   <plain-compare-list>
   </plain-compare-list>
@@ -214,7 +214,7 @@ snapshots["Compare IED Plugin show compare dialog with differences looks like it
 `;
 /* end snapshot Compare IED Plugin show compare dialog with differences looks like its latest snapshot */
 
-snapshots["Compare IED Plugin show compare dialog with ignorable differences looks like its snapshot"] = 
+snapshots["Compare IED Plugin show compare dialog with ignorable differences looks like its snapshot"] =
 `<mwc-dialog
   heading="[compare-ied.resultTitle]"
   open=""
@@ -238,7 +238,7 @@ snapshots["Compare IED Plugin show compare dialog with ignorable differences loo
 </mwc-dialog>
 `;
 /* end snapshot Compare IED Plugin show compare dialog with ignorable differences looks like its snapshot */
-snapshots["Compare IED Plugin show compare dialog with copied IED looks like its latest snapshot"] = 
+snapshots["Compare IED Plugin show compare dialog with copied IED looks like its latest snapshot"] =
 `<mwc-dialog heading="[compare-ied.resultTitle]">
   <plain-compare-list>
   </plain-compare-list>
@@ -258,5 +258,5 @@ snapshots["Compare IED Plugin show compare dialog with copied IED looks like its
   </mwc-button>
 </mwc-dialog>
 `;
-/* end snapshot Compare IED Plugin show compare dialog with copied IED looks like its latest snapshot */
+/* end snapshot Compare IED Plugin show compare dialog with differences looks like its latest snapshot */
 

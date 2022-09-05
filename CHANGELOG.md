@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.22.0](https://github.com/openscd/open-scd/compare/v0.21.0...v0.22.0) (2022-08-22)
+
+
+### Features
+
+* **editor/laterbinding:** Added first part for SMV Later Binding Editor ([#927](https://github.com/openscd/open-scd/issues/927)) ([5bfc3aa](https://github.com/openscd/open-scd/commits/5bfc3aa5f5e91c8a313875beb6b225a81f88f663))
+* **editor/laterbinding:** Show connected and available ExtRef Element from selected FCDA Element ([#941](https://github.com/openscd/open-scd/issues/941)) ([d06d0b4](https://github.com/openscd/open-scd/commits/d06d0b463a5cc150bfdf1d9ea24739c8f96d3f4f))
+* **editor/laterbinding:** Subscribe and unsubscribe from ExtRef for Later Binding (SMV) ([#944](https://github.com/openscd/open-scd/issues/944)) ([b25f9a6](https://github.com/openscd/open-scd/commits/b25f9a67d541583678a19f5a5a211cc8ef5d0d2a))
+* **menu/compareied:** ignore attributes/elements when comparing IED Elements ([#926](https://github.com/openscd/open-scd/issues/926)) ([7e25149](https://github.com/openscd/open-scd/commits/7e2514929d3997f598990d41a01696e567b5d6a6))
+* **menu/history:** move history from log to own menu plugin ([30d568f](https://github.com/openscd/open-scd/commits/30d568fd7596df307f301170b96a74b47af5053a))
+
 ## [0.21.0](https://github.com/openscd/open-scd/compare/v0.20.0...v0.21.0) (2022-08-08)
 
 

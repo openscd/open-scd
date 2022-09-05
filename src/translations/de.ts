@@ -166,6 +166,10 @@ export const de: Translations = {
       placeholder: 'Keine Fehler',
     },
   },
+  history: {
+    name: 'SCL History',
+    noEntries: 'Keine Einträge in der SCL History',
+  },
   diag: {
     name: 'Daignoseübersicht',
     zeroissues: 'Es konnten keine Fehler in dem Projekt gefunden werden.',
@@ -367,9 +371,28 @@ export const de: Translations = {
           'Zeigt verbundene Sampled Value(s) des ausgewählten IED',
       },
     },
-    smvLaterBinding: {
-      svcList: {
-        noSvcFound: 'Kein Sampled-Value-Kontrolblock im Projekt',
+    laterBinding: {
+      SampledValueControl: {
+        controlBlockList: {
+          title: 'Sampled Values and verknüpfte Datensätze im Projekt',
+          noControlBlockFound: 'Kein Sampled-Value-Kontrolblock im Projekt',
+        },
+      },
+      GSEControl: {
+        controlBlockList: {
+          title: '???',
+          noControlBlockFound: '???',
+        },
+      },
+      extRefList: {
+        SampledValueControl: {
+          title:
+            'Ausgewählter Sampled Value Datenpunkt "{{ svcName }}" / "{{ fcdaName }}"',
+        },
+        noSelection: 'Kein Daten-Attribut ausgewählt',
+        noSubscribedExtRefs: 'Keine verknüpften externen Referenzen',
+        noAvailableExtRefs:
+          'Keine externen externen Referenzen vom Type "Later Binding"',
       },
     },
     iedList: {
@@ -719,6 +742,13 @@ export const de: Translations = {
         'Für diesen Kontrollblock existiert eine Adressdefinition im Abschnitt Kommunikation',
       alsoRemoveFromCommunication: 'Kommunikation SMV/GSE mit entfernen',
     },
+    unreferencedDataTypes: {
+      title: 'Nicht referenzierte Datentypen',
+      deleteButton: 'Ausgewählte Datentypen entfernen',
+      tooltip:
+        'Datentypen, die nicht in einem logischen Knoten oder einem anderen verwendeten Datentyp referenziert werden',
+        alsoRemoveSubTypes: 'Entfernen Sie auch Untertypen'
+    }
   },
   controlblock: {
     action: {

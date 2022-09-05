@@ -248,10 +248,10 @@ snapshots["Cleanup: Control Blocks Container With a test file loaded looks like 
         mwc-list-item=""
         tabindex="-1"
         twoline=""
-        value="IED2>>CBSW> XSWI 1>ReportCb"
+        value="IED2>>CBSW> XSWI 1>ReportCb2"
       >
         <span class="unreferencedControl">
-          ReportCb
+          ReportCb2
         </span>
         <span>
           <mwc-icon-button

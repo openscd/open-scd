@@ -94,7 +94,7 @@ export default class CompareIEDPlugin extends LitElement {
   private templateFileUI!: HTMLInputElement;
 
   private templateDocName: string = '';
-  
+
   @property({ attribute: false })
   docName!: string;
 
@@ -313,6 +313,5 @@ export default class CompareIEDPlugin extends LitElement {
     .resultTitle {
       font-weight: bold;
     }
-
   `;
 }

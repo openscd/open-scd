@@ -290,6 +290,24 @@ snapshots["open-scd looks like its snapshot"] =
     </mwc-list-item>
     <oscd-plugin48ab1a46d409bed9 class="plugin">
     </oscd-plugin48ab1a46d409bed9>
+    <mwc-list-item
+      aria-disabled="true"
+      class="middle"
+      disabled=""
+      graphic="icon"
+      iconid="history_toggle_off"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        history_toggle_off
+      </mwc-icon>
+      <span>
+        Show SCL History
+      </span>
+    </mwc-list-item>
+    <oscd-plugina5aa56c7c6319526 class="plugin">
+    </oscd-plugina5aa56c7c6319526>
     <li
       divider=""
       padded=""
@@ -393,8 +411,6 @@ snapshots["open-scd looks like its snapshot"] =
     id="actionfilter"
     on=""
   >
-  </mwc-icon-button-toggle>
-  <mwc-icon-button-toggle id="sclhistoryfilter">
   </mwc-icon-button-toggle>
   <mwc-list
     id="content"
@@ -627,6 +643,21 @@ snapshots["open-scd looks like its snapshot"] =
       hasmeta=""
       left=""
       mwc-list-item=""
+      tabindex="-1"
+      value="/src/editors/GooseSubscriberLaterBinding.js"
+    >
+      <mwc-icon slot="meta">
+        link
+      </mwc-icon>
+      Subscriber Later Binding (GOOSE)
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
       selected=""
       tabindex="-1"
       value="/src/editors/SampledValuesSubscription.js"
@@ -643,6 +674,7 @@ snapshots["open-scd looks like its snapshot"] =
       hasmeta=""
       left=""
       mwc-list-item=""
+      selected=""
       tabindex="-1"
       value="/src/editors/SMVSubscriberLaterBinding.js"
     >
@@ -988,6 +1020,22 @@ snapshots["open-scd looks like its snapshot"] =
         help
       </mwc-icon>
       Help
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/menu/SclHistory.js"
+    >
+      <mwc-icon slot="meta">
+        history_toggle_off
+      </mwc-icon>
+      Show SCL History
     </mwc-check-list-item>
   </mwc-list>
   <mwc-button
