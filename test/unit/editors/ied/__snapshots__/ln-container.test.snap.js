@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["ln-container looks like the latest snapshot with a LN element."] = 
-`<action-pane tabindex="0">
+snapshots[
+  'ln-container looks like the latest snapshot with a LN element.'
+] = `<action-pane tabindex="0">
   <abbr
     slot="action"
     title="[iededitor.toggleChildElements]"
@@ -18,8 +19,9 @@ snapshots["ln-container looks like the latest snapshot with a LN element."] =
 `;
 /* end snapshot ln-container looks like the latest snapshot with a LN element. */
 
-snapshots["ln-container looks like the latest snapshot with a LN0 element and child elements are toggled."] = 
-`<action-pane tabindex="0">
+snapshots[
+  'ln-container looks like the latest snapshot with a LN0 element and child elements are toggled.'
+] = `<action-pane tabindex="0">
   <abbr
     slot="action"
     title="[iededitor.toggleChildElements]"
@@ -47,6 +49,3 @@ snapshots["ln-container looks like the latest snapshot with a LN0 element and ch
 </action-pane>
 `;
 /* end snapshot ln-container looks like the latest snapshot with a LN0 element and child elements are toggled. */
-
- child elements are toggled. */
-

@@ -29,7 +29,7 @@ export class AccessPointContainer extends Container {
   }
 
   private get lnElements(): Element[] {
-    return Array.from(this.element.querySelectorAll(':scope > LN,LN0')).filter(
+    return Array.from(this.element.querySelectorAll(':scope > LN')).filter(
       element => {
         const lnClass = element.getAttribute('lnClass') ?? '';
         return this.selectedLNClasses.includes(lnClass);

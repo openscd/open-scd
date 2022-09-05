@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<SCL version="2007" revision="B" release="4" xmlns:sxy="http://www.iec.ch/61850/2003/SCLcoordinates" xmlns="http://www.iec.ch/61850/2003/SCL" xmlns:txy="http://www.iec.ch/61850/2003/Terminal" xmlns:scl="http://www.iec.ch/61850/2003/SCL" xsi:schemaLocation="http://www.iec.ch/61850/2003/SCL SCL.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:IEC_60870_5_104="http://www.iec.ch/61850-80-1/2007/SCL">
+<SCL version="2007" revision="B" release="4" xmlns="http://www.iec.ch/61850/2003/SCL"
+     xsi:schemaLocation="http://www.iec.ch/61850/2003/SCL SCL.xsd"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<Header id="TrainingIEC61850" version="1" revision="143" toolID="IEC 61850 System Configurator, Version: V5.90 " nameStructure="IEDName">
 		<Text>TrainingIEC61850</Text>
 		<History>
@@ -136,7 +138,7 @@
 						</GSEControl>
 						<GSEControl type="GOOSE" appID="0003" fixedOffs="false" confRev="1" name="GCB2"/>
 					</LN0>
-					<LN lnClass="XCBR" inst="1" lnType="Dummy.XCBR1">						
+					<LN lnClass="XCBR" inst="1" lnType="Dummy.XCBR1">
 						<DOI name="Pos">
 							<DAI name="ctlModel">
 								<Val>status-only</Val>
@@ -150,7 +152,7 @@
 							</DAI>
 						</DOI>
 					</LN>
-					<LN prefix="CB" lnClass="XCBR" inst="2" lnType="Dummy.XCBR1">						
+					<LN prefix="CB" lnClass="XCBR" inst="2" lnType="Dummy.XCBR1">
 						<DOI name="Pos">
 							<DAI name="ctlModel">
 								<Val>status-only</Val>
@@ -391,6 +393,18 @@
 		<AccessPoint name="P2">
 		</AccessPoint>
 	</IED>
+  <IED name="IED4" type="DummyIED" manufacturer="DummyManufactorer" configVersion="1" originalSclVersion="2007" originalSclRevision="B" owner="DummyOwner">
+    <AccessPoint name="P1">
+      <LN prefix="I01A" lnClass="TCTR" inst="1" lnType="DummyTCTR" />
+      <LN prefix="I01B" lnClass="TCTR" inst="2" lnType="DummyTCTR" />
+      <LN prefix="I01C" lnClass="TCTR" inst="3" lnType="DummyTCTR" />
+      <LN prefix="I01N" lnClass="TCTR" inst="4" lnType="DummyTCTR" />
+      <LN prefix="U01A" lnClass="TVTR" inst="1" lnType="DummyTVTR" />
+      <LN prefix="U01B" lnClass="TVTR" inst="2" lnType="DummyTVTR" />
+      <LN prefix="U01C" lnClass="TVTR" inst="3" lnType="DummyTVTR" />
+      <LN prefix="U01N" lnClass="TVTR" inst="4" lnType="DummyTVTR" />
+    </AccessPoint>
+  </IED>
 	<DataTypeTemplates>
 		<LNodeType lnClass="LLN0" id="Dummy.LLN0">
 			<DO name="Mod" type="Dummy.LLN0.Mod" />
