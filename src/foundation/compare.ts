@@ -7,7 +7,7 @@ import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-icon';
 
 import { identity } from '../foundation.js';
-import { svg, SVGTemplateResult } from 'lit-html';
+import { svg, SVGTemplateResult, nothing } from 'lit-html';
 
 import { automationLogicalNode, controlLogicalNode } from '../icons/lnode.js';
 
@@ -355,9 +355,7 @@ function renderDiffInternal(
       renderDiff(
         diff.newValue!,
         diff.oldValue!,
-        filterToIgnore,
-        searchElementToBeCompared,
-        searchElementToCompareAgainst
+        filterToIgnore
       )
     )
     .filter(result => result !== null);
