@@ -21,7 +21,7 @@ import {
   getSclSchemaVersion,
 } from '../../../foundation.js';
 
-import { styles, updateExtRefElement } from '../foundation.js';
+import { styles, updateExtRefElement, serviceTypes } from '../foundation.js';
 import { FcdaSelectEvent, getFcdaTitleValue } from './foundation.js';
 
 /**
@@ -32,7 +32,7 @@ import { FcdaSelectEvent, getFcdaTitleValue } from './foundation.js';
 export class ExtRefLaterBindingList extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
-  @property({ attribute: false })
+  @property()
   controlTag!: 'SampledValueControl' | 'GSEControl';
 
   @state()
@@ -101,13 +101,11 @@ export class ExtRefLaterBindingList extends LitElement {
   }
 
   private checkSuscribedGooseRequirements(extRefElement: Element): boolean {
-    if (
-      (this.controlTag !== 'GSEControl' && this.doc) ||
-      getSclSchemaVersion(extRefElement.ownerDocument) === '2003'
-    )
+    if (getSclSchemaVersion(extRefElement.ownerDocument) === '2003')
       return true;
     return (
-      extRefElement.getAttribute('serviceType') === 'GOOSE' &&
+      extRefElement.getAttribute('serviceType') ===
+        serviceTypes[this.controlTag] &&
       extRefElement.getAttribute('srcLDInst') ===
         this.currentSelectedControlElement
           ?.closest('LDevice')
