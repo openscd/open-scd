@@ -18,6 +18,7 @@ import {
   identity,
   newActionEvent,
   Replace,
+  getSclSchemaVersion,
 } from '../../../foundation.js';
 
 import { styles, updateExtRefElement } from '../foundation.js';
@@ -99,14 +100,10 @@ export class ExtRefLaterBindingList extends LitElement {
     );
   }
 
-  get version(): string | null {
-    return this.doc.documentElement.getAttribute('version');
-  }
-
   private checkSuscribedGooseRequirements(extRefElement: Element): boolean {
     if (
       (this.controlTag !== 'GSEControl' && this.doc) ||
-      this.version === '2003'
+      getSclSchemaVersion(extRefElement.ownerDocument) === '2003'
     )
       return true;
     return (
