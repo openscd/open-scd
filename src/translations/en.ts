@@ -133,7 +133,7 @@ export const en = {
     compareButton: 'Compare',
     attributes: 'Attributes from {{ elementName }}',
     children: 'Child elements from {{ elementName }}',
-    filterMutables: 'Filter project specific settings'
+    filterMutables: 'Filter project specific settings',
   },
   log: {
     name: 'Log',
@@ -382,10 +382,8 @@ export const en = {
         },
       },
       extRefList: {
-        SampledValueControl: {
-          title:
-            'Selected Sampled Value data "{{ svcName }}" / FCDA "{{ fcdaName }}"',
-        },
+        title:
+          'Selected {{ controlTag }} data "{{ controlElementName }}" / FCDA "{{ fcdaName }}"',
         noSelection: 'No data attribute selected',
         noSubscribedExtRefs: 'No subscribed ExtRefs',
         noAvailableExtRefs: 'No available ExtRefs to subscribe',
