@@ -48,27 +48,32 @@ export class PlainCompareList extends LitElement {
           <h3 class="mdc-dialog__title">
             ${this.leftHandTitle}
           </h3>
-          ${this.leftHandSubtitle && this.leftHandSubtitle.length > 0 ?
-            html `<h5 class="mdc-dialog__title">
+          ${
+            this.leftHandSubtitle && this.leftHandSubtitle.length > 0
+              ? html`<h5 class="mdc-dialog__title">
               ${this.leftHandSubtitle}
               </h5>
-              ` : ''
+              `
+              : ''
           }
         </div>
         <div class="list__container">
           <h3 class="mdc-dialog__title">
             ${this.rightHandTitle}
           </h3>
-          ${this.rightHandSubtitle && this.rightHandSubtitle.length > 0 ?
-            html `<h5 class="mdc-dialog__title">
+          ${
+            this.rightHandSubtitle && this.rightHandSubtitle.length > 0
+              ? html`<h5 class="mdc-dialog__title">
               ${this.rightHandSubtitle}
               </h5>
-              ` : ''
+              `
+              : ''
           }
         </div>
       </div>
-      ${ (this.leftHandObject && this.rightHandObject) ?
-        html `
+      ${
+        this.leftHandObject && this.rightHandObject
+          ? html`
           ${renderDiff(
             this.leftHandObject,
             this.rightHandObject,
@@ -76,7 +81,8 @@ export class PlainCompareList extends LitElement {
             this.leftHandObject,
             this.rightHandObject
           )}
-        ` : ''
+        `
+          : ''
       }
       `;
   }
@@ -115,16 +121,15 @@ export class PlainCompareList extends LitElement {
       background: var(--base3);
     }
     .list__container--left {
-        text-align: right;
+      text-align: right;
     }
     .flex {
       flex: 1;
     }
 
     mwc-list-item[right] {
-        text-align: right;
-        direction: rtl;
+      text-align: right;
+      direction: rtl;
     }
   `;
-
 }

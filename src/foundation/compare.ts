@@ -9,25 +9,28 @@ import '@material/mwc-icon';
 import { identity } from '../foundation.js';
 import { svg, SVGTemplateResult } from 'lit-html';
 
-import {
-  automationLogicalNode,
-  controlLogicalNode,
-} from '../icons/lnode.js';
+import { automationLogicalNode, controlLogicalNode } from '../icons/lnode.js';
 
-const diffTypeToIcon: Map<DiffType, SVGTemplateResult> = new Map<DiffType, SVGTemplateResult>();
+const diffTypeToIcon: Map<DiffType, SVGTemplateResult> = new Map<
+  DiffType,
+  SVGTemplateResult
+>();
 
 diffTypeToIcon.set('Attribute', automationLogicalNode);
 diffTypeToIcon.set('Content', controlLogicalNode);
-diffTypeToIcon.set('Element', svg`<svg style="width:24px;height:24px" viewBox="0 0 24 24">
+diffTypeToIcon.set(
+  'Element',
+  svg`<svg style="width:24px;height:24px" viewBox="0 0 24 24">
 <path fill="currentColor" d="M9,7H15V9H11V11H15V13H11V15H15V17H9V7M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z" />
-</svg>`);
+</svg>`
+);
 
-export type DiffType = 'Element' | 'Attribute' | 'Content'
+export type DiffType = 'Element' | 'Attribute' | 'Content';
 
 export type Diff<T> =
-  | { type: DiffType, oldValue: T; newValue: null }
-  | { type: DiffType, oldValue: null; newValue: T }
-  | { type: DiffType, oldValue: T; newValue: T };
+  | { type: DiffType; oldValue: T; newValue: null }
+  | { type: DiffType; oldValue: null; newValue: T }
+  | { type: DiffType; oldValue: T; newValue: T };
 
 /**
  * Type to filter out a difference based on `tagName`.`attributeName`
@@ -36,7 +39,7 @@ export type Diff<T> =
  */
 export interface DiffFilter<T> {
   [selector: string]: DiffFilterSelector<T>;
-};
+}
 
 interface DiffFilterSelector<T> {
   full?: DiffFilterConsumer<T>;
@@ -112,9 +115,8 @@ export function diffSclAttributes(
   elementToBeCompared: Element,
   elementToCompareAgainst: Element,
   filterToIgnore: DiffFilter<Element>,
-  searchElementToBeCompared: Element,
+  searchElementToBeCompared: Element
 ): [string, Diff<string>][] {
-
   const attrDiffs: [string, Diff<string>][] = [];
 
   // First check if there is any text inside the element and there should be no child elements.
@@ -135,7 +137,10 @@ export function diffSclAttributes(
     );
 
     if (!shouldFilter) {
-      attrDiffs.push(['value', { type: 'Content', newValue: newText, oldValue: oldText }]);
+      attrDiffs.push([
+        'value',
+        { type: 'Content', newValue: newText, oldValue: oldText },
+      ]);
     }
   }
 
@@ -156,8 +161,8 @@ export function diffSclAttributes(
       )
     );
     if (
-        !shouldFilter &&
-        elementToCompareAgainst.getAttribute(name) !==
+      !shouldFilter &&
+      elementToCompareAgainst.getAttribute(name) !==
         elementToBeCompared.getAttribute(name)
     ) {
       attrDiffs.push([
@@ -242,9 +247,17 @@ export function diffSclChilds(
 
         if (oldElement) {
           childrenToCompareTo.splice(twinIndex, 1);
-          childDiffs.push({ type: 'Element', newValue: newElement, oldValue: oldElement });
+          childDiffs.push({
+            type: 'Element',
+            newValue: newElement,
+            oldValue: oldElement,
+          });
         } else {
-          childDiffs.push({ type: 'Element', newValue: newElement, oldValue: null });
+          childDiffs.push({
+            type: 'Element',
+            newValue: newElement,
+            oldValue: null,
+          });
         }
       }
     }
@@ -260,7 +273,11 @@ export function diffSclChilds(
         )
       );
       if (!shouldFilter) {
-        childDiffs.push({ type: 'Element', newValue: null, oldValue: oldElement });
+        childDiffs.push({
+          type: 'Element',
+          newValue: null,
+          oldValue: oldElement,
+        });
       }
     }
   });
@@ -310,7 +327,7 @@ function renderDiffInternal(
     elementToBeCompared,
     elementToCompareAgainst,
     filterToIgnore,
-    searchElementToBeCompared,
+    searchElementToBeCompared
   );
 
   // Next check which elements are added, deleted or in both elements.

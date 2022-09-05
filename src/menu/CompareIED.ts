@@ -34,46 +34,46 @@ import { string } from 'fast-check';
 const tctrClass = `LN[lnClass='TCTR']`;
 const tvtrClass = `LN[lnClass='TVTR']`;
 const setMag = `SDI[name='setMag'] Val`;
-const setVal =`DAI[name='setVal'] Val`;
+const setVal = `DAI[name='setVal'] Val`;
 
 const filterToIgnore: DiffFilter<Element> = {
   ':scope': {
     attributes: {
-      'name': true
-    }
+      name: true,
+    },
   },
-  'P': {
-    full: true
-  }
+  P: {
+    full: true,
+  },
 };
 
 filterToIgnore[`${tctrClass} DOI[name='Rat'] ${setMag}`] = {
-  full: true
-}
+  full: true,
+};
 
 filterToIgnore[`${tctrClass} DOI[name='ARtg'] ${setMag}`] = {
-  full: true
-}
+  full: true,
+};
 
 filterToIgnore[`${tctrClass} DOI[name='ARtgNom'] ${setMag}`] = {
-  full: true
-}
+  full: true,
+};
 
 filterToIgnore[`${tctrClass} DOI[name='ARtgSec'] ${setVal}`] = {
-  full: true
-}
+  full: true,
+};
 
 filterToIgnore[`${tvtrClass} DOI[name='VRtg'] ${setMag}`] = {
-  full: true
-}
+  full: true,
+};
 
 filterToIgnore[`${tvtrClass} DOI[name='Rat'] ${setMag}`] = {
-  full: true
-}
+  full: true,
+};
 
 filterToIgnore[`${tvtrClass} DOI[name='VRtgSec'] ${setVal}`] = {
-  full: true
-}
+  full: true,
+};
 export default class CompareIEDPlugin extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
