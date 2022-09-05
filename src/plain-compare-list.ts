@@ -77,9 +77,7 @@ export class PlainCompareList extends LitElement {
           ${renderDiff(
             this.leftHandObject,
             this.rightHandObject,
-            this.filterMutables ? this.filterToIgnore : {},
-            this.leftHandObject,
-            this.rightHandObject
+            this.filterMutables ? this.filterToIgnore : {}
           )}
         `
           : ''
