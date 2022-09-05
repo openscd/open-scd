@@ -4,7 +4,7 @@ import { Wizarding } from '../../../src/Wizarding.js';
 import { Editing } from '../../../src/Editing.js';
 
 import SMVSubscribeLaterBindingPlugin from '../../../src/editors/SMVSubscriberLaterBinding.js';
-import { ExtRefLaterBindingList } from '../../../src/editors/subscription/smv-laterbinding/ext-ref-laterbinding-list.js';
+import { ExtRefLaterBindingList } from '../../../src/editors/subscription/later-binding/ext-ref-laterbinding-list.js';
 import { FCDALaterBindingList } from '../../../src/editors/subscription/later-binding/fcda-later-binding-list.js';
 
 describe('SMV Subscribe Later Binding plugin', () => {
