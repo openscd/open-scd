@@ -31,9 +31,11 @@ import { FcdaSelectEvent, getFcdaTitleValue } from './foundation.js';
 export class ExtRefLaterBindingList extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({ attribute: false })
+  controlTag!: 'SampledValueControl' | 'GSEControl';
 
   @state()
-  currentSelectedSvcElement: Element | undefined;
+  currentSelectedControlElement: Element | undefined;
   @state()
   currentSelectedFcdaElement: Element | undefined;
   @state()
@@ -77,7 +79,7 @@ export class ExtRefLaterBindingList extends LitElement {
   }
 
   private async onFcdaSelectEvent(event: FcdaSelectEvent) {
-    this.currentSelectedSvcElement = event.detail.svc;
+    this.currentSelectedControlElement = event.detail.controlElement;
     this.currentSelectedFcdaElement = event.detail.fcda;
 
     // Retrieve the IED Element to which the FCDA belongs.
@@ -97,6 +99,39 @@ export class ExtRefLaterBindingList extends LitElement {
     );
   }
 
+  get version(): string | null {
+    return this.doc.documentElement.getAttribute('version');
+  }
+
+  private checkSuscribedGooseRequirements(extRefElement: Element): boolean {
+    if (
+      (this.controlTag !== 'GSEControl' && this.doc) ||
+      this.version === '2003'
+    )
+      return true;
+    return (
+      extRefElement.getAttribute('serviceType') === 'GOOSE' &&
+      extRefElement.getAttribute('srcLDInst') ===
+        this.currentSelectedControlElement
+          ?.closest('LDevice')
+          ?.getAttribute('inst') &&
+      (extRefElement.getAttribute('scrPrefix') || '') ===
+        (this.currentSelectedControlElement
+          ?.closest('LN0')
+          ?.getAttribute('prefix') || '') &&
+      extRefElement.getAttribute('srcLNClass') ===
+        this.currentSelectedControlElement
+          ?.closest('LN0')
+          ?.getAttribute('lnClass') &&
+      (extRefElement.getAttribute('srcLNInst') || '') ===
+        this.currentSelectedControlElement
+          ?.closest('LN0')
+          ?.getAttribute('inst') &&
+      extRefElement.getAttribute('srcCBName') ===
+        this.currentSelectedControlElement?.getAttribute('name')
+    );
+  }
+
   /**
    * Check if specific attributes from the ExtRef Element are the same as the ones from the FCDA Element
    * and also if the IED Name is the same. If that is the case this ExtRef subscribes to the selected FCDA
@@ -113,7 +148,8 @@ export class ExtRefLaterBindingList extends LitElement {
       this.sameAttributeValue(extRefElement, 'lnClass') &&
       this.sameAttributeValue(extRefElement, 'lnInst') &&
       this.sameAttributeValue(extRefElement, 'doName') &&
-      this.sameAttributeValue(extRefElement, 'daName')
+      this.sameAttributeValue(extRefElement, 'daName') &&
+      this.checkSuscribedGooseRequirements(extRefElement)
     );
   }
 
@@ -187,7 +223,7 @@ export class ExtRefLaterBindingList extends LitElement {
     if (
       !this.currentIedElement ||
       !this.currentSelectedFcdaElement ||
-      !this.currentSelectedSvcElement!
+      !this.currentSelectedControlElement!
     ) {
       return null;
     }
@@ -197,7 +233,7 @@ export class ExtRefLaterBindingList extends LitElement {
       new: {
         element: updateExtRefElement(
           extRefElement,
-          this.currentSelectedSvcElement,
+          this.currentSelectedControlElement,
           this.currentSelectedFcdaElement
         ),
       },
@@ -205,8 +241,8 @@ export class ExtRefLaterBindingList extends LitElement {
   }
 
   private renderTitle(): TemplateResult {
-    const svcName = this.currentSelectedSvcElement
-      ? getNameAttribute(this.currentSelectedSvcElement)
+    const controlElementName = this.currentSelectedControlElement
+      ? getNameAttribute(this.currentSelectedControlElement)
       : undefined;
     const fcdaName = this.currentSelectedFcdaElement
       ? getFcdaTitleValue(this.currentSelectedFcdaElement)
@@ -216,7 +252,8 @@ export class ExtRefLaterBindingList extends LitElement {
       ${translate(
         'subscription.laterBinding.extRefList.SampledValueControl.title',
         {
-          svcName: svcName ?? '-',
+          controlTag: this.controlTag,
+          controlElementName: controlElementName ?? '-',
           fcdaName: fcdaName ?? '-',
         }
       )}
@@ -323,7 +360,7 @@ export class ExtRefLaterBindingList extends LitElement {
 
   render(): TemplateResult {
     return html` <section tabindex="0">
-      ${this.currentSelectedSvcElement && this.currentSelectedFcdaElement
+      ${this.currentSelectedControlElement && this.currentSelectedFcdaElement
         ? html`
             ${this.renderTitle()}
             <filtered-list>
