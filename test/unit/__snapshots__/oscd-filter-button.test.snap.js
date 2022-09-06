@@ -21,7 +21,7 @@ snapshots["oscd-filter-button multi selection with custom header and standard ic
       </mwc-textfield>
     </abbr>
     <mwc-formfield class="checkall">
-      <mwc-checkbox>
+      <mwc-checkbox indeterminate="">
       </mwc-checkbox>
     </mwc-formfield>
   </div>

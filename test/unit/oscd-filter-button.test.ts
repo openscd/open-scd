@@ -14,11 +14,12 @@ describe('oscd-filter-button', () => {
   let element: FilterButton;
   let primaryButton: HTMLElement;
   const listItems = [
-    { prim: 'item1' },
-    { prim: 'item2' },
-    { prim: 'item3' },
-    { prim: 'item4' },
+    { prim: 'item1', defaultSelected: true },
+    { prim: 'item2', defaultSelected: false },
+    { prim: 'item3', defaultSelected: false },
+    { prim: 'item4', defaultSelected: false },
   ];
+
   let selectedItemsChangedEvent: SinonSpy;
 
   beforeEach(() => {
@@ -40,7 +41,10 @@ describe('oscd-filter-button', () => {
         >
           ${Array.from(listItems).map(
             item =>
-              html` <mwc-check-list-item value="${item.prim}">
+              html` <mwc-check-list-item
+                value="${item.prim}"
+                ?selected="${item.defaultSelected}"
+              >
                 <span>${item.prim}</span>
               </mwc-check-list-item>`
           )}
@@ -73,12 +77,15 @@ describe('oscd-filter-button', () => {
       expect(selectedItemsChangedEvent).to.be.calledOnce;
       expect(
         selectedItemsChangedEvent.args[0][0].detail.selectedItems.length
-      ).to.be.equal(2);
+      ).to.be.equal(3);
       expect(
         selectedItemsChangedEvent.args[0][0].detail.selectedItems[0]
-      ).to.be.equal('item2');
+      ).to.be.equal('item1');
       expect(
         selectedItemsChangedEvent.args[0][0].detail.selectedItems[1]
+      ).to.be.equal('item2');
+      expect(
+        selectedItemsChangedEvent.args[0][0].detail.selectedItems[2]
       ).to.be.equal('item3');
     });
 

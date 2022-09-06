@@ -81,33 +81,42 @@ describe('IED Plugin', () => {
       });
 
       it('when other IED selected then IED Container contains the correct IED', async () => {
+        expect(
+          element.shadowRoot?.querySelectorAll('ied-container').length
+        ).to.eql(1);
+        expect(
+          getIedContainer().shadowRoot?.querySelector('action-pane')!.shadowRoot
+            ?.innerHTML
+        ).to.include('IED1');
+
         await selectIed('IED3');
+        await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
         expect(
           element.shadowRoot?.querySelectorAll('ied-container').length
         ).to.eql(1);
         expect(
-          element.shadowRoot
-            ?.querySelector('ied-container')!
-            .shadowRoot?.querySelector('action-pane')!.shadowRoot?.innerHTML
+          getIedContainer().shadowRoot?.querySelector('action-pane')!.shadowRoot
+            ?.innerHTML
         ).to.include('IED3');
       });
-      //
-      // it('when filtering LN Classes then correct number of LN Containers are rendered', () => {
-      //   let iedContainer = getIedContainer();
-      //   let lDeviceContainer = getLDeviceContainer(iedContainer);
-      //   expect(
-      //     lDeviceContainer.shadowRoot!.querySelectorAll('ln-container').length
-      //   ).to.eql(5);
-      //
-      //   deselectLNClasses('CSWI');
-      //
-      //   iedContainer = getIedContainer();
-      //   lDeviceContainer = getLDeviceContainer(iedContainer);
-      //   expect(
-      //     lDeviceContainer.shadowRoot!.querySelectorAll('ln-container').length
-      //   ).to.eql(3);
-      // });
+
+      it('when filtering LN Classes then correct number of LN Containers are rendered', async () => {
+        expect(
+          getLDeviceContainer(getIedContainer()).shadowRoot!.querySelectorAll(
+            'ln-container'
+          ).length
+        ).to.eql(5);
+
+        await deselectLNClasses('CSWI');
+        await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
+        expect(
+          getLDeviceContainer(getIedContainer()).shadowRoot!.querySelectorAll(
+            'ln-container'
+          ).length
+        ).to.eql(3);
+      });
 
       it('then renders the path of elements correctly', async () => {
         const iedContainer = getIedContainer();
@@ -161,7 +170,6 @@ describe('IED Plugin', () => {
           oscdFilterButton!.shadowRoot!.querySelector('mwc-icon-button')
         );
         filterButton.click();
-        await element.requestUpdate();
         await element.updateComplete;
 
         const selectItem = <HTMLElement>(
@@ -177,7 +185,7 @@ describe('IED Plugin', () => {
           )
         );
         primaryButton.click();
-        await element.requestUpdate();
+
         await element.updateComplete;
       }
 
@@ -191,18 +199,13 @@ describe('IED Plugin', () => {
           oscdFilterButton!.shadowRoot!.querySelector('mwc-icon-button')
         );
         filterButton.click();
-        await element.requestUpdate();
         await element.updateComplete;
 
-        Array.from(
-          oscdFilterButton!.querySelectorAll(`mwc-check-list-item`)
-        ).forEach(element => {
-          if (element.getAttribute('value') !== lnClass) {
-            element.setAttribute('selected', 'true');
-          } else {
-            element.setAttribute('selected', 'false');
-          }
-        });
+        (<HTMLElement>(
+          oscdFilterButton!.querySelector(
+            `mwc-check-list-item[value="${lnClass}"]`
+          )
+        )).click();
 
         const primaryButton = <HTMLElement>(
           oscdFilterButton!.shadowRoot!.querySelector(
@@ -210,7 +213,6 @@ describe('IED Plugin', () => {
           )
         );
         primaryButton.click();
-        await element.requestUpdate();
         await element.updateComplete;
       }
     });

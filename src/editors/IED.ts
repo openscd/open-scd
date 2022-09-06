@@ -122,7 +122,6 @@ export default class IedPlugin extends LitElement {
             id="iedFilter"
             icon="developer_board"
             .header=${translate('iededitor.iedSelector')}
-            .selectedItems=${this.selectedIEDs}
             @selected-items-changed="${(e: SelectedItemsChangedEvent) => {
               this.selectedIEDs = e.detail.selectedItems;
               this.selectedLNClasses = this.lnClassList.map(
@@ -154,7 +153,6 @@ export default class IedPlugin extends LitElement {
             id="lnClassesFilter"
             multi="true"
             .header="${translate('iededitor.lnFilter')}"
-            .selectedItems=${this.selectedLNClasses}
             @selected-items-changed="${(e: SelectedItemsChangedEvent) => {
               this.selectedLNClasses = e.detail.selectedItems;
               this.requestUpdate('selectedIed');
