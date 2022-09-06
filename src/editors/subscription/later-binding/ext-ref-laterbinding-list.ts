@@ -100,7 +100,7 @@ export class ExtRefLaterBindingList extends LitElement {
     );
   }
 
-  private checkSuscribedGooseRequirements(extRefElement: Element): boolean {
+  private checkEditionSpecificRequirements(extRefElement: Element): boolean {
     if (getSclSchemaVersion(extRefElement.ownerDocument) === '2003')
       return true;
     return (
@@ -144,7 +144,7 @@ export class ExtRefLaterBindingList extends LitElement {
       this.sameAttributeValue(extRefElement, 'lnInst') &&
       this.sameAttributeValue(extRefElement, 'doName') &&
       this.sameAttributeValue(extRefElement, 'daName') &&
-      this.checkSuscribedGooseRequirements(extRefElement)
+      this.checkEditionSpecificRequirements(extRefElement)
     );
   }
 
