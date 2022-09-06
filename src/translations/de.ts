@@ -155,7 +155,7 @@ export const de: Translations = {
     compareButton: 'Starte Vergleich',
     attributes: 'Attribute von {{ elementName }}',
     children: 'Kindelemente von {{ elementName }}',
-    filterMutables: 'Projektspzifische Unterschiede ausblenden'
+    filterMutables: 'Projektspzifische Unterschiede ausblenden',
   },
   log: {
     name: 'Protokoll',
@@ -385,10 +385,8 @@ export const de: Translations = {
         },
       },
       extRefList: {
-        SampledValueControl: {
-          title:
-            'Ausgewählter Sampled Value Datenpunkt "{{ svcName }}" / "{{ fcdaName }}"',
-        },
+        title:
+          'Ausgewählter {{ controlTag }} Datenpunkt "{{ svcName }}" / "{{ fcdaName }}"',
         noSelection: 'Kein Daten-Attribut ausgewählt',
         noSubscribedExtRefs: 'Keine verknüpften externen Referenzen',
         noAvailableExtRefs:

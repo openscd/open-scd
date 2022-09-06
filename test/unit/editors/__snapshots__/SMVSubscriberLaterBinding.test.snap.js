@@ -9,7 +9,10 @@ snapshots["SMV Subscribe Later Binding Plugin looks like the latest snapshot"] =
       controltag="SampledValueControl"
     >
     </fcda-later-binding-list>
-    <extref-later-binding-list class="column">
+    <extref-later-binding-list
+      class="column"
+      controltag="SampledValueControl"
+    >
     </extref-later-binding-list>
   </div>
 </div>

@@ -679,3 +679,402 @@ snapshots["smv-list when SVC has a multiple subscriptions looks like the latest 
 `;
 /* end snapshot smv-list when SVC has a multiple subscriptions looks like the latest snapshot,  */
 
+snapshots["gse-list with gse document loaded looks like the latest snapshot, but no event fired"] = 
+`<section tabindex="0">
+  <h1>
+    [subscription.laterBinding.extRefList.noSelection]
+  </h1>
+</section>
+`;
+/* end snapshot gse-list with gse document loaded looks like the latest snapshot, but no event fired */
+
+snapshots["gse-list with gse document loaded when GSEControl has no subscriptions looks like the latest snapshot, when SVC has no subscriptions"] = 
+`<section tabindex="0">
+  <h1>
+    [subscription.laterBinding.extRefList.SampledValueControl.title]
+  </h1>
+  <filtered-list>
+    <mwc-list-item
+      aria-disabled="false"
+      noninteractive=""
+      tabindex="-1"
+      value=""
+    >
+      <span>
+        [subscription.subscriber.subscribed]
+      </span>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="large"
+      noninteractive=""
+      tabindex="-1"
+    >
+      [subscription.laterBinding.extRefList.noSubscribedExtRefs]
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      noninteractive=""
+      tabindex="-1"
+      value="Interlocking.Input GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0] Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0]"
+    >
+      <span>
+        [subscription.subscriber.availableToSubscribe]
+      </span>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0]"
+    >
+      <span>
+        Pos;CSWI1/Pos/stVal
+                 (Interlocking.Input)
+      </span>
+      <span slot="secondary">
+        GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0]
+      </span>
+      <mwc-icon slot="graphic">
+        arrow_back
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0]"
+    >
+      <span>
+        someRestrictedExtRef
+                 (Restricted To Pos)
+      </span>
+      <span slot="secondary">
+        GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0]
+      </span>
+      <mwc-icon slot="graphic">
+        arrow_back
+      </mwc-icon>
+    </mwc-list-item>
+  </filtered-list>
+</section>
+`;
+/* end snapshot gse-list with gse document loaded when GSEControl has no subscriptions looks like the latest snapshot, when SVC has no subscriptions */
+
+snapshots["gse-list with gse document loaded when GSEControl has a single subscription looks like the latest snapshot, "] = 
+`<section tabindex="0">
+  <h1>
+    [subscription.laterBinding.extRefList.SampledValueControl.title]
+  </h1>
+  <filtered-list>
+    <mwc-list-item
+      aria-disabled="false"
+      noninteractive=""
+      tabindex="-1"
+      value="Interlocking.Input2 GOOSE_Subscriber>>Earth_Switch> CSWI 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos stVal@Pos;CSWI1/Pos/stVal"
+    >
+      <span>
+        [subscription.subscriber.subscribed]
+      </span>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos stVal@Pos;CSWI1/Pos/stVal"
+    >
+      <span>
+        Pos;CSWI1/Pos/stVal
+                 (Interlocking.Input2)
+      </span>
+      <span slot="secondary">
+        GOOSE_Subscriber>>Earth_Switch> CSWI 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos stVal@Pos;CSWI1/Pos/stVal
+      </span>
+      <mwc-icon slot="graphic">
+        swap_horiz
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      noninteractive=""
+      tabindex="-1"
+      value="Interlocking.Input GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0] Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0]"
+    >
+      <span>
+        [subscription.subscriber.availableToSubscribe]
+      </span>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0]"
+    >
+      <span>
+        Pos;CSWI1/Pos/stVal
+                 (Interlocking.Input)
+      </span>
+      <span slot="secondary">
+        GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0]
+      </span>
+      <mwc-icon slot="graphic">
+        arrow_back
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0]"
+    >
+      <span>
+        someRestrictedExtRef
+                 (Restricted To Pos)
+      </span>
+      <span slot="secondary">
+        GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0]
+      </span>
+      <mwc-icon slot="graphic">
+        arrow_back
+      </mwc-icon>
+    </mwc-list-item>
+  </filtered-list>
+</section>
+`;
+/* end snapshot gse-list with gse document loaded when GSEControl has a single subscription looks like the latest snapshot,  */
+
+snapshots["gse-list when GSEControl has a multiple subscriptions looks like the latest snapshot, "] = 
+`<section tabindex="0">
+  <h1>
+    [subscription.laterBinding.extRefList.SampledValueControl.title]
+  </h1>
+  <filtered-list>
+    <mwc-list-item
+      aria-disabled="false"
+      noninteractive=""
+      tabindex="-1"
+      value="Interlocking.Input GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos q@Pos;CSWI1/Pos/q Interlocking.Input2 GOOSE_Subscriber>>Earth_Switch> CSWI 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos q@Pos;CSWI1/Pos/q"
+    >
+      <span>
+        [subscription.subscriber.subscribed]
+      </span>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos q@Pos;CSWI1/Pos/q"
+    >
+      <span>
+        Pos;CSWI1/Pos/q
+                 (Interlocking.Input)
+      </span>
+      <span slot="secondary">
+        GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos q@Pos;CSWI1/Pos/q
+      </span>
+      <mwc-icon slot="graphic">
+        swap_horiz
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      graphic="large"
+      twoline=""
+      value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos q@Pos;CSWI1/Pos/q"
+    >
+      <span>
+        Pos;CSWI1/Pos/q
+                 (Interlocking.Input2)
+      </span>
+      <span slot="secondary">
+        GOOSE_Subscriber>>Earth_Switch> CSWI 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos q@Pos;CSWI1/Pos/q
+      </span>
+      <mwc-icon slot="graphic">
+        swap_horiz
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      noninteractive=""
+      tabindex="-1"
+      value="Interlocking.Input GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0] Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0]"
+    >
+      <span>
+        [subscription.subscriber.availableToSubscribe]
+      </span>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0]"
+    >
+      <span>
+        Pos;CSWI1/Pos/stVal
+                 (Interlocking.Input)
+      </span>
+      <span slot="secondary">
+        GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0]
+      </span>
+      <mwc-icon slot="graphic">
+        arrow_back
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0]"
+    >
+      <span>
+        someRestrictedExtRef
+                 (Restricted To Pos)
+      </span>
+      <span slot="secondary">
+        GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0]
+      </span>
+      <mwc-icon slot="graphic">
+        arrow_back
+      </mwc-icon>
+    </mwc-list-item>
+  </filtered-list>
+</section>
+`;
+/* end snapshot gse-list when GSEControl has a multiple subscriptions looks like the latest snapshot,  */
+
+snapshots["gse-list with gse document loaded when GSEControl has no subscriptions looks like the latest snapshot, when GSEControl has no subscriptions"] = 
+`<section tabindex="0">
+  <h1>
+    [subscription.laterBinding.extRefList.SampledValueControl.title]
+  </h1>
+  <filtered-list>
+    <mwc-list-item
+      aria-disabled="false"
+      noninteractive=""
+      tabindex="-1"
+      value=""
+    >
+      <span>
+        [subscription.subscriber.subscribed]
+      </span>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="large"
+      noninteractive=""
+      tabindex="-1"
+    >
+      [subscription.laterBinding.extRefList.noSubscribedExtRefs]
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      noninteractive=""
+      tabindex="-1"
+      value="Interlocking.Input GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0] Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0]"
+    >
+      <span>
+        [subscription.subscriber.availableToSubscribe]
+      </span>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0]"
+    >
+      <span>
+        Pos;CSWI1/Pos/stVal
+                 (Interlocking.Input)
+      </span>
+      <span slot="secondary">
+        GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0]
+      </span>
+      <mwc-icon slot="graphic">
+        arrow_back
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0]"
+    >
+      <span>
+        someRestrictedExtRef
+                 (Restricted To Pos)
+      </span>
+      <span slot="secondary">
+        GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0]
+      </span>
+      <mwc-icon slot="graphic">
+        arrow_back
+      </mwc-icon>
+    </mwc-list-item>
+  </filtered-list>
+</section>
+`;
+/* end snapshot gse-list with gse document loaded when GSEControl has no subscriptions looks like the latest snapshot, when GSEControl has no subscriptions */
+
