@@ -161,7 +161,7 @@ describe('Compare IED Plugin', () => {
       plugin.run();
       await plugin.requestUpdate();
 
-      expect (plugin.dialog).to.equalSnapshot();
+      expect (plugin.dialog).shadowDom.to.equalSnapshot();
     });
 
   })

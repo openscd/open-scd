@@ -7,23 +7,18 @@ import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-icon';
 
 import { identity } from '../foundation.js';
-import { svg, SVGTemplateResult, nothing } from 'lit-html';
+import { SVGTemplateResult, nothing } from 'lit-html';
 
-import { automationLogicalNode, controlLogicalNode } from '../icons/lnode.js';
+import { attributeIcon, contentIcon, elementIcon } from '../icons/compare.js';
 
 const diffTypeToIcon: Map<DiffType, SVGTemplateResult> = new Map<
   DiffType,
   SVGTemplateResult
 >();
 
-diffTypeToIcon.set('Attribute', automationLogicalNode);
-diffTypeToIcon.set('Content', controlLogicalNode);
-diffTypeToIcon.set(
-  'Element',
-  svg`<svg style="width:24px;height:24px" viewBox="0 0 24 24">
-<path fill="currentColor" d="M9,7H15V9H11V11H15V13H11V15H15V17H9V7M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z" />
-</svg>`
-);
+diffTypeToIcon.set('Attribute', attributeIcon);
+diffTypeToIcon.set('Content', contentIcon);
+diffTypeToIcon.set('Element', elementIcon);
 
 export type DiffType = 'Element' | 'Attribute' | 'Content';
 

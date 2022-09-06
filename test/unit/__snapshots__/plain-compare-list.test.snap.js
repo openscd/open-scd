@@ -69,6 +69,9 @@ snapshots["Plain Compare List Basic List Has a subtitlte, so looks like the late
     <h3 class="mdc-dialog__title">
       Template doc
     </h3>
+    <h5 class="mdc-dialog__title">
+      right subtitle
+    </h5>
   </div>
 </div>
 `;

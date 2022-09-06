@@ -46,6 +46,7 @@ describe('Plain Compare List', () => {
 
     it('Has a subtitlte, so looks like the latest snapshot', async () => {
         element.leftHandSubtitle = 'subtitle';
+        element.rightHandSubtitle = 'right subtitle';
 
         await element.requestUpdate();
 

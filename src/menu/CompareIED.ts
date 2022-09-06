@@ -4,7 +4,6 @@ import {
   LitElement,
   property,
   query,
-  state,
   TemplateResult,
 } from 'lit-element';
 import { get, translate } from 'lit-translate';
@@ -28,8 +27,7 @@ import {
   newPendingStateEvent,
   selector,
 } from '../foundation.js';
-import { DiffFilter, renderDiff } from '../foundation/compare.js';
-import { string } from 'fast-check';
+import { DiffFilter } from '../foundation/compare.js';
 
 const tctrClass = `LN[lnClass='TCTR']`;
 const tvtrClass = `LN[lnClass='TVTR']`;
@@ -93,10 +91,10 @@ export default class CompareIEDPlugin extends LitElement {
   @query('#template-file')
   private templateFileUI!: HTMLInputElement;
 
-  private templateDocName: string = '';
-
   @property({ attribute: false })
   docName!: string;
+
+  private templateDocName: string = '';
 
   get ieds(): Element[] {
     if (this.doc) {
