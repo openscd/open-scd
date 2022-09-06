@@ -107,7 +107,7 @@ describe('fcda-list', () => {
       await element.updateComplete;
 
       expect(selectEvent).to.have.been.called;
-      expect(selectEvent.args[0][0].detail.svc).to.equal(
+      expect(selectEvent.args[0][0].detail.controlElement).to.equal(
         doc.querySelector(
           'IED[name="SMV_Publisher"] LN0 > SampledValueControl[name="currentOnly"]'
         )
@@ -146,7 +146,7 @@ describe('fcda-list', () => {
     });
 
     it('the GOOSE editor is opened', async () => {
-      // Select the first list item that has an edit button, this should be an SVC Element.
+      // Select the first list item that has an edit button, this should be an GOOSE Element.
       await (<HTMLElement>(
         element?.shadowRoot?.querySelector(
           'mwc-list-item > mwc-icon-button[icon="edit"]'

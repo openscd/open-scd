@@ -385,10 +385,8 @@ export const de: Translations = {
         },
       },
       extRefList: {
-        SampledValueControl: {
-          title:
-            'Ausgewählter Sampled Value Datenpunkt "{{ svcName }}" / "{{ fcdaName }}"',
-        },
+        title:
+          'Ausgewählter {{ controlTag }} Datenpunkt "{{ svcName }}" / "{{ fcdaName }}"',
         noSelection: 'Kein Daten-Attribut ausgewählt',
         noSubscribedExtRefs: 'Keine verknüpften externen Referenzen',
         noAvailableExtRefs:

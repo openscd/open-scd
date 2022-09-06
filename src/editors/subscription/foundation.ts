@@ -94,7 +94,7 @@ export function canCreateValidExtRef(
   return true;
 }
 
-const serviceTypes: Partial<Record<string, string>> = {
+export const serviceTypes: Partial<Record<string, string>> = {
   ReportControl: 'Report',
   GSEControl: 'GOOSE',
   SampledValueControl: 'SMV',
