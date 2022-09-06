@@ -161,6 +161,12 @@
 							<FCDA ldInst="Disconnectors" prefix="DC" lnClass="XSWI" lnInst="1" doName="Pos" daName="stVal" fc="ST"/>
 							<FCDA ldInst="Disconnectors" prefix="DC" lnClass="XSWI" lnInst="1" doName="Pos" daName="q" fc="ST"/>
 						</DataSet>
+						<LogControl name="Log" datSet="LogDataSet1" logName="LogDataSet1">
+							<TrgOps dchg="true" qchg="true"/>
+						</LogControl>
+						<LogControl name="LogNP" datSet="LogDataSet2" logName="LogDataSet1_NP">
+							<TrgOps dchg="true" qchg="true"/>
+						</LogControl>
 						<GSEControl type="GOOSE" appID="0001" fixedOffs="false" confRev="1" name="GCB" datSet="GooseDataSet1">
 							<IEDName apRef="P1" ldInst="CircuitBreaker_CB1" lnClass="CSWI" lnInst="1">IED2</IEDName>
 						</GSEControl>
@@ -168,12 +174,6 @@
 							<IEDName apRef="P1" ldInst="CircuitBreaker_CB1" lnClass="CSWI" lnInst="1">IED2</IEDName>
 						</GSEControl>
 						<GSEControl type="GOOSE" appID="0003" fixedOffs="false" confRev="1" name="GCB2_NP"/>
-						<LogControl name="Log" datSet="LogDataSet1" logName="LogDataSet1">
-							<TrgOps dchg="true" qchg="true"/>
-						</LogControl>
-						<LogControl name="LogNP" datSet="LogDataSet2" logName="LogDataSet1_NP">
-							<TrgOps dchg="true" qchg="true"/>
-						</LogControl>
 					</LN0>
 					<LN lnClass="XCBR" inst="1" lnType="Dummy.XCBR1">
 						<DOI name="Pos">
@@ -289,7 +289,6 @@
 						</GSEControl>
 					</LN0>
 					<LN lnClass="LPHD" inst="1" lnType="Dummy.LPHD1"/>
-					<LN lnClass="THARDE" inst="1" lnType="Dummy.THARDE"/>
 					<LN lnClass="XCBR" inst="1" lnType="Dummy.XCBR1">
 						<DOI name="Pos">
 							<DAI name="ctlModel">
@@ -309,7 +308,7 @@
 								<ClientLN apRef="P1" ldInst="CircuitBreaker_CB1" lnClass="XCBR" lnInst="1" iedName="IED1"/>
 							</RptEnabled>
 						</ReportControl>
-						<ReportControl rptID="IED2/CBSW/XSWI/SwitchGearBRCB" confRev="9" buffered="true" bufTime="100" indexed="true" intgPd="0" name="ReportCb" datSet="dataSetNP">
+						<ReportControl rptID="IED2/CBSW/XSWI/SwitchGearBRCB" confRev="9" buffered="true" bufTime="100" indexed="true" intgPd="0" name="ReportCb2" datSet="dataSetNP">
 							<TrgOps dchg="true" qchg="true" dupd="false" period="false" gi="true"/>
 							<OptFields seqNum="true" timeStamp="true" dataSet="true" reasonCode="true" dataRef="false" entryID="false" configRef="true" bufOvfl="false"/>
 							<RptEnabled max="5">
@@ -373,8 +372,10 @@
 							<ExtRef iedName="IED1" ldInst="CircuitBreaker_CB1" prefix="" lnClass="XCBR" lnInst="1" doName="Pos" daName="q"/>
 						</Inputs>
 					</LN>
+					<LN lnType="MMXU1" prefix="METDummy" lnClass="MMXU" inst="1">
+					</LN>
 				</LDevice>
-				<Association iedName="IED1"/>
+				<!-- <Association iedName="IED1"/> -->
 			</Server>
 		</AccessPoint>
 	</IED>
@@ -518,6 +519,7 @@
 			<DO name="Pos" type="Dummy.XCBR1.Pos"/>
 			<DO name="BlkOpn" type="Dummy.XCBR1.BlkOpn"/>
 			<DO name="BlkCls" type="Dummy.XCBR1.BlkOpn"/>
+			<DO name="SwTyp" type="SwTypENS"/>
 		</LNodeType>
 		<LNodeType lnClass="GGIO" id="Dummy.GGIO1">
 			<DO name="Beh" type="Dummy.LLN0.Beh"/>
@@ -526,16 +528,48 @@
 			<DO name="SPCSO1" type="Dummy.LPHD1.Sim"/>
 		</LNodeType>
 		<LNodeType lnClass="TCTR" id="DummyTCTR">
+			<DO name="ARtg" type="DummyASGFloat32"/>
+			<DO name="HzRtg" type="DummyASGFloat32"/>
 			<DO name="Mod" type="Dummy.LLN0.Mod"/>
 			<DO name="Beh" type="Dummy.LLN0.Beh"/>
 			<DO name="NamPlt" type="Dummy.XCBR1.NamPlt"/>
 			<DO name="Amp" type="DummySAV"/>
 		</LNodeType>
 		<LNodeType lnClass="TVTR" id="DummyTVTR">
+			<DO name="VRtg" type="DummyASGFloat32"/>
+			<DO name="HzRtg" type="DummyASGFloat32"/>
 			<DO name="Mod" type="Dummy.LLN0.Mod"/>
 			<DO name="Beh" type="Dummy.LLN0.Beh"/>
 			<DO name="NamPlt" type="Dummy.XCBR1.NamPlt"/>
 			<DO name="Vol" type="DummySAV"/>
+		</LNodeType>
+		<LNodeType lnClass="TVTR" id="NotUsedTVTR">
+			<DO name="VRtg" type="DummyASGFloat32"/>
+			<DO name="HzRtg" type="DummyASGFloat32"/>
+			<DO name="Mod" type="Dummy.LLN0.Mod"/>
+			<DO name="Beh" type="Dummy.LLN0.Beh"/>
+			<DO name="NamPlt" type="Dummy.XCBR1.NamPlt"/>
+			<DO name="Vol" type="DummySAV"/>
+		</LNodeType>
+		<LNodeType lnClass="MMXU" id="MMXU1">
+			<DO name="Mod" type="Dummy.LLN0.Mod"/>
+			<DO name="Beh" type="Dummy.LLN0.Beh"/>
+			<DO name="Health" type="Dummy.LLN0.Health"/>
+			<DO name="NamPlt" type="Dummy.LLN0.NamPlt"/>
+			<DO name="TotW" type="MV_0"/>
+			<DO name="TotVAr" type="MV_0"/>
+			<DO name="TotVA" type="MV_0"/>
+			<DO name="TotPF" type="MV_0"/>
+			<DO name="Hz" type="MV_0"/>
+			<DO name="PPV1" type="DEL_0"/>
+			<DO name="PPV2" type="DEL_0"/>
+			<DO name="PhV1" type="WYE_2"/>
+			<DO name="PhV2" type="WYE_2"/>
+			<DO name="A1" type="WYE_2"/>
+			<DO name="W" type="WYE_0"/>
+			<DO name="VAr" type="WYE_0"/>
+			<DO name="VA" type="WYE_0"/>
+			<DO name="PF" type="WYE_0"/>
 		</LNodeType>
 		<DOType cdc="SAV" id="DummySAV">
 			<DA fc="MX" name="instMag" bType="Struct" type="AnalogueValue_i"/>
@@ -559,7 +593,7 @@
 			<DA fc="CO" name="Cancel" bType="Struct" type="Dummy.LLN0.Mod.Cancel"/>
 		</DOType>
 		<DOType cdc="ENC" id="Dummy.LLN0.ExtendedMod">
-			<SDO fc="ST" name="someSdo" type="someSdoType"/>
+			<SDO name="someSdo" type="someSdoType"/>
 			<DA fc="ST" name="stVal" bType="Enum" type="Dummy_Beh"/>
 			<DA fc="ST" name="q" bType="Quality"/>
 			<DA fc="ST" name="t" bType="Timestamp"/>
@@ -578,6 +612,7 @@
 		<DOType cdc="CMV" id="someSdoType">
 			<DA fc="MX" qchg="true" name="q" bType="Quality"/>
 			<DA fc="MX" name="t" bType="Timestamp"/>
+			<DA name="cVal" bType="Struct" type="Vector_1" dchg="true" fc="MX"/>
 		</DOType>
 		<DOType cdc="ENS" id="Dummy.LLN0.Beh">
 			<DA fc="ST" name="stVal" bType="Enum" type="Dummy_Beh"/>
@@ -586,6 +621,12 @@
 		</DOType>
 		<DOType cdc="ENS" id="Dummy.LLN0.Health">
 			<DA fc="ST" name="stVal" bType="Enum" type="Dummy_Health"/>
+			<DA fc="ST" name="q" bType="Quality"/>
+			<DA fc="ST" name="t" bType="Timestamp"/>
+		</DOType>
+		<!-- If this is removed, so also should the Dummy_Health_Unused Enum be -->
+		<DOType cdc="ENS" id="Dummy.LLN0.Health.Unused">
+			<DA fc="ST" name="stVal" bType="Enum" type="Dummy_Health_Unused"/>
 			<DA fc="ST" name="q" bType="Quality"/>
 			<DA fc="ST" name="t" bType="Timestamp"/>
 		</DOType>
@@ -635,6 +676,9 @@
 				<Val>sbo-with-enhanced-security</Val>
 			</DA>
 			<DA fc="DC" name="d" bType="VisString255"/>
+			<DA fc="CO" name="SBOw" bType="Struct" type="Dummy.LLN0.Mod.SBOw"/>
+			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.LLN0.Mod.SBOw"/>
+			<DA fc="CO" name="Cancel" bType="Struct" type="Dummy.LLN0.Mod.Cancel"/>
 		</DOType>
 		<DOType cdc="DPC" id="Dummy.CSWI.Pos2">
 			<DA fc="ST" name="stVal" bType="Dbpos"/>
@@ -665,6 +709,99 @@
 			<DA fc="ST" qchg="true" name="q" bType="Quality"/>
 			<DA fc="ST" name="t" bType="Timestamp"/>
 		</DOType>
+		<DOType cdc="SPS" id="NotUsedDummy.SPS">
+			<DA fc="ST" dchg="true" name="stVal" bType="BOOLEAN"/>
+			<DA fc="ST" qchg="true" name="q" bType="Quality"/>
+			<DA fc="ST" name="t" bType="Timestamp"/>
+		</DOType>
+		<DOType id="WYE_2_3" cdc="WYE">
+			<SDO name="phsA" type="CMV_1"/>
+			<SDO name="phsB" type="CMV_1"/>
+			<SDO name="phsC" type="CMV_1"/>
+			<SDO name="neut" type="CMV_1"/>
+			<SDO name="res" type="CMV_1"/>
+			<DA name="phsToNeut" bType="BOOLEAN" valKind="RO" fc="CF">
+				<Val>true</Val>
+			</DA>
+		</DOType>
+		<!-- Note that if WYE_2_3 is removed in the Unreferenced DataTypes, then CMV_1 becomes unused -->
+		<DOType id="CMV_1" cdc="CMV">
+			<DA name="instCVal" bType="Struct" type="Vector_1" fc="MX"/>
+			<DA name="cVal" bType="Struct" type="Vector_1" dchg="true" fc="MX"/>
+			<DA name="q" bType="Quality" qchg="true" fc="MX"/>
+			<DA name="t" bType="Timestamp" fc="MX"/>
+			<DA name="units" bType="Struct" valKind="RO" type="Units_0" fc="CF"/>
+			<DA name="db" bType="INT32U" valKind="RO" fc="CF"/>
+		</DOType>
+		<DOType id="CMV_2" cdc="CMV">
+			<DA name="instCVal" bType="Struct" type="Vector_1" fc="MX"/>
+			<DA name="cVal" bType="Struct" type="Vector_1" dchg="true" fc="MX"/>
+			<DA name="q" bType="Quality" qchg="true" fc="MX"/>
+			<DA name="t" bType="Timestamp" fc="MX"/>
+			<DA name="units" bType="Struct" valKind="RO" type="Units_0" fc="CF"/>
+			<DA name="db" bType="INT32U" valKind="RO" fc="CF"/>
+		</DOType>
+		<DOType id="WYE_2" cdc="WYE">
+			<SDO name="phsA" type="CMV_2"/>
+			<SDO name="phsB" type="CMV_2"/>
+			<SDO name="phsC" type="CMV_2"/>
+			<SDO name="neut" type="CMV_2"/>
+			<SDO name="res" type="CMV_2"/>
+			<DA name="phsToNeut" bType="BOOLEAN" valKind="RO" fc="CF">
+				<Val>true</Val>
+			</DA>
+		</DOType>
+		<DOType id="WYE_0" cdc="WYE">
+			<SDO name="phsA" type="CMV_2"/>
+			<SDO name="phsB" type="CMV_2"/>
+			<SDO name="phsC" type="CMV_2"/>
+		</DOType>
+		<DOType id="DEL_0" cdc="DEL">
+			<SDO name="phsAB" type="MV_0"/>
+			<SDO name="phsBC" type="MV_0"/>
+			<SDO name="phsCA" type="MV_0"/>
+		</DOType>
+		<DOType id="MV_0" cdc="MV">
+			<DA name="instMag" bType="Struct" type="AnalogValue_1" fc="MX"/>
+			<DA name="mag" bType="Struct" type="AnalogValue_1" dchg="true" fc="MX"/>
+			<DA name="q" bType="Quality" qchg="true" fc="MX"/>
+			<DA name="t" bType="Timestamp" fc="MX"/>
+			<DA name="units" bType="Struct" type="Units_0" fc="CF"/>
+			<DA name="db" bType="INT32U" fc="CF"/>
+		</DOType>
+		<DOType id="SwTypENS" cdc="ENS">
+			<DA name="stVal" bType="Enum" type="SwTyp" dchg="true" fc="ST"/>
+			<DA name="q" bType="Quality" qchg="true" fc="ST"/>
+			<DA name="t" bType="Timestamp" dchg="true" fc="ST"/>
+		</DOType>
+		<DOType id="DummyASGFloat32" cdc="ASG">
+			<DA fc="SE" name="setMag" bType="Struct" type="DummySetMag"/>
+			<DA dchg="true" fc="CF" name="units" bType="Struct" type="DummyUnits1"/>
+			<DA dchg="true" fc="CF" name="minVal" bType="Struct" type="DummyFloat32"/>
+			<DA dchg="true" fc="CF" name="maxVal" bType="Struct" type="DummyFloat32"/>
+			<DA dchg="true" fc="CF" name="stepSize" bType="Struct" type="DummyFloat32"/>
+		</DOType>
+		<DAType id="DummyUnits1">
+			<BDA name="SIUnit" bType="Enum" valKind="RO" type="DummySIUnit"/>
+			<BDA name="multiplier" bType="Enum" valKind="RO" type="DummyMultiplier"/>
+		</DAType>
+		<DAType id="DummyFloat32">
+			<BDA name="f" bType="FLOAT32" valKind="RO">
+				<Val>0</Val>
+			</BDA>
+		</DAType>
+		<DAType id="Vector_1">
+			<BDA name="mag" bType="Struct" type="AnalogValue_1"/>
+		</DAType>
+		<DAType id="Units_0">
+			<BDA name="SIUnit" bType="Enum" type="DummySIUnit"/>
+			<BDA name="multiplier" bType="Enum" type="DummyMultiplier"/>
+		</DAType>
+		<DAType id="DummySetMag">
+			<BDA name="f" bType="FLOAT32" valKind="Set">
+				<Val>0</Val>
+			</BDA>
+		</DAType>
 		<DAType id="AnalogueValue_i">
 			<BDA name="i" bType="INT32"/>
 		</DAType>
@@ -707,6 +844,24 @@
 			<BDA name="T" bType="Timestamp"/>
 			<BDA name="Test" bType="BOOLEAN"/>
 		</DAType>
+		<DAType id="NotUsedDummy.LPHD1.Sim.Cancel">
+			<BDA name="ctlVal" bType="BOOLEAN"/>
+			<BDA name="origin" bType="Struct" type="Dummy_origin"/>
+			<BDA name="ctlNum" bType="INT8U"/>
+			<BDA name="T" bType="Timestamp"/>
+			<BDA name="Test" bType="BOOLEAN"/>
+		</DAType>
+		<DAType id="OnlySubUsedVector_0">
+			<BDA name="mag" bType="Struct" type="AnalogValue_0"/>
+			<BDA name="ang" bType="Struct" type="AnalogValue_0"/>
+		</DAType>
+		<!-- If OnlySubUsedVector_0 is removed then AnalogValue_0 is unused -->
+		<DAType id="AnalogValue_0">
+			<BDA name="f" bType="FLOAT32"/>
+		</DAType>
+		<DAType id="AnalogValue_1">
+			<BDA name="f" bType="FLOAT32"/>
+		</DAType>
 		<EnumType id="Dummy_ctlModel">
 			<EnumVal ord="0">status-only</EnumVal>
 			<EnumVal ord="1">direct-with-normal-security</EnumVal>
@@ -726,6 +881,11 @@
 			<EnumVal ord="2">Warning</EnumVal>
 			<EnumVal ord="3">Alarm</EnumVal>
 		</EnumType>
+		<EnumType id="Dummy_Health_Unused">
+			<EnumVal ord="1">Ok</EnumVal>
+			<EnumVal ord="2">Warning</EnumVal>
+			<EnumVal ord="3">Alarm</EnumVal>
+		</EnumType>
 		<EnumType id="Dummy_orCategory">
 			<EnumVal ord="0">not-supported</EnumVal>
 			<EnumVal ord="1">bay-control</EnumVal>
@@ -736,6 +896,150 @@
 			<EnumVal ord="6">automatic-remote</EnumVal>
 			<EnumVal ord="7">maintenance</EnumVal>
 			<EnumVal ord="8">process</EnumVal>
+		</EnumType>
+		<EnumType id="NotUsedDir">
+			<EnumVal ord="0">unknown</EnumVal>
+			<EnumVal ord="1">forward</EnumVal>
+			<EnumVal ord="2">backward</EnumVal>
+			<EnumVal ord="3">both</EnumVal>
+		</EnumType>
+		<EnumType id="DummySIUnit">
+			<EnumVal ord="-38">kV/mA</EnumVal>
+			<EnumVal ord="-37">kA/V</EnumVal>
+			<EnumVal ord="-36">ohm/m</EnumVal>
+			<EnumVal ord="-35">ppm/°C</EnumVal>
+			<EnumVal ord="-34">F/m</EnumVal>
+			<EnumVal ord="-33">H/m</EnumVal>
+			<EnumVal ord="-32">ms/kPa</EnumVal>
+			<EnumVal ord="-31">kPa</EnumVal>
+			<EnumVal ord="-30">ms/V</EnumVal>
+			<EnumVal ord="-29">ms/K</EnumVal>
+			<EnumVal ord="-28">V/s</EnumVal>
+			<EnumVal ord="-27">I/Ir*s</EnumVal>
+			<EnumVal ord="-26">1/week</EnumVal>
+			<EnumVal ord="-25">1/d</EnumVal>
+			<EnumVal ord="-24">1/h</EnumVal>
+			<EnumVal ord="-23">1/min</EnumVal>
+			<EnumVal ord="-22">periods</EnumVal>
+			<EnumVal ord="-21">GB</EnumVal>
+			<EnumVal ord="-19">cycle</EnumVal>
+			<EnumVal ord="-18">mile</EnumVal>
+			<EnumVal ord="-17">inch</EnumVal>
+			<EnumVal ord="-16">°F</EnumVal>
+			<EnumVal ord="-15">I/IrObj</EnumVal>
+			<EnumVal ord="-14">MB</EnumVal>
+			<EnumVal ord="-13">KB</EnumVal>
+			<EnumVal ord="-12">Bytes</EnumVal>
+			<EnumVal ord="-11">p.u.</EnumVal>
+			<EnumVal ord="-10">day(s)</EnumVal>
+			<EnumVal ord="-7">%</EnumVal>
+			<EnumVal ord="-4">F/mi</EnumVal>
+			<EnumVal ord="-3">ohm/mi</EnumVal>
+			<EnumVal ord="-2">F/km</EnumVal>
+			<EnumVal ord="-1">ohm/km</EnumVal>
+			<EnumVal ord="1"/>
+			<EnumVal ord="2">m</EnumVal>
+			<EnumVal ord="3">kg</EnumVal>
+			<EnumVal ord="4">s</EnumVal>
+			<EnumVal ord="5">A</EnumVal>
+			<EnumVal ord="6">K</EnumVal>
+			<EnumVal ord="7">mol</EnumVal>
+			<EnumVal ord="8">cd</EnumVal>
+			<EnumVal ord="9">deg</EnumVal>
+			<EnumVal ord="10">rad</EnumVal>
+			<EnumVal ord="11">sr</EnumVal>
+			<EnumVal ord="21">Gy</EnumVal>
+			<EnumVal ord="23">°C</EnumVal>
+			<EnumVal ord="24">Sv</EnumVal>
+			<EnumVal ord="25">F</EnumVal>
+			<EnumVal ord="26">C</EnumVal>
+			<EnumVal ord="27">S</EnumVal>
+			<EnumVal ord="28">H</EnumVal>
+			<EnumVal ord="29">V</EnumVal>
+			<EnumVal ord="30">ohm</EnumVal>
+			<EnumVal ord="31">J</EnumVal>
+			<EnumVal ord="32">N</EnumVal>
+			<EnumVal ord="33">Hz</EnumVal>
+			<EnumVal ord="34">lx</EnumVal>
+			<EnumVal ord="35">Lm</EnumVal>
+			<EnumVal ord="36">Wb</EnumVal>
+			<EnumVal ord="37">T</EnumVal>
+			<EnumVal ord="38">W</EnumVal>
+			<EnumVal ord="39">Pa</EnumVal>
+			<EnumVal ord="41">m²</EnumVal>
+			<EnumVal ord="42">m³</EnumVal>
+			<EnumVal ord="43">m/s</EnumVal>
+			<EnumVal ord="44">m/s²</EnumVal>
+			<EnumVal ord="45">m³/s</EnumVal>
+			<EnumVal ord="46">m/m³</EnumVal>
+			<EnumVal ord="47">M</EnumVal>
+			<EnumVal ord="48">kg/m³</EnumVal>
+			<EnumVal ord="49">m²/s</EnumVal>
+			<EnumVal ord="50">W/m K</EnumVal>
+			<EnumVal ord="51">J/K</EnumVal>
+			<EnumVal ord="52">ppm</EnumVal>
+			<EnumVal ord="53">1/s</EnumVal>
+			<EnumVal ord="54">rad/s</EnumVal>
+			<EnumVal ord="55">W/m²</EnumVal>
+			<EnumVal ord="56">J/m²</EnumVal>
+			<EnumVal ord="57">S/m</EnumVal>
+			<EnumVal ord="58">K/s</EnumVal>
+			<EnumVal ord="59">Pa/s</EnumVal>
+			<EnumVal ord="60">J/kg K</EnumVal>
+			<EnumVal ord="61">VA</EnumVal>
+			<EnumVal ord="63">VAr</EnumVal>
+			<EnumVal ord="64">phi</EnumVal>
+			<EnumVal ord="65">cos(phi)</EnumVal>
+			<EnumVal ord="66">Vs</EnumVal>
+			<EnumVal ord="67">V²</EnumVal>
+			<EnumVal ord="68">As</EnumVal>
+			<EnumVal ord="69">A²</EnumVal>
+			<EnumVal ord="70">A²t</EnumVal>
+			<EnumVal ord="71">VAh</EnumVal>
+			<EnumVal ord="72">Wh</EnumVal>
+			<EnumVal ord="73">VArh</EnumVal>
+			<EnumVal ord="74">V/Hz</EnumVal>
+			<EnumVal ord="75">Hz/s</EnumVal>
+			<EnumVal ord="76">char</EnumVal>
+			<EnumVal ord="77">char/s</EnumVal>
+			<EnumVal ord="78">kgm²</EnumVal>
+			<EnumVal ord="79">dB</EnumVal>
+			<EnumVal ord="80">J/Wh</EnumVal>
+			<EnumVal ord="81">W/s</EnumVal>
+			<EnumVal ord="82">l/s</EnumVal>
+			<EnumVal ord="83">dBm</EnumVal>
+			<EnumVal ord="84">h</EnumVal>
+			<EnumVal ord="85">min</EnumVal>
+			<EnumVal ord="86">'</EnumVal>
+		</EnumType>
+		<EnumType id="DummyMultiplier">
+			<EnumVal ord="-24">y</EnumVal>
+			<EnumVal ord="-21">z</EnumVal>
+			<EnumVal ord="-18">a</EnumVal>
+			<EnumVal ord="-15">f</EnumVal>
+			<EnumVal ord="-12">p</EnumVal>
+			<EnumVal ord="-9">n</EnumVal>
+			<EnumVal ord="-6">µ</EnumVal>
+			<EnumVal ord="-3">m</EnumVal>
+			<EnumVal ord="-2">c</EnumVal>
+			<EnumVal ord="-1">d</EnumVal>
+			<EnumVal ord="0"/>
+			<EnumVal ord="1">da</EnumVal>
+			<EnumVal ord="2">h</EnumVal>
+			<EnumVal ord="3">k</EnumVal>
+			<EnumVal ord="6">M</EnumVal>
+			<EnumVal ord="9">G</EnumVal>
+			<EnumVal ord="12">T</EnumVal>
+			<EnumVal ord="15">P</EnumVal>
+			<EnumVal ord="18">E</EnumVal>
+			<EnumVal ord="21">Z</EnumVal>
+			<EnumVal ord="24">Y</EnumVal>
+		</EnumType>
+		<EnumType id="SwTyp">
+			<EnumVal ord="1">Load Break</EnumVal>
+			<EnumVal ord="2">Disconnector</EnumVal>
+			<EnumVal ord="3">Earthing Switch</EnumVal>
+			<EnumVal ord="4">High Speed Earthing Switch</EnumVal>
 		</EnumType>
 	</DataTypeTemplates>
 </SCL>

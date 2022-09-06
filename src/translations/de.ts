@@ -742,6 +742,13 @@ export const de: Translations = {
         'Für diesen Kontrollblock existiert eine Adressdefinition im Abschnitt Kommunikation',
       alsoRemoveFromCommunication: 'Kommunikation SMV/GSE mit entfernen',
     },
+    unreferencedDataTypes: {
+      title: 'Nicht referenzierte Datentypen',
+      deleteButton: 'Ausgewählte Datentypen entfernen',
+      tooltip:
+        'Datentypen, die nicht in einem logischen Knoten oder einem anderen verwendeten Datentyp referenziert werden',
+        alsoRemoveSubTypes: 'Entfernen Sie auch Untertypen'
+    }
   },
   controlblock: {
     action: {
