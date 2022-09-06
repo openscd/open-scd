@@ -1,70 +1,70 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Cleanup: Control Blocks Container without a doc loaded looks like the latest snapshot"] = 
+snapshots["Cleanup: DataTypes Container without a doc loaded looks like the latest snapshot"] = 
 `<section tabindex="1">
   <div>
     <h1>
-      [cleanup.unreferencedControls.title]
+      [cleanup.unreferencedDataTypes.title]
           (0)
       <abbr slot="action">
         <mwc-icon-button
           icon="info"
-          title="[cleanup.unreferencedControls.tooltip]"
+          title="[cleanup.unreferencedDataTypes.tooltip]"
         >
         </mwc-icon-button>
       </abbr>
     </h1>
     <mwc-icon-button-toggle
-      class="tLogControlFilter"
+      class="filter t-lnode-type-filter"
       label="filter"
       on=""
       slot="graphic"
     >
     </mwc-icon-button-toggle>
     <mwc-icon-button-toggle
-      class="tReportControlFilter"
-      label="filter"
-      slot="graphic"
-    >
-    </mwc-icon-button-toggle>
-    <mwc-icon-button-toggle
-      class="tGSEControlFilter"
+      class="filter t-do-type-filter"
       label="filter"
       on=""
       slot="graphic"
     >
     </mwc-icon-button-toggle>
     <mwc-icon-button-toggle
-      class="tSampledValueControlFilter"
+      class="filter t-da-type-filter"
+      label="filter"
+      on=""
+      slot="graphic"
+    >
+    </mwc-icon-button-toggle>
+    <mwc-icon-button-toggle
+      class="filter t-enum-type-filter"
       label="filter"
       on=""
       slot="graphic"
     >
     </mwc-icon-button-toggle>
     <filtered-list
-      class="cleanupList"
+      class="cleanup-list"
       multi=""
     >
     </filtered-list>
   </div>
   <footer>
     <mwc-button
-      class="deleteButton"
+      class="delete-button"
       disabled=""
       icon="delete"
-      label="[cleanup.unreferencedControls.deleteButton] (0)"
+      label="[cleanup.unreferencedDataTypes.deleteButton] (0)"
       outlined=""
     >
     </mwc-button>
     <mwc-formfield
-      class="removeFromCommunication"
-      label="[cleanup.unreferencedControls.alsoRemoveFromCommunication]"
+      class="remove-from-communication"
+      label="[cleanup.unreferencedDataTypes.alsoRemoveSubTypes]"
     >
       <mwc-checkbox
         checked=""
-        class="cleanupAddressCheckbox"
-        disabled=""
+        class="clean-sub-types-checkbox"
       >
       </mwc-checkbox>
     </mwc-formfield>
@@ -73,249 +73,229 @@ snapshots["Cleanup: Control Blocks Container without a doc loaded looks like the
 <wizard-dialog>
 </wizard-dialog>
 `;
-/* end snapshot Cleanup: Control Blocks Container without a doc loaded looks like the latest snapshot */
+/* end snapshot Cleanup: DataTypes Container without a doc loaded looks like the latest snapshot */
 
-snapshots["Cleanup: Control Blocks Container With a test file loaded looks like the latest snapshot"] = 
+snapshots["Cleanup: DataTypes Container With a test file loaded looks like the latest snapshot"] = 
 `<section tabindex="1">
   <div>
     <h1>
-      [cleanup.unreferencedControls.title]
-          (5)
+      [cleanup.unreferencedDataTypes.title]
+          (7)
       <abbr slot="action">
         <mwc-icon-button
           icon="info"
-          title="[cleanup.unreferencedControls.tooltip]"
+          title="[cleanup.unreferencedDataTypes.tooltip]"
         >
         </mwc-icon-button>
       </abbr>
     </h1>
     <mwc-icon-button-toggle
-      class="tLogControlFilter"
+      class="filter t-lnode-type-filter"
       label="filter"
       on=""
       slot="graphic"
     >
     </mwc-icon-button-toggle>
     <mwc-icon-button-toggle
-      class="tReportControlFilter"
-      label="filter"
-      slot="graphic"
-    >
-    </mwc-icon-button-toggle>
-    <mwc-icon-button-toggle
-      class="tGSEControlFilter"
+      class="filter t-do-type-filter"
       label="filter"
       on=""
       slot="graphic"
     >
     </mwc-icon-button-toggle>
     <mwc-icon-button-toggle
-      class="tSampledValueControlFilter"
+      class="filter t-da-type-filter"
+      label="filter"
+      on=""
+      slot="graphic"
+    >
+    </mwc-icon-button-toggle>
+    <mwc-icon-button-toggle
+      class="filter t-enum-type-filter"
       label="filter"
       on=""
       slot="graphic"
     >
     </mwc-icon-button-toggle>
     <filtered-list
-      class="cleanupList"
+      class="cleanup-list"
       multi=""
     >
       <mwc-check-list-item
         aria-disabled="false"
-        class="cleanupListItem tGSEControl"
+        class="cleanup-list-item t-lnode-type"
         graphic="large"
         mwc-list-item=""
         tabindex="0"
         twoline=""
-        value="IED1>>CircuitBreaker_CB1>GCB2_NP"
+        value="#NotUsedTVTR"
       >
-        <span class="unreferencedControl">
-          GCB2_NP
+        <span class="unreferenced-control">
+          NotUsedTVTR
         </span>
         <span>
           <mwc-icon-button
-            class="cautionItem"
-            disabled=""
-            icon="warning_amber"
-            label="warning"
-            title="[cleanup.unreferencedControls.addressDefinitionTooltip]"
-          >
-          </mwc-icon-button>
-        </span>
-        <span>
-          <mwc-icon-button
-            class="editItem"
+            class="edit-item"
             icon="edit"
             label="Edit"
           >
           </mwc-icon-button>
         </span>
         <span slot="secondary">
-          GSEControl -
-        IED1
-        (DummyManufacturer)
-        -
-        DummyIED
+          TVTR
         </span>
         <mwc-icon slot="graphic">
         </mwc-icon>
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="cleanupListItem tGSEControl"
+        class="cleanup-list-item t-do-type"
         graphic="large"
         mwc-list-item=""
         tabindex="-1"
         twoline=""
-        value="IED1>>CircuitBreaker_CB1>GCB_NP"
+        value="#Dummy.LLN0.Health.Unused"
       >
-        <span class="unreferencedControl">
-          GCB_NP
+        <span class="unreferenced-control">
+          Dummy.LLN0.Health.Unused
         </span>
         <span>
           <mwc-icon-button
-            class="cautionItem"
-            icon="warning_amber"
-            label="warning"
-            title="[cleanup.unreferencedControls.addressDefinitionTooltip]"
-          >
-          </mwc-icon-button>
-        </span>
-        <span>
-          <mwc-icon-button
-            class="editItem"
+            class="edit-item"
             icon="edit"
             label="Edit"
           >
           </mwc-icon-button>
         </span>
         <span slot="secondary">
-          GSEControl -
-        IED1
-        (DummyManufacturer)
-        -
-        DummyIED
+          ENS
         </span>
         <mwc-icon slot="graphic">
         </mwc-icon>
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="cleanupListItem tLogControl"
+        class="cleanup-list-item t-do-type"
         graphic="large"
         mwc-list-item=""
         tabindex="-1"
         twoline=""
-        value="IED1>>CircuitBreaker_CB1>LogNP"
+        value="#NotUsedDummy.SPS"
       >
-        <span class="unreferencedControl">
-          LogNP
+        <span class="unreferenced-control">
+          NotUsedDummy.SPS
         </span>
         <span>
           <mwc-icon-button
-            class="cautionItem"
-            disabled=""
-            icon="warning_amber"
-            label="warning"
-            title="[cleanup.unreferencedControls.addressDefinitionTooltip]"
-          >
-          </mwc-icon-button>
-        </span>
-        <span>
-          <mwc-icon-button
-            class="editItem"
-            disabled=""
+            class="edit-item"
             icon="edit"
             label="Edit"
           >
           </mwc-icon-button>
         </span>
         <span slot="secondary">
-          LogControl -
-        IED1
-        (DummyManufacturer)
-        -
-        DummyIED
-        </span>
-        <mwc-icon slot="graphic">
-        </mwc-icon>
-      </mwc-check-list-item>
-      <mwc-check-list-item
-        aria-disabled="true"
-        class="cleanupListItem hiddenontypefilter tReportControl"
-        disabled=""
-        graphic="large"
-        mwc-list-item=""
-        tabindex="-1"
-        twoline=""
-        value="IED2>>CBSW> XSWI 1>ReportCb2"
-      >
-        <span class="unreferencedControl">
-          ReportCb2
-        </span>
-        <span>
-          <mwc-icon-button
-            class="cautionItem"
-            disabled=""
-            icon="warning_amber"
-            label="warning"
-            title="[cleanup.unreferencedControls.addressDefinitionTooltip]"
-          >
-          </mwc-icon-button>
-        </span>
-        <span>
-          <mwc-icon-button
-            class="editItem"
-            icon="edit"
-            label="Edit"
-          >
-          </mwc-icon-button>
-        </span>
-        <span slot="secondary">
-          ReportControl -
-        IED2
-        (DummyManufacturer)
-        -
-        DummyIED
+          SPS
         </span>
         <mwc-icon slot="graphic">
         </mwc-icon>
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="cleanupListItem tSampledValueControl"
+        class="cleanup-list-item t-do-type"
         graphic="large"
         mwc-list-item=""
         tabindex="-1"
         twoline=""
-        value="IED3>>MU01>MSVCB01_A"
+        value="#WYE_2_3"
       >
-        <span class="unreferencedControl">
-          MSVCB01_A
+        <span class="unreferenced-control">
+          WYE_2_3
         </span>
         <span>
           <mwc-icon-button
-            class="cautionItem"
-            icon="warning_amber"
-            label="warning"
-            title="[cleanup.unreferencedControls.addressDefinitionTooltip]"
-          >
-          </mwc-icon-button>
-        </span>
-        <span>
-          <mwc-icon-button
-            class="editItem"
+            class="edit-item"
             icon="edit"
             label="Edit"
           >
           </mwc-icon-button>
         </span>
         <span slot="secondary">
-          SampledValueControl -
-        IED3
-        (DummyManufacturer)
-        -
-        DummyIED
+          WYE
+        </span>
+        <mwc-icon slot="graphic">
+        </mwc-icon>
+      </mwc-check-list-item>
+      <mwc-check-list-item
+        aria-disabled="false"
+        class="cleanup-list-item t-da-type"
+        graphic="large"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#NotUsedDummy.LPHD1.Sim.Cancel"
+      >
+        <span class="unreferenced-control">
+          NotUsedDummy.LPHD1.Sim.Cancel
+        </span>
+        <span>
+          <mwc-icon-button
+            class="edit-item"
+            icon="edit"
+            label="Edit"
+          >
+          </mwc-icon-button>
+        </span>
+        <span slot="secondary">
+        </span>
+        <mwc-icon slot="graphic">
+        </mwc-icon>
+      </mwc-check-list-item>
+      <mwc-check-list-item
+        aria-disabled="false"
+        class="cleanup-list-item t-da-type"
+        graphic="large"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#OnlySubUsedVector_0"
+      >
+        <span class="unreferenced-control">
+          OnlySubUsedVector_0
+        </span>
+        <span>
+          <mwc-icon-button
+            class="edit-item"
+            icon="edit"
+            label="Edit"
+          >
+          </mwc-icon-button>
+        </span>
+        <span slot="secondary">
+        </span>
+        <mwc-icon slot="graphic">
+        </mwc-icon>
+      </mwc-check-list-item>
+      <mwc-check-list-item
+        aria-disabled="false"
+        class="cleanup-list-item t-enum-type"
+        graphic="large"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#NotUsedDir"
+      >
+        <span class="unreferenced-control">
+          NotUsedDir
+        </span>
+        <span>
+          <mwc-icon-button
+            class="edit-item"
+            icon="edit"
+            label="Edit"
+          >
+          </mwc-icon-button>
+        </span>
+        <span slot="secondary">
         </span>
         <mwc-icon slot="graphic">
         </mwc-icon>
@@ -324,21 +304,20 @@ snapshots["Cleanup: Control Blocks Container With a test file loaded looks like 
   </div>
   <footer>
     <mwc-button
-      class="deleteButton"
+      class="delete-button"
       disabled=""
       icon="delete"
-      label="[cleanup.unreferencedControls.deleteButton] (0)"
+      label="[cleanup.unreferencedDataTypes.deleteButton] (0)"
       outlined=""
     >
     </mwc-button>
     <mwc-formfield
-      class="removeFromCommunication"
-      label="[cleanup.unreferencedControls.alsoRemoveFromCommunication]"
+      class="remove-from-communication"
+      label="[cleanup.unreferencedDataTypes.alsoRemoveSubTypes]"
     >
       <mwc-checkbox
         checked=""
-        class="cleanupAddressCheckbox"
-        disabled=""
+        class="clean-sub-types-checkbox"
       >
       </mwc-checkbox>
     </mwc-formfield>
@@ -347,5 +326,5 @@ snapshots["Cleanup: Control Blocks Container With a test file loaded looks like 
 <wizard-dialog>
 </wizard-dialog>
 `;
-/* end snapshot Cleanup: Control Blocks Container With a test file loaded looks like the latest snapshot */
+/* end snapshot Cleanup: DataTypes Container With a test file loaded looks like the latest snapshot */
 

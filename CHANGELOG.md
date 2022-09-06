@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.23.0](https://github.com/openscd/open-scd/compare/v0.22.0...v0.23.0) (2022-09-05)
+
+
+### Features
+
+* **editors/cleanup:** Support DataTypeTemplates ([#701](https://github.com/openscd/open-scd/issues/701)) ([1db5169](https://github.com/openscd/open-scd/commits/1db5169b2139f4fa1b423f7f13b7609af3e0e058)), closes [#910](https://github.com/openscd/open-scd/issues/910)
+* **editors/subscriber-later-binding:** Add plugin with filterable FCDA list ([#945](https://github.com/openscd/open-scd/issues/945)) ([758da72](https://github.com/openscd/open-scd/commits/758da723193b069ca5772a9be25c4fc39659713b))
+* **wizard/dai:** Set/Update a value for a type 'Timestamp' of Data Attribute Instance ([#959](https://github.com/openscd/open-scd/issues/959)) ([4d52a9a](https://github.com/openscd/open-scd/commits/4d52a9a3e3aee64ee695606b046b85afdbddb2a8))
+
 ## [0.22.0](https://github.com/openscd/open-scd/compare/v0.21.0...v0.22.0) (2022-08-22)
 
 
