@@ -38,7 +38,7 @@ export class PlainCompareList extends LitElement {
   filterMutables: boolean = true;
 
   render(): TemplateResult {
-    return html` 
+    return html`
       <div class="container">
         <div class="flex"></div>
         ${this.renderFilterCheckbox()}

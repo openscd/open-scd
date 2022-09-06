@@ -98,24 +98,6 @@ describe('Compare IED Plugin', () => {
     });
   });
 
-  describe('show compare dialog with copied IED', () => {
-    beforeEach(async () => {
-      plugin.doc = doc;
-      plugin.templateDoc = template;
-      plugin.selectedProjectIed =
-        doc.querySelector('IED[name="FieldC_QA1_QB1_QB2_QCX"]') ?? undefined;
-      plugin.selectedTemplateIed =
-        template.querySelector('IED[name="FieldC_QA1_QB1_QB2_QC9"]') ??
-        undefined;
-    });
-
-    it('looks like its latest snapshot', async () => {
-      await plugin.requestUpdate();
-      plugin.run();
-      await expect(plugin.dialog).to.equalSnapshot();
-    });
-  });
-
   describe('show compare dialog with differences', () => {
     beforeEach(async () => {
       plugin.doc = doc;
@@ -141,28 +123,6 @@ describe('Compare IED Plugin', () => {
       expect(plugin.selectedTemplateIed).to.be.undefined;
     });
 
-    it('looks like its latest snapshot', async () => {
-      await expect(plugin.dialog).to.equalSnapshot();
-    });
   });
 
-  describe('show compare dialog with ignorable differences', () => {
-    beforeEach(async () => {
-      plugin.doc = doc;
-      plugin.templateDoc = template;
-
-      plugin.selectedProjectIed =
-        doc.querySelector('IED[name="IED1"]') ?? undefined;
-      plugin.selectedTemplateIed =
-        template.querySelector('IED[name="SPECIFICATION"]') ?? undefined;
-    });
-
-    it('looks like its snapshot', async () => {
-      plugin.run();
-      await plugin.requestUpdate();
-
-      expect (plugin.dialog).shadowDom.to.equalSnapshot();
-    });
-
-  })
 });
