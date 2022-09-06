@@ -1,7 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots['open-scd looks like its snapshot'] = `<mwc-drawer
+snapshots["open-scd looks like its snapshot"] = 
+`<mwc-drawer
   class="mdc-theme--surface"
   hasheader=""
   id="menu"
@@ -750,6 +751,21 @@ snapshots['open-scd looks like its snapshot'] = `<mwc-drawer
         link
       </mwc-icon>
       Subscriber (GOOSE)
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      tabindex="-1"
+      value="/src/editors/GooseSubscriberLaterBinding.js"
+    >
+      <mwc-icon slot="meta">
+        link
+      </mwc-icon>
+      Subscriber Later Binding (GOOSE)
     </mwc-check-list-item>
     <mwc-check-list-item
       aria-disabled="false"
@@ -1613,3 +1629,4 @@ snapshots['open-scd looks like its snapshot'] = `<mwc-drawer
 </compas-session-expired-dialog>
 `;
 /* end snapshot open-scd looks like its snapshot */
+

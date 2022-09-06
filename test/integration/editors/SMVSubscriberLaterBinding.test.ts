@@ -4,8 +4,8 @@ import { Wizarding } from '../../../src/Wizarding.js';
 import { Editing } from '../../../src/Editing.js';
 
 import SMVSubscribeLaterBindingPlugin from '../../../src/editors/SMVSubscriberLaterBinding.js';
-import { SVCLaterBindingList } from '../../../src/editors/subscription/smv-laterbinding/svc-laterbinding-list.js';
 import { ExtRefLaterBindingList } from '../../../src/editors/subscription/smv-laterbinding/ext-ref-laterbinding-list.js';
+import { FCDALaterBindingList } from '../../../src/editors/subscription/later-binding/fcda-later-binding-list.js';
 
 describe('SMV Subscribe Later Binding plugin', () => {
   customElements.define(
@@ -29,7 +29,7 @@ describe('SMV Subscribe Later Binding plugin', () => {
   });
 
   it('when subscribing an available ExtRef then the list are changed', async () => {
-    const svcListElement = getSvcLaterBindingList();
+    const svcListElement = getFCDALaterBindingList();
     const extRefListElement = getExtrefLaterBindingList();
 
     (<HTMLElement>(
@@ -62,7 +62,7 @@ describe('SMV Subscribe Later Binding plugin', () => {
   });
 
   it('when unsubscribing a subscribed ExtRef then the list are changed', async () => {
-    const svcListElement = getSvcLaterBindingList();
+    const svcListElement = getFCDALaterBindingList();
     const extRefListElement = getExtrefLaterBindingList();
 
     (<HTMLElement>(
@@ -94,9 +94,9 @@ describe('SMV Subscribe Later Binding plugin', () => {
     ).to.be.equal(9);
   });
 
-  function getSvcLaterBindingList(): SVCLaterBindingList {
-    return <SVCLaterBindingList>(
-      element.shadowRoot?.querySelector('svc-later-binding-list')
+  function getFCDALaterBindingList(): FCDALaterBindingList {
+    return <FCDALaterBindingList>(
+      element.shadowRoot?.querySelector('fcda-later-binding-list')
     );
   }
 

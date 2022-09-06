@@ -371,14 +371,24 @@ export const de: Translations = {
           'Zeigt verbundene Sampled Value(s) des ausgewählten IED',
       },
     },
-    smvLaterBinding: {
-      svcList: {
-        title: 'Sampled Values and verknüpfte Datensätze im Projekt',
-        noSvcFound: 'Kein Sampled-Value-Kontrolblock im Projekt',
+    laterBinding: {
+      SampledValueControl: {
+        controlBlockList: {
+          title: 'Sampled Values and verknüpfte Datensätze im Projekt',
+          noControlBlockFound: 'Kein Sampled-Value-Kontrolblock im Projekt',
+        },
+      },
+      GSEControl: {
+        controlBlockList: {
+          title: '???',
+          noControlBlockFound: '???',
+        },
       },
       extRefList: {
-        title:
-          'Ausgewählter Sampled Value Datenpunkt "{{ svcName }}" / "{{ fcdaName }}"',
+        SampledValueControl: {
+          title:
+            'Ausgewählter Sampled Value Datenpunkt "{{ svcName }}" / "{{ fcdaName }}"',
+        },
         noSelection: 'Kein Daten-Attribut ausgewählt',
         noSubscribedExtRefs: 'Keine verknüpften externen Referenzen',
         noAvailableExtRefs:
@@ -732,6 +742,13 @@ export const de: Translations = {
         'Für diesen Kontrollblock existiert eine Adressdefinition im Abschnitt Kommunikation',
       alsoRemoveFromCommunication: 'Kommunikation SMV/GSE mit entfernen',
     },
+    unreferencedDataTypes: {
+      title: 'Nicht referenzierte Datentypen',
+      deleteButton: 'Ausgewählte Datentypen entfernen',
+      tooltip:
+        'Datentypen, die nicht in einem logischen Knoten oder einem anderen verwendeten Datentyp referenziert werden',
+        alsoRemoveSubTypes: 'Entfernen Sie auch Untertypen'
+    }
   },
   controlblock: {
     action: {

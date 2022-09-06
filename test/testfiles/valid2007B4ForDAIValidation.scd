@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<SCL version="2007" revision="B" release="4" xmlns:sxy="http://www.iec.ch/61850/2003/SCLcoordinates" xmlns="http://www.iec.ch/61850/2003/SCL" xmlns:txy="http://www.iec.ch/61850/2003/Terminal" xmlns:scl="http://www.iec.ch/61850/2003/SCL" xsi:schemaLocation="http://www.iec.ch/61850/2003/SCL SCL.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:IEC_60870_5_104="http://www.iec.ch/61850-80-1/2007/SCL">
+<SCL version="2007" revision="B" release="4" xmlns="http://www.iec.ch/61850/2003/SCL"
+     xsi:schemaLocation="http://www.iec.ch/61850/2003/SCL SCL.xsd"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<Header id="TrainingIEC61850" version="1" revision="143" toolID="IEC 61850 System Configurator, Version: V5.90 " nameStructure="IEDName">
 		<Text>TrainingIEC61850</Text>
 		<History>
@@ -144,6 +146,12 @@
 							<DAI name="enumtest">
 								<Val>blocked</Val>
 							</DAI>
+              <DAI name="float32test">
+                <Val>659.3</Val>
+              </DAI>
+              <DAI name="float64test">
+                <Val>1111659.8</Val>
+              </DAI>
 							<DAI name="int8test">
 								<Val>5</Val>
 							</DAI>
@@ -174,12 +182,12 @@
 							<DAI name="int32utest">
 								<Val>2</Val>
 							</DAI>
-							<DAI name="float32test">
-								<Val>659.3</Val>
-							</DAI>
-							<DAI name="float64test">
-								<Val>1111659.8</Val>
-							</DAI>
+              <DAI name="timestamptest">
+                <Val>2022-03-24T12:34:56.000</Val>
+              </DAI>
+              <DAI name="nulltimestamptest">
+                <Val>0000-00-00T00:00:00.000</Val>
+              </DAI>
 							<DAI name="visstring32test">
 								<Val>pull-ups</Val>
 							</DAI>
@@ -572,8 +580,10 @@
 			<DA fc="ST" name="stVal" bType="Enum" type="Dummy_Beh" />
 			<DA fc="ST" name="q" bType="Quality" />
 			<DA fc="ST" name="t" bType="Timestamp" />
+      <DA fc="ST" name="booleantest" bType="BOOLEAN" />
       <DA fc="ST" name="enumtest" bType="Enum" type="Dummy_Beh" />
-			<DA fc="ST" name="int8test" bType="BOOLEAN" />
+      <DA fc="ST" name="float32test" bType="FLOAT32" />
+      <DA fc="ST" name="float64test" bType="FLOAT64" />
 			<DA fc="ST" name="int8test" bType="INT8" />
 			<DA fc="ST" name="int16test" bType="INT16" />
 			<DA fc="ST" name="int24test" bType="INT24" />
@@ -584,8 +594,8 @@
 			<DA fc="ST" name="int16utest" bType="INT16U" />
 			<DA fc="ST" name="int24utest" bType="INT24U" />
 			<DA fc="ST" name="int32utest" bType="INT32U" />
-			<DA fc="ST" name="float32test" bType="FLOAT32" />
-			<DA fc="ST" name="float64test" bType="FLOAT64" />
+      <DA fc="ST" name="timestamptest" bType="Timestamp" />
+      <DA fc="ST" name="nulltimestamptest" bType="Timestamp" />
 			<DA fc="ST" name="visstring32test" bType="VisString32" />
 			<DA fc="ST" name="visstring64test" bType="VisString64" />
 			<DA fc="ST" name="visstring65test" bType="VisString65" />

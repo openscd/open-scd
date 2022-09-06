@@ -4,6 +4,7 @@ import { identity, Delete } from '../../foundation.js';
 
 /**
  * Clean SCL items as requested by removing SCL elements specified from the SCL file
+ * @param cleanItems - SCL elements to be removed from the SCL file
  * @returns an actions array to support undo/redo
  */
 export function cleanSCLItems(cleanItems: Element[]): Delete[] {
@@ -20,6 +21,15 @@ export function cleanSCLItems(cleanItems: Element[]): Delete[] {
     });
   }
   return actions;
+}
+
+/**
+ * Provide frequency count of elements.
+ * @param arr - An array of elements
+ * @returns a Map of element strings and frequencies
+ */
+export function countBy(arr: string[]): Map<string, number> {
+  return arr.reduce((acc, e) => acc.set(e, (acc.get(e) || 0) + 1), new Map());
 }
 
 /**
@@ -41,4 +51,13 @@ export function identitySort(elements: Element[]): Element[] {
     // names must be equal
     return 0;
   });
+}
+
+/**
+ * Return a de-duplicate set of array elements.
+ * @param arr - an array of items with duplicates.
+ * @returns an array of items without duplicates.
+ */
+export function uniq(arr: unknown[]): unknown[] {
+  return Array.from(new Set(arr));
 }

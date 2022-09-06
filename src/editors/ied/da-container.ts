@@ -15,7 +15,10 @@ import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 import '../../action-pane.js';
 import { getNameAttribute, newWizardEvent } from '../../foundation.js';
 import { wizards } from '../../wizards/wizard-library.js';
-import { DaiValidationTypes, getCustomField } from './foundation/foundation.js';
+import {
+  DaiFieldTypes,
+  getCustomField,
+} from '../../wizards/foundation/dai-field-type.js';
 import { createDaInfoWizard } from './da-wizard.js';
 import {
   Container,
@@ -108,10 +111,10 @@ export class DAContainer extends Container {
       ['LN0', 'LN'].includes(element.tagName)
     )[0];
     const templateStructure = this.getTemplateStructure();
-    // First determine where to start creating new elements (DOI/SDI/DOI)
+    // First determine where to start creating new elements (DOI/SDI/DAI)
     const [parentElement, uninitializedTemplateStructure] =
       determineUninitializedStructure(lnElement, templateStructure);
-    // Next create all missing elements (DOI/SDI/DOI)
+    // Next create all missing elements (DOI/SDI/DAI)
     const newElement = initializeElements(uninitializedTemplateStructure);
 
     if (newElement) {
@@ -172,17 +175,13 @@ export class DAContainer extends Container {
                 ${this.instanceElement
                   ? html`<mwc-icon-button
                       icon="edit"
-                      .disabled="${!getCustomField()[
-                        <DaiValidationTypes>bType
-                      ]}"
+                      .disabled="${!getCustomField()[<DaiFieldTypes>bType]}"
                       @click=${() => this.openEditWizard()}
                     >
                     </mwc-icon-button>`
                   : html`<mwc-icon-button
                       icon="add"
-                      .disabled="${!getCustomField()[
-                        <DaiValidationTypes>bType
-                      ]}"
+                      .disabled="${!getCustomField()[<DaiFieldTypes>bType]}"
                       @click=${() => this.openCreateWizard()}
                     >
                     </mwc-icon-button>`}
@@ -215,7 +214,7 @@ export class DAContainer extends Container {
       font-weight: 300;
       margin: 0px;
       padding-left: 0.3em;
-      word-break: break-word; 
+      word-break: break-word;
       white-space: pre-wrap;
     }
 

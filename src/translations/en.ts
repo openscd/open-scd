@@ -368,14 +368,24 @@ export const en = {
           'Show subscribed Sampled Value(s) publisher for selected IED',
       },
     },
-    smvLaterBinding: {
-      svcList: {
-        title: 'List of Sampled Values Controls with linked FCDAs',
-        noSvcFound: 'No Sampled Value Controls found',
+    laterBinding: {
+      SampledValueControl: {
+        controlBlockList: {
+          title: 'List of Sampled Values Controls with linked FCDAs',
+          noControlBlockFound: 'No Sampled Value Controls found',
+        },
+      },
+      GSEControl: {
+        controlBlockList: {
+          title: 'List of Goose Controls with linked FCDAs',
+          noControlBlockFound: 'No Goose Controls found',
+        },
       },
       extRefList: {
-        title:
-          'Selected Sampled Value data "{{ svcName }}" / FCDA "{{ fcdaName }}"',
+        SampledValueControl: {
+          title:
+            'Selected Sampled Value data "{{ svcName }}" / FCDA "{{ fcdaName }}"',
+        },
         noSelection: 'No data attribute selected',
         noSubscribedExtRefs: 'No subscribed ExtRefs',
         noAvailableExtRefs: 'No available ExtRefs to subscribe',
@@ -729,6 +739,13 @@ export const en = {
         'An address definition exists for this control block in the Communication section',
       alsoRemoveFromCommunication: 'Also remove SMV/GSE Address',
     },
+    unreferencedDataTypes: {
+      title: 'Unreferenced Data Types',
+      deleteButton: 'Remove Selected Data Types',
+      tooltip:
+        'Data Types which are not referenced in a Logical Node or other used Data Type',
+        alsoRemoveSubTypes: 'Also remove subtypes'
+    }
   },
   controlblock: {
     action: {
