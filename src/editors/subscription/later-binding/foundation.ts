@@ -7,12 +7,12 @@ export function getFcdaTitleValue(fcdaElement: Element): string {
 }
 
 export interface FcdaSelectDetail {
-  svc: Element | undefined;
+  controlElement: Element | undefined;
   fcda: Element | undefined;
 }
 export type FcdaSelectEvent = CustomEvent<FcdaSelectDetail>;
 export function newFcdaSelectEvent(
-  svc: Element | undefined,
+  controlElement: Element | undefined,
   fcda: Element | undefined,
   eventInitDict?: CustomEventInit<FcdaSelectDetail>
 ): FcdaSelectEvent {
@@ -20,7 +20,7 @@ export function newFcdaSelectEvent(
     bubbles: true,
     composed: true,
     ...eventInitDict,
-    detail: { svc, fcda, ...eventInitDict?.detail },
+    detail: { controlElement, fcda, ...eventInitDict?.detail },
   });
 }
 

@@ -27,10 +27,7 @@ import { wizards } from '../../../wizards/wizard-library.js';
 
 import { styles } from '../foundation.js';
 
-import {
-  getFcdaTitleValue,
-  newFcdaSelectEvent,
-} from '../smv-laterbinding/foundation.js';
+import { getFcdaTitleValue, newFcdaSelectEvent } from './foundation.js';
 
 /**
  * A sub element for showing all Goose/Sampled Value Controls.

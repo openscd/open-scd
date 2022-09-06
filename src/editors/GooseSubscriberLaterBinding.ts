@@ -1,6 +1,7 @@
 import { LitElement, property, html, TemplateResult, css } from 'lit-element';
 
 import './subscription/later-binding/fcda-later-binding-list.js';
+import './subscription/later-binding/ext-ref-laterbinding-list.js';
 
 export default class GooseSubscribeLaterBindingPlugin extends LitElement {
   @property({ attribute: false })
@@ -9,8 +10,18 @@ export default class GooseSubscribeLaterBindingPlugin extends LitElement {
   render(): TemplateResult {
     return html`<div>
       <div class="container">
-        <fcda-later-binding-list .doc=${this.doc} controlTag="GSEControl">
+        <fcda-later-binding-list
+          class="column"
+          .doc=${this.doc}
+          controlTag="GSEControl"
+        >
         </fcda-later-binding-list>
+        <extref-later-binding-list
+          class="column"
+          controlTag="GSEControl"
+          .doc=${this.doc}
+        >
+        </extref-later-binding-list>
       </div>
     </div>`;
   }
@@ -21,7 +32,17 @@ export default class GooseSubscribeLaterBindingPlugin extends LitElement {
     }
 
     .container {
+      display: flex;
       padding: 8px 6px 16px;
+      height: calc(100vh - 136px);
+    }
+
+    .column {
+      flex: 50%;
+      margin: 0px 6px 0px;
+      min-width: 300px;
+      height: 100%;
+      overflow-y: auto;
     }
   `;
 }
