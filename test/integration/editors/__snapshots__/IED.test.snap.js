@@ -93,10 +93,11 @@ snapshots["IED Plugin with a doc loaded containing IEDs looks like the latest sn
       </mwc-radio-list-item>
     </oscd-filter-button>
     <oscd-filter-button
-      icon="smart_button"
       id="lnClassesFilter"
       multi="true"
     >
+      <span slot="icon">
+      </span>
       <mwc-check-list-item
         aria-disabled="false"
         graphic="control"

@@ -8,10 +8,8 @@ import {
   TemplateResult,
 } from 'lit-element';
 import { translate } from 'lit-translate';
+import { nothing } from 'lit-html';
 
-import '@material/mwc-fab';
-import '@material/mwc-select';
-import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-list/mwc-check-list-item';
 import '@material/mwc-list/mwc-radio-list-item';
 
@@ -27,7 +25,7 @@ import {
   getNameAttribute,
 } from '../foundation.js';
 import { Nsdoc } from '../foundation/nsdoc.js';
-import { nothing } from 'lit-html';
+import { getIcon } from '../icons/icons.js';
 
 /** An editor [[`plugin`]] for editing the `IED` section. */
 export default class IedPlugin extends LitElement {
@@ -154,7 +152,6 @@ export default class IedPlugin extends LitElement {
 
           <oscd-filter-button
             id="lnClassesFilter"
-            icon="smart_button"
             multi="true"
             .header="${translate('iededitor.lnFilter')}"
             .selectedItems=${this.selectedLNClasses}
@@ -163,6 +160,7 @@ export default class IedPlugin extends LitElement {
               this.requestUpdate('selectedIed');
             }}"
           >
+            <span slot="icon">${getIcon('lNIcon')}</span>
             ${this.lnClassList.map(lnClassInfo => {
               const value = lnClassInfo[0];
               const label = lnClassInfo[1];

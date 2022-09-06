@@ -50,6 +50,7 @@ export class FilterButton extends FilteredList {
   render(): TemplateResult {
     return html`
       <mwc-icon-button icon="${this.icon}" @click=${this.toggleList}>
+        <slot name="icon"></slot>
       </mwc-icon-button>
       <mwc-dialog
         id="filterDialog"
