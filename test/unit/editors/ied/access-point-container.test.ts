@@ -9,9 +9,7 @@ describe('access-point-container', () => {
   let validSCL: XMLDocument;
 
   beforeEach(async () => {
-    validSCL = await fetch(
-      '/test/testfiles/valid2007B4withIEDModifications.scd'
-    )
+    validSCL = await fetch('/test/testfiles/editors/iedEditorWithIEDs.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
   });

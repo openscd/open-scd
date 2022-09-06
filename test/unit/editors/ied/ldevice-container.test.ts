@@ -14,7 +14,7 @@ describe('ldevice-container', () => {
   let element: LDeviceContainer;
 
   beforeEach(async () => {
-    doc = await fetch('/test/testfiles/valid2007B4withIEDModifications.scd')
+    doc = await fetch('/test/testfiles/editors/iedEditorWithIEDs.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     nsdoc = await initializeNsdoc();

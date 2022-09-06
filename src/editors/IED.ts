@@ -121,6 +121,8 @@ export default class IedPlugin extends LitElement {
           <h1>${translate('filters')}:</h1>
 
           <oscd-filter-button
+            id="iedFilter"
+            icon="developer_board"
             .header=${translate('iededitor.iedSelector')}
             .selectedItems=${this.selectedIEDs}
             @selected-items-changed="${(e: SelectedItemsChangedEvent) => {
@@ -130,7 +132,6 @@ export default class IedPlugin extends LitElement {
               );
               this.requestUpdate('selectedIed');
             }}"
-            icon="developer_board"
           >
             ${iedList.map(ied => {
               const name = getNameAttribute(ied);
@@ -152,14 +153,15 @@ export default class IedPlugin extends LitElement {
           </oscd-filter-button>
 
           <oscd-filter-button
+            id="lnClassesFilter"
+            icon="smart_button"
+            multi="true"
             .header="${translate('iededitor.lnFilter')}"
             .selectedItems=${this.selectedLNClasses}
             @selected-items-changed="${(e: SelectedItemsChangedEvent) => {
               this.selectedLNClasses = e.detail.selectedItems;
               this.requestUpdate('selectedIed');
             }}"
-            icon="smart_button"
-            multi="true"
           >
             ${this.lnClassList.map(lnClassInfo => {
               const value = lnClassInfo[0];
