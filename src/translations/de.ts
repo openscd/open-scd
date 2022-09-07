@@ -345,25 +345,25 @@ export const de: Translations = {
       noIedSelected: 'Keine IED ausgewählt',
     },
     goose: {
-      publisherGoose: {
-        title: 'GOOSE-Verlag',
-        subscriberTitle: 'Bei {{ selected }} abonnierte IEDs',
+      publisher: {
+        title: 'GOOSE-Publizierer',
+        subscriberTitle: 'Verbunden mit {{ selected }}',
       },
-      subscriberGoose: {
+      subscriber: {
         iedListTitle: 'GOOSE-Abonnenten',
         publisherTitle: 'GOOSE Messages abonniert bei {{ selected }}',
       },
       view: {
-        publisherView: 'Herausgeber | Teilnehmer',
-        subscriberView: 'Teilnehmer | Herausgeber',
+        publisherView: 'Publisher | Subscriber',
+        subscriberView: 'Subscriber | Publisher',
       },
     },
     smv: {
-      publisherSmv: {
-        title: 'Stichprobenwert-Publisher',
-        subscriberTitle: 'IEDs, die bei {{ selected }} abonniert',
+      publisher: {
+        title: 'SampledValue-Publizierer',
+        subscriberTitle: 'Verbunden mit {{ selected }}',
       },
-      subscriberSmv: {
+      subscriber: {
         iedListTitle: 'Sampled Value-Abonnenten',
         publisherTitle: 'Sampled Value Messages abonniert bei {{ selected }}',
       },
@@ -375,14 +375,14 @@ export const de: Translations = {
     laterBinding: {
       SampledValueControl: {
         controlBlockList: {
-          title: 'Meldungen mit abgetasteten Werten',
-          noControlBlockFound: 'Keine Sampled Value Messages gefunden',
+          title: 'Sample Value Meldungen',
+          noControlBlockFound: 'Keine Sampled Values gefunden',
         },
       },
       GSEControl: {
         controlBlockList: {
           title: 'GOOSE-Meldungen',
-          noControlBlockFound: 'Keine GOOSE-Nachrichten gefunden',
+          noControlBlockFound: 'Keine GOOSEs gefunden',
         },
       },
       extRefList: {

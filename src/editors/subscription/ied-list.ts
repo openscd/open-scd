@@ -27,8 +27,8 @@ export class IedList extends LitElement {
   @property()
   doc!: XMLDocument;
 
-  @property({ attribute: 'title-for-translation' })
-  titleForTranslation!: string
+  @property({ type: String })
+  serviceType?: 'goose' | 'smv';
 
   private onIedSelect(element: Element): void {
     selectedIed = element;
@@ -42,7 +42,7 @@ export class IedList extends LitElement {
 
   render(): TemplateResult {
     return html` <section tabindex="0">
-      <h1>${translate(this.titleForTranslation || 'subscription.iedList.title')}</h1>
+      <h1>${translate(`subscription.${this.serviceType}.subscriber.iedListTitle`)}</h1>
       <filtered-list>
         ${getOrderedIeds(this.doc).map(
           ied =>

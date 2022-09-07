@@ -85,7 +85,7 @@ export class SmvPublisherList extends LitElement {
 
   render(): TemplateResult {
     return html` <section tabindex="0">
-      <h1>${translate('subscription.smv.publisherSmv.title')}</h1>
+      <h1>${translate('subscription.smv.publisher.title')}</h1>
       <filtered-list>
         ${getOrderedIeds(this.doc).map(
           ied =>

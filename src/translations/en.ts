@@ -342,11 +342,11 @@ export const en = {
       noIedSelected: 'No IED selected',
     },
     goose: {
-      publisherGoose: {
+      publisher: {
         title: 'GOOSE Publishers',
         subscriberTitle: 'IEDs subscribed to {{ selected }}',
       },
-      subscriberGoose: {
+      subscriber: {
         iedListTitle: 'GOOSE Subscribers',
         publisherTitle: 'GOOSE Messages subscribed to {{selected}}',
       },
@@ -356,11 +356,11 @@ export const en = {
       },
     },
     smv: {
-      publisherSmv: {
+      publisher: {
         title: 'Sampled Value Messages',
         subscriberTitle: 'IEDs subscribed to {{ selected }}',
       },
-      subscriberSmv: {
+      subscriber: {
         iedListTitle: 'Sampled Value Subscribers',
         publisherTitle: 'Sampled Value Messages subscribed to {{ selected }}',
       },
