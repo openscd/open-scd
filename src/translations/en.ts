@@ -357,7 +357,7 @@ export const en = {
     },
     smv: {
       publisherSmv: {
-        title: '    ',
+        title: 'Sampled Value Messages',
         subscriberTitle: 'IEDs subscribed to {{ selected }}',
       },
       subscriberSmv: {
@@ -383,15 +383,15 @@ export const en = {
         },
       },
       extRefList: {
-          title:
-            'Inputs available for {{ controlTag }} / {{ controlElementName }} / {{lDeviceName}} / {{lNodeName}} / {{ fcdaName }}',
-        },
+        title:
+          'Inputs available for {{ controlElementName }} / {{lDeviceName}} / {{lNodeName}} / {{ fcdaName }}',
         noSelection: 'No data attribute selected',
         noSubscribedExtRefs: 'No subscribed inputs',
         noAvailableExtRefs: 'No available inputs to subscribe',
       },
-    iedList: {
-      title: 'IEDs',
+      iedList: {
+        title: 'IEDs',
+      },
     },
   },
   protocol104: {

@@ -387,14 +387,14 @@ export const de: Translations = {
       },
       extRefList: {
         title:
-          'Ausgewählter {{ controlTag }} /  Datenpunkt {{ controlElementName }} / {{lDeviceName}} / {{lNodeName}} / {{ fcdaName }}"',
-      },
+          'Ausgewählter Datenpunkt {{ controlElementName }} / {{lDeviceName}} / {{lNodeName}} / {{ fcdaName }}',
         noSelection: 'Kein Daten-Attribut ausgewählt',
         noSubscribedExtRefs: 'Keine abonnierten Eingänge',
         noAvailableExtRefs: 'Keine verfügbaren Eingaben zum Abonnieren',
       },
-    iedList: {
-      title: 'IEDs',
+      iedList: {
+        title: 'IEDs',
+      },
     },
   },
   protocol104: {
