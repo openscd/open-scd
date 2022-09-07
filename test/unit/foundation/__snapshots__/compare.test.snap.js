@@ -1,7 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["compas-compare-dialog renderDiff child is added, so check latest snapshot"] = 
+snapshots["compas-compare-dialog renderDiff child is added, so check latest snapshot"] =
 `<div>
   <mwc-list multi="">
     <mwc-list-item
@@ -46,7 +46,7 @@ snapshots["compas-compare-dialog renderDiff child is added, so check latest snap
 `;
 /* end snapshot compas-compare-dialog renderDiff child is added, so check latest snapshot */
 
-snapshots["compas-compare-dialog renderDiff child is removed and attribute added/removed/updated, so check latest snapshot"] = 
+snapshots["compas-compare-dialog renderDiff child is removed and attribute added/removed/updated, so check latest snapshot"] =
 `<div>
   <mwc-list multi="">
     <mwc-list-item
@@ -270,7 +270,7 @@ snapshots["compas-compare-dialog renderDiff child is added, but is ignored, so c
 </div>
 `;
 /* end snapshot compas-compare-dialog renderDiff child is added, but is ignored, so check latest snapshot */
-snapshots["compas-compare-dialog renderDiff attribute is updated, but is ignored, so check latest snapshot"] = 
+snapshots["compas-compare-dialog renderDiff attribute is updated, but is ignored, so check latest snapshot"] =
 `<div>
   <mwc-list multi="">
     <mwc-list-item

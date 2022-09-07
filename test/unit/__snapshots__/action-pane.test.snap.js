@@ -3,12 +3,11 @@ export const snapshots = {};
 
 snapshots["action-pane looks like the latest snapshot"] = 
 `<section>
-  <h1 title="test label">
+  <h1>
     <span>
       <slot name="icon">
       </slot>
     </span>
-    test label
     <nav>
       <slot name="action">
       </slot>
@@ -24,7 +23,7 @@ snapshots["action-pane looks like the latest snapshot"] =
 
 snapshots["action-pane with icon property set looks like the latest snapshot"] = 
 `<section>
-  <h1 title="test label">
+  <h1>
     <span>
       <slot name="icon">
         <mwc-icon>
@@ -32,7 +31,6 @@ snapshots["action-pane with icon property set looks like the latest snapshot"] =
         </mwc-icon>
       </slot>
     </span>
-    test label
     <nav>
       <slot name="action">
       </slot>

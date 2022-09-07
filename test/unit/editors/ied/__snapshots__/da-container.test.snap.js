@@ -92,19 +92,9 @@ snapshots["with a DA element looks like the latest snapshot"] =
     >
     </mwc-icon-button>
   </abbr>
-  <div style="display: flex; flex-direction: row;">
-    <div style="display: flex; align-items: center; flex: auto;">
-      <h4>
-      </h4>
-    </div>
-    <div style="display: flex; align-items: center;">
-      <mwc-icon-button icon="add">
-      </mwc-icon-button>
-    </div>
-  </div>
+  <h6>
+  </h6>
 </action-pane>
 `;
 /* end snapshot with a DA element looks like the latest snapshot */
-
-ks like the latest snapshot */
 
