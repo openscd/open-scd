@@ -4,7 +4,7 @@ export const snapshots = {};
 snapshots["goose-list looks like the latest snapshot with a document loaded"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.goose.publisherGoose.title]
+    [subscription.goose.publisher.title]
   </h1>
   <filtered-list>
     <mwc-list-item
@@ -132,7 +132,7 @@ snapshots["goose-list looks like the latest snapshot with a document loaded"] =
 snapshots["goose-list looks like the latest snapshot without a doc loaded"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.goose.publisherGoose.title]
+    [subscription.goose.publisher.title]
   </h1>
   <filtered-list>
   </filtered-list>

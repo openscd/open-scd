@@ -4,7 +4,7 @@ export const snapshots = {};
 snapshots["subscriber-list-goose initially looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.goose.publisherGoose.subscriberTitle]
+    [subscription.goose.publisher.subscriberTitle]
   </h1>
   <mwc-list>
     <mwc-list-item

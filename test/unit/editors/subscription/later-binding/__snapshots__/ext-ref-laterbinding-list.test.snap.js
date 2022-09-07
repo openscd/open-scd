@@ -22,7 +22,7 @@ snapshots["smv-list with document loaded looks like the latest snapshot, but no 
 snapshots["smv-list with document loaded when SVC has no subscriptions looks like the latest snapshot, when SVC has no subscriptions"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.laterBinding.extRefList.SampledValueControl.title]
+    [subscription.laterBinding.extRefList.title]
   </h1>
   <filtered-list>
     <mwc-list-item
@@ -224,7 +224,7 @@ snapshots["smv-list with document loaded when SVC has no subscriptions looks lik
 snapshots["smv-list with document loaded when SVC has a single subscriptions looks like the latest snapshot, "] = 
 `<section tabindex="0">
   <h1>
-    [subscription.laterBinding.extRefList.SampledValueControl.title]
+    [subscription.laterBinding.extRefList.title]
   </h1>
   <filtered-list>
     <mwc-list-item
@@ -437,7 +437,7 @@ snapshots["smv-list with document loaded when SVC has a single subscriptions loo
 snapshots["smv-list when SVC has a multiple subscriptions looks like the latest snapshot, "] = 
 `<section tabindex="0">
   <h1>
-    [subscription.laterBinding.extRefList.SampledValueControl.title]
+    [subscription.laterBinding.extRefList.title]
   </h1>
   <filtered-list>
     <mwc-list-item
@@ -779,7 +779,7 @@ snapshots["gse-list with gse document loaded when GSEControl has no subscription
 snapshots["gse-list with gse document loaded when GSEControl has a single subscription looks like the latest snapshot, "] = 
 `<section tabindex="0">
   <h1>
-    [subscription.laterBinding.extRefList.SampledValueControl.title]
+    [subscription.laterBinding.extRefList.title]
   </h1>
   <filtered-list>
     <mwc-list-item
@@ -878,7 +878,7 @@ snapshots["gse-list with gse document loaded when GSEControl has a single subscr
 snapshots["gse-list when GSEControl has a multiple subscriptions looks like the latest snapshot, "] = 
 `<section tabindex="0">
   <h1>
-    [subscription.laterBinding.extRefList.SampledValueControl.title]
+    [subscription.laterBinding.extRefList.title]
   </h1>
   <filtered-list>
     <mwc-list-item
@@ -993,7 +993,7 @@ snapshots["gse-list when GSEControl has a multiple subscriptions looks like the 
 snapshots["gse-list with gse document loaded when GSEControl has no subscriptions looks like the latest snapshot, when GSEControl has no subscriptions"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.laterBinding.extRefList.SampledValueControl.title]
+    [subscription.laterBinding.extRefList.title]
   </h1>
   <filtered-list>
     <mwc-list-item

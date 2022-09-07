@@ -35,7 +35,7 @@ snapshots["Sampled Values Plugin in Publisher view initially the plugin looks li
 snapshots["Sampled Values Plugin in Publisher view initially the Sampled Values list looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.smv.publisherSmv.title]
+    [subscription.smv.publisher.title]
   </h1>
   <filtered-list>
     <mwc-list-item
@@ -162,7 +162,7 @@ snapshots["Sampled Values Plugin in Publisher view initially the Sampled Values 
 snapshots["Sampled Values Plugin in Publisher view initially the subscriber list looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.smv.publisherSmv.subscriberTitle]
+    [subscription.smv.publisher.subscriberTitle]
   </h1>
   <mwc-list>
     <mwc-list-item
@@ -182,7 +182,7 @@ snapshots["Sampled Values Plugin in Publisher view initially the subscriber list
 snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Values message the list on the right will initially show the subscribed / partially subscribed / not subscribed IEDs"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.smv.publisherSmv.subscriberTitle]
+    [subscription.smv.publisher.subscriberTitle]
   </h1>
   <div class="wrapper">
     <filtered-list>
@@ -282,7 +282,7 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
 snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Values message and subscribing an unsubscribed IED it looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.smv.publisherSmv.subscriberTitle]
+    [subscription.smv.publisher.subscriberTitle]
   </h1>
   <div class="wrapper">
     <filtered-list>
@@ -388,7 +388,7 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
 snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Values message and you unsubscribe a subscribed IED it looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.smv.publisherSmv.subscriberTitle]
+    [subscription.smv.publisher.subscriberTitle]
   </h1>
   <div class="wrapper">
     <filtered-list>
@@ -494,7 +494,7 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
 snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Values message and you subscribe a partially subscribed IED it looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.smv.publisherSmv.subscriberTitle]
+    [subscription.smv.publisher.subscriberTitle]
   </h1>
   <div class="wrapper">
     <filtered-list>
@@ -619,7 +619,7 @@ snapshots["Sampled Values Plugin in Subscriber view initially the plugin looks l
   <div class="container">
     <ied-list
       class="row"
-      title-for-translation="subscription.smv.subscriberSmv.iedListTitle"
+      servicetype="smv"
     >
     </ied-list>
     <subscriber-list-smv class="row">
@@ -634,7 +634,7 @@ snapshots["Sampled Values Plugin in Subscriber view initially the plugin looks l
 snapshots["Sampled Values Plugin in Subscriber view initially the IED list looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.smv.subscriberSmv.iedListTitle]
+    [subscription.smv.subscriber.iedListTitle]
   </h1>
   <filtered-list>
     <mwc-list-item
@@ -697,7 +697,7 @@ snapshots["Sampled Values Plugin in Subscriber view initially the IED list looks
 snapshots["Sampled Values Plugin in Subscriber view initially the subscriber list looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.smv.subscriberSmv.publisherTitle]
+    [subscription.smv.subscriber.publisherTitle]
   </h1>
   <mwc-list>
     <mwc-list-item
@@ -717,7 +717,7 @@ snapshots["Sampled Values Plugin in Subscriber view initially the subscriber lis
 snapshots["Sampled Values Plugin in Subscriber view when selecting an IED the subscriber list will initially show the subscribed / partially subscribed / not subscribed IEDs"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.smv.subscriberSmv.publisherTitle]
+    [subscription.smv.subscriber.publisherTitle]
   </h1>
   <div class="wrapper">
     <filtered-list>
@@ -813,7 +813,7 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED the su
 snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and subscribing a unsubscribed Sampled Value message clicking on a SampledValueControl list item it looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.smv.subscriberSmv.publisherTitle]
+    [subscription.smv.subscriber.publisherTitle]
   </h1>
   <div class="wrapper">
     <filtered-list>
@@ -910,7 +910,7 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and su
 snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and unsubscribing a subscribed Sampled Value message it looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.smv.subscriberSmv.publisherTitle]
+    [subscription.smv.subscriber.publisherTitle]
   </h1>
   <div class="wrapper">
     <filtered-list>
@@ -1003,7 +1003,7 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and un
 snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and subscribing a partially subscribed Sampled Value message it looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.smv.subscriberSmv.publisherTitle]
+    [subscription.smv.subscriber.publisherTitle]
   </h1>
   <div class="wrapper">
     <filtered-list>

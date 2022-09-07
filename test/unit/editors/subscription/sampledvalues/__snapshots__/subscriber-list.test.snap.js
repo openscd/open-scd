@@ -4,7 +4,7 @@ export const snapshots = {};
 snapshots["subscriber-list-smv initially looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.smv.publisherSmv.subscriberTitle]
+    [subscription.smv.publisher.subscriberTitle]
   </h1>
   <mwc-list>
     <mwc-list-item
