@@ -39,11 +39,10 @@ export class FilterButton extends FilteredList {
     if (this.selected) {
       if (this.selected instanceof Array) {
         this.selected.forEach(item => selectedItems.push(item.value));
-        this.dispatchEvent(newSelectedItemsChangedEvent(selectedItems));
       } else {
         selectedItems.push(this.selected.value);
-        this.dispatchEvent(newSelectedItemsChangedEvent(selectedItems));
       }
+      this.dispatchEvent(newSelectedItemsChangedEvent(selectedItems));
     }
   }
 

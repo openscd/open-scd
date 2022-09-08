@@ -58,7 +58,7 @@ export default class IedPlugin extends LitElement {
     const uniqueLNClassList: string[] = [];
     if (currentIed) {
       return Array.from(currentIed.querySelectorAll('LN0, LN'))
-        .filter(element => element.getAttribute('lnClass'))
+        .filter(element => element.hasAttribute('lnClass'))
         .filter(element => {
           const lnClass = element.getAttribute('lnClass') ?? '';
           if (uniqueLNClassList.includes(lnClass)) {
@@ -82,10 +82,10 @@ export default class IedPlugin extends LitElement {
     // select the first IED from the List.
     if (this.selectedIEDs.length >= 1) {
       const iedList = this.iedList;
-      return iedList.filter(element => {
+      return iedList.find(element => {
         const iedName = getNameAttribute(element);
         return this.selectedIEDs[0] === iedName;
-      })[0];
+      });
     }
     return undefined;
   }
