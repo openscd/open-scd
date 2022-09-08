@@ -16,6 +16,7 @@ snapshots["Editor for ReportControl element and its direct children with valid R
   <div class="content">
     <wizard-textfield
       dialoginitialfocus=""
+      disabled=""
       helper="[scl.name]"
       label="name"
       maxlength="32"
@@ -32,11 +33,13 @@ snapshots["Editor for ReportControl element and its direct children with valid R
     >
     </wizard-textfield>
     <wizard-checkbox
+      disabled=""
       helper="[scl.buffered]"
       label="buffered"
     >
     </wizard-checkbox>
     <wizard-textfield
+      disabled=""
       helper="[report.rptID]"
       label="rptID"
       nullable=""
@@ -44,12 +47,14 @@ snapshots["Editor for ReportControl element and its direct children with valid R
     >
     </wizard-textfield>
     <wizard-checkbox
+      disabled=""
       helper="[scl.indexed]"
       label="indexed"
       nullable=""
     >
     </wizard-checkbox>
     <wizard-textfield
+      disabled=""
       helper="[scl.maxReport]"
       label="max Clients"
       nullable=""
@@ -58,6 +63,7 @@ snapshots["Editor for ReportControl element and its direct children with valid R
     >
     </wizard-textfield>
     <wizard-textfield
+      disabled=""
       helper="[scl.bufTime]"
       label="bufTime"
       min="0"
@@ -68,6 +74,7 @@ snapshots["Editor for ReportControl element and its direct children with valid R
     >
     </wizard-textfield>
     <wizard-textfield
+      disabled=""
       helper="[scl.intgPd]"
       label="intgPd"
       min="0"
@@ -83,30 +90,35 @@ snapshots["Editor for ReportControl element and its direct children with valid R
       Trigger Options
     </h3>
     <wizard-checkbox
+      disabled=""
       helper="[scl.dchg]"
       label="dchg"
       nullable=""
     >
     </wizard-checkbox>
     <wizard-checkbox
+      disabled=""
       helper="[scl.qchg]"
       label="qchg"
       nullable=""
     >
     </wizard-checkbox>
     <wizard-checkbox
+      disabled=""
       helper="[scl.dupd]"
       label="dupd"
       nullable=""
     >
     </wizard-checkbox>
     <wizard-checkbox
+      disabled=""
       helper="[scl.period]"
       label="period"
       nullable=""
     >
     </wizard-checkbox>
     <wizard-checkbox
+      disabled=""
       helper="[scl.gi]"
       label="gi"
       nullable=""
@@ -116,48 +128,56 @@ snapshots["Editor for ReportControl element and its direct children with valid R
       Optional Fields
     </h3>
     <wizard-checkbox
+      disabled=""
       helper="[scl.seqNum]"
       label="seqNum"
       nullable=""
     >
     </wizard-checkbox>
     <wizard-checkbox
+      disabled=""
       helper="[scl.timeStamp]"
       label="timeStamp"
       nullable=""
     >
     </wizard-checkbox>
     <wizard-checkbox
+      disabled=""
       helper="[scl.dataSet]"
       label="dataSet"
       nullable=""
     >
     </wizard-checkbox>
     <wizard-checkbox
+      disabled=""
       helper="[scl.reasonCode]"
       label="reasonCode"
       nullable=""
     >
     </wizard-checkbox>
     <wizard-checkbox
+      disabled=""
       helper="[scl.dataRef]"
       label="dataRef"
       nullable=""
     >
     </wizard-checkbox>
     <wizard-checkbox
+      disabled=""
       helper="[scl.entryID]"
       label="entryID"
       nullable=""
     >
     </wizard-checkbox>
     <wizard-checkbox
+      disabled=""
       helper="[scl.configRef]"
       label="configRef"
       nullable=""
     >
     </wizard-checkbox>
     <wizard-checkbox
+      disabled=""
       helper="[scl.bufOvfl]"
       label="bufOvfl"
       nullable=""
