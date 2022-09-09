@@ -24,6 +24,7 @@ import {
   compareNames,
   getNameAttribute,
   identity,
+  isPublic,
   newPendingStateEvent,
   selector,
 } from '../foundation.js';
@@ -94,20 +95,22 @@ export default class CompareIEDPlugin extends LitElement {
   @property({ attribute: false })
   docName!: string;
 
-  private templateDocName: string = '';
+  private templateDocName = '';
 
   get ieds(): Element[] {
     if (this.doc) {
-      return Array.from(this.doc.querySelectorAll(`IED`)).sort(compareNames);
+      return Array.from(this.doc.querySelectorAll(`IED`))
+        .filter(isPublic)
+        .sort(compareNames);
     }
     return [];
   }
 
   get templateIeds(): Element[] {
     if (this.templateDoc) {
-      return Array.from(this.templateDoc.querySelectorAll(`IED`)).sort(
-        compareNames
-      );
+      return Array.from(this.templateDoc.querySelectorAll(`IED`))
+        .filter(isPublic)
+        .sort(compareNames);
     }
     return [];
   }
@@ -193,14 +196,19 @@ export default class CompareIEDPlugin extends LitElement {
   }
 
   protected renderCompare(): TemplateResult {
+    const leftHandTitle: string | number = identity(this.selectedProjectIed!);
+    const rightHandTitle: string | number = identity(this.selectedTemplateIed!);
+
     return html`<plain-compare-list
-      .leftHandObject=${this.selectedProjectIed}
-      .rightHandObject=${this.selectedTemplateIed}
-      .leftHandTitle=${identity(this.selectedProjectIed!)}
-      .rightHandTitle=${identity(this.selectedTemplateIed!)}
-      .leftHandSubtitle=${this.docName}
-      .rightHandSubtitle=${this.templateDocName}
-      .filterToIgnore=${filterToIgnore}
+        .leftHandObject=${this.selectedProjectIed!}
+        .rightHandObject=${this.selectedTemplateIed!}
+        .leftHandTitle=${typeof leftHandTitle === 'number' ? '' : leftHandTitle}
+        .rightHandTitle=${typeof rightHandTitle === 'number'
+          ? ''
+          : rightHandTitle}
+        .leftHandSubtitle=${this.docName}
+        .rightHandSubtitle=${this.templateDocName}
+        .filterToIgnore=${filterToIgnore}
       ></plain-compare-list>
       ${this.renderSelectIedButton()} ${this.renderCloseButton()}`;
   }

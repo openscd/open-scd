@@ -9,33 +9,54 @@ import {
 } from 'lit-element';
 import { translate } from 'lit-translate';
 
-import { DiffFilter, renderDiff } from './foundation/compare';
+import { DiffFilter, renderDiff } from './foundation/compare.js';
 
 @customElement('plain-compare-list')
 export class PlainCompareList extends LitElement {
+  /**
+   * The title of the left list
+   */
   @property({ type: String })
-  leftHandTitle: string = '';
+  leftHandTitle = '';
 
+  /**
+   * The title of the right list
+   */
   @property({ type: String })
-  rightHandTitle: string = '';
+  rightHandTitle = '';
 
+  /**
+   * The left Element that should be compared
+   */
   @property({ type: Object })
   leftHandObject!: Element;
 
+  /**
+   * The right element that should be compared against
+   */
   @property({ type: Object })
   rightHandObject!: Element;
 
+  /**
+   * Optional filter to ignore differences
+   */
   @property({ type: Object })
   filterToIgnore?: DiffFilter<Element>;
 
+  /**
+   * The subtitle of the left list (optional)
+   */
   @property({ type: String })
-  leftHandSubtitle: string = '';
+  leftHandSubtitle = '';
 
+  /**
+   * The subtitle of the right list (optional)
+   */
   @property({ type: String })
-  rightHandSubtitle: string = '';
+  rightHandSubtitle = '';
 
   @state()
-  filterMutables: boolean = true;
+  filterMutables = true;
 
   render(): TemplateResult {
     return html`
@@ -45,55 +66,40 @@ export class PlainCompareList extends LitElement {
       </div>
       <div class="container container--alt">
         <div class="list__container list__container--left">
-          <h3 class="mdc-dialog__title">
-            ${this.leftHandTitle}
-          </h3>
-          ${
-            this.leftHandSubtitle && this.leftHandSubtitle.length > 0
-              ? html`<h5 class="mdc-dialog__title">
-              ${this.leftHandSubtitle}
-              </h5>
-              `
-              : ''
-          }
+          <h3 class="mdc-dialog__title">${this.leftHandTitle}</h3>
+          ${this.leftHandSubtitle && this.leftHandSubtitle.length > 0
+            ? html`<h5 class="mdc-dialog__title">${this.leftHandSubtitle}</h5> `
+            : ''}
         </div>
         <div class="list__container">
-          <h3 class="mdc-dialog__title">
-            ${this.rightHandTitle}
-          </h3>
-          ${
-            this.rightHandSubtitle && this.rightHandSubtitle.length > 0
-              ? html`<h5 class="mdc-dialog__title">
-              ${this.rightHandSubtitle}
-              </h5>
-              `
-              : ''
-          }
+          <h3 class="mdc-dialog__title">${this.rightHandTitle}</h3>
+          ${this.rightHandSubtitle && this.rightHandSubtitle.length > 0
+            ? html`<h5 class="mdc-dialog__title">
+                ${this.rightHandSubtitle}
+              </h5> `
+            : ''}
         </div>
       </div>
-      ${
-        this.leftHandObject && this.rightHandObject
-          ? html`
-          ${renderDiff(
-            this.leftHandObject,
-            this.rightHandObject,
-            this.filterMutables ? this.filterToIgnore : {}
-          )}
-        `
-          : ''
-      }
-      `;
+      ${this.leftHandObject && this.rightHandObject
+        ? html`
+            ${renderDiff(
+              this.leftHandObject,
+              this.rightHandObject,
+              this.filterMutables ? this.filterToIgnore : {}
+            )}
+          `
+        : ''}
+    `;
   }
 
   protected renderFilterCheckbox(): TemplateResult {
-    return html`<mwc-formfield
-          label="${translate('compare.filterMutables')}">
-            <mwc-checkbox
-              ?checked=${this.filterMutables}
-              @change=${() => (this.filterMutables = !this.filterMutables)}>
-            </mwc-checkbox>
-          </mwc-formfield>
-          `;
+    return html`<mwc-formfield label="${translate('compare.filterMutables')}">
+      <mwc-checkbox
+        ?checked=${this.filterMutables}
+        @change=${() => (this.filterMutables = !this.filterMutables)}
+      >
+      </mwc-checkbox>
+    </mwc-formfield> `;
   }
 
   static styles = css`
