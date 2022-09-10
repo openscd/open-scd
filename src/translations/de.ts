@@ -386,8 +386,7 @@ export const de: Translations = {
         },
       },
       extRefList: {
-        title:
-          'Ausgewählter Datenpunkt {{ controlElementName }} / {{lDeviceName}} / {{lNodeName}} / {{ fcdaName }}',
+        title: 'Für Ausgewählte Daten-Attribut Verfügbare Eingaben',
         noSelection: 'Kein Daten-Attribut ausgewählt',
         noSubscribedExtRefs: 'Keine abonnierten Eingänge',
         noAvailableExtRefs: 'Keine verfügbaren Eingaben zum Abonnieren',

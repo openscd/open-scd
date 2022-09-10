@@ -383,8 +383,7 @@ export const en = {
         },
       },
       extRefList: {
-        title:
-          'Inputs available for {{ controlElementName }} / {{lDeviceName}} / {{lNodeName}} / {{ fcdaName }}',
+        title: 'Inputs Available For Selected Data Attribute',
         noSelection: 'No data attribute selected',
         noSubscribedExtRefs: 'No subscribed inputs',
         noAvailableExtRefs: 'No available inputs to subscribe',
