@@ -103,7 +103,8 @@ snapshots["compas-compare-dialog renderDiff child is removed and attribute added
           twoline=""
         >
           <span>
-            desc: Extra Voltage Level
+            desc:
+                            Extra Voltage Level
           </span>
           <span slot="secondary">
             Substation 1>S1 110kV
@@ -139,7 +140,8 @@ snapshots["compas-compare-dialog renderDiff child is removed and attribute added
           twoline=""
         >
           <span>
-            desc: Busbar 6
+            desc:
+                            Busbar 6
           </span>
           <span slot="secondary">
             Substation 1>S1 110kV>BUSBAR6
@@ -183,7 +185,8 @@ snapshots["compas-compare-dialog renderDiff child is removed and attribute added
           twoline=""
         >
           <span>
-            desc: First Bays
+            desc:
+                            First Bays
           </span>
           <span slot="secondary">
             Substation 1>S1 110kV>BAY_L1_0
@@ -208,7 +211,8 @@ snapshots["compas-compare-dialog renderDiff child is removed and attribute added
           twoline=""
         >
           <span>
-            desc: First Bay
+            desc:
+                            First Bay
           </span>
           <span slot="secondary">
             Substation 1>S1 110kV>BAY_L1_0
@@ -275,7 +279,8 @@ snapshots["compas-compare-dialog renderDiff attribute is updated, but is ignored
           twoline=""
         >
           <span>
-            desc: Extra Voltage Level
+            desc:
+                            Extra Voltage Level
           </span>
           <span slot="secondary">
             Substation 1>S1 110kV
@@ -311,7 +316,8 @@ snapshots["compas-compare-dialog renderDiff attribute is updated, but is ignored
           twoline=""
         >
           <span>
-            desc: Busbar 6
+            desc:
+                            Busbar 6
           </span>
           <span slot="secondary">
             Substation 1>S1 110kV>BUSBAR6
@@ -355,7 +361,8 @@ snapshots["compas-compare-dialog renderDiff attribute is updated, but is ignored
           twoline=""
         >
           <span>
-            desc: First Bays
+            desc:
+                            First Bays
           </span>
           <span slot="secondary">
             Substation 1>S1 110kV>BAY_L1_0
@@ -380,7 +387,8 @@ snapshots["compas-compare-dialog renderDiff attribute is updated, but is ignored
           twoline=""
         >
           <span>
-            desc: First Bay
+            desc:
+                            First Bay
           </span>
           <span slot="secondary">
             Substation 1>S1 110kV>BAY_L1_0
