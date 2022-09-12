@@ -2,9 +2,9 @@ import {
   css,
   customElement,
   html,
-  state,
   property,
   query,
+  state,
   TemplateResult,
   unsafeCSS,
 } from 'lit-element';

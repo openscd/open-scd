@@ -1,6 +1,6 @@
-import { html, fixture, expect } from '@open-wc/testing';
+import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../../../src/editors/ied/element-path.js'
+import '../../../../src/editors/ied/element-path.js';
 import { ElementPath } from '../../../../src/editors/ied/element-path.js';
 
 describe('element-path', () => {
@@ -8,7 +8,7 @@ describe('element-path', () => {
 
   beforeEach(async () => {
     element = await fixture(html`<element-path
-      .elementNames=${["IED1", "AccessPoint1", "My Little Server"]}
+      .elementNames=${['IED1', 'AccessPoint1', 'My Little Server']}
     ></element-path>`);
   });
 
