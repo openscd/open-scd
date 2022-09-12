@@ -1,4 +1,4 @@
-import { css, customElement, html, query, TemplateResult } from 'lit-element';
+import { customElement, html, query, TemplateResult } from 'lit-element';
 import { nothing } from 'lit-html';
 import { until } from 'lit-html/directives/until';
 import { translate } from 'lit-translate';
@@ -82,6 +82,4 @@ export class LNContainer extends Container {
         : nothing}
     </action-pane>`;
   }
-
-  static styles = css``;
 }

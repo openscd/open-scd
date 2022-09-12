@@ -88,7 +88,7 @@ describe('filtered-list', () => {
         .be.null;
     });
 
-    it('selects all enabled and visable check-list-items on checkAll click', async () => {
+    it('selects all enabled and visible check-list-items on checkAll click', async () => {
       (<HTMLElement>(
         element.shadowRoot!.querySelector('mwc-formfield>mwc-checkbox')
       )).click();
