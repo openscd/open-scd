@@ -411,6 +411,11 @@
       <LN prefix="U01N" lnClass="TVTR" inst="4" lnType="DummyTVTR" />
     </AccessPoint>
   </IED>
+  <IED name="IED5" type="DummyIED" manufacturer="DummyManufactorer" configVersion="1" originalSclVersion="2007" originalSclRevision="B" owner="DummyOwner">
+    <AccessPoint name="P1">
+      <Server></Server>
+    </AccessPoint>
+  </IED>
 	<DataTypeTemplates>
 		<LNodeType lnClass="tHardeClass" id="lnTypeWithoutDOs">
 		</LNodeType>

@@ -91,6 +91,20 @@ snapshots["IED Plugin with a doc loaded containing IEDs looks like the latest sn
                   DummyManufactorer
         </span>
       </mwc-radio-list-item>
+      <mwc-radio-list-item
+        aria-disabled="false"
+        graphic="control"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="IED5"
+      >
+        IED5
+        <span slot="secondary">
+          DummyIED —
+                  DummyManufactorer
+        </span>
+      </mwc-radio-list-item>
     </oscd-filter-button>
     <oscd-filter-button
       id="lnClassesFilter"

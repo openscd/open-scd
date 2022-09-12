@@ -6,6 +6,8 @@ import '../../../../src/editors/ied/ldevice-container.js';
 
 import { LDeviceContainer } from '../../../../src/editors/ied/ldevice-container.js';
 
+import { getLNClasses } from './test-support.js';
+
 describe('ldevice-container', () => {
   let doc: XMLDocument;
   let nsdoc: Nsdoc;
@@ -91,21 +93,16 @@ describe('ldevice-container', () => {
   describe('LDevice Element without LN Element', () => {
     beforeEach(async () => {
       lDeviceElement = doc.querySelector('LDevice[inst="EmptyLDevice"]')!;
-    });
 
-    it('looks like the latest snapshot', async () => {
       element = await fixture(html`<ldevice-container
         .element=${lDeviceElement}
         .nsdoc="${nsdoc}"
         .selectedLNClasses="${getLNClasses(lDeviceElement)}"
       ></ldevice-container>`);
+    });
+
+    it('looks like the latest snapshot', async () => {
       await expect(element).shadowDom.to.equalSnapshot();
     });
   });
-
-  function getLNClasses(element: Element): string[] {
-    return Array.from(element.querySelectorAll('LN0, LN'))
-      .map(element => element.getAttribute('lnClass'))
-      .filter(value => value) as string[];
-  }
 });
