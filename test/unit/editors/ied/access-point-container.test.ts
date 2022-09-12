@@ -73,7 +73,7 @@ describe('access-point-container', () => {
 
         element = await fixture(html`<access-point-container
           .element="${apElement}"
-          .selectedLNClasses="${getLNClasses(apElement)}"
+          .selectedLNClasses="${[]}"
         ></access-point-container>`);
       });
 
