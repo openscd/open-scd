@@ -7,7 +7,7 @@ import SMVSubscribeLaterBindingPlugin from '../../../src/editors/SMVSubscriberLa
 import {
   getExtrefLaterBindingList,
   getFCDALaterBindingList,
-} from '../../../src/editors/subscription/later-binding/foundation.js';
+} from './test-support.js';
 
 describe('SMV Subscribe Later Binding plugin', () => {
   customElements.define(

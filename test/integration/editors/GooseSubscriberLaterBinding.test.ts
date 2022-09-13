@@ -6,7 +6,7 @@ import GooseSubscriberLaterBinding from '../../../src/editors/GooseSubscriberLat
 import {
   getExtrefLaterBindingList,
   getFCDALaterBindingList,
-} from '../../../src/editors/subscription/later-binding/foundation.js';
+} from './test-support.js';
 
 describe('GOOSE Subscribe Later Binding Plugin', () => {
   customElements.define(

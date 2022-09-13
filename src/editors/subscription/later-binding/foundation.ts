@@ -1,8 +1,3 @@
-import { ExtRefLaterBindingList } from './ext-ref-laterbinding-list.js';
-import { FCDALaterBindingList } from './fcda-later-binding-list.js';
-import SMVSubscribeLaterBindingPlugin from '../../SMVSubscriberLaterBinding.js';
-import GooseSubscribeLaterBindingPlugin from '../../GooseSubscriberLaterBinding.js';
-
 export function getFcdaTitleValue(fcdaElement: Element): string {
   return `${fcdaElement.getAttribute('doName')}${
     fcdaElement.hasAttribute('doName') && fcdaElement.hasAttribute('daName')
@@ -27,22 +22,6 @@ export function newFcdaSelectEvent(
     ...eventInitDict,
     detail: { controlElement, fcda, ...eventInitDict?.detail },
   });
-}
-
-export function getFCDALaterBindingList(
-  element: SMVSubscribeLaterBindingPlugin | GooseSubscribeLaterBindingPlugin
-): FCDALaterBindingList {
-  return <FCDALaterBindingList>(
-    element.shadowRoot?.querySelector('fcda-later-binding-list')
-  );
-}
-
-export function getExtrefLaterBindingList(
-  element: SMVSubscribeLaterBindingPlugin | GooseSubscribeLaterBindingPlugin
-): ExtRefLaterBindingList {
-  return <ExtRefLaterBindingList>(
-    element.shadowRoot?.querySelector('extref-later-binding-list')
-  );
 }
 
 declare global {
