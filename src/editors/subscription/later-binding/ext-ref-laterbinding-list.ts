@@ -383,10 +383,6 @@ export class ExtRefLaterBindingList extends LitElement {
   static styles = css`
     ${styles}
 
-    h1 {
-      white-space: normal;  
-    }
-
     mwc-list-item.hidden[noninteractive] + li[divider] {
       display: none;
     }
