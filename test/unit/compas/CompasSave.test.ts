@@ -8,13 +8,22 @@ import '../../../src/compas/CompasSave.js';
 
 describe('compas-save', () => {
   let element: CompasSaveElement & CompasExistsInElement;
+  let doc: Document;
   const docName = 'station123.scd';
   const docId = '6a45ae97-5605-44f8-b4e6-25305bc6c036';
 
+  beforeEach(async () => {
+    doc = await fetch('/test/testfiles/compas/test-scd.cid')
+      .then(response => response.text())
+      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+  });
+
+  // test-scd.cid
   describe('still determining if document exists in CoMPAS', () => {
     beforeEach(async () => {
       element = fixtureSync(
         html`<compas-save
+          .doc="${doc}"
           .docName="${docName}"
           .docId="${docId}"
         ></compas-save>`
@@ -35,7 +44,7 @@ describe('compas-save', () => {
   describe('new document in compas', () => {
     beforeEach(async () => {
       element = fixtureSync(
-        html`<compas-save .docName="${docName}"></compas-save>`
+        html`<compas-save .doc="${doc}" .docName="${docName}"></compas-save>`
       );
 
       sinon.stub(element, 'checkExistInCompas').callsFake(() => {
@@ -55,6 +64,7 @@ describe('compas-save', () => {
     beforeEach(async () => {
       element = fixtureSync(
         html`<compas-save
+          .doc="${doc}"
           .docName="${docName}"
           .docId="${docId}"
         ></compas-save>`
