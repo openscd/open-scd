@@ -29,7 +29,7 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
     );
   });
 
-  it('when unsubscribing a subscribed ExtRef then the list are changed', async () => {
+  it('when unsubscribing a subscribed ExtRef then the lists are changed', async () => {
     const gooseListElement = getFCDALaterBindingList(element);
     const extRefListElement = getExtrefLaterBindingList(element);
 

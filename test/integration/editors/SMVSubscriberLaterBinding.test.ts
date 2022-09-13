@@ -30,7 +30,7 @@ describe('SMV Subscribe Later Binding plugin', () => {
     await element.requestUpdate();
   });
 
-  it('when subscribing an available ExtRef then the list are changed', async () => {
+  it('when subscribing an available ExtRef then the lists are changed', async () => {
     const svcListElement = getFCDALaterBindingList(element);
     const extRefListElement = getExtrefLaterBindingList(element);
 
@@ -63,7 +63,7 @@ describe('SMV Subscribe Later Binding plugin', () => {
     ).to.be.equal(7);
   });
 
-  it('when unsubscribing a subscribed ExtRef then the list are changed', async () => {
+  it('when unsubscribing a subscribed ExtRef then the lists are changed', async () => {
     const svcListElement = getFCDALaterBindingList(element);
     const extRefListElement = getExtrefLaterBindingList(element);
 
