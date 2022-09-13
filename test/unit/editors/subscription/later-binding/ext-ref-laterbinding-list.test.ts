@@ -1,9 +1,9 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../../../../src/editors/subscription/later-binding/ext-ref-laterbinding-list.js';
+import '../../../../../src/editors/subscription/later-binding/ext-ref-later-binding-list.js';
 
 import { newFcdaSelectEvent } from '../../../../../src/editors/subscription/later-binding/foundation.js';
-import { ExtRefLaterBindingList } from '../../../../../src/editors/subscription/later-binding/ext-ref-laterbinding-list.js';
+import { ExtRefLaterBindingList } from '../../../../../src/editors/subscription/later-binding/ext-ref-later-binding-list.js';
 
 describe('smv-list', () => {
   let parent: Element;
