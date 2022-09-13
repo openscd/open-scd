@@ -711,7 +711,7 @@ snapshots["GOOSE subscriber plugin in Subscriber view per default the right hand
   <h1>
     [subscription.goose.subscriber.iedListTitle]
   </h1>
-  <filtered-list>
+  <filtered-list activatable="">
     <mwc-list-item
       aria-disabled="false"
       graphic="icon"
@@ -1212,7 +1212,7 @@ snapshots["GOOSE subscriber plugin in Publisher view per default the right hand 
   <h1>
     [subscription.goose.publisher.title]
   </h1>
-  <filtered-list>
+  <filtered-list activatable="">
     <mwc-list-item
       aria-disabled="false"
       graphic="icon"
