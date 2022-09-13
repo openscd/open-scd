@@ -30,6 +30,7 @@ export default class CompasSaveMenuPlugin extends LitElement {
   compasSaveElement!: CompasSaveElement;
 
   async run(): Promise<void> {
+    await this.compasSaveElement.requestUpdate();
     this.dialog.open = true;
   }
 

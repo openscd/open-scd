@@ -1,6 +1,7 @@
 import { expect, fixtureSync, html, waitUntil } from '@open-wc/testing';
 import sinon, { SinonStub } from 'sinon';
 
+import { Select } from '@material/mwc-select';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import '../../../src/compas/CompasSclTypeSelect.js';
@@ -78,6 +79,8 @@ describe('compas-scltype-select', () => {
   });
 
   describe('after-list-loaded', () => {
+    let select: Select;
+
     beforeEach(async () => {
       element = fixtureSync(
         html`<compas-scltype-select></compas-scltype-select>`
@@ -95,47 +98,48 @@ describe('compas-scltype-select', () => {
 
       await element;
       await waitUntil(() => element.sclTypes !== undefined);
+
+      select = <Select>element.shadowRoot!.querySelector('mwc-select');
+      await select.updateComplete;
     });
 
     afterEach(() => {
       sinon.restore();
     });
 
-    it('has 2 item entries', () => {
+    it('has 2 item entries', async () => {
       expect(
-        element.shadowRoot!.querySelectorAll('mwc-list > mwc-radio-list-item')
+        element.shadowRoot!.querySelectorAll('mwc-select > mwc-list-item')
       ).to.have.length(2);
     });
 
-    it('will be invalid when no selection made', () => {
+    it('will be invalid when no selection made', async () => {
       expect(element.valid()).to.be.false;
       sinon.assert.calledOnce(stub);
     });
 
-    it('will be valid when a selection is made', () => {
+    it('will be valid when a selection is made', async () => {
       const item = <ListItemBase>(
-        element
-          .shadowRoot!.querySelectorAll('mwc-list > mwc-radio-list-item')
-          .item(0)
+        select.querySelector('mwc-list-item[value="SED"]')
       );
-      item.click();
+      item.selected = true;
+      await item.updateComplete;
 
       expect(element.valid()).to.be.true;
       sinon.assert.calledOnce(stub);
     });
 
-    it('will not have a selected value', () => {
+    it('will not have a selected value', async () => {
       expect(element.getSelectedValue()).to.be.null;
       sinon.assert.calledOnce(stub);
     });
 
-    it('will have a selected value of SED', () => {
+    it('will have a selected value of SED', async () => {
       const item = <ListItemBase>(
-        element
-          .shadowRoot!.querySelectorAll('mwc-list > mwc-radio-list-item')
-          .item(0)
+        select.querySelector('mwc-list-item[value="SED"]')
       );
-      item.click();
+      item.selected = true;
+      await item.updateComplete;
 
       expect(element.getSelectedValue()).to.be.equal('SED');
       sinon.assert.calledOnce(stub);

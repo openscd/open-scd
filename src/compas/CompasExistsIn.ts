@@ -26,24 +26,20 @@ export function CompasExistsIn<TBase extends LitElementConstructor>(
     protected updated(_changedProperties: PropertyValues): void {
       super.updated(_changedProperties);
 
-      if (
-        _changedProperties.has('docId') ||
-        _changedProperties.has('docName')
-      ) {
+      if (_changedProperties.has('docId')) {
+        this.existInCompas = undefined;
         this.checkExistInCompas();
       }
     }
 
     callService(docType: string, docId: string) {
+      // Use the versions call to check if any exist, because then the document also exists
+      // And it saves bandwidth not to retrieve the whole document.
       return CompasSclDataService().listVersions(docType, docId);
     }
 
     checkExistInCompas(): void {
-      this.existInCompas = undefined;
-
       if (this.docId) {
-        // Use the versions call to check if any exist, because then the document also exists
-        // And it saves bandwidth not to retrieve the whole document.
         const docType = getTypeFromDocName(this.docName);
         this.callService(docType, this.docId)
           .then(() => (this.existInCompas = true))

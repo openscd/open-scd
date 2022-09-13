@@ -122,7 +122,8 @@ export class WizardTextField extends TextField {
       this.setCustomValidity(get('textfield.unique'));
       return false;
     }
-    this.setCustomValidity(''); //Reset. Otherwise super.checkValidity always falseM
+    // Reset to prevent super.checkValidity to always return false
+    this.setCustomValidity('');
     return super.checkValidity();
   }
 

@@ -1,9 +1,17 @@
-import {customElement, LitElement} from "lit-element";
-import {expect, fixtureSync, html, waitUntil} from "@open-wc/testing";
-import sinon, {SinonStub} from "sinon";
+import { expect, fixtureSync, html, waitUntil } from '@open-wc/testing';
+import sinon, { SinonStub } from 'sinon';
 
-import {NOT_FOUND_ERROR, SERVER_ERROR} from "../../../src/compas-services/foundation.js";
-import {CompasExistsIn, CompasExistsInElement} from "../../../src/compas/CompasExistsIn.js";
+import { customElement, LitElement } from 'lit-element';
+
+import {
+  NOT_FOUND_ERROR,
+  SERVER_ERROR,
+} from '../../../src/compas-services/foundation.js';
+
+import {
+  CompasExistsIn,
+  CompasExistsInElement,
+} from '../../../src/compas/CompasExistsIn.js';
 
 @customElement('mock-compas-exists-in')
 export class MockSetter extends CompasExistsIn(LitElement) {}
@@ -16,7 +24,8 @@ describe('CompasExistsInElement', () => {
     beforeEach(async () => {
       // Overwrite, because this scenario is the only on different.
       element = fixtureSync(
-        html`<mock-compas-exists-in></mock-compas-exists-in>`);
+        html`<mock-compas-exists-in></mock-compas-exists-in>`
+      );
 
       stubCallService = sinon.stub(element, 'callService').callsFake(() => {
         return Promise.reject();
@@ -35,10 +44,16 @@ describe('CompasExistsInElement', () => {
   describe('when service call returns a message', () => {
     beforeEach(async () => {
       element = fixtureSync(
-        html`<mock-compas-exists-in docId="some-id" docName="some-scl.scd"></mock-compas-exists-in>`);
+        html`<mock-compas-exists-in
+          docId="some-id"
+          docName="some-scl.scd"
+        ></mock-compas-exists-in>`
+      );
 
       stubCallService = sinon.stub(element, 'callService').callsFake(() => {
-        const doc = <Document>document.implementation.createDocument("", "", null);
+        const doc = <Document>(
+          document.implementation.createDocument('', '', null)
+        );
         return Promise.resolve(doc);
       });
 
@@ -48,17 +63,21 @@ describe('CompasExistsInElement', () => {
 
     it('the document exists', () => {
       expect(element.existInCompas).to.be.equal(true);
-      sinon.assert.calledOnce(stubCallService)
+      sinon.assert.calledTwice(stubCallService);
     });
   });
 
   describe('when service call returns a not found error', () => {
     beforeEach(async () => {
       element = fixtureSync(
-        html`<mock-compas-exists-in docId="some-id" docName="some-scl.scd"></mock-compas-exists-in>`);
+        html`<mock-compas-exists-in
+          docId="some-id"
+          docName="some-scl.scd"
+        ></mock-compas-exists-in>`
+      );
 
       stubCallService = sinon.stub(element, 'callService').callsFake(() => {
-        return Promise.reject({type: NOT_FOUND_ERROR});
+        return Promise.reject({ type: NOT_FOUND_ERROR });
       });
 
       await element;
@@ -67,17 +86,21 @@ describe('CompasExistsInElement', () => {
 
     it('the document does not exists', () => {
       expect(element.existInCompas).to.be.equal(false);
-      sinon.assert.calledOnce(stubCallService)
+      sinon.assert.calledTwice(stubCallService);
     });
   });
 
   describe('when service call returns a other error', () => {
     beforeEach(async () => {
       element = fixtureSync(
-        html`<mock-compas-exists-in docId="some-id" docName="some-scl.scd"></mock-compas-exists-in>`);
+        html`<mock-compas-exists-in
+          docId="some-id"
+          docName="some-scl.scd"
+        ></mock-compas-exists-in>`
+      );
 
       stubCallService = sinon.stub(element, 'callService').callsFake(() => {
-        return Promise.reject({type: SERVER_ERROR});
+        return Promise.reject({ type: SERVER_ERROR });
       });
 
       await element;
@@ -85,7 +108,7 @@ describe('CompasExistsInElement', () => {
 
     it('boolean stays undefined', () => {
       expect(element.existInCompas).to.be.undefined;
-      sinon.assert.calledOnce(stubCallService)
+      sinon.assert.calledTwice(stubCallService);
     });
   });
 

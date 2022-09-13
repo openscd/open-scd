@@ -1,10 +1,10 @@
-import {expect, fixtureSync, html, waitUntil} from '@open-wc/testing';
-import sinon from "sinon";
+import { expect, fixtureSync, html, waitUntil } from '@open-wc/testing';
+import sinon from 'sinon';
 
-import {CompasExistsInElement} from "../../../src/compas/CompasExistsIn.js";
-import CompasSaveElement from "../../../src/compas/CompasSave.js";
+import { CompasExistsInElement } from '../../../src/compas/CompasExistsIn.js';
+import CompasSaveElement from '../../../src/compas/CompasSave.js';
 
-import "../../../src/compas/CompasSave.js";
+import '../../../src/compas/CompasSave.js';
 
 describe('compas-save', () => {
   let element: CompasSaveElement & CompasExistsInElement;
@@ -14,7 +14,10 @@ describe('compas-save', () => {
   describe('still determining if document exists in CoMPAS', () => {
     beforeEach(async () => {
       element = fixtureSync(
-        html`<compas-save .docName="${docName}" .docId="${docId}"></compas-save>`
+        html`<compas-save
+          .docName="${docName}"
+          .docId="${docId}"
+        ></compas-save>`
       );
 
       sinon.stub(element, 'checkExistInCompas').callsFake(() => {
@@ -32,7 +35,7 @@ describe('compas-save', () => {
   describe('new document in compas', () => {
     beforeEach(async () => {
       element = fixtureSync(
-          html`<compas-save .docName="${docName}"></compas-save>`
+        html`<compas-save .docName="${docName}"></compas-save>`
       );
 
       sinon.stub(element, 'checkExistInCompas').callsFake(() => {
@@ -51,7 +54,10 @@ describe('compas-save', () => {
   describe('existing document in compas', () => {
     beforeEach(async () => {
       element = fixtureSync(
-        html`<compas-save .docName="${docName}" .docId="${docId}"></compas-save>`
+        html`<compas-save
+          .docName="${docName}"
+          .docId="${docId}"
+        ></compas-save>`
       );
 
       sinon.stub(element, 'checkExistInCompas').callsFake(() => {
@@ -60,13 +66,12 @@ describe('compas-save', () => {
 
       await element;
       await waitUntil(() => element.existInCompas !== undefined);
-
     });
 
     it('looks like the latest snapshot', async () => {
       await expect(element).shadowDom.to.equalSnapshot();
     });
-  })
+  });
 
   afterEach(() => {
     sinon.restore();

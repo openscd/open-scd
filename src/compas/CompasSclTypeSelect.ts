@@ -17,6 +17,7 @@ import {
   SDS_NAMESPACE,
 } from '../compas-services/CompasSclDataService.js';
 import { Select } from '@material/mwc-select';
+import { repeat } from 'lit-html/directives/repeat';
 
 @customElement('compas-scltype-select')
 export class CompasSclTypeSelect extends LitElement {
@@ -37,12 +38,15 @@ export class CompasSclTypeSelect extends LitElement {
   }
 
   getSelectedValue(): string | null {
-    return (<Select>this.shadowRoot!.querySelector('mwc-select'))?.value;
+    return (
+      (<Select>this.shadowRoot!.querySelector('mwc-select'))?.selected?.value ??
+      null
+    );
   }
 
   valid(): boolean {
     const newValue = this.getSelectedValue();
-    return newValue !== null && newValue !== undefined;
+    return !!newValue;
   }
 
   render(): TemplateResult {
@@ -60,20 +64,26 @@ export class CompasSclTypeSelect extends LitElement {
       naturalMenuWidth="true"
       label="${translate('compas.sclType')}"
     >
-      ${this.sclTypes.map(type => {
-        const code =
+      ${repeat(
+        this.sclTypes,
+        type =>
           type.getElementsByTagNameNS(SDS_NAMESPACE, 'Code').item(0)!
-            .textContent ?? '';
-        const description =
-          type.getElementsByTagNameNS(SDS_NAMESPACE, 'Description').item(0)!
-            .textContent ?? '';
-        return html`<mwc-list-item
-          value="${code}"
-          ?selected="${code === this.value}"
-        >
-          <span>${description} (${code})</span>
-        </mwc-list-item>`;
-      })}
+            .textContent ?? '',
+        type => {
+          const code =
+            type.getElementsByTagNameNS(SDS_NAMESPACE, 'Code').item(0)!
+              .textContent ?? '';
+          const description =
+            type.getElementsByTagNameNS(SDS_NAMESPACE, 'Description').item(0)!
+              .textContent ?? '';
+          return html`<mwc-list-item
+            value="${code}"
+            ?selected="${code === this.value}"
+          >
+            <span>${description} (${code})</span>
+          </mwc-list-item>`;
+        }
+      )}
     </mwc-select>`;
   }
 

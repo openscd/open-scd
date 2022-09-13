@@ -1,7 +1,13 @@
 import { html, LitElement } from 'lit-element';
 import { get } from 'lit-translate';
 
-import { newPendingStateEvent, newWizardEvent, Wizard } from '../foundation.js';
+import {
+  newLogEvent,
+  newOpenDocEvent,
+  newPendingStateEvent,
+  newWizardEvent,
+  Wizard,
+} from '../foundation.js';
 
 import { DocRetrievedEvent } from '../compas/CompasOpen.js';
 import { updateDocumentInOpenSCD } from '../compas/foundation.js';
@@ -14,8 +20,17 @@ export default class CompasOpenMenuPlugin extends LitElement {
       plugin: CompasOpenMenuPlugin,
       event: DocRetrievedEvent
     ): Promise<void> {
-      updateDocumentInOpenSCD(plugin, event.detail.doc, event.detail.docName);
-      plugin.dispatchEvent(newWizardEvent());
+      if (event.detail.localFile) {
+        plugin.dispatchEvent(newLogEvent({ kind: 'reset' }));
+        plugin.dispatchEvent(
+          newOpenDocEvent(event.detail.doc, event.detail.docName!, {
+            detail: { docId: undefined },
+          })
+        );
+      } else {
+        updateDocumentInOpenSCD(plugin, event.detail.doc, event.detail.docName);
+        plugin.dispatchEvent(newWizardEvent());
+      }
     }
 
     return [
