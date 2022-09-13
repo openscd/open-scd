@@ -40,6 +40,10 @@ export class IedList extends LitElement {
     this.dispatchEvent(newIEDSelectEvent(selectedIed));
   }
 
+  protected firstUpdated(): void {
+    selectedIed = undefined;
+  }
+
   render(): TemplateResult {
     return html` <section tabindex="0">
       <h1>${translate(`subscription.${this.serviceType}.subscriber.iedListTitle`)}</h1>

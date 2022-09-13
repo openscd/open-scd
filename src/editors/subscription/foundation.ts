@@ -286,7 +286,7 @@ export class SubscriberListContainer extends LitElement {
   /** List holding all current subscribed Elements. */
   subscribedElements: ListElement[] = [];
 
-  /** List holding all current avaialble Elements which are not subscribed. */
+  /** List holding all current available Elements which are not subscribed. */
   availableElements: ListElement[] = [];
 
   /** Current selected IED (when in Subscriber view) */

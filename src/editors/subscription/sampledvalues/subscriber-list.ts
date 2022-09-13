@@ -414,6 +414,10 @@ export class SubscriberList extends SubscriberListContainer {
         </h1>`;
   }
 
+  protected firstUpdated(): void {
+    this.currentSelectedIed = undefined
+  }
+
   render(): TemplateResult {
     return html`
       <section tabindex="0">

@@ -4,6 +4,7 @@ import {
   html,
   LitElement,
   property,
+  PropertyValues,
   TemplateResult,
 } from 'lit-element';
 import { translate } from 'lit-translate';
@@ -61,6 +62,11 @@ export class SmvPublisherList extends LitElement {
     this.dispatchEvent(
       newSmvSelectEvent(selectedSmvMsg, selectedDataSet ?? undefined)
     );
+  }
+
+  protected firstUpdated(): void {
+    selectedSmvMsg = undefined;
+    selectedDataSet = undefined;
   }
 
   renderSmv(smvControl: Element): TemplateResult {
