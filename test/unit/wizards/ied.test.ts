@@ -12,7 +12,7 @@ import {
 import {
   editIEDWizard,
   removeIEDAndReferences,
-  removeIEDWizard
+  removeIEDWizard,
 } from '../../../src/wizards/ied.js';
 
 import {
@@ -21,10 +21,9 @@ import {
   expectUpdateAction,
   expectWizardNoUpdateAction,
   fetchDoc,
-  newWizard,
   setWizardTextFieldValue,
 } from './test-support.js';
-import { updateNamingAttributeWithReferencesAction } from "../../../src/wizards/foundation/actions.js";
+import { updateNamingAttributeWithReferencesAction } from '../../../src/wizards/foundation/actions.js';
 
 describe('Wizards for SCL element IED', () => {
   let doc: XMLDocument;
@@ -47,33 +46,53 @@ describe('Wizards for SCL element IED', () => {
       inputs = Array.from(element.wizardUI.inputs);
     });
     it('contains a wizard-textfield with a non-empty "type" value', async () => {
-      expect((<WizardTextField[]>inputs).find(textField => textField.label == 'type')?.value).to
-        .be.equal(ied.getAttribute('type') || '-');
+      expect(
+        (<WizardTextField[]>inputs).find(textField => textField.label == 'type')
+          ?.value
+      ).to.be.equal(ied.getAttribute('type') || '-');
     });
     it('contains a wizard-textfield with a non-empty "manufacturer" value', async () => {
-      expect((<WizardTextField[]>inputs).find(textField => textField.label == 'manufacturer')?.value).to
-        .be.equal(ied.getAttribute('manufacturer') || '-');
+      expect(
+        (<WizardTextField[]>inputs).find(
+          textField => textField.label == 'manufacturer'
+        )?.value
+      ).to.be.equal(ied.getAttribute('manufacturer') || '-');
     });
     it('contains a wizard-textfield with a non-empty "configVersion" value', async () => {
-      expect((<WizardTextField[]>inputs).find(textField => textField.label == 'configVersion')?.value).to
-        .be.equal(ied.getAttribute('configVersion') || '-');
+      expect(
+        (<WizardTextField[]>inputs).find(
+          textField => textField.label == 'configVersion'
+        )?.value
+      ).to.be.equal(ied.getAttribute('configVersion') || '-');
     });
     it('contains a wizard-textfield with a non-empty "originalSclVersion" value', async () => {
-      expect((<WizardTextField[]>inputs).find(textField => textField.label == 'originalSclVersion')?.value).to
-        .contain(ied.getAttribute('originalSclVersion') || '-');
+      expect(
+        (<WizardTextField[]>inputs).find(
+          textField => textField.label == 'originalSclVersion'
+        )?.value
+      ).to.contain(ied.getAttribute('originalSclVersion') || '-');
     });
     it('contains a wizard-textfield with an empty "engRight" value', async () => {
-      expect((<WizardTextField[]>inputs).find(textField => textField.label == 'engRight')?.value).to
-        .be.equal(ied.getAttribute('engRight') || '-');
+      expect(
+        (<WizardTextField[]>inputs).find(
+          textField => textField.label == 'engRight'
+        )?.value
+      ).to.be.equal(ied.getAttribute('engRight') || '-');
     });
     it('contains a wizard-textfield with a non-empty "owner" value', async () => {
-      expect((<WizardTextField[]>inputs).find(textField => textField.label == 'owner')?.value).to
-        .be.equal(ied.getAttribute('owner') || '-');
+      expect(
+        (<WizardTextField[]>inputs).find(
+          textField => textField.label == 'owner'
+        )?.value
+      ).to.be.equal(ied.getAttribute('owner') || '-');
     });
     it('update name should be updated in document', async function () {
       await setWizardTextFieldValue(<WizardTextField>inputs[0], 'OtherIED3');
 
-      const complexAction = updateNamingAttributeWithReferencesAction(ied, 'ied.action.updateied')(inputs, newWizard());
+      const complexAction = updateNamingAttributeWithReferencesAction(
+        ied,
+        'ied.action.updateied'
+      )(inputs, element.wizardUI);
       expect(complexAction.length).to.equal(1);
       expect(complexAction[0]).to.not.satisfy(isSimple);
 
@@ -81,7 +100,13 @@ describe('Wizards for SCL element IED', () => {
       expect(simpleActions.length).to.equal(2);
 
       expectUpdateAction(simpleActions[0], 'IED', 'name', 'IED3', 'OtherIED3');
-      expectReplaceAction(simpleActions[1], 'ConnectedAP', 'iedName', 'IED3', 'OtherIED3');
+      expectReplaceAction(
+        simpleActions[1],
+        'ConnectedAP',
+        'iedName',
+        'IED3',
+        'OtherIED3'
+      );
     });
 
     it('update name should be unique in document', async function () {
@@ -95,18 +120,31 @@ describe('Wizards for SCL element IED', () => {
         'Some description'
       );
 
-      const complexAction = updateNamingAttributeWithReferencesAction(ied, 'ied.action.updateied')(inputs, newWizard());
+      const complexAction = updateNamingAttributeWithReferencesAction(
+        ied,
+        'ied.action.updateied'
+      )(inputs, element.wizardUI);
       expect(complexAction.length).to.equal(1);
       expect(complexAction[0]).to.not.satisfy(isSimple);
 
       const simpleActions = (<ComplexAction>complexAction[0]).actions;
       expect(simpleActions.length).to.equal(1);
 
-      expectUpdateAction(simpleActions[0], 'IED', 'desc', null, 'Some description');
+      expectUpdateAction(
+        simpleActions[0],
+        'IED',
+        'desc',
+        null,
+        'Some description'
+      );
     });
 
     it('when no fields changed there will be no update action', async function () {
-      expectWizardNoUpdateAction(updateNamingAttributeWithReferencesAction(ied, 'ied.action.updateied'), inputs);
+      expectWizardNoUpdateAction(
+        updateNamingAttributeWithReferencesAction(ied, 'ied.action.updateied'),
+        element.wizardUI,
+        inputs
+      );
     });
 
     it('looks like the latest snapshot', async () => {
@@ -126,7 +164,10 @@ describe('Wizards for SCL element IED', () => {
     });
 
     it('remove IED should return expected actions', async function () {
-      const complexAction = removeIEDAndReferences(ied)(inputs, newWizard());
+      const complexAction = removeIEDAndReferences(ied)(
+        inputs,
+        element.wizardUI
+      );
 
       expect(complexAction.length).to.equal(1);
       expect(complexAction[0]).to.not.satisfy(isSimple);

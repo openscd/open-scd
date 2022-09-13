@@ -17,6 +17,11 @@ snapshots["Wizards for SCL element (CoMPAS) edit scl looks like the latest snaps
       validationmessage="[textfield.required]"
     >
     </wizard-textfield>
+    <h3 style="color: var(--mdc-theme-on-surface);">
+      [compas.scl.labelsTitle]
+    </h3>
+    <compas-labels-field>
+    </compas-labels-field>
   </div>
   <mwc-button
     dialogaction="close"

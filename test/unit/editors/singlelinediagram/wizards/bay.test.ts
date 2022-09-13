@@ -36,6 +36,7 @@ describe('Wizards for SCL element Bay (X/Y)', () => {
 
     const updateAction = executeWizardReplaceAction(
       updateNamingAndCoordinatesAction(bay),
+      element.wizardUI,
       inputs
     );
     expect(updateAction.old.element).to.have.attribute('name', 'BusBar A');
@@ -50,6 +51,7 @@ describe('Wizards for SCL element Bay (X/Y)', () => {
 
     const updateAction = executeWizardReplaceAction(
       updateNamingAndCoordinatesAction(bay),
+      element.wizardUI,
       inputs
     );
     expect(updateAction.old.element).to.not.have.attribute('desc');
@@ -64,6 +66,7 @@ describe('Wizards for SCL element Bay (X/Y)', () => {
 
     const updateAction = executeWizardReplaceAction(
       updateNamingAndCoordinatesAction(bay),
+      element.wizardUI,
       inputs
     );
     expect(updateAction.old.element).to.have.attribute('sxy:x', '1');
@@ -75,6 +78,7 @@ describe('Wizards for SCL element Bay (X/Y)', () => {
 
     const updateAction = executeWizardReplaceAction(
       updateNamingAndCoordinatesAction(bay),
+      element.wizardUI,
       inputs
     );
     expect(updateAction.old.element).to.have.attribute('sxy:y', '1');
@@ -86,6 +90,7 @@ describe('Wizards for SCL element Bay (X/Y)', () => {
 
     const updateAction = executeWizardReplaceAction(
       updateNamingAndCoordinatesAction(bay),
+      element.wizardUI,
       inputs
     );
     expect(updateAction.old.element).to.have.attribute('sxy:y', '1');
@@ -93,7 +98,11 @@ describe('Wizards for SCL element Bay (X/Y)', () => {
   });
 
   it('when no fields changed there will be no update action', async function () {
-    expectWizardNoUpdateAction(updateNamingAndCoordinatesAction(bay), inputs);
+    expectWizardNoUpdateAction(
+      updateNamingAndCoordinatesAction(bay),
+      element.wizardUI,
+      inputs
+    );
   });
 
   it('looks like the latest snapshot', async () => {

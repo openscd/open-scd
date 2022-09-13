@@ -1,11 +1,13 @@
 import { expect } from '@open-wc/testing';
 
 import {
+  ComplexAction,
   Create,
   Delete,
   isCreate,
   isDelete,
   isReplace,
+  isSimple,
   isUpdate,
   Replace,
   SimpleAction,
@@ -14,16 +16,7 @@ import {
   WizardInputElement,
 } from '../../../src/foundation.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
-import { WizardSelect } from "../../../src/wizard-select.js";
-
-const noOp = () => {
-  return;
-};
-export const newWizard = (done = noOp): Element => {
-  const element = document.createElement('mwc-dialog');
-  element.close = done;
-  return element;
-};
+import { WizardSelect } from '../../../src/wizard-select.js';
 
 export async function setWizardTextFieldValue(
   field: WizardTextField,
@@ -47,11 +40,23 @@ export async function setWizardSelectValue(
   await field.requestUpdate();
 }
 
+export function executeWizardComplexAction(
+  wizardActor: WizardActor,
+  wizard: Element,
+  inputs: WizardInputElement[]
+): ComplexAction {
+  const complexActions = wizardActor(inputs, wizard);
+  expect(complexActions.length).to.equal(1);
+  expect(complexActions[0]).to.not.satisfy(isSimple);
+  return <ComplexAction>complexActions[0];
+}
+
 export function executeWizardReplaceAction(
   wizardActor: WizardActor,
+  wizard: Element,
   inputs: WizardInputElement[]
 ): Replace {
-  const replaceActions = wizardActor(inputs, newWizard());
+  const replaceActions = wizardActor(inputs, wizard);
   expect(replaceActions.length).to.equal(1);
   expect(replaceActions[0]).to.satisfy(isReplace);
   return <Replace>replaceActions[0];
@@ -59,9 +64,10 @@ export function executeWizardReplaceAction(
 
 export function executeWizardCreateAction(
   wizardActor: WizardActor,
+  wizard: Element,
   inputs: WizardInputElement[]
 ): Create {
-  const createActions = wizardActor(inputs, newWizard());
+  const createActions = wizardActor(inputs, wizard);
   expect(createActions.length).to.equal(1);
   expect(createActions[0]).to.satisfy(isCreate);
   return <Create>createActions[0];
@@ -69,9 +75,10 @@ export function executeWizardCreateAction(
 
 export function expectWizardNoUpdateAction(
   wizardActor: WizardActor,
+  wizard: Element,
   inputs: WizardInputElement[]
 ): void {
-  const updateActions = wizardActor(inputs, newWizard());
+  const updateActions = wizardActor(inputs, wizard);
   expect(updateActions).to.be.empty;
 }
 
