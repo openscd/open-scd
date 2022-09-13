@@ -4,7 +4,6 @@ import {
   html,
   LitElement,
   property,
-  PropertyValues,
   TemplateResult,
 } from 'lit-element';
 import { translate } from 'lit-translate';
@@ -92,7 +91,7 @@ export class SmvPublisherList extends LitElement {
   render(): TemplateResult {
     return html` <section tabindex="0">
       <h1>${translate('subscription.smv.publisher.title')}</h1>
-      <filtered-list activatable> 
+      <filtered-list activatable>
         ${getOrderedIeds(this.doc).map(
           ied =>
             html`

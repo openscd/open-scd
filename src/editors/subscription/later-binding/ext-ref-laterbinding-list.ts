@@ -14,7 +14,6 @@ import {
   cloneElement,
   compareNames,
   getDescriptionAttribute,
-  getNameAttribute,
   identity,
   newActionEvent,
   Replace,
@@ -22,7 +21,7 @@ import {
 } from '../../../foundation.js';
 
 import { styles, updateExtRefElement, serviceTypes } from '../foundation.js';
-import { FcdaSelectEvent, getFcdaTitleValue } from './foundation.js';
+import { FcdaSelectEvent } from './foundation.js';
 
 /**
  * A sub element for showing all Ext Refs from a FCDA Element.
@@ -236,32 +235,8 @@ export class ExtRefLaterBindingList extends LitElement {
   }
 
   private renderTitle(): TemplateResult {
-    const controlElementName = this.currentSelectedControlElement
-      ? getNameAttribute(this.currentSelectedControlElement)
-      : undefined;
-    const lDeviceName = this.currentSelectedFcdaElement
-      ? this.currentSelectedFcdaElement.getAttribute('ldInst')
-      : undefined;
-    const lNodeName = `${this.currentSelectedFcdaElement?.getAttribute(
-      'prefix'
-    )} ${this.currentSelectedFcdaElement?.getAttribute(
-      'lnClass'
-    )} ${this.currentSelectedFcdaElement?.getAttribute('lnInst')}`;
-    const fcdaName = this.currentSelectedFcdaElement
-      ? getFcdaTitleValue(this.currentSelectedFcdaElement)
-      : undefined;
-
     return html`<h1>
-      ${translate(
-        `subscription.laterBinding.extRefList.title`,
-        {
-          controlTag: this.controlTag,
-          controlElementName: controlElementName ?? '-',
-          lDeviceName: lDeviceName ?? '-',
-          lNodeName: lNodeName ?? '-',
-          fcdaName: fcdaName ?? '-',
-        }
-      )}
+      ${translate(`subscription.laterBinding.extRefList.title`)}
     </h1>`;
   }
 
