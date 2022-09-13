@@ -155,7 +155,7 @@ export const de: Translations = {
     compareButton: 'Starte Vergleich',
     attributes: 'Attribute von {{ elementName }}',
     children: 'Kindelemente von {{ elementName }}',
-    filterMutables: 'Projektspzifische Unterschiede ausblenden'
+    filterMutables: 'Projektspzifische Unterschiede ausblenden',
   },
   log: {
     name: 'Protokoll',
@@ -747,8 +747,8 @@ export const de: Translations = {
       deleteButton: 'Ausgewählte Datentypen entfernen',
       tooltip:
         'Datentypen, die nicht in einem logischen Knoten oder einem anderen verwendeten Datentyp referenziert werden',
-        alsoRemoveSubTypes: 'Entfernen Sie auch Untertypen'
-    }
+      alsoRemoveSubTypes: 'Entfernen Sie auch Untertypen',
+    },
   },
   controlblock: {
     action: {
@@ -811,11 +811,13 @@ export const de: Translations = {
 
   compas: {
     loading: '???',
+    comment: '???',
+    newLabel: '???',
     notExists: '???',
     noSclTypes: '???',
     noScls: '???',
     noSclVersions: '???',
-    comment: '???',
+    sclType: '???',
     error: {
       type: '???',
       server: '???',
@@ -843,6 +845,7 @@ export const de: Translations = {
       localTitle: '???',
       saveFileButton: '???',
       compasTitle: 'CoMPAS',
+      labelsTitle: 'CoMPAS ???',
       addSuccess: '???',
       updateSuccess: '???',
     },
@@ -892,6 +895,8 @@ export const de: Translations = {
     scl: {
       wizardTitle: '???',
       filenameHelper: '???',
+      labelsTitle: 'CoMPAS ???',
+      updateAction: '???',
     },
     compare: {
       title: '???',

@@ -6,7 +6,7 @@ import {
   query,
   TemplateResult,
 } from 'lit-element';
-import { translate, get } from 'lit-translate';
+import { get, translate } from 'lit-translate';
 
 import '@material/mwc-icon-button';
 import '@material/mwc-list/mwc-list-item';
@@ -64,8 +64,10 @@ export class WizardTextField extends TextField {
     return this.null ? null : this.value;
   }
   set maybeValue(value: string | null) {
-    if (value === null) this.null = true;
-    else {
+    if (value === null) {
+      this.null = true;
+      this.value = '';
+    } else {
       this.null = false;
       this.value = value;
     }

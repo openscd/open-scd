@@ -1,35 +1,43 @@
-import {CompasSettings} from "../compas/CompasSettings.js";
-import {extractSclFromResponse, handleError, handleResponse, parseXml} from "./foundation.js";
+import { formatXml } from '../file.js';
 
-export const SDS_NAMESPACE = 'https://www.lfenergy.org/compas/SclDataService/v1';
+import { CompasSettings } from '../compas/CompasSettings.js';
+import {
+  extractSclFromResponse,
+  handleError,
+  handleResponse,
+  parseXml,
+} from './foundation.js';
+
+export const SDS_NAMESPACE =
+  'https://www.lfenergy.org/compas/SclDataService/v1';
 
 export enum ChangeSet {
-  MAJOR = "MAJOR",
-  MINOR = "MINOR",
-  PATCH = "PATCH",
+  MAJOR = 'MAJOR',
+  MINOR = 'MINOR',
+  PATCH = 'PATCH',
 }
 
 export interface CreateRequestBody {
-  sclName: string,
-  comment: string,
-  doc: Document
+  sclName: string;
+  comment: string | null;
+  doc: Document;
 }
 
 export interface UpdateRequestBody {
-  changeSet: ChangeSet,
-  comment: string,
-  doc: Document
+  changeSet: ChangeSet;
+  comment: string | null;
+  doc: Document;
 }
 
 export function CompasSclDataService() {
-
   function getCompasSettings() {
     return CompasSettings().compasSettings;
   }
 
   return {
     listSclTypes(): Promise<Document> {
-      const sclUrl = getCompasSettings().sclDataServiceUrl + '/common/v1/type/list';
+      const sclUrl =
+        getCompasSettings().sclDataServiceUrl + '/common/v1/type/list';
       return fetch(sclUrl)
         .catch(handleError)
         .then(handleResponse)
@@ -37,19 +45,26 @@ export function CompasSclDataService() {
     },
 
     listSclTypesAndOrder(): Promise<Element[]> {
-      return this.listSclTypes()
-        .then(xmlResponse => {
-          return Array.from(xmlResponse.querySelectorAll('*|Type') ?? [])
-            .sort((type1, type2) => {
-              const description1 = type1.getElementsByTagNameNS(SDS_NAMESPACE, "Description")!.item(0)!.textContent ?? "";
-              const description2 = type2.getElementsByTagNameNS(SDS_NAMESPACE, "Description")!.item(0)!.textContent ?? "";
-              return description1.localeCompare(description2)
-            });
-        })
+      return this.listSclTypes().then(xmlResponse => {
+        return Array.from(xmlResponse.querySelectorAll('*|Type') ?? []).sort(
+          (type1, type2) => {
+            const description1 =
+              type1
+                .getElementsByTagNameNS(SDS_NAMESPACE, 'Description')!
+                .item(0)!.textContent ?? '';
+            const description2 =
+              type2
+                .getElementsByTagNameNS(SDS_NAMESPACE, 'Description')!
+                .item(0)!.textContent ?? '';
+            return description1.localeCompare(description2);
+          }
+        );
+      });
     },
 
     listScls(type: string): Promise<Document> {
-      const sclUrl = getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type + '/list';
+      const sclUrl =
+        getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type + '/list';
       return fetch(sclUrl)
         .catch(handleError)
         .then(handleResponse)
@@ -57,7 +72,13 @@ export function CompasSclDataService() {
     },
 
     listVersions(type: string, id: string): Promise<Document> {
-      const sclUrl = getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type + '/' + id + "/versions";
+      const sclUrl =
+        getCompasSettings().sclDataServiceUrl +
+        '/scl/v1/' +
+        type +
+        '/' +
+        id +
+        '/versions';
       return fetch(sclUrl)
         .catch(handleError)
         .then(handleResponse)
@@ -65,7 +86,8 @@ export function CompasSclDataService() {
     },
 
     getSclDocument(type: string, id: string): Promise<Document> {
-      const sclUrl = getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type + '/' + id;
+      const sclUrl =
+        getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type + '/' + id;
       return fetch(sclUrl)
         .catch(handleError)
         .then(handleResponse)
@@ -73,8 +95,19 @@ export function CompasSclDataService() {
         .then(extractSclFromResponse);
     },
 
-    getSclDocumentVersion(type: string, id: string, version: string): Promise<Document> {
-      const sclUrl = getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type + '/' + id + '/' + version;
+    getSclDocumentVersion(
+      type: string,
+      id: string,
+      version: string
+    ): Promise<Document> {
+      const sclUrl =
+        getCompasSettings().sclDataServiceUrl +
+        '/scl/v1/' +
+        type +
+        '/' +
+        id +
+        '/' +
+        version;
       return fetch(sclUrl)
         .catch(handleError)
         .then(handleResponse)
@@ -82,16 +115,28 @@ export function CompasSclDataService() {
         .then(extractSclFromResponse);
     },
 
-    deleteSclDocumentVersion(type: string, id: string, version: string): Promise<string> {
-      const sclUrl = getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type + '/' + id + '/' + version;
-      return fetch(sclUrl, {method: 'DELETE'})
+    deleteSclDocumentVersion(
+      type: string,
+      id: string,
+      version: string
+    ): Promise<string> {
+      const sclUrl =
+        getCompasSettings().sclDataServiceUrl +
+        '/scl/v1/' +
+        type +
+        '/' +
+        id +
+        '/' +
+        version;
+      return fetch(sclUrl, { method: 'DELETE' })
         .catch(handleError)
         .then(handleResponse);
     },
 
     deleteSclDocument(type: string, id: string): Promise<string> {
-      const sclUrl = getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type + '/' + id;
-      return fetch(sclUrl, {method: 'DELETE'})
+      const sclUrl =
+        getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type + '/' + id;
+      return fetch(sclUrl, { method: 'DELETE' })
         .catch(handleError)
         .then(handleResponse);
     },
@@ -101,37 +146,52 @@ export function CompasSclDataService() {
       return fetch(sclUrl, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/xml'
+          'Content-Type': 'application/xml',
         },
         body: `<?xml version="1.0" encoding="UTF-8"?>
                <sds:CreateRequest xmlns:sds="${SDS_NAMESPACE}">
                    <sds:Name>${body.sclName}</sds:Name>
-                   <sds:Comment>${body.comment}</sds:Comment>
-                   <sds:SclData><![CDATA[${new XMLSerializer().serializeToString(body.doc.documentElement)}]]></sds:SclData>
-               </sds:CreateRequest>`
-      }).catch(handleError)
+                   <sds:Comment>${body.comment ?? ''}</sds:Comment>
+                   <sds:SclData><![CDATA[${formatXml(
+                     new XMLSerializer().serializeToString(
+                       body.doc.documentElement
+                     )
+                   )}]]></sds:SclData>
+               </sds:CreateRequest>`,
+      })
+        .catch(handleError)
         .then(handleResponse)
         .then(parseXml)
         .then(extractSclFromResponse);
     },
 
-    updateSclDocument(type: string, id: string, body: UpdateRequestBody): Promise<Document> {
-      const sclUrl = getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type + '/' + id;
+    updateSclDocument(
+      type: string,
+      id: string,
+      body: UpdateRequestBody
+    ): Promise<Document> {
+      const sclUrl =
+        getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type + '/' + id;
       return fetch(sclUrl, {
         method: 'PUT',
         headers: {
-          'Content-Type': 'application/xml'
+          'Content-Type': 'application/xml',
         },
         body: `<?xml version="1.0" encoding="UTF-8"?>
                <sds:UpdateRequest xmlns:sds="${SDS_NAMESPACE}">
                    <sds:ChangeSet>${body.changeSet}</sds:ChangeSet>
-                   <sds:Comment>${body.comment}</sds:Comment>
-                   <sds:SclData><![CDATA[${new XMLSerializer().serializeToString(body.doc.documentElement)}]]></sds:SclData>
-               </sds:UpdateRequest>`
-      }).catch(handleError)
+                   <sds:Comment>${body.comment ?? ''}</sds:Comment>
+                   <sds:SclData><![CDATA[${formatXml(
+                     new XMLSerializer().serializeToString(
+                       body.doc.documentElement
+                     )
+                   )}]]></sds:SclData>
+               </sds:UpdateRequest>`,
+      })
+        .catch(handleError)
         .then(handleResponse)
         .then(parseXml)
         .then(extractSclFromResponse);
-    }
-  }
+    },
+  };
 }

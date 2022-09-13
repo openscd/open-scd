@@ -1,15 +1,13 @@
-import {fixture, html, expect} from '@open-wc/testing';
-import {WizardTextField} from "../../../src/wizard-textfield.js";
+import { expect, fixture, html } from '@open-wc/testing';
+import { WizardTextField } from '../../../src/wizard-textfield.js';
 
-import {CompasCommentElement} from "../../../src/compas/CompasComment.js";
-import "../../../src/compas/CompasComment.js";
+import { CompasCommentElement } from '../../../src/compas/CompasComment.js';
+import '../../../src/compas/CompasComment.js';
 
 describe('compas-comment', () => {
   let element: CompasCommentElement;
   beforeEach(async () => {
-    element = await fixture(
-      html`<compas-comment></compas-comment>`
-    );
+    element = await fixture(html`<compas-comment></compas-comment>`);
   });
 
   it('will always be valid', () => {
@@ -24,8 +22,7 @@ describe('compas-comment', () => {
     const value = 'Some comments';
     setValue(value);
 
-    expect(element.getValue())
-      .to.be.equal(value)
+    expect(element.value).to.be.equal(value);
   });
 
   it('looks like the latest snapshot', async () => {
@@ -33,7 +30,11 @@ describe('compas-comment', () => {
   });
 
   function setValue(value: string) {
-    const item = <WizardTextField>element.shadowRoot!.querySelectorAll('wizard-textfield[id="comment"]').item(0);
+    const item = <WizardTextField>(
+      element
+        .shadowRoot!.querySelectorAll('wizard-textfield[id="comment"]')
+        .item(0)
+    );
     item.value = value;
   }
 });

@@ -1,23 +1,37 @@
-import {property} from "lit-element";
+import { property, PropertyValues, state } from 'lit-element';
 
-import {LitElementConstructor, Mixin} from "../foundation.js";
+import { LitElementConstructor, Mixin } from '../foundation.js';
 
-import {CompasSclDataService} from "../compas-services/CompasSclDataService.js";
-import {getTypeFromDocName} from "./foundation.js";
+import { CompasSclDataService } from '../compas-services/CompasSclDataService.js';
+import { getTypeFromDocName } from './foundation.js';
 
 export type CompasExistsInElement = Mixin<typeof CompasExistsIn>;
 
-export function CompasExistsIn<TBase extends LitElementConstructor>(Base: TBase) {
+export function CompasExistsIn<TBase extends LitElementConstructor>(
+  Base: TBase
+) {
   class CompasExistsInElement extends Base {
-    @property({type: String})
+    @property()
     docName!: string;
-    @property({type: String})
+    @property()
     docId?: string;
-    @property({type: Boolean})
+
+    @state()
     existInCompas?: boolean;
 
     firstUpdated(): void {
       this.checkExistInCompas();
+    }
+
+    protected updated(_changedProperties: PropertyValues): void {
+      super.updated(_changedProperties);
+
+      if (
+        _changedProperties.has('docId') ||
+        _changedProperties.has('docName')
+      ) {
+        this.checkExistInCompas();
+      }
     }
 
     callService(docType: string, docId: string) {
@@ -25,12 +39,14 @@ export function CompasExistsIn<TBase extends LitElementConstructor>(Base: TBase)
     }
 
     checkExistInCompas(): void {
+      this.existInCompas = undefined;
+
       if (this.docId) {
         // Use the versions call to check if any exist, because then the document also exists
-        // And it safes bandwidth not to retrieve the whole document.
+        // And it saves bandwidth not to retrieve the whole document.
         const docType = getTypeFromDocName(this.docName);
         this.callService(docType, this.docId)
-          .then(() => this.existInCompas = true)
+          .then(() => (this.existInCompas = true))
           .catch(() => {
             this.existInCompas = false;
           });

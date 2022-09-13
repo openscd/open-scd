@@ -133,7 +133,7 @@ export const en = {
     compareButton: 'Compare',
     attributes: 'Attributes from {{ elementName }}',
     children: 'Child elements from {{ elementName }}',
-    filterMutables: 'Filter project specific settings'
+    filterMutables: 'Filter project specific settings',
   },
   log: {
     name: 'Log',
@@ -744,8 +744,8 @@ export const en = {
       deleteButton: 'Remove Selected Data Types',
       tooltip:
         'Data Types which are not referenced in a Logical Node or other used Data Type',
-        alsoRemoveSubTypes: 'Also remove subtypes'
-    }
+      alsoRemoveSubTypes: 'Also remove subtypes',
+    },
   },
   controlblock: {
     action: {
@@ -805,10 +805,12 @@ export const en = {
   compas: {
     loading: 'Loading...',
     comment: 'Comment',
+    newLabel: 'Add new label',
     notExists: 'Project no longer exists in CoMPAS!',
     noSclTypes: 'No types found in CoMPAS',
     noScls: 'No projects found in CoMPAS',
     noSclVersions: 'No versions found for this project in CoMPAS',
+    sclType: 'SCL Type',
     error: {
       type: 'Unable to determine type from document name!',
       server: 'Error communicating with CoMPAS Ecosystem',
@@ -836,6 +838,7 @@ export const en = {
       localTitle: 'Local',
       saveFileButton: 'Save to file...',
       compasTitle: 'CoMPAS',
+      labelsTitle: 'CoMPAS Labels',
       addSuccess: 'Project added to CoMPAS.',
       updateSuccess: 'Project updated in CoMPAS',
     },
@@ -888,6 +891,8 @@ export const en = {
     scl: {
       wizardTitle: 'Edit SCL',
       filenameHelper: 'Filename used by CoMPAS when saving to a filesystem',
+      labelsTitle: 'CoMPAS Labels',
+      updateAction: 'Updated CoMPAS Private Element for SCL Element',
     },
     compare: {
       title: 'Compare version {{newVersion}} against version {{oldVersion}}',
