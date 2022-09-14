@@ -36,7 +36,7 @@ describe('compas-save', () => {
         // Do nothing so that it seems like loading from compas.
       });
 
-      await element;
+      await element.updateComplete;
     });
 
     it('looks like the latest snapshot', async () => {
@@ -54,7 +54,7 @@ describe('compas-save', () => {
         element.existInCompas = false;
       });
 
-      await element;
+      await element.updateComplete;
       await waitUntil(() => element.existInCompas !== undefined);
     });
 
@@ -89,7 +89,7 @@ describe('compas-save', () => {
         element.existInCompas = true;
       });
 
-      await element;
+      await element.updateComplete;
       await waitUntil(() => element.existInCompas !== undefined);
     });
 
