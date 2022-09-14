@@ -188,7 +188,7 @@ export default class CompasSaveElement extends CompasExistsIn(LitElement) {
     `;
   }
 
-  render(): TemplateResult {
+  private renderLabelsPart(): TemplateResult {
     const sclElement = this.doc.documentElement;
     let privateElement = getPrivate(sclElement, COMPAS_SCL_PRIVATE_TYPE);
     if (!privateElement) {
@@ -196,6 +196,12 @@ export default class CompasSaveElement extends CompasExistsIn(LitElement) {
       sclElement.prepend(privateElement);
     }
 
+    return html`<compas-labels-field
+      .privateElement="${privateElement}"
+    ></compas-labels-field>`;
+  }
+
+  render(): TemplateResult {
     return html`
       <wizard-divider></wizard-divider>
       <section>
@@ -210,9 +216,7 @@ export default class CompasSaveElement extends CompasExistsIn(LitElement) {
       <wizard-divider></wizard-divider>
       <section>
         <h3>${translate('compas.save.labelsTitle')}</h3>
-        <compas-labels-field
-          .privateElement="${privateElement}"
-        ></compas-labels-field>
+        ${this.renderLabelsPart()}
       </section>
     `;
   }

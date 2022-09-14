@@ -2,9 +2,13 @@ import { expect, fixtureSync, html, waitUntil } from '@open-wc/testing';
 import sinon from 'sinon';
 
 import { CompasExistsInElement } from '../../../src/compas/CompasExistsIn.js';
+import { CompasLabelsFieldElement } from '../../../src/compas/CompasLabelsField.js';
 import CompasSaveElement from '../../../src/compas/CompasSave.js';
 
 import '../../../src/compas/CompasSave.js';
+
+import { addLabel } from './CompasLabelsField.test';
+import { TextField } from '@material/mwc-textfield';
 
 describe('compas-save', () => {
   let element: CompasSaveElement & CompasExistsInElement;
@@ -13,7 +17,7 @@ describe('compas-save', () => {
   const docId = '6a45ae97-5605-44f8-b4e6-25305bc6c036';
 
   beforeEach(async () => {
-    doc = await fetch('/test/testfiles/compas/test-scd.cid')
+    doc = await fetch('/test/testfiles/compas/save-compas.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
   });
@@ -54,6 +58,18 @@ describe('compas-save', () => {
       await waitUntil(() => element.existInCompas !== undefined);
     });
 
+    it('when the name textfield is rendered then the value will be the stripped filename', () => {
+      const textField = <TextField>(
+        element.shadowRoot!.querySelector('div#content > mwc-textfield#name')!
+      );
+
+      expect(textField.value).to.be.equal('station123');
+    });
+
+    it('when changing labels then SCL Document contains change', async () => {
+      await validateAddingLabels();
+    });
+
     it('looks like the latest snapshot', async () => {
       await expect(element).shadowDom.to.equalSnapshot();
     });
@@ -77,6 +93,10 @@ describe('compas-save', () => {
       await waitUntil(() => element.existInCompas !== undefined);
     });
 
+    it('when changing labels then SCL Document contains change', async () => {
+      await validateAddingLabels();
+    });
+
     it('looks like the latest snapshot', async () => {
       await expect(element).shadowDom.to.equalSnapshot();
     });
@@ -85,4 +105,22 @@ describe('compas-save', () => {
   afterEach(() => {
     sinon.restore();
   });
+
+  async function validateAddingLabels() {
+    const labelsField = <CompasLabelsFieldElement>(
+      element.shadowRoot!.querySelector('compas-labels-field')!
+    );
+
+    await addLabel(labelsField, 'New Label');
+    await element.updateComplete;
+
+    element['updateLabels']();
+
+    const labelElements = Array.from(
+      element.doc.querySelectorAll(
+        'SCL > Private[type="compas_scl"] > Labels > Label'
+      )
+    );
+    expect(labelElements.length).to.be.equal(1);
+  }
 });
