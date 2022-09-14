@@ -67,7 +67,7 @@ describe('compas-save', () => {
     });
 
     it('when changing labels then SCL Document contains change', async () => {
-      await validateAddingLabels();
+      await validateChangingLabels();
     });
 
     it('looks like the latest snapshot', async () => {
@@ -94,7 +94,7 @@ describe('compas-save', () => {
     });
 
     it('when changing labels then SCL Document contains change', async () => {
-      await validateAddingLabels();
+      await validateChangingLabels();
     });
 
     it('looks like the latest snapshot', async () => {
@@ -106,7 +106,7 @@ describe('compas-save', () => {
     sinon.restore();
   });
 
-  async function validateAddingLabels() {
+  async function validateChangingLabels() {
     const labelsField = <CompasLabelsFieldElement>(
       element.shadowRoot!.querySelector('compas-labels-field')!
     );
