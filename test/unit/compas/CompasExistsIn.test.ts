@@ -22,21 +22,22 @@ describe('CompasExistsInElement', () => {
 
   describe('when no docId', () => {
     beforeEach(async () => {
-      // Overwrite, because this scenario is the only on different.
       element = fixtureSync(
-        html`<mock-compas-exists-in></mock-compas-exists-in>`
+        html`<mock-compas-exists-in
+          docName="some-scl.scd"
+        ></mock-compas-exists-in>`
       );
 
       stubCallService = sinon.stub(element, 'callService').callsFake(() => {
         return Promise.reject();
       });
 
-      await element;
+      await element.updateComplete;
       await waitUntil(() => element.existInCompas !== undefined);
     });
 
     it('the document does not exists', () => {
-      expect(element.existInCompas).to.be.equal(false);
+      expect(element.existInCompas).to.be.false;
       sinon.assert.neverCalledWith(stubCallService);
     });
   });
@@ -57,12 +58,12 @@ describe('CompasExistsInElement', () => {
         return Promise.resolve(doc);
       });
 
-      await element;
+      await element.updateComplete;
       await waitUntil(() => element.existInCompas !== undefined);
     });
 
     it('the document exists', () => {
-      expect(element.existInCompas).to.be.equal(true);
+      expect(element.existInCompas).to.be.true;
       sinon.assert.calledTwice(stubCallService);
     });
   });
@@ -80,12 +81,12 @@ describe('CompasExistsInElement', () => {
         return Promise.reject({ type: NOT_FOUND_ERROR });
       });
 
-      await element;
+      await element.updateComplete;
       await waitUntil(() => element.existInCompas !== undefined);
     });
 
     it('the document does not exists', () => {
-      expect(element.existInCompas).to.be.equal(false);
+      expect(element.existInCompas).to.be.false;
       sinon.assert.calledTwice(stubCallService);
     });
   });
@@ -103,7 +104,7 @@ describe('CompasExistsInElement', () => {
         return Promise.reject({ type: SERVER_ERROR });
       });
 
-      await element;
+      await element.updateComplete;
     });
 
     it('boolean stays undefined', () => {

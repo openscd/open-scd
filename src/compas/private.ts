@@ -37,9 +37,11 @@ export function createCompasSclName(parent: Element, value: string): Element {
   return newSclNameElement;
 }
 
-export function getLabels(parent: Element): Element | undefined {
-  return Array.from(parent.querySelectorAll(`:scope > Labels`)).find(
-    element => element.namespaceURI === COMPAS_NAMESPACE
+export function getLabels(privateElement: Element): Element | null {
+  return (
+    Array.from(privateElement.querySelectorAll(`:scope > Labels`)).find(
+      element => element.namespaceURI === COMPAS_NAMESPACE
+    ) ?? null
   );
 }
 

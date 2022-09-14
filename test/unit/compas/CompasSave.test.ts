@@ -18,7 +18,6 @@ describe('compas-save', () => {
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
   });
 
-  // test-scd.cid
   describe('still determining if document exists in CoMPAS', () => {
     beforeEach(async () => {
       element = fixtureSync(

@@ -7,6 +7,7 @@ import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   Create,
   isCreate,
+  isDelete,
   isReplace,
   Replace,
   Wizard,
@@ -72,13 +73,16 @@ describe('Wizards for SCL element (CoMPAS)', () => {
         inputs
       );
 
-      expect(complexAction.actions.length).to.be.equal(2);
+      expect(complexAction.actions.length).to.be.equal(3);
       expect(complexAction.actions[0]).to.satisfy(isReplace);
 
       const replaceAction = <Replace>complexAction.actions[0];
       expect(replaceAction.old.element.tagName).to.be.equal('compas:SclName');
       expect(replaceAction.old.element.textContent).to.be.equal('existing');
       expect(replaceAction.new.element.textContent).to.be.equal('updated');
+
+      expect(complexAction.actions[1]).to.satisfy(isDelete);
+      expect(complexAction.actions[2]).to.satisfy(isCreate);
     });
 
     it('when no fields changed there will only be a Labels change', async function () {
@@ -88,15 +92,16 @@ describe('Wizards for SCL element (CoMPAS)', () => {
         inputs
       );
 
-      expect(complexAction.actions.length).to.be.equal(1);
-      expect(complexAction.actions[0]).to.satisfy(isCreate);
+      expect(complexAction.actions.length).to.be.equal(2);
+      expect(complexAction.actions[0]).to.satisfy(isDelete);
+      expect(complexAction.actions[1]).to.satisfy(isCreate);
     });
   });
 
   describe('edit scl with missing SCL Name Element', () => {
     beforeEach(async () => {
       doc = await fetchDoc(
-        '/test/testfiles/compas/compas-scl-private-missing-scl-name.scd'
+        '/test/testfiles/compas/compas-scl-private-missing-compas-elements.scd'
       );
       scl = doc.querySelector('SCL')!;
 

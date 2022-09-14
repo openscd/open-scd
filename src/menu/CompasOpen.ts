@@ -27,6 +27,7 @@ export default class CompasOpenMenuPlugin extends LitElement {
             detail: { docId: undefined },
           })
         );
+        plugin.dispatchEvent(newWizardEvent());
       } else {
         updateDocumentInOpenSCD(plugin, event.detail.doc, event.detail.docName);
         plugin.dispatchEvent(newWizardEvent());

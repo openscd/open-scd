@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SCL xmlns:compas="https://www.lfenergy.org/compas/v1" xmlns="http://www.iec.ch/61850/2003/SCL" version="2007" revision="B" release="4">
+<SCL xmlns:compas="https://www.lfenergy.org/compas/extension/v1" xmlns="http://www.iec.ch/61850/2003/SCL" version="2007" revision="B" release="4">
   <Private type="compas_scl">
     <compas:SclName>ied_utrecht_station235</compas:SclName>
     <compas:SclFileType>CID</compas:SclFileType>

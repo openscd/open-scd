@@ -14,12 +14,12 @@ import { newPendingStateEvent } from '../foundation.js';
 
 import { CompasSclDataService } from '../compas-services/CompasSclDataService.js';
 import { createLogEvent } from '../compas-services/foundation.js';
-import { SclSelectedEvent } from './CompasScl.js';
+import { SclSelectedEvent } from './CompasSclList.js';
 import { TypeSelectedEvent } from './CompasSclTypeList.js';
 
 import '../WizardDivider.js';
 import './CompasSclTypeList.js';
-import './CompasScl.js';
+import './CompasSclList.js';
 
 /* Event that will be used when a SCL Document is retrieved. */
 export interface DocRetrievedDetail {

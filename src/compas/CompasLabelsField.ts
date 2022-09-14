@@ -31,7 +31,7 @@ import {
 export class CompasLabelsFieldElement extends LitElement {
   @property()
   set privateElement(privateElement: Element) {
-    this.originalLabelsElement = getLabels(privateElement) ?? undefined;
+    this.originalLabelsElement = getLabels(privateElement);
     if (this.originalLabelsElement) {
       this.newLabelsElement = <Element>(
         this.originalLabelsElement.cloneNode(true)
@@ -42,7 +42,7 @@ export class CompasLabelsFieldElement extends LitElement {
   }
 
   @property()
-  originalLabelsElement: Element | undefined;
+  originalLabelsElement: Element | null = null;
 
   @property()
   newLabelsElement!: Element;
