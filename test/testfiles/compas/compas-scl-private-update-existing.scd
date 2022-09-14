@@ -4,7 +4,7 @@
     <compas:SclName>existing</compas:SclName>
     <compas:SclFileType>CID</compas:SclFileType>
     <compas:Labels>
-      <compas:Label>Label 1</compas:Label>
+      <compas:Label>Label1</compas:Label>
     </compas:Labels>
   </Private>
   <Header id="380b5e70-4753-4b59-b5b4-d51ceb26a30c" version="3.0.0" revision="Revision" toolID="toolID" nameStructure="IEDName"/>

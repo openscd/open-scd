@@ -1,12 +1,10 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import { Button } from '@material/mwc-button';
-
-import { WizardTextField } from '../../../src/wizard-textfield.js';
-
 import '../../../src/compas/CompasLabelsField.js';
 
 import { CompasLabelsFieldElement } from '../../../src/compas/CompasLabelsField.js';
+
+import { addLabel, removeLabel } from './test-support.js';
 
 describe('compas-labels-field', () => {
   let element: CompasLabelsFieldElement;
@@ -33,7 +31,7 @@ describe('compas-labels-field', () => {
     });
 
     it('when adding a label then label element created', async () => {
-      await addLabel(element, 'Label 1');
+      await addLabel(element, 'Label1');
 
       const labelElements = Array.from(
         element.newLabelsElement.querySelectorAll('Label')
@@ -66,7 +64,7 @@ describe('compas-labels-field', () => {
     });
 
     it('when adding a label then label element created', async () => {
-      await addLabel(element, 'Label 2');
+      await addLabel(element, 'Label2');
 
       const labelElements = Array.from(
         element.newLabelsElement.querySelectorAll('Label')
@@ -75,7 +73,7 @@ describe('compas-labels-field', () => {
     });
 
     it('when removing a label then label element removed', async () => {
-      await removeLabel(element, 'Label 1');
+      await removeLabel(element, 'Label1');
 
       const labelElements = Array.from(
         element.newLabelsElement.querySelectorAll('Label')
@@ -88,39 +86,3 @@ describe('compas-labels-field', () => {
     });
   });
 });
-
-export async function addLabel(
-  element: CompasLabelsFieldElement,
-  value: string
-): Promise<void> {
-  const newLabelField = <WizardTextField>(
-    element.shadowRoot!.querySelector('wizard-textfield#newLabel')!
-  );
-  newLabelField.value = value;
-  await element.updateComplete;
-
-  const addButton = <Button>(
-    element.shadowRoot!.querySelector('mwc-icon-button[icon="new_label"]')!
-  );
-  await addButton.click();
-  await element.updateComplete;
-}
-
-export async function removeLabel(
-  element: CompasLabelsFieldElement,
-  value: string
-): Promise<void> {
-  const removeButton = <Button>Array.from(
-    element.shadowRoot!.querySelectorAll('mwc-list > mwc-list-item')
-  )
-    .filter(
-      item =>
-        !!Array.from(item.querySelectorAll('span')).find(element =>
-          element.textContent!.includes(value)
-        )
-    )
-    .map(item => item.querySelector('mwc-icon-button[icon="delete"]'))[0];
-
-  removeButton.click();
-  await element.updateComplete;
-}

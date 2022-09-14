@@ -93,14 +93,14 @@ describe('Private Utility', () => {
       const labelsElement = createLabels(privateElement);
       privateElement.append(labelsElement);
 
-      let labelElement: Element | null = createLabel(labelsElement, 'Label 1');
+      let labelElement: Element | null = createLabel(labelsElement, 'Label1');
       expect(labelElement).to.be.not.null;
-      expect(labelElement).to.have.text('Label 1');
+      expect(labelElement).to.have.text('Label1');
 
       labelsElement.append(labelElement);
       labelElement = labelsElement.querySelector('Label');
       expect(labelElement).to.be.not.null;
-      expect(labelElement).to.have.text('Label 1');
+      expect(labelElement).to.have.text('Label1');
     });
   });
 

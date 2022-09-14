@@ -7,6 +7,7 @@ snapshots["compas-labels-field with no labels in private section looks like the 
     <wizard-textfield
       id="newLabel"
       label="[compas.newLabel]"
+      pattern="[A-Za-z][0-9A-Za-z_-]*"
       required=""
     >
     </wizard-textfield>
@@ -27,6 +28,7 @@ snapshots["compas-labels-field with labels in private section looks like the lat
     <wizard-textfield
       id="newLabel"
       label="[compas.newLabel]"
+      pattern="[A-Za-z][0-9A-Za-z_-]*"
       required=""
     >
     </wizard-textfield>
@@ -45,7 +47,7 @@ snapshots["compas-labels-field with labels in private section looks like the lat
     tabindex="0"
   >
     <span>
-      Label 1
+      Label1
     </span>
     <mwc-icon slot="graphic">
       label

@@ -1,14 +1,15 @@
 import { expect, fixtureSync, html, waitUntil } from '@open-wc/testing';
 import sinon from 'sinon';
 
+import { TextField } from '@material/mwc-textfield';
+
 import { CompasExistsInElement } from '../../../src/compas/CompasExistsIn.js';
 import { CompasLabelsFieldElement } from '../../../src/compas/CompasLabelsField.js';
 import CompasSaveElement from '../../../src/compas/CompasSave.js';
 
 import '../../../src/compas/CompasSave.js';
 
-import { addLabel } from './CompasLabelsField.test';
-import { TextField } from '@material/mwc-textfield';
+import { addLabel } from './test-support.js';
 
 describe('compas-save', () => {
   let element: CompasSaveElement & CompasExistsInElement;
@@ -111,7 +112,7 @@ describe('compas-save', () => {
       element.shadowRoot!.querySelector('compas-labels-field')!
     );
 
-    await addLabel(labelsField, 'New Label');
+    await addLabel(labelsField, 'NewLabel');
     await element.updateComplete;
 
     element['updateLabels']();

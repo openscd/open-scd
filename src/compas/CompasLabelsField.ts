@@ -87,6 +87,7 @@ export class CompasLabelsFieldElement extends LitElement {
             label="${translate('compas.newLabel')}"
             ?disabled="${labels.length >= COMPAS_LABELS_MAXIMUM}"
             .maybeValue=${null}
+            pattern="[A-Za-z][0-9A-Za-z_-]*"
             required
           >
           </wizard-textfield>
