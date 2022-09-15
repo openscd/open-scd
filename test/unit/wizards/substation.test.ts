@@ -16,15 +16,14 @@ import {
   expectUpdateAction,
   expectWizardNoUpdateAction,
   fetchDoc,
-  newWizard,
   setWizardTextFieldValue,
 } from './test-support.js';
-import { updateNamingAttributeWithReferencesAction } from "../../../src/wizards/foundation/actions.js";
+import { updateNamingAttributeWithReferencesAction } from '../../../src/wizards/foundation/actions.js';
 import {
   createAction,
   createSubstationWizard,
-  substationEditWizard
-} from "../../../src/wizards/substation.js";
+  substationEditWizard,
+} from '../../../src/wizards/substation.js';
 
 describe('Wizards for SCL element Substation', () => {
   let doc: XMLDocument;
@@ -50,15 +49,27 @@ describe('Wizards for SCL element Substation', () => {
       const complexAction = updateNamingAttributeWithReferencesAction(
         substation,
         'substation.action.updatesubstation'
-      )(inputs, newWizard());
+      )(inputs, element.wizardUI);
       expect(complexAction.length).to.equal(1);
       expect(complexAction[0]).to.not.satisfy(isSimple);
 
       const simpleActions = (<ComplexAction>complexAction[0]).actions;
       expect(simpleActions.length).to.equal(7);
 
-      expectUpdateAction(simpleActions[0], 'Substation', 'name', 'Sub1', 'OtherSub1');
-      expectReplaceAction(simpleActions[1], 'Terminal', 'substationName', 'Sub1', 'OtherSub1');
+      expectUpdateAction(
+        simpleActions[0],
+        'Substation',
+        'name',
+        'Sub1',
+        'OtherSub1'
+      );
+      expectReplaceAction(
+        simpleActions[1],
+        'Terminal',
+        'substationName',
+        'Sub1',
+        'OtherSub1'
+      );
     });
 
     it('update description should be updated in document', async function () {
@@ -70,20 +81,31 @@ describe('Wizards for SCL element Substation', () => {
       const complexAction = updateNamingAttributeWithReferencesAction(
         substation,
         'substation.action.updatesubstation'
-      )(inputs, newWizard());
+      )(inputs, element.wizardUI);
       expect(complexAction.length).to.equal(1);
       expect(complexAction[0]).to.not.satisfy(isSimple);
 
       const simpleActions = (<ComplexAction>complexAction[0]).actions;
       expect(simpleActions.length).to.equal(1);
 
-      expectUpdateAction(simpleActions[0], 'Substation', 'desc', 'Substation 1', 'Some description');
+      expectUpdateAction(
+        simpleActions[0],
+        'Substation',
+        'desc',
+        'Substation 1',
+        'Some description'
+      );
     });
 
     it('when no fields changed there will be no update action', async function () {
-      expectWizardNoUpdateAction(updateNamingAttributeWithReferencesAction(
-        substation, 'substation.action.updatesubstation'
-      ), inputs);
+      expectWizardNoUpdateAction(
+        updateNamingAttributeWithReferencesAction(
+          substation,
+          'substation.action.updatesubstation'
+        ),
+        element.wizardUI,
+        inputs
+      );
     });
 
     it('looks like the latest snapshot', async () => {
@@ -110,6 +132,7 @@ describe('Wizards for SCL element Substation', () => {
 
       const createAC = executeWizardCreateAction(
         createAction(parent),
+        element.wizardUI,
         inputs
       );
       expect(createAC.new.element).to.have.attribute('name', 'NewSub');
