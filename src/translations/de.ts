@@ -350,8 +350,8 @@ export const de: Translations = {
         subscriberTitle: 'Verbunden mit {{ selected }}',
       },
       subscriber: {
-        iedListTitle: 'GOOSE-Abonnenten',
-        publisherTitle: 'GOOSE Messages abonniert bei {{ selected }}',
+        iedListTitle: 'Verbunden mit GOOSE Meldungen',
+        publisherTitle: 'GOOSE Nachricht verbunden mit {{ selected }}',
       },
       view: {
         publisherView: 'Publisher | Subscriber',
@@ -364,12 +364,12 @@ export const de: Translations = {
         subscriberTitle: 'Verbunden mit {{ selected }}',
       },
       subscriber: {
-        iedListTitle: 'Sampled Value-Abonnenten',
-        publisherTitle: 'Sampled Value Messages abonniert bei {{ selected }}',
+        iedListTitle: 'Verbunden mit Sampled Values',
+        publisherTitle: 'Sampled Value  verbunden mit {{ selected }}',
       },
       view: {
-        publisherView: 'Herausgeber | Teilnehmer',
-        subscriberView: 'Teilnehmer | Herausgeber',
+        publisherView: 'Publisher | Subscriber',
+        subscriberView: 'Subscriber | Publisher',
       },
     },
     laterBinding: {
@@ -386,10 +386,10 @@ export const de: Translations = {
         },
       },
       extRefList: {
-        title: 'Für Ausgewählte Daten-Attribut Verfügbare Eingaben',
+        title: 'Für Ausgewählte Daten-Attribut Verfügbare Verbindung',
         noSelection: 'Kein Daten-Attribut ausgewählt',
-        noSubscribedExtRefs: 'Keine abonnierten Eingänge',
-        noAvailableExtRefs: 'Keine verfügbaren Eingaben zum Abonnieren',
+        noSubscribedExtRefs: 'Keine bestehenden Verbindungen',
+        noAvailableExtRefs: 'Keine verfügbaren Eingänge vorhanden',
       },
       iedList: {
         title: 'IEDs',
