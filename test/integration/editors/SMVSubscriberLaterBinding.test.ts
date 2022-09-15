@@ -4,8 +4,10 @@ import { Wizarding } from '../../../src/Wizarding.js';
 import { Editing } from '../../../src/Editing.js';
 
 import SMVSubscribeLaterBindingPlugin from '../../../src/editors/SMVSubscriberLaterBinding.js';
-import { ExtRefLaterBindingList } from '../../../src/editors/subscription/later-binding/ext-ref-laterbinding-list.js';
-import { FCDALaterBindingList } from '../../../src/editors/subscription/later-binding/fcda-later-binding-list.js';
+import {
+  getExtrefLaterBindingList,
+  getFCDALaterBindingList,
+} from './test-support.js';
 
 describe('SMV Subscribe Later Binding plugin', () => {
   customElements.define(
@@ -28,9 +30,9 @@ describe('SMV Subscribe Later Binding plugin', () => {
     await element.requestUpdate();
   });
 
-  it('when subscribing an available ExtRef then the list are changed', async () => {
-    const svcListElement = getFCDALaterBindingList();
-    const extRefListElement = getExtrefLaterBindingList();
+  it('when subscribing an available ExtRef then the lists are changed', async () => {
+    const svcListElement = getFCDALaterBindingList(element);
+    const extRefListElement = getExtrefLaterBindingList(element);
 
     (<HTMLElement>(
       svcListElement.shadowRoot!.querySelector(
@@ -61,9 +63,9 @@ describe('SMV Subscribe Later Binding plugin', () => {
     ).to.be.equal(7);
   });
 
-  it('when unsubscribing a subscribed ExtRef then the list are changed', async () => {
-    const svcListElement = getFCDALaterBindingList();
-    const extRefListElement = getExtrefLaterBindingList();
+  it('when unsubscribing a subscribed ExtRef then the lists are changed', async () => {
+    const svcListElement = getFCDALaterBindingList(element);
+    const extRefListElement = getExtrefLaterBindingList(element);
 
     (<HTMLElement>(
       svcListElement.shadowRoot!.querySelector(
@@ -93,16 +95,4 @@ describe('SMV Subscribe Later Binding plugin', () => {
       extRefListElement['getAvailableExtRefElements']().length
     ).to.be.equal(9);
   });
-
-  function getFCDALaterBindingList(): FCDALaterBindingList {
-    return <FCDALaterBindingList>(
-      element.shadowRoot?.querySelector('fcda-later-binding-list')
-    );
-  }
-
-  function getExtrefLaterBindingList(): ExtRefLaterBindingList {
-    return <ExtRefLaterBindingList>(
-      element.shadowRoot?.querySelector('extref-later-binding-list')
-    );
-  }
 });

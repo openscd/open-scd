@@ -133,7 +133,7 @@ export const en = {
     compareButton: 'Compare',
     attributes: 'Attributes from {{ elementName }}',
     children: 'Child elements from {{ elementName }}',
-    filterMutables: 'Filter project specific settings',
+    filterMutables: 'Filter project specific differences'
   },
   log: {
     name: 'Log',
@@ -210,8 +210,8 @@ export const en = {
     },
   },
   iededitor: {
-    searchHelper: 'Select IED',
-    searchHelperDesc: '({{description}})',
+    iedSelector: 'Select IED',
+    lnFilter: 'Logical Node Filter',
     missing: 'No IED',
     toggleChildElements: 'Toggle child elements',
     wizard: {
@@ -789,6 +789,7 @@ export const en = {
   cancel: 'Cancel',
   close: 'Close',
   filter: 'Filter',
+  filters: 'Filters',
   undo: 'Undo',
   redo: 'Redo',
   duplicate: 'Clone',

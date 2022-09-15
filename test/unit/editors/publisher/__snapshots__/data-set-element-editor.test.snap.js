@@ -12,6 +12,7 @@ snapshots["Editor for DataSet element with valid DataSet looks like the latest s
     </div>
   </h2>
   <wizard-textfield
+    disabled=""
     helper="[scl.name]"
     label="name"
     required=""
