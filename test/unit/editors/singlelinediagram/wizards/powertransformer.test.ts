@@ -36,6 +36,7 @@ describe('Wizards for SCL element Power Transformer (X/Y)', () => {
 
     const updateAction = executeWizardReplaceAction(
       updateNamingAndCoordinatesAction(powerTransformer),
+      element.wizardUI,
       inputs
     );
     expect(updateAction.old.element).to.have.attribute('name', 'TA1');
@@ -50,6 +51,7 @@ describe('Wizards for SCL element Power Transformer (X/Y)', () => {
 
     const updateAction = executeWizardReplaceAction(
       updateNamingAndCoordinatesAction(powerTransformer),
+      element.wizardUI,
       inputs
     );
     expect(updateAction.old.element).to.not.have.attribute('desc');
@@ -64,6 +66,7 @@ describe('Wizards for SCL element Power Transformer (X/Y)', () => {
 
     const updateAction = executeWizardReplaceAction(
       updateNamingAndCoordinatesAction(powerTransformer),
+      element.wizardUI,
       inputs
     );
     expect(updateAction.old.element).to.have.attribute('sxy:x', '1');
@@ -75,6 +78,7 @@ describe('Wizards for SCL element Power Transformer (X/Y)', () => {
 
     const updateAction = executeWizardReplaceAction(
       updateNamingAndCoordinatesAction(powerTransformer),
+      element.wizardUI,
       inputs
     );
     expect(updateAction.old.element).to.have.attribute('sxy:y', '9');
@@ -86,6 +90,7 @@ describe('Wizards for SCL element Power Transformer (X/Y)', () => {
 
     const updateAction = executeWizardReplaceAction(
       updateNamingAndCoordinatesAction(powerTransformer),
+      element.wizardUI,
       inputs
     );
     expect(updateAction.old.element).to.have.attribute('sxy:y', '9');
@@ -95,6 +100,7 @@ describe('Wizards for SCL element Power Transformer (X/Y)', () => {
   it('when no fields changed there will be no update action', async function () {
     expectWizardNoUpdateAction(
       updateNamingAndCoordinatesAction(powerTransformer),
+      element.wizardUI,
       inputs
     );
   });

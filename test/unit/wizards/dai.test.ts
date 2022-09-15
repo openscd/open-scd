@@ -16,7 +16,6 @@ import {
 
 import {
   fetchDoc,
-  newWizard,
   setWizardSelectValue,
   setWizardTextFieldValue,
 } from './test-support.js';
@@ -61,7 +60,7 @@ describe('Wizards for SCL element DAI', () => {
         da,
         dai,
         dai
-      )(inputs, newWizard());
+      )(inputs, element.wizardUI);
       expectCreateComplexAction(complexActions, '24');
     });
 
@@ -97,7 +96,7 @@ describe('Wizards for SCL element DAI', () => {
         da,
         dai,
         dai
-      )(inputs, newWizard());
+      )(inputs, element.wizardUI);
       expectCreateComplexAction(complexActions, '0000-00-00T00:00:00.000');
     });
 
@@ -126,7 +125,7 @@ describe('Wizards for SCL element DAI', () => {
     it('update value should be updated in document', async function () {
       await setWizardTextFieldValue(<WizardTextField>inputs[0], '8');
 
-      const complexActions = updateValue(da, dai)(inputs, newWizard());
+      const complexActions = updateValue(da, dai)(inputs, element.wizardUI);
       expectUpdateComplexAction(complexActions);
 
       const replace = <Replace>(<ComplexAction>complexActions[0]).actions[0];
@@ -159,7 +158,7 @@ describe('Wizards for SCL element DAI', () => {
     it('update value should be updated in document', async function () {
       await setWizardSelectValue(<WizardSelect>inputs[0], 'blocked');
 
-      const complexActions = updateValue(da, dai)(inputs, newWizard());
+      const complexActions = updateValue(da, dai)(inputs, element.wizardUI);
       expectUpdateComplexAction(complexActions);
 
       const create = <Create>(<ComplexAction>complexActions[0]).actions[0];
