@@ -14,27 +14,29 @@ import { newPendingStateEvent } from '../foundation.js';
 
 import { CompasSclDataService } from '../compas-services/CompasSclDataService.js';
 import { createLogEvent } from '../compas-services/foundation.js';
-import { SclSelectedEvent } from './CompasScl.js';
+import { SclSelectedEvent } from './CompasSclList.js';
 import { TypeSelectedEvent } from './CompasSclTypeList.js';
 
 import '../WizardDivider.js';
 import './CompasSclTypeList.js';
-import './CompasScl.js';
+import './CompasSclList.js';
 
 /* Event that will be used when a SCL Document is retrieved. */
 export interface DocRetrievedDetail {
+  localFile: boolean;
   doc: Document;
   docName?: string;
 }
 export type DocRetrievedEvent = CustomEvent<DocRetrievedDetail>;
 export function newDocRetrievedEvent(
+  localFile: boolean,
   doc: Document,
   docName?: string
 ): DocRetrievedEvent {
   return new CustomEvent<DocRetrievedDetail>('docRetrieved', {
     bubbles: true,
     composed: true,
-    detail: { doc, docName },
+    detail: { localFile, doc, docName },
   });
 }
 
@@ -51,7 +53,7 @@ export default class CompasOpenElement extends LitElement {
       .getSclDocument(this.selectedType ?? '', id ?? '')
       .catch(reason => createLogEvent(this, reason));
     if (sclDocument instanceof Document) {
-      this.dispatchEvent(newDocRetrievedEvent(sclDocument));
+      this.dispatchEvent(newDocRetrievedEvent(false, sclDocument));
     }
   }
 
@@ -63,7 +65,7 @@ export default class CompasOpenElement extends LitElement {
     const docName = file.name;
     const doc = new DOMParser().parseFromString(text, 'application/xml');
 
-    this.dispatchEvent(newDocRetrievedEvent(doc, docName));
+    this.dispatchEvent(newDocRetrievedEvent(true, doc, docName));
     this.sclFileUI.onchange = null;
   }
 

@@ -20,6 +20,15 @@ snapshots["compas-save still determining if document exists in CoMPAS looks like
   <compas-loading>
   </compas-loading>
 </section>
+<wizard-divider>
+</wizard-divider>
+<section>
+  <h3>
+    [compas.save.labelsTitle]
+  </h3>
+  <compas-labels-field>
+  </compas-labels-field>
+</section>
 `;
 /* end snapshot compas-save still determining if document exists in CoMPAS looks like the latest snapshot */
 
@@ -39,18 +48,29 @@ snapshots["compas-save new document in compas looks like the latest snapshot"] =
   <h3>
     [compas.save.compasTitle]
   </h3>
-  <mwc-textfield
-    dialoginitialfocus=""
-    id="name"
-    label="[scl.name]"
-    required=""
-    value="station123.scd"
-  >
-  </mwc-textfield>
-  <compas-scltype-radiogroup>
-  </compas-scltype-radiogroup>
-  <compas-comment>
-  </compas-comment>
+  <div id="content">
+    <mwc-textfield
+      dialoginitialfocus=""
+      id="name"
+      label="[scl.name]"
+      required=""
+      value="station123"
+    >
+    </mwc-textfield>
+    <compas-scltype-select>
+    </compas-scltype-select>
+    <compas-comment>
+    </compas-comment>
+  </div>
+</section>
+<wizard-divider>
+</wizard-divider>
+<section>
+  <h3>
+    [compas.save.labelsTitle]
+  </h3>
+  <compas-labels-field>
+  </compas-labels-field>
 </section>
 `;
 /* end snapshot compas-save new document in compas looks like the latest snapshot */
@@ -71,10 +91,21 @@ snapshots["compas-save existing document in compas looks like the latest snapsho
   <h3>
     [compas.save.compasTitle]
   </h3>
-  <compas-changeset-radiogroup>
-  </compas-changeset-radiogroup>
-  <compas-comment>
-  </compas-comment>
+  <div id="content">
+    <compas-changeset-radiogroup>
+    </compas-changeset-radiogroup>
+    <compas-comment>
+    </compas-comment>
+  </div>
+</section>
+<wizard-divider>
+</wizard-divider>
+<section>
+  <h3>
+    [compas.save.labelsTitle]
+  </h3>
+  <compas-labels-field>
+  </compas-labels-field>
 </section>
 `;
 /* end snapshot compas-save existing document in compas looks like the latest snapshot */

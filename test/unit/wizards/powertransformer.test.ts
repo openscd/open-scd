@@ -10,7 +10,7 @@ import { replaceNamingAction } from '../../../src/wizards/foundation/actions.js'
 import {
   createAction,
   createPowerTransformerWizard,
-  editPowerTransformerWizard
+  editPowerTransformerWizard,
 } from '../../../src/wizards/powertransformer.js';
 
 import {
@@ -44,6 +44,7 @@ describe('Wizards for SCL element Power Transformer', () => {
 
       const updateAction = executeWizardReplaceAction(
         replaceNamingAction(powerTransformer),
+        element.wizardUI,
         inputs
       );
       expect(updateAction.old.element).to.have.attribute('name', 'TA1');
@@ -58,6 +59,7 @@ describe('Wizards for SCL element Power Transformer', () => {
 
       const updateAction = executeWizardReplaceAction(
         replaceNamingAction(powerTransformer),
+        element.wizardUI,
         inputs
       );
       expect(updateAction.old.element).to.not.have.attribute('desc');
@@ -68,7 +70,11 @@ describe('Wizards for SCL element Power Transformer', () => {
     });
 
     it('when no fields changed there will be no update action', async function () {
-      expectWizardNoUpdateAction(replaceNamingAction(powerTransformer), inputs);
+      expectWizardNoUpdateAction(
+        replaceNamingAction(powerTransformer),
+        element.wizardUI,
+        inputs
+      );
     });
 
     it('looks like the latest snapshot', async () => {
@@ -95,6 +101,7 @@ describe('Wizards for SCL element Power Transformer', () => {
 
       const createAC = executeWizardCreateAction(
         createAction(parent),
+        element.wizardUI,
         inputs
       );
       expect(createAC.new.element).to.have.attribute('name', 'NewTA1');

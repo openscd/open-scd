@@ -1,4 +1,4 @@
-function formatXml(xml: string, tab?: string): string {
+export function formatXml(xml: string, tab?: string): string {
   let formatted = '',
     indent = '';
 

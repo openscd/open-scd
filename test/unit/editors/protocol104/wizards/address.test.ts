@@ -60,6 +60,7 @@ describe('Wizards for 104 Address Element', () => {
 
       const updateAction = executeWizardReplaceAction(
         updateAddressValue(doi, dai, address),
+        element.wizardUI,
         inputs
       );
       expect(updateAction.old.element).to.have.attribute('casdu', '1');
@@ -69,7 +70,11 @@ describe('Wizards for 104 Address Element', () => {
     });
 
     it('when no fields changed there will be no update action', async function () {
-      expectWizardNoUpdateAction(updateAddressValue(doi, dai, address), inputs);
+      expectWizardNoUpdateAction(
+        updateAddressValue(doi, dai, address),
+        element.wizardUI,
+        inputs
+      );
     });
 
     it('looks like the latest snapshot', async () => {
@@ -101,6 +106,7 @@ describe('Wizards for 104 Address Element', () => {
 
       const updateAction = executeWizardReplaceAction(
         updateAddressValue(doi, dai, address),
+        element.wizardUI,
         inputs
       );
       expect(updateAction.old.element).to.not.have.attribute('unitMultiplier');
@@ -125,6 +131,7 @@ describe('Wizards for 104 Address Element', () => {
 
       const updateAction = executeWizardReplaceAction(
         updateAddressValue(doi, dai, address),
+        element.wizardUI,
         inputs
       );
       expect(updateAction.old.element).to.not.have.attribute('scaleMultiplier');

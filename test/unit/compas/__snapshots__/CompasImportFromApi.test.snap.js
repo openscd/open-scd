@@ -6,7 +6,7 @@ snapshots["compas-import-from-api looks like the latest snapshot"] =
   <mwc-list-item
     aria-disabled="false"
     mwc-list-item=""
-    tabindex="-1"
+    tabindex="0"
   >
     cim-eq-hoorn-v3
   </mwc-list-item>

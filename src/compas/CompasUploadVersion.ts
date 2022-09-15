@@ -62,7 +62,7 @@ export class CompasUploadVersionElement extends CompasExistsIn(LitElement) {
 
   public async updateDocumentInCompas(): Promise<void> {
     const changeSet = this.getChangeSetRadiogroup().getSelectedValue();
-    const comment = this.getCommentField().getValue();
+    const comment = this.getCommentField().value;
     const docType = getTypeFromDocName(this.docName);
 
     const file = this.getSclFileField()?.files?.item(0) ?? false;

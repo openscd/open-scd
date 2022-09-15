@@ -1,12 +1,14 @@
 import { customElement, html, LitElement, TemplateResult } from 'lit-element';
 
-import '@material/mwc-button';
+import '@material/mwc-list/mwc-list-item';
 
 import {
   newOpenDocEvent,
   newPendingStateEvent,
   newWizardEvent,
 } from '../foundation.js';
+
+import '../filtered-list.js';
 
 import {
   createLogEvent,
@@ -15,9 +17,6 @@ import {
   parseXml,
 } from '../compas-services/foundation.js';
 
-import '../WizardDivider.js';
-import './CompasSclTypeList.js';
-import './CompasScl.js';
 import { CompasCimMappingService } from '../compas-services/CompasCimMappingService.js';
 
 @customElement('compas-import-from-api')
