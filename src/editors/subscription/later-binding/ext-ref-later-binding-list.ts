@@ -244,14 +244,11 @@ export class ExtRefLaterBindingList extends LitElement {
       : undefined;
 
     return html`<h1>
-      ${translate(
-        'subscription.laterBinding.extRefList.SampledValueControl.title',
-        {
-          controlTag: this.controlTag,
-          controlElementName: controlElementName ?? '-',
-          fcdaName: fcdaName ?? '-',
-        }
-      )}
+      ${translate('subscription.laterBinding.extRefList.title', {
+        controlTag: this.controlTag,
+        controlElementName: controlElementName ?? '-',
+        fcdaName: fcdaName ?? '-',
+      })}
     </h1>`;
   }
 

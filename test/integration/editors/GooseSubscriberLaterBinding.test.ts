@@ -29,6 +29,39 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
     );
   });
 
+  it('when subscribing an available ExtRef then the lists are changed', async () => {
+    const svcListElement = getFCDALaterBindingList(element);
+    const extRefListElement = getExtrefLaterBindingList(element);
+
+    (<HTMLElement>(
+      svcListElement.shadowRoot!.querySelector(
+        'mwc-list-item[value="GOOSE_Publisher>>QB2_Disconnector>GOOSE1 GOOSE_Publisher>>QB2_Disconnector>GOOSE1sDataSet>QB1_Disconnector/ CSWI 1.Pos q (ST)"]'
+      )
+    )).click();
+    await element.requestUpdate();
+
+    expect(
+      extRefListElement['getSubscribedExtRefElements']().length
+    ).to.be.equal(0);
+    expect(
+      extRefListElement['getAvailableExtRefElements']().length
+    ).to.be.equal(2);
+
+    (<HTMLElement>(
+      extRefListElement.shadowRoot!.querySelector(
+        'mwc-list-item[value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0]"]'
+      )
+    )).click();
+    await element.requestUpdate();
+
+    expect(
+      extRefListElement['getSubscribedExtRefElements']().length
+    ).to.be.equal(1);
+    expect(
+      extRefListElement['getAvailableExtRefElements']().length
+    ).to.be.equal(1);
+  });
+
   it('when unsubscribing a subscribed ExtRef then the lists are changed', async () => {
     const gooseListElement = getFCDALaterBindingList(element);
     const extRefListElement = getExtrefLaterBindingList(element);
