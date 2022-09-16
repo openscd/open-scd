@@ -87,10 +87,15 @@ export class GooseList extends LitElement {
     );
   }
 
+  protected firstUpdated(): void {
+    selectedGseControl = undefined;
+    selectedDataSet = undefined;
+  }
+
   render(): TemplateResult {
     return html` <section tabindex="0">
-      <h1>${translate('subscription.goose.publisherGoose.title')}</h1>
-      <filtered-list>
+      <h1>${translate('subscription.goose.publisher.title')}</h1>
+      <filtered-list activatable>
         ${getOrderedIeds(this.doc).map(
           ied =>
             html`

@@ -74,7 +74,7 @@ export default class SampledValuesSubscriberPlugin extends LitElement {
       <div class="container">
         ${view == View.PUBLISHER
           ? html`<smv-list class="row" .doc=${this.doc}></smv-list>`
-          : html`<ied-list class="row" .doc=${this.doc}></ied-list>`}
+          : html`<ied-list class="row" .doc=${this.doc} serviceType="smv"></ied-list>`}
         <subscriber-list-smv class="row" .doc=${this.doc}></subscriber-list-smv>
       </div>
     </div>`;

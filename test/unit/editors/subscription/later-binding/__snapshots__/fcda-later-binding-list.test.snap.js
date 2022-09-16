@@ -15,7 +15,7 @@ snapshots["fcda-list with a SampledValueControl doc loaded looks like the latest
   <h1>
     [subscription.laterBinding.SampledValueControl.controlBlockList.title]
   </h1>
-  <filtered-list>
+  <filtered-list activatable="">
     <mwc-list-item
       aria-disabled="false"
       graphic="icon"
@@ -617,7 +617,7 @@ snapshots["fcda-list with a GSEControl doc loaded looks like the latest snapshot
   <h1>
     [subscription.laterBinding.GSEControl.controlBlockList.title]
   </h1>
-  <filtered-list>
+  <filtered-list activatable="">
     <mwc-list-item
       aria-disabled="false"
       graphic="icon"

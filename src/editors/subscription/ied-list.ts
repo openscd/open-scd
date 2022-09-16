@@ -27,6 +27,9 @@ export class IedList extends LitElement {
   @property()
   doc!: XMLDocument;
 
+  @property({ type: String })
+  serviceType?: 'goose' | 'smv';
+
   private onIedSelect(element: Element): void {
     selectedIed = element;
 
@@ -37,10 +40,14 @@ export class IedList extends LitElement {
     this.dispatchEvent(newIEDSelectEvent(selectedIed));
   }
 
+  protected firstUpdated(): void {
+    selectedIed = undefined;
+  }
+
   render(): TemplateResult {
     return html` <section tabindex="0">
-      <h1>${translate('subscription.iedList.title')}</h1>
-      <filtered-list>
+      <h1>${translate(`subscription.${this.serviceType}.subscriber.iedListTitle`)}</h1>
+      <filtered-list activatable>
         ${getOrderedIeds(this.doc).map(
           ied =>
             html`
