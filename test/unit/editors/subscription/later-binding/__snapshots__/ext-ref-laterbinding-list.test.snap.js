@@ -688,10 +688,10 @@ snapshots["gse-list with gse document loaded looks like the latest snapshot, but
 `;
 /* end snapshot gse-list with gse document loaded looks like the latest snapshot, but no event fired */
 
-snapshots["gse-list with gse document loaded when GSEControl has no subscriptions looks like the latest snapshot, when SVC has no subscriptions"] = 
+snapshots["gse-list with gse document loaded when GSEControl has no subscriptions looks like the latest snapshot, when GSEControl has no subscriptions"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.laterBinding.extRefList.SampledValueControl.title]
+    [subscription.laterBinding.extRefList.title]
   </h1>
   <filtered-list>
     <mwc-list-item
@@ -774,7 +774,7 @@ snapshots["gse-list with gse document loaded when GSEControl has no subscription
   </filtered-list>
 </section>
 `;
-/* end snapshot gse-list with gse document loaded when GSEControl has no subscriptions looks like the latest snapshot, when SVC has no subscriptions */
+/* end snapshot gse-list with gse document loaded when GSEControl has no subscriptions looks like the latest snapshot, when GSEControl has no subscriptions */
 
 snapshots["gse-list with gse document loaded when GSEControl has a single subscription looks like the latest snapshot, "] = 
 `<section tabindex="0">
