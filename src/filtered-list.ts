@@ -38,11 +38,15 @@ function hideFiltered(item: ListItemBase, searchText: string): void {
     value
   ).toUpperCase();
 
-  const terms: string[] = searchText.toUpperCase().split(' ');
-
-  terms.some(term => !filterTarget.includes(term))
-    ? slotItem(item).classList.add('hidden')
-    : slotItem(item).classList.remove('hidden');
+  const terms: string[] = searchText.toUpperCase().trim().split(' ');
+  terms.some(term => {
+    // regexp escape 
+    const termRegexed = `*${term}*`.replace(/[.+^${}()|[\]\\]/g, '\\$&'); 
+    const reTerm = new RegExp(termRegexed.replace(/\*/g,'.*').replace(/\?/g,'.'),'i');
+    !reTerm.test(filterTarget)
+      ? slotItem(item).classList.add('hidden')
+      : slotItem(item).classList.remove('hidden');
+  });
 }
 
 /**
