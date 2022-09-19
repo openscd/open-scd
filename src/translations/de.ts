@@ -745,7 +745,8 @@ export const de: Translations = {
       tooltip:
         'Datentypen, die nicht in einem logischen Knoten oder einem anderen verwendeten Datentyp referenziert werden',
       alsoRemoveSubTypes: 'Entfernen Sie auch Untertypen',
-    },
+      stackExceeded: 'Maximale Stapellänge überschritten. Maximal zulässig ist {{maxStackDepth}}. Die Reinigung des Datentyps ist unvollständig, und es ist möglicherweise ein Dateischaden aufgetreten.'
+    }
   },
   controlblock: {
     action: {

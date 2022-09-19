@@ -11,7 +11,7 @@ import {
   queryAll,
 } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
-import { translate } from 'lit-translate';
+import { get, translate } from 'lit-translate';
 
 import '@material/mwc-button';
 import '@material/mwc-icon';
@@ -28,6 +28,7 @@ import '../../filtered-list.js';
 import {
   identity,
   isPublic,
+  newLogEvent,
   newSubWizardEvent,
   newActionEvent,
 } from '../../foundation.js';
@@ -222,27 +223,21 @@ export class CleanupDataTypes extends LitElement {
 
   /**
    * Recurses through all datatype templates and indexes their usage.
-   * @returns a map of data type templates usage.
+   * @returns a map of data type templates usage by id.
    */
-  private indexDataTypeTemplates(dttStart) {
-    const dataTypeTemplates = this.doc.querySelector(
-      ':root > DataTypeTemplates'
-    )!;
-    const allUsages = this.fetchTree(dttStart, true);
-    const set2 = [...new Set(allUsages)]
-
+  private indexDataTypeTemplates(dttStart: Element[]) {
     const dataTypeFrequencyUsage = new Map<string, number>();
+
+    // recursively fetch all usages
+    const allUsages = this.fetchTree(dttStart);
+
     // make frequency count of datatype ids
-    set2.forEach(item => {
-      const itemType = item!.getAttribute('id');
-      if (itemType !== null) {
-        dataTypeFrequencyUsage.set(
-          itemType!,
-          (dataTypeFrequencyUsage.get(itemType!) || 0) + 1
-        );
-      }
+    allUsages.forEach(item => {
+      dataTypeFrequencyUsage.set(
+        item,
+        (dataTypeFrequencyUsage.get(item) || 0) + 1
+      );
     });
-    console.log(dataTypeFrequencyUsage)
     return dataTypeFrequencyUsage;
   }
 
@@ -258,9 +253,15 @@ export class CleanupDataTypes extends LitElement {
     const type = element.getAttribute('type');
     if (element.tagName === 'DO' || element.tagName === 'SDO') {
       return dataTypeTemplates!.querySelector(`DOType[id="${type}"]`);
-    } else if ((element.tagName === 'DA' || element.tagName === 'BDA') && element.getAttribute('bType') === 'Struct') {
+    } else if (
+      (element.tagName === 'DA' || element.tagName === 'BDA') &&
+      element.getAttribute('bType') === 'Struct'
+    ) {
       return dataTypeTemplates!.querySelector(`DAType[id="${type}"]`);
-    } else if ((element.tagName === 'DA' || element.tagName === 'BDA') && element.getAttribute('bType') === 'Enum') {
+    } else if (
+      (element.tagName === 'DA' || element.tagName === 'BDA') &&
+      element.getAttribute('bType') === 'Enum'
+    ) {
       return dataTypeTemplates!.querySelector(`EnumType[id="${type}"]`);
     }
     return null;
@@ -269,32 +270,20 @@ export class CleanupDataTypes extends LitElement {
   /**
    * Recurses from an initial element to find all child references (with duplicates).
    * @param rootElement - root SCL Element for which all child datatype references are required.
-   * @returns all SCL element datatypes traversed.
+   * @returns the id value for all SCL element datatypes traversed.
    */
-  private fetchTree(rootElements: Element[], firstPass: boolean): (Element | undefined)[] {
+  private fetchTree(rootElements: Element[]): string[] {
     const elementStack = [...rootElements];
-    const traversedElements: (Element | undefined)[] = [];
-
-
+    const traversedElements: string[] = [];
 
     // A max stack depth is defined to avoid recursive references.
-    const MAX_STACK_DEPTH = 100000;
-    let maxStack = 0
-    while (elementStack.length > 0 && elementStack.length < MAX_STACK_DEPTH) {
-      const currentElement = elementStack.pop();
-      traversedElements.push(currentElement);
-      if (elementStack.length > maxStack) {
-        maxStack = elementStack.length
-      }
+    const MAX_STACK_DEPTH = 300000;
 
-      const selector  = 'DO, SDO, DA, BDA'
-      // , :scope > LNodeType > *, :scope > DOType > *, :scope > DAType > *, :scope > EnumType > *
-      // if (firstPass === true) {
-      //   selector = ':scope > LNodeType, :scope > DOType, :scope > DAType, :scope > EnumType'
-      //   // Array.from
-      // } else {
-        // selector = 'DO, SDO, DA, BDA[type="Struct"], BDA[type="Enum"]'
-      // }
+    while (elementStack.length > 0 && elementStack.length <= MAX_STACK_DEPTH) {
+      const currentElement = elementStack.pop();
+      traversedElements.push(currentElement!.getAttribute('id')!);
+
+      const selector = 'DO, SDO, DA, BDA';
 
       Array.from(currentElement!.querySelectorAll(selector))
         .filter(isPublic)
@@ -304,15 +293,21 @@ export class CleanupDataTypes extends LitElement {
             elementStack.unshift(newElement);
           }
         });
-    }
-    // if (maxStack === MAX_STACK_DEPTH) {
-      console.log("Max Stack Length Exceeded", maxStack)
-    // }
-    // remove root element - it is not a datatype itself
-    // traversedElements.shift();
-    console.log(traversedElements)
-    return traversedElements;
 
+      if (elementStack.length >= MAX_STACK_DEPTH) {
+        this.dispatchEvent(
+          newLogEvent({
+            kind: 'error',
+            title: get('cleanup.unreferencedDataTypes.title'),
+            message: get('cleanup.unreferencedDataTypes.stackExceeded', {
+              maxStackDepth: MAX_STACK_DEPTH.toString(),
+            }),
+          })
+        );
+      }
+    }
+
+    return traversedElements;
   }
 
   /**
@@ -329,47 +324,43 @@ export class CleanupDataTypes extends LitElement {
         ':root > DataTypeTemplates'
       )!;
 
-      const cleanIds = cleanItems.map((item) => item.getAttribute('id'))
+      const startingLNodeTypes = Array.from(
+        dataTypeTemplates.querySelectorAll('LNodeType')
+      );
+      const dataTypeUsageCounter =
+        this.indexDataTypeTemplates(startingLNodeTypes);
 
-      const dttStart = Array.from(dataTypeTemplates.querySelectorAll('LNodeType')).filter((lNodeType) => {
-        const id = lNodeType.getAttribute('id')
-        return !cleanIds.includes(id)
-      })
-      const dataTypeUsageCounter = this.indexDataTypeTemplates(dttStart);
-      console.log('1', dataTypeUsageCounter)
-      //  update index to allow checking for no longer used DataTypeTemplates
-
-    // make sure all DataTypeTemplates are indexed at least once
-
-      Array.from(dataTypeTemplates!.querySelectorAll(':scope > LNodeType, :scope > DOType, :scope > DAType, :scope > EnumType'))
-      .filter(isPublic)
-      .forEach(element => {
-        const type = element!.getAttribute('id')!;
-        if (dataTypeUsageCounter!.has(type)) {
-          dataTypeUsageCounter?.set(
-            type,
-            dataTypeUsageCounter.get(type)! +  1
-          );
+      // create usage counter for children of LNodeTypes that are used
+      // all valid usages within a project stem from LNodeTypes
+      cleanItems.forEach(item => {
+        if (item.tagName === 'LNodeType') {
+          const childDataTypeTemplateIds = this.fetchTree([item]);
+          childDataTypeTemplateIds.forEach(id => {
+            dataTypeUsageCounter?.set(id, dataTypeUsageCounter.get(id)! - 1);
+          });
         }
       });
 
+      // check to see if children of unused DOType, DAType are present
+      // if so then unless they are part of the main usage counter they can be removed
+      // if they are part of the main usage counter, then this does not need to be 
+      // considered as these DOType and DAType elements are dangling
       cleanItems.forEach(item => {
-        const childDataTypeTemplates = this.fetchTree([item], false);
-        childDataTypeTemplates.forEach(element => {
-          const type = element!.getAttribute('id')!;
-          if (dataTypeUsageCounter!.has(type)) {
-            dataTypeUsageCounter?.set(
-              type,
-              dataTypeUsageCounter.get(type)! - 1
-            );
-          }
-        });
+        if (['DOType', 'DAType'].includes(item.tagName)) {
+          const unusedDataTypeTemplateChildrenIds = uniq(
+            this.fetchTree([item])
+          );
+          unusedDataTypeTemplateChildrenIds.forEach(id => {
+            if (dataTypeUsageCounter.get(<string>id) === undefined)
+              cleanItems.push(dataTypeTemplates.querySelector(`[id="${id}"]`)!);
+          });
+        }
       });
-      console.log('2', dataTypeUsageCounter)
+
       // locate from index consequentially unused DataTypeTemplates
       // and add to items to be removed
       dataTypeUsageCounter?.forEach((count, dataTypeId) => {
-        if (count <= 1 ) {
+        if (count <= 0) {
           cleanItems.push(
             dataTypeTemplates.querySelector(`[id="${dataTypeId}"]`)!
           );
@@ -577,18 +568,18 @@ export class CleanupDataTypes extends LitElement {
       opacity: 1;
     }
 
+    /* Make sure to type filter here
+    .hidden is set on string filter in filtered-list and must always filter*/
+    .cleanup-list-item.hiddenontypefilter:not(.hidden) {
+      display: none;
+    }
+
     /* filter disabled, Material Design guidelines for opacity */
     .t-da-type-filter,
     .t-enum-type-filter,
     .t-lnode-type-filter,
     .t-do-type-filter {
       opacity: 0.38;
-    }
-
-    /* Make sure to type filter here
-    .hidden is set on string filter in filtered-list and must always filter*/
-    .cleanupListItem.hiddenontypefilter:not(.hidden) {
-      display: none;
     }
   `;
 }

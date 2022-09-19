@@ -743,7 +743,8 @@ export const en = {
       tooltip:
         'Data Types which are not referenced in a Logical Node or other used Data Type',
       alsoRemoveSubTypes: 'Also remove subtypes',
-    },
+      stackExceeded: 'Max Stack Length Exceeded. Maximum allowed is {{maxStackDepth}}. Datatype cleaning incomplete and file damage may have occurred.'
+    }
   },
   controlblock: {
     action: {

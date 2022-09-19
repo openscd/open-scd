@@ -30,7 +30,7 @@ describe('LoggingElement', () => {
 
   it('cannot undo warning messages', () => {
     element.dispatchEvent(
-      newLogEvent({ kind: 'warning', title: 'test warning' })
+      ({ kind: 'warning', title: 'test warning' })
     );
     expect(element).property('history').to.have.lengthOf(1);
     expect(element).property('canUndo').to.be.false;
