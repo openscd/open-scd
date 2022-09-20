@@ -208,46 +208,6 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
       if (changedProperties.has('settings')) use(this.settings.language);
     }
 
-    private renderFileSelect(): TemplateResult {
-      return html`
-        <input
-          id="nsdoc-file"
-          accept=".nsdoc"
-          type="file"
-          hidden
-          required
-          multiple
-          @change="${(evt: Event) => this.uploadNsdocFile(evt)}}"
-        />
-        <mwc-button
-          label="${translate('settings.selectFileButton')}"
-          id="selectFileButton"
-          @click=${() => {
-            const input = <HTMLInputElement | null>(
-              this.shadowRoot!.querySelector('#nsdoc-file')
-            );
-            input?.click();
-          }}
-        >
-        </mwc-button>
-      `;
-    }
-
-    private async uploadNsdocFile(evt: Event): Promise<void> {
-      const files = Array.from(
-        (<HTMLInputElement | null>evt.target)?.files ?? []
-      );
-
-      if (files.length == 0) return;
-      for (const file of files) {
-        const text = await file.text();
-        this.dispatchEvent(newLoadNsdocEvent(text, file.name));
-      }
-
-      this.nsdocFileUI.value = '';
-      this.requestUpdate();
-    }
-
     private async onLoadNsdoc(event: LoadNsdocEvent) {
       const nsdocElement = this.parseToXmlObject(
         event.detail.nsdoc
@@ -413,7 +373,6 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
           <wizard-divider></wizard-divider>
           <section>
             <h3>${translate('settings.loadNsdTranslations')}</h3>
-            ${this.renderFileSelect()}
           </section>
           <mwc-list id="nsdocList">
             ${this.renderNsdocItem('IEC 61850-7-2')}
