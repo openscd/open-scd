@@ -27,10 +27,7 @@ import { wizards } from '../../../wizards/wizard-library.js';
 
 import { styles } from '../foundation.js';
 
-import {
-  getFcdaTitleValue,
-  newFcdaSelectEvent,
-} from '../smv-laterbinding/foundation.js';
+import { getFcdaTitleValue, newFcdaSelectEvent } from './foundation.js';
 
 /**
  * A sub element for showing all Goose/Sampled Value Controls.
@@ -146,7 +143,7 @@ export class FCDALaterBindingList extends LitElement {
                 `subscription.laterBinding.${this.controlTag}.controlBlockList.title`
               )}
             </h1>
-            <filtered-list>
+            <filtered-list activatable>
               ${controlElements.map(controlElement => {
                 const fcdaElements = this.getFcdaElements(controlElement);
                 return html`

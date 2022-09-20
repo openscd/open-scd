@@ -16,6 +16,7 @@ snapshots["Editor for SampledValueControl element its referenced elements with d
   <div class="content">
     <wizard-textfield
       dialoginitialfocus=""
+      disabled=""
       helper="[scl.name]"
       label="name"
       maxlength="32"
@@ -38,6 +39,7 @@ snapshots["Editor for SampledValueControl element its referenced elements with d
     >
     </wizard-checkbox>
     <wizard-textfield
+      disabled=""
       helper="[scl.id]"
       label="smvID"
       required=""
@@ -80,6 +82,7 @@ snapshots["Editor for SampledValueControl element its referenced elements with d
       </mwc-list-item>
     </wizard-select>
     <wizard-textfield
+      disabled=""
       helper="[scl.smpRate]"
       label="smpRate"
       min="0"
@@ -88,6 +91,7 @@ snapshots["Editor for SampledValueControl element its referenced elements with d
     >
     </wizard-textfield>
     <wizard-textfield
+      disabled=""
       helper="[scl.nofASDU]"
       label="nofASDU"
       min="0"
@@ -136,30 +140,35 @@ snapshots["Editor for SampledValueControl element its referenced elements with d
       [publisher.smv.smvopts]
     </h3>
     <wizard-checkbox
+      disabled=""
       helper="[scl.refreshTime]"
       label="refreshTime"
       nullable=""
     >
     </wizard-checkbox>
     <wizard-checkbox
+      disabled=""
       helper="[scl.sampleRate]"
       label="sampleRate"
       nullable=""
     >
     </wizard-checkbox>
     <wizard-checkbox
+      disabled=""
       helper="[scl.dataSet]"
       label="dataSet"
       nullable=""
     >
     </wizard-checkbox>
     <wizard-checkbox
+      disabled=""
       helper="[scl.security]"
       label="security"
       nullable=""
     >
     </wizard-checkbox>
     <wizard-checkbox
+      disabled=""
       helper="[scl.synchSourceId]"
       label="synchSourceId"
       nullable=""
@@ -169,22 +178,28 @@ snapshots["Editor for SampledValueControl element its referenced elements with d
       [publisher.smv.commsetting]
     </h3>
     <mwc-formfield label="[connectedap.wizard.addschemainsttype]">
-      <mwc-checkbox id="instType">
+      <mwc-checkbox
+        disabled=""
+        id="instType"
+      >
       </mwc-checkbox>
     </mwc-formfield>
     <wizard-textfield
+      disabled=""
       label="MAC-Address"
       pattern="([0-9A-F]{2}-){5}[0-9A-F]{2}"
       required=""
     >
     </wizard-textfield>
     <wizard-textfield
+      disabled=""
       label="APPID"
       pattern="[0-9A-F]{4}"
       required=""
     >
     </wizard-textfield>
     <wizard-textfield
+      disabled=""
       label="VLAN-ID"
       nullable=""
       pattern="[0-9A-F]{3}"
@@ -192,6 +207,7 @@ snapshots["Editor for SampledValueControl element its referenced elements with d
     >
     </wizard-textfield>
     <wizard-textfield
+      disabled=""
       label="VLAN-PRIORITY"
       nullable=""
       pattern="[0-7]"
@@ -218,6 +234,7 @@ snapshots["Editor for SampledValueControl element its referenced elements with m
   <div class="content">
     <wizard-textfield
       dialoginitialfocus=""
+      disabled=""
       helper="[scl.name]"
       label="name"
       maxlength="32"
@@ -234,6 +251,7 @@ snapshots["Editor for SampledValueControl element its referenced elements with m
     >
     </wizard-textfield>
     <wizard-textfield
+      disabled=""
       helper="[scl.id]"
       label="smvID"
       required=""
@@ -276,6 +294,7 @@ snapshots["Editor for SampledValueControl element its referenced elements with m
       </mwc-list-item>
     </wizard-select>
     <wizard-textfield
+      disabled=""
       helper="[scl.smpRate]"
       label="smpRate"
       min="0"
@@ -284,6 +303,7 @@ snapshots["Editor for SampledValueControl element its referenced elements with m
     >
     </wizard-textfield>
     <wizard-textfield
+      disabled=""
       helper="[scl.nofASDU]"
       label="nofASDU"
       min="0"
@@ -332,30 +352,35 @@ snapshots["Editor for SampledValueControl element its referenced elements with m
       [publisher.smv.smvopts]
     </h3>
     <wizard-checkbox
+      disabled=""
       helper="[scl.refreshTime]"
       label="refreshTime"
       nullable=""
     >
     </wizard-checkbox>
     <wizard-checkbox
+      disabled=""
       helper="[scl.sampleRate]"
       label="sampleRate"
       nullable=""
     >
     </wizard-checkbox>
     <wizard-checkbox
+      disabled=""
       helper="[scl.dataSet]"
       label="dataSet"
       nullable=""
     >
     </wizard-checkbox>
     <wizard-checkbox
+      disabled=""
       helper="[scl.security]"
       label="security"
       nullable=""
     >
     </wizard-checkbox>
     <wizard-checkbox
+      disabled=""
       helper="[scl.synchSourceId]"
       label="synchSourceId"
       nullable=""

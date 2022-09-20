@@ -4,9 +4,9 @@ export const snapshots = {};
 snapshots["ied-list looks like the latest snapshot with a document loaded"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.iedList.title]
+    [subscription.undefined.subscriber.iedListTitle]
   </h1>
-  <filtered-list>
+  <filtered-list activatable="">
     <mwc-list-item
       aria-disabled="false"
       graphic="icon"
@@ -54,9 +54,9 @@ snapshots["ied-list looks like the latest snapshot with a document loaded"] =
 snapshots["ied-list looks like the latest snapshot without a doc loaded"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.iedList.title]
+    [subscription.undefined.subscriber.iedListTitle]
   </h1>
-  <filtered-list>
+  <filtered-list activatable="">
   </filtered-list>
 </section>
 `;

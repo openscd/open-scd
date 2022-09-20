@@ -133,7 +133,7 @@ export const en = {
     compareButton: 'Compare',
     attributes: 'Attributes from {{ elementName }}',
     children: 'Child elements from {{ elementName }}',
-    filterMutables: 'Filter project specific settings',
+    filterMutables: 'Filter project specific differences'
   },
   log: {
     name: 'Log',
@@ -210,8 +210,8 @@ export const en = {
     },
   },
   iededitor: {
-    searchHelper: 'Select IED',
-    searchHelperDesc: '({{description}})',
+    iedSelector: 'Select IED',
+    lnFilter: 'Logical Node Filter',
     missing: 'No IED',
     toggleChildElements: 'Toggle child elements',
     wizard: {
@@ -342,57 +342,55 @@ export const en = {
       noIedSelected: 'No IED selected',
     },
     goose: {
-      publisherGoose: {
-        title: 'GOOSE Publisher',
-        subscriberTitle: 'Subscriber of {{ selected }}',
+      publisher: {
+        title: 'GOOSE Publishers',
+        subscriberTitle: 'IEDs subscribed to {{ selected }}',
       },
-      subscriberGoose: {
-        publisherTitle: 'GOOSE(s) subscribed by {{selected}}',
+      subscriber: {
+        iedListTitle: 'GOOSE Subscribers',
+        publisherTitle: 'GOOSE Messages subscribed to {{selected}}',
       },
       view: {
-        publisherView: 'Show subscriber IED(s) per selected GOOSE',
-        subscriberView: 'Show subscribed GOOSE publisher for selected IED',
+        publisherView: 'Publisher | Subscriber',
+        subscriberView: 'Subscriber | Publisher',
       },
     },
     smv: {
-      publisherSmv: {
-        title: 'Sampled Values Publisher',
-        subscriberTitle: 'Subscriber of {{ selected }}',
+      publisher: {
+        title: 'Sampled Value Messages',
+        subscriberTitle: 'IEDs subscribed to {{ selected }}',
       },
-      subscriberSmv: {
-        publisherTitle: 'Sampled Value(s) subscribed by {{selected}}',
+      subscriber: {
+        iedListTitle: 'Sampled Value Subscribers',
+        publisherTitle: 'Sampled Value Messages subscribed to {{ selected }}',
       },
       view: {
-        publisherView: 'Show subscriber IED(s) per selected Sampled Value',
-        subscriberView:
-          'Show subscribed Sampled Value(s) publisher for selected IED',
+        publisherView: 'Publisher | Subscriber',
+        subscriberView: 'Subscriber | Publisher',
       },
     },
     laterBinding: {
       SampledValueControl: {
         controlBlockList: {
-          title: 'List of Sampled Values Controls with linked FCDAs',
-          noControlBlockFound: 'No Sampled Value Controls found',
+          title: 'Sampled Value Messages',
+          noControlBlockFound: 'No Sampled Value Messages found',
         },
       },
       GSEControl: {
         controlBlockList: {
-          title: 'List of Goose Controls with linked FCDAs',
-          noControlBlockFound: 'No Goose Controls found',
+          title: 'GOOSE Messages',
+          noControlBlockFound: 'No GOOSE Messages found',
         },
       },
       extRefList: {
-        SampledValueControl: {
-          title:
-            'Selected Sampled Value data "{{ svcName }}" / FCDA "{{ fcdaName }}"',
-        },
+        title: 'Inputs Available For Selected Data Attribute',
         noSelection: 'No data attribute selected',
-        noSubscribedExtRefs: 'No subscribed ExtRefs',
-        noAvailableExtRefs: 'No available ExtRefs to subscribe',
+        noSubscribedExtRefs: 'No subscribed inputs',
+        noAvailableExtRefs: 'No available inputs to subscribe',
       },
-    },
-    iedList: {
-      title: 'IEDs',
+      iedList: {
+        title: 'IEDs',
+      },
     },
   },
   protocol104: {
@@ -795,6 +793,7 @@ export const en = {
   cancel: 'Cancel',
   close: 'Close',
   filter: 'Filter',
+  filters: 'Filters',
   undo: 'Undo',
   redo: 'Redo',
   duplicate: 'Clone',

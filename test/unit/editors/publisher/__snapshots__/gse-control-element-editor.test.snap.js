@@ -16,6 +16,7 @@ snapshots["Editor for GSEControl element and its direct children with valid GSEC
   <div class="content">
     <wizard-textfield
       dialoginitialfocus=""
+      disabled=""
       helper="[scl.name]"
       label="name"
       maxlength="32"
@@ -32,6 +33,7 @@ snapshots["Editor for GSEControl element and its direct children with valid GSEC
     >
     </wizard-textfield>
     <wizard-select
+      disabled=""
       helper="[scl.type]"
       label="type"
       nullable=""
@@ -60,6 +62,7 @@ snapshots["Editor for GSEControl element and its direct children with valid GSEC
       </mwc-list-item>
     </wizard-select>
     <wizard-textfield
+      disabled=""
       helper="[scl.id]"
       label="appID"
       required=""
@@ -67,6 +70,7 @@ snapshots["Editor for GSEControl element and its direct children with valid GSEC
     >
     </wizard-textfield>
     <wizard-checkbox
+      disabled=""
       helper="[scl.fixedOffs]"
       label="fixedOffs"
       nullable=""
@@ -113,22 +117,28 @@ snapshots["Editor for GSEControl element and its direct children with valid GSEC
       Communication Settings (GSE)
     </h3>
     <mwc-formfield label="[connectedap.wizard.addschemainsttype]">
-      <mwc-checkbox id="instType">
+      <mwc-checkbox
+        disabled=""
+        id="instType"
+      >
       </mwc-checkbox>
     </mwc-formfield>
     <wizard-textfield
+      disabled=""
       label="MAC-Address"
       pattern="([0-9A-F]{2}-){5}[0-9A-F]{2}"
       required=""
     >
     </wizard-textfield>
     <wizard-textfield
+      disabled=""
       label="APPID"
       pattern="[0-9A-F]{4}"
       required=""
     >
     </wizard-textfield>
     <wizard-textfield
+      disabled=""
       label="VLAN-ID"
       nullable=""
       pattern="[0-9A-F]{3}"
@@ -136,6 +146,7 @@ snapshots["Editor for GSEControl element and its direct children with valid GSEC
     >
     </wizard-textfield>
     <wizard-textfield
+      disabled=""
       label="VLAN-PRIORITY"
       nullable=""
       pattern="[0-7]"
@@ -143,6 +154,7 @@ snapshots["Editor for GSEControl element and its direct children with valid GSEC
     >
     </wizard-textfield>
     <wizard-textfield
+      disabled=""
       label="MinTime"
       nullable=""
       suffix="ms"
@@ -150,6 +162,7 @@ snapshots["Editor for GSEControl element and its direct children with valid GSEC
     >
     </wizard-textfield>
     <wizard-textfield
+      disabled=""
       label="MaxTime"
       nullable=""
       suffix="ms"

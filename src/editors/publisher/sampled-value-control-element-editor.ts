@@ -72,6 +72,7 @@ export class SampledValueControlElementEditor extends LitElement {
         ><mwc-checkbox
           id="instType"
           ?checked="${hasInstType}"
+          disabled
         ></mwc-checkbox></mwc-formfield
       >${Object.entries(attributes).map(
         ([key, value]) =>
@@ -81,6 +82,7 @@ export class SampledValueControlElementEditor extends LitElement {
             .maybeValue=${value}
             pattern="${ifDefined(typePattern[key])}"
             required
+            disabled
           ></wizard-textfield>`
       )}`;
   }
@@ -110,6 +112,7 @@ export class SampledValueControlElementEditor extends LitElement {
             .maybeValue=${value}
             nullable
             helper="${translate(`scl.${key}`)}"
+            disabled
           ></wizard-checkbox>`
       )}`;
   }
@@ -151,12 +154,14 @@ export class SampledValueControlElementEditor extends LitElement {
         pattern="${patterns.asciName}"
         maxLength="${maxLength.cbName}"
         dialogInitialFocus
+        disabled
       ></wizard-textfield>
       <wizard-textfield
         label="desc"
         .maybeValue=${desc}
         nullable
         helper="${translate('scl.desc')}"
+        disabled
       ></wizard-textfield>
       ${multicast === 'true'
         ? html``
@@ -172,6 +177,7 @@ export class SampledValueControlElementEditor extends LitElement {
         helper="${translate('scl.id')}"
         required
         validationMessage="${translate('textfield.nonempty')}"
+        disabled
       ></wizard-textfield>
       <wizard-select
         label="smpMod"
@@ -179,6 +185,7 @@ export class SampledValueControlElementEditor extends LitElement {
         nullable
         required
         helper="${translate('scl.smpMod')}"
+        disabled
         >${['SmpPerPeriod', 'SmpPerSec', 'SecPerSmp'].map(
           option =>
             html`<mwc-list-item value="${option}">${option}</mwc-list-item>`
@@ -191,6 +198,7 @@ export class SampledValueControlElementEditor extends LitElement {
         required
         type="number"
         min="0"
+        disabled
       ></wizard-textfield>
       <wizard-textfield
         label="nofASDU"
@@ -199,6 +207,7 @@ export class SampledValueControlElementEditor extends LitElement {
         required
         type="number"
         min="0"
+        disabled
       ></wizard-textfield>
       <wizard-select
         label="securityEnabled"
@@ -206,6 +215,7 @@ export class SampledValueControlElementEditor extends LitElement {
         nullable
         required
         helper="${translate('scl.securityEnable')}"
+        disabled
         >${['None', 'Signature', 'SignatureAndEncryption'].map(
           type => html`<mwc-list-item value="${type}">${type}</mwc-list-item>`
         )}</wizard-select

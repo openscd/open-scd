@@ -399,19 +399,23 @@ export class SubscriberList extends SubscriberListContainer {
 
     return view == View.PUBLISHER
       ? html`<h1>
-          ${translate('subscription.smv.publisherSmv.subscriberTitle', {
+          ${translate('subscription.smv.publisher.subscriberTitle', {
             selected: gseControlName
               ? this.currentSmvIedName + ' > ' + gseControlName
               : 'Sampled Value',
           })}
         </h1>`
       : html`<h1>
-          ${translate('subscription.smv.subscriberSmv.publisherTitle', {
+          ${translate('subscription.smv.subscriber.publisherTitle', {
             selected: this.currentSelectedIed
               ? this.currentSelectedIed.getAttribute('name')!
               : 'IED',
           })}
         </h1>`;
+  }
+
+  protected firstUpdated(): void {
+    this.currentSelectedIed = undefined
   }
 
   render(): TemplateResult {

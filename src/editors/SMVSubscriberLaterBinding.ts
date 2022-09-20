@@ -1,7 +1,7 @@
 import { css, html, LitElement, property, TemplateResult } from 'lit-element';
 
 import './subscription/later-binding/fcda-later-binding-list.js';
-import './subscription/smv-laterbinding/ext-ref-laterbinding-list.js';
+import './subscription/later-binding/ext-ref-later-binding-list.js';
 
 /** An editor [[`plugin`]] for Subscribe Later Binding (SMV). */
 export default class SMVSubscribeLaterBindingPlugin extends LitElement {
@@ -17,7 +17,11 @@ export default class SMVSubscribeLaterBindingPlugin extends LitElement {
           controlTag="SampledValueControl"
         >
         </fcda-later-binding-list>
-        <extref-later-binding-list class="column" .doc=${this.doc}>
+        <extref-later-binding-list
+          class="column"
+          .doc=${this.doc}
+          controlTag="SampledValueControl"
+        >
         </extref-later-binding-list>
       </div>
     </div>`;

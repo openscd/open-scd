@@ -213,8 +213,8 @@ export const de: Translations = {
     },
   },
   iededitor: {
-    searchHelper: 'IED auswählen',
-    searchHelperDesc: '({{description}})',
+    iedSelector: 'IED auswählen',
+    lnFilter: '???',
     missing: 'Kein IED vorhanden',
     toggleChildElements: 'Kindelemente umschalten',
     wizard: {
@@ -345,58 +345,55 @@ export const de: Translations = {
       noIedSelected: 'Keine IED ausgewählt',
     },
     goose: {
-      publisherGoose: {
+      publisher: {
         title: 'GOOSE-Publizierer',
         subscriberTitle: 'Verbunden mit {{ selected }}',
       },
-      subscriberGoose: {
-        publisherTitle: 'GOOSE(s) verbunden mit {{selected}}',
+      subscriber: {
+        iedListTitle: 'Verbunden mit GOOSE Meldungen',
+        publisherTitle: 'GOOSE Nachricht verbunden mit {{ selected }}',
       },
       view: {
-        publisherView: 'Zeigt verbundene IED(s) der ausgewählten GOOSE',
-        subscriberView: 'Zeigt verbundene GOOSE(s) des ausgewählten IED',
+        publisherView: 'Publisher | Subscriber',
+        subscriberView: 'Subscriber | Publisher',
       },
     },
     smv: {
-      publisherSmv: {
+      publisher: {
         title: 'SampledValue-Publizierer',
         subscriberTitle: 'Verbunden mit {{ selected }}',
       },
-      subscriberSmv: {
-        publisherTitle: 'Verbunden mit {{selected}}',
+      subscriber: {
+        iedListTitle: 'Verbunden mit Sampled Values',
+        publisherTitle: 'Sampled Value  verbunden mit {{ selected }}',
       },
       view: {
-        publisherView: 'Zeigt verbundene IED(s) der ausgewählten Sampled Value',
-        subscriberView:
-          'Zeigt verbundene Sampled Value(s) des ausgewählten IED',
+        publisherView: 'Publisher | Subscriber',
+        subscriberView: 'Subscriber | Publisher',
       },
     },
     laterBinding: {
       SampledValueControl: {
         controlBlockList: {
-          title: 'Sampled Values and verknüpfte Datensätze im Projekt',
-          noControlBlockFound: 'Kein Sampled-Value-Kontrolblock im Projekt',
+          title: 'Sample Value Meldungen',
+          noControlBlockFound: 'Keine Sampled Values gefunden',
         },
       },
       GSEControl: {
         controlBlockList: {
-          title: '???',
-          noControlBlockFound: '???',
+          title: 'GOOSE-Meldungen',
+          noControlBlockFound: 'Keine GOOSEs gefunden',
         },
       },
       extRefList: {
-        SampledValueControl: {
-          title:
-            'Ausgewählter Sampled Value Datenpunkt "{{ svcName }}" / "{{ fcdaName }}"',
-        },
+        title: 'Für Ausgewählte Daten-Attribut Verfügbare Verbindung',
         noSelection: 'Kein Daten-Attribut ausgewählt',
-        noSubscribedExtRefs: 'Keine verknüpften externen Referenzen',
-        noAvailableExtRefs:
-          'Keine externen externen Referenzen vom Type "Later Binding"',
+        noSubscribedExtRefs: 'Keine bestehenden Verbindungen',
+        noAvailableExtRefs: 'Keine verfügbaren Eingänge vorhanden',
       },
-    },
-    iedList: {
-      title: 'IEDs',
+      iedList: {
+        title: 'IEDs',
+      },
     },
   },
   protocol104: {
@@ -802,6 +799,7 @@ export const de: Translations = {
   cancel: 'Abbrechen',
   close: 'Schließen',
   filter: 'Filter',
+  filters: 'Filters',
   undo: 'Rückgängig',
   redo: 'Wiederholen',
   duplicate: 'Klonen',
