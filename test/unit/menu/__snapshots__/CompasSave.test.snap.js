@@ -2,7 +2,10 @@
 export const snapshots = {};
 
 snapshots["compas-save-menu with no document loaded looks like the latest snapshot"] = 
-`<mwc-dialog heading="[compas.save.title]">
+`<mwc-dialog
+  heading="[compas.save.title]"
+  id="compas-save-dlg"
+>
   <compas-loading>
   </compas-loading>
 </mwc-dialog>
@@ -10,7 +13,10 @@ snapshots["compas-save-menu with no document loaded looks like the latest snapsh
 /* end snapshot compas-save-menu with no document loaded looks like the latest snapshot */
 
 snapshots["compas-save-menu with document loaded looks like the latest snapshot"] = 
-`<mwc-dialog heading="[compas.save.title]">
+`<mwc-dialog
+  heading="[compas.save.title]"
+  id="compas-save-dlg"
+>
   <compas-save>
   </compas-save>
   <mwc-button
