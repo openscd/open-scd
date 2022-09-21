@@ -1,4 +1,13 @@
-import { css, customElement, html, query, TemplateResult } from 'lit-element';
+import {
+  css,
+  customElement,
+  html,
+  property,
+  PropertyValues,
+  query,
+  state,
+  TemplateResult,
+} from 'lit-element';
 import { nothing } from 'lit-html';
 import { translate } from 'lit-translate';
 
@@ -19,7 +28,11 @@ import { Container } from './foundation.js';
 /** [[`IED`]] plugin subeditor for editing `LDevice` element. */
 @customElement('ldevice-container')
 export class LDeviceContainer extends Container {
-  @query('#toggleButton') toggleButton!: IconButtonToggle | undefined;
+  @property()
+  selectedLNClasses: string[] = [];
+
+  @query('#toggleButton')
+  toggleButton!: IconButtonToggle | undefined;
 
   private header(): TemplateResult {
     const nameOrInst =
@@ -33,10 +46,27 @@ export class LDeviceContainer extends Container {
     this.requestUpdate();
   }
 
-  render(): TemplateResult {
-    const lnElements = Array.from(
-      this.element.querySelectorAll(':scope > LN,LN0')
+  protected updated(_changedProperties: PropertyValues): void {
+    super.updated(_changedProperties);
+
+    // When the LN Classes filter is updated, we also want to trigger rendering for the LN Elements.
+    if (_changedProperties.has('selectedLNClasses')) {
+      this.requestUpdate('lnElements');
+    }
+  }
+
+  @state()
+  private get lnElements(): Element[] {
+    return Array.from(this.element.querySelectorAll(':scope > LN,LN0')).filter(
+      element => {
+        const lnClass = element.getAttribute('lnClass') ?? '';
+        return this.selectedLNClasses.includes(lnClass);
+      }
     );
+  }
+
+  render(): TemplateResult {
+    const lnElements = this.lnElements;
 
     return html`<action-pane .label="${this.header()}">
       <mwc-icon slot="icon">${logicalDeviceIcon}</mwc-icon>

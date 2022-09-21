@@ -1,10 +1,10 @@
-import { html, fixture, expect } from '@open-wc/testing';
+import { expect, fixture, html } from '@open-wc/testing';
 
 import '../../../../src/editors/ied/da-container.js';
 
 import { DAContainer } from '../../../../src/editors/ied/da-container.js';
 import { initializeNsdoc } from '../../../../src/foundation/nsdoc.js';
-import {TemplateResult} from "lit-element";
+import { TemplateResult } from 'lit-element';
 
 describe('da-container', async () => {
   let element: DAContainer;
@@ -13,7 +13,7 @@ describe('da-container', async () => {
   const nsdoc = await initializeNsdoc();
 
   beforeEach(async () => {
-    validSCL = await fetch('/test/testfiles/valid2007B4withIEDModifications.scd')
+    validSCL = await fetch('/test/testfiles/editors/iedEditorWithIEDs.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
   });
@@ -22,7 +22,8 @@ describe('da-container', async () => {
     beforeEach(async () => {
       element = await fixture(html`<da-container
         .element=${validSCL.querySelector(
-          'DataTypeTemplates > DOType[id="Dummy.XCBR1.Pos"] > DA[name="ctlModel"]')}
+          'DataTypeTemplates > DOType[id="Dummy.XCBR1.Pos"] > DA[name="ctlModel"]'
+        )}
         .nsdoc=${nsdoc}
       ></da-container>`);
     });
@@ -34,7 +35,7 @@ describe('da-container', async () => {
       expect(header.values[1]).to.be.equals('Enum');
       expect((<TemplateResult>header.values[2]).values.length).to.be.equals(1);
       expect((<TemplateResult>header.values[2]).values[0]).to.be.equals('CF');
-    })
+    });
 
     it('looks like the latest snapshot', async () => {
       expect(element).shadowDom.to.equalSnapshot();
@@ -45,11 +46,16 @@ describe('da-container', async () => {
     beforeEach(async () => {
       element = await fixture(html`<da-container
         .element=${validSCL.querySelector(
-          'DataTypeTemplates > DAType[id="Dummy.LPHD1.Sim.SBOw"] > BDA[name="ctlVal"]')}
+          'DataTypeTemplates > DAType[id="Dummy.LPHD1.Sim.SBOw"] > BDA[name="ctlVal"]'
+        )}
         .daParent=${validSCL.querySelector(
-          'DataTypeTemplates > DOType[id="Dummy.LPHD1.Sim"] > DA[name="SBOw"]')}
-        .ancestors=${[validSCL.querySelector(
-          'DataTypeTemplates > DOType[id="Dummy.LPHD1.Sim"] > DA[name="SBOw"]')]}
+          'DataTypeTemplates > DOType[id="Dummy.LPHD1.Sim"] > DA[name="SBOw"]'
+        )}
+        .ancestors=${[
+          validSCL.querySelector(
+            'DataTypeTemplates > DOType[id="Dummy.LPHD1.Sim"] > DA[name="SBOw"]'
+          ),
+        ]}
         .nsdoc=${nsdoc}
       ></da-container>`);
     });
@@ -60,7 +66,7 @@ describe('da-container', async () => {
       expect(header.values[0]).to.be.equals('ctlVal');
       expect(header.values[1]).to.be.equals('BOOLEAN');
       expect(header.values[2]).to.be.equals('');
-    })
+    });
 
     it('looks like the latest snapshot', async () => {
       expect(element).shadowDom.to.equalSnapshot();
@@ -71,7 +77,8 @@ describe('da-container', async () => {
     beforeEach(async () => {
       element = await fixture(html`<da-container
         .element=${validSCL.querySelector(
-          'DataTypeTemplates > DOType[id="Dummy.LPHD1.Sim"] > DA[name="SBOw"]')}
+          'DataTypeTemplates > DOType[id="Dummy.LPHD1.Sim"] > DA[name="SBOw"]'
+        )}
         .nsdoc=${nsdoc}
       ></da-container>`);
 
@@ -88,7 +95,9 @@ describe('da-container', async () => {
       )).click();
       await element.requestUpdate();
       await element.updateComplete;
-      expect(element.shadowRoot!.querySelectorAll('do-container').length).to.eql(0);
+      expect(
+        element.shadowRoot!.querySelectorAll('do-container').length
+      ).to.eql(0);
     });
 
     it('looks like the latest snapshot', async () => {
@@ -99,9 +108,11 @@ describe('da-container', async () => {
   it('looks like the latest snapshot with a DA element containing and a DAI', async () => {
     element = await fixture(html`<da-container
       .element=${validSCL.querySelector(
-        'DataTypeTemplates > DOType[id="Dummy.XCBR1.Pos"] > DA[name="ctlModel"]')}
+        'DataTypeTemplates > DOType[id="Dummy.XCBR1.Pos"] > DA[name="ctlModel"]'
+      )}
       .instanceElement=${validSCL.querySelector(
-        ':root > IED[name="IED2"] > AccessPoint[name="P1"] > Server > LDevice[inst="CircuitBreaker_CB1"] > LN[lnType="Dummy.XCBR1"] > DOI[name="Pos"]> DAI[name="ctlModel"]')}
+        ':root > IED[name="IED2"] > AccessPoint[name="P1"] > Server > LDevice[inst="CircuitBreaker_CB1"] > LN[lnType="Dummy.XCBR1"] > DOI[name="Pos"]> DAI[name="ctlModel"]'
+      )}
       .nsdoc=${nsdoc}
     ></da-container>`);
     expect(element).shadowDom.to.equalSnapshot();
@@ -111,7 +122,8 @@ describe('da-container', async () => {
     it('which returns BDA elements if available', async () => {
       element = await fixture(html`<da-container
         .element=${validSCL.querySelector(
-          'DataTypeTemplates > DOType[id="Dummy.LPHD1.Sim"] > DA[name="SBOw"]')}
+          'DataTypeTemplates > DOType[id="Dummy.LPHD1.Sim"] > DA[name="SBOw"]'
+        )}
         .nsdoc=${nsdoc}
       ></da-container>`);
 
@@ -123,7 +135,8 @@ describe('da-container', async () => {
     it('which returns no BDA elements if they are not available', async () => {
       element = await fixture(html`<da-container
         .element=${validSCL.querySelector(
-          'DataTypeTemplates > DOType[id="Dummy.LPHD1.Sim"] > DA[name="SBO"]')}
+          'DataTypeTemplates > DOType[id="Dummy.LPHD1.Sim"] > DA[name="SBO"]'
+        )}
         .nsdoc=${nsdoc}
       ></da-container>`);
 

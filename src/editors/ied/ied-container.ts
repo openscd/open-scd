@@ -1,4 +1,10 @@
-import { css, customElement, html, TemplateResult } from 'lit-element';
+import {
+  css,
+  customElement,
+  html,
+  property,
+  TemplateResult,
+} from 'lit-element';
 import { nothing } from 'lit-html';
 import { translate } from 'lit-translate';
 
@@ -18,6 +24,9 @@ import { removeIEDWizard } from '../../wizards/ied.js';
 /** [[`IED`]] plugin subeditor for editing `IED` element. */
 @customElement('ied-container')
 export class IedContainer extends Container {
+  @property()
+  selectedLNClasses: string[] = [];
+
   private openEditWizard(): void {
     const wizard = wizards['IED'].edit(this.element);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
@@ -64,6 +73,7 @@ export class IedContainer extends Container {
           .doc=${this.doc}
           .element=${ap}
           .nsdoc=${this.nsdoc}
+          .selectedLNClasses=${this.selectedLNClasses}
           .ancestors=${[this.element]}
         ></access-point-container>`
       )}

@@ -242,7 +242,7 @@ snapshots["GOOSE subscriber plugin in Publisher view per dafault the left hand s
 snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE message the left hand side subscriber IED list looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.goose.publisherGoose.subscriberTitle]
+    [subscription.goose.publisher.subscriberTitle]
   </h1>
   <div class="wrapper">
     <filtered-list>
@@ -342,7 +342,7 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
 snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE message for unsubscribed IEDs after clicking on the IEDs list element the left hand side subscriber IED list looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.goose.publisherGoose.subscriberTitle]
+    [subscription.goose.publisher.subscriberTitle]
   </h1>
   <div class="wrapper">
     <filtered-list>
@@ -453,7 +453,7 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
 snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE message for subscribed IEDs after clicking on the IEDs list element looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.goose.publisherGoose.subscriberTitle]
+    [subscription.goose.publisher.subscriberTitle]
   </h1>
   <div class="wrapper">
     <filtered-list>
@@ -564,7 +564,7 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
 snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE message for partially subscribed IEDs after clicking on the IEDs list element it looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.goose.publisherGoose.subscriberTitle]
+    [subscription.goose.publisher.subscriberTitle]
   </h1>
   <div class="wrapper">
     <filtered-list>
@@ -692,7 +692,10 @@ snapshots["GOOSE subscriber plugin in Subscriber view per default the plugin its
     </mwc-radio>
   </mwc-formfield>
   <div class="container">
-    <ied-list class="row">
+    <ied-list
+      class="row"
+      servicetype="goose"
+    >
     </ied-list>
     <subscriber-list-goose class="row">
     </subscriber-list-goose>
@@ -706,9 +709,9 @@ snapshots["GOOSE subscriber plugin in Subscriber view per default the plugin its
 snapshots["GOOSE subscriber plugin in Subscriber view per default the right hand side IEDs list looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.iedList.title]
+    [subscription.goose.subscriber.iedListTitle]
   </h1>
-  <filtered-list>
+  <filtered-list activatable="">
     <mwc-list-item
       aria-disabled="false"
       graphic="icon"
@@ -769,7 +772,7 @@ snapshots["GOOSE subscriber plugin in Subscriber view per default the right hand
 snapshots["GOOSE subscriber plugin in Subscriber view per default the left hand side subscriber IED list looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.goose.subscriberGoose.publisherTitle]
+    [subscription.goose.subscriber.publisherTitle]
   </h1>
   <mwc-list>
     <mwc-list-item
@@ -789,7 +792,7 @@ snapshots["GOOSE subscriber plugin in Subscriber view per default the left hand 
 snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED the left hand side subscriber IED list looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.goose.subscriberGoose.publisherTitle]
+    [subscription.goose.subscriber.publisherTitle]
   </h1>
   <div class="wrapper">
     <filtered-list>
@@ -885,7 +888,7 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED the le
 snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for unsubscribed GSEControl s clicking on a GSEControl list item the left hand side subscriber IED list looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.goose.subscriberGoose.publisherTitle]
+    [subscription.goose.subscriber.publisherTitle]
   </h1>
   <div class="wrapper">
     <filtered-list>
@@ -982,7 +985,7 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for un
 snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for subscribed GSEControl s clicking on the GSEControl list item the left hand side subscriber IED list looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.goose.subscriberGoose.publisherTitle]
+    [subscription.goose.subscriber.publisherTitle]
   </h1>
   <div class="wrapper">
     <filtered-list>
@@ -1079,7 +1082,7 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for su
 snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for partially subscribed GSEControl s clicking on the GSEControl list item the left hand side subscriber IED list looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.goose.subscriberGoose.publisherTitle]
+    [subscription.goose.subscriber.publisherTitle]
   </h1>
   <div class="wrapper">
     <filtered-list>
@@ -1207,9 +1210,9 @@ snapshots["GOOSE subscriber plugin in Publisher view per default the plugin itse
 snapshots["GOOSE subscriber plugin in Publisher view per default the right hand side GSEControl list looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.goose.publisherGoose.title]
+    [subscription.goose.publisher.title]
   </h1>
-  <filtered-list>
+  <filtered-list activatable="">
     <mwc-list-item
       aria-disabled="false"
       graphic="icon"
@@ -1394,7 +1397,7 @@ snapshots["GOOSE subscriber plugin in Publisher view per default the right hand 
 snapshots["GOOSE subscriber plugin in Publisher view per default the left hand side subscriber IED list looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.goose.publisherGoose.subscriberTitle]
+    [subscription.goose.publisher.subscriberTitle]
   </h1>
   <mwc-list>
     <mwc-list-item

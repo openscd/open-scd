@@ -397,19 +397,23 @@ export class SubscriberList extends SubscriberListContainer {
 
     return view == View.PUBLISHER
       ? html`<h1>
-          ${translate('subscription.goose.publisherGoose.subscriberTitle', {
+          ${translate('subscription.goose.publisher.subscriberTitle', {
             selected: gseControlName
               ? this.currentGooseIedName + ' > ' + gseControlName
               : 'GOOSE',
           })}
         </h1>`
       : html`<h1>
-          ${translate('subscription.goose.subscriberGoose.publisherTitle', {
+          ${translate('subscription.goose.subscriber.publisherTitle', {
             selected: this.currentSelectedIed
               ? this.currentSelectedIed.getAttribute('name')!
               : 'IED',
           })}
         </h1>`;
+  }
+
+  protected firstUpdated(): void {
+    this.currentSelectedIed = undefined
   }
 
   render(): TemplateResult {

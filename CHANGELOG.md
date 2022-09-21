@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.24.0](https://github.com/openscd/open-scd/compare/v0.23.0...v0.24.0) (2022-09-19)
+
+
+### Features
+
+* **editor/ied:** Filter for logical nodes ([#990](https://github.com/openscd/open-scd/issues/990)) ([629cbcc](https://github.com/openscd/open-scd/commits/629cbcc2590b22c052e16778c919ac365a2886c6))
+* **editors/subscriber-later-binding:** Show connected and available ExtRef on FCDA selection (GOOSE) ([#995](https://github.com/openscd/open-scd/issues/995)) ([d88b7d2](https://github.com/openscd/open-scd/commits/d88b7d24cd50682cca4eb39e37f547fcc6702ce0))
+* **menu/compareied:** Compare View redesign to make it more clear ([#996](https://github.com/openscd/open-scd/issues/996)) ([342c30f](https://github.com/openscd/open-scd/commits/342c30ff826c10ff54ae9205f12841f7b02824c6))
+
+
+### Bug Fixes
+
+* **editors/plugin:** disable read-only inputs ([#1000](https://github.com/openscd/open-scd/issues/1000)) ([e399e7e](https://github.com/openscd/open-scd/commits/e399e7e3685ad0ee5fee351eed0f53703a0f6528))
+
 ## [0.23.0](https://github.com/openscd/open-scd/compare/v0.22.0...v0.23.0) (2022-09-05)
 
 

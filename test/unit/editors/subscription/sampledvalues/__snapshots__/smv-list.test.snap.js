@@ -4,9 +4,9 @@ export const snapshots = {};
 snapshots["smv-list looks like the latest snapshot with a document loaded"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.smv.publisherSmv.title]
+    [subscription.smv.publisher.title]
   </h1>
-  <filtered-list>
+  <filtered-list activatable="">
     <mwc-list-item
       aria-disabled="false"
       graphic="icon"
@@ -92,9 +92,9 @@ snapshots["smv-list looks like the latest snapshot with a document loaded"] =
 snapshots["smv-list looks like the latest snapshot without a doc loaded"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.smv.publisherSmv.title]
+    [subscription.smv.publisher.title]
   </h1>
-  <filtered-list>
+  <filtered-list activatable="">
   </filtered-list>
 </section>
 `;
