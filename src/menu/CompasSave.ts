@@ -35,7 +35,10 @@ export default class CompasSaveMenuPlugin extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<mwc-dialog heading="${translate('compas.save.title')}">
+    return html`<mwc-dialog
+      id="compas-save-dlg"
+      heading="${translate('compas.save.title')}"
+    >
       ${!this.doc || !this.docName
         ? html`<compas-loading></compas-loading>`
         : html`
