@@ -31,6 +31,7 @@ import {
   existExtRef,
   getExtRef,
   IEDSelectEvent,
+  instantiateSubscriptionSupervision,
   ListElement,
   styles,
   SubscriberListContainer,
@@ -252,6 +253,15 @@ export class SubscriberList extends SubscriberListContainer {
         if (inputsElement?.parentElement)
           actions.push({ new: { parent: inputsElement!, element: extRef } });
         else inputsElement?.appendChild(extRef);
+
+        // we need to extend the actions array with the actions for the instation of the LSVS
+        if (this.currentSelectedSmvControl)
+          actions.concat(
+            instantiateSubscriptionSupervision(
+              this.currentSelectedSmvControl,
+              ied
+            )
+          );
       }
     });
 
