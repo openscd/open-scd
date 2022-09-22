@@ -18,6 +18,7 @@ import '../../action-pane.js';
 import './ied-editor.js';
 import './powertransformer-editor.js';
 import './voltage-level-editor.js';
+import './general-equipment-editor.js';
 import {
   getChildElementsByTagName,
   newActionEvent,
@@ -236,6 +237,10 @@ export class SubstationEditor extends LitElement {
           >${this.renderAddButtons()}</mwc-menu
         >
       </abbr>
+      ${getChildElementsByTagName(this.element, 'GeneralEquipment').map(
+        gEquipment =>
+          html`<general-equipment-editor></general-equipment-editor>`
+      )}
       ${this.renderIedContainer()}${this.renderLNodes()}${this.renderFunctions()}
       ${this.renderPowerTransformerContainer()}
       ${Array.from(this.element.querySelectorAll(selectors.VoltageLevel)).map(
