@@ -72,6 +72,15 @@ describe('compas-labels-field', () => {
       expect(labelElements.length).to.be.equal(2);
     });
 
+    it('when calling updateLabelsInPrivateElement then Private Element is updated', async () => {
+      expect(privateElement.querySelectorAll('Label').length).to.be.equal(1);
+
+      await addLabel(element, 'Label2');
+      element.updateLabelsInPrivateElement(privateElement);
+
+      expect(privateElement.querySelectorAll('Label').length).to.be.equal(2);
+    });
+
     it('when removing a label then label element removed', async () => {
       await removeLabel(element, 'Label1');
 

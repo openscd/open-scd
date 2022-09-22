@@ -76,13 +76,7 @@ export default class CompasSaveElement extends CompasExistsIn(LitElement) {
   private updateLabels() {
     const sclElement = this.doc.documentElement;
     const privateElement = getPrivate(sclElement, COMPAS_SCL_PRIVATE_TYPE);
-    // We will just add or replace the complete Labels Element, so if it exists
-    // first remove it and always add the new one.
-    if (this.labelsField.originalLabelsElement) {
-      privateElement?.removeChild(this.labelsField.originalLabelsElement);
-    }
-    privateElement?.append(this.labelsField.newLabelsElement);
-    this.labelsField.originalLabelsElement = this.labelsField.newLabelsElement;
+    this.labelsField.updateLabelsInPrivateElement(privateElement!);
   }
 
   private async addSclToCompas(doc: XMLDocument): Promise<boolean> {
