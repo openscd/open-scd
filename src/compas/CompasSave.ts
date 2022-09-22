@@ -84,10 +84,11 @@ export default class CompasSaveElement extends CompasExistsIn(LitElement) {
     privateElement?.append(this.labelsField.newLabelsElement);
   }
 
-  private async addSclToCompas(doc: XMLDocument): Promise<void> {
+  private async addSclToCompas(doc: XMLDocument): Promise<boolean> {
     const name = stripExtensionFromName(this.nameField.value);
     const comment = this.commentField.value;
     const docType = this.sclTypeRadioGroup.getSelectedValue() ?? '';
+    let success = false;
 
     await CompasSclDataService()
       .addSclDocument(docType, { sclName: name, comment: comment, doc: doc })
@@ -101,18 +102,22 @@ export default class CompasSaveElement extends CompasExistsIn(LitElement) {
             title: get('compas.save.addSuccess'),
           })
         );
+        success = true;
       })
       .catch(reason => createLogEvent(this, reason));
+
+    return success;
   }
 
   private async updateSclInCompas(
     docId: string,
     docName: string,
     doc: XMLDocument
-  ): Promise<void> {
+  ): Promise<boolean> {
     const changeSet = this.changeSetRadiogroup.getSelectedValue();
     const comment = this.commentField.value;
     const docType = getTypeFromDocName(docName);
+    let success = false;
 
     await CompasSclDataService()
       .updateSclDocument(docType, docId, {
@@ -130,16 +135,19 @@ export default class CompasSaveElement extends CompasExistsIn(LitElement) {
             title: get('compas.save.updateSuccess'),
           })
         );
+        success = true;
       })
       .catch(reason => createLogEvent(this, reason));
+
+    return success;
   }
 
-  async saveToCompas(): Promise<void> {
+  async saveToCompas(): Promise<boolean> {
     this.updateLabels();
     if (!this.docId || !this.existInCompas) {
-      await this.addSclToCompas(this.doc);
+      return this.addSclToCompas(this.doc);
     } else {
-      await this.updateSclInCompas(this.docId, this.docName, this.doc);
+      return this.updateSclInCompas(this.docId, this.docName, this.doc);
     }
   }
 
