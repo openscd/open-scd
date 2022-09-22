@@ -82,6 +82,7 @@ export default class CompasSaveElement extends CompasExistsIn(LitElement) {
       privateElement?.removeChild(this.labelsField.originalLabelsElement);
     }
     privateElement?.append(this.labelsField.newLabelsElement);
+    this.labelsField.originalLabelsElement = this.labelsField.newLabelsElement;
   }
 
   private async addSclToCompas(doc: XMLDocument): Promise<boolean> {
