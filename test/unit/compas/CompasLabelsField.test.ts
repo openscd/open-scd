@@ -39,6 +39,15 @@ describe('compas-labels-field', () => {
       expect(labelElements.length).to.be.equal(1);
     });
 
+    it('when calling updateLabelsInPrivateElement then Private Element is updated', async () => {
+      expect(privateElement.querySelectorAll('Label').length).to.be.equal(0);
+
+      await addLabel(element, 'Label1');
+      element.updateLabelsInPrivateElement(privateElement);
+
+      expect(privateElement.querySelectorAll('Label').length).to.be.equal(1);
+    });
+
     it('looks like the latest snapshot', async () => {
       await expect(element).shadowDom.to.equalSnapshot();
     });
@@ -70,6 +79,15 @@ describe('compas-labels-field', () => {
         element.newLabelsElement.querySelectorAll('Label')
       );
       expect(labelElements.length).to.be.equal(2);
+    });
+
+    it('when calling updateLabelsInPrivateElement then Private Element is updated', async () => {
+      expect(privateElement.querySelectorAll('Label').length).to.be.equal(1);
+
+      await addLabel(element, 'Label2');
+      element.updateLabelsInPrivateElement(privateElement);
+
+      expect(privateElement.querySelectorAll('Label').length).to.be.equal(2);
     });
 
     it('when removing a label then label element removed', async () => {

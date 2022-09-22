@@ -77,6 +77,16 @@ export class CompasLabelsFieldElement extends LitElement {
     this.requestUpdate('labels');
   }
 
+  public updateLabelsInPrivateElement(privateElement: Element): void {
+    // We will just add or replace the complete Labels Element, so if it exists
+    // first remove it and always add the new one.
+    if (this.originalLabelsElement) {
+      privateElement?.removeChild(this.originalLabelsElement);
+    }
+    privateElement?.append(this.newLabelsElement);
+    this.originalLabelsElement = this.newLabelsElement;
+  }
+
   render(): TemplateResult {
     const labels = this.labels;
     return html`

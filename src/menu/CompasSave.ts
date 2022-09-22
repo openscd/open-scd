@@ -34,6 +34,13 @@ export default class CompasSaveMenuPlugin extends LitElement {
     this.dialog.open = true;
   }
 
+  private async saveToCoMPAS(): Promise<void> {
+    const success = await this.compasSaveElement.saveToCompas();
+    if (success) {
+      this.dialog.close();
+    }
+  }
+
   render(): TemplateResult {
     return html`<mwc-dialog
       id="compas-save-dlg"
@@ -55,10 +62,7 @@ export default class CompasSaveMenuPlugin extends LitElement {
               label="${translate('save')}"
               @click=${() => {
                 if (this.compasSaveElement.valid()) {
-                  this.dispatchEvent(
-                    newPendingStateEvent(this.compasSaveElement.saveToCompas())
-                  );
-                  this.dialog.close();
+                  this.dispatchEvent(newPendingStateEvent(this.saveToCoMPAS()));
                 }
               }}
             ></mwc-button>
