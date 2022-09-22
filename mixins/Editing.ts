@@ -1,22 +1,31 @@
 import { property } from 'lit/decorators.js';
 
 import {
+  AttributeValue,
   EditorAction,
   EditorActionEvent,
   Insert,
   isComplex,
   isInsert,
+  isNamespaced,
   isRemove,
+  isUpdate,
   LitElementConstructor,
   OpenDocEvent,
   Remove,
+  Update,
 } from '../foundation.js';
 
 const nothing = new Document().createElement('nothing');
 const noOp = {
   remove: { node: nothing },
+  update: { element: nothing, attributes: {} },
   insert: { node: nothing, parent: nothing, reference: null },
 };
+
+function localAttributeName(attribute: string): string {
+  return attribute.includes(':') ? attribute.split(':', 2)[1] : attribute;
+}
 
 function onInsertAction({ parent, node, reference }: Insert): Insert | Remove {
   try {
@@ -35,6 +44,54 @@ function onInsertAction({ parent, node, reference }: Insert): Insert | Remove {
   }
 }
 
+function onUpdateAction({ element, attributes }: Update): Update {
+  let oldAttributes: typeof attributes = {};
+  if (Object.hasOwnProperty.call(attributes, '__proto__'))
+    oldAttributes = { ['__proto__']: undefined }; // make __proto__ settable
+  Object.entries(attributes)
+    .reverse()
+    .forEach(([name, value]) => {
+      let oldAttribute: AttributeValue;
+      if (isNamespaced(value!))
+        oldAttribute = {
+          value: element.getAttributeNS(
+            value.namespaceURI,
+            localAttributeName(name)
+          ),
+          namespaceURI: value.namespaceURI,
+        };
+      else
+        oldAttribute = element.getAttributeNode(name)?.namespaceURI
+          ? {
+              value: element.getAttribute(name),
+              namespaceURI: element.getAttributeNode(name)!.namespaceURI!,
+            }
+          : element.getAttribute(name);
+      oldAttributes[name] = oldAttribute;
+    });
+  for (const entry of Object.entries(attributes)) {
+    try {
+      const [attribute, value] = entry as [string, AttributeValue];
+      if (isNamespaced(value)) {
+        if (value.value === null)
+          element.removeAttributeNS(
+            value.namespaceURI,
+            localAttributeName(attribute)
+          );
+        else element.setAttributeNS(value.namespaceURI, attribute, value.value);
+      } else if (value === null) element.removeAttribute(attribute);
+      else element.setAttribute(attribute, value);
+    } catch (e) {
+      // do nothing if update doesn't work on this attribute
+      delete oldAttributes[entry[0]];
+    }
+  }
+  return {
+    element,
+    attributes: oldAttributes,
+  };
+}
+
 function onRemoveAction({ node }: Remove): Insert {
   const { parentNode: parent, nextSibling: reference } = node;
   node.parentNode?.removeChild(node);
@@ -49,8 +106,10 @@ function onRemoveAction({ node }: Remove): Insert {
 
 function onEditorAction(action: EditorAction): EditorAction {
   if (isInsert(action)) return onInsertAction(action);
+  if (isUpdate(action)) return onUpdateAction(action);
   if (isRemove(action)) return onRemoveAction(action);
   if (isComplex(action)) return action.map(onEditorAction).reverse();
+  /* istanbul ignore next */
   throw new Error('Unknown action type');
 }
 
@@ -115,7 +174,6 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       if (n > 1) this.redo(n - 1);
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     constructor(...args: any[]) {
       super(...args);
 

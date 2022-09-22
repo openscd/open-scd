@@ -6,10 +6,15 @@ import {
   assert,
   constant,
   constantFrom,
+  dictionary,
   oneof,
   property,
   record,
+  string as stringArbitrary,
+  stringOf,
   tuple,
+  unicode,
+  webUrl,
 } from 'fast-check';
 
 import { LitElement } from 'lit';
@@ -19,13 +24,19 @@ import { customElement } from 'lit/decorators.js';
 import {
   EditorAction,
   Insert,
+  isNamespaced,
+  NamespacedAttributeValue,
   newActionEvent,
   newOpenDocEvent,
   Remove,
+  Update,
 } from '../foundation.js';
 import { Editing } from './Editing.js';
 
 namespace util {
+  export const xmlAttributeName =
+    /^(?!xml|Xml|xMl|xmL|XMl|xML|XmL|XML)[A-Za-z_][A-Za-z0-9-_.]*(:[A-Za-z_][A-Za-z0-9-_.]*)?$/;
+
   export function descendants(parent: Element | XMLDocument): Node[] {
     return (Array.from(parent.childNodes) as Node[]).concat(
       ...Array.from(parent.children).map(child => descendants(child))
@@ -88,8 +99,29 @@ namespace util {
     return record({ parent, node, reference });
   }
 
-  export function simpleAction(nodes: Node[]): Arbitrary<Insert | Remove> {
-    return oneof(remove(nodes), insert(nodes));
+  const namespacedValue = record({
+    value: oneof(
+      stringOf(oneof({ arbitrary: unicode(), weight: 10 }, constant(':'))),
+      constant(null)
+    ),
+    namespaceURI: oneof({ arbitrary: webUrl(), weight: 10 }, constant(null)),
+  });
+
+  export function update(nodes: Node[]): Arbitrary<Update> {
+    const element = <Arbitrary<Element>>(
+      constantFrom(...nodes.filter(nd => nd.nodeType === Node.ELEMENT_NODE))
+    );
+    const attributes = dictionary(
+      oneof(stringArbitrary(), constant('colliding-attribute-name')),
+      oneof(stringArbitrary(), constant(null), namespacedValue)
+    );
+    return record({ element, attributes });
+  }
+
+  export function simpleAction(
+    nodes: Node[]
+  ): Arbitrary<Insert | Update | Remove> {
+    return oneof(remove(nodes), insert(nodes), update(nodes));
   }
 
   export function complexAction(nodes: Node[]): Arbitrary<EditorAction[]> {
@@ -194,6 +226,28 @@ describe('Editing Element', () => {
     expect(sclDoc.querySelector('Substation')).to.not.exist;
   });
 
+  it("updates an element's attributes on UpdateActionEvent", () => {
+    const element = sclDoc.querySelector('Substation')!;
+    editor.dispatchEvent(
+      newActionEvent({
+        element,
+        attributes: {
+          name: 'A2',
+          desc: null,
+          ['__proto__']: 'a string', // covers a rare edge case branch
+          'myns:attr': {
+            value: 'namespaced value',
+            namespaceURI: 'http://example.org/myns',
+          },
+        },
+      })
+    );
+    expect(element).to.have.attribute('name', 'A2');
+    expect(element).to.not.have.attribute('desc');
+    expect(element).to.have.attribute('__proto__', 'a string');
+    expect(element).to.have.attribute('myns:attr', 'namespaced value');
+  });
+
   it('processes complex actions in the given order', () => {
     const parent = sclDoc.documentElement;
     const reference = sclDoc.querySelector('Substation');
@@ -246,6 +300,49 @@ describe('Editing Element', () => {
                 action.node.nextSibling === action.reference
               );
             return true;
+          }
+        )
+      ));
+
+    it('updates default namespace attributes on Update action events', () =>
+      assert(
+        property(
+          util.testDocs.chain(([{ nodes }]) => util.update(nodes)),
+          action => {
+            editor.dispatchEvent(newActionEvent(action));
+            return Object.entries(action.attributes)
+              .filter(
+                ([name, value]) =>
+                  util.xmlAttributeName.test(name) && !isNamespaced(value!)
+              )
+              .every(
+                ([name, value]) => action.element.getAttribute(name) === value
+              );
+          }
+        )
+      ));
+
+    it('updates namespaced attributes on Update action events', () =>
+      assert(
+        property(
+          util.testDocs.chain(([{ nodes }]) => util.update(nodes)),
+          action => {
+            editor.dispatchEvent(newActionEvent(action));
+            return Object.entries(action.attributes)
+              .filter(
+                ([name, value]) =>
+                  util.xmlAttributeName.test(name) &&
+                  isNamespaced(value!) &&
+                  value.namespaceURI
+              )
+              .map(entry => entry as [string, NamespacedAttributeValue])
+              .every(
+                ([name, { value, namespaceURI }]) =>
+                  action.element.getAttributeNS(
+                    <string>namespaceURI,
+                    name.includes(':') ? <string>name.split(':', 2)[1] : name
+                  ) === value
+              );
           }
         )
       ));
