@@ -2,9 +2,15 @@ import { css, LitElement, query } from 'lit-element';
 import {
   cloneElement,
   compareNames,
+  Create,
   createElement,
   getSclSchemaVersion,
 } from '../../foundation.js';
+import {
+  createTemplateStructure,
+  determineUninitializedStructure,
+  initializeElements,
+} from '../../foundation/dai.js';
 import { getFcdaReferences } from '../../foundation/ied.js';
 
 export enum View {
@@ -158,6 +164,110 @@ export function getExtRef(
       `ExtRef[iedName="${iedName}"]${getFcdaReferences(fcda)}${controlCriteria}`
     )
   ).find(extRefElement => !extRefElement.hasAttribute('intAddr'));
+}
+
+export function instantiateSubscriptionSupervision(
+  controlBlock: Element,
+  subscriberIED: Element
+): Create[] {
+  if (getSclSchemaVersion(subscriberIED.ownerDocument) === '2003') return [];
+  const supervisionType =
+    controlBlock.tagName === 'GSEControl' ? 'LGOS' : 'LSVS';
+  if (subscriberIED.querySelector(`LN[lnClass="${supervisionType}"]`) === null)
+    return [];
+  if (
+    Array.from(
+      subscriberIED.querySelectorAll(
+        `LN[lnClass="${supervisionType}"]>DOI>DAI>Val`
+      )
+    ).find(val => val.textContent == controlBlockReference(controlBlock))
+  )
+    return [];
+  if (
+    maxSupervisions(subscriberIED, controlBlock) <=
+    instantiatedSupervisions(subscriberIED, controlBlock)
+  )
+    return [];
+  const availableLN = nextAvailableLNInst(subscriberIED, controlBlock);
+  if (!availableLN) return [];
+  // First, create the templateStructure array
+  const templateStructure = createTemplateStructure(availableLN, [
+    'SvCBRef',
+    'setSrcRef',
+  ]);
+  if (!templateStructure) return [];
+  // Determine where to start creating new elements (DOI/SDI/DAI)
+  const [parentElement, uninitializedTemplateStructure] =
+    determineUninitializedStructure(availableLN, templateStructure);
+  // // Next create all missing elements (DOI/SDI/DAI)
+  const newElement = initializeElements(uninitializedTemplateStructure);
+  newElement.querySelector('Val')!.textContent =
+    controlBlockReference(controlBlock);
+  return [
+    {
+      new: {
+        parent: parentElement,
+        element: newElement,
+      },
+    },
+  ];
+}
+
+export function nextAvailableLNInst(
+  subscriberIED: Element,
+  controlBlock: Element
+): Element | null {
+  const supervisionType =
+    controlBlock.tagName === 'GSEControl' ? 'LGOS' : 'LSVS';
+
+  const firstEmptyLN = Array.from(
+    subscriberIED.querySelectorAll(`LN[lnClass="${supervisionType}"]`)
+  ).find(
+    ln =>
+      ln.querySelector('DOI>DAI>Val') === null ||
+      ln.querySelector('DOI>DAI>Val')?.textContent === ''
+  );
+  if (firstEmptyLN) return firstEmptyLN;
+  return null;
+}
+
+export function instantiatedSupervisions(
+  subscriberIED: Element,
+  controlBlock: Element
+): number {
+  const supervisionType =
+    controlBlock.tagName === 'GSEControl' ? 'LGOS' : 'LSVS';
+  const instantiatedValues = Array.from(
+    subscriberIED.querySelectorAll(
+      `LN[lnClass="${supervisionType}"]>DOI>DAI>Val`
+    )
+  ).filter(val => val.textContent !== '');
+  return instantiatedValues.length;
+}
+
+export function maxSupervisions(
+  subscriberIED: Element,
+  controlBlock: Element
+): number {
+  const maxAttr = controlBlock.tagName === 'GSEControl' ? 'maxGo' : 'maxSv';
+  const maxValues = parseInt(
+    subscriberIED
+      .querySelector('Services>ClientServices>SupSubscription')
+      ?.getAttribute(maxAttr) ?? '0'
+  );
+  return isNaN(maxValues) ? 0 : maxValues;
+}
+
+export function controlBlockReference(controlBlock: Element): string | null {
+  const anyLN = controlBlock.closest('LN,LN0');
+  const prefix = anyLN?.getAttribute('prefix') ?? '';
+  const lnClass = anyLN?.getAttribute('lnClass');
+  const lnInst = anyLN?.getAttribute('inst') ?? '';
+  const ldInst = controlBlock.closest('LD')?.getAttribute('inst');
+  const iedName = controlBlock.closest('IED')?.getAttribute('name');
+  const cbName = controlBlock.getAttribute('name');
+  if (!cbName && !iedName && !ldInst && !lnClass) return null;
+  return `${iedName}${ldInst}/${prefix}${lnClass}${lnInst}.${cbName}`;
 }
 
 export function canCreateValidExtRef(
