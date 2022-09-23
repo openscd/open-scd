@@ -27,6 +27,7 @@ snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that f
     </wizard-textfield>
     <wizard-textfield
       label="IP-GATEWAY"
+      nullable=""
       pattern="([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])"
       required=""
     >
@@ -34,6 +35,7 @@ snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that f
     <wizard-textfield
       label="OSI-TSEL"
       maxlength="8"
+      nullable=""
       pattern="[0-9A-F]+"
       required=""
     >
@@ -41,6 +43,7 @@ snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that f
     <wizard-textfield
       label="OSI-SSEL"
       maxlength="16"
+      nullable=""
       pattern="[0-9A-F]+"
       required=""
     >
@@ -48,6 +51,7 @@ snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that f
     <wizard-textfield
       label="OSI-PSEL"
       maxlength="16"
+      nullable=""
       pattern="[0-9A-F]+"
       required=""
     >
@@ -155,6 +159,7 @@ snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that f
     </wizard-textfield>
     <wizard-textfield
       label="IP-GATEWAY"
+      nullable=""
       pattern="([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])"
       required=""
     >
@@ -162,6 +167,7 @@ snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that f
     <wizard-textfield
       label="OSI-TSEL"
       maxlength="8"
+      nullable=""
       pattern="[0-9A-F]+"
       required=""
     >
@@ -169,6 +175,7 @@ snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that f
     <wizard-textfield
       label="OSI-SSEL"
       maxlength="16"
+      nullable=""
       pattern="[0-9A-F]+"
       required=""
     >
@@ -176,6 +183,7 @@ snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that f
     <wizard-textfield
       label="OSI-PSEL"
       maxlength="16"
+      nullable=""
       pattern="[0-9A-F]+"
       required=""
     >
@@ -331,6 +339,7 @@ snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that f
     </wizard-textfield>
     <wizard-textfield
       label="IP-GATEWAY"
+      nullable=""
       pattern="([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])"
       required=""
     >
@@ -338,6 +347,7 @@ snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that f
     <wizard-textfield
       label="OSI-TSEL"
       maxlength="8"
+      nullable=""
       pattern="[0-9A-F]+"
       required=""
     >
@@ -345,6 +355,7 @@ snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that f
     <wizard-textfield
       label="OSI-SSEL"
       maxlength="16"
+      nullable=""
       pattern="[0-9A-F]+"
       required=""
     >
@@ -352,6 +363,7 @@ snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that f
     <wizard-textfield
       label="OSI-PSEL"
       maxlength="16"
+      nullable=""
       pattern="[0-9A-F]+"
       required=""
     >
