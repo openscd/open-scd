@@ -5,6 +5,7 @@ You can find information related to topics like
 - [Installation](https://github.com/openscd/open-scd/wiki/Install-OpenSCD)
 - [Project workflow](https://github.com/openscd/open-scd/wiki/Project-workflow)
 - [Validators used in OpenSCD](https://github.com/openscd/open-scd/wiki/Validators)
+- [Extensions](https://github.com/openscd/open-scd/wiki/Extensions)
 
 as well as features that allow you to manipulate or add specific information to the project covering
 
