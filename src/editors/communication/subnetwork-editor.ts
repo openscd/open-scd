@@ -11,6 +11,8 @@ import { translate } from 'lit-translate';
 import '@material/mwc-icon-button';
 
 import './connectedap-editor.js';
+import './gse-editor.js';
+import './smv-editor.js';
 import {
   newWizardEvent,
   newActionEvent,
@@ -75,6 +77,50 @@ export class SubNetworkEditor extends LitElement {
       );
   }
 
+  private renderSmvEditors(iedName: string): TemplateResult[] {
+    return Array.from(
+      this.element
+        .closest('Communication')
+        ?.querySelectorAll(`ConnectedAP[iedName="${iedName}"] > SMV`) ?? []
+    ).map(
+      smv => html`<smv-editor
+        class="${smv.closest('SubNetwork') !== this.element ? 'disabled' : ''}"
+        .doc=${this.doc}
+        .element=${smv}
+      ></smv-editor>`
+    );
+  }
+
+  private renderGseEditors(iedName: string): TemplateResult[] {
+    return Array.from(
+      this.element
+        .closest('Communication')
+        ?.querySelectorAll(`ConnectedAP[iedName="${iedName}"] > GSE`) ?? []
+    ).map(
+      gse => html`<gse-editor
+        class="${gse.closest('SubNetwork') !== this.element ? 'disabled' : ''}"
+        .doc=${this.doc}
+        .element=${gse}
+      ></gse-editor>`
+    );
+  }
+
+  private renderConnectedApEditors(iedName: string): TemplateResult[] {
+    return Array.from(
+      this.element.parentElement?.querySelectorAll(
+        `:scope > SubNetwork > ConnectedAP[iedName="${iedName}"]`
+      ) ?? []
+    ).map(
+      connectedAP =>
+        html`<connectedap-editor
+          class="${connectedAP.parentElement !== this.element
+            ? 'disabled'
+            : ''}"
+          .element=${connectedAP}
+        ></connectedap-editor>`
+    );
+  }
+
   private renderIEDs(): TemplateResult[] {
     return Array.from(this.element.querySelectorAll(':scope > ConnectedAP'))
       .map(connAP => connAP.getAttribute('iedName')!)
@@ -82,19 +128,9 @@ export class SubNetworkEditor extends LitElement {
       .sort(compareNames)
       .map(
         iedName => html` <action-pane id="iedSection" label="${iedName}">
-          ${Array.from(
-            this.element.parentElement?.querySelectorAll(
-              `:scope > SubNetwork > ConnectedAP[iedName="${iedName}"]`
-            ) ?? []
-          ).map(
-            connectedAP =>
-              html`<connectedap-editor
-                class="${connectedAP.parentElement !== this.element
-                  ? 'disabled'
-                  : ''}"
-                .element=${connectedAP}
-              ></connectedap-editor>`
-          )}
+          ${this.renderConnectedApEditors(iedName)}${this.renderGseEditors(
+            iedName
+          )}${this.renderSmvEditors(iedName)}
         </action-pane>`
       );
   }
@@ -146,6 +182,14 @@ export class SubNetworkEditor extends LitElement {
     }
 
     #iedSection:not(:focus):not(:focus-within) .disabled {
+      display: none;
+    }
+
+    #iedSection:not(:focus):not(:focus-within) gse-editor {
+      display: none;
+    }
+
+    #iedSection:not(:focus):not(:focus-within) smv-editor {
       display: none;
     }
 

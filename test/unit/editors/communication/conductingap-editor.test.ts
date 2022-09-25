@@ -13,9 +13,10 @@ describe('A component to visualize SCL element ConnectedAP', () => {
   let actionEvent: SinonSpy;
 
   beforeEach(async () => {
-    validSCL = await fetch('/test/testfiles/valid2007B4.scd')
+    validSCL = await fetch('/test/testfiles/communication/communication.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
     element = <ConnectedAPEditor>(
       await fixture(
         html`<connectedap-editor
@@ -32,9 +33,8 @@ describe('A component to visualize SCL element ConnectedAP', () => {
     window.addEventListener('editor-action', actionEvent);
   });
 
-  it('looks like the latest snapshot', async () => {
-    await expect(element).shadowDom.to.equalSnapshot();
-  });
+  it('looks like the latest snapshot', async () =>
+    await expect(element).shadowDom.to.equalSnapshot());
 
   it('renders label UNDEFINED in case ConnectedAP apName attribute is missing', async () => {
     const connAp = validSCL.querySelector('ConnectedAP');
