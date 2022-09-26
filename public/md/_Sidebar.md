@@ -32,7 +32,7 @@
 
 ## 5.4 [Conducting Equipment element](https://github.com/openscd/open-scd/wiki/Conducting-Equipment)
 
-## 5.5 [Conducting Equipment element](https://github.com/openscd/open-scd/wiki/Power-Transformer)
+## 5.5 [Power Transformer element](https://github.com/openscd/open-scd/wiki/Power-Transformer)
 
 ## 5.6 [Logical Node References (LNode)](https://github.com/openscd/open-scd/wiki/Logical-Node-Reference)
 
@@ -107,3 +107,5 @@
 ### 9.1 [Manipulate function type elements with OpenSCD](https://github.com/openscd/open-scd/wiki/Function)
 
 ### 9.2 [Create SPECIFICATION IED from function elements](https://github.com/openscd/open-scd/wiki/Create-Specification-IED-from-functions)
+
+## 10. [Extensions](https://github.com/openscd/open-scd/wiki/Extensions)
