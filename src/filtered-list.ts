@@ -40,9 +40,12 @@ function hideFiltered(item: ListItemBase, searchText: string): void {
 
   const terms: string[] = searchText.toUpperCase().trim().split(' ');
   terms.some(term => {
-    // regexp escape 
-    const termRegexed = `*${term}*`.replace(/[.+^${}()|[\]\\]/g, '\\$&'); 
-    const reTerm = new RegExp(termRegexed.replace(/\*/g,'.*').replace(/\?/g,'.'),'i');
+    // regexp escape
+    const termRegexed = `*${term}*`.replace(/[.+^${}()|[\]\\]/g, '\\$&');
+    const reTerm = new RegExp(
+      termRegexed.replace(/\*/g, '.*').replace(/\?/g, '.{1}'),
+      'i'
+    );
     !reTerm.test(filterTarget)
       ? slotItem(item).classList.add('hidden')
       : slotItem(item).classList.remove('hidden');
