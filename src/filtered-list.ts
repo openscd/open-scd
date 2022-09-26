@@ -43,7 +43,7 @@ function hideFiltered(item: ListItemBase, searchText: string): void {
     .toUpperCase()
     .replace(/[.+^${}()|[\]\\]/g, '\\$&')
     .trim()
-    .split(' ');
+    .split(/\s+/g);
 
   (terms.length === 1 && terms[0] === '') ||
   terms.every(term => {
