@@ -8,7 +8,7 @@ import {
   state,
   TemplateResult,
 } from 'lit-element';
-import { nothing } from 'lit-html';
+import { nothing, SVGTemplateResult } from 'lit-html';
 import { translate } from 'lit-translate';
 
 import '@material/mwc-icon';
@@ -22,12 +22,16 @@ import {
   identity,
   newWizardEvent,
 } from '../../../foundation.js';
-import { smvIcon } from '../../../icons/icons.js';
+import { gooseIcon, smvIcon } from '../../../icons/icons.js';
 import { wizards } from '../../../wizards/wizard-library.js';
 
 import { styles } from '../foundation.js';
 
 import { getFcdaTitleValue, newFcdaSelectEvent } from './foundation.js';
+
+type controlTag = 'SampledValueControl' | 'GSEControl';
+
+type iconLookup = Record<controlTag, SVGTemplateResult>;
 
 /**
  * A sub element for showing all Goose/Sampled Value Controls.
@@ -39,7 +43,7 @@ export class FCDALaterBindingList extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
   @property()
-  controlTag!: 'SampledValueControl' | 'GSEControl';
+  controlTag!: controlTag;
 
   // The selected Elements when a FCDA Line is clicked.
   @state()
@@ -47,9 +51,16 @@ export class FCDALaterBindingList extends LitElement {
   @state()
   selectedFcdaElement: Element | undefined;
 
+  @property({ attribute: false })
+  iconControlLookup: iconLookup;
+
   constructor() {
     super();
 
+    this.iconControlLookup = {
+      SampledValueControl: smvIcon,
+      GSEControl: gooseIcon,
+    };
     this.resetSelection = this.resetSelection.bind(this);
     parent.addEventListener('open-doc', this.resetSelection);
   }
@@ -169,7 +180,9 @@ export class FCDALaterBindingList extends LitElement {
                         : nothing}</span
                     >
                     <span slot="secondary">${identity(controlElement)}</span>
-                    <mwc-icon slot="graphic">${smvIcon}</mwc-icon>
+                    <mwc-icon slot="graphic"
+                      >${this.iconControlLookup[this.controlTag]}</mwc-icon
+                    >
                   </mwc-list-item>
                   <li divider role="separator"></li>
                   ${fcdaElements.map(fcdaElement =>
