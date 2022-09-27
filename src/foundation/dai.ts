@@ -118,7 +118,7 @@ export function createTemplateStructure(
 
   const doc = lnElement.ownerDocument;
   const lnType = lnElement.getAttribute('lnType') ?? '';
-  let typeElement = doc.querySelector(`LNType[id="${lnType}"]`);
+  let typeElement = doc.querySelector(`LNodeType[id="${lnType}"]`);
   path.forEach(name => {
     // There should be a DOType or DAType set for the current element in the list.
     if (!typeElement) {

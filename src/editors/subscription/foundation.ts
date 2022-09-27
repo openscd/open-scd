@@ -12,6 +12,7 @@ import {
   initializeElements,
 } from '../../foundation/dai.js';
 import { getFcdaReferences } from '../../foundation/ied.js';
+import { SCL_NAMESPACE } from '../../schemas.js';
 
 export enum View {
   PUBLISHER,
@@ -166,29 +167,24 @@ export function getExtRef(
   ).find(extRefElement => !extRefElement.hasAttribute('intAddr'));
 }
 
+/**
+ * Returns an array with a single Create action to create a new
+ * supervision element for the given GOOSE/SMV message and subscriber IED.
+ *
+ * @param controlBlock The GOOSE or SMV message element
+ * @param subscriberIED The subscriber IED
+ * @returns an empty array if instantiation is not possible or an array with a single Create action
+ */
 export function instantiateSubscriptionSupervision(
-  controlBlock: Element,
+  controlBlock: Element | undefined,
   subscriberIED: Element
 ): Create[] {
-  if (getSclSchemaVersion(subscriberIED.ownerDocument) === '2003') return [];
-  const supervisionType =
-    controlBlock.tagName === 'GSEControl' ? 'LGOS' : 'LSVS';
-  if (subscriberIED.querySelector(`LN[lnClass="${supervisionType}"]`) === null)
-    return [];
   if (
-    Array.from(
-      subscriberIED.querySelectorAll(
-        `LN[lnClass="${supervisionType}"]>DOI>DAI>Val`
-      )
-    ).find(val => val.textContent == controlBlockReference(controlBlock))
+    !controlBlock ||
+    (controlBlock && !isSupervisionAllowed(controlBlock, subscriberIED))
   )
     return [];
-  if (
-    maxSupervisions(subscriberIED, controlBlock) <=
-    instantiatedSupervisions(subscriberIED, controlBlock)
-  )
-    return [];
-  const availableLN = nextAvailableLNInst(subscriberIED, controlBlock);
+  const availableLN = findOrCreateAvailableLNInst(controlBlock, subscriberIED);
   if (!availableLN) return [];
   // First, create the templateStructure array
   const templateStructure = createTemplateStructure(availableLN, [
@@ -212,10 +208,44 @@ export function instantiateSubscriptionSupervision(
     },
   ];
 }
-
-export function nextAvailableLNInst(
-  subscriberIED: Element,
-  controlBlock: Element
+/**
+ * Checks if the given combination of GOOSE/SMV message and subscriber IED allows for subscription supervision.
+ * @param controlBlock The GOOSE or SMV message element
+ * @param subscriberIED The subscriber IED
+ */
+function isSupervisionAllowed(
+  controlBlock: Element,
+  subscriberIED: Element
+): boolean {
+  if (getSclSchemaVersion(subscriberIED.ownerDocument) === '2003') return false;
+  const supervisionType =
+    controlBlock.tagName === 'GSEControl' ? 'LGOS' : 'LSVS';
+  if (subscriberIED.querySelector(`LN[lnClass="${supervisionType}"]`) === null)
+    return false;
+  if (
+    Array.from(
+      subscriberIED.querySelectorAll(
+        `LN[lnClass="${supervisionType}"]>DOI>DAI>Val`
+      )
+    ).find(val => val.textContent == controlBlockReference(controlBlock))
+  )
+    return false;
+  if (
+    maxSupervisions(subscriberIED, controlBlock) <=
+    instantiatedSupervisionsCount(subscriberIED, controlBlock)
+  )
+    return false;
+  return true;
+}
+/** Returns an new or existing LN instance available for supervision instantiation
+ *
+ * @param controlBlock The GOOSE or SMV message element
+ * @param subscriberIED The subscriber IED
+ * @returns The LN instance or null if no LN instance could be found or created
+ */
+export function findOrCreateAvailableLNInst(
+  controlBlock: Element,
+  subscriberIED: Element
 ): Element | null {
   const supervisionType =
     controlBlock.tagName === 'GSEControl' ? 'LGOS' : 'LSVS';
@@ -228,10 +258,30 @@ export function nextAvailableLNInst(
       ln.querySelector('DOI>DAI>Val')?.textContent === ''
   );
   if (firstEmptyLN) return firstEmptyLN;
-  return null;
+  const newElement = subscriberIED.ownerDocument.createElementNS(
+    SCL_NAMESPACE,
+    'LN'
+  );
+  newElement.setAttribute('lnClass', supervisionType);
+  const instantiatedSibling = subscriberIED.querySelector(
+    `LN[lnClass="${supervisionType}"]>DOI>DAI>Val`
+  );
+  if (!instantiatedSibling) return null;
+  newElement.setAttribute(
+    'lnType',
+    instantiatedSibling.getAttribute('lnType') ?? ''
+  );
+  return newElement;
 }
 
-export function instantiatedSupervisions(
+/**
+ * Counts the number of LN instances with proper supervision for the given control block set up.
+ *
+ * @param subscriberIED The subscriber IED
+ * @param controlBlock The GOOSE or SMV message element
+ * @returns The number of LN instances with supervision set up
+ */
+export function instantiatedSupervisionsCount(
   subscriberIED: Element,
   controlBlock: Element
 ): number {
@@ -245,6 +295,14 @@ export function instantiatedSupervisions(
   return instantiatedValues.length;
 }
 
+/**
+ * Counts the max number of LN instances with supervision allowed for
+ * the given control block's type of message.
+ *
+ * @param subscriberIED The subscriber IED
+ * @param controlBlock The GOOSE or SMV message element
+ * @returns The max number of LN instances with supervision allowed
+ */
 export function maxSupervisions(
   subscriberIED: Element,
   controlBlock: Element
@@ -252,18 +310,27 @@ export function maxSupervisions(
   const maxAttr = controlBlock.tagName === 'GSEControl' ? 'maxGo' : 'maxSv';
   const maxValues = parseInt(
     subscriberIED
-      .querySelector('Services>ClientServices>SupSubscription')
+      .querySelector('Services>SupSubscription')
       ?.getAttribute(maxAttr) ?? '0'
   );
   return isNaN(maxValues) ? 0 : maxValues;
 }
 
-export function controlBlockReference(controlBlock: Element): string | null {
+/**
+ * Creates a string pointer to the control block element.
+ *
+ * @param controlBlock The GOOSE or SMV message element
+ * @returns null if the control block is undefined or a string pointer to the control block element
+ */
+export function controlBlockReference(
+  controlBlock: Element | undefined
+): string | null {
+  if (!controlBlock) return null;
   const anyLN = controlBlock.closest('LN,LN0');
   const prefix = anyLN?.getAttribute('prefix') ?? '';
   const lnClass = anyLN?.getAttribute('lnClass');
   const lnInst = anyLN?.getAttribute('inst') ?? '';
-  const ldInst = controlBlock.closest('LD')?.getAttribute('inst');
+  const ldInst = controlBlock.closest('LDevice')?.getAttribute('inst');
   const iedName = controlBlock.closest('IED')?.getAttribute('name');
   const cbName = controlBlock.getAttribute('name');
   if (!cbName && !iedName && !ldInst && !lnClass) return null;
