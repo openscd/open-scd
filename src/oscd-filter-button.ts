@@ -26,6 +26,8 @@ export class FilterButton extends FilteredList {
   header!: TemplateResult | string;
   @property()
   icon!: string;
+  @property({ type: Boolean })
+  disabled = false;
 
   @query('#filterDialog')
   private filterDialog!: Dialog;
@@ -48,7 +50,11 @@ export class FilterButton extends FilteredList {
 
   render(): TemplateResult {
     return html`
-      <mwc-icon-button icon="${this.icon}" @click=${this.toggleList}>
+      <mwc-icon-button
+        icon="${this.icon}"
+        @click="${this.toggleList}"
+        ?disabled="${this.disabled}"
+      >
         <slot name="icon"></slot>
       </mwc-icon-button>
       <mwc-dialog
