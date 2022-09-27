@@ -1,5 +1,5 @@
-import {SDS_NAMESPACE} from "../../../src/compas-services/CompasSclDataService.js";
-import sinon, {SinonStub} from "sinon";
+import { SDS_NAMESPACE } from '../../../src/compas-services/CompasSclDataService.js';
+import sinon, { SinonStub } from 'sinon';
 
 export const TYPE_ENTRY_ELEMENT_NAME = 'Type';
 export const BASIC_TYPE_LIST_RESPONSE = `
@@ -26,6 +26,23 @@ export const BASIC_ITEM_LIST_RESPONSE = `
                     <Id>771d8940-9024-4c8b-a103-9566f1ba845e</Id>
                     <Name>Station-Utrecht-0002</Name>
                     <Version>1.3.0</Version>
+                </Item>
+             </ListResponse>`;
+export const ITEM_LIST_WITH_LABELS_RESPONSE = `
+             <ListResponse xmlns="${SDS_NAMESPACE}">
+                <Item>
+                    <Id>9883eabb-2e3c-471c-9036-95045d01e3fc</Id>
+                    <Name>Station-Utrecht-0001</Name>
+                    <Version>2.1.0</Version>
+                    <Label>Netherlands</Label>
+                    <Label>Utrecht</Label>
+                </Item>
+                <Item>
+                    <Id>771d8940-9024-4c8b-a103-9566f1ba845e</Id>
+                    <Name>Station-Amsterdam-0001</Name>
+                    <Version>1.3.0</Version>
+                    <Label>Netherlands</Label>
+                    <Label>Amsterdam</Label>
                 </Item>
              </ListResponse>`;
 
@@ -57,15 +74,17 @@ export const BASIC_VERSIONS_LIST_RESPONSE = `
                 </HistoryItem>
              </ListResponse>`;
 
-export function stubFetchResponseFunction(element: any,
-                                          functionName: string,
-                                          response: string | undefined,
-                                          listElementName: string,
-                                          callback: (result: Element[]) => any): SinonStub<any[], void> {
+export function stubFetchResponseFunction(
+  element: any,
+  functionName: string,
+  response: string | undefined,
+  listElementName: string,
+  callback: (result: Element[]) => any
+): SinonStub<any[], void> {
   return sinon.stub(element, functionName).callsFake(() => {
     if (response) {
       const parser = new DOMParser();
-      const document = parser.parseFromString(response, "text/xml");
+      const document = parser.parseFromString(response, 'text/xml');
       callback(Array.from(document.querySelectorAll(listElementName) ?? []));
     } else {
       callback([]);

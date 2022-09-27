@@ -4,6 +4,7 @@ import {
   html,
   LitElement,
   property,
+  PropertyValues,
   query,
   TemplateResult,
 } from 'lit-element';
@@ -42,6 +43,15 @@ import './CompasLabelsField.js';
 import './CompasLoading.js';
 import './CompasSclTypeSelect.js';
 
+/* Event that will be used when an SCL Document is saved. */
+export type DocSavedEvent = CustomEvent<void>;
+export function newDocSavedEvent(): DocSavedEvent {
+  return new CustomEvent<void>('doc-saved', {
+    bubbles: true,
+    composed: true,
+  });
+}
+
 @customElement('compas-save')
 export default class CompasSaveElement extends CompasExistsIn(LitElement) {
   @property()
@@ -62,6 +72,17 @@ export default class CompasSaveElement extends CompasExistsIn(LitElement) {
   @query('compas-labels-field')
   private labelsField!: CompasLabelsFieldElement;
 
+  protected updated(_changedProperties: PropertyValues): void {
+    super.updated(_changedProperties);
+
+    // When the document is updated, we reset the selected IED.
+    if (_changedProperties.has('doc')) {
+      if (this.commentField) {
+        this.commentField.value = null;
+      }
+    }
+  }
+
   valid(): boolean {
     if (!this.existInCompas) {
       return this.nameField.checkValidity() && this.sclTypeRadioGroup.valid();
@@ -79,16 +100,14 @@ export default class CompasSaveElement extends CompasExistsIn(LitElement) {
     this.labelsField.updateLabelsInPrivateElement(privateElement!);
   }
 
-  private async addSclToCompas(doc: XMLDocument): Promise<boolean> {
+  private async addSclToCompas(doc: XMLDocument): Promise<void> {
     const name = stripExtensionFromName(this.nameField.value);
     const comment = this.commentField.value;
     const docType = this.sclTypeRadioGroup.getSelectedValue() ?? '';
-    let success = false;
 
     await CompasSclDataService()
       .addSclDocument(docType, { sclName: name, comment: comment, doc: doc })
       .then(sclDocument => {
-        this.commentField.value = null;
         updateDocumentInOpenSCD(this, sclDocument);
 
         this.dispatchEvent(
@@ -97,22 +116,20 @@ export default class CompasSaveElement extends CompasExistsIn(LitElement) {
             title: get('compas.save.addSuccess'),
           })
         );
-        success = true;
+
+        this.dispatchEvent(newDocSavedEvent());
       })
       .catch(reason => createLogEvent(this, reason));
-
-    return success;
   }
 
   private async updateSclInCompas(
     docId: string,
     docName: string,
     doc: XMLDocument
-  ): Promise<boolean> {
+  ): Promise<void> {
     const changeSet = this.changeSetRadiogroup.getSelectedValue();
     const comment = this.commentField.value;
     const docType = getTypeFromDocName(docName);
-    let success = false;
 
     await CompasSclDataService()
       .updateSclDocument(docType, docId, {
@@ -121,7 +138,6 @@ export default class CompasSaveElement extends CompasExistsIn(LitElement) {
         doc: doc,
       })
       .then(sclDocument => {
-        this.commentField.value = null;
         updateDocumentInOpenSCD(this, sclDocument);
 
         this.dispatchEvent(
@@ -130,19 +146,18 @@ export default class CompasSaveElement extends CompasExistsIn(LitElement) {
             title: get('compas.save.updateSuccess'),
           })
         );
-        success = true;
+
+        this.dispatchEvent(newDocSavedEvent());
       })
       .catch(reason => createLogEvent(this, reason));
-
-    return success;
   }
 
-  async saveToCompas(): Promise<boolean> {
+  async saveToCompas(): Promise<void> {
     this.updateLabels();
     if (!this.docId || !this.existInCompas) {
-      return this.addSclToCompas(this.doc);
+      await this.addSclToCompas(this.doc);
     } else {
-      return this.updateSclInCompas(this.docId, this.docName, this.doc);
+      await this.updateSclInCompas(this.docId, this.docName, this.doc);
     }
   }
 
@@ -153,6 +168,8 @@ export default class CompasSaveElement extends CompasExistsIn(LitElement) {
         @click=${() => {
           this.updateLabels();
           saveDocumentToFile(this.doc, this.docName);
+
+          this.dispatchEvent(newDocSavedEvent());
         }}
       >
       </mwc-button>

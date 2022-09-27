@@ -1,12 +1,12 @@
-import {html, LitElement} from 'lit-element';
-import {get} from "lit-translate";
+import { html, LitElement } from 'lit-element';
+import { get } from 'lit-translate';
 
-import {newWizardEvent, Wizard} from '../foundation.js';
+import { newWizardEvent, Wizard } from '../foundation.js';
 
-import {DocRetrievedEvent} from "../compas/CompasOpen.js";
-import {prepareImportIEDs} from "./ImportIEDs.js";
+import { DocRetrievedEvent } from '../compas/CompasOpen.js';
+import { prepareImportIEDs } from './ImportIEDs.js';
 
-import "../compas/CompasOpen.js";
+import '../compas/CompasOpen.js';
 
 export default class CompasImportIEDSMenuPlugin extends LitElement {
   doc!: XMLDocument;
@@ -17,12 +17,13 @@ export default class CompasImportIEDSMenuPlugin extends LitElement {
       {
         title: get('compas.importIEDS.title'),
         content: [
-          html`<compas-open @docRetrieved=${async (event: DocRetrievedEvent) => {
-                                             await prepareImportIEDs(parent, event.detail.doc, doc);
-                                             parent.dispatchEvent(newWizardEvent());
-                                           }}>
-               </compas-open>
-          `,
+          html`<compas-open
+            @doc-retrieved=${async (event: DocRetrievedEvent) => {
+              await prepareImportIEDs(parent, event.detail.doc, doc);
+              parent.dispatchEvent(newWizardEvent());
+            }}
+          >
+          </compas-open> `,
         ],
       },
     ];
@@ -33,6 +34,8 @@ export default class CompasImportIEDSMenuPlugin extends LitElement {
   }
 
   async run(): Promise<void> {
-    this.dispatchEvent(newWizardEvent(this.importIEDsCompasWizard(this.parent, this.doc)));
+    this.dispatchEvent(
+      newWizardEvent(this.importIEDsCompasWizard(this.parent, this.doc))
+    );
   }
 }

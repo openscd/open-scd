@@ -133,7 +133,7 @@ export const en = {
     compareButton: 'Compare',
     attributes: 'Attributes from {{ elementName }}',
     children: 'Child elements from {{ elementName }}',
-    filterMutables: 'Filter project specific differences'
+    filterMutables: 'Filter project specific differences',
   },
   log: {
     name: 'Log',
@@ -808,6 +808,8 @@ export const en = {
     notExists: 'Project no longer exists in CoMPAS!',
     noSclTypes: 'No types found in CoMPAS',
     noScls: 'No projects found in CoMPAS',
+    sclFilter: 'Filter on:',
+    noFilteredScls: 'No projects found matching the filter(s)',
     noSclVersions: 'No versions found for this project in CoMPAS',
     sclType: 'SCL Type',
     error: {
@@ -822,6 +824,9 @@ export const en = {
     },
     import: {
       title: 'Import from API',
+    },
+    label: {
+      selectLabels: 'Select labels to be show',
     },
     open: {
       title: 'Open project',

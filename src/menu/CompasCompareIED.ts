@@ -15,7 +15,7 @@ export default class CompasCompareIEDPlugin extends CompareIEDPlugin {
    */
   protected renderSelectTemplateFile(): TemplateResult {
     return html`<compas-open
-        @docRetrieved=${(evt: DocRetrievedEvent) => {
+        @doc-retrieved=${(evt: DocRetrievedEvent) => {
           this.templateDoc = evt.detail.doc;
         }}
       ></compas-open>

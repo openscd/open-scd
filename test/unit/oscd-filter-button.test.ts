@@ -141,4 +141,33 @@ describe('oscd-filter-button', () => {
       await expect(element).shadowDom.to.equalSnapshot();
     });
   });
+
+  describe('is disabled', () => {
+    beforeEach(async () => {
+      element = await fixture(
+        html`<oscd-filter-button
+          id="filter"
+          icon="developer_board"
+          header="Filter Header"
+          disabled="true"
+        >
+          ${Array.from(listItems).map(
+            item =>
+              html` <mwc-check-list-item
+                value="${item.prim}"
+                ?selected="${item.defaultSelected}"
+              >
+                <span>${item.prim}</span>
+              </mwc-check-list-item>`
+          )}
+        </oscd-filter-button>`
+      );
+      await element.requestUpdate();
+      await element.updateComplete;
+    });
+
+    it('looks like its latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
+    });
+  });
 });
