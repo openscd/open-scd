@@ -10,6 +10,7 @@ import {
 } from 'lit-element';
 import { translate } from 'lit-translate';
 
+import '@material/mwc-icon';
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 
@@ -117,11 +118,11 @@ export class CompasSclList extends LitElement {
       </mwc-list>`;
     }
     const filteredItems = this.filteredItems;
-    return html`<div class="filters">
+    return html`
+      <div class="filters">
         <span>${translate('compas.sclFilter')}</span>
         <oscd-filter-button
           id="labelsFilter"
-          icon="label"
           multi="true"
           ?disabled="${this.labels.length <= 0}"
           .header=${translate('compas.label.selectLabels')}
@@ -129,10 +130,18 @@ export class CompasSclList extends LitElement {
             this.selectedLabels = e.detail.selectedItems;
             this.requestUpdate('items');
             this.requestUpdate('filteredItems');
+            this.requestUpdate('selectedLabels');
           }}"
         >
+          <span slot="icon">
+            <mwc-icon>
+              ${this.labels.length != this.selectedLabels.length
+                ? 'label'
+                : 'label_off'}
+            </mwc-icon>
+          </span>
           ${this.labels.map(label => {
-            return html`<mwc-check-list-item
+            return html` <mwc-check-list-item
               value="${label}"
               ?selected="${this.selectedLabels.includes(label)}"
             >
@@ -156,7 +165,7 @@ export class CompasSclList extends LitElement {
               const version =
                 item.getElementsByTagNameNS(SDS_NAMESPACE, 'Version').item(0)!
                   .textContent ?? '';
-              return html`<mwc-list-item
+              return html` <mwc-list-item
                 tabindex="0"
                 @click=${() => this.dispatchEvent(newSclSelectedEvent(id))}
               >
@@ -168,7 +177,8 @@ export class CompasSclList extends LitElement {
             <mwc-list-item>
               <i>${translate('compas.noFilteredScls')}</i>
             </mwc-list-item>
-          </mwc-list>`} `;
+          </mwc-list>`}
+    `;
   }
 
   static styles = css`

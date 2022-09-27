@@ -76,7 +76,7 @@ describe('compas-scl-list', () => {
     });
   });
 
-  describe('when there items without labels', () => {
+  describe('when there are items without labels', () => {
     beforeEach(async () => {
       element = fixtureSync(
         html`<compas-scl-list .type="IID"></compas-scl-list>`
@@ -130,7 +130,7 @@ describe('compas-scl-list', () => {
     });
   });
 
-  describe('when there items with labels', () => {
+  describe('when there are items with labels', () => {
     beforeEach(async () => {
       element = fixtureSync(
         html`<compas-scl-list .type="IID"></compas-scl-list>`
@@ -215,6 +215,31 @@ describe('compas-scl-list', () => {
       expect(
         element.shadowRoot!.querySelectorAll('filtered-list > mwc-list-item')
       ).to.have.length(1);
+      await expect(element).shadowDom.to.equalSnapshot();
+    });
+
+    it('when filtering on labels and all items are hidden', async () => {
+      const filterButton = <HTMLElement>(
+        element.shadowRoot!.querySelector('oscd-filter-button#labelsFilter')
+      );
+      (<HTMLElement>(
+        filterButton.shadowRoot!.querySelector('mwc-icon-button')
+      )).click();
+      await element.updateComplete;
+
+      Array.from(
+        element.shadowRoot!.querySelectorAll(
+          'oscd-filter-button#labelsFilter > mwc-check-list-item'
+        )
+      ).forEach(element => (<HTMLElement>element).click());
+      (<HTMLElement>(
+        filterButton.shadowRoot!.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      )).click();
+      await element.updateComplete;
+
+      await expect(element).shadowDom.to.equalSnapshot();
     });
 
     it('looks like the latest snapshot', async () => {
