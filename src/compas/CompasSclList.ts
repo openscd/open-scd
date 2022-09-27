@@ -98,7 +98,8 @@ export class CompasSclList extends LitElement {
             new Set(
               Array.from(xmlResponse.querySelectorAll('Label') ?? [])
                 .map(element => element.textContent)
-                .filter(value => !!value)
+                .filter(label => !!label)
+                .sort((label1, label2) => label1!.localeCompare(label2!))
             )
           ) as string[];
           this.selectedLabels = this.labels;

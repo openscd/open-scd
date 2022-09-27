@@ -74,6 +74,16 @@ snapshots[
       mwc-list-item=""
       selected=""
       tabindex="0"
+      value="Amsterdam"
+    >
+      Amsterdam
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      graphic="control"
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
       value="Netherlands"
     >
       Netherlands
@@ -87,16 +97,6 @@ snapshots[
       value="Utrecht"
     >
       Utrecht
-    </mwc-check-list-item>
-    <mwc-check-list-item
-      aria-disabled="false"
-      graphic="control"
-      mwc-list-item=""
-      selected=""
-      tabindex="-1"
-      value="Amsterdam"
-    >
-      Amsterdam
     </mwc-check-list-item>
   </oscd-filter-button>
 </div>

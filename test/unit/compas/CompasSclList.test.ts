@@ -151,7 +151,10 @@ describe('compas-scl-list', () => {
                 .flatMap(label => label)
                 .filter(label => !!label)
                 .map(label => label!.textContent)
-                .filter(labelValue => !!labelValue) as string[]
+                .filter(labelValue => !!labelValue)
+                .sort((label1, label2) =>
+                  label1!.localeCompare(label2!)
+                ) as string[]
             )
           );
           if (labels) {
