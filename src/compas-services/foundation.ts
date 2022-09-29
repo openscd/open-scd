@@ -85,18 +85,16 @@ export function createLogEvent(element: Element, reason: any): void {
     message += ' (' + reason.status + ')';
   }
 
-  if (element) {
-    element.dispatchEvent(
-      newLogEvent({
-        kind: 'error',
-        title: get('compas.error.server'),
-        message: get('compas.error.serverDetails', {
-          type: reason.type,
-          message: message,
-        }),
-      })
-    );
-  }
+  element.dispatchEvent(
+    newLogEvent({
+      kind: 'error',
+      title: get('compas.error.server'),
+      message: get('compas.error.serverDetails', {
+        type: reason.type,
+        message: message,
+      }),
+    })
+  );
 }
 
 export function getWebsocketUri(settingsUrl: string): string {

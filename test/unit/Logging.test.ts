@@ -73,7 +73,7 @@ describe('LoggingElement', () => {
     expect(element.errorUI).to.have.property('open', true);
   });
 
-  it('shows a snackbar on an issue', () => {
+  it('shows a snackbar on an issue', async () => {
     expect(element.issueUI).to.have.property('open', false);
     element.dispatchEvent(
       newIssueEvent({
@@ -81,6 +81,7 @@ describe('LoggingElement', () => {
         title: 'test issue',
       })
     );
+    await element.issueUI.updateComplete;
     expect(element.issueUI).to.have.property('open', true);
   });
 
