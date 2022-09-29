@@ -1,7 +1,7 @@
 export type OpenDetail = {
   doc: XMLDocument;
   docName: string;
-}
+};
 
 /** Represents the intent to open `doc` with filename `docName`. */
 export type OpenEvent = CustomEvent<OpenDetail>;

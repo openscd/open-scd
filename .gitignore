@@ -6,6 +6,8 @@
 /coverage/
 
 # build
+/locales.ts
+/locales
 /dist
 /custom-elements.json
 /.tsbuildinfo

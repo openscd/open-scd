@@ -1,4 +1,4 @@
-import { property } from 'lit/decorators.js';
+import { property, state } from 'lit/decorators.js';
 
 import {
   AttributeValue,
@@ -16,18 +16,15 @@ import {
   Update,
 } from '../foundation.js';
 
-const nothing = new Document().createElement('nothing');
-const noOp = {
-  remove: { node: nothing },
-  update: { element: nothing, attributes: {} },
-  insert: { node: nothing, parent: nothing, reference: null },
-};
-
 function localAttributeName(attribute: string): string {
   return attribute.includes(':') ? attribute.split(':', 2)[1] : attribute;
 }
 
-function handleInsert({ parent, node, reference }: Insert): Insert | Remove {
+function handleInsert({
+  parent,
+  node,
+  reference,
+}: Insert): Insert | Remove | [] {
   try {
     const { parentNode, nextSibling } = node;
     parent.insertBefore(node, reference);
@@ -40,7 +37,7 @@ function handleInsert({ parent, node, reference }: Insert): Insert | Remove {
     return { node };
   } catch (e) {
     // do nothing if insert doesn't work on these nodes
-    return noOp.remove;
+    return [];
   }
 }
 
@@ -92,7 +89,7 @@ function handleUpdate({ element, attributes }: Update): Update {
   };
 }
 
-function handleRemove({ node }: Remove): Insert {
+function handleRemove({ node }: Remove): Insert | [] {
   const { parentNode: parent, nextSibling: reference } = node;
   node.parentNode?.removeChild(node);
   if (parent)
@@ -101,7 +98,7 @@ function handleRemove({ node }: Remove): Insert {
       parent,
       reference,
     };
-  return noOp.insert;
+  return [];
 }
 
 function handleEdit(edit: Edit): Edit {
@@ -109,7 +106,7 @@ function handleEdit(edit: Edit): Edit {
   if (isUpdate(edit)) return handleUpdate(edit);
   if (isRemove(edit)) return handleRemove(edit);
   if (isComplex(edit)) return edit.map(handleEdit).reverse();
-  throw new Error('Unknown edit type');
+  return [];
 }
 
 export type LogEntry = { undo: Edit; redo: Edit };
@@ -117,29 +114,35 @@ export type LogEntry = { undo: Edit; redo: Edit };
 /** A mixin for editing a set of [[docs]] using [[EditEvent]]s */
 export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
   class EditingElement extends Base {
+    @state()
     /** The `XMLDocument` currently being edited */
     get doc(): XMLDocument {
       return this.docs[this.docName];
     }
 
-    private history: LogEntry[] = [];
+    @state()
+    protected history: LogEntry[] = [];
 
-    private next: number = 0;
+    @state()
+    protected next: number = 0;
 
-    private get last(): number | undefined {
-      return this.next > 0 ? this.next - 1 : undefined;
+    @state()
+    protected get last(): number {
+      return this.next - 1;
     }
 
-    private get canUndo(): boolean {
-      return this.last !== undefined;
+    @state()
+    protected get canUndo(): boolean {
+      return this.last >= 0;
     }
 
-    private get canRedo(): boolean {
+    @state()
+    protected get canRedo(): boolean {
       return this.next < this.history.length;
     }
 
     /** The set of `XMLDocument`s currently loaded */
-    @property({ attribute: false })
+    @state()
     docs: Record<string, XMLDocument> = {};
 
     /** The name of the [[`doc`]] currently being edited */

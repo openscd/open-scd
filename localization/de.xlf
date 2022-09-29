@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+<file target-language="de" source-language="en" original="lit-localize-inputs" datatype="plaintext">
+<body>
+<trans-unit id="sbcdf43ebad9c5a3a">
+  <source>Something unexpected happened!</source>
+  <target>Etwas unerwartetes ist passiert!</target>
+</trans-unit>
+<trans-unit id="s62b4f83c9503e1af">
+  <source>≥ <x id="0" equiv-text="${redo.length}"/> nodes changed</source>
+  <target>≥ <x id="0" equiv-text="${redo.length}"/> Knoten verändert</target>
+</trans-unit>
+<trans-unit id="s0731afca1ab76175">
+  <source><x id="0" equiv-text="${redo.node.nodeName}"/> moved to <x id="1" equiv-text="${redo.parent.nodeName}"/></source>
+  <target><x id="0" equiv-text="${redo.node.nodeName}"/> nach <x id="1" equiv-text="${redo.parent.nodeName}"/> verschoben</target>
+</trans-unit>
+<trans-unit id="s83eaab546be4bfb9">
+  <source><x id="0" equiv-text="${redo.node.nodeName}"/> inserted into <x id="1" equiv-text="${redo.parent.nodeName}"/></source>
+  <target><x id="0" equiv-text="${redo.node.nodeName}"/> in <x id="1" equiv-text="${redo.parent.nodeName}"/> eingefügt</target>
+</trans-unit>
+<trans-unit id="s0f8217f07c54b541">
+  <source><x id="0" equiv-text="${redo.node.nodeName}"/> removed</source>
+  <target><x id="0" equiv-text="${redo.node.nodeName}"/> entfernt</target>
+</trans-unit>
+<trans-unit id="s85a55e7007003cc2">
+  <source><x id="0" equiv-text="${redo.element.tagName}"/> updated</source>
+  <target><x id="0" equiv-text="${redo.element.tagName}"/> verändert</target>
+</trans-unit>
+<trans-unit id="s8f4be9f086eb530f">
+  <source>Undo</source>
+  <target>Rückgängig</target>
+</trans-unit>
+<trans-unit id="s7417792bbe720149">
+  <source>Redo</source>
+  <target>Wiederholen</target>
+</trans-unit>
+<trans-unit id="s90c6a2fed2796c07">
+  <source>Editing history</source>
+  <target>Bearbeitungshistorie</target>
+</trans-unit>
+<trans-unit id="s6d8c02aee480af7a">
+  <source>Menu</source>
+  <target>Menü</target>
+</trans-unit>
+<trans-unit id="sfb0e98cb12fe463c">
+  <source>Your editing history will be displayed here.</source>
+  <target>Hier wird Ihre Bearbeitungshistorie angezeigt.</target>
+</trans-unit>
+<trans-unit id="s5e8250fb85d64c23">
+  <source>Close</source>
+  <target>Schließen</target>
+</trans-unit>
+</body>
+</file>
+</xliff>

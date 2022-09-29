@@ -9,26 +9,43 @@
     "/open-scd.js": "dist/open-scd.js"
   },
   "scripts": {
-    "start": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds\"",
-    "test": "tsc && wtr --coverage",
-    "test:watch": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wtr --watch --coverage\"",
+    "start": "npm run build && concurrently -k -r \"tsc -b --watch --preserveWatchOutput\" \"wds\"",
+    "test": "playwright install && npm run build && npm run test:nobuild",
+    "test:nobuild": "wtr --coverage",
+    "test:watch": "npm run build && concurrently -k -r \"tsc -b --watch --preserveWatchOutput\" \"wtr --watch --coverage\"",
+    "test:update": "npm run build && wtr --update-visual-baseline",
     "analyze": "cem analyze --litelement",
-    "build": "tsc && tsc foundation.ts --declaration --emitDeclarationOnly --outDir dist && npm run analyze -- --exclude dist && typedoc --out dist/doc foundation.ts",
-    "prepublish": "npm run build",
+    "build": "npm run extract && npm run localize && npm run compile",
+    "compile": "tsc -b && tsc foundation.ts --declaration --emitDeclarationOnly --outDir dist",
+    "doc": "npm run analyze -- --exclude dist && typedoc --out dist/doc foundation.ts",
+    "prepublish": "npm run build && npm run doc",
     "lint": "eslint --ext .ts,.html . --ignore-path .gitignore && prettier \"**/*.ts\" --check --ignore-path .gitignore",
-    "format": "eslint --ext .ts,.html . --fix --ignore-path .gitignore && prettier \"**/*.ts\" --write --ignore-path .gitignore"
+    "format": "eslint --ext .ts,.html . --fix --ignore-path .gitignore && prettier \"**/*.ts\" --write --ignore-path .gitignore",
+    "extract": "lit-localize extract",
+    "localize": "lit-localize build"
   },
   "dependencies": {
+    "@lit/localize": "^0.11.4",
+    "@material/mwc-button": "^0.27.0",
+    "@material/mwc-dialog": "^0.27.0",
+    "@material/mwc-drawer": "^0.27.0",
+    "@material/mwc-icon": "^0.27.0",
+    "@material/mwc-icon-button": "^0.27.0",
+    "@material/mwc-list": "^0.27.0",
+    "@material/mwc-top-app-bar-fixed": "^0.27.0",
     "lit": "^2.2.7"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.6.3",
+    "@lit/localize-tools": "^0.6.5",
     "@open-wc/eslint-config": "^7.0.0",
     "@open-wc/testing": "next",
     "@typescript-eslint/eslint-plugin": "^5.30.7",
     "@typescript-eslint/parser": "^5.30.7",
     "@web/dev-server": "^0.1.32",
     "@web/test-runner": "next",
+    "@web/test-runner-playwright": "^0.8.10",
+    "@web/test-runner-visual-regression": "^0.6.6",
     "concurrently": "^7.3.0",
     "eslint": "^8.20.0",
     "eslint-config-prettier": "^8.5.0",
@@ -45,7 +62,12 @@
   "customElements": "custom-elements.json",
   "eslintConfig": {
     "parser": "@typescript-eslint/parser",
-    "parserOptions": { "lib": ["es2018", "dom"] },
+    "parserOptions": {
+      "lib": [
+        "es2018",
+        "dom"
+      ]
+    },
     "extends": [
       "@open-wc",
       "prettier"
@@ -55,6 +77,7 @@
       "eslint-plugin-tsdoc"
     ],
     "rules": {
+      "no-unused-vars": "off",
       "sort-imports": [
         "error",
         {
@@ -62,10 +85,27 @@
           "allowSeparatedGroups": true
         }
       ],
+      "class-methods-use-this": [
+        "error",
+        {
+          "exceptMethods": [
+            "locale"
+          ]
+        }
+      ],
       "@typescript-eslint/no-explicit-any": [
         "error",
         {
           "ignoreRestArgs": true
+        }
+      ],
+      "import/no-extraneous-dependencies": [
+        "error",
+        {
+          "devDependencies": [
+            "**/*.test.ts",
+            "**/*.spec.ts"
+          ]
         }
       ],
       "@typescript-eslint/no-unused-vars": [
@@ -91,12 +131,6 @@
           "**/*.spec.ts"
         ],
         "rules": {
-          "import/no-extraneous-dependencies": [
-            "error",
-            {
-              "devDependencies": true
-            }
-          ],
           "no-unused-expressions": "off"
         }
       }

@@ -33,7 +33,7 @@ import {
 } from '../foundation.js';
 import { Editing } from './Editing.js';
 
-namespace util {
+export namespace util {
   export const xmlAttributeName =
     /^(?!xml|Xml|xMl|xmL|XMl|xML|XmL|XML)[A-Za-z_][A-Za-z0-9-_.]*(:[A-Za-z_][A-Za-z0-9-_.]*)?$/;
 
