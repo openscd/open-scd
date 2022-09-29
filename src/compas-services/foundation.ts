@@ -80,12 +80,12 @@ export function handleError(error: Error): Promise<never> {
 }
 
 export function createLogEvent(element: Element, reason: any): void {
-  if (element) {
-    let message = reason.message;
-    if (reason.status) {
-      message += ' (' + reason.status + ')';
-    }
+  let message = reason.message;
+  if (reason.status) {
+    message += ' (' + reason.status + ')';
+  }
 
+  if (element) {
     element.dispatchEvent(
       newLogEvent({
         kind: 'error',
