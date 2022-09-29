@@ -534,20 +534,58 @@ snapshots["open-scd looks like its snapshot"] =
     id="content"
     wrapfocus=""
   >
-    <mwc-list-item
-      aria-disabled="true"
-      disabled=""
-      graphic="icon"
-      mwc-list-item=""
-      tabindex="0"
-    >
-      <span>
-        Edits, errors, and other notifications will show up here.
-      </span>
-      <mwc-icon slot="graphic">
-        info
-      </mwc-icon>
-    </mwc-list-item>
+    <abbr title="Error communicating with CoMPAS Ecosystem">
+      <mwc-list-item
+        aria-disabled="false"
+        class="error"
+        graphic="icon"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+      >
+        <span>
+          <tt>
+            29/09/2022, 08:48:09
+          </tt>
+          Error communicating with CoMPAS Ecosystem
+        </span>
+        <span slot="secondary">
+          NotFoundError: Not Found (404)
+        </span>
+        <mwc-icon
+          slot="graphic"
+          style="--mdc-theme-text-icon-on-background:var(--red)"
+        >
+          report
+        </mwc-icon>
+      </mwc-list-item>
+    </abbr>
+    <abbr title="Error communicating with CoMPAS Ecosystem">
+      <mwc-list-item
+        aria-disabled="false"
+        class="error"
+        graphic="icon"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+      >
+        <span>
+          <tt>
+            29/09/2022, 08:48:09
+          </tt>
+          Error communicating with CoMPAS Ecosystem
+        </span>
+        <span slot="secondary">
+          NotFoundError: Not Found (404)
+        </span>
+        <mwc-icon
+          slot="graphic"
+          style="--mdc-theme-text-icon-on-background:var(--red)"
+        >
+          report
+        </mwc-icon>
+      </mwc-list-item>
+    </abbr>
   </mwc-list>
   <mwc-button
     disabled=""
@@ -630,7 +668,8 @@ snapshots["open-scd looks like its snapshot"] =
 </mwc-snackbar>
 <mwc-snackbar
   id="error"
-  labeltext="No errors"
+  labeltext="Error communicating with CoMPAS Ecosystem"
+  open=""
   timeoutms="10000"
 >
   <mwc-button
