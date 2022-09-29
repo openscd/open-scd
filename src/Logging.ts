@@ -118,7 +118,6 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
 
       this.latestIssue = de.detail;
       this.issueUI.close();
-      await this.issueUI.updateComplete;
       this.issueUI.show();
     }
 

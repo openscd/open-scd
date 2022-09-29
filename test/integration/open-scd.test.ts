@@ -20,6 +20,7 @@ describe('open-scd', () => {
         rel="stylesheet"
       />
     `);
+    await element.updateComplete;
   });
 
   it('looks like its snapshot', async () => {
