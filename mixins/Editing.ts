@@ -2,8 +2,8 @@ import { property } from 'lit/decorators.js';
 
 import {
   AttributeValue,
-  EditorAction,
-  EditorActionEvent,
+  Edit,
+  EditEvent,
   Insert,
   isComplex,
   isInsert,
@@ -11,7 +11,7 @@ import {
   isRemove,
   isUpdate,
   LitElementConstructor,
-  OpenDocEvent,
+  OpenEvent,
   Remove,
   Update,
 } from '../foundation.js';
@@ -27,7 +27,7 @@ function localAttributeName(attribute: string): string {
   return attribute.includes(':') ? attribute.split(':', 2)[1] : attribute;
 }
 
-function onInsertAction({ parent, node, reference }: Insert): Insert | Remove {
+function handleInsert({ parent, node, reference }: Insert): Insert | Remove {
   try {
     const { parentNode, nextSibling } = node;
     parent.insertBefore(node, reference);
@@ -44,7 +44,7 @@ function onInsertAction({ parent, node, reference }: Insert): Insert | Remove {
   }
 }
 
-function onUpdateAction({ element, attributes }: Update): Update {
+function handleUpdate({ element, attributes }: Update): Update {
   let oldAttributes: typeof attributes = {};
   if (Object.hasOwnProperty.call(attributes, '__proto__'))
     oldAttributes = { ['__proto__']: undefined }; // make __proto__ settable
@@ -92,7 +92,7 @@ function onUpdateAction({ element, attributes }: Update): Update {
   };
 }
 
-function onRemoveAction({ node }: Remove): Insert {
+function handleRemove({ node }: Remove): Insert {
   const { parentNode: parent, nextSibling: reference } = node;
   node.parentNode?.removeChild(node);
   if (parent)
@@ -104,18 +104,17 @@ function onRemoveAction({ node }: Remove): Insert {
   return noOp.insert;
 }
 
-function onEditorAction(action: EditorAction): EditorAction {
-  if (isInsert(action)) return onInsertAction(action);
-  if (isUpdate(action)) return onUpdateAction(action);
-  if (isRemove(action)) return onRemoveAction(action);
-  if (isComplex(action)) return action.map(onEditorAction).reverse();
-  /* istanbul ignore next */
-  throw new Error('Unknown action type');
+function handleEdit(edit: Edit): Edit {
+  if (isInsert(edit)) return handleInsert(edit);
+  if (isUpdate(edit)) return handleUpdate(edit);
+  if (isRemove(edit)) return handleRemove(edit);
+  if (isComplex(edit)) return edit.map(handleEdit).reverse();
+  throw new Error('Unknown edit type');
 }
 
-type LogEntry = { undo: EditorAction; redo: EditorAction };
+export type LogEntry = { undo: Edit; redo: Edit };
 
-/** A mixin for editing a set of [[docs]] using [[EditorActionEvent]]s */
+/** A mixin for editing a set of [[docs]] using [[EditEvent]]s */
 export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
   class EditingElement extends Base {
     /** The `XMLDocument` currently being edited */
@@ -146,30 +145,30 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
     /** The name of the [[`doc`]] currently being edited */
     @property({ type: String }) docName = '';
 
-    private onOpenDoc({ detail: { docName, doc } }: OpenDocEvent) {
+    protected onOpenDoc({ detail: { docName, doc } }: OpenEvent) {
       this.docName = docName;
       this.docs[this.docName] = doc;
     }
 
-    private onEditorActionEvent(event: EditorActionEvent) {
-      const action = event.detail;
+    protected handleEditEvent(event: EditEvent) {
+      const edit = event.detail;
       this.history.splice(this.next);
-      this.history.push({ undo: onEditorAction(action), redo: action });
+      this.history.push({ undo: handleEdit(edit), redo: edit });
       this.next += 1;
     }
 
-    /** Undo the last `n` [[EditorAction]]s committed */
+    /** Undo the last `n` [[Edit]]s committed */
     undo(n = 1) {
       if (!this.canUndo || n < 1) return;
-      onEditorAction(this.history[this.last!].undo);
+      handleEdit(this.history[this.last!].undo);
       this.next -= 1;
       if (n > 1) this.undo(n - 1);
     }
 
-    /** Redo the last `n` [[EditorAction]]s that have been undone */
+    /** Redo the last `n` [[Edit]]s that have been undone */
     redo(n = 1) {
       if (!this.canRedo || n < 1) return;
-      onEditorAction(this.history[this.next].redo);
+      handleEdit(this.history[this.next].redo);
       this.next += 1;
       if (n > 1) this.redo(n - 1);
     }
@@ -177,10 +176,8 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
     constructor(...args: any[]) {
       super(...args);
 
-      this.addEventListener('open-doc', this.onOpenDoc);
-      this.addEventListener('editor-action', event =>
-        this.onEditorActionEvent(event)
-      );
+      this.addEventListener('oscd-open', this.onOpenDoc);
+      this.addEventListener('oscd-edit', event => this.handleEditEvent(event));
     }
   }
   return EditingElement;

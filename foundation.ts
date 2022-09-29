@@ -3,23 +3,23 @@ import { LitElement } from 'lit';
 /** Constructor type for defining `LitElement` mixins. */
 export type LitElementConstructor = new (...args: any[]) => LitElement;
 
-export { newOpenDocEvent } from './foundation/open-doc.js';
-export type { OpenDocEvent, OpenDocDetail } from './foundation/open-doc.js';
+export { newOpenEvent } from './foundation/open-event.js';
+export type { OpenEvent, OpenDetail } from './foundation/open-event.js';
 
 export {
-  newActionEvent,
+  newEditEvent,
   isComplex,
   isInsert,
   isNamespaced,
   isUpdate,
   isRemove,
-} from './foundation/editor-action.js';
+} from './foundation/edit-event.js';
 export type {
-  EditorActionEvent,
-  EditorAction,
+  EditEvent,
+  Edit,
   Insert,
   AttributeValue,
   NamespacedAttributeValue,
   Update,
   Remove,
-} from './foundation/editor-action.js';
+} from './foundation/edit-event.js';

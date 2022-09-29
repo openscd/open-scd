@@ -22,14 +22,14 @@ export type Remove = {
 };
 
 /** Represents the user's intent to change an XMLDocument */
-export type EditorAction = Insert | Update | Remove | EditorAction[];
+export type Edit = Insert | Update | Remove | Edit[];
 
-export function isComplex(action: EditorAction): action is EditorAction[] {
-  return action instanceof Array;
+export function isComplex(edit: Edit): edit is Edit[] {
+  return edit instanceof Array;
 }
 
-export function isInsert(action: EditorAction): action is Insert {
-  return (action as Insert).parent !== undefined;
+export function isInsert(edit: Edit): edit is Insert {
+  return (edit as Insert).parent !== undefined;
 }
 
 export function isNamespaced(
@@ -38,32 +38,28 @@ export function isNamespaced(
   return value !== null && typeof value !== 'string';
 }
 
-export function isUpdate(action: EditorAction): action is Update {
-  return (action as Update).element !== undefined;
+export function isUpdate(edit: Edit): edit is Update {
+  return (edit as Update).element !== undefined;
 }
 
-export function isRemove(action: EditorAction): action is Remove {
+export function isRemove(edit: Edit): edit is Remove {
   return (
-    (action as Insert).parent === undefined &&
-    (action as Remove).node !== undefined
+    (edit as Insert).parent === undefined && (edit as Remove).node !== undefined
   );
 }
 
-export type EditorActionEvent<E extends EditorAction = EditorAction> =
-  CustomEvent<E>;
+export type EditEvent<E extends Edit = Edit> = CustomEvent<E>;
 
-export function newActionEvent<E extends EditorAction>(
-  action: E
-): EditorActionEvent<E> {
-  return new CustomEvent<E>('editor-action', {
+export function newEditEvent<E extends Edit>(edit: E): EditEvent<E> {
+  return new CustomEvent<E>('oscd-edit', {
     composed: true,
     bubbles: true,
-    detail: action,
+    detail: edit,
   });
 }
 
 declare global {
   interface ElementEventMap {
-    ['editor-action']: EditorActionEvent;
+    ['oscd-edit']: EditEvent;
   }
 }

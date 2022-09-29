@@ -22,12 +22,12 @@ import { LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
 
 import {
-  EditorAction,
+  Edit,
   Insert,
   isNamespaced,
   NamespacedAttributeValue,
-  newActionEvent,
-  newOpenDocEvent,
+  newEditEvent,
+  newOpenEvent,
   Remove,
   Update,
 } from '../foundation.js';
@@ -118,28 +118,28 @@ namespace util {
     return record({ element, attributes });
   }
 
-  export function simpleAction(
+  export function simpleEdit(
     nodes: Node[]
   ): Arbitrary<Insert | Update | Remove> {
     return oneof(remove(nodes), insert(nodes), update(nodes));
   }
 
-  export function complexAction(nodes: Node[]): Arbitrary<EditorAction[]> {
-    return array(simpleAction(nodes));
+  export function complexEdit(nodes: Node[]): Arbitrary<Edit[]> {
+    return array(simpleEdit(nodes));
   }
 
-  export function editorAction(nodes: Node[]): Arbitrary<EditorAction> {
+  export function edit(nodes: Node[]): Arbitrary<Edit> {
     return oneof(
-      { arbitrary: simpleAction(nodes), weight: 2 },
-      complexAction(nodes)
+      { arbitrary: simpleEdit(nodes), weight: 2 },
+      complexEdit(nodes)
     );
   }
 
-  /** A series of arbitrary actions that allow us to test undo and redo */
+  /** A series of arbitrary edits that allow us to test undo and redo */
   export type UndoRedoTestCase = {
     doc1: XMLDocument;
     doc2: XMLDocument;
-    actions: EditorAction[];
+    edits: Edit[];
   };
   export function undoRedoTestCases(
     testDoc1: TestDoc,
@@ -149,7 +149,7 @@ namespace util {
     return record({
       doc1: constant(testDoc1.doc),
       doc2: constant(testDoc2.doc),
-      actions: array(editorAction(nodes)),
+      edits: array(edit(nodes)),
     });
   }
 
@@ -203,33 +203,33 @@ describe('Editing Element', () => {
   });
 
   it('loads a document on OpenDocEvent', async () => {
-    editor.dispatchEvent(newOpenDocEvent(sclDoc, 'test.scd'));
+    editor.dispatchEvent(newOpenEvent(sclDoc, 'test.scd'));
     await editor.updateComplete;
     expect(editor.doc).to.equal(sclDoc);
     expect(editor.docName).to.equal('test.scd');
   });
 
-  it('inserts an element on InsertActionEvent', () => {
+  it('inserts an element on Insert', () => {
     const parent = sclDoc.documentElement;
     const node = sclDoc.createElement('test');
     const reference = sclDoc.querySelector('Substation');
-    editor.dispatchEvent(newActionEvent({ parent, node, reference }));
+    editor.dispatchEvent(newEditEvent({ parent, node, reference }));
     expect(sclDoc.documentElement.querySelector('test')).to.have.property(
       'nextSibling',
       reference
     );
   });
 
-  it('removes an element on Remove Action', () => {
+  it('removes an element on Remove', () => {
     const node = sclDoc.querySelector('Substation')!;
-    editor.dispatchEvent(newActionEvent({ node }));
+    editor.dispatchEvent(newEditEvent({ node }));
     expect(sclDoc.querySelector('Substation')).to.not.exist;
   });
 
-  it("updates an element's attributes on UpdateActionEvent", () => {
+  it("updates an element's attributes on Update", () => {
     const element = sclDoc.querySelector('Substation')!;
     editor.dispatchEvent(
-      newActionEvent({
+      newEditEvent({
         element,
         attributes: {
           name: 'A2',
@@ -248,13 +248,13 @@ describe('Editing Element', () => {
     expect(element).to.have.attribute('myns:attr', 'namespaced value');
   });
 
-  it('processes complex actions in the given order', () => {
+  it('processes complex edits in the given order', () => {
     const parent = sclDoc.documentElement;
     const reference = sclDoc.querySelector('Substation');
     const node1 = sclDoc.createElement('test1');
     const node2 = sclDoc.createElement('test2');
     editor.dispatchEvent(
-      newActionEvent([
+      newEditEvent([
         { parent, node: node1, reference },
         { parent, node: node2, reference },
       ])
@@ -269,66 +269,66 @@ describe('Editing Element', () => {
     );
   });
 
-  it('undoes a committed action on undo() call', () => {
+  it('undoes a committed edit on undo() call', () => {
     const node = sclDoc.querySelector('Substation')!;
-    editor.dispatchEvent(newActionEvent({ node }));
+    editor.dispatchEvent(newEditEvent({ node }));
     editor.undo();
     expect(sclDoc.querySelector('Substation')).to.exist;
   });
 
-  it('redoes an undone action on redo() call', () => {
+  it('redoes an undone edit on redo() call', () => {
     const node = sclDoc.querySelector('Substation')!;
-    editor.dispatchEvent(newActionEvent({ node }));
+    editor.dispatchEvent(newEditEvent({ node }));
     editor.undo();
     editor.redo();
     expect(sclDoc.querySelector('Substation')).to.not.exist;
   });
 
   describe('generally', () => {
-    it('inserts elements on Insert action events', () =>
+    it('inserts elements on Insert edit events', () =>
       assert(
         property(
           util.testDocs.chain(([doc1, doc2]) => {
             const nodes = doc1.nodes.concat(doc2.nodes);
             return util.insert(nodes);
           }),
-          action => {
-            editor.dispatchEvent(newActionEvent(action));
-            if (util.isValidInsert(action))
+          edit => {
+            editor.dispatchEvent(newEditEvent(edit));
+            if (util.isValidInsert(edit))
               return (
-                action.node.parentElement === action.parent &&
-                action.node.nextSibling === action.reference
+                edit.node.parentElement === edit.parent &&
+                edit.node.nextSibling === edit.reference
               );
             return true;
           }
         )
       ));
 
-    it('updates default namespace attributes on Update action events', () =>
+    it('updates default namespace attributes on Update edit events', () =>
       assert(
         property(
           util.testDocs.chain(([{ nodes }]) => util.update(nodes)),
-          action => {
-            editor.dispatchEvent(newActionEvent(action));
-            return Object.entries(action.attributes)
+          edit => {
+            editor.dispatchEvent(newEditEvent(edit));
+            return Object.entries(edit.attributes)
               .filter(
                 ([name, value]) =>
                   util.xmlAttributeName.test(name) && !isNamespaced(value!)
               )
               .every(
-                ([name, value]) => action.element.getAttribute(name) === value
+                ([name, value]) => edit.element.getAttribute(name) === value
               );
           }
         )
       ));
 
-    it('updates namespaced attributes on Update action events', () =>
+    it('updates namespaced attributes on Update edit events', () =>
       assert(
         property(
           util.testDocs.chain(([{ nodes }]) => util.update(nodes)),
-          action => {
-            editor.dispatchEvent(newActionEvent(action));
-            return Object.entries(action.attributes)
+          edit => {
+            editor.dispatchEvent(newEditEvent(edit));
+            return Object.entries(edit.attributes)
               .filter(
                 ([name, value]) =>
                   util.xmlAttributeName.test(name) &&
@@ -338,7 +338,7 @@ describe('Editing Element', () => {
               .map(entry => entry as [string, NamespacedAttributeValue])
               .every(
                 ([name, { value, namespaceURI }]) =>
-                  action.element.getAttributeNS(
+                  edit.element.getAttributeNS(
                     <string>namespaceURI,
                     name.includes(':') ? <string>name.split(':', 2)[1] : name
                   ) === value
@@ -347,29 +347,29 @@ describe('Editing Element', () => {
         )
       ));
 
-    it('removes elements on Remove action events', () =>
+    it('removes elements on Remove edit events', () =>
       assert(
         property(
           util.testDocs.chain(([{ nodes }]) => util.remove(nodes)),
           ({ node }) => {
-            editor.dispatchEvent(newActionEvent({ node }));
+            editor.dispatchEvent(newEditEvent({ node }));
             return !node.parentNode;
           }
         )
       ));
 
-    it('undoes up to n actions on undo(n) call', () =>
+    it('undoes up to n edits on undo(n) call', () =>
       assert(
         property(
           util.testDocs.chain(docs => util.undoRedoTestCases(...docs)),
-          ({ doc1, doc2, actions }: util.UndoRedoTestCase) => {
+          ({ doc1, doc2, edits }: util.UndoRedoTestCase) => {
             const [oldDoc1, oldDoc2] = [doc1, doc2].map(doc =>
               new XMLSerializer().serializeToString(doc)
             );
-            actions.forEach((a: EditorAction) => {
-              editor.dispatchEvent(newActionEvent(a));
+            edits.forEach((a: Edit) => {
+              editor.dispatchEvent(newEditEvent(a));
             });
-            if (actions.length) editor.undo(actions.length);
+            if (edits.length) editor.undo(edits.length);
             const [newDoc1, newDoc2] = [doc1, doc2].map(doc =>
               new XMLSerializer().serializeToString(doc)
             );
@@ -378,20 +378,20 @@ describe('Editing Element', () => {
         )
       ));
 
-    it('redoes up to n actions on redo(n) call', () =>
+    it('redoes up to n edits on redo(n) call', () =>
       assert(
         property(
           util.testDocs.chain(docs => util.undoRedoTestCases(...docs)),
-          ({ doc1, doc2, actions }: util.UndoRedoTestCase) => {
-            actions.forEach((a: EditorAction) => {
-              editor.dispatchEvent(newActionEvent(a));
+          ({ doc1, doc2, edits }: util.UndoRedoTestCase) => {
+            edits.forEach((a: Edit) => {
+              editor.dispatchEvent(newEditEvent(a));
             });
             const [oldDoc1, oldDoc2] = [doc1, doc2].map(doc =>
               new XMLSerializer().serializeToString(doc)
             );
-            if (actions.length) {
-              editor.undo(actions.length + 1);
-              editor.redo(actions.length + 1);
+            if (edits.length) {
+              editor.undo(edits.length + 1);
+              editor.redo(edits.length + 1);
             }
             const [newDoc1, newDoc2] = [doc1, doc2].map(doc =>
               new XMLSerializer().serializeToString(doc)
