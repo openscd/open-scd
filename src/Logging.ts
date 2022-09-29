@@ -110,7 +110,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       return index;
     }
 
-    private async onIssue(de: IssueEvent): Promise<void> {
+    private onIssue(de: IssueEvent): void {
       const issues = this.diagnoses.get(de.detail.validatorId);
 
       if (!issues) this.diagnoses.set(de.detail.validatorId, [de.detail]);
