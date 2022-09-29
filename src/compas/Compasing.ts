@@ -122,14 +122,17 @@ export function Compasing<TBase extends new (...args: any[]) => EditingElement>(
 
       this.addEventListener('set-session-timeouts', this.setSessionTimeouts);
 
-      // When the plugin is loaded we will also start retrieving the User Information and prepare the Timeout Panels.
-      retrieveUserInfo(this).finally(() =>
-        console.info('User info retrieved from CoMPAS')
-      );
-      // And we will start loading the Nsdoc Files from the Compas Backend Service.
-      loadNsdocFiles(this).finally(() =>
-        console.info('Nsdoc Files loaded from CoMPAS')
-      );
+      // Just wait a small moment before starting to fetch all kind of info.
+      new Promise(resolve => setTimeout(resolve, 100)).then(() => {
+        // When the plugin is loaded we will also start retrieving the User Information and prepare the Timeout Panels.
+        retrieveUserInfo(this).finally(() =>
+          console.info('User info retrieved from CoMPAS')
+        );
+        // And we will start loading the Nsdoc Files from the Compas Backend Service.
+        loadNsdocFiles(this).finally(() =>
+          console.info('Nsdoc Files loaded from CoMPAS')
+        );
+      });
     }
 
     render(): TemplateResult {

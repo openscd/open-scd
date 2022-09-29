@@ -1,6 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
 import '../../src/open-scd.js';
+
 import { newEmptySCD } from '../../src/schemas.js';
 import { OpenSCD } from '../../src/open-scd.js';
 
@@ -20,7 +21,6 @@ describe('open-scd', () => {
         rel="stylesheet"
       />
     `);
-    await element.updateComplete;
   });
 
   it('looks like its snapshot', async () => {
@@ -60,7 +60,7 @@ describe('open-scd', () => {
     expect(element.logUI).to.have.property('open', true);
   });
 
-  it('opens the diagnostics on daignostics menu entry click', async () => {
+  it('opens the diagnostics on diagnostics menu entry click', async () => {
     await (<HTMLElement>(
       element.shadowRoot!.querySelector('mwc-list-item[iconid="rule"]')!
     )).click();
