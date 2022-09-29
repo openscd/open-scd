@@ -50,8 +50,7 @@ async function processNsdocFile(
  * Call backend to get the list of available NSDoc Files on the SCL Validator Service.
  * Load each item found using the function #processNsdocFile.
  */
-export async function loadNsdocFiles(): Promise<void> {
-  const openScd = document.querySelector('open-scd');
+export async function loadNsdocFiles(element: Element): Promise<void> {
   await CompasSclValidatorService()
     .listNsdocFiles()
     .then(response => {
@@ -61,11 +60,11 @@ export async function loadNsdocFiles(): Promise<void> {
           const nsdocId = element.querySelector('NsdocId')!.textContent ?? '';
           const filename = element.querySelector('Filename')!.textContent ?? '';
           const checksum = element.querySelector('Checksum')!.textContent ?? '';
-          processNsdocFile(openScd!, id, nsdocId, filename, checksum);
+          processNsdocFile(element, id, nsdocId, filename, checksum);
         }
       );
     })
     .catch(reason => {
-      createLogEvent(openScd!, reason);
+      createLogEvent(element, reason);
     });
 }

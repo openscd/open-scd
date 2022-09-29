@@ -1,4 +1,4 @@
-import { html, fixture, expect } from '@open-wc/testing';
+import { expect, fixture, html } from '@open-wc/testing';
 
 import '../../src/open-scd.js';
 import { newEmptySCD } from '../../src/schemas.js';
@@ -6,25 +6,21 @@ import { OpenSCD } from '../../src/open-scd.js';
 
 describe('open-scd', () => {
   let element: OpenSCD;
-  let invalidSCL: string;
-  let validSCL: string;
 
   beforeEach(async () => {
     localStorage.clear();
 
-    invalidSCL = await fetch('/test/testfiles/invalid2007B.scd').then(
-      response => response.text()
-    );
-    validSCL = await fetch('/test/testfiles/valid2007B4.scd').then(response =>
-      response.text()
-    );
     element = await fixture(html`
       <open-scd></open-scd>
 
       <link href="public/google/fonts/roboto-v27.css" rel="stylesheet" />
       <link href="public/google/fonts/roboto-mono-v13.css" rel="stylesheet" />
-      <link href="public/google/icons/material-icons-outlined.css" rel="stylesheet" />
+      <link
+        href="public/google/icons/material-icons-outlined.css"
+        rel="stylesheet"
+      />
     `);
+    await element.updateComplete;
   });
 
   it('looks like its snapshot', async () => {
