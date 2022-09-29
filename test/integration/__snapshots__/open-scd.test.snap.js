@@ -37,7 +37,7 @@ snapshots["open-scd looks like its snapshot"] =
         Open project
       </span>
     </mwc-list-item>
-    <oscd-plugin8377febe1fad1914 class="menu plugin">
+    <oscd-plugin8377febe1fad1914 class="plugin">
     </oscd-plugin8377febe1fad1914>
     <mwc-list-item
       aria-disabled="false"
@@ -54,7 +54,7 @@ snapshots["open-scd looks like its snapshot"] =
         New project
       </span>
     </mwc-list-item>
-    <oscd-plugin679d81826289fb9a class="menu plugin">
+    <oscd-plugin679d81826289fb9a class="plugin">
     </oscd-plugin679d81826289fb9a>
     <mwc-list-item
       aria-disabled="false"
@@ -71,7 +71,7 @@ snapshots["open-scd looks like its snapshot"] =
         Project from CIM
       </span>
     </mwc-list-item>
-    <oscd-plugin87f72fdec2017c78 class="menu plugin">
+    <oscd-plugin87f72fdec2017c78 class="plugin">
     </oscd-plugin87f72fdec2017c78>
     <mwc-list-item
       aria-disabled="true"
@@ -89,7 +89,7 @@ snapshots["open-scd looks like its snapshot"] =
         Save project
       </span>
     </mwc-list-item>
-    <oscd-plugin25aae78ff326102f class="menu plugin">
+    <oscd-plugin25aae78ff326102f class="plugin">
     </oscd-plugin25aae78ff326102f>
     <mwc-list-item
       aria-disabled="true"
@@ -107,7 +107,7 @@ snapshots["open-scd looks like its snapshot"] =
         Save project as
       </span>
     </mwc-list-item>
-    <oscd-plugin78931a53cad7ad3a class="menu plugin">
+    <oscd-plugin78931a53cad7ad3a class="plugin">
     </oscd-plugin78931a53cad7ad3a>
     <li
       divider=""
@@ -163,7 +163,7 @@ snapshots["open-scd looks like its snapshot"] =
         Validate using OCL
       </span>
     </mwc-list-item>
-    <oscd-plugine36e411de62aaf96 class="plugin validator">
+    <oscd-plugine36e411de62aaf96 class="plugin">
     </oscd-plugine36e411de62aaf96>
     <mwc-list-item
       aria-disabled="true"
@@ -181,7 +181,7 @@ snapshots["open-scd looks like its snapshot"] =
         Validate Schema
       </span>
     </mwc-list-item>
-    <oscd-plugin3aa68346726da1cd class="plugin validator">
+    <oscd-plugin3aa68346726da1cd class="plugin">
     </oscd-plugin3aa68346726da1cd>
     <mwc-list-item
       aria-disabled="true"
@@ -199,7 +199,7 @@ snapshots["open-scd looks like its snapshot"] =
         Validate Templates
       </span>
     </mwc-list-item>
-    <oscd-plugin186320cdd626e422 class="plugin validator">
+    <oscd-plugin186320cdd626e422 class="plugin">
     </oscd-plugin186320cdd626e422>
     <mwc-list-item
       aria-disabled="false"
@@ -253,7 +253,7 @@ snapshots["open-scd looks like its snapshot"] =
         Import IEDs
       </span>
     </mwc-list-item>
-    <oscd-pluginb15ea127292dd242 class="menu plugin">
+    <oscd-pluginb15ea127292dd242 class="plugin">
     </oscd-pluginb15ea127292dd242>
     <mwc-list-item
       aria-disabled="true"
@@ -271,7 +271,7 @@ snapshots["open-scd looks like its snapshot"] =
         Subscriber Update
       </span>
     </mwc-list-item>
-    <oscd-plugin90bf5c90b69b347b class="menu plugin">
+    <oscd-plugin90bf5c90b69b347b class="plugin">
     </oscd-plugin90bf5c90b69b347b>
     <mwc-list-item
       aria-disabled="true"
@@ -289,7 +289,7 @@ snapshots["open-scd looks like its snapshot"] =
         Merge Project
       </span>
     </mwc-list-item>
-    <oscd-plugin6b332766ae5e2b11 class="menu plugin">
+    <oscd-plugin6b332766ae5e2b11 class="plugin">
     </oscd-plugin6b332766ae5e2b11>
     <mwc-list-item
       aria-disabled="true"
@@ -307,7 +307,7 @@ snapshots["open-scd looks like its snapshot"] =
         Update Substation
       </span>
     </mwc-list-item>
-    <oscd-plugin049834abc330641d class="menu plugin">
+    <oscd-plugin049834abc330641d class="plugin">
     </oscd-plugin049834abc330641d>
     <mwc-list-item
       aria-disabled="true"
@@ -325,7 +325,7 @@ snapshots["open-scd looks like its snapshot"] =
         Compare IED
       </span>
     </mwc-list-item>
-    <oscd-plugin1c01f84abe983ebe class="menu plugin">
+    <oscd-plugin1c01f84abe983ebe class="plugin">
     </oscd-plugin1c01f84abe983ebe>
     <mwc-list-item
       aria-disabled="true"
@@ -343,7 +343,7 @@ snapshots["open-scd looks like its snapshot"] =
         Auto Align SLD
       </span>
     </mwc-list-item>
-    <oscd-pluginc69b878585292aa9 class="menu plugin">
+    <oscd-pluginc69b878585292aa9 class="plugin">
     </oscd-pluginc69b878585292aa9>
     <li
       divider=""
@@ -381,7 +381,7 @@ snapshots["open-scd looks like its snapshot"] =
         CoMPAS Settings
       </span>
     </mwc-list-item>
-    <oscd-plugin8a88d78e372c97aa class="menu plugin">
+    <oscd-plugin8a88d78e372c97aa class="plugin">
     </oscd-plugin8a88d78e372c97aa>
     <mwc-list-item
       aria-disabled="false"
@@ -398,7 +398,7 @@ snapshots["open-scd looks like its snapshot"] =
         Help
       </span>
     </mwc-list-item>
-    <oscd-plugin48ab1a46d409bed9 class="menu plugin">
+    <oscd-plugin48ab1a46d409bed9 class="plugin">
     </oscd-plugin48ab1a46d409bed9>
     <mwc-list-item
       aria-disabled="true"
@@ -416,7 +416,7 @@ snapshots["open-scd looks like its snapshot"] =
         Show SCL History
       </span>
     </mwc-list-item>
-    <oscd-plugina5aa56c7c6319526 class="menu plugin">
+    <oscd-plugina5aa56c7c6319526 class="plugin">
     </oscd-plugina5aa56c7c6319526>
     <li
       divider=""
@@ -534,58 +534,20 @@ snapshots["open-scd looks like its snapshot"] =
     id="content"
     wrapfocus=""
   >
-    <abbr title="Error communicating with CoMPAS Ecosystem">
-      <mwc-list-item
-        aria-disabled="false"
-        class="error"
-        graphic="icon"
-        mwc-list-item=""
-        tabindex="-1"
-        twoline=""
-      >
-        <span>
-          <tt>
-            29/09/2022, 08:48:09
-          </tt>
-          Error communicating with CoMPAS Ecosystem
-        </span>
-        <span slot="secondary">
-          NotFoundError: Not Found (404)
-        </span>
-        <mwc-icon
-          slot="graphic"
-          style="--mdc-theme-text-icon-on-background:var(--red)"
-        >
-          report
-        </mwc-icon>
-      </mwc-list-item>
-    </abbr>
-    <abbr title="Error communicating with CoMPAS Ecosystem">
-      <mwc-list-item
-        aria-disabled="false"
-        class="error"
-        graphic="icon"
-        mwc-list-item=""
-        tabindex="-1"
-        twoline=""
-      >
-        <span>
-          <tt>
-            29/09/2022, 08:48:09
-          </tt>
-          Error communicating with CoMPAS Ecosystem
-        </span>
-        <span slot="secondary">
-          NotFoundError: Not Found (404)
-        </span>
-        <mwc-icon
-          slot="graphic"
-          style="--mdc-theme-text-icon-on-background:var(--red)"
-        >
-          report
-        </mwc-icon>
-      </mwc-list-item>
-    </abbr>
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="icon"
+      mwc-list-item=""
+      tabindex="0"
+    >
+      <span>
+        Edits, errors, and other notifications will show up here.
+      </span>
+      <mwc-icon slot="graphic">
+        info
+      </mwc-icon>
+    </mwc-list-item>
   </mwc-list>
   <mwc-button
     disabled=""
@@ -668,8 +630,7 @@ snapshots["open-scd looks like its snapshot"] =
 </mwc-snackbar>
 <mwc-snackbar
   id="error"
-  labeltext="Error communicating with CoMPAS Ecosystem"
-  open=""
+  labeltext="No errors"
   timeoutms="10000"
 >
   <mwc-button

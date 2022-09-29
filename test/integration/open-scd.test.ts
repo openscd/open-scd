@@ -20,8 +20,6 @@ describe('open-scd', () => {
         rel="stylesheet"
       />
     `);
-    await element.updateComplete;
-    await new Promise(resolve => setTimeout(resolve, 100)); // await animation
   });
 
   it('looks like its snapshot', async () => {

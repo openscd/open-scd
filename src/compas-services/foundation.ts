@@ -80,21 +80,23 @@ export function handleError(error: Error): Promise<never> {
 }
 
 export function createLogEvent(element: Element, reason: any): void {
-  let message = reason.message;
-  if (reason.status) {
-    message += ' (' + reason.status + ')';
-  }
+  if (element) {
+    let message = reason.message;
+    if (reason.status) {
+      message += ' (' + reason.status + ')';
+    }
 
-  element.dispatchEvent(
-    newLogEvent({
-      kind: 'error',
-      title: get('compas.error.server'),
-      message: get('compas.error.serverDetails', {
-        type: reason.type,
-        message: message,
-      }),
-    })
-  );
+    element.dispatchEvent(
+      newLogEvent({
+        kind: 'error',
+        title: get('compas.error.server'),
+        message: get('compas.error.serverDetails', {
+          type: reason.type,
+          message: message,
+        }),
+      })
+    );
+  }
 }
 
 export function getWebsocketUri(settingsUrl: string): string {
