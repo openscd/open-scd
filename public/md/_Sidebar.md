@@ -2,6 +2,8 @@
 
 ### 1.1 [Install OpenSCD](https://github.com/openscd/open-scd/wiki/Install-OpenSCD)
 
+### 1.2 [Interface](https://github.com/openscd/open-scd/wiki/Interface)
+
 ## 2. [Project management](https://github.com/openscd/open-scd/wiki/Project-workflow)
 
 ### 2.1 [Import IEDs](https://github.com/openscd/open-scd/wiki/Import-IEDs)
