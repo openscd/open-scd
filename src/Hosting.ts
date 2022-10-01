@@ -58,6 +58,9 @@ export function Hosting<
 
     @query('#menu') menuUI!: Drawer;
 
+    @query('.project_name')
+    projectName!: HTMLInputElement;
+
     get menu(): (MenuItem | 'divider')[] {
       const topMenu: (MenuItem | 'divider')[] = [];
       const middleMenu: (MenuItem | 'divider')[] = [];
@@ -229,6 +232,9 @@ export function Hosting<
         ).then();
         this.dispatchEvent(newPendingStateEvent(this.validated));
       });
+      this.addEventListener('open-doc', () => {
+        this.projectName!.value = this.docName;
+      });
     }
 
     renderMenuItem(me: MenuItem | 'divider'): TemplateResult {
@@ -267,6 +273,15 @@ export function Hosting<
       </mwc-tab>`;
     }
 
+    private changeProjectName(e: Event): void {
+      let proposedName = (<HTMLInputElement>e.target!).value;
+      proposedName = proposedName.indexOf('.')
+        ? `${proposedName}.scd`
+        : proposedName;
+      this.docName = proposedName;
+      (<HTMLInputElement>e.target!).value = proposedName
+    }
+
     render(): TemplateResult {
       return html` <mwc-drawer
           class="mdc-theme--surface"
@@ -282,7 +297,7 @@ export function Hosting<
             wrapFocus
             @action=${(ae: CustomEvent<ActionDetail>) => {
               //FIXME: dirty hack to be fixed in open-scd-core
-              //       if clause not neccassary when oscd... compenents in open-scd not list
+              //       if clause not necessary when oscd... components in open-scd not list
               if (ae.target instanceof List)
                 (<MenuItem>(
                   this.menu.filter(item => item !== 'divider')[ae.detail.index]
@@ -299,7 +314,15 @@ export function Hosting<
               slot="navigationIcon"
               @click=${() => (this.menuUI.open = true)}
             ></mwc-icon-button>
-            <div slot="title" id="title">${this.docName}</div>
+            <div slot="title" id="title">
+              <input
+                class="project_name"
+                type="text"
+                value="${this.docName}"
+                @change="${this.changeProjectName}"
+                ?disabled="${this.docName === ''}"
+              />
+            </div>
             ${this.menu.map(this.renderActionItem)}
             ${this.doc
               ? html`<mwc-tab-bar

@@ -171,6 +171,36 @@ export class OpenSCD extends Hosting(
       font-family: 'Roboto', sans-serif;
     }
 
+    #title {
+      width: var(--mdc-top-app-bar-width, 100%);
+    }
+
+    .project_name {
+      background: var(--primary);
+      border: none;
+      color: var(--mdc-theme-on-secondary);
+      font-family: var(
+        --mdc-typography-headline6-font-family,
+        var(--mdc-typography-font-family, Roboto, sans-serif)
+      );
+      font-size: var(--mdc-typography-headline6-font-size, 1.25rem);
+      font-weight: var(--mdc-typography-headline6-font-weight, 500);
+      line-height: var(--mdc-typography-headline6-line-height, 2rem);
+      letter-spacing: var(--mdc-typography-headline6-letter-spacing, 0.0125em);
+      padding-right: 0px;
+      text-decoration: var(--mdc-typography-headline6-text-decoration, inherit);
+      text-overflow: ellipsis;
+      text-transform: var(--mdc-typography-headline6-text-transform, inherit);
+      white-space: nowrap;
+      overflow: hidden;
+      z-index: 1;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .project_name:focus {
+      outline: none;
+    }
+
     .plugin.menu {
       display: flex;
     }
