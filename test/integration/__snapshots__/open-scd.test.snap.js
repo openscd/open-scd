@@ -337,11 +337,14 @@ snapshots["open-scd looks like its snapshot"] =
       slot="navigationIcon"
     >
     </mwc-icon-button>
-    <div
-      id="title"
+    <input
+      class="project_name"
+      disabled=""
       slot="title"
+      spellcheck="false"
+      type="text"
+      value=""
     >
-    </div>
     <mwc-icon-button
       disabled=""
       icon="undo"
