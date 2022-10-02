@@ -195,6 +195,11 @@ export class OpenSCD extends Hosting(
 
     .project_name:focus {
       outline: none;
+      filter: brightness(95%);
+    }
+
+    .project_name:hover {
+      filter: brightness(95%);
     }
 
     .plugin.menu {
