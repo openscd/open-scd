@@ -275,11 +275,19 @@ export function Hosting<
 
     private changeProjectName(e: Event): void {
       let proposedName = (<HTMLInputElement>e.target!).value;
-      proposedName = proposedName.indexOf('.')
-        ? `${proposedName}.scd`
-        : proposedName;
+      // make filenames somewhat likely to work on Windows (not comprehensive)
+      proposedName = proposedName
+        .trim()
+        .replace(/[\\/:*?\"<>|]/g, '')
+        .substring(0, 240);
+      // untitled if nothing left over
+      proposedName = proposedName === '' ? 'untitled' : proposedName;
+      // would like a file extension, default to scd
+      proposedName =
+        proposedName.indexOf('.') !== -1 ? proposedName : `${proposedName}.scd`;
+  
       this.docName = proposedName;
-      (<HTMLInputElement>e.target!).value = proposedName
+      (<HTMLInputElement>e.target!).value = proposedName;
     }
 
     render(): TemplateResult {
@@ -314,15 +322,15 @@ export function Hosting<
               slot="navigationIcon"
               @click=${() => (this.menuUI.open = true)}
             ></mwc-icon-button>
-            <div slot="title" id="title">
-              <input
-                class="project_name"
-                type="text"
-                value="${this.docName}"
-                @change="${this.changeProjectName}"
-                ?disabled="${this.docName === ''}"
-              />
-            </div>
+            <input
+              class="project_name"
+              slot="title"
+              type="text"
+              spellcheck="false"
+              value="${this.docName}"
+              @change="${this.changeProjectName}"
+              ?disabled="${this.docName === ''}"
+            />
             ${this.menu.map(this.renderActionItem)}
             ${this.doc
               ? html`<mwc-tab-bar

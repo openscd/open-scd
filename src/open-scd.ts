@@ -171,10 +171,6 @@ export class OpenSCD extends Hosting(
       font-family: 'Roboto', sans-serif;
     }
 
-    #title {
-      width: var(--mdc-top-app-bar-width, 100%);
-    }
-
     .project_name {
       background: var(--primary);
       border: none;
