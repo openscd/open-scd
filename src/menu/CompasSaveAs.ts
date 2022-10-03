@@ -8,12 +8,15 @@ import {
 } from 'lit-element';
 import { translate } from 'lit-translate';
 
+import '@material/mwc-button';
+import '@material/mwc-dialog';
+import { Dialog } from '@material/mwc-dialog';
+
 import { newPendingStateEvent } from '../foundation.js';
 
 import CompasSaveElement from '../compas/CompasSave.js';
 
 import '../compas/CompasSave.js';
-import { Dialog } from '@material/mwc-dialog';
 
 export default class CompasSaveAsMenuPlugin extends LitElement {
   @property()
@@ -21,21 +24,15 @@ export default class CompasSaveAsMenuPlugin extends LitElement {
   @property()
   docName!: string;
 
-  @query('mwc-dialog')
+  @query('mwc-dialog#compas-save-as-dlg')
   dialog!: Dialog;
 
   @query('compas-save')
   compasSaveElement!: CompasSaveElement;
 
   async run(): Promise<void> {
-    this.dialog.open = true;
-  }
-
-  private async saveToCoMPAS(): Promise<void> {
-    const success = await this.compasSaveElement.saveToCompas();
-    if (success) {
-      this.dialog.close();
-    }
+    await this.compasSaveElement.requestUpdate();
+    this.dialog.show();
   }
 
   render(): TemplateResult {
@@ -46,7 +43,13 @@ export default class CompasSaveAsMenuPlugin extends LitElement {
       ${!this.doc || !this.docName
         ? html`<compas-loading></compas-loading>`
         : html`
-            <compas-save .doc="${this.doc}" .docName="${this.docName}">
+            <compas-save
+              .doc="${this.doc}"
+              .docName="${this.docName}"
+              @doc-saved=${() => {
+                this.dialog.close();
+              }}
+            >
             </compas-save>
             <mwc-button
               slot="primaryAction"
@@ -55,7 +58,9 @@ export default class CompasSaveAsMenuPlugin extends LitElement {
               label="${translate('save')}"
               @click=${() => {
                 if (this.compasSaveElement.valid()) {
-                  this.dispatchEvent(newPendingStateEvent(this.saveToCoMPAS()));
+                  this.dispatchEvent(
+                    newPendingStateEvent(this.compasSaveElement.saveToCompas())
+                  );
                 }
               }}
             ></mwc-button>

@@ -814,6 +814,8 @@ export const de: Translations = {
     notExists: '???',
     noSclTypes: '???',
     noScls: '???',
+    sclFilter: '???:',
+    noFilteredScls: '???',
     noSclVersions: '???',
     sclType: '???',
     error: {
@@ -828,6 +830,9 @@ export const de: Translations = {
     },
     import: {
       title: '???',
+    },
+    label: {
+      selectLabels: '???',
     },
     open: {
       title: '???',

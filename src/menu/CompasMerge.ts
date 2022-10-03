@@ -1,12 +1,12 @@
-import {html, LitElement} from 'lit-element';
-import {get} from "lit-translate";
+import { html, LitElement } from 'lit-element';
+import { get } from 'lit-translate';
 
-import {newWizardEvent, Wizard} from '../foundation.js';
-import {mergeWizard} from "../wizards.js";
+import { newWizardEvent, Wizard } from '../foundation.js';
+import { mergeWizard } from '../wizards.js';
 
-import {DocRetrievedEvent} from "../compas/CompasOpen.js";
+import { DocRetrievedEvent } from '../compas/CompasOpen.js';
 
-import "../compas/CompasOpen.js";
+import '../compas/CompasOpen.js';
 
 export default class CompasMergeMenuPlugin extends LitElement {
   doc!: XMLDocument;
@@ -17,16 +17,20 @@ export default class CompasMergeMenuPlugin extends LitElement {
       {
         title: get('compas.merge.title'),
         content: [
-          html`<compas-open @docRetrieved=${(evt: DocRetrievedEvent) => {
-                                             this.parent.dispatchEvent(
-                                                 newWizardEvent(
-                                                   mergeWizard(this.doc.documentElement, evt.detail.doc.documentElement)
-                                                 )
-                                               );
-                                             this.parent.dispatchEvent(newWizardEvent());
-                                           }}>
-               </compas-open>
-          `,
+          html`<compas-open
+            @doc-retrieved=${(evt: DocRetrievedEvent) => {
+              this.parent.dispatchEvent(
+                newWizardEvent(
+                  mergeWizard(
+                    this.doc.documentElement,
+                    evt.detail.doc.documentElement
+                  )
+                )
+              );
+              this.parent.dispatchEvent(newWizardEvent());
+            }}
+          >
+          </compas-open> `,
         ],
       },
     ];
