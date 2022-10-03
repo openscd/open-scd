@@ -94,8 +94,8 @@ export class ExtRefLaterBindingList extends LitElement {
     attributeName: string
   ): boolean {
     return (
-      extRefElement.getAttribute(attributeName) ===
-      this.currentSelectedFcdaElement?.getAttribute(attributeName)
+      (extRefElement.getAttribute(attributeName) ?? '') ===
+        this.currentSelectedFcdaElement?.getAttribute(attributeName) ?? ''
     );
   }
 
@@ -138,7 +138,7 @@ export class ExtRefLaterBindingList extends LitElement {
       extRefElement.getAttribute('iedName') ===
         this.currentIedElement?.getAttribute('name') &&
       this.sameAttributeValue(extRefElement, 'ldInst') &&
-      (this.sameAttributeValue(extRefElement, 'prefix') || extRefElement.getAttribute('prefix') === null) &&
+      this.sameAttributeValue(extRefElement, 'prefix') &&
       this.sameAttributeValue(extRefElement, 'lnClass') &&
       this.sameAttributeValue(extRefElement, 'lnInst') &&
       this.sameAttributeValue(extRefElement, 'doName') &&
