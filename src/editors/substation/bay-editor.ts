@@ -205,6 +205,14 @@ export class BayEditor extends LitElement {
           >${this.renderAddButtons()}</mwc-menu
         >
       </abbr>
+      ${getChildElementsByTagName(this.element, 'GeneralEquipment').map(
+        gEquipment =>
+          html`<general-equipment-editor
+          .doc=${this.doc}
+          .element=${gEquipment}
+          ?showfunctions=${this.showfunctions}
+          ></general-equipment-editor>`
+      )}
       ${this.renderIedContainer()}${this.renderLNodes()}${this.renderFunctions()}
       <div
         class="${classMap({

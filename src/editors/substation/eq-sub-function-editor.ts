@@ -44,6 +44,8 @@ export class EqSubFunctionEditor extends LitElement {
   /** The edited `EqSubFunction` element */
   @property({ attribute: false })
   element!: Element;
+  @property({ type: Boolean })
+  showfunctions = false  
   @state()
   private get header(): string {
     const name = this.element.getAttribute('name');
@@ -152,7 +154,16 @@ export class EqSubFunctionEditor extends LitElement {
           }}
           >${this.renderAddButtons()}</mwc-menu
         ></abbr
-      >${this.renderLNodes()}${this.renderEqSubFunctions()}</action-pane
+      >
+      ${getChildElementsByTagName(this.element, 'GeneralEquipment').map(
+        gEquipment =>
+          html`<general-equipment-editor
+          .doc=${this.doc}
+          .element=${gEquipment}
+          ?showfunctions=${this.showfunctions}
+          ></general-equipment-editor>`
+      )}
+      ${this.renderLNodes()}${this.renderEqSubFunctions()}</action-pane
     >`;
   }
 

@@ -187,6 +187,7 @@ export class SubstationEditor extends LitElement {
   }
 
   render(): TemplateResult {
+    console.log(this.element)
     return html`<action-pane label="${this.header}">
       <abbr slot="action" title="${translate('lnode.tooltip')}">
         <mwc-icon-button
@@ -239,7 +240,11 @@ export class SubstationEditor extends LitElement {
       </abbr>
       ${getChildElementsByTagName(this.element, 'GeneralEquipment').map(
         gEquipment =>
-          html`<general-equipment-editor></general-equipment-editor>`
+          html`<general-equipment-editor
+          .doc=${this.doc}
+          .element=${gEquipment}
+          ?showfunctions=${this.showfunctions}
+          ></general-equipment-editor>`
       )}
       ${this.renderIedContainer()}${this.renderLNodes()}${this.renderFunctions()}
       ${this.renderPowerTransformerContainer()}
