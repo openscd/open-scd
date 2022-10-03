@@ -4,6 +4,7 @@ import {
   html,
   LitElement,
   property,
+  query,
   TemplateResult,
 } from 'lit-element';
 import { translate, translateUnsafeHTML } from 'lit-translate';
@@ -18,25 +19,18 @@ export class CompasSessionExpiringDialogElement extends LitElement {
   @property({ type: Number })
   public expiredSessionMessage: number = 15 * 60 * 1000;
 
-  private getDialog(): Dialog {
-    return <Dialog>(
-      this.shadowRoot!.querySelector(
-        'mwc-dialog[id="compasSessionExpiringDialog"]'
-      )
-    );
-  }
+  @query('mwc-dialog[id="compasSessionExpiringDialog"]')
+  private dialog!: Dialog;
 
   show(): void {
-    const expiringDialog = this.getDialog();
-    if (expiringDialog && !expiringDialog.open) {
-      expiringDialog.show();
+    if (!this.dialog.open) {
+      this.dialog.show();
     }
   }
 
   close(): void {
-    const expiringDialog = this.getDialog();
-    if (expiringDialog && expiringDialog.open) {
-      expiringDialog.close();
+    if (this.dialog.open) {
+      this.dialog.close();
     }
   }
 
@@ -65,7 +59,8 @@ export class CompasSessionExpiringDialogElement extends LitElement {
 
   static styles = css`
     #compasSessionExpiringDialog {
-      --mdc-dialog-max-width: 800px;
+      --mdc-dialog-min-width: 23vw;
+      --mdc-dialog-max-width: 92vw;
     }
   `;
 }
