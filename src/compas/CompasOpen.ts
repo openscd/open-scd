@@ -21,7 +21,7 @@ import '../WizardDivider.js';
 import './CompasSclTypeList.js';
 import './CompasSclList.js';
 
-/* Event that will be used when a SCL Document is retrieved. */
+/* Event that will be used when an SCL Document is retrieved. */
 export interface DocRetrievedDetail {
   localFile: boolean;
   doc: Document;
@@ -33,7 +33,7 @@ export function newDocRetrievedEvent(
   doc: Document,
   docName?: string
 ): DocRetrievedEvent {
-  return new CustomEvent<DocRetrievedDetail>('docRetrieved', {
+  return new CustomEvent<DocRetrievedDetail>('doc-retrieved', {
     bubbles: true,
     composed: true,
     detail: { localFile, doc, docName },
@@ -110,7 +110,7 @@ export default class CompasOpenElement extends LitElement {
         type: this.selectedType ?? '',
       })}</p>
       <compas-scl-list .type=${this.selectedType}
-                       @sclSelected=${(evt: SclSelectedEvent) =>
+                       @scl-selected=${(evt: SclSelectedEvent) =>
                          this.dispatchEvent(
                            newPendingStateEvent(
                              this.getSclDocument(evt.detail.docId)

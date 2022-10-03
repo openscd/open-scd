@@ -8,12 +8,15 @@ import {
 } from 'lit-element';
 import { translate } from 'lit-translate';
 
+import '@material/mwc-button';
+import '@material/mwc-dialog';
+import { Dialog } from '@material/mwc-dialog';
+
 import { newPendingStateEvent } from '../foundation.js';
 
 import CompasSaveElement from '../compas/CompasSave.js';
 
 import '../compas/CompasSave.js';
-import { Dialog } from '@material/mwc-dialog';
 
 export default class CompasSaveMenuPlugin extends LitElement {
   @property()
@@ -23,7 +26,7 @@ export default class CompasSaveMenuPlugin extends LitElement {
   @property()
   docId?: string;
 
-  @query('mwc-dialog')
+  @query('mwc-dialog#compas-save-dlg')
   dialog!: Dialog;
 
   @query('compas-save')
@@ -31,14 +34,7 @@ export default class CompasSaveMenuPlugin extends LitElement {
 
   async run(): Promise<void> {
     await this.compasSaveElement.requestUpdate();
-    this.dialog.open = true;
-  }
-
-  private async saveToCoMPAS(): Promise<void> {
-    const success = await this.compasSaveElement.saveToCompas();
-    if (success) {
-      this.dialog.close();
-    }
+    this.dialog.show();
   }
 
   render(): TemplateResult {
@@ -53,6 +49,9 @@ export default class CompasSaveMenuPlugin extends LitElement {
               .doc="${this.doc}"
               .docName="${this.docName}"
               .docId="${this.docId}"
+              @doc-saved=${() => {
+                this.dialog.close();
+              }}
             >
             </compas-save>
             <mwc-button
@@ -62,7 +61,9 @@ export default class CompasSaveMenuPlugin extends LitElement {
               label="${translate('save')}"
               @click=${() => {
                 if (this.compasSaveElement.valid()) {
-                  this.dispatchEvent(newPendingStateEvent(this.saveToCoMPAS()));
+                  this.dispatchEvent(
+                    newPendingStateEvent(this.compasSaveElement.saveToCompas())
+                  );
                 }
               }}
             ></mwc-button>
