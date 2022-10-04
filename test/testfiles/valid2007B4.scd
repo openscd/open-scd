@@ -11,13 +11,27 @@
 	<Substation name="AA1" desc="Substation">
 		<VoltageLevel name="E1" desc="Voltage Level" nomFreq="50.0" numPhases="3">
 			<Voltage unit="V" multiplier="k">110.0</Voltage>
+			<PowerTransformer xmlns="http://www.iec.ch/61850/2003/SCL" name="pTrans" type="PTR">
+				<TransformerWinding name="some" type="PTW"/>
+				<SubEquipment name="subque" desc="somedesc" phase="all"/>
+				<SubEquipment name="addEqi" desc="somedesc" phase="none">
+					<LNode iedName="None" lnClass="CSWI" lnInst="1" lnType="OpenSCD_CSWI"/>
+					<EqFunction name="someEqFunction"/>
+				</SubEquipment>
+			</PowerTransformer>
 			<Bay name="COUPLING_BAY" desc="Bay">
         		<Private type="dummyType">
           			<ekaf:LNode xmlns:ekaf="http://www.dummyURL.com/dummyNS" iedName="IED2" ldInst="CBSWr" lnClass="LPHD" lnInst="1"/>
         		</Private>
 				<LNode iedName="IED2" ldInst="CBSW" lnClass="LPHD" lnInst="1"/>
 				<LNode iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="3"/>
-				<ConductingEquipment type="CBR" name="QA1" desc="coupling field ciscuit breaker"/>
+				<ConductingEquipment type="CBR" name="QA1" desc="coupling field ciscuit breaker">
+					<SubEquipment name="subque" desc="somedesc" phase="all"/>
+					<SubEquipment name="addEqi" desc="somedesc" phase="none">
+						<LNode iedName="None" lnClass="CSWI" lnInst="1" lnType="OpenSCD_CSWI"/>
+						<EqFunction name="someEqFunction"/>
+					</SubEquipment>
+				</ConductingEquipment>
 				<ConductingEquipment type="DIS" name="QB1" desc="busbar disconnector QB1">
 					<LNode iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="2"/>
 				</ConductingEquipment>

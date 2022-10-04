@@ -13,6 +13,11 @@
       		</TransformerWinding>
       		<TransformerWinding name="W2" type="PTW">
       		</TransformerWinding>
+			<SubEquipment name="subque" desc="somedesc" phase="all"/>
+			<SubEquipment name="addEqi" desc="somedesc" phase="none">
+				<LNode iedName="None" lnClass="CSWI" lnInst="1" lnType="OpenSCD_CSWI"/>
+				<EqFunction name="someEqFunction"/>
+			</SubEquipment>
     	</PowerTransformer>
         <VoltageLevel sxy:x="1" sxy:y="3" name="J1" desc="Voltage Level">
             <Private type="ABBPCMInternalObjRef">b80686f1-a514-477b-a83b-78f1cbe8a582</Private>
@@ -204,7 +209,7 @@
 						</GSEControl>
 						<GSEControl type="GOOSE" appID="0003" fixedOffs="false" confRev="1" name="GCB2"/>
 					</LN0>
-					<LN lnClass="XCBR" inst="1" lnType="Dummy.XCBR1">						
+					<LN lnClass="XCBR" inst="1" lnType="Dummy.XCBR1">
 						<DOI name="Pos">
 							<DAI name="ctlModel">
 								<Val>status-only</Val>
@@ -218,7 +223,7 @@
 							</DAI>
 						</DOI>
 					</LN>
-					<LN prefix="CB" lnClass="XCBR" inst="2" lnType="Dummy.XCBR1">						
+					<LN prefix="CB" lnClass="XCBR" inst="2" lnType="Dummy.XCBR1">
 						<DOI name="Pos">
 							<DAI name="ctlModel">
 								<Val>status-only</Val>
