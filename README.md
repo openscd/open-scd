@@ -8,7 +8,7 @@ Open Substation Communication Designer is an editor for SCL files as described i
 
 > Try it out at [openscd.github.io](https://openscd.github.io)!
 
-Make sure your browser has enough free memorey! if needed, disable plug-ins and close unused browertabs.
+Make sure your webbrowser has enough free memory! if needed, disable plug-ins and close unused browertabs.
 
 ## Installation
 
