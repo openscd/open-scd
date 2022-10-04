@@ -4,8 +4,6 @@ import { get } from 'lit-translate';
 import { newWizardEvent, Wizard, WizardInputElement } from '../foundation.js';
 
 import { CompasSettingsElement } from '../compas/CompasSettings.js';
-import { retrieveUserInfo } from '../compas/CompasSession.js';
-import { loadNsdocFiles } from '../compas/CompasNsdoc.js';
 
 import '../compas/CompasSettings.js';
 
@@ -40,8 +38,3 @@ export function compasSettingWizard(): Wizard {
     },
   ];
 }
-
-// When the plugin is loaded we will also start retrieving the User Information and prepare the Timeout Panels.
-retrieveUserInfo();
-// And we will start loading the Nsdoc Files from the Compas Backend Service.
-loadNsdocFiles();
