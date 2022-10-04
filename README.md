@@ -8,6 +8,8 @@ Open Substation Communication Designer is an editor for SCL files as described i
 
 > Try it out at [openscd.github.io](https://openscd.github.io)!
 
+Make sure your webbrowser has enough free memory! if needed, disable plug-ins and close unused browertabs.
+
 ## Installation
 
 In order to install OpenSCD on your local device (only for you), simply visit [openscd.github.io](https://openscd.github.io), click the "Install OpenSCD" button in your address bar (Chrome or Edge on desktop) or click the "Add OpenSCD to home screen" notification in any mobile browser.
