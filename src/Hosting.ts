@@ -15,12 +15,10 @@ import { Drawer } from '@material/mwc-drawer';
 import { ActionDetail, List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 
-import { Mixin, newPendingStateEvent } from './foundation.js';
+import { Mixin, newPendingStateEvent, UserInfoEvent } from './foundation.js';
 import { LoggingElement } from './Logging.js';
-import { Plugin, PluggingElement, pluginIcons } from './Plugging.js';
+import { PluggingElement, Plugin, pluginIcons } from './Plugging.js';
 import { SettingElement } from './Setting.js';
-
-import { UserInfoEvent } from './foundation.js';
 
 interface MenuItem {
   icon: string;
@@ -312,7 +310,14 @@ export function Hosting<
             ></mwc-icon-button>
             <div slot="title" id="title">${this.docName}</div>
             ${this.username != undefined
-              ? html`<span id="userField" slot="actionItems" style="font-family:Roboto" >${translate('userinfo.loggedInAs', {name: this.username})}</span>`
+              ? html`<span
+                  id="userField"
+                  slot="actionItems"
+                  style="font-family:Roboto"
+                  >${translate('userinfo.loggedInAs', {
+                    name: this.username,
+                  })}</span
+                >`
               : ``}
             ${this.menu.map(this.renderActionItem)}
             ${this.doc
@@ -336,12 +341,18 @@ export function Hosting<
                         <mwc-icon-button
                           class="landing_icon"
                           icon="${mi.icon}"
-                          @click="${() =>
+                          @click="${() => {
+                            (<HTMLElement>(
+                              this.menuUI.querySelector(
+                                'mwc-icon-button[label="Menu"]'
+                              )
+                            )).click();
                             (<ListItem>(
                               this.menuUI.querySelector('mwc-list')!.items[
                                 index
                               ]
-                            )).click()}"
+                            )).click();
+                          }}"
                         >
                           <div class="landing_label">${mi.name}</div>
                         </mwc-icon-button>
