@@ -95,7 +95,7 @@ export class ExtRefLaterBindingList extends LitElement {
   ): boolean {
     return (
       (extRefElement.getAttribute(attributeName) ?? '') ===
-        this.currentSelectedFcdaElement?.getAttribute(attributeName) ?? ''
+        (this.currentSelectedFcdaElement?.getAttribute(attributeName) ?? '')
     );
   }
 

@@ -71,9 +71,9 @@
 						<Inputs>
 							<ExtRef intAddr="Pos;CSWI1/Pos/stVal" desc="Interlocking.Input"/>
 							<ExtRef intAddr="Pos;CSWI1/Pos/q" desc="Interlocking.Input" iedName="GOOSE_Publisher" serviceType="GOOSE" ldInst="QB2_Disconnector" lnClass="CSWI" lnInst="1" prefix="" doName="Pos" daName="q" srcLDInst="QB2_Disconnector" srcPrefix="" srcLNClass="LLN0" srcCBName="GOOSE2"/>
-							<ExtRef intAddr="Pos;CILO2/Pos/EnaOpn" desc="Interlocking.Input2" iedName="GOOSE_Publisher" serviceType="GOOSE" ldInst="QB1_Disconnector" lnClass="CILO" lnInst="1" doName="EnaOpn" daName="stVal" srcLDInst="QB2_Disconnector" srcPrefix="" srcLNClass="LLN0" srcCBName="GOOSE2"/>
-							<ExtRef intAddr="Pos;CILO2/Pos/EnaCls" desc="Interlocking.Input2" iedName="GOOSE_Publisher" serviceType="GOOSE" ldInst="QB1_Disconnector" lnClass="CILO" lnInst="1" prefix="" doName="EnaCls" daName="stVal" srcLDInst="QB2_Disconnector" srcPrefix="" srcLNClass="LLN0" srcCBName="GOOSE2"/>
-							<ExtRef intAddr="Pos;CILO3/Pos/EnaOpn" desc="Interlocking.Input3" iedName="GOOSE_Publisher" serviceType="GOOSE" ldInst="QB2_Disconnector" lnClass="CILO" lnInst="1" doName="EnaOpn" daName="stVal" srcLDInst="QB2_Disconnector" srcPrefix="" srcLNClass="LLN0" srcCBName="GOOSE2"/>
+							<ExtRef intAddr="Pos;CILO/EnaOpn/stVal" desc="Interlocking.Input2" iedName="GOOSE_Publisher" serviceType="GOOSE" ldInst="QB1_Disconnector" lnClass="CILO" lnInst="1" prefix="" doName="EnaOpn" daName="stVal" srcLDInst="QB2_Disconnector" srcPrefix="" srcLNClass="LLN0" srcCBName="GOOSE2"/>
+							<ExtRef intAddr="Pos;CILO/EnaCls/stVal" desc="Interlocking.Input3" iedName="GOOSE_Publisher" serviceType="GOOSE" ldInst="QB1_Disconnector" lnClass="CILO" lnInst="1" doName="EnaCls" daName="stVal" srcLDInst="QB2_Disconnector" srcPrefix="" srcLNClass="LLN0" srcCBName="GOOSE2"/>
+							<ExtRef intAddr="Pos;CILO/EnaOpn2/stVal" desc="Interlocking.Input4" iedName="GOOSE_Publisher" serviceType="GOOSE" ldInst="QB2_Disconnector" lnClass="CILO" lnInst="1" doName="EnaOpn" daName="stVal" srcLDInst="QB2_Disconnector" srcPrefix="" srcLNClass="LLN0" srcCBName="GOOSE2"/>
 						</Inputs>
 					</LN>
 					<LN prefix="" lnClass="CSWI" inst="1" lnType="Dummy.CSWI">
@@ -97,8 +97,8 @@
 						<DataSet name="GOOSE2sDataSet">
 							<FCDA ldInst="QB2_Disconnector" prefix="" lnClass="CSWI" lnInst="1" doName="Pos" daName="stVal" fc="ST"/>
 							<FCDA ldInst="QB2_Disconnector" prefix="" lnClass="CSWI" lnInst="1" doName="Pos" daName="q" fc="ST"/>
-							<FCDA ldInst="QB1_Disconnector" prefix="" lnClass="CILO" lnInst="1" doName="EnaOpn" daName="stVal" fc="ST"/>
-							<FCDA ldInst="QB1_Disconnector" lnClass="CILO" lnInst="1" doName="EnaCls" daName="stVal" fc="ST"/>
+							<FCDA ldInst="QB1_Disconnector" lnClass="CILO" lnInst="1" doName="EnaOpn" daName="stVal" fc="ST"/>
+							<FCDA ldInst="QB1_Disconnector" prefix="" lnClass="CILO" lnInst="1" doName="EnaCls" daName="stVal" fc="ST"/>
 							<FCDA ldInst="QB2_Disconnector" lnClass="CILO" lnInst="1" doName="EnaOpn" daName="stVal" fc="ST"/>
 						</DataSet>
 						<DataSet name="GOOSE1sDataSet">
