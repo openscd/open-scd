@@ -19,6 +19,7 @@ describe('PluggingElement', () => {
         html`<mock-plugger .doc=${doc} docName="testDoc"></mock-plugger>`
       )
     );
+    await element.updateComplete;
   });
 
   it('stores default plugins on load', () =>
