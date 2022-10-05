@@ -64,7 +64,7 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
       ).to.have.length(0);
     });
 
-    it('correctly removes two DOTypes and an SDO from the SCL', async () => {
+    it('correctly removes DOTypes and SDOs from the SCL', async () => {
       await element.cleanupLNodeTypeFilter.click();
       await element.cleanupDATypeFilter.click();
       await element.cleanupEnumTypeFilter.click();
@@ -78,8 +78,8 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
 
       await element.cleanButton.click();
 
-      // the correct number of DOTypes should remain (we actually remove 3 here)
-      expect(element.doc.querySelectorAll('DOType')).to.have.lengthOf(23);
+      // the correct number of DOTypes should remain
+      expect(element.doc.querySelectorAll('DOType')).to.have.lengthOf(32);
       expect(
         element.doc.querySelectorAll(
           'DOType[id="NotUsedDummy.SPS"], DOType[name="WYE_2_3"], DOType[id="CMV_1"]'
@@ -87,7 +87,7 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
       ).to.have.lengthOf(0);
     });
 
-    it('correctly removes two DATypes and one referenced via a BDA from the SCL', async () => {
+    it('correctly removes DATypes and those referenced via BDAs from the SCL', async () => {
       await element.cleanupLNodeTypeFilter.click();
       await element.cleanupDOTypeFilter.click();
       await element.cleanupEnumTypeFilter.click();
@@ -101,8 +101,7 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
 
       await element.cleanButton.click();
 
-      // the correct number of DATypes should remain (we actually remove 3 here)
-      expect(element.doc.querySelectorAll('DAType')).to.have.lengthOf(13);
+      expect(element.doc.querySelectorAll('DAType')).to.have.lengthOf(15);
       expect(
         element.doc.querySelectorAll(
           'DAType[id="NotUsedDummy.LPHD1.Sim.Cancel"], DAType[id="OnlySubUsedVector_0"], DAType[id="AnalogValue_0"]'
@@ -110,7 +109,7 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
       ).to.have.lengthOf(0);
     });
 
-    it('correctly removes two EnumTypes', async () => {
+    it('correctly removes EnumTypes', async () => {
       await element.cleanupLNodeTypeFilter.click();
       await element.cleanupDOTypeFilter.click();
       await element.cleanupDATypeFilter.click();
@@ -124,8 +123,7 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
 
       await element.cleanButton.click();
 
-      // the correct number of EnumTypes should remain (we remove 2 here)
-      expect(element.doc.querySelectorAll('EnumType')).to.have.lengthOf(8);
+      expect(element.doc.querySelectorAll('EnumType')).to.have.lengthOf(11);
       expect(
         element.doc.querySelectorAll(
           'EnumType[id="NotUsedDir"]'
@@ -140,7 +138,7 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
         await element.cleanSubTypesCheckbox!.requestUpdate();
       });
 
-      it('correctly removes two DOTypes and _not_ one referenced via an SDO from the SCL', async () => {
+      it('correctly removes two DOTypes and not those referenced via an SDO from the SCL', async () => {
         await element.cleanupLNodeTypeFilter.click();
         await element.cleanupDATypeFilter.click();
         await element.cleanupEnumTypeFilter.click();
@@ -154,17 +152,17 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
 
         await element.cleanButton.click();
 
-        // the correct number of DOTypes should remain (we remove 2 here)
-        expect(element.doc.querySelectorAll('DOType')).to.have.lengthOf(24);
+        // the correct number of DOTypes should remain
+        expect(element.doc.querySelectorAll('DOType')).to.have.lengthOf(33);
         expect(
           element.doc.querySelectorAll(
-            'DOType[id="NotUsedDummy.SPS"], DOType[id="WYE_2_3"]'
+            'DOType[id="NotUsedDummy.SPS"], DOType[id="WYE_2_3"], DOType[id="Dummy.LLN0.Health.Unused]'
           )
         ).to.have.lengthOf(0);
         expect(element.doc.querySelectorAll('DOType[id="CMV_1"]')).to.have.lengthOf(1);
       });
 
-      it('correctly removes two DATypes and _not_ one referenced via a BDA from the SCL', async () => {
+      it('correctly removes DATypes and _not_ those referenced via a BDA from the SCL', async () => {
         await element.cleanupLNodeTypeFilter.click();
         await element.cleanupDOTypeFilter.click();
         await element.cleanupEnumTypeFilter.click();
@@ -178,8 +176,8 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
 
         await element.cleanButton.click();
 
-        // the correct number of DATypes should remain (we remove 2 here)
-        expect(element.doc.querySelectorAll('DAType')).to.have.lengthOf(14);
+        // the correct number of DATypes should remain
+        expect(element.doc.querySelectorAll('DAType')).to.have.lengthOf(16);
         expect(
           element.doc.querySelectorAll(
             'DAType[id="NotUsedDummy.LPHD1.Sim.Cancel"], DAType[id="OnlySubUsedVector_0"]'
@@ -203,9 +201,9 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
         await element.cleanupList?.layout();
       });
 
-      it('creates 9 delete actions (DOx4, DAx3, ENx2)', () => {
+      it('creates the correct number of Delete actions', () => {
         const deleteActions = cleanSCLItems(element.getCleanItems());
-        expect(deleteActions.length).to.equal(9);
+        expect(deleteActions.length).to.equal(14);
       });
     });
 
@@ -221,9 +219,9 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
         element.cleanupList?.layout();
       });
 
-      it('creates 5 delete actions (LNx1, DAx3, ENx1)', () => {
+      it('creates the correct number of Delete actions (LNx1, DAx3, ENx1)', () => {
         const deleteActions = cleanSCLItems(element.getCleanItems());
-        expect(deleteActions.length).to.equal(5);
+        expect(deleteActions.length).to.equal(26);
       });
     });
 
@@ -239,9 +237,9 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
         element.cleanupList?.layout();
       });
 
-      it('creates 7 Delete Actions (LNx1, DOx4, ENx2)', async () => {
+      it('creates the correct number of Delete Actions', async () => {
         const deleteActions = cleanSCLItems(element.getCleanItems());
-        expect(deleteActions.length).to.equal(7);
+        expect(deleteActions.length).to.equal(29);
       });
     });
 
@@ -257,9 +255,9 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
         element.cleanupList?.layout();
       });
 
-      it('creates 9 Delete Actions (LNx1, DOx4, DAx3, ENx1)', async () => {
+      it('creates the correct number of Delete Actions', async () => {
         const deleteActions = cleanSCLItems(element.getCleanItems());
-        expect(deleteActions.length).to.equal(9);
+        expect(deleteActions.length).to.equal(33);
       });
     });
   });

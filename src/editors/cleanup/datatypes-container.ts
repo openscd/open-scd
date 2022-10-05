@@ -22,6 +22,7 @@ import '@material/mwc-checkbox';
 import { Button } from '@material/mwc-button';
 import { Checkbox } from '@material/mwc-checkbox';
 import { List, MWCListIndex } from '@material/mwc-list';
+import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 
 import '../../filtered-list.js';
 
@@ -85,7 +86,7 @@ export class CleanupDataTypes extends LitElement {
   cleanupList: List | undefined;
 
   @queryAll('mwc-check-list-item.cleanup-list-item')
-  cleanupListItems: NodeList | undefined;
+  cleanupListItems: ListItem[] | undefined;
 
   @query('.clean-sub-types-checkbox')
   cleanSubTypesCheckbox: Checkbox | undefined;
@@ -330,8 +331,9 @@ export class CleanupDataTypes extends LitElement {
       const dataTypeUsageCounter =
         this.indexDataTypeTemplates(startingLNodeTypes);
 
-      // create usage counter for children of LNodeTypes that are used
-      // all valid usages within a project stem from LNodeTypes
+      /* Create usage counter for children of LNodeTypes that are used.
+         We remember that _all_ valid template usages within a project 
+        stem from LNodeTypes. */
       cleanItems.forEach(item => {
         if (item.tagName === 'LNodeType') {
           const childDataTypeTemplateIds = this.fetchTree([item]);
@@ -341,10 +343,12 @@ export class CleanupDataTypes extends LitElement {
         }
       });
 
-      // check to see if children of unused DOType, DAType are present
-      // if so then unless they are part of the main usage counter they can be removed
-      // if they are part of the main usage counter, then this does not need to be 
-      // considered as these DOType and DAType elements are dangling
+      /* Check to see if children of unused DOType, DAType are present
+         If so then unless they are from a data type which is part of 
+         the main usage counter they can be safely removed.
+         If they are part of the main usage counter, then this does not 
+         need to be considered as these DOType and DAType elements are 
+         dangling, they're usage is not relevant. */
       cleanItems.forEach(item => {
         if (['DOType', 'DAType'].includes(item.tagName)) {
           const unusedDataTypeTemplateChildrenIds = uniq(
@@ -357,8 +361,8 @@ export class CleanupDataTypes extends LitElement {
         }
       });
 
-      // locate from index consequentially unused DataTypeTemplates
-      // and add to items to be removed
+      /* Now go through our usage index. If usage is zero then we can 
+         remove the data type template safely. */
       dataTypeUsageCounter?.forEach((count, dataTypeId) => {
         if (count <= 0) {
           cleanItems.push(
@@ -390,6 +394,12 @@ export class CleanupDataTypes extends LitElement {
         dataTypeItemsDeleteActions.forEach(deleteAction =>
           this.dispatchEvent(newActionEvent(deleteAction))
         );
+        // deselect all items now
+        // console.log(this.cleanupList);
+        // console.log(this.cleanupListItems);
+        this.cleanupListItems!.forEach((item) => {
+          item.selected = false;
+        });
       }}
     ></mwc-button>`;
   }

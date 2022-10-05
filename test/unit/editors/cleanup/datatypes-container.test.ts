@@ -46,7 +46,7 @@ describe('Cleanup: DataTypes Container', () => {
     });
 
     it('creates correct number of checkboxes for the expected unreferenced datatypes', () => {
-      expect(Array.from(element.unreferencedDataTypes!).length).to.equal(7);
+      expect(Array.from(element.unreferencedDataTypes!).length).to.equal(9);
     });
 
     it('has the remove button disabled by default', () => {
@@ -54,7 +54,7 @@ describe('Cleanup: DataTypes Container', () => {
     });
 
     it('has the remove button enabled after selecting an item', async () => {
-      const firstCheckListItem = element.cleanupListItems!.item(0);
+      const firstCheckListItem = element.cleanupListItems![0];
       await (<ListItem>firstCheckListItem!).click();
       await element.cleanupList!.layout();
       expect(element.cleanButton).to.have.property('disabled', false);
