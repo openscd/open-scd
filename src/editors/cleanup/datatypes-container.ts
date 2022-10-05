@@ -394,9 +394,6 @@ export class CleanupDataTypes extends LitElement {
         dataTypeItemsDeleteActions.forEach(deleteAction =>
           this.dispatchEvent(newActionEvent(deleteAction))
         );
-        // deselect all items now
-        // console.log(this.cleanupList);
-        // console.log(this.cleanupListItems);
         this.cleanupListItems!.forEach((item) => {
           item.selected = false;
         });
