@@ -127,7 +127,7 @@ export function createTemplateStructure(
     const dataElement = typeElement.querySelector(
       `:scope > DO[name="${name}"], :scope > SDO[name="${name}"], :scope > DA[name="${name}"], :scope > BDA[name="${name}"]`
     );
-    // If there is no DA/BDA Element found the structure is incorrect, so just stop.
+    // If there is no (S)DO/(B)DA Element found the structure is incorrect, so just stop.
     if (dataElement === null) {
       templateStructure = null;
       return;
