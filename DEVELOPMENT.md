@@ -52,7 +52,7 @@ It's also possible to run CoMPAS OpenSCD as a docker. Of every release a docker 
 Hub. To run the docker container use the following command.
 
 ```
-docker run -it --rm -d -p 8080:80 --name compas-open-scd lfenergy/compas-open-scd:latest
+docker run -it --rm -d -p 8080:8080 --name compas-open-scd lfenergy/compas-open-scd:latest
 ```
 
 Now open a browser and go to "http://localhost:8080". CoMPAS OpenSCD is shown.
