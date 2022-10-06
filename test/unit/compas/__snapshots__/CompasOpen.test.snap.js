@@ -1,7 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["compas-open when-type-needs-to-be-selected looks like the latest snapshot"] = 
+snapshots["compas-open When type needs to be selected looks like the latest snapshot"] = 
 `<wizard-divider>
 </wizard-divider>
 <section>
@@ -31,9 +31,25 @@ snapshots["compas-open when-type-needs-to-be-selected looks like the latest snap
   </compas-scltype-list>
 </section>
 `;
-/* end snapshot compas-open when-type-needs-to-be-selected looks like the latest snapshot */
+/* end snapshot compas-open When type needs to be selected looks like the latest snapshot */
 
-snapshots["compas-open when-project-needs-to-be-selected looks like the latest snapshot"] = 
+snapshots["compas-open When no local file can be selected looks like the latest snapshot"] = 
+`<wizard-divider>
+</wizard-divider>
+<section>
+  <h3>
+    [compas.open.compasTitle]
+  </h3>
+  <p>
+    [compas.open.listSclTypes]
+  </p>
+  <compas-scltype-list>
+  </compas-scltype-list>
+</section>
+`;
+/* end snapshot compas-open When no local file can be selected looks like the latest snapshot */
+
+snapshots["compas-open When project needs to be selected looks like the latest snapshot"] = 
 `<wizard-divider>
 </wizard-divider>
 <section>
@@ -69,5 +85,5 @@ snapshots["compas-open when-project-needs-to-be-selected looks like the latest s
   </mwc-button>
 </section>
 `;
-/* end snapshot compas-open when-project-needs-to-be-selected looks like the latest snapshot */
+/* end snapshot compas-open When project needs to be selected looks like the latest snapshot */
 

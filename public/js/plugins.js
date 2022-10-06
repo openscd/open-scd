@@ -145,6 +145,15 @@ export const officialPlugins = [
     position: 'top',
   },
   {
+    name: 'Save as version',
+    src: '/src/menu/CompasSaveAsVersion.js',
+    icon: 'save',
+    default: true,
+    kind: 'menu',
+    requireDoc: true,
+    position: 'top',
+  },
+  {
     name: 'Validate using OCL',
     src: '/src/validators/CompasValidateSchema.js',
     icon: 'rule_folder',

@@ -22,7 +22,7 @@ export function createPrivate(parent: Element, type: string): Element {
 export function getCompasSclName(
   privateElement: Element | null
 ): Element | null {
-  return privateElement?.querySelector(`SclName`) ?? null;
+  return privateElement?.querySelector(`:scope > SclName`) ?? null;
 }
 
 export function createCompasSclName(parent: Element, value: string): Element {
@@ -35,6 +35,44 @@ export function createCompasSclName(parent: Element, value: string): Element {
   );
   newSclNameElement.textContent = value;
   return newSclNameElement;
+}
+
+export function copyCompasSclName(
+  fromParent: Element | null,
+  toParent: Element | null
+): void {
+  if (fromParent && toParent) {
+    const fromSclNameElement = getCompasSclName(fromParent);
+    const toSclNameElement = getCompasSclName(toParent);
+
+    if (toSclNameElement && fromSclNameElement) {
+      toSclNameElement.textContent = fromSclNameElement.textContent;
+    } else if (toSclNameElement) {
+      toSclNameElement.textContent = '';
+    }
+  }
+}
+
+export function getCompasSclFileType(
+  privateElement: Element | null
+): Element | null {
+  return privateElement?.querySelector(`:scope > SclFileType`) ?? null;
+}
+
+export function copyCompasSclFileType(
+  fromParent: Element | null,
+  toParent: Element | null
+): void {
+  if (fromParent && toParent) {
+    const fromSclFileTypeElement = getCompasSclFileType(fromParent);
+    const toSclFileTypeElement = getCompasSclFileType(toParent);
+
+    if (toSclFileTypeElement && fromSclFileTypeElement) {
+      toSclFileTypeElement.textContent = fromSclFileTypeElement.textContent;
+    } else if (toSclFileTypeElement) {
+      toSclFileTypeElement.textContent = '';
+    }
+  }
 }
 
 export function getLabels(privateElement: Element): Element | null {
@@ -68,6 +106,25 @@ export function createLabel(labelsElement: Element, value: string): Element {
   labelElement.textContent = value;
   labelsElement.append(labelElement);
   return labelElement;
+}
+
+export function copyCompasLabels(
+  fromParent: Element | null,
+  toParent: Element | null
+): void {
+  if (fromParent && toParent) {
+    const fromLabels = getLabels(fromParent);
+    const toLabels = getLabels(toParent);
+
+    if (toLabels) {
+      toParent.removeChild(toLabels);
+    }
+    if (fromLabels) {
+      toParent.appendChild(
+        toParent.ownerDocument.adoptNode(fromLabels.cloneNode(true))
+      );
+    }
+  }
 }
 
 export function addPrefixAndNamespaceToDocument(

@@ -76,6 +76,29 @@ describe('compas-save', () => {
     });
   });
 
+  describe('when not allowed to save it to a local file', () => {
+    beforeEach(async () => {
+      element = fixtureSync(
+        html`<compas-save
+          .doc="${doc}"
+          .docName="${docName}"
+          .allowLocalFile="${false}"
+        ></compas-save>`
+      );
+
+      sinon.stub(element, 'checkExistInCompas').callsFake(() => {
+        element.existInCompas = false;
+      });
+
+      await element.updateComplete;
+      await waitUntil(() => element.existInCompas !== undefined);
+    });
+
+    it('looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
+    });
+  });
+
   describe('existing document in compas', () => {
     beforeEach(async () => {
       element = fixtureSync(
@@ -107,7 +130,14 @@ describe('compas-save', () => {
     sinon.restore();
   });
 
-  async function validateChangingLabels() {
+  async function validateChangingLabels(): Promise<void> {
+    let labelElements = Array.from(
+      element.doc.querySelectorAll(
+        'SCL > Private[type="compas_scl"] > Labels > Label'
+      )
+    );
+    expect(labelElements.length).to.be.equal(1);
+
     const labelsField = <CompasLabelsFieldElement>(
       element.shadowRoot!.querySelector('compas-labels-field')!
     );
@@ -117,11 +147,11 @@ describe('compas-save', () => {
 
     element['updateLabels']();
 
-    const labelElements = Array.from(
+    labelElements = Array.from(
       element.doc.querySelectorAll(
         'SCL > Private[type="compas_scl"] > Labels > Label'
       )
     );
-    expect(labelElements.length).to.be.equal(1);
+    expect(labelElements.length).to.be.equal(2);
   }
 });
