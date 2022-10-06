@@ -1,6 +1,7 @@
 import { expect } from '@open-wc/testing';
 
 import {
+  buildDocName,
   compareVersions,
   getTypeFromDocName,
   stripExtensionFromName,
@@ -37,6 +38,32 @@ describe('compas-foundation', () => {
     it('when name is passed with length 3 the same name is returned', () => {
       const name = 'sml';
       expect(stripExtensionFromName(name)).to.be.equal(name);
+    });
+  });
+
+  describe('buildDocName', () => {
+    it('when there are no CoMPAS Private Elements', async () => {
+      const doc = await fetch(
+        '/test/testfiles/compas/compas-scl-private-missing-private.scd'
+      )
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+      expect(buildDocName(doc.documentElement)).to.be.equal(
+        'id-value-3.0.0.scd'
+      );
+    });
+
+    it('when there are CoMPAS Private Elements', async () => {
+      const doc = await fetch(
+        '/test/testfiles/compas/compas-scl-private-update-existing.scd'
+      )
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+      expect(buildDocName(doc.documentElement)).to.be.equal(
+        'existing-3.0.0.cid'
+      );
     });
   });
 

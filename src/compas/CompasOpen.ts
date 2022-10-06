@@ -21,22 +21,27 @@ import '../WizardDivider.js';
 import './CompasSclTypeList.js';
 import './CompasSclList.js';
 
+import { nothing } from 'lit-html';
+import { buildDocName } from './foundation.js';
+
 /* Event that will be used when an SCL Document is retrieved. */
 export interface DocRetrievedDetail {
   localFile: boolean;
   doc: Document;
   docName?: string;
+  docId?: string;
 }
 export type DocRetrievedEvent = CustomEvent<DocRetrievedDetail>;
 export function newDocRetrievedEvent(
   localFile: boolean,
   doc: Document,
-  docName?: string
+  docName?: string,
+  docId?: string
 ): DocRetrievedEvent {
   return new CustomEvent<DocRetrievedDetail>('doc-retrieved', {
     bubbles: true,
     composed: true,
-    detail: { localFile, doc, docName },
+    detail: { localFile, doc, docName, docId },
   });
 }
 
@@ -44,16 +49,19 @@ export function newDocRetrievedEvent(
 export default class CompasOpenElement extends LitElement {
   @property()
   selectedType: string | undefined;
+  @property()
+  allowLocalFile = true;
 
   @query('#scl-file')
   private sclFileUI!: HTMLInputElement;
 
-  private async getSclDocument(id?: string): Promise<void> {
-    const sclDocument = await CompasSclDataService()
-      .getSclDocument(this.selectedType ?? '', id ?? '')
+  private async getSclDocument(docId?: string): Promise<void> {
+    const doc = await CompasSclDataService()
+      .getSclDocument(this.selectedType ?? '', docId ?? '')
       .catch(reason => createLogEvent(this, reason));
-    if (sclDocument instanceof Document) {
-      this.dispatchEvent(newDocRetrievedEvent(false, sclDocument));
+    if (doc instanceof Document) {
+      const docName = buildDocName(doc.documentElement);
+      this.dispatchEvent(newDocRetrievedEvent(false, doc, docName, docId));
     }
   }
 
@@ -66,7 +74,6 @@ export default class CompasOpenElement extends LitElement {
     const doc = new DOMParser().parseFromString(text, 'application/xml');
 
     this.dispatchEvent(newDocRetrievedEvent(true, doc, docName));
-    this.sclFileUI.onchange = null;
   }
 
   private renderFileSelect(): TemplateResult {
@@ -84,10 +91,8 @@ export default class CompasOpenElement extends LitElement {
       <mwc-button
         label="${translate('compas.open.selectFileButton')}"
         @click=${() => {
-          const input = <HTMLInputElement | null>(
-            this.shadowRoot!.querySelector('#scl-file')
-          );
-          input?.click();
+          this.sclFileUI.value = '';
+          this.sclFileUI.click();
         }}
       >
       </mwc-button>
@@ -129,11 +134,13 @@ export default class CompasOpenElement extends LitElement {
 
   render(): TemplateResult {
     return html`
-      <wizard-divider></wizard-divider>
-      <section>
-        <h3>${translate('compas.open.localTitle')}</h3>
-        ${this.renderFileSelect()}
-      </section>
+      ${this.allowLocalFile
+        ? html`<wizard-divider></wizard-divider>
+            <section>
+              <h3>${translate('compas.open.localTitle')}</h3>
+              ${this.renderFileSelect()}
+            </section>`
+        : nothing}
       <wizard-divider></wizard-divider>
       <section>
         <h3>${translate('compas.open.compasTitle')}</h3>

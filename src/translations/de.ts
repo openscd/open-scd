@@ -844,7 +844,9 @@ export const de: Translations = {
       otherTypeButton: '???',
     },
     save: {
-      title: '???',
+      saveTitle: '???',
+      saveAsTitle: '???',
+      saveAsVersionTitle: '???',
       localTitle: '???',
       saveFileButton: '???',
       compasTitle: 'CoMPAS',

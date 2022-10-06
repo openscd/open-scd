@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["compas-save-menu with no document loaded looks like the latest snapshot"] = 
 `<mwc-dialog
-  heading="[compas.save.title]"
+  heading="[compas.save.saveTitle]"
   id="compas-save-dlg"
 >
   <compas-loading>
@@ -14,7 +14,7 @@ snapshots["compas-save-menu with no document loaded looks like the latest snapsh
 
 snapshots["compas-save-menu with document loaded looks like the latest snapshot"] = 
 `<mwc-dialog
-  heading="[compas.save.title]"
+  heading="[compas.save.saveTitle]"
   id="compas-save-dlg"
 >
   <compas-save>

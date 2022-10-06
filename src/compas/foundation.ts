@@ -1,6 +1,12 @@
 import { get } from 'lit-translate';
 
 import { newLogEvent, newOpenDocEvent } from '../foundation.js';
+import {
+  COMPAS_SCL_PRIVATE_TYPE,
+  getCompasSclFileType,
+  getCompasSclName,
+  getPrivate,
+} from './private.js';
 
 const FILE_EXTENSION_LENGTH = 3;
 
@@ -26,43 +32,37 @@ export function stripExtensionFromName(docName: string): string {
   return name;
 }
 
+export function buildDocName(sclElement: Element): string {
+  const headerElement = sclElement.querySelector(':scope > Header');
+  const privateElement = getPrivate(sclElement, COMPAS_SCL_PRIVATE_TYPE);
+
+  const version = headerElement?.getAttribute('version') ?? '';
+  const name = getCompasSclName(privateElement)?.textContent ?? '';
+  const type = getCompasSclFileType(privateElement)?.textContent ?? 'SCD';
+
+  let docName = name;
+  if (docName === '') {
+    docName = headerElement?.getAttribute('id') ?? '';
+  }
+  docName += '-' + version + '.' + type?.toLowerCase();
+  return docName;
+}
+
 export function updateDocumentInOpenSCD(
   element: Element,
   doc: Document,
   docName?: string
 ): void {
-  const id =
-    (doc.querySelectorAll(':root > Header') ?? [])
-      .item(0)
-      ?.getAttribute('id') ?? '';
-
-  if (!docName) {
-    const version =
-      (doc.querySelectorAll(':root > Header') ?? [])
-        .item(0)
-        ?.getAttribute('version') ?? '';
-    const name =
-      (
-        doc.querySelectorAll(':root > Private[type="compas_scl"] > SclName') ??
-        []
-      ).item(0)?.textContent ?? '';
-    const type =
-      (
-        doc.querySelectorAll(
-          ':root > Private[type="compas_scl"] > SclFileType'
-        ) ?? []
-      ).item(0)?.textContent ?? '';
-
-    docName = name;
-    if (docName === '') {
-      docName = id;
-    }
-    docName += '-' + version + '.' + type?.toLowerCase();
-  }
+  const headerElement = doc.querySelector(':root > Header');
+  const id = headerElement?.getAttribute('id') ?? '';
 
   element.dispatchEvent(newLogEvent({ kind: 'reset' }));
   element.dispatchEvent(
-    newOpenDocEvent(doc, docName, { detail: { docId: id } })
+    newOpenDocEvent(
+      doc,
+      docName ? docName : buildDocName(doc.documentElement),
+      { detail: { docId: id } }
+    )
   );
 }
 

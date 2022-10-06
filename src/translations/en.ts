@@ -838,7 +838,9 @@ export const en = {
       otherTypeButton: 'Other type...',
     },
     save: {
-      title: 'Save project',
+      saveTitle: 'Save project',
+      saveAsTitle: 'Save as new project',
+      saveAsVersionTitle: 'Save as new version to existing project',
       localTitle: 'Local',
       saveFileButton: 'Save to file...',
       compasTitle: 'CoMPAS',

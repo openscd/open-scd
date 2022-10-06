@@ -42,6 +42,7 @@ import './CompasComment.js';
 import './CompasLabelsField.js';
 import './CompasLoading.js';
 import './CompasSclTypeSelect.js';
+import { nothing } from 'lit-html';
 
 /* Event that will be used when an SCL Document is saved. */
 export type DocSavedEvent = CustomEvent<void>;
@@ -56,6 +57,8 @@ export function newDocSavedEvent(): DocSavedEvent {
 export default class CompasSaveElement extends CompasExistsIn(LitElement) {
   @property()
   doc!: XMLDocument;
+  @property()
+  allowLocalFile = true;
 
   @query('mwc-textfield#name')
   private nameField!: TextFieldBase;
@@ -223,11 +226,13 @@ export default class CompasSaveElement extends CompasExistsIn(LitElement) {
 
   render(): TemplateResult {
     return html`
-      <wizard-divider></wizard-divider>
-      <section>
-        <h3>${translate('compas.save.localTitle')}</h3>
-        ${this.renderSaveFilePart()}
-      </section>
+      ${this.allowLocalFile
+        ? html` <wizard-divider></wizard-divider>
+            <section>
+              <h3>${translate('compas.save.localTitle')}</h3>
+              ${this.renderSaveFilePart()}
+            </section>`
+        : nothing}
       <wizard-divider></wizard-divider>
       <section>
         <h3>${translate('compas.save.compasTitle')}</h3>

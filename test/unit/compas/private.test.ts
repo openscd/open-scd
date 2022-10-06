@@ -5,10 +5,13 @@ import {
   COMPAS_NAMESPACE,
   COMPAS_PREFIX,
   COMPAS_SCL_PRIVATE_TYPE,
+  copyCompasSclFileType,
+  copyCompasSclName,
   createCompasSclName,
   createLabel,
   createLabels,
   createPrivate,
+  getCompasSclFileType,
   getCompasSclName,
   getLabels,
   getPrivate,
@@ -104,6 +107,30 @@ describe('Private Utility', () => {
     });
   });
 
+  describe('getCompasSclFileType', () => {
+    it('when private contains SCL File Type then value returned', async () => {
+      doc = await fetchDoc(
+        '/test/testfiles/compas/compas-scl-private-update-existing.scd'
+      );
+      const privateElement = doc.querySelector(
+        `:root > Private[type="${COMPAS_SCL_PRIVATE_TYPE}"]`
+      )!;
+
+      expect(getCompasSclFileType(privateElement)).to.have.text('CID');
+    });
+
+    it('when private does not contain SCL File Type then null returned', async () => {
+      doc = await fetchDoc(
+        '/test/testfiles/compas/compas-scl-private-missing-private.scd'
+      );
+      const privateElement = doc.querySelector(
+        `:root > Private[type="${COMPAS_SCL_PRIVATE_TYPE}"]`
+      )!;
+
+      expect(getCompasSclFileType(privateElement)).to.be.null;
+    });
+  });
+
   describe('addPrefixAndNamespaceToDocument', () => {
     beforeEach(async () => {
       doc = await fetchDoc(
@@ -133,6 +160,96 @@ describe('Private Utility', () => {
       privateElement.prepend(sclNameElement);
       expect(privateElement.childElementCount).to.be.equal(1);
       expect(scl).to.have.attribute('xmlns:' + COMPAS_PREFIX, COMPAS_NAMESPACE);
+    });
+  });
+
+  describe('copy functions', () => {
+    let fromDoc: Document;
+    let fromParent: Element;
+    let toParent: Element;
+
+    beforeEach(async () => {
+      doc = await fetchDoc('/test/testfiles/compas/save-compas-as-version.scd');
+      toParent = doc.querySelector(
+        `:root > Private[type="${COMPAS_SCL_PRIVATE_TYPE}"]`
+      )!;
+
+      fromDoc = await fetchDoc('/test/testfiles/compas/save-compas.scd');
+      fromParent = fromDoc.querySelector(
+        `:root > Private[type="${COMPAS_SCL_PRIVATE_TYPE}"]`
+      )!;
+    });
+
+    describe('copyCompasSclName', () => {
+      it('when called with both parent then SCL Name is copied', () => {
+        expect(toParent.querySelector('SclName')).to.have.text('AmsterdamCS');
+
+        copyCompasSclName(fromParent, toParent);
+        expect(toParent.querySelector('SclName')).to.have.text('UtrechtCS');
+      });
+
+      it('when no source (from) then nothing happens', () => {
+        expect(toParent.querySelector('SclName')).to.have.text('AmsterdamCS');
+
+        copyCompasSclName(null, toParent);
+        expect(toParent.querySelector('SclName')).to.have.text('AmsterdamCS');
+      });
+
+      it('when no destination (to) then nothing happens', () => {
+        copyCompasSclName(fromParent, null);
+      });
+
+      it('when no source SCL Name (from) then destination SCL Name (to) is cleared', () => {
+        expect(toParent.querySelector('SclName')).to.have.text('AmsterdamCS');
+        fromParent.removeChild(fromParent.querySelector('SclName')!);
+
+        copyCompasSclName(fromParent, toParent);
+        expect(toParent.querySelector('SclName')).to.have.text('');
+      });
+
+      it('when both have no SCL Name (from) then nothing happens', () => {
+        fromParent.removeChild(fromParent.querySelector('SclName')!);
+        toParent.removeChild(toParent.querySelector('SclName')!);
+
+        copyCompasSclName(fromParent, toParent);
+        expect(toParent.querySelector('SclName')).to.be.null;
+      });
+    });
+
+    describe('copyCompasSclFileType', () => {
+      it('when called with both parent then SCL File Type is copied', () => {
+        expect(toParent.querySelector('SclFileType')).to.have.text('SCD');
+
+        copyCompasSclFileType(fromParent, toParent);
+        expect(toParent.querySelector('SclFileType')).to.have.text('CID');
+      });
+
+      it('when no source (from) then nothing happens', () => {
+        expect(toParent.querySelector('SclFileType')).to.have.text('SCD');
+
+        copyCompasSclFileType(null, toParent);
+        expect(toParent.querySelector('SclFileType')).to.have.text('SCD');
+      });
+
+      it('when no destination (to) then nothing happens', () => {
+        copyCompasSclFileType(fromParent, null);
+      });
+
+      it('when no source SCL Name (from) then destination SCL Name (to) is cleared', () => {
+        expect(toParent.querySelector('SclFileType')).to.have.text('SCD');
+        fromParent.removeChild(fromParent.querySelector('SclFileType')!);
+
+        copyCompasSclFileType(fromParent, toParent);
+        expect(toParent.querySelector('SclFileType')).to.have.text('');
+      });
+
+      it('when both have no SCL Name (from) then nothing happens', () => {
+        fromParent.removeChild(fromParent.querySelector('SclFileType')!);
+        toParent.removeChild(toParent.querySelector('SclFileType')!);
+
+        copyCompasSclFileType(fromParent, toParent);
+        expect(toParent.querySelector('SclFileType')).to.be.null;
+      });
     });
   });
 });
