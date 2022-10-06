@@ -169,12 +169,19 @@ export function instantiateSubscriptionSupervision(
   controlBlock: Element | undefined,
   subscriberIED: Element
 ): Create[] {
+  const supervisionType =
+    controlBlock?.tagName === 'GSEControl' ? 'LGOS' : 'LSVS';
   if (
     !controlBlock ||
-    (controlBlock && !isSupervisionAllowed(controlBlock, subscriberIED))
+    (controlBlock &&
+      !isSupervisionAllowed(controlBlock, subscriberIED, supervisionType))
   )
     return [];
-  const availableLN = findOrCreateAvailableLNInst(controlBlock, subscriberIED);
+  const availableLN = findOrCreateAvailableLNInst(
+    controlBlock,
+    subscriberIED,
+    supervisionType
+  );
   if (!availableLN) return [];
   // First, create the templateStructure array
   const templateStructure = createTemplateStructure(availableLN, [
@@ -189,14 +196,27 @@ export function instantiateSubscriptionSupervision(
   const newElement = initializeElements(uninitializedTemplateStructure);
   newElement.querySelector('Val')!.textContent =
     controlBlockReference(controlBlock);
-  return [
+  const createActions: Create[] = [];
+  if (!availableLN.parentElement) {
+    const parent = subscriberIED.querySelector(
+      `LN[lnClass="${supervisionType}"]`
+    )?.parentElement;
+    if (parent)
+      createActions.push({
+        new: {
+          parent,
+          element: availableLN,
+        },
+      });
+  }
+  return createActions.concat([
     {
       new: {
         parent: parentElement,
         element: newElement,
       },
     },
-  ];
+  ]);
 }
 /**
  * Checks if the given combination of GOOSE/SMV message and subscriber IED allows for subscription supervision.
@@ -205,11 +225,10 @@ export function instantiateSubscriptionSupervision(
  */
 function isSupervisionAllowed(
   controlBlock: Element,
-  subscriberIED: Element
+  subscriberIED: Element,
+  supervisionType: string
 ): boolean {
   if (getSclSchemaVersion(subscriberIED.ownerDocument) === '2003') return false;
-  const supervisionType =
-    controlBlock.tagName === 'GSEControl' ? 'LGOS' : 'LSVS';
   if (subscriberIED.querySelector(`LN[lnClass="${supervisionType}"]`) === null)
     return false;
   if (
@@ -222,7 +241,7 @@ function isSupervisionAllowed(
     return false;
   if (
     maxSupervisions(subscriberIED, controlBlock) <=
-    instantiatedSupervisionsCount(subscriberIED, controlBlock)
+    instantiatedSupervisionsCount(subscriberIED, controlBlock, supervisionType)
   )
     return false;
   return true;
@@ -235,11 +254,9 @@ function isSupervisionAllowed(
  */
 export function findOrCreateAvailableLNInst(
   controlBlock: Element,
-  subscriberIED: Element
+  subscriberIED: Element,
+  supervisionType: string
 ): Element | null {
-  const supervisionType =
-    controlBlock.tagName === 'GSEControl' ? 'LGOS' : 'LSVS';
-
   const firstEmptyLN = Array.from(
     subscriberIED.querySelectorAll(`LN[lnClass="${supervisionType}"]`)
   ).find(
@@ -253,9 +270,9 @@ export function findOrCreateAvailableLNInst(
     'LN'
   );
   newElement.setAttribute('lnClass', supervisionType);
-  const instantiatedSibling = subscriberIED.querySelector(
-    `LN[lnClass="${supervisionType}"]>DOI>DAI>Val`
-  );
+  const instantiatedSibling = subscriberIED
+    .querySelector(`LN[lnClass="${supervisionType}"]>DOI>DAI>Val`)
+    ?.closest('LN');
   if (!instantiatedSibling) return null;
   newElement.setAttribute(
     'lnType',
@@ -273,10 +290,9 @@ export function findOrCreateAvailableLNInst(
  */
 export function instantiatedSupervisionsCount(
   subscriberIED: Element,
-  controlBlock: Element
+  controlBlock: Element,
+  supervisionType: string
 ): number {
-  const supervisionType =
-    controlBlock.tagName === 'GSEControl' ? 'LGOS' : 'LSVS';
   const instantiatedValues = Array.from(
     subscriberIED.querySelectorAll(
       `LN[lnClass="${supervisionType}"]>DOI>DAI>Val`
