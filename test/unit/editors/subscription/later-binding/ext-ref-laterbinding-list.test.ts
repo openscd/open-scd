@@ -194,7 +194,7 @@ describe('gse-list', () => {
       });
 
       it('expect the correct number of available elements', () => {
-        expect(element['getAvailableExtRefElements']().length).to.be.equal(2);
+        expect(element['getAvailableExtRefElements']().length).to.be.equal(4);
       });
 
       it('looks like the latest snapshot, when GSEControl has no subscriptions', async () => {
@@ -222,7 +222,7 @@ describe('gse-list', () => {
       });
 
       it('expect the correct number of available elements', () => {
-        expect(element['getAvailableExtRefElements']().length).to.be.equal(2);
+        expect(element['getAvailableExtRefElements']().length).to.be.equal(4);
       });
 
       it('looks like the latest snapshot, ', async () => {
@@ -249,7 +249,7 @@ describe('gse-list', () => {
     });
 
     it('expect the correct number of available elements', () => {
-      expect(element['getAvailableExtRefElements']().length).to.be.equal(2);
+      expect(element['getAvailableExtRefElements']().length).to.be.equal(4);
     });
 
     it('looks like the latest snapshot, ', async () => {
