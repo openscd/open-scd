@@ -1,5 +1,4 @@
 import { SCL_NAMESPACE } from '../schemas.js';
-import { getTypeAttribute } from '../editors/protocol104/foundation/foundation.js';
 
 /**
  * Determine which part of the Template Structure still needs to be initialized.
@@ -136,14 +135,14 @@ export function createTemplateStructure(
     templateStructure!.push(dataElement);
 
     if (dataElement.tagName === 'DO' || dataElement.tagName === 'SDO') {
-      const type = getTypeAttribute(dataElement) ?? '';
+      const type = dataElement.getAttribute('type') ?? '';
       typeElement = doc.querySelector(
         `DataTypeTemplates > DOType[id="${type}"]`
       );
     } else {
       const bType = dataElement.getAttribute('bType') ?? '';
       if (bType === 'Struct') {
-        const type = getTypeAttribute(dataElement) ?? '';
+        const type = dataElement.getAttribute('type') ?? '';
         typeElement = doc.querySelector(
           `DataTypeTemplates > DAType[id="${type}"]`
         );
