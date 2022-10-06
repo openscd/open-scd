@@ -254,16 +254,13 @@ export class SubscriberList extends SubscriberListContainer {
         if (inputsElement?.parentElement)
           actions.push({ new: { parent: inputsElement!, element: extRef } });
         else inputsElement?.appendChild(extRef);
-
-        // we need to extend the actions array with the actions for the instation of the LSVS
-        supervisionActions.push(
-          ...instantiateSubscriptionSupervision(
-            this.currentSelectedSmvControl,
-            ied
-          )
-        );
       }
     });
+
+    // we need to extend the actions array with the actions for the instation of the LSVS
+    supervisionActions.push(
+      ...instantiateSubscriptionSupervision(this.currentSelectedSmvControl, ied)
+    );
 
     /** If the IED doesn't have a Inputs element, just append it to the first LN0 element. */
     const title = get('subscription.connect');
