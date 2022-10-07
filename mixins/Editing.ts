@@ -42,9 +42,7 @@ function handleInsert({
 }
 
 function handleUpdate({ element, attributes }: Update): Update {
-  let oldAttributes: typeof attributes = {};
-  if (Object.hasOwnProperty.call(attributes, '__proto__'))
-    oldAttributes = { ['__proto__']: undefined }; // make __proto__ settable
+  const oldAttributes = { ...attributes };
   Object.entries(attributes)
     .reverse()
     .forEach(([name, value]) => {

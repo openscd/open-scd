@@ -364,16 +364,19 @@ describe('Editing Element', () => {
           util.testDocs.chain(docs => util.undoRedoTestCases(...docs)),
           ({ doc1, doc2, edits }: util.UndoRedoTestCase) => {
             const [oldDoc1, oldDoc2] = [doc1, doc2].map(doc =>
-              new XMLSerializer().serializeToString(doc)
+              doc.cloneNode(true)
             );
             edits.forEach((a: Edit) => {
               editor.dispatchEvent(newEditEvent(a));
             });
             if (edits.length) editor.undo(edits.length);
-            const [newDoc1, newDoc2] = [doc1, doc2].map(doc =>
-              new XMLSerializer().serializeToString(doc)
+            expect(doc1).to.satisfy((doc: XMLDocument) =>
+              doc.isEqualNode(oldDoc1)
             );
-            return oldDoc1 === newDoc1 && oldDoc2 === newDoc2;
+            expect(doc2).to.satisfy((doc: XMLDocument) =>
+              doc.isEqualNode(oldDoc2)
+            );
+            return true;
           }
         )
       ));
