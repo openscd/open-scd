@@ -1,5 +1,6 @@
-import { css, html, LitElement, TemplateResult } from 'lit';
-import { customElement, property, query } from 'lit/decorators.js';
+import { css, html, LitElement, nothing, TemplateResult } from 'lit';
+import { customElement, property, query, state } from 'lit/decorators.js';
+import { html as staticHtml, unsafeStatic } from 'lit/static-html.js';
 
 import { configureLocalization, localized, msg, str } from '@lit/localize';
 
@@ -9,6 +10,7 @@ import '@material/mwc-drawer';
 import '@material/mwc-icon';
 import '@material/mwc-icon-button';
 import '@material/mwc-list';
+import '@material/mwc-tab-bar';
 import '@material/mwc-top-app-bar-fixed';
 import type { ActionDetail } from '@material/mwc-list';
 import type { Dialog } from '@material/mwc-dialog';
@@ -19,15 +21,18 @@ import { allLocales, sourceLocale, targetLocales } from './locales.js';
 import { isComplex, isInsert, isRemove, isUpdate } from './foundation.js';
 
 import { Editing, LogEntry } from './mixins/Editing.js';
+import { Plugging, pluginTag } from './mixins/Plugging.js';
 
-type LocaleTag = typeof allLocales[number];
-
-interface Operation {
+type Control = {
   icon: string;
   getName: () => string;
-  action: () => void;
   isDisabled: () => boolean;
-}
+  action?: () => unknown;
+};
+
+type RenderedPlugin = Control & { tagName: string };
+
+type LocaleTag = typeof allLocales[number];
 
 const { getLocale, setLocale } = configureLocalization({
   sourceLocale,
@@ -51,37 +56,37 @@ function describe({ undo, redo }: LogEntry) {
 }
 
 function renderActionItem(
-  operation: Operation,
+  control: Control,
   slot = 'actionItems'
 ): TemplateResult {
   return html`<mwc-icon-button
     slot="${slot}"
-    icon="${operation.icon}"
-    label="${operation.getName()}"
-    ?disabled=${operation.isDisabled()}
-    @click=${operation.action}
+    icon="${control.icon}"
+    label="${control.getName()}"
+    ?disabled=${control.isDisabled()}
+    @click=${control.action}
   ></mwc-icon-button>`;
 }
 
-function renderMenuItem(operation: Operation): TemplateResult {
+function renderMenuItem(control: Control): TemplateResult {
   return html`
-    <mwc-list-item graphic="icon" .disabled=${operation.isDisabled()}
-      ><mwc-icon slot="graphic">${operation.icon}</mwc-icon>
-      <span>${operation.getName()}</span>
+    <mwc-list-item graphic="icon" .disabled=${control.isDisabled()}
+      ><mwc-icon slot="graphic">${control.icon}</mwc-icon>
+      <span>${control.getName()}</span>
     </mwc-list-item>
   `;
 }
 
 @customElement('open-scd')
 @localized()
-export class OpenSCD extends Editing(LitElement) {
+export class OpenSCD extends Plugging(Editing(LitElement)) {
   @query('#log')
   logUI!: Dialog;
 
   @query('#menu')
   menuUI!: Drawer;
 
-  @property({ type: String })
+  @property({ type: String, reflect: true })
   get locale() {
     return getLocale() as LocaleTag;
   }
@@ -94,7 +99,18 @@ export class OpenSCD extends Editing(LitElement) {
     }
   }
 
-  private ops: Record<'undo' | 'redo' | 'log' | 'menu', Operation> = {
+  @state()
+  private editorIndex = 0;
+
+  @state()
+  get editor() {
+    return this.editors[this.editorIndex]?.tagName ?? '';
+  }
+
+  private controls: Record<
+    'undo' | 'redo' | 'log' | 'menu',
+    Required<Control>
+  > = {
     undo: {
       icon: 'undo',
       getName: () => msg('Undo'),
@@ -125,14 +141,56 @@ export class OpenSCD extends Editing(LitElement) {
     },
   };
 
-  private menu = [this.ops.undo, this.ops.redo, this.ops.log];
+  #actions = [this.controls.undo, this.controls.redo, this.controls.log];
+
+  @state()
+  get menu() {
+    return (<Required<Control>[]>this.plugins.menu
+      ?.map((plugin): RenderedPlugin | undefined =>
+        plugin.active
+          ? {
+              icon: plugin.icon,
+              getName: () =>
+                plugin.translations?.[
+                  this.locale as typeof targetLocales[number]
+                ] || plugin.name,
+              isDisabled: () => (plugin.requireDoc && !this.docName) ?? false,
+              tagName: pluginTag(plugin.src),
+              action: () =>
+                this.shadowRoot!.querySelector<
+                  HTMLElement & { run: () => Promise<void> }
+                >(pluginTag(plugin.src))!.run?.(),
+            }
+          : undefined
+      )
+      .filter(p => p !== undefined)).concat(this.#actions);
+  }
+
+  @state()
+  get editors() {
+    return <RenderedPlugin[]>this.plugins.editor
+      ?.map((plugin): RenderedPlugin | undefined =>
+        plugin.active
+          ? {
+              icon: plugin.icon,
+              getName: () =>
+                plugin.translations?.[
+                  this.locale as typeof targetLocales[number]
+                ] || plugin.name,
+              isDisabled: () => (plugin.requireDoc && !this.docName) ?? false,
+              tagName: pluginTag(plugin.src),
+            }
+          : undefined
+      )
+      .filter(p => p !== undefined);
+  }
 
   private hotkeys: Partial<Record<string, () => void>> = {
-    m: this.ops.menu.action,
-    z: this.ops.undo.action,
-    y: this.ops.redo.action,
-    Z: this.ops.redo.action,
-    l: this.ops.log.action,
+    m: this.controls.menu.action,
+    z: this.controls.undo.action,
+    y: this.controls.redo.action,
+    Z: this.controls.redo.action,
+    l: this.controls.log.action,
   };
 
   private handleKeyPress(e: KeyboardEvent): void {
@@ -188,15 +246,41 @@ export class OpenSCD extends Editing(LitElement) {
           <li divider padded role="separator"></li>
           ${this.menu.map(renderMenuItem)}
         </mwc-list>
-
         <mwc-top-app-bar-fixed slot="appContent">
-          ${renderActionItem(this.ops.menu, 'navigationIcon')}
+          ${renderActionItem(this.controls.menu, 'navigationIcon')}
           <div slot="title" id="title">${this.docName}</div>
-          ${this.menu.map(op => renderActionItem(op))}
-          ${this.doc ? html`<mwc-tab-bar> </mwc-tab-bar>` : ``}
+          ${this.#actions.map(op => renderActionItem(op))}
+          <mwc-tab-bar
+            activeIndex=${this.editors.filter(p => !p.isDisabled()).length
+              ? 0
+              : -1}
+            @MDCTabBar:activated=${({
+              detail: { index },
+            }: {
+              detail: { index: number };
+            }) => {
+              this.editorIndex = index;
+            }}
+          >
+            ${this.editors.map(editor =>
+              editor.isDisabled()
+                ? nothing
+                : html`<mwc-tab
+                    label="${editor.getName()}"
+                    icon="${editor.icon}"
+                  ></mwc-tab>`
+            )}
+          </mwc-tab-bar>
+          ${this.editor
+            ? staticHtml`<${unsafeStatic(this.editor)} docName="${
+                this.docName || nothing
+              }" .doc=${this.doc} locale="${this.locale}" .docs=${
+                this.docs
+              }></${unsafeStatic(this.editor)}>`
+            : nothing}
         </mwc-top-app-bar-fixed>
       </mwc-drawer>
-      <mwc-dialog id="log" heading="${this.ops.log.getName()}">
+      <mwc-dialog id="log" heading="${this.controls.log.getName()}">
         <mwc-list wrapFocus>${this.renderHistory()}</mwc-list>
         <mwc-button
           icon="undo"
@@ -215,7 +299,17 @@ export class OpenSCD extends Editing(LitElement) {
         <mwc-button slot="primaryAction" dialogaction="close"
           >${msg('Close')}</mwc-button
         >
-      </mwc-dialog>`;
+      </mwc-dialog>
+      <aside>
+        ${this.plugins.menu.map(
+          plugin =>
+            staticHtml`<${unsafeStatic(pluginTag(plugin.src))} docName="${
+              this.docName
+            }" .doc=${this.doc} locale="${this.locale}" .docs=${
+              this.docs
+            }></${unsafeStatic(pluginTag(plugin.src))}>`
+        )}
+      </aside>`;
   }
 
   static styles = css`
@@ -227,4 +321,10 @@ export class OpenSCD extends Editing(LitElement) {
       --mdc-theme-text-disabled-on-light: rgba(255, 255, 255, 0.38);
     } /* hack to fix disabled icon buttons rendering black */
   `;
+}
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'open-scd': OpenSCD;
+  }
 }

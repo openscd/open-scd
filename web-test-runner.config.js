@@ -4,7 +4,13 @@ import { playwrightLauncher } from '@web/test-runner-playwright';
 import pixelmatch from 'pixelmatch';
 import { PNG } from 'pngjs';
 
-const thresholdPercentage = 3; // allow for 3% image difference between OSs
+const fuzzy = ['win32', 'darwin'].includes(process.platform); // allow for 1% difference on non-linux OSs
+const local = !process.env.CI;
+
+console.assert(local, 'Running in CI!');
+console.assert(!fuzzy, 'Running on OS with 1% test pixel diff threshold!');
+
+const thresholdPercentage = fuzzy && local ? 1 : 0;
 
 const filteredLogs = [
   'Running in dev mode',
@@ -16,7 +22,7 @@ const browsers = [
      playwrightLauncher({ product: 'chromium' }),
      playwrightLauncher({ product: 'firefox' }),
    ];
-if (!process.env.CI) browsers.push(playwrightLauncher({ product: 'webkit' }));
+if (local) browsers.push(playwrightLauncher({ product: 'webkit' }));
 
 function defaultGetImageDiff({ baselineImage, image, options }) {
   let error = '';

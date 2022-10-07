@@ -1,10 +1,16 @@
 <title>OpenSCD Core Demo</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&family=Roboto:wght@300;400;500&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons&display=block">
-<open-scd></open-scd>
+<open-scd plugins='{"menu": [{"name": "Add plugins...", "translations": {"de": "Erweitern..."}, "icon": "extension", "active": true, "src": "/demo/AddPlugins.js"}]}'></open-scd>
 
 <script type="module">
 import '../dist/open-scd.js';
+
+const editor = document.querySelector('open-scd');
+const params = (new URL(document.location)).searchParams;
+for (const [name, value] of params) {
+editor.setAttribute(name, value);
+}
 </script>
 <style>
 * {

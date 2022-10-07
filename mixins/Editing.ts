@@ -144,9 +144,9 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
     docs: Record<string, XMLDocument> = {};
 
     /** The name of the [[`doc`]] currently being edited */
-    @property({ type: String }) docName = '';
+    @property({ type: String, reflect: true }) docName = '';
 
-    protected onOpenDoc({ detail: { docName, doc } }: OpenEvent) {
+    protected handleOpenDoc({ detail: { docName, doc } }: OpenEvent) {
       this.docName = docName;
       this.docs[this.docName] = doc;
     }
@@ -177,7 +177,7 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
     constructor(...args: any[]) {
       super(...args);
 
-      this.addEventListener('oscd-open', this.onOpenDoc);
+      this.addEventListener('oscd-open', this.handleOpenDoc);
       this.addEventListener('oscd-edit', event => this.handleEditEvent(event));
     }
   }
