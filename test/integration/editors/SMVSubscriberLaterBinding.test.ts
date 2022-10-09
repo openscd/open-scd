@@ -47,6 +47,8 @@ describe('SMV Subscribe Later Binding plugin', () => {
     expect(
       extRefListElement['getAvailableExtRefElements']().length
     ).to.be.equal(8);
+    expect(svcListElement.selectedItem.querySelector('span[slot="meta"]')).to.be
+      .null;
 
     (<HTMLElement>(
       extRefListElement.shadowRoot!.querySelector(
@@ -61,6 +63,10 @@ describe('SMV Subscribe Later Binding plugin', () => {
     expect(
       extRefListElement['getAvailableExtRefElements']().length
     ).to.be.equal(7);
+    expect(
+      svcListElement.selectedItem.querySelector('span[slot="meta"]')
+        ?.textContent
+    ).to.be.equal('1');
   });
 
   it('when unsubscribing a subscribed ExtRef then the lists are changed', async () => {
@@ -80,6 +86,10 @@ describe('SMV Subscribe Later Binding plugin', () => {
     expect(
       extRefListElement['getAvailableExtRefElements']().length
     ).to.be.equal(8);
+    expect(
+      svcListElement.selectedItem.querySelector('span[slot="meta"]')
+        ?.textContent
+    ).to.be.equal('3');
 
     (<HTMLElement>(
       extRefListElement.shadowRoot!.querySelector(
@@ -94,5 +104,9 @@ describe('SMV Subscribe Later Binding plugin', () => {
     expect(
       extRefListElement['getAvailableExtRefElements']().length
     ).to.be.equal(9);
+    expect(
+      svcListElement.selectedItem.querySelector('span[slot="meta"]')
+        ?.textContent
+    ).to.be.equal('2');
   });
 });

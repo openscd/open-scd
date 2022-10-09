@@ -46,6 +46,8 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
     expect(
       extRefListElement['getAvailableExtRefElements']().length
     ).to.be.equal(4);
+    expect(svcListElement.selectedItem.querySelector('span[slot="meta"]')).to.be
+      .null;
 
     (<HTMLElement>(
       extRefListElement.shadowRoot!.querySelector(
@@ -60,9 +62,14 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
     expect(
       extRefListElement['getAvailableExtRefElements']().length
     ).to.be.equal(3);
+    expect(
+      svcListElement.selectedItem.querySelector('span[slot="meta"]')
+        ?.textContent
+    ).to.be.equal('1');
   });
 
   it('when unsubscribing a subscribed ExtRef then the lists are changed', async () => {
+    const svcListElement = getFCDALaterBindingList(element);
     const gooseListElement = getFCDALaterBindingList(element);
     const extRefListElement = getExtrefLaterBindingList(element);
 
@@ -80,6 +87,10 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
     expect(
       extRefListElement['getAvailableExtRefElements']().length
     ).to.be.equal(4);
+    expect(
+      svcListElement.selectedItem.querySelector('span[slot="meta"]')
+        ?.textContent
+    ).to.be.equal('3');
     (<HTMLElement>(
       extRefListElement.shadowRoot!.querySelector(
         'mwc-list-item[value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos q@Pos;CSWI1/Pos/q"]'
@@ -93,5 +104,9 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
     expect(
       extRefListElement['getAvailableExtRefElements']().length
     ).to.be.equal(5);
+    expect(
+      svcListElement.selectedItem.querySelector('span[slot="meta"]')
+        ?.textContent
+    ).to.be.equal('2');
   });
 });
