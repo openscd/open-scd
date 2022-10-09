@@ -20,7 +20,7 @@ import {
   getSclSchemaVersion,
 } from '../../../foundation.js';
 
-import { styles, updateExtRefElement, serviceTypes } from '../foundation.js';
+import { serviceTypes, styles, updateExtRefElement } from '../foundation.js';
 import { FcdaSelectEvent } from './foundation.js';
 
 /**

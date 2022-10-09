@@ -5,6 +5,7 @@ import {
   LitElement,
   property,
   PropertyValues,
+  query,
   state,
   TemplateResult,
 } from 'lit-element';
@@ -14,6 +15,7 @@ import { translate } from 'lit-translate';
 import '@material/mwc-icon';
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
+import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 
 import {
   compareNames,
@@ -54,8 +56,11 @@ export class FCDALaterBindingList extends LitElement {
 
   @property({ attribute: false })
   iconControlLookup: iconLookup;
-  @state()
-  fcdaCount = new Map();
+  @property({ attribute: false })
+  fcdaIndex = new Map();
+
+  @query('.subitem[selected]')
+  selectedItem!: ListItem;
 
   constructor() {
     super();
@@ -64,15 +69,12 @@ export class FCDALaterBindingList extends LitElement {
       SampledValueControl: smvIcon,
       GSEControl: gooseIcon,
     };
+
     this.resetSelection = this.resetSelection.bind(this);
     parent.addEventListener('open-doc', this.resetSelection);
 
-    const parentDiv = this.closest('.container');
-    if (parentDiv) {
-      parentDiv.addEventListener('lb-subscription-change', () => {
-        this.fcdaCount.clear();
-      });
-    }
+    this.updateFcdaIndex = this.updateFcdaIndex.bind(this);
+    parent.addEventListener('lb-subscription-change', this.updateFcdaIndex)
   }
 
   private getControlElements(): Element[] {
@@ -98,17 +100,29 @@ export class FCDALaterBindingList extends LitElement {
     return [];
   }
 
-  private indexFCDAs() {
-    // index each fcda to display the count promptly
-    const controlElements = this.getControlElements();
-    let fcdas: Element[] = [];
-    controlElements.forEach(controlElement => {
-      fcdas = fcdas.concat(...this.getFcdaElements(controlElement));
-    });
+  private updateFcdaIndex() {
+    // This method should only be this:
+    //   this.indexFcda(<Element>this.selectedFcdaElement);
+    // but at the key moment this.doc is undefined at the key moment (?).
+    // so I have replaced with fcdaElement.ownerDocument below
+    const fcdaElement = this.selectedFcdaElement!;
+    const iedName = fcdaElement!.closest('IED')!.getAttribute('name') || '';
+    const [ldInst, prefix, lnClass, lnInst, doName, daName] = [
+      'ldInst',
+      'prefix',
+      'lnClass',
+      'lnInst',
+      'doName',
+      'daName',
+    ].map(attr => fcdaElement.getAttribute(attr));
+    // here...
+    const usageCount = Array.from(
+      fcdaElement.ownerDocument.querySelectorAll(
+        `Inputs > ExtRef[iedName="${iedName}"][ldInst="${ldInst}"][prefix="${prefix}"][lnClass="${lnClass}"][lnInst="${lnInst}"][doName="${doName}"][daName="${daName}"]`
+      )
+    ).filter(isPublic).length;
+    this.fcdaIndex.set(identity(fcdaElement), usageCount);
 
-    fcdas.forEach(fcda => {
-      this.fcdaCount.set(identity(fcda), this.countExtRefUsageOfFCDA(fcda));
-    });
   }
 
   /**
@@ -116,8 +130,8 @@ export class FCDALaterBindingList extends LitElement {
    * @param fcdaElement - an FCDA element from a dataset.
    * @returns the number of times this FCDA is used in ExtRefs in the project.
    */
-  private countExtRefUsageOfFCDA(fcdaElement: Element): number {
-    const iedName = fcdaElement.closest('IED')?.getAttribute('name') ?? null;
+  private countExtRefUsageOfFcda(fcdaElement: Element): number {
+    const iedName = fcdaElement!.closest('IED')!.getAttribute('name')!;
     const [ldInst, prefix, lnClass, lnInst, doName, daName] = [
       'ldInst',
       'prefix',
@@ -169,8 +183,9 @@ export class FCDALaterBindingList extends LitElement {
   }
 
   renderFCDA(controlElement: Element, fcdaElement: Element): TemplateResult {
-    if (this.fcdaCount.size === 0) this.indexFCDAs();
-    const fcdaCount = this.fcdaCount.get(identity(fcdaElement)) || 0;
+    // index as required
+    if (!this.fcdaIndex.has(identity(fcdaElement))) this.indexFcda(fcdaElement);
+    const fcdaCount = this.fcdaIndex.get(identity(fcdaElement)) || 0;
     const fcdaCountHtml =
       fcdaCount !== 0 ? html`<span slot="meta">${fcdaCount}</span>` : nothing;
     return html`<mwc-list-item
@@ -194,6 +209,13 @@ export class FCDALaterBindingList extends LitElement {
       <mwc-icon slot="graphic">subdirectory_arrow_right</mwc-icon>
       ${fcdaCountHtml}
     </mwc-list-item>`;
+  }
+
+  private indexFcda(fcdaElement: Element) {
+    this.fcdaIndex.set(
+      identity(fcdaElement),
+      this.countExtRefUsageOfFcda(fcdaElement)
+    );
   }
 
   render(): TemplateResult {
