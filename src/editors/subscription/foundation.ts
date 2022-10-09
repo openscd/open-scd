@@ -4,6 +4,7 @@ import {
   compareNames,
   Create,
   createElement,
+  Delete,
   getSclSchemaVersion,
 } from '../../foundation.js';
 import {
@@ -228,6 +229,48 @@ export function instantiateSubscriptionSupervision(
     },
   ]);
 }
+
+/**
+ * Return an array with a single Delete action to delete the supervision element
+ * for the given GOOSE/SMV message and subscriber IED.
+ */
+export function removeSubscriptionSupervision(
+  controlBlock: Element | undefined,
+  subscriberIED: Element
+): Delete[] {
+  const supervisionType =
+    controlBlock?.tagName === 'GSEControl' ? 'LGOS' : 'LSVS';
+  const valElement = Array.from(
+    subscriberIED.querySelectorAll(
+      `LN[lnClass="${supervisionType}"]>DOI>DAI>Val,LN0[lnClass="${supervisionType}"]>DOI>DAI>Val`
+    )
+  ).find(val => val.textContent == controlBlockReference(controlBlock));
+  if (!valElement) return [];
+  const lnElement = valElement.closest('DOI')?.parentElement;
+  if (!lnElement || !lnElement.parentElement) return [];
+  // Check if that one has been created by OpenSCD (private section exists)
+  const isOpenScdCreated = lnElement.querySelector(
+    'Private[type="OpenSCD.create"]'
+  );
+  return isOpenScdCreated
+    ? [
+        {
+          old: {
+            parent: lnElement.parentElement,
+            element: lnElement,
+          },
+        },
+      ]
+    : [
+        {
+          old: {
+            parent: lnElement,
+            element: valElement.closest('DOI')!,
+          },
+        },
+      ];
+}
+
 /**
  * Checks if the given combination of GOOSE/SMV message and subscriber IED allows for subscription supervision.
  * @param controlBlock The GOOSE or SMV message element
@@ -279,6 +322,12 @@ export function findOrCreateAvailableLNInst(
     SCL_NAMESPACE,
     'LN'
   );
+  const openScdTag = subscriberIED.ownerDocument.createElementNS(
+    SCL_NAMESPACE,
+    'Private'
+  );
+  openScdTag.setAttribute('type', 'OpenSCD.create');
+  newElement.appendChild(openScdTag);
   newElement.setAttribute('lnClass', supervisionType);
   const instantiatedSibling = subscriberIED
     .querySelector(`LN[lnClass="${supervisionType}"]>DOI>DAI>Val`)
@@ -342,10 +391,10 @@ export function controlBlockReference(
   controlBlock: Element | undefined
 ): string | null {
   if (!controlBlock) return null;
-  const anyLN = controlBlock.closest('LN,LN0');
-  const prefix = anyLN?.getAttribute('prefix') ?? '';
-  const lnClass = anyLN?.getAttribute('lnClass');
-  const lnInst = anyLN?.getAttribute('inst') ?? '';
+  const eitherLN = controlBlock.closest('LN,LN0');
+  const prefix = eitherLN?.getAttribute('prefix') ?? '';
+  const lnClass = eitherLN?.getAttribute('lnClass');
+  const lnInst = eitherLN?.getAttribute('inst') ?? '';
   const ldInst = controlBlock.closest('LDevice')?.getAttribute('inst');
   const iedName = controlBlock.closest('IED')?.getAttribute('name');
   const cbName = controlBlock.getAttribute('name');

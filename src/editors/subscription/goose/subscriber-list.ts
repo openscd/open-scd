@@ -33,6 +33,7 @@ import {
   IEDSelectEvent,
   instantiateSubscriptionSupervision,
   ListElement,
+  removeSubscriptionSupervision,
   styles,
   SubscriberListContainer,
   SubscribeStatus,
@@ -238,7 +239,7 @@ export class SubscriberList extends SubscriberListContainer {
       inputsElement = createElement(ied.ownerDocument, 'Inputs', {});
 
     const actions: Create[] = [];
-    const supervisionActions: Create[] = [];
+
     this.currentUsedDataset!.querySelectorAll('FCDA').forEach(fcda => {
       if (
         !existExtRef(inputsElement!, fcda, this.currentSelectedGseControl) &&
@@ -256,8 +257,9 @@ export class SubscriberList extends SubscriberListContainer {
     });
 
     // we need to extend the actions array with the actions for the instation of the LGOS
-    supervisionActions.push(
-      ...instantiateSubscriptionSupervision(this.currentSelectedGseControl, ied)
+    const supervisionActions: Create[] = instantiateSubscriptionSupervision(
+      this.currentSelectedGseControl,
+      ied
     );
 
     /** If the IED doesn't have a Inputs element, just append it to the first LN0 element. */
@@ -290,6 +292,11 @@ export class SubscriberList extends SubscriberListContainer {
 
     // Check if empty Input Element should also be removed.
     actions.push(...emptyInputsDeleteActions(actions));
+
+    // we need to extend the actions array with the actions for removing the supervision
+    actions.push(
+      ...removeSubscriptionSupervision(this.currentSelectedGseControl, ied)
+    );
 
     this.dispatchEvent(
       newActionEvent({
