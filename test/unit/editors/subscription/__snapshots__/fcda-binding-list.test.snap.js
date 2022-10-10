@@ -1,16 +1,16 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["fcda-list without a doc loaded looks like the latest snapshot"] = 
+snapshots["fcda-binding-list without a doc loaded looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
     [subscription.laterBinding.undefined.controlBlockList.noControlBlockFound]
   </h1>
 </section>
 `;
-/* end snapshot fcda-list without a doc loaded looks like the latest snapshot */
+/* end snapshot fcda-binding-list without a doc loaded looks like the latest snapshot */
 
-snapshots["fcda-list with a SampledValueControl doc loaded looks like the latest snapshot"] = 
+snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
     [subscription.laterBinding.SampledValueControl.controlBlockList.title]
@@ -610,9 +610,9 @@ snapshots["fcda-list with a SampledValueControl doc loaded looks like the latest
   </filtered-list>
 </section>
 `;
-/* end snapshot fcda-list with a SampledValueControl doc loaded looks like the latest snapshot */
+/* end snapshot fcda-binding-list with a SampledValueControl doc loaded looks like the latest snapshot */
 
-snapshots["fcda-list with a GSEControl doc loaded looks like the latest snapshot"] = 
+snapshots["fcda-binding-list with a GSEControl doc loaded looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
     [subscription.laterBinding.GSEControl.controlBlockList.title]
@@ -1039,5 +1039,5 @@ snapshots["fcda-list with a GSEControl doc loaded looks like the latest snapshot
   </filtered-list>
 </section>
 `;
-/* end snapshot fcda-list with a GSEControl doc loaded looks like the latest snapshot */
+/* end snapshot fcda-binding-list with a GSEControl doc loaded looks like the latest snapshot */
 

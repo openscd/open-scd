@@ -644,6 +644,21 @@ snapshots["open-scd looks like its snapshot"] =
       left=""
       mwc-list-item=""
       tabindex="-1"
+      value="/src/editors/GooseSubscriberBinding.js"
+    >
+      <mwc-icon slot="meta">
+        link
+      </mwc-icon>
+      Subscriber Binding (GOOSE)
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      tabindex="-1"
       value="/src/editors/GooseSubscriberLaterBinding.js"
     >
       <mwc-icon slot="meta">

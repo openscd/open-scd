@@ -21,13 +21,11 @@ import {
   getNameAttribute,
   identity,
   newWizardEvent,
-} from '../../../foundation.js';
-import { gooseIcon, smvIcon } from '../../../icons/icons.js';
-import { wizards } from '../../../wizards/wizard-library.js';
+} from '../../foundation.js';
+import { gooseIcon, smvIcon } from '../../icons/icons.js';
+import { wizards } from '../../wizards/wizard-library.js';
 
-import { styles } from '../foundation.js';
-
-import { getFcdaTitleValue, newFcdaSelectEvent } from './foundation.js';
+import { getFcdaTitleValue, newFcdaSelectEvent, styles } from './foundation.js';
 
 type controlTag = 'SampledValueControl' | 'GSEControl';
 
@@ -38,8 +36,8 @@ type iconLookup = Record<controlTag, SVGTemplateResult>;
  * A control can be edited using the standard wizard.
  * And when selecting a FCDA Element a custom event is fired, so other list can be updated.
  */
-@customElement('fcda-later-binding-list')
-export class FCDALaterBindingList extends LitElement {
+@customElement('fcda-binding-list')
+export class FcdaBindingList extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
   @property()
