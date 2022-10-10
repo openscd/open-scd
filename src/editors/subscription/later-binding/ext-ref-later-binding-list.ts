@@ -14,14 +14,18 @@ import {
   cloneElement,
   compareNames,
   getDescriptionAttribute,
+  getSclSchemaVersion,
   identity,
   newActionEvent,
   Replace,
-  getSclSchemaVersion,
 } from '../../../foundation.js';
 
-import { styles, updateExtRefElement, serviceTypes } from '../foundation.js';
-import { FcdaSelectEvent } from './foundation.js';
+import {
+  FcdaSelectEvent,
+  serviceTypes,
+  styles,
+  updateExtRefElement,
+} from '../foundation.js';
 
 /**
  * A sub element for showing all Ext Refs from a FCDA Element.
@@ -95,7 +99,7 @@ export class ExtRefLaterBindingList extends LitElement {
   ): boolean {
     return (
       (extRefElement.getAttribute(attributeName) ?? '') ===
-        (this.currentSelectedFcdaElement?.getAttribute(attributeName) ?? '')
+      (this.currentSelectedFcdaElement?.getAttribute(attributeName) ?? '')
     );
   }
 
