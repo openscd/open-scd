@@ -2,7 +2,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 
 import '../../mock-wizard.js';
 
-import SampledValuesSubscriptionPlugin from '../../../src/editors/SampledValuesSubscription.js';
+import SMVSubscriberMessageBindingPlugin from '../../../src/editors/SMVSubscriberMessageBinding.js';
 import { Editing } from '../../../src/Editing.js';
 import { Wizarding } from '../../../src/Wizarding.js';
 import { ListItem } from '@material/mwc-list/mwc-list-item.js';
@@ -10,9 +10,9 @@ import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 describe('Sampled Values Plugin', () => {
   customElements.define(
     'smv-plugin',
-    Wizarding(Editing(SampledValuesSubscriptionPlugin))
+    Wizarding(Editing(SMVSubscriberMessageBindingPlugin))
   );
-  let element: SampledValuesSubscriptionPlugin;
+  let element: SMVSubscriberMessageBindingPlugin;
   let doc: XMLDocument;
 
   beforeEach(async () => {

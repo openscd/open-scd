@@ -49,16 +49,14 @@ export class FcdaBindingList extends LitElement {
   @state()
   selectedFcdaElement: Element | undefined;
 
-  @property({ attribute: false })
-  iconControlLookup: iconLookup;
+  iconControlLookup: iconLookup = {
+    SampledValueControl: smvIcon,
+    GSEControl: gooseIcon,
+  };
 
   constructor() {
     super();
 
-    this.iconControlLookup = {
-      SampledValueControl: smvIcon,
-      GSEControl: gooseIcon,
-    };
     this.resetSelection = this.resetSelection.bind(this);
     parent.addEventListener('open-doc', this.resetSelection);
   }

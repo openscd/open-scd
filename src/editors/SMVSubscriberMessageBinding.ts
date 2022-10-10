@@ -1,10 +1,10 @@
 import {
-  LitElement,
-  html,
-  TemplateResult,
-  property,
   css,
+  html,
+  LitElement,
+  property,
   query,
+  TemplateResult,
 } from 'lit-element';
 import { translate } from 'lit-translate';
 
@@ -19,7 +19,7 @@ import { newViewEvent, View, ViewEvent } from './subscription/foundation.js';
 let view: View = View.PUBLISHER;
 
 /** An editor [[`plugin`]] for subscribing IEDs to Sampled Values. */
-export default class SampledValuesSubscriberPlugin extends LitElement {
+export default class SMVSubscriberMessageBindingPlugin extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property()
   doc!: XMLDocument;
@@ -74,7 +74,11 @@ export default class SampledValuesSubscriberPlugin extends LitElement {
       <div class="container">
         ${view == View.PUBLISHER
           ? html`<smv-list class="row" .doc=${this.doc}></smv-list>`
-          : html`<ied-list class="row" .doc=${this.doc} serviceType="smv"></ied-list>`}
+          : html`<ied-list
+              class="row"
+              .doc=${this.doc}
+              serviceType="smv"
+            ></ied-list>`}
         <subscriber-list-smv class="row" .doc=${this.doc}></subscriber-list-smv>
       </div>
     </div>`;

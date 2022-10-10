@@ -2,7 +2,8 @@ import { css, html, LitElement, property, TemplateResult } from 'lit-element';
 
 import './subscription/fcda-binding-list.js';
 
-export default class GooseSubscribeBindingPlugin extends LitElement {
+/** An editor [[`plugin`]] for Subscribe Later Binding (SMV). */
+export default class SMVSubscribeDataBindingPlugin extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
 
@@ -12,7 +13,7 @@ export default class GooseSubscribeBindingPlugin extends LitElement {
         <fcda-binding-list
           class="column"
           .doc=${this.doc}
-          controlTag="GSEControl"
+          controlTag="SampledValueControl"
         >
         </fcda-binding-list>
       </div>

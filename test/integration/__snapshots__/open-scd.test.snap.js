@@ -629,12 +629,12 @@ snapshots["open-scd looks like its snapshot"] =
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/editors/GooseControlSubscription.js"
+      value="/src/editors/GooseSubscriberMessageBinding.js"
     >
       <mwc-icon slot="meta">
         link
       </mwc-icon>
-      Subscriber (GOOSE)
+      Subscriber Message Binding (GOOSE)
     </mwc-check-list-item>
     <mwc-check-list-item
       aria-disabled="false"
@@ -643,13 +643,14 @@ snapshots["open-scd looks like its snapshot"] =
       hasmeta=""
       left=""
       mwc-list-item=""
+      selected=""
       tabindex="-1"
-      value="/src/editors/GooseSubscriberBinding.js"
+      value="/src/editors/GooseSubscriberDataBinding.js"
     >
       <mwc-icon slot="meta">
         link
       </mwc-icon>
-      Subscriber Binding (GOOSE)
+      Subscriber Data Binding (GOOSE)
     </mwc-check-list-item>
     <mwc-check-list-item
       aria-disabled="false"
@@ -658,6 +659,7 @@ snapshots["open-scd looks like its snapshot"] =
       hasmeta=""
       left=""
       mwc-list-item=""
+      selected=""
       tabindex="-1"
       value="/src/editors/GooseSubscriberLaterBinding.js"
     >
@@ -675,12 +677,28 @@ snapshots["open-scd looks like its snapshot"] =
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/editors/SampledValuesSubscription.js"
+      value="/src/editors/SMVSubscriberMessageBinding.js"
     >
       <mwc-icon slot="meta">
         link
       </mwc-icon>
-      Subscriber (SMV)
+      Subscriber Message Binding (SMV)
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/editors/SMVSubscriberDataBinding.js"
+    >
+      <mwc-icon slot="meta">
+        link
+      </mwc-icon>
+      Subscriber Data Binding (SMV)
     </mwc-check-list-item>
     <mwc-check-list-item
       aria-disabled="false"
