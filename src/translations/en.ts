@@ -356,6 +356,8 @@ export const en = {
         publisherView: 'Publisher | Subscriber',
         subscriberView: 'Subscriber | Publisher',
       },
+      subscribeActionMessage: 'Connect',
+      unsubscribeActionMessage: 'Disconnect',
     },
     smv: {
       publisher: {
@@ -378,6 +380,8 @@ export const en = {
         noSubscribedLNs: 'No subscribed logical nodes',
         noAvailableLNs: 'No available logical nodes to subscribe',
       },
+      subscribeActionMessage: 'Connect',
+      unsubscribeActionMessage: 'Disconnect',
     },
     laterBinding: {
       extRefList: {

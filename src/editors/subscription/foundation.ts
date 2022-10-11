@@ -168,14 +168,14 @@ export function getExtRef(
  */
 export function instantiateSubscriptionSupervision(
   controlBlock: Element | undefined,
-  subscriberIED: Element
+  subscriberIED: Element | undefined
 ): Create[] {
   const supervisionType =
     controlBlock?.tagName === 'GSEControl' ? 'LGOS' : 'LSVS';
   if (
     !controlBlock ||
-    (controlBlock &&
-      !isSupervisionAllowed(controlBlock, subscriberIED, supervisionType))
+    !subscriberIED ||
+    !isSupervisionAllowed(controlBlock, subscriberIED, supervisionType)
   )
     return [];
   const availableLN = findOrCreateAvailableLNInst(
@@ -226,8 +226,9 @@ export function instantiateSubscriptionSupervision(
  */
 export function removeSubscriptionSupervision(
   controlBlock: Element | undefined,
-  subscriberIED: Element
+  subscriberIED: Element | undefined
 ): Delete[] {
+  if (!controlBlock || !subscriberIED) return [];
   const supervisionType =
     controlBlock?.tagName === 'GSEControl' ? 'LGOS' : 'LSVS';
   const valElement = Array.from(

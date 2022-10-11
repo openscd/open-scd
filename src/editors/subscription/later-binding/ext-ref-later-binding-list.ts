@@ -8,21 +8,22 @@ import {
   TemplateResult,
 } from 'lit-element';
 import { nothing } from 'lit-html';
-import { translate } from 'lit-translate';
+import { get, translate } from 'lit-translate';
 
 import {
   cloneElement,
   getDescriptionAttribute,
   identity,
   newActionEvent,
-  Replace,
 } from '../../../foundation.js';
 
 import {
-  FcdaSelectEvent,
-  newSubscriptionChangedEvent,
   styles,
   updateExtRefElement,
+  instantiateSubscriptionSupervision,
+  removeSubscriptionSupervision,
+  FcdaSelectEvent,
+  newSubscriptionChangedEvent,
 } from '../foundation.js';
 import {
   getExtRefElements,
@@ -90,15 +91,14 @@ export class ExtRefLaterBindingList extends LitElement {
    *
    * @param extRefElement - The Ext Ref Element to clean from attributes.
    */
-  private unsubscribe(extRefElement: Element): Replace | null {
+  private unsubscribe(extRefElement: Element): void {
     if (
       !this.currentIedElement ||
       !this.currentSelectedFcdaElement ||
       !this.currentSelectedControlElement!
     ) {
-      return null;
+      return;
     }
-
     const clonedExtRefElement = cloneElement(extRefElement, {
       iedName: null,
       ldInst: null,
@@ -115,10 +115,31 @@ export class ExtRefLaterBindingList extends LitElement {
       srcCBName: null,
     });
 
-    return {
+    const replaceAction = {
       old: { element: extRefElement },
       new: { element: clonedExtRefElement },
     };
+
+    const subscriberIed = extRefElement.closest('IED') || undefined;
+    const removeSubscriptionActions = removeSubscriptionSupervision(
+      this.currentSelectedControlElement,
+      subscriberIed
+    );
+
+    this.dispatchEvent(
+      newActionEvent({
+        title: get(
+          `subscription.laterBinding.${this.controlTag}.unsubscribeActionMessage`
+        ),
+        actions: [replaceAction, ...removeSubscriptionActions],
+      })
+    );
+    this.dispatchEvent(
+      newSubscriptionChangedEvent(
+        this.currentSelectedControlElement,
+        this.currentSelectedFcdaElement
+      )
+    );
   }
 
   /**
@@ -126,16 +147,16 @@ export class ExtRefLaterBindingList extends LitElement {
    *
    * @param extRefElement - The Ext Ref Element to add the attributes to.
    */
-  private subscribe(extRefElement: Element): Replace | null {
+  private subscribe(extRefElement: Element): void {
     if (
       !this.currentIedElement ||
       !this.currentSelectedFcdaElement ||
       !this.currentSelectedControlElement!
     ) {
-      return null;
+      return;
     }
 
-    return {
+    const replaceAction = {
       old: { element: extRefElement },
       new: {
         element: updateExtRefElement(
@@ -145,6 +166,27 @@ export class ExtRefLaterBindingList extends LitElement {
         ),
       },
     };
+
+    const subscriberIed = extRefElement.closest('IED') || undefined;
+    const supervisionActions = instantiateSubscriptionSupervision(
+      this.currentSelectedControlElement,
+      subscriberIed
+    );
+
+    this.dispatchEvent(
+      newActionEvent({
+        title: get(
+          `subscription.laterBinding.${this.controlTag}.subscribeActionMessage`
+        ),
+        actions: [replaceAction, ...supervisionActions],
+      })
+    );
+    this.dispatchEvent(
+      newSubscriptionChangedEvent(
+        this.currentSelectedControlElement,
+        this.currentSelectedFcdaElement
+      )
+    );
   }
 
   private getSubscribedExtRefElements(): Element[] {
@@ -193,18 +235,7 @@ export class ExtRefLaterBindingList extends LitElement {
             extRefElement => html` <mwc-list-item
               graphic="large"
               twoline
-              @click=${() => {
-                const replaceAction = this.unsubscribe(extRefElement);
-                if (replaceAction) {
-                  this.dispatchEvent(newActionEvent(replaceAction));
-                  this.dispatchEvent(
-                    newSubscriptionChangedEvent(
-                      this.currentSelectedControlElement,
-                      this.currentSelectedFcdaElement
-                    )
-                  );
-                }
-              }}
+              @click=${() => this.unsubscribe(extRefElement)}
               value="${identity(extRefElement)}"
             >
               <span>
@@ -250,18 +281,7 @@ export class ExtRefLaterBindingList extends LitElement {
               graphic="large"
               ?disabled=${this.unsupportedExtRefElement(extRefElement)}
               twoline
-              @click=${() => {
-                const replaceAction = this.subscribe(extRefElement);
-                if (replaceAction) {
-                  this.dispatchEvent(newActionEvent(replaceAction));
-                  this.dispatchEvent(
-                    newSubscriptionChangedEvent(
-                      this.currentSelectedControlElement,
-                      this.currentSelectedFcdaElement
-                    )
-                  );
-                }
-              }}
+              @click=${() => this.subscribe(extRefElement)}
               value="${identity(extRefElement)}"
             >
               <span>

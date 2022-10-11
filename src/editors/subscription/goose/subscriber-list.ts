@@ -266,7 +266,10 @@ export class SubscriberList extends SubscriberListContainer {
     const title = get('subscription.connect');
     if (inputsElement.parentElement) {
       this.dispatchEvent(
-        newActionEvent({ title, actions: actions.concat(supervisionActions) })
+        newActionEvent({
+          title,
+          actions: actions.concat(supervisionActions),
+        })
       );
     } else {
       const inputAction: Create = {
