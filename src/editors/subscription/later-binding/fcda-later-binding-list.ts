@@ -22,13 +22,13 @@ import {
   getDescriptionAttribute,
   getNameAttribute,
   identity,
+  isPublic,
   newWizardEvent,
 } from '../../../foundation.js';
 import { gooseIcon, smvIcon } from '../../../icons/icons.js';
 import { wizards } from '../../../wizards/wizard-library.js';
 
 import { styles } from '../foundation.js';
-import { isPublic } from '../../../foundation.js';
 
 import { getFcdaTitleValue, newFcdaSelectEvent } from './foundation.js';
 
@@ -53,11 +53,11 @@ export class FCDALaterBindingList extends LitElement {
   selectedControlElement: Element | undefined;
   @state()
   selectedFcdaElement: Element | undefined;
+  @state()
+  extRefCounters = new Map();
 
   @property({ attribute: false })
   iconControlLookup: iconLookup;
-  @property({ attribute: false })
-  fcdaIndex = new Map();
 
   @query('.subitem[selected]')
   selectedItem!: ListItem;
@@ -73,8 +73,8 @@ export class FCDALaterBindingList extends LitElement {
     this.resetSelection = this.resetSelection.bind(this);
     parent.addEventListener('open-doc', this.resetSelection);
 
-    this.updateFcdaIndex = this.updateFcdaIndex.bind(this);
-    parent.addEventListener('lb-subscription-change', this.updateFcdaIndex)
+    this.resetExtRefCount = this.resetExtRefCount.bind(this);
+    parent.addEventListener('lb-subscription-change', this.resetExtRefCount);
   }
 
   private getControlElements(): Element[] {
@@ -100,51 +100,35 @@ export class FCDALaterBindingList extends LitElement {
     return [];
   }
 
-  private updateFcdaIndex() {
-    // This method should only be this:
-    //   this.indexFcda(<Element>this.selectedFcdaElement);
-    // but at the key moment this.doc is undefined at the key moment (?).
-    // so I have replaced with fcdaElement.ownerDocument below
-    const fcdaElement = this.selectedFcdaElement!;
-    const iedName = fcdaElement!.closest('IED')!.getAttribute('name') || '';
-    const [ldInst, prefix, lnClass, lnInst, doName, daName] = [
-      'ldInst',
-      'prefix',
-      'lnClass',
-      'lnInst',
-      'doName',
-      'daName',
-    ].map(attr => fcdaElement.getAttribute(attr));
-    // here...
-    const usageCount = Array.from(
-      fcdaElement.ownerDocument.querySelectorAll(
-        `Inputs > ExtRef[iedName="${iedName}"][ldInst="${ldInst}"][prefix="${prefix}"][lnClass="${lnClass}"][lnInst="${lnInst}"][doName="${doName}"][daName="${daName}"]`
-      )
-    ).filter(isPublic).length;
-    this.fcdaIndex.set(identity(fcdaElement), usageCount);
-
+  private resetExtRefCount(): void {
+    if (this.selectedFcdaElement) {
+      const fcdaIdentity = identity(this.selectedFcdaElement);
+      this.extRefCounters.delete(fcdaIdentity);
+    }
   }
 
-  /**
-   * Counts usage of an IEDs FCDA defined within a dataset within ExtRefs in a project SCL file.
-   * @param fcdaElement - an FCDA element from a dataset.
-   * @returns the number of times this FCDA is used in ExtRefs in the project.
-   */
-  private countExtRefUsageOfFcda(fcdaElement: Element): number {
-    const iedName = fcdaElement!.closest('IED')!.getAttribute('name')!;
-    const [ldInst, prefix, lnClass, lnInst, doName, daName] = [
-      'ldInst',
-      'prefix',
-      'lnClass',
-      'lnInst',
-      'doName',
-      'daName',
-    ].map(attr => fcdaElement.getAttribute(attr));
-    return Array.from(
-      this.doc.querySelectorAll(
-        `Inputs > ExtRef[iedName="${iedName}"][ldInst="${ldInst}"][prefix="${prefix}"][lnClass="${lnClass}"][lnInst="${lnInst}"][doName="${doName}"][daName="${daName}"]`
+  private getExtRefCount(fcdaElement: Element): number {
+    const fcdaIdentity = identity(fcdaElement);
+    if (!this.extRefCounters.has(fcdaIdentity)) {
+      const iedName = fcdaElement!.closest('IED')!.getAttribute('name')!;
+      const [ldInst, prefix, lnClass, lnInst, doName, daName] = [
+        'ldInst',
+        'prefix',
+        'lnClass',
+        'lnInst',
+        'doName',
+        'daName',
+      ].map(attr => fcdaElement.getAttribute(attr));
+      const extRefCount = Array.from(
+        this.doc.querySelectorAll(
+          `Inputs > ExtRef[iedName="${iedName}"][ldInst="${ldInst}"][prefix="${prefix}"][lnClass="${lnClass}"][lnInst="${lnInst}"][doName="${doName}"][daName="${daName}"]`
+        )
       )
-    ).filter(isPublic).length;
+        .filter(isPublic)
+        .filter(element => element.hasAttribute('intAddr')).length;
+      this.extRefCounters.set(fcdaIdentity, extRefCount);
+    }
+    return this.extRefCounters.get(fcdaIdentity);
   }
 
   private openEditWizard(controlElement: Element): void {
@@ -183,11 +167,7 @@ export class FCDALaterBindingList extends LitElement {
   }
 
   renderFCDA(controlElement: Element, fcdaElement: Element): TemplateResult {
-    // index as required
-    if (!this.fcdaIndex.has(identity(fcdaElement))) this.indexFcda(fcdaElement);
-    const fcdaCount = this.fcdaIndex.get(identity(fcdaElement)) || 0;
-    const fcdaCountHtml =
-      fcdaCount !== 0 ? html`<span slot="meta">${fcdaCount}</span>` : nothing;
+    const fcdaCount = this.getExtRefCount(fcdaElement);
     return html`<mwc-list-item
       graphic="large"
       ?hasMeta=${fcdaCount !== 0}
@@ -207,15 +187,8 @@ export class FCDALaterBindingList extends LitElement {
         ${fcdaElement.getAttribute('lnInst')}
       </span>
       <mwc-icon slot="graphic">subdirectory_arrow_right</mwc-icon>
-      ${fcdaCountHtml}
+      ${fcdaCount !== 0 ? html`<span slot="meta">${fcdaCount}</span>` : nothing}
     </mwc-list-item>`;
-  }
-
-  private indexFcda(fcdaElement: Element) {
-    this.fcdaIndex.set(
-      identity(fcdaElement),
-      this.countExtRefUsageOfFcda(fcdaElement)
-    );
   }
 
   render(): TemplateResult {
