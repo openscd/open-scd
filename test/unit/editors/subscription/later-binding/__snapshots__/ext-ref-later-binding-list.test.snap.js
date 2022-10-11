@@ -1,25 +1,25 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["smv-list looks like the latest snapshot without a doc loaded"] = 
+snapshots["extref-later-binding-list looks like the latest snapshot without a doc loaded"] = 
 `<section tabindex="0">
   <h1>
     [subscription.laterBinding.extRefList.noSelection]
   </h1>
 </section>
 `;
-/* end snapshot smv-list looks like the latest snapshot without a doc loaded */
+/* end snapshot extref-later-binding-list looks like the latest snapshot without a doc loaded */
 
-snapshots["smv-list with document loaded looks like the latest snapshot, but no event fired"] = 
+snapshots["extref-later-binding-list for Sampled Value Control looks like the latest snapshot, but no event fired"] = 
 `<section tabindex="0">
   <h1>
     [subscription.laterBinding.extRefList.noSelection]
   </h1>
 </section>
 `;
-/* end snapshot smv-list with document loaded looks like the latest snapshot, but no event fired */
+/* end snapshot extref-later-binding-list for Sampled Value Control looks like the latest snapshot, but no event fired */
 
-snapshots["smv-list with document loaded when SVC has no subscriptions looks like the latest snapshot, when SVC has no subscriptions"] = 
+snapshots["extref-later-binding-list for Sampled Value Control when SVC has no subscriptions looks like the latest snapshot, when SVC has no subscriptions"] = 
 `<section tabindex="0">
   <h1>
     [subscription.laterBinding.extRefList.title]
@@ -219,9 +219,9 @@ snapshots["smv-list with document loaded when SVC has no subscriptions looks lik
   </filtered-list>
 </section>
 `;
-/* end snapshot smv-list with document loaded when SVC has no subscriptions looks like the latest snapshot, when SVC has no subscriptions */
+/* end snapshot extref-later-binding-list for Sampled Value Control when SVC has no subscriptions looks like the latest snapshot, when SVC has no subscriptions */
 
-snapshots["smv-list with document loaded when SVC has a single subscriptions looks like the latest snapshot, "] = 
+snapshots["extref-later-binding-list for Sampled Value Control when SVC has a single subscriptions looks like the latest snapshot, "] = 
 `<section tabindex="0">
   <h1>
     [subscription.laterBinding.extRefList.title]
@@ -432,9 +432,9 @@ snapshots["smv-list with document loaded when SVC has a single subscriptions loo
   </filtered-list>
 </section>
 `;
-/* end snapshot smv-list with document loaded when SVC has a single subscriptions looks like the latest snapshot,  */
+/* end snapshot extref-later-binding-list for Sampled Value Control when SVC has a single subscriptions looks like the latest snapshot,  */
 
-snapshots["smv-list when SVC has a multiple subscriptions looks like the latest snapshot, "] = 
+snapshots["extref-later-binding-list when SVC has a multiple subscriptions looks like the latest snapshot, "] = 
 `<section tabindex="0">
   <h1>
     [subscription.laterBinding.extRefList.title]
@@ -677,18 +677,18 @@ snapshots["smv-list when SVC has a multiple subscriptions looks like the latest 
   </filtered-list>
 </section>
 `;
-/* end snapshot smv-list when SVC has a multiple subscriptions looks like the latest snapshot,  */
+/* end snapshot extref-later-binding-list when SVC has a multiple subscriptions looks like the latest snapshot,  */
 
-snapshots["gse-list with gse document loaded looks like the latest snapshot, but no event fired"] = 
+snapshots["extref-later-binding-list for GOOSE Control looks like the latest snapshot, but no event fired"] = 
 `<section tabindex="0">
   <h1>
     [subscription.laterBinding.extRefList.noSelection]
   </h1>
 </section>
 `;
-/* end snapshot gse-list with gse document loaded looks like the latest snapshot, but no event fired */
+/* end snapshot extref-later-binding-list for GOOSE Control looks like the latest snapshot, but no event fired */
 
-snapshots["gse-list with gse document loaded when GSEControl has no subscriptions looks like the latest snapshot, when GSEControl has no subscriptions"] = 
+snapshots["extref-later-binding-list for GOOSE Control when GSEControl has no subscriptions looks like the latest snapshot, when GSEControl has no subscriptions"] = 
 `<section tabindex="0">
   <h1>
     [subscription.laterBinding.extRefList.title]
@@ -812,9 +812,9 @@ snapshots["gse-list with gse document loaded when GSEControl has no subscription
   </filtered-list>
 </section>
 `;
-/* end snapshot gse-list with gse document loaded when GSEControl has no subscriptions looks like the latest snapshot, when GSEControl has no subscriptions */
+/* end snapshot extref-later-binding-list for GOOSE Control when GSEControl has no subscriptions looks like the latest snapshot, when GSEControl has no subscriptions */
 
-snapshots["gse-list with gse document loaded when GSEControl has a single subscription looks like the latest snapshot, "] = 
+snapshots["extref-later-binding-list for GOOSE Control when GSEControl has a single subscription looks like the latest snapshot, "] = 
 `<section tabindex="0">
   <h1>
     [subscription.laterBinding.extRefList.title]
@@ -949,9 +949,9 @@ snapshots["gse-list with gse document loaded when GSEControl has a single subscr
   </filtered-list>
 </section>
 `;
-/* end snapshot gse-list with gse document loaded when GSEControl has a single subscription looks like the latest snapshot,  */
+/* end snapshot extref-later-binding-list for GOOSE Control when GSEControl has a single subscription looks like the latest snapshot,  */
 
-snapshots["gse-list when GSEControl has a multiple subscriptions looks like the latest snapshot, "] = 
+snapshots["extref-later-binding-list when GSEControl has a multiple subscriptions looks like the latest snapshot, "] = 
 `<section tabindex="0">
   <h1>
     [subscription.laterBinding.extRefList.title]
@@ -1102,5 +1102,5 @@ snapshots["gse-list when GSEControl has a multiple subscriptions looks like the 
   </filtered-list>
 </section>
 `;
-/* end snapshot gse-list when GSEControl has a multiple subscriptions looks like the latest snapshot,  */
+/* end snapshot extref-later-binding-list when GSEControl has a multiple subscriptions looks like the latest snapshot,  */
 

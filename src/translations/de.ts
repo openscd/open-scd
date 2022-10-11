@@ -372,27 +372,32 @@ export const de: Translations = {
         subscriberView: 'Subscriber | Publisher',
       },
     },
+    binding: {
+      extRefList: {
+        title: '???',
+        noSelection: '???',
+        noSubscribedLNs: '???',
+        noAvailableLNs: '???',
+      },
+    },
     laterBinding: {
-      SampledValueControl: {
-        controlBlockList: {
-          title: 'Sample Value Meldungen',
-          noControlBlockFound: 'Keine Sampled Values gefunden',
-        },
-      },
-      GSEControl: {
-        controlBlockList: {
-          title: 'GOOSE-Meldungen',
-          noControlBlockFound: 'Keine GOOSEs gefunden',
-        },
-      },
       extRefList: {
         title: 'Für Ausgewählte Daten-Attribut Verfügbare Verbindung',
         noSelection: 'Kein Daten-Attribut ausgewählt',
         noSubscribedExtRefs: 'Keine bestehenden Verbindungen',
         noAvailableExtRefs: 'Keine verfügbaren Eingänge vorhanden',
       },
-      iedList: {
-        title: 'IEDs',
+    },
+    SampledValueControl: {
+      controlBlockList: {
+        title: 'Sample Value Meldungen',
+        noControlBlockFound: 'Keine Sampled Values gefunden',
+      },
+    },
+    GSEControl: {
+      controlBlockList: {
+        title: 'GOOSE-Meldungen',
+        noControlBlockFound: 'Keine GOOSEs gefunden',
       },
     },
   },

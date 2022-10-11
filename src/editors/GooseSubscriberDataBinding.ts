@@ -1,20 +1,32 @@
 import { css, html, LitElement, property, TemplateResult } from 'lit-element';
 
+import { Nsdoc } from '../foundation/nsdoc.js';
+
 import './subscription/fcda-binding-list.js';
+import './subscription/later-binding/ext-ref-ln-binding-list.js';
 
 export default class GooseSubscribeDataBindingPlugin extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property()
+  nsdoc!: Nsdoc;
 
   render(): TemplateResult {
     return html`<div>
       <div class="container">
         <fcda-binding-list
           class="column"
-          .doc=${this.doc}
           controlTag="GSEControl"
+          .doc=${this.doc}
         >
         </fcda-binding-list>
+        <extref-ln-binding-list
+          class="column"
+          controlTag="GSEControl"
+          .doc="${this.doc}"
+          .nsdoc="${this.nsdoc}"
+        >
+        </extref-ln-binding-list>
       </div>
     </div>`;
   }

@@ -1,21 +1,33 @@
 import { css, html, LitElement, property, TemplateResult } from 'lit-element';
 
+import { Nsdoc } from '../foundation/nsdoc.js';
+
 import './subscription/fcda-binding-list.js';
+import './subscription/later-binding/ext-ref-ln-binding-list.js';
 
 /** An editor [[`plugin`]] for Subscribe Later Binding (SMV). */
 export default class SMVSubscribeDataBindingPlugin extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property()
+  nsdoc!: Nsdoc;
 
   render(): TemplateResult {
     return html`<div>
       <div class="container">
         <fcda-binding-list
           class="column"
-          .doc=${this.doc}
           controlTag="SampledValueControl"
+          .doc=${this.doc}
         >
         </fcda-binding-list>
+        <extref-ln-binding-list
+          class="column"
+          controlTag="SampledValueControl"
+          .doc="${this.doc}"
+          .nsdoc="${this.nsdoc}"
+        >
+        </extref-ln-binding-list>
       </div>
     </div>`;
   }

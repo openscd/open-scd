@@ -147,7 +147,7 @@ export class FcdaBindingList extends LitElement {
       ${controlElements.length > 0
         ? html`<h1>
               ${translate(
-                `subscription.laterBinding.${this.controlTag}.controlBlockList.title`
+                `subscription.${this.controlTag}.controlBlockList.title`
               )}
             </h1>
             <filtered-list activatable>
@@ -189,7 +189,7 @@ export class FcdaBindingList extends LitElement {
             </filtered-list>`
         : html`<h1>
             ${translate(
-              `subscription.laterBinding.${this.controlTag}.controlBlockList.noControlBlockFound`
+              `subscription.${this.controlTag}.controlBlockList.noControlBlockFound`
             )}
           </h1>`}
     </section>`;

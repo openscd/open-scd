@@ -4,7 +4,7 @@ export const snapshots = {};
 snapshots["fcda-binding-list without a doc loaded looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.laterBinding.undefined.controlBlockList.noControlBlockFound]
+    [subscription.undefined.controlBlockList.noControlBlockFound]
   </h1>
 </section>
 `;
@@ -13,7 +13,7 @@ snapshots["fcda-binding-list without a doc loaded looks like the latest snapshot
 snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.laterBinding.SampledValueControl.controlBlockList.title]
+    [subscription.SampledValueControl.controlBlockList.title]
   </h1>
   <filtered-list activatable="">
     <mwc-list-item
@@ -615,7 +615,7 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
 snapshots["fcda-binding-list with a GSEControl doc loaded looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.laterBinding.GSEControl.controlBlockList.title]
+    [subscription.GSEControl.controlBlockList.title]
   </h1>
   <filtered-list activatable="">
     <mwc-list-item
