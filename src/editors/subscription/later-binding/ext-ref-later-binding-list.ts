@@ -109,7 +109,7 @@ export class ExtRefLaterBindingList extends LitElement {
         this.currentSelectedControlElement
           ?.closest('LDevice')
           ?.getAttribute('inst') &&
-      (extRefElement.getAttribute('scrPrefix') || '') ===
+      (extRefElement.getAttribute('srcPrefix') || '') ===
         (this.currentSelectedControlElement
           ?.closest('LN0')
           ?.getAttribute('prefix') || '') &&
