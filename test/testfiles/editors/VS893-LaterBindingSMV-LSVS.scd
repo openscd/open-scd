@@ -114,6 +114,14 @@
 							</DAI>
 						</DOI>
 					</LN>
+					<LN lnClass="LSVS" inst="2" lnType="Dummy.LSVS">
+						<Private type="OpenSCD.create" />
+						<DOI name="SvCBRef">
+							<DAI name="setSrcRef">
+								<Val>SMV_Publisher2CurrentTransformer/LLN0.voltageOnly</Val>
+							</DAI>
+						</DOI>
+					</LN>
 				</LDevice>
 			</Server>
 		</AccessPoint>
