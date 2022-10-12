@@ -16,7 +16,6 @@ import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 
 import {
-  compareNames,
   getDescriptionAttribute,
   getNameAttribute,
   identity,
@@ -63,9 +62,7 @@ export class FcdaBindingList extends LitElement {
 
   private getControlElements(): Element[] {
     if (this.doc) {
-      return Array.from(
-        this.doc.querySelectorAll(`LN0 > ${this.controlTag}`)
-      ).sort((a, b) => compareNames(`${identity(a)}`, `${identity(b)}`));
+      return Array.from(this.doc.querySelectorAll(`LN0 > ${this.controlTag}`));
     }
     return [];
   }
@@ -79,7 +76,7 @@ export class FcdaBindingList extends LitElement {
             'datSet'
           )}] > FCDA`
         )
-      ).sort((a, b) => compareNames(`${identity(a)}`, `${identity(b)}`));
+      );
     }
     return [];
   }

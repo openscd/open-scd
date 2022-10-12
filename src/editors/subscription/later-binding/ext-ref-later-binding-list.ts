@@ -12,20 +12,17 @@ import { translate } from 'lit-translate';
 
 import {
   cloneElement,
-  compareNames,
   getDescriptionAttribute,
   identity,
   newActionEvent,
   Replace,
 } from '../../../foundation.js';
 
+import { FcdaSelectEvent, styles, updateExtRefElement } from '../foundation.js';
 import {
-  FcdaSelectEvent,
-  serviceTypes,
-  styles,
-  updateExtRefElement,
-} from '../foundation.js';
-import { isSubscribedTo } from './foundation.js';
+  getAvailableExtRefElements,
+  getSubscribedExtRefElements,
+} from './foundation.js';
 
 /**
  * A sub element for showing all Ext Refs from a FCDA Element.
@@ -55,39 +52,6 @@ export class ExtRefLaterBindingList extends LitElement {
     }
   }
 
-  private getExtRefElements(): Element[] {
-    if (this.doc) {
-      return Array.from(this.doc.querySelectorAll('ExtRef'))
-        .filter(element => element.hasAttribute('intAddr'))
-        .filter(element => element.closest('IED') !== this.currentIedElement)
-        .sort((a, b) =>
-          compareNames(
-            `${a.getAttribute('intAddr')}`,
-            `${b.getAttribute('intAddr')}`
-          )
-        );
-    }
-    return [];
-  }
-
-  private getSubscribedExtRefElements(): Element[] {
-    return this.getExtRefElements().filter(extRefElement =>
-      isSubscribedTo(
-        serviceTypes[this.controlTag],
-        this.currentIedElement,
-        this.currentSelectedControlElement,
-        this.currentSelectedFcdaElement,
-        extRefElement
-      )
-    );
-  }
-
-  private getAvailableExtRefElements(): Element[] {
-    return this.getExtRefElements().filter(
-      element => !this.isSubscribed(element)
-    );
-  }
-
   private async onFcdaSelectEvent(event: FcdaSelectEvent) {
     this.currentSelectedControlElement = event.detail.controlElement;
     this.currentSelectedFcdaElement = event.detail.fcda;
@@ -97,23 +61,6 @@ export class ExtRefLaterBindingList extends LitElement {
     this.currentIedElement = this.currentSelectedFcdaElement
       ? this.currentSelectedFcdaElement.closest('IED') ?? undefined
       : undefined;
-  }
-
-  /**
-   * Check if the ExtRef is already subscribed to a FCDA Element.
-   *
-   * @param extRefElement - The Ext Ref Element to check.
-   */
-  private isSubscribed(extRefElement: Element): boolean {
-    return (
-      extRefElement.hasAttribute('iedName') &&
-      extRefElement.hasAttribute('ldInst') &&
-      extRefElement.hasAttribute('prefix') &&
-      extRefElement.hasAttribute('lnClass') &&
-      extRefElement.hasAttribute('lnInst') &&
-      extRefElement.hasAttribute('doName') &&
-      extRefElement.hasAttribute('daName')
-    );
   }
 
   /**
@@ -192,6 +139,23 @@ export class ExtRefLaterBindingList extends LitElement {
         ),
       },
     };
+  }
+
+  private getSubscribedExtRefElements(): Element[] {
+    return getSubscribedExtRefElements(
+      <Element>this.doc.getRootNode(),
+      this.controlTag,
+      this.currentSelectedFcdaElement,
+      this.currentSelectedControlElement,
+      true
+    );
+  }
+
+  private getAvailableExtRefElements(): Element[] {
+    return getAvailableExtRefElements(
+      <Element>this.doc.getRootNode(),
+      this.currentSelectedFcdaElement
+    );
   }
 
   private renderTitle(): TemplateResult {

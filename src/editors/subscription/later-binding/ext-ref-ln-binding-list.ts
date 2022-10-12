@@ -24,14 +24,13 @@ import {
   createExtRefElement,
   existExtRef,
   FcdaSelectEvent,
-  serviceTypes,
   styles,
 } from '../foundation.js';
-import { isSubscribedTo } from './foundation.js';
+import { getSubscribedExtRefElements } from './foundation.js';
 import {
   emptyInputsDeleteActions,
   getFcdaReferences,
-} from '../../../foundation/ied';
+} from '../../../foundation/ied.js';
 
 /**
  * A sub element for showing all Ext Refs from a FCDA Element.
@@ -67,17 +66,7 @@ export class ExtRefLnBindingList extends LitElement {
     if (this.doc) {
       return Array.from(
         this.doc.querySelectorAll('LDevice > LN0, LDevice > LN')
-      )
-        .filter(element => element.closest('IED') !== this.currentIedElement)
-        .sort((a, b) =>
-          (
-            identity(a.closest('LDevice')) +
-            ' ' +
-            this.buildLNTitle(a)
-          ).localeCompare(
-            identity(b.closest('LDevice')) + ' ' + this.buildLNTitle(b)
-          )
-        );
+      ).filter(element => element.closest('IED') !== this.currentIedElement);
     }
     return [];
   }
@@ -85,33 +74,25 @@ export class ExtRefLnBindingList extends LitElement {
   private getSubscribedLNElements(): Element[] {
     return this.getLNElements().filter(
       element =>
-        Array.from(element.querySelectorAll('ExtRef'))
-          .filter(
-            extRefElement => extRefElement.getAttribute('intAddr') === null
-          )
-          .filter(extRefElement =>
-            isSubscribedTo(
-              serviceTypes[this.controlTag],
-              this.currentIedElement,
-              this.currentSelectedControlElement,
-              this.currentSelectedFcdaElement,
-              extRefElement
-            )
-          ).length > 0
+        getSubscribedExtRefElements(
+          element,
+          this.controlTag,
+          this.currentSelectedFcdaElement,
+          this.currentSelectedControlElement,
+          false
+        ).length > 0
     );
   }
 
   private getAvailableLNElements(): Element[] {
     return this.getLNElements().filter(
       element =>
-        Array.from(element.querySelectorAll('ExtRef')).filter(extRefElement =>
-          isSubscribedTo(
-            serviceTypes[this.controlTag],
-            this.currentIedElement,
-            this.currentSelectedControlElement,
-            this.currentSelectedFcdaElement,
-            extRefElement
-          )
+        getSubscribedExtRefElements(
+          element,
+          this.controlTag,
+          this.currentSelectedFcdaElement,
+          this.currentSelectedControlElement,
+          undefined // We also want to exclude LN that are already bind using Later Binding.
         ).length == 0
     );
   }

@@ -1,5 +1,7 @@
 import { getSclSchemaVersion } from '../../../foundation.js';
 
+import { serviceTypes } from '../foundation.js';
+
 /**
  * Simple function to check if the attribute of the Left Side has the same value as the attribute of the Right Element.
  *
@@ -41,12 +43,12 @@ export function sameAttributeValueDiffName(
 /**
  * If needed check version specific attributes against FCDA Element.
  *
- * @param serviceType    - Indicates which type of control element.
+ * @param controlTag     - Indicates which type of control element.
  * @param controlElement - The Control Element to check against.
  * @param extRefElement  - The Ext Ref Element to check.
  */
 function checkEditionSpecificRequirements(
-  serviceType: string | undefined,
+  controlTag: 'SampledValueControl' | 'GSEControl',
   controlElement: Element | undefined,
   extRefElement: Element
 ): boolean {
@@ -60,7 +62,8 @@ function checkEditionSpecificRequirements(
 
   // For the 2007B and 2007B4 Edition we need to check some extra attributes.
   return (
-    (extRefElement.getAttribute('serviceType') ?? '') === serviceType &&
+    (extRefElement.getAttribute('serviceType') ?? '') ===
+      serviceTypes[controlTag] &&
     sameAttributeValueDiffName(
       extRefElement,
       'srcLDInst',
@@ -94,28 +97,72 @@ function checkEditionSpecificRequirements(
  * and also if the IED Name is the same. If that is the case this ExtRef subscribes to the selected FCDA
  * Element.
  *
- * @param serviceType    - Indicates which type of control element.
- * @param iedElement     - The IED Element to check against.
+ * @param controlTag     - Indicates which type of control element.
  * @param controlElement - The Control Element to check against.
  * @param fcdaElement    - The FCDA Element to check against.
  * @param extRefElement  - The Ext Ref Element to check.
  */
 export function isSubscribedTo(
-  serviceType: string | undefined,
-  iedElement: Element | undefined,
+  controlTag: 'SampledValueControl' | 'GSEControl',
   controlElement: Element | undefined,
   fcdaElement: Element | undefined,
   extRefElement: Element
 ): boolean {
   return (
     extRefElement.getAttribute('iedName') ===
-      iedElement?.getAttribute('name') &&
+      fcdaElement?.closest('IED')?.getAttribute('name') &&
     sameAttributeValue(fcdaElement, extRefElement, 'ldInst') &&
     sameAttributeValue(fcdaElement, extRefElement, 'prefix') &&
     sameAttributeValue(fcdaElement, extRefElement, 'lnClass') &&
     sameAttributeValue(fcdaElement, extRefElement, 'lnInst') &&
     sameAttributeValue(fcdaElement, extRefElement, 'doName') &&
     sameAttributeValue(fcdaElement, extRefElement, 'daName') &&
-    checkEditionSpecificRequirements(serviceType, controlElement, extRefElement)
+    checkEditionSpecificRequirements(controlTag, controlElement, extRefElement)
   );
+}
+
+/**
+ * Check if the ExtRef is already subscribed to a FCDA Element.
+ *
+ * @param extRefElement - The Ext Ref Element to check.
+ */
+export function isSubscribed(extRefElement: Element): boolean {
+  return (
+    extRefElement.hasAttribute('iedName') &&
+    extRefElement.hasAttribute('ldInst') &&
+    extRefElement.hasAttribute('prefix') &&
+    extRefElement.hasAttribute('lnClass') &&
+    extRefElement.hasAttribute('lnInst') &&
+    extRefElement.hasAttribute('doName') &&
+    extRefElement.hasAttribute('daName')
+  );
+}
+
+export function getSubscribedExtRefElements(
+  rootElement: Element,
+  controlTag: 'SampledValueControl' | 'GSEControl',
+  fcdaElement: Element | undefined,
+  controlElement: Element | undefined,
+  includeLaterBinding: boolean | undefined
+): Element[] {
+  return Array.from(rootElement.querySelectorAll('ExtRef'))
+    .filter(
+      element =>
+        includeLaterBinding === undefined ||
+        (includeLaterBinding && element.hasAttribute('intAddr')) ||
+        (!includeLaterBinding && !element.hasAttribute('intAddr'))
+    )
+    .filter(element => element.closest('IED') !== fcdaElement?.closest('IED'))
+    .filter(extRefElement =>
+      isSubscribedTo(controlTag, controlElement, fcdaElement, extRefElement)
+    );
+}
+
+export function getAvailableExtRefElements(
+  rootElement: Element,
+  fcdaElement: Element | undefined
+): Element[] {
+  return Array.from(rootElement.querySelectorAll('ExtRef'))
+    .filter(element => element.closest('IED') !== fcdaElement?.closest('IED'))
+    .filter(extRefElement => !isSubscribed(extRefElement));
 }

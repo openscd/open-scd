@@ -75,7 +75,7 @@ describe('fcda-binding-list', () => {
       const nameField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
       );
-      expect(nameField.value).to.be.equal('currentOnly');
+      expect(nameField.value).to.be.equal('fullSmv');
     });
 
     it('event is fired, but properties are undefined', () => {

@@ -134,8 +134,7 @@ describe('smv-list', () => {
   });
 
   describe('isSubscribedTo', () => {
-    const type = 'SMV';
-    let ied: Element;
+    const type = 'SampledValueControl';
     let control: Element;
     let fcda: Element;
     let extRef: Element;
@@ -148,79 +147,78 @@ describe('smv-list', () => {
         control = doc.querySelector(
           'IED[name="SMV_Publisher"] SampledValueControl[name="currentOnly"]'
         )!;
-        ied = fcda.closest('IED')!;
         extRef = doc.querySelector(
           'IED[name="SMV_Subscriber"] LDevice[inst="Overvoltage"] ExtRef[doName="AmpSv"][daName="instMag.i"][srcCBName="currentOnly"]'
         )!;
       });
 
       it('when ExtRef and FDCA have same values then ExtRef is subscribed', () => {
-        expect(isSubscribedTo(type, ied, control, fcda, extRef)).to.be.true;
+        expect(isSubscribedTo(type, control, fcda, extRef)).to.be.true;
       });
 
       it('when ExtRef and FDCA have different IED then ExtRef is not subscribed', () => {
-        ied.setAttribute('name', 'OtherName');
-        expect(isSubscribedTo(type, ied, control, fcda, extRef)).to.be.false;
+        fcda.closest('IED')!.setAttribute('name', 'OtherName');
+        expect(isSubscribedTo(type, control, fcda, extRef)).to.be.false;
       });
 
       it('when ExtRef and FDCA have different ldInst Value then ExtRef is not subscribed', () => {
         extRef.setAttribute('ldInst', 'OtherValue');
-        expect(isSubscribedTo(type, ied, control, fcda, extRef)).to.be.false;
+        expect(isSubscribedTo(type, control, fcda, extRef)).to.be.false;
       });
 
       it('when ExtRef and FDCA have different prefix Value then ExtRef is not subscribed', () => {
         extRef.setAttribute('prefix', 'OtherValue');
-        expect(isSubscribedTo(type, ied, control, fcda, extRef)).to.be.false;
+        expect(isSubscribedTo(type, control, fcda, extRef)).to.be.false;
       });
 
       it('when ExtRef and FDCA have different lnClass Value then ExtRef is not subscribed', () => {
         extRef.setAttribute('lnClass', 'OtherValue');
-        expect(isSubscribedTo(type, ied, control, fcda, extRef)).to.be.false;
+        expect(isSubscribedTo(type, control, fcda, extRef)).to.be.false;
       });
 
       it('when ExtRef and FDCA have different lnInst Value then ExtRef is not subscribed', () => {
         extRef.setAttribute('lnInst', 'OtherValue');
-        expect(isSubscribedTo(type, ied, control, fcda, extRef)).to.be.false;
+        expect(isSubscribedTo(type, control, fcda, extRef)).to.be.false;
       });
 
       it('when ExtRef and FDCA have different doName Value then ExtRef is not subscribed', () => {
         extRef.setAttribute('doName', 'OtherValue');
-        expect(isSubscribedTo(type, ied, control, fcda, extRef)).to.be.false;
+        expect(isSubscribedTo(type, control, fcda, extRef)).to.be.false;
       });
 
       it('when ExtRef and FDCA have different daName Value then ExtRef is not subscribed', () => {
         extRef.setAttribute('daName', 'OtherValue');
-        expect(isSubscribedTo(type, ied, control, fcda, extRef)).to.be.false;
+        expect(isSubscribedTo(type, control, fcda, extRef)).to.be.false;
       });
 
       it('when ExtRef has a different ServiceType Value then ExtRef is not subscribed', () => {
         extRef.setAttribute('serviceType', 'OtherValue');
-        expect(isSubscribedTo(type, ied, control, fcda, extRef)).to.be.false;
+        expect(isSubscribedTo(type, control, fcda, extRef)).to.be.false;
       });
 
       it('when ExtRef and FDCA have different srcLDInst Value then ExtRef is not subscribed', () => {
         extRef.setAttribute('srcLDInst', 'OtherValue');
-        expect(isSubscribedTo(type, ied, control, fcda, extRef)).to.be.false;
+        expect(isSubscribedTo(type, control, fcda, extRef)).to.be.false;
       });
 
       it('when ExtRef and FDCA have different scrPrefix Value then ExtRef is not subscribed', () => {
         extRef.setAttribute('scrPrefix', 'OtherValue');
-        expect(isSubscribedTo(type, ied, control, fcda, extRef)).to.be.false;
+        expect(isSubscribedTo(type, control, fcda, extRef)).to.be.false;
       });
 
       it('when ExtRef and FDCA have different srcLNClass Value then ExtRef is not subscribed', () => {
         extRef.setAttribute('srcLNClass', 'OtherValue');
-        expect(isSubscribedTo(type, ied, control, fcda, extRef)).to.be.false;
+        expect(isSubscribedTo(type, control, fcda, extRef)).to.be.false;
       });
 
       it('when ExtRef and FDCA have different srcLNInst Value then ExtRef is not subscribed', () => {
         extRef.setAttribute('srcLNInst', 'OtherValue');
-        expect(isSubscribedTo(type, ied, control, fcda, extRef)).to.be.false;
+        expect(isSubscribedTo(type, control, fcda, extRef)).to.be.false;
       });
 
       it('when ExtRef and FDCA have different srcCBName Value then ExtRef is not subscribed', () => {
         extRef.setAttribute('srcCBName', 'OtherValue');
-        expect(isSubscribedTo(type, ied, control, fcda, extRef)).to.be.false;
+        expect(isSubscribedTo(type, control, fcda, extRef)).to.be.false;
       });
     });
 
@@ -236,14 +234,13 @@ describe('smv-list', () => {
         control = doc.querySelector(
           'IED[name="SMV_Publisher"] SampledValueControl[name="currentOnly"]'
         )!;
-        ied = fcda.closest('IED')!;
         extRef = doc.querySelector(
           'IED[name="SMV_Subscriber"] LDevice[inst="Overvoltage"] ExtRef[ldInst="CurrentTransformer"][doName="AmpSv"][daName="instMag.i"]'
         )!;
       });
 
       it('when ExtRef and FDCA have same values then ExtRef is subscribed', () => {
-        expect(isSubscribedTo(type, ied, control, fcda, extRef)).to.be.true;
+        expect(isSubscribedTo(type, control, fcda, extRef)).to.be.true;
       });
     });
   });
