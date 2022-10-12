@@ -22,7 +22,6 @@ import {
   getDescriptionAttribute,
   getNameAttribute,
   identity,
-  isPublic,
   newWizardEvent,
 } from '../../../foundation.js';
 import { gooseIcon, smvIcon } from '../../../icons/icons.js';
@@ -30,7 +29,11 @@ import { wizards } from '../../../wizards/wizard-library.js';
 
 import { styles } from '../foundation.js';
 
-import { getFcdaTitleValue, newFcdaSelectEvent } from './foundation.js';
+import {
+  getFcdaTitleValue,
+  getSubscribedExtRefElements,
+  newFcdaSelectEvent,
+} from './foundation.js';
 
 type controlTag = 'SampledValueControl' | 'GSEControl';
 
@@ -107,25 +110,19 @@ export class FCDALaterBindingList extends LitElement {
     }
   }
 
-  private getExtRefCount(fcdaElement: Element): number {
+  private getExtRefCount(fcdaElement: Element, controlElement: Element): number {
     const fcdaIdentity = identity(fcdaElement);
+
     if (!this.extRefCounters.has(fcdaIdentity)) {
-      const iedName = fcdaElement!.closest('IED')!.getAttribute('name')!;
-      const [ldInst, prefix, lnClass, lnInst, doName, daName] = [
-        'ldInst',
-        'prefix',
-        'lnClass',
-        'lnInst',
-        'doName',
-        'daName',
-      ].map(attr => fcdaElement.getAttribute(attr));
-      const extRefCount = Array.from(
-        this.doc.querySelectorAll(
-          `Inputs > ExtRef[iedName="${iedName}"][ldInst="${ldInst}"][prefix="${prefix}"][lnClass="${lnClass}"][lnInst="${lnInst}"][doName="${doName}"][daName="${daName}"]`
-        )
-      )
-        .filter(isPublic)
-        .filter(element => element.hasAttribute('intAddr')).length;
+      const currentIedElement = fcdaElement.closest('IED');
+      const extRefCount = getSubscribedExtRefElements(
+        this.doc,
+        currentIedElement!,
+        fcdaElement,
+        controlElement!,
+        this.controlTag
+      ).length;
+      console.log('count', extRefCount)
       this.extRefCounters.set(fcdaIdentity, extRefCount);
     }
     return this.extRefCounters.get(fcdaIdentity);
@@ -167,7 +164,8 @@ export class FCDALaterBindingList extends LitElement {
   }
 
   renderFCDA(controlElement: Element, fcdaElement: Element): TemplateResult {
-    const fcdaCount = this.getExtRefCount(fcdaElement);
+    const fcdaCount = 1 
+    // this.getExtRefCount(fcdaElement, controlElement);
     return html`<mwc-list-item
       graphic="large"
       ?hasMeta=${fcdaCount !== 0}
