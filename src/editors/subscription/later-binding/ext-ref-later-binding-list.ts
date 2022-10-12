@@ -161,14 +161,19 @@ export class ExtRefLaterBindingList extends LitElement {
     </h1>`;
   }
 
-  private renderSubscribedExtRefs(): TemplateResult {
-    const subscribedExtRefs = getSubscribedExtRefElements(
+  // just here to make the tests work for now
+  private getSubscribedExtRefElements(): Element[] {
+    return getSubscribedExtRefElements(
       this.doc,
       this.currentIedElement!,
       this.currentSelectedFcdaElement!,
       this.currentSelectedControlElement!,
       this.controlTag
     );
+  }
+
+  private renderSubscribedExtRefs(): TemplateResult {
+    const subscribedExtRefs = this.getSubscribedExtRefElements()
     return html`
       <mwc-list-item
         noninteractive
