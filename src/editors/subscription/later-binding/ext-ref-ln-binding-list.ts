@@ -157,7 +157,6 @@ export class ExtRefLnBindingList extends LitElement {
       actions.push({ new: { parent: inputsElement, element: extRef } });
     }
 
-    /** If the IED doesn't have a Inputs element, just append it to the first LN0 element. */
     const title = 'Connect';
     return { title, actions };
   }

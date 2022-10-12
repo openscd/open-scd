@@ -1,37 +1,42 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import { Wizarding } from '../../../src/Wizarding.js';
 import { Editing } from '../../../src/Editing.js';
+import { initializeNsdoc } from '../../../src/foundation/nsdoc.js';
 
-import GooseSubscriberLaterBinding from '../../../src/editors/GooseSubscriberLaterBinding.js';
+import GooseSubscriberDataBinding from '../../../src/editors/GooseSubscriberDataBinding.js';
+
 import {
-  getExtrefLaterBindingList,
+  getExtrefDataBindingList,
   getFCDABindingList,
 } from './test-support.js';
 
-describe('GOOSE Subscribe Later Binding Plugin', () => {
+describe('GOOSE Subscribe Data Binding Plugin', async () => {
   customElements.define(
-    'goose-subscriber-later-binding-plugin',
-    Wizarding(Editing(GooseSubscriberLaterBinding))
+    'goose-subscriber-data-binding-plugin',
+    Wizarding(Editing(GooseSubscriberDataBinding))
   );
 
-  let element: GooseSubscriberLaterBinding;
+  let element: GooseSubscriberDataBinding;
   let doc: XMLDocument;
 
+  const nsdoc = await initializeNsdoc();
+
   beforeEach(async () => {
-    doc = await fetch('/test/testfiles/editors/LaterBindingGOOSE2007B4.scd')
+    doc = await fetch('/test/testfiles/editors/DataBindingGOOSE2007B4.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
     element = await fixture(
-      html`<goose-subscriber-later-binding-plugin
+      html` <goose-subscriber-data-binding-plugin
         .doc="${doc}"
-      ></goose-subscriber-later-binding-plugin>`
+        .nsdoc=${nsdoc}
+      ></goose-subscriber-data-binding-plugin>`
     );
   });
 
   it('when subscribing an available ExtRef then the lists are changed', async () => {
     const fcdaListElement = getFCDABindingList(element);
-    const extRefListElement = getExtrefLaterBindingList(element);
+    const extRefListElement = getExtrefDataBindingList(element);
 
     (<HTMLElement>(
       fcdaListElement.shadowRoot!.querySelector(
@@ -40,31 +45,27 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
     )).click();
     await element.requestUpdate();
 
-    expect(
-      extRefListElement['getSubscribedExtRefElements']().length
-    ).to.be.equal(0);
-    expect(
-      extRefListElement['getAvailableExtRefElements']().length
-    ).to.be.equal(4);
+    expect(extRefListElement['getSubscribedLNElements']().length).to.be.equal(
+      0
+    );
+    expect(extRefListElement['getAvailableLNElements']().length).to.be.equal(8);
 
     (<HTMLElement>(
       extRefListElement.shadowRoot!.querySelector(
-        'mwc-list-item[value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0]"]'
+        'mwc-list-item[value="GOOSE_Subscriber2>>Earth_Switch> XSWI 1"]'
       )
     )).click();
     await element.requestUpdate();
 
-    expect(
-      extRefListElement['getSubscribedExtRefElements']().length
-    ).to.be.equal(1);
-    expect(
-      extRefListElement['getAvailableExtRefElements']().length
-    ).to.be.equal(3);
+    expect(extRefListElement['getSubscribedLNElements']().length).to.be.equal(
+      1
+    );
+    expect(extRefListElement['getAvailableLNElements']().length).to.be.equal(7);
   });
 
   it('when unsubscribing a subscribed ExtRef then the lists are changed', async () => {
     const fcdaListElement = getFCDABindingList(element);
-    const extRefListElement = getExtrefLaterBindingList(element);
+    const extRefListElement = getExtrefDataBindingList(element);
 
     (<HTMLElement>(
       fcdaListElement.shadowRoot!.querySelector(
@@ -74,25 +75,21 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
     await element.requestUpdate();
     await extRefListElement.requestUpdate();
 
-    expect(
-      extRefListElement['getSubscribedExtRefElements']().length
-    ).to.be.equal(2);
-    expect(
-      extRefListElement['getAvailableExtRefElements']().length
-    ).to.be.equal(4);
+    expect(extRefListElement['getSubscribedLNElements']().length).to.be.equal(
+      1
+    );
+    expect(extRefListElement['getAvailableLNElements']().length).to.be.equal(5);
 
     (<HTMLElement>(
       extRefListElement.shadowRoot!.querySelector(
-        'mwc-list-item[value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos q@Pos;CSWI1/Pos/q"]'
+        'mwc-list-item[value="GOOSE_Subscriber2>>Earth_Switch"]'
       )
     )).click();
     await element.requestUpdate();
 
-    expect(
-      extRefListElement['getSubscribedExtRefElements']().length
-    ).to.be.equal(1);
-    expect(
-      extRefListElement['getAvailableExtRefElements']().length
-    ).to.be.equal(5);
+    expect(extRefListElement['getSubscribedLNElements']().length).to.be.equal(
+      0
+    );
+    expect(extRefListElement['getAvailableLNElements']().length).to.be.equal(6);
   });
 });
