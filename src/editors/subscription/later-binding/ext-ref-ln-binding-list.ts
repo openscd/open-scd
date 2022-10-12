@@ -24,6 +24,7 @@ import {
   createExtRefElement,
   existExtRef,
   FcdaSelectEvent,
+  newSubscriptionChangedEvent,
   styles,
 } from '../foundation.js';
 import { getSubscribedExtRefElements } from './foundation.js';
@@ -98,7 +99,7 @@ export class ExtRefLnBindingList extends LitElement {
   }
 
   private async onFcdaSelectEvent(event: FcdaSelectEvent) {
-    this.currentSelectedControlElement = event.detail.controlElement;
+    this.currentSelectedControlElement = event.detail.control;
     this.currentSelectedFcdaElement = event.detail.fcda;
 
     // Retrieve the IED Element to which the FCDA belongs.
@@ -224,6 +225,12 @@ export class ExtRefLnBindingList extends LitElement {
                 const replaceAction = this.unsubscribe(lnElement);
                 if (replaceAction) {
                   this.dispatchEvent(newActionEvent(replaceAction));
+                  this.dispatchEvent(
+                    newSubscriptionChangedEvent(
+                      this.currentSelectedControlElement,
+                      this.currentSelectedFcdaElement
+                    )
+                  );
                 }
               }}
             >
@@ -270,6 +277,12 @@ export class ExtRefLnBindingList extends LitElement {
                 const replaceAction = this.subscribe(lnElement);
                 if (replaceAction) {
                   this.dispatchEvent(newActionEvent(replaceAction));
+                  this.dispatchEvent(
+                    newSubscriptionChangedEvent(
+                      this.currentSelectedControlElement,
+                      this.currentSelectedFcdaElement
+                    )
+                  );
                 }
               }}
             >

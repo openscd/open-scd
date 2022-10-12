@@ -34,3 +34,11 @@ export function getExtrefLaterBindingList(
     element.shadowRoot?.querySelector('extref-later-binding-list')
   );
 }
+
+export function getSelectedSubItemValue(
+  element: FcdaBindingList
+): Element | null {
+  return element.shadowRoot!.querySelector(
+    '.subitem[selected] span[slot="meta"]'
+  );
+}

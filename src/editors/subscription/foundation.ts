@@ -54,12 +54,12 @@ export function newIEDSelectEvent(
 }
 
 export interface FcdaSelectDetail {
-  controlElement: Element | undefined;
+  control: Element | undefined;
   fcda: Element | undefined;
 }
 export type FcdaSelectEvent = CustomEvent<FcdaSelectDetail>;
 export function newFcdaSelectEvent(
-  controlElement: Element | undefined,
+  control: Element | undefined,
   fcda: Element | undefined,
   eventInitDict?: CustomEventInit<FcdaSelectDetail>
 ): FcdaSelectEvent {
@@ -67,7 +67,25 @@ export function newFcdaSelectEvent(
     bubbles: true,
     composed: true,
     ...eventInitDict,
-    detail: { controlElement, fcda, ...eventInitDict?.detail },
+    detail: { control, fcda, ...eventInitDict?.detail },
+  });
+}
+
+export interface SubscriptionChangedDetail {
+  control: Element | undefined;
+  fcda: Element | undefined;
+}
+export type SubscriptionChangedEvent = CustomEvent<SubscriptionChangedDetail>;
+export function newSubscriptionChangedEvent(
+  control: Element | undefined,
+  fcda: Element | undefined,
+  eventInitDict?: CustomEventInit<SubscriptionChangedDetail>
+): SubscriptionChangedEvent {
+  return new CustomEvent<SubscriptionChangedDetail>('subscription-changed', {
+    bubbles: true,
+    composed: true,
+    ...eventInitDict,
+    detail: { control, fcda, ...eventInitDict?.detail },
   });
 }
 
@@ -408,5 +426,6 @@ declare global {
     ['view']: ViewEvent;
     ['ied-select']: IEDSelectEvent;
     ['fcda-select']: FcdaSelectEvent;
+    ['subscription-changed']: SubscriptionChangedEvent;
   }
 }

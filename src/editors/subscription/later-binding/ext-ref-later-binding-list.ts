@@ -18,7 +18,12 @@ import {
   Replace,
 } from '../../../foundation.js';
 
-import { FcdaSelectEvent, styles, updateExtRefElement } from '../foundation.js';
+import {
+  FcdaSelectEvent,
+  newSubscriptionChangedEvent,
+  styles,
+  updateExtRefElement,
+} from '../foundation.js';
 import {
   getAvailableExtRefElements,
   getSubscribedExtRefElements,
@@ -53,7 +58,7 @@ export class ExtRefLaterBindingList extends LitElement {
   }
 
   private async onFcdaSelectEvent(event: FcdaSelectEvent) {
-    this.currentSelectedControlElement = event.detail.controlElement;
+    this.currentSelectedControlElement = event.detail.control;
     this.currentSelectedFcdaElement = event.detail.fcda;
 
     // Retrieve the IED Element to which the FCDA belongs.
@@ -190,6 +195,12 @@ export class ExtRefLaterBindingList extends LitElement {
                 const replaceAction = this.unsubscribe(extRefElement);
                 if (replaceAction) {
                   this.dispatchEvent(newActionEvent(replaceAction));
+                  this.dispatchEvent(
+                    newSubscriptionChangedEvent(
+                      this.currentSelectedControlElement,
+                      this.currentSelectedFcdaElement
+                    )
+                  );
                 }
               }}
               value="${identity(extRefElement)}"
@@ -241,6 +252,12 @@ export class ExtRefLaterBindingList extends LitElement {
                 const replaceAction = this.subscribe(extRefElement);
                 if (replaceAction) {
                   this.dispatchEvent(newActionEvent(replaceAction));
+                  this.dispatchEvent(
+                    newSubscriptionChangedEvent(
+                      this.currentSelectedControlElement,
+                      this.currentSelectedFcdaElement
+                    )
+                  );
                 }
               }}
               value="${identity(extRefElement)}"

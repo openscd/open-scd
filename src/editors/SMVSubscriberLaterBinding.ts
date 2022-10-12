@@ -13,14 +13,15 @@ export default class SMVSubscribeLaterBindingPlugin extends LitElement {
       <div class="container">
         <fcda-binding-list
           class="column"
-          .doc=${this.doc}
           controlTag="SampledValueControl"
+          .includeLaterBinding="${true}"
+          .doc="${this.doc}"
         >
         </fcda-binding-list>
         <extref-later-binding-list
           class="column"
-          .doc=${this.doc}
           controlTag="SampledValueControl"
+          .doc="${this.doc}"
         >
         </extref-later-binding-list>
       </div>

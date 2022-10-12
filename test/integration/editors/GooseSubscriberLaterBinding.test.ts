@@ -6,6 +6,7 @@ import GooseSubscriberLaterBinding from '../../../src/editors/GooseSubscriberLat
 import {
   getExtrefLaterBindingList,
   getFCDABindingList,
+  getSelectedSubItemValue,
 } from './test-support.js';
 
 describe('GOOSE Subscribe Later Binding Plugin', () => {
@@ -43,6 +44,7 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
     expect(
       extRefListElement['getSubscribedExtRefElements']().length
     ).to.be.equal(0);
+    expect(getSelectedSubItemValue(fcdaListElement)).to.be.null;
     expect(
       extRefListElement['getAvailableExtRefElements']().length
     ).to.be.equal(4);
@@ -57,6 +59,7 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
     expect(
       extRefListElement['getSubscribedExtRefElements']().length
     ).to.be.equal(1);
+    expect(getSelectedSubItemValue(fcdaListElement)).to.have.text('1');
     expect(
       extRefListElement['getAvailableExtRefElements']().length
     ).to.be.equal(3);
@@ -77,6 +80,7 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
     expect(
       extRefListElement['getSubscribedExtRefElements']().length
     ).to.be.equal(2);
+    expect(getSelectedSubItemValue(fcdaListElement)).to.have.text('2');
     expect(
       extRefListElement['getAvailableExtRefElements']().length
     ).to.be.equal(4);
@@ -91,6 +95,7 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
     expect(
       extRefListElement['getSubscribedExtRefElements']().length
     ).to.be.equal(1);
+    expect(getSelectedSubItemValue(fcdaListElement)).to.have.text('1');
     expect(
       extRefListElement['getAvailableExtRefElements']().length
     ).to.be.equal(5);

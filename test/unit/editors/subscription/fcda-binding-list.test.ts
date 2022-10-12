@@ -101,7 +101,7 @@ describe('fcda-binding-list', () => {
       await element.updateComplete;
 
       expect(selectEvent).to.have.been.called;
-      expect(selectEvent.args[0][0].detail.controlElement).to.equal(
+      expect(selectEvent.args[0][0].detail.control).to.equal(
         doc.querySelector(
           'IED[name="SMV_Publisher"] LN0 > SampledValueControl[name="currentOnly"]'
         )

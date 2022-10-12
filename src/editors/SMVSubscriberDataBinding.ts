@@ -5,7 +5,6 @@ import { Nsdoc } from '../foundation/nsdoc.js';
 import './subscription/fcda-binding-list.js';
 import './subscription/later-binding/ext-ref-ln-binding-list.js';
 
-/** An editor [[`plugin`]] for Subscribe Later Binding (SMV). */
 export default class SMVSubscribeDataBindingPlugin extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
@@ -18,7 +17,8 @@ export default class SMVSubscribeDataBindingPlugin extends LitElement {
         <fcda-binding-list
           class="column"
           controlTag="SampledValueControl"
-          .doc=${this.doc}
+          .includeLaterBinding="${false}"
+          .doc="${this.doc}"
         >
         </fcda-binding-list>
         <extref-ln-binding-list

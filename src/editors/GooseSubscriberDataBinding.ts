@@ -17,7 +17,8 @@ export default class GooseSubscribeDataBindingPlugin extends LitElement {
         <fcda-binding-list
           class="column"
           controlTag="GSEControl"
-          .doc=${this.doc}
+          .includeLaterBinding="${false}"
+          .doc="${this.doc}"
         >
         </fcda-binding-list>
         <extref-ln-binding-list

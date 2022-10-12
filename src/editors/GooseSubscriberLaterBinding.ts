@@ -12,14 +12,15 @@ export default class GooseSubscribeLaterBindingPlugin extends LitElement {
       <div class="container">
         <fcda-binding-list
           class="column"
-          .doc=${this.doc}
           controlTag="GSEControl"
+          .includeLaterBinding="${true}"
+          .doc="${this.doc}"
         >
         </fcda-binding-list>
         <extref-later-binding-list
           class="column"
           controlTag="GSEControl"
-          .doc=${this.doc}
+          .doc="${this.doc}"
         >
         </extref-later-binding-list>
       </div>

@@ -8,6 +8,7 @@ import SMVSubscriberDataBinding from '../../../src/editors/SMVSubscriberDataBind
 import {
   getExtrefDataBindingList,
   getFCDABindingList,
+  getSelectedSubItemValue,
 } from './test-support.js';
 
 describe('SMV Subscribe Data Binding Plugin', async () => {
@@ -48,6 +49,7 @@ describe('SMV Subscribe Data Binding Plugin', async () => {
     expect(extRefListElement['getSubscribedLNElements']().length).to.be.equal(
       1
     );
+    expect(getSelectedSubItemValue(fcdaListElement)).to.have.text('1');
     expect(extRefListElement['getAvailableLNElements']().length).to.be.equal(7);
 
     (<HTMLElement>(
@@ -60,6 +62,7 @@ describe('SMV Subscribe Data Binding Plugin', async () => {
     expect(extRefListElement['getSubscribedLNElements']().length).to.be.equal(
       2
     );
+    expect(getSelectedSubItemValue(fcdaListElement)).to.have.text('2');
     expect(extRefListElement['getAvailableLNElements']().length).to.be.equal(6);
   });
 
@@ -78,6 +81,7 @@ describe('SMV Subscribe Data Binding Plugin', async () => {
     expect(extRefListElement['getSubscribedLNElements']().length).to.be.equal(
       2
     );
+    expect(getSelectedSubItemValue(fcdaListElement)).to.have.text('2');
     expect(extRefListElement['getAvailableLNElements']().length).to.be.equal(6);
 
     (<HTMLElement>(
@@ -90,6 +94,7 @@ describe('SMV Subscribe Data Binding Plugin', async () => {
     expect(extRefListElement['getSubscribedLNElements']().length).to.be.equal(
       1
     );
+    expect(getSelectedSubItemValue(fcdaListElement)).to.have.text('1');
     expect(extRefListElement['getAvailableLNElements']().length).to.be.equal(7);
   });
 });
