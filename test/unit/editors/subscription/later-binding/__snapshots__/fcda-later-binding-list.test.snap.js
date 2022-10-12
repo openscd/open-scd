@@ -212,7 +212,6 @@ snapshots["fcda-list with a SampledValueControl doc loaded looks like the latest
       aria-disabled="false"
       class="subitem"
       graphic="large"
-      hasmeta=""
       mwc-list-item=""
       tabindex="-1"
       twoline=""
@@ -229,15 +228,11 @@ snapshots["fcda-list with a SampledValueControl doc loaded looks like the latest
       <mwc-icon slot="graphic">
         subdirectory_arrow_right
       </mwc-icon>
-      <span slot="meta">
-        1
-      </span>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
       class="subitem"
       graphic="large"
-      hasmeta=""
       mwc-list-item=""
       tabindex="-1"
       twoline=""
@@ -254,9 +249,6 @@ snapshots["fcda-list with a SampledValueControl doc loaded looks like the latest
       <mwc-icon slot="graphic">
         subdirectory_arrow_right
       </mwc-icon>
-      <span slot="meta">
-        3
-      </span>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
@@ -346,7 +338,6 @@ snapshots["fcda-list with a SampledValueControl doc loaded looks like the latest
       aria-disabled="false"
       class="subitem"
       graphic="large"
-      hasmeta=""
       mwc-list-item=""
       tabindex="-1"
       twoline=""
@@ -363,9 +354,6 @@ snapshots["fcda-list with a SampledValueControl doc loaded looks like the latest
       <mwc-icon slot="graphic">
         subdirectory_arrow_right
       </mwc-icon>
-      <span slot="meta">
-        1
-      </span>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
@@ -696,7 +684,6 @@ snapshots["fcda-list with a GSEControl doc loaded looks like the latest snapshot
       aria-disabled="false"
       class="subitem"
       graphic="large"
-      hasmeta=""
       mwc-list-item=""
       tabindex="-1"
       twoline=""
@@ -713,15 +700,11 @@ snapshots["fcda-list with a GSEControl doc loaded looks like the latest snapshot
       <mwc-icon slot="graphic">
         subdirectory_arrow_right
       </mwc-icon>
-      <span slot="meta">
-        1
-      </span>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
       class="subitem"
       graphic="large"
-      hasmeta=""
       mwc-list-item=""
       tabindex="-1"
       twoline=""
@@ -738,15 +721,11 @@ snapshots["fcda-list with a GSEControl doc loaded looks like the latest snapshot
       <mwc-icon slot="graphic">
         subdirectory_arrow_right
       </mwc-icon>
-      <span slot="meta">
-        1
-      </span>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
       class="subitem"
       graphic="large"
-      hasmeta=""
       mwc-list-item=""
       tabindex="-1"
       twoline=""
@@ -763,15 +742,11 @@ snapshots["fcda-list with a GSEControl doc loaded looks like the latest snapshot
       <mwc-icon slot="graphic">
         subdirectory_arrow_right
       </mwc-icon>
-      <span slot="meta">
-        1
-      </span>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
       class="subitem"
       graphic="large"
-      hasmeta=""
       mwc-list-item=""
       tabindex="-1"
       twoline=""
@@ -788,9 +763,6 @@ snapshots["fcda-list with a GSEControl doc loaded looks like the latest snapshot
       <mwc-icon slot="graphic">
         subdirectory_arrow_right
       </mwc-icon>
-      <span slot="meta">
-        1
-      </span>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
@@ -854,7 +826,6 @@ snapshots["fcda-list with a GSEControl doc loaded looks like the latest snapshot
       aria-disabled="false"
       class="subitem"
       graphic="large"
-      hasmeta=""
       mwc-list-item=""
       tabindex="-1"
       twoline=""
@@ -871,9 +842,6 @@ snapshots["fcda-list with a GSEControl doc loaded looks like the latest snapshot
       <mwc-icon slot="graphic">
         subdirectory_arrow_right
       </mwc-icon>
-      <span slot="meta">
-        1
-      </span>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"

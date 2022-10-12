@@ -72,14 +72,12 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
     const svcListElement = getFCDALaterBindingList(element);
     const gooseListElement = getFCDALaterBindingList(element);
     const extRefListElement = getExtrefLaterBindingList(element);
-
     (<HTMLElement>(
       gooseListElement.shadowRoot!.querySelector(
         'mwc-list-item[value="GOOSE_Publisher>>QB2_Disconnector>GOOSE2 GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos q (ST)"]'
       )
     )).click();
     await element.requestUpdate();
-    await extRefListElement.requestUpdate();
 
     expect(
       extRefListElement['getSubscribedExtRefElements']().length
@@ -90,7 +88,7 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
     expect(
       svcListElement.selectedItem.querySelector('span[slot="meta"]')
         ?.textContent
-    ).to.be.equal('3');
+    ).to.be.equal('2');
     (<HTMLElement>(
       extRefListElement.shadowRoot!.querySelector(
         'mwc-list-item[value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos q@Pos;CSWI1/Pos/q"]'
@@ -107,6 +105,6 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
     expect(
       svcListElement.selectedItem.querySelector('span[slot="meta"]')
         ?.textContent
-    ).to.be.equal('2');
+    ).to.be.equal('1');
   });
 });
