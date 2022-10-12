@@ -105,15 +105,14 @@ export class FCDALaterBindingList extends LitElement {
 
   private resetExtRefCount(): void {
     if (this.selectedFcdaElement) {
-      const fcdaIdentity = identity(this.selectedFcdaElement);
-      this.extRefCounters.delete(fcdaIdentity);
+      const controlBlockFcdaId = `${identity(this.selectedControlElement!)} ${identity(this.selectedFcdaElement)}`;
+      this.extRefCounters.delete(controlBlockFcdaId);
     }
   }
 
   private getExtRefCount(fcdaElement: Element, controlElement: Element): number {
-    const fcdaIdentity = identity(fcdaElement);
-
-    if (!this.extRefCounters.has(fcdaIdentity)) {
+    const controlBlockFcdaId = `${identity(controlElement)} ${identity(fcdaElement)}`;
+    if (!this.extRefCounters.has(controlBlockFcdaId)) {
       const currentIedElement = fcdaElement.closest('IED');
       const extRefCount = getSubscribedExtRefElements(
         this.doc,
@@ -122,10 +121,9 @@ export class FCDALaterBindingList extends LitElement {
         controlElement!,
         this.controlTag
       ).length;
-      console.log('count', extRefCount)
-      this.extRefCounters.set(fcdaIdentity, extRefCount);
+      this.extRefCounters.set(controlBlockFcdaId, extRefCount);
     }
-    return this.extRefCounters.get(fcdaIdentity);
+    return this.extRefCounters.get(controlBlockFcdaId);
   }
 
   private openEditWizard(controlElement: Element): void {
@@ -164,8 +162,7 @@ export class FCDALaterBindingList extends LitElement {
   }
 
   renderFCDA(controlElement: Element, fcdaElement: Element): TemplateResult {
-    const fcdaCount = 1 
-    // this.getExtRefCount(fcdaElement, controlElement);
+    const fcdaCount = this.getExtRefCount(fcdaElement, controlElement);
     return html`<mwc-list-item
       graphic="large"
       ?hasMeta=${fcdaCount !== 0}
