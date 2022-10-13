@@ -51,6 +51,11 @@ describe('SMV Subscribe Data Binding Plugin', async () => {
     );
     expect(getSelectedSubItemValue(fcdaListElement)).to.have.text('1');
     expect(extRefListElement['getAvailableLNElements']().length).to.be.equal(7);
+    expect(
+      element.doc.querySelectorAll(
+        'IED[name="SMV_Subscriber1"] LDevice[inst="Overcurrent"] > LN0[lnClass="LLN0"] > Inputs > ExtRef[iedName="SMV_Publisher"]'
+      ).length
+    ).to.be.equal(0);
 
     (<HTMLElement>(
       extRefListElement.shadowRoot!.querySelector(
@@ -64,6 +69,11 @@ describe('SMV Subscribe Data Binding Plugin', async () => {
     );
     expect(getSelectedSubItemValue(fcdaListElement)).to.have.text('2');
     expect(extRefListElement['getAvailableLNElements']().length).to.be.equal(6);
+    expect(
+      element.doc.querySelectorAll(
+        'IED[name="SMV_Subscriber1"] LDevice[inst="Overcurrent"] > LN0[lnClass="LLN0"] > Inputs > ExtRef[iedName="SMV_Publisher"]'
+      ).length
+    ).to.be.equal(1);
   });
 
   it('when unsubscribing a subscribed ExtRef then the lists are changed', async () => {
@@ -83,6 +93,11 @@ describe('SMV Subscribe Data Binding Plugin', async () => {
     );
     expect(getSelectedSubItemValue(fcdaListElement)).to.have.text('2');
     expect(extRefListElement['getAvailableLNElements']().length).to.be.equal(6);
+    expect(
+      element.doc.querySelectorAll(
+        'IED[name="SMV_Subscriber1"] LDevice[inst="Overvoltage"] > LN0[lnClass="LLN0"] > Inputs > ExtRef[iedName="SMV_Publisher"]'
+      ).length
+    ).to.be.equal(3);
 
     (<HTMLElement>(
       extRefListElement.shadowRoot!.querySelector(
@@ -96,5 +111,72 @@ describe('SMV Subscribe Data Binding Plugin', async () => {
     );
     expect(getSelectedSubItemValue(fcdaListElement)).to.have.text('1');
     expect(extRefListElement['getAvailableLNElements']().length).to.be.equal(7);
+    expect(
+      element.doc.querySelectorAll(
+        'IED[name="SMV_Subscriber1"] LDevice[inst="Overvoltage"] > LN0[lnClass="LLN0"] > Inputs > ExtRef[iedName="SMV_Publisher"]'
+      ).length
+    ).to.be.equal(2);
+  });
+
+  it('when unsubscribing all subscribed ExtRef then the inputs element is also removed', async () => {
+    const fcdaListElement = getFCDABindingList(element);
+    const extRefListElement = getExtrefDataBindingList(element);
+
+    expect(
+      element.doc.querySelectorAll(
+        'IED[name="SMV_Subscriber1"] LDevice[inst="Overvoltage"] > LN0[lnClass="LLN0"] > Inputs'
+      ).length
+    ).to.be.equal(1);
+
+    (<HTMLElement>(
+      fcdaListElement.shadowRoot!.querySelector(
+        'mwc-list-item[value="SMV_Publisher>>CurrentTransformer>fullSmv SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 1.AmpSv q (MX)"]'
+      )
+    )).click();
+    await element.requestUpdate();
+    await extRefListElement.requestUpdate();
+
+    (<HTMLElement>(
+      extRefListElement.shadowRoot!.querySelector(
+        'mwc-list-item[value="SMV_Subscriber1>>Overvoltage"]'
+      )
+    )).click();
+    await element.requestUpdate();
+
+    (<HTMLElement>(
+      fcdaListElement.shadowRoot!.querySelector(
+        'mwc-list-item[value="SMV_Publisher>>CurrentTransformer>fullSmv SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 1.AmpSv instMag.i (MX)"]'
+      )
+    )).click();
+    await element.requestUpdate();
+    await extRefListElement.requestUpdate();
+
+    (<HTMLElement>(
+      extRefListElement.shadowRoot!.querySelector(
+        'mwc-list-item[value="SMV_Subscriber1>>Overvoltage"]'
+      )
+    )).click();
+    await element.requestUpdate();
+
+    (<HTMLElement>(
+      fcdaListElement.shadowRoot!.querySelector(
+        'mwc-list-item[value="SMV_Publisher>>CurrentTransformer>fullSmv SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 1.AmpSv q (MX)"]'
+      )
+    )).click();
+    await element.requestUpdate();
+    await extRefListElement.requestUpdate();
+
+    (<HTMLElement>(
+      extRefListElement.shadowRoot!.querySelector(
+        'mwc-list-item[value="SMV_Subscriber1>>Overvoltage"]'
+      )
+    )).click();
+    await element.requestUpdate();
+
+    expect(
+      element.doc.querySelectorAll(
+        'IED[name="SMV_Subscriber1"] LDevice[inst="Overvoltage"] > LN0[lnClass="LLN0"] > Inputs'
+      ).length
+    ).to.be.equal(0);
   });
 });
