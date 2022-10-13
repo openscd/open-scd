@@ -138,31 +138,32 @@ export function isSubscribed(extRefElement: Element): boolean {
   );
 }
 
+export function getExtRefElements(
+  rootElement: Element,
+  fcdaElement: Element | undefined,
+  includeLaterBinding: boolean
+): Element[] {
+  return Array.from(rootElement.querySelectorAll('ExtRef'))
+    .filter(
+      element =>
+        (includeLaterBinding && element.hasAttribute('intAddr')) ||
+        (!includeLaterBinding && !element.hasAttribute('intAddr'))
+    )
+    .filter(element => element.closest('IED') !== fcdaElement?.closest('IED'));
+}
+
 export function getSubscribedExtRefElements(
   rootElement: Element,
   controlTag: 'SampledValueControl' | 'GSEControl',
   fcdaElement: Element | undefined,
   controlElement: Element | undefined,
-  includeLaterBinding: boolean | undefined
+  includeLaterBinding: boolean
 ): Element[] {
-  return Array.from(rootElement.querySelectorAll('ExtRef'))
-    .filter(
-      element =>
-        includeLaterBinding === undefined ||
-        (includeLaterBinding && element.hasAttribute('intAddr')) ||
-        (!includeLaterBinding && !element.hasAttribute('intAddr'))
-    )
-    .filter(element => element.closest('IED') !== fcdaElement?.closest('IED'))
-    .filter(extRefElement =>
-      isSubscribedTo(controlTag, controlElement, fcdaElement, extRefElement)
-    );
-}
-
-export function getAvailableExtRefElements(
-  rootElement: Element,
-  fcdaElement: Element | undefined
-): Element[] {
-  return Array.from(rootElement.querySelectorAll('ExtRef'))
-    .filter(element => element.closest('IED') !== fcdaElement?.closest('IED'))
-    .filter(extRefElement => !isSubscribed(extRefElement));
+  return getExtRefElements(
+    rootElement,
+    fcdaElement,
+    includeLaterBinding
+  ).filter(extRefElement =>
+    isSubscribedTo(controlTag, controlElement, fcdaElement, extRefElement)
+  );
 }

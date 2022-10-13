@@ -223,7 +223,7 @@ describe('extref-ln-binding-list', async () => {
       });
 
       it('expect the correct number of available elements', () => {
-        expect(element['getAvailableLNElements']().length).to.be.equal(5);
+        expect(element['getAvailableLNElements']().length).to.be.equal(7);
       });
 
       it('looks like the latest snapshot, ', async () => {
@@ -265,7 +265,7 @@ describe('extref-ln-binding-list', async () => {
     });
 
     it('expect the correct number of available elements', () => {
-      expect(element['getAvailableLNElements']().length).to.be.equal(3);
+      expect(element['getAvailableLNElements']().length).to.be.equal(5);
     });
 
     it('looks like the latest snapshot, ', async () => {

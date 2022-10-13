@@ -25,8 +25,9 @@ import {
   updateExtRefElement,
 } from '../foundation.js';
 import {
-  getAvailableExtRefElements,
+  getExtRefElements,
   getSubscribedExtRefElements,
+  isSubscribed,
 } from './foundation.js';
 
 /**
@@ -157,10 +158,11 @@ export class ExtRefLaterBindingList extends LitElement {
   }
 
   private getAvailableExtRefElements(): Element[] {
-    return getAvailableExtRefElements(
+    return getExtRefElements(
       <Element>this.doc.getRootNode(),
-      this.currentSelectedFcdaElement
-    );
+      this.currentSelectedFcdaElement,
+      true
+    ).filter(extRefElement => !isSubscribed(extRefElement));
   }
 
   private renderTitle(): TemplateResult {

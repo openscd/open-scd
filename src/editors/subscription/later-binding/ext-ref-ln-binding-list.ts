@@ -93,7 +93,7 @@ export class ExtRefLnBindingList extends LitElement {
           this.controlTag,
           this.currentSelectedFcdaElement,
           this.currentSelectedControlElement,
-          undefined // We also want to exclude LN that are already bind using Later Binding.
+          false
         ).length == 0
     );
   }

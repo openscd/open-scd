@@ -52,7 +52,7 @@ snapshots["for Sampled Value Control when SVC has no subscriptions looks like th
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-      value="PTRC  - 1 SMV_Subscriber1>>Overcurrent Some LN title (LLN0)  SMV_Subscriber1>>Overcurrent PTRC  - 1 SMV_Subscriber1>>Overvoltage Some LN title (LLN0)  SMV_Subscriber1>>Overvoltage PTRC  - 1 SMV_Subscriber2>>Overcurrent Some LN title (LLN0)  SMV_Subscriber2>>Overcurrent PTRC  - 1 SMV_Subscriber2>>Overvoltage Some LN title (LLN0)  SMV_Subscriber2>>Overvoltage"
+      value="LLN0  SMV_Subscriber1>>Overvoltage PTRC  - 1 SMV_Subscriber1>>Overvoltage LLN0  SMV_Subscriber1>>Overcurrent PTRC  - 1 SMV_Subscriber1>>Overcurrent LLN0  SMV_Subscriber2>>Overvoltage PTRC  - 1 SMV_Subscriber2>>Overvoltage LLN0  SMV_Subscriber2>>Overcurrent PTRC  - 1 SMV_Subscriber2>>Overcurrent"
     >
       <span>
         [subscription.subscriber.availableToSubscribe]
@@ -69,31 +69,13 @@ snapshots["for Sampled Value Control when SVC has no subscriptions looks like th
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber1>>Overcurrent> PTRC 1"
+      value="SMV_Subscriber1>>Overvoltage"
     >
       <span>
-        PTRC  - 1
+        LLN0
       </span>
       <span slot="secondary">
-        SMV_Subscriber1>>Overcurrent
-      </span>
-      <mwc-icon slot="graphic">
-        add
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="SMV_Subscriber1>>Overcurrent"
-    >
-      <span>
-        Some LN title (LLN0)
-      </span>
-      <span slot="secondary">
-        SMV_Subscriber1>>Overcurrent
+        SMV_Subscriber1>>Overvoltage
       </span>
       <mwc-icon slot="graphic">
         add
@@ -123,32 +105,31 @@ snapshots["for Sampled Value Control when SVC has no subscriptions looks like th
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber1>>Overvoltage"
+      value="SMV_Subscriber1>>Overcurrent"
     >
       <span>
-        Some LN title (LLN0)
+        LLN0
       </span>
       <span slot="secondary">
-        SMV_Subscriber1>>Overvoltage
+        SMV_Subscriber1>>Overcurrent
       </span>
       <mwc-icon slot="graphic">
         add
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
-      aria-disabled="true"
-      disabled=""
+      aria-disabled="false"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber2>>Overcurrent> PTRC 1"
+      value="SMV_Subscriber1>>Overcurrent> PTRC 1"
     >
       <span>
         PTRC  - 1
       </span>
       <span slot="secondary">
-        SMV_Subscriber2>>Overcurrent
+        SMV_Subscriber1>>Overcurrent
       </span>
       <mwc-icon slot="graphic">
         add
@@ -161,13 +142,13 @@ snapshots["for Sampled Value Control when SVC has no subscriptions looks like th
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber2>>Overcurrent"
+      value="SMV_Subscriber2>>Overvoltage"
     >
       <span>
-        Some LN title (LLN0)
+        LLN0
       </span>
       <span slot="secondary">
-        SMV_Subscriber2>>Overcurrent
+        SMV_Subscriber2>>Overvoltage
       </span>
       <mwc-icon slot="graphic">
         add
@@ -199,13 +180,32 @@ snapshots["for Sampled Value Control when SVC has no subscriptions looks like th
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber2>>Overvoltage"
+      value="SMV_Subscriber2>>Overcurrent"
     >
       <span>
-        Some LN title (LLN0)
+        LLN0
       </span>
       <span slot="secondary">
-        SMV_Subscriber2>>Overvoltage
+        SMV_Subscriber2>>Overcurrent
+      </span>
+      <mwc-icon slot="graphic">
+        add
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Subscriber2>>Overcurrent> PTRC 1"
+    >
+      <span>
+        PTRC  - 1
+      </span>
+      <span slot="secondary">
+        SMV_Subscriber2>>Overcurrent
       </span>
       <mwc-icon slot="graphic">
         add
@@ -226,7 +226,7 @@ snapshots["for Sampled Value Control when SVC has a single subscriptions looks l
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-      value="Some LN title (LLN0)  SMV_Subscriber1>>Overvoltage"
+      value="LLN0  SMV_Subscriber1>>Overvoltage"
     >
       <span>
         [subscription.subscriber.subscribed]
@@ -246,7 +246,7 @@ snapshots["for Sampled Value Control when SVC has a single subscriptions looks l
       value="SMV_Subscriber1>>Overvoltage"
     >
       <span>
-        Some LN title (LLN0)
+        LLN0
       </span>
       <span slot="secondary">
         SMV_Subscriber1>>Overvoltage
@@ -259,7 +259,7 @@ snapshots["for Sampled Value Control when SVC has a single subscriptions looks l
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-      value="PTRC  - 1 SMV_Subscriber1>>Overcurrent Some LN title (LLN0)  SMV_Subscriber1>>Overcurrent PTRC  - 1 SMV_Subscriber1>>Overvoltage PTRC  - 1 SMV_Subscriber2>>Overcurrent Some LN title (LLN0)  SMV_Subscriber2>>Overcurrent PTRC  - 1 SMV_Subscriber2>>Overvoltage Some LN title (LLN0)  SMV_Subscriber2>>Overvoltage"
+      value="PTRC  - 1 SMV_Subscriber1>>Overvoltage LLN0  SMV_Subscriber1>>Overcurrent PTRC  - 1 SMV_Subscriber1>>Overcurrent LLN0  SMV_Subscriber2>>Overvoltage PTRC  - 1 SMV_Subscriber2>>Overvoltage LLN0  SMV_Subscriber2>>Overcurrent PTRC  - 1 SMV_Subscriber2>>Overcurrent"
     >
       <span>
         [subscription.subscriber.availableToSubscribe]
@@ -270,42 +270,6 @@ snapshots["for Sampled Value Control when SVC has a single subscriptions looks l
       role="separator"
     >
     </li>
-    <mwc-list-item
-      aria-disabled="false"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="SMV_Subscriber1>>Overcurrent> PTRC 1"
-    >
-      <span>
-        PTRC  - 1
-      </span>
-      <span slot="secondary">
-        SMV_Subscriber1>>Overcurrent
-      </span>
-      <mwc-icon slot="graphic">
-        add
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="SMV_Subscriber1>>Overcurrent"
-    >
-      <span>
-        Some LN title (LLN0)
-      </span>
-      <span slot="secondary">
-        SMV_Subscriber1>>Overcurrent
-      </span>
-      <mwc-icon slot="graphic">
-        add
-      </mwc-icon>
-    </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
       graphic="large"
@@ -325,19 +289,36 @@ snapshots["for Sampled Value Control when SVC has a single subscriptions looks l
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
-      aria-disabled="true"
-      disabled=""
+      aria-disabled="false"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber2>>Overcurrent> PTRC 1"
+      value="SMV_Subscriber1>>Overcurrent"
+    >
+      <span>
+        LLN0
+      </span>
+      <span slot="secondary">
+        SMV_Subscriber1>>Overcurrent
+      </span>
+      <mwc-icon slot="graphic">
+        add
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Subscriber1>>Overcurrent> PTRC 1"
     >
       <span>
         PTRC  - 1
       </span>
       <span slot="secondary">
-        SMV_Subscriber2>>Overcurrent
+        SMV_Subscriber1>>Overcurrent
       </span>
       <mwc-icon slot="graphic">
         add
@@ -350,13 +331,13 @@ snapshots["for Sampled Value Control when SVC has a single subscriptions looks l
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber2>>Overcurrent"
+      value="SMV_Subscriber2>>Overvoltage"
     >
       <span>
-        Some LN title (LLN0)
+        LLN0
       </span>
       <span slot="secondary">
-        SMV_Subscriber2>>Overcurrent
+        SMV_Subscriber2>>Overvoltage
       </span>
       <mwc-icon slot="graphic">
         add
@@ -388,13 +369,32 @@ snapshots["for Sampled Value Control when SVC has a single subscriptions looks l
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber2>>Overvoltage"
+      value="SMV_Subscriber2>>Overcurrent"
     >
       <span>
-        Some LN title (LLN0)
+        LLN0
       </span>
       <span slot="secondary">
-        SMV_Subscriber2>>Overvoltage
+        SMV_Subscriber2>>Overcurrent
+      </span>
+      <mwc-icon slot="graphic">
+        add
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Subscriber2>>Overcurrent> PTRC 1"
+    >
+      <span>
+        PTRC  - 1
+      </span>
+      <span slot="secondary">
+        SMV_Subscriber2>>Overcurrent
       </span>
       <mwc-icon slot="graphic">
         add
@@ -415,7 +415,7 @@ snapshots["when SVC has a multiple subscriptions looks like the latest snapshot,
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-      value="Some LN title (LLN0)  SMV_Subscriber1>>Overvoltage Some LN title (LLN0)  SMV_Subscriber2>>Overvoltage"
+      value="LLN0  SMV_Subscriber1>>Overvoltage LLN0  SMV_Subscriber2>>Overvoltage"
     >
       <span>
         [subscription.subscriber.subscribed]
@@ -435,7 +435,7 @@ snapshots["when SVC has a multiple subscriptions looks like the latest snapshot,
       value="SMV_Subscriber1>>Overvoltage"
     >
       <span>
-        Some LN title (LLN0)
+        LLN0
       </span>
       <span slot="secondary">
         SMV_Subscriber1>>Overvoltage
@@ -451,7 +451,7 @@ snapshots["when SVC has a multiple subscriptions looks like the latest snapshot,
       value="SMV_Subscriber2>>Overvoltage"
     >
       <span>
-        Some LN title (LLN0)
+        LLN0
       </span>
       <span slot="secondary">
         SMV_Subscriber2>>Overvoltage
@@ -464,7 +464,7 @@ snapshots["when SVC has a multiple subscriptions looks like the latest snapshot,
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-      value="PTRC  - 1 SMV_Subscriber1>>Overcurrent Some LN title (LLN0)  SMV_Subscriber1>>Overcurrent PTRC  - 1 SMV_Subscriber1>>Overvoltage PTRC  - 1 SMV_Subscriber2>>Overcurrent Some LN title (LLN0)  SMV_Subscriber2>>Overcurrent PTRC  - 1 SMV_Subscriber2>>Overvoltage"
+      value="PTRC  - 1 SMV_Subscriber1>>Overvoltage LLN0  SMV_Subscriber1>>Overcurrent PTRC  - 1 SMV_Subscriber1>>Overcurrent PTRC  - 1 SMV_Subscriber2>>Overvoltage LLN0  SMV_Subscriber2>>Overcurrent PTRC  - 1 SMV_Subscriber2>>Overcurrent"
     >
       <span>
         [subscription.subscriber.availableToSubscribe]
@@ -475,42 +475,6 @@ snapshots["when SVC has a multiple subscriptions looks like the latest snapshot,
       role="separator"
     >
     </li>
-    <mwc-list-item
-      aria-disabled="false"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="SMV_Subscriber1>>Overcurrent> PTRC 1"
-    >
-      <span>
-        PTRC  - 1
-      </span>
-      <span slot="secondary">
-        SMV_Subscriber1>>Overcurrent
-      </span>
-      <mwc-icon slot="graphic">
-        add
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="SMV_Subscriber1>>Overcurrent"
-    >
-      <span>
-        Some LN title (LLN0)
-      </span>
-      <span slot="secondary">
-        SMV_Subscriber1>>Overcurrent
-      </span>
-      <mwc-icon slot="graphic">
-        add
-      </mwc-icon>
-    </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
       graphic="large"
@@ -530,38 +494,36 @@ snapshots["when SVC has a multiple subscriptions looks like the latest snapshot,
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
-      aria-disabled="true"
-      disabled=""
+      aria-disabled="false"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber2>>Overcurrent> PTRC 1"
+      value="SMV_Subscriber1>>Overcurrent"
     >
       <span>
-        PTRC  - 1
+        LLN0
       </span>
       <span slot="secondary">
-        SMV_Subscriber2>>Overcurrent
+        SMV_Subscriber1>>Overcurrent
       </span>
       <mwc-icon slot="graphic">
         add
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
-      aria-disabled="true"
-      disabled=""
+      aria-disabled="false"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber2>>Overcurrent"
+      value="SMV_Subscriber1>>Overcurrent> PTRC 1"
     >
       <span>
-        Some LN title (LLN0)
+        PTRC  - 1
       </span>
       <span slot="secondary">
-        SMV_Subscriber2>>Overcurrent
+        SMV_Subscriber1>>Overcurrent
       </span>
       <mwc-icon slot="graphic">
         add
@@ -581,6 +543,44 @@ snapshots["when SVC has a multiple subscriptions looks like the latest snapshot,
       </span>
       <span slot="secondary">
         SMV_Subscriber2>>Overvoltage
+      </span>
+      <mwc-icon slot="graphic">
+        add
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Subscriber2>>Overcurrent"
+    >
+      <span>
+        LLN0
+      </span>
+      <span slot="secondary">
+        SMV_Subscriber2>>Overcurrent
+      </span>
+      <mwc-icon slot="graphic">
+        add
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Subscriber2>>Overcurrent> PTRC 1"
+    >
+      <span>
+        PTRC  - 1
+      </span>
+      <span slot="secondary">
+        SMV_Subscriber2>>Overcurrent
       </span>
       <mwc-icon slot="graphic">
         add
@@ -633,7 +633,7 @@ snapshots["for GOOSE Control when GSEControl has no subscriptions looks like the
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-      value="CILO  - 1 GOOSE_Subscriber1>>Earth_Switch CSWI  - 1 GOOSE_Subscriber1>>Earth_Switch Some LN title (LLN0)  GOOSE_Subscriber1>>Earth_Switch XSWI  - 1 GOOSE_Subscriber1>>Earth_Switch CILO  - 1 GOOSE_Subscriber2>>Earth_Switch CSWI  - 1 GOOSE_Subscriber2>>Earth_Switch Some LN title (LLN0)  GOOSE_Subscriber2>>Earth_Switch XSWI  - 1 GOOSE_Subscriber2>>Earth_Switch"
+      value="LLN0  GOOSE_Subscriber1>>Earth_Switch CILO  - 1 GOOSE_Subscriber1>>Earth_Switch CSWI  - 1 GOOSE_Subscriber1>>Earth_Switch XSWI  - 1 GOOSE_Subscriber1>>Earth_Switch LLN0  GOOSE_Subscriber2>>Earth_Switch CILO  - 1 GOOSE_Subscriber2>>Earth_Switch CSWI  - 1 GOOSE_Subscriber2>>Earth_Switch XSWI  - 1 GOOSE_Subscriber2>>Earth_Switch"
     >
       <span>
         [subscription.subscriber.availableToSubscribe]
@@ -644,6 +644,25 @@ snapshots["for GOOSE Control when GSEControl has no subscriptions looks like the
       role="separator"
     >
     </li>
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="GOOSE_Subscriber1>>Earth_Switch"
+    >
+      <span>
+        LLN0
+      </span>
+      <span slot="secondary">
+        GOOSE_Subscriber1>>Earth_Switch
+      </span>
+      <mwc-icon slot="graphic">
+        add
+      </mwc-icon>
+    </mwc-list-item>
     <mwc-list-item
       aria-disabled="true"
       disabled=""
@@ -689,10 +708,198 @@ snapshots["for GOOSE Control when GSEControl has no subscriptions looks like the
       mwc-list-item=""
       tabindex="-1"
       twoline=""
+      value="GOOSE_Subscriber1>>Earth_Switch> XSWI 1"
+    >
+      <span>
+        XSWI  - 1
+      </span>
+      <span slot="secondary">
+        GOOSE_Subscriber1>>Earth_Switch
+      </span>
+      <mwc-icon slot="graphic">
+        add
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="GOOSE_Subscriber2>>Earth_Switch"
+    >
+      <span>
+        LLN0
+      </span>
+      <span slot="secondary">
+        GOOSE_Subscriber2>>Earth_Switch
+      </span>
+      <mwc-icon slot="graphic">
+        add
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="GOOSE_Subscriber2>>Earth_Switch> CILO 1"
+    >
+      <span>
+        CILO  - 1
+      </span>
+      <span slot="secondary">
+        GOOSE_Subscriber2>>Earth_Switch
+      </span>
+      <mwc-icon slot="graphic">
+        add
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="GOOSE_Subscriber2>>Earth_Switch> CSWI 1"
+    >
+      <span>
+        CSWI  - 1
+      </span>
+      <span slot="secondary">
+        GOOSE_Subscriber2>>Earth_Switch
+      </span>
+      <mwc-icon slot="graphic">
+        add
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="GOOSE_Subscriber2>>Earth_Switch> XSWI 1"
+    >
+      <span>
+        XSWI  - 1
+      </span>
+      <span slot="secondary">
+        GOOSE_Subscriber2>>Earth_Switch
+      </span>
+      <mwc-icon slot="graphic">
+        add
+      </mwc-icon>
+    </mwc-list-item>
+  </filtered-list>
+</section>
+`;
+/* end snapshot for GOOSE Control when GSEControl has no subscriptions looks like the latest snapshot, when GSEControl has no subscriptions */
+
+snapshots["for GOOSE Control when GSEControl has a single subscription looks like the latest snapshot, "] = 
+`<section tabindex="0">
+  <h1>
+    [subscription.binding.extRefList.title]
+  </h1>
+  <filtered-list>
+    <mwc-list-item
+      aria-disabled="false"
+      noninteractive=""
+      tabindex="-1"
+      value="LLN0  GOOSE_Subscriber2>>Earth_Switch"
+    >
+      <span>
+        [subscription.subscriber.subscribed]
+      </span>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="GOOSE_Subscriber2>>Earth_Switch"
+    >
+      <span>
+        LLN0
+      </span>
+      <span slot="secondary">
+        GOOSE_Subscriber2>>Earth_Switch
+      </span>
+      <mwc-icon slot="graphic">
+        close
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      noninteractive=""
+      tabindex="-1"
+      value="LLN0  GOOSE_Subscriber1>>Earth_Switch CILO  - 1 GOOSE_Subscriber1>>Earth_Switch CSWI  - 1 GOOSE_Subscriber1>>Earth_Switch XSWI  - 1 GOOSE_Subscriber1>>Earth_Switch CILO  - 1 GOOSE_Subscriber2>>Earth_Switch CSWI  - 1 GOOSE_Subscriber2>>Earth_Switch XSWI  - 1 GOOSE_Subscriber2>>Earth_Switch"
+    >
+      <span>
+        [subscription.subscriber.availableToSubscribe]
+      </span>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
       value="GOOSE_Subscriber1>>Earth_Switch"
     >
       <span>
-        Some LN title (LLN0)
+        LLN0
+      </span>
+      <span slot="secondary">
+        GOOSE_Subscriber1>>Earth_Switch
+      </span>
+      <mwc-icon slot="graphic">
+        add
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="GOOSE_Subscriber1>>Earth_Switch> CILO 1"
+    >
+      <span>
+        CILO  - 1
+      </span>
+      <span slot="secondary">
+        GOOSE_Subscriber1>>Earth_Switch
+      </span>
+      <mwc-icon slot="graphic">
+        add
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="GOOSE_Subscriber1>>Earth_Switch> CSWI 1"
+    >
+      <span>
+        CSWI  - 1
       </span>
       <span slot="secondary">
         GOOSE_Subscriber1>>Earth_Switch
@@ -762,176 +969,6 @@ snapshots["for GOOSE Control when GSEControl has no subscriptions looks like the
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="GOOSE_Subscriber2>>Earth_Switch"
-    >
-      <span>
-        Some LN title (LLN0)
-      </span>
-      <span slot="secondary">
-        GOOSE_Subscriber2>>Earth_Switch
-      </span>
-      <mwc-icon slot="graphic">
-        add
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="GOOSE_Subscriber2>>Earth_Switch> XSWI 1"
-    >
-      <span>
-        XSWI  - 1
-      </span>
-      <span slot="secondary">
-        GOOSE_Subscriber2>>Earth_Switch
-      </span>
-      <mwc-icon slot="graphic">
-        add
-      </mwc-icon>
-    </mwc-list-item>
-  </filtered-list>
-</section>
-`;
-/* end snapshot for GOOSE Control when GSEControl has no subscriptions looks like the latest snapshot, when GSEControl has no subscriptions */
-
-snapshots["for GOOSE Control when GSEControl has a single subscription looks like the latest snapshot, "] = 
-`<section tabindex="0">
-  <h1>
-    [subscription.binding.extRefList.title]
-  </h1>
-  <filtered-list>
-    <mwc-list-item
-      aria-disabled="false"
-      noninteractive=""
-      tabindex="-1"
-      value="Some LN title (LLN0)  GOOSE_Subscriber2>>Earth_Switch"
-    >
-      <span>
-        [subscription.subscriber.subscribed]
-      </span>
-    </mwc-list-item>
-    <li
-      divider=""
-      role="separator"
-    >
-    </li>
-    <mwc-list-item
-      aria-disabled="false"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="GOOSE_Subscriber2>>Earth_Switch"
-    >
-      <span>
-        Some LN title (LLN0)
-      </span>
-      <span slot="secondary">
-        GOOSE_Subscriber2>>Earth_Switch
-      </span>
-      <mwc-icon slot="graphic">
-        close
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      noninteractive=""
-      tabindex="-1"
-      value="CILO  - 1 GOOSE_Subscriber1>>Earth_Switch Some LN title (LLN0)  GOOSE_Subscriber1>>Earth_Switch XSWI  - 1 GOOSE_Subscriber1>>Earth_Switch CILO  - 1 GOOSE_Subscriber2>>Earth_Switch XSWI  - 1 GOOSE_Subscriber2>>Earth_Switch"
-    >
-      <span>
-        [subscription.subscriber.availableToSubscribe]
-      </span>
-    </mwc-list-item>
-    <li
-      divider=""
-      role="separator"
-    >
-    </li>
-    <mwc-list-item
-      aria-disabled="true"
-      disabled=""
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="GOOSE_Subscriber1>>Earth_Switch> CILO 1"
-    >
-      <span>
-        CILO  - 1
-      </span>
-      <span slot="secondary">
-        GOOSE_Subscriber1>>Earth_Switch
-      </span>
-      <mwc-icon slot="graphic">
-        add
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="true"
-      disabled=""
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="GOOSE_Subscriber1>>Earth_Switch"
-    >
-      <span>
-        Some LN title (LLN0)
-      </span>
-      <span slot="secondary">
-        GOOSE_Subscriber1>>Earth_Switch
-      </span>
-      <mwc-icon slot="graphic">
-        add
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="true"
-      disabled=""
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="GOOSE_Subscriber1>>Earth_Switch> XSWI 1"
-    >
-      <span>
-        XSWI  - 1
-      </span>
-      <span slot="secondary">
-        GOOSE_Subscriber1>>Earth_Switch
-      </span>
-      <mwc-icon slot="graphic">
-        add
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="GOOSE_Subscriber2>>Earth_Switch> CILO 1"
-    >
-      <span>
-        CILO  - 1
-      </span>
-      <span slot="secondary">
-        GOOSE_Subscriber2>>Earth_Switch
-      </span>
-      <mwc-icon slot="graphic">
-        add
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
       value="GOOSE_Subscriber2>>Earth_Switch> XSWI 1"
     >
       <span>
@@ -959,7 +996,7 @@ snapshots["when GSEControl has a multiple subscriptions looks like the latest sn
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-      value="Some LN title (LLN0)  GOOSE_Subscriber1>>Earth_Switch CILO  - 1 GOOSE_Subscriber2>>Earth_Switch Some LN title (LLN0)  GOOSE_Subscriber2>>Earth_Switch"
+      value="LLN0  GOOSE_Subscriber1>>Earth_Switch LLN0  GOOSE_Subscriber2>>Earth_Switch CILO  - 1 GOOSE_Subscriber2>>Earth_Switch"
     >
       <span>
         [subscription.subscriber.subscribed]
@@ -980,10 +1017,25 @@ snapshots["when GSEControl has a multiple subscriptions looks like the latest sn
       value="GOOSE_Subscriber1>>Earth_Switch"
     >
       <span>
-        Some LN title (LLN0)
+        LLN0
       </span>
       <span slot="secondary">
         GOOSE_Subscriber1>>Earth_Switch
+      </span>
+      <mwc-icon slot="graphic">
+        close
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      graphic="large"
+      twoline=""
+      value="GOOSE_Subscriber2>>Earth_Switch"
+    >
+      <span>
+        LLN0
+      </span>
+      <span slot="secondary">
+        GOOSE_Subscriber2>>Earth_Switch
       </span>
       <mwc-icon slot="graphic">
         close
@@ -1005,25 +1057,10 @@ snapshots["when GSEControl has a multiple subscriptions looks like the latest sn
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
-      graphic="large"
-      twoline=""
-      value="GOOSE_Subscriber2>>Earth_Switch"
-    >
-      <span>
-        Some LN title (LLN0)
-      </span>
-      <span slot="secondary">
-        GOOSE_Subscriber2>>Earth_Switch
-      </span>
-      <mwc-icon slot="graphic">
-        close
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-      value="CILO  - 1 GOOSE_Subscriber1>>Earth_Switch XSWI  - 1 GOOSE_Subscriber1>>Earth_Switch XSWI  - 1 GOOSE_Subscriber2>>Earth_Switch"
+      value="CILO  - 1 GOOSE_Subscriber1>>Earth_Switch CSWI  - 1 GOOSE_Subscriber1>>Earth_Switch XSWI  - 1 GOOSE_Subscriber1>>Earth_Switch CSWI  - 1 GOOSE_Subscriber2>>Earth_Switch XSWI  - 1 GOOSE_Subscriber2>>Earth_Switch"
     >
       <span>
         [subscription.subscriber.availableToSubscribe]
@@ -1060,6 +1097,25 @@ snapshots["when GSEControl has a multiple subscriptions looks like the latest sn
       mwc-list-item=""
       tabindex="-1"
       twoline=""
+      value="GOOSE_Subscriber1>>Earth_Switch> CSWI 1"
+    >
+      <span>
+        CSWI  - 1
+      </span>
+      <span slot="secondary">
+        GOOSE_Subscriber1>>Earth_Switch
+      </span>
+      <mwc-icon slot="graphic">
+        add
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
       value="GOOSE_Subscriber1>>Earth_Switch> XSWI 1"
     >
       <span>
@@ -1067,6 +1123,24 @@ snapshots["when GSEControl has a multiple subscriptions looks like the latest sn
       </span>
       <span slot="secondary">
         GOOSE_Subscriber1>>Earth_Switch
+      </span>
+      <mwc-icon slot="graphic">
+        add
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="GOOSE_Subscriber2>>Earth_Switch> CSWI 1"
+    >
+      <span>
+        CSWI  - 1
+      </span>
+      <span slot="secondary">
+        GOOSE_Subscriber2>>Earth_Switch
       </span>
       <mwc-icon slot="graphic">
         add

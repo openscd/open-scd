@@ -82,7 +82,7 @@ describe('GOOSE Subscribe Data Binding Plugin', async () => {
       1
     );
     expect(getSelectedSubItemValue(fcdaListElement)).to.have.text('1');
-    expect(extRefListElement['getAvailableLNElements']().length).to.be.equal(5);
+    expect(extRefListElement['getAvailableLNElements']().length).to.be.equal(7);
 
     (<HTMLElement>(
       extRefListElement.shadowRoot!.querySelector(
@@ -95,6 +95,6 @@ describe('GOOSE Subscribe Data Binding Plugin', async () => {
       0
     );
     expect(getSelectedSubItemValue(fcdaListElement)).to.be.null;
-    expect(extRefListElement['getAvailableLNElements']().length).to.be.equal(6);
+    expect(extRefListElement['getAvailableLNElements']().length).to.be.equal(8);
   });
 });
