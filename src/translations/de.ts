@@ -337,6 +337,8 @@ export const de: Translations = {
   },
   subscription: {
     none: 'Keine Verbindung vorhanden',
+    connect: 'Daten-Attribut verbunden',
+    disconnect: 'Daten-Attribute Verbindung gelöst',
     subscriber: {
       subscribed: 'Verbunden',
       availableToSubscribe: 'Kann verbunden werden',

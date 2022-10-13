@@ -1,4 +1,4 @@
-<SCL version="2007" revision="B" release="4">
+<SCL xmlns="http://www.iec.ch/61850/2003/SCL" version="2007" revision="B" release="4">
 	<Header id="project"/>
 	<Substation name="AA1" desc="">
 		<VoltageLevel name="E1" desc="" nomFreq="50" numPhases="3">

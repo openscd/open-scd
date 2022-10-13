@@ -7,7 +7,7 @@ import {
   state,
   TemplateResult,
 } from 'lit-element';
-import { translate } from 'lit-translate';
+import { get, translate } from 'lit-translate';
 
 import {
   ComplexAction,
@@ -141,7 +141,7 @@ export class ExtRefLnBindingList extends LitElement {
       actions.push({ new: { parent: inputsElement, element: extRef } });
     }
 
-    const title = 'Connect';
+    const title = get('subscription.connect');
     return { title, actions };
   }
 
@@ -169,7 +169,7 @@ export class ExtRefLnBindingList extends LitElement {
     actions.push(...emptyInputsDeleteActions(actions));
 
     return {
-      title: 'Disconnect',
+      title: get('subscription.disconnect'),
       actions: actions,
     };
   }
