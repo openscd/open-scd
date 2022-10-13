@@ -6,14 +6,14 @@ import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 
 import { Editing } from '../../../src/Editing.js';
 import { Wizarding } from '../../../src/Wizarding.js';
-import GooseControlSubscriptionPlugin from '../../../src/editors/GooseControlSubscription.js';
+import GooseSubscriberMessageBindingPlugin from '../../../src/editors/GooseSubscriberMessageBinding.js';
 
 describe('GOOSE subscriber plugin', () => {
   customElements.define(
     'subscription-plugin',
-    Wizarding(Editing(GooseControlSubscriptionPlugin))
+    Wizarding(Editing(GooseSubscriberMessageBindingPlugin))
   );
-  let element: GooseControlSubscriptionPlugin;
+  let element: GooseSubscriberMessageBindingPlugin;
   let doc: XMLDocument;
 
   beforeEach(async () => {

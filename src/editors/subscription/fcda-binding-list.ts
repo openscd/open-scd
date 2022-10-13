@@ -21,13 +21,11 @@ import {
   getNameAttribute,
   identity,
   newWizardEvent,
-} from '../../../foundation.js';
-import { gooseIcon, smvIcon } from '../../../icons/icons.js';
-import { wizards } from '../../../wizards/wizard-library.js';
+} from '../../foundation.js';
+import { gooseIcon, smvIcon } from '../../icons/icons.js';
+import { wizards } from '../../wizards/wizard-library.js';
 
-import { styles } from '../foundation.js';
-
-import { getFcdaTitleValue, newFcdaSelectEvent } from './foundation.js';
+import { getFcdaTitleValue, newFcdaSelectEvent, styles } from './foundation.js';
 
 type controlTag = 'SampledValueControl' | 'GSEControl';
 
@@ -38,8 +36,8 @@ type iconLookup = Record<controlTag, SVGTemplateResult>;
  * A control can be edited using the standard wizard.
  * And when selecting a FCDA Element a custom event is fired, so other list can be updated.
  */
-@customElement('fcda-later-binding-list')
-export class FCDALaterBindingList extends LitElement {
+@customElement('fcda-binding-list')
+export class FcdaBindingList extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
   @property()
@@ -51,16 +49,14 @@ export class FCDALaterBindingList extends LitElement {
   @state()
   selectedFcdaElement: Element | undefined;
 
-  @property({ attribute: false })
-  iconControlLookup: iconLookup;
+  iconControlLookup: iconLookup = {
+    SampledValueControl: smvIcon,
+    GSEControl: gooseIcon,
+  };
 
   constructor() {
     super();
 
-    this.iconControlLookup = {
-      SampledValueControl: smvIcon,
-      GSEControl: gooseIcon,
-    };
     this.resetSelection = this.resetSelection.bind(this);
     parent.addEventListener('open-doc', this.resetSelection);
   }
@@ -151,7 +147,7 @@ export class FCDALaterBindingList extends LitElement {
       ${controlElements.length > 0
         ? html`<h1>
               ${translate(
-                `subscription.laterBinding.${this.controlTag}.controlBlockList.title`
+                `subscription.${this.controlTag}.controlBlockList.title`
               )}
             </h1>
             <filtered-list activatable>
@@ -193,7 +189,7 @@ export class FCDALaterBindingList extends LitElement {
             </filtered-list>`
         : html`<h1>
             ${translate(
-              `subscription.laterBinding.${this.controlTag}.controlBlockList.noControlBlockFound`
+              `subscription.${this.controlTag}.controlBlockList.noControlBlockFound`
             )}
           </h1>`}
     </section>`;

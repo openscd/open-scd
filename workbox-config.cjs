@@ -3,7 +3,6 @@ module.exports = {
   globPatterns: [
     'public/**/*.{md,js,png,xml,pdf,css,html,info,json,ico,svg,wasm}',
     'src/**/*.{md,js,png,xml,pdf,css,html,info,json,ico,svg,wasm}',
-    'web_modules/**/*.{md,js,png,xml,pdf,css,html,info,json,ico,svg,wasm}',
     '*.{md,js,png,xml,pdf,css,html,info,json,ico,svg,wasm}',
   ],
   swDest: 'build/sw.js',

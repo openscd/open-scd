@@ -1,13 +1,14 @@
-import { ExtRefLaterBindingList } from '../../../src/editors/subscription/later-binding/ext-ref-later-binding-list.js';
-import { FCDALaterBindingList } from '../../../src/editors/subscription/later-binding/fcda-later-binding-list.js';
 import GooseSubscribeLaterBindingPlugin from '../../../src/editors/GooseSubscriberLaterBinding.js';
 import SMVSubscriberLaterBindingPlugin from '../../../src/editors/SMVSubscriberLaterBinding.js';
 
+import { ExtRefLaterBindingList } from '../../../src/editors/subscription/later-binding/ext-ref-later-binding-list.js';
+import { FcdaBindingList } from '../../../src/editors/subscription/fcda-binding-list.js';
+
 export function getFCDALaterBindingList(
   element: SMVSubscriberLaterBindingPlugin | GooseSubscribeLaterBindingPlugin
-): FCDALaterBindingList {
-  return <FCDALaterBindingList>(
-    element.shadowRoot?.querySelector('fcda-later-binding-list')
+): FcdaBindingList {
+  return <FcdaBindingList>(
+    element.shadowRoot?.querySelector('fcda-binding-list')
   );
 }
 

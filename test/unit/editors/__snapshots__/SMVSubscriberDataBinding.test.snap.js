@@ -1,7 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["SMV Subscribe Later Binding Plugin looks like the latest snapshot"] = 
+snapshots["SMV Subscribe Data Binding Plugin looks like the latest snapshot"] = 
 `<div>
   <div class="container">
     <fcda-binding-list
@@ -9,13 +9,13 @@ snapshots["SMV Subscribe Later Binding Plugin looks like the latest snapshot"] =
       controltag="SampledValueControl"
     >
     </fcda-binding-list>
-    <extref-later-binding-list
+    <extref-ln-binding-list
       class="column"
       controltag="SampledValueControl"
     >
-    </extref-later-binding-list>
+    </extref-ln-binding-list>
   </div>
 </div>
 `;
-/* end snapshot SMV Subscribe Later Binding Plugin looks like the latest snapshot */
+/* end snapshot SMV Subscribe Data Binding Plugin looks like the latest snapshot */
 

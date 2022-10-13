@@ -133,7 +133,7 @@ export const en = {
     compareButton: 'Compare',
     attributes: 'Attributes from {{ elementName }}',
     children: 'Child elements from {{ elementName }}',
-    filterMutables: 'Filter project specific differences'
+    filterMutables: 'Filter project specific differences',
   },
   log: {
     name: 'Log',
@@ -369,27 +369,32 @@ export const en = {
         subscriberView: 'Subscriber | Publisher',
       },
     },
-    laterBinding: {
-      SampledValueControl: {
-        controlBlockList: {
-          title: 'Sampled Value Messages',
-          noControlBlockFound: 'No Sampled Value Messages found',
-        },
-      },
-      GSEControl: {
-        controlBlockList: {
-          title: 'GOOSE Messages',
-          noControlBlockFound: 'No GOOSE Messages found',
-        },
-      },
+    binding: {
       extRefList: {
-        title: 'Inputs Available For Selected Data Attribute',
+        title: 'Logical nodes available for selected data attribute',
+        noSelection: 'No data attribute selected',
+        noSubscribedLNs: 'No subscribed logical nodes',
+        noAvailableLNs: 'No available logical nodes to subscribe',
+      },
+    },
+    laterBinding: {
+      extRefList: {
+        title: 'Inputs available for selected data attribute',
         noSelection: 'No data attribute selected',
         noSubscribedExtRefs: 'No subscribed inputs',
         noAvailableExtRefs: 'No available inputs to subscribe',
       },
-      iedList: {
-        title: 'IEDs',
+    },
+    SampledValueControl: {
+      controlBlockList: {
+        title: 'Sampled Value Messages',
+        noControlBlockFound: 'No Sampled Value Messages found',
+      },
+    },
+    GSEControl: {
+      controlBlockList: {
+        title: 'GOOSE Messages',
+        noControlBlockFound: 'No GOOSE Messages found',
       },
     },
   },

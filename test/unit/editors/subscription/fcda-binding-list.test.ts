@@ -1,17 +1,17 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../../../mock-wizard-editor.js';
-import { MockWizardEditor } from '../../../../mock-wizard-editor.js';
+import '../../../mock-wizard-editor.js';
+import { MockWizardEditor } from '../../../mock-wizard-editor.js';
 
-import { WizardTextField } from '../../../../../src/wizard-textfield.js';
+import { WizardTextField } from '../../../../src/wizard-textfield.js';
 
-import '../../../../../src/editors/subscription/later-binding/fcda-later-binding-list.js';
-import { FCDALaterBindingList } from '../../../../../src/editors/subscription/later-binding/fcda-later-binding-list.js';
+import '../../../../src/editors/subscription/fcda-binding-list.js';
+import { FcdaBindingList } from '../../../../src/editors/subscription/fcda-binding-list.js';
 import { SinonSpy, spy } from 'sinon';
 
-describe('fcda-list', () => {
+describe('fcda-binding-list', () => {
   let parent: MockWizardEditor;
-  let element: FCDALaterBindingList;
+  let element: FcdaBindingList;
   let doc: XMLDocument;
 
   let selectEvent: SinonSpy;
@@ -25,13 +25,11 @@ describe('fcda-list', () => {
     beforeEach(async () => {
       parent = await fixture(html`
         <mock-wizard-editor>
-          <fcda-later-binding-list></fcda-later-binding-list>
+          <fcda-binding-list></fcda-binding-list>
         </mock-wizard-editor>
       `);
 
-      element = <FCDALaterBindingList>(
-        parent.querySelector('fcda-later-binding-list')!
-      );
+      element = <FcdaBindingList>parent.querySelector('fcda-binding-list')!;
       await element.requestUpdate();
     });
 
@@ -40,9 +38,7 @@ describe('fcda-list', () => {
     });
 
     it('looks like the latest snapshot', async () => {
-      element = await fixture(
-        html`<fcda-later-binding-list></fcda-later-binding-list>`
-      );
+      element = await fixture(html`<fcda-binding-list></fcda-binding-list>`);
 
       await expect(element).shadowDom.to.equalSnapshot();
     });
@@ -55,16 +51,14 @@ describe('fcda-list', () => {
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = await fixture(html`
         <mock-wizard-editor>
-          <fcda-later-binding-list
+          <fcda-binding-list
             .doc=${doc}
             controlTag="SampledValueControl"
-          ></fcda-later-binding-list>
+          ></fcda-binding-list>
         </mock-wizard-editor>
       `);
 
-      element = <FCDALaterBindingList>(
-        parent.querySelector('fcda-later-binding-list')!
-      );
+      element = <FcdaBindingList>parent.querySelector('fcda-binding-list')!;
       await element.requestUpdate();
     });
 
@@ -132,16 +126,14 @@ describe('fcda-list', () => {
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = await fixture(html`
         <mock-wizard-editor>
-          <fcda-later-binding-list
+          <fcda-binding-list
             .doc=${doc}
             controlTag="GSEControl"
-          ></fcda-later-binding-list>
+          ></fcda-binding-list>
         </mock-wizard-editor>
       `);
 
-      element = <FCDALaterBindingList>(
-        parent.querySelector('fcda-later-binding-list')!
-      );
+      element = <FcdaBindingList>parent.querySelector('fcda-binding-list')!;
       await element.requestUpdate();
     });
 
