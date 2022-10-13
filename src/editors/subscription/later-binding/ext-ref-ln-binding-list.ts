@@ -83,28 +83,10 @@ export class ExtRefLnBindingList extends LitElement {
   }
 
   private getSubscribedLNElements(): Element[] {
-    return this.getLNElements().filter(
-      element =>
-        Array.from(element.querySelectorAll('ExtRef'))
-          .filter(
-            extRefElement => extRefElement.getAttribute('intAddr') === null
-          )
-          .filter(extRefElement =>
-            isSubscribedTo(
-              serviceTypes[this.controlTag],
-              this.currentIedElement,
-              this.currentSelectedControlElement,
-              this.currentSelectedFcdaElement,
-              extRefElement
-            )
-          ).length > 0
-    );
-  }
-
-  private getAvailableLNElements(): Element[] {
-    return this.getLNElements().filter(
-      element =>
-        Array.from(element.querySelectorAll('ExtRef')).filter(extRefElement =>
+    return this.getLNElements().filter(element =>
+      Array.from(element.querySelectorAll('ExtRef'))
+        .filter(extRefElement => extRefElement.getAttribute('intAddr') === null)
+        .some(extRefElement =>
           isSubscribedTo(
             serviceTypes[this.controlTag],
             this.currentIedElement,
@@ -112,7 +94,22 @@ export class ExtRefLnBindingList extends LitElement {
             this.currentSelectedFcdaElement,
             extRefElement
           )
-        ).length == 0
+        )
+    );
+  }
+
+  private getAvailableLNElements(): Element[] {
+    return this.getLNElements().filter(
+      element =>
+        !Array.from(element.querySelectorAll('ExtRef')).some(extRefElement =>
+          isSubscribedTo(
+            serviceTypes[this.controlTag],
+            this.currentIedElement,
+            this.currentSelectedControlElement,
+            this.currentSelectedFcdaElement,
+            extRefElement
+          )
+        )
     );
   }
 
@@ -250,7 +247,7 @@ export class ExtRefLnBindingList extends LitElement {
               <span slot="secondary">
                 ${identity(lnElement.closest('LDevice'))}
               </span>
-              <mwc-icon slot="graphic">swap_horiz</mwc-icon>
+              <mwc-icon slot="graphic">close</mwc-icon>
             </mwc-list-item>`
           )}`
         : html`<mwc-list-item graphic="large" noninteractive>
@@ -296,7 +293,7 @@ export class ExtRefLnBindingList extends LitElement {
               <span slot="secondary">
                 ${identity(lnElement.closest('LDevice'))}
               </span>
-              <mwc-icon slot="graphic">arrow_back</mwc-icon>
+              <mwc-icon slot="graphic">add</mwc-icon>
             </mwc-list-item>`
           )}`
         : html`<mwc-list-item graphic="large" noninteractive>
