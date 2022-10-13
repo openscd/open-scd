@@ -31,7 +31,7 @@ import { isSubscribedTo } from './foundation.js';
 import {
   emptyInputsDeleteActions,
   getFcdaReferences,
-} from '../../../foundation/ied';
+} from '../../../foundation/ied.js';
 
 /**
  * A sub element for showing all Ext Refs from a FCDA Element.
