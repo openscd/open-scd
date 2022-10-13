@@ -111,7 +111,7 @@ describe('GOOSE Subscribe Data Binding Plugin', async () => {
       0
     );
     expect(getSelectedSubItemValue(fcdaListElement)).to.be.null;
-    expect(extRefListElement['getAvailableLNElements']().length).to.be.equal(6);
+    expect(extRefListElement['getAvailableLNElements']().length).to.be.equal(8);
 
     expect(
       element.doc.querySelectorAll(
