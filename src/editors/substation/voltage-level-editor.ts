@@ -17,6 +17,7 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 import '../../action-pane.js';
 import './bay-editor.js';
+import './general-equipment-editor.js';
 import './ied-editor.js';
 import './powertransformer-editor.js';
 import {
@@ -136,6 +137,23 @@ export class VoltageLevelEditor extends LitElement {
       : html``;
   }
 
+private  renderGeneralEquipment(): TemplateResult{
+    const generalEquipment = getChildElementsByTagName(this.element, 'GeneralEquipment');
+
+    return html`
+    <div class="${classMap({
+      content: true,
+      actionicon: !this.showfunctions,
+    })}" >
+    ${generalEquipment.map(
+      gEquipment =>
+        html`<general-equipment-editor
+      .doc=${this.doc}
+      .element=${gEquipment}
+      ?showfunctions=${this.showfunctions}
+      ></general-equipment-editor>`)}</div>`;
+  }
+
   renderFunctions(): TemplateResult {
     if (!this.showfunctions) return html``;
 
@@ -247,14 +265,7 @@ export class VoltageLevelEditor extends LitElement {
           >${this.renderAddButtons()}</mwc-menu
         >
       </abbr>
-      ${getChildElementsByTagName(this.element, 'GeneralEquipment').map(
-        gEquipment =>
-          html`<general-equipment-editor
-          .doc=${this.doc}
-          .element=${gEquipment}
-          ?showfunctions=${this.showfunctions}
-          ></general-equipment-editor>`
-      )}
+      ${this.renderGeneralEquipment()}
       ${this.renderIedContainer()}${this.renderLNodes()}${this.renderFunctions()}
       ${this.renderPowerTransformerContainer()}
       <div id="bayContainer">

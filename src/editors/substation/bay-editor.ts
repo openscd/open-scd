@@ -18,6 +18,7 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 import '../../action-pane.js';
 import './ied-editor.js';
 import './conducting-equipment-editor.js';
+import './general-equipment-editor.js';
 import './powertransformer-editor.js';
 import { VoltageLevelEditor } from './voltage-level-editor.js';
 import {
@@ -29,6 +30,7 @@ import {
 } from '../../foundation.js';
 import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
 import { cloneSubstationElement, startMove, styles } from './foundation.js';
+import { EQUIPMENT_SIZE } from '../singlelinediagram/sld-drawing.js';
 
 function childTags(element: Element | null | undefined): SCLTag[] {
   if (!element) return [];
@@ -57,7 +59,7 @@ export class BayEditor extends LitElement {
     const name = this.element.getAttribute('name') ?? '';
     const desc = this.element.getAttribute('desc');
 
-    return `${name} ${desc ? `- ${desc}` : ''}`;
+    return `${name} ${desc ? `—  ${desc}` : ''}`;
   }
 
   @property({ attribute: false })
@@ -118,6 +120,23 @@ export class BayEditor extends LitElement {
           )}
         </div>`
       : html``;
+  }
+
+  private renderGeneralEquipment(): TemplateResult {
+    const generalEquipment = getChildElementsByTagName(this.element, 'GeneralEquipment');
+    
+    return html`
+    <div class="${classMap({
+      content: true,
+      actionicon: !this.showfunctions,
+    })}" >
+    ${generalEquipment.map(
+      gEquipment =>
+        html`<general-equipment-editor
+      .doc=${this.doc}
+      .element=${gEquipment}
+      ?showfunctions=${this.showfunctions}
+      ></general-equipment-editor>`)}</div>`;
   }
 
   renderFunctions(): TemplateResult {
@@ -205,14 +224,7 @@ export class BayEditor extends LitElement {
           >${this.renderAddButtons()}</mwc-menu
         >
       </abbr>
-      ${getChildElementsByTagName(this.element, 'GeneralEquipment').map(
-        gEquipment =>
-          html`<general-equipment-editor
-          .doc=${this.doc}
-          .element=${gEquipment}
-          ?showfunctions=${this.showfunctions}
-          ></general-equipment-editor>`
-      )}
+      ${this.renderGeneralEquipment()}
       ${this.renderIedContainer()}${this.renderLNodes()}${this.renderFunctions()}
       <div
         class="${classMap({

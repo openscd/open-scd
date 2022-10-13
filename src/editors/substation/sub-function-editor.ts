@@ -19,6 +19,7 @@ import { Menu } from '@material/mwc-menu';
 
 import '../../action-pane.js';
 import './sub-function-editor.js';
+import './general-equipment-editor.js';
 import {
   getChildElementsByTagName,
   newActionEvent,
@@ -27,6 +28,7 @@ import {
   tags,
 } from '../../foundation.js';
 import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
+import { classMap } from 'lit-html/directives/class-map.js';
 
 function childTags(element: Element | null | undefined): SCLTag[] {
   if (!element) return [];
@@ -104,6 +106,23 @@ export class SubFunctionEditor extends LitElement {
       : html``;
   }
 
+  private renderGeneralEquipment(): TemplateResult {
+    const generalEquipment = getChildElementsByTagName(this.element, 'GeneralEquipment');
+
+    return html`
+    <div class="${classMap({
+      content: true,
+      actionicon: !this.showfunctions,
+    })}" >
+    ${generalEquipment.map(
+      gEquipment =>
+        html`<general-equipment-editor
+      .doc=${this.doc}
+      .element=${gEquipment}
+      ?showfunctions=${this.showfunctions}
+      ></general-equipment-editor>`)}</div>`;
+  }
+
   private renderSubFunctions(): TemplateResult {
     const subfunctions = getChildElementsByTagName(this.element, 'SubFunction');
     return html` ${subfunctions.map(
@@ -154,14 +173,7 @@ export class SubFunctionEditor extends LitElement {
           }}
           >${this.renderAddButtons()}</mwc-menu
         > </abbr>
-        ${getChildElementsByTagName(this.element, 'GeneralEquipment').map(
-        gEquipment =>
-          html`<general-equipment-editor
-          .doc=${this.doc}
-          .element=${gEquipment}
-          ?showfunctions=${this.showfunctions}
-          ></general-equipment-editor>`
-      )}
+        ${this.renderGeneralEquipment()}
       ${this.renderLNodes()}${this.renderSubFunctions()}</action-pane
     >`;
   }
