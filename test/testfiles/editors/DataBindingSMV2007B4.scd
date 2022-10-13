@@ -78,6 +78,7 @@
 				<LDevice inst="Overvoltage">
 					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0">
 						<Inputs>
+              <ExtRef iedName="SMV_Publisher" serviceType="SMV" ldInst="CurrentTransformer" lnClass="TCTR" lnInst="1" prefix="L2" doName="AmpSv" daName="q" srcLDInst="CurrentTransformer" srcPrefix="" srcLNClass="LLN0" srcCBName="fullSmv"/>
 							<ExtRef iedName="SMV_Publisher" serviceType="SMV" ldInst="CurrentTransformer" lnClass="TCTR" lnInst="1" prefix="L3" doName="AmpSv" daName="instMag.i" srcLDInst="CurrentTransformer" srcPrefix="" srcLNClass="LLN0" srcCBName="fullSmv"/>
 							<ExtRef iedName="SMV_Publisher" serviceType="SMV" ldInst="CurrentTransformer" lnClass="TCTR" lnInst="1" prefix="L3" doName="AmpSv" daName="q" srcLDInst="CurrentTransformer" srcPrefix="" srcLNClass="LLN0" srcCBName="fullSmv"/>
 						</Inputs>
