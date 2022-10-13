@@ -134,7 +134,6 @@ export class FcdaBindingList extends LitElement {
   private resetSelection(): void {
     this.selectedControlElement = undefined;
     this.selectedFcdaElement = undefined;
-    this.extRefCounters = new Map();
   }
 
   private onFcdaSelect(controlElement: Element, fcdaElement: Element) {
@@ -147,7 +146,8 @@ export class FcdaBindingList extends LitElement {
   protected updated(_changedProperties: PropertyValues): void {
     super.updated(_changedProperties);
 
-    // When the document is updated, we will fire the event again.
+    // When a new document is loaded or the selection is changed
+    // we will fire the FCDA Select Event.
     if (
       _changedProperties.has('doc') ||
       _changedProperties.has('selectedControlElement') ||
@@ -159,6 +159,11 @@ export class FcdaBindingList extends LitElement {
           this.selectedFcdaElement
         )
       );
+    }
+
+    // When a new document is loaded we will reset the Map to clear old entries.
+    if (_changedProperties.has('doc')) {
+      this.extRefCounters = new Map();
     }
   }
 
