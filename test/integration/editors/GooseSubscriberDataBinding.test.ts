@@ -8,6 +8,7 @@ import GooseSubscriberDataBinding from '../../../src/editors/GooseSubscriberData
 import {
   getExtrefDataBindingList,
   getFCDABindingList,
+  getSelectedSubItemValue,
 } from './test-support.js';
 
 describe('GOOSE Subscribe Data Binding Plugin', async () => {
@@ -48,6 +49,7 @@ describe('GOOSE Subscribe Data Binding Plugin', async () => {
     expect(extRefListElement['getSubscribedLNElements']().length).to.be.equal(
       0
     );
+    expect(getSelectedSubItemValue(fcdaListElement)).to.be.null;
     expect(extRefListElement['getAvailableLNElements']().length).to.be.equal(8);
     expect(
       element.doc.querySelectorAll(
@@ -65,6 +67,7 @@ describe('GOOSE Subscribe Data Binding Plugin', async () => {
     expect(extRefListElement['getSubscribedLNElements']().length).to.be.equal(
       1
     );
+    expect(getSelectedSubItemValue(fcdaListElement)).to.have.text('1');
     expect(extRefListElement['getAvailableLNElements']().length).to.be.equal(7);
     expect(
       element.doc.querySelectorAll(
@@ -88,7 +91,8 @@ describe('GOOSE Subscribe Data Binding Plugin', async () => {
     expect(extRefListElement['getSubscribedLNElements']().length).to.be.equal(
       1
     );
-    expect(extRefListElement['getAvailableLNElements']().length).to.be.equal(5);
+    expect(getSelectedSubItemValue(fcdaListElement)).to.have.text('1');
+    expect(extRefListElement['getAvailableLNElements']().length).to.be.equal(7);
 
     expect(
       element.doc.querySelectorAll(
@@ -106,7 +110,8 @@ describe('GOOSE Subscribe Data Binding Plugin', async () => {
     expect(extRefListElement['getSubscribedLNElements']().length).to.be.equal(
       0
     );
-    expect(extRefListElement['getAvailableLNElements']().length).to.be.equal(6);
+    expect(getSelectedSubItemValue(fcdaListElement)).to.be.null;
+    expect(extRefListElement['getAvailableLNElements']().length).to.be.equal(8);
 
     expect(
       element.doc.querySelectorAll(

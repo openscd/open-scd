@@ -7,6 +7,7 @@ import SMVSubscribeLaterBindingPlugin from '../../../src/editors/SMVSubscriberLa
 import {
   getExtrefLaterBindingList,
   getFCDABindingList,
+  getSelectedSubItemValue,
 } from './test-support.js';
 
 describe('SMV Subscribe Later Binding plugin', () => {
@@ -44,6 +45,7 @@ describe('SMV Subscribe Later Binding plugin', () => {
     expect(
       extRefListElement['getSubscribedExtRefElements']().length
     ).to.be.equal(0);
+    expect(getSelectedSubItemValue(fcdaListElement)).to.be.null;
     expect(
       extRefListElement['getAvailableExtRefElements']().length
     ).to.be.equal(8);
@@ -58,6 +60,7 @@ describe('SMV Subscribe Later Binding plugin', () => {
     expect(
       extRefListElement['getSubscribedExtRefElements']().length
     ).to.be.equal(1);
+    expect(getSelectedSubItemValue(fcdaListElement)).to.have.text('1');
     expect(
       extRefListElement['getAvailableExtRefElements']().length
     ).to.be.equal(7);
@@ -77,6 +80,7 @@ describe('SMV Subscribe Later Binding plugin', () => {
     expect(
       extRefListElement['getSubscribedExtRefElements']().length
     ).to.be.equal(3);
+    expect(getSelectedSubItemValue(fcdaListElement)).to.have.text('3');
     expect(
       extRefListElement['getAvailableExtRefElements']().length
     ).to.be.equal(8);
@@ -91,6 +95,7 @@ describe('SMV Subscribe Later Binding plugin', () => {
     expect(
       extRefListElement['getSubscribedExtRefElements']().length
     ).to.be.equal(2);
+    expect(getSelectedSubItemValue(fcdaListElement)).to.have.text('2');
     expect(
       extRefListElement['getAvailableExtRefElements']().length
     ).to.be.equal(9);

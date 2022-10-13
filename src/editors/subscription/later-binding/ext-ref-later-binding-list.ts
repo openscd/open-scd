@@ -12,7 +12,6 @@ import { translate } from 'lit-translate';
 
 import {
   cloneElement,
-  compareNames,
   getDescriptionAttribute,
   identity,
   newActionEvent,
@@ -21,11 +20,15 @@ import {
 
 import {
   FcdaSelectEvent,
-  serviceTypes,
+  newSubscriptionChangedEvent,
   styles,
   updateExtRefElement,
 } from '../foundation.js';
-import { isSubscribedTo } from './foundation.js';
+import {
+  getExtRefElements,
+  getSubscribedExtRefElements,
+  isSubscribed,
+} from './foundation.js';
 
 /**
  * A sub element for showing all Ext Refs from a FCDA Element.
@@ -55,41 +58,8 @@ export class ExtRefLaterBindingList extends LitElement {
     }
   }
 
-  private getExtRefElements(): Element[] {
-    if (this.doc) {
-      return Array.from(this.doc.querySelectorAll('ExtRef'))
-        .filter(element => element.hasAttribute('intAddr'))
-        .filter(element => element.closest('IED') !== this.currentIedElement)
-        .sort((a, b) =>
-          compareNames(
-            `${a.getAttribute('intAddr')}`,
-            `${b.getAttribute('intAddr')}`
-          )
-        );
-    }
-    return [];
-  }
-
-  private getSubscribedExtRefElements(): Element[] {
-    return this.getExtRefElements().filter(extRefElement =>
-      isSubscribedTo(
-        serviceTypes[this.controlTag],
-        this.currentIedElement,
-        this.currentSelectedControlElement,
-        this.currentSelectedFcdaElement,
-        extRefElement
-      )
-    );
-  }
-
-  private getAvailableExtRefElements(): Element[] {
-    return this.getExtRefElements().filter(
-      element => !this.isSubscribed(element)
-    );
-  }
-
   private async onFcdaSelectEvent(event: FcdaSelectEvent) {
-    this.currentSelectedControlElement = event.detail.controlElement;
+    this.currentSelectedControlElement = event.detail.control;
     this.currentSelectedFcdaElement = event.detail.fcda;
 
     // Retrieve the IED Element to which the FCDA belongs.
@@ -97,23 +67,6 @@ export class ExtRefLaterBindingList extends LitElement {
     this.currentIedElement = this.currentSelectedFcdaElement
       ? this.currentSelectedFcdaElement.closest('IED') ?? undefined
       : undefined;
-  }
-
-  /**
-   * Check if the ExtRef is already subscribed to a FCDA Element.
-   *
-   * @param extRefElement - The Ext Ref Element to check.
-   */
-  private isSubscribed(extRefElement: Element): boolean {
-    return (
-      extRefElement.hasAttribute('iedName') &&
-      extRefElement.hasAttribute('ldInst') &&
-      extRefElement.hasAttribute('prefix') &&
-      extRefElement.hasAttribute('lnClass') &&
-      extRefElement.hasAttribute('lnInst') &&
-      extRefElement.hasAttribute('doName') &&
-      extRefElement.hasAttribute('daName')
-    );
   }
 
   /**
@@ -194,6 +147,24 @@ export class ExtRefLaterBindingList extends LitElement {
     };
   }
 
+  private getSubscribedExtRefElements(): Element[] {
+    return getSubscribedExtRefElements(
+      <Element>this.doc.getRootNode(),
+      this.controlTag,
+      this.currentSelectedFcdaElement,
+      this.currentSelectedControlElement,
+      true
+    );
+  }
+
+  private getAvailableExtRefElements(): Element[] {
+    return getExtRefElements(
+      <Element>this.doc.getRootNode(),
+      this.currentSelectedFcdaElement,
+      true
+    ).filter(extRefElement => !isSubscribed(extRefElement));
+  }
+
   private renderTitle(): TemplateResult {
     return html`<h1>
       ${translate(`subscription.laterBinding.extRefList.title`)}
@@ -226,6 +197,12 @@ export class ExtRefLaterBindingList extends LitElement {
                 const replaceAction = this.unsubscribe(extRefElement);
                 if (replaceAction) {
                   this.dispatchEvent(newActionEvent(replaceAction));
+                  this.dispatchEvent(
+                    newSubscriptionChangedEvent(
+                      this.currentSelectedControlElement,
+                      this.currentSelectedFcdaElement
+                    )
+                  );
                 }
               }}
               value="${identity(extRefElement)}"
@@ -277,6 +254,12 @@ export class ExtRefLaterBindingList extends LitElement {
                 const replaceAction = this.subscribe(extRefElement);
                 if (replaceAction) {
                   this.dispatchEvent(newActionEvent(replaceAction));
+                  this.dispatchEvent(
+                    newSubscriptionChangedEvent(
+                      this.currentSelectedControlElement,
+                      this.currentSelectedFcdaElement
+                    )
+                  );
                 }
               }}
               value="${identity(extRefElement)}"

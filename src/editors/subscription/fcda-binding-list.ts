@@ -16,7 +16,6 @@ import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 
 import {
-  compareNames,
   getDescriptionAttribute,
   getNameAttribute,
   identity,
@@ -25,7 +24,13 @@ import {
 import { gooseIcon, smvIcon } from '../../icons/icons.js';
 import { wizards } from '../../wizards/wizard-library.js';
 
-import { getFcdaTitleValue, newFcdaSelectEvent, styles } from './foundation.js';
+import {
+  getFcdaTitleValue,
+  newFcdaSelectEvent,
+  styles,
+  SubscriptionChangedEvent,
+} from './foundation.js';
+import { getSubscribedExtRefElements } from './later-binding/foundation.js';
 
 type controlTag = 'SampledValueControl' | 'GSEControl';
 
@@ -42,14 +47,18 @@ export class FcdaBindingList extends LitElement {
   doc!: XMLDocument;
   @property()
   controlTag!: controlTag;
+  @property()
+  includeLaterBinding!: boolean;
 
   // The selected Elements when a FCDA Line is clicked.
   @state()
-  selectedControlElement: Element | undefined;
+  private selectedControlElement: Element | undefined;
   @state()
-  selectedFcdaElement: Element | undefined;
+  private selectedFcdaElement: Element | undefined;
+  @state()
+  private extRefCounters = new Map();
 
-  iconControlLookup: iconLookup = {
+  private iconControlLookup: iconLookup = {
     SampledValueControl: smvIcon,
     GSEControl: gooseIcon,
   };
@@ -59,13 +68,17 @@ export class FcdaBindingList extends LitElement {
 
     this.resetSelection = this.resetSelection.bind(this);
     parent.addEventListener('open-doc', this.resetSelection);
+
+    const parentDiv = this.closest('.container');
+    if (parentDiv) {
+      this.resetExtRefCount = this.resetExtRefCount.bind(this);
+      parentDiv.addEventListener('subscription-changed', this.resetExtRefCount);
+    }
   }
 
   private getControlElements(): Element[] {
     if (this.doc) {
-      return Array.from(
-        this.doc.querySelectorAll(`LN0 > ${this.controlTag}`)
-      ).sort((a, b) => compareNames(`${identity(a)}`, `${identity(b)}`));
+      return Array.from(this.doc.querySelectorAll(`LN0 > ${this.controlTag}`));
     }
     return [];
   }
@@ -79,9 +92,38 @@ export class FcdaBindingList extends LitElement {
             'datSet'
           )}] > FCDA`
         )
-      ).sort((a, b) => compareNames(`${identity(a)}`, `${identity(b)}`));
+      );
     }
     return [];
+  }
+
+  private resetExtRefCount(event: SubscriptionChangedEvent): void {
+    if (event.detail.control && event.detail.fcda) {
+      const controlBlockFcdaId = `${identity(event.detail.control)} ${identity(
+        event.detail.fcda
+      )}`;
+      this.extRefCounters.delete(controlBlockFcdaId);
+    }
+  }
+
+  private getExtRefCount(
+    fcdaElement: Element,
+    controlElement: Element
+  ): number {
+    const controlBlockFcdaId = `${identity(controlElement)} ${identity(
+      fcdaElement
+    )}`;
+    if (!this.extRefCounters.has(controlBlockFcdaId)) {
+      const extRefCount = getSubscribedExtRefElements(
+        <Element>this.doc.getRootNode(),
+        this.controlTag,
+        fcdaElement,
+        controlElement!,
+        this.includeLaterBinding
+      ).length;
+      this.extRefCounters.set(controlBlockFcdaId, extRefCount);
+    }
+    return this.extRefCounters.get(controlBlockFcdaId);
   }
 
   private openEditWizard(controlElement: Element): void {
@@ -104,7 +146,8 @@ export class FcdaBindingList extends LitElement {
   protected updated(_changedProperties: PropertyValues): void {
     super.updated(_changedProperties);
 
-    // When the document is updated, we will fire the event again.
+    // When a new document is loaded or the selection is changed
+    // we will fire the FCDA Select Event.
     if (
       _changedProperties.has('doc') ||
       _changedProperties.has('selectedControlElement') ||
@@ -117,11 +160,18 @@ export class FcdaBindingList extends LitElement {
         )
       );
     }
+
+    // When a new document is loaded we will reset the Map to clear old entries.
+    if (_changedProperties.has('doc')) {
+      this.extRefCounters = new Map();
+    }
   }
 
   renderFCDA(controlElement: Element, fcdaElement: Element): TemplateResult {
+    const fcdaCount = this.getExtRefCount(fcdaElement, controlElement);
     return html`<mwc-list-item
       graphic="large"
+      ?hasMeta=${fcdaCount !== 0}
       twoline
       class="subitem"
       @click=${() => this.onFcdaSelect(controlElement, fcdaElement)}
@@ -138,6 +188,7 @@ export class FcdaBindingList extends LitElement {
         ${fcdaElement.getAttribute('lnInst')}
       </span>
       <mwc-icon slot="graphic">subdirectory_arrow_right</mwc-icon>
+      ${fcdaCount !== 0 ? html`<span slot="meta">${fcdaCount}</span>` : nothing}
     </mwc-list-item>`;
   }
 

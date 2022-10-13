@@ -18,7 +18,8 @@ export default class SMVSubscribeDataBindingPlugin extends LitElement {
         <fcda-binding-list
           class="column"
           controlTag="SampledValueControl"
-          .doc=${this.doc}
+          .includeLaterBinding="${false}"
+          .doc="${this.doc}"
         >
         </fcda-binding-list>
         <extref-ln-binding-list
