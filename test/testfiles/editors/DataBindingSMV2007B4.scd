@@ -1,4 +1,4 @@
-<SCL version="2007" revision="B" release="4">
+<SCL xmlns="http://www.iec.ch/61850/2003/SCL" version="2007" revision="B" release="4">
 	<Header id="project"/>
 	<Substation name="AA1" desc="">
 		<VoltageLevel name="E1" desc="" nomFreq="50" numPhases="3">
@@ -78,7 +78,6 @@
 				<LDevice inst="Overvoltage">
 					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0">
 						<Inputs>
-              <ExtRef iedName="SMV_Publisher" serviceType="SMV" ldInst="CurrentTransformer" lnClass="TCTR" lnInst="1" prefix="L2" doName="AmpSv" daName="q" srcLDInst="CurrentTransformer" srcPrefix="" srcLNClass="LLN0" srcCBName="fullSmv"/>
 							<ExtRef iedName="SMV_Publisher" serviceType="SMV" ldInst="CurrentTransformer" lnClass="TCTR" lnInst="1" prefix="L3" doName="AmpSv" daName="instMag.i" srcLDInst="CurrentTransformer" srcPrefix="" srcLNClass="LLN0" srcCBName="fullSmv"/>
 							<ExtRef iedName="SMV_Publisher" serviceType="SMV" ldInst="CurrentTransformer" lnClass="TCTR" lnInst="1" prefix="L3" doName="AmpSv" daName="q" srcLDInst="CurrentTransformer" srcPrefix="" srcLNClass="LLN0" srcCBName="fullSmv"/>
 						</Inputs>

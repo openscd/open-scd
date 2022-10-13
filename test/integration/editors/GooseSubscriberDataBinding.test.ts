@@ -34,7 +34,7 @@ describe('GOOSE Subscribe Data Binding Plugin', async () => {
     );
   });
 
-  it('when subscribing an available ExtRef then the lists are changed', async () => {
+  it('when subscribing an available ExtRef then the lists are changed and first ExtRef is added to the LN', async () => {
     const fcdaListElement = getFCDABindingList(element);
     const extRefListElement = getExtrefDataBindingList(element);
 
@@ -49,6 +49,11 @@ describe('GOOSE Subscribe Data Binding Plugin', async () => {
       0
     );
     expect(extRefListElement['getAvailableLNElements']().length).to.be.equal(8);
+    expect(
+      element.doc.querySelectorAll(
+        'IED[name="GOOSE_Subscriber2"] LN[lnClass="XSWI"][inst="1"] > Inputs > ExtRef[iedName="GOOSE_Publisher"]'
+      ).length
+    ).to.be.equal(0);
 
     (<HTMLElement>(
       extRefListElement.shadowRoot!.querySelector(
@@ -61,6 +66,11 @@ describe('GOOSE Subscribe Data Binding Plugin', async () => {
       1
     );
     expect(extRefListElement['getAvailableLNElements']().length).to.be.equal(7);
+    expect(
+      element.doc.querySelectorAll(
+        'IED[name="GOOSE_Subscriber2"] LN[lnClass="XSWI"][inst="1"] > Inputs > ExtRef[iedName="GOOSE_Publisher"]'
+      ).length
+    ).to.be.equal(1);
   });
 
   it('when unsubscribing a subscribed ExtRef then the lists are changed', async () => {
@@ -80,6 +90,12 @@ describe('GOOSE Subscribe Data Binding Plugin', async () => {
     );
     expect(extRefListElement['getAvailableLNElements']().length).to.be.equal(5);
 
+    expect(
+      element.doc.querySelectorAll(
+        'IED[name="GOOSE_Subscriber2"] LN0[lnClass="LLN0"] > Inputs > ExtRef[iedName="GOOSE_Publisher"]'
+      ).length
+    ).to.be.equal(2);
+
     (<HTMLElement>(
       extRefListElement.shadowRoot!.querySelector(
         'mwc-list-item[value="GOOSE_Subscriber2>>Earth_Switch"]'
@@ -91,5 +107,58 @@ describe('GOOSE Subscribe Data Binding Plugin', async () => {
       0
     );
     expect(extRefListElement['getAvailableLNElements']().length).to.be.equal(6);
+
+    expect(
+      element.doc.querySelectorAll(
+        'IED[name="GOOSE_Subscriber2"] LN0[lnClass="LLN0"] > Inputs > ExtRef[iedName="GOOSE_Publisher"]'
+      ).length
+    ).to.be.equal(1);
+  });
+
+  it('when unsubscribing all subscribed ExtRef then the inputs element is also removed', async () => {
+    const fcdaListElement = getFCDABindingList(element);
+    const extRefListElement = getExtrefDataBindingList(element);
+
+    expect(
+      element.doc.querySelectorAll(
+        'IED[name="GOOSE_Subscriber2"] LN0[lnClass="LLN0"] > Inputs'
+      ).length
+    ).to.be.equal(1);
+
+    (<HTMLElement>(
+      fcdaListElement.shadowRoot!.querySelector(
+        'mwc-list-item[value="GOOSE_Publisher>>QB2_Disconnector>GOOSE2 GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos q (ST)"]'
+      )
+    )).click();
+    await element.requestUpdate();
+    await extRefListElement.requestUpdate();
+
+    (<HTMLElement>(
+      extRefListElement.shadowRoot!.querySelector(
+        'mwc-list-item[value="GOOSE_Subscriber2>>Earth_Switch"]'
+      )
+    )).click();
+    await element.requestUpdate();
+
+    (<HTMLElement>(
+      fcdaListElement.shadowRoot!.querySelector(
+        'mwc-list-item[value="GOOSE_Publisher>>QB2_Disconnector>GOOSE2 GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos stVal (ST)"]'
+      )
+    )).click();
+    await element.requestUpdate();
+    await extRefListElement.requestUpdate();
+
+    (<HTMLElement>(
+      extRefListElement.shadowRoot!.querySelector(
+        'mwc-list-item[value="GOOSE_Subscriber2>>Earth_Switch"]'
+      )
+    )).click();
+    await element.requestUpdate();
+
+    expect(
+      element.doc.querySelectorAll(
+        'IED[name="GOOSE_Subscriber2"] LN0[lnClass="LLN0"] > Inputs'
+      ).length
+    ).to.be.equal(0);
   });
 });
