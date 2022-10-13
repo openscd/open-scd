@@ -7,13 +7,31 @@ import {
   state,
   TemplateResult,
 } from 'lit-element';
-import { translate } from 'lit-translate';
+import { get, translate } from 'lit-translate';
 
-import { identity } from '../../../foundation.js';
+import {
+  ComplexAction,
+  Create,
+  createElement,
+  Delete,
+  identity,
+  newActionEvent,
+} from '../../../foundation.js';
 import { Nsdoc } from '../../../foundation/nsdoc.js';
 
-import { FcdaSelectEvent, serviceTypes, styles } from '../foundation.js';
+import {
+  canCreateValidExtRef,
+  createExtRefElement,
+  existExtRef,
+  FcdaSelectEvent,
+  serviceTypes,
+  styles,
+} from '../foundation.js';
 import { isSubscribedTo } from './foundation.js';
+import {
+  emptyInputsDeleteActions,
+  getFcdaReferences,
+} from '../../../foundation/ied.js';
 
 /**
  * A sub element for showing all Ext Refs from a FCDA Element.
@@ -106,6 +124,68 @@ export class ExtRefLnBindingList extends LitElement {
       : undefined;
   }
 
+  private subscribe(lnElement: Element): ComplexAction | null {
+    if (
+      !this.currentIedElement ||
+      !this.currentSelectedFcdaElement ||
+      !this.currentSelectedControlElement!
+    ) {
+      return null;
+    }
+
+    const actions: Create[] = [];
+    let inputsElement = lnElement.querySelector(':scope > Inputs');
+    if (!inputsElement) {
+      inputsElement = createElement(lnElement.ownerDocument, 'Inputs', {});
+      actions.push({ new: { parent: lnElement, element: inputsElement } });
+    }
+
+    if (
+      !existExtRef(inputsElement!, this.currentSelectedFcdaElement) &&
+      canCreateValidExtRef(
+        this.currentSelectedFcdaElement,
+        this.currentSelectedControlElement
+      )
+    ) {
+      const extRef = createExtRefElement(
+        this.currentSelectedControlElement,
+        this.currentSelectedFcdaElement
+      );
+      actions.push({ new: { parent: inputsElement, element: extRef } });
+    }
+
+    const title = get('subscription.connect');
+    return { title, actions };
+  }
+
+  private unsubscribe(lnElement: Element): ComplexAction | null {
+    if (
+      !this.currentIedElement ||
+      !this.currentSelectedFcdaElement ||
+      !this.currentSelectedControlElement!
+    ) {
+      return null;
+    }
+
+    const actions: Delete[] = [];
+    const inputElement = lnElement.querySelector(':scope > Inputs')!;
+    const extRefElement = inputElement.querySelector(
+      `ExtRef[iedName=${this.currentIedElement.getAttribute('name')}]` +
+        `${getFcdaReferences(this.currentSelectedFcdaElement)}`
+    );
+    if (extRefElement) {
+      actions.push({ old: { parent: inputElement, element: extRefElement } });
+    }
+
+    // Check if empty Input Element should also be removed.
+    actions.push(...emptyInputsDeleteActions(actions));
+
+    return {
+      title: get('subscription.disconnect'),
+      actions: actions,
+    };
+  }
+
   private bindingNotSupported(lnElement: Element): boolean {
     const iedElement = lnElement.closest('IED')!;
     return (
@@ -156,6 +236,12 @@ export class ExtRefLnBindingList extends LitElement {
               ?disabled=${this.bindingNotSupported(lnElement)}
               twoline
               value="${identity(lnElement)}"
+              @click=${() => {
+                const replaceAction = this.unsubscribe(lnElement);
+                if (replaceAction) {
+                  this.dispatchEvent(newActionEvent(replaceAction));
+                }
+              }}
             >
               <span>${this.buildLNTitle(lnElement)}</span>
               <span slot="secondary">
@@ -196,6 +282,12 @@ export class ExtRefLnBindingList extends LitElement {
               ?disabled=${this.bindingNotSupported(lnElement)}
               twoline
               value="${identity(lnElement)}"
+              @click=${() => {
+                const replaceAction = this.subscribe(lnElement);
+                if (replaceAction) {
+                  this.dispatchEvent(newActionEvent(replaceAction));
+                }
+              }}
             >
               <span>${this.buildLNTitle(lnElement)}</span>
               <span slot="secondary">

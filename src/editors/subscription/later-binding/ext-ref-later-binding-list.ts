@@ -137,7 +137,15 @@ export class ExtRefLaterBindingList extends LitElement {
    *
    * @param extRefElement - The Ext Ref Element to clean from attributes.
    */
-  private unsubscribe(extRefElement: Element): Replace {
+  private unsubscribe(extRefElement: Element): Replace | null {
+    if (
+      !this.currentIedElement ||
+      !this.currentSelectedFcdaElement ||
+      !this.currentSelectedControlElement!
+    ) {
+      return null;
+    }
+
     const clonedExtRefElement = cloneElement(extRefElement, {
       iedName: null,
       ldInst: null,
@@ -215,9 +223,10 @@ export class ExtRefLaterBindingList extends LitElement {
               graphic="large"
               twoline
               @click=${() => {
-                this.dispatchEvent(
-                  newActionEvent(this.unsubscribe(extRefElement))
-                );
+                const replaceAction = this.unsubscribe(extRefElement);
+                if (replaceAction) {
+                  this.dispatchEvent(newActionEvent(replaceAction));
+                }
               }}
               value="${identity(extRefElement)}"
             >
