@@ -5,6 +5,7 @@ import { Nsdoc } from '../foundation/nsdoc.js';
 import './subscription/fcda-binding-list.js';
 import './subscription/later-binding/ext-ref-ln-binding-list.js';
 
+/** An editor [[`plugin`]] for Subscribe Data Binding (GOOSE). */
 export default class GooseSubscribeDataBindingPlugin extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;

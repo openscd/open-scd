@@ -3,6 +3,7 @@ import { css, html, LitElement, property, TemplateResult } from 'lit-element';
 import './subscription/fcda-binding-list.js';
 import './subscription/later-binding/ext-ref-later-binding-list.js';
 
+/** An editor [[`plugin`]] for Subscribe Later Binding (GOOSE). */
 export default class GooseSubscribeLaterBindingPlugin extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;

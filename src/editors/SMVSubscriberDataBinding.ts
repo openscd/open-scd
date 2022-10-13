@@ -5,6 +5,7 @@ import { Nsdoc } from '../foundation/nsdoc.js';
 import './subscription/fcda-binding-list.js';
 import './subscription/later-binding/ext-ref-ln-binding-list.js';
 
+/** An editor [[`plugin`]] for Subscribe Data Binding (SMV). */
 export default class SMVSubscribeDataBindingPlugin extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
