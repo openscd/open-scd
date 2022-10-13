@@ -374,10 +374,11 @@ export const de: Translations = {
     },
     binding: {
       extRefList: {
-        title: '???',
-        noSelection: '???',
-        noSubscribedLNs: '???',
-        noAvailableLNs: '???',
+        title: 'Logische Knoten für ausgewählten Daten-Attribute',
+        noSelection: 'Kein Daten-Attribute ausgewählt',
+        noSubscribedLNs: 'Kein Verbinding zu dem ausgewählten Daten-Attribute',
+        noAvailableLNs:
+          'Keine Verbindung zu dem ausgewählten Daten-Attribute möglich',
       },
     },
     laterBinding: {

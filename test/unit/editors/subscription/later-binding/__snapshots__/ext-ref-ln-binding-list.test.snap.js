@@ -78,7 +78,7 @@ snapshots["for Sampled Value Control when SVC has no subscriptions looks like th
         SMV_Subscriber1>>Overcurrent
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -96,7 +96,7 @@ snapshots["for Sampled Value Control when SVC has no subscriptions looks like th
         SMV_Subscriber1>>Overcurrent
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -114,7 +114,7 @@ snapshots["for Sampled Value Control when SVC has no subscriptions looks like th
         SMV_Subscriber1>>Overvoltage
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -132,7 +132,7 @@ snapshots["for Sampled Value Control when SVC has no subscriptions looks like th
         SMV_Subscriber1>>Overvoltage
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -151,7 +151,7 @@ snapshots["for Sampled Value Control when SVC has no subscriptions looks like th
         SMV_Subscriber2>>Overcurrent
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -170,7 +170,7 @@ snapshots["for Sampled Value Control when SVC has no subscriptions looks like th
         SMV_Subscriber2>>Overcurrent
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -189,7 +189,7 @@ snapshots["for Sampled Value Control when SVC has no subscriptions looks like th
         SMV_Subscriber2>>Overvoltage
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -208,7 +208,7 @@ snapshots["for Sampled Value Control when SVC has no subscriptions looks like th
         SMV_Subscriber2>>Overvoltage
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
   </filtered-list>
@@ -252,7 +252,7 @@ snapshots["for Sampled Value Control when SVC has a single subscriptions looks l
         SMV_Subscriber1>>Overvoltage
       </span>
       <mwc-icon slot="graphic">
-        swap_horiz
+        close
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -285,7 +285,7 @@ snapshots["for Sampled Value Control when SVC has a single subscriptions looks l
         SMV_Subscriber1>>Overcurrent
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -303,7 +303,7 @@ snapshots["for Sampled Value Control when SVC has a single subscriptions looks l
         SMV_Subscriber1>>Overcurrent
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -321,7 +321,7 @@ snapshots["for Sampled Value Control when SVC has a single subscriptions looks l
         SMV_Subscriber1>>Overvoltage
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -340,7 +340,7 @@ snapshots["for Sampled Value Control when SVC has a single subscriptions looks l
         SMV_Subscriber2>>Overcurrent
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -359,7 +359,7 @@ snapshots["for Sampled Value Control when SVC has a single subscriptions looks l
         SMV_Subscriber2>>Overcurrent
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -378,7 +378,7 @@ snapshots["for Sampled Value Control when SVC has a single subscriptions looks l
         SMV_Subscriber2>>Overvoltage
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -397,7 +397,7 @@ snapshots["for Sampled Value Control when SVC has a single subscriptions looks l
         SMV_Subscriber2>>Overvoltage
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
   </filtered-list>
@@ -441,7 +441,7 @@ snapshots["when SVC has a multiple subscriptions looks like the latest snapshot,
         SMV_Subscriber1>>Overvoltage
       </span>
       <mwc-icon slot="graphic">
-        swap_horiz
+        close
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -457,7 +457,7 @@ snapshots["when SVC has a multiple subscriptions looks like the latest snapshot,
         SMV_Subscriber2>>Overvoltage
       </span>
       <mwc-icon slot="graphic">
-        swap_horiz
+        close
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -490,7 +490,7 @@ snapshots["when SVC has a multiple subscriptions looks like the latest snapshot,
         SMV_Subscriber1>>Overcurrent
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -508,7 +508,7 @@ snapshots["when SVC has a multiple subscriptions looks like the latest snapshot,
         SMV_Subscriber1>>Overcurrent
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -526,7 +526,7 @@ snapshots["when SVC has a multiple subscriptions looks like the latest snapshot,
         SMV_Subscriber1>>Overvoltage
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -545,7 +545,7 @@ snapshots["when SVC has a multiple subscriptions looks like the latest snapshot,
         SMV_Subscriber2>>Overcurrent
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -564,7 +564,7 @@ snapshots["when SVC has a multiple subscriptions looks like the latest snapshot,
         SMV_Subscriber2>>Overcurrent
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -583,7 +583,7 @@ snapshots["when SVC has a multiple subscriptions looks like the latest snapshot,
         SMV_Subscriber2>>Overvoltage
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
   </filtered-list>
@@ -660,7 +660,7 @@ snapshots["for GOOSE Control when GSEControl has no subscriptions looks like the
         GOOSE_Subscriber1>>Earth_Switch
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -679,7 +679,7 @@ snapshots["for GOOSE Control when GSEControl has no subscriptions looks like the
         GOOSE_Subscriber1>>Earth_Switch
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -698,7 +698,7 @@ snapshots["for GOOSE Control when GSEControl has no subscriptions looks like the
         GOOSE_Subscriber1>>Earth_Switch
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -717,7 +717,7 @@ snapshots["for GOOSE Control when GSEControl has no subscriptions looks like the
         GOOSE_Subscriber1>>Earth_Switch
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -735,7 +735,7 @@ snapshots["for GOOSE Control when GSEControl has no subscriptions looks like the
         GOOSE_Subscriber2>>Earth_Switch
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -753,7 +753,7 @@ snapshots["for GOOSE Control when GSEControl has no subscriptions looks like the
         GOOSE_Subscriber2>>Earth_Switch
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -771,7 +771,7 @@ snapshots["for GOOSE Control when GSEControl has no subscriptions looks like the
         GOOSE_Subscriber2>>Earth_Switch
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -789,7 +789,7 @@ snapshots["for GOOSE Control when GSEControl has no subscriptions looks like the
         GOOSE_Subscriber2>>Earth_Switch
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
   </filtered-list>
@@ -833,7 +833,7 @@ snapshots["for GOOSE Control when GSEControl has a single subscription looks lik
         GOOSE_Subscriber2>>Earth_Switch
       </span>
       <mwc-icon slot="graphic">
-        swap_horiz
+        close
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -867,7 +867,7 @@ snapshots["for GOOSE Control when GSEControl has a single subscription looks lik
         GOOSE_Subscriber1>>Earth_Switch
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -886,7 +886,7 @@ snapshots["for GOOSE Control when GSEControl has a single subscription looks lik
         GOOSE_Subscriber1>>Earth_Switch
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -905,7 +905,7 @@ snapshots["for GOOSE Control when GSEControl has a single subscription looks lik
         GOOSE_Subscriber1>>Earth_Switch
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -923,7 +923,7 @@ snapshots["for GOOSE Control when GSEControl has a single subscription looks lik
         GOOSE_Subscriber2>>Earth_Switch
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -941,7 +941,7 @@ snapshots["for GOOSE Control when GSEControl has a single subscription looks lik
         GOOSE_Subscriber2>>Earth_Switch
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
   </filtered-list>
@@ -986,7 +986,7 @@ snapshots["when GSEControl has a multiple subscriptions looks like the latest sn
         GOOSE_Subscriber1>>Earth_Switch
       </span>
       <mwc-icon slot="graphic">
-        swap_horiz
+        close
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1001,7 +1001,7 @@ snapshots["when GSEControl has a multiple subscriptions looks like the latest sn
         GOOSE_Subscriber2>>Earth_Switch
       </span>
       <mwc-icon slot="graphic">
-        swap_horiz
+        close
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1016,7 +1016,7 @@ snapshots["when GSEControl has a multiple subscriptions looks like the latest sn
         GOOSE_Subscriber2>>Earth_Switch
       </span>
       <mwc-icon slot="graphic">
-        swap_horiz
+        close
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1050,7 +1050,7 @@ snapshots["when GSEControl has a multiple subscriptions looks like the latest sn
         GOOSE_Subscriber1>>Earth_Switch
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1069,7 +1069,7 @@ snapshots["when GSEControl has a multiple subscriptions looks like the latest sn
         GOOSE_Subscriber1>>Earth_Switch
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1087,7 +1087,7 @@ snapshots["when GSEControl has a multiple subscriptions looks like the latest sn
         GOOSE_Subscriber2>>Earth_Switch
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        add
       </mwc-icon>
     </mwc-list-item>
   </filtered-list>
