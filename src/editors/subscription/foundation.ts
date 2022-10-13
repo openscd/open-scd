@@ -123,27 +123,24 @@ export function getExtRef(
   }
 
   let controlCriteria = '';
-  if (control) {
+  if (control && getSclSchemaVersion(fcda.ownerDocument) !== '2003') {
     controlCriteria = `[serviceType="${serviceTypes[control.tagName]!}"]`;
-
-    if (getSclSchemaVersion(fcda.ownerDocument) !== '2003') {
-      controlCriteria += createCriteria(
-        'srcLDInst',
-        control.closest('LDevice')?.getAttribute('inst') ?? null
-      );
-      controlCriteria += createCriteria(
-        'srcLNClass',
-        control.closest('LN0,LN')?.getAttribute('lnClass') ?? null
-      );
-      controlCriteria += createCriteria(
-        'srcLNInst',
-        control.closest('LN0,LN')?.getAttribute('inst') ?? null
-      );
-      controlCriteria += createCriteria(
-        'srcCBName',
-        control.getAttribute('name') ?? null
-      );
-    }
+    controlCriteria += createCriteria(
+      'srcLDInst',
+      control.closest('LDevice')?.getAttribute('inst') ?? null
+    );
+    controlCriteria += createCriteria(
+      'srcLNClass',
+      control.closest('LN0,LN')?.getAttribute('lnClass') ?? null
+    );
+    controlCriteria += createCriteria(
+      'srcLNInst',
+      control.closest('LN0,LN')?.getAttribute('inst') ?? null
+    );
+    controlCriteria += createCriteria(
+      'srcCBName',
+      control.getAttribute('name') ?? null
+    );
   }
 
   return Array.from(

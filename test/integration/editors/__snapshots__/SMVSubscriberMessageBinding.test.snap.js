@@ -850,40 +850,10 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and su
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
-        value="IED4>>CircuitBreaker_CB1>MSVCB02"
-      >
-        <span>
-          [subscription.subscriber.partiallySubscribed]
-        </span>
-      </mwc-list-item>
-      <li
-        divider=""
-        role="separator"
-      >
-      </li>
-      <mwc-list-item
-        aria-disabled="false"
-        aria-selected="false"
-        graphic="avatar"
-        hasmeta=""
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <span>
-          MSVCB02 (IED4)
-        </span>
-        <mwc-icon slot="graphic">
-          add
-        </mwc-icon>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        noninteractive=""
-        tabindex="-1"
         value=""
       >
         <span>
-          [subscription.subscriber.availableToSubscribe]
+          [subscription.subscriber.partiallySubscribed]
         </span>
       </mwc-list-item>
       <li
@@ -900,6 +870,37 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and su
         <span>
           [subscription.none]
         </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        noninteractive=""
+        tabindex="-1"
+        value="IED4>>CircuitBreaker_CB1>MSVCB02"
+      >
+        <span>
+          [subscription.subscriber.availableToSubscribe]
+        </span>
+      </mwc-list-item>
+      <li
+        divider=""
+        role="separator"
+      >
+      </li>
+      <mwc-list-item
+        aria-disabled="false"
+        aria-selected="true"
+        graphic="avatar"
+        hasmeta=""
+        mwc-list-item=""
+        selected=""
+        tabindex="0"
+      >
+        <span>
+          MSVCB02 (IED4)
+        </span>
+        <mwc-icon slot="graphic">
+          add
+        </mwc-icon>
       </mwc-list-item>
     </filtered-list>
   </div>
@@ -941,10 +942,35 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and un
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
-        value="IED4>>CircuitBreaker_CB1>MSVCB02"
+        value=""
       >
         <span>
           [subscription.subscriber.partiallySubscribed]
+        </span>
+      </mwc-list-item>
+      <li
+        divider=""
+        role="separator"
+      >
+      </li>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="avatar"
+        noninteractive=""
+        tabindex="-1"
+      >
+        <span>
+          [subscription.none]
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        noninteractive=""
+        tabindex="-1"
+        value="IED3>>MU01>MSVCB01 IED4>>CircuitBreaker_CB1>MSVCB02"
+      >
+        <span>
+          [subscription.subscriber.availableToSubscribe]
         </span>
       </mwc-list-item>
       <li
@@ -961,34 +987,19 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and un
         tabindex="-1"
       >
         <span>
-          MSVCB02 (IED4)
+          MSVCB01 (IED3)
         </span>
         <mwc-icon slot="graphic">
           add
         </mwc-icon>
       </mwc-list-item>
       <mwc-list-item
-        aria-disabled="false"
-        noninteractive=""
-        tabindex="-1"
-        value="IED3>>MU01>MSVCB01"
-      >
-        <span>
-          [subscription.subscriber.availableToSubscribe]
-        </span>
-      </mwc-list-item>
-      <li
-        divider=""
-        role="separator"
-      >
-      </li>
-      <mwc-list-item
         graphic="avatar"
         hasmeta=""
         mwc-list-item=""
       >
         <span>
-          MSVCB01 (IED3)
+          MSVCB02 (IED4)
         </span>
         <mwc-icon slot="graphic">
           add

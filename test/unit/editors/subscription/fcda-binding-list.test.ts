@@ -121,7 +121,7 @@ describe('fcda-binding-list', () => {
 
   describe('with a GSEControl doc loaded', () => {
     beforeEach(async () => {
-      doc = await fetch('/test/testfiles/valid2007B4ForSubscription.scd')
+      doc = await fetch('/test/testfiles/editors/LaterBindingGOOSE2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = await fixture(html`
@@ -150,7 +150,7 @@ describe('fcda-binding-list', () => {
       const nameField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
       );
-      expect(nameField.value).to.be.equal('GCB');
+      expect(nameField.value).to.be.equal('GOOSE2');
     });
 
     it('looks like the latest snapshot', async () => {
