@@ -24,14 +24,12 @@ import {
   createExtRefElement,
   existExtRef,
   FcdaSelectEvent,
+  getExtRef,
   newSubscriptionChangedEvent,
   styles,
 } from '../foundation.js';
 import { getSubscribedExtRefElements } from './foundation.js';
-import {
-  emptyInputsDeleteActions,
-  getFcdaReferences,
-} from '../../../foundation/ied.js';
+import { emptyInputsDeleteActions } from '../../../foundation/ied.js';
 
 /**
  * A sub element for showing all Ext Refs from a FCDA Element.
@@ -126,7 +124,11 @@ export class ExtRefLnBindingList extends LitElement {
     }
 
     if (
-      !existExtRef(inputsElement!, this.currentSelectedFcdaElement) &&
+      !existExtRef(
+        inputsElement!,
+        this.currentSelectedFcdaElement,
+        this.currentSelectedControlElement
+      ) &&
       canCreateValidExtRef(
         this.currentSelectedFcdaElement,
         this.currentSelectedControlElement
@@ -154,9 +156,10 @@ export class ExtRefLnBindingList extends LitElement {
 
     const actions: Delete[] = [];
     const inputElement = lnElement.querySelector(':scope > Inputs')!;
-    const extRefElement = inputElement.querySelector(
-      `ExtRef[iedName=${this.currentIedElement.getAttribute('name')}]` +
-        `${getFcdaReferences(this.currentSelectedFcdaElement)}`
+    const extRefElement = getExtRef(
+      inputElement,
+      this.currentSelectedFcdaElement,
+      this.currentSelectedControlElement
     );
     if (extRefElement) {
       actions.push({ old: { parent: inputElement, element: extRefElement } });
