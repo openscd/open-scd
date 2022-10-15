@@ -16,6 +16,7 @@ describe('subnetwork-editor wizarding integration', () => {
       doc = await fetch('/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
       parent = <MockWizard>(
         await fixture(
           html`<mock-wizard
@@ -34,13 +35,12 @@ describe('subnetwork-editor wizarding integration', () => {
       )).click();
       await parent.updateComplete;
     });
-    it('looks like the latest snapshot', async () => {
-      await expect(parent.wizardUI.dialog).to.equalSnapshot();
-    });
+
     describe('the first input element', () => {
       it('edits the attribute name', async () => {
         expect(parent.wizardUI.inputs[0].label).to.equal('name');
       });
+
       it('edits only for valid inputs', async () => {
         await fc.assert(
           fc.asyncProperty(regexString(regExp.tName, 1), async name => {
@@ -51,10 +51,12 @@ describe('subnetwork-editor wizarding integration', () => {
         );
       });
     });
+
     describe('the second input element', () => {
       it('edits the attribute desc', async () => {
         expect(parent.wizardUI.inputs[1].label).to.equal('desc');
       });
+
       it('edits only for valid inputs', async () => {
         await fc.assert(
           fc.asyncProperty(regexString(regExp.desc), async desc => {
@@ -65,10 +67,12 @@ describe('subnetwork-editor wizarding integration', () => {
         );
       });
     });
+
     describe('the third input element', () => {
       it('edits the attribute type', async () => {
         expect(parent.wizardUI.inputs[2].label).to.equal('type');
       });
+
       it('edits only for valid inputs', async () => {
         await fc.assert(
           fc.asyncProperty(regexString(regExp.desc, 1), async type => {
@@ -79,10 +83,12 @@ describe('subnetwork-editor wizarding integration', () => {
         );
       });
     });
+
     describe('the fourth input element', () => {
       it('edits the attribute ', async () => {
         expect(parent.wizardUI.inputs[3].label).to.equal('BitRate');
       });
+
       it('edits only for valid inputs', async () => {
         await fc.assert(
           fc.asyncProperty(regexString(regExp.decimal), async BitRate => {
@@ -92,6 +98,7 @@ describe('subnetwork-editor wizarding integration', () => {
           })
         );
       });
+
       it('rejects edition for invalid inputs', async () => {
         await fc.assert(
           fc.asyncProperty(
