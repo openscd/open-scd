@@ -320,6 +320,22 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
             display: flex;
           }
 
+          #infofilter[on] {
+            color: var(--cyan);
+          }
+
+          #warningfilter[on] {
+            color: var(--yellow);
+          }
+
+          #errorfilter[on] {
+            color: var(--red);
+          }
+
+          #actionfilter[on] {
+            color: var(--blue);
+          }
+
           #log {
             --mdc-dialog-min-width: 92vw;
           }

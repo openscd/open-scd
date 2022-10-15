@@ -132,7 +132,6 @@ export function getFilterIcon(type: iconType, state: boolean): TemplateResult {
   const width = iconProperties[type]?.width ?? 24;
   return html`<svg
     slot="${state ? 'onIcon' : 'offIcon'}"
-    style="${state ? `color:var(${iconColors[type]})` : ''})"
     xmlns="http://www.w3.org/2000/svg"
     height="${height}"
     viewBox="0 0 ${width} ${height}"
