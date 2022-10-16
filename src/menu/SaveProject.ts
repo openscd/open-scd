@@ -1,6 +1,7 @@
 import { LitElement, property } from 'lit-element';
 
 import { formatXml } from '../foundation.js';
+
 export default class SaveProjectPlugin extends LitElement {
   @property() doc!: XMLDocument;
   @property() docName!: string;

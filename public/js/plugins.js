@@ -124,7 +124,6 @@ export const officialPlugins = [
     requireDoc: true,
     position: 'top',
   },
-
   {
     name: 'Validate Schema',
     src: '/src/validators/ValidateSchema.js',
