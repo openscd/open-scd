@@ -1,17 +1,20 @@
-import { customElement, html, LitElement, TemplateResult, property, state } from 'lit-element';
-import { translate } from 'lit-translate';
+import {
+  customElement,
+  html,
+  LitElement,
+  TemplateResult,
+  property,
+  state,
+} from 'lit-element';
 
 import '@material/mwc-icon-button';
 import '@material/mwc-fab';
 
 import '../../action-pane.js';
-import { newWizardEvent } from '../../foundation.js';
 import { generalConductingEquipmentIcon } from '../../icons/icons.js';
-import { wizards } from '../../wizards/wizard-library.js';
 
 @customElement('general-equipment-editor')
 export class GeneralEquipmentEditor extends LitElement {
-
   @property({ attribute: false })
   doc!: XMLDocument;
   @property({ attribute: false })
@@ -21,6 +24,7 @@ export class GeneralEquipmentEditor extends LitElement {
   /** Whether `Function` and `SubFunction` are rendered */
   @property({ type: Boolean })
   showfunctions = false;
+
   @state()
   get header(): string {
     const name = this.element.getAttribute('name') ?? '';
@@ -31,11 +35,10 @@ export class GeneralEquipmentEditor extends LitElement {
 
   render(): TemplateResult {
     if (this.showfunctions)
-      return html`<action-pane label=${this.header}
-      ></action-pane>`;
+      return html`<action-pane label=${this.header}></action-pane>`;
 
     return html`<action-icon label=${this.header}>
-      <mwc-icon slot="icon">${generalConductingEquipmentIcon}</mwc-icon> 
-      </action-icon>`;
+      <mwc-icon slot="icon">${generalConductingEquipmentIcon}</mwc-icon>
+    </action-icon>`;
   }
 }
