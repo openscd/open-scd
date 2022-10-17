@@ -4,6 +4,7 @@ import {
   html,
   LitElement,
   property,
+  state,
   TemplateResult,
 } from 'lit-element';
 
@@ -17,6 +18,7 @@ import '../../action-pane.js';
 
 import { styles } from './foundation.js';
 import { getChildElementsByTagName } from '../../foundation.js';
+import { nothing } from 'lit-html';
 
 /** [[`SubstationEditor`]] subeditor for a child-less `SubEquipment` element. */
 @customElement('sub-equipment-editor')
@@ -31,9 +33,25 @@ export class SubEquipmentEditor extends LitElement {
   /** SubEquipment name attribute */
   @property({ type: String })
   get label(): string {
-    return `${this.element.getAttribute('name') ?? 'UNDEFINED'} - ${
-      this.element.getAttribute('desc') ?? 'UNDEFINED'
-    } (${this.element.getAttribute('phase') ?? 'UNDEFINED'})`;
+    const name = `${
+      this.element.hasAttribute('name')
+        ? `${this.element.getAttribute('name')}`
+        : ''
+    }`;
+
+    const description = `${
+      this.element.hasAttribute('desc')
+        ? ` - ${this.element.getAttribute('desc')}`
+        : ''
+    }`;
+
+    const phase = `${
+      this.element.hasAttribute('phase')
+        ? ` (${this.element.getAttribute('phase')})`
+        : ''
+    }`;
+
+    return `${name}${description}${phase}`;
   }
 
   render(): TemplateResult {

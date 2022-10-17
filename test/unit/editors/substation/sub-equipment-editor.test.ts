@@ -23,4 +23,23 @@ describe('sub-equipment-editor', () => {
   it('looks like the latest snapshot', async () => {
     await expect(element).shadowDom.to.equalSnapshot();
   });
+
+  describe('without description and state', () => {
+    beforeEach(async () => {
+      doc = await fetch('/test/testfiles/valid2007B4.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+      element = <SubEquipmentEditor>(
+        await fixture(
+          html`<sub-equipment-editor
+            .element=${doc.querySelector('SubEquipment[name="other"]')}
+          ></sub-equipment-editor>`
+        )
+      );
+    });
+
+    it('looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
+    });
+  });
 });
