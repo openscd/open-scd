@@ -30,7 +30,6 @@ import {
 } from '../../foundation.js';
 import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
 import { cloneSubstationElement, startMove, styles } from './foundation.js';
-import { EQUIPMENT_SIZE } from '../singlelinediagram/sld-drawing.js';
 
 function childTags(element: Element | null | undefined): SCLTag[] {
   if (!element) return [];
@@ -59,7 +58,7 @@ export class BayEditor extends LitElement {
     const name = this.element.getAttribute('name') ?? '';
     const desc = this.element.getAttribute('desc');
 
-    return `${name} ${desc ? `—  ${desc}` : ''}`;
+    return `${name} ${desc ? `- ${desc}` : ''}`;
   }
 
   @property({ attribute: false })
