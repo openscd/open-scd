@@ -122,20 +122,28 @@ export class BayEditor extends LitElement {
   }
 
   private renderGeneralEquipment(): TemplateResult {
-    const generalEquipment = getChildElementsByTagName(this.element, 'GeneralEquipment');
-    
-    return html`
-    <div class="${classMap({
-      content: true,
-      actionicon: !this.showfunctions,
-    })}" >
-    ${generalEquipment.map(
-      gEquipment =>
-        html`<general-equipment-editor
-      .doc=${this.doc}
-      .element=${gEquipment}
-      ?showfunctions=${this.showfunctions}
-      ></general-equipment-editor>`)}</div>`;
+    const generalEquipment = getChildElementsByTagName(
+      this.element,
+      'GeneralEquipment'
+    );
+
+    return generalEquipment.length
+      ? html` <div
+          class="${classMap({
+            content: true,
+            actionicon: !this.showfunctions,
+          })}"
+        >
+          ${generalEquipment.map(
+            gEquipment =>
+              html`<general-equipment-editor
+                .doc=${this.doc}
+                .element=${gEquipment}
+                ?showfunctions=${this.showfunctions}
+              ></general-equipment-editor>`
+          )}
+        </div>`
+      : html``;
   }
 
   renderFunctions(): TemplateResult {

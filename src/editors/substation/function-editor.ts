@@ -45,7 +45,7 @@ export class FunctionEditor extends LitElement {
   element!: Element;
 
   @property({ type: Boolean })
-  showfunctions = false  
+  showfunctions = false;
 
   @state()
   private get header(): string {
@@ -102,21 +102,29 @@ export class FunctionEditor extends LitElement {
       : html``;
   }
 
-private  renderGeneralEquipment(): TemplateResult{
-    const generalEquipment = getChildElementsByTagName(this.element, 'GeneralEquipment');
+  private renderGeneralEquipment(): TemplateResult {
+    const generalEquipment = getChildElementsByTagName(
+      this.element,
+      'GeneralEquipment'
+    );
 
-    return html`
-    <div class="${classMap({
-      content: true,
-      actionicon: !this.showfunctions,
-    })}" >
-    ${generalEquipment.map(
-      gEquipment =>
-        html`<general-equipment-editor
-      .doc=${this.doc}
-      .element=${gEquipment}
-      ?showfunctions=${this.showfunctions}
-      ></general-equipment-editor>`)}</div>`;
+    return generalEquipment.length
+      ? html` <div
+          class="${classMap({
+            content: true,
+            actionicon: !this.showfunctions,
+          })}"
+        >
+          ${generalEquipment.map(
+            gEquipment =>
+              html`<general-equipment-editor
+                .doc=${this.doc}
+                .element=${gEquipment}
+                ?showfunctions=${this.showfunctions}
+              ></general-equipment-editor>`
+          )}
+        </div>`
+      : html``;
   }
 
   private renderSubFunctions(): TemplateResult {
@@ -172,8 +180,8 @@ private  renderGeneralEquipment(): TemplateResult{
             this.openCreateWizard(tagName);
           }}
           >${this.renderAddButtons()}</mwc-menu
-        > </abbr
-      >
+        >
+      </abbr>
       ${this.renderGeneralEquipment()}
       ${this.renderLNodes()}${this.renderSubFunctions()}</action-pane
     >`;

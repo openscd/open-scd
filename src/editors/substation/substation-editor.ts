@@ -128,20 +128,28 @@ export class SubstationEditor extends LitElement {
   }
 
   private renderGeneralEquipment(): TemplateResult {
-    const generalEquipment = getChildElementsByTagName(this.element, 'GeneralEquipment');
+    const generalEquipment = getChildElementsByTagName(
+      this.element,
+      'GeneralEquipment'
+    );
 
-    return html`
-    <div class="${classMap({
-      content: true,
-      actionicon: !this.showfunctions,
-    })}" >
-    ${generalEquipment.map(
-      gEquipment =>
-        html`<general-equipment-editor
-      .doc=${this.doc}
-      .element=${gEquipment}
-      ?showfunctions=${this.showfunctions}
-      ></general-equipment-editor>`)}</div>`;
+    return generalEquipment.length
+      ? html` <div
+          class="${classMap({
+            content: true,
+            actionicon: !this.showfunctions,
+          })}"
+        >
+          ${generalEquipment.map(
+            gEquipment =>
+              html`<general-equipment-editor
+                .doc=${this.doc}
+                .element=${gEquipment}
+                ?showfunctions=${this.showfunctions}
+              ></general-equipment-editor>`
+          )}
+        </div>`
+      : html``;
   }
 
   renderFunctions(): TemplateResult {

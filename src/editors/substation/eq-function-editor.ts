@@ -49,7 +49,7 @@ export class EqFunctionEditor extends LitElement {
   element!: Element;
 
   @property({ type: Boolean })
-  showfunctions = false  
+  showfunctions = false;
 
   @state()
   private get header(): string {
@@ -106,21 +106,29 @@ export class EqFunctionEditor extends LitElement {
       : html``;
   }
 
-  private  renderGeneralEquipment(): TemplateResult{
-    const generalEquipment = getChildElementsByTagName(this.element, 'GeneralEquipment');
+  private renderGeneralEquipment(): TemplateResult {
+    const generalEquipment = getChildElementsByTagName(
+      this.element,
+      'GeneralEquipment'
+    );
 
-    return html`
-    <div class="${classMap({
-      content: true,
-      actionicon: !this.showfunctions,
-    })}" >
-    ${generalEquipment.map(
-      gEquipment =>
-        html`<general-equipment-editor
-      .doc=${this.doc}
-      .element=${gEquipment}
-      ?showfunctions=${this.showfunctions}
-      ></general-equipment-editor>`)}</div>`;
+    return generalEquipment.length
+      ? html` <div
+          class="${classMap({
+            content: true,
+            actionicon: !this.showfunctions,
+          })}"
+        >
+          ${generalEquipment.map(
+            gEquipment =>
+              html`<general-equipment-editor
+                .doc=${this.doc}
+                .element=${gEquipment}
+                ?showfunctions=${this.showfunctions}
+              ></general-equipment-editor>`
+          )}
+        </div>`
+      : html``;
   }
 
   private renderEqSubFunctions(): TemplateResult {
