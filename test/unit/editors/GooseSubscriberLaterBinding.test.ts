@@ -12,7 +12,7 @@ describe('SMV Subscribe Later Binding Plugin', () => {
   let doc: XMLDocument;
 
   beforeEach(async () => {
-    doc = await fetch('/test/testfiles/valid2007B4ForSubscription.scd')
+    doc = await fetch('/test/testfiles/editors/LaterBindingGOOSE2007B4.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
