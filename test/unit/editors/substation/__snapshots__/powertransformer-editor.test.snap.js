@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'powertransformer-editor rendered as action icon looks like the latest snapshot'
-] = `<action-icon
+snapshots["powertransformer-editor rendered as action icon looks like the latest snapshot"] = 
+`<action-icon
   label="TA1"
   tabindex="0"
 >
@@ -38,9 +37,8 @@ snapshots[
 `;
 /* end snapshot powertransformer-editor rendered as action icon looks like the latest snapshot */
 
-snapshots[
-  'powertransformer-editor rendered as action pane looks like the latest snapshot'
-] = `<action-pane
+snapshots["powertransformer-editor rendered as action pane looks like the latest snapshot"] = 
+`<action-pane
   label="TA1"
   tabindex="0"
 >
@@ -138,9 +136,8 @@ snapshots[
 `;
 /* end snapshot powertransformer-editor rendered as action pane looks like the latest snapshot */
 
-snapshots[
-  'powertransformer-editor rendered as action pane with EqFunction childrend looks like the latest snapshot'
-] = `<action-pane
+snapshots["powertransformer-editor rendered as action pane with EqFunction childrend looks like the latest snapshot"] = 
+`<action-pane
   label="myPtr2"
   tabindex="0"
 >
@@ -234,9 +231,8 @@ snapshots[
 `;
 /* end snapshot powertransformer-editor rendered as action pane with EqFunction childrend looks like the latest snapshot */
 
-snapshots[
-  'powertransformer-editor rendered as action pane with LNode childrend looks like the latest snapshot'
-] = `<action-pane
+snapshots["powertransformer-editor rendered as action pane with LNode childrend looks like the latest snapshot"] = 
+`<action-pane
   label="myPtr1"
   tabindex="0"
 >
@@ -331,3 +327,4 @@ snapshots[
 </action-pane>
 `;
 /* end snapshot powertransformer-editor rendered as action pane with LNode childrend looks like the latest snapshot */
+

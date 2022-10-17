@@ -1,7 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots['voltage-level-editor looks like the latest snapshot'] = `<action-pane
+snapshots["voltage-level-editor looks like the latest snapshot"] = 
+`<action-pane
   label="E1 - Voltage Level
     (110.0 kV)"
   tabindex="0"
@@ -112,9 +113,8 @@ snapshots['voltage-level-editor looks like the latest snapshot'] = `<action-pane
 `;
 /* end snapshot voltage-level-editor looks like the latest snapshot */
 
-snapshots[
-  'voltage-level-editor with readonly property looks like the latest snapshot'
-] = `<action-pane
+snapshots["voltage-level-editor with readonly property looks like the latest snapshot"] = 
+`<action-pane
   label="E1 - Voltage Level
     (110.0 kV)"
   tabindex="0"
@@ -225,9 +225,8 @@ snapshots[
 `;
 /* end snapshot voltage-level-editor with readonly property looks like the latest snapshot */
 
-snapshots[
-  'voltage-level-editor with function filter deactivated looks like the latest snapshot'
-] = `<action-pane
+snapshots["voltage-level-editor with function filter deactivated looks like the latest snapshot"] = 
+`<action-pane
   label="E1 - Voltage Level
     (110.0 kV)"
   tabindex="0"
@@ -340,9 +339,8 @@ snapshots[
 `;
 /* end snapshot voltage-level-editor with function filter deactivated looks like the latest snapshot */
 
-snapshots[
-  'voltage-level-editor with function filter deactivated and existing LNode children looks like the latest snapshot'
-] = `<action-pane
+snapshots["voltage-level-editor with function filter deactivated and existing LNode children looks like the latest snapshot"] = 
+`<action-pane
   label="J1 - Voltage Level with LNode
     "
   tabindex="0"
@@ -452,3 +450,4 @@ snapshots[
 </action-pane>
 `;
 /* end snapshot voltage-level-editor with function filter deactivated and existing LNode children looks like the latest snapshot */
+
