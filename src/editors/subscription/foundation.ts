@@ -186,7 +186,7 @@ export function instantiateSubscriptionSupervision(
   if (!availableLN) return [];
   // First, create the templateStructure array
   const templateStructure = createTemplateStructure(availableLN, [
-    'SvCBRef',
+    controlBlock?.tagName === 'GSEControl' ? 'GoCBRef' : 'SvCBRef',
     'setSrcRef',
   ]);
   if (!templateStructure) return [];
