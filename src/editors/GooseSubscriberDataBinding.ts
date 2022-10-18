@@ -1,29 +1,34 @@
 import { css, html, LitElement, property, TemplateResult } from 'lit-element';
 
-import './subscription/fcda-binding-list.js';
-import './subscription/later-binding/ext-ref-later-binding-list.js';
+import { Nsdoc } from '../foundation/nsdoc.js';
 
-/** An editor [[`plugin`]] for Subscribe Later Binding (SMV). */
-export default class SMVSubscribeLaterBindingPlugin extends LitElement {
+import './subscription/fcda-binding-list.js';
+import './subscription/later-binding/ext-ref-ln-binding-list.js';
+
+/** An editor [[`plugin`]] for Subscribe Data Binding (GOOSE). */
+export default class GooseSubscribeDataBindingPlugin extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property()
+  nsdoc!: Nsdoc;
 
   render(): TemplateResult {
     return html`<div>
       <div class="container">
         <fcda-binding-list
           class="column"
-          controlTag="SampledValueControl"
-          .includeLaterBinding="${true}"
+          controlTag="GSEControl"
+          .includeLaterBinding="${false}"
           .doc="${this.doc}"
         >
         </fcda-binding-list>
-        <extref-later-binding-list
+        <extref-ln-binding-list
           class="column"
-          controlTag="SampledValueControl"
+          controlTag="GSEControl"
           .doc="${this.doc}"
+          .nsdoc="${this.nsdoc}"
         >
-        </extref-later-binding-list>
+        </extref-ln-binding-list>
       </div>
     </div>`;
   }

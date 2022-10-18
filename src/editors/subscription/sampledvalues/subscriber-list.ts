@@ -5,7 +5,7 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
-import { translate } from 'lit-translate';
+import { get, translate } from 'lit-translate';
 
 import '@material/mwc-icon';
 import '@material/mwc-list';
@@ -268,7 +268,7 @@ export class SubscriberList extends SubscriberListContainer {
     });
 
     /** If the IED doesn't have a Inputs element, just append it to the first LN0 element. */
-    const title = 'Connect';
+    const title = get('subscription.connect');
     if (inputsElement.parentElement)
       this.dispatchEvent(newActionEvent({ title, actions }));
     else {
@@ -297,7 +297,7 @@ export class SubscriberList extends SubscriberListContainer {
 
     this.dispatchEvent(
       newActionEvent({
-        title: 'Disconnect',
+        title: get('subscription.disconnect'),
         actions: actions,
       })
     );
@@ -415,7 +415,7 @@ export class SubscriberList extends SubscriberListContainer {
   }
 
   protected firstUpdated(): void {
-    this.currentSelectedIed = undefined
+    this.currentSelectedIed = undefined;
   }
 
   render(): TemplateResult {
