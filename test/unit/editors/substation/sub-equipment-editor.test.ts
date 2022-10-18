@@ -37,6 +37,10 @@ describe('sub-equipment-editor', () => {
         )
       );
     });
+
+    it('looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
+    });
   });
 
   describe('without description and state', () => {
