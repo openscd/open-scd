@@ -8,7 +8,7 @@ describe('sub-equipment-editor', () => {
   let doc: XMLDocument;
 
   beforeEach(async () => {
-    doc = await fetch('/test/testfiles/valid2007B4.scd')
+    doc = await fetch('/test/testfiles/SubEquipment.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     element = <SubEquipmentEditor>(
@@ -24,9 +24,24 @@ describe('sub-equipment-editor', () => {
     await expect(element).shadowDom.to.equalSnapshot();
   });
 
+  describe('With children', () => {
+    beforeEach(async () => {
+      doc = await fetch('/test/testfiles/SubEquipment.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+      element = <SubEquipmentEditor>(
+        await fixture(
+          html`<sub-equipment-editor
+            .element=${doc.querySelector('SubEquipment[name="addEqi"]')}
+          ></sub-equipment-editor>`
+        )
+      );
+    });
+  });
+
   describe('without description and state', () => {
     beforeEach(async () => {
-      doc = await fetch('/test/testfiles/valid2007B4.scd')
+      doc = await fetch('/test/testfiles/SubEquipment.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       element = <SubEquipmentEditor>(

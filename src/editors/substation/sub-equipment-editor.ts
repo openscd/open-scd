@@ -4,7 +4,6 @@ import {
   html,
   LitElement,
   property,
-  state,
   TemplateResult,
 } from 'lit-element';
 
@@ -18,7 +17,6 @@ import '../../action-pane.js';
 
 import { styles } from './foundation.js';
 import { getChildElementsByTagName } from '../../foundation.js';
-import { nothing } from 'lit-html';
 
 /** [[`SubstationEditor`]] subeditor for a child-less `SubEquipment` element. */
 @customElement('sub-equipment-editor')
@@ -54,23 +52,6 @@ export class SubEquipmentEditor extends LitElement {
     return `${name}${description}${phase}`;
   }
 
-  render(): TemplateResult {
-    return html`<action-pane label="${this.label}">
-      ${this.renderLNodes()} ${this.renderEqFunctions()}
-    </action-pane> `;
-  }
-
-  private renderEqFunctions(): TemplateResult {
-    const eqFunctions = getChildElementsByTagName(this.element, 'EqFunction');
-    return html` ${eqFunctions.map(
-      eqFunction =>
-        html`<eq-function-editor
-          .doc=${this.doc}
-          .element=${eqFunction}
-        ></eq-function-editor>`
-    )}`;
-  }
-
   private renderLNodes(): TemplateResult {
     const lNodes = getChildElementsByTagName(this.element, 'LNode');
 
@@ -85,6 +66,25 @@ export class SubEquipmentEditor extends LitElement {
           )}
         </div>`
       : html``;
+  }
+
+  private renderEqFunctions(): TemplateResult {
+    const eqFunctions = getChildElementsByTagName(this.element, 'EqFunction');
+    return eqFunctions.length
+      ? html` ${eqFunctions.map(
+          eqFunction =>
+            html`<eq-function-editor
+              .doc=${this.doc}
+              .element=${eqFunction}
+            ></eq-function-editor>`
+        )}`
+      : html``;
+  }
+
+  render(): TemplateResult {
+    return html`<action-pane label="${this.label}">
+      ${this.renderLNodes()} ${this.renderEqFunctions()}
+    </action-pane> `;
   }
 
   static styles = css`

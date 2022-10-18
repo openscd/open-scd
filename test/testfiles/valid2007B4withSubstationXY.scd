@@ -13,11 +13,6 @@
       		</TransformerWinding>
       		<TransformerWinding name="W2" type="PTW">
       		</TransformerWinding>
-			<SubEquipment name="subque" desc="somedesc" phase="all"/>
-			<SubEquipment name="addEqi" desc="somedesc" phase="none">
-				<LNode iedName="None" lnClass="CSWI" lnInst="1" lnType="OpenSCD_CSWI"/>
-				<EqFunction name="someEqFunction"/>
-			</SubEquipment>
     	</PowerTransformer>
         <VoltageLevel sxy:x="1" sxy:y="3" name="J1" desc="Voltage Level">
             <Private type="ABBPCMInternalObjRef">b80686f1-a514-477b-a83b-78f1cbe8a582</Private>
