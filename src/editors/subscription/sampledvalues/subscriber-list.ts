@@ -5,7 +5,7 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
-import { translate } from 'lit-translate';
+import { get, translate } from 'lit-translate';
 
 import '@material/mwc-icon';
 import '@material/mwc-list';
@@ -24,14 +24,12 @@ import {
   SmvSelectEvent,
   SmvSubscriptionEvent,
 } from './foundation.js';
-import {
-  emptyInputsDeleteActions,
-  getFcdaReferences,
-} from '../../../foundation/ied.js';
+import { emptyInputsDeleteActions } from '../../../foundation/ied.js';
 import {
   canCreateValidExtRef,
   createExtRefElement,
   existExtRef,
+  getExtRef,
   IEDSelectEvent,
   ListElement,
   styles,
@@ -109,12 +107,7 @@ export class SubscriberList extends SubscriberListContainer {
 
       dataSet!.querySelectorAll('FCDA').forEach(fcda => {
         subscribedInputs.forEach(inputs => {
-          if (
-            inputs.querySelector(
-              `ExtRef[iedName=${ied.getAttribute('name')}]` +
-                `${getFcdaReferences(fcda)}`
-            )
-          ) {
+          if (getExtRef(inputs, fcda, this.currentSelectedSmvControl)) {
             numberOfLinkedExtRefs++;
           }
         });
@@ -168,12 +161,7 @@ export class SubscriberList extends SubscriberListContainer {
          */
         this.currentUsedDataset!.querySelectorAll('FCDA').forEach(fcda => {
           inputElements.forEach(inputs => {
-            if (
-              inputs.querySelector(
-                `ExtRef[iedName=${this.currentSmvIedName}]` +
-                  `${getFcdaReferences(fcda)}`
-              )
-            ) {
+            if (getExtRef(inputs, fcda, this.currentSelectedSmvControl)) {
               numberOfLinkedExtRefs++;
             }
           });
@@ -253,7 +241,7 @@ export class SubscriberList extends SubscriberListContainer {
     const actions: Create[] = [];
     this.currentUsedDataset!.querySelectorAll('FCDA').forEach(fcda => {
       if (
-        !existExtRef(inputsElement!, fcda) &&
+        !existExtRef(inputsElement!, fcda, this.currentSelectedSmvControl) &&
         canCreateValidExtRef(fcda, this.currentSelectedSmvControl)
       ) {
         const extRef = createExtRefElement(
@@ -268,7 +256,7 @@ export class SubscriberList extends SubscriberListContainer {
     });
 
     /** If the IED doesn't have a Inputs element, just append it to the first LN0 element. */
-    const title = 'Connect';
+    const title = get('subscription.connect');
     if (inputsElement.parentElement)
       this.dispatchEvent(newActionEvent({ title, actions }));
     else {
@@ -283,11 +271,7 @@ export class SubscriberList extends SubscriberListContainer {
     const actions: Delete[] = [];
     ied.querySelectorAll('LN0 > Inputs, LN > Inputs').forEach(inputs => {
       this.currentUsedDataset!.querySelectorAll('FCDA').forEach(fcda => {
-        const extRef = inputs.querySelector(
-          `ExtRef[iedName=${this.currentSmvIedName}]` +
-            `${getFcdaReferences(fcda)}`
-        );
-
+        const extRef = getExtRef(inputs, fcda, this.currentSelectedSmvControl);
         if (extRef) actions.push({ old: { parent: inputs, element: extRef } });
       });
     });
@@ -297,7 +281,7 @@ export class SubscriberList extends SubscriberListContainer {
 
     this.dispatchEvent(
       newActionEvent({
-        title: 'Disconnect',
+        title: get('subscription.disconnect'),
         actions: actions,
       })
     );
@@ -415,7 +399,7 @@ export class SubscriberList extends SubscriberListContainer {
   }
 
   protected firstUpdated(): void {
-    this.currentSelectedIed = undefined
+    this.currentSelectedIed = undefined;
   }
 
   render(): TemplateResult {

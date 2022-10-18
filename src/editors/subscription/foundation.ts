@@ -53,13 +53,101 @@ export function newIEDSelectEvent(
   });
 }
 
-export function existExtRef(parentInputs: Element, fcda: Element): boolean {
-  const iedName = fcda.closest('IED')?.getAttribute('name');
-  if (!iedName) return false;
+export interface FcdaSelectDetail {
+  control: Element | undefined;
+  fcda: Element | undefined;
+}
+export type FcdaSelectEvent = CustomEvent<FcdaSelectDetail>;
+export function newFcdaSelectEvent(
+  control: Element | undefined,
+  fcda: Element | undefined,
+  eventInitDict?: CustomEventInit<FcdaSelectDetail>
+): FcdaSelectEvent {
+  return new CustomEvent<FcdaSelectDetail>('fcda-select', {
+    bubbles: true,
+    composed: true,
+    ...eventInitDict,
+    detail: { control, fcda, ...eventInitDict?.detail },
+  });
+}
 
-  return !!parentInputs.querySelector(
-    `ExtRef[iedName=${iedName}]` + `${getFcdaReferences(fcda)}`
-  );
+export interface SubscriptionChangedDetail {
+  control: Element | undefined;
+  fcda: Element | undefined;
+}
+export type SubscriptionChangedEvent = CustomEvent<SubscriptionChangedDetail>;
+export function newSubscriptionChangedEvent(
+  control: Element | undefined,
+  fcda: Element | undefined,
+  eventInitDict?: CustomEventInit<SubscriptionChangedDetail>
+): SubscriptionChangedEvent {
+  return new CustomEvent<SubscriptionChangedDetail>('subscription-changed', {
+    bubbles: true,
+    composed: true,
+    ...eventInitDict,
+    detail: { control, fcda, ...eventInitDict?.detail },
+  });
+}
+
+export function getFcdaTitleValue(fcdaElement: Element): string {
+  return `${fcdaElement.getAttribute('doName')}${
+    fcdaElement.hasAttribute('doName') && fcdaElement.hasAttribute('daName')
+      ? `.`
+      : ``
+  }${fcdaElement.getAttribute('daName')}`;
+}
+
+export function existExtRef(
+  parentInputs: Element,
+  fcda: Element,
+  control: Element | undefined
+): boolean {
+  return !!getExtRef(parentInputs, fcda, control);
+}
+
+export function getExtRef(
+  parentInputs: Element,
+  fcda: Element,
+  control: Element | undefined
+): Element | undefined {
+  function createCriteria(attributeName: string, value: string | null): string {
+    if (value) {
+      return `[${attributeName}="${value}"]`;
+    }
+    return '';
+  }
+
+  const iedName = fcda.closest('IED')?.getAttribute('name');
+  if (!iedName) {
+    return undefined;
+  }
+
+  let controlCriteria = '';
+  if (control && getSclSchemaVersion(fcda.ownerDocument) !== '2003') {
+    controlCriteria = `[serviceType="${serviceTypes[control.tagName]!}"]`;
+    controlCriteria += createCriteria(
+      'srcLDInst',
+      control.closest('LDevice')?.getAttribute('inst') ?? null
+    );
+    controlCriteria += createCriteria(
+      'srcLNClass',
+      control.closest('LN0,LN')?.getAttribute('lnClass') ?? null
+    );
+    controlCriteria += createCriteria(
+      'srcLNInst',
+      control.closest('LN0,LN')?.getAttribute('inst') ?? null
+    );
+    controlCriteria += createCriteria(
+      'srcCBName',
+      control.getAttribute('name') ?? null
+    );
+  }
+
+  return Array.from(
+    parentInputs.querySelectorAll(
+      `ExtRef[iedName="${iedName}"]${getFcdaReferences(fcda)}${controlCriteria}`
+    )
+  ).find(extRefElement => !extRefElement.hasAttribute('intAddr'));
 }
 
 export function canCreateValidExtRef(
@@ -73,25 +161,30 @@ export function canCreateValidExtRef(
     'lnInst',
     'doName',
   ].map(attr => fcda.getAttribute(attr));
+  if (!iedName || !ldInst || !lnClass || !lnInst || !doName) {
+    return false;
+  }
 
-  if (!iedName || !ldInst || !lnClass || !lnInst || !doName) return false;
-
-  if (controlBlock === undefined) return true; //for serviceType `Poll`
+  // For 2003 schema or serviceType `Poll`, the extra fields aren't needed.
+  if (
+    getSclSchemaVersion(fcda.ownerDocument) === '2003' ||
+    controlBlock === undefined
+  ) {
+    return true;
+  }
 
   const srcLDInst = controlBlock.closest('LDevice')?.getAttribute('inst');
   const srcLNClass = controlBlock.closest('LN0,LN')?.getAttribute('lnClass');
   const srcLNInst = controlBlock.closest('LN0,LN')?.getAttribute('inst');
   const srcCBName = controlBlock.getAttribute('name');
 
-  if (
+  // For srcLNInst an empty string is allowed in `LN0`
+  return !(
     !srcLDInst ||
     !srcLNClass ||
     !srcCBName ||
-    typeof srcLNInst !== 'string' //empty string is allowed in `LN0`
-  )
-    return false;
-
-  return true;
+    typeof srcLNInst !== 'string'
+  );
 }
 
 export const serviceTypes: Partial<Record<string, string>> = {
@@ -381,5 +474,7 @@ declare global {
   interface ElementEventMap {
     ['view']: ViewEvent;
     ['ied-select']: IEDSelectEvent;
+    ['fcda-select']: FcdaSelectEvent;
+    ['subscription-changed']: SubscriptionChangedEvent;
   }
 }

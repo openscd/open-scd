@@ -5,7 +5,7 @@ module.exports = {
     '_snowpack/**/*.{md,js,png,xml,pdf,css,html,info,json,ico,svg,wasm}',
     'public/**/*.{md,js,png,xml,pdf,css,html,info,json,ico,svg,wasm}',
     'src/**/*.{md,js,png,xml,pdf,css,html,info,json,ico,svg,wasm}',
-    '*.{md,json,ico,xml}',
+    '*.{md,js,png,xml,pdf,css,html,info,json,ico,svg,wasm}',
   ],
   swDest: 'build/sw.js',
   runtimeCaching: [

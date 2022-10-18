@@ -18,6 +18,7 @@ import { List } from '@material/mwc-list';
 import { ListBase } from '@material/mwc-list/mwc-list-base';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { TextField } from '@material/mwc-textfield';
+import { ReportControlElementEditor } from './editors/publisher/report-control-element-editor';
 
 function slotItem(item: Element): Element {
   if (!item.closest('filtered-list') || !item.parentElement) return item;
@@ -38,11 +39,23 @@ function hideFiltered(item: ListItemBase, searchText: string): void {
     value
   ).toUpperCase();
 
-  const terms: string[] = searchText.toUpperCase().split(' ');
+  const terms: string[] = searchText
+    .toUpperCase()
+    .replace(/[.+^${}()|[\]\\]/g, '\\$&')
+    .trim()
+    .split(/\s+/g);
 
-  terms.some(term => !filterTarget.includes(term))
-    ? slotItem(item).classList.add('hidden')
-    : slotItem(item).classList.remove('hidden');
+  (terms.length === 1 && terms[0] === '') ||
+  terms.every(term => {
+    // regexp escape
+    const reTerm = new RegExp(
+      `*${term}*`.replace(/\*/g, '.*').replace(/\?/g, '.{1}'),
+      'i'
+    );
+    return reTerm.test(filterTarget);
+  })
+    ? slotItem(item).classList.remove('hidden')
+    : slotItem(item).classList.add('hidden');
 }
 
 /**

@@ -8,10 +8,98 @@ import { MockWizardEditor } from '../../../mock-wizard-editor.js';
 import { CheckListItem } from '@material/mwc-list/mwc-check-list-item';
 
 import '../../../../src/open-scd.js';
-import ImportingIedPlugin, {prepareImportIEDs} from '../../../../src/menu/ImportIEDs.js';
+import ImportingIedPlugin, {
+  prepareImportIEDs,
+} from '../../../../src/menu/ImportIEDs.js';
 
 describe('ImportIedsPlugin', () => {
   customElements.define('import-ieds-plugin', ImportingIedPlugin);
+
+  describe('imports valid ied elements to empty projects', () => {
+    let doc: XMLDocument;
+    let importDoc: XMLDocument;
+
+    let parent: MockWizardEditor;
+    let element: ImportingIedPlugin;
+
+    beforeEach(async () => {
+      parent = await fixture(
+        html`<mock-wizard-editor
+          ><import-ieds-plugin></import-ieds-plugin
+        ></mock-wizard-editor>`
+      );
+
+      element = <ImportingIedPlugin>parent.querySelector('import-ieds-plugin')!;
+
+      doc = await fetch('/test/testfiles/importieds/emptyproject.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+      element.doc = doc;
+      await element.updateComplete;
+
+      importDoc = await fetch('/test/testfiles/importieds/valid.iid')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+    });
+
+    it('loads ied element to the project', async () => {
+      expect(element.doc?.querySelector(':root > IED[name="TestImportIED"]')).to
+        .not.exist;
+      await prepareImportIEDs(element.parent, importDoc, doc);
+      await element.updateComplete;
+      expect(element.doc?.querySelector(':root > IED[name="TestImportIED"]')).to
+        .exist;
+    });
+
+    it('adds the connectedap of the imported ied', async () => {
+      await prepareImportIEDs(element.parent, importDoc, doc);
+      await element.updateComplete;
+      expect(
+        element.doc.querySelector(
+          'SubNetwork[name="NewSubNetwork"] > ConnectedAP[iedName="TestImportIED"]'
+        )
+      ).to.exist;
+    });
+
+    it('creates new subnetwork if not present in the doc', async () => {
+      expect(element.doc.querySelector('SubNetwork[name="NewSubNetwork"]')).to
+        .not.exist;
+      await prepareImportIEDs(element.parent, importDoc, doc);
+      expect(element.doc.querySelector('SubNetwork[name="NewSubNetwork"]')).to
+        .exist;
+    });
+
+    it('allows multiple import of TEMPLATE IEDs', async () => {
+      const templateIED1 = await fetch(
+        '/test/testfiles/importieds/template.icd'
+      )
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+      await prepareImportIEDs(element.parent, templateIED1, doc);
+
+      const templateIED2 = await fetch(
+        '/test/testfiles/importieds/template.icd'
+      )
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+      await prepareImportIEDs(element.parent, templateIED2, doc);
+
+      expect(element.doc.querySelector('IED[name="TEMPLATE_IED1"]')).to.exist;
+      expect(element.doc.querySelector('IED[name="TEMPLATE_IED2"]')).to.exist;
+    });
+
+    it('loads unique lnodetypes to the project', async () => {
+      expect(
+        element.doc?.querySelectorAll(':root > DataTypeTemplates >  LNodeType')
+          .length
+      ).to.equal(0);
+      await prepareImportIEDs(element.parent, importDoc, doc);
+      expect(
+        element.doc?.querySelectorAll(':root > DataTypeTemplates >  LNodeType')
+          .length
+      ).to.equal(5);
+    });
+  });
 
   describe('imports valid ied elements', () => {
     let doc: XMLDocument;
@@ -83,6 +171,7 @@ describe('ImportIedsPlugin', () => {
           .length
       ).to.equal(11);
     });
+
     it('loads unique enumtypes to the project', async () => {
       expect(
         element.doc?.querySelectorAll(':root > DataTypeTemplates >  EnumType')
@@ -94,6 +183,7 @@ describe('ImportIedsPlugin', () => {
           .length
       ).to.equal(10);
     });
+
     it('adds the connectedap of the imported ied', async () => {
       expect(element.doc.querySelector('ConnectedAP[iedName="TestImportIED"]'))
         .to.not.exist;
@@ -105,6 +195,7 @@ describe('ImportIedsPlugin', () => {
           ?.parentElement
       ).to.equal(element.doc.querySelector('SubNetwork[name="NewSubNetwork"]'));
     });
+
     it('creates new subnetwork if not present in the doc', async () => {
       expect(element.doc.querySelector('SubNetwork[name="NewSubNetwork"]')).to
         .not.exist;
@@ -112,6 +203,7 @@ describe('ImportIedsPlugin', () => {
       expect(element.doc.querySelector('SubNetwork[name="NewSubNetwork"]')).to
         .exist;
     });
+
     it('allows multiple import of TEMPLATE IEDs', async () => {
       expect(element.doc.querySelectorAll('IED').length).to.equal(3);
 
@@ -132,6 +224,7 @@ describe('ImportIedsPlugin', () => {
       expect(element.doc.querySelector('IED[name="TEMPLATE_IED1"]')).to.exist;
       expect(element.doc.querySelector('IED[name="TEMPLATE_IED2"]')).to.exist;
     });
+
     it('renders wizard for files containing more than one IED', async () => {
       const multipleIedDoc = await fetch(
         '/test/testfiles/importieds/multipleied.scd'
@@ -147,6 +240,7 @@ describe('ImportIedsPlugin', () => {
         parent.wizardUI.dialog?.querySelectorAll('mwc-check-list-item').length
       ).to.equal(3);
     });
+
     it('imports selected IED from Import IED wizard', async () => {
       const multipleIedDoc = await fetch(
         '/test/testfiles/importieds/multipleied.scd'

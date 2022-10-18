@@ -207,5 +207,57 @@ describe('filtered-list', () => {
       expect(element.children[5].classList.contains('hidden')).to.be.true;
       expect(element.children[6].classList.contains('hidden')).to.be.false;
     });
+
+    it('allows filtering with a ? wildcard', async () => {
+      element.searchField.value = 'item?';
+      element.onFilterInput();
+      element.requestUpdate();
+      await element.updateComplete;
+      expect(element.children[0].classList.contains('hidden')).to.be.false;
+      expect(element.children[1].classList.contains('hidden')).to.be.false;
+      expect(element.children[2].classList.contains('hidden')).to.be.false;
+      expect(element.children[3].classList.contains('hidden')).to.be.false;
+      expect(element.children[4].classList.contains('hidden')).to.be.false;
+      expect(element.children[5].classList.contains('hidden')).to.be.false;
+    });
+
+    it('allows filtering with a * wildcard', async () => {
+      element.searchField.value = 'te*sec';
+      element.onFilterInput();
+      element.requestUpdate();
+      await element.updateComplete;
+      expect(element.children[0].classList.contains('hidden')).to.be.false;
+      expect(element.children[1].classList.contains('hidden')).to.be.false;
+      expect(element.children[2].classList.contains('hidden')).to.be.false;
+      expect(element.children[3].classList.contains('hidden')).to.be.false;
+      expect(element.children[4].classList.contains('hidden')).to.be.true;
+      expect(element.children[5].classList.contains('hidden')).to.be.true;
+    });
+
+    it('allows filtering with two ? wildcards', async () => {
+      element.searchField.value = 'nest??item';
+      element.onFilterInput();
+      element.requestUpdate();
+      await element.updateComplete;
+      expect(element.children[0].classList.contains('hidden')).to.be.true;
+      expect(element.children[1].classList.contains('hidden')).to.be.true;
+      expect(element.children[2].classList.contains('hidden')).to.be.true;
+      expect(element.children[3].classList.contains('hidden')).to.be.true;
+      expect(element.children[4].classList.contains('hidden')).to.be.false;
+      expect(element.children[5].classList.contains('hidden')).to.be.false;
+    });
+
+    it('allows filtering with a * and ? wildcard', async () => {
+      element.searchField.value = 'n*tem?';
+      element.onFilterInput();
+      element.requestUpdate();
+      await element.updateComplete;
+      expect(element.children[0].classList.contains('hidden')).to.be.true;
+      expect(element.children[1].classList.contains('hidden')).to.be.true;
+      expect(element.children[2].classList.contains('hidden')).to.be.true;
+      expect(element.children[3].classList.contains('hidden')).to.be.true;
+      expect(element.children[4].classList.contains('hidden')).to.be.false;
+      expect(element.children[5].classList.contains('hidden')).to.be.false;
+    });
   });
 });

@@ -4,6 +4,12 @@
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/5925/badge)](https://bestpractices.coreinfrastructure.org/projects/5925)
 [![Slack](https://raw.githubusercontent.com/com-pas/compas-architecture/master/public/LFEnergy-slack.svg)](http://lfenergy.slack.com/)
 
+Open Substation Communication Designer is an editor for SCL files as described in `IEC 61850-6`.
+
+Make sure your webbrowser has enough free memory! if needed, disable plug-ins and close unused browertabs.
+
+## Installation
+
 CoMPAS Open Substation Communication Designer is an editor for SCL files as described in `IEC 61850-6`.
 
 CoMPAS OpenSCD is a fork of the [OpenSCD](https://github.com/openscd/open-scd) project. The idea is to add functionality
@@ -20,4 +26,6 @@ distributed under their [end user license agreement](CC-EULA.pdf).
 
 This project is licensed under the [Apache License 2.0](LICENSE.md).
 
-&copy; 2020-2022 OMICRON electronics GmbH, Jakob Vogelsang, TransnetBW GmbH, Alliander N.V., and others
+&copy; 2020-2022 OMICRON electronics GmbH, TransnetBW GmbH, Alliander N.V., and others
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fopenscd%2Fopen-scd.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fopenscd%2Fopen-scd?ref=badge_large)

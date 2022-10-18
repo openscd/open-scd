@@ -3,8 +3,10 @@ This is an open repository of information on OpenSCD and IEC 61850-6. You are we
 You can find information related to topics like
 
 - [Installation](https://github.com/openscd/open-scd/wiki/Install-OpenSCD)
+- [Interface](https://github.com/openscd/open-scd/wiki/Interface)
 - [Project workflow](https://github.com/openscd/open-scd/wiki/Project-workflow)
 - [Validators used in OpenSCD](https://github.com/openscd/open-scd/wiki/Validators)
+- [Extensions](https://github.com/openscd/open-scd/wiki/Extensions)
 
 as well as features that allow you to manipulate or add specific information to the project covering
 

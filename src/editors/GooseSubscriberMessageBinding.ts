@@ -1,10 +1,10 @@
 import {
-  LitElement,
-  html,
-  TemplateResult,
-  property,
   css,
+  html,
+  LitElement,
+  property,
   query,
+  TemplateResult,
 } from 'lit-element';
 import { translate } from 'lit-translate';
 
@@ -21,7 +21,7 @@ import { newViewEvent, View, ViewEvent } from './subscription/foundation.js';
 let view: View = View.PUBLISHER;
 
 /** An editor [[`plugin`]] for subscribing IEDs to GOOSE messages. */
-export default class GooseControlSubscriptionPlugin extends LitElement {
+export default class GooseSubscriberMessageBindingPlugin extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property()
   doc!: XMLDocument;
@@ -76,7 +76,11 @@ export default class GooseControlSubscriptionPlugin extends LitElement {
       <div class="container">
         ${view == View.PUBLISHER
           ? html`<goose-list class="row" .doc=${this.doc}></goose-list>`
-          : html`<ied-list class="row" .doc=${this.doc} serviceType="goose"></ied-list>`}
+          : html`<ied-list
+              class="row"
+              .doc=${this.doc}
+              serviceType="goose"
+            ></ied-list>`}
         <subscriber-list-goose
           class="row"
           .doc=${this.doc}

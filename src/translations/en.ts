@@ -334,6 +334,8 @@ export const en = {
   },
   subscription: {
     none: 'None',
+    connect: 'Connect data attribute',
+    disconnect: 'Disconnect data attribute',
     subscriber: {
       subscribed: 'Subscribed',
       availableToSubscribe: 'Available to subscribe',
@@ -369,27 +371,32 @@ export const en = {
         subscriberView: 'Subscriber | Publisher',
       },
     },
-    laterBinding: {
-      SampledValueControl: {
-        controlBlockList: {
-          title: 'Sampled Value Messages',
-          noControlBlockFound: 'No Sampled Value Messages found',
-        },
-      },
-      GSEControl: {
-        controlBlockList: {
-          title: 'GOOSE Messages',
-          noControlBlockFound: 'No GOOSE Messages found',
-        },
-      },
+    binding: {
       extRefList: {
-        title: 'Inputs Available For Selected Data Attribute',
+        title: 'Logical nodes available for selected data attribute',
+        noSelection: 'No data attribute selected',
+        noSubscribedLNs: 'No subscribed logical nodes',
+        noAvailableLNs: 'No available logical nodes to subscribe',
+      },
+    },
+    laterBinding: {
+      extRefList: {
+        title: 'Inputs available for selected data attribute',
         noSelection: 'No data attribute selected',
         noSubscribedExtRefs: 'No subscribed inputs',
         noAvailableExtRefs: 'No available inputs to subscribe',
       },
-      iedList: {
-        title: 'IEDs',
+    },
+    SampledValueControl: {
+      controlBlockList: {
+        title: 'Sampled Value Messages',
+        noControlBlockFound: 'No Sampled Value Messages found',
+      },
+    },
+    GSEControl: {
+      controlBlockList: {
+        title: 'GOOSE Messages',
+        noControlBlockFound: 'No GOOSE Messages found',
       },
     },
   },

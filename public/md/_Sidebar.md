@@ -2,6 +2,8 @@
 
 ### 1.1 [Install OpenSCD](https://github.com/openscd/open-scd/wiki/Install-OpenSCD)
 
+### 1.2 [Interface](https://github.com/openscd/open-scd/wiki/Interface)
+
 ## 2. [Project management](https://github.com/openscd/open-scd/wiki/Project-workflow)
 
 ### 2.1 [Import IEDs](https://github.com/openscd/open-scd/wiki/Import-IEDs)
@@ -32,7 +34,7 @@
 
 ## 5.4 [Conducting Equipment element](https://github.com/openscd/open-scd/wiki/Conducting-Equipment)
 
-## 5.5 [Conducting Equipment element](https://github.com/openscd/open-scd/wiki/Power-Transformer)
+## 5.5 [Power Transformer element](https://github.com/openscd/open-scd/wiki/Power-Transformer)
 
 ## 5.6 [Logical Node References (LNode)](https://github.com/openscd/open-scd/wiki/Logical-Node-Reference)
 
@@ -108,4 +110,6 @@
 
 ### 9.2 [Create SPECIFICATION IED from function elements](https://github.com/openscd/open-scd/wiki/Create-Specification-IED-from-functions)
 
-## 10. [CoMPAS Versions Editor](https://github.com/openscd/open-scd/wiki/CoMPAS-Versions-Editor)
+## 10. [Extensions](https://github.com/openscd/open-scd/wiki/Extensions)
+
+## 11. [CoMPAS Versions Editor](https://github.com/openscd/open-scd/wiki/CoMPAS-Versions-Editor)

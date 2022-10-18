@@ -2,19 +2,13 @@ import { expect, fixture, html } from '@open-wc/testing';
 
 import '../../../../../src/editors/subscription/later-binding/ext-ref-later-binding-list.js';
 
-import { newFcdaSelectEvent } from '../../../../../src/editors/subscription/later-binding/foundation.js';
+import { newFcdaSelectEvent } from '../../../../../src/editors/subscription/foundation.js';
 import { ExtRefLaterBindingList } from '../../../../../src/editors/subscription/later-binding/ext-ref-later-binding-list.js';
 
-describe('smv-list', () => {
-  let parent: Element;
-  let element: ExtRefLaterBindingList;
+describe('extref-later-binding-list', () => {
   let doc: XMLDocument;
-
-  beforeEach(async () => {
-    doc = await fetch('/test/testfiles/editors/LaterBindingSMV2007B4.scd')
-      .then(response => response.text())
-      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-  });
+  let parent: HTMLElement;
+  let element: ExtRefLaterBindingList;
 
   it('looks like the latest snapshot without a doc loaded', async () => {
     parent = await fixture(
@@ -25,12 +19,17 @@ describe('smv-list', () => {
     element = <ExtRefLaterBindingList>(
       parent.querySelector('extref-later-binding-list')
     );
+    await element.updateComplete;
 
     await expect(element).shadowDom.to.equalSnapshot();
   });
 
-  describe('with document loaded', () => {
+  describe('for Sampled Value Control', () => {
     beforeEach(async () => {
+      doc = await fetch('/test/testfiles/editors/LaterBindingSMV2007B4.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
       parent = await fixture(
         html`<div class="container">
           <extref-later-binding-list
@@ -42,6 +41,7 @@ describe('smv-list', () => {
       element = <ExtRefLaterBindingList>(
         parent.querySelector('extref-later-binding-list')
       );
+      await element.updateComplete;
     });
 
     it('looks like the latest snapshot, but no event fired', async () => {
@@ -59,6 +59,7 @@ describe('smv-list', () => {
 
         element.dispatchEvent(newFcdaSelectEvent(svcElement, fcdaElement));
         await element.requestUpdate();
+        await element.updateComplete;
       });
 
       it('validate that some ExtRef Element will be disabled', async () => {
@@ -66,7 +67,6 @@ describe('smv-list', () => {
           'mwc-list-item[value="SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[0]"]'
         );
         expect(listItem).to.have.attribute('disabled');
-        expect(listItem).to.have.attribute('aria-disabled', 'true');
       });
 
       it('expect the correct number of subscribed elements', () => {
@@ -93,6 +93,7 @@ describe('smv-list', () => {
 
         element.dispatchEvent(newFcdaSelectEvent(svcElement, fcdaElement));
         await element.requestUpdate();
+        await element.updateComplete;
       });
 
       it('expect the correct number of subscribed elements', () => {
@@ -120,6 +121,7 @@ describe('smv-list', () => {
 
       element.dispatchEvent(newFcdaSelectEvent(svcElement, fcdaElement));
       await element.requestUpdate();
+      await element.updateComplete;
     });
 
     it('expect the correct number of subscribed elements', () => {
@@ -134,21 +136,12 @@ describe('smv-list', () => {
       await expect(element).shadowDom.to.equalSnapshot();
     });
   });
-});
 
-describe('gse-list', () => {
-  let parent: Element;
-  let element: ExtRefLaterBindingList;
-  let doc: XMLDocument;
-
-  beforeEach(async () => {
-    doc = await fetch('/test/testfiles/editors/LaterBindingGOOSE2007B4.scd')
-      .then(response => response.text())
-      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-  });
-
-  describe('with gse document loaded', () => {
+  describe('for GOOSE Control', () => {
     beforeEach(async () => {
+      doc = await fetch('/test/testfiles/editors/LaterBindingGOOSE2007B4.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = await fixture(
         html`<div class="container">
           <extref-later-binding-list
@@ -160,6 +153,7 @@ describe('gse-list', () => {
       element = <ExtRefLaterBindingList>(
         parent.querySelector('extref-later-binding-list')
       );
+      await element.updateComplete;
     });
 
     it('looks like the latest snapshot, but no event fired', async () => {
@@ -179,6 +173,7 @@ describe('gse-list', () => {
           newFcdaSelectEvent(gseControlElement, fcdaElement)
         );
         await element.requestUpdate();
+        await element.updateComplete;
       });
 
       it('validate that some ExtRef Element will be disabled', async () => {
@@ -186,7 +181,6 @@ describe('gse-list', () => {
           'mwc-list-item[value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0]"]'
         );
         expect(listItem).to.have.attribute('disabled');
-        expect(listItem).to.have.attribute('aria-disabled', 'true');
       });
 
       it('expect the correct number of subscribed elements', () => {
@@ -194,7 +188,7 @@ describe('gse-list', () => {
       });
 
       it('expect the correct number of available elements', () => {
-        expect(element['getAvailableExtRefElements']().length).to.be.equal(2);
+        expect(element['getAvailableExtRefElements']().length).to.be.equal(4);
       });
 
       it('looks like the latest snapshot, when GSEControl has no subscriptions', async () => {
@@ -215,6 +209,7 @@ describe('gse-list', () => {
           newFcdaSelectEvent(gseControlElement, fcdaElement)
         );
         await element.requestUpdate();
+        await element.updateComplete;
       });
 
       it('expect the correct number of subscribed elements', () => {
@@ -222,7 +217,7 @@ describe('gse-list', () => {
       });
 
       it('expect the correct number of available elements', () => {
-        expect(element['getAvailableExtRefElements']().length).to.be.equal(2);
+        expect(element['getAvailableExtRefElements']().length).to.be.equal(4);
       });
 
       it('looks like the latest snapshot, ', async () => {
@@ -242,6 +237,7 @@ describe('gse-list', () => {
 
       element.dispatchEvent(newFcdaSelectEvent(gseControlElement, fcdaElement));
       await element.requestUpdate();
+      await element.updateComplete;
     });
 
     it('expect the correct number of subscribed elements', () => {
@@ -249,7 +245,7 @@ describe('gse-list', () => {
     });
 
     it('expect the correct number of available elements', () => {
-      expect(element['getAvailableExtRefElements']().length).to.be.equal(2);
+      expect(element['getAvailableExtRefElements']().length).to.be.equal(4);
     });
 
     it('looks like the latest snapshot, ', async () => {

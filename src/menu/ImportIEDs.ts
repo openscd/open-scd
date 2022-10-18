@@ -178,10 +178,10 @@ function hasConnectionToIed(type: Element, ied: Element): boolean {
 function addEnumType(
   ied: Element,
   enumType: Element,
-  doc: Document
+  parent: Element
 ): SimpleAction | undefined {
-  const existEnumType = doc.querySelector(
-    `:root > DataTypeTemplates > EnumType[id="${enumType.getAttribute('id')}"]`
+  const existEnumType = parent.querySelector(
+    `EnumType[id="${enumType.getAttribute('id')}"]`
   );
 
   if (existEnumType && enumType.isEqualNode(existEnumType)) return;
@@ -204,7 +204,7 @@ function addEnumType(
 
   return {
     new: {
-      parent: doc.querySelector(':root > DataTypeTemplates')!,
+      parent,
       element: enumType,
     },
   };
@@ -213,10 +213,10 @@ function addEnumType(
 function addDAType(
   ied: Element,
   daType: Element,
-  doc: Document
+  parent: Element
 ): SimpleAction | undefined {
-  const existDAType = doc.querySelector(
-    `:root > DataTypeTemplates > DAType[id="${daType.getAttribute('id')}"]`
+  const existDAType = parent.querySelector(
+    `DAType[id="${daType.getAttribute('id')}"]`
   );
 
   if (existDAType && daType.isEqualNode(existDAType)) return;
@@ -239,7 +239,7 @@ function addDAType(
 
   return {
     new: {
-      parent: doc.querySelector(':root > DataTypeTemplates')!,
+      parent,
       element: daType,
     },
   };
@@ -248,10 +248,10 @@ function addDAType(
 function addDOType(
   ied: Element,
   doType: Element,
-  doc: Document
+  parent: Element
 ): SimpleAction | undefined {
-  const existDOType = doc.querySelector(
-    `:root > DataTypeTemplates > DOType[id="${doType.getAttribute('id')}"]`
+  const existDOType = parent.querySelector(
+    `DOType[id="${doType.getAttribute('id')}"]`
   );
 
   if (existDOType && doType.isEqualNode(existDOType)) return;
@@ -274,7 +274,7 @@ function addDOType(
 
   return {
     new: {
-      parent: doc.querySelector(':root > DataTypeTemplates')!,
+      parent,
       element: doType,
     },
   };
@@ -283,12 +283,10 @@ function addDOType(
 function addLNodeType(
   ied: Element,
   lNodeType: Element,
-  doc: Document
+  parent: Element
 ): SimpleAction | undefined {
-  const existLNodeType = doc.querySelector(
-    `:root > DataTypeTemplates > LNodeType[id="${lNodeType.getAttribute(
-      'id'
-    )}"]`
+  const existLNodeType = parent.querySelector(
+    `LNodeType[id="${lNodeType.getAttribute('id')}"]`
   );
 
   if (existLNodeType && lNodeType.isEqualNode(existLNodeType)) return;
@@ -310,7 +308,7 @@ function addLNodeType(
 
   return {
     new: {
-      parent: doc.querySelector(':root > DataTypeTemplates')!,
+      parent,
       element: lNodeType,
     },
   };
@@ -319,21 +317,42 @@ function addLNodeType(
 function addDataTypeTemplates(ied: Element, doc: XMLDocument): SimpleAction[] {
   const actions: (SimpleAction | undefined)[] = [];
 
+  const dataTypeTemplates = doc.querySelector(':root > DataTypeTemplates')
+    ? doc.querySelector(':root > DataTypeTemplates')!
+    : createElement(doc, 'DataTypeTemplates', {});
+
+  if (!dataTypeTemplates.parentElement) {
+    actions.push({
+      new: {
+        parent: doc.querySelector('SCL')!,
+        element: dataTypeTemplates,
+      },
+    });
+  }
+
   ied.ownerDocument
     .querySelectorAll(':root > DataTypeTemplates > LNodeType')
-    .forEach(lNodeType => actions.push(addLNodeType(ied, lNodeType, doc)));
+    .forEach(lNodeType =>
+      actions.push(addLNodeType(ied, lNodeType, dataTypeTemplates!))
+    );
 
   ied.ownerDocument
     .querySelectorAll(':root > DataTypeTemplates > DOType')
-    .forEach(doType => actions.push(addDOType(ied, doType, doc)));
+    .forEach(doType =>
+      actions.push(addDOType(ied, doType, dataTypeTemplates!))
+    );
 
   ied.ownerDocument
     .querySelectorAll(':root > DataTypeTemplates > DAType')
-    .forEach(daType => actions.push(addDAType(ied, daType, doc)));
+    .forEach(daType =>
+      actions.push(addDAType(ied, daType, dataTypeTemplates!))
+    );
 
   ied.ownerDocument
     .querySelectorAll(':root > DataTypeTemplates > EnumType')
-    .forEach(enumType => actions.push(addEnumType(ied, enumType, doc)));
+    .forEach(enumType =>
+      actions.push(addEnumType(ied, enumType, dataTypeTemplates!))
+    );
 
   return <SimpleAction[]>actions.filter(item => item !== undefined);
 }
@@ -429,23 +448,10 @@ export async function prepareImportIEDs(
     return;
   }
 
-  if (!doc.querySelector(':root > DataTypeTemplates')) {
-    const element = createElement(doc, 'DataTypeTemplates', {});
-
-      parent.dispatchEvent(
-        newActionEvent({
-          new: {
-            parent: doc.documentElement,
-            element,
-          },
-        })
-      );
+    if (ieds.length === 1) {
+      importIED(ieds[0], doc, parent);
+      return;
     }
-
-  if (ieds.length === 1) {
-    await importIED(ieds[0], doc, parent);
-    return;
-  }
 
   parent.dispatchEvent(newWizardEvent(importIedsWizard(importDoc, doc)));
 }
