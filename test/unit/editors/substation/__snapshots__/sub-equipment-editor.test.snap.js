@@ -10,21 +10,6 @@ snapshots["sub-equipment-editor looks like the latest snapshot"] =
 `;
 /* end snapshot sub-equipment-editor looks like the latest snapshot */
 
-snapshots["sub-equipment-editor without description and state looks like the latest snapshot"] = 
-`<action-pane
-  label="other"
-  tabindex="0"
->
-  <div class="container lnode">
-    <l-node-editor>
-    </l-node-editor>
-  </div>
-  <eq-function-editor>
-  </eq-function-editor>
-</action-pane>
-`;
-/* end snapshot sub-equipment-editor without description and state looks like the latest snapshot */
-
 snapshots["sub-equipment-editor With children looks like the latest snapshot"] = 
 `<action-pane
   label="addEqi - somedesc (none)"
@@ -39,4 +24,19 @@ snapshots["sub-equipment-editor With children looks like the latest snapshot"] =
 </action-pane>
 `;
 /* end snapshot sub-equipment-editor With children looks like the latest snapshot */
+
+snapshots["sub-equipment-editor without description and state looks like the latest snapshot"] = 
+`<action-pane
+  label="other"
+  tabindex="0"
+>
+  <div class="container lnode">
+    <l-node-editor>
+    </l-node-editor>
+  </div>
+  <eq-function-editor>
+  </eq-function-editor>
+</action-pane>
+`;
+/* end snapshot sub-equipment-editor without description and state looks like the latest snapshot */
 
