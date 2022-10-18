@@ -31,7 +31,7 @@ export default class MergePlugin extends LitElement {
     return html`<input @click=${(event: MouseEvent) =>
       ((<HTMLInputElement>event.target).value = '')} @change=${
       this.mergeDoc
-    } id="merge-plugin-input" accept=".sed,.scd,.ssd,.iid,.cid,.icd" type="file"></input>`;
+    } id="merge-plugin-input" accept=".sed,.scd,.ssd,.isd,.iid,.cid,.icd" type="file"></input>`;
   }
 
   static styles = css`
