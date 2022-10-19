@@ -14,14 +14,14 @@ jobs:
     steps:
       - name: add-new-issues-to-organization-based-project-column
         if: github.event_name == 'issues' && github.event.action == 'opened'
-        uses: alex-page/github-project-automation-plus@v0.8.1
+        uses: alex-page/github-project-automation-plus@v0.8.2
         with:
           project: CoMPAS Issues Overview Board
           column: To do
           repo-token: ${{ secrets.ORG_GITHUB_ACTION_SECRET }}
       - name: add-new-pull-request-to-organization-based-project-column
         if: (github.event_name == 'pull_request' || github.event_name == 'pull_request_target') && github.event.action == 'opened'
-        uses: alex-page/github-project-automation-plus@v0.8.1
+        uses: alex-page/github-project-automation-plus@v0.8.2
         with:
           project: CoMPAS Pull Request Overview Board
           column: To do
