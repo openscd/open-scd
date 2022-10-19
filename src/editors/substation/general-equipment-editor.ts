@@ -5,13 +5,18 @@ import {
   TemplateResult,
   property,
   state,
+  css,
 } from 'lit-element';
 
 import '@material/mwc-icon-button';
 import '@material/mwc-fab';
 
 import '../../action-pane.js';
+import '../../editors/substation/eq-function-editor.js';
+import '../../editors/substation/l-node-editor.js';
 import { generalConductingEquipmentIcon } from '../../icons/icons.js';
+import { getChildElementsByTagName } from '../../foundation.js';
+//import { styles } from './foundation.js';
 
 @customElement('general-equipment-editor')
 export class GeneralEquipmentEditor extends LitElement {
@@ -30,15 +35,63 @@ export class GeneralEquipmentEditor extends LitElement {
     const name = this.element.getAttribute('name') ?? '';
     const desc = this.element.getAttribute('desc');
 
+    if (!this.showfunctions) return `${name}`;
+
     return `${name} ${desc ? `—  ${desc}` : ''}`;
+  }
+
+  private renderLNodes(): TemplateResult {
+    if (!this.showfunctions) return html``;
+
+    const lNodes = getChildElementsByTagName(this.element, 'LNode');
+
+    return lNodes.length
+      ? html`<div class="container lnode">
+          ${lNodes.map(
+            lNode =>
+              html`<l-node-editor
+                .doc=${this.doc}
+                .element=${lNode}
+              ></l-node-editor>`
+          )}
+        </div>`
+      : html``;
+  }
+
+  private renderEqFunctions(): TemplateResult {
+    if (!this.showfunctions) return html``;
+
+    const eFunctions = getChildElementsByTagName(this.element, 'EqFunction');
+
+    return eFunctions.length
+      ? html`${eFunctions.map(
+          eFunction =>
+            html` <eq-function-editor
+              .doc=${this.doc}
+              .element=${eFunction}
+            ></eq-function-editor>`
+        )}`
+      : html``;
   }
 
   render(): TemplateResult {
     if (this.showfunctions)
-      return html`<action-pane label=${this.header}></action-pane>`;
+      return html`<action-pane label=${this.header}>
+        ${this.renderLNodes()} ${this.renderEqFunctions()}
+      </action-pane>`;
 
     return html`<action-icon label=${this.header}>
       <mwc-icon slot="icon">${generalConductingEquipmentIcon}</mwc-icon>
     </action-icon>`;
   }
+
+  static styles = css`
+    .container.lnode {
+      display: grid;
+      grid-gap: 12px;
+      padding: 8px 12px 16px;
+      box-sizing: border-box;
+      grid-template-columns: repeat(auto-fit, minmax(64px, auto));
+    }
+  `;
 }
