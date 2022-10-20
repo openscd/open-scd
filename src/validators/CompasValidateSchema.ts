@@ -136,6 +136,9 @@ export default class CompasValidateSchema extends LitElement {
    * For XPath to work correctly the default namespace of SCL needs to have a prefix to work.
    * The function evaluate expects HTML to be the default namespace.
    *
+   * See https://developer.mozilla.org/en-US/docs/Web/XPath/Introduction_to_using_XPath_in_JavaScript
+   * for more information on how XPath is working with evalaute and why this fix is needed.
+   *
    * @param xpath - The XPath to rewrite to use a prefix 'scl' for the SCL Namespace.
    */
   private rewriteXPathForDefaultNamespace(xpath: string): string {
