@@ -1,4 +1,4 @@
-FROM bitnami/nginx:1.23.1
+FROM bitnami/nginx:1.23.2
 COPY build/. /app/
 
 VOLUME /opt/bitnami/nginx/conf/server_blocks/
