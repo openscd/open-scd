@@ -239,7 +239,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         </mwc-list-item>`;
     }
 
-    private async openEditWizard(element: Element | undefined): Promise<void> {
+    private openEditWizard(element: Element | undefined): void {
       if (element) {
         const wizard = wizards[<SCLTag>element.tagName]?.edit(element);
         if (wizard) this.dispatchEvent(newWizardEvent(wizard));
