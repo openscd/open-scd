@@ -625,7 +625,7 @@ snapshots["fcda-binding-list with a GSEControl doc loaded looks like the latest 
       noninteractive=""
       tabindex="-1"
       twoline=""
-      value="IED1>>CircuitBreaker_CB1>GCB IED1>>CircuitBreaker_CB1>GooseDataSet1>CircuitBreaker_CB1/ XCBR 1.Pos stVal (ST) IED1>>CircuitBreaker_CB1>GooseDataSet1>CircuitBreaker_CB1/ XCBR 1.Pos q (ST) IED1>>CircuitBreaker_CB1>GooseDataSet1>CircuitBreaker_CB1/ CSWI 1.Pos stVal (ST) IED1>>CircuitBreaker_CB1>GooseDataSet1>Disconnectors/DC XSWI 1.Pos stVal (ST) IED1>>CircuitBreaker_CB1>GooseDataSet1>Disconnectors/DC XSWI 1.Pos q (ST)"
+      value="GOOSE_Publisher>>QB2_Disconnector>GOOSE2 GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos stVal (ST) GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos q (ST) GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB1_Disconnector/ CILO 1.EnaOpn stVal (ST) GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB1_Disconnector/ CILO 1.EnaCls stVal (ST) GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CILO 1.EnaOpn stVal (ST)"
     >
       <mwc-icon-button
         class="interactive"
@@ -634,10 +634,10 @@ snapshots["fcda-binding-list with a GSEControl doc loaded looks like the latest 
       >
       </mwc-icon-button>
       <span>
-        GCB
+        GOOSE2
       </span>
       <span slot="secondary">
-        IED1>>CircuitBreaker_CB1>GCB
+        GOOSE_Publisher>>QB2_Disconnector>GOOSE2
       </span>
       <mwc-icon slot="graphic">
       </mwc-icon>
@@ -651,38 +651,67 @@ snapshots["fcda-binding-list with a GSEControl doc loaded looks like the latest 
       aria-disabled="false"
       class="subitem"
       graphic="large"
+      hasmeta=""
       mwc-list-item=""
       tabindex="0"
       twoline=""
-      value="IED1>>CircuitBreaker_CB1>GCB IED1>>CircuitBreaker_CB1>GooseDataSet1>CircuitBreaker_CB1/ XCBR 1.Pos stVal (ST)"
+      value="GOOSE_Publisher>>QB2_Disconnector>GOOSE2 GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos stVal (ST)"
     >
       <span>
         Pos.stVal
       </span>
       <span slot="secondary">
-        CircuitBreaker_CB1/
-        XCBR
+        QB2_Disconnector/
+        CSWI
         1
       </span>
       <mwc-icon slot="graphic">
         subdirectory_arrow_right
       </mwc-icon>
+      <span slot="meta">
+        1
+      </span>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
       class="subitem"
       graphic="large"
+      hasmeta=""
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="IED1>>CircuitBreaker_CB1>GCB IED1>>CircuitBreaker_CB1>GooseDataSet1>CircuitBreaker_CB1/ XCBR 1.Pos q (ST)"
+      value="GOOSE_Publisher>>QB2_Disconnector>GOOSE2 GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos q (ST)"
     >
       <span>
         Pos.q
       </span>
       <span slot="secondary">
-        CircuitBreaker_CB1/
-        XCBR
+        QB2_Disconnector/
+        CSWI
+        1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+      <span slot="meta">
+        1
+      </span>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="GOOSE_Publisher>>QB2_Disconnector>GOOSE2 GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB1_Disconnector/ CILO 1.EnaOpn stVal (ST)"
+    >
+      <span>
+        EnaOpn.stVal
+      </span>
+      <span slot="secondary">
+        QB1_Disconnector
+        CILO
         1
       </span>
       <mwc-icon slot="graphic">
@@ -696,13 +725,84 @@ snapshots["fcda-binding-list with a GSEControl doc loaded looks like the latest 
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="IED1>>CircuitBreaker_CB1>GCB IED1>>CircuitBreaker_CB1>GooseDataSet1>CircuitBreaker_CB1/ CSWI 1.Pos stVal (ST)"
+      value="GOOSE_Publisher>>QB2_Disconnector>GOOSE2 GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB1_Disconnector/ CILO 1.EnaCls stVal (ST)"
+    >
+      <span>
+        EnaCls.stVal
+      </span>
+      <span slot="secondary">
+        QB1_Disconnector/
+        CILO
+        1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="GOOSE_Publisher>>QB2_Disconnector>GOOSE2 GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CILO 1.EnaOpn stVal (ST)"
+    >
+      <span>
+        EnaOpn.stVal
+      </span>
+      <span slot="secondary">
+        QB2_Disconnector
+        CILO
+        1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      noninteractive=""
+      tabindex="-1"
+      twoline=""
+      value="GOOSE_Publisher>>QB2_Disconnector>GOOSE1 GOOSE_Publisher>>QB2_Disconnector>GOOSE1sDataSet>QB1_Disconnector/ CSWI 1.Pos stVal (ST) GOOSE_Publisher>>QB2_Disconnector>GOOSE1sDataSet>QB1_Disconnector/ CSWI 1.Pos q (ST)"
+    >
+      <mwc-icon-button
+        class="interactive"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
+      <span>
+        GOOSE1
+      </span>
+      <span slot="secondary">
+        GOOSE_Publisher>>QB2_Disconnector>GOOSE1
+      </span>
+      <mwc-icon slot="graphic">
+      </mwc-icon>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="GOOSE_Publisher>>QB2_Disconnector>GOOSE1 GOOSE_Publisher>>QB2_Disconnector>GOOSE1sDataSet>QB1_Disconnector/ CSWI 1.Pos stVal (ST)"
     >
       <span>
         Pos.stVal
       </span>
       <span slot="secondary">
-        CircuitBreaker_CB1/
+        QB1_Disconnector/
         CSWI
         1
       </span>
@@ -717,247 +817,13 @@ snapshots["fcda-binding-list with a GSEControl doc loaded looks like the latest 
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="IED1>>CircuitBreaker_CB1>GCB IED1>>CircuitBreaker_CB1>GooseDataSet1>Disconnectors/DC XSWI 1.Pos stVal (ST)"
-    >
-      <span>
-        Pos.stVal
-      </span>
-      <span slot="secondary">
-        Disconnectors/DC
-        XSWI
-        1
-      </span>
-      <mwc-icon slot="graphic">
-        subdirectory_arrow_right
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="subitem"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="IED1>>CircuitBreaker_CB1>GCB IED1>>CircuitBreaker_CB1>GooseDataSet1>Disconnectors/DC XSWI 1.Pos q (ST)"
+      value="GOOSE_Publisher>>QB2_Disconnector>GOOSE1 GOOSE_Publisher>>QB2_Disconnector>GOOSE1sDataSet>QB1_Disconnector/ CSWI 1.Pos q (ST)"
     >
       <span>
         Pos.q
       </span>
       <span slot="secondary">
-        Disconnectors/DC
-        XSWI
-        1
-      </span>
-      <mwc-icon slot="graphic">
-        subdirectory_arrow_right
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      graphic="icon"
-      hasmeta=""
-      noninteractive=""
-      tabindex="-1"
-      twoline=""
-      value="IED1>>CircuitBreaker_CB1>GCB2 "
-    >
-      <mwc-icon-button
-        class="interactive"
-        icon="edit"
-        slot="meta"
-      >
-      </mwc-icon-button>
-      <span>
-        GCB2
-      </span>
-      <span slot="secondary">
-        IED1>>CircuitBreaker_CB1>GCB2
-      </span>
-      <mwc-icon slot="graphic">
-      </mwc-icon>
-    </mwc-list-item>
-    <li
-      divider=""
-      role="separator"
-    >
-    </li>
-    <mwc-list-item
-      aria-disabled="false"
-      graphic="icon"
-      hasmeta=""
-      noninteractive=""
-      tabindex="-1"
-      twoline=""
-      value="IED2>>CBSW>GCB IED2>>CBSW>GooseDataSet1>CBSW/ XSWI 2.Pos stVal (ST) IED2>>CBSW>GooseDataSet1>CBSW/ XSWI 2.Pos q (ST) IED2>>CBSW>GooseDataSet1>CBSW/ XSWI 3.Pos q (ST)"
-    >
-      <mwc-icon-button
-        class="interactive"
-        icon="edit"
-        slot="meta"
-      >
-      </mwc-icon-button>
-      <span>
-        GCB
-      </span>
-      <span slot="secondary">
-        IED2>>CBSW>GCB
-      </span>
-      <mwc-icon slot="graphic">
-      </mwc-icon>
-    </mwc-list-item>
-    <li
-      divider=""
-      role="separator"
-    >
-    </li>
-    <mwc-list-item
-      aria-disabled="false"
-      class="subitem"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="IED2>>CBSW>GCB IED2>>CBSW>GooseDataSet1>CBSW/ XSWI 2.Pos stVal (ST)"
-    >
-      <span>
-        Pos.stVal
-      </span>
-      <span slot="secondary">
-        CBSW/
-        XSWI
-        2
-      </span>
-      <mwc-icon slot="graphic">
-        subdirectory_arrow_right
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="subitem"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="IED2>>CBSW>GCB IED2>>CBSW>GooseDataSet1>CBSW/ XSWI 2.Pos q (ST)"
-    >
-      <span>
-        Pos.q
-      </span>
-      <span slot="secondary">
-        CBSW/
-        XSWI
-        2
-      </span>
-      <mwc-icon slot="graphic">
-        subdirectory_arrow_right
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="subitem"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="IED2>>CBSW>GCB IED2>>CBSW>GooseDataSet1>CBSW/ XSWI 3.Pos q (ST)"
-    >
-      <span>
-        Pos.q
-      </span>
-      <span slot="secondary">
-        CBSW/
-        XSWI
-        3
-      </span>
-      <mwc-icon slot="graphic">
-        subdirectory_arrow_right
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      graphic="icon"
-      hasmeta=""
-      noninteractive=""
-      tabindex="-1"
-      twoline=""
-      value="IED4>>CircuitBreaker_CB1>GCB IED4>>CircuitBreaker_CB1>GooseDataSet1>CircuitBreaker_CB1/ XCBR 1.Pos stVal (ST) IED4>>CircuitBreaker_CB1>GooseDataSet1>CircuitBreaker_CB1/ XCBR 1.Pos q (ST) IED4>>CircuitBreaker_CB1>GooseDataSet1>CircuitBreaker_CB1/ CSWI 1.Pos stVal (ST) IED4>>CircuitBreaker_CB1>GooseDataSet1>Disconnectors/DC XSWI 1.Pos stVal (ST) IED4>>CircuitBreaker_CB1>GooseDataSet1>Disconnectors/DC XSWI 1.Pos q (ST)"
-    >
-      <mwc-icon-button
-        class="interactive"
-        icon="edit"
-        slot="meta"
-      >
-      </mwc-icon-button>
-      <span>
-        GCB
-      </span>
-      <span slot="secondary">
-        IED4>>CircuitBreaker_CB1>GCB
-      </span>
-      <mwc-icon slot="graphic">
-      </mwc-icon>
-    </mwc-list-item>
-    <li
-      divider=""
-      role="separator"
-    >
-    </li>
-    <mwc-list-item
-      aria-disabled="false"
-      class="subitem"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="IED4>>CircuitBreaker_CB1>GCB IED4>>CircuitBreaker_CB1>GooseDataSet1>CircuitBreaker_CB1/ XCBR 1.Pos stVal (ST)"
-    >
-      <span>
-        Pos.stVal
-      </span>
-      <span slot="secondary">
-        CircuitBreaker_CB1/
-        XCBR
-        1
-      </span>
-      <mwc-icon slot="graphic">
-        subdirectory_arrow_right
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="subitem"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="IED4>>CircuitBreaker_CB1>GCB IED4>>CircuitBreaker_CB1>GooseDataSet1>CircuitBreaker_CB1/ XCBR 1.Pos q (ST)"
-    >
-      <span>
-        Pos.q
-      </span>
-      <span slot="secondary">
-        CircuitBreaker_CB1/
-        XCBR
-        1
-      </span>
-      <mwc-icon slot="graphic">
-        subdirectory_arrow_right
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="subitem"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="IED4>>CircuitBreaker_CB1>GCB IED4>>CircuitBreaker_CB1>GooseDataSet1>CircuitBreaker_CB1/ CSWI 1.Pos stVal (ST)"
-    >
-      <span>
-        Pos.stVal
-      </span>
-      <span slot="secondary">
-        CircuitBreaker_CB1/
+        QB1_Disconnector/
         CSWI
         1
       </span>
@@ -965,77 +831,6 @@ snapshots["fcda-binding-list with a GSEControl doc loaded looks like the latest 
         subdirectory_arrow_right
       </mwc-icon>
     </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="subitem"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="IED4>>CircuitBreaker_CB1>GCB IED4>>CircuitBreaker_CB1>GooseDataSet1>Disconnectors/DC XSWI 1.Pos stVal (ST)"
-    >
-      <span>
-        Pos.stVal
-      </span>
-      <span slot="secondary">
-        Disconnectors/DC
-        XSWI
-        1
-      </span>
-      <mwc-icon slot="graphic">
-        subdirectory_arrow_right
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="subitem"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="IED4>>CircuitBreaker_CB1>GCB IED4>>CircuitBreaker_CB1>GooseDataSet1>Disconnectors/DC XSWI 1.Pos q (ST)"
-    >
-      <span>
-        Pos.q
-      </span>
-      <span slot="secondary">
-        Disconnectors/DC
-        XSWI
-        1
-      </span>
-      <mwc-icon slot="graphic">
-        subdirectory_arrow_right
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      graphic="icon"
-      hasmeta=""
-      noninteractive=""
-      tabindex="-1"
-      twoline=""
-      value="IED4>>CircuitBreaker_CB1>GCB2 "
-    >
-      <mwc-icon-button
-        class="interactive"
-        icon="edit"
-        slot="meta"
-      >
-      </mwc-icon-button>
-      <span>
-        GCB2
-      </span>
-      <span slot="secondary">
-        IED4>>CircuitBreaker_CB1>GCB2
-      </span>
-      <mwc-icon slot="graphic">
-      </mwc-icon>
-    </mwc-list-item>
-    <li
-      divider=""
-      role="separator"
-    >
-    </li>
   </filtered-list>
 </section>
 `;
