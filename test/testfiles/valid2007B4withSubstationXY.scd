@@ -204,7 +204,7 @@
 						</GSEControl>
 						<GSEControl type="GOOSE" appID="0003" fixedOffs="false" confRev="1" name="GCB2"/>
 					</LN0>
-					<LN lnClass="XCBR" inst="1" lnType="Dummy.XCBR1">
+					<LN lnClass="XCBR" inst="1" lnType="Dummy.XCBR1">						
 						<DOI name="Pos">
 							<DAI name="ctlModel">
 								<Val>status-only</Val>
@@ -218,7 +218,7 @@
 							</DAI>
 						</DOI>
 					</LN>
-					<LN prefix="CB" lnClass="XCBR" inst="2" lnType="Dummy.XCBR1">
+					<LN prefix="CB" lnClass="XCBR" inst="2" lnType="Dummy.XCBR1">						
 						<DOI name="Pos">
 							<DAI name="ctlModel">
 								<Val>status-only</Val>

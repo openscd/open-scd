@@ -99,10 +99,6 @@ snapshots["voltage-level-editor looks like the latest snapshot"] =
       </mwc-list-item>
     </mwc-menu>
   </abbr>
-  <div class="actionicon ptrContent">
-    <powertransformer-editor>
-    </powertransformer-editor>
-  </div>
   <div id="bayContainer">
     <bay-editor>
     </bay-editor>
@@ -211,10 +207,6 @@ snapshots["voltage-level-editor with readonly property looks like the latest sna
       </mwc-list-item>
     </mwc-menu>
   </abbr>
-  <div class="actionicon ptrContent">
-    <powertransformer-editor>
-    </powertransformer-editor>
-  </div>
   <div id="bayContainer">
     <bay-editor readonly="">
     </bay-editor>
