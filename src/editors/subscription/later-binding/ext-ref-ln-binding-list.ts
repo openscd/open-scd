@@ -145,8 +145,8 @@ export class ExtRefLnBindingList extends LitElement {
 
     // we need to extend the actions array with the actions for the instation of the LGOS
     const subscriberIed = lnElement.closest('IED') || undefined;
-    actions.concat(
-      instantiateSubscriptionSupervision(
+    actions.push(
+      ...instantiateSubscriptionSupervision(
         this.currentSelectedControlElement,
         subscriberIed
       )
@@ -181,8 +181,8 @@ export class ExtRefLnBindingList extends LitElement {
 
     // we need to extend the actions array with the actions for removing the supervision
     const subscriberIed = lnElement.closest('IED') || undefined;
-    actions.concat(
-      removeSubscriptionSupervision(
+    actions.push(
+      ...removeSubscriptionSupervision(
         this.currentSelectedControlElement,
         subscriberIed
       )
