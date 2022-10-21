@@ -50,7 +50,7 @@ describe('SMV Subscribe Later Binding plugin', () => {
     expect(getSelectedSubItemValue(fcdaListElement)).to.be.null;
     expect(
       extRefListElement['getAvailableExtRefElements']().length
-    ).to.be.equal(8);
+    ).to.be.equal(9);
 
     (<HTMLElement>(
       extRefListElement.shadowRoot!.querySelector(
@@ -65,7 +65,7 @@ describe('SMV Subscribe Later Binding plugin', () => {
     expect(getSelectedSubItemValue(fcdaListElement)).to.have.text('1');
     expect(
       extRefListElement['getAvailableExtRefElements']().length
-    ).to.be.equal(7);
+    ).to.be.equal(8);
   });
 
   it('when unsubscribing a subscribed ExtRef then the lists are changed', async () => {
@@ -86,7 +86,7 @@ describe('SMV Subscribe Later Binding plugin', () => {
     expect(getSelectedSubItemValue(fcdaListElement)).to.have.text('3');
     expect(
       extRefListElement['getAvailableExtRefElements']().length
-    ).to.be.equal(8);
+    ).to.be.equal(9);
 
     (<HTMLElement>(
       extRefListElement.shadowRoot!.querySelector(
@@ -101,6 +101,6 @@ describe('SMV Subscribe Later Binding plugin', () => {
     expect(getSelectedSubItemValue(fcdaListElement)).to.have.text('2');
     expect(
       extRefListElement['getAvailableExtRefElements']().length
-    ).to.be.equal(9);
+    ).to.be.equal(10);
   });
 });
