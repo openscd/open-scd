@@ -194,7 +194,20 @@ export function instantiateSubscriptionSupervision(
     supervisionType
   );
   if (!availableLN) return [];
-  // First, create the templateStructure array
+  // First, we make suere that LN's inst is unique and non-empty
+  const inst = availableLN.getAttribute('inst') ?? '';
+  if (inst === '') {
+    const instNumber =
+      Array.from(
+        subscriberIED.querySelectorAll(`LN[lnClass="${supervisionType}"]`)
+      ).reduce((highestVal, ln) => {
+        return ln.getAttribute('inst')
+          ? Math.max(highestVal, +ln.getAttribute('inst')!)
+          : highestVal;
+      }, 0) + 1;
+    availableLN.setAttribute('inst', '' + instNumber);
+  }
+  // Then, create the templateStructure array
   const templateStructure = createTemplateStructure(availableLN, [
     controlBlock?.tagName === 'GSEControl' ? 'GoCBRef' : 'SvCBRef',
     'setSrcRef',
