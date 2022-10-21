@@ -91,7 +91,7 @@ describe('powertransformer-editor', () => {
       await expect(element).shadowDom.to.equalSnapshot();
     });
 
-    describe('with EqFunction childrend', () => {
+    describe('with EqFunction children', () => {
       beforeEach(async () => {
         const doc = await fetch('/test/testfiles/zeroline/functions.scd')
           .then(response => response.text())
@@ -105,7 +105,7 @@ describe('powertransformer-editor', () => {
         await expect(element).shadowDom.to.equalSnapshot());
     });
 
-    describe('with LNode childrend', () => {
+    describe('with LNode children', () => {
       beforeEach(async () => {
         const doc = await fetch('/test/testfiles/zeroline/functions.scd')
           .then(response => response.text())
@@ -117,6 +117,21 @@ describe('powertransformer-editor', () => {
 
       it('looks like the latest snapshot', async () =>
         await expect(element).shadowDom.to.equalSnapshot());
+    });
+
+    describe('with SubEquipment children', () => {
+      beforeEach(async () => {
+        const doc = await fetch('/test/testfiles/SubEquipment.scd')
+          .then(response => response.text())
+          .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+        element.element = doc.querySelector('PowerTransformer[name="pTrans"]')!;
+        await element.requestUpdate();
+      });
+
+      it('looks like the latest snapshot', async () => {
+        await expect(element).shadowDom.to.equalSnapshot();
+      });
     });
 
     it('triggers edit wizard for Linking LNode element on action button click', async () => {
