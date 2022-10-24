@@ -1,19 +1,26 @@
 <SCL xmlns="http://www.iec.ch/61850/2003/SCL" version="2007" revision="B" release="4">
 	<Header id="general_equipment"/>
 	<Substation xmlns="http://www.iec.ch/61850/2003/SCL" name="AA1" desc="">
-		<GeneralEquipment name="genSub" desc="someDesc" type="AXN"/>
+		<GeneralEquipment name="genSub" desc="someDesc" type="AXN">
+			<LNode iedName="None" lnClass="CSWI" lnType="OpenSCD_CSWI"/>
+			<EqFunction name="genEqFunc" />
+				<GeneralEquipment name="someGenCon" desc="someDesc" type="MOT"/>
+		</GeneralEquipment>	
 		<VoltageLevel name="E1" desc="" nomFreq="50" numPhases="3">
+			<GeneralEquipment name="genVolt1" type="BAT"/>
 			<PowerTransformer name="pTrans" type="PTW">
 				<SubEquipment name="subque" desc="somedesc" phase="all"/>
-				<TransformerWinding name="some">
-					
-				</TransformerWinding>
+				<TransformerWinding name="some"/> 
 			</PowerTransformer>
 			<Voltage unit="V" multiplier="k">110</Voltage>
 			<Bay name="Q02" desc="">
 				<GeneralEquipment name="someGenCon" desc="someDesc" type="MOT">
 					<LNode iedName="None" lnClass="CSWI" lnType="OpenSCD_CSWI"/>
-					<EqFunction name="genEqFunc" />
+					<EqFunction name="genEqFunc" >
+						<EqSubFunction name="SubEq1">
+							<GeneralEquipment name="someGenCon" desc="someDesc" type="MOT"/>
+						</EqSubFunction>
+					</EqFunction>
 				</GeneralEquipment>
 				<ConductingEquipment name="QA1" type="CBR" desc="">
 					<SubEquipment name="L1" desc="somedesc" phase="A"/>
