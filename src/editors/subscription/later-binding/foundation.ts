@@ -91,12 +91,18 @@ export function inputRestriction(extRef: Element): {
   );
   if (!pLN || !pDO || !pDA) return { cdc: null, bType: null };
 
-  const anyLn = extRef
-    .closest('IED')
-    ?.querySelector(`LN[lnClass="${pLN}"],LN0[lnClass="${pLN}"]`);
-  if (!anyLn) return { cdc: null, bType: null };
+  const anyLns = Array.from(
+    extRef
+      .closest('IED')
+      ?.querySelectorAll(`LN[lnClass="${pLN}"],LN0[lnClass="${pLN}"]`) ?? []
+  );
 
-  return dataAttributeSpecification(anyLn, pDO, pDA);
+  for (const anyLn of anyLns) {
+    const dataSpec = dataAttributeSpecification(anyLn, pDO, pDA);
+    if (dataSpec.cdc !== null && dataSpec.bType !== null) return dataSpec;
+  }
+
+  return { cdc: null, bType: null };
 }
 
 /**

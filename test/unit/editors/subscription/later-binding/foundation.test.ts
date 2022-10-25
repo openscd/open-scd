@@ -278,7 +278,7 @@ describe('Input restriction', () => {
 
   it('returns null for failed bType extraction', () => {
     extRef.setAttribute('pDA', 'instMag.f');
-    expect(inputRestriction(extRef)).to.deep.equal({ cdc: 'SAV', bType: null });
+    expect(inputRestriction(extRef)).to.deep.equal({ cdc: null, bType: null });
   });
 
   it('returns object with extracted CDC and bType', () =>

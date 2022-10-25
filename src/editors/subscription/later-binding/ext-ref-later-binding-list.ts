@@ -78,8 +78,8 @@ export class ExtRefLaterBindingList extends LitElement {
    * `ExtRef`'s `pLN`, `pDO`, `pDA` and `pServT` attributes.
    * Consistent means `CDC` and `bType` of both ExtRef and FCDA is equal.
    * In case
-   *  - `pLN`, `pDO`, `pDA` or `pServT` attributes are not present allow subscribing
-   *  - no CDC or bType can be extracted allow subscribing (not restrictive on doubt)
+   *  - `pLN`, `pDO`, `pDA` or `pServT` attributes are not present, allow subscribing
+   *  - no CDC or bType can be extracted, do not allow subscribing
    *
    * @param extRef - The `ExtRef` Element to check against
    */
