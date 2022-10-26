@@ -195,7 +195,7 @@ export function instantiateSubscriptionSupervision(
     supervisionType
   );
   if (!availableLN) return [];
-  // First, we make suere that LN's inst is unique and non-empty
+  // First, we make sure that LN's inst is unique and non-empty
   const inst = availableLN.getAttribute('inst') ?? '';
   if (inst === '') {
     const instNumber = minAvailableLnInst(
