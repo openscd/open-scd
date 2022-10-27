@@ -2810,11 +2810,11 @@ export function newLnInstGenerator(
  * values already in use.
  * @returns first available inst value for LN or undefined if no inst is available
  */
-export function minAvailableLnInst(lnElements: Element[]): string | undefined {
+export function minAvailableLogicalNodeInstance(
+  lnElements: Element[]
+): string | undefined {
   const lnInsts = new Set(lnElements.map(ln => ln.getAttribute('inst') || ''));
-  const uniqueLnInst = lnInstRange.find(lnInst => !lnInsts.has(lnInst));
-  if (uniqueLnInst) lnInsts.add(uniqueLnInst);
-  return uniqueLnInst;
+  return lnInstRange.find(lnInst => !lnInsts.has(lnInst));
 }
 
 declare global {

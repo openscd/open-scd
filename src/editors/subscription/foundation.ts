@@ -6,7 +6,7 @@ import {
   createElement,
   Delete,
   getSclSchemaVersion,
-  minAvailableLnInst,
+  minAvailableLogicalNodeInstance,
 } from '../../foundation.js';
 import {
   createTemplateStructure,
@@ -198,7 +198,7 @@ export function instantiateSubscriptionSupervision(
   // First, we make sure that LN's inst is unique and non-empty
   const inst = availableLN.getAttribute('inst') ?? '';
   if (inst === '') {
-    const instNumber = minAvailableLnInst(
+    const instNumber = minAvailableLogicalNodeInstance(
       Array.from(
         subscriberIED.querySelectorAll(`LN[lnClass="${supervisionType}"]`)
       )
