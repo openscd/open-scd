@@ -195,17 +195,6 @@ export function instantiateSubscriptionSupervision(
     supervisionType
   );
   if (!availableLN) return [];
-  // First, we make sure that LN's inst is unique and non-empty
-  const inst = availableLN.getAttribute('inst') ?? '';
-  if (inst === '') {
-    const instNumber = minAvailableLogicalNodeInstance(
-      Array.from(
-        subscriberIED.querySelectorAll(`LN[lnClass="${supervisionType}"]`)
-      )
-    );
-    if (!instNumber) return [];
-    availableLN.setAttribute('inst', instNumber);
-  }
   // Then, create the templateStructure array
   const templateStructure = createTemplateStructure(availableLN, [
     controlBlock?.tagName === 'GSEControl' ? 'GoCBRef' : 'SvCBRef',
@@ -323,34 +312,47 @@ export function findOrCreateAvailableLNInst(
   subscriberIED: Element,
   supervisionType: string
 ): Element | null {
-  const firstEmptyLN = Array.from(
+  let availableLN = Array.from(
     subscriberIED.querySelectorAll(`LN[lnClass="${supervisionType}"]`)
   ).find(
     ln =>
       ln.querySelector('DOI>DAI>Val') === null ||
       ln.querySelector('DOI>DAI>Val')?.textContent === ''
   );
-  if (firstEmptyLN) return firstEmptyLN;
-  const newElement = subscriberIED.ownerDocument.createElementNS(
-    SCL_NAMESPACE,
-    'LN'
-  );
-  const openScdTag = subscriberIED.ownerDocument.createElementNS(
-    SCL_NAMESPACE,
-    'Private'
-  );
-  openScdTag.setAttribute('type', 'OpenSCD.create');
-  newElement.appendChild(openScdTag);
-  newElement.setAttribute('lnClass', supervisionType);
-  const instantiatedSibling = subscriberIED
-    .querySelector(`LN[lnClass="${supervisionType}"]>DOI>DAI>Val`)
-    ?.closest('LN');
-  if (!instantiatedSibling) return null;
-  newElement.setAttribute(
-    'lnType',
-    instantiatedSibling.getAttribute('lnType') ?? ''
-  );
-  return newElement;
+  if (!availableLN) {
+    availableLN = subscriberIED.ownerDocument.createElementNS(
+      SCL_NAMESPACE,
+      'LN'
+    );
+    const openScdTag = subscriberIED.ownerDocument.createElementNS(
+      SCL_NAMESPACE,
+      'Private'
+    );
+    openScdTag.setAttribute('type', 'OpenSCD.create');
+    availableLN.appendChild(openScdTag);
+    availableLN.setAttribute('lnClass', supervisionType);
+    const instantiatedSibling = subscriberIED
+      .querySelector(`LN[lnClass="${supervisionType}"]>DOI>DAI>Val`)
+      ?.closest('LN');
+    if (!instantiatedSibling) return null;
+    availableLN.setAttribute(
+      'lnType',
+      instantiatedSibling.getAttribute('lnType') ?? ''
+    );
+  }
+
+  // Before we return, we make sure that LN's inst is unique and non-empty
+  const inst = availableLN.getAttribute('inst') ?? '';
+  if (inst === '') {
+    const instNumber = minAvailableLogicalNodeInstance(
+      Array.from(
+        subscriberIED.querySelectorAll(`LN[lnClass="${supervisionType}"]`)
+      )
+    );
+    if (!instNumber) return null;
+    availableLN.setAttribute('inst', instNumber);
+  }
+  return availableLN;
 }
 
 /**
