@@ -1043,7 +1043,7 @@ snapshots["open-scd looks like its snapshot"] =
       value="/src/menu/ExportCommunication.js"
     >
       <mwc-icon slot="meta">
-        share
+        sim_card_download
       </mwc-icon>
       Export Communication Section
     </mwc-check-list-item>
