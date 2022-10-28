@@ -228,7 +228,7 @@ export const officialPlugins = [
   {
     name: 'Export Communication Section',
     src: '/src/menu/ExportCommunication.js',
-    icon: 'share',
+    icon: 'sim_card_download',
     default: false,
     kind: 'menu',
     requireDoc: true,
