@@ -252,7 +252,7 @@ snapshots["extref-later-binding-list for Sampled Value Control when SVC has a si
     >
       <span>
         AmpSv;TCTR1/AmpSv/instMag.i
-                 (MeasPoint.CT1)
+         (MeasPoint.CT1)
       </span>
       <span slot="secondary">
         SMV_Subscriber>>Overvoltage> PTRC 1>SMV:currentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv instMag.i@AmpSv;TCTR1/AmpSv/instMag.i
@@ -465,7 +465,7 @@ snapshots["extref-later-binding-list when SVC has a multiple subscriptions looks
     >
       <span>
         AmpSv;TCTR1/AmpSv/q
-                 (MeasPoint.CT1)
+         (MeasPoint.CT1)
       </span>
       <span slot="secondary">
         SMV_Subscriber>>Overvoltage> PTRC 1>SMV:currentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv q@AmpSv;TCTR1/AmpSv/q
@@ -481,7 +481,7 @@ snapshots["extref-later-binding-list when SVC has a multiple subscriptions looks
     >
       <span>
         AmpSv;TCTR2/AmpSv/q
-                 (MeasPoint.CT1)
+         (MeasPoint.CT1)
       </span>
       <span slot="secondary">
         SMV_Subscriber>>Overvoltage> PTRC 1>SMV:currentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv q@AmpSv;TCTR2/AmpSv/q
@@ -497,7 +497,7 @@ snapshots["extref-later-binding-list when SVC has a multiple subscriptions looks
     >
       <span>
         AmpSv;TCTR3/AmpSv/q
-                 (MeasPoint.CT1)
+         (MeasPoint.CT1)
       </span>
       <span slot="secondary">
         SMV_Subscriber>>Overvoltage> PTRC 1>SMV:currentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv q@AmpSv;TCTR3/AmpSv/q
@@ -845,7 +845,7 @@ snapshots["extref-later-binding-list for GOOSE Control when GSEControl has a sin
     >
       <span>
         Pos;CSWI1/Pos/stVal
-                 (Interlocking.Input2)
+         (Interlocking.Input2)
       </span>
       <span slot="secondary">
         GOOSE_Subscriber>>Earth_Switch> CSWI 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos stVal@Pos;CSWI1/Pos/stVal
@@ -982,7 +982,7 @@ snapshots["extref-later-binding-list when GSEControl has a multiple subscription
     >
       <span>
         Pos;CSWI1/Pos/q
-                 (Interlocking.Input)
+         (Interlocking.Input)
       </span>
       <span slot="secondary">
         GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos q@Pos;CSWI1/Pos/q
@@ -998,7 +998,7 @@ snapshots["extref-later-binding-list when GSEControl has a multiple subscription
     >
       <span>
         Pos;CSWI1/Pos/q
-                 (Interlocking.Input2)
+         (Interlocking.Input2)
       </span>
       <span slot="secondary">
         GOOSE_Subscriber>>Earth_Switch> CSWI 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos q@Pos;CSWI1/Pos/q

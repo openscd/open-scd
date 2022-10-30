@@ -274,6 +274,12 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
         <mwc-icon slot="graphic">
           clear
         </mwc-icon>
+        <mwc-icon
+          slot="meta"
+          title="IED1>>CircuitBreaker_CB1> LGOS 1>GoCBRef>setSrcRef> 0"
+        >
+          monitor_heart
+        </mwc-icon>
       </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
@@ -318,7 +324,6 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
       <mwc-list-item
         aria-disabled="false"
         graphic="avatar"
-        hasmeta=""
         mwc-list-item=""
         tabindex="-1"
       >
@@ -332,7 +337,6 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
       <mwc-list-item
         aria-disabled="false"
         graphic="avatar"
-        hasmeta=""
         mwc-list-item=""
         tabindex="-1"
       >
@@ -384,12 +388,17 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
         <mwc-icon slot="graphic">
           clear
         </mwc-icon>
+        <mwc-icon
+          slot="meta"
+          title="IED1>>CircuitBreaker_CB1> LGOS 1>GoCBRef>setSrcRef> 0"
+        >
+          monitor_heart
+        </mwc-icon>
       </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
         aria-selected="false"
         graphic="avatar"
-        hasmeta=""
         mwc-list-item=""
         tabindex="-1"
       >
@@ -444,7 +453,6 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
         aria-disabled="false"
         aria-selected="true"
         graphic="avatar"
-        hasmeta=""
         mwc-list-item=""
         selected=""
         tabindex="-1"
@@ -538,7 +546,6 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
         aria-disabled="false"
         aria-selected="false"
         graphic="avatar"
-        hasmeta=""
         mwc-list-item=""
         tabindex="-1"
       >
@@ -552,7 +559,6 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
       <mwc-list-item
         aria-disabled="false"
         graphic="avatar"
-        hasmeta=""
         mwc-list-item=""
         tabindex="-1"
       >
@@ -566,7 +572,6 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
       <mwc-list-item
         aria-disabled="false"
         graphic="avatar"
-        hasmeta=""
         mwc-list-item=""
         tabindex="-1"
       >
@@ -618,11 +623,16 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
         <mwc-icon slot="graphic">
           clear
         </mwc-icon>
+        <mwc-icon
+          slot="meta"
+          title="IED1>>CircuitBreaker_CB1> LGOS 1>GoCBRef>setSrcRef> 0"
+        >
+          monitor_heart
+        </mwc-icon>
       </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
         graphic="avatar"
-        hasmeta=""
         mwc-list-item=""
         tabindex="-1"
       >
@@ -677,7 +687,6 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
         aria-disabled="false"
         aria-selected="false"
         graphic="avatar"
-        hasmeta=""
         mwc-list-item=""
         tabindex="-1"
       >
@@ -861,7 +870,6 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED the le
       <mwc-list-item
         aria-disabled="false"
         graphic="avatar"
-        hasmeta=""
         mwc-list-item=""
         tabindex="0"
       >
@@ -890,7 +898,6 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED the le
       <mwc-list-item
         aria-disabled="false"
         graphic="avatar"
-        hasmeta=""
         mwc-list-item=""
         tabindex="-1"
       >
@@ -932,7 +939,6 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for un
       <mwc-list-item
         aria-disabled="false"
         graphic="avatar"
-        hasmeta=""
         mwc-list-item=""
         tabindex="0"
       >
@@ -987,7 +993,6 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for un
         aria-disabled="false"
         aria-selected="true"
         graphic="avatar"
-        hasmeta=""
         mwc-list-item=""
         selected=""
         tabindex="-1"
@@ -1081,7 +1086,6 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for su
         aria-disabled="false"
         aria-selected="false"
         graphic="avatar"
-        hasmeta=""
         mwc-list-item=""
         tabindex="0"
       >
@@ -1095,7 +1099,6 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for su
       <mwc-list-item
         aria-disabled="false"
         graphic="avatar"
-        hasmeta=""
         mwc-list-item=""
         tabindex="-1"
       >
@@ -1138,7 +1141,6 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for pa
         aria-disabled="false"
         aria-selected="false"
         graphic="avatar"
-        hasmeta=""
         mwc-list-item=""
         tabindex="0"
       >
@@ -1192,7 +1194,6 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for pa
       <mwc-list-item
         aria-disabled="false"
         graphic="avatar"
-        hasmeta=""
         mwc-list-item=""
         tabindex="-1"
       >

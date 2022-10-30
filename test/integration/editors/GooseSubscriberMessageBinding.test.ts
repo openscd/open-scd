@@ -17,7 +17,7 @@ describe('GOOSE subscriber plugin', () => {
   let doc: XMLDocument;
 
   beforeEach(async () => {
-    doc = await fetch('/test/testfiles/editors/MessageBindinGOOSE2007B4.scd')
+    doc = await fetch('/test/testfiles/editors/MessageBindingGOOSE2007B4.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
