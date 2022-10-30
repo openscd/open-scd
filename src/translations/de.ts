@@ -359,8 +359,6 @@ export const de: Translations = {
         publisherView: 'Publisher | Subscriber',
         subscriberView: 'Subscriber | Publisher',
       },
-      subscribeActionMessage: '???',
-      unsubscribeActionMessage: '???',
     },
     smv: {
       publisher: {
@@ -384,8 +382,6 @@ export const de: Translations = {
         noAvailableLNs:
           'Keine Verbindung zu dem ausgewählten Daten-Attribute möglich',
       },
-      subscribeActionMessage: '???',
-      unsubscribeActionMessage: '???',
     },
     laterBinding: {
       extRefList: {

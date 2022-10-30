@@ -153,9 +153,7 @@ export class ExtRefLaterBindingList extends LitElement {
 
     this.dispatchEvent(
       newActionEvent({
-        title: get(
-          `subscription.laterBinding.${this.controlTag}.unsubscribeActionMessage`
-        ),
+        title: get(`subscription.disconnect`),
         actions: [replaceAction, ...removeSubscriptionActions],
       })
     );
@@ -200,9 +198,7 @@ export class ExtRefLaterBindingList extends LitElement {
 
     this.dispatchEvent(
       newActionEvent({
-        title: get(
-          `subscription.laterBinding.${this.controlTag}.subscribeActionMessage`
-        ),
+        title: get(`subscription.connect`),
         actions: [replaceAction, ...supervisionActions],
       })
     );
