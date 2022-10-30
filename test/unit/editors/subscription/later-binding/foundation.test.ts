@@ -1,6 +1,8 @@
 import { expect } from '@open-wc/testing';
 
 import {
+  fcdaSpecification,
+  inputRestriction,
   isSubscribedTo,
   sameAttributeValue,
   sameAttributeValueDiffName,
@@ -244,4 +246,79 @@ describe('smv-list', () => {
       });
     });
   });
+});
+
+describe('Input restriction', () => {
+  let doc: XMLDocument;
+  let extRef: Element;
+  beforeEach(async () => {
+    doc = await fetch('/test/testfiles/editors/LaterBindingSMV2007B4.scd')
+      .then(response => response.text())
+      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+    extRef = doc.querySelector<Element>(
+      'ExtRef[pLN="TCTR"][pDO="AmpSv"][pDA="instMag.i"]'
+    )!;
+  });
+
+  it('returns null for missing restriction attributes', () => {
+    extRef.removeAttribute('pLN');
+    expect(inputRestriction(extRef)).to.deep.equal({ cdc: null, bType: null });
+  });
+
+  it('returns null for missing logical node connection', () => {
+    extRef.setAttribute('pLN', 'PDIS');
+    expect(inputRestriction(extRef)).to.deep.equal({ cdc: null, bType: null });
+  });
+
+  it('returns null for failed CDC extraction', () => {
+    extRef.setAttribute('pDO', 'AmpS');
+    expect(inputRestriction(extRef)).to.deep.equal({ cdc: null, bType: null });
+  });
+
+  it('returns null for failed bType extraction', () => {
+    extRef.setAttribute('pDA', 'instMag.f');
+    expect(inputRestriction(extRef)).to.deep.equal({ cdc: null, bType: null });
+  });
+
+  it('returns object with extracted CDC and bType', () =>
+    expect(inputRestriction(extRef)).to.deep.equal({
+      cdc: 'SAV',
+      bType: 'INT32',
+    }));
+});
+
+describe('FCDA specification', () => {
+  let doc: XMLDocument;
+  let fcda: Element;
+  beforeEach(async () => {
+    doc = await fetch('/test/testfiles/editors/LaterBindingSMV2007B4.scd')
+      .then(response => response.text())
+      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+    fcda = doc.querySelector<Element>(
+      'FCDA[lnClass="TCTR"][doName="AmpSv"][daName="instMag.i"]'
+    )!;
+  });
+
+  it('returns null for missing logical node connection', () => {
+    fcda.setAttribute('lnClass', 'USER');
+    expect(fcdaSpecification(fcda)).to.deep.equal({ cdc: null, bType: null });
+  });
+
+  it('returns null for failed CDC extraction', () => {
+    fcda.setAttribute('doName', 'AmpS');
+    expect(fcdaSpecification(fcda)).to.deep.equal({ cdc: null, bType: null });
+  });
+
+  it('returns null for failed bType extraction', () => {
+    fcda.setAttribute('daName', 'instMag.k');
+    expect(fcdaSpecification(fcda)).to.deep.equal({ cdc: 'SAV', bType: null });
+  });
+
+  it('returns object with extracted CDC and bType', () =>
+    expect(fcdaSpecification(fcda)).to.deep.equal({
+      cdc: 'SAV',
+      bType: 'INT32',
+    }));
 });

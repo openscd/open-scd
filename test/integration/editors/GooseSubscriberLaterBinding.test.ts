@@ -49,7 +49,7 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
     expect(getSelectedSubItemValue(fcdaListElement)).to.be.null;
     expect(
       extRefListElement['getAvailableExtRefElements']().length
-    ).to.be.equal(4);
+    ).to.be.equal(5);
 
     (<HTMLElement>(
       extRefListElement.shadowRoot!.querySelector(
@@ -64,7 +64,7 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
     expect(getSelectedSubItemValue(fcdaListElement)).to.have.text('1');
     expect(
       extRefListElement['getAvailableExtRefElements']().length
-    ).to.be.equal(3);
+    ).to.be.equal(4);
   });
 
   it('when unsubscribing a subscribed ExtRef then the lists are changed', async () => {
@@ -85,7 +85,7 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
     expect(getSelectedSubItemValue(fcdaListElement)).to.have.text('2');
     expect(
       extRefListElement['getAvailableExtRefElements']().length
-    ).to.be.equal(4);
+    ).to.be.equal(5);
 
     (<HTMLElement>(
       extRefListElement.shadowRoot!.querySelector(
@@ -100,6 +100,6 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
     expect(getSelectedSubItemValue(fcdaListElement)).to.have.text('1');
     expect(
       extRefListElement['getAvailableExtRefElements']().length
-    ).to.be.equal(5);
+    ).to.be.equal(6);
   });
 });
