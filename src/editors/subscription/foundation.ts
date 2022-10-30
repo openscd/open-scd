@@ -234,6 +234,12 @@ export function instantiateSubscriptionSupervision(
 /**
  * Return an array with a single Delete action to delete the supervision element
  * for the given GOOSE/SMV message and subscriber IED.
+ *
+ * @param controlBlock The GOOSE or SMV message element
+ * @param subscriberIED The subscriber IED
+ * @returns an empty array if removing the supervision is not possible or an array
+ * with a single Delete action that removes the LN if it was created in OpenSCD
+ * or only the supervision structure DOI/DAI/Val if it was created by the user.
  */
 export function removeSubscriptionSupervision(
   controlBlock: Element | undefined,
@@ -248,7 +254,7 @@ export function removeSubscriptionSupervision(
     )
   ).find(val => val.textContent == controlBlockReference(controlBlock));
   if (!valElement) return [];
-  const lnElement = valElement.closest('DOI')?.parentElement;
+  const lnElement = valElement.closest('LN0, LN');
   if (!lnElement || !lnElement.parentElement) return [];
   // Check if that one has been created by OpenSCD (private section exists)
   const isOpenScdCreated = lnElement.querySelector(
@@ -274,9 +280,13 @@ export function removeSubscriptionSupervision(
 }
 
 /**
- * Checks if the given combination of GOOSE/SMV message and subscriber IED allows for subscription supervision.
+ * Checks if the given combination of GOOSE/SMV message and subscriber IED
+ * allows for subscription supervision.
  * @param controlBlock The GOOSE or SMV message element
  * @param subscriberIED The subscriber IED
+ * @param supervisionType LSVS or LGOS
+ * @returns true if both controlBlock and subscriberIED meet the requirements for
+ * setting up a supervision for the specified supervision type or false if they don't
  */
 function isSupervisionAllowed(
   controlBlock: Element,
@@ -299,8 +309,10 @@ function isSupervisionAllowed(
     instantiatedSupervisionsCount(subscriberIED, controlBlock, supervisionType)
   )
     return false;
+
   return true;
 }
+
 /** Returns an new or existing LN instance available for supervision instantiation
  *
  * @param controlBlock The GOOSE or SMV message element
@@ -341,7 +353,8 @@ export function findOrCreateAvailableLNInst(
     );
   }
 
-  // Before we return, we make sure that LN's inst is unique and non-empty
+  /* Before we return, we make sure that LN's inst is unique, non-empty
+  and also the minimum inst as the minimum of all available in the IED */
   const inst = availableLN.getAttribute('inst') ?? '';
   if (inst === '') {
     const instNumber = minAvailableLogicalNodeInstance(
@@ -360,7 +373,7 @@ export function findOrCreateAvailableLNInst(
  *
  * @param subscriberIED The subscriber IED
  * @param controlBlock The GOOSE or SMV message element
- * @returns The number of LN instances with supervision set up
+ * @returns The number of LN instances with a supervision set up
  */
 export function instantiatedSupervisionsCount(
   subscriberIED: Element,
@@ -391,7 +404,8 @@ export function maxSupervisions(
   const maxValues = parseInt(
     subscriberIED
       .querySelector('Services>SupSubscription')
-      ?.getAttribute(maxAttr) ?? '0'
+      ?.getAttribute(maxAttr) ?? '0',
+    10
   );
   return isNaN(maxValues) ? 0 : maxValues;
 }
@@ -406,10 +420,10 @@ export function controlBlockReference(
   controlBlock: Element | undefined
 ): string | null {
   if (!controlBlock) return null;
-  const eitherLN = controlBlock.closest('LN,LN0');
-  const prefix = eitherLN?.getAttribute('prefix') ?? '';
-  const lnClass = eitherLN?.getAttribute('lnClass');
-  const lnInst = eitherLN?.getAttribute('inst') ?? '';
+  const anyLn = controlBlock.closest('LN,LN0');
+  const prefix = anyLn?.getAttribute('prefix') ?? '';
+  const lnClass = anyLn?.getAttribute('lnClass');
+  const lnInst = anyLn?.getAttribute('inst') ?? '';
   const ldInst = controlBlock.closest('LDevice')?.getAttribute('inst');
   const iedName = controlBlock.closest('IED')?.getAttribute('name');
   const cbName = controlBlock.getAttribute('name');
