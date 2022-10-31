@@ -15,7 +15,9 @@ import '../../action-pane.js';
 import '../../editors/substation/eq-function-editor.js';
 import '../../editors/substation/l-node-editor.js';
 import { generalConductingEquipmentIcon } from '../../icons/icons.js';
-import { getChildElementsByTagName } from '../../foundation.js';
+import { getChildElementsByTagName, newWizardEvent } from '../../foundation.js';
+import { translate } from 'lit-translate';
+import { wizards } from '../../wizards/wizard-library.js';
 //import { styles } from './foundation.js';
 
 @customElement('general-equipment-editor')
@@ -38,6 +40,11 @@ export class GeneralEquipmentEditor extends LitElement {
     if (!this.showfunctions) return `${name}`;
 
     return `${name} ${desc ? `—  ${desc}` : ''}`;
+  }
+
+  openEditWizard(): void {
+    const wizard = wizards['GeneralEquipment'].edit(this.element);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
   private renderLNodes(): TemplateResult {
@@ -77,10 +84,22 @@ export class GeneralEquipmentEditor extends LitElement {
   render(): TemplateResult {
     if (this.showfunctions)
       return html`<action-pane label=${this.header}>
+        <abbr slot="action" title="${translate('edit')}">
+          <mwc-icon-button
+            icon="edit"
+            @click=${() => this.openEditWizard()}
+          ></mwc-icon-button>
+        </abbr>
         ${this.renderLNodes()} ${this.renderEqFunctions()}
       </action-pane>`;
 
     return html`<action-icon label=${this.header}>
+      <abbr slot="action" title="${translate('edit')}">
+        <mwc-icon-button
+          icon="edit"
+          @click=${() => this.openEditWizard()}
+        ></mwc-icon-button>
+      </abbr>
       <mwc-icon slot="icon">${generalConductingEquipmentIcon}</mwc-icon>
     </action-icon>`;
   }
