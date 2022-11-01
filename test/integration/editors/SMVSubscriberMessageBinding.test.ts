@@ -2,7 +2,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 
 import '../../mock-wizard.js';
 
-import SampledValuesSubscriptionPlugin from '../../../src/editors/SampledValuesSubscription.js';
+import SMVSubscriberMessageBindingPlugin from '../../../src/editors/SMVSubscriberMessageBinding.js';
 import { Editing } from '../../../src/Editing.js';
 import { Wizarding } from '../../../src/Wizarding.js';
 import { ListItem } from '@material/mwc-list/mwc-list-item.js';
@@ -10,13 +10,13 @@ import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 describe('Sampled Values Plugin', () => {
   customElements.define(
     'smv-plugin',
-    Wizarding(Editing(SampledValuesSubscriptionPlugin))
+    Wizarding(Editing(SMVSubscriberMessageBindingPlugin))
   );
-  let element: SampledValuesSubscriptionPlugin;
+  let element: SMVSubscriberMessageBindingPlugin;
   let doc: XMLDocument;
 
   beforeEach(async () => {
-    doc = await fetch('/test/testfiles/valid2007B4ForSampledValues.scd')
+    doc = await fetch('/test/testfiles/editors/MessageBindingSMV2007B4.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
@@ -90,6 +90,7 @@ describe('Sampled Values Plugin', () => {
 
         it('adds the required ExtRefs to the subscriber IED', async () => {
           (<HTMLElement>getItemFromSubscriberList('IED2')).click();
+          await element.updateComplete;
 
           expect(
             element.doc.querySelectorAll(
@@ -167,6 +168,7 @@ describe('Sampled Values Plugin', () => {
 
         it('removes the required ExtRefs from the subscriber IED', async () => {
           (<HTMLElement>getItemFromSubscriberList('IED1')).click();
+          await element.updateComplete;
 
           expect(
             element.doc.querySelectorAll(
@@ -196,6 +198,7 @@ describe('Sampled Values Plugin', () => {
 
         it('adds the required ExtRefs to the subscriber IED', async () => {
           (<HTMLElement>getItemFromSubscriberList('IED4')).click();
+          await element.updateComplete;
 
           expect(
             element.doc.querySelectorAll(
@@ -360,6 +363,7 @@ describe('Sampled Values Plugin', () => {
 
         it('removes the required ExtRefs to the subscriber IED', async () => {
           (<HTMLElement>getItemFromSubscriberList('MSVCB01')).click();
+          await element.updateComplete;
 
           expect(
             element.doc.querySelectorAll(
@@ -389,6 +393,7 @@ describe('Sampled Values Plugin', () => {
 
         it('adds the required ExtRefs to the subscriber IED', async () => {
           (<HTMLElement>getItemFromSubscriberList('MSVCB02')).click();
+          await element.updateComplete;
 
           expect(
             element.doc.querySelectorAll(

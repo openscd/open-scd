@@ -12,16 +12,27 @@ import { translate } from 'lit-translate';
 
 import {
   cloneElement,
-  compareNames,
   getDescriptionAttribute,
   identity,
   newActionEvent,
   Replace,
-  getSclSchemaVersion,
 } from '../../../foundation.js';
 
-import { styles, updateExtRefElement, serviceTypes } from '../foundation.js';
-import { FcdaSelectEvent } from './foundation.js';
+import {
+  FcdaSelectEvent,
+  newSubscriptionChangedEvent,
+  styles,
+  updateExtRefElement,
+  serviceTypes,
+} from '../foundation.js';
+
+import {
+  getExtRefElements,
+  getSubscribedExtRefElements,
+  fcdaSpecification,
+  inputRestriction,
+  isSubscribed,
+} from './foundation.js';
 
 /**
  * A sub element for showing all Ext Refs from a FCDA Element.
@@ -43,43 +54,16 @@ export class ExtRefLaterBindingList extends LitElement {
 
   constructor() {
     super();
-    this.onFcdaSelectEvent = this.onFcdaSelectEvent.bind(this);
 
     const parentDiv = this.closest('.container');
     if (parentDiv) {
+      this.onFcdaSelectEvent = this.onFcdaSelectEvent.bind(this);
       parentDiv.addEventListener('fcda-select', this.onFcdaSelectEvent);
     }
   }
 
-  private getExtRefElements(): Element[] {
-    if (this.doc) {
-      return Array.from(this.doc.querySelectorAll('ExtRef'))
-        .filter(element => element.hasAttribute('intAddr'))
-        .filter(element => element.closest('IED') !== this.currentIedElement)
-        .sort((a, b) =>
-          compareNames(
-            `${a.getAttribute('intAddr')}`,
-            `${b.getAttribute('intAddr')}`
-          )
-        );
-    }
-    return [];
-  }
-
-  private getSubscribedExtRefElements(): Element[] {
-    return this.getExtRefElements().filter(element =>
-      this.isSubscribedTo(element)
-    );
-  }
-
-  private getAvailableExtRefElements(): Element[] {
-    return this.getExtRefElements().filter(
-      element => !this.isSubscribed(element)
-    );
-  }
-
   private async onFcdaSelectEvent(event: FcdaSelectEvent) {
-    this.currentSelectedControlElement = event.detail.controlElement;
+    this.currentSelectedControlElement = event.detail.control;
     this.currentSelectedFcdaElement = event.detail.fcda;
 
     // Retrieve the IED Element to which the FCDA belongs.
@@ -89,95 +73,41 @@ export class ExtRefLaterBindingList extends LitElement {
       : undefined;
   }
 
-  private sameAttributeValue(
-    extRefElement: Element,
-    attributeName: string
-  ): boolean {
-    return (
-      (extRefElement.getAttribute(attributeName) ?? '') ===
-        (this.currentSelectedFcdaElement?.getAttribute(attributeName) ?? '')
-    );
-  }
+  /**
+   * Check data consistency of source `FCDA` and sink `ExtRef` based on
+   * `ExtRef`'s `pLN`, `pDO`, `pDA` and `pServT` attributes.
+   * Consistent means `CDC` and `bType` of both ExtRef and FCDA is equal.
+   * In case
+   *  - `pLN`, `pDO`, `pDA` or `pServT` attributes are not present, allow subscribing
+   *  - no CDC or bType can be extracted, do not allow subscribing
+   *
+   * @param extRef - The `ExtRef` Element to check against
+   */
+  private unsupportedExtRefElement(extRef: Element): boolean {
+    // Vendor does not provide data for the check
+    if (
+      !extRef.hasAttribute('pLN') ||
+      !extRef.hasAttribute('pDO') ||
+      !extRef.hasAttribute('pDA') ||
+      !extRef.hasAttribute('pServT')
+    )
+      return false;
 
-  private checkEditionSpecificRequirements(extRefElement: Element): boolean {
-    if (getSclSchemaVersion(extRefElement.ownerDocument) === '2003')
+    // Not ready for any kind of subscription
+    if (!this.currentSelectedFcdaElement) return true;
+
+    const fcda = fcdaSpecification(this.currentSelectedFcdaElement);
+    const input = inputRestriction(extRef);
+
+    if (fcda.cdc === null && input.cdc === null) return true;
+    if (fcda.bType === null && input.bType === null) return true;
+    if (
+      serviceTypes[this.currentSelectedControlElement?.tagName ?? ''] !==
+      extRef.getAttribute('pServT')
+    )
       return true;
-    return (
-      extRefElement.getAttribute('serviceType') ===
-        serviceTypes[this.controlTag] &&
-      extRefElement.getAttribute('srcLDInst') ===
-        this.currentSelectedControlElement
-          ?.closest('LDevice')
-          ?.getAttribute('inst') &&
-      (extRefElement.getAttribute('scrPrefix') || '') ===
-        (this.currentSelectedControlElement
-          ?.closest('LN0')
-          ?.getAttribute('prefix') || '') &&
-      extRefElement.getAttribute('srcLNClass') ===
-        this.currentSelectedControlElement
-          ?.closest('LN0')
-          ?.getAttribute('lnClass') &&
-      (extRefElement.getAttribute('srcLNInst') || '') ===
-        this.currentSelectedControlElement
-          ?.closest('LN0')
-          ?.getAttribute('inst') &&
-      extRefElement.getAttribute('srcCBName') ===
-        this.currentSelectedControlElement?.getAttribute('name')
-    );
-  }
 
-  /**
-   * Check if specific attributes from the ExtRef Element are the same as the ones from the FCDA Element
-   * and also if the IED Name is the same. If that is the case this ExtRef subscribes to the selected FCDA
-   * Element.
-   *
-   * @param extRefElement - The Ext Ref Element to check.
-   */
-  private isSubscribedTo(extRefElement: Element): boolean {
-    return (
-      extRefElement.getAttribute('iedName') ===
-        this.currentIedElement?.getAttribute('name') &&
-      this.sameAttributeValue(extRefElement, 'ldInst') &&
-      this.sameAttributeValue(extRefElement, 'prefix') &&
-      this.sameAttributeValue(extRefElement, 'lnClass') &&
-      this.sameAttributeValue(extRefElement, 'lnInst') &&
-      this.sameAttributeValue(extRefElement, 'doName') &&
-      this.sameAttributeValue(extRefElement, 'daName') &&
-      this.checkEditionSpecificRequirements(extRefElement)
-    );
-  }
-
-  /**
-   * Check if the ExtRef is already subscribed to a FCDA Element.
-   *
-   * @param extRefElement - The Ext Ref Element to check.
-   */
-  private isSubscribed(extRefElement: Element): boolean {
-    return (
-      extRefElement.hasAttribute('iedName') &&
-      extRefElement.hasAttribute('ldInst') &&
-      extRefElement.hasAttribute('prefix') &&
-      extRefElement.hasAttribute('lnClass') &&
-      extRefElement.hasAttribute('lnInst') &&
-      extRefElement.hasAttribute('doName') &&
-      extRefElement.hasAttribute('daName')
-    );
-  }
-
-  /**
-   * The data attribute check using attributes pLN, pDO, pDA and pServT is not supported yet by this plugin.
-   * To make sure the user does not do anything prohibited, this type of ExtRef cannot be manipulated for the time being.
-   * (Will be updated in the future).
-   *
-   * @param extRefElement - The Ext Ref Element to check.
-   */
-  private unsupportedExtRefElement(extRefElement: Element): boolean {
-    return (
-      extRefElement.hasAttribute('pLN') ||
-      extRefElement.hasAttribute('pDO') ||
-      extRefElement.hasAttribute('pDA') ||
-      extRefElement.hasAttribute('pServT')
-    );
+    return fcda.cdc !== input.cdc || fcda.bType !== input.bType;
   }
 
   /**
@@ -185,7 +115,15 @@ export class ExtRefLaterBindingList extends LitElement {
    *
    * @param extRefElement - The Ext Ref Element to clean from attributes.
    */
-  private unsubscribe(extRefElement: Element): Replace {
+  private unsubscribe(extRefElement: Element): Replace | null {
+    if (
+      !this.currentIedElement ||
+      !this.currentSelectedFcdaElement ||
+      !this.currentSelectedControlElement!
+    ) {
+      return null;
+    }
+
     const clonedExtRefElement = cloneElement(extRefElement, {
       iedName: null,
       ldInst: null,
@@ -234,6 +172,24 @@ export class ExtRefLaterBindingList extends LitElement {
     };
   }
 
+  private getSubscribedExtRefElements(): Element[] {
+    return getSubscribedExtRefElements(
+      <Element>this.doc.getRootNode(),
+      this.controlTag,
+      this.currentSelectedFcdaElement,
+      this.currentSelectedControlElement,
+      true
+    );
+  }
+
+  private getAvailableExtRefElements(): Element[] {
+    return getExtRefElements(
+      <Element>this.doc.getRootNode(),
+      this.currentSelectedFcdaElement,
+      true
+    ).filter(extRefElement => !isSubscribed(extRefElement));
+  }
+
   private renderTitle(): TemplateResult {
     return html`<h1>
       ${translate(`subscription.laterBinding.extRefList.title`)}
@@ -263,9 +219,16 @@ export class ExtRefLaterBindingList extends LitElement {
               graphic="large"
               twoline
               @click=${() => {
-                this.dispatchEvent(
-                  newActionEvent(this.unsubscribe(extRefElement))
-                );
+                const replaceAction = this.unsubscribe(extRefElement);
+                if (replaceAction) {
+                  this.dispatchEvent(newActionEvent(replaceAction));
+                  this.dispatchEvent(
+                    newSubscriptionChangedEvent(
+                      this.currentSelectedControlElement,
+                      this.currentSelectedFcdaElement
+                    )
+                  );
+                }
               }}
               value="${identity(extRefElement)}"
             >
@@ -316,6 +279,12 @@ export class ExtRefLaterBindingList extends LitElement {
                 const replaceAction = this.subscribe(extRefElement);
                 if (replaceAction) {
                   this.dispatchEvent(newActionEvent(replaceAction));
+                  this.dispatchEvent(
+                    newSubscriptionChangedEvent(
+                      this.currentSelectedControlElement,
+                      this.currentSelectedFcdaElement
+                    )
+                  );
                 }
               }}
               value="${identity(extRefElement)}"

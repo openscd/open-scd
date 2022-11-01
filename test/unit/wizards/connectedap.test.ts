@@ -16,11 +16,7 @@ import {
   Create,
   WizardInputElement,
 } from '../../../src/foundation.js';
-import {
-  createConnectedApWizard,
-  editConnectedApWizard,
-} from '../../../src/wizards/connectedap.js';
-import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
+import { editConnectedApWizard } from '../../../src/wizards/connectedap.js';
 
 describe('Wizards for SCL element ConnectedAP', () => {
   let doc: XMLDocument;
@@ -164,86 +160,6 @@ describe('Wizards for SCL element ConnectedAP', () => {
           'type'
         )
       ).to.exist;
-    });
-  });
-
-  describe('include a create wizard that', () => {
-    beforeEach(async () => {
-      doc = await fetch('/test/testfiles/valid2007B4.scd')
-        .then(response => response.text())
-        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-
-      const wizard = createConnectedApWizard(doc.querySelector('ConnectedAP')!);
-      element.workflow.push(() => wizard);
-      await element.requestUpdate();
-
-      inputs = Array.from(element.wizardUI.inputs);
-
-      primaryAction = <HTMLElement>(
-        element.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="primaryAction"]'
-        )
-      );
-    });
-
-    it('looks like the latest snapshot', async () => {
-      await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
-    });
-
-    it('does not allow to add connected AccessPoints', () => {
-      const disabledItems = Array.from(
-        element.wizardUI.dialog!.querySelectorAll<ListItemBase>(
-          'mwc-check-list-item'
-        )
-      ).filter(item => item.disabled);
-
-      for (const item of disabledItems) {
-        const [iedName, apName] = item.value.split('>');
-        expect(
-          doc.querySelector(
-            `ConnectedAP[iedName="${iedName}"][apName="${apName}"]`
-          )
-        ).to.exist;
-      }
-    });
-
-    it('allows to add unconnected AccessPoints', () => {
-      const enabledItems = Array.from(
-        element.wizardUI.dialog!.querySelectorAll<ListItemBase>(
-          'mwc-check-list-item'
-        )
-      ).filter(item => !item.disabled);
-
-      for (const item of enabledItems) {
-        const [iedName, apName] = item.value.split('>');
-        expect(
-          doc.querySelector(
-            `ConnectedAP[iedName="${iedName}"][apName="${apName}"]`
-          )
-        ).to.not.exist;
-      }
-    });
-
-    it('shows all AccessPoint in the project', async () =>
-      expect(
-        element.wizardUI.dialog?.querySelectorAll('mwc-check-list-item').length
-      ).to.equal(doc.querySelectorAll(':root > IED > AccessPoint').length));
-
-    it('triggers a create editor action on primary action', async () => {
-      Array.from(
-        element.wizardUI.dialog!.querySelectorAll<ListItemBase>(
-          'mwc-check-list-item'
-        )
-      )
-        .filter(item => !item.disabled)[0]
-        .click();
-      await element.requestUpdate();
-
-      primaryAction.click();
-      await element.requestUpdate();
-
-      expect(actionEvent).to.be.calledOnce;
-      expect(actionEvent.args[0][0].detail.action).to.satisfy(isCreate);
     });
   });
 });

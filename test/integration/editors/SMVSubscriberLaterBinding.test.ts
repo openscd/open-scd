@@ -6,7 +6,9 @@ import { Editing } from '../../../src/Editing.js';
 import SMVSubscribeLaterBindingPlugin from '../../../src/editors/SMVSubscriberLaterBinding.js';
 import {
   getExtrefLaterBindingList,
-  getFCDALaterBindingList,
+  getFCDABindingList,
+  getSelectedSubItemValue,
+  selectFCDAItem,
 } from './test-support.js';
 
 describe('SMV Subscribe Later Binding plugin', () => {
@@ -31,22 +33,24 @@ describe('SMV Subscribe Later Binding plugin', () => {
   });
 
   it('when subscribing an available ExtRef then the lists are changed', async () => {
-    const svcListElement = getFCDALaterBindingList(element);
+    const fcdaListElement = getFCDABindingList(element);
     const extRefListElement = getExtrefLaterBindingList(element);
 
-    (<HTMLElement>(
-      svcListElement.shadowRoot!.querySelector(
-        'mwc-list-item[value="SMV_Publisher>>CurrentTransformer>currentOnly SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L2 TCTR 1.AmpSv instMag.i (MX)"]'
-      )
-    )).click();
+    selectFCDAItem(
+      fcdaListElement,
+      'SMV_Publisher>>CurrentTransformer>currentOnly',
+      'SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L2 TCTR 1.AmpSv instMag.i (MX)'
+    );
     await element.requestUpdate();
+    await extRefListElement.requestUpdate();
 
     expect(
       extRefListElement['getSubscribedExtRefElements']().length
     ).to.be.equal(0);
+    expect(getSelectedSubItemValue(fcdaListElement)).to.be.null;
     expect(
       extRefListElement['getAvailableExtRefElements']().length
-    ).to.be.equal(8);
+    ).to.be.equal(9);
 
     (<HTMLElement>(
       extRefListElement.shadowRoot!.querySelector(
@@ -58,28 +62,31 @@ describe('SMV Subscribe Later Binding plugin', () => {
     expect(
       extRefListElement['getSubscribedExtRefElements']().length
     ).to.be.equal(1);
+    expect(getSelectedSubItemValue(fcdaListElement)).to.have.text('1');
     expect(
       extRefListElement['getAvailableExtRefElements']().length
-    ).to.be.equal(7);
+    ).to.be.equal(8);
   });
 
   it('when unsubscribing a subscribed ExtRef then the lists are changed', async () => {
-    const svcListElement = getFCDALaterBindingList(element);
+    const fcdaListElement = getFCDABindingList(element);
     const extRefListElement = getExtrefLaterBindingList(element);
 
-    (<HTMLElement>(
-      svcListElement.shadowRoot!.querySelector(
-        'mwc-list-item[value="SMV_Publisher>>CurrentTransformer>currentOnly SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)"]'
-      )
-    )).click();
+    selectFCDAItem(
+      fcdaListElement,
+      'SMV_Publisher>>CurrentTransformer>currentOnly',
+      'SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)'
+    );
     await element.requestUpdate();
+    await extRefListElement.requestUpdate();
 
     expect(
       extRefListElement['getSubscribedExtRefElements']().length
     ).to.be.equal(3);
+    expect(getSelectedSubItemValue(fcdaListElement)).to.have.text('3');
     expect(
       extRefListElement['getAvailableExtRefElements']().length
-    ).to.be.equal(8);
+    ).to.be.equal(9);
 
     (<HTMLElement>(
       extRefListElement.shadowRoot!.querySelector(
@@ -91,8 +98,9 @@ describe('SMV Subscribe Later Binding plugin', () => {
     expect(
       extRefListElement['getSubscribedExtRefElements']().length
     ).to.be.equal(2);
+    expect(getSelectedSubItemValue(fcdaListElement)).to.have.text('2');
     expect(
       extRefListElement['getAvailableExtRefElements']().length
-    ).to.be.equal(9);
+    ).to.be.equal(10);
   });
 });
