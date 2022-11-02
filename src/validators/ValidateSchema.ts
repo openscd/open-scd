@@ -110,7 +110,7 @@ export default class ValidateSchema extends LitElement {
           title: get('validator.schema.invalid', { name: result.file }),
         })
       );
-      throw new Error(get('validator.schema.invalid', { name: result.file }));
+      return;
     }
 
     this.dispatchEvent(
