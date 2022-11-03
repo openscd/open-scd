@@ -1,5 +1,7 @@
 # Feature Wishes
 
+Feeature idea's for the OpenSCD project. They are currently not prioritized. 
+
 - Add the remaining [process elements to the substation editor](https://github.com/openscd/open-scd/projects/1)
 - [Edit wizard for `Services` element](https://github.com/openscd/open-scd/projects/17)
 - General purpose [SCL diffing tool](https://github.com/openscd/open-scd/projects/16)
@@ -15,8 +17,8 @@
   - Migrate wizard library
 - Support older versions of 61850-6, especially edition 1
 - Data provenance
-- 80-1 101 support
-- 90-2 support (gateway configuration based on SCD)
+- IEC TS 61850 80-1 101 support
+- IEC TR 61850 90-2 support (gateway configuration based on SCD)
 - IEC TR 61850-90-11 Logic Modelling support
 - IEC TS 61850-80-5 Modbus support (still in draft)
 - IEC 61850-6-2 (DRAFT) HMI support
