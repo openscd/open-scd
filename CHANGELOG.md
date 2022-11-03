@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.26.0](https://github.com/openscd/open-scd/compare/v0.25.0...v0.26.0) (2022-11-03)
+
+
+### Features
+
+* **editor/substation:** read-only editor for SubEquipment element ([#1030](https://github.com/openscd/open-scd/issues/1030)) ([f6e96b5](https://github.com/openscd/open-scd/commits/f6e96b5d2bbb5014b4951299e55ae1462b9b1c33))
+* **editors/subscriber/later-binding:** add input requirement check ([#1049](https://github.com/openscd/open-scd/issues/1049)) ([26f7fe5](https://github.com/openscd/open-scd/commits/26f7fe56ecbc216495ddb747e75fb28d002f9447))
+
+
+### Bug Fixes
+
+* **Editing:** set false attribute values on update ([#899](https://github.com/openscd/open-scd/issues/899)) ([0b414e1](https://github.com/openscd/open-scd/commits/0b414e1687f9a796e7ec161237ad1ab78f04e87e))
+* **editor/subscriber:** filtering on FCDAs retains the parent ([#1048](https://github.com/openscd/open-scd/issues/1048)) ([d5f8bb7](https://github.com/openscd/open-scd/commits/d5f8bb7ed8ceeb9c2ca14a91d3624afda7a43513))
+* **Logging:** broken toggle button styling ([81da900](https://github.com/openscd/open-scd/commits/81da900c5d3850143961c23e197e19fb2cb02ad1))
+* **validate-schema:** cache validator workers ([#901](https://github.com/openscd/open-scd/issues/901)) ([2de7d26](https://github.com/openscd/open-scd/commits/2de7d269b15012af84927de90689e95ca901d05a))
+
 ## [0.25.0](https://github.com/openscd/open-scd/compare/v0.24.0...v0.25.0) (2022-10-17)
 
 
