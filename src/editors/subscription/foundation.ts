@@ -385,15 +385,12 @@ export function getExistingSupervision(
     controlBlock.tagName === 'GSEControl' ? 'LGOS' : 'LSVS';
   const refSelector =
     supervisionType === 'LGOS' ? 'DOI[name="GoCBRef"]' : 'DOI[name="SvCBRef"]';
-  const candidateLns = Array.from(
+  const candidates = Array.from(
     subscriberIED.querySelectorAll(
       `LN[lnClass="${supervisionType}"]>${refSelector}>DAI[name="setSrcRef"]>Val`
     )
-  );
-  const foundLn = candidateLns.find(
-    supLn => supLn.textContent === controlBlockReference(controlBlock)
-  );
-  return foundLn !== undefined ? foundLn : null;
+  ).filter(val => val.textContent === controlBlockReference(controlBlock));
+  return candidates.length > 0 ? candidates[0].closest('LN')! : null;
 }
 
 /**

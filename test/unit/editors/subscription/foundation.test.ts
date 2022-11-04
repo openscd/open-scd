@@ -208,12 +208,12 @@ describe('foundation', () => {
       );
       const supLN = getExistingSupervision(firstExtRef, publishedControlBlock!);
       expect(identity(supLN)).to.be.equal(
-        'IED1>>Disconnectors> LSVS 1>SvCBRef>setSrcRef> 0'
+        'IED1>>Disconnectors> LSVS 1'
       );
     });
   });
 
-  describe(' when using SCL Edition 2007B4 with message binding and GOOSE', () => {
+  describe('when using SCL Edition 2007B4 with message binding and GOOSE', () => {
     beforeEach(async () => {
       doc = await fetch('/test/testfiles/editors/MessageBindingGOOSE2007B4.scd')
         .then(response => response.text())
@@ -249,7 +249,7 @@ describe('foundation', () => {
 
       const supLN = getExistingSupervision(firstExtRef, publishedControlBlock!);
       expect(identity(supLN)).to.be.equal(
-        'IED1>>CircuitBreaker_CB1> LGOS 1>GoCBRef>setSrcRef> 0'
+        'IED1>>CircuitBreaker_CB1> LGOS 1'
       );
     });
   });
