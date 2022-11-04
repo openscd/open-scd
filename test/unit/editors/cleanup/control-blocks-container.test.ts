@@ -54,14 +54,14 @@ describe('Cleanup: Control Blocks Container', () => {
     });
 
     it('has the remove button enabled after selecting an item', async () => {
-      const firstCheckListItem = element.cleanupListItems!.item(0);
+      const firstCheckListItem = element.cleanupListItems![0];
       await (<ListItem>firstCheckListItem!).click();
       await element.cleanupList!.layout();
       expect(element.cleanButton).to.have.property('disabled', false);
     });
 
     it('after selecting and deselecting an item the remove button is disabled', async () => {
-      const firstCheckListItem = element.cleanupListItems!.item(0);
+      const firstCheckListItem = element.cleanupListItems![0];
       await (<ListItem>firstCheckListItem!).click();
       await element.cleanupList!.layout();
       await (<ListItem>firstCheckListItem!).click();

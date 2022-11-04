@@ -382,7 +382,8 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       );
 
       Object.entries(action.newAttributes).forEach(([key, value]) => {
-        if (value) action.element.setAttribute(key, value);
+        if (value !== null && value !== undefined)
+          action.element.setAttribute(key, value);
       });
 
       return true;

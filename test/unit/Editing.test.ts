@@ -341,6 +341,19 @@ describe('EditingElement', () => {
     expect(element).to.not.have.attribute('desc');
   });
 
+  it('allows empty string as attribute value', () => {
+    const newAttributes: Record<string, string | null> = {};
+    newAttributes['name'] = '';
+
+    elm.dispatchEvent(
+      newActionEvent(createUpdateAction(element, newAttributes))
+    );
+
+    expect(element.parentElement).to.equal(parent);
+    expect(element).to.have.attribute('name', '');
+    expect(element).to.not.have.attribute('desc');
+  });
+
   it('does not update an element in case of name conflict', () => {
     const newAttributes: Record<string, string | null> = {};
     newAttributes['name'] = 'Q02';
