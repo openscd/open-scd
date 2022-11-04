@@ -276,7 +276,7 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
         </mwc-icon>
         <mwc-icon
           slot="meta"
-          title="IED1>>CircuitBreaker_CB1> LGOS 1>GoCBRef>setSrcRef> 0"
+          title="IED1>>CircuitBreaker_CB1> LGOS 1"
         >
           monitor_heart
         </mwc-icon>
@@ -390,7 +390,7 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
         </mwc-icon>
         <mwc-icon
           slot="meta"
-          title="IED1>>CircuitBreaker_CB1> LGOS 1>GoCBRef>setSrcRef> 0"
+          title="IED1>>CircuitBreaker_CB1> LGOS 1"
         >
           monitor_heart
         </mwc-icon>
@@ -625,7 +625,7 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
         </mwc-icon>
         <mwc-icon
           slot="meta"
-          title="IED1>>CircuitBreaker_CB1> LGOS 1>GoCBRef>setSrcRef> 0"
+          title="IED1>>CircuitBreaker_CB1> LGOS 1"
         >
           monitor_heart
         </mwc-icon>

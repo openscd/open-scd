@@ -216,7 +216,7 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
         </mwc-icon>
         <mwc-icon
           slot="meta"
-          title="IED1>>Disconnectors> LSVS 1>SvCBRef>setSrcRef> 0"
+          title="IED1>>Disconnectors> LSVS 1"
         >
           monitor_heart
         </mwc-icon>
@@ -251,7 +251,7 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
         </mwc-icon>
         <mwc-icon
           slot="meta"
-          title="IED4>>CircuitBreaker_CB1> LSVS 1>SvCBRef>setSrcRef> 0"
+          title="IED4>>CircuitBreaker_CB1> LSVS 1"
         >
           monitor_heart
         </mwc-icon>
@@ -327,7 +327,7 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
         </mwc-icon>
         <mwc-icon
           slot="meta"
-          title="IED1>>Disconnectors> LSVS 1>SvCBRef>setSrcRef> 0"
+          title="IED1>>Disconnectors> LSVS 1"
         >
           monitor_heart
         </mwc-icon>
@@ -373,7 +373,7 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
         </mwc-icon>
         <mwc-icon
           slot="meta"
-          title="IED4>>CircuitBreaker_CB1> LSVS 1>SvCBRef>setSrcRef> 0"
+          title="IED4>>CircuitBreaker_CB1> LSVS 1"
         >
           monitor_heart
         </mwc-icon>
@@ -467,7 +467,7 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
         </mwc-icon>
         <mwc-icon
           slot="meta"
-          title="IED4>>CircuitBreaker_CB1> LSVS 1>SvCBRef>setSrcRef> 0"
+          title="IED4>>CircuitBreaker_CB1> LSVS 1"
         >
           monitor_heart
         </mwc-icon>
@@ -554,7 +554,7 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
         </mwc-icon>
         <mwc-icon
           slot="meta"
-          title="IED1>>Disconnectors> LSVS 1>SvCBRef>setSrcRef> 0"
+          title="IED1>>Disconnectors> LSVS 1"
         >
           monitor_heart
         </mwc-icon>
@@ -572,7 +572,7 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
         </mwc-icon>
         <mwc-icon
           slot="meta"
-          title="IED4>>CircuitBreaker_CB1> LSVS 1>SvCBRef>setSrcRef> 0"
+          title="IED4>>CircuitBreaker_CB1> LSVS 1"
         >
           monitor_heart
         </mwc-icon>
