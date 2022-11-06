@@ -19,15 +19,15 @@ import { styles } from './foundation.js';
 import { getChildElementsByTagName } from '../../foundation.js';
 
 @customElement('transformer-winding-editor')
-export class SubEquipmentEditor extends LitElement {
+export class TransformerWindingEditor extends LitElement {
   /** The document being edited as provided to editor by [[`Zeroline`]]. */
   @property({ attribute: false })
   doc!: XMLDocument;
-  /** SCL element SubEquipment */
+  /** SCL element TransformerWinding */
   @property({ attribute: false })
   element!: Element;
 
-  /** SubEquipment name attribute */
+  /** TransformerWinding name attribute */
   @property({ type: String })
   get label(): string {
     const name = `${
@@ -42,13 +42,7 @@ export class SubEquipmentEditor extends LitElement {
         : ''
     }`;
 
-    const phase = `${
-      this.element.hasAttribute('phase')
-        ? ` (${this.element.getAttribute('phase')})`
-        : ''
-    }`;
-
-    return `${name}${description}${phase}`;
+    return `${name}${description}`;
   }
 
   private renderLNodes(): TemplateResult {
