@@ -389,8 +389,8 @@ export function getExistingSupervision(
     subscriberIED.querySelectorAll(
       `LN[lnClass="${supervisionType}"]>${refSelector}>DAI[name="setSrcRef"]>Val`
     )
-  ).filter(val => val.textContent === controlBlockReference(controlBlock));
-  return candidates.length > 0 ? candidates[0].closest('LN')! : null;
+  ).find(val => val.textContent === controlBlockReference(controlBlock));
+  return candidates !== undefined ? candidates.closest('LN')! : null;
 }
 
 /**
