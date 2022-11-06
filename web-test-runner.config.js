@@ -21,8 +21,8 @@ const filteredLogs = [
 const browsers = [
      playwrightLauncher({ product: 'chromium' }),
      playwrightLauncher({ product: 'firefox' }),
+     playwrightLauncher({ product: 'webkit' }),
    ];
-if (local) browsers.push(playwrightLauncher({ product: 'webkit' }));
 
 function defaultGetImageDiff({ baselineImage, image, options }) {
   let error = '';
