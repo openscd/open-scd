@@ -29,7 +29,12 @@ import {
   tags,
 } from '../../foundation.js';
 import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
-import { cloneSubstationElement, startMove, styles } from './foundation.js';
+import {
+  cloneSubstationElement,
+  renderGeneralEquipment,
+  startMove,
+  styles,
+} from './foundation.js';
 
 function childTags(element: Element | null | undefined): SCLTag[] {
   if (!element) return [];
@@ -121,31 +126,6 @@ export class BayEditor extends LitElement {
       : html``;
   }
 
-  private renderGeneralEquipment(): TemplateResult {
-    const generalEquipment = getChildElementsByTagName(
-      this.element,
-      'GeneralEquipment'
-    );
-
-    return generalEquipment.length
-      ? html` <div
-          class="${classMap({
-            content: true,
-            actionicon: !this.showfunctions,
-          })}"
-        >
-          ${generalEquipment.map(
-            gEquipment =>
-              html`<general-equipment-editor
-                .doc=${this.doc}
-                .element=${gEquipment}
-                ?showfunctions=${this.showfunctions}
-              ></general-equipment-editor>`
-          )}
-        </div>`
-      : html``;
-  }
-
   renderFunctions(): TemplateResult {
     if (!this.showfunctions) return html``;
 
@@ -155,6 +135,7 @@ export class BayEditor extends LitElement {
         html`<function-editor
           .doc=${this.doc}
           .element=${fUnction}
+          ?showfunctions=${this.showfunctions}
         ></function-editor>`
     )}`;
   }
@@ -231,7 +212,7 @@ export class BayEditor extends LitElement {
           >${this.renderAddButtons()}</mwc-menu
         >
       </abbr>
-      ${this.renderGeneralEquipment()}
+      ${renderGeneralEquipment(this.doc, this.element, this.showfunctions)}
       ${this.renderIedContainer()}${this.renderLNodes()}${this.renderFunctions()}
       <div
         class="${classMap({

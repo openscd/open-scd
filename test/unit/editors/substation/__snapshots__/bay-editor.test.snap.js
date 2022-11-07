@@ -324,9 +324,9 @@ snapshots["bay-editor with function filter deactivated looks like the latest sna
       </mwc-list-item>
     </mwc-menu>
   </abbr>
-  <function-editor>
+  <function-editor showfunctions="">
   </function-editor>
-  <function-editor>
+  <function-editor showfunctions="">
   </function-editor>
   <div class="content">
     <powertransformer-editor showfunctions="">

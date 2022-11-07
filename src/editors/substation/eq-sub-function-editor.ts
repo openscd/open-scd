@@ -29,6 +29,7 @@ import {
 } from '../../foundation.js';
 import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
 import { classMap } from 'lit-html/directives/class-map.js';
+import { renderGeneralEquipment } from './foundation.js';
 
 function childTags(element: Element | null | undefined): SCLTag[] {
   if (!element) return [];
@@ -103,31 +104,6 @@ export class EqSubFunctionEditor extends LitElement {
       : html``;
   }
 
-  private renderGeneralEquipment(): TemplateResult {
-    const generalEquipment = getChildElementsByTagName(
-      this.element,
-      'GeneralEquipment'
-    );
-
-    return generalEquipment.length
-      ? html` <div
-          class="${classMap({
-            content: true,
-            actionicon: !this.showfunctions,
-          })}"
-        >
-          ${generalEquipment.map(
-            gEquipment =>
-              html`<general-equipment-editor
-                .doc=${this.doc}
-                .element=${gEquipment}
-                ?showfunctions=${this.showfunctions}
-              ></general-equipment-editor>`
-          )}
-        </div>`
-      : html``;
-  }
-
   private renderEqSubFunctions(): TemplateResult {
     const eqSubFunctions = getChildElementsByTagName(
       this.element,
@@ -182,7 +158,7 @@ export class EqSubFunctionEditor extends LitElement {
           >${this.renderAddButtons()}</mwc-menu
         ></abbr
       >
-      ${this.renderGeneralEquipment()}
+      ${renderGeneralEquipment(this.doc, this.element, this.showfunctions)}
       ${this.renderLNodes()}${this.renderEqSubFunctions()}</action-pane
     >`;
   }

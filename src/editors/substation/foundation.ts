@@ -1,7 +1,12 @@
-import { css, TemplateResult } from 'lit-element';
+import { css, html, TemplateResult } from 'lit-element';
+import { classMap } from 'lit-html/directives/class-map.js';
 
 import './function-editor.js';
-import { newActionEvent, isPublic } from '../../foundation.js';
+import {
+  newActionEvent,
+  isPublic,
+  getChildElementsByTagName,
+} from '../../foundation.js';
 import {
   circuitBreakerIcon,
   disconnectorIcon,
@@ -242,6 +247,41 @@ function checkInstanceOfParentClass<E extends ElementEditor>(
  */
 export function getIcon(condEq: Element): TemplateResult {
   return typeIcons[typeStr(condEq)] ?? generalConductingEquipmentIcon;
+}
+/**
+ * Creates a general-equipment template literal.
+ * @param doc - Project xml document.
+ * @param element - scl general-equipment element.
+ * @param showfunctions - Whether rendered as action pane (true).
+ * @returns - template literal.
+ */
+export function renderGeneralEquipment(
+  doc: XMLDocument,
+  element: Element,
+  showfunctions: Boolean
+): TemplateResult {
+  const generalEquipment = getChildElementsByTagName(
+    element,
+    'GeneralEquipment'
+  );
+
+  return generalEquipment.length
+    ? html` <div
+        class="${classMap({
+          content: true,
+          actionicon: !showfunctions,
+        })}"
+      >
+        ${generalEquipment.map(
+          gEquipment =>
+            html`<general-equipment-editor
+              .doc=${doc}
+              .element=${gEquipment}
+              ?showfunctions=${showfunctions}
+            ></general-equipment-editor>`
+        )}
+      </div>`
+    : html``;
 }
 
 const typeIcons: Partial<Record<string, TemplateResult>> = {

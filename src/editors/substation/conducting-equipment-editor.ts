@@ -120,6 +120,7 @@ export class ConductingEquipmentEditor extends LitElement {
         html`<eq-function-editor
           .doc=${this.doc}
           .element=${eqFunction}
+          ?showfunctions=${this.showfunctions}
         ></eq-function-editor>`
     )}`;
   }

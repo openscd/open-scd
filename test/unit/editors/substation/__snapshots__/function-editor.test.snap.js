@@ -379,7 +379,7 @@ snapshots["web component rendering Function element with general-equipment child
     <general-equipment-editor showfunctions="">
     </general-equipment-editor>
   </div>
-  <sub-function-editor>
+  <sub-function-editor showfunctions="">
   </sub-function-editor>
 </action-pane>
 `;

@@ -25,6 +25,7 @@ import { Menu } from '@material/mwc-menu';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { IconButton } from '@material/mwc-icon-button';
 import { classMap } from 'lit-html/directives/class-map.js';
+import { renderGeneralEquipment } from './foundation.js';
 
 function childTags(element: Element | null | undefined): SCLTag[] {
   if (!element) return [];
@@ -102,31 +103,6 @@ export class FunctionEditor extends LitElement {
       : html``;
   }
 
-  private renderGeneralEquipment(): TemplateResult {
-    const generalEquipment = getChildElementsByTagName(
-      this.element,
-      'GeneralEquipment'
-    );
-
-    return generalEquipment.length
-      ? html` <div
-          class="${classMap({
-            content: true,
-            actionicon: !this.showfunctions,
-          })}"
-        >
-          ${generalEquipment.map(
-            gEquipment =>
-              html`<general-equipment-editor
-                .doc=${this.doc}
-                .element=${gEquipment}
-                ?showfunctions=${this.showfunctions}
-              ></general-equipment-editor>`
-          )}
-        </div>`
-      : html``;
-  }
-
   private renderSubFunctions(): TemplateResult {
     const subfunctions = getChildElementsByTagName(this.element, 'SubFunction');
     return html` ${subfunctions.map(
@@ -134,6 +110,7 @@ export class FunctionEditor extends LitElement {
         html`<sub-function-editor
           .doc=${this.doc}
           .element=${subFunction}
+          ?showfunctions=${this.showfunctions}
         ></sub-function-editor>`
     )}`;
   }
@@ -182,7 +159,7 @@ export class FunctionEditor extends LitElement {
           >${this.renderAddButtons()}</mwc-menu
         >
       </abbr>
-      ${this.renderGeneralEquipment()}
+      ${renderGeneralEquipment(this.doc, this.element, this.showfunctions)}
       ${this.renderLNodes()}${this.renderSubFunctions()}</action-pane
     >`;
   }
