@@ -25,17 +25,21 @@ export async function handleResponse(response: Response): Promise<string> {
 }
 
 export async function processErrorMessage(response: Response): Promise<string> {
-  // default we will return the status text from the response.
-  let errorMessage = response.statusText;
-
   const body = await response.text();
   const doc = await parseXml(body);
+  const errorMessage = extractErrorMessage(doc);
+
+  // Default we will return the status text from the response.
+  return errorMessage ?? response.statusText;
+}
+
+export function extractErrorMessage(doc: Document): string | undefined {
   const messages = Array.from(
     doc.querySelectorAll('ErrorResponse > ErrorMessage') ?? []
   );
   // But if there are messages found in the body, we will process these and replace the status text with that.
   if (messages.length > 0) {
-    errorMessage = '';
+    let errorMessage = '';
     messages.forEach((errorMessageElement, index) => {
       const code = errorMessageElement
         .getElementsByTagNameNS(COMMONS_NAMESPACE, 'Code')!
@@ -53,9 +57,9 @@ export async function processErrorMessage(response: Response): Promise<string> {
         errorMessage += ' (' + code + ')';
       }
     });
+    return errorMessage;
   }
-
-  return errorMessage;
+  return undefined;
 }
 
 export function parseXml(textContent: string): Promise<Document> {

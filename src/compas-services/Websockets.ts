@@ -1,5 +1,5 @@
 import { newPendingStateEvent } from '../foundation.js';
-import { createLogEvent, parseXml } from './foundation.js';
+import { APPLICATION_ERROR, createLogEvent, extractErrorMessage, parseXml, processErrorMessage } from './foundation.js';
 
 export function Websockets(element: Element, serviceName: string) {
   let websocket: WebSocket | undefined;
@@ -8,7 +8,7 @@ export function Websockets(element: Element, serviceName: string) {
     return new Promise(resolve => setTimeout(resolve, sleepTime));
   }
 
-  async function waitUntilValidated(): Promise<void> {
+  async function waitUntilExecuted(): Promise<void> {
     while (websocket !== undefined) {
       await sleep(250);
     }
@@ -30,7 +30,12 @@ export function Websockets(element: Element, serviceName: string) {
       websocket.onmessage = evt => {
         parseXml(evt.data)
           .then(doc => {
-            onMessageCallback(doc);
+            if (doc.documentElement.localName === 'ErrorResponse') {
+              const message = extractErrorMessage(doc);
+              createLogEvent(element, {type: APPLICATION_ERROR, message});
+            } else {
+              onMessageCallback(doc);
+            }
             websocket?.close();
           })
           .catch(reason => {
@@ -54,7 +59,7 @@ export function Websockets(element: Element, serviceName: string) {
         }
       };
 
-      element.dispatchEvent(newPendingStateEvent(waitUntilValidated()));
+      element.dispatchEvent(newPendingStateEvent(waitUntilExecuted()));
     },
   };
 }

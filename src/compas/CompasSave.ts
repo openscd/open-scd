@@ -103,26 +103,43 @@ export default class CompasSaveElement extends CompasExistsIn(LitElement) {
     this.labelsField.updateLabelsInPrivateElement(privateElement!);
   }
 
+  private processAddDocument(sclDocument: Document, messageKey: string): void {
+    updateDocumentInOpenSCD(this, sclDocument);
+
+    this.dispatchEvent(
+      newLogEvent({
+        kind: 'info',
+        title: get(messageKey),
+      })
+    );
+
+    this.dispatchEvent(newDocSavedEvent());
+
+  }
+
   private async addSclToCompas(doc: XMLDocument): Promise<void> {
     const name = stripExtensionFromName(this.nameField.value);
     const comment = this.commentField.value;
     const docType = this.sclTypeRadioGroup.getSelectedValue() ?? '';
 
-    await CompasSclDataService()
-      .addSclDocument(docType, { sclName: name, comment: comment, doc: doc })
-      .then(sclDocument => {
-        updateDocumentInOpenSCD(this, sclDocument);
-
-        this.dispatchEvent(
-          newLogEvent({
-            kind: 'info',
-            title: get('compas.save.addSuccess'),
-          })
-        );
-
-        this.dispatchEvent(newDocSavedEvent());
-      })
-      .catch(reason => createLogEvent(this, reason));
+    const service = CompasSclDataService();
+    if (service.useWebsocket()) {
+      service.addSclDocumentUsingWebsockets(
+        this,
+        docType,
+        { sclName: name, comment: comment, doc: doc },
+        (sclDocument: Document) => {
+          this.processAddDocument(sclDocument, 'compas.save.addSuccess');
+        }
+      )
+    } else {
+      await service
+        .addSclDocumentUsingRest(docType, { sclName: name, comment: comment, doc: doc })
+        .then((sclDocument: Document) => {
+          this.processAddDocument(sclDocument, 'compas.save.addSuccess');
+        })
+        .catch(reason => createLogEvent(this, reason));
+    }
   }
 
   private async updateSclInCompas(
@@ -134,25 +151,29 @@ export default class CompasSaveElement extends CompasExistsIn(LitElement) {
     const comment = this.commentField.value;
     const docType = getTypeFromDocName(docName);
 
-    await CompasSclDataService()
-      .updateSclDocument(docType, docId, {
-        changeSet: changeSet!,
-        comment: comment,
-        doc: doc,
-      })
-      .then(sclDocument => {
-        updateDocumentInOpenSCD(this, sclDocument);
-
-        this.dispatchEvent(
-          newLogEvent({
-            kind: 'info',
-            title: get('compas.save.updateSuccess'),
-          })
-        );
-
-        this.dispatchEvent(newDocSavedEvent());
-      })
-      .catch(reason => createLogEvent(this, reason));
+    const service = CompasSclDataService();
+    if (service.useWebsocket()) {
+      service.updateSclDocumentUsingWebsockets(
+        this,
+        docType,
+        docId,
+        { changeSet: changeSet!, comment: comment, doc: doc },
+        (sclDocument: Document) => {
+          this.processAddDocument(sclDocument, 'compas.save.updateSuccess');
+        }
+      )
+    } else {
+      await service
+        .updateSclDocumentUsingRest(docType, docId, {
+          changeSet: changeSet!,
+          comment: comment,
+          doc: doc,
+        })
+        .then(sclDocument => {
+          this.processAddDocument(sclDocument, 'compas.save.updateSuccess');
+        })
+        .catch(reason => createLogEvent(this, reason));
+    }
   }
 
   async saveToCompas(): Promise<void> {

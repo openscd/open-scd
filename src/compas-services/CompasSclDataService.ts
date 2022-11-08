@@ -2,11 +2,12 @@ import { formatXml } from '../file.js';
 
 import { CompasSettings } from '../compas/CompasSettings.js';
 import {
-  extractSclFromResponse,
+  extractSclFromResponse, getWebsocketUri,
   handleError,
   handleResponse,
-  parseXml,
+  parseXml
 } from './foundation.js';
+import { Websockets } from './Websockets.js';
 
 export const SDS_NAMESPACE =
   'https://www.lfenergy.org/compas/SclDataService/v1';
@@ -30,14 +31,48 @@ export interface UpdateRequestBody {
 }
 
 export function CompasSclDataService() {
-  function getCompasSettings() {
-    return CompasSettings().compasSettings;
+  function getSclDataServiceUrl(): string {
+    return CompasSettings().compasSettings.sclDataServiceUrl;
+  }
+
+  function createCreateRequest(
+    sclName: string,
+    comment: string | null,
+    doc: Document
+  ): string {
+    return `<?xml version="1.0" encoding="UTF-8"?>
+               <sds:CreateRequest xmlns:sds="${SDS_NAMESPACE}">
+                   <sds:Name>${sclName}</sds:Name>
+                   <sds:Comment>${comment ?? ''}</sds:Comment>
+                   <sds:SclData><![CDATA[${formatXml(
+                     new XMLSerializer().serializeToString(
+                       doc.documentElement))}]]></sds:SclData>
+               </sds:CreateRequest>`;
+  }
+
+  function createUpdateRequest(
+    changeSet: ChangeSet,
+    comment: string | null,
+    doc: Document
+  ): string {
+    return `<?xml version="1.0" encoding="UTF-8"?>
+               <sds:UpdateRequest xmlns:sds="${SDS_NAMESPACE}">
+                   <sds:ChangeSet>${changeSet}</sds:ChangeSet>
+                   <sds:Comment>${comment ?? ''}</sds:Comment>
+                   <sds:SclData><![CDATA[${formatXml(
+                     new XMLSerializer().serializeToString(
+                       doc.documentElement))}]]></sds:SclData>
+               </sds:UpdateRequest>`;
   }
 
   return {
+    useWebsocket(): boolean {
+      return CompasSettings().useWebsockets();
+    },
+
     listSclTypes(): Promise<Document> {
       const sclUrl =
-        getCompasSettings().sclDataServiceUrl + '/common/v1/type/list';
+        getSclDataServiceUrl() + '/common/v1/type/list';
       return fetch(sclUrl)
         .catch(handleError)
         .then(handleResponse)
@@ -64,7 +99,7 @@ export function CompasSclDataService() {
 
     listScls(type: string): Promise<Document> {
       const sclUrl =
-        getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type + '/list';
+        getSclDataServiceUrl() + '/scl/v1/' + type + '/list';
       return fetch(sclUrl)
         .catch(handleError)
         .then(handleResponse)
@@ -73,7 +108,7 @@ export function CompasSclDataService() {
 
     listVersions(type: string, id: string): Promise<Document> {
       const sclUrl =
-        getCompasSettings().sclDataServiceUrl +
+        getSclDataServiceUrl() +
         '/scl/v1/' +
         type +
         '/' +
@@ -87,7 +122,7 @@ export function CompasSclDataService() {
 
     getSclDocument(type: string, id: string): Promise<Document> {
       const sclUrl =
-        getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type + '/' + id;
+        getSclDataServiceUrl() + '/scl/v1/' + type + '/' + id;
       return fetch(sclUrl)
         .catch(handleError)
         .then(handleResponse)
@@ -101,7 +136,7 @@ export function CompasSclDataService() {
       version: string
     ): Promise<Document> {
       const sclUrl =
-        getCompasSettings().sclDataServiceUrl +
+        getSclDataServiceUrl() +
         '/scl/v1/' +
         type +
         '/' +
@@ -121,7 +156,7 @@ export function CompasSclDataService() {
       version: string
     ): Promise<string> {
       const sclUrl =
-        getCompasSettings().sclDataServiceUrl +
+        getSclDataServiceUrl() +
         '/scl/v1/' +
         type +
         '/' +
@@ -135,29 +170,20 @@ export function CompasSclDataService() {
 
     deleteSclDocument(type: string, id: string): Promise<string> {
       const sclUrl =
-        getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type + '/' + id;
+        getSclDataServiceUrl() + '/scl/v1/' + type + '/' + id;
       return fetch(sclUrl, { method: 'DELETE' })
         .catch(handleError)
         .then(handleResponse);
     },
 
-    addSclDocument(type: string, body: CreateRequestBody): Promise<Document> {
-      const sclUrl = getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type;
+    addSclDocumentUsingRest(type: string, body: CreateRequestBody): Promise<Document> {
+      const sclUrl = getSclDataServiceUrl() + '/scl/v1/' + type;
       return fetch(sclUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/xml',
         },
-        body: `<?xml version="1.0" encoding="UTF-8"?>
-               <sds:CreateRequest xmlns:sds="${SDS_NAMESPACE}">
-                   <sds:Name>${body.sclName}</sds:Name>
-                   <sds:Comment>${body.comment ?? ''}</sds:Comment>
-                   <sds:SclData><![CDATA[${formatXml(
-                     new XMLSerializer().serializeToString(
-                       body.doc.documentElement
-                     )
-                   )}]]></sds:SclData>
-               </sds:CreateRequest>`,
+        body: createCreateRequest(body.sclName, body.comment, body.doc),
       })
         .catch(handleError)
         .then(handleResponse)
@@ -165,33 +191,59 @@ export function CompasSclDataService() {
         .then(extractSclFromResponse);
     },
 
-    updateSclDocument(
+    addSclDocumentUsingWebsockets(
+      element: Element,
+      type: string,
+      body: CreateRequestBody,
+      callback: (scl: Document) => void,
+    ) {
+      const sclUrl = getSclDataServiceUrl() + '/scl-ws/v1/' + type + '/create';
+      Websockets(element, 'CompasSclDataService').execute(
+        getWebsocketUri(sclUrl),
+        createCreateRequest(body.sclName, body.comment, body.doc),
+        async (response: Document) => {
+          const scl = await extractSclFromResponse(response);
+          callback(scl);
+        }
+      );
+    },
+
+    updateSclDocumentUsingRest(
       type: string,
       id: string,
       body: UpdateRequestBody
     ): Promise<Document> {
       const sclUrl =
-        getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type + '/' + id;
+        getSclDataServiceUrl() + '/scl/v1/' + type + '/' + id;
       return fetch(sclUrl, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/xml',
         },
-        body: `<?xml version="1.0" encoding="UTF-8"?>
-               <sds:UpdateRequest xmlns:sds="${SDS_NAMESPACE}">
-                   <sds:ChangeSet>${body.changeSet}</sds:ChangeSet>
-                   <sds:Comment>${body.comment ?? ''}</sds:Comment>
-                   <sds:SclData><![CDATA[${formatXml(
-                     new XMLSerializer().serializeToString(
-                       body.doc.documentElement
-                     )
-                   )}]]></sds:SclData>
-               </sds:UpdateRequest>`,
+        body: createUpdateRequest(body.changeSet, body.comment, body.doc),
       })
         .catch(handleError)
         .then(handleResponse)
         .then(parseXml)
         .then(extractSclFromResponse);
+    },
+
+    updateSclDocumentUsingWebsockets(
+      element: Element,
+      type: string,
+      id: string,
+      body: UpdateRequestBody,
+      callback: (scl: Document) => void,
+    ) {
+      const sclUrl = getSclDataServiceUrl() + '/scl-ws/v1/' + type + '/update/' + id;
+      Websockets(element, 'CompasSclDataService').execute(
+        getWebsocketUri(sclUrl),
+        createUpdateRequest(body.changeSet, body.comment, body.doc),
+        async (response: Document) => {
+          const scl = await extractSclFromResponse(response);
+          callback(scl);
+        }
+      );
     },
   };
 }
