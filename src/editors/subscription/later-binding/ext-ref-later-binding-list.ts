@@ -23,10 +23,14 @@ import {
   newSubscriptionChangedEvent,
   styles,
   updateExtRefElement,
+  serviceTypes,
 } from '../foundation.js';
+
 import {
   getExtRefElements,
   getSubscribedExtRefElements,
+  fcdaSpecification,
+  inputRestriction,
   isSubscribed,
 } from './foundation.js';
 
@@ -70,19 +74,40 @@ export class ExtRefLaterBindingList extends LitElement {
   }
 
   /**
-   * The data attribute check using attributes pLN, pDO, pDA and pServT is not supported yet by this plugin.
-   * To make sure the user does not do anything prohibited, this type of ExtRef cannot be manipulated for the time being.
-   * (Will be updated in the future).
+   * Check data consistency of source `FCDA` and sink `ExtRef` based on
+   * `ExtRef`'s `pLN`, `pDO`, `pDA` and `pServT` attributes.
+   * Consistent means `CDC` and `bType` of both ExtRef and FCDA is equal.
+   * In case
+   *  - `pLN`, `pDO`, `pDA` or `pServT` attributes are not present, allow subscribing
+   *  - no CDC or bType can be extracted, do not allow subscribing
    *
-   * @param extRefElement - The Ext Ref Element to check.
+   * @param extRef - The `ExtRef` Element to check against
    */
-  private unsupportedExtRefElement(extRefElement: Element): boolean {
-    return (
-      extRefElement.hasAttribute('pLN') ||
-      extRefElement.hasAttribute('pDO') ||
-      extRefElement.hasAttribute('pDA') ||
-      extRefElement.hasAttribute('pServT')
-    );
+  private unsupportedExtRefElement(extRef: Element): boolean {
+    // Vendor does not provide data for the check
+    if (
+      !extRef.hasAttribute('pLN') ||
+      !extRef.hasAttribute('pDO') ||
+      !extRef.hasAttribute('pDA') ||
+      !extRef.hasAttribute('pServT')
+    )
+      return false;
+
+    // Not ready for any kind of subscription
+    if (!this.currentSelectedFcdaElement) return true;
+
+    const fcda = fcdaSpecification(this.currentSelectedFcdaElement);
+    const input = inputRestriction(extRef);
+
+    if (fcda.cdc === null && input.cdc === null) return true;
+    if (fcda.bType === null && input.bType === null) return true;
+    if (
+      serviceTypes[this.currentSelectedControlElement?.tagName ?? ''] !==
+      extRef.getAttribute('pServT')
+    )
+      return true;
+
+    return fcda.cdc !== input.cdc || fcda.bType !== input.bType;
   }
 
   /**
