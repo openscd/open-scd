@@ -24,14 +24,12 @@ import {
   GooseSubscriptionEvent,
   newGooseSubscriptionEvent,
 } from './foundation.js';
-import {
-  emptyInputsDeleteActions,
-  getFcdaReferences,
-} from '../../../foundation/ied.js';
+import { emptyInputsDeleteActions } from '../../../foundation/ied.js';
 import {
   canCreateValidExtRef,
   createExtRefElement,
   existExtRef,
+  getExtRef,
   IEDSelectEvent,
   ListElement,
   styles,
@@ -109,12 +107,7 @@ export class SubscriberList extends SubscriberListContainer {
 
       dataSet!.querySelectorAll('FCDA').forEach(fcda => {
         subscribedInputs.forEach(inputs => {
-          if (
-            inputs.querySelector(
-              `ExtRef[iedName=${ied.getAttribute('name')}]` +
-                `${getFcdaReferences(fcda)}`
-            )
-          ) {
+          if (getExtRef(inputs, fcda, this.currentSelectedGseControl)) {
             numberOfLinkedExtRefs++;
           }
         });
@@ -166,12 +159,7 @@ export class SubscriberList extends SubscriberListContainer {
          */
         this.currentUsedDataset!.querySelectorAll('FCDA').forEach(fcda => {
           inputElements.forEach(inputs => {
-            if (
-              inputs.querySelector(
-                `ExtRef[iedName=${this.currentGooseIedName}]` +
-                  `${getFcdaReferences(fcda)}`
-              )
-            ) {
+            if (getExtRef(inputs, fcda, this.currentSelectedGseControl)) {
               numberOfLinkedExtRefs++;
             }
           });
@@ -251,7 +239,7 @@ export class SubscriberList extends SubscriberListContainer {
     const actions: Create[] = [];
     this.currentUsedDataset!.querySelectorAll('FCDA').forEach(fcda => {
       if (
-        !existExtRef(inputsElement!, fcda) &&
+        !existExtRef(inputsElement!, fcda, this.currentSelectedGseControl) &&
         canCreateValidExtRef(fcda, this.currentSelectedGseControl)
       ) {
         const extRef = createExtRefElement(
@@ -281,11 +269,7 @@ export class SubscriberList extends SubscriberListContainer {
     const actions: Delete[] = [];
     ied.querySelectorAll('LN0 > Inputs, LN > Inputs').forEach(inputs => {
       this.currentUsedDataset!.querySelectorAll('FCDA').forEach(fcda => {
-        const extRef = inputs.querySelector(
-          `ExtRef[iedName=${this.currentGooseIedName}]` +
-            `${getFcdaReferences(fcda)}`
-        );
-
+        const extRef = getExtRef(inputs, fcda, this.currentSelectedGseControl);
         if (extRef) actions.push({ old: { parent: inputs, element: extRef } });
       });
     });

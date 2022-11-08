@@ -32,6 +32,8 @@ import {
 import { BayEditor } from './bay-editor.js';
 import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
 
+import './sub-equipment-editor.js';
+
 function childTags(element: Element | null | undefined): SCLTag[] {
   if (!element) return [];
 
@@ -54,7 +56,7 @@ export class ConductingEquipmentEditor extends LitElement {
   get name(): string {
     return this.element.getAttribute('name') ?? '';
   }
-  /** Whether `EqFunction` and `SubEqFunction` are rendered */
+  /** Whether `EqFunction`, `SubEqFunction` and `SubEquipment` are rendered */
   @property({ type: Boolean })
   showfunctions = false;
 
@@ -220,10 +222,32 @@ export class ConductingEquipmentEditor extends LitElement {
       ></mwc-fab>`;
   }
 
+  private renderSubEquipments(): TemplateResult {
+    if (!this.showfunctions) return html``;
+
+    const subEquipments = getChildElementsByTagName(
+      this.element,
+      'SubEquipment'
+    );
+
+    return subEquipments.length
+      ? html`<div class="container subequipment">
+          ${subEquipments.map(
+            subEquipment =>
+              html`<sub-equipment-editor
+                .doc=${this.doc}
+                .element=${subEquipment}
+              ></sub-equipment-editor>`
+          )}
+        </div>`
+      : html``;
+  }
+
   render(): TemplateResult {
     if (this.showfunctions)
       return html`<action-pane label="${this.name}"
-        >${this.renderContentPane()}${this.renderLNodes()}${this.renderEqFunctions()}</action-pane
+        >${this.renderContentPane()}${this.renderLNodes()}${this.renderEqFunctions()}${this.renderSubEquipments()}</action-pane
+        ></action-pane
       >`;
 
     return html`<action-icon label="${this.name}"

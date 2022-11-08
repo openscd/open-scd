@@ -16,7 +16,7 @@ describe('Sampled Values Plugin', () => {
   let doc: XMLDocument;
 
   beforeEach(async () => {
-    doc = await fetch('/test/testfiles/valid2007B4ForSampledValues.scd')
+    doc = await fetch('/test/testfiles/editors/MessageBindingSMV2007B4.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
@@ -90,6 +90,7 @@ describe('Sampled Values Plugin', () => {
 
         it('adds the required ExtRefs to the subscriber IED', async () => {
           (<HTMLElement>getItemFromSubscriberList('IED2')).click();
+          await element.updateComplete;
 
           expect(
             element.doc.querySelectorAll(
@@ -167,6 +168,7 @@ describe('Sampled Values Plugin', () => {
 
         it('removes the required ExtRefs from the subscriber IED', async () => {
           (<HTMLElement>getItemFromSubscriberList('IED1')).click();
+          await element.updateComplete;
 
           expect(
             element.doc.querySelectorAll(
@@ -196,6 +198,7 @@ describe('Sampled Values Plugin', () => {
 
         it('adds the required ExtRefs to the subscriber IED', async () => {
           (<HTMLElement>getItemFromSubscriberList('IED4')).click();
+          await element.updateComplete;
 
           expect(
             element.doc.querySelectorAll(
@@ -360,6 +363,7 @@ describe('Sampled Values Plugin', () => {
 
         it('removes the required ExtRefs to the subscriber IED', async () => {
           (<HTMLElement>getItemFromSubscriberList('MSVCB01')).click();
+          await element.updateComplete;
 
           expect(
             element.doc.querySelectorAll(
@@ -389,6 +393,7 @@ describe('Sampled Values Plugin', () => {
 
         it('adds the required ExtRefs to the subscriber IED', async () => {
           (<HTMLElement>getItemFromSubscriberList('MSVCB02')).click();
+          await element.updateComplete;
 
           expect(
             element.doc.querySelectorAll(

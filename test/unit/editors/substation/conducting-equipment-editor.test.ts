@@ -130,6 +130,21 @@ describe('conducting-equipment-editor', () => {
         await expect(element).shadowDom.to.equalSnapshot());
     });
 
+    describe('with SubEquipment children', () => {
+      beforeEach(async () => {
+        const doc = await fetch('/test/testfiles/SubEquipment.scd')
+          .then(response => response.text())
+          .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+        element.element = doc.querySelector('ConductingEquipment[name="QA1"]')!;
+        await element.requestUpdate();
+      });
+
+      it('looks like the latest snapshot', async () => {
+        await expect(element).shadowDom.to.equalSnapshot();
+      });
+    });
+
     it('renders empty string in case ConductingEquipment name attribute is missing', async () => {
       const condEq = validSCL.querySelector('ConductingEquipment');
       condEq?.removeAttribute('name');
