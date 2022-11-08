@@ -315,7 +315,7 @@ snapshots["voltage-level-editor with function filter deactivated looks like the 
       </mwc-list-item>
     </mwc-menu>
   </abbr>
-  <function-editor>
+  <function-editor showfunctions="">
   </function-editor>
   <div class="ptrContent">
     <powertransformer-editor showfunctions="">

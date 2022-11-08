@@ -122,6 +122,7 @@ export class PowerTransformerEditor extends LitElement {
         html`<eq-function-editor
           .doc=${this.doc}
           .element=${eqFunction}
+          ?showfunctions=${this.showfunctions}
         ></eq-function-editor>`
     )}`;
   }

@@ -316,7 +316,7 @@ snapshots["substation-editor with function filter deactivated looks like the lat
     <l-node-editor>
     </l-node-editor>
   </div>
-  <function-editor>
+  <function-editor showfunctions="">
   </function-editor>
   <div class="ptrContent">
     <powertransformer-editor showfunctions="">

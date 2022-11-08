@@ -25,6 +25,7 @@ import {
   startMove,
   cloneSubstationElement,
   styles,
+  renderGeneralEquipment,
 } from './foundation.js';
 import {
   getChildElementsByTagName,
@@ -137,31 +138,6 @@ export class VoltageLevelEditor extends LitElement {
       : html``;
   }
 
-  private renderGeneralEquipment(): TemplateResult {
-    const generalEquipment = getChildElementsByTagName(
-      this.element,
-      'GeneralEquipment'
-    );
-
-    return generalEquipment.length
-      ? html` <div
-          class="${classMap({
-            content: true,
-            actionicon: !this.showfunctions,
-          })}"
-        >
-          ${generalEquipment.map(
-            gEquipment =>
-              html`<general-equipment-editor
-                .doc=${this.doc}
-                .element=${gEquipment}
-                ?showfunctions=${this.showfunctions}
-              ></general-equipment-editor>`
-          )}
-        </div>`
-      : html``;
-  }
-
   renderFunctions(): TemplateResult {
     if (!this.showfunctions) return html``;
 
@@ -171,6 +147,7 @@ export class VoltageLevelEditor extends LitElement {
         html`<function-editor
           .doc=${this.doc}
           .element=${fUnction}
+          ?showfunctions=${this.showfunctions}
         ></function-editor>`
     )}`;
   }
@@ -273,7 +250,7 @@ export class VoltageLevelEditor extends LitElement {
           >${this.renderAddButtons()}</mwc-menu
         >
       </abbr>
-      ${this.renderGeneralEquipment()}
+      ${renderGeneralEquipment(this.doc, this.element, this.showfunctions)}
       ${this.renderIedContainer()}${this.renderLNodes()}${this.renderFunctions()}
       ${this.renderPowerTransformerContainer()}
       <div id="bayContainer">
