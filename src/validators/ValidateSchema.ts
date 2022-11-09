@@ -44,6 +44,8 @@ export default class ValidateSchema extends LitElement {
       });
     }
 
+    validators[xsdName] = validate;
+
     return new Promise((resolve, reject) => {
       worker.addEventListener('message', (e: MessageEvent<WorkerMessage>) => {
         if (isLoadSchemaResult(e.data)) {
@@ -108,7 +110,7 @@ export default class ValidateSchema extends LitElement {
           title: get('validator.schema.invalid', { name: result.file }),
         })
       );
-      throw new Error(get('validator.schema.invalid', { name: result.file }));
+      return;
     }
 
     this.dispatchEvent(

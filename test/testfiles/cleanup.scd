@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<SCL xmlns:sxy="http://www.iec.ch/61850/2003/SCLcoordinates" xmlns="http://www.iec.ch/61850/2003/SCL" xmlns:txy="http://www.iec.ch/61850/2003/Terminal" xmlns:scl="http://www.iec.ch/61850/2003/SCL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:IEC_60870_5_104="http://www.iec.ch/61850-80-1/2007/SCL" version="2007" revision="B" release="4" xsi:schemaLocation="http://www.iec.ch/61850/2003/SCL SCL.xsd">
+<SCL xmlns:sxy="http://www.iec.ch/61850/2003/SCLcoordinates"
+	xmlns="http://www.iec.ch/61850/2003/SCL"
+	xmlns:txy="http://www.iec.ch/61850/2003/Terminal"
+	xmlns:scl="http://www.iec.ch/61850/2003/SCL"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:IEC_60870_5_104="http://www.iec.ch/61850-80-1/2007/SCL" version="2007" revision="B" release="4" xsi:schemaLocation="http://www.iec.ch/61850/2003/SCL SCL.xsd">
 	<Header id="TrainingIEC61850" version="1" revision="143" toolID="IEC 61850 System Configurator, Version: V5.90 " nameStructure="IEDName">
 		<Text>TrainingIEC61850</Text>
 		<History>
@@ -571,6 +576,82 @@
 			<DO name="VA" type="WYE_0"/>
 			<DO name="PF" type="WYE_0"/>
 		</LNodeType>
+		<LNodeType id="LTMS_1" lnClass="LTMS">
+			<DO name="Beh" type="ENS_0" />
+			<DO name="NamPlt" type="LPL_1" />
+			<DO name="PTPFail" type="SPS_2" />
+			<DO name="ClkMis" type="SPS_2" />
+			<DO name="PBClkTrbl" type="SPS_2" />
+			<DO name="TmSynSrc" type="ENS_12" />
+			<DO name="GrdMasterID" type="VSS_0" />
+			<DO name="TmAcc" type="INS_3" />
+			<DO name="TmSrc" type="VSS_1" />
+			<DO name="TmSrcTyp" type="JustATimeSrcTyp" />
+		</LNodeType>
+		<LNodeType id="GGIO_14" lnClass="GGIO">
+			<DO name="Beh" type="ENS_0" />
+			<DO name="NamPlt" type="LPL_1" />
+			<DO name="AnIn01" type="MV_12" />
+		</LNodeType>
+		<DOType id="JustATimeSrcTyp" cdc="ENS">
+			<DA dchg="true" fc="ST" name="stVal" bType="Enum" type="SomeTimeSrcTypes" />
+			<DA qchg="true" fc="ST" name="q" bType="Quality" />
+			<DA fc="ST" name="t" bType="Timestamp" />
+		</DOType>
+		<DOType id="MV_12" cdc="MV">
+			<DA name="instMag" bType="Struct" type="AnalogueValue_0" fc="MX" />
+			<DA name="mag" bType="Struct" type="AnalogueValue_0" dchg="true" fc="MX" />
+			<DA name="q" bType="Quality" qchg="true" fc="MX" />
+			<DA name="t" bType="Timestamp" fc="MX" />
+			<DA name="db" bType="INT32U" dchg="true" fc="CF" />
+			<DA name="zeroDb" bType="INT32U" dchg="true" fc="CF" />
+			<DA name="rangeC" bType="Struct" type="RangeConfig_0" dchg="true" fc="CF" />
+			<DA name="d" bType="VisString255" fc="DC" />
+		</DOType>
+		<DOType id="VSS_1" cdc="VSS">
+			<DA name="stVal" bType="VisString255" dchg="true" fc="ST" />
+			<DA name="q" bType="Quality" qchg="true" fc="ST" />
+			<DA name="t" bType="Timestamp" fc="ST" />
+			<DA name="d" bType="VisString255" fc="DC" />
+		</DOType>
+		<DOType id="ENS_12" cdc="ENS">
+			<DA name="stVal" bType="Enum" type="PB_Time_Source_Kind" dchg="true" fc="ST" />
+			<DA name="q" bType="Quality" qchg="true" fc="ST" />
+			<DA name="t" bType="Timestamp" fc="ST" />
+			<DA name="d" bType="VisString255" fc="DC" />
+			<DA name="dataNs" bType="VisString255" fc="EX" />
+		</DOType>
+		<DOType id="SPS_2" cdc="SPS">
+			<DA name="stVal" bType="BOOLEAN" dchg="true" fc="ST" />
+			<DA name="q" bType="Quality" qchg="true" fc="ST" />
+			<DA name="t" bType="Timestamp" fc="ST" />
+			<DA name="d" bType="VisString255" fc="DC" />
+			<DA name="dataNs" bType="VisString255" fc="EX" />
+		</DOType>
+		<DOType id="LPL_1" cdc="LPL">
+			<DA name="vendor" bType="VisString255" valKind="RO" fc="DC" />
+			<DA name="swRev" bType="VisString255" valKind="RO" fc="DC" />
+			<DA name="d" bType="VisString255" fc="DC" />
+		</DOType>
+		<DOType id="VSS_0" cdc="VSS">
+			<DA name="stVal" bType="VisString255" dchg="true" fc="ST" />
+			<DA name="q" bType="Quality" qchg="true" fc="ST" />
+			<DA name="t" bType="Timestamp" fc="ST" />
+			<DA name="d" bType="VisString255" fc="DC" />
+			<DA name="dataNs" bType="VisString255" fc="EX" />
+		</DOType>
+		<DOType id="INS_3" cdc="INS">
+			<DA name="stVal" bType="INT32" dchg="true" fc="ST" />
+			<DA name="q" bType="Quality" qchg="true" fc="ST" />
+			<DA name="t" bType="Timestamp" fc="ST" />
+			<DA name="d" bType="VisString255" fc="DC" />
+		</DOType>
+		<DOType id="ENS_0" cdc="ENS">
+			<DA name="stVal" bType="Enum" type="BehKind1" dchg="true" fc="ST" />
+			<DA name="q" bType="Quality" qchg="true" fc="ST" />
+			<DA name="t" bType="Timestamp" fc="ST" />
+			<DA name="d" bType="VisString255" fc="DC" />
+		</DOType>
 		<DOType cdc="SAV" id="DummySAV">
 			<DA fc="MX" name="instMag" bType="Struct" type="AnalogueValue_i"/>
 			<DA fc="MX" qchg="true" name="q" bType="Quality"/>
@@ -859,6 +940,17 @@
 		<DAType id="AnalogValue_0">
 			<BDA name="f" bType="FLOAT32"/>
 		</DAType>
+		<DAType id="RangeConfig_0">
+			<BDA name="hhLim" bType="Struct" type="AnalogueValue_0" />
+			<BDA name="hLim" bType="Struct" type="AnalogueValue_0" />
+			<BDA name="lLim" bType="Struct" type="AnalogueValue_0" />
+			<BDA name="llLim" bType="Struct" type="AnalogueValue_0" />
+			<BDA name="min" bType="Struct" type="AnalogueValue_0" />
+			<BDA name="max" bType="Struct" type="AnalogueValue_0" />
+		</DAType>
+		<DAType id="AnalogueValue_0">
+			<BDA name="f" bType="FLOAT32" />
+		</DAType>
 		<DAType id="AnalogValue_1">
 			<BDA name="f" bType="FLOAT32"/>
 		</DAType>
@@ -1040,6 +1132,40 @@
 			<EnumVal ord="2">Disconnector</EnumVal>
 			<EnumVal ord="3">Earthing Switch</EnumVal>
 			<EnumVal ord="4">High Speed Earthing Switch</EnumVal>
+		</EnumType>
+		<EnumType id="PB_Time_Source_Kind">
+			<EnumVal ord="0">No Clock Source</EnumVal>
+			<EnumVal ord="1">CPU Clock</EnumVal>
+			<EnumVal ord="2">A PTP Clock</EnumVal>
+			<EnumVal ord="3">A Comms Card Internal Clock</EnumVal>
+		</EnumType>
+		<EnumType id="SomeTimeSrcTypes">
+			<EnumVal ord="-15">ERR</EnumVal>
+			<EnumVal ord="-14">T104</EnumVal>
+			<EnumVal ord="-13">T103</EnumVal>
+			<EnumVal ord="-12">RTC</EnumVal>
+			<EnumVal ord="-11">IEEE1588</EnumVal>
+			<EnumVal ord="-10">EXTERN_SIPROTEC</EnumVal>
+			<EnumVal ord="-9">MINUTE_PULS</EnumVal>
+			<EnumVal ord="-8">DNP30</EnumVal>
+			<EnumVal ord="-7">MODBUS</EnumVal>
+			<EnumVal ord="-6">PROFIBUS</EnumVal>
+			<EnumVal ord="-5">GALILEO</EnumVal>
+			<EnumVal ord="-4">SYNC_BOX</EnumVal>
+			<EnumVal ord="-3">DCF77</EnumVal>
+			<EnumVal ord="-2">GPS</EnumVal>
+			<EnumVal ord="-1">HMI</EnumVal>
+			<EnumVal ord="1">Unknown</EnumVal>
+			<EnumVal ord="2">SNTP</EnumVal>
+			<EnumVal ord="3">PTP</EnumVal>
+			<EnumVal ord="4">IRIG-B</EnumVal>
+			<EnumVal ord="5">Substation internal</EnumVal>
+		</EnumType>
+		<EnumType id="BehKind1">
+			<EnumVal ord="1">on</EnumVal>
+			<EnumVal ord="3">test</EnumVal>
+			<EnumVal ord="4">test/blocked</EnumVal>
+			<EnumVal ord="5">off</EnumVal>
 		</EnumType>
 	</DataTypeTemplates>
 </SCL>

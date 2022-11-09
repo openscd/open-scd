@@ -98,9 +98,16 @@
 							<ExtRef intAddr="VolSv;TVTR2/VolSv/q" desc="MeasPoint.VT1"/>
 							<ExtRef intAddr="VolSv;TVTR3/VolSv/instMag.i" desc="MeasPoint.VT3"/>
 							<ExtRef intAddr="VolSv;TVTR3/VolSv/q" desc="MeasPoint.VT1"/>
-							<ExtRef intAddr="someRestrictedExtRef" desc="Restricted To AmpSV" pLN="TCTR" pDO="AmpSV" pDA="instMag.i"/>
+							<ExtRef intAddr="someRestrictedExtRef" desc="Restricted To AmpSV" pLN="TCTR" pDO="AmpSv" pDA="q" pServT="SMV"/>
+							<ExtRef intAddr="someRestrictedExtRef" desc="Restricted To AmpSV" pLN="TCTR" pDO="AmpSv" pDA="instMag.i" pServT="SMV"/>
 						</Inputs>
 					</LN>
+				</LDevice>
+				<LDevice inst="CurrentTrans">
+					<LN prefix="L1" lnClass="TCTR" inst="1" lnType="Dummy.TCTR"/>
+					<LN prefix="L2" lnClass="TCTR" inst="1" lnType="Dummy.TCTR"/>
+					<LN prefix="L3" lnClass="TCTR" inst="1" lnType="Dummy.TCTR"/>
+					<LN prefix="RES" lnClass="TCTR" inst="1" lnType="Dummy.TCTR"/>
 				</LDevice>
 			</Server>
 		</AccessPoint>
