@@ -25,6 +25,7 @@ import { gooseIcon, smvIcon } from '../../icons/icons.js';
 import { wizards } from '../../wizards/wizard-library.js';
 
 import {
+  getFcdaSubtitleValue,
   getFcdaTitleValue,
   newFcdaSelectEvent,
   styles,
@@ -175,18 +176,11 @@ export class FcdaBindingList extends LitElement {
       twoline
       class="subitem"
       @click=${() => this.onFcdaSelect(controlElement, fcdaElement)}
-      value="${identity(controlElement)} ${identity(fcdaElement)}"
+      value="${identity(controlElement)}
+             ${identity(fcdaElement)}"
     >
       <span>${getFcdaTitleValue(fcdaElement)}</span>
-      <span slot="secondary">
-        ${fcdaElement.getAttribute('ldInst')}${fcdaElement.hasAttribute(
-          'ldInst'
-        ) && fcdaElement.hasAttribute('prefix')
-          ? html`/`
-          : nothing}${fcdaElement.getAttribute('prefix')}
-        ${fcdaElement.getAttribute('lnClass')}
-        ${fcdaElement.getAttribute('lnInst')}
-      </span>
+      <span slot="secondary">${getFcdaSubtitleValue(fcdaElement)}</span>
       <mwc-icon slot="graphic">subdirectory_arrow_right</mwc-icon>
       ${fcdaCount !== 0 ? html`<span slot="meta">${fcdaCount}</span>` : nothing}
     </mwc-list-item>`;
@@ -210,9 +204,15 @@ export class FcdaBindingList extends LitElement {
                     graphic="icon"
                     twoline
                     hasMeta
-                    value="${identity(controlElement)} ${fcdaElements
-                      .map(fcdaElement => identity(fcdaElement) as string)
-                      .join(' ')}"
+                    value="
+                        ${identity(controlElement)}${fcdaElements
+                      .map(
+                        fcdaElement => `
+                        ${getFcdaTitleValue(fcdaElement)}
+                        ${getFcdaSubtitleValue(fcdaElement)}
+                        ${identity(fcdaElement)}`
+                      )
+                      .join('')}"
                   >
                     <mwc-icon-button
                       slot="meta"

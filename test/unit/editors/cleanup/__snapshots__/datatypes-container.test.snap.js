@@ -80,7 +80,7 @@ snapshots["Cleanup: DataTypes Container With a test file loaded looks like the l
   <div>
     <h1>
       [cleanup.unreferencedDataTypes.title]
-          (7)
+          (9)
       <abbr slot="action">
         <mwc-icon-button
           icon="info"
@@ -127,6 +127,58 @@ snapshots["Cleanup: DataTypes Container With a test file loaded looks like the l
         graphic="large"
         mwc-list-item=""
         tabindex="0"
+        twoline=""
+        value="#GGIO_14"
+      >
+        <span class="unreferenced-control">
+          GGIO_14
+        </span>
+        <span>
+          <mwc-icon-button
+            class="edit-item"
+            icon="edit"
+            label="Edit"
+          >
+          </mwc-icon-button>
+        </span>
+        <span slot="secondary">
+          GGIO
+        </span>
+        <mwc-icon slot="graphic">
+        </mwc-icon>
+      </mwc-check-list-item>
+      <mwc-check-list-item
+        aria-disabled="false"
+        class="cleanup-list-item t-lnode-type"
+        graphic="large"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#LTMS_1"
+      >
+        <span class="unreferenced-control">
+          LTMS_1
+        </span>
+        <span>
+          <mwc-icon-button
+            class="edit-item"
+            icon="edit"
+            label="Edit"
+          >
+          </mwc-icon-button>
+        </span>
+        <span slot="secondary">
+          LTMS
+        </span>
+        <mwc-icon slot="graphic">
+        </mwc-icon>
+      </mwc-check-list-item>
+      <mwc-check-list-item
+        aria-disabled="false"
+        class="cleanup-list-item t-lnode-type"
+        graphic="large"
+        mwc-list-item=""
+        tabindex="-1"
         twoline=""
         value="#NotUsedTVTR"
       >

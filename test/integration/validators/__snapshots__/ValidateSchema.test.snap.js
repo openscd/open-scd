@@ -11,19 +11,32 @@ snapshots["ValidateSchema plugin for valid SCL files zeroissues indication looks
     wrapfocus=""
   >
     <mwc-list-item
-      aria-disabled="true"
-      disabled=""
-      graphic="icon"
-      mwc-list-item=""
-      tabindex="0"
+      aria-disabled="false"
+      noninteractive=""
+      tabindex="-1"
     >
-      <span>
-        [diag.placeholder]
-      </span>
-      <mwc-icon slot="graphic">
-        info
-      </mwc-icon>
+      Validate Schema
     </mwc-list-item>
+    <li
+      divider=""
+      padded=""
+      role="separator"
+    >
+    </li>
+    <abbr title="[validator.schema.valid]
+undefined">
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <span>
+          [validator.schema.valid]
+        </span>
+        <span slot="secondary">
+        </span>
+      </mwc-list-item>
+    </abbr>
   </filtered-list>
   <mwc-button
     dialogaction="close"
@@ -75,12 +88,7 @@ invalid2007B:7 Substation name (Element '{http://www.iec.ch/61850/2003/SCL}Subst
     </abbr>
     <abbr title="Not all fields of key identity-constraint '{http://www.iec.ch/61850/2003/SCL}SubstationKey' evaluate to a node.
 invalid2007B:7 Substation key identity-constraint '{http://www.iec.ch/61850/2003/SCL}SubstationKey' (Element '{http://www.iec.ch/61850/2003/SCL}Substation')">
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-        twoline=""
-      >
+      <mwc-list-item twoline="">
         <span>
           Not all fields of key identity-constraint '{http://www.iec.ch/61850/2003/SCL}SubstationKey' evaluate to a node.
         </span>

@@ -97,6 +97,16 @@ export function getFcdaTitleValue(fcdaElement: Element): string {
   }${fcdaElement.getAttribute('daName')}`;
 }
 
+export function getFcdaSubtitleValue(fcdaElement: Element): string {
+  return `${fcdaElement.getAttribute('ldInst')} ${
+    fcdaElement.hasAttribute('ldInst') && fcdaElement.hasAttribute('prefix')
+      ? `/`
+      : ''
+  } ${fcdaElement.getAttribute('prefix')} ${fcdaElement.getAttribute(
+    'lnClass'
+  )} ${fcdaElement.getAttribute('lnInst')}`;
+}
+
 export function existExtRef(
   parentInputs: Element,
   fcda: Element,

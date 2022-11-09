@@ -1717,7 +1717,11 @@ export const tags: Record<
     identity: namingIdentity,
     selector: namingSelector,
     parents: ['Process', 'Line', 'SubFunction', 'Function', 'Bay'],
-    children: [...tAbstractConductingEquipmentSequence, 'EqFunction'],
+    children: [
+      ...tAbstractConductingEquipmentSequence,
+      'EqFunction',
+      'SubEquipment',
+    ],
   },
   ConfDataSet: {
     identity: singletonIdentity,
@@ -2145,6 +2149,7 @@ export const tags: Record<
       'TransformerWinding',
       'SubEquipment',
       'EqFunction',
+      'SubEquipment',
     ],
   },
   Private: {
@@ -2375,6 +2380,8 @@ export const tags: Record<
     parents: [
       'TapChanger',
       'PowerTransformer',
+      'ConductingEquipment',
+      'TransformerWinding',
       ...tAbstractConductingEquipment,
     ],
     children: [...tPowerSystemResourceSequence, 'EqFunction'],
@@ -2453,6 +2460,7 @@ export const tags: Record<
       'TapChanger',
       'NeutralPoint',
       'EqFunction',
+      'SubEquipment',
     ],
   },
   TrgOps: {

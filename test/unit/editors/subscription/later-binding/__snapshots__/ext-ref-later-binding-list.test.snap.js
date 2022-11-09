@@ -52,7 +52,7 @@ snapshots["extref-later-binding-list for Sampled Value Control when SVC has no s
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-      value="MeasPoint.CT2 SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR2/AmpSv/instMag.i[0] MeasPoint.CT3 SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR3/AmpSv/instMag.i[0] MeasPoint.VT1 SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR1/VolSv/q[0] MeasPoint.VT2 SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR2/VolSv/instMag.i[0] MeasPoint.VT1 SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR2/VolSv/q[0] MeasPoint.VT3 SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR3/VolSv/instMag.i[0] MeasPoint.VT1 SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR3/VolSv/q[0] Restricted To AmpSV SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[0]"
+      value="MeasPoint.CT2 SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR2/AmpSv/instMag.i[0] MeasPoint.CT3 SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR3/AmpSv/instMag.i[0] MeasPoint.VT1 SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR1/VolSv/q[0] MeasPoint.VT2 SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR2/VolSv/instMag.i[0] MeasPoint.VT1 SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR2/VolSv/q[0] MeasPoint.VT3 SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR3/VolSv/instMag.i[0] MeasPoint.VT1 SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR3/VolSv/q[0] Restricted To AmpSV SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[0] Restricted To AmpSV SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[1]"
     >
       <span>
         [subscription.subscriber.availableToSubscribe]
@@ -211,6 +211,25 @@ snapshots["extref-later-binding-list for Sampled Value Control when SVC has no s
       </span>
       <span slot="secondary">
         SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[0]
+      </span>
+      <mwc-icon slot="graphic">
+        arrow_back
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[1]"
+    >
+      <span>
+        someRestrictedExtRef
+                 (Restricted To AmpSV)
+      </span>
+      <span slot="secondary">
+        SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[1]
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -265,7 +284,7 @@ snapshots["extref-later-binding-list for Sampled Value Control when SVC has a si
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-      value="MeasPoint.CT2 SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR2/AmpSv/instMag.i[0] MeasPoint.CT3 SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR3/AmpSv/instMag.i[0] MeasPoint.VT1 SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR1/VolSv/q[0] MeasPoint.VT2 SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR2/VolSv/instMag.i[0] MeasPoint.VT1 SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR2/VolSv/q[0] MeasPoint.VT3 SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR3/VolSv/instMag.i[0] MeasPoint.VT1 SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR3/VolSv/q[0] Restricted To AmpSV SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[0]"
+      value="MeasPoint.CT2 SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR2/AmpSv/instMag.i[0] MeasPoint.CT3 SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR3/AmpSv/instMag.i[0] MeasPoint.VT1 SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR1/VolSv/q[0] MeasPoint.VT2 SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR2/VolSv/instMag.i[0] MeasPoint.VT1 SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR2/VolSv/q[0] MeasPoint.VT3 SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR3/VolSv/instMag.i[0] MeasPoint.VT1 SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR3/VolSv/q[0] Restricted To AmpSV SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[0] Restricted To AmpSV SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[1]"
     >
       <span>
         [subscription.subscriber.availableToSubscribe]
@@ -424,6 +443,25 @@ snapshots["extref-later-binding-list for Sampled Value Control when SVC has a si
       </span>
       <span slot="secondary">
         SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[0]
+      </span>
+      <mwc-icon slot="graphic">
+        arrow_back
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[1]"
+    >
+      <span>
+        someRestrictedExtRef
+                 (Restricted To AmpSV)
+      </span>
+      <span slot="secondary">
+        SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[1]
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -510,7 +548,7 @@ snapshots["extref-later-binding-list when SVC has a multiple subscriptions looks
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-      value="MeasPoint.CT2 SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR2/AmpSv/instMag.i[0] MeasPoint.CT3 SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR3/AmpSv/instMag.i[0] MeasPoint.VT1 SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR1/VolSv/q[0] MeasPoint.VT2 SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR2/VolSv/instMag.i[0] MeasPoint.VT1 SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR2/VolSv/q[0] MeasPoint.VT3 SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR3/VolSv/instMag.i[0] MeasPoint.VT1 SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR3/VolSv/q[0] Restricted To AmpSV SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[0]"
+      value="MeasPoint.CT2 SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR2/AmpSv/instMag.i[0] MeasPoint.CT3 SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR3/AmpSv/instMag.i[0] MeasPoint.VT1 SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR1/VolSv/q[0] MeasPoint.VT2 SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR2/VolSv/instMag.i[0] MeasPoint.VT1 SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR2/VolSv/q[0] MeasPoint.VT3 SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR3/VolSv/instMag.i[0] MeasPoint.VT1 SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR3/VolSv/q[0] Restricted To AmpSV SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[0] Restricted To AmpSV SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[1]"
     >
       <span>
         [subscription.subscriber.availableToSubscribe]
@@ -655,8 +693,7 @@ snapshots["extref-later-binding-list when SVC has a multiple subscriptions looks
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
-      aria-disabled="true"
-      disabled=""
+      aria-disabled="false"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -669,6 +706,26 @@ snapshots["extref-later-binding-list when SVC has a multiple subscriptions looks
       </span>
       <span slot="secondary">
         SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[0]
+      </span>
+      <mwc-icon slot="graphic">
+        arrow_back
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[1]"
+    >
+      <span>
+        someRestrictedExtRef
+                 (Restricted To AmpSV)
+      </span>
+      <span slot="secondary">
+        SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[1]
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -721,7 +778,7 @@ snapshots["extref-later-binding-list for GOOSE Control when GSEControl has no su
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-      value="Interlocking.Input GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0] Interlocking.Input3 GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB1_Disconnector/ CILO 1 EnaCls stVal@Pos;CILO/EnaCls/stVal Interlocking.Input4 GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CILO 1 EnaOpn stVal@Pos;CILO/EnaOpn2/stVal Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0]"
+      value="Interlocking.Input GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0] Interlocking.Input3 GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB1_Disconnector/ CILO 1 EnaCls stVal@Pos;CILO/EnaCls/stVal Interlocking.Input4 GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CILO 1 EnaOpn stVal@Pos;CILO/EnaOpn2/stVal Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0] Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[1]"
     >
       <span>
         [subscription.subscriber.availableToSubscribe]
@@ -804,6 +861,25 @@ snapshots["extref-later-binding-list for GOOSE Control when GSEControl has no su
       </span>
       <span slot="secondary">
         GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0]
+      </span>
+      <mwc-icon slot="graphic">
+        arrow_back
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[1]"
+    >
+      <span>
+        someRestrictedExtRef
+                 (Restricted To Pos)
+      </span>
+      <span slot="secondary">
+        GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[1]
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -858,7 +934,7 @@ snapshots["extref-later-binding-list for GOOSE Control when GSEControl has a sin
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-      value="Interlocking.Input GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0] Interlocking.Input3 GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB1_Disconnector/ CILO 1 EnaCls stVal@Pos;CILO/EnaCls/stVal Interlocking.Input4 GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CILO 1 EnaOpn stVal@Pos;CILO/EnaOpn2/stVal Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0]"
+      value="Interlocking.Input GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0] Interlocking.Input3 GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB1_Disconnector/ CILO 1 EnaCls stVal@Pos;CILO/EnaCls/stVal Interlocking.Input4 GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CILO 1 EnaOpn stVal@Pos;CILO/EnaOpn2/stVal Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0] Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[1]"
     >
       <span>
         [subscription.subscriber.availableToSubscribe]
@@ -941,6 +1017,25 @@ snapshots["extref-later-binding-list for GOOSE Control when GSEControl has a sin
       </span>
       <span slot="secondary">
         GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0]
+      </span>
+      <mwc-icon slot="graphic">
+        arrow_back
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[1]"
+    >
+      <span>
+        someRestrictedExtRef
+                 (Restricted To Pos)
+      </span>
+      <span slot="secondary">
+        GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[1]
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -1011,7 +1106,7 @@ snapshots["extref-later-binding-list when GSEControl has a multiple subscription
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-      value="Interlocking.Input GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0] Interlocking.Input3 GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB1_Disconnector/ CILO 1 EnaCls stVal@Pos;CILO/EnaCls/stVal Interlocking.Input4 GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CILO 1 EnaOpn stVal@Pos;CILO/EnaOpn2/stVal Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0]"
+      value="Interlocking.Input GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0] Interlocking.Input3 GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB1_Disconnector/ CILO 1 EnaCls stVal@Pos;CILO/EnaCls/stVal Interlocking.Input4 GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CILO 1 EnaOpn stVal@Pos;CILO/EnaOpn2/stVal Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0] Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[1]"
     >
       <span>
         [subscription.subscriber.availableToSubscribe]
@@ -1080,8 +1175,7 @@ snapshots["extref-later-binding-list when GSEControl has a multiple subscription
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
-      aria-disabled="true"
-      disabled=""
+      aria-disabled="false"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -1094,6 +1188,26 @@ snapshots["extref-later-binding-list when GSEControl has a multiple subscription
       </span>
       <span slot="secondary">
         GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0]
+      </span>
+      <mwc-icon slot="graphic">
+        arrow_back
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[1]"
+    >
+      <span>
+        someRestrictedExtRef
+                 (Restricted To Pos)
+      </span>
+      <span slot="secondary">
+        GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[1]
       </span>
       <mwc-icon slot="graphic">
         arrow_back
