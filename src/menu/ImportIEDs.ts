@@ -412,6 +412,50 @@ export async function importIED(
   );
 }
 
+export async function prepareImportIEDs(
+  parent: HTMLElement,
+  importDoc: XMLDocument,
+  doc: XMLDocument
+): Promise<void> {
+  if (!importDoc) {
+    parent.dispatchEvent(
+      newLogEvent({
+        kind: 'error',
+        title: get('import.log.loaderror'),
+      })
+    );
+    return;
+  }
+
+  if (importDoc.querySelector('parsererror')) {
+    parent.dispatchEvent(
+      newLogEvent({
+        kind: 'error',
+        title: get('import.log.parsererror'),
+      })
+    );
+    return;
+  }
+
+  const ieds = Array.from(importDoc.querySelectorAll(':root > IED'));
+  if (ieds.length === 0) {
+    parent.dispatchEvent(
+      newLogEvent({
+        kind: 'error',
+        title: get('import.log.missingied'),
+      })
+    );
+    return;
+  }
+
+    if (ieds.length === 1) {
+      importIED(ieds[0], doc, parent);
+      return;
+    }
+
+  parent.dispatchEvent(newWizardEvent(importIedsWizard(importDoc, doc)));
+}
+
 export default class ImportingIedPlugin extends LitElement {
   doc!: XMLDocument;
   parent!: HTMLElement;
@@ -430,7 +474,7 @@ export default class ImportingIedPlugin extends LitElement {
         'application/xml'
       );
 
-      return this.prepareImport(importDoc, this.doc!);
+      return prepareImportIEDs(this.parent, importDoc, this.doc);
     });
 
     const mergedPromise = new Promise<void>((resolve, reject) =>
@@ -441,49 +485,6 @@ export default class ImportingIedPlugin extends LitElement {
     );
 
     this.parent.dispatchEvent(newPendingStateEvent(mergedPromise));
-  }
-
-  public async prepareImport(
-    importDoc: XMLDocument,
-    doc: XMLDocument
-  ): Promise<void> {
-    if (!importDoc) {
-      this.parent.dispatchEvent(
-        newLogEvent({
-          kind: 'error',
-          title: get('import.log.loaderror'),
-        })
-      );
-      return;
-    }
-
-    if (importDoc.querySelector('parsererror')) {
-      this.parent.dispatchEvent(
-        newLogEvent({
-          kind: 'error',
-          title: get('import.log.parsererror'),
-        })
-      );
-      return;
-    }
-
-    const ieds = Array.from(importDoc.querySelectorAll(':root > IED'));
-    if (ieds.length === 0) {
-      this.parent.dispatchEvent(
-        newLogEvent({
-          kind: 'error',
-          title: get('import.log.missingied'),
-        })
-      );
-      return;
-    }
-
-    if (ieds.length === 1) {
-      importIED(ieds[0], doc, this.parent);
-      return;
-    }
-
-    this.parent.dispatchEvent(newWizardEvent(importIedsWizard(importDoc, doc)));
   }
 
   async run(): Promise<void> {
@@ -498,7 +499,7 @@ export default class ImportingIedPlugin extends LitElement {
     return html`<input multiple @change=${(event: Event) => {
       this.loadIedFiles(event);
       (<HTMLInputElement>event.target).value = '';
-    }} id="importied-plugin-input" accept=".sed,.scd,.ssd,.iid,.cid,.icd" type="file"></input>`;
+    }} id="importied-plugin-input" accept=".sed,.scd,.ssd,.isd,.iid,.cid,.icd" type="file"></input>`;
   }
 
   static styles = css`
