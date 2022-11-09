@@ -6,6 +6,7 @@ import {
   createElement,
   Delete,
   getSclSchemaVersion,
+  isPublic,
   minAvailableLogicalNodeInstance,
 } from '../../foundation.js';
 import {
@@ -167,6 +168,33 @@ export function getExtRef(
       `ExtRef[iedName="${iedName}"]${getFcdaReferences(fcda)}${controlCriteria}`
     )
   ).find(extRefElement => !extRefElement.hasAttribute('intAddr'));
+}
+
+export function canRemoveSubscriptionSupervision(
+  subscribedExtRef: Element
+): boolean {
+  const [srcCBName, srcLDInst, srcLNClass, iedName, srcPrefix, srcLNInst] = [
+    'srcCBName',
+    'srcLDInst',
+    'srcLNClass',
+    'iedName',
+    'srcPrefix',
+    'srcLNInst',
+  ].map(attr => subscribedExtRef.getAttribute(attr));
+  return !Array.from(
+    subscribedExtRef.closest('IED')?.getElementsByTagName('ExtRef') ?? []
+  )
+    .filter(isPublic)
+    .some(
+      extRef =>
+        (extRef.getAttribute('srcCBName') ?? '') === (srcCBName ?? '') &&
+        (extRef.getAttribute('srcLDInst') ?? '') === (srcLDInst ?? '') &&
+        (extRef.getAttribute('srcLNClass') ?? '') === (srcLNClass ?? '') &&
+        (extRef.getAttribute('iedName') ?? '') === (iedName ?? '') &&
+        (extRef.getAttribute('srcPrefix') ?? '') === (srcPrefix ?? '') &&
+        (extRef.getAttribute('srcLNInst') ?? '') === (srcLNInst ?? '') &&
+        extRef !== subscribedExtRef
+    );
 }
 
 /**

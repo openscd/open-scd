@@ -12,6 +12,7 @@ import { get, translate } from 'lit-translate';
 
 import {
   cloneElement,
+  Delete,
   getDescriptionAttribute,
   identity,
   newActionEvent,
@@ -25,6 +26,7 @@ import {
   removeSubscriptionSupervision,
   FcdaSelectEvent,
   newSubscriptionChangedEvent,
+  canRemoveSubscriptionSupervision,
 } from '../foundation.js';
 
 import {
@@ -146,10 +148,14 @@ export class ExtRefLaterBindingList extends LitElement {
     };
 
     const subscriberIed = extRefElement.closest('IED') || undefined;
-    const removeSubscriptionActions = removeSubscriptionSupervision(
-      this.currentSelectedControlElement,
-      subscriberIed
-    );
+    const removeSubscriptionActions: Delete[] = [];
+    if (canRemoveSubscriptionSupervision(extRefElement))
+      removeSubscriptionActions.push(
+        ...removeSubscriptionSupervision(
+          this.currentSelectedControlElement,
+          subscriberIed
+        )
+      );
 
     this.dispatchEvent(
       newActionEvent({

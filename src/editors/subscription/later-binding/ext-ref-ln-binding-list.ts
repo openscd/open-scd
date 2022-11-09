@@ -29,6 +29,7 @@ import {
   removeSubscriptionSupervision,
   instantiateSubscriptionSupervision,
   styles,
+  canRemoveSubscriptionSupervision,
 } from '../foundation.js';
 import { getSubscribedExtRefElements } from './foundation.js';
 import { emptyInputsDeleteActions } from '../../../foundation/ied.js';
@@ -181,12 +182,13 @@ export class ExtRefLnBindingList extends LitElement {
 
     // we need to extend the actions array with the actions for removing the supervision
     const subscriberIed = lnElement.closest('IED') || undefined;
-    actions.push(
-      ...removeSubscriptionSupervision(
-        this.currentSelectedControlElement,
-        subscriberIed
-      )
-    );
+    if (extRefElement && canRemoveSubscriptionSupervision(extRefElement))
+      actions.push(
+        ...removeSubscriptionSupervision(
+          this.currentSelectedControlElement,
+          subscriberIed
+        )
+      );
 
     return {
       title: get('subscription.disconnect'),
