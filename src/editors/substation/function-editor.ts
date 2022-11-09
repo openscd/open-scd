@@ -24,7 +24,6 @@ import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
 import { Menu } from '@material/mwc-menu';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { IconButton } from '@material/mwc-icon-button';
-import { classMap } from 'lit-html/directives/class-map.js';
 import { renderGeneralEquipment } from './foundation.js';
 
 function childTags(element: Element | null | undefined): SCLTag[] {

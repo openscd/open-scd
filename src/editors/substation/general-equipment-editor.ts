@@ -18,7 +18,6 @@ import { generalConductingEquipmentIcon } from '../../icons/icons.js';
 import { getChildElementsByTagName, newWizardEvent } from '../../foundation.js';
 import { translate } from 'lit-translate';
 import { wizards } from '../../wizards/wizard-library.js';
-//import { styles } from './foundation.js';
 
 @customElement('general-equipment-editor')
 export class GeneralEquipmentEditor extends LitElement {
@@ -26,8 +25,7 @@ export class GeneralEquipmentEditor extends LitElement {
   doc!: XMLDocument;
   @property({ attribute: false })
   element!: Element;
-  @property({ type: Boolean })
-  readonly = false;
+
   /** Whether `Function` and `SubFunction` are rendered */
   @property({ type: Boolean })
   showfunctions = false;
@@ -48,8 +46,6 @@ export class GeneralEquipmentEditor extends LitElement {
   }
 
   private renderLNodes(): TemplateResult {
-    if (!this.showfunctions) return html``;
-
     const lNodes = getChildElementsByTagName(this.element, 'LNode');
 
     return lNodes.length
@@ -66,8 +62,6 @@ export class GeneralEquipmentEditor extends LitElement {
   }
 
   private renderEqFunctions(): TemplateResult {
-    if (!this.showfunctions) return html``;
-
     const eFunctions = getChildElementsByTagName(this.element, 'EqFunction');
 
     return eFunctions.length
