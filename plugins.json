@@ -1,0 +1,16 @@
+{"menu": [
+  {
+    "name": "Open File",
+    "translations": {"de": "Datei öffnen"},
+    "icon": "folder_open",
+    "active": true,
+    "src": "plugins/oscd-open/oscd-open.js"
+  },
+  {
+    "name": "Save File",
+    "translations": {"de": "Datei öffnen"},
+    "icon": "save",
+    "active": true,
+    "src": "plugins/oscd-save/oscd-save.js"
+  }
+]}

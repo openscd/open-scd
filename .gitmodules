@@ -1,0 +1,12 @@
+[submodule "plugins/oscd-save"]
+	path = plugins/oscd-save
+	url = https://github.com/openscd/oscd-save
+	branch = gh-pages
+[submodule "plugins/oscd-open"]
+	path = plugins/oscd-open
+	url = https://github.com/openscd/oscd-open
+	branch = gh-pages
+[submodule "open-scd-core"]
+	path = open-scd-core
+	url = https://github.com/openscd/open-scd-core.git
+	branch = gh-pages
