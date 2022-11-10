@@ -209,6 +209,12 @@ export const en = {
       addvoltagelevel: 'Add voltage level',
       updatesubstation: 'Edited substation "{{name}}"',
     },
+    clone: {
+      redirect: "Redirect LNode's",
+      cloneclose: 'Clone once',
+      cloneproc: 'Clone multiple',
+      newname: 'Clone Name',
+    },
   },
   iededitor: {
     iedSelector: 'Select IED',
@@ -751,8 +757,9 @@ export const en = {
       tooltip:
         'Data Types which are not referenced in a Logical Node or other used Data Type',
       alsoRemoveSubTypes: 'Also remove subtypes',
-      stackExceeded: 'Max Stack Length Exceeded. Maximum allowed is {{maxStackDepth}}. Datatype cleaning incomplete and file damage may have occurred.'
-    }
+      stackExceeded:
+        'Max Stack Length Exceeded. Maximum allowed is {{maxStackDepth}}. Datatype cleaning incomplete and file damage may have occurred.',
+    },
   },
   controlblock: {
     action: {

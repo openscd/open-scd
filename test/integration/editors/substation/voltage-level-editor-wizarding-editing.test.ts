@@ -19,13 +19,15 @@ const openAndCancelMenu: (
   new Promise(async resolve => {
     expect(parent.wizardUI.dialog).to.be.undefined;
 
-    element?.shadowRoot?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!.click();
+    element?.shadowRoot
+      ?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!
+      .click();
     const powerTransformerMenuItem: ListItemBase =
       element?.shadowRoot?.querySelector<ListItemBase>(
         `mwc-list-item[value='PowerTransformer']`
       )!;
 
-      console.log(powerTransformerMenuItem);
+    console.log(powerTransformerMenuItem);
     powerTransformerMenuItem.click();
     await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
@@ -222,7 +224,7 @@ describe('voltage-level-editor wizarding editing integration', () => {
         await fixture(
           html`<mock-wizard-editor
             ><voltage-level-editor
-            .element=${doc.querySelector('VoltageLevel[name="E1"]')}
+              .element=${doc.querySelector('VoltageLevel[name="E1"]')}
             ></voltage-level-editor
           ></mock-wizard-editor>`
         )
@@ -408,7 +410,7 @@ describe('voltage-level-editor wizarding editing integration', () => {
     let copyContentButton: HTMLElement;
 
     beforeEach(async () => {
-      doc = await fetch('/test/testfiles/valid2007B4.scd')
+      doc = await fetch('/test/testfiles/zeroline/clone/noUnusedLNode.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <MockWizardEditor>(
@@ -429,49 +431,61 @@ describe('voltage-level-editor wizarding editing integration', () => {
         )
       );
     });
+
     it('duplicates VoltageLevel on clicking duplicate button', async () => {
       copyContentButton.click();
       await parent.updateComplete;
-      expect(doc.querySelector('VoltageLevel[name="E11"]')).to.exist;
+
+      expect(doc.querySelector('VoltageLevel[name="E2"]')).to.exist;
     });
+
     it('removes all LNode elements in the copy', async () => {
       expect(
         doc.querySelector('VoltageLevel[name="E1"]')?.querySelector('LNode')
       ).to.exist;
+
       copyContentButton.click();
       await parent.updateComplete;
+
       expect(
-        doc.querySelector('VoltageLevel[name="E11"]')?.querySelector('LNode')
+        doc.querySelector('VoltageLevel[name="E2"]')?.querySelector('LNode')
       ).to.not.exist;
     });
+
     it('removes all Terminal elements except the grounding in the copy', async () => {
       expect(
         doc
           .querySelector('VoltageLevel[name="E1"]')
           ?.querySelector('Terminal:not([cNodeName="grounded"])')
       ).to.exist;
+
       copyContentButton.click();
       await parent.updateComplete;
+
       expect(
         doc
-          .querySelector('VoltageLevel[name="E11"]')
+          .querySelector('VoltageLevel[name="E2"]')
           ?.querySelector('Terminal:not([cNodeName="grounded"])')
       ).to.not.exist;
     });
+
     it('removes all ConnectivityNode elements in the copy', async () => {
       expect(
         doc
           .querySelector('VoltageLevel[name="E1"]')
           ?.querySelector('ConnectivityNode')
       ).to.exist;
+
       copyContentButton.click();
       await parent.updateComplete;
+
       expect(
         doc
-          .querySelector('VoltageLevel[name="E11"]')
+          .querySelector('VoltageLevel[name="E2"]')
           ?.querySelector('ConnectivityNode')
       ).to.not.exist;
     });
+
     it('keeps all Bay elements in the copy', async () => {
       copyContentButton.click();
       await parent.updateComplete;
@@ -479,10 +493,11 @@ describe('voltage-level-editor wizarding editing integration', () => {
         doc.querySelector('VoltageLevel[name="E1"]')?.querySelectorAll('Bay')
           .length
       ).to.equal(
-        doc.querySelector('VoltageLevel[name="E11"]')?.querySelectorAll('Bay')
+        doc.querySelector('VoltageLevel[name="E2"]')?.querySelectorAll('Bay')
           .length
       );
     });
+
     it('keeps all ConductingEquipment elements in the copy', async () => {
       copyContentButton.click();
       await parent.updateComplete;
@@ -492,7 +507,7 @@ describe('voltage-level-editor wizarding editing integration', () => {
           ?.querySelectorAll('ConductingEquipment').length
       ).to.equal(
         doc
-          .querySelector('VoltageLevel[name="E11"]')
+          .querySelector('VoltageLevel[name="E2"]')
           ?.querySelectorAll('ConductingEquipment').length
       );
     });

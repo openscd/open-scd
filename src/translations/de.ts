@@ -212,6 +212,12 @@ export const de: Translations = {
       addvoltagelevel: 'Spannungsebene hinzufügen',
       updatesubstation: 'Schaltanlage "{{name}}" bearbeitet',
     },
+    clone: {
+      redirect: 'LNode mitnehmen',
+      cloneclose: 'Einmal klonen',
+      cloneproc: 'Mehrfach klonen',
+      newname: 'Klonname',
+    },
   },
   iededitor: {
     iedSelector: 'IED auswählen',
@@ -754,8 +760,9 @@ export const de: Translations = {
       tooltip:
         'Datentypen, die nicht in einem logischen Knoten oder einem anderen verwendeten Datentyp referenziert werden',
       alsoRemoveSubTypes: 'Entfernen Sie auch Untertypen',
-      stackExceeded: 'Maximale Aufrufe überschritten. Maximal zulässig sind {{maxStackDepth}}. Nicht alle überflüßigen Datentypen sind entfernt und das Project is potentiel beschädigt.',
-    }
+      stackExceeded:
+        'Maximale Aufrufe überschritten. Maximal zulässig sind {{maxStackDepth}}. Nicht alle überflüßigen Datentypen sind entfernt und das Project is potentiel beschädigt.',
+    },
   },
   controlblock: {
     action: {
