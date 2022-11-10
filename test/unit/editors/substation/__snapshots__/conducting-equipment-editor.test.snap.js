@@ -218,7 +218,7 @@ snapshots["conducting-equipment-editor rendered as action pane with EqFunction c
       </mwc-list-item>
     </mwc-menu>
   </abbr>
-  <eq-function-editor>
+  <eq-function-editor showfunctions="">
   </eq-function-editor>
 </action-pane>
 `;
