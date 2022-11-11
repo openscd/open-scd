@@ -84,9 +84,9 @@ describe('supervision', () => {
       });
     });
 
-    it('removes the correct elements when supervision is removed', () => {
+    describe('removes the correct elements when supervision is removed', () => {
       beforeEach(() => {
-        subscriberIED = doc.querySelector('IED[name="SMV_Subscriber"]')!;
+        subscriberIED = doc.querySelector('IED[name="SMV_Subscriber"]');
       });
       it('allows removing supervision in a vendor-created LN', () => {
         controlElement = doc.querySelector(
