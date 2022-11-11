@@ -77,6 +77,35 @@
 			</ConnectedAP>
 		</SubNetwork>
 	</Communication>
+	<IED xmlns="http://www.iec.ch/61850/2003/SCL" name="GOOSE_Subscriber" desc="GOOSE subscriber" manufacturer="Dummy">
+		<AccessPoint name="AP1">
+			<Server>
+				<Authentication/>
+				<LDevice inst="Earth_Switch">
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0">
+						<Inputs>
+							<ExtRef iedName="GOOSE_Publisher" serviceType="GOOSE" ldInst="QB2_Disconnector" lnClass="CSWI" lnInst="1" prefix="" doName="Pos" daName="stVal" srcLDInst="QB2_Disconnector" srcPrefix="" srcLNClass="LLN0" srcCBName="GOOSE2"/>
+							<ExtRef iedName="GOOSE_Publisher" serviceType="GOOSE" ldInst="QB2_Disconnector" lnClass="CSWI" lnInst="1" prefix="" doName="Pos" daName="q" srcLDInst="QB2_Disconnector" srcPrefix="" srcLNClass="LLN0" srcCBName="GOOSE2"/>
+						</Inputs>
+					</LN0>
+					<LN prefix="" lnClass="CILO" inst="1" lnType="Dummy.CILO">
+						<Inputs>
+							<ExtRef intAddr="Pos;CSWI1/Pos/stVal" desc="Interlocking.Input"/>
+							<ExtRef intAddr="Pos;CSWI1/Pos/q" desc="Interlocking.Input"/>
+						</Inputs>
+					</LN>
+					<LN prefix="" lnClass="CSWI" inst="1" lnType="Dummy.CSWI">
+						<Inputs>
+							<ExtRef iedName="GOOSE_Publisher" serviceType="GOOSE" ldInst="QB2_Disconnector" lnClass="CSWI" lnInst="1" prefix="" doName="Pos" daName="stVal" srcLDInst="QB2_Disconnector" srcPrefix="" srcLNClass="LLN0" srcCBName="GOOSE2" intAddr="Pos;CSWI1/Pos/stVal" desc="Interlocking.Input2"/>
+							<ExtRef iedName="GOOSE_Publisher" serviceType="GOOSE" ldInst="QB2_Disconnector" lnClass="CSWI" lnInst="1" prefix="" doName="Pos" daName="q" srcLDInst="QB2_Disconnector" srcPrefix="" srcLNClass="LLN0" srcCBName="GOOSE2" intAddr="Pos;CSWI1/Pos/q" desc="Interlocking.Input2"/>
+							<ExtRef intAddr="someRestrictedExtRef" desc="Restricted To Pos" pLN="CSWI" pDO="Pos" pDA="stVal"/>
+						</Inputs>
+					</LN>
+					<LN prefix="" lnClass="XSWI" inst="1" lnType="Dummy.XSWI"/>
+				</LDevice>
+			</Server>
+		</AccessPoint>
+	</IED>
 	<IED xmlns="http://www.iec.ch/61850/2003/SCL" name="GOOSE_Subscriber1" desc="GOOSE subscriber" manufacturer="Dummy">
 		<Services>
 			<SupSubscription maxGo="4" maxSv="0"/>
@@ -125,6 +154,14 @@
 							</DAI>
 						</DOI>
 					</LN>
+					<LN lnClass="LGOS" inst="3" lnType="Dummy.LGOS">
+						<Private type="OpenSCD.create"/>
+						<DOI name="GoCBRef">
+							<DAI name="setSrcRef">
+								<Val>GOOSE_PublisherQB2_Disconnector/LLN0.GOOSE1</Val>
+							</DAI>
+						</DOI>
+					</LN>
 				</LDevice>
 			</Server>
 		</AccessPoint>
@@ -167,36 +204,30 @@
 				</LDevice>
 				<LDevice inst="SV_supervision">
 					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
-					<LN lnClass="LGOS" inst="1" lnType="Dummy.LGOS"/>
+					<LN lnClass="LGOS" inst="1" lnType="Dummy.LGOS1"/>
 				</LDevice>
 			</Server>
 		</AccessPoint>
 	</IED>
 	<IED xmlns="http://www.iec.ch/61850/2003/SCL" name="GOOSE_Subscriber4" desc="GOOSE subscriber" manufacturer="Dummy">
+		<Services>
+			<SupSubscription maxGo="4" maxSv="0"/>
+		</Services>
 		<AccessPoint name="AP1">
 			<Server>
 				<Authentication/>
 				<LDevice inst="Earth_Switch">
-					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0">
-						<Inputs>
-							<ExtRef iedName="GOOSE_Publisher" serviceType="GOOSE" ldInst="QB2_Disconnector" lnClass="CSWI" lnInst="1" prefix="" doName="Pos" daName="stVal" srcLDInst="QB2_Disconnector" srcPrefix="" srcLNClass="LLN0" srcCBName="GOOSE2"/>
-							<ExtRef iedName="GOOSE_Publisher" serviceType="GOOSE" ldInst="QB2_Disconnector" lnClass="CSWI" lnInst="1" prefix="" doName="Pos" daName="q" srcLDInst="QB2_Disconnector" srcPrefix="" srcLNClass="LLN0" srcCBName="GOOSE2"/>
-						</Inputs>
-					</LN0>
-					<LN prefix="" lnClass="CILO" inst="1" lnType="Dummy.CILO">
-						<Inputs>
-							<ExtRef intAddr="Pos;CSWI1/Pos/stVal" desc="Interlocking.Input"/>
-							<ExtRef intAddr="Pos;CSWI1/Pos/q" desc="Interlocking.Input"/>
-						</Inputs>
-					</LN>
-					<LN prefix="" lnClass="CSWI" inst="1" lnType="Dummy.CSWI">
-						<Inputs>
-							<ExtRef iedName="GOOSE_Publisher" serviceType="GOOSE" ldInst="QB2_Disconnector" lnClass="CSWI" lnInst="1" prefix="" doName="Pos" daName="stVal" srcLDInst="QB2_Disconnector" srcPrefix="" srcLNClass="LLN0" srcCBName="GOOSE2" intAddr="Pos;CSWI1/Pos/stVal" desc="Interlocking.Input2"/>
-							<ExtRef iedName="GOOSE_Publisher" serviceType="GOOSE" ldInst="QB2_Disconnector" lnClass="CSWI" lnInst="1" prefix="" doName="Pos" daName="q" srcLDInst="QB2_Disconnector" srcPrefix="" srcLNClass="LLN0" srcCBName="GOOSE2" intAddr="Pos;CSWI1/Pos/q" desc="Interlocking.Input2"/>
-							<ExtRef intAddr="someRestrictedExtRef" desc="Restricted To Pos" pLN="CSWI" pDO="Pos" pDA="stVal"/>
-						</Inputs>
-					</LN>
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
+					<LN prefix="" lnClass="CILO" inst="1" lnType="Dummy.CILO"/>
+					<LN prefix="" lnClass="CSWI" inst="1" lnType="Dummy.CSWI"/>
 					<LN prefix="" lnClass="XSWI" inst="1" lnType="Dummy.XSWI"/>
+				</LDevice>
+				<LDevice inst="SV_supervision">
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
+					<LN lnClass="LGOS" inst="1" lnType="Dummy.LGOS2"/>
+					<LN lnClass="LGOS" inst="2" lnType="Dummy.LGOS2"/>
+					<LN lnClass="LGOS" inst="3" lnType="Dummy.LGOS2"/>
+					<LN lnClass="LGOS" inst="4" lnType="Dummy.LGOS2"/>
 				</LDevice>
 			</Server>
 		</AccessPoint>
@@ -270,6 +301,22 @@
 			<DO name="Beh" type="OpenSCD_ENS_Beh"/>
 			<DO name="NamPlt" type="OpenSCD_LPL_noLD"/>
 		</LNodeType>
+		<LNodeType lnClass="LGOS" id="Dummy.LGOS1">
+			<DO name="GoCBRef" type="Dummy.ORG1"/>
+			<DO name="St" type="OpenSCD_SPS_simple"/>
+			<DO name="Mod" type="OpenSCD_ENC_Mod"/>
+			<DO name="Health" type="OpenSCD_ENS_Health"/>
+			<DO name="Beh" type="OpenSCD_ENS_Beh"/>
+			<DO name="NamPlt" type="OpenSCD_LPL_noLD"/>
+		</LNodeType>
+		<LNodeType lnClass="LGOS" id="Dummy.LGOS2">
+			<DO name="GoCBRef" type="Dummy.ORG2"/>
+			<DO name="St" type="OpenSCD_SPS_simple"/>
+			<DO name="Mod" type="OpenSCD_ENC_Mod"/>
+			<DO name="Health" type="OpenSCD_ENS_Health"/>
+			<DO name="Beh" type="OpenSCD_ENS_Beh"/>
+			<DO name="NamPlt" type="OpenSCD_LPL_noLD"/>
+		</LNodeType>
 		<LNodeType lnClass="XSWI" id="Dummy.XSWI" desc="Switch: one phase represenation">
 			<DO name="Mod" type="OpenSCD_ENC_Mod"/>
 			<DO name="Beh" type="OpenSCD_ENS_Beh"/>
@@ -309,6 +356,12 @@
 			<DO name="Loc" type="OpenSCD_SPS_simple"/>
 		</LNodeType>
 		<DOType cdc="ORG" id="Dummy.ORG">
+			<DA name="setSrcRef" bType="ObjRef" dchg="true" valKind="RO" valImport="true" fc="SP"/>
+		</DOType>
+		<DOType cdc="ORG" id="Dummy.ORG1">
+			<DA name="setSrcRef" bType="ObjRef" dchg="true" valKind="Conf" valImport="true" fc="SP"/>
+		</DOType>
+		<DOType cdc="ORG" id="Dummy.ORG2">
 			<DA name="setSrcRef" bType="ObjRef" dchg="true" fc="SP"/>
 		</DOType>
 		<DOType cdc="ENS" id="OpenSCD_ENS_SwTyp">

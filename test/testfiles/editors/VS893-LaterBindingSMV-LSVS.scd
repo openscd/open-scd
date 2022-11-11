@@ -73,7 +73,7 @@
 	</Communication>
 	<IED xmlns="http://www.iec.ch/61850/2003/SCL" name="SMV_Subscriber" manufacturer="Dummy">
 		<Services>
-			<SupSubscription maxSv="4"/>
+			<SupSubscription maxSv="4" maxGo="0"/>
 		</Services>
 		<AccessPoint name="AP1">
 			<Server>
@@ -128,7 +128,7 @@
 	</IED>
 	<IED xmlns="http://www.iec.ch/61850/2003/SCL" name="SMV_Subscriber2" manufacturer="Dummy">
 		<Services>
-			<SupSubscription maxSv="4"/>
+			<SupSubscription maxSv="4" maxGo="0"/>
 		</Services>
 		<AccessPoint name="AP1">
 			<Server>
@@ -162,16 +162,16 @@
 				</LDevice>
 				<LDevice inst="SV_supervision">
 					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
-					<LN lnClass="LSVS" inst="1" lnType="Dummy.LSVS">
+					<LN lnClass="LSVS" inst="1" lnType="Dummy.LSVS1">
 						<DOI name="SvCBRef">
 							<DAI name="setSrcRef">
 								<Val>SMV_PublisherCurrentTransformer/LLN0.currrentOnly</Val>
 							</DAI>
 						</DOI>
 					</LN>
-					<LN lnClass="LSVS" inst="2" lnType="Dummy.LSVS"/>
-					<LN lnClass="LSVS" inst="3" lnType="Dummy.LSVS"/>
-					<LN lnClass="LSVS" inst="4" lnType="Dummy.LSVS"/>
+					<LN lnClass="LSVS" inst="2" lnType="Dummy.LSVS1"/>
+					<LN lnClass="LSVS" inst="3" lnType="Dummy.LSVS1"/>
+					<LN lnClass="LSVS" inst="4" lnType="Dummy.LSVS1"/>
 				</LDevice>
 			</Server>
 		</AccessPoint>
@@ -206,6 +206,56 @@
 							<ExtRef intAddr="someRestrictedExtRef" desc="Restricted To AmpSV" pLN="TCTR" pDO="AmpSV" pDA="instMag.i"/>
 						</Inputs>
 					</LN>
+				</LDevice>
+			</Server>
+		</AccessPoint>
+	</IED>
+	<IED xmlns="http://www.iec.ch/61850/2003/SCL" name="SMV_Subscriber4" manufacturer="Dummy">
+		<Services>
+			<SupSubscription maxSv="4" maxGo="0"/>
+		</Services>
+		<AccessPoint name="AP1">
+			<Server>
+				<Authentication/>
+				<LDevice inst="Overvoltage">
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
+					<LN prefix="" lnClass="PTRC" inst="1" lnType="Summy.PTRC">
+						<Inputs>
+							<ExtRef intAddr="AmpSv;TCTR1/AmpSv/instMag.i" desc="MeasPoint.CT1" iedName="SMV_Publisher" ldInst="CurrentTransformer" prefix="L1" lnClass="TCTR" lnInst="1" doName="AmpSv" daName="instMag.i" serviceType="SMV" srcLDInst="CurrentTransformer" srcLNClass="LLN0" srcCBName="currrentOnly"/>
+							<ExtRef intAddr="AmpSv;TCTR1/AmpSv/q" desc="MeasPoint.CT1"/>
+							<ExtRef intAddr="AmpSv;TCTR2/AmpSv/instMag.i" desc="MeasPoint.CT2"/>
+							<ExtRef intAddr="AmpSv;TCTR2/AmpSv/q" desc="MeasPoint.CT1"/>
+							<ExtRef intAddr="AmpSv;TCTR3/AmpSv/instMag.i" desc="MeasPoint.CT3"/>
+							<ExtRef intAddr="AmpSv;TCTR3/AmpSv/q" desc="MeasPoint.CT1"/>
+						</Inputs>
+					</LN>
+				</LDevice>
+				<LDevice inst="Overcurrent">
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
+					<LN prefix="" lnClass="PTRC" inst="1" lnType="Summy.PTRC">
+						<Inputs>
+							<ExtRef intAddr="VolSv;TVTR1/VolSv/instMag.i" desc="MeasPoint.VT1"/>
+							<ExtRef intAddr="VolSv;TVTR1/VolSv/q" desc="MeasPoint.VT1"/>
+							<ExtRef intAddr="VolSv;TVTR2/VolSv/instMag.i" desc="MeasPoint.VT2"/>
+							<ExtRef intAddr="VolSv;TVTR2/VolSv/q" desc="MeasPoint.VT1"/>
+							<ExtRef intAddr="VolSv;TVTR3/VolSv/instMag.i" desc="MeasPoint.VT3"/>
+							<ExtRef intAddr="VolSv;TVTR3/VolSv/q" desc="MeasPoint.VT1"/>
+							<ExtRef intAddr="someRestrictedExtRef" desc="Restricted To AmpSV" pLN="TCTR" pDO="AmpSV" pDA="instMag.i"/>
+						</Inputs>
+					</LN>
+				</LDevice>
+				<LDevice inst="SV_supervision">
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
+					<LN lnClass="LSVS" inst="1" lnType="Dummy.LSVS2">
+						<DOI name="SvCBRef">
+							<DAI name="setSrcRef">
+								<Val>SMV_PublisherCurrentTransformer/LLN0.currrentOnly</Val>
+							</DAI>
+						</DOI>
+					</LN>
+					<LN lnClass="LSVS" inst="2" lnType="Dummy.LSVS2"/>
+					<LN lnClass="LSVS" inst="3" lnType="Dummy.LSVS2"/>
+					<LN lnClass="LSVS" inst="4" lnType="Dummy.LSVS2"/>
 				</LDevice>
 			</Server>
 		</AccessPoint>
@@ -524,6 +574,22 @@
 			<DO name="Beh" type="OpenSCD_ENS_Beh"/>
 			<DO name="NamPlt" type="OpenSCD_LPL_noLD"/>
 		</LNodeType>
+		<LNodeType lnClass="LSVS" id="Dummy.LSVS1">
+			<DO name="SvCBRef" type="Dummy.ORG1"/>
+			<DO name="St" type="OpenSCD_SPS_simple"/>
+			<DO name="Mod" type="OpenSCD_ENC_Mod"/>
+			<DO name="Health" type="OpenSCD_ENS_Health"/>
+			<DO name="Beh" type="OpenSCD_ENS_Beh"/>
+			<DO name="NamPlt" type="OpenSCD_LPL_noLD"/>
+		</LNodeType>
+		<LNodeType lnClass="LSVS" id="Dummy.LSVS2">
+			<DO name="SvCBRef" type="Dummy.ORG2"/>
+			<DO name="St" type="OpenSCD_SPS_simple"/>
+			<DO name="Mod" type="OpenSCD_ENC_Mod"/>
+			<DO name="Health" type="OpenSCD_ENS_Health"/>
+			<DO name="Beh" type="OpenSCD_ENS_Beh"/>
+			<DO name="NamPlt" type="OpenSCD_LPL_noLD"/>
+		</LNodeType>
 		<LNodeType lnClass="PTRC" id="Summy.PTRC" desc="Trip conditioning: General trip signal">
 			<DO name="Mod" type="OpenSCD_ENC_Mod"/>
 			<DO name="Beh" type="OpenSCD_ENS_Beh"/>
@@ -565,6 +631,12 @@
 			<DO name="Loc" type="OpenSCD_SPS_simple"/>
 		</LNodeType>
 		<DOType cdc="ORG" id="Dummy.ORG">
+			<DA name="setSrcRef" bType="ObjRef" dchg="true" valKind="RO" valImport="true" fc="SP"/>
+		</DOType>
+		<DOType cdc="ORG" id="Dummy.ORG1">
+			<DA name="setSrcRef" bType="ObjRef" dchg="true" valKind="Conf" valImport="true" fc="SP"/>
+		</DOType>
+		<DOType cdc="ORG" id="Dummy.ORG2">
 			<DA name="setSrcRef" bType="ObjRef" dchg="true" fc="SP"/>
 		</DOType>
 		<DOType cdc="ACD" id="OpenSCD_ACD_general">

@@ -198,6 +198,37 @@ export function canRemoveSubscriptionSupervision(
 }
 
 /**
+ * Searches DataTypeTemplates for DOType>DA[valKind=Conf/RO][valImport=true] from an LN reference.
+ * @param lnElement - The LN Element to use for searching the starting DO Element.
+ * @returns - true if both conditions are found in the DA child element.
+ */
+function checksDataTypeTemplateConditions(lnElement: Element): boolean {
+  const rootNode = lnElement?.ownerDocument;
+  const lNodeType = lnElement.getAttribute('lnType');
+  const lnClass = lnElement.getAttribute('lnClass');
+  const dObj = rootNode.querySelector(
+    `DataTypeTemplates > LNodeType[id="${lNodeType}"][lnClass="${lnClass}"] > DO[name="${
+      lnClass === 'LGOS' ? 'GoCBRef' : 'SvCBRef'
+    }"]`
+  );
+  if (dObj) {
+    const dORef = dObj.getAttribute('type');
+    const daObj = rootNode.querySelector(
+      `DataTypeTemplates > DOType[id="${dORef}"] > DA[name="setSrcRef"]`
+    );
+    if (daObj) {
+      return (
+        (daObj.getAttribute('valKind') === 'Conf' ||
+          daObj.getAttribute('valKind') === 'RO') &&
+        daObj.getAttribute('valImport') === 'true'
+      );
+    }
+  }
+  // definition missing
+  return false;
+}
+
+/**
  * Returns an array with a single Create action to create a new
  * supervision element for the given GOOSE/SMV message and subscriber IED.
  *
@@ -222,7 +253,8 @@ export function instantiateSubscriptionSupervision(
     subscriberIED,
     supervisionType
   );
-  if (!availableLN) return [];
+  if (!availableLN || !checksDataTypeTemplateConditions(availableLN)) return [];
+
   // Then, create the templateStructure array
   const templateStructure = createTemplateStructure(availableLN, [
     controlBlock?.tagName === 'GSEControl' ? 'GoCBRef' : 'SvCBRef',
