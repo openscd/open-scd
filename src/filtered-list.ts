@@ -18,7 +18,6 @@ import { List } from '@material/mwc-list';
 import { ListBase } from '@material/mwc-list/mwc-list-base';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { TextField } from '@material/mwc-textfield';
-import { ReportControlElementEditor } from './editors/publisher/report-control-element-editor';
 
 function slotItem(item: Element): Element {
   if (!item.closest('filtered-list') || !item.parentElement) return item;
@@ -46,14 +45,14 @@ function hideFiltered(item: ListItemBase, searchText: string): void {
     .split(/\s+/g);
 
   (terms.length === 1 && terms[0] === '') ||
-  terms.every(term => {
-    // regexp escape
-    const reTerm = new RegExp(
-      `*${term}*`.replace(/\*/g, '.*').replace(/\?/g, '.{1}'),
-      'i'
-    );
-    return reTerm.test(filterTarget);
-  })
+    terms.every(term => {
+      // regexp escape
+      const reTerm = new RegExp(
+        `*${term}*`.replace(/\*/g, '.*').replace(/\?/g, '.{1}'),
+        'i'
+      );
+      return reTerm.test(filterTarget);
+    })
     ? slotItem(item).classList.remove('hidden')
     : slotItem(item).classList.add('hidden');
 }
@@ -115,6 +114,12 @@ export class FilteredList extends ListBase {
     this.requestUpdate();
   }
 
+  public layout(): void {
+    super.layout();
+    // regenerate filtering of text
+    this.onFilterInput();
+  }
+
   constructor() {
     super();
     this.addEventListener('selected', () => {
@@ -129,8 +134,8 @@ export class FilteredList extends ListBase {
             ?indeterminate=${!this.isAllSelected && this.isSomeSelected}
             ?checked=${this.isAllSelected}
             @change=${() => {
-              this.onCheckAll();
-            }}
+          this.onCheckAll();
+        }}
           ></mwc-checkbox
         ></mwc-formfield>`
       : html``;
