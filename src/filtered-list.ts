@@ -114,8 +114,7 @@ export class FilteredList extends ListBase {
     this.requestUpdate();
   }
 
-  public layout(): void {
-    super.layout();
+  public updated(): void {
     // regenerate filtering of text
     this.onFilterInput();
   }
