@@ -11,3 +11,4 @@
 /dist
 /custom-elements.json
 /.tsbuildinfo
+/.rollup.cache
