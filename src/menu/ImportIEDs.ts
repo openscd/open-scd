@@ -368,6 +368,14 @@ function isIedNameUnique(ied: Element, doc: Document): boolean {
   return true;
 }
 
+function cloneAttributes(destElement: Element, sourceElement: Element) {
+  let attr;
+  const attributes = Array.prototype.slice.call(sourceElement.attributes);
+  while ((attr = attributes.pop())) {
+    destElement.setAttribute(attr.nodeName, attr.nodeValue);
+  }
+}
+
 export async function importIED(
   ied: Element,
   doc: XMLDocument,
@@ -394,6 +402,10 @@ export async function importIED(
     );
   }
 
+  // clone namespaces
+  // not sure how to do this with undo/redo capability (?)
+  cloneAttributes(doc.documentElement, ied.ownerDocument.documentElement)
+
   const dataTypeTemplateActions = addDataTypeTemplates(ied, doc);
   const communicationActions = addCommunicationElements(ied, doc);
   const actions = communicationActions.concat(dataTypeTemplateActions);
@@ -411,6 +423,8 @@ export async function importIED(
     })
   );
 }
+
+
 
 export default class ImportingIedPlugin extends LitElement {
   doc!: XMLDocument;
