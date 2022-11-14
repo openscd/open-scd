@@ -315,6 +315,17 @@ export class OpenSCD extends Plugging(Editing(LitElement)) {
   }
 
   static styles = css`
+    aside {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
     abbr {
       text-decoration: none;
     }
