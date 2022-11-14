@@ -99,10 +99,10 @@ export function getFcdaTitleValue(fcdaElement: Element): string {
 
 export function getFcdaSubtitleValue(fcdaElement: Element): string {
   return `${fcdaElement.getAttribute('ldInst')} ${
-    fcdaElement.hasAttribute('ldInst') && fcdaElement.hasAttribute('prefix')
+    fcdaElement.hasAttribute('ldInst')
       ? `/`
       : ''
-  } ${fcdaElement.getAttribute('prefix')} ${fcdaElement.getAttribute(
+  } ${fcdaElement.getAttribute('prefix') ?? ''} ${fcdaElement.getAttribute(
     'lnClass'
   )} ${fcdaElement.getAttribute('lnInst')}`;
 }
