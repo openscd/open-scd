@@ -72,11 +72,15 @@ function importIedsWizard(importDoc: XMLDocument, doc: XMLDocument): Wizard {
   ];
 }
 
-function getSubNetwork(elements: Element[], element: Element): Element {
+function getSubNetwork(
+  elements: Element[],
+  element: Element,
+  doc: XMLDocument
+): Element {
   const existElement = elements.find(
     item => item.getAttribute('name') === element.getAttribute('name')
   );
-  return existElement ? existElement : <Element>element.cloneNode(false);
+  return existElement ? existElement : doc.importNode(element, true);
 }
 
 function addCommunicationElements(
@@ -119,8 +123,8 @@ function addCommunicationElements(
 
     const subNetwork = oldSubNetworkMatch
       ? oldSubNetworkMatch
-      : getSubNetwork(createdSubNetworks, newSubNetwork);
-    const element = <Element>connectedAP.cloneNode(true);
+      : getSubNetwork(createdSubNetworks, newSubNetwork, doc);
+    const element = doc.importNode(connectedAP, true);
 
     if (!oldSubNetworkMatch && !createdSubNetworks.includes(subNetwork)) {
       actions.push({
@@ -368,9 +372,9 @@ function isIedNameUnique(ied: Element, doc: Document): boolean {
   return true;
 }
 
-function cloneAttributes(destElement: Element, sourceElement: Element) {
+function cloneNsAttributes(destElement: Element, sourceElement: Element) {
   let attr;
-  const attributes = Array.prototype.slice.call(sourceElement.attributes);
+  const attributes = (Array.prototype.slice.call(sourceElement.attributes)).filter(attr => attr.name.startsWith('xmlns:'));
   while ((attr = attributes.pop())) {
     destElement.setAttribute(attr.nodeName, attr.nodeValue);
   }
@@ -381,8 +385,9 @@ export async function importIED(
   doc: XMLDocument,
   dispatchObject: HTMLElement
 ): Promise<void> {
-  if (ied.getAttribute('name') === 'TEMPLATE')
-    ied.setAttribute(
+  const importIed = doc.importNode(ied, true);
+  if (importIed.getAttribute('name') === 'TEMPLATE')
+  importIed.setAttribute(
       'name',
       'TEMPLATE_IED' +
         (Array.from(doc.querySelectorAll('IED')).filter(ied =>
@@ -391,12 +396,12 @@ export async function importIED(
           1)
     );
 
-  if (!isIedNameUnique(ied, doc)) {
+  if (!isIedNameUnique(importIed, doc)) {
     dispatchObject.dispatchEvent(
       newLogEvent({
         kind: 'error',
         title: get('import.log.nouniqueied', {
-          name: ied.getAttribute('name')!,
+          name: importIed.getAttribute('name')!,
         }),
       })
     );
@@ -404,27 +409,26 @@ export async function importIED(
 
   // clone namespaces
   // not sure how to do this with undo/redo capability (?)
-  cloneAttributes(doc.documentElement, ied.ownerDocument.documentElement)
+  cloneNsAttributes(doc.documentElement, importIed.ownerDocument.documentElement);
 
-  const dataTypeTemplateActions = addDataTypeTemplates(ied, doc);
-  const communicationActions = addCommunicationElements(ied, doc);
+  const dataTypeTemplateActions = addDataTypeTemplates(importIed, doc);
+  const communicationActions = addCommunicationElements(importIed, doc);
   const actions = communicationActions.concat(dataTypeTemplateActions);
+
   actions.push({
     new: {
       parent: doc!.querySelector(':root')!,
-      element: ied,
+      element: importIed,
     },
   });
 
   dispatchObject.dispatchEvent(
     newActionEvent({
-      title: get('editing.import', { name: ied.getAttribute('name')! }),
+      title: get('editing.import', { name: importIed.getAttribute('name')! }),
       actions,
     })
   );
 }
-
-
 
 export default class ImportingIedPlugin extends LitElement {
   doc!: XMLDocument;
