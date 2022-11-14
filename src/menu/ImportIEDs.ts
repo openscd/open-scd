@@ -368,6 +368,31 @@ function isIedNameUnique(ied: Element, doc: Document): boolean {
   return true;
 }
 
+/**
+ * Transfer namespaces from one element to another
+ * @param destElement - Element to transfer namespaces to
+ * @param sourceElement  - Element to transfer namespaces from
+ */
+function updateNamespaces(destElement: Element, sourceElement: Element) {
+  const attributes = Array.prototype.slice
+    .call(sourceElement.attributes)
+    .filter(attr => attr.name.startsWith('xmlns:'));
+
+  attributes.forEach(attr => {
+    if (!destElement.hasAttribute(attr.name)) {
+      // If there is a namespace prefix conflict the DOM will resolve.
+      // However the namespace may not start with 'e' as required
+      // by the IEC 61850 standard (Ed 2.1, Part 6, Sec. 8.3.5)
+      // Propose to ignore this unless found to be problematic.
+      destElement.setAttributeNS(
+        'http://www.w3.org/2000/xmlns/',
+        attr.name,
+        attr.value
+      );
+    }
+  });
+}
+
 export async function importIED(
   ied: Element,
   doc: XMLDocument,
@@ -393,6 +418,12 @@ export async function importIED(
       })
     );
   }
+
+  // This doesn't provide redo/undo capability as it is not using the Editing
+  // action API. To use it would require us to cache the full SCL file in
+  // OpenSCD as it is now which could use significant memory.
+  // TODO: In open-scd core update this to allow including in undo/redo.
+  updateNamespaces(doc.documentElement, ied.ownerDocument.documentElement);
 
   const dataTypeTemplateActions = addDataTypeTemplates(ied, doc);
   const communicationActions = addCommunicationElements(ied, doc);
