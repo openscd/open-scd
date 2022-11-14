@@ -1039,6 +1039,16 @@ class Zo extends Yo{constructor(){super(...arguments),this.mdcFoundationClass=qo
       <aside>
         ${this.plugins.menu.map((t=>wt`<${yt(dr(t.src))} docName="${this.docName}" .doc=${this.doc} locale="${this.locale}" .docs=${this.docs}></${yt(dr(t.src))}>`))}
       </aside>`}};lr=new WeakMap,br.styles=p`
+    aside {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      opacity: 0;
+      overflow: hidden;
+    }
+
     abbr {
       text-decoration: none;
     }

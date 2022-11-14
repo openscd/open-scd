@@ -9397,6 +9397,16 @@ let OpenSCD = class OpenSCD extends Plugging(Editing(s$1)) {
 };
 _OpenSCD_actions = new WeakMap();
 OpenSCD.styles = i$5 `
+    aside {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      opacity: 0;
+      overflow: hidden;
+    }
+
     abbr {
       text-decoration: none;
     }
