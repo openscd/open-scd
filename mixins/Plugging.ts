@@ -44,9 +44,8 @@ export function Plugging<TBase extends LitElementConstructor>(Base: TBase) {
           if (this.loadedPlugins.has(tagName)) return;
           this.#loadedPlugins.set(tagName, plugin);
           if (customElements.get(tagName)) return;
-          import(plugin.src).then(mod =>
-            customElements.define(tagName, mod.default)
-          );
+          const url = new URL(plugin.src, window.location.href).toString();
+          import(url).then(mod => customElements.define(tagName, mod.default));
         })
       );
 
