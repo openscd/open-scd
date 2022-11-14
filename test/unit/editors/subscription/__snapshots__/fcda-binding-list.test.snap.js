@@ -685,13 +685,13 @@ snapshots["fcda-binding-list with a GSEControl doc loaded looks like the latest 
                         QB2_Disconnector /  CSWI 1
                         GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos q (ST)
                         EnaOpn.stVal
-                        QB1_Disconnector  null CILO 1
+                        QB1_Disconnector /  CILO 1
                         GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB1_Disconnector/ CILO 1.EnaOpn stVal (ST)
                         EnaCls.stVal
                         QB1_Disconnector /  CILO 1
                         GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB1_Disconnector/ CILO 1.EnaCls stVal (ST)
                         EnaOpn.stVal
-                        QB2_Disconnector  null CILO 1
+                        QB2_Disconnector /  CILO 1
                         GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CILO 1.EnaOpn stVal (ST)"
     >
       <mwc-icon-button
@@ -776,7 +776,7 @@ snapshots["fcda-binding-list with a GSEControl doc loaded looks like the latest 
         EnaOpn.stVal
       </span>
       <span slot="secondary">
-        QB1_Disconnector  null CILO 1
+        QB1_Disconnector /  CILO 1
       </span>
       <mwc-icon slot="graphic">
         subdirectory_arrow_right
@@ -816,7 +816,7 @@ snapshots["fcda-binding-list with a GSEControl doc loaded looks like the latest 
         EnaOpn.stVal
       </span>
       <span slot="secondary">
-        QB2_Disconnector  null CILO 1
+        QB2_Disconnector /  CILO 1
       </span>
       <mwc-icon slot="graphic">
         subdirectory_arrow_right
