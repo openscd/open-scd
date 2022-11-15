@@ -37,7 +37,8 @@ type LocaleTag = typeof allLocales[number];
 const { getLocale, setLocale } = configureLocalization({
   sourceLocale,
   targetLocales,
-  loadLocale: locale => import(`./locales/${locale}.js`),
+  loadLocale: locale =>
+    import(new URL(`locales/${locale}.js`, import.meta.url).href),
 });
 
 function describe({ undo, redo }: LogEntry) {
