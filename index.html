@@ -4,19 +4,6 @@
 <script type="module">
 import 'https://openscd.github.io/open-scd-core/open-scd.js';
 
-fetch('./plugins.json')
-  .then((res) => res.text())
-  .then((plugins) => {
-    const openScd = document.querySelector('open-scd');
-
-    openScd.setAttribute('plugins', plugins);
-
-    const params = (new URL(document.location)).searchParams;
-    for (const [name, value] of params) {
-      openScd.setAttribute(name, value);
-    }
-  });
-
 const editor = document.querySelector('open-scd');
 const params = (new URL(document.location)).searchParams;
 for (const [name, value] of params) {
