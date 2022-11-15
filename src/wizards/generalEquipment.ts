@@ -2,6 +2,7 @@ import { html, TemplateResult } from 'lit-element';
 import { get, translate } from 'lit-translate';
 import {
   cloneElement,
+  createElement,
   getChildElementsByTagName,
   getValue,
   SimpleAction,
@@ -109,4 +110,52 @@ export function contentGeneralEquipmentWizard(
       nullable
     ></wizard-checkbox>`,
   ];
+}
+
+export function createGeneralEquipmentWizard(parent: Element): Wizard {
+  const name = '';
+  const desc = null;
+  const type = null;
+  const virtual = null;
+  const reservedNames = Array.from(
+    parent.querySelectorAll('GeneralEquipment')
+  ).map(fUnction => fUnction.getAttribute('name')!);
+
+  return [
+    {
+      title: get('wizard.title.add', { tagName: 'GeneralEquipment' }),
+      primary: {
+        icon: 'save',
+        label: get('save'),
+        action: createGeneralEquipmentAction(parent),
+      },
+      content: [
+        ...contentGeneralEquipmentWizard({
+          name,
+          desc,
+          type,
+          virtual,
+          reservedNames,
+        }),
+      ],
+    },
+  ];
+}
+
+function createGeneralEquipmentAction(parent: Element): WizardActor {
+  return (inputs: WizardInputElement[]) => {
+    const functionAttrs: Record<string, string | null> = {};
+    const functionKeys = ['name', 'desc', 'type', 'virtual'];
+    functionKeys.forEach(key => {
+      functionAttrs[key] = getValue(inputs.find(i => i.label === key)!);
+    });
+
+    const fUnction = createElement(
+      parent.ownerDocument,
+      'GeneralEquipment',
+      functionAttrs
+    );
+
+    return [{ new: { parent, element: fUnction } }];
+  };
 }
