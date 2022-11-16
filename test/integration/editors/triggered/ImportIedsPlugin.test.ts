@@ -202,6 +202,24 @@ describe('ImportIedsPlugin', () => {
         .exist;
     });
 
+    it('correctly transfers document element namespaces', () => {
+      element.prepareImport(importDoc, doc);
+      expect(element.doc.querySelector('SCL')!.getAttribute('xmlns:eTest1')).to.equal('http://www.eTest1.com/2022/Better61850')
+      expect(element.doc.querySelector('SCL')!.getAttribute('xmlns:eTest2')).to.equal('http://www.eTest2.com/2032/Better61850ForReal')
+
+      // looking at serialisation of node to confirm correct namespace registration
+      const output = new XMLSerializer().serializeToString(element.doc)
+      expect(output).to.contain('xmlns:eTest1="http://www.eTest1.com/2022/Better61850"')
+      expect(output).to.contain('xmlns:eTest2="http://www.eTest2.com/2032/Better61850ForReal"')
+
+      // check that namespaces are encoded correctly within a specific element
+      const lineFeedAndSpacesReplace = /[\s\n\r]+/g
+      expect(output.replace(lineFeedAndSpacesReplace, '')).to.include(`<IED name="TestImportIED" type="TestType" manufacturer="TestMan" originalSclVersion="2007" originalSclRevision="B" originalRelease="4" eTest2:New="fancy new attribute">
+<eTest1:NewThing>
+    <P type="solution"/>
+</eTest1:NewThing>`.replace(lineFeedAndSpacesReplace, ''))
+    });
+
     it('allows multiple import of TEMPLATE IEDs', async () => {
       expect(element.doc.querySelectorAll('IED').length).to.equal(3);
 
