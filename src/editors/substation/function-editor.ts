@@ -11,6 +11,7 @@ import {
 
 import '../../action-pane.js';
 import './sub-function-editor.js';
+import './general-equipment-editor.js';
 import {
   getChildElementsByTagName,
   newActionEvent,
@@ -23,6 +24,8 @@ import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
 import { Menu } from '@material/mwc-menu';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { IconButton } from '@material/mwc-icon-button';
+import { classMap } from 'lit-html/directives/class-map.js';
+import { renderGeneralEquipment } from './foundation.js';
 
 function childTags(element: Element | null | undefined): SCLTag[] {
   if (!element) return [];
@@ -41,6 +44,10 @@ export class FunctionEditor extends LitElement {
   /** The edited `Function` element */
   @property({ attribute: false })
   element!: Element;
+
+  @property({ type: Boolean })
+  showfunctions = false;
+
   @state()
   private get header(): string {
     const name = this.element.getAttribute('name');
@@ -103,6 +110,7 @@ export class FunctionEditor extends LitElement {
         html`<sub-function-editor
           .doc=${this.doc}
           .element=${subFunction}
+          ?showfunctions=${this.showfunctions}
         ></sub-function-editor>`
     )}`;
   }
@@ -149,8 +157,10 @@ export class FunctionEditor extends LitElement {
             this.openCreateWizard(tagName);
           }}
           >${this.renderAddButtons()}</mwc-menu
-        > </abbr
-      >${this.renderLNodes()}${this.renderSubFunctions()}</action-pane
+        >
+      </abbr>
+      ${renderGeneralEquipment(this.doc, this.element, this.showfunctions)}
+      ${this.renderLNodes()}${this.renderSubFunctions()}</action-pane
     >`;
   }
 

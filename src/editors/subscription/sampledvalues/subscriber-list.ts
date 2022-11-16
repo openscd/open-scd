@@ -31,7 +31,9 @@ import {
   existExtRef,
   getExtRef,
   IEDSelectEvent,
+  instantiateSubscriptionSupervision,
   ListElement,
+  removeSubscriptionSupervision,
   styles,
   SubscriberListContainer,
   SubscribeStatus,
@@ -239,6 +241,7 @@ export class SubscriberList extends SubscriberListContainer {
       inputsElement = createElement(ied.ownerDocument, 'Inputs', {});
 
     const actions: Create[] = [];
+
     this.currentUsedDataset!.querySelectorAll('FCDA').forEach(fcda => {
       if (
         !existExtRef(inputsElement!, fcda, this.currentSelectedSmvControl) &&
@@ -255,15 +258,31 @@ export class SubscriberList extends SubscriberListContainer {
       }
     });
 
+    // we need to extend the actions array with the actions for the instation of the LSVS
+    const supervisionActions: Create[] = instantiateSubscriptionSupervision(
+      this.currentSelectedSmvControl,
+      ied
+    );
+
     /** If the IED doesn't have a Inputs element, just append it to the first LN0 element. */
     const title = get('subscription.connect');
     if (inputsElement.parentElement)
-      this.dispatchEvent(newActionEvent({ title, actions }));
+      this.dispatchEvent(
+        newActionEvent({
+          title,
+          actions: actions.concat(supervisionActions),
+        })
+      );
     else {
       const inputAction: Create = {
         new: { parent: ied.querySelector('LN0')!, element: inputsElement },
       };
-      this.dispatchEvent(newActionEvent({ title, actions: [inputAction] }));
+      this.dispatchEvent(
+        newActionEvent({
+          title,
+          actions: [inputAction].concat(supervisionActions),
+        })
+      );
     }
   }
 
@@ -278,6 +297,11 @@ export class SubscriberList extends SubscriberListContainer {
 
     // Check if empty Input Element should also be removed.
     actions.push(...emptyInputsDeleteActions(actions));
+
+    // we need to extend the actions array with the actions for removing the supervision
+    actions.push(
+      ...removeSubscriptionSupervision(this.currentSelectedSmvControl, ied)
+    );
 
     this.dispatchEvent(
       newActionEvent({
