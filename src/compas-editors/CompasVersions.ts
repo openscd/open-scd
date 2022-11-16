@@ -130,25 +130,40 @@ export default class CompasVersionsPlugin extends LitElement {
 
   private confirmRestoreVersionWizard(version: string): Wizard {
     function openScl(plugin: CompasVersionsPlugin) {
+      function updateDocument(sclDocument: Document): void {
+        updateDocumentInOpenSCD(plugin, sclDocument);
+
+        plugin.dispatchEvent(
+          newLogEvent({
+            kind: 'info',
+            title: get('compas.versions.restoreVersionSuccess', {
+              version: version,
+            }),
+          })
+        );
+      }
+
       return function () {
         const type = getTypeFromDocName(plugin.docName);
 
-        CompasSclDataService()
-          .getSclDocumentVersion(type, plugin.docId, version)
-          .then(sclDocument => {
-            updateDocumentInOpenSCD(plugin, sclDocument);
-
-            plugin.dispatchEvent(
-              newLogEvent({
-                kind: 'info',
-                title: get('compas.versions.restoreVersionSuccess', {
-                  version: version,
-                }),
-              })
-            );
-          })
-          .catch(reason => createLogEvent(plugin, reason));
-
+        const service = CompasSclDataService();
+        if (service.useWebsocket()) {
+          service.getSclDocumentVersionUsingWebsockets(
+            plugin,
+            type,
+            plugin.docId,
+            version,
+            (sclDocument) => {
+              updateDocument(sclDocument);
+            })
+        } else {
+          service
+            .getSclDocumentVersionUsingRest(type, plugin.docId, version)
+            .then(sclDocument => {
+              updateDocument(sclDocument);
+            })
+            .catch(reason => createLogEvent(plugin, reason));
+        }
         // Close the Restore Dialog.
         plugin.dispatchEvent(newWizardEvent());
 
@@ -285,15 +300,17 @@ export default class CompasVersionsPlugin extends LitElement {
       const oldScl = await this.getVersion(oldVersion);
       const newScl = this.doc.documentElement;
 
-      this.dispatchEvent(
-        newWizardEvent(
-          compareWizard(this, oldScl, newScl, {
-            title: get('compas.compare.titleCurrent', {
-              oldVersion: oldVersion,
-            }),
-          })
-        )
-      );
+      if (oldScl && newScl) {
+        this.dispatchEvent(
+          newWizardEvent(
+            compareWizard(this, oldScl, newScl, {
+              title: get('compas.compare.titleCurrent', {
+                oldVersion: oldVersion,
+              }),
+            })
+          )
+        );
+      }
     } else {
       this.dispatchEvent(
         newWizardEvent(
@@ -318,16 +335,18 @@ export default class CompasVersionsPlugin extends LitElement {
       const oldScl = await this.getVersion(oldVersion);
       const newScl = await this.getVersion(newVersion);
 
-      this.dispatchEvent(
-        newWizardEvent(
-          compareWizard(this, oldScl, newScl, {
-            title: get('compas.compare.title', {
-              oldVersion: oldVersion,
-              newVersion: newVersion,
-            }),
-          })
-        )
-      );
+      if (oldScl && newScl) {
+        this.dispatchEvent(
+          newWizardEvent(
+            compareWizard(this, oldScl, newScl, {
+              title: get('compas.compare.title', {
+                oldVersion: oldVersion,
+                newVersion: newVersion,
+              }),
+            })
+          )
+        );
+      }
     } else {
       this.dispatchEvent(
         newWizardEvent(
@@ -351,13 +370,31 @@ export default class CompasVersionsPlugin extends LitElement {
     ];
   }
 
-  private async getVersion(version: string) {
+  private async getVersion(version: string): Promise<void | Element> {
     const type = getTypeFromDocName(this.docName);
-    return CompasSclDataService()
-      .getSclDocumentVersion(type, this.docId, version)
-      .then(sclDocument => {
-        return Promise.resolve(sclDocument.documentElement);
+    const service = CompasSclDataService();
+
+    if (service.useWebsocket()) {
+      return new Promise((resolve) => {
+        service.getSclDocumentVersionUsingWebsockets(
+          this,
+          type,
+          this.docId,
+          version,
+          (sclDocument) => {
+            resolve(sclDocument.documentElement);
+          })
       });
+    } else {
+      return service
+        .getSclDocumentVersionUsingRest(type, this.docId, version)
+        .then(sclDocument => {
+          return Promise.resolve(<Element>sclDocument.documentElement);
+        })
+        .catch(reason => {
+          createLogEvent(this, reason)
+        });
+    }
   }
 
   private openEditWizard(): void {

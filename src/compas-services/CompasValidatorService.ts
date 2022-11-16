@@ -47,7 +47,7 @@ export function CompasSclValidatorService() {
       element: Element,
       type: string,
       doc: Document,
-      callback: (doc: Document) => void,
+      callback: (response: Document) => void,
       onCloseCallback: () => void
     ) {
       Websockets(element, 'CompasValidatorService').execute(

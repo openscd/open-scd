@@ -39,8 +39,8 @@ export default class CompasValidateSchema extends LitElement {
         this,
         docType,
         this.doc,
-        doc => {
-          this.processValidationResponse(doc);
+        response => {
+          this.processValidationResponse(response);
         },
         () => {
           this.compasValidationSchemaRunning = false;

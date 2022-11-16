@@ -56,9 +56,20 @@ export default class CompasOpenElement extends LitElement {
   private sclFileUI!: HTMLInputElement;
 
   private async getSclDocument(docId?: string): Promise<void> {
-    const doc = await CompasSclDataService()
-      .getSclDocument(this.selectedType ?? '', docId ?? '')
-      .catch(reason => createLogEvent(this, reason));
+    const service = CompasSclDataService();
+    const doc = service.useWebsocket()
+      ? await new Promise((resolve) => {
+          service.getSclDocumentUsingWebsockets(
+            this,
+            this.selectedType ?? '',
+            docId ?? '',
+            (doc) => resolve(doc)
+          )
+        })
+      : await service
+        .getSclDocumentUsingRest(this.selectedType ?? '', docId ?? '')
+        .catch(reason => createLogEvent(this, reason));
+
     if (doc instanceof Document) {
       const docName = buildDocName(doc.documentElement);
       this.dispatchEvent(newDocRetrievedEvent(false, doc, docName, docId));
