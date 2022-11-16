@@ -1,5 +1,5 @@
 import { newPendingStateEvent } from '../foundation.js';
-import { APPLICATION_ERROR, createLogEvent, extractErrorMessage, parseXml, processErrorMessage } from './foundation.js';
+import { APPLICATION_ERROR, createLogEvent, extractErrorMessage, parseXml } from './foundation.js';
 
 export function Websockets(element: Element, serviceName: string) {
   let websocket: WebSocket | undefined;
