@@ -5,6 +5,7 @@ import {
   Create,
   createElement,
   Delete,
+  findControlBlocks,
   getSclSchemaVersion,
   isPublic,
   minAvailableLogicalNodeInstance,
@@ -426,6 +427,55 @@ export function findOrCreateAvailableLNInst(
     availableLN.setAttribute('inst', instNumber);
   }
   return availableLN;
+}
+
+export function getFirstSubscribedExtRef(
+  publishedControlBlock: Element,
+  subscribingIed: Element
+): Element | null {
+  const publishingIed = publishedControlBlock.closest('IED')!;
+  const dataSet = publishingIed.querySelector(
+    `DataSet[name="${publishedControlBlock.getAttribute('datSet')}"]`
+  );
+  let extRef: Element | undefined = undefined;
+  Array.from(
+    subscribingIed?.querySelectorAll('LN0 > Inputs, LN > Inputs')
+  ).some(inputs => {
+    Array.from(dataSet!.querySelectorAll('FCDA')).some(fcda => {
+      const anExtRef = getExtRef(inputs, fcda, publishedControlBlock);
+      if (anExtRef) {
+        extRef = anExtRef;
+        return true;
+      }
+      return false;
+    });
+    return extRef !== undefined;
+  });
+  return extRef !== undefined ? extRef : null;
+}
+
+/** Returns the subscriber's supervision LN for a given control block and extRef element
+ *
+ * @param extRef - The extRef SCL element in the subscribing IED.
+ * @param controlBlock  - The publishing IED control block.
+ * @returns The supervision LN instance or null if not found
+ */
+export function getExistingSupervision(
+  extRef: Element | null,
+  controlBlock: Element
+): Element | null {
+  if (extRef === null) return null;
+  const subscriberIED = extRef.closest('IED')!;
+  const supervisionType =
+    controlBlock.tagName === 'GSEControl' ? 'LGOS' : 'LSVS';
+  const refSelector =
+    supervisionType === 'LGOS' ? 'DOI[name="GoCBRef"]' : 'DOI[name="SvCBRef"]';
+  const candidates = Array.from(
+    subscriberIED.querySelectorAll(
+      `LN[lnClass="${supervisionType}"]>${refSelector}>DAI[name="setSrcRef"]>Val`
+    )
+  ).find(val => val.textContent === controlBlockReference(controlBlock));
+  return candidates !== undefined ? candidates.closest('LN')! : null;
 }
 
 /**

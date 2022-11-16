@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<SCL version="2007" revision="B" release="4" xmlns="http://www.iec.ch/61850/2003/SCL" xsi:schemaLocation="http://www.iec.ch/61850/2003/SCL SCL.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<SCL version="2007" revision="B" release="4" xmlns:sxy="http://www.iec.ch/61850/2003/SCLcoordinates" xmlns="http://www.iec.ch/61850/2003/SCL" xmlns:txy="http://www.iec.ch/61850/2003/Terminal" xmlns:scl="http://www.iec.ch/61850/2003/SCL" xsi:schemaLocation="http://www.iec.ch/61850/2003/SCL SCL.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:IEC_60870_5_104="http://www.iec.ch/61850-80-1/2007/SCL">
 	<Header id="TrainingIEC61850" version="1" revision="143" toolID="IEC 61850 System Configurator, Version: V5.90 " nameStructure="IEDName">
 		<Text>TrainingIEC61850</Text>
 		<History>
@@ -117,24 +117,6 @@
 							<IEDName apRef="P1" ldInst="CircuitBreaker_CB1" lnClass="CSWI" lnInst="1">IED2</IEDName>
 						</GSEControl>
 						<GSEControl type="GOOSE" appID="0003" fixedOffs="false" confRev="1" name="GCB2"/>
-						<Inputs>
-							<ExtRef iedName="IED3" ldInst="MU01" prefix="I01A" lnClass="TCTR" lnInst="1" doName="Amp" daName="instMag.i" fc="MX" serviceType="SMV" srcLDInst="MU01" srcPrefix="" srcLNClass="LLN0" srcLNInst="" srcCBName="MSVCB01"/>
-							<ExtRef iedName="IED3" ldInst="MU01" prefix="I01A" lnClass="TCTR" lnInst="1" doName="Amp" daName="q" fc="MX" serviceType="SMV" srcLDInst="MU01" srcPrefix="" srcLNClass="LLN0" srcLNInst="" srcCBName="MSVCB01"/>
-							<ExtRef iedName="IED3" ldInst="MU01" prefix="I01B" lnClass="TCTR" lnInst="2" doName="Amp" daName="instMag.i" fc="MX" serviceType="SMV" srcLDInst="MU01" srcPrefix="" srcLNClass="LLN0" srcLNInst="" srcCBName="MSVCB01"/>
-							<ExtRef iedName="IED3" ldInst="MU01" prefix="I01B" lnClass="TCTR" lnInst="2" doName="Amp" daName="q" fc="MX" serviceType="SMV" srcLDInst="MU01" srcPrefix="" srcLNClass="LLN0" srcLNInst="" srcCBName="MSVCB01"/>
-							<ExtRef iedName="IED3" ldInst="MU01" prefix="I01C" lnClass="TCTR" lnInst="3" doName="Amp" daName="instMag.i" fc="MX" serviceType="SMV" srcLDInst="MU01" srcPrefix="" srcLNClass="LLN0" srcLNInst="" srcCBName="MSVCB01"/>
-							<ExtRef iedName="IED3" ldInst="MU01" prefix="I01C" lnClass="TCTR" lnInst="3" doName="Amp" daName="q" fc="MX" serviceType="SMV" srcLDInst="MU01" srcPrefix="" srcLNClass="LLN0" srcLNInst="" srcCBName="MSVCB01"/>
-							<ExtRef iedName="IED3" ldInst="MU01" prefix="I01N" lnClass="TCTR" lnInst="4" doName="Amp" daName="instMag.i" fc="MX" serviceType="SMV" srcLDInst="MU01" srcPrefix="" srcLNClass="LLN0" srcLNInst="" srcCBName="MSVCB01"/>
-							<ExtRef iedName="IED3" ldInst="MU01" prefix="I01N" lnClass="TCTR" lnInst="4" doName="Amp" daName="q" fc="MX" serviceType="SMV" srcLDInst="MU01" srcPrefix="" srcLNClass="LLN0" srcLNInst="" srcCBName="MSVCB01"/>
-							<ExtRef iedName="IED3" ldInst="MU01" prefix="U01A" lnClass="TVTR" lnInst="1" doName="Vol" daName="instMag.i" fc="MX" serviceType="SMV" srcLDInst="MU01" srcPrefix="" srcLNClass="LLN0" srcLNInst="" srcCBName="MSVCB01"/>
-							<ExtRef iedName="IED3" ldInst="MU01" prefix="U01A" lnClass="TVTR" lnInst="1" doName="Vol" daName="q" fc="MX" serviceType="SMV" srcLDInst="MU01" srcPrefix="" srcLNClass="LLN0" srcLNInst="" srcCBName="MSVCB01"/>
-							<ExtRef iedName="IED3" ldInst="MU01" prefix="U01B" lnClass="TVTR" lnInst="2" doName="Vol" daName="instMag.i" fc="MX" serviceType="SMV" srcLDInst="MU01" srcPrefix="" srcLNClass="LLN0" srcLNInst="" srcCBName="MSVCB01"/>
-							<ExtRef iedName="IED3" ldInst="MU01" prefix="U01B" lnClass="TVTR" lnInst="2" doName="Vol" daName="q" fc="MX" serviceType="SMV" srcLDInst="MU01" srcPrefix="" srcLNClass="LLN0" srcLNInst="" srcCBName="MSVCB01"/>
-							<ExtRef iedName="IED3" ldInst="MU01" prefix="U01C" lnClass="TVTR" lnInst="3" doName="Vol" daName="instMag.i" fc="MX" serviceType="SMV" srcLDInst="MU01" srcPrefix="" srcLNClass="LLN0" srcLNInst="" srcCBName="MSVCB01"/>
-							<ExtRef iedName="IED3" ldInst="MU01" prefix="U01C" lnClass="TVTR" lnInst="3" doName="Vol" daName="q" fc="MX" serviceType="SMV" srcLDInst="MU01" srcPrefix="" srcLNClass="LLN0" srcLNInst="" srcCBName="MSVCB01"/>
-							<ExtRef iedName="IED3" ldInst="MU01" prefix="U01N" lnClass="TVTR" lnInst="4" doName="Vol" daName="instMag.i" fc="MX" serviceType="SMV" srcLDInst="MU01" srcPrefix="" srcLNClass="LLN0" srcLNInst="" srcCBName="MSVCB01"/>
-							<ExtRef iedName="IED3" ldInst="MU01" prefix="U01N" lnClass="TVTR" lnInst="4" doName="Vol" daName="q" fc="MX" serviceType="SMV" srcLDInst="MU01" srcPrefix="" srcLNClass="LLN0" srcLNInst="" srcCBName="MSVCB01"/>
-						</Inputs>
 					</LN0>
 					<LN lnClass="XCBR" inst="1" lnType="Dummy.XCBR1">
 						<DOI name="Pos">
@@ -169,6 +151,13 @@
 							</DAI>
 						</DOI>
 					</LN>
+					<LN lnClass="LGOS" inst="1" lnType="Dummy.LGOS">
+						<DOI name="GoCBRef">
+							<DAI name="setSrcRef">
+								<Val>IED2CBSW/LLN0.GCB</Val>
+							</DAI>
+						</DOI>
+					</LN>
 				</LDevice>
 				<LDevice inst="Disconnectors">
 					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
@@ -181,7 +170,10 @@
 					</LN>
 					<LN prefix="DC" lnClass="CSWI" inst="1" lnType="Dummy.CSWI">
 						<Inputs>
-							<ExtRef iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="2" doName="Pos" daName="q"/>
+							<ExtRef iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="2" doName="Pos" daName="stVal" serviceType="GOOSE" srcLDInst="CBSW" srcPrefix="" srcLNClass="LLN0" srcLNInst="" srcCBName="GCB"/>
+							<ExtRef iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="2" doName="Pos" daName="q" serviceType="GOOSE" srcLDInst="CBSW" srcPrefix="" srcLNClass="LLN0" srcLNInst="" srcCBName="GCB"/>
+							<ExtRef iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="3" doName="Pos" daName="q" serviceType="GOOSE" srcLDInst="CBSW" srcPrefix="" srcLNClass="LLN0" srcLNInst="" srcCBName="GCB"/>
+							<ExtRef ldInst="CBSW" lnClass="XSWI" lnInst="2" doName="Pos" daName="t" intAddr="stVal-t"/>
 						</Inputs>
 					</LN>
 					<LN prefix="DC" lnClass="CILO" inst="1" lnType="Dummy.CILO"/>
@@ -208,13 +200,6 @@
 							</DAI>
 						</DOI>
 					</LN>
-					<LN lnClass="LSVS" inst="1" lnType="Dummy.LSVS">
-						<DOI name="SvCBRef">
-							<DAI name="setSrcRef">
-								<Val>IED3MU01/LLN0.MSVCB01</Val>
-							</DAI>
-						</DOI>
-					</LN>
 				</LDevice>
 			</Server>
 		</AccessPoint>
@@ -232,13 +217,10 @@
 						<DataSet name="GooseDataSet1">
 							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="2" doName="Pos" daName="stVal" fc="ST"/>
 							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="2" doName="Pos" daName="q" fc="ST"/>
+							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="3" doName="Pos" daName="q" fc="ST"/>
 						</DataSet>
 						<GSEControl type="GOOSE" appID="0002" fixedOffs="false" confRev="1" name="GCB" datSet="GooseDataSet1">
 						</GSEControl>
-						<Inputs>
-							<ExtRef iedName="IED4" ldInst="MU01" prefix="I01A" lnClass="TCTR" lnInst="1" doName="Amp" daName="instMag.i" fc="MX" serviceType="SMV" srcLDInst="CircuitBreaker_CB1" srcPrefix="" srcLNClass="LLN0" srcLNInst="" srcCBName="MSVCB02"/>
-							<ExtRef iedName="IED4" ldInst="MU01" prefix="I01A" lnClass="TCTR" lnInst="1" doName="Amp" daName="q" fc="MX" serviceType="SMV" srcLDInst="CircuitBreaker_CB1" srcPrefix="" srcLNClass="LLN0" srcLNInst="" srcCBName="MSVCB02"/>
-						</Inputs>
 					</LN0>
 					<LN lnClass="LPHD" inst="1" lnType="Dummy.LPHD1"/>
 					<LN lnClass="THARDE" inst="1" lnType="Dummy.THARDE"/>
@@ -377,43 +359,10 @@
 							<FCDA ldInst="Disconnectors" prefix="DC" lnClass="XSWI" lnInst="1" doName="Pos" daName="stVal" fc="ST"/>
 							<FCDA ldInst="Disconnectors" prefix="DC" lnClass="XSWI" lnInst="1" doName="Pos" daName="q" fc="ST"/>
 						</DataSet>
-						<DataSet name="PhsMeas1">
-							<FCDA ldInst="MU01" prefix="I01A" lnClass="TCTR" lnInst="1" doName="Amp" daName="instMag.i" fc="MX"/>
-							<FCDA ldInst="MU01" prefix="I01A" lnClass="TCTR" lnInst="1" doName="Amp" daName="q" fc="MX"/>
-							<FCDA ldInst="MU01" prefix="I01B" lnClass="TCTR" lnInst="2" doName="Amp" daName="instMag.i" fc="MX"/>
-							<FCDA ldInst="MU01" prefix="I01B" lnClass="TCTR" lnInst="2" doName="Amp" daName="q" fc="MX"/>
-							<FCDA ldInst="MU01" prefix="I01C" lnClass="TCTR" lnInst="3" doName="Amp" daName="instMag.i" fc="MX"/>
-							<FCDA ldInst="MU01" prefix="I01C" lnClass="TCTR" lnInst="3" doName="Amp" daName="q" fc="MX"/>
-							<FCDA ldInst="MU01" prefix="I01N" lnClass="TCTR" lnInst="4" doName="Amp" daName="instMag.i" fc="MX"/>
-							<FCDA ldInst="MU01" prefix="I01N" lnClass="TCTR" lnInst="4" doName="Amp" daName="q" fc="MX"/>
-							<FCDA ldInst="MU01" prefix="U01A" lnClass="TVTR" lnInst="1" doName="Vol" daName="instMag.i" fc="MX"/>
-							<FCDA ldInst="MU01" prefix="U01A" lnClass="TVTR" lnInst="1" doName="Vol" daName="q" fc="MX"/>
-							<FCDA ldInst="MU01" prefix="U01B" lnClass="TVTR" lnInst="2" doName="Vol" daName="instMag.i" fc="MX"/>
-							<FCDA ldInst="MU01" prefix="U01B" lnClass="TVTR" lnInst="2" doName="Vol" daName="q" fc="MX"/>
-							<FCDA ldInst="MU01" prefix="U01C" lnClass="TVTR" lnInst="3" doName="Vol" daName="instMag.i" fc="MX"/>
-							<FCDA ldInst="MU01" prefix="U01C" lnClass="TVTR" lnInst="3" doName="Vol" daName="q" fc="MX"/>
-							<FCDA ldInst="MU01" prefix="U01N" lnClass="TVTR" lnInst="4" doName="Vol" daName="instMag.i" fc="MX"/>
-							<FCDA ldInst="MU01" prefix="U01N" lnClass="TVTR" lnInst="4" doName="Vol" daName="q" fc="MX"/>
-						</DataSet>
 						<GSEControl type="GOOSE" appID="0001" fixedOffs="false" confRev="1" name="GCB" datSet="GooseDataSet1">
 							<IEDName apRef="P1" ldInst="CircuitBreaker_CB1" lnClass="CSWI" lnInst="1">IED2</IEDName>
 						</GSEControl>
 						<GSEControl type="GOOSE" appID="0003" fixedOffs="false" confRev="1" name="GCB2"/>
-						<SampledValueControl smvID="IED3_SMVID" multicast="true" smpRate="80" nofASDU="1" confRev="1" name="MSVCB02" datSet="PhsMeas1">
-							<SmvOpts/>
-						</SampledValueControl>
-						<Inputs>
-							<ExtRef iedName="IED3" ldInst="MU01" prefix="I01A" lnClass="TCTR" lnInst="1" doName="Amp" daName="instMag.i" fc="MX" serviceType="SMV" srcLDInst="MU01" srcPrefix="" srcLNClass="LLN0" srcLNInst="" srcCBName="MSVCB01"/>
-							<ExtRef iedName="IED3" ldInst="MU01" prefix="I01A" lnClass="TCTR" lnInst="1" doName="Amp" daName="q" fc="MX" serviceType="SMV" srcLDInst="MU01" srcPrefix="" srcLNClass="LLN0" srcLNInst="" srcCBName="MSVCB01"/>
-							<ExtRef iedName="IED3" ldInst="MU01" prefix="I01B" lnClass="TCTR" lnInst="2" doName="Amp" daName="instMag.i" fc="MX" serviceType="SMV" srcLDInst="MU01" srcPrefix="" srcLNClass="LLN0" srcLNInst="" srcCBName="MSVCB01"/>
-							<ExtRef iedName="IED3" ldInst="MU01" prefix="I01B" lnClass="TCTR" lnInst="2" doName="Amp" daName="q" fc="MX" serviceType="SMV" srcLDInst="MU01" srcPrefix="" srcLNClass="LLN0" srcLNInst="" srcCBName="MSVCB01"/>
-							<ExtRef iedName="IED3" ldInst="MU01" prefix="I01C" lnClass="TCTR" lnInst="3" doName="Amp" daName="instMag.i" fc="MX" serviceType="SMV" srcLDInst="MU01" srcPrefix="" srcLNClass="LLN0" srcLNInst="" srcCBName="MSVCB01"/>
-							<ExtRef iedName="IED3" ldInst="MU01" prefix="I01C" lnClass="TCTR" lnInst="3" doName="Amp" daName="q" fc="MX" serviceType="SMV" srcLDInst="MU01" srcPrefix="" srcLNClass="LLN0" srcLNInst="" srcCBName="MSVCB01"/>
-							<ExtRef iedName="IED3" ldInst="MU01" prefix="I01N" lnClass="TCTR" lnInst="4" doName="Amp" daName="instMag.i" fc="MX" serviceType="SMV" srcLDInst="MU01" srcPrefix="" srcLNClass="LLN0" srcLNInst="" srcCBName="MSVCB01"/>
-							<ExtRef iedName="IED3" ldInst="MU01" prefix="I01N" lnClass="TCTR" lnInst="4" doName="Amp" daName="q" fc="MX" serviceType="SMV" srcLDInst="MU01" srcPrefix="" srcLNClass="LLN0" srcLNInst="" srcCBName="MSVCB01"/>
-							<ExtRef iedName="IED3" ldInst="MU01" prefix="U01A" lnClass="TVTR" lnInst="1" doName="Vol" daName="instMag.i" fc="MX" serviceType="SMV" srcLDInst="MU01" srcPrefix="" srcLNClass="LLN0" srcLNInst="" srcCBName="MSVCB01"/>
-							<ExtRef iedName="IED3" ldInst="MU01" prefix="U01A" lnClass="TVTR" lnInst="1" doName="Vol" daName="q" fc="MX" serviceType="SMV" srcLDInst="MU01" srcPrefix="" srcLNClass="LLN0" srcLNInst="" srcCBName="MSVCB01"/>
-						</Inputs>
 					</LN0>
 					<LN lnClass="XCBR" inst="1" lnType="Dummy.XCBR1">
 						<DOI name="Pos">
@@ -448,13 +397,6 @@
 							</DAI>
 						</DOI>
 					</LN>
-					<LN lnClass="LSVS" inst="1" lnType="Dummy.LSVS">
-						<DOI name="SvCBRef">
-							<DAI name="setSrcRef">
-								<Val>IED3MU01/LLN0.MSVCB01</Val>
-							</DAI>
-						</DOI>
-					</LN>
 				</LDevice>
 				<LDevice inst="Disconnectors">
 					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
@@ -467,9 +409,8 @@
 					</LN>
 					<LN prefix="DC" lnClass="CSWI" inst="1" lnType="Dummy.CSWI">
 						<Inputs>
-							<ExtRef iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="2" doName="Pos" daName="stVal" serviceType="GOOSE" srcCBName="GCB" srcLDInst="CBSW" srcLNClass="LLN0" intAddr="intAddr"/>
-							<ExtRef iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="2" doName="Pos" daName="q"/>
-							<ExtRef ldInst="CBSW" lnClass="XSWI" lnInst="2" doName="Pos" daName="t" intAddr="stVal-t"/>
+							<ExtRef iedName="IED2" ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="2" doName="Pos" daName="stVal" fc="ST"/>
+							<ExtRef iedName="IED2" ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="2" doName="Pos" daName="q" fc="ST"/>
 						</Inputs>
 					</LN>
 					<LN prefix="DC" lnClass="CILO" inst="1" lnType="Dummy.CILO"/>
@@ -577,8 +518,8 @@
 			<DO name="NamPlt" type="Dummy.XCBR1.NamPlt"/>
 			<DO name="Vol" type="DummySAV"/>
 		</LNodeType>
-		<LNodeType lnClass="LSVS" id="Dummy.LSVS">
-			<DO name="SvCBRef" type="Dummy.ORG"/>
+		<LNodeType lnClass="LGOS" id="Dummy.LGOS">
+			<DO name="GoCBRef" type="Dummy.ORG"/>
 			<DO name="St" type="OpenSCD_SPS_simple"/>
 			<DO name="Mod" type="OpenSCD_ENC_Mod"/>
 			<DO name="Health" type="OpenSCD_ENS_Health"/>

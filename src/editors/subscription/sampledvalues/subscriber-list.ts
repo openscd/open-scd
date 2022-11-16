@@ -5,6 +5,7 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
+import { nothing } from 'lit-html';
 import { get, translate } from 'lit-translate';
 
 import '@material/mwc-icon';
@@ -29,7 +30,9 @@ import {
   canCreateValidExtRef,
   createExtRefElement,
   existExtRef,
+  getExistingSupervision,
   getExtRef,
+  getFirstSubscribedExtRef,
   IEDSelectEvent,
   instantiateSubscriptionSupervision,
   ListElement,
@@ -258,7 +261,7 @@ export class SubscriberList extends SubscriberListContainer {
       }
     });
 
-    // we need to extend the actions array with the actions for the instation of the LSVS
+    // we need to extend the actions array with the actions for the instantiation of the LSVS
     const supervisionActions: Create[] = instantiateSubscriptionSupervision(
       this.currentSelectedSmvControl,
       ied
@@ -312,6 +315,29 @@ export class SubscriberList extends SubscriberListContainer {
   }
 
   renderSubscriber(status: SubscribeStatus, element: Element): TemplateResult {
+    let firstSubscribedExtRef: Element | null = null;
+    let supervisionNode: Element | null = null;
+    if (status !== SubscribeStatus.None) {
+      if (view === View.PUBLISHER) {
+        firstSubscribedExtRef = getFirstSubscribedExtRef(
+          this.currentSelectedSmvControl!,
+          element
+        );
+        supervisionNode = getExistingSupervision(
+          firstSubscribedExtRef!,
+          this.currentSelectedSmvControl!
+        );
+      } else {
+        firstSubscribedExtRef = getFirstSubscribedExtRef(
+          element,
+          this.currentSelectedIed!
+        );
+        supervisionNode = getExistingSupervision(
+          firstSubscribedExtRef!,
+          element
+        );
+      }
+    }
     return html` <mwc-list-item
       @click=${() => {
         this.dispatchEvent(
@@ -319,7 +345,7 @@ export class SubscriberList extends SubscriberListContainer {
         );
       }}
       graphic="avatar"
-      hasMeta
+      ?hasMeta=${supervisionNode !== null}
     >
       <span
         >${view == View.PUBLISHER
@@ -330,6 +356,11 @@ export class SubscriberList extends SubscriberListContainer {
       <mwc-icon slot="graphic"
         >${status == SubscribeStatus.Full ? html`clear` : html`add`}</mwc-icon
       >
+      ${supervisionNode !== null
+        ? html`<mwc-icon title="${identity(supervisionNode)}" slot="meta"
+            >monitor_heart</mwc-icon
+          >`
+        : nothing}
     </mwc-list-item>`;
   }
 

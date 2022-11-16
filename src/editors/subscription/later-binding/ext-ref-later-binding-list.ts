@@ -19,6 +19,7 @@ import {
 } from '../../../foundation.js';
 
 import {
+  getExistingSupervision,
   styles,
   updateExtRefElement,
   serviceTypes,
@@ -240,6 +241,34 @@ export class ExtRefLaterBindingList extends LitElement {
     </h1>`;
   }
 
+  private renderExtRefElement(extRefElement: Element): TemplateResult {
+    const supervisionNode = getExistingSupervision(
+      extRefElement,
+      <Element>this.currentSelectedControlElement
+    );
+    return html` <mwc-list-item
+      graphic="large"
+      ?hasMeta=${supervisionNode !== null}
+      twoline
+      @click=${() => this.unsubscribe(extRefElement)}
+      value="${identity(extRefElement)}"
+    >
+      <span>
+        ${extRefElement.getAttribute('intAddr')}
+        ${getDescriptionAttribute(extRefElement)
+          ? html` (${getDescriptionAttribute(extRefElement)})`
+          : nothing}
+      </span>
+      <span slot="secondary">${identity(extRefElement)}</span>
+      <mwc-icon slot="graphic">swap_horiz</mwc-icon>
+      ${supervisionNode !== null
+        ? html`<mwc-icon title="${identity(supervisionNode)}" slot="meta"
+            >monitor_heart</mwc-icon
+          >`
+        : nothing}
+    </mwc-list-item>`;
+  }
+
   private renderSubscribedExtRefs(): TemplateResult {
     const subscribedExtRefs = this.getSubscribedExtRefElements();
     return html`
@@ -258,22 +287,8 @@ export class ExtRefLaterBindingList extends LitElement {
       </mwc-list-item>
       <li divider role="separator"></li>
       ${subscribedExtRefs.length > 0
-        ? html`${subscribedExtRefs.map(
-            extRefElement => html` <mwc-list-item
-              graphic="large"
-              twoline
-              @click=${() => this.unsubscribe(extRefElement)}
-              value="${identity(extRefElement)}"
-            >
-              <span>
-                ${extRefElement.getAttribute('intAddr')}
-                ${getDescriptionAttribute(extRefElement)
-                  ? html` (${getDescriptionAttribute(extRefElement)})`
-                  : nothing}
-              </span>
-              <span slot="secondary">${identity(extRefElement)}</span>
-              <mwc-icon slot="graphic">swap_horiz</mwc-icon>
-            </mwc-list-item>`
+        ? html`${subscribedExtRefs.map(extRefElement =>
+            this.renderExtRefElement(extRefElement)
           )}`
         : html`<mwc-list-item graphic="large" noninteractive>
             ${translate(
