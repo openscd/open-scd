@@ -1703,7 +1703,6 @@ export const tags: Record<
       ...tAbstractConductingEquipmentSequence,
       'EqFunction',
       'SubEquipment',
-      'TransformerWinding',
     ],
   },
   ConfDataSet: {
