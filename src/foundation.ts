@@ -2805,6 +2805,18 @@ export function newLnInstGenerator(
   };
 }
 
+/**
+ * @param lnElements - The LN elements to be scanned for `inst`
+ * values already in use.
+ * @returns first available inst value for LN or undefined if no inst is available
+ */
+export function minAvailableLogicalNodeInstance(
+  lnElements: Element[]
+): string | undefined {
+  const lnInsts = new Set(lnElements.map(ln => ln.getAttribute('inst') || ''));
+  return lnInstRange.find(lnInst => !lnInsts.has(lnInst));
+}
+
 declare global {
   interface ElementEventMap {
     ['pending-state']: PendingStateEvent;

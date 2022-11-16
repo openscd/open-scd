@@ -26,7 +26,10 @@ import {
   FcdaSelectEvent,
   getExtRef,
   newSubscriptionChangedEvent,
+  removeSubscriptionSupervision,
+  instantiateSubscriptionSupervision,
   styles,
+  canRemoveSubscriptionSupervision,
 } from '../foundation.js';
 import { getSubscribedExtRefElements } from './foundation.js';
 import { emptyInputsDeleteActions } from '../../../foundation/ied.js';
@@ -141,6 +144,15 @@ export class ExtRefLnBindingList extends LitElement {
       actions.push({ new: { parent: inputsElement, element: extRef } });
     }
 
+    // we need to extend the actions array with the actions for the instation of the LGOS
+    const subscriberIed = lnElement.closest('IED') || undefined;
+    actions.push(
+      ...instantiateSubscriptionSupervision(
+        this.currentSelectedControlElement,
+        subscriberIed
+      )
+    );
+
     const title = get('subscription.connect');
     return { title, actions };
   }
@@ -167,6 +179,16 @@ export class ExtRefLnBindingList extends LitElement {
 
     // Check if empty Input Element should also be removed.
     actions.push(...emptyInputsDeleteActions(actions));
+
+    // we need to extend the actions array with the actions for removing the supervision
+    const subscriberIed = lnElement.closest('IED') || undefined;
+    if (extRefElement && canRemoveSubscriptionSupervision(extRefElement))
+      actions.push(
+        ...removeSubscriptionSupervision(
+          this.currentSelectedControlElement,
+          subscriberIed
+        )
+      );
 
     return {
       title: get('subscription.disconnect'),
