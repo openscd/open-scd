@@ -1,4 +1,6 @@
-import { css, LitElement, query } from 'lit-element';
+import { css, html, LitElement, query } from 'lit-element';
+import { nothing } from 'lit-html';
+
 import {
   cloneElement,
   compareNames,
@@ -109,12 +111,14 @@ export function getFcdaTitleValue(fcdaElement: Element): string {
 
 export function getFcdaSubtitleValue(fcdaElement: Element): string {
   return `${fcdaElement.getAttribute('ldInst')} ${
-    fcdaElement.hasAttribute('ldInst') && fcdaElement.hasAttribute('prefix')
-      ? `/`
+    fcdaElement.hasAttribute('ldInst') ? `/` : ''
+  }${
+    fcdaElement.getAttribute('prefix')
+      ? ` ${fcdaElement.getAttribute('prefix')}`
       : ''
-  } ${fcdaElement.getAttribute('prefix')} ${fcdaElement.getAttribute(
-    'lnClass'
-  )} ${fcdaElement.getAttribute('lnInst')}`;
+  } ${fcdaElement.getAttribute('lnClass')} ${fcdaElement.getAttribute(
+    'lnInst'
+  )}`;
 }
 
 export function existExtRef(
