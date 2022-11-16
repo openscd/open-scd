@@ -13,6 +13,7 @@ import {
 
 import '../wizard-textfield.js';
 import '../wizard-select.js';
+
 interface ContentOptions {
   name: string | null;
   desc: string | null;
@@ -43,19 +44,16 @@ export function contentFunctionWizard(
     html`<wizard-select
       label="phase"
       fixedMenuPosition
-      .maybeValue=${content.phase || ''}
+      .maybeValue=${content.phase}
       nullable
       helper="${translate('scl.phase')}"
     >
-      <mwc-list-item value="A"> A </mwc-list-item>
-      <mwc-list-item value="B"> B </mwc-list-item>
-      <mwc-list-item value="C"> C </mwc-list-item>
-      <mwc-list-item value="N"> N </mwc-list-item>
-      <mwc-list-item value="all"> All </mwc-list-item>
-      <mwc-list-item value="none"> None </mwc-list-item>
-      <mwc-list-item value="AB"> AB </mwc-list-item>
-      <mwc-list-item value="BC"> BC </mwc-list-item>
-      <mwc-list-item value="CA"> CA </mwc-list-item>
+      ${['A', 'B', 'C', 'N', 'all', 'none', 'AB', 'BC', 'CA'].map(
+        value =>
+          html`<mwc-list-item value="${value}">
+            ${value.charAt(0).toUpperCase() + value.slice(1)}
+          </mwc-list-item>`
+      )}
     </wizard-select> `,
     html`<wizard-checkbox
       label="virtual"

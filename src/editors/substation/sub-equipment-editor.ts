@@ -6,6 +6,7 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
+import { translate } from 'lit-translate';
 
 import '@material/mwc-fab';
 import '@material/mwc-icon';
@@ -17,7 +18,6 @@ import '../../action-pane.js';
 
 import { styles } from './foundation.js';
 import { getChildElementsByTagName, newWizardEvent } from '../../foundation.js';
-import { translate } from 'lit-translate';
 import { wizards } from '../../wizards/wizard-library.js';
 
 /** [[`SubstationEditor`]] subeditor for a child-less `SubEquipment` element. */
