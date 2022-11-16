@@ -19,6 +19,19 @@ export function getFCDABindingList(
   );
 }
 
+export function selectFCDAItem(
+  listElement: FcdaBindingList,
+  controlIdentity: string,
+  fcdaIdentity: string
+): void {
+  (<HTMLElement>Array.from(
+    listElement.shadowRoot!.querySelectorAll('mwc-list-item[class="subitem"]')
+  ).find(listItem => {
+    const value = listItem.getAttribute('value') ?? '';
+    return value.includes(controlIdentity) && value.includes(fcdaIdentity);
+  })).click();
+}
+
 export function getExtrefDataBindingList(
   element: SMVSubscribeDataBindingPlugin | GooseSubscribeDataBindingPlugin
 ): ExtRefLnBindingList {

@@ -22,6 +22,7 @@ import '@material/mwc-checkbox';
 import { Button } from '@material/mwc-button';
 import { Checkbox } from '@material/mwc-checkbox';
 import { List, MWCListIndex } from '@material/mwc-list';
+import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 
 import '../../filtered-list.js';
 
@@ -96,7 +97,7 @@ export class CleanupControlBlocks extends LitElement {
   cleanupList: List | undefined;
 
   @queryAll('mwc-check-list-item.cleanupListItem')
-  cleanupListItems: NodeList | undefined;
+  cleanupListItems: ListItem[] | undefined;
 
   @query('.cleanupAddressCheckbox')
   cleanupAddressCheckbox: Checkbox | undefined;
@@ -266,6 +267,9 @@ export class CleanupControlBlocks extends LitElement {
         gseSmvLogReportDeleteActions.forEach(deleteAction =>
           e.target?.dispatchEvent(newActionEvent(deleteAction))
         );
+        this.cleanupListItems!.forEach((item) => {
+          item.selected = false;
+        });
       }}
     ></mwc-button>`;
   }

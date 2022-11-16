@@ -9,6 +9,7 @@ import {
   getExtrefDataBindingList,
   getFCDABindingList,
   getSelectedSubItemValue,
+  selectFCDAItem,
 } from './test-support.js';
 
 describe('GOOSE Subscribe Data Binding Plugin', async () => {
@@ -39,12 +40,13 @@ describe('GOOSE Subscribe Data Binding Plugin', async () => {
     const fcdaListElement = getFCDABindingList(element);
     const extRefListElement = getExtrefDataBindingList(element);
 
-    (<HTMLElement>(
-      fcdaListElement.shadowRoot!.querySelector(
-        'mwc-list-item[value="GOOSE_Publisher>>QB2_Disconnector>GOOSE1 GOOSE_Publisher>>QB2_Disconnector>GOOSE1sDataSet>QB1_Disconnector/ CSWI 1.Pos q (ST)"]'
-      )
-    )).click();
+    selectFCDAItem(
+      fcdaListElement,
+      'GOOSE_Publisher>>QB2_Disconnector>GOOSE1',
+      'GOOSE_Publisher>>QB2_Disconnector>GOOSE1sDataSet>QB1_Disconnector/ CSWI 1.Pos q (ST)'
+    );
     await element.requestUpdate();
+    await extRefListElement.requestUpdate();
 
     expect(extRefListElement['getSubscribedLNElements']().length).to.be.equal(
       0
@@ -80,11 +82,11 @@ describe('GOOSE Subscribe Data Binding Plugin', async () => {
     const fcdaListElement = getFCDABindingList(element);
     const extRefListElement = getExtrefDataBindingList(element);
 
-    (<HTMLElement>(
-      fcdaListElement.shadowRoot!.querySelector(
-        'mwc-list-item[value="GOOSE_Publisher>>QB2_Disconnector>GOOSE2 GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos q (ST)"]'
-      )
-    )).click();
+    selectFCDAItem(
+      fcdaListElement,
+      'GOOSE_Publisher>>QB2_Disconnector>GOOSE2',
+      'GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos q (ST)'
+    );
     await element.requestUpdate();
     await extRefListElement.requestUpdate();
 
@@ -130,11 +132,11 @@ describe('GOOSE Subscribe Data Binding Plugin', async () => {
       ).length
     ).to.be.equal(1);
 
-    (<HTMLElement>(
-      fcdaListElement.shadowRoot!.querySelector(
-        'mwc-list-item[value="GOOSE_Publisher>>QB2_Disconnector>GOOSE2 GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos q (ST)"]'
-      )
-    )).click();
+    selectFCDAItem(
+      fcdaListElement,
+      'GOOSE_Publisher>>QB2_Disconnector>GOOSE2',
+      'GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos q (ST)'
+    );
     await element.requestUpdate();
     await extRefListElement.requestUpdate();
 
@@ -145,11 +147,11 @@ describe('GOOSE Subscribe Data Binding Plugin', async () => {
     )).click();
     await element.requestUpdate();
 
-    (<HTMLElement>(
-      fcdaListElement.shadowRoot!.querySelector(
-        'mwc-list-item[value="GOOSE_Publisher>>QB2_Disconnector>GOOSE2 GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos stVal (ST)"]'
-      )
-    )).click();
+    selectFCDAItem(
+      fcdaListElement,
+      'GOOSE_Publisher>>QB2_Disconnector>GOOSE2',
+      'GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos stVal (ST)'
+    );
     await element.requestUpdate();
     await extRefListElement.requestUpdate();
 
