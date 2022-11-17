@@ -235,6 +235,7 @@ export class PowerTransformerEditor extends LitElement {
               html`<transformer-winding-editor
                 .doc=${this.doc}
                 .element=${transformerWindings}
+                ?showfunctions=${this.showfunctions}
               ></transformer-winding-editor>`
           )}
         </div>`
@@ -281,10 +282,8 @@ export class PowerTransformerEditor extends LitElement {
   render(): TemplateResult {
     if (this.showfunctions)
       return html`<action-pane label="${this.name}">
-        ${this.renderContentPane()}
-        ${this.renderLNodes()}
-        ${this.renderEqFunctions()}
-        ${this.renderSubEquipments()}
+        ${this.renderContentPane()} ${this.renderLNodes()}
+        ${this.renderEqFunctions()} ${this.renderSubEquipments()}
         ${this.renderTransformerWinding()}
       </action-pane> `;
 

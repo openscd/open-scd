@@ -26,6 +26,9 @@ export class TransformerWindingEditor extends LitElement {
   /** SCL element TransformerWinding */
   @property({ attribute: false })
   element!: Element;
+  /** Whether `EqFunction` and `LNode` elements are rendered */
+  @property({ type: Boolean })
+  showfunctions = false;
 
   /** TransformerWinding name attribute */
   @property({ type: String })
@@ -62,6 +65,7 @@ export class TransformerWindingEditor extends LitElement {
   }
 
   private renderEqFunctions(): TemplateResult {
+    if (!this.showfunctions) return html``;
     const eqFunctions = getChildElementsByTagName(this.element, 'EqFunction');
     return eqFunctions.length
       ? html` ${eqFunctions.map(
@@ -69,6 +73,7 @@ export class TransformerWindingEditor extends LitElement {
             html`<eq-function-editor
               .doc=${this.doc}
               .element=${eqFunction}
+              ?showfunctions=${this.showfunctions}
             ></eq-function-editor>`
         )}`
       : html``;

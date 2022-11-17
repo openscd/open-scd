@@ -127,9 +127,9 @@ snapshots["powertransformer-editor rendered as action pane looks like the latest
     </mwc-menu>
   </abbr>
   <div class="container">
-    <transformer-winding-editor>
+    <transformer-winding-editor showfunctions="">
     </transformer-winding-editor>
-    <transformer-winding-editor>
+    <transformer-winding-editor showfunctions="">
     </transformer-winding-editor>
   </div>
 </action-pane>
