@@ -36,7 +36,7 @@ export function CompasExistsIn<TBase extends LitElementConstructor>(
     callService(docType: string, docId: string): Promise<Document> {
       // Use the versions call to check if any exist, because then the document also exists
       // And it saves bandwidth not to retrieve the whole document.
-      return CompasSclDataService().listVersions(docType, docId);
+      return CompasSclDataService().listSclVersions(docType, docId);
     }
 
     checkExistInCompas(): void {

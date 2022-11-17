@@ -1,5 +1,5 @@
 import { CompasSettings } from '../compas/CompasSettings.js';
-import { Websockets } from './Websockets.js';
+import { websockets } from './Websockets.js';
 import {
   getWebsocketUri,
   handleError,
@@ -24,12 +24,27 @@ export function CompasSclValidatorService() {
             </svs:SclValidateRequest>`;
   }
 
-  return {
-    useWebsocket(): boolean {
-      return CompasSettings().useWebsockets();
-    },
+  function useWebsocket(): boolean {
+    return CompasSettings().useWebsockets();
+  }
 
-    validateSCLUsingRest(type: string, doc: Document): Promise<Document> {
+  return {
+    validateSCL(
+      element: Element,
+      type: string,
+      doc: Document
+    ): Promise<Document> {
+      if (useWebsocket()) {
+        return websockets(
+          element,
+          'CompasValidatorService',
+          getWebsocketUri(getSclValidatorServiceUrl()) +
+            '/validate-ws/v1/' +
+            type,
+          createRequest(doc)
+        );
+      }
+
       const svsUrl = getSclValidatorServiceUrl() + '/validate/v1/' + type;
       return fetch(svsUrl, {
         method: 'POST',
@@ -41,23 +56,6 @@ export function CompasSclValidatorService() {
         .catch(handleError)
         .then(handleResponse)
         .then(parseXml);
-    },
-
-    validateSCLUsingWebsockets(
-      element: Element,
-      type: string,
-      doc: Document,
-      callback: (response: Document) => void,
-      onCloseCallback: () => void
-    ) {
-      Websockets(element, 'CompasValidatorService').execute(
-        getWebsocketUri(getSclValidatorServiceUrl()) +
-          '/validate-ws/v1/' +
-          type,
-        createRequest(doc),
-        callback,
-        onCloseCallback
-      );
     },
 
     listNsdocFiles(): Promise<Document> {

@@ -85,29 +85,16 @@ export class CompasUploadVersionElement extends CompasExistsIn(LitElement) {
     const text = await file.text();
     const doc = new DOMParser().parseFromString(text, 'application/xml');
 
-    const service = CompasSclDataService();
-    if (service.useWebsocket()) {
-      service.updateSclDocumentUsingWebsockets(
-        this,
-        docType,
-        this.docId!,
-        { changeSet: changeSet!, comment: comment, doc: doc },
-        (sclDocument: Document) => {
-          this.processAddDocument(sclDocument);
-        }
-      )
-    } else {
-      await service
-        .updateSclDocumentUsingRest(docType, this.docId!, {
-          changeSet: changeSet!,
-          comment: comment,
-          doc: doc,
-        })
-        .then(sclDocument => {
-          this.processAddDocument(sclDocument);
-        })
-        .catch(reason => createLogEvent(this, reason));
-    }
+    await CompasSclDataService()
+      .updateSclDocument(this, docType, this.docId!, {
+        changeSet: changeSet!,
+        comment: comment,
+        doc: doc,
+      })
+      .then(sclDocument => {
+        this.processAddDocument(sclDocument);
+      })
+      .catch(reason => createLogEvent(this, reason));
   }
 
   render(): TemplateResult {
