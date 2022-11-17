@@ -13,17 +13,6 @@ describe('transformer-winding-editor', () => {
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
   });
 
-  it('looks like the latest snapshot', async () => {
-    element = <TransformerWindingEditor>(
-      await fixture(
-        html`<transformer-winding-editor
-          .element=${doc.querySelector('TransformerWinding')}
-        ></transformer-winding-editor>`
-      )
-    );
-    await expect(element).shadowDom.to.equalSnapshot();
-  });
-
   describe('with children', () => {
     it('looks like the latest snapshot', async () => {
       element = <TransformerWindingEditor>(

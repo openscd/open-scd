@@ -1,15 +1,6 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["transformer-winding-editor looks like the latest snapshot"] = 
-`<action-pane
-  label="empty"
-  tabindex="0"
->
-</action-pane>
-`;
-/* end snapshot transformer-winding-editor looks like the latest snapshot */
-
 snapshots["transformer-winding-editor with children looks like the latest snapshot"] = 
 `<action-pane
   label="some"
@@ -19,8 +10,6 @@ snapshots["transformer-winding-editor with children looks like the latest snapsh
     <l-node-editor>
     </l-node-editor>
   </div>
-  <eq-function-editor>
-  </eq-function-editor>
 </action-pane>
 `;
 /* end snapshot transformer-winding-editor with children looks like the latest snapshot */
