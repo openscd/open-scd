@@ -61,11 +61,11 @@ function importIedsWizard(importDoc: XMLDocument, doc: XMLDocument): Wizard {
       content: [
         html`<filtered-list id="iedList" multi
           >${Array.from(importDoc.querySelectorAll(':root > IED')).map(
-            ied =>
-              html`<mwc-check-list-item value="${identity(ied)}"
+          ied =>
+            html`<mwc-check-list-item value="${identity(ied)}"
                 >${ied.getAttribute('name')}</mwc-check-list-item
               >`
-          )}</filtered-list
+        )}</filtered-list
         >`,
       ],
     },
@@ -374,23 +374,18 @@ function isIedNameUnique(ied: Element, doc: Document): boolean {
  * @param sourceElement  - Element to transfer namespaces from
  */
 function updateNamespaces(destElement: Element, sourceElement: Element) {
-  const attributes = Array.prototype.slice
+  Array.prototype.slice
     .call(sourceElement.attributes)
-    .filter(attr => attr.name.startsWith('xmlns:'));
-
-  attributes.forEach(attr => {
-    if (!destElement.hasAttribute(attr.name)) {
-      // If there is a namespace prefix conflict the DOM will resolve.
-      // However the namespace may not start with 'e' as required
-      // by the IEC 61850 standard (Ed 2.1, Part 6, Sec. 8.3.5)
-      // Propose to ignore this unless found to be problematic.
+    .filter(attr => attr.name.startsWith('xmlns:'))
+    .filter(attr => !destElement.hasAttribute(attr.name))
+    .forEach((attr) => {
       destElement.setAttributeNS(
         'http://www.w3.org/2000/xmlns/',
         attr.name,
         attr.value
       );
-    }
-  });
+    });
+
 }
 
 export async function importIED(
@@ -402,10 +397,10 @@ export async function importIED(
     ied.setAttribute(
       'name',
       'TEMPLATE_IED' +
-        (Array.from(doc.querySelectorAll('IED')).filter(ied =>
-          ied.getAttribute('name')?.includes('TEMPLATE')
-        ).length +
-          1)
+      (Array.from(doc.querySelectorAll('IED')).filter(ied =>
+        ied.getAttribute('name')?.includes('TEMPLATE')
+      ).length +
+        1)
     );
 
   if (!isIedNameUnique(ied, doc)) {
