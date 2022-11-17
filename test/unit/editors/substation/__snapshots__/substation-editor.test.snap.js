@@ -79,6 +79,17 @@ snapshots["substation-editor looks like the latest snapshot"] =
         mwc-list-item=""
         role="menuitem"
         tabindex="-1"
+        value="GeneralEquipment"
+      >
+        <span>
+          GeneralEquipment
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
         value="VoltageLevel"
       >
         <span>
@@ -184,6 +195,17 @@ snapshots["substation-editor with readonly property looks like the latest snapsh
         mwc-list-item=""
         role="menuitem"
         tabindex="-1"
+        value="GeneralEquipment"
+      >
+        <span>
+          GeneralEquipment
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
         value="VoltageLevel"
       >
         <span>
@@ -282,6 +304,17 @@ snapshots["substation-editor with function filter deactivated looks like the lat
       >
         <span>
           PowerTransformer
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="GeneralEquipment"
+      >
+        <span>
+          GeneralEquipment
         </span>
       </mwc-list-item>
       <mwc-list-item
@@ -408,6 +441,17 @@ snapshots["substation-editor with general-equipment children with showfunctions 
         mwc-list-item=""
         role="menuitem"
         tabindex="-1"
+        value="GeneralEquipment"
+      >
+        <span>
+          GeneralEquipment
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
         value="VoltageLevel"
       >
         <span>
@@ -510,6 +554,17 @@ snapshots["substation-editor with general-equipment children with showfunctions 
       >
         <span>
           PowerTransformer
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="GeneralEquipment"
+      >
+        <span>
+          GeneralEquipment
         </span>
       </mwc-list-item>
       <mwc-list-item
