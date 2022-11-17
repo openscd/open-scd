@@ -1,5 +1,5 @@
 import { CompasSettings } from '../compas/CompasSettings.js';
-import { websockets } from './Websockets.js';
+import { websocket } from './Websocket.js';
 import {
   getWebsocketUri,
   handleError,
@@ -35,7 +35,7 @@ export function CompasSclValidatorService() {
       doc: Document
     ): Promise<Document> {
       if (useWebsocket()) {
-        return websockets(
+        return websocket(
           element,
           'CompasValidatorService',
           getWebsocketUri(getSclValidatorServiceUrl()) +

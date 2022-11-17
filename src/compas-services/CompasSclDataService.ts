@@ -8,7 +8,7 @@ import {
   handleResponse,
   parseXml,
 } from './foundation.js';
-import { websockets } from './Websockets.js';
+import { websocket } from './Websocket.js';
 
 export const SDS_NAMESPACE =
   'https://www.lfenergy.org/compas/SclDataService/v1';
@@ -93,7 +93,7 @@ export function CompasSclDataService() {
          </sds:GetWsRequest>`;
 
         const sclUrl = getSclDataServiceUrl() + '/scl-ws/v1/' + type + '/get';
-        return websockets(
+        return websocket(
           element,
           'CompasSclDataService',
           getWebsocketUri(sclUrl),
@@ -124,7 +124,7 @@ export function CompasSclDataService() {
 
         const sclUrl =
           getSclDataServiceUrl() + '/scl-ws/v1/' + type + '/get-version';
-        return websockets(
+        return websocket(
           element,
           'CompasSclDataService',
           getWebsocketUri(sclUrl),
@@ -177,7 +177,7 @@ export function CompasSclDataService() {
 
         const sclUrl =
           getSclDataServiceUrl() + '/scl-ws/v1/' + type + '/create';
-        return websockets(
+        return websocket(
           element,
           'CompasSclDataService',
           getWebsocketUri(sclUrl),
@@ -227,7 +227,7 @@ export function CompasSclDataService() {
 
         const sclUrl =
           getSclDataServiceUrl() + '/scl-ws/v1/' + type + '/update';
-        return websockets(
+        return websocket(
           element,
           'CompasSclDataService',
           getWebsocketUri(sclUrl),

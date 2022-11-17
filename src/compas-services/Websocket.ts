@@ -7,7 +7,7 @@ import {
   SERVER_ERROR,
 } from './foundation.js';
 
-export function websockets(
+export function websocket(
   element: Element,
   serviceName: string,
   url: string,
