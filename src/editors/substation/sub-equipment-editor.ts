@@ -89,7 +89,7 @@ export class SubEquipmentEditor extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<action-pane label="${this.label}" icon="functions" secondary>
+    return html`<action-pane label="${this.label}">
       <abbr slot="action" title="${translate('edit')}">
         <mwc-icon-button icon="edit" @click=${() => this.openEditWizard()}>
         </mwc-icon-button>
