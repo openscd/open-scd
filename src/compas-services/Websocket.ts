@@ -1,7 +1,6 @@
 import { newPendingStateEvent } from '../foundation.js';
 import {
   APPLICATION_ERROR,
-  createLogEvent,
   extractErrorMessage,
   parseXml,
   SERVER_ERROR,
@@ -44,7 +43,7 @@ export function websocket(
           websocket?.close();
         })
         .catch(reason => {
-          createLogEvent(element, reason);
+          reject(reason);
           websocket?.close();
         });
     };
@@ -52,7 +51,7 @@ export function websocket(
     websocket.onerror = () => {
       reject({
         type: SERVER_ERROR,
-        mesage: `Websocket Error in service "${serviceName}"`,
+        message: `Websocket Error in service "${serviceName}"`,
       });
       websocket?.close();
     };
