@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.27.0](https://github.com/openscd/open-scd/compare/v0.26.0...v0.27.0) (2022-11-21)
+
+
+### Features
+
+* **editor/substation:** Add read-only view for General Equipment ([#1050](https://github.com/openscd/open-scd/issues/1050)) ([d3baa74](https://github.com/openscd/open-scd/commits/d3baa7479eeb54121e975cc1a89038c0769acade))
+* **editors/subscription:** add subscription supervision support ([#1010](https://github.com/openscd/open-scd/issues/1010)) ([3f6b659](https://github.com/openscd/open-scd/commits/3f6b6597bfeb854a1a96e6cbff8044526a6c7f5f))
+* **sub-equipment-editor:** edit wizard ([#1063](https://github.com/openscd/open-scd/issues/1063)) ([4778e7d](https://github.com/openscd/open-scd/commits/4778e7d4146c4ce7f8a26bbf953f8494d56cd32a))
+
 ## [0.26.0](https://github.com/openscd/open-scd/compare/v0.25.0...v0.26.0) (2022-11-03)
 
 
