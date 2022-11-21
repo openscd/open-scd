@@ -6,6 +6,13 @@ snapshots["sub-equipment-editor looks like the latest snapshot"] =
   label="subque - somedesc (all)"
   tabindex="0"
 >
+  <abbr
+    slot="action"
+    title="[edit]"
+  >
+    <mwc-icon-button icon="edit">
+    </mwc-icon-button>
+  </abbr>
 </action-pane>
 `;
 /* end snapshot sub-equipment-editor looks like the latest snapshot */
@@ -15,6 +22,13 @@ snapshots["sub-equipment-editor With children looks like the latest snapshot"] =
   label="addEqi - somedesc (none)"
   tabindex="0"
 >
+  <abbr
+    slot="action"
+    title="[edit]"
+  >
+    <mwc-icon-button icon="edit">
+    </mwc-icon-button>
+  </abbr>
   <div class="container lnode">
     <l-node-editor>
     </l-node-editor>
@@ -30,6 +44,13 @@ snapshots["sub-equipment-editor without description and state looks like the lat
   label="other"
   tabindex="0"
 >
+  <abbr
+    slot="action"
+    title="[edit]"
+  >
+    <mwc-icon-button icon="edit">
+    </mwc-icon-button>
+  </abbr>
   <div class="container lnode">
     <l-node-editor>
     </l-node-editor>
