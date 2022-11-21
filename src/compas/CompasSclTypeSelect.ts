@@ -33,7 +33,7 @@ export class CompasSclTypeSelect extends LitElement {
 
   fetchData(): void {
     CompasSclDataService()
-      .listSclTypesAndOrder()
+      .listOrderedSclTypes()
       .then(types => (this.sclTypes = types));
   }
 

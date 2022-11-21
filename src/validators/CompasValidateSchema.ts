@@ -33,28 +33,12 @@ export default class CompasValidateSchema extends LitElement {
     this.compasValidationSchemaRunning = true;
 
     const docType = getTypeFromDocName(this.docName);
-    const service = CompasSclValidatorService();
-    if (service.useWebsocket()) {
-      service.validateSCLUsingWebsockets(
-        this,
-        docType,
-        this.doc,
-        response => {
-          this.processValidationResponse(response);
-        },
-        () => {
-          this.compasValidationSchemaRunning = false;
-        }
-      );
-    } else {
-      const response = await service
-        .validateSCLUsingRest(docType, this.doc)
-        .catch(reason => createLogEvent(this, reason));
-      if (response instanceof Document) {
-        this.processValidationResponse(response);
-      }
-      this.compasValidationSchemaRunning = false;
-    }
+    await CompasSclValidatorService()
+      .validateSCL(this, docType, this.doc)
+      .then(doc => this.processValidationResponse(doc))
+      .catch(reason => createLogEvent(this, reason));
+
+    this.compasValidationSchemaRunning = false;
   }
 
   private processValidationResponse(response: Document): void {
@@ -131,7 +115,6 @@ export default class CompasValidateSchema extends LitElement {
     return undefined;
   }
 
-
   /**
    * For XPath to work correctly the default namespace of SCL needs to have a prefix to work.
    * The function evaluate expects HTML to be the default namespace.
@@ -142,19 +125,19 @@ export default class CompasValidateSchema extends LitElement {
    * @param xpath - The XPath to rewrite to use a prefix 'scl' for the SCL Namespace.
    */
   private rewriteXPathForDefaultNamespace(xpath: string): string {
-      return (
-        '/' +
-        xpath
-          .split('/')
-          .filter(part => !!part)
-          .map(part => {
-            if (part && part.indexOf(':') < 0) {
-              return 'scl:' + part;
-            }
-            return part;
-          })
-          .join('/')
-      );
+    return (
+      '/' +
+      xpath
+        .split('/')
+        .filter(part => !!part)
+        .map(part => {
+          if (part && part.indexOf(':') < 0) {
+            return 'scl:' + part;
+          }
+          return part;
+        })
+        .join('/')
+    );
   }
 
   /**
