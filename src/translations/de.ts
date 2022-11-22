@@ -791,7 +791,7 @@ export const de: Translations = {
     },
   },
   exportCommunication: {
-    noCommunicationSection: 'Kein Export als Abschnitt Kommunikation leer',
+    noCommunicationSection: 'Die Communication-Sektion ist leer.',
   },
   add: 'Hinzufügen',
   new: 'Neu',
