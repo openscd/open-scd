@@ -28,6 +28,7 @@ import {
   SCLTag,
   selector,
   tags,
+  minAvailableLogicalNodeInstance,
 } from '../../src/foundation.js';
 
 import { MockAction } from './mock-actions.js';
@@ -707,6 +708,36 @@ describe('foundation', () => {
 
       it('return unique lnInst for another lnClass', () =>
         expect(lnInstGenerator('CSWI')).to.equal('1'));
+    });
+  });
+
+  describe('minAvailableLogicalNodeInstance', () => {
+    it('generates the minimum number not present yet as an "inst" attribute in a set of elements', () => {
+      const docFragment: Document = new DOMParser().parseFromString(
+        `
+        <LDevice inst="SV_supervision">
+          <LN0 lnClass="LLN0" lnType="Dummy.LLN0"/>
+          <LN lnClass="LSVS" inst="1" lnType="Dummy.LSVS1">
+            <DOI name="SvCBRef">
+              <DAI name="setSrcRef">
+                <Val>SMV_PublisherCurrentTransformer/LLN0.currrentOnly</Val>
+              </DAI>
+            </DOI>
+          </LN>
+          <LN lnClass="LSVS" inst="3" lnType="Dummy.LSVS1"/>
+          <LN lnClass="LSVS" inst="4" lnType="Dummy.LSVS1"/>
+        </LDevice>
+      `,
+        'application/xml'
+      );
+      let lnElements = Array.from(
+        docFragment.querySelectorAll('LN[lnClass="LSVS"]')
+      );
+      expect(minAvailableLogicalNodeInstance(lnElements)).to.be.equal('2');
+      lnElements = Array.from(
+        docFragment.querySelectorAll('LN[lnClass="LLN0"]')
+      );
+      expect(minAvailableLogicalNodeInstance(lnElements)).to.be.equal('1');
     });
   });
 });

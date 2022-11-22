@@ -99,3 +99,57 @@ export function initializeElements(
     return daiElement;
   }
 }
+
+/**
+ * Use the path configuration of a Common Data Class to search for all DO/SDO/DA/BDA Elements to create
+ * a structure for which DOI/SDI/DAI Elements should be created later. Null will be returned when an invalid
+ * Template Structure is described by the path.
+ *
+ * @param lnElement - The LN Element to use for searching the starting DO Element.
+ * @param path    - The (S)DO/(B)DA Elements to find in the template structure.
+ * @returns List of Elements starting with the DO Element followed by one or more SDO or (B)DA Elements describing the structure.
+ */
+export function createTemplateStructure(
+  lnElement: Element,
+  path: string[]
+): Element[] | null {
+  let templateStructure: Element[] | null = [];
+
+  const doc = lnElement.ownerDocument;
+  const lnType = lnElement.getAttribute('lnType') ?? '';
+  let typeElement = doc.querySelector(`LNodeType[id="${lnType}"]`);
+  path.forEach(name => {
+    // There should be a DOType or DAType set for the current element in the list.
+    if (!typeElement) {
+      templateStructure = null;
+      return;
+    }
+    const dataElement = typeElement.querySelector(
+      `:scope > DO[name="${name}"], :scope > SDO[name="${name}"], :scope > DA[name="${name}"], :scope > BDA[name="${name}"]`
+    );
+    // If there is no (S)DO/(B)DA Element found the structure is incorrect, so just stop.
+    if (dataElement === null) {
+      templateStructure = null;
+      return;
+    }
+    templateStructure!.push(dataElement);
+
+    if (dataElement.tagName === 'DO' || dataElement.tagName === 'SDO') {
+      const type = dataElement.getAttribute('type') ?? '';
+      typeElement = doc.querySelector(
+        `DataTypeTemplates > DOType[id="${type}"]`
+      );
+    } else {
+      const bType = dataElement.getAttribute('bType') ?? '';
+      if (bType === 'Struct') {
+        const type = dataElement.getAttribute('type') ?? '';
+        typeElement = doc.querySelector(
+          `DataTypeTemplates > DAType[id="${type}"]`
+        );
+      } else {
+        typeElement = null;
+      }
+    }
+  });
+  return templateStructure;
+}

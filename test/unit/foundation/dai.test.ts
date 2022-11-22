@@ -1,5 +1,6 @@
 import { expect } from '@open-wc/testing';
 import {
+  createTemplateStructure,
   determineUninitializedStructure,
   initializeElements,
 } from '../../../src/foundation/dai.js';
@@ -79,6 +80,47 @@ describe('Global DAI related functions including', () => {
       expect(parentElement?.tagName).to.be.equals('DOI');
       expect(templateStructure.length).to.be.equals(1);
       expect(templateStructure[0].tagName).to.be.equals('DA');
+    });
+  });
+
+  describe('createTemplateStructure', async () => {
+    it('creates DO/DA structure for LSVS supervision', async () => {
+      const lsvsScl: XMLDocument = await fetch(
+        '/test/testfiles/editors/VS893-LaterBindingSMV-LSVS.scd'
+      )
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+      const lnElement = lsvsScl.querySelector(
+        'IED[name="SMV_Subscriber2"] LN[lnClass="LSVS"][inst="2"]'
+      )!;
+
+      const structureOfElements = createTemplateStructure(lnElement, [
+        'SvCBRef',
+        'setSrcRef',
+      ]);
+
+      expect(structureOfElements?.length).to.be.equals(2);
+      expect(structureOfElements?.at(0)?.tagName).to.be.equals('DO');
+      expect(structureOfElements?.at(1)?.tagName).to.be.equals('DA');
+    });
+    it('creates DO/DA structure for LGOS supervision', async () => {
+      const lsvsScl: XMLDocument = await fetch(
+        '/test/testfiles/editors/VS893_LaterBindingGOOSE-LGOS.scd'
+      )
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+      const lnElement = lsvsScl.querySelector(
+        'IED[name="GOOSE_Subscriber2"] LN[lnClass="LGOS"][inst="1"]'
+      )!;
+
+      const structureOfElements = createTemplateStructure(lnElement, [
+        'GoCBRef',
+        'setSrcRef',
+      ]);
+
+      expect(structureOfElements?.length).to.be.equals(2);
+      expect(structureOfElements?.at(0)?.tagName).to.be.equals('DO');
+      expect(structureOfElements?.at(1)?.tagName).to.be.equals('DA');
     });
   });
 

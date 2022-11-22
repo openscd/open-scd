@@ -86,6 +86,20 @@ describe('ImportIedsPlugin', () => {
       expect(element.doc.querySelector('IED[name="TEMPLATE_IED2"]')).to.exist;
     });
 
+    it('imports the ConnectedAPs for a TEMPLATE IED', async () => {
+      const templateIED1 = await fetch(
+        '/test/testfiles/importieds/template.icd'
+      )
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+      element.prepareImport(templateIED1, doc);
+      expect(
+        element.doc?.querySelectorAll(
+          ':root > Communication >  SubNetwork > ConnectedAP[iedName="TEMPLATE_IED1"]'
+        )
+      ).to.exist;
+    });
+
     it('loads unique lnodetypes to the project', () => {
       expect(
         element.doc?.querySelectorAll(':root > DataTypeTemplates >  LNodeType')
