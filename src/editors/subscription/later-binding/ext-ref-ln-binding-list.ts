@@ -24,14 +24,15 @@ import {
   createExtRefElement,
   existExtRef,
   FcdaSelectEvent,
+  getExtRef,
   newSubscriptionChangedEvent,
+  removeSubscriptionSupervision,
+  instantiateSubscriptionSupervision,
   styles,
+  canRemoveSubscriptionSupervision,
 } from '../foundation.js';
 import { getSubscribedExtRefElements } from './foundation.js';
-import {
-  emptyInputsDeleteActions,
-  getFcdaReferences,
-} from '../../../foundation/ied.js';
+import { emptyInputsDeleteActions } from '../../../foundation/ied.js';
 
 /**
  * A sub element for showing all Ext Refs from a FCDA Element.
@@ -126,7 +127,11 @@ export class ExtRefLnBindingList extends LitElement {
     }
 
     if (
-      !existExtRef(inputsElement!, this.currentSelectedFcdaElement) &&
+      !existExtRef(
+        inputsElement!,
+        this.currentSelectedFcdaElement,
+        this.currentSelectedControlElement
+      ) &&
       canCreateValidExtRef(
         this.currentSelectedFcdaElement,
         this.currentSelectedControlElement
@@ -138,6 +143,15 @@ export class ExtRefLnBindingList extends LitElement {
       );
       actions.push({ new: { parent: inputsElement, element: extRef } });
     }
+
+    // we need to extend the actions array with the actions for the instation of the LGOS
+    const subscriberIed = lnElement.closest('IED') || undefined;
+    actions.push(
+      ...instantiateSubscriptionSupervision(
+        this.currentSelectedControlElement,
+        subscriberIed
+      )
+    );
 
     const title = get('subscription.connect');
     return { title, actions };
@@ -154,9 +168,10 @@ export class ExtRefLnBindingList extends LitElement {
 
     const actions: Delete[] = [];
     const inputElement = lnElement.querySelector(':scope > Inputs')!;
-    const extRefElement = inputElement.querySelector(
-      `ExtRef[iedName=${this.currentIedElement.getAttribute('name')}]` +
-        `${getFcdaReferences(this.currentSelectedFcdaElement)}`
+    const extRefElement = getExtRef(
+      inputElement,
+      this.currentSelectedFcdaElement,
+      this.currentSelectedControlElement
     );
     if (extRefElement) {
       actions.push({ old: { parent: inputElement, element: extRefElement } });
@@ -164,6 +179,16 @@ export class ExtRefLnBindingList extends LitElement {
 
     // Check if empty Input Element should also be removed.
     actions.push(...emptyInputsDeleteActions(actions));
+
+    // we need to extend the actions array with the actions for removing the supervision
+    const subscriberIed = lnElement.closest('IED') || undefined;
+    if (extRefElement && canRemoveSubscriptionSupervision(extRefElement))
+      actions.push(
+        ...removeSubscriptionSupervision(
+          this.currentSelectedControlElement,
+          subscriberIed
+        )
+      );
 
     return {
       title: get('subscription.disconnect'),

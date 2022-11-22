@@ -1,11 +1,23 @@
-import { css, LitElement, query } from 'lit-element';
+import { css, html, LitElement, query } from 'lit-element';
+import { nothing } from 'lit-html';
+
 import {
   cloneElement,
   compareNames,
+  Create,
   createElement,
+  Delete,
   getSclSchemaVersion,
+  isPublic,
+  minAvailableLogicalNodeInstance,
 } from '../../foundation.js';
+import {
+  createTemplateStructure,
+  determineUninitializedStructure,
+  initializeElements,
+} from '../../foundation/dai.js';
 import { getFcdaReferences } from '../../foundation/ied.js';
+import { SCL_NAMESPACE } from '../../schemas.js';
 
 export enum View {
   PUBLISHER,
@@ -97,13 +109,390 @@ export function getFcdaTitleValue(fcdaElement: Element): string {
   }${fcdaElement.getAttribute('daName')}`;
 }
 
-export function existExtRef(parentInputs: Element, fcda: Element): boolean {
-  const iedName = fcda.closest('IED')?.getAttribute('name');
-  if (!iedName) return false;
+export function getFcdaSubtitleValue(fcdaElement: Element): string {
+  return `${fcdaElement.getAttribute('ldInst')} ${
+    fcdaElement.hasAttribute('ldInst') ? `/` : ''
+  }${
+    fcdaElement.getAttribute('prefix')
+      ? ` ${fcdaElement.getAttribute('prefix')}`
+      : ''
+  } ${fcdaElement.getAttribute('lnClass')} ${fcdaElement.getAttribute(
+    'lnInst'
+  )}`;
+}
 
-  return !!parentInputs.querySelector(
-    `ExtRef[iedName=${iedName}]` + `${getFcdaReferences(fcda)}`
+export function existExtRef(
+  parentInputs: Element,
+  fcda: Element,
+  control: Element | undefined
+): boolean {
+  return !!getExtRef(parentInputs, fcda, control);
+}
+
+export function getExtRef(
+  parentInputs: Element,
+  fcda: Element,
+  control: Element | undefined
+): Element | undefined {
+  function createCriteria(attributeName: string, value: string | null): string {
+    if (value) {
+      return `[${attributeName}="${value}"]`;
+    }
+    return '';
+  }
+
+  const iedName = fcda.closest('IED')?.getAttribute('name');
+  if (!iedName) {
+    return undefined;
+  }
+
+  let controlCriteria = '';
+  if (control && getSclSchemaVersion(fcda.ownerDocument) !== '2003') {
+    controlCriteria = `[serviceType="${serviceTypes[control.tagName]!}"]`;
+    controlCriteria += createCriteria(
+      'srcLDInst',
+      control.closest('LDevice')?.getAttribute('inst') ?? null
+    );
+    controlCriteria += createCriteria(
+      'srcLNClass',
+      control.closest('LN0,LN')?.getAttribute('lnClass') ?? null
+    );
+    controlCriteria += createCriteria(
+      'srcLNInst',
+      control.closest('LN0,LN')?.getAttribute('inst') ?? null
+    );
+    controlCriteria += createCriteria(
+      'srcCBName',
+      control.getAttribute('name') ?? null
+    );
+  }
+
+  return Array.from(
+    parentInputs.querySelectorAll(
+      `ExtRef[iedName="${iedName}"]${getFcdaReferences(fcda)}${controlCriteria}`
+    )
+  ).find(extRefElement => !extRefElement.hasAttribute('intAddr'));
+}
+
+export function canRemoveSubscriptionSupervision(
+  subscribedExtRef: Element
+): boolean {
+  const [srcCBName, srcLDInst, srcLNClass, iedName, srcPrefix, srcLNInst] = [
+    'srcCBName',
+    'srcLDInst',
+    'srcLNClass',
+    'iedName',
+    'srcPrefix',
+    'srcLNInst',
+  ].map(attr => subscribedExtRef.getAttribute(attr));
+  return !Array.from(
+    subscribedExtRef.closest('IED')?.getElementsByTagName('ExtRef') ?? []
+  )
+    .filter(isPublic)
+    .some(
+      extRef =>
+        (extRef.getAttribute('srcCBName') ?? '') === (srcCBName ?? '') &&
+        (extRef.getAttribute('srcLDInst') ?? '') === (srcLDInst ?? '') &&
+        (extRef.getAttribute('srcLNClass') ?? '') === (srcLNClass ?? '') &&
+        (extRef.getAttribute('iedName') ?? '') === (iedName ?? '') &&
+        (extRef.getAttribute('srcPrefix') ?? '') === (srcPrefix ?? '') &&
+        (extRef.getAttribute('srcLNInst') ?? '') === (srcLNInst ?? '') &&
+        extRef !== subscribedExtRef
+    );
+}
+
+/**
+ * Searches DataTypeTemplates for DOType>DA[valKind=Conf/RO][valImport=true] from an LN reference.
+ * @param lnElement - The LN Element to use for searching the starting DO Element.
+ * @returns - true if both conditions are found in the DA child element.
+ */
+function checksDataTypeTemplateConditions(lnElement: Element): boolean {
+  const rootNode = lnElement?.ownerDocument;
+  const lNodeType = lnElement.getAttribute('lnType');
+  const lnClass = lnElement.getAttribute('lnClass');
+  const dObj = rootNode.querySelector(
+    `DataTypeTemplates > LNodeType[id="${lNodeType}"][lnClass="${lnClass}"] > DO[name="${
+      lnClass === 'LGOS' ? 'GoCBRef' : 'SvCBRef'
+    }"]`
   );
+  if (dObj) {
+    const dORef = dObj.getAttribute('type');
+    const daObj = rootNode.querySelector(
+      `DataTypeTemplates > DOType[id="${dORef}"] > DA[name="setSrcRef"]`
+    );
+    if (daObj) {
+      return (
+        (daObj.getAttribute('valKind') === 'Conf' ||
+          daObj.getAttribute('valKind') === 'RO') &&
+        daObj.getAttribute('valImport') === 'true'
+      );
+    }
+  }
+  // definition missing
+  return false;
+}
+
+/**
+ * Returns an array with a single Create action to create a new
+ * supervision element for the given GOOSE/SMV message and subscriber IED.
+ *
+ * @param controlBlock The GOOSE or SMV message element
+ * @param subscriberIED The subscriber IED
+ * @returns an empty array if instantiation is not possible or an array with a single Create action
+ */
+export function instantiateSubscriptionSupervision(
+  controlBlock: Element | undefined,
+  subscriberIED: Element | undefined
+): Create[] {
+  const supervisionType =
+    controlBlock?.tagName === 'GSEControl' ? 'LGOS' : 'LSVS';
+  if (
+    !controlBlock ||
+    !subscriberIED ||
+    !isSupervisionAllowed(controlBlock, subscriberIED, supervisionType)
+  )
+    return [];
+  const availableLN = findOrCreateAvailableLNInst(
+    controlBlock,
+    subscriberIED,
+    supervisionType
+  );
+  if (!availableLN || !checksDataTypeTemplateConditions(availableLN)) return [];
+
+  // Then, create the templateStructure array
+  const templateStructure = createTemplateStructure(availableLN, [
+    controlBlock?.tagName === 'GSEControl' ? 'GoCBRef' : 'SvCBRef',
+    'setSrcRef',
+  ]);
+  if (!templateStructure) return [];
+  // Determine where to start creating new elements (DOI/SDI/DAI)
+  const [parentElement, uninitializedTemplateStructure] =
+    determineUninitializedStructure(availableLN, templateStructure);
+  // // Next create all missing elements (DOI/SDI/DAI)
+  const newElement = initializeElements(uninitializedTemplateStructure);
+  newElement.querySelector('Val')!.textContent =
+    controlBlockReference(controlBlock);
+  const createActions: Create[] = [];
+  if (!availableLN.parentElement) {
+    const parent = subscriberIED.querySelector(
+      `LN[lnClass="${supervisionType}"]`
+    )?.parentElement;
+    if (parent)
+      createActions.push({
+        new: {
+          parent,
+          element: availableLN,
+        },
+      });
+  }
+  return createActions.concat([
+    {
+      new: {
+        parent: parentElement,
+        element: newElement,
+      },
+    },
+  ]);
+}
+
+/**
+ * Return an array with a single Delete action to delete the supervision element
+ * for the given GOOSE/SMV message and subscriber IED.
+ *
+ * @param controlBlock The GOOSE or SMV message element
+ * @param subscriberIED The subscriber IED
+ * @returns an empty array if removing the supervision is not possible or an array
+ * with a single Delete action that removes the LN if it was created in OpenSCD
+ * or only the supervision structure DOI/DAI/Val if it was created by the user.
+ */
+export function removeSubscriptionSupervision(
+  controlBlock: Element | undefined,
+  subscriberIED: Element | undefined
+): Delete[] {
+  if (!controlBlock || !subscriberIED) return [];
+  const supervisionType =
+    controlBlock?.tagName === 'GSEControl' ? 'LGOS' : 'LSVS';
+  const valElement = Array.from(
+    subscriberIED.querySelectorAll(
+      `LN[lnClass="${supervisionType}"]>DOI>DAI>Val,LN0[lnClass="${supervisionType}"]>DOI>DAI>Val`
+    )
+  ).find(val => val.textContent == controlBlockReference(controlBlock));
+  if (!valElement) return [];
+  const lnElement = valElement.closest('LN0, LN');
+  if (!lnElement || !lnElement.parentElement) return [];
+  // Check if that one has been created by OpenSCD (private section exists)
+  const isOpenScdCreated = lnElement.querySelector(
+    'Private[type="OpenSCD.create"]'
+  );
+  return isOpenScdCreated
+    ? [
+        {
+          old: {
+            parent: lnElement.parentElement,
+            element: lnElement,
+          },
+        },
+      ]
+    : [
+        {
+          old: {
+            parent: lnElement,
+            element: valElement.closest('DOI')!,
+          },
+        },
+      ];
+}
+
+/**
+ * Checks if the given combination of GOOSE/SMV message and subscriber IED
+ * allows for subscription supervision.
+ * @param controlBlock The GOOSE or SMV message element
+ * @param subscriberIED The subscriber IED
+ * @param supervisionType LSVS or LGOS
+ * @returns true if both controlBlock and subscriberIED meet the requirements for
+ * setting up a supervision for the specified supervision type or false if they don't
+ */
+function isSupervisionAllowed(
+  controlBlock: Element,
+  subscriberIED: Element,
+  supervisionType: string
+): boolean {
+  if (getSclSchemaVersion(subscriberIED.ownerDocument) === '2003') return false;
+  if (subscriberIED.querySelector(`LN[lnClass="${supervisionType}"]`) === null)
+    return false;
+  if (
+    Array.from(
+      subscriberIED.querySelectorAll(
+        `LN[lnClass="${supervisionType}"]>DOI>DAI>Val`
+      )
+    ).find(val => val.textContent == controlBlockReference(controlBlock))
+  )
+    return false;
+  if (
+    maxSupervisions(subscriberIED, controlBlock) <=
+    instantiatedSupervisionsCount(subscriberIED, controlBlock, supervisionType)
+  )
+    return false;
+
+  return true;
+}
+
+/** Returns an new or existing LN instance available for supervision instantiation
+ *
+ * @param controlBlock The GOOSE or SMV message element
+ * @param subscriberIED The subscriber IED
+ * @returns The LN instance or null if no LN instance could be found or created
+ */
+export function findOrCreateAvailableLNInst(
+  controlBlock: Element,
+  subscriberIED: Element,
+  supervisionType: string
+): Element | null {
+  let availableLN = Array.from(
+    subscriberIED.querySelectorAll(`LN[lnClass="${supervisionType}"]`)
+  ).find(
+    ln =>
+      ln.querySelector('DOI>DAI>Val') === null ||
+      ln.querySelector('DOI>DAI>Val')?.textContent === ''
+  );
+  if (!availableLN) {
+    availableLN = subscriberIED.ownerDocument.createElementNS(
+      SCL_NAMESPACE,
+      'LN'
+    );
+    const openScdTag = subscriberIED.ownerDocument.createElementNS(
+      SCL_NAMESPACE,
+      'Private'
+    );
+    openScdTag.setAttribute('type', 'OpenSCD.create');
+    availableLN.appendChild(openScdTag);
+    availableLN.setAttribute('lnClass', supervisionType);
+    const instantiatedSibling = subscriberIED
+      .querySelector(`LN[lnClass="${supervisionType}"]>DOI>DAI>Val`)
+      ?.closest('LN');
+    if (!instantiatedSibling) return null;
+    availableLN.setAttribute(
+      'lnType',
+      instantiatedSibling.getAttribute('lnType') ?? ''
+    );
+  }
+
+  /* Before we return, we make sure that LN's inst is unique, non-empty
+  and also the minimum inst as the minimum of all available in the IED */
+  const inst = availableLN.getAttribute('inst') ?? '';
+  if (inst === '') {
+    const instNumber = minAvailableLogicalNodeInstance(
+      Array.from(
+        subscriberIED.querySelectorAll(`LN[lnClass="${supervisionType}"]`)
+      )
+    );
+    if (!instNumber) return null;
+    availableLN.setAttribute('inst', instNumber);
+  }
+  return availableLN;
+}
+
+/**
+ * Counts the number of LN instances with proper supervision for the given control block set up.
+ *
+ * @param subscriberIED The subscriber IED
+ * @param controlBlock The GOOSE or SMV message element
+ * @returns The number of LN instances with a supervision set up
+ */
+export function instantiatedSupervisionsCount(
+  subscriberIED: Element,
+  controlBlock: Element,
+  supervisionType: string
+): number {
+  const instantiatedValues = Array.from(
+    subscriberIED.querySelectorAll(
+      `LN[lnClass="${supervisionType}"]>DOI>DAI>Val`
+    )
+  ).filter(val => val.textContent !== '');
+  return instantiatedValues.length;
+}
+
+/**
+ * Counts the max number of LN instances with supervision allowed for
+ * the given control block's type of message.
+ *
+ * @param subscriberIED The subscriber IED
+ * @param controlBlock The GOOSE or SMV message element
+ * @returns The max number of LN instances with supervision allowed
+ */
+export function maxSupervisions(
+  subscriberIED: Element,
+  controlBlock: Element
+): number {
+  const maxAttr = controlBlock.tagName === 'GSEControl' ? 'maxGo' : 'maxSv';
+  const maxValues = parseInt(
+    subscriberIED
+      .querySelector('Services>SupSubscription')
+      ?.getAttribute(maxAttr) ?? '0',
+    10
+  );
+  return isNaN(maxValues) ? 0 : maxValues;
+}
+
+/**
+ * Creates a string pointer to the control block element.
+ *
+ * @param controlBlock The GOOSE or SMV message element
+ * @returns null if the control block is undefined or a string pointer to the control block element
+ */
+export function controlBlockReference(
+  controlBlock: Element | undefined
+): string | null {
+  if (!controlBlock) return null;
+  const anyLn = controlBlock.closest('LN,LN0');
+  const prefix = anyLn?.getAttribute('prefix') ?? '';
+  const lnClass = anyLn?.getAttribute('lnClass');
+  const lnInst = anyLn?.getAttribute('inst') ?? '';
+  const ldInst = controlBlock.closest('LDevice')?.getAttribute('inst');
+  const iedName = controlBlock.closest('IED')?.getAttribute('name');
+  const cbName = controlBlock.getAttribute('name');
+  if (!cbName && !iedName && !ldInst && !lnClass) return null;
+  return `${iedName}${ldInst}/${prefix}${lnClass}${lnInst}.${cbName}`;
 }
 
 export function canCreateValidExtRef(
@@ -117,25 +506,30 @@ export function canCreateValidExtRef(
     'lnInst',
     'doName',
   ].map(attr => fcda.getAttribute(attr));
+  if (!iedName || !ldInst || !lnClass || !lnInst || !doName) {
+    return false;
+  }
 
-  if (!iedName || !ldInst || !lnClass || !lnInst || !doName) return false;
-
-  if (controlBlock === undefined) return true; //for serviceType `Poll`
+  // For 2003 schema or serviceType `Poll`, the extra fields aren't needed.
+  if (
+    getSclSchemaVersion(fcda.ownerDocument) === '2003' ||
+    controlBlock === undefined
+  ) {
+    return true;
+  }
 
   const srcLDInst = controlBlock.closest('LDevice')?.getAttribute('inst');
   const srcLNClass = controlBlock.closest('LN0,LN')?.getAttribute('lnClass');
   const srcLNInst = controlBlock.closest('LN0,LN')?.getAttribute('inst');
   const srcCBName = controlBlock.getAttribute('name');
 
-  if (
+  // For srcLNInst an empty string is allowed in `LN0`
+  return !(
     !srcLDInst ||
     !srcLNClass ||
     !srcCBName ||
-    typeof srcLNInst !== 'string' //empty string is allowed in `LN0`
-  )
-    return false;
-
-  return true;
+    typeof srcLNInst !== 'string'
+  );
 }
 
 export const serviceTypes: Partial<Record<string, string>> = {

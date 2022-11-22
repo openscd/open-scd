@@ -74,7 +74,7 @@ describe('extref-later-binding-list', () => {
       });
 
       it('expect the correct number of available elements', () => {
-        expect(element['getAvailableExtRefElements']().length).to.be.equal(8);
+        expect(element['getAvailableExtRefElements']().length).to.be.equal(9);
       });
 
       it('looks like the latest snapshot, when SVC has no subscriptions', async () => {
@@ -101,7 +101,7 @@ describe('extref-later-binding-list', () => {
       });
 
       it('expect the correct number of available elements', () => {
-        expect(element['getAvailableExtRefElements']().length).to.be.equal(8);
+        expect(element['getAvailableExtRefElements']().length).to.be.equal(9);
       });
 
       it('looks like the latest snapshot, ', async () => {
@@ -129,7 +129,7 @@ describe('extref-later-binding-list', () => {
     });
 
     it('expect the correct number of available elements', () => {
-      expect(element['getAvailableExtRefElements']().length).to.be.equal(8);
+      expect(element['getAvailableExtRefElements']().length).to.be.equal(9);
     });
 
     it('looks like the latest snapshot, ', async () => {
@@ -188,7 +188,7 @@ describe('extref-later-binding-list', () => {
       });
 
       it('expect the correct number of available elements', () => {
-        expect(element['getAvailableExtRefElements']().length).to.be.equal(4);
+        expect(element['getAvailableExtRefElements']().length).to.be.equal(5);
       });
 
       it('looks like the latest snapshot, when GSEControl has no subscriptions', async () => {
@@ -217,7 +217,7 @@ describe('extref-later-binding-list', () => {
       });
 
       it('expect the correct number of available elements', () => {
-        expect(element['getAvailableExtRefElements']().length).to.be.equal(4);
+        expect(element['getAvailableExtRefElements']().length).to.be.equal(5);
       });
 
       it('looks like the latest snapshot, ', async () => {
@@ -245,7 +245,7 @@ describe('extref-later-binding-list', () => {
     });
 
     it('expect the correct number of available elements', () => {
-      expect(element['getAvailableExtRefElements']().length).to.be.equal(4);
+      expect(element['getAvailableExtRefElements']().length).to.be.equal(5);
     });
 
     it('looks like the latest snapshot, ', async () => {

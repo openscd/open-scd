@@ -4,7 +4,7 @@ export const snapshots = {};
 snapshots["A component to visualize SCL element ConnectedAP looks like the latest snapshot"] = 
 `<action-icon
   icon="settings_input_hdmi"
-  label="P1"
+  label="AP1"
   tabindex="0"
 >
   <mwc-fab

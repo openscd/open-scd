@@ -24,16 +24,16 @@ import {
   SmvSelectEvent,
   SmvSubscriptionEvent,
 } from './foundation.js';
-import {
-  emptyInputsDeleteActions,
-  getFcdaReferences,
-} from '../../../foundation/ied.js';
+import { emptyInputsDeleteActions } from '../../../foundation/ied.js';
 import {
   canCreateValidExtRef,
   createExtRefElement,
   existExtRef,
+  getExtRef,
   IEDSelectEvent,
+  instantiateSubscriptionSupervision,
   ListElement,
+  removeSubscriptionSupervision,
   styles,
   SubscriberListContainer,
   SubscribeStatus,
@@ -109,12 +109,7 @@ export class SubscriberList extends SubscriberListContainer {
 
       dataSet!.querySelectorAll('FCDA').forEach(fcda => {
         subscribedInputs.forEach(inputs => {
-          if (
-            inputs.querySelector(
-              `ExtRef[iedName=${ied.getAttribute('name')}]` +
-                `${getFcdaReferences(fcda)}`
-            )
-          ) {
+          if (getExtRef(inputs, fcda, this.currentSelectedSmvControl)) {
             numberOfLinkedExtRefs++;
           }
         });
@@ -168,12 +163,7 @@ export class SubscriberList extends SubscriberListContainer {
          */
         this.currentUsedDataset!.querySelectorAll('FCDA').forEach(fcda => {
           inputElements.forEach(inputs => {
-            if (
-              inputs.querySelector(
-                `ExtRef[iedName=${this.currentSmvIedName}]` +
-                  `${getFcdaReferences(fcda)}`
-              )
-            ) {
+            if (getExtRef(inputs, fcda, this.currentSelectedSmvControl)) {
               numberOfLinkedExtRefs++;
             }
           });
@@ -251,9 +241,10 @@ export class SubscriberList extends SubscriberListContainer {
       inputsElement = createElement(ied.ownerDocument, 'Inputs', {});
 
     const actions: Create[] = [];
+
     this.currentUsedDataset!.querySelectorAll('FCDA').forEach(fcda => {
       if (
-        !existExtRef(inputsElement!, fcda) &&
+        !existExtRef(inputsElement!, fcda, this.currentSelectedSmvControl) &&
         canCreateValidExtRef(fcda, this.currentSelectedSmvControl)
       ) {
         const extRef = createExtRefElement(
@@ -267,15 +258,31 @@ export class SubscriberList extends SubscriberListContainer {
       }
     });
 
+    // we need to extend the actions array with the actions for the instation of the LSVS
+    const supervisionActions: Create[] = instantiateSubscriptionSupervision(
+      this.currentSelectedSmvControl,
+      ied
+    );
+
     /** If the IED doesn't have a Inputs element, just append it to the first LN0 element. */
     const title = get('subscription.connect');
     if (inputsElement.parentElement)
-      this.dispatchEvent(newActionEvent({ title, actions }));
+      this.dispatchEvent(
+        newActionEvent({
+          title,
+          actions: actions.concat(supervisionActions),
+        })
+      );
     else {
       const inputAction: Create = {
         new: { parent: ied.querySelector('LN0')!, element: inputsElement },
       };
-      this.dispatchEvent(newActionEvent({ title, actions: [inputAction] }));
+      this.dispatchEvent(
+        newActionEvent({
+          title,
+          actions: [inputAction].concat(supervisionActions),
+        })
+      );
     }
   }
 
@@ -283,17 +290,18 @@ export class SubscriberList extends SubscriberListContainer {
     const actions: Delete[] = [];
     ied.querySelectorAll('LN0 > Inputs, LN > Inputs').forEach(inputs => {
       this.currentUsedDataset!.querySelectorAll('FCDA').forEach(fcda => {
-        const extRef = inputs.querySelector(
-          `ExtRef[iedName=${this.currentSmvIedName}]` +
-            `${getFcdaReferences(fcda)}`
-        );
-
+        const extRef = getExtRef(inputs, fcda, this.currentSelectedSmvControl);
         if (extRef) actions.push({ old: { parent: inputs, element: extRef } });
       });
     });
 
     // Check if empty Input Element should also be removed.
     actions.push(...emptyInputsDeleteActions(actions));
+
+    // we need to extend the actions array with the actions for removing the supervision
+    actions.push(
+      ...removeSubscriptionSupervision(this.currentSelectedSmvControl, ied)
+    );
 
     this.dispatchEvent(
       newActionEvent({

@@ -8,25 +8,32 @@ import {
   TemplateResult,
 } from 'lit-element';
 import { nothing } from 'lit-html';
-import { translate } from 'lit-translate';
+import { get, translate } from 'lit-translate';
 
 import {
   cloneElement,
+  Delete,
   getDescriptionAttribute,
   identity,
   newActionEvent,
-  Replace,
 } from '../../../foundation.js';
 
 import {
-  FcdaSelectEvent,
-  newSubscriptionChangedEvent,
   styles,
   updateExtRefElement,
+  serviceTypes,
+  instantiateSubscriptionSupervision,
+  removeSubscriptionSupervision,
+  FcdaSelectEvent,
+  newSubscriptionChangedEvent,
+  canRemoveSubscriptionSupervision,
 } from '../foundation.js';
+
 import {
   getExtRefElements,
   getSubscribedExtRefElements,
+  fcdaSpecification,
+  inputRestriction,
   isSubscribed,
 } from './foundation.js';
 
@@ -70,19 +77,40 @@ export class ExtRefLaterBindingList extends LitElement {
   }
 
   /**
-   * The data attribute check using attributes pLN, pDO, pDA and pServT is not supported yet by this plugin.
-   * To make sure the user does not do anything prohibited, this type of ExtRef cannot be manipulated for the time being.
-   * (Will be updated in the future).
+   * Check data consistency of source `FCDA` and sink `ExtRef` based on
+   * `ExtRef`'s `pLN`, `pDO`, `pDA` and `pServT` attributes.
+   * Consistent means `CDC` and `bType` of both ExtRef and FCDA is equal.
+   * In case
+   *  - `pLN`, `pDO`, `pDA` or `pServT` attributes are not present, allow subscribing
+   *  - no CDC or bType can be extracted, do not allow subscribing
    *
-   * @param extRefElement - The Ext Ref Element to check.
+   * @param extRef - The `ExtRef` Element to check against
    */
-  private unsupportedExtRefElement(extRefElement: Element): boolean {
-    return (
-      extRefElement.hasAttribute('pLN') ||
-      extRefElement.hasAttribute('pDO') ||
-      extRefElement.hasAttribute('pDA') ||
-      extRefElement.hasAttribute('pServT')
-    );
+  private unsupportedExtRefElement(extRef: Element): boolean {
+    // Vendor does not provide data for the check
+    if (
+      !extRef.hasAttribute('pLN') ||
+      !extRef.hasAttribute('pDO') ||
+      !extRef.hasAttribute('pDA') ||
+      !extRef.hasAttribute('pServT')
+    )
+      return false;
+
+    // Not ready for any kind of subscription
+    if (!this.currentSelectedFcdaElement) return true;
+
+    const fcda = fcdaSpecification(this.currentSelectedFcdaElement);
+    const input = inputRestriction(extRef);
+
+    if (fcda.cdc === null && input.cdc === null) return true;
+    if (fcda.bType === null && input.bType === null) return true;
+    if (
+      serviceTypes[this.currentSelectedControlElement?.tagName ?? ''] !==
+      extRef.getAttribute('pServT')
+    )
+      return true;
+
+    return fcda.cdc !== input.cdc || fcda.bType !== input.bType;
   }
 
   /**
@@ -90,15 +118,14 @@ export class ExtRefLaterBindingList extends LitElement {
    *
    * @param extRefElement - The Ext Ref Element to clean from attributes.
    */
-  private unsubscribe(extRefElement: Element): Replace | null {
+  private unsubscribe(extRefElement: Element): void {
     if (
       !this.currentIedElement ||
       !this.currentSelectedFcdaElement ||
       !this.currentSelectedControlElement!
     ) {
-      return null;
+      return;
     }
-
     const clonedExtRefElement = cloneElement(extRefElement, {
       iedName: null,
       ldInst: null,
@@ -115,10 +142,33 @@ export class ExtRefLaterBindingList extends LitElement {
       srcCBName: null,
     });
 
-    return {
+    const replaceAction = {
       old: { element: extRefElement },
       new: { element: clonedExtRefElement },
     };
+
+    const subscriberIed = extRefElement.closest('IED') || undefined;
+    const removeSubscriptionActions: Delete[] = [];
+    if (canRemoveSubscriptionSupervision(extRefElement))
+      removeSubscriptionActions.push(
+        ...removeSubscriptionSupervision(
+          this.currentSelectedControlElement,
+          subscriberIed
+        )
+      );
+
+    this.dispatchEvent(
+      newActionEvent({
+        title: get(`subscription.disconnect`),
+        actions: [replaceAction, ...removeSubscriptionActions],
+      })
+    );
+    this.dispatchEvent(
+      newSubscriptionChangedEvent(
+        this.currentSelectedControlElement,
+        this.currentSelectedFcdaElement
+      )
+    );
   }
 
   /**
@@ -126,16 +176,16 @@ export class ExtRefLaterBindingList extends LitElement {
    *
    * @param extRefElement - The Ext Ref Element to add the attributes to.
    */
-  private subscribe(extRefElement: Element): Replace | null {
+  private subscribe(extRefElement: Element): void {
     if (
       !this.currentIedElement ||
       !this.currentSelectedFcdaElement ||
       !this.currentSelectedControlElement!
     ) {
-      return null;
+      return;
     }
 
-    return {
+    const replaceAction = {
       old: { element: extRefElement },
       new: {
         element: updateExtRefElement(
@@ -145,6 +195,25 @@ export class ExtRefLaterBindingList extends LitElement {
         ),
       },
     };
+
+    const subscriberIed = extRefElement.closest('IED') || undefined;
+    const supervisionActions = instantiateSubscriptionSupervision(
+      this.currentSelectedControlElement,
+      subscriberIed
+    );
+
+    this.dispatchEvent(
+      newActionEvent({
+        title: get(`subscription.connect`),
+        actions: [replaceAction, ...supervisionActions],
+      })
+    );
+    this.dispatchEvent(
+      newSubscriptionChangedEvent(
+        this.currentSelectedControlElement,
+        this.currentSelectedFcdaElement
+      )
+    );
   }
 
   private getSubscribedExtRefElements(): Element[] {
@@ -193,18 +262,7 @@ export class ExtRefLaterBindingList extends LitElement {
             extRefElement => html` <mwc-list-item
               graphic="large"
               twoline
-              @click=${() => {
-                const replaceAction = this.unsubscribe(extRefElement);
-                if (replaceAction) {
-                  this.dispatchEvent(newActionEvent(replaceAction));
-                  this.dispatchEvent(
-                    newSubscriptionChangedEvent(
-                      this.currentSelectedControlElement,
-                      this.currentSelectedFcdaElement
-                    )
-                  );
-                }
-              }}
+              @click=${() => this.unsubscribe(extRefElement)}
               value="${identity(extRefElement)}"
             >
               <span>
@@ -250,18 +308,7 @@ export class ExtRefLaterBindingList extends LitElement {
               graphic="large"
               ?disabled=${this.unsupportedExtRefElement(extRefElement)}
               twoline
-              @click=${() => {
-                const replaceAction = this.subscribe(extRefElement);
-                if (replaceAction) {
-                  this.dispatchEvent(newActionEvent(replaceAction));
-                  this.dispatchEvent(
-                    newSubscriptionChangedEvent(
-                      this.currentSelectedControlElement,
-                      this.currentSelectedFcdaElement
-                    )
-                  );
-                }
-              }}
+              @click=${() => this.subscribe(extRefElement)}
               value="${identity(extRefElement)}"
             >
               <span>
