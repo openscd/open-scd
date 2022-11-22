@@ -12,7 +12,7 @@ import { identity } from '../../../../src/foundation.js';
 describe('foundation', () => {
   let doc: XMLDocument;
 
-  describe(' when using SCL Edition 2003 (1)', () => {
+  describe('when using SCL Edition 2003 (1)', () => {
     beforeEach(async () => {
       doc = await fetch('/test/testfiles/editors/LaterBindingSMV2003.scd')
         .then(response => response.text())
@@ -90,7 +90,7 @@ describe('foundation', () => {
     });
   });
 
-  describe(' when using SCL Edition 2007B4 (2.1)', () => {
+  describe('when using SCL Edition 2007B4 (2.1)', () => {
     beforeEach(async () => {
       doc = await fetch('/test/testfiles/editors/LaterBindingSMV2007B4.scd')
         .then(response => response.text())
@@ -174,7 +174,7 @@ describe('foundation', () => {
     });
   });
 
-  describe(' when using SCL Edition 2007B4 with message binding and Sampled Values', () => {
+  describe('when using SCL Edition 2007B4 with message binding and Sampled Values', () => {
     beforeEach(async () => {
       doc = await fetch('/test/testfiles/editors/MessageBindingSMV2007B4.scd')
         .then(response => response.text())
@@ -206,7 +206,7 @@ describe('foundation', () => {
         publishedControlBlock!,
         subscribingIed!
       );
-      const supLN = getExistingSupervision(firstExtRef, publishedControlBlock!);
+      const supLN = getExistingSupervision(firstExtRef);
       expect(identity(supLN)).to.be.equal('IED1>>Disconnectors> LSVS 1');
     });
   });
@@ -245,7 +245,7 @@ describe('foundation', () => {
         subscribingIed!
       );
 
-      const supLN = getExistingSupervision(firstExtRef, publishedControlBlock!);
+      const supLN = getExistingSupervision(firstExtRef);
       expect(identity(supLN)).to.be.equal('IED1>>CircuitBreaker_CB1> LGOS 1');
     });
   });

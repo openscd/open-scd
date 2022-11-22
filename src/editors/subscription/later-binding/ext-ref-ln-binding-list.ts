@@ -232,11 +232,7 @@ export class ExtRefLnBindingList extends LitElement {
       this.currentSelectedControlElement,
       false
     );
-    // can we always assume only one extRef?
-    const supervisionNode = getExistingSupervision(
-      extRefs[0],
-      <Element>this.currentSelectedControlElement
-    );
+    const supervisionNode = getExistingSupervision(extRefs[0]);
     return html`<mwc-list-item
       graphic="large"
       ?hasMeta=${supervisionNode !== null}

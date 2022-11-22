@@ -7,7 +7,6 @@ import {
   Create,
   createElement,
   Delete,
-  findControlBlocks,
   getSclSchemaVersion,
   isPublic,
   minAvailableLogicalNodeInstance,
@@ -433,11 +432,18 @@ export function findOrCreateAvailableLNInst(
   return availableLN;
 }
 
+/**
+ * Find the first ExtRef SCL element given a control and a subscribing IED
+ *
+ * @param publishedControlBlock - the control block SCL element in the publishing IED.
+ * @param subscribingIed - the subscribing IED SCL element.
+ * @returns The first ExtRef element associated with the subscribing IED and published control block.
+ */
 export function getFirstSubscribedExtRef(
   publishedControlBlock: Element,
   subscribingIed: Element
 ): Element | null {
-  const publishingIed = publishedControlBlock.closest('IED')!;
+  const publishingIed = publishedControlBlock.closest('LN,LN0')!;
   const dataSet = publishingIed.querySelector(
     `DataSet[name="${publishedControlBlock.getAttribute('datSet')}"]`
   );
@@ -461,24 +467,35 @@ export function getFirstSubscribedExtRef(
 /** Returns the subscriber's supervision LN for a given control block and extRef element
  *
  * @param extRef - The extRef SCL element in the subscribing IED.
- * @param controlBlock  - The publishing IED control block.
  * @returns The supervision LN instance or null if not found
  */
-export function getExistingSupervision(
-  extRef: Element | null,
-  controlBlock: Element
-): Element | null {
+export function getExistingSupervision(extRef: Element | null): Element | null {
   if (extRef === null) return null;
-  const subscriberIED = extRef.closest('IED')!;
-  const supervisionType =
-    controlBlock.tagName === 'GSEControl' ? 'LGOS' : 'LSVS';
+
+  const extRefValues = ['iedName', 'serviceType', 'srcPrefix', 'srcCBName'];
+  const [srcIedName, serviceType, srcPrefix, srcCBName] = extRefValues.map(
+    attr => extRef.getAttribute(attr) ?? ''
+  );
+
+  const supervisionType = serviceType === 'GOOSE' ? 'LGOS' : 'LSVS';
   const refSelector =
     supervisionType === 'LGOS' ? 'DOI[name="GoCBRef"]' : 'DOI[name="SvCBRef"]';
+
+  const srcLDInst =
+    extRef.getAttribute('srcLDInst') ?? extRef.getAttribute('ldInst');
+  const srcLNClass = extRef.getAttribute('srcLNClass') ?? 'LLN0';
+
+  const cbReference = `${srcIedName}${srcPrefix}${srcLDInst}/${srcLNClass}.${srcCBName}`;
+  const iedName = extRef.closest('IED')?.getAttribute('name');
+
   const candidates = Array.from(
-    subscriberIED.querySelectorAll(
-      `LN[lnClass="${supervisionType}"]>${refSelector}>DAI[name="setSrcRef"]>Val`
-    )
-  ).find(val => val.textContent === controlBlockReference(controlBlock));
+    extRef.ownerDocument
+      .querySelector(`IED[name="${iedName}"]`)!
+      .querySelectorAll(
+        `LN[lnClass="${supervisionType}"]>${refSelector}>DAI[name="setSrcRef"]>Val`
+      )
+  ).find(val => val.textContent === cbReference);
+
   return candidates !== undefined ? candidates.closest('LN')! : null;
 }
 

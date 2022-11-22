@@ -242,10 +242,7 @@ export class ExtRefLaterBindingList extends LitElement {
   }
 
   private renderExtRefElement(extRefElement: Element): TemplateResult {
-    const supervisionNode = getExistingSupervision(
-      extRefElement,
-      <Element>this.currentSelectedControlElement
-    );
+    const supervisionNode = getExistingSupervision(extRefElement);
     return html` <mwc-list-item
       graphic="large"
       ?hasMeta=${supervisionNode !== null}

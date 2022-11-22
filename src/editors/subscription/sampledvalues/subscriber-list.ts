@@ -323,19 +323,13 @@ export class SubscriberList extends SubscriberListContainer {
           this.currentSelectedSmvControl!,
           element
         );
-        supervisionNode = getExistingSupervision(
-          firstSubscribedExtRef!,
-          this.currentSelectedSmvControl!
-        );
+        supervisionNode = getExistingSupervision(firstSubscribedExtRef!);
       } else {
         firstSubscribedExtRef = getFirstSubscribedExtRef(
           element,
           this.currentSelectedIed!
         );
-        supervisionNode = getExistingSupervision(
-          firstSubscribedExtRef!,
-          element
-        );
+        supervisionNode = getExistingSupervision(firstSubscribedExtRef!);
       }
     }
     return html` <mwc-list-item
