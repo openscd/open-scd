@@ -373,15 +373,22 @@ export async function importIED(
   doc: XMLDocument,
   dispatchObject: HTMLElement
 ): Promise<void> {
-  if (ied.getAttribute('name') === 'TEMPLATE')
-    ied.setAttribute(
-      'name',
+  if (ied.getAttribute('name') === 'TEMPLATE') {
+    const newIedName =
       'TEMPLATE_IED' +
-        (Array.from(doc.querySelectorAll('IED')).filter(ied =>
-          ied.getAttribute('name')?.includes('TEMPLATE')
-        ).length +
-          1)
-    );
+      (Array.from(doc.querySelectorAll('IED')).filter(ied =>
+        ied.getAttribute('name')?.includes('TEMPLATE')
+      ).length +
+        1);
+
+    ied.setAttribute('name', newIedName);
+
+    Array.from(
+      ied.ownerDocument.querySelectorAll(
+        ':root > Communication > SubNetwork > ConnectedAP[iedName="TEMPLATE"]'
+      )
+    ).forEach(connectedAp => connectedAp.setAttribute('iedName', newIedName));
+  }
 
   if (!isIedNameUnique(ied, doc)) {
     dispatchObject.dispatchEvent(
