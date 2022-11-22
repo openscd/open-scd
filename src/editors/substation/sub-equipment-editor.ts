@@ -6,6 +6,7 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
+import { translate } from 'lit-translate';
 
 import '@material/mwc-fab';
 import '@material/mwc-icon';
@@ -16,7 +17,8 @@ import '../../action-icon.js';
 import '../../action-pane.js';
 
 import { styles } from './foundation.js';
-import { getChildElementsByTagName } from '../../foundation.js';
+import { getChildElementsByTagName, newWizardEvent } from '../../foundation.js';
+import { wizards } from '../../wizards/wizard-library.js';
 
 /** [[`SubstationEditor`]] subeditor for a child-less `SubEquipment` element. */
 @customElement('sub-equipment-editor')
@@ -81,8 +83,17 @@ export class SubEquipmentEditor extends LitElement {
       : html``;
   }
 
+  private openEditWizard(): void {
+    const wizard = wizards['SubEquipment'].edit(this.element);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
+
   render(): TemplateResult {
     return html`<action-pane label="${this.label}">
+      <abbr slot="action" title="${translate('edit')}">
+        <mwc-icon-button icon="edit" @click=${() => this.openEditWizard()}>
+        </mwc-icon-button>
+      </abbr>
       ${this.renderLNodes()} ${this.renderEqFunctions()}
     </action-pane> `;
   }
