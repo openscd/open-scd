@@ -1,6 +1,17 @@
 <title>OpenSCD Core Demo</title>
 <open-scd plugins='{"menu": [{"name": "Add plugins...", "translations": {"de": "Erweitern..."}, "icon": "extension", "active": true, "src": "AddPlugins.js"}, {"name": "Open File", "translations": {"de": "Datei öffnen"}, "icon": "folder_open", "active": true, "src": "https://openscd.github.io/oscd-open/oscd-open.js"}, {"name": "Save File", "translations": {"de": "Datei öffnen"}, "icon": "save", "active": true, "src": "https://openscd.github.io/oscd-save/oscd-save.js"}]}'></open-scd>
 
+<script>
+  const _customElementsDefine = window.customElements.define;
+  window.customElements.define = (name, cl, conf) => {
+    if (!customElements.get(name)) {
+      try {
+        _customElementsDefine.call(window.customElements, name, cl, conf);
+      } catch (e) { console.warn(e); }
+    }
+  };
+</script>
+
 <script type="module">
 import 'https://openscd.github.io/open-scd-core/open-scd.js';
 
