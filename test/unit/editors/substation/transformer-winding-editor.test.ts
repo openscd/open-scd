@@ -14,15 +14,30 @@ describe('transformer-winding-editor', () => {
   });
 
   describe('with children', () => {
-    it('looks like the latest snapshot', async () => {
-      element = <TransformerWindingEditor>(
-        await fixture(
-          html`<transformer-winding-editor
-            .element=${doc.querySelector('TransformerWinding[name="some"]')}
-          ></transformer-winding-editor>`
-        )
-      );
-      await expect(element).shadowDom.to.equalSnapshot();
+    describe('when EqFunction elements are rendered', () => {
+      it('looks like the latest snapshot', async () => {
+        element = <TransformerWindingEditor>(
+          await fixture(
+            html`<transformer-winding-editor
+              .element=${doc.querySelector('TransformerWinding[name="some"]')}
+              .showfunctions=${true}
+            ></transformer-winding-editor>`
+          )
+        );
+        await expect(element).shadowDom.to.equalSnapshot();
+      });
+    });
+    describe('when hiding EqFunction elements', () => {
+      it('looks like the latest snapshot', async () => {
+        element = <TransformerWindingEditor>(
+          await fixture(
+            html`<transformer-winding-editor
+              .element=${doc.querySelector('TransformerWinding[name="some"]')}
+            ></transformer-winding-editor>`
+          )
+        );
+        await expect(element).shadowDom.to.equalSnapshot();
+      });
     });
   });
 

@@ -26,7 +26,7 @@ export class TransformerWindingEditor extends LitElement {
   /** SCL element TransformerWinding */
   @property({ attribute: false })
   element!: Element;
-  /** Whether `EqFunction` and `LNode` elements are rendered */
+  /** Whether `EqFunction` elements are rendered */
   @property({ type: Boolean })
   showfunctions = false;
 
