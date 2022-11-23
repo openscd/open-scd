@@ -15,8 +15,9 @@ import '../../action-pane.js';
 import '../../editors/substation/eq-function-editor.js';
 import '../../editors/substation/l-node-editor.js';
 import { generalConductingEquipmentIcon } from '../../icons/icons.js';
-import { getChildElementsByTagName } from '../../foundation.js';
-//import { styles } from './foundation.js';
+import { getChildElementsByTagName, newWizardEvent } from '../../foundation.js';
+import { translate } from 'lit-translate';
+import { wizards } from '../../wizards/wizard-library.js';
 
 @customElement('general-equipment-editor')
 export class GeneralEquipmentEditor extends LitElement {
@@ -24,8 +25,7 @@ export class GeneralEquipmentEditor extends LitElement {
   doc!: XMLDocument;
   @property({ attribute: false })
   element!: Element;
-  @property({ type: Boolean })
-  readonly = false;
+
   /** Whether `Function` and `SubFunction` are rendered */
   @property({ type: Boolean })
   showfunctions = false;
@@ -40,9 +40,12 @@ export class GeneralEquipmentEditor extends LitElement {
     return `${name} ${desc ? `—  ${desc}` : ''}`;
   }
 
-  private renderLNodes(): TemplateResult {
-    if (!this.showfunctions) return html``;
+  openEditWizard(): void {
+    const wizard = wizards['GeneralEquipment'].edit(this.element);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
 
+  private renderLNodes(): TemplateResult {
     const lNodes = getChildElementsByTagName(this.element, 'LNode');
 
     return lNodes.length
@@ -59,8 +62,6 @@ export class GeneralEquipmentEditor extends LitElement {
   }
 
   private renderEqFunctions(): TemplateResult {
-    if (!this.showfunctions) return html``;
-
     const eFunctions = getChildElementsByTagName(this.element, 'EqFunction');
 
     return eFunctions.length
@@ -77,10 +78,22 @@ export class GeneralEquipmentEditor extends LitElement {
   render(): TemplateResult {
     if (this.showfunctions)
       return html`<action-pane label=${this.header}>
+        <abbr slot="action" title="${translate('edit')}">
+          <mwc-icon-button
+            icon="edit"
+            @click=${() => this.openEditWizard()}
+          ></mwc-icon-button>
+        </abbr>
         ${this.renderLNodes()} ${this.renderEqFunctions()}
       </action-pane>`;
 
     return html`<action-icon label=${this.header}>
+      <abbr slot="action" title="${translate('edit')}">
+        <mwc-icon-button
+          icon="edit"
+          @click=${() => this.openEditWizard()}
+        ></mwc-icon-button>
+      </abbr>
       <mwc-icon slot="icon">${generalConductingEquipmentIcon}</mwc-icon>
     </action-icon>`;
   }

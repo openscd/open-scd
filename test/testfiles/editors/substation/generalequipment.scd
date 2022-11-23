@@ -6,6 +6,8 @@
 			<EqFunction name="genEqFunc" />
 				<GeneralEquipment name="someGenCon" desc="someDesc" type="MOT"/>
 		</GeneralEquipment>	
+		<GeneralEquipment name="genSub2" desc="someDesc" type="AXN">
+		</GeneralEquipment>	
 		<VoltageLevel name="E1" desc="" nomFreq="50" numPhases="3">
 			<GeneralEquipment name="genVolt1" type="BAT"/>
 			<PowerTransformer name="pTrans" type="PTW">

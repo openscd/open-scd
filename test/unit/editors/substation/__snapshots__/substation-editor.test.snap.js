@@ -430,6 +430,8 @@ snapshots["substation-editor with general-equipment children with showfunctions 
   <div class="actionicon content">
     <general-equipment-editor>
     </general-equipment-editor>
+    <general-equipment-editor>
+    </general-equipment-editor>
   </div>
   <voltage-level-editor>
   </voltage-level-editor>
@@ -535,6 +537,8 @@ snapshots["substation-editor with general-equipment children with showfunctions 
     </mwc-menu>
   </abbr>
   <div class="content">
+    <general-equipment-editor showfunctions="">
+    </general-equipment-editor>
     <general-equipment-editor showfunctions="">
     </general-equipment-editor>
   </div>
