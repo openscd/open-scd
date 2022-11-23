@@ -4,7 +4,6 @@
 		<GeneralEquipment name="genSub" desc="someDesc" type="AXN"/>
 		<VoltageLevel name="E1" desc="" nomFreq="50" numPhases="3">
 			<PowerTransformer xmlns="http://www.iec.ch/61850/2003/SCL" name="pTrans" type="PTR">
-				<TransformerWinding name="some" type="PTW"/>
 				<SubEquipment name="subque" desc="somedesc" phase="all"/>
 				<SubEquipment name="addEqi" desc="somedesc" phase="none">
 					<LNode iedName="None" lnClass="CSWI" lnInst="1" lnType="OpenSCD_CSWI"/>
