@@ -214,6 +214,12 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
         <mwc-icon slot="graphic">
           clear
         </mwc-icon>
+        <mwc-icon
+          slot="meta"
+          title="IED1>>Disconnectors> LSVS 1"
+        >
+          monitor_heart
+        </mwc-icon>
       </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
@@ -243,6 +249,12 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
         <mwc-icon slot="graphic">
           add
         </mwc-icon>
+        <mwc-icon
+          slot="meta"
+          title="IED4>>CircuitBreaker_CB1> LSVS 1"
+        >
+          monitor_heart
+        </mwc-icon>
       </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
@@ -262,7 +274,6 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
       <mwc-list-item
         aria-disabled="false"
         graphic="avatar"
-        hasmeta=""
         mwc-list-item=""
         tabindex="-1"
       >
@@ -314,10 +325,15 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
         <mwc-icon slot="graphic">
           clear
         </mwc-icon>
+        <mwc-icon
+          slot="meta"
+          title="IED1>>Disconnectors> LSVS 1"
+        >
+          monitor_heart
+        </mwc-icon>
       </mwc-list-item>
       <mwc-list-item
         graphic="avatar"
-        hasmeta=""
         mwc-list-item=""
       >
         <span>
@@ -354,6 +370,12 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
         </span>
         <mwc-icon slot="graphic">
           add
+        </mwc-icon>
+        <mwc-icon
+          slot="meta"
+          title="IED4>>CircuitBreaker_CB1> LSVS 1"
+        >
+          monitor_heart
         </mwc-icon>
       </mwc-list-item>
       <mwc-list-item
@@ -443,6 +465,12 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
         <mwc-icon slot="graphic">
           add
         </mwc-icon>
+        <mwc-icon
+          slot="meta"
+          title="IED4>>CircuitBreaker_CB1> LSVS 1"
+        >
+          monitor_heart
+        </mwc-icon>
       </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
@@ -462,7 +490,6 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
       <mwc-list-item
         aria-disabled="false"
         graphic="avatar"
-        hasmeta=""
         mwc-list-item=""
         tabindex="-1"
       >
@@ -475,7 +502,6 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
       </mwc-list-item>
       <mwc-list-item
         graphic="avatar"
-        hasmeta=""
         mwc-list-item=""
       >
         <span>
@@ -526,6 +552,12 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
         <mwc-icon slot="graphic">
           clear
         </mwc-icon>
+        <mwc-icon
+          slot="meta"
+          title="IED1>>Disconnectors> LSVS 1"
+        >
+          monitor_heart
+        </mwc-icon>
       </mwc-list-item>
       <mwc-list-item
         graphic="avatar"
@@ -537,6 +569,12 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
         </span>
         <mwc-icon slot="graphic">
           clear
+        </mwc-icon>
+        <mwc-icon
+          slot="meta"
+          title="IED4>>CircuitBreaker_CB1> LSVS 1"
+        >
+          monitor_heart
         </mwc-icon>
       </mwc-list-item>
       <mwc-list-item
@@ -580,7 +618,6 @@ snapshots["Sampled Values Plugin in Publisher view when selecting a Sampled Valu
       <mwc-list-item
         aria-disabled="false"
         graphic="avatar"
-        hasmeta=""
         mwc-list-item=""
         tabindex="-1"
       >
@@ -764,7 +801,6 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED the su
       <mwc-list-item
         aria-disabled="false"
         graphic="avatar"
-        hasmeta=""
         mwc-list-item=""
         tabindex="0"
       >
@@ -793,7 +829,6 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED the su
       <mwc-list-item
         aria-disabled="false"
         graphic="avatar"
-        hasmeta=""
         mwc-list-item=""
         tabindex="-1"
       >
@@ -835,7 +870,6 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and su
       <mwc-list-item
         aria-disabled="false"
         graphic="avatar"
-        hasmeta=""
         mwc-list-item=""
         tabindex="-1"
       >
@@ -890,7 +924,6 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and su
         aria-disabled="false"
         aria-selected="true"
         graphic="avatar"
-        hasmeta=""
         mwc-list-item=""
         selected=""
         tabindex="0"
@@ -982,7 +1015,6 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and un
         aria-disabled="false"
         aria-selected="false"
         graphic="avatar"
-        hasmeta=""
         mwc-list-item=""
         tabindex="-1"
       >
@@ -995,7 +1027,6 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and un
       </mwc-list-item>
       <mwc-list-item
         graphic="avatar"
-        hasmeta=""
         mwc-list-item=""
       >
         <span>
@@ -1035,7 +1066,6 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and su
       </li>
       <mwc-list-item
         graphic="avatar"
-        hasmeta=""
         mwc-list-item=""
       >
         <span>
@@ -1086,7 +1116,6 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and su
       <mwc-list-item
         aria-disabled="false"
         graphic="avatar"
-        hasmeta=""
         mwc-list-item=""
         tabindex="-1"
       >
