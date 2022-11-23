@@ -9,6 +9,7 @@ import {
   getExtrefDataBindingList,
   getFCDABindingList,
   getSelectedSubItemValue,
+  selectFCDAItem,
 } from './test-support.js';
 
 describe('SMV Subscribe Data Binding Plugin', async () => {
@@ -39,12 +40,13 @@ describe('SMV Subscribe Data Binding Plugin', async () => {
     const fcdaListElement = getFCDABindingList(element);
     const extRefListElement = getExtrefDataBindingList(element);
 
-    (<HTMLElement>(
-      fcdaListElement.shadowRoot!.querySelector(
-        'mwc-list-item[value="SMV_Publisher>>CurrentTransformer>fullSmv SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 1.AmpSv q (MX)"]'
-      )
-    )).click();
+    selectFCDAItem(
+      fcdaListElement,
+      'SMV_Publisher>>CurrentTransformer>fullSmv',
+      'SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 1.AmpSv q (MX)'
+    );
     await element.requestUpdate();
+    await extRefListElement.requestUpdate();
 
     expect(extRefListElement['getSubscribedLNElements']().length).to.be.equal(
       1
@@ -80,11 +82,11 @@ describe('SMV Subscribe Data Binding Plugin', async () => {
     const fcdaListElement = getFCDABindingList(element);
     const extRefListElement = getExtrefDataBindingList(element);
 
-    (<HTMLElement>(
-      fcdaListElement.shadowRoot!.querySelector(
-        'mwc-list-item[value="SMV_Publisher>>CurrentTransformer>fullSmv SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 1.AmpSv instMag.i (MX)"]'
-      )
-    )).click();
+    selectFCDAItem(
+      fcdaListElement,
+      'SMV_Publisher>>CurrentTransformer>fullSmv',
+      'SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 1.AmpSv instMag.i (MX)'
+    );
     await element.requestUpdate();
     await extRefListElement.requestUpdate();
 
@@ -128,11 +130,11 @@ describe('SMV Subscribe Data Binding Plugin', async () => {
       ).length
     ).to.be.equal(1);
 
-    (<HTMLElement>(
-      fcdaListElement.shadowRoot!.querySelector(
-        'mwc-list-item[value="SMV_Publisher>>CurrentTransformer>fullSmv SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 1.AmpSv q (MX)"]'
-      )
-    )).click();
+    selectFCDAItem(
+      fcdaListElement,
+      'SMV_Publisher>>CurrentTransformer>fullSmv',
+      'SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 1.AmpSv q (MX)'
+    );
     await element.requestUpdate();
     await extRefListElement.requestUpdate();
 
@@ -143,11 +145,11 @@ describe('SMV Subscribe Data Binding Plugin', async () => {
     )).click();
     await element.requestUpdate();
 
-    (<HTMLElement>(
-      fcdaListElement.shadowRoot!.querySelector(
-        'mwc-list-item[value="SMV_Publisher>>CurrentTransformer>fullSmv SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 1.AmpSv instMag.i (MX)"]'
-      )
-    )).click();
+    selectFCDAItem(
+      fcdaListElement,
+      'SMV_Publisher>>CurrentTransformer>fullSmv',
+      'SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 1.AmpSv instMag.i (MX)'
+    );
     await element.requestUpdate();
     await extRefListElement.requestUpdate();
 
@@ -158,11 +160,11 @@ describe('SMV Subscribe Data Binding Plugin', async () => {
     )).click();
     await element.requestUpdate();
 
-    (<HTMLElement>(
-      fcdaListElement.shadowRoot!.querySelector(
-        'mwc-list-item[value="SMV_Publisher>>CurrentTransformer>fullSmv SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 1.AmpSv q (MX)"]'
-      )
-    )).click();
+    selectFCDAItem(
+      fcdaListElement,
+      'SMV_Publisher>>CurrentTransformer>fullSmv',
+      'SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 1.AmpSv q (MX)'
+    );
     await element.requestUpdate();
     await extRefListElement.requestUpdate();
 

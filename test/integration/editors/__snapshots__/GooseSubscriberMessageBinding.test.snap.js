@@ -279,7 +279,7 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
-        value="IED4"
+        value=""
       >
         <span>
           [subscription.subscriber.partiallySubscribed]
@@ -293,22 +293,18 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
       <mwc-list-item
         aria-disabled="false"
         graphic="avatar"
-        hasmeta=""
-        mwc-list-item=""
+        noninteractive=""
         tabindex="-1"
       >
         <span>
-          IED4
+          [subscription.none]
         </span>
-        <mwc-icon slot="graphic">
-          add
-        </mwc-icon>
       </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
-        value="IED3"
+        value="IED3 IED4"
       >
         <span>
           [subscription.subscriber.availableToSubscribe]
@@ -328,6 +324,20 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
       >
         <span>
           IED3
+        </span>
+        <mwc-icon slot="graphic">
+          add
+        </mwc-icon>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="avatar"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <span>
+          IED4
         </span>
         <mwc-icon slot="graphic">
           add
@@ -377,6 +387,7 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
       </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
+        aria-selected="false"
         graphic="avatar"
         hasmeta=""
         mwc-list-item=""
@@ -393,40 +404,10 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
-        value="IED4"
-      >
-        <span>
-          [subscription.subscriber.partiallySubscribed]
-        </span>
-      </mwc-list-item>
-      <li
-        divider=""
-        role="separator"
-      >
-      </li>
-      <mwc-list-item
-        aria-disabled="false"
-        aria-selected="false"
-        graphic="avatar"
-        hasmeta=""
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <span>
-          IED4
-        </span>
-        <mwc-icon slot="graphic">
-          add
-        </mwc-icon>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        noninteractive=""
-        tabindex="-1"
         value=""
       >
         <span>
-          [subscription.subscriber.availableToSubscribe]
+          [subscription.subscriber.partiallySubscribed]
         </span>
       </mwc-list-item>
       <li
@@ -443,6 +424,37 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
         <span>
           [subscription.none]
         </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        noninteractive=""
+        tabindex="-1"
+        value="IED4"
+      >
+        <span>
+          [subscription.subscriber.availableToSubscribe]
+        </span>
+      </mwc-list-item>
+      <li
+        divider=""
+        role="separator"
+      >
+      </li>
+      <mwc-list-item
+        aria-disabled="false"
+        aria-selected="true"
+        graphic="avatar"
+        hasmeta=""
+        mwc-list-item=""
+        selected=""
+        tabindex="-1"
+      >
+        <span>
+          IED4
+        </span>
+        <mwc-icon slot="graphic">
+          add
+        </mwc-icon>
       </mwc-list-item>
     </filtered-list>
   </div>
@@ -486,7 +498,7 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
-        value="IED4"
+        value=""
       >
         <span>
           [subscription.subscriber.partiallySubscribed]
@@ -499,24 +511,19 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
       </li>
       <mwc-list-item
         aria-disabled="false"
-        aria-selected="false"
         graphic="avatar"
-        hasmeta=""
-        mwc-list-item=""
+        noninteractive=""
         tabindex="-1"
       >
         <span>
-          IED4
+          [subscription.none]
         </span>
-        <mwc-icon slot="graphic">
-          add
-        </mwc-icon>
       </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
-        value="IED1 IED3"
+        value="IED1 IED3 IED4"
       >
         <span>
           [subscription.subscriber.availableToSubscribe]
@@ -529,6 +536,7 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
       </li>
       <mwc-list-item
         aria-disabled="false"
+        aria-selected="false"
         graphic="avatar"
         hasmeta=""
         mwc-list-item=""
@@ -550,6 +558,20 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
       >
         <span>
           IED3
+        </span>
+        <mwc-icon slot="graphic">
+          add
+        </mwc-icon>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="avatar"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <span>
+          IED4
         </span>
         <mwc-icon slot="graphic">
           add
@@ -599,7 +621,6 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
       </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
-        aria-selected="false"
         graphic="avatar"
         hasmeta=""
         mwc-list-item=""
@@ -654,6 +675,7 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
       </li>
       <mwc-list-item
         aria-disabled="false"
+        aria-selected="false"
         graphic="avatar"
         hasmeta=""
         mwc-list-item=""
@@ -925,40 +947,10 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for un
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
-        value="IED1>>CircuitBreaker_CB1>GCB"
-      >
-        <span>
-          [subscription.subscriber.partiallySubscribed]
-        </span>
-      </mwc-list-item>
-      <li
-        divider=""
-        role="separator"
-      >
-      </li>
-      <mwc-list-item
-        aria-disabled="false"
-        aria-selected="false"
-        graphic="avatar"
-        hasmeta=""
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <span>
-          GCB (IED1)
-        </span>
-        <mwc-icon slot="graphic">
-          add
-        </mwc-icon>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        noninteractive=""
-        tabindex="-1"
         value=""
       >
         <span>
-          [subscription.subscriber.availableToSubscribe]
+          [subscription.subscriber.partiallySubscribed]
         </span>
       </mwc-list-item>
       <li
@@ -975,6 +967,37 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for un
         <span>
           [subscription.none]
         </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        noninteractive=""
+        tabindex="-1"
+        value="IED1>>CircuitBreaker_CB1>GCB"
+      >
+        <span>
+          [subscription.subscriber.availableToSubscribe]
+        </span>
+      </mwc-list-item>
+      <li
+        divider=""
+        role="separator"
+      >
+      </li>
+      <mwc-list-item
+        aria-disabled="false"
+        aria-selected="true"
+        graphic="avatar"
+        hasmeta=""
+        mwc-list-item=""
+        selected=""
+        tabindex="-1"
+      >
+        <span>
+          GCB (IED1)
+        </span>
+        <mwc-icon slot="graphic">
+          add
+        </mwc-icon>
       </mwc-list-item>
     </filtered-list>
   </div>
@@ -1018,10 +1041,35 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for su
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
-        value="IED1>>CircuitBreaker_CB1>GCB"
+        value=""
       >
         <span>
           [subscription.subscriber.partiallySubscribed]
+        </span>
+      </mwc-list-item>
+      <li
+        divider=""
+        role="separator"
+      >
+      </li>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="avatar"
+        noninteractive=""
+        tabindex="-1"
+      >
+        <span>
+          [subscription.none]
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        noninteractive=""
+        tabindex="-1"
+        value="IED1>>CircuitBreaker_CB1>GCB IED4>>CircuitBreaker_CB1>GCB"
+      >
+        <span>
+          [subscription.subscriber.availableToSubscribe]
         </span>
       </mwc-list-item>
       <li
@@ -1044,21 +1092,6 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for su
           add
         </mwc-icon>
       </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        noninteractive=""
-        tabindex="-1"
-        value="IED4>>CircuitBreaker_CB1>GCB"
-      >
-        <span>
-          [subscription.subscriber.availableToSubscribe]
-        </span>
-      </mwc-list-item>
-      <li
-        divider=""
-        role="separator"
-      >
-      </li>
       <mwc-list-item
         aria-disabled="false"
         graphic="avatar"

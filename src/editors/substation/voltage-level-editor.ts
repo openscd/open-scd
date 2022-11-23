@@ -17,6 +17,7 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 import '../../action-pane.js';
 import './bay-editor.js';
+import './general-equipment-editor.js';
 import './ied-editor.js';
 import './powertransformer-editor.js';
 import {
@@ -24,6 +25,7 @@ import {
   startMove,
   cloneSubstationElement,
   styles,
+  renderGeneralEquipment,
 } from './foundation.js';
 import {
   getChildElementsByTagName,
@@ -145,6 +147,7 @@ export class VoltageLevelEditor extends LitElement {
         html`<function-editor
           .doc=${this.doc}
           .element=${fUnction}
+          ?showfunctions=${this.showfunctions}
         ></function-editor>`
     )}`;
   }
@@ -247,6 +250,7 @@ export class VoltageLevelEditor extends LitElement {
           >${this.renderAddButtons()}</mwc-menu
         >
       </abbr>
+      ${renderGeneralEquipment(this.doc, this.element, this.showfunctions)}
       ${this.renderIedContainer()}${this.renderLNodes()}${this.renderFunctions()}
       ${this.renderPowerTransformerContainer()}
       <div id="bayContainer">

@@ -18,6 +18,7 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 import '../../action-pane.js';
 import './ied-editor.js';
 import './conducting-equipment-editor.js';
+import './general-equipment-editor.js';
 import './powertransformer-editor.js';
 import { VoltageLevelEditor } from './voltage-level-editor.js';
 import {
@@ -28,7 +29,12 @@ import {
   tags,
 } from '../../foundation.js';
 import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
-import { cloneSubstationElement, startMove, styles } from './foundation.js';
+import {
+  cloneSubstationElement,
+  renderGeneralEquipment,
+  startMove,
+  styles,
+} from './foundation.js';
 
 function childTags(element: Element | null | undefined): SCLTag[] {
   if (!element) return [];
@@ -129,6 +135,7 @@ export class BayEditor extends LitElement {
         html`<function-editor
           .doc=${this.doc}
           .element=${fUnction}
+          ?showfunctions=${this.showfunctions}
         ></function-editor>`
     )}`;
   }
@@ -205,6 +212,7 @@ export class BayEditor extends LitElement {
           >${this.renderAddButtons()}</mwc-menu
         >
       </abbr>
+      ${renderGeneralEquipment(this.doc, this.element, this.showfunctions)}
       ${this.renderIedContainer()}${this.renderLNodes()}${this.renderFunctions()}
       <div
         class="${classMap({

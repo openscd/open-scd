@@ -63,6 +63,7 @@ export const en = {
     ldInst: 'Referenced Logical Device',
     prefix: 'Prefix of the Logical Node',
     lnInst: 'Instance of the Logical Node',
+    virtual: 'Virtual',
   },
   settings: {
     title: 'Settings',
@@ -750,7 +751,8 @@ export const en = {
       tooltip:
         'Data Types which are not referenced in a Logical Node or other used Data Type',
       alsoRemoveSubTypes: 'Also remove subtypes',
-    },
+      stackExceeded: 'Max Stack Length Exceeded. Maximum allowed is {{maxStackDepth}}. Datatype cleaning incomplete and file damage may have occurred.'
+    }
   },
   controlblock: {
     action: {

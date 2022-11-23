@@ -1699,7 +1699,11 @@ export const tags: Record<
     identity: namingIdentity,
     selector: namingSelector,
     parents: ['Process', 'Line', 'SubFunction', 'Function', 'Bay'],
-    children: [...tAbstractConductingEquipmentSequence, 'EqFunction'],
+    children: [
+      ...tAbstractConductingEquipmentSequence,
+      'EqFunction',
+      'SubEquipment',
+    ],
   },
   ConfDataSet: {
     identity: singletonIdentity,
@@ -2127,6 +2131,7 @@ export const tags: Record<
       'TransformerWinding',
       'SubEquipment',
       'EqFunction',
+      'SubEquipment',
     ],
   },
   Private: {
@@ -2357,6 +2362,8 @@ export const tags: Record<
     parents: [
       'TapChanger',
       'PowerTransformer',
+      'ConductingEquipment',
+      'TransformerWinding',
       ...tAbstractConductingEquipment,
     ],
     children: [...tPowerSystemResourceSequence, 'EqFunction'],
@@ -2435,6 +2442,7 @@ export const tags: Record<
       'TapChanger',
       'NeutralPoint',
       'EqFunction',
+      'SubEquipment',
     ],
   },
   TrgOps: {
@@ -2814,6 +2822,18 @@ export function formatXml(xml: string, tab?: string): string {
     if (node.match(/^<?\w[^>]*[^/]$/)) indent += tab;
   });
   return formatted.substring(1, formatted.length - 3);
+}
+
+/**
+ * @param lnElements - The LN elements to be scanned for `inst`
+ * values already in use.
+ * @returns first available inst value for LN or undefined if no inst is available
+ */
+export function minAvailableLogicalNodeInstance(
+  lnElements: Element[]
+): string | undefined {
+  const lnInsts = new Set(lnElements.map(ln => ln.getAttribute('inst') || ''));
+  return lnInstRange.find(lnInst => !lnInsts.has(lnInst));
 }
 
 declare global {

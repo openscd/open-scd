@@ -86,7 +86,6 @@ describe('subnetwork-editor wizarding editing integration', () => {
       expect(doc.querySelector('SubNetwork')?.getAttribute('name')).to.equal(
         'newSubNetwork'
       );
-      await expect(element).shadowDom.to.equalSnapshot();
     });
 
     it('changes desc attribute on primary action', async () => {
@@ -96,7 +95,6 @@ describe('subnetwork-editor wizarding editing integration', () => {
       expect(doc.querySelector('SubNetwork')?.getAttribute('desc')).to.equal(
         'newDesc'
       );
-      await expect(element).shadowDom.to.equalSnapshot();
     });
 
     it('deletes desc attribute if wizard-textfield is deactivated', async () => {
@@ -106,7 +104,6 @@ describe('subnetwork-editor wizarding editing integration', () => {
       primaryAction.click();
       await parent.updateComplete;
       expect(doc.querySelector('SubNetwork')?.getAttribute('desc')).to.be.null;
-      await expect(element).shadowDom.to.equalSnapshot();
     });
 
     it('changes type attribute on primary action', async () => {
@@ -116,7 +113,6 @@ describe('subnetwork-editor wizarding editing integration', () => {
       expect(doc.querySelector('SubNetwork')?.getAttribute('type')).to.equal(
         'newType'
       );
-      await expect(element).shadowDom.to.equalSnapshot();
     });
 
     it('deletes type attribute if wizard-textfield is deactivated', async () => {
@@ -126,7 +122,6 @@ describe('subnetwork-editor wizarding editing integration', () => {
       primaryAction.click();
       await parent.updateComplete;
       expect(doc.querySelector('SubNetwork')?.getAttribute('type')).to.be.null;
-      await expect(element).shadowDom.to.equalSnapshot();
     });
 
     it('changes BitRate value on primary action', async () => {
@@ -134,7 +129,6 @@ describe('subnetwork-editor wizarding editing integration', () => {
       primaryAction.click();
       await parent.updateComplete;
       expect(doc.querySelector('BitRate')?.innerHTML).to.equal('20.0');
-      await expect(element).shadowDom.to.equalSnapshot();
     });
 
     it('changes BitRate multiplier on primary action', async () => {
@@ -147,7 +141,6 @@ describe('subnetwork-editor wizarding editing integration', () => {
       expect(doc.querySelector('BitRate')?.getAttribute('unit')).to.equal(
         'b/s'
       );
-      await expect(element).shadowDom.to.equalSnapshot();
     });
 
     it('deletes BitRate element if voltage wizard-textfield is deactivated', async () => {
@@ -158,7 +151,6 @@ describe('subnetwork-editor wizarding editing integration', () => {
       await parent.updateComplete;
       expect(doc.querySelector('SubNetwork')?.querySelector('BitRate')).to.be
         .null;
-      await expect(element).shadowDom.to.equalSnapshot();
     });
   });
   describe('remove action', () => {
@@ -194,7 +186,6 @@ describe('subnetwork-editor wizarding editing integration', () => {
       deleteButton.click();
       await parent.updateComplete;
       expect(doc.querySelector('SubNetwork[name="StationBus"]')).to.not.exist;
-      await expect(element).shadowDom.to.equalSnapshot();
     });
   });
 
@@ -256,7 +247,6 @@ describe('subnetwork-editor wizarding editing integration', () => {
           ':root > Communication > SubNetwork[name="StationBus"] > ConnectedAP[iedName="IED3"][apName="P2"]'
         )
       ).to.exist;
-      await expect(element).shadowDom.to.equalSnapshot();
     });
   });
 });

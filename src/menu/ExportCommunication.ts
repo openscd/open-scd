@@ -18,7 +18,7 @@ function cloneAttributes(destElement: Element, sourceElement: Element) {
  * @param filename - The filename to produce
  * @returns The blob object that is serialised
  */
- export function saveXmlBlob(
+export function saveXmlBlob(
   doc: XMLDocument,
   document: Document,
   filename: string

@@ -132,7 +132,6 @@ export function getFilterIcon(type: iconType, state: boolean): TemplateResult {
   const width = iconProperties[type]?.width ?? 24;
   return html`<svg
     slot="${state ? 'onIcon' : 'offIcon'}"
-    style="${state ? `color:var(${iconColors[type]})` : ''})"
     xmlns="http://www.w3.org/2000/svg"
     height="${height}"
     viewBox="0 0 ${width} ${height}"
@@ -675,4 +674,13 @@ export const openSCDIcon = html` <svg
     d="M 11 7 L 17.5 7 L 13.5 11 L 16.5 11 L 10 19 L 11.5 13 L 8.5 13 Z "
     fill="#2aa198"
   />
+</svg>`;
+
+export const sizableSmvIcon = svg`
+  <svg viewBox="0 0 24 24">
+    <path fill="currentColor" d="M11,7H15V9H11V11H13A2,2 0 0,1 15,13V15A2,2 0 0,1 13,17H9V15H13V13H11A2,2 0 0,1 9,11V9A2,2 0 0,1 11,7M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z" />
+  </svg>`;
+
+export const sizableGooseIcon = svg`<svg viewBox="0 0 24 24">
+<path fill="currentColor" d="M11,7H15V9H11V15H13V11H15V15A2,2 0 0,1 13,17H11A2,2 0 0,1 9,15V9A2,2 0 0,1 11,7M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z" />
 </svg>`;

@@ -65,6 +65,7 @@ export const de: Translations = {
     ldInst: 'Referenziertes logisches Gerät',
     prefix: 'Präfix des logischen Knotens',
     lnInst: 'Instanz des logischen Knotens',
+    virtual: 'Virtuell',
   },
   settings: {
     title: 'Einstellungen',
@@ -753,7 +754,8 @@ export const de: Translations = {
       tooltip:
         'Datentypen, die nicht in einem logischen Knoten oder einem anderen verwendeten Datentyp referenziert werden',
       alsoRemoveSubTypes: 'Entfernen Sie auch Untertypen',
-    },
+      stackExceeded: 'Maximale Aufrufe überschritten. Maximal zulässig sind {{maxStackDepth}}. Nicht alle überflüßigen Datentypen sind entfernt und das Project is potentiel beschädigt.',
+    }
   },
   controlblock: {
     action: {
@@ -791,7 +793,7 @@ export const de: Translations = {
     },
   },
   exportCommunication: {
-    noCommunicationSection: 'Kein Export als Abschnitt Kommunikation leer',
+    noCommunicationSection: 'Die Communication-Sektion ist leer.',
   },
   add: 'Hinzufügen',
   new: 'Neu',

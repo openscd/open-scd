@@ -2,6 +2,51 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.27.0](https://github.com/openscd/open-scd/compare/v0.26.0...v0.27.0) (2022-11-21)
+
+
+### Features
+
+* **editor/substation:** Add read-only view for General Equipment ([#1050](https://github.com/openscd/open-scd/issues/1050)) ([d3baa74](https://github.com/openscd/open-scd/commits/d3baa7479eeb54121e975cc1a89038c0769acade))
+* **editors/subscription:** add subscription supervision support ([#1010](https://github.com/openscd/open-scd/issues/1010)) ([3f6b659](https://github.com/openscd/open-scd/commits/3f6b6597bfeb854a1a96e6cbff8044526a6c7f5f))
+* **sub-equipment-editor:** edit wizard ([#1063](https://github.com/openscd/open-scd/issues/1063)) ([4778e7d](https://github.com/openscd/open-scd/commits/4778e7d4146c4ce7f8a26bbf953f8494d56cd32a))
+
+## [0.26.0](https://github.com/openscd/open-scd/compare/v0.25.0...v0.26.0) (2022-11-03)
+
+
+### Features
+
+* **editor/substation:** read-only editor for SubEquipment element ([#1030](https://github.com/openscd/open-scd/issues/1030)) ([f6e96b5](https://github.com/openscd/open-scd/commits/f6e96b5d2bbb5014b4951299e55ae1462b9b1c33))
+* **editors/subscriber/later-binding:** add input requirement check ([#1049](https://github.com/openscd/open-scd/issues/1049)) ([26f7fe5](https://github.com/openscd/open-scd/commits/26f7fe56ecbc216495ddb747e75fb28d002f9447))
+
+
+### Bug Fixes
+
+* **Editing:** set false attribute values on update ([#899](https://github.com/openscd/open-scd/issues/899)) ([0b414e1](https://github.com/openscd/open-scd/commits/0b414e1687f9a796e7ec161237ad1ab78f04e87e))
+* **editor/subscriber:** filtering on FCDAs retains the parent ([#1048](https://github.com/openscd/open-scd/issues/1048)) ([d5f8bb7](https://github.com/openscd/open-scd/commits/d5f8bb7ed8ceeb9c2ca14a91d3624afda7a43513))
+* **Logging:** broken toggle button styling ([81da900](https://github.com/openscd/open-scd/commits/81da900c5d3850143961c23e197e19fb2cb02ad1))
+* **validate-schema:** cache validator workers ([#901](https://github.com/openscd/open-scd/issues/901)) ([2de7d26](https://github.com/openscd/open-scd/commits/2de7d269b15012af84927de90689e95ca901d05a))
+
+## [0.25.0](https://github.com/openscd/open-scd/compare/v0.24.0...v0.25.0) (2022-10-17)
+
+
+### Features
+
+* **editor/subscriber:** Added plugin for Subscriber Logical Nodes (GOOSE/SMV) ([#1036](https://github.com/openscd/open-scd/issues/1036)) ([971f0c1](https://github.com/openscd/open-scd/commits/971f0c10d112b4c68791daa1aada2c94cbc3b20b))
+* **editor/subscriber:** Show counter for Subscriber Plugins (Logical Nodes / Later) (GOOSE/SMV) ([#1040](https://github.com/openscd/open-scd/issues/1040)) ([02ec714](https://github.com/openscd/open-scd/commits/02ec714e7ac44204a972b55a872e0445eab66e72))
+* **editor/subscriber:** Subscribe and unsubscribe for Subscriber Logical Nodes (GOOSE/SMV) ([#1039](https://github.com/openscd/open-scd/issues/1039)) ([1c55aed](https://github.com/openscd/open-scd/commits/1c55aede2f89eb85a069b213a6a4ea709e171b02))
+* **editors/communication:** add GSE and SMV editor type elements ([#1021](https://github.com/openscd/open-scd/issues/1021)) ([81487c1](https://github.com/openscd/open-scd/commits/81487c184d610def07fec4a8919f9be8f133c730))
+* **filter-button:** Added option to disable filter button ([205449b](https://github.com/openscd/open-scd/commits/205449b019f31c4b412e8e41379133f2846478c3))
+* **filtered-list:** Add ? and * wildcards to filtered-search, closes [#1006](https://github.com/openscd/open-scd/issues/1006). ([#1007](https://github.com/openscd/open-scd/issues/1007)) ([48ef7ea](https://github.com/openscd/open-scd/commits/48ef7ea26d772573027f9627612fb56e3a982d67))
+* **wizard/connectedap:** auto create GSE and SMV elements ([#1019](https://github.com/openscd/open-scd/issues/1019)) ([984652a](https://github.com/openscd/open-scd/commits/984652ae435729b20b3939624e1b88924684454b))
+
+
+### Bug Fixes
+
+* **editors/later-binding:** Resolve absent prefix in ExtRef for later binding subscription ([#1026](https://github.com/openscd/open-scd/issues/1026)) ([31fd177](https://github.com/openscd/open-scd/commits/31fd1777eebce8ff5627d70559127d2458915571)), closes [#1005](https://github.com/openscd/open-scd/issues/1005)
+* **editors/subscriber-later-binding:** Add GOOSE icon to later binding editor, closes [#1017](https://github.com/openscd/open-scd/issues/1017) ([#1022](https://github.com/openscd/open-scd/issues/1022)) ([49e9007](https://github.com/openscd/open-scd/commits/49e9007d072bd2832fcfc513c2b592d91543f4ff))
+* **menu/importieds:** allow import to new projects ([#1012](https://github.com/openscd/open-scd/issues/1012)) ([216226c](https://github.com/openscd/open-scd/commits/216226c0a8497b048ff6d1dc3c9e6157c9a67eec))
+
 ## [0.24.0](https://github.com/openscd/open-scd/compare/v0.23.0...v0.24.0) (2022-09-19)
 
 
