@@ -61,11 +61,11 @@ function importIedsWizard(importDoc: XMLDocument, doc: XMLDocument): Wizard {
       content: [
         html`<filtered-list id="iedList" multi
           >${Array.from(importDoc.querySelectorAll(':root > IED')).map(
-            ied =>
-              html`<mwc-check-list-item value="${identity(ied)}"
+          ied =>
+            html`<mwc-check-list-item value="${identity(ied)}"
                 >${ied.getAttribute('name')}</mwc-check-list-item
               >`
-          )}</filtered-list
+        )}</filtered-list
         >`,
       ],
     },
@@ -368,6 +368,26 @@ function isIedNameUnique(ied: Element, doc: Document): boolean {
   return true;
 }
 
+/**
+ * Transfer namespaces from one element to another
+ * @param destElement - Element to transfer namespaces to
+ * @param sourceElement  - Element to transfer namespaces from
+ */
+function updateNamespaces(destElement: Element, sourceElement: Element) {
+  Array.prototype.slice
+    .call(sourceElement.attributes)
+    .filter(attr => attr.name.startsWith('xmlns:'))
+    .filter(attr => !destElement.hasAttribute(attr.name))
+    .forEach((attr) => {
+      destElement.setAttributeNS(
+        'http://www.w3.org/2000/xmlns/',
+        attr.name,
+        attr.value
+      );
+    });
+
+}
+
 export async function importIED(
   ied: Element,
   doc: XMLDocument,
@@ -400,6 +420,12 @@ export async function importIED(
       })
     );
   }
+
+  // This doesn't provide redo/undo capability as it is not using the Editing
+  // action API. To use it would require us to cache the full SCL file in
+  // OpenSCD as it is now which could use significant memory.
+  // TODO: In open-scd core update this to allow including in undo/redo.
+  updateNamespaces(doc.documentElement, ied.ownerDocument.documentElement);
 
   const dataTypeTemplateActions = addDataTypeTemplates(ied, doc);
   const communicationActions = addCommunicationElements(ied, doc);
