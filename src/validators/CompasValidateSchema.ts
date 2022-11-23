@@ -43,7 +43,7 @@ export default class CompasValidateSchema extends LitElement {
 
   private processValidationResponse(response: Document): void {
     const validationErrors = Array.from(
-      response.querySelectorAll('SclValidateResponse > ValidationErrors') ?? []
+      response.querySelectorAll('ValidationErrors') ?? []
     );
     // Check if there are validation errors, if there are we will process them.
     if (validationErrors.length > 0) {
