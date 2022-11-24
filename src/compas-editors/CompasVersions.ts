@@ -4,10 +4,13 @@ import {
   LitElement,
   property,
   PropertyValues,
+  query,
+  state,
   TemplateResult,
 } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
+import '@material/mwc-dialog';
 import '@material/mwc-fab';
 import '@material/mwc-icon';
 import '@material/mwc-icon-button';
@@ -15,7 +18,10 @@ import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-list/mwc-check-list-item';
 
+import { Dialog } from '@material/mwc-dialog';
 import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
+
+import '../plain-compare-list.js';
 
 import {
   newLogEvent,
@@ -23,7 +29,6 @@ import {
   newWizardEvent,
   Wizard,
 } from '../foundation.js';
-import { renderDiff } from '../foundation/compare.js';
 
 import {
   CompasSclDataService,
@@ -38,41 +43,6 @@ import {
 import { addVersionToCompasWizard } from '../compas/CompasUploadVersion.js';
 import { getElementByName, styles } from './foundation.js';
 import { wizards } from '../wizards/wizard-library.js';
-
-interface CompareOptions {
-  title: string;
-}
-
-function compareWizard(
-  plugin: Element,
-  oldElement: Element,
-  newElement: Element,
-  options: CompareOptions
-): Wizard {
-  function renderDialogContent(): TemplateResult {
-    return html` ${renderDiff(newElement, oldElement) ??
-    html`${translate('compas.compare.noDiff')}`}`;
-  }
-
-  function close() {
-    return function () {
-      plugin.dispatchEvent(newWizardEvent());
-      return [];
-    };
-  }
-
-  return [
-    {
-      title: options.title,
-      secondary: {
-        icon: '',
-        label: get('close'),
-        action: close(),
-      },
-      content: [renderDialogContent()],
-    },
-  ];
-}
 
 /** An editor [[`plugin`]] for selecting the `Substation` section. */
 export default class CompasVersionsPlugin extends LitElement {
@@ -279,25 +249,33 @@ export default class CompasVersionsPlugin extends LitElement {
     return selectedVersions;
   }
 
+  @state()
+  private compareDialogTitle: string | undefined;
+  @state()
+  private compareLeftElement: Element | undefined;
+  @state()
+  private compareLeftTitle: string | undefined;
+  @state()
+  private compareRightElement: Element | undefined;
+  @state()
+  private compareRightTitle: string | undefined;
+  @query('mwc-dialog#compareDialog')
+  private compareDialog!: Dialog;
+
   async compareCurrentVersion(): Promise<void> {
     const selectedVersions = this.getSelectedVersions();
     if (selectedVersions.length === 1) {
-      const oldVersion = selectedVersions[0];
+      this.compareLeftTitle = selectedVersions[0];
+      this.compareLeftElement =
+        (await this.getVersion(this.compareLeftTitle)) ?? undefined;
+      this.compareRightTitle = 'Latest';
+      this.compareRightElement = this.doc.documentElement;
 
-      const oldScl = await this.getVersion(oldVersion);
-      const newScl = this.doc.documentElement;
+      this.compareDialogTitle = get('compas.compare.titleCurrent', {
+        oldVersion: this.compareLeftTitle,
+      });
 
-      if (oldScl && newScl) {
-        this.dispatchEvent(
-          newWizardEvent(
-            compareWizard(this, oldScl, newScl, {
-              title: get('compas.compare.titleCurrent', {
-                oldVersion: oldVersion,
-              }),
-            })
-          )
-        );
-      }
+      this.compareDialog.open = true;
     } else {
       this.dispatchEvent(
         newWizardEvent(
@@ -316,24 +294,20 @@ export default class CompasVersionsPlugin extends LitElement {
     const selectedVersions = this.getSelectedVersions();
     if (selectedVersions.length === 2) {
       const sortedVersions = selectedVersions.slice().sort(compareVersions);
-      const oldVersion = sortedVersions[0];
-      const newVersion = sortedVersions[1];
 
-      const oldScl = await this.getVersion(oldVersion);
-      const newScl = await this.getVersion(newVersion);
+      this.compareLeftTitle = sortedVersions[0];
+      this.compareLeftElement =
+        (await this.getVersion(this.compareLeftTitle)) ?? undefined;
+      this.compareRightTitle = sortedVersions[1];
+      this.compareRightElement =
+        (await this.getVersion(this.compareRightTitle)) ?? undefined;
 
-      if (oldScl && newScl) {
-        this.dispatchEvent(
-          newWizardEvent(
-            compareWizard(this, oldScl, newScl, {
-              title: get('compas.compare.title', {
-                oldVersion: oldVersion,
-                newVersion: newVersion,
-              }),
-            })
-          )
-        );
-      }
+      this.compareDialogTitle = get('compas.compare.title', {
+        oldVersion: this.compareLeftTitle,
+        newVersion: this.compareRightTitle,
+      });
+
+      this.compareDialog.open = true;
     } else {
       this.dispatchEvent(
         newWizardEvent(
@@ -346,6 +320,35 @@ export default class CompasVersionsPlugin extends LitElement {
         )
       );
     }
+  }
+
+  private onClosedCompareDialog(): void {
+    this.compareDialogTitle = undefined;
+    this.compareLeftElement = undefined;
+    this.compareRightElement = undefined;
+  }
+
+  private renderCompareDialog(): TemplateResult {
+    return html`<mwc-dialog
+      id="compareDialog"
+      heading="${this.compareDialogTitle}"
+      @closed=${this.onClosedCompareDialog}
+    >
+      ${this.compareLeftElement && this.compareRightElement
+        ? html`<plain-compare-list
+            .leftHandObject=${this.compareLeftElement}
+            .rightHandObject=${this.compareRightElement}
+            .leftHandTitle=${this.compareLeftTitle ?? ''}
+            .rightHandTitle=${this.compareRightTitle ?? ''}
+          ></plain-compare-list>`
+        : html``}
+      <mwc-button
+        slot="secondaryAction"
+        dialogAction="close"
+        label="${translate('close')}"
+        style="--mdc-theme-primary: var(--mdc-theme-error)"
+      ></mwc-button>
+    </mwc-dialog>`;
   }
 
   private showMessageWizard(title: string, message: string): Wizard {
@@ -540,11 +543,16 @@ export default class CompasVersionsPlugin extends LitElement {
           label="${translate('compas.versions.compareButton')}"
           @click=${this.compareVersions}
         ></mwc-fab>
-      </div>`;
+      </div>
+      ${this.renderCompareDialog()}`;
   }
 
   static styles = css`
     ${styles}
+
+    mwc-dialog {
+      --mdc-dialog-min-width: 64vw;
+    }
 
     mwc-list-item#no-scl-versions > span {
       color: var(--base1);

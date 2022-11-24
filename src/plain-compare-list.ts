@@ -60,10 +60,7 @@ export class PlainCompareList extends LitElement {
 
   render(): TemplateResult {
     return html`
-      <div class="container">
-        <div class="flex"></div>
-        ${this.renderFilterCheckbox()}
-      </div>
+      ${this.renderFilterCheckbox()}
       <div class="container container--alt">
         <div class="list__container list__container--left">
           <h3 class="mdc-dialog__title">${this.leftHandTitle}</h3>
@@ -83,8 +80,8 @@ export class PlainCompareList extends LitElement {
       ${this.leftHandObject && this.rightHandObject
         ? html`
             ${renderDiff(
-              this.leftHandObject,
               this.rightHandObject,
+              this.leftHandObject,
               this.filterMutables ? this.filterToIgnore : {}
             )}
           `
@@ -93,13 +90,21 @@ export class PlainCompareList extends LitElement {
   }
 
   protected renderFilterCheckbox(): TemplateResult {
-    return html`<mwc-formfield label="${translate('compare.filterMutables')}">
-      <mwc-checkbox
-        ?checked=${this.filterMutables}
-        @change=${() => (this.filterMutables = !this.filterMutables)}
-      >
-      </mwc-checkbox>
-    </mwc-formfield> `;
+    if (this.filterToIgnore) {
+      return html`
+        <div class="container">
+          <div class="flex"></div>
+          <mwc-formfield label="${translate('compare.filterMutables')}">
+            <mwc-checkbox
+              ?checked=${this.filterMutables}
+              @change=${() => (this.filterMutables = !this.filterMutables)}
+            >
+            </mwc-checkbox>
+          </mwc-formfield>
+        </div>
+      `;
+    }
+    return html``;
   }
 
   static styles = css`
