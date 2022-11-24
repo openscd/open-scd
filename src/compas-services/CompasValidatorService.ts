@@ -15,15 +15,6 @@ export function CompasSclValidatorService() {
     return CompasSettings().compasSettings.sclValidatorServiceUrl;
   }
 
-  function createRequest(doc: Document): string {
-    return `<?xml version="1.0" encoding="UTF-8"?>
-            <svs:SclValidateRequest xmlns:svs="${SVS_NAMESPACE}">
-              <svs:SclData><![CDATA[${new XMLSerializer().serializeToString(
-                doc.documentElement
-              )}]]></svs:SclData>
-            </svs:SclValidateRequest>`;
-  }
-
   function useWebsocket(): boolean {
     return CompasSettings().useWebsockets();
   }
@@ -35,23 +26,34 @@ export function CompasSclValidatorService() {
       doc: Document
     ): Promise<Document> {
       if (useWebsocket()) {
-        return websocket(
-          element,
-          'CompasValidatorService',
+        const request = `<?xml version="1.0" encoding="UTF-8"?>
+            <svs:SclValidateWsRequest xmlns:svs="${SVS_NAMESPACE}">
+              <svs:SclData><![CDATA[${new XMLSerializer().serializeToString(
+                doc.documentElement
+              )}]]></svs:SclData>
+            </svs:SclValidateWsRequest>`;
+        const svsUrl =
           getWebsocketUri(getSclValidatorServiceUrl()) +
-            '/validate-ws/v1/' +
-            type,
-          createRequest(doc)
-        );
+          '/validate-ws/v1/' +
+          type;
+
+        return websocket(element, 'CompasValidatorService', svsUrl, request);
       }
 
+      const request = `<?xml version="1.0" encoding="UTF-8"?>
+            <svs:SclValidateRequest xmlns:svs="${SVS_NAMESPACE}">
+              <svs:SclData><![CDATA[${new XMLSerializer().serializeToString(
+                doc.documentElement
+              )}]]></svs:SclData>
+            </svs:SclValidateRequest>`;
       const svsUrl = getSclValidatorServiceUrl() + '/validate/v1/' + type;
+
       return fetch(svsUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/xml',
         },
-        body: createRequest(doc),
+        body: request,
       })
         .catch(handleError)
         .then(handleResponse)
