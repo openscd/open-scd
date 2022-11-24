@@ -157,6 +157,18 @@ snapshots["compas-versions-plugin items-in-list looks like the latest snapshot"]
   >
   </mwc-fab>
 </div>
+<mwc-dialog
+  heading="undefined"
+  id="compareDialog"
+>
+  <mwc-button
+    dialogaction="close"
+    label="[close]"
+    slot="secondaryAction"
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+  </mwc-button>
+</mwc-dialog>
 <wizard-dialog>
 </wizard-dialog>
 `;
