@@ -8,7 +8,7 @@ Open Substation Communication Designer is an editor for SCL files as described i
 
 > Try it out at [openscd.github.io](https://openscd.github.io)!
 
-Make sure your webbrowser has enough free memory! if needed, disable plug-ins and close unused browertabs.
+Make sure your web browser has enough free memory! If needed, disable plug-ins and close unused browser tabs.
 
 ## Installation
 
@@ -36,6 +36,7 @@ npm start
 This will start a local development server and open a browser window which will automatically be reloaded as soon as you save any changes to your local source code files.
 
 ### TypeDoc
+
 This project uses [TypeDoc](https://typedoc.org/) to transform documentation comments in the source code into a rendered HTML document that can be queried and navigated through. If you want to consult the generated documentation for the TypeScript components, mixins, modules and other relevant artifacts of this project, you can [do it here](https://openscd.github.io/doc/).
 
 ### Linting & Formatting
