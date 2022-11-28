@@ -5,11 +5,16 @@ import '../../mock-wizard.js';
 import { MockWizard } from '../../mock-wizard.js';
 
 import {
+  Create,
+  isCreate,
   isReplace,
   Replace,
   WizardInputElement,
 } from '../../../src/foundation.js';
-import { editSubEquipmentWizard } from '../../../src/wizards/subequipment.js';
+import {
+  editSubEquipmentWizard,
+  createSubEquipmentWizard,
+} from '../../../src/wizards/subequipment.js';
 import { WizardCheckbox } from '../../../src/wizard-checkbox.js';
 
 describe('Wizards for SCL SubEquipment element', () => {
@@ -29,6 +34,79 @@ describe('Wizards for SCL SubEquipment element', () => {
 
     actionEvent = spy();
     window.addEventListener('editor-action', actionEvent);
+  });
+
+  describe('define an create wizard that', () => {
+    beforeEach(async () => {
+      const wizard = createSubEquipmentWizard(
+        doc.querySelector('SubEquipment')!
+      );
+      element.workflow.push(() => wizard);
+      await element.requestUpdate();
+
+      inputs = Array.from(element.wizardUI.inputs);
+
+      primaryAction = <HTMLElement>(
+        element.wizardUI.dialog?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      );
+
+      await element.wizardUI.requestUpdate(); // make sure wizard is rendered
+    });
+
+    it('looks like the the latest snapshot', async () =>
+      await expect(element.wizardUI.dialog).dom.to.equalSnapshot());
+
+    it('does not accept empty name attribute', async () => {
+      await primaryAction.click();
+
+      expect(actionEvent).to.not.have.been.called;
+    });
+
+    it('triggers simple create action on primary action click', async () => {
+      inputs[0].value = 'someNonEmptyName';
+      await element.requestUpdate();
+      await primaryAction.click();
+
+      expect(actionEvent).to.be.calledOnce;
+      const action = actionEvent.args[0][0].detail.action;
+      expect(action).to.satisfy(isCreate);
+      const createAction = <Create>action;
+
+      expect(createAction.new.element).to.have.attribute(
+        'name',
+        'someNonEmptyName'
+      );
+      expect(createAction.new.element).to.not.have.attribute('desc');
+    });
+
+    it('allows to create non required attribute virtual', async () => {
+      inputs[0].value = 'someNonEmptyName';
+
+      const virtualCheckbox: WizardCheckbox = <WizardCheckbox>(
+        element.wizardUI.dialog?.querySelector(
+          'wizard-checkbox[label="virtual"]'
+        )
+      );
+
+      virtualCheckbox.nullSwitch?.click();
+      virtualCheckbox.checked = true;
+
+      await element.requestUpdate();
+      await primaryAction.click();
+
+      expect(actionEvent).to.be.calledOnce;
+      const action = actionEvent.args[0][0].detail.action;
+      expect(action).to.satisfy(isCreate);
+      const createAction = <Create>action;
+
+      expect(createAction.new.element).to.have.attribute(
+        'name',
+        'someNonEmptyName'
+      );
+      expect(createAction.new.element).to.have.attribute('virtual', 'true');
+    });
   });
 
   describe('define an edit wizard that', () => {

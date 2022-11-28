@@ -3,6 +3,7 @@ import { get, translate } from 'lit-translate';
 
 import {
   cloneElement,
+  createElement,
   getChildElementsByTagName,
   getValue,
   SimpleAction,
@@ -22,7 +23,7 @@ interface ContentOptions {
   reservedNames: string[];
 }
 
-export function contentFunctionWizard(
+export function contentSubEquipmentWizard(
   content: ContentOptions
 ): TemplateResult[] {
   return [
@@ -112,7 +113,7 @@ export function editSubEquipmentWizard(element: Element): Wizard {
         action: updateSubEquipmentAction(element),
       },
       content: [
-        ...contentFunctionWizard({
+        ...contentSubEquipmentWizard({
           name,
           desc,
           phase,
@@ -123,3 +124,52 @@ export function editSubEquipmentWizard(element: Element): Wizard {
     },
   ];
 }
+
+function createSubEquipmentAction(parent: Element): WizardActor {
+  return (inputs: WizardInputElement[]) => {
+    const subEquipmentAttrs: Record<string, string | null> = {};
+    const subEquipmentKeys = ['name', 'desc', 'phase', 'virtual'];
+    subEquipmentKeys.forEach(key => {
+      subEquipmentAttrs[key] = getValue(inputs.find(i => i.label === key)!);
+    });
+
+    const subEquipment = createElement(
+      parent.ownerDocument,
+      'SubEquipment',
+      subEquipmentAttrs
+    );
+
+    return [{ new: { parent, element: subEquipment } }];
+  };
+}
+
+export function createSubEquipmentWizard(parent: Element): Wizard {
+  const name = '';
+  const desc = null;
+  const phase = null;
+  const virtual = null;
+  const reservedNames = Array.from(parent.querySelectorAll('SubEquipment')).map(
+    subEquipment => subEquipment.getAttribute('name')!
+  );
+
+  return [
+    {
+      title: get('wizard.title.add', { tagName: 'SubEquipment' }),
+      primary: {
+        icon: 'save',
+        label: get('save'),
+        action: createSubEquipmentAction(parent),
+      },
+      content: [
+        ...contentSubEquipmentWizard({
+          name,
+          desc,
+          phase,
+          virtual,
+          reservedNames,
+        }),
+      ],
+    },
+  ];
+}
+
