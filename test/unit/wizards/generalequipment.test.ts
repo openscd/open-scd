@@ -108,6 +108,25 @@ describe('Wizards for SCL GeneralEquipment element', () => {
       expect(actionEvent).to.not.have.been.called;
     });
 
+    it('does not accept invalid type attribute', async () => {
+      inputs[2].value = 'notAXN';
+      await element.requestUpdate();
+      await primaryAction.click();
+      expect(actionEvent).to.not.have.been.called;
+    });
+
+    it('allows to create type attribute', async () => {
+      inputs[2].value = 'BAT';
+      await element.requestUpdate();
+      await primaryAction.click();
+      expect(actionEvent).to.be.calledOnce;
+      const action = actionEvent.args[0][0].detail.action;
+      expect(action).to.satisfy(isReplace);
+      const editAction = <Replace>action;
+
+      expect(editAction.new.element).to.have.attribute('type', 'BAT');
+    });
+
     it('allows to create non required attribute desc', async () => {
       inputs[1].value = 'someNonEmptyDesc';
 

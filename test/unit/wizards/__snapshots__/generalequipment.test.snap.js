@@ -26,6 +26,8 @@ snapshots["Wizards for SCL GeneralEquipment element define an edit wizard that l
     <wizard-textfield
       helper="[scl.type]"
       label="type"
+      maxlength="3"
+      pattern="AXN|BAT|MOT|FAN|FIL|PMP|TNK|VLV|E[A-Z]*"
       required=""
     >
     </wizard-textfield>
