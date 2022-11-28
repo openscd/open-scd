@@ -225,4 +225,13 @@ export const officialPlugins = [
     requireDoc: false,
     position: 'bottom',
   },
+  {
+    name: 'Export Communication Section',
+    src: '/src/menu/ExportCommunication.js',
+    icon: 'sim_card_download',
+    default: false,
+    kind: 'menu',
+    requireDoc: true,
+    position: 'middle'
+  }
 ];
