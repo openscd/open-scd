@@ -100,7 +100,7 @@ export function contentGeneralEquipmentWizard(
       label="type"
       .maybeValue=${content.type}
       helper="${translate('scl.type')}"
-      maxLength="${3}"
+      minLength="${3}"
       pattern="AXN|BAT|MOT|FAN|FIL|PMP|TNK|VLV|E[A-Z]*"
       required
     ></wizard-textfield>`,
