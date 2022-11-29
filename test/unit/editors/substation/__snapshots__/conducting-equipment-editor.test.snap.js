@@ -123,6 +123,17 @@ snapshots["conducting-equipment-editor rendered as action pane looks like the la
           EqFunction
         </span>
       </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="SubEquipment"
+      >
+        <span>
+          SubEquipment
+        </span>
+      </mwc-list-item>
     </mwc-menu>
   </abbr>
 </action-pane>
@@ -214,6 +225,17 @@ snapshots["conducting-equipment-editor rendered as action pane with EqFunction c
       >
         <span>
           EqFunction
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="SubEquipment"
+      >
+        <span>
+          SubEquipment
         </span>
       </mwc-list-item>
     </mwc-menu>
@@ -309,6 +331,17 @@ snapshots["conducting-equipment-editor rendered as action pane with LNode childr
       >
         <span>
           EqFunction
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="SubEquipment"
+      >
+        <span>
+          SubEquipment
         </span>
       </mwc-list-item>
     </mwc-menu>
@@ -410,6 +443,17 @@ snapshots["conducting-equipment-editor rendered as action pane with SubEquipment
       >
         <span>
           EqFunction
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="SubEquipment"
+      >
+        <span>
+          SubEquipment
         </span>
       </mwc-list-item>
     </mwc-menu>

@@ -2131,7 +2131,6 @@ export const tags: Record<
       'TransformerWinding',
       'SubEquipment',
       'EqFunction',
-      'SubEquipment',
     ],
   },
   Private: {
