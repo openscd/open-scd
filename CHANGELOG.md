@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.28.0](https://github.com/openscd/open-scd/compare/v0.27.0...v0.28.0) (2022-11-30)
+
+
+### Features
+
+* **editor/subscription:** add supervision indication ([#1082](https://github.com/openscd/open-scd/issues/1082)) ([8ebac53](https://github.com/openscd/open-scd/commits/8ebac53bbf86b86e6b8cdb9d79b28957d4a7b5fc)), closes [#1037](https://github.com/openscd/open-scd/issues/1037)
+* **editors/substation:** Add read-only transformer winding editor ([#1073](https://github.com/openscd/open-scd/issues/1073)) ([e57b5c2](https://github.com/openscd/open-scd/commits/e57b5c20ae3117a971d8b0b2854281c05f034ef5))
+* **editors/substation:** redirect LNode's on clone ([#1079](https://github.com/openscd/open-scd/issues/1079)) ([cfd16d6](https://github.com/openscd/open-scd/commits/cfd16d66e2efe13930d3537486750b8bc46b3d87))
+* **menu/exportCommunication:** Allow XML export of communication section  ([#1044](https://github.com/openscd/open-scd/issues/1044)) ([e4d4e24](https://github.com/openscd/open-scd/commits/e4d4e2414c2f3e9fafe82d9e634772f7d14d0236)), closes [#1042](https://github.com/openscd/open-scd/issues/1042)
+* **substation/general-equipment-editor:** edit wizard ([#1089](https://github.com/openscd/open-scd/issues/1089)) ([95ba5ab](https://github.com/openscd/open-scd/commits/95ba5aba9df7348da92011c2f091b0b2b317260b))
+
+
+### Bug Fixes
+
+* **menu/importieds:** import TEMPLATE IEDs with Communication section ([#1075](https://github.com/openscd/open-scd/issues/1075)) ([013bfa5](https://github.com/openscd/open-scd/commits/013bfa53a6524fc62a755320fa81d86c3573a523)), closes [#1074](https://github.com/openscd/open-scd/issues/1074)
+* **menu/importieds:** Transfer namespaces to document element for ied import ([#1081](https://github.com/openscd/open-scd/issues/1081)) ([eccc3fc](https://github.com/openscd/open-scd/commits/eccc3fc0d39e926176e9177058385851ab4f8f35)), closes [#1060](https://github.com/openscd/open-scd/issues/1060)
+* **plain-compare-list:** swap list relations ([#1096](https://github.com/openscd/open-scd/issues/1096)) ([9fbfbcd](https://github.com/openscd/open-scd/commits/9fbfbcd0880b6d68ee892614e302bb298571c059))
+
 ## [0.27.0](https://github.com/openscd/open-scd/compare/v0.26.0...v0.27.0) (2022-11-21)
 
 
