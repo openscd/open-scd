@@ -1,6 +1,6 @@
 {
-  "short_name": "OpenSCD",
-  "name": "OpenSCD",
+  "short_name": "CoMPAS - OpenSCD",
+  "name": "CoMPAS - OpenSCD",
   "description": "An editor for XML files as described by IEC 61850-6",
   "categories": [
     "productivity",
@@ -16,7 +16,7 @@
   "dir": "ltr",
   "icons": [
     {
-      "src": "public/icon.svg",
+      "src": "public/icon-color.svg",
       "sizes": "150x150",
       "type": "image/svg+xml",
       "purpose": "any monochrome"

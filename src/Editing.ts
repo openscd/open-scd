@@ -38,7 +38,7 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
     doc: XMLDocument | null = null;
     /** The name of the current [[`doc`]] */
     @property({ type: String }) docName = '';
-    /** The UUID of the current [[`doc`]] */
+    /** The ID of the current [[`doc`]] */
     @property({ type: String }) docId = '';
 
     private checkCreateValidity(create: Create): boolean {
