@@ -1,75 +1,75 @@
-import { css, html, LitElement, query, TemplateResult } from 'lit-element';
-import { get } from 'lit-translate';
+import {
+  css,
+  html,
+  LitElement,
+  property,
+  query,
+  state,
+  TemplateResult,
+} from 'lit-element';
+import { get, translate } from 'lit-translate';
 
 import '@material/mwc-list/mwc-check-list-item';
+import '@material/dialog';
+import '@material/mwc-button';
+import { Dialog } from '@material/mwc-dialog';
 import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import '../filtered-list.js';
 import {
   createElement,
-  EditorAction,
   identity,
+  isPublic,
   newActionEvent,
   newLogEvent,
   newPendingStateEvent,
-  newWizardEvent,
   selector,
   SimpleAction,
-  Wizard,
-  WizardActor,
 } from '../foundation.js';
 
-function importIedsAction(
-  importDoc: XMLDocument,
-  doc: XMLDocument
-): WizardActor {
-  return (_, wizard: Element): EditorAction[] => {
-    const selectedItems = <ListItemBase[]>(
-      (<List>wizard.shadowRoot!.querySelector('#iedList')).selected
-    );
+function uniqueTemplateIedName(doc: XMLDocument, ied: Element): string {
+  const [manufacturer, type] = ['manufacturer', 'type'].map(attr =>
+    ied.getAttribute(attr)
+  );
+  const nameCore =
+    manufacturer || type
+      ? `${manufacturer ?? ''}${type ? '_' + type : ''}`
+      : 'TEMPLATE_IED';
 
-    const promises = selectedItems
-      .map(item => {
-        return importDoc.querySelector(selector('IED', item.value));
-      })
-      .filter(ied => ied)
-      .map(ied => importIED(ied!, doc, <HTMLElement>wizard));
+  const siblingNames = Array.from(doc.querySelectorAll('IED'))
+    .filter(isPublic)
+    .map(child => child.getAttribute('name') ?? child.tagName);
+  if (!siblingNames.length) return nameCore + '_001';
 
-    const mergedPromise = new Promise<void>((resolve, reject) =>
-      Promise.allSettled(promises).then(
-        () => resolve(),
-        () => reject()
-      )
-    );
+  let newName = '';
+  for (let i = 0; i < siblingNames.length + 1; i++) {
+    const newDigit = (i + 1).toString().padStart(3, '0');
+    newName = nameCore + '_' + newDigit;
 
-    wizard.dispatchEvent(newPendingStateEvent(mergedPromise));
-    wizard.dispatchEvent(newWizardEvent());
-    return [];
-  };
+    if (!siblingNames.includes(newName)) return newName;
+  }
+
+  return newName;
 }
 
-function importIedsWizard(importDoc: XMLDocument, doc: XMLDocument): Wizard {
-  return [
-    {
-      title: 'Import IEDs',
-      primary: {
-        icon: 'add',
-        label: 'IEDs',
-        action: importIedsAction(importDoc, doc),
-      },
-      content: [
-        html`<filtered-list id="iedList" multi
-          >${Array.from(importDoc.querySelectorAll(':root > IED')).map(
-          ied =>
-            html`<mwc-check-list-item value="${identity(ied)}"
-                >${ied.getAttribute('name')}</mwc-check-list-item
-              >`
-        )}</filtered-list
-        >`,
-      ],
-    },
-  ];
+/**
+ * Transfer namespaces from one element to another
+ * @param destElement - Element to transfer namespaces to
+ * @param sourceElement  - Element to transfer namespaces from
+ */
+function updateNamespaces(destElement: Element, sourceElement: Element) {
+  Array.prototype.slice
+    .call(sourceElement.attributes)
+    .filter(attr => attr.name.startsWith('xmlns:'))
+    .filter(attr => !destElement.hasAttribute(attr.name))
+    .forEach(attr => {
+      destElement.setAttributeNS(
+        'http://www.w3.org/2000/xmlns/',
+        attr.name,
+        attr.value
+      );
+    });
 }
 
 function getSubNetwork(elements: Element[], element: Element): Element {
@@ -180,21 +180,21 @@ function addEnumType(
   enumType: Element,
   parent: Element
 ): SimpleAction | undefined {
+  if (!hasConnectionToIed(enumType, ied)) return;
+
   const existEnumType = parent.querySelector(
     `EnumType[id="${enumType.getAttribute('id')}"]`
   );
-
   if (existEnumType && enumType.isEqualNode(existEnumType)) return;
-  if (!hasConnectionToIed(enumType, ied)) return;
 
   if (existEnumType) {
-    //INFO: id's within DataTypeTemplate must be unique. This is not the case here.
-    //Rename the id by adding IED name at the beginning
+    // There is an `id` conflict in the project that must be resolved by
+    // concatenating the IED name with the id
     const data: Element = enumType.parentElement!;
     const idOld = enumType.getAttribute('id');
     const idNew = ied.getAttribute('name')! + idOld;
-
     enumType.setAttribute('id', idNew);
+
     data
       .querySelectorAll(
         `DOType > DA[type="${idOld}"],DAType > BDA[type="${idOld}"]`
@@ -215,21 +215,21 @@ function addDAType(
   daType: Element,
   parent: Element
 ): SimpleAction | undefined {
+  if (!hasConnectionToIed(daType, ied)) return;
+
   const existDAType = parent.querySelector(
     `DAType[id="${daType.getAttribute('id')}"]`
   );
-
   if (existDAType && daType.isEqualNode(existDAType)) return;
-  if (!hasConnectionToIed(daType, ied)) return;
 
   if (existDAType) {
-    //INFO: id's within DataTypeTemplate must be unique. This is not the case here.
-    //Rename the id by adding IED name at the beginning
+    // There is an `id` conflict in the project that must be resolved by
+    // concatenating the IED name with the id
     const data: Element | null = daType.parentElement!;
     const idOld = daType.getAttribute('id');
     const idNew = ied.getAttribute('name')! + idOld;
-
     daType.setAttribute('id', idNew);
+
     data
       .querySelectorAll(
         `DOType > DA[type="${idOld}"],DAType > BDA[type="${idOld}"]`
@@ -250,21 +250,21 @@ function addDOType(
   doType: Element,
   parent: Element
 ): SimpleAction | undefined {
+  if (!hasConnectionToIed(doType, ied)) return;
+
   const existDOType = parent.querySelector(
     `DOType[id="${doType.getAttribute('id')}"]`
   );
-
   if (existDOType && doType.isEqualNode(existDOType)) return;
-  if (!hasConnectionToIed(doType, ied)) return;
 
   if (existDOType) {
-    //INFO: id's within DataTypeTemplate must be unique. This is not the case here.
-    //Rename the id by adding IED name at the beginning
+    // There is an `id` conflict in the project that must be resolved by
+    // concatenating the IED name with the id
     const data: Element = doType.parentElement!;
     const idOld = doType.getAttribute('id');
     const idNew = ied.getAttribute('name')! + idOld;
-
     doType.setAttribute('id', idNew);
+
     data
       .querySelectorAll(
         `LNodeType > DO[type="${idOld}"], DOType > SDO[type="${idOld}"]`
@@ -285,24 +285,24 @@ function addLNodeType(
   lNodeType: Element,
   parent: Element
 ): SimpleAction | undefined {
+  if (!hasConnectionToIed(lNodeType, ied)) return;
+
   const existLNodeType = parent.querySelector(
     `LNodeType[id="${lNodeType.getAttribute('id')}"]`
   );
-
   if (existLNodeType && lNodeType.isEqualNode(existLNodeType)) return;
-  if (!hasConnectionToIed(lNodeType, ied)) return;
 
   if (existLNodeType) {
-    //INFO: id's within DataTypeTemplate must be unique. This is not the case here.
-    //Rename the id by adding IED name at the beginning
+    // There is an `id` conflict in the project that must be resolved by
+    // concatenating the IED name with the id
     const idOld = lNodeType.getAttribute('id')!;
     const idNew = ied.getAttribute('name')!.concat(idOld);
-
     lNodeType.setAttribute('id', idNew);
-    ied
-      .querySelectorAll(
-        `AccessPoint > Server > LDevice > LN0[lnType="${idOld}"], AccessPoint > Server > LDevice > LN[lnType="${idOld}"]`
-      )
+
+    Array.from(
+      ied.querySelectorAll(`LN0[lnType="${idOld}"],LN[lnType="${idOld}"]`)
+    )
+      .filter(isPublic)
       .forEach(ln => ln.setAttribute('lnType', idNew));
   }
 
@@ -368,120 +368,105 @@ function isIedNameUnique(ied: Element, doc: Document): boolean {
   return true;
 }
 
-/**
- * Transfer namespaces from one element to another
- * @param destElement - Element to transfer namespaces to
- * @param sourceElement  - Element to transfer namespaces from
- */
-function updateNamespaces(destElement: Element, sourceElement: Element) {
-  Array.prototype.slice
-    .call(sourceElement.attributes)
-    .filter(attr => attr.name.startsWith('xmlns:'))
-    .filter(attr => !destElement.hasAttribute(attr.name))
-    .forEach((attr) => {
-      destElement.setAttributeNS(
-        'http://www.w3.org/2000/xmlns/',
-        attr.name,
-        attr.value
-      );
-    });
-
+function resetSelection(dialog: Dialog): void {
+  (
+    (dialog.querySelector('filtered-list') as List).selected as ListItemBase[]
+  ).forEach(itme => (itme.selected = false));
 }
 
-export async function importIED(
-  ied: Element,
-  doc: XMLDocument,
-  dispatchObject: HTMLElement
-): Promise<void> {
-  if (ied.getAttribute('name') === 'TEMPLATE') {
-    const newIedName =
-      'TEMPLATE_IED' +
-      (Array.from(doc.querySelectorAll('IED')).filter(ied =>
-        ied.getAttribute('name')?.includes('TEMPLATE')
-      ).length +
-        1);
+export default class ImportingIedPlugin extends LitElement {
+  @property({ attribute: false })
+  doc!: XMLDocument;
 
-    ied.setAttribute('name', newIedName);
+  @state()
+  importDoc?: XMLDocument;
 
-    Array.from(
-      ied.ownerDocument.querySelectorAll(
-        ':root > Communication > SubNetwork > ConnectedAP[iedName="TEMPLATE"]'
-      )
-    ).forEach(connectedAp => connectedAp.setAttribute('iedName', newIedName));
+  @query('#importied-plugin-input') pluginFileUI!: HTMLInputElement;
+  @query('mwc-dialog') dialog!: Dialog;
+
+  run(): void {
+    this.pluginFileUI.click();
   }
 
-  if (!isIedNameUnique(ied, doc)) {
-    dispatchObject.dispatchEvent(
-      newLogEvent({
-        kind: 'error',
-        title: get('import.log.nouniqueied', {
-          name: ied.getAttribute('name')!,
-        }),
+  async docUpdate(): Promise<void> {
+    await ((this.getRootNode() as ShadowRoot).host as LitElement)
+      .updateComplete;
+  }
+
+  private importIED(ied: Element): void {
+    if (ied.getAttribute('name') === 'TEMPLATE') {
+      const newIedName = uniqueTemplateIedName(this.doc, ied);
+
+      ied.setAttribute('name', newIedName);
+
+      Array.from(
+        ied.ownerDocument.querySelectorAll(
+          ':root > Communication > SubNetwork > ConnectedAP[iedName="TEMPLATE"]'
+        )
+      ).forEach(connectedAp => connectedAp.setAttribute('iedName', newIedName));
+    }
+
+    if (!isIedNameUnique(ied, this.doc)) {
+      this.dispatchEvent(
+        newLogEvent({
+          kind: 'error',
+          title: get('import.log.nouniqueied', {
+            name: ied.getAttribute('name')!,
+          }),
+        })
+      );
+    }
+
+    // This doesn't provide redo/undo capability as it is not using the Editing
+    // action API. To use it would require us to cache the full SCL file in
+    // OpenSCD as it is now which could use significant memory.
+    // TODO: In open-scd core update this to allow including in undo/redo.
+    updateNamespaces(
+      this.doc.documentElement,
+      ied.ownerDocument.documentElement
+    );
+
+    const dataTypeTemplateActions = addDataTypeTemplates(ied, this.doc);
+    const communicationActions = addCommunicationElements(ied, this.doc);
+    const actions = communicationActions.concat(dataTypeTemplateActions);
+    actions.push({
+      new: {
+        parent: this.doc!.querySelector(':root')!,
+        element: ied,
+      },
+    });
+
+    this.dispatchEvent(
+      newActionEvent({
+        title: get('editing.import', { name: ied.getAttribute('name')! }),
+        actions,
       })
     );
   }
 
-  // This doesn't provide redo/undo capability as it is not using the Editing
-  // action API. To use it would require us to cache the full SCL file in
-  // OpenSCD as it is now which could use significant memory.
-  // TODO: In open-scd core update this to allow including in undo/redo.
-  updateNamespaces(doc.documentElement, ied.ownerDocument.documentElement);
-
-  const dataTypeTemplateActions = addDataTypeTemplates(ied, doc);
-  const communicationActions = addCommunicationElements(ied, doc);
-  const actions = communicationActions.concat(dataTypeTemplateActions);
-  actions.push({
-    new: {
-      parent: doc!.querySelector(':root')!,
-      element: ied,
-    },
-  });
-
-  dispatchObject.dispatchEvent(
-    newActionEvent({
-      title: get('editing.import', { name: ied.getAttribute('name')! }),
-      actions,
-    })
-  );
-}
-
-export default class ImportingIedPlugin extends LitElement {
-  doc!: XMLDocument;
-  parent!: HTMLElement;
-
-  @query('#importied-plugin-input') pluginFileUI!: HTMLInputElement;
-
-  /** Loads the file `event.target.files[0]` into [[`src`]] as a `blob:...`. */
-  private async loadIedFiles(event: Event): Promise<void> {
-    const files = Array.from(
-      (<HTMLInputElement | null>event.target)?.files ?? []
+  private async importIEDs(): Promise<void> {
+    const selectedItems = <ListItemBase[]>(
+      (<List>this.dialog.querySelector('filtered-list')).selected
     );
 
-    const promises = files.map(async file => {
-      const importDoc = new DOMParser().parseFromString(
-        await file.text(),
-        'application/xml'
-      );
+    const ieds = selectedItems
+      .map(item => {
+        return this.importDoc!.querySelector(selector('IED', item.value));
+      })
+      .filter(ied => ied) as Element[];
 
-      return this.prepareImport(importDoc, this.doc!);
-    });
+    for (const ied of ieds) {
+      this.importIED(ied);
+      await this.docUpdate();
+    }
 
-    const mergedPromise = new Promise<void>((resolve, reject) =>
-      Promise.allSettled(promises).then(
-        () => resolve(),
-        () => reject()
-      )
-    );
-
-    this.parent.dispatchEvent(newPendingStateEvent(mergedPromise));
+    resetSelection(this.dialog);
+    this.dialog.close();
   }
 
-  public async prepareImport(
-    importDoc: XMLDocument,
-    doc: XMLDocument
-  ): Promise<void> {
-    if (!importDoc) {
-      this.parent.dispatchEvent(
+  public prepareImport(): void {
+    if (!this.importDoc) {
+      this.dispatchEvent(
         newLogEvent({
           kind: 'error',
           title: get('import.log.loaderror'),
@@ -490,8 +475,8 @@ export default class ImportingIedPlugin extends LitElement {
       return;
     }
 
-    if (importDoc.querySelector('parsererror')) {
-      this.parent.dispatchEvent(
+    if (this.importDoc.querySelector('parsererror')) {
+      this.dispatchEvent(
         newLogEvent({
           kind: 'error',
           title: get('import.log.parsererror'),
@@ -500,9 +485,9 @@ export default class ImportingIedPlugin extends LitElement {
       return;
     }
 
-    const ieds = Array.from(importDoc.querySelectorAll(':root > IED'));
+    const ieds = Array.from(this.importDoc.querySelectorAll(':root > IED'));
     if (ieds.length === 0) {
-      this.parent.dispatchEvent(
+      this.dispatchEvent(
         newLogEvent({
           kind: 'error',
           title: get('import.log.missingied'),
@@ -512,26 +497,72 @@ export default class ImportingIedPlugin extends LitElement {
     }
 
     if (ieds.length === 1) {
-      importIED(ieds[0], doc, this.parent);
+      this.importIED(ieds[0]);
       return;
     }
 
-    this.parent.dispatchEvent(newWizardEvent(importIedsWizard(importDoc, doc)));
+    this.dialog.show();
   }
 
-  async run(): Promise<void> {
-    this.pluginFileUI.click();
+  /** Loads the file `event.target.files[0]` into [[`src`]] as a `blob:...`. */
+  protected async onLoadFiles(event: Event): Promise<void> {
+    const files = Array.from(
+      (<HTMLInputElement | null>event.target)?.files ?? []
+    );
+
+    const promises = files.map(async file => {
+      this.importDoc = new DOMParser().parseFromString(
+        await file.text(),
+        'application/xml'
+      );
+
+      return this.prepareImport();
+    });
+
+    const mergedPromise = new Promise<void>((resolve, reject) =>
+      Promise.allSettled(promises).then(
+        () => resolve(),
+        () => reject()
+      )
+    );
+
+    this.dispatchEvent(newPendingStateEvent(mergedPromise));
   }
 
-  firstUpdated(): void {
-    this.parent = this.parentElement!;
+  protected renderInput(): TemplateResult {
+    return html`<input multiple @change=${(event: Event) => {
+      this.onLoadFiles(event);
+      (<HTMLInputElement>event.target).value = '';
+    }} id="importied-plugin-input" accept=".sed,.scd,.ssd,.iid,.cid,.icd" type="file"></input>`;
+  }
+
+  protected renderIedSelection(): TemplateResult {
+    return html`<mwc-dialog>
+      <filtered-list hasSlot multi>
+        ${Array.from(this.importDoc?.querySelectorAll(':root > IED') ?? []).map(
+          ied =>
+            html`<mwc-check-list-item value="${identity(ied)}"
+              >${ied.getAttribute('name')}</mwc-check-list-item
+            >`
+        )}
+        <mwc-icon-button slot="meta" icon="edit"></mwc-icon-button>
+      </filtered-list>
+      <mwc-button
+        label="${translate('close')}"
+        slot="secondaryAction"
+        style="--mdc-theme-primary: var(--mdc-theme-error)"
+      ></mwc-button>
+      <mwc-button
+        label="IEDs"
+        slot="primaryAction"
+        icon="add"
+        @click=${this.importIEDs}
+      ></mwc-button>
+    </mwc-dialog>`;
   }
 
   render(): TemplateResult {
-    return html`<input multiple @change=${(event: Event) => {
-      this.loadIedFiles(event);
-      (<HTMLInputElement>event.target).value = '';
-    }} id="importied-plugin-input" accept=".sed,.scd,.ssd,.iid,.cid,.icd" type="file"></input>`;
+    return html`${this.renderIedSelection()}${this.renderInput()}`;
   }
 
   static styles = css`
