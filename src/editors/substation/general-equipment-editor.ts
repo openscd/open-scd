@@ -15,7 +15,11 @@ import '../../action-pane.js';
 import '../../editors/substation/eq-function-editor.js';
 import '../../editors/substation/l-node-editor.js';
 import { generalConductingEquipmentIcon } from '../../icons/icons.js';
-import { getChildElementsByTagName, newWizardEvent } from '../../foundation.js';
+import {
+  getChildElementsByTagName,
+  newActionEvent,
+  newWizardEvent,
+} from '../../foundation.js';
 import { translate } from 'lit-translate';
 import { wizards } from '../../wizards/wizard-library.js';
 
@@ -43,6 +47,18 @@ export class GeneralEquipmentEditor extends LitElement {
   openEditWizard(): void {
     const wizard = wizards['GeneralEquipment'].edit(this.element);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
+
+  remove(): void {
+    if (this.element.parentElement)
+      this.dispatchEvent(
+        newActionEvent({
+          old: {
+            parent: this.element.parentElement,
+            element: this.element,
+          },
+        })
+      );
   }
 
   private renderLNodes(): TemplateResult {
@@ -84,6 +100,12 @@ export class GeneralEquipmentEditor extends LitElement {
             @click=${() => this.openEditWizard()}
           ></mwc-icon-button>
         </abbr>
+        <abbr slot="action" title="${translate('remove')}">
+          <mwc-icon-button
+            icon="delete"
+            @click=${() => this.remove()}
+          ></mwc-icon-button>
+        </abbr>
         ${this.renderLNodes()} ${this.renderEqFunctions()}
       </action-pane>`;
 
@@ -94,11 +116,21 @@ export class GeneralEquipmentEditor extends LitElement {
           @click=${() => this.openEditWizard()}
         ></mwc-icon-button>
       </abbr>
+      <abbr slot="action" title="${translate('remove')}">
+        <mwc-icon-button
+          icon="delete"
+          @click=${() => this.remove()}
+        ></mwc-icon-button>
+      </abbr>
       <mwc-icon slot="icon">${generalConductingEquipmentIcon}</mwc-icon>
     </action-icon>`;
   }
 
   static styles = css`
+    abbr {
+      text-decoration: none;
+      border-bottom: none;
+    }
     .container.lnode {
       display: grid;
       grid-gap: 12px;
