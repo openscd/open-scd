@@ -1312,6 +1312,21 @@ snapshots["open-scd looks like its snapshot"] =
       </mwc-icon>
       Locamation VMU
     </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      tabindex="-1"
+      value="/src/menu/ExportCommunication.js"
+    >
+      <mwc-icon slot="meta">
+        sim_card_download
+      </mwc-icon>
+      Export Communication Section
+    </mwc-check-list-item>
     <li
       divider=""
       inset=""

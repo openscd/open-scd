@@ -22,7 +22,7 @@ export function replaceNamingAction(element: Element): WizardActor {
       return [];
     }
 
-    const newElement = cloneElement(element, { name, desc });
+    const newElement = cloneElement(element, {name, desc} );
 
     return [{ old: { element }, new: { element: newElement } }];
   };

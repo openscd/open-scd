@@ -7,6 +7,7 @@ import {
   state,
   TemplateResult,
 } from 'lit-element';
+import { nothing } from 'lit-html';
 import { get, translate } from 'lit-translate';
 
 import {
@@ -25,8 +26,12 @@ import {
   existExtRef,
   FcdaSelectEvent,
   getExtRef,
+  getExistingSupervision,
   newSubscriptionChangedEvent,
+  removeSubscriptionSupervision,
+  instantiateSubscriptionSupervision,
   styles,
+  canRemoveSubscriptionSupervision,
 } from '../foundation.js';
 import { getSubscribedExtRefElements } from './foundation.js';
 import { emptyInputsDeleteActions } from '../../../foundation/ied.js';
@@ -141,6 +146,15 @@ export class ExtRefLnBindingList extends LitElement {
       actions.push({ new: { parent: inputsElement, element: extRef } });
     }
 
+    // we need to extend the actions array with the actions for the instation of the LGOS
+    const subscriberIed = lnElement.closest('IED') || undefined;
+    actions.push(
+      ...instantiateSubscriptionSupervision(
+        this.currentSelectedControlElement,
+        subscriberIed
+      )
+    );
+
     const title = get('subscription.connect');
     return { title, actions };
   }
@@ -167,6 +181,16 @@ export class ExtRefLnBindingList extends LitElement {
 
     // Check if empty Input Element should also be removed.
     actions.push(...emptyInputsDeleteActions(actions));
+
+    // we need to extend the actions array with the actions for removing the supervision
+    const subscriberIed = lnElement.closest('IED') || undefined;
+    if (extRefElement && canRemoveSubscriptionSupervision(extRefElement))
+      actions.push(
+        ...removeSubscriptionSupervision(
+          this.currentSelectedControlElement,
+          subscriberIed
+        )
+      );
 
     return {
       title: get('subscription.disconnect'),
@@ -200,6 +224,45 @@ export class ExtRefLnBindingList extends LitElement {
     return html`<h1>${translate(`subscription.binding.extRefList.title`)}</h1>`;
   }
 
+  private renderSubscribedLN(lnElement: Element): TemplateResult {
+    const extRefs = getSubscribedExtRefElements(
+      lnElement,
+      this.controlTag,
+      this.currentSelectedFcdaElement,
+      this.currentSelectedControlElement,
+      false
+    );
+    const supervisionNode = getExistingSupervision(extRefs[0]);
+    return html`<mwc-list-item
+      graphic="large"
+      ?hasMeta=${supervisionNode !== null}
+      ?disabled=${this.bindingNotSupported(lnElement)}
+      twoline
+      value="${identity(lnElement)}"
+      @click=${() => {
+        const replaceAction = this.unsubscribe(lnElement);
+        if (replaceAction) {
+          this.dispatchEvent(newActionEvent(replaceAction));
+          this.dispatchEvent(
+            newSubscriptionChangedEvent(
+              this.currentSelectedControlElement,
+              this.currentSelectedFcdaElement
+            )
+          );
+        }
+      }}
+    >
+      <span>${this.buildLNTitle(lnElement)}</span>
+      <span slot="secondary"> ${identity(lnElement.closest('LDevice'))} </span>
+      <mwc-icon slot="graphic">close</mwc-icon>
+      ${supervisionNode !== null
+        ? html`<mwc-icon title="${identity(supervisionNode)}" slot="meta"
+            >monitor_heart</mwc-icon
+          >`
+        : nothing}</mwc-list-item
+    >`;
+  }
+
   private renderSubscribedLNs(): TemplateResult {
     const subscribedLNs = this.getSubscribedLNElements();
     return html`
@@ -218,32 +281,7 @@ export class ExtRefLnBindingList extends LitElement {
       </mwc-list-item>
       <li divider role="separator"></li>
       ${subscribedLNs.length > 0
-        ? html`${subscribedLNs.map(
-            lnElement => html` <mwc-list-item
-              graphic="large"
-              ?disabled=${this.bindingNotSupported(lnElement)}
-              twoline
-              value="${identity(lnElement)}"
-              @click=${() => {
-                const replaceAction = this.unsubscribe(lnElement);
-                if (replaceAction) {
-                  this.dispatchEvent(newActionEvent(replaceAction));
-                  this.dispatchEvent(
-                    newSubscriptionChangedEvent(
-                      this.currentSelectedControlElement,
-                      this.currentSelectedFcdaElement
-                    )
-                  );
-                }
-              }}
-            >
-              <span>${this.buildLNTitle(lnElement)}</span>
-              <span slot="secondary">
-                ${identity(lnElement.closest('LDevice'))}
-              </span>
-              <mwc-icon slot="graphic">close</mwc-icon>
-            </mwc-list-item>`
-          )}`
+        ? html`${subscribedLNs.map(lN => this.renderSubscribedLN(lN))}`
         : html`<mwc-list-item graphic="large" noninteractive>
             ${translate('subscription.binding.extRefList.noSubscribedLNs')}
           </mwc-list-item>`}

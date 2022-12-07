@@ -20,7 +20,9 @@ const openAndCancelMenu: (
   new Promise(async resolve => {
     expect(parent.wizardUI.dialog).to.be.undefined;
 
-    element?.shadowRoot?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!.click();
+    element?.shadowRoot
+      ?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!
+      .click();
     const lnodeMenuItem: ListItemBase =
       element?.shadowRoot?.querySelector<ListItemBase>(
         `mwc-list-item[value='LNode']`
@@ -291,6 +293,7 @@ describe('bay-editor wizarding editing integration', () => {
       expect(doc.querySelector('Bay[name="COUPLING_BAY"]')).to.not.exist;
     });
   });
+
   describe('clone action', () => {
     let doc: XMLDocument;
     let parent: MockWizardEditor;
@@ -298,14 +301,14 @@ describe('bay-editor wizarding editing integration', () => {
     let copyContentButton: HTMLElement;
 
     beforeEach(async () => {
-      doc = await fetch('/test/testfiles/valid2007B4.scd')
+      doc = await fetch('/test/testfiles/zeroline/clone/noUnusedLNode.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <MockWizardEditor>(
         await fixture(
           html`<mock-wizard-editor
             ><bay-editor
-              .element=${doc.querySelector('Bay[name="COUPLING_BAY"]')}
+              .element=${doc.querySelector('Bay[name="Q01"]')}
             ></bay-editor
           ></mock-wizard-editor>`
         )
@@ -322,58 +325,54 @@ describe('bay-editor wizarding editing integration', () => {
     it('duplicates Bay on clicking duplicate button', async () => {
       copyContentButton.click();
       await parent.updateComplete;
-      expect(doc.querySelector('Bay[name="COUPLING_BAY1')).to.exist;
+      expect(doc.querySelector('Bay[name="Q03')).to.exist;
     });
+
     it('removes all LNode elements in the copy', async () => {
-      expect(
-        doc.querySelector('Bay[name="COUPLING_BAY"]')?.querySelector('LNode')
-      ).to.exist;
+      expect(doc.querySelector('Bay[name="Q01"]')?.querySelector('LNode')).to
+        .exist;
       copyContentButton.click();
       await parent.updateComplete;
-      expect(
-        doc
-          .querySelector('Bay[name="COUPLING_BAY - copy"]')
-          ?.querySelector('LNode')
-      ).to.not.exist;
+      expect(doc.querySelector('Bay[name="Q03"]')?.querySelector('LNode')).to
+        .not.exist;
     });
-    it('removes all Terminal elements exepct the grounding in the copy', async () => {
+
+    it('removes all Terminal elements expect the grounding in the copy', async () => {
       expect(
         doc
-          .querySelector('Bay[name="COUPLING_BAY"]')
+          .querySelector('Bay[name="Q01"]')
           ?.querySelector('Terminal:not([cNodeName="grounded"])')
       ).to.exist;
       copyContentButton.click();
       await parent.updateComplete;
       expect(
         doc
-          .querySelector('Bay[name="COUPLING_BAY - copy"]')
+          .querySelector('Bay[name="Q03"]')
           ?.querySelector('Terminal:not([cNodeName="grounded"])')
       ).to.not.exist;
     });
+
     it('removes all ConnectivityNode elements in the copy', async () => {
       expect(
-        doc
-          .querySelector('Bay[name="COUPLING_BAY"]')
-          ?.querySelector('ConnectivityNode')
+        doc.querySelector('Bay[name="Q01"]')?.querySelector('ConnectivityNode')
       ).to.exist;
       copyContentButton.click();
       await parent.updateComplete;
       expect(
-        doc
-          .querySelector('Bay[name="COUPLING_BAY - copy"]')
-          ?.querySelector('ConnectivityNode')
+        doc.querySelector('Bay[name="Q03"]')?.querySelector('ConnectivityNode')
       ).to.not.exist;
     });
+
     it('keeps all ConductingEquipment elements in the copy', async () => {
       copyContentButton.click();
       await parent.updateComplete;
       expect(
         doc
-          .querySelector('Bay[name="COUPLING_BAY1"]')
+          .querySelector('Bay[name="Q01"]')
           ?.querySelectorAll('ConductingEquipment').length
       ).to.equal(
         doc
-          .querySelector('Bay[name="COUPLING_BAY"]')
+          .querySelector('Bay[name="Q03"]')
           ?.querySelectorAll('ConductingEquipment').length
       );
     });
@@ -464,9 +463,7 @@ describe('bay-editor wizarding editing integration', () => {
       parent = <MockWizardEditor>(
         await fixture(
           html`<mock-wizard-editor
-            ><bay-editor
-              .element=${doc.querySelector('Bay')}
-            ></bay-editor
+            ><bay-editor .element=${doc.querySelector('Bay')}></bay-editor
           ></mock-wizard-editor>`
         )
       );

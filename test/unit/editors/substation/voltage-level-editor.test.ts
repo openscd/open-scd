@@ -65,4 +65,28 @@ describe('voltage-level-editor', () => {
       await expect(element).shadowDom.to.equalSnapshot();
     });
   });
+
+  describe('with general-equipment children', () => {
+    beforeEach(async () => {
+      doc = await fetch(
+        '/test/testfiles/editors/substation/generalequipment.scd'
+      )
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+      element.element = doc.querySelector('VoltageLevel')!;
+      element.showfunctions = false;
+      await element.updateComplete;
+    });
+
+    it('with showfunctions false looks like the latest snapshot', async () =>
+      await expect(element).shadowDom.to.equalSnapshot());
+
+    it('with showfunctions true looks like the latest snapshot', async () => {
+      element.showfunctions = true;
+      await element.updateComplete;
+
+      await expect(element).shadowDom.to.equalSnapshot();
+    });
+  });
 });

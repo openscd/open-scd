@@ -2,13 +2,17 @@ import { expect } from '@open-wc/testing';
 
 import {
   createExtRefElement,
+  getExistingSupervision,
+  getFirstSubscribedExtRef,
   updateExtRefElement,
 } from '../../../../src/editors/subscription/foundation.js';
+
+import { identity } from '../../../../src/foundation.js';
 
 describe('foundation', () => {
   let doc: XMLDocument;
 
-  describe(' when using SCL Edition 2003 (1)', () => {
+  describe('when using SCL Edition 2003 (1)', () => {
     beforeEach(async () => {
       doc = await fetch('/test/testfiles/editors/LaterBindingSMV2003.scd')
         .then(response => response.text())
@@ -86,7 +90,7 @@ describe('foundation', () => {
     });
   });
 
-  describe(' when using SCL Edition 2007B4 (2.1)', () => {
+  describe('when using SCL Edition 2007B4 (2.1)', () => {
     beforeEach(async () => {
       doc = await fetch('/test/testfiles/editors/LaterBindingSMV2007B4.scd')
         .then(response => response.text())
@@ -167,6 +171,82 @@ describe('foundation', () => {
       expect(clonedExtRefElement).to.have.attribute('srcLNClass', 'LLN0');
       expect(clonedExtRefElement).to.not.have.attribute('srcLNInst');
       expect(clonedExtRefElement).to.have.attribute('srcCBName', 'voltageOnly');
+    });
+  });
+
+  describe('when using SCL Edition 2007B4 with message binding and Sampled Values', () => {
+    beforeEach(async () => {
+      doc = await fetch('/test/testfiles/editors/MessageBindingSMV2007B4.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+    });
+
+    it('correctly locates the first ExtRef associated with a message', () => {
+      const publishedControlBlock = doc.querySelector(
+        'IED[name="IED3"] SampledValueControl[name="MSVCB01"]'
+      );
+      const subscribingIed = doc.querySelector('IED[name="IED1"]');
+
+      const firstExtRef = getFirstSubscribedExtRef(
+        publishedControlBlock!,
+        subscribingIed!
+      );
+
+      expect(identity(firstExtRef)).to.be.equal(
+        'IED1>>CircuitBreaker_CB1>SMV:MSVCB01 MU01/ LLN0  IED3 MU01/I01A TCTR 1 Amp instMag.i'
+      );
+    });
+
+    it('correctly identifies an LSVS supervision element', () => {
+      const publishedControlBlock = doc.querySelector(
+        'IED[name="IED3"] SampledValueControl[name="MSVCB01"]'
+      );
+      const subscribingIed = doc.querySelector('IED[name="IED1"]');
+      const firstExtRef = getFirstSubscribedExtRef(
+        publishedControlBlock!,
+        subscribingIed!
+      );
+      const supLN = getExistingSupervision(firstExtRef);
+      expect(identity(supLN)).to.be.equal('IED1>>Disconnectors> LSVS 1');
+    });
+  });
+
+  describe('when using SCL Edition 2007B4 with message binding and GOOSE', () => {
+    beforeEach(async () => {
+      doc = await fetch('/test/testfiles/editors/MessageBindingGOOSE2007B4.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+    });
+
+    it('correctly locates the first ExtRef associated with a message', () => {
+      const publishedControlBlock = doc.querySelector(
+        'IED[name="IED2"] GSEControl[name="GCB"]'
+      );
+      const subscribingIed = doc.querySelector('IED[name="IED1"]');
+
+      const firstExtRef = getFirstSubscribedExtRef(
+        publishedControlBlock!,
+        subscribingIed!
+      );
+
+      expect(identity(firstExtRef)).to.be.equal(
+        'IED1>>Disconnectors>DC CSWI 1>GOOSE:GCB CBSW/ LLN0  IED2 CBSW/ XSWI 2 Pos stVal'
+      );
+    });
+
+    it('correctly identifies an LGOS supervision element', () => {
+      const publishedControlBlock = doc.querySelector(
+        'IED[name="IED2"] GSEControl[name="GCB"]'
+      );
+      const subscribingIed = doc.querySelector('IED[name="IED1"]');
+
+      const firstExtRef = getFirstSubscribedExtRef(
+        publishedControlBlock!,
+        subscribingIed!
+      );
+
+      const supLN = getExistingSupervision(firstExtRef);
+      expect(identity(supLN)).to.be.equal('IED1>>CircuitBreaker_CB1> LGOS 1');
     });
   });
 });

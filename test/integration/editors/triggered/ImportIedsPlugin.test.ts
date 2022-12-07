@@ -88,6 +88,20 @@ describe('ImportIedsPlugin', () => {
       expect(element.doc.querySelector('IED[name="TEMPLATE_IED2"]')).to.exist;
     });
 
+    it('imports the ConnectedAPs for a TEMPLATE IED', async () => {
+      const templateIED1 = await fetch(
+        '/test/testfiles/importieds/template.icd'
+      )
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+      await prepareImportIEDs(element.parent, templateIED1, doc);
+      expect(
+        element.doc?.querySelectorAll(
+          ':root > Communication >  SubNetwork > ConnectedAP[iedName="TEMPLATE_IED1"]'
+        )
+      ).to.exist;
+    });
+
     it('loads unique lnodetypes to the project', async () => {
       expect(
         element.doc?.querySelectorAll(':root > DataTypeTemplates >  LNodeType')
@@ -202,6 +216,34 @@ describe('ImportIedsPlugin', () => {
       await prepareImportIEDs(element.parent, importDoc, doc);
       expect(element.doc.querySelector('SubNetwork[name="NewSubNetwork"]')).to
         .exist;
+    });
+
+    it('correctly transfers document element namespaces', async () => {
+      await prepareImportIEDs(element.parent, importDoc, doc);
+      expect(
+        element.doc.querySelector('SCL')!.getAttribute('xmlns:eTest1')
+      ).to.equal('http://www.eTest1.com/2022/Better61850');
+      expect(
+        element.doc.querySelector('SCL')!.getAttribute('xmlns:eTest2')
+      ).to.equal('http://www.eTest2.com/2032/Better61850ForReal');
+
+      // looking at serialisation of node to confirm correct namespace registration
+      const output = new XMLSerializer().serializeToString(element.doc);
+      expect(output).to.contain(
+        'xmlns:eTest1="http://www.eTest1.com/2022/Better61850"'
+      );
+      expect(output).to.contain(
+        'xmlns:eTest2="http://www.eTest2.com/2032/Better61850ForReal"'
+      );
+
+      // check that namespaces are encoded correctly within a specific element
+      const lineFeedAndSpacesReplace = /[\s\n\r]+/g;
+      expect(output.replace(lineFeedAndSpacesReplace, '')).to.include(
+        `<IED name="TestImportIED" type="TestType" manufacturer="TestMan" originalSclVersion="2007" originalSclRevision="B" originalRelease="4" eTest2:New="fancy new attribute">
+<eTest1:NewThing>
+    <P type="solution"/>
+</eTest1:NewThing>`.replace(lineFeedAndSpacesReplace, '')
+      );
     });
 
     it('allows multiple import of TEMPLATE IEDs', async () => {

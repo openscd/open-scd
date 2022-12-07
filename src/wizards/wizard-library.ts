@@ -36,7 +36,12 @@ import {
   editSubFunctionWizard,
 } from './subfunction.js';
 import { editSampledValueControlWizard } from './sampledvaluecontrol.js';
-import { editCompasSCLWizard } from "../compas-wizards/scl.js";
+import {
+  createSubEquipmentWizard,
+  editSubEquipmentWizard,
+} from './subequipment.js';
+import { editGeneralEquipmentWizard } from './generalEquipment.js';
+import { editCompasSCLWizard } from '../compas-wizards/scl.js';
 
 type SclElementWizard = (
   element: Element,
@@ -223,7 +228,7 @@ export const wizards: Record<
     create: createFunctionWizard,
   },
   GeneralEquipment: {
-    edit: emptyWizard,
+    edit: editGeneralEquipmentWizard,
     create: emptyWizard,
   },
   GetCBValues: {
@@ -483,8 +488,8 @@ export const wizards: Record<
     create: emptyWizard,
   },
   SubEquipment: {
-    edit: emptyWizard,
-    create: emptyWizard,
+    edit: editSubEquipmentWizard,
+    create: createSubEquipmentWizard,
   },
   SubFunction: {
     edit: editSubFunctionWizard,

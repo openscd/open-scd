@@ -118,6 +118,17 @@ snapshots["powertransformer-editor rendered as action pane looks like the latest
         mwc-list-item=""
         role="menuitem"
         tabindex="-1"
+        value="SubEquipment"
+      >
+        <span>
+          SubEquipment
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
         value="EqFunction"
       >
         <span>
@@ -126,6 +137,12 @@ snapshots["powertransformer-editor rendered as action pane looks like the latest
       </mwc-list-item>
     </mwc-menu>
   </abbr>
+  <div class="container">
+    <transformer-winding-editor showfunctions="">
+    </transformer-winding-editor>
+    <transformer-winding-editor showfunctions="">
+    </transformer-winding-editor>
+  </div>
 </action-pane>
 `;
 /* end snapshot powertransformer-editor rendered as action pane looks like the latest snapshot */
@@ -211,6 +228,17 @@ snapshots["powertransformer-editor rendered as action pane with EqFunction child
         mwc-list-item=""
         role="menuitem"
         tabindex="-1"
+        value="SubEquipment"
+      >
+        <span>
+          SubEquipment
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
         value="EqFunction"
       >
         <span>
@@ -219,7 +247,7 @@ snapshots["powertransformer-editor rendered as action pane with EqFunction child
       </mwc-list-item>
     </mwc-menu>
   </abbr>
-  <eq-function-editor>
+  <eq-function-editor showfunctions="">
   </eq-function-editor>
 </action-pane>
 `;
@@ -299,6 +327,17 @@ snapshots["powertransformer-editor rendered as action pane with LNode children l
       >
         <span>
           LNode
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="SubEquipment"
+      >
+        <span>
+          SubEquipment
         </span>
       </mwc-list-item>
       <mwc-list-item
@@ -396,6 +435,17 @@ snapshots["powertransformer-editor rendered as action pane with SubEquipment chi
       >
         <span>
           LNode
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="SubEquipment"
+      >
+        <span>
+          SubEquipment
         </span>
       </mwc-list-item>
       <mwc-list-item

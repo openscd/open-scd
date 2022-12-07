@@ -6,6 +6,7 @@ import {
   property,
   css,
   query,
+  state,
 } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import { translate } from 'lit-translate';
@@ -17,6 +18,7 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 import '../../action-pane.js';
 import './bay-editor.js';
+import './general-equipment-editor.js';
 import './ied-editor.js';
 import './powertransformer-editor.js';
 import {
@@ -24,6 +26,8 @@ import {
   startMove,
   cloneSubstationElement,
   styles,
+  renderGeneralEquipment,
+  redirectDialog,
 } from './foundation.js';
 import {
   getChildElementsByTagName,
@@ -35,6 +39,7 @@ import {
 
 import { SubstationEditor } from './substation-editor.js';
 import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
+import { Dialog } from '@material/mwc-dialog';
 
 function childTags(element: Element | null | undefined): SCLTag[] {
   if (!element) return [];
@@ -81,6 +86,10 @@ export class VoltageLevelEditor extends LitElement {
     return [];
   };
 
+  @state()
+  cloneUI = false;
+
+  @query('mwc-dialog') dialog!: Dialog;
   @query('mwc-menu') addMenu!: Menu;
   @query('mwc-icon-button[icon="playlist_add"]') addButton!: IconButton;
 
@@ -118,6 +127,12 @@ export class VoltageLevelEditor extends LitElement {
     this.addMenu.anchor = <HTMLElement>this.addButton;
   }
 
+  private renderRedirectUI(): TemplateResult {
+    if (!this.cloneUI) return html``;
+
+    return redirectDialog(this.element);
+  }
+
   private renderLNodes(): TemplateResult {
     if (!this.showfunctions) return html``;
 
@@ -145,6 +160,7 @@ export class VoltageLevelEditor extends LitElement {
         html`<function-editor
           .doc=${this.doc}
           .element=${fUnction}
+          ?showfunctions=${this.showfunctions}
         ></function-editor>`
     )}`;
   }
@@ -196,71 +212,72 @@ export class VoltageLevelEditor extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<action-pane label="${this.header}">
-      <abbr slot="action" title="${translate('lnode.tooltip')}">
-        <mwc-icon-button
-          icon="account_tree"
-          @click=${() => this.openLNodeWizard()}
-        ></mwc-icon-button>
-      </abbr>
-      <abbr slot="action" title="${translate('duplicate')}">
-        <mwc-icon-button
-          icon="content_copy"
-          @click=${() => cloneSubstationElement(this)}
-        ></mwc-icon-button>
-      </abbr>
-      <abbr slot="action" title="${translate('edit')}">
-        <mwc-icon-button
-          icon="edit"
-          @click=${() => this.openEditWizard()}
-        ></mwc-icon-button>
-      </abbr>
-      <abbr slot="action" title="${translate('move')}">
-        <mwc-icon-button
-          icon="forward"
-          @click=${() =>
-            startMove(this, VoltageLevelEditor, [SubstationEditor])}
-        ></mwc-icon-button>
-      </abbr>
-      <abbr slot="action" title="${translate('remove')}">
-        <mwc-icon-button
-          icon="delete"
-          @click=${() => this.remove()}
-        ></mwc-icon-button>
-      </abbr>
-      <abbr
-        slot="action"
-        style="position:relative;"
-        title="${translate('add')}"
-      >
-        <mwc-icon-button
-          icon="playlist_add"
-          @click=${() => (this.addMenu.open = true)}
-        ></mwc-icon-button
-        ><mwc-menu
-          corner="BOTTOM_RIGHT"
-          menuCorner="END"
-          @action=${(e: Event) => {
-            const tagName = (<ListItem>(<Menu>e.target).selected).value;
-            this.openCreateWizard(tagName);
-          }}
-          >${this.renderAddButtons()}</mwc-menu
+    return html`${this.renderRedirectUI()}<action-pane label="${this.header}">
+        <abbr slot="action" title="${translate('lnode.tooltip')}">
+          <mwc-icon-button
+            icon="account_tree"
+            @click=${() => this.openLNodeWizard()}
+          ></mwc-icon-button>
+        </abbr>
+        <abbr slot="action" title="${translate('duplicate')}">
+          <mwc-icon-button
+            icon="content_copy"
+            @click=${() => cloneSubstationElement(this)}
+          ></mwc-icon-button>
+        </abbr>
+        <abbr slot="action" title="${translate('edit')}">
+          <mwc-icon-button
+            icon="edit"
+            @click=${() => this.openEditWizard()}
+          ></mwc-icon-button>
+        </abbr>
+        <abbr slot="action" title="${translate('move')}">
+          <mwc-icon-button
+            icon="forward"
+            @click=${() =>
+              startMove(this, VoltageLevelEditor, [SubstationEditor])}
+          ></mwc-icon-button>
+        </abbr>
+        <abbr slot="action" title="${translate('remove')}">
+          <mwc-icon-button
+            icon="delete"
+            @click=${() => this.remove()}
+          ></mwc-icon-button>
+        </abbr>
+        <abbr
+          slot="action"
+          style="position:relative;"
+          title="${translate('add')}"
         >
-      </abbr>
-      ${this.renderIedContainer()}${this.renderLNodes()}${this.renderFunctions()}
-      ${this.renderPowerTransformerContainer()}
-      <div id="bayContainer">
-        ${Array.from(this.element?.querySelectorAll(selectors.Bay) ?? []).map(
-          bay => html`<bay-editor
-            .doc=${this.doc}
-            .element=${bay}
-            .getAttachedIeds=${this.getAttachedIeds}
-            ?readonly=${this.readonly}
-            ?showfunctions=${this.showfunctions}
-          ></bay-editor>`
-        )}
-      </div>
-    </action-pane>`;
+          <mwc-icon-button
+            icon="playlist_add"
+            @click=${() => (this.addMenu.open = true)}
+          ></mwc-icon-button
+          ><mwc-menu
+            corner="BOTTOM_RIGHT"
+            menuCorner="END"
+            @action=${(e: Event) => {
+              const tagName = (<ListItem>(<Menu>e.target).selected).value;
+              this.openCreateWizard(tagName);
+            }}
+            >${this.renderAddButtons()}</mwc-menu
+          >
+        </abbr>
+        ${renderGeneralEquipment(this.doc, this.element, this.showfunctions)}
+        ${this.renderIedContainer()}${this.renderLNodes()}${this.renderFunctions()}
+        ${this.renderPowerTransformerContainer()}
+        <div id="bayContainer">
+          ${Array.from(this.element?.querySelectorAll(selectors.Bay) ?? []).map(
+            bay => html`<bay-editor
+              .doc=${this.doc}
+              .element=${bay}
+              .getAttachedIeds=${this.getAttachedIeds}
+              ?readonly=${this.readonly}
+              ?showfunctions=${this.showfunctions}
+            ></bay-editor>`
+          )}
+        </div>
+      </action-pane>`;
   }
 
   static styles = css`

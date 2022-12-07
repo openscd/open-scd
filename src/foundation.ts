@@ -2149,7 +2149,6 @@ export const tags: Record<
       'TransformerWinding',
       'SubEquipment',
       'EqFunction',
-      'SubEquipment',
     ],
   },
   Private: {
@@ -2821,6 +2820,37 @@ export function newLnInstGenerator(
 
     return generators.get(lnClass)!();
   };
+}
+
+/**
+ * Format xml string in "pretty print" style and return as a string
+ * @param xml - xml document as a string
+ * @param tab - character to use as a tab
+ * @returns string with pretty print formatting
+ */
+export function formatXml(xml: string, tab?: string): string {
+  let formatted = '',
+    indent = '';
+
+  if (!tab) tab = '\t';
+  xml.split(/>\s*</).forEach(function (node) {
+    if (node.match(/^\/\w/)) indent = indent.substring(tab!.length);
+    formatted += indent + '<' + node + '>\r\n';
+    if (node.match(/^<?\w[^>]*[^/]$/)) indent += tab;
+  });
+  return formatted.substring(1, formatted.length - 3);
+}
+
+/**
+ * @param lnElements - The LN elements to be scanned for `inst`
+ * values already in use.
+ * @returns first available inst value for LN or undefined if no inst is available
+ */
+export function minAvailableLogicalNodeInstance(
+  lnElements: Element[]
+): string | undefined {
+  const lnInsts = new Set(lnElements.map(ln => ln.getAttribute('inst') || ''));
+  return lnInstRange.find(lnInst => !lnInsts.has(lnInst));
 }
 
 declare global {

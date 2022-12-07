@@ -5,6 +5,7 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
+import { nothing } from 'lit-html';
 import { get, translate } from 'lit-translate';
 
 import '@material/mwc-icon';
@@ -29,9 +30,13 @@ import {
   canCreateValidExtRef,
   createExtRefElement,
   existExtRef,
+  getExistingSupervision,
   getExtRef,
+  getFirstSubscribedExtRef,
   IEDSelectEvent,
+  instantiateSubscriptionSupervision,
   ListElement,
+  removeSubscriptionSupervision,
   styles,
   SubscriberListContainer,
   SubscribeStatus,
@@ -239,6 +244,7 @@ export class SubscriberList extends SubscriberListContainer {
       inputsElement = createElement(ied.ownerDocument, 'Inputs', {});
 
     const actions: Create[] = [];
+
     this.currentUsedDataset!.querySelectorAll('FCDA').forEach(fcda => {
       if (
         !existExtRef(inputsElement!, fcda, this.currentSelectedSmvControl) &&
@@ -255,15 +261,31 @@ export class SubscriberList extends SubscriberListContainer {
       }
     });
 
+    // we need to extend the actions array with the actions for the instantiation of the LSVS
+    const supervisionActions: Create[] = instantiateSubscriptionSupervision(
+      this.currentSelectedSmvControl,
+      ied
+    );
+
     /** If the IED doesn't have a Inputs element, just append it to the first LN0 element. */
     const title = get('subscription.connect');
     if (inputsElement.parentElement)
-      this.dispatchEvent(newActionEvent({ title, actions }));
+      this.dispatchEvent(
+        newActionEvent({
+          title,
+          actions: actions.concat(supervisionActions),
+        })
+      );
     else {
       const inputAction: Create = {
         new: { parent: ied.querySelector('LN0')!, element: inputsElement },
       };
-      this.dispatchEvent(newActionEvent({ title, actions: [inputAction] }));
+      this.dispatchEvent(
+        newActionEvent({
+          title,
+          actions: [inputAction].concat(supervisionActions),
+        })
+      );
     }
   }
 
@@ -279,6 +301,11 @@ export class SubscriberList extends SubscriberListContainer {
     // Check if empty Input Element should also be removed.
     actions.push(...emptyInputsDeleteActions(actions));
 
+    // we need to extend the actions array with the actions for removing the supervision
+    actions.push(
+      ...removeSubscriptionSupervision(this.currentSelectedSmvControl, ied)
+    );
+
     this.dispatchEvent(
       newActionEvent({
         title: get('subscription.disconnect'),
@@ -288,6 +315,23 @@ export class SubscriberList extends SubscriberListContainer {
   }
 
   renderSubscriber(status: SubscribeStatus, element: Element): TemplateResult {
+    let firstSubscribedExtRef: Element | null = null;
+    let supervisionNode: Element | null = null;
+    if (status !== SubscribeStatus.None) {
+      if (view === View.PUBLISHER) {
+        firstSubscribedExtRef = getFirstSubscribedExtRef(
+          this.currentSelectedSmvControl!,
+          element
+        );
+        supervisionNode = getExistingSupervision(firstSubscribedExtRef!);
+      } else {
+        firstSubscribedExtRef = getFirstSubscribedExtRef(
+          element,
+          this.currentSelectedIed!
+        );
+        supervisionNode = getExistingSupervision(firstSubscribedExtRef!);
+      }
+    }
     return html` <mwc-list-item
       @click=${() => {
         this.dispatchEvent(
@@ -295,7 +339,7 @@ export class SubscriberList extends SubscriberListContainer {
         );
       }}
       graphic="avatar"
-      hasMeta
+      ?hasMeta=${supervisionNode !== null}
     >
       <span
         >${view == View.PUBLISHER
@@ -306,6 +350,11 @@ export class SubscriberList extends SubscriberListContainer {
       <mwc-icon slot="graphic"
         >${status == SubscribeStatus.Full ? html`clear` : html`add`}</mwc-icon
       >
+      ${supervisionNode !== null
+        ? html`<mwc-icon title="${identity(supervisionNode)}" slot="meta"
+            >monitor_heart</mwc-icon
+          >`
+        : nothing}
     </mwc-list-item>`;
   }
 

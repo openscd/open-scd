@@ -19,7 +19,9 @@ const openAndCancelMenu: (
   new Promise(async resolve => {
     expect(parent.wizardUI.dialog).to.be.undefined;
 
-    element?.shadowRoot?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!.click();
+    element?.shadowRoot
+      ?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!
+      .click();
     const lnodMenuItem: ListItemBase =
       element?.shadowRoot?.querySelector<ListItemBase>(
         `mwc-list-item[value='LNode']`
@@ -150,6 +152,48 @@ describe('powertransformer-editor wizarding editing integration', () => {
     it('Should open the same wizard for the second time', async () => {
       await openAndCancelMenu(parent, element!);
       await openAndCancelMenu(parent, element!);
+    });
+
+    it('Should add SubEquipment', async () => {
+      expect(parent.wizardUI.dialog).to.be.undefined;
+
+      element?.shadowRoot
+        ?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!
+        .click();
+
+      element?.shadowRoot
+        ?.querySelector<ListItemBase>(`mwc-list-item[value='SubEquipment']`)!
+        .click();
+
+      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
+      expect(parent.wizardUI.dialog).to.exist;
+
+      const nameTextField: WizardTextField =
+        parent.wizardUI!.dialog!.querySelector<WizardTextField>(
+          'wizard-textfield[label="name"]'
+        )!;
+
+      const subEquipmentName = 'unique-name';
+
+      nameTextField.value = subEquipmentName;
+
+      await parent.updateComplete;
+
+      const primaryAction: HTMLElement = <HTMLElement>(
+        parent.wizardUI.dialog?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      );
+
+      primaryAction.click();
+      await parent.updateComplete;
+
+      expect(
+        doc.querySelectorAll(
+          `PowerTransformer[name="myPtr2"] > SubEquipment[name="${subEquipmentName}"]`
+        ).length
+      ).to.equal(1);
     });
   });
 });

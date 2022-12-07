@@ -65,6 +65,7 @@ export const de: Translations = {
     ldInst: 'Referenziertes logisches Gerät',
     prefix: 'Präfix des logischen Knotens',
     lnInst: 'Instanz des logischen Knotens',
+    virtual: 'Virtuell',
   },
   settings: {
     title: 'Einstellungen',
@@ -210,6 +211,12 @@ export const de: Translations = {
     action: {
       addvoltagelevel: 'Spannungsebene hinzufügen',
       updatesubstation: 'Schaltanlage "{{name}}" bearbeitet',
+    },
+    clone: {
+      redirect: 'LNode mitnehmen',
+      cloneclose: 'Einmal klonen',
+      cloneproc: 'Mehrfach klonen',
+      newname: 'Klonname',
     },
   },
   iededitor: {
@@ -753,8 +760,9 @@ export const de: Translations = {
       tooltip:
         'Datentypen, die nicht in einem logischen Knoten oder einem anderen verwendeten Datentyp referenziert werden',
       alsoRemoveSubTypes: 'Entfernen Sie auch Untertypen',
-      stackExceeded: 'Maximale Aufrufe überschritten. Maximal zulässig sind {{maxStackDepth}}. Nicht alle überflüßigen Datentypen sind entfernt und das Project is potentiel beschädigt.',
-    }
+      stackExceeded:
+        'Maximale Aufrufe überschritten. Maximal zulässig sind {{maxStackDepth}}. Nicht alle überflüßigen Datentypen sind entfernt und das Project is potentiel beschädigt.',
+    },
   },
   controlblock: {
     action: {
@@ -790,6 +798,9 @@ export const de: Translations = {
       noconnectedap: 'Fehlende Verbindung zu einem Netzwerk',
       smvopts: 'Optionale Felder',
     },
+  },
+  exportCommunication: {
+    noCommunicationSection: 'Die Communication-Sektion ist leer.',
   },
   userinfo: {
     loggedInAs: '???',

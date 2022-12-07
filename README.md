@@ -1,12 +1,14 @@
 # `OpenSCD CoMPAS Edition`
 
-[![NodeJS Build Github Action Status](<https://img.shields.io/github/workflow/status/com-pas/compas-open-scd/NodeJS%20Build?logo=GitHub>)](https://github.com/com-pas/compas-open-scd/actions?query=workflow%3A%22NodeJS+Build%22)
+[![NodeJS Build Github Action Status](https://img.shields.io/github/workflow/status/com-pas/compas-open-scd/NodeJS%20Build?logo=GitHub)](https://github.com/com-pas/compas-open-scd/actions?query=workflow%3A%22NodeJS+Build%22)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/5925/badge)](https://bestpractices.coreinfrastructure.org/projects/5925)
 [![Slack](https://raw.githubusercontent.com/com-pas/compas-architecture/master/public/LFEnergy-slack.svg)](http://lfenergy.slack.com/)
 
 Open Substation Communication Designer is an editor for SCL files as described in `IEC 61850-6`.
 
-Make sure your webbrowser has enough free memory! if needed, disable plug-ins and close unused browertabs.
+> Try it out at [demo.compas.energy](https://demo.compas.energy/)!
+
+Make sure your web browser has enough free memory! If needed, disable plug-ins and close unused browser tabs.
 
 ## Installation
 
