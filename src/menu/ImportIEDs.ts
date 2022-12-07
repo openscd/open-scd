@@ -384,7 +384,7 @@ export default class ImportingIedPlugin extends LitElement {
   @query('#importied-plugin-input') pluginFileUI!: HTMLInputElement;
   @query('mwc-dialog') dialog!: Dialog;
 
-  run(): void {
+  async run(): Promise<void> {
     this.pluginFileUI.click();
   }
 
@@ -548,6 +548,7 @@ export default class ImportingIedPlugin extends LitElement {
         <mwc-icon-button slot="meta" icon="edit"></mwc-icon-button>
       </filtered-list>
       <mwc-button
+        dialogAction="close"
         label="${translate('close')}"
         slot="secondaryAction"
         style="--mdc-theme-primary: var(--mdc-theme-error)"
