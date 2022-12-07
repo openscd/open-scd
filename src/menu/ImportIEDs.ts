@@ -371,7 +371,7 @@ function isIedNameUnique(ied: Element, doc: Document): boolean {
 function resetSelection(dialog: Dialog): void {
   (
     (dialog.querySelector('filtered-list') as List).selected as ListItemBase[]
-  ).forEach(itme => (itme.selected = false));
+  ).forEach(item => (item.selected = false));
 }
 
 export default class ImportingIedPlugin extends LitElement {
