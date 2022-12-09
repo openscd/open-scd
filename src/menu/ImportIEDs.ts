@@ -415,6 +415,7 @@ export default class ImportingIedPlugin extends LitElement {
           }),
         })
       );
+      return;
     }
 
     // This doesn't provide redo/undo capability as it is not using the Editing
@@ -455,13 +456,13 @@ export default class ImportingIedPlugin extends LitElement {
       })
       .filter(ied => ied) as Element[];
 
+    resetSelection(this.dialog);
+    this.dialog.close();
+
     for (const ied of ieds) {
       this.importIED(ied);
       await this.docUpdate();
     }
-
-    resetSelection(this.dialog);
-    this.dialog.close();
   }
 
   public prepareImport(): void {
