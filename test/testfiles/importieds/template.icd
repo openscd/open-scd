@@ -17,7 +17,7 @@
             </ConnectedAP>
         </SubNetwork>
     </Communication>
-	<IED name="TEMPLATE" type="DummyIED" manufacturer="DummyManufactorer" configVersion="1" originalSclVersion="2007" originalSclRevision="B" owner="DummyOwner">
+	<IED name="TEMPLATE" type="ZMegaY" manufacturer="FancyVendy" configVersion="1" originalSclVersion="2007" originalSclRevision="B" owner="DummyOwner">
 		<Services>
 			<DynAssociation />
 			<GetDirectory />
