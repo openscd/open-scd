@@ -20,6 +20,9 @@ If you don't have your own webserver but still want your own version of OpenSCD 
 
 ## Contributing
 
+The easiest way to get in touch is to join the `#open-scd` channel kindly hosted on [the LF Energy Slack server](https://slack.lfenergy.org/). 
+If you say "hi" there we will be more than happy to help you find your way around this project.
+
 ### Building
 
 If you want to build OpenSCD yourself in order to make some changes to your local installation or to contribute to the project, you may first want to install [Node.js](https://nodejs.org/) in order to be able to use our local development setup.
