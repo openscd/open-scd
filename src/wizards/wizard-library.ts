@@ -36,14 +36,8 @@ import {
   editSubFunctionWizard,
 } from './subfunction.js';
 import { editSampledValueControlWizard } from './sampledvaluecontrol.js';
-import {
-  createSubEquipmentWizard,
-  editSubEquipmentWizard,
-} from './subequipment.js';
-import {
-  createGeneralEquipmentWizard,
-  editGeneralEquipmentWizard,
-} from './generalEquipment.js';
+import { createSubEquipmentWizard, editSubEquipmentWizard } from './subequipment.js';
+import { editGeneralEquipmentWizard } from './generalEquipment.js';
 
 type SclElementWizard = (
   element: Element,
@@ -231,7 +225,7 @@ export const wizards: Record<
   },
   GeneralEquipment: {
     edit: editGeneralEquipmentWizard,
-    create: createGeneralEquipmentWizard,
+    create: emptyWizard,
   },
   GetCBValues: {
     edit: emptyWizard,
