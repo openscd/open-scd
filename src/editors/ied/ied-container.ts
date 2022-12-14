@@ -20,6 +20,7 @@ import {
   newWizardEvent,
 } from '../../foundation.js';
 import { removeIEDWizard } from '../../wizards/ied.js';
+import { editServicesWizard } from '../../wizards/services.js';
 
 /** [[`IED`]] plugin subeditor for editing `IED` element. */
 @customElement('ied-container')
@@ -29,6 +30,11 @@ export class IedContainer extends Container {
 
   private openEditWizard(): void {
     const wizard = wizards['IED'].edit(this.element);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
+
+  private openSettingsWizard(): void {
+    const wizard = editServicesWizard(this.element);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
@@ -66,6 +72,12 @@ export class IedContainer extends Container {
         <mwc-icon-button
           icon="edit"
           @click=${() => this.openEditWizard()}
+        ></mwc-icon-button>
+      </abbr>
+      <abbr slot="action" title="${translate('settings')}">
+        <mwc-icon-button
+          icon="settings"
+          @click=${() => this.openSettingsWizard()}
         ></mwc-icon-button>
       </abbr>
       ${Array.from(this.element.querySelectorAll(':scope > AccessPoint')).map(
