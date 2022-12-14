@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/openscd/open-scd.svg?branch=main)](https://travis-ci.org/openscd/open-scd)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fopenscd%2Fopen-scd.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fopenscd%2Fopen-scd?ref=badge_shield)
 [![Built with open-wc recommendations](https://img.shields.io/badge/built%20with-open--wc-blue.svg)](https://github.com/open-wc)
-[![Slack LF Energy](https://img.shields.io/badge/Slack-LF%20Energy-2aa198)(https://slack.lfenergy.org/))
+[![Slack LF Energy](https://img.shields.io/badge/Slack-LF%20Energy-2aa198)](https://lfenergy.slack.com/archives/C03LH7EUP34)
 
 Open Substation Communication Designer is an editor for SCL files as described in `IEC 61850-6`.
 
@@ -21,7 +21,7 @@ If you don't have your own webserver but still want your own version of OpenSCD 
 
 ## Contributing
 
-The easiest way to get in touch is to join the `#open-scd` channel kindly hosted on [the LF Energy Slack server](https://slack.lfenergy.org/). 
+The easiest way to get in touch is to join the `#open-scd` channel kindly hosted on [the LF Energy Slack server](https://lfenergy.slack.com/archives/C03LH7EUP34). 
 If you say "hi" there we will be more than happy to help you find your way around this project.
 
 ### Building
