@@ -61,11 +61,16 @@ export function createFormDivider(header?: string): TemplateResult {
   return html`<wizard-divider .header=${header}></wizard-divider>`;
 }
 
-export function editServicesWizard(parent: Element): Wizard {
+export function editServicesWizard(services: Element): Wizard {
+  console.log(services);
   return [
     {
       title: get('wizard.title.edit', { tagName: 'Services' }),
-      content: [...createLogSettingsGroupServicesWizard(parent)],
+      content: [...createLogSettingsGroupServicesWizard(services)],
+    },
+    {
+      title: get('', { tagName: 'Services' }),
+      content: [],
     },
   ];
 }

@@ -33,8 +33,23 @@ export class IedContainer extends Container {
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
-  private openSettingsWizard(): void {
-    const wizard = editServicesWizard(this.element);
+  private renderServicesIcon(): TemplateResult {
+    const services: Element | null = this.element.querySelector('Services');
+
+    if (!services) {
+      return html``;
+    }
+
+    return html` <abbr slot="action" title="${translate('settings')}">
+      <mwc-icon-button
+        icon="settings"
+        @click=${() => this.openSettingsWizard(services)}
+      ></mwc-icon-button>
+    </abbr>`;
+  }
+
+  private openSettingsWizard(services: Element): void {
+    const wizard = editServicesWizard(services);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
@@ -74,12 +89,7 @@ export class IedContainer extends Container {
           @click=${() => this.openEditWizard()}
         ></mwc-icon-button>
       </abbr>
-      <abbr slot="action" title="${translate('settings')}">
-        <mwc-icon-button
-          icon="settings"
-          @click=${() => this.openSettingsWizard()}
-        ></mwc-icon-button>
-      </abbr>
+      ${this.renderServicesIcon()}
       ${Array.from(this.element.querySelectorAll(':scope > AccessPoint')).map(
         ap => html`<access-point-container
           .doc=${this.doc}
