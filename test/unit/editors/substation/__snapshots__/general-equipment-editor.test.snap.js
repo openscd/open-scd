@@ -31,6 +31,41 @@ snapshots["Editor web component for GeneralEquipment SCL element rendered as act
     <mwc-icon-button icon="edit">
     </mwc-icon-button>
   </abbr>
+  <abbr
+    slot="action"
+    style="position:relative;"
+    title="[add]"
+  >
+    <mwc-icon-button icon="playlist_add">
+    </mwc-icon-button>
+    <mwc-menu
+      corner="BOTTOM_RIGHT"
+      menucorner="END"
+    >
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="LNode"
+      >
+        <span>
+          LNode
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="EqFunction"
+      >
+        <span>
+          EqFunction
+        </span>
+      </mwc-list-item>
+    </mwc-menu>
+  </abbr>
   <div class="container lnode">
     <l-node-editor>
     </l-node-editor>
