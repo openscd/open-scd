@@ -1,5 +1,4 @@
 import { html, TemplateResult } from 'lit-html';
-import { get } from 'lit-translate';
 
 import '../wizard-textfield.js';
 import '../wizard-select.js';
@@ -65,7 +64,7 @@ export function createFormDivider(header?: string): TemplateResult {
 }
 
 export function editServicesWizard(services: Element): Wizard {
-  return [logSettingsGroupServicesWizardPage(services)].filter(
-    page => page !== null
-  );
+  return [logSettingsGroupServicesWizardPage(services)]
+    .filter(page => page !== null)
+    .map(page => page!);
 }
