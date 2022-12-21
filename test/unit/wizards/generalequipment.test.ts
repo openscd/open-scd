@@ -84,6 +84,15 @@ describe('Wizards for SCL GeneralEquipment element', () => {
       expect(createAction.new.element).to.not.have.attribute('desc');
     });
 
+    it('does not accept invalid type attribute', async () => {
+      inputs[0].value = 'someNonEmptyName';
+      inputs[2].value = 'notValidAXN';
+      await element.requestUpdate();
+      await primaryAction.click();
+
+      expect(actionEvent).to.not.have.been.called;
+    });
+
     it('allows to create non required attributes desc', async () => {
       inputs[0].value = 'someNonEmptyName';
       inputs[2].value = 'AXN';

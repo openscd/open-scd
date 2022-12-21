@@ -121,7 +121,7 @@ export function createGeneralEquipmentWizard(parent: Element): Wizard {
   const virtual = null;
   const reservedNames = Array.from(
     parent.querySelectorAll('GeneralEquipment')
-  ).map(fUnction => fUnction.getAttribute('name')!);
+  ).map(generalEquipment => generalEquipment.getAttribute('name')!);
 
   return [
     {
@@ -146,18 +146,18 @@ export function createGeneralEquipmentWizard(parent: Element): Wizard {
 
 function createGeneralEquipmentAction(parent: Element): WizardActor {
   return (inputs: WizardInputElement[]) => {
-    const functionAttrs: Record<string, string | null> = {};
-    const functionKeys = ['name', 'desc', 'type', 'virtual'];
-    functionKeys.forEach(key => {
-      functionAttrs[key] = getValue(inputs.find(i => i.label === key)!);
+    const generalEquipmentAttrs: Record<string, string | null> = {};
+    const generalEquipmentKeys = ['name', 'desc', 'type', 'virtual'];
+    generalEquipmentKeys.forEach(key => {
+      generalEquipmentAttrs[key] = getValue(inputs.find(i => i.label === key)!);
     });
 
-    const fUnction = createElement(
+    const generalEquipment = createElement(
       parent.ownerDocument,
       'GeneralEquipment',
-      functionAttrs
+      generalEquipmentAttrs
     );
 
-    return [{ new: { parent, element: fUnction } }];
+    return [{ new: { parent, element: generalEquipment } }];
   };
 }
