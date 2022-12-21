@@ -4,7 +4,7 @@ import { get } from 'lit-translate';
 import '../wizard-textfield.js';
 import '../wizard-select.js';
 import { Wizard, WizardInput } from '../foundation.js';
-import { createLogSettingsGroupServicesWizard } from './service-log-settingsgroup.js';
+import { logSettingsGroupServicesWizardPage } from './service-log-settingsgroup.js';
 
 export function createFormElementFromInput(input: WizardInput): TemplateResult {
   let templateResult: TemplateResult = html``;
@@ -20,6 +20,7 @@ export function createFormElementFromInput(input: WizardInput): TemplateResult {
         .pattern=${input.pattern || ''}
         .defaultValue=${input.default || ''}
         ?dialogInitialFocus=${input.dialogInitialFocus}
+        ?nullable=${input.nullable}
       ></wizard-textfield>`;
       break;
     case 'Checkbox':
@@ -29,6 +30,7 @@ export function createFormElementFromInput(input: WizardInput): TemplateResult {
         .helper=${input.helper || ''}
         ?defaultValue=${input.default}
         ?dialogInitialFocus=${input.dialogInitialFocus}
+        ?nullable=${input.nullable}
       ></wizard-checkbox>`;
       break;
     case 'Select':
@@ -38,6 +40,7 @@ export function createFormElementFromInput(input: WizardInput): TemplateResult {
         .validationMessage=${input.valadationMessage || ''}
         .defaultValue=${input.default || ''}
         ?dialogInitialFocus=${input.dialogInitialFocus}
+        ?nullable=${input.nullable}
       >
         ${input.values.map(value => {
           return html`<mwc-list-item .value=${value}>
@@ -62,15 +65,7 @@ export function createFormDivider(header?: string): TemplateResult {
 }
 
 export function editServicesWizard(services: Element): Wizard {
-  console.log(services);
-  return [
-    {
-      title: get('wizard.title.edit', { tagName: 'Services' }),
-      content: [...createLogSettingsGroupServicesWizard(services)],
-    },
-    {
-      title: get('', { tagName: 'Services' }),
-      content: [],
-    },
-  ];
+  return [logSettingsGroupServicesWizardPage(services)].filter(
+    page => page !== null
+  );
 }

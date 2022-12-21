@@ -1,4 +1,6 @@
 import { TemplateResult } from 'lit-html';
+import { get } from 'lit-translate';
+import { WizardPage } from '../foundation.js';
 
 import { createFormDivider, createFormElementFromInputs } from './services.js';
 
@@ -33,9 +35,28 @@ interface ContentOptions {
   confSG: ConfSG;
 }
 
-export function createLogSettingsGroupServicesWizard(
-  parent: Element
-): TemplateResult[] {
+export function logSettingsGroupServicesWizardPage(
+  services: Element
+): WizardPage | null {
+  const content: TemplateResult[] | null =
+    createLogSettingsGroupServicesWizard(services);
+
+  return content
+    ? {
+        title: get('wizard.title.edit', { tagName: 'Services' }),
+        content: [...content],
+      }
+    : null;
+}
+
+function createLogSettingsGroupServicesWizard(
+  services: Element
+): TemplateResult[] | null {
+  const gooseElement: Element | null = services.querySelector('Goose');
+
+  if (!gooseElement) {
+    return null;
+  }
   const content: ContentOptions = {
     logSettings: {
       cbName: '',
