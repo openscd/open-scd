@@ -8,9 +8,16 @@ import {
   TemplateResult,
 } from 'lit-element';
 import { nothing } from 'lit-html';
+import { translate } from 'lit-translate';
+import { wizards } from '../../wizards/wizard-library.js';
 
-import { getDescriptionAttribute, getNameAttribute } from '../../foundation.js';
+import {
+  getDescriptionAttribute,
+  getNameAttribute,
+  newWizardEvent,
+} from '../../foundation.js';
 import { accessPointIcon } from '../../icons/ied-icons.js';
+import { editServicesWizard } from '../../wizards/services.js';
 
 import '../../action-pane.js';
 import './server-container.js';
@@ -23,13 +30,6 @@ export class AccessPointContainer extends Container {
   @property()
   selectedLNClasses: string[] = [];
 
-  private header(): TemplateResult {
-    const name = getNameAttribute(this.element);
-    const desc = getDescriptionAttribute(this.element);
-
-    return html`${name}${desc ? html` &mdash; ${desc}` : nothing}`;
-  }
-
   protected updated(_changedProperties: PropertyValues): void {
     super.updated(_changedProperties);
 
@@ -37,6 +37,31 @@ export class AccessPointContainer extends Container {
     if (_changedProperties.has('selectedLNClasses')) {
       this.requestUpdate('lnElements');
     }
+  }
+
+  private openEditWizard(): void {
+    const wizard = wizards['IED'].edit(this.element);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
+
+  private renderServicesIcon(): TemplateResult {
+    const services: Element | null = this.element.querySelector('Services');
+
+    if (!services) {
+      return html``;
+    }
+
+    return html` <abbr slot="action" title="${translate('settings')}">
+      <mwc-icon-button
+        icon="settings"
+        @click=${() => this.openSettingsWizard(services)}
+      ></mwc-icon-button>
+    </abbr>`;
+  }
+
+  private openSettingsWizard(services: Element): void {
+    const wizard = editServicesWizard(services);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
   @state()
@@ -49,11 +74,25 @@ export class AccessPointContainer extends Container {
     );
   }
 
+  private header(): TemplateResult {
+    const name = getNameAttribute(this.element);
+    const desc = getDescriptionAttribute(this.element);
+
+    return html`${name}${desc ? html` &mdash; ${desc}` : nothing}`;
+  }
+
   render(): TemplateResult {
     const lnElements = this.lnElements;
 
     return html`<action-pane .label="${this.header()}">
       <mwc-icon slot="icon">${accessPointIcon}</mwc-icon>
+      <abbr slot="action" title="${translate('edit')}">
+        <mwc-icon-button
+          icon="edit"
+          @click=${() => this.openEditWizard()}
+        ></mwc-icon-button>
+      </abbr>
+      ${this.renderServicesIcon()}
       ${Array.from(this.element.querySelectorAll(':scope > Server')).map(
         server =>
           html`<server-container
@@ -89,6 +128,10 @@ export class AccessPointContainer extends Container {
       #lnContainer {
         grid-template-columns: repeat(auto-fit, minmax(196px, auto));
       }
+    }
+    abbr {
+      text-decoration: none;
+      border-bottom: none;
     }
   `;
 }

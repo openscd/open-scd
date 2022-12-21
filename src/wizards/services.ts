@@ -4,6 +4,8 @@ import '../wizard-textfield.js';
 import '../wizard-select.js';
 import { Wizard, WizardInput } from '../foundation.js';
 import { logSettingsGroupServicesWizardPage } from './service-log-settingsgroup.js';
+import { reportConfigurationsWizardPage } from './service-report-configurations.js';
+import { GSEControlWizardPage } from './service-GSEControl.js';
 
 export function createFormElementFromInput(input: WizardInput): TemplateResult {
   let templateResult: TemplateResult = html``;
@@ -64,7 +66,11 @@ export function createFormDivider(header?: string): TemplateResult {
 }
 
 export function editServicesWizard(services: Element): Wizard {
-  return [logSettingsGroupServicesWizardPage(services)]
+  return [
+    logSettingsGroupServicesWizardPage(services),
+    reportConfigurationsWizardPage(services),
+    GSEControlWizardPage(services),
+  ]
     .filter(page => page !== null)
     .map(page => page!);
 }

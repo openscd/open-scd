@@ -52,9 +52,9 @@ export function logSettingsGroupServicesWizardPage(
 function createLogSettingsGroupServicesWizard(
   services: Element
 ): TemplateResult[] | null {
-  const gooseElement: Element | null = services.querySelector('Goose');
+  const logElement: Element | null = services.querySelector('ConfLogControl');
 
-  if (!gooseElement) {
+  if (!logElement) {
     return null;
   }
   const content: ContentOptions = {
