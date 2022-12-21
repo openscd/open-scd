@@ -76,13 +76,11 @@ function createGSEControlWizard(parent: Element): TemplateResult[] | null {
         null,
       signature:
         parent
-          .querySelector('GSESettings')
-          ?.querySelector('McSecurity')
+          .querySelector('GSESettings > McSecurity')
           ?.getAttribute('signature') || null,
       encryption:
         parent
-          .querySelector('GSESettings')
-          ?.querySelector('McSecurity')
+          .querySelector('GSESettings > McSecurity')
           ?.getAttribute('encryption') || null,
     },
     goose: {
