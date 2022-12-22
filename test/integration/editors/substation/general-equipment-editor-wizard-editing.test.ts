@@ -37,7 +37,7 @@ describe('general-equipment-editor wizarding editing integration', () => {
 
       element = parent.querySelector('general-equipment-editor');
       await (<HTMLElement>(
-        element?.shadowRoot?.querySelector('mwc-icon-button[icon="edit"]')
+        element?.shadowRoot?.querySelector('mwc-fab[icon="edit"]')
       )).click();
       await parent.updateComplete;
 
@@ -114,7 +114,7 @@ describe('general-equipment-editor wizarding editing integration', () => {
 
       beforeEach(async () => {
         deleteButton = <HTMLElement>(
-          element?.shadowRoot?.querySelector('mwc-icon-button[icon="delete"]')
+          element?.shadowRoot?.querySelector('mwc-fab[icon="delete"]')
         );
         await parent.updateComplete;
       });
