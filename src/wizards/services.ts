@@ -7,6 +7,7 @@ import { logSettingsGroupServicesWizardPage } from './service-log-settingsgroup.
 import { reportConfigurationsWizardPage } from './service-report-configurations.js';
 import { GSEControlWizardPage } from './service-GSEControl.js';
 import { networkingWizardPage } from './service-networking.js';
+import { sampledValuesWizardPage } from './service-sampled-values.js';
 
 export function createFormElementFromInput(input: WizardInput): TemplateResult {
   let templateResult: TemplateResult = html``;
@@ -72,6 +73,7 @@ export function editServicesWizard(services: Element): Wizard {
     reportConfigurationsWizardPage(services),
     GSEControlWizardPage(services),
     networkingWizardPage(services),
+    sampledValuesWizardPage(services),
   ]
     .filter(page => page !== null)
     .map(page => page!);
