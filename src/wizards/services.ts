@@ -6,6 +6,7 @@ import { Wizard, WizardInput } from '../foundation.js';
 import { logSettingsGroupServicesWizardPage } from './service-log-settingsgroup.js';
 import { reportConfigurationsWizardPage } from './service-report-configurations.js';
 import { GSEControlWizardPage } from './service-GSEControl.js';
+import { networkingWizardPage } from './service-networking.js';
 
 export function createFormElementFromInput(input: WizardInput): TemplateResult {
   let templateResult: TemplateResult = html``;
@@ -70,6 +71,7 @@ export function editServicesWizard(services: Element): Wizard {
     logSettingsGroupServicesWizardPage(services),
     reportConfigurationsWizardPage(services),
     GSEControlWizardPage(services),
+    networkingWizardPage(services),
   ]
     .filter(page => page !== null)
     .map(page => page!);
