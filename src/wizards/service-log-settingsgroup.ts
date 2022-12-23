@@ -13,19 +13,19 @@ interface LogSettings {
 }
 
 interface ConfLogControl {
-  max: number;
+  max: string | null;
 }
 
 interface ClientServices {
-  readLog: number | null;
+  readLog: string | null;
 }
 
 interface SGEdit {
-  resvTms: boolean | null;
+  resvTms: string | null;
 }
 
 interface ConfSG {
-  resvTms: boolean | null;
+  resvTms: string | null;
 }
 interface ContentOptions {
   logSettings: LogSettings;
@@ -50,32 +50,44 @@ export function logSettingsGroupServicesWizardPage(
 }
 
 function createLogSettingsGroupServicesWizard(
-  services: Element
+  parent: Element
 ): TemplateResult[] | null {
-  const logElement: Element | null = services.querySelector('ConfLogControl');
+  const logElement: Element | null = parent.querySelector('ConfLogControl');
 
   if (!logElement) {
     return null;
   }
   const content: ContentOptions = {
     logSettings: {
-      cbName: '',
-      datSet: '',
-      logEna: '',
-      intgPd: '',
-      trgOps: '',
+      cbName:
+        parent.querySelector('LogSettings')?.getAttribute('cbName') || null,
+      datSet:
+        parent.querySelector('LogSettings')?.getAttribute('datSet') || null,
+      logEna:
+        parent.querySelector('LogSettings')?.getAttribute('logEna') || null,
+      intgPd:
+        parent.querySelector('LogSettings')?.getAttribute('trgOps') || null,
+      trgOps:
+        parent.querySelector('LogSettings')?.getAttribute('intgPd') || null,
     },
     confLogControl: {
-      max: 0,
+      max: parent.querySelector('ConfLogControl')?.getAttribute('max') || null,
     },
     clientServices: {
-      readLog: 0,
+      readLog:
+        parent.querySelector('CientServices')?.getAttribute('readLog') || null,
     },
     sGEdit: {
-      resvTms: false,
+      resvTms:
+        parent
+          .querySelector('SettingGroups > SGEdit')
+          ?.getAttribute('resvTms') || null,
     },
     confSG: {
-      resvTms: false,
+      resvTms:
+        parent
+          .querySelector('SettingGroups > ConfSG')
+          ?.getAttribute('resvTms') || null,
     },
   };
 
@@ -141,7 +153,7 @@ function createLogSettingsGroupServicesWizard(
         required: true,
         helper:
           'The maximum number of log control blocks instantiable by system configuration tool',
-        maybeValue: content.confLogControl.max.toString(),
+        maybeValue: content.confLogControl.max?.toString() || null,
       },
     ]),
     createFormDivider('Client Capabilities'),
