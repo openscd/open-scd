@@ -140,6 +140,12 @@ export class GeneralEquipmentEditor extends LitElement {
             @click=${() => this.openEditWizard()}
           ></mwc-icon-button>
         </abbr>
+        <abbr slot="action" title="${translate('remove')}">
+          <mwc-icon-button
+            icon="delete"
+            @click=${() => this.remove()}
+          ></mwc-icon-button>
+        </abbr>
         <abbr
           slot="action"
           style="position:relative;"
@@ -159,12 +165,6 @@ export class GeneralEquipmentEditor extends LitElement {
             >${this.renderAddButtons()}</mwc-menu
           ></abbr
         >
-        <abbr slot="action" title="${translate('remove')}">
-          <mwc-icon-button
-            icon="delete"
-            @click=${() => this.remove()}
-          ></mwc-icon-button>
-        </abbr>
         ${this.renderLNodes()} ${this.renderEqFunctions()}
       </action-pane>`;
 
@@ -188,10 +188,6 @@ export class GeneralEquipmentEditor extends LitElement {
   }
 
   static styles = css`
-    abbr {
-      text-decoration: none;
-      border-bottom: none;
-    }
     abbr {
       text-decoration: none;
       border-bottom: none;

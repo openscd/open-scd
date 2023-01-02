@@ -46,6 +46,13 @@ snapshots["Editor web component for GeneralEquipment SCL element rendered as act
   </abbr>
   <abbr
     slot="action"
+    title="[remove]"
+  >
+    <mwc-icon-button icon="delete">
+    </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="action"
     style="position:relative;"
     title="[add]"
   >
