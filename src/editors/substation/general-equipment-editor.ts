@@ -25,6 +25,7 @@ import '../../editors/substation/l-node-editor.js';
 import { generalConductingEquipmentIcon } from '../../icons/icons.js';
 import {
   getChildElementsByTagName,
+  newActionEvent,
   newWizardEvent,
   SCLTag,
   tags,
@@ -77,6 +78,18 @@ export class GeneralEquipmentEditor extends LitElement {
   firstUpdated(): void {
     if (this.addMenu && this.addButton)
       this.addMenu.anchor = <HTMLElement>this.addButton;
+  }
+
+  remove(): void {
+    if (this.element.parentElement)
+      this.dispatchEvent(
+        newActionEvent({
+          old: {
+            parent: this.element.parentElement,
+            element: this.element,
+          },
+        })
+      );
   }
 
   private renderLNodes(): TemplateResult {
@@ -146,21 +159,39 @@ export class GeneralEquipmentEditor extends LitElement {
             >${this.renderAddButtons()}</mwc-menu
           ></abbr
         >
+        <abbr slot="action" title="${translate('remove')}">
+          <mwc-icon-button
+            icon="delete"
+            @click=${() => this.remove()}
+          ></mwc-icon-button>
+        </abbr>
         ${this.renderLNodes()} ${this.renderEqFunctions()}
       </action-pane>`;
 
     return html`<action-icon label=${this.header}>
       <abbr slot="action" title="${translate('edit')}">
-        <mwc-icon-button
+        <mwc-fab
+        mini
           icon="edit"
           @click=${() => this.openEditWizard()}
-        ></mwc-icon-button>
+        ></mwc-fab
+      </abbr>
+      <abbr slot="action" title="${translate('remove')}">
+        <mwc-fab
+        mini
+          icon="delete"
+          @click=${() => this.remove()}
+        ></mwc-fab>
       </abbr>
       <mwc-icon slot="icon">${generalConductingEquipmentIcon}</mwc-icon>
     </action-icon>`;
   }
 
   static styles = css`
+    abbr {
+      text-decoration: none;
+      border-bottom: none;
+    }
     abbr {
       text-decoration: none;
       border-bottom: none;

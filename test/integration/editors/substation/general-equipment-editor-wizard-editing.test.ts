@@ -47,11 +47,11 @@ const openAndCancelMenu: (
   });
 
 describe('general-equipment-editor wizarding editing integration', () => {
-  describe('edit wizard', () => {
-    let doc: XMLDocument;
-    let parent: MockWizardEditor;
-    let element: GeneralEquipmentEditor | null;
+  let doc: XMLDocument;
+  let parent: MockWizardEditor;
+  let element: GeneralEquipmentEditor | null;
 
+  describe('edit wizard', () => {
     let nameField: WizardTextField;
     let descField: WizardTextField;
     let typeField: WizardTextField;
@@ -76,7 +76,7 @@ describe('general-equipment-editor wizarding editing integration', () => {
 
       element = parent.querySelector('general-equipment-editor');
       await (<HTMLElement>(
-        element?.shadowRoot?.querySelector('mwc-icon-button[icon="edit"]')
+        element?.shadowRoot?.querySelector('mwc-fab[icon="edit"]')
       )).click();
       await parent.updateComplete;
 
@@ -146,6 +146,33 @@ describe('general-equipment-editor wizarding editing integration', () => {
       await parent.updateComplete;
       expect(doc.querySelector('GeneralEquipment')?.getAttribute('desc')).to.be
         .null;
+    });
+
+    describe('has a delete icon button that', () => {
+      let deleteButton: HTMLElement;
+
+      beforeEach(async () => {
+        deleteButton = <HTMLElement>(
+          element?.shadowRoot?.querySelector('mwc-fab[icon="delete"]')
+        );
+        await parent.updateComplete;
+      });
+
+      it('removes the attached GeneralEquipment element from the document', async () => {
+        expect(
+          doc.querySelector(
+            'Substation[name="AA1"] > GeneralEquipment[name="genSub"]'
+          )
+        ).to.exist;
+
+        await deleteButton.click();
+
+        expect(
+          doc.querySelector(
+            'Substation[name="AA1"] > GeneralEquipment[name="genSub"]'
+          )
+        ).to.not.exist;
+      });
     });
   });
 

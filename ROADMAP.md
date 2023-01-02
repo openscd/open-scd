@@ -1,6 +1,6 @@
 # Feature Wishes
 
-Feeature idea's for the OpenSCD project. They are currently not prioritized. 
+Feeature ideas for the OpenSCD project. They are currently not prioritized. 
 
 - Add the remaining [process elements to the substation editor](https://github.com/openscd/open-scd/projects/1)
 - [Edit wizard for `Services` element](https://github.com/openscd/open-scd/projects/17)
