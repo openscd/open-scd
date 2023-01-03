@@ -229,6 +229,9 @@ export function Hosting<
         ).then();
         this.dispatchEvent(newPendingStateEvent(this.validated));
       });
+      this.addEventListener('close-drawer', async () => {
+        this.menuUI.open = false;
+      });
     }
 
     renderMenuItem(me: MenuItem | 'divider'): TemplateResult {

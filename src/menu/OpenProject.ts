@@ -17,6 +17,13 @@ export default class OpenProjectPlugin extends LitElement {
     this.dispatchEvent(newLogEvent({ kind: 'reset' }));
     this.dispatchEvent(newOpenDocEvent(doc, docName));
     this.pluginFileUI.onchange = null;
+
+    this.dispatchEvent(
+      new CustomEvent('close-drawer', {
+        bubbles: true,
+        composed: true, // to traverse shadow DOM boundaries src: https://pm.dartus.fr/blog/a-complete-guide-on-shadow-dom-and-event-propagation/
+      })
+    );
   }
 
   async run(): Promise<void> {
