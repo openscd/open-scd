@@ -17,6 +17,24 @@ export default class OpenProjectPlugin extends LitElement {
     this.dispatchEvent(newLogEvent({ kind: 'reset' }));
     this.dispatchEvent(newOpenDocEvent(doc, docName));
     this.pluginFileUI.onchange = null;
+    this.closeMenu();
+  }
+
+  private async closeMenu() {
+    const shadowRootElement = document
+      .querySelector('open-scd')
+      ?.shadowRoot?.querySelector('mwc-drawer')?.shadowRoot;
+
+    const isMenuOpen =
+      shadowRootElement?.querySelector('.mdc-drawer--open') ?? false;
+
+    if (!isMenuOpen) return;
+
+    const fieldArea = <HTMLElement>(
+      shadowRootElement?.querySelector('.mdc-drawer-scrim')
+    );
+
+    await fieldArea?.click();
   }
 
   async run(): Promise<void> {
