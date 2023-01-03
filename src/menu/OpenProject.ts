@@ -21,20 +21,18 @@ export default class OpenProjectPlugin extends LitElement {
   }
 
   private async closeMenu() {
-    const shadowRootElement = document
-      .querySelector('open-scd')
-      ?.shadowRoot?.querySelector('mwc-drawer')?.shadowRoot;
-
+    const openScdElement = document.querySelector('open-scd')?.shadowRoot;
     const isMenuOpen =
-      shadowRootElement?.querySelector('.mdc-drawer--open') ?? false;
+      openScdElement
+        ?.querySelector('mwc-drawer')
+        ?.shadowRoot?.querySelector('.mdc-drawer--open') ?? false;
 
     if (!isMenuOpen) return;
 
-    const fieldArea = <HTMLElement>(
-      shadowRootElement?.querySelector('.mdc-drawer-scrim')
+    const menuButton = <HTMLElement>(
+      openScdElement?.querySelector('mwc-icon-button[slot="navigationIcon"]')
     );
-
-    await fieldArea?.click();
+    await menuButton?.click();
   }
 
   async run(): Promise<void> {

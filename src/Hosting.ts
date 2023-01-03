@@ -297,7 +297,7 @@ export function Hosting<
               icon="menu"
               label="Menu"
               slot="navigationIcon"
-              @click=${() => (this.menuUI.open = true)}
+              @click=${() => (this.menuUI.open = !this.menuUI.open)}
             ></mwc-icon-button>
             <div slot="title" id="title">${this.docName}</div>
             ${this.menu.map(this.renderActionItem)}
