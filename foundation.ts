@@ -23,3 +23,5 @@ export type {
   Update,
   Remove,
 } from './foundation/edit-event.js';
+
+export { cyrb64 } from './foundation/cyrb64.js';

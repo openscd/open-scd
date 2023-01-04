@@ -1,6 +1,6 @@
 import { property, state } from 'lit/decorators.js';
 
-import { LitElementConstructor } from '../foundation.js';
+import { cyrb64, LitElementConstructor } from '../foundation.js';
 import { targetLocales } from '../locales.js';
 
 export type Plugin = {
@@ -14,37 +14,10 @@ export type Plugin = {
 export type PluginSet = { menu: Plugin[]; editor: Plugin[] };
 
 const pluginTags = new Map<string, string>();
-/**
- * Hashes `uri` using cyrb64 analogous to
- * https://github.com/bryc/code/blob/master/jshash/experimental/cyrb53.js .
- * @returns a valid customElement tagName containing the URI hash.
- */
+
+/** @returns a valid customElement tagName containing the URI hash. */
 export function pluginTag(uri: string): string {
-  if (!pluginTags.has(uri)) {
-    /* eslint-disable no-bitwise */
-    let h1 = 0xdeadbeef;
-    let h2 = 0x41c6ce57;
-    /* eslint-disable-next-line no-plusplus */
-    for (let i = 0, ch; i < uri.length; i++) {
-      ch = uri.charCodeAt(i);
-      h1 = Math.imul(h1 ^ ch, 2654435761);
-      h2 = Math.imul(h2 ^ ch, 1597334677);
-    }
-    h1 =
-      Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^
-      Math.imul(h2 ^ (h2 >>> 13), 3266489909);
-    h2 =
-      Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^
-      Math.imul(h1 ^ (h1 >>> 13), 3266489909);
-    pluginTags.set(
-      uri,
-      `oscd-p${
-        (h2 >>> 0).toString(16).padStart(8, '0') +
-        (h1 >>> 0).toString(16).padStart(8, '0')
-      }`
-    );
-    /* eslint-enable no-bitwise */
-  }
+  if (!pluginTags.has(uri)) pluginTags.set(uri, `oscd-p${cyrb64(uri)}`);
   return pluginTags.get(uri)!;
 }
 
