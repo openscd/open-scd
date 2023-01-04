@@ -229,6 +229,9 @@ export function Hosting<
         ).then();
         this.dispatchEvent(newPendingStateEvent(this.validated));
       });
+      this.addEventListener('close-drawer', async () => {
+        this.menuUI.open = false;
+      });
     }
 
     renderMenuItem(me: MenuItem | 'divider'): TemplateResult {
@@ -297,7 +300,7 @@ export function Hosting<
               icon="menu"
               label="Menu"
               slot="navigationIcon"
-              @click=${() => (this.menuUI.open = !this.menuUI.open)}
+              @click=${() => (this.menuUI.open = true)}
             ></mwc-icon-button>
             <div slot="title" id="title">${this.docName}</div>
             ${this.menu.map(this.renderActionItem)}

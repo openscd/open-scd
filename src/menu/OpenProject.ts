@@ -21,18 +21,12 @@ export default class OpenProjectPlugin extends LitElement {
   }
 
   private async closeMenu() {
-    const openScdElement = document.querySelector('open-scd')?.shadowRoot;
-    const isMenuOpen =
-      openScdElement
-        ?.querySelector('mwc-drawer')
-        ?.shadowRoot?.querySelector('.mdc-drawer--open') ?? false;
-
-    if (!isMenuOpen) return;
-
-    const menuButton = <HTMLElement>(
-      openScdElement?.querySelector('mwc-icon-button[slot="navigationIcon"]')
+    this.dispatchEvent(
+      new CustomEvent('close-drawer', {
+        bubbles: true,
+        composed: true, // to traverse shadow DOM boundaries src: https://pm.dartus.fr/blog/a-complete-guide-on-shadow-dom-and-event-propagation/
+      })
     );
-    await menuButton?.click();
   }
 
   async run(): Promise<void> {
