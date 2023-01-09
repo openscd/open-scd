@@ -170,14 +170,12 @@ export class GeneralEquipmentEditor extends LitElement {
 
     return html`<action-icon label=${this.header}>
       <mwc-icon slot="icon">${generalConductingEquipmentIcon}</mwc-icon>
-      <abbr slot="action" title="${translate('edit')}" />
       <mwc-fab
         slot="action"
         mini
         icon="edit"
         @click="${() => this.openEditWizard()}}"
       ></mwc-fab>
-      <abbr slot="action" title="${translate('remove')}" />
       <mwc-fab
         slot="action"
         mini

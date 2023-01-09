@@ -8,28 +8,18 @@ snapshots["Editor web component for GeneralEquipment SCL element rendered as act
 >
   <mwc-icon slot="icon">
   </mwc-icon>
-  <abbr
+  <mwc-fab
+    icon="edit"
+    mini=""
     slot="action"
-    title="[edit]"
   >
-    <mwc-fab
-      icon="edit"
-      mini=""
-      slot="action"
-    >
-    </mwc-fab>
-    <abbr
-      slot="action"
-      title="[remove]"
-    >
-      <mwc-fab
-        icon="delete"
-        mini=""
-        slot="action"
-      >
-      </mwc-fab>
-    </abbr>
-  </abbr>
+  </mwc-fab>
+  <mwc-fab
+    icon="delete"
+    mini=""
+    slot="action"
+  >
+  </mwc-fab>
 </action-icon>
 `;
 /* end snapshot Editor web component for GeneralEquipment SCL element rendered as action icon looks like the latest snapshot */
