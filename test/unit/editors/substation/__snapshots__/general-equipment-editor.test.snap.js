@@ -6,6 +6,8 @@ snapshots["Editor web component for GeneralEquipment SCL element rendered as act
   label="genSub"
   tabindex="0"
 >
+  <mwc-icon slot="icon">
+  </mwc-icon>
   <abbr
     slot="action"
     title="[edit]"
@@ -13,6 +15,7 @@ snapshots["Editor web component for GeneralEquipment SCL element rendered as act
     <mwc-fab
       icon="edit"
       mini=""
+      slot="action"
     >
     </mwc-fab>
     <abbr
@@ -22,11 +25,10 @@ snapshots["Editor web component for GeneralEquipment SCL element rendered as act
       <mwc-fab
         icon="delete"
         mini=""
+        slot="action"
       >
       </mwc-fab>
     </abbr>
-    <mwc-icon slot="icon">
-    </mwc-icon>
   </abbr>
 </action-icon>
 `;
