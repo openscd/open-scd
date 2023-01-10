@@ -40,6 +40,14 @@ describe('filtered-list', () => {
     await expect(element).shadowDom.to.equalSnapshot();
   });
 
+  it('allows items to be activated when selected', async () => {
+    element.setAttribute('activatable', '');
+    element.children[0].setAttribute('selected', '');
+    element.requestUpdate();
+    await element.updateComplete;
+    expect(element.children[0].hasAttribute('activated')).to.be.true;
+  });
+
   describe('has a check all checkbox that', () => {
     it('is indeterminate if one but not all check-list-items are selected', async () => {
       expect(
