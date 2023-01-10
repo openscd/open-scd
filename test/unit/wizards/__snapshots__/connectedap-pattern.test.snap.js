@@ -411,6 +411,7 @@ snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that f
     >
     </wizard-textfield>
     <wizard-textfield
+      disabled=""
       label="VLAN-ID"
       nullable=""
       pattern="[0-9A-F]{3}"
@@ -418,6 +419,7 @@ snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that f
     >
     </wizard-textfield>
     <wizard-textfield
+      disabled=""
       label="VLAN-PRIORITY"
       nullable=""
       pattern="[0-7]"
