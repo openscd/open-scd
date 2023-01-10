@@ -5,7 +5,7 @@ import { MockWizardEditor } from '../../mock-wizard-editor.js';
 
 import { editConnectedApWizard } from '../../../src/wizards/connectedap.js';
 
-describe('connectedap wizards', () => {
+describe('connectedap wizarding editing integration', () => {
   let doc: XMLDocument;
   let element: MockWizardEditor;
 
