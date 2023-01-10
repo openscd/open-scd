@@ -114,7 +114,10 @@ export class FilteredList extends ListBase {
     this.requestUpdate();
   }
 
-  public updated(): void {
+  protected update(
+    changedProperties: Map<string | number | symbol, unknown>
+  ): void {
+    super.update(changedProperties);
     // regenerate filtering of text
     this.onFilterInput();
   }
