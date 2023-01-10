@@ -187,7 +187,10 @@ export class PowerTransformerEditor extends LitElement {
       >
         <mwc-icon-button
           icon="playlist_add"
-          @click=${() => (this.addMenu.open = true)}
+          @click=${() => (
+            (this.addMenu.open = true),
+            (this.addMenu.anchor = <HTMLElement>this.addButton)
+          )}
         ></mwc-icon-button
         ><mwc-menu
           corner="BOTTOM_RIGHT"
