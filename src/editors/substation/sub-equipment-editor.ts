@@ -24,6 +24,7 @@ import { styles } from './foundation.js';
 import {
   getChildElementsByTagName,
   newWizardEvent,
+  newActionEvent,
   SCLTag,
   tags,
 } from '../../foundation.js';
@@ -151,8 +152,9 @@ export class SubEquipmentEditor extends LitElement {
             this.openCreateWizard(tagName);
           }}
           >${this.renderAddButtons()}</mwc-menu
-        ></abbr
-      >
+        >
+      </abbr>
+
       ${this.renderLNodes()} ${this.renderEqFunctions()}
     </action-pane> `;
   }

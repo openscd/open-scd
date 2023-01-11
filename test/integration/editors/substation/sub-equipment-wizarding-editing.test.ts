@@ -136,6 +136,25 @@ describe('sub-equipment-editor wizarding editing integration', () => {
           ?.getAttribute('virtual')
       ).to.equal('true');
     });
+
+    describe('has a delete icon button that', () => {
+      let deleteButton: HTMLElement;
+
+      beforeEach(async () => {
+        deleteButton = <HTMLElement>(
+          element?.shadowRoot?.querySelector('mwc-icon-button[icon="delete"]')
+        );
+        await parent.updateComplete;
+      });
+
+      it('removes the attached SubEquipment element from the document', async () => {
+        expect(doc.querySelector('SubEquipment[name="subque"]')).to.exist;
+
+        await deleteButton.click();
+
+        expect(doc.querySelector('SubEquipment[name="subque"]')).to.not.exist;
+      });
+    });
   });
 
   describe('Open add wizard', () => {

@@ -92,7 +92,7 @@ export class ConductingEquipmentEditor extends LitElement {
       );
   }
 
-  firstUpdated(): void {
+  updated(): void {
     if (this.addMenu && this.addButton)
       this.addMenu.anchor = <HTMLElement>this.addButton;
   }

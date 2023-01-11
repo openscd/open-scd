@@ -75,7 +75,7 @@ export class GeneralEquipmentEditor extends LitElement {
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
-  firstUpdated(): void {
+  updated(): void {
     if (this.addMenu && this.addButton)
       this.addMenu.anchor = <HTMLElement>this.addButton;
   }
@@ -169,21 +169,19 @@ export class GeneralEquipmentEditor extends LitElement {
       </action-pane>`;
 
     return html`<action-icon label=${this.header}>
-      <abbr slot="action" title="${translate('edit')}">
-        <mwc-fab
-        mini
-          icon="edit"
-          @click=${() => this.openEditWizard()}
-        ></mwc-fab
-      </abbr>
-      <abbr slot="action" title="${translate('remove')}">
-        <mwc-fab
-        mini
-          icon="delete"
-          @click=${() => this.remove()}
-        ></mwc-fab>
-      </abbr>
       <mwc-icon slot="icon">${generalConductingEquipmentIcon}</mwc-icon>
+      <mwc-fab
+        slot="action"
+        mini
+        icon="edit"
+        @click="${() => this.openEditWizard()}}"
+      ></mwc-fab>
+      <mwc-fab
+        slot="action"
+        mini
+        icon="delete"
+        @click="${() => this.remove()}}"
+      ></mwc-fab>
     </action-icon>`;
   }
 
