@@ -87,7 +87,7 @@ export class EqFunctionEditor extends LitElement {
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
-  firstUpdated(): void {
+  updated(): void {
     this.addMenu.anchor = <HTMLElement>this.addButton;
   }
 

@@ -6,18 +6,39 @@ import {
   property,
   state,
   css,
+  query,
 } from 'lit-element';
 
+import { translate } from 'lit-translate';
+
 import '@material/mwc-icon-button';
+import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-menu';
 import '@material/mwc-fab';
+import { IconButton } from '@material/mwc-icon-button';
+import { ListItem } from '@material/mwc-list/mwc-list-item';
+import { Menu } from '@material/mwc-menu';
 
 import '../../action-pane.js';
 import '../../editors/substation/eq-function-editor.js';
 import '../../editors/substation/l-node-editor.js';
 import { generalConductingEquipmentIcon } from '../../icons/icons.js';
-import { getChildElementsByTagName, newWizardEvent } from '../../foundation.js';
-import { translate } from 'lit-translate';
-import { wizards } from '../../wizards/wizard-library.js';
+import {
+  getChildElementsByTagName,
+  newActionEvent,
+  newWizardEvent,
+  SCLTag,
+  tags,
+} from '../../foundation.js';
+import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
+
+function childTags(element: Element | null | undefined): SCLTag[] {
+  if (!element) return [];
+
+  return tags[<SCLTag>element.tagName].children.filter(
+    child => wizards[child].create !== emptyWizard
+  );
+}
 
 @customElement('general-equipment-editor')
 export class GeneralEquipmentEditor extends LitElement {
@@ -40,9 +61,35 @@ export class GeneralEquipmentEditor extends LitElement {
     return `${name} ${desc ? `—  ${desc}` : ''}`;
   }
 
+  @query('mwc-menu') addMenu!: Menu;
+  @query('mwc-icon-button[icon="playlist_add"]') addButton!: IconButton;
+
   openEditWizard(): void {
     const wizard = wizards['GeneralEquipment'].edit(this.element);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
+
+  private openCreateWizard(tagName: string): void {
+    const wizard = wizards[<SCLTag>tagName].create(this.element!);
+
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
+
+  updated(): void {
+    if (this.addMenu && this.addButton)
+      this.addMenu.anchor = <HTMLElement>this.addButton;
+  }
+
+  remove(): void {
+    if (this.element.parentElement)
+      this.dispatchEvent(
+        newActionEvent({
+          old: {
+            parent: this.element.parentElement,
+            element: this.element,
+          },
+        })
+      );
   }
 
   private renderLNodes(): TemplateResult {
@@ -75,6 +122,15 @@ export class GeneralEquipmentEditor extends LitElement {
       : html``;
   }
 
+  private renderAddButtons(): TemplateResult[] {
+    return childTags(this.element).map(
+      child =>
+        html`<mwc-list-item value="${child}"
+          ><span>${child}</span></mwc-list-item
+        >`
+    );
+  }
+
   render(): TemplateResult {
     if (this.showfunctions)
       return html`<action-pane label=${this.header}>
@@ -84,21 +140,56 @@ export class GeneralEquipmentEditor extends LitElement {
             @click=${() => this.openEditWizard()}
           ></mwc-icon-button>
         </abbr>
+        <abbr slot="action" title="${translate('remove')}">
+          <mwc-icon-button
+            icon="delete"
+            @click=${() => this.remove()}
+          ></mwc-icon-button>
+        </abbr>
+        <abbr
+          slot="action"
+          style="position:relative;"
+          title="${translate('add')}"
+        >
+          <mwc-icon-button
+            icon="playlist_add"
+            @click=${() => (this.addMenu.open = true)}
+          ></mwc-icon-button
+          ><mwc-menu
+            corner="BOTTOM_RIGHT"
+            menuCorner="END"
+            @action=${(e: Event) => {
+              const tagName = (<ListItem>(<Menu>e.target).selected).value;
+              this.openCreateWizard(tagName);
+            }}
+            >${this.renderAddButtons()}</mwc-menu
+          ></abbr
+        >
         ${this.renderLNodes()} ${this.renderEqFunctions()}
       </action-pane>`;
 
     return html`<action-icon label=${this.header}>
-      <abbr slot="action" title="${translate('edit')}">
-        <mwc-icon-button
-          icon="edit"
-          @click=${() => this.openEditWizard()}
-        ></mwc-icon-button>
-      </abbr>
       <mwc-icon slot="icon">${generalConductingEquipmentIcon}</mwc-icon>
+      <mwc-fab
+        slot="action"
+        mini
+        icon="edit"
+        @click="${() => this.openEditWizard()}}"
+      ></mwc-fab>
+      <mwc-fab
+        slot="action"
+        mini
+        icon="delete"
+        @click="${() => this.remove()}}"
+      ></mwc-fab>
     </action-icon>`;
   }
 
   static styles = css`
+    abbr {
+      text-decoration: none;
+      border-bottom: none;
+    }
     .container.lnode {
       display: grid;
       grid-gap: 12px;

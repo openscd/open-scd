@@ -112,7 +112,7 @@ export class BayEditor extends LitElement {
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
-  firstUpdated(): void {
+  updated(): void {
     this.addMenu.anchor = <HTMLElement>this.addButton;
   }
 
