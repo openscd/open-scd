@@ -25,6 +25,7 @@ export function createFormElementFromInput(input: WizardInput): TemplateResult {
         .defaultValue=${input.default || ''}
         ?dialogInitialFocus=${input.dialogInitialFocus}
         ?nullable=${input.nullable}
+        disabled
       ></wizard-textfield>`;
       break;
     case 'Checkbox':
@@ -35,6 +36,7 @@ export function createFormElementFromInput(input: WizardInput): TemplateResult {
         ?defaultValue=${input.default}
         ?dialogInitialFocus=${input.dialogInitialFocus}
         ?nullable=${input.nullable}
+        disabled
       ></wizard-checkbox>`;
       break;
     case 'Select':
@@ -45,6 +47,7 @@ export function createFormElementFromInput(input: WizardInput): TemplateResult {
         .defaultValue=${input.default || ''}
         ?dialogInitialFocus=${input.dialogInitialFocus}
         ?nullable=${input.nullable}
+        disabled
       >
         ${input.values.map(value => {
           return html`<mwc-list-item .value=${value}>

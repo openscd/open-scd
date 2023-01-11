@@ -153,18 +153,37 @@ function createLogSettingsGroupServicesWizard(
         required: true,
         helper:
           'The maximum number of log control blocks instantiable by system configuration tool',
-        maybeValue: content.confLogControl.max?.toString() || null,
+        maybeValue: content.confLogControl.max,
       },
     ]),
     createFormDivider('Client Capabilities'),
     ...createFormElementFromInputs([
       {
-        kind: 'TextField',
+        kind: 'Checkbox',
         label: 'read Log',
-        required: false,
+        nullable: true,
         helper:
           'Whether IED supports services to handle logs as a client (see IEC 61850-7-2 for further information)',
-        maybeValue: content.clientServices.readLog?.toString() || null,
+        maybeValue: content.clientServices.readLog,
+      },
+    ]),
+    createFormDivider('Setting Group'),
+    ...createFormElementFromInputs([
+      {
+        kind: 'Checkbox',
+        label: 'SGEdit',
+        nullable: true,
+        helper:
+          'Whether IED allows manipulating editable setting groups online',
+        maybeValue: content.sGEdit.resvTms,
+      },
+      {
+        kind: 'Checkbox',
+        label: 'ConfSG',
+        nullable: true,
+        helper:
+          'Whether IED accepts the system configuration tool to configure the number of setting groups',
+        maybeValue: content.confSG.resvTms,
       },
     ]),
   ];
