@@ -15,6 +15,13 @@ snapshots["sub-equipment-editor looks like the latest snapshot"] =
   </abbr>
   <abbr
     slot="action"
+    title="[remove]"
+  >
+    <mwc-icon-button icon="delete">
+    </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="action"
     style="position:relative;"
     title="[add]"
   >
@@ -62,6 +69,13 @@ snapshots["sub-equipment-editor With children looks like the latest snapshot"] =
     title="[edit]"
   >
     <mwc-icon-button icon="edit">
+    </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="action"
+    title="[remove]"
+  >
+    <mwc-icon-button icon="delete">
     </mwc-icon-button>
   </abbr>
   <abbr
@@ -119,6 +133,13 @@ snapshots["sub-equipment-editor without description and state looks like the lat
     title="[edit]"
   >
     <mwc-icon-button icon="edit">
+    </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="action"
+    title="[remove]"
+  >
+    <mwc-icon-button icon="delete">
     </mwc-icon-button>
   </abbr>
   <abbr
