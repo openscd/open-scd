@@ -79,6 +79,17 @@ snapshots["bay-editor looks like the latest snapshot"] =
         mwc-list-item=""
         role="menuitem"
         tabindex="-1"
+        value="GeneralEquipment"
+      >
+        <span>
+          GeneralEquipment
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
         value="ConductingEquipment"
       >
         <span>
@@ -192,6 +203,17 @@ snapshots["bay-editor with readonly property looks like the latest snapshot"] =
         mwc-list-item=""
         role="menuitem"
         tabindex="-1"
+        value="GeneralEquipment"
+      >
+        <span>
+          GeneralEquipment
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
         value="ConductingEquipment"
       >
         <span>
@@ -298,6 +320,17 @@ snapshots["bay-editor with function filter deactivated looks like the latest sna
       >
         <span>
           PowerTransformer
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="GeneralEquipment"
+      >
+        <span>
+          GeneralEquipment
         </span>
       </mwc-list-item>
       <mwc-list-item
@@ -422,6 +455,17 @@ snapshots["bay-editor with existing LNode children looks like the latest snapsho
         mwc-list-item=""
         role="menuitem"
         tabindex="-1"
+        value="GeneralEquipment"
+      >
+        <span>
+          GeneralEquipment
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
         value="ConductingEquipment"
       >
         <span>
@@ -533,6 +577,17 @@ snapshots["bay-editor with general-equipment children with showfunctions false l
         mwc-list-item=""
         role="menuitem"
         tabindex="-1"
+        value="GeneralEquipment"
+      >
+        <span>
+          GeneralEquipment
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
         value="ConductingEquipment"
       >
         <span>
@@ -635,6 +690,17 @@ snapshots["bay-editor with general-equipment children with showfunctions true lo
       >
         <span>
           PowerTransformer
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="GeneralEquipment"
+      >
+        <span>
+          GeneralEquipment
         </span>
       </mwc-list-item>
       <mwc-list-item

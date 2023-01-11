@@ -6,8 +6,18 @@ snapshots["Editor web component for SMV element looks like its latest snapshot"]
   label="CurrentTransformer/voltageOnly"
   tabindex="0"
 >
-  <mwc-icon slot="icon">
-  </mwc-icon>
+  <mwc-fab
+    icon="edit"
+    mini=""
+    slot="action"
+  >
+  </mwc-fab>
+  <mwc-fab
+    icon="delete"
+    mini=""
+    slot="action"
+  >
+  </mwc-fab>
 </action-icon>
 `;
 /* end snapshot Editor web component for SMV element looks like its latest snapshot */

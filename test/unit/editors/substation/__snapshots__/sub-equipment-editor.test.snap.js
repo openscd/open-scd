@@ -13,6 +13,13 @@ snapshots["sub-equipment-editor looks like the latest snapshot"] =
     <mwc-icon-button icon="edit">
     </mwc-icon-button>
   </abbr>
+  <abbr
+    slot="action"
+    title="[remove]"
+  >
+    <mwc-icon-button icon="delete">
+    </mwc-icon-button>
+  </abbr>
 </action-pane>
 `;
 /* end snapshot sub-equipment-editor looks like the latest snapshot */
@@ -27,6 +34,13 @@ snapshots["sub-equipment-editor With children looks like the latest snapshot"] =
     title="[edit]"
   >
     <mwc-icon-button icon="edit">
+    </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="action"
+    title="[remove]"
+  >
+    <mwc-icon-button icon="delete">
     </mwc-icon-button>
   </abbr>
   <div class="container lnode">
@@ -49,6 +63,13 @@ snapshots["sub-equipment-editor without description and state looks like the lat
     title="[edit]"
   >
     <mwc-icon-button icon="edit">
+    </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="action"
+    title="[remove]"
+  >
+    <mwc-icon-button icon="delete">
     </mwc-icon-button>
   </abbr>
   <div class="container lnode">
