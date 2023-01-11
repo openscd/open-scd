@@ -75,7 +75,7 @@ export class GeneralEquipmentEditor extends LitElement {
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
-  firstUpdated(): void {
+  updated(): void {
     if (this.addMenu && this.addButton)
       this.addMenu.anchor = <HTMLElement>this.addButton;
   }
@@ -153,10 +153,7 @@ export class GeneralEquipmentEditor extends LitElement {
         >
           <mwc-icon-button
             icon="playlist_add"
-            @click=${() => (
-              (this.addMenu.open = true),
-              (this.addMenu.anchor = <HTMLElement>this.addButton)
-            )}
+            @click=${() => (this.addMenu.open = true)}
           ></mwc-icon-button
           ><mwc-menu
             corner="BOTTOM_RIGHT"

@@ -123,7 +123,7 @@ export class VoltageLevelEditor extends LitElement {
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
-  firstUpdated(): void {
+  updated(): void {
     this.addMenu.anchor = <HTMLElement>this.addButton;
   }
 
@@ -251,10 +251,7 @@ export class VoltageLevelEditor extends LitElement {
         >
           <mwc-icon-button
             icon="playlist_add"
-            @click=${() => (
-              (this.addMenu.open = true),
-              (this.addMenu.anchor = <HTMLElement>this.addButton)
-            )}
+            @click=${() => (this.addMenu.open = true)}
           ></mwc-icon-button
           ><mwc-menu
             corner="BOTTOM_RIGHT"
