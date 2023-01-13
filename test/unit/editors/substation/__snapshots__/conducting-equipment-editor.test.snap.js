@@ -458,16 +458,14 @@ snapshots["conducting-equipment-editor rendered as action pane with SubEquipment
       </mwc-list-item>
     </mwc-menu>
   </abbr>
-  <div class="container subequipment">
-    <sub-equipment-editor>
-    </sub-equipment-editor>
-    <sub-equipment-editor>
-    </sub-equipment-editor>
-    <sub-equipment-editor>
-    </sub-equipment-editor>
-    <sub-equipment-editor>
-    </sub-equipment-editor>
-  </div>
+  <sub-equipment-editor>
+  </sub-equipment-editor>
+  <sub-equipment-editor>
+  </sub-equipment-editor>
+  <sub-equipment-editor>
+  </sub-equipment-editor>
+  <sub-equipment-editor>
+  </sub-equipment-editor>
 </action-pane>
 `;
 /* end snapshot conducting-equipment-editor rendered as action pane with SubEquipment children looks like the latest snapshot */
