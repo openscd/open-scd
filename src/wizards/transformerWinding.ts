@@ -1,5 +1,6 @@
 import { html, TemplateResult } from 'lit-element';
 import { get, translate } from 'lit-translate';
+
 import {
   cloneElement,
   getChildElementsByTagName,
@@ -8,40 +9,7 @@ import {
   Wizard,
   WizardActor,
   WizardInputElement,
-} from '../foundation';
-
-export function editTransformerWindingWizard(element: Element): Wizard {
-  const name = element.getAttribute('name');
-  const desc = element.getAttribute('desc');
-  const type = element.getAttribute('type');
-  const virtual = element.getAttribute('virtual');
-  const reservedNames: string[] = getChildElementsByTagName(
-    element.parentElement!,
-    'TransformerWinding'
-  )
-    .filter(sibling => sibling !== element)
-    .map(sibling => sibling.getAttribute('name')!);
-
-  return [
-    {
-      title: get('wizard.title.edit', { tagName: 'TransformerWinding' }),
-      primary: {
-        icon: 'save',
-        label: get('save'),
-        action: updateTransformerWindingAction(element),
-      },
-      content: [
-        ...contentTransformerWindingWizard({
-          name,
-          desc,
-          type,
-          virtual,
-          reservedNames,
-        }),
-      ],
-    },
-  ];
-}
+} from '../foundation.js';
 
 function updateTransformerWindingAction(element: Element): WizardActor {
   return (inputs: WizardInputElement[]): SimpleAction[] => {
@@ -110,5 +78,38 @@ export function contentTransformerWindingWizard(
       helper="${translate('scl.virtual')}"
       nullable
     ></wizard-checkbox>`,
+  ];
+}
+
+export function editTransformerWindingWizard(element: Element): Wizard {
+  const name = element.getAttribute('name');
+  const desc = element.getAttribute('desc');
+  const type = element.getAttribute('type');
+  const virtual = element.getAttribute('virtual');
+  const reservedNames: string[] = getChildElementsByTagName(
+    element.parentElement!,
+    'TransformerWinding'
+  )
+    .filter(sibling => sibling !== element)
+    .map(sibling => sibling.getAttribute('name')!);
+
+  return [
+    {
+      title: get('wizard.title.edit', { tagName: 'TransformerWinding' }),
+      primary: {
+        icon: 'save',
+        label: get('save'),
+        action: updateTransformerWindingAction(element),
+      },
+      content: [
+        ...contentTransformerWindingWizard({
+          name,
+          desc,
+          type,
+          virtual,
+          reservedNames,
+        }),
+      ],
+    },
   ];
 }
