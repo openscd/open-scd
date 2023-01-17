@@ -44,7 +44,7 @@ import {
   createGeneralEquipmentWizard,
   editGeneralEquipmentWizard,
 } from './generalEquipment.js';
-
+import { createTransformerWindingWizard } from './transformerWinding.js';
 type SclElementWizard = (
   element: Element,
   instanceElement?: Element
@@ -535,7 +535,7 @@ export const wizards: Record<
   },
   TransformerWinding: {
     edit: emptyWizard,
-    create: emptyWizard,
+    create: createTransformerWindingWizard,
   },
   TrgOps: {
     edit: editTrgOpsWizard,
