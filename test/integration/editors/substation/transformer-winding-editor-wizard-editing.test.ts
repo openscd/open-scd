@@ -21,7 +21,7 @@ describe('transformer-winding-editor wizarding editing integration', () => {
 
     beforeEach(async () => {
       doc = await fetch(
-        'test/testfiles/editors/substation/VS869-TransformerWinding.scd'
+        'test/testfiles/editors/substation/TransformerWinding.scd'
       )
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));

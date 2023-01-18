@@ -25,7 +25,7 @@ describe('Wizards for SCL TransformerWinding element', () => {
   beforeEach(async () => {
     element = await fixture(html`<mock-wizard></mock-wizard>`);
     doc = await fetch(
-      '/test/testfiles/editors/substation/VS869-TransformerWinding.scd'
+      '/test/testfiles/editors/substation/TransformerWinding.scd'
     )
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));

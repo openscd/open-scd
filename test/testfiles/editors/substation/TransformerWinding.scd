@@ -3,6 +3,7 @@
 	<Substation xmlns="http://www.iec.ch/61850/2003/SCL" name="AA1" desc="">
 		<VoltageLevel name="E1" desc="" nomFreq="50" numPhases="3">
 			<PowerTransformer name="pTransVolt" type="PTR">
+			<TransformerWinding name="empty" type="PTW"/>
 				<TransformerWinding name="some" type="PTW">
 					<LNode iedName="None" lnClass="CSWI" lnInst="1" lnType="OpenSCD_CSWI" />
 					<EqFunction name="eqFunc">
