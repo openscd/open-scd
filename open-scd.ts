@@ -276,7 +276,7 @@ export class OpenSCD extends Plugging(Editing(LitElement)) {
                 this.docName || nothing
               }" .doc=${this.doc} locale="${this.locale}" .docs=${
                 this.docs
-              }></${unsafeStatic(this.editor)}>`
+              } .editCount=${this.editCount}></${unsafeStatic(this.editor)}>`
             : nothing}
         </mwc-top-app-bar-fixed>
       </mwc-drawer>
@@ -307,7 +307,9 @@ export class OpenSCD extends Plugging(Editing(LitElement)) {
               this.docName
             }" .doc=${this.doc} locale="${this.locale}" .docs=${
               this.docs
-            }></${unsafeStatic(pluginTag(plugin.src))}>`
+            } .editCount=${this.editCount}></${unsafeStatic(
+              pluginTag(plugin.src)
+            )}>`
         )}
       </aside>`;
   }

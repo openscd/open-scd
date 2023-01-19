@@ -122,11 +122,11 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
     protected history: LogEntry[] = [];
 
     @state()
-    protected next: number = 0;
+    protected editCount: number = 0;
 
     @state()
     protected get last(): number {
-      return this.next - 1;
+      return this.editCount - 1;
     }
 
     @state()
@@ -136,7 +136,7 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
 
     @state()
     protected get canRedo(): boolean {
-      return this.next < this.history.length;
+      return this.editCount < this.history.length;
     }
 
     /** The set of `XMLDocument`s currently loaded */
@@ -153,24 +153,24 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
 
     protected handleEditEvent(event: EditEvent) {
       const edit = event.detail;
-      this.history.splice(this.next);
+      this.history.splice(this.editCount);
       this.history.push({ undo: handleEdit(edit), redo: edit });
-      this.next += 1;
+      this.editCount += 1;
     }
 
     /** Undo the last `n` [[Edit]]s committed */
     undo(n = 1) {
       if (!this.canUndo || n < 1) return;
       handleEdit(this.history[this.last!].undo);
-      this.next -= 1;
+      this.editCount -= 1;
       if (n > 1) this.undo(n - 1);
     }
 
     /** Redo the last `n` [[Edit]]s that have been undone */
     redo(n = 1) {
       if (!this.canRedo || n < 1) return;
-      handleEdit(this.history[this.next].redo);
-      this.next += 1;
+      handleEdit(this.history[this.editCount].redo);
+      this.editCount += 1;
       if (n > 1) this.redo(n - 1);
     }
 
