@@ -6,6 +6,8 @@ import { MockWizard } from '../../mock-wizard.js';
 
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
+  Create,
+  isCreate,
   isReplace,
   Replace,
   WizardInputElement,
@@ -25,7 +27,7 @@ describe('Wizards for SCL TransformerWinding element', () => {
   beforeEach(async () => {
     element = await fixture(html`<mock-wizard></mock-wizard>`);
     doc = await fetch(
-      '/test/testfiles/editors/substation/VS869-TransformerWinding.scd'
+      '/test/testfiles/editors/substation/TransformerWinding.scd'
     )
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
@@ -51,6 +53,82 @@ describe('Wizards for SCL TransformerWinding element', () => {
       );
 
       await element.wizardUI.requestUpdate(); // make sure wizard is rendered
+    });
+    it('looks like the the latest snapshot', async () =>
+      await expect(element.wizardUI.dialog).dom.to.equalSnapshot());
+
+    it('does not accept empty name attribute', async () => {
+      await primaryAction.click();
+
+      expect(actionEvent).to.not.have.been.called;
+    });
+
+    it('allows to create required attributes name', async () => {
+      inputs[0].value = 'someNonEmptyName';
+      await element.requestUpdate();
+      await primaryAction.click();
+
+      expect(actionEvent).to.be.calledOnce;
+      const action = actionEvent.args[0][0].detail.action;
+      expect(action).to.satisfy(isCreate);
+      const createAction = <Create>action;
+
+      expect(createAction.new.element).to.have.attribute(
+        'name',
+        'someNonEmptyName'
+      );
+
+      expect(createAction.new.element).to.not.have.attribute('desc');
+    });
+
+    it('allows to create name and non required attribute virtual', async () => {
+      inputs[0].value = 'someNonEmptyName';
+
+      const virtualCheckbox = <WizardCheckbox>(
+        element.wizardUI.dialog?.querySelector(
+          'wizard-checkbox[label="virtual"]'
+        )
+      );
+
+      virtualCheckbox.nullSwitch!.click();
+      virtualCheckbox.maybeValue = 'true';
+      await element.requestUpdate();
+      await primaryAction.click();
+
+      expect(actionEvent).to.be.calledOnce;
+      const action = actionEvent.args[0][0].detail.action;
+      expect(action).to.satisfy(isCreate);
+      const createAction = <Create>action;
+      expect(createAction.new.element).to.have.attribute(
+        'name',
+        'someNonEmptyName'
+      );
+      expect(createAction.new.element).to.have.attribute('virtual', 'true');
+    });
+
+    it('allows to create name and non required attribute desc', async () => {
+      inputs[0].value = 'someNonEmptyName';
+      const descField = <WizardTextField>(
+        element.wizardUI.dialog?.querySelector('wizard-textfield[label="desc"]')
+      );
+
+      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+      descField.nullSwitch!.click();
+      await element.updateComplete;
+      inputs[1].value = 'someNonEmptyDesc';
+
+      await element.requestUpdate();
+      await primaryAction.click();
+
+      expect(actionEvent).to.be.calledOnce;
+      const action = actionEvent.args[0][0].detail.action;
+      expect(action).to.satisfy(isCreate);
+      const createAction = <Create>action;
+
+      expect(createAction.new.element).to.have.attribute(
+        'desc',
+        'someNonEmptyDesc'
+      );
     });
   });
 });
