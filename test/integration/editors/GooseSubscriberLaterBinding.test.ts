@@ -9,6 +9,7 @@ import {
   getSelectedSubItemValue,
   selectFCDAItem,
 } from './test-support.js';
+import { ExtRefLaterBindingList } from '../../../src/editors/subscription/later-binding/ext-ref-later-binding-list.js';
 
 describe('GOOSE Subscribe Later Binding Plugin', () => {
   customElements.define(
@@ -29,6 +30,33 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
         .doc="${doc}"
       ></goose-subscriber-later-binding-plugin>`
     );
+  });
+
+  it('when selecting an FCDA element with subscriptions it looks like the latest snapshot', async () => {
+    doc = await fetch('/test/testfiles/editors/LaterBindingGOOSE-LGOS.scd')
+      .then(response => response.text())
+      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+    element = await fixture(
+      html`<goose-subscriber-later-binding-plugin
+        .doc="${doc}"
+      ></goose-subscriber-later-binding-plugin>`
+    );
+
+    const fcdaListElement = getFCDABindingList(element);
+    selectFCDAItem(
+      fcdaListElement,
+      'GOOSE_Publisher>>QB2_Disconnector>GOOSE2',
+      'GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos stVal (ST)'
+    );
+    await element.requestUpdate();
+
+    const extRefListElement = <ExtRefLaterBindingList>(
+      element.shadowRoot?.querySelector('extref-later-binding-list')
+    );
+    await extRefListElement.requestUpdate();
+
+    await expect(extRefListElement).shadowDom.to.equalSnapshot();
   });
 
   it('when subscribing an available ExtRef then the lists are changed', async () => {

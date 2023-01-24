@@ -86,14 +86,13 @@ describe('Global DAI related functions including', () => {
   describe('createTemplateStructure', async () => {
     it('creates DO/DA structure for LSVS supervision', async () => {
       const lsvsScl: XMLDocument = await fetch(
-        '/test/testfiles/editors/VS893-LaterBindingSMV-LSVS.scd'
+        '/test/testfiles/editors/LaterBindingSMV-LSVS.scd'
       )
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       const lnElement = lsvsScl.querySelector(
         'IED[name="SMV_Subscriber2"] LN[lnClass="LSVS"][inst="2"]'
       )!;
-
       const structureOfElements = createTemplateStructure(lnElement, [
         'SvCBRef',
         'setSrcRef',
@@ -105,7 +104,7 @@ describe('Global DAI related functions including', () => {
     });
     it('creates DO/DA structure for LGOS supervision', async () => {
       const lsvsScl: XMLDocument = await fetch(
-        '/test/testfiles/editors/VS893_LaterBindingGOOSE-LGOS.scd'
+        '/test/testfiles/editors/LaterBindingGOOSE-LGOS.scd'
       )
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
