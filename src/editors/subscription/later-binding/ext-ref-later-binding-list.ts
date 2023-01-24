@@ -256,7 +256,11 @@ export class ExtRefLaterBindingList extends LitElement {
           ? html` (${getDescriptionAttribute(extRefElement)})`
           : nothing}
       </span>
-      <span slot="secondary">${identity(extRefElement)}</span>
+      <span slot="secondary"
+        >${identity(extRefElement.parentElement)}${supervisionNode !== null
+          ? ` (${identity(supervisionNode)})`
+          : ''}</span
+      >
       <mwc-icon slot="graphic">swap_horiz</mwc-icon>
       ${supervisionNode !== null
         ? html`<mwc-icon title="${identity(supervisionNode)}" slot="meta"
@@ -329,7 +333,9 @@ export class ExtRefLaterBindingList extends LitElement {
                   ? html` (${getDescriptionAttribute(extRefElement)})`
                   : nothing}
               </span>
-              <span slot="secondary">${identity(extRefElement)}</span>
+              <span slot="secondary"
+                >${identity(extRefElement.parentElement)}</span
+              >
               <mwc-icon slot="graphic">arrow_back</mwc-icon>
             </mwc-list-item>`
           )}`
