@@ -78,7 +78,7 @@ describe('ImportIedsPlugin', () => {
         .exist;
     });
 
-    it('renames TEMPLATE IED element if manufacturer/type has illegal characterss', async () => {
+    it('renames TEMPLATE IED element if manufacturer/type has illegal characters', async () => {
       importDoc = await fetch('/test/testfiles/importieds/template.icd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
