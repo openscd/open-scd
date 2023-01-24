@@ -78,6 +78,27 @@ describe('ImportIedsPlugin', () => {
         .exist;
     });
 
+    it('renames TEMPLATE IED element if manufacturer/type has illegal characterss', async () => {
+      importDoc = await fetch('/test/testfiles/importieds/template.icd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+      const ied = importDoc.querySelector('IED')!
+      ied.setAttribute('manufacturer', 'Fancy-Vendy')
+      ied.setAttribute('type', 'Z#Mega$Y')
+
+      element.importDoc = importDoc;
+      await element.updateComplete;
+
+      element.prepareImport();
+      await parent.updateComplete;
+
+      console.log(element.doc?.querySelector(':root > IED')?.getAttribute('name'))
+
+      expect(element.doc?.querySelector(':root > IED[name="FancyVendy_ZMegaY_001"]')).to
+        .exist;
+    });
+
     it('allows multiple import of TEMPLATE IEDs', async () => {
       const templateIED1 = await fetch(
         '/test/testfiles/importieds/template.icd'
@@ -449,5 +470,13 @@ describe('ImportIedsPlugin', () => {
       expect(parent.history[0].kind).to.equal('error');
       expect(parent.history[0].title).to.equal('[import.log.parsererror]');
     });
+
+
+
+
   });
+
+
+
+
 });
