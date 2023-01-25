@@ -30,7 +30,7 @@ import {
 
 function uniqueTemplateIedName(doc: XMLDocument, ied: Element): string {
   const [manufacturer, type] = ['manufacturer', 'type'].map(attr =>
-    ied.getAttribute(attr)
+    ied.getAttribute(attr)?.replace(/[^A-Za-z0-9_]/g, '')
   );
   const nameCore =
     manufacturer || type
