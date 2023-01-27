@@ -10,6 +10,7 @@ import {
   getSelectedSubItemValue,
   selectFCDAItem,
 } from './test-support.js';
+import { ExtRefLaterBindingList } from '../../../src/editors/subscription/later-binding/ext-ref-later-binding-list.js';
 
 describe('SMV Subscribe Later Binding plugin', () => {
   customElements.define(
@@ -30,6 +31,33 @@ describe('SMV Subscribe Later Binding plugin', () => {
       ></smv-subscribe-later-binding-plugin>`
     );
     await element.requestUpdate();
+  });
+
+  it('when selecting an FCDA element with subscriptions it looks like the latest snapshot', async () => {
+    doc = await fetch('/test/testfiles/editors/LaterBindingSMV-LSVS.scd')
+      .then(response => response.text())
+      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+    element = await fixture(
+      html`<smv-subscribe-later-binding-plugin
+        .doc="${doc}"
+      ></smv-subscribe-later-binding-plugin>`
+    );
+
+    const fcdaListElement = getFCDABindingList(element);
+    selectFCDAItem(
+      fcdaListElement,
+      'SMV_Publisher>>CurrentTransformer>currrentOnly',
+      'SMV_Publisher>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)'
+    );
+    await element.requestUpdate();
+
+    const extRefListElement = <ExtRefLaterBindingList>(
+      element.shadowRoot?.querySelector('extref-later-binding-list')
+    );
+    await extRefListElement.requestUpdate();
+
+    await expect(extRefListElement).shadowDom.to.equalSnapshot();
   });
 
   it('when subscribing an available ExtRef then the lists are changed', async () => {
