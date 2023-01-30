@@ -78,10 +78,8 @@ describe('fcda-binding-list', () => {
       expect(nameField.value).to.be.equal('fullSmv');
     });
 
-    it('event is fired, but properties are undefined', () => {
-      expect(selectEvent).to.have.been.calledOnce;
-      expect(selectEvent.args[0][0].detail.selectedSvcElement).to.be.undefined;
-      expect(selectEvent.args[0][0].detail.selectedFcdaElement).to.be.undefined;
+    it('event is not fired on opening a new document', () => {
+      expect(selectEvent).to.not.have.been.called;
     });
 
     it('event is fired with selected elements', async () => {

@@ -162,6 +162,7 @@ describe('SMV Subscribe Later Binding plugin', () => {
         'mwc-list-item[value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/q[0]"]'
       )
     )).click();
+    await fcdaListElement.requestUpdate();
     await element.requestUpdate();
 
     expect(

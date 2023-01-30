@@ -188,7 +188,7 @@ describe('extref-later-binding-list', () => {
       });
 
       it('expect the correct number of available elements', () => {
-        expect(element['getAvailableExtRefElements']().length).to.be.equal(5);
+        expect(element['getAvailableExtRefElements']().length).to.be.equal(3);
       });
 
       it('looks like the latest snapshot, when GSEControl has no subscriptions', async () => {
@@ -217,7 +217,7 @@ describe('extref-later-binding-list', () => {
       });
 
       it('expect the correct number of available elements', () => {
-        expect(element['getAvailableExtRefElements']().length).to.be.equal(5);
+        expect(element['getAvailableExtRefElements']().length).to.be.equal(3);
       });
 
       it('looks like the latest snapshot, ', async () => {
@@ -245,7 +245,7 @@ describe('extref-later-binding-list', () => {
     });
 
     it('expect the correct number of available elements', () => {
-      expect(element['getAvailableExtRefElements']().length).to.be.equal(5);
+      expect(element['getAvailableExtRefElements']().length).to.be.equal(3);
     });
 
     it('looks like the latest snapshot, ', async () => {

@@ -394,10 +394,12 @@ export const de: Translations = {
     laterBinding: {
       extRefList: {
         title: 'Für Ausgewählte Daten-Attribut Verfügbare Verbindung',
-        noSelection: 'Kein Daten-Attribut ausgewählt',
+        noSelection: 'Kein veröffentlichtes Element ausgewählt',
         noSubscribedExtRefs: 'Keine bestehenden Verbindungen',
         noAvailableExtRefs: 'Keine verfügbaren Eingänge vorhanden',
+        switchView: 'Wechseln Sie zur Publisher-Ansicht',
       },
+      switchControlBlockView: 'Wechseln Sie zur Abonnentenansicht',
     },
     SampledValueControl: {
       controlBlockList: {

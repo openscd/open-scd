@@ -1,14 +1,15 @@
 import { css, LitElement, query } from 'lit-element';
 
 import {
-  cloneElement,
   compareNames,
   Create,
   createElement,
+  createUpdateAction,
   Delete,
   getSclSchemaVersion,
   isPublic,
   minAvailableLogicalNodeInstance,
+  Update,
 } from '../../foundation.js';
 import { getFcdaReferences } from '../../foundation/ied.js';
 import { SCL_NAMESPACE } from '../../schemas.js';
@@ -573,6 +574,19 @@ export function getFirstSubscribedExtRef(
   return extRef !== undefined ? extRef : null;
 }
 
+export function getCbReference(extRef: Element): string {
+  const extRefValues = ['iedName', 'srcPrefix', 'srcCBName'];
+  const [srcIedName, srcPrefix, srcCBName] = extRefValues.map(
+    attr => extRef.getAttribute(attr) ?? ''
+  );
+
+  const srcLDInst =
+    extRef.getAttribute('srcLDInst') ?? extRef.getAttribute('ldInst');
+  const srcLNClass = extRef.getAttribute('srcLNClass') ?? 'LLN0';
+
+  return `${srcIedName}${srcPrefix}${srcLDInst}/${srcLNClass}.${srcCBName}`;
+}
+
 /** Returns the subscriber's supervision LN for a given control block and extRef element
  *
  * @param extRef - The extRef SCL element in the subscribing IED.
@@ -581,31 +595,49 @@ export function getFirstSubscribedExtRef(
 export function getExistingSupervision(extRef: Element | null): Element | null {
   if (extRef === null) return null;
 
-  const extRefValues = ['iedName', 'serviceType', 'srcPrefix', 'srcCBName'];
-  const [srcIedName, serviceType, srcPrefix, srcCBName] = extRefValues.map(
-    attr => extRef.getAttribute(attr) ?? ''
-  );
-
-  const supervisionType = serviceType === 'GOOSE' ? 'LGOS' : 'LSVS';
+  // TODO: This seems inadequate. ServiceType may not be defined but we could search
+  // both LGOS and LSVS instances.
+  const supervisionType =
+    extRef.getAttribute('serviceType') === 'GOOSE' ? 'LGOS' : 'LSVS';
   const refSelector =
     supervisionType === 'LGOS' ? 'DOI[name="GoCBRef"]' : 'DOI[name="SvCBRef"]';
 
-  const srcLDInst =
-    extRef.getAttribute('srcLDInst') ?? extRef.getAttribute('ldInst');
-  const srcLNClass = extRef.getAttribute('srcLNClass') ?? 'LLN0';
-
-  const cbReference = `${srcIedName}${srcPrefix}${srcLDInst}/${srcLNClass}.${srcCBName}`;
   const iedName = extRef.closest('IED')?.getAttribute('name');
 
   const candidates = Array.from(
     extRef.ownerDocument
       .querySelector(`IED[name="${iedName}"]`)!
       .querySelectorAll(
-        `LN[lnClass="${supervisionType}"]>${refSelector}>DAI[name="setSrcRef"]>Val`
+        `LDevice > LN[lnClass="${supervisionType}"]>${refSelector}>DAI[name="setSrcRef"]>Val`
       )
-  ).find(val => val.textContent === cbReference);
+  ).find(val => val.textContent === getCbReference(extRef));
 
   return candidates !== undefined ? candidates.closest('LN')! : null;
+}
+
+// TODO: Update me
+/** Returns the subscriber's supervision LN for a given control block and extRef element
+ *
+ * @param extRef - The extRef SCL element in the subscribing IED.
+ * @returns The supervision LN instance or null if not found
+ */
+export function getUsedSupervisionInstances(
+  element: Document,
+  serviceType: string
+): Element[] {
+  const supervisionType = serviceType === 'GOOSE' ? 'LGOS' : 'LSVS';
+  const refSelector =
+    supervisionType === 'LGOS' ? 'DOI[name="GoCBRef"]' : 'DOI[name="SvCBRef"]';
+
+  const supervisionInstances = Array.from(
+    element!.querySelectorAll(
+      `IED LDevice > LN[lnClass="${supervisionType}"]>${refSelector}>DAI[name="setSrcRef"]>Val`
+    )
+  )
+    .filter(val => val.textContent !== '')
+    .map(val => val.closest('LN')!);
+
+  return supervisionInstances;
 }
 
 /**
@@ -734,6 +766,9 @@ export function createExtRefElement(
     'daName',
   ].map(attr => fcdaElement.getAttribute(attr));
 
+  // TODO: This appears to remove any attributes not specified.
+  // For example it seems that for instance the pDO, pLN, pDA and
+  // pServT would not be retained in the code that follows.
   if (getSclSchemaVersion(fcdaElement.ownerDocument) === '2003') {
     // Edition 2003(1) does not define serviceType and its MCD attribute starting with src...
     return createElement(fcdaElement.ownerDocument, 'ExtRef', {
@@ -789,19 +824,19 @@ export function createExtRefElement(
 }
 
 /**
- * Create a clone of the passed ExtRefElement and updated or set the required attributes on the cloned element
+ * Update the passed ExtRefElement and set the required attributes on the cloned element
  * depending on the Edition and type of Control Element.
  *
  * @param extRefElement  - The ExtRef Element to clone and update.
  * @param controlElement - `ReportControl`, `GSEControl` or `SampledValueControl` source element
  * @param fcdaElement    - The source data attribute element.
- * @returns A cloned ExtRef Element with updated information to be used for example in a Replace Action.
+ * @returns An Update Action for the ExtRefElement.
  */
 export function updateExtRefElement(
   extRefElement: Element,
   controlElement: Element | undefined,
   fcdaElement: Element
-): Element {
+): Update {
   const iedName = fcdaElement.closest('IED')?.getAttribute('name') ?? null;
   const [ldInst, prefix, lnClass, lnInst, doName, daName] = [
     'ldInst',
@@ -811,29 +846,34 @@ export function updateExtRefElement(
     'doName',
     'daName',
   ].map(attr => fcdaElement.getAttribute(attr));
+  const intAddr = extRefElement.getAttribute('intAddr');
+  const desc = extRefElement.getAttribute('desc') ?? '';
 
+  // TODO: This appears to remove any elements not specified. Once moved to the new Edit API this will not be
+  // a problem as the Update action is not lossy. However it seems that for instance the pDO, pLN, pDA and
+  // pServT would not be retained in the code that follows.
+  // However this was also an issue with the previous Replace Action.
   if (getSclSchemaVersion(fcdaElement.ownerDocument) === '2003') {
     // Edition 2003(1) does not define serviceType and its MCD attribute starting with src...
-    return cloneElement(extRefElement, {
+
+    return createUpdateAction(extRefElement, {
+      intAddr,
+      desc,
       iedName,
-      serviceType: null,
       ldInst,
       lnClass,
       lnInst,
       prefix,
       doName,
       daName,
-      srcLDInst: null,
-      srcPrefix: null,
-      srcLNClass: null,
-      srcLNInst: null,
-      srcCBName: null,
     });
   }
 
   if (!controlElement || !serviceTypes[controlElement.tagName]) {
     //for invalid control block tag name assume polling
-    return cloneElement(extRefElement, {
+    return createUpdateAction(extRefElement, {
+      intAddr,
+      desc,
       iedName,
       serviceType: 'Poll',
       ldInst,
@@ -842,11 +882,6 @@ export function updateExtRefElement(
       prefix,
       doName,
       daName,
-      srcLDInst: null,
-      srcPrefix: null,
-      srcLNClass: null,
-      srcLNInst: null,
-      srcCBName: null,
     });
   }
 
@@ -859,7 +894,9 @@ export function updateExtRefElement(
   const srcLNInst = controlElement.closest('LN0,LN')?.getAttribute('inst');
   const srcCBName = controlElement.getAttribute('name') ?? '';
 
-  return cloneElement(extRefElement, {
+  return createUpdateAction(extRefElement, {
+    intAddr,
+    desc,
     iedName,
     serviceType: serviceTypes[controlElement.tagName]!,
     ldInst,
@@ -871,7 +908,7 @@ export function updateExtRefElement(
     srcLDInst,
     srcPrefix,
     srcLNClass,
-    srcLNInst: srcLNInst ? srcLNInst : null,
+    ...(srcLNInst && { srcLNInst }),
     srcCBName,
   });
 }

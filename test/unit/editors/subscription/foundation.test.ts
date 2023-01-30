@@ -53,7 +53,7 @@ describe('foundation', () => {
       expect(newExtRefElement).to.not.have.attribute('srcCBName');
     });
 
-    it('when update a ExtRef Element for a Sampled Value Control then correct attributes are copied', () => {
+    it('when updating a ExtRef Element for a Sampled Value Control then correct attributes are copied', () => {
       const extRefElement = doc.querySelector(
         'IED[name="SMV_Subscriber"] ExtRef[intAddr="VolSv;TVTR3/VolSv/q"]'
       );
@@ -65,29 +65,27 @@ describe('foundation', () => {
           '> FCDA[ldInst="VoltageTransformer"][prefix="L3"][lnClass="TVTR"][lnInst="1"][doName="VolSv"][daName="q"][fc="MX"]'
       );
 
-      const clonedExtRefElement = updateExtRefElement(
+      const updateExtRefAction = updateExtRefElement(
         extRefElement!,
         controlElement!,
         fcdaElement!
       );
 
-      expect(clonedExtRefElement).to.be.not.equal(extRefElement);
-      expect(clonedExtRefElement).to.have.attribute('iedName', 'SMV_Publisher');
-      expect(clonedExtRefElement).to.not.have.attribute('serviceType');
-      expect(clonedExtRefElement).to.have.attribute(
-        'ldInst',
-        'VoltageTransformer'
-      );
-      expect(clonedExtRefElement).to.have.attribute('lnClass', 'TVTR');
-      expect(clonedExtRefElement).to.have.attribute('lnInst', '1');
-      expect(clonedExtRefElement).to.have.attribute('prefix', 'L3');
-      expect(clonedExtRefElement).to.have.attribute('doName', 'VolSv');
-      expect(clonedExtRefElement).to.have.attribute('daName', 'q');
-      expect(clonedExtRefElement).to.not.have.attribute('srcLDInst');
-      expect(clonedExtRefElement).to.not.have.attribute('srcPrefix');
-      expect(clonedExtRefElement).to.not.have.attribute('srcLNClass');
-      expect(clonedExtRefElement).to.not.have.attribute('srcLNInst');
-      expect(clonedExtRefElement).to.not.have.attribute('srcCBName');
+      const newAttributes = updateExtRefAction.newAttributes;
+      expect(updateExtRefAction.element).to.be.equal(extRefElement);
+      expect(newAttributes).to.have.property('iedName', 'SMV_Publisher');
+      expect(newAttributes).to.not.have.property('serviceType');
+      expect(newAttributes).to.have.property('ldInst', 'VoltageTransformer');
+      expect(newAttributes).to.have.property('lnClass', 'TVTR');
+      expect(newAttributes).to.have.property('lnInst', '1');
+      expect(newAttributes).to.have.property('prefix', 'L3');
+      expect(newAttributes).to.have.property('doName', 'VolSv');
+      expect(newAttributes).to.have.property('daName', 'q');
+      expect(newAttributes).to.not.have.property('srcLDInst');
+      expect(newAttributes).to.not.have.property('srcPrefix');
+      expect(newAttributes).to.not.have.property('srcLNClass');
+      expect(newAttributes).to.not.have.property('srcLNInst');
+      expect(newAttributes).to.not.have.property('srcCBName');
     });
   });
 
@@ -146,32 +144,27 @@ describe('foundation', () => {
           '> FCDA[ldInst="VoltageTransformer"][prefix="L3"][lnClass="TVTR"][lnInst="1"][doName="VolSv"][daName="q"][fc="MX"]'
       );
 
-      const clonedExtRefElement = updateExtRefElement(
+      const updateExtRefAction = updateExtRefElement(
         extRefElement!,
         controlElement!,
         fcdaElement!
       );
 
-      expect(clonedExtRefElement).to.be.not.equal(extRefElement);
-      expect(clonedExtRefElement).to.have.attribute('iedName', 'SMV_Publisher');
-      expect(clonedExtRefElement).to.have.attribute('serviceType', 'SMV');
-      expect(clonedExtRefElement).to.have.attribute(
-        'ldInst',
-        'VoltageTransformer'
-      );
-      expect(clonedExtRefElement).to.have.attribute('lnClass', 'TVTR');
-      expect(clonedExtRefElement).to.have.attribute('lnInst', '1');
-      expect(clonedExtRefElement).to.have.attribute('prefix', 'L3');
-      expect(clonedExtRefElement).to.have.attribute('doName', 'VolSv');
-      expect(clonedExtRefElement).to.have.attribute('daName', 'q');
-      expect(clonedExtRefElement).to.have.attribute(
-        'srcLDInst',
-        'CurrentTransformer'
-      );
-      expect(clonedExtRefElement).to.have.attribute('srcPrefix', '');
-      expect(clonedExtRefElement).to.have.attribute('srcLNClass', 'LLN0');
-      expect(clonedExtRefElement).to.not.have.attribute('srcLNInst');
-      expect(clonedExtRefElement).to.have.attribute('srcCBName', 'voltageOnly');
+      const newAttributes = updateExtRefAction.newAttributes;
+      expect(updateExtRefAction.element).to.be.equal(extRefElement);
+      expect(newAttributes).to.have.property('iedName', 'SMV_Publisher');
+      expect(newAttributes).to.have.property('serviceType', 'SMV');
+      expect(newAttributes).to.have.property('ldInst', 'VoltageTransformer');
+      expect(newAttributes).to.have.property('lnClass', 'TVTR');
+      expect(newAttributes).to.have.property('lnInst', '1');
+      expect(newAttributes).to.have.property('prefix', 'L3');
+      expect(newAttributes).to.have.property('doName', 'VolSv');
+      expect(newAttributes).to.have.property('daName', 'q');
+      expect(newAttributes).to.have.property('srcLDInst', 'CurrentTransformer');
+      expect(newAttributes).to.have.property('srcPrefix', '');
+      expect(newAttributes).to.have.property('srcLNClass', 'LLN0');
+      expect(newAttributes).to.not.have.property('srcLNInst');
+      expect(newAttributes).to.have.property('srcCBName', 'voltageOnly');
     });
   });
 

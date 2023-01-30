@@ -4,7 +4,6 @@ import {
   html,
   LitElement,
   property,
-  PropertyValues,
   state,
   TemplateResult,
 } from 'lit-element';
@@ -44,20 +43,21 @@ type iconLookup = Record<controlTag, SVGTemplateResult>;
  */
 @customElement('fcda-binding-list')
 export class FcdaBindingList extends LitElement {
-  @property({ attribute: false })
+  @property()
   doc!: XMLDocument;
   @property()
   controlTag!: controlTag;
   @property()
   includeLaterBinding!: boolean;
+  @property({ attribute: true })
+  subscriberview!: boolean;
 
-  // The selected Elements when a FCDA Line is clicked.
-  @state()
-  private selectedControlElement: Element | undefined;
-  @state()
-  private selectedFcdaElement: Element | undefined;
   @state()
   private extRefCounters = new Map();
+
+  // The selected elements when a FCDA Line is clicked.
+  private selectedControlElement: Element | undefined;
+  private selectedFcdaElement: Element | undefined;
 
   private iconControlLookup: iconLookup = {
     SampledValueControl: smvIcon,
@@ -99,6 +99,10 @@ export class FcdaBindingList extends LitElement {
   }
 
   private resetExtRefCount(event: SubscriptionChangedEvent): void {
+    console.log('received SubscriptionChangedEvent');
+    if (!this.subscriberview) {
+      this.resetSelection();
+    }
     if (event.detail.control && event.detail.fcda) {
       const controlBlockFcdaId = `${identity(event.detail.control)} ${identity(
         event.detail.fcda
@@ -138,34 +142,11 @@ export class FcdaBindingList extends LitElement {
   }
 
   private onFcdaSelect(controlElement: Element, fcdaElement: Element) {
-    this.resetSelection();
-
     this.selectedControlElement = controlElement;
     this.selectedFcdaElement = fcdaElement;
-  }
-
-  protected updated(_changedProperties: PropertyValues): void {
-    super.updated(_changedProperties);
-
-    // When a new document is loaded or the selection is changed
-    // we will fire the FCDA Select Event.
-    if (
-      _changedProperties.has('doc') ||
-      _changedProperties.has('selectedControlElement') ||
-      _changedProperties.has('selectedFcdaElement')
-    ) {
-      this.dispatchEvent(
-        newFcdaSelectEvent(
-          this.selectedControlElement,
-          this.selectedFcdaElement
-        )
-      );
-    }
-
-    // When a new document is loaded we will reset the Map to clear old entries.
-    if (_changedProperties.has('doc')) {
-      this.extRefCounters = new Map();
-    }
+    this.dispatchEvent(
+      newFcdaSelectEvent(this.selectedControlElement, this.selectedFcdaElement)
+    );
   }
 
   renderFCDA(controlElement: Element, fcdaElement: Element): TemplateResult {
@@ -175,7 +156,9 @@ export class FcdaBindingList extends LitElement {
       ?hasMeta=${fcdaCount !== 0}
       twoline
       class="subitem"
-      @click=${() => this.onFcdaSelect(controlElement, fcdaElement)}
+      @click=${() => {
+        this.onFcdaSelect(controlElement, fcdaElement);
+      }}
       value="${identity(controlElement)}
              ${identity(fcdaElement)}"
     >
@@ -186,16 +169,30 @@ export class FcdaBindingList extends LitElement {
     </mwc-list-item>`;
   }
 
+  renderTitle(): TemplateResult {
+    return html`<h1>
+      ${translate(`subscription.${this.controlTag}.controlBlockList.title`)}
+      ${!this.subscriberview && this.includeLaterBinding
+        ? html`<mwc-icon-button
+            icon="alt_route"
+            title="${translate(
+              `subscription.laterBinding.switchControlBlockView`
+            )}"
+            @click=${() =>
+              this.dispatchEvent(
+                new Event('change-view', { bubbles: true, composed: true })
+              )}
+          ></mwc-icon-button>`
+        : nothing}
+    </h1>`;
+  }
+
   render(): TemplateResult {
     const controlElements = this.getControlElements();
     return html` <section tabindex="0">
       ${controlElements.length > 0
-        ? html`<h1>
-              ${translate(
-                `subscription.${this.controlTag}.controlBlockList.title`
-              )}
-            </h1>
-            <filtered-list activatable>
+        ? html`${this.renderTitle()}
+            <filtered-list ?activatable=${!this.subscriberview}>
               ${controlElements.map(controlElement => {
                 const fcdaElements = this.getFcdaElements(controlElement);
                 return html`
@@ -238,16 +235,25 @@ export class FcdaBindingList extends LitElement {
                 `;
               })}
             </filtered-list>`
-        : html`<h1>
-            ${translate(
-              `subscription.${this.controlTag}.controlBlockList.noControlBlockFound`
-            )}
-          </h1>`}
+        : html`${this.renderTitle()}
+            <h3>
+              ${translate(
+                `subscription.${this.controlTag}.controlBlockList.noControlBlockFound`
+              )}
+            </h3>`}
     </section>`;
   }
 
   static styles = css`
     ${styles}
+
+    h3 {
+      color: var(--mdc-theme-on-surface);
+      font-family: 'Roboto', sans-serif;
+      font-weight: 300;
+      margin: 4px 8px 16px;
+      padding-left: 0.3em;
+    }
 
     mwc-list-item.hidden[noninteractive] + li[divider] {
       display: none;

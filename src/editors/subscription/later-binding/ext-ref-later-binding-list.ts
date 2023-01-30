@@ -12,8 +12,10 @@ import { get, translate } from 'lit-translate';
 
 import {
   cloneElement,
-  ComplexAction,
+  createUpdateAction,
   Delete,
+  findControlBlocks,
+  findFCDAs,
   getDescriptionAttribute,
   identity,
   newActionEvent,
@@ -126,14 +128,9 @@ export class ExtRefLaterBindingList extends LitElement {
    * @param extRefElement - The Ext Ref Element to clean from attributes.
    */
   private unsubscribe(extRefElement: Element): void {
-    if (
-      !this.currentIedElement ||
-      !this.currentSelectedFcdaElement ||
-      !this.currentSelectedControlElement!
-    ) {
-      return;
-    }
-    const clonedExtRefElement = cloneElement(extRefElement, {
+    const updateAction = createUpdateAction(extRefElement, {
+      intAddr: extRefElement.getAttribute('intAddr'),
+      desc: extRefElement.getAttribute('desc'),
       iedName: null,
       ldInst: null,
       prefix: null,
@@ -149,31 +146,27 @@ export class ExtRefLaterBindingList extends LitElement {
       srcCBName: null,
     });
 
-    const replaceAction = {
-      old: { element: extRefElement },
-      new: { element: clonedExtRefElement },
-    };
-
     const subscriberIed = extRefElement.closest('IED') || undefined;
+    const fcdaElements = findFCDAs(extRefElement);
     const removeSubscriptionActions: Delete[] = [];
+    const controlBlock =
+      Array.from(findControlBlocks(extRefElement))[0] ?? undefined;
     if (canRemoveSubscriptionSupervision(extRefElement))
       removeSubscriptionActions.push(
-        ...removeSubscriptionSupervision(
-          this.currentSelectedControlElement,
-          subscriberIed
-        )
+        ...removeSubscriptionSupervision(controlBlock, subscriberIed)
       );
 
     this.dispatchEvent(
       newActionEvent({
         title: get(`subscription.disconnect`),
-        actions: [replaceAction, ...removeSubscriptionActions],
+        actions: [updateAction, ...removeSubscriptionActions],
       })
     );
+
     this.dispatchEvent(
       newSubscriptionChangedEvent(
-        this.currentSelectedControlElement,
-        this.currentSelectedFcdaElement
+        controlBlock,
+        fcdaElements.length !== 0 ? fcdaElements[0] : undefined
       )
     );
   }
@@ -192,33 +185,25 @@ export class ExtRefLaterBindingList extends LitElement {
       return;
     }
 
-    const complexAction: ComplexAction = {
-      actions: [],
-      title: get(`subscription.connect`),
-    };
-
-    const replaceAction = {
-      old: { element: extRefElement },
-      new: {
-        element: updateExtRefElement(
-          extRefElement,
-          this.currentSelectedControlElement,
-          this.currentSelectedFcdaElement
-        ),
-      },
-    };
-    complexAction.actions.push(replaceAction);
+    const updateAction = updateExtRefElement(
+      extRefElement,
+      this.currentSelectedControlElement,
+      this.currentSelectedFcdaElement
+    );
 
     const subscriberIed = extRefElement.closest('IED') || undefined;
 
-    complexAction.actions.push(
-      ...instantiateSubscriptionSupervision(
-        this.currentSelectedControlElement,
-        subscriberIed
-      )
+    const supervisionActions = instantiateSubscriptionSupervision(
+      this.currentSelectedControlElement,
+      subscriberIed
     );
 
-    this.dispatchEvent(newActionEvent(complexAction));
+    this.dispatchEvent(
+      newActionEvent({
+        title: get(`subscription.connect`),
+        actions: [updateAction, ...supervisionActions],
+      })
+    );
     this.dispatchEvent(
       newSubscriptionChangedEvent(
         this.currentSelectedControlElement,
@@ -277,7 +262,7 @@ export class ExtRefLaterBindingList extends LitElement {
           ? ` (${identity(supervisionNode)})`
           : ''}</span
       >
-      <mwc-icon slot="graphic">swap_horiz</mwc-icon>
+      <mwc-icon slot="graphic">link</mwc-icon>
       ${supervisionNode !== null
         ? html`<mwc-icon title="${identity(supervisionNode)}" slot="meta"
             >monitor_heart</mwc-icon
@@ -352,7 +337,7 @@ export class ExtRefLaterBindingList extends LitElement {
               <span slot="secondary"
                 >${identity(extRefElement.parentElement)}</span
               >
-              <mwc-icon slot="graphic">arrow_back</mwc-icon>
+              <mwc-icon slot="graphic">link_off</mwc-icon>
             </mwc-list-item>`
           )}`
         : html`<mwc-list-item graphic="large" noninteractive>
