@@ -6,6 +6,13 @@ snapshots["transformer-winding-editor with children when EqFunction elements are
   label="some"
   tabindex="0"
 >
+  <abbr
+    slot="action"
+    title="[edit]"
+  >
+    <mwc-icon-button icon="edit">
+    </mwc-icon-button>
+  </abbr>
   <div class="container lnode">
     <l-node-editor>
     </l-node-editor>
@@ -21,6 +28,13 @@ snapshots["transformer-winding-editor with children when hiding EqFunction eleme
   label="some"
   tabindex="0"
 >
+  <abbr
+    slot="action"
+    title="[edit]"
+  >
+    <mwc-icon-button icon="edit">
+    </mwc-icon-button>
+  </abbr>
   <div class="container lnode">
     <l-node-editor>
     </l-node-editor>
@@ -34,6 +48,13 @@ snapshots["transformer-winding-editor without children looks like the latest sna
   label="empty"
   tabindex="0"
 >
+  <abbr
+    slot="action"
+    title="[edit]"
+  >
+    <mwc-icon-button icon="edit">
+    </mwc-icon-button>
+  </abbr>
 </action-pane>
 `;
 /* end snapshot transformer-winding-editor without children looks like the latest snapshot */
