@@ -56,6 +56,11 @@ export class ExtRefLaterBindingList extends LitElement {
   @state()
   currentIedElement: Element | undefined;
 
+  serviceTypeLookup = {
+    GSEControl: 'GOOSE',
+    SampledValueControl: 'SMV',
+  };
+
   constructor() {
     super();
 
@@ -232,7 +237,13 @@ export class ExtRefLaterBindingList extends LitElement {
       <Element>this.doc.getRootNode(),
       this.currentSelectedFcdaElement,
       true
-    ).filter(extRefElement => !isSubscribed(extRefElement));
+    ).filter(
+      extRefElement =>
+        !isSubscribed(extRefElement) &&
+        (!extRefElement.hasAttribute('serviceType') ||
+          extRefElement.getAttribute('serviceType') ===
+            this.serviceTypeLookup[this.controlTag])
+    );
   }
 
   private renderTitle(): TemplateResult {
