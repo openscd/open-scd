@@ -5,6 +5,7 @@ import {
   LitElement,
   property,
   PropertyValues,
+  query,
   state,
   TemplateResult,
 } from 'lit-element';
@@ -14,6 +15,10 @@ import { translate } from 'lit-translate';
 import '@material/mwc-icon';
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-list/mwc-check-list-item';
+import '@material/mwc-menu';
+import { Menu } from '@material/mwc-menu';
+import { Icon } from '@material/mwc-icon';
 
 import {
   getDescriptionAttribute,
@@ -32,6 +37,7 @@ import {
   SubscriptionChangedEvent,
 } from './foundation.js';
 import { getSubscribedExtRefElements } from './later-binding/foundation.js';
+import { classMap } from 'lit-html/directives/class-map.js';
 
 type controlTag = 'SampledValueControl' | 'GSEControl';
 
@@ -58,6 +64,14 @@ export class FcdaBindingList extends LitElement {
   private selectedFcdaElement: Element | undefined;
   @state()
   private extRefCounters = new Map();
+
+  @query('.actions-menu') actionsMenu!: Menu;
+  @query('.actions-menu-icon') actionsMenuIcon!: Icon;
+
+  @property({ attribute: false })
+  filterSubscribed = false;
+  @property({ attribute: false })
+  filterUnsubscribed = false;
 
   private iconControlLookup: iconLookup = {
     SampledValueControl: smvIcon,
@@ -170,6 +184,14 @@ export class FcdaBindingList extends LitElement {
 
   renderFCDA(controlElement: Element, fcdaElement: Element): TemplateResult {
     const fcdaCount = this.getExtRefCount(fcdaElement, controlElement);
+
+    // if filtered out, do not show
+    if (
+      (this.filterSubscribed && fcdaCount === 0) ||
+      (this.filterUnsubscribed && fcdaCount !== 0)
+    )
+      return html``;
+
     return html`<mwc-list-item
       graphic="large"
       ?hasMeta=${fcdaCount !== 0}
@@ -186,14 +208,72 @@ export class FcdaBindingList extends LitElement {
     </mwc-list-item>`;
   }
 
+  protected firstUpdated(): void {
+    this.actionsMenu.anchor = <HTMLElement>this.actionsMenuIcon;
+
+    this.actionsMenu.addEventListener('closed', () => {
+      this.filterSubscribed = (<Set<number>>this.actionsMenu.index).has(0);
+      this.filterUnsubscribed = (<Set<number>>this.actionsMenu.index).has(1);
+
+      // reset filters if all selected = no filtering
+      if (this.filterSubscribed && this.filterUnsubscribed) {
+        this.actionsMenu
+          .querySelector('.filter-subscribed')
+          ?.removeAttribute('selected');
+        this.actionsMenu
+          .querySelector('.filter-unsubscribed')
+          ?.removeAttribute('selected');
+        this.filterSubscribed = false;
+        this.filterUnsubscribed = false;
+      }
+    });
+  }
+
   render(): TemplateResult {
+    console.log(this.filterSubscribed, this.filterUnsubscribed);
     const controlElements = this.getControlElements();
+    const menuClasses = {
+      'filter-on': this.filterSubscribed || this.filterUnsubscribed,
+    };
     return html` <section tabindex="0">
       ${controlElements.length > 0
         ? html`<h1>
               ${translate(
                 `subscription.${this.controlTag}.controlBlockList.title`
               )}
+              <mwc-icon-button
+                class="actions-menu-icon ${classMap(menuClasses)}"
+                icon="filter_list"
+                @click=${() => {
+                  if (!this.actionsMenu.open) this.actionsMenu.show();
+                  else this.actionsMenu.close();
+                }}
+              ></mwc-icon-button>
+              <mwc-menu
+                multi
+                class="actions-menu"
+                corner="BOTTOM_RIGHT"
+                menuCorner="END"
+              >
+                <mwc-check-list-item
+                  class="filter-subscribed"
+                  left
+                  @click=${() => {
+                    this.actionsMenu.close();
+                  }}
+                >
+                  <span>Subscribed</span>
+                </mwc-check-list-item>
+                <mwc-check-list-item
+                  class="filter-unsubscribed"
+                  left
+                  @click=${() => {
+                    this.actionsMenu.close();
+                  }}
+                >
+                  <span>Unsubscribed</span>
+                </mwc-check-list-item>
+              </mwc-menu>
             </h1>
             <filtered-list activatable>
               ${controlElements.map(controlElement => {
@@ -255,6 +335,19 @@ export class FcdaBindingList extends LitElement {
 
     mwc-list-item {
       --mdc-list-item-meta-size: 48px;
+    }
+
+    section {
+      position: relative;
+    }
+
+    .actions-menu-icon {
+      float: right;
+    }
+
+    .actions-menu-icon.filter-on {
+      color: var(--secondary);
+      background-color: var(--mdc-theme-background);
     }
 
     .interactive {
