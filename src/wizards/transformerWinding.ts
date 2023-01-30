@@ -55,7 +55,6 @@ export function contentTransformerWindingWizard(
       .maybeValue=${content.name}
       helper="${translate('scl.name')}"
       required
-      minLength="${1}"
       validationMessage="${translate('textfield.required')}"
       .reservedValues=${content.reservedNames}
       dialogInitialFocus

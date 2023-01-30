@@ -13,7 +13,6 @@ snapshots["Wizards for SCL TransformerWinding element define an edit wizard that
       dialoginitialfocus=""
       helper="[scl.name]"
       label="name"
-      minlength="1"
       required=""
       validationmessage="[textfield.required]"
     >
