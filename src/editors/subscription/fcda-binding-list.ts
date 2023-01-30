@@ -71,7 +71,7 @@ export class FcdaBindingList extends LitElement {
   @property({ attribute: false })
   filterSubscribed = false;
   @property({ attribute: false })
-  filterUnsubscribed = false;
+  filterNotSubscribed = false;
 
   private iconControlLookup: iconLookup = {
     SampledValueControl: smvIcon,
@@ -188,7 +188,7 @@ export class FcdaBindingList extends LitElement {
     // if filtered out, do not show
     if (
       (this.filterSubscribed && fcdaCount === 0) ||
-      (this.filterUnsubscribed && fcdaCount !== 0)
+      (this.filterNotSubscribed && fcdaCount !== 0)
     )
       return html``;
 
@@ -213,27 +213,27 @@ export class FcdaBindingList extends LitElement {
 
     this.actionsMenu.addEventListener('closed', () => {
       this.filterSubscribed = (<Set<number>>this.actionsMenu.index).has(0);
-      this.filterUnsubscribed = (<Set<number>>this.actionsMenu.index).has(1);
+      this.filterNotSubscribed = (<Set<number>>this.actionsMenu.index).has(1);
 
       // reset filters if all selected = no filtering
-      if (this.filterSubscribed && this.filterUnsubscribed) {
+      if (this.filterSubscribed && this.filterNotSubscribed) {
         this.actionsMenu
           .querySelector('.filter-subscribed')
           ?.removeAttribute('selected');
         this.actionsMenu
-          .querySelector('.filter-unsubscribed')
+          .querySelector('.filter-not-subscribed')
           ?.removeAttribute('selected');
         this.filterSubscribed = false;
-        this.filterUnsubscribed = false;
+        this.filterNotSubscribed = false;
       }
     });
   }
 
   render(): TemplateResult {
-    console.log(this.filterSubscribed, this.filterUnsubscribed);
+    console.log(this.filterSubscribed, this.filterNotSubscribed);
     const controlElements = this.getControlElements();
     const menuClasses = {
-      'filter-on': this.filterSubscribed || this.filterUnsubscribed,
+      'filter-on': this.filterSubscribed || this.filterNotSubscribed,
     };
     return html` <section tabindex="0">
       ${controlElements.length > 0
@@ -262,16 +262,20 @@ export class FcdaBindingList extends LitElement {
                     this.actionsMenu.close();
                   }}
                 >
-                  <span>Subscribed</span>
+                  <span
+                    >${translate('subscription.subscriber.subscribed')}</span
+                  >
                 </mwc-check-list-item>
                 <mwc-check-list-item
-                  class="filter-unsubscribed"
+                  class="filter-not-subscribed"
                   left
                   @click=${() => {
                     this.actionsMenu.close();
                   }}
                 >
-                  <span>Unsubscribed</span>
+                  <span
+                    >${translate('subscription.subscriber.notSubscribed')}</span
+                  >
                 </mwc-check-list-item>
               </mwc-menu>
             </h1>
