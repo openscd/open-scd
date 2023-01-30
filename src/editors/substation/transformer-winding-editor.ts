@@ -7,6 +7,8 @@ import {
   TemplateResult,
 } from 'lit-element';
 
+import { translate } from 'lit-translate';
+
 import '@material/mwc-fab';
 import '@material/mwc-icon';
 import '@material/mwc-icon-button';
@@ -16,7 +18,8 @@ import '../../action-icon.js';
 import '../../action-pane.js';
 
 import { styles } from './foundation.js';
-import { getChildElementsByTagName } from '../../foundation.js';
+import { getChildElementsByTagName, newWizardEvent } from '../../foundation.js';
+import { wizards } from '../../wizards/wizard-library.js';
 
 @customElement('transformer-winding-editor')
 export class TransformerWindingEditor extends LitElement {
@@ -46,6 +49,11 @@ export class TransformerWindingEditor extends LitElement {
     }`;
 
     return `${name}${description}`;
+  }
+
+  openEditWizard(): void {
+    const wizard = wizards['TransformerWinding'].edit(this.element);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
   private renderLNodes(): TemplateResult {
@@ -81,6 +89,12 @@ export class TransformerWindingEditor extends LitElement {
 
   render(): TemplateResult {
     return html`<action-pane label="${this.label}">
+      <abbr slot="action" title="${translate('edit')}">
+        <mwc-icon-button
+          icon="edit"
+          @click=${() => this.openEditWizard()}
+        ></mwc-icon-button>
+      </abbr>
       ${this.renderLNodes()} ${this.renderEqFunctions()}
     </action-pane> `;
   }
