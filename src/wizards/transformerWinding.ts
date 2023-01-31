@@ -3,6 +3,7 @@ import { get, translate } from 'lit-translate';
 
 import {
   cloneElement,
+  createElement,
   getChildElementsByTagName,
   getValue,
   SimpleAction,
@@ -10,6 +11,56 @@ import {
   WizardActor,
   WizardInputElement,
 } from '../foundation.js';
+
+function createTransformerWindingAction(parent: Element): WizardActor {
+  return (inputs: WizardInputElement[]) => {
+    const transformerWindingAttrs: Record<string, string | null> = {};
+    const transformerWindingKeys = ['name', 'desc', 'type', 'virtual'];
+    transformerWindingKeys.forEach(key => {
+      transformerWindingAttrs[key] = getValue(
+        inputs.find(i => i.label === key)!
+      );
+    });
+
+    const transformerWinding = createElement(
+      parent.ownerDocument,
+      'TransformerWinding',
+      transformerWindingAttrs
+    );
+
+    return [{ new: { parent, element: transformerWinding } }];
+  };
+}
+
+export function createTransformerWindingWizard(parent: Element): Wizard {
+  const name = '';
+  const desc = null;
+  const type = null;
+  const virtual = null;
+  const reservedNames = Array.from(
+    parent.querySelectorAll('TransformerWinding')
+  ).map(TransformerWinding => TransformerWinding.getAttribute('name')!);
+
+  return [
+    {
+      title: get('wizard.title.add', { tagName: 'TransformerWinding' }),
+      primary: {
+        icon: 'save',
+        label: get('save'),
+        action: createTransformerWindingAction(parent),
+      },
+      content: [
+        ...contentTransformerWindingWizard({
+          name,
+          desc,
+          type,
+          virtual,
+          reservedNames,
+        }),
+      ],
+    },
+  ];
+}
 
 function updateTransformerWindingAction(element: Element): WizardActor {
   return (inputs: WizardInputElement[]): SimpleAction[] => {
