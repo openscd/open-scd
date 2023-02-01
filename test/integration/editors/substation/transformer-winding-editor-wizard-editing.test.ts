@@ -29,7 +29,9 @@ describe('transformer-winding-editor wizarding editing integration', () => {
         await fixture(
           html`<mock-wizard-editor
             ><transformer-winding-editor
-              .element=${doc.querySelector('TransformerWinding[name="some"]')}
+              .element=${doc.querySelector(
+                'PowerTransformer[name="pTransVolt"] > TransformerWinding[name="some"]'
+              )}
             ></transformer-winding-editor
           ></mock-wizard-editor>`
         )
@@ -70,7 +72,9 @@ describe('transformer-winding-editor wizarding editing integration', () => {
       await parent.updateComplete;
       expect(
         doc
-          .querySelector('TransformerWinding[name="some"]')
+          .querySelector(
+            'PowerTransformer[name="pTransVolt"] > TransformerWinding[name="some"]'
+          )
           ?.getAttribute('name')
       ).to.equal(oldName);
     });
@@ -83,7 +87,9 @@ describe('transformer-winding-editor wizarding editing integration', () => {
       await parent.updateComplete;
       expect(
         doc
-          .querySelector('TransformerWinding[name="some"]')
+          .querySelector(
+            'PowerTransformer[name="pTransVolt"] > TransformerWinding[name="some"]'
+          )
           ?.getAttribute('desc')
       ).to.equal('newDesc');
     });
@@ -99,7 +105,9 @@ describe('transformer-winding-editor wizarding editing integration', () => {
       await parent.updateComplete;
       expect(
         doc
-          .querySelector('TransformerWinding[name="some"]')
+          .querySelector(
+            'PowerTransformer[name="pTransVolt"] > TransformerWinding[name="some"]'
+          )
           ?.getAttribute('virtual')
       ).to.equal('true');
     });
@@ -115,12 +123,19 @@ describe('transformer-winding-editor wizarding editing integration', () => {
       });
 
       it('removes the attached TransformerWinding element from the document', async () => {
-        expect(doc.querySelector('TransformerWinding[name="some"]')).to.exist;
-        console.log(deleteButton);
+        expect(
+          doc.querySelector(
+            'PowerTransformer[name="pTransVolt"] > TransformerWinding[name="some"]'
+          )
+        ).to.exist;
+
         await deleteButton.click();
 
-        //expect(doc.querySelector('TransformerWinding[name="some"]')).to.not
-        //  .exist;
+        expect(
+          doc.querySelector(
+            'PowerTransformer[name="pTransVolt"] > TransformerWinding[name="some"]'
+          )
+        ).to.not.exist;
       });
     });
   });
