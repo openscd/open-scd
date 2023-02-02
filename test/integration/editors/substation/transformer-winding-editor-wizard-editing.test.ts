@@ -3,10 +3,49 @@ import { expect, fixture, html } from '@open-wc/testing';
 import '../../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../../mock-wizard-editor.js';
 
+import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
+
 import '../../../../src/editors/substation/transformer-winding-editor.js';
 import { TransformerWindingEditor } from '../../../../src/editors/substation/transformer-winding-editor.js';
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
 import { WizardCheckbox } from '../../../../src/wizard-checkbox.js';
+import { MenuBase } from '@material/mwc-menu/mwc-menu-base.js';
+
+const openAndCancelMenu: (
+  parent: MockWizardEditor,
+  element: TransformerWindingEditor
+) => Promise<void> = (
+  parent: MockWizardEditor,
+  element: TransformerWindingEditor
+): Promise<void> =>
+  new Promise(async resolve => {
+    expect(parent.wizardUI.dialog).to.be.undefined;
+
+    element?.shadowRoot
+      ?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!
+      .click();
+    const lnodMenuItem: ListItemBase =
+      element?.shadowRoot?.querySelector<ListItemBase>(
+        `mwc-list-item[value='LNode']`
+      )!;
+    lnodMenuItem.click();
+    await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
+    expect(parent.wizardUI.dialog).to.exist;
+
+    const secondaryAction: HTMLElement = <HTMLElement>(
+      parent.wizardUI.dialog?.querySelector(
+        'mwc-button[slot="secondaryAction"][dialogaction="close"]'
+      )
+    );
+
+    secondaryAction.click();
+    await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
+    expect(parent.wizardUI.dialog).to.be.undefined;
+
+    return resolve();
+  });
 
 describe('transformer-winding-editor wizarding editing integration', () => {
   let doc: XMLDocument;
@@ -137,6 +176,40 @@ describe('transformer-winding-editor wizarding editing integration', () => {
           )
         ).to.not.exist;
       });
+    });
+  });
+
+  describe('Open add wizard', () => {
+    let doc: XMLDocument;
+    let parent: MockWizardEditor;
+    let element: TransformerWindingEditor | null;
+
+    beforeEach(async () => {
+      doc = await fetch(
+        '/test/testfiles/editors/substation/TransformerWinding.scd'
+      )
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+      parent = <MockWizardEditor>(
+        await fixture(
+          html`<mock-wizard-editor
+            ><transformer-winding-editor
+              .element=${doc.querySelector(
+                'PowerTransformer[name="pTransVolt"] > TransformerWinding[name="some"]'
+              )}
+            ></transformer-winding-editor
+          ></mock-wizard-editor>`
+        )
+      );
+
+      element = parent.querySelector('transformer-winding-editor');
+
+      await parent.updateComplete;
+    });
+
+    it('Should open the same wizard for the second time', async () => {
+      await openAndCancelMenu(parent, element!);
+      await openAndCancelMenu(parent, element!);
     });
   });
 });
