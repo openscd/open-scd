@@ -233,7 +233,6 @@ export function isSubscribed(extRefElement: Element): boolean {
   return (
     extRefElement.hasAttribute('iedName') &&
     extRefElement.hasAttribute('ldInst') &&
-    extRefElement.hasAttribute('prefix') &&
     extRefElement.hasAttribute('lnClass') &&
     extRefElement.hasAttribute('lnInst') &&
     extRefElement.hasAttribute('doName') &&

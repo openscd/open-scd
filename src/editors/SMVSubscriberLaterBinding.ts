@@ -66,6 +66,10 @@ export default class SMVSubscribeLaterBindingPlugin extends LitElement {
       flex-direction: row-reverse;
     }
 
+    .container:not(.publisher) extref-later-binding-list.column {
+      flex: 3 1 90%;
+    }
+
     .column {
       flex: 50%;
       margin: 0px 6px 0px;

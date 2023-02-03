@@ -80,6 +80,10 @@ export default class GooseSubscribeLaterBindingPlugin extends LitElement {
       flex-direction: row-reverse;
     }
 
+    .container:not(.publisher) extref-later-binding-list.column {
+      flex: 3 1 60%;
+    }
+
     .column {
       flex: 50%;
       margin: 0px 6px 0px;

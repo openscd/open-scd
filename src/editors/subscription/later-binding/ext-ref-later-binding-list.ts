@@ -13,7 +13,9 @@ import { get, translate } from 'lit-translate';
 import {
   cloneElement,
   Delete,
+  findFCDAs,
   getDescriptionAttribute,
+  getNameAttribute,
   identity,
   newActionEvent,
 } from '../../../foundation.js';
@@ -28,6 +30,7 @@ import {
   FcdaSelectEvent,
   newSubscriptionChangedEvent,
   canRemoveSubscriptionSupervision,
+  getOrderedIeds,
 } from '../foundation.js';
 
 import {
@@ -250,6 +253,27 @@ export class ExtRefLaterBindingList extends LitElement {
     );
   }
 
+  private getExtRefElementsByIED(ied: Element): Element[] {
+    return Array.from(ied.querySelectorAll('ExtRef'))
+      .filter(
+        extRefElement =>
+          (extRefElement.hasAttribute('intAddr') &&
+            !extRefElement.hasAttribute('serviceType')) ||
+          extRefElement.getAttribute('serviceType') ===
+            this.serviceTypeLookup[this.controlTag]
+      )
+      .sort((a, b) => {
+        const addressA: string = a.getAttribute('intAddr')!;
+        const addressB: string = b.getAttribute('intAddr')!;
+        // a quality and value pair
+        const qVPair =
+          addressA.split('.').slice(0, -1).join('') ===
+          addressB.split('.').slice(0, -1).join('');
+        // show value before quality otherwise order lexically
+        return qVPair ? 1 : addressA.localeCompare(addressB);
+      });
+  }
+
   private renderTitle(): TemplateResult {
     return html`<h1>
       ${translate(`subscription.laterBinding.extRefList.title`)}
@@ -295,6 +319,82 @@ export class ExtRefLaterBindingList extends LitElement {
           >`
         : nothing}
     </mwc-list-item>`;
+  }
+
+  private renderCompleteExtRefElement(
+    extRefElement: Element,
+    ied: Element
+  ): TemplateResult {
+    let subscriberFCDA: Element | undefined;
+    let supervisionNode: Element | null = null;
+    const subscribed = isSubscribed(extRefElement);
+    if (subscribed) {
+      subscriberFCDA = findFCDAs(extRefElement).find(x => x !== undefined);
+      console.log(subscriberFCDA);
+      supervisionNode = getExistingSupervision(extRefElement);
+    }
+    const iedName = ied.getAttribute('name')!;
+
+    return html`<mwc-list-item
+      graphic="large"
+      ?hasMeta=${supervisionNode !== null}
+      ?disabled=${this.unsupportedExtRefElement(extRefElement)}
+      twoline
+      @click=${() => this.unsubscribe(extRefElement)}
+      value="${identity(extRefElement)}"
+    >
+      <span>
+        ${(<string>identity(extRefElement.parentElement)).slice(
+          iedName.length + 2
+        )}:
+        ${extRefElement.getAttribute('intAddr')}
+        ${subscribed && subscriberFCDA
+          ? `⬌ ${identity(subscriberFCDA) ?? 'Unknown'}`
+          : ''}
+      </span>
+      <span slot="secondary"
+        >${getDescriptionAttribute(extRefElement)
+          ? html` ${getDescriptionAttribute(extRefElement)}`
+          : nothing}${supervisionNode !== null
+          ? ` (${(<string>identity(supervisionNode)).slice(
+              iedName.length + 2
+            )})`
+          : ''}</span
+      >
+      ${subscribed
+        ? html`<mwc-icon slot="graphic">swap_horiz</mwc-icon>`
+        : nothing}
+      ${(subscribed && supervisionNode) !== null
+        ? html`<mwc-icon title="${identity(supervisionNode)}" slot="meta"
+            >monitor_heart</mwc-icon
+          >`
+        : nothing}
+    </mwc-list-item>`;
+  }
+
+  private renderExtRefsByIED(): TemplateResult {
+    return html`${getOrderedIeds(this.doc).map(
+      ied =>
+        html`
+          <mwc-list-item
+            noninteractive
+            graphic="icon"
+            value="${Array.from(ied.querySelectorAll('ExtRef'))
+              .map(element => {
+                const id = identity(element) as string;
+                return typeof id === 'string' ? id : '';
+              })
+              .join(' ')}"
+          >
+            <span>${getNameAttribute(ied)}</span>
+            <mwc-icon slot="graphic">developer_board</mwc-icon>
+          </mwc-list-item>
+          <li divider role="separator"></li>
+          ${Array.from(this.getExtRefElementsByIED(ied)).map(extRef =>
+            this.renderCompleteExtRefElement(extRef, ied)
+          )} 
+          </mwc-list-item>`
+    )}`;
   }
 
   private renderSubscribedExtRefs(): TemplateResult {
@@ -380,7 +480,10 @@ export class ExtRefLaterBindingList extends LitElement {
         ? html`
             ${this.renderTitle()}
             <filtered-list>
-              ${this.renderSubscribedExtRefs()} ${this.renderAvailableExtRefs()}
+              ${this.publisherView
+                ? html`${this.renderSubscribedExtRefs()}
+                  ${this.renderAvailableExtRefs()}`
+                : html`${this.renderExtRefsByIED()}`}
             </filtered-list>
           `
         : html`${this.renderTitle()}
