@@ -3,7 +3,6 @@ import {
   html,
   internalProperty,
   property,
-  PropertyValues,
   query,
   TemplateResult,
 } from 'lit-element';
@@ -37,10 +36,8 @@ export class WizardSelect extends Select {
     return this.null ? null : this.value;
   }
   set maybeValue(value: string | null) {
-    if (value === null) {
-      this.nullable = true;
-      this.null = true;
-    } else {
+    if (value === null) this.null = true;
+    else {
       this.null = false;
       this.value = value;
     }
@@ -86,27 +83,6 @@ export class WizardSelect extends Select {
     super();
 
     this.disabledSwitch = this.hasAttribute('disabled');
-  }
-
-  // TODO
-  // FIXME: Refactor nullable/isNull/null/nulled properties to make this work better (check lit lifecycle)
-  /*
-   *  Workaround Since the nullable can be changed dynamically, we cannot be sure that nullable is set before the `null` setter. Therefore we need to re-set the isNull value when nullable has been changed.
-   * Workaround Since the default value can be changed dynamically, we cannot be sure that the default value is set before the disable function is being called. Therefore we need to re-set the value if the disabled function has been called before the defaultValue has been set.
-   *
-   */
-  protected updated(changedProperties: PropertyValues<WizardSelect>): void {
-    const nullableHasChanged = changedProperties.has('nullable');
-    const defaultValueChanged = changedProperties.has('defaultValue');
-
-    if (nullableHasChanged && this.nullable) {
-      this.isNull = this.maybeValue === null;
-    }
-
-    if (defaultValueChanged && this.disabled && this.isNull) {
-      this.value = this.defaultValue;
-    }
-    super.updated(changedProperties);
   }
 
   renderSwitch(): TemplateResult {

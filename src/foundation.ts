@@ -174,7 +174,11 @@ export const wizardInputSelector =
 export type WizardInputElement =
   | WizardTextField
   | TextField
-  | (AceEditor & { checkValidity: () => boolean; label: string })
+  | (AceEditor & {
+      checkValidity: () => boolean;
+      label: string;
+      requestUpdate(name?: PropertyKey, oldValue?: unknown): Promise<unknown>;
+    })
   // TODO(c-dinkel): extend component
   | Select
   | WizardSelect;
@@ -210,13 +214,16 @@ export function reportValidity(input: WizardInputElement): boolean {
 
 /** @returns the `value` or `maybeValue` of `input` depending on type. */
 export function getValue(input: WizardInputElement): string | null {
+  console.log('getting value');
   if (
     input instanceof WizardTextField ||
     input instanceof WizardSelect ||
     input instanceof WizardCheckbox
-  )
-    return input.maybeValue;
-  else return input.value ?? null;
+  ) {
+    const maybeValue: string | null = input.maybeValue;
+
+    return maybeValue;
+  } else return input.value ?? null;
 }
 
 /** @returns the `multiplier` of `input` if available. */

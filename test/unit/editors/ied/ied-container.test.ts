@@ -20,4 +20,18 @@ describe('ied-container', () => {
   it('looks like the latest snapshot', async () => {
     await expect(element).shadowDom.to.equalSnapshot();
   });
+
+  it('Should show services icon when Services are available', async () => {
+    validSCL = await fetch('/test/testfiles/services.scd')
+      .then(response => response.text())
+      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+    element = await fixture(html`<ied-container
+      .element=${validSCL.querySelector('IED[name="WithServices"]')}
+    ></ied-container>`);
+
+    expect(
+      element.shadowRoot!.querySelector("mwc-icon-button[icon='settings']")
+    ).to.exist;
+  });
 });
