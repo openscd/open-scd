@@ -21,6 +21,7 @@ import '../../action-icon.js';
 import '../../action-pane.js';
 import './eq-function-editor.js';
 import './l-node-editor.js';
+import './sub-equipment-editor.js';
 import { startMove, getIcon, styles } from './foundation.js';
 import {
   getChildElementsByTagName,
@@ -31,8 +32,6 @@ import {
 } from '../../foundation.js';
 import { BayEditor } from './bay-editor.js';
 import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
-
-import './sub-equipment-editor.js';
 
 function childTags(element: Element | null | undefined): SCLTag[] {
   if (!element) return [];
@@ -124,6 +123,23 @@ export class ConductingEquipmentEditor extends LitElement {
           .element=${eqFunction}
           ?showfunctions=${this.showfunctions}
         ></eq-function-editor>`
+    )}`;
+  }
+
+  private renderSubEquipments(): TemplateResult {
+    if (!this.showfunctions) return html``;
+
+    const subEquipments = getChildElementsByTagName(
+      this.element,
+      'SubEquipment'
+    );
+
+    return html` ${subEquipments.map(
+      subEquipment =>
+        html`<sub-equipment-editor
+          .doc=${this.doc}
+          .element=${subEquipment}
+        ></sub-equipment-editor>`
     )}`;
   }
 
@@ -220,27 +236,6 @@ export class ConductingEquipmentEditor extends LitElement {
         icon="delete"
         @click="${() => this.remove()}}"
       ></mwc-fab>`;
-  }
-
-  private renderSubEquipments(): TemplateResult {
-    if (!this.showfunctions) return html``;
-
-    const subEquipments = getChildElementsByTagName(
-      this.element,
-      'SubEquipment'
-    );
-
-    return subEquipments.length
-      ? html`<div class="container subequipment">
-          ${subEquipments.map(
-            subEquipment =>
-              html`<sub-equipment-editor
-                .doc=${this.doc}
-                .element=${subEquipment}
-              ></sub-equipment-editor>`
-          )}
-        </div>`
-      : html``;
   }
 
   render(): TemplateResult {

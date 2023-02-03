@@ -118,6 +118,17 @@ snapshots["powertransformer-editor rendered as action pane looks like the latest
         mwc-list-item=""
         role="menuitem"
         tabindex="-1"
+        value="TransformerWinding"
+      >
+        <span>
+          TransformerWinding
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
         value="SubEquipment"
       >
         <span>
@@ -228,6 +239,17 @@ snapshots["powertransformer-editor rendered as action pane with EqFunction child
         mwc-list-item=""
         role="menuitem"
         tabindex="-1"
+        value="TransformerWinding"
+      >
+        <span>
+          TransformerWinding
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
         value="SubEquipment"
       >
         <span>
@@ -327,6 +349,17 @@ snapshots["powertransformer-editor rendered as action pane with LNode children l
       >
         <span>
           LNode
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="TransformerWinding"
+      >
+        <span>
+          TransformerWinding
         </span>
       </mwc-list-item>
       <mwc-list-item
@@ -442,6 +475,17 @@ snapshots["powertransformer-editor rendered as action pane with SubEquipment chi
         mwc-list-item=""
         role="menuitem"
         tabindex="-1"
+        value="TransformerWinding"
+      >
+        <span>
+          TransformerWinding
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
         value="SubEquipment"
       >
         <span>
@@ -461,14 +505,12 @@ snapshots["powertransformer-editor rendered as action pane with SubEquipment chi
       </mwc-list-item>
     </mwc-menu>
   </abbr>
-  <div class="container subequipment">
-    <sub-equipment-editor>
-    </sub-equipment-editor>
-    <sub-equipment-editor>
-    </sub-equipment-editor>
-    <sub-equipment-editor>
-    </sub-equipment-editor>
-  </div>
+  <sub-equipment-editor>
+  </sub-equipment-editor>
+  <sub-equipment-editor>
+  </sub-equipment-editor>
+  <sub-equipment-editor>
+  </sub-equipment-editor>
 </action-pane>
 `;
 /* end snapshot powertransformer-editor rendered as action pane with SubEquipment children looks like the latest snapshot */
