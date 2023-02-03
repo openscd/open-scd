@@ -50,6 +50,8 @@ export class FcdaBindingList extends LitElement {
   controlTag!: controlTag;
   @property()
   includeLaterBinding!: boolean;
+  @property()
+  publisherView!: boolean;
 
   // The selected Elements when a FCDA Line is clicked.
   @state()
@@ -186,15 +188,29 @@ export class FcdaBindingList extends LitElement {
     </mwc-list-item>`;
   }
 
+  renderTitle(): TemplateResult {
+    return html`<h1>
+      ${translate(`subscription.${this.controlTag}.controlBlockList.title`)}
+      ${this.publisherView && this.includeLaterBinding
+        ? html`<mwc-icon-button
+            icon="alt_route"
+            title="${translate(
+              `subscription.laterBinding.switchControlBlockView`
+            )}"
+            @click=${() =>
+              this.dispatchEvent(
+                new Event('change-view', { bubbles: true, composed: true })
+              )}
+          ></mwc-icon-button>`
+        : nothing}
+    </h1>`;
+  }
+
   render(): TemplateResult {
     const controlElements = this.getControlElements();
     return html` <section tabindex="0">
       ${controlElements.length > 0
-        ? html`<h1>
-              ${translate(
-                `subscription.${this.controlTag}.controlBlockList.title`
-              )}
-            </h1>
+        ? html`${this.renderTitle()}
             <filtered-list activatable>
               ${controlElements.map(controlElement => {
                 const fcdaElements = this.getFcdaElements(controlElement);
@@ -238,16 +254,25 @@ export class FcdaBindingList extends LitElement {
                 `;
               })}
             </filtered-list>`
-        : html`<h1>
-            ${translate(
-              `subscription.${this.controlTag}.controlBlockList.noControlBlockFound`
-            )}
-          </h1>`}
+        : html`${this.renderTitle()}
+            <h3>
+              ${translate(
+                `subscription.${this.controlTag}.controlBlockList.noControlBlockFound`
+              )}
+            </h3>`}
     </section>`;
   }
 
   static styles = css`
     ${styles}
+
+    h3 {
+      color: var(--mdc-theme-on-surface);
+      font-family: 'Roboto', sans-serif;
+      font-weight: 300;
+      margin: 4px 8px 16px;
+      padding-left: 0.3em;
+    }
 
     mwc-list-item.hidden[noninteractive] + li[divider] {
       display: none;

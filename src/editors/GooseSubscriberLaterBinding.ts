@@ -1,4 +1,11 @@
-import { css, html, LitElement, property, TemplateResult } from 'lit-element';
+import {
+  css,
+  html,
+  LitElement,
+  property,
+  query,
+  TemplateResult,
+} from 'lit-element';
 
 import './subscription/fcda-binding-list.js';
 import './subscription/later-binding/ext-ref-later-binding-list.js';
@@ -8,12 +15,40 @@ export default class GooseSubscribeLaterBindingPlugin extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
 
+  @query('div.container')
+  containerElement!: Element;
+
+  selectedViewIsPublisher = true;
+
+  protected firstUpdated(): void {
+    this.addEventListener('change-view', () => {
+      this.selectedViewIsPublisher = !this.selectedViewIsPublisher;
+      // TODO: using a classmap or changing the class on div.container is not working for me, see below. Why?
+      this.containerElement.classList.toggle('publisher');
+      this.requestUpdate();
+    });
+  }
+
   render(): TemplateResult {
+    // TODO: Why didn't this work.
+    // Ways I have tried to implement this:
+    // const classes = {
+    //   container: true,
+    //   publisher: this.selectedViewIsPublisher,
+    //   subscriber: !this.selectedViewIsPublisher,
+    // };
+
+    // ${classMap(classes)}
+    // <!-- class="container${this.selectedViewIsPublisher
+    // ? ' publisher'
+    // : ' subscriber'}" -->
+    //  ${classMap(classes)}
     return html`<div>
-      <div class="container">
+      <div class="container publisher">
         <fcda-binding-list
           class="column"
           controlTag="GSEControl"
+          .publisherView="${this.selectedViewIsPublisher}"
           .includeLaterBinding="${true}"
           .doc="${this.doc}"
         >
@@ -21,6 +56,8 @@ export default class GooseSubscribeLaterBindingPlugin extends LitElement {
         <extref-later-binding-list
           class="column"
           controlTag="GSEControl"
+          .publisherView="${this.selectedViewIsPublisher}"
+          .includeLaterBinding="${true}"
           .doc="${this.doc}"
         >
         </extref-later-binding-list>
@@ -37,6 +74,10 @@ export default class GooseSubscribeLaterBindingPlugin extends LitElement {
       display: flex;
       padding: 8px 6px 16px;
       height: calc(100vh - 136px);
+    }
+
+    .container:not(.publisher) {
+      flex-direction: row-reverse;
     }
 
     .column {

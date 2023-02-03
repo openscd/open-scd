@@ -1,4 +1,11 @@
-import { css, html, LitElement, property, TemplateResult } from 'lit-element';
+import {
+  css,
+  html,
+  LitElement,
+  property,
+  query,
+  TemplateResult,
+} from 'lit-element';
 
 import './subscription/fcda-binding-list.js';
 import './subscription/later-binding/ext-ref-later-binding-list.js';
@@ -8,12 +15,26 @@ export default class SMVSubscribeLaterBindingPlugin extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
 
+  @query('div.container')
+  containerElement!: Element;
+
+  selectedViewIsPublisher = true;
+
+  protected firstUpdated(): void {
+    this.addEventListener('change-view', () => {
+      this.selectedViewIsPublisher = !this.selectedViewIsPublisher;
+      this.containerElement.classList.toggle('publisher');
+      this.requestUpdate();
+    });
+  }
+
   render(): TemplateResult {
     return html`<div>
-      <div class="container">
+      <div class="container publisher">
         <fcda-binding-list
           class="column"
           controlTag="SampledValueControl"
+          .publisherView="${this.selectedViewIsPublisher}"
           .includeLaterBinding="${true}"
           .doc="${this.doc}"
         >
@@ -21,6 +42,8 @@ export default class SMVSubscribeLaterBindingPlugin extends LitElement {
         <extref-later-binding-list
           class="column"
           controlTag="SampledValueControl"
+          .publisherView="${this.selectedViewIsPublisher}"
+          .includeLaterBinding="${true}"
           .doc="${this.doc}"
         >
         </extref-later-binding-list>
@@ -37,6 +60,10 @@ export default class SMVSubscribeLaterBindingPlugin extends LitElement {
       display: flex;
       padding: 8px 6px 16px;
       height: calc(100vh - 136px);
+    }
+
+    .container:not(.publisher) {
+      flex-direction: row-reverse;
     }
 
     .column {
