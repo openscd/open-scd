@@ -29,7 +29,9 @@ describe('transformer-winding-editor wizarding editing integration', () => {
         await fixture(
           html`<mock-wizard-editor
             ><transformer-winding-editor
-              .element=${doc.querySelector('TransformerWinding')}
+              .element=${doc.querySelector(
+                'PowerTransformer[name="pTransVolt"] > TransformerWinding[name="some"]'
+              )}
             ></transformer-winding-editor
           ></mock-wizard-editor>`
         )
@@ -69,7 +71,11 @@ describe('transformer-winding-editor wizarding editing integration', () => {
       primaryAction.click();
       await parent.updateComplete;
       expect(
-        doc.querySelector('TransformerWinding')?.getAttribute('name')
+        doc
+          .querySelector(
+            'PowerTransformer[name="pTransVolt"] > TransformerWinding[name="some"]'
+          )
+          ?.getAttribute('name')
       ).to.equal(oldName);
     });
     it('changes desc attribute on primary action', async () => {
@@ -80,7 +86,11 @@ describe('transformer-winding-editor wizarding editing integration', () => {
       primaryAction.click();
       await parent.updateComplete;
       expect(
-        doc.querySelector('TransformerWinding')?.getAttribute('desc')
+        doc
+          .querySelector(
+            'PowerTransformer[name="pTransVolt"] > TransformerWinding[name="some"]'
+          )
+          ?.getAttribute('desc')
       ).to.equal('newDesc');
     });
     it('changes virtual attribute on primary action', async () => {
@@ -94,8 +104,39 @@ describe('transformer-winding-editor wizarding editing integration', () => {
       primaryAction.click();
       await parent.updateComplete;
       expect(
-        doc.querySelector('TransformerWinding')?.getAttribute('virtual')
+        doc
+          .querySelector(
+            'PowerTransformer[name="pTransVolt"] > TransformerWinding[name="some"]'
+          )
+          ?.getAttribute('virtual')
       ).to.equal('true');
+    });
+
+    describe('has a delete icon button that', () => {
+      let deleteButton: HTMLElement;
+
+      beforeEach(async () => {
+        deleteButton = <HTMLElement>(
+          element?.shadowRoot?.querySelector('mwc-icon-button[icon="delete"]')
+        );
+        await parent.updateComplete;
+      });
+
+      it('removes the attached TransformerWinding element from the document', async () => {
+        expect(
+          doc.querySelector(
+            'PowerTransformer[name="pTransVolt"] > TransformerWinding[name="some"]'
+          )
+        ).to.exist;
+
+        await deleteButton.click();
+
+        expect(
+          doc.querySelector(
+            'PowerTransformer[name="pTransVolt"] > TransformerWinding[name="some"]'
+          )
+        ).to.not.exist;
+      });
     });
   });
 });

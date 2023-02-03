@@ -13,6 +13,13 @@ snapshots["transformer-winding-editor with children when EqFunction elements are
     <mwc-icon-button icon="edit">
     </mwc-icon-button>
   </abbr>
+  <abbr
+    slot="action"
+    title="[remove]"
+  >
+    <mwc-icon-button icon="delete">
+    </mwc-icon-button>
+  </abbr>
   <div class="container lnode">
     <l-node-editor>
     </l-node-editor>
@@ -35,6 +42,13 @@ snapshots["transformer-winding-editor with children when hiding EqFunction eleme
     <mwc-icon-button icon="edit">
     </mwc-icon-button>
   </abbr>
+  <abbr
+    slot="action"
+    title="[remove]"
+  >
+    <mwc-icon-button icon="delete">
+    </mwc-icon-button>
+  </abbr>
   <div class="container lnode">
     <l-node-editor>
     </l-node-editor>
@@ -53,6 +67,13 @@ snapshots["transformer-winding-editor without children looks like the latest sna
     title="[edit]"
   >
     <mwc-icon-button icon="edit">
+    </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="action"
+    title="[remove]"
+  >
+    <mwc-icon-button icon="delete">
     </mwc-icon-button>
   </abbr>
 </action-pane>
