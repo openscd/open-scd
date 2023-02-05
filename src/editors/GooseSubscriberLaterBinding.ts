@@ -77,11 +77,16 @@ export default class GooseSubscribeLaterBindingPlugin extends LitElement {
     }
 
     .container:not(.publisher) {
+      flex: auto;
       flex-direction: row-reverse;
     }
 
     .container:not(.publisher) extref-later-binding-list.column {
-      flex: 3 1 60%;
+      flex: auto 1 1;
+    }
+
+    .container:not(.publisher) fcda-binding-list.column {
+      flex: auto 2 1;
     }
 
     .column {

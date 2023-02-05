@@ -269,3 +269,18 @@ export function getSubscribedExtRefElements(
     isSubscribedTo(controlTag, controlElement, fcdaElement, extRefElement)
   );
 }
+
+export function getFcdaSrcControlBlockDescription(
+  extRefElement: Element
+): string {
+  const [srcPrefix, srcLDInst, srcLNClass, srcCBName] = [
+    'srcPrefix',
+    'srcLDInst',
+    'srcLNClass',
+    'srcCBName',
+  ].map(name => extRefElement.getAttribute(name));
+  // Maybe we don't need srcLNClass ?
+  return `${
+    srcPrefix ? srcPrefix + ' ' : ''
+  }${srcLDInst} / ${srcLNClass} ${srcCBName}`;
+}

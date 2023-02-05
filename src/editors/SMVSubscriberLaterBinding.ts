@@ -63,11 +63,16 @@ export default class SMVSubscribeLaterBindingPlugin extends LitElement {
     }
 
     .container:not(.publisher) {
+      flex: auto;
       flex-direction: row-reverse;
     }
 
     .container:not(.publisher) extref-later-binding-list.column {
-      flex: 3 1 90%;
+      flex: auto 1 1;
+    }
+
+    .container:not(.publisher) fcda-binding-list.column {
+      flex: auto 2 1;
     }
 
     .column {
