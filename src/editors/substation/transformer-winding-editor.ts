@@ -100,18 +100,6 @@ export class TransformerWindingEditor extends LitElement {
       this.addMenu.anchor = <HTMLElement>this.addButton;
   }
 
-  remove(): void {
-    if (this.element.parentElement)
-      this.dispatchEvent(
-        newActionEvent({
-          old: {
-            parent: this.element.parentElement,
-            element: this.element,
-          },
-        })
-      );
-  }
-
   private renderLNodes(): TemplateResult {
     const lNodes = getChildElementsByTagName(this.element, 'LNode');
 

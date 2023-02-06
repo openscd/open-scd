@@ -2,6 +2,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 
 import '../../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../../mock-wizard-editor.js';
+import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import '../../../../src/editors/substation/transformer-winding-editor.js';
 import { TransformerWindingEditor } from '../../../../src/editors/substation/transformer-winding-editor.js';
