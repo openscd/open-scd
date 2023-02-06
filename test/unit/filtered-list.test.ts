@@ -32,6 +32,8 @@ describe('filtered-list', () => {
             <mwc-radio-list-item><span>nestedItem6</span></mwc-radio-list-item>
           </div></abbr
         ><mwc-list-item value="valueItem7"></mwc-list-item>
+        <mwc-list-item value="value Item 8 Randomly 9"></mwc-list-item>
+        <mwc-list-item value="value Item 9 Randomly 8"></mwc-list-item>
       </filtered-list>`
     );
   });
@@ -160,8 +162,9 @@ describe('filtered-list', () => {
       expect(element.children[6].classList.contains('hidden')).to.be.true;
     });
 
-    it('uses space as logic AND ', async () => {
+    it('uses space as logical AND', async () => {
       element.searchField.value = 'item item3sec';
+      // debugger;
       element.onFilterInput();
       element.requestUpdate();
       await element.updateComplete;
@@ -266,6 +269,102 @@ describe('filtered-list', () => {
       expect(element.children[3].classList.contains('hidden')).to.be.true;
       expect(element.children[4].classList.contains('hidden')).to.be.false;
       expect(element.children[5].classList.contains('hidden')).to.be.false;
+    });
+
+    it('allows filtering with a double quoted item with spaces', async () => {
+      element.searchField.value = '"Item 8"';
+      element.onFilterInput();
+      element.requestUpdate();
+      await element.updateComplete;
+      expect(element.children[0].classList.contains('hidden')).to.be.true;
+      expect(element.children[1].classList.contains('hidden')).to.be.true;
+      expect(element.children[2].classList.contains('hidden')).to.be.true;
+      expect(element.children[3].classList.contains('hidden')).to.be.true;
+      expect(element.children[4].classList.contains('hidden')).to.be.true;
+      expect(element.children[5].classList.contains('hidden')).to.be.true;
+      expect(element.children[6].classList.contains('hidden')).to.be.true;
+      expect(element.children[7].classList.contains('hidden')).to.be.false;
+      expect(element.children[8].classList.contains('hidden')).to.be.true;
+    });
+
+    it('allows filtering with a single quoted item with spaces', async () => {
+      element.searchField.value = "'Item 8'";
+      element.onFilterInput();
+      element.requestUpdate();
+      await element.updateComplete;
+      expect(element.children[0].classList.contains('hidden')).to.be.true;
+      expect(element.children[1].classList.contains('hidden')).to.be.true;
+      expect(element.children[2].classList.contains('hidden')).to.be.true;
+      expect(element.children[3].classList.contains('hidden')).to.be.true;
+      expect(element.children[4].classList.contains('hidden')).to.be.true;
+      expect(element.children[5].classList.contains('hidden')).to.be.true;
+      expect(element.children[6].classList.contains('hidden')).to.be.true;
+      expect(element.children[7].classList.contains('hidden')).to.be.false;
+      expect(element.children[8].classList.contains('hidden')).to.be.true;
+    });
+
+    it('allows filtering with a single and double quoted items with spaces', async () => {
+      element.searchField.value = `'Item 9' "Randomly 8"`;
+      element.onFilterInput();
+      element.requestUpdate();
+      await element.updateComplete;
+      expect(element.children[0].classList.contains('hidden')).to.be.true;
+      expect(element.children[1].classList.contains('hidden')).to.be.true;
+      expect(element.children[2].classList.contains('hidden')).to.be.true;
+      expect(element.children[3].classList.contains('hidden')).to.be.true;
+      expect(element.children[4].classList.contains('hidden')).to.be.true;
+      expect(element.children[5].classList.contains('hidden')).to.be.true;
+      expect(element.children[6].classList.contains('hidden')).to.be.true;
+      expect(element.children[7].classList.contains('hidden')).to.be.true;
+      expect(element.children[8].classList.contains('hidden')).to.be.false;
+    });
+
+    it('allows filtering with a single and double quoted items with ? wildcard', async () => {
+      element.searchField.value = "'Item ? Randomly'";
+      element.onFilterInput();
+      element.requestUpdate();
+      await element.updateComplete;
+      expect(element.children[0].classList.contains('hidden')).to.be.true;
+      expect(element.children[1].classList.contains('hidden')).to.be.true;
+      expect(element.children[2].classList.contains('hidden')).to.be.true;
+      expect(element.children[3].classList.contains('hidden')).to.be.true;
+      expect(element.children[4].classList.contains('hidden')).to.be.true;
+      expect(element.children[5].classList.contains('hidden')).to.be.true;
+      expect(element.children[6].classList.contains('hidden')).to.be.true;
+      expect(element.children[7].classList.contains('hidden')).to.be.false;
+      expect(element.children[8].classList.contains('hidden')).to.be.false;
+    });
+
+    it('allows filtering with a single and double quoted items with * wildcard', async () => {
+      element.searchField.value = "'Item ? Ra*ly'";
+      element.onFilterInput();
+      element.requestUpdate();
+      await element.updateComplete;
+      expect(element.children[0].classList.contains('hidden')).to.be.true;
+      expect(element.children[1].classList.contains('hidden')).to.be.true;
+      expect(element.children[2].classList.contains('hidden')).to.be.true;
+      expect(element.children[3].classList.contains('hidden')).to.be.true;
+      expect(element.children[4].classList.contains('hidden')).to.be.true;
+      expect(element.children[5].classList.contains('hidden')).to.be.true;
+      expect(element.children[6].classList.contains('hidden')).to.be.true;
+      expect(element.children[7].classList.contains('hidden')).to.be.false;
+      expect(element.children[8].classList.contains('hidden')).to.be.false;
+    });
+
+    it('allows filtering with quoted and non-quoted values', async () => {
+      element.searchField.value = "'Item 8' value";
+      element.onFilterInput();
+      element.requestUpdate();
+      await element.updateComplete;
+      expect(element.children[0].classList.contains('hidden')).to.be.true;
+      expect(element.children[1].classList.contains('hidden')).to.be.true;
+      expect(element.children[2].classList.contains('hidden')).to.be.true;
+      expect(element.children[3].classList.contains('hidden')).to.be.true;
+      expect(element.children[4].classList.contains('hidden')).to.be.true;
+      expect(element.children[5].classList.contains('hidden')).to.be.true;
+      expect(element.children[6].classList.contains('hidden')).to.be.true;
+      expect(element.children[7].classList.contains('hidden')).to.be.false;
+      expect(element.children[8].classList.contains('hidden')).to.be.true;
     });
   });
 });
