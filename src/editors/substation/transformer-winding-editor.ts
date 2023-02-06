@@ -77,6 +77,18 @@ export class TransformerWindingEditor extends LitElement {
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
+  remove(): void {
+    if (this.element.parentElement)
+      this.dispatchEvent(
+        newActionEvent({
+          old: {
+            parent: this.element.parentElement,
+            element: this.element,
+          },
+        })
+      );
+  }
+
   private openCreateWizard(tagName: string): void {
     const wizard = wizards[<SCLTag>tagName].create(this.element!);
 

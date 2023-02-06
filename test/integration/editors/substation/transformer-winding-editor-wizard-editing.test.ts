@@ -3,8 +3,6 @@ import { expect, fixture, html } from '@open-wc/testing';
 import '../../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../../mock-wizard-editor.js';
 
-import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
-
 import '../../../../src/editors/substation/transformer-winding-editor.js';
 import { TransformerWindingEditor } from '../../../../src/editors/substation/transformer-winding-editor.js';
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
@@ -149,6 +147,33 @@ describe('transformer-winding-editor wizarding editing integration', () => {
           )
           ?.getAttribute('virtual')
       ).to.equal('true');
+    });
+
+    describe('has a delete icon button that', () => {
+      let deleteButton: HTMLElement;
+
+      beforeEach(async () => {
+        deleteButton = <HTMLElement>(
+          element?.shadowRoot?.querySelector('mwc-icon-button[icon="delete"]')
+        );
+        await parent.updateComplete;
+      });
+
+      it('removes the attached TransformerWinding element from the document', async () => {
+        expect(
+          doc.querySelector(
+            'PowerTransformer[name="pTransVolt"] > TransformerWinding[name="some"]'
+          )
+        ).to.exist;
+
+        await deleteButton.click();
+
+        expect(
+          doc.querySelector(
+            'PowerTransformer[name="pTransVolt"] > TransformerWinding[name="some"]'
+          )
+        ).to.not.exist;
+      });
     });
 
     describe('has a delete icon button that', () => {
