@@ -54,7 +54,7 @@ describe('IED Plugin', () => {
 
     describe('Open Services Wizard', () => {
       beforeEach(async () => {
-        doc = await fetch('/test/testfiles/services.scd')
+        doc = await fetch('/test/testfiles/Services.scd')
           .then(response => response.text())
           .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 

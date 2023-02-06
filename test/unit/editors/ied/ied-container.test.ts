@@ -22,7 +22,7 @@ describe('ied-container', () => {
   });
 
   it('Should show services icon when Services are available', async () => {
-    validSCL = await fetch('/test/testfiles/services.scd')
+    validSCL = await fetch('/test/testfiles/Services.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
