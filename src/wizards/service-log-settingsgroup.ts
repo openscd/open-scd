@@ -52,7 +52,7 @@ export function logSettingsGroupServicesWizardPage(
 function createLogSettingsGroupServicesWizard(
   parent: Element
 ): TemplateResult[] | null {
-  const logElement: Element | null = parent.querySelector('ConfLogControl');
+  const logElement: Element | null = parent?.querySelector('ConfLogControl');
 
   if (!logElement) {
     return null;
