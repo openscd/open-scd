@@ -2,7 +2,7 @@ import { TemplateResult } from 'lit-html';
 import { get } from 'lit-translate';
 import { WizardPage } from '../foundation.js';
 
-import { createFormDivider, createFormElementFromInputs } from './services.js';
+import { createFormDivider, createFormElementsFromInputs } from './services.js';
 
 interface ControlBlockConfiguration {
   cbName: string | null;
@@ -47,7 +47,9 @@ interface ContentOptions {
   superVisionCapabilities: SuperVisionCapabilities;
 }
 
-export function sampledValuesWizardPage(services: Element): WizardPage | null {
+export function createSampledValuesWizardPage(
+  services: Element
+): WizardPage | null {
   const content: TemplateResult[] | null = createSampledValuesWizard(services);
 
   return content
@@ -59,76 +61,76 @@ export function sampledValuesWizardPage(services: Element): WizardPage | null {
 }
 
 function createSampledValuesWizard(parent: Element): TemplateResult[] | null {
-  const reportElement: Element | null = parent.querySelector('SMVsc');
+  const sMVscElement: Element | null = parent.querySelector('SMVsc');
 
-  if (!reportElement) {
+  if (!sMVscElement) {
     return null;
   }
   const content: ContentOptions = {
     controlBlockConfiguration: {
       cbName:
-        parent.querySelector('SMVSettings')?.getAttribute('cbName') || null,
+        parent.querySelector('SMVSettings')?.getAttribute('cbName') ?? null,
       datSet:
-        parent.querySelector('SMVSettings')?.getAttribute('datSet') || null,
-      svID: parent.querySelector('SMVSettings')?.getAttribute('svID') || null,
+        parent.querySelector('SMVSettings')?.getAttribute('datSet') ?? null,
+      svID: parent.querySelector('SMVSettings')?.getAttribute('svID') ?? null,
       optFields:
-        parent.querySelector('SMVSettings')?.getAttribute('optFields') || null,
+        parent.querySelector('SMVSettings')?.getAttribute('optFields') ?? null,
       smpRate:
-        parent.querySelector('SMVSettings')?.getAttribute('smpRate') || null,
+        parent.querySelector('SMVSettings')?.getAttribute('smpRate') ?? null,
       nofASDU:
-        parent.querySelector('SMVSettings')?.getAttribute('nofASDU') || null,
+        parent.querySelector('SMVSettings')?.getAttribute('nofASDU') ?? null,
       samplesPerSec:
-        parent.querySelector('SMVSettings')?.getAttribute('samplesPerSec') ||
+        parent.querySelector('SMVSettings')?.getAttribute('samplesPerSec') ??
         null,
       synchSrcId:
-        parent.querySelector('SMVSettings')?.getAttribute('synchSrcId') || null,
+        parent.querySelector('SMVSettings')?.getAttribute('synchSrcId') ?? null,
       pdcTimeStamp:
-        parent.querySelector('SMVSettings')?.getAttribute('pdcTimeStamp') ||
+        parent.querySelector('SMVSettings')?.getAttribute('pdcTimeStamp') ??
         null,
       kdaParticipant:
-        parent.querySelector('SMVSettings')?.getAttribute('kdaParticipant') ||
+        parent.querySelector('SMVSettings')?.getAttribute('kdaParticipant') ??
         null,
       signature:
         parent
           .querySelector('SMVSettings > McSecurity')
-          ?.getAttribute('signature') || null,
+          ?.getAttribute('signature') ?? null,
       encryption:
         parent
           .querySelector('SMVSettings > McSecurity')
-          ?.getAttribute('encryption') || null,
+          ?.getAttribute('encryption') ?? null,
       smpRateVal:
-        parent.querySelector('SMVSettings>SmpRate')?.childNodes[0]?.nodeValue ||
+        parent.querySelector('SMVSettings>SmpRate')?.childNodes[0]?.nodeValue ??
         null,
       samplesPerSecVal:
         parent.querySelector('SMVSettings > SamplesPerSec')?.childNodes[0]
-          ?.nodeValue || null,
+          ?.nodeValue ?? null,
       secPerSamplesVal:
         parent.querySelector('SMVSettings > SecPerSamples')?.childNodes[0]
-          ?.nodeValue || null,
+          ?.nodeValue ?? null,
     },
     publisherCapabilities: {
-      max: parent.querySelector('SMVsc')?.getAttribute('max') || null,
-      delivery: parent.querySelector('SMVsc')?.getAttribute('delivery') || null,
+      max: parent.querySelector('SMVsc')?.getAttribute('max') ?? null,
+      delivery: parent.querySelector('SMVsc')?.getAttribute('delivery') ?? null,
       deliveryConf:
-        parent.querySelector('SMVsc')?.getAttribute('deliveryConf') || null,
-      sv: parent.querySelector('SMVsc')?.getAttribute('sv') || null,
-      rSV: parent.querySelector('SMVsc')?.getAttribute('rSV') || null,
+        parent.querySelector('SMVsc')?.getAttribute('deliveryConf') ?? null,
+      sv: parent.querySelector('SMVsc')?.getAttribute('sv') ?? null,
+      rSV: parent.querySelector('SMVsc')?.getAttribute('rSV') ?? null,
     },
     subscriptionCapabilities: {
-      sv: parent.querySelector('ClientServices')?.getAttribute('sv') || null,
+      sv: parent.querySelector('ClientServices')?.getAttribute('sv') ?? null,
       maxSMV:
-        parent.querySelector('ClientServices')?.getAttribute('maxSMV') || null,
-      rSV: parent.querySelector('ClientServices')?.getAttribute('rSV') || null,
+        parent.querySelector('ClientServices')?.getAttribute('maxSMV') ?? null,
+      rSV: parent.querySelector('ClientServices')?.getAttribute('rSV') ?? null,
     },
     superVisionCapabilities: {
       maxSv:
-        parent.querySelector('SupSubscription')?.getAttribute('maxSv') || null,
+        parent.querySelector('SupSubscription')?.getAttribute('maxSv') ?? null,
     },
   };
 
   return [
     createFormDivider('Control Block Configuration'),
-    ...createFormElementFromInputs([
+    ...createFormElementsFromInputs([
       {
         kind: 'Select',
         label: 'cbName',
@@ -195,7 +197,7 @@ function createSampledValuesWizard(parent: Element): TemplateResult[] | null {
         helper:
           'Whether SMV supported sample rate definition as SamplesPerSec or SecPerSamples',
         maybeValue:
-          content.controlBlockConfiguration.samplesPerSec?.toString() || null,
+          content.controlBlockConfiguration.samplesPerSec?.toString() ?? null,
         nullable: true,
         default: false,
       },
@@ -204,7 +206,7 @@ function createSampledValuesWizard(parent: Element): TemplateResult[] | null {
         label: 'synchSrcId',
         helper: 'Whether grandmaster clock ID can be included in the SMV',
         maybeValue:
-          content.controlBlockConfiguration.synchSrcId?.toString() || null,
+          content.controlBlockConfiguration.synchSrcId?.toString() ?? null,
         nullable: true,
         default: false,
       },
@@ -213,7 +215,7 @@ function createSampledValuesWizard(parent: Element): TemplateResult[] | null {
         label: 'pdcTimeStamp',
         helper: 'Whether the PDC timestamp can be included into SMV',
         maybeValue:
-          content.controlBlockConfiguration.pdcTimeStamp?.toString() || null,
+          content.controlBlockConfiguration.pdcTimeStamp?.toString() ?? null,
         nullable: true,
         default: false,
       },
@@ -222,7 +224,7 @@ function createSampledValuesWizard(parent: Element): TemplateResult[] | null {
         label: 'kdaParticipant',
         helper: 'Whether server supports key delivery assurance (KDA)',
         maybeValue:
-          content.controlBlockConfiguration.kdaParticipant?.toString() || null,
+          content.controlBlockConfiguration.kdaParticipant?.toString() ?? null,
         nullable: true,
         default: false,
       },
@@ -232,7 +234,7 @@ function createSampledValuesWizard(parent: Element): TemplateResult[] | null {
         helper:
           'Whether calculation of a signature is supported for each GOOSE',
         maybeValue:
-          content.controlBlockConfiguration.signature?.toString() || null,
+          content.controlBlockConfiguration.signature?.toString() ?? null,
         nullable: true,
         default: false,
       },
@@ -241,7 +243,7 @@ function createSampledValuesWizard(parent: Element): TemplateResult[] | null {
         label: 'encryption',
         helper: 'Whether message encryption is supported for each GOOSE',
         maybeValue:
-          content.controlBlockConfiguration.encryption?.toString() || null,
+          content.controlBlockConfiguration.encryption?.toString() ?? null,
         nullable: true,
         default: false,
       },
@@ -251,7 +253,7 @@ function createSampledValuesWizard(parent: Element): TemplateResult[] | null {
         required: true,
         helper: 'Defines the implemented SmpRate in the IED',
         maybeValue:
-          content.controlBlockConfiguration.smpRateVal?.toString() || null,
+          content.controlBlockConfiguration.smpRateVal?.toString() ?? null,
         nullable: true,
       },
       {
@@ -260,7 +262,7 @@ function createSampledValuesWizard(parent: Element): TemplateResult[] | null {
         required: true,
         helper: 'Defines the implemented SamplesPerSec in the IED',
         maybeValue:
-          content.controlBlockConfiguration.samplesPerSecVal?.toString() ||
+          content.controlBlockConfiguration.samplesPerSecVal?.toString() ??
           null,
         nullable: true,
       },
@@ -270,19 +272,19 @@ function createSampledValuesWizard(parent: Element): TemplateResult[] | null {
         required: true,
         helper: 'Defines the implemented SecPerSamples in the IED',
         maybeValue:
-          content.controlBlockConfiguration.secPerSamplesVal?.toString() ||
+          content.controlBlockConfiguration.secPerSamplesVal?.toString() ??
           null,
         nullable: true,
       },
     ]),
     createFormDivider('Publisher Capabilities'),
-    ...createFormElementFromInputs([
+    ...createFormElementsFromInputs([
       {
         kind: 'TextField',
         label: 'max',
         required: true,
         helper: 'The maximum number of SMV control blocks the IED can publish',
-        maybeValue: content.publisherCapabilities.max?.toString() || null,
+        maybeValue: content.publisherCapabilities.max?.toString() ?? null,
         nullable: true,
       },
       {
@@ -301,7 +303,7 @@ function createSampledValuesWizard(parent: Element): TemplateResult[] | null {
         helper:
           'Whether the system configurator is allowed to configure SMV control blocks',
         maybeValue:
-          content.publisherCapabilities.deliveryConf?.toString() || null,
+          content.publisherCapabilities.deliveryConf?.toString() ?? null,
         nullable: true,
         default: false,
       },
@@ -309,7 +311,7 @@ function createSampledValuesWizard(parent: Element): TemplateResult[] | null {
         kind: 'Checkbox',
         label: 'sv',
         helper: 'Whether IED supports layer 2 sampled value streams',
-        maybeValue: content.publisherCapabilities.sv?.toString() || null,
+        maybeValue: content.publisherCapabilities.sv?.toString() ?? null,
         nullable: true,
         default: false,
       },
@@ -317,18 +319,18 @@ function createSampledValuesWizard(parent: Element): TemplateResult[] | null {
         kind: 'Checkbox',
         label: 'rSV',
         helper: 'Whether the IED supports layer 3 sampled value streams',
-        maybeValue: content.publisherCapabilities.rSV?.toString() || null,
+        maybeValue: content.publisherCapabilities.rSV?.toString() ?? null,
         nullable: true,
         default: false,
       },
     ]),
     createFormDivider('Client Capabilities'),
-    ...createFormElementFromInputs([
+    ...createFormElementsFromInputs([
       {
         kind: 'Checkbox',
         label: 'sv',
         helper: 'Whether the IED supports client side SMV related services',
-        maybeValue: content.subscriptionCapabilities.sv?.toString() || null,
+        maybeValue: content.subscriptionCapabilities.sv?.toString() ?? null,
         nullable: true,
         default: false,
       },
@@ -338,7 +340,7 @@ function createSampledValuesWizard(parent: Element): TemplateResult[] | null {
         required: false,
         helper:
           'The maximal number of layer 2 sampled value streams the client can subscribe to',
-        maybeValue: content.subscriptionCapabilities.maxSMV?.toString() || null,
+        maybeValue: content.subscriptionCapabilities.maxSMV?.toString() ?? null,
         nullable: true,
       },
       {
@@ -346,20 +348,20 @@ function createSampledValuesWizard(parent: Element): TemplateResult[] | null {
         label: 'rSV',
         helper:
           'The maximal number of layer 3 sampled value streams the client can subscribe to',
-        maybeValue: content.subscriptionCapabilities.rSV?.toString() || null,
+        maybeValue: content.subscriptionCapabilities.rSV?.toString() ?? null,
         nullable: true,
         default: false,
       },
     ]),
     createFormDivider('Dynamic Reporting/DataSets'),
-    ...createFormElementFromInputs([
+    ...createFormElementsFromInputs([
       {
         kind: 'TextField',
         label: 'maxSv',
         required: false,
         helper:
           'The maximum number of SMV supervision supported by this IED (LSVS)',
-        maybeValue: content.superVisionCapabilities.maxSv?.toString() || null,
+        maybeValue: content.superVisionCapabilities.maxSv?.toString() ?? null,
         nullable: true,
       },
     ]),

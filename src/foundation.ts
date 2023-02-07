@@ -214,16 +214,13 @@ export function reportValidity(input: WizardInputElement): boolean {
 
 /** @returns the `value` or `maybeValue` of `input` depending on type. */
 export function getValue(input: WizardInputElement): string | null {
-  console.log('getting value');
   if (
     input instanceof WizardTextField ||
     input instanceof WizardSelect ||
     input instanceof WizardCheckbox
-  ) {
-    const maybeValue: string | null = input.maybeValue;
-
-    return maybeValue;
-  } else return input.value ?? null;
+  )
+    return input.maybeValue;
+  else return input.value ?? null;
 }
 
 /** @returns the `multiplier` of `input` if available. */

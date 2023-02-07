@@ -39,11 +39,6 @@ export class AccessPointContainer extends Container {
     }
   }
 
-  private openEditWizard(): void {
-    const wizard = wizards['IED'].edit(this.element);
-    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
-  }
-
   private renderServicesIcon(): TemplateResult {
     const services: Element | null = this.element.querySelector('Services');
 
@@ -86,12 +81,6 @@ export class AccessPointContainer extends Container {
 
     return html`<action-pane .label="${this.header()}">
       <mwc-icon slot="icon">${accessPointIcon}</mwc-icon>
-      <abbr slot="action" title="${translate('edit')}">
-        <mwc-icon-button
-          icon="edit"
-          @click=${() => this.openEditWizard()}
-        ></mwc-icon-button>
-      </abbr>
       ${this.renderServicesIcon()}
       ${Array.from(this.element.querySelectorAll(':scope > Server')).map(
         server =>
@@ -110,7 +99,7 @@ export class AccessPointContainer extends Container {
             .element=${ln}
             .nsdoc=${this.nsdoc}
             .ancestors=${[...this.ancestors, this.element]}
-          ></ln-container> `
+          ></ln-container>`
         )}
       </div>
     </action-pane>`;
@@ -128,10 +117,6 @@ export class AccessPointContainer extends Container {
       #lnContainer {
         grid-template-columns: repeat(auto-fit, minmax(196px, auto));
       }
-    }
-    abbr {
-      text-decoration: none;
-      border-bottom: none;
     }
   `;
 }

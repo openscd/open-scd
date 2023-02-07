@@ -148,7 +148,6 @@ export class WizardDialog extends LitElement {
   pageIndex = 0;
 
   @queryAll('mwc-dialog') dialogs!: NodeListOf<Dialog>;
-  // TODO use @queryAssignedElements
   @queryAll(wizardInputSelector) inputs!: NodeListOf<WizardInputElement>;
   @query('.actions-menu') actionsMenu!: Menu;
   @query('mwc-icon-button[icon="more_vert"]') menuButton!: IconButton;

@@ -2,7 +2,7 @@ import { TemplateResult } from 'lit-html';
 import { get } from 'lit-translate';
 import { WizardPage } from '../foundation.js';
 
-import { createFormDivider, createFormElementFromInputs } from './services.js';
+import { createFormDivider, createFormElementsFromInputs } from './services.js';
 
 interface ReportSettings {
   cbName: string | null;
@@ -41,7 +41,7 @@ interface ContentOptions {
   dynDataSet: DynDataSet;
 }
 
-export function reportConfigurationsWizardPage(
+export function createReportConfigurationsWizardPage(
   services: Element
 ): WizardPage | null {
   const content: TemplateResult[] | null =
@@ -67,60 +67,60 @@ function createReportConfigurationsWizard(
   const content: ContentOptions = {
     reportSettings: {
       cbName:
-        parent.querySelector('ReportSettings')?.getAttribute('cbName') || null,
+        parent.querySelector('ReportSettings')?.getAttribute('cbName') ?? null,
       datSet:
-        parent.querySelector('ReportSettings')?.getAttribute('datSet') || null,
+        parent.querySelector('ReportSettings')?.getAttribute('datSet') ?? null,
       rptID:
-        parent.querySelector('ReportSettings')?.getAttribute('rptID') || null,
+        parent.querySelector('ReportSettings')?.getAttribute('rptID') ?? null,
       optFields:
-        parent.querySelector('ReportSettings')?.getAttribute('optFields') ||
+        parent.querySelector('ReportSettings')?.getAttribute('optFields') ??
         null,
       bufTime:
-        parent.querySelector('ReportSettings')?.getAttribute('bufTime') || null,
+        parent.querySelector('ReportSettings')?.getAttribute('bufTime') ?? null,
       trgOps:
-        parent.querySelector('ReportSettings')?.getAttribute('trgOps') || null,
+        parent.querySelector('ReportSettings')?.getAttribute('trgOps') ?? null,
       intgPd:
-        parent.querySelector('ReportSettings')?.getAttribute('intgPd') || null,
+        parent.querySelector('ReportSettings')?.getAttribute('intgPd') ?? null,
       resvTms:
-        parent.querySelector('ReportSettings')?.getAttribute('resvTms') || null,
+        parent.querySelector('ReportSettings')?.getAttribute('resvTms') ?? null,
       owner:
-        parent.querySelector('ReportSettings')?.getAttribute('owner') || null,
+        parent.querySelector('ReportSettings')?.getAttribute('owner') ?? null,
     },
     confReportControl: {
       max:
-        parent.querySelector('ConfReportControl')?.getAttribute('max') || null,
+        parent.querySelector('ConfReportControl')?.getAttribute('max') ?? null,
       bufMode:
-        parent.querySelector('ConfReportControl')?.getAttribute('bufMode') ||
+        parent.querySelector('ConfReportControl')?.getAttribute('bufMode') ??
         null,
       maxBuf:
-        parent.querySelector('ConfReportControl')?.getAttribute('maxBuf') ||
+        parent.querySelector('ConfReportControl')?.getAttribute('maxBuf') ??
         null,
       bufConf:
-        parent.querySelector('ConfReportControl')?.getAttribute('bufConf') ||
+        parent.querySelector('ConfReportControl')?.getAttribute('bufConf') ??
         null,
     },
     clientServices: {
       maxReports:
-        parent.querySelector('ClientServices')?.getAttribute('maxReports') ||
+        parent.querySelector('ClientServices')?.getAttribute('maxReports') ??
         null,
       bufReport:
-        parent.querySelector('ClientServices')?.getAttribute('bufReport') ||
+        parent.querySelector('ClientServices')?.getAttribute('bufReport') ??
         null,
       unbufReport:
-        parent.querySelector('ClientServices')?.getAttribute('unbufReport') ||
+        parent.querySelector('ClientServices')?.getAttribute('unbufReport') ??
         null,
     },
     dynDataSet: {
-      max: parent.querySelector('DynDataSet')?.getAttribute('max') || null,
+      max: parent.querySelector('DynDataSet')?.getAttribute('max') ?? null,
       maxAttributes:
-        parent.querySelector('DynDataSet')?.getAttribute('maxAttributes') ||
+        parent.querySelector('DynDataSet')?.getAttribute('maxAttributes') ??
         null,
     },
   };
 
   return [
     createFormDivider('Control Block Configuration'),
-    ...createFormElementFromInputs([
+    ...createFormElementsFromInputs([
       {
         kind: 'Select',
         label: 'cbName',
@@ -196,7 +196,7 @@ function createReportConfigurationsWizard(
         label: 'resvTms',
         helper:
           'Whether reserve time exists in all buffered report control blocks',
-        maybeValue: content.reportSettings.resvTms?.toString() || null,
+        maybeValue: content.reportSettings.resvTms?.toString() ?? null,
         nullable: true,
         default: false,
       },
@@ -205,20 +205,20 @@ function createReportConfigurationsWizard(
         label: 'owner',
         helper:
           'Whether owner attribute exists on all buffered report control blocks',
-        maybeValue: content.reportSettings.owner?.toString() || null,
+        maybeValue: content.reportSettings.owner?.toString() ?? null,
         nullable: true,
         default: false,
       },
     ]),
     createFormDivider('Publisher Capabilities'),
-    ...createFormElementFromInputs([
+    ...createFormElementsFromInputs([
       {
         kind: 'TextField',
         label: 'max',
         required: true,
         helper:
           'The maximum number of report control blocks instantiable by system configuration tool',
-        maybeValue: content.confReportControl.max?.toString() || null,
+        maybeValue: content.confReportControl.max?.toString() ?? null,
         nullable: true,
       },
       {
@@ -237,7 +237,7 @@ function createReportConfigurationsWizard(
         required: false,
         helper:
           'The maximum number of BUFFERED report control blocks instantiable by system configuration tool',
-        maybeValue: content.confReportControl.maxBuf?.toString() || null,
+        maybeValue: content.confReportControl.maxBuf?.toString() ?? null,
         nullable: true,
       },
       {
@@ -245,20 +245,20 @@ function createReportConfigurationsWizard(
         label: 'bufConf',
         helper:
           'Whether buffered attribute can be configured by system configuration tool',
-        maybeValue: content.confReportControl.bufConf?.toString() || null,
+        maybeValue: content.confReportControl.bufConf?.toString() ?? null,
         nullable: true,
         default: false,
       },
     ]),
     createFormDivider('Client Capabilities'),
-    ...createFormElementFromInputs([
+    ...createFormElementsFromInputs([
       {
         kind: 'TextField',
         label: 'maxReports',
         required: true,
         helper:
           'The maximal number of report control blocks the client can work with',
-        maybeValue: content.clientServices.maxReports?.toString() || null,
+        maybeValue: content.clientServices.maxReports?.toString() ?? null,
         nullable: true,
       },
       {
@@ -266,7 +266,7 @@ function createReportConfigurationsWizard(
         label: 'bufReport',
         helper:
           'Whether the IED can use buffered report control blocks as a client',
-        maybeValue: content.clientServices.bufReport?.toString() || null,
+        maybeValue: content.clientServices.bufReport?.toString() ?? null,
         nullable: true,
         default: false,
       },
@@ -275,19 +275,19 @@ function createReportConfigurationsWizard(
         label: 'unbufReport',
         helper:
           'Whether the IED can use un-buffered report control blocks as a client',
-        maybeValue: content.clientServices.unbufReport?.toString() || null,
+        maybeValue: content.clientServices.unbufReport?.toString() ?? null,
         nullable: true,
         default: false,
       },
     ]),
     createFormDivider('Dynamic Reporting/DataSets'),
-    ...createFormElementFromInputs([
+    ...createFormElementsFromInputs([
       {
         kind: 'TextField',
         label: 'max',
         required: true,
         helper: 'The maximum number data sets (including preconfigured once)',
-        maybeValue: content.dynDataSet.max?.toString() || null,
+        maybeValue: content.dynDataSet.max?.toString() ?? null,
         nullable: true,
       },
       {
@@ -296,7 +296,7 @@ function createReportConfigurationsWizard(
         required: false,
         helper:
           'The maximum number of data entries (FCDA) allowed within a dynamic data set',
-        maybeValue: content.dynDataSet.maxAttributes?.toString() || null,
+        maybeValue: content.dynDataSet.maxAttributes?.toString() ?? null,
         nullable: true,
       },
     ]),

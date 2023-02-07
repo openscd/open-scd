@@ -2,7 +2,7 @@ import { TemplateResult } from 'lit-html';
 import { get } from 'lit-translate';
 import { WizardPage } from '../foundation.js';
 
-import { createFormDivider, createFormElementFromInputs } from './services.js';
+import { createFormDivider, createFormElementsFromInputs } from './services.js';
 
 interface LogSettings {
   cbName: string | null;
@@ -35,7 +35,7 @@ interface ContentOptions {
   confSG: ConfSG;
 }
 
-export function logSettingsGroupServicesWizardPage(
+export function createLogSettingsGroupServicesWizardPage(
   services: Element
 ): WizardPage | null {
   const content: TemplateResult[] | null =
@@ -60,22 +60,22 @@ function createLogSettingsGroupServicesWizard(
   const content: ContentOptions = {
     logSettings: {
       cbName:
-        parent.querySelector('LogSettings')?.getAttribute('cbName') || null,
+        parent.querySelector('LogSettings')?.getAttribute('cbName') ?? null,
       datSet:
-        parent.querySelector('LogSettings')?.getAttribute('datSet') || null,
+        parent.querySelector('LogSettings')?.getAttribute('datSet') ?? null,
       logEna:
-        parent.querySelector('LogSettings')?.getAttribute('logEna') || null,
+        parent.querySelector('LogSettings')?.getAttribute('logEna') ?? null,
       intgPd:
-        parent.querySelector('LogSettings')?.getAttribute('trgOps') || null,
+        parent.querySelector('LogSettings')?.getAttribute('trgOps') ?? null,
       trgOps:
-        parent.querySelector('LogSettings')?.getAttribute('intgPd') || null,
+        parent.querySelector('LogSettings')?.getAttribute('intgPd') ?? null,
     },
     confLogControl: {
-      max: parent.querySelector('ConfLogControl')?.getAttribute('max') || null,
+      max: parent.querySelector('ConfLogControl')?.getAttribute('max') ?? null,
     },
     clientServices: {
       readLog:
-        parent.querySelector('CientServices')?.getAttribute('readLog') || null,
+        parent.querySelector('CientServices')?.getAttribute('readLog') ?? null,
     },
     sGEdit: {
       resvTms:
@@ -93,7 +93,7 @@ function createLogSettingsGroupServicesWizard(
 
   return [
     createFormDivider('Log Control Configuration'),
-    ...createFormElementFromInputs([
+    ...createFormElementsFromInputs([
       {
         kind: 'Select',
         label: 'cbName',
@@ -146,7 +146,7 @@ function createLogSettingsGroupServicesWizard(
       },
     ]),
     createFormDivider('Log Capabilities'),
-    ...createFormElementFromInputs([
+    ...createFormElementsFromInputs([
       {
         kind: 'TextField',
         label: 'Max',
@@ -157,7 +157,7 @@ function createLogSettingsGroupServicesWizard(
       },
     ]),
     createFormDivider('Client Capabilities'),
-    ...createFormElementFromInputs([
+    ...createFormElementsFromInputs([
       {
         kind: 'Checkbox',
         label: 'read Log',
@@ -168,7 +168,7 @@ function createLogSettingsGroupServicesWizard(
       },
     ]),
     createFormDivider('Setting Group'),
-    ...createFormElementFromInputs([
+    ...createFormElementsFromInputs([
       {
         kind: 'Checkbox',
         label: 'SGEdit',

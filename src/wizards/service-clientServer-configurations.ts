@@ -2,7 +2,7 @@ import { TemplateResult } from 'lit-html';
 import { get } from 'lit-translate';
 import { WizardPage } from '../foundation.js';
 
-import { createFormDivider, createFormElementFromInputs } from './services.js';
+import { createFormDivider, createFormElementsFromInputs } from './services.js';
 
 interface DynamicAssociations {
   max: string | null;
@@ -47,7 +47,7 @@ interface ContentOptions {
   signalReferenceConfig: SignalReferenceConfig;
 }
 
-export function clientServerConfigurationsWizardPage(
+export function createClientServerConfigurationsWizardPage(
   services: Element
 ): WizardPage | null {
   const content: TemplateResult[] | null =
@@ -64,14 +64,15 @@ export function clientServerConfigurationsWizardPage(
 function createClientServerConfigurationsWizard(
   parent: Element
 ): TemplateResult[] | null {
-  const reportElement: Element | null = parent.querySelector('DynAssociation');
+  const dynamicAssociationElement: Element | null =
+    parent.querySelector('DynAssociation');
 
-  if (!reportElement) {
+  if (!dynamicAssociationElement) {
     return null;
   }
   const content: ContentOptions = {
     dynamicAssociations: {
-      max: parent.querySelector('DynAssociation')?.getAttribute('max') || null,
+      max: dynamicAssociationElement.getAttribute('max') ?? null,
     },
     discoverCapabilities: {
       getDirectory: parent.querySelector('GetDirectory') ? 'true' : null,
@@ -93,11 +94,11 @@ function createClientServerConfigurationsWizard(
       supportsLdName:
         parent
           .querySelector('ClientServices')
-          ?.getAttribute('supportsLdName') || null,
+          ?.getAttribute('supportsLdName') ?? null,
     },
     clientCapabilities: {
       maxAttributes:
-        parent.querySelector('ClientServices')?.getAttribute('maxAttributes') ||
+        parent.querySelector('ClientServices')?.getAttribute('maxAttributes') ??
         null,
       timerActivatedControl: parent.querySelector('TimerActivatedControl')
         ? 'true'
@@ -107,28 +108,28 @@ function createClientServerConfigurationsWizard(
     },
     valKindManipulationConfig: {
       setToRO:
-        parent.querySelector('ValueHandling')?.getAttribute('setToRO') || null,
+        parent.querySelector('ValueHandling')?.getAttribute('setToRO') ?? null,
     },
     signalReferenceConfig: {
-      max: parent.querySelector('ConfSigRef')?.getAttribute('max') || null,
+      max: parent.querySelector('ConfSigRef')?.getAttribute('max') ?? null,
     },
   };
 
   return [
     createFormDivider('Dynamic Associations'),
-    ...createFormElementFromInputs([
+    ...createFormElementsFromInputs([
       {
         kind: 'TextField',
         label: 'max',
         required: false,
         helper:
           'The maximum number of guaranteed parallel association with the IED. If missing, no association is possible',
-        maybeValue: content.dynamicAssociations.max?.toString() || null,
+        maybeValue: content.dynamicAssociations.max?.toString() ?? null,
         nullable: true,
       },
     ]),
     createFormDivider('Discover Capabilities'),
-    ...createFormElementFromInputs([
+    ...createFormElementsFromInputs([
       {
         kind: 'Checkbox',
         label: 'GetDirectory',
@@ -189,7 +190,7 @@ function createClientServerConfigurationsWizard(
       },
     ]),
     createFormDivider('Functional Naming'),
-    ...createFormElementFromInputs([
+    ...createFormElementsFromInputs([
       {
         kind: 'Checkbox',
         label: 'ConfLdName',
@@ -210,14 +211,14 @@ function createClientServerConfigurationsWizard(
       },
     ]),
     createFormDivider('Client Capabilities'),
-    ...createFormElementFromInputs([
+    ...createFormElementsFromInputs([
       {
         kind: 'TextField',
         label: 'maxAttributes',
         required: false,
         helper: 'The maximum receivable data attributes (across all data sets)',
         maybeValue:
-          content.clientCapabilities.maxAttributes?.toString() || null,
+          content.clientCapabilities.maxAttributes?.toString() ?? null,
         nullable: true,
       },
       {
@@ -247,7 +248,7 @@ function createClientServerConfigurationsWizard(
       },
     ]),
     createFormDivider('ValKind Manipulation Configuration'),
-    ...createFormElementFromInputs([
+    ...createFormElementsFromInputs([
       {
         kind: 'Checkbox',
         label: 'setToRO',
@@ -259,14 +260,14 @@ function createClientServerConfigurationsWizard(
       },
     ]),
     createFormDivider('Signal Reference Configuration'),
-    ...createFormElementFromInputs([
+    ...createFormElementsFromInputs([
       {
         kind: 'TextField',
         label: 'max',
         required: false,
         helper:
           'The maximum object references that the IED can create (instantiation only by IED Configuration Tool)',
-        maybeValue: content.signalReferenceConfig.max?.toString() || null,
+        maybeValue: content.signalReferenceConfig.max?.toString() ?? null,
         nullable: true,
       },
     ]),

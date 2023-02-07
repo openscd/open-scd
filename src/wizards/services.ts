@@ -3,12 +3,12 @@ import { html, TemplateResult } from 'lit-html';
 import '../wizard-textfield.js';
 import '../wizard-select.js';
 import { Wizard, WizardInput } from '../foundation.js';
-import { logSettingsGroupServicesWizardPage } from './service-log-settingsgroup.js';
-import { reportConfigurationsWizardPage } from './service-report-configurations.js';
-import { GSEControlWizardPage } from './service-GSEControl.js';
-import { networkingWizardPage } from './service-networking.js';
-import { sampledValuesWizardPage } from './service-sampled-values.js';
-import { clientServerConfigurationsWizardPage } from './service-clientServer-configurations.js';
+import { createLogSettingsGroupServicesWizardPage } from './service-log-settingsgroup.js';
+import { createReportConfigurationsWizardPage } from './service-report-configurations.js';
+import { createGSEControlWizardPage } from './service-GSEControl.js';
+import { createNetworkingWizardPage } from './service-networking.js';
+import { createSampledValuesWizardPage } from './service-sampled-values.js';
+import { createClientServerConfigurationsWizardPage } from './service-clientServer-configurations.js';
 
 export function createFormElementFromInput(input: WizardInput): TemplateResult {
   let templateResult: TemplateResult = html``;
@@ -61,7 +61,7 @@ export function createFormElementFromInput(input: WizardInput): TemplateResult {
   return templateResult;
 }
 
-export function createFormElementFromInputs(
+export function createFormElementsFromInputs(
   inputs: WizardInput[]
 ): TemplateResult[] {
   return inputs.map(input => createFormElementFromInput(input));
@@ -73,12 +73,12 @@ export function createFormDivider(header?: string): TemplateResult {
 
 export function editServicesWizard(services: Element): Wizard {
   return [
-    logSettingsGroupServicesWizardPage(services),
-    reportConfigurationsWizardPage(services),
-    GSEControlWizardPage(services),
-    networkingWizardPage(services),
-    sampledValuesWizardPage(services),
-    clientServerConfigurationsWizardPage(services),
+    createLogSettingsGroupServicesWizardPage(services),
+    createReportConfigurationsWizardPage(services),
+    createGSEControlWizardPage(services),
+    createNetworkingWizardPage(services),
+    createSampledValuesWizardPage(services),
+    createClientServerConfigurationsWizardPage(services),
   ]
     .filter(page => page !== null)
     .map(page => page!);

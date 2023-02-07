@@ -2,7 +2,7 @@ import { TemplateResult } from 'lit-html';
 import { get } from 'lit-translate';
 import { WizardPage } from '../foundation.js';
 
-import { createFormDivider, createFormElementFromInputs } from './services.js';
+import { createFormDivider, createFormElementsFromInputs } from './services.js';
 
 interface GSESettings {
   cbName: string | null;
@@ -45,7 +45,9 @@ interface ContentOptions {
   gsse: GSSE;
 }
 
-export function GSEControlWizardPage(services: Element): WizardPage | null {
+export function createGSEControlWizardPage(
+  services: Element
+): WizardPage | null {
   const content: TemplateResult[] | null = createGSEControlWizard(services);
 
   return content
@@ -65,56 +67,56 @@ function createGSEControlWizard(parent: Element): TemplateResult[] | null {
   const content: ContentOptions = {
     gseSettings: {
       cbName:
-        parent.querySelector('GSESettings')?.getAttribute('cbName') || null,
+        parent.querySelector('GSESettings')?.getAttribute('cbName') ?? null,
       datSet:
-        parent.querySelector('GSESettings')?.getAttribute('datSet') || null,
-      appID: parent.querySelector('GSESettings')?.getAttribute('appID') || null,
+        parent.querySelector('GSESettings')?.getAttribute('datSet') ?? null,
+      appID: parent.querySelector('GSESettings')?.getAttribute('appID') ?? null,
       dataLabel:
-        parent.querySelector('GSESettings')?.getAttribute('dataLabel') || null,
+        parent.querySelector('GSESettings')?.getAttribute('dataLabel') ?? null,
       kdaParticipant:
-        parent.querySelector('GSESettings')?.getAttribute('kdaParticipant') ||
+        parent.querySelector('GSESettings')?.getAttribute('kdaParticipant') ??
         null,
       signature:
         parent
           .querySelector('GSESettings > McSecurity')
-          ?.getAttribute('signature') || null,
+          ?.getAttribute('signature') ?? null,
       encryption:
         parent
           .querySelector('GSESettings > McSecurity')
-          ?.getAttribute('encryption') || null,
+          ?.getAttribute('encryption') ?? null,
     },
     goose: {
-      max: parent.querySelector('GOOSE')?.getAttribute('max') || null,
+      max: parent.querySelector('GOOSE')?.getAttribute('max') ?? null,
       fixedOffs:
-        parent.querySelector('GOOSE')?.getAttribute('fixedOffs') || null,
-      goose: parent.querySelector('GOOSE')?.getAttribute('goose') || null,
-      rGOOSE: parent.querySelector('GOOSE')?.getAttribute('rGOOSE') || null,
+        parent.querySelector('GOOSE')?.getAttribute('fixedOffs') ?? null,
+      goose: parent.querySelector('GOOSE')?.getAttribute('goose') ?? null,
+      rGOOSE: parent.querySelector('GOOSE')?.getAttribute('rGOOSE') ?? null,
     },
     clientServices: {
       maxGOOSE:
-        parent.querySelector('ClientServices')?.getAttribute('maxGOOSE') ||
+        parent.querySelector('ClientServices')?.getAttribute('maxGOOSE') ??
         null,
       goose:
-        parent.querySelector('ClientServices')?.getAttribute('goose') || null,
+        parent.querySelector('ClientServices')?.getAttribute('goose') ?? null,
       rGOOSE:
-        parent.querySelector('ClientServices')?.getAttribute('rGOOSE') || null,
+        parent.querySelector('ClientServices')?.getAttribute('rGOOSE') ?? null,
       gsse:
-        parent.querySelector('ClientServices')?.getAttribute('gsse') || null,
+        parent.querySelector('ClientServices')?.getAttribute('gsse') ?? null,
     },
     supSubscription: {
       maxGo:
-        parent.querySelector('SupSubscription')?.getAttribute('maxGo') || null,
+        parent.querySelector('SupSubscription')?.getAttribute('maxGo') ?? null,
       maxSv:
-        parent.querySelector('SupSubscription')?.getAttribute('maxSv') || null,
+        parent.querySelector('SupSubscription')?.getAttribute('maxSv') ?? null,
     },
     gsse: {
-      max: parent.querySelector('GSSE')?.getAttribute('max') || null,
+      max: parent.querySelector('GSSE')?.getAttribute('max') ?? null,
     },
   };
 
   return [
     createFormDivider('Control Block Configuration'),
-    ...createFormElementFromInputs([
+    ...createFormElementsFromInputs([
       {
         kind: 'Select',
         label: 'cbName',
@@ -182,14 +184,14 @@ function createGSEControlWizard(parent: Element): TemplateResult[] | null {
       },
     ]),
     createFormDivider('Publisher Capabilities'),
-    ...createFormElementFromInputs([
+    ...createFormElementsFromInputs([
       {
         kind: 'TextField',
         label: 'max',
         required: true,
         helper:
           'The maximum number of configurable GOOSE control blocks. 0 means no GOOSE publishing supported',
-        maybeValue: content.goose.max?.toString() || null,
+        maybeValue: content.goose.max?.toString() ?? null,
         nullable: true,
       },
       {
@@ -219,12 +221,12 @@ function createGSEControlWizard(parent: Element): TemplateResult[] | null {
       },
     ]),
     createFormDivider('Subscription Capabilities'),
-    ...createFormElementFromInputs([
+    ...createFormElementsFromInputs([
       {
         kind: 'Checkbox',
         label: 'goose',
         helper: 'Whether the IED supports client side GOOSE related services',
-        maybeValue: content.clientServices.goose?.toString() || null,
+        maybeValue: content.clientServices.goose?.toString() ?? null,
         nullable: true,
         default: false,
       },
@@ -233,7 +235,7 @@ function createGSEControlWizard(parent: Element): TemplateResult[] | null {
         label: 'maxGOOSE',
         required: true,
         helper: 'The maximal number of GOOSEs the client can subscribe to',
-        maybeValue: content.clientServices.maxGOOSE?.toString() || null,
+        maybeValue: content.clientServices.maxGOOSE?.toString() ?? null,
         nullable: true,
       },
       {
@@ -241,7 +243,7 @@ function createGSEControlWizard(parent: Element): TemplateResult[] | null {
         label: 'rGOOSE',
         helper:
           'The maximal number of GOOSEs with network layer 3 the client can subscribe to',
-        maybeValue: content.clientServices.rGOOSE?.toString() || null,
+        maybeValue: content.clientServices.rGOOSE?.toString() ?? null,
         nullable: true,
         default: false,
       },
@@ -249,32 +251,32 @@ function createGSEControlWizard(parent: Element): TemplateResult[] | null {
         kind: 'Checkbox',
         label: 'gsse',
         helper: 'Whether the IED supports client side GSSE related services',
-        maybeValue: content.clientServices.gsse?.toString() || null,
+        maybeValue: content.clientServices.gsse?.toString() ?? null,
         nullable: true,
         default: false,
       },
     ]),
     createFormDivider('Supervision Capabilities'),
-    ...createFormElementFromInputs([
+    ...createFormElementsFromInputs([
       {
         kind: 'TextField',
         label: 'maxGo',
         required: false,
         helper:
           'The maximum number of GOOSE supervision supported by this IED (LGOS)',
-        maybeValue: content.supSubscription.maxGo?.toString() || null,
+        maybeValue: content.supSubscription.maxGo?.toString() ?? null,
         nullable: true,
       },
     ]),
     createFormDivider('GSSE Capabilities'),
-    ...createFormElementFromInputs([
+    ...createFormElementsFromInputs([
       {
         kind: 'TextField',
         label: 'max',
         required: true,
         helper:
           'The maximum number of GSSE supported as publisher. 0 means IED can only subscribe on GSSE messages',
-        maybeValue: content.gsse.max?.toString() || null,
+        maybeValue: content.gsse.max?.toString() ?? null,
         nullable: true,
       },
     ]),
