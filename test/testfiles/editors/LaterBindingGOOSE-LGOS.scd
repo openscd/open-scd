@@ -206,6 +206,13 @@
 				<LDevice inst="SV_supervision">
 					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
 					<LN lnClass="LGOS" inst="1" lnType="Dummy.LGOS1"/>
+					<LN lnClass="LGOS" inst="2" lnType="Dummy.LGOS1">
+						<DOI name="SomethingLikeGoCBRef">
+							<DAI name="setSrcRef">
+								<Val>I Wish It Was Like, Easier!</Val>
+							</DAI>
+						</DOI>
+					</LN>
 				</LDevice>
 			</Server>
 		</AccessPoint>
@@ -304,6 +311,7 @@
 		</LNodeType>
 		<LNodeType lnClass="LGOS" id="Dummy.LGOS1">
 			<DO name="GoCBRef" type="Dummy.ORG1"/>
+			<DO name="SomethingLikeGoCBRef" type="Dummy.ORG1"/>
 			<DO name="St" type="OpenSCD_SPS_simple"/>
 			<DO name="Mod" type="OpenSCD_ENC_Mod"/>
 			<DO name="Health" type="OpenSCD_ENS_Health"/>

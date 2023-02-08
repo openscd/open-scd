@@ -170,7 +170,13 @@
 							</DAI>
 						</DOI>
 					</LN>
-					<LN lnClass="LSVS" inst="2" lnType="Dummy.LSVS1"/>
+					<LN lnClass="LSVS" inst="2" lnType="Dummy.LSVS1">
+						<DOI name="SomethingLikeSvCBRef">
+							<DAI name="setSrcRef">
+								<Val>SMV_PublisherCurrentTransformer/LLN0.currrentOnly</Val>
+							</DAI>
+						</DOI>
+					</LN>
 					<LN lnClass="LSVS" inst="3" lnType="Dummy.LSVS1"/>
 					<LN lnClass="LSVS" inst="4" lnType="Dummy.LSVS1"/>
 				</LDevice>
@@ -577,6 +583,7 @@
 		</LNodeType>
 		<LNodeType lnClass="LSVS" id="Dummy.LSVS1">
 			<DO name="SvCBRef" type="Dummy.ORG1"/>
+			<DO name="SomethingLikeSvCBRef" type="Dummy.ORG1"/>
 			<DO name="St" type="OpenSCD_SPS_simple"/>
 			<DO name="Mod" type="OpenSCD_ENC_Mod"/>
 			<DO name="Health" type="OpenSCD_ENS_Health"/>
