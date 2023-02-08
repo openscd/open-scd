@@ -296,6 +296,25 @@ export function instantiateSubscriptionSupervision(
 }
 
 /**
+ * Return Val elements within an IED for the control block type
+ * @param ied - IED SCL element
+ * @param cbTagName - Either GSEControl or (defaults to) SampledValueControl
+ * @returns an Element array of Val SCL elements
+ */
+export function getSupervisionCbRefs(
+  ied: Element,
+  cbTagName: string
+): Element[] {
+  const supervisionType = cbTagName === 'GSEControl' ? 'LGOS' : 'LSVS';
+  const supervisionName = supervisionType === 'LGOS' ? 'GoCBRef' : 'SvCBRef';
+  return Array.from(
+    ied.querySelectorAll(
+      `LN[lnClass="${supervisionType}"]>DOI[name="${supervisionName}"]>DAI[name="setSrcRef"]>Val,LN0[lnClass="${supervisionType}"]>DOI[name="${supervisionName}"]>DAI[name="setSrcRef"]>Val`
+    )
+  );
+}
+
+/**
  * Return an array with a single Delete action to delete the supervision element
  * for the given GOOSE/SMV message and subscriber IED.
  *
@@ -310,12 +329,9 @@ export function removeSubscriptionSupervision(
   subscriberIED: Element | undefined
 ): Delete[] {
   if (!controlBlock || !subscriberIED) return [];
-  const supervisionType =
-    controlBlock?.tagName === 'GSEControl' ? 'LGOS' : 'LSVS';
-  const valElement = Array.from(
-    subscriberIED.querySelectorAll(
-      `LN[lnClass="${supervisionType}"]>DOI>DAI>Val,LN0[lnClass="${supervisionType}"]>DOI>DAI>Val`
-    )
+  const valElement = getSupervisionCbRefs(
+    subscriberIED,
+    controlBlock.tagName
   ).find(val => val.textContent == controlBlockReference(controlBlock));
   if (!valElement) return [];
   const lnElement = valElement.closest('LN0, LN');
@@ -361,16 +377,14 @@ function isSupervisionAllowed(
   if (subscriberIED.querySelector(`LN[lnClass="${supervisionType}"]`) === null)
     return false;
   if (
-    Array.from(
-      subscriberIED.querySelectorAll(
-        `LN[lnClass="${supervisionType}"]>DOI>DAI>Val`
-      )
-    ).find(val => val.textContent == controlBlockReference(controlBlock))
+    getSupervisionCbRefs(subscriberIED, controlBlock.tagName).find(
+      val => val.textContent == controlBlockReference(controlBlock)
+    )
   )
     return false;
   if (
     maxSupervisions(subscriberIED, controlBlock) <=
-    instantiatedSupervisionsCount(subscriberIED, controlBlock, supervisionType)
+    instantiatedSupervisionsCount(subscriberIED, controlBlock)
   )
     return false;
 
@@ -390,11 +404,17 @@ export function findOrCreateAvailableLNInst(
 ): Element | null {
   let availableLN = Array.from(
     subscriberIED.querySelectorAll(`LN[lnClass="${supervisionType}"]`)
-  ).find(
-    ln =>
-      ln.querySelector('DOI>DAI>Val') === null ||
-      ln.querySelector('DOI>DAI>Val')?.textContent === ''
-  );
+  ).find(ln => {
+    const supervisionName = supervisionType === 'LGOS' ? 'GoCBRef' : 'SvCBRef';
+    return (
+      ln.querySelector(
+        `DOI[name="${supervisionName}"]>DAI[name="setSrcRef"]>Val`
+      ) === null ||
+      ln.querySelector(
+        `DOI[name="${supervisionName}"]>DAI[name="setSrcRef"]>Val`
+      )?.textContent === ''
+    );
+  });
   if (!availableLN) {
     availableLN = subscriberIED.ownerDocument.createElementNS(
       SCL_NAMESPACE,
@@ -407,13 +427,15 @@ export function findOrCreateAvailableLNInst(
     openScdTag.setAttribute('type', 'OpenSCD.create');
     availableLN.appendChild(openScdTag);
     availableLN.setAttribute('lnClass', supervisionType);
-    const instantiatedSibling = subscriberIED
-      .querySelector(`LN[lnClass="${supervisionType}"]>DOI>DAI>Val`)
-      ?.closest('LN');
-    if (!instantiatedSibling) return null;
+    const instantiatedSiblings = getSupervisionCbRefs(
+      subscriberIED,
+      controlBlock.tagName
+    ).map(val => val.closest('LN'));
+
+    if (!instantiatedSiblings || instantiatedSiblings.length === 0) return null;
     availableLN.setAttribute(
       'lnType',
-      instantiatedSibling.getAttribute('lnType') ?? ''
+      instantiatedSiblings[0]!.getAttribute('lnType') ?? ''
     );
   }
 
@@ -508,13 +530,11 @@ export function getExistingSupervision(extRef: Element | null): Element | null {
  */
 export function instantiatedSupervisionsCount(
   subscriberIED: Element,
-  controlBlock: Element,
-  supervisionType: string
+  controlBlock: Element
 ): number {
-  const instantiatedValues = Array.from(
-    subscriberIED.querySelectorAll(
-      `LN[lnClass="${supervisionType}"]>DOI>DAI>Val`
-    )
+  const instantiatedValues = getSupervisionCbRefs(
+    subscriberIED,
+    controlBlock.tagName
   ).filter(val => val.textContent !== '');
   return instantiatedValues.length;
 }
