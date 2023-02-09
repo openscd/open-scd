@@ -947,6 +947,22 @@ snapshots["open-scd looks like its snapshot"] =
       </mwc-icon>
       Cleanup
     </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/editors/Sitipe.js"
+    >
+      <mwc-icon slot="meta">
+        developer_board
+      </mwc-icon>
+      Sitipe
+    </mwc-check-list-item>
     <mwc-list-item
       aria-disabled="false"
       graphic="avatar"
