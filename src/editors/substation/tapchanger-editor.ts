@@ -30,7 +30,7 @@ export class TapChangerEditor extends LitElement {
     const name = this.element.getAttribute('name') ?? '';
     const desc = this.element.getAttribute('desc');
 
-    return `${name} ${desc ? `—  ${desc}` : ''}`;
+    return `TapChanger.${name} ${desc ? `—TapChanger.${desc}` : ''}`;
   }
 
   private renderLNodes(): TemplateResult {
