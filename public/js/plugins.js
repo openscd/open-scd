@@ -319,5 +319,12 @@ export const officialPlugins = [
     kind: 'menu',
     requireDoc: true,
     position: 'middle'
-  }
+  },
+  {
+    name: 'Sitipe',
+    src: '/src/editors/Sitipe.js',
+    icon: 'developer_board',
+    default: true,
+    kind: 'editor',
+  },
 ];
