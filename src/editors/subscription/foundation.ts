@@ -327,7 +327,9 @@ export function instantiateSubscriptionSupervision(
     });
   }
 
-  let daiElement = availableLN.querySelector(`DAI[name="setSrcRef"]`);
+  let daiElement = availableLN.querySelector(
+    `DOI[name="${supervisionName}"]>DAI[name="setSrcRef"]`
+  );
   if (!daiElement) {
     daiElement = subscriberIED.ownerDocument.createElementNS(
       SCL_NAMESPACE,
@@ -360,14 +362,14 @@ export function instantiateSubscriptionSupervision(
       SCL_NAMESPACE,
       'Val'
     );
-    valElement.textContent = controlBlockReference(controlBlock);
-    actions.push({
-      new: {
-        parent: daiElement!,
-        element: valElement,
-      },
-    });
   }
+  valElement.textContent = controlBlockReference(controlBlock);
+  actions.push({
+    new: {
+      parent: daiElement!,
+      element: valElement,
+    },
+  });
 
   return actions;
 }

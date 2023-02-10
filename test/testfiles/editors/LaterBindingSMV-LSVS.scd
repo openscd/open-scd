@@ -52,20 +52,26 @@
 			<ConnectedAP iedName="SMV_Publisher" apName="AP1">
 				<SMV ldInst="CurrentTransformer" cbName="fullSmv">
 					<Address>
-						<P type="MAC-Address" xsi:type="tP_MAC-Address" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">01-0C-CD-04-00-02</P>
-						<P type="APPID" xsi:type="tP_APPID" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">0003</P>
+						<P type="MAC-Address" xsi:type="tP_MAC-Address"
+							xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">01-0C-CD-04-00-02</P>
+						<P type="APPID" xsi:type="tP_APPID"
+							xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">0003</P>
 					</Address>
 				</SMV>
 				<SMV ldInst="CurrentTransformer" cbName="voltageOnly">
 					<Address>
-						<P type="MAC-Address" xsi:type="tP_MAC-Address" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">01-0C-CD-04-00-01</P>
-						<P type="APPID" xsi:type="tP_APPID" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">0002</P>
+						<P type="MAC-Address" xsi:type="tP_MAC-Address"
+							xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">01-0C-CD-04-00-01</P>
+						<P type="APPID" xsi:type="tP_APPID"
+							xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">0002</P>
 					</Address>
 				</SMV>
 				<SMV ldInst="CurrentTransformer" cbName="currrentOnly">
 					<Address>
-						<P type="MAC-Address" xsi:type="tP_MAC-Address" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">01-0C-CD-04-00-00</P>
-						<P type="APPID" xsi:type="tP_APPID" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">0001</P>
+						<P type="MAC-Address" xsi:type="tP_MAC-Address"
+							xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">01-0C-CD-04-00-00</P>
+						<P type="APPID" xsi:type="tP_APPID"
+							xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">0001</P>
 					</Address>
 				</SMV>
 			</ConnectedAP>
@@ -257,6 +263,156 @@
 						<DOI name="SvCBRef">
 							<DAI name="setSrcRef">
 								<Val>SMV_PublisherCurrentTransformer/LLN0.currrentOnly</Val>
+							</DAI>
+						</DOI>
+					</LN>
+					<LN lnClass="LSVS" inst="2" lnType="Dummy.LSVS2"/>
+					<LN lnClass="LSVS" inst="3" lnType="Dummy.LSVS2"/>
+					<LN lnClass="LSVS" inst="4" lnType="Dummy.LSVS2"/>
+				</LDevice>
+			</Server>
+		</AccessPoint>
+	</IED>
+	<IED xmlns="http://www.iec.ch/61850/2003/SCL" name="SMV_Subscriber5" manufacturer="Dummy">
+		<Services>
+			<SupSubscription maxSv="4" maxGo="0"/>
+		</Services>
+		<AccessPoint name="AP1">
+			<Server>
+				<Authentication/>
+				<LDevice inst="Overvoltage">
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
+					<LN prefix="" lnClass="PTRC" inst="1" lnType="Summy.PTRC">
+						<Inputs>
+							<ExtRef intAddr="AmpSv;TCTR1/AmpSv/instMag.i" desc="MeasPoint.CT1" iedName="SMV_Publisher" ldInst="CurrentTransformer" prefix="L1" lnClass="TCTR" lnInst="1" doName="AmpSv" daName="instMag.i" serviceType="SMV" srcLDInst="CurrentTransformer" srcLNClass="LLN0" srcCBName="currrentOnly"/>
+							<ExtRef intAddr="AmpSv;TCTR1/AmpSv/q" desc="MeasPoint.CT1"/>
+							<ExtRef intAddr="AmpSv;TCTR2/AmpSv/instMag.i" desc="MeasPoint.CT2"/>
+							<ExtRef intAddr="AmpSv;TCTR2/AmpSv/q" desc="MeasPoint.CT1"/>
+							<ExtRef intAddr="AmpSv;TCTR3/AmpSv/instMag.i" desc="MeasPoint.CT3"/>
+							<ExtRef intAddr="AmpSv;TCTR3/AmpSv/q" desc="MeasPoint.CT1"/>
+						</Inputs>
+					</LN>
+				</LDevice>
+				<LDevice inst="Overcurrent">
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
+					<LN prefix="" lnClass="PTRC" inst="1" lnType="Summy.PTRC">
+						<Inputs>
+							<ExtRef intAddr="VolSv;TVTR1/VolSv/instMag.i" desc="MeasPoint.VT1"/>
+							<ExtRef intAddr="VolSv;TVTR1/VolSv/q" desc="MeasPoint.VT1"/>
+							<ExtRef intAddr="VolSv;TVTR2/VolSv/instMag.i" desc="MeasPoint.VT2"/>
+							<ExtRef intAddr="VolSv;TVTR2/VolSv/q" desc="MeasPoint.VT1"/>
+							<ExtRef intAddr="VolSv;TVTR3/VolSv/instMag.i" desc="MeasPoint.VT3"/>
+							<ExtRef intAddr="VolSv;TVTR3/VolSv/q" desc="MeasPoint.VT1"/>
+							<ExtRef intAddr="someRestrictedExtRef" desc="Restricted To AmpSV" pLN="TCTR" pDO="AmpSV" pDA="instMag.i"/>
+						</Inputs>
+					</LN>
+				</LDevice>
+				<LDevice inst="SV_supervision">
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
+					<LN lnClass="LSVS" inst="1" lnType="Dummy.LSVS2">
+						<DOI name="SvCBRef">
+							<DAI name="setSrcRef" valImport="true" valKind="RO">
+								<Val>SMV_PublisherCurrentTransformer/LLN0.currrentOnly</Val>
+							</DAI>
+						</DOI>
+					</LN>
+					<LN lnClass="LSVS" inst="2" lnType="Dummy.LSVS2"/>
+					<LN lnClass="LSVS" inst="3" lnType="Dummy.LSVS2"/>
+					<LN lnClass="LSVS" inst="4" lnType="Dummy.LSVS2"/>
+				</LDevice>
+			</Server>
+		</AccessPoint>
+	</IED>
+	<IED xmlns="http://www.iec.ch/61850/2003/SCL" name="SMV_Subscriber6" manufacturer="Dummy">
+		<Services>
+			<SupSubscription maxSv="4" maxGo="0"/>
+		</Services>
+		<AccessPoint name="AP1">
+			<Server>
+				<Authentication/>
+				<LDevice inst="Overvoltage">
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
+					<LN prefix="" lnClass="PTRC" inst="1" lnType="Summy.PTRC">
+						<Inputs>
+							<ExtRef intAddr="AmpSv;TCTR1/AmpSv/instMag.i" desc="MeasPoint.CT1" iedName="SMV_Publisher" ldInst="CurrentTransformer" prefix="L1" lnClass="TCTR" lnInst="1" doName="AmpSv" daName="instMag.i" serviceType="SMV" srcLDInst="CurrentTransformer" srcLNClass="LLN0" srcCBName="currrentOnly"/>
+							<ExtRef intAddr="AmpSv;TCTR1/AmpSv/q" desc="MeasPoint.CT1"/>
+							<ExtRef intAddr="AmpSv;TCTR2/AmpSv/instMag.i" desc="MeasPoint.CT2"/>
+							<ExtRef intAddr="AmpSv;TCTR2/AmpSv/q" desc="MeasPoint.CT1"/>
+							<ExtRef intAddr="AmpSv;TCTR3/AmpSv/instMag.i" desc="MeasPoint.CT3"/>
+							<ExtRef intAddr="AmpSv;TCTR3/AmpSv/q" desc="MeasPoint.CT1"/>
+						</Inputs>
+					</LN>
+				</LDevice>
+				<LDevice inst="Overcurrent">
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
+					<LN prefix="" lnClass="PTRC" inst="1" lnType="Summy.PTRC">
+						<Inputs>
+							<ExtRef intAddr="VolSv;TVTR1/VolSv/instMag.i" desc="MeasPoint.VT1"/>
+							<ExtRef intAddr="VolSv;TVTR1/VolSv/q" desc="MeasPoint.VT1"/>
+							<ExtRef intAddr="VolSv;TVTR2/VolSv/instMag.i" desc="MeasPoint.VT2"/>
+							<ExtRef intAddr="VolSv;TVTR2/VolSv/q" desc="MeasPoint.VT1"/>
+							<ExtRef intAddr="VolSv;TVTR3/VolSv/instMag.i" desc="MeasPoint.VT3"/>
+							<ExtRef intAddr="VolSv;TVTR3/VolSv/q" desc="MeasPoint.VT1"/>
+							<ExtRef intAddr="someRestrictedExtRef" desc="Restricted To AmpSV" pLN="TCTR" pDO="AmpSV" pDA="instMag.i"/>
+						</Inputs>
+					</LN>
+				</LDevice>
+				<LDevice inst="SV_supervision">
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
+					<LN lnClass="LSVS" inst="1" lnType="Dummy.LSVS2">
+						<DOI name="SvCBRef">
+							<DAI name="setSrcRef" valImport="true" valKind="Conf">
+								<Val>SMV_PublisherCurrentTransformer/LLN0.currrentOnly</Val>
+							</DAI>
+						</DOI>
+					</LN>
+					<LN lnClass="LSVS" inst="2" lnType="Dummy.LSVS2"/>
+					<LN lnClass="LSVS" inst="3" lnType="Dummy.LSVS2"/>
+					<LN lnClass="LSVS" inst="4" lnType="Dummy.LSVS2"/>
+				</LDevice>
+			</Server>
+		</AccessPoint>
+	</IED>
+	<IED xmlns="http://www.iec.ch/61850/2003/SCL" name="SMV_Subscriber7" manufacturer="Dummy">
+		<Services>
+			<SupSubscription maxSv="4" maxGo="0"/>
+		</Services>
+		<AccessPoint name="AP1">
+			<Server>
+				<Authentication/>
+				<LDevice inst="Overvoltage">
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
+					<LN prefix="" lnClass="PTRC" inst="1" lnType="Summy.PTRC">
+						<Inputs>
+							<ExtRef intAddr="AmpSv;TCTR1/AmpSv/instMag.i" desc="MeasPoint.CT1" iedName="SMV_Publisher" ldInst="CurrentTransformer" prefix="L1" lnClass="TCTR" lnInst="1" doName="AmpSv" daName="instMag.i" serviceType="SMV" srcLDInst="CurrentTransformer" srcLNClass="LLN0" srcCBName="currrentOnly"/>
+							<ExtRef intAddr="AmpSv;TCTR1/AmpSv/q" desc="MeasPoint.CT1"/>
+							<ExtRef intAddr="AmpSv;TCTR2/AmpSv/instMag.i" desc="MeasPoint.CT2"/>
+							<ExtRef intAddr="AmpSv;TCTR2/AmpSv/q" desc="MeasPoint.CT1"/>
+							<ExtRef intAddr="AmpSv;TCTR3/AmpSv/instMag.i" desc="MeasPoint.CT3"/>
+							<ExtRef intAddr="AmpSv;TCTR3/AmpSv/q" desc="MeasPoint.CT1"/>
+						</Inputs>
+					</LN>
+				</LDevice>
+				<LDevice inst="Overcurrent">
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
+					<LN prefix="" lnClass="PTRC" inst="1" lnType="Summy.PTRC">
+						<Inputs>
+							<ExtRef intAddr="VolSv;TVTR1/VolSv/instMag.i" desc="MeasPoint.VT1"/>
+							<ExtRef intAddr="VolSv;TVTR1/VolSv/q" desc="MeasPoint.VT1"/>
+							<ExtRef intAddr="VolSv;TVTR2/VolSv/instMag.i" desc="MeasPoint.VT2"/>
+							<ExtRef intAddr="VolSv;TVTR2/VolSv/q" desc="MeasPoint.VT1"/>
+							<ExtRef intAddr="VolSv;TVTR3/VolSv/instMag.i" desc="MeasPoint.VT3"/>
+							<ExtRef intAddr="VolSv;TVTR3/VolSv/q" desc="MeasPoint.VT1"/>
+							<ExtRef intAddr="someRestrictedExtRef" desc="Restricted To AmpSV" pLN="TCTR" pDO="AmpSV" pDA="instMag.i"/>
+						</Inputs>
+					</LN>
+				</LDevice>
+				<LDevice inst="SV_supervision">
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
+					<LN lnClass="LSVS" inst="1" lnType="Dummy.LSVS2">
+						<DOI name="SvCBRef">
+							<DAI name="setSrcRef" valImport="true" valKind="Conf">
+								<Val></Val>
 							</DAI>
 						</DOI>
 					</LN>
