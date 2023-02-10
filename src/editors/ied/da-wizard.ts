@@ -22,12 +22,11 @@ import {
 function getValues(element: Element): string {
   const hasValue = getValueElements(element).length !== 0;
 
-  if (hasValue)
-    return `${getValueElements(element)
-      .map(val => val.textContent ?? '')
-      .join(', ')}`;
-
-  return '-';
+  return hasValue
+    ? `${getValueElements(element)
+        .map(val => val.textContent ?? '')
+        .join(', ')}`
+    : '-';
 }
 
 function renderFields(
