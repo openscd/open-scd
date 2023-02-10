@@ -214,7 +214,8 @@ export class ExtRefLaterBindingList extends LitElement {
       this.currentSelectedControlElement,
       subscriberIed
     );
-    if (supervisionActions) complexAction.actions.concat(supervisionActions);
+    if (supervisionActions)
+      complexAction.actions = complexAction.actions.concat(supervisionActions);
 
     this.dispatchEvent(newActionEvent(complexAction));
     this.dispatchEvent(

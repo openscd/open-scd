@@ -299,6 +299,8 @@ export function instantiateSubscriptionSupervision(
       const otherSupervisions = subscriberIED.querySelectorAll(
         `LN[lnClass="${supervisionType}"]`
       );
+      // TODO: Fixme. Create uses insertBefore even though it is desirable
+      // to add new instances at the end.
       actions.push({
         new: {
           parent: parent,
