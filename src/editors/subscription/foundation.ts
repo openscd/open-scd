@@ -11,11 +11,6 @@ import {
   isPublic,
   minAvailableLogicalNodeInstance,
 } from '../../foundation.js';
-import {
-  createTemplateStructure,
-  determineUninitializedStructure,
-  initializeElements,
-} from '../../foundation/dai.js';
 import { getFcdaReferences } from '../../foundation/ied.js';
 import { SCL_NAMESPACE } from '../../schemas.js';
 
@@ -233,6 +228,34 @@ function checksDataTypeTemplateConditions(lnElement: Element): boolean {
 }
 
 /**
+ * Searches for first instantiated LGOS/LSVS LN for presence of DOI>DAI[valKind=Conf/RO][valImport=true]
+ * given a supervision type and returns a boolean indicating whether it allows instantiation by an SCT.
+ * @param ied - SCL IED element.
+ * @param supervisionType - either 'LGOS' or 'LSVS' supervision LN classes.
+ * @returns boolean indicating if subscriptions are allowed based on the first instantiated instance.
+ */
+function checkInstSupervisionConditions(
+  ied: Element,
+  supervisionType: string
+): boolean {
+  const firstSupervisionLN = ied.querySelector(
+    `LN[lnClass="${supervisionType}"]`
+  );
+
+  if (firstSupervisionLN === null) return false;
+
+  const supervisionName = supervisionType === 'LGOS' ? 'GoCBRef' : 'SvCBRef';
+  const valKind = firstSupervisionLN!
+    .querySelector(`DOI[name="${supervisionName}"]>DAI[name="setSrcRef"]`)
+    ?.getAttribute('valKind');
+  const valImport = firstSupervisionLN!
+    .querySelector(`DOI[name="${supervisionName}"]>DAI[name="setSrcRef"]`)
+    ?.getAttribute('valImport');
+
+  return (valKind === 'RO' || valKind === 'Conf') && valImport === 'true';
+}
+
+/**
  * Returns an array with a single Create action to create a new
  * supervision element for the given GOOSE/SMV message and subscriber IED.
  *
@@ -257,42 +280,96 @@ export function instantiateSubscriptionSupervision(
     subscriberIED,
     supervisionType
   );
-  if (!availableLN || !checksDataTypeTemplateConditions(availableLN)) return [];
+  if (
+    !availableLN ||
+    !(
+      checkInstSupervisionConditions(subscriberIED, supervisionType) ||
+      checksDataTypeTemplateConditions(availableLN)
+    )
+  )
+    return [];
 
-  // Then, create the templateStructure array
-  const templateStructure = createTemplateStructure(availableLN, [
-    controlBlock?.tagName === 'GSEControl' ? 'GoCBRef' : 'SvCBRef',
-    'setSrcRef',
-  ]);
-  if (!templateStructure) return [];
-  // Determine where to start creating new elements (DOI/SDI/DAI)
-  const [parentElement, uninitializedTemplateStructure] =
-    determineUninitializedStructure(availableLN, templateStructure);
-  // // Next create all missing elements (DOI/SDI/DAI)
-  const newElement = initializeElements(uninitializedTemplateStructure);
-  newElement.querySelector('Val')!.textContent =
-    controlBlockReference(controlBlock);
-  const createActions: Create[] = [];
+  const actions: Create[] = [];
+  // If creating new LN element
   if (!availableLN.parentElement) {
     const parent = subscriberIED.querySelector(
       `LN[lnClass="${supervisionType}"]`
     )?.parentElement;
-    if (parent)
-      createActions.push({
+    if (parent) {
+      const otherSupervisions = subscriberIED.querySelectorAll(
+        `LN[lnClass="${supervisionType}"]`
+      );
+      actions.push({
         new: {
-          parent,
+          parent: parent,
           element: availableLN,
+          reference: otherSupervisions.item(otherSupervisions.length - 1),
         },
       });
+    }
   }
-  return createActions.concat([
-    {
+
+  // Create child elements
+  const supervisionName = supervisionType === 'LGOS' ? 'GoCBRef' : 'SvCBRef';
+
+  let doiElement = availableLN.querySelector(`DOI[name="${supervisionName}"]`);
+  if (!doiElement) {
+    doiElement = subscriberIED.ownerDocument.createElementNS(
+      SCL_NAMESPACE,
+      'DOI'
+    );
+    doiElement.setAttribute('name', supervisionName);
+    actions.push({
       new: {
-        parent: parentElement,
-        element: newElement,
+        parent: availableLN!,
+        element: doiElement,
       },
-    },
-  ]);
+    });
+  }
+
+  let daiElement = availableLN.querySelector(`DAI[name="setSrcRef"]`);
+  if (!daiElement) {
+    daiElement = subscriberIED.ownerDocument.createElementNS(
+      SCL_NAMESPACE,
+      'DAI'
+    );
+    const srcValRef = subscriberIED.querySelector(
+      `LN[lnClass="${supervisionType}"]>DOI[name="${supervisionName}"]>DAI[name="setSrcRef"]`
+    );
+    daiElement.setAttribute('name', 'setSrcRef');
+
+    // transfer valKind and valImport from first supervision instance if present
+    if (srcValRef?.hasAttribute('valKind'))
+      daiElement.setAttribute('valKind', srcValRef.getAttribute('valKind')!);
+    if (srcValRef?.hasAttribute('valImport'))
+      daiElement.setAttribute(
+        'valImport',
+        srcValRef.getAttribute('valImport')!
+      );
+    actions.push({
+      new: {
+        parent: doiElement!,
+        element: daiElement,
+      },
+    });
+  }
+
+  let valElement = availableLN.querySelector(`Val`);
+  if (!valElement) {
+    valElement = subscriberIED.ownerDocument.createElementNS(
+      SCL_NAMESPACE,
+      'Val'
+    );
+    valElement.textContent = controlBlockReference(controlBlock);
+    actions.push({
+      new: {
+        parent: daiElement!,
+        element: valElement,
+      },
+    });
+  }
+
+  return actions;
 }
 
 /**

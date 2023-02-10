@@ -14,6 +14,7 @@ import '@material/mwc-list/mwc-list-item';
 
 import '../../../filtered-list.js';
 import {
+  ComplexAction,
   Create,
   createElement,
   Delete,
@@ -241,7 +242,10 @@ export class SubscriberList extends SubscriberListContainer {
     if (!inputsElement)
       inputsElement = createElement(ied.ownerDocument, 'Inputs', {});
 
-    const actions: Create[] = [];
+    const complexAction: ComplexAction = {
+      actions: [],
+      title: get(`subscription.connect`),
+    };
 
     this.currentUsedDataset!.querySelectorAll('FCDA').forEach(fcda => {
       if (
@@ -254,37 +258,28 @@ export class SubscriberList extends SubscriberListContainer {
         );
 
         if (inputsElement?.parentElement)
-          actions.push({ new: { parent: inputsElement!, element: extRef } });
+          complexAction.actions.push({
+            new: { parent: inputsElement!, element: extRef },
+          });
         else inputsElement?.appendChild(extRef);
       }
     });
 
-    // we need to extend the actions array with the actions for the instation of the LGOS
-    const supervisionActions: Create[] = instantiateSubscriptionSupervision(
+    // we need to extend the actions array with the actions for the instantiation of the LGOS
+    const supervisionActions = instantiateSubscriptionSupervision(
       this.currentSelectedGseControl,
       ied
     );
-
-    /** If the IED doesn't have a Inputs element, just append it to the first LN0 element. */
-    const title = get('subscription.connect');
     if (inputsElement.parentElement) {
-      this.dispatchEvent(
-        newActionEvent({
-          title,
-          actions: actions.concat(supervisionActions),
-        })
-      );
+      complexAction.actions.concat(supervisionActions);
     } else {
+      /** If the IED doesn't have a Inputs element, just append it to the first LN0 element. */
       const inputAction: Create = {
         new: { parent: ied.querySelector('LN0')!, element: inputsElement },
       };
-      this.dispatchEvent(
-        newActionEvent({
-          title,
-          actions: [inputAction].concat(supervisionActions),
-        })
-      );
+      complexAction.actions = [inputAction].concat(supervisionActions);
     }
+    this.dispatchEvent(newActionEvent(complexAction));
   }
 
   private async unsubscribe(ied: Element): Promise<void> {

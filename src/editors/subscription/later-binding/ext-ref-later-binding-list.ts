@@ -12,6 +12,7 @@ import { get, translate } from 'lit-translate';
 
 import {
   cloneElement,
+  ComplexAction,
   Delete,
   getDescriptionAttribute,
   identity,
@@ -191,6 +192,11 @@ export class ExtRefLaterBindingList extends LitElement {
       return;
     }
 
+    const complexAction: ComplexAction = {
+      actions: [],
+      title: get(`subscription.connect`),
+    };
+
     const replaceAction = {
       old: { element: extRefElement },
       new: {
@@ -201,19 +207,16 @@ export class ExtRefLaterBindingList extends LitElement {
         ),
       },
     };
+    complexAction.actions.push(replaceAction);
 
     const subscriberIed = extRefElement.closest('IED') || undefined;
     const supervisionActions = instantiateSubscriptionSupervision(
       this.currentSelectedControlElement,
       subscriberIed
     );
+    if (supervisionActions) complexAction.actions.concat(supervisionActions);
 
-    this.dispatchEvent(
-      newActionEvent({
-        title: get(`subscription.connect`),
-        actions: [replaceAction, ...supervisionActions],
-      })
-    );
+    this.dispatchEvent(newActionEvent(complexAction));
     this.dispatchEvent(
       newSubscriptionChangedEvent(
         this.currentSelectedControlElement,
