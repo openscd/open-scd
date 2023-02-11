@@ -268,7 +268,7 @@ export class SubscriberList extends SubscriberListContainer {
       }
     });
 
-    // we need to extend the actions array with the actions for the instantiation of the LGOS
+    // we need to extend the actions array with the actions for the instantiation of the LSVS
     const supervisionActions = instantiateSubscriptionSupervision(
       this.currentSelectedSmvControl,
       ied
