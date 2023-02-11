@@ -19,6 +19,7 @@ import {
   createElement,
   Delete,
   identity,
+  Move,
   newActionEvent,
 } from '../../../foundation.js';
 import {
@@ -274,10 +275,12 @@ export class SubscriberList extends SubscriberListContainer {
       complexAction.actions.concat(supervisionActions);
     } else {
       /** If the IED doesn't have a Inputs element, just append it to the first LN0 element. */
-      const inputAction: Create = {
-        new: { parent: ied.querySelector('LN0')!, element: inputsElement },
-      };
-      complexAction.actions = [inputAction].concat(supervisionActions);
+      const inputAction: (Create | Move)[] = [
+        {
+          new: { parent: ied.querySelector('LN0')!, element: inputsElement },
+        },
+      ];
+      complexAction.actions = inputAction.concat(supervisionActions);
     }
     this.dispatchEvent(newActionEvent(complexAction));
   }

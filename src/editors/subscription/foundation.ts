@@ -10,6 +10,7 @@ import {
   getSclSchemaVersion,
   isPublic,
   minAvailableLogicalNodeInstance,
+  Move,
 } from '../../foundation.js';
 import { getFcdaReferences } from '../../foundation/ied.js';
 import { SCL_NAMESPACE } from '../../schemas.js';
@@ -266,7 +267,7 @@ function checkInstSupervisionConditions(
 export function instantiateSubscriptionSupervision(
   controlBlock: Element | undefined,
   subscriberIED: Element | undefined
-): Create[] {
+): (Create | Move)[] {
   const supervisionType =
     controlBlock?.tagName === 'GSEControl' ? 'LGOS' : 'LSVS';
   if (
@@ -289,25 +290,39 @@ export function instantiateSubscriptionSupervision(
   )
     return [];
 
-  const actions: Create[] = [];
+  const actions: (Create | Move)[] = [];
   // If creating new LN element
   if (!availableLN.parentElement) {
     const parent = subscriberIED.querySelector(
       `LN[lnClass="${supervisionType}"]`
     )?.parentElement;
     if (parent) {
-      const otherSupervisions = subscriberIED.querySelectorAll(
-        `LN[lnClass="${supervisionType}"]`
-      );
-      // TODO: Fixme. Create uses insertBefore even though it is desirable
-      // to add new instances at the end.
+      // use Create Action for supervision LN
       actions.push({
         new: {
           parent: parent,
           element: availableLN,
-          reference: otherSupervisions.item(otherSupervisions.length - 1),
         },
       });
+
+      // use Move Action to ensure new instances are appended at the end
+      // FIXME: Move actions don't allow a moving to the very last element
+      //        because they also use action.new.parent.insertBefore
+      if (!availableLN.parentElement) {
+        const otherSupervisions = subscriberIED.querySelectorAll(
+          `LN[lnClass="${supervisionType}"]`
+        );
+        actions.push({
+          old: {
+            parent: parent,
+            element: availableLN,
+          },
+          new: {
+            parent: parent,
+            reference: otherSupervisions.item(otherSupervisions.length - 1),
+          },
+        });
+      }
     }
   }
 
