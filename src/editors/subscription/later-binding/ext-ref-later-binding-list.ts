@@ -210,12 +210,13 @@ export class ExtRefLaterBindingList extends LitElement {
     complexAction.actions.push(replaceAction);
 
     const subscriberIed = extRefElement.closest('IED') || undefined;
-    const supervisionActions = instantiateSubscriptionSupervision(
-      this.currentSelectedControlElement,
-      subscriberIed
+
+    complexAction.actions.push(
+      ...instantiateSubscriptionSupervision(
+        this.currentSelectedControlElement,
+        subscriberIed
+      )
     );
-    if (supervisionActions)
-      complexAction.actions = complexAction.actions.concat(supervisionActions);
 
     this.dispatchEvent(newActionEvent(complexAction));
     this.dispatchEvent(
