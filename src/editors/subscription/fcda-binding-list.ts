@@ -211,7 +211,7 @@ export class FcdaBindingList extends LitElement {
     return html` <section tabindex="0">
       ${controlElements.length > 0
         ? html`${this.renderTitle()}
-            <filtered-list activatable>
+            <filtered-list ?activatable=${this.publisherView}>
               ${controlElements.map(controlElement => {
                 const fcdaElements = this.getFcdaElements(controlElement);
                 return html`
