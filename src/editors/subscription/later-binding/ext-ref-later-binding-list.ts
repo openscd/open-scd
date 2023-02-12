@@ -4,6 +4,7 @@ import {
   html,
   LitElement,
   property,
+  query,
   state,
   TemplateResult,
 } from 'lit-element';
@@ -19,6 +20,7 @@ import {
   getNameAttribute,
   identity,
   newActionEvent,
+  selector,
 } from '../../../foundation.js';
 
 import {
@@ -64,7 +66,14 @@ export class ExtRefLaterBindingList extends LitElement {
   currentSelectedFcdaElement: Element | undefined;
   @state()
   currentIedElement: Element | undefined;
-  @property({ attribute: false })
+
+  @property({
+    attribute: false,
+    // FIXME: Force not updating
+    hasChanged() {
+      return false;
+    },
+  })
   currentSelectedExtRefElement: Element | undefined;
 
   serviceTypeLookup = {
@@ -97,9 +106,9 @@ export class ExtRefLaterBindingList extends LitElement {
       this.currentSelectedExtRefElement &&
       !isSubscribed(this.currentSelectedExtRefElement)
     ) {
-      // this.subscribe(this.currentSelectedExtRefElement);
+      this.subscribe(this.currentSelectedExtRefElement);
       // IMPORTANT: Endless update loop will occur if this line is removed!
-      // this.currentSelectedExtRefElement = undefined;
+      this.currentSelectedExtRefElement = undefined;
     }
   }
 
@@ -354,8 +363,8 @@ export class ExtRefLaterBindingList extends LitElement {
       ?disabled=${this.unsupportedExtRefElement(extRefElement)}
       twoline
       @click=${() => {
-        if (subscribed) this.unsubscribe(extRefElement);
         this.currentSelectedExtRefElement = extRefElement;
+        if (subscribed) this.unsubscribe(extRefElement);
       }}
       value="${identity(extRefElement)} ${identity(supervisionNode)}"
     >
