@@ -2,7 +2,10 @@
 export const snapshots = {};
 
 snapshots["sitipe-substation looks like the latest snapshot"] = 
-`<oscd-action-pane label="Vienna - Test project NBG">
+`<action-pane
+  label="Vienna - Test project NBG"
+  tabindex="0"
+>
   <action-pane
     label="0kV 
       "
@@ -166,7 +169,7 @@ snapshots["sitipe-substation looks like the latest snapshot"] =
       </action-pane>
     </div>
   </action-pane>
-</oscd-action-pane>
+</action-pane>
 `;
 /* end snapshot sitipe-substation looks like the latest snapshot */
 
