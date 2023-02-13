@@ -6,6 +6,13 @@ snapshots["web component rendering TapChanger element rendering LNode and EqFunc
   label="TapChanger.tapChComplet —TapChanger.My TapChanger"
   tabindex="0"
 >
+  <abbr
+    slot="action"
+    title="[edit]"
+  >
+    <mwc-icon-button icon="edit">
+    </mwc-icon-button>
+  </abbr>
   <div class="container lnode">
     <l-node-editor>
     </l-node-editor>
@@ -21,6 +28,13 @@ snapshots["web component rendering TapChanger element rendering SubEquipment loo
   label="TapChanger.tapChangerHalf "
   tabindex="0"
 >
+  <abbr
+    slot="action"
+    title="[edit]"
+  >
+    <mwc-icon-button icon="edit">
+    </mwc-icon-button>
+  </abbr>
   <sub-equipment-editor>
   </sub-equipment-editor>
 </action-pane>
