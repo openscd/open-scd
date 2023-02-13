@@ -32,6 +32,7 @@ import {
   SubscriptionChangedEvent,
 } from './foundation.js';
 import { getSubscribedExtRefElements } from './later-binding/foundation.js';
+import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 type controlTag = 'SampledValueControl' | 'GSEControl';
 
@@ -177,7 +178,21 @@ export class FcdaBindingList extends LitElement {
       ?hasMeta=${fcdaCount !== 0}
       twoline
       class="subitem"
-      @click=${() => this.onFcdaSelect(controlElement, fcdaElement)}
+      @click=${() => {
+        this.onFcdaSelect(controlElement, fcdaElement);
+        if (!this.publisherView) {
+          const selectedElement: ListItem | null =
+            this.shadowRoot!.querySelector(
+              'filtered-list mwc-list-item[selected]'
+            );
+          if (selectedElement) {
+            // TODO: This is not really working -- wish to deselect FCDA in the fcda-binding-list
+            // and also make sure the the activated remains on the ext-ref-later-binding-list
+            // current broken by the update cycle
+            selectedElement.selected = false;
+          }
+        }
+      }}
       value="${identity(controlElement)}
              ${identity(fcdaElement)}"
     >
