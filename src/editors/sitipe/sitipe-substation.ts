@@ -13,17 +13,17 @@ import '../../action-icon.js';
 
 import {
   selectors,
-  SIEMENS_SITIPE_IED,
-  SIEMENS_SITIPE_TEMPLATE,
+  SIEMENS_SITIPE_IED_REF,
+  SIEMENS_SITIPE_BAY_TEMPLATE,
 } from './foundation.js';
 
-/** [[`Substation`]] plugin subeditor for editing `Substation` sections. */
+/** [[`Sitipe`]] plugin subeditor for editing `Sitipe` configuration. */
 @customElement('sitipe-substation')
 export class SitipeSubstation extends LitElement {
-  /** The document being edited as provided to editor by [[`Zeroline`]]. */
+  /** The document being edited as provided to editor by [[`Sitipe`]]. */
   @property({ attribute: false })
   doc!: XMLDocument;
-  /** The edited `Element`, a common property of all Substation subeditors. */
+  /** The edited `Element`, a common property of all Sitipe subeditors. */
   @property({ attribute: false })
   element!: Element;
 
@@ -64,20 +64,22 @@ export class SitipeSubstation extends LitElement {
 
   private renderIEDs(bay: Element): TemplateResult {
     const template: string =
-      bay.querySelector(`Private[type="${SIEMENS_SITIPE_TEMPLATE}"]`)
+      bay.querySelector(`Private[type="${SIEMENS_SITIPE_BAY_TEMPLATE}"]`)
         ?.textContent ?? '';
 
     return html`
       <div>
         ${Array.from(
-          bay.querySelectorAll(`Private[type="${SIEMENS_SITIPE_IED}"]` ?? [])
+          bay.querySelectorAll(
+            `Private[type="${SIEMENS_SITIPE_IED_REF}"]` ?? []
+          )
         ).map(
-          ied =>
+          iedTemplate =>
             html`<action-icon
-              .label=${ied.textContent
-                ? `${ied.textContent} (${template})`
+              .label=${iedTemplate.textContent
+                ? `${iedTemplate.textContent} (${template})`
                 : ''}
-              icon="developer_board"
+              icon="conveyor_belt"
             ></action-icon>`
         )}
       </div>
@@ -101,11 +103,11 @@ export class SitipeSubstation extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<oscd-action-pane label="${this.substationHeader}">
+    return html`<action-pane label="${this.substationHeader}">
       ${Array.from(
         this.element.querySelectorAll(selectors.VoltageLevel) ?? []
       ).map(this.renderVoltageLevel.bind(this))}
-    </oscd-action-pane>`;
+    </action-pane>`;
   }
 
   static styles = css`

@@ -4,7 +4,7 @@ import { translate } from 'lit-translate';
 import './sitipe/sitipe-substation.js';
 import { isPublic } from '../foundation.js';
 
-/** An editor [[`plugin`]] for Subscribe Data Binding (SMV). */
+/** An editor [[`plugin`]] for Sitipe based configuration */
 export default class SitipePlugin extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;

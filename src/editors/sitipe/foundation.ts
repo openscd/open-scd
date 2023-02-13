@@ -10,6 +10,6 @@ export const selectors = <Record<SubstationTag, string>>(
   )
 );
 
-export const SIEMENS_SITIPE_IED = 'Siemens-SITIPE-IEDRef';
+export const SIEMENS_SITIPE_IED_REF = 'Siemens-SITIPE-IEDRef';
 
-export const SIEMENS_SITIPE_TEMPLATE = 'Siemens-SITIPE-BayTemplate';
+export const SIEMENS_SITIPE_BAY_TEMPLATE = 'Siemens-SITIPE-BayTemplate';
