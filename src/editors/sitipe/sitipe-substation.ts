@@ -79,7 +79,7 @@ export class SitipeSubstation extends LitElement {
               .label=${iedTemplate.textContent
                 ? `${iedTemplate.textContent} (${template})`
                 : ''}
-              icon="conveyor_belt"
+              icon="developer_board"
             ></action-icon>`
         )}
       </div>
