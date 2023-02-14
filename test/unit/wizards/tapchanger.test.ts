@@ -12,7 +12,7 @@ import {
   Replace,
   WizardInputElement,
 } from '../../../src/foundation.js';
-import { editTapChangerWizard } from '../../../src/wizards/tapChanger.js';
+import { editTapChangerWizard } from '../../../src/wizards/tapchanger.js';
 import { WizardCheckbox } from '../../../src/wizard-checkbox.js';
 
 describe('Wizards for SCL TapChanger element', () => {
