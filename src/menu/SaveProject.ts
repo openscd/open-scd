@@ -19,8 +19,15 @@ export default class SaveProjectPlugin extends LitElement {
 
   async run(): Promise<void> {
     if (this.doc) {
+      const xmlDeclaration = '<?xml version="1.0" encoding="UTF-8"?>'
+      let documentAsString = formatXml(new XMLSerializer().serializeToString(this.doc))
+
+      // Add XML declaration/prolog if it's been stripped
+      // TODO: This can be removed once the improved OpenSCD core edit API is present
+      documentAsString = documentAsString.startsWith(xmlDeclaration) ? documentAsString : xmlDeclaration + "\n" + documentAsString
+
       const blob = new Blob(
-        [formatXml(new XMLSerializer().serializeToString(this.doc))],
+        [documentAsString],
         {
           type: 'application/xml',
         }
