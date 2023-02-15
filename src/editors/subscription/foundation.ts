@@ -267,7 +267,7 @@ function checkInstSupervisionConditions(
 export function instantiateSubscriptionSupervision(
   controlBlock: Element | undefined,
   subscriberIED: Element | undefined
-): (Create | Move)[] {
+): Create[] {
   const supervisionType =
     controlBlock?.tagName === 'GSEControl' ? 'LGOS' : 'LSVS';
   if (
@@ -290,7 +290,7 @@ export function instantiateSubscriptionSupervision(
   )
     return [];
 
-  const actions: (Create | Move)[] = [];
+  const actions: Create[] = [];
   // If creating new LN element
   if (!availableLN.parentElement) {
     const parent = subscriberIED.querySelector(
@@ -302,27 +302,9 @@ export function instantiateSubscriptionSupervision(
         new: {
           parent: parent,
           element: availableLN,
+          reference: null,
         },
       });
-
-      // use Move Action to ensure new instances are appended at the end
-      // FIXME: Move actions don't allow a moving to the very last element
-      //        because they also use action.new.parent.insertBefore
-      if (!availableLN.parentElement) {
-        const otherSupervisions = subscriberIED.querySelectorAll(
-          `LN[lnClass="${supervisionType}"]`
-        );
-        actions.push({
-          old: {
-            parent: parent,
-            element: availableLN,
-          },
-          new: {
-            parent: parent,
-            reference: otherSupervisions.item(otherSupervisions.length - 1),
-          },
-        });
-      }
     }
   }
 
