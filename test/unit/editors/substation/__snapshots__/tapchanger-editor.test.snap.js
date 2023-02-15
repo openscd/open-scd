@@ -13,6 +13,13 @@ snapshots["web component rendering TapChanger element rendering LNode and EqFunc
     <mwc-icon-button icon="edit">
     </mwc-icon-button>
   </abbr>
+  <abbr
+    slot="action"
+    title="[remove]"
+  >
+    <mwc-icon-button icon="delete">
+    </mwc-icon-button>
+  </abbr>
   <div class="container lnode">
     <l-node-editor>
     </l-node-editor>
@@ -33,6 +40,13 @@ snapshots["web component rendering TapChanger element rendering SubEquipment loo
     title="[edit]"
   >
     <mwc-icon-button icon="edit">
+    </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="action"
+    title="[remove]"
+  >
+    <mwc-icon-button icon="delete">
     </mwc-icon-button>
   </abbr>
   <sub-equipment-editor>

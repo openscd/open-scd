@@ -16,7 +16,11 @@ import '../../action-pane.js';
 import './eq-function-editor.js';
 import './l-node-editor.js';
 import './sub-equipment-editor.js';
-import { getChildElementsByTagName, newWizardEvent } from '../../foundation.js';
+import {
+  getChildElementsByTagName,
+  newActionEvent,
+  newWizardEvent,
+} from '../../foundation.js';
 import { wizards } from '../../wizards/wizard-library.js';
 
 @customElement('tapchanger-editor')
@@ -38,7 +42,21 @@ export class TapChangerEditor extends LitElement {
 
     return `TapChanger.${name} ${desc ? `—TapChanger.${desc}` : ''}`;
   }
-
+  openEditWizard(): void {
+    const wizard = wizards['TapChanger'].edit(this.element);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
+  remove(): void {
+    if (this.element.parentElement)
+      this.dispatchEvent(
+        newActionEvent({
+          old: {
+            parent: this.element.parentElement,
+            element: this.element,
+          },
+        })
+      );
+  }
   private renderLNodes(): TemplateResult {
     const lNodes = getChildElementsByTagName(this.element, 'LNode');
 
@@ -55,12 +73,7 @@ export class TapChangerEditor extends LitElement {
       : html``;
   }
 
-  openEditWizard(): void {
-    const wizard = wizards['TapChanger'].edit(this.element);
-    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
-  }
-
-  renderEqFunctions(): TemplateResult {
+  private renderEqFunctions(): TemplateResult {
     if (!this.showfunctions) return html``;
 
     const eqFunctions = getChildElementsByTagName(this.element, 'EqFunction');
@@ -93,12 +106,19 @@ export class TapChangerEditor extends LitElement {
   render(): TemplateResult {
     return html`<action-pane label=${this.header}> 
     <abbr slot="action" title="${translate('edit')}">
-    <mwc-icon-button
-      icon="edit"
-      @click=${() => this.openEditWizard()}
-    ></mwc-icon-button>
-  </abbr>
+        <mwc-icon-button
+          icon="edit"
+          @click=${() => this.openEditWizard()}
+        ></mwc-icon-button>
+      </abbr>
+      <abbr slot="action" title="${translate('remove')}">
+        <mwc-icon-button
+          icon="delete"
+          @click=${() => this.remove()}
+        ></mwc-icon-button>
+      </abbr>
     ${this.renderLNodes()}
-    ${this.renderEqFunctions()} ${this.renderSubEquipments()}</action-icon>`;
+    ${this.renderEqFunctions()} ${this.renderSubEquipments()}
+    </action-icon>`;
   }
 }

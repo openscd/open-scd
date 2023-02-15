@@ -108,5 +108,32 @@ describe('tapchanger-editor wizarding editing integration', () => {
           ?.getAttribute('virtual')
       ).to.equal('false');
     });
+
+    describe('has a delete icon button that', () => {
+      let deleteButton: HTMLElement;
+
+      beforeEach(async () => {
+        deleteButton = <HTMLElement>(
+          element?.shadowRoot?.querySelector('mwc-icon-button[icon="delete"]')
+        );
+        await parent.updateComplete;
+      });
+
+      it('removes the attached TapChanger element from the document', async () => {
+        expect(
+          doc.querySelector(
+            'TransformerWinding[name="withTapChanger1"] > TapChanger[name="tapChComplet"]'
+          )
+        ).to.exist;
+
+        await deleteButton.click();
+
+        expect(
+          doc.querySelector(
+            'TransformerWinding[name="withTapChanger1"] > TapChanger[name="tapChComplet"]'
+          )
+        ).to.not.exist;
+      });
+    });
   });
 });
