@@ -318,6 +318,13 @@ export const officialPlugins = [
     default: false,
     kind: 'menu',
     requireDoc: true,
-    position: 'middle'
-  }
+    position: 'middle',
+  },
+  {
+    name: 'Sitipe',
+    src: '/src/editors/Sitipe.js',
+    icon: 'conveyor_belt',
+    default: true,
+    kind: 'editor',
+  },
 ];

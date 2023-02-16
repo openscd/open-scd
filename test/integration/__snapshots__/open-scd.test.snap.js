@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["open-scd looks like its snapshot"] = 
-`<compas-session-expiring-dialog>
+snapshots[
+  'open-scd looks like its snapshot'
+] = `<compas-session-expiring-dialog>
 </compas-session-expiring-dialog>
 <compas-session-expired-dialog>
 </compas-session-expired-dialog>
@@ -947,6 +948,22 @@ snapshots["open-scd looks like its snapshot"] =
       </mwc-icon>
       Cleanup
     </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/editors/Sitipe.js"
+    >
+      <mwc-icon slot="meta">
+        conveyor_belt
+      </mwc-icon>
+      Sitipe
+    </mwc-check-list-item>
     <mwc-list-item
       aria-disabled="false"
       graphic="avatar"
@@ -1711,4 +1728,3 @@ snapshots["open-scd looks like its snapshot"] =
 </mwc-dialog>
 `;
 /* end snapshot open-scd looks like its snapshot */
-
