@@ -228,6 +228,29 @@ export class OpenSCD extends Plugging(Editing(LitElement)) {
     </mwc-list-item>`;
   }
 
+  protected renderActiveEditor(): TemplateResult {
+    return html`${this.editor
+      ? staticHtml`<${unsafeStatic(this.editor)} docName="${
+          this.docName || nothing
+        }" .doc=${this.doc} locale="${this.locale}" .docs=${
+          this.docs
+        } .editCount=${this.editCount}></${unsafeStatic(this.editor)}>`
+      : nothing}`;
+  }
+
+  protected renderPlugins(): TemplateResult {
+    return html`${this.plugins.menu.map(
+      plugin =>
+        staticHtml`<${unsafeStatic(pluginTag(plugin.src))} docName="${
+          this.docName
+        }" .doc=${this.doc} locale="${this.locale}" .docs=${
+          this.docs
+        } .editCount=${this.editCount}></${unsafeStatic(
+          pluginTag(plugin.src)
+        )}>`
+    )}`;
+  }
+
   render() {
     return html`<mwc-drawer
         class="mdc-theme--surface"
@@ -272,13 +295,7 @@ export class OpenSCD extends Plugging(Editing(LitElement)) {
                   ></mwc-tab>`
             )}
           </mwc-tab-bar>
-          ${this.editor
-            ? staticHtml`<${unsafeStatic(this.editor)} docName="${
-                this.docName || nothing
-              }" .doc=${this.doc} locale="${this.locale}" .docs=${
-                this.docs
-              } .editCount=${this.editCount}></${unsafeStatic(this.editor)}>`
-            : nothing}
+          ${this.renderActiveEditor()}
         </mwc-top-app-bar-fixed>
       </mwc-drawer>
       <mwc-dialog id="log" heading="${this.controls.log.getName()}">
@@ -301,18 +318,7 @@ export class OpenSCD extends Plugging(Editing(LitElement)) {
           >${msg('Close')}</mwc-button
         >
       </mwc-dialog>
-      <aside>
-        ${this.plugins.menu.map(
-          plugin =>
-            staticHtml`<${unsafeStatic(pluginTag(plugin.src))} docName="${
-              this.docName
-            }" .doc=${this.doc} locale="${this.locale}" .docs=${
-              this.docs
-            } .editCount=${this.editCount}></${unsafeStatic(
-              pluginTag(plugin.src)
-            )}>`
-        )}
-      </aside>`;
+      <aside>${this.renderPlugins()}</aside>`;
   }
 
   static styles = css`
