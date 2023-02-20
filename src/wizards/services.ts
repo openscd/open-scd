@@ -10,6 +10,21 @@ import { createNetworkingWizardPage } from './service-networking.js';
 import { createSampledValuesWizardPage } from './service-sampled-values.js';
 import { createClientServerConfigurationsWizardPage } from './service-clientServer-configurations.js';
 
+export function isEmptyObject<T = any>(target: T): boolean {
+  const filledProperties: boolean[] =
+    target === null
+      ? [false]
+      : Object.keys(target).flatMap(key => {
+          const value: any = (target as any)[key];
+          if (typeof value === 'object') {
+            return isEmptyObject(value);
+          } else {
+            return [[null, undefined, ''].includes(value)];
+          }
+        });
+  return filledProperties.includes(true);
+}
+
 export function createFormElementFromInput(input: WizardInput): TemplateResult {
   let templateResult: TemplateResult = html``;
   switch (input.kind) {
