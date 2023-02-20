@@ -10,8 +10,11 @@ import { createNetworkingWizardPage } from './service-networking.js';
 import { createSampledValuesWizardPage } from './service-sampled-values.js';
 import { createClientServerConfigurationsWizardPage } from './service-clientServer-configurations.js';
 
-export function isEmptyObject<T = any>(target: T): boolean {
-  const filledProperties: boolean[] =
+export function isEmptyObject<T = any>(
+  target: T,
+  dealedAsEmpty: any[] = [null, undefined, '']
+): boolean {
+  return (
     target === null
       ? [false]
       : Object.keys(target).flatMap(key => {
@@ -19,10 +22,10 @@ export function isEmptyObject<T = any>(target: T): boolean {
           if (typeof value === 'object') {
             return isEmptyObject(value);
           } else {
-            return [[null, undefined, ''].includes(value)];
+            return [dealedAsEmpty.includes(value)];
           }
-        });
-  return filledProperties.includes(true);
+        })
+  ).includes(true);
 }
 
 export function createFormElementFromInput(input: WizardInput): TemplateResult {
