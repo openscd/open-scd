@@ -234,11 +234,11 @@ export class OpenSCD extends Plugging(Editing(LitElement)) {
 
   protected pluginProperties(): { [key: string]: PropertyType } {
     return {
-      editCount: this.editCount,
-      doc: this.doc,
-      locale: this.locale,
-      docName: this.docName,
-      docs: this.docs,
+      '.editCount': this.editCount,
+      '.doc': this.doc,
+      '.locale': this.locale,
+      '.docName': this.docName,
+      '.docs': this.docs,
     };
   }
 
