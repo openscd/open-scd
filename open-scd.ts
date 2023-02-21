@@ -4,6 +4,8 @@ import { html as staticHtml, unsafeStatic } from 'lit/static-html.js';
 
 import { configureLocalization, localized, msg, str } from '@lit/localize';
 
+import { spread } from '@open-wc/lit-helpers';
+
 import '@material/mwc-button';
 import '@material/mwc-dialog';
 import '@material/mwc-drawer';
@@ -33,6 +35,8 @@ type Control = {
 type RenderedPlugin = Control & { tagName: string };
 
 type LocaleTag = typeof allLocales[number];
+
+type PropertyType = string | boolean | number | object;
 
 const { getLocale, setLocale } = configureLocalization({
   sourceLocale,
@@ -228,27 +232,14 @@ export class OpenSCD extends Plugging(Editing(LitElement)) {
     </mwc-list-item>`;
   }
 
-  protected renderActiveEditor(): TemplateResult {
-    return html`${this.editor
-      ? staticHtml`<${unsafeStatic(this.editor)} docName="${
-          this.docName || nothing
-        }" .doc=${this.doc} locale="${this.locale}" .docs=${
-          this.docs
-        } .editCount=${this.editCount}></${unsafeStatic(this.editor)}>`
-      : nothing}`;
-  }
-
-  protected renderPlugins(): TemplateResult {
-    return html`${this.plugins.menu.map(
-      plugin =>
-        staticHtml`<${unsafeStatic(pluginTag(plugin.src))} docName="${
-          this.docName
-        }" .doc=${this.doc} locale="${this.locale}" .docs=${
-          this.docs
-        } .editCount=${this.editCount}></${unsafeStatic(
-          pluginTag(plugin.src)
-        )}>`
-    )}`;
+  protected pluginProperties(): { [key: string]: PropertyType } {
+    return {
+      editCount: this.editCount,
+      doc: this.doc,
+      locale: this.locale,
+      docName: this.docName,
+      docs: this.docs,
+    };
   }
 
   render() {
@@ -295,7 +286,11 @@ export class OpenSCD extends Plugging(Editing(LitElement)) {
                   ></mwc-tab>`
             )}
           </mwc-tab-bar>
-          ${this.renderActiveEditor()}
+          ${this.editor
+            ? staticHtml`<${unsafeStatic(this.editor)} ${spread(
+                this.pluginProperties()
+              )}></${unsafeStatic(this.editor)}>`
+            : nothing}
         </mwc-top-app-bar-fixed>
       </mwc-drawer>
       <mwc-dialog id="log" heading="${this.controls.log.getName()}">
@@ -318,7 +313,14 @@ export class OpenSCD extends Plugging(Editing(LitElement)) {
           >${msg('Close')}</mwc-button
         >
       </mwc-dialog>
-      <aside>${this.renderPlugins()}</aside>`;
+      <aside>
+        ${this.plugins.menu.map(
+          plugin =>
+            staticHtml`<${unsafeStatic(pluginTag(plugin.src))} ${spread(
+              this.pluginProperties()
+            )}></${unsafeStatic(pluginTag(plugin.src))}>`
+        )}
+      </aside>`;
   }
 
   static styles = css`

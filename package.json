@@ -37,6 +37,7 @@
     "@material/mwc-list": "^0.27.0",
     "@material/mwc-tab-bar": "^0.27.0",
     "@material/mwc-top-app-bar-fixed": "^0.27.0",
+    "@open-wc/lit-helpers": "^0.5.1",
     "lit": "^2.2.7"
   },
   "devDependencies": {
