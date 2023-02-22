@@ -5,7 +5,7 @@ import {
   findElement,
   findLogicaNodeElement,
   getInstanceDAElement,
-  getValueElement,
+  getValueElements,
 } from '../../../../src/editors/ied/foundation.js';
 import { getAncestorsFromDA, getAncestorsFromDO } from './test-support.js';
 
@@ -41,7 +41,7 @@ describe('ied-foundation', async () => {
     });
   });
 
-  describe('findLogicaNodeElement', async () => {
+  describe('findLogicalNodeElement', async () => {
     it('will find LN Element in list', async () => {
       const daElement = validSCL.querySelector(
         'DataTypeTemplates > DOType[id="Dummy.XCBR1.Pos"] > DA[name="ctlModel"]'
@@ -93,27 +93,40 @@ describe('ied-foundation', async () => {
     });
   });
 
-  describe('getValueElement', async () => {
-    let daiElement: Element;
+  describe('getValueElements', async () => {
+    let daiElement1: Element;
+    let daiElement2: Element;
 
     beforeEach(async () => {
-      daiElement = validSCL.querySelector(
+      daiElement1 = validSCL.querySelector(
         ':root > IED[name="IED2"] > AccessPoint[name="P1"] > Server > ' +
           'LDevice[inst="CircuitBreaker_CB1"] > LN[lnType="Dummy.XCBR1"] > DOI[name="Pos"]> DAI[name="ctlModel"]'
       )!;
+
+      daiElement2 = validSCL.querySelector(
+        ':root > IED[name="IED3"] > AccessPoint[name="P1"] > Server > ' +
+          'LDevice[inst="MU01"] > LN[lnType="DummyTCTR"] > DOI[name="Amp"] > SDI[name="sVC"] > DAI[name="scaleFactor"]'
+      )!;
     });
 
-    it('will find the val child of the element', async () => {
-      const value = getValueElement(daiElement);
+    it('returns all instantiated Val elements', async () => {
+      const value = getValueElements(daiElement2);
+      expect(value.length).to.equal(2);
+      expect(value[0].textContent).to.be.equal('0.001');
+      expect(value[1].textContent).to.be.equal('0.005');
+    });
+
+    it('returns one instantiated Val elements', async () => {
+      const value = getValueElements(daiElement1)[0];
       expect(value).to.be.not.null;
       expect(value?.textContent).to.be.equal('status-only');
     });
 
-    it('will not find the val element of the element and return null', async () => {
-      daiElement.querySelector('Val')!.remove();
+    it('returns empty array in case no Val i instantiated', async () => {
+      daiElement1.querySelector('Val')!.remove();
 
-      const iedElement = getValueElement(daiElement);
-      expect(iedElement).to.be.null;
+      const iedElement = getValueElements(daiElement1);
+      expect(iedElement.length).to.equal(0);
     });
   });
 

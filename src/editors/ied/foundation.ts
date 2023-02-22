@@ -120,13 +120,9 @@ export function getTitleForElementPath(element: Element): string {
   }
 }
 
-/**
- * Get the 'Val' element of another element.
- * @param element - The element to search for an 'Val' element.
- * @returns The 'Val' element, or null if not found.
- */
-export function getValueElement(element: Element): Element | null {
-  return element.querySelector('Val');
+/** @returns  Array of 'Val' elements for a given parent data attribute */
+export function getValueElements(parent: Element): Element[] {
+  return Array.from(parent.querySelectorAll('Val'));
 }
 
 export interface FullElementPathDetail {
