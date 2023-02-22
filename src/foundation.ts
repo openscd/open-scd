@@ -829,7 +829,7 @@ function extRefIdentity(e: Element): string | number {
   const intAddrIndex = Array.from(
     e.parentElement.querySelectorAll(`ExtRef[intAddr="${intAddr}"]`)
   ).indexOf(e);
-  if (!iedName) return `${parentIdentity}>${intAddr}[${intAddrIndex}]`;
+  if (intAddr) return `${parentIdentity}>${intAddr}[${intAddrIndex}]`;
   const [
     ldInst,
     prefix,
