@@ -121,11 +121,12 @@ export class OpenSCD extends Hosting(
 
     mwc-circular-progress-four-color {
       position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 99;
+      right: calc(4.25 * 48px);
+      top: 12px;
+      color: var(--mdc-theme-on-secondary);
+      transform: scale(0.8);
       pointer-events: none;
+      z-index: 99;
     }
 
     tt {
