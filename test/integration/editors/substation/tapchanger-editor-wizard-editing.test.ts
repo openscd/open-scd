@@ -10,6 +10,42 @@ import { WizardTextField } from '../../../../src/wizard-textfield.js';
 import { WizardCheckbox } from '../../../../src/wizard-checkbox.js';
 import { MenuBase } from '@material/mwc-menu/mwc-menu-base.js';
 
+const openAndCancelMenu: (
+  parent: MockWizardEditor,
+  element: TapChangerEditor
+) => Promise<void> = (
+  parent: MockWizardEditor,
+  element: TapChangerEditor
+): Promise<void> =>
+  new Promise(async resolve => {
+    expect(parent.wizardUI.dialog).to.be.undefined;
+
+    element?.shadowRoot
+      ?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!
+      .click();
+    const lnodMenuItem: ListItemBase =
+      element?.shadowRoot?.querySelector<ListItemBase>(
+        `mwc-list-item[value='LNode']`
+      )!;
+    lnodMenuItem.click();
+    await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
+    expect(parent.wizardUI.dialog).to.exist;
+
+    const secondaryAction: HTMLElement = <HTMLElement>(
+      parent.wizardUI.dialog?.querySelector(
+        'mwc-button[slot="secondaryAction"][dialogaction="close"]'
+      )
+    );
+
+    secondaryAction.click();
+    await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
+    expect(parent.wizardUI.dialog).to.be.undefined;
+
+    return resolve();
+  });
+
 describe('tapchanger-editor wizarding editing integration', () => {
   let doc: XMLDocument;
   let parent: MockWizardEditor;
@@ -134,6 +170,37 @@ describe('tapchanger-editor wizarding editing integration', () => {
           )
         ).to.not.exist;
       });
+    });
+  });
+  describe('Open add wizard', () => {
+    let doc: XMLDocument;
+    let parent: MockWizardEditor;
+    let element: TapChangerEditor | null;
+
+    beforeEach(async () => {
+      doc = await fetch('/test/testfiles/editors/substation/TapChanger.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+      parent = <MockWizardEditor>(
+        await fixture(
+          html`<mock-wizard-editor
+            ><tapchanger-editor
+              .element=${doc.querySelector(
+                'TransformerWinding[name="withTapChanger1"] > TapChanger[name="tapChComplet"]'
+              )}
+            ></tapchanger-editor
+          ></mock-wizard-editor>`
+        )
+      );
+
+      element = parent.querySelector('tapchanger-editor');
+
+      await parent.updateComplete;
+    });
+
+    it('Should open the same wizard for the second time', async () => {
+      await openAndCancelMenu(parent, element!);
+      await openAndCancelMenu(parent, element!);
     });
   });
 });
