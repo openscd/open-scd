@@ -1,11 +1,13 @@
 import { expect } from '@open-wc/testing';
 
 import {
+  ComplexAction,
   Create,
   Delete,
   isCreate,
   isDelete,
   isReplace,
+  isSimple,
   isUpdate,
   Replace,
   SimpleAction,
@@ -36,6 +38,17 @@ export async function setWizardSelectValue(
   }
   field.maybeValue = value;
   await field.requestUpdate();
+}
+
+export function executeWizardComplexAction(
+  wizardActor: WizardActor,
+  wizard: Element,
+  inputs: WizardInputElement[]
+): ComplexAction {
+  const complexActions = wizardActor(inputs, wizard);
+  expect(complexActions.length).to.equal(1);
+  expect(complexActions[0]).to.not.satisfy(isSimple);
+  return <ComplexAction>complexActions[0];
 }
 
 export function executeWizardReplaceAction(
