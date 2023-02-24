@@ -61,6 +61,17 @@ snapshots["web component rendering Function element with complete attribute set 
         mwc-list-item=""
         role="menuitem"
         tabindex="-1"
+        value="GeneralEquipment"
+      >
+        <span>
+          GeneralEquipment
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
         value="ConductingEquipment"
       >
         <span>
@@ -135,6 +146,17 @@ snapshots["web component rendering Function element with missing desc and type a
         mwc-list-item=""
         role="menuitem"
         tabindex="-1"
+        value="GeneralEquipment"
+      >
+        <span>
+          GeneralEquipment
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
         value="ConductingEquipment"
       >
         <span>
@@ -202,6 +224,17 @@ snapshots["web component rendering Function element with existing LNode children
       >
         <span>
           SubFunction
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="GeneralEquipment"
+      >
+        <span>
+          GeneralEquipment
         </span>
       </mwc-list-item>
       <mwc-list-item
@@ -289,6 +322,17 @@ snapshots["web component rendering Function element with general-equipment child
         mwc-list-item=""
         role="menuitem"
         tabindex="-1"
+        value="GeneralEquipment"
+      >
+        <span>
+          GeneralEquipment
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
         value="ConductingEquipment"
       >
         <span>
@@ -360,6 +404,17 @@ snapshots["web component rendering Function element with general-equipment child
       >
         <span>
           SubFunction
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="GeneralEquipment"
+      >
+        <span>
+          GeneralEquipment
         </span>
       </mwc-list-item>
       <mwc-list-item

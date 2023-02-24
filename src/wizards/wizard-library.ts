@@ -40,7 +40,14 @@ import {
   createSubEquipmentWizard,
   editSubEquipmentWizard,
 } from './subequipment.js';
-import { editGeneralEquipmentWizard } from './generalEquipment.js';
+import {
+  createGeneralEquipmentWizard,
+  editGeneralEquipmentWizard,
+} from './generalEquipment.js';
+import {
+  createTransformerWindingWizard,
+  editTransformerWindingWizard,
+} from './transformerWinding.js';
 import { editCompasSCLWizard } from '../compas-wizards/scl.js';
 
 type SclElementWizard = (
@@ -229,7 +236,7 @@ export const wizards: Record<
   },
   GeneralEquipment: {
     edit: editGeneralEquipmentWizard,
-    create: emptyWizard,
+    create: createGeneralEquipmentWizard,
   },
   GetCBValues: {
     edit: emptyWizard,
@@ -532,8 +539,8 @@ export const wizards: Record<
     create: emptyWizard,
   },
   TransformerWinding: {
-    edit: emptyWizard,
-    create: emptyWizard,
+    edit: editTransformerWindingWizard,
+    create: createTransformerWindingWizard,
   },
   TrgOps: {
     edit: editTrgOpsWizard,

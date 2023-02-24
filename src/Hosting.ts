@@ -236,6 +236,9 @@ export function Hosting<
         ).then();
         this.dispatchEvent(newPendingStateEvent(this.validated));
       });
+      this.addEventListener('close-drawer', async () => {
+        this.menuUI.open = false;
+      });
 
       this.addEventListener('userinfo', this.onUserInfo);
     }

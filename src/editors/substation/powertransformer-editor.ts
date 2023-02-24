@@ -19,6 +19,9 @@ import { Menu } from '@material/mwc-menu';
 
 import '../../action-icon.js';
 import '../../action-pane.js';
+import './sub-equipment-editor.js';
+import './eq-function-editor.js';
+import './transformer-winding-editor.js';
 import { powerTransformerTwoWindingIcon } from '../../icons/icons.js';
 import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
 import {
@@ -32,9 +35,6 @@ import { startMove, styles } from './foundation.js';
 import { SubstationEditor } from './substation-editor.js';
 import { BayEditor } from './bay-editor.js';
 import { VoltageLevelEditor } from './voltage-level-editor.js';
-
-import './sub-equipment-editor.js';
-import './transformer-winding-editor.js';
 
 function childTags(element: Element | null | undefined): SCLTag[] {
   if (!element) return [];
@@ -95,7 +95,7 @@ export class PowerTransformerEditor extends LitElement {
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
-  firstUpdated(): void {
+  updated(): void {
     if (this.addMenu && this.addButton)
       this.addMenu.anchor = <HTMLElement>this.addButton;
   }
@@ -127,6 +127,22 @@ export class PowerTransformerEditor extends LitElement {
           .element=${eqFunction}
           ?showfunctions=${this.showfunctions}
         ></eq-function-editor>`
+    )}`;
+  }
+
+  private renderSubEquipments(): TemplateResult {
+    if (!this.showfunctions) return html``;
+    const subEquipments = getChildElementsByTagName(
+      this.element,
+      'SubEquipment'
+    );
+
+    return html` ${subEquipments.map(
+      subEquipment =>
+        html`<sub-equipment-editor
+          .doc=${this.doc}
+          .element=${subEquipment}
+        ></sub-equipment-editor>`
     )}`;
   }
 
@@ -199,26 +215,6 @@ export class PowerTransformerEditor extends LitElement {
           >${this.renderAddButtons()}</mwc-menu
         >
       </abbr>`;
-  }
-
-  private renderSubEquipments(): TemplateResult {
-    if (!this.showfunctions) return html``;
-    const subEquipments = getChildElementsByTagName(
-      this.element,
-      'SubEquipment'
-    );
-
-    return subEquipments.length
-      ? html`<div class="container subequipment">
-          ${subEquipments.map(
-            subEquipment =>
-              html`<sub-equipment-editor
-                .doc=${this.doc}
-                .element=${subEquipment}
-              ></sub-equipment-editor>`
-          )}
-        </div>`
-      : html``;
   }
 
   private renderTransformerWinding(): TemplateResult {

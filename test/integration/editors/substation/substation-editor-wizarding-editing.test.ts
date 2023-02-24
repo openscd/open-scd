@@ -342,4 +342,80 @@ describe('substation-editor wizarding editing integration', () => {
         .to.exist;
     });
   });
+
+  describe('open add general-equipment wizard', () => {
+    let doc: XMLDocument;
+    let parent: MockWizardEditor;
+    let element: SubstationEditor | null;
+
+    let nameField: WizardTextField;
+    let typeField: WizardTextField;
+    let primaryAction: HTMLElement;
+
+    beforeEach(async () => {
+      doc = await fetch(
+        '/test/testfiles/editors/substation/generalequipment.scd'
+      )
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+      parent = <MockWizardEditor>(
+        await fixture(
+          html`<mock-wizard-editor
+            ><substation-editor
+              .element=${doc.querySelector('Substation')}
+            ></substation-editor
+          ></mock-wizard-editor>`
+        )
+      );
+
+      element = parent.querySelector('substation-editor');
+
+      (<HTMLElement>(
+        element?.shadowRoot?.querySelector(
+          'mwc-list-item[value="GeneralEquipment"]'
+        )
+      )).click();
+      await parent.updateComplete;
+
+      nameField = <WizardTextField>(
+        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
+      );
+
+      typeField = <WizardTextField>(
+        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="type"]')
+      );
+
+      primaryAction = <HTMLElement>(
+        parent.wizardUI.dialog?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      );
+    });
+    it('opens general-equipment wizard ', async () => {
+      expect(parent.wizardUI).to.exist;
+    });
+    it('has four wizard inputs', async () => {
+      expect(parent.wizardUI.inputs.length).to.equal(4);
+    });
+    it('does not add general-equipment if name andattribute is not unique', async () => {
+      nameField.value = 'genSub';
+      typeField.value = 'AXN';
+      await parent.updateComplete;
+      primaryAction.click();
+
+      expect(
+        doc.querySelectorAll('GeneralEquipment[name="genSub"]').length
+      ).to.equal(1);
+    });
+    it('does add general-equipment if name attribute is unique', async () => {
+      expect(doc.querySelector('GeneralEquipment[name="newgenSub"]')).to.not
+        .exist;
+      nameField.value = 'newgenSub';
+      typeField.value = 'AXN';
+      await parent.updateComplete;
+      primaryAction.click();
+      expect(doc.querySelector('GeneralEquipment[name = "newgenSub"]')).to
+        .exist;
+    });
+  });
 });

@@ -88,6 +88,7 @@
 							<ExtRef intAddr="AmpSv;TCTR2/AmpSv/q" desc="MeasPoint.CT1"/>
 							<ExtRef intAddr="AmpSv;TCTR3/AmpSv/instMag.i" desc="MeasPoint.CT3"/>
 							<ExtRef intAddr="AmpSv;TCTR3/AmpSv/q" desc="MeasPoint.CT1"/>
+							<ExtRef intAddr="sillyLikeA" serviceType="GOOSE"/>
 						</Inputs>
 					</LN>
 				</LDevice>

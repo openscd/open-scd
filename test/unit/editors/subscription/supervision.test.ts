@@ -15,7 +15,7 @@ describe('supervision', () => {
   describe('when subscribing to a SampledValueControl', () => {
     beforeEach(async () => {
       doc = await fetch(
-        '/test/testfiles/editors/VS893-LaterBindingSMV-LSVS.scd'
+        '/test/testfiles/editors/LaterBindingSMV-LSVS.scd'
       )
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
@@ -126,7 +126,7 @@ describe('supervision', () => {
   describe('when subscribing to a GSEControl', () => {
     beforeEach(async () => {
       doc = await fetch(
-        '/test/testfiles/editors/VS893_LaterBindingGOOSE-LGOS.scd'
+        '/test/testfiles/editors/LaterBindingGOOSE-LGOS.scd'
       )
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));

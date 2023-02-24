@@ -49,6 +49,17 @@ snapshots["web component rendering EqSubFunction element with complete attribute
         mwc-list-item=""
         role="menuitem"
         tabindex="-1"
+        value="GeneralEquipment"
+      >
+        <span>
+          GeneralEquipment
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
         value="EqSubFunction"
       >
         <span>
@@ -102,6 +113,17 @@ snapshots["web component rendering EqSubFunction element with missing desc and t
       >
         <span>
           LNode
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="GeneralEquipment"
+      >
+        <span>
+          GeneralEquipment
         </span>
       </mwc-list-item>
       <mwc-list-item
@@ -166,6 +188,17 @@ snapshots["web component rendering EqSubFunction element with existing LNode chi
       >
         <span>
           LNode
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="GeneralEquipment"
+      >
+        <span>
+          GeneralEquipment
         </span>
       </mwc-list-item>
       <mwc-list-item
@@ -241,6 +274,17 @@ snapshots["web component rendering EqSubFunction element with general-equipment 
         mwc-list-item=""
         role="menuitem"
         tabindex="-1"
+        value="GeneralEquipment"
+      >
+        <span>
+          GeneralEquipment
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
         value="EqSubFunction"
       >
         <span>
@@ -298,6 +342,17 @@ snapshots["web component rendering EqSubFunction element with general-equipment 
       >
         <span>
           LNode
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="GeneralEquipment"
+      >
+        <span>
+          GeneralEquipment
         </span>
       </mwc-list-item>
       <mwc-list-item

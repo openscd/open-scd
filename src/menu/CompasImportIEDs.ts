@@ -1,41 +1,48 @@
-import { html, LitElement } from 'lit-element';
-import { get } from 'lit-translate';
-
-import { newWizardEvent, Wizard } from '../foundation.js';
+import { html, query, TemplateResult } from 'lit-element';
+import { translate } from 'lit-translate';
 
 import { DocRetrievedEvent } from '../compas/CompasOpen.js';
-import { prepareImportIEDs } from './ImportIEDs.js';
+import ImportingIedPlugin from './ImportIEDs.js';
 
 import '../compas/CompasOpen.js';
+import { Dialog } from '@material/mwc-dialog';
 
-export default class CompasImportIEDSMenuPlugin extends LitElement {
+export default class CompasImportIEDSMenuPlugin extends ImportingIedPlugin {
   doc!: XMLDocument;
   parent!: HTMLElement;
 
-  private importIEDsCompasWizard(parent: HTMLElement, doc: Document): Wizard {
-    return [
-      {
-        title: get('compas.importIEDS.title'),
-        content: [
-          html`<compas-open
-            @doc-retrieved=${async (event: DocRetrievedEvent) => {
-              await prepareImportIEDs(parent, event.detail.doc, doc);
-              parent.dispatchEvent(newWizardEvent());
-            }}
-          >
-          </compas-open> `,
-        ],
-      },
-    ];
+  @query('mwc-dialog#compas-open-dlg')
+  compasOpen!: Dialog;
+
+  renderInput(): TemplateResult {
+    return html`<mwc-dialog
+      id="compas-open-dlg"
+      heading="${translate('compas.open.title')}"
+    >
+      <compas-open
+        @doc-retrieved=${(event: DocRetrievedEvent) => {
+          this.onLoadCompasFiles(event);
+        }}
+      >
+      </compas-open>
+      <mwc-button
+        slot="secondaryAction"
+        icon=""
+        label="${translate('close')}"
+        dialogAction="close"
+        style="--mdc-theme-primary: var(--mdc-theme-error)"
+      >
+      </mwc-button>
+    </mwc-dialog>`;
   }
 
-  firstUpdated(): void {
-    this.parent = this.parentElement!;
+  protected onLoadCompasFiles(event: DocRetrievedEvent): void {
+    this.importDoc = event.detail.doc;
+    this.prepareImport();
+    this.compasOpen.close();
   }
 
   async run(): Promise<void> {
-    this.dispatchEvent(
-      newWizardEvent(this.importIEDsCompasWizard(this.parent, this.doc))
-    );
+    this.compasOpen.show();
   }
 }

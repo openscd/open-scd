@@ -2,20 +2,20 @@ import { expect, fixture, html } from '@open-wc/testing';
 
 import '../../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../../mock-wizard-editor.js';
-
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
-import '../../../../src/editors/substation/general-equipment-editor.js';
-import { GeneralEquipmentEditor } from '../../../../src/editors/substation/general-equipment-editor.js';
+import '../../../../src/editors/substation/transformer-winding-editor.js';
+import { TransformerWindingEditor } from '../../../../src/editors/substation/transformer-winding-editor.js';
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
+import { WizardCheckbox } from '../../../../src/wizard-checkbox.js';
 import { MenuBase } from '@material/mwc-menu/mwc-menu-base.js';
 
 const openAndCancelMenu: (
   parent: MockWizardEditor,
-  element: GeneralEquipmentEditor
+  element: TransformerWindingEditor
 ) => Promise<void> = (
   parent: MockWizardEditor,
-  element: GeneralEquipmentEditor
+  element: TransformerWindingEditor
 ): Promise<void> =>
   new Promise(async resolve => {
     expect(parent.wizardUI.dialog).to.be.undefined;
@@ -46,37 +46,37 @@ const openAndCancelMenu: (
     return resolve();
   });
 
-describe('general-equipment-editor wizarding editing integration', () => {
+describe('transformer-winding-editor wizarding editing integration', () => {
   let doc: XMLDocument;
   let parent: MockWizardEditor;
-  let element: GeneralEquipmentEditor | null;
+  let element: TransformerWindingEditor | null;
 
   describe('edit wizard', () => {
     let nameField: WizardTextField;
     let descField: WizardTextField;
-    let typeField: WizardTextField;
-    let secondaryAction: HTMLElement;
     let primaryAction: HTMLElement;
+    let secondaryAction: HTMLElement;
 
     beforeEach(async () => {
       doc = await fetch(
-        '/test/testfiles/editors/substation/generalequipment.scd'
+        'test/testfiles/editors/substation/TransformerWinding.scd'
       )
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <MockWizardEditor>(
         await fixture(
           html`<mock-wizard-editor
-            ><general-equipment-editor
-              .element=${doc.querySelector('GeneralEquipment')}
-            ></general-equipment-editor
+            ><transformer-winding-editor
+              .element=${doc.querySelector(
+                'PowerTransformer[name="pTransVolt"] > TransformerWinding[name="some"]'
+              )}
+            ></transformer-winding-editor
           ></mock-wizard-editor>`
         )
       );
-
-      element = parent.querySelector('general-equipment-editor');
+      element = parent.querySelector('transformer-winding-editor');
       await (<HTMLElement>(
-        element?.shadowRoot?.querySelector('mwc-fab[icon="edit"]')
+        element?.shadowRoot?.querySelector('mwc-icon-button[icon="edit"]')
       )).click();
       await parent.updateComplete;
 
@@ -86,9 +86,7 @@ describe('general-equipment-editor wizarding editing integration', () => {
       descField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector('wizard-textfield[label="desc"]')
       );
-      typeField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="type"]')
-      );
+
       secondaryAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
           'mwc-button[slot="secondaryAction"]'
@@ -107,45 +105,49 @@ describe('general-equipment-editor wizarding editing integration', () => {
     });
     it('does not change name attribute if not unique within parent element', async () => {
       const oldName = nameField.value;
-      nameField.value = 'genSub2';
+      nameField.value = 'some1';
       primaryAction.click();
       await parent.updateComplete;
       expect(
-        doc.querySelector('GeneralEquipment')?.getAttribute('name')
+        doc
+          .querySelector(
+            'PowerTransformer[name="pTransVolt"] > TransformerWinding[name="some"]'
+          )
+          ?.getAttribute('name')
       ).to.equal(oldName);
     });
-    it('changes name attribute on primary action', async () => {
-      parent.wizardUI.inputs[0].value = 'newName';
-      primaryAction.click();
-      await parent.updateComplete;
-      expect(
-        doc.querySelector('GeneralEquipment')?.getAttribute('name')
-      ).to.equal('newName');
-    });
-    it('changes type attribute on primary action', async () => {
-      parent.wizardUI.inputs[2].value = 'newAXN';
-      primaryAction.click();
-      await parent.updateComplete;
-      expect(
-        doc.querySelector('GeneralEquipment')?.getAttribute('type')
-      ).to.equal('newAXN');
-    });
     it('changes desc attribute on primary action', async () => {
+      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+      descField.nullSwitch!.click();
+      await parent.updateComplete;
       descField.value = 'newDesc';
       primaryAction.click();
       await parent.updateComplete;
       expect(
-        doc.querySelector('GeneralEquipment')?.getAttribute('desc')
+        doc
+          .querySelector(
+            'PowerTransformer[name="pTransVolt"] > TransformerWinding[name="some"]'
+          )
+          ?.getAttribute('desc')
       ).to.equal('newDesc');
     });
-    it('deletes desc attribute if wizard-textfield is deactivated', async () => {
-      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
-      descField.nullSwitch!.click();
+    it('changes virtual attribute on primary action', async () => {
+      const virtualCheckbox = <WizardCheckbox>(
+        parent.wizardUI.dialog?.querySelector(
+          'wizard-checkbox[label="virtual"]'
+        )
+      );
+      virtualCheckbox.nullSwitch!.click();
+      virtualCheckbox.maybeValue = 'true';
+      primaryAction.click();
       await parent.updateComplete;
-      await primaryAction.click();
-      await parent.updateComplete;
-      expect(doc.querySelector('GeneralEquipment')?.getAttribute('desc')).to.be
-        .null;
+      expect(
+        doc
+          .querySelector(
+            'PowerTransformer[name="pTransVolt"] > TransformerWinding[name="some"]'
+          )
+          ?.getAttribute('virtual')
+      ).to.equal('true');
     });
 
     describe('has a delete icon button that', () => {
@@ -153,15 +155,15 @@ describe('general-equipment-editor wizarding editing integration', () => {
 
       beforeEach(async () => {
         deleteButton = <HTMLElement>(
-          element?.shadowRoot?.querySelector('mwc-fab[icon="delete"]')
+          element?.shadowRoot?.querySelector('mwc-icon-button[icon="delete"]')
         );
         await parent.updateComplete;
       });
 
-      it('removes the attached GeneralEquipment element from the document', async () => {
+      it('removes the attached TransformerWinding element from the document', async () => {
         expect(
           doc.querySelector(
-            'Substation[name="AA1"] > GeneralEquipment[name="genSub"]'
+            'PowerTransformer[name="pTransVolt"] > TransformerWinding[name="some"]'
           )
         ).to.exist;
 
@@ -169,7 +171,34 @@ describe('general-equipment-editor wizarding editing integration', () => {
 
         expect(
           doc.querySelector(
-            'Substation[name="AA1"] > GeneralEquipment[name="genSub"]'
+            'PowerTransformer[name="pTransVolt"] > TransformerWinding[name="some"]'
+          )
+        ).to.not.exist;
+      });
+    });
+
+    describe('has a delete icon button that', () => {
+      let deleteButton: HTMLElement;
+
+      beforeEach(async () => {
+        deleteButton = <HTMLElement>(
+          element?.shadowRoot?.querySelector('mwc-icon-button[icon="delete"]')
+        );
+        await parent.updateComplete;
+      });
+
+      it('removes the attached TransformerWinding element from the document', async () => {
+        expect(
+          doc.querySelector(
+            'PowerTransformer[name="pTransVolt"] > TransformerWinding[name="some"]'
+          )
+        ).to.exist;
+
+        await deleteButton.click();
+
+        expect(
+          doc.querySelector(
+            'PowerTransformer[name="pTransVolt"] > TransformerWinding[name="some"]'
           )
         ).to.not.exist;
       });
@@ -179,26 +208,27 @@ describe('general-equipment-editor wizarding editing integration', () => {
   describe('Open add wizard', () => {
     let doc: XMLDocument;
     let parent: MockWizardEditor;
-    let element: GeneralEquipmentEditor | null;
+    let element: TransformerWindingEditor | null;
 
     beforeEach(async () => {
       doc = await fetch(
-        '/test/testfiles/editors/substation/generalequipment.scd'
+        '/test/testfiles/editors/substation/TransformerWinding.scd'
       )
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <MockWizardEditor>(
         await fixture(
           html`<mock-wizard-editor
-            ><general-equipment-editor
-              .element=${doc.querySelector('GeneralEquipment')}
-              ?showfunctions=${true}
-            ></general-equipment-editor
+            ><transformer-winding-editor
+              .element=${doc.querySelector(
+                'PowerTransformer[name="pTransVolt"] > TransformerWinding[name="some"]'
+              )}
+            ></transformer-winding-editor
           ></mock-wizard-editor>`
         )
       );
 
-      element = parent.querySelector('general-equipment-editor');
+      element = parent.querySelector('transformer-winding-editor');
 
       await parent.updateComplete;
     });

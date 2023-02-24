@@ -1,7 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Wizards for SCL GeneralEquipment element define an edit wizard that looks like the the latest snapshot"] = 
+snapshots["Wizards for SCL TransformerWinding element define an edit wizard that looks like the the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
@@ -18,17 +18,16 @@ snapshots["Wizards for SCL GeneralEquipment element define an edit wizard that l
     >
     </wizard-textfield>
     <wizard-textfield
+      disabled=""
       helper="[scl.desc]"
       label="desc"
       nullable=""
     >
     </wizard-textfield>
     <wizard-textfield
+      disabled=""
       helper="[scl.type]"
       label="type"
-      minlength="3"
-      pattern="AXN|BAT|MOT|FAN|FIL|PMP|TNK|VLV|E[A-Z]*"
-      required=""
     >
     </wizard-textfield>
     <wizard-checkbox
@@ -54,9 +53,9 @@ snapshots["Wizards for SCL GeneralEquipment element define an edit wizard that l
   </mwc-button>
 </mwc-dialog>
 `;
-/* end snapshot Wizards for SCL GeneralEquipment element define an edit wizard that looks like the the latest snapshot */
+/* end snapshot Wizards for SCL TransformerWinding element define an edit wizard that looks like the the latest snapshot */
 
-snapshots["Wizards for SCL GeneralEquipment element define an create wizard that looks like the the latest snapshot"] = 
+snapshots["Wizards for SCL TransformerWinding element define an create wizard that looks like the the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.add]"
@@ -80,11 +79,9 @@ snapshots["Wizards for SCL GeneralEquipment element define an create wizard that
     >
     </wizard-textfield>
     <wizard-textfield
+      disabled=""
       helper="[scl.type]"
       label="type"
-      minlength="3"
-      pattern="AXN|BAT|MOT|FAN|FIL|PMP|TNK|VLV|E[A-Z]*"
-      required=""
     >
     </wizard-textfield>
     <wizard-checkbox
@@ -110,5 +107,5 @@ snapshots["Wizards for SCL GeneralEquipment element define an create wizard that
   </mwc-button>
 </mwc-dialog>
 `;
-/* end snapshot Wizards for SCL GeneralEquipment element define an create wizard that looks like the the latest snapshot */
+/* end snapshot Wizards for SCL TransformerWinding element define an create wizard that looks like the the latest snapshot */
 

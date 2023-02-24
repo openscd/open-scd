@@ -76,7 +76,7 @@ snapshots["extref-later-binding-list for Sampled Value Control when SVC has no s
                  (MeasPoint.CT2)
       </span>
       <span slot="secondary">
-        SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR2/AmpSv/instMag.i[0]
+        SMV_Subscriber>>Overvoltage> PTRC 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -95,7 +95,7 @@ snapshots["extref-later-binding-list for Sampled Value Control when SVC has no s
                  (MeasPoint.CT3)
       </span>
       <span slot="secondary">
-        SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR3/AmpSv/instMag.i[0]
+        SMV_Subscriber>>Overvoltage> PTRC 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -114,7 +114,7 @@ snapshots["extref-later-binding-list for Sampled Value Control when SVC has no s
                  (MeasPoint.VT1)
       </span>
       <span slot="secondary">
-        SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR1/VolSv/q[0]
+        SMV_Subscriber>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -133,7 +133,7 @@ snapshots["extref-later-binding-list for Sampled Value Control when SVC has no s
                  (MeasPoint.VT2)
       </span>
       <span slot="secondary">
-        SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR2/VolSv/instMag.i[0]
+        SMV_Subscriber>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -152,7 +152,7 @@ snapshots["extref-later-binding-list for Sampled Value Control when SVC has no s
                  (MeasPoint.VT1)
       </span>
       <span slot="secondary">
-        SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR2/VolSv/q[0]
+        SMV_Subscriber>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -171,7 +171,7 @@ snapshots["extref-later-binding-list for Sampled Value Control when SVC has no s
                  (MeasPoint.VT3)
       </span>
       <span slot="secondary">
-        SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR3/VolSv/instMag.i[0]
+        SMV_Subscriber>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -190,7 +190,7 @@ snapshots["extref-later-binding-list for Sampled Value Control when SVC has no s
                  (MeasPoint.VT1)
       </span>
       <span slot="secondary">
-        SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR3/VolSv/q[0]
+        SMV_Subscriber>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -210,7 +210,7 @@ snapshots["extref-later-binding-list for Sampled Value Control when SVC has no s
                  (Restricted To AmpSV)
       </span>
       <span slot="secondary">
-        SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[0]
+        SMV_Subscriber>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -229,7 +229,7 @@ snapshots["extref-later-binding-list for Sampled Value Control when SVC has no s
                  (Restricted To AmpSV)
       </span>
       <span slot="secondary">
-        SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[1]
+        SMV_Subscriber>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -274,7 +274,7 @@ snapshots["extref-later-binding-list for Sampled Value Control when SVC has a si
          (MeasPoint.CT1)
       </span>
       <span slot="secondary">
-        SMV_Subscriber>>Overvoltage> PTRC 1>SMV:currentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv instMag.i@AmpSv;TCTR1/AmpSv/instMag.i
+        SMV_Subscriber>>Overvoltage> PTRC 1
       </span>
       <mwc-icon slot="graphic">
         swap_horiz
@@ -308,7 +308,7 @@ snapshots["extref-later-binding-list for Sampled Value Control when SVC has a si
                  (MeasPoint.CT2)
       </span>
       <span slot="secondary">
-        SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR2/AmpSv/instMag.i[0]
+        SMV_Subscriber>>Overvoltage> PTRC 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -327,7 +327,7 @@ snapshots["extref-later-binding-list for Sampled Value Control when SVC has a si
                  (MeasPoint.CT3)
       </span>
       <span slot="secondary">
-        SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR3/AmpSv/instMag.i[0]
+        SMV_Subscriber>>Overvoltage> PTRC 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -346,7 +346,7 @@ snapshots["extref-later-binding-list for Sampled Value Control when SVC has a si
                  (MeasPoint.VT1)
       </span>
       <span slot="secondary">
-        SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR1/VolSv/q[0]
+        SMV_Subscriber>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -365,7 +365,7 @@ snapshots["extref-later-binding-list for Sampled Value Control when SVC has a si
                  (MeasPoint.VT2)
       </span>
       <span slot="secondary">
-        SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR2/VolSv/instMag.i[0]
+        SMV_Subscriber>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -384,7 +384,7 @@ snapshots["extref-later-binding-list for Sampled Value Control when SVC has a si
                  (MeasPoint.VT1)
       </span>
       <span slot="secondary">
-        SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR2/VolSv/q[0]
+        SMV_Subscriber>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -403,7 +403,7 @@ snapshots["extref-later-binding-list for Sampled Value Control when SVC has a si
                  (MeasPoint.VT3)
       </span>
       <span slot="secondary">
-        SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR3/VolSv/instMag.i[0]
+        SMV_Subscriber>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -422,7 +422,7 @@ snapshots["extref-later-binding-list for Sampled Value Control when SVC has a si
                  (MeasPoint.VT1)
       </span>
       <span slot="secondary">
-        SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR3/VolSv/q[0]
+        SMV_Subscriber>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -442,7 +442,7 @@ snapshots["extref-later-binding-list for Sampled Value Control when SVC has a si
                  (Restricted To AmpSV)
       </span>
       <span slot="secondary">
-        SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[0]
+        SMV_Subscriber>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -461,7 +461,7 @@ snapshots["extref-later-binding-list for Sampled Value Control when SVC has a si
                  (Restricted To AmpSV)
       </span>
       <span slot="secondary">
-        SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[1]
+        SMV_Subscriber>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -506,7 +506,7 @@ snapshots["extref-later-binding-list when SVC has a multiple subscriptions looks
          (MeasPoint.CT1)
       </span>
       <span slot="secondary">
-        SMV_Subscriber>>Overvoltage> PTRC 1>SMV:currentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv q@AmpSv;TCTR1/AmpSv/q
+        SMV_Subscriber>>Overvoltage> PTRC 1
       </span>
       <mwc-icon slot="graphic">
         swap_horiz
@@ -522,7 +522,7 @@ snapshots["extref-later-binding-list when SVC has a multiple subscriptions looks
          (MeasPoint.CT1)
       </span>
       <span slot="secondary">
-        SMV_Subscriber>>Overvoltage> PTRC 1>SMV:currentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv q@AmpSv;TCTR2/AmpSv/q
+        SMV_Subscriber>>Overvoltage> PTRC 1
       </span>
       <mwc-icon slot="graphic">
         swap_horiz
@@ -538,7 +538,7 @@ snapshots["extref-later-binding-list when SVC has a multiple subscriptions looks
          (MeasPoint.CT1)
       </span>
       <span slot="secondary">
-        SMV_Subscriber>>Overvoltage> PTRC 1>SMV:currentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv q@AmpSv;TCTR3/AmpSv/q
+        SMV_Subscriber>>Overvoltage> PTRC 1
       </span>
       <mwc-icon slot="graphic">
         swap_horiz
@@ -572,7 +572,7 @@ snapshots["extref-later-binding-list when SVC has a multiple subscriptions looks
                  (MeasPoint.CT2)
       </span>
       <span slot="secondary">
-        SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR2/AmpSv/instMag.i[0]
+        SMV_Subscriber>>Overvoltage> PTRC 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -591,7 +591,7 @@ snapshots["extref-later-binding-list when SVC has a multiple subscriptions looks
                  (MeasPoint.CT3)
       </span>
       <span slot="secondary">
-        SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR3/AmpSv/instMag.i[0]
+        SMV_Subscriber>>Overvoltage> PTRC 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -610,7 +610,7 @@ snapshots["extref-later-binding-list when SVC has a multiple subscriptions looks
                  (MeasPoint.VT1)
       </span>
       <span slot="secondary">
-        SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR1/VolSv/q[0]
+        SMV_Subscriber>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -629,7 +629,7 @@ snapshots["extref-later-binding-list when SVC has a multiple subscriptions looks
                  (MeasPoint.VT2)
       </span>
       <span slot="secondary">
-        SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR2/VolSv/instMag.i[0]
+        SMV_Subscriber>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -648,7 +648,7 @@ snapshots["extref-later-binding-list when SVC has a multiple subscriptions looks
                  (MeasPoint.VT1)
       </span>
       <span slot="secondary">
-        SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR2/VolSv/q[0]
+        SMV_Subscriber>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -667,7 +667,7 @@ snapshots["extref-later-binding-list when SVC has a multiple subscriptions looks
                  (MeasPoint.VT3)
       </span>
       <span slot="secondary">
-        SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR3/VolSv/instMag.i[0]
+        SMV_Subscriber>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -686,7 +686,7 @@ snapshots["extref-later-binding-list when SVC has a multiple subscriptions looks
                  (MeasPoint.VT1)
       </span>
       <span slot="secondary">
-        SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR3/VolSv/q[0]
+        SMV_Subscriber>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -705,7 +705,7 @@ snapshots["extref-later-binding-list when SVC has a multiple subscriptions looks
                  (Restricted To AmpSV)
       </span>
       <span slot="secondary">
-        SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[0]
+        SMV_Subscriber>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -725,7 +725,7 @@ snapshots["extref-later-binding-list when SVC has a multiple subscriptions looks
                  (Restricted To AmpSV)
       </span>
       <span slot="secondary">
-        SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[1]
+        SMV_Subscriber>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -802,7 +802,7 @@ snapshots["extref-later-binding-list for GOOSE Control when GSEControl has no su
                  (Interlocking.Input)
       </span>
       <span slot="secondary">
-        GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0]
+        GOOSE_Subscriber>>Earth_Switch> CILO 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -821,7 +821,7 @@ snapshots["extref-later-binding-list for GOOSE Control when GSEControl has no su
                  (Interlocking.Input3)
       </span>
       <span slot="secondary">
-        GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB1_Disconnector/ CILO 1 EnaCls stVal@Pos;CILO/EnaCls/stVal
+        GOOSE_Subscriber>>Earth_Switch> CILO 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -840,7 +840,7 @@ snapshots["extref-later-binding-list for GOOSE Control when GSEControl has no su
                  (Interlocking.Input4)
       </span>
       <span slot="secondary">
-        GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CILO 1 EnaOpn stVal@Pos;CILO/EnaOpn2/stVal
+        GOOSE_Subscriber>>Earth_Switch> CILO 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -860,7 +860,7 @@ snapshots["extref-later-binding-list for GOOSE Control when GSEControl has no su
                  (Restricted To Pos)
       </span>
       <span slot="secondary">
-        GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0]
+        GOOSE_Subscriber>>Earth_Switch> CSWI 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -879,7 +879,7 @@ snapshots["extref-later-binding-list for GOOSE Control when GSEControl has no su
                  (Restricted To Pos)
       </span>
       <span slot="secondary">
-        GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[1]
+        GOOSE_Subscriber>>Earth_Switch> CSWI 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -924,7 +924,7 @@ snapshots["extref-later-binding-list for GOOSE Control when GSEControl has a sin
          (Interlocking.Input2)
       </span>
       <span slot="secondary">
-        GOOSE_Subscriber>>Earth_Switch> CSWI 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos stVal@Pos;CSWI1/Pos/stVal
+        GOOSE_Subscriber>>Earth_Switch> CSWI 1
       </span>
       <mwc-icon slot="graphic">
         swap_horiz
@@ -958,7 +958,7 @@ snapshots["extref-later-binding-list for GOOSE Control when GSEControl has a sin
                  (Interlocking.Input)
       </span>
       <span slot="secondary">
-        GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0]
+        GOOSE_Subscriber>>Earth_Switch> CILO 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -977,7 +977,7 @@ snapshots["extref-later-binding-list for GOOSE Control when GSEControl has a sin
                  (Interlocking.Input3)
       </span>
       <span slot="secondary">
-        GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB1_Disconnector/ CILO 1 EnaCls stVal@Pos;CILO/EnaCls/stVal
+        GOOSE_Subscriber>>Earth_Switch> CILO 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -996,7 +996,7 @@ snapshots["extref-later-binding-list for GOOSE Control when GSEControl has a sin
                  (Interlocking.Input4)
       </span>
       <span slot="secondary">
-        GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CILO 1 EnaOpn stVal@Pos;CILO/EnaOpn2/stVal
+        GOOSE_Subscriber>>Earth_Switch> CILO 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -1016,7 +1016,7 @@ snapshots["extref-later-binding-list for GOOSE Control when GSEControl has a sin
                  (Restricted To Pos)
       </span>
       <span slot="secondary">
-        GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0]
+        GOOSE_Subscriber>>Earth_Switch> CSWI 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -1035,7 +1035,7 @@ snapshots["extref-later-binding-list for GOOSE Control when GSEControl has a sin
                  (Restricted To Pos)
       </span>
       <span slot="secondary">
-        GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[1]
+        GOOSE_Subscriber>>Earth_Switch> CSWI 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -1080,7 +1080,7 @@ snapshots["extref-later-binding-list when GSEControl has a multiple subscription
          (Interlocking.Input)
       </span>
       <span slot="secondary">
-        GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos q@Pos;CSWI1/Pos/q
+        GOOSE_Subscriber>>Earth_Switch> CILO 1
       </span>
       <mwc-icon slot="graphic">
         swap_horiz
@@ -1096,7 +1096,7 @@ snapshots["extref-later-binding-list when GSEControl has a multiple subscription
          (Interlocking.Input2)
       </span>
       <span slot="secondary">
-        GOOSE_Subscriber>>Earth_Switch> CSWI 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos q@Pos;CSWI1/Pos/q
+        GOOSE_Subscriber>>Earth_Switch> CSWI 1
       </span>
       <mwc-icon slot="graphic">
         swap_horiz
@@ -1130,7 +1130,7 @@ snapshots["extref-later-binding-list when GSEControl has a multiple subscription
                  (Interlocking.Input)
       </span>
       <span slot="secondary">
-        GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0]
+        GOOSE_Subscriber>>Earth_Switch> CILO 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -1149,7 +1149,7 @@ snapshots["extref-later-binding-list when GSEControl has a multiple subscription
                  (Interlocking.Input3)
       </span>
       <span slot="secondary">
-        GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB1_Disconnector/ CILO 1 EnaCls stVal@Pos;CILO/EnaCls/stVal
+        GOOSE_Subscriber>>Earth_Switch> CILO 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -1168,7 +1168,7 @@ snapshots["extref-later-binding-list when GSEControl has a multiple subscription
                  (Interlocking.Input4)
       </span>
       <span slot="secondary">
-        GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CILO 1 EnaOpn stVal@Pos;CILO/EnaOpn2/stVal
+        GOOSE_Subscriber>>Earth_Switch> CILO 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -1187,7 +1187,7 @@ snapshots["extref-later-binding-list when GSEControl has a multiple subscription
                  (Restricted To Pos)
       </span>
       <span slot="secondary">
-        GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0]
+        GOOSE_Subscriber>>Earth_Switch> CSWI 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
@@ -1207,7 +1207,7 @@ snapshots["extref-later-binding-list when GSEControl has a multiple subscription
                  (Restricted To Pos)
       </span>
       <span slot="secondary">
-        GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[1]
+        GOOSE_Subscriber>>Earth_Switch> CSWI 1
       </span>
       <mwc-icon slot="graphic">
         arrow_back
