@@ -1,4 +1,9 @@
 import { ListItem } from '@material/mwc-list/mwc-list-item.js';
+import '@material/mwc-list/mwc-check-list-item';
+import '@material/mwc-menu';
+import { Menu } from '@material/mwc-menu';
+import { Icon } from '@material/mwc-icon';
+
 import {
   css,
   customElement,
@@ -62,10 +67,24 @@ function getExtRefId(extRefElement: Element): string {
 export class ExtRefLaterBindingListSubscriber extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
+
   @property()
   controlTag!: 'SampledValueControl' | 'GSEControl';
+
   @property({ attribute: true })
   subscriberview!: boolean;
+
+  @property({ attribute: false })
+  filterOnlySubscribed =
+    localStorage.getItem(
+      `subscriber-later-binding-${this.controlTag}$filter-only-subscribed`
+    ) === 'true' ?? false;
+
+  @query('.actions-menu')
+  actionsMenu!: Menu;
+
+  @query('.actions-menu-icon')
+  actionsMenuIcon!: Icon;
 
   @query('mwc-list-item.activated')
   currentActivatedExtRefItem!: ListItem;
@@ -288,6 +307,32 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
             new Event('change-view', { bubbles: true, composed: true })
           )}
       ></mwc-icon-button>
+      <mwc-icon-button
+        class="actions-menu-icon ${this.filterOnlySubscribed
+          ? 'filter-on'
+          : ''}"
+        icon="filter_list"
+        @click=${() => {
+          if (!this.actionsMenu.open) this.actionsMenu.show();
+          else this.actionsMenu.close();
+        }}
+      ></mwc-icon-button>
+      <mwc-menu
+        multi
+        class="actions-menu"
+        corner="BOTTOM_RIGHT"
+        menuCorner="END"
+      >
+        <mwc-check-list-item
+          class="filter-subscribed"
+          left
+          @click=${() => {
+            this.actionsMenu.close();
+          }}
+        >
+          <span>${translate('subscription.subscriber.onlyConfigured')}</span>
+        </mwc-check-list-item>
+      </mwc-menu>
     </h1>`;
   }
 
@@ -325,6 +370,18 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
     return this.supervisionData.get(cbRefKey);
   }
 
+  protected firstUpdated(): void {
+    this.actionsMenu.anchor = <HTMLElement>this.actionsMenuIcon;
+
+    this.actionsMenu.addEventListener('closed', () => {
+      this.filterOnlySubscribed = (<Set<number>>this.actionsMenu.index).has(0);
+      localStorage.setItem(
+        `subscriber-later-binding-${this.controlTag}$filter-only-subscribed`,
+        `${this.filterOnlySubscribed}`
+      );
+    });
+  }
+
   private renderCompleteExtRefElement(extRefElement: Element): TemplateResult {
     let subscriberFCDA: Element | undefined;
     let supervisionNode: Element | undefined;
@@ -332,6 +389,8 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
     let supervisionDescription: string | undefined;
 
     const subscribed = isSubscribed(extRefElement);
+    if (this.filterOnlySubscribed && !subscribed) return html``;
+
     if (subscribed) {
       subscriberFCDA = findFCDAs(extRefElement).find(x => x !== undefined);
       supervisionNode = this.getCachedSupervision(extRefElement);
@@ -443,6 +502,19 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
 
   static styles = css`
     ${styles}
+
+    section {
+      position: relative;
+    }
+
+    .actions-menu-icon {
+      float: right;
+    }
+
+    .actions-menu-icon.filter-on {
+      color: var(--secondary);
+      background-color: var(--mdc-theme-background);
+    }
 
     h3 {
       color: var(--mdc-theme-on-surface);

@@ -346,6 +346,7 @@ export const en = {
     disconnect: 'Disconnect data attribute',
     subscriber: {
       subscribed: 'Subscribed',
+      onlyConfigured: 'Only Configured',
       availableToSubscribe: 'Available to subscribe',
       partiallySubscribed: 'Partially subscribed',
       noControlBlockSelected: 'No control block selected',
