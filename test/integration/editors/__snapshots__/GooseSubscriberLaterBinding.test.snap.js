@@ -194,7 +194,7 @@ snapshots["GOOSE Subscribe Later Binding Plugin when selecting an FCDA element w
         GOOSE_Subscriber>>Earth_Switch> CSWI 1
       </span>
       <mwc-icon slot="graphic">
-        swap_horiz
+        link
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -214,7 +214,7 @@ snapshots["GOOSE Subscribe Later Binding Plugin when selecting an FCDA element w
         GOOSE_Subscriber1>>Earth_Switch> CSWI 1 (GOOSE_Subscriber1>>SV_supervision> LGOS 1)
       </span>
       <mwc-icon slot="graphic">
-        swap_horiz
+        link
       </mwc-icon>
       <mwc-icon
         slot="meta"
@@ -254,7 +254,7 @@ snapshots["GOOSE Subscribe Later Binding Plugin when selecting an FCDA element w
         GOOSE_Subscriber>>Earth_Switch> CILO 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -273,7 +273,7 @@ snapshots["GOOSE Subscribe Later Binding Plugin when selecting an FCDA element w
         GOOSE_Subscriber>>Earth_Switch> CILO 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -292,7 +292,7 @@ snapshots["GOOSE Subscribe Later Binding Plugin when selecting an FCDA element w
         GOOSE_Subscriber>>Earth_Switch> CSWI 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -311,7 +311,7 @@ snapshots["GOOSE Subscribe Later Binding Plugin when selecting an FCDA element w
         GOOSE_Subscriber1>>Earth_Switch> CILO 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -330,7 +330,7 @@ snapshots["GOOSE Subscribe Later Binding Plugin when selecting an FCDA element w
         GOOSE_Subscriber1>>Earth_Switch> CILO 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -349,7 +349,7 @@ snapshots["GOOSE Subscribe Later Binding Plugin when selecting an FCDA element w
         GOOSE_Subscriber1>>Earth_Switch> CSWI 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
   </filtered-list>

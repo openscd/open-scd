@@ -4,8 +4,11 @@ export const snapshots = {};
 snapshots["fcda-binding-list without a doc loaded looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.undefined.controlBlockList.noControlBlockFound]
+    [subscription.undefined.controlBlockList.title]
   </h1>
+  <h3>
+    [subscription.undefined.controlBlockList.noControlBlockFound]
+  </h3>
 </section>
 `;
 /* end snapshot fcda-binding-list without a doc loaded looks like the latest snapshot */

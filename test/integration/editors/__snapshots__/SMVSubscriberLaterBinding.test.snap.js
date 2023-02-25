@@ -1082,7 +1082,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber2>>Overvoltage> PTRC 1 (SMV_Subscriber2>>SV_supervision> LSVS 1)
       </span>
       <mwc-icon slot="graphic">
-        swap_horiz
+        link
       </mwc-icon>
       <mwc-icon
         slot="meta"
@@ -1108,7 +1108,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber4>>Overvoltage> PTRC 1 (SMV_Subscriber4>>SV_supervision> LSVS 1)
       </span>
       <mwc-icon slot="graphic">
-        swap_horiz
+        link
       </mwc-icon>
       <mwc-icon
         slot="meta"
@@ -1219,7 +1219,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber>>Overvoltage> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1238,7 +1238,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber>>Overvoltage> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1257,7 +1257,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber>>Overvoltage> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1276,7 +1276,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber>>Overvoltage> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1295,7 +1295,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber>>Overvoltage> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1314,7 +1314,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber>>Overvoltage> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1333,7 +1333,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1352,7 +1352,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1371,7 +1371,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1390,7 +1390,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1409,7 +1409,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1428,7 +1428,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1447,7 +1447,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1466,7 +1466,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber2>>Overvoltage> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1485,7 +1485,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber2>>Overvoltage> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1504,7 +1504,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber2>>Overvoltage> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1523,7 +1523,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber2>>Overvoltage> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1542,7 +1542,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber2>>Overvoltage> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1561,7 +1561,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber2>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1580,7 +1580,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber2>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1599,7 +1599,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber2>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1618,7 +1618,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber2>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1637,7 +1637,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber2>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1656,7 +1656,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber2>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1675,7 +1675,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber2>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1694,7 +1694,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber3>>Overvoltage> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1713,7 +1713,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber3>>Overvoltage> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1732,7 +1732,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber3>>Overvoltage> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1751,7 +1751,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber3>>Overvoltage> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1770,7 +1770,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber3>>Overvoltage> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1789,7 +1789,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber3>>Overvoltage> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1808,7 +1808,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber3>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1827,7 +1827,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber3>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1846,7 +1846,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber3>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1865,7 +1865,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber3>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1884,7 +1884,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber3>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1903,7 +1903,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber3>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1922,7 +1922,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber3>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1941,7 +1941,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber4>>Overvoltage> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1960,7 +1960,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber4>>Overvoltage> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1979,7 +1979,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber4>>Overvoltage> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1998,7 +1998,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber4>>Overvoltage> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -2017,7 +2017,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber4>>Overvoltage> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -2036,7 +2036,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber4>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -2055,7 +2055,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber4>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -2074,7 +2074,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber4>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -2093,7 +2093,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber4>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -2112,7 +2112,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber4>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -2131,7 +2131,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber4>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -2150,7 +2150,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
         SMV_Subscriber4>>Overcurrent> PTRC 1
       </span>
       <mwc-icon slot="graphic">
-        arrow_back
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item

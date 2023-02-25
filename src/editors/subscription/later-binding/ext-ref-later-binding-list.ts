@@ -145,7 +145,7 @@ export class ExtRefLaterBindingList extends LitElement {
       srcLNInst: null,
       srcCBName: null,
     });
-
+    // HERE!
     const subscriberIed = extRefElement.closest('IED') || undefined;
     const fcdaElements = findFCDAs(extRefElement);
     const removeSubscriptionActions: Delete[] = [];
