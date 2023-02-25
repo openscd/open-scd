@@ -81,7 +81,6 @@ export default class SMVSubscribeLaterBindingPlugin extends LitElement {
       display: flex;
       padding: 8px 6px 16px;
       height: calc(100vh - 136px);
-      flex: auto;
     }
 
     .container:not(subscriberview) {
@@ -92,12 +91,8 @@ export default class SMVSubscribeLaterBindingPlugin extends LitElement {
       flex-direction: row-reverse;
     }
 
-    .container[subscriberview] .column {
-      flex: auto 1 1;
-    }
-
     .container[subscriberview] fcda-binding-list.column {
-      flex: auto 2 1;
+      flex: 0 1 35%;
     }
 
     .column {
