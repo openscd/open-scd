@@ -435,7 +435,6 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
   }
 
   render(): TemplateResult {
-    // if (this.doc) {
     return html` <section tabindex="0">
       ${this.renderTitle()}
       <filtered-list activatable>${this.renderExtRefsByIED()}</filtered-list>
