@@ -50,6 +50,7 @@ import {
   isSubscribed,
   getFcdaSrcControlBlockDescription,
 } from './foundation.js';
+import { CheckListItem } from '@material/mwc-list/mwc-check-list-item';
 
 // FIXME: Replace with identity function after https://github.com/openscd/open-scd/issues/1179
 // is resolved
@@ -88,6 +89,9 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
 
   @query('mwc-list-item.activated')
   currentActivatedExtRefItem!: ListItem;
+
+  @query('.filter-subscribed')
+  onlySubscribedCheckListItem!: CheckListItem;
 
   private supervisionData = new Map();
 
@@ -325,6 +329,7 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
       >
         <mwc-check-list-item
           class="filter-subscribed"
+          ?selected=${this.filterOnlySubscribed}
           left
           @click=${() => {
             this.actionsMenu.close();
@@ -372,6 +377,12 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
 
   protected firstUpdated(): void {
     this.actionsMenu.anchor = <HTMLElement>this.actionsMenuIcon;
+
+    // TODO: Why can't this be done in the constructor? this.controlTag isn't defined.
+    this.filterOnlySubscribed =
+      localStorage.getItem(
+        `subscriber-later-binding-${this.controlTag}$filter-only-subscribed`
+      ) === 'true' ?? false;
 
     this.actionsMenu.addEventListener('closed', () => {
       this.filterOnlySubscribed = (<Set<number>>this.actionsMenu.index).has(0);
