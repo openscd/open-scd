@@ -24,13 +24,17 @@ import { gooseIcon, smvIcon } from '../../icons/icons.js';
 import { wizards } from '../../wizards/wizard-library.js';
 
 import {
+  ExtRefSelectionChangedEvent,
   getFcdaSubtitleValue,
   getFcdaTitleValue,
   newFcdaSelectEvent,
   styles,
   SubscriptionChangedEvent,
 } from './foundation.js';
-import { getSubscribedExtRefElements } from './later-binding/foundation.js';
+import {
+  getSubscribedExtRefElements,
+  unsupportedExtRefElement,
+} from './later-binding/foundation.js';
 
 type controlTag = 'SampledValueControl' | 'GSEControl';
 
@@ -58,6 +62,7 @@ export class FcdaBindingList extends LitElement {
   // The selected elements when a FCDA Line is clicked.
   private selectedControlElement: Element | undefined;
   private selectedFcdaElement: Element | undefined;
+  private selectedExtRefElement: Element | undefined;
 
   private iconControlLookup: iconLookup = {
     SampledValueControl: smvIcon,
@@ -74,6 +79,12 @@ export class FcdaBindingList extends LitElement {
     if (parentDiv) {
       this.resetExtRefCount = this.resetExtRefCount.bind(this);
       parentDiv.addEventListener('subscription-changed', this.resetExtRefCount);
+
+      this.updateExtRefSelection = this.updateExtRefSelection.bind(this);
+      parentDiv.addEventListener(
+        'extref-selection-changed',
+        this.updateExtRefSelection
+      );
     }
   }
 
@@ -108,6 +119,14 @@ export class FcdaBindingList extends LitElement {
         event.detail.fcda
       )}`;
       this.extRefCounters.delete(controlBlockFcdaId);
+    }
+  }
+
+  private updateExtRefSelection(event: ExtRefSelectionChangedEvent): void {
+    if (event.detail.extRefElement) {
+      this.selectedExtRefElement = event.detail.extRefElement;
+      // TODO: can we do better??
+      this.requestUpdate();
     }
   }
 
@@ -154,6 +173,12 @@ export class FcdaBindingList extends LitElement {
     return html`<mwc-list-item
       graphic="large"
       ?hasMeta=${fcdaCount !== 0}
+      ?disabled=${this.subscriberview &&
+      unsupportedExtRefElement(
+        this.selectedExtRefElement,
+        fcdaElement,
+        controlElement
+      )}
       twoline
       class="subitem"
       @click=${() => {

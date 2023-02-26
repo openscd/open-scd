@@ -33,7 +33,6 @@ import {
 import {
   styles,
   updateExtRefElement,
-  serviceTypes,
   instantiateSubscriptionSupervision,
   removeSubscriptionSupervision,
   FcdaSelectEvent,
@@ -42,11 +41,10 @@ import {
   getOrderedIeds,
   getCbReference,
   getUsedSupervisionInstances,
+  newExtRefSelectionChangedEvent,
 } from '../foundation.js';
 
 import {
-  fcdaSpecification,
-  inputRestriction,
   isSubscribed,
   getFcdaSrcControlBlockDescription,
 } from './foundation.js';
@@ -55,9 +53,13 @@ import { CheckListItem } from '@material/mwc-list/mwc-check-list-item';
 // FIXME: Replace with identity function after https://github.com/openscd/open-scd/issues/1179
 // is resolved
 function getExtRefId(extRefElement: Element): string {
-  return `${identity(extRefElement.parentElement)} ${extRefElement.getAttribute(
-    'intAddr'
-  )}`;
+  const intAddr = extRefElement.getAttribute('intAddr');
+  const intAddrIndex = Array.from(
+    extRefElement!.parentElement!.querySelectorAll(
+      `ExtRef[intAddr="${intAddr}"]`
+    )
+  ).indexOf(extRefElement);
+  return `${identity(extRefElement.parentElement)}>${intAddr}[${intAddrIndex}]`;
 }
 
 /**
@@ -154,43 +156,6 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
         nextActivatableItem!.requestUpdate();
       }
     }
-  }
-
-  /**
-   * Check data consistency of source `FCDA` and sink `ExtRef` based on
-   * `ExtRef`'s `pLN`, `pDO`, `pDA` and `pServT` attributes.
-   * Consistent means `CDC` and `bType` of both ExtRef and FCDA is equal.
-   * In case
-   *  - `pLN`, `pDO`, `pDA` or `pServT` attributes are not present, allow subscribing
-   *  - no CDC or bType can be extracted, do not allow subscribing
-   *
-   * @param extRef - The `ExtRef` Element to check against
-   */
-  private unsupportedExtRefElement(extRef: Element): boolean {
-    // Vendor does not provide data for the check
-    if (
-      !extRef.hasAttribute('pLN') ||
-      !extRef.hasAttribute('pDO') ||
-      !extRef.hasAttribute('pDA') ||
-      !extRef.hasAttribute('pServT')
-    )
-      return false;
-
-    // Not ready for any kind of subscription
-    if (!this.selectedPublisherFcdaElement) return true;
-
-    const fcda = fcdaSpecification(this.selectedPublisherFcdaElement);
-    const input = inputRestriction(extRef);
-
-    if (fcda.cdc === null && input.cdc === null) return true;
-    if (fcda.bType === null && input.bType === null) return true;
-    if (
-      serviceTypes[this.selectedPublisherControlElement?.tagName ?? ''] !==
-      extRef.getAttribute('pServT')
-    )
-      return true;
-
-    return fcda.cdc !== input.cdc || fcda.bType !== input.bType;
   }
 
   /**
@@ -424,7 +389,12 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
       ?hasMeta=${supervisionNode !== undefined}
       @click=${() => {
         this.currentSelectedExtRefElement = extRefElement;
-        if (subscribed) {
+
+        if (!subscribed) {
+          this.dispatchEvent(
+            newExtRefSelectionChangedEvent(this.currentSelectedExtRefElement)
+          );
+        } else {
           this.unsubscribe(extRefElement);
           this.reCreateSupervisionCache();
         }

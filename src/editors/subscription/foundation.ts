@@ -96,6 +96,26 @@ export function newSubscriptionChangedEvent(
   });
 }
 
+export interface ExtRefSelectionChangedDetail {
+  extRefElement: Element | undefined;
+}
+export type ExtRefSelectionChangedEvent =
+  CustomEvent<ExtRefSelectionChangedDetail>;
+export function newExtRefSelectionChangedEvent(
+  extRefElement: Element | undefined,
+  eventInitDict?: CustomEventInit<ExtRefSelectionChangedDetail>
+): ExtRefSelectionChangedEvent {
+  return new CustomEvent<ExtRefSelectionChangedDetail>(
+    'extref-selection-changed',
+    {
+      bubbles: true,
+      composed: true,
+      ...eventInitDict,
+      detail: { extRefElement, ...eventInitDict?.detail },
+    }
+  );
+}
+
 export function getFcdaTitleValue(fcdaElement: Element): string {
   return `${fcdaElement.getAttribute('doName')}${
     fcdaElement.hasAttribute('doName') && fcdaElement.hasAttribute('daName')
@@ -910,6 +930,11 @@ export function updateExtRefElement(
     srcLNClass,
     ...(srcLNInst && { srcLNInst }),
     srcCBName,
+
+    // !extRef.hasAttribute('pLN') ||
+    //   !extRef.hasAttribute('pDO') ||
+    //   !extRef.hasAttribute('pDA') ||
+    //   !extRef.hasAttribute('pServT')
   });
 }
 
@@ -1032,5 +1057,6 @@ declare global {
     ['ied-select']: IEDSelectEvent;
     ['fcda-select']: FcdaSelectEvent;
     ['subscription-changed']: SubscriptionChangedEvent;
+    ['extref-selection-changed']: ExtRefSelectionChangedEvent;
   }
 }

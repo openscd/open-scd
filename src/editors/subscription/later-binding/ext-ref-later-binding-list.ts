@@ -38,6 +38,7 @@ import {
   fcdaSpecification,
   inputRestriction,
   isSubscribed,
+  unsupportedExtRefElement,
 } from './foundation.js';
 
 /**
@@ -82,43 +83,6 @@ export class ExtRefLaterBindingList extends LitElement {
     this.currentIedElement = this.currentSelectedFcdaElement
       ? this.currentSelectedFcdaElement.closest('IED') ?? undefined
       : undefined;
-  }
-
-  /**
-   * Check data consistency of source `FCDA` and sink `ExtRef` based on
-   * `ExtRef`'s `pLN`, `pDO`, `pDA` and `pServT` attributes.
-   * Consistent means `CDC` and `bType` of both ExtRef and FCDA is equal.
-   * In case
-   *  - `pLN`, `pDO`, `pDA` or `pServT` attributes are not present, allow subscribing
-   *  - no CDC or bType can be extracted, do not allow subscribing
-   *
-   * @param extRef - The `ExtRef` Element to check against
-   */
-  private unsupportedExtRefElement(extRef: Element): boolean {
-    // Vendor does not provide data for the check
-    if (
-      !extRef.hasAttribute('pLN') ||
-      !extRef.hasAttribute('pDO') ||
-      !extRef.hasAttribute('pDA') ||
-      !extRef.hasAttribute('pServT')
-    )
-      return false;
-
-    // Not ready for any kind of subscription
-    if (!this.currentSelectedFcdaElement) return true;
-
-    const fcda = fcdaSpecification(this.currentSelectedFcdaElement);
-    const input = inputRestriction(extRef);
-
-    if (fcda.cdc === null && input.cdc === null) return true;
-    if (fcda.bType === null && input.bType === null) return true;
-    if (
-      serviceTypes[this.currentSelectedControlElement?.tagName ?? ''] !==
-      extRef.getAttribute('pServT')
-    )
-      return true;
-
-    return fcda.cdc !== input.cdc || fcda.bType !== input.bType;
   }
 
   /**
@@ -322,7 +286,11 @@ export class ExtRefLaterBindingList extends LitElement {
         ? html`${availableExtRefs.map(
             extRefElement => html` <mwc-list-item
               graphic="large"
-              ?disabled=${this.unsupportedExtRefElement(extRefElement)}
+              ?disabled=${unsupportedExtRefElement(
+                extRefElement,
+                this.currentSelectedFcdaElement,
+                this.currentSelectedControlElement
+              )}
               twoline
               @click=${() => this.subscribe(extRefElement)}
               value="${identity(extRefElement)}"
