@@ -422,7 +422,6 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
       class="extref"
       graphic="large"
       ?hasMeta=${supervisionNode !== undefined}
-      ?disabled=${this.unsupportedExtRefElement(extRefElement)}
       @click=${() => {
         this.currentSelectedExtRefElement = extRefElement;
         if (subscribed) {

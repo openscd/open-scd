@@ -37,7 +37,6 @@ export default class GooseSubscribeLaterBindingPlugin extends LitElement {
   render(): TemplateResult {
     const controlTag = 'GSEControl';
     if (this.subscriberView) {
-      console.log('We are the subscriber view');
       return html`<div class="container" ?subscriberview=${this.subscriberView}>
         <fcda-binding-list
           class="column"
@@ -54,7 +53,6 @@ export default class GooseSubscribeLaterBindingPlugin extends LitElement {
         ></extref-later-binding-list-subscriber>
       </div>`;
     }
-    console.log('we are the publisher view');
     return html`<div class="container" ?subscriberview=${this.subscriberView}>
       <fcda-binding-list
         class="column"

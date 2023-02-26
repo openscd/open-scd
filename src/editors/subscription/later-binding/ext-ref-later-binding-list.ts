@@ -11,7 +11,6 @@ import { nothing } from 'lit-html';
 import { get, translate } from 'lit-translate';
 
 import {
-  cloneElement,
   createUpdateAction,
   Delete,
   findControlBlocks,
@@ -145,7 +144,7 @@ export class ExtRefLaterBindingList extends LitElement {
       srcLNInst: null,
       srcCBName: null,
     });
-    // HERE!
+
     const subscriberIed = extRefElement.closest('IED') || undefined;
     const fcdaElements = findFCDAs(extRefElement);
     const removeSubscriptionActions: Delete[] = [];
