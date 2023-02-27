@@ -20,7 +20,8 @@
 								<LNode iedName="None" lnClass="CSWI" lnInst="1" lnType="OpenSCD_CSWI" />
 							</EqSubFunction>
 						</EqFunction>
-					</TapChanger>	
+					</TapChanger>
+					<TapChanger name="empty" type="LTC"/>	
 				</TransformerWinding>
 				<TransformerWinding name="withTapChanger2" type="PTW">
 					<TapChanger name="tapChangerHalf" type="LTC">
