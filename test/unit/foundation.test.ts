@@ -282,8 +282,7 @@ describe('foundation', () => {
         IEDName:
           'IED1>>CircuitBreaker_CB1>GCB>IED2 P1 CircuitBreaker_CB1/ CSWI 1',
         FCDA: 'IED1>>CircuitBreaker_CB1>GooseDataSet1>CircuitBreaker_CB1/ XCBR 1.Pos stVal (ST)',
-        ExtRef:
-          'IED1>>Disconnectors>DC CSWI 1>GOOSE:GCB CBSW/ LLN0  IED2 CBSW/ XSWI 2 Pos stVal@intAddr',
+        ExtRef: 'IED1>>Disconnectors>DC CSWI 1>intAddr[0]',
         'ExtRef:not([iedName])': 'IED1>>Disconnectors>DC CSWI 1>stVal-t[0]',
         LN: 'IED1>>CircuitBreaker_CB1> XCBR 1',
         ClientLN:

@@ -167,7 +167,7 @@ snapshots["GOOSE Subscribe Later Binding Plugin when selecting an FCDA element w
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-      value="Interlocking.Input2 GOOSE_Subscriber>>Earth_Switch> CSWI 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos stVal@Pos;CSWI1/Pos/stVal Interlocking.Input2 GOOSE_Subscriber1>>Earth_Switch> CSWI 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos stVal@Pos;CSWI1/Pos/stVal"
+      value="Interlocking.Input2 GOOSE_Subscriber>>Earth_Switch> CSWI 1>Pos;CSWI1/Pos/stVal[0] Interlocking.Input2 GOOSE_Subscriber1>>Earth_Switch> CSWI 1>Pos;CSWI1/Pos/stVal[0]"
     >
       <span>
         [subscription.subscriber.subscribed]
@@ -184,7 +184,7 @@ snapshots["GOOSE Subscribe Later Binding Plugin when selecting an FCDA element w
       mwc-list-item=""
       tabindex="0"
       twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos stVal@Pos;CSWI1/Pos/stVal"
+      value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>Pos;CSWI1/Pos/stVal[0]"
     >
       <span>
         Pos;CSWI1/Pos/stVal
@@ -204,7 +204,7 @@ snapshots["GOOSE Subscribe Later Binding Plugin when selecting an FCDA element w
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="GOOSE_Subscriber1>>Earth_Switch> CSWI 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos stVal@Pos;CSWI1/Pos/stVal"
+      value="GOOSE_Subscriber1>>Earth_Switch> CSWI 1>Pos;CSWI1/Pos/stVal[0]"
     >
       <span>
         Pos;CSWI1/Pos/stVal

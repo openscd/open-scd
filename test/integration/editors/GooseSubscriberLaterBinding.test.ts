@@ -117,7 +117,7 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
 
     (<HTMLElement>(
       extRefListElement.shadowRoot!.querySelector(
-        'mwc-list-item[value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos q@Pos;CSWI1/Pos/q"]'
+        'mwc-list-item[value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>Pos;CSWI1/Pos/q[0]"]'
       )
     )).click();
     await element.requestUpdate();
