@@ -174,7 +174,11 @@ export const wizardInputSelector =
 export type WizardInputElement =
   | WizardTextField
   | TextField
-  | (AceEditor & { checkValidity: () => boolean; label: string })
+  | (AceEditor & {
+      checkValidity: () => boolean;
+      label: string;
+      requestUpdate(name?: PropertyKey, oldValue?: unknown): Promise<unknown>;
+    })
   // TODO(c-dinkel): extend component
   | Select
   | WizardSelect;

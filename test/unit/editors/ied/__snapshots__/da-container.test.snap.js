@@ -1,6 +1,59 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
+snapshots["looks like the latest snapshot with a DA element containing and a DAI"] = 
+`<action-pane
+  icon="done"
+  tabindex="0"
+>
+  <abbr slot="action">
+    <mwc-icon-button
+      icon="info"
+      title="ctlModel"
+    >
+    </mwc-icon-button>
+  </abbr>
+  <div style="display: flex; flex-direction: row;">
+    <div style="display: flex; align-items: center; flex: auto;">
+      <h4>
+        status-only
+      </h4>
+    </div>
+    <div style="display: flex; align-items: center;">
+      <mwc-icon-button icon="edit">
+      </mwc-icon-button>
+    </div>
+  </div>
+</action-pane>
+`;
+/* end snapshot looks like the latest snapshot with a DA element containing and a DAI */
+
+snapshots["with a DA element looks like the latest snapshot"] = 
+`<action-pane
+  icon=""
+  tabindex="0"
+>
+  <abbr slot="action">
+    <mwc-icon-button
+      icon="info"
+      title="ctlModel"
+    >
+    </mwc-icon-button>
+  </abbr>
+  <div style="display: flex; flex-direction: row;">
+    <div style="display: flex; align-items: center; flex: auto;">
+      <h4>
+      </h4>
+    </div>
+    <div style="display: flex; align-items: center;">
+      <mwc-icon-button icon="add">
+      </mwc-icon-button>
+    </div>
+  </div>
+</action-pane>
+`;
+/* end snapshot with a DA element looks like the latest snapshot */
+
 snapshots["with a BDA element looks like the latest snapshot"] = 
 `<action-pane
   icon=""
@@ -13,11 +66,57 @@ snapshots["with a BDA element looks like the latest snapshot"] =
     >
     </mwc-icon-button>
   </abbr>
-  <h6>
-  </h6>
+  <div style="display: flex; flex-direction: row;">
+    <div style="display: flex; align-items: center; flex: auto;">
+      <h4>
+      </h4>
+    </div>
+    <div style="display: flex; align-items: center;">
+      <mwc-icon-button icon="add">
+      </mwc-icon-button>
+    </div>
+  </div>
 </action-pane>
 `;
 /* end snapshot with a BDA element looks like the latest snapshot */
+
+snapshots["with a BDA element having multiple values looks like the latest snapshot"] = 
+`<action-pane
+  icon="done"
+  tabindex="0"
+>
+  <abbr slot="action">
+    <mwc-icon-button
+      icon="info"
+      title="scaleFactor"
+    >
+    </mwc-icon-button>
+  </abbr>
+  <div style="display: flex; flex-direction: row;">
+    <div style="display: flex; align-items: center; flex: auto;">
+      <h4>
+        SG1: 0.001
+      </h4>
+    </div>
+    <div style="display: flex; align-items: center;">
+      <mwc-icon-button icon="edit">
+      </mwc-icon-button>
+    </div>
+  </div>
+  <div style="display: flex; flex-direction: row;">
+    <div style="display: flex; align-items: center; flex: auto;">
+      <h4>
+        SG2: 0.005
+      </h4>
+    </div>
+    <div style="display: flex; align-items: center;">
+      <mwc-icon-button icon="edit">
+      </mwc-icon-button>
+    </div>
+  </div>
+</action-pane>
+`;
+/* end snapshot with a BDA element having multiple values looks like the latest snapshot */
 
 snapshots["with a DA element and child elements are toggled looks like the latest snapshot"] = 
 `<action-pane
@@ -43,8 +142,6 @@ snapshots["with a DA element and child elements are toggled looks like the lates
     >
     </mwc-icon-button-toggle>
   </abbr>
-  <h6>
-  </h6>
   <da-container>
   </da-container>
   <da-container>
@@ -60,41 +157,4 @@ snapshots["with a DA element and child elements are toggled looks like the lates
 </action-pane>
 `;
 /* end snapshot with a DA element and child elements are toggled looks like the latest snapshot */
-
-snapshots["looks like the latest snapshot with a DA element containing and a DAI"] = 
-`<action-pane
-  icon="done"
-  tabindex="0"
->
-  <abbr slot="action">
-    <mwc-icon-button
-      icon="info"
-      title="ctlModel"
-    >
-    </mwc-icon-button>
-  </abbr>
-  <h6>
-    status-only
-  </h6>
-</action-pane>
-`;
-/* end snapshot looks like the latest snapshot with a DA element containing and a DAI */
-
-snapshots["with a DA element looks like the latest snapshot"] = 
-`<action-pane
-  icon=""
-  tabindex="0"
->
-  <abbr slot="action">
-    <mwc-icon-button
-      icon="info"
-      title="ctlModel"
-    >
-    </mwc-icon-button>
-  </abbr>
-  <h6>
-  </h6>
-</action-pane>
-`;
-/* end snapshot with a DA element looks like the latest snapshot */
 

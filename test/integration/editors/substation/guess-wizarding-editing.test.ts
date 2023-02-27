@@ -14,10 +14,12 @@ describe('guess-wizard-integration', () => {
     validSCL = await fetch('/test/testfiles/valid2007B4.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-    validSCL.querySelector('Substation')!.innerHTML = '';
+
+    const substation = validSCL.querySelector('Substation')!;
+    substation.innerHTML = '';
     element = <MockWizard>await fixture(html`<mock-wizard></mock-wizard>`);
 
-    const wizard = guessVoltageLevel(validSCL);
+    const wizard = guessVoltageLevel(validSCL, substation);
     element.workflow.push(() => wizard);
     await element.requestUpdate();
   });
@@ -31,6 +33,7 @@ describe('guess-wizard-integration', () => {
         ).length
       ).to.equal(5);
     });
+
     it('the first one being status-only', async () => {
       expect(
         element.wizardUI.dialog!.querySelector(
@@ -38,6 +41,7 @@ describe('guess-wizard-integration', () => {
         )?.innerHTML
       ).to.equal('status-only');
     });
+
     it('the second one being direct-with-normal-security', async () => {
       expect(
         element.wizardUI.dialog!.querySelector(
@@ -45,6 +49,7 @@ describe('guess-wizard-integration', () => {
         )?.innerHTML
       ).to.equal('direct-with-normal-security');
     });
+
     it('the second one being direct-with-enhanced-security', async () => {
       expect(
         element.wizardUI.dialog!.querySelector(
@@ -52,6 +57,7 @@ describe('guess-wizard-integration', () => {
         )?.innerHTML
       ).to.equal('direct-with-enhanced-security');
     });
+
     it('the second one being sbo-with-normal-security', async () => {
       expect(
         element.wizardUI.dialog!.querySelector(
@@ -59,6 +65,7 @@ describe('guess-wizard-integration', () => {
         )?.innerHTML
       ).to.equal('sbo-with-normal-security');
     });
+
     it('the second one being sbo-with-enhanced-security', async () => {
       expect(
         element.wizardUI.dialog!.querySelector(
@@ -76,12 +83,14 @@ describe('guess-wizarding-editing-integration', () => {
     validSCL = await fetch('/test/testfiles/valid2007B4.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-    validSCL.querySelector('Substation')!.innerHTML = '';
+
+    const substation = validSCL.querySelector('Substation')!;
+    substation.innerHTML = '';
     element = <MockWizardEditor>(
       await fixture(html`<mock-wizard-editor></mock-wizard-editor>`)
     );
 
-    const wizard = guessVoltageLevel(validSCL);
+    const wizard = guessVoltageLevel(validSCL, substation);
     element.workflow.push(() => wizard);
     await element.requestUpdate();
 

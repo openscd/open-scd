@@ -15,38 +15,24 @@ import {
 } from '../foundation.js';
 import { SCL_NAMESPACE } from '../schemas.js';
 
-export function updateValue(
-  element: Element,
-  instanceElement: Element
-): WizardActor {
+export function updateValue(element: Element, val: Element): WizardActor {
   return (inputs: WizardInputElement[]): EditorAction[] => {
     const bType = element.getAttribute('bType')!;
     const newValue = getCustomField()[<DaiFieldTypes>bType].value(inputs);
 
-    const name = instanceElement.getAttribute('name');
+    const daiName = val.parentElement?.getAttribute('name') ?? '';
     const complexAction: ComplexAction = {
       actions: [],
-      title: get('dai.action.updatedai', { daiName: name! }),
+      title: get('dai.action.updatedai', { daiName }),
     };
 
-    const oldVal = instanceElement.querySelector('Val');
-    if (oldVal) {
-      const newVal = <Element>oldVal.cloneNode(false);
-      newVal.textContent = newValue;
-      complexAction.actions.push({
-        old: { element: oldVal },
-        new: { element: newVal },
-      });
-    } else {
-      const newVal = instanceElement.ownerDocument.createElementNS(
-        SCL_NAMESPACE,
-        'Val'
-      );
-      newVal.textContent = newValue;
-      complexAction.actions.push({
-        new: { parent: instanceElement, element: newVal },
-      });
-    }
+    const newVal = <Element>val.cloneNode(false);
+    newVal.textContent = newValue;
+    complexAction.actions.push({
+      old: { element: val },
+      new: { element: newVal },
+    });
+
     return [complexAction];
   };
 }
@@ -133,10 +119,15 @@ export function editDAIWizard(
   element: Element,
   instanceElement?: Element
 ): Wizard {
+  const daiName =
+    instanceElement?.tagName === 'DAI'
+      ? instanceElement?.getAttribute('name') ?? ''
+      : instanceElement?.parentElement?.getAttribute('name') ?? '';
+
   return [
     {
       title: get('dai.wizard.title.edit', {
-        daiName: instanceElement?.getAttribute('name') ?? '',
+        daiName,
       }),
       element: instanceElement,
       primary: {

@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'access-point-container with Server Elements looks like the latest snapshot'
-] = `<action-pane tabindex="0">
+snapshots["access-point-container with Server Elements looks like the latest snapshot"] = 
+`<action-pane tabindex="0">
   <mwc-icon slot="icon">
   </mwc-icon>
   <server-container>
@@ -12,6 +11,8 @@ snapshots[
   </div>
 </action-pane>
 `;
+/* end snapshot access-point-container with Server Elements looks like the latest snapshot */
+
 snapshots["access-point-container with LN Elements and all LN Classes displayed looks like the latest snapshot"] = 
 `<action-pane tabindex="0">
   <mwc-icon slot="icon">
