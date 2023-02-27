@@ -11,12 +11,12 @@ export default class CompasImportIEDSMenuPlugin extends ImportingIedPlugin {
   doc!: XMLDocument;
   parent!: HTMLElement;
 
-  @query('mwc-dialog#compas-open-dlg')
+  @query('mwc-dialog#compas-import-ieds-dlg')
   compasOpen!: Dialog;
 
   renderInput(): TemplateResult {
     return html`<mwc-dialog
-      id="compas-open-dlg"
+      id="compas-import-ieds-dlg"
       heading="${translate('compas.open.title')}"
     >
       <compas-open
