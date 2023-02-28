@@ -1,23 +1,45 @@
 import {
+  css,
   customElement,
   html,
   LitElement,
   TemplateResult,
   property,
   state,
+  query,
 } from 'lit-element';
 
 import { translate } from 'lit-translate';
 
 import '@material/mwc-icon';
 import '@material/mwc-icon-button';
+import '@material/mwc-menu';
+import { IconButton } from '@material/mwc-icon-button';
+import { ListItem } from '@material/mwc-list/mwc-list-item';
+import { Menu } from '@material/mwc-menu';
 
 import '../../action-pane.js';
 import './eq-function-editor.js';
 import './l-node-editor.js';
 import './sub-equipment-editor.js';
-import { getChildElementsByTagName, newWizardEvent } from '../../foundation.js';
-import { wizards } from '../../wizards/wizard-library.js';
+
+import { styles } from './foundation.js';
+import {
+  getChildElementsByTagName,
+  newActionEvent,
+  newWizardEvent,
+  SCLTag,
+  tags,
+} from '../../foundation.js';
+import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
+
+function childTags(element: Element | null | undefined): SCLTag[] {
+  if (!element) return [];
+
+  return tags[<SCLTag>element.tagName].children.filter(
+    child => wizards[child].create !== emptyWizard
+  );
+}
 
 @customElement('tapchanger-editor')
 export class TapChangerEditor extends LitElement {
@@ -39,6 +61,36 @@ export class TapChangerEditor extends LitElement {
     return `TapChanger.${name} ${desc ? `—TapChanger.${desc}` : ''}`;
   }
 
+  @query('mwc-menu') addMenu!: Menu;
+  @query('mwc-icon-button[icon="playlist_add"]') addButton!: IconButton;
+
+  openEditWizard(): void {
+    const wizard = wizards['TapChanger'].edit(this.element);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
+
+  private openCreateWizard(tagName: string): void {
+    const wizard = wizards[<SCLTag>tagName].create(this.element!);
+
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
+
+  updated(): void {
+    if (this.addMenu && this.addButton)
+      this.addMenu.anchor = <HTMLElement>this.addButton;
+  }
+
+  remove(): void {
+    if (this.element.parentElement)
+      this.dispatchEvent(
+        newActionEvent({
+          old: {
+            parent: this.element.parentElement,
+            element: this.element,
+          },
+        })
+      );
+  }
   private renderLNodes(): TemplateResult {
     const lNodes = getChildElementsByTagName(this.element, 'LNode');
 
@@ -55,12 +107,7 @@ export class TapChangerEditor extends LitElement {
       : html``;
   }
 
-  openEditWizard(): void {
-    const wizard = wizards['TapChanger'].edit(this.element);
-    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
-  }
-
-  renderEqFunctions(): TemplateResult {
+  private renderEqFunctions(): TemplateResult {
     if (!this.showfunctions) return html``;
 
     const eqFunctions = getChildElementsByTagName(this.element, 'EqFunction');
@@ -90,15 +137,63 @@ export class TapChangerEditor extends LitElement {
     )}`;
   }
 
+  private renderAddButtons(): TemplateResult[] {
+    return childTags(this.element).map(
+      child =>
+        html`<mwc-list-item value="${child}"
+          ><span>${child}</span></mwc-list-item
+        >`
+    );
+  }
+
   render(): TemplateResult {
     return html`<action-pane label=${this.header}> 
     <abbr slot="action" title="${translate('edit')}">
-    <mwc-icon-button
-      icon="edit"
-      @click=${() => this.openEditWizard()}
-    ></mwc-icon-button>
-  </abbr>
+        <mwc-icon-button
+          icon="edit"
+          @click=${() => this.openEditWizard()}
+        ></mwc-icon-button>
+      </abbr>
+      <abbr slot="action" title="${translate('remove')}">
+        <mwc-icon-button
+          icon="delete"
+          @click=${() => this.remove()}
+        ></mwc-icon-button>
+      </abbr>
+      <abbr
+      slot="action"
+      style="position:relative;"
+      title="${translate('add')}"
+    >
+      <mwc-icon-button
+        icon="playlist_add"
+        @click=${() => (this.addMenu.open = true)}
+      ></mwc-icon-button
+      ><mwc-menu
+        corner="BOTTOM_RIGHT"
+        menuCorner="END"
+        @action=${(e: Event) => {
+          const tagName = (<ListItem>(<Menu>e.target).selected).value;
+          this.openCreateWizard(tagName);
+        }}
+        >${this.renderAddButtons()}</mwc-menu
+      ></abbr
+    >
     ${this.renderLNodes()}
-    ${this.renderEqFunctions()} ${this.renderSubEquipments()}</action-icon>`;
+    ${this.renderEqFunctions()} ${this.renderSubEquipments()}
+    </action-icon>`;
   }
+
+  static styles = css`
+    ${styles}
+
+    :host(.moving) {
+      opacity: 0.3;
+    }
+
+    abbr {
+      text-decoration: none;
+      border-bottom: none;
+    }
+  `;
 }

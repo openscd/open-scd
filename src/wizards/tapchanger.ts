@@ -100,7 +100,7 @@ export function contentTapChangerWizard(
 export function createTapChangerWizard(parent: Element): Wizard {
   const name = '';
   const desc = null;
-  const type = null;
+  const type = 'LTC';
   const virtual = null;
   const reservedNames = Array.from(parent.querySelectorAll('TapChanger')).map(
     TapChanger => TapChanger.getAttribute('name')!
