@@ -118,7 +118,7 @@ describe('SMV Subscribe Later Binding plugin', () => {
 
     (<HTMLElement>(
       extRefListElement.shadowRoot!.querySelector(
-        'mwc-list-item[value="SMV_Subscriber>>Overvoltage> PTRC 1>SMV:currentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv q@AmpSv;TCTR1/AmpSv/q"]'
+        'mwc-list-item[value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/q[0]"]'
       )
     )).click();
     await element.requestUpdate();

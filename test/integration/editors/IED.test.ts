@@ -7,7 +7,7 @@ import { LitElement } from 'lit-element';
 import '../../../src/editors/IED.js';
 
 import { Editing } from '../../../src/Editing.js';
-import { Wizarding } from '../../../src/Wizarding.js';
+import { Wizarding, WizardingElement } from '../../../src/Wizarding.js';
 import { initializeNsdoc, Nsdoc } from '../../../src/foundation/nsdoc.js';
 import { FilterButton } from '../../../src/oscd-filter-button.js';
 
@@ -49,6 +49,39 @@ describe('IED Plugin', () => {
 
       it('looks like the latest snapshot', async () => {
         await expect(element).shadowDom.to.equalSnapshot();
+      });
+    });
+
+    describe('Open Services Wizard', () => {
+      beforeEach(async () => {
+        doc = await fetch('/test/testfiles/Services.scd')
+          .then(response => response.text())
+          .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+        nsdoc = await initializeNsdoc();
+
+        element = await fixture(
+          html`<ied-plugin .doc=${doc} .nsdoc=${nsdoc}></ied-plugin>`
+        );
+
+        await element.requestUpdate();
+        await element.updateComplete;
+
+        await selectIed('WithServices');
+        await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+      });
+
+      it('Should open Services wizard', async () => {
+        element
+          .shadowRoot!.querySelector('ied-container')!
+          .shadowRoot!.querySelector<HTMLElement>(
+            'mwc-icon-button[icon="settings"]'
+          )!
+          .click();
+
+        await element.requestUpdate();
+
+        expect((element as any as WizardingElement).wizardUI).to.exist;
       });
     });
 
@@ -162,33 +195,6 @@ describe('IED Plugin', () => {
         );
       }
 
-      async function selectIed(name: string): Promise<void> {
-        const oscdFilterButton = element.shadowRoot!.querySelector(
-          'oscd-filter-button[id="iedFilter"]'
-        );
-        const filterButton = <HTMLElement>(
-          oscdFilterButton!.shadowRoot!.querySelector('mwc-icon-button')
-        );
-        filterButton.click();
-        await element.updateComplete;
-
-        const selectItem = <HTMLElement>(
-          oscdFilterButton!.querySelector(
-            `mwc-radio-list-item[value="${name}"]`
-          )
-        );
-        selectItem.click();
-
-        const primaryButton = <HTMLElement>(
-          oscdFilterButton!.shadowRoot!.querySelector(
-            'mwc-button[slot="primaryAction"]'
-          )
-        );
-        primaryButton.click();
-
-        await element.updateComplete;
-      }
-
       async function deselectLNClasses(lnClass: string): Promise<void> {
         const oscdFilterButton = <FilterButton>(
           element.shadowRoot!.querySelector(
@@ -217,4 +223,29 @@ describe('IED Plugin', () => {
       }
     });
   });
+
+  async function selectIed(name: string): Promise<void> {
+    const oscdFilterButton = element.shadowRoot!.querySelector(
+      'oscd-filter-button[id="iedFilter"]'
+    );
+    const filterButton = <HTMLElement>(
+      oscdFilterButton!.shadowRoot!.querySelector('mwc-icon-button')
+    );
+    filterButton.click();
+    await element.updateComplete;
+
+    const selectItem = <HTMLElement>(
+      oscdFilterButton!.querySelector(`mwc-radio-list-item[value="${name}"]`)
+    );
+    selectItem.click();
+
+    const primaryButton = <HTMLElement>(
+      oscdFilterButton!.shadowRoot!.querySelector(
+        'mwc-button[slot="primaryAction"]'
+      )
+    );
+    primaryButton.click();
+
+    await element.updateComplete;
+  }
 });
