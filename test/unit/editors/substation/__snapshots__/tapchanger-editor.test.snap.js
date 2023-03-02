@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["web component rendering TapChanger element rendering LNode and EqFunction children looks like the latest snapshot"] = 
 `<action-pane
-  label="TapChanger.tapChComplet —TapChanger.My TapChanger"
+  label="tapChComplet —My TapChanger"
   tabindex="0"
 >
   <abbr
@@ -78,7 +78,7 @@ snapshots["web component rendering TapChanger element rendering LNode and EqFunc
 
 snapshots["web component rendering TapChanger element rendering SubEquipment looks like the latest snapshot"] = 
 `<action-pane
-  label="TapChanger.tapChangerHalf "
+  label="tapChangerHalf "
   tabindex="0"
 >
   <abbr
