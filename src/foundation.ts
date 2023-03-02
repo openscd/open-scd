@@ -2476,7 +2476,11 @@ export const tags: Record<
   },
 };
 
-export function getReference(parent: Element, tag: SCLTag): Element | null {
+export function getReference(
+  parent: Element,
+  tag: SCLTag,
+  lastReference?: boolean
+): Element | null {
   const parentTag = parent.tagName;
   const children = Array.from(parent.children);
 
@@ -2494,7 +2498,15 @@ export function getReference(parent: Element, tag: SCLTag): Element | null {
 
   let nextSibling: Element | undefined;
   while (index < sequence.length && !nextSibling) {
-    nextSibling = children.find(child => child.tagName === sequence[index]);
+    // if lastReference is true, find the last element of the type
+    lastReference
+      ? (nextSibling = children.find(
+          child => child.tagName === sequence[index]
+        ))
+      : (nextSibling = children.find(
+          child => child.tagName === sequence[index]
+        ));
+
     index++;
   }
 
