@@ -77,11 +77,21 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
   @property({ attribute: true })
   subscriberview!: boolean;
 
-  @property({ attribute: false })
-  filterOnlySubscribed =
-    localStorage.getItem(
-      `subscriber-later-binding-${this.controlTag}$filter-only-subscribed`
-    ) === 'true' ?? false;
+  @property({ type: Boolean })
+  get filterOnlySubscribed(): boolean {
+    return (
+      localStorage.getItem(
+        `subscriber-later-binding-${this.controlTag}$filter-only-subscribed`
+      ) === 'true' ?? false
+    );
+  }
+
+  set filterOnlySubscribed(value: boolean) {
+    localStorage.setItem(
+      `subscriber-later-binding-${this.controlTag}$filter-only-subscribed`,
+      `${value}`
+    );
+  }
 
   @query('.actions-menu')
   actionsMenu!: Menu;
@@ -343,18 +353,8 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
   protected firstUpdated(): void {
     this.actionsMenu.anchor = <HTMLElement>this.actionsMenuIcon;
 
-    // TODO: Why can't this be done in the constructor? this.controlTag isn't defined.
-    this.filterOnlySubscribed =
-      localStorage.getItem(
-        `subscriber-later-binding-${this.controlTag}$filter-only-subscribed`
-      ) === 'true' ?? false;
-
     this.actionsMenu.addEventListener('closed', () => {
       this.filterOnlySubscribed = (<Set<number>>this.actionsMenu.index).has(0);
-      localStorage.setItem(
-        `subscriber-later-binding-${this.controlTag}$filter-only-subscribed`,
-        `${this.filterOnlySubscribed}`
-      );
     });
   }
 
