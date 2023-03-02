@@ -232,7 +232,7 @@ export class OpenSCD extends Plugging(Editing(LitElement)) {
     </mwc-list-item>`;
   }
 
-  protected pluginProperties(): { [key: string]: PropertyType } {
+    protected pluginProperties(_plugin: Plugin): { [key: string]: PropertyType } {
     return {
       '.editCount': this.editCount,
       '.doc': this.doc,
@@ -288,7 +288,7 @@ export class OpenSCD extends Plugging(Editing(LitElement)) {
           </mwc-tab-bar>
           ${this.editor
             ? staticHtml`<${unsafeStatic(this.editor)} ${spread(
-                this.pluginProperties()
+                this.pluginProperties(this.loadedPlugins.get(this.editor)!)
               )}></${unsafeStatic(this.editor)}>`
             : nothing}
         </mwc-top-app-bar-fixed>
@@ -317,7 +317,7 @@ export class OpenSCD extends Plugging(Editing(LitElement)) {
         ${this.plugins.menu.map(
           plugin =>
             staticHtml`<${unsafeStatic(pluginTag(plugin.src))} ${spread(
-              this.pluginProperties()
+              this.pluginProperties(plugin)
             )}></${unsafeStatic(pluginTag(plugin.src))}>`
         )}
       </aside>`;
