@@ -58,7 +58,7 @@ export class TapChangerEditor extends LitElement {
     const name = this.element.getAttribute('name') ?? '';
     const desc = this.element.getAttribute('desc');
 
-    return `TapChanger.${name} ${desc ? `—TapChanger.${desc}` : ''}`;
+    return `${name} ${desc ? `—${desc}` : ''}`;
   }
 
   @query('mwc-menu') addMenu!: Menu;
