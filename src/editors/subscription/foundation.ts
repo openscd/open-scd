@@ -1,5 +1,4 @@
-import { css, html, LitElement, query } from 'lit-element';
-import { nothing } from 'lit-html';
+import { css, LitElement, query } from 'lit-element';
 
 import {
   cloneElement,
@@ -10,7 +9,6 @@ import {
   getSclSchemaVersion,
   isPublic,
   minAvailableLogicalNodeInstance,
-  Move,
 } from '../../foundation.js';
 import { getFcdaReferences } from '../../foundation/ied.js';
 import { SCL_NAMESPACE } from '../../schemas.js';
@@ -198,14 +196,43 @@ export function canRemoveSubscriptionSupervision(
 }
 
 /**
- * Searches DataTypeTemplates for DOType>DA[valKind=Conf/RO][valImport=true] from an LN reference.
- * @param lnElement - The LN Element to use for searching the starting DO Element.
- * @returns - true if both conditions are found in the DA child element.
+ * Searches for first instantiated LGOS/LSVS LN for presence of DOI>DAI[valKind=Conf/RO][valImport=true]
+ * given a supervision type and if necessary then searches DataTypeTemplates for
+ * DOType>DA[valKind=Conf/RO][valImport=true] to determine if modifications to supervision are allowed.
+ * @param ied - SCL IED element.
+ * @param supervisionType - either 'LGOS' or 'LSVS' supervision LN classes.
+ * @returns boolean indicating if subscriptions are allowed.
  */
-function checksDataTypeTemplateConditions(lnElement: Element): boolean {
-  const rootNode = lnElement?.ownerDocument;
-  const lNodeType = lnElement.getAttribute('lnType');
-  const lnClass = lnElement.getAttribute('lnClass');
+function isSupervisionModificationAllowed(
+  ied: Element,
+  supervisionType: string
+): boolean {
+  const firstSupervisionLN = ied.querySelector(
+    `LN[lnClass="${supervisionType}"]`
+  );
+
+  // no supervision logical nodes => no new supervision possible
+  if (firstSupervisionLN === null) return false;
+
+  // check if allowed to modify based on first instance properties
+  const supervisionName = supervisionType === 'LGOS' ? 'GoCBRef' : 'SvCBRef';
+  const instValKind = firstSupervisionLN!
+    .querySelector(`DOI[name="${supervisionName}"]>DAI[name="setSrcRef"]`)
+    ?.getAttribute('valKind');
+  const instValImport = firstSupervisionLN!
+    .querySelector(`DOI[name="${supervisionName}"]>DAI[name="setSrcRef"]`)
+    ?.getAttribute('valImport');
+
+  if (
+    (instValKind === 'RO' || instValKind === 'Conf') &&
+    instValImport === 'true'
+  )
+    return true;
+
+  // check if allowed to modify based on DataTypeTemplates for first instance
+  const rootNode = firstSupervisionLN?.ownerDocument;
+  const lNodeType = firstSupervisionLN.getAttribute('lnType');
+  const lnClass = firstSupervisionLN.getAttribute('lnClass');
   const dObj = rootNode.querySelector(
     `DataTypeTemplates > LNodeType[id="${lNodeType}"][lnClass="${lnClass}"] > DO[name="${
       lnClass === 'LGOS' ? 'GoCBRef' : 'SvCBRef'
@@ -226,34 +253,6 @@ function checksDataTypeTemplateConditions(lnElement: Element): boolean {
   }
   // definition missing
   return false;
-}
-
-/**
- * Searches for first instantiated LGOS/LSVS LN for presence of DOI>DAI[valKind=Conf/RO][valImport=true]
- * given a supervision type and returns a boolean indicating whether it allows instantiation by an SCT.
- * @param ied - SCL IED element.
- * @param supervisionType - either 'LGOS' or 'LSVS' supervision LN classes.
- * @returns boolean indicating if subscriptions are allowed based on the first instantiated instance.
- */
-function checkInstSupervisionConditions(
-  ied: Element,
-  supervisionType: string
-): boolean {
-  const firstSupervisionLN = ied.querySelector(
-    `LN[lnClass="${supervisionType}"]`
-  );
-
-  if (firstSupervisionLN === null) return false;
-
-  const supervisionName = supervisionType === 'LGOS' ? 'GoCBRef' : 'SvCBRef';
-  const valKind = firstSupervisionLN!
-    .querySelector(`DOI[name="${supervisionName}"]>DAI[name="setSrcRef"]`)
-    ?.getAttribute('valKind');
-  const valImport = firstSupervisionLN!
-    .querySelector(`DOI[name="${supervisionName}"]>DAI[name="setSrcRef"]`)
-    ?.getAttribute('valImport');
-
-  return (valKind === 'RO' || valKind === 'Conf') && valImport === 'true';
 }
 
 /**
@@ -283,10 +282,7 @@ export function instantiateSubscriptionSupervision(
   );
   if (
     !availableLN ||
-    !(
-      checkInstSupervisionConditions(subscriberIED, supervisionType) ||
-      checksDataTypeTemplateConditions(availableLN)
-    )
+    !isSupervisionModificationAllowed(subscriberIED, supervisionType)
   )
     return [];
 
@@ -382,14 +378,23 @@ export function instantiateSubscriptionSupervision(
 export function getSupervisionCbRefs(
   ied: Element,
   cbTagName: string
-): Element[] {
+): Element[];
+export function getSupervisionCbRefs(
+  ied: Element,
+  cbTagName: string,
+  firstOnly: boolean
+): Element | null;
+export function getSupervisionCbRefs(
+  ied: Element,
+  cbTagName: string,
+  firstOnly?: boolean
+): Element[] | Element | null {
   const supervisionType = cbTagName === 'GSEControl' ? 'LGOS' : 'LSVS';
   const supervisionName = supervisionType === 'LGOS' ? 'GoCBRef' : 'SvCBRef';
-  return Array.from(
-    ied.querySelectorAll(
-      `LN[lnClass="${supervisionType}"]>DOI[name="${supervisionName}"]>DAI[name="setSrcRef"]>Val,LN0[lnClass="${supervisionType}"]>DOI[name="${supervisionName}"]>DAI[name="setSrcRef"]>Val`
-    )
-  );
+  const selectorString = `LN[lnClass="${supervisionType}"]>DOI[name="${supervisionName}"]>DAI[name="setSrcRef"]>Val,LN0[lnClass="${supervisionType}"]>DOI[name="${supervisionName}"]>DAI[name="setSrcRef"]>Val`;
+  return firstOnly
+    ? ied.querySelector(selectorString)
+    : Array.from(ied.querySelectorAll(selectorString));
 }
 
 /**
@@ -507,13 +512,14 @@ export function findOrCreateAvailableLNInst(
     availableLN.setAttribute('lnClass', supervisionType);
     const instantiatedSiblings = getSupervisionCbRefs(
       subscriberIED,
-      controlBlock.tagName
-    ).map(val => val.closest('LN'));
+      controlBlock.tagName,
+      true
+    )?.closest('LN');
 
-    if (!instantiatedSiblings || instantiatedSiblings.length === 0) return null;
+    if (!instantiatedSiblings) return null;
     availableLN.setAttribute(
       'lnType',
-      instantiatedSiblings[0]!.getAttribute('lnType') ?? ''
+      instantiatedSiblings?.getAttribute('lnType') ?? ''
     );
   }
 
