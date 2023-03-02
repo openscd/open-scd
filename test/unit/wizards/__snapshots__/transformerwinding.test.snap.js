@@ -55,7 +55,7 @@ snapshots["Wizards for SCL TransformerWinding element define an edit wizard that
 `;
 /* end snapshot Wizards for SCL TransformerWinding element define an edit wizard that looks like the the latest snapshot */
 
-snapshots["Wizards for SCL TransformerWinding element define an create wizard that looks like the the latest snapshot"] = 
+snapshots["Wizards for SCL TransformerWinding element define a create wizard that looks like the the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.add]"
@@ -107,5 +107,5 @@ snapshots["Wizards for SCL TransformerWinding element define an create wizard th
   </mwc-button>
 </mwc-dialog>
 `;
-/* end snapshot Wizards for SCL TransformerWinding element define an create wizard that looks like the the latest snapshot */
+/* end snapshot Wizards for SCL TransformerWinding element define a create wizard that looks like the the latest snapshot */
 

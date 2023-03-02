@@ -47,6 +47,17 @@ snapshots["transformer-winding-editor with children when EqFunction elements are
         mwc-list-item=""
         role="menuitem"
         tabindex="-1"
+        value="TapChanger"
+      >
+        <span>
+          TapChanger
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
         value="EqFunction"
       >
         <span>
@@ -122,6 +133,17 @@ snapshots["transformer-winding-editor with children when hiding EqFunction eleme
         mwc-list-item=""
         role="menuitem"
         tabindex="-1"
+        value="TapChanger"
+      >
+        <span>
+          TapChanger
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
         value="EqFunction"
       >
         <span>
@@ -188,6 +210,17 @@ snapshots["transformer-winding-editor without children looks like the latest sna
       >
         <span>
           LNode
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="menuitem"
+        tabindex="-1"
+        value="TapChanger"
+      >
+        <span>
+          TapChanger
         </span>
       </mwc-list-item>
       <mwc-list-item

@@ -48,7 +48,7 @@ import {
   createTransformerWindingWizard,
   editTransformerWindingWizard,
 } from './transformerWinding.js';
-import { editTapChangerWizard } from './tapChanger.js';
+import { createTapChangerWizard, editTapChangerWizard } from './tapchanger.js';
 
 type SclElementWizard = (
   element: Element,
@@ -520,7 +520,7 @@ export const wizards: Record<
   },
   TapChanger: {
     edit: editTapChangerWizard,
-    create: emptyWizard,
+    create: createTapChangerWizard,
   },
   Terminal: {
     edit: editTerminalWizard,

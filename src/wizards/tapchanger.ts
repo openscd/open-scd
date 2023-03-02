@@ -12,6 +12,24 @@ import {
   WizardInputElement,
 } from '../foundation.js';
 
+function createTapChangerAction(parent: Element): WizardActor {
+  return (inputs: WizardInputElement[]) => {
+    const tapChangerAttrs: Record<string, string | null> = {};
+    const tapChangerKeys = ['name', 'desc', 'type', 'virtual'];
+    tapChangerKeys.forEach(key => {
+      tapChangerAttrs[key] = getValue(inputs.find(i => i.label === key)!);
+    });
+
+    const tapChanger = createElement(
+      parent.ownerDocument,
+      'TapChanger',
+      tapChangerAttrs
+    );
+
+    return [{ new: { parent, element: tapChanger } }];
+  };
+}
+
 function updateTapChangerAction(element: Element): WizardActor {
   return (inputs: WizardInputElement[]): SimpleAction[] => {
     const tapChangerAttrs: Record<string, string | null> = {};
@@ -76,6 +94,36 @@ export function contentTapChangerWizard(
       helper="${translate('scl.virtual')}"
       nullable
     ></wizard-checkbox>`,
+  ];
+}
+
+export function createTapChangerWizard(parent: Element): Wizard {
+  const name = '';
+  const desc = null;
+  const type = 'LTC';
+  const virtual = null;
+  const reservedNames = Array.from(parent.querySelectorAll('TapChanger')).map(
+    TapChanger => TapChanger.getAttribute('name')!
+  );
+
+  return [
+    {
+      title: get('wizard.title.add', { tagName: 'TapChanger' }),
+      primary: {
+        icon: 'save',
+        label: get('save'),
+        action: createTapChangerAction(parent),
+      },
+      content: [
+        ...contentTapChangerWizard({
+          name,
+          desc,
+          type,
+          virtual,
+          reservedNames,
+        }),
+      ],
+    },
   ];
 }
 

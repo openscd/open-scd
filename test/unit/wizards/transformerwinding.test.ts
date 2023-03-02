@@ -130,7 +130,7 @@ describe('Wizards for SCL TransformerWinding element', () => {
     });
   });
 
-  describe('define an create wizard that', () => {
+  describe('define a create wizard that', () => {
     beforeEach(async () => {
       const wizard = createTransformerWindingWizard(
         doc.querySelector('PowerTransformer')!
