@@ -1,7 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Wizards for SCL TransformerWinding element define an edit wizard that looks like the the latest snapshot"] = 
+snapshots["Wizards for SCL TapChanger element define an edit wizard that looks like the the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
@@ -18,7 +18,6 @@ snapshots["Wizards for SCL TransformerWinding element define an edit wizard that
     >
     </wizard-textfield>
     <wizard-textfield
-      disabled=""
       helper="[scl.desc]"
       label="desc"
       nullable=""
@@ -53,9 +52,9 @@ snapshots["Wizards for SCL TransformerWinding element define an edit wizard that
   </mwc-button>
 </mwc-dialog>
 `;
-/* end snapshot Wizards for SCL TransformerWinding element define an edit wizard that looks like the the latest snapshot */
+/* end snapshot Wizards for SCL TapChanger element define an edit wizard that looks like the the latest snapshot */
 
-snapshots["Wizards for SCL TransformerWinding element define a create wizard that looks like the the latest snapshot"] = 
+snapshots["Wizards for SCL TapChanger element define a create wizard that looks like the the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.add]"
@@ -107,5 +106,5 @@ snapshots["Wizards for SCL TransformerWinding element define a create wizard tha
   </mwc-button>
 </mwc-dialog>
 `;
-/* end snapshot Wizards for SCL TransformerWinding element define a create wizard that looks like the the latest snapshot */
+/* end snapshot Wizards for SCL TapChanger element define a create wizard that looks like the the latest snapshot */
 

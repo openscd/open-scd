@@ -1054,7 +1054,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-      value="MeasPoint.CT1 SMV_Subscriber2>>Overvoltage> PTRC 1>SMV:currrentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv instMag.i@AmpSv;TCTR1/AmpSv/instMag.i MeasPoint.CT1 SMV_Subscriber4>>Overvoltage> PTRC 1>SMV:currrentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv instMag.i@AmpSv;TCTR1/AmpSv/instMag.i MeasPoint.CT1 SMV_Subscriber5>>Overvoltage> PTRC 1>SMV:currrentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv instMag.i@AmpSv;TCTR1/AmpSv/instMag.i MeasPoint.CT1 SMV_Subscriber6>>Overvoltage> PTRC 1>SMV:currrentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv instMag.i@AmpSv;TCTR1/AmpSv/instMag.i MeasPoint.CT1 SMV_Subscriber7>>Overvoltage> PTRC 1>SMV:currrentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv instMag.i@AmpSv;TCTR1/AmpSv/instMag.i"
+      value="MeasPoint.CT1 SMV_Subscriber2>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/instMag.i[0] MeasPoint.CT1 SMV_Subscriber4>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/instMag.i[0] MeasPoint.CT1 SMV_Subscriber5>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/instMag.i[0] MeasPoint.CT1 SMV_Subscriber6>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/instMag.i[0] MeasPoint.CT1 SMV_Subscriber7>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/instMag.i[0]"
     >
       <span>
         [subscription.subscriber.subscribed]
@@ -1072,7 +1072,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
       mwc-list-item=""
       tabindex="0"
       twoline=""
-      value="SMV_Subscriber2>>Overvoltage> PTRC 1>SMV:currrentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv instMag.i@AmpSv;TCTR1/AmpSv/instMag.i"
+      value="SMV_Subscriber2>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/instMag.i[0]"
     >
       <span>
         AmpSv;TCTR1/AmpSv/instMag.i
@@ -1098,7 +1098,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber4>>Overvoltage> PTRC 1>SMV:currrentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv instMag.i@AmpSv;TCTR1/AmpSv/instMag.i"
+      value="SMV_Subscriber4>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/instMag.i[0]"
     >
       <span>
         AmpSv;TCTR1/AmpSv/instMag.i
@@ -1124,7 +1124,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber5>>Overvoltage> PTRC 1>SMV:currrentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv instMag.i@AmpSv;TCTR1/AmpSv/instMag.i"
+      value="SMV_Subscriber5>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/instMag.i[0]"
     >
       <span>
         AmpSv;TCTR1/AmpSv/instMag.i
@@ -1150,7 +1150,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber6>>Overvoltage> PTRC 1>SMV:currrentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv instMag.i@AmpSv;TCTR1/AmpSv/instMag.i"
+      value="SMV_Subscriber6>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/instMag.i[0]"
     >
       <span>
         AmpSv;TCTR1/AmpSv/instMag.i
@@ -1175,7 +1175,7 @@ snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element wit
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber7>>Overvoltage> PTRC 1>SMV:currrentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv instMag.i@AmpSv;TCTR1/AmpSv/instMag.i"
+      value="SMV_Subscriber7>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/instMag.i[0]"
     >
       <span>
         AmpSv;TCTR1/AmpSv/instMag.i
