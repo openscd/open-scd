@@ -298,7 +298,9 @@ export function instantiateSubscriptionSupervision(
         new: {
           parent: parent,
           element: availableLN,
-          reference: null,
+          reference: parent!.querySelector(
+            `LN[lnClass="${supervisionType}"]:last-child`
+          )?.nextElementSibling,
         },
       });
     }
@@ -370,10 +372,11 @@ export function instantiateSubscriptionSupervision(
 }
 
 /**
- * Return Val elements within an IED for the control block type
- * @param ied - IED SCL element
- * @param cbTagName - Either GSEControl or (defaults to) SampledValueControl
- * @returns an Element array of Val SCL elements
+ * Return Val elements within an LGOS/LSVS instance for a particular IED and control block type.
+ * @param ied - IED SCL element.
+ * @param cbTagName - Either GSEControl or (defaults to) SampledValueControl.
+ * @param firstOnly - If true, return the first element found
+ * @returns an Element array of Val SCL elements within an LGOS/LSVS node.
  */
 export function getSupervisionCbRefs(
   ied: Element,
