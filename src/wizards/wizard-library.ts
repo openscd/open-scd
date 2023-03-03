@@ -44,6 +44,11 @@ import {
   createGeneralEquipmentWizard,
   editGeneralEquipmentWizard,
 } from './generalEquipment.js';
+import {
+  createTransformerWindingWizard,
+  editTransformerWindingWizard,
+} from './transformerWinding.js';
+import { createTapChangerWizard, editTapChangerWizard } from './tapchanger.js';
 
 type SclElementWizard = (
   element: Element,
@@ -514,8 +519,8 @@ export const wizards: Record<
     create: emptyWizard,
   },
   TapChanger: {
-    edit: emptyWizard,
-    create: emptyWizard,
+    edit: editTapChangerWizard,
+    create: createTapChangerWizard,
   },
   Terminal: {
     edit: editTerminalWizard,
@@ -534,8 +539,8 @@ export const wizards: Record<
     create: emptyWizard,
   },
   TransformerWinding: {
-    edit: emptyWizard,
-    create: emptyWizard,
+    edit: editTransformerWindingWizard,
+    create: createTransformerWindingWizard,
   },
   TrgOps: {
     edit: editTrgOpsWizard,

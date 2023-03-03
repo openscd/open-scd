@@ -64,6 +64,7 @@ export const en = {
     prefix: 'Prefix of the Logical Node',
     lnInst: 'Instance of the Logical Node',
     virtual: 'Virtual',
+    phase: 'Phase',
   },
   settings: {
     title: 'Settings',

@@ -23,7 +23,7 @@ import { createDaInfoWizard } from './da-wizard.js';
 import {
   Container,
   getInstanceDAElement,
-  getValueElement,
+  getValueElements,
 } from './foundation.js';
 import { createDAIWizard } from '../../wizards/dai.js';
 import {
@@ -53,21 +53,6 @@ export class DAContainer extends Container {
     } else {
       return html`${name} &mdash; ${bType}${fc ? html` [${fc}]` : ``}`;
     }
-  }
-
-  /**
-   * Rendering an optional value of this (B)DA container.
-   * If there is a DAI, it gets priority on top of (B)DA values.
-   * @returns TemplateResult containing the value of the instance, element or nothing.
-   */
-  private getValue(): TemplateResult {
-    if (this.instanceElement) {
-      return html`<b
-        >${getValueElement(this.instanceElement)?.textContent?.trim() ?? ''}</b
-      >`;
-    }
-
-    return html`${getValueElement(this.element)?.textContent?.trim() ?? ''}`;
   }
 
   /**
@@ -123,9 +108,55 @@ export class DAContainer extends Container {
     }
   }
 
-  private openEditWizard(): void {
-    const wizard = wizards['DAI'].edit(this.element, this.instanceElement);
+  private openEditWizard(val: Element): void {
+    const wizard = wizards['DAI'].edit(this.element, val);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
+
+  private getValueDisplayString(val: Element): string {
+    const sGroup = val.getAttribute('sGroup');
+    const prefix = sGroup ? `SG${sGroup}: ` : '';
+    const value = val.textContent?.trim();
+
+    return `${prefix}${value}`;
+  }
+
+  private renderVal(): TemplateResult[] {
+    const bType = this.element!.getAttribute('bType');
+    const element = this.instanceElement ?? this.element;
+    const hasInstantiatedVal = !!this.instanceElement?.querySelector('Val');
+
+    return hasInstantiatedVal
+      ? getValueElements(element).map(
+          val => html`<div style="display: flex; flex-direction: row;">
+            <div style="display: flex; align-items: center; flex: auto;">
+              <h4>${this.getValueDisplayString(val)}</h4>
+            </div>
+            <div style="display: flex; align-items: center;">
+              <mwc-icon-button
+                icon="edit"
+                .disabled="${!getCustomField()[<DaiFieldTypes>bType]}"
+                @click=${() => this.openEditWizard(val)}
+              >
+              </mwc-icon-button>
+            </div>
+          </div>`
+        )
+      : [
+          html`<div style="display: flex; flex-direction: row;">
+            <div style="display: flex; align-items: center; flex: auto;">
+              <h4></h4>
+            </div>
+            <div style="display: flex; align-items: center;">
+              <mwc-icon-button
+                icon="add"
+                .disabled="${!getCustomField()[<DaiFieldTypes>bType]}"
+                @click=${() => this.openCreateWizard()}
+              >
+              </mwc-icon-button>
+            </div>
+          </div>`,
+        ];
   }
 
   render(): TemplateResult {
@@ -167,26 +198,7 @@ export class DAContainer extends Container {
               >
               </mwc-icon-button-toggle>
             </abbr>`
-          : html` <div style="display: flex; flex-direction: row;">
-              <div style="display: flex; align-items: center; flex: auto;">
-                <h4>${this.getValue()}</h4>
-              </div>
-              <div style="display: flex; align-items: center;">
-                ${this.instanceElement
-                  ? html`<mwc-icon-button
-                      icon="edit"
-                      .disabled="${!getCustomField()[<DaiFieldTypes>bType]}"
-                      @click=${() => this.openEditWizard()}
-                    >
-                    </mwc-icon-button>`
-                  : html`<mwc-icon-button
-                      icon="add"
-                      .disabled="${!getCustomField()[<DaiFieldTypes>bType]}"
-                      @click=${() => this.openCreateWizard()}
-                    >
-                    </mwc-icon-button>`}
-              </div>
-            </div>`}
+          : html`${this.renderVal()}`}
         ${this.toggleButton?.on && bType === 'Struct'
           ? this.getBDAElements().map(
               bdaElement =>

@@ -9,7 +9,7 @@ import {
   Wizard,
   WizardActor,
   WizardInputElement,
-} from '../foundation';
+} from '../foundation.js';
 
 export function editGeneralEquipmentWizard(element: Element): Wizard {
   const name = element.getAttribute('name');

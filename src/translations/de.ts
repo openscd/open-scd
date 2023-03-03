@@ -66,6 +66,7 @@ export const de: Translations = {
     prefix: 'Präfix des logischen Knotens',
     lnInst: 'Instanz des logischen Knotens',
     virtual: 'Virtuell',
+    phase: 'Phase',
   },
   settings: {
     title: 'Einstellungen',

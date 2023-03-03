@@ -73,6 +73,38 @@ describe('da-container', async () => {
     });
   });
 
+  describe('with a BDA element having multiple values', () => {
+    beforeEach(async () => {
+      element = await fixture(html`<da-container
+        .element=${validSCL.querySelector(
+          'DAType[id="ScaledValueConfig"] > BDA[name="scaleFactor"]'
+        )}
+        .instanceElement=${validSCL.querySelector(
+          'IED[name="IED3"] DAI[name="scaleFactor"]'
+        )}
+        .daParent=${validSCL.querySelector(
+          'DOType[id="DummySAV"] > DA[name="sVC"]'
+        )}
+        .ancestors=${[
+          validSCL.querySelector('LNodeType[id="DummyTCTR"] > DO[name="Amp"]'),
+          validSCL.querySelector('DOType[id="DummySAV"] > DA[name="sVC"]'),
+        ]}
+        .nsdoc=${nsdoc}
+      ></da-container>`);
+    });
+
+    it('check the values returned for the header', () => {
+      const header = element['header']();
+      expect(header.values.length).to.be.equals(3);
+      expect(header.values[0]).to.be.equals('scaleFactor');
+      expect(header.values[1]).to.be.equals('FLOAT32');
+    });
+
+    it('looks like the latest snapshot', async () => {
+      expect(element).shadowDom.to.equalSnapshot();
+    });
+  });
+
   describe('with a DA element and child elements are toggled', () => {
     beforeEach(async () => {
       element = await fixture(html`<da-container

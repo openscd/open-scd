@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.29.0](https://github.com/openscd/open-scd/compare/v0.28.0...v0.29.0) (2023-02-08)
+
+
+### Features
+
+* **editors/later-binding:** Improve supervision visibility and remove clutter ([#1141](https://github.com/openscd/open-scd/issues/1141)) ([845d1a5](https://github.com/openscd/open-scd/commits/845d1a5200e54b1d7e2a470604b553c519d5f6dd)), closes [#1024](https://github.com/openscd/open-scd/issues/1024) [#1037](https://github.com/openscd/open-scd/issues/1037)
+* **editors/laterbinding:** Filter later binding GOOSE/SMV by serviceType (closes [#1150](https://github.com/openscd/open-scd/issues/1150)) ([#1151](https://github.com/openscd/open-scd/issues/1151)) ([ea59f70](https://github.com/openscd/open-scd/commits/ea59f702546f1b9186054d77ec61f4ca57de5b10))
+* **editors/substation/transformerwinding:** add remove button  ([#1157](https://github.com/openscd/open-scd/issues/1157)) ([a01e0ed](https://github.com/openscd/open-scd/commits/a01e0ed5f1e34cc93a041c57400ae306db5228e4))
+* **general-equipment-editor:** add remove button ([#1107](https://github.com/openscd/open-scd/issues/1107)) ([b3def87](https://github.com/openscd/open-scd/commits/b3def87e33d9a47a9bfb8872b35161e59ded4a80))
+* **substation/transformerwinding:** add create wizard ([#1154](https://github.com/openscd/open-scd/issues/1154)) ([51e19a7](https://github.com/openscd/open-scd/commits/51e19a75d3cadaf9c61969a54e0a67d9e9fd1fda))
+* **wizards/generalequipment:** Add_create_wizard_GeneralEquipment_and_test ([#1102](https://github.com/openscd/open-scd/issues/1102)) ([2d1464f](https://github.com/openscd/open-scd/commits/2d1464fa3446d459aa411f82080241ebf0ff379a))
+* **wizards/transformerwinding:** add edit wizard ([#1137](https://github.com/openscd/open-scd/issues/1137)) ([cf65a50](https://github.com/openscd/open-scd/commits/cf65a50366cb0659c3a510e3664ea4226c4c26d4))
+
+
+### Bug Fixes
+
+* add missing code editor to edit wizards ([#1136](https://github.com/openscd/open-scd/issues/1136)) ([2171569](https://github.com/openscd/open-scd/commits/2171569a9885cd105804cf342906799e678f8009))
+* close menu after open project ([#1111](https://github.com/openscd/open-scd/issues/1111)) ([0e047a3](https://github.com/openscd/open-scd/commits/0e047a377f0eedd81996da24c5da80c9b67cbee3))
+* **editors/cleanup:** quote input in selector of control blocks cleanup editor, closes [#1145](https://github.com/openscd/open-scd/issues/1145)  ([ae26764](https://github.com/openscd/open-scd/commits/ae26764c5be29667114e35fb6ac1e16f5e3704a4))
+* **ieds-import:** multiple IEDs import ([#1103](https://github.com/openscd/open-scd/issues/1103)) ([af0f5a3](https://github.com/openscd/open-scd/commits/af0f5a3f4c2648a9538ce7c7e6eca5a73746b784))
+* opened menu cut off ([#1125](https://github.com/openscd/open-scd/issues/1125)) ([0c3bd0c](https://github.com/openscd/open-scd/commits/0c3bd0c838c75a6ef9ca575894bbc410a40ac36f))
+* styling issue with SubEquipment editor ([#1130](https://github.com/openscd/open-scd/issues/1130)) ([d0e9657](https://github.com/openscd/open-scd/commits/d0e96572f3d57c84674f12d2eeeca93afbe667ad))
+
 ## [0.28.0](https://github.com/openscd/open-scd/compare/v0.27.0...v0.28.0) (2022-11-30)
 
 
