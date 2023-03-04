@@ -10,6 +10,7 @@ import {
   TemplateResult,
 } from 'lit-element';
 import { nothing, SVGTemplateResult } from 'lit-html';
+import { classMap } from 'lit-html/directives/class-map.js';
 import { translate } from 'lit-translate';
 
 import '@material/mwc-icon';
@@ -17,8 +18,10 @@ import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-list/mwc-check-list-item';
 import '@material/mwc-menu';
-import { Menu } from '@material/mwc-menu';
+
 import { Icon } from '@material/mwc-icon';
+import { List } from '@material/mwc-list';
+import { Menu } from '@material/mwc-menu';
 
 import {
   getDescriptionAttribute,
@@ -37,7 +40,6 @@ import {
   SubscriptionChangedEvent,
 } from './foundation.js';
 import { getSubscribedExtRefElements } from './later-binding/foundation.js';
-import { classMap } from 'lit-html/directives/class-map.js';
 
 type controlTag = 'SampledValueControl' | 'GSEControl';
 
@@ -65,13 +67,53 @@ export class FcdaBindingList extends LitElement {
   @state()
   private extRefCounters = new Map();
 
+  @property({ type: Boolean })
+  get doNotKeepSubscribed(): boolean {
+    return (
+      localStorage.getItem(
+        `fcda-binding-list-${
+          this.includeLaterBinding ? 'later-binding' : 'data-binding'
+        }-${this.controlTag}$doNotKeepSubscribed`
+      ) === 'true' ?? false
+    );
+  }
+
+  set doNotKeepSubscribed(value: boolean) {
+    const oldValue = this.doNotKeepSubscribed;
+    localStorage.setItem(
+      `fcda-binding-list-${
+        this.includeLaterBinding ? 'later-binding' : 'data-binding'
+      }-${this.controlTag}$doNotKeepSubscribed`,
+      `${value}`
+    );
+    this.requestUpdate('doNotKeepSubscribed', oldValue);
+  }
+
+  @property({ type: Boolean })
+  get doNotKeepNotSubscribed(): boolean {
+    return (
+      localStorage.getItem(
+        `fcda-binding-list-${
+          this.includeLaterBinding ? 'later-binding' : 'data-binding'
+        }-${this.controlTag}$doNotKeepNotSubscribed`
+      ) === 'true' ?? false
+    );
+  }
+
+  set doNotKeepNotSubscribed(value: boolean) {
+    const oldValue = this.doNotKeepNotSubscribed;
+    localStorage.setItem(
+      `fcda-binding-list-${
+        this.includeLaterBinding ? 'later-binding' : 'data-binding'
+      }-${this.controlTag}$doNotKeepNotSubscribed`,
+      `${value}`
+    );
+    this.requestUpdate('doNotKeepNotSubscribed', oldValue);
+  }
+
   @query('.actions-menu') actionsMenu!: Menu;
   @query('.actions-menu-icon') actionsMenuIcon!: Icon;
-
-  @property({ attribute: false })
-  filterSubscribed = false;
-  @property({ attribute: false })
-  filterNotSubscribed = false;
+  @query('.control-block-list') controlBlockList!: List;
 
   private iconControlLookup: iconLookup = {
     SampledValueControl: smvIcon,
@@ -185,18 +227,17 @@ export class FcdaBindingList extends LitElement {
   renderFCDA(controlElement: Element, fcdaElement: Element): TemplateResult {
     const fcdaCount = this.getExtRefCount(fcdaElement, controlElement);
 
-    // if filtered out, do not show
-    if (
-      (this.filterSubscribed && fcdaCount === 0) ||
-      (this.filterNotSubscribed && fcdaCount !== 0)
-    )
-      return html``;
+    const filterClasses = {
+      subitem: true,
+      'keep-subscribed': fcdaCount !== 0,
+      'keep-not-subscribed': fcdaCount === 0,
+    };
 
     return html`<mwc-list-item
       graphic="large"
       ?hasMeta=${fcdaCount !== 0}
       twoline
-      class="subitem"
+      class="${classMap(filterClasses)}"
       @click=${() => this.onFcdaSelect(controlElement, fcdaElement)}
       value="${identity(controlElement)}
              ${identity(fcdaElement)}"
@@ -208,125 +249,135 @@ export class FcdaBindingList extends LitElement {
     </mwc-list-item>`;
   }
 
+  updateBaseFilterState(): void {
+    !this.doNotKeepSubscribed
+      ? this.controlBlockList!.classList.add('keep-subscribed')
+      : this.controlBlockList!.classList.remove('keep-subscribed');
+    !this.doNotKeepNotSubscribed
+      ? this.controlBlockList!.classList.add('keep-not-subscribed')
+      : this.controlBlockList!.classList.remove('keep-not-subscribed');
+  }
+
   protected firstUpdated(): void {
     this.actionsMenu.anchor = <HTMLElement>this.actionsMenuIcon;
 
     this.actionsMenu.addEventListener('closed', () => {
-      this.filterSubscribed = (<Set<number>>this.actionsMenu.index).has(0);
-      this.filterNotSubscribed = (<Set<number>>this.actionsMenu.index).has(1);
-
-      // reset filters if all selected = no filtering
-      if (this.filterSubscribed && this.filterNotSubscribed) {
-        this.actionsMenu
-          .querySelector('.filter-subscribed')
-          ?.removeAttribute('selected');
-        this.actionsMenu
-          .querySelector('.filter-not-subscribed')
-          ?.removeAttribute('selected');
-        this.filterSubscribed = false;
-        this.filterNotSubscribed = false;
-      }
+      this.doNotKeepSubscribed = !(<Set<number>>this.actionsMenu.index).has(0);
+      this.doNotKeepNotSubscribed = !(<Set<number>>this.actionsMenu.index).has(
+        1
+      );
+      this.updateBaseFilterState();
     });
+
+    this.updateBaseFilterState();
   }
 
-  render(): TemplateResult {
-    console.log(this.filterSubscribed, this.filterNotSubscribed);
-    const controlElements = this.getControlElements();
+  renderTitle(): TemplateResult {
     const menuClasses = {
-      'filter-on': this.filterSubscribed || this.filterNotSubscribed,
+      'filter-off': this.doNotKeepSubscribed || this.doNotKeepNotSubscribed,
     };
-    return html` <section tabindex="0">
-      ${controlElements.length > 0
-        ? html`<h1>
-              ${translate(
-                `subscription.${this.controlTag}.controlBlockList.title`
-              )}
-              <mwc-icon-button
-                class="actions-menu-icon ${classMap(menuClasses)}"
-                icon="filter_list"
-                @click=${() => {
-                  if (!this.actionsMenu.open) this.actionsMenu.show();
-                  else this.actionsMenu.close();
-                }}
-              ></mwc-icon-button>
-              <mwc-menu
-                multi
-                class="actions-menu"
-                corner="BOTTOM_RIGHT"
-                menuCorner="END"
-              >
-                <mwc-check-list-item
-                  class="filter-subscribed"
-                  left
-                  @click=${() => {
-                    this.actionsMenu.close();
-                  }}
-                >
-                  <span
-                    >${translate('subscription.subscriber.subscribed')}</span
-                  >
-                </mwc-check-list-item>
-                <mwc-check-list-item
-                  class="filter-not-subscribed"
-                  left
-                  @click=${() => {
-                    this.actionsMenu.close();
-                  }}
-                >
-                  <span
-                    >${translate('subscription.subscriber.notSubscribed')}</span
-                  >
-                </mwc-check-list-item>
-              </mwc-menu>
-            </h1>
-            <filtered-list activatable>
-              ${controlElements.map(controlElement => {
-                const fcdaElements = this.getFcdaElements(controlElement);
-                return html`
-                  <mwc-list-item
-                    noninteractive
-                    graphic="icon"
-                    twoline
-                    hasMeta
-                    value="
-                        ${identity(controlElement)}${fcdaElements
-                      .map(
-                        fcdaElement => `
+    return html`<h1>
+      ${translate(`subscription.${this.controlTag}.controlBlockList.title`)}
+      <mwc-icon-button
+        class="actions-menu-icon ${classMap(menuClasses)}"
+        icon="filter_list"
+        @click=${() => {
+          if (!this.actionsMenu.open) this.actionsMenu.show();
+          else this.actionsMenu.close();
+        }}
+      ></mwc-icon-button>
+      <mwc-menu
+        multi
+        class="actions-menu"
+        corner="BOTTOM_RIGHT"
+        menuCorner="END"
+      >
+        <mwc-check-list-item
+          class="filter-subscribed"
+          left
+          ?selected=${!this.doNotKeepSubscribed}
+        >
+          <span>${translate('subscription.subscriber.subscribed')}</span>
+        </mwc-check-list-item>
+        <mwc-check-list-item
+          class="filter-not-subscribed"
+          left
+          ?selected=${!this.doNotKeepNotSubscribed}
+        >
+          <span>${translate('subscription.subscriber.notSubscribed')}</span>
+        </mwc-check-list-item>
+      </mwc-menu>
+    </h1> `;
+  }
+
+  renderControls(controlElements: Element[]): TemplateResult {
+    return html`<filtered-list class="control-block-list" activatable>
+      ${controlElements
+        .filter(controlElement => this.getFcdaElements(controlElement).length)
+        .map(controlElement => {
+          const fcdaElements = this.getFcdaElements(controlElement);
+          const keepSubscribed = fcdaElements.some(
+            fcda => this.getExtRefCount(fcda, controlElement) !== 0
+          );
+          const keepNotSubscribed = fcdaElements.some(
+            fcda => this.getExtRefCount(fcda, controlElement) === 0
+          );
+
+          const filterClasses = {
+            control: true,
+            'keep-subscribed': keepSubscribed,
+            'keep-not-subscribed': keepNotSubscribed,
+          };
+
+          return html`
+            <mwc-list-item
+              noninteractive
+              class="${classMap(filterClasses)}"
+              graphic="icon"
+              twoline
+              hasMeta
+              value="${identity(controlElement)}${fcdaElements
+                .map(
+                  fcdaElement => `
                         ${getFcdaTitleValue(fcdaElement)}
                         ${getFcdaSubtitleValue(fcdaElement)}
                         ${identity(fcdaElement)}`
-                      )
-                      .join('')}"
-                  >
-                    <mwc-icon-button
-                      slot="meta"
-                      icon="edit"
-                      class="interactive"
-                      @click=${() => this.openEditWizard(controlElement)}
-                    ></mwc-icon-button>
-                    <span
-                      >${getNameAttribute(controlElement)}
-                      ${getDescriptionAttribute(controlElement)
-                        ? html`${getDescriptionAttribute(controlElement)}`
-                        : nothing}</span
-                    >
-                    <span slot="secondary">${identity(controlElement)}</span>
-                    <mwc-icon slot="graphic"
-                      >${this.iconControlLookup[this.controlTag]}</mwc-icon
-                    >
-                  </mwc-list-item>
-                  <li divider role="separator"></li>
-                  ${fcdaElements.map(fcdaElement =>
-                    this.renderFCDA(controlElement, fcdaElement)
-                  )}
-                `;
-              })}
-            </filtered-list>`
-        : html`<h1>
-            ${translate(
-              `subscription.${this.controlTag}.controlBlockList.noControlBlockFound`
+                )
+                .join('')}"
+            >
+              <mwc-icon-button
+                slot="meta"
+                icon="edit"
+                class="interactive"
+                @click=${() => this.openEditWizard(controlElement)}
+              ></mwc-icon-button>
+              <span
+                >${getNameAttribute(controlElement)}
+                ${getDescriptionAttribute(controlElement)
+                  ? html`${getDescriptionAttribute(controlElement)}`
+                  : nothing}</span
+              >
+              <span slot="secondary">${identity(controlElement)}</span>
+              <mwc-icon slot="graphic"
+                >${this.iconControlLookup[this.controlTag]}</mwc-icon
+              >
+            </mwc-list-item>
+            <li divider role="separator"></li>
+            ${fcdaElements.map(fcdaElement =>
+              this.renderFCDA(controlElement, fcdaElement)
             )}
-          </h1>`}
+          `;
+        })}
+    </filtered-list>`;
+  }
+
+  render(): TemplateResult {
+    const controlElements = this.getControlElements();
+    return html`<section tabindex="0">
+      ${this.renderTitle()}
+      ${controlElements
+        ? this.renderControls(controlElements)
+        : html`<h4>${translate('subscription.subscriber.notSubscribed')}</h4> `}
     </section>`;
   }
 
@@ -349,9 +400,37 @@ export class FcdaBindingList extends LitElement {
       float: right;
     }
 
-    .actions-menu-icon.filter-on {
+    .actions-menu-icon.filter-off {
       color: var(--secondary);
       background-color: var(--mdc-theme-background);
+    }
+
+    /* remove all control blocks if no filters */
+    filtered-list.control-block-list:not(.keep-subscribed, .keep-not-subscribed)
+      mwc-list-item {
+      display: none;
+    }
+
+    /* remove control blocks taking care to respect multiple conditions */
+    filtered-list.control-block-list.keep-not-subscribed:not(.keep-subscribed)
+      mwc-list-item.control.keep-subscribed:not(.keep-not-subscribed) {
+      display: none;
+    }
+
+    filtered-list.control-block-list.keep-subscribed:not(.keep-not-subscribed)
+      mwc-list-item.control.keep-not-subscribed:not(.keep-subscribed) {
+      display: none;
+    }
+
+    /* remove fcdas if not part of filter */
+    filtered-list.control-block-list:not(.keep-not-subscribed)
+      mwc-list-item.subitem.keep-not-subscribed {
+      display: none;
+    }
+
+    filtered-list.control-block-list:not(.keep-subscribed)
+      mwc-list-item.subitem.keep-subscribed {
+      display: none;
     }
 
     .interactive {
