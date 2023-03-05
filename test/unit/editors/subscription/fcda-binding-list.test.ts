@@ -18,6 +18,7 @@ describe('fcda-binding-list', () => {
   let selectEvent: SinonSpy;
 
   beforeEach(async () => {
+    localStorage.clear();
     selectEvent = spy();
     window.addEventListener('fcda-select', selectEvent);
   });
@@ -118,41 +119,31 @@ describe('fcda-binding-list', () => {
     });
 
     it('is initially unfiltered', async () => {
-      localStorage.clear();
-
-      element.requestUpdate();
-      await element.updateComplete;
-      // this seems to work in the browser but I can't get it to work here
       const displayedElements = element.controlBlockList.items!.filter(
         item => getComputedStyle(item).display !== 'none'
       );
-
       expect(displayedElements.length).to.equal(24);
     });
 
     it('allows filtering of only not subscribed control blocks', async () => {
-      localStorage.clear();
-
       element.actionsMenuIcon.click();
-      await element.updateComplete;
+      await element.actionsMenu.requestUpdate();
 
       (<ListItem>(
         element.actionsMenu!.querySelector('.filter-subscribed')
       ))!.click();
       await element.updateComplete;
+
       element.requestUpdate();
       await element.updateComplete;
 
       const displayedElements = element.controlBlockList.items!.filter(
         item => getComputedStyle(item).display !== 'none'
       );
-
       expect(displayedElements.length).to.equal(21);
     });
 
     it('allows filtering of only subscribed control blocks', async () => {
-      localStorage.clear();
-
       element.actionsMenuIcon.click();
       await element.updateComplete;
       (<ListItem>(
@@ -167,9 +158,7 @@ describe('fcda-binding-list', () => {
       expect(displayedElements.length).to.equal(5);
     });
 
-    it('allows filtering of no control blocks', async () => {
-      localStorage.clear();
-
+    it('allows filtering of all control blocks', async () => {
       element.actionsMenuIcon.click();
       element.requestUpdate();
       await element.updateComplete;
@@ -189,7 +178,6 @@ describe('fcda-binding-list', () => {
       element.requestUpdate();
       await element.updateComplete;
 
-      // this seems to work in the browser but I can't get it to work here
       const displayedElements = element.controlBlockList.items!.filter(
         item => getComputedStyle(item).display !== 'none'
       );
