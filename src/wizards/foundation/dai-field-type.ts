@@ -207,8 +207,12 @@ export function getCustomField(): Record<DaiFieldTypes, CustomField> {
     };
   }
 
-  function getInstanceValue(instanceElement?: Element): string {
-    return instanceElement!.querySelector('Val')?.textContent?.trim() ?? '';
+  function getInstanceValue(daiOrVal?: Element): string {
+    const val = daiOrVal?.querySelector('Val')
+      ? daiOrVal?.querySelector('Val')
+      : daiOrVal;
+
+    return val?.textContent?.trim() ?? '';
   }
 
   function getEnumValues(element: Element): string[] {

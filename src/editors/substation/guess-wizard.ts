@@ -167,7 +167,7 @@ function createBayElement(
   return null;
 }
 
-function guessBasedOnCSWI(doc: XMLDocument): WizardActor {
+function guessBasedOnCSWI(doc: XMLDocument, substation: Element): WizardActor {
   return (
     inputs: WizardInputElement[],
     wizard: Element,
@@ -178,10 +178,6 @@ function guessBasedOnCSWI(doc: XMLDocument): WizardActor {
     const ctlModelList = (<ListItemBase[]>list!.selected).map(
       item => item.value
     );
-
-    const root = doc.documentElement;
-
-    const substation = root.querySelector(':root > Substation')!;
 
     const voltageLevel = createElement(doc, 'VoltageLevel', {
       name: 'E1',
@@ -196,12 +192,9 @@ function guessBasedOnCSWI(doc: XMLDocument): WizardActor {
     voltage.textContent = '110.00';
     voltageLevel.appendChild(voltage);
 
-    Array.from(doc.querySelectorAll(':root > IED'))
-      .sort(compareNames)
-      .map(ied => createBayElement(ied, ctlModelList))
-      .forEach(bay => {
-        if (bay) voltageLevel.appendChild(bay);
-      });
+    actions.push({
+      new: { parent: doc.querySelector('SCL')!, element: substation },
+    });
 
     actions.push({
       new: {
@@ -210,20 +203,30 @@ function guessBasedOnCSWI(doc: XMLDocument): WizardActor {
       },
     });
 
+    Array.from(doc.querySelectorAll(':root > IED'))
+      .sort(compareNames)
+      .map(ied => createBayElement(ied, ctlModelList))
+      .forEach(bay => {
+        if (bay) actions.push({ new: { parent: voltageLevel, element: bay } });
+      });
+
     return actions;
   };
 }
 
 /** @returns a Wizard for guessing `VoltageLevel` stucture assuming each
  * `LN[lnClass="CSWI"]` represents a bay controller */
-export function guessVoltageLevel(doc: XMLDocument): Wizard {
+export function guessVoltageLevel(
+  doc: XMLDocument,
+  substation: Element
+): Wizard {
   return [
     {
       title: get('guess.wizard.title'),
       primary: {
         icon: 'play_arrow',
         label: get('guess.wizard.primary'),
-        action: guessBasedOnCSWI(doc),
+        action: guessBasedOnCSWI(doc, substation),
       },
       content: [
         html`<p>${translate('guess.wizard.description')}</p>`,

@@ -13,12 +13,12 @@ import {
   WizardInputElement,
 } from '../../../src/foundation.js';
 import {
-  createTransformerWindingWizard,
-  editTransformerWindingWizard,
-} from '../../../src/wizards/transformerWinding';
+  createTapChangerWizard,
+  editTapChangerWizard,
+} from '../../../src/wizards/tapchanger.js';
 import { WizardCheckbox } from '../../../src/wizard-checkbox.js';
 
-describe('Wizards for SCL TransformerWinding element', () => {
+describe('Wizards for SCL TapChanger element', () => {
   let doc: XMLDocument;
   let element: MockWizard;
   let inputs: WizardInputElement[];
@@ -29,9 +29,7 @@ describe('Wizards for SCL TransformerWinding element', () => {
 
   beforeEach(async () => {
     element = await fixture(html`<mock-wizard></mock-wizard>`);
-    doc = await fetch(
-      '/test/testfiles/editors/substation/TransformerWinding.scd'
-    )
+    doc = await fetch('/test/testfiles/editors/substation/TapChanger.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
@@ -41,8 +39,8 @@ describe('Wizards for SCL TransformerWinding element', () => {
 
   describe('define an edit wizard that', () => {
     beforeEach(async () => {
-      const wizard = editTransformerWindingWizard(
-        doc.querySelector('TransformerWinding')!
+      const wizard = editTapChangerWizard(
+        doc.querySelector('TapChanger[name="tapChComplet"]')!
       );
       element.workflow.push(() => wizard);
       await element.requestUpdate();
@@ -85,7 +83,7 @@ describe('Wizards for SCL TransformerWinding element', () => {
       );
     });
 
-    it('allows to create non required attribute virtual', async () => {
+    it('allows to unset non required attribute virtual', async () => {
       const virtualCheckbox = <WizardCheckbox>(
         element.wizardUI.dialog?.querySelector(
           'wizard-checkbox[label="virtual"]'
@@ -93,7 +91,7 @@ describe('Wizards for SCL TransformerWinding element', () => {
       );
 
       virtualCheckbox.nullSwitch!.click();
-      virtualCheckbox.maybeValue = 'true';
+      virtualCheckbox.maybeValue = 'false';
       await element.requestUpdate();
       await primaryAction.click();
 
@@ -102,17 +100,10 @@ describe('Wizards for SCL TransformerWinding element', () => {
       expect(action).to.satisfy(isReplace);
       const editAction = <Replace>action;
 
-      expect(editAction.new.element).to.have.attribute('virtual', 'true');
+      expect(editAction.new.element).to.have.attribute('virtual', 'false');
     });
 
     it('allows to create non required attribute desc', async () => {
-      const descField = <WizardTextField>(
-        element.wizardUI.dialog?.querySelector('wizard-textfield[label="desc"]')
-      );
-
-      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
-      descField.nullSwitch!.click();
-      await element.updateComplete;
       inputs[1].value = 'someNonEmptyDesc';
 
       await element.requestUpdate();
@@ -132,8 +123,8 @@ describe('Wizards for SCL TransformerWinding element', () => {
 
   describe('define a create wizard that', () => {
     beforeEach(async () => {
-      const wizard = createTransformerWindingWizard(
-        doc.querySelector('PowerTransformer')!
+      const wizard = createTapChangerWizard(
+        doc.querySelector('TransformerWinding')!
       );
       element.workflow.push(() => wizard);
       await element.requestUpdate();
