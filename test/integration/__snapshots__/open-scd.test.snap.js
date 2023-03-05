@@ -1246,13 +1246,11 @@ snapshots["open-scd looks like its snapshot"] =
   >
   </mwc-button>
 </mwc-dialog>
-<mwc-circular-progress-four-color
+<mwc-linear-progress
   closed=""
-  density="0"
   indeterminate=""
-  progress="0"
 >
-</mwc-circular-progress-four-color>
+</mwc-linear-progress>
 <wizard-dialog>
 </wizard-dialog>
 <mwc-dialog
