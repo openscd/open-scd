@@ -4,8 +4,53 @@ export const snapshots = {};
 snapshots["fcda-binding-list without a doc loaded looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.undefined.controlBlockList.noControlBlockFound]
+    [subscription.undefined.controlBlockList.title]
+    <mwc-icon-button
+      class="actions-menu-icon"
+      icon="filter_list"
+    >
+    </mwc-icon-button>
+    <mwc-menu
+      class="actions-menu"
+      corner="BOTTOM_RIGHT"
+      menucorner="END"
+      multi=""
+    >
+      <mwc-check-list-item
+        aria-disabled="false"
+        class="filter-subscribed"
+        graphic="control"
+        left=""
+        mwc-list-item=""
+        role="menuitem"
+        selected=""
+        tabindex="0"
+      >
+        <span>
+          [subscription.subscriber.subscribed]
+        </span>
+      </mwc-check-list-item>
+      <mwc-check-list-item
+        aria-disabled="false"
+        class="filter-not-subscribed"
+        graphic="control"
+        left=""
+        mwc-list-item=""
+        role="menuitem"
+        selected=""
+        tabindex="-1"
+      >
+        <span>
+          [subscription.subscriber.notSubscribed]
+        </span>
+      </mwc-check-list-item>
+    </mwc-menu>
   </h1>
+  <filtered-list
+    activatable=""
+    class="control-block-list keep-not-subscribed keep-subscribed"
+  >
+  </filtered-list>
 </section>
 `;
 /* end snapshot fcda-binding-list without a doc loaded looks like the latest snapshot */
@@ -14,17 +59,60 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
 `<section tabindex="0">
   <h1>
     [subscription.SampledValueControl.controlBlockList.title]
+    <mwc-icon-button
+      class="actions-menu-icon"
+      icon="filter_list"
+    >
+    </mwc-icon-button>
+    <mwc-menu
+      class="actions-menu"
+      corner="BOTTOM_RIGHT"
+      menucorner="END"
+      multi=""
+    >
+      <mwc-check-list-item
+        aria-disabled="false"
+        class="filter-subscribed"
+        graphic="control"
+        left=""
+        mwc-list-item=""
+        role="menuitem"
+        selected=""
+        tabindex="0"
+      >
+        <span>
+          [subscription.subscriber.subscribed]
+        </span>
+      </mwc-check-list-item>
+      <mwc-check-list-item
+        aria-disabled="false"
+        class="filter-not-subscribed"
+        graphic="control"
+        left=""
+        mwc-list-item=""
+        role="menuitem"
+        selected=""
+        tabindex="-1"
+      >
+        <span>
+          [subscription.subscriber.notSubscribed]
+        </span>
+      </mwc-check-list-item>
+    </mwc-menu>
   </h1>
-  <filtered-list activatable="">
+  <filtered-list
+    activatable=""
+    class="control-block-list keep-not-subscribed keep-subscribed"
+  >
     <mwc-list-item
       aria-disabled="false"
+      class="control keep-not-subscribed"
       graphic="icon"
       hasmeta=""
       noninteractive=""
       tabindex="-1"
       twoline=""
-      value="
-                        SMV_Publisher>>CurrentTransformer>fullSmv
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
                         AmpSv.instMag.i
                         CurrentTransformer / L3 TCTR 1
                         SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 1.AmpSv instMag.i (MX)
@@ -84,7 +172,7 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
     </li>
     <mwc-list-item
       aria-disabled="false"
-      class="subitem"
+      class="keep-not-subscribed subitem"
       graphic="large"
       mwc-list-item=""
       tabindex="0"
@@ -104,7 +192,7 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="subitem"
+      class="keep-not-subscribed subitem"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -124,7 +212,7 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="subitem"
+      class="keep-not-subscribed subitem"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -144,7 +232,7 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="subitem"
+      class="keep-not-subscribed subitem"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -164,7 +252,7 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="subitem"
+      class="keep-not-subscribed subitem"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -184,7 +272,7 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="subitem"
+      class="keep-not-subscribed subitem"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -204,7 +292,7 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="subitem"
+      class="keep-not-subscribed subitem"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -224,7 +312,7 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="subitem"
+      class="keep-not-subscribed subitem"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -244,7 +332,7 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="subitem"
+      class="keep-not-subscribed subitem"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -264,7 +352,7 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="subitem"
+      class="keep-not-subscribed subitem"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -284,7 +372,7 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="subitem"
+      class="keep-not-subscribed subitem"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -304,7 +392,7 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="subitem"
+      class="keep-not-subscribed subitem"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -324,13 +412,13 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
+      class="control keep-not-subscribed"
       graphic="icon"
       hasmeta=""
       noninteractive=""
       tabindex="-1"
       twoline=""
-      value="
-                        SMV_Publisher>>CurrentTransformer>voltageOnly
+      value="SMV_Publisher>>CurrentTransformer>voltageOnly
                         VolSv.instMag.i
                         VoltageTransformer / L1 TVTR 1
                         SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)
@@ -372,7 +460,7 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
     </li>
     <mwc-list-item
       aria-disabled="false"
-      class="subitem"
+      class="keep-not-subscribed subitem"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -392,7 +480,7 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="subitem"
+      class="keep-not-subscribed subitem"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -412,7 +500,7 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="subitem"
+      class="keep-not-subscribed subitem"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -432,7 +520,7 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="subitem"
+      class="keep-not-subscribed subitem"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -452,7 +540,7 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="subitem"
+      class="keep-not-subscribed subitem"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -472,7 +560,7 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="subitem"
+      class="keep-not-subscribed subitem"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -492,13 +580,13 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
+      class="control keep-not-subscribed"
       graphic="icon"
       hasmeta=""
       noninteractive=""
       tabindex="-1"
       twoline=""
-      value="
-                        SMV_Publisher>>CurrentTransformer>currentOnly
+      value="SMV_Publisher>>CurrentTransformer>currentOnly
                         AmpSv.instMag.i
                         CurrentTransformer / L1 TCTR 1
                         SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)
@@ -540,7 +628,7 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
     </li>
     <mwc-list-item
       aria-disabled="false"
-      class="subitem"
+      class="keep-not-subscribed subitem"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -560,7 +648,7 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="subitem"
+      class="keep-not-subscribed subitem"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -580,7 +668,7 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="subitem"
+      class="keep-not-subscribed subitem"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -600,7 +688,7 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="subitem"
+      class="keep-not-subscribed subitem"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -620,7 +708,7 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="subitem"
+      class="keep-not-subscribed subitem"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -640,7 +728,7 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="subitem"
+      class="keep-not-subscribed subitem"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -667,17 +755,60 @@ snapshots["fcda-binding-list with a GSEControl doc loaded looks like the latest 
 `<section tabindex="0">
   <h1>
     [subscription.GSEControl.controlBlockList.title]
+    <mwc-icon-button
+      class="actions-menu-icon"
+      icon="filter_list"
+    >
+    </mwc-icon-button>
+    <mwc-menu
+      class="actions-menu"
+      corner="BOTTOM_RIGHT"
+      menucorner="END"
+      multi=""
+    >
+      <mwc-check-list-item
+        aria-disabled="false"
+        class="filter-subscribed"
+        graphic="control"
+        left=""
+        mwc-list-item=""
+        role="menuitem"
+        selected=""
+        tabindex="0"
+      >
+        <span>
+          [subscription.subscriber.subscribed]
+        </span>
+      </mwc-check-list-item>
+      <mwc-check-list-item
+        aria-disabled="false"
+        class="filter-not-subscribed"
+        graphic="control"
+        left=""
+        mwc-list-item=""
+        role="menuitem"
+        selected=""
+        tabindex="-1"
+      >
+        <span>
+          [subscription.subscriber.notSubscribed]
+        </span>
+      </mwc-check-list-item>
+    </mwc-menu>
   </h1>
-  <filtered-list activatable="">
+  <filtered-list
+    activatable=""
+    class="control-block-list keep-not-subscribed keep-subscribed"
+  >
     <mwc-list-item
       aria-disabled="false"
+      class="control keep-not-subscribed keep-subscribed"
       graphic="icon"
       hasmeta=""
       noninteractive=""
       tabindex="-1"
       twoline=""
-      value="
-                        GOOSE_Publisher>>QB2_Disconnector>GOOSE2
+      value="GOOSE_Publisher>>QB2_Disconnector>GOOSE2
                         Pos.stVal
                         QB2_Disconnector / CSWI 1
                         GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos stVal (ST)
@@ -716,7 +847,7 @@ snapshots["fcda-binding-list with a GSEControl doc loaded looks like the latest 
     </li>
     <mwc-list-item
       aria-disabled="false"
-      class="subitem"
+      class="keep-subscribed subitem"
       graphic="large"
       hasmeta=""
       mwc-list-item=""
@@ -740,7 +871,7 @@ snapshots["fcda-binding-list with a GSEControl doc loaded looks like the latest 
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="subitem"
+      class="keep-subscribed subitem"
       graphic="large"
       hasmeta=""
       mwc-list-item=""
@@ -764,7 +895,7 @@ snapshots["fcda-binding-list with a GSEControl doc loaded looks like the latest 
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="subitem"
+      class="keep-not-subscribed subitem"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -784,7 +915,7 @@ snapshots["fcda-binding-list with a GSEControl doc loaded looks like the latest 
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="subitem"
+      class="keep-not-subscribed subitem"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -804,7 +935,7 @@ snapshots["fcda-binding-list with a GSEControl doc loaded looks like the latest 
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="subitem"
+      class="keep-not-subscribed subitem"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -824,13 +955,13 @@ snapshots["fcda-binding-list with a GSEControl doc loaded looks like the latest 
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
+      class="control keep-not-subscribed"
       graphic="icon"
       hasmeta=""
       noninteractive=""
       tabindex="-1"
       twoline=""
-      value="
-                        GOOSE_Publisher>>QB2_Disconnector>GOOSE1
+      value="GOOSE_Publisher>>QB2_Disconnector>GOOSE1
                         Pos.stVal
                         QB1_Disconnector / CSWI 1
                         GOOSE_Publisher>>QB2_Disconnector>GOOSE1sDataSet>QB1_Disconnector/ CSWI 1.Pos stVal (ST)
@@ -860,7 +991,7 @@ snapshots["fcda-binding-list with a GSEControl doc loaded looks like the latest 
     </li>
     <mwc-list-item
       aria-disabled="false"
-      class="subitem"
+      class="keep-not-subscribed subitem"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -880,7 +1011,7 @@ snapshots["fcda-binding-list with a GSEControl doc loaded looks like the latest 
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="subitem"
+      class="keep-not-subscribed subitem"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"

@@ -88,9 +88,7 @@ describe('fcda-binding-list', () => {
       selectEvent.resetHistory();
 
       const listItem = Array.from(
-        element.shadowRoot?.querySelectorAll(
-          'mwc-list-item[class="subitem"]'
-        ) ?? []
+        element.shadowRoot?.querySelectorAll('mwc-list-item.subitem') ?? []
       ).filter(listItem => {
         const value = listItem.getAttribute('value') ?? '';
         return (
