@@ -119,12 +119,13 @@ export class OpenSCD extends Hosting(
       margin-top: 16px;
     }
 
-    mwc-circular-progress-four-color {
+    mwc-linear-progress {
       position: fixed;
-      right: calc(4.25 * 48px);
-      top: 12px;
-      color: var(--mdc-theme-on-secondary);
-      transform: scale(0.8);
+      --mdc-theme-primary: var(--mdc-theme-secondary);
+      left: 0px;
+      top: 112px;
+      opacity: 50%;
+      width: 100%;
       pointer-events: none;
       z-index: 99;
     }
