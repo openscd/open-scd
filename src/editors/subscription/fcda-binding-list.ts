@@ -311,7 +311,15 @@ export class FcdaBindingList extends LitElement {
   }
 
   renderControls(controlElements: Element[]): TemplateResult {
-    return html`<filtered-list class="control-block-list" activatable>
+    const filteredListClasses = {
+      'control-block-list': true,
+      'keep-subscribed': !this.doNotKeepSubscribed,
+      'keep-not-subscribed': !this.doNotKeepNotSubscribed,
+    };
+    return html`<filtered-list
+      class="${classMap(filteredListClasses)}"
+      activatable
+    >
       ${controlElements
         .filter(controlElement => this.getFcdaElements(controlElement).length)
         .map(controlElement => {

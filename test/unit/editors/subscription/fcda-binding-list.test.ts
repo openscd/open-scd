@@ -8,6 +8,7 @@ import { WizardTextField } from '../../../../src/wizard-textfield.js';
 import '../../../../src/editors/subscription/fcda-binding-list.js';
 import { FcdaBindingList } from '../../../../src/editors/subscription/fcda-binding-list.js';
 import { SinonSpy, spy } from 'sinon';
+import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 
 describe('fcda-binding-list', () => {
   let parent: MockWizardEditor;
@@ -114,6 +115,86 @@ describe('fcda-binding-list', () => {
 
     it('looks like the latest snapshot', async () => {
       await expect(element).shadowDom.to.equalSnapshot();
+    });
+
+    it('is initially unfiltered', async () => {
+      localStorage.clear();
+
+      element.requestUpdate();
+      await element.updateComplete;
+      // this seems to work in the browser but I can't get it to work here
+      const displayedElements = element.controlBlockList.items!.filter(
+        item => getComputedStyle(item).display !== 'none'
+      );
+
+      expect(displayedElements.length).to.equal(24);
+    });
+
+    it('allows filtering of only not subscribed control blocks', async () => {
+      localStorage.clear();
+
+      element.actionsMenuIcon.click();
+      await element.updateComplete;
+
+      (<ListItem>(
+        element.actionsMenu!.querySelector('.filter-subscribed')
+      ))!.click();
+      await element.updateComplete;
+      element.requestUpdate();
+      await element.updateComplete;
+
+      const displayedElements = element.controlBlockList.items!.filter(
+        item => getComputedStyle(item).display !== 'none'
+      );
+
+      expect(displayedElements.length).to.equal(21);
+    });
+
+    it('allows filtering of only subscribed control blocks', async () => {
+      localStorage.clear();
+
+      element.actionsMenuIcon.click();
+      await element.updateComplete;
+      (<ListItem>(
+        element.actionsMenu!.querySelector('.filter-not-subscribed')
+      ))!.click();
+      await element.updateComplete;
+
+      const displayedElements = element.controlBlockList.items!.filter(
+        item => getComputedStyle(item).display !== 'none'
+      );
+
+      expect(displayedElements.length).to.equal(5);
+    });
+
+    it('allows filtering of no control blocks', async () => {
+      localStorage.clear();
+
+      element.actionsMenuIcon.click();
+      element.requestUpdate();
+      await element.updateComplete;
+      (<ListItem>(
+        element.actionsMenu!.querySelector('.filter-not-subscribed')
+      ))!.click();
+      element.requestUpdate();
+      await element.updateComplete;
+
+      element.actionsMenuIcon.click();
+      element.requestUpdate();
+      await element.updateComplete;
+      (<ListItem>(
+        element.actionsMenu!.querySelector('.filter-subscribed')
+      ))!.click();
+      await element.updateComplete;
+      element.requestUpdate();
+      await element.updateComplete;
+
+      // this seems to work in the browser but I can't get it to work here
+      const displayedElements = element.controlBlockList.items!.filter(
+        item => getComputedStyle(item).display !== 'none'
+      );
+
+      expect(displayedElements.length).to.equal(0);
     });
   });
 
