@@ -286,10 +286,12 @@ export function Hosting<
             @action=${(ae: CustomEvent<ActionDetail>) => {
               //FIXME: dirty hack to be fixed in open-scd-core
               //       if clause not neccassary when oscd... compenents in open-scd not list
-              if (ae.target instanceof List)
+              if (ae.target instanceof List) {
+                this.menuUI.open = !this.menuUI.open;
                 (<MenuItem>(
                   this.menu.filter(item => item !== 'divider')[ae.detail.index]
                 ))?.action?.(ae);
+              }
             }}
           >
             ${this.menu.map(this.renderMenuItem)}
