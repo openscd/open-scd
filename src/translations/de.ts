@@ -197,6 +197,9 @@ export const de: Translations = {
       srcHelper: 'Die Erweiterungs-URL des Herstellers',
     },
   },
+  line: {
+    missing: 'Keine Linien',
+  },
   substation: {
     name: 'Schaltanlage',
     missing: 'Keine Schaltanlage',

@@ -20,19 +20,8 @@ export default class SubstationPlugin extends LitElement {
   }
 
   render(): TemplateResult {
-    return html` <zeroline-pane .doc=${this.doc}></zeroline-pane>
-      ${!this.doc?.querySelector(':root > Substation')
-        ? html`<h1>
-            <mwc-fab
-              extended
-              icon="add"
-              label="${get('substation.wizard.title.add')}"
-              @click=${() => this.openCreateSubstationWizard()}
-            ></mwc-fab>
-          </h1>`
-        : html``}`;
+    return html` <zeroline-pane .doc=${this.doc}></zeroline-pane>`;
   }
-
   static styles = css`
     mwc-fab {
       position: fixed;

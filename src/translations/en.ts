@@ -194,6 +194,9 @@ export const en = {
         '{{tag}}:{{name}} has a invalid reference - type attribute cannot be connected to a template',
     },
   },
+  line: {
+    missing: 'No line',
+  },
   substation: {
     name: 'Substation',
     missing: 'No substation',
