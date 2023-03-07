@@ -10,6 +10,7 @@ import {
   selectFCDAItem,
 } from './test-support.js';
 import { ExtRefLaterBindingList } from '../../../src/editors/subscription/later-binding/ext-ref-later-binding-list.js';
+import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 
 describe('GOOSE Subscribe Later Binding Plugin', () => {
   customElements.define(
@@ -21,6 +22,7 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
   let doc: XMLDocument;
 
   beforeEach(async () => {
+    localStorage.clear();
     doc = await fetch('/test/testfiles/editors/LaterBindingGOOSE2007B4.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
@@ -129,5 +131,89 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
     expect(
       extRefListElement['getAvailableExtRefElements']().length
     ).to.be.equal(6);
+  });
+
+  it('is initially unfiltered', async () => {
+    await element.requestUpdate();
+    const fcdaListElement = getFCDABindingList(element);
+    const fcdaList = fcdaListElement.shadowRoot?.querySelector('filtered-list');
+    const displayedElements = Array.from(
+      fcdaList!.querySelectorAll('mwc-list-item')!
+    ).filter(item => {
+      const displayStyle = getComputedStyle(item).display;
+      return displayStyle !== 'none' || displayStyle === undefined;
+    });
+    expect(displayedElements.length).to.equal(9);
+  });
+
+  it('allows filtering of only not subscribed control blocks', async () => {
+    const fcdaListElement = getFCDABindingList(element);
+
+    fcdaListElement.actionsMenuIcon.click();
+    await fcdaListElement.updateComplete;
+    (<ListItem>(
+      fcdaListElement.actionsMenu!.querySelector('.filter-subscribed')
+    ))!.click();
+    await new Promise(resolve => setTimeout(resolve, 300)); // await animation
+    await element.updateComplete;
+
+    const fcdaList = fcdaListElement.shadowRoot?.querySelector('filtered-list');
+    const displayedElements = Array.from(
+      fcdaList!.querySelectorAll('mwc-list-item')!
+    ).filter(item => {
+      const displayStyle = getComputedStyle(item).display;
+      return displayStyle !== 'none' || displayStyle === undefined;
+    });
+    expect(displayedElements.length).to.equal(3);
+  });
+
+  it('allows filtering of only subscribed control blocks', async () => {
+    const fcdaListElement = getFCDABindingList(element);
+
+    fcdaListElement.actionsMenuIcon.click();
+    await fcdaListElement.updateComplete;
+    (<ListItem>(
+      fcdaListElement.actionsMenu!.querySelector('.filter-not-subscribed')
+    ))!.click();
+    await new Promise(resolve => setTimeout(resolve, 300)); // await animation
+    await element.updateComplete;
+
+    const fcdaList = fcdaListElement.shadowRoot?.querySelector('filtered-list');
+    const displayedElements = Array.from(
+      fcdaList!.querySelectorAll('mwc-list-item')!
+    ).filter(item => {
+      const displayStyle = getComputedStyle(item).display;
+      return displayStyle !== 'none' || displayStyle === undefined;
+    });
+    expect(displayedElements.length).to.equal(6);
+  });
+
+  it('allows filtering out of all subscribed control blocks', async () => {
+    const fcdaListElement = getFCDABindingList(element);
+
+    fcdaListElement.actionsMenuIcon.click();
+    await fcdaListElement.updateComplete;
+    (<ListItem>(
+      fcdaListElement.actionsMenu!.querySelector('.filter-subscribed')
+    ))!.click();
+    await new Promise(resolve => setTimeout(resolve, 300)); // await animation
+    await element.updateComplete;
+
+    fcdaListElement.actionsMenuIcon.click();
+    await fcdaListElement.updateComplete;
+    (<ListItem>(
+      fcdaListElement.actionsMenu!.querySelector('.filter-not-subscribed')
+    ))!.click();
+    await new Promise(resolve => setTimeout(resolve, 300)); // await animation
+    await element.updateComplete;
+
+    const fcdaList = fcdaListElement.shadowRoot?.querySelector('filtered-list');
+    const displayedElements = Array.from(
+      fcdaList!.querySelectorAll('mwc-list-item')!
+    ).filter(item => {
+      const displayStyle = getComputedStyle(item).display;
+      return displayStyle !== 'none' || displayStyle === undefined;
+    });
+    expect(displayedElements.length).to.equal(0);
   });
 });
