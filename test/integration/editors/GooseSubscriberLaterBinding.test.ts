@@ -10,7 +10,6 @@ import {
   selectFCDAItem,
 } from './test-support.js';
 import { ExtRefLaterBindingList } from '../../../src/editors/subscription/later-binding/ext-ref-later-binding-list.js';
-import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 
 describe('GOOSE Subscribe Later Binding Plugin', () => {
   customElements.define(
@@ -22,7 +21,6 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
   let doc: XMLDocument;
 
   beforeEach(async () => {
-    localStorage.clear();
     doc = await fetch('/test/testfiles/editors/LaterBindingGOOSE2007B4.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
@@ -97,47 +95,6 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
     ).to.be.equal(4);
   });
 
-  it('when subscribing an available ExtRef then a supervision instance is created', async () => {
-    doc = await fetch('/test/testfiles/editors/LaterBindingGOOSE-LGOS.scd')
-      .then(response => response.text())
-      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-
-    element = await fixture(
-      html`<goose-subscriber-later-binding-plugin
-        .doc="${doc}"
-      ></goose-subscriber-later-binding-plugin>`
-    );
-
-    const extRefListElement = getExtrefLaterBindingList(element);
-
-    const fcdaListElement = getFCDABindingList(element);
-    selectFCDAItem(
-      fcdaListElement,
-      'GOOSE_Publisher2>>QB2_Disconnector>GOOSE1',
-      'GOOSE_Publisher2>>QB2_Disconnector>GOOSE1sDataSet>QB1_Disconnector/ CSWI 1.Pos stVal (ST)'
-    );
-    await element.requestUpdate();
-    await extRefListElement.requestUpdate();
-
-    (<HTMLElement>(
-      extRefListElement.shadowRoot!.querySelector(
-        'mwc-list-item[value="GOOSE_Subscriber1>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0]"]'
-      )
-    )).click();
-    await element.requestUpdate();
-
-    const supervisionInstance = element.doc.querySelector(
-      'IED[name="GOOSE_Subscriber1"] LN[lnClass="LGOS"][inst="4"]'
-    );
-    expect(supervisionInstance).to.exist;
-    expect(
-      supervisionInstance?.previousElementSibling?.getAttribute('lnClass')
-    ).to.equal('LGOS');
-    expect(
-      supervisionInstance?.previousElementSibling?.getAttribute('inst')
-    ).to.equal('3');
-  });
-
   it('when unsubscribing a subscribed ExtRef then the lists are changed', async () => {
     const fcdaListElement = getFCDABindingList(element);
     const extRefListElement = getExtrefLaterBindingList(element);
@@ -172,89 +129,5 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
     expect(
       extRefListElement['getAvailableExtRefElements']().length
     ).to.be.equal(6);
-  });
-
-  it('is initially unfiltered', async () => {
-    await element.requestUpdate();
-    const fcdaListElement = getFCDABindingList(element);
-    const fcdaList = fcdaListElement.shadowRoot?.querySelector('filtered-list');
-    const displayedElements = Array.from(
-      fcdaList!.querySelectorAll('mwc-list-item')!
-    ).filter(item => {
-      const displayStyle = getComputedStyle(item).display;
-      return displayStyle !== 'none' || displayStyle === undefined;
-    });
-    expect(displayedElements.length).to.equal(9);
-  });
-
-  it('allows filtering of only not subscribed control blocks', async () => {
-    const fcdaListElement = getFCDABindingList(element);
-
-    fcdaListElement.actionsMenuIcon.click();
-    await fcdaListElement.updateComplete;
-    (<ListItem>(
-      fcdaListElement.actionsMenu!.querySelector('.filter-subscribed')
-    ))!.click();
-    await new Promise(resolve => setTimeout(resolve, 300)); // await animation
-    await element.updateComplete;
-
-    const fcdaList = fcdaListElement.shadowRoot?.querySelector('filtered-list');
-    const displayedElements = Array.from(
-      fcdaList!.querySelectorAll('mwc-list-item')!
-    ).filter(item => {
-      const displayStyle = getComputedStyle(item).display;
-      return displayStyle !== 'none' || displayStyle === undefined;
-    });
-    expect(displayedElements.length).to.equal(3);
-  });
-
-  it('allows filtering of only subscribed control blocks', async () => {
-    const fcdaListElement = getFCDABindingList(element);
-
-    fcdaListElement.actionsMenuIcon.click();
-    await fcdaListElement.updateComplete;
-    (<ListItem>(
-      fcdaListElement.actionsMenu!.querySelector('.filter-not-subscribed')
-    ))!.click();
-    await new Promise(resolve => setTimeout(resolve, 300)); // await animation
-    await element.updateComplete;
-
-    const fcdaList = fcdaListElement.shadowRoot?.querySelector('filtered-list');
-    const displayedElements = Array.from(
-      fcdaList!.querySelectorAll('mwc-list-item')!
-    ).filter(item => {
-      const displayStyle = getComputedStyle(item).display;
-      return displayStyle !== 'none' || displayStyle === undefined;
-    });
-    expect(displayedElements.length).to.equal(6);
-  });
-
-  it('allows filtering out of all subscribed control blocks', async () => {
-    const fcdaListElement = getFCDABindingList(element);
-
-    fcdaListElement.actionsMenuIcon.click();
-    await fcdaListElement.updateComplete;
-    (<ListItem>(
-      fcdaListElement.actionsMenu!.querySelector('.filter-subscribed')
-    ))!.click();
-    await new Promise(resolve => setTimeout(resolve, 300)); // await animation
-    await element.updateComplete;
-
-    fcdaListElement.actionsMenuIcon.click();
-    await fcdaListElement.updateComplete;
-    (<ListItem>(
-      fcdaListElement.actionsMenu!.querySelector('.filter-not-subscribed')
-    ))!.click();
-    await new Promise(resolve => setTimeout(resolve, 300)); // await animation
-    await element.updateComplete;
-
-    const fcdaList = fcdaListElement.shadowRoot?.querySelector('filtered-list');
-    const displayedElements = Array.from(
-      fcdaList!.querySelectorAll('mwc-list-item')!
-    ).filter(item => {
-      const displayStyle = getComputedStyle(item).display;
-      return displayStyle !== 'none' || displayStyle === undefined;
-    });
-    expect(displayedElements.length).to.equal(0);
   });
 });

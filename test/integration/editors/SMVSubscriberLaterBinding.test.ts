@@ -11,7 +11,6 @@ import {
   selectFCDAItem,
 } from './test-support.js';
 import { ExtRefLaterBindingList } from '../../../src/editors/subscription/later-binding/ext-ref-later-binding-list.js';
-import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 
 describe('SMV Subscribe Later Binding plugin', () => {
   customElements.define(
@@ -22,7 +21,6 @@ describe('SMV Subscribe Later Binding plugin', () => {
   let doc: XMLDocument;
 
   beforeEach(async () => {
-    localStorage.clear();
     doc = await fetch('/test/testfiles/editors/LaterBindingSMV2007B4.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
@@ -98,47 +96,6 @@ describe('SMV Subscribe Later Binding plugin', () => {
     ).to.be.equal(8);
   });
 
-  it('when subscribing an available ExtRef then a supervision instance is created', async () => {
-    doc = await fetch('/test/testfiles/editors/LaterBindingSMV-LSVS.scd')
-      .then(response => response.text())
-      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-
-    element = await fixture(
-      html`<smv-subscribe-later-binding-plugin
-        .doc="${doc}"
-      ></smv-subscribe-later-binding-plugin>`
-    );
-
-    const fcdaListElement = getFCDABindingList(element);
-    const extRefListElement = getExtrefLaterBindingList(element);
-
-    selectFCDAItem(
-      fcdaListElement,
-      'SMV_Publisher>>CurrentTransformer>fullSmv',
-      'SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 2.AmpSv instMag.i (MX)'
-    );
-    await element.requestUpdate();
-    await extRefListElement.requestUpdate();
-
-    (<HTMLElement>(
-      extRefListElement.shadowRoot!.querySelector(
-        'mwc-list-item[value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/instMag.i[0]"]'
-      )
-    )).click();
-    await element.requestUpdate();
-
-    const supervisionInstance = element.doc.querySelector(
-      'IED[name="SMV_Subscriber"] LN[lnClass="LSVS"][inst="3"]'
-    );
-    expect(supervisionInstance).to.exist;
-    expect(
-      supervisionInstance?.previousElementSibling?.getAttribute('lnClass')
-    ).to.equal('LSVS');
-    expect(
-      supervisionInstance?.previousElementSibling?.getAttribute('inst')
-    ).to.equal('2');
-  });
-
   it('when unsubscribing a subscribed ExtRef then the lists are changed', async () => {
     const fcdaListElement = getFCDABindingList(element);
     const extRefListElement = getExtrefLaterBindingList(element);
@@ -173,89 +130,5 @@ describe('SMV Subscribe Later Binding plugin', () => {
     expect(
       extRefListElement['getAvailableExtRefElements']().length
     ).to.be.equal(10);
-  });
-
-  it('is initially unfiltered', async () => {
-    await element.requestUpdate();
-    const fcdaListElement = getFCDABindingList(element);
-    const fcdaList = fcdaListElement.shadowRoot?.querySelector('filtered-list');
-    const displayedElements = Array.from(
-      fcdaList!.querySelectorAll('mwc-list-item')!
-    ).filter(item => {
-      const displayStyle = getComputedStyle(item).display;
-      return displayStyle !== 'none' || displayStyle === undefined;
-    });
-    expect(displayedElements.length).to.equal(27);
-  });
-
-  it('allows filtering of only not subscribed control blocks', async () => {
-    const fcdaListElement = getFCDABindingList(element);
-
-    fcdaListElement.actionsMenuIcon.click();
-    await fcdaListElement.updateComplete;
-    (<ListItem>(
-      fcdaListElement.actionsMenu!.querySelector('.filter-subscribed')
-    ))!.click();
-    await new Promise(resolve => setTimeout(resolve, 200)); // await animation
-    await element.updateComplete;
-
-    const fcdaList = fcdaListElement.shadowRoot?.querySelector('filtered-list');
-    const displayedElements = Array.from(
-      fcdaList!.querySelectorAll('mwc-list-item')!
-    ).filter(item => {
-      const displayStyle = getComputedStyle(item).display;
-      return displayStyle !== 'none' || displayStyle === undefined;
-    });
-    expect(displayedElements.length).to.equal(24);
-  });
-
-  it('allows filtering of only subscribed control blocks', async () => {
-    const fcdaListElement = getFCDABindingList(element);
-
-    fcdaListElement.actionsMenuIcon.click();
-    await fcdaListElement.updateComplete;
-    (<ListItem>(
-      fcdaListElement.actionsMenu!.querySelector('.filter-not-subscribed')
-    ))!.click();
-    await new Promise(resolve => setTimeout(resolve, 200)); // await animation
-    await element.updateComplete;
-
-    const fcdaList = fcdaListElement.shadowRoot?.querySelector('filtered-list');
-    const displayedElements = Array.from(
-      fcdaList!.querySelectorAll('mwc-list-item')!
-    ).filter(item => {
-      const displayStyle = getComputedStyle(item).display;
-      return displayStyle !== 'none' || displayStyle === undefined;
-    });
-    expect(displayedElements.length).to.equal(5);
-  });
-
-  it('allows filtering out of all subscribed control blocks', async () => {
-    const fcdaListElement = getFCDABindingList(element);
-
-    fcdaListElement.actionsMenuIcon.click();
-    await fcdaListElement.updateComplete;
-    (<ListItem>(
-      fcdaListElement.actionsMenu!.querySelector('.filter-subscribed')
-    ))!.click();
-    await new Promise(resolve => setTimeout(resolve, 200)); // await animation
-    await element.updateComplete;
-
-    fcdaListElement.actionsMenuIcon.click();
-    await fcdaListElement.updateComplete;
-    (<ListItem>(
-      fcdaListElement.actionsMenu!.querySelector('.filter-not-subscribed')
-    ))!.click();
-    await new Promise(resolve => setTimeout(resolve, 200)); // await animation
-    await element.updateComplete;
-
-    const fcdaList = fcdaListElement.shadowRoot?.querySelector('filtered-list');
-    const displayedElements = Array.from(
-      fcdaList!.querySelectorAll('mwc-list-item')!
-    ).filter(item => {
-      const displayStyle = getComputedStyle(item).display;
-      return displayStyle !== 'none' || displayStyle === undefined;
-    });
-    expect(displayedElements.length).to.equal(0);
   });
 });

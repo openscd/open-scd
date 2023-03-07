@@ -412,7 +412,7 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="control keep-not-subscribed"
+      class="control keep-not-subscribed keep-subscribed"
       graphic="icon"
       hasmeta=""
       noninteractive=""
@@ -460,8 +460,9 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
     </li>
     <mwc-list-item
       aria-disabled="false"
-      class="keep-not-subscribed subitem"
+      class="keep-subscribed subitem"
       graphic="large"
+      hasmeta=""
       mwc-list-item=""
       tabindex="-1"
       twoline=""
@@ -477,6 +478,9 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
       <mwc-icon slot="graphic">
         subdirectory_arrow_right
       </mwc-icon>
+      <span slot="meta">
+        1
+      </span>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
@@ -580,7 +584,7 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="control keep-not-subscribed"
+      class="control keep-not-subscribed keep-subscribed"
       graphic="icon"
       hasmeta=""
       noninteractive=""
@@ -628,8 +632,9 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
     </li>
     <mwc-list-item
       aria-disabled="false"
-      class="keep-not-subscribed subitem"
+      class="keep-subscribed subitem"
       graphic="large"
+      hasmeta=""
       mwc-list-item=""
       tabindex="-1"
       twoline=""
@@ -645,11 +650,15 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
       <mwc-icon slot="graphic">
         subdirectory_arrow_right
       </mwc-icon>
+      <span slot="meta">
+        1
+      </span>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="keep-not-subscribed subitem"
+      class="keep-subscribed subitem"
       graphic="large"
+      hasmeta=""
       mwc-list-item=""
       tabindex="-1"
       twoline=""
@@ -665,6 +674,9 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
       <mwc-icon slot="graphic">
         subdirectory_arrow_right
       </mwc-icon>
+      <span slot="meta">
+        3
+      </span>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
@@ -802,7 +814,7 @@ snapshots["fcda-binding-list with a GSEControl doc loaded looks like the latest 
   >
     <mwc-list-item
       aria-disabled="false"
-      class="control keep-not-subscribed keep-subscribed"
+      class="control keep-subscribed"
       graphic="icon"
       hasmeta=""
       noninteractive=""
@@ -890,13 +902,14 @@ snapshots["fcda-binding-list with a GSEControl doc loaded looks like the latest 
         subdirectory_arrow_right
       </mwc-icon>
       <span slot="meta">
-        1
+        2
       </span>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="keep-not-subscribed subitem"
+      class="keep-subscribed subitem"
       graphic="large"
+      hasmeta=""
       mwc-list-item=""
       tabindex="-1"
       twoline=""
@@ -912,11 +925,15 @@ snapshots["fcda-binding-list with a GSEControl doc loaded looks like the latest 
       <mwc-icon slot="graphic">
         subdirectory_arrow_right
       </mwc-icon>
+      <span slot="meta">
+        1
+      </span>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="keep-not-subscribed subitem"
+      class="keep-subscribed subitem"
       graphic="large"
+      hasmeta=""
       mwc-list-item=""
       tabindex="-1"
       twoline=""
@@ -932,11 +949,15 @@ snapshots["fcda-binding-list with a GSEControl doc loaded looks like the latest 
       <mwc-icon slot="graphic">
         subdirectory_arrow_right
       </mwc-icon>
+      <span slot="meta">
+        1
+      </span>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="keep-not-subscribed subitem"
+      class="keep-subscribed subitem"
       graphic="large"
+      hasmeta=""
       mwc-list-item=""
       tabindex="-1"
       twoline=""
@@ -952,6 +973,9 @@ snapshots["fcda-binding-list with a GSEControl doc loaded looks like the latest 
       <mwc-icon slot="graphic">
         subdirectory_arrow_right
       </mwc-icon>
+      <span slot="meta">
+        1
+      </span>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
