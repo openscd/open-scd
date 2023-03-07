@@ -164,13 +164,9 @@ describe('fcda-binding-list', () => {
     });
 
     it('is initially unfiltered', async () => {
-      const fcdaList = element.shadowRoot?.querySelector('filtered-list');
-      const displayedElements = Array.from(
-        fcdaList!.querySelectorAll('mwc-list-item')!
-      ).filter(item => {
-        const displayStyle = getComputedStyle(item).display;
-        return displayStyle !== 'none' || displayStyle === undefined;
-      });
+      const displayedElements = element.controlBlockList.items!.filter(
+        item => getComputedStyle(item).display !== 'none'
+      );
       expect(displayedElements.length).to.equal(9);
     });
   });
