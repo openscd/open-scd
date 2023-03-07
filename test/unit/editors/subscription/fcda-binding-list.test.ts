@@ -167,7 +167,7 @@ describe('fcda-binding-list', () => {
       const displayedElements = element.controlBlockList.items!.filter(
         item => getComputedStyle(item).display !== 'none'
       );
-      expect(displayedElements.length).to.equal(9);
+      expect(displayedElements.length).to.equal(24);
     });
   });
 });
