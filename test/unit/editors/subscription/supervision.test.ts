@@ -14,9 +14,7 @@ describe('supervision', () => {
 
   describe('when subscribing to a SampledValueControl', () => {
     beforeEach(async () => {
-      doc = await fetch(
-        '/test/testfiles/editors/LaterBindingSMV-LSVS.scd'
-      )
+      doc = await fetch('/test/testfiles/editors/LaterBindingSMV-LSVS.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     });
@@ -35,11 +33,41 @@ describe('supervision', () => {
         expect(noSupervisionAllowedActions).to.have.length(0);
       });
 
-      it('does not allow supervision because the DataTypeTemplate>DOType>DA is missing necessary attributes ', () => {
+      it('does not allow supervision because the DataTypeTemplate>DOType>DA is missing necessary attributes', () => {
         subscriberIED = doc.querySelector('IED[name="SMV_Subscriber4"]')!;
         const noSupervisionAllowedActions: Create[] =
           instantiateSubscriptionSupervision(controlElement!, subscriberIED);
         expect(noSupervisionAllowedActions).to.have.length(0);
+      });
+
+      it('does allow supervision because the first supervision node DOI/DAI[valImport=true/valKind=RO] allows it', () => {
+        subscriberIED = doc.querySelector('IED[name="SMV_Subscriber5"]')!;
+        const supervisionAllowedActions: Create[] =
+          instantiateSubscriptionSupervision(controlElement!, subscriberIED);
+        expect(supervisionAllowedActions).to.have.length(3);
+      });
+
+      it('does allow supervision because the first supervision node DOI/DAI[valImport=true/valKind=Conf] allows it', () => {
+        subscriberIED = doc.querySelector('IED[name="SMV_Subscriber6"]')!;
+        const supervisionAllowedActions: Create[] =
+          instantiateSubscriptionSupervision(controlElement!, subscriberIED);
+        expect(supervisionAllowedActions).to.have.length(3);
+      });
+
+      it('does allow supervision node use when first existing supervision node has empty Val element', () => {
+        subscriberIED = doc.querySelector('IED[name="SMV_Subscriber7"]')!;
+        const createActionswithEmptyVal: Create[] =
+          instantiateSubscriptionSupervision(controlElement!, subscriberIED);
+        expect(createActionswithEmptyVal).to.have.length(1);
+
+        const newValAction: Create = createActionswithEmptyVal[0];
+        const valParent: Node = newValAction.new.parent;
+        const newValElement: Node = (<Create>newValAction).new.element;
+        expect(valParent).to.exist;
+        expect(newValElement).to.exist;
+        expect(valParent.nodeName).to.be.equal('DAI');
+        expect(newValElement.nodeName).to.be.equal('Val');
+        expect(newValElement.textContent).to.not.be.empty;
       });
 
       it('allows supervision and an existing LN[class=LSVS] should be used', () => {
@@ -48,14 +76,32 @@ describe('supervision', () => {
           controlElement!,
           subscriberIED
         );
-        expect(createActions).to.have.length(1);
-        const createAction: Create = createActions[0];
-        const parentElement: Node = createAction.new.parent;
-        const newElement: Node = createAction.new.element;
-        expect(parentElement).to.exist;
-        expect(newElement).to.exist;
-        expect(parentElement.nodeName).to.be.equal('LN');
-        expect(newElement.nodeName).to.be.equal('DOI');
+        expect(createActions).to.have.length(3);
+
+        const newDoiAction: Create = createActions[0];
+        const lnParent: Node = newDoiAction.new.parent;
+        const newDoiElement: Node = (<Create>newDoiAction).new.element;
+        expect(lnParent).to.exist;
+        expect(newDoiElement).to.exist;
+        expect(lnParent.nodeName).to.be.equal('LN');
+        expect(newDoiElement.nodeName).to.be.equal('DOI');
+
+        const newDaiAction: Create = createActions[1];
+        const daiParent: Node = newDaiAction.new.parent;
+        const newDaiElement: Node = (<Create>newDaiAction).new.element;
+        expect(daiParent).to.exist;
+        expect(newDaiElement).to.exist;
+        expect(daiParent.nodeName).to.be.equal('DOI');
+        expect(newDaiElement.nodeName).to.be.equal('DAI');
+
+        const newValAction: Create = createActions[2];
+        const valParent: Node = newValAction.new.parent;
+        const newValElement: Node = (<Create>newValAction).new.element;
+        expect(valParent).to.exist;
+        expect(newValElement).to.exist;
+        expect(valParent.nodeName).to.be.equal('DAI');
+        expect(newValElement.nodeName).to.be.equal('Val');
+        expect(newValElement.textContent).to.not.be.empty;
       });
 
       it('allows supervision and an a new LN[class=LSVS] should be created as well', () => {
@@ -63,24 +109,44 @@ describe('supervision', () => {
           'IED[name="SMV_Publisher3"] SampledValueControl[name="fullSmv"]'
         )!;
         subscriberIED = doc.querySelector('IED[name="SMV_Subscriber"]')!;
-        const createActionsWithNewLn: Create[] =
-          instantiateSubscriptionSupervision(controlElement, subscriberIED);
-        expect(createActionsWithNewLn).to.have.length(2);
-        const newLnAction: Create = createActionsWithNewLn[0];
+        const actionsWithNewLn: Create[] = instantiateSubscriptionSupervision(
+          controlElement,
+          subscriberIED
+        );
+        expect(actionsWithNewLn).to.have.length(4);
+
+        const newLnAction: Create = actionsWithNewLn[0];
         const lDeviceParent: Node = newLnAction.new.parent;
-        const newLnElement: Node = newLnAction.new.element;
+        const newLnElement: Node = (<Create>newLnAction).new.element;
         expect(lDeviceParent).to.exist;
         expect(newLnElement).to.exist;
         expect(lDeviceParent.nodeName).to.be.equal('LDevice');
         expect(newLnElement.nodeName).to.be.equal('LN');
 
-        const newDoiAction: Create = createActionsWithNewLn[1];
+        const newDoiAction: Create = actionsWithNewLn[1];
         const lnParent: Node = newDoiAction.new.parent;
-        const newDoiElement: Node = newDoiAction.new.element;
+        const newDoiElement: Node = (<Create>newDoiAction).new.element;
         expect(lnParent).to.exist;
         expect(newDoiElement).to.exist;
         expect(lnParent.nodeName).to.be.equal('LN');
         expect(newDoiElement.nodeName).to.be.equal('DOI');
+
+        const newDaiAction: Create = actionsWithNewLn[2];
+        const daiParent: Node = newDaiAction.new.parent;
+        const newDaiElement: Node = (<Create>newDaiAction).new.element;
+        expect(daiParent).to.exist;
+        expect(newDaiElement).to.exist;
+        expect(daiParent.nodeName).to.be.equal('DOI');
+        expect(newDaiElement.nodeName).to.be.equal('DAI');
+
+        const newValAction: Create = actionsWithNewLn[3];
+        const valParent: Node = newValAction.new.parent;
+        const newValElement: Node = (<Create>newValAction).new.element;
+        expect(valParent).to.exist;
+        expect(newValElement).to.exist;
+        expect(valParent.nodeName).to.be.equal('DAI');
+        expect(newValElement.nodeName).to.be.equal('Val');
+        expect(newValElement.textContent).to.not.be.empty;
       });
     });
 
@@ -125,9 +191,7 @@ describe('supervision', () => {
 
   describe('when subscribing to a GSEControl', () => {
     beforeEach(async () => {
-      doc = await fetch(
-        '/test/testfiles/editors/LaterBindingGOOSE-LGOS.scd'
-      )
+      doc = await fetch('/test/testfiles/editors/LaterBindingGOOSE-LGOS.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     });
@@ -138,57 +202,129 @@ describe('supervision', () => {
           'IED[name="GOOSE_Publisher2"] GSEControl[name="GOOSE1"]'
         )!;
       });
+
       it('does not allow supervision because there is no services defined in the IED', () => {
         subscriberIED = doc.querySelector('IED[name="GOOSE_Subscriber"]')!;
         const noSupervisionAllowedActions: Create[] =
           instantiateSubscriptionSupervision(controlElement!, subscriberIED);
         expect(noSupervisionAllowedActions).to.have.length(0);
       });
+
       it('does not allow supervision because the DataTypeTemplate>DOType>DA is missing necessary attributes ', () => {
         subscriberIED = doc.querySelector('IED[name="GOOSE_Subscriber4"]')!;
         const noSupervisionAllowedActions: Create[] =
           instantiateSubscriptionSupervision(controlElement!, subscriberIED);
         expect(noSupervisionAllowedActions).to.have.length(0);
       });
+
+      it('does allow supervision because the first supervision node DOI/DAI[valImport=true/valKind=RO] allows it', () => {
+        subscriberIED = doc.querySelector('IED[name="GOOSE_Subscriber5"]')!;
+        const supervisionAllowedActions: Create[] =
+          instantiateSubscriptionSupervision(controlElement!, subscriberIED);
+        expect(supervisionAllowedActions).to.have.length(3);
+      });
+
+      it('does allow supervision because the first supervision node DOI/DAI[valImport=true/valKind=Conf] allows it', () => {
+        subscriberIED = doc.querySelector('IED[name="GOOSE_Subscriber6"]')!;
+        const supervisionAllowedActions: Create[] =
+          instantiateSubscriptionSupervision(controlElement!, subscriberIED);
+        expect(supervisionAllowedActions).to.have.length(3);
+      });
+
+      it('does allow supervision node use when first existing supervision node has empty Val element', () => {
+        subscriberIED = doc.querySelector('IED[name="GOOSE_Subscriber7"]')!;
+        const createActionswithEmptyVal: Create[] =
+          instantiateSubscriptionSupervision(controlElement!, subscriberIED);
+        expect(createActionswithEmptyVal).to.have.length(1);
+
+        const newValAction: Create = createActionswithEmptyVal[0];
+        const valParent: Node = (<Create>newValAction).new.parent;
+        const newValElement: Node = (<Create>newValAction).new.element;
+        expect(valParent).to.exist;
+        expect(newValElement).to.exist;
+        expect(valParent.nodeName).to.be.equal('DAI');
+        expect(newValElement.nodeName).to.be.equal('Val');
+        expect(newValElement.textContent).to.not.be.empty;
+      });
+
       it('allows supervision and an existing LN[class=LGOS] should be used', () => {
         subscriberIED = doc.querySelector('IED[name="GOOSE_Subscriber2"]')!;
         const createActions: Create[] = instantiateSubscriptionSupervision(
           controlElement!,
           subscriberIED
         );
-        expect(createActions).to.have.length(1);
-        const createAction: Create = createActions[0];
-        const parentElement: Node = createAction.new.parent;
-        const newElement: Node = createAction.new.element;
-        expect(parentElement).to.exist;
-        expect(newElement).to.exist;
-        expect(parentElement.nodeName).to.be.equal('LN');
-        expect(newElement.nodeName).to.be.equal('DOI');
+        expect(createActions).to.have.length(3);
+
+        const newDoiAction: Create = createActions[0];
+        const lnParent: Node = newDoiAction.new.parent;
+        const newDoiElement: Node = (<Create>newDoiAction).new.element;
+        expect(lnParent).to.exist;
+        expect(newDoiElement).to.exist;
+        expect(lnParent.nodeName).to.be.equal('LN');
+        expect(newDoiElement.nodeName).to.be.equal('DOI');
+
+        const newDaiAction: Create = createActions[1];
+        const daiParent: Node = newDaiAction.new.parent;
+        const newDaiElement: Node = (<Create>newDaiAction).new.element;
+        expect(daiParent).to.exist;
+        expect(newDaiElement).to.exist;
+        expect(daiParent.nodeName).to.be.equal('DOI');
+        expect(newDaiElement.nodeName).to.be.equal('DAI');
+
+        const newValAction: Create = createActions[2];
+        const valParent: Node = newValAction.new.parent;
+        const newValElement: Node = (<Create>newValAction).new.element;
+        expect(valParent).to.exist;
+        expect(newValElement).to.exist;
+        expect(valParent.nodeName).to.be.equal('DAI');
+        expect(newValElement.nodeName).to.be.equal('Val');
+        expect(newValElement.textContent).to.not.be.empty;
       });
+
       it('allows supervision and an a new LN[class=LGOS] should be created as well', () => {
         controlElement = doc.querySelector(
           'IED[name="GOOSE_Publisher2"] GSEControl[name="GOOSE1"]'
         )!;
         subscriberIED = doc.querySelector('IED[name="GOOSE_Subscriber1"]')!;
 
-        const createActionsWithNewLn: Create[] =
-          instantiateSubscriptionSupervision(controlElement, subscriberIED);
-        expect(createActionsWithNewLn).to.have.length(2);
-        const newLnAction: Create = createActionsWithNewLn[0];
+        const actionsWithNewLN: Create[] = instantiateSubscriptionSupervision(
+          controlElement,
+          subscriberIED
+        );
+        expect(actionsWithNewLN).to.have.length(4);
+
+        const newLnAction: Create = actionsWithNewLN[0];
         const lDeviceParent: Node = newLnAction.new.parent;
-        const newLnElement: Node = newLnAction.new.element;
+        const newLnElement: Node = (<Create>newLnAction).new.element;
         expect(lDeviceParent).to.exist;
         expect(newLnElement).to.exist;
         expect(lDeviceParent.nodeName).to.be.equal('LDevice');
         expect(newLnElement.nodeName).to.be.equal('LN');
 
-        const newDoiAction: Create = createActionsWithNewLn[1];
+        const newDoiAction: Create = actionsWithNewLN[1];
         const lnParent: Node = newDoiAction.new.parent;
-        const newDoiElement: Node = newDoiAction.new.element;
+        const newDoiElement: Node = (<Create>newDoiAction).new.element;
         expect(lnParent).to.exist;
         expect(newDoiElement).to.exist;
         expect(lnParent.nodeName).to.be.equal('LN');
         expect(newDoiElement.nodeName).to.be.equal('DOI');
+
+        const newDaiAction: Create = actionsWithNewLN[2];
+        const daiParent: Node = newDaiAction.new.parent;
+        const newDaiElement: Node = (<Create>newDaiAction).new.element;
+        expect(daiParent).to.exist;
+        expect(newDaiElement).to.exist;
+        expect(daiParent.nodeName).to.be.equal('DOI');
+        expect(newDaiElement.nodeName).to.be.equal('DAI');
+
+        const newValAction: Create = actionsWithNewLN[3];
+        const valParent: Node = newValAction.new.parent;
+        const newValElement: Node = (<Create>newValAction).new.element;
+        expect(valParent).to.exist;
+        expect(newValElement).to.exist;
+        expect(valParent.nodeName).to.be.equal('DAI');
+        expect(newValElement.nodeName).to.be.equal('Val');
+        expect(newValElement.textContent).to.not.be.empty;
       });
     });
 
