@@ -118,10 +118,13 @@ describe('fcda-binding-list', () => {
     });
 
     it('is initially unfiltered', async () => {
-      const displayedElements = element.controlBlockList.items!.filter(
-        item => getComputedStyle(item).display !== 'none'
-      );
-      expect(displayedElements.length).to.equal(24);
+      const displayedElements = Array.from(
+        element.shadowRoot!.querySelectorAll('mwc-list-item')
+      ).filter(item => {
+        const displayStyle = getComputedStyle(item).display;
+        return displayStyle !== 'none' || displayStyle === undefined;
+      });
+      expect(displayedElements.length).to.equal(27);
     });
   });
 
@@ -164,10 +167,13 @@ describe('fcda-binding-list', () => {
     });
 
     it('is initially unfiltered', async () => {
-      const displayedElements = element.controlBlockList.items!.filter(
-        item => getComputedStyle(item).display !== 'none'
-      );
-      expect(displayedElements.length).to.equal(24);
+      const displayedElements = Array.from(
+        element.shadowRoot!.querySelectorAll('mwc-list-item')
+      ).filter(item => {
+        const displayStyle = getComputedStyle(item).display;
+        return displayStyle !== 'none' || displayStyle === undefined;
+      });
+      expect(displayedElements.length).to.equal(9);
     });
   });
 });
