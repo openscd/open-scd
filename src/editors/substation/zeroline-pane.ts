@@ -14,6 +14,7 @@ import '@material/mwc-icon-button-toggle';
 import { IconButton } from '@material/mwc-icon-button';
 import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 
+import './line-editor.js';
 import './substation-editor.js';
 import './ied-editor.js';
 import { communicationMappingWizard } from '../../wizards/commmap-wizards.js';
@@ -113,8 +114,30 @@ export class ZerolinePane extends LitElement {
 
     return ieds.length
       ? html`<div id="iedcontainer">
-          ${ieds.map(ied => html`<ied-editor .doc=${this.doc} .element=${ied}></ied-editor>`)}
+          ${ieds.map(
+            ied =>
+              html`<ied-editor .doc=${this.doc} .element=${ied}></ied-editor>`
+          )}
         </div>`
+      : html``;
+  }
+
+  renderLines(): TemplateResult {
+    return this.doc?.querySelector(':root > Line')
+      ? html`<section>
+          ${Array.from(this.doc.querySelectorAll('Line') ?? [])
+            .filter(isPublic)
+            .map(
+              line =>
+                html`<line-editor
+                  .doc=${this.doc}
+                  .element=${line}
+                  .getAttachedIeds=${this.getAttachedIeds}
+                  ?readonly=${this.readonly}
+                  ?showfunctions=${shouldShowFunctions()}
+                ></line-editor>`
+            )}
+        </section>`
       : html``;
   }
 
@@ -198,7 +221,7 @@ export class ZerolinePane extends LitElement {
             <span style="color: var(--base1)"
               >${translate('substation.missing')}</span
             >
-          </h1>`}`;
+          </h1>`}${this.renderLines()}`;
   }
 
   static styles = css`
