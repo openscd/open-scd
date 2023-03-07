@@ -128,6 +128,11 @@ export class OpenSCD extends Waiting(
       pointer-events: none;
     }
 
+    @media (max-width: 599px) {
+      mwc-linear-progress {
+      top: 104px;
+    }
+
     tt {
       font-family: 'Roboto Mono', monospace;
       font-weight: 300;
