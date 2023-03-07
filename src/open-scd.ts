@@ -23,8 +23,8 @@ import { Wizarding } from './Wizarding.js';
 /** The `<open-scd>` custom element is the main entry point of the
  * Open Substation Configuration Designer. */
 @customElement('open-scd')
-export class OpenSCD extends Hosting(
-  Setting(Wizarding(Waiting(Plugging(Editing(Logging(LitElement))))))
+export class OpenSCD extends Waiting(
+  Hosting(Setting(Wizarding(Plugging(Editing(Logging(LitElement))))))
 ) {
   private currentSrc = '';
   /** The current file's URL. `blob:` URLs are *revoked after parsing*! */
@@ -124,10 +124,8 @@ export class OpenSCD extends Hosting(
       --mdc-theme-primary: var(--mdc-theme-secondary);
       left: 0px;
       top: 112px;
-      opacity: 50%;
       width: 100%;
       pointer-events: none;
-      z-index: 99;
     }
 
     tt {
