@@ -1,11 +1,33 @@
-import {css, customElement, html, LitElement, TemplateResult} from "lit-element";
+import {
+  css,
+  customElement,
+  html,
+  LitElement,
+  property,
+  TemplateResult,
+} from 'lit-element';
 
 @customElement('wizard-divider')
 export class WizardDividerElement extends LitElement {
+  @property({
+    type: String,
+  })
+  header?: string;
+
   render(): TemplateResult {
-    return html `
-      <div role="separator"></div>
-    `
+    return html` ${this.renderHeader()} ${this.renderSeparator()}`;
+  }
+
+  private renderHeader(): TemplateResult {
+    if (!this.header) {
+      return html``;
+    }
+
+    return html`<h4 class="header">${this.header}</h4>`;
+  }
+
+  private renderSeparator(): TemplateResult {
+    return html`<div role="separator"></div>`;
   }
 
   static styles = css`
@@ -18,5 +40,5 @@ export class WizardDividerElement extends LitElement {
       border-image: initial;
       border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     }
-  `
+  `;
 }
