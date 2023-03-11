@@ -1,8 +1,9 @@
-import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 import '@material/mwc-list/mwc-check-list-item';
 import '@material/mwc-menu';
-import { Menu } from '@material/mwc-menu';
 import { Icon } from '@material/mwc-icon';
+import { List } from '@material/mwc-list';
+import { ListItem } from '@material/mwc-list/mwc-list-item.js';
+import { Menu } from '@material/mwc-menu';
 
 import {
   css,
@@ -16,6 +17,7 @@ import {
 } from 'lit-element';
 
 import { nothing } from 'lit-html';
+import { classMap } from 'lit-html/directives/class-map.js';
 import { repeat } from 'lit-html/directives/repeat.js';
 import { get, translate } from 'lit-translate';
 
@@ -48,19 +50,6 @@ import {
   isSubscribed,
   getFcdaSrcControlBlockDescription,
 } from './foundation.js';
-import { CheckListItem } from '@material/mwc-list/mwc-check-list-item';
-
-// FIXME: Replace with identity function after https://github.com/openscd/open-scd/issues/1179
-// is resolved
-function getExtRefId(extRefElement: Element): string {
-  const intAddr = extRefElement.getAttribute('intAddr');
-  const intAddrIndex = Array.from(
-    extRefElement!.parentElement!.querySelectorAll(
-      `ExtRef[intAddr="${intAddr}"]`
-    )
-  ).indexOf(extRefElement);
-  return `${identity(extRefElement.parentElement)}>${intAddr}[${intAddrIndex}]`;
-}
 
 /**
  * A sub element for showing all Ext Refs from a FCDA Element.
@@ -78,32 +67,74 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
   subscriberview!: boolean;
 
   @property({ type: Boolean })
-  get filterOnlySubscribed(): boolean {
+  get notAutoIncrement(): boolean {
     return (
       localStorage.getItem(
-        `subscriber-later-binding-${this.controlTag}$filter-only-subscribed`
+        `extref-list-${this.controlTag}$notAutoIncrement`
       ) === 'true' ?? false
     );
   }
 
-  set filterOnlySubscribed(value: boolean) {
+  set notAutoIncrement(value: boolean) {
+    const oldValue = this.hideSubscribed;
     localStorage.setItem(
-      `subscriber-later-binding-${this.controlTag}$filter-only-subscribed`,
+      `extref-list-${this.controlTag}$notAutoIncrement`,
       `${value}`
+    );
+    this.requestUpdate('notAutoIncrement', oldValue);
+  }
+
+  @property({ type: Boolean })
+  get hideSubscribed(): boolean {
+    return (
+      localStorage.getItem(`extref-list-${this.controlTag}$hideSubscribed`) ===
+        'true' ?? false
     );
   }
 
-  @query('.actions-menu')
-  actionsMenu!: Menu;
+  set hideSubscribed(value: boolean) {
+    const oldValue = this.hideSubscribed;
+    localStorage.setItem(
+      `extref-list-${this.controlTag}$hideSubscribed`,
+      `${value}`
+    );
+    this.requestUpdate('hideSubscribed', oldValue);
+  }
 
-  @query('.actions-menu-icon')
-  actionsMenuIcon!: Icon;
+  @property({ type: Boolean })
+  get hideNotSubscribed(): boolean {
+    return (
+      localStorage.getItem(
+        `extref-list-${this.controlTag}$hideNotSubscribed`
+      ) === 'true' ?? false
+    );
+  }
+
+  set hideNotSubscribed(value: boolean) {
+    const oldValue = this.hideNotSubscribed;
+    localStorage.setItem(
+      `extref-list-${this.controlTag}$hideNotSubscribed`,
+      `${value}`
+    );
+    this.requestUpdate('hideNotSubscribed', oldValue);
+  }
+
+  @query('.filter-menu')
+  filterMenu!: Menu;
+
+  @query('.settings-menu')
+  settingsMenu!: Menu;
+
+  @query('.filter-action-menu-icon')
+  filterMenuIcon!: Icon;
+
+  @query('.settings-action-menu-icon')
+  settingsMenuIcon!: Icon;
+
+  @query('.extref-list') extRefList!: List;
 
   @query('mwc-list-item.activated')
   currentActivatedExtRefItem!: ListItem;
-
-  @query('.filter-subscribed')
-  onlySubscribedCheckListItem!: CheckListItem;
 
   private supervisionData = new Map();
 
@@ -146,24 +177,26 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
       this.reCreateSupervisionCache();
       // console.log(this.currentActivatedExtRefItem);
 
-      // deactivate/deselect
-      const activatedItem = <ListItem>(
-        this.shadowRoot!.querySelector('mwc-list-item[activated].extref')!
-      );
-      const nextActivatableItem = <ListItem>(
-        this.shadowRoot!.querySelector(
-          'mwc-list-item[activated].extref ~ mwc-list-item.extref'
-        )
-      );
-      activatedItem.selected = false;
-      activatedItem.activated = false;
-      activatedItem.requestUpdate();
+      if (!this.notAutoIncrement) {
+        // deactivate/deselect
+        const activatedItem = <ListItem>(
+          this.shadowRoot!.querySelector('mwc-list-item[activated].extref')!
+        );
+        const nextActivatableItem = <ListItem>(
+          this.shadowRoot!.querySelector(
+            'mwc-list-item[activated].extref ~ mwc-list-item.extref'
+          )
+        );
+        activatedItem.selected = false;
+        activatedItem.activated = false;
+        activatedItem.requestUpdate();
 
-      if (nextActivatableItem) {
-        // activate/select next sibling
-        nextActivatableItem!.selected = true;
-        nextActivatableItem!.activated = true;
-        nextActivatableItem!.requestUpdate();
+        if (nextActivatableItem) {
+          // activate/select next sibling
+          nextActivatableItem!.selected = true;
+          nextActivatableItem!.activated = true;
+          nextActivatableItem!.requestUpdate();
+        }
       }
     }
   }
@@ -271,14 +304,18 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
             this.serviceTypeLookup[this.controlTag]
       )
       .sort((a, b) => {
-        return getExtRefId(a).localeCompare(getExtRefId(b));
+        return `${identity(a)}`.localeCompare(`${identity(b)}`);
       });
   }
 
   private renderTitle(): TemplateResult {
+    const menuClasses = {
+      'filter-off': this.hideSubscribed || this.hideNotSubscribed,
+    };
     return html`<h1>
       ${translate(`subscription.laterBinding.extRefList.title`)}
       <mwc-icon-button
+        class="switch-view"
         icon="alt_route"
         title="${translate(`subscription.laterBinding.extRefList.switchView`)}"
         @click=${() =>
@@ -287,30 +324,60 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
           )}
       ></mwc-icon-button>
       <mwc-icon-button
-        class="actions-menu-icon ${this.filterOnlySubscribed
-          ? 'filter-on'
-          : ''}"
+        class="filter-action-menu-icon ${classMap(menuClasses)}"
+        title="${translate(`subscription.laterBinding.extRefList.filter`)}"
         icon="filter_list"
         @click=${() => {
-          if (!this.actionsMenu.open) this.actionsMenu.show();
-          else this.actionsMenu.close();
+          if (!this.filterMenu.open) this.filterMenu.show();
+          else this.filterMenu.close();
         }}
       ></mwc-icon-button>
       <mwc-menu
         multi
-        class="actions-menu"
+        class="filter-menu"
         corner="BOTTOM_RIGHT"
         menuCorner="END"
       >
         <mwc-check-list-item
-          class="filter-subscribed"
-          ?selected=${this.filterOnlySubscribed}
+          class="show-subscribed"
           left
-          @click=${() => {
-            this.actionsMenu.close();
-          }}
+          ?selected=${!this.hideSubscribed}
         >
-          <span>${translate('subscription.subscriber.onlyConfigured')}</span>
+          <span
+            >${translate('subscription.laterBinding.extRefList.bound')}</span
+          >
+        </mwc-check-list-item>
+        <mwc-check-list-item
+          class="show-not-subscribed"
+          left
+          ?selected=${!this.hideNotSubscribed}
+        >
+          <span
+            >${translate('subscription.laterBinding.extRefList.unBound')}</span
+          >
+        </mwc-check-list-item>
+      </mwc-menu>
+      <mwc-icon-button
+        class="settings-action-menu-icon"
+        title="${translate(`subscription.laterBinding.extRefList.settings`)}"
+        icon="settings"
+        @click=${() => {
+          if (!this.settingsMenu.open) this.settingsMenu.show();
+          else this.settingsMenu.close();
+        }}
+      ></mwc-icon-button>
+      <mwc-menu
+        multi
+        class="settings-menu"
+        corner="BOTTOM_RIGHT"
+        menuCorner="END"
+      >
+        <mwc-check-list-item class="" left ?selected=${!this.notAutoIncrement}>
+          <span
+            >${translate(
+              'subscription.laterBinding.extRefList.autoIncrement'
+            )}</span
+          >
         </mwc-check-list-item>
       </mwc-menu>
     </h1>`;
@@ -350,11 +417,28 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
     return this.supervisionData.get(cbRefKey);
   }
 
-  protected firstUpdated(): void {
-    this.actionsMenu.anchor = <HTMLElement>this.actionsMenuIcon;
+  updateBaseFilterState(): void {
+    !this.hideSubscribed
+      ? this.extRefList!.classList.add('show-subscribed')
+      : this.extRefList!.classList.remove('show-subscribed');
+    !this.hideNotSubscribed
+      ? this.extRefList!.classList.add('show-not-subscribed')
+      : this.extRefList!.classList.remove('show-not-subscribed');
+  }
 
-    this.actionsMenu.addEventListener('closed', () => {
-      this.filterOnlySubscribed = (<Set<number>>this.actionsMenu.index).has(0);
+  protected firstUpdated(): void {
+    this.filterMenu.anchor = <HTMLElement>this.filterMenuIcon;
+    this.filterMenu.addEventListener('closed', () => {
+      this.hideSubscribed = !(<Set<number>>this.filterMenu.index).has(0);
+      this.hideNotSubscribed = !(<Set<number>>this.filterMenu.index).has(1);
+      this.updateBaseFilterState();
+    });
+
+    this.updateBaseFilterState();
+
+    this.settingsMenu.anchor = <HTMLElement>this.settingsMenuIcon;
+    this.settingsMenu.addEventListener('closed', () => {
+      this.notAutoIncrement = !(<Set<number>>this.settingsMenu.index).has(0);
     });
   }
 
@@ -365,7 +449,12 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
     let supervisionDescription: string | undefined;
 
     const subscribed = isSubscribed(extRefElement);
-    if (this.filterOnlySubscribed && !subscribed) return html``;
+
+    const filterClasses = {
+      extref: true,
+      'show-subscribed': subscribed,
+      'show-not-subscribed': !subscribed,
+    };
 
     if (subscribed) {
       subscriberFCDA = findFCDAs(extRefElement).find(x => x !== undefined);
@@ -384,7 +473,7 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
 
     return html`<mwc-list-item
       twoline
-      class="extref"
+      class="${classMap(filterClasses)}"
       graphic="large"
       ?hasMeta=${supervisionNode !== undefined}
       @click=${() => {
@@ -441,10 +530,20 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
     if (this.supervisionData.size === 0) this.reCreateSupervisionCache();
     return html`${repeat(
       getOrderedIeds(this.doc),
-      i => getExtRefId(i),
-      ied =>
-        html`
+      i => `${identity(i)}`,
+      ied => {
+        const extRefs = Array.from(this.getExtRefElementsByIED(ied));
+        const showSubscribed = extRefs.some(extRef => isSubscribed(extRef));
+        const showNotSubscribed = extRefs.some(extRef => !isSubscribed(extRef));
+        const filterClasses = {
+          ied: true,
+          'show-subscribed': showSubscribed,
+          'show-not-subscribed': showNotSubscribed,
+        };
+
+        return html`
       <mwc-list-item
+        class="${classMap(filterClasses)}"
         noninteractive
         graphic="icon"
         value="${Array.from(ied.querySelectorAll('Inputs > ExtRef'))
@@ -466,17 +565,26 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
       <li divider role="separator"></li>
           ${repeat(
             Array.from(this.getExtRefElementsByIED(ied)),
-            exId => getExtRefId(exId),
+            exId => `${identity(exId)}`,
             extRef => this.renderCompleteExtRefElement(extRef)
           )} 
-          </mwc-list-item>`
+          </mwc-list-item>`;
+      }
     )}`;
   }
 
   render(): TemplateResult {
+    const filteredListClasses = {
+      'extref-list': true,
+      'show-subscribed': !this.hideSubscribed,
+      'show-not-subscribed': !this.hideNotSubscribed,
+    };
+
     return html` <section tabindex="0">
       ${this.renderTitle()}
-      <filtered-list activatable>${this.renderExtRefsByIED()}</filtered-list>
+      <filtered-list class="${classMap(filteredListClasses)}" activatable
+        >${this.renderExtRefsByIED()}</filtered-list
+      >
     </section>`;
   }
 
@@ -487,13 +595,40 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
       position: relative;
     }
 
-    .actions-menu-icon {
+    .filter-action-menu-icon,
+    .settings-action-menu-icon {
       float: right;
     }
 
-    .actions-menu-icon.filter-on {
+    .filter-action-menu-icon.filter-off {
       color: var(--secondary);
       background-color: var(--mdc-theme-background);
+    }
+
+    /* remove all IEDs and ExtRefs if no filters */
+    filtered-list:not(.show-subscribed, .show-not-subscribed) mwc-list-item {
+      display: none;
+    }
+
+    /* remove IEDs taking care to respect multiple conditions */
+    filtered-list.show-not-subscribed:not(.show-subscribed)
+      mwc-list-item.ied.show-subscribed:not(.show-not-subscribed) {
+      display: none;
+    }
+
+    filtered-list.show-subscribed:not(.show-not-subscribed)
+      mwc-list-item.ied.show-not-subscribed:not(.show-subscribed) {
+      display: none;
+    }
+
+    /* remove ExtRefs if not part of filter */
+    filtered-list:not(.show-not-subscribed)
+      mwc-list-item.extref.show-not-subscribed {
+      display: none;
+    }
+
+    filtered-list:not(.show-subscribed) mwc-list-item.extref.show-subscribed {
+      display: none;
     }
 
     h3 {
