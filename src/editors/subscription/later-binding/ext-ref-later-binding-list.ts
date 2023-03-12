@@ -110,13 +110,13 @@ export class ExtRefLaterBindingList extends LitElement {
     });
 
     const subscriberIed = extRefElement.closest('IED') || undefined;
-    const fcdaElements = findFCDAs(extRefElement);
     const removeSubscriptionActions: Delete[] = [];
-    const controlBlock =
-      Array.from(findControlBlocks(extRefElement))[0] ?? undefined;
     if (canRemoveSubscriptionSupervision(extRefElement))
       removeSubscriptionActions.push(
-        ...removeSubscriptionSupervision(controlBlock, subscriberIed)
+        ...removeSubscriptionSupervision(
+          this.currentSelectedControlElement,
+          subscriberIed
+        )
       );
 
     this.dispatchEvent(
@@ -128,8 +128,8 @@ export class ExtRefLaterBindingList extends LitElement {
 
     this.dispatchEvent(
       newSubscriptionChangedEvent(
-        controlBlock,
-        fcdaElements.length !== 0 ? fcdaElements[0] : undefined
+        this.currentSelectedControlElement,
+        this.currentSelectedFcdaElement
       )
     );
   }

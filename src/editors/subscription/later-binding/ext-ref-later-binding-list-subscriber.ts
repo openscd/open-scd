@@ -24,7 +24,6 @@ import { get, translate } from 'lit-translate';
 import {
   createUpdateAction,
   Delete,
-  findControlBlocks,
   findFCDAs,
   getDescriptionAttribute,
   getNameAttribute,
@@ -49,6 +48,8 @@ import {
 import {
   isSubscribed,
   getFcdaSrcControlBlockDescription,
+  findControlBlock,
+  findFCDA,
 } from './foundation.js';
 
 /**
@@ -76,7 +77,7 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
   }
 
   set notAutoIncrement(value: boolean) {
-    const oldValue = this.hideSubscribed;
+    const oldValue = this.hideBound;
     localStorage.setItem(
       `extref-list-${this.controlTag}$notAutoIncrement`,
       `${value}`
@@ -85,38 +86,37 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
   }
 
   @property({ type: Boolean })
-  get hideSubscribed(): boolean {
+  get hideBound(): boolean {
     return (
-      localStorage.getItem(`extref-list-${this.controlTag}$hideSubscribed`) ===
+      localStorage.getItem(`extref-list-${this.controlTag}$hideBound`) ===
         'true' ?? false
     );
   }
 
-  set hideSubscribed(value: boolean) {
-    const oldValue = this.hideSubscribed;
+  set hideBound(value: boolean) {
+    const oldValue = this.hideBound;
     localStorage.setItem(
-      `extref-list-${this.controlTag}$hideSubscribed`,
+      `extref-list-${this.controlTag}$hideBound`,
       `${value}`
     );
-    this.requestUpdate('hideSubscribed', oldValue);
+    this.requestUpdate('hideBound', oldValue);
   }
 
   @property({ type: Boolean })
-  get hideNotSubscribed(): boolean {
+  get hideNotBound(): boolean {
     return (
-      localStorage.getItem(
-        `extref-list-${this.controlTag}$hideNotSubscribed`
-      ) === 'true' ?? false
+      localStorage.getItem(`extref-list-${this.controlTag}$hideNotBound`) ===
+        'true' ?? false
     );
   }
 
-  set hideNotSubscribed(value: boolean) {
-    const oldValue = this.hideNotSubscribed;
+  set hideNotBound(value: boolean) {
+    const oldValue = this.hideNotBound;
     localStorage.setItem(
-      `extref-list-${this.controlTag}$hideNotSubscribed`,
+      `extref-list-${this.controlTag}$hideNotBound`,
       `${value}`
     );
-    this.requestUpdate('hideNotSubscribed', oldValue);
+    this.requestUpdate('hideNotBound', oldValue);
   }
 
   @query('.filter-menu')
@@ -226,10 +226,10 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
     });
 
     const subscriberIed = extRefElement.closest('IED') || undefined;
-    const fcdaElements = findFCDAs(extRefElement);
+
     const removeSubscriptionActions: Delete[] = [];
-    const controlBlock =
-      Array.from(findControlBlocks(extRefElement))[0] ?? undefined;
+    const controlBlock = findControlBlock(extRefElement);
+
     if (canRemoveSubscriptionSupervision(extRefElement))
       removeSubscriptionActions.push(
         ...removeSubscriptionSupervision(controlBlock, subscriberIed)
@@ -242,11 +242,9 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
       })
     );
 
+    const fcdaElement = findFCDA(extRefElement, controlBlock);
     this.dispatchEvent(
-      newSubscriptionChangedEvent(
-        controlBlock,
-        fcdaElements.length !== 0 ? fcdaElements[0] : undefined
-      )
+      newSubscriptionChangedEvent(controlBlock, fcdaElement ?? undefined)
     );
   }
 
@@ -310,7 +308,7 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
 
   private renderTitle(): TemplateResult {
     const menuClasses = {
-      'filter-off': this.hideSubscribed || this.hideNotSubscribed,
+      'filter-off': this.hideBound || this.hideNotBound,
     };
     return html`<h1>
       ${translate(`subscription.laterBinding.extRefList.title`)}
@@ -339,18 +337,18 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
         menuCorner="END"
       >
         <mwc-check-list-item
-          class="show-subscribed"
+          class="show-bound"
           left
-          ?selected=${!this.hideSubscribed}
+          ?selected=${!this.hideBound}
         >
           <span
             >${translate('subscription.laterBinding.extRefList.bound')}</span
           >
         </mwc-check-list-item>
         <mwc-check-list-item
-          class="show-not-subscribed"
+          class="show-not-bound"
           left
-          ?selected=${!this.hideNotSubscribed}
+          ?selected=${!this.hideNotBound}
         >
           <span
             >${translate('subscription.laterBinding.extRefList.unBound')}</span
@@ -418,19 +416,19 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
   }
 
   updateBaseFilterState(): void {
-    !this.hideSubscribed
-      ? this.extRefList!.classList.add('show-subscribed')
-      : this.extRefList!.classList.remove('show-subscribed');
-    !this.hideNotSubscribed
-      ? this.extRefList!.classList.add('show-not-subscribed')
-      : this.extRefList!.classList.remove('show-not-subscribed');
+    !this.hideBound
+      ? this.extRefList!.classList.add('show-bound')
+      : this.extRefList!.classList.remove('show-bound');
+    !this.hideNotBound
+      ? this.extRefList!.classList.add('show-not-bound')
+      : this.extRefList!.classList.remove('show-not-bound');
   }
 
   protected firstUpdated(): void {
     this.filterMenu.anchor = <HTMLElement>this.filterMenuIcon;
     this.filterMenu.addEventListener('closed', () => {
-      this.hideSubscribed = !(<Set<number>>this.filterMenu.index).has(0);
-      this.hideNotSubscribed = !(<Set<number>>this.filterMenu.index).has(1);
+      this.hideBound = !(<Set<number>>this.filterMenu.index).has(0);
+      this.hideNotBound = !(<Set<number>>this.filterMenu.index).has(1);
       this.updateBaseFilterState();
     });
 
@@ -452,8 +450,8 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
 
     const filterClasses = {
       extref: true,
-      'show-subscribed': subscribed,
-      'show-not-subscribed': !subscribed,
+      'show-bound': subscribed,
+      'show-not-bound': !subscribed,
     };
 
     if (subscribed) {
@@ -537,8 +535,8 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
         const showNotSubscribed = extRefs.some(extRef => !isSubscribed(extRef));
         const filterClasses = {
           ied: true,
-          'show-subscribed': showSubscribed,
-          'show-not-subscribed': showNotSubscribed,
+          'show-bound': showSubscribed,
+          'show-not-bound': showNotSubscribed,
         };
 
         return html`
@@ -576,8 +574,8 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
   render(): TemplateResult {
     const filteredListClasses = {
       'extref-list': true,
-      'show-subscribed': !this.hideSubscribed,
-      'show-not-subscribed': !this.hideNotSubscribed,
+      'show-bound': !this.hideBound,
+      'show-not-bound': !this.hideNotBound,
     };
 
     return html` <section tabindex="0">
@@ -606,28 +604,27 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
     }
 
     /* remove all IEDs and ExtRefs if no filters */
-    filtered-list:not(.show-subscribed, .show-not-subscribed) mwc-list-item {
+    filtered-list:not(.show-bound, .show-not-bound) mwc-list-item {
       display: none;
     }
 
     /* remove IEDs taking care to respect multiple conditions */
-    filtered-list.show-not-subscribed:not(.show-subscribed)
-      mwc-list-item.ied.show-subscribed:not(.show-not-subscribed) {
+    filtered-list.show-not-bound:not(.show-bound)
+      mwc-list-item.ied.show-bound:not(.show-not-bound) {
       display: none;
     }
 
-    filtered-list.show-subscribed:not(.show-not-subscribed)
-      mwc-list-item.ied.show-not-subscribed:not(.show-subscribed) {
+    filtered-list.show-bound:not(.show-not-bound)
+      mwc-list-item.ied.show-not-bound:not(.show-bound) {
       display: none;
     }
 
     /* remove ExtRefs if not part of filter */
-    filtered-list:not(.show-not-subscribed)
-      mwc-list-item.extref.show-not-subscribed {
+    filtered-list:not(.show-not-bound) mwc-list-item.extref.show-not-bound {
       display: none;
     }
 
-    filtered-list:not(.show-subscribed) mwc-list-item.extref.show-subscribed {
+    filtered-list:not(.show-bound) mwc-list-item.extref.show-bound {
       display: none;
     }
 
