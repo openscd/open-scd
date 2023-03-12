@@ -68,47 +68,47 @@ export class FcdaBindingList extends LitElement {
   private extRefCounters = new Map();
 
   @property({ type: Boolean })
-  get doNotKeepSubscribed(): boolean {
+  get hideSubscribed(): boolean {
     return (
       localStorage.getItem(
         `fcda-binding-list-${
           this.includeLaterBinding ? 'later-binding' : 'data-binding'
-        }-${this.controlTag}$doNotKeepSubscribed`
+        }-${this.controlTag}$hideSubscribed`
       ) === 'true' ?? false
     );
   }
 
-  set doNotKeepSubscribed(value: boolean) {
-    const oldValue = this.doNotKeepSubscribed;
+  set hideSubscribed(value: boolean) {
+    const oldValue = this.hideSubscribed;
     localStorage.setItem(
       `fcda-binding-list-${
         this.includeLaterBinding ? 'later-binding' : 'data-binding'
-      }-${this.controlTag}$doNotKeepSubscribed`,
+      }-${this.controlTag}$hideSubscribed`,
       `${value}`
     );
-    this.requestUpdate('doNotKeepSubscribed', oldValue);
+    this.requestUpdate('hideSubscribed', oldValue);
   }
 
   @property({ type: Boolean })
-  get doNotKeepNotSubscribed(): boolean {
+  get hideNotSubscribed(): boolean {
     return (
       localStorage.getItem(
         `fcda-binding-list-${
           this.includeLaterBinding ? 'later-binding' : 'data-binding'
-        }-${this.controlTag}$doNotKeepNotSubscribed`
+        }-${this.controlTag}$hideNotSubscribed`
       ) === 'true' ?? false
     );
   }
 
-  set doNotKeepNotSubscribed(value: boolean) {
-    const oldValue = this.doNotKeepNotSubscribed;
+  set hideNotSubscribed(value: boolean) {
+    const oldValue = this.hideNotSubscribed;
     localStorage.setItem(
       `fcda-binding-list-${
         this.includeLaterBinding ? 'later-binding' : 'data-binding'
-      }-${this.controlTag}$doNotKeepNotSubscribed`,
+      }-${this.controlTag}$hideNotSubscribed`,
       `${value}`
     );
-    this.requestUpdate('doNotKeepNotSubscribed', oldValue);
+    this.requestUpdate('hideNotSubscribed', oldValue);
   }
 
   @query('.actions-menu') actionsMenu!: Menu;
@@ -229,8 +229,8 @@ export class FcdaBindingList extends LitElement {
 
     const filterClasses = {
       subitem: true,
-      'keep-subscribed': fcdaCount !== 0,
-      'keep-not-subscribed': fcdaCount === 0,
+      'show-subscribed': fcdaCount !== 0,
+      'show-not-subscribed': fcdaCount === 0,
     };
 
     return html`<mwc-list-item
@@ -250,22 +250,20 @@ export class FcdaBindingList extends LitElement {
   }
 
   updateBaseFilterState(): void {
-    !this.doNotKeepSubscribed
-      ? this.controlBlockList!.classList.add('keep-subscribed')
-      : this.controlBlockList!.classList.remove('keep-subscribed');
-    !this.doNotKeepNotSubscribed
-      ? this.controlBlockList!.classList.add('keep-not-subscribed')
-      : this.controlBlockList!.classList.remove('keep-not-subscribed');
+    !this.hideSubscribed
+      ? this.controlBlockList!.classList.add('show-subscribed')
+      : this.controlBlockList!.classList.remove('show-subscribed');
+    !this.hideNotSubscribed
+      ? this.controlBlockList!.classList.add('show-not-subscribed')
+      : this.controlBlockList!.classList.remove('show-not-subscribed');
   }
 
   protected firstUpdated(): void {
     this.actionsMenu.anchor = <HTMLElement>this.actionsMenuIcon;
 
     this.actionsMenu.addEventListener('closed', () => {
-      this.doNotKeepSubscribed = !(<Set<number>>this.actionsMenu.index).has(0);
-      this.doNotKeepNotSubscribed = !(<Set<number>>this.actionsMenu.index).has(
-        1
-      );
+      this.hideSubscribed = !(<Set<number>>this.actionsMenu.index).has(0);
+      this.hideNotSubscribed = !(<Set<number>>this.actionsMenu.index).has(1);
       this.updateBaseFilterState();
     });
 
@@ -274,7 +272,7 @@ export class FcdaBindingList extends LitElement {
 
   renderTitle(): TemplateResult {
     const menuClasses = {
-      'filter-off': this.doNotKeepSubscribed || this.doNotKeepNotSubscribed,
+      'filter-off': this.hideSubscribed || this.hideNotSubscribed,
     };
     return html`<h1>
       ${translate(`subscription.${this.controlTag}.controlBlockList.title`)}
@@ -295,14 +293,14 @@ export class FcdaBindingList extends LitElement {
         <mwc-check-list-item
           class="filter-subscribed"
           left
-          ?selected=${!this.doNotKeepSubscribed}
+          ?selected=${!this.hideSubscribed}
         >
           <span>${translate('subscription.subscriber.subscribed')}</span>
         </mwc-check-list-item>
         <mwc-check-list-item
           class="filter-not-subscribed"
           left
-          ?selected=${!this.doNotKeepNotSubscribed}
+          ?selected=${!this.hideNotSubscribed}
         >
           <span>${translate('subscription.subscriber.notSubscribed')}</span>
         </mwc-check-list-item>
@@ -313,8 +311,8 @@ export class FcdaBindingList extends LitElement {
   renderControls(controlElements: Element[]): TemplateResult {
     const filteredListClasses = {
       'control-block-list': true,
-      'keep-subscribed': !this.doNotKeepSubscribed,
-      'keep-not-subscribed': !this.doNotKeepNotSubscribed,
+      'show-subscribed': !this.hideSubscribed,
+      'show-not-subscribed': !this.hideNotSubscribed,
     };
     return html`<filtered-list
       class="${classMap(filteredListClasses)}"
@@ -324,17 +322,17 @@ export class FcdaBindingList extends LitElement {
         .filter(controlElement => this.getFcdaElements(controlElement).length)
         .map(controlElement => {
           const fcdaElements = this.getFcdaElements(controlElement);
-          const keepSubscribed = fcdaElements.some(
+          const showSubscribed = fcdaElements.some(
             fcda => this.getExtRefCount(fcda, controlElement) !== 0
           );
-          const keepNotSubscribed = fcdaElements.some(
+          const showNotSubscribed = fcdaElements.some(
             fcda => this.getExtRefCount(fcda, controlElement) === 0
           );
 
           const filterClasses = {
             control: true,
-            'keep-subscribed': keepSubscribed,
-            'keep-not-subscribed': keepNotSubscribed,
+            'show-subscribed': showSubscribed,
+            'show-not-subscribed': showNotSubscribed,
           };
 
           return html`
@@ -414,30 +412,30 @@ export class FcdaBindingList extends LitElement {
     }
 
     /* remove all control blocks if no filters */
-    filtered-list.control-block-list:not(.keep-subscribed, .keep-not-subscribed)
+    filtered-list.control-block-list:not(.show-subscribed, .show-not-subscribed)
       mwc-list-item {
       display: none;
     }
 
     /* remove control blocks taking care to respect multiple conditions */
-    filtered-list.control-block-list.keep-not-subscribed:not(.keep-subscribed)
-      mwc-list-item.control.keep-subscribed:not(.keep-not-subscribed) {
+    filtered-list.control-block-list.show-not-subscribed:not(.show-subscribed)
+      mwc-list-item.control.show-subscribed:not(.show-not-subscribed) {
       display: none;
     }
 
-    filtered-list.control-block-list.keep-subscribed:not(.keep-not-subscribed)
-      mwc-list-item.control.keep-not-subscribed:not(.keep-subscribed) {
+    filtered-list.control-block-list.show-subscribed:not(.show-not-subscribed)
+      mwc-list-item.control.show-not-subscribed:not(.show-subscribed) {
       display: none;
     }
 
     /* remove fcdas if not part of filter */
-    filtered-list.control-block-list:not(.keep-not-subscribed)
-      mwc-list-item.subitem.keep-not-subscribed {
+    filtered-list.control-block-list:not(.show-not-subscribed)
+      mwc-list-item.subitem.show-not-subscribed {
       display: none;
     }
 
-    filtered-list.control-block-list:not(.keep-subscribed)
-      mwc-list-item.subitem.keep-subscribed {
+    filtered-list.control-block-list:not(.show-subscribed)
+      mwc-list-item.subitem.show-subscribed {
       display: none;
     }
 
