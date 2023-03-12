@@ -778,11 +778,7 @@ snapshots["extref-later-binding-list for GOOSE Control when GSEControl has no su
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-<<<<<<< HEAD
-      value="Interlocking.Input GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0] Interlocking.Input3 GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaCls/stVal[0] Interlocking.Input4 GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaOpn2/stVal[0] Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0] Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[1]"
-=======
       value="Interlocking.Input GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0] Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0] Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[1]"
->>>>>>> b418e563 (Update snapshots)
     >
       <span>
         [subscription.subscriber.availableToSubscribe]
@@ -809,49 +805,7 @@ snapshots["extref-later-binding-list for GOOSE Control when GSEControl has no su
         GOOSE_Subscriber>>Earth_Switch> CILO 1
       </span>
       <mwc-icon slot="graphic">
-<<<<<<< HEAD
-        arrow_back
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaCls/stVal[0]"
-    >
-      <span>
-        Pos;CILO/EnaCls/stVal
-                 (Interlocking.Input3)
-      </span>
-      <span slot="secondary">
-        GOOSE_Subscriber>>Earth_Switch> CILO 1
-      </span>
-      <mwc-icon slot="graphic">
-        arrow_back
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaOpn2/stVal[0]"
-    >
-      <span>
-        Pos;CILO/EnaOpn2/stVal
-                 (Interlocking.Input4)
-      </span>
-      <span slot="secondary">
-        GOOSE_Subscriber>>Earth_Switch> CILO 1
-      </span>
-      <mwc-icon slot="graphic">
-        arrow_back
-=======
         link_off
->>>>>>> b418e563 (Update snapshots)
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -942,11 +896,7 @@ snapshots["extref-later-binding-list for GOOSE Control when GSEControl has a sin
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-<<<<<<< HEAD
-      value="Interlocking.Input GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0] Interlocking.Input3 GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaCls/stVal[0] Interlocking.Input4 GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaOpn2/stVal[0] Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0] Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[1]"
-=======
       value="Interlocking.Input GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0] Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0] Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[1]"
->>>>>>> b418e563 (Update snapshots)
     >
       <span>
         [subscription.subscriber.availableToSubscribe]
@@ -973,49 +923,7 @@ snapshots["extref-later-binding-list for GOOSE Control when GSEControl has a sin
         GOOSE_Subscriber>>Earth_Switch> CILO 1
       </span>
       <mwc-icon slot="graphic">
-<<<<<<< HEAD
-        arrow_back
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaCls/stVal[0]"
-    >
-      <span>
-        Pos;CILO/EnaCls/stVal
-                 (Interlocking.Input3)
-      </span>
-      <span slot="secondary">
-        GOOSE_Subscriber>>Earth_Switch> CILO 1
-      </span>
-      <mwc-icon slot="graphic">
-        arrow_back
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaOpn2/stVal[0]"
-    >
-      <span>
-        Pos;CILO/EnaOpn2/stVal
-                 (Interlocking.Input4)
-      </span>
-      <span slot="secondary">
-        GOOSE_Subscriber>>Earth_Switch> CILO 1
-      </span>
-      <mwc-icon slot="graphic">
-        arrow_back
-=======
         link_off
->>>>>>> b418e563 (Update snapshots)
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1122,11 +1030,7 @@ snapshots["extref-later-binding-list when GSEControl has a multiple subscription
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-<<<<<<< HEAD
-      value="Interlocking.Input GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0] Interlocking.Input3 GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaCls/stVal[0] Interlocking.Input4 GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaOpn2/stVal[0] Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0] Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[1]"
-=======
       value="Interlocking.Input GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0] Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0] Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[1]"
->>>>>>> b418e563 (Update snapshots)
     >
       <span>
         [subscription.subscriber.availableToSubscribe]
@@ -1153,49 +1057,7 @@ snapshots["extref-later-binding-list when GSEControl has a multiple subscription
         GOOSE_Subscriber>>Earth_Switch> CILO 1
       </span>
       <mwc-icon slot="graphic">
-<<<<<<< HEAD
-        arrow_back
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaCls/stVal[0]"
-    >
-      <span>
-        Pos;CILO/EnaCls/stVal
-                 (Interlocking.Input3)
-      </span>
-      <span slot="secondary">
-        GOOSE_Subscriber>>Earth_Switch> CILO 1
-      </span>
-      <mwc-icon slot="graphic">
-        arrow_back
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaOpn2/stVal[0]"
-    >
-      <span>
-        Pos;CILO/EnaOpn2/stVal
-                 (Interlocking.Input4)
-      </span>
-      <span slot="secondary">
-        GOOSE_Subscriber>>Earth_Switch> CILO 1
-      </span>
-      <mwc-icon slot="graphic">
-        arrow_back
-=======
         link_off
->>>>>>> b418e563 (Update snapshots)
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item

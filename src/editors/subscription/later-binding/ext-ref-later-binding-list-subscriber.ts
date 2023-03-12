@@ -22,8 +22,6 @@ import { repeat } from 'lit-html/directives/repeat.js';
 import { get, translate } from 'lit-translate';
 
 import {
-  createUpdateAction,
-  Delete,
   findFCDAs,
   getDescriptionAttribute,
   getNameAttribute,
@@ -32,24 +30,22 @@ import {
 } from '../../../foundation.js';
 
 import {
-  styles,
-  updateExtRefElement,
   instantiateSubscriptionSupervision,
-  removeSubscriptionSupervision,
   FcdaSelectEvent,
-  newSubscriptionChangedEvent,
-  canRemoveSubscriptionSupervision,
-  getOrderedIeds,
   getCbReference,
+  getOrderedIeds,
   getUsedSupervisionInstances,
   newExtRefSelectionChangedEvent,
+  newSubscriptionChangedEvent,
+  styles,
+  updateExtRefElement,
 } from '../foundation.js';
 
 import {
-  isSubscribed,
   getFcdaSrcControlBlockDescription,
-  findControlBlock,
-  findFCDA,
+  isSubscribed,
+  subscribe,
+  unsubscribe,
 } from './foundation.js';
 
 /**
@@ -202,58 +198,11 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
   }
 
   /**
-   * Unsubscribing means removing a list of attributes from the ExtRef Element.
-   *
-   * @param extRefElement - The Ext Ref Element to clean from attributes.
-   */
-  private unsubscribe(extRefElement: Element): void {
-    const updateAction = createUpdateAction(extRefElement, {
-      intAddr: extRefElement.getAttribute('intAddr'),
-      desc: extRefElement.getAttribute('desc'),
-      iedName: null,
-      ldInst: null,
-      prefix: null,
-      lnClass: null,
-      lnInst: null,
-      doName: null,
-      daName: null,
-      serviceType: null,
-      srcLDInst: null,
-      srcPrefix: null,
-      srcLNClass: null,
-      srcLNInst: null,
-      srcCBName: null,
-    });
-
-    const subscriberIed = extRefElement.closest('IED') || undefined;
-
-    const removeSubscriptionActions: Delete[] = [];
-    const controlBlock = findControlBlock(extRefElement);
-
-    if (canRemoveSubscriptionSupervision(extRefElement))
-      removeSubscriptionActions.push(
-        ...removeSubscriptionSupervision(controlBlock, subscriberIed)
-      );
-
-    this.dispatchEvent(
-      newActionEvent({
-        title: get(`subscription.disconnect`),
-        actions: [updateAction, ...removeSubscriptionActions],
-      })
-    );
-
-    const fcdaElement = findFCDA(extRefElement, controlBlock);
-    this.dispatchEvent(
-      newSubscriptionChangedEvent(controlBlock, fcdaElement ?? undefined)
-    );
-  }
-
-  /**
    * Subscribing means copying a list of attributes from the FCDA Element (and others) to the ExtRef Element.
    *
-   * @param extRefElement - The Ext Ref Element to add the attributes to.
+   * @param extRef - The Ext Ref Element to add the attributes to.
    */
-  private subscribe(extRefElement: Element): void {
+  private subscribe(extRef: Element): void {
     if (
       !this.selectedPublisherIedElement ||
       !this.selectedPublisherFcdaElement ||
@@ -262,29 +211,11 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
       return;
     }
 
-    const updateAction = updateExtRefElement(
-      extRefElement,
+    subscribe(
+      extRef,
       this.selectedPublisherControlElement,
-      this.selectedPublisherFcdaElement
-    );
-
-    const subscriberIed = extRefElement.closest('IED') || undefined;
-    const supervisionActions = instantiateSubscriptionSupervision(
-      this.selectedPublisherControlElement,
-      subscriberIed
-    );
-
-    this.dispatchEvent(
-      newActionEvent({
-        title: get(`subscription.connect`),
-        actions: [updateAction, ...supervisionActions],
-      })
-    );
-    this.dispatchEvent(
-      newSubscriptionChangedEvent(
-        this.selectedPublisherControlElement,
-        this.selectedPublisherFcdaElement
-      )
+      this.selectedPublisherFcdaElement,
+      this
     );
   }
 
@@ -482,7 +413,7 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
             newExtRefSelectionChangedEvent(this.currentSelectedExtRefElement)
           );
         } else {
-          this.unsubscribe(extRefElement);
+          unsubscribe(extRefElement, this);
           this.reCreateSupervisionCache();
         }
       }}

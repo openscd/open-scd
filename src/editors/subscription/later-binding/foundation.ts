@@ -1,5 +1,21 @@
-import { findFCDAs, getSclSchemaVersion } from '../../../foundation.js';
-import { serviceTypes } from '../foundation.js';
+import { get } from 'lit-translate';
+
+import {
+  createUpdateAction,
+  Delete,
+  findFCDAs,
+  getSclSchemaVersion,
+  newActionEvent,
+} from '../../../foundation.js';
+
+import {
+  canRemoveSubscriptionSupervision,
+  instantiateSubscriptionSupervision,
+  newSubscriptionChangedEvent,
+  removeSubscriptionSupervision,
+  serviceTypes,
+  updateExtRefElement,
+} from '../foundation.js';
 
 function dataAttributeSpecification(
   anyLn: Element,
@@ -372,6 +388,7 @@ export function findControlBlock(extRef: Element): Element {
         });
     })
   );
+  console.log('cb', controlBlocks, controlBlocks.size);
   return controlBlocks.values().next().value;
 }
 
@@ -411,5 +428,89 @@ export function findFCDA(
         fcda.parentElement?.getAttribute('name') === dataSetRef
     );
 
+  console.log('fcda', candidateFCDAs, candidateFCDAs.length);
   return candidateFCDAs[0];
+}
+
+/**
+ * Unsubscribing means removing a list of attributes from the ExtRef Element.
+ *
+ * @param extRef - The Ext Ref Element to clean from attributes.
+ * @param eventElement - The element from which to initiate events.
+ */
+export function unsubscribe(extRef: Element, eventElement: HTMLElement): void {
+  const updateAction = createUpdateAction(extRef, {
+    intAddr: extRef.getAttribute('intAddr'),
+    desc: extRef.getAttribute('desc'),
+    iedName: null,
+    ldInst: null,
+    prefix: null,
+    lnClass: null,
+    lnInst: null,
+    doName: null,
+    daName: null,
+    serviceType: null,
+    srcLDInst: null,
+    srcPrefix: null,
+    srcLNClass: null,
+    srcLNInst: null,
+    srcCBName: null,
+  });
+
+  const subscriberIed = extRef.closest('IED') || undefined;
+
+  const removeSubscriptionActions: Delete[] = [];
+  const controlBlock = findControlBlock(extRef);
+  const fcdaElement = findFCDA(extRef, controlBlock);
+
+  if (canRemoveSubscriptionSupervision(extRef))
+    removeSubscriptionActions.push(
+      ...removeSubscriptionSupervision(controlBlock, subscriberIed)
+    );
+
+  eventElement.dispatchEvent(
+    newActionEvent({
+      title: get(`subscription.disconnect`),
+      actions: [updateAction, ...removeSubscriptionActions],
+    })
+  );
+
+  eventElement.dispatchEvent(
+    newSubscriptionChangedEvent(controlBlock, fcdaElement ?? undefined)
+  );
+}
+
+/**
+ * Subscribing means adding a list of attributes from the ExtRef Element and
+ * instantiating a supervision element as required.
+ * TODO: Add additional controls for supervision instantiation -- preferred LN or inst
+ * or whether to re-use existing supervisions
+ *
+ * @param extRef - The ExtRef SCL element to bind to.
+ * @param control - The GSEControl/SampledValueControl SCL referenced by the associated FCDA.
+ * @param fcda - The FCDA SCL element that is being bound during subscription.
+ * @param eventElement - The element from which to initiate events.
+ */
+export function subscribe(
+  extRef: Element,
+  control: Element,
+  fcda: Element,
+  eventTarget: HTMLElement
+): void {
+  const updateAction = updateExtRefElement(extRef, control, fcda);
+
+  const subscriberIed = extRef.closest('IED') || undefined;
+  const supervisionActions = instantiateSubscriptionSupervision(
+    control,
+    subscriberIed
+  );
+
+  eventTarget.dispatchEvent(
+    newActionEvent({
+      title: get(`subscription.connect`),
+      actions: [updateAction, ...supervisionActions],
+    })
+  );
+
+  eventTarget.dispatchEvent(newSubscriptionChangedEvent(control, fcda));
 }

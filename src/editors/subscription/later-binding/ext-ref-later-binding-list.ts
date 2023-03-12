@@ -13,8 +13,6 @@ import { get, translate } from 'lit-translate';
 import {
   createUpdateAction,
   Delete,
-  findControlBlocks,
-  findFCDAs,
   getDescriptionAttribute,
   identity,
   newActionEvent,
@@ -24,7 +22,6 @@ import {
   getExistingSupervision,
   styles,
   updateExtRefElement,
-  serviceTypes,
   instantiateSubscriptionSupervision,
   removeSubscriptionSupervision,
   FcdaSelectEvent,
@@ -35,8 +32,6 @@ import {
 import {
   getExtRefElements,
   getSubscribedExtRefElements,
-  fcdaSpecification,
-  inputRestriction,
   isSubscribed,
   unsupportedExtRefElement,
 } from './foundation.js';
@@ -88,12 +83,12 @@ export class ExtRefLaterBindingList extends LitElement {
   /**
    * Unsubscribing means removing a list of attributes from the ExtRef Element.
    *
-   * @param extRefElement - The Ext Ref Element to clean from attributes.
+   * @param extRef - The Ext Ref Element to clean from attributes.
    */
-  private unsubscribe(extRefElement: Element): void {
-    const updateAction = createUpdateAction(extRefElement, {
-      intAddr: extRefElement.getAttribute('intAddr'),
-      desc: extRefElement.getAttribute('desc'),
+  private unsubscribe(extRef: Element): void {
+    const updateAction = createUpdateAction(extRef, {
+      intAddr: extRef.getAttribute('intAddr'),
+      desc: extRef.getAttribute('desc'),
       iedName: null,
       ldInst: null,
       prefix: null,
@@ -109,9 +104,9 @@ export class ExtRefLaterBindingList extends LitElement {
       srcCBName: null,
     });
 
-    const subscriberIed = extRefElement.closest('IED') || undefined;
+    const subscriberIed = extRef.closest('IED') || undefined;
     const removeSubscriptionActions: Delete[] = [];
-    if (canRemoveSubscriptionSupervision(extRefElement))
+    if (canRemoveSubscriptionSupervision(extRef))
       removeSubscriptionActions.push(
         ...removeSubscriptionSupervision(
           this.currentSelectedControlElement,
@@ -137,9 +132,9 @@ export class ExtRefLaterBindingList extends LitElement {
   /**
    * Subscribing means copying a list of attributes from the FCDA Element (and others) to the ExtRef Element.
    *
-   * @param extRefElement - The Ext Ref Element to add the attributes to.
+   * @param extRef - The Ext Ref Element to add the attributes to.
    */
-  private subscribe(extRefElement: Element): void {
+  private subscribe(extRef: Element): void {
     if (
       !this.currentIedElement ||
       !this.currentSelectedFcdaElement ||
@@ -149,12 +144,12 @@ export class ExtRefLaterBindingList extends LitElement {
     }
 
     const updateAction = updateExtRefElement(
-      extRefElement,
+      extRef,
       this.currentSelectedControlElement,
       this.currentSelectedFcdaElement
     );
 
-    const subscriberIed = extRefElement.closest('IED') || undefined;
+    const subscriberIed = extRef.closest('IED') || undefined;
 
     const supervisionActions = instantiateSubscriptionSupervision(
       this.currentSelectedControlElement,
