@@ -4,8 +4,11 @@ export const snapshots = {};
 snapshots["extref-later-binding-list looks like the latest snapshot without a doc loaded"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.laterBinding.extRefList.noSelection]
+    [subscription.laterBinding.extRefList.title]
   </h1>
+  <h3>
+    [subscription.laterBinding.extRefList.noSelection]
+  </h3>
 </section>
 `;
 /* end snapshot extref-later-binding-list looks like the latest snapshot without a doc loaded */
@@ -13,8 +16,11 @@ snapshots["extref-later-binding-list looks like the latest snapshot without a do
 snapshots["extref-later-binding-list for Sampled Value Control looks like the latest snapshot, but no event fired"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.laterBinding.extRefList.noSelection]
+    [subscription.laterBinding.extRefList.title]
   </h1>
+  <h3>
+    [subscription.laterBinding.extRefList.noSelection]
+  </h3>
 </section>
 `;
 /* end snapshot extref-later-binding-list for Sampled Value Control looks like the latest snapshot, but no event fired */
@@ -739,8 +745,11 @@ snapshots["extref-later-binding-list when SVC has a multiple subscriptions looks
 snapshots["extref-later-binding-list for GOOSE Control looks like the latest snapshot, but no event fired"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.laterBinding.extRefList.noSelection]
+    [subscription.laterBinding.extRefList.title]
   </h1>
+  <h3>
+    [subscription.laterBinding.extRefList.noSelection]
+  </h3>
 </section>
 `;
 /* end snapshot extref-later-binding-list for GOOSE Control looks like the latest snapshot, but no event fired */
