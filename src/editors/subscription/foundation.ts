@@ -847,7 +847,7 @@ export function createExtRefElement(
  * Update the passed ExtRefElement and set the required attributes on the cloned element
  * depending on the Edition and type of Control Element.
  *
- * @param extRefElement  - The ExtRef Element to clone and update.
+ * @param extRefElement  - The ExtRef Element to update.
  * @param controlElement - `ReportControl`, `GSEControl` or `SampledValueControl` source element
  * @param fcdaElement    - The source data attribute element.
  * @returns An Update Action for the ExtRefElement.
@@ -858,13 +858,29 @@ export function updateExtRefElement(
   fcdaElement: Element
 ): Update {
   const iedName = fcdaElement.closest('IED')?.getAttribute('name') ?? null;
-  const [ldInst, prefix, lnClass, lnInst, doName, daName] = [
+
+  const [
+    ldInst,
+    prefix,
+    lnClass,
+    lnInst,
+    doName,
+    daName,
+    pLN,
+    pDO,
+    pDA,
+    pServT,
+  ] = [
     'ldInst',
     'prefix',
     'lnClass',
     'lnInst',
     'doName',
     'daName',
+    'pLN',
+    'pDO',
+    'pDA',
+    'pServT',
   ].map(attr => fcdaElement.getAttribute(attr));
   const intAddr = extRefElement.getAttribute('intAddr');
   const desc = extRefElement.getAttribute('desc') ?? '';
@@ -873,9 +889,9 @@ export function updateExtRefElement(
   // a problem as the Update action is not lossy. However it seems that for instance the pDO, pLN, pDA and
   // pServT would not be retained in the code that follows.
   // However this was also an issue with the previous Replace Action.
-  if (getSclSchemaVersion(fcdaElement.ownerDocument) === '2003') {
-    // Edition 2003(1) does not define serviceType and its MCD attribute starting with src...
-
+  const schemaVersion = getSclSchemaVersion(fcdaElement.ownerDocument);
+  if (schemaVersion === '2003') {
+    // Edition 2003(1) does not define serviceType and its MCD attribute starting with srcXXX
     return createUpdateAction(extRefElement, {
       intAddr,
       desc,
@@ -914,6 +930,29 @@ export function updateExtRefElement(
   const srcLNInst = controlElement.closest('LN0,LN')?.getAttribute('inst');
   const srcCBName = controlElement.getAttribute('name') ?? '';
 
+  if (schemaVersion === '2007B') {
+    return createUpdateAction(extRefElement, {
+      intAddr,
+      desc,
+      iedName,
+      serviceType: serviceTypes[controlElement.tagName]!,
+      ldInst,
+      lnClass,
+      lnInst,
+      prefix,
+      doName,
+      daName,
+      srcLDInst,
+      srcPrefix,
+      srcLNClass,
+      ...(srcLNInst && { srcLNInst }),
+      srcCBName,
+    });
+  }
+
+  // We must be on schemaVersion 2007B4 or later
+  // We should ensure that that the pXX fields are transferred if present
+
   return createUpdateAction(extRefElement, {
     intAddr,
     desc,
@@ -930,11 +969,10 @@ export function updateExtRefElement(
     srcLNClass,
     ...(srcLNInst && { srcLNInst }),
     srcCBName,
-
-    // !extRef.hasAttribute('pLN') ||
-    //   !extRef.hasAttribute('pDO') ||
-    //   !extRef.hasAttribute('pDA') ||
-    //   !extRef.hasAttribute('pServT')
+    ...(pLN && { pLN }),
+    ...(pDO && { pDO }),
+    ...(pDA && { pDA }),
+    ...(pServT && { pServT }),
   });
 }
 
