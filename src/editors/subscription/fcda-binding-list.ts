@@ -111,7 +111,6 @@ export class FcdaBindingList extends LitElement {
   }
 
   private resetExtRefCount(event: SubscriptionChangedEvent): void {
-    console.log('received SubscriptionChangedEvent');
     if (!this.subscriberview) {
       this.resetSelection();
     }
@@ -126,7 +125,6 @@ export class FcdaBindingList extends LitElement {
   private updateExtRefSelection(event: ExtRefSelectionChangedEvent): void {
     if (event.detail.extRefElement) {
       this.selectedExtRefElement = event.detail.extRefElement;
-      // TODO: can we do better??
       this.requestUpdate();
     }
   }

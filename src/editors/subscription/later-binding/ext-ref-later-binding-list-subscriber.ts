@@ -19,26 +19,22 @@ import {
 import { nothing } from 'lit-html';
 import { classMap } from 'lit-html/directives/class-map.js';
 import { repeat } from 'lit-html/directives/repeat.js';
-import { get, translate } from 'lit-translate';
+import { translate } from 'lit-translate';
 
 import {
   findFCDAs,
   getDescriptionAttribute,
   getNameAttribute,
   identity,
-  newActionEvent,
 } from '../../../foundation.js';
 
 import {
-  instantiateSubscriptionSupervision,
   FcdaSelectEvent,
   getCbReference,
   getOrderedIeds,
   getUsedSupervisionInstances,
   newExtRefSelectionChangedEvent,
-  newSubscriptionChangedEvent,
   styles,
-  updateExtRefElement,
 } from '../foundation.js';
 
 import {
@@ -158,7 +154,6 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
     this.selectedPublisherControlElement = event.detail.control;
     this.selectedPublisherFcdaElement = event.detail.fcda;
 
-    console.log('received onFcdaSelectEvent');
     // Retrieve the IED Element to which the FCDA belongs.
     // These ExtRef Elements will be excluded.
     this.selectedPublisherIedElement = this.selectedPublisherFcdaElement
@@ -171,7 +166,6 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
     ) {
       this.subscribe(this.currentSelectedExtRefElement);
       this.reCreateSupervisionCache();
-      // console.log(this.currentActivatedExtRefItem);
 
       if (!this.notAutoIncrement) {
         // deactivate/deselect
