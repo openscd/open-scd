@@ -283,11 +283,7 @@ export class FcdaBindingList extends LitElement {
     ${styles}
 
     h3 {
-      color: var(--mdc-theme-on-surface);
-      font-family: 'Roboto', sans-serif;
-      font-weight: 300;
       margin: 4px 8px 16px;
-      padding-left: 0.3em;
     }
 
     mwc-list-item.hidden[noninteractive] + li[divider] {

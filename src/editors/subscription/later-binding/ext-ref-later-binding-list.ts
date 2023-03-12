@@ -312,23 +312,23 @@ export class ExtRefLaterBindingList extends LitElement {
 
   render(): TemplateResult {
     return html` <section tabindex="0">
+      ${this.renderTitle()}
       ${this.currentSelectedControlElement && this.currentSelectedFcdaElement
-        ? html`
-            ${this.renderTitle()}
-            <filtered-list>
-              ${this.renderSubscribedExtRefs()} ${this.renderAvailableExtRefs()}
-            </filtered-list>
-          `
-        : html`
-            <h1>
-              ${translate('subscription.laterBinding.extRefList.noSelection')}
-            </h1>
-          `}
+        ? html`<filtered-list>
+            ${this.renderSubscribedExtRefs()} ${this.renderAvailableExtRefs()}
+          </filtered-list>`
+        : html`<h3>
+            ${translate('subscription.laterBinding.extRefList.noSelection')}
+          </h3>`}
     </section>`;
   }
 
   static styles = css`
     ${styles}
+
+    h3 {
+      margin: 4px 8px 16px;
+    }
 
     mwc-list-item.hidden[noninteractive] + li[divider] {
       display: none;
