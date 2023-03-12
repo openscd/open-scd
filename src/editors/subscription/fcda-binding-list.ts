@@ -4,6 +4,7 @@ import {
   html,
   LitElement,
   property,
+  PropertyValues,
   state,
   TemplateResult,
 } from 'lit-element';
@@ -166,6 +167,15 @@ export class FcdaBindingList extends LitElement {
     this.dispatchEvent(
       newFcdaSelectEvent(this.selectedControlElement, this.selectedFcdaElement)
     );
+  }
+
+  protected updated(_changedProperties: PropertyValues): void {
+    super.updated(_changedProperties);
+
+    // When a new document is loaded we will reset the Map to clear old entries.
+    if (_changedProperties.has('doc')) {
+      this.extRefCounters = new Map();
+    }
   }
 
   renderFCDA(controlElement: Element, fcdaElement: Element): TemplateResult {
