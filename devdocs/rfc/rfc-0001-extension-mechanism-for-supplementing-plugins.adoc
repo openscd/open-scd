@@ -1,0 +1,230 @@
+= RFC 0001: Extension Mechanism for Augmenting Plugins
+:sectnums:
+:toc:
+:uri-github: https://github.com/openscd/open-scd/issues/
+:source-highlighter: highlight.js
+:icons: font
+
+[horizontal]
+Status:: `draft`
+Author:: Daniel Mulholland
+Approvers:: Jakob Vogelsang, Christian Dinkel, (add yourself?)
+Target Review Date:: 2023-05-15
+
+== Context
+
+In {uri-github}/1088[#1088] a request is made to enhance subscriber plugins to allow an improved user interface. 
+OpenSCD currently allows a single FCDA to be subscribed.
+For SV, typically the power system is three phase (often with a neutral).
+If the layout of the dataset and ExtRefs is known, it is possible to improve usability (perhaps per click by a factor of 3-4) and reduce the chance of error.
+
+There is a similar issue with the mapping of quality as well as a `.stVal` or `.general` data attribute (for example). 
+
+However the issue requests changes to OpenSCD which:
+
+* are bound to a specific manufacturer's implementation
+* may be bound to a specific hardware and firmware of device
+
+The concerns over this are:
+
+* If implemented naively, it degenerates the code-base by:
+
+** tying it to particular devices and products over which OpenSCD has no control 
+** doing this with no mechanism to keep this up-to-date 
+** extending the scope of OpenSCD to allow devices for which guarantees cannot be provided to end-users.
+* It is not readily scalable to all IEDs from all manufacturers.
+
+Previously, we have strenuously avoided manufacturer-specific code for these reasons and suggested that "you can always fork the plugin".
+
+There is also a cost of not doing anything, compared to ICTs (IED Configuration Tools):
+
+* OpenSCD may be less efficient. 
+To end-users this just looks "less good".
+* In areas where the IEC 61850 standard is inefficient or incomplete, maintaining "we only do what the standard requires" may result in OpenSCD being a "slow follower" and unable to lead the IEC 61850 standard in a particular direction.
+
+Forking leads to maintenance burden and difficulty to re-integrate upstream improvements.
+
+This RFC discusses options and approaches.
+
+== Questions
+
+. How strictly should OpenSCD follow the standard?
+. What options are available to achieve "proprietary enhancements"?
+. How much effort should be put into avoiding a fork?
++
+[NOTE]
+====
+With OpenSCD core and increased modularity this could be the best option, however excessive forking may be detrimental to the project if users cannot clearly identify functionality and features.
+
+* In general, often a complex monolith provides a better user experience than too many options (example: Mediawiki is extremely difficult to configure and setup due to its poorly documented, extensive set of documentations whereas Gitlab is a monolith, all bundled into one). 
+* Maintenance can be a serious burden, often not fully recognised initially.
+* Forking a plugin for a small change behaviour while keeping the initial change to the SCL file the same and retaining much of the graphical UI seems excessive.
+====
+
+== Options
+
+Some options could be (intended to be read beginning at Option 1, options may not make sense in isolation)
+
+[horizontal]
+Option 1:: <<Naive Code Implementation>> 
+Option 2:: <<Using Javascript events>> 
+Option 3:: <<Forking plugins>>
+Option 4:: <<Allowing configurable user defined functions>>
+Option 5:: <<Implementing a Pipeline/Hook>>
+Option 6:: <<Importing additional functions>>
+// monkeypatching?
+
+=== Option Details
+
+==== Naive Code Implementation
+
+Perhaps our subscribe function looks like:
+
+[source,ts]
+----
+/**
+ * Subscribing means adding a list of attributes from the ExtRef Element and
+ * instantiating a supervision element as required.
+ * TODO: Add additional controls for supervision instantiation -- preferred LN or inst
+ * or whether to re-use existing supervisions
+ *
+ * @param extRef - The ExtRef SCL element to bind to.
+ * @param control - The GSEControl/SampledValueControl SCL referenced by the associated FCDA.
+ * @param fcda - The FCDA SCL element that is being bound during subscription.
+ * @param eventElement - The element from which to initiate events.
+ */
+export function subscribe(extRef: Element, control: Element, 
+  fcda: Element, eventTarget: HTMLElement
+): void {
+  const updateAction = updateExtRefElement(extRef, control, fcda); // <.>
+
+  const subscriberIed = extRef.closest('IED') || undefined;
+  const supervisionActions = instantiateSubscriptionSupervision(
+    control,
+    subscriberIed
+  ); // <2>
+
+  eventTarget.dispatchEvent(
+    newActionEvent({
+      title: get(`subscription.connect`),
+      actions: [updateAction, ...supervisionActions],
+    })
+  ); // <3>
+
+  eventTarget.dispatchEvent(newSubscriptionChangedEvent(control, fcda)); // <4>
+}
+----
+<1> Updates the `ExtRef` element
+<2> Creates/modifies the supervision if possible
+<3> Carries out Edit/Action
+<4> Provides notification for purposes of UI update
+
+For the change proposed, there would be a need to:
+
+. find adjacent `ExtRef` elements
+. examine adjacent `FCDA` elements
+. modify additional `ExtRef` elements
+. ensure the UI is updated
+
+For this example, manufacturer specific functionality could be added into the `actions` key for `newActionEvent`, perhaps something like:
+
+[source,ts]
+----
+  const specificActions = doManufacturerSpecificMods(extRef, control, fcda)
+
+  eventTarget.dispatchEvent(
+    newActionEvent({
+      title: get(`subscription.connect`),
+      actions: [updateAction, ...specificActions, ...supervisionActions],
+    })
+  );
+----
+
+along the lines of (for instance for adding quality because it is as simpler example)
+
+[source,ts]
+----
+export function doManufacturerSpecificMods(
+  extRef: Element,
+  control: Element,
+  fcda: Element,
+  eventTarget: HTMLElement
+): Action[] {
+  const manufacturer = ied.getAttribute("manufacturer");
+  const type = ied.getAttribute("type");
+  const configVersion = ied.getAttribute("configVersion");
+
+  subscribe();
+  if (
+    manufacturer === "XYZ" &&
+    type === "LineProtection" &&
+    configVersion === "Va.b"
+  ) {
+    if (
+      extRef.nextSibling.getAttribute("intAddr").endsWith("/q") &&
+      equalAttributes(extRef, extRef.nextSibling, "desc") &&
+      fcda.nextSibling.getAttribute("daName") === "q" &&
+      equalAttributes(
+        fcda,
+        fcda.nextSibling,
+        (attrs = ["ldInst", "prefix", "lnClass", "lnInst", "doName", "fc"])
+      )
+    )
+      // do the next ExtRef at the same time
+      updateExtRefElement(extRef.nextSibling, control, fcda.nextSibling);
+  }
+}
+----
+
+==== Using Javascript events 
+
+TODO
+
+==== Forking plugins
+
+TODO
+
+==== Allowing configurable user defined functions
+
+TODO
+
+==== Implementing a Pipeline/Hook
+
+TODO
+
+==== Importing additional functions
+
+TODO
+
+=== Consequences
+
+There are many. 
+
+TODO
+
+== Design
+<!-- Describe the design, include diagrams and provide examples -->
+
+=== Examples
+
+In principle it seems straightforward to add some functionality, narrowly scoped like:
+
+<!-- Describe the context and problem statement, e.g., 
+in free form using two to three sentences or in the form of an illustrative story. -->
+
+
+== Validation
+<!-- This is an optional element. Feel free to remove. -->
+<!-- describe how the implementation is validated. -->
+
+
+== More Information
+
+<!-- This is an optional element. Feel free to remove. -->
+
+<!-- 
+You might want to provide additional information about:
+ - prior art
+ - links to other RFCs or discussions
+ - links to ADRs
+ -->
