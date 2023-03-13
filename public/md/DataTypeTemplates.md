@@ -7,7 +7,7 @@ The difference between a signal list and the data model defined in the IEC&#8239
 3. Data attribute
 4. (Enumeration)
 
-This hierarchical structure can be defined in the `DataTypeTemplates` section of a SCL file by defining and referencing four elements `LNodeType`, `DOType`, `DAType` and `EnumType`. One builds upon the other. In other terms, if you want to define a `LNodeType` or lets say a LLN0 logical node class you need already some defined `DOType`s and for those you need already some `DAType`s and for some of those - ENx - you also need some `EnumType`s.
+This hierarchical structure can be defined in the `DataTypeTemplates` section of a SCL file by defining and referencing four elements `LNodeType`, `DOType`, `DAType` and `EnumType`. One builds upon the other. In other words, if you want to define a `LNodeType` or let's say a LLN0 logical node class you need some already defined `DOType`s and for those you need some already existing `DAType`s and for some of those - ENx - you also need some already existing `EnumType`s.
 
 This is why this process is so hard for beginners to wrap their mind around. To help users that are not so experienced with this part of the standard as well as others that you need to know, e.g. 7-4, 7-3, 8-1, OpenSCD offers so-called templates.
 

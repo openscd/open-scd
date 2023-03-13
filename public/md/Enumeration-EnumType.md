@@ -21,7 +21,7 @@ OpenSCD templates contains all enumerations from IEC&#8239;61850&#x2011;7&#x2011
 
 *User-defined* 
 
-Do defined a user-defined from scratch open **Add EnumType** wizard and make sure to NOT select the value. Be careful with this option as this add a blank `EnumType`.
+Do defined a user-defined from scratch open **Add EnumType** wizard and make sure to NOT select the value. Be careful with this option as this adds a blank `EnumType`.
 
 &nbsp;
 
