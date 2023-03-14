@@ -1113,3 +1113,15 @@ snapshots["extref-later-binding-list when GSEControl has a multiple subscription
 `;
 /* end snapshot extref-later-binding-list when GSEControl has a multiple subscriptions looks like the latest snapshot,  */
 
+snapshots["extref-later-binding-list for Sampled Value Control looks like the latest snapshot"] = 
+`<section tabindex="0">
+  <h1>
+    [subscription.laterBinding.extRefList.title]
+  </h1>
+  <h3>
+    [subscription.laterBinding.extRefList.noSelection]
+  </h3>
+</section>
+`;
+/* end snapshot extref-later-binding-list for Sampled Value Control looks like the latest snapshot */
+

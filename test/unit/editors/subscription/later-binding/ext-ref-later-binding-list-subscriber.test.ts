@@ -2,32 +2,18 @@ import { expect, fixture, html } from '@open-wc/testing';
 
 import '../../../../../src/editors/subscription/later-binding/ext-ref-later-binding-list-subscriber.js';
 
-import { newFcdaSelectEvent } from '../../../../../src/editors/subscription/foundation.js';
 import { ExtRefLaterBindingListSubscriber } from '../../../../../src/editors/subscription/later-binding/ext-ref-later-binding-list-subscriber.js';
+
+import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 
 describe('extref-later-binding-list-subscriber', () => {
   let doc: XMLDocument;
   let parent: HTMLElement;
   let element: ExtRefLaterBindingListSubscriber;
 
-  localStorage.clear();
-
-  it('looks like the latest snapshot without a doc loaded', async () => {
-    parent = await fixture(
-      html`<div class="container">
-        <extref-later-binding-list-subscriber></extref-later-binding-list-subscriber>
-      </div>`
-    );
-    element = <ExtRefLaterBindingListSubscriber>(
-      parent.querySelector('extref-later-binding-list-subscriber')
-    );
-    await element.updateComplete;
-
-    await expect(element).shadowDom.to.equalSnapshot();
-  });
-
   describe('for Sampled Value Control', () => {
     beforeEach(async () => {
+      localStorage.clear();
       doc = await fetch('/test/testfiles/editors/LaterBindingSMV2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
@@ -41,210 +27,184 @@ describe('extref-later-binding-list-subscriber', () => {
         </div>`
       );
       element = <ExtRefLaterBindingListSubscriber>(
-        parent.querySelector('extref-later-binding-list')
+        parent.querySelector('extref-later-binding-list-subscriber')
       );
       await element.updateComplete;
     });
 
-    it('looks like the latest snapshot, but no event fired', async () => {
+    it('looks like the latest snapshot', async () => {
       await expect(element).shadowDom.to.equalSnapshot();
     });
 
-    describe('when SVC has no subscriptions', () => {
-      beforeEach(async () => {
-        const svcElement = doc.querySelector(
-          'IED[name="SMV_Publisher"] SampledValueControl[name="currentOnly"]'
-        )!;
-        const fcdaElement = doc.querySelector(
-          'IED[name="SMV_Publisher"] FCDA[ldInst="CurrentTransformer"][prefix="L2"][lnClass="TCTR"][lnInst="1"][doName="AmpSv"][daName="instMag.i"]'
-        )!;
+    describe('the filter button', () => {
+      it('is initially unfiltered', async () => {
+        const displayedElements = Array.from(
+          element.shadowRoot!.querySelectorAll('mwc-list-item')
+        ).filter(item => {
+          const displayStyle = getComputedStyle(item).display;
+          return displayStyle !== 'none' || displayStyle === undefined;
+        });
+        expect(displayedElements.length).to.equal(15);
+      });
 
-        element.dispatchEvent(newFcdaSelectEvent(svcElement, fcdaElement));
-        await element.requestUpdate();
+      it('allows showing only bound ExtRefs', async () => {
+        element.filterMenuIcon.click();
         await element.updateComplete;
-      });
-
-      // it('expect the correct number of elements', () => {
-      //   expect(element.shadowRoot?.querySelectorAll('filtered-list mwc-list-item').length).to.be.equal(0);
-      // });
-
-      // it('expect the correct number of available elements', () => {
-      //   expect(element['getAvailableExtRefElements']().length).to.be.equal(9);
-      // });
-
-      it('looks like the latest snapshot, when SVC has no subscriptions', async () => {
-        await expect(element).shadowDom.to.equalSnapshot();
-      });
-    });
-
-    describe('when SVC has a single subscriptions', () => {
-      beforeEach(async () => {
-        const svcElement = doc.querySelector(
-          'IED[name="SMV_Publisher"] SampledValueControl[name="currentOnly"]'
-        )!;
-        const fcdaElement = doc.querySelector(
-          'IED[name="SMV_Publisher"] FCDA[ldInst="CurrentTransformer"][prefix="L1"][lnClass="TCTR"][lnInst="1"][doName="AmpSv"][daName="instMag.i"]'
-        )!;
-
-        element.dispatchEvent(newFcdaSelectEvent(svcElement, fcdaElement));
-        await element.requestUpdate();
+        (<ListItem>(
+          element.filterMenu!.querySelector('.show-not-bound')
+        ))!.click();
+        await new Promise(resolve => setTimeout(resolve, 200)); // await animation
         await element.updateComplete;
+
+        const extRefList = element.shadowRoot?.querySelector('filtered-list');
+        const displayedElements = Array.from(
+          extRefList!.querySelectorAll('mwc-list-item')!
+        ).filter(item => {
+          const displayStyle = getComputedStyle(item).display;
+          return displayStyle !== 'none' || displayStyle === undefined;
+        });
+        expect(displayedElements.length).to.equal(6);
       });
 
-      // it('expect the correct number of subscribed elements', () => {
-      //   expect(element['getSubscribedExtRefElements']().length).to.be.equal(1);
-      // });
+      it('allows showing only not bound ExtRefs', async () => {
+        element.filterMenuIcon.click();
+        await element.updateComplete;
+        (<ListItem>element.filterMenu!.querySelector('.show-bound'))!.click();
+        await new Promise(resolve => setTimeout(resolve, 200)); // await animation
+        await element.updateComplete;
 
-      // it('expect the correct number of available elements', () => {
-      //   expect(element['getAvailableExtRefElements']().length).to.be.equal(9);
-      // });
-
-      it('looks like the latest snapshot, ', async () => {
-        await expect(element).shadowDom.to.equalSnapshot();
+        const extRefList = element.shadowRoot?.querySelector('filtered-list');
+        const displayedElements = Array.from(
+          extRefList!.querySelectorAll('mwc-list-item')!
+        ).filter(item => {
+          const displayStyle = getComputedStyle(item).display;
+          return displayStyle !== 'none' || displayStyle === undefined;
+        });
+        expect(displayedElements.length).to.equal(10);
       });
-    });
-  });
 
-  describe('when SVC has a multiple subscriptions', () => {
-    beforeEach(async () => {
-      const svcElement = doc.querySelector(
-        'IED[name="SMV_Publisher"] SampledValueControl[name="currentOnly"]'
-      )!;
-      const fcdaElement = doc.querySelector(
-        'IED[name="SMV_Publisher"] FCDA[ldInst="CurrentTransformer"][prefix="L1"][lnClass="TCTR"][lnInst="1"][doName="AmpSv"][daName="q"]'
-      )!;
+      it('allows filtering out of all ExtRefs', async () => {
+        element.filterMenuIcon.click();
+        await element.updateComplete;
+        (<ListItem>element.filterMenu!.querySelector('.show-bound'))!.click();
+        await new Promise(resolve => setTimeout(resolve, 200)); // await animation
+        await element.updateComplete;
 
-      element.dispatchEvent(newFcdaSelectEvent(svcElement, fcdaElement));
-      await element.requestUpdate();
-      await element.updateComplete;
-    });
+        element.filterMenuIcon.click();
+        await element.updateComplete;
+        (<ListItem>(
+          element.filterMenu!.querySelector('.show-not-bound')
+        ))!.click();
+        await new Promise(resolve => setTimeout(resolve, 200)); // await animation
+        await element.updateComplete;
 
-    // it('expect the correct number of subscribed elements', () => {
-    //   expect(element['getSubscribedExtRefElements']().length).to.be.equal(3);
-    // });
-
-    // it('expect the correct number of available elements', () => {
-    //   expect(element['getAvailableExtRefElements']().length).to.be.equal(9);
-    // });
-
-    it('looks like the latest snapshot, ', async () => {
-      await expect(element).shadowDom.to.equalSnapshot();
+        const extRefList = element.shadowRoot?.querySelector('filtered-list');
+        const displayedElements = Array.from(
+          extRefList!.querySelectorAll('mwc-list-item')!
+        ).filter(item => {
+          const displayStyle = getComputedStyle(item).display;
+          return displayStyle !== 'none' || displayStyle === undefined;
+        });
+        expect(displayedElements.length).to.equal(0);
+      });
     });
   });
 
   describe('for GOOSE Control', () => {
     beforeEach(async () => {
+      localStorage.clear();
       doc = await fetch('/test/testfiles/editors/LaterBindingGOOSE2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = await fixture(
         html`<div class="container">
-          <extref-later-binding-list
+          <extref-later-binding-list-subscriber
             .doc=${doc}
             controlTag="GSEControl"
-          ></extref-later-binding-list>
+          ></extref-later-binding-list-subscriber>
         </div>`
       );
       element = <ExtRefLaterBindingListSubscriber>(
-        parent.querySelector('extref-later-binding-list')
+        parent.querySelector('extref-later-binding-list-subscriber')
       );
       await element.updateComplete;
     });
 
-    it('looks like the latest snapshot, but no event fired', async () => {
+    it('looks like the latest snapshot', async () => {
       await expect(element).shadowDom.to.equalSnapshot();
     });
 
-    describe('when GSEControl has no subscriptions', () => {
-      beforeEach(async () => {
-        const gseControlElement = doc.querySelector(
-          'IED[name="GOOSE_Publisher"] GSEControl[name="GOOSE1"]'
-        )!;
-        const fcdaElement = doc.querySelector(
-          'IED[name="GOOSE_Publisher"] FCDA[ldInst="QB1_Disconnector"][prefix=""][lnClass="CSWI"][lnInst="1"][doName="Pos"][daName="stVal"]'
-        )!;
+    describe('the filter button', () => {
+      it('is initially unfiltered', async () => {
+        const displayedElements = Array.from(
+          element.shadowRoot!.querySelectorAll('mwc-list-item')
+        ).filter(item => {
+          const displayStyle = getComputedStyle(item).display;
+          return displayStyle !== 'none' || displayStyle === undefined;
+        });
+        expect(displayedElements.length).to.equal(12);
+      });
 
-        element.dispatchEvent(
-          newFcdaSelectEvent(gseControlElement, fcdaElement)
-        );
-        await element.requestUpdate();
+      it('allows showing only bound ExtRefs', async () => {
+        element.filterMenuIcon.click();
         await element.updateComplete;
-      });
-
-      it('validate that some ExtRef Element will be disabled', async () => {
-        const listItem = element.shadowRoot!.querySelector(
-          'mwc-list-item[value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0]"]'
-        );
-        expect(listItem).to.have.attribute('disabled');
-      });
-
-      // it('expect the correct number of subscribed elements', () => {
-      //   expect(element['getSubscribedExtRefElements']().length).to.be.equal(0);
-      // });
-
-      // it('expect the correct number of available elements', () => {
-      //   expect(element['getAvailableExtRefElements']().length).to.be.equal(3);
-      // });
-
-      it('looks like the latest snapshot, when GSEControl has no subscriptions', async () => {
-        await expect(element).shadowDom.to.equalSnapshot();
-      });
-    });
-
-    describe('when GSEControl has a single subscription', () => {
-      beforeEach(async () => {
-        const gseControlElement = doc.querySelector(
-          'IED[name="GOOSE_Publisher"] GSEControl[name="GOOSE2"]'
-        )!;
-        const fcdaElement = doc.querySelector(
-          'IED[name="GOOSE_Publisher"] FCDA[ldInst="QB2_Disconnector"][prefix=""][lnClass="CSWI"][lnInst="1"][doName="Pos"][daName="stVal"]'
-        )!;
-
-        element.dispatchEvent(
-          newFcdaSelectEvent(gseControlElement, fcdaElement)
-        );
-        await element.requestUpdate();
+        (<ListItem>(
+          element.filterMenu!.querySelector('.show-not-bound')
+        ))!.click();
+        await new Promise(resolve => setTimeout(resolve, 200)); // await animation
         await element.updateComplete;
+
+        const extRefList = element.shadowRoot?.querySelector('filtered-list');
+        const displayedElements = Array.from(
+          extRefList!.querySelectorAll('mwc-list-item')!
+        ).filter(item => {
+          const displayStyle = getComputedStyle(item).display;
+          return displayStyle !== 'none' || displayStyle === undefined;
+        });
+        expect(displayedElements.length).to.equal(9);
       });
 
-      // it('expect the correct number of subscribed elements', () => {
-      //   expect(element['getSubscribedExtRefElements']().length).to.be.equal(1);
-      // });
+      it('allows showing only not bound ExtRefs', async () => {
+        element.filterMenuIcon.click();
+        await element.updateComplete;
+        (<ListItem>element.filterMenu!.querySelector('.show-bound'))!.click();
+        await new Promise(resolve => setTimeout(resolve, 200)); // await animation
+        await element.updateComplete;
 
-      // it('expect the correct number of available elements', () => {
-      //   expect(element['getAvailableExtRefElements']().length).to.be.equal(3);
-      // });
-
-      it('looks like the latest snapshot, ', async () => {
-        await expect(element).shadowDom.to.equalSnapshot();
+        const extRefList = element.shadowRoot?.querySelector('filtered-list');
+        const displayedElements = Array.from(
+          extRefList!.querySelectorAll('mwc-list-item')!
+        ).filter(item => {
+          const displayStyle = getComputedStyle(item).display;
+          return displayStyle !== 'none' || displayStyle === undefined;
+        });
+        expect(displayedElements.length).to.equal(4);
       });
-    });
-  });
 
-  describe('when GSEControl has a multiple subscriptions', () => {
-    beforeEach(async () => {
-      const gseControlElement = doc.querySelector(
-        'IED[name="GOOSE_Publisher"] GSEControl[name="GOOSE2"]'
-      )!;
-      const fcdaElement = doc.querySelector(
-        'IED[name="GOOSE_Publisher"] FCDA[ldInst="QB2_Disconnector"][prefix=""][lnClass="CSWI"][lnInst="1"][doName="Pos"][daName="q"]'
-      )!;
+      it('allows filtering out of all ExtRefs', async () => {
+        element.filterMenuIcon.click();
+        await element.updateComplete;
+        (<ListItem>element.filterMenu!.querySelector('.show-bound'))!.click();
+        await new Promise(resolve => setTimeout(resolve, 200)); // await animation
+        await element.updateComplete;
 
-      element.dispatchEvent(newFcdaSelectEvent(gseControlElement, fcdaElement));
-      await element.requestUpdate();
-      await element.updateComplete;
-    });
+        element.filterMenuIcon.click();
+        await element.updateComplete;
+        (<ListItem>(
+          element.filterMenu!.querySelector('.show-not-bound')
+        ))!.click();
+        await new Promise(resolve => setTimeout(resolve, 200)); // await animation
+        await element.updateComplete;
 
-    // it('expect the correct number of subscribed elements', () => {
-    //   expect(element['getSubscribedExtRefElements']().length).to.be.equal(2);
-    // });
-
-    // it('expect the correct number of available elements', () => {
-    //   expect(element['getAvailableExtRefElements']().length).to.be.equal(3);
-    // });
-
-    it('looks like the latest snapshot, ', async () => {
-      await expect(element).shadowDom.to.equalSnapshot();
+        const extRefList = element.shadowRoot?.querySelector('filtered-list');
+        const displayedElements = Array.from(
+          extRefList!.querySelectorAll('mwc-list-item')!
+        ).filter(item => {
+          const displayStyle = getComputedStyle(item).display;
+          return displayStyle !== 'none' || displayStyle === undefined;
+        });
+        expect(displayedElements.length).to.equal(0);
+      });
     });
   });
 });

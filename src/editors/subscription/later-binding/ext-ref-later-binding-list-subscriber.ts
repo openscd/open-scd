@@ -19,7 +19,7 @@ import {
 import { nothing } from 'lit-html';
 import { classMap } from 'lit-html/directives/class-map.js';
 import { repeat } from 'lit-html/directives/repeat.js';
-import { translate } from 'lit-translate';
+import { get, translate } from 'lit-translate';
 
 import {
   findFCDAs,
@@ -463,7 +463,7 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
           'show-bound': showSubscribed,
           'show-not-bound': showNotSubscribed,
         };
-
+        if (!extRefs.length) return html``;
         return html`
       <mwc-list-item
         class="${classMap(filterClasses)}"

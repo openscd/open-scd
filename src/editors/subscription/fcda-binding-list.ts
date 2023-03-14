@@ -207,6 +207,7 @@ export class FcdaBindingList extends LitElement {
       ${translate(`subscription.${this.controlTag}.controlBlockList.title`)}
       ${!this.subscriberview && this.includeLaterBinding
         ? html`<mwc-icon-button
+            class="switch-view"
             icon="alt_route"
             title="${translate(
               `subscription.laterBinding.switchControlBlockView`
