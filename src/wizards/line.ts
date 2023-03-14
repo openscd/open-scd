@@ -4,10 +4,6 @@ import { get, translate } from 'lit-translate';
 import '../wizard-textfield.js';
 import {
   cloneElement,
-  ComplexAction,
-  createElement,
-  EditorAction,
-  getMultiplier,
   getValue,
   patterns,
   SimpleAction,
@@ -15,8 +11,6 @@ import {
   WizardActor,
   WizardInputElement,
 } from '../foundation.js';
-
-import { updateReferences } from './foundation/references.js';
 
 const initial = {
   nomFreq: '50',
@@ -50,7 +44,7 @@ function render(
     html`<wizard-textfield
       label="type"
       .maybeValue=${type}
-      disabled
+      nullable
       helper="${translate('line.wizard.typeHelper')}"
     ></wizard-textfield>`,
     html`<wizard-textfield

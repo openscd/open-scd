@@ -4,7 +4,7 @@ import '../../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../../mock-wizard-editor.js';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
-import '../../../../src/editors/substation/tapchanger-editor';
+import '../../../../src/editors/substation/tapchanger-editor.js';
 import { TapChangerEditor } from '../../../../src/editors/substation/tapchanger-editor.js';
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
 import { WizardCheckbox } from '../../../../src/wizard-checkbox.js';
