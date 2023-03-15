@@ -17,10 +17,7 @@ describe('line-editor wizarding editing integration', () => {
 
   describe('edit wizard', () => {
     let nameField: WizardTextField;
-    let descField: WizardTextField;
-    let typeField: WizardTextField;
-    let nomFreqField: WizardTextField;
-    let numPhasesField: WizardTextField;
+
     let primaryAction: HTMLElement;
     let secondaryAction: HTMLElement;
 
@@ -45,22 +42,6 @@ describe('line-editor wizarding editing integration', () => {
 
       nameField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
-      );
-      descField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="desc"]')
-      );
-      typeField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="type"]')
-      );
-      nomFreqField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector(
-          'wizard-textfield[label="nomFreq"]'
-        )
-      );
-      numPhasesField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector(
-          'wizard-textfield[label="numPhases"]'
-        )
       );
 
       secondaryAction = <HTMLElement>(
@@ -90,13 +71,40 @@ describe('line-editor wizarding editing integration', () => {
       ).to.equal(oldName);
     });
 
-    it('changes type attribute on primary action', async () => {
+    it('changes desc attribute on primary action', async () => {
       parent.wizardUI.inputs[1].value = 'newDesc';
       primaryAction.click();
       await parent.updateComplete;
       expect(
         doc.querySelector('Line[name="Berlin"]')?.getAttribute('desc')
       ).to.equal('newDesc');
+    });
+
+    it('changes type attribute on primary action', async () => {
+      parent.wizardUI.inputs[2].value = 'newType';
+      primaryAction.click();
+      await parent.updateComplete;
+      expect(
+        doc.querySelector('Line[name="Berlin"]')?.getAttribute('type')
+      ).to.equal('newType');
+    });
+
+    it('changes nomFreq attribute on primary action', async () => {
+      parent.wizardUI.inputs[3].value = '50';
+      primaryAction.click();
+      await parent.updateComplete;
+      expect(
+        doc.querySelector('Line[name="Berlin"]')?.getAttribute('nomFreq')
+      ).to.equal('50');
+    });
+
+    it('changes numPhases attribute on primary action', async () => {
+      parent.wizardUI.inputs[4].value = '3';
+      primaryAction.click();
+      await parent.updateComplete;
+      expect(
+        doc.querySelector('Line[name="Berlin"]')?.getAttribute('numPhases')
+      ).to.equal('3');
     });
   });
 });

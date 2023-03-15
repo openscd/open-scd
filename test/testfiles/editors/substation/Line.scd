@@ -207,7 +207,7 @@
     		<EnumVal ord="8">process</EnumVal>
     	</EnumType>
     </DataTypeTemplates>
-	<Line name="Berlin" desc="">
+	<Line name="Berlin" desc="" type="" nomFreq="" numPhases="">
 		<LNode iedName="None" lnClass="CSWI" lnInst="1" lnType="OpenSCD_CSWI" />
 		<Function name="someFunctionToBerlin">
 			<SubFunction name="someSubFunc">

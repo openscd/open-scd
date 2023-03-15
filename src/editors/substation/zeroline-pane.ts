@@ -122,6 +122,29 @@ export class ZerolinePane extends LitElement {
       : html``;
   }
 
+  renderSubstation(): TemplateResult {
+    return this.doc?.querySelector(':root > Substation')
+      ? html`<section>
+          ${Array.from(this.doc.querySelectorAll('Substation') ?? [])
+            .filter(isPublic)
+            .map(
+              substation =>
+                html`<substation-editor
+                  .doc=${this.doc}
+                  .element=${substation}
+                  .getAttachedIeds=${this.getAttachedIeds}
+                  ?readonly=${this.readonly}
+                  ?showfunctions=${shouldShowFunctions()}
+                ></substation-editor>`
+            )}
+        </section>`
+      : html`<h1>
+          <span style="color: var(--base1)"
+            >${translate('substation.missing')}</span
+          >
+        </h1>`;
+  }
+
   renderLines(): TemplateResult {
     return this.doc?.querySelector(':root > Line')
       ? html`<section>
@@ -202,26 +225,7 @@ export class ZerolinePane extends LitElement {
         </nav>
       </h1>
       ${this.renderIedContainer()}
-      ${this.doc?.querySelector(':root > Substation')
-        ? html`<section>
-            ${Array.from(this.doc.querySelectorAll('Substation') ?? [])
-              .filter(isPublic)
-              .map(
-                substation =>
-                  html`<substation-editor
-                    .doc=${this.doc}
-                    .element=${substation}
-                    .getAttachedIeds=${this.getAttachedIeds}
-                    ?readonly=${this.readonly}
-                    ?showfunctions=${shouldShowFunctions()}
-                  ></substation-editor>`
-              )}
-          </section>`
-        : html`<h1>
-            <span style="color: var(--base1)"
-              >${translate('substation.missing')}</span
-            >
-          </h1>`}${this.renderLines()}`;
+      ${this.renderSubstation()}${this.renderLines()}`;
   }
 
   static styles = css`
