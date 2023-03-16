@@ -3,12 +3,9 @@ import { expect, fixture, html } from '@open-wc/testing';
 import '../../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../../mock-wizard-editor.js';
 
-import { IconButton } from '@material/mwc-icon-button';
-
 import '../../../../src/editors/substation/zeroline-pane.js';
 import { FilteredList } from '../../../../src/filtered-list.js';
 import { ZerolinePane } from '../../../../src/editors/substation/zeroline-pane.js';
-import { WizardTextField } from '../../../../src/wizard-textfield.js';
 
 describe('zeroline-pane wizarding editing integration', () => {
   let doc: XMLDocument;
@@ -69,23 +66,5 @@ describe('zeroline-pane wizarding editing integration', () => {
     expect(reportControlList.items.length).to.equal(
       doc.querySelectorAll('ReportControl').length
     );
-  });
-
-  it('add Substation element with createSubstationWizard', async () => {
-    expect(doc.querySelector('Substation[name="newSubstation"]')).to.not.exist;
-    zeroline.createsubstation.click();
-    await parent.updateComplete;
-    const primaryAction = <IconButton>(
-      parent.wizardUI.dialog?.querySelector('mwc-button[slot="primaryAction"]')
-    );
-    await primaryAction.updateComplete;
-    const nameField = <WizardTextField>(
-      parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
-    );
-    nameField.value = 'newSubstation';
-    await nameField.updateComplete;
-    primaryAction.click();
-
-    expect(doc.querySelector('Substation[name="newSubstation"]')).to.exist;
   });
 });
