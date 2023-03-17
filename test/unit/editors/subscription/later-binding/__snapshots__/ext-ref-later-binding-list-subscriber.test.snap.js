@@ -527,7 +527,7 @@ snapshots["extref-later-binding-list-subscriber for Sampled Value Control looks 
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[0] "
+      value="SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[0]"
     >
       <span>
         Overcurrent> PTRC 1:
@@ -547,7 +547,7 @@ snapshots["extref-later-binding-list-subscriber for Sampled Value Control looks 
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[1] "
+      value="SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[1]"
     >
       <span>
         Overcurrent> PTRC 1:
@@ -567,7 +567,7 @@ snapshots["extref-later-binding-list-subscriber for Sampled Value Control looks 
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR1/VolSv/instMag.i[0] "
+      value="SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR1/VolSv/instMag.i[0]"
     >
       <span>
         Overcurrent> PTRC 1:
@@ -589,7 +589,7 @@ snapshots["extref-later-binding-list-subscriber for Sampled Value Control looks 
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR1/VolSv/q[0] "
+      value="SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR1/VolSv/q[0]"
     >
       <span>
         Overcurrent> PTRC 1:
@@ -609,7 +609,7 @@ snapshots["extref-later-binding-list-subscriber for Sampled Value Control looks 
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR2/VolSv/instMag.i[0] "
+      value="SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR2/VolSv/instMag.i[0]"
     >
       <span>
         Overcurrent> PTRC 1:
@@ -629,7 +629,7 @@ snapshots["extref-later-binding-list-subscriber for Sampled Value Control looks 
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR2/VolSv/q[0] "
+      value="SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR2/VolSv/q[0]"
     >
       <span>
         Overcurrent> PTRC 1:
@@ -649,7 +649,7 @@ snapshots["extref-later-binding-list-subscriber for Sampled Value Control looks 
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR3/VolSv/instMag.i[0] "
+      value="SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR3/VolSv/instMag.i[0]"
     >
       <span>
         Overcurrent> PTRC 1:
@@ -669,7 +669,7 @@ snapshots["extref-later-binding-list-subscriber for Sampled Value Control looks 
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR3/VolSv/q[0] "
+      value="SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR3/VolSv/q[0]"
     >
       <span>
         Overcurrent> PTRC 1:
@@ -689,7 +689,7 @@ snapshots["extref-later-binding-list-subscriber for Sampled Value Control looks 
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/instMag.i[0] "
+      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/instMag.i[0]"
     >
       <span>
         Overvoltage> PTRC 1:
@@ -711,7 +711,7 @@ snapshots["extref-later-binding-list-subscriber for Sampled Value Control looks 
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/q[0] "
+      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/q[0]"
     >
       <span>
         Overvoltage> PTRC 1:
@@ -733,7 +733,7 @@ snapshots["extref-later-binding-list-subscriber for Sampled Value Control looks 
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR2/AmpSv/instMag.i[0] "
+      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR2/AmpSv/instMag.i[0]"
     >
       <span>
         Overvoltage> PTRC 1:
@@ -753,7 +753,7 @@ snapshots["extref-later-binding-list-subscriber for Sampled Value Control looks 
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR2/AmpSv/q[0] "
+      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR2/AmpSv/q[0]"
     >
       <span>
         Overvoltage> PTRC 1:
@@ -775,7 +775,7 @@ snapshots["extref-later-binding-list-subscriber for Sampled Value Control looks 
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR3/AmpSv/instMag.i[0] "
+      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR3/AmpSv/instMag.i[0]"
     >
       <span>
         Overvoltage> PTRC 1:
@@ -795,7 +795,7 @@ snapshots["extref-later-binding-list-subscriber for Sampled Value Control looks 
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR3/AmpSv/q[0] "
+      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR3/AmpSv/q[0]"
     >
       <span>
         Overvoltage> PTRC 1:
@@ -924,7 +924,7 @@ snapshots["extref-later-binding-list-subscriber for GOOSE Control looks like the
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaCls/stVal[0] "
+      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaCls/stVal[0]"
     >
       <span>
         Earth_Switch> CILO 1:
@@ -946,7 +946,7 @@ snapshots["extref-later-binding-list-subscriber for GOOSE Control looks like the
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaOpn/stVal[0] "
+      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaOpn/stVal[0]"
     >
       <span>
         Earth_Switch> CILO 1:
@@ -968,7 +968,7 @@ snapshots["extref-later-binding-list-subscriber for GOOSE Control looks like the
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaOpn2/stVal[0] "
+      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaOpn2/stVal[0]"
     >
       <span>
         Earth_Switch> CILO 1:
@@ -990,7 +990,7 @@ snapshots["extref-later-binding-list-subscriber for GOOSE Control looks like the
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/q[0] "
+      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/q[0]"
     >
       <span>
         Earth_Switch> CILO 1:
@@ -1012,7 +1012,7 @@ snapshots["extref-later-binding-list-subscriber for GOOSE Control looks like the
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0] "
+      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0]"
     >
       <span>
         Earth_Switch> CILO 1:
@@ -1032,7 +1032,7 @@ snapshots["extref-later-binding-list-subscriber for GOOSE Control looks like the
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>Pos;CSWI1/Pos/q[0] "
+      value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>Pos;CSWI1/Pos/q[0]"
     >
       <span>
         Earth_Switch> CSWI 1:
@@ -1054,7 +1054,7 @@ snapshots["extref-later-binding-list-subscriber for GOOSE Control looks like the
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>Pos;CSWI1/Pos/stVal[0] "
+      value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>Pos;CSWI1/Pos/stVal[0]"
     >
       <span>
         Earth_Switch> CSWI 1:
@@ -1076,7 +1076,7 @@ snapshots["extref-later-binding-list-subscriber for GOOSE Control looks like the
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0] "
+      value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0]"
     >
       <span>
         Earth_Switch> CSWI 1:
@@ -1096,7 +1096,7 @@ snapshots["extref-later-binding-list-subscriber for GOOSE Control looks like the
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[1] "
+      value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[1]"
     >
       <span>
         Earth_Switch> CSWI 1:
@@ -1116,7 +1116,7 @@ snapshots["extref-later-binding-list-subscriber for GOOSE Control looks like the
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos q "
+      value="GOOSE_Subscriber>>Earth_Switch>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos q"
     >
       <span>
         Earth_Switch:
@@ -1137,7 +1137,7 @@ snapshots["extref-later-binding-list-subscriber for GOOSE Control looks like the
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos stVal "
+      value="GOOSE_Subscriber>>Earth_Switch>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos stVal"
     >
       <span>
         Earth_Switch:

@@ -9,6 +9,7 @@ import {
 
 import './subscription/fcda-binding-list.js';
 import './subscription/later-binding/ext-ref-later-binding-list.js';
+import './subscription/later-binding/ext-ref-later-binding-list-subscriber.js';
 
 /** An editor [[`plugin`]] for Subscribe Later Binding (SMV). */
 export default class SMVSubscribeLaterBindingPlugin extends LitElement {
@@ -18,10 +19,22 @@ export default class SMVSubscribeLaterBindingPlugin extends LitElement {
   @query('div.container')
   containerElement!: Element;
 
-  @property({ attribute: false })
-  subscriberView =
-    localStorage.getItem('subscriber-later-binding-smv$change-view') ===
-      'true' ?? false;
+  @property({ type: Boolean })
+  get subscriberView(): boolean {
+    return (
+      localStorage.getItem(`subscriber-later-binding-smv$change-view`) ===
+        'true' ?? false
+    );
+  }
+
+  set subscriberView(value: boolean) {
+    const oldValue = this.subscriberView;
+    localStorage.setItem(
+      `subscriber-later-binding-smv$change-view`,
+      `${value}`
+    );
+    this.requestUpdate('subscriberView', oldValue);
+  }
 
   protected firstUpdated(): void {
     this.addEventListener('change-view', () => {

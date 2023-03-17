@@ -19,10 +19,22 @@ export default class GooseSubscribeLaterBindingPlugin extends LitElement {
   @query('div.container')
   containerElement!: Element;
 
-  @property({ attribute: false })
-  subscriberView =
-    localStorage.getItem('subscriber-later-binding-goose$change-view') ===
-      'true' ?? false;
+  @property({ type: Boolean })
+  get subscriberView(): boolean {
+    return (
+      localStorage.getItem(`subscriber-later-binding-smv$change-view`) ===
+        'true' ?? false
+    );
+  }
+
+  set subscriberView(value: boolean) {
+    const oldValue = this.subscriberView;
+    localStorage.setItem(
+      `subscriber-later-binding-smv$change-view`,
+      `${value}`
+    );
+    this.requestUpdate('subscriberView', oldValue);
+  }
 
   protected firstUpdated(): void {
     this.addEventListener('change-view', () => {

@@ -295,7 +295,11 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
         corner="BOTTOM_RIGHT"
         menuCorner="END"
       >
-        <mwc-check-list-item class="" left ?selected=${!this.notAutoIncrement}>
+        <mwc-check-list-item
+          class="auto-increment"
+          left
+          ?selected=${!this.notAutoIncrement}
+        >
           <span
             >${translate(
               'subscription.laterBinding.extRefList.autoIncrement'
@@ -417,8 +421,8 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
           this.shadowRoot!.querySelector('mwc-list-item[activated].extref')!
         ))?.requestUpdate();
       }}
-      value="${identity(extRefElement)} ${supervisionNode
-        ? identity(supervisionNode)
+      value="${identity(extRefElement)}${supervisionNode
+        ? ` ${identity(supervisionNode)}`
         : ''}"
     >
       <span>
