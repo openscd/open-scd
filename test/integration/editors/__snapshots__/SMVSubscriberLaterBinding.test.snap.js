@@ -4689,8 +4689,9 @@ snapshots["SMV Subscribe Later Binding plugin when in the subscriber view the Ex
         graphic="control"
         left=""
         mwc-list-item=""
+        role="menuitem"
         selected=""
-        tabindex="-1"
+        tabindex="0"
       >
         <span>
           [subscription.laterBinding.extRefList.bound]
@@ -4702,6 +4703,7 @@ snapshots["SMV Subscribe Later Binding plugin when in the subscriber view the Ex
         graphic="control"
         left=""
         mwc-list-item=""
+        role="menuitem"
         selected=""
         tabindex="-1"
       >
@@ -4724,11 +4726,13 @@ snapshots["SMV Subscribe Later Binding plugin when in the subscriber view the Ex
     >
       <mwc-check-list-item
         aria-disabled="false"
+        class="auto-increment"
         graphic="control"
         left=""
         mwc-list-item=""
+        role="menuitem"
         selected=""
-        tabindex="-1"
+        tabindex="0"
       >
         <span>
           [subscription.laterBinding.extRefList.autoIncrement]
@@ -5785,6 +5789,7 @@ snapshots["SMV Subscribe Later Binding plugin when in the Publisher view can be 
     >
       <mwc-check-list-item
         aria-disabled="false"
+        class="auto-increment"
         graphic="control"
         left=""
         mwc-list-item=""

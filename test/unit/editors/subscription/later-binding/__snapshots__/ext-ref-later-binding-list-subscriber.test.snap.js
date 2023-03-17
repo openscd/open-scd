@@ -483,6 +483,7 @@ snapshots["extref-later-binding-list-subscriber for Sampled Value Control looks 
     >
       <mwc-check-list-item
         aria-disabled="false"
+        class="auto-increment"
         graphic="control"
         left=""
         mwc-list-item=""
@@ -880,6 +881,7 @@ snapshots["extref-later-binding-list-subscriber for GOOSE Control looks like the
     >
       <mwc-check-list-item
         aria-disabled="false"
+        class="auto-increment"
         graphic="control"
         left=""
         mwc-list-item=""
