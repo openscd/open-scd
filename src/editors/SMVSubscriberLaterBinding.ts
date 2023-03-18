@@ -48,41 +48,38 @@ export default class SMVSubscribeLaterBindingPlugin extends LitElement {
 
   render(): TemplateResult {
     const controlTag = 'SampledValueControl';
-    if (this.subscriberView) {
-      console.log('We are the subscriber view');
-      return html`<div class="container" ?subscriberview=${this.subscriberView}>
-        <fcda-binding-list
-          class="column"
-          controlTag="${controlTag}"
-          .subscriberview="${this.subscriberView}"
-          .includeLaterBinding="${true}"
-          .doc="${this.doc}"
-        >
-        </fcda-binding-list>
-        <extref-later-binding-list-subscriber
-          class="column"
-          controlTag="${controlTag}"
-          .doc="${this.doc}"
-        ></extref-later-binding-list-subscriber>
-      </div>`;
-    }
-    console.log('we are the publisher view');
-    return html`<div class="container" ?subscriberview=${this.subscriberView}>
-      <fcda-binding-list
-        class="column"
-        controlTag="${controlTag}"
-        .subscriberview="${this.subscriberView}"
-        .includeLaterBinding="${true}"
-        .doc="${this.doc}"
-      >
-      </fcda-binding-list>
-      <extref-later-binding-list
-        class="column"
-        controlTag="${controlTag}"
-        .includeLaterBinding="${true}"
-        .doc="${this.doc}"
-      ></extref-later-binding-list>
-    </div>`;
+    return this.subscriberView
+      ? html`<div class="container" ?subscriberview=${this.subscriberView}>
+          <fcda-binding-list
+            class="column"
+            controlTag="${controlTag}"
+            .subscriberview="${this.subscriberView}"
+            .includeLaterBinding="${true}"
+            .doc="${this.doc}"
+          >
+          </fcda-binding-list>
+          <extref-later-binding-list-subscriber
+            class="column"
+            controlTag="${controlTag}"
+            .doc="${this.doc}"
+          ></extref-later-binding-list-subscriber>
+        </div>`
+      : html`<div class="container" ?subscriberview=${this.subscriberView}>
+          <fcda-binding-list
+            class="column"
+            controlTag="${controlTag}"
+            .subscriberview="${this.subscriberView}"
+            .includeLaterBinding="${true}"
+            .doc="${this.doc}"
+          >
+          </fcda-binding-list>
+          <extref-later-binding-list
+            class="column"
+            controlTag="${controlTag}"
+            .includeLaterBinding="${true}"
+            .doc="${this.doc}"
+          ></extref-later-binding-list>
+        </div>`;
   }
 
   static styles = css`

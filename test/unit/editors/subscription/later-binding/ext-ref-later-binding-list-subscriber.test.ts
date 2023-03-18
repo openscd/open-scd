@@ -70,7 +70,7 @@ describe('extref-later-binding-list-subscriber', () => {
         element.filterMenuIcon.click();
         await element.updateComplete;
         (<ListItem>element.filterMenu!.querySelector('.show-bound'))!.click();
-        await new Promise(resolve => setTimeout(resolve, 200)); // await animation
+        await new Promise(resolve => setTimeout(resolve, 300)); // await animation
         await element.updateComplete;
 
         const extRefList = element.shadowRoot?.querySelector('filtered-list');

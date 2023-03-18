@@ -388,7 +388,6 @@ export function findControlBlock(extRef: Element): Element {
         });
     })
   );
-  console.log('cb', controlBlocks, controlBlocks.size);
   return controlBlocks.values().next().value;
 }
 
@@ -428,8 +427,7 @@ export function findFCDA(
         fcda.parentElement?.getAttribute('name') === dataSetRef
     );
 
-  console.log('fcda', candidateFCDAs, candidateFCDAs.length);
-  return candidateFCDAs[0];
+  return candidateFCDAs[0] ?? null;
 }
 
 /**
@@ -439,6 +437,10 @@ export function findFCDA(
  * @param eventElement - The element from which to initiate events.
  */
 export function unsubscribe(extRef: Element, eventElement: HTMLElement): void {
+  const [pLN, pDO, pDA, pServT] = ['pLN', 'pDO', 'pDA', 'pServT'].map(attr =>
+    extRef.getAttribute(attr)
+  );
+
   const updateAction = createUpdateAction(extRef, {
     intAddr: extRef.getAttribute('intAddr'),
     desc: extRef.getAttribute('desc'),
@@ -455,6 +457,10 @@ export function unsubscribe(extRef: Element, eventElement: HTMLElement): void {
     srcLNClass: null,
     srcLNInst: null,
     srcCBName: null,
+    ...(pLN && { pLN }),
+    ...(pDO && { pDO }),
+    ...(pDA && { pDA }),
+    ...(pServT && { pServT }),
   });
 
   const subscriberIed = extRef.closest('IED') || undefined;

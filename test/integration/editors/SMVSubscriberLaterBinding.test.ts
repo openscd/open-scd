@@ -258,7 +258,10 @@ describe('SMV Subscribe Later Binding plugin', () => {
 
         expect(selectedExtRef.value).to.equal(
           'SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[1]'
-        );
+        ); // new subscription
+
+        // check counts and disabled items in FCDA list via snapshot
+        expect(fcdaElement).shadowDom.to.equalSnapshot();
       });
 
       it('an available ExtRef a subscription is made and if auto-increment is disabled, the next ExtRef is not selected', async () => {
@@ -355,42 +358,42 @@ describe('SMV Subscribe Later Binding plugin', () => {
       });
     });
 
-    // it('when unsubscribing a subscribed ExtRef then the lists are changed', async () => {
-    //   const fcdaListElement = getFCDABindingList(element);
-    //   const extRefListElement = getExtrefLaterBindingList(element);
+    describe('when unsubscribing', async () => {
+      it('a subscribed ExtRef then the lists are changed', async () => {
+        expect(
+          getSubscribedExtRefsCount(extRefElement, 'SMV_Subscriber')
+        ).to.be.equal(5); // subscriptions unchanged
 
-    //   selectFCDAItem(
-    //     fcdaListElement,
-    //     'SMV_Publisher>>CurrentTransformer>currentOnly',
-    //     'SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)'
-    //   );
-    //   await element.requestUpdate();
-    //   await extRefListElement.requestUpdate();
+        selectExtRefItem(
+          extRefElement,
+          'SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR1/VolSv/instMag.i[0]'
+        );
+        await element.updateComplete;
 
-    //   expect(
-    //     extRefListElement['getSubscribedExtRefElements']().length
-    //   ).to.be.equal(3);
-    //   expect(getSelectedSubItemValue(fcdaListElement)).to.have.text('3');
-    //   expect(
-    //     extRefListElement['getAvailableExtRefElements']().length
-    //   ).to.be.equal(9);
+        expect(
+          getSubscribedExtRefsCount(extRefElement, 'SMV_Subscriber')
+        ).to.be.equal(4); // subscriptions changed
 
-    //   (<HTMLElement>(
-    //     extRefListElement.shadowRoot!.querySelector(
-    //       'mwc-list-item[value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/q[0]"]'
-    //     )
-    //   )).click();
-    //   await fcdaListElement.requestUpdate();
-    //   await element.requestUpdate();
+        // check counts and disabled items in FCDA list via snapshot
+        expect(fcdaElement).shadowDom.to.equalSnapshot();
+      });
+    });
 
-    //   expect(
-    //     extRefListElement['getSubscribedExtRefElements']().length
-    //   ).to.be.equal(2);
-    //   expect(getSelectedSubItemValue(fcdaListElement)).to.have.text('2');
-    //   expect(
-    //     extRefListElement['getAvailableExtRefElements']().length
-    //   ).to.be.equal(10);
-    // });
+    it('Shows correct items disabled in the FCDA list', async () => {
+      selectExtRefItem(
+        extRefElement,
+        'SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[0]'
+      );
+      await element.updateComplete;
+
+      const listItems = fcdaElement!
+        .shadowRoot!.querySelector('filtered-list')!
+        .querySelectorAll('mwc-list-item');
+
+      expect(listItems[1].disabled).to.equal(true);
+      expect(listItems[3].disabled).to.equal(true);
+      expect(listItems[5].disabled).to.equal(true);
+    });
 
     it('the ExtRef list looks like the latest snapshot', async () => {
       expect(extRefElement).shadowDom.to.equalSnapshot();

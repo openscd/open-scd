@@ -6134,3 +6134,4576 @@ snapshots["SMV Subscribe Later Binding plugin when in the subscriber view can be
 `;
 /* end snapshot SMV Subscribe Later Binding plugin when in the subscriber view can be selected to the publisher view */
 
+snapshots["SMV Subscribe Later Binding plugin when in the subscriber view when subscribing an available ExtRef then a supervision instance is created"] = 
+`<section tabindex="0">
+  <h1>
+    [subscription.SampledValueControl.controlBlockList.title]
+  </h1>
+  <filtered-list>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      noninteractive=""
+      tabindex="-1"
+      twoline=""
+      value="
+                        SMV_Publisher>>CurrentTransformer>fullSmv
+                        AmpSv.instMag.i
+                        CurrentTransformer / L3 TCTR 3
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 3.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L3 TCTR 3
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 3.AmpSv q (MX)
+                        AmpSv.instMag.i
+                        CurrentTransformer / L2 TCTR 2
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 2.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L2 TCTR 2
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 2.AmpSv q (MX)
+                        AmpSv.instMag.i
+                        CurrentTransformer / L1 TCTR 1
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L1 TCTR 1
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)
+                        VolSv.instMag.i
+                        VoltageTransformer / L3 TVTR 3
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L3 TVTR 3.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L3 TVTR 3
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L3 TVTR 3.VolSv q (MX)
+                        VolSv.instMag.i
+                        VoltageTransformer / L2 TVTR 2
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L2 TVTR 2.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L2 TVTR 2
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L2 TVTR 2.VolSv q (MX)
+                        VolSv.instMag.i
+                        VoltageTransformer / L1 TVTR 1
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L1 TVTR 1
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L1 TVTR 1.VolSv q (MX)"
+    >
+      <mwc-icon-button
+        class="interactive"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
+      <span>
+        fullSmv
+      </span>
+      <span slot="secondary">
+        SMV_Publisher>>CurrentTransformer>fullSmv
+      </span>
+      <mwc-icon slot="graphic">
+      </mwc-icon>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 3.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L3 TCTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 3.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L3 TCTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      aria-selected="true"
+      class="subitem"
+      graphic="large"
+      hasmeta=""
+      mwc-list-item=""
+      selected=""
+      tabindex="0"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 2.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L2 TCTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+      <span slot="meta">
+        1
+      </span>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 2.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L2 TCTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L1 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L1 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L3 TVTR 3.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L3 TVTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L3 TVTR 3.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L3 TVTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L2 TVTR 2.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L2 TVTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L2 TVTR 2.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L2 TVTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L1 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L1 TVTR 1.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L1 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      noninteractive=""
+      tabindex="-1"
+      twoline=""
+      value="
+                        SMV_Publisher>>CurrentTransformer>voltageOnly
+                        VolSv.instMag.i
+                        VoltageTransformer / L1 TVTR 1
+                        SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L1 TVTR 1
+                        SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L1 TVTR 1.VolSv q (MX)
+                        VolSv.instMag.i
+                        VoltageTransformer / L2 TVTR 2
+                        SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L2 TVTR 2.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L2 TVTR 2
+                        SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L2 TVTR 2.VolSv q (MX)
+                        VolSv.instMag.i
+                        VoltageTransformer / L3 TVTR 3
+                        SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L3 TVTR 3.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L3 TVTR 3
+                        SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L3 TVTR 3.VolSv q (MX)"
+    >
+      <mwc-icon-button
+        class="interactive"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
+      <span>
+        voltageOnly
+      </span>
+      <span slot="secondary">
+        SMV_Publisher>>CurrentTransformer>voltageOnly
+      </span>
+      <mwc-icon slot="graphic">
+      </mwc-icon>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>voltageOnly
+             SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L1 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>voltageOnly
+             SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L1 TVTR 1.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L1 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>voltageOnly
+             SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L2 TVTR 2.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L2 TVTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>voltageOnly
+             SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L2 TVTR 2.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L2 TVTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>voltageOnly
+             SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L3 TVTR 3.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L3 TVTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>voltageOnly
+             SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L3 TVTR 3.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L3 TVTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      noninteractive=""
+      tabindex="-1"
+      twoline=""
+      value="
+                        SMV_Publisher>>CurrentTransformer>currrentOnly
+                        AmpSv.instMag.i
+                        CurrentTransformer / L1 TCTR 1
+                        SMV_Publisher>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L1 TCTR 1
+                        SMV_Publisher>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)
+                        AmpSv.instMag.i
+                        CurrentTransformer / L2 TCTR 2
+                        SMV_Publisher>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L2 TCTR 2.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L2 TCTR 2
+                        SMV_Publisher>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L2 TCTR 2.AmpSv q (MX)
+                        AmpSv.instMag.i
+                        CurrentTransformer / L3 TCTR 3
+                        SMV_Publisher>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L3 TCTR 3.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L3 TCTR 3
+                        SMV_Publisher>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L3 TCTR 3.AmpSv q (MX)"
+    >
+      <mwc-icon-button
+        class="interactive"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
+      <span>
+        currrentOnly
+      </span>
+      <span slot="secondary">
+        SMV_Publisher>>CurrentTransformer>currrentOnly
+      </span>
+      <mwc-icon slot="graphic">
+      </mwc-icon>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      hasmeta=""
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>currrentOnly
+             SMV_Publisher>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L1 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+      <span slot="meta">
+        5
+      </span>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>currrentOnly
+             SMV_Publisher>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L1 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>currrentOnly
+             SMV_Publisher>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L2 TCTR 2.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L2 TCTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>currrentOnly
+             SMV_Publisher>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L2 TCTR 2.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L2 TCTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>currrentOnly
+             SMV_Publisher>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L3 TCTR 3.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L3 TCTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>currrentOnly
+             SMV_Publisher>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L3 TCTR 3.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L3 TCTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      noninteractive=""
+      tabindex="-1"
+      twoline=""
+      value="
+                        SMV_Publisher2>>CurrentTransformer>fullSmv
+                        AmpSv.instMag.i
+                        CurrentTransformer / L3 TCTR 3
+                        SMV_Publisher2>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 3.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L3 TCTR 3
+                        SMV_Publisher2>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 3.AmpSv q (MX)
+                        AmpSv.instMag.i
+                        CurrentTransformer / L2 TCTR 2
+                        SMV_Publisher2>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 2.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L2 TCTR 2
+                        SMV_Publisher2>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 2.AmpSv q (MX)
+                        AmpSv.instMag.i
+                        CurrentTransformer / L1 TCTR 1
+                        SMV_Publisher2>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L1 TCTR 1
+                        SMV_Publisher2>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)
+                        VolSv.instMag.i
+                        VoltageTransformer / L3 TVTR 3
+                        SMV_Publisher2>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L3 TVTR 3.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L3 TVTR 3
+                        SMV_Publisher2>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L3 TVTR 3.VolSv q (MX)
+                        VolSv.instMag.i
+                        VoltageTransformer / L2 TVTR 2
+                        SMV_Publisher2>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L2 TVTR 2.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L2 TVTR 2
+                        SMV_Publisher2>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L2 TVTR 2.VolSv q (MX)
+                        VolSv.instMag.i
+                        VoltageTransformer / L1 TVTR 1
+                        SMV_Publisher2>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L1 TVTR 1
+                        SMV_Publisher2>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L1 TVTR 1.VolSv q (MX)"
+    >
+      <mwc-icon-button
+        class="interactive"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
+      <span>
+        fullSmv
+      </span>
+      <span slot="secondary">
+        SMV_Publisher2>>CurrentTransformer>fullSmv
+      </span>
+      <mwc-icon slot="graphic">
+      </mwc-icon>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher2>>CurrentTransformer>fullSmv
+             SMV_Publisher2>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 3.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L3 TCTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher2>>CurrentTransformer>fullSmv
+             SMV_Publisher2>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 3.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L3 TCTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher2>>CurrentTransformer>fullSmv
+             SMV_Publisher2>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 2.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L2 TCTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher2>>CurrentTransformer>fullSmv
+             SMV_Publisher2>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 2.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L2 TCTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher2>>CurrentTransformer>fullSmv
+             SMV_Publisher2>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L1 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher2>>CurrentTransformer>fullSmv
+             SMV_Publisher2>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L1 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher2>>CurrentTransformer>fullSmv
+             SMV_Publisher2>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L3 TVTR 3.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L3 TVTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher2>>CurrentTransformer>fullSmv
+             SMV_Publisher2>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L3 TVTR 3.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L3 TVTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher2>>CurrentTransformer>fullSmv
+             SMV_Publisher2>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L2 TVTR 2.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L2 TVTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher2>>CurrentTransformer>fullSmv
+             SMV_Publisher2>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L2 TVTR 2.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L2 TVTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher2>>CurrentTransformer>fullSmv
+             SMV_Publisher2>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L1 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher2>>CurrentTransformer>fullSmv
+             SMV_Publisher2>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L1 TVTR 1.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L1 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      noninteractive=""
+      tabindex="-1"
+      twoline=""
+      value="
+                        SMV_Publisher2>>CurrentTransformer>voltageOnly
+                        VolSv.instMag.i
+                        VoltageTransformer / L1 TVTR 1
+                        SMV_Publisher2>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L1 TVTR 1
+                        SMV_Publisher2>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L1 TVTR 1.VolSv q (MX)
+                        VolSv.instMag.i
+                        VoltageTransformer / L2 TVTR 2
+                        SMV_Publisher2>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L2 TVTR 2.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L2 TVTR 2
+                        SMV_Publisher2>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L2 TVTR 2.VolSv q (MX)
+                        VolSv.instMag.i
+                        VoltageTransformer / L3 TVTR 3
+                        SMV_Publisher2>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L3 TVTR 3.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L3 TVTR 3
+                        SMV_Publisher2>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L3 TVTR 3.VolSv q (MX)"
+    >
+      <mwc-icon-button
+        class="interactive"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
+      <span>
+        voltageOnly
+      </span>
+      <span slot="secondary">
+        SMV_Publisher2>>CurrentTransformer>voltageOnly
+      </span>
+      <mwc-icon slot="graphic">
+      </mwc-icon>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher2>>CurrentTransformer>voltageOnly
+             SMV_Publisher2>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L1 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher2>>CurrentTransformer>voltageOnly
+             SMV_Publisher2>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L1 TVTR 1.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L1 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher2>>CurrentTransformer>voltageOnly
+             SMV_Publisher2>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L2 TVTR 2.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L2 TVTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher2>>CurrentTransformer>voltageOnly
+             SMV_Publisher2>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L2 TVTR 2.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L2 TVTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher2>>CurrentTransformer>voltageOnly
+             SMV_Publisher2>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L3 TVTR 3.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L3 TVTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher2>>CurrentTransformer>voltageOnly
+             SMV_Publisher2>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L3 TVTR 3.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L3 TVTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      noninteractive=""
+      tabindex="-1"
+      twoline=""
+      value="
+                        SMV_Publisher2>>CurrentTransformer>currrentOnly
+                        AmpSv.instMag.i
+                        CurrentTransformer / L1 TCTR 1
+                        SMV_Publisher2>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L1 TCTR 1
+                        SMV_Publisher2>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)
+                        AmpSv.instMag.i
+                        CurrentTransformer / L2 TCTR 2
+                        SMV_Publisher2>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L2 TCTR 2.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L2 TCTR 2
+                        SMV_Publisher2>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L2 TCTR 2.AmpSv q (MX)
+                        AmpSv.instMag.i
+                        CurrentTransformer / L3 TCTR 3
+                        SMV_Publisher2>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L3 TCTR 3.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L3 TCTR 3
+                        SMV_Publisher2>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L3 TCTR 3.AmpSv q (MX)"
+    >
+      <mwc-icon-button
+        class="interactive"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
+      <span>
+        currrentOnly
+      </span>
+      <span slot="secondary">
+        SMV_Publisher2>>CurrentTransformer>currrentOnly
+      </span>
+      <mwc-icon slot="graphic">
+      </mwc-icon>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher2>>CurrentTransformer>currrentOnly
+             SMV_Publisher2>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L1 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher2>>CurrentTransformer>currrentOnly
+             SMV_Publisher2>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L1 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher2>>CurrentTransformer>currrentOnly
+             SMV_Publisher2>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L2 TCTR 2.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L2 TCTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher2>>CurrentTransformer>currrentOnly
+             SMV_Publisher2>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L2 TCTR 2.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L2 TCTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher2>>CurrentTransformer>currrentOnly
+             SMV_Publisher2>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L3 TCTR 3.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L3 TCTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher2>>CurrentTransformer>currrentOnly
+             SMV_Publisher2>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L3 TCTR 3.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L3 TCTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      noninteractive=""
+      tabindex="-1"
+      twoline=""
+      value="
+                        SMV_Publisher3>>CurrentTransformer>fullSmv
+                        AmpSv.instMag.i
+                        CurrentTransformer / L3 TCTR 3
+                        SMV_Publisher3>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 3.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L3 TCTR 3
+                        SMV_Publisher3>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 3.AmpSv q (MX)
+                        AmpSv.instMag.i
+                        CurrentTransformer / L2 TCTR 2
+                        SMV_Publisher3>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 2.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L2 TCTR 2
+                        SMV_Publisher3>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 2.AmpSv q (MX)
+                        AmpSv.instMag.i
+                        CurrentTransformer / L1 TCTR 1
+                        SMV_Publisher3>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L1 TCTR 1
+                        SMV_Publisher3>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)
+                        VolSv.instMag.i
+                        VoltageTransformer / L3 TVTR 3
+                        SMV_Publisher3>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L3 TVTR 3.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L3 TVTR 3
+                        SMV_Publisher3>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L3 TVTR 3.VolSv q (MX)
+                        VolSv.instMag.i
+                        VoltageTransformer / L2 TVTR 2
+                        SMV_Publisher3>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L2 TVTR 2.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L2 TVTR 2
+                        SMV_Publisher3>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L2 TVTR 2.VolSv q (MX)
+                        VolSv.instMag.i
+                        VoltageTransformer / L1 TVTR 1
+                        SMV_Publisher3>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L1 TVTR 1
+                        SMV_Publisher3>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L1 TVTR 1.VolSv q (MX)"
+    >
+      <mwc-icon-button
+        class="interactive"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
+      <span>
+        fullSmv
+      </span>
+      <span slot="secondary">
+        SMV_Publisher3>>CurrentTransformer>fullSmv
+      </span>
+      <mwc-icon slot="graphic">
+      </mwc-icon>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher3>>CurrentTransformer>fullSmv
+             SMV_Publisher3>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 3.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L3 TCTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher3>>CurrentTransformer>fullSmv
+             SMV_Publisher3>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 3.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L3 TCTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher3>>CurrentTransformer>fullSmv
+             SMV_Publisher3>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 2.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L2 TCTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher3>>CurrentTransformer>fullSmv
+             SMV_Publisher3>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 2.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L2 TCTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher3>>CurrentTransformer>fullSmv
+             SMV_Publisher3>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L1 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher3>>CurrentTransformer>fullSmv
+             SMV_Publisher3>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L1 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher3>>CurrentTransformer>fullSmv
+             SMV_Publisher3>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L3 TVTR 3.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L3 TVTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher3>>CurrentTransformer>fullSmv
+             SMV_Publisher3>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L3 TVTR 3.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L3 TVTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher3>>CurrentTransformer>fullSmv
+             SMV_Publisher3>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L2 TVTR 2.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L2 TVTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher3>>CurrentTransformer>fullSmv
+             SMV_Publisher3>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L2 TVTR 2.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L2 TVTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher3>>CurrentTransformer>fullSmv
+             SMV_Publisher3>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L1 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher3>>CurrentTransformer>fullSmv
+             SMV_Publisher3>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L1 TVTR 1.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L1 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      noninteractive=""
+      tabindex="-1"
+      twoline=""
+      value="
+                        SMV_Publisher3>>CurrentTransformer>voltageOnly
+                        VolSv.instMag.i
+                        VoltageTransformer / L1 TVTR 1
+                        SMV_Publisher3>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L1 TVTR 1
+                        SMV_Publisher3>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L1 TVTR 1.VolSv q (MX)
+                        VolSv.instMag.i
+                        VoltageTransformer / L2 TVTR 2
+                        SMV_Publisher3>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L2 TVTR 2.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L2 TVTR 2
+                        SMV_Publisher3>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L2 TVTR 2.VolSv q (MX)
+                        VolSv.instMag.i
+                        VoltageTransformer / L3 TVTR 3
+                        SMV_Publisher3>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L3 TVTR 3.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L3 TVTR 3
+                        SMV_Publisher3>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L3 TVTR 3.VolSv q (MX)"
+    >
+      <mwc-icon-button
+        class="interactive"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
+      <span>
+        voltageOnly
+      </span>
+      <span slot="secondary">
+        SMV_Publisher3>>CurrentTransformer>voltageOnly
+      </span>
+      <mwc-icon slot="graphic">
+      </mwc-icon>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher3>>CurrentTransformer>voltageOnly
+             SMV_Publisher3>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L1 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher3>>CurrentTransformer>voltageOnly
+             SMV_Publisher3>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L1 TVTR 1.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L1 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher3>>CurrentTransformer>voltageOnly
+             SMV_Publisher3>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L2 TVTR 2.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L2 TVTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher3>>CurrentTransformer>voltageOnly
+             SMV_Publisher3>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L2 TVTR 2.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L2 TVTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher3>>CurrentTransformer>voltageOnly
+             SMV_Publisher3>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L3 TVTR 3.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L3 TVTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher3>>CurrentTransformer>voltageOnly
+             SMV_Publisher3>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L3 TVTR 3.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L3 TVTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      noninteractive=""
+      tabindex="-1"
+      twoline=""
+      value="
+                        SMV_Publisher3>>CurrentTransformer>currrentOnly
+                        AmpSv.instMag.i
+                        CurrentTransformer / L1 TCTR 1
+                        SMV_Publisher3>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L1 TCTR 1
+                        SMV_Publisher3>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)
+                        AmpSv.instMag.i
+                        CurrentTransformer / L2 TCTR 2
+                        SMV_Publisher3>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L2 TCTR 2.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L2 TCTR 2
+                        SMV_Publisher3>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L2 TCTR 2.AmpSv q (MX)
+                        AmpSv.instMag.i
+                        CurrentTransformer / L3 TCTR 3
+                        SMV_Publisher3>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L3 TCTR 3.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L3 TCTR 3
+                        SMV_Publisher3>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L3 TCTR 3.AmpSv q (MX)"
+    >
+      <mwc-icon-button
+        class="interactive"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
+      <span>
+        currrentOnly
+      </span>
+      <span slot="secondary">
+        SMV_Publisher3>>CurrentTransformer>currrentOnly
+      </span>
+      <mwc-icon slot="graphic">
+      </mwc-icon>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher3>>CurrentTransformer>currrentOnly
+             SMV_Publisher3>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L1 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher3>>CurrentTransformer>currrentOnly
+             SMV_Publisher3>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L1 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher3>>CurrentTransformer>currrentOnly
+             SMV_Publisher3>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L2 TCTR 2.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L2 TCTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher3>>CurrentTransformer>currrentOnly
+             SMV_Publisher3>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L2 TCTR 2.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L2 TCTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher3>>CurrentTransformer>currrentOnly
+             SMV_Publisher3>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L3 TCTR 3.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L3 TCTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher3>>CurrentTransformer>currrentOnly
+             SMV_Publisher3>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L3 TCTR 3.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L3 TCTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      noninteractive=""
+      tabindex="-1"
+      twoline=""
+      value="
+                        SMV_Publisher4>>CurrentTransformer>fullSmv
+                        AmpSv.instMag.i
+                        CurrentTransformer / L3 TCTR 3
+                        SMV_Publisher4>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 3.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L3 TCTR 3
+                        SMV_Publisher4>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 3.AmpSv q (MX)
+                        AmpSv.instMag.i
+                        CurrentTransformer / L2 TCTR 2
+                        SMV_Publisher4>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 2.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L2 TCTR 2
+                        SMV_Publisher4>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 2.AmpSv q (MX)
+                        AmpSv.instMag.i
+                        CurrentTransformer / L1 TCTR 1
+                        SMV_Publisher4>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L1 TCTR 1
+                        SMV_Publisher4>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)
+                        VolSv.instMag.i
+                        VoltageTransformer / L3 TVTR 3
+                        SMV_Publisher4>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L3 TVTR 3.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L3 TVTR 3
+                        SMV_Publisher4>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L3 TVTR 3.VolSv q (MX)
+                        VolSv.instMag.i
+                        VoltageTransformer / L2 TVTR 2
+                        SMV_Publisher4>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L2 TVTR 2.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L2 TVTR 2
+                        SMV_Publisher4>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L2 TVTR 2.VolSv q (MX)
+                        VolSv.instMag.i
+                        VoltageTransformer / L1 TVTR 1
+                        SMV_Publisher4>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L1 TVTR 1
+                        SMV_Publisher4>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L1 TVTR 1.VolSv q (MX)"
+    >
+      <mwc-icon-button
+        class="interactive"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
+      <span>
+        fullSmv
+      </span>
+      <span slot="secondary">
+        SMV_Publisher4>>CurrentTransformer>fullSmv
+      </span>
+      <mwc-icon slot="graphic">
+      </mwc-icon>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher4>>CurrentTransformer>fullSmv
+             SMV_Publisher4>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 3.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L3 TCTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher4>>CurrentTransformer>fullSmv
+             SMV_Publisher4>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 3.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L3 TCTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher4>>CurrentTransformer>fullSmv
+             SMV_Publisher4>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 2.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L2 TCTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher4>>CurrentTransformer>fullSmv
+             SMV_Publisher4>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 2.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L2 TCTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher4>>CurrentTransformer>fullSmv
+             SMV_Publisher4>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L1 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher4>>CurrentTransformer>fullSmv
+             SMV_Publisher4>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L1 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher4>>CurrentTransformer>fullSmv
+             SMV_Publisher4>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L3 TVTR 3.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L3 TVTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher4>>CurrentTransformer>fullSmv
+             SMV_Publisher4>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L3 TVTR 3.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L3 TVTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher4>>CurrentTransformer>fullSmv
+             SMV_Publisher4>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L2 TVTR 2.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L2 TVTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher4>>CurrentTransformer>fullSmv
+             SMV_Publisher4>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L2 TVTR 2.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L2 TVTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher4>>CurrentTransformer>fullSmv
+             SMV_Publisher4>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L1 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher4>>CurrentTransformer>fullSmv
+             SMV_Publisher4>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L1 TVTR 1.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L1 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      noninteractive=""
+      tabindex="-1"
+      twoline=""
+      value="
+                        SMV_Publisher4>>CurrentTransformer>voltageOnly
+                        VolSv.instMag.i
+                        VoltageTransformer / L1 TVTR 1
+                        SMV_Publisher4>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L1 TVTR 1
+                        SMV_Publisher4>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L1 TVTR 1.VolSv q (MX)
+                        VolSv.instMag.i
+                        VoltageTransformer / L2 TVTR 2
+                        SMV_Publisher4>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L2 TVTR 2.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L2 TVTR 2
+                        SMV_Publisher4>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L2 TVTR 2.VolSv q (MX)
+                        VolSv.instMag.i
+                        VoltageTransformer / L3 TVTR 3
+                        SMV_Publisher4>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L3 TVTR 3.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L3 TVTR 3
+                        SMV_Publisher4>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L3 TVTR 3.VolSv q (MX)"
+    >
+      <mwc-icon-button
+        class="interactive"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
+      <span>
+        voltageOnly
+      </span>
+      <span slot="secondary">
+        SMV_Publisher4>>CurrentTransformer>voltageOnly
+      </span>
+      <mwc-icon slot="graphic">
+      </mwc-icon>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher4>>CurrentTransformer>voltageOnly
+             SMV_Publisher4>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L1 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher4>>CurrentTransformer>voltageOnly
+             SMV_Publisher4>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L1 TVTR 1.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L1 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher4>>CurrentTransformer>voltageOnly
+             SMV_Publisher4>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L2 TVTR 2.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L2 TVTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher4>>CurrentTransformer>voltageOnly
+             SMV_Publisher4>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L2 TVTR 2.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L2 TVTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher4>>CurrentTransformer>voltageOnly
+             SMV_Publisher4>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L3 TVTR 3.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L3 TVTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher4>>CurrentTransformer>voltageOnly
+             SMV_Publisher4>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L3 TVTR 3.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L3 TVTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      noninteractive=""
+      tabindex="-1"
+      twoline=""
+      value="
+                        SMV_Publisher4>>CurrentTransformer>currrentOnly
+                        AmpSv.instMag.i
+                        CurrentTransformer / L1 TCTR 1
+                        SMV_Publisher4>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L1 TCTR 1
+                        SMV_Publisher4>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)
+                        AmpSv.instMag.i
+                        CurrentTransformer / L2 TCTR 2
+                        SMV_Publisher4>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L2 TCTR 2.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L2 TCTR 2
+                        SMV_Publisher4>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L2 TCTR 2.AmpSv q (MX)
+                        AmpSv.instMag.i
+                        CurrentTransformer / L3 TCTR 3
+                        SMV_Publisher4>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L3 TCTR 3.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L3 TCTR 3
+                        SMV_Publisher4>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L3 TCTR 3.AmpSv q (MX)"
+    >
+      <mwc-icon-button
+        class="interactive"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
+      <span>
+        currrentOnly
+      </span>
+      <span slot="secondary">
+        SMV_Publisher4>>CurrentTransformer>currrentOnly
+      </span>
+      <mwc-icon slot="graphic">
+      </mwc-icon>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher4>>CurrentTransformer>currrentOnly
+             SMV_Publisher4>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L1 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher4>>CurrentTransformer>currrentOnly
+             SMV_Publisher4>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L1 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher4>>CurrentTransformer>currrentOnly
+             SMV_Publisher4>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L2 TCTR 2.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L2 TCTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher4>>CurrentTransformer>currrentOnly
+             SMV_Publisher4>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L2 TCTR 2.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L2 TCTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher4>>CurrentTransformer>currrentOnly
+             SMV_Publisher4>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L3 TCTR 3.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L3 TCTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher4>>CurrentTransformer>currrentOnly
+             SMV_Publisher4>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L3 TCTR 3.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L3 TCTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      noninteractive=""
+      tabindex="-1"
+      twoline=""
+      value="
+                        SMV_Publisher5>>CurrentTransformer>fullSmv
+                        AmpSv.instMag.i
+                        CurrentTransformer / L3 TCTR 3
+                        SMV_Publisher5>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 3.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L3 TCTR 3
+                        SMV_Publisher5>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 3.AmpSv q (MX)
+                        AmpSv.instMag.i
+                        CurrentTransformer / L2 TCTR 2
+                        SMV_Publisher5>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 2.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L2 TCTR 2
+                        SMV_Publisher5>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 2.AmpSv q (MX)
+                        AmpSv.instMag.i
+                        CurrentTransformer / L1 TCTR 1
+                        SMV_Publisher5>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L1 TCTR 1
+                        SMV_Publisher5>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)
+                        VolSv.instMag.i
+                        VoltageTransformer / L3 TVTR 3
+                        SMV_Publisher5>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L3 TVTR 3.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L3 TVTR 3
+                        SMV_Publisher5>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L3 TVTR 3.VolSv q (MX)
+                        VolSv.instMag.i
+                        VoltageTransformer / L2 TVTR 2
+                        SMV_Publisher5>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L2 TVTR 2.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L2 TVTR 2
+                        SMV_Publisher5>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L2 TVTR 2.VolSv q (MX)
+                        VolSv.instMag.i
+                        VoltageTransformer / L1 TVTR 1
+                        SMV_Publisher5>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L1 TVTR 1
+                        SMV_Publisher5>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L1 TVTR 1.VolSv q (MX)"
+    >
+      <mwc-icon-button
+        class="interactive"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
+      <span>
+        fullSmv
+      </span>
+      <span slot="secondary">
+        SMV_Publisher5>>CurrentTransformer>fullSmv
+      </span>
+      <mwc-icon slot="graphic">
+      </mwc-icon>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher5>>CurrentTransformer>fullSmv
+             SMV_Publisher5>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 3.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L3 TCTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher5>>CurrentTransformer>fullSmv
+             SMV_Publisher5>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 3.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L3 TCTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher5>>CurrentTransformer>fullSmv
+             SMV_Publisher5>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 2.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L2 TCTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher5>>CurrentTransformer>fullSmv
+             SMV_Publisher5>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 2.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L2 TCTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher5>>CurrentTransformer>fullSmv
+             SMV_Publisher5>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L1 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher5>>CurrentTransformer>fullSmv
+             SMV_Publisher5>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L1 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher5>>CurrentTransformer>fullSmv
+             SMV_Publisher5>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L3 TVTR 3.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L3 TVTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher5>>CurrentTransformer>fullSmv
+             SMV_Publisher5>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L3 TVTR 3.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L3 TVTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher5>>CurrentTransformer>fullSmv
+             SMV_Publisher5>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L2 TVTR 2.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L2 TVTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher5>>CurrentTransformer>fullSmv
+             SMV_Publisher5>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L2 TVTR 2.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L2 TVTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher5>>CurrentTransformer>fullSmv
+             SMV_Publisher5>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L1 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher5>>CurrentTransformer>fullSmv
+             SMV_Publisher5>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L1 TVTR 1.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L1 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      noninteractive=""
+      tabindex="-1"
+      twoline=""
+      value="
+                        SMV_Publisher5>>CurrentTransformer>voltageOnly
+                        VolSv.instMag.i
+                        VoltageTransformer / L1 TVTR 1
+                        SMV_Publisher5>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L1 TVTR 1
+                        SMV_Publisher5>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L1 TVTR 1.VolSv q (MX)
+                        VolSv.instMag.i
+                        VoltageTransformer / L2 TVTR 2
+                        SMV_Publisher5>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L2 TVTR 2.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L2 TVTR 2
+                        SMV_Publisher5>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L2 TVTR 2.VolSv q (MX)
+                        VolSv.instMag.i
+                        VoltageTransformer / L3 TVTR 3
+                        SMV_Publisher5>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L3 TVTR 3.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L3 TVTR 3
+                        SMV_Publisher5>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L3 TVTR 3.VolSv q (MX)"
+    >
+      <mwc-icon-button
+        class="interactive"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
+      <span>
+        voltageOnly
+      </span>
+      <span slot="secondary">
+        SMV_Publisher5>>CurrentTransformer>voltageOnly
+      </span>
+      <mwc-icon slot="graphic">
+      </mwc-icon>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher5>>CurrentTransformer>voltageOnly
+             SMV_Publisher5>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L1 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher5>>CurrentTransformer>voltageOnly
+             SMV_Publisher5>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L1 TVTR 1.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L1 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher5>>CurrentTransformer>voltageOnly
+             SMV_Publisher5>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L2 TVTR 2.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L2 TVTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher5>>CurrentTransformer>voltageOnly
+             SMV_Publisher5>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L2 TVTR 2.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L2 TVTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher5>>CurrentTransformer>voltageOnly
+             SMV_Publisher5>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L3 TVTR 3.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L3 TVTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher5>>CurrentTransformer>voltageOnly
+             SMV_Publisher5>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L3 TVTR 3.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L3 TVTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      noninteractive=""
+      tabindex="-1"
+      twoline=""
+      value="
+                        SMV_Publisher5>>CurrentTransformer>currrentOnly
+                        AmpSv.instMag.i
+                        CurrentTransformer / L1 TCTR 1
+                        SMV_Publisher5>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L1 TCTR 1
+                        SMV_Publisher5>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)
+                        AmpSv.instMag.i
+                        CurrentTransformer / L2 TCTR 2
+                        SMV_Publisher5>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L2 TCTR 2.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L2 TCTR 2
+                        SMV_Publisher5>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L2 TCTR 2.AmpSv q (MX)
+                        AmpSv.instMag.i
+                        CurrentTransformer / L3 TCTR 3
+                        SMV_Publisher5>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L3 TCTR 3.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L3 TCTR 3
+                        SMV_Publisher5>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L3 TCTR 3.AmpSv q (MX)"
+    >
+      <mwc-icon-button
+        class="interactive"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
+      <span>
+        currrentOnly
+      </span>
+      <span slot="secondary">
+        SMV_Publisher5>>CurrentTransformer>currrentOnly
+      </span>
+      <mwc-icon slot="graphic">
+      </mwc-icon>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher5>>CurrentTransformer>currrentOnly
+             SMV_Publisher5>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L1 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher5>>CurrentTransformer>currrentOnly
+             SMV_Publisher5>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L1 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher5>>CurrentTransformer>currrentOnly
+             SMV_Publisher5>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L2 TCTR 2.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L2 TCTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher5>>CurrentTransformer>currrentOnly
+             SMV_Publisher5>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L2 TCTR 2.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L2 TCTR 2
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher5>>CurrentTransformer>currrentOnly
+             SMV_Publisher5>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L3 TCTR 3.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L3 TCTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher5>>CurrentTransformer>currrentOnly
+             SMV_Publisher5>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L3 TCTR 3.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L3 TCTR 3
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+  </filtered-list>
+</section>
+`;
+/* end snapshot SMV Subscribe Later Binding plugin when in the subscriber view when subscribing an available ExtRef then a supervision instance is created */
+
+snapshots["SMV Subscribe Later Binding plugin when in the subscriber view when subscribing an available ExtRef then a subscription is made and the next ExtRef is selected"] = 
+`<section tabindex="0">
+  <h1>
+    [subscription.SampledValueControl.controlBlockList.title]
+  </h1>
+  <filtered-list>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      noninteractive=""
+      tabindex="-1"
+      twoline=""
+      value="
+                        SMV_Publisher>>CurrentTransformer>fullSmv
+                        AmpSv.instMag.i
+                        CurrentTransformer / L3 TCTR 1
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 1.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L3 TCTR 1
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 1.AmpSv q (MX)
+                        AmpSv.instMag.i
+                        CurrentTransformer / L2 TCTR 1
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 1.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L2 TCTR 1
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 1.AmpSv q (MX)
+                        AmpSv.instMag.i
+                        CurrentTransformer / L1 TCTR 1
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L1 TCTR 1
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)
+                        VolSv.instMag.i
+                        VoltageTransformer / L3 TVTR 1
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L3 TVTR 1.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L3 TVTR 1
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L3 TVTR 1.VolSv q (MX)
+                        VolSv.instMag.i
+                        VoltageTransformer / L2 TVTR 1
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L2 TVTR 1.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L2 TVTR 1
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L2 TVTR 1.VolSv q (MX)
+                        VolSv.instMag.i
+                        VoltageTransformer / L1 TVTR 1
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L1 TVTR 1
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L1 TVTR 1.VolSv q (MX)"
+    >
+      <mwc-icon-button
+        class="interactive"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
+      <span>
+        fullSmv
+      </span>
+      <span slot="secondary">
+        SMV_Publisher>>CurrentTransformer>fullSmv
+      </span>
+      <mwc-icon slot="graphic">
+      </mwc-icon>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="true"
+      class="subitem"
+      disabled=""
+      graphic="large"
+      mwc-list-item=""
+      tabindex="0"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 1.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L3 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 1.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L3 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      class="subitem"
+      disabled=""
+      graphic="large"
+      hasmeta=""
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 1.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L2 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+      <span slot="meta">
+        1
+      </span>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 1.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L2 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      class="subitem"
+      disabled=""
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L1 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L1 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      class="subitem"
+      disabled=""
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L3 TVTR 1.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L3 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L3 TVTR 1.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L3 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      class="subitem"
+      disabled=""
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L2 TVTR 1.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L2 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L2 TVTR 1.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L2 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      class="subitem"
+      disabled=""
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L1 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L1 TVTR 1.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L1 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      noninteractive=""
+      tabindex="-1"
+      twoline=""
+      value="
+                        SMV_Publisher>>CurrentTransformer>voltageOnly
+                        VolSv.instMag.i
+                        VoltageTransformer / L1 TVTR 1
+                        SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L1 TVTR 1
+                        SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L1 TVTR 1.VolSv q (MX)
+                        VolSv.instMag.i
+                        VoltageTransformer / L2 TVTR 1
+                        SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L2 TVTR 1.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L2 TVTR 1
+                        SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L2 TVTR 1.VolSv q (MX)
+                        VolSv.instMag.i
+                        VoltageTransformer / L3 TVTR 1
+                        SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L3 TVTR 1.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L3 TVTR 1
+                        SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L3 TVTR 1.VolSv q (MX)"
+    >
+      <mwc-icon-button
+        class="interactive"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
+      <span>
+        voltageOnly
+      </span>
+      <span slot="secondary">
+        SMV_Publisher>>CurrentTransformer>voltageOnly
+      </span>
+      <mwc-icon slot="graphic">
+      </mwc-icon>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="true"
+      class="subitem"
+      disabled=""
+      graphic="large"
+      hasmeta=""
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>voltageOnly
+             SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L1 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+      <span slot="meta">
+        1
+      </span>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>voltageOnly
+             SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L1 TVTR 1.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L1 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      class="subitem"
+      disabled=""
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>voltageOnly
+             SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L2 TVTR 1.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L2 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>voltageOnly
+             SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L2 TVTR 1.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L2 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      class="subitem"
+      disabled=""
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>voltageOnly
+             SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L3 TVTR 1.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L3 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>voltageOnly
+             SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L3 TVTR 1.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L3 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      noninteractive=""
+      tabindex="-1"
+      twoline=""
+      value="
+                        SMV_Publisher>>CurrentTransformer>currentOnly
+                        AmpSv.instMag.i
+                        CurrentTransformer / L1 TCTR 1
+                        SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L1 TCTR 1
+                        SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)
+                        AmpSv.instMag.i
+                        CurrentTransformer / L2 TCTR 1
+                        SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L2 TCTR 1.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L2 TCTR 1
+                        SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L2 TCTR 1.AmpSv q (MX)
+                        AmpSv.instMag.i
+                        CurrentTransformer / L3 TCTR 1
+                        SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L3 TCTR 1.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L3 TCTR 1
+                        SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L3 TCTR 1.AmpSv q (MX)"
+    >
+      <mwc-icon-button
+        class="interactive"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
+      <span>
+        currentOnly
+      </span>
+      <span slot="secondary">
+        SMV_Publisher>>CurrentTransformer>currentOnly
+      </span>
+      <mwc-icon slot="graphic">
+      </mwc-icon>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="true"
+      class="subitem"
+      disabled=""
+      graphic="large"
+      hasmeta=""
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>currentOnly
+             SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L1 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+      <span slot="meta">
+        1
+      </span>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      hasmeta=""
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>currentOnly
+             SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L1 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+      <span slot="meta">
+        3
+      </span>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      class="subitem"
+      disabled=""
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>currentOnly
+             SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L2 TCTR 1.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L2 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>currentOnly
+             SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L2 TCTR 1.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L2 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      class="subitem"
+      disabled=""
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>currentOnly
+             SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L3 TCTR 1.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L3 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>currentOnly
+             SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L3 TCTR 1.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L3 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+  </filtered-list>
+</section>
+`;
+/* end snapshot SMV Subscribe Later Binding plugin when in the subscriber view when subscribing an available ExtRef then a subscription is made and the next ExtRef is selected */
+
+snapshots["SMV Subscribe Later Binding plugin when in the subscriber view when unsubscribing a subscribed ExtRef then the lists are changed"] = 
+`<section tabindex="0">
+  <h1>
+    [subscription.SampledValueControl.controlBlockList.title]
+  </h1>
+  <filtered-list>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      noninteractive=""
+      tabindex="-1"
+      twoline=""
+      value="
+                        SMV_Publisher>>CurrentTransformer>fullSmv
+                        AmpSv.instMag.i
+                        CurrentTransformer / L3 TCTR 1
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 1.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L3 TCTR 1
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 1.AmpSv q (MX)
+                        AmpSv.instMag.i
+                        CurrentTransformer / L2 TCTR 1
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 1.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L2 TCTR 1
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 1.AmpSv q (MX)
+                        AmpSv.instMag.i
+                        CurrentTransformer / L1 TCTR 1
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L1 TCTR 1
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)
+                        VolSv.instMag.i
+                        VoltageTransformer / L3 TVTR 1
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L3 TVTR 1.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L3 TVTR 1
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L3 TVTR 1.VolSv q (MX)
+                        VolSv.instMag.i
+                        VoltageTransformer / L2 TVTR 1
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L2 TVTR 1.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L2 TVTR 1
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L2 TVTR 1.VolSv q (MX)
+                        VolSv.instMag.i
+                        VoltageTransformer / L1 TVTR 1
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L1 TVTR 1
+                        SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L1 TVTR 1.VolSv q (MX)"
+    >
+      <mwc-icon-button
+        class="interactive"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
+      <span>
+        fullSmv
+      </span>
+      <span slot="secondary">
+        SMV_Publisher>>CurrentTransformer>fullSmv
+      </span>
+      <mwc-icon slot="graphic">
+      </mwc-icon>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="0"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 1.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L3 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 1.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L3 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 1.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L2 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 1.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L2 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L1 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L1 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L3 TVTR 1.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L3 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L3 TVTR 1.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L3 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L2 TVTR 1.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L2 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L2 TVTR 1.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L2 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L1 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>fullSmv
+             SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L1 TVTR 1.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L1 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      noninteractive=""
+      tabindex="-1"
+      twoline=""
+      value="
+                        SMV_Publisher>>CurrentTransformer>voltageOnly
+                        VolSv.instMag.i
+                        VoltageTransformer / L1 TVTR 1
+                        SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L1 TVTR 1
+                        SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L1 TVTR 1.VolSv q (MX)
+                        VolSv.instMag.i
+                        VoltageTransformer / L2 TVTR 1
+                        SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L2 TVTR 1.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L2 TVTR 1
+                        SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L2 TVTR 1.VolSv q (MX)
+                        VolSv.instMag.i
+                        VoltageTransformer / L3 TVTR 1
+                        SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L3 TVTR 1.VolSv instMag.i (MX)
+                        VolSv.q
+                        VoltageTransformer / L3 TVTR 1
+                        SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L3 TVTR 1.VolSv q (MX)"
+    >
+      <mwc-icon-button
+        class="interactive"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
+      <span>
+        voltageOnly
+      </span>
+      <span slot="secondary">
+        SMV_Publisher>>CurrentTransformer>voltageOnly
+      </span>
+      <mwc-icon slot="graphic">
+      </mwc-icon>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>voltageOnly
+             SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L1 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>voltageOnly
+             SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L1 TVTR 1.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L1 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>voltageOnly
+             SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L2 TVTR 1.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L2 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>voltageOnly
+             SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L2 TVTR 1.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L2 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>voltageOnly
+             SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L3 TVTR 1.VolSv instMag.i (MX)"
+    >
+      <span>
+        VolSv.instMag.i
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L3 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>voltageOnly
+             SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L3 TVTR 1.VolSv q (MX)"
+    >
+      <span>
+        VolSv.q
+      </span>
+      <span slot="secondary">
+        VoltageTransformer / L3 TVTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      noninteractive=""
+      tabindex="-1"
+      twoline=""
+      value="
+                        SMV_Publisher>>CurrentTransformer>currentOnly
+                        AmpSv.instMag.i
+                        CurrentTransformer / L1 TCTR 1
+                        SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L1 TCTR 1
+                        SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)
+                        AmpSv.instMag.i
+                        CurrentTransformer / L2 TCTR 1
+                        SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L2 TCTR 1.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L2 TCTR 1
+                        SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L2 TCTR 1.AmpSv q (MX)
+                        AmpSv.instMag.i
+                        CurrentTransformer / L3 TCTR 1
+                        SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L3 TCTR 1.AmpSv instMag.i (MX)
+                        AmpSv.q
+                        CurrentTransformer / L3 TCTR 1
+                        SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L3 TCTR 1.AmpSv q (MX)"
+    >
+      <mwc-icon-button
+        class="interactive"
+        icon="edit"
+        slot="meta"
+      >
+      </mwc-icon-button>
+      <span>
+        currentOnly
+      </span>
+      <span slot="secondary">
+        SMV_Publisher>>CurrentTransformer>currentOnly
+      </span>
+      <mwc-icon slot="graphic">
+      </mwc-icon>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      hasmeta=""
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>currentOnly
+             SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L1 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+      <span slot="meta">
+        1
+      </span>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      hasmeta=""
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>currentOnly
+             SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L1 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+      <span slot="meta">
+        3
+      </span>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>currentOnly
+             SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L2 TCTR 1.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L2 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>currentOnly
+             SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L2 TCTR 1.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L2 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>currentOnly
+             SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L3 TCTR 1.AmpSv instMag.i (MX)"
+    >
+      <span>
+        AmpSv.instMag.i
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L3 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="subitem"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Publisher>>CurrentTransformer>currentOnly
+             SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L3 TCTR 1.AmpSv q (MX)"
+    >
+      <span>
+        AmpSv.q
+      </span>
+      <span slot="secondary">
+        CurrentTransformer / L3 TCTR 1
+      </span>
+      <mwc-icon slot="graphic">
+        subdirectory_arrow_right
+      </mwc-icon>
+    </mwc-list-item>
+  </filtered-list>
+</section>
+`;
+/* end snapshot SMV Subscribe Later Binding plugin when in the subscriber view when unsubscribing a subscribed ExtRef then the lists are changed */
+

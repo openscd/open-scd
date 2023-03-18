@@ -859,36 +859,24 @@ export function updateExtRefElement(
 ): Update {
   const iedName = fcdaElement.closest('IED')?.getAttribute('name') ?? null;
 
-  const [
-    ldInst,
-    prefix,
-    lnClass,
-    lnInst,
-    doName,
-    daName,
-    pLN,
-    pDO,
-    pDA,
-    pServT,
-  ] = [
+  const [ldInst, prefix, lnClass, lnInst, doName, daName] = [
     'ldInst',
     'prefix',
     'lnClass',
     'lnInst',
     'doName',
     'daName',
+  ].map(attr => fcdaElement.getAttribute(attr));
+
+  const [desc, intAddr, pLN, pDO, pDA, pServT] = [
+    'desc',
+    'intAddr',
     'pLN',
     'pDO',
     'pDA',
     'pServT',
-  ].map(attr => fcdaElement.getAttribute(attr));
-  const intAddr = extRefElement.getAttribute('intAddr');
-  const desc = extRefElement.getAttribute('desc') ?? '';
+  ].map(attr => extRefElement.getAttribute(attr));
 
-  // TODO: This appears to remove any elements not specified. Once moved to the new Edit API this will not be
-  // a problem as the Update action is not lossy. However it seems that for instance the pDO, pLN, pDA and
-  // pServT would not be retained in the code that follows.
-  // However this was also an issue with the previous Replace Action.
   const schemaVersion = getSclSchemaVersion(fcdaElement.ownerDocument);
   if (schemaVersion === '2003') {
     // Edition 2003(1) does not define serviceType and its MCD attribute starting with srcXXX
