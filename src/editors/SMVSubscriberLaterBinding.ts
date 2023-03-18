@@ -36,80 +36,6 @@ export default class SMVSubscribeLaterBindingPlugin extends LitElement {
     this.requestUpdate('subscriberView', oldValue);
   }
 
-  /**
-   * Add events to allow resizing via mouse or touch input
-   */
-  // addResizerEvents(): void {
-  //   const resizer = <HTMLElement>this.shadowRoot!.querySelector('.resizer');
-  //   if (!resizer) return;
-
-  //   const left = <HTMLElement>resizer.previousElementSibling!;
-  //   const right = <HTMLElement>resizer.nextElementSibling!;
-
-  //   const inputDownHandler = function (ev: MouseEvent | TouchEvent) {
-  //     // How far the mouse/touch input has been moved
-  //     let inputX: number;
-  //     if ('clientX' in ev) {
-  //       inputX = ev.clientX;
-  //     } else {
-  //       inputX = (<TouchEvent>ev).touches[0].clientX;
-  //     }
-
-  //     const leftWidth = left.getBoundingClientRect().width;
-
-  //     const inputMoveHandler = function (evMove: MouseEvent | TouchEvent) {
-  //       // How far the mouse/touch input has been moved
-  //       let deltaX;
-  //       if ('clientX' in evMove) {
-  //         deltaX = evMove.clientX - inputX;
-  //       } else {
-  //         deltaX = (<TouchEvent>evMove).touches[0].clientX - inputX;
-  //       }
-  //       console.log(deltaX);
-
-  //       const newLeftWidth =
-  //         ((leftWidth + deltaX) * 100) /
-  //         (<HTMLElement>resizer!.parentNode!).getBoundingClientRect().width;
-  //       left.style.width = `${newLeftWidth}%`;
-
-  //       resizer.style.cursor = 'col-resize';
-  //       document.body.style.cursor = 'col-resize';
-
-  //       left.style.userSelect = 'none';
-  //       left.style.pointerEvents = 'none';
-
-  //       right.style.userSelect = 'none';
-  //       right.style.pointerEvents = 'none';
-  //     };
-
-  //     const inputUpHandler = function () {
-  //       resizer.style.removeProperty('cursor');
-  //       document.body.style.removeProperty('cursor');
-
-  //       left.style.removeProperty('user-select');
-  //       left.style.removeProperty('pointer-events');
-
-  //       right.style.removeProperty('user-select');
-  //       right.style.removeProperty('pointer-events');
-
-  //       // Remove handlers at end
-  //       document.removeEventListener('mousemove', inputMoveHandler);
-  //       document.removeEventListener('touchmove', inputMoveHandler);
-
-  //       document.removeEventListener('mouseup', inputUpHandler);
-  //       document.removeEventListener('touchend', inputUpHandler);
-  //     };
-
-  //     // Attach handlers
-  //     document.addEventListener('mousemove', inputMoveHandler);
-  //     document.addEventListener('mouseup', inputUpHandler);
-  //   };
-
-  //   // Attach the handler
-  //   resizer.addEventListener('mousedown', inputDownHandler);
-  //   resizer.addEventListener('touchstart', inputDownHandler);
-  // }
-
   protected firstUpdated(): void {
     this.addEventListener('change-view', () => {
       this.subscriberView = !this.subscriberView;
@@ -118,9 +44,6 @@ export default class SMVSubscribeLaterBindingPlugin extends LitElement {
         `${this.subscriberView}`
       );
     });
-
-    // allow resizing of the width of the two elements
-    // this.addResizerEvents();
   }
 
   render(): TemplateResult {
@@ -177,21 +100,12 @@ export default class SMVSubscribeLaterBindingPlugin extends LitElement {
 
     .container[subscriberview] {
       width: 100%;
-      flex: none;
-      /* flex: auto; */
       flex-direction: row-reverse;
     }
 
-    .container[subscriberview] extref-later-binding-list-subscriber.column {
-      resize: horizontal;
-      /* width: 60%; */
-    }
-
     .container[subscriberview] fcda-binding-list.column {
-      flex: none;
-      /* flex: 0 1 35%; */
-      /* width: 25%; */
-      /* flex: 1; */
+      flex: 1;
+      width: 25%;
     }
 
     .column {
@@ -202,11 +116,21 @@ export default class SMVSubscribeLaterBindingPlugin extends LitElement {
       overflow-y: auto;
     }
 
-    .resizer {
-      background-color: var(--mdc-theme-secondary);
-      cursor: ew-resize;
-      height: 100%;
-      width: 2px;
+    @media (min-width: 700px) {
+      .container[subscriberview] {
+        width: 100%;
+        flex: auto;
+      }
+
+      .container[subscriberview] extref-later-binding-list-subscriber.column {
+        resize: horizontal;
+        width: 65%;
+        flex: none;
+      }
+
+      .container[subscriberview] fcda-binding-list.column {
+        width: auto;
+      }
     }
   `;
 }

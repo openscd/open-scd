@@ -99,11 +99,13 @@ export default class GooseSubscribeLaterBindingPlugin extends LitElement {
     }
 
     .container[subscriberview] {
+      width: 100%;
       flex-direction: row-reverse;
     }
 
     .container[subscriberview] fcda-binding-list.column {
-      flex: 0 1 35%;
+      flex: 1;
+      width: 25%;
     }
 
     .column {
@@ -112,6 +114,23 @@ export default class GooseSubscribeLaterBindingPlugin extends LitElement {
       min-width: 300px;
       height: 100%;
       overflow-y: auto;
+    }
+
+    @media (min-width: 700px) {
+      .container[subscriberview] {
+        width: 100%;
+        flex: auto;
+      }
+
+      .container[subscriberview] extref-later-binding-list-subscriber.column {
+        resize: horizontal;
+        width: 65%;
+        flex: none;
+      }
+
+      .container[subscriberview] fcda-binding-list.column {
+        width: auto;
+      }
     }
   `;
 }
