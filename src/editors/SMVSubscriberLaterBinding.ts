@@ -118,7 +118,7 @@ export default class SMVSubscribeLaterBindingPlugin extends LitElement {
 
     @media (min-width: 700px) {
       .container[subscriberview] {
-        width: 100%;
+        width: calc(100vw - 20px);
         flex: auto;
       }
 

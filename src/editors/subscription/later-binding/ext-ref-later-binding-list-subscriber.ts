@@ -393,9 +393,13 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
     const iedName =
       extRefElement.closest('IED')!.getAttribute('name') ?? 'Unknown';
     if (supervisionNode) {
-      supervisionDescription = (<string>identity(supervisionNode)).slice(
-        iedName.length + 2
-      );
+      console.log(identity(supervisionNode));
+      supervisionDescription = (<string>identity(supervisionNode))
+        .split('>')
+        .slice(1)
+        .join('>')
+        .trim()
+        .slice(1);
     }
 
     return html`<mwc-list-item
@@ -426,9 +430,12 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
         : ''}"
     >
       <span>
-        ${(<string>identity(extRefElement.parentElement)).slice(
-          iedName.length + 2
-        )}:
+        ${(<string>identity(extRefElement.parentElement))
+          .split('>')
+          .slice(1)
+          .join('>')
+          .trim()
+          .slice(1)}:
         ${extRefElement.getAttribute('intAddr')}
         ${subscribed && subscriberFCDA
           ? `⬌ ${identity(subscriberFCDA) ?? 'Unknown'}`
