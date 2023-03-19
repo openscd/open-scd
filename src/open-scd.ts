@@ -130,7 +130,8 @@ export class OpenSCD extends Waiting(
 
     @media (max-width: 599px) {
       mwc-linear-progress {
-      top: 104px;
+        top: 104px;
+      }
     }
 
     tt {
