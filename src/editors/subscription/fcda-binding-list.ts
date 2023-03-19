@@ -48,7 +48,7 @@ type iconLookup = Record<controlTag, SVGTemplateResult>;
  */
 @customElement('fcda-binding-list')
 export class FcdaBindingList extends LitElement {
-  @property()
+  @property({ attribute: false })
   doc!: XMLDocument;
   @property()
   controlTag!: controlTag;

@@ -635,14 +635,15 @@ export function getExistingSupervision(extRef: Element | null): Element | null {
   return candidates !== undefined ? candidates.closest('LN')! : null;
 }
 
-// TODO: Update me
-/** Returns the subscriber's supervision LN for a given control block and extRef element
+/**
+ * Returns the used supervision LN instances for a given service type.
  *
- * @param extRef - The extRef SCL element in the subscribing IED.
- * @returns The supervision LN instance or null if not found
+ * @param doc - SCL document.
+ * @param serviceType - either GOOSE or SMV.
+ * @returns - array of Elements of supervision LN instances.
  */
 export function getUsedSupervisionInstances(
-  element: Document,
+  doc: Document,
   serviceType: string
 ): Element[] {
   const supervisionType = serviceType === 'GOOSE' ? 'LGOS' : 'LSVS';
@@ -650,7 +651,7 @@ export function getUsedSupervisionInstances(
     supervisionType === 'LGOS' ? 'DOI[name="GoCBRef"]' : 'DOI[name="SvCBRef"]';
 
   const supervisionInstances = Array.from(
-    element!.querySelectorAll(
+    doc!.querySelectorAll(
       `IED LDevice > LN[lnClass="${supervisionType}"]>${refSelector}>DAI[name="setSrcRef"]>Val`
     )
   )
@@ -663,9 +664,9 @@ export function getUsedSupervisionInstances(
 /**
  * Counts the number of LN instances with proper supervision for the given control block set up.
  *
- * @param subscriberIED The subscriber IED
- * @param controlBlock The GOOSE or SMV message element
- * @returns The number of LN instances with a supervision set up
+ * @param subscriberIED - The subscriber IED.
+ * @param controlBlock - The GOOSE or SMV message element.
+ * @returns The number of LN instances with a supervision set up.
  */
 export function instantiatedSupervisionsCount(
   subscriberIED: Element,
@@ -786,9 +787,6 @@ export function createExtRefElement(
     'daName',
   ].map(attr => fcdaElement.getAttribute(attr));
 
-  // TODO: This appears to remove any attributes not specified.
-  // For example it seems that for instance the pDO, pLN, pDA and
-  // pServT would not be retained in the code that follows.
   if (getSclSchemaVersion(fcdaElement.ownerDocument) === '2003') {
     // Edition 2003(1) does not define serviceType and its MCD attribute starting with src...
     return createElement(fcdaElement.ownerDocument, 'ExtRef', {

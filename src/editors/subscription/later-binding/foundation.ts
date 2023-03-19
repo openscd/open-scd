@@ -352,6 +352,12 @@ const serviceTypeControlBlockTags: Partial<Record<string, string[]>> = {
   NONE: ['LogControl', 'GSEControl', 'SampledValueControl', 'ReportControl'],
 };
 
+/**
+ * Locates the control block associated with an ExtRef.
+ *
+ * @param extRef - SCL ExtRef element
+ * @returns - either a GSEControl or SampledValueControl block
+ */
 export function findControlBlock(extRef: Element): Element {
   const fcdas = findFCDAs(extRef);
   const cbTags =
@@ -391,6 +397,12 @@ export function findControlBlock(extRef: Element): Element {
   return controlBlocks.values().next().value;
 }
 
+/**
+ * Given an ExtRef SCL element, will locate the FCDA within the correct dataset the subscription comes from.
+ * @param extRef  - SCL ExtRef Element.
+ * @param controlBlock  - SCL GSEControl or SampledValueControl associated with the ExtRef.
+ * @returns - SCL FCDA element
+ */
 export function findFCDA(
   extRef: Element,
   controlBlock: Element
@@ -489,6 +501,7 @@ export function unsubscribe(extRef: Element, eventElement: HTMLElement): void {
 /**
  * Subscribing means adding a list of attributes from the ExtRef Element and
  * instantiating a supervision element as required.
+ *
  * TODO: Add additional controls for supervision instantiation -- preferred LN or inst
  * or whether to re-use existing supervisions
  *
