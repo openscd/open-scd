@@ -8,6 +8,7 @@ import {
   getExtrefLaterBindingList,
   getExtrefLaterBindingListSubscriber,
   getFCDABindingList,
+  getFCDAItemCount,
   getSelectedSubItemValue,
   getSubscribedExtRefsCount,
   selectExtRefItem,
@@ -16,6 +17,7 @@ import {
 import { ExtRefLaterBindingList } from '../../../src/editors/subscription/later-binding/ext-ref-later-binding-list.js';
 import { ExtRefLaterBindingListSubscriber } from '../../../src/editors/subscription/later-binding/ext-ref-later-binding-list-subscriber.js';
 import { FcdaBindingList } from '../../../src/editors/subscription/fcda-binding-list.js';
+
 import { Icon } from '@material/mwc-icon';
 import { List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item.js';
@@ -223,6 +225,10 @@ describe('SMV Subscribe Later Binding plugin', () => {
       expect(fcdaElement).shadowDom.to.equalSnapshot();
     });
 
+    it('the ExtRef list looks like the latest snapshot', async () => {
+      expect(extRefElement).shadowDom.to.equalSnapshot();
+    });
+
     describe('when subscribing', async () => {
       it('an available ExtRef then a subscription is made and the next ExtRef is selected', async () => {
         expect(
@@ -239,6 +245,13 @@ describe('SMV Subscribe Later Binding plugin', () => {
           getSubscribedExtRefsCount(extRefElement, 'SMV_Subscriber')
         ).to.be.equal(5); // subscriptions unchanged
 
+        let itemCount = getFCDAItemCount(
+          fcdaElement,
+          'SMV_Publisher>>CurrentTransformer>fullSmv',
+          'SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 1.AmpSv instMag.i (MX)'
+        );
+        expect(itemCount).to.equal(undefined); // no items
+
         selectFCDAItem(
           fcdaElement,
           'SMV_Publisher>>CurrentTransformer>fullSmv',
@@ -250,6 +263,13 @@ describe('SMV Subscribe Later Binding plugin', () => {
           getSubscribedExtRefsCount(extRefElement, 'SMV_Subscriber')
         ).to.be.equal(6);
 
+        itemCount = getFCDAItemCount(
+          fcdaElement,
+          'SMV_Publisher>>CurrentTransformer>fullSmv',
+          'SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 1.AmpSv instMag.i (MX)'
+        );
+        expect(itemCount).to.equal('1'); // item count increased
+
         const selectedExtRef = Array.from(
           (<List>(
             extRefElement.shadowRoot!.querySelector('filtered-list')!
@@ -258,7 +278,7 @@ describe('SMV Subscribe Later Binding plugin', () => {
 
         expect(selectedExtRef.value).to.equal(
           'SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[1]'
-        ); // new subscription
+        ); // next ExtRef
 
         // check counts and disabled items in FCDA list via snapshot
         expect(fcdaElement).shadowDom.to.equalSnapshot();
@@ -306,7 +326,7 @@ describe('SMV Subscribe Later Binding plugin', () => {
 
         expect(selectedExtRef.value).to.equal(
           'SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[0]'
-        );
+        ); // selection unchanged
       });
 
       it('an available ExtRef then a supervision instance is created', async () => {
@@ -364,6 +384,13 @@ describe('SMV Subscribe Later Binding plugin', () => {
           getSubscribedExtRefsCount(extRefElement, 'SMV_Subscriber')
         ).to.be.equal(5); // subscriptions unchanged
 
+        let itemCount = getFCDAItemCount(
+          fcdaElement,
+          'SMV_Publisher>>CurrentTransformer>voltageOnly',
+          'SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)'
+        );
+        expect(itemCount).to.equal('1'); // item count
+
         selectExtRefItem(
           extRefElement,
           'SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR1/VolSv/instMag.i[0]'
@@ -374,8 +401,12 @@ describe('SMV Subscribe Later Binding plugin', () => {
           getSubscribedExtRefsCount(extRefElement, 'SMV_Subscriber')
         ).to.be.equal(4); // subscriptions changed
 
-        // check counts and disabled items in FCDA list via snapshot
-        expect(fcdaElement).shadowDom.to.equalSnapshot();
+        itemCount = getFCDAItemCount(
+          fcdaElement,
+          'SMV_Publisher>>CurrentTransformer>voltageOnly',
+          'SMV_Publisher>>CurrentTransformer>voltageOnlysDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)'
+        );
+        expect(itemCount).to.equal(undefined); // item count decreased
       });
     });
 
@@ -393,10 +424,6 @@ describe('SMV Subscribe Later Binding plugin', () => {
       expect(listItems[1].disabled).to.equal(true);
       expect(listItems[3].disabled).to.equal(true);
       expect(listItems[5].disabled).to.equal(true);
-    });
-
-    it('the ExtRef list looks like the latest snapshot', async () => {
-      expect(extRefElement).shadowDom.to.equalSnapshot();
     });
 
     it('can be selected to the publisher view', async () => {
