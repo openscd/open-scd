@@ -667,15 +667,77 @@ snapshots["GOOSE Subscribe Later Binding Plugin when in the Publisher view can b
       mwc-list-item=""
       tabindex="0"
       twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaCls/stVal[0]"
+      value="GOOSE_Subscriber>>Earth_Switch>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos stVal"
+    >
+      <span>
+        Earth_Switch:
+        
+        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos stVal (ST)
+      </span>
+      <span slot="secondary">
+        (QB2_Disconnector / LLN0 GOOSE2)
+      </span>
+      <mwc-icon slot="graphic">
+        link
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="extref show-bound"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="GOOSE_Subscriber>>Earth_Switch>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos q"
+    >
+      <span>
+        Earth_Switch:
+        
+        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos q (ST)
+      </span>
+      <span slot="secondary">
+        (QB2_Disconnector / LLN0 GOOSE2)
+      </span>
+      <mwc-icon slot="graphic">
+        link
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="extref show-not-bound"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0]"
     >
       <span>
         Earth_Switch> CILO 1:
-        Pos;CILO/EnaCls/stVal
-        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB1_Disconnector/ CILO 1.EnaCls stVal (ST)
+        Pos;CSWI1/Pos/stVal
       </span>
       <span slot="secondary">
-        Interlocking.Input3
+        Interlocking.Input
+      </span>
+      <mwc-icon slot="graphic">
+        link_off
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="extref show-bound"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/q[0]"
+    >
+      <span>
+        Earth_Switch> CILO 1:
+        Pos;CSWI1/Pos/q
+        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos q (ST)
+      </span>
+      <span slot="secondary">
+        Interlocking.Input
         (QB2_Disconnector / LLN0 GOOSE2)
       </span>
       <mwc-icon slot="graphic">
@@ -711,6 +773,28 @@ snapshots["GOOSE Subscribe Later Binding Plugin when in the Publisher view can b
       mwc-list-item=""
       tabindex="-1"
       twoline=""
+      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaCls/stVal[0]"
+    >
+      <span>
+        Earth_Switch> CILO 1:
+        Pos;CILO/EnaCls/stVal
+        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB1_Disconnector/ CILO 1.EnaCls stVal (ST)
+      </span>
+      <span slot="secondary">
+        Interlocking.Input3
+        (QB2_Disconnector / LLN0 GOOSE2)
+      </span>
+      <mwc-icon slot="graphic">
+        link
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="extref show-bound"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
       value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaOpn2/stVal[0]"
     >
       <span>
@@ -733,54 +817,12 @@ snapshots["GOOSE Subscribe Later Binding Plugin when in the Publisher view can b
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/q[0]"
-    >
-      <span>
-        Earth_Switch> CILO 1:
-        Pos;CSWI1/Pos/q
-        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos q (ST)
-      </span>
-      <span slot="secondary">
-        Interlocking.Input
-        (QB2_Disconnector / LLN0 GOOSE2)
-      </span>
-      <mwc-icon slot="graphic">
-        link
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="extref show-not-bound"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0]"
-    >
-      <span>
-        Earth_Switch> CILO 1:
-        Pos;CSWI1/Pos/stVal
-      </span>
-      <span slot="secondary">
-        Interlocking.Input
-      </span>
-      <mwc-icon slot="graphic">
-        link_off
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="extref show-bound"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>Pos;CSWI1/Pos/q[0]"
+      value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>Pos;CSWI1/Pos/stVal[0]"
     >
       <span>
         Earth_Switch> CSWI 1:
-        Pos;CSWI1/Pos/q
-        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos q (ST)
+        Pos;CSWI1/Pos/stVal
+        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos stVal (ST)
       </span>
       <span slot="secondary">
         Interlocking.Input2
@@ -797,12 +839,12 @@ snapshots["GOOSE Subscribe Later Binding Plugin when in the Publisher view can b
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>Pos;CSWI1/Pos/stVal[0]"
+      value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>Pos;CSWI1/Pos/q[0]"
     >
       <span>
         Earth_Switch> CSWI 1:
-        Pos;CSWI1/Pos/stVal
-        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos stVal (ST)
+        Pos;CSWI1/Pos/q
+        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos q (ST)
       </span>
       <span slot="secondary">
         Interlocking.Input2
@@ -850,48 +892,6 @@ snapshots["GOOSE Subscribe Later Binding Plugin when in the Publisher view can b
       </span>
       <mwc-icon slot="graphic">
         link_off
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="extref show-bound"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos q"
-    >
-      <span>
-        Earth_Switch:
-        
-        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos q (ST)
-      </span>
-      <span slot="secondary">
-        (QB2_Disconnector / LLN0 GOOSE2)
-      </span>
-      <mwc-icon slot="graphic">
-        link
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="extref show-bound"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos stVal"
-    >
-      <span>
-        Earth_Switch:
-        
-        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos stVal (ST)
-      </span>
-      <span slot="secondary">
-        (QB2_Disconnector / LLN0 GOOSE2)
-      </span>
-      <mwc-icon slot="graphic">
-        link
       </mwc-icon>
     </mwc-list-item>
   </filtered-list>
@@ -1273,15 +1273,77 @@ snapshots["GOOSE Subscribe Later Binding Plugin when in the subscriber view the 
       mwc-list-item=""
       tabindex="0"
       twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaCls/stVal[0]"
+      value="GOOSE_Subscriber>>Earth_Switch>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos stVal"
+    >
+      <span>
+        Earth_Switch:
+        
+        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos stVal (ST)
+      </span>
+      <span slot="secondary">
+        (QB2_Disconnector / LLN0 GOOSE2)
+      </span>
+      <mwc-icon slot="graphic">
+        link
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="extref show-bound"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="GOOSE_Subscriber>>Earth_Switch>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos q"
+    >
+      <span>
+        Earth_Switch:
+        
+        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos q (ST)
+      </span>
+      <span slot="secondary">
+        (QB2_Disconnector / LLN0 GOOSE2)
+      </span>
+      <mwc-icon slot="graphic">
+        link
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="extref show-not-bound"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0]"
     >
       <span>
         Earth_Switch> CILO 1:
-        Pos;CILO/EnaCls/stVal
-        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB1_Disconnector/ CILO 1.EnaCls stVal (ST)
+        Pos;CSWI1/Pos/stVal
       </span>
       <span slot="secondary">
-        Interlocking.Input3
+        Interlocking.Input
+      </span>
+      <mwc-icon slot="graphic">
+        link_off
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="extref show-bound"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/q[0]"
+    >
+      <span>
+        Earth_Switch> CILO 1:
+        Pos;CSWI1/Pos/q
+        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos q (ST)
+      </span>
+      <span slot="secondary">
+        Interlocking.Input
         (QB2_Disconnector / LLN0 GOOSE2)
       </span>
       <mwc-icon slot="graphic">
@@ -1317,6 +1379,28 @@ snapshots["GOOSE Subscribe Later Binding Plugin when in the subscriber view the 
       mwc-list-item=""
       tabindex="-1"
       twoline=""
+      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaCls/stVal[0]"
+    >
+      <span>
+        Earth_Switch> CILO 1:
+        Pos;CILO/EnaCls/stVal
+        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB1_Disconnector/ CILO 1.EnaCls stVal (ST)
+      </span>
+      <span slot="secondary">
+        Interlocking.Input3
+        (QB2_Disconnector / LLN0 GOOSE2)
+      </span>
+      <mwc-icon slot="graphic">
+        link
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="extref show-bound"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
       value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaOpn2/stVal[0]"
     >
       <span>
@@ -1339,54 +1423,12 @@ snapshots["GOOSE Subscribe Later Binding Plugin when in the subscriber view the 
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/q[0]"
-    >
-      <span>
-        Earth_Switch> CILO 1:
-        Pos;CSWI1/Pos/q
-        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos q (ST)
-      </span>
-      <span slot="secondary">
-        Interlocking.Input
-        (QB2_Disconnector / LLN0 GOOSE2)
-      </span>
-      <mwc-icon slot="graphic">
-        link
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="extref show-not-bound"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0]"
-    >
-      <span>
-        Earth_Switch> CILO 1:
-        Pos;CSWI1/Pos/stVal
-      </span>
-      <span slot="secondary">
-        Interlocking.Input
-      </span>
-      <mwc-icon slot="graphic">
-        link_off
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="extref show-bound"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>Pos;CSWI1/Pos/q[0]"
+      value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>Pos;CSWI1/Pos/stVal[0]"
     >
       <span>
         Earth_Switch> CSWI 1:
-        Pos;CSWI1/Pos/q
-        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos q (ST)
+        Pos;CSWI1/Pos/stVal
+        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos stVal (ST)
       </span>
       <span slot="secondary">
         Interlocking.Input2
@@ -1403,12 +1445,12 @@ snapshots["GOOSE Subscribe Later Binding Plugin when in the subscriber view the 
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>Pos;CSWI1/Pos/stVal[0]"
+      value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>Pos;CSWI1/Pos/q[0]"
     >
       <span>
         Earth_Switch> CSWI 1:
-        Pos;CSWI1/Pos/stVal
-        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos stVal (ST)
+        Pos;CSWI1/Pos/q
+        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos q (ST)
       </span>
       <span slot="secondary">
         Interlocking.Input2
@@ -1456,48 +1498,6 @@ snapshots["GOOSE Subscribe Later Binding Plugin when in the subscriber view the 
       </span>
       <mwc-icon slot="graphic">
         link_off
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="extref show-bound"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos q"
-    >
-      <span>
-        Earth_Switch:
-        
-        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos q (ST)
-      </span>
-      <span slot="secondary">
-        (QB2_Disconnector / LLN0 GOOSE2)
-      </span>
-      <mwc-icon slot="graphic">
-        link
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="extref show-bound"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos stVal"
-    >
-      <span>
-        Earth_Switch:
-        
-        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos stVal (ST)
-      </span>
-      <span slot="secondary">
-        (QB2_Disconnector / LLN0 GOOSE2)
-      </span>
-      <mwc-icon slot="graphic">
-        link
       </mwc-icon>
     </mwc-list-item>
   </filtered-list>

@@ -4766,22 +4766,46 @@ snapshots["SMV Subscribe Later Binding plugin when in the subscriber view the Ex
     </li>
     <mwc-list-item
       aria-disabled="false"
-      class="extref show-not-bound"
+      class="extref show-bound"
       graphic="large"
       mwc-list-item=""
       tabindex="0"
       twoline=""
-      value="SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[0]"
+      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/instMag.i[0]"
     >
       <span>
-        Overcurrent> PTRC 1:
-        someRestrictedExtRef
+        Overvoltage> PTRC 1:
+        AmpSv;TCTR1/AmpSv/instMag.i
+        ⬌ SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)
       </span>
       <span slot="secondary">
-        Restricted To AmpSV
+        MeasPoint.CT1
+        (CurrentTransformer / LLN0 currentOnly)
       </span>
       <mwc-icon slot="graphic">
-        link_off
+        link
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="extref show-bound"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/q[0]"
+    >
+      <span>
+        Overvoltage> PTRC 1:
+        AmpSv;TCTR1/AmpSv/q
+        ⬌ SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)
+      </span>
+      <span slot="secondary">
+        MeasPoint.CT1
+        (CurrentTransformer / LLN0 currentOnly)
+      </span>
+      <mwc-icon slot="graphic">
+        link
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -4791,17 +4815,81 @@ snapshots["SMV Subscribe Later Binding plugin when in the subscriber view the Ex
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[1]"
+      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR2/AmpSv/instMag.i[0]"
     >
       <span>
-        Overcurrent> PTRC 1:
-        someRestrictedExtRef
+        Overvoltage> PTRC 1:
+        AmpSv;TCTR2/AmpSv/instMag.i
       </span>
       <span slot="secondary">
-        Restricted To AmpSV
+        MeasPoint.CT2
       </span>
       <mwc-icon slot="graphic">
         link_off
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="extref show-bound"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR2/AmpSv/q[0]"
+    >
+      <span>
+        Overvoltage> PTRC 1:
+        AmpSv;TCTR2/AmpSv/q
+        ⬌ SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)
+      </span>
+      <span slot="secondary">
+        MeasPoint.CT1
+        (CurrentTransformer / LLN0 currentOnly)
+      </span>
+      <mwc-icon slot="graphic">
+        link
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="extref show-not-bound"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR3/AmpSv/instMag.i[0]"
+    >
+      <span>
+        Overvoltage> PTRC 1:
+        AmpSv;TCTR3/AmpSv/instMag.i
+      </span>
+      <span slot="secondary">
+        MeasPoint.CT3
+      </span>
+      <mwc-icon slot="graphic">
+        link_off
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="extref show-bound"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR3/AmpSv/q[0]"
+    >
+      <span>
+        Overvoltage> PTRC 1:
+        AmpSv;TCTR3/AmpSv/q
+        ⬌ SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)
+      </span>
+      <span slot="secondary">
+        MeasPoint.CT1
+        (CurrentTransformer / LLN0 currentOnly)
+      </span>
+      <mwc-icon slot="graphic">
+        link
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -4928,46 +5016,22 @@ snapshots["SMV Subscribe Later Binding plugin when in the subscriber view the Ex
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="extref show-bound"
+      class="extref show-not-bound"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/instMag.i[0]"
+      value="SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[0]"
     >
       <span>
-        Overvoltage> PTRC 1:
-        AmpSv;TCTR1/AmpSv/instMag.i
-        ⬌ SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)
+        Overcurrent> PTRC 1:
+        someRestrictedExtRef
       </span>
       <span slot="secondary">
-        MeasPoint.CT1
-        (CurrentTransformer / LLN0 currentOnly)
+        Restricted To AmpSV
       </span>
       <mwc-icon slot="graphic">
-        link
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="extref show-bound"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/q[0]"
-    >
-      <span>
-        Overvoltage> PTRC 1:
-        AmpSv;TCTR1/AmpSv/q
-        ⬌ SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)
-      </span>
-      <span slot="secondary">
-        MeasPoint.CT1
-        (CurrentTransformer / LLN0 currentOnly)
-      </span>
-      <mwc-icon slot="graphic">
-        link
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -4977,81 +5041,17 @@ snapshots["SMV Subscribe Later Binding plugin when in the subscriber view the Ex
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR2/AmpSv/instMag.i[0]"
+      value="SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[1]"
     >
       <span>
-        Overvoltage> PTRC 1:
-        AmpSv;TCTR2/AmpSv/instMag.i
+        Overcurrent> PTRC 1:
+        someRestrictedExtRef
       </span>
       <span slot="secondary">
-        MeasPoint.CT2
+        Restricted To AmpSV
       </span>
       <mwc-icon slot="graphic">
         link_off
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="extref show-bound"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR2/AmpSv/q[0]"
-    >
-      <span>
-        Overvoltage> PTRC 1:
-        AmpSv;TCTR2/AmpSv/q
-        ⬌ SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)
-      </span>
-      <span slot="secondary">
-        MeasPoint.CT1
-        (CurrentTransformer / LLN0 currentOnly)
-      </span>
-      <mwc-icon slot="graphic">
-        link
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="extref show-not-bound"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR3/AmpSv/instMag.i[0]"
-    >
-      <span>
-        Overvoltage> PTRC 1:
-        AmpSv;TCTR3/AmpSv/instMag.i
-      </span>
-      <span slot="secondary">
-        MeasPoint.CT3
-      </span>
-      <mwc-icon slot="graphic">
-        link_off
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="extref show-bound"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR3/AmpSv/q[0]"
-    >
-      <span>
-        Overvoltage> PTRC 1:
-        AmpSv;TCTR3/AmpSv/q
-        ⬌ SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)
-      </span>
-      <span slot="secondary">
-        MeasPoint.CT1
-        (CurrentTransformer / LLN0 currentOnly)
-      </span>
-      <mwc-icon slot="graphic">
-        link
       </mwc-icon>
     </mwc-list-item>
   </filtered-list>
@@ -5829,22 +5829,46 @@ snapshots["SMV Subscribe Later Binding plugin when in the Publisher view can be 
     </li>
     <mwc-list-item
       aria-disabled="false"
-      class="extref show-not-bound"
+      class="extref show-bound"
       graphic="large"
       mwc-list-item=""
       tabindex="0"
       twoline=""
-      value="SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[0]"
+      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/instMag.i[0]"
     >
       <span>
-        Overcurrent> PTRC 1:
-        someRestrictedExtRef
+        Overvoltage> PTRC 1:
+        AmpSv;TCTR1/AmpSv/instMag.i
+        ⬌ SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)
       </span>
       <span slot="secondary">
-        Restricted To AmpSV
+        MeasPoint.CT1
+        (CurrentTransformer / LLN0 currentOnly)
       </span>
       <mwc-icon slot="graphic">
-        link_off
+        link
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="extref show-bound"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/q[0]"
+    >
+      <span>
+        Overvoltage> PTRC 1:
+        AmpSv;TCTR1/AmpSv/q
+        ⬌ SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)
+      </span>
+      <span slot="secondary">
+        MeasPoint.CT1
+        (CurrentTransformer / LLN0 currentOnly)
+      </span>
+      <mwc-icon slot="graphic">
+        link
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -5854,17 +5878,81 @@ snapshots["SMV Subscribe Later Binding plugin when in the Publisher view can be 
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[1]"
+      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR2/AmpSv/instMag.i[0]"
     >
       <span>
-        Overcurrent> PTRC 1:
-        someRestrictedExtRef
+        Overvoltage> PTRC 1:
+        AmpSv;TCTR2/AmpSv/instMag.i
       </span>
       <span slot="secondary">
-        Restricted To AmpSV
+        MeasPoint.CT2
       </span>
       <mwc-icon slot="graphic">
         link_off
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="extref show-bound"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR2/AmpSv/q[0]"
+    >
+      <span>
+        Overvoltage> PTRC 1:
+        AmpSv;TCTR2/AmpSv/q
+        ⬌ SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)
+      </span>
+      <span slot="secondary">
+        MeasPoint.CT1
+        (CurrentTransformer / LLN0 currentOnly)
+      </span>
+      <mwc-icon slot="graphic">
+        link
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="extref show-not-bound"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR3/AmpSv/instMag.i[0]"
+    >
+      <span>
+        Overvoltage> PTRC 1:
+        AmpSv;TCTR3/AmpSv/instMag.i
+      </span>
+      <span slot="secondary">
+        MeasPoint.CT3
+      </span>
+      <mwc-icon slot="graphic">
+        link_off
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="extref show-bound"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR3/AmpSv/q[0]"
+    >
+      <span>
+        Overvoltage> PTRC 1:
+        AmpSv;TCTR3/AmpSv/q
+        ⬌ SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)
+      </span>
+      <span slot="secondary">
+        MeasPoint.CT1
+        (CurrentTransformer / LLN0 currentOnly)
+      </span>
+      <mwc-icon slot="graphic">
+        link
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -5991,46 +6079,22 @@ snapshots["SMV Subscribe Later Binding plugin when in the Publisher view can be 
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="extref show-bound"
+      class="extref show-not-bound"
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/instMag.i[0]"
+      value="SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[0]"
     >
       <span>
-        Overvoltage> PTRC 1:
-        AmpSv;TCTR1/AmpSv/instMag.i
-        ⬌ SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)
+        Overcurrent> PTRC 1:
+        someRestrictedExtRef
       </span>
       <span slot="secondary">
-        MeasPoint.CT1
-        (CurrentTransformer / LLN0 currentOnly)
+        Restricted To AmpSV
       </span>
       <mwc-icon slot="graphic">
-        link
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="extref show-bound"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/q[0]"
-    >
-      <span>
-        Overvoltage> PTRC 1:
-        AmpSv;TCTR1/AmpSv/q
-        ⬌ SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)
-      </span>
-      <span slot="secondary">
-        MeasPoint.CT1
-        (CurrentTransformer / LLN0 currentOnly)
-      </span>
-      <mwc-icon slot="graphic">
-        link
+        link_off
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -6040,81 +6104,17 @@ snapshots["SMV Subscribe Later Binding plugin when in the Publisher view can be 
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR2/AmpSv/instMag.i[0]"
+      value="SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[1]"
     >
       <span>
-        Overvoltage> PTRC 1:
-        AmpSv;TCTR2/AmpSv/instMag.i
+        Overcurrent> PTRC 1:
+        someRestrictedExtRef
       </span>
       <span slot="secondary">
-        MeasPoint.CT2
+        Restricted To AmpSV
       </span>
       <mwc-icon slot="graphic">
         link_off
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="extref show-bound"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR2/AmpSv/q[0]"
-    >
-      <span>
-        Overvoltage> PTRC 1:
-        AmpSv;TCTR2/AmpSv/q
-        ⬌ SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)
-      </span>
-      <span slot="secondary">
-        MeasPoint.CT1
-        (CurrentTransformer / LLN0 currentOnly)
-      </span>
-      <mwc-icon slot="graphic">
-        link
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="extref show-not-bound"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR3/AmpSv/instMag.i[0]"
-    >
-      <span>
-        Overvoltage> PTRC 1:
-        AmpSv;TCTR3/AmpSv/instMag.i
-      </span>
-      <span slot="secondary">
-        MeasPoint.CT3
-      </span>
-      <mwc-icon slot="graphic">
-        link_off
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="extref show-bound"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR3/AmpSv/q[0]"
-    >
-      <span>
-        Overvoltage> PTRC 1:
-        AmpSv;TCTR3/AmpSv/q
-        ⬌ SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L1 TCTR 1.AmpSv q (MX)
-      </span>
-      <span slot="secondary">
-        MeasPoint.CT1
-        (CurrentTransformer / LLN0 currentOnly)
-      </span>
-      <mwc-icon slot="graphic">
-        link
       </mwc-icon>
     </mwc-list-item>
   </filtered-list>
@@ -9440,7 +9440,6 @@ snapshots["SMV Subscribe Later Binding plugin when in the subscriber view when s
     <mwc-list-item
       aria-disabled="true"
       class="subitem"
-      disabled=""
       graphic="large"
       mwc-list-item=""
       tabindex="0"
@@ -9461,6 +9460,7 @@ snapshots["SMV Subscribe Later Binding plugin when in the subscriber view when s
     <mwc-list-item
       aria-disabled="false"
       class="subitem"
+      disabled=""
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -9481,7 +9481,6 @@ snapshots["SMV Subscribe Later Binding plugin when in the subscriber view when s
     <mwc-list-item
       aria-disabled="true"
       class="subitem"
-      disabled=""
       graphic="large"
       hasmeta=""
       mwc-list-item=""
@@ -9506,6 +9505,7 @@ snapshots["SMV Subscribe Later Binding plugin when in the subscriber view when s
     <mwc-list-item
       aria-disabled="false"
       class="subitem"
+      disabled=""
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -9526,7 +9526,6 @@ snapshots["SMV Subscribe Later Binding plugin when in the subscriber view when s
     <mwc-list-item
       aria-disabled="true"
       class="subitem"
-      disabled=""
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -9547,6 +9546,7 @@ snapshots["SMV Subscribe Later Binding plugin when in the subscriber view when s
     <mwc-list-item
       aria-disabled="false"
       class="subitem"
+      disabled=""
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -9567,7 +9567,6 @@ snapshots["SMV Subscribe Later Binding plugin when in the subscriber view when s
     <mwc-list-item
       aria-disabled="true"
       class="subitem"
-      disabled=""
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -9588,6 +9587,7 @@ snapshots["SMV Subscribe Later Binding plugin when in the subscriber view when s
     <mwc-list-item
       aria-disabled="false"
       class="subitem"
+      disabled=""
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -9608,7 +9608,6 @@ snapshots["SMV Subscribe Later Binding plugin when in the subscriber view when s
     <mwc-list-item
       aria-disabled="true"
       class="subitem"
-      disabled=""
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -9629,6 +9628,7 @@ snapshots["SMV Subscribe Later Binding plugin when in the subscriber view when s
     <mwc-list-item
       aria-disabled="false"
       class="subitem"
+      disabled=""
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -9649,7 +9649,6 @@ snapshots["SMV Subscribe Later Binding plugin when in the subscriber view when s
     <mwc-list-item
       aria-disabled="true"
       class="subitem"
-      disabled=""
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -9670,6 +9669,7 @@ snapshots["SMV Subscribe Later Binding plugin when in the subscriber view when s
     <mwc-list-item
       aria-disabled="false"
       class="subitem"
+      disabled=""
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -9738,7 +9738,6 @@ snapshots["SMV Subscribe Later Binding plugin when in the subscriber view when s
     <mwc-list-item
       aria-disabled="true"
       class="subitem"
-      disabled=""
       graphic="large"
       hasmeta=""
       mwc-list-item=""
@@ -9763,6 +9762,7 @@ snapshots["SMV Subscribe Later Binding plugin when in the subscriber view when s
     <mwc-list-item
       aria-disabled="false"
       class="subitem"
+      disabled=""
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -9783,7 +9783,6 @@ snapshots["SMV Subscribe Later Binding plugin when in the subscriber view when s
     <mwc-list-item
       aria-disabled="true"
       class="subitem"
-      disabled=""
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -9804,6 +9803,7 @@ snapshots["SMV Subscribe Later Binding plugin when in the subscriber view when s
     <mwc-list-item
       aria-disabled="false"
       class="subitem"
+      disabled=""
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -9824,7 +9824,6 @@ snapshots["SMV Subscribe Later Binding plugin when in the subscriber view when s
     <mwc-list-item
       aria-disabled="true"
       class="subitem"
-      disabled=""
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -9845,6 +9844,7 @@ snapshots["SMV Subscribe Later Binding plugin when in the subscriber view when s
     <mwc-list-item
       aria-disabled="false"
       class="subitem"
+      disabled=""
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -9913,7 +9913,6 @@ snapshots["SMV Subscribe Later Binding plugin when in the subscriber view when s
     <mwc-list-item
       aria-disabled="true"
       class="subitem"
-      disabled=""
       graphic="large"
       hasmeta=""
       mwc-list-item=""
@@ -9938,6 +9937,7 @@ snapshots["SMV Subscribe Later Binding plugin when in the subscriber view when s
     <mwc-list-item
       aria-disabled="false"
       class="subitem"
+      disabled=""
       graphic="large"
       hasmeta=""
       mwc-list-item=""
@@ -9962,7 +9962,6 @@ snapshots["SMV Subscribe Later Binding plugin when in the subscriber view when s
     <mwc-list-item
       aria-disabled="true"
       class="subitem"
-      disabled=""
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -9983,6 +9982,7 @@ snapshots["SMV Subscribe Later Binding plugin when in the subscriber view when s
     <mwc-list-item
       aria-disabled="false"
       class="subitem"
+      disabled=""
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -10003,7 +10003,6 @@ snapshots["SMV Subscribe Later Binding plugin when in the subscriber view when s
     <mwc-list-item
       aria-disabled="true"
       class="subitem"
-      disabled=""
       graphic="large"
       mwc-list-item=""
       tabindex="-1"
@@ -10024,6 +10023,7 @@ snapshots["SMV Subscribe Later Binding plugin when in the subscriber view when s
     <mwc-list-item
       aria-disabled="false"
       class="subitem"
+      disabled=""
       graphic="large"
       mwc-list-item=""
       tabindex="-1"

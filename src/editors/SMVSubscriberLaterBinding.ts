@@ -58,7 +58,6 @@ export default class SMVSubscribeLaterBindingPlugin extends LitElement {
             .doc="${this.doc}"
           >
           </fcda-binding-list>
-          <div class="resizer"></div>
           <extref-later-binding-list-subscriber
             class="column"
             controlTag="${controlTag}"

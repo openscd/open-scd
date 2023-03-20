@@ -523,168 +523,6 @@ snapshots["extref-later-binding-list-subscriber for Sampled Value Control looks 
     </li>
     <mwc-list-item
       aria-disabled="false"
-      class="extref show-not-bound"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[0]"
-    >
-      <span>
-        Overcurrent> PTRC 1:
-        someRestrictedExtRef
-      </span>
-      <span slot="secondary">
-        Restricted To AmpSV
-      </span>
-      <mwc-icon slot="graphic">
-        link_off
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="extref show-not-bound"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[1]"
-    >
-      <span>
-        Overcurrent> PTRC 1:
-        someRestrictedExtRef
-      </span>
-      <span slot="secondary">
-        Restricted To AmpSV
-      </span>
-      <mwc-icon slot="graphic">
-        link_off
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="extref show-bound"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR1/VolSv/instMag.i[0]"
-    >
-      <span>
-        Overcurrent> PTRC 1:
-        VolSv;TVTR1/VolSv/instMag.i
-        ⬌ SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)
-      </span>
-      <span slot="secondary">
-        MeasPoint.VT1
-        (CurrentTransformer / LLN0 voltageOnly)
-      </span>
-      <mwc-icon slot="graphic">
-        link
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="extref show-not-bound"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR1/VolSv/q[0]"
-    >
-      <span>
-        Overcurrent> PTRC 1:
-        VolSv;TVTR1/VolSv/q
-      </span>
-      <span slot="secondary">
-        MeasPoint.VT1
-      </span>
-      <mwc-icon slot="graphic">
-        link_off
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="extref show-not-bound"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR2/VolSv/instMag.i[0]"
-    >
-      <span>
-        Overcurrent> PTRC 1:
-        VolSv;TVTR2/VolSv/instMag.i
-      </span>
-      <span slot="secondary">
-        MeasPoint.VT2
-      </span>
-      <mwc-icon slot="graphic">
-        link_off
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="extref show-not-bound"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR2/VolSv/q[0]"
-    >
-      <span>
-        Overcurrent> PTRC 1:
-        VolSv;TVTR2/VolSv/q
-      </span>
-      <span slot="secondary">
-        MeasPoint.VT1
-      </span>
-      <mwc-icon slot="graphic">
-        link_off
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="extref show-not-bound"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR3/VolSv/instMag.i[0]"
-    >
-      <span>
-        Overcurrent> PTRC 1:
-        VolSv;TVTR3/VolSv/instMag.i
-      </span>
-      <span slot="secondary">
-        MeasPoint.VT3
-      </span>
-      <mwc-icon slot="graphic">
-        link_off
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="extref show-not-bound"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR3/VolSv/q[0]"
-    >
-      <span>
-        Overcurrent> PTRC 1:
-        VolSv;TVTR3/VolSv/q
-      </span>
-      <span slot="secondary">
-        MeasPoint.VT1
-      </span>
-      <mwc-icon slot="graphic">
-        link_off
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
       class="extref show-bound"
       graphic="large"
       mwc-list-item=""
@@ -811,6 +649,168 @@ snapshots["extref-later-binding-list-subscriber for Sampled Value Control looks 
         link
       </mwc-icon>
     </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="extref show-bound"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR1/VolSv/instMag.i[0]"
+    >
+      <span>
+        Overcurrent> PTRC 1:
+        VolSv;TVTR1/VolSv/instMag.i
+        ⬌ SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>VoltageTransformer/L1 TVTR 1.VolSv instMag.i (MX)
+      </span>
+      <span slot="secondary">
+        MeasPoint.VT1
+        (CurrentTransformer / LLN0 voltageOnly)
+      </span>
+      <mwc-icon slot="graphic">
+        link
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="extref show-not-bound"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR1/VolSv/q[0]"
+    >
+      <span>
+        Overcurrent> PTRC 1:
+        VolSv;TVTR1/VolSv/q
+      </span>
+      <span slot="secondary">
+        MeasPoint.VT1
+      </span>
+      <mwc-icon slot="graphic">
+        link_off
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="extref show-not-bound"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR2/VolSv/instMag.i[0]"
+    >
+      <span>
+        Overcurrent> PTRC 1:
+        VolSv;TVTR2/VolSv/instMag.i
+      </span>
+      <span slot="secondary">
+        MeasPoint.VT2
+      </span>
+      <mwc-icon slot="graphic">
+        link_off
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="extref show-not-bound"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR2/VolSv/q[0]"
+    >
+      <span>
+        Overcurrent> PTRC 1:
+        VolSv;TVTR2/VolSv/q
+      </span>
+      <span slot="secondary">
+        MeasPoint.VT1
+      </span>
+      <mwc-icon slot="graphic">
+        link_off
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="extref show-not-bound"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR3/VolSv/instMag.i[0]"
+    >
+      <span>
+        Overcurrent> PTRC 1:
+        VolSv;TVTR3/VolSv/instMag.i
+      </span>
+      <span slot="secondary">
+        MeasPoint.VT3
+      </span>
+      <mwc-icon slot="graphic">
+        link_off
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="extref show-not-bound"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Subscriber>>Overcurrent> PTRC 1>VolSv;TVTR3/VolSv/q[0]"
+    >
+      <span>
+        Overcurrent> PTRC 1:
+        VolSv;TVTR3/VolSv/q
+      </span>
+      <span slot="secondary">
+        MeasPoint.VT1
+      </span>
+      <mwc-icon slot="graphic">
+        link_off
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="extref show-not-bound"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[0]"
+    >
+      <span>
+        Overcurrent> PTRC 1:
+        someRestrictedExtRef
+      </span>
+      <span slot="secondary">
+        Restricted To AmpSV
+      </span>
+      <mwc-icon slot="graphic">
+        link_off
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="extref show-not-bound"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="SMV_Subscriber>>Overcurrent> PTRC 1>someRestrictedExtRef[1]"
+    >
+      <span>
+        Overcurrent> PTRC 1:
+        someRestrictedExtRef
+      </span>
+      <span slot="secondary">
+        Restricted To AmpSV
+      </span>
+      <mwc-icon slot="graphic">
+        link_off
+      </mwc-icon>
+    </mwc-list-item>
   </filtered-list>
 </section>
 `;
@@ -926,15 +926,77 @@ snapshots["extref-later-binding-list-subscriber for GOOSE Control looks like the
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaCls/stVal[0]"
+      value="GOOSE_Subscriber>>Earth_Switch>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos stVal"
+    >
+      <span>
+        Earth_Switch:
+        
+        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos stVal (ST)
+      </span>
+      <span slot="secondary">
+        (QB2_Disconnector / LLN0 GOOSE2)
+      </span>
+      <mwc-icon slot="graphic">
+        link
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="extref show-bound"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="GOOSE_Subscriber>>Earth_Switch>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos q"
+    >
+      <span>
+        Earth_Switch:
+        
+        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos q (ST)
+      </span>
+      <span slot="secondary">
+        (QB2_Disconnector / LLN0 GOOSE2)
+      </span>
+      <mwc-icon slot="graphic">
+        link
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="extref show-not-bound"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0]"
     >
       <span>
         Earth_Switch> CILO 1:
-        Pos;CILO/EnaCls/stVal
-        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB1_Disconnector/ CILO 1.EnaCls stVal (ST)
+        Pos;CSWI1/Pos/stVal
       </span>
       <span slot="secondary">
-        Interlocking.Input3
+        Interlocking.Input
+      </span>
+      <mwc-icon slot="graphic">
+        link_off
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="extref show-bound"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/q[0]"
+    >
+      <span>
+        Earth_Switch> CILO 1:
+        Pos;CSWI1/Pos/q
+        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos q (ST)
+      </span>
+      <span slot="secondary">
+        Interlocking.Input
         (QB2_Disconnector / LLN0 GOOSE2)
       </span>
       <mwc-icon slot="graphic">
@@ -970,6 +1032,28 @@ snapshots["extref-later-binding-list-subscriber for GOOSE Control looks like the
       mwc-list-item=""
       tabindex="-1"
       twoline=""
+      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaCls/stVal[0]"
+    >
+      <span>
+        Earth_Switch> CILO 1:
+        Pos;CILO/EnaCls/stVal
+        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB1_Disconnector/ CILO 1.EnaCls stVal (ST)
+      </span>
+      <span slot="secondary">
+        Interlocking.Input3
+        (QB2_Disconnector / LLN0 GOOSE2)
+      </span>
+      <mwc-icon slot="graphic">
+        link
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="extref show-bound"
+      graphic="large"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
       value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaOpn2/stVal[0]"
     >
       <span>
@@ -992,54 +1076,12 @@ snapshots["extref-later-binding-list-subscriber for GOOSE Control looks like the
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/q[0]"
-    >
-      <span>
-        Earth_Switch> CILO 1:
-        Pos;CSWI1/Pos/q
-        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos q (ST)
-      </span>
-      <span slot="secondary">
-        Interlocking.Input
-        (QB2_Disconnector / LLN0 GOOSE2)
-      </span>
-      <mwc-icon slot="graphic">
-        link
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="extref show-not-bound"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0]"
-    >
-      <span>
-        Earth_Switch> CILO 1:
-        Pos;CSWI1/Pos/stVal
-      </span>
-      <span slot="secondary">
-        Interlocking.Input
-      </span>
-      <mwc-icon slot="graphic">
-        link_off
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="extref show-bound"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>Pos;CSWI1/Pos/q[0]"
+      value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>Pos;CSWI1/Pos/stVal[0]"
     >
       <span>
         Earth_Switch> CSWI 1:
-        Pos;CSWI1/Pos/q
-        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos q (ST)
+        Pos;CSWI1/Pos/stVal
+        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos stVal (ST)
       </span>
       <span slot="secondary">
         Interlocking.Input2
@@ -1056,12 +1098,12 @@ snapshots["extref-later-binding-list-subscriber for GOOSE Control looks like the
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>Pos;CSWI1/Pos/stVal[0]"
+      value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>Pos;CSWI1/Pos/q[0]"
     >
       <span>
         Earth_Switch> CSWI 1:
-        Pos;CSWI1/Pos/stVal
-        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos stVal (ST)
+        Pos;CSWI1/Pos/q
+        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos q (ST)
       </span>
       <span slot="secondary">
         Interlocking.Input2
@@ -1109,48 +1151,6 @@ snapshots["extref-later-binding-list-subscriber for GOOSE Control looks like the
       </span>
       <mwc-icon slot="graphic">
         link_off
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="extref show-bound"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos q"
-    >
-      <span>
-        Earth_Switch:
-        
-        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos q (ST)
-      </span>
-      <span slot="secondary">
-        (QB2_Disconnector / LLN0 GOOSE2)
-      </span>
-      <mwc-icon slot="graphic">
-        link
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="extref show-bound"
-      graphic="large"
-      mwc-list-item=""
-      tabindex="-1"
-      twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos stVal"
-    >
-      <span>
-        Earth_Switch:
-        
-        ⬌ GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos stVal (ST)
-      </span>
-      <span slot="secondary">
-        (QB2_Disconnector / LLN0 GOOSE2)
-      </span>
-      <mwc-icon slot="graphic">
-        link
       </mwc-icon>
     </mwc-list-item>
   </filtered-list>
