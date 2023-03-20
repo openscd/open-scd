@@ -23,7 +23,7 @@ import { allLocales, sourceLocale, targetLocales } from './locales.js';
 import { isComplex, isInsert, isRemove, isUpdate } from './foundation.js';
 
 import { Editing, LogEntry } from './mixins/Editing.js';
-import { Plugging, pluginTag } from './mixins/Plugging.js';
+import { Plugging, Plugin, pluginTag } from './mixins/Plugging.js';
 
 type Control = {
   icon: string;
@@ -232,7 +232,7 @@ export class OpenSCD extends Plugging(Editing(LitElement)) {
     </mwc-list-item>`;
   }
 
-    protected pluginProperties(_plugin: Plugin): { [key: string]: PropertyType } {
+  protected pluginProperties(_plugin: Plugin): { [key: string]: PropertyType } {
     return {
       '.editCount': this.editCount,
       '.doc': this.doc,
