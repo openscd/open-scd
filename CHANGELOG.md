@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.30.0](https://github.com/openscd/open-scd/compare/v0.29.0...v0.30.0) (2023-03-08)
+
+
+### Features
+
+* **editors/ied:** show all instantiated setting group values ([#1155](https://github.com/openscd/open-scd/issues/1155)) ([d9680fa](https://github.com/openscd/open-scd/commits/d9680fa1195650aeef6a5ec0290ec6cc321303ef))
+* **editors/subscription:** Support valKind and valImport on first instances, improve instance use counting and allow Val updates ([#1169](https://github.com/openscd/open-scd/issues/1169)) ([aaab451](https://github.com/openscd/open-scd/commits/aaab451ca01bcd29b1bb2dc73299a0b171b30389)), closes [#1161](https://github.com/openscd/open-scd/issues/1161) [#1162](https://github.com/openscd/open-scd/issues/1162)
+* **wizards/services:** add read-only wizard on access point and ied ([#1109](https://github.com/openscd/open-scd/issues/1109)) ([81088f0](https://github.com/openscd/open-scd/commits/81088f06bbae8ca022525fe29d59589ba87647a9))
+
+
+### Bug Fixes
+
+* added translation key for phase ([#1186](https://github.com/openscd/open-scd/issues/1186)) ([479c499](https://github.com/openscd/open-scd/commits/479c49991a2f4e3e0b70ddd39e90deda3ec935ec))
+* **editors/substation/guess-wizard:** make sure guessed content is added to the substation ([#1148](https://github.com/openscd/open-scd/issues/1148)) ([cc0051f](https://github.com/openscd/open-scd/commits/cc0051f54a89984af9676ed2209a0481f49fa7a2))
+* **menu/save-project:** Add missing XML prolog on document save ([#1173](https://github.com/openscd/open-scd/issues/1173)) ([6cae0da](https://github.com/openscd/open-scd/commits/6cae0da557ef69029312a854e94bc5ecc9558909)), closes [#1163](https://github.com/openscd/open-scd/issues/1163)
+
 ## [0.29.0](https://github.com/openscd/open-scd/compare/v0.28.0...v0.29.0) (2023-02-08)
 
 
