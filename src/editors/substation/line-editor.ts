@@ -1,4 +1,5 @@
 import {
+  css,
   customElement,
   html,
   LitElement,
@@ -16,7 +17,13 @@ import './conducting-equipment-editor.js';
 import './function-editor.js';
 import './general-equipment-editor.js';
 import './l-node-editor.js';
-import { getChildElementsByTagName, newWizardEvent } from '../../foundation.js';
+
+import { styles } from './foundation.js';
+import {
+  getChildElementsByTagName,
+  newWizardEvent,
+  newActionEvent,
+} from '../../foundation.js';
 import { wizards } from '../../wizards/wizard-library.js';
 
 @customElement('line-editor')
@@ -87,6 +94,17 @@ export class LineEditor extends LitElement {
         ></function-editor>`
     )}`;
   }
+  remove(): void {
+    if (this.element.parentElement)
+      this.dispatchEvent(
+        newActionEvent({
+          old: {
+            parent: this.element.parentElement,
+            element: this.element,
+          },
+        })
+      );
+  }
 
   private renderLNodes(): TemplateResult {
     if (!this.showfunctions) return html``;
@@ -111,8 +129,26 @@ export class LineEditor extends LitElement {
         <mwc-icon-button
           icon="edit"
           @click=${() => this.openEditWizard()}
+        ></mwc-icon-button>
+      </abbr>
+      <abbr slot="action" title="${translate('remove')}">
+        <mwc-icon-button
+          icon="delete"
+          @click=${() => this.remove()}
         ></mwc-icon-button> </abbr
       >${this.renderConductingEquipments()}${this.renderGeneralEquipments()}${this.renderFunctions()}${this.renderLNodes()}
     </action-pane>`;
   }
+  static styles = css`
+    ${styles}
+
+    :host(.moving) {
+      opacity: 0.3;
+    }
+
+    abbr {
+      text-decoration: none;
+      border-bottom: none;
+    }
+  `;
 }
