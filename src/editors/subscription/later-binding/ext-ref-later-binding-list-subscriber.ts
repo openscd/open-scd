@@ -181,11 +181,11 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
         activatedItem.activated = false;
         activatedItem.requestUpdate();
 
-        if (nextActivatableItem) {
-          // activate/select next sibling
-          nextActivatableItem!.selected = true;
-          nextActivatableItem!.activated = true;
-          nextActivatableItem!.requestUpdate();
+        if (
+          nextActivatableItem &&
+          !nextActivatableItem.classList.contains('show-bound')
+        ) {
+          nextActivatableItem.click();
         }
       }
     }
@@ -218,17 +218,16 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
       ied.querySelectorAll(
         ':scope > AccessPoint > Server > LDevice > LN > Inputs > ExtRef, :scope > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef'
       )
-    )
-      .filter(
-        extRefElement =>
-          (extRefElement.hasAttribute('intAddr') &&
-            !extRefElement.hasAttribute('serviceType')) ||
-          extRefElement.getAttribute('serviceType') ===
-            this.serviceTypeLookup[this.controlTag]
-      )
-      .sort((a, b) => {
-        return `${identity(a)}`.localeCompare(`${identity(b)}`);
-      });
+    ).filter(
+      extRefElement =>
+        (extRefElement.hasAttribute('intAddr') &&
+          !extRefElement.hasAttribute('serviceType') &&
+          !extRefElement.hasAttribute('pServT')) ||
+        extRefElement.getAttribute('serviceType') ===
+          this.serviceTypeLookup[this.controlTag] ||
+        extRefElement.getAttribute('pServT') ===
+          this.serviceTypeLookup[this.controlTag]
+    );
   }
 
   private renderTitle(): TemplateResult {
@@ -390,10 +389,7 @@ export class ExtRefLaterBindingListSubscriber extends LitElement {
         getFcdaSrcControlBlockDescription(extRefElement);
     }
 
-    const iedName =
-      extRefElement.closest('IED')!.getAttribute('name') ?? 'Unknown';
     if (supervisionNode) {
-      console.log(identity(supervisionNode));
       supervisionDescription = (<string>identity(supervisionNode))
         .split('>')
         .slice(1)
