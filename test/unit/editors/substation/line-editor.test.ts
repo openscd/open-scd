@@ -14,9 +14,9 @@ describe('web component rendering Line element', () => {
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       element = <LineEditor>(
         await fixture(
-          html`<Line-editor
+          html`<line-editor
             .element=${doc.querySelector('Line[name="Berlin"]')}
-          ></Line-editor>`
+          ></line-editor>`
         )
       );
       element.showfunctions = true;
@@ -34,9 +34,9 @@ describe('web component rendering Line element', () => {
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       element = <LineEditor>(
         await fixture(
-          html`<Line-editor
+          html`<line-editor
             .element=${doc.querySelector('Line[name="Berlin"]')}
-          ></Line-editor>`
+          ></line-editor>`
         )
       );
       element.showfunctions = true;
@@ -53,9 +53,9 @@ describe('web component rendering Line element', () => {
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       element = <LineEditor>(
         await fixture(
-          html`<Line-editor
+          html`<line-editor
             .element=${doc.querySelector('Line[name="Munich"]')}
-          ></Line-editor>`
+          ></line-editor>`
         )
       );
       element.showfunctions = true;
