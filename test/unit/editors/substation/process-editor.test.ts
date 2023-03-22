@@ -7,7 +7,7 @@ describe('web component rendering Process element', () => {
   let element: ProcessEditor;
   let doc: XMLDocument;
 
-  describe('rendering LNodde, Function and ConductingEquipment children', () => {
+  describe('rendering LNode, Function and ConductingEquipment children', () => {
     beforeEach(async () => {
       doc = await fetch('/test/testfiles/editors/substation/Process.scd')
         .then(response => response.text())
@@ -27,7 +27,7 @@ describe('web component rendering Process element', () => {
     });
   });
 
-  describe('hides LNodde and Function children', () => {
+  describe('hides LNode and Function children', () => {
     beforeEach(async () => {
       doc = await fetch('/test/testfiles/editors/substation/Process.scd')
         .then(response => response.text())
