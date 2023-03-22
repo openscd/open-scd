@@ -48,7 +48,7 @@ This page allows do define all communication related setting for the GOOSE. Thes
 1. `MAC-Address`: The destination MAC address of the GOOSE
 2. `APPID`: The APPID of the GOOSE. This is recommended to be unique though out the complete project.
 3. `VLAN-ID`: The virtual LAN ID the GOOSE shall be limited to.
-4. `VLAN-PRIORITY`: The priority of the GOOSE message. Can be used to priories time critical messages like trip signals over non time critical messages.
+4. `VLAN-PRIORITY`: The priority of the GOOSE message. It can be used to prioritise time-critical messages like trip signals over non-time-critical messages.
 5. `MinTime`: The minimum time between two occurring GOOSEs when a e.g. a trip occurs
 6. `MaxTime`: The maximum time between two occurring GOOSEs in case there is not trip.
 

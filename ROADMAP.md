@@ -1,13 +1,13 @@
 # Feature Wishes
 
-Feeature ideas for the OpenSCD project. They are currently not prioritized. 
+Feature ideas for the OpenSCD project. They are currently not prioritized. 
 
 - Add the remaining [process elements to the substation editor](https://github.com/openscd/open-scd/projects/1)
 - [Edit wizard for `Services` element](https://github.com/openscd/open-scd/projects/17)
 - General purpose [SCL diffing tool](https://github.com/openscd/open-scd/projects/16)
 - Finish the [Publisher Plugin](https://github.com/openscd/open-scd/projects/14)
 - Improve [IED Editor](https://github.com/openscd/open-scd/projects/11) user experience
-- Implement a more featureful [Single Line Diagram](https://github.com/openscd/open-scd/projects/7) editor that can make changes
+- Implement a more fully-featured [Single Line Diagram](https://github.com/openscd/open-scd/projects/7) editor that can make changes
 - Implement [Log Control Block manipulation](https://github.com/openscd/open-scd/issues/148)
 - Implement [Setting Group manipulation](https://github.com/openscd/open-scd/issues/149)
 - Implement [Role Based Access](https://github.com/openscd/open-scd/issues/167) Control
