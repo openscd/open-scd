@@ -7,7 +7,7 @@ describe('web component rendering Process element', () => {
   let element: ProcessEditor;
   let doc: XMLDocument;
 
-  describe('rendering LNode, Function and ConductingEquipment children', () => {
+  describe('rendering LNode, GeneralEquipment,Function and ConductingEquipment children', () => {
     beforeEach(async () => {
       doc = await fetch('/test/testfiles/editors/substation/Process.scd')
         .then(response => response.text())

@@ -2,6 +2,7 @@
 	<Header id="general_equipment"/>
 	<Process name="ProcessGenConduct">	
 		<LNode iedName="None" lnClass="CSWI" lnInst="1" lnType="OpenSCD_CSWI" />
+		<GeneralEquipment name="genSub" desc="someDesc" type="AXN"/>
 		<Function name="someFunction">
 			<SubFunction name="someSubFunc"/>
 		</Function>

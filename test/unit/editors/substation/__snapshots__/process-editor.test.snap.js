@@ -1,13 +1,15 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["web component rendering Process element rendering LNodde, Function and ConductingEquipment children looks like the latest snapshot"] = 
+snapshots["web component rendering Process element rendering LNode, GeneralEquipment,Function and ConductingEquipment children looks like the latest snapshot"] = 
 `<action-pane
   label="ProcessGenConduct "
   tabindex="0"
 >
   <conducting-equipment-editor showfunctions="">
   </conducting-equipment-editor>
+  <general-equipment-editor showfunctions="">
+  </general-equipment-editor>
   <function-editor showfunctions="">
   </function-editor>
   <div class="container lnode">
@@ -16,7 +18,20 @@ snapshots["web component rendering Process element rendering LNodde, Function an
   </div>
 </action-pane>
 `;
-/* end snapshot web component rendering Process element rendering LNodde, Function and ConductingEquipment children looks like the latest snapshot */
+/* end snapshot web component rendering Process element rendering LNode, GeneralEquipment,Function and ConductingEquipment children looks like the latest snapshot */
+
+snapshots["web component rendering Process element hides LNode and Function children looks like the latest snapshot"] = 
+`<action-pane
+  label="ProcessGenConduct "
+  tabindex="0"
+>
+  <conducting-equipment-editor>
+  </conducting-equipment-editor>
+  <general-equipment-editor>
+  </general-equipment-editor>
+</action-pane>
+`;
+/* end snapshot web component rendering Process element hides LNode and Function children looks like the latest snapshot */
 
 snapshots["web component rendering Process element rendering Substation and Process children looks like the latest snapshot"] = 
 `<action-pane
@@ -41,43 +56,4 @@ snapshots["web component rendering Process element rendering a Line child looks 
 </action-pane>
 `;
 /* end snapshot web component rendering Process element rendering a Line child looks like the latest snapshot */
-
-snapshots["web component rendering Process element hides LNodde and Function children looks like the latest snapshot"] = 
-`<action-pane
-  label="ProcessGenConduct "
-  tabindex="0"
->
-  <conducting-equipment-editor>
-  </conducting-equipment-editor>
-</action-pane>
-`;
-/* end snapshot web component rendering Process element hides LNodde and Function children looks like the latest snapshot */
-
-snapshots["web component rendering Process element rendering LNode, Function and ConductingEquipment children looks like the latest snapshot"] = 
-`<action-pane
-  label="ProcessGenConduct "
-  tabindex="0"
->
-  <conducting-equipment-editor showfunctions="">
-  </conducting-equipment-editor>
-  <function-editor showfunctions="">
-  </function-editor>
-  <div class="container lnode">
-    <l-node-editor>
-    </l-node-editor>
-  </div>
-</action-pane>
-`;
-/* end snapshot web component rendering Process element rendering LNode, Function and ConductingEquipment children looks like the latest snapshot */
-
-snapshots["web component rendering Process element hides LNode and Function children looks like the latest snapshot"] = 
-`<action-pane
-  label="ProcessGenConduct "
-  tabindex="0"
->
-  <conducting-equipment-editor>
-  </conducting-equipment-editor>
-</action-pane>
-`;
-/* end snapshot web component rendering Process element hides LNode and Function children looks like the latest snapshot */
 
