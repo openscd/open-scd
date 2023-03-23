@@ -155,9 +155,7 @@ export class ZerolinePane extends LitElement {
                 html`<line-editor
                   .doc=${this.doc}
                   .element=${line}
-                  .getAttachedIeds=${this.getAttachedIeds}
-                  ?readonly=${this.readonly}
-                  ?showfunctions=${shouldShowFunctions()}
+                 ?showfunctions=${shouldShowFunctions()}
                 ></line-editor>`
             )}
         </section>`

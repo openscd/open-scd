@@ -26,7 +26,7 @@ If you say "hi" there we will be more than happy to help you find your way aroun
 
 ### Building
 
-If you want to build OpenSCD yourself in order to make some changes to your local installation or to contribute to the project, you may first want to install [Node.js](https://nodejs.org/) in order to be able to use our local development setup.
+If you want to build OpenSCD yourself in order to make some changes to your local installation or to contribute to the project, you may first want to install [Node.js](https://nodejs.org/) in order to be able to use our local development setup. It is recommended to use Node.js 18.x. it is is the version used to build and test on GitHub Actions.
 
 Once Node.js is installed on your system, you may get started by entering the following lines in your command prompt:
 
