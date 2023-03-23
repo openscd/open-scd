@@ -413,9 +413,9 @@ export class FcdaBindingList extends LitElement {
       background-color: var(--mdc-theme-background);
     }
 
-    /* Filtering rules for control blcoks end up implementing logic to allow 
+    /* Filtering rules for control blocks end up implementing logic to allow
     very fast CSS response. The following rules appear to be minimal but can be
-    hard to understand intuitively for the multiple conditions. If modifying, 
+    hard to understand intuitively for the multiple conditions. If modifying,
     it is suggested to create a truth-table to check for side-effects */
 
     /* remove all control blocks if no filters */
