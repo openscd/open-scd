@@ -8,6 +8,8 @@ import {
   state,
 } from 'lit-element';
 
+import { translate } from 'lit-translate';
+
 import '@material/mwc-icon';
 import '@material/mwc-icon-button';
 import '@material/mwc-menu';
@@ -22,7 +24,9 @@ import './substation-editor.js';
 import './process-editor.js';
 
 import { styles } from './foundation.js';
-import { getChildElementsByTagName } from '../../foundation.js';
+import { newWizardEvent, getChildElementsByTagName } from '../../foundation.js';
+
+import { wizards } from '../../wizards/wizard-library.js';
 
 @customElement('process-editor')
 export class ProcessEditor extends LitElement {
@@ -42,6 +46,11 @@ export class ProcessEditor extends LitElement {
     const desc = this.element.getAttribute('desc');
 
     return `${name} ${desc ? `—${desc}` : ''}`;
+  }
+
+  private openEditWizard(): void {
+    const wizard = wizards['Process'].edit(this.element);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
   private renderConductingEquipments(): TemplateResult {
@@ -143,6 +152,12 @@ export class ProcessEditor extends LitElement {
 
   render(): TemplateResult {
     return html`<action-pane label=${this.header}>
+      <abbr slot="action" title="${translate('edit')}">
+        <mwc-icon-button
+          icon="edit"
+          @click=${() => this.openEditWizard()}
+        ></mwc-icon-button>
+      </abbr>
       ${this.renderConductingEquipments()}${this.renderGeneralEquipments()}${this.renderFunctions()}${this.renderLNodes()}
       ${this.renderLines()} ${this.renderSubstations()}${this.renderProcesses()}
     </action-pane>`;
