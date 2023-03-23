@@ -67,7 +67,12 @@ export class FcdaBindingList extends LitElement {
   @state()
   private extRefCounters = new Map();
 
-  @property({ type: Boolean })
+  @property({
+    type: Boolean,
+    hasChanged() {
+      return false;
+    },
+  })
   get hideSubscribed(): boolean {
     return (
       localStorage.getItem(
@@ -89,7 +94,12 @@ export class FcdaBindingList extends LitElement {
     this.requestUpdate('hideSubscribed', oldValue);
   }
 
-  @property({ type: Boolean })
+  @property({
+    type: Boolean,
+    hasChanged() {
+      return false;
+    },
+  })
   get hideNotSubscribed(): boolean {
     return (
       localStorage.getItem(
@@ -309,15 +319,7 @@ export class FcdaBindingList extends LitElement {
   }
 
   renderControls(controlElements: Element[]): TemplateResult {
-    const filteredListClasses = {
-      'control-block-list': true,
-      'show-subscribed': !this.hideSubscribed,
-      'show-not-subscribed': !this.hideNotSubscribed,
-    };
-    return html`<filtered-list
-      class="${classMap(filteredListClasses)}"
-      activatable
-    >
+    return html`<filtered-list class="control-block-list" activatable>
       ${controlElements
         .filter(controlElement => this.getFcdaElements(controlElement).length)
         .map(controlElement => {
