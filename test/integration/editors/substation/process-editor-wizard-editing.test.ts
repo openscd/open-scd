@@ -2,12 +2,10 @@ import { expect, fixture, html } from '@open-wc/testing';
 
 import '../../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../../mock-wizard-editor.js';
-import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import '../../../../src/editors/substation/process-editor.js';
 import { ProcessEditor } from '../../../../src/editors/substation/process-editor.js';
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
-import { MenuBase } from '@material/mwc-menu/mwc-menu-base.js';
 
 describe('process-editor wizarding editing integration', () => {
   let doc: XMLDocument;
@@ -17,6 +15,7 @@ describe('process-editor wizarding editing integration', () => {
   describe('edit wizard', () => {
     let nameField: WizardTextField;
     let descField: WizardTextField;
+    let typeField: WizardTextField;
 
     let primaryAction: HTMLElement;
     let secondaryAction: HTMLElement;
@@ -42,6 +41,10 @@ describe('process-editor wizarding editing integration', () => {
 
       nameField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
+      );
+
+      typeField = <WizardTextField>(
+        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="type"]')
       );
 
       secondaryAction = <HTMLElement>(
@@ -73,6 +76,15 @@ describe('process-editor wizarding editing integration', () => {
       ).to.equal(oldName);
     });
 
+    it('changes name attribute on primary action', async () => {
+      nameField.value = 'newName';
+      primaryAction.click();
+      await parent.updateComplete;
+      expect(doc.querySelector('Process')?.getAttribute('name')).to.equal(
+        'newName'
+      );
+    });
+
     it('changes desc attribute on primary action', async () => {
       descField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector('wizard-textfield[label="desc"]')
@@ -91,8 +103,21 @@ describe('process-editor wizarding editing integration', () => {
       ).to.equal('newDesc');
     });
 
+    it('deletes desc attribute if wizard-textfield is deactivated', async () => {
+      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+      descField.nullSwitch!.click();
+      await parent.updateComplete;
+      await primaryAction.click();
+      await parent.updateComplete;
+      expect(
+        doc
+          .querySelector('Process[name="ProcessGenConduct"]')
+          ?.getAttribute('desc')
+      ).to.be.null;
+    });
+
     it('changes type attribute on primary action', async () => {
-      parent.wizardUI.inputs[2].value = 'newType';
+      typeField.value = 'newType';
       primaryAction.click();
       await parent.updateComplete;
       expect(
