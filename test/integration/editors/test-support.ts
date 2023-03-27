@@ -25,7 +25,7 @@ export function selectFCDAItem(
   fcdaIdentity: string
 ): void {
   (<HTMLElement>Array.from(
-    listElement.shadowRoot!.querySelectorAll('mwc-list-item[class="subitem"]')
+    listElement.shadowRoot!.querySelectorAll('mwc-list-item.subitem')
   ).find(listItem => {
     const value = listItem.getAttribute('value') ?? '';
     return value.includes(controlIdentity) && value.includes(fcdaIdentity);
