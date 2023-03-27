@@ -6,6 +6,13 @@ snapshots["web component rendering Process element rendering LNode, GeneralEquip
   label="ProcessGenConduct "
   tabindex="0"
 >
+  <abbr
+    slot="action"
+    title="[edit]"
+  >
+    <mwc-icon-button icon="edit">
+    </mwc-icon-button>
+  </abbr>
   <conducting-equipment-editor showfunctions="">
   </conducting-equipment-editor>
   <general-equipment-editor showfunctions="">
@@ -25,6 +32,13 @@ snapshots["web component rendering Process element hides LNode and Function chil
   label="ProcessGenConduct "
   tabindex="0"
 >
+  <abbr
+    slot="action"
+    title="[edit]"
+  >
+    <mwc-icon-button icon="edit">
+    </mwc-icon-button>
+  </abbr>
   <conducting-equipment-editor>
   </conducting-equipment-editor>
   <general-equipment-editor>
@@ -38,6 +52,13 @@ snapshots["web component rendering Process element rendering Substation and Proc
   label="ProcProcSubAA1 "
   tabindex="0"
 >
+  <abbr
+    slot="action"
+    title="[edit]"
+  >
+    <mwc-icon-button icon="edit">
+    </mwc-icon-button>
+  </abbr>
   <substation-editor showfunctions="">
   </substation-editor>
   <process-editor showfunctions="">
@@ -51,6 +72,13 @@ snapshots["web component rendering Process element rendering a Line child looks 
   label="ProcessLine "
   tabindex="0"
 >
+  <abbr
+    slot="action"
+    title="[edit]"
+  >
+    <mwc-icon-button icon="edit">
+    </mwc-icon-button>
+  </abbr>
   <line-editor showfunctions="">
   </line-editor>
 </action-pane>
