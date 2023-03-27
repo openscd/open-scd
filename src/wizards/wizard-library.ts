@@ -50,7 +50,7 @@ import {
 } from './transformerWinding.js';
 import { createTapChangerWizard, editTapChangerWizard } from './tapchanger.js';
 import { createLineWizard, editLineWizard } from './line.js';
-import { editProcessWizard } from './process.js';
+import { createProcessWizard, editProcessWizard } from './process.js';
 
 type SclElementWizard = (
   element: Element,
@@ -390,7 +390,7 @@ export const wizards: Record<
   },
   Process: {
     edit: editProcessWizard,
-    create: emptyWizard,
+    create: createProcessWizard,
   },
   ProtNs: {
     edit: emptyWizard,
