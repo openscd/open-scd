@@ -206,6 +206,13 @@
 				<LDevice inst="SV_supervision">
 					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
 					<LN lnClass="LGOS" inst="1" lnType="Dummy.LGOS1"/>
+					<LN lnClass="LGOS" inst="2" lnType="Dummy.LGOS1">
+						<DOI name="SomethingLikeGoCBRef">
+							<DAI name="setSrcRef" valImport="true" valKind="RO">
+								<Val>The supervision instance to rule them all!</Val>
+							</DAI>
+						</DOI>
+					</LN>
 				</LDevice>
 			</Server>
 		</AccessPoint>
@@ -226,6 +233,93 @@
 				<LDevice inst="SV_supervision">
 					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
 					<LN lnClass="LGOS" inst="1" lnType="Dummy.LGOS2"/>
+					<LN lnClass="LGOS" inst="2" lnType="Dummy.LGOS2"/>
+					<LN lnClass="LGOS" inst="3" lnType="Dummy.LGOS2"/>
+					<LN lnClass="LGOS" inst="4" lnType="Dummy.LGOS2"/>
+				</LDevice>
+			</Server>
+		</AccessPoint>
+	</IED>
+	<IED xmlns="http://www.iec.ch/61850/2003/SCL" name="GOOSE_Subscriber5" desc="GOOSE subscriber" manufacturer="Dummy">
+		<Services>
+			<SupSubscription maxGo="4" maxSv="0"/>
+		</Services>
+		<AccessPoint name="AP1">
+			<Server>
+				<Authentication/>
+				<LDevice inst="Earth_Switch">
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
+					<LN prefix="" lnClass="CILO" inst="1" lnType="Dummy.CILO"/>
+					<LN prefix="" lnClass="CSWI" inst="1" lnType="Dummy.CSWI"/>
+					<LN prefix="" lnClass="XSWI" inst="1" lnType="Dummy.XSWI"/>
+				</LDevice>
+				<LDevice inst="GOOSE_supervision">
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
+					<LN lnClass="LGOS" inst="1" lnType="Dummy.LGOS1">
+						<DOI name="GoCBRef">
+							<DAI name="setSrcRef" valImport="true" valKind="RO">
+								<Val>The One True Original</Val>
+							</DAI>
+						</DOI>
+					</LN>
+					<LN lnClass="LGOS" inst="2" lnType="Dummy.LGOS2"/>
+					<LN lnClass="LGOS" inst="3" lnType="Dummy.LGOS2"/>
+					<LN lnClass="LGOS" inst="4" lnType="Dummy.LGOS2"/>
+				</LDevice>
+			</Server>
+		</AccessPoint>
+	</IED>
+	<IED xmlns="http://www.iec.ch/61850/2003/SCL" name="GOOSE_Subscriber6" desc="GOOSE subscriber" manufacturer="Dummy">
+		<Services>
+			<SupSubscription maxGo="4" maxSv="0"/>
+		</Services>
+		<AccessPoint name="AP1">
+			<Server>
+				<Authentication/>
+				<LDevice inst="Earth_Switch">
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
+					<LN prefix="" lnClass="CILO" inst="1" lnType="Dummy.CILO"/>
+					<LN prefix="" lnClass="CSWI" inst="1" lnType="Dummy.CSWI"/>
+					<LN prefix="" lnClass="XSWI" inst="1" lnType="Dummy.XSWI"/>
+				</LDevice>
+				<LDevice inst="GOOSE_supervision">
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
+					<LN lnClass="LGOS" inst="1" lnType="Dummy.LGOS1">
+						<DOI name="GoCBRef">
+							<DAI name="setSrcRef" valImport="true" valKind="Conf">
+								<Val>The One True Original</Val>
+							</DAI>
+						</DOI>
+					</LN>
+					<LN lnClass="LGOS" inst="2" lnType="Dummy.LGOS2"/>
+					<LN lnClass="LGOS" inst="3" lnType="Dummy.LGOS2"/>
+					<LN lnClass="LGOS" inst="4" lnType="Dummy.LGOS2"/>
+				</LDevice>
+			</Server>
+		</AccessPoint>
+	</IED>
+	<IED xmlns="http://www.iec.ch/61850/2003/SCL" name="GOOSE_Subscriber7" desc="GOOSE subscriber" manufacturer="Dummy">
+		<Services>
+			<SupSubscription maxGo="4" maxSv="0"/>
+		</Services>
+		<AccessPoint name="AP1">
+			<Server>
+				<Authentication/>
+				<LDevice inst="Earth_Switch">
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
+					<LN prefix="" lnClass="CILO" inst="1" lnType="Dummy.CILO"/>
+					<LN prefix="" lnClass="CSWI" inst="1" lnType="Dummy.CSWI"/>
+					<LN prefix="" lnClass="XSWI" inst="1" lnType="Dummy.XSWI"/>
+				</LDevice>
+				<LDevice inst="GOOSE_supervision">
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
+					<LN lnClass="LGOS" inst="1" lnType="Dummy.LGOS1">
+						<DOI name="GoCBRef">
+							<DAI name="setSrcRef" valImport="true" valKind="Conf">
+								<Val></Val>
+							</DAI>
+						</DOI>
+					</LN>
 					<LN lnClass="LGOS" inst="2" lnType="Dummy.LGOS2"/>
 					<LN lnClass="LGOS" inst="3" lnType="Dummy.LGOS2"/>
 					<LN lnClass="LGOS" inst="4" lnType="Dummy.LGOS2"/>
@@ -304,6 +398,7 @@
 		</LNodeType>
 		<LNodeType lnClass="LGOS" id="Dummy.LGOS1">
 			<DO name="GoCBRef" type="Dummy.ORG1"/>
+			<DO name="SomethingLikeGoCBRef" type="Dummy.ORG1"/>
 			<DO name="St" type="OpenSCD_SPS_simple"/>
 			<DO name="Mod" type="OpenSCD_ENC_Mod"/>
 			<DO name="Health" type="OpenSCD_ENS_Health"/>

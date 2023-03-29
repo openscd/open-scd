@@ -2,7 +2,7 @@ The Generic Substation Event is a service class that has been designed to transm
 
 The GOOSE is defined in the part IEC 61850-8-1. It is often applied to communicate between servers such as bay controller and switch gear control unit.
 
-GOOSE does not use TCP/IP but uses multicast mechanist instead to be send to all communication participants in the same LAN/VLAN. Its sending or publishing and its use or subscription are therefore completely separated. Tha has its effect also on the configuration of GOOSE related communication in the SCL.
+GOOSE does not use TCP/IP but uses a multicast mechanism instead to send to all communication participants in the same LAN/VLAN. Its sending (or publishing) and its use (or subscribing) are, therefore, completely separated. This has an impact on the way GOOSE-related communications are configured in the SCL.
 
 **Publishing: GOOSE Control Block (GSEControl)**
 
