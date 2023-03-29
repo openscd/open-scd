@@ -97,7 +97,7 @@ export function createProcessWizard(parent: Element): Wizard {
     .map(sibling => sibling.getAttribute('name')!);
   return [
     {
-      title: get('wizard.title.add', { tagName: 'Line' }),
+      title: get('wizard.title.add', { tagName: 'Process' }),
       primary: {
         icon: 'save',
         label: get('save'),
