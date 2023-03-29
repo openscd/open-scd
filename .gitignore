@@ -12,3 +12,6 @@
 /custom-elements.json
 /.tsbuildinfo
 /.rollup.cache
+
+# IDE
+/.idea

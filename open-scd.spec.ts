@@ -1,4 +1,4 @@
-import { expect } from '@open-wc/testing';
+import { elementUpdated, expect } from '@open-wc/testing';
 
 import './open-scd.js';
 import type { OpenSCD } from './open-scd.js';
@@ -42,24 +42,37 @@ describe('with editor plugins loaded', () => {
     await editor.updateComplete;
   });
 
-  it('passes attribute locale', () => {
-    const plugin = editor.shadowRoot?.querySelector('*[locale="en"]');
+  it('passes attribute locale', async () => {
+    const plugin: Element = Array.from(
+      editor.shadowRoot?.querySelectorAll('*') || []
+    ).find(e => isOscdPlugin(e.tagName))!;
+
+    await elementUpdated(plugin);
     expect(plugin?.tagName).to.exist.and.to.satisfy(isOscdPlugin);
   });
 
-  it('passes attribute docname', async () => {
+  it('passes attribute docName', async () => {
     editor.dispatchEvent(newOpenEvent(doc, 'test.xml'));
     await editor.updateComplete;
 
-    const plugin = editor.shadowRoot?.querySelector('*[docName="test.xml"]');
+    const plugin: Element = Array.from(
+      editor.shadowRoot?.querySelectorAll('*') || []
+    ).find(e => isOscdPlugin(e.tagName))!;
+
+    await elementUpdated(plugin);
     expect(plugin?.tagName).to.exist.and.to.satisfy(isOscdPlugin);
+    expect(plugin).to.have.property('docName', 'test.xml');
   });
 
   it('passes property doc', async () => {
     editor.dispatchEvent(newOpenEvent(doc, 'test.xml'));
     await editor.updateComplete;
 
-    const plugin = editor.shadowRoot?.querySelector('*[docname="test.xml"]');
+    const plugin: Element = Array.from(
+      editor.shadowRoot?.querySelectorAll('*') || []
+    ).find(e => isOscdPlugin(e.tagName))!;
+
+    await elementUpdated(plugin);
     expect(plugin).to.have.property('docs');
   });
 
@@ -67,7 +80,11 @@ describe('with editor plugins loaded', () => {
     editor.dispatchEvent(newOpenEvent(doc, 'test.xml'));
     await editor.updateComplete;
 
-    const plugin = editor.shadowRoot?.querySelector('*[docname="test.xml"]');
+    const plugin: Element = Array.from(
+      editor.shadowRoot?.querySelectorAll('*') || []
+    ).find(e => isOscdPlugin(e.tagName))!;
+
+    await elementUpdated(plugin);
     expect(plugin).to.have.property('editCount', 0);
   });
 
@@ -83,7 +100,11 @@ describe('with editor plugins loaded', () => {
     );
     await editor.updateComplete;
 
-    const plugin = editor.shadowRoot?.querySelector('*[docname="test.xml"]');
+    const plugin: Element = Array.from(
+      editor.shadowRoot?.querySelectorAll('*') || []
+    ).find(e => isOscdPlugin(e.tagName))!;
+
+    await elementUpdated(plugin);
     expect(plugin).to.have.property('editCount', 1);
   });
 });
@@ -105,24 +126,42 @@ describe('with menu plugins loaded', () => {
     await editor.updateComplete;
   });
 
-  it('passes attribute locale', () => {
-    const plugin = editor.shadowRoot?.querySelector('*[locale="en"]');
+  it('passes attribute locale', async () => {
+    await editor.updateComplete;
+
+    const plugin: Element = Array.from(
+      editor.shadowRoot?.querySelectorAll('*') || []
+    ).find(e => isOscdPlugin(e.tagName))!;
+
+    await elementUpdated(plugin);
+
     expect(plugin?.tagName).to.exist.and.to.satisfy(isOscdPlugin);
+
+    expect(plugin).to.have.property('locale', 'en');
   });
 
-  it('passes attribute docname', async () => {
+  it('passes attribute docName', async () => {
     editor.dispatchEvent(newOpenEvent(doc, 'test.xml'));
     await editor.updateComplete;
 
-    const plugin = editor.shadowRoot?.querySelector('*[docName="test.xml"]');
+    const plugin: Element = Array.from(
+      editor.shadowRoot?.querySelectorAll('*') || []
+    ).find(e => isOscdPlugin(e.tagName))!;
+
+    await elementUpdated(plugin);
     expect(plugin?.tagName).to.exist.and.to.satisfy(isOscdPlugin);
+    expect(plugin).to.have.property('docName', 'test.xml');
   });
 
   it('passes property doc', async () => {
     editor.dispatchEvent(newOpenEvent(doc, 'test.xml'));
     await editor.updateComplete;
 
-    const plugin = editor.shadowRoot?.querySelector('*[docname="test.xml"]');
+    const plugin: Element = Array.from(
+      editor.shadowRoot?.querySelectorAll('*') || []
+    ).find(e => isOscdPlugin(e.tagName))!;
+
+    await elementUpdated(plugin);
     expect(plugin).to.have.property('docs');
   });
 
@@ -130,7 +169,11 @@ describe('with menu plugins loaded', () => {
     editor.dispatchEvent(newOpenEvent(doc, 'test.xml'));
     await editor.updateComplete;
 
-    const plugin = editor.shadowRoot?.querySelector('*[docname="test.xml"]');
+    const plugin: Element = Array.from(
+      editor.shadowRoot?.querySelectorAll('*') || []
+    ).find(e => isOscdPlugin(e.tagName))!;
+
+    await elementUpdated(plugin);
     expect(plugin).to.have.property('editCount', 0);
   });
 
@@ -146,7 +189,12 @@ describe('with menu plugins loaded', () => {
     );
     await editor.updateComplete;
 
-    const plugin = editor.shadowRoot?.querySelector('*[docname="test.xml"]');
+    const plugin: Element = Array.from(
+      editor.shadowRoot?.querySelectorAll('*') || []
+    ).find(e => isOscdPlugin(e.tagName))!;
+
+    await elementUpdated(plugin);
+
     expect(plugin).to.have.property('editCount', 1);
   });
 });
