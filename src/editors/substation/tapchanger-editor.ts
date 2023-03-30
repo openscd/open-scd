@@ -64,7 +64,7 @@ export class TapChangerEditor extends LitElement {
   @query('mwc-menu') addMenu!: Menu;
   @query('mwc-icon-button[icon="playlist_add"]') addButton!: IconButton;
 
-  openEditWizard(): void {
+  private openEditWizard(): void {
     const wizard = wizards['TapChanger'].edit(this.element);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
@@ -147,8 +147,8 @@ export class TapChangerEditor extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<action-pane label=${this.header}> 
-    <abbr slot="action" title="${translate('edit')}">
+    return html`<action-pane label=${this.header}>
+      <abbr slot="action" title="${translate('edit')}">
         <mwc-icon-button
           icon="edit"
           @click=${() => this.openEditWizard()}
@@ -161,27 +161,27 @@ export class TapChangerEditor extends LitElement {
         ></mwc-icon-button>
       </abbr>
       <abbr
-      slot="action"
-      style="position:relative;"
-      title="${translate('add')}"
-    >
-      <mwc-icon-button
-        icon="playlist_add"
-        @click=${() => (this.addMenu.open = true)}
-      ></mwc-icon-button
-      ><mwc-menu
-        corner="BOTTOM_RIGHT"
-        menuCorner="END"
-        @action=${(e: Event) => {
-          const tagName = (<ListItem>(<Menu>e.target).selected).value;
-          this.openCreateWizard(tagName);
-        }}
-        >${this.renderAddButtons()}</mwc-menu
-      ></abbr
-    >
-    ${this.renderLNodes()}
-    ${this.renderEqFunctions()} ${this.renderSubEquipments()}
-    </action-icon>`;
+        slot="action"
+        style="position:relative;"
+        title="${translate('add')}"
+      >
+        <mwc-icon-button
+          icon="playlist_add"
+          @click=${() => (this.addMenu.open = true)}
+        ></mwc-icon-button
+        ><mwc-menu
+          corner="BOTTOM_RIGHT"
+          menuCorner="END"
+          @action=${(e: Event) => {
+            const tagName = (<ListItem>(<Menu>e.target).selected).value;
+            this.openCreateWizard(tagName);
+          }}
+          >${this.renderAddButtons()}</mwc-menu
+        ></abbr
+      >
+      ${this.renderLNodes()} ${this.renderEqFunctions()}
+      ${this.renderSubEquipments()}
+    </action-pane>`;
   }
 
   static styles = css`

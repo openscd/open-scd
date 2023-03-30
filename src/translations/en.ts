@@ -285,6 +285,21 @@ export const en = {
       updateVoltagelevel: 'Edited voltagelevel "{{name}}"',
     },
   },
+  line: {
+    name: 'Line',
+    wizard: {
+      nameHelper: 'Line name',
+      descHelper: 'Line description',
+      typeHelper: 'Line type',
+      title: {
+        add: 'Add line',
+        edit: 'Edit line',
+      },
+    },
+    action: {
+      updateLine: 'Edited line "{{name}}"',
+    },
+  },
   bay: {
     name: 'Bay',
     wizard: {

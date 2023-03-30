@@ -6,6 +6,13 @@ snapshots["web component rendering Line element rendering LNode and Function chi
   label="Berlin "
   tabindex="0"
 >
+  <abbr
+    slot="action"
+    title="[edit]"
+  >
+    <mwc-icon-button icon="edit">
+    </mwc-icon-button>
+  </abbr>
   <conducting-equipment-editor showfunctions="">
   </conducting-equipment-editor>
   <function-editor showfunctions="">
@@ -23,6 +30,13 @@ snapshots["web component rendering Line element rendering ConductingEquipment lo
   label="Berlin "
   tabindex="0"
 >
+  <abbr
+    slot="action"
+    title="[edit]"
+  >
+    <mwc-icon-button icon="edit">
+    </mwc-icon-button>
+  </abbr>
   <conducting-equipment-editor showfunctions="">
   </conducting-equipment-editor>
   <function-editor showfunctions="">
@@ -40,6 +54,13 @@ snapshots["web component rendering Line element rendering GeneralEquipment looks
   label="Munich "
   tabindex="0"
 >
+  <abbr
+    slot="action"
+    title="[edit]"
+  >
+    <mwc-icon-button icon="edit">
+    </mwc-icon-button>
+  </abbr>
   <conducting-equipment-editor showfunctions="">
   </conducting-equipment-editor>
   <general-equipment-editor showfunctions="">

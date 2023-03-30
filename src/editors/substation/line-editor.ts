@@ -7,11 +7,17 @@ import {
   state,
 } from 'lit-element';
 
+import { translate } from 'lit-translate';
+
+import '@material/mwc-icon';
+import '@material/mwc-icon-button';
+
 import './conducting-equipment-editor.js';
 import './function-editor.js';
 import './general-equipment-editor.js';
 import './l-node-editor.js';
-import { getChildElementsByTagName } from '../../foundation.js';
+import { getChildElementsByTagName, newWizardEvent } from '../../foundation.js';
+import { wizards } from '../../wizards/wizard-library.js';
 
 @customElement('line-editor')
 export class LineEditor extends LitElement {
@@ -31,6 +37,11 @@ export class LineEditor extends LitElement {
     const desc = this.element.getAttribute('desc');
 
     return `${name} ${desc ? `—${desc}` : ''}`;
+  }
+
+  private openEditWizard(): void {
+    const wizard = wizards['Line'].edit(this.element);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
   private renderConductingEquipments(): TemplateResult {
@@ -95,9 +106,13 @@ export class LineEditor extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<action-pane label=${
-      this.header
-    }> ${this.renderConductingEquipments()}${this.renderGeneralEquipments()}${this.renderFunctions()}${this.renderLNodes()}
-      </action-icon>`;
+    return html`<action-pane label=${this.header}>
+      <abbr slot="action" title="${translate('edit')}">
+        <mwc-icon-button
+          icon="edit"
+          @click=${() => this.openEditWizard()}
+        ></mwc-icon-button> </abbr
+      >${this.renderConductingEquipments()}${this.renderGeneralEquipments()}${this.renderFunctions()}${this.renderLNodes()}
+    </action-pane>`;
   }
 }
