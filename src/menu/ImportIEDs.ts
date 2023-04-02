@@ -388,7 +388,6 @@ export default class ImportingIedPlugin extends LitElement {
   async run(): Promise<void> {
     this.iedSelection = [];
     this.pluginFileUI.click();
-    console.log('finished');
   }
 
   async docUpdate(): Promise<void> {
@@ -510,6 +509,7 @@ export default class ImportingIedPlugin extends LitElement {
 
     if (ieds.length === 1) {
       this.importIED(ieds[0]);
+      await this.docUpdate();
       return;
     }
 
@@ -535,16 +535,6 @@ export default class ImportingIedPlugin extends LitElement {
       (<HTMLInputElement | null>event.target)?.files ?? []
     );
 
-    // const promises = files.map(async file => {
-    //   const importDoc = new DOMParser().parseFromString(
-    //     // NOTE: Assumes files are readable as UTF-8
-    //     await file.text(),
-    //     'application/xml'
-    //   );
-
-    //   return this.prepareImport(importDoc, file.name);
-    // });
-
     const promises = files.map(file => {
       return {
         text: file
@@ -558,17 +548,7 @@ export default class ImportingIedPlugin extends LitElement {
 
     for await (const file of promises) {
       await this.prepareImport(await file.text, file.name);
-      console.log('fyy', file.name);
     }
-    console.log('fxx');
-    // const mergedPromise = new Promise<void>((resolve, reject) =>
-    //   Promise.allSettled(promises).then(
-    //     () => resolve(),
-    //     () => reject()
-    //   )
-    // );
-    // return mergedPromise;
-    // this.dispatchEvent(newPendingStateEvent(mergedPromise));
   }
 
   protected renderInput(): TemplateResult {
