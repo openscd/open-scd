@@ -455,7 +455,7 @@ export default class ImportingIedPlugin extends LitElement {
     )!;
 
     const selectedItems = <ListItemBase[]>(
-      (<List>documentDialog.querySelector(`filtered-list`)).selected
+      (<List>documentDialog.querySelector('filtered-list')).selected
     );
 
     const ieds = selectedItems
@@ -557,10 +557,7 @@ export default class ImportingIedPlugin extends LitElement {
   }
 
   protected buildIedSelection(importDoc: XMLDocument, fileName: string): void {
-    this.iedSelection.push(html`<mwc-dialog
-      data-file="${fileName}"
-      ?open=${false}
-    >
+    this.iedSelection.push(html`<mwc-dialog data-file="${fileName}">
       <filtered-list hasSlot multi>
         ${Array.from(importDoc?.querySelectorAll(':root > IED') ?? []).map(
           ied =>
