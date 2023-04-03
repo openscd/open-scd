@@ -367,12 +367,6 @@ function isIedNameUnique(ied: Element, doc: Document): boolean {
   return true;
 }
 
-function resetSelection(dialog: Dialog): void {
-  (
-    (dialog.querySelector('filtered-list') as List).selected as ListItemBase[]
-  ).forEach(item => (item.selected = false));
-}
-
 export default class ImportingIedPlugin extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
@@ -463,8 +457,6 @@ export default class ImportingIedPlugin extends LitElement {
         return importDoc!.querySelector(selector('IED', item.value));
       })
       .filter(ied => ied) as Element[];
-
-    resetSelection(documentDialog);
 
     documentDialog.close();
 

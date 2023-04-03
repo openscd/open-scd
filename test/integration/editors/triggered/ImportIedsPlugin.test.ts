@@ -41,7 +41,6 @@ describe('ImportIedsPlugin', () => {
       importDoc = await fetch('/test/testfiles/importieds/valid.iid')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-
       await element.updateComplete;
     });
 
@@ -107,9 +106,6 @@ describe('ImportIedsPlugin', () => {
       )
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-
-      await element.updateComplete;
-
       element.prepareImport(templateIED1, 'template.icd');
 
       const templateIED2 = await fetch(
@@ -135,9 +131,6 @@ describe('ImportIedsPlugin', () => {
       )
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-
-      await element.updateComplete;
-
       element.prepareImport(templateIED1, 'template.icd');
       await parent.updateComplete;
 
@@ -324,9 +317,6 @@ describe('ImportIedsPlugin', () => {
       )
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-
-      await element.updateComplete;
-
       element.prepareImport(templateIED1, 'template.icd');
 
       const templateIED2 = await fetch(
@@ -334,9 +324,6 @@ describe('ImportIedsPlugin', () => {
       )
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-
-      await element.updateComplete;
-
       element.prepareImport(templateIED2, 'template.icd');
       await parent.updateComplete;
 
@@ -352,8 +339,6 @@ describe('ImportIedsPlugin', () => {
       )
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-
-      await element.updateComplete;
 
       element.prepareImport(multipleIedDoc, 'multipleied.scd');
       await element.updateComplete;
@@ -371,8 +356,6 @@ describe('ImportIedsPlugin', () => {
       )
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-
-      await element.updateComplete;
 
       element.prepareImport(multipleIedDoc, 'multipleied.scd');
       await element.updateComplete;
@@ -428,9 +411,6 @@ describe('ImportIedsPlugin', () => {
       importDoc = await fetch('/test/testfiles/importieds/invalid.iid')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-
-      await element.updateComplete;
-
       element.prepareImport(importDoc, 'invalid.iid');
 
       expect(parent.history[0].kind).to.equal('error');
@@ -441,9 +421,6 @@ describe('ImportIedsPlugin', () => {
       importDoc = await fetch('/test/testfiles/importieds/duplicate.iid')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-
-      await element.updateComplete;
-
       element.prepareImport(importDoc, 'duplicate.iid');
 
       expect(parent.history[0].kind).to.equal('error');
@@ -454,7 +431,6 @@ describe('ImportIedsPlugin', () => {
       importDoc = await fetch('/test/testfiles/importieds/parsererror.iid')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-
       await element.updateComplete;
 
       element.prepareImport(importDoc, 'parsererror.iid');
