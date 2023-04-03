@@ -23,11 +23,9 @@ import {
   isPublic,
   newActionEvent,
   newLogEvent,
-  newPendingStateEvent,
   selector,
   SimpleAction,
 } from '../foundation.js';
-import { Template } from 'lit-html';
 
 function uniqueTemplateIedName(doc: XMLDocument, ied: Element): string {
   const [manufacturer, type] = ['manufacturer', 'type'].map(attr =>
@@ -423,6 +421,7 @@ export default class ImportingIedPlugin extends LitElement {
     // This doesn't provide redo/undo capability as it is not using the Editing
     // action API. To use it would require us to cache the full SCL file in
     // OpenSCD as it is now which could use significant memory.
+
     // TODO: In open-scd core update this to allow including in undo/redo.
     updateNamespaces(
       this.doc.documentElement,
@@ -509,8 +508,7 @@ export default class ImportingIedPlugin extends LitElement {
 
     if (ieds.length === 1) {
       this.importIED(ieds[0]);
-      await this.docUpdate();
-      return;
+      return await this.docUpdate();
     }
 
     this.buildIedSelection(importDoc, fileName);
