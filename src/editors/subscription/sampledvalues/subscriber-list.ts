@@ -14,10 +14,12 @@ import '@material/mwc-list/mwc-list-item';
 
 import '../../../filtered-list.js';
 import {
+  ComplexAction,
   Create,
   createElement,
   Delete,
   identity,
+  Move,
   newActionEvent,
 } from '../../../foundation.js';
 import {
@@ -243,7 +245,10 @@ export class SubscriberList extends SubscriberListContainer {
     if (!inputsElement)
       inputsElement = createElement(ied.ownerDocument, 'Inputs', {});
 
-    const actions: Create[] = [];
+    const complexAction: ComplexAction = {
+      actions: [],
+      title: get(`subscription.connect`),
+    };
 
     this.currentUsedDataset!.querySelectorAll('FCDA').forEach(fcda => {
       if (
@@ -256,37 +261,31 @@ export class SubscriberList extends SubscriberListContainer {
         );
 
         if (inputsElement?.parentElement)
-          actions.push({ new: { parent: inputsElement!, element: extRef } });
+          complexAction.actions.push({
+            new: { parent: inputsElement!, element: extRef },
+          });
         else inputsElement?.appendChild(extRef);
       }
     });
 
     // we need to extend the actions array with the actions for the instantiation of the LSVS
-    const supervisionActions: Create[] = instantiateSubscriptionSupervision(
+    const supervisionActions = instantiateSubscriptionSupervision(
       this.currentSelectedSmvControl,
       ied
     );
 
-    /** If the IED doesn't have a Inputs element, just append it to the first LN0 element. */
-    const title = get('subscription.connect');
-    if (inputsElement.parentElement)
-      this.dispatchEvent(
-        newActionEvent({
-          title,
-          actions: actions.concat(supervisionActions),
-        })
-      );
-    else {
-      const inputAction: Create = {
-        new: { parent: ied.querySelector('LN0')!, element: inputsElement },
-      };
-      this.dispatchEvent(
-        newActionEvent({
-          title,
-          actions: [inputAction].concat(supervisionActions),
-        })
-      );
+    if (inputsElement.parentElement) {
+      complexAction.actions.concat(supervisionActions);
+    } else {
+      /** If the IED doesn't have a Inputs element, just append it to the first LN0 element. */
+      const inputAction: (Create | Move)[] = [
+        {
+          new: { parent: ied.querySelector('LN0')!, element: inputsElement },
+        },
+      ];
+      complexAction.actions = inputAction.concat(supervisionActions);
     }
+    this.dispatchEvent(newActionEvent(complexAction));
   }
 
   private async unsubscribe(ied: Element): Promise<void> {
