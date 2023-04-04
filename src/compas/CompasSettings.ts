@@ -20,6 +20,7 @@ export type CompasSettingsRecord = {
   sclValidatorServiceUrl: string;
   cimMappingServiceUrl: string;
   sclAutoAlignmentServiceUrl: string;
+  sitipeServiceUrl: string;
   useWebsockets: 'on' | 'off';
 };
 
@@ -34,6 +35,7 @@ export function CompasSettings() {
         sclAutoAlignmentServiceUrl: this.getCompasSetting(
           'sclAutoAlignmentServiceUrl'
         ),
+        sitipeServiceUrl: this.getCompasSetting('sitipeServiceUrl'),
         useWebsockets: this.getCompasSetting('useWebsockets'),
       };
     },
@@ -44,6 +46,7 @@ export function CompasSettings() {
         sclValidatorServiceUrl: '/compas-scl-validator',
         cimMappingServiceUrl: '/compas-cim-mapping',
         sclAutoAlignmentServiceUrl: '/compas-scl-auto-alignment',
+        sitipeServiceUrl: '/compas-sitipe-service',
         useWebsockets: 'on',
       };
     },
@@ -106,6 +109,12 @@ export class CompasSettingsElement extends LitElement {
     );
   }
 
+  getSitipeServiceUrlField(): TextFieldBase {
+    return <TextFieldBase>(
+      this.shadowRoot!.querySelector('mwc-textfield[id="sitipeServiceUrl"]')
+    );
+  }
+
   getUseWebsockets(): Switch {
     return <Switch>(
       this.shadowRoot!.querySelector('mwc-switch[id="useWebsockets"]')
@@ -117,7 +126,8 @@ export class CompasSettingsElement extends LitElement {
       this.getSclDataServiceUrlField().checkValidity() &&
       this.getSclValidatorServiceUrlField().checkValidity() &&
       this.getCimMappingServiceUrlField().checkValidity() &&
-      this.getSclAutoAlignmentServiceUrlField().checkValidity()
+      this.getSclAutoAlignmentServiceUrlField().checkValidity() &&
+      this.getSitipeServiceUrlField().checkValidity()
     );
   }
 
@@ -142,6 +152,10 @@ export class CompasSettingsElement extends LitElement {
     CompasSettings().setCompasSetting(
       'sclAutoAlignmentServiceUrl',
       this.getSclAutoAlignmentServiceUrlField().value
+    );
+    CompasSettings().setCompasSetting(
+      'sitipeServiceUrl',
+      this.getSitipeServiceUrlField().value
     );
     CompasSettings().setCompasSetting(
       'useWebsockets',
@@ -190,6 +204,13 @@ export class CompasSettingsElement extends LitElement {
         id="sclAutoAlignmentServiceUrl"
         label="${translate('compas.settings.sclAutoAlignmentServiceUrl')}"
         value="${this.compasSettings.sclAutoAlignmentServiceUrl}"
+        required
+      >
+      </mwc-textfield>
+      <mwc-textfield
+        id="sitipeServiceUrl"
+        label="${translate('compas.settings.sitipeServiceUrl')}"
+        value="${this.compasSettings.sitipeServiceUrl}"
         required
       >
       </mwc-textfield>
