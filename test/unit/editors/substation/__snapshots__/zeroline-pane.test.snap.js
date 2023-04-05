@@ -10,7 +10,7 @@ snapshots["zeroline-pane per default looks like the latest snapshot"] =
     >
       <mwc-icon-button icon="playlist_add">
       </mwc-icon-button>
-      <mwc-menu corner="BOTTOM_RIGHT">
+      <mwc-menu corner="BOTTOM_LEFT">
         <mwc-list-item
           aria-disabled="false"
           mwc-list-item=""
@@ -92,7 +92,7 @@ snapshots["zeroline-pane showieds looks like the latest snapshot"] =
     >
       <mwc-icon-button icon="playlist_add">
       </mwc-icon-button>
-      <mwc-menu corner="BOTTOM_RIGHT">
+      <mwc-menu corner="BOTTOM_LEFT">
         <mwc-list-item
           aria-disabled="false"
           mwc-list-item=""
