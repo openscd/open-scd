@@ -200,7 +200,7 @@ export class ZerolinePane extends LitElement {
               @click=${() => (this.addMenu.open = true)}
             ></mwc-icon-button
             ><mwc-menu
-              corner="BOTTOM_RIGHT"
+              corner="BOTTOM_LEFT"
               @action=${(e: Event) => {
                 const tagName = (<ListItem>(<Menu>e.target).selected).value;
                 this.openCreateWizard(tagName);
@@ -296,6 +296,10 @@ export class ZerolinePane extends LitElement {
       padding: 8px 12px 16px;
       box-sizing: border-box;
       grid-template-columns: repeat(auto-fit, minmax(128px, auto));
+    }
+    :host {
+      display: block;
+      position: relative;
     }
   `;
 }
