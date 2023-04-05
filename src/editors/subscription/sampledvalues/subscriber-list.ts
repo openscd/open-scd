@@ -54,6 +54,8 @@ let view: View = View.PUBLISHER;
 export class SubscriberList extends SubscriberListContainer {
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
 
   /** Current selected Sampled Values element (when in GOOSE Publisher view) */
   currentSelectedSmvControl: Element | undefined;

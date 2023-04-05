@@ -54,6 +54,8 @@ let view: View = View.PUBLISHER;
 export class SubscriberList extends SubscriberListContainer {
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
 
   /** Current selected GOOSE message (when in GOOSE Publisher view) */
   currentSelectedGseControl: Element | undefined;

@@ -9,6 +9,8 @@ import './subscription/later-binding/ext-ref-ln-binding-list.js';
 export default class GooseSubscribeDataBindingPlugin extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
   @property()
   nsdoc!: Nsdoc;
 
@@ -19,12 +21,14 @@ export default class GooseSubscribeDataBindingPlugin extends LitElement {
           class="column"
           controlTag="GSEControl"
           .includeLaterBinding="${false}"
+          .editCount=${this.editCount}
           .doc="${this.doc}"
         >
         </fcda-binding-list>
         <extref-ln-binding-list
           class="column"
           controlTag="GSEControl"
+          .editCount=${this.editCount}
           .doc="${this.doc}"
           .nsdoc="${this.nsdoc}"
         >

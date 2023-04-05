@@ -24,7 +24,6 @@ import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
 import { Menu } from '@material/mwc-menu';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { IconButton } from '@material/mwc-icon-button';
-import { classMap } from 'lit-html/directives/class-map.js';
 import { renderGeneralEquipment } from './foundation.js';
 
 function childTags(element: Element | null | undefined): SCLTag[] {
@@ -41,6 +40,8 @@ export class FunctionEditor extends LitElement {
   /** The document being edited as provided to editor by [[`Zeroline`]]. */
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({type: Number})
+  editCount = -1;
   /** The edited `Function` element */
   @property({ attribute: false })
   element!: Element;
@@ -95,7 +96,7 @@ export class FunctionEditor extends LitElement {
           ${lNodes.map(
             lNode =>
               html`<l-node-editor
-                .doc=${this.doc}
+                .editCount=${this.editCount} .doc=${this.doc}
                 .element=${lNode}
               ></l-node-editor>`
           )}
@@ -108,7 +109,7 @@ export class FunctionEditor extends LitElement {
     return html` ${subfunctions.map(
       subFunction =>
         html`<sub-function-editor
-          .doc=${this.doc}
+          .editCount=${this.editCount} .doc=${this.doc}
           .element=${subFunction}
           ?showfunctions=${this.showfunctions}
         ></sub-function-editor>`

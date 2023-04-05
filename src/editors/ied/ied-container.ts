@@ -92,6 +92,7 @@ export class IedContainer extends Container {
       ${this.renderServicesIcon()}
       ${Array.from(this.element.querySelectorAll(':scope > AccessPoint')).map(
         ap => html`<access-point-container
+          .editCount=${this.editCount}
           .doc=${this.doc}
           .element=${ap}
           .nsdoc=${this.nsdoc}

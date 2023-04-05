@@ -47,6 +47,8 @@ export class LineEditor extends LitElement {
   /** The document being edited as provided to editor by [[`Zeroline`]]. */
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
   /** SCL element Line */
   @property({ attribute: false })
   element!: Element;
@@ -84,6 +86,7 @@ export class LineEditor extends LitElement {
     return html` ${ConductingEquipments.map(
       ConductingEquipment =>
         html`<conducting-equipment-editor
+          .editCount=${this.editCount}
           .doc=${this.doc}
           .element=${ConductingEquipment}
           ?showfunctions=${this.showfunctions}
@@ -99,6 +102,7 @@ export class LineEditor extends LitElement {
     return html` ${GeneralEquipments.map(
       GeneralEquipment =>
         html`<general-equipment-editor
+          .editCount=${this.editCount}
           .doc=${this.doc}
           .element=${GeneralEquipment}
           ?showfunctions=${this.showfunctions}
@@ -113,6 +117,7 @@ export class LineEditor extends LitElement {
     return html` ${Functions.map(
       Function =>
         html`<function-editor
+          .editCount=${this.editCount}
           .doc=${this.doc}
           .element=${Function}
           ?showfunctions=${this.showfunctions}
@@ -146,6 +151,7 @@ export class LineEditor extends LitElement {
           ${lNodes.map(
             lNode =>
               html`<l-node-editor
+                .editCount=${this.editCount}
                 .doc=${this.doc}
                 .element=${lNode}
               ></l-node-editor>`
