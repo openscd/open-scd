@@ -134,7 +134,7 @@ export class ZerolinePane extends LitElement {
   renderSubstation(): TemplateResult {
     return this.doc?.querySelector(':root > Substation')
       ? html`<section>
-          ${Array.from(this.doc.querySelectorAll('Substation') ?? [])
+          ${Array.from(this.doc.querySelectorAll(':root >Substation') ?? [])
             .filter(isPublic)
             .map(
               substation =>
@@ -157,7 +157,7 @@ export class ZerolinePane extends LitElement {
   renderLines(): TemplateResult {
     return this.doc?.querySelector(':root > Line')
       ? html`<section>
-          ${Array.from(this.doc.querySelectorAll('Line') ?? [])
+          ${Array.from(this.doc.querySelectorAll(':root >Line') ?? [])
             .filter(isPublic)
             .map(
               line =>
