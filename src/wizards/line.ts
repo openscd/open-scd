@@ -4,6 +4,7 @@ import { get, translate } from 'lit-translate';
 import '../wizard-textfield.js';
 import {
   cloneElement,
+  createElement,
   getValue,
   patterns,
   SimpleAction,
@@ -67,7 +68,19 @@ function render(
     ></wizard-textfield>`,
   ];
 }
+function createLineAction(parent: Element): WizardActor {
+  return (inputs: WizardInputElement[]) => {
+    const lineAttrs: Record<string, string | null> = {};
+    const lineKeys = ['name', 'desc', 'type', 'nomFreq', 'numPhases'];
+    lineKeys.forEach(key => {
+      lineAttrs[key] = getValue(inputs.find(i => i.label === key)!);
+    });
 
+    const line = createElement(parent.ownerDocument, 'Line', lineAttrs);
+
+    return [{ new: { parent, element: line } }];
+  };
+}
 function updateAction(element: Element): WizardActor {
   return (inputs: WizardInputElement[]): SimpleAction[] => {
     const lineAttrs: Record<string, string | null> = {};
@@ -87,6 +100,25 @@ function updateAction(element: Element): WizardActor {
     }
     return [];
   };
+}
+
+export function createLineWizard(parent: Element): Wizard {
+  const name = '';
+  const desc = '';
+  const type = '';
+  const nomFreq = '';
+  const numPhases = '';
+  return [
+    {
+      title: get('wizard.title.add', { tagName: 'Line' }),
+      primary: {
+        icon: 'save',
+        label: get('save'),
+        action: createLineAction(parent),
+      },
+      content: [...render(name, desc, type, nomFreq, numPhases)],
+    },
+  ];
 }
 
 export function editLineWizard(element: Element): Wizard {

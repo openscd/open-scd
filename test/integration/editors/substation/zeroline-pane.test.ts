@@ -9,6 +9,7 @@ import '../../../../src/editors/substation/zeroline-pane.js';
 import { FilteredList } from '../../../../src/filtered-list.js';
 import { ZerolinePane } from '../../../../src/editors/substation/zeroline-pane.js';
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
+import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 
 describe('zeroline-pane wizarding editing integration', () => {
   let doc: XMLDocument;
@@ -71,10 +72,12 @@ describe('zeroline-pane wizarding editing integration', () => {
     );
   });
 
-  it('add Substation element with createSubstationWizard', async () => {
+  it('add Substation element with add button', async () => {
     expect(doc.querySelector('Substation[name="newSubstation"]')).to.not.exist;
-    zeroline.createsubstation.click();
+    zeroline.addButton.click();
+    (<ListItem>zeroline.addMenu.querySelector('[value=Substation]')).click();
     await parent.updateComplete;
+
     const primaryAction = <IconButton>(
       parent.wizardUI.dialog?.querySelector('mwc-button[slot="primaryAction"]')
     );
