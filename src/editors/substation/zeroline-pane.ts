@@ -134,7 +134,7 @@ export class ZerolinePane extends LitElement {
   renderSubstation(): TemplateResult {
     return this.doc?.querySelector(':root > Substation')
       ? html`<section>
-          ${Array.from(this.doc.querySelectorAll(':root >Substation') ?? [])
+          ${Array.from(this.doc.querySelectorAll('Substation') ?? [])
             .filter(isPublic)
             .map(
               substation =>
@@ -157,13 +157,15 @@ export class ZerolinePane extends LitElement {
   renderLines(): TemplateResult {
     return this.doc?.querySelector(':root > Line')
       ? html`<section>
-          ${Array.from(this.doc.querySelectorAll(':root >Line') ?? [])
+          ${Array.from(this.doc.querySelectorAll('Line') ?? [])
             .filter(isPublic)
             .map(
               line =>
                 html`<line-editor
                   .doc=${this.doc}
                   .element=${line}
+                  .getAttachedIeds=${this.getAttachedIeds}
+                  ?readonly=${this.readonly}
                   ?showfunctions=${shouldShowFunctions()}
                 ></line-editor>`
             )}
@@ -200,7 +202,7 @@ export class ZerolinePane extends LitElement {
               @click=${() => (this.addMenu.open = true)}
             ></mwc-icon-button
             ><mwc-menu
-              corner="BOTTOM_LEFT"
+              corner="BOTTOM_RIGHT"
               @action=${(e: Event) => {
                 const tagName = (<ListItem>(<Menu>e.target).selected).value;
                 this.openCreateWizard(tagName);
@@ -296,10 +298,6 @@ export class ZerolinePane extends LitElement {
       padding: 8px 12px 16px;
       box-sizing: border-box;
       grid-template-columns: repeat(auto-fit, minmax(128px, auto));
-    }
-    :host {
-      display: block;
-      position: relative;
     }
   `;
 }

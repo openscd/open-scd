@@ -13,6 +13,13 @@ snapshots["web component rendering Line element rendering LNode and Function chi
     <mwc-icon-button icon="edit">
     </mwc-icon-button>
   </abbr>
+  <abbr
+    slot="action"
+    title="[remove]"
+  >
+    <mwc-icon-button icon="delete">
+    </mwc-icon-button>
+  </abbr>
   <conducting-equipment-editor showfunctions="">
   </conducting-equipment-editor>
   <function-editor showfunctions="">
@@ -37,6 +44,13 @@ snapshots["web component rendering Line element rendering ConductingEquipment lo
     <mwc-icon-button icon="edit">
     </mwc-icon-button>
   </abbr>
+  <abbr
+    slot="action"
+    title="[remove]"
+  >
+    <mwc-icon-button icon="delete">
+    </mwc-icon-button>
+  </abbr>
   <conducting-equipment-editor showfunctions="">
   </conducting-equipment-editor>
   <function-editor showfunctions="">
@@ -59,6 +73,13 @@ snapshots["web component rendering Line element rendering GeneralEquipment looks
     title="[edit]"
   >
     <mwc-icon-button icon="edit">
+    </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="action"
+    title="[remove]"
+  >
+    <mwc-icon-button icon="delete">
     </mwc-icon-button>
   </abbr>
   <conducting-equipment-editor showfunctions="">

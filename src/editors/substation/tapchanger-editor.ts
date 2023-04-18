@@ -79,7 +79,6 @@ export class TapChangerEditor extends LitElement {
     if (this.addMenu && this.addButton)
       this.addMenu.anchor = <HTMLElement>this.addButton;
   }
-
   remove(): void {
     if (this.element.parentElement)
       this.dispatchEvent(

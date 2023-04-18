@@ -106,5 +106,21 @@ describe('line-editor wizarding editing integration', () => {
         doc.querySelector('Line[name="Berlin"]')?.getAttribute('numPhases')
       ).to.equal('3');
     });
+    describe('has a delete icon button that', () => {
+      let deleteButton: HTMLElement;
+
+      beforeEach(async () => {
+        deleteButton = <HTMLElement>(
+          element?.shadowRoot?.querySelector('mwc-icon-button[icon="delete"]')
+        );
+        await parent.updateComplete;
+      });
+
+      it('removes the Line element from the document', async () => {
+        expect(doc.querySelector('Line[name="Berlin"]')).to.exist;
+        await deleteButton.click();
+        expect(doc.querySelector('Line[name="Berlin"]')).to.not.exist;
+      });
+    });
   });
 });

@@ -16,6 +16,8 @@ import {
 const initial = {
   nomFreq: '50',
   numPhases: '3',
+  Voltage: '110',
+  multiplier: 'k',
 };
 
 function render(
