@@ -51,7 +51,7 @@ This wizard allows do define all communication related setting for the Sampled V
 1. `MAC-Address`: The destination MAC address of the Sampled Value: `01-0C-CD-04-00-00` to `01-0C-CD-04-01-FF`
 2. `APPID`: The APPID of the Sampled Value. This is recommended to be unique though out the complete project.
 3. `VLAN-ID`: The virtual LAN ID the Sampled Value shall be limited to.
-4. `VLAN-PRIORITY`: The priority of the Sampled Value message. Can be used to priories time critical messages like trip signals over non time critical messages.
+4. `VLAN-PRIORITY`: The priority of the Sampled Value message. It can be used to priorities time-critical messages like trip signals over non-time-critical messages.
 
    &nbsp;
 

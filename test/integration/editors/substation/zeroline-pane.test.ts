@@ -6,6 +6,8 @@ import { MockWizardEditor } from '../../../mock-wizard-editor.js';
 import '../../../../src/editors/substation/zeroline-pane.js';
 import { FilteredList } from '../../../../src/filtered-list.js';
 import { ZerolinePane } from '../../../../src/editors/substation/zeroline-pane.js';
+import { WizardTextField } from '../../../../src/wizard-textfield.js';
+import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 
 describe('zeroline-pane wizarding editing integration', () => {
   let doc: XMLDocument;
@@ -66,5 +68,24 @@ describe('zeroline-pane wizarding editing integration', () => {
     expect(reportControlList.items.length).to.equal(
       doc.querySelectorAll('ReportControl').length
     );
+  });
+  it('add Substation element with add button', async () => {
+    expect(doc.querySelector('Substation[name="newSubstation"]')).to.not.exist;
+    zeroline.addButton.click();
+    (<ListItem>zeroline.addMenu.querySelector('[value=Substation]')).click();
+    await parent.updateComplete;
+
+    const primaryAction = <IconButton>(
+      parent.wizardUI.dialog?.querySelector('mwc-button[slot="primaryAction"]')
+    );
+    await primaryAction.updateComplete;
+    const nameField = <WizardTextField>(
+      parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
+    );
+    nameField.value = 'newSubstation';
+    await nameField.updateComplete;
+    primaryAction.click();
+
+    expect(doc.querySelector('Substation[name="newSubstation"]')).to.exist;
   });
 });

@@ -52,7 +52,7 @@ snapshots["for Sampled Value Control when SVC has no subscriptions looks like th
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-      value="Some LN title (LLN0)  SMV_Subscriber1>>Overvoltage PTRC  - 1 SMV_Subscriber1>>Overvoltage Some LN title (LLN0)  SMV_Subscriber1>>Overcurrent PTRC  - 1 SMV_Subscriber1>>Overcurrent Some LN title (LLN0)  SMV_Subscriber2>>Overvoltage PTRC  - 1 SMV_Subscriber2>>Overvoltage Some LN title (LLN0)  SMV_Subscriber2>>Overcurrent PTRC  - 1 SMV_Subscriber2>>Overcurrent"
+      value="LLN0  SMV_Subscriber1>>Overvoltage PTRC  - 1 SMV_Subscriber1>>Overvoltage LLN0  SMV_Subscriber1>>Overcurrent PTRC  - 1 SMV_Subscriber1>>Overcurrent LLN0  SMV_Subscriber2>>Overvoltage PTRC  - 1 SMV_Subscriber2>>Overvoltage LLN0  SMV_Subscriber2>>Overcurrent PTRC  - 1 SMV_Subscriber2>>Overcurrent"
     >
       <span>
         [subscription.subscriber.availableToSubscribe]
@@ -72,7 +72,7 @@ snapshots["for Sampled Value Control when SVC has no subscriptions looks like th
       value="SMV_Subscriber1>>Overvoltage"
     >
       <span>
-        Some LN title (LLN0)
+        LLN0
       </span>
       <span slot="secondary">
         SMV_Subscriber1>>Overvoltage
@@ -108,7 +108,7 @@ snapshots["for Sampled Value Control when SVC has no subscriptions looks like th
       value="SMV_Subscriber1>>Overcurrent"
     >
       <span>
-        Some LN title (LLN0)
+        LLN0
       </span>
       <span slot="secondary">
         SMV_Subscriber1>>Overcurrent
@@ -145,7 +145,7 @@ snapshots["for Sampled Value Control when SVC has no subscriptions looks like th
       value="SMV_Subscriber2>>Overvoltage"
     >
       <span>
-        Some LN title (LLN0)
+        LLN0
       </span>
       <span slot="secondary">
         SMV_Subscriber2>>Overvoltage
@@ -183,7 +183,7 @@ snapshots["for Sampled Value Control when SVC has no subscriptions looks like th
       value="SMV_Subscriber2>>Overcurrent"
     >
       <span>
-        Some LN title (LLN0)
+        LLN0
       </span>
       <span slot="secondary">
         SMV_Subscriber2>>Overcurrent
@@ -226,7 +226,7 @@ snapshots["for Sampled Value Control when SVC has a single subscriptions looks l
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-      value="Some LN title (LLN0)  SMV_Subscriber1>>Overvoltage"
+      value="LLN0  SMV_Subscriber1>>Overvoltage"
     >
       <span>
         [subscription.subscriber.subscribed]
@@ -246,7 +246,7 @@ snapshots["for Sampled Value Control when SVC has a single subscriptions looks l
       value="SMV_Subscriber1>>Overvoltage"
     >
       <span>
-        Some LN title (LLN0)
+        LLN0
       </span>
       <span slot="secondary">
         SMV_Subscriber1>>Overvoltage
@@ -259,7 +259,7 @@ snapshots["for Sampled Value Control when SVC has a single subscriptions looks l
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-      value="PTRC  - 1 SMV_Subscriber1>>Overvoltage Some LN title (LLN0)  SMV_Subscriber1>>Overcurrent PTRC  - 1 SMV_Subscriber1>>Overcurrent Some LN title (LLN0)  SMV_Subscriber2>>Overvoltage PTRC  - 1 SMV_Subscriber2>>Overvoltage Some LN title (LLN0)  SMV_Subscriber2>>Overcurrent PTRC  - 1 SMV_Subscriber2>>Overcurrent"
+      value="PTRC  - 1 SMV_Subscriber1>>Overvoltage LLN0  SMV_Subscriber1>>Overcurrent PTRC  - 1 SMV_Subscriber1>>Overcurrent LLN0  SMV_Subscriber2>>Overvoltage PTRC  - 1 SMV_Subscriber2>>Overvoltage LLN0  SMV_Subscriber2>>Overcurrent PTRC  - 1 SMV_Subscriber2>>Overcurrent"
     >
       <span>
         [subscription.subscriber.availableToSubscribe]
@@ -297,7 +297,7 @@ snapshots["for Sampled Value Control when SVC has a single subscriptions looks l
       value="SMV_Subscriber1>>Overcurrent"
     >
       <span>
-        Some LN title (LLN0)
+        LLN0
       </span>
       <span slot="secondary">
         SMV_Subscriber1>>Overcurrent
@@ -334,7 +334,7 @@ snapshots["for Sampled Value Control when SVC has a single subscriptions looks l
       value="SMV_Subscriber2>>Overvoltage"
     >
       <span>
-        Some LN title (LLN0)
+        LLN0
       </span>
       <span slot="secondary">
         SMV_Subscriber2>>Overvoltage
@@ -372,7 +372,7 @@ snapshots["for Sampled Value Control when SVC has a single subscriptions looks l
       value="SMV_Subscriber2>>Overcurrent"
     >
       <span>
-        Some LN title (LLN0)
+        LLN0
       </span>
       <span slot="secondary">
         SMV_Subscriber2>>Overcurrent
@@ -415,7 +415,7 @@ snapshots["when SVC has a multiple subscriptions looks like the latest snapshot,
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-      value="Some LN title (LLN0)  SMV_Subscriber1>>Overvoltage Some LN title (LLN0)  SMV_Subscriber2>>Overvoltage"
+      value="LLN0  SMV_Subscriber1>>Overvoltage LLN0  SMV_Subscriber2>>Overvoltage"
     >
       <span>
         [subscription.subscriber.subscribed]
@@ -435,7 +435,7 @@ snapshots["when SVC has a multiple subscriptions looks like the latest snapshot,
       value="SMV_Subscriber1>>Overvoltage"
     >
       <span>
-        Some LN title (LLN0)
+        LLN0
       </span>
       <span slot="secondary">
         SMV_Subscriber1>>Overvoltage
@@ -451,7 +451,7 @@ snapshots["when SVC has a multiple subscriptions looks like the latest snapshot,
       value="SMV_Subscriber2>>Overvoltage"
     >
       <span>
-        Some LN title (LLN0)
+        LLN0
       </span>
       <span slot="secondary">
         SMV_Subscriber2>>Overvoltage
@@ -464,7 +464,7 @@ snapshots["when SVC has a multiple subscriptions looks like the latest snapshot,
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-      value="PTRC  - 1 SMV_Subscriber1>>Overvoltage Some LN title (LLN0)  SMV_Subscriber1>>Overcurrent PTRC  - 1 SMV_Subscriber1>>Overcurrent PTRC  - 1 SMV_Subscriber2>>Overvoltage Some LN title (LLN0)  SMV_Subscriber2>>Overcurrent PTRC  - 1 SMV_Subscriber2>>Overcurrent"
+      value="PTRC  - 1 SMV_Subscriber1>>Overvoltage LLN0  SMV_Subscriber1>>Overcurrent PTRC  - 1 SMV_Subscriber1>>Overcurrent PTRC  - 1 SMV_Subscriber2>>Overvoltage LLN0  SMV_Subscriber2>>Overcurrent PTRC  - 1 SMV_Subscriber2>>Overcurrent"
     >
       <span>
         [subscription.subscriber.availableToSubscribe]
@@ -502,7 +502,7 @@ snapshots["when SVC has a multiple subscriptions looks like the latest snapshot,
       value="SMV_Subscriber1>>Overcurrent"
     >
       <span>
-        Some LN title (LLN0)
+        LLN0
       </span>
       <span slot="secondary">
         SMV_Subscriber1>>Overcurrent
@@ -558,7 +558,7 @@ snapshots["when SVC has a multiple subscriptions looks like the latest snapshot,
       value="SMV_Subscriber2>>Overcurrent"
     >
       <span>
-        Some LN title (LLN0)
+        LLN0
       </span>
       <span slot="secondary">
         SMV_Subscriber2>>Overcurrent
@@ -633,7 +633,7 @@ snapshots["for GOOSE Control when GSEControl has no subscriptions looks like the
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-      value="Some LN title (LLN0)  GOOSE_Subscriber1>>Earth_Switch CILO  - 1 GOOSE_Subscriber1>>Earth_Switch CSWI  - 1 GOOSE_Subscriber1>>Earth_Switch XSWI  - 1 GOOSE_Subscriber1>>Earth_Switch Some LN title (LLN0)  GOOSE_Subscriber2>>Earth_Switch CILO  - 1 GOOSE_Subscriber2>>Earth_Switch CSWI  - 1 GOOSE_Subscriber2>>Earth_Switch XSWI  - 1 GOOSE_Subscriber2>>Earth_Switch"
+      value="LLN0  GOOSE_Subscriber1>>Earth_Switch CILO  - 1 GOOSE_Subscriber1>>Earth_Switch CSWI  - 1 GOOSE_Subscriber1>>Earth_Switch XSWI  - 1 GOOSE_Subscriber1>>Earth_Switch LLN0  GOOSE_Subscriber2>>Earth_Switch CILO  - 1 GOOSE_Subscriber2>>Earth_Switch CSWI  - 1 GOOSE_Subscriber2>>Earth_Switch XSWI  - 1 GOOSE_Subscriber2>>Earth_Switch"
     >
       <span>
         [subscription.subscriber.availableToSubscribe]
@@ -654,7 +654,7 @@ snapshots["for GOOSE Control when GSEControl has no subscriptions looks like the
       value="GOOSE_Subscriber1>>Earth_Switch"
     >
       <span>
-        Some LN title (LLN0)
+        LLN0
       </span>
       <span slot="secondary">
         GOOSE_Subscriber1>>Earth_Switch
@@ -729,7 +729,7 @@ snapshots["for GOOSE Control when GSEControl has no subscriptions looks like the
       value="GOOSE_Subscriber2>>Earth_Switch"
     >
       <span>
-        Some LN title (LLN0)
+        LLN0
       </span>
       <span slot="secondary">
         GOOSE_Subscriber2>>Earth_Switch
@@ -807,7 +807,7 @@ snapshots["for GOOSE Control when GSEControl has a single subscription looks lik
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-      value="Some LN title (LLN0)  GOOSE_Subscriber2>>Earth_Switch"
+      value="LLN0  GOOSE_Subscriber2>>Earth_Switch"
     >
       <span>
         [subscription.subscriber.subscribed]
@@ -827,7 +827,7 @@ snapshots["for GOOSE Control when GSEControl has a single subscription looks lik
       value="GOOSE_Subscriber2>>Earth_Switch"
     >
       <span>
-        Some LN title (LLN0)
+        LLN0
       </span>
       <span slot="secondary">
         GOOSE_Subscriber2>>Earth_Switch
@@ -840,7 +840,7 @@ snapshots["for GOOSE Control when GSEControl has a single subscription looks lik
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-      value="Some LN title (LLN0)  GOOSE_Subscriber1>>Earth_Switch CILO  - 1 GOOSE_Subscriber1>>Earth_Switch CSWI  - 1 GOOSE_Subscriber1>>Earth_Switch XSWI  - 1 GOOSE_Subscriber1>>Earth_Switch CILO  - 1 GOOSE_Subscriber2>>Earth_Switch CSWI  - 1 GOOSE_Subscriber2>>Earth_Switch XSWI  - 1 GOOSE_Subscriber2>>Earth_Switch"
+      value="LLN0  GOOSE_Subscriber1>>Earth_Switch CILO  - 1 GOOSE_Subscriber1>>Earth_Switch CSWI  - 1 GOOSE_Subscriber1>>Earth_Switch XSWI  - 1 GOOSE_Subscriber1>>Earth_Switch CILO  - 1 GOOSE_Subscriber2>>Earth_Switch CSWI  - 1 GOOSE_Subscriber2>>Earth_Switch XSWI  - 1 GOOSE_Subscriber2>>Earth_Switch"
     >
       <span>
         [subscription.subscriber.availableToSubscribe]
@@ -861,7 +861,7 @@ snapshots["for GOOSE Control when GSEControl has a single subscription looks lik
       value="GOOSE_Subscriber1>>Earth_Switch"
     >
       <span>
-        Some LN title (LLN0)
+        LLN0
       </span>
       <span slot="secondary">
         GOOSE_Subscriber1>>Earth_Switch
@@ -996,7 +996,7 @@ snapshots["when GSEControl has a multiple subscriptions looks like the latest sn
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-      value="Some LN title (LLN0)  GOOSE_Subscriber1>>Earth_Switch Some LN title (LLN0)  GOOSE_Subscriber2>>Earth_Switch CILO  - 1 GOOSE_Subscriber2>>Earth_Switch"
+      value="LLN0  GOOSE_Subscriber1>>Earth_Switch LLN0  GOOSE_Subscriber2>>Earth_Switch CILO  - 1 GOOSE_Subscriber2>>Earth_Switch"
     >
       <span>
         [subscription.subscriber.subscribed]
@@ -1017,7 +1017,7 @@ snapshots["when GSEControl has a multiple subscriptions looks like the latest sn
       value="GOOSE_Subscriber1>>Earth_Switch"
     >
       <span>
-        Some LN title (LLN0)
+        LLN0
       </span>
       <span slot="secondary">
         GOOSE_Subscriber1>>Earth_Switch
@@ -1032,7 +1032,7 @@ snapshots["when GSEControl has a multiple subscriptions looks like the latest sn
       value="GOOSE_Subscriber2>>Earth_Switch"
     >
       <span>
-        Some LN title (LLN0)
+        LLN0
       </span>
       <span slot="secondary">
         GOOSE_Subscriber2>>Earth_Switch

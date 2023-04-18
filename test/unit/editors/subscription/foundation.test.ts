@@ -4,6 +4,7 @@ import {
   createExtRefElement,
   getExistingSupervision,
   getFirstSubscribedExtRef,
+  instantiatedSupervisionsCount,
   updateExtRefElement,
 } from '../../../../src/editors/subscription/foundation.js';
 
@@ -211,6 +212,23 @@ describe('foundation', () => {
     });
   });
 
+  describe('when using SCL Edition 2007B4 with later binding, SV and LSVS', () => {
+    beforeEach(async () => {
+      doc = await fetch('/test/testfiles/editors/LaterBindingSMV-LSVS.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+    });
+
+    it('correctly identifies the existing number of supervision instances', () => {
+      const controlBlock = doc.querySelector(
+        'IED[name="SMV_Publisher4"] SampledValueControl[name="voltageOnly"]'
+      )!;
+      const subscriberIED = doc.querySelector('IED[name="SMV_Subscriber2"]')!;
+      const count = instantiatedSupervisionsCount(subscriberIED, controlBlock);
+      expect(count).to.equal(1);
+    });
+  });
+
   describe('when using SCL Edition 2007B4 with message binding and GOOSE', () => {
     beforeEach(async () => {
       doc = await fetch('/test/testfiles/editors/MessageBindingGOOSE2007B4.scd')
@@ -247,6 +265,24 @@ describe('foundation', () => {
 
       const supLN = getExistingSupervision(firstExtRef);
       expect(identity(supLN)).to.be.equal('IED1>>CircuitBreaker_CB1> LGOS 1');
+    });
+  });
+
+  describe('when using SCL Edition 2007B4 with later binding, GOOSE and LGOS', () => {
+    beforeEach(async () => {
+      doc = await fetch('/test/testfiles/editors/LaterBindingGOOSE-LGOS.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+    });
+
+    it('correctly identifies the existing number of supervision instances', () => {
+      const controlBlock = doc.querySelector(
+        'IED[name="GOOSE_Publisher2"] GSEControl[name="GOOSE1"]'
+      )!;
+
+      const subscriberIED = doc.querySelector('IED[name="GOOSE_Subscriber3"]')!;
+      const count = instantiatedSupervisionsCount(subscriberIED, controlBlock);
+      expect(count).to.equal(0);
     });
   });
 });
