@@ -69,7 +69,7 @@ export class LineEditor extends LitElement {
     const wizard = wizards['Line'].edit(this.element);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
-
+  
   private openCreateWizard(tagName: string): void {
     const wizard = wizards[<SCLTag>tagName].create(this.element!);
 
