@@ -6,48 +6,30 @@ import {
   TemplateResult,
   property,
   state,
-  query,
 } from 'lit-element';
-
-import { translate } from 'lit-translate';
 
 import '@material/mwc-icon';
 import '@material/mwc-icon-button';
 import '@material/mwc-menu';
-import { IconButton } from '@material/mwc-icon-button';
-import { ListItem } from '@material/mwc-list/mwc-list-item';
-import { Menu } from '@material/mwc-menu';
 
 import './conducting-equipment-editor.js';
 import './function-editor.js';
 import './general-equipment-editor.js';
 import './l-node-editor.js';
+import './line-editor.js';
+import './process-editor.js';
+import './substation-editor.js';
+import './process-editor.js';
 
 import { styles } from './foundation.js';
-import {
-  getChildElementsByTagName,
-  newWizardEvent,
-  newActionEvent,
-  SCLTag,
-  tags,
-} from '../../foundation.js';
+import { getChildElementsByTagName } from '../../foundation.js';
 
-import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
-
-function childTags(element: Element | null | undefined): SCLTag[] {
-  if (!element) return [];
-
-  return tags[<SCLTag>element.tagName].children.filter(
-    child => wizards[child].create !== emptyWizard
-  );
-}
-
-@customElement('line-editor')
-export class LineEditor extends LitElement {
+@customElement('process-editor')
+export class ProcessEditor extends LitElement {
   /** The document being edited as provided to editor by [[`Zeroline`]]. */
   @property({ attribute: false })
   doc!: XMLDocument;
-  /** SCL element Line */
+  /** SCL element Process */
   @property({ attribute: false })
   element!: Element;
   /** Whether `Function` and `LNode` are rendered */
@@ -60,20 +42,6 @@ export class LineEditor extends LitElement {
     const desc = this.element.getAttribute('desc');
 
     return `${name} ${desc ? `—${desc}` : ''}`;
-  }
-
-  @query('mwc-menu') addMenu!: Menu;
-  @query('mwc-icon-button[icon="playlist_add"]') addButton!: IconButton;
-
-  private openEditWizard(): void {
-    const wizard = wizards['Line'].edit(this.element);
-    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
-  }
-
-  private openCreateWizard(tagName: string): void {
-    const wizard = wizards[<SCLTag>tagName].create(this.element!);
-
-    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
   private renderConductingEquipments(): TemplateResult {
@@ -106,6 +74,42 @@ export class LineEditor extends LitElement {
     )}`;
   }
 
+  private renderLines(): TemplateResult {
+    const Lines = getChildElementsByTagName(this.element, 'Line');
+    return html` ${Lines.map(
+      Line =>
+        html`<line-editor
+          .doc=${this.doc}
+          .element=${Line}
+          ?showfunctions=${this.showfunctions}
+        ></line-editor>`
+    )}`;
+  }
+
+  private renderSubstations(): TemplateResult {
+    const Substations = getChildElementsByTagName(this.element, 'Substation');
+    return html` ${Substations.map(
+      Substation =>
+        html`<substation-editor
+          .doc=${this.doc}
+          .element=${Substation}
+          ?showfunctions=${this.showfunctions}
+        ></substation-editor>`
+    )}`;
+  }
+
+  private renderProcesses(): TemplateResult {
+    const Processes = getChildElementsByTagName(this.element, 'Process');
+    return html` ${Processes.map(
+      Process =>
+        html`<process-editor
+          .doc=${this.doc}
+          .element=${Process}
+          ?showfunctions=${this.showfunctions}
+        ></process-editor>`
+    )}`;
+  }
+
   private renderFunctions(): TemplateResult {
     if (!this.showfunctions) return html``;
 
@@ -118,23 +122,6 @@ export class LineEditor extends LitElement {
           ?showfunctions=${this.showfunctions}
         ></function-editor>`
     )}`;
-  }
-
-  updated(): void {
-    if (this.addMenu && this.addButton)
-      this.addMenu.anchor = <HTMLElement>this.addButton;
-  }
-
-  remove(): void {
-    if (this.element.parentElement)
-      this.dispatchEvent(
-        newActionEvent({
-          old: {
-            parent: this.element.parentElement,
-            element: this.element,
-          },
-        })
-      );
   }
 
   private renderLNodes(): TemplateResult {
@@ -154,47 +141,10 @@ export class LineEditor extends LitElement {
       : html``;
   }
 
-  private renderAddButtons(): TemplateResult[] {
-    return childTags(this.element).map(
-      child =>
-        html`<mwc-list-item value="${child}"
-          ><span>${child}</span></mwc-list-item
-        >`
-    );
-  }
   render(): TemplateResult {
     return html`<action-pane label=${this.header}>
-      <abbr slot="action" title="${translate('edit')}">
-        <mwc-icon-button
-          icon="edit"
-          @click=${() => this.openEditWizard()}
-        ></mwc-icon-button>
-      </abbr>
-      <abbr slot="action" title="${translate('remove')}">
-        <mwc-icon-button
-          icon="delete"
-          @click=${() => this.remove()}
-        ></mwc-icon-button>
-      </abbr>
-      <abbr
-        slot="action"
-        style="position:relative;"
-        title="${translate('add')}"
-      >
-        <mwc-icon-button
-          icon="playlist_add"
-          @click=${() => (this.addMenu.open = true)}
-        ></mwc-icon-button
-        ><mwc-menu
-          corner="BOTTOM_RIGHT"
-          menuCorner="END"
-          @action=${(e: Event) => {
-            const tagName = (<ListItem>(<Menu>e.target).selected).value;
-            this.openCreateWizard(tagName);
-          }}
-          >${this.renderAddButtons()}</mwc-menu
-        ></abbr
-      >${this.renderConductingEquipments()}${this.renderGeneralEquipments()}${this.renderFunctions()}${this.renderLNodes()}
+      ${this.renderConductingEquipments()}${this.renderGeneralEquipments()}${this.renderFunctions()}${this.renderLNodes()}
+      ${this.renderLines()} ${this.renderSubstations()}${this.renderProcesses()}
     </action-pane>`;
   }
   static styles = css`

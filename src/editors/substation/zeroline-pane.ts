@@ -17,6 +17,7 @@ import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 import { Menu } from '@material/mwc-menu';
 
 import './line-editor.js';
+import './process-editor.js';
 import './substation-editor.js';
 import './ied-editor.js';
 import { communicationMappingWizard } from '../../wizards/commmap-wizards.js';
@@ -173,6 +174,25 @@ export class ZerolinePane extends LitElement {
       : html``;
   }
 
+  renderProcesses(): TemplateResult {
+    return this.doc?.querySelector(':root > Process')
+      ? html`<section>
+          ${Array.from(this.doc.querySelectorAll(':root > Process') ?? [])
+            .filter(isPublic)
+            .map(
+              process =>
+                html`<process-editor
+                  .doc=${this.doc}
+                  .element=${process}
+                  .getAttachedIeds=${this.getAttachedIeds}
+                  ?readonly=${this.readonly}
+                  ?showfunctions=${shouldShowFunctions()}
+                ></process-editor>`
+            )}
+        </section>`
+      : html``;
+  }
+
   private openCreateWizard(tagName: string): void {
     const wizard = wizards[<SCLTag>tagName].create(this.doc.documentElement);
 
@@ -261,7 +281,7 @@ export class ZerolinePane extends LitElement {
         </nav>
       </h1>
       ${this.renderIedContainer()}
-      ${this.renderSubstation()}${this.renderLines()}`;
+      ${this.renderSubstation()}${this.renderLines()}${this.renderProcesses()}`;
   }
 
   static styles = css`
