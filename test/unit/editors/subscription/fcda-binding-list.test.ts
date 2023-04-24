@@ -8,6 +8,7 @@ import { WizardTextField } from '../../../../src/wizard-textfield.js';
 import '../../../../src/editors/subscription/fcda-binding-list.js';
 import { FcdaBindingList } from '../../../../src/editors/subscription/fcda-binding-list.js';
 import { SinonSpy, spy } from 'sinon';
+import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 
 describe('fcda-binding-list', () => {
   let parent: MockWizardEditor;
@@ -17,6 +18,7 @@ describe('fcda-binding-list', () => {
   let selectEvent: SinonSpy;
 
   beforeEach(async () => {
+    localStorage.clear();
     selectEvent = spy();
     window.addEventListener('fcda-select', selectEvent);
   });
@@ -46,6 +48,7 @@ describe('fcda-binding-list', () => {
 
   describe('with a SampledValueControl doc loaded', () => {
     beforeEach(async () => {
+      localStorage.clear();
       doc = await fetch('/test/testfiles/editors/LaterBindingSMV2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
@@ -54,6 +57,7 @@ describe('fcda-binding-list', () => {
           <fcda-binding-list
             .doc=${doc}
             controlTag="SampledValueControl"
+            .includeLaterBinding="${true}"
           ></fcda-binding-list>
         </mock-wizard-editor>
       `);
@@ -88,9 +92,7 @@ describe('fcda-binding-list', () => {
       selectEvent.resetHistory();
 
       const listItem = Array.from(
-        element.shadowRoot?.querySelectorAll(
-          'mwc-list-item[class="subitem"]'
-        ) ?? []
+        element.shadowRoot?.querySelectorAll('mwc-list-item.subitem') ?? []
       ).filter(listItem => {
         const value = listItem.getAttribute('value') ?? '';
         return (
@@ -117,10 +119,86 @@ describe('fcda-binding-list', () => {
     it('looks like the latest snapshot', async () => {
       await expect(element).shadowDom.to.equalSnapshot();
     });
+
+    it('is initially unfiltered', async () => {
+      const displayedElements = Array.from(
+        element.shadowRoot!.querySelectorAll('mwc-list-item')
+      ).filter(item => {
+        const displayStyle = getComputedStyle(item).display;
+        return displayStyle !== 'none' || displayStyle === undefined;
+      });
+      expect(displayedElements.length).to.equal(27);
+    });
+
+    it('allows filtering of only not subscribed control blocks', async () => {
+      element.actionsMenuIcon.click();
+      await element.updateComplete;
+      (<ListItem>(
+        element.actionsMenu!.querySelector('.filter-subscribed')
+      ))!.click();
+      await new Promise(resolve => setTimeout(resolve, 200)); // await animation
+      await element.updateComplete;
+
+      const fcdaList = element.shadowRoot?.querySelector('filtered-list');
+      const displayedElements = Array.from(
+        fcdaList!.querySelectorAll('mwc-list-item')!
+      ).filter(item => {
+        const displayStyle = getComputedStyle(item).display;
+        return displayStyle !== 'none' || displayStyle === undefined;
+      });
+      expect(displayedElements.length).to.equal(24);
+    });
+
+    it('allows filtering of only subscribed control blocks', async () => {
+      element.actionsMenuIcon.click();
+      await element.updateComplete;
+      (<ListItem>(
+        element.actionsMenu!.querySelector('.filter-not-subscribed')
+      ))!.click();
+      await new Promise(resolve => setTimeout(resolve, 200)); // await animation
+      await element.updateComplete;
+
+      const fcdaList = element.shadowRoot?.querySelector('filtered-list');
+      const displayedElements = Array.from(
+        fcdaList!.querySelectorAll('mwc-list-item')!
+      ).filter(item => {
+        const displayStyle = getComputedStyle(item).display;
+        return displayStyle !== 'none' || displayStyle === undefined;
+      });
+      expect(displayedElements.length).to.equal(5);
+    });
+
+    it('allows filtering out of all subscribed control blocks', async () => {
+      element.actionsMenuIcon.click();
+      await element.updateComplete;
+      (<ListItem>(
+        element.actionsMenu!.querySelector('.filter-subscribed')
+      ))!.click();
+      await new Promise(resolve => setTimeout(resolve, 200)); // await animation
+      await element.updateComplete;
+
+      element.actionsMenuIcon.click();
+      await element.updateComplete;
+      (<ListItem>(
+        element.actionsMenu!.querySelector('.filter-not-subscribed')
+      ))!.click();
+      await new Promise(resolve => setTimeout(resolve, 200)); // await animation
+      await element.updateComplete;
+
+      const fcdaList = element.shadowRoot?.querySelector('filtered-list');
+      const displayedElements = Array.from(
+        fcdaList!.querySelectorAll('mwc-list-item')!
+      ).filter(item => {
+        const displayStyle = getComputedStyle(item).display;
+        return displayStyle !== 'none' || displayStyle === undefined;
+      });
+      expect(displayedElements.length).to.equal(0);
+    });
   });
 
   describe('with a GSEControl doc loaded', () => {
     beforeEach(async () => {
+      localStorage.clear();
       doc = await fetch('/test/testfiles/editors/LaterBindingGOOSE2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
@@ -129,6 +207,7 @@ describe('fcda-binding-list', () => {
           <fcda-binding-list
             .doc=${doc}
             controlTag="GSEControl"
+            .includeLaterBinding="${true}"
           ></fcda-binding-list>
         </mock-wizard-editor>
       `);
@@ -155,6 +234,81 @@ describe('fcda-binding-list', () => {
 
     it('looks like the latest snapshot', async () => {
       await expect(element).shadowDom.to.equalSnapshot();
+    });
+
+    it('is initially unfiltered', async () => {
+      const displayedElements = Array.from(
+        element.shadowRoot!.querySelectorAll('mwc-list-item')
+      ).filter(item => {
+        const displayStyle = getComputedStyle(item).display;
+        return displayStyle !== 'none' || displayStyle === undefined;
+      });
+      expect(displayedElements.length).to.equal(9);
+    });
+
+    it('allows filtering of only not subscribed control blocks', async () => {
+      element.actionsMenuIcon.click();
+      await element.updateComplete;
+      (<ListItem>(
+        element.actionsMenu!.querySelector('.filter-subscribed')
+      ))!.click();
+      await new Promise(resolve => setTimeout(resolve, 300)); // await animation
+      await element.updateComplete;
+
+      const fcdaList = element.shadowRoot?.querySelector('filtered-list');
+      const displayedElements = Array.from(
+        fcdaList!.querySelectorAll('mwc-list-item')!
+      ).filter(item => {
+        const displayStyle = getComputedStyle(item).display;
+        return displayStyle !== 'none' || displayStyle === undefined;
+      });
+      expect(displayedElements.length).to.equal(3);
+    });
+
+    it('allows filtering of only subscribed control blocks', async () => {
+      element.actionsMenuIcon.click();
+      await element.updateComplete;
+      (<ListItem>(
+        element.actionsMenu!.querySelector('.filter-not-subscribed')
+      ))!.click();
+      await new Promise(resolve => setTimeout(resolve, 300)); // await animation
+      await element.updateComplete;
+
+      const fcdaList = element.shadowRoot?.querySelector('filtered-list');
+      const displayedElements = Array.from(
+        fcdaList!.querySelectorAll('mwc-list-item')!
+      ).filter(item => {
+        const displayStyle = getComputedStyle(item).display;
+        return displayStyle !== 'none' || displayStyle === undefined;
+      });
+      expect(displayedElements.length).to.equal(6);
+    });
+
+    it('allows filtering out of all subscribed control blocks', async () => {
+      element.actionsMenuIcon.click();
+      await element.updateComplete;
+      (<ListItem>(
+        element.actionsMenu!.querySelector('.filter-subscribed')
+      ))!.click();
+      await new Promise(resolve => setTimeout(resolve, 300)); // await animation
+      await element.updateComplete;
+
+      element.actionsMenuIcon.click();
+      await element.updateComplete;
+      (<ListItem>(
+        element.actionsMenu!.querySelector('.filter-not-subscribed')
+      ))!.click();
+      await new Promise(resolve => setTimeout(resolve, 300)); // await animation
+      await element.updateComplete;
+
+      const fcdaList = element.shadowRoot?.querySelector('filtered-list');
+      const displayedElements = Array.from(
+        fcdaList!.querySelectorAll('mwc-list-item')!
+      ).filter(item => {
+        const displayStyle = getComputedStyle(item).display;
+        return displayStyle !== 'none' || displayStyle === undefined;
+      });
+      expect(displayedElements.length).to.equal(0);
     });
   });
 });

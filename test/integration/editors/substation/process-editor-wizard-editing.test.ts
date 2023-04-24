@@ -155,6 +155,9 @@ describe('process-editor wizarding editing integration', () => {
     });
 
     it('changes type attribute on primary action', async () => {
+      await new Promise(resolve => setTimeout(resolve, 100));
+      typeField.nullSwitch!.click();
+      await parent.updateComplete;
       typeField.value = 'newType';
       primaryAction.click();
       await parent.updateComplete;
