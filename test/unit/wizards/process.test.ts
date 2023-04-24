@@ -88,6 +88,7 @@ describe('Wizards for SCL Process element', () => {
       expect(editAction.new.element).to.have.attribute('desc', 'someDesc');
     });
     it('allows to create non required attribute type', async () => {
+      (<WizardTextField>inputs[2]).nullSwitch?.click();
       inputs[2].value = 'someNonEmptyType';
 
       await element.requestUpdate();
