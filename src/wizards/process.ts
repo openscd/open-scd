@@ -66,6 +66,7 @@ export function contentProcessWizard(
     html`<wizard-textfield
       label="type"
       .maybeValue=${content.type}
+      nullable
       helper="${translate('scl.type')}"
     ></wizard-textfield>`,
   ];
