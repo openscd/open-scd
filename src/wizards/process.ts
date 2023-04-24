@@ -12,6 +12,20 @@ import {
   WizardInputElement,
 } from '../foundation.js';
 
+function createProcessAction(parent: Element): WizardActor {
+  return (inputs: WizardInputElement[]) => {
+    const processAttrs: Record<string, string | null> = {};
+    const processKeys = ['name', 'desc', 'type'];
+    processKeys.forEach(key => {
+      processAttrs[key] = getValue(inputs.find(i => i.label === key)!);
+    });
+
+    const line = createElement(parent.ownerDocument, 'Process', processAttrs);
+
+    return [{ new: { parent, element: line } }];
+  };
+}
+
 function updateProcessAction(element: Element): WizardActor {
   return (inputs: WizardInputElement[]): SimpleAction[] => {
     const tapProcessAttrs: Record<string, string | null> = {};
@@ -69,6 +83,36 @@ export function contentProcessWizard(
       nullable
       helper="${translate('scl.type')}"
     ></wizard-textfield>`,
+  ];
+}
+
+export function createProcessWizard(parent: Element): Wizard {
+  const name = '';
+  const desc = '';
+  const type = '';
+  const reservedNames: string[] = getChildElementsByTagName(
+    parent.parentElement!,
+    'Process'
+  )
+    .filter(sibling => sibling !== parent)
+    .map(sibling => sibling.getAttribute('name')!);
+  return [
+    {
+      title: get('wizard.title.add', { tagName: 'Process' }),
+      primary: {
+        icon: 'save',
+        label: get('save'),
+        action: createProcessAction(parent),
+      },
+      content: [
+        ...contentProcessWizard({
+          name,
+          desc,
+          type,
+          reservedNames,
+        }),
+      ],
+    },
   ];
 }
 

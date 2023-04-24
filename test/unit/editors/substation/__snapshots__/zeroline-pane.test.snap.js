@@ -33,6 +33,17 @@ snapshots["zeroline-pane per default looks like the latest snapshot"] =
             Line
           </span>
         </mwc-list-item>
+        <mwc-list-item
+          aria-disabled="false"
+          mwc-list-item=""
+          role="menuitem"
+          tabindex="-1"
+          value="Process"
+        >
+          <span>
+            Process
+          </span>
+        </mwc-list-item>
       </mwc-menu>
     </abbr>
   </nav>
@@ -113,6 +124,17 @@ snapshots["zeroline-pane showieds looks like the latest snapshot"] =
         >
           <span>
             Line
+          </span>
+        </mwc-list-item>
+        <mwc-list-item
+          aria-disabled="false"
+          mwc-list-item=""
+          role="menuitem"
+          tabindex="-1"
+          value="Process"
+        >
+          <span>
+            Process
           </span>
         </mwc-list-item>
       </mwc-menu>

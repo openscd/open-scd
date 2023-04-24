@@ -303,6 +303,21 @@ export const de: Translations = {
       updateLine: 'Edited line "{{name}}"',
     },
   },
+  process: {
+    name: 'Process',
+    wizard: {
+      nameHelper: 'Processname',
+      descHelper: 'Beschreibung des Processes',
+      typeHelper: 'Type des Processes',
+      title: {
+        add: 'Process hinzufügen',
+        edit: 'Process bearbeiten',
+      },
+    },
+    action: {
+      updateProcess: 'Edited Process "{{name}}"',
+    },
+  },
   bay: {
     name: 'Feld',
     wizard: {

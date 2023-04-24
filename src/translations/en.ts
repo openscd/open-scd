@@ -300,6 +300,21 @@ export const en = {
       updateLine: 'Edited line "{{name}}"',
     },
   },
+  process: {
+    name: 'Process',
+    wizard: {
+      nameHelper: 'Process name',
+      descHelper: 'Process description',
+      typeHelper: 'Process type',
+      title: {
+        add: 'Add Process',
+        edit: 'Edit Process',
+      },
+    },
+    action: {
+      updateProcess: 'Edited Process "{{name}}"',
+    },
+  },
   bay: {
     name: 'Bay',
     wizard: {
