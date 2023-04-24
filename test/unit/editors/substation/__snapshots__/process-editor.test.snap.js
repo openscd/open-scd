@@ -13,6 +13,13 @@ snapshots["web component rendering Process element rendering LNode, GeneralEquip
     <mwc-icon-button icon="edit">
     </mwc-icon-button>
   </abbr>
+  <abbr
+    slot="action"
+    title="[remove]"
+  >
+    <mwc-icon-button icon="delete">
+    </mwc-icon-button>
+  </abbr>
   <conducting-equipment-editor showfunctions="">
   </conducting-equipment-editor>
   <general-equipment-editor showfunctions="">
@@ -39,6 +46,13 @@ snapshots["web component rendering Process element hides LNode and Function chil
     <mwc-icon-button icon="edit">
     </mwc-icon-button>
   </abbr>
+  <abbr
+    slot="action"
+    title="[remove]"
+  >
+    <mwc-icon-button icon="delete">
+    </mwc-icon-button>
+  </abbr>
   <conducting-equipment-editor>
   </conducting-equipment-editor>
   <general-equipment-editor>
@@ -59,6 +73,13 @@ snapshots["web component rendering Process element rendering Substation and Proc
     <mwc-icon-button icon="edit">
     </mwc-icon-button>
   </abbr>
+  <abbr
+    slot="action"
+    title="[remove]"
+  >
+    <mwc-icon-button icon="delete">
+    </mwc-icon-button>
+  </abbr>
   <substation-editor showfunctions="">
   </substation-editor>
   <process-editor showfunctions="">
@@ -77,6 +98,13 @@ snapshots["web component rendering Process element rendering a Line child looks 
     title="[edit]"
   >
     <mwc-icon-button icon="edit">
+    </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="action"
+    title="[remove]"
+  >
+    <mwc-icon-button icon="delete">
     </mwc-icon-button>
   </abbr>
   <line-editor showfunctions="">

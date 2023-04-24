@@ -129,5 +129,22 @@ describe('process-editor wizarding editing integration', () => {
           ?.getAttribute('type')
       ).to.equal('newType');
     });
+    describe('has a delete icon button that', () => {
+      let deleteButton: HTMLElement;
+
+      beforeEach(async () => {
+        deleteButton = <HTMLElement>(
+          element?.shadowRoot?.querySelector('mwc-icon-button[icon="delete"]')
+        );
+        await parent.updateComplete;
+      });
+
+      it('removes the Process element from the document', async () => {
+        expect(doc.querySelector('Process[name="ProcessGenConduct"]')).to.exist;
+        await deleteButton.click();
+        expect(doc.querySelector('Process[name="ProcessGenConduct"]')).to.not
+          .exist;
+      });
+    });
   });
 });

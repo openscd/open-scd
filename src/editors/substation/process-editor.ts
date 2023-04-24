@@ -24,7 +24,11 @@ import './substation-editor.js';
 import './process-editor.js';
 
 import { styles } from './foundation.js';
-import { newWizardEvent, getChildElementsByTagName } from '../../foundation.js';
+import {
+  getChildElementsByTagName,
+  newActionEvent,
+  newWizardEvent,
+} from '../../foundation.js';
 
 import { wizards } from '../../wizards/wizard-library.js';
 
@@ -150,12 +154,30 @@ export class ProcessEditor extends LitElement {
       : html``;
   }
 
+  remove(): void {
+    if (this.element.parentElement)
+      this.dispatchEvent(
+        newActionEvent({
+          old: {
+            parent: this.element.parentElement,
+            element: this.element,
+          },
+        })
+      );
+  }
+
   render(): TemplateResult {
     return html`<action-pane label=${this.header}>
       <abbr slot="action" title="${translate('edit')}">
         <mwc-icon-button
           icon="edit"
           @click=${() => this.openEditWizard()}
+        ></mwc-icon-button>
+      </abbr>
+      <abbr slot="action" title="${translate('remove')}">
+        <mwc-icon-button
+          icon="delete"
+          @click=${() => this.remove()}
         ></mwc-icon-button>
       </abbr>
       ${this.renderConductingEquipments()}${this.renderGeneralEquipments()}${this.renderFunctions()}${this.renderLNodes()}
