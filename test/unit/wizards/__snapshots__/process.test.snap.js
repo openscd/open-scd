@@ -25,8 +25,10 @@ snapshots["Wizards for SCL Process element define an edit wizard that looks like
     >
     </wizard-textfield>
     <wizard-textfield
+      disabled=""
       helper="[scl.type]"
       label="type"
+      nullable=""
     >
     </wizard-textfield>
   </div>
