@@ -1,0 +1,45 @@
+# SPDX-FileCopyrightText: 2021 Alliander N.V.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+name: SonarCloud Analysis
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - 'main'
+      - 'develop'
+  pull_request_target:
+    branches:
+      - 'main'
+      - 'develop'
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    if: ${{ (github.event_name != 'pull_request_target' && github.actor != 'dependabot[bot]') || (github.actor == 'dependabot[bot]' && github.event_name == 'pull_request_target') }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.organization=openscd
+            -Dsonar.projectKey=open-scd
+            -Dsonar.javascript.coverage.reportPaths=coverage/lcov.info
+            -Dsonar.sources=src/
+            -Dsonar.test.exclusions=test/**
+            -Dsonar.tests=test/
+            -Dsonar.verbose=true
