@@ -271,73 +271,78 @@ export function Hosting<
     }
 
     render(): TemplateResult {
-      return html` <mwc-drawer
-          class="mdc-theme--surface"
-          hasheader
-          type="modal"
-          id="menu"
-        >
-          <span slot="title">${translate('menu.title')}</span>
-          ${this.docName
-            ? html`<span slot="subtitle">${this.docName}</span>`
-            : ''}
-          <mwc-list
-            wrapFocus
-            @action=${(ae: CustomEvent<ActionDetail>) => {
-              //FIXME: dirty hack to be fixed in open-scd-core
-              //       if clause not neccassary when oscd... compenents in open-scd not list
-              if (ae.target instanceof List)
-                (<MenuItem>(
-                  this.menu.filter(item => item !== 'divider')[ae.detail.index]
-                ))?.action?.(ae);
-            }}
+      return html` 
+      <div style="min-height: 100vh; display: grid; grid-template-rows: auto 1fr"> 
+        <mwc-drawer
+            class="mdc-theme--surface"
+            hasheader
+            type="modal"
+            id="menu"
           >
-            ${this.menu.map(this.renderMenuItem)}
-          </mwc-list>
+            <span slot="title">${translate('menu.title')}</span>
+            ${this.docName
+              ? html`<span slot="subtitle">${this.docName}</span>`
+              : ''}
+            <mwc-list
+              wrapFocus
+              @action=${(ae: CustomEvent<ActionDetail>) => {
+                //FIXME: dirty hack to be fixed in open-scd-core
+                //       if clause not neccassary when oscd... compenents in open-scd not list
+                if (ae.target instanceof List)
+                  (<MenuItem>(
+                    this.menu.filter(item => item !== 'divider')[ae.detail.index]
+                  ))?.action?.(ae);
+              }}
+            >
+              ${this.menu.map(this.renderMenuItem)}
+            </mwc-list>
 
-          <mwc-top-app-bar-fixed slot="appContent">
-            <mwc-icon-button
-              icon="menu"
-              label="Menu"
-              slot="navigationIcon"
-              @click=${() => (this.menuUI.open = true)}
-            ></mwc-icon-button>
-            <div slot="title" id="title">${this.docName}</div>
-            ${this.menu.map(this.renderActionItem)}
-            ${this.doc
-              ? html`<mwc-tab-bar
-                  @MDCTabBar:activated=${(e: CustomEvent) =>
-                    (this.activeTab = e.detail.index)}
-                >
-                  ${this.editors.map(this.renderEditorTab)}
-                </mwc-tab-bar>`
-              : ``}
-          </mwc-top-app-bar-fixed>
-        </mwc-drawer>
+            <mwc-top-app-bar-fixed slot="appContent">
+              <mwc-icon-button
+                icon="menu"
+                label="Menu"
+                slot="navigationIcon"
+                @click=${() => (this.menuUI.open = true)}
+              ></mwc-icon-button>
+              <div slot="title" id="title">${this.docName}</div>
+              ${this.menu.map(this.renderActionItem)}
+              ${this.doc
+                ? html`<mwc-tab-bar
+                    @MDCTabBar:activated=${(e: CustomEvent) =>
+                      (this.activeTab = e.detail.index)}
+                  >
+                    ${this.editors.map(this.renderEditorTab)}
+                  </mwc-tab-bar>`
+                : ``}
+            </mwc-top-app-bar-fixed>
+          </mwc-drawer>
 
-        ${this.doc && this.editors[this.activeTab]?.content
-          ? this.editors[this.activeTab].content
-          : html`<div class="landing">
-              ${(<MenuItem[]>this.menu.filter(mi => mi !== 'divider')).map(
-                (mi: MenuItem, index) =>
-                  mi.kind === 'top' && !mi.disabled?.()
-                    ? html`
-                        <mwc-icon-button
-                          class="landing_icon"
-                          icon="${mi.icon}"
-                          @click="${() =>
-                            (<ListItem>(
-                              this.menuUI.querySelector('mwc-list')!.items[
-                                index
-                              ]
-                            )).click()}"
-                        >
-                          <div class="landing_label">${mi.name}</div>
-                        </mwc-icon-button>
-                      `
-                    : html``
-              )}
-            </div>`}
+          ${this.doc && this.editors[this.activeTab]?.content
+            ? this.editors[this.activeTab].content
+            : html`<div class="landing">
+                ${(<MenuItem[]>this.menu.filter(mi => mi !== 'divider')).map(
+                  (mi: MenuItem, index) =>
+                    mi.kind === 'top' && !mi.disabled?.()
+                      ? html`
+                          <mwc-icon-button
+                            class="landing_icon"
+                            icon="${mi.icon}"
+                            @click="${() =>
+                              (<ListItem>(
+                                this.menuUI.querySelector('mwc-list')!.items[
+                                  index
+                                ]
+                              )).click()}"
+                          >
+                            <div class="landing_label">${mi.name}</div>
+                          </mwc-icon-button>
+                        `
+                      : html``
+                )}
+            </div>
+          </div>
+            
+            `}
         ${super.render()}`;
     }
   }
