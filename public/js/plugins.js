@@ -327,4 +327,13 @@ export const officialPlugins = [
     default: true,
     kind: 'editor',
   },
+  {
+    name: 'Autogen Substation',
+    src: '/src/editors/substation/autogen-substation/autogen-substation.js',
+    icon: 'playlist_add_circle',
+    default: true,
+    kind: 'menu',
+    requireDoc: true,
+    position: 'middle',
+  },
 ];

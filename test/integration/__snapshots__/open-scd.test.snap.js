@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'open-scd looks like its snapshot'
-] = `<compas-session-expiring-dialog>
+snapshots["open-scd looks like its snapshot"] = 
+`<compas-session-expiring-dialog>
 </compas-session-expiring-dialog>
 <compas-session-expired-dialog>
 </compas-session-expired-dialog>
@@ -364,6 +363,24 @@ snapshots[
     </mwc-list-item>
     <oscd-pluginc69b878585292aa9 class="menu plugin">
     </oscd-pluginc69b878585292aa9>
+    <mwc-list-item
+      aria-disabled="true"
+      class="middle"
+      disabled=""
+      graphic="icon"
+      iconid="playlist_add_circle"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        playlist_add_circle
+      </mwc-icon>
+      <span>
+        Autogen Substation
+      </span>
+    </mwc-list-item>
+    <oscd-plugin97b8c16d106e5328 class="menu plugin">
+    </oscd-plugin97b8c16d106e5328>
     <li
       divider=""
       padded=""
@@ -1344,6 +1361,22 @@ snapshots[
       </mwc-icon>
       Export Communication Section
     </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/editors/substation/autogen-substation/autogen-substation.js"
+    >
+      <mwc-icon slot="meta">
+        playlist_add_circle
+      </mwc-icon>
+      Autogen Substation
+    </mwc-check-list-item>
     <li
       divider=""
       inset=""
@@ -1728,3 +1761,4 @@ snapshots[
 </mwc-dialog>
 `;
 /* end snapshot open-scd looks like its snapshot */
+
