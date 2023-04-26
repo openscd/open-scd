@@ -37,7 +37,7 @@ jobs:
         with:
           args: >
             -Dsonar.organization=openscd
-            -Dsonar.projectKey=open-scd
+            -Dsonar.projectKey=openscd_open-scd
             -Dsonar.javascript.coverage.reportPaths=coverage/lcov.info
             -Dsonar.sources=src/
             -Dsonar.test.exclusions=test/**
