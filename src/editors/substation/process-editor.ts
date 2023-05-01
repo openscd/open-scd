@@ -22,12 +22,16 @@ import './conducting-equipment-editor.js';
 import './function-editor.js';
 import './general-equipment-editor.js';
 import './l-node-editor.js';
+import './line-editor.js';
+import './process-editor.js';
+import './substation-editor.js';
+import './process-editor.js';
 
 import { styles } from './foundation.js';
 import {
   getChildElementsByTagName,
-  newWizardEvent,
   newActionEvent,
+  newWizardEvent,
   SCLTag,
   tags,
 } from '../../foundation.js';
@@ -42,12 +46,12 @@ function childTags(element: Element | null | undefined): SCLTag[] {
   );
 }
 
-@customElement('line-editor')
-export class LineEditor extends LitElement {
+@customElement('process-editor')
+export class ProcessEditor extends LitElement {
   /** The document being edited as provided to editor by [[`Zeroline`]]. */
   @property({ attribute: false })
   doc!: XMLDocument;
-  /** SCL element Line */
+  /** SCL element Process */
   @property({ attribute: false })
   element!: Element;
   /** Whether `Function` and `LNode` are rendered */
@@ -66,7 +70,7 @@ export class LineEditor extends LitElement {
   @query('mwc-icon-button[icon="playlist_add"]') addButton!: IconButton;
 
   private openEditWizard(): void {
-    const wizard = wizards['Line'].edit(this.element);
+    const wizard = wizards['Process'].edit(this.element);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
@@ -106,6 +110,42 @@ export class LineEditor extends LitElement {
     )}`;
   }
 
+  private renderLines(): TemplateResult {
+    const Lines = getChildElementsByTagName(this.element, 'Line');
+    return html` ${Lines.map(
+      Line =>
+        html`<line-editor
+          .doc=${this.doc}
+          .element=${Line}
+          ?showfunctions=${this.showfunctions}
+        ></line-editor>`
+    )}`;
+  }
+
+  private renderSubstations(): TemplateResult {
+    const Substations = getChildElementsByTagName(this.element, 'Substation');
+    return html` ${Substations.map(
+      Substation =>
+        html`<substation-editor
+          .doc=${this.doc}
+          .element=${Substation}
+          ?showfunctions=${this.showfunctions}
+        ></substation-editor>`
+    )}`;
+  }
+
+  private renderProcesses(): TemplateResult {
+    const Processes = getChildElementsByTagName(this.element, 'Process');
+    return html` ${Processes.map(
+      Process =>
+        html`<process-editor
+          .doc=${this.doc}
+          .element=${Process}
+          ?showfunctions=${this.showfunctions}
+        ></process-editor>`
+    )}`;
+  }
+
   private renderFunctions(): TemplateResult {
     if (!this.showfunctions) return html``;
 
@@ -118,23 +158,6 @@ export class LineEditor extends LitElement {
           ?showfunctions=${this.showfunctions}
         ></function-editor>`
     )}`;
-  }
-
-  updated(): void {
-    if (this.addMenu && this.addButton)
-      this.addMenu.anchor = <HTMLElement>this.addButton;
-  }
-
-  remove(): void {
-    if (this.element.parentElement)
-      this.dispatchEvent(
-        newActionEvent({
-          old: {
-            parent: this.element.parentElement,
-            element: this.element,
-          },
-        })
-      );
   }
 
   private renderLNodes(): TemplateResult {
@@ -162,6 +185,24 @@ export class LineEditor extends LitElement {
         >`
     );
   }
+
+  updated(): void {
+    if (this.addMenu && this.addButton)
+      this.addMenu.anchor = <HTMLElement>this.addButton;
+  }
+
+  remove(): void {
+    if (this.element.parentElement)
+      this.dispatchEvent(
+        newActionEvent({
+          old: {
+            parent: this.element.parentElement,
+            element: this.element,
+          },
+        })
+      );
+  }
+
   render(): TemplateResult {
     return html`<action-pane label=${this.header}>
       <abbr slot="action" title="${translate('edit')}">
@@ -194,7 +235,9 @@ export class LineEditor extends LitElement {
           }}
           >${this.renderAddButtons()}</mwc-menu
         ></abbr
-      >${this.renderConductingEquipments()}${this.renderGeneralEquipments()}${this.renderFunctions()}${this.renderLNodes()}
+      >
+      ${this.renderConductingEquipments()}${this.renderGeneralEquipments()}${this.renderFunctions()}${this.renderLNodes()}
+      ${this.renderLines()} ${this.renderSubstations()}${this.renderProcesses()}
     </action-pane>`;
   }
   static styles = css`

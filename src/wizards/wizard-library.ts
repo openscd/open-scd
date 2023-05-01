@@ -49,6 +49,8 @@ import {
   editTransformerWindingWizard,
 } from './transformerWinding.js';
 import { createTapChangerWizard, editTapChangerWizard } from './tapchanger.js';
+import { createLineWizard, editLineWizard } from './line.js';
+import { createProcessWizard, editProcessWizard } from './process.js';
 
 type SclElementWizard = (
   element: Element,
@@ -335,8 +337,8 @@ export const wizards: Record<
     create: emptyWizard,
   },
   Line: {
-    edit: emptyWizard,
-    create: emptyWizard,
+    edit: editLineWizard,
+    create: createLineWizard,
   },
   Log: {
     edit: emptyWizard,
@@ -387,8 +389,8 @@ export const wizards: Record<
     create: emptyWizard,
   },
   Process: {
-    edit: emptyWizard,
-    create: emptyWizard,
+    edit: editProcessWizard,
+    create: createProcessWizard,
   },
   ProtNs: {
     edit: emptyWizard,

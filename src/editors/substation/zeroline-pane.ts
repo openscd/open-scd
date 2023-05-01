@@ -12,20 +12,25 @@ import { translate } from 'lit-translate';
 import '@material/mwc-icon-button';
 import '@material/mwc-icon-button-toggle';
 import { IconButton } from '@material/mwc-icon-button';
+import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
+import { Menu } from '@material/mwc-menu';
 
 import './line-editor.js';
+import './process-editor.js';
 import './substation-editor.js';
 import './ied-editor.js';
 import { communicationMappingWizard } from '../../wizards/commmap-wizards.js';
 import { gooseIcon, smvIcon, reportIcon } from '../../icons/icons.js';
 import { isPublic, newWizardEvent } from '../../foundation.js';
 import { selectGseControlWizard } from '../../wizards/gsecontrol.js';
-import { wizards } from '../../wizards/wizard-library.js';
+import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
 import { getAttachedIeds } from './foundation.js';
 import { selectSampledValueControlWizard } from '../../wizards/sampledvaluecontrol.js';
 import { Settings } from '../../Setting.js';
 import { selectReportControlWizard } from '../../wizards/reportcontrol.js';
+
+import { SCLTag, tags } from '../../foundation.js';
 
 function shouldShowIEDs(): boolean {
   return localStorage.getItem('showieds') === 'on';
@@ -41,6 +46,14 @@ function shouldShowFunctions(): boolean {
 
 function setShowFunctions(value: 'on' | 'off') {
   localStorage.setItem('showfunctions', value);
+}
+
+function childTags(element: Element | null | undefined): SCLTag[] {
+  if (!element) return [];
+
+  return tags[<SCLTag>element.tagName].children.filter(
+    child => wizards[child].create !== emptyWizard
+  );
 }
 
 /** [[`Zeroline`]] pane for displaying `Substation` and/or `IED` sections. */
@@ -63,14 +76,11 @@ export class ZerolinePane extends LitElement {
   @query('#reportcontrol') reportcontrol!: IconButton;
   @query('#createsubstation') createsubstation!: IconButton;
 
+  @query('mwc-menu') addMenu!: Menu;
+  @query('mwc-icon-button[icon="playlist_add"]') addButton!: IconButton;
+
   openCommunicationMapping(): void {
     const wizard = communicationMappingWizard(this.doc);
-    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
-  }
-
-  /** Opens a [[`WizardDialog`]] for creating a new `Substation` element. */
-  openCreateSubstationWizard(): void {
-    const wizard = wizards['Substation'].create(this.doc.documentElement);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
@@ -122,6 +132,31 @@ export class ZerolinePane extends LitElement {
       : html``;
   }
 
+  renderSubstation(): TemplateResult {
+    return this.doc?.querySelector(':root > Substation')
+      ? html`<section>
+          ${Array.from(this.doc.querySelectorAll('Substation') ?? [])
+            .filter(isPublic)
+            .map(
+              substation =>
+                html`<substation-editor
+                  .doc=${this.doc}
+                  .element=${substation}
+                  .getAttachedIeds=${this.getAttachedIeds}
+                  ?readonly=${this.readonly}
+                  ?showfunctions=${shouldShowFunctions()}
+                ></substation-editor>`
+            )}
+        </section>`
+      : !this.doc?.querySelector(':root > Line, :root > Process')
+      ? html`<h1>
+          <span style="color: var(--base1)"
+            >${translate('substation.missing')}</span
+          >
+        </h1>`
+      : html``;
+  }
+
   renderLines(): TemplateResult {
     return this.doc?.querySelector(':root > Line')
       ? html`<section>
@@ -131,7 +166,9 @@ export class ZerolinePane extends LitElement {
               line =>
                 html`<line-editor
                   .doc=${this.doc}
-                  .element="${line}"
+                  .element=${line}
+                  .getAttachedIeds=${this.getAttachedIeds}
+                  ?readonly=${this.readonly}
                   ?showfunctions=${shouldShowFunctions()}
                 ></line-editor>`
             )}
@@ -139,16 +176,62 @@ export class ZerolinePane extends LitElement {
       : html``;
   }
 
+  renderProcesses(): TemplateResult {
+    return this.doc?.querySelector(':root > Process')
+      ? html`<section>
+          ${Array.from(this.doc.querySelectorAll(':root > Process') ?? [])
+            .filter(isPublic)
+            .map(
+              process =>
+                html`<process-editor
+                  .doc=${this.doc}
+                  .element=${process}
+                  .getAttachedIeds=${this.getAttachedIeds}
+                  ?readonly=${this.readonly}
+                  ?showfunctions=${shouldShowFunctions()}
+                ></process-editor>`
+            )}
+        </section>`
+      : html``;
+  }
+
+  private openCreateWizard(tagName: string): void {
+    const wizard = wizards[<SCLTag>tagName].create(this.doc.documentElement);
+
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
+
+  private renderAddButtons(): TemplateResult[] {
+    return childTags(this.doc.documentElement).map(
+      child =>
+        html`<mwc-list-item value="${child}"
+          ><span>${child}</span></mwc-list-item
+        >`
+    );
+  }
+
+  updated(): void {
+    if (this.addMenu && this.addButton)
+      this.addMenu.anchor = <HTMLElement>this.addButton;
+  }
+
   render(): TemplateResult {
     return html` <h1>
         <nav>
-          <abbr title="${translate('add')}">
+          <abbr slot="action" title="${translate('add')}">
             <mwc-icon-button
-              id="createsubstation"
               icon="playlist_add"
-              @click=${() => this.openCreateSubstationWizard()}
-            ></mwc-icon-button>
-          </abbr>
+              @click=${() => (this.addMenu.open = true)}
+            ></mwc-icon-button
+            ><mwc-menu
+              corner="BOTTOM_RIGHT"
+              @action=${(e: Event) => {
+                const tagName = (<ListItem>(<Menu>e.target).selected).value;
+                this.openCreateWizard(tagName);
+              }}
+              >${this.renderAddButtons()}</mwc-menu
+            ></abbr
+          >
         </nav>
         <nav>
           <abbr title="${translate('zeroline.showieds')}">
@@ -200,26 +283,7 @@ export class ZerolinePane extends LitElement {
         </nav>
       </h1>
       ${this.renderIedContainer()}
-      ${this.doc?.querySelector(':root > Substation')
-        ? html`<section>
-            ${Array.from(this.doc.querySelectorAll('Substation') ?? [])
-              .filter(isPublic)
-              .map(
-                substation =>
-                  html`<substation-editor
-                    .doc=${this.doc}
-                    .element=${substation}
-                    .getAttachedIeds=${this.getAttachedIeds}
-                    ?readonly=${this.readonly}
-                    ?showfunctions=${shouldShowFunctions()}
-                  ></substation-editor>`
-              )}
-          </section>`
-        : html`<h1>
-            <span style="color: var(--base1)"
-              >${translate('substation.missing')}</span
-            >
-          </h1>`}${this.renderLines()}`;
+      ${this.renderSubstation()}${this.renderLines()}${this.renderProcesses()}`;
   }
 
   static styles = css`
@@ -243,6 +307,8 @@ export class ZerolinePane extends LitElement {
 
     section {
       padding: 8px 12px 16px;
+      display: grid;
+      gap: 12px;
     }
 
     abbr {

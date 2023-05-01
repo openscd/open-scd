@@ -21,7 +21,9 @@ export default class SubstationPlugin extends LitElement {
 
   render(): TemplateResult {
     return html` <zeroline-pane .doc=${this.doc}></zeroline-pane>
-      ${!this.doc?.querySelector(':root > Substation')
+      ${!this.doc?.querySelector(
+        ':root > Substation, :root > Line, :root > Process'
+      )
         ? html`<h1>
             <mwc-fab
               extended
