@@ -42,7 +42,7 @@ export function createValue(
   element: Element,
   newElement: Element,
   instanceElement: Element,
-  numberOfmultipleSettings?: number | null
+  numberOfmultipleSettings?: number
 ): WizardActor {
   return (inputs: WizardInputElement[]): EditorAction[] => {
     const bType = element.getAttribute('bType')!;
