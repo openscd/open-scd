@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.31.0](https://github.com/openscd/open-scd/compare/v0.30.0...v0.31.0) (2023-05-02)
+
 ## [0.30.0](https://github.com/openscd/open-scd/compare/v0.29.0...v0.30.0) (2023-03-08)
 
 
