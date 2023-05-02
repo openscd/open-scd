@@ -20,6 +20,9 @@ import { Menu } from '@material/mwc-menu';
 
 import '../../action-icon.js';
 import '../../action-pane.js';
+import './eq-function-editor.js';
+import './l-node-editor.js';
+import './tapchanger-editor.js';
 
 import { styles } from './foundation.js';
 import {
@@ -131,6 +134,21 @@ export class TransformerWindingEditor extends LitElement {
       : html``;
   }
 
+  private renderTapChanger(): TemplateResult {
+    if (!this.showfunctions) return html``;
+    const tapChangers = getChildElementsByTagName(this.element, 'TapChanger');
+    return tapChangers.length
+      ? html` ${tapChangers.map(
+          tapChanger =>
+            html`<tapchanger-editor
+              .doc=${this.doc}
+              .element=${tapChanger}
+              ?showfunctions=${this.showfunctions}
+            ></tapchanger-editor>`
+        )}`
+      : html``;
+  }
+
   private renderAddButtons(): TemplateResult[] {
     return childTags(this.element).map(
       child =>
@@ -174,6 +192,7 @@ export class TransformerWindingEditor extends LitElement {
         ></abbr
       >
       ${this.renderLNodes()} ${this.renderEqFunctions()}
+      ${this.renderTapChanger()}
     </action-pane> `;
   }
 

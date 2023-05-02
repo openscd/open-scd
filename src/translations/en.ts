@@ -64,6 +64,7 @@ export const en = {
     prefix: 'Prefix of the Logical Node',
     lnInst: 'Instance of the Logical Node',
     virtual: 'Virtual',
+    phase: 'Phase',
   },
   settings: {
     title: 'Settings',
@@ -284,6 +285,36 @@ export const en = {
       updateVoltagelevel: 'Edited voltagelevel "{{name}}"',
     },
   },
+  line: {
+    name: 'Line',
+    wizard: {
+      nameHelper: 'Line name',
+      descHelper: 'Line description',
+      typeHelper: 'Line type',
+      title: {
+        add: 'Add line',
+        edit: 'Edit line',
+      },
+    },
+    action: {
+      updateLine: 'Edited line "{{name}}"',
+    },
+  },
+  process: {
+    name: 'Process',
+    wizard: {
+      nameHelper: 'Process name',
+      descHelper: 'Process description',
+      typeHelper: 'Process type',
+      title: {
+        add: 'Add Process',
+        edit: 'Edit Process',
+      },
+    },
+    action: {
+      updateProcess: 'Edited Process "{{name}}"',
+    },
+  },
   bay: {
     name: 'Bay',
     wizard: {
@@ -345,6 +376,7 @@ export const en = {
     disconnect: 'Disconnect data attribute',
     subscriber: {
       subscribed: 'Subscribed',
+      notSubscribed: 'Not Subscribed',
       availableToSubscribe: 'Available to subscribe',
       partiallySubscribed: 'Partially subscribed',
       noControlBlockSelected: 'No control block selected',

@@ -96,6 +96,47 @@ describe('SMV Subscribe Later Binding plugin', () => {
     ).to.be.equal(8);
   });
 
+  it('when subscribing an available ExtRef then a supervision instance is created', async () => {
+    doc = await fetch('/test/testfiles/editors/LaterBindingSMV-LSVS.scd')
+      .then(response => response.text())
+      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+    element = await fixture(
+      html`<smv-subscribe-later-binding-plugin
+        .doc="${doc}"
+      ></smv-subscribe-later-binding-plugin>`
+    );
+
+    const fcdaListElement = getFCDABindingList(element);
+    const extRefListElement = getExtrefLaterBindingList(element);
+
+    selectFCDAItem(
+      fcdaListElement,
+      'SMV_Publisher>>CurrentTransformer>fullSmv',
+      'SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 2.AmpSv instMag.i (MX)'
+    );
+    await element.requestUpdate();
+    await extRefListElement.requestUpdate();
+
+    (<HTMLElement>(
+      extRefListElement.shadowRoot!.querySelector(
+        'mwc-list-item[value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/instMag.i[0]"]'
+      )
+    )).click();
+    await element.requestUpdate();
+
+    const supervisionInstance = element.doc.querySelector(
+      'IED[name="SMV_Subscriber"] LN[lnClass="LSVS"][inst="3"]'
+    );
+    expect(supervisionInstance).to.exist;
+    expect(
+      supervisionInstance?.previousElementSibling?.getAttribute('lnClass')
+    ).to.equal('LSVS');
+    expect(
+      supervisionInstance?.previousElementSibling?.getAttribute('inst')
+    ).to.equal('2');
+  });
+
   it('when unsubscribing a subscribed ExtRef then the lists are changed', async () => {
     const fcdaListElement = getFCDABindingList(element);
     const extRefListElement = getExtrefLaterBindingList(element);
@@ -118,7 +159,7 @@ describe('SMV Subscribe Later Binding plugin', () => {
 
     (<HTMLElement>(
       extRefListElement.shadowRoot!.querySelector(
-        'mwc-list-item[value="SMV_Subscriber>>Overvoltage> PTRC 1>SMV:currentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv q@AmpSv;TCTR1/AmpSv/q"]'
+        'mwc-list-item[value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/q[0]"]'
       )
     )).click();
     await element.requestUpdate();

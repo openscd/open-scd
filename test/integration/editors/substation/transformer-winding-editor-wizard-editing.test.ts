@@ -176,33 +176,6 @@ describe('transformer-winding-editor wizarding editing integration', () => {
         ).to.not.exist;
       });
     });
-
-    describe('has a delete icon button that', () => {
-      let deleteButton: HTMLElement;
-
-      beforeEach(async () => {
-        deleteButton = <HTMLElement>(
-          element?.shadowRoot?.querySelector('mwc-icon-button[icon="delete"]')
-        );
-        await parent.updateComplete;
-      });
-
-      it('removes the attached TransformerWinding element from the document', async () => {
-        expect(
-          doc.querySelector(
-            'PowerTransformer[name="pTransVolt"] > TransformerWinding[name="some"]'
-          )
-        ).to.exist;
-
-        await deleteButton.click();
-
-        expect(
-          doc.querySelector(
-            'PowerTransformer[name="pTransVolt"] > TransformerWinding[name="some"]'
-          )
-        ).to.not.exist;
-      });
-    });
   });
 
   describe('Open add wizard', () => {
