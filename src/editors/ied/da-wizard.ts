@@ -9,7 +9,6 @@ import {
   getDescriptionAttribute,
   getInstanceAttribute,
   getNameAttribute,
-  newWizardEvent,
   Wizard,
 } from '../../foundation.js';
 import { Nsdoc } from '../../foundation/nsdoc.js';
@@ -17,8 +16,18 @@ import {
   findDOTypeElement,
   findElement,
   findLogicaNodeElement,
-  getValueElement,
+  getValueElements,
 } from './foundation.js';
+
+function getValues(element: Element): string {
+  const hasValue = getValueElements(element).length !== 0;
+
+  return hasValue
+    ? `${getValueElements(element)
+        .map(val => val.textContent ?? '')
+        .join(', ')}`
+    : '-';
+}
 
 function renderFields(
   element: Element,
@@ -92,8 +101,8 @@ function renderFields(
       <mwc-textfield
         label="${translate('iededitor.wizard.daValue')}"
         value="${instanceElement
-          ? getValueElement(instanceElement)?.textContent ?? '-'
-          : getValueElement(element)?.textContent ?? '-'}"
+          ? getValues(instanceElement)
+          : getValues(element)}"
         id="daValue"
         readonly
         disabled

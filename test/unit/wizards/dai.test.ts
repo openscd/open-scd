@@ -4,7 +4,6 @@ import '../../mock-wizard.js';
 import { MockWizard } from '../../mock-wizard.js';
 
 import { WizardTextField } from '../../../src/wizard-textfield.js';
-import { WizardSelect } from '../../../src/wizard-select.js';
 import {
   ComplexAction,
   Create,
@@ -14,11 +13,7 @@ import {
   WizardInputElement,
 } from '../../../src/foundation.js';
 
-import {
-  fetchDoc,
-  setWizardSelectValue,
-  setWizardTextFieldValue,
-} from './test-support.js';
+import { fetchDoc, setWizardTextFieldValue } from './test-support.js';
 import {
   createDAIWizard,
   createValue,
@@ -106,68 +101,73 @@ describe('Wizards for SCL element DAI', () => {
   });
 
   describe('edit existing DAI with Val Element', () => {
-    beforeEach(async () => {
-      doc = await fetchDoc('/test/testfiles/wizards/ied.scd');
-      dai = doc.querySelector(
-        'IED[name="IED1"] > AccessPoint[name="P1"] > Server > LDevice[inst="CircuitBreaker_CB1"] > LN[prefix="CB"][lnClass="CSWI"] > DOI[name="Beh"] > DAI[name="integer"]'
-      )!;
-      da = doc.querySelector(
-        'DOType[cdc="ENS"][id="Dummy.LLN0.Beh"] > DA[name="integer"]'
-      )!;
+    describe('having on value', () => {
+      let val: Element;
 
-      element = await fixture(html`<mock-wizard></mock-wizard>`);
-      const wizard = editDAIWizard(da, dai);
-      element.workflow.push(() => wizard);
-      await element.requestUpdate();
-      inputs = Array.from(element.wizardUI.inputs);
+      beforeEach(async () => {
+        doc = await fetchDoc('/test/testfiles/wizards/ied.scd');
+        dai = doc.querySelector(
+          'IED[name="IED1"] > AccessPoint[name="P1"] > Server > LDevice[inst="CircuitBreaker_CB1"] > LN[prefix="CB"][lnClass="CSWI"] > DOI[name="Beh"] > DAI[name="integer"]'
+        )!;
+        val = dai.querySelector('Val')!;
+        da = doc.querySelector(
+          'DOType[cdc="ENS"][id="Dummy.LLN0.Beh"] > DA[name="integer"]'
+        )!;
+
+        element = await fixture(html`<mock-wizard></mock-wizard>`);
+        const wizard = editDAIWizard(da, dai);
+        element.workflow.push(() => wizard);
+        await element.requestUpdate();
+        inputs = Array.from(element.wizardUI.inputs);
+      });
+
+      it('update value should be updated in document', async function () {
+        await setWizardTextFieldValue(<WizardTextField>inputs[0], '8');
+
+        const complexActions = updateValue(da, val)(inputs, element.wizardUI);
+        expectUpdateComplexAction(complexActions);
+
+        const replace = <Replace>(<ComplexAction>complexActions[0]).actions[0];
+        expect(replace.old.element.textContent).to.equal('5');
+        expect(replace.new.element.textContent).to.equal('8');
+      });
+
+      it('looks like the latest snapshot', async () => {
+        await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
+      });
     });
 
-    it('update value should be updated in document', async function () {
-      await setWizardTextFieldValue(<WizardTextField>inputs[0], '8');
+    describe('having multiple setting group values', () => {
+      let val: Element;
 
-      const complexActions = updateValue(da, dai)(inputs, element.wizardUI);
-      expectUpdateComplexAction(complexActions);
+      beforeEach(async () => {
+        doc = await fetchDoc('/test/testfiles/wizards/ied.scd');
+        dai = doc.querySelector(
+          ':root > IED[name="IED3"] > AccessPoint[name="P1"] > Server > ' +
+            'LDevice[inst="MU01"] > LN[lnType="DummyTCTR"] > DOI[name="Amp"] > SDI[name="sVC"] > DAI[name="scaleFactor"]'
+        )!;
+        val = dai.querySelectorAll('Val')[1];
+        da = doc.querySelector(
+          'DAType[id="ScaledValueConfig"] > BDA[name="scaleFactor"]'
+        )!;
 
-      const replace = <Replace>(<ComplexAction>complexActions[0]).actions[0];
-      expect(replace.old.element.textContent).to.equal('5');
-      expect(replace.new.element.textContent).to.equal('8');
-    });
+        element = await fixture(html`<mock-wizard></mock-wizard>`);
+        const wizard = editDAIWizard(da, dai);
+        element.workflow.push(() => wizard);
+        await element.requestUpdate();
+        inputs = Array.from(element.wizardUI.inputs);
+      });
 
-    it('looks like the latest snapshot', async () => {
-      await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
-    });
-  });
+      it('update value should be updated in document', async function () {
+        await setWizardTextFieldValue(<WizardTextField>inputs[0], '0.10');
 
-  describe('edit existing DAI without Val Element', () => {
-    beforeEach(async () => {
-      doc = await fetchDoc('/test/testfiles/wizards/ied.scd');
-      dai = doc.querySelector(
-        'IED[name="IED1"] > AccessPoint[name="P1"] > Server > LDevice[inst="CircuitBreaker_CB1"] > LN[inst="1"][lnClass="XCBR"] > DOI[name="Beh"] > DAI[name="stVal"]'
-      )!;
-      da = doc.querySelector(
-        'DOType[cdc="ENS"][id="Dummy.LLN0.Beh"] > DA[name="stVal"]'
-      )!;
+        const complexActions = updateValue(da, val)(inputs, element.wizardUI);
+        expectUpdateComplexAction(complexActions);
 
-      element = await fixture(html`<mock-wizard></mock-wizard>`);
-      const wizard = editDAIWizard(da, dai);
-      element.workflow.push(() => wizard);
-      await element.requestUpdate();
-      inputs = Array.from(element.wizardUI.inputs);
-    });
-
-    it('update value should be updated in document', async function () {
-      await setWizardSelectValue(<WizardSelect>inputs[0], 'blocked');
-
-      const complexActions = updateValue(da, dai)(inputs, element.wizardUI);
-      expectUpdateComplexAction(complexActions);
-
-      const create = <Create>(<ComplexAction>complexActions[0]).actions[0];
-      expect(create.new.parent).to.equal(dai);
-      expect(create.new.element.textContent).to.equal('blocked');
-    });
-
-    it('looks like the latest snapshot', async () => {
-      await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
+        const replace = <Replace>(<ComplexAction>complexActions[0]).actions[0];
+        expect(replace.old.element.textContent).to.equal('0.005');
+        expect(replace.new.element.textContent).to.equal('0.10');
+      });
     });
   });
 

@@ -121,11 +121,17 @@ export class ExtRefLnBindingList extends LitElement {
       return null;
     }
 
-    const actions: Create[] = [];
+    const complexAction: ComplexAction = {
+      actions: [],
+      title: get(`subscription.connect`),
+    };
+
     let inputsElement = lnElement.querySelector(':scope > Inputs');
     if (!inputsElement) {
       inputsElement = createElement(lnElement.ownerDocument, 'Inputs', {});
-      actions.push({ new: { parent: lnElement, element: inputsElement } });
+      complexAction.actions.push({
+        new: { parent: lnElement, element: inputsElement },
+      });
     }
 
     if (
@@ -143,20 +149,21 @@ export class ExtRefLnBindingList extends LitElement {
         this.currentSelectedControlElement,
         this.currentSelectedFcdaElement
       );
-      actions.push({ new: { parent: inputsElement, element: extRef } });
+      complexAction.actions.push({
+        new: { parent: inputsElement, element: extRef },
+      });
     }
 
     // we need to extend the actions array with the actions for the instation of the LGOS
     const subscriberIed = lnElement.closest('IED') || undefined;
-    actions.push(
+    complexAction.actions.push(
       ...instantiateSubscriptionSupervision(
         this.currentSelectedControlElement,
         subscriberIed
       )
     );
 
-    const title = get('subscription.connect');
-    return { title, actions };
+    return complexAction;
   }
 
   private unsubscribe(lnElement: Element): ComplexAction | null {
