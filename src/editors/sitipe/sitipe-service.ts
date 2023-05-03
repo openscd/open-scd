@@ -63,20 +63,20 @@ export function getBayTypicalComponents(
     .then(res => res.json());
 }
 
-export function getImportedBTComponents(
+export function getImportedBTComponentData(
+  id: number
+): Promise<ImportedBTComponentData> {
+  return fetch(`${getSitipeServiceBaseUrl()}/v2/btcomponents/imported/${id}`)
+    .catch(handleError)
+    .then(res => res.json());
+}
+
+export function getImportedBtComponents(
   accessId: string
 ): Promise<ImportedBTComponent[]> {
   return fetch(
     `${getSitipeServiceBaseUrl()}/v2/btcomponents/${accessId}/imported`
   )
-    .catch(handleError)
-    .then(res => res.json());
-}
-
-export function getImportedBTComponentData(
-  id: number
-): Promise<ImportedBTComponentData> {
-  return fetch(`${getSitipeServiceBaseUrl()}/v2/btcomponents/imported/${id}`)
     .catch(handleError)
     .then(res => res.json());
 }
