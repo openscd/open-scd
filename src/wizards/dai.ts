@@ -123,7 +123,7 @@ export function renderDAIWizard(
 function checkForMultipleSettings(
   parent: Element,
   element: Element
-): number | null {
+): number | undefined {
   // Look for the DA element to validate that the DAI has the functional constraint SG or SE
   let da = element;
   if (element.tagName === 'BDA')
@@ -141,7 +141,7 @@ function checkForMultipleSettings(
     numOfSGsAttribute !== '' &&
     !isNaN(numberOfmultipleSettings)
     ? numberOfmultipleSettings
-    : null;
+    : undefined;
 }
 
 export function createDAIWizard(
