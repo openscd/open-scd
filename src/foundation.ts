@@ -174,7 +174,11 @@ export const wizardInputSelector =
 export type WizardInputElement =
   | WizardTextField
   | TextField
-  | (AceEditor & { checkValidity: () => boolean; label: string })
+  | (AceEditor & {
+      checkValidity: () => boolean;
+      label: string;
+      requestUpdate(name?: PropertyKey, oldValue?: unknown): Promise<unknown>;
+    })
   // TODO(c-dinkel): extend component
   | Select
   | WizardSelect;
@@ -847,7 +851,7 @@ function extRefIdentity(e: Element): string | number {
   const intAddrIndex = Array.from(
     e.parentElement.querySelectorAll(`ExtRef[intAddr="${intAddr}"]`)
   ).indexOf(e);
-  if (!iedName) return `${parentIdentity}>${intAddr}[${intAddrIndex}]`;
+  if (intAddr) return `${parentIdentity}>${intAddr}[${intAddrIndex}]`;
   const [
     ldInst,
     prefix,

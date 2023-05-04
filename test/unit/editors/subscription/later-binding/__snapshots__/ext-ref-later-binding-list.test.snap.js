@@ -250,7 +250,7 @@ snapshots["extref-later-binding-list for Sampled Value Control when SVC has a si
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-      value="MeasPoint.CT1 SMV_Subscriber>>Overvoltage> PTRC 1>SMV:currentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv instMag.i@AmpSv;TCTR1/AmpSv/instMag.i"
+      value="MeasPoint.CT1 SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/instMag.i[0]"
     >
       <span>
         [subscription.subscriber.subscribed]
@@ -267,7 +267,7 @@ snapshots["extref-later-binding-list for Sampled Value Control when SVC has a si
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber>>Overvoltage> PTRC 1>SMV:currentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv instMag.i@AmpSv;TCTR1/AmpSv/instMag.i"
+      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/instMag.i[0]"
     >
       <span>
         AmpSv;TCTR1/AmpSv/instMag.i
@@ -482,7 +482,7 @@ snapshots["extref-later-binding-list when SVC has a multiple subscriptions looks
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-      value="MeasPoint.CT1 SMV_Subscriber>>Overvoltage> PTRC 1>SMV:currentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv q@AmpSv;TCTR1/AmpSv/q MeasPoint.CT1 SMV_Subscriber>>Overvoltage> PTRC 1>SMV:currentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv q@AmpSv;TCTR2/AmpSv/q MeasPoint.CT1 SMV_Subscriber>>Overvoltage> PTRC 1>SMV:currentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv q@AmpSv;TCTR3/AmpSv/q"
+      value="MeasPoint.CT1 SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/q[0] MeasPoint.CT1 SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR2/AmpSv/q[0] MeasPoint.CT1 SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR3/AmpSv/q[0]"
     >
       <span>
         [subscription.subscriber.subscribed]
@@ -499,7 +499,7 @@ snapshots["extref-later-binding-list when SVC has a multiple subscriptions looks
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="SMV_Subscriber>>Overvoltage> PTRC 1>SMV:currentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv q@AmpSv;TCTR1/AmpSv/q"
+      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/q[0]"
     >
       <span>
         AmpSv;TCTR1/AmpSv/q
@@ -515,7 +515,7 @@ snapshots["extref-later-binding-list when SVC has a multiple subscriptions looks
     <mwc-list-item
       graphic="large"
       twoline=""
-      value="SMV_Subscriber>>Overvoltage> PTRC 1>SMV:currentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv q@AmpSv;TCTR2/AmpSv/q"
+      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR2/AmpSv/q[0]"
     >
       <span>
         AmpSv;TCTR2/AmpSv/q
@@ -531,7 +531,7 @@ snapshots["extref-later-binding-list when SVC has a multiple subscriptions looks
     <mwc-list-item
       graphic="large"
       twoline=""
-      value="SMV_Subscriber>>Overvoltage> PTRC 1>SMV:currentOnly CurrentTransformer/ LLN0  SMV_Publisher CurrentTransformer/L1 TCTR 1 AmpSv q@AmpSv;TCTR3/AmpSv/q"
+      value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR3/AmpSv/q[0]"
     >
       <span>
         AmpSv;TCTR3/AmpSv/q
@@ -778,7 +778,7 @@ snapshots["extref-later-binding-list for GOOSE Control when GSEControl has no su
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-      value="Interlocking.Input GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0] Interlocking.Input3 GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB1_Disconnector/ CILO 1 EnaCls stVal@Pos;CILO/EnaCls/stVal Interlocking.Input4 GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CILO 1 EnaOpn stVal@Pos;CILO/EnaOpn2/stVal Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0] Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[1]"
+      value="Interlocking.Input GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0] Interlocking.Input3 GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaCls/stVal[0] Interlocking.Input4 GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaOpn2/stVal[0] Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0] Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[1]"
     >
       <span>
         [subscription.subscriber.availableToSubscribe]
@@ -814,7 +814,7 @@ snapshots["extref-later-binding-list for GOOSE Control when GSEControl has no su
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB1_Disconnector/ CILO 1 EnaCls stVal@Pos;CILO/EnaCls/stVal"
+      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaCls/stVal[0]"
     >
       <span>
         Pos;CILO/EnaCls/stVal
@@ -833,7 +833,7 @@ snapshots["extref-later-binding-list for GOOSE Control when GSEControl has no su
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CILO 1 EnaOpn stVal@Pos;CILO/EnaOpn2/stVal"
+      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaOpn2/stVal[0]"
     >
       <span>
         Pos;CILO/EnaOpn2/stVal
@@ -900,7 +900,7 @@ snapshots["extref-later-binding-list for GOOSE Control when GSEControl has a sin
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-      value="Interlocking.Input2 GOOSE_Subscriber>>Earth_Switch> CSWI 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos stVal@Pos;CSWI1/Pos/stVal"
+      value="Interlocking.Input2 GOOSE_Subscriber>>Earth_Switch> CSWI 1>Pos;CSWI1/Pos/stVal[0]"
     >
       <span>
         [subscription.subscriber.subscribed]
@@ -917,7 +917,7 @@ snapshots["extref-later-binding-list for GOOSE Control when GSEControl has a sin
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos stVal@Pos;CSWI1/Pos/stVal"
+      value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>Pos;CSWI1/Pos/stVal[0]"
     >
       <span>
         Pos;CSWI1/Pos/stVal
@@ -934,7 +934,7 @@ snapshots["extref-later-binding-list for GOOSE Control when GSEControl has a sin
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-      value="Interlocking.Input GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0] Interlocking.Input3 GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB1_Disconnector/ CILO 1 EnaCls stVal@Pos;CILO/EnaCls/stVal Interlocking.Input4 GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CILO 1 EnaOpn stVal@Pos;CILO/EnaOpn2/stVal Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0] Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[1]"
+      value="Interlocking.Input GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0] Interlocking.Input3 GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaCls/stVal[0] Interlocking.Input4 GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaOpn2/stVal[0] Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0] Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[1]"
     >
       <span>
         [subscription.subscriber.availableToSubscribe]
@@ -970,7 +970,7 @@ snapshots["extref-later-binding-list for GOOSE Control when GSEControl has a sin
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB1_Disconnector/ CILO 1 EnaCls stVal@Pos;CILO/EnaCls/stVal"
+      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaCls/stVal[0]"
     >
       <span>
         Pos;CILO/EnaCls/stVal
@@ -989,7 +989,7 @@ snapshots["extref-later-binding-list for GOOSE Control when GSEControl has a sin
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CILO 1 EnaOpn stVal@Pos;CILO/EnaOpn2/stVal"
+      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaOpn2/stVal[0]"
     >
       <span>
         Pos;CILO/EnaOpn2/stVal
@@ -1056,7 +1056,7 @@ snapshots["extref-later-binding-list when GSEControl has a multiple subscription
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-      value="Interlocking.Input GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos q@Pos;CSWI1/Pos/q Interlocking.Input2 GOOSE_Subscriber>>Earth_Switch> CSWI 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos q@Pos;CSWI1/Pos/q"
+      value="Interlocking.Input GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/q[0] Interlocking.Input2 GOOSE_Subscriber>>Earth_Switch> CSWI 1>Pos;CSWI1/Pos/q[0]"
     >
       <span>
         [subscription.subscriber.subscribed]
@@ -1073,7 +1073,7 @@ snapshots["extref-later-binding-list when GSEControl has a multiple subscription
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos q@Pos;CSWI1/Pos/q"
+      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/q[0]"
     >
       <span>
         Pos;CSWI1/Pos/q
@@ -1089,7 +1089,7 @@ snapshots["extref-later-binding-list when GSEControl has a multiple subscription
     <mwc-list-item
       graphic="large"
       twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos q@Pos;CSWI1/Pos/q"
+      value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>Pos;CSWI1/Pos/q[0]"
     >
       <span>
         Pos;CSWI1/Pos/q
@@ -1106,7 +1106,7 @@ snapshots["extref-later-binding-list when GSEControl has a multiple subscription
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
-      value="Interlocking.Input GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0] Interlocking.Input3 GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB1_Disconnector/ CILO 1 EnaCls stVal@Pos;CILO/EnaCls/stVal Interlocking.Input4 GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CILO 1 EnaOpn stVal@Pos;CILO/EnaOpn2/stVal Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0] Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[1]"
+      value="Interlocking.Input GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0] Interlocking.Input3 GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaCls/stVal[0] Interlocking.Input4 GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaOpn2/stVal[0] Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0] Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[1]"
     >
       <span>
         [subscription.subscriber.availableToSubscribe]
@@ -1142,7 +1142,7 @@ snapshots["extref-later-binding-list when GSEControl has a multiple subscription
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB1_Disconnector/ CILO 1 EnaCls stVal@Pos;CILO/EnaCls/stVal"
+      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaCls/stVal[0]"
     >
       <span>
         Pos;CILO/EnaCls/stVal
@@ -1161,7 +1161,7 @@ snapshots["extref-later-binding-list when GSEControl has a multiple subscription
       mwc-list-item=""
       tabindex="-1"
       twoline=""
-      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CILO 1 EnaOpn stVal@Pos;CILO/EnaOpn2/stVal"
+      value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CILO/EnaOpn2/stVal[0]"
     >
       <span>
         Pos;CILO/EnaOpn2/stVal

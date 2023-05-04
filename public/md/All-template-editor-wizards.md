@@ -2,4 +2,3 @@ The **template editor** allows you to create the elements that combined is the d
 
 - [EnumType](https://github.com/openscd/open-scd/wiki/Enumeration-EnumType)
 - [EnumVal](https://github.com/openscd/open-scd/wiki/Enumeration-EnumVal)
-- [EnumVal]()

@@ -95,6 +95,47 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
     ).to.be.equal(4);
   });
 
+  it('when subscribing an available ExtRef then a supervision instance is created', async () => {
+    doc = await fetch('/test/testfiles/editors/LaterBindingGOOSE-LGOS.scd')
+      .then(response => response.text())
+      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+    element = await fixture(
+      html`<goose-subscriber-later-binding-plugin
+        .doc="${doc}"
+      ></goose-subscriber-later-binding-plugin>`
+    );
+
+    const extRefListElement = getExtrefLaterBindingList(element);
+
+    const fcdaListElement = getFCDABindingList(element);
+    selectFCDAItem(
+      fcdaListElement,
+      'GOOSE_Publisher2>>QB2_Disconnector>GOOSE1',
+      'GOOSE_Publisher2>>QB2_Disconnector>GOOSE1sDataSet>QB1_Disconnector/ CSWI 1.Pos stVal (ST)'
+    );
+    await element.requestUpdate();
+    await extRefListElement.requestUpdate();
+
+    (<HTMLElement>(
+      extRefListElement.shadowRoot!.querySelector(
+        'mwc-list-item[value="GOOSE_Subscriber1>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0]"]'
+      )
+    )).click();
+    await element.requestUpdate();
+
+    const supervisionInstance = element.doc.querySelector(
+      'IED[name="GOOSE_Subscriber1"] LN[lnClass="LGOS"][inst="4"]'
+    );
+    expect(supervisionInstance).to.exist;
+    expect(
+      supervisionInstance?.previousElementSibling?.getAttribute('lnClass')
+    ).to.equal('LGOS');
+    expect(
+      supervisionInstance?.previousElementSibling?.getAttribute('inst')
+    ).to.equal('3');
+  });
+
   it('when unsubscribing a subscribed ExtRef then the lists are changed', async () => {
     const fcdaListElement = getFCDABindingList(element);
     const extRefListElement = getExtrefLaterBindingList(element);
@@ -117,7 +158,7 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
 
     (<HTMLElement>(
       extRefListElement.shadowRoot!.querySelector(
-        'mwc-list-item[value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>GOOSE:GOOSE2 QB2_Disconnector/ LLN0  GOOSE_Publisher QB2_Disconnector/ CSWI 1 Pos q@Pos;CSWI1/Pos/q"]'
+        'mwc-list-item[value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>Pos;CSWI1/Pos/q[0]"]'
       )
     )).click();
     await element.requestUpdate();

@@ -393,7 +393,16 @@
 							<SmvOpts/>
 						</SampledValueControl>
 					</LN0>
-					<LN prefix="I01A" lnClass="TCTR" inst="1" lnType="DummyTCTR"/>
+					<LN prefix="I01A" lnClass="TCTR" inst="1" lnType="DummyTCTR">
+                        <DOI name="Amp">
+                            <SDI name="sVC">
+                                <DAI name="scaleFactor">
+                                    <Val sGroup="1">0.001</Val>
+                                    <Val sGroup="2">0.005</Val>
+                                </DAI>
+                            </SDI>
+                    	</DOI>
+                    </LN>
 					<LN prefix="I01B" lnClass="TCTR" inst="2" lnType="DummyTCTR"/>
 					<LN prefix="I01C" lnClass="TCTR" inst="3" lnType="DummyTCTR"/>
 					<LN prefix="I01N" lnClass="TCTR" inst="4" lnType="DummyTCTR"/>
@@ -527,8 +536,8 @@
 		</DOType>
 		<DOType cdc="ENS" id="Dummy.LLN0.Beh">
 			<DA fc="ST" name="integer" bType="INT8U">
-        <Val>21</Val>
-      </DA>
+				<Val>21</Val>
+      		</DA>
 			<DA fc="ST" name="stVal" bType="Enum" type="Dummy_Beh"/>
 			<DA fc="ST" name="q" bType="Quality"/>
 			<DA fc="ST" name="t" bType="Timestamp"/>
