@@ -977,7 +977,7 @@ snapshots["open-scd looks like its snapshot"] =
       value="/src/editors/Sitipe.js"
     >
       <mwc-icon slot="meta">
-        conveyor_belt
+        precision_manufacturing
       </mwc-icon>
       Sitipe
     </mwc-check-list-item>

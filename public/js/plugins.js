@@ -323,7 +323,7 @@ export const officialPlugins = [
   {
     name: 'Sitipe',
     src: '/src/editors/Sitipe.js',
-    icon: 'conveyor_belt',
+    icon: 'precision_manufacturing',
     default: true,
     kind: 'editor',
   },
