@@ -18,7 +18,7 @@
     "analyze": "cem analyze --litelement",
     "deploy": "npm run bundle && gh-pages --dist 'dist'",
     "build": "npm run extract && npm run localize && npm run compile",
-    "compile": "tsc -b && tsc foundation.ts --declaration --emitDeclarationOnly --outDir dist",
+    "compile": "tsc -b",
     "bundle": "rimraf dist && rollup -c rollup.config.js",
     "doc": "npm run analyze -- --exclude dist && typedoc --out dist/doc foundation.ts",
     "prepublish": "npm run lint && npm run build && npm run doc",

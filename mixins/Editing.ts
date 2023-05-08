@@ -119,23 +119,23 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     @state()
-    protected history: LogEntry[] = [];
+    history: LogEntry[] = [];
 
     @state()
-    protected editCount: number = 0;
+    editCount: number = 0;
 
     @state()
-    protected get last(): number {
+    get last(): number {
       return this.editCount - 1;
     }
 
     @state()
-    protected get canUndo(): boolean {
+    get canUndo(): boolean {
       return this.last >= 0;
     }
 
     @state()
-    protected get canRedo(): boolean {
+    get canRedo(): boolean {
       return this.editCount < this.history.length;
     }
 
@@ -146,12 +146,12 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
     /** The name of the [[`doc`]] currently being edited */
     @property({ type: String, reflect: true }) docName = '';
 
-    protected handleOpenDoc({ detail: { docName, doc } }: OpenEvent) {
+    handleOpenDoc({ detail: { docName, doc } }: OpenEvent) {
       this.docName = docName;
       this.docs[this.docName] = doc;
     }
 
-    protected handleEditEvent(event: EditEvent) {
+    handleEditEvent(event: EditEvent) {
       const edit = event.detail;
       this.history.splice(this.editCount);
       this.history.push({ undo: handleEdit(edit), redo: edit });

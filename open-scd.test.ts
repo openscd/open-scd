@@ -45,8 +45,6 @@ it(`changes locales on attribute change`, async () => {
   await timeout(180);
   await editor.updateComplete;
   expect(editor).to.have.property('locale', 'de');
-
-  editor.remove();
 });
 
 allLocales.forEach(lang =>
