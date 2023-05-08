@@ -168,10 +168,10 @@ export const officialPlugins = [
     position: 'top',
   },
   {
-    name: '[WIP] Validate OCL',
+    name: '[WIP] Validate using OCL',
     src: '/src/validators/CompasValidateSchema.js',
     icon: 'rule_folder',
-    default: true,
+    default: false,
     kind: 'validator',
   },
   {

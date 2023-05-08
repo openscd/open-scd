@@ -169,7 +169,7 @@ describe('PluggingElement', () => {
       ).to.have.property('position');
     });
     it('adds a new validator kind plugin on add button click', async () => {
-      expect(element.validators).to.have.lengthOf(3);
+      expect(element.validators).to.have.lengthOf(2);
       src.value = 'http://example.com/plugin.js';
       name.value = 'testName';
       validatorKindOption.click();
@@ -177,7 +177,7 @@ describe('PluggingElement', () => {
       await name.updateComplete;
       primaryAction.click();
       await element.updateComplete;
-      expect(element.validators).to.have.lengthOf(4);
+      expect(element.validators).to.have.lengthOf(3);
     });
   });
 });
