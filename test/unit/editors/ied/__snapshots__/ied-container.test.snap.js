@@ -20,6 +20,13 @@ snapshots["ied-container looks like the latest snapshot"] =
     <mwc-icon-button icon="edit">
     </mwc-icon-button>
   </abbr>
+  <abbr
+    slot="action"
+    title="[settings]"
+  >
+    <mwc-icon-button icon="settings">
+    </mwc-icon-button>
+  </abbr>
   <access-point-container>
   </access-point-container>
 </action-pane>

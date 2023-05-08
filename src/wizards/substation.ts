@@ -7,15 +7,14 @@ import '@material/mwc-formfield';
 import '../wizard-textfield.js';
 import {
   createElement,
-  EditorAction,
   getValue,
-  newWizardEvent,
   Wizard,
+  WizardAction,
   WizardActor,
   WizardInputElement,
 } from '../foundation.js';
 import { guessVoltageLevel } from '../editors/substation/guess-wizard.js';
-import { updateNamingAttributeWithReferencesAction } from "./foundation/actions.js";
+import { updateNamingAttributeWithReferencesAction } from './foundation/actions.js';
 
 function render(
   name: string,
@@ -46,34 +45,27 @@ function render(
 }
 
 export function createAction(parent: Element): WizardActor {
-  return (inputs: WizardInputElement[], wizard: Element): EditorAction[] => {
+  return (inputs: WizardInputElement[], wizard: Element): WizardAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!);
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const guess = wizard.shadowRoot?.querySelector('mwc-checkbox')?.checked;
     parent.ownerDocument.createElement('Substation');
-    const element = createElement(parent.ownerDocument, 'Substation', {
+    const substation = createElement(parent.ownerDocument, 'Substation', {
       name,
       desc,
     });
 
-    const action = {
-      new: {
-        parent,
-        element,
-      },
-    };
-
     if (guess)
-      wizard.dispatchEvent(
-        newWizardEvent(guessVoltageLevel(parent.ownerDocument))
-      );
+      return [() => guessVoltageLevel(parent.ownerDocument, substation)];
 
-    return [action];
+    return [{ new: { parent, element: substation } }];
   };
 }
 
 export function createSubstationWizard(parent: Element): Wizard {
-  const guessable = parent.querySelector('Substation') === null;
+  const guessable =
+    parent.ownerDocument.querySelector('Substation') === null &&
+    parent.tagName === 'SCL';
 
   return [
     {
@@ -97,7 +89,10 @@ export function substationEditWizard(element: Element): Wizard {
       primary: {
         icon: 'edit',
         label: get('save'),
-        action: updateNamingAttributeWithReferencesAction(element, 'substation.action.updatesubstation'),
+        action: updateNamingAttributeWithReferencesAction(
+          element,
+          'substation.action.updatesubstation'
+        ),
       },
       content: render(
         element.getAttribute('name') ?? '',

@@ -21,7 +21,7 @@ OpenSCD templates contains all enumerations from IEC&#8239;61850&#x2011;7&#x2011
 
 *User-defined* 
 
-Do defined a user-defined from scratch open **Add EnumType** wizard and make sure to NOT select the value. Be careful with this option as this add a blanc `EnumType`.
+Do defined a user-defined from scratch open **Add EnumType** wizard and make sure to NOT select the value. Be careful with this option as this adds a blank `EnumType`.
 
 &nbsp;
 
@@ -29,7 +29,7 @@ Do defined a user-defined from scratch open **Add EnumType** wizard and make sur
 
 **Edit EnumType**
 
-1. Vavigate to the `EnumType` list in the **Template editor** and click on the `EnumType` you want to edit 
+1. Navigate to the `EnumType` list in the **Template editor** and click on the `EnumType` you want to edit 
 
 *Settings*:
 
