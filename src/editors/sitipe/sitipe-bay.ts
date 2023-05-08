@@ -502,7 +502,6 @@ export class SitipeBay extends LitElement {
           });
         });
       });
-      console.log(complexAction);
       this.dispatchEvent(newActionEvent(complexAction));
     });
   }
