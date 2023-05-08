@@ -225,6 +225,7 @@ export const de: Translations = {
     lnFilter: '???',
     missing: 'Kein IED vorhanden',
     toggleChildElements: 'Kindelemente umschalten',
+    settings: '?????',
     wizard: {
       daTitle: 'DA Informationen anzeigen',
       doTitle: 'DO Informationen anzeigen',
