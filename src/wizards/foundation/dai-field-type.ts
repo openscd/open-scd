@@ -40,7 +40,9 @@ const daiFieldTypes = [
   'VisString255',
 ] as const;
 export type DaiFieldTypes = typeof daiFieldTypes[number];
-
+const emptyIfNull = <T>(item: T | null, value: string): string => {
+  return item === null ? '' : value;
+};
 export function getCustomField(): Record<DaiFieldTypes, CustomField> {
   return {
     BOOLEAN: booleanField(),
@@ -75,8 +77,8 @@ export function getCustomField(): Record<DaiFieldTypes, CustomField> {
         // If numOfSGs is -1, then it is a single value, otherwise it is treated as a group of values
         return (numOfSGs ? [...Array(numOfSGs)] : [numOfSGs]).map((item, i) => {
           return html`<wizard-select
-            id="Val${item === null ? '' : i + 1}"
-            label="Val${item === null ? '' : ` for sGroup ${i + 1}`}"
+            id="Val${emptyIfNull(item, `${i + 1}`)}"
+            label="Val${emptyIfNull(item, ` for sGroup ${i + 1}`)}"
             .maybeValue=${getInstanceValue(instanceElement)}
             fixedMenuPosition
           >
@@ -103,8 +105,8 @@ export function getCustomField(): Record<DaiFieldTypes, CustomField> {
         // If numOfSGs is -1, then it is a single value, otherwise it is treated as a group of values
         return (numOfSGs ? [...Array(numOfSGs)] : [numOfSGs]).map((item, i) => {
           return html`<wizard-select
-            id="Val${item === null ? '' : i + 1}"
-            label="Val${item === null ? '' : ` for sGroup ${i + 1}`}"
+            id="Val${emptyIfNull(item, `${i + 1}`)}"
+            label="Val${emptyIfNull(item, ` for sGroup ${i + 1}`)}"
             .maybeValue=${getInstanceValue(instanceElement)}
             fixedMenuPosition
           >
@@ -134,8 +136,8 @@ export function getCustomField(): Record<DaiFieldTypes, CustomField> {
         // If numOfSGs is -1, then it is a single value, otherwise it is treated as a group of values
         return (numOfSGs ? [...Array(numOfSGs)] : [numOfSGs]).map((item, i) => {
           return html`<wizard-textfield
-            id="Val${item === null ? '' : i + 1}"
-            label="Val${item === null ? '' : ` for sGroup ${i + 1}`}"
+            id="Val${emptyIfNull(item, `${i + 1}`)}"
+            label="Val${emptyIfNull(item, ` for sGroup ${i + 1}`)}"
             .maybeValue=${getInstanceValue(instanceElement)}
             helper="${translate('dai.wizard.valueHelper', { type })}"
             type="number"
@@ -164,8 +166,8 @@ export function getCustomField(): Record<DaiFieldTypes, CustomField> {
         // If numOfSGs is -1, then it is a single value, otherwise it is treated as a group of values
         return (numOfSGs ? [...Array(numOfSGs)] : [numOfSGs]).map((item, i) => {
           return html`<wizard-textfield
-            id="Val${item === null ? '' : i + 1}"
-            label="Val${item === null ? '' : ` for sGroup ${i + 1}`}"
+            id="Val${emptyIfNull(item, `${i + 1}`)}"
+            label="Val${emptyIfNull(item, ` for sGroup ${i + 1}`)}"
             .maybeValue=${getInstanceValue(instanceElement)}
             helper="${translate('dai.wizard.valueHelper', { type })}"
             type="number"
@@ -196,15 +198,15 @@ export function getCustomField(): Record<DaiFieldTypes, CustomField> {
           (acc: TemplateResult[], item, i) => {
             return acc.concat([
               html`<wizard-textfield
-                id="ValDate${item === null ? '' : i + 1}"
-                label="Val (Date)${item === null ? '' : ` for sGroup ${i + 1}`}"
+                id="ValDate${emptyIfNull(item, `${i + 1}`)}"
+                label="Val (Date)${emptyIfNull(item, ` for sGroup ${i + 1}`)}"
                 .maybeValue=${getDateValueFromTimestamp(value)}
                 type="date"
               >
               </wizard-textfield>`,
               html`<wizard-textfield
-                id="ValTime${item === null ? '' : i + 1}"
-                label="Val (Time)${item === null ? '' : ` for sGroup ${i + 1}`}"
+                id="ValTime${emptyIfNull(item, `${i + 1}`)}"
+                label="Val (Time)${emptyIfNull(item, ` for sGroup ${i + 1}`)}"
                 .maybeValue=${getTimeValueFromTimestamp(value)}
                 type="time"
                 step="1"
@@ -238,8 +240,8 @@ export function getCustomField(): Record<DaiFieldTypes, CustomField> {
         // If numOfSGs is -1, then it is a single value, otherwise it is treated as a group of values
         return (numOfSGs ? [...Array(numOfSGs)] : [numOfSGs]).map((item, i) => {
           return html`<wizard-textfield
-            id="Val${item === null ? '' : i + 1}"
-            label="Val${item === null ? '' : ` for sGroup ${i + 1}`}"
+            id="Val${emptyIfNull(item, ` ${i + 1}`)}"
+            label="Val${emptyIfNull(item, ` for sGroup ${i + 1}`)}"
             .maybeValue=${getInstanceValue(instanceElement)}
             helper="${translate('dai.wizard.valueHelper', { type })}"
             maxLength=${maxNrOfCharacters}
