@@ -148,7 +148,8 @@ export function Hosting<
               )
             );
           },
-          disabled: (): boolean => this.doc === null,
+          disabled: (): boolean =>
+            this.doc === null || plugin.name.includes('[WIP]'),
           content: plugin.content,
           kind: 'validator',
         })
