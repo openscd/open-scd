@@ -6,7 +6,6 @@
   "license": "Apache-2.0",
   "packageManager": "npm@8.12.2",
   "type": "module",
-  "browser": "./foundation.js",
   "main": "./foundation.js",
   "exports": {
     ".": "./dist/foundation.js",
