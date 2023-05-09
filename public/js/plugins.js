@@ -24,14 +24,14 @@ export const officialPlugins = [
     name: 'Subscriber Message Binding (GOOSE)',
     src: '/src/editors/GooseSubscriberMessageBinding.js',
     icon: 'link',
-    default: true,
+    default: false,
     kind: 'editor',
   },
   {
     name: 'Subscriber Data Binding (GOOSE)',
     src: '/src/editors/GooseSubscriberDataBinding.js',
     icon: 'link',
-    default: true,
+    default: false,
     kind: 'editor',
   },
   {
@@ -45,14 +45,14 @@ export const officialPlugins = [
     name: 'Subscriber Message Binding (SMV)',
     src: '/src/editors/SMVSubscriberMessageBinding.js',
     icon: 'link',
-    default: true,
+    default: false,
     kind: 'editor',
   },
   {
     name: 'Subscriber Data Binding (SMV)',
     src: '/src/editors/SMVSubscriberDataBinding.js',
     icon: 'link',
-    default: true,
+    default: false,
     kind: 'editor',
   },
   {
