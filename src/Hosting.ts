@@ -237,6 +237,7 @@ export function Hosting<
     renderMenuItem(me: MenuItem | 'divider'): TemplateResult {
       if (me === 'divider')
         return html`<li divider padded role="separator"></li>`;
+      if (me.actionItem) return html``;
       return html`
         <mwc-list-item
           class="${me.kind}"
