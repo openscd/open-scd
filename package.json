@@ -1,12 +1,16 @@
 {
-  "name": "open-scd-core",
+  "name": "@openscd/open-scd-core",
   "version": "0.0.0",
+  "description": "The core editor component of open-scd, without any extensions pre-installed.",
+  "author": "Open-SCD",
   "license": "Apache-2.0",
   "packageManager": "npm@8.12.2",
   "type": "module",
+  "browser": "./foundation.js",
+  "main": "./foundation.js",
   "exports": {
-    ".": "dist/foundation.js",
-    "/open-scd.js": "dist/open-scd.js"
+    ".": "./dist/foundation.js",
+    "./open-scd.js": "./dist/open-scd.js"
   },
   "scripts": {
     "start": "npm run build && concurrently -k -r \"tsc -b --watch --preserveWatchOutput\" \"wds\"",
