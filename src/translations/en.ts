@@ -222,7 +222,7 @@ export const en = {
     lnFilter: 'Logical Node Filter',
     missing: 'No IED',
     toggleChildElements: 'Toggle child elements',
-    settings: 'Show Services the IED provides',
+    settings: 'Show Services the IED/port provides',
     wizard: {
       daTitle: 'Show DA Info',
       doTitle: 'Show DO Info',
