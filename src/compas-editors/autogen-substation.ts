@@ -1,5 +1,5 @@
 import { LitElement, property } from 'lit-element';
-import { createElement, newActionEvent } from '../../../foundation.js';
+import { createElement, newActionEvent } from '../foundation.js';
 
 let cbNum = 1;
 let dsNum = 1;
