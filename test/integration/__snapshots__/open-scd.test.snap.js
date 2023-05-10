@@ -584,7 +584,6 @@ snapshots["open-scd looks like its snapshot"] =
       hasmeta=""
       left=""
       mwc-list-item=""
-      selected=""
       tabindex="-1"
       value="/src/editors/GooseSubscriberMessageBinding.js"
     >
@@ -600,7 +599,6 @@ snapshots["open-scd looks like its snapshot"] =
       hasmeta=""
       left=""
       mwc-list-item=""
-      selected=""
       tabindex="-1"
       value="/src/editors/GooseSubscriberDataBinding.js"
     >
@@ -632,7 +630,6 @@ snapshots["open-scd looks like its snapshot"] =
       hasmeta=""
       left=""
       mwc-list-item=""
-      selected=""
       tabindex="-1"
       value="/src/editors/SMVSubscriberMessageBinding.js"
     >
@@ -648,7 +645,6 @@ snapshots["open-scd looks like its snapshot"] =
       hasmeta=""
       left=""
       mwc-list-item=""
-      selected=""
       tabindex="-1"
       value="/src/editors/SMVSubscriberDataBinding.js"
     >
