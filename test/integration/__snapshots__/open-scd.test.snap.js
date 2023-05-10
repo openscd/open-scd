@@ -583,12 +583,12 @@ snapshots["open-scd looks like its snapshot"] =
       mwc-list-item=""
       selected=""
       tabindex="0"
-      value="/src/editors/Substation.js"
+      value="/src/editors/IED.js"
     >
       <mwc-icon slot="meta">
-        margin
+        developer_board
       </mwc-icon>
-      Substation
+      IED
     </mwc-check-list-item>
     <mwc-check-list-item
       aria-disabled="false"
@@ -599,12 +599,12 @@ snapshots["open-scd looks like its snapshot"] =
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/editors/IED.js"
+      value="/src/editors/Substation.js"
     >
       <mwc-icon slot="meta">
-        developer_board
+        margin
       </mwc-icon>
-      IED
+      Substation
     </mwc-check-list-item>
     <mwc-check-list-item
       aria-disabled="false"
