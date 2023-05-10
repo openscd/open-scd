@@ -178,24 +178,6 @@ snapshots["open-scd looks like its snapshot"] =
         rule_folder
       </mwc-icon>
       <span>
-        Validate using OCL
-      </span>
-    </mwc-list-item>
-    <oscd-plugine36e411de62aaf96 class="plugin validator">
-    </oscd-plugine36e411de62aaf96>
-    <mwc-list-item
-      aria-disabled="true"
-      class="validator"
-      disabled=""
-      graphic="icon"
-      iconid="rule_folder"
-      mwc-list-item=""
-      tabindex="-1"
-    >
-      <mwc-icon slot="graphic">
-        rule_folder
-      </mwc-icon>
-      <span>
         Validate Schema
       </span>
     </mwc-list-item>
@@ -1122,20 +1104,23 @@ snapshots["open-scd looks like its snapshot"] =
     >
     </li>
     <mwc-check-list-item
-      aria-disabled="false"
+      aria-disabled="true"
       class="official"
+      disabled=""
       graphic="control"
       hasmeta=""
       left=""
       mwc-list-item=""
-      selected=""
       tabindex="-1"
       value="/src/validators/CompasValidateSchema.js"
     >
       <mwc-icon slot="meta">
         rule_folder
       </mwc-icon>
-      Validate using OCL
+      [WIP]
+      <strike>
+        Validate using OCL
+      </strike>
     </mwc-check-list-item>
     <mwc-check-list-item
       aria-disabled="false"
