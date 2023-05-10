@@ -190,6 +190,24 @@ snapshots["open-scd looks like its snapshot"] =
     </mwc-list-item>
     <oscd-plugin2a662bacb120083f class="menu plugin">
     </oscd-plugin2a662bacb120083f>
+    <mwc-list-item
+      aria-disabled="true"
+      class="middle"
+      disabled=""
+      graphic="icon"
+      iconid="compare_arrows"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        compare_arrows
+      </mwc-icon>
+      <span>
+        Compare IED
+      </span>
+    </mwc-list-item>
+    <oscd-plugin46ae7b6e93fe0f90 class="menu plugin">
+    </oscd-plugin46ae7b6e93fe0f90>
     <li
       divider=""
       padded=""
@@ -521,12 +539,12 @@ snapshots["open-scd looks like its snapshot"] =
       mwc-list-item=""
       selected=""
       tabindex="0"
-      value="/src/editors/Substation.js"
+      value="/src/editors/IED.js"
     >
       <mwc-icon slot="meta">
-        margin
+        developer_board
       </mwc-icon>
-      Substation
+      IED
     </mwc-check-list-item>
     <mwc-check-list-item
       aria-disabled="false"
@@ -535,13 +553,14 @@ snapshots["open-scd looks like its snapshot"] =
       hasmeta=""
       left=""
       mwc-list-item=""
+      selected=""
       tabindex="-1"
-      value="/src/editors/IED.js"
+      value="/src/editors/Substation.js"
     >
       <mwc-icon slot="meta">
-        developer_board
+        margin
       </mwc-icon>
-      IED
+      Substation
     </mwc-check-list-item>
     <mwc-check-list-item
       aria-disabled="false"
@@ -962,6 +981,7 @@ snapshots["open-scd looks like its snapshot"] =
       hasmeta=""
       left=""
       mwc-list-item=""
+      selected=""
       tabindex="-1"
       value="/src/menu/CompareIED.js"
     >

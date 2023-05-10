@@ -1,16 +1,16 @@
 export const officialPlugins = [
   {
-    name: 'Substation',
-    src: '/src/editors/Substation.js',
-    icon: 'margin',
+    name: 'IED',
+    src: '/src/editors/IED.js',
+    icon: 'developer_board',
     default: true,
     kind: 'editor',
   },
   {
-    name: 'IED',
-    src: '/src/editors/IED.js',
-    icon: 'developer_board',
-    default: false,
+    name: 'Substation',
+    src: '/src/editors/Substation.js',
+    icon: 'margin',
+    default: true,
     kind: 'editor',
   },
   {
@@ -202,7 +202,7 @@ export const officialPlugins = [
     name: 'Compare IED',
     src: '/src/menu/CompareIED.js',
     icon: 'compare_arrows',
-    default: false,
+    default: true,
     kind: 'menu',
     requireDoc: true,
     position: 'middle',
