@@ -329,7 +329,7 @@ export const officialPlugins = [
   },
   {
     name: 'Autogen Substation',
-    src: '/src/editors/substation/autogen-substation/autogen-substation.js',
+    src: '/src/compas-editors/autogen-substation.js',
     icon: 'playlist_add_circle',
     default: true,
     kind: 'menu',
