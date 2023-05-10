@@ -78,38 +78,6 @@ snapshots["open-scd looks like its snapshot"] =
     </li>
     <mwc-list-item
       aria-disabled="true"
-      class="static"
-      disabled=""
-      graphic="icon"
-      iconid="undo"
-      mwc-list-item=""
-      tabindex="-1"
-    >
-      <mwc-icon slot="graphic">
-        undo
-      </mwc-icon>
-      <span>
-        Undo
-      </span>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="true"
-      class="static"
-      disabled=""
-      graphic="icon"
-      iconid="redo"
-      mwc-list-item=""
-      tabindex="-1"
-    >
-      <mwc-icon slot="graphic">
-        redo
-      </mwc-icon>
-      <span>
-        Redo
-      </span>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="true"
       class="validator"
       disabled=""
       graphic="icon"
@@ -144,36 +112,6 @@ snapshots["open-scd looks like its snapshot"] =
     </mwc-list-item>
     <oscd-plugin186320cdd626e422 class="plugin validator">
     </oscd-plugin186320cdd626e422>
-    <mwc-list-item
-      aria-disabled="false"
-      class="static"
-      graphic="icon"
-      iconid="history"
-      mwc-list-item=""
-      tabindex="-1"
-    >
-      <mwc-icon slot="graphic">
-        history
-      </mwc-icon>
-      <span>
-        View log
-      </span>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="static"
-      graphic="icon"
-      iconid="rule"
-      mwc-list-item=""
-      tabindex="-1"
-    >
-      <mwc-icon slot="graphic">
-        rule
-      </mwc-icon>
-      <span>
-        View diagnostics
-      </span>
-    </mwc-list-item>
     <li
       divider=""
       padded=""
