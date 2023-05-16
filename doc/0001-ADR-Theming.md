@@ -1,4 +1,4 @@
-# Design proposal for Open-SCD
+# Theming proposal for Open-SCD
 
 Date: 2023-05-16
 
