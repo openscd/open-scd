@@ -28,6 +28,7 @@ My suggestion would be to follow the following standard:
 
 Implementation of this standard:
 
+#### Example 1
 <pre>--oscd-color-primary: #548ea6;</pre>
 
 Namespace: <pre>--<b>oscd</b>-color-primary</pre>
@@ -37,6 +38,7 @@ name: <pre>--oscd-<b>color</b>-primary</pre>
 suffix: <pre>--oscd-color-<b>primary</b></pre>
 scale: -<br/>
 
+#### Example 2
 <pre>--oscd-dark-color-primary-100: #548ea6;</pre>
 
 Namespace: <pre>--<b>oscd</b>-dark-color-primary-100</pre>
