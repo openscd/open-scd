@@ -12,6 +12,8 @@ With design tokens, we can generate css variables.
 
 We can then override the Material css variables, so all the material components (mdc/mwc) will have the same look.
 
+![Proposal](./theming-proposal.png)
+
 ### Background
 Related links:
 - [Adobe Design tokens](https://spectrum.adobe.com/page/design-tokens/)
