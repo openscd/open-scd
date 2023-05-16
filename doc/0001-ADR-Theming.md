@@ -24,7 +24,7 @@ Related links:
 We should come to a global agreement of naming variables.
 My suggestion would be to follow the following standard:
 
-<pre>--{namespace}-{tier}-[{prefix}]-{name}-[{suffix}]-[{scale}]</pre>
+<pre>--{namespace}-[{tier}]-[{prefix}]-{name}-[{suffix}]-[{scale}]</pre>
 
 Implementation of this standard:
 
