@@ -4,7 +4,7 @@ Date: 2023-05-16
 
 ## Status
 
-Open
+Accepted
 
 ## Context
 If we want a themable application where plugin authors can rely on a global style, we should make use of css variables. We can also make use of [Design Tokens](https://spectrum.adobe.com/page/design-tokens/).
