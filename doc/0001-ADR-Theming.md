@@ -20,6 +20,32 @@ Related links:
 - [Design Tokens for dummies](https://uxdesign.cc/design-tokens-for-dummies-8acebf010d71)
 - [Material Design Tokens](https://m3.material.io/foundations/design-tokens)
 
+### Naming
+We should come to a global agreement of naming variables.
+My suggestion would be to follow the following standard:
+
+<pre>--{namespace}-{tier}-[{prefix}]-{name}-[{suffix}]-[{scale}]</pre>
+
+Implementation of this standard:
+
+<pre>--oscd-color-primary: #548ea6;</pre>
+
+Namespace: <pre>--<b>oscd</b>-color-primary</pre>
+Tier: -<br/>
+prefix: -<br/>
+name: <pre>--oscd-<b>color</b>-primary</pre>
+suffix: <pre>--oscd-color-<b>primary</b></pre>
+scale: -<br/>
+
+<pre>--oscd-dark-color-primary-100: #548ea6;</pre>
+
+Namespace: <pre>--<b>oscd</b>-dark-color-primary-100</pre>
+Tier: <pre>--oscd-<b>dark</b>-color-primary-100</pre>
+prefix: -<br/>
+name: <pre>--oscd-dark-<b>color</b>-primary-100</pre>
+suffix: <pre>--oscd-dark-color-<b>primary</b>-100</pre>
+scale: <pre>--oscd-dark-color-primary-<b>100</b></pre>
+
 ## Decision
 
 T.B.D.
