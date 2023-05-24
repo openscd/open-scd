@@ -348,7 +348,7 @@ export default class CompasAutogenerateSubstation extends LitElement {
   extractNames(content: string[]) {
     //return list of names after filtering out the empty and duplicate elements
     return content.filter(
-      (value, index) => value && content.indexOf(<string>value) === index
+      (value, index) => value && content.indexOf(value) === index
     );
   }
 }
