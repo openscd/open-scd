@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.1.0](https://github.com/openscd/open-scd-core/compare/v1.0.0...v1.1.0) (2023-05-25)
+## 1.0.0 (2023-05-25)
 
 
 ### Features
