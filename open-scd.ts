@@ -356,6 +356,7 @@ export class OpenSCD extends Plugging(Editing(LitElement)) {
         --oscd-theme-app-bar-primary,
         var(--oscd-theme-primary)
       );
+
       --mdc-theme-text-disabled-on-light: rgba(255, 255, 255, 0.38);
     } /* hack to fix disabled icon buttons rendering black */
   `;
