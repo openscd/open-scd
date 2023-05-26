@@ -139,11 +139,19 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       return this.editCount < this.history.length;
     }
 
-    /** The set of `XMLDocument`s currently loaded */
+    /**
+     * The set of `XMLDocument`s currently loaded
+     *
+     * @prop {Record} docs - Record of loaded XML documents
+     */
     @state()
     docs: Record<string, XMLDocument> = {};
 
-    /** The name of the [[`doc`]] currently being edited */
+    /**
+     * The name of the [[`doc`]] currently being edited
+     *
+     * @prop {String} docName - name of the document that is currently being edited
+     */
     @property({ type: String, reflect: true }) docName = '';
 
     handleOpenDoc({ detail: { docName, doc } }: OpenEvent) {

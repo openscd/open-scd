@@ -32,6 +32,9 @@ export function Plugging<TBase extends LitElementConstructor>(Base: TBase) {
 
     #plugins: PluginSet = { menu: [], editor: [] };
 
+    /**
+     * @prop {PluginSet} plugins - Set of plugins that are used by OpenSCD
+     */
     @property({ type: Object })
     get plugins(): PluginSet {
       return this.#plugins;
