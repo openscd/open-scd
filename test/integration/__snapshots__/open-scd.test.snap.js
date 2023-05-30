@@ -135,38 +135,6 @@ snapshots["open-scd looks like its snapshot"] =
     </li>
     <mwc-list-item
       aria-disabled="true"
-      class="static"
-      disabled=""
-      graphic="icon"
-      iconid="undo"
-      mwc-list-item=""
-      tabindex="-1"
-    >
-      <mwc-icon slot="graphic">
-        undo
-      </mwc-icon>
-      <span>
-        Undo
-      </span>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="true"
-      class="static"
-      disabled=""
-      graphic="icon"
-      iconid="redo"
-      mwc-list-item=""
-      tabindex="-1"
-    >
-      <mwc-icon slot="graphic">
-        redo
-      </mwc-icon>
-      <span>
-        Redo
-      </span>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="true"
       class="validator"
       disabled=""
       graphic="icon"
@@ -201,36 +169,6 @@ snapshots["open-scd looks like its snapshot"] =
     </mwc-list-item>
     <oscd-plugin186320cdd626e422 class="plugin validator">
     </oscd-plugin186320cdd626e422>
-    <mwc-list-item
-      aria-disabled="false"
-      class="static"
-      graphic="icon"
-      iconid="history"
-      mwc-list-item=""
-      tabindex="-1"
-    >
-      <mwc-icon slot="graphic">
-        history
-      </mwc-icon>
-      <span>
-        View log
-      </span>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      class="static"
-      graphic="icon"
-      iconid="rule"
-      mwc-list-item=""
-      tabindex="-1"
-    >
-      <mwc-icon slot="graphic">
-        rule
-      </mwc-icon>
-      <span>
-        View diagnostics
-      </span>
-    </mwc-list-item>
     <li
       divider=""
       padded=""
@@ -719,12 +657,12 @@ snapshots["open-scd looks like its snapshot"] =
       mwc-list-item=""
       selected=""
       tabindex="0"
-      value="/src/editors/Substation.js"
+      value="/src/editors/IED.js"
     >
       <mwc-icon slot="meta">
-        margin
+        developer_board
       </mwc-icon>
-      Substation
+      IED
     </mwc-check-list-item>
     <mwc-check-list-item
       aria-disabled="false"
@@ -735,12 +673,12 @@ snapshots["open-scd looks like its snapshot"] =
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/editors/IED.js"
+      value="/src/editors/Substation.js"
     >
       <mwc-icon slot="meta">
-        developer_board
+        margin
       </mwc-icon>
-      IED
+      Substation
     </mwc-check-list-item>
     <mwc-check-list-item
       aria-disabled="false"
@@ -765,7 +703,6 @@ snapshots["open-scd looks like its snapshot"] =
       hasmeta=""
       left=""
       mwc-list-item=""
-      selected=""
       tabindex="-1"
       value="/src/editors/GooseSubscriberMessageBinding.js"
     >
@@ -781,7 +718,6 @@ snapshots["open-scd looks like its snapshot"] =
       hasmeta=""
       left=""
       mwc-list-item=""
-      selected=""
       tabindex="-1"
       value="/src/editors/GooseSubscriberDataBinding.js"
     >
@@ -813,7 +749,6 @@ snapshots["open-scd looks like its snapshot"] =
       hasmeta=""
       left=""
       mwc-list-item=""
-      selected=""
       tabindex="-1"
       value="/src/editors/SMVSubscriberMessageBinding.js"
     >
@@ -829,7 +764,6 @@ snapshots["open-scd looks like its snapshot"] =
       hasmeta=""
       left=""
       mwc-list-item=""
-      selected=""
       tabindex="-1"
       value="/src/editors/SMVSubscriberDataBinding.js"
     >

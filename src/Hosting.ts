@@ -246,6 +246,7 @@ export function Hosting<
     renderMenuItem(me: MenuItem | 'divider'): TemplateResult {
       if (me === 'divider')
         return html`<li divider padded role="separator"></li>`;
+      if (me.actionItem) return html``;
       return html`
         <mwc-list-item
           class="${me.kind}"
@@ -297,7 +298,9 @@ export function Hosting<
               //       if clause not neccassary when oscd... compenents in open-scd not list
               if (ae.target instanceof List)
                 (<MenuItem>(
-                  this.menu.filter(item => item !== 'divider')[ae.detail.index]
+                  this.menu.filter(
+                    item => item !== 'divider' && !item.actionItem
+                  )[ae.detail.index]
                 ))?.action?.(ae);
             }}
           >
