@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/openscd/open-scd-core/compare/v1.0.0...v1.0.1) (2023-05-30)
+
+
+### Bug Fixes
+
+* mdc-top-app-bar-fixed has link to --oscd-theme-app-bar-primary and --oscd-theme-primary ([2db5577](https://github.com/openscd/open-scd-core/commit/2db55775c01131d22582814fb9218ee2a4ebfd00))
+
 ## 1.0.0 (2023-05-25)
 
 
