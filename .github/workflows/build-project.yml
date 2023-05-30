@@ -1,0 +1,60 @@
+# SPDX-FileCopyrightText: 2022 Alliander N.V.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+name: Build Project
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - 'main'
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Cache Docker Register
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: actions/cache@v3
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ hashFiles('**/Dockerfile') }}
+
+      - name: Set up Docker Buildx
+        id: buildx
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: docker/setup-buildx-action@v2
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14.x'
+
+      - name: Test application with npm
+        timeout-minutes: 45
+        if: ${{ github.event_name == 'push' }}
+        run: |
+          npm ci
+          npm run-script test
+
+      - name: Build application with npm
+        if: ${{ github.event_name == 'pull_request' }}
+        timeout-minutes: 45
+        run: |
+          npm ci
+          npm run-script build
+      - name: Build docker image
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: docker/build-push-action@v4
+        with:
+          # Set the context to use the current directory and not execute it's own git checkout.
+          context: .
+          push: false

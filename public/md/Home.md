@@ -15,3 +15,6 @@ as well as features that allow you to manipulate or add specific information to 
 - [IED section](https://github.com/openscd/open-scd/wiki/IED)
 - [DataTypeTemplate section](https://github.com/openscd/open-scd/wiki/DataTypeTemplates)
 - [Global SCL manipulation capability](https://github.com/openscd/open-scd/wiki/Global-SCL-manipulation)
+
+And information related to CoMPAS like
+- [CoMPAS Version Editor](https://github.com/openscd/open-scd/wiki/CoMPAS-Versions-Editor)
