@@ -139,6 +139,7 @@ describe('PluggingElement', () => {
       await src.updateComplete;
       await name.updateComplete;
       primaryAction.click();
+      await element.requestUpdate();
       await element.updateComplete;
       expect(element.editors).to.have.lengthOf(7);
     });
@@ -150,6 +151,7 @@ describe('PluggingElement', () => {
       await src.updateComplete;
       await name.updateComplete;
       primaryAction.click();
+      await element.requestUpdate('menuEntries');
       await element.updateComplete;
       expect(element.menuEntries).to.have.lengthOf(lengthMenuKindPlugins + 1);
     });
@@ -160,7 +162,9 @@ describe('PluggingElement', () => {
       await src.updateComplete;
       await name.updateComplete;
       primaryAction.click();
+      await element.performUpdate();
       await element.updateComplete;
+
       expect(
         element.menuEntries[element.menuEntries.length - 1]
       ).to.have.property('requireDoc');
@@ -176,6 +180,7 @@ describe('PluggingElement', () => {
       await src.updateComplete;
       await name.updateComplete;
       primaryAction.click();
+      await element.requestUpdate('validators');
       await element.updateComplete;
       expect(element.validators).to.have.lengthOf(3);
     });
