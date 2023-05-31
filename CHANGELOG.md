@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.31.0](https://github.com/openscd/open-scd/compare/v0.30.0...v0.31.0) (2023-05-02)
+
+
+### Features
+
+* **editors/binding:** Allow filtering of subscribed/unsubscribed data in binding editors ([#1149](https://github.com/openscd/open-scd/issues/1149)) ([874be45](https://github.com/openscd/open-scd/commits/874be4518c7574846abbaed4cf597c779c747d5e)), closes [#1062](https://github.com/openscd/open-scd/issues/1062)
+
 ## [0.30.0](https://github.com/openscd/open-scd/compare/v0.29.0...v0.30.0) (2023-03-08)
 
 

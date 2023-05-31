@@ -54,7 +54,7 @@ snapshots["dai-field-type getCustomField ENUM field render function returns the 
     <wizard-select
       fixedmenuposition=""
       id="Val"
-      label="val"
+      label="Val"
     >
       <mwc-list-item
         aria-disabled="false"
