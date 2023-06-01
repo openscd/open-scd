@@ -222,9 +222,10 @@ export const de: Translations = {
   },
   iededitor: {
     iedSelector: 'IED auswählen',
-    lnFilter: '???',
+    lnFilter: 'Filter für logische Knoten',
     missing: 'Kein IED vorhanden',
     toggleChildElements: 'Kindelemente umschalten',
+    settings: 'Services für IED or AccessPoint',
     wizard: {
       daTitle: 'DA Informationen anzeigen',
       doTitle: 'DO Informationen anzeigen',
@@ -286,6 +287,36 @@ export const de: Translations = {
     },
     action: {
       updateVoltagelevel: 'Spannungsebene "{{name}}" bearbeitet',
+    },
+  },
+  line: {
+    name: 'Linie',
+    wizard: {
+      nameHelper: 'Liniename',
+      descHelper: 'Beschreibung des Linies',
+      typeHelper: 'Type des Linies',
+      title: {
+        add: 'Linie hinzufügen',
+        edit: 'Linie bearbeiten',
+      },
+    },
+    action: {
+      updateLine: 'Edited line "{{name}}"',
+    },
+  },
+  process: {
+    name: 'Process',
+    wizard: {
+      nameHelper: 'Processname',
+      descHelper: 'Beschreibung des Processes',
+      typeHelper: 'Type des Processes',
+      title: {
+        add: 'Process hinzufügen',
+        edit: 'Process bearbeiten',
+      },
+    },
+    action: {
+      updateProcess: 'Edited Process "{{name}}"',
     },
   },
   bay: {
