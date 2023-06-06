@@ -192,6 +192,7 @@ export class ZerolinePane extends LitElement {
             .map(
               process =>
                 html`<process-editor
+                  .editCount=${this.editCount}
                   .doc=${this.doc}
                   .element=${process}
                   .getAttachedIeds=${this.getAttachedIeds}

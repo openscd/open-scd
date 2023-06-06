@@ -51,6 +51,8 @@ export class ProcessEditor extends LitElement {
   /** The document being edited as provided to editor by [[`Zeroline`]]. */
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
   /** SCL element Process */
   @property({ attribute: false })
   element!: Element;
@@ -88,6 +90,7 @@ export class ProcessEditor extends LitElement {
     return html` ${ConductingEquipments.map(
       ConductingEquipment =>
         html`<conducting-equipment-editor
+          .editCount=${this.editCount}
           .doc=${this.doc}
           .element=${ConductingEquipment}
           ?showfunctions=${this.showfunctions}
@@ -103,6 +106,7 @@ export class ProcessEditor extends LitElement {
     return html` ${GeneralEquipments.map(
       GeneralEquipment =>
         html`<general-equipment-editor
+          .editCount=${this.editCount}
           .doc=${this.doc}
           .element=${GeneralEquipment}
           ?showfunctions=${this.showfunctions}
@@ -115,6 +119,7 @@ export class ProcessEditor extends LitElement {
     return html` ${Lines.map(
       Line =>
         html`<line-editor
+          .editCount=${this.editCount}
           .doc=${this.doc}
           .element=${Line}
           ?showfunctions=${this.showfunctions}
@@ -127,6 +132,7 @@ export class ProcessEditor extends LitElement {
     return html` ${Substations.map(
       Substation =>
         html`<substation-editor
+          .editCount=${this.editCount}
           .doc=${this.doc}
           .element=${Substation}
           ?showfunctions=${this.showfunctions}
@@ -139,6 +145,7 @@ export class ProcessEditor extends LitElement {
     return html` ${Processes.map(
       Process =>
         html`<process-editor
+          .editCount=${this.editCount}
           .doc=${this.doc}
           .element=${Process}
           ?showfunctions=${this.showfunctions}
@@ -153,6 +160,7 @@ export class ProcessEditor extends LitElement {
     return html` ${Functions.map(
       Function =>
         html`<function-editor
+          .editCount=${this.editCount}
           .doc=${this.doc}
           .element=${Function}
           ?showfunctions=${this.showfunctions}
@@ -169,6 +177,7 @@ export class ProcessEditor extends LitElement {
           ${lNodes.map(
             lNode =>
               html`<l-node-editor
+                .editCount=${this.editCount}
                 .doc=${this.doc}
                 .element=${lNode}
               ></l-node-editor>`
