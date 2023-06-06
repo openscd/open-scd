@@ -9,7 +9,10 @@ describe('PluggingElement', () => {
   let element: MockPlugger;
   let doc: XMLDocument;
 
-  afterEach(() => localStorage.clear());
+  afterEach(async () => {
+    await new Promise(resolve => setTimeout(resolve, 50)); // await animation
+    localStorage.clear();
+  });
   beforeEach(async () => {
     doc = await fetch('/test/testfiles/valid2007B4.scd')
       .then(response => response.text())
@@ -139,7 +142,6 @@ describe('PluggingElement', () => {
       await src.updateComplete;
       await name.updateComplete;
       primaryAction.click();
-      await element.requestUpdate();
       await element.updateComplete;
       expect(element.editors).to.have.lengthOf(7);
     });
@@ -151,7 +153,6 @@ describe('PluggingElement', () => {
       await src.updateComplete;
       await name.updateComplete;
       primaryAction.click();
-      await element.requestUpdate('menuEntries');
       await element.updateComplete;
       expect(element.menuEntries).to.have.lengthOf(lengthMenuKindPlugins + 1);
     });
@@ -162,7 +163,6 @@ describe('PluggingElement', () => {
       await src.updateComplete;
       await name.updateComplete;
       primaryAction.click();
-      await element.performUpdate();
       await element.updateComplete;
 
       expect(
@@ -180,7 +180,6 @@ describe('PluggingElement', () => {
       await src.updateComplete;
       await name.updateComplete;
       primaryAction.click();
-      await element.requestUpdate('validators');
       await element.updateComplete;
       expect(element.validators).to.have.lengthOf(3);
     });
