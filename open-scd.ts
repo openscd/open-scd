@@ -326,7 +326,7 @@ export class OpenSCD extends Plugging(Editing(LitElement)) {
         >
       </mwc-dialog>
       <aside>
-        ${this.plugins.menu.map(
+        ${(this.plugins.menu || []).map(
           plugin =>
             staticHtml`<${unsafeStatic(pluginTag(plugin.src))} ${spread(
               this.pluginProperties(plugin)

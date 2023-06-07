@@ -1,3 +1,5 @@
+import { LitElement } from 'lit';
+
 import { property, state } from 'lit/decorators.js';
 
 import {
@@ -109,8 +111,27 @@ function handleEdit(edit: Edit): Edit {
 
 export type LogEntry = { undo: Edit; redo: Edit };
 
+export interface EditingMixin {
+  doc: XMLDocument;
+  history: LogEntry[];
+  editCount: number;
+  last: number;
+  canUndo: boolean;
+  canRedo: boolean;
+  docs: Record<string, XMLDocument>;
+  docName: string;
+  handleOpenDoc(evt: OpenEvent): void;
+  handleEditEvent(evt: EditEvent): void;
+  undo(n?: number): void;
+  redo(n?: number): void;
+}
+
+type ReturnConstructor = new (...args: any[]) => LitElement & EditingMixin;
+
 /** A mixin for editing a set of [[docs]] using [[EditEvent]]s */
-export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
+export function Editing<TBase extends LitElementConstructor>(
+  Base: TBase
+): TBase & ReturnConstructor {
   class EditingElement extends Base {
     @state()
     /** The `XMLDocument` currently being edited */

@@ -1,3 +1,5 @@
+import { LitElement } from 'lit';
+
 import { property, state } from 'lit/decorators.js';
 
 import { cyrb64, LitElementConstructor } from '../foundation.js';
@@ -21,7 +23,16 @@ export function pluginTag(uri: string): string {
   return pluginTags.get(uri)!;
 }
 
-export function Plugging<TBase extends LitElementConstructor>(Base: TBase) {
+export interface PluginMixin {
+  loadedPlugins: Map<string, Plugin>;
+  plugins: Partial<PluginSet>;
+}
+
+type ReturnConstructor = new (...args: any[]) => LitElement & PluginMixin;
+
+export function Plugging<TBase extends LitElementConstructor>(
+  Base: TBase
+): TBase & ReturnConstructor {
   class PluggingElement extends Base {
     #loadedPlugins = new Map<string, Plugin>();
 
