@@ -53,7 +53,7 @@ snapshots["LNodeType wizards defines a lNodeTypeHelperWizard looks like the late
       label="id"
       maxlength="127"
       minlength="1"
-      pattern="([:_A-Za-z]|[À-Ö]|[Ø-ö]|[ø-˿]|[Ͱ-ͽ]|[Ϳ-῿]|[‌-‍]|[⁰-↏]|[Ⰰ-⿯]|[、-퟿]|[豈-﷏]|[ﷰ-�]|[.0-9-]|·|[̀-ͯ]|[‿-⁀])+"
+      pattern="([:_A-Za-z]|[À-Ö]|[Ø-ö]|[ø-˿]|[Ͱ-ͽ]|[Ϳ-῿]|[‌-‍]|[⁰-↏]|[Ⰰ-⿯]|[、-퟿]|[豈-﷏]|[ﷰ-�]|[.0-9\-]|·|[̀-ͯ]|[‿-⁀])+"
       required=""
     >
     </wizard-textfield>
@@ -4319,7 +4319,7 @@ snapshots["LNodeType wizards defines a createLNodeTypeWizard looks like the late
       label="id"
       maxlength="127"
       minlength="1"
-      pattern="([:_A-Za-z]|[À-Ö]|[Ø-ö]|[ø-˿]|[Ͱ-ͽ]|[Ϳ-῿]|[‌-‍]|[⁰-↏]|[Ⰰ-⿯]|[、-퟿]|[豈-﷏]|[ﷰ-�]|[.0-9-]|·|[̀-ͯ]|[‿-⁀])+"
+      pattern="([:_A-Za-z]|[À-Ö]|[Ø-ö]|[ø-˿]|[Ͱ-ͽ]|[Ϳ-῿]|[‌-‍]|[⁰-↏]|[Ⰰ-⿯]|[、-퟿]|[豈-﷏]|[ﷰ-�]|[.0-9\-]|·|[̀-ͯ]|[‿-⁀])+"
       required=""
     >
     </wizard-textfield>

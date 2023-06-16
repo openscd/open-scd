@@ -2009,212 +2009,78 @@ snapshots["Wizards for SCL element Services define a Services wizards  Wizard 4 
   <div id="wizard-content">
     <wizard-divider>
     </wizard-divider>
-    <wizard-select
-      disabled=""
-      label="cbName"
-      nullable=""
-    >
-      <mwc-list-item
-        activated=""
-        aria-disabled="false"
-        aria-selected="true"
-        mwc-list-item=""
-        role="option"
-        selected=""
-        tabindex="0"
-      >
-        Conf
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-      >
-        Fix
-      </mwc-list-item>
-    </wizard-select>
-    <wizard-select
-      disabled=""
-      label="datSet"
-      nullable=""
-    >
-      <mwc-list-item
-        activated=""
-        aria-disabled="false"
-        aria-selected="true"
-        mwc-list-item=""
-        role="option"
-        selected=""
-        tabindex="0"
-      >
-        Dyn
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-      >
-        Conf
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-      >
-        Fix
-      </mwc-list-item>
-    </wizard-select>
-    <wizard-select
-      disabled=""
-      label="svID"
-      nullable=""
-    >
-      <mwc-list-item
-        activated=""
-        aria-disabled="false"
-        aria-selected="true"
-        mwc-list-item=""
-        role="option"
-        selected=""
-        tabindex="0"
-      >
-        Dyn
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-      >
-        Conf
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-      >
-        Fix
-      </mwc-list-item>
-    </wizard-select>
-    <wizard-select
-      disabled=""
-      label="optFields"
-      nullable=""
-    >
-      <mwc-list-item
-        activated=""
-        aria-disabled="false"
-        aria-selected="true"
-        mwc-list-item=""
-        role="option"
-        selected=""
-        tabindex="0"
-      >
-        Dyn
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-      >
-        Conf
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-      >
-        Fix
-      </mwc-list-item>
-    </wizard-select>
-    <wizard-select
-      disabled=""
-      label="smpRate"
-      nullable=""
-    >
-      <mwc-list-item
-        activated=""
-        aria-disabled="false"
-        aria-selected="true"
-        mwc-list-item=""
-        role="option"
-        selected=""
-        tabindex="0"
-      >
-        Dyn
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-      >
-        Conf
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-      >
-        Fix
-      </mwc-list-item>
-    </wizard-select>
-    <wizard-select
-      disabled=""
-      label="nofASDU"
-      nullable=""
-    >
-      <mwc-list-item
-        activated=""
-        aria-disabled="false"
-        aria-selected="true"
-        mwc-list-item=""
-        role="option"
-        selected=""
-        tabindex="0"
-      >
-        Conf
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-      >
-        Fix
-      </mwc-list-item>
-    </wizard-select>
     <wizard-checkbox
       disabled=""
-      label="samplesPerSec"
+      label="mms"
       nullable=""
     >
     </wizard-checkbox>
     <wizard-checkbox
       disabled=""
-      label="synchSrcId"
+      label="ftp"
       nullable=""
     >
     </wizard-checkbox>
     <wizard-checkbox
       disabled=""
-      label="pdcTimeStamp"
+      label="ftps"
+      nullable=""
+    >
+    </wizard-checkbox>
+    <wizard-divider>
+    </wizard-divider>
+    <wizard-checkbox
+      disabled=""
+      label="sntp"
       nullable=""
     >
     </wizard-checkbox>
     <wizard-checkbox
       disabled=""
-      label="kdaParticipant"
+      label="iec61850_9_3"
       nullable=""
     >
     </wizard-checkbox>
+    <wizard-checkbox
+      disabled=""
+      label="c37_238"
+      nullable=""
+    >
+    </wizard-checkbox>
+    <wizard-checkbox
+      disabled=""
+      label="other"
+      nullable=""
+    >
+    </wizard-checkbox>
+    <wizard-divider>
+    </wizard-divider>
+    <wizard-checkbox
+      disabled=""
+      label="sntp"
+      nullable=""
+    >
+    </wizard-checkbox>
+    <wizard-checkbox
+      disabled=""
+      label="iec61850_9_3"
+      nullable=""
+    >
+    </wizard-checkbox>
+    <wizard-checkbox
+      disabled=""
+      label="c37_238"
+      nullable=""
+    >
+    </wizard-checkbox>
+    <wizard-checkbox
+      disabled=""
+      label="other"
+      nullable=""
+    >
+    </wizard-checkbox>
+    <wizard-divider>
+    </wizard-divider>
     <wizard-checkbox
       disabled=""
       label="signature"
@@ -2227,84 +2093,23 @@ snapshots["Wizards for SCL element Services define a Services wizards  Wizard 4 
       nullable=""
     >
     </wizard-checkbox>
-    <wizard-textfield
-      disabled=""
-      label="SmpRate"
-      nullable=""
-      required=""
-    >
-    </wizard-textfield>
-    <wizard-textfield
-      disabled=""
-      label="SamplesPerSec"
-      nullable=""
-      required=""
-    >
-    </wizard-textfield>
-    <wizard-textfield
-      disabled=""
-      label="SecPerSamples"
-      nullable=""
-      required=""
-    >
-    </wizard-textfield>
     <wizard-divider>
     </wizard-divider>
-    <wizard-textfield
-      disabled=""
-      label="max"
-      nullable=""
-      required=""
-    >
-    </wizard-textfield>
-    <wizard-select
-      disabled=""
-      label="delivery"
-      nullable=""
-    >
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-      >
-        unicast
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-      >
-        multicast
-      </mwc-list-item>
-      <mwc-list-item
-        activated=""
-        aria-disabled="false"
-        aria-selected="true"
-        mwc-list-item=""
-        role="option"
-        selected=""
-        tabindex="0"
-      >
-        both
-      </mwc-list-item>
-    </wizard-select>
     <wizard-checkbox
       disabled=""
-      label="deliveryConf"
+      label="hsr"
       nullable=""
     >
     </wizard-checkbox>
     <wizard-checkbox
       disabled=""
-      label="sv"
+      label="prp"
       nullable=""
     >
     </wizard-checkbox>
     <wizard-checkbox
       disabled=""
-      label="rSV"
+      label="rstp"
       nullable=""
     >
     </wizard-checkbox>
@@ -2312,30 +2117,10 @@ snapshots["Wizards for SCL element Services define a Services wizards  Wizard 4 
     </wizard-divider>
     <wizard-checkbox
       disabled=""
-      label="sv"
+      label="ipv6"
       nullable=""
     >
     </wizard-checkbox>
-    <wizard-textfield
-      disabled=""
-      label="maxSMV"
-      nullable=""
-    >
-    </wizard-textfield>
-    <wizard-checkbox
-      disabled=""
-      label="rSV"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-divider>
-    </wizard-divider>
-    <wizard-textfield
-      disabled=""
-      label="maxSv"
-      nullable=""
-    >
-    </wizard-textfield>
   </div>
   <mwc-button
     dialogaction="prev"
@@ -2349,6 +2134,14 @@ snapshots["Wizards for SCL element Services define a Services wizards  Wizard 4 
     label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+  </mwc-button>
+  <mwc-button
+    dialogaction="next"
+    icon="navigate_next"
+    label="[wizard.title.edit]"
+    slot="primaryAction"
+    trailingicon=""
   >
   </mwc-button>
 </mwc-dialog>
@@ -2414,7 +2207,7 @@ snapshots["Wizards for SCL element Services AccessPoint wizards for Scl element 
     </wizard-select>
     <wizard-select
       disabled=""
-      label="appID"
+      label="logEna"
       nullable=""
     >
       <mwc-list-item
@@ -2441,7 +2234,7 @@ snapshots["Wizards for SCL element Services AccessPoint wizards for Scl element 
     </wizard-select>
     <wizard-select
       disabled=""
-      label="dataLabel"
+      label="trgOps"
       nullable=""
     >
       <mwc-list-item
@@ -2466,49 +2259,46 @@ snapshots["Wizards for SCL element Services AccessPoint wizards for Scl element 
         Fix
       </mwc-list-item>
     </wizard-select>
-    <wizard-checkbox
+    <wizard-select
       disabled=""
-      label="kdaParticipant"
+      label="intgPd"
       nullable=""
     >
-    </wizard-checkbox>
-    <wizard-checkbox
-      disabled=""
-      label="signature"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-checkbox
-      disabled=""
-      label="encryption"
-      nullable=""
-    >
-    </wizard-checkbox>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        Dyn
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        Conf
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        Fix
+      </mwc-list-item>
+    </wizard-select>
     <wizard-divider>
     </wizard-divider>
     <wizard-textfield
       disabled=""
-      label="max"
-      nullable=""
+      label="Max"
       required=""
     >
     </wizard-textfield>
+    <wizard-divider>
+    </wizard-divider>
     <wizard-checkbox
       disabled=""
-      label="fixedOffs"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-checkbox
-      defaultvalue=""
-      disabled=""
-      label="goose"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-checkbox
-      disabled=""
-      label="rGOOSE"
+      label="read Log"
       nullable=""
     >
     </wizard-checkbox>
@@ -2516,52 +2306,30 @@ snapshots["Wizards for SCL element Services AccessPoint wizards for Scl element 
     </wizard-divider>
     <wizard-checkbox
       disabled=""
-      label="goose"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-textfield
-      disabled=""
-      label="maxGOOSE"
-      nullable=""
-      required=""
-    >
-    </wizard-textfield>
-    <wizard-checkbox
-      disabled=""
-      label="rGOOSE"
+      label="SGEdit"
       nullable=""
     >
     </wizard-checkbox>
     <wizard-checkbox
       disabled=""
-      label="gsse"
+      label="ConfSG"
       nullable=""
     >
     </wizard-checkbox>
-    <wizard-divider>
-    </wizard-divider>
-    <wizard-textfield
-      disabled=""
-      label="maxGo"
-      nullable=""
-    >
-    </wizard-textfield>
-    <wizard-divider>
-    </wizard-divider>
-    <wizard-textfield
-      disabled=""
-      label="max"
-      nullable=""
-      required=""
-    >
-    </wizard-textfield>
   </div>
   <mwc-button
     dialogaction="close"
     label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+  </mwc-button>
+  <mwc-button
+    dialogaction="next"
+    icon="navigate_next"
+    label="[wizard.title.edit]"
+    slot="primaryAction"
+    trailingicon=""
   >
   </mwc-button>
 </mwc-dialog>

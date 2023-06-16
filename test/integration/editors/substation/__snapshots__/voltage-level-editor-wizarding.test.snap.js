@@ -49,7 +49,7 @@ snapshots["voltage-level-editor wizarding integration looks like the latest snap
       helper="[voltagelevel.wizard.voltageHelper]"
       label="Voltage"
       nullable=""
-      pattern="[+-]?[0-9]+(([.][0-9]*)?|([.][0-9]+))"
+      pattern="[+\-]?[0-9]+(([.][0-9]*)?|([.][0-9]+))"
       required=""
       unit="V"
       validationmessage="[textfield.nonempty]"

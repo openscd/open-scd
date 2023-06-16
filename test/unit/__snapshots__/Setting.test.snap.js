@@ -229,26 +229,17 @@ snapshots["SettingElement deletes a chosen .nsdoc file and looks like latest sna
       </mwc-switch>
     </mwc-formfield>
   </form>
-  <openscd-divider>
-  </openscd-divider>
+  <wizard-divider>
+  </wizard-divider>
   <section>
-    <div style="overflow: hidden;">
-      <h3 style="float:left;">
-        Load .nsdoc
-      </h3>
-      <mwc-icon-button-toggle
-        id="freezeNsdocFilesToggle"
-        officon="visibility_off"
-        on=""
-        onicon="visibility"
-        style="float:right;"
-      >
-      </mwc-icon-button-toggle>
-    </div>
+    <h3>
+      Uploaded NSDoc files
+    </h3>
     <input
       accept=".nsdoc"
       hidden=""
       id="nsdoc-file"
+      multiple=""
       required=""
       type="file"
     >
@@ -258,15 +249,18 @@ snapshots["SettingElement deletes a chosen .nsdoc file and looks like latest sna
     >
     </mwc-button>
   </section>
-  <mwc-list>
+  <mwc-list id="nsdocList">
     <mwc-list-item
-      aria-disabled="false"
+      aria-disabled="true"
       aria-selected="true"
+      disabled=""
       graphic="avatar"
       hasmeta=""
+      id="IEC 61850-7-2"
       mwc-list-item=""
       selected=""
       tabindex="0"
+      twoline=""
     >
       <span>
         IEC 61850-7-2
@@ -279,11 +273,14 @@ snapshots["SettingElement deletes a chosen .nsdoc file and looks like latest sna
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
-      aria-disabled="false"
+      aria-disabled="true"
+      disabled=""
       graphic="avatar"
       hasmeta=""
+      id="IEC 61850-7-3"
       mwc-list-item=""
       tabindex="-1"
+      twoline=""
     >
       <span>
         IEC 61850-7-3
@@ -296,11 +293,14 @@ snapshots["SettingElement deletes a chosen .nsdoc file and looks like latest sna
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
-      aria-disabled="false"
+      aria-disabled="true"
+      disabled=""
       graphic="avatar"
       hasmeta=""
+      id="IEC 61850-7-4"
       mwc-list-item=""
       tabindex="-1"
+      twoline=""
     >
       <span>
         IEC 61850-7-4
@@ -313,11 +313,14 @@ snapshots["SettingElement deletes a chosen .nsdoc file and looks like latest sna
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
-      aria-disabled="false"
+      aria-disabled="true"
+      disabled=""
       graphic="avatar"
       hasmeta=""
+      id="IEC 61850-8-1"
       mwc-list-item=""
       tabindex="-1"
+      twoline=""
     >
       <span>
         IEC 61850-8-1
@@ -354,4 +357,6 @@ snapshots["SettingElement deletes a chosen .nsdoc file and looks like latest sna
 </mwc-dialog>
 `;
 /* end snapshot SettingElement deletes a chosen .nsdoc file and looks like latest snapshot */
+
+c file and looks like latest snapshot */
 
