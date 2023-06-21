@@ -28,14 +28,12 @@ snapshots["Wizards for SCL element SubNetwork include an edit wizard that with e
       helper="[subnetwork.wizard.typeHelper]"
       label="type"
       nullable=""
-      pattern="([ -~]|[]|[ -퟿]|[-�])*"
     >
     </wizard-textfield>
     <wizard-textfield
       helper="[subnetwork.wizard.bitrateHelper]"
       label="BitRate"
       nullable=""
-      pattern="[+-]?[0-9]+(([.][0-9]*)?|([.][0-9]+))"
       required=""
       unit="b/s"
       validationmessage="[textfield.nonempty]"
@@ -87,7 +85,6 @@ snapshots["Wizards for SCL element SubNetwork include an edit wizard that with m
       helper="[subnetwork.wizard.typeHelper]"
       label="type"
       nullable=""
-      pattern="([ -~]|[]|[ -퟿]|[-�])*"
     >
     </wizard-textfield>
     <wizard-textfield
@@ -95,7 +92,6 @@ snapshots["Wizards for SCL element SubNetwork include an edit wizard that with m
       helper="[subnetwork.wizard.bitrateHelper]"
       label="BitRate"
       nullable=""
-      pattern="[+-]?[0-9]+(([.][0-9]*)?|([.][0-9]+))"
       required=""
       unit="b/s"
       validationmessage="[textfield.nonempty]"
@@ -146,14 +142,12 @@ snapshots["Wizards for SCL element SubNetwork include an create wizard that look
       helper="[subnetwork.wizard.typeHelper]"
       label="type"
       nullable=""
-      pattern="([ -~]|[]|[ -퟿]|[-�])*"
     >
     </wizard-textfield>
     <wizard-textfield
       helper="[subnetwork.wizard.bitrateHelper]"
       label="BitRate"
       nullable=""
-      pattern="[+-]?[0-9]+(([.][0-9]*)?|([.][0-9]+))"
       required=""
       unit="b/s"
       validationmessage="[textfield.nonempty]"

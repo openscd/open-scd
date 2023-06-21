@@ -715,7 +715,6 @@ snapshots["Wizards for 104 Address Element edit 104 Address with scale fields lo
       helper="[protocol104.wizard.scaleMultiplierHelper]"
       label="scaleMultiplier"
       nullable=""
-      pattern="[+-]?[0-9]+(([.][0-9]*)?|([.][0-9]+))"
     >
     </wizard-textfield>
     <wizard-textfield
@@ -723,7 +722,6 @@ snapshots["Wizards for 104 Address Element edit 104 Address with scale fields lo
       helper="[protocol104.wizard.scaleOffsetHelper]"
       label="scaleOffset"
       nullable=""
-      pattern="[+-]?[0-9]+(([.][0-9]*)?|([.][0-9]+))"
     >
     </wizard-textfield>
   </div>
