@@ -1168,10 +1168,35 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED the le
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
-        value="IED1>>CircuitBreaker_CB1>GCB"
+        value=""
       >
         <span>
           [subscription.subscriber.partiallySubscribed]
+        </span>
+      </mwc-list-item>
+      <li
+        divider=""
+        role="separator"
+      >
+      </li>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="avatar"
+        noninteractive=""
+        tabindex="-1"
+      >
+        <span>
+          [subscription.none]
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        noninteractive=""
+        tabindex="-1"
+        value="IED1>>CircuitBreaker_CB1>GCB IED4>>CircuitBreaker_CB1>GCB"
+      >
+        <span>
+          [subscription.subscriber.availableToSubscribe]
         </span>
       </mwc-list-item>
       <li
@@ -1192,21 +1217,6 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED the le
           add
         </mwc-icon>
       </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        noninteractive=""
-        tabindex="-1"
-        value="IED4>>CircuitBreaker_CB1>GCB"
-      >
-        <span>
-          [subscription.subscriber.availableToSubscribe]
-        </span>
-      </mwc-list-item>
-      <li
-        divider=""
-        role="separator"
-      >
-      </li>
       <mwc-list-item
         aria-disabled="false"
         graphic="avatar"
@@ -1303,10 +1313,9 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for un
       </li>
       <mwc-list-item
         aria-disabled="false"
-        aria-selected="true"
+        aria-selected="false"
         graphic="avatar"
         mwc-list-item=""
-        selected=""
         tabindex="-1"
       >
         <span>
@@ -1505,8 +1514,10 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for pa
       </li>
       <mwc-list-item
         aria-disabled="false"
+        aria-selected="true"
         graphic="avatar"
         mwc-list-item=""
+        selected=""
         tabindex="-1"
       >
         <span>
