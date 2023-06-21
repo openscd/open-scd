@@ -27,14 +27,12 @@ snapshots["SubNetwork 104 wizard include an create wizard that looks like the la
       helper="[subnetwork.wizard.typeHelper]"
       label="type"
       nullable=""
-      pattern="([ -~]|[]|[ -퟿]|[-�])*"
     >
     </wizard-textfield>
     <wizard-textfield
       helper="[subnetwork.wizard.bitrateHelper]"
       label="BitRate"
       nullable=""
-      pattern="[+-]?[0-9]+(([.][0-9]*)?|([.][0-9]+))"
       required=""
       unit="b/s"
       validationmessage="[textfield.nonempty]"
