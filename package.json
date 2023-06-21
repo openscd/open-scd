@@ -17,7 +17,6 @@
   "module": "open-scd.js",
   "type": "module",
   "dependencies": {
-    "@material/mwc-circular-progress-four-color": "0.22.1",
     "@material/mwc-dialog": "0.22.1",
     "@material/mwc-drawer": "0.22.1",
     "@material/mwc-fab": "0.22.1",
