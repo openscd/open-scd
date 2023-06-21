@@ -114,7 +114,7 @@ export class SubscriberList extends SubscriberListContainer {
 
       dataSet!.querySelectorAll('FCDA').forEach(fcda => {
         subscribedInputs.forEach(inputs => {
-          if (getExtRef(inputs, fcda, this.currentSelectedGseControl)) {
+          if (getExtRef(inputs, fcda, control)) {
             numberOfLinkedExtRefs++;
           }
         });
