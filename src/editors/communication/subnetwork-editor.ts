@@ -26,6 +26,8 @@ import { wizards } from '../../wizards/wizard-library.js';
 export class SubNetworkEditor extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
   /** SCL element SubNetwork */
   @property({ attribute: false })
   element!: Element;
@@ -85,6 +87,7 @@ export class SubNetworkEditor extends LitElement {
     ).map(
       smv => html`<smv-editor
         class="${smv.closest('SubNetwork') !== this.element ? 'disabled' : ''}"
+        .editCount=${this.editCount}
         .doc=${this.doc}
         .element=${smv}
       ></smv-editor>`
@@ -99,6 +102,7 @@ export class SubNetworkEditor extends LitElement {
     ).map(
       gse => html`<gse-editor
         class="${gse.closest('SubNetwork') !== this.element ? 'disabled' : ''}"
+        .editCount=${this.editCount}
         .doc=${this.doc}
         .element=${gse}
       ></gse-editor>`

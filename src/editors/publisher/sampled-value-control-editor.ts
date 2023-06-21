@@ -29,6 +29,8 @@ export class SampledValueControlEditor extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({type: Number})
+  editCount = -1;
 
   @state()
   selectedSampledValueControl?: Element;
@@ -88,6 +90,7 @@ export class SampledValueControlEditor extends LitElement {
           .element=${this.selectedDataSet!}
         ></data-set-element-editor>
         <sampled-value-control-element-editor
+          .editCount=${this.editCount}
           .doc=${this.doc}
           .element=${this.selectedSampledValueControl}
         ></sampled-value-control-element-editor>

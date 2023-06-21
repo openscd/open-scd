@@ -23,6 +23,8 @@ export default class SMVSubscriberMessageBindingPlugin extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property()
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
 
   @query('#smvPublisherView')
   smvPublisherView!: RadioListItem;
@@ -73,13 +75,22 @@ export default class SMVSubscriberMessageBindingPlugin extends LitElement {
       </mwc-formfield>
       <div class="container">
         ${view == View.PUBLISHER
-          ? html`<smv-list class="row" .doc=${this.doc}></smv-list>`
+          ? html`<smv-list
+              class="row"
+              .editCount=${this.editCount}
+              .doc=${this.doc}
+            ></smv-list>`
           : html`<ied-list
               class="row"
+              .editCount=${this.editCount}
               .doc=${this.doc}
               serviceType="smv"
             ></ied-list>`}
-        <subscriber-list-smv class="row" .doc=${this.doc}></subscriber-list-smv>
+        <subscriber-list-smv
+          class="row"
+          .editCount=${this.editCount}
+          .doc=${this.doc}
+        ></subscriber-list-smv>
       </div>
     </div>`;
   }

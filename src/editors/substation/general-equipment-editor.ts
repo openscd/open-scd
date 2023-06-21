@@ -44,6 +44,8 @@ function childTags(element: Element | null | undefined): SCLTag[] {
 export class GeneralEquipmentEditor extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
   @property({ attribute: false })
   element!: Element;
 
@@ -100,6 +102,7 @@ export class GeneralEquipmentEditor extends LitElement {
           ${lNodes.map(
             lNode =>
               html`<l-node-editor
+                .editCount=${this.editCount}
                 .doc=${this.doc}
                 .element=${lNode}
               ></l-node-editor>`
@@ -115,6 +118,7 @@ export class GeneralEquipmentEditor extends LitElement {
       ? html`${eFunctions.map(
           eFunction =>
             html` <eq-function-editor
+              .editCount=${this.editCount}
               .doc=${this.doc}
               .element=${eFunction}
             ></eq-function-editor>`

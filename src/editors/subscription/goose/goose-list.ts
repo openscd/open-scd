@@ -37,6 +37,8 @@ addEventListener('open-doc', onOpenDocResetSelectedGooseMsg);
 export class GooseList extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
 
   private onSelect(gseControl: Element): void {
     if (gseControl == selectedGseControl) return;

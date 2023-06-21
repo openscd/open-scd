@@ -54,6 +54,8 @@ export class BayEditor extends LitElement {
   /** The document being edited as provided to editor by [[`Zeroline`]]. */
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({type: Number})
+  editCount = -1;
   @property({ attribute: false })
   element!: Element;
   @property({ type: Boolean })
@@ -132,6 +134,7 @@ export class BayEditor extends LitElement {
           ${lNodes.map(
             lNode =>
               html`<l-node-editor
+                .editCount=${this.editCount}
                 .doc=${this.doc}
                 .element=${lNode}
               ></l-node-editor>`
@@ -147,6 +150,7 @@ export class BayEditor extends LitElement {
     return html` ${functions.map(
       fUnction =>
         html`<function-editor
+          .editCount=${this.editCount}
           .doc=${this.doc}
           .element=${fUnction}
           ?showfunctions=${this.showfunctions}
@@ -160,7 +164,11 @@ export class BayEditor extends LitElement {
       ? html`<div id="iedcontainer">
           ${ieds.map(
             ied =>
-              html`<ied-editor .doc=${this.doc} .element=${ied}></ied-editor>`
+              html`<ied-editor
+                .editCount=${this.editCount}
+                .doc=${this.doc}
+                .element=${ied}
+              ></ied-editor>`
           )}
         </div>`
       : html``;
@@ -239,6 +247,7 @@ export class BayEditor extends LitElement {
           ).map(
             pwt =>
               html`<powertransformer-editor
+                .editCount=${this.editCount}
                 .doc=${this.doc}
                 .element=${pwt}
                 ?showfunctions=${this.showfunctions}
@@ -249,6 +258,7 @@ export class BayEditor extends LitElement {
           ).map(
             voltageLevel =>
               html`<conducting-equipment-editor
+                .editCount=${this.editCount}
                 .doc=${this.doc}
                 .element=${voltageLevel}
                 ?readonly=${this.readonly}

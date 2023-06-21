@@ -12,7 +12,6 @@ import { get, translate } from 'lit-translate';
 
 import {
   ComplexAction,
-  Create,
   createElement,
   Delete,
   identity,
@@ -44,6 +43,8 @@ import { emptyInputsDeleteActions } from '../../../foundation/ied.js';
 export class ExtRefLnBindingList extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
   @property()
   nsdoc!: Nsdoc;
   @property()
