@@ -147,7 +147,36 @@ describe('Wizards for 104 Address Element', () => {
     });
 
     it('looks like the latest snapshot', async () => {
-      await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
+      await expect(element.wizardUI.dialog).dom.to.equalSnapshot({
+        ignoreAttributes: [
+          {
+            tags: ['wizard-textfield'],
+            attributes: ['pattern'],
+          },
+        ],
+      });
+    });
+
+    //work around, because the escapes get removed in snapshot
+    it('should have correct pattern', async () => {
+      const decimal_pattern = '[+\\-]?[0-9]+(([.][0-9]*)?|([.][0-9]+))';
+
+      expect(
+        element.wizardUI.dialog!.querySelectorAll('wizard-textfield[pattern]')!
+          .length
+      ).to.equal(2);
+
+      expect(
+        element.wizardUI
+          .dialog!.querySelectorAll('wizard-textfield[pattern]')[0]
+          .getAttribute('pattern')
+      ).to.equal(decimal_pattern);
+
+      expect(
+        element.wizardUI
+          .dialog!.querySelectorAll('wizard-textfield[pattern]')[1]
+          .getAttribute('pattern')
+      ).to.equal(decimal_pattern);
     });
   });
 
