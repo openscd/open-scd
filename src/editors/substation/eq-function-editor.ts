@@ -45,6 +45,8 @@ export class EqFunctionEditor extends LitElement {
   /** The document being edited as provided to editor by [[`Zeroline`]]. */
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
   /** The edited `EqFunction` element */
   @property({ attribute: false })
   element!: Element;
@@ -99,6 +101,7 @@ export class EqFunctionEditor extends LitElement {
           ${lNodes.map(
             lNode =>
               html`<l-node-editor
+                .editCount=${this.editCount}
                 .doc=${this.doc}
                 .element=${lNode}
               ></l-node-editor>`
@@ -115,6 +118,7 @@ export class EqFunctionEditor extends LitElement {
     return html` ${eqSubFunctions.map(
       eqSubFunction =>
         html`<eq-sub-function-editor
+          .editCount=${this.editCount}
           .doc=${this.doc}
           .element=${eqSubFunction}
           ?showfunctions=${this.showfunctions}

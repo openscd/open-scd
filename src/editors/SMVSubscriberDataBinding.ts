@@ -9,6 +9,8 @@ import './subscription/later-binding/ext-ref-ln-binding-list.js';
 export default class SMVSubscribeDataBindingPlugin extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
   @property()
   nsdoc!: Nsdoc;
 
@@ -19,12 +21,14 @@ export default class SMVSubscribeDataBindingPlugin extends LitElement {
           class="column"
           controlTag="SampledValueControl"
           .includeLaterBinding="${false}"
+          .editCount=${this.editCount}
           .doc="${this.doc}"
         >
         </fcda-binding-list>
         <extref-ln-binding-list
           class="column"
           controlTag="SampledValueControl"
+          .editCount=${this.editCount}
           .doc="${this.doc}"
           .nsdoc="${this.nsdoc}"
         >

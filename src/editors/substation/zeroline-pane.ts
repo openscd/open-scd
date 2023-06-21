@@ -62,6 +62,8 @@ export class ZerolinePane extends LitElement {
   /** The document being edited as provided to editor by [[`Zeroline`]]. */
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
   @property({ type: Boolean })
   readonly = false;
 
@@ -126,7 +128,11 @@ export class ZerolinePane extends LitElement {
       ? html`<div id="iedcontainer">
           ${ieds.map(
             ied =>
-              html`<ied-editor .doc=${this.doc} .element=${ied}></ied-editor>`
+              html`<ied-editor
+                .editCount=${this.editCount}
+                .doc=${this.doc}
+                .element=${ied}
+              ></ied-editor>`
           )}
         </div>`
       : html``;
@@ -140,6 +146,7 @@ export class ZerolinePane extends LitElement {
             .map(
               substation =>
                 html`<substation-editor
+                  .editCount=${this.editCount}
                   .doc=${this.doc}
                   .element=${substation}
                   .getAttachedIeds=${this.getAttachedIeds}
@@ -165,6 +172,7 @@ export class ZerolinePane extends LitElement {
             .map(
               line =>
                 html`<line-editor
+                  .editCount=${this.editCount}
                   .doc=${this.doc}
                   .element=${line}
                   .getAttachedIeds=${this.getAttachedIeds}
@@ -184,6 +192,7 @@ export class ZerolinePane extends LitElement {
             .map(
               process =>
                 html`<process-editor
+                  .editCount=${this.editCount}
                   .doc=${this.doc}
                   .element=${process}
                   .getAttachedIeds=${this.getAttachedIeds}

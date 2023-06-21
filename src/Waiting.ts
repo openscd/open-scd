@@ -1,6 +1,6 @@
 import { html, property, TemplateResult } from 'lit-element';
 
-import '@material/mwc-circular-progress-four-color';
+import '@material/mwc-linear-progress';
 
 import {
   LitElementConstructor,
@@ -41,10 +41,10 @@ export function Waiting<TBase extends LitElementConstructor>(Base: TBase) {
 
     render(): TemplateResult {
       return html`${ifImplemented(super.render())}
-        <mwc-circular-progress-four-color
+        <mwc-linear-progress
           .closed=${!this.waiting}
           indeterminate
-        ></mwc-circular-progress-four-color>`;
+        ></mwc-linear-progress>`;
     }
   }
 

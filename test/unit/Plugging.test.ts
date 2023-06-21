@@ -9,7 +9,10 @@ describe('PluggingElement', () => {
   let element: MockPlugger;
   let doc: XMLDocument;
 
-  afterEach(() => localStorage.clear());
+  afterEach(async () => {
+    await new Promise(resolve => setTimeout(resolve, 50)); // await animation
+    localStorage.clear();
+  });
   beforeEach(async () => {
     doc = await fetch('/test/testfiles/valid2007B4.scd')
       .then(response => response.text())
@@ -161,6 +164,7 @@ describe('PluggingElement', () => {
       await name.updateComplete;
       primaryAction.click();
       await element.updateComplete;
+
       expect(
         element.menuEntries[element.menuEntries.length - 1]
       ).to.have.property('requireDoc');

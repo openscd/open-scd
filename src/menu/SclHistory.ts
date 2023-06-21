@@ -17,6 +17,8 @@ import { Dialog } from '@material/mwc-dialog';
 export default class SclHistoryPlugin extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
 
   @query('#historyLog') historyLog!: Dialog;
 

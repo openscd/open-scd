@@ -6,6 +6,7 @@ import { MockWizard } from '../../../mock-wizard.js';
 
 import '../../../../src/editors/substation/voltage-level-editor.js';
 import { regexString, regExp, inverseRegExp } from '../../../foundation.js';
+import { patterns } from '../../../../src/foundation.js';
 
 describe('voltage-level-editor wizarding integration', () => {
   let doc: XMLDocument;
@@ -33,7 +34,28 @@ describe('voltage-level-editor wizarding integration', () => {
     await parent.updateComplete;
   });
   it('looks like the latest snapshot', async () => {
-    await expect(parent.wizardUI.dialog).to.equalSnapshot();
+    await expect(parent.wizardUI.dialog).to.equalSnapshot({
+      ignoreAttributes: [
+        { tags: ['wizard-textfield'], attributes: ['pattern'] },
+      ],
+    });
+  });
+  //work around, because the escapes get removed in snapshot
+  it('should have correct pattern', async () => {
+    expect(
+      parent.wizardUI.dialog!.querySelectorAll('wizard-textfield[pattern]')
+        .length
+    ).to.equal(2);
+    expect(
+      parent.wizardUI
+        .dialog!.querySelectorAll('wizard-textfield[pattern]')![0]
+        .getAttribute('pattern')
+    ).to.equal(patterns.unsigned);
+    expect(
+      parent.wizardUI
+        .dialog!.querySelectorAll('wizard-textfield[pattern]')![1]
+        .getAttribute('pattern')
+    ).to.equal(patterns.decimal);
   });
   describe('the first input element', () => {
     it('edits the attribute name', async () => {

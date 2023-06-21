@@ -37,6 +37,8 @@ addEventListener('open-doc', onOpenDocResetSelectedSmvMsg);
 export class SmvPublisherList extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
 
   private onSelect(smvControl: Element) {
     const ln = smvControl.parentElement;
