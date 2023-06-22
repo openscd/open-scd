@@ -199,7 +199,7 @@ snapshots["GOOSE subscriber plugin in Publisher view per default the right hand 
       graphic="icon"
       noninteractive=""
       tabindex="-1"
-      value="IED1>>CircuitBreaker_CB1>GCB IED1>>CircuitBreaker_CB1>GCB2"
+      value="IED1>>CircuitBreaker_CB1>GCB"
     >
       <span>
         IED1
@@ -225,26 +225,6 @@ snapshots["GOOSE subscriber plugin in Publisher view per default the right hand 
       </mwc-icon>
       <span>
         GCB
-      </span>
-      <mwc-icon-button
-        class="hidden"
-        icon="edit"
-        slot="meta"
-      >
-      </mwc-icon-button>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      graphic="large"
-      hasmeta=""
-      mwc-list-item=""
-      tabindex="-1"
-      value="IED1>>CircuitBreaker_CB1>GCB2"
-    >
-      <mwc-icon slot="graphic">
-      </mwc-icon>
-      <span>
-        GCB2
       </span>
       <mwc-icon-button
         class="hidden"
@@ -316,7 +296,7 @@ snapshots["GOOSE subscriber plugin in Publisher view per default the right hand 
       graphic="icon"
       noninteractive=""
       tabindex="-1"
-      value="IED4>>CircuitBreaker_CB1>GCB IED4>>CircuitBreaker_CB1>GCB2"
+      value="IED4>>CircuitBreaker_CB1>GCB"
     >
       <span>
         IED4
@@ -342,26 +322,6 @@ snapshots["GOOSE subscriber plugin in Publisher view per default the right hand 
       </mwc-icon>
       <span>
         GCB
-      </span>
-      <mwc-icon-button
-        class="hidden"
-        icon="edit"
-        slot="meta"
-      >
-      </mwc-icon-button>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      graphic="large"
-      hasmeta=""
-      mwc-list-item=""
-      tabindex="-1"
-      value="IED4>>CircuitBreaker_CB1>GCB2"
-    >
-      <mwc-icon slot="graphic">
-      </mwc-icon>
-      <span>
-        GCB2
       </span>
       <mwc-icon-button
         class="hidden"
