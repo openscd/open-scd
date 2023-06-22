@@ -101,6 +101,7 @@ export class SmvPublisherList extends LitElement {
                 noninteractive
                 graphic="icon"
                 value="${Array.from(ied.querySelectorAll('SampledValueControl'))
+                  .filter(cb => cb.hasAttribute('datSet'))
                   .map(element => {
                     const id = identity(element) as string;
                     return typeof id === 'string' ? id : '';
@@ -115,7 +116,9 @@ export class SmvPublisherList extends LitElement {
                 ied.querySelectorAll(
                   ':scope > AccessPoint > Server > LDevice > LN0 > SampledValueControl'
                 )
-              ).map(control => this.renderSmv(control))}
+              )
+                .filter(cb => cb.hasAttribute('datSet'))
+                .map(control => this.renderSmv(control))}
             `
         )}
       </filtered-list>

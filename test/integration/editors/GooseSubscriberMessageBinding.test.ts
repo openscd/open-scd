@@ -51,14 +51,15 @@ describe('GOOSE subscriber plugin', () => {
     });
 
     describe('with a selected GOOSE message', () => {
-      const nthGSEControl = 2;
+      const nthGSEControl = 1;
       let fCDAs: Element[];
       let gseControlBlock: Element;
 
       let goose: HTMLElement;
 
       beforeEach(async () => {
-        gseControlBlock = doc.querySelectorAll('GSEControl')[nthGSEControl];
+        gseControlBlock =
+          doc.querySelectorAll('GSEControl[datSet]')[nthGSEControl];
         fCDAs = Array.from(
           gseControlBlock.parentElement?.querySelectorAll(
             `DataSet[name="${gseControlBlock.getAttribute('datSet')}"] > FCDA`

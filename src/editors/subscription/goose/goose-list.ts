@@ -105,6 +105,7 @@ export class GooseList extends LitElement {
                 noninteractive
                 graphic="icon"
                 value="${Array.from(ied.querySelectorAll('GSEControl'))
+                  .filter(cb => cb.hasAttribute('datSet'))
                   .map(element => {
                     const id = identity(element) as string;
                     return typeof id === 'string' ? id : '';
@@ -119,7 +120,9 @@ export class GooseList extends LitElement {
                 ied.querySelectorAll(
                   ':scope > AccessPoint > Server > LDevice > LN0 > GSEControl'
                 )
-              ).map(control => this.renderGoose(control))}
+              )
+                .filter(cb => cb.hasAttribute('datSet'))
+                .map(control => this.renderGoose(control))}
             `
         )}
       </filtered-list>
