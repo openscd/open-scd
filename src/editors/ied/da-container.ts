@@ -203,6 +203,7 @@ export class DAContainer extends Container {
           ? this.getBDAElements().map(
               bdaElement =>
                 html`<da-container
+                  .editCount=${this.editCount}
                   .doc=${this.doc}
                   .element=${bdaElement}
                   .instanceElement=${getInstanceDAElement(

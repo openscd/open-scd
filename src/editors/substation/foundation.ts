@@ -556,6 +556,7 @@ export function getIcon(condEq: Element): TemplateResult {
 }
 /**
  * Creates a general-equipment template literal.
+ * FIXME(ca-d): this cannot update since it is not a LitElement instance method.
  * @param doc - Project xml document.
  * @param element - scl general-equipment element.
  * @param showfunctions - Whether rendered as action pane (true).
@@ -564,7 +565,7 @@ export function getIcon(condEq: Element): TemplateResult {
 export function renderGeneralEquipment(
   doc: XMLDocument,
   element: Element,
-  showfunctions: Boolean
+  showfunctions: boolean
 ): TemplateResult {
   const generalEquipment = getChildElementsByTagName(
     element,

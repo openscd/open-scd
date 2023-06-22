@@ -53,6 +53,8 @@ export default class TemplatesPlugin extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
 
   async openCreateLNodeTypeWizard(): Promise<void> {
     this.createDataTypeTemplates();

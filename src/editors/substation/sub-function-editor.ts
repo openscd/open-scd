@@ -28,7 +28,6 @@ import {
   tags,
 } from '../../foundation.js';
 import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
-import { classMap } from 'lit-html/directives/class-map.js';
 import { renderGeneralEquipment } from './foundation.js';
 
 function childTags(element: Element | null | undefined): SCLTag[] {
@@ -45,6 +44,8 @@ export class SubFunctionEditor extends LitElement {
   /** The document being edited as provided to editor by [[`Zeroline`]]. */
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
   /** The edited `SubFunction` element */
   @property({ attribute: false })
   element!: Element;
@@ -99,6 +100,7 @@ export class SubFunctionEditor extends LitElement {
           ${lNodes.map(
             lNode =>
               html`<l-node-editor
+                .editCount=${this.editCount}
                 .doc=${this.doc}
                 .element=${lNode}
               ></l-node-editor>`
@@ -112,6 +114,7 @@ export class SubFunctionEditor extends LitElement {
     return html` ${subfunctions.map(
       subFunction =>
         html`<sub-function-editor
+          .editCount=${this.editCount}
           .doc=${this.doc}
           .element=${subFunction}
           ?showfunctions=${this.showfunctions}

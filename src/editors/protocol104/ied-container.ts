@@ -65,7 +65,11 @@ export class Ied104Container extends Base104Container {
     const dois = this.doiElements;
     return html`${dois.map(doiElement => {
       return html`
-        <doi-104-container .doc="${this.doc}" .element="${doiElement}">
+        <doi-104-container
+          .editCount=${this.editCount}
+          .doc="${this.doc}"
+          .element="${doiElement}"
+        >
         </doi-104-container>
       `;
     })}`;

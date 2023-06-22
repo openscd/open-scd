@@ -13,6 +13,7 @@ import {
   Replace,
   Delete,
   Create,
+  patterns,
 } from '../../../src/foundation.js';
 import {
   createSubNetworkWizard,
@@ -58,7 +59,35 @@ describe('Wizards for SCL element SubNetwork', () => {
       });
 
       it('looks like the latest snapshot', async () => {
-        await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
+        await expect(element.wizardUI.dialog).dom.to.equalSnapshot({
+          ignoreAttributes: [
+            {
+              tags: ['wizard-textfield'],
+              attributes: ['pattern'],
+            },
+          ],
+        });
+      });
+
+      //work around, because the escapes get removed in snapshot
+      it('should have correct pattern', async () => {
+        expect(
+          element.wizardUI.dialog!.querySelectorAll(
+            'wizard-textfield[pattern]'
+          )!.length
+        ).to.equal(2);
+
+        expect(
+          element.wizardUI
+            .dialog!.querySelectorAll('wizard-textfield[pattern]')[0]
+            .getAttribute('pattern')
+        ).to.equal(patterns.normalizedString);
+
+        expect(
+          element.wizardUI
+            .dialog!.querySelectorAll('wizard-textfield[pattern]')[1]
+            .getAttribute('pattern')
+        ).to.equal(patterns.decimal);
       });
 
       it('does not edit any attributes with unchanged wizard inputs', async () => {
@@ -190,7 +219,35 @@ describe('Wizards for SCL element SubNetwork', () => {
       });
 
       it('looks like the latest snapshot', async () => {
-        await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
+        await expect(element.wizardUI.dialog).dom.to.equalSnapshot({
+          ignoreAttributes: [
+            {
+              tags: ['wizard-textfield'],
+              attributes: ['pattern'],
+            },
+          ],
+        });
+      });
+
+      //work around, because the escapes get removed in snapshot
+      it('should have correct pattern', async () => {
+        expect(
+          element.wizardUI.dialog!.querySelectorAll(
+            'wizard-textfield[pattern]'
+          )!.length
+        ).to.equal(2);
+
+        expect(
+          element.wizardUI
+            .dialog!.querySelectorAll('wizard-textfield[pattern]')[0]
+            .getAttribute('pattern')
+        ).to.equal(patterns.normalizedString);
+
+        expect(
+          element.wizardUI
+            .dialog!.querySelectorAll('wizard-textfield[pattern]')[1]
+            .getAttribute('pattern')
+        ).to.equal(patterns.decimal);
       });
 
       it('triggers an editor action to create a complete BitRate element', async () => {
@@ -278,7 +335,34 @@ describe('Wizards for SCL element SubNetwork', () => {
     });
 
     it('looks like the latest snapshot', async () => {
-      await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
+      await expect(element.wizardUI.dialog).dom.to.equalSnapshot({
+        ignoreAttributes: [
+          {
+            tags: ['wizard-textfield'],
+            attributes: ['pattern'],
+          },
+        ],
+      });
+    });
+
+    //work around, because the escapes get removed in snapshot
+    it('should have correct pattern', async () => {
+      expect(
+        element.wizardUI.dialog!.querySelectorAll('wizard-textfield[pattern]')!
+          .length
+      ).to.equal(2);
+
+      expect(
+        element.wizardUI
+          .dialog!.querySelectorAll('wizard-textfield[pattern]')[0]
+          .getAttribute('pattern')
+      ).to.equal(patterns.normalizedString);
+
+      expect(
+        element.wizardUI
+          .dialog!.querySelectorAll('wizard-textfield[pattern]')[1]
+          .getAttribute('pattern')
+      ).to.equal(patterns.decimal);
     });
 
     it('does not allow creating SubNetwork with empty name attribute', async () => {

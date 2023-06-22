@@ -132,6 +132,7 @@ export class DOContainer extends Container {
         ? daElements.map(
             daElement =>
               html`<da-container
+                .editCount=${this.editCount}
                 .doc=${this.doc}
                 .element=${daElement}
                 .instanceElement=${getInstanceDAElement(
@@ -147,6 +148,7 @@ export class DOContainer extends Container {
         ? doElements.map(
             doElement =>
               html`<do-container
+                .editCount=${this.editCount}
                 .doc=${this.doc}
                 .element=${doElement}
                 .instanceElement=${this.getInstanceDOElement(doElement)}

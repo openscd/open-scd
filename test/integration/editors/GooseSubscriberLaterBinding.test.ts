@@ -1,6 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import { Wizarding } from '../../../src/Wizarding.js';
 import { Editing } from '../../../src/Editing.js';
+import { Logging } from '../../../src/Logging.js';
 
 import GooseSubscriberLaterBinding from '../../../src/editors/GooseSubscriberLaterBinding.js';
 import {
@@ -14,7 +15,7 @@ import { ExtRefLaterBindingList } from '../../../src/editors/subscription/later-
 describe('GOOSE Subscribe Later Binding Plugin', () => {
   customElements.define(
     'goose-subscriber-later-binding-plugin',
-    Wizarding(Editing(GooseSubscriberLaterBinding))
+    Wizarding(Editing(Logging(GooseSubscriberLaterBinding)))
   );
 
   let element: GooseSubscriberLaterBinding;

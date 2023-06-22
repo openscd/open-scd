@@ -17,6 +17,8 @@ export default class CommunicationPlugin extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property()
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
 
   /**
    * Creates the Communication Element and returns the created Element
@@ -37,7 +39,8 @@ export default class CommunicationPlugin extends LitElement {
 
   /** Opens a [[`WizardDialog`]] for creating a new `SubNetwork` element. */
   private openCreateSubNetworkWizard(): void {
-    const parent =this.doc.querySelector(':root > Communication') ||
+    const parent =
+      this.doc.querySelector(':root > Communication') ||
       this.createCommunication();
 
     this.dispatchEvent(newWizardEvent(createSubNetworkWizard(parent!)));
@@ -68,6 +71,7 @@ export default class CommunicationPlugin extends LitElement {
           .map(
             subnetwork =>
               html`<subnetwork-editor
+                .editCount=${this.editCount}
                 .doc=${this.doc}
                 .element=${subnetwork}
               ></subnetwork-editor>`

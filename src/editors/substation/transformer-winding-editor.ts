@@ -47,6 +47,8 @@ export class TransformerWindingEditor extends LitElement {
   /** The document being edited as provided to editor by [[`Zeroline`]]. */
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({type: Number})
+  editCount = -1;
   /** SCL element TransformerWinding */
   @property({ attribute: false })
   element!: Element;
@@ -111,7 +113,7 @@ export class TransformerWindingEditor extends LitElement {
           ${lNodes.map(
             lNode =>
               html`<l-node-editor
-                .doc=${this.doc}
+                .editCount=${this.editCount} .doc=${this.doc}
                 .element=${lNode}
               ></l-node-editor>`
           )}
@@ -126,7 +128,7 @@ export class TransformerWindingEditor extends LitElement {
       ? html` ${eqFunctions.map(
           eqFunction =>
             html`<eq-function-editor
-              .doc=${this.doc}
+              .editCount=${this.editCount} .doc=${this.doc}
               .element=${eqFunction}
               ?showfunctions=${this.showfunctions}
             ></eq-function-editor>`
@@ -141,7 +143,7 @@ export class TransformerWindingEditor extends LitElement {
       ? html` ${tapChangers.map(
           tapChanger =>
             html`<tapchanger-editor
-              .doc=${this.doc}
+              .editCount=${this.editCount} .doc=${this.doc}
               .element=${tapChanger}
               ?showfunctions=${this.showfunctions}
             ></tapchanger-editor>`

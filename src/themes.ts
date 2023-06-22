@@ -37,11 +37,6 @@ export function getTheme(theme: Settings['theme']): TemplateResult {
 
         --mdc-dialog-heading-ink-color: var(--base00);
 
-        --mdc-circular-progress-bar-color-1: var(--mdc-theme-primary);
-        --mdc-circular-progress-bar-color-2: var(--mdc-theme-on-background);
-        --mdc-circular-progress-bar-color-3: var(--mdc-theme-secondary);
-        --mdc-circular-progress-bar-color-4: var(--mdc-theme-on-background);
-
         --mdc-icon-font: 'Material Icons Outlined';
       }
 

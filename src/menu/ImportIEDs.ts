@@ -377,6 +377,8 @@ function resetSelection(dialog: Dialog): void {
 export default class ImportingIedPlugin extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
 
   @state()
   importDoc?: XMLDocument;
