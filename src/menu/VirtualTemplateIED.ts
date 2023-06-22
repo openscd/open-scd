@@ -109,6 +109,8 @@ function groupLNodesToFunctions(
 export default class VirtualTemplateIED extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
   @state()
   get isValidManufacturer(): boolean {
     const manufacturer = this.dialog?.querySelector<WizardTextField>(

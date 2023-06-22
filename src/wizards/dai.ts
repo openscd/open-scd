@@ -41,18 +41,41 @@ export function createValue(
   parent: Element,
   element: Element,
   newElement: Element,
-  instanceElement: Element
+  instanceElement: Element,
+  numberOfmultipleSettings?: number
 ): WizardActor {
   return (inputs: WizardInputElement[]): EditorAction[] => {
     const bType = element.getAttribute('bType')!;
-    const newValue = getCustomField()[<DaiFieldTypes>bType].value(inputs);
+    if (numberOfmultipleSettings) {
+      //Should we remove all Val elements before adding new ones?
+      Array.from(instanceElement.querySelectorAll('Val')).forEach(item =>
+        item.remove()
+      );
+      // Adds a new Val element for each sGroup value from the wizard
+      [...Array(numberOfmultipleSettings)].forEach((item, i) => {
+        const newValue = getCustomField()[<DaiFieldTypes>bType].value(
+          inputs,
+          i + 1
+        );
 
-    let valElement = instanceElement.querySelector('Val');
-    if (!valElement) {
-      valElement = parent.ownerDocument.createElementNS(SCL_NAMESPACE, 'Val');
-      instanceElement.append(valElement);
+        const valElement = parent.ownerDocument.createElementNS(
+          SCL_NAMESPACE,
+          'Val'
+        );
+        valElement.textContent = newValue;
+        valElement.setAttribute('sGroup', `${i + 1}`);
+        instanceElement.append(valElement);
+      });
+    } else {
+      const newValue = getCustomField()[<DaiFieldTypes>bType].value(inputs);
+
+      let valElement = instanceElement.querySelector('Val');
+      if (!valElement) {
+        valElement = parent.ownerDocument.createElementNS(SCL_NAMESPACE, 'Val');
+        instanceElement.append(valElement);
+      }
+      valElement.textContent = newValue;
     }
-    valElement.textContent = newValue;
 
     const name = instanceElement.getAttribute('name');
     const complexAction: ComplexAction = {
@@ -65,7 +88,8 @@ export function createValue(
 
 export function renderDAIWizard(
   element: Element,
-  instanceElement?: Element
+  instanceElement?: Element,
+  numberOfmultipleSettings: number | null = null
 ): TemplateResult[] {
   const bType = element.getAttribute('bType')!;
   const daValue = element.querySelector('Val')?.textContent?.trim() ?? '';
@@ -73,7 +97,8 @@ export function renderDAIWizard(
   return [
     html` ${getCustomField()[<DaiFieldTypes>bType].render(
       element,
-      instanceElement
+      instanceElement,
+      numberOfmultipleSettings
     )}
     ${daValue
       ? html`<wizard-textfield
@@ -88,12 +113,44 @@ export function renderDAIWizard(
   ];
 }
 
+/**
+ * Checks if the DAI corresponds to a multiple setting group
+ *
+ * @param parent The parent element of the DAI
+ * @param element The BDA/DA element
+ * @returns The number of setting groups if the DAI is a multiple setting group, null otherwise
+ */
+function checkForMultipleSettings(
+  parent: Element,
+  element: Element
+): number | undefined {
+  // Look for the DA element to validate that the DAI has the functional constraint SG or SE
+  let da = element;
+  if (element.tagName === 'BDA')
+    da = (<Element>element.getRootNode()).querySelector(
+      `DOType>DA[type="${element.parentElement!.id}"]`
+    )!;
+  const fc = da.getAttribute('fc') ?? '';
+  // Check if the closest IED to the parent element has a SettingControl element with a numOfSGs attribute
+  const ied = parent.closest('IED');
+  const settingControl = ied?.querySelector('SettingControl');
+  const numOfSGsAttribute = settingControl?.getAttribute('numOfSGs') ?? '';
+  const numberOfmultipleSettings = parseInt(numOfSGsAttribute);
+  // If the DA has the functional constraint SG or SE and the IED has a SettingControl element with a numOfSGs attribute, then the DAI is a multiple setting group
+  return (fc === 'SG' || fc === 'SE') &&
+    numOfSGsAttribute !== '' &&
+    !isNaN(numberOfmultipleSettings)
+    ? numberOfmultipleSettings
+    : undefined;
+}
+
 export function createDAIWizard(
   parent: Element,
   newElement: Element,
   element: Element
 ): Wizard {
   // Retrieve the created DAI, can be the new element or one of the child elements below.
+  const numberOfmultipleSettings = checkForMultipleSettings(parent, element);
   const instanceElement =
     newElement.tagName === 'DAI'
       ? newElement
@@ -108,9 +165,19 @@ export function createDAIWizard(
       primary: {
         icon: 'edit',
         label: get('save'),
-        action: createValue(parent, element, newElement, instanceElement),
+        action: createValue(
+          parent,
+          element,
+          newElement,
+          instanceElement,
+          numberOfmultipleSettings
+        ),
       },
-      content: renderDAIWizard(element, instanceElement),
+      content: renderDAIWizard(
+        element,
+        instanceElement,
+        numberOfmultipleSettings
+      ),
     },
   ];
 }

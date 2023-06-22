@@ -25,6 +25,8 @@ export default class GooseSubscriberMessageBindingPlugin extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property()
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
 
   @query('#goosePublisherView')
   goosePublisherView!: RadioListItem;
@@ -75,14 +77,20 @@ export default class GooseSubscriberMessageBindingPlugin extends LitElement {
       </mwc-formfield>
       <div class="container">
         ${view == View.PUBLISHER
-          ? html`<goose-list class="row" .doc=${this.doc}></goose-list>`
+          ? html`<goose-list
+              class="row"
+              .editCount=${this.editCount}
+              .doc=${this.doc}
+            ></goose-list>`
           : html`<ied-list
               class="row"
+              .editCount=${this.editCount}
               .doc=${this.doc}
               serviceType="goose"
             ></ied-list>`}
         <subscriber-list-goose
           class="row"
+          .editCount=${this.editCount}
           .doc=${this.doc}
         ></subscriber-list-goose>
       </div>

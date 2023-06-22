@@ -21,6 +21,8 @@ export default class PublisherPlugin extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
 
   @state()
   private publisherType: 'Report' | 'GOOSE' | 'SampledValue' | 'DataSet' =
@@ -55,24 +57,28 @@ export default class PublisherPlugin extends LitElement {
         ></mwc-formfield>
       </div>
       <report-control-editor
+        .editCount=${this.editCount}
         .doc=${this.doc}
         class="${classMap({
           hidden: this.publisherType !== 'Report',
         })}"
       ></report-control-editor
       ><gse-control-editor
+        .editCount=${this.editCount}
         .doc=${this.doc}
         class="${classMap({
           hidden: this.publisherType !== 'GOOSE',
         })}"
       ></gse-control-editor
       ><sampled-value-control-editor
+        .editCount=${this.editCount}
         .doc=${this.doc}
         class="${classMap({
           hidden: this.publisherType !== 'SampledValue',
         })}"
       ></sampled-value-control-editor
       ><data-set-editor
+        .editCount=${this.editCount}
         .doc=${this.doc}
         class="${classMap({
           hidden: this.publisherType !== 'DataSet',

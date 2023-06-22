@@ -22,7 +22,7 @@ snapshots["ied-container looks like the latest snapshot"] =
   </abbr>
   <abbr
     slot="action"
-    title="[settings]"
+    title="[iededitor.settings]"
   >
     <mwc-icon-button icon="settings">
     </mwc-icon-button>

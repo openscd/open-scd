@@ -370,6 +370,8 @@ function isIedNameUnique(ied: Element, doc: Document): boolean {
 export default class ImportingIedPlugin extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
 
   @state()
   iedSelection: TemplateResult[] = [];

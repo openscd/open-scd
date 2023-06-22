@@ -12,6 +12,8 @@ export default class SubstationPlugin extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property()
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
 
   /** Opens a [[`WizardDialog`]] for creating a new `Substation` element. */
   openCreateSubstationWizard(): void {
@@ -20,8 +22,13 @@ export default class SubstationPlugin extends LitElement {
   }
 
   render(): TemplateResult {
-    return html` <zeroline-pane .doc=${this.doc}></zeroline-pane>
-      ${!this.doc?.querySelector(':root > Substation')
+    return html` <zeroline-pane
+        .editCount=${this.editCount}
+        .doc=${this.doc}
+      ></zeroline-pane>
+      ${!this.doc?.querySelector(
+        ':root > Substation, :root > Line, :root > Process'
+      )
         ? html`<h1>
             <mwc-fab
               extended

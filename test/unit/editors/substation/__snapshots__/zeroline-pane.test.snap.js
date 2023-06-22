@@ -4,12 +4,47 @@ export const snapshots = {};
 snapshots["zeroline-pane per default looks like the latest snapshot"] = 
 `<h1>
   <nav>
-    <abbr title="[add]">
-      <mwc-icon-button
-        icon="playlist_add"
-        id="createsubstation"
-      >
+    <abbr
+      slot="action"
+      title="[add]"
+    >
+      <mwc-icon-button icon="playlist_add">
       </mwc-icon-button>
+      <mwc-menu corner="BOTTOM_RIGHT">
+        <mwc-list-item
+          aria-disabled="false"
+          mwc-list-item=""
+          role="menuitem"
+          tabindex="0"
+          value="Substation"
+        >
+          <span>
+            Substation
+          </span>
+        </mwc-list-item>
+        <mwc-list-item
+          aria-disabled="false"
+          mwc-list-item=""
+          role="menuitem"
+          tabindex="-1"
+          value="Line"
+        >
+          <span>
+            Line
+          </span>
+        </mwc-list-item>
+        <mwc-list-item
+          aria-disabled="false"
+          mwc-list-item=""
+          role="menuitem"
+          tabindex="-1"
+          value="Process"
+        >
+          <span>
+            Process
+          </span>
+        </mwc-list-item>
+      </mwc-menu>
     </abbr>
   </nav>
   <nav>
@@ -62,12 +97,47 @@ snapshots["zeroline-pane per default looks like the latest snapshot"] =
 snapshots["zeroline-pane showieds looks like the latest snapshot"] = 
 `<h1>
   <nav>
-    <abbr title="[add]">
-      <mwc-icon-button
-        icon="playlist_add"
-        id="createsubstation"
-      >
+    <abbr
+      slot="action"
+      title="[add]"
+    >
+      <mwc-icon-button icon="playlist_add">
       </mwc-icon-button>
+      <mwc-menu corner="BOTTOM_RIGHT">
+        <mwc-list-item
+          aria-disabled="false"
+          mwc-list-item=""
+          role="menuitem"
+          tabindex="0"
+          value="Substation"
+        >
+          <span>
+            Substation
+          </span>
+        </mwc-list-item>
+        <mwc-list-item
+          aria-disabled="false"
+          mwc-list-item=""
+          role="menuitem"
+          tabindex="-1"
+          value="Line"
+        >
+          <span>
+            Line
+          </span>
+        </mwc-list-item>
+        <mwc-list-item
+          aria-disabled="false"
+          mwc-list-item=""
+          role="menuitem"
+          tabindex="-1"
+          value="Process"
+        >
+          <span>
+            Process
+          </span>
+        </mwc-list-item>
+      </mwc-menu>
     </abbr>
   </nav>
   <nav>

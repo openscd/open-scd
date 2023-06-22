@@ -29,6 +29,8 @@ export class GseControlEditor extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
 
   @state()
   selectedGseControl?: Element;
@@ -81,6 +83,7 @@ export class GseControlEditor extends LitElement {
           .element=${this.selectedDataSet!}
         ></data-set-element-editor>
         <gse-control-element-editor
+          .editCount=${this.editCount}
           .doc=${this.doc}
           .element=${this.selectedGseControl}
         ></gse-control-element-editor>

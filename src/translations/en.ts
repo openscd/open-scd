@@ -222,6 +222,7 @@ export const en = {
     lnFilter: 'Logical Node Filter',
     missing: 'No IED',
     toggleChildElements: 'Toggle child elements',
+    settings: 'Show Services the IED/AccessPoint provides',
     wizard: {
       daTitle: 'Show DA Info',
       doTitle: 'Show DO Info',
@@ -298,6 +299,21 @@ export const en = {
     },
     action: {
       updateLine: 'Edited line "{{name}}"',
+    },
+  },
+  process: {
+    name: 'Process',
+    wizard: {
+      nameHelper: 'Process name',
+      descHelper: 'Process description',
+      typeHelper: 'Process type',
+      title: {
+        add: 'Add Process',
+        edit: 'Edit Process',
+      },
+    },
+    action: {
+      updateProcess: 'Edited Process "{{name}}"',
     },
   },
   bay: {

@@ -63,7 +63,9 @@ export function createAction(parent: Element): WizardActor {
 }
 
 export function createSubstationWizard(parent: Element): Wizard {
-  const guessable = parent.querySelector('Substation') === null;
+  const guessable =
+    parent.ownerDocument.querySelector('Substation') === null &&
+    parent.tagName === 'SCL';
 
   return [
     {

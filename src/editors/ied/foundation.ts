@@ -7,6 +7,8 @@ import { Nsdoc } from '../../foundation/nsdoc.js';
 export class Container extends LitElement {
   @property()
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
 
   @property({ attribute: false })
   element!: Element;

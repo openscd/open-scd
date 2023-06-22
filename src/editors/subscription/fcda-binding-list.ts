@@ -54,6 +54,8 @@ type iconLookup = Record<controlTag, SVGTemplateResult>;
 export class FcdaBindingList extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
   @property()
   controlTag!: controlTag;
   @property()

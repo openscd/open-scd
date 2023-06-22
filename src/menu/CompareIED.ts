@@ -76,6 +76,8 @@ filterToIgnore[`${tvtrClass} DOI[name='VRtgSec'] ${setVal}`] = {
 export default class CompareIEDPlugin extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
 
   @property({ attribute: false })
   templateDoc: XMLDocument | undefined;
