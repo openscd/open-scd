@@ -69,7 +69,15 @@ describe('DOType wizards', () => {
     });
 
     it('looks like the latest snapshot', async () => {
-      await expect(parent.wizardUI.dialog).to.equalSnapshot();
+      // prettier does not support escaping in regexes of the /v flag
+      await expect(parent.wizardUI.dialog).dom.to.equalSnapshot({
+        ignoreAttributes: [
+          {
+            tags: ['wizard-textfield'],
+            attributes: ['pattern'],
+          },
+        ],
+      });
     });
 
     it('allows to add empty DOTypes to the project', async () => {
@@ -171,7 +179,15 @@ describe('DOType wizards', () => {
     });
 
     it('looks like the latest snapshot', async () => {
-      await expect(parent.wizardUI.dialog).to.equalSnapshot();
+      // prettier does not support escaping in regexes of the /v flag
+      await expect(parent.wizardUI.dialog).dom.to.equalSnapshot({
+        ignoreAttributes: [
+          {
+            tags: ['wizard-textfield'],
+            attributes: ['pattern'],
+          },
+        ],
+      });
     });
 
     it('edits DOType attributes id', async () => {
@@ -242,7 +258,15 @@ describe('DOType wizards', () => {
     });
 
     it('looks like the latest snapshot', async () => {
-      await expect(parent.wizardUI.dialog).to.equalSnapshot();
+      // prettier does not support escaping in regexes of the /v flag
+      await expect(parent.wizardUI.dialog).dom.to.equalSnapshot({
+        ignoreAttributes: [
+          {
+            tags: ['wizard-textfield'],
+            attributes: ['pattern'],
+          },
+        ],
+      });
     });
     it('edits SDO attributes name', async () => {
       expect(doc.querySelector('DOType[id="Dummy.WYE"] > SDO[name="phsA"]')).to
@@ -330,7 +354,15 @@ describe('DOType wizards', () => {
     });
 
     it('looks like the latest snapshot', async () => {
-      await expect(parent.wizardUI.dialog).to.equalSnapshot();
+      // prettier does not support escaping in regexes of the /v flag
+      await expect(parent.wizardUI.dialog).dom.to.equalSnapshot({
+        ignoreAttributes: [
+          {
+            tags: ['wizard-textfield'],
+            attributes: ['pattern'],
+          },
+        ],
+      });
     });
     it('creates a new SDO element', async () => {
       expect(
