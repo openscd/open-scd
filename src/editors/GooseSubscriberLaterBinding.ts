@@ -7,6 +7,8 @@ import './subscription/later-binding/ext-ref-later-binding-list.js';
 export default class GooseSubscribeLaterBindingPlugin extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
 
   render(): TemplateResult {
     return html`<div>
@@ -15,13 +17,13 @@ export default class GooseSubscribeLaterBindingPlugin extends LitElement {
           class="column"
           controlTag="GSEControl"
           .includeLaterBinding="${true}"
-          .doc="${this.doc}"
+          .editCount=${this.editCount} .doc="${this.doc}"
         >
         </fcda-binding-list>
         <extref-later-binding-list
           class="column"
           controlTag="GSEControl"
-          .doc="${this.doc}"
+          .editCount=${this.editCount} .doc="${this.doc}"
         >
         </extref-later-binding-list>
       </div>

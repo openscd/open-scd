@@ -44,8 +44,8 @@ describe('LoggingElement', () => {
 
   it('has no previous action', () =>
     expect(element).to.have.property('previousAction', -1));
-  it('has no current action', () =>
-    expect(element).to.have.property('currentAction', -1));
+  it('has no edit count', () =>
+    expect(element).to.have.property('editCount', -1));
   it('has no next action', () =>
     expect(element).to.have.property('nextAction', -1));
 
@@ -118,8 +118,8 @@ describe('LoggingElement', () => {
 
     it('has no previous action', () =>
       expect(element).to.have.property('previousAction', -1));
-    it('has a current action', () =>
-      expect(element).to.have.property('currentAction', 0));
+    it('has an edit count', () =>
+      expect(element).to.have.property('editCount', 0));
     it('has no next action', () =>
       expect(element).to.have.property('nextAction', -1));
 
@@ -138,7 +138,7 @@ describe('LoggingElement', () => {
     it('can reset its history', () => {
       element.dispatchEvent(newLogEvent({ kind: 'reset' }));
       expect(element).property('history').to.be.empty;
-      expect(element).to.have.property('currentAction', -1);
+      expect(element).to.have.property('editCount', -1);
     });
 
     it('renders a log message for the action', () =>
@@ -163,8 +163,8 @@ describe('LoggingElement', () => {
 
       it('has a previous action', () =>
         expect(element).to.have.property('previousAction', 0));
-      it('has a current action', () =>
-        expect(element).to.have.property('currentAction', 2));
+      it('has an edit count', () =>
+        expect(element).to.have.property('editCount', 2));
       it('has no next action', () =>
         expect(element).to.have.property('nextAction', -1));
 
@@ -173,8 +173,8 @@ describe('LoggingElement', () => {
 
         it('has no previous action', () =>
           expect(element).to.have.property('previousAction', -1));
-        it('has a current action', () =>
-          expect(element).to.have.property('currentAction', 0));
+        it('has an edit count', () =>
+          expect(element).to.have.property('editCount', 0));
         it('has a next action', () =>
           expect(element).to.have.property('nextAction', 2));
 
@@ -189,7 +189,7 @@ describe('LoggingElement', () => {
             })
           );
           expect(element).property('history').to.have.lengthOf(3);
-          expect(element).to.have.property('currentAction', 2);
+          expect(element).to.have.property('editCount', 2);
           expect(element).to.have.property('nextAction', -1);
         });
 
@@ -205,8 +205,8 @@ describe('LoggingElement', () => {
 
           it('has a previous action', () =>
             expect(element).to.have.property('previousAction', 0));
-          it('has a current action', () =>
-            expect(element).to.have.property('currentAction', 2));
+          it('has an edit count', () =>
+            expect(element).to.have.property('editCount', 2));
           it('has no next action', () =>
             expect(element).to.have.property('nextAction', -1));
 

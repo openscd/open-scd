@@ -57,6 +57,7 @@ export class ServerContainer extends Container {
       ${this.lDeviceElements.map(
         server =>
           html`<ldevice-container
+            .editCount=${this.editCount}
             .doc=${this.doc}
             .element=${server}
             .nsdoc=${this.nsdoc}

@@ -55,6 +55,8 @@ export class VoltageLevelEditor extends LitElement {
   /** The document being edited as provided to editor by [[`Zeroline`]]. */
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
   @property({ attribute: false })
   element!: Element;
   @property({ type: Boolean })
@@ -143,6 +145,7 @@ export class VoltageLevelEditor extends LitElement {
           ${lNodes.map(
             lNode =>
               html`<l-node-editor
+                .editCount=${this.editCount}
                 .doc=${this.doc}
                 .element=${lNode}
               ></l-node-editor>`
@@ -158,6 +161,7 @@ export class VoltageLevelEditor extends LitElement {
     return html` ${functions.map(
       fUnction =>
         html`<function-editor
+          .editCount=${this.editCount}
           .doc=${this.doc}
           .element=${fUnction}
           ?showfunctions=${this.showfunctions}
@@ -171,7 +175,11 @@ export class VoltageLevelEditor extends LitElement {
       ? html`<div id="iedcontainer">
           ${ieds.map(
             ied =>
-              html`<ied-editor .doc=${this.doc} .element=${ied}></ied-editor>`
+              html`<ied-editor
+                .editCount=${this.editCount}
+                .doc=${this.doc}
+                .element=${ied}
+              ></ied-editor>`
           )}
         </div>`
       : html``;
@@ -193,6 +201,7 @@ export class VoltageLevelEditor extends LitElement {
           ${pwts.map(
             pwt =>
               html`<powertransformer-editor
+                .editCount=${this.editCount}
                 .doc=${this.doc}
                 .element=${pwt}
                 ?showfunctions=${this.showfunctions}
@@ -269,6 +278,7 @@ export class VoltageLevelEditor extends LitElement {
         <div id="bayContainer">
           ${Array.from(this.element?.querySelectorAll(selectors.Bay) ?? []).map(
             bay => html`<bay-editor
+              .editCount=${this.editCount}
               .doc=${this.doc}
               .element=${bay}
               .getAttachedIeds=${this.getAttachedIeds}

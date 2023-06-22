@@ -2,6 +2,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 
 import { Wizarding } from '../../../src/Wizarding.js';
 import { Editing } from '../../../src/Editing.js';
+import { Logging } from '../../../src/Logging.js';
 
 import SMVSubscribeLaterBindingPlugin from '../../../src/editors/SMVSubscriberLaterBinding.js';
 import {
@@ -15,7 +16,7 @@ import { ExtRefLaterBindingList } from '../../../src/editors/subscription/later-
 describe('SMV Subscribe Later Binding plugin', () => {
   customElements.define(
     'smv-subscribe-later-binding-plugin',
-    Wizarding(Editing(SMVSubscribeLaterBindingPlugin))
+    Wizarding(Editing(Logging(SMVSubscribeLaterBindingPlugin)))
   );
   let element: SMVSubscribeLaterBindingPlugin;
   let doc: XMLDocument;

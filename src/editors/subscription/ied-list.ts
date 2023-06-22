@@ -26,6 +26,8 @@ addEventListener('open-doc', onOpenDocResetSelectedGooseMsg);
 export class IedList extends LitElement {
   @property()
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
 
   @property({ type: String })
   serviceType?: 'goose' | 'smv';
@@ -46,7 +48,9 @@ export class IedList extends LitElement {
 
   render(): TemplateResult {
     return html` <section tabindex="0">
-      <h1>${translate(`subscription.${this.serviceType}.subscriber.iedListTitle`)}</h1>
+      <h1>
+        ${translate(`subscription.${this.serviceType}.subscriber.iedListTitle`)}
+      </h1>
       <filtered-list activatable>
         ${getOrderedIeds(this.doc).map(
           ied =>

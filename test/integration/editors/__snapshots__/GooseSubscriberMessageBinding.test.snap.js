@@ -27,6 +27,162 @@ snapshots["GOOSE subscriber plugin in Publisher view per default the plugin itse
     </subscriber-list-goose>
   </div>
 </div>
+<mwc-dialog
+  heading="[log.name]"
+  id="log"
+>
+  <mwc-icon-button-toggle
+    id="infofilter"
+    on=""
+  >
+  </mwc-icon-button-toggle>
+  <mwc-icon-button-toggle
+    id="warningfilter"
+    on=""
+  >
+  </mwc-icon-button-toggle>
+  <mwc-icon-button-toggle
+    id="errorfilter"
+    on=""
+  >
+  </mwc-icon-button-toggle>
+  <mwc-icon-button-toggle
+    id="actionfilter"
+    on=""
+  >
+  </mwc-icon-button-toggle>
+  <mwc-list
+    id="content"
+    wrapfocus=""
+  >
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="icon"
+      mwc-list-item=""
+      tabindex="0"
+    >
+      <span>
+        [log.placeholder]
+      </span>
+      <mwc-icon slot="graphic">
+        info
+      </mwc-icon>
+    </mwc-list-item>
+  </mwc-list>
+  <mwc-button
+    disabled=""
+    icon="undo"
+    label="[undo]"
+    slot="secondaryAction"
+  >
+  </mwc-button>
+  <mwc-button
+    disabled=""
+    icon="redo"
+    label="[redo]"
+    slot="secondaryAction"
+  >
+  </mwc-button>
+  <mwc-button
+    dialogaction="close"
+    slot="primaryAction"
+  >
+    [close]
+  </mwc-button>
+</mwc-dialog>
+<mwc-dialog
+  heading="[diag.name]"
+  id="diagnostic"
+>
+  <filtered-list
+    id="content"
+    wrapfocus=""
+  >
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="icon"
+      mwc-list-item=""
+      tabindex="0"
+    >
+      <span>
+        [diag.placeholder]
+      </span>
+      <mwc-icon slot="graphic">
+        info
+      </mwc-icon>
+    </mwc-list-item>
+  </filtered-list>
+  <mwc-button
+    dialogaction="close"
+    slot="primaryAction"
+  >
+    [close]
+  </mwc-button>
+</mwc-dialog>
+<mwc-snackbar
+  id="info"
+  labeltext="[log.snackbar.placeholder]"
+  timeoutms="4000"
+>
+  <mwc-icon-button
+    icon="close"
+    slot="dismiss"
+  >
+  </mwc-icon-button>
+</mwc-snackbar>
+<mwc-snackbar
+  id="warning"
+  labeltext="[log.snackbar.placeholder]"
+  timeoutms="6000"
+>
+  <mwc-button
+    icon="history"
+    slot="action"
+  >
+    [log.snackbar.show]
+  </mwc-button>
+  <mwc-icon-button
+    icon="close"
+    slot="dismiss"
+  >
+  </mwc-icon-button>
+</mwc-snackbar>
+<mwc-snackbar
+  id="error"
+  labeltext="[log.snackbar.placeholder]"
+  timeoutms="10000"
+>
+  <mwc-button
+    icon="history"
+    slot="action"
+  >
+    [log.snackbar.show]
+  </mwc-button>
+  <mwc-icon-button
+    icon="close"
+    slot="dismiss"
+  >
+  </mwc-icon-button>
+</mwc-snackbar>
+<mwc-snackbar
+  id="issue"
+  labeltext="[log.snackbar.placeholder]"
+  timeoutms="10000"
+>
+  <mwc-button
+    icon="rule"
+    slot="action"
+  >
+    [log.snackbar.show]
+  </mwc-button>
+  <mwc-icon-button
+    icon="close"
+    slot="dismiss"
+  >
+  </mwc-icon-button>
+</mwc-snackbar>
 <wizard-dialog>
 </wizard-dialog>
 `;
@@ -43,7 +199,7 @@ snapshots["GOOSE subscriber plugin in Publisher view per default the right hand 
       graphic="icon"
       noninteractive=""
       tabindex="-1"
-      value="IED1>>CircuitBreaker_CB1>GCB IED1>>CircuitBreaker_CB1>GCB2"
+      value="IED1>>CircuitBreaker_CB1>GCB"
     >
       <span>
         IED1
@@ -69,26 +225,6 @@ snapshots["GOOSE subscriber plugin in Publisher view per default the right hand 
       </mwc-icon>
       <span>
         GCB
-      </span>
-      <mwc-icon-button
-        class="hidden"
-        icon="edit"
-        slot="meta"
-      >
-      </mwc-icon-button>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      graphic="large"
-      hasmeta=""
-      mwc-list-item=""
-      tabindex="-1"
-      value="IED1>>CircuitBreaker_CB1>GCB2"
-    >
-      <mwc-icon slot="graphic">
-      </mwc-icon>
-      <span>
-        GCB2
       </span>
       <mwc-icon-button
         class="hidden"
@@ -160,7 +296,7 @@ snapshots["GOOSE subscriber plugin in Publisher view per default the right hand 
       graphic="icon"
       noninteractive=""
       tabindex="-1"
-      value="IED4>>CircuitBreaker_CB1>GCB IED4>>CircuitBreaker_CB1>GCB2"
+      value="IED4>>CircuitBreaker_CB1>GCB"
     >
       <span>
         IED4
@@ -186,26 +322,6 @@ snapshots["GOOSE subscriber plugin in Publisher view per default the right hand 
       </mwc-icon>
       <span>
         GCB
-      </span>
-      <mwc-icon-button
-        class="hidden"
-        icon="edit"
-        slot="meta"
-      >
-      </mwc-icon-button>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      graphic="large"
-      hasmeta=""
-      mwc-list-item=""
-      tabindex="-1"
-      value="IED4>>CircuitBreaker_CB1>GCB2"
-    >
-      <mwc-icon slot="graphic">
-      </mwc-icon>
-      <span>
-        GCB2
       </span>
       <mwc-icon-button
         class="hidden"
@@ -547,7 +663,7 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
         aria-selected="false"
         graphic="avatar"
         mwc-list-item=""
-        tabindex="-1"
+        tabindex="0"
       >
         <span>
           IED1
@@ -615,7 +731,7 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
         graphic="avatar"
         hasmeta=""
         mwc-list-item=""
-        tabindex="-1"
+        tabindex="0"
       >
         <span>
           IED1
@@ -732,6 +848,162 @@ snapshots["GOOSE subscriber plugin in Subscriber view per default the plugin its
     </subscriber-list-goose>
   </div>
 </div>
+<mwc-dialog
+  heading="[log.name]"
+  id="log"
+>
+  <mwc-icon-button-toggle
+    id="infofilter"
+    on=""
+  >
+  </mwc-icon-button-toggle>
+  <mwc-icon-button-toggle
+    id="warningfilter"
+    on=""
+  >
+  </mwc-icon-button-toggle>
+  <mwc-icon-button-toggle
+    id="errorfilter"
+    on=""
+  >
+  </mwc-icon-button-toggle>
+  <mwc-icon-button-toggle
+    id="actionfilter"
+    on=""
+  >
+  </mwc-icon-button-toggle>
+  <mwc-list
+    id="content"
+    wrapfocus=""
+  >
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="icon"
+      mwc-list-item=""
+      tabindex="0"
+    >
+      <span>
+        [log.placeholder]
+      </span>
+      <mwc-icon slot="graphic">
+        info
+      </mwc-icon>
+    </mwc-list-item>
+  </mwc-list>
+  <mwc-button
+    disabled=""
+    icon="undo"
+    label="[undo]"
+    slot="secondaryAction"
+  >
+  </mwc-button>
+  <mwc-button
+    disabled=""
+    icon="redo"
+    label="[redo]"
+    slot="secondaryAction"
+  >
+  </mwc-button>
+  <mwc-button
+    dialogaction="close"
+    slot="primaryAction"
+  >
+    [close]
+  </mwc-button>
+</mwc-dialog>
+<mwc-dialog
+  heading="[diag.name]"
+  id="diagnostic"
+>
+  <filtered-list
+    id="content"
+    wrapfocus=""
+  >
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="icon"
+      mwc-list-item=""
+      tabindex="0"
+    >
+      <span>
+        [diag.placeholder]
+      </span>
+      <mwc-icon slot="graphic">
+        info
+      </mwc-icon>
+    </mwc-list-item>
+  </filtered-list>
+  <mwc-button
+    dialogaction="close"
+    slot="primaryAction"
+  >
+    [close]
+  </mwc-button>
+</mwc-dialog>
+<mwc-snackbar
+  id="info"
+  labeltext="[log.snackbar.placeholder]"
+  timeoutms="4000"
+>
+  <mwc-icon-button
+    icon="close"
+    slot="dismiss"
+  >
+  </mwc-icon-button>
+</mwc-snackbar>
+<mwc-snackbar
+  id="warning"
+  labeltext="[log.snackbar.placeholder]"
+  timeoutms="6000"
+>
+  <mwc-button
+    icon="history"
+    slot="action"
+  >
+    [log.snackbar.show]
+  </mwc-button>
+  <mwc-icon-button
+    icon="close"
+    slot="dismiss"
+  >
+  </mwc-icon-button>
+</mwc-snackbar>
+<mwc-snackbar
+  id="error"
+  labeltext="[log.snackbar.placeholder]"
+  timeoutms="10000"
+>
+  <mwc-button
+    icon="history"
+    slot="action"
+  >
+    [log.snackbar.show]
+  </mwc-button>
+  <mwc-icon-button
+    icon="close"
+    slot="dismiss"
+  >
+  </mwc-icon-button>
+</mwc-snackbar>
+<mwc-snackbar
+  id="issue"
+  labeltext="[log.snackbar.placeholder]"
+  timeoutms="10000"
+>
+  <mwc-button
+    icon="rule"
+    slot="action"
+  >
+    [log.snackbar.show]
+  </mwc-button>
+  <mwc-icon-button
+    icon="close"
+    slot="dismiss"
+  >
+  </mwc-icon-button>
+</mwc-snackbar>
 <wizard-dialog>
 </wizard-dialog>
 `;
@@ -856,10 +1128,35 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED the le
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
-        value="IED1>>CircuitBreaker_CB1>GCB"
+        value=""
       >
         <span>
           [subscription.subscriber.partiallySubscribed]
+        </span>
+      </mwc-list-item>
+      <li
+        divider=""
+        role="separator"
+      >
+      </li>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="avatar"
+        noninteractive=""
+        tabindex="-1"
+      >
+        <span>
+          [subscription.none]
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        noninteractive=""
+        tabindex="-1"
+        value="IED1>>CircuitBreaker_CB1>GCB IED4>>CircuitBreaker_CB1>GCB"
+      >
+        <span>
+          [subscription.subscriber.availableToSubscribe]
         </span>
       </mwc-list-item>
       <li
@@ -880,21 +1177,6 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED the le
           add
         </mwc-icon>
       </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        noninteractive=""
-        tabindex="-1"
-        value="IED4>>CircuitBreaker_CB1>GCB"
-      >
-        <span>
-          [subscription.subscriber.availableToSubscribe]
-        </span>
-      </mwc-list-item>
-      <li
-        divider=""
-        role="separator"
-      >
-      </li>
       <mwc-list-item
         aria-disabled="false"
         graphic="avatar"
@@ -991,10 +1273,9 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for un
       </li>
       <mwc-list-item
         aria-disabled="false"
-        aria-selected="true"
+        aria-selected="false"
         graphic="avatar"
         mwc-list-item=""
-        selected=""
         tabindex="-1"
       >
         <span>
@@ -1193,8 +1474,10 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for pa
       </li>
       <mwc-list-item
         aria-disabled="false"
+        aria-selected="true"
         graphic="avatar"
         mwc-list-item=""
+        selected=""
         tabindex="-1"
       >
         <span>

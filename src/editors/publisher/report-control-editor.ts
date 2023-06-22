@@ -29,6 +29,8 @@ export class ReportControlEditor extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
 
   @state()
   selectedReportControl?: Element;
@@ -83,10 +85,12 @@ export class ReportControlEditor extends LitElement {
     if (this.selectedReportControl !== undefined)
       return html`<div class="elementeditorcontainer">
         <data-set-element-editor
+          .editCount=${this.editCount}
           .doc=${this.doc}
           .element=${this.selectedDataSet!}
         ></data-set-element-editor>
         <report-control-element-editor
+          .editCount=${this.editCount}
           .doc=${this.doc}
           .element=${this.selectedReportControl}
         ></report-control-element-editor>

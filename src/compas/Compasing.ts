@@ -1,4 +1,4 @@
-import { html, query, state, TemplateResult } from 'lit-element';
+import { html, query, state, property, TemplateResult } from 'lit-element';
 
 import { Mixin } from '../foundation.js';
 import { EditingElement } from '../Editing.js';
@@ -48,6 +48,9 @@ export function Compasing<TBase extends new (...args: any[]) => EditingElement>(
     private expiringSessionWarning: number = 10 * 60 * 1000;
     @state()
     private expiredSessionMessage: number = 15 * 60 * 1000;
+
+    @property({ type: Number })
+    editCount = -1;
 
     @query('compas-session-expiring-dialog')
     private expiringDialogElement!: CompasSessionExpiringDialogElement;
@@ -145,6 +148,7 @@ export function Compasing<TBase extends new (...args: any[]) => EditingElement>(
         <compas-session-expired-dialog
           .expiredSessionMessage="${this.expiredSessionMessage}"
           .doc="${this.doc}"
+          .editCount=${this.editCount}
           .docName="${this.docName}"
         >
         </compas-session-expired-dialog>

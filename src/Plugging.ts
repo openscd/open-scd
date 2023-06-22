@@ -25,7 +25,7 @@ import { ifImplemented, Mixin } from './foundation.js';
 import { EditingElement } from './Editing.js';
 import { officialPlugins } from '../public/js/plugins.js';
 import { Nsdoc } from './foundation/nsdoc.js';
-
+import { LoggingElement } from './Logging.js';
 const pluginTags = new Map<string, string>();
 /**
  * Hashes `uri` using cyrb64 analogous to
@@ -176,9 +176,9 @@ const loadedPlugins = new Set<string>();
 /** Mixin that manages Plugins in `localStorage` */
 export type PluggingElement = Mixin<typeof Plugging>;
 
-export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
-  Base: TBase
-) {
+export function Plugging<
+  TBase extends new (...args: any[]) => EditingElement & LoggingElement
+>(Base: TBase) {
   class PluggingElement extends Base {
     // DIRTY HACK: will refactored with open-scd-core
     nsdoc!: Nsdoc;
@@ -289,6 +289,7 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
         content: staticTagHtml`<${tag}
             .doc=${this.doc}
             .docName=${this.docName}
+            .editCount=${this.editCount}
             .docId=${this.docId}
             .pluginId=${plugin.src}
             .nsdoc=${this.nsdoc}

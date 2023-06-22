@@ -62,7 +62,7 @@ describe('open-scd', () => {
 
   it('renders a progress indicator on `waiting`', async () => {
     const progressBar = element.shadowRoot!.querySelector(
-      'mwc-circular-progress-four-color[indeterminate]'
+      'mwc-linear-progress[indeterminate]'
     );
     expect(progressBar).property('closed').to.be.true;
     element.waiting = true;

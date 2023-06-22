@@ -53,6 +53,8 @@ export class SubstationEditor extends LitElement {
   /** The document being edited as provided to editor by [[`Zeroline`]]. */
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
   /** The edited `Element`, a common property of all Substation subeditors. */
   @property({ attribute: false })
   element!: Element;
@@ -133,6 +135,7 @@ export class SubstationEditor extends LitElement {
           ${lNodes.map(
             lNode =>
               html`<l-node-editor
+                .editCount=${this.editCount}
                 .doc=${this.doc}
                 .element=${lNode}
               ></l-node-editor>`
@@ -148,6 +151,7 @@ export class SubstationEditor extends LitElement {
     return html` ${functions.map(
       fUnction =>
         html`<function-editor
+          .editCount=${this.editCount}
           .doc=${this.doc}
           .element=${fUnction}
           ?showfunctions=${this.showfunctions}
@@ -161,7 +165,11 @@ export class SubstationEditor extends LitElement {
       ? html`<div id="iedcontainer">
           ${ieds.map(
             ied =>
-              html`<ied-editor .doc=${this.doc} .element=${ied}></ied-editor>`
+              html`<ied-editor
+                .editCount=${this.editCount}
+                .doc=${this.doc}
+                .element=${ied}
+              ></ied-editor>`
           )}
         </div>`
       : html``;
@@ -183,6 +191,7 @@ export class SubstationEditor extends LitElement {
           ${pwts.map(
             pwt =>
               html`<powertransformer-editor
+                .editCount=${this.editCount}
                 .doc=${this.doc}
                 .element=${pwt}
                 ?showfunctions=${this.showfunctions}
@@ -259,6 +268,7 @@ export class SubstationEditor extends LitElement {
         ${Array.from(this.element.querySelectorAll(selectors.VoltageLevel)).map(
           voltageLevel =>
             html`<voltage-level-editor
+              .editCount=${this.editCount}
               .doc=${this.doc}
               .element=${voltageLevel}
               .getAttachedIeds=${this.getAttachedIeds}

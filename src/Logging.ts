@@ -63,7 +63,7 @@ function getPluginName(src: string): string {
  * A mixin adding a `history` property to any `LitElement`, in which
  * incoming [[`LogEvent`]]s are logged.
  *
- * For [[`EditorAction`]] entries, also sets `currentAction` to the index of
+ * For [[`EditorAction`]] entries, also sets `editCount` to the index of
  * the committed action, allowing the user to go to `previousAction` with
  * `undo()` if `canUndo` and to go to `nextAction` with `redo()` if `canRedo`.
  *
@@ -79,7 +79,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
     history: LogEntry[] = [];
     /** Index of the last [[`EditorAction`]] applied. */
     @property({ type: Number })
-    currentAction = -1;
+    editCount = -1;
     @property()
     diagnoses = new Map<string, IssueDetail[]>();
     @internalProperty()
@@ -93,7 +93,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
     @query('#issue') issueUI!: Snackbar;
 
     get canUndo(): boolean {
-      return this.currentAction >= 0;
+      return this.editCount >= 0;
     }
     get canRedo(): boolean {
       return this.nextAction >= 0;
@@ -102,15 +102,15 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
     get previousAction(): number {
       if (!this.canUndo) return -1;
       return this.history
-        .slice(0, this.currentAction)
+        .slice(0, this.editCount)
         .map(entry => (entry.kind == 'action' ? true : false))
         .lastIndexOf(true);
     }
     get nextAction(): number {
       let index = this.history
-        .slice(this.currentAction + 1)
+        .slice(this.editCount + 1)
         .findIndex(entry => entry.kind == 'action');
-      if (index >= 0) index += this.currentAction + 1;
+      if (index >= 0) index += this.editCount + 1;
       return index;
     }
 
@@ -129,10 +129,10 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       if (!this.canUndo) return false;
       this.dispatchEvent(
         newActionEvent(
-          invert((<CommitEntry>this.history[this.currentAction]).action)
+          invert((<CommitEntry>this.history[this.editCount]).action)
         )
       );
-      this.currentAction = this.previousAction;
+      this.editCount = this.previousAction;
       return true;
     }
     redo(): boolean {
@@ -140,14 +140,14 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       this.dispatchEvent(
         newActionEvent((<CommitEntry>this.history[this.nextAction]).action)
       );
-      this.currentAction = this.nextAction;
+      this.editCount = this.nextAction;
       return true;
     }
 
     private onLog(le: LogEvent): void {
       if (le.detail.kind === 'reset') {
         this.history = [];
-        this.currentAction = -1;
+        this.editCount = -1;
         return;
       }
 
@@ -160,7 +160,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         if (entry.action.derived) return;
         entry.action.derived = true;
         if (this.nextAction !== -1) this.history.splice(this.nextAction);
-        this.currentAction = this.history.length;
+        this.editCount = this.history.length;
       }
 
       this.history.push(entry);
@@ -210,7 +210,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
           class="${entry.kind}"
           graphic="icon"
           ?twoline=${!!entry.message}
-          ?activated=${this.currentAction == history.length - index - 1}
+          ?activated=${this.editCount == history.length - index - 1}
         >
           <span>
             <!-- FIXME: replace tt with mwc-chip asap -->

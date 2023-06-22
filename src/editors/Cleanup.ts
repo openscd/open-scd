@@ -13,13 +13,15 @@ export default class Cleanup extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property()
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
 
   render(): TemplateResult {
     return html`
       <div class="cleanup">
-        <cleanup-datasets .doc=${this.doc}></cleanup-datasets>
-        <cleanup-control-blocks .doc=${this.doc}></cleanup-control-blocks>
-        <cleanup-data-types .doc=${this.doc}></cleanup-data-types>
+        <cleanup-datasets .editCount=${this.editCount} .doc=${this.doc}></cleanup-datasets>
+        <cleanup-control-blocks .editCount=${this.editCount} .doc=${this.doc}></cleanup-control-blocks>
+        <cleanup-data-types .editCount=${this.editCount} .doc=${this.doc}></cleanup-data-types>
       </div>
     `;
   }

@@ -9,7 +9,6 @@ import {
 } from 'lit-element';
 import { nothing } from 'lit-html';
 import { translate } from 'lit-translate';
-import { wizards } from '../../wizards/wizard-library.js';
 
 import {
   getDescriptionAttribute,
@@ -85,6 +84,7 @@ export class AccessPointContainer extends Container {
       ${Array.from(this.element.querySelectorAll(':scope > Server')).map(
         server =>
           html`<server-container
+            .editCount=${this.editCount}
             .doc=${this.doc}
             .element=${server}
             .nsdoc=${this.nsdoc}
@@ -95,6 +95,7 @@ export class AccessPointContainer extends Container {
       <div id="lnContainer">
         ${lnElements.map(
           ln => html`<ln-container
+            .editCount=${this.editCount}
             .doc=${this.doc}
             .element=${ln}
             .nsdoc=${this.nsdoc}

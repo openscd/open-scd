@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.33.0](https://github.com/openscd/open-scd/compare/v0.32.0...v0.33.0) (2023-06-22)
+
+
+### Features
+
+* **openscd:** Move progress indicator beneath plugin tabs ([#1181](https://github.com/openscd/open-scd/issues/1181)) ([a7a7081](https://github.com/openscd/open-scd/commits/a7a7081a32ee14998d0ead75ffb89ba2726631f8)), closes [#1178](https://github.com/openscd/open-scd/issues/1178)
+
+
+### Bug Fixes
+
+* **editing:** use editCount property for change propagation ([#1233](https://github.com/openscd/open-scd/issues/1233)) ([548f63b](https://github.com/openscd/open-scd/commits/548f63b5b35dac6772230004e6ca7859cf3337b8))
+* escaped symbols in regex patterns ([#1266](https://github.com/openscd/open-scd/issues/1266)) ([de2dd0d](https://github.com/openscd/open-scd/commits/de2dd0dc2351c8feb6a70da62e43640334df571b))
+* goose subscription reflects state incorrectly ([#1261](https://github.com/openscd/open-scd/issues/1261)) ([4440bff](https://github.com/openscd/open-scd/commits/4440bff63c0ebe816a9fdc25f8af6da1ca6645f4))
+
 ## [0.31.0](https://github.com/openscd/open-scd/compare/v0.30.0...v0.31.0) (2023-05-02)
 
 

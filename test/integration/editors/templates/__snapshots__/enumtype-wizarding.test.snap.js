@@ -1335,7 +1335,6 @@ snapshots["EnumType wizards defines a createEnumTypeWizard looks like the latest
       label="id"
       maxlength="127"
       minlength="1"
-      pattern="([:_A-Za-z]|[À-Ö]|[Ø-ö]|[ø-˿]|[Ͱ-ͽ]|[Ϳ-῿]|[‌-‍]|[⁰-↏]|[Ⰰ-⿯]|[、-퟿]|[豈-﷏]|[ﷰ-�]|[.0-9-]|·|[̀-ͯ]|[‿-⁀])+"
       required=""
     >
     </wizard-textfield>
@@ -1344,7 +1343,6 @@ snapshots["EnumType wizards defines a createEnumTypeWizard looks like the latest
       helper="[scl.desc]"
       label="desc"
       nullable=""
-      pattern="([ -~]|[]|[ -퟿]|[-�])*"
     >
     </wizard-textfield>
   </div>
@@ -1418,7 +1416,6 @@ snapshots["EnumType wizards defines an eNumTypeEditWizard looks like the latest 
       label="id"
       maxlength="127"
       minlength="1"
-      pattern="([:_A-Za-z]|[À-Ö]|[Ø-ö]|[ø-˿]|[Ͱ-ͽ]|[Ϳ-῿]|[‌-‍]|[⁰-↏]|[Ⰰ-⿯]|[、-퟿]|[豈-﷏]|[ﷰ-�]|[.0-9-]|·|[̀-ͯ]|[‿-⁀])+"
       required=""
     >
     </wizard-textfield>
@@ -1427,7 +1424,6 @@ snapshots["EnumType wizards defines an eNumTypeEditWizard looks like the latest 
       helper="[scl.desc]"
       label="desc"
       nullable=""
-      pattern="([ -~]|[]|[ -퟿]|[-�])*"
     >
     </wizard-textfield>
     <mwc-list style="margin-top: 0px;">

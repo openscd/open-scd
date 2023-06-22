@@ -50,6 +50,8 @@ export class PowerTransformerEditor extends LitElement {
   /** The document being edited as provided to editor by [[`Zeroline`]]. */
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
   /** SCL element PowerTransformer */
   @property({ attribute: false })
   element!: Element;
@@ -108,6 +110,7 @@ export class PowerTransformerEditor extends LitElement {
           ${lNodes.map(
             lNode =>
               html`<l-node-editor
+                .editCount=${this.editCount}
                 .doc=${this.doc}
                 .element=${lNode}
               ></l-node-editor>`
@@ -123,6 +126,7 @@ export class PowerTransformerEditor extends LitElement {
     return html` ${eqFunctions.map(
       eqFunction =>
         html`<eq-function-editor
+          .editCount=${this.editCount}
           .doc=${this.doc}
           .element=${eqFunction}
           ?showfunctions=${this.showfunctions}
@@ -140,6 +144,7 @@ export class PowerTransformerEditor extends LitElement {
     return html` ${subEquipments.map(
       subEquipment =>
         html`<sub-equipment-editor
+          .editCount=${this.editCount}
           .doc=${this.doc}
           .element=${subEquipment}
         ></sub-equipment-editor>`
@@ -229,6 +234,7 @@ export class PowerTransformerEditor extends LitElement {
           ${transformerWindings.map(
             transformerWindings =>
               html`<transformer-winding-editor
+                .editCount=${this.editCount}
                 .doc=${this.doc}
                 .element=${transformerWindings}
                 ?showfunctions=${this.showfunctions}
