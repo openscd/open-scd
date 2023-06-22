@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.33.0](https://github.com/openscd/open-scd/compare/v0.32.0...v0.33.0) (2023-06-22)
+
+### Features
+
+* feat(openscd): Move progress indicator beneath plugin tabs by @danyill in https://github.com/openscd/open-scd/pull/1181
+
+### Bug Fixes
+
+* fix: escaped symbols in regex patterns by @Stef3st in https://github.com/openscd/open-scd/pull/1266
+* fix: goose subscription reflects state incorrectly by @Stef3st in https://github.com/openscd/open-scd/pull/1261
+* fix(editing): use editCount property for change propagation by @ca-d in https://github.com/openscd/open-scd/pull/1233
+* fix(editors/subscriber-message) Filter controls with datSet attribute presence, closes #1262 by @danyill in https://github.com/openscd/open-scd/pull/1263
+
+
 ## [0.31.0](https://github.com/openscd/open-scd/compare/v0.30.0...v0.31.0) (2023-05-02)
 
 
