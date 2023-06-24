@@ -11,6 +11,8 @@ import TemplatesPlugin from '../../../../src/editors/Templates.js';
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
+import { patterns } from '../../../../src/wizards/foundation/limits.js';
+
 describe('DOType wizards', () => {
   if (customElements.get('templates-editor') === undefined)
     customElements.define('templates-editor', TemplatesPlugin);
@@ -78,6 +80,32 @@ describe('DOType wizards', () => {
           },
         ],
       });
+    });
+
+    // work around, because the escapes get removed in snapshot by prettier
+    it('should have correct pattern', async () => {
+      expect(
+        parent.wizardUI.dialog!.querySelectorAll('wizard-textfield[pattern]')!
+          .length
+      ).to.equal(3);
+
+      expect(
+        parent.wizardUI
+          .dialog!.querySelectorAll('wizard-textfield[pattern]')[0]
+          .getAttribute('pattern')
+      ).to.equal(patterns.nmToken);
+
+      expect(
+        parent.wizardUI
+          .dialog!.querySelectorAll('wizard-textfield[pattern]')[1]
+          .getAttribute('pattern')
+      ).to.equal(patterns.normalizedString);
+
+      expect(
+        parent.wizardUI
+          .dialog!.querySelectorAll('wizard-textfield[pattern]')[2]
+          .getAttribute('pattern')
+      ).to.equal(patterns.cdc);
     });
 
     it('allows to add empty DOTypes to the project', async () => {
@@ -190,6 +218,32 @@ describe('DOType wizards', () => {
       });
     });
 
+    // work around, because the escapes get removed in snapshot by prettier
+    it('should have correct pattern', async () => {
+      expect(
+        parent.wizardUI.dialog!.querySelectorAll('wizard-textfield[pattern]')!
+          .length
+      ).to.equal(3);
+
+      expect(
+        parent.wizardUI
+          .dialog!.querySelectorAll('wizard-textfield[pattern]')[0]
+          .getAttribute('pattern')
+      ).to.equal(patterns.nmToken);
+
+      expect(
+        parent.wizardUI
+          .dialog!.querySelectorAll('wizard-textfield[pattern]')[1]
+          .getAttribute('pattern')
+      ).to.equal(patterns.normalizedString);
+
+      expect(
+        parent.wizardUI
+          .dialog!.querySelectorAll('wizard-textfield[pattern]')[2]
+          .getAttribute('pattern')
+      ).to.equal(patterns.normalizedString);
+    });
+
     it('edits DOType attributes id', async () => {
       expect(doc.querySelector('DOType[id="Dummy.LLN0.Mod"]')).to.exist;
       idField.value = 'changedDOType';
@@ -268,6 +322,27 @@ describe('DOType wizards', () => {
         ],
       });
     });
+
+    // work around, because the escapes get removed in snapshot by prettier
+    it('should have correct pattern', async () => {
+      expect(
+        parent.wizardUI.dialog!.querySelectorAll('wizard-textfield[pattern]')!
+          .length
+      ).to.equal(2);
+
+      expect(
+        parent.wizardUI
+          .dialog!.querySelectorAll('wizard-textfield[pattern]')[0]
+          .getAttribute('pattern')
+      ).to.equal(patterns.tRestrName1stL);
+
+      expect(
+        parent.wizardUI
+          .dialog!.querySelectorAll('wizard-textfield[pattern]')[1]
+          .getAttribute('pattern')
+      ).to.equal(patterns.normalizedString);
+    });
+
     it('edits SDO attributes name', async () => {
       expect(doc.querySelector('DOType[id="Dummy.WYE"] > SDO[name="phsA"]')).to
         .exist;
@@ -364,6 +439,7 @@ describe('DOType wizards', () => {
         ],
       });
     });
+
     it('creates a new SDO element', async () => {
       expect(
         doc.querySelector(
@@ -381,6 +457,7 @@ describe('DOType wizards', () => {
         )
       ).to.exist;
     });
+
     it('creates yet another new SDO element', async () => {
       const name = 'newSDOElement2';
       const desc = 'newSDOdesc';
