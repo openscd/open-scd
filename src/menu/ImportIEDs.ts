@@ -61,9 +61,9 @@ function updateNamespaces(destElement: Element, sourceElement: Element) {
   Array.prototype.slice
     .call(sourceElement.attributes)
     .filter(attr => attr.name.startsWith('xmlns:'))
-    .filter(attr => !destElement?.hasAttribute(attr.name))
+    .filter(attr => !destElement.hasAttribute(attr.name))
     .forEach(attr => {
-      destElement?.setAttributeNS(
+      destElement.setAttributeNS(
         'http://www.w3.org/2000/xmlns/',
         attr.name,
         attr.value
