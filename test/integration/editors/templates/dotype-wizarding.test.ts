@@ -440,6 +440,26 @@ describe('DOType wizards', () => {
       });
     });
 
+    // work around, because the escapes get removed in snapshot by prettier
+    it('should have correct pattern', async () => {
+      expect(
+        parent.wizardUI.dialog!.querySelectorAll('wizard-textfield[pattern]')!
+          .length
+      ).to.equal(2);
+
+      expect(
+        parent.wizardUI
+          .dialog!.querySelectorAll('wizard-textfield[pattern]')[0]
+          .getAttribute('pattern')
+      ).to.equal(patterns.tRestrName1stL);
+
+      expect(
+        parent.wizardUI
+          .dialog!.querySelectorAll('wizard-textfield[pattern]')[1]
+          .getAttribute('pattern')
+      ).to.equal(patterns.normalizedString);
+    });
+
     it('creates a new SDO element', async () => {
       expect(
         doc.querySelector(
