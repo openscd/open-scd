@@ -174,7 +174,7 @@ describe('fcda-binding-list', () => {
       (<ListItem>(
         element.actionsMenu!.querySelector('.filter-subscribed')
       ))!.click();
-      await new Promise(resolve => setTimeout(resolve, 200)); // await animation
+      await new Promise(resolve => setTimeout(resolve, 300)); // await animation
       await element.updateComplete;
 
       element.actionsMenuIcon.click();
@@ -182,7 +182,7 @@ describe('fcda-binding-list', () => {
       (<ListItem>(
         element.actionsMenu!.querySelector('.filter-not-subscribed')
       ))!.click();
-      await new Promise(resolve => setTimeout(resolve, 200)); // await animation
+      await new Promise(resolve => setTimeout(resolve, 300)); // await animation
       await element.updateComplete;
 
       const fcdaList = element.shadowRoot?.querySelector('filtered-list');
