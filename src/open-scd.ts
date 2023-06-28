@@ -122,12 +122,12 @@ export class OpenSCD extends Waiting(
     mwc-linear-progress {
       position: fixed;
       --mdc-linear-progress-buffer-color: var(--primary);
-      --mdc-theme-primary: var(--mdc-theme-secondary);
+      --mdc-theme-primary: var(--secondary);
       left: 0px;
       top: 0px;
       width: 100%;
       pointer-events: none;
-      z-index: 10;
+      z-index: 1000;
     }
 
     tt {
