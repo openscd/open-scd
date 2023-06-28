@@ -679,7 +679,6 @@ snapshots["DOType wizards defines a createDOTypeWizard looks like the latest sna
       label="id"
       maxlength="127"
       minlength="1"
-      pattern="([:_A-Za-z]|[À-Ö]|[Ø-ö]|[ø-˿]|[Ͱ-ͽ]|[Ϳ-῿]|[‌-‍]|[⁰-↏]|[Ⰰ-⿯]|[、-퟿]|[豈-﷏]|[ﷰ-�]|[.0-9-]|·|[̀-ͯ]|[‿-⁀])+"
       required=""
     >
     </wizard-textfield>
@@ -688,13 +687,11 @@ snapshots["DOType wizards defines a createDOTypeWizard looks like the latest sna
       helper="[scl.desc]"
       label="desc"
       nullable=""
-      pattern="([ -~]|[]|[ -퟿]|[-�])*"
     >
     </wizard-textfield>
     <wizard-textfield
       helper="[scl.cdc]"
       label="cdc"
-      pattern="(SPS)|(DPS)|(INS)|(ENS)|(ACT)|(ACD)|(SEC)|(BCR)|(HST)|(VSS)|(MV)|(CMV)|(SAV)|(WYE)|(DEL)|(SEQ)|(HMV)|(HWYE)|(HDEL)|(SPC)|(DPC)|(INC)|(ENC)|(BSC)|(ISC)|(APC)|(BAC)|(SPG)|(ING)|(ENG)|(ORG)|(TSG)|(CUG)|(VSG)|(ASG)|(CURVE)|(CSG)|(DPL)|(LPL)|(CSD)|(CST)|(BTS)|(UTS)|(LTS)|(GTS)|(MTS)|(NTS)|(STS)|(CTS)|(OTS)|(VSD)"
       required=""
     >
     </wizard-textfield>
@@ -783,7 +780,6 @@ snapshots["DOType wizards defines a dOTypeWizard looks like the latest snapshot"
       label="id"
       maxlength="127"
       minlength="1"
-      pattern="([:_A-Za-z]|[À-Ö]|[Ø-ö]|[ø-˿]|[Ͱ-ͽ]|[Ϳ-῿]|[‌-‍]|[⁰-↏]|[Ⰰ-⿯]|[、-퟿]|[豈-﷏]|[ﷰ-�]|[.0-9-]|·|[̀-ͯ]|[‿-⁀])+"
       required=""
     >
     </wizard-textfield>
@@ -792,13 +788,11 @@ snapshots["DOType wizards defines a dOTypeWizard looks like the latest snapshot"
       helper="[scl.desc]"
       label="desc"
       nullable=""
-      pattern="([ -~]|[]|[ -퟿]|[-�])*"
     >
     </wizard-textfield>
     <wizard-textfield
       helper="[scl.CDC]"
       label="CDC"
-      pattern="([ -~]|[]|[ -퟿]|[-�])*"
     >
     </wizard-textfield>
     <mwc-list style="margin-top: 0px;">
@@ -1068,7 +1062,6 @@ snapshots["DOType wizards defines a sDOWizard to edit an existing SDO looks like
       dialoginitialfocus=""
       helper="[scl.name]"
       label="name"
-      pattern="[a-z][0-9A-Za-z]*"
       required=""
     >
       >
@@ -1078,7 +1071,6 @@ snapshots["DOType wizards defines a sDOWizard to edit an existing SDO looks like
       helper="[scl.desc]"
       label="desc"
       nullable=""
-      pattern="([ -~]|[]|[ -퟿]|[-�])*"
     >
     </wizard-textfield>
     <mwc-select
@@ -1256,7 +1248,6 @@ snapshots["DOType wizards defines a sDOWizard to create a new SDO element looks 
       dialoginitialfocus=""
       helper="[scl.name]"
       label="name"
-      pattern="[a-z][0-9A-Za-z]*"
       required=""
     >
       >
@@ -1266,7 +1257,6 @@ snapshots["DOType wizards defines a sDOWizard to create a new SDO element looks 
       helper="[scl.desc]"
       label="desc"
       nullable=""
-      pattern="([ -~]|[]|[ -퟿]|[-�])*"
     >
     </wizard-textfield>
     <mwc-select
