@@ -30,8 +30,12 @@ If you choose 'Cancel', an editor type plugin will be added instead.`)
       
     )
       return;
-    if (!editor.plugins[kind]) editor.plugins[kind] = [];
-    editor.plugins[kind].push(plugin);
-    editor.requestUpdate('plugins');
+    const plugins = editor.plugins;
+    if (!plugins[kind]) plugins[kind] = [];
+    plugins[kind].push(plugin);
+    const params = new URLSearchParams(location.search);
+    params.set('plugins', JSON.stringify(plugins));
+    location.search = params.toString();
+    editor.plugins = { ...plugins };
   }
 }
