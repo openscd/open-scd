@@ -96,7 +96,11 @@ export default class IedPlugin extends LitElement {
     super.updated(_changedProperties);
 
     // When the document is updated, we reset the selected IED.
-    if (_changedProperties.has('doc') || _changedProperties.has('nsdoc')) {
+    if (
+      _changedProperties.has('doc') ||
+      _changedProperties.has('editCount') ||
+      _changedProperties.has('nsdoc')
+    ) {
       this.selectedIEDs = [];
       this.selectedLNClasses = [];
 
