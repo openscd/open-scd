@@ -41,7 +41,6 @@ describe('ImportIedsPlugin', () => {
       importDoc = await fetch('/test/testfiles/importieds/valid.iid')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      element.importDoc = importDoc;
       await element.updateComplete;
     });
 
@@ -49,7 +48,7 @@ describe('ImportIedsPlugin', () => {
       expect(element.doc?.querySelector(':root > IED[name="TestImportIED"]')).to
         .not.exist;
 
-      element.prepareImport();
+      element.prepareImport(importDoc, 'valid.iid');
       await parent.updateComplete;
 
       expect(element.doc?.querySelector(':root > IED[name="TestImportIED"]')).to
@@ -57,7 +56,7 @@ describe('ImportIedsPlugin', () => {
     });
 
     it('adds the connectedap of the imported ied', async () => {
-      element.prepareImport();
+      element.prepareImport(importDoc, 'valid.iid');
       await parent.updateComplete;
 
       expect(
@@ -71,7 +70,7 @@ describe('ImportIedsPlugin', () => {
       expect(element.doc.querySelector('SubNetwork[name="NewSubNetwork"]')).to
         .not.exist;
 
-      element.prepareImport();
+      element.prepareImport(importDoc, 'valid.iid');
       await parent.updateComplete;
 
       expect(element.doc.querySelector('SubNetwork[name="NewSubNetwork"]')).to
@@ -87,10 +86,9 @@ describe('ImportIedsPlugin', () => {
       ied.setAttribute('manufacturer', 'Fancy-Vendy');
       ied.setAttribute('type', 'Z#Mega$Y');
 
-      element.importDoc = importDoc;
       await element.updateComplete;
 
-      element.prepareImport();
+      element.prepareImport(importDoc, 'template.icd');
       await parent.updateComplete;
 
       console.log(
@@ -108,11 +106,7 @@ describe('ImportIedsPlugin', () => {
       )
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-
-      element.importDoc = templateIED1;
-      await element.updateComplete;
-
-      element.prepareImport();
+      element.prepareImport(templateIED1, 'template.icd');
 
       const templateIED2 = await fetch(
         '/test/testfiles/importieds/template.icd'
@@ -120,10 +114,9 @@ describe('ImportIedsPlugin', () => {
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-      element.importDoc = templateIED2;
       await element.updateComplete;
 
-      element.prepareImport();
+      element.prepareImport(templateIED2, 'template.icd');
       await parent.updateComplete;
 
       expect(element.doc.querySelector('IED[name="FancyVendy_ZMegaY_001"]')).to
@@ -138,10 +131,7 @@ describe('ImportIedsPlugin', () => {
       )
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      element.importDoc = templateIED1;
-      await element.updateComplete;
-
-      element.prepareImport();
+      element.prepareImport(templateIED1, 'template.icd');
       await parent.updateComplete;
 
       expect(
@@ -157,7 +147,7 @@ describe('ImportIedsPlugin', () => {
           .length
       ).to.equal(0);
 
-      element.prepareImport();
+      element.prepareImport(importDoc, 'template.icd');
       await parent.updateComplete;
 
       expect(
@@ -189,7 +179,6 @@ describe('ImportIedsPlugin', () => {
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-      element.importDoc = importDoc;
       await element.updateComplete;
     });
 
@@ -197,7 +186,7 @@ describe('ImportIedsPlugin', () => {
       expect(element.doc?.querySelector(':root > IED[name="TestImportIED"]')).to
         .not.exist;
 
-      element.prepareImport();
+      element.prepareImport(importDoc, 'valid.iid');
       await parent.updateComplete;
 
       expect(element.doc?.querySelector(':root > IED[name="TestImportIED"]')).to
@@ -210,7 +199,7 @@ describe('ImportIedsPlugin', () => {
           .length
       ).to.equal(11);
 
-      element.prepareImport();
+      element.prepareImport(importDoc, 'valid.iid');
       await parent.updateComplete;
 
       expect(
@@ -225,7 +214,7 @@ describe('ImportIedsPlugin', () => {
           .length
       ).to.equal(16);
 
-      element.prepareImport();
+      element.prepareImport(importDoc, 'valid.iid');
       await parent.updateComplete;
 
       expect(
@@ -240,7 +229,7 @@ describe('ImportIedsPlugin', () => {
           .length
       ).to.equal(7);
 
-      element.prepareImport();
+      element.prepareImport(importDoc, 'valid.iid');
       await parent.updateComplete;
 
       expect(
@@ -255,7 +244,7 @@ describe('ImportIedsPlugin', () => {
           .length
       ).to.equal(4);
 
-      element.prepareImport();
+      element.prepareImport(importDoc, 'valid.iid');
       await parent.updateComplete;
 
       expect(
@@ -268,7 +257,7 @@ describe('ImportIedsPlugin', () => {
       expect(element.doc.querySelector('ConnectedAP[iedName="TestImportIED"]'))
         .to.not.exist;
 
-      element.prepareImport();
+      element.prepareImport(importDoc, 'valid.iid');
       await parent.updateComplete;
 
       expect(element.doc.querySelector('ConnectedAP[iedName="TestImportIED"]'))
@@ -283,7 +272,7 @@ describe('ImportIedsPlugin', () => {
       expect(element.doc.querySelector('SubNetwork[name="NewSubNetwork"]')).to
         .not.exist;
 
-      element.prepareImport();
+      element.prepareImport(importDoc, 'valid.iid');
       await parent.updateComplete;
 
       expect(element.doc.querySelector('SubNetwork[name="NewSubNetwork"]')).to
@@ -291,7 +280,7 @@ describe('ImportIedsPlugin', () => {
     });
 
     it('correctly transfers document element namespaces', async () => {
-      element.prepareImport();
+      element.prepareImport(importDoc, 'valid.iid');
       await parent.updateComplete;
 
       expect(
@@ -328,22 +317,14 @@ describe('ImportIedsPlugin', () => {
       )
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-
-      element.importDoc = templateIED1;
-      await element.updateComplete;
-
-      element.prepareImport();
+      element.prepareImport(templateIED1, 'template.icd');
 
       const templateIED2 = await fetch(
         '/test/testfiles/importieds/template.icd'
       )
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-
-      element.importDoc = templateIED2;
-      await element.updateComplete;
-
-      element.prepareImport();
+      element.prepareImport(templateIED2, 'template.icd');
       await parent.updateComplete;
 
       expect(element.doc.querySelector('IED[name="FancyVendy_ZMegaY_001"]')).to
@@ -359,10 +340,7 @@ describe('ImportIedsPlugin', () => {
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-      element.importDoc = multipleIedDoc;
-      await element.updateComplete;
-
-      element.prepareImport();
+      element.prepareImport(multipleIedDoc, 'multipleied.scd');
       await element.updateComplete;
 
       expect(element.dialog).to.exist;
@@ -379,10 +357,7 @@ describe('ImportIedsPlugin', () => {
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-      element.importDoc = multipleIedDoc;
-      await element.updateComplete;
-
-      element.prepareImport();
+      element.prepareImport(multipleIedDoc, 'multipleied.scd');
       await element.updateComplete;
 
       (<CheckListItem>(
@@ -436,25 +411,17 @@ describe('ImportIedsPlugin', () => {
       importDoc = await fetch('/test/testfiles/importieds/invalid.iid')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-
-      element.importDoc = importDoc;
-      await element.updateComplete;
-
-      element.prepareImport();
+      element.prepareImport(importDoc, 'invalid.iid');
 
       expect(parent.history[0].kind).to.equal('error');
       expect(parent.history[0].title).to.equal('[import.log.missingied]');
     });
 
     it('throws duplicate ied name error', async () => {
-      importDoc = await fetch('/test/testfiles/importieds/dublicate.iid')
+      importDoc = await fetch('/test/testfiles/importieds/duplicate.iid')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-
-      element.importDoc = importDoc;
-      await element.updateComplete;
-
-      element.prepareImport();
+      element.prepareImport(importDoc, 'duplicate.iid');
 
       expect(parent.history[0].kind).to.equal('error');
       expect(parent.history[0].title).to.equal('[import.log.nouniqueied]');
@@ -464,11 +431,9 @@ describe('ImportIedsPlugin', () => {
       importDoc = await fetch('/test/testfiles/importieds/parsererror.iid')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-
-      element.importDoc = importDoc;
       await element.updateComplete;
 
-      element.prepareImport();
+      element.prepareImport(importDoc, 'parsererror.iid');
 
       expect(parent.history[0].kind).to.equal('error');
       expect(parent.history[0].title).to.equal('[import.log.parsererror]');
