@@ -14,6 +14,7 @@ import '@material/mwc-top-app-bar-fixed';
 import { Drawer } from '@material/mwc-drawer';
 import { ActionDetail, List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
+import './wizard-host.js'
 
 import { Mixin, newPendingStateEvent } from './foundation.js';
 import { LoggingElement } from './Logging.js';
@@ -343,7 +344,11 @@ export function Hosting<
     }
 
     renderContent(): TemplateResult{
-      return this.editors[this.activeTab]?.content ?? html``
+      return html`
+        <oscd-wizard-host .wizards=${this.wizards}>
+          ${this.editors[this.activeTab]?.content}
+        </oscd-wizard-host>
+      `
     }
 
     renderLandingPage(){

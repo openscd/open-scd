@@ -32,7 +32,7 @@ const pluginTags = new Map<string, string>();
  * https://github.com/bryc/code/blob/master/jshash/experimental/cyrb53.js .
  * @returns a valid customElement tagName containing the URI hash.
  */
-function pluginTag(uri: string): string {
+export function pluginTag(uri: string): string {
   if (!pluginTags.has(uri)) {
     let h1 = 0xdeadbeef,
       h2 = 0x41c6ce57;
@@ -57,6 +57,7 @@ function pluginTag(uri: string): string {
   return pluginTags.get(uri)!;
 }
 
+
 /**
  * This is a template literal tag function. See:
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates
@@ -71,7 +72,7 @@ function pluginTag(uri: string): string {
  * After upgrading to Lit 2 we can use their static HTML functions instead:
  * https://lit.dev/docs/api/static-html/
  */
-function staticTagHtml(
+export function staticTagHtml(
   oldStrings: ReadonlyArray<string>,
   ...oldArgs: unknown[]
 ): TemplateResult {
@@ -97,7 +98,7 @@ function staticTagHtml(
   return html(<TemplateStringsArray>strings, ...args);
 }
 
-type PluginKind = 'editor' | 'menu' | 'validator';
+type PluginKind = 'editor' | 'menu' | 'validator' | 'wizard';
 const menuPosition = ['top', 'middle', 'bottom'] as const;
 type MenuPosition = typeof menuPosition[number];
 
@@ -139,15 +140,16 @@ export const pluginIcons: Record<PluginKind | MenuPosition, string> = {
 };
 
 function resetPlugins(): void {
-  storePlugins(
-    officialPlugins.map(plugin => {
-      return {
-        src: plugin.src,
-        installed: plugin.default ?? false,
-        official: true,
-      };
-    })
-  );
+
+  const pluginConfigs: (Plugin | InstalledOfficialPlugin)[] = officialPlugins.map(plugin => {
+    return {
+      src: plugin.src,
+      installed: plugin.default ?? false,
+      official: true,
+    };
+  })
+
+  storePlugins(pluginConfigs);
 }
 
 const menuOrder: (PluginKind | MenuPosition)[] = [
@@ -198,6 +200,12 @@ export function Plugging<
         plugin => plugin.installed && plugin.kind === 'menu'
       );
     }
+    get wizards(): Plugin[]{
+      return this.plugins.filter(
+        plugin => plugin.installed && plugin.kind === 'wizard'
+      );
+    }
+
     get topMenu(): Plugin[] {
       return this.menuEntries.filter(plugin => plugin.position === 'top');
     }
@@ -225,11 +233,13 @@ export function Plugging<
     }
 
     private get storedPlugins(): Plugin[] {
-      return <Plugin[]>(
-        JSON.parse(localStorage.getItem('plugins') ?? '[]', (key, value) =>
-          value.src && value.installed ? this.addContent(value) : value
-        )
-      );
+      const storedPluginConfigs = localStorage.getItem('plugins') ?? '[]'
+
+      const plugins: Plugin[] = JSON.parse(storedPluginConfigs, (key, value) =>
+        value.src && value.installed ? this.addContent(value) : value
+      )
+
+      return plugins
     }
 
     @query('#pluginManager')
@@ -298,6 +308,7 @@ export function Plugging<
               menu: plugin.kind === 'menu',
               validator: plugin.kind === 'validator',
               editor: plugin.kind === 'editor',
+              wizard: plugin.kind === 'wizard',
             })}"
           ></${tag}>`,
       };
@@ -483,18 +494,35 @@ export function Plugging<
             @selected=${(e: MultiSelectedEvent) =>
               this.setPlugins(e.detail.index)}
           >
-            <mwc-list-item graphic="avatar" noninteractive
-              ><strong>${translate(`plugins.editor`)}</strong
-              ><mwc-icon slot="graphic" class="inverted"
-                >${pluginIcons['editor']}</mwc-icon
-              ></mwc-list-item
-            >
+            <mwc-list-item graphic="avatar" noninteractive>
+              <strong>${translate(`plugins.editor`)}</strong>
+              <mwc-icon slot="graphic" class="inverted">
+                ${pluginIcons['editor']}
+                </mwc-icon>
+            </mwc-list-item>
+
             <li divider role="separator"></li>
+
             ${this.renderPluginKind(
               'editor',
-              this.plugins.filter(p => p.kind === 'editor')
+              this.plugins.filter(p => p.kind === 'editor' || p.kind === 'wizard')
             )}
-            <mwc-list-item graphic="avatar" noninteractive
+
+            <mwc-list-item graphic="avatar" noninteractive>
+              <strong>${translate(`plugins.wizard`)}</strong>
+              <mwc-icon slot="graphic" class="inverted">
+                ${pluginIcons['editor']}
+                </mwc-icon>
+            </mwc-list-item>
+
+            <li divider role="separator"></li>
+
+            ${this.renderPluginKind(
+              'editor',
+              this.plugins.filter(p => p.kind === 'wizard')
+            )}
+
+              <mwc-list-item graphic="avatar" noninteractive
               ><strong>${translate(`plugins.menu`)}</strong
               ><mwc-icon slot="graphic" class="inverted"
                 ><strong>${pluginIcons['menu']}</strong></mwc-icon
