@@ -14,6 +14,7 @@ import '@material/mwc-top-app-bar-fixed';
 import { Drawer } from '@material/mwc-drawer';
 import { ActionDetail, List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
+import './wizard-host.js'
 
 import { Mixin, newPendingStateEvent } from './foundation.js';
 import { LoggingElement } from './Logging.js';
@@ -272,16 +273,38 @@ export function Hosting<
     }
 
     render(): TemplateResult {
-      return html` <mwc-drawer
+
+      const canDisplayEditor = this.doc && this.editors[this.activeTab]?.content
+      let content = html``
+      if(canDisplayEditor){
+        content = this.renderContent()
+      }else{
+        content = this.renderLandingPage()
+      }
+
+      return html`
+        ${this.renderHeader()}
+        ${content}
+        ${super.render()}
+      `;
+    }
+
+    renderHeader(): TemplateResult {
+      return html`
+        <mwc-drawer
           class="mdc-theme--surface"
           hasheader
           type="modal"
           id="menu"
         >
-          <span slot="title">${translate('menu.title')}</span>
-          ${this.docName
-            ? html`<span slot="subtitle">${this.docName}</span>`
-            : ''}
+          <span slot="title">
+            ${translate('menu.title')}
+          </span>
+          ${
+            this.docName
+              ? html`<span slot="subtitle">${this.docName}</span>`
+              : ''
+          }
           <mwc-list
             wrapFocus
             @action=${(ae: CustomEvent<ActionDetail>) => {
@@ -317,32 +340,43 @@ export function Hosting<
               : ``}
           </mwc-top-app-bar-fixed>
         </mwc-drawer>
-
-        ${this.doc && this.editors[this.activeTab]?.content
-          ? this.editors[this.activeTab].content
-          : html`<div class="landing">
-              ${(<MenuItem[]>this.menu.filter(mi => mi !== 'divider')).map(
-                (mi: MenuItem, index) =>
-                  mi.kind === 'top' && !mi.disabled?.()
-                    ? html`
-                        <mwc-icon-button
-                          class="landing_icon"
-                          icon="${mi.icon}"
-                          @click="${() =>
-                            (<ListItem>(
-                              this.menuUI.querySelector('mwc-list')!.items[
-                                index
-                              ]
-                            )).click()}"
-                        >
-                          <div class="landing_label">${mi.name}</div>
-                        </mwc-icon-button>
-                      `
-                    : html``
-              )}
-            </div>`}
-        ${super.render()}`;
+      `
     }
+
+    renderContent(): TemplateResult{
+      return html`
+        <oscd-wizard-host .wizards=${this.wizards}>
+          ${this.editors[this.activeTab]?.content}
+        </oscd-wizard-host>
+      `
+    }
+
+    renderLandingPage(){
+      return html`
+        <div class="landing">
+          ${(<MenuItem[]>this.menu.filter(mi => mi !== 'divider')).map(
+            (mi: MenuItem, index) =>
+              mi.kind === 'top' && !mi.disabled?.()
+                ? html`
+                    <mwc-icon-button
+                      class="landing_icon"
+                      icon="${mi.icon}"
+                      @click="${() =>
+                        (<ListItem>(
+                          this.menuUI.querySelector('mwc-list')!.items[
+                            index
+                          ]
+                        )).click()}"
+                    >
+                      <div class="landing_label">${mi.name}</div>
+                    </mwc-icon-button>
+                  `
+                : html``
+          )}
+        </div>
+      `
+    }
+
   }
   return HostingElement;
 }
