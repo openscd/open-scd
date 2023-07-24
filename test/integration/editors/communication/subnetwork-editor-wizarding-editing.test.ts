@@ -59,6 +59,7 @@ describe('subnetwork-editor wizarding editing integration', () => {
         )
       );
     });
+
     it('closes on secondary action', async () => {
       await (<HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
@@ -153,6 +154,7 @@ describe('subnetwork-editor wizarding editing integration', () => {
         .null;
     });
   });
+
   describe('remove action', () => {
     let doc: XMLDocument;
     let parent: MockWizardEditor;
@@ -211,13 +213,16 @@ describe('subnetwork-editor wizarding editing integration', () => {
         )
       );
       element = parent.querySelector('subnetwork-editor');
+    });
 
+    it('adds ConnectedAP on primary action', async () => {
       (<HTMLElement>(
         element?.shadowRoot?.querySelector(
           'mwc-icon-button[icon="playlist_add"]'
         )
       )).click();
       await parent.updateComplete;
+      await element?.updateComplete;
 
       newConnectedAPItem = <ListItemBase>(
         parent.wizardUI.dialog!.querySelector(
@@ -230,23 +235,192 @@ describe('subnetwork-editor wizarding editing integration', () => {
           'mwc-button[slot="primaryAction"]'
         )
       );
-    });
 
-    it('add ConnectedAP on primary action', async () => {
       expect(
         doc.querySelector(
           ':root > Communication > SubNetwork[name="StationBus"] > ConnectedAP[iedName="IED3"][apName="P2"]'
         )
       ).to.not.exist;
+
       newConnectedAPItem.click();
-      await parent.updateComplete;
       primaryAction.click();
       await parent.updateComplete;
+
       expect(
         doc.querySelector(
           ':root > Communication > SubNetwork[name="StationBus"] > ConnectedAP[iedName="IED3"][apName="P2"]'
         )
       ).to.exist;
+    });
+
+    it('add ConnectedAP with GSE and generates correct addresses', async () => {
+      doc = await fetch('/test/testfiles/editors/MessageBindingGOOSE2007B4.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+      parent = <MockWizardEditor>(
+        await fixture(
+          html`<mock-wizard-editor
+            ><subnetwork-editor
+              .doc=${doc}
+              .element=${doc.querySelector('SubNetwork[name="StationBus"]')}
+            ></subnetwork-editor
+          ></mock-wizard-editor>`
+        )
+      );
+      element = parent.querySelector('subnetwork-editor');
+      await parent.updateComplete;
+      await element?.updateComplete;
+
+      (<HTMLElement>(
+        element?.shadowRoot?.querySelector(
+          'mwc-icon-button[icon="playlist_add"]'
+        )
+      )).click();
+      await parent.updateComplete;
+      await element?.updateComplete;
+
+      expect(
+        doc.querySelector(
+          ':root > Communication > SubNetwork[name="StationBus"] > ConnectedAP[iedName="IED4"][apName="P1"]'
+        )
+      ).to.not.exist;
+
+      newConnectedAPItem = <ListItemBase>(
+        parent.wizardUI.dialog!.querySelector(
+          'mwc-check-list-item:nth-child(2)'
+        )
+      );
+
+      primaryAction = <HTMLElement>(
+        parent.wizardUI.dialog?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      );
+
+      newConnectedAPItem.click();
+      primaryAction.click();
+      await parent.updateComplete;
+
+      const connectedAp = doc.querySelector(
+        ':root > Communication > SubNetwork[name="StationBus"] > ConnectedAP[iedName="IED4"][apName="P1"]'
+      );
+
+      expect(connectedAp).to.exist;
+      const gse1 = connectedAp!.querySelector('GSE[cbName="GCB2"]');
+      const gse2 = connectedAp!.querySelector('GSE[cbName="GCB2"]');
+      expect(gse1).to.exist;
+      expect(gse2).to.exist;
+
+      expect(gse1?.getAttribute('ldInst')).to.equal('CircuitBreaker_CB1');
+
+      const address1 = gse1?.querySelector('Address');
+      expect(address1).to.exist;
+
+      const vlanPriority = address1?.querySelector('P[type="VLAN-PRIORITY"]');
+      expect(vlanPriority).to.exist;
+      expect(vlanPriority?.textContent).to.equal('4');
+
+      const vlanId = address1?.querySelector('P[type="VLAN-ID"]');
+      expect(vlanId).to.exist;
+      expect(vlanId?.textContent).to.equal('000');
+
+      const appId = address1?.querySelector('P[type="APPID"]');
+      expect(appId).to.exist;
+      expect(appId?.textContent).to.equal('0001');
+
+      const mac = address1?.querySelector('P[type="MAC-Address"]');
+      expect(mac).to.exist;
+      expect(mac?.textContent).to.equal('01-0C-CD-01-00-01');
+
+      const minTime = gse1?.querySelector('MinTime');
+      expect(minTime).to.exist;
+      expect(minTime?.getAttribute('unit')).to.equal('s');
+      expect(minTime?.getAttribute('multiplier')).to.equal('m');
+      expect(minTime?.textContent).to.equal('10');
+
+      const maxTime = gse1?.querySelector('MaxTime');
+      expect(maxTime).to.exist;
+      expect(maxTime?.getAttribute('unit')).to.equal('s');
+      expect(maxTime?.getAttribute('multiplier')).to.equal('m');
+      expect(maxTime?.textContent).to.equal('10000');
+    });
+
+    it('add ConnectedAP with SMV and generates correct addresses', async () => {
+      doc = await fetch('/test/testfiles/editors/MessageBindingSMV2007B4.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+      parent = <MockWizardEditor>(
+        await fixture(
+          html`<mock-wizard-editor
+            ><subnetwork-editor
+              .doc=${doc}
+              .element=${doc.querySelector('SubNetwork[name="StationBus"]')}
+            ></subnetwork-editor
+          ></mock-wizard-editor>`
+        )
+      );
+      element = parent.querySelector('subnetwork-editor');
+      await parent.updateComplete;
+      await element?.updateComplete;
+
+      (<HTMLElement>(
+        element?.shadowRoot?.querySelector(
+          'mwc-icon-button[icon="playlist_add"]'
+        )
+      )).click();
+      await parent.updateComplete;
+      await element?.updateComplete;
+
+      expect(
+        doc.querySelector(
+          ':root > Communication > SubNetwork[name="StationBus"] > ConnectedAP[iedName="IED4"][apName="P1"]'
+        )
+      ).to.not.exist;
+
+      newConnectedAPItem = <ListItemBase>(
+        parent.wizardUI.dialog!.querySelector(
+          'mwc-check-list-item:nth-child(2)'
+        )
+      );
+
+      primaryAction = <HTMLElement>(
+        parent.wizardUI.dialog?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      );
+
+      newConnectedAPItem.click();
+      primaryAction.click();
+      await parent.updateComplete;
+
+      const connectedAp = doc.querySelector(
+        ':root > Communication > SubNetwork[name="StationBus"] > ConnectedAP[iedName="IED4"][apName="P1"]'
+      );
+
+      expect(connectedAp).to.exist;
+      const smv1 = connectedAp!.querySelector('SMV[cbName="MSVCB02"]');
+      expect(smv1).to.exist;
+
+      expect(smv1?.getAttribute('ldInst')).to.equal('CircuitBreaker_CB1');
+
+      const address1 = smv1?.querySelector('Address');
+      expect(address1).to.exist;
+
+      const vlanPriority = address1?.querySelector('P[type="VLAN-PRIORITY"]');
+      expect(vlanPriority).to.exist;
+      expect(vlanPriority?.textContent).to.equal('4');
+
+      const vlanId = address1?.querySelector('P[type="VLAN-ID"]');
+      expect(vlanId).to.exist;
+      expect(vlanId?.textContent).to.equal('000');
+
+      const appId = address1?.querySelector('P[type="APPID"]');
+      expect(appId).to.exist;
+      expect(appId?.textContent).to.equal('4000');
+
+      const mac = address1?.querySelector('P[type="MAC-Address"]');
+      expect(mac).to.exist;
+      expect(mac?.textContent).to.equal('01-0C-CD-04-00-00');
     });
   });
 });

@@ -127,19 +127,22 @@ function getBitRateAction(
   multiplier: string | null,
   SubNetwork: Element
 ): EditorAction {
-  if (oldBitRate === null)
+  if (oldBitRate === null) {
+    const bitRateElement = createElement(SubNetwork.ownerDocument, 'BitRate', {
+      unit: 'b/s',
+    });
+
+    if (multiplier) bitRateElement.setAttribute('multiplier', multiplier);
+    if (BitRate) bitRateElement.textContent = BitRate;
+
     return {
       new: {
         parent: SubNetwork,
-        element: new DOMParser().parseFromString(
-          `<BitRate unit="b/s" ${
-            multiplier === null ? '' : `multiplier="${multiplier}"`
-          }>${BitRate === null ? '' : BitRate}</BitRate>`,
-          'application/xml'
-        ).documentElement,
+        element: bitRateElement,
         reference: SubNetwork.firstElementChild,
       },
     };
+  }
 
   if (BitRate === null)
     return {
