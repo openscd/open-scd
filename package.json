@@ -35,6 +35,7 @@
     "@material/mwc-textarea": "0.22.1",
     "@material/mwc-textfield": "0.22.1",
     "@material/mwc-top-app-bar-fixed": "0.22.1",
+    "@open-wc/lit-helpers": "^0.6.0",
     "ace-custom-element": "^1.6.5",
     "lit-element": "2.5.1",
     "lit-html": "1.4.1",
