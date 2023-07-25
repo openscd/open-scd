@@ -1,9 +1,10 @@
 import { createRef, Ref, ref } from 'lit/directives/ref.js';
-import { css, html, LitElement, TemplateResult, customElement, property, state, eventOptions } from 'lit-element';
+import { css, html, LitElement, TemplateResult } from 'lit';
+import { customElement, property, state, eventOptions } from 'lit/decorators.js';
 import { html as staticHtml, unsafeStatic } from 'lit/static-html.js';
 import { spread } from '@open-wc/lit-helpers';
 
-import { Plugin, pluginTag, staticTagHtml } from './Plugging.js';
+import { Plugin, pluginTag } from './Plugging.js';
 
 import '@material/mwc-dialog';
 import './components/oscd-card.js'
@@ -32,17 +33,10 @@ function isWizardingClass(c?: CustomElementConstructor): c is WizardClass {
 }
 
 const TAG_NAME = 'oscd-wizard-host';
-
 @customElement(TAG_NAME)
 export class WizardHost extends LitElement {
   @property({ type: Array })
   public wizards?: Plugin[] = [];
-
-  @state()
-  private activeWizard?: Plugin;
-
-  @state()
-  private activeWizardProps: WizardAllProps = {};
 
   @state()
   private activeWizards: Plugin[] = [];
@@ -52,7 +46,7 @@ export class WizardHost extends LitElement {
 
   private dialogRef: Ref<HTMLElement> = createRef();
 
-  render() {
+  render(): TemplateResult {
     return html`
       <div class="content-container">
       <slot
@@ -66,13 +60,24 @@ export class WizardHost extends LitElement {
   }
 
   private renderActiveWizards(): TemplateResult {
-    if (
+
+    const hasWizardsToRender =
       this.activeWizards.length === 0 ||
       this.activeWizardPropsList.length === 0 ||
       this.activeWizards.length !== this.activeWizardPropsList.length
-    ) {
+
+    if (!hasWizardsToRender) {
       return html``;
     }
+
+    const renderedWizards = this.activeWizards.map((wizard, i) => {
+      const stackLevel = this.activeWizards.length - i - 1;
+      return WizardHost.renderWizard(
+        wizard,
+        this.activeWizardPropsList[i],
+        stackLevel
+      );
+    })
 
     return html`
       <dialog
@@ -81,29 +86,22 @@ export class WizardHost extends LitElement {
         @keypress=${() => {return;}}
         @oscd-wizard-finished=${this.handleWizardFinished}
       >
-        ${this.activeWizards.map((wizard, i) => {
-          const stackLevel = this.activeWizards.length - i - 1;
-          return WizardHost.renderActiveWizard2(
-            wizard,
-            this.activeWizardPropsList[i],
-            stackLevel
-          );
-        })}
+        ${renderedWizards}
       </dialog>
     `;
   }
 
-  private static renderActiveWizard2(
+  private static renderWizard(
     wizard?: Plugin,
     wizardProps?: WizardAllProps,
     stackLevel = 0
   ): TemplateResult {
-    if (!wizard || !wizardProps) {
+    const isWizardRenderable = wizard && wizardProps
+    if (!isWizardRenderable) {
       return html``;
     }
 
     const tagName = pluginTag(wizard.src);
-    console.log({level:"dev", msg:"rendering active wizard", detail: {tagName, wizardProps}})
 
     const props = {
       '.element': wizardProps.element,
@@ -111,64 +109,15 @@ export class WizardHost extends LitElement {
       '.parent': wizardProps.parent,
     };
 
-    const tag = "x-component"
-    const renderedWizard = staticHtml`< ${unsafeStatic(tag)} ></ ${unsafeStatic(tag)} >`
-
-    // const renderedWizard = staticTagHtml`
-    //   <${tagName}
-    //     .element=${wizardProps.element},
-    //     .tagName=${wizardProps.tagName},
-    //     .parent=${wizardProps.parent},
-    //   >
-    //   </${tagName}>
-    // `;
+    const renderedWizard = staticHtml`
+      <${unsafeStatic(tagName)} ${spread(props)}>
+      </${unsafeStatic(tagName)}>
+    `;
 
     return html`
       <oscd-card stackLevel=${stackLevel}>
-        ${staticTagHtml`<${tag}></${tag}>`}
+        ${renderedWizard}
       </oscd-card>
-      `;
-  }
-
-  private renderActiveWizard(
-    wizard?: Plugin,
-    wizardProps?: WizardAllProps
-  ): TemplateResult {
-    if (!wizard || !wizardProps) {
-      return html``;
-    }
-
-    const tagName = pluginTag(wizard.src);
-
-    const props = {
-      '.element': wizardProps.element,
-      '.tagName': wizardProps.tagName,
-      '.parent': wizardProps.parent,
-    };
-
-    const renderedWizard = staticHtml`<${unsafeStatic(tagName)} ${spread(
-      props
-    )}></${unsafeStatic(tagName)}>`;
-
-    // we use mwc-dialog to get the "card" visual,
-    // because there is no component for it
-    return html`
-      <dialog
-        open
-        @click=${this.handleBackdropClick}
-        @keypress=${() => {return;}}
-        @oscd-wizard-finished=${this.handleWizardFinished}
-      >
-        <mwc-dialog
-          ${ref(this.dialogRef)}
-          open
-          scrimClickAction=""
-          hideActions
-          class="no-bg"
-        >
-          <div>${renderedWizard}</div>
-        </mwc-dialog>
-      </dialog>
     `;
   }
 
@@ -183,14 +132,15 @@ export class WizardHost extends LitElement {
   }
 
   private handleWizardCreationRequest(e: CustomEvent<WizardCreationRequest>) {
-    console.log({level:"dev", msg:"handling wizard creation request", detail: e.detail})
     const tagName = e.detail.tagName as string;
 
     const availableWizards = this.wizards?.filter(w =>
       WizardHost.doesWizardSupportCreation(tagName, w)
     );
 
-    if (availableWizards?.length === 0) {
+    const wizardsAvailable = availableWizards && availableWizards.length > 0
+
+    if (!wizardsAvailable) {
       console.warn({
         level: 'warn',
         msg: 'no wizards available for creation, stopping',
@@ -198,6 +148,7 @@ export class WizardHost extends LitElement {
       });
       return;
     }
+
     const newActiveWizard = availableWizards?.[availableWizards.length - 1];
 
     if (!newActiveWizard) {
@@ -208,9 +159,6 @@ export class WizardHost extends LitElement {
       });
       return;
     }
-    // might need to set them at the same time
-    this.activeWizardProps = e.detail;
-    this.activeWizard = newActiveWizard;
 
     this.activeWizards.push(newActiveWizard);
     this.activeWizardPropsList.push(e.detail);
@@ -219,7 +167,6 @@ export class WizardHost extends LitElement {
   private handleWizardInspectionRequest(
     e: CustomEvent<WizardInspectionRequest>
   ) {
-    console.log({level:"dev", msg:"handling wizard inspection request", detail: e.detail})
     const el = e.detail.element;
 
     const { tagName } = el;
@@ -227,7 +174,7 @@ export class WizardHost extends LitElement {
       WizardHost.doesWizardSupportInspection(tagName, w)
     );
 
-    const wizardsAvailable = availableWizards?.length === 0
+    const wizardsAvailable = availableWizards && availableWizards.length > 0
     if (!wizardsAvailable) {
       console.warn({
         level: 'warn',
@@ -248,14 +195,9 @@ export class WizardHost extends LitElement {
       return;
     }
 
-    // might need to set them at the same time
-    this.activeWizardProps = e.detail;
-    this.activeWizard = newActiveWizard;
-
     this.activeWizards.push(newActiveWizard);
     this.activeWizardPropsList.push(e.detail);
 
-    console.log({level:"dev", msg: "active wizards", activeWizards: this.activeWizards, activeWizardPropsList: this.activeWizardPropsList})
   }
 
   private handleWizardFinished() {
@@ -271,9 +213,9 @@ export class WizardHost extends LitElement {
   ): boolean {
     const wizardClass = WizardHost.extractWizardClass(wizard);
     if (!wizardClass) {
+      console.warn({level: "warn", msg:"could not find wizard class of plugin", wizard})
       return false;
     }
-
     const supportsInspection = wizardClass?.canInspect!(tagName);
 
     return supportsInspection;
@@ -299,7 +241,7 @@ export class WizardHost extends LitElement {
     if (!wizardClass) {
       console.log({
         level: 'warn',
-        msg: 'wizard not found',
+        msg: 'wizard class not found, stoping',
         wizardTag,
         src: wizard.src,
       });
@@ -309,7 +251,7 @@ export class WizardHost extends LitElement {
     if (!isWizardingClass(wizardClass)) {
       console.log({
         level: 'warn',
-        msg: 'wizard is not a wizarding class',
+        msg: 'wizard is not a wizarding class, stoping',
         wizardClass,
         wizardTag,
         src: wizard.src,
@@ -319,10 +261,6 @@ export class WizardHost extends LitElement {
 
     return wizardClass;
   }
-
-  // Declare reactive properties
-  @property()
-  public name?: string = 'World';
 
   static styles = css`
     :host {

@@ -132,6 +132,7 @@ function storePlugins(plugins: Array<Plugin | InstalledOfficialPlugin>) {
 
 export const pluginIcons: Record<PluginKind | MenuPosition, string> = {
   editor: 'tab',
+  wizard: 'tab',
   menu: 'play_circle',
   validator: 'rule_folder',
   top: 'play_circle',
