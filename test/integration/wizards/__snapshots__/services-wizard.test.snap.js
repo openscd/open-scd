@@ -2414,7 +2414,7 @@ snapshots["Wizards for SCL element Services AccessPoint wizards for Scl element 
     </wizard-select>
     <wizard-select
       disabled=""
-      label="appID"
+      label="logEna"
       nullable=""
     >
       <mwc-list-item
@@ -2441,7 +2441,7 @@ snapshots["Wizards for SCL element Services AccessPoint wizards for Scl element 
     </wizard-select>
     <wizard-select
       disabled=""
-      label="dataLabel"
+      label="trgOps"
       nullable=""
     >
       <mwc-list-item
@@ -2466,49 +2466,46 @@ snapshots["Wizards for SCL element Services AccessPoint wizards for Scl element 
         Fix
       </mwc-list-item>
     </wizard-select>
-    <wizard-checkbox
+    <wizard-select
       disabled=""
-      label="kdaParticipant"
+      label="intgPd"
       nullable=""
     >
-    </wizard-checkbox>
-    <wizard-checkbox
-      disabled=""
-      label="signature"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-checkbox
-      disabled=""
-      label="encryption"
-      nullable=""
-    >
-    </wizard-checkbox>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        Dyn
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        Conf
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        Fix
+      </mwc-list-item>
+    </wizard-select>
     <wizard-divider>
     </wizard-divider>
     <wizard-textfield
       disabled=""
-      label="max"
-      nullable=""
+      label="Max"
       required=""
     >
     </wizard-textfield>
+    <wizard-divider>
+    </wizard-divider>
     <wizard-checkbox
       disabled=""
-      label="fixedOffs"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-checkbox
-      defaultvalue=""
-      disabled=""
-      label="goose"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-checkbox
-      disabled=""
-      label="rGOOSE"
+      label="read Log"
       nullable=""
     >
     </wizard-checkbox>
@@ -2516,52 +2513,30 @@ snapshots["Wizards for SCL element Services AccessPoint wizards for Scl element 
     </wizard-divider>
     <wizard-checkbox
       disabled=""
-      label="goose"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-textfield
-      disabled=""
-      label="maxGOOSE"
-      nullable=""
-      required=""
-    >
-    </wizard-textfield>
-    <wizard-checkbox
-      disabled=""
-      label="rGOOSE"
+      label="SGEdit"
       nullable=""
     >
     </wizard-checkbox>
     <wizard-checkbox
       disabled=""
-      label="gsse"
+      label="ConfSG"
       nullable=""
     >
     </wizard-checkbox>
-    <wizard-divider>
-    </wizard-divider>
-    <wizard-textfield
-      disabled=""
-      label="maxGo"
-      nullable=""
-    >
-    </wizard-textfield>
-    <wizard-divider>
-    </wizard-divider>
-    <wizard-textfield
-      disabled=""
-      label="max"
-      nullable=""
-      required=""
-    >
-    </wizard-textfield>
   </div>
   <mwc-button
     dialogaction="close"
     label="[close]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+  </mwc-button>
+  <mwc-button
+    dialogaction="next"
+    icon="navigate_next"
+    label="[wizard.title.edit]"
+    slot="primaryAction"
+    trailingicon=""
   >
   </mwc-button>
 </mwc-dialog>
