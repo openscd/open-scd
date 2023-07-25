@@ -96,8 +96,7 @@ export class WizardHost extends LitElement {
     wizardProps?: WizardAllProps,
     stackLevel = 0
   ): TemplateResult {
-    const isWizardRenderable = wizard && wizardProps
-    if (!isWizardRenderable) {
+    if (!wizard || !wizardProps) {
       return html``;
     }
 
