@@ -24,6 +24,8 @@ If you don't have your own webserver but still want your own version of OpenSCD 
 The easiest way to get in touch is to join the `#open-scd` channel kindly hosted on [the LF Energy Slack server](https://lfenergy.slack.com/archives/C03LH7EUP34). 
 If you say "hi" there we will be more than happy to help you find your way around this project.
 
+> *Info:* See the [How To Develop for OpenSCD](./docs/how-to/develop-for-openscd.md) to see how you can use the OpenSCD platform.
+
 ### Building
 
 If you want to build OpenSCD yourself in order to make some changes to your local installation or to contribute to the project, you may first want to install [Node.js](https://nodejs.org/) in order to be able to use our local development setup. It is recommended to use Node.js 18.x. it is is the version used to build and test on GitHub Actions.
