@@ -159,6 +159,7 @@ export const en = {
   plugins: {
     heading: 'Extensions',
     editor: 'Editor tab',
+    wizard: 'Wizard',
     menu: 'Menu entry',
     requireDoc: 'Requires loaded document',
     top: 'top',
