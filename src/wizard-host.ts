@@ -204,7 +204,6 @@ export class WizardHost extends LitElement {
     this.activeWizards.pop();
     this.activeWizardPropsList.pop();
     this.requestUpdate();
-    // this.activeWizard = undefined;
   }
 
   private static doesWizardSupportInspection(
