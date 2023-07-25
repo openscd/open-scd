@@ -506,7 +506,7 @@ export function Plugging<
 
             ${this.renderPluginKind(
               'editor',
-              this.plugins.filter(p => p.kind === 'editor' || p.kind === 'wizard')
+              this.plugins.filter(p => p.kind === 'editor')
             )}
 
             <mwc-list-item graphic="avatar" noninteractive>
