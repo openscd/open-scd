@@ -688,6 +688,7 @@ export const en = {
       loaderror: 'Could not load file',
       importerror: 'Could not import IED',
       missingied: 'No IED element in the file',
+      multipleied: 'Multiple IED elements found',
       nouniqueied: 'IED element {{ name }} already in the file',
     },
   },

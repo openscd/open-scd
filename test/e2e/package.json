@@ -1,0 +1,17 @@
+{
+    "name": "@open-scd/cucumber",
+    "version": "0.0.1",
+    "repository": "https://github.com/openscd/open-scd.git",
+    "description": "A bottom-up substation configuration designer for projects described using SCL `IEC 61850-6` Edition 2 or greater.",
+    "keywords": [
+      "SCL",
+      "substation configuration",
+      "IEC",
+      "61850-6",
+      "SCD",
+      "editor"
+    ],
+    "author": "OMICRON electronics GmbH",
+    "license": "Apache-2.0"
+}
+  

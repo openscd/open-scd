@@ -689,6 +689,7 @@ export const de: Translations = {
       loaderror: 'Datei kann nicht geladen werden',
       importerror: 'IED Element kann nicht importiert werden',
       missingied: 'Kein IED Element in der Datei',
+      multipleied: 'Mehrere IED-Elemente in einer Datei',
       nouniqueied: 'IED Element {{ name }} bereits geladen',
     },
   },
