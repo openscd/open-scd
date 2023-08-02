@@ -9,7 +9,10 @@ describe('PluggingElement', () => {
   let element: MockPlugger;
   let doc: XMLDocument;
 
-  afterEach(() => localStorage.clear());
+  afterEach(async () => {
+    await new Promise(resolve => setTimeout(resolve, 50)); // await animation
+    localStorage.clear();
+  });
   beforeEach(async () => {
     doc = await fetch('/test/testfiles/valid2007B4.scd')
       .then(response => response.text())
@@ -23,7 +26,7 @@ describe('PluggingElement', () => {
   });
 
   it('stores default plugins on load', () =>
-    expect(element).property('editors').to.have.lengthOf(13));
+    expect(element).property('editors').to.have.lengthOf(9));
 
   describe('plugin manager dialog', () => {
     let firstEditorPlugin: HTMLElement;
@@ -50,7 +53,7 @@ describe('PluggingElement', () => {
     it('disables deselected plugins', async () => {
       firstEditorPlugin.click();
       await element.updateComplete;
-      expect(element).property('editors').to.have.lengthOf(12);
+      expect(element).property('editors').to.have.lengthOf(8);
     });
 
     it('enables selected plugins', async () => {
@@ -58,7 +61,7 @@ describe('PluggingElement', () => {
       await element.updateComplete;
       (<HTMLElement>element.pluginList.firstElementChild).click();
       await element.updateComplete;
-      expect(element).property('editors').to.have.lengthOf(13);
+      expect(element).property('editors').to.have.lengthOf(9);
     });
 
     it('resets plugins to default on reset button click', async () => {
@@ -66,7 +69,7 @@ describe('PluggingElement', () => {
       await element.updateComplete;
       resetAction.click();
       await element.updateComplete;
-      expect(element).property('editors').to.have.lengthOf(13);
+      expect(element).property('editors').to.have.lengthOf(9);
     });
 
     it('opens the custom plugin dialog on add button click', async () => {
@@ -140,7 +143,7 @@ describe('PluggingElement', () => {
       await name.updateComplete;
       primaryAction.click();
       await element.updateComplete;
-      expect(element.editors).to.have.lengthOf(14);
+      expect(element.editors).to.have.lengthOf(10);
     });
     it('adds a new menu kind plugin on add button click', async () => {
       const lengthMenuKindPlugins = element.menuEntries.length;
@@ -161,6 +164,7 @@ describe('PluggingElement', () => {
       await name.updateComplete;
       primaryAction.click();
       await element.updateComplete;
+
       expect(
         element.menuEntries[element.menuEntries.length - 1]
       ).to.have.property('requireDoc');
@@ -169,7 +173,7 @@ describe('PluggingElement', () => {
       ).to.have.property('position');
     });
     it('adds a new validator kind plugin on add button click', async () => {
-      expect(element.validators).to.have.lengthOf(3);
+      expect(element.validators).to.have.lengthOf(2);
       src.value = 'http://example.com/plugin.js';
       name.value = 'testName';
       validatorKindOption.click();
@@ -177,7 +181,7 @@ describe('PluggingElement', () => {
       await name.updateComplete;
       primaryAction.click();
       await element.updateComplete;
-      expect(element.validators).to.have.lengthOf(4);
+      expect(element.validators).to.have.lengthOf(3);
     });
   });
 });

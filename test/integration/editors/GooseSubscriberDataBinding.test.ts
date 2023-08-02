@@ -1,6 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import { Wizarding } from '../../../src/Wizarding.js';
 import { Editing } from '../../../src/Editing.js';
+import { Logging } from '../../../src/Logging.js';
 import { initializeNsdoc } from '../../../src/foundation/nsdoc.js';
 
 import GooseSubscriberDataBinding from '../../../src/editors/GooseSubscriberDataBinding.js';
@@ -15,7 +16,7 @@ import {
 describe('GOOSE Subscribe Data Binding Plugin', async () => {
   customElements.define(
     'goose-subscriber-data-binding-plugin',
-    Wizarding(Editing(GooseSubscriberDataBinding))
+    Wizarding(Editing(Logging(GooseSubscriberDataBinding)))
   );
 
   let element: GooseSubscriberDataBinding;
@@ -45,8 +46,9 @@ describe('GOOSE Subscribe Data Binding Plugin', async () => {
       'GOOSE_Publisher>>QB2_Disconnector>GOOSE1',
       'GOOSE_Publisher>>QB2_Disconnector>GOOSE1sDataSet>QB1_Disconnector/ CSWI 1.Pos q (ST)'
     );
-    await element.requestUpdate();
-    await extRefListElement.requestUpdate();
+    await element.updateComplete;
+    await extRefListElement.updateComplete;
+    await fcdaListElement.updateComplete;
 
     expect(extRefListElement['getSubscribedLNElements']().length).to.be.equal(
       0
@@ -64,12 +66,16 @@ describe('GOOSE Subscribe Data Binding Plugin', async () => {
         'mwc-list-item[value="GOOSE_Subscriber2>>Earth_Switch> XSWI 1"]'
       )
     )).click();
-    await element.requestUpdate();
+    await element.updateComplete;
+    await extRefListElement.updateComplete;
+    await fcdaListElement.updateComplete;
 
     expect(extRefListElement['getSubscribedLNElements']().length).to.be.equal(
       1
     );
-    expect(getSelectedSubItemValue(fcdaListElement)).to.have.text('1');
+    expect(getSelectedSubItemValue(fcdaListElement)).to.exist.and.have.text(
+      '1'
+    );
     expect(extRefListElement['getAvailableLNElements']().length).to.be.equal(7);
     expect(
       element.doc.querySelectorAll(
@@ -87,8 +93,8 @@ describe('GOOSE Subscribe Data Binding Plugin', async () => {
       'GOOSE_Publisher>>QB2_Disconnector>GOOSE2',
       'GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos q (ST)'
     );
-    await element.requestUpdate();
-    await extRefListElement.requestUpdate();
+    await element.updateComplete;
+    await extRefListElement.updateComplete;
 
     expect(extRefListElement['getSubscribedLNElements']().length).to.be.equal(
       1
@@ -107,7 +113,7 @@ describe('GOOSE Subscribe Data Binding Plugin', async () => {
         'mwc-list-item[value="GOOSE_Subscriber2>>Earth_Switch"]'
       )
     )).click();
-    await element.requestUpdate();
+    await element.updateComplete;
 
     expect(extRefListElement['getSubscribedLNElements']().length).to.be.equal(
       0
@@ -137,30 +143,30 @@ describe('GOOSE Subscribe Data Binding Plugin', async () => {
       'GOOSE_Publisher>>QB2_Disconnector>GOOSE2',
       'GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos q (ST)'
     );
-    await element.requestUpdate();
-    await extRefListElement.requestUpdate();
+    await element.updateComplete;
+    await extRefListElement.updateComplete;
 
     (<HTMLElement>(
       extRefListElement.shadowRoot!.querySelector(
         'mwc-list-item[value="GOOSE_Subscriber2>>Earth_Switch"]'
       )
     )).click();
-    await element.requestUpdate();
+    await element.updateComplete;
 
     selectFCDAItem(
       fcdaListElement,
       'GOOSE_Publisher>>QB2_Disconnector>GOOSE2',
       'GOOSE_Publisher>>QB2_Disconnector>GOOSE2sDataSet>QB2_Disconnector/ CSWI 1.Pos stVal (ST)'
     );
-    await element.requestUpdate();
-    await extRefListElement.requestUpdate();
+    await element.updateComplete;
+    await extRefListElement.updateComplete;
 
     (<HTMLElement>(
       extRefListElement.shadowRoot!.querySelector(
         'mwc-list-item[value="GOOSE_Subscriber2>>Earth_Switch"]'
       )
     )).click();
-    await element.requestUpdate();
+    await element.updateComplete;
 
     expect(
       element.doc.querySelectorAll(

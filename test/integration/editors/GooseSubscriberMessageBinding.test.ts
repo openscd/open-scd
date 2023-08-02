@@ -6,12 +6,13 @@ import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 
 import { Editing } from '../../../src/Editing.js';
 import { Wizarding } from '../../../src/Wizarding.js';
+import { Logging } from '../../../src/Logging.js';
 import GooseSubscriberMessageBindingPlugin from '../../../src/editors/GooseSubscriberMessageBinding.js';
 
 describe('GOOSE subscriber plugin', () => {
   customElements.define(
     'subscription-plugin',
-    Wizarding(Editing(GooseSubscriberMessageBindingPlugin))
+    Wizarding(Editing(Logging(GooseSubscriberMessageBindingPlugin)))
   );
   let element: GooseSubscriberMessageBindingPlugin;
   let doc: XMLDocument;
@@ -50,14 +51,15 @@ describe('GOOSE subscriber plugin', () => {
     });
 
     describe('with a selected GOOSE message', () => {
-      const nthGSEControl = 2;
+      const nthGSEControl = 1;
       let fCDAs: Element[];
       let gseControlBlock: Element;
 
       let goose: HTMLElement;
 
       beforeEach(async () => {
-        gseControlBlock = doc.querySelectorAll('GSEControl')[nthGSEControl];
+        gseControlBlock =
+          doc.querySelectorAll('GSEControl[datSet]')[nthGSEControl];
         fCDAs = Array.from(
           gseControlBlock.parentElement?.querySelectorAll(
             `DataSet[name="${gseControlBlock.getAttribute('datSet')}"] > FCDA`

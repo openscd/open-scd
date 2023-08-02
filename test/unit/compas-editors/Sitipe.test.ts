@@ -1,6 +1,6 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import Sitipe from '../../../src/editors/Sitipe.js';
+import Sitipe from '../../../src/compas-editors/Sitipe.js';
 
 describe('Sitipe plugin', () => {
   customElements.define('sitipe-plugin', Sitipe);

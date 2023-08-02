@@ -1,6 +1,6 @@
 {
   "name": "open-scd",
-  "version": "0.31.0",
+  "version": "0.33.0",
   "repository": "https://github.com/openscd/open-scd.git",
   "description": "A bottom-up substation configuration designer for projects described using SCL `IEC 61850-6` Edition 2 or greater.",
   "keywords": [
@@ -17,7 +17,6 @@
   "module": "open-scd.js",
   "type": "module",
   "dependencies": {
-    "@material/mwc-circular-progress-four-color": "0.22.1",
     "@material/mwc-dialog": "0.22.1",
     "@material/mwc-drawer": "0.22.1",
     "@material/mwc-fab": "0.22.1",

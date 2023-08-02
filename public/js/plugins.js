@@ -1,15 +1,15 @@
 export const officialPlugins = [
   {
-    name: 'Substation',
-    src: '/src/editors/Substation.js',
-    icon: 'margin',
+    name: 'IED',
+    src: '/src/editors/IED.js',
+    icon: 'developer_board',
     default: true,
     kind: 'editor',
   },
   {
-    name: 'IED',
-    src: '/src/editors/IED.js',
-    icon: 'developer_board',
+    name: 'Substation',
+    src: '/src/editors/Substation.js',
+    icon: 'margin',
     default: true,
     kind: 'editor',
   },
@@ -24,14 +24,14 @@ export const officialPlugins = [
     name: 'Subscriber Message Binding (GOOSE)',
     src: '/src/editors/GooseSubscriberMessageBinding.js',
     icon: 'link',
-    default: true,
+    default: false,
     kind: 'editor',
   },
   {
     name: 'Subscriber Data Binding (GOOSE)',
     src: '/src/editors/GooseSubscriberDataBinding.js',
     icon: 'link',
-    default: true,
+    default: false,
     kind: 'editor',
   },
   {
@@ -45,14 +45,14 @@ export const officialPlugins = [
     name: 'Subscriber Message Binding (SMV)',
     src: '/src/editors/SMVSubscriberMessageBinding.js',
     icon: 'link',
-    default: true,
+    default: false,
     kind: 'editor',
   },
   {
     name: 'Subscriber Data Binding (SMV)',
     src: '/src/editors/SMVSubscriberDataBinding.js',
     icon: 'link',
-    default: true,
+    default: false,
     kind: 'editor',
   },
   {
@@ -168,10 +168,10 @@ export const officialPlugins = [
     position: 'top',
   },
   {
-    name: 'Validate using OCL',
+    name: '[WIP] Validate using OCL',
     src: '/src/validators/CompasValidateSchema.js',
     icon: 'rule_folder',
-    default: true,
+    default: false,
     kind: 'validator',
   },
   {
@@ -329,7 +329,7 @@ export const officialPlugins = [
   },
   {
     name: 'Autogen Substation',
-    src: '/src/editors/substation/autogen-substation/autogen-substation.js',
+    src: '/src/compas-editors/autogen-substation.js',
     icon: 'playlist_add_circle',
     default: true,
     kind: 'menu',

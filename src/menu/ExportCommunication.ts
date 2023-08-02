@@ -49,6 +49,8 @@ export function saveXmlBlob(
 export default class ExportCommunication extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property({ attribute: false }) doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
   @property({ attribute: false }) docName!: string;
 
   /** Entry point for this plug-in */
