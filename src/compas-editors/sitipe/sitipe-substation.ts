@@ -57,6 +57,11 @@ export class SitipeSubstation extends LitElement {
   @property({ attribute: false })
   element!: Element;
 
+  @property({
+    type: Number,
+  })
+  editCount = -1;
+
   @property()
   namingStrategy: NamingStrategy = defaultNamingStrategy;
 
@@ -104,6 +109,7 @@ export class SitipeSubstation extends LitElement {
       .bayTypicals=${this.bayTypicals}
       .doc=${this.doc}
       .namingStrategy=${this.namingStrategy}
+      .editCount=${this.editCount}
     ></sitipe-bay>`;
   }
 

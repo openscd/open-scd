@@ -374,6 +374,11 @@ export class SitipeBay extends LitElement {
   @property()
   bayTypicals: BayTypical[] = [];
 
+  @property({
+    type: Number,
+  })
+  editCount = -1;
+
   @property()
   namingStrategy: NamingStrategy = defaultNamingStrategy;
 
@@ -567,20 +572,10 @@ export class SitipeBay extends LitElement {
     this.importIED(ied);
 
     if (iedName || oldIEDName) {
-      console.log('just before createelement');
-      console.log('doc element: ', this.doc.documentElement);
-
       const privateIEDRef: Element = createElement(this.doc, 'Private', {
         type: SIEMENS_SITIPE_IED_TEMPLATE_REF,
       });
       privateIEDRef.textContent = btComponent.name || oldIEDName;
-
-      console.log(
-        'Adding private iedRef element',
-        privateIEDRef,
-        'to ied: ',
-        ied
-      );
 
       this.dispatchEvent(
         newActionEvent({
