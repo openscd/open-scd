@@ -49,13 +49,13 @@
     "format:prettier": "prettier \"**/*.js\" \"**/*.ts\" --write --ignore-path .gitignore",
     "lint": "npm run lint:eslint && npm run lint:prettier",
     "format": "npm run format:eslint && npm run format:prettier",
-    "test": "web-test-runner --coverage",
+    "test": "npm run lint && web-test-runner --coverage",
     "test:snapshot": "web-test-runner --update-snapshots --coverage",
     "test:manual": "web-test-runner --manual",
     "test:watch": "web-test-runner --watch",
     "test:unit": "web-test-runner --watch --group unit",
     "test:integration": "web-test-runner --watch --group integration",
-    "doc:clean": "npx rimraf doc",
+    "doc:clean": "npx --no -- rimraf doc",
     "doc:typedoc": "typedoc --plugin none --out doc src",
     "doc:wca": "wca src --outDir doc/components",
     "doc": "npm run doc:clean && npm run doc:typedoc && npm run doc:wca",
@@ -65,7 +65,8 @@
     "release:major": "standard-version --release-as major",
     "build": "npm run test && npm run build:notest && cp .nojekyll build/",
     "build:notest": "npm run doc && snowpack build && workbox generateSW workbox-config.cjs",
-    "start": "snowpack dev"
+    "start": "snowpack dev",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
@@ -88,7 +89,7 @@
     "eslint-plugin-babel": "^5.3.1",
     "eslint-plugin-tsdoc": "^0.2.14",
     "fast-check": "^2.19.0",
-    "husky": "^7.0.1",
+    "husky": "^8.0.0",
     "lint-staged": "^11.1.2",
     "prettier": "^2.3.2",
     "sinon": "^11.1.2",
@@ -111,12 +112,6 @@
   "prettier": {
     "singleQuote": true,
     "arrowParens": "avoid"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
   },
   "lint-staged": {
     "*.ts": [

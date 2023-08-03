@@ -14,6 +14,7 @@ import { WizardDialog } from './wizard-dialog.js';
  * queued onto on incoming [[`WizardEvent`]]s, first come first displayed. */
 export type WizardingElement = Mixin<typeof Wizarding>;
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function Wizarding<TBase extends LitElementConstructor>(Base: TBase) {
   class WizardingElement extends Base {
     /** FIFO queue of [[`Wizard`]]s to display. */
@@ -37,6 +38,7 @@ export function Wizarding<TBase extends LitElementConstructor>(Base: TBase) {
       );
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     constructor(...args: any[]) {
       super(...args);
 

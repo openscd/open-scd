@@ -42,7 +42,10 @@ interface MenuPlugin {
 /** Mixin that hosts the UI for Plugins, Settings and Logging */
 export type HostingElement = Mixin<typeof Hosting>;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function Hosting<
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   TBase extends new (...args: any[]) => PluggingElement &
     LoggingElement &
     SettingElement
@@ -207,6 +210,7 @@ export function Hosting<
       ];
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     constructor(...args: any[]) {
       super(...args);
 

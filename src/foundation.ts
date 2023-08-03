@@ -1555,7 +1555,7 @@ const sCLTags = [
   'SecPerSamples',
 ] as const;
 
-export type SCLTag = typeof sCLTags[number];
+export type SCLTag = (typeof sCLTags)[number];
 
 const tagSet = new Set<string>(sCLTags);
 
@@ -2613,9 +2613,11 @@ export const ifImplemented = directive(rendered => (part: Part) => {
 });
 
 /** Constructor type for defining `LitElement` mixins. */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type LitElementConstructor = new (...args: any[]) => LitElement;
 
 /** The type returned by `MyMixin(...)` is `Mixin<typeof MyMixin>`. */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type Mixin<T extends (...args: any[]) => any> = InstanceType<
   ReturnType<T>
 >;

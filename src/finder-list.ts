@@ -93,6 +93,7 @@ export class FinderList extends LitElement {
     return path.join('/');
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   getDisplayString(entry: string, path: string[]): string {
     return entry;
   }

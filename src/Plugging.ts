@@ -99,7 +99,7 @@ function staticTagHtml(
 
 type PluginKind = 'editor' | 'menu' | 'validator';
 const menuPosition = ['top', 'middle', 'bottom'] as const;
-type MenuPosition = typeof menuPosition[number];
+type MenuPosition = (typeof menuPosition)[number];
 
 export type Plugin = {
   name: string;
@@ -176,7 +176,9 @@ const loadedPlugins = new Set<string>();
 /** Mixin that manages Plugins in `localStorage` */
 export type PluggingElement = Mixin<typeof Plugging>;
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function Plugging<
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   TBase extends new (...args: any[]) => EditingElement & LoggingElement
 >(Base: TBase) {
   class PluggingElement extends Base {
@@ -345,6 +347,7 @@ export function Plugging<
       this.pluginDownloadUI.close();
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     constructor(...args: any[]) {
       super(...args);
 

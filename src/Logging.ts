@@ -68,6 +68,7 @@ function getPluginName(src: string): string {
  */
 export type LoggingElement = Mixin<typeof Logging>;
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
   class LoggingElement extends Base {
     /** All [[`LogEntry`]]s received so far through [[`LogEvent`]]s. */
@@ -185,6 +186,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       super.performUpdate();
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     constructor(...args: any[]) {
       super(...args);
 

@@ -85,6 +85,7 @@ describe('IED Plugin', () => {
 
         await element.requestUpdate();
 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         expect((element as any as WizardingElement).wizardUI).to.exist;
       });
     });
@@ -234,11 +235,11 @@ describe('IED Plugin', () => {
           await element.updateComplete;
 
           expect(
-            (element as any as WizardingElement).wizardUI.dialogs.length
+            (element as unknown as WizardingElement).wizardUI.dialogs.length
           ).to.equal(1);
           expect(
             (
-              element as any as WizardingElement
+              element as unknown as WizardingElement
             ).wizardUI.dialogs[0]!.querySelectorAll('wizard-textfield').length
           ).to.equal(3);
         });

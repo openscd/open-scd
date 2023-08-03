@@ -6,46 +6,7 @@ import { MockWizardEditor } from '../../../mock-wizard-editor.js';
 import '../../../../src/editors/substation/voltage-level-editor.js';
 import { VoltageLevelEditor } from '../../../../src/editors/substation/voltage-level-editor.js';
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
-import { ListItemBase } from '@material/mwc-list/mwc-list-item-base.js';
-import { MenuBase } from '@material/mwc-menu/mwc-menu-base.js';
-
-const openAndCancelMenu: (
-  parent: MockWizardEditor,
-  element: VoltageLevelEditor
-) => Promise<void> = (
-  parent: MockWizardEditor,
-  element: VoltageLevelEditor
-): Promise<void> =>
-  new Promise(async resolve => {
-    expect(parent.wizardUI.dialog).to.be.undefined;
-
-    element?.shadowRoot
-      ?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!
-      .click();
-    const powerTransformerMenuItem: ListItemBase =
-      element?.shadowRoot?.querySelector<ListItemBase>(
-        `mwc-list-item[value='PowerTransformer']`
-      )!;
-
-    console.log(powerTransformerMenuItem);
-    powerTransformerMenuItem.click();
-    await new Promise(resolve => setTimeout(resolve, 100)); // await animation
-
-    expect(parent.wizardUI.dialog).to.exist;
-
-    const secondaryAction: HTMLElement = <HTMLElement>(
-      parent.wizardUI.dialog?.querySelector(
-        'mwc-button[slot="secondaryAction"]'
-      )
-    );
-
-    secondaryAction.click();
-    await new Promise(resolve => setTimeout(resolve, 100)); // await animation
-
-    expect(parent.wizardUI.dialog).to.be.undefined;
-
-    return resolve();
-  });
+import { openAndCancelMenu } from './openAndCancelMenu.js';
 
 describe('voltage-level-editor wizarding editing integration', () => {
   describe('edit wizard', () => {

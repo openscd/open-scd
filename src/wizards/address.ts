@@ -58,7 +58,7 @@ export function createAddressElement(
   const element = createElement(parent.ownerDocument, 'Address', {});
 
   Object.entries(inputs)
-    .filter(([key, value]) => value !== null)
+    .filter(([_key, value]) => value !== null)
     .forEach(([key, value]) => {
       const type = key;
       const child = createElement(parent.ownerDocument, 'P', { type });

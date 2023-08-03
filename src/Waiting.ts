@@ -13,6 +13,7 @@ import {
  * [Pending State](https://github.com/justinfagnani/pending-state-protocol) */
 export type WaitingElement = Mixin<typeof Waiting>;
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function Waiting<TBase extends LitElementConstructor>(Base: TBase) {
   class WaitingElement extends Base {
     /** Whether the element is currently waiting for some async work. */
@@ -32,6 +33,7 @@ export function Waiting<TBase extends LitElementConstructor>(Base: TBase) {
       this.waiting = this.work.size > 0;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     constructor(...args: any[]) {
       super(...args);
 

@@ -36,8 +36,6 @@ export default class ValidateTemplates extends LitElement {
   }
 
   async validate(): Promise<void> {
-    const promises: Promise<void>[] = [];
-
     const [version, revision, release] = [
       this.doc.documentElement.getAttribute('version') ?? '',
       this.doc.documentElement.getAttribute('revision') ?? '',

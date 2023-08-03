@@ -10,19 +10,23 @@ import { createNetworkingWizardPage } from './service-networking.js';
 import { createSampledValuesWizardPage } from './service-sampled-values.js';
 import { createClientServerConfigurationsWizardPage } from './service-clientServer-configurations.js';
 
-export function isEmptyObject<T = any>(
-  target: T,
-  dealedAsEmpty: any[] = [null, undefined, '']
+export type ServicesContent = {
+  [key: string]: null | undefined | string | ServicesContent;
+};
+
+export function isEmptyObject(
+  target: ServicesContent,
+  consideredEmpty: unknown[] = [null, undefined, '']
 ): boolean {
   return (
     target === null
       ? [false]
       : Object.keys(target).flatMap(key => {
-          const value: any = (target as any)[key];
+          const value: unknown = target[key];
           if (typeof value === 'object') {
-            return isEmptyObject(value);
+            return isEmptyObject(value as ServicesContent);
           } else {
-            return [dealedAsEmpty.includes(value)];
+            return [consideredEmpty.includes(value)];
           }
         })
   ).includes(true);
