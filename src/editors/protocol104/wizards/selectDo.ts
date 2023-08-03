@@ -13,7 +13,7 @@ import {
   getNameAttribute,
   identity,
   newSubWizardEvent,
-  selector,
+  find,
   Wizard,
   WizardActor,
   WizardInputElement,
@@ -158,7 +158,7 @@ function checkAndGetLastElementFromPath(
   const [tagName, id] = path.pop()!.split(': ');
   if (!expectedTag.includes(tagName)) return null;
 
-  return doc.querySelector(selector(tagName, id));
+  return find(doc, tagName, id);
 }
 
 /**

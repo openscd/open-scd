@@ -15,6 +15,7 @@ import {
   cloneElement,
   createElement,
   EditorAction,
+  find,
   getChildElementsByTagName,
   getValue,
   identity,
@@ -22,7 +23,6 @@ import {
   newLogEvent,
   newWizardEvent,
   referencePath,
-  selector,
   Wizard,
   WizardActor,
   WizardInputElement,
@@ -40,11 +40,7 @@ function createLNodeAction(parent: Element): WizardActor {
     const selectedLNodeTypes = <Element[]>list!.items
       .filter(item => item.selected)
       .map(item => item.value)
-      .map(identity => {
-        return parent.ownerDocument.querySelector(
-          selector('LNodeType', identity)
-        );
-      })
+      .map(identity => find(parent.ownerDocument, 'LNodeType', identity))
       .filter(item => item !== null);
 
     const lnInstGenerator = newLnInstGenerator(parent);
@@ -279,9 +275,9 @@ export function lNodeWizardAction(parent: Element): WizardActor {
       .filter(item => item.selected)
       .map(item => item.value)
       .map(identity => {
-        return parent.ownerDocument.querySelector(selector('LN0', identity))
-          ? parent.ownerDocument.querySelector(selector('LN0', identity))
-          : parent.ownerDocument.querySelector(selector('LN', identity));
+        const ln0 = find(parent.ownerDocument, 'LN0', identity);
+        if (ln0) return ln0;
+        return find(parent.ownerDocument, 'LN', identity);
       })
       .filter(item => item !== null);
 

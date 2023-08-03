@@ -9,9 +9,9 @@ import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import '../filtered-list.js';
 import {
   createElement,
+  find,
   identity,
   pathParts,
-  selector,
   Wizard,
   WizardAction,
   WizardActor,
@@ -34,16 +34,16 @@ function getElement(identity: string | number): string {
 
 function getLogicalNode(doc: XMLDocument, identity: string): Element | null {
   if (identity.split('>').length === 4) {
-    return doc.querySelector(selector('LN', identity));
+    return find(doc, 'LN', identity);
   }
 
   if (identity.split('>').length === 3) {
     if (getElement(identity).split(' ').length > 1) {
-      return doc.querySelector(selector('LN', identity));
+      return find(doc, 'LN', identity);
     }
 
     if (getElement(identity).split(' ').length === 1) {
-      return doc.querySelector(selector('LN0', identity));
+      return find(doc, 'LN0', identity);
     }
   }
 
@@ -128,7 +128,7 @@ function addClientLnAction(doc: XMLDocument): WizardActor {
 
       const reportCbs = <Element[]>cbSelected
         .map(cb => cb.value)
-        .map(cbValue => doc.querySelector(selector('ReportControl', cbValue)))
+        .map(cbValue => find(doc, 'ReportControl', cbValue))
         .filter(cb => cb !== null);
 
       reportCbs.forEach(cb => {
