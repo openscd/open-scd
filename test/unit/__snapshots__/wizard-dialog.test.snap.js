@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["wizard-dialog with user defined menu actions set looks like its snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'wizard-dialog with user defined menu actions set looks like its snapshot'
+] = `<mwc-dialog
   defaultaction="next"
   heading="Page 1"
   open=""
@@ -59,20 +60,23 @@ snapshots["wizard-dialog with user defined menu actions set looks like its snaps
 `;
 /* end snapshot wizard-dialog with user defined menu actions set looks like its snapshot */
 
-snapshots["wizard-dialog with a nonempty wizard property in pro mode looks like its snapshot"] = 
-`<wizard-dialog>
+snapshots[
+  'wizard-dialog with a nonempty wizard property in pro mode looks like its snapshot'
+] = `<wizard-dialog>
 </wizard-dialog>
 `;
 /* end snapshot wizard-dialog with a nonempty wizard property in pro mode looks like its snapshot */
 
-snapshots["wizard-dialog with a nonempty wizard property in pro mode switches to code editor view on code toggle button click"] = 
-`<wizard-dialog>
+snapshots[
+  'wizard-dialog with a nonempty wizard property in pro mode switches to code editor view on code toggle button click'
+] = `<wizard-dialog>
 </wizard-dialog>
 `;
 /* end snapshot wizard-dialog with a nonempty wizard property in pro mode switches to code editor view on code toggle button click */
 
-snapshots["wizard-dialog with content definition throught WizardInputs for a specific WizardInput of the kind Checkbox the dom looks like the latest snapshot"] = 
-`<wizard-checkbox
+snapshots[
+  'wizard-dialog with content definition throught WizardInputs for a specific WizardInput of the kind Checkbox the dom looks like the latest snapshot'
+] = `<wizard-checkbox
   defaultchecked=""
   label="myLabel"
   nullable=""
@@ -81,8 +85,9 @@ snapshots["wizard-dialog with content definition throught WizardInputs for a spe
 `;
 /* end snapshot wizard-dialog with content definition throught WizardInputs for a specific WizardInput of the kind Checkbox the dom looks like the latest snapshot */
 
-snapshots["wizard-dialog with content definition throught WizardInputs for another WizardInputs of the kind Checkbox the dom looks like the latest snapshot"] = 
-`<wizard-checkbox
+snapshots[
+  'wizard-dialog with content definition throught WizardInputs for another WizardInputs of the kind Checkbox the dom looks like the latest snapshot'
+] = `<wizard-checkbox
   label="myLabel"
   nullable=""
 >
@@ -90,8 +95,9 @@ snapshots["wizard-dialog with content definition throught WizardInputs for anoth
 `;
 /* end snapshot wizard-dialog with content definition throught WizardInputs for another WizardInputs of the kind Checkbox the dom looks like the latest snapshot */
 
-snapshots["wizard-dialog with content definition throught WizardInputs for a specific WizardInput of the kind Select the dom looks like the latest snapshot"] = 
-`<wizard-select label="myLabel">
+snapshots[
+  'wizard-dialog with content definition throught WizardInputs for a specific WizardInput of the kind Select the dom looks like the latest snapshot'
+] = `<wizard-select label="myLabel">
   <mwc-list-item
     activated=""
     aria-disabled="false"
@@ -117,8 +123,9 @@ snapshots["wizard-dialog with content definition throught WizardInputs for a spe
 `;
 /* end snapshot wizard-dialog with content definition throught WizardInputs for a specific WizardInput of the kind Select the dom looks like the latest snapshot */
 
-snapshots["wizard-dialog with content definition throught WizardInputs for a specific WizardInput of the kind TextField the dom looks like the latest snapshot"] = 
-`<wizard-textfield
+snapshots[
+  'wizard-dialog with content definition throught WizardInputs for a specific WizardInput of the kind TextField the dom looks like the latest snapshot'
+] = `<wizard-textfield
   disabled=""
   label="myLabel"
   nullable=""
@@ -126,4 +133,3 @@ snapshots["wizard-dialog with content definition throught WizardInputs for a spe
 </wizard-textfield>
 `;
 /* end snapshot wizard-dialog with content definition throught WizardInputs for a specific WizardInput of the kind TextField the dom looks like the latest snapshot */
-

@@ -1,10 +1,10 @@
 import { SCLTag, Wizard } from '../../../foundation.js';
 import { emptyWizard } from '../../../wizards/wizard-library.js';
 
-import { editConnectivityNodeWizard } from "../../../wizards/connectivitynode.js";
-import { editTerminalWizard } from "../../../wizards/terminal.js";
+import { editConnectivityNodeWizard } from '../../../wizards/connectivitynode.js';
+import { editTerminalWizard } from '../../../wizards/terminal.js';
 
-import { editBayWizard } from "./bay.js";
+import { editBayWizard } from './bay.js';
 import { editConductingEquipmentWizard } from './conductingequipment.js';
 import { editPowerTransformerWizard } from './powertransformer.js';
 

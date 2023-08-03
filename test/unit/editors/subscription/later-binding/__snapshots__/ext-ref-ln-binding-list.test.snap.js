@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["looks like the latest snapshot without a doc loaded"] = 
-`<section tabindex="0">
+snapshots[
+  'looks like the latest snapshot without a doc loaded'
+] = `<section tabindex="0">
   <h1>
     [subscription.binding.extRefList.noSelection]
   </h1>
@@ -10,8 +11,9 @@ snapshots["looks like the latest snapshot without a doc loaded"] =
 `;
 /* end snapshot looks like the latest snapshot without a doc loaded */
 
-snapshots["for Sampled Value Control looks like the latest snapshot, but no event fired"] = 
-`<section tabindex="0">
+snapshots[
+  'for Sampled Value Control looks like the latest snapshot, but no event fired'
+] = `<section tabindex="0">
   <h1>
     [subscription.binding.extRefList.noSelection]
   </h1>
@@ -19,8 +21,9 @@ snapshots["for Sampled Value Control looks like the latest snapshot, but no even
 `;
 /* end snapshot for Sampled Value Control looks like the latest snapshot, but no event fired */
 
-snapshots["for Sampled Value Control when SVC has no subscriptions looks like the latest snapshot, when SVC has no subscriptions"] = 
-`<section tabindex="0">
+snapshots[
+  'for Sampled Value Control when SVC has no subscriptions looks like the latest snapshot, when SVC has no subscriptions'
+] = `<section tabindex="0">
   <h1>
     [subscription.binding.extRefList.title]
   </h1>
@@ -216,8 +219,9 @@ snapshots["for Sampled Value Control when SVC has no subscriptions looks like th
 `;
 /* end snapshot for Sampled Value Control when SVC has no subscriptions looks like the latest snapshot, when SVC has no subscriptions */
 
-snapshots["for Sampled Value Control when SVC has a single subscriptions looks like the latest snapshot, "] = 
-`<section tabindex="0">
+snapshots[
+  'for Sampled Value Control when SVC has a single subscriptions looks like the latest snapshot, '
+] = `<section tabindex="0">
   <h1>
     [subscription.binding.extRefList.title]
   </h1>
@@ -405,8 +409,9 @@ snapshots["for Sampled Value Control when SVC has a single subscriptions looks l
 `;
 /* end snapshot for Sampled Value Control when SVC has a single subscriptions looks like the latest snapshot,  */
 
-snapshots["when SVC has a multiple subscriptions looks like the latest snapshot, "] = 
-`<section tabindex="0">
+snapshots[
+  'when SVC has a multiple subscriptions looks like the latest snapshot, '
+] = `<section tabindex="0">
   <h1>
     [subscription.binding.extRefList.title]
   </h1>
@@ -591,8 +596,9 @@ snapshots["when SVC has a multiple subscriptions looks like the latest snapshot,
 `;
 /* end snapshot when SVC has a multiple subscriptions looks like the latest snapshot,  */
 
-snapshots["for GOOSE Control looks like the latest snapshot, but no event fired"] = 
-`<section tabindex="0">
+snapshots[
+  'for GOOSE Control looks like the latest snapshot, but no event fired'
+] = `<section tabindex="0">
   <h1>
     [subscription.binding.extRefList.noSelection]
   </h1>
@@ -600,8 +606,9 @@ snapshots["for GOOSE Control looks like the latest snapshot, but no event fired"
 `;
 /* end snapshot for GOOSE Control looks like the latest snapshot, but no event fired */
 
-snapshots["for GOOSE Control when GSEControl has no subscriptions looks like the latest snapshot, when GSEControl has no subscriptions"] = 
-`<section tabindex="0">
+snapshots[
+  'for GOOSE Control when GSEControl has no subscriptions looks like the latest snapshot, when GSEControl has no subscriptions'
+] = `<section tabindex="0">
   <h1>
     [subscription.binding.extRefList.title]
   </h1>
@@ -797,8 +804,9 @@ snapshots["for GOOSE Control when GSEControl has no subscriptions looks like the
 `;
 /* end snapshot for GOOSE Control when GSEControl has no subscriptions looks like the latest snapshot, when GSEControl has no subscriptions */
 
-snapshots["for GOOSE Control when GSEControl has a single subscription looks like the latest snapshot, "] = 
-`<section tabindex="0">
+snapshots[
+  'for GOOSE Control when GSEControl has a single subscription looks like the latest snapshot, '
+] = `<section tabindex="0">
   <h1>
     [subscription.binding.extRefList.title]
   </h1>
@@ -986,8 +994,9 @@ snapshots["for GOOSE Control when GSEControl has a single subscription looks lik
 `;
 /* end snapshot for GOOSE Control when GSEControl has a single subscription looks like the latest snapshot,  */
 
-snapshots["when GSEControl has a multiple subscriptions looks like the latest snapshot, "] = 
-`<section tabindex="0">
+snapshots[
+  'when GSEControl has a multiple subscriptions looks like the latest snapshot, '
+] = `<section tabindex="0">
   <h1>
     [subscription.binding.extRefList.title]
   </h1>
@@ -1168,4 +1177,3 @@ snapshots["when GSEControl has a multiple subscriptions looks like the latest sn
 </section>
 `;
 /* end snapshot when GSEControl has a multiple subscriptions looks like the latest snapshot,  */
-

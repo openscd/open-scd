@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["conducting-equipment-editor wizarding integration looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'conducting-equipment-editor wizarding integration looks like the latest snapshot'
+] = `<mwc-dialog
   defaultaction="next"
   heading="[conductingequipment.wizard.title.edit]"
   open=""
@@ -57,4 +58,3 @@ snapshots["conducting-equipment-editor wizarding integration looks like the late
 </mwc-dialog>
 `;
 /* end snapshot conducting-equipment-editor wizarding integration looks like the latest snapshot */
-

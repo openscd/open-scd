@@ -10,7 +10,6 @@ import { FullElementPathEvent } from './foundation.js';
 
 @customElement('element-path')
 export class ElementPath extends LitElement {
-
   @state()
   elementNames: string[] = [];
 
@@ -19,16 +18,17 @@ export class ElementPath extends LitElement {
 
     const parentSection = this.closest('section');
     if (parentSection) {
-      parentSection.addEventListener('full-element-path', (event: FullElementPathEvent) => {
-        this.elementNames = event.detail.elementNames;
-      });
+      parentSection.addEventListener(
+        'full-element-path',
+        (event: FullElementPathEvent) => {
+          this.elementNames = event.detail.elementNames;
+        }
+      );
     }
   }
 
   render(): TemplateResult {
-    return html`
-      <h3>${this.elementNames.join(' / ')}</h3>
-    `;
+    return html` <h3>${this.elementNames.join(' / ')}</h3> `;
   }
 
   static styles = css`
@@ -43,5 +43,6 @@ export class ElementPath extends LitElement {
       line-height: 48px;
       padding-left: 0.3em;
       transition: background-color 150ms linear;
-    }`;
+    }
+  `;
 }

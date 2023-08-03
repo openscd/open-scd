@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["gse wizards editGseWizard looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'gse wizards editGseWizard looks like the latest snapshot'
+] = `<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
   open=""
@@ -71,4 +72,3 @@ snapshots["gse wizards editGseWizard looks like the latest snapshot"] =
 </mwc-dialog>
 `;
 /* end snapshot gse wizards editGseWizard looks like the latest snapshot */
-

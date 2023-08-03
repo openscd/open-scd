@@ -49,7 +49,7 @@ export const supportedCdcTypes = [
   'SPG',
   'SPS',
 ] as const;
-export type SupportedCdcType = typeof supportedCdcTypes[number];
+export type SupportedCdcType = (typeof supportedCdcTypes)[number];
 
 export type CreateFunction = (
   lnElement: Element,

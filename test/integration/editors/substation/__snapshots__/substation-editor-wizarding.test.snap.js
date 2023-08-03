@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["substation-editor wizarding integration looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'substation-editor wizarding integration looks like the latest snapshot'
+] = `<mwc-dialog
   defaultaction="next"
   heading="[substation.wizard.title.edit]"
   open=""
@@ -41,4 +42,3 @@ snapshots["substation-editor wizarding integration looks like the latest snapsho
 </mwc-dialog>
 `;
 /* end snapshot substation-editor wizarding integration looks like the latest snapshot */
-

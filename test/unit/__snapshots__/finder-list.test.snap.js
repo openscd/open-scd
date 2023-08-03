@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["finder-list given a .path and a .read method when provided with .getTitle and .getDisplayString methods looks like its latest snapshot"] = 
-`<div class="pane">
+snapshots[
+  'finder-list given a .path and a .read method when provided with .getTitle and .getDisplayString methods looks like its latest snapshot'
+] = `<div class="pane">
   <div class="column">
     <h2>
       e2
@@ -86,8 +87,9 @@ snapshots["finder-list given a .path and a .read method when provided with .getT
 `;
 /* end snapshot finder-list given a .path and a .read method when provided with .getTitle and .getDisplayString methods looks like its latest snapshot */
 
-snapshots["finder-list given a .path and a .read method when an item in the last column is selected looks like its latest snapshot"] = 
-`<div class="pane">
+snapshots[
+  'finder-list given a .path and a .read method when an item in the last column is selected looks like its latest snapshot'
+] = `<div class="pane">
   <div class="column">
     <h2>
       e2
@@ -203,8 +205,9 @@ snapshots["finder-list given a .path and a .read method when an item in the last
 `;
 /* end snapshot finder-list given a .path and a .read method when an item in the last column is selected looks like its latest snapshot */
 
-snapshots["finder-list given a .path and a .read method when an item in the first column is selected looks like its latest snapshot"] = 
-`<div class="pane">
+snapshots[
+  'finder-list given a .path and a .read method when an item in the first column is selected looks like its latest snapshot'
+] = `<div class="pane">
   <div class="column">
     <h2>
       e2
@@ -240,8 +243,9 @@ snapshots["finder-list given a .path and a .read method when an item in the firs
 `;
 /* end snapshot finder-list given a .path and a .read method when an item in the first column is selected looks like its latest snapshot */
 
-snapshots["finder-list given a .path and a .read method when the selected item in the first column is deselected looks like its latest snapshot"] = 
-`<div class="pane">
+snapshots[
+  'finder-list given a .path and a .read method when the selected item in the first column is deselected looks like its latest snapshot'
+] = `<div class="pane">
   <div class="column">
     <h2>
       e2
@@ -269,8 +273,9 @@ snapshots["finder-list given a .path and a .read method when the selected item i
 `;
 /* end snapshot finder-list given a .path and a .read method when the selected item in the first column is deselected looks like its latest snapshot */
 
-snapshots["finder-list given the \"multi\" attribute, some .paths, and a .read method looks like its latest snapshot"] = 
-`<div class="pane">
+snapshots[
+  'finder-list given the "multi" attribute, some .paths, and a .read method looks like its latest snapshot'
+] = `<div class="pane">
   <div class="column">
     <h2>
       e2
@@ -410,8 +415,9 @@ snapshots["finder-list given the \"multi\" attribute, some .paths, and a .read m
 `;
 /* end snapshot finder-list given the "multi" attribute, some .paths, and a .read method looks like its latest snapshot */
 
-snapshots["finder-list given the \"multi\" attribute, some .paths, and a .read method when an item in the first column is selected looks like its latest snapshot"] = 
-`<div class="pane">
+snapshots[
+  'finder-list given the "multi" attribute, some .paths, and a .read method when an item in the first column is selected looks like its latest snapshot'
+] = `<div class="pane">
   <div class="column">
     <h2>
       e2
@@ -557,8 +563,9 @@ snapshots["finder-list given the \"multi\" attribute, some .paths, and a .read m
 `;
 /* end snapshot finder-list given the "multi" attribute, some .paths, and a .read method when an item in the first column is selected looks like its latest snapshot */
 
-snapshots["finder-list given the \"multi\" attribute, some .paths, and a .read method when a selected item in the first column is deselected looks like its latest snapshot"] = 
-`<div class="pane">
+snapshots[
+  'finder-list given the "multi" attribute, some .paths, and a .read method when a selected item in the first column is deselected looks like its latest snapshot'
+] = `<div class="pane">
   <div class="column">
     <h2>
       e2
@@ -643,4 +650,3 @@ snapshots["finder-list given the \"multi\" attribute, some .paths, and a .read m
 </div>
 `;
 /* end snapshot finder-list given the "multi" attribute, some .paths, and a .read method when a selected item in the first column is deselected looks like its latest snapshot */
-

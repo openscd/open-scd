@@ -18,9 +18,7 @@ describe('ied-list', () => {
     selectEvent = spy();
     window.addEventListener('ied-select', selectEvent);
 
-    element = await fixture(html`<ied-list
-      .doc=${validSCL}
-    ></ied-list>`);
+    element = await fixture(html`<ied-list .doc=${validSCL}></ied-list>`);
   });
 
   it('looks like the latest snapshot with a document loaded', async () => {

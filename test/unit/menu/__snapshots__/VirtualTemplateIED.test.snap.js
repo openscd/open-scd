@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Plugin that creates with some user input a virtual template IED - SPECIFICATION looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'Plugin that creates with some user input a virtual template IED - SPECIFICATION looks like the latest snapshot'
+] = `<mwc-dialog
   heading="Create SPECIFICATION type IED"
   open=""
 >
@@ -569,8 +570,9 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
 `;
 /* end snapshot Plugin that creates with some user input a virtual template IED - SPECIFICATION looks like the latest snapshot */
 
-snapshots["Plugin that creates with some user input a virtual template IED - SPECIFICATION IEDs data model show selected logical nodes and its structure"] = 
-`<IED
+snapshots[
+  'Plugin that creates with some user input a virtual template IED - SPECIFICATION IEDs data model show selected logical nodes and its structure'
+] = `<IED
   manufacturer="SomeCompanyName"
   name="SPECIFICATION"
 >
@@ -628,4 +630,3 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
 </IED>
 `;
 /* end snapshot Plugin that creates with some user input a virtual template IED - SPECIFICATION IEDs data model show selected logical nodes and its structure */
-

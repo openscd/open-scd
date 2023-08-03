@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["subscriber-list-goose initially looks like the latest snapshot"] = 
-`<section tabindex="0">
+snapshots[
+  'subscriber-list-goose initially looks like the latest snapshot'
+] = `<section tabindex="0">
   <h1>
     [subscription.goose.publisher.subscriberTitle]
   </h1>
@@ -20,4 +21,3 @@ snapshots["subscriber-list-goose initially looks like the latest snapshot"] =
 </section>
 `;
 /* end snapshot subscriber-list-goose initially looks like the latest snapshot */
-

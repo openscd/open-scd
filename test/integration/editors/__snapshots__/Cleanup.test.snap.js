@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Cleanup without a doc loaded looks like the latest snapshot"] = 
-`<div class="cleanup">
+snapshots[
+  'Cleanup without a doc loaded looks like the latest snapshot'
+] = `<div class="cleanup">
   <section tabindex="0">
     <div>
       <h1>
@@ -80,8 +81,9 @@ snapshots["Cleanup without a doc loaded looks like the latest snapshot"] =
 `;
 /* end snapshot Cleanup without a doc loaded looks like the latest snapshot */
 
-snapshots["Cleanup Datasets without a doc loaded looks like the latest snapshot"] = 
-`<section tabindex="0">
+snapshots[
+  'Cleanup Datasets without a doc loaded looks like the latest snapshot'
+] = `<section tabindex="0">
   <div>
     <h1>
       [cleanup.unreferencedDataSets.title]
@@ -115,4 +117,3 @@ snapshots["Cleanup Datasets without a doc loaded looks like the latest snapshot"
 </wizard-dialog>
 `;
 /* end snapshot Cleanup Datasets without a doc loaded looks like the latest snapshot */
-

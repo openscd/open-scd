@@ -1,8 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["bay-editor looks like the latest snapshot"] = 
-`<action-pane
+snapshots['bay-editor looks like the latest snapshot'] = `<action-pane
   label="COUPLING_BAY - Bay"
   tabindex="0"
 >
@@ -125,8 +124,9 @@ snapshots["bay-editor looks like the latest snapshot"] =
 `;
 /* end snapshot bay-editor looks like the latest snapshot */
 
-snapshots["bay-editor with readonly property looks like the latest snapshot"] = 
-`<action-pane
+snapshots[
+  'bay-editor with readonly property looks like the latest snapshot'
+] = `<action-pane
   label="COUPLING_BAY - Bay"
   tabindex="0"
 >
@@ -249,8 +249,9 @@ snapshots["bay-editor with readonly property looks like the latest snapshot"] =
 `;
 /* end snapshot bay-editor with readonly property looks like the latest snapshot */
 
-snapshots["bay-editor with function filter deactivated looks like the latest snapshot"] = 
-`<action-pane
+snapshots[
+  'bay-editor with function filter deactivated looks like the latest snapshot'
+] = `<action-pane
   label="COUPLING_BAY - Bay"
   tabindex="0"
 >
@@ -377,8 +378,9 @@ snapshots["bay-editor with function filter deactivated looks like the latest sna
 `;
 /* end snapshot bay-editor with function filter deactivated looks like the latest snapshot */
 
-snapshots["bay-editor with existing LNode children looks like the latest snapshot"] = 
-`<action-pane
+snapshots[
+  'bay-editor with existing LNode children looks like the latest snapshot'
+] = `<action-pane
   label="Q01 - Bay with LNode"
   tabindex="0"
 >
@@ -499,8 +501,9 @@ snapshots["bay-editor with existing LNode children looks like the latest snapsho
 `;
 /* end snapshot bay-editor with existing LNode children looks like the latest snapshot */
 
-snapshots["bay-editor with general-equipment children with showfunctions false looks like the latest snapshot"] = 
-`<action-pane
+snapshots[
+  'bay-editor with general-equipment children with showfunctions false looks like the latest snapshot'
+] = `<action-pane
   label="Q02 "
   tabindex="0"
 >
@@ -619,8 +622,9 @@ snapshots["bay-editor with general-equipment children with showfunctions false l
 `;
 /* end snapshot bay-editor with general-equipment children with showfunctions false looks like the latest snapshot */
 
-snapshots["bay-editor with general-equipment children with showfunctions true looks like the latest snapshot"] = 
-`<action-pane
+snapshots[
+  'bay-editor with general-equipment children with showfunctions true looks like the latest snapshot'
+] = `<action-pane
   label="Q02 "
   tabindex="0"
 >
@@ -738,4 +742,3 @@ snapshots["bay-editor with general-equipment children with showfunctions true lo
 </action-pane>
 `;
 /* end snapshot bay-editor with general-equipment children with showfunctions true looks like the latest snapshot */
-

@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["looks like the latest snapshot with a DA element containing and a DAI"] = 
-`<action-pane
+snapshots[
+  'looks like the latest snapshot with a DA element containing and a DAI'
+] = `<action-pane
   icon="done"
   tabindex="0"
 >
@@ -28,8 +29,7 @@ snapshots["looks like the latest snapshot with a DA element containing and a DAI
 `;
 /* end snapshot looks like the latest snapshot with a DA element containing and a DAI */
 
-snapshots["with a DA element looks like the latest snapshot"] = 
-`<action-pane
+snapshots['with a DA element looks like the latest snapshot'] = `<action-pane
   icon=""
   tabindex="0"
 >
@@ -54,8 +54,7 @@ snapshots["with a DA element looks like the latest snapshot"] =
 `;
 /* end snapshot with a DA element looks like the latest snapshot */
 
-snapshots["with a BDA element looks like the latest snapshot"] = 
-`<action-pane
+snapshots['with a BDA element looks like the latest snapshot'] = `<action-pane
   icon=""
   tabindex="0"
 >
@@ -80,8 +79,9 @@ snapshots["with a BDA element looks like the latest snapshot"] =
 `;
 /* end snapshot with a BDA element looks like the latest snapshot */
 
-snapshots["with a BDA element having multiple values looks like the latest snapshot"] = 
-`<action-pane
+snapshots[
+  'with a BDA element having multiple values looks like the latest snapshot'
+] = `<action-pane
   icon="done"
   tabindex="0"
 >
@@ -118,8 +118,9 @@ snapshots["with a BDA element having multiple values looks like the latest snaps
 `;
 /* end snapshot with a BDA element having multiple values looks like the latest snapshot */
 
-snapshots["with a DA element and child elements are toggled looks like the latest snapshot"] = 
-`<action-pane
+snapshots[
+  'with a DA element and child elements are toggled looks like the latest snapshot'
+] = `<action-pane
   icon=""
   tabindex="0"
 >
@@ -157,4 +158,3 @@ snapshots["with a DA element and child elements are toggled looks like the lates
 </action-pane>
 `;
 /* end snapshot with a DA element and child elements are toggled looks like the latest snapshot */
-

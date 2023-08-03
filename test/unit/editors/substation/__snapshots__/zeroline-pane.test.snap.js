@@ -1,8 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["zeroline-pane per default looks like the latest snapshot"] = 
-`<h1>
+snapshots['zeroline-pane per default looks like the latest snapshot'] = `<h1>
   <nav>
     <abbr
       slot="action"
@@ -94,8 +93,7 @@ snapshots["zeroline-pane per default looks like the latest snapshot"] =
 `;
 /* end snapshot zeroline-pane per default looks like the latest snapshot */
 
-snapshots["zeroline-pane showieds looks like the latest snapshot"] = 
-`<h1>
+snapshots['zeroline-pane showieds looks like the latest snapshot'] = `<h1>
   <nav>
     <abbr
       slot="action"
@@ -193,4 +191,3 @@ snapshots["zeroline-pane showieds looks like the latest snapshot"] =
 </section>
 `;
 /* end snapshot zeroline-pane showieds looks like the latest snapshot */
-

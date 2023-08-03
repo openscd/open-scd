@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Update method for desc attributes in ABB IEDs working on SCL files without manufacturer ABB creates an empty wizard indicating not found desc updates"] = 
-`<mwc-dialog
+snapshots[
+  'Update method for desc attributes in ABB IEDs working on SCL files without manufacturer ABB creates an empty wizard indicating not found desc updates'
+] = `<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.add]"
   open=""
@@ -30,8 +31,9 @@ snapshots["Update method for desc attributes in ABB IEDs working on SCL files wi
 `;
 /* end snapshot Update method for desc attributes in ABB IEDs working on SCL files without manufacturer ABB creates an empty wizard indicating not found desc updates */
 
-snapshots["Update method for desc attributes in ABB IEDs working on SCL files containing manufacturer ABB creates a wizard with all valid desc update possibilities"] = 
-`<mwc-dialog
+snapshots[
+  'Update method for desc attributes in ABB IEDs working on SCL files containing manufacturer ABB creates a wizard with all valid desc update possibilities'
+] = `<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.add]"
   open=""
@@ -90,4 +92,3 @@ snapshots["Update method for desc attributes in ABB IEDs working on SCL files co
 </mwc-dialog>
 `;
 /* end snapshot Update method for desc attributes in ABB IEDs working on SCL files containing manufacturer ABB creates a wizard with all valid desc update possibilities */
-

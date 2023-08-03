@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["communication mapping wizard looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'communication mapping wizard looks like the latest snapshot'
+] = `<mwc-dialog
   defaultaction="next"
   heading="[commmap.title]"
   open=""
@@ -184,4 +185,3 @@ snapshots["communication mapping wizard looks like the latest snapshot"] =
 </mwc-dialog>
 `;
 /* end snapshot communication mapping wizard looks like the latest snapshot */
-

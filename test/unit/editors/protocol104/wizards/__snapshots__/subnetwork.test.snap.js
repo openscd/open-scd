@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["SubNetwork 104 wizard include an create wizard that looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'SubNetwork 104 wizard include an create wizard that looks like the latest snapshot'
+] = `<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.add]"
   open=""
@@ -56,4 +57,3 @@ snapshots["SubNetwork 104 wizard include an create wizard that looks like the la
 </mwc-dialog>
 `;
 /* end snapshot SubNetwork 104 wizard include an create wizard that looks like the latest snapshot */
-

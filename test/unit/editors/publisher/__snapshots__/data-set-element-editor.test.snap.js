@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Editor for DataSet element with valid DataSet looks like the latest snapshot"] = 
-`<div class="content">
+snapshots[
+  'Editor for DataSet element with valid DataSet looks like the latest snapshot'
+] = `<div class="content">
   <h2>
     <div>
       DataSet
@@ -92,8 +93,9 @@ snapshots["Editor for DataSet element with valid DataSet looks like the latest s
 `;
 /* end snapshot Editor for DataSet element with valid DataSet looks like the latest snapshot */
 
-snapshots["Editor for DataSet element with nulled DataSet looks like the latest snapshot"] = 
-`<div class="content">
+snapshots[
+  'Editor for DataSet element with nulled DataSet looks like the latest snapshot'
+] = `<div class="content">
   <h2>
     <div>
       DataSet
@@ -105,4 +107,3 @@ snapshots["Editor for DataSet element with nulled DataSet looks like the latest 
 </div>
 `;
 /* end snapshot Editor for DataSet element with nulled DataSet looks like the latest snapshot */
-

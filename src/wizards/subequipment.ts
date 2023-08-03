@@ -172,4 +172,3 @@ export function createSubEquipmentWizard(parent: Element): Wizard {
     },
   ];
 }
-

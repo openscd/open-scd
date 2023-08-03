@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Wizards for SCL element Substation edit existing Substation looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'Wizards for SCL element Substation edit existing Substation looks like the latest snapshot'
+] = `<mwc-dialog
   defaultaction="next"
   heading="[substation.wizard.title.edit]"
   open=""
@@ -42,8 +43,9 @@ snapshots["Wizards for SCL element Substation edit existing Substation looks lik
 `;
 /* end snapshot Wizards for SCL element Substation edit existing Substation looks like the latest snapshot */
 
-snapshots["Wizards for SCL element Substation add new Substation looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'Wizards for SCL element Substation add new Substation looks like the latest snapshot'
+] = `<mwc-dialog
   defaultaction="next"
   heading="[substation.wizard.title.add]"
   open=""
@@ -82,4 +84,3 @@ snapshots["Wizards for SCL element Substation add new Substation looks like the 
 </mwc-dialog>
 `;
 /* end snapshot Wizards for SCL element Substation add new Substation looks like the latest snapshot */
-
