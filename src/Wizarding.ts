@@ -3,6 +3,7 @@ import {
   ifImplemented,
   LitElementConstructor,
   Mixin,
+  Wizard,
   WizardEvent,
   WizardFactory,
 } from './foundation.js';
@@ -47,8 +48,19 @@ export function Wizarding<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     render(): TemplateResult {
-      return html`${ifImplemented(super.render())}
-        <wizard-dialog .wizard=${this.workflow[0]?.() ?? []}></wizard-dialog>`;
+      const defaultWizard: Wizard = []
+
+      let wizard = defaultWizard
+
+      const nextWizardFactory = this.workflow[0]
+      if(nextWizardFactory){
+        wizard = nextWizardFactory()
+      }
+
+      return html`
+        ${ifImplemented(super.render())}
+        <wizard-dialog .wizard=${wizard}></wizard-dialog>
+      `;
     }
   }
 
