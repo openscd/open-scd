@@ -32,6 +32,7 @@ export default class IedPlugin extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property()
   doc!: XMLDocument;
+
   @property({ type: Number })
   editCount = -1;
 
@@ -69,6 +70,11 @@ export default class IedPlugin extends LitElement {
           uniqueLNClassList.push(lnClass);
           return true;
         })
+        .sort((a, b) =>
+          (a.getAttribute('lnClass') ?? '').localeCompare(
+            b.getAttribute('lnClass') ?? ''
+          )
+        )
         .map(element => {
           const lnClass = element.getAttribute('lnClass');
           const label = this.nsdoc.getDataDescription(element).label;
@@ -92,17 +98,24 @@ export default class IedPlugin extends LitElement {
     return undefined;
   }
 
+  lNClassListOpenedOnce = false;
+
   protected updated(_changedProperties: PropertyValues): void {
     super.updated(_changedProperties);
 
-    // When the document is updated, we reset the selected IED.
+    // When the document is updated, we reset the selected IED if it no longer exists
     if (
       _changedProperties.has('doc') ||
       _changedProperties.has('editCount') ||
       _changedProperties.has('nsdoc')
     ) {
+      // if the IED exists, retain selection
+      if (this.doc?.querySelector(`IED[name="${this.selectedIEDs[0]}"]`))
+        return;
+
       this.selectedIEDs = [];
       this.selectedLNClasses = [];
+      this.lNClassListOpenedOnce = false;
 
       const iedList = this.iedList;
       if (iedList.length > 0) {
@@ -129,6 +142,14 @@ export default class IedPlugin extends LitElement {
             icon="developer_board"
             .header=${translate('iededitor.iedSelector')}
             @selected-items-changed="${(e: SelectedItemsChangedEvent) => {
+              // if selection not changed, do nothing
+              if (
+                JSON.stringify(this.selectedIEDs) ===
+                JSON.stringify(e.detail.selectedItems)
+              )
+                return;
+
+              this.lNClassListOpenedOnce = false;
               this.selectedIEDs = e.detail.selectedItems;
               this.selectedLNClasses = this.lnClassList.map(
                 lnClassInfo => lnClassInfo[0]
@@ -162,6 +183,7 @@ export default class IedPlugin extends LitElement {
             @selected-items-changed="${(e: SelectedItemsChangedEvent) => {
               this.selectedLNClasses = e.detail.selectedItems;
               this.requestUpdate('selectedIed');
+              this.lNClassListOpenedOnce = true;
             }}"
           >
             <span slot="icon">${getIcon('lNIcon')}</span>
@@ -170,7 +192,8 @@ export default class IedPlugin extends LitElement {
               const label = lnClassInfo[1];
               return html`<mwc-check-list-item
                 value="${value}"
-                ?selected="${this.selectedLNClasses.includes(value)}"
+                ?selected="${this.lNClassListOpenedOnce &&
+                this.selectedLNClasses.includes(value)}"
               >
                 ${label}
               </mwc-check-list-item>`;

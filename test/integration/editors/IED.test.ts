@@ -145,14 +145,35 @@ describe('IED Plugin', () => {
           ).length
         ).to.eql(5);
 
-        await deselectLNClasses('CSWI');
+        await selectLNClasses('CSWI');
         await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
         expect(
           getLDeviceContainer(getIedContainer()).shadowRoot!.querySelectorAll(
             'ln-container'
           ).length
-        ).to.eql(3);
+        ).to.eql(2);
+      });
+
+      it('when other IED selected, all LNs are selected by default', async () => {
+        await selectLNClasses('XCBR');
+
+        await selectIed('IED3');
+        await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
+        expect(
+          element.shadowRoot?.querySelectorAll('ied-container').length
+        ).to.eql(1);
+        expect(
+          getIedContainer().shadowRoot?.querySelector('action-pane')!.shadowRoot
+            ?.innerHTML
+        ).to.include('IED3');
+
+        expect(
+          getLDeviceContainer(getIedContainer()).shadowRoot!.querySelectorAll(
+            'ln-container'
+          ).length
+        ).to.eql(9);
       });
 
       it('then renders the path of elements correctly', async () => {
@@ -277,7 +298,7 @@ describe('IED Plugin', () => {
         );
       }
 
-      async function deselectLNClasses(lnClass: string): Promise<void> {
+      async function selectLNClasses(lnClass: string): Promise<void> {
         const oscdFilterButton = <FilterButton>(
           element.shadowRoot!.querySelector(
             'oscd-filter-button[id="lnClassesFilter"]'
