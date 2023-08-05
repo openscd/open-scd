@@ -1,202 +1,31 @@
-import { LitElement, TemplateResult } from 'lit-element';
+import { LitElement } from 'lit-element';
 import { directive, Part } from 'lit-html';
 
-import { List } from '@material/mwc-list';
 import { Select } from '@material/mwc-select';
-import { TextField } from '@material/mwc-textfield';
-import AceEditor from 'ace-custom-element';
 
 import { WizardTextField } from './wizard-textfield.js';
 import { WizardSelect } from './wizard-select.js';
 import { WizardCheckbox } from './wizard-checkbox.js';
 
-export type SimpleAction = Update | Create | Replace | Delete | Move;
-export type ComplexAction = {
-  actions: SimpleAction[];
-  title: string;
-  derived?: boolean;
-};
-/** Represents an intended or committed change to some `Element`. */
-export type EditorAction = SimpleAction | ComplexAction;
-/** Inserts `new.element` to `new.parent` before `new.reference`. */
-export interface Create {
-  new: { parent: Node; element: Node; reference?: Node | null };
-  derived?: boolean;
-  checkValidity?: () => boolean;
-}
-/** Removes `old.element` from `old.parent` before `old.reference`. */
-export interface Delete {
-  old: { parent: Node; element: Node; reference?: Node | null };
-  derived?: boolean;
-  checkValidity?: () => boolean;
-}
-/** Reparents of `old.element` to `new.parent` before `new.reference`. */
-export interface Move {
-  old: { parent: Element; element: Element; reference?: Node | null };
-  new: { parent: Element; reference?: Node | null };
-  derived?: boolean;
-  checkValidity?: () => boolean;
-}
-/** Replaces `old.element` with `new.element`, keeping element children. */
-export interface Replace {
-  old: { element: Element };
-  new: { element: Element };
-  derived?: boolean;
-  checkValidity?: () => boolean;
-}
-/** Swaps `element`s `oldAttributes` with `newAttributes` */
-export interface Update {
-  element: Element;
-  oldAttributes: Record<string, string | null>;
-  newAttributes: Record<string, string | null>;
-  derived?: boolean;
-  checkValidity?: () => boolean;
-}
+// Wizarding
+// We re-export everythin so the import in other files stay unchanged
+// This should be cleaned up in the future
+import { WizardEvent, WizardInputElement } from './wizarding/index.js';
+export * from './wizarding/index.js';
 
-export function isCreate(action: EditorAction): action is Create {
-  return (
-    (action as Replace).old === undefined &&
-    (action as Create).new?.parent !== undefined &&
-    (action as Create).new?.element !== undefined
-  );
-}
-export function isDelete(action: EditorAction): action is Delete {
-  return (
-    (action as Delete).old?.parent !== undefined &&
-    (action as Delete).old?.element !== undefined &&
-    (action as Replace).new === undefined
-  );
-}
-export function isMove(action: EditorAction): action is Move {
-  return (
-    (action as Move).old?.parent !== undefined &&
-    (action as Move).old?.element !== undefined &&
-    (action as Move).new?.parent !== undefined &&
-    (action as Replace).new?.element == undefined
-  );
-}
-export function isReplace(action: EditorAction): action is Replace {
-  return (
-    (action as Move).old?.parent === undefined &&
-    (action as Replace).old?.element !== undefined &&
-    (action as Move).new?.parent === undefined &&
-    (action as Replace).new?.element !== undefined
-  );
-}
-export function isUpdate(action: EditorAction): action is Update {
-  return (
-    (action as Replace).old === undefined &&
-    (action as Replace).new === undefined &&
-    (action as Update).element !== undefined &&
-    (action as Update).newAttributes !== undefined &&
-    (action as Update).oldAttributes !== undefined
-  );
-}
-export function isSimple(action: EditorAction): action is SimpleAction {
-  return !((<ComplexAction>action).actions instanceof Array);
-}
+// Editing
+// We re-export everythin so the import in other files stay unchanged
+// This should be cleaned up in the future
+import { EditorAction, EditorActionEvent } from './editing/index.js';
+export * from './editing/index.js';
 
-/** @returns an [[`EditorAction`]] with opposite effect of `action`. */
-export function invert(action: EditorAction): EditorAction {
-  if (!isSimple(action)) {
-    const inverse: ComplexAction = {
-      title: action.title,
-      derived: action.derived,
-      actions: [],
-    };
-    action.actions.forEach(element =>
-      inverse.actions.unshift(<SimpleAction>invert(element))
-    );
-    return inverse;
-  }
+// Utils
+// We re-export everythin so the import in other files stay unchanged
+// This should be cleaned up in the future
+import { crossProduct } from './utils.js';
+export * from './utils.js';
 
-  const metaData = {
-    derived: action.derived,
-    checkValidity: action.checkValidity,
-  };
-  if (isCreate(action)) return { old: action.new, ...metaData };
-  else if (isDelete(action)) return { new: action.old, ...metaData };
-  else if (isMove(action))
-    return {
-      old: {
-        parent: action.new.parent,
-        element: action.old.element,
-        reference: action.new.reference,
-      },
-      new: { parent: action.old.parent, reference: action.old.reference },
-      ...metaData,
-    };
-  else if (isReplace(action))
-    return { new: action.old, old: action.new, ...metaData };
-  else if (isUpdate(action))
-    return {
-      element: action.element,
-      oldAttributes: action.newAttributes,
-      newAttributes: action.oldAttributes,
-      ...metaData,
-    };
-  else return unreachable('Unknown EditorAction type in invert.');
-}
-//** return `Update` action for `element` adding `oldAttributes` */
-export function createUpdateAction(
-  element: Element,
-  newAttributes: Record<string, string | null>
-): Update {
-  const oldAttributes: Record<string, string | null> = {};
-  Array.from(element.attributes).forEach(attr => {
-    oldAttributes[attr.name] = attr.value;
-  });
 
-  return { element, oldAttributes, newAttributes };
-}
-
-/** Represents some intended modification of a `Document` being edited. */
-export interface EditorActionDetail<T extends EditorAction> {
-  action: T;
-}
-export type EditorActionEvent<T extends EditorAction> = CustomEvent<
-  EditorActionDetail<T>
->;
-export function newActionEvent<T extends EditorAction>(
-  action: T,
-  eventInitDict?: CustomEventInit<Partial<EditorActionDetail<T>>>
-): EditorActionEvent<T> {
-  return new CustomEvent<EditorActionDetail<T>>('editor-action', {
-    bubbles: true,
-    composed: true,
-    ...eventInitDict,
-    detail: { action, ...eventInitDict?.detail },
-  });
-}
-
-export const wizardInputSelector =
-  'wizard-textfield, mwc-textfield, ace-editor, mwc-select, wizard-select, wizard-checkbox';
-export type WizardInputElement =
-  | WizardTextField
-  | TextField
-  | (AceEditor & {
-      checkValidity: () => boolean;
-      label: string;
-      requestUpdate(name?: PropertyKey, oldValue?: unknown): Promise<unknown>;
-    })
-  // TODO(c-dinkel): extend component
-  | Select
-  | WizardSelect;
-
-export type WizardAction = EditorAction | WizardFactory;
-
-/** @returns [[`EditorAction`]]s to dispatch on [[`WizardDialog`]] commit. */
-export type WizardActor = (
-  inputs: WizardInputElement[],
-  wizard: Element,
-  list?: List | null
-) => WizardAction[];
-
-export function isWizardFactory(
-  maybeFactory: WizardAction | Wizard | null
-): maybeFactory is WizardFactory {
-  return typeof maybeFactory === 'function';
-}
 
 /** @returns the validity of `input` depending on type. */
 export function checkValidity(input: WizardInputElement): boolean {
@@ -229,140 +58,9 @@ export function getMultiplier(input: WizardInputElement): string | null {
   else return null;
 }
 
-/** Inputs as `TextField`, `Select` or `Checkbox `used in`wizard-dialog` */
-export type WizardInput =
-  | WizardInputTextField
-  | WizardInputSelect
-  | WizardInputCheckbox;
 
-interface WizardInputBase {
-  /** maps attribute key */
-  label: string;
-  /** maps attribute value */
-  maybeValue: string | null;
-  /** whether attribute is optional */
-  nullable?: boolean;
-  /** whether the input shall be disabled */
-  disabled?: boolean;
-  /** helper text */
-  helper?: string;
-  /** initial focused element in `wizard-dialog` (once per dialog) */
-  dialogInitialFocus?: boolean;
-}
 
-interface WizardInputTextField extends WizardInputBase {
-  kind: 'TextField';
-  /** wether the input might be empty string */
-  required?: boolean;
-  /** pattern definition from schema */
-  pattern?: string;
-  /** minimal characters allowed */
-  minLength?: number;
-  /** maximal characters allowed */
-  maxLength?: number;
-  /** message text explaining invalid inputs */
-  validationMessage?: string;
-  /** suffix definition - overwrites unit multiplier definition */
-  suffix?: string;
-  /** SI unit for specific suffix definition */
-  unit?: string;
-  /** in comibination with unit defines specific suffix */
-  multiplier?: string | null;
-  /** array of multipliers allowed for the input */
-  multipliers?: (string | null)[];
-  /** used for specific input type e.g. number */
-  type?: string;
-  /** minimal valid number in combination with type number */
-  min?: number;
-  /** maximal valid number in combination with type number */
-  max?: number;
-  /** value displaxed when input is nulled */
-  default?: string;
-}
 
-interface WizardInputSelect extends WizardInputBase {
-  kind: 'Select';
-  /** selectabled values */
-  values: string[];
-  /** value displayed with input is nulled */
-  default?: string;
-  /** message explaining invalid inputs */
-  valadationMessage?: string;
-}
-
-interface WizardInputCheckbox extends WizardInputBase {
-  kind: 'Checkbox';
-  /** wether checkbox is checked with nulled input */
-  default?: boolean;
-}
-
-/** @returns [[`WizardAction`]]s to dispatch on [[`WizardDialog`]] menu action. */
-export type WizardMenuActor = (wizard: Element) => void;
-
-/** User interactions rendered in the wizard-dialog menu */
-export interface MenuAction {
-  label: string;
-  icon?: string;
-  action: WizardMenuActor;
-}
-
-/** Represents a page of a wizard dialog */
-export interface WizardPage {
-  title: string;
-  content?: (TemplateResult | WizardInput)[];
-  primary?: {
-    icon: string;
-    label: string;
-    action: WizardActor;
-    auto?: boolean;
-  };
-  secondary?: {
-    icon: string;
-    label: string;
-    action: WizardActor;
-  };
-  initial?: boolean;
-  element?: Element;
-  menuActions?: MenuAction[];
-}
-export type Wizard = WizardPage[];
-export type WizardFactory = () => Wizard;
-
-/** If `wizard === null`, close the current wizard, else queue `wizard`. */
-export interface WizardDetail {
-  wizard: WizardFactory | null;
-  subwizard?: boolean;
-}
-export type WizardEvent = CustomEvent<WizardDetail>;
-export function newWizardEvent(
-  wizardOrFactory?: Wizard | WizardFactory,
-  eventInitDict?: CustomEventInit<Partial<WizardDetail>>
-): WizardEvent {
-  if (!wizardOrFactory)
-    return new CustomEvent<WizardDetail>('wizard', {
-      bubbles: true,
-      composed: true,
-      ...eventInitDict,
-      detail: { wizard: null, ...eventInitDict?.detail },
-    });
-
-  const wizard = isWizardFactory(wizardOrFactory)
-    ? wizardOrFactory
-    : () => wizardOrFactory;
-
-  return new CustomEvent<WizardDetail>('wizard', {
-    bubbles: true,
-    composed: true,
-    ...eventInitDict,
-    detail: { wizard, ...eventInitDict?.detail },
-  });
-}
-
-export function newSubWizardEvent(
-  wizardOrFactory?: Wizard | WizardFactory
-): WizardEvent {
-  return newWizardEvent(wizardOrFactory, { detail: { subwizard: true } });
-}
 
 type InfoEntryKind = 'info' | 'warning' | 'error';
 
@@ -2647,38 +2345,6 @@ export function compareNames(a: Element | string, b: Element | string): number {
   return 0;
 }
 
-/** Throws an error bearing `message`, never returning. */
-export function unreachable(message: string): never {
-  throw new Error(message);
-}
-
-/** @returns the cartesian product of `arrays` */
-export function crossProduct<T>(...arrays: T[][]): T[][] {
-  return arrays.reduce<T[][]>(
-    (a, b) => <T[][]>a.flatMap(d => b.map(e => [d, e].flat())),
-    [[]]
-  );
-}
-
-/** @returns the depth of `t` if it is an object or array, zero otherwise. */
-export function depth(t: Record<string, unknown>, mem = new WeakSet()): number {
-  if (mem.has(t)) return Infinity;
-  else
-    switch (t?.constructor) {
-      case Object:
-      case Array:
-        mem.add(t);
-        return (
-          1 +
-          Math.max(
-            -1,
-            ...Object.values(t).map(_ => depth(<Record<string, unknown>>_, mem))
-          )
-        );
-      default:
-        return 0;
-    }
-}
 
 export function getUniqueElementName(
   parent: Element,

@@ -3,10 +3,9 @@ import {
   ifImplemented,
   LitElementConstructor,
   Mixin,
-  Wizard,
   WizardEvent,
-  WizardFactory,
 } from './foundation.js';
+import { Wizard, WizardFactory } from './wizarding/index.js';
 
 import './wizard-dialog.js';
 import { WizardDialog } from './wizard-dialog.js';
@@ -28,6 +27,7 @@ export function Wizarding<TBase extends LitElementConstructor>(Base: TBase) {
       if (wizard === null) this.workflow.shift();
       else if (we.detail.subwizard) this.workflow.unshift(wizard);
       else this.workflow.push(wizard);
+
       this.requestUpdate('workflow');
       this.updateComplete.then(() =>
         this.wizardUI.updateComplete.then(() =>
