@@ -8,19 +8,19 @@ import { WizardSelect } from './wizard-select.js';
 import { WizardCheckbox } from './wizard-checkbox.js';
 
 // Wizarding
-// We re-export everythin so the import in other files stay unchanged
+// We re-export everything so the imports in other files stay unchanged
 // This should be cleaned up in the future
 import { WizardEvent, WizardInputElement } from './wizarding/index.js';
 export * from './wizarding/index.js';
 
 // Editing
-// We re-export everythin so the import in other files stay unchanged
+// We re-export everything so the imports in other files stay unchanged
 // This should be cleaned up in the future
 import { EditorAction, EditorActionEvent } from './editing/index.js';
 export * from './editing/index.js';
 
 // Utils
-// We re-export everythin so the import in other files stay unchanged
+// We re-export everything so the imports in other files stay unchanged
 // This should be cleaned up in the future
 import { crossProduct } from './utils.js';
 export * from './utils.js';
