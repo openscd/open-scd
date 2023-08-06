@@ -70,11 +70,12 @@ export default class IedPlugin extends LitElement {
           uniqueLNClassList.push(lnClass);
           return true;
         })
-        .sort((a, b) =>
-          (a.getAttribute('lnClass') ?? '').localeCompare(
-            b.getAttribute('lnClass') ?? ''
-          )
-        )
+        .sort((a, b) => {
+          const aLnClass = a.getAttribute('lnClass') ?? '';
+          const bLnClass = b.getAttribute('lnClass') ?? '';
+
+          return aLnClass.localeCompare(bLnClass);
+        })
         .map(element => {
           const lnClass = element.getAttribute('lnClass');
           const label = this.nsdoc.getDataDescription(element).label;
@@ -104,11 +105,12 @@ export default class IedPlugin extends LitElement {
     super.updated(_changedProperties);
 
     // When the document is updated, we reset the selected IED if it no longer exists
-    if (
+    const isDocumentUpdated =
       _changedProperties.has('doc') ||
       _changedProperties.has('editCount') ||
-      _changedProperties.has('nsdoc')
-    ) {
+      _changedProperties.has('nsdoc');
+
+    if (isDocumentUpdated) {
       // if the IED exists, retain selection
       if (this.doc?.querySelector(`IED[name="${this.selectedIEDs[0]}"]`))
         return;
@@ -142,12 +144,21 @@ export default class IedPlugin extends LitElement {
             icon="developer_board"
             .header=${translate('iededitor.iedSelector')}
             @selected-items-changed="${(e: SelectedItemsChangedEvent) => {
-              // if selection not changed, do nothing
-              if (
-                JSON.stringify(this.selectedIEDs) ===
-                JSON.stringify(e.detail.selectedItems)
-              )
+              const equalArrays = <T>(first: T[], second: T[]): boolean => {
+                return (
+                  first.length === second.length &&
+                  first.every((val, index) => val === second[index])
+                );
+              };
+
+              const selectionChanged = !equalArrays(
+                this.selectedIEDs,
+                e.detail.selectedItems
+              );
+
+              if (!selectionChanged) {
                 return;
+              }
 
               this.lNClassListOpenedOnce = false;
               this.selectedIEDs = e.detail.selectedItems;
