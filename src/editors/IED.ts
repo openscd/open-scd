@@ -112,8 +112,11 @@ export default class IedPlugin extends LitElement {
 
     if (isDocumentUpdated) {
       // if the IED exists, retain selection
-      if (this.doc?.querySelector(`IED[name="${this.selectedIEDs[0]}"]`))
-        return;
+      const iedExists = this.doc?.querySelector(
+        `IED[name="${this.selectedIEDs[0]}"]`
+      );
+
+      if (iedExists) return;
 
       this.selectedIEDs = [];
       this.selectedLNClasses = [];
