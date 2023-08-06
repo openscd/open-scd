@@ -1,3 +1,5 @@
+import { LitElement } from 'lit-element';
+import { Part, directive } from 'lit-html';
 
 /** Throws an error bearing `message`, never returning. */
 export function unreachable(message: string): never {
@@ -31,3 +33,16 @@ export function depth(t: Record<string, unknown>, mem = new WeakSet()): number {
         return 0;
     }
 }
+
+/** A directive rendering its argument `rendered` only if `rendered !== {}`. */
+export const ifImplemented = directive(rendered => (part: Part) => {
+  if (Object.keys(rendered).length) part.setValue(rendered);
+  else part.setValue('');
+});
+
+export type LitElementConstructor = new (...args: any[]) => LitElement;
+
+/** The type returned by `MyMixin(...)` is `Mixin<typeof MyMixin>`. */
+export type Mixin<T extends (...args: any[]) => any> = InstanceType<
+  ReturnType<T>
+>;

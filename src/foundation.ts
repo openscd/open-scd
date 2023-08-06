@@ -2286,19 +2286,6 @@ export function cloneElement(
   return newElement;
 }
 
-/** A directive rendering its argument `rendered` only if `rendered !== {}`. */
-export const ifImplemented = directive(rendered => (part: Part) => {
-  if (Object.keys(rendered).length) part.setValue(rendered);
-  else part.setValue('');
-});
-
-/** Constructor type for defining `LitElement` mixins. */
-export type LitElementConstructor = new (...args: any[]) => LitElement;
-
-/** The type returned by `MyMixin(...)` is `Mixin<typeof MyMixin>`. */
-export type Mixin<T extends (...args: any[]) => any> = InstanceType<
-  ReturnType<T>
->;
 
 const nameStartChar =
   '[:_A-Za-z]|[\u00C0-\u00D6]|[\u00D8-\u00F6]|[\u00F8-\u02FF]|[\u0370-\u037D]' +
