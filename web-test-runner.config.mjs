@@ -14,20 +14,23 @@ export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
   */
   browserLogs: false,
 
-  /** specify groups for unit and integrations tests 
+  /** specify groups for unit and integrations tests
    * hint: no --group definition runs all groups
   */
   groups: [
     {
       name: 'unit',
-      files: 'test/unit/**/*.test.ts',
+      files: [
+        'test/unit/**/*.test.ts',
+        'src/**/*.test.ts',
+      ],
     },
     {
       name: 'integration',
       files: 'test/integration/**/*.test.ts',
     },
   ],
-  
+
   /** Compile JS for older browsers. Requires @web/dev-server-esbuild plugin */
   // esbuildTarget: 'auto',
 

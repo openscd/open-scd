@@ -8,7 +8,7 @@ import {
 import './wizard-dialog.js';
 import { WizardDialog } from '../wizard-dialog.js';
 import { Wizard, WizardFactory } from './wizard.js';
-import { WizardEvent } from './event.js';
+import { WizardEvent } from './events.js';
 
 /** `LitElement` mixin that adds a `workflow` property which [[`Wizard`]]s are
  * queued onto on incoming [[`WizardEvent`]]s, first come first displayed. */

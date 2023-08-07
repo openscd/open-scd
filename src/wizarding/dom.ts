@@ -9,7 +9,7 @@ import { WizardFactory } from './wizard.js';
 export const wizardInputSelector =
   'wizard-textfield, mwc-textfield, ace-editor, mwc-select, wizard-select, wizard-checkbox';
 
-  export type WizardInputElement =
+export type WizardInputElement =
   | WizardTextField
   | TextField
   | (AceEditor & {
@@ -35,7 +35,6 @@ export interface MenuAction {
   icon?: string;
   action: WizardMenuActor;
 }
-
 
 
 interface WizardInputBase {
