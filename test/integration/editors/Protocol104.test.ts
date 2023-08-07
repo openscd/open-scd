@@ -4,7 +4,7 @@ import '../../mock-wizard.js';
 
 import Protocol104 from '../../../src/editors/Protocol104.js';
 import { Editing } from '../../../src/Editing.js';
-import { Wizarding } from '../../../src/Wizarding.js';
+import { Wizarding } from '../../../src/wizarding/index.js';
 
 describe('Protocol 104 Plugin', () => {
   customElements.define(

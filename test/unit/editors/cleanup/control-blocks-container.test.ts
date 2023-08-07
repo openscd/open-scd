@@ -2,7 +2,7 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
 import { Editing } from '../../../../src/Editing.js';
-import { Wizarding } from '../../../../src/Wizarding.js';
+import { Wizarding } from '../../../../src/wizarding/index.js';
 
 import { CleanupControlBlocks } from '../../../../src/editors/cleanup/control-blocks-container.js';
 
@@ -79,7 +79,7 @@ describe('Cleanup: Control Blocks Container', () => {
       expect(element.cleanButton).to.have.property('disabled', false);
     });
 
-    /* This test is currently failing and has been commented out 
+    /* This test is currently failing and has been commented out
     TODO: Investigate further. It appears that a filtered list will not
     unselect all if there are hidden items. */
     // it('after clicking select all twice the button is disabled', async () => {

@@ -7,7 +7,7 @@ import { LitElement } from 'lit-element';
 import '../../../src/editors/IED.js';
 
 import { Editing } from '../../../src/Editing.js';
-import { Wizarding, WizardingElement } from '../../../src/Wizarding.js';
+import { Wizarding, WizardingElement } from '../../../src/wizarding/index.js';
 import { initializeNsdoc, Nsdoc } from '../../../src/foundation/nsdoc.js';
 import { FilterButton } from '../../../src/oscd-filter-button.js';
 

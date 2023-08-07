@@ -5,7 +5,7 @@ import { MockWizardEditor } from '../../../mock-wizard-editor.js';
 
 import TemplatesPlugin from '../../../../src/editors/Templates.js';
 import { Editing, EditingElement } from '../../../../src/Editing.js';
-import { Wizarding, WizardingElement } from '../../../../src/Wizarding.js';
+import { Wizarding, WizardingElement } from '../../../../src/wizarding/index.js';
 import { newWizardEvent } from '../../../../src/foundation.js';
 
 describe('Templates Plugin', () => {

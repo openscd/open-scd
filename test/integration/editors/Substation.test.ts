@@ -5,7 +5,7 @@ import { MockWizard } from '../../mock-wizard.js';
 
 import { Editing } from '../../../src/Editing.js';
 import Substation from '../../../src/editors/Substation.js';
-import { Wizarding } from '../../../src/Wizarding.js';
+import { Wizarding } from '../../../src/wizarding/index.js';
 
 describe('Substation Plugin', () => {
   customElements.define('substation-plugin', Wizarding(Editing(Substation)));
