@@ -4,6 +4,7 @@ export const snapshots = {};
 snapshots["Clone Redirection UI triggered by bay-editor looks like the latest snapshot"] = 
 `<mwc-dialog
   heading="[substation.clone.redirect]"
+  open=""
   stacked=""
 >
   <wizard-textfield
@@ -100,6 +101,7 @@ snapshots["Clone Redirection UI triggered by bay-editor looks like the latest sn
 snapshots["Clone Redirection UI triggered by voltage-level-editor looks like the latest snapshot"] = 
 `<mwc-dialog
   heading="[substation.clone.redirect]"
+  open=""
   stacked=""
 >
   <wizard-textfield
@@ -196,6 +198,7 @@ snapshots["Clone Redirection UI triggered by voltage-level-editor looks like the
 snapshots["Clone Redirection UI triggered by substation-editor looks like the latest snapshot"] = 
 `<mwc-dialog
   heading="[substation.clone.redirect]"
+  open=""
   stacked=""
 >
   <wizard-textfield
