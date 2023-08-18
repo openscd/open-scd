@@ -19,9 +19,12 @@ import '@material/mwc-snackbar';
 import { Dialog } from '@material/mwc-dialog';
 import { Snackbar } from '@material/mwc-snackbar';
 
+import { newEditEvent } from '@openscd/open-scd-core';
+
 import './filtered-list.js';
 import {
   CommitEntry,
+  EditEntry,
   ifImplemented,
   invert,
   IssueDetail,
@@ -41,6 +44,7 @@ const icons = {
   warning: 'warning',
   error: 'report',
   action: 'history',
+  edit: 'history',
 };
 
 function getPluginName(src: string): string {
@@ -68,6 +72,7 @@ function getPluginName(src: string): string {
  */
 export type LoggingElement = Mixin<typeof Logging>;
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
   class LoggingElement extends Base {
     /** All [[`LogEntry`]]s received so far through [[`LogEvent`]]s. */
@@ -99,13 +104,15 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       if (!this.canUndo) return -1;
       return this.history
         .slice(0, this.editCount)
-        .map(entry => (entry.kind == 'action' ? true : false))
+        .map(entry =>
+          entry.kind == 'action' || entry.kind === 'edit' ? true : false
+        )
         .lastIndexOf(true);
     }
     get nextAction(): number {
       let index = this.history
         .slice(this.editCount + 1)
-        .findIndex(entry => entry.kind == 'action');
+        .findIndex(entry => entry.kind == 'action' || entry.kind === 'edit');
       if (index >= 0) index += this.editCount + 1;
       return index;
     }
@@ -123,19 +130,19 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
 
     undo(): boolean {
       if (!this.canUndo) return false;
-      this.dispatchEvent(
-        newActionEvent(
-          invert((<CommitEntry>this.history[this.editCount]).action)
-        )
-      );
+      const toUndo = this.history[this.editCount] as CommitEntry | EditEntry;
+      if (toUndo.kind === 'action')
+        this.dispatchEvent(newActionEvent(invert(toUndo.action)));
+      else this.dispatchEvent(newEditEvent(toUndo.undo));
       this.editCount = this.previousAction;
       return true;
     }
     redo(): boolean {
       if (!this.canRedo) return false;
-      this.dispatchEvent(
-        newActionEvent((<CommitEntry>this.history[this.nextAction]).action)
-      );
+      const toRedo = this.history[this.nextAction] as CommitEntry | EditEntry;
+      if (toRedo.kind === 'action')
+        this.dispatchEvent(newActionEvent(toRedo.action));
+      else this.dispatchEvent(newEditEvent(toRedo.redo));
       this.editCount = this.nextAction;
       return true;
     }
@@ -159,6 +166,18 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         this.editCount = this.history.length;
       }
 
+      if (entry.kind === 'edit') {
+        if (
+          this.history.find(
+            (le: LogEntry) =>
+              le.kind === 'edit' && [le.undo, le.redo].includes(entry.redo)
+          )
+        )
+          return;
+        if (this.nextAction !== -1) this.history.splice(this.nextAction);
+        this.editCount = this.history.length;
+      }
+
       this.history.push(entry);
       if (!this.logUI.open) {
         const ui = {
@@ -166,6 +185,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
           warning: this.warningUI,
           info: this.infoUI,
           action: this.infoUI,
+          edit: this.infoUI,
         }[le.detail.kind];
 
         ui.close();
@@ -185,6 +205,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       super.performUpdate();
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     constructor(...args: any[]) {
       super(...args);
 
@@ -383,8 +404,10 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
           labelText="${this.history
             .slice()
             .reverse()
-            .find(le => le.kind === 'info' || le.kind === 'action')?.title ??
-          get('log.snackbar.placeholder')}"
+            .find(
+              le =>
+                le.kind === 'info' || le.kind === 'action' || le.kind === 'edit'
+            )?.title ?? get('log.snackbar.placeholder')}"
         >
           <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
         </mwc-snackbar>

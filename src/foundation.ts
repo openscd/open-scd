@@ -10,6 +10,8 @@ import { WizardTextField } from './wizard-textfield.js';
 import { WizardSelect } from './wizard-select.js';
 import { WizardCheckbox } from './wizard-checkbox.js';
 
+import { Edit } from '@openscd/open-scd-core';
+
 export type SimpleAction = Update | Create | Replace | Delete | Move;
 export type ComplexAction = {
   actions: SimpleAction[];
@@ -378,6 +380,12 @@ export interface CommitDetail extends LogDetailBase {
   kind: 'action';
   action: EditorAction;
 }
+/** The [[`LogEntry`]] for a committed open-scd-core [[`Edit`]]. */
+export interface EditDetail extends LogDetailBase {
+  kind: 'edit';
+  undo: Edit;
+  redo: Edit;
+}
 /** A [[`LogEntry`]] for notifying the user. */
 export interface InfoDetail extends LogDetailBase {
   kind: InfoEntryKind;
@@ -388,7 +396,7 @@ export interface ResetDetail {
   kind: 'reset';
 }
 
-export type LogDetail = InfoDetail | CommitDetail | ResetDetail;
+export type LogDetail = InfoDetail | CommitDetail | EditDetail | ResetDetail;
 export type LogEvent = CustomEvent<LogDetail>;
 export function newLogEvent(
   detail: LogDetail,
@@ -424,9 +432,10 @@ interface Timestamped {
 }
 
 export type CommitEntry = Timestamped & CommitDetail;
+export type EditEntry = Timestamped & EditDetail;
 export type InfoEntry = Timestamped & InfoDetail;
 
-export type LogEntry = InfoEntry | CommitEntry;
+export type LogEntry = InfoEntry | CommitEntry | EditEntry;
 
 /** Represents some work pending completion, upon which `promise` resolves. */
 export interface PendingStateDetail {
