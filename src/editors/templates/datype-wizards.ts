@@ -16,6 +16,7 @@ import {
   Create,
   createElement,
   EditorAction,
+  find,
   getValue,
   identity,
   newActionEvent,
@@ -23,7 +24,6 @@ import {
   newWizardEvent,
   patterns,
   Replace,
-  selector,
   Wizard,
   WizardActor,
   WizardInputElement,
@@ -89,7 +89,7 @@ export function editDaTypeWizard(
   dATypeIdentity: string,
   doc: XMLDocument
 ): Wizard | undefined {
-  const datype = doc.querySelector(selector('DAType', dATypeIdentity));
+  const datype = find(doc, 'DAType', dATypeIdentity);
   if (!datype) return undefined;
 
   const id = datype.getAttribute('id');
@@ -138,7 +138,7 @@ export function editDaTypeWizard(
           style="margin-top: 0px;"
           @selected=${(e: SingleSelectedEvent) => {
             const bdaIdentity = (<ListItem>(<List>e.target).selected).value;
-            const bda = doc.querySelector(selector('BDA', bdaIdentity));
+            const bda = find(doc, 'BDA', bdaIdentity);
 
             if (bda)
               e.target!.dispatchEvent(newSubWizardEvent(editBDAWizard(bda)));

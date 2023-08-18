@@ -21,7 +21,7 @@ import '../../filtered-list.js';
 import { FilteredList } from '../../filtered-list.js';
 
 import { gooseIcon } from '../../icons/icons.js';
-import { compareNames, identity, selector } from '../../foundation.js';
+import { compareNames, identity, find } from '../../foundation.js';
 import { styles, updateElementReference } from './foundation.js';
 
 @customElement('gse-control-editor')
@@ -62,7 +62,7 @@ export class GseControlEditor extends LitElement {
 
   private selectGSEControl(evt: Event): void {
     const id = ((evt.target as FilteredList).selected as ListItem).value;
-    const gseControl = this.doc.querySelector(selector('GSEControl', id));
+    const gseControl = find(this.doc, 'GSEControl', id);
     if (!gseControl) return;
 
     this.selectedGseControl = gseControl;
