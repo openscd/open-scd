@@ -17,6 +17,7 @@ import {
   createElement,
   Delete,
   EditorAction,
+  find,
   getUniqueElementName,
   getValue,
   identity,
@@ -25,7 +26,6 @@ import {
   newActionEvent,
   newSubWizardEvent,
   newWizardEvent,
-  selector,
   Wizard,
   WizardActor,
   WizardInputElement,
@@ -455,7 +455,7 @@ function openSampledValueControlCreateWizard(doc: XMLDocument): WizardActor {
     const [tagName, id] = path.pop()!.split(': ');
     if (tagName !== 'IED') return [];
 
-    const ied = doc.querySelector(selector(tagName, id));
+    const ied = find(doc, tagName, id);
     if (!ied) return [];
 
     const ln0 = ied.querySelector('LN0');
@@ -652,8 +652,10 @@ export function selectSampledValueControlWizard(element: Element): Wizard {
         html`<filtered-list
           @selected=${(e: SingleSelectedEvent) => {
             const identity = (<ListItemBase>(<List>e.target).selected).value;
-            const sampledValueControl = element.querySelector(
-              selector('SampledValueControl', identity)
+            const sampledValueControl = find(
+              element,
+              'SampledValueControl',
+              identity
             );
             if (!sampledValueControl) return;
 

@@ -21,10 +21,10 @@ import { Select } from '@material/mwc-select';
 
 import '../filtered-list.js';
 import {
+  find,
   getChildElementsByTagName,
   identity,
   newActionEvent,
-  selector,
 } from '../foundation.js';
 import { WizardTextField } from '../wizard-textfield.js';
 import {
@@ -164,10 +164,7 @@ export default class VirtualTemplateIED extends LitElement {
       this.dialog.querySelectorAll<CheckListItem>(
         'mwc-check-list-item[selected]:not([disabled])'
       ) ?? []
-    ).map(
-      selectedItem =>
-        this.doc.querySelector(selector('LNode', selectedItem.value))!
-    );
+    ).map(selectedItem => find(this.doc, 'LNode', selectedItem.value)!);
     if (!selectedLNode.length) return;
 
     const selectedLLN0s = Array.from(

@@ -22,11 +22,11 @@ import '../plain-compare-list.js';
 
 import {
   compareNames,
+  find,
   getNameAttribute,
   identity,
   isPublic,
   newPendingStateEvent,
-  selector,
 } from '../foundation.js';
 import { DiffFilter } from '../foundation/compare.js';
 
@@ -137,7 +137,7 @@ export default class CompareIEDPlugin extends LitElement {
     );
     const identity = selectListItem?.value;
     if (identity) {
-      return doc.querySelector(selector('IED', identity)) ?? undefined;
+      return find(doc, 'IED', identity) ?? undefined;
     }
     return undefined;
   }

@@ -3,10 +3,10 @@ import { get } from 'lit-translate';
 
 import {
   crossProduct,
+  find,
   identity,
   newWizardEvent,
   SCLTag,
-  selector,
   tags,
 } from '../foundation.js';
 import { Diff, mergeWizard } from '../wizards.js';
@@ -101,10 +101,8 @@ export default class UpdateSubstationPlugin extends LitElement {
                 selected: (diff: Diff<Element | string>): boolean =>
                   diff.theirs instanceof Element
                     ? diff.theirs.tagName === 'LNode'
-                      ? this.doc.querySelector(
-                          selector('LNode', identity(diff.theirs))
-                        ) === null &&
-                        isValidReference(doc, identity(diff.theirs))
+                      ? find(this.doc, 'LNode', identity(diff.theirs)) ===
+                          null && isValidReference(doc, identity(diff.theirs))
                       : diff.theirs.tagName === 'Substation' ||
                         !tags['SCL'].children.includes(
                           <SCLTag>diff.theirs.tagName
@@ -113,9 +111,7 @@ export default class UpdateSubstationPlugin extends LitElement {
                 disabled: (diff: Diff<Element | string>): boolean =>
                   diff.theirs instanceof Element &&
                   diff.theirs.tagName === 'LNode' &&
-                  (this.doc.querySelector(
-                    selector('LNode', identity(diff.theirs))
-                  ) !== null ||
+                  (find(this.doc, 'LNode', identity(diff.theirs)) !== null ||
                     !isValidReference(doc, identity(diff.theirs))),
                 auto: (): boolean => true,
               }

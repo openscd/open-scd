@@ -19,11 +19,11 @@ import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import '../filtered-list.js';
 import {
   createElement,
+  find,
   identity,
   isPublic,
   newActionEvent,
   newLogEvent,
-  selector,
   SimpleAction,
 } from '../foundation.js';
 
@@ -456,7 +456,7 @@ export default class ImportingIedPlugin extends LitElement {
 
     const ieds = selectedItems
       .map(item => {
-        return importDoc!.querySelector(selector('IED', item.value));
+        return find(importDoc, 'IED', item.value);
       })
       .filter(ied => ied) as Element[];
 

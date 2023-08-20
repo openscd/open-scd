@@ -20,7 +20,7 @@ import '../../filtered-list.js';
 import './sampled-value-control-element-editor.js';
 import { FilteredList } from '../../filtered-list.js';
 
-import { compareNames, identity, selector } from '../../foundation.js';
+import { compareNames, identity, find } from '../../foundation.js';
 import { smvIcon } from '../../icons/icons.js';
 import { styles, updateElementReference } from './foundation.js';
 
@@ -29,7 +29,7 @@ export class SampledValueControlEditor extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property({ attribute: false })
   doc!: XMLDocument;
-  @property({type: Number})
+  @property({ type: Number })
   editCount = -1;
 
   @state()
@@ -66,9 +66,7 @@ export class SampledValueControlEditor extends LitElement {
 
   private selectSMVControl(evt: Event): void {
     const id = ((evt.target as FilteredList).selected as ListItem).value;
-    const smvControl = this.doc.querySelector(
-      selector('SampledValueControl', id)
-    );
+    const smvControl = find(this.doc, 'SampledValueControl', id);
     if (!smvControl) return;
 
     this.selectedSampledValueControl = smvControl;
