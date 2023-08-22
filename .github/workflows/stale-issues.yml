@@ -1,0 +1,27 @@
+# This workflow labels stale issues.
+#
+# For more information, see:
+# https://github.com/actions/stale
+name: Mark stale issues
+
+on:
+  workflow_dispatch
+#  schedule:
+#  - cron: '* * * * *'
+
+jobs:
+  stale:
+
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+
+    steps:
+    - uses: actions/stale@v5
+      with:
+        debug-only: true # temporary
+        repo-token: ${{ secrets.ORG_GITHUB_ACTION_SECRET }}
+        days-before-stale: 60
+        stale-issue-message: '' # 'Stale issue message'
+        stale-issue-label: 'stale'
+        days-before-close: -1
