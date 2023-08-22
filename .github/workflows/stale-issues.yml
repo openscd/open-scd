@@ -7,7 +7,7 @@ name: Mark stale issues
 on:
   workflow_call:
     secrets:
-      GITHUB_TOKEN:
+      TOKEN_FOR_STALE_ISSUES:
         required: true
 
 jobs:
@@ -21,7 +21,7 @@ jobs:
     - uses: actions/stale@v5
       with:
         debug-only: true # temporary
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        repo-token: ${{ secrets.TOKEN_FOR_STALE_ISSUES }}
         days-before-stale: 60
         stale-issue-label: 'stale'
         days-before-close: -1 # `-1` disables closing
