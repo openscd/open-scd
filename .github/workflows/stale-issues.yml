@@ -5,9 +5,10 @@
 name: Mark stale issues
 
 on:
-  workflow_dispatch
-#  schedule:
-#  - cron: '* * * * *'
+  workflow_call:
+    secrets:
+      ORG_GITHUB_ACTION_SECRET:
+        required: true
 
 jobs:
   stale:
@@ -22,6 +23,18 @@ jobs:
         debug-only: true # temporary
         repo-token: ${{ secrets.ORG_GITHUB_ACTION_SECRET }}
         days-before-stale: 60
-        stale-issue-message: '' # 'Stale issue message'
         stale-issue-label: 'stale'
-        days-before-close: -1
+        days-before-close: -1 # `-1` disables closing
+        stale-issue-message: |
+          Hello there,
+
+          Thank you for opening this issue! We appreciate your interest in our project.
+          However, it seems that this issue hasn't had any activity for a while. To ensure that our issue tracker remains organized and efficient, we occasionally review and address stale issues.
+
+          If you believe this issue is still relevant and requires attention, please provide any additional context, updates, or details that might help us understand the problem better.
+          Feel free to continue the conversation here.
+
+          If the issue is no longer relevant, you can simply close it. If you're uncertain, you can always reopen it later.
+
+          Remember, our project thrives on community contributions, and your input matters. We're here to collaborate and improve.
+          Thank you for being part of this journey!
