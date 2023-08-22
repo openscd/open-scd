@@ -16,8 +16,11 @@ We will follow the decisions recorded in the central organizational
 repository ([.github](https://github.com/openscd/.github)), 
 and record new repo-specific decisions in this repository.
 
-We write ADRs in the `docs` folder instead of a standard `doc`, 
-because `doc` is used for the generated documentation.
+
+We write ADRs in the `docs/decisions` folder instead of a standard `doc/adr`:
+- `docs` instead of `doc` because `doc` is used for the generated documentation.
+- `decisions` instead of `adrs` because it is more explicit and a followed practice:
+  [↗ Markdown Any Decision Records - Applying MADR to your project ](https://adr.github.io/madr/#applying-madr-to-your-project)
 
 ## Consequences
 
