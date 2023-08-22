@@ -8,4 +8,4 @@ jobs:
   run-stale:
     uses: "./.github/workflows/stale-issues.yml"
     secrets:
-      ORG_GITHUB_ACTION_SECRET: ${{ secrets.ORG_GITHUB_ACTION_SECRET }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
