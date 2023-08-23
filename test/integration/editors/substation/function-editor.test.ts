@@ -8,41 +8,7 @@ import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import '../../../../src/editors/substation/function-editor.js';
 import { FunctionEditor } from '../../../../src/editors/substation/function-editor.js';
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
-import { MenuBase } from '@material/mwc-menu/mwc-menu-base.js';
-
-const openAndCancelMenu: (
-  parent: MockWizardEditor,
-  element: FunctionEditor
-) => Promise<void> = (
-  parent: MockWizardEditor,
-  element: FunctionEditor
-): Promise<void> =>
-  new Promise(async resolve => {
-    expect(parent.wizardUI.dialog).to.be.undefined;
-
-    element?.shadowRoot?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!.click();
-    const subFunctionMenuItem: ListItemBase =
-      element?.shadowRoot?.querySelector<ListItemBase>(
-        `mwc-list-item[value='SubFunction']`
-      )!;
-    subFunctionMenuItem.click();
-    await new Promise(resolve => setTimeout(resolve, 100)); // await animation
-
-    expect(parent.wizardUI.dialog).to.exist;
-
-    const secondaryAction: HTMLElement = <HTMLElement>(
-      parent.wizardUI.dialog?.querySelector(
-        'mwc-button[slot="secondaryAction"]'
-      )
-    );
-
-    secondaryAction.click();
-    await new Promise(resolve => setTimeout(resolve, 100)); // await animation
-
-    expect(parent.wizardUI.dialog).to.be.undefined;
-
-    return resolve();
-  });
+import { openAndCancelMenu } from './openAndCancelMenu.js';
 
 describe('function-editor wizarding editing integration', () => {
   let doc: XMLDocument;

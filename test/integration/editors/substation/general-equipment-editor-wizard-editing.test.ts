@@ -3,48 +3,10 @@ import { expect, fixture, html } from '@open-wc/testing';
 import '../../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../../mock-wizard-editor.js';
 
-import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
-
 import '../../../../src/editors/substation/general-equipment-editor.js';
 import { GeneralEquipmentEditor } from '../../../../src/editors/substation/general-equipment-editor.js';
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
-import { MenuBase } from '@material/mwc-menu/mwc-menu-base.js';
-
-const openAndCancelMenu: (
-  parent: MockWizardEditor,
-  element: GeneralEquipmentEditor
-) => Promise<void> = (
-  parent: MockWizardEditor,
-  element: GeneralEquipmentEditor
-): Promise<void> =>
-  new Promise(async resolve => {
-    expect(parent.wizardUI.dialog).to.be.undefined;
-
-    element?.shadowRoot
-      ?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!
-      .click();
-    const lnodMenuItem: ListItemBase =
-      element?.shadowRoot?.querySelector<ListItemBase>(
-        `mwc-list-item[value='LNode']`
-      )!;
-    lnodMenuItem.click();
-    await new Promise(resolve => setTimeout(resolve, 100)); // await animation
-
-    expect(parent.wizardUI.dialog).to.exist;
-
-    const secondaryAction: HTMLElement = <HTMLElement>(
-      parent.wizardUI.dialog?.querySelector(
-        'mwc-button[slot="secondaryAction"][dialogaction="close"]'
-      )
-    );
-
-    secondaryAction.click();
-    await new Promise(resolve => setTimeout(resolve, 100)); // await animation
-
-    expect(parent.wizardUI.dialog).to.be.undefined;
-
-    return resolve();
-  });
+import { openAndCancelMenu } from './openAndCancelMenu.js';
 
 describe('general-equipment-editor wizarding editing integration', () => {
   let doc: XMLDocument;
@@ -54,7 +16,6 @@ describe('general-equipment-editor wizarding editing integration', () => {
   describe('edit wizard', () => {
     let nameField: WizardTextField;
     let descField: WizardTextField;
-    let typeField: WizardTextField;
     let secondaryAction: HTMLElement;
     let primaryAction: HTMLElement;
 
@@ -85,9 +46,6 @@ describe('general-equipment-editor wizarding editing integration', () => {
       );
       descField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector('wizard-textfield[label="desc"]')
-      );
-      typeField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="type"]')
       );
       secondaryAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(

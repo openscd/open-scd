@@ -6,7 +6,7 @@ import {
 } from '../test-support.js';
 import {
   deleteReferences,
-  updateReferences
+  updateReferences,
 } from '../../../../src/wizards/foundation/references.js';
 import { expect } from '@open-wc/testing';
 
@@ -19,11 +19,17 @@ describe('Update reference for ', () => {
 
     beforeEach(async () => {
       doc = await fetchDoc('/test/testfiles/wizards/ied.scd');
-      conductingEquipment = doc.querySelector(`ConductingEquipment[name="${ceName}"]`)!;
+      conductingEquipment = doc.querySelector(
+        `ConductingEquipment[name="${ceName}"]`
+      )!;
     });
 
     it('will update no references to ConductingEquipment', function () {
-      const updateActions = updateReferences(conductingEquipment, ceName, 'Other CE Name');
+      const updateActions = updateReferences(
+        conductingEquipment,
+        ceName,
+        'Other CE Name'
+      );
       expect(updateActions.length).to.equal(0);
     });
 
@@ -38,7 +44,9 @@ describe('Update reference for ', () => {
 
     beforeEach(async () => {
       doc = await fetchDoc('/test/testfiles/wizards/ied.scd');
-      connectAP = doc.querySelector(`ConnectedAP[iedName="IED1"][apName="P1"]`)!;
+      connectAP = doc.querySelector(
+        `ConnectedAP[iedName="IED1"][apName="P1"]`
+      )!;
     });
 
     it('will update no references to ConnectedAP', function () {
@@ -89,12 +97,7 @@ describe('Update reference for ', () => {
       const updateActions = updateReferences(ied, oldName, newName);
       expect(updateActions.length).to.equal(8);
 
-      expectUpdateTextValue(
-        updateActions[6],
-        'GSEControl',
-        oldName,
-        newName
-      );
+      expectUpdateTextValue(updateActions[6], 'GSEControl', oldName, newName);
       expectUpdateTextValue(
         updateActions[7],
         'SampledValueControl',
@@ -157,7 +160,9 @@ describe('Update reference for ', () => {
     it('will update all references to VoltageLevel "J1"', function () {
       const oldName = 'J1';
       const newName = 'J1 UPD';
-      const voltageLevel = doc.querySelector(`VoltageLevel[name="${oldName}"]`)!;
+      const voltageLevel = doc.querySelector(
+        `VoltageLevel[name="${oldName}"]`
+      )!;
 
       const updateActions = updateReferences(voltageLevel, oldName, newName);
       expect(updateActions.length).to.equal(48);

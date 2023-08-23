@@ -17,13 +17,15 @@ export default class GooseSubscribeLaterBindingPlugin extends LitElement {
           class="column"
           controlTag="GSEControl"
           .includeLaterBinding="${true}"
-          .editCount=${this.editCount} .doc="${this.doc}"
+          .editCount=${this.editCount}
+          .doc="${this.doc}"
         >
         </fcda-binding-list>
         <extref-later-binding-list
           class="column"
           controlTag="GSEControl"
-          .editCount=${this.editCount} .doc="${this.doc}"
+          .editCount=${this.editCount}
+          .doc="${this.doc}"
         >
         </extref-later-binding-list>
       </div>

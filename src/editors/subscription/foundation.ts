@@ -196,9 +196,9 @@ export function canRemoveSubscriptionSupervision(
 }
 
 /**
- * Searches for first instantiated LGOS/LSVS LN for presence of DOI>DAI[valKind=Conf/RO][valImport=true]
+ * Searches for first instantiated LGOS/LSVS LN for presence of DOI\>DAI[valKind=Conf/RO][valImport=true]
  * given a supervision type and if necessary then searches DataTypeTemplates for
- * DOType>DA[valKind=Conf/RO][valImport=true] to determine if modifications to supervision are allowed.
+ * DOType\>DA[valKind=Conf/RO][valImport=true] to determine if modifications to supervision are allowed.
  * @param ied - SCL IED element.
  * @param supervisionType - either 'LGOS' or 'LSVS' supervision LN classes.
  * @returns boolean indicating if subscriptions are allowed.
@@ -259,9 +259,9 @@ function isSupervisionModificationAllowed(
  * Returns an array with a single Create action to create a new
  * supervision element for the given GOOSE/SMV message and subscriber IED.
  *
- * @param controlBlock The GOOSE or SMV message element
- * @param subscriberIED The subscriber IED
- * @returns an empty array if instantiation is not possible or an array with a single Create action
+ * @param controlBlock - The GOOSE or SMV message element
+ * @param subscriberIED - The subscriber IED
+ * @returns - an empty array if instantiation is not possible or an array with a single Create action
  */
 export function instantiateSubscriptionSupervision(
   controlBlock: Element | undefined,
@@ -404,8 +404,8 @@ export function getSupervisionCbRefs(
  * Return an array with a single Delete action to delete the supervision element
  * for the given GOOSE/SMV message and subscriber IED.
  *
- * @param controlBlock The GOOSE or SMV message element
- * @param subscriberIED The subscriber IED
+ * @param controlBlock - The GOOSE or SMV message element
+ * @param subscriberIED - The subscriber IED
  * @returns an empty array if removing the supervision is not possible or an array
  * with a single Delete action that removes the LN if it was created in OpenSCD
  * or only the supervision structure DOI/DAI/Val if it was created by the user.
@@ -448,10 +448,10 @@ export function removeSubscriptionSupervision(
 /**
  * Checks if the given combination of GOOSE/SMV message and subscriber IED
  * allows for subscription supervision.
- * @param controlBlock The GOOSE or SMV message element
- * @param subscriberIED The subscriber IED
- * @param supervisionType LSVS or LGOS
- * @returns true if both controlBlock and subscriberIED meet the requirements for
+ * @param controlBlock - The GOOSE or SMV message element
+ * @param subscriberIED - The subscriber IED
+ * @param supervisionType - LSVS or LGOS
+ * @returns - true if both controlBlock and subscriberIED meet the requirements for
  * setting up a supervision for the specified supervision type or false if they don't
  */
 function isSupervisionAllowed(
@@ -479,8 +479,8 @@ function isSupervisionAllowed(
 
 /** Returns an new or existing LN instance available for supervision instantiation
  *
- * @param controlBlock The GOOSE or SMV message element
- * @param subscriberIED The subscriber IED
+ * @param controlBlock - The GOOSE or SMV message element
+ * @param subscriberIED - The subscriber IED
  * @returns The LN instance or null if no LN instance could be found or created
  */
 export function findOrCreateAvailableLNInst(
@@ -611,8 +611,8 @@ export function getExistingSupervision(extRef: Element | null): Element | null {
 /**
  * Counts the number of LN instances with proper supervision for the given control block set up.
  *
- * @param subscriberIED The subscriber IED
- * @param controlBlock The GOOSE or SMV message element
+ * @param subscriberIED - The subscriber IED
+ * @param controlBlock - The GOOSE or SMV message element
  * @returns The number of LN instances with a supervision set up
  */
 export function instantiatedSupervisionsCount(
@@ -630,9 +630,9 @@ export function instantiatedSupervisionsCount(
  * Counts the max number of LN instances with supervision allowed for
  * the given control block's type of message.
  *
- * @param subscriberIED The subscriber IED
- * @param controlBlock The GOOSE or SMV message element
- * @returns The max number of LN instances with supervision allowed
+ * @param subscriberIED - The subscriber IED
+ * @param controlBlock - The GOOSE or SMV message element
+ * @returns - the max number of LN instances with supervision allowed
  */
 export function maxSupervisions(
   subscriberIED: Element,
@@ -651,8 +651,8 @@ export function maxSupervisions(
 /**
  * Creates a string pointer to the control block element.
  *
- * @param controlBlock The GOOSE or SMV message element
- * @returns null if the control block is undefined or a string pointer to the control block element
+ * @param controlBlock - The GOOSE or SMV message element
+ * @returns - null if the control block is undefined or a string pointer to the control block element
  */
 export function controlBlockReference(
   controlBlock: Element | undefined

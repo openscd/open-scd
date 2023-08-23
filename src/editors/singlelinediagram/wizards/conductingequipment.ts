@@ -12,13 +12,13 @@ import {
   getXCoordinateAttribute,
   getYCoordinateAttribute,
   updateNamingAndCoordinatesAction,
-  renderXYCoordinateFields
+  renderXYCoordinateFields,
 } from './foundation.js';
 import {
   renderConductingEquipmentWizard,
   reservedNamesConductingEquipment,
-  typeName
-} from "../../../wizards/conductingequipment.js";
+  typeName,
+} from '../../../wizards/conductingequipment.js';
 
 export function render(
   name: string | null,
@@ -29,14 +29,20 @@ export function render(
   type: string,
   reservedNames: string[]
 ): TemplateResult[] {
-  return renderConductingEquipmentWizard(name, desc, option, type, reservedNames)
-    .concat(renderXYCoordinateFields(xCoordinate, yCoordinate));
+  return renderConductingEquipmentWizard(
+    name,
+    desc,
+    option,
+    type,
+    reservedNames
+  ).concat(renderXYCoordinateFields(xCoordinate, yCoordinate));
 }
 
 export function editConductingEquipmentWizard(element: Element): Wizard {
   const reservedNames = reservedNamesConductingEquipment(
     <Element>element.parentNode!,
-    element.getAttribute('name'));
+    element.getAttribute('name')
+  );
 
   return [
     {

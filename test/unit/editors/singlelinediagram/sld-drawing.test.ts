@@ -17,17 +17,9 @@ import {
 } from '../../../../src/editors/singlelinediagram/sld-drawing.js';
 
 function setCoordinates(element: Element, x: number, y: number): void {
-  element.setAttributeNS(
-    SCL_COORDINATES_NAMESPACE,
-    'x',
-    `${x}`
-  );
+  element.setAttributeNS(SCL_COORDINATES_NAMESPACE, 'x', `${x}`);
 
-  element.setAttributeNS(
-    SCL_COORDINATES_NAMESPACE,
-    'y',
-    `${y}`
-  );
+  element.setAttributeNS(SCL_COORDINATES_NAMESPACE, 'y', `${y}`);
 }
 
 describe('Single Line Diagram drawing', () => {

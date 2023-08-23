@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Communication Plugin without a doc loaded looks like the latest snapshot"] = 
-`<h1>
+snapshots[
+  'Communication Plugin without a doc loaded looks like the latest snapshot'
+] = `<h1>
   <span style="color: var(--base1)">
     [communication.missing]
   </span>
@@ -15,4 +16,3 @@ snapshots["Communication Plugin without a doc loaded looks like the latest snaps
 </h1>
 `;
 /* end snapshot Communication Plugin without a doc loaded looks like the latest snapshot */
-

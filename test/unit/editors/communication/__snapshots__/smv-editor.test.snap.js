@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Editor web component for SMV element looks like its latest snapshot"] = 
-`<action-icon
+snapshots[
+  'Editor web component for SMV element looks like its latest snapshot'
+] = `<action-icon
   label="CurrentTransformer/voltageOnly"
   tabindex="0"
 >
@@ -21,4 +22,3 @@ snapshots["Editor web component for SMV element looks like its latest snapshot"]
 </action-icon>
 `;
 /* end snapshot Editor web component for SMV element looks like its latest snapshot */
-

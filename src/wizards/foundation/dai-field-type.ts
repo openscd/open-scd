@@ -39,7 +39,7 @@ const daiFieldTypes = [
   'VisString129',
   'VisString255',
 ] as const;
-export type DaiFieldTypes = typeof daiFieldTypes[number];
+export type DaiFieldTypes = (typeof daiFieldTypes)[number];
 const emptyIfNull = <T>(item: T | null, value: string): string => {
   return item === null ? '' : value;
 };

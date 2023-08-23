@@ -9,7 +9,6 @@ import {
   getDescriptionAttribute,
   getInstanceAttribute,
   getNameAttribute,
-  newWizardEvent,
   Wizard,
 } from '../../foundation.js';
 import { Nsdoc } from '../../foundation/nsdoc.js';

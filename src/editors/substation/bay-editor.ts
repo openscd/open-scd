@@ -54,7 +54,7 @@ export class BayEditor extends LitElement {
   /** The document being edited as provided to editor by [[`Zeroline`]]. */
   @property({ attribute: false })
   doc!: XMLDocument;
-  @property({type: Number})
+  @property({ type: Number })
   editCount = -1;
   @property({ attribute: false })
   element!: Element;

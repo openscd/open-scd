@@ -15,7 +15,7 @@ export function newEmptySCD(
   return new DOMParser().parseFromString(markup, 'application/xml');
 }
 
-export const SCL_NAMESPACE= "http://www.iec.ch/61850/2003/SCL";
+export const SCL_NAMESPACE = 'http://www.iec.ch/61850/2003/SCL';
 
 /**
  * Check if the namespace of the passed element is the standard SCL Namespace.

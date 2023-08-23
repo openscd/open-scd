@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["conducting-equipment-editor rendered as action icon looks like the latest snapshot"] = 
-`<action-icon
+snapshots[
+  'conducting-equipment-editor rendered as action icon looks like the latest snapshot'
+] = `<action-icon
   label="QA1"
   tabindex="0"
 >
@@ -36,8 +37,9 @@ snapshots["conducting-equipment-editor rendered as action icon looks like the la
 `;
 /* end snapshot conducting-equipment-editor rendered as action icon looks like the latest snapshot */
 
-snapshots["conducting-equipment-editor rendered as action pane looks like the latest snapshot"] = 
-`<action-pane
+snapshots[
+  'conducting-equipment-editor rendered as action pane looks like the latest snapshot'
+] = `<action-pane
   label="QA1"
   tabindex="0"
 >
@@ -140,8 +142,9 @@ snapshots["conducting-equipment-editor rendered as action pane looks like the la
 `;
 /* end snapshot conducting-equipment-editor rendered as action pane looks like the latest snapshot */
 
-snapshots["conducting-equipment-editor rendered as action pane with EqFunction children looks like the latest snapshot"] = 
-`<action-pane
+snapshots[
+  'conducting-equipment-editor rendered as action pane with EqFunction children looks like the latest snapshot'
+] = `<action-pane
   label="QA1"
   tabindex="0"
 >
@@ -246,8 +249,9 @@ snapshots["conducting-equipment-editor rendered as action pane with EqFunction c
 `;
 /* end snapshot conducting-equipment-editor rendered as action pane with EqFunction children looks like the latest snapshot */
 
-snapshots["conducting-equipment-editor rendered as action pane with LNode children looks like the latest snapshot"] = 
-`<action-pane
+snapshots[
+  'conducting-equipment-editor rendered as action pane with LNode children looks like the latest snapshot'
+] = `<action-pane
   label="QC9"
   tabindex="0"
 >
@@ -358,8 +362,9 @@ snapshots["conducting-equipment-editor rendered as action pane with LNode childr
 `;
 /* end snapshot conducting-equipment-editor rendered as action pane with LNode children looks like the latest snapshot */
 
-snapshots["conducting-equipment-editor rendered as action pane with SubEquipment children looks like the latest snapshot"] = 
-`<action-pane
+snapshots[
+  'conducting-equipment-editor rendered as action pane with SubEquipment children looks like the latest snapshot'
+] = `<action-pane
   label="QA1"
   tabindex="0"
 >
@@ -469,4 +474,3 @@ snapshots["conducting-equipment-editor rendered as action pane with SubEquipment
 </action-pane>
 `;
 /* end snapshot conducting-equipment-editor rendered as action pane with SubEquipment children looks like the latest snapshot */
-

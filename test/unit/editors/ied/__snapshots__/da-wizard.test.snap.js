@@ -1,8 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["with no ancestors looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots['with no ancestors looks like the latest snapshot'] = `<mwc-dialog
   defaultaction="next"
   heading="[iededitor.wizard.daTitle]"
   open=""
@@ -138,8 +137,7 @@ snapshots["with no ancestors looks like the latest snapshot"] =
 `;
 /* end snapshot with no ancestors looks like the latest snapshot */
 
-snapshots["with a DA element looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots['with a DA element looks like the latest snapshot'] = `<mwc-dialog
   defaultaction="next"
   heading="[iededitor.wizard.daTitle]"
   open=""
@@ -275,8 +273,7 @@ snapshots["with a DA element looks like the latest snapshot"] =
 `;
 /* end snapshot with a DA element looks like the latest snapshot */
 
-snapshots["with a BDA element looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots['with a BDA element looks like the latest snapshot'] = `<mwc-dialog
   defaultaction="next"
   heading="[iededitor.wizard.daTitle]"
   open=""
@@ -412,8 +409,9 @@ snapshots["with a BDA element looks like the latest snapshot"] =
 `;
 /* end snapshot with a BDA element looks like the latest snapshot */
 
-snapshots["with a DA element and DAI Element looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'with a DA element and DAI Element looks like the latest snapshot'
+] = `<mwc-dialog
   defaultaction="next"
   heading="[iededitor.wizard.daTitle]"
   open=""
@@ -548,4 +546,3 @@ snapshots["with a DA element and DAI Element looks like the latest snapshot"] =
 </mwc-dialog>
 `;
 /* end snapshot with a DA element and DAI Element looks like the latest snapshot */
-

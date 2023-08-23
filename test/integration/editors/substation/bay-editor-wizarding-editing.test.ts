@@ -7,44 +7,7 @@ import '../../../../src/editors/substation/bay-editor.js';
 import { BayEditor } from '../../../../src/editors/substation/bay-editor.js';
 import { Select } from '@material/mwc-select';
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
-import { MenuBase } from '@material/mwc-menu/mwc-menu-base.js';
-import { ListItemBase } from '@material/mwc-list/mwc-list-item-base.js';
-
-const openAndCancelMenu: (
-  parent: MockWizardEditor,
-  element: BayEditor
-) => Promise<void> = (
-  parent: MockWizardEditor,
-  element: BayEditor
-): Promise<void> =>
-  new Promise(async resolve => {
-    expect(parent.wizardUI.dialog).to.be.undefined;
-
-    element?.shadowRoot
-      ?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!
-      .click();
-    const lnodeMenuItem: ListItemBase =
-      element?.shadowRoot?.querySelector<ListItemBase>(
-        `mwc-list-item[value='LNode']`
-      )!;
-    lnodeMenuItem.click();
-    await new Promise(resolve => setTimeout(resolve, 100)); // await animation
-
-    expect(parent.wizardUI.dialog).to.exist;
-
-    const secondaryAction: HTMLElement = <HTMLElement>(
-      parent.wizardUI.dialog?.querySelector(
-        'mwc-button[slot="secondaryAction"]'
-      )
-    );
-
-    secondaryAction.click();
-    await new Promise(resolve => setTimeout(resolve, 100)); // await animation
-
-    expect(parent.wizardUI.dialog).to.be.undefined;
-
-    return resolve();
-  });
+import { openAndCancelMenu } from './openAndCancelMenu.js';
 
 describe('bay-editor wizarding editing integration', () => {
   describe('edit wizard', () => {

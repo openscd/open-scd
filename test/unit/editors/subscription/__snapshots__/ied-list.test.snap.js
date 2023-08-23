@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["ied-list looks like the latest snapshot with a document loaded"] = 
-`<section tabindex="0">
+snapshots[
+  'ied-list looks like the latest snapshot with a document loaded'
+] = `<section tabindex="0">
   <h1>
     [subscription.undefined.subscriber.iedListTitle]
   </h1>
@@ -51,8 +52,9 @@ snapshots["ied-list looks like the latest snapshot with a document loaded"] =
 `;
 /* end snapshot ied-list looks like the latest snapshot with a document loaded */
 
-snapshots["ied-list looks like the latest snapshot without a doc loaded"] = 
-`<section tabindex="0">
+snapshots[
+  'ied-list looks like the latest snapshot without a doc loaded'
+] = `<section tabindex="0">
   <h1>
     [subscription.undefined.subscriber.iedListTitle]
   </h1>
@@ -61,4 +63,3 @@ snapshots["ied-list looks like the latest snapshot without a doc loaded"] =
 </section>
 `;
 /* end snapshot ied-list looks like the latest snapshot without a doc loaded */
-

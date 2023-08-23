@@ -22,7 +22,7 @@ export default class CommunicationPlugin extends LitElement {
 
   /**
    * Creates the Communication Element and returns the created Element
-   * @returns {Element} Communication `Element`
+   * @returns Element - Communication `Element`
    */
   private createCommunication(): Element {
     const element: Element = createElement(this.doc, 'Communication', {});

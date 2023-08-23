@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Cleanup: Control Blocks Container without a doc loaded looks like the latest snapshot"] = 
-`<section tabindex="1">
+snapshots[
+  'Cleanup: Control Blocks Container without a doc loaded looks like the latest snapshot'
+] = `<section tabindex="1">
   <div>
     <h1>
       [cleanup.unreferencedControls.title]
@@ -75,8 +76,9 @@ snapshots["Cleanup: Control Blocks Container without a doc loaded looks like the
 `;
 /* end snapshot Cleanup: Control Blocks Container without a doc loaded looks like the latest snapshot */
 
-snapshots["Cleanup: Control Blocks Container With a test file loaded looks like the latest snapshot"] = 
-`<section tabindex="1">
+snapshots[
+  'Cleanup: Control Blocks Container With a test file loaded looks like the latest snapshot'
+] = `<section tabindex="1">
   <div>
     <h1>
       [cleanup.unreferencedControls.title]
@@ -348,4 +350,3 @@ snapshots["Cleanup: Control Blocks Container With a test file loaded looks like 
 </wizard-dialog>
 `;
 /* end snapshot Cleanup: Control Blocks Container With a test file loaded looks like the latest snapshot */
-

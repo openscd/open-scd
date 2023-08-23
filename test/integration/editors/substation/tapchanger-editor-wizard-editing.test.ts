@@ -2,49 +2,12 @@ import { expect, fixture, html } from '@open-wc/testing';
 
 import '../../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../../mock-wizard-editor.js';
-import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import '../../../../src/editors/substation/tapchanger-editor.js';
 import { TapChangerEditor } from '../../../../src/editors/substation/tapchanger-editor.js';
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
 import { WizardCheckbox } from '../../../../src/wizard-checkbox.js';
-import { MenuBase } from '@material/mwc-menu/mwc-menu-base.js';
-
-const openAndCancelMenu: (
-  parent: MockWizardEditor,
-  element: TapChangerEditor
-) => Promise<void> = (
-  parent: MockWizardEditor,
-  element: TapChangerEditor
-): Promise<void> =>
-  new Promise(async resolve => {
-    expect(parent.wizardUI.dialog).to.be.undefined;
-
-    element?.shadowRoot
-      ?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!
-      .click();
-    const lnodMenuItem: ListItemBase =
-      element?.shadowRoot?.querySelector<ListItemBase>(
-        `mwc-list-item[value='LNode']`
-      )!;
-    lnodMenuItem.click();
-    await new Promise(resolve => setTimeout(resolve, 100)); // await animation
-
-    expect(parent.wizardUI.dialog).to.exist;
-
-    const secondaryAction: HTMLElement = <HTMLElement>(
-      parent.wizardUI.dialog?.querySelector(
-        'mwc-button[slot="secondaryAction"][dialogaction="close"]'
-      )
-    );
-
-    secondaryAction.click();
-    await new Promise(resolve => setTimeout(resolve, 100)); // await animation
-
-    expect(parent.wizardUI.dialog).to.be.undefined;
-
-    return resolve();
-  });
+import { openAndCancelMenu } from './openAndCancelMenu.js';
 
 describe('tapchanger-editor wizarding editing integration', () => {
   let doc: XMLDocument;

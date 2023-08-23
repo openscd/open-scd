@@ -13,6 +13,10 @@ module.exports = {
     // disable the rule for all files
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
+    '@typescript-eslint/no-unused-vars': ['error', {
+      "varsIgnorePattern": "_.*",
+      "argsIgnorePattern": "_.*"
+    }],
     'import/named': 'off',
     'import/no-unresolved': 'off',
     'import/extensions': ['error', 'always', { ignorePackages: true }],
@@ -20,4 +24,7 @@ module.exports = {
     'no-duplicate-imports': 'off',
     'tsdoc/syntax': 'warn'
   },
+  "env": {
+    "browser": true,
+  }
 };

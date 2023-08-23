@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["ied-container looks like the latest snapshot"] = 
-`<action-pane tabindex="0">
+snapshots[
+  'ied-container looks like the latest snapshot'
+] = `<action-pane tabindex="0">
   <mwc-icon slot="icon">
     developer_board
   </mwc-icon>
@@ -32,4 +33,3 @@ snapshots["ied-container looks like the latest snapshot"] =
 </action-pane>
 `;
 /* end snapshot ied-container looks like the latest snapshot */
-

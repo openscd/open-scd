@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["cleanup-editor integration: unreferenced control blocks without a doc loaded looks like the latest snapshot"] = 
-`<section tabindex="1">
+snapshots[
+  'cleanup-editor integration: unreferenced control blocks without a doc loaded looks like the latest snapshot'
+] = `<section tabindex="1">
   <div>
     <h1>
       [cleanup.unreferencedDataTypes.title]
@@ -74,4 +75,3 @@ snapshots["cleanup-editor integration: unreferenced control blocks without a doc
 </wizard-dialog>
 `;
 /* end snapshot cleanup-editor integration: unreferenced control blocks without a doc loaded looks like the latest snapshot */
-

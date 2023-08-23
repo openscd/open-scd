@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["web component rendering LNode element as reference to a LN/LN0 within IED  looks like the latest snapshot"] = 
-`<action-icon
+snapshots[
+  'web component rendering LNode element as reference to a LN/LN0 within IED  looks like the latest snapshot'
+] = `<action-icon
   label="IED1 CircuitBreaker_CB1/ XCBR 1"
   tabindex="0"
 >
@@ -24,8 +25,9 @@ snapshots["web component rendering LNode element as reference to a LN/LN0 within
 `;
 /* end snapshot web component rendering LNode element as reference to a LN/LN0 within IED  looks like the latest snapshot */
 
-snapshots["web component rendering LNode element as instance of a LNodeType only looks like the latest snapshot"] = 
-`<action-icon
+snapshots[
+  'web component rendering LNode element as instance of a LNodeType only looks like the latest snapshot'
+] = `<action-icon
   highlighted=""
   label="DC XSWI 1"
   secondary=""
@@ -54,4 +56,3 @@ snapshots["web component rendering LNode element as instance of a LNodeType only
 </action-icon>
 `;
 /* end snapshot web component rendering LNode element as instance of a LNodeType only looks like the latest snapshot */
-

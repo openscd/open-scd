@@ -267,7 +267,7 @@ export class CleanupControlBlocks extends LitElement {
         gseSmvLogReportDeleteActions.forEach(deleteAction =>
           e.target?.dispatchEvent(newActionEvent(deleteAction))
         );
-        this.cleanupListItems!.forEach((item) => {
+        this.cleanupListItems!.forEach(item => {
           item.selected = false;
         });
       }}

@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Update method for desc attributes in SEL IEDs working on SCL files containing manufacturer SEL using a semicolon separated file creates filtered list with all proposed desc attribute updates"] = 
-`<mwc-dialog
+snapshots[
+  'Update method for desc attributes in SEL IEDs working on SCL files containing manufacturer SEL using a semicolon separated file creates filtered list with all proposed desc attribute updates'
+] = `<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.add]"
   open=""
@@ -142,8 +143,9 @@ snapshots["Update method for desc attributes in SEL IEDs working on SCL files co
 `;
 /* end snapshot Update method for desc attributes in SEL IEDs working on SCL files containing manufacturer SEL using a semicolon separated file creates filtered list with all proposed desc attribute updates */
 
-snapshots["Update method for desc attributes in SEL IEDs working on SCL files containing manufacturer SEL using a comma separated (CSV) file creates filtered list with all proposed desc attribute updates"] = 
-`<mwc-dialog
+snapshots[
+  'Update method for desc attributes in SEL IEDs working on SCL files containing manufacturer SEL using a comma separated (CSV) file creates filtered list with all proposed desc attribute updates'
+] = `<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.add]"
   open=""
@@ -282,4 +284,3 @@ snapshots["Update method for desc attributes in SEL IEDs working on SCL files co
 </mwc-dialog>
 `;
 /* end snapshot Update method for desc attributes in SEL IEDs working on SCL files containing manufacturer SEL using a comma separated (CSV) file creates filtered list with all proposed desc attribute updates */
-

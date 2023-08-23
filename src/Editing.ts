@@ -31,6 +31,7 @@ export type EditingElement = Mixin<typeof Editing>;
 /** @typeParam TBase - a type extending `LitElement`
  * @returns `Base` with an `XMLDocument` property "`doc`" and an event listener
  * applying [[`EditorActionEvent`]]s and dispatching [[`LogEvent`]]s. */
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
   class EditingElement extends Base {
     /** The `XMLDocument` to be edited */
@@ -445,6 +446,7 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       );
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     constructor(...args: any[]) {
       super(...args);
 

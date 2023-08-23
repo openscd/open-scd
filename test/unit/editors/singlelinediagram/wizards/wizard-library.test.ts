@@ -1,13 +1,13 @@
-import {expect} from "@open-wc/testing";
+import { expect } from '@open-wc/testing';
 
-import {SCLTag} from "../../../../../src/foundation.js";
-import {emptyWizard} from "../../../../../src/wizards/wizard-library.js";
-import {wizards} from "../../../../../src/editors/singlelinediagram/wizards/wizard-library.js";
+import { SCLTag } from '../../../../../src/foundation.js';
+import { emptyWizard } from '../../../../../src/wizards/wizard-library.js';
+import { wizards } from '../../../../../src/editors/singlelinediagram/wizards/wizard-library.js';
 
-import { editConnectivityNodeWizard } from "../../../../../src/wizards/connectivitynode.js";
-import { editTerminalWizard } from "../../../../../src/wizards/terminal.js";
+import { editConnectivityNodeWizard } from '../../../../../src/wizards/connectivitynode.js';
+import { editTerminalWizard } from '../../../../../src/wizards/terminal.js';
 
-import { editBayWizard } from "../../../../../src/editors/singlelinediagram/wizards/bay.js";
+import { editBayWizard } from '../../../../../src/editors/singlelinediagram/wizards/bay.js';
 import { editConductingEquipmentWizard } from '../../../../../src/editors/singlelinediagram/wizards/conductingequipment.js';
 import { editPowerTransformerWizard } from '../../../../../src/editors/singlelinediagram/wizards/powertransformer.js';
 
@@ -22,19 +22,19 @@ describe('Wizard Library (X/Y Coordinates)', () => {
     for (const wizardKey in wizards) {
       const editWizard = wizards[<SCLTag>wizardKey].edit;
       switch (wizardKey) {
-        case "Bay":
+        case 'Bay':
           expect(editWizard).to.be.equal(editBayWizard);
           break;
-        case "ConductingEquipment":
+        case 'ConductingEquipment':
           expect(editWizard).to.be.equal(editConductingEquipmentWizard);
           break;
-        case "ConnectivityNode":
+        case 'ConnectivityNode':
           expect(editWizard).to.be.equal(editConnectivityNodeWizard);
           break;
-        case "PowerTransformer":
+        case 'PowerTransformer':
           expect(editWizard).to.be.equal(editPowerTransformerWizard);
           break;
-        case "Terminal":
+        case 'Terminal':
           expect(editWizard).to.be.equal(editTerminalWizard);
           break;
         default:

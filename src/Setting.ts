@@ -82,10 +82,18 @@ export function newLoadNsdocEvent(
   });
 }
 
+// TODO(ca-d): unify document loading mechanisms
+declare global {
+  interface ElementEventMap {
+    ['load-nsdoc']: LoadNsdocEvent;
+  }
+}
+
 /** Mixin that saves [[`Settings`]] to `localStorage`, reflecting them in the
  * `settings` property, setting them through `setSetting(setting, value)`. */
 export type SettingElement = Mixin<typeof Setting>;
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
   class SettingElement extends Base {
     /** Current [[`Settings`]] in `localStorage`, default to [[`defaults`]]. */
@@ -358,13 +366,14 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
       return new DOMParser().parseFromString(text, 'application/xml');
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     constructor(...params: any[]) {
       super(...params);
 
       registerTranslateConfig({ loader, empty: key => key });
       use(this.settings.language);
 
-      (<any>this).addEventListener('load-nsdoc', this.onLoadNsdoc);
+      this.addEventListener('load-nsdoc', this.onLoadNsdoc);
     }
 
     render(): TemplateResult {

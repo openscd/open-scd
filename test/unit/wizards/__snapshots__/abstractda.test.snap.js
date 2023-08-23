@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["abstractda wizards renderWizard looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'abstractda wizards renderWizard looks like the latest snapshot'
+] = `<mwc-dialog
   defaultaction="next"
   heading="title"
   open=""
@@ -498,4 +499,3 @@ snapshots["abstractda wizards renderWizard looks like the latest snapshot"] =
 </mwc-dialog>
 `;
 /* end snapshot abstractda wizards renderWizard looks like the latest snapshot */
-

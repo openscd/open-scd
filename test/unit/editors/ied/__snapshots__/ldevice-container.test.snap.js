@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["ldevice-container LDevice Element with LN Elements and all LN Elements displayed looks like the latest snapshot"] = 
-`<action-pane tabindex="0">
+snapshots[
+  'ldevice-container LDevice Element with LN Elements and all LN Elements displayed looks like the latest snapshot'
+] = `<action-pane tabindex="0">
   <mwc-icon slot="icon">
   </mwc-icon>
   <abbr
@@ -41,8 +42,9 @@ snapshots["ldevice-container LDevice Element with LN Elements and all LN Element
 `;
 /* end snapshot ldevice-container LDevice Element with LN Elements and all LN Elements displayed looks like the latest snapshot */
 
-snapshots["ldevice-container LDevice Element with LN Elements and some LN Elements displayed looks like the latest snapshot"] = 
-`<action-pane tabindex="0">
+snapshots[
+  'ldevice-container LDevice Element with LN Elements and some LN Elements displayed looks like the latest snapshot'
+] = `<action-pane tabindex="0">
   <mwc-icon slot="icon">
   </mwc-icon>
   <abbr
@@ -71,8 +73,9 @@ snapshots["ldevice-container LDevice Element with LN Elements and some LN Elemen
 `;
 /* end snapshot ldevice-container LDevice Element with LN Elements and some LN Elements displayed looks like the latest snapshot */
 
-snapshots["ldevice-container LDevice Element with LN Elements and no LN Elements displayed looks like the latest snapshot"] = 
-`<action-pane tabindex="0">
+snapshots[
+  'ldevice-container LDevice Element with LN Elements and no LN Elements displayed looks like the latest snapshot'
+] = `<action-pane tabindex="0">
   <mwc-icon slot="icon">
   </mwc-icon>
   <div id="lnContainer">
@@ -81,8 +84,9 @@ snapshots["ldevice-container LDevice Element with LN Elements and no LN Elements
 `;
 /* end snapshot ldevice-container LDevice Element with LN Elements and no LN Elements displayed looks like the latest snapshot */
 
-snapshots["ldevice-container LDevice Element without LN Element looks like the latest snapshot"] = 
-`<action-pane tabindex="0">
+snapshots[
+  'ldevice-container LDevice Element without LN Element looks like the latest snapshot'
+] = `<action-pane tabindex="0">
   <mwc-icon slot="icon">
   </mwc-icon>
   <div id="lnContainer">
@@ -90,4 +94,3 @@ snapshots["ldevice-container LDevice Element without LN Element looks like the l
 </action-pane>
 `;
 /* end snapshot ldevice-container LDevice Element without LN Element looks like the latest snapshot */
-

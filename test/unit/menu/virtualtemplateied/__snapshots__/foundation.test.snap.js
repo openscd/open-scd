@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["foundation for virtual IED creation getSpecificationIED function looks like the latest snapshot"] = 
-`<IED
+snapshots[
+  'foundation for virtual IED creation getSpecificationIED function looks like the latest snapshot'
+] = `<IED
   manufacturer="some manufactorer"
   name="SPECIFICATION"
 >
@@ -45,4 +46,3 @@ snapshots["foundation for virtual IED creation getSpecificationIED function look
 </IED>
 `;
 /* end snapshot foundation for virtual IED creation getSpecificationIED function looks like the latest snapshot */
-

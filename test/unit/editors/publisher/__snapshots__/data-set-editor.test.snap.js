@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Editor for DataSet element initially looks like the latest snapshot"] = 
-`<mwc-button
+snapshots[
+  'Editor for DataSet element initially looks like the latest snapshot'
+] = `<mwc-button
   label="[publisher.selectbutton]"
   outlined=""
 >
@@ -147,8 +148,9 @@ snapshots["Editor for DataSet element initially looks like the latest snapshot"]
 `;
 /* end snapshot Editor for DataSet element initially looks like the latest snapshot */
 
-snapshots["Editor for DataSet element with a selected DataSet looks like the latest snapshot"] = 
-`<mwc-button
+snapshots[
+  'Editor for DataSet element with a selected DataSet looks like the latest snapshot'
+] = `<mwc-button
   label="[publisher.selectbutton]"
   outlined=""
 >
@@ -299,4 +301,3 @@ snapshots["Editor for DataSet element with a selected DataSet looks like the lat
 </div>
 `;
 /* end snapshot Editor for DataSet element with a selected DataSet looks like the latest snapshot */
-

@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Compare IED Plugin show template project selection dialog looks like its latest snapshot"] = 
-`<mwc-dialog heading="[compare-ied.selectProjectTitle]">
+snapshots[
+  'Compare IED Plugin show template project selection dialog looks like its latest snapshot'
+] = `<mwc-dialog heading="[compare-ied.selectProjectTitle]">
   <div>
     <input
       accept=".sed,.scd,.ssd,.isd,.iid,.cid,.icd"
@@ -25,8 +26,9 @@ snapshots["Compare IED Plugin show template project selection dialog looks like 
 `;
 /* end snapshot Compare IED Plugin show template project selection dialog looks like its latest snapshot */
 
-snapshots["Compare IED Plugin show ied selection lists dialog looks like its latest snapshot"] = 
-`<mwc-dialog heading="[compare-ied.selectIedTitle]">
+snapshots[
+  'Compare IED Plugin show ied selection lists dialog looks like its latest snapshot'
+] = `<mwc-dialog heading="[compare-ied.selectIedTitle]">
   <div class="splitContainer">
     <div>
       <div>
@@ -170,8 +172,9 @@ snapshots["Compare IED Plugin show ied selection lists dialog looks like its lat
 `;
 /* end snapshot Compare IED Plugin show ied selection lists dialog looks like its latest snapshot */
 
-snapshots["Compare IED Plugin show compare dialog with no differences looks like its latest snapshot"] = 
-`<mwc-dialog heading="[compare-ied.resultTitle]">
+snapshots[
+  'Compare IED Plugin show compare dialog with no differences looks like its latest snapshot'
+] = `<mwc-dialog heading="[compare-ied.resultTitle]">
   <plain-compare-list>
   </plain-compare-list>
   <mwc-button
@@ -191,4 +194,3 @@ snapshots["Compare IED Plugin show compare dialog with no differences looks like
 </mwc-dialog>
 `;
 /* end snapshot Compare IED Plugin show compare dialog with no differences looks like its latest snapshot */
-
