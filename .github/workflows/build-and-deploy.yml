@@ -18,9 +18,10 @@ jobs:
 
       - name: Install and Build
         run: |
-          npm ci
+          cd packages/open-scd
+          npm clean-install
           npm run-script build
-          
+
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
