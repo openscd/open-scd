@@ -3,7 +3,7 @@ import { get } from 'lit-translate';
 
 import {
   createElement,
-  selector,
+  find,
   Wizard,
   WizardAction,
   WizardActor,
@@ -17,7 +17,7 @@ import {
 
 export function newFCDA(parent: Element, path: string[]): Element | undefined {
   const [leafTag, leafId] = path[path.length - 1].split(': ');
-  const leaf = parent.ownerDocument.querySelector(selector(leafTag, leafId));
+  const leaf = find(parent.ownerDocument, leafTag, leafId);
   if (!leaf || getDataModelChildren(leaf).length > 0) return;
 
   const lnSegment = path.find(segment => segment.startsWith('LN'));
@@ -25,7 +25,7 @@ export function newFCDA(parent: Element, path: string[]): Element | undefined {
 
   const [lnTag, lnId] = lnSegment.split(': ');
 
-  const ln = parent.ownerDocument.querySelector(selector(lnTag, lnId));
+  const ln = find(parent.ownerDocument, lnTag, lnId);
   if (!ln) return;
 
   const ldInst = ln.closest('LDevice')?.getAttribute('inst');
@@ -44,7 +44,7 @@ export function newFCDA(parent: Element, path: string[]): Element | undefined {
     const [tagName, id] = segment.split(': ');
     if (!['DO', 'DA', 'SDO', 'BDA'].includes(tagName)) continue;
 
-    const element = parent.ownerDocument.querySelector(selector(tagName, id));
+    const element = find(parent.ownerDocument, tagName, id);
 
     if (!element) return;
 

@@ -7,11 +7,11 @@ import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
 import '../filtered-list.js';
 import {
+  find,
   findControlBlocks,
   identity,
   isPublic,
   newWizardEvent,
-  selector,
   Wizard,
   WizardActor,
 } from '../foundation.js';
@@ -90,9 +90,7 @@ export function communicationMappingWizard(
           >${Array.from(connections.keys()).map(key => {
             const elements = connections.get(key)!;
             const [cbId, cbTag, sinkIED] = key.split(' | ');
-            const cbElement = ownerDocument.querySelector(
-              selector(cbTag, cbId)
-            );
+            const cbElement = find(ownerDocument, cbTag, cbId);
             const [_, sourceIED, controlBlock] = cbId.match(/^(.+)>>(.*)$/)!;
 
             return html`<mwc-list-item

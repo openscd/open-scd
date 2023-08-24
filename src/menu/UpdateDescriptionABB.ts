@@ -8,11 +8,11 @@ import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import '../filtered-list.js';
 import {
   cloneElement,
+  find,
   identity,
   isPublic,
   newWizardEvent,
   SCLTag,
-  selector,
   Wizard,
   WizardAction,
   WizardActor,
@@ -37,7 +37,7 @@ function addDescriptionAction(doc: XMLDocument): WizardActor {
       const desc = (<Element>item.querySelector('span')).textContent;
       const [tag, identity] = item.value.split(' | ');
 
-      const oldElement = doc.querySelector(selector(tag, identity))!;
+      const oldElement = find(doc, tag, identity)!;
       const newElement = cloneElement(oldElement, { desc });
       return { old: { element: oldElement }, new: { element: newElement } };
     });

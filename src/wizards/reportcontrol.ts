@@ -16,12 +16,12 @@ import {
   cloneElement,
   createElement,
   EditorAction,
+  find,
   getReference,
   getValue,
   identity,
   isPublic,
   newSubWizardEvent,
-  selector,
   SimpleAction,
   Wizard,
   WizardActor,
@@ -307,7 +307,7 @@ function openReportControlCreateWizard(doc: XMLDocument): WizardActor {
     const [tagName, id] = path.pop()!.split(': ');
     if (tagName !== 'IED') return [];
 
-    const ied = doc.querySelector(selector(tagName, id));
+    const ied = find(doc, tagName, id);
     if (!ied) return [];
 
     const ln0 = ied.querySelector('LN0');
@@ -421,7 +421,7 @@ function copyReportControlActions(element: Element): WizardActor {
 
     const complexActions: ComplexAction[] = [];
     iedItems.forEach(iedItem => {
-      const ied = doc.querySelector(selector('IED', iedItem.value));
+      const ied = find(doc, 'IED', iedItem.value);
       if (!ied) return;
 
       const sinkLn0 = ied.querySelector('LN0');
@@ -738,9 +738,7 @@ export function selectReportControlWizard(element: Element): Wizard {
         html`<filtered-list
           @selected=${(e: SingleSelectedEvent) => {
             const identity = (<ListItemBase>(<List>e.target).selected).value;
-            const reportControl = element.querySelector(
-              selector('ReportControl', identity)
-            );
+            const reportControl = find(element, 'ReportControl', identity);
             if (!reportControl) return;
 
             e.target?.dispatchEvent(

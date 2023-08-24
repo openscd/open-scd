@@ -5,6 +5,7 @@ import {
   ComplexAction,
   depth,
   EditorAction,
+  find,
   findControlBlocks,
   findFCDAs,
   getChildElementsByTagName,
@@ -26,7 +27,6 @@ import {
   newPendingStateEvent,
   newWizardEvent,
   SCLTag,
-  selector,
   tags,
   minAvailableLogicalNodeInstance,
 } from '../../src/foundation.js';
@@ -320,23 +320,23 @@ describe('foundation', () => {
     });
   });
 
-  describe('selector', () => {
-    it('returns negation pseudo-class for identity of type NaN', () => {
+  describe('find', () => {
+    it('returns null for the identity NaN', () => {
       const element = scl1.querySelector('Assotiation');
       const ident = identity(element!);
-      expect(selector('Assotiation', ident)).to.equal(':not(*)');
+      expect(find(scl1, 'Assotiation', ident)).to.equal(null);
     });
-    it('returns correct selector for all tags except IEDName and ProtNs', () => {
+    it('returns correct element for all tags except IEDName and ProtNs', () => {
       Object.keys(tags).forEach(tag => {
         const element = Array.from(scl1.querySelectorAll(tag)).filter(
           item => !item.closest('Private')
         )[0];
         if (element && tag !== 'IEDName' && tag !== 'ProtNs')
-          expect(element).to.satisfy((element: Element) =>
-            element.isEqualNode(
-              scl1.querySelector(selector(tag, identity(element)))
+          expect(element)
+            .to.satisfy((element: Element) =>
+              element.isEqualNode(find(scl1, tag, identity(element)))
             )
-          );
+            .and.to.equal(find(scl1, tag, identity(element)));
       });
     });
   });
