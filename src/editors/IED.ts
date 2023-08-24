@@ -195,8 +195,15 @@ export default class IedPlugin extends LitElement {
             multi="true"
             .header="${translate('iededitor.lnFilter')}"
             @selected-items-changed="${(e: SelectedItemsChangedEvent) => {
-              if (e.detail.selectedItems.length === 0) return;
-              this.selectedLNClasses = e.detail.selectedItems;
+              let selectedItems = e.detail.selectedItems;
+              const nothingSelected = selectedItems.length === 0;
+              if (nothingSelected) {
+                selectedItems = this.lnClassList.map(
+                  lnClassInfo => lnClassInfo[0]
+                );
+              }
+
+              this.selectedLNClasses = selectedItems;
               this.requestUpdate('selectedIed');
               this.lNClassListOpenedOnce = true;
             }}"
