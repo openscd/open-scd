@@ -176,6 +176,37 @@ describe('IED Plugin', () => {
         ).to.eql(9);
       });
 
+      it('when filtering LNs, if none are selected, all are selected', async () => {
+        await selectIed('IED3');
+
+        const oscdFilterButton = <FilterButton>(
+          element.shadowRoot!.querySelector(
+            'oscd-filter-button[id="lnClassesFilter"]'
+          )
+        );
+        const filterButton = <LitElement>(
+          oscdFilterButton!.shadowRoot!.querySelector('mwc-icon-button')
+        );
+        filterButton.click();
+        await element.updateComplete;
+
+        const primaryButton = <HTMLElement>(
+          oscdFilterButton!.shadowRoot!.querySelector(
+            'mwc-button[slot="primaryAction"]'
+          )
+        );
+        primaryButton.click();
+        await element.updateComplete;
+
+        await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
+        expect(
+          getLDeviceContainer(getIedContainer()).shadowRoot!.querySelectorAll(
+            'ln-container'
+          ).length
+        ).to.eql(9);
+      });
+
       it('then renders the path of elements correctly', async () => {
         const iedContainer = getIedContainer();
 
