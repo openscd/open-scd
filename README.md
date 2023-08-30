@@ -21,6 +21,10 @@ to use the CoMPAS Backend Service to open and save SCL Files and more.
 
 See [Development](DEVELOPMENT.md) for more information about how to build and run CoMPAS OpenSCD locally.
 
+## Releasing
+
+See [Releasing](RELEASING.md) for a step by step guide on releasing this fork with the latest version of [open-scd](https://github.com/openscd/open-scd/).
+
 ## License
 
 The [IEC 61850](https://webstore.iec.ch/publication/63319) XSD and NSD code components used are
