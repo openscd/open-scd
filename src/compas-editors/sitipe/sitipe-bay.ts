@@ -32,13 +32,16 @@ import '../../action-icon.js';
 import {
   SIEMENS_SITIPE_IED_REF,
   SIEMENS_SITIPE_BAY_TEMPLATE,
+  SIEMENS_SITIPE_IED_TEMPLATE_REF,
 } from './foundation.js';
 
 import {
   BayTypical,
+  BTComponent,
   getBayTypicalComponents,
   getImportedBTComponentData,
   getImportedBtComponents,
+  ImportedBTComponent,
 } from './sitipe-service.js';
 import { defaultNamingStrategy, NamingStrategy } from './sitipe-substation.js';
 import { get } from 'lit-translate';
@@ -371,6 +374,11 @@ export class SitipeBay extends LitElement {
   @property()
   bayTypicals: BayTypical[] = [];
 
+  @property({
+    type: Number,
+  })
+  editCount = -1;
+
   @property()
   namingStrategy: NamingStrategy = defaultNamingStrategy;
 
@@ -461,6 +469,7 @@ export class SitipeBay extends LitElement {
       actions: [],
       title: 'Sitipe',
     };
+
     const bayTypicalElement: Element = createElement(this.doc, 'Private', {
       type: SIEMENS_SITIPE_BAY_TEMPLATE,
     });
@@ -497,7 +506,9 @@ export class SitipeBay extends LitElement {
                 'application/xml'
               );
 
-              this.prepareImport(doc, iedName);
+              if (this.isValidDoc(doc)) {
+                this.prepareImport(doc, iedName, btComponent);
+              }
             });
           });
         });
@@ -506,7 +517,7 @@ export class SitipeBay extends LitElement {
     });
   }
 
-  public prepareImport(doc: Document, iedName: string): void {
+  private isValidDoc(doc: Document): boolean {
     if (!doc) {
       this.dispatchEvent(
         newLogEvent({
@@ -514,7 +525,7 @@ export class SitipeBay extends LitElement {
           title: get('import.log.loaderror'),
         })
       );
-      return;
+      return false;
     }
 
     if (doc.querySelector('parsererror')) {
@@ -524,11 +535,23 @@ export class SitipeBay extends LitElement {
           title: get('import.log.parsererror'),
         })
       );
-      return;
+      return false;
     }
 
-    const ieds = Array.from(doc.querySelectorAll(':root > IED'));
-    if (ieds.length === 0) {
+    return true;
+  }
+
+  private getIeds(doc: Document): Element[] {
+    return Array.from(doc.querySelectorAll(':root > IED'));
+  }
+
+  protected prepareImport(
+    doc: Document,
+    iedName: string,
+    btComponent: BTComponent
+  ): void {
+    const ieds: Element[] = this.getIeds(doc);
+    if (!ieds.length) {
       this.dispatchEvent(
         newLogEvent({
           kind: 'error',
@@ -537,15 +560,41 @@ export class SitipeBay extends LitElement {
       );
       return;
     }
-
-    if (ieds.length === 1) {
-      this.importIED(ieds[0], iedName);
+    if (ieds.length > 1) {
       return;
     }
+
+    const ied: Element = ieds[0];
+
+    const oldIEDName: string = ied.getAttribute('name') || '';
+    ied.setAttribute('name', iedName);
+
+    this.importIED(ied);
+
+    if (iedName || oldIEDName) {
+      const privateIEDRef: Element = createElement(this.doc, 'Private', {
+        type: SIEMENS_SITIPE_IED_TEMPLATE_REF,
+      });
+      privateIEDRef.textContent = btComponent.name || oldIEDName;
+
+      this.dispatchEvent(
+        newActionEvent({
+          title: get('editing.import', { name: ied.getAttribute('name')! }),
+          actions: [
+            {
+              new: {
+                parent: ied,
+                element: privateIEDRef,
+              },
+            },
+          ],
+        })
+      );
+    }
+    return;
   }
 
-  private importIED(ied: Element, iedName: string): void {
-    ied.setAttribute('name', iedName);
+  private importIED(ied: Element): void {
     if (!isIedNameUnique(ied, this.doc)) {
       this.dispatchEvent(
         newLogEvent({
