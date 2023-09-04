@@ -22,14 +22,23 @@
     
     `git fetch upstream`
     
-3. Create a new release branch from the latest release of open-scd (this could be *upstream/main* if it was just released or the specific commit hash of the release), using a branch name relative to the desired release tag, example: *release_v0_33_0_1*
+3. Create a new release branch from the latest release of open-scd (this could be *upstream/main* if it was just released or the specific *commit hash* of the release), using a branch name relative to the desired release tag like *release_v0_33_0_1*:
+
+    `git checkout 5aa52454f3e3bb88efef7c8fb466d4d3cc48d20d -b release_v0_33_0_1` (example with commit hash)
+    
+    or
+    
+    `git checkout upstream/main -b release_v0_33_0_1`  (example using open-scd's main branch)
+
 4. Merge changes from *origin/main* into your release branch like this:
     
     `git merge main --strategy recursive`
     
 5. Make sure tests are passing, add fixes for breaking changes from **open-scd**
 6. Update the version number in your project's `package.json` file.
-7. Create a PR from your release branch into *main* 
-8. Create a new release on GitHub and tag it with the new version number.
-9. Include automatic release notes summarizing the changes in this release.
-10. Publish the release and update all the CoMPAS projects with a dependency on this repo to the newly released version.
+7. Push the changes in your release branch to origin:
+    `git push --set-upstream origin release_v0_33_0_1`
+8. Create a PR from your release branch into *main* 
+9. Create a new release on GitHub and tag it with the new version number.
+10. Include automatic release notes summarizing the changes in this release.
+11. Publish the release and update all the CoMPAS projects with a dependency on this repo to the newly released version.
