@@ -322,7 +322,7 @@ export const officialPlugins = [
   },
   {
     name: 'Sitipe',
-    src: '/src/editors/Sitipe.js',
+    src: '/src/compas-editors/Sitipe.js',
     icon: 'precision_manufacturing',
     default: true,
     kind: 'editor',

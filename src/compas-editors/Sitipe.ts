@@ -9,6 +9,11 @@ export default class SitipePlugin extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
 
+  @property({
+    type: Number,
+  })
+  editCount = -1;
+
   header(): string {
     return 'Sitipe';
   }
@@ -23,6 +28,7 @@ export default class SitipePlugin extends LitElement {
                 html`<sitipe-substation
                   .doc=${this.doc}
                   .element=${substation}
+                  .editCount=${this.editCount}
                 ></sitipe-substation>`
             )}
         </section>`
