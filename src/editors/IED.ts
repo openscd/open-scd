@@ -129,10 +129,20 @@ export default class IedPlugin extends LitElement {
           this.selectedIEDs = [iedName];
         }
       }
-      this.selectedLNClasses = this.lnClassList.map(
-        lnClassInfo => lnClassInfo[0]
-      );
     }
+  }
+
+  private calcSelectedLNClasses(): string[] {
+    const somethingSelected = this.selectedLNClasses.length > 0;
+    const lnClasses = this.lnClassList.map( lnClassInfo => lnClassInfo[0] );
+
+    let selectedLNClasses = lnClasses;
+
+    if(somethingSelected){
+      selectedLNClasses = lnClasses.filter( lnClass => this.selectedLNClasses.includes(lnClass));
+    }
+
+    return selectedLNClasses;
   }
 
   render(): TemplateResult {
@@ -195,17 +205,9 @@ export default class IedPlugin extends LitElement {
             multi="true"
             .header="${translate('iededitor.lnFilter')}"
             @selected-items-changed="${(e: SelectedItemsChangedEvent) => {
-              let selectedItems = e.detail.selectedItems;
-              const nothingSelected = selectedItems.length === 0;
-              if (nothingSelected) {
-                selectedItems = this.lnClassList.map(
-                  lnClassInfo => lnClassInfo[0]
-                );
-              }
 
-              this.selectedLNClasses = selectedItems;
+              this.selectedLNClasses = e.detail.selectedItems;
               this.requestUpdate('selectedIed');
-              this.lNClassListOpenedOnce = true;
             }}"
           >
             <span slot="icon">${getIcon('lNIcon')}</span>
@@ -214,8 +216,7 @@ export default class IedPlugin extends LitElement {
               const label = lnClassInfo[1];
               return html`<mwc-check-list-item
                 value="${value}"
-                ?selected="${this.lNClassListOpenedOnce &&
-                this.selectedLNClasses.includes(value)}"
+                ?selected="${this.selectedLNClasses.includes(value)}"
               >
                 ${label}
               </mwc-check-list-item>`;
@@ -229,7 +230,7 @@ export default class IedPlugin extends LitElement {
           .editCount=${this.editCount}
           .doc=${this.doc}
           .element=${this.selectedIed}
-          .selectedLNClasses=${this.selectedLNClasses}
+          .selectedLNClasses=${this.calcSelectedLNClasses()}
           .nsdoc=${this.nsdoc}
         ></ied-container>
       </section>`;
