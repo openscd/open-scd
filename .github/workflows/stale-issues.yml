@@ -5,23 +5,27 @@
 name: Mark stale issues
 
 on:
-  workflow_call:
-    secrets:
-      TOKEN_FOR_STALE_ISSUES:
-        required: true
+  workflow_dispatch:
+  schedule:
+    - cron: '0 19 * * *'
 
 jobs:
   stale:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
 
     steps:
     - uses: actions/stale@v5
       with:
-        debug-only: true # temporary
-        repo-token: ${{ secrets.TOKEN_FOR_STALE_ISSUES }}
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+
         days-before-stale: 60
+        days-before-close: -1
+        days-before-pr-stale: -1
+        days-before-pr-close: -1
+
         stale-issue-label: 'stale'
-        days-before-close: -1 # `-1` disables closing
         stale-issue-message: |
           Hello there,
 
@@ -35,3 +39,6 @@ jobs:
 
           Remember, our project thrives on community contributions, and your input matters. We're here to collaborate and improve.
           Thank you for being part of this journey!
+
+
+
