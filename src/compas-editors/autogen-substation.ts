@@ -1,5 +1,6 @@
 import { LitElement, property } from 'lit-element';
-import { createElement, newActionEvent } from '../foundation.js';
+import { createElement, newActionEvent, newLogEvent } from '../foundation.js';
+import { get } from 'lit-translate';
 
 let cbNum = 1;
 let dsNum = 1;
@@ -135,7 +136,7 @@ function getValidCSWI(ied: Element, selectedCtlModel: string[]): Element[] {
 export default class CompasAutogenerateSubstation extends LitElement {
   @property() doc!: XMLDocument;
   @property() iedNames!: string[];
-  @property() substationSeperator = '__';
+  @property() substationNameLength = 5;
   @property() voltageLevelNameLength = 3;
   @property() iedStartChar = 'A';
 
@@ -152,16 +153,30 @@ export default class CompasAutogenerateSubstation extends LitElement {
       .map(IED => IED.getAttribute('name') || '')
       .filter(value => !lNodes.includes(value));
 
-    //Get all the substation names by splitting the names on the '__' (seperator) and getting the characters in front of it
+    /**
+     * Get all the substation names by getting the first substationNameLength of characters.
+     * If the voltageLevel element starts with A00 it can be skipped and if '_' characters are used after the substation name its invalid and will be skipped.
+     * The optional underscore seperators will be left out to get a more visible appealing substation name.
+     **/
     const substationNames = this.extractNames(
       this.iedNames
         .filter(
           value =>
-            value.includes(this.substationSeperator) &&
-            !value.split(this.substationSeperator)[1].startsWith('A00')
+            !value?.substring(this.substationNameLength)?.startsWith('A00') &&
+            !value?.substring(this.substationNameLength)?.includes('_')
         )
-        .map(FullName => FullName?.split(this.substationSeperator)[0])
+        .map(FullName =>
+          FullName?.substring(0, this.substationNameLength).replace(/_/g, '')
+        )
     );
+
+    this.createLog(
+      substationNames.length == 0 ? 1 : 0,
+      get('compas.autogensubstation.substationAmount', {
+        amount: substationNames.length,
+      })
+    );
+
     this.createSubstations(substationNames);
   }
 
@@ -170,7 +185,7 @@ export default class CompasAutogenerateSubstation extends LitElement {
    * If the substation element doesn't exist yet, a substation element will be created with the given name and a default
    * description.
    *
-   * The created substation element with its name will be used to create voltageLevels as child elements to the substations.
+   * The created substation element with its name and optional underscore seperators will be used to create voltageLevels as child elements to the substations.
    * Afterwards the substation elements will be added to the document.
    */
   createSubstations(substationNames: string[]) {
@@ -182,7 +197,10 @@ export default class CompasAutogenerateSubstation extends LitElement {
           desc,
         });
 
-        await this.createVoltageLevels(substation, name);
+        await this.createVoltageLevels(
+          substation,
+          name + '_'.repeat(this.substationNameLength - name.length)
+        );
 
         this.dispatchEvent(
           newActionEvent({
@@ -192,13 +210,18 @@ export default class CompasAutogenerateSubstation extends LitElement {
             },
           })
         );
+        this.createLog(
+          0,
+          get('compas.autogensubstation.substationGen', {
+            substationname: name,
+          })
+        );
       }
     });
   }
 
   /**
-   * The name-content of the child elements will be extracted by splitting the ied name on the substationSeperator ('__' by default)
-   * character and getting the characters after it.
+   * The name-content of the child elements will be extracted by getting the substring after the substationNameLength of characters.
    * VoltageLevel elements will be created by getting the first voltageLevelNameLength characters of each element in the name content.
    * The elements will be created based on the name and some default values.
    *
@@ -211,13 +234,21 @@ export default class CompasAutogenerateSubstation extends LitElement {
   createVoltageLevels(substation: Element, substationName: string) {
     const substationContent = this.iedNames
       .filter(value => value.includes(substationName))
-      .map(FullName => FullName?.split(this.substationSeperator)[1]);
+      .map(FullName => FullName?.substring(this.substationNameLength));
 
     const voltageLevelNames = this.extractNames(
       substationContent.map(FullName =>
         FullName?.substring(0, this.voltageLevelNameLength)
       )
     ).filter(value => !value.startsWith('A00'));
+
+    this.createLog(
+      voltageLevelNames.length == 0 ? 1 : 0,
+      get('compas.autogensubstation.voltagelevelAmount', {
+        amount: voltageLevelNames.length,
+        substationname: substationName.replace(/_/g, ''),
+      })
+    );
 
     if (voltageLevelNames.length == 0) return;
 
@@ -237,16 +268,12 @@ export default class CompasAutogenerateSubstation extends LitElement {
       );
 
       const voltageLevelContent = substationContent
-        .filter(value => value.startsWith(name))
+        .filter(value => value?.startsWith(name))
         .map(FullName =>
           FullName?.substring(this.voltageLevelNameLength, FullName.length)
         );
 
-      this.createBays(
-        voltageLevel,
-        voltageLevelContent,
-        substationName + this.substationSeperator + name
-      );
+      this.createBays(voltageLevel, voltageLevelContent, substationName + name);
       substation.appendChild(voltageLevel);
     });
   }
@@ -269,6 +296,16 @@ export default class CompasAutogenerateSubstation extends LitElement {
   ) {
     const bayNames = this.extractNames(
       voltageLevelContent.map(iedName => iedName.split(this.iedStartChar)[0])
+    );
+
+    this.createLog(
+      bayNames.length == 0 ? 1 : 0,
+      get('compas.autogensubstation.bayAmount', {
+        amount: bayNames.length,
+        voltagelevelname: substationVoltageLevelName.substring(
+          this.substationNameLength
+        ),
+      })
     );
 
     bayNames.forEach(name => {
@@ -349,6 +386,15 @@ export default class CompasAutogenerateSubstation extends LitElement {
     //return list of names after filtering out the empty and duplicate elements
     return content.filter(
       (value, index) => value && content.indexOf(value) === index
+    );
+  }
+
+  createLog(type: number, content: string) {
+    this.dispatchEvent(
+      newLogEvent({
+        kind: type == 0 ? 'info' : 'error',
+        title: content,
+      })
     );
   }
 }

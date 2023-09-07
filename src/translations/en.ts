@@ -988,6 +988,12 @@ export const en = {
         'To continue working you need to reload the browser to login again.',
       saveProject: 'Save project',
     },
+    autogensubstation: {
+      substationAmount: 'Found {{amount}} substation(s) to be created!',
+      voltagelevelAmount: `Generating {{amount}} Voltage Level(s) for {{substationname}} substation!`,
+      bayAmount: `Generating {{amount}} Bay Element(s) for {{voltagelevelname}} Voltage Level!`,
+      substationGen: `Generated {{substationname}} substation with content!`,
+    },
   },
   locamation: {
     vmu: {
