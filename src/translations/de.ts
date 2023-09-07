@@ -984,6 +984,12 @@ export const de: Translations = {
       explainExpiredWithoutProject: '???',
       saveProject: '???',
     },
+    autogensubstation: {
+      substationAmount: '???',
+      voltagelevelAmount: '???',
+      bayAmount: '???',
+      substationGen: '???',
+    },
   },
   locamation: {
     vmu: {
