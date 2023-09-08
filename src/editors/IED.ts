@@ -175,9 +175,7 @@ export default class IedPlugin extends LitElement {
 
               this.lNClassListOpenedOnce = false;
               this.selectedIEDs = e.detail.selectedItems;
-              this.selectedLNClasses = this.lnClassList.map(
-                lnClassInfo => lnClassInfo[0]
-              );
+              this.selectedLNClasses = [];
               this.requestUpdate('selectedIed');
             }}"
           >
