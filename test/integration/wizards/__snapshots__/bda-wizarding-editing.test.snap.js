@@ -371,9 +371,36 @@ snapshots["BDA wizarding editing integration defines a editBDaWizard to edit an 
         mwc-list-item=""
         role="option"
         tabindex="-1"
+        value="LogOptFlds"
+      >
+        LogOptFlds
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
         value="EntryID"
       >
         EntryID
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Octet6"
+      >
+        Octet6
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Octet16"
+      >
+        Octet16
       </mwc-list-item>
     </wizard-select>
     <wizard-select
@@ -972,9 +999,36 @@ snapshots["BDA wizarding editing integration defines a createBDaWizard to create
         mwc-list-item=""
         role="option"
         tabindex="-1"
+        value="LogOptFlds"
+      >
+        LogOptFlds
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
         value="EntryID"
       >
         EntryID
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Octet6"
+      >
+        Octet6
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Octet16"
+      >
+        Octet16
       </mwc-list-item>
     </wizard-select>
     <wizard-select

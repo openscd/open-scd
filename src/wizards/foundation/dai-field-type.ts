@@ -38,6 +38,11 @@ const daiFieldTypes = [
   'VisString65',
   'VisString129',
   'VisString255',
+  'ObjRef',
+  'Currency',
+  'Octet64',
+  'Octet6',
+  'Octet16',
 ] as const;
 export type DaiFieldTypes = typeof daiFieldTypes[number];
 const emptyIfNull = <T>(item: T | null, value: string): string => {
@@ -65,6 +70,11 @@ export function getCustomField(): Record<DaiFieldTypes, CustomField> {
     VisString65: stringField('VisString65', 65),
     VisString129: stringField('VisString129', 129),
     VisString255: stringField('VisString255', 255),
+    ObjRef: stringField('VisString129', 129),
+    Currency: stringField('Currency', 3),
+    Octet64: stringField('Octet64', 64 * 2),
+    Octet6: stringField('Octet6', 6 * 2),
+    Octet16: stringField('Octet16', 16 * 2),
   };
 
   function booleanField(): CustomField {

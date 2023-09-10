@@ -49,7 +49,10 @@ export const predefinedBasicTypeEnum = [
   'TrgOps',
   'OptFlds',
   'SvOptFlds',
+  'LogOptFlds',
   'EntryID',
+  'Octet6',
+  'Octet16',
 ];
 
 export const valKindEnum = ['Spec', 'Conf', 'RO', 'Set'];
