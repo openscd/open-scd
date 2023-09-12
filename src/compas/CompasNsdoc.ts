@@ -34,7 +34,6 @@ async function processNsdocFile(
     await CompasNSDocFileService()
       .getNsdocFile(id)
       .then(document => {
-        console.log('document: ', document);
         const nsdocContent =
           document.querySelectorAll('NsdocFile').item(0).textContent ?? '';
         component.dispatchEvent(newLoadNsdocEvent(nsdocContent, filename));
@@ -69,7 +68,6 @@ export async function loadNsdocFiles(component: Element): Promise<void> {
       );
     })
     .catch(reason => {
-      console.log('reason: ', reason);
       createLogEvent(component, reason);
     });
 }
