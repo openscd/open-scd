@@ -371,9 +371,36 @@ snapshots["DA wizarding editing integration defines a editDaWizard to edit an ex
         mwc-list-item=""
         role="option"
         tabindex="-1"
+        value="LogOptFlds"
+      >
+        LogOptFlds
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
         value="EntryID"
       >
         EntryID
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Octet6"
+      >
+        Octet6
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Octet16"
+      >
+        Octet16
       </mwc-list-item>
     </wizard-select>
     <wizard-select
@@ -1161,9 +1188,36 @@ snapshots["DA wizarding editing integration defines a createDaWizard to create a
         mwc-list-item=""
         role="option"
         tabindex="-1"
+        value="LogOptFlds"
+      >
+        LogOptFlds
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
         value="EntryID"
       >
         EntryID
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Octet6"
+      >
+        Octet6
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Octet16"
+      >
+        Octet16
       </mwc-list-item>
     </wizard-select>
     <wizard-select
