@@ -3,7 +3,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 import '../mock-wizard.js';
 
 import { newWizardEvent } from '../../src/foundation.js';
-import { WizardingElement } from '../../src/Wizarding.js';
+import { WizardingElement } from '../../src/wizarding/index.js';
 
 describe('WizardingElement', () => {
   let element: WizardingElement;

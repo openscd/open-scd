@@ -23,9 +23,9 @@ import { List } from '@material/mwc-list';
 import { Menu } from '@material/mwc-menu';
 
 import 'ace-custom-element';
-import './wizard-checkbox.js';
-import './wizard-textfield.js';
-import './wizard-select.js';
+import '../wizard-checkbox.js';
+import '../wizard-textfield.js';
+import '../wizard-select.js';
 import {
   newActionEvent,
   Wizard,
@@ -43,7 +43,7 @@ import {
   WizardInput,
   WizardMenuActor,
   formatXml,
-} from './foundation.js';
+} from '../foundation.js';
 
 function renderWizardInput(
   input: TemplateResult | WizardInput

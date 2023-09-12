@@ -2,7 +2,7 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
 import { Editing } from '../../../../src/Editing.js';
-import { Wizarding } from '../../../../src/Wizarding.js';
+import { Wizarding } from '../../../../src/wizarding/index.js';
 
 import { CleanupDataTypes } from '../../../../src/editors/cleanup/datatypes-container.js';
 

@@ -18,7 +18,7 @@ import { Logging } from './Logging.js';
 import { Plugging } from './Plugging.js';
 import { Setting } from './Setting.js';
 import { Waiting } from './Waiting.js';
-import { Wizarding } from './Wizarding.js';
+import { Wizarding } from './wizarding/index.js';
 
 /** The `<open-scd>` custom element is the main entry point of the
  * Open Substation Configuration Designer. */

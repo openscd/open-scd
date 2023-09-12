@@ -1,6 +1,6 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import { Wizarding } from '../../../src/Wizarding.js';
+import { Wizarding } from '../../../src/wizarding/index.js';
 import { Editing } from '../../../src/Editing.js';
 import { Logging } from '../../../src/Logging.js';
 

@@ -3,11 +3,12 @@ import {
   ifImplemented,
   LitElementConstructor,
   Mixin,
-  WizardEvent,
-  WizardFactory,
-} from './foundation.js';
+} from '../utils.js';
 
 import './wizard-dialog.js';
+// import { WizardDialog } from '../wizard-dialog.js';
+import { Wizard, WizardFactory } from './wizard.js';
+import { WizardEvent } from './events.js';
 import { WizardDialog } from './wizard-dialog.js';
 
 /** `LitElement` mixin that adds a `workflow` property which [[`Wizard`]]s are
@@ -27,6 +28,7 @@ export function Wizarding<TBase extends LitElementConstructor>(Base: TBase) {
       if (wizard === null) this.workflow.shift();
       else if (we.detail.subwizard) this.workflow.unshift(wizard);
       else this.workflow.push(wizard);
+
       this.requestUpdate('workflow');
       this.updateComplete.then(() =>
         this.wizardUI.updateComplete.then(() =>
@@ -47,8 +49,19 @@ export function Wizarding<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     render(): TemplateResult {
-      return html`${ifImplemented(super.render())}
-        <wizard-dialog .wizard=${this.workflow[0]?.() ?? []}></wizard-dialog>`;
+      const defaultWizard: Wizard = []
+
+      let wizard = defaultWizard
+
+      const nextWizardFactory = this.workflow[0]
+      if(nextWizardFactory){
+        wizard = nextWizardFactory()
+      }
+
+      return html`
+        ${ifImplemented(super.render())}
+        <wizard-dialog .wizard=${wizard}></wizard-dialog>
+      `;
     }
   }
 
