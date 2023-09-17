@@ -753,6 +753,27 @@ snapshots["open-scd looks like its snapshot"] =
       tabindex="-1"
     >
       <strong>
+        Wizard
+      </strong>
+      <mwc-icon
+        class="inverted"
+        slot="graphic"
+      >
+        tab
+      </mwc-icon>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="avatar"
+      noninteractive=""
+      tabindex="-1"
+    >
+      <strong>
         Menu entry
       </strong>
       <mwc-icon

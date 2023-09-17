@@ -182,6 +182,7 @@ export const de: Translations = {
   plugins: {
     heading: 'Erweiterungen',
     editor: 'Editor',
+    wizard: 'Wizard',
     menu: 'Menüeintrag',
     requireDoc: 'Benötigt Dokument',
     top: 'oben',
