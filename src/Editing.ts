@@ -2,6 +2,16 @@ import { property } from 'lit-element';
 import { get } from 'lit-translate';
 
 import {
+  Edit,
+  EditEvent,
+  handleEdit,
+  isComplex,
+  isInsert,
+  isRemove,
+  isUpdate as isEditUpdate,
+} from '@openscd/open-scd-core';
+
+import {
   Create,
   Delete,
   EditorAction,
@@ -10,20 +20,32 @@ import {
   isCreate,
   isDelete,
   isMove,
-  isSimple,
   isReplace,
+  isSimple,
+  isUpdate,
   LitElementConstructor,
   Mixin,
   Move,
   newLogEvent,
   newValidateEvent,
   OpenDocEvent,
+  Replace,
   SCLTag,
   SimpleAction,
-  Replace,
   Update,
-  isUpdate,
 } from './foundation.js';
+
+function describe(redo: Edit, undo: Edit) {
+  let result = 'Something unexpected happened!';
+  if (isComplex(redo)) result = `≥ ${redo.length} nodes changed`;
+  if (isInsert(redo))
+    if (isInsert(undo))
+      result = `${redo.node.nodeName} moved to ${redo.parent.nodeName}`;
+    else result = `${redo.node.nodeName} inserted into ${redo.parent.nodeName}`;
+  if (isRemove(redo)) result = `${redo.node.nodeName} removed`;
+  if (isEditUpdate(redo)) result = `${redo.element.tagName} updated`;
+  return result;
+}
 
 /** Mixin that edits an `XML` `doc`, listening to [[`EditorActionEvent`]]s */
 export type EditingElement = Mixin<typeof Editing>;
@@ -428,6 +450,14 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       this.dispatchEvent(newValidateEvent());
     }
 
+    private handleEdit(event: EditEvent) {
+      const redo = event.detail;
+      const undo = handleEdit(redo);
+      this.dispatchEvent(
+        newLogEvent({ kind: 'edit', title: describe(redo, undo), redo, undo })
+      );
+    }
+
     private async onOpenDoc(event: OpenDocEvent) {
       this.doc = event.detail.doc;
       this.docName = event.detail.docName;
@@ -449,6 +479,7 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       super(...args);
 
       this.addEventListener('editor-action', this.onAction);
+      this.addEventListener('oscd-edit', this.handleEdit);
       this.addEventListener('open-doc', this.onOpenDoc);
     }
   }
