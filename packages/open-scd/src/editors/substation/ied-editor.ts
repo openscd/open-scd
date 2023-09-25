@@ -27,6 +27,8 @@ export class IedEditor extends LitElement {
   /** The document being edited as provided to editor by [[`Zeroline`]]. */
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
   /** SCL element IED */
   @property({ attribute: false })
   element!: Element;
