@@ -15,5 +15,6 @@ jobs:
 
       - name: Install and Build
         run: |
-          npm ci
+          cd packages/open-scd
+          npm clean-install
           npm run-script build
