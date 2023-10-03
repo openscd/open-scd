@@ -25,6 +25,8 @@ export default class CompasSaveMenuPlugin extends LitElement {
   docName!: string;
   @property()
   docId?: string;
+  @property({ type: Number })
+  editCount = -1;
 
   @query('mwc-dialog#compas-save-dlg')
   dialog!: Dialog;
@@ -49,6 +51,7 @@ export default class CompasSaveMenuPlugin extends LitElement {
               .doc="${this.doc}"
               .docName="${this.docName}"
               .docId="${this.docId}"
+              .editCount=${this.editCount}
               @doc-saved=${() => {
                 this.dialog.close();
               }}

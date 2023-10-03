@@ -33,6 +33,8 @@ export default class CompasSaveAsVersionMenuPlugin extends LitElement {
   doc!: XMLDocument;
   @property()
   docName!: string;
+  @property({ type: Number })
+  editCount = -1;
 
   @state()
   private saveToDoc?: XMLDocument;
@@ -110,6 +112,7 @@ export default class CompasSaveAsVersionMenuPlugin extends LitElement {
               .docName="${this.saveToDocName}"
               .docId="${this.saveToDocId}"
               .allowLocalFile="${false}"
+              .editCount=${this.editCount}
               @doc-saved=${() => {
                 this.dialog.close();
               }}

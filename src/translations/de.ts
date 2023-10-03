@@ -222,9 +222,10 @@ export const de: Translations = {
   },
   iededitor: {
     iedSelector: 'IED auswählen',
-    lnFilter: '???',
+    lnFilter: 'Filter für logische Knoten',
     missing: 'Kein IED vorhanden',
     toggleChildElements: 'Kindelemente umschalten',
+    settings: 'Services für IED or AccessPoint',
     wizard: {
       daTitle: 'DA Informationen anzeigen',
       doTitle: 'DO Informationen anzeigen',
@@ -689,6 +690,7 @@ export const de: Translations = {
       loaderror: 'Datei kann nicht geladen werden',
       importerror: 'IED Element kann nicht importiert werden',
       missingied: 'Kein IED Element in der Datei',
+      multipleied: 'Mehrere IED-Elemente in einer Datei',
       nouniqueied: 'IED Element {{ name }} bereits geladen',
     },
   },
@@ -981,6 +983,12 @@ export const de: Translations = {
       explainExpiredWithProject: '???',
       explainExpiredWithoutProject: '???',
       saveProject: '???',
+    },
+    autogensubstation: {
+      substationAmount: '???',
+      voltagelevelAmount: '???',
+      bayAmount: '???',
+      substationGen: '???',
     },
   },
   locamation: {

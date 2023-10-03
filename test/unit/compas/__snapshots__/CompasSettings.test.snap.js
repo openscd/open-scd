@@ -32,6 +32,13 @@ snapshots["compas-settings looks like the latest snapshot"] =
   value="/compas-scl-auto-alignment"
 >
 </mwc-textfield>
+<mwc-textfield
+  id="sitipeServiceUrl"
+  label="[compas.settings.sitipeServiceUrl]"
+  required=""
+  value="/compas-sitipe-service"
+>
+</mwc-textfield>
 <mwc-formfield label="[compas.settings.useWebsockets]">
   <mwc-switch
     checked=""

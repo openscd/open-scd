@@ -1,4 +1,4 @@
-import { html, LitElement } from 'lit-element';
+import { html, LitElement, property } from 'lit-element';
 import { get } from 'lit-translate';
 
 import {
@@ -16,6 +16,8 @@ export default class CompasAutoAlignmentMenuPlugin extends LitElement {
   doc!: XMLDocument;
   docName!: string;
   docId?: string;
+  @property({ type: Number })
+  editCount = -1;
 
   private autoAlignmentCompasWizard(
     plugin: CompasAutoAlignmentMenuPlugin
@@ -50,6 +52,7 @@ export default class CompasAutoAlignmentMenuPlugin extends LitElement {
               .doc="${this.doc}"
               .docName="${this.docName}"
               .docId="${this.docId}"
+              .editCount=${this.editCount}
             >
             </compas-auto-alignment>
           `,

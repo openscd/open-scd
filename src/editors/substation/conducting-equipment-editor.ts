@@ -47,6 +47,8 @@ export class ConductingEquipmentEditor extends LitElement {
   /** The document being edited as provided to editor by [[`Zeroline`]]. */
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
   /** SCL element ConductingEquipment */
   @property({ attribute: false })
   element!: Element;
@@ -104,6 +106,7 @@ export class ConductingEquipmentEditor extends LitElement {
           ${lNodes.map(
             lNode =>
               html`<l-node-editor
+                .editCount=${this.editCount}
                 .doc=${this.doc}
                 .element=${lNode}
               ></l-node-editor>`
@@ -119,6 +122,7 @@ export class ConductingEquipmentEditor extends LitElement {
     return html` ${eqFunctions.map(
       eqFunction =>
         html`<eq-function-editor
+          .editCount=${this.editCount}
           .doc=${this.doc}
           .element=${eqFunction}
           ?showfunctions=${this.showfunctions}
@@ -137,6 +141,7 @@ export class ConductingEquipmentEditor extends LitElement {
     return html` ${subEquipments.map(
       subEquipment =>
         html`<sub-equipment-editor
+          .editCount=${this.editCount}
           .doc=${this.doc}
           .element=${subEquipment}
         ></sub-equipment-editor>`

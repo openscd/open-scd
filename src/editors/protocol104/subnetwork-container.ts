@@ -52,6 +52,7 @@ export class SubNetwork104Container extends Base104Container {
                 class="${connectedAP.parentElement !== this.element
                   ? 'disabled'
                   : ''}"
+                .editCount=${this.editCount}
                 .doc="${this.doc}"
                 .element=${connectedAP}
               ></connectedap-104-editor>`

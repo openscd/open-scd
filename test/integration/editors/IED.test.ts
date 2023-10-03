@@ -12,6 +12,10 @@ import { initializeNsdoc, Nsdoc } from '../../../src/foundation/nsdoc.js';
 import { FilterButton } from '../../../src/oscd-filter-button.js';
 
 import IED from '../../../src/editors/IED.js';
+import { LDeviceContainer } from '../../../src/editors/ied/ldevice-container.js';
+import { LNContainer } from '../../../src/editors/ied/ln-container.js';
+import { DOContainer } from '../../../src/editors/ied/do-container.js';
+import { DAContainer } from '../../../src/editors/ied/da-container.js';
 
 describe('IED Plugin', () => {
   if (customElements.get('ied-plugin') === undefined)
@@ -176,6 +180,70 @@ describe('IED Plugin', () => {
         expect(getElementPathValue()).to.be.empty;
       });
 
+      // Add test for create wizard DAI when clicking add icon in DA Container (see issue #1139)
+      describe('when DA allows for multiple Val', () => {
+        beforeEach(async () => {
+          doc = await fetch('/test/testfiles/wizards/settingGroups.scd')
+            .then(response => response.text())
+            .then(str =>
+              new DOMParser().parseFromString(str, 'application/xml')
+            );
+          nsdoc = await initializeNsdoc();
+          element = await fixture(
+            html`<ied-plugin .doc="${doc}" .nsdoc="${nsdoc}"></ied-plugin>`
+          );
+          await element.requestUpdate();
+          await element.updateComplete;
+        });
+        it('shows correct wizard when navigating to the DA container that allows for multiple Val and clicking Add', async () => {
+          const lnContainer: LNContainer = getLDeviceContainerByInst(
+            getIedContainer(),
+            'stage1'
+          )!.shadowRoot!.querySelectorAll('ln-container')[1] as LNContainer;
+
+          lnContainer.shadowRoot!.querySelector('mwc-icon-button-toggle')!.on =
+            true;
+          await lnContainer.requestUpdate();
+
+          // await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+          const doContainer: DOContainer = lnContainer
+            .shadowRoot!.querySelector('action-pane')!
+            .querySelector('do-container')!;
+
+          doContainer.shadowRoot!.querySelector('mwc-icon-button-toggle')!.on =
+            true;
+          await doContainer.requestUpdate();
+
+          // await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
+          const daContainer: DAContainer =
+            doContainer.shadowRoot!.querySelector('da-container')!;
+          daContainer
+            .shadowRoot!.querySelector('action-pane')!
+            .querySelector('mwc-icon-button-toggle')!.on = true;
+          await daContainer.requestUpdate();
+
+          // await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
+          (daContainer
+            .shadowRoot!.querySelector('da-container')!
+            .shadowRoot!.querySelector(
+              'mwc-icon-button[icon="add"]'
+            ) as HTMLElement)!.click();
+
+          await element.updateComplete;
+
+          expect(
+            (element as any as WizardingElement).wizardUI.dialogs.length
+          ).to.equal(1);
+          expect(
+            (
+              element as any as WizardingElement
+            ).wizardUI.dialogs[0]!.querySelectorAll('wizard-textfield').length
+          ).to.equal(3);
+        });
+      });
+
       function getIedContainer(): Element {
         return element.shadowRoot!.querySelector('ied-container')!;
       }
@@ -185,6 +253,20 @@ describe('IED Plugin', () => {
           .shadowRoot!.querySelector('access-point-container')!
           .shadowRoot!.querySelector('server-container')!
           .shadowRoot!.querySelector('ldevice-container')!;
+      }
+
+      function getLDeviceContainerByInst(
+        iedContainer: Element,
+        instName: string
+      ): Element | undefined {
+        return (
+          Array.from(
+            iedContainer!
+              .shadowRoot!.querySelector('access-point-container')!
+              .shadowRoot!.querySelector('server-container')!
+              .shadowRoot!.querySelectorAll('ldevice-container')
+          ) as LDeviceContainer[]
+        ).find(lDevice => lDevice.element.getAttribute('inst') === instName);
       }
 
       function getElementPathValue(): string {

@@ -32,6 +32,8 @@ export default class IedPlugin extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property()
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
 
   /** All the nsdoc files that are being uploaded via the settings. */
   @property()
@@ -175,6 +177,7 @@ export default class IedPlugin extends LitElement {
         </div>
 
         <ied-container
+          .editCount=${this.editCount}
           .doc=${this.doc}
           .element=${this.selectedIed}
           .selectedLNClasses=${this.selectedLNClasses}

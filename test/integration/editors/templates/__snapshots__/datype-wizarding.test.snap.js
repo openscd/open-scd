@@ -583,7 +583,6 @@ snapshots["DAType wizards defines a createDATypeWizard looks like the latest sna
       label="id"
       maxlength="255"
       minlength="1"
-      pattern="([:_A-Za-z]|[À-Ö]|[Ø-ö]|[ø-˿]|[Ͱ-ͽ]|[Ϳ-῿]|[‌-‍]|[⁰-↏]|[Ⰰ-⿯]|[、-퟿]|[豈-﷏]|[ﷰ-�]|[.0-9-]|·|[̀-ͯ]|[‿-⁀])+"
       required=""
     >
     </wizard-textfield>
@@ -592,7 +591,6 @@ snapshots["DAType wizards defines a createDATypeWizard looks like the latest sna
       helper="[scl.desc]"
       label="desc"
       nullable=""
-      pattern="([ -~]|[]|[ -퟿]|[-�])*"
     >
     </wizard-textfield>
   </div>
@@ -666,7 +664,6 @@ snapshots["DAType wizards defines a dATypeWizard looks like the latest snapshot"
       label="id"
       maxlength="127"
       minlength="1"
-      pattern="([:_A-Za-z]|[À-Ö]|[Ø-ö]|[ø-˿]|[Ͱ-ͽ]|[Ϳ-῿]|[‌-‍]|[⁰-↏]|[Ⰰ-⿯]|[、-퟿]|[豈-﷏]|[ﷰ-�]|[.0-9-]|·|[̀-ͯ]|[‿-⁀])+"
       required=""
     >
     </wizard-textfield>
@@ -675,7 +672,6 @@ snapshots["DAType wizards defines a dATypeWizard looks like the latest snapshot"
       helper="[scl.desc]"
       label="desc"
       nullable=""
-      pattern="([ -~]|[]|[ -퟿]|[-�])*"
     >
     </wizard-textfield>
     <mwc-list style="margin-top: 0px;">

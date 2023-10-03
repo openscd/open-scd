@@ -222,6 +222,7 @@ export const en = {
     lnFilter: 'Logical Node Filter',
     missing: 'No IED',
     toggleChildElements: 'Toggle child elements',
+    settings: 'Show Services the IED/AccessPoint provides',
     wizard: {
       daTitle: 'Show DA Info',
       doTitle: 'Show DO Info',
@@ -688,6 +689,7 @@ export const en = {
       loaderror: 'Could not load file',
       importerror: 'Could not import IED',
       missingied: 'No IED element in the file',
+      multipleied: 'Multiple IED elements found',
       nouniqueied: 'IED element {{ name }} already in the file',
     },
   },
@@ -985,6 +987,12 @@ export const en = {
         'Because of inactivity ({{expiredSessionMessage}} minutes), your session with the CoMPAS Systems is expired. <br>' +
         'To continue working you need to reload the browser to login again.',
       saveProject: 'Save project',
+    },
+    autogensubstation: {
+      substationAmount: 'Found {{amount}} substation(s) to be created!',
+      voltagelevelAmount: `Generating {{amount}} Voltage Level(s) for {{substationname}} substation!`,
+      bayAmount: `Generating {{amount}} Bay Element(s) for {{voltagelevelname}} Voltage Level!`,
+      substationGen: `Generated {{substationname}} substation with content!`,
     },
   },
   locamation: {

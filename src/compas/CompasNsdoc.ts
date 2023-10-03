@@ -2,6 +2,7 @@ import { newLoadNsdocEvent } from '../Setting.js';
 
 import { createLogEvent } from '../compas-services/foundation.js';
 import { CompasSclValidatorService } from '../compas-services/CompasValidatorService.js';
+import { CompasNSDocFileService } from '../compas-services/CompasNSDocFileService.js';
 
 /**
  * Load a single entry. Use the nsdocId to look in the Local Storage, if already loaded,
@@ -30,7 +31,7 @@ async function processNsdocFile(
     checksumStored !== checksum
   ) {
     console.info(`Loading NSDoc File '${nsdocId}' with ID '${id}'.`);
-    await CompasSclValidatorService()
+    await CompasNSDocFileService()
       .getNsdocFile(id)
       .then(document => {
         const nsdocContent =
@@ -51,7 +52,7 @@ async function processNsdocFile(
  * Load each item found using the function #processNsdocFile.
  */
 export async function loadNsdocFiles(component: Element): Promise<void> {
-  await CompasSclValidatorService()
+  await CompasNSDocFileService()
     .listNsdocFiles()
     .then(response => {
       Array.from(response.querySelectorAll('NsdocFile') ?? []).forEach(

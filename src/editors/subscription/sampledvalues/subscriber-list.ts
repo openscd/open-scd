@@ -54,6 +54,8 @@ let view: View = View.PUBLISHER;
 export class SubscriberList extends SubscriberListContainer {
   @property({ attribute: false })
   doc!: XMLDocument;
+  @property({ type: Number })
+  editCount = -1;
 
   /** Current selected Sampled Values element (when in GOOSE Publisher view) */
   currentSelectedSmvControl: Element | undefined;
@@ -90,47 +92,49 @@ export class SubscriberList extends SubscriberListContainer {
       `LN0 > Inputs, LN > Inputs`
     );
 
-    this.doc.querySelectorAll('SampledValueControl').forEach(control => {
-      const ied = control.closest('IED')!;
+    Array.from(this.doc.querySelectorAll('SampledValueControl'))
+      .filter(cb => cb.hasAttribute('datSet'))
+      .forEach(control => {
+        const ied = control.closest('IED')!;
 
-      if (
-        ied.getAttribute('name') ==
-        this.currentSelectedIed?.getAttribute('name')
-      )
-        return;
+        if (
+          ied.getAttribute('name') ==
+          this.currentSelectedIed?.getAttribute('name')
+        )
+          return;
 
-      /** If no Inputs is available, it's automatically available. */
-      if (subscribedInputs.length == 0) {
-        this.availableElements.push({ element: control });
-        return;
-      }
+        /** If no Inputs is available, it's automatically available. */
+        if (subscribedInputs.length == 0) {
+          this.availableElements.push({ element: control });
+          return;
+        }
 
-      let numberOfLinkedExtRefs = 0;
-      const dataSet = ied.querySelector(
-        `DataSet[name="${control.getAttribute('datSet')}"]`
-      );
+        let numberOfLinkedExtRefs = 0;
+        const dataSet = ied.querySelector(
+          `DataSet[name="${control.getAttribute('datSet')}"]`
+        );
 
-      if (!dataSet) return;
+        if (!dataSet) return;
 
-      dataSet!.querySelectorAll('FCDA').forEach(fcda => {
-        subscribedInputs.forEach(inputs => {
-          if (getExtRef(inputs, fcda, this.currentSelectedSmvControl)) {
-            numberOfLinkedExtRefs++;
-          }
+        dataSet!.querySelectorAll('FCDA').forEach(fcda => {
+          subscribedInputs.forEach(inputs => {
+            if (getExtRef(inputs, fcda, this.currentSelectedSmvControl)) {
+              numberOfLinkedExtRefs++;
+            }
+          });
         });
+
+        if (numberOfLinkedExtRefs == 0) {
+          this.availableElements.push({ element: control });
+          return;
+        }
+
+        if (numberOfLinkedExtRefs >= dataSet!.querySelectorAll('FCDA').length) {
+          this.subscribedElements.push({ element: control });
+        } else {
+          this.availableElements.push({ element: control, partial: true });
+        }
       });
-
-      if (numberOfLinkedExtRefs == 0) {
-        this.availableElements.push({ element: control });
-        return;
-      }
-
-      if (numberOfLinkedExtRefs >= dataSet!.querySelectorAll('FCDA').length) {
-        this.subscribedElements.push({ element: control });
-      } else {
-        this.availableElements.push({ element: control, partial: true });
-      }
-    });
 
     this.requestUpdate();
   }

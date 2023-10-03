@@ -8,14 +8,44 @@ import {
   TemplateResult,
 } from 'lit-element';
 
+import '@material/mwc-menu';
+import '@material/mwc-list';
+import '@material/mwc-icon';
+import '@material/mwc-icon-button';
+
 import '../../action-pane.js';
 import '../../action-icon.js';
 
-import {
-  selectors,
-  SIEMENS_SITIPE_IED_REF,
-  SIEMENS_SITIPE_BAY_TEMPLATE,
-} from './foundation.js';
+import './sitipe-bay.js';
+
+import { selectors } from './foundation.js';
+
+import { BayTypical, getAssignedBayTypicals } from './sitipe-service.js';
+
+export type NamingStrategy = (bay: Element, index?: number) => string;
+
+export const defaultNamingStrategy: NamingStrategy = (
+  bay: Element,
+  index?: number
+) => {
+  const bayName: string = (bay.getAttribute('name') || 'BAY').replace(' ', '');
+  const voltageLevel: Element | null = bay.closest('VoltageLevel');
+
+  const voltageLevelName: string = (
+    voltageLevel?.getAttribute('name') || 'VoltageLevel'
+  ).replace(' ', '');
+
+  const substation: Element | null = bay.closest('Substation');
+  const substationName: string = (
+    substation?.getAttribute('name') || 'Substation'
+  ).replace(' ', '');
+
+  const prefix = 'A';
+  const suffix =
+    typeof index === 'number' ? (index < 10 ? `0${index}` : `${index}`) : '01';
+
+  return `${substationName}_${voltageLevelName}${bayName}${prefix}${suffix}`;
+};
 
 /** [[`Sitipe`]] plugin subeditor for editing `Sitipe` configuration. */
 @customElement('sitipe-substation')
@@ -26,6 +56,14 @@ export class SitipeSubstation extends LitElement {
   /** The edited `Element`, a common property of all Sitipe subeditors. */
   @property({ attribute: false })
   element!: Element;
+
+  @property({
+    type: Number,
+  })
+  editCount = -1;
+
+  @property()
+  namingStrategy: NamingStrategy = defaultNamingStrategy;
 
   @state()
   get substationHeader(): string {
@@ -62,34 +100,17 @@ export class SitipeSubstation extends LitElement {
     return `${name} ${desc ? `(${desc})` : ''}`;
   }
 
-  private renderIEDs(bay: Element): TemplateResult {
-    const template: string =
-      bay.querySelector(`Private[type="${SIEMENS_SITIPE_BAY_TEMPLATE}"]`)
-        ?.textContent ?? '';
-
-    return html`
-      <div>
-        ${Array.from(
-          bay.querySelectorAll(
-            `Private[type="${SIEMENS_SITIPE_IED_REF}"]` ?? []
-          )
-        ).map(
-          iedTemplate =>
-            html`<action-icon
-              .label=${iedTemplate.textContent
-                ? `${iedTemplate.textContent} (${template})`
-                : ''}
-              icon="developer_board"
-            ></action-icon>`
-        )}
-      </div>
-    `;
-  }
+  @state()
+  bayTypicals: BayTypical[] = [];
 
   private renderBay(bay: Element): TemplateResult {
-    return html`<action-pane label="${this.bayHeader(bay)}"
-      >${this.renderIEDs(bay)}</action-pane
-    >`;
+    return html`<sitipe-bay
+      .bay=${bay}
+      .bayTypicals=${this.bayTypicals}
+      .doc=${this.doc}
+      .namingStrategy=${this.namingStrategy}
+      .editCount=${this.editCount}
+    ></sitipe-bay>`;
   }
 
   private renderVoltageLevel(voltageLevel: Element): TemplateResult {
@@ -102,6 +123,19 @@ export class SitipeSubstation extends LitElement {
     </action-pane>`;
   }
 
+  protected getBayTypicals(): void {
+    getAssignedBayTypicals().then(res => {
+      this.bayTypicals = res;
+    });
+  }
+
+  protected firstUpdated(
+    _changedProperties: Map<string | number | symbol, unknown>
+  ): void {
+    super.firstUpdated(_changedProperties);
+    this.getBayTypicals();
+  }
+
   render(): TemplateResult {
     return html`<action-pane label="${this.substationHeader}">
       ${Array.from(
@@ -109,7 +143,6 @@ export class SitipeSubstation extends LitElement {
       ).map(this.renderVoltageLevel.bind(this))}
     </action-pane>`;
   }
-
   static styles = css`
     .bayContainer {
       display: grid;

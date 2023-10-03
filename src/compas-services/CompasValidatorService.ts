@@ -60,14 +60,6 @@ export function CompasSclValidatorService() {
         .then(parseXml);
     },
 
-    listNsdocFiles(): Promise<Document> {
-      const svsUrl = getSclValidatorServiceUrl() + '/nsdoc/v1';
-      return fetch(svsUrl)
-        .catch(handleError)
-        .then(handleResponse)
-        .then(parseXml);
-    },
-
     getNsdocFile(id: string): Promise<Document> {
       const svsUrl = getSclValidatorServiceUrl() + '/nsdoc/v1/' + id;
       return fetch(svsUrl)

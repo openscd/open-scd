@@ -1,7 +1,7 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
-import '../../../../src/editors/sitipe/sitipe-substation.js';
-import { SitipeSubstation } from '../../../../src/editors/sitipe/sitipe-substation.js';
+import '../../../../src/compas-editors/sitipe/sitipe-substation.js';
+import { SitipeSubstation } from '../../../../src/compas-editors/sitipe/sitipe-substation.js';
 
 describe('sitipe-substation', () => {
   let element: SitipeSubstation;
