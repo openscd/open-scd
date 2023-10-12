@@ -13,6 +13,7 @@ import { Dialog } from '@material/mwc-dialog';
 import './filtered-list.js';
 import {
   CommitEntry,
+  HistoryEvent,
   ifImplemented,
   invert,
   LitElementConstructor,
@@ -97,9 +98,11 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
         return;
       }
 
+      const event: HistoryEvent = le as HistoryEvent;
+
       const entry: LogEntry = {
         time: new Date(),
-        ...le.detail,
+        ...event.detail,
       };
 
       if (entry.action.derived) return;

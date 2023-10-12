@@ -390,6 +390,8 @@ export interface ResetDetail {
 
 export type LogDetail = InfoDetail | CommitDetail | ResetDetail;
 export type LogEvent = CustomEvent<LogDetail>;
+export type HistoryEvent = CustomEvent<CommitDetail>;
+
 export function newLogEvent(
   detail: LogDetail,
   eventInitDict?: CustomEventInit<LogDetail>
