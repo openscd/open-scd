@@ -21,9 +21,7 @@ import { Snackbar } from '@material/mwc-snackbar';
 
 import './filtered-list.js';
 import {
-  CommitEntry,
   ifImplemented,
-  invert,
   IssueDetail,
   IssueEvent,
   LitElementConstructor,
@@ -31,7 +29,6 @@ import {
   LogEntryType,
   LogEvent,
   Mixin,
-  newActionEvent,
 } from './foundation.js';
 import { getFilterIcon, iconColors } from './icons/icons.js';
 import { Plugin } from './Plugging.js';
@@ -40,7 +37,6 @@ const icons = {
   info: 'info',
   warning: 'warning',
   error: 'report',
-  action: 'history',
 };
 
 function getPluginName(src: string): string {
@@ -72,7 +68,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
   class LoggingElement extends Base {
     /** All [[`LogEntry`]]s received so far through [[`LogEvent`]]s. */
     @property({ type: Array })
-    history: LogEntry[] = [];
+    log: LogEntry[] = [];
     /** Index of the last [[`EditorAction`]] applied. */
     @property({ type: Number })
     editCount = -1;
@@ -88,28 +84,6 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
     @query('#info') infoUI!: Snackbar;
     @query('#issue') issueUI!: Snackbar;
 
-    get canUndo(): boolean {
-      return this.editCount >= 0;
-    }
-    get canRedo(): boolean {
-      return this.nextAction >= 0;
-    }
-
-    get previousAction(): number {
-      if (!this.canUndo) return -1;
-      return this.history
-        .slice(0, this.editCount)
-        .map(entry => (entry.kind == 'action' ? true : false))
-        .lastIndexOf(true);
-    }
-    get nextAction(): number {
-      let index = this.history
-        .slice(this.editCount + 1)
-        .findIndex(entry => entry.kind == 'action');
-      if (index >= 0) index += this.editCount + 1;
-      return index;
-    }
-
     private onIssue(de: IssueEvent): void {
       const issues = this.diagnoses.get(de.detail.validatorId);
 
@@ -121,28 +95,12 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       this.issueUI.show();
     }
 
-    undo(): boolean {
-      if (!this.canUndo) return false;
-      this.dispatchEvent(
-        newActionEvent(
-          invert((<CommitEntry>this.history[this.editCount]).action)
-        )
-      );
-      this.editCount = this.previousAction;
-      return true;
-    }
-    redo(): boolean {
-      if (!this.canRedo) return false;
-      this.dispatchEvent(
-        newActionEvent((<CommitEntry>this.history[this.nextAction]).action)
-      );
-      this.editCount = this.nextAction;
-      return true;
-    }
-
     private onLog(le: LogEvent): void {
+      if (le.detail.kind === 'action') {
+        return;
+      }
       if (le.detail.kind === 'reset') {
-        this.history = [];
+        this.log = [];
         this.editCount = -1;
         return;
       }
@@ -152,14 +110,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         ...le.detail,
       };
 
-      if (entry.kind === 'action') {
-        if (entry.action.derived) return;
-        entry.action.derived = true;
-        if (this.nextAction !== -1) this.history.splice(this.nextAction);
-        this.editCount = this.history.length;
-      }
-
-      this.history.push(entry);
+      this.log.push(entry);
       if (!this.logUI.open) {
         const ui = {
           error: this.errorUI,
@@ -175,7 +126,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         this.errorUI.close(); // hack to reset timeout
         this.errorUI.show();
       }
-      this.requestUpdate('history', []);
+      this.requestUpdate('log', []);
     }
 
     async performUpdate() {
@@ -188,8 +139,6 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
     constructor(...args: any[]) {
       super(...args);
 
-      this.undo = this.undo.bind(this);
-      this.redo = this.redo.bind(this);
       this.onLog = this.onLog.bind(this);
 
       this.addEventListener('log', this.onLog);
@@ -201,6 +150,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       index: number,
       history: LogEntry[]
     ): TemplateResult {
+      console.log('entry: ', entry);
       return html` <abbr title="${entry.title}">
         <mwc-list-item
           class="${entry.kind}"
@@ -219,15 +169,15 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
             style="--mdc-theme-text-icon-on-background:var(${ifDefined(
               iconColors[entry.kind]
             )})"
-            >${icons[entry.kind]}</mwc-icon
+            >${icons[entry.kind === 'action' ? 'info' : entry.kind]}</mwc-icon
           >
         </mwc-list-item></abbr
       >`;
     }
 
-    private renderHistory(): TemplateResult[] | TemplateResult {
-      if (this.history.length > 0)
-        return this.history.slice().reverse().map(this.renderLogEntry, this);
+    private renderLog(): TemplateResult[] | TemplateResult {
+      if (this.log.length > 0)
+        return this.log.slice().reverse().map(this.renderLogEntry, this);
       else
         return html`<mwc-list-item disabled graphic="icon">
           <span>${translate('log.placeholder')}</span>
@@ -298,13 +248,9 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
           #log > mwc-icon-button-toggle:nth-child(4) {
             right: 158px;
           }
-          #log > mwc-icon-button-toggle:nth-child(5) {
-            right: 206px;
-          }
           #content mwc-list-item.info,
           #content mwc-list-item.warning,
-          #content mwc-list-item.error,
-          #content mwc-list-item.action {
+          #content mwc-list-item.error {
             display: none;
           }
           #infofilter[on] ~ #content mwc-list-item.info {
@@ -314,9 +260,6 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
             display: flex;
           }
           #errorfilter[on] ~ #content mwc-list-item.error {
-            display: flex;
-          }
-          #actionfilter[on] ~ #content mwc-list-item.action {
             display: flex;
           }
 
@@ -348,21 +291,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         </style>
         <mwc-dialog id="log" heading="${translate('log.name')}">
           ${this.renderFilterButtons()}
-          <mwc-list id="content" wrapFocus>${this.renderHistory()}</mwc-list>
-          <mwc-button
-            icon="undo"
-            label="${translate('undo')}"
-            ?disabled=${!this.canUndo}
-            @click=${this.undo}
-            slot="secondaryAction"
-          ></mwc-button>
-          <mwc-button
-            icon="redo"
-            label="${translate('redo')}"
-            ?disabled=${!this.canRedo}
-            @click=${this.redo}
-            slot="secondaryAction"
-          ></mwc-button>
+          <mwc-list id="content" wrapFocus>${this.renderLog()}</mwc-list>
           <mwc-button slot="primaryAction" dialogaction="close"
             >${translate('close')}</mwc-button
           >
@@ -380,7 +309,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         <mwc-snackbar
           id="info"
           timeoutMs="4000"
-          labelText="${this.history
+          labelText="${this.log
             .slice()
             .reverse()
             .find(le => le.kind === 'info' || le.kind === 'action')?.title ??
@@ -391,7 +320,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         <mwc-snackbar
           id="warning"
           timeoutMs="6000"
-          labelText="${this.history
+          labelText="${this.log
             .slice()
             .reverse()
             .find(le => le.kind === 'warning')?.title ??
@@ -408,7 +337,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         <mwc-snackbar
           id="error"
           timeoutMs="10000"
-          labelText="${this.history
+          labelText="${this.log
             .slice()
             .reverse()
             .find(le => le.kind === 'error')?.title ??
