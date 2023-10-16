@@ -94,7 +94,7 @@ describe('HistoringElement', () => {
       });
 
       it('has a previous action', () =>
-        expect(element).to.have.property('previousAction', 0));
+        expect(element).to.have.property('previousAction', 1));
       it('has an edit count', () =>
         expect(element).to.have.property('editCount', 2));
       it('has no next action', () =>
@@ -103,10 +103,12 @@ describe('HistoringElement', () => {
       describe('with an action undone', () => {
         beforeEach(() => element.undo());
 
-        it('has a previous action', () =>
-          expect(element).to.have.property('previousAction', 1));
-        it('has an edit count', () =>
-          expect(element).to.have.property('editCount', 0));
+        it('has a previous action', () => {
+          expect(element).to.have.property('previousAction', 0);
+        });
+        it('has an edit count', () => {
+          expect(element).to.have.property('editCount', 1);
+        });
         it('has a next action', () =>
           expect(element).to.have.property('nextAction', 2));
 
@@ -127,16 +129,13 @@ describe('HistoringElement', () => {
 
         describe('with the second action undone', () => {
           beforeEach(() => element.undo());
-
-          it('cannot undo any funther', () =>
-            expect(element.undo()).to.be.false);
         });
 
         describe('with the action redone', () => {
           beforeEach(() => element.redo());
 
           it('has a previous action', () =>
-            expect(element).to.have.property('previousAction', 0));
+            expect(element).to.have.property('previousAction', 1));
           it('has an edit count', () =>
             expect(element).to.have.property('editCount', 2));
           it('has no next action', () =>

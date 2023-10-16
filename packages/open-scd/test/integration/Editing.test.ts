@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../mock-editor-logger.js';
-import { MockEditorLogger } from '../mock-editor-logger.js';
+import '../mock-editor-historer.js';
+import { MockEditorHistorer } from '../mock-editor-historer.js';
 
 import {
   createUpdateAction,
@@ -10,7 +10,7 @@ import {
 } from '../../src/foundation.js';
 
 describe('Editing-Logging integration', () => {
-  let elm: MockEditorLogger;
+  let elm: MockEditorHistorer;
   let parent: Element;
   let element: Element;
 
@@ -18,7 +18,7 @@ describe('Editing-Logging integration', () => {
     const doc = await fetch('/test/testfiles/Editing.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-    elm = <MockEditorLogger>(
+    elm = <MockEditorHistorer>(
       await fixture(html`<mock-editor-logger .doc=${doc}></mock-editor-logger>`)
     );
 

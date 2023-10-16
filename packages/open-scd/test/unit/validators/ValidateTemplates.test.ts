@@ -29,7 +29,7 @@ describe('ValidateTemplates', () => {
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-      const parent = await fixture(html`
+      const parent: MockEditorLogger = await fixture(html`
         <mock-editor-logger
           ><validate-templates
             .doc=${doc}
@@ -38,6 +38,7 @@ describe('ValidateTemplates', () => {
         ></mock-editor-logger>
       `);
 
+      await parent.updateComplete;
       element = parent.querySelector<ValidateTemplates>('validate-templates')!;
     });
 

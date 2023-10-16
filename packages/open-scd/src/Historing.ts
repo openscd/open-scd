@@ -94,6 +94,12 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     private onHistoryLog(le: LogEvent): void {
+      if (le.detail.kind === 'reset') {
+        this.history = [];
+        this.editCount = -1;
+        return;
+      }
+
       if (le.detail.kind !== 'action') {
         return;
       }
@@ -175,12 +181,12 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     render(): TemplateResult {
-      return html`${ifImplemented(super.render())}
-        <style>
+      return html`<style>
           #history {
             --mdc-dialog-min-width: 92vw;
           }
         </style>
+        ${super.render()}
         <mwc-dialog id="history" heading="History">
           <mwc-list id="content" wrapFocus>${this.renderHistory()}</mwc-list>
           <mwc-button

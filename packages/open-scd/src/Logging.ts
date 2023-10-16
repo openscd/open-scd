@@ -99,9 +99,9 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       if (le.detail.kind === 'action') {
         return;
       }
+
       if (le.detail.kind === 'reset') {
         this.log = [];
-        this.editCount = -1;
         return;
       }
 
@@ -110,6 +110,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         ...le.detail,
       };
 
+      console.log('failing');
       this.log.push(entry);
       if (!this.logUI.open) {
         const ui = {
@@ -150,7 +151,6 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       index: number,
       history: LogEntry[]
     ): TemplateResult {
-      console.log('entry: ', entry);
       return html` <abbr title="${entry.title}">
         <mwc-list-item
           class="${entry.kind}"
