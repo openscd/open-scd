@@ -4,4 +4,4 @@ import { Historing } from '../src/Historing.js';
 import { Editing } from '../src/Editing.js';
 
 @customElement('mock-editor-historer')
-export class MockEditorHistorer extends Historing(Editing(LitElement)) {}
+export class MockEditorHistorer extends Editing(Historing(LitElement)) {}

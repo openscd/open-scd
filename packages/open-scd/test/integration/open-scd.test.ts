@@ -20,6 +20,7 @@ describe('open-scd', () => {
         rel="stylesheet"
       />
     `);
+    await element.requestUpdate();
     await element.updateComplete;
   });
 
@@ -68,6 +69,7 @@ describe('open-scd', () => {
   });
 
   it('renders a progress indicator on `waiting`', async () => {
+    console.log(element);
     const progressBar = element.shadowRoot!.querySelector(
       'mwc-linear-progress[indeterminate]'
     );

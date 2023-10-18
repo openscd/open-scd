@@ -49,6 +49,7 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
     /** Index of the last [[`EditorAction`]] applied. */
     @property({ type: Number })
     editCount = -1;
+
     @query('#history') historyUI!: Dialog;
 
     get canUndo(): boolean {
@@ -84,6 +85,7 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
       this.editCount = this.previousAction;
       return true;
     }
+
     redo(): boolean {
       if (!this.canRedo) return false;
       this.dispatchEvent(
@@ -186,7 +188,7 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
             --mdc-dialog-min-width: 92vw;
           }
         </style>
-        ${super.render()}
+        ${ifImplemented(super.render())}
         <mwc-dialog id="history" heading="History">
           <mwc-list id="content" wrapFocus>${this.renderHistory()}</mwc-list>
           <mwc-button

@@ -19,7 +19,9 @@ describe('Editing-Logging integration', () => {
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     elm = <MockEditorHistorer>(
-      await fixture(html`<mock-editor-logger .doc=${doc}></mock-editor-logger>`)
+      await fixture(
+        html`<mock-editor-historer .doc=${doc}></mock-editor-historer>`
+      )
     );
 
     parent = elm.doc!.querySelector('VoltageLevel[name="E1"]')!;
