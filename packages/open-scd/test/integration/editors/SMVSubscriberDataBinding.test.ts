@@ -11,7 +11,7 @@ import {
   getSelectedSubItemValue,
   selectFCDAItem,
 } from './test-support.js';
-import { Historing } from '../../../src/Logging.js';
+import { Historing } from '../../../src/Historing.js';
 describe('SMV Subscribe Data Binding Plugin', async () => {
   customElements.define(
     'smv-subscriber-data-binding-plugin',

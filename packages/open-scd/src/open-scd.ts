@@ -14,7 +14,7 @@ import { getTheme } from './themes.js';
 
 import { Editing } from './Editing.js';
 import { Hosting } from './Hosting.js';
-import { Historing } from './Logging.js';
+import { Historing } from './Historing.js';
 import { Plugging } from './Plugging.js';
 import { Setting } from './Setting.js';
 import { Waiting } from './Waiting.js';

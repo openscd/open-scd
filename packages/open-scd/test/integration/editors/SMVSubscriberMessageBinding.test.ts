@@ -4,7 +4,7 @@ import '../../mock-wizard.js';
 
 import SMVSubscriberMessageBindingPlugin from '../../../src/editors/SMVSubscriberMessageBinding.js';
 import { Editing } from '../../../src/Editing.js';
-import { Historing } from '../../../src/Logging.js';
+import { Historing } from '../../../src/Historing.js';
 import { Wizarding } from '../../../src/Wizarding.js';
 import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 

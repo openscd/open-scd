@@ -25,7 +25,7 @@ import { ifImplemented, Mixin } from './foundation.js';
 import { EditingElement } from './Editing.js';
 import { officialPlugins } from '../public/js/plugins.js';
 import { Nsdoc } from './foundation/nsdoc.js';
-import { HistoringElement } from './Logging.js';
+import { HistoringElement } from './Historing.js';
 const pluginTags = new Map<string, string>();
 /**
  * Hashes `uri` using cyrb64 analogous to

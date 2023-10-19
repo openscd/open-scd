@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import { Wizarding } from '../../../src/Wizarding.js';
 import { Editing } from '../../../src/Editing.js';
-import { Historing } from '../../../src/Logging.js';
+import { Historing } from '../../../src/Historing.js';
 
 import GooseSubscriberLaterBinding from '../../../src/editors/GooseSubscriberLaterBinding.js';
 import {
