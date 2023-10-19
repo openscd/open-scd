@@ -1,10 +1,12 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import { updateDocumentInOpenSCD } from '../../../src/compas/foundation.js';
+import {
+  updateDocumentInOpenSCD,
+  newUserInfoEvent,
+} from '../../../src/compas/foundation.js';
 
 import { OpenSCD } from '../../../src/open-scd.js';
 import '../../../src/open-scd.js';
-import { newUserInfoEvent } from '../../../src/foundation.js';
 
 describe('compas-foundation', () => {
   let element: OpenSCD;

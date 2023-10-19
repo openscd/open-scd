@@ -1,4 +1,4 @@
-import { newUserInfoEvent } from '../foundation.js';
+import { newUserInfoEvent } from './foundation.js';
 
 import { CompasUserInfoService } from '../compas-services/CompasUserInfoService.js';
 import { createLogEvent } from '../compas-services/foundation.js';
