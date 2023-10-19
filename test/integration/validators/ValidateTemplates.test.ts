@@ -77,6 +77,7 @@ describe('ValidateTemplates OpenSCD integration test ', () => {
     }).timeout(1000);
     it('pushes issues to the diagnostics pane that look like the latest snapshot', async () => {
       await parent.requestUpdate();
+      await parent.updateComplete;
       await expect(parent.diagnosticUI).to.equalSnapshot();
     });
   });
@@ -112,6 +113,7 @@ describe('ValidateTemplates OpenSCD integration test ', () => {
     }).timeout(1000);
     it('looks like the latest snapshot', async () => {
       await parent.requestUpdate();
+      await parent.updateComplete;
       await expect(parent.diagnosticUI).to.equalSnapshot();
     });
   });

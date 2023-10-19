@@ -111,3 +111,5 @@
 ### 9.2 [Create SPECIFICATION IED from function elements](https://github.com/openscd/open-scd/wiki/Create-Specification-IED-from-functions)
 
 ## 10. [Extensions](https://github.com/openscd/open-scd/wiki/Extensions)
+
+## 11. [CoMPAS Versions Editor](https://github.com/openscd/open-scd/wiki/CoMPAS-Versions-Editor)

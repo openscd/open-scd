@@ -32,9 +32,13 @@ import {
   LogEvent,
   Mixin,
   newActionEvent,
+  newWizardEvent,
+  SCLTag,
 } from './foundation.js';
 import { getFilterIcon, iconColors } from './icons/icons.js';
 import { Plugin } from './Plugging.js';
+import { wizards } from './wizards/wizard-library.js';
+import { nothing } from 'lit-html';
 
 const icons = {
   info: 'info',
@@ -235,13 +239,38 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         </mwc-list-item>`;
     }
 
+    private openEditWizard(element: Element | undefined): void {
+      if (element) {
+        const wizard = wizards[<SCLTag>element.tagName]?.edit(element);
+        if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+      }
+    }
+
+    private hasEditWizard(element: Element | undefined): boolean {
+      if (element) {
+        return !!wizards[<SCLTag>element.tagName]?.edit(element);
+      }
+      return false;
+    }
+
     private renderIssueEntry(issue: IssueDetail): TemplateResult {
-      return html` <abbr title="${issue.title + '\n' + issue.message}"
-        ><mwc-list-item ?twoline=${!!issue.message}>
-          <span> ${issue.title}</span>
+      return html` <abbr title="${issue.title + '\n' + issue.message}">
+        <mwc-list-item
+          ?twoline=${!!issue.message}
+          ?hasMeta=${this.hasEditWizard(issue.element)}
+        >
+          <span>${issue.title}</span>
           <span slot="secondary">${issue.message}</span>
-        </mwc-list-item></abbr
-      >`;
+          ${this.hasEditWizard(issue.element)
+            ? html` <span slot="meta">
+                <mwc-icon-button
+                  icon="edit"
+                  @click=${() => this.openEditWizard(issue.element)}
+                ></mwc-icon-button>
+              </span>`
+            : nothing}
+        </mwc-list-item>
+      </abbr>`;
     }
 
     renderValidatorsIssues(issues: IssueDetail[]): TemplateResult[] {
@@ -344,6 +373,10 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
             position: absolute;
             top: 14px;
             right: 14px;
+          }
+
+          #diagnostic mwc-list-item {
+            --mdc-list-item-meta-size: 48px;
           }
         </style>
         <mwc-dialog id="log" heading="${translate('log.name')}">

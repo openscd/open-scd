@@ -101,8 +101,10 @@ export default class UpdateSubstationPlugin extends LitElement {
                 selected: (diff: Diff<Element | string>): boolean =>
                   diff.theirs instanceof Element
                     ? diff.theirs.tagName === 'LNode'
-                      ? find(this.doc, 'LNode', identity(diff.theirs)) ===
-                          null && isValidReference(doc, identity(diff.theirs))
+                      ? this.doc.querySelector(
+                          find('LNode', identity(diff.theirs))
+                        ) === null &&
+                        isValidReference(doc, identity(diff.theirs))
                       : diff.theirs.tagName === 'Substation' ||
                         !tags['SCL'].children.includes(
                           <SCLTag>diff.theirs.tagName
@@ -111,7 +113,9 @@ export default class UpdateSubstationPlugin extends LitElement {
                 disabled: (diff: Diff<Element | string>): boolean =>
                   diff.theirs instanceof Element &&
                   diff.theirs.tagName === 'LNode' &&
-                  (find(this.doc, 'LNode', identity(diff.theirs)) !== null ||
+                  (this.doc.querySelector(
+                    find('LNode', identity(diff.theirs))
+                  ) !== null ||
                     !isValidReference(doc, identity(diff.theirs))),
                 auto: (): boolean => true,
               }
@@ -127,11 +131,9 @@ export default class UpdateSubstationPlugin extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<input @click=${(event: MouseEvent) =>
-      ((<HTMLInputElement>event.target).value = '')} @change=${(e: Event) =>
-      this.updateSubstation(
-        e
-      )} id="update-substation-plugin-input" accept=".sed,.scd,.ssd,.iid,.cid" type="file"></input>`;
+    return html`<input @click=${(event: MouseEvent) => ((<HTMLInputElement>event.target).value = '')}
+                       @change=${this.updateSubstation}
+                       id="update-substation-plugin-input" accept=".sed,.scd,.ssd,.iid,.cid" type="file"></input>`;
   }
 
   static styles = css`
