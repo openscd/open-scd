@@ -20,7 +20,6 @@ describe('open-scd', () => {
         rel="stylesheet"
       />
     `);
-    await element.requestUpdate();
     await element.updateComplete;
   });
 
@@ -30,6 +29,7 @@ describe('open-scd', () => {
 
   it('opens the menu on navigation icon click', async () => {
     const menu = element.shadowRoot!.querySelector('mwc-drawer')!;
+    console.log('menu: ', menu);
     expect(menu).property('open').to.be.false;
     const menuButton = <HTMLElement>(
       element.shadowRoot!.querySelector(
