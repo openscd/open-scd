@@ -12,10 +12,12 @@ import {
   selectFCDAItem,
 } from './test-support.js';
 import { Logging } from '../../../src/Logging.js';
+import { Historing } from '../../../src/Historing.js';
+
 describe('SMV Subscribe Data Binding Plugin', async () => {
   customElements.define(
     'smv-subscriber-data-binding-plugin',
-    Wizarding(Editing(Logging(SMVSubscriberDataBinding)))
+    Wizarding(Editing(Historing(Logging(SMVSubscriberDataBinding))))
   );
 
   let element: SMVSubscriberDataBinding;

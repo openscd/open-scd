@@ -7,12 +7,14 @@ import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 import { Editing } from '../../../src/Editing.js';
 import { Wizarding } from '../../../src/Wizarding.js';
 import { Logging } from '../../../src/Logging.js';
+import { Historing } from '../../../src/Historing.js';
+
 import GooseSubscriberMessageBindingPlugin from '../../../src/editors/GooseSubscriberMessageBinding.js';
 
 describe('GOOSE subscriber plugin', () => {
   customElements.define(
     'subscription-plugin',
-    Wizarding(Editing(Logging(GooseSubscriberMessageBindingPlugin)))
+    Wizarding(Editing(Historing(Logging(GooseSubscriberMessageBindingPlugin))))
   );
   let element: GooseSubscriberMessageBindingPlugin;
   let doc: XMLDocument;

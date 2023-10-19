@@ -16,13 +16,13 @@ import {
   HistoryEvent,
   ifImplemented,
   invert,
-  LitElementConstructor,
   LogEntry,
   LogEvent,
   Mixin,
   newActionEvent,
 } from './foundation.js';
 import { iconColors } from './icons/icons.js';
+import { LoggingElement } from './Logging.js';
 
 const icons = {
   action: 'history',
@@ -41,7 +41,9 @@ const icons = {
  */
 export type HistoringElement = Mixin<typeof Historing>;
 
-export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
+export function Historing<TBase extends new (...args: any[]) => LoggingElement>(
+  Base: TBase
+) {
   class HistoringElement extends Base {
     /** All [[`LogEntry`]]s received so far through [[`LogEvent`]]s. */
     @property({ type: Array })
@@ -183,12 +185,12 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     render(): TemplateResult {
-      return html`<style>
+      return html`${ifImplemented(super.render())}
+        <style>
           #history {
             --mdc-dialog-min-width: 92vw;
           }
         </style>
-        ${ifImplemented(super.render())}
         <mwc-dialog id="history" heading="History">
           <mwc-list id="content" wrapFocus>${this.renderHistory()}</mwc-list>
           <mwc-button

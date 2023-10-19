@@ -6,12 +6,14 @@ import SMVSubscriberMessageBindingPlugin from '../../../src/editors/SMVSubscribe
 import { Editing } from '../../../src/Editing.js';
 import { Logging } from '../../../src/Logging.js';
 import { Wizarding } from '../../../src/Wizarding.js';
+import { Historing } from '../../../src/Historing.js';
+
 import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 
 describe('Sampled Values Plugin', () => {
   customElements.define(
     'smv-plugin',
-    Wizarding(Editing(Logging(SMVSubscriberMessageBindingPlugin)))
+    Wizarding(Editing(Historing(Logging(SMVSubscriberMessageBindingPlugin))))
   );
   let element: SMVSubscriberMessageBindingPlugin;
   let doc: XMLDocument;
