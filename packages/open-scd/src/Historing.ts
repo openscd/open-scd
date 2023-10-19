@@ -465,7 +465,7 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
           labelText="${this.log
             .slice()
             .reverse()
-            .find(le => le.kind === 'info' || le.kind === 'action')?.title ??
+            .find(le => le.kind === 'info')?.title ??
           get('log.snackbar.placeholder')}"
         >
           <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
