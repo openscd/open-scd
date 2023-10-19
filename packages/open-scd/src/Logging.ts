@@ -66,10 +66,10 @@ function getPluginName(src: string): string {
  * Renders the `history` to `logUI` and the latest `'error'` [[`LogEntry`]] to
  * `messageUI`.
  */
-export type LoggingElement = Mixin<typeof Logging>;
+export type HistoringElement = Mixin<typeof Historing>;
 
-export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
-  class LoggingElement extends Base {
+export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
+  class HistoringElement extends Base {
     /** All [[`LogEntry`]]s received so far through [[`LogEvent`]]s. */
     @property({ type: Array })
     history: LogEntry[] = [];
@@ -439,5 +439,5 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
     }
   }
 
-  return LoggingElement;
+  return HistoringElement;
 }

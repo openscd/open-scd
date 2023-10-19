@@ -10,7 +10,7 @@ import {
   newLogEvent,
 } from '../../src/foundation.js';
 
-describe('LoggingElement', () => {
+describe('HistoringElement', () => {
   let element: MockLogger;
   beforeEach(async () => {
     element = <MockLogger>await fixture(html`<mock-logger></mock-logger>`);
