@@ -1,8 +1,5 @@
 name: Test and Build
-on: 
-  pull_request:
-    paths:
-      - packages/open-scd/**
+on: pull_request
 
 jobs:
   test-and-build:
