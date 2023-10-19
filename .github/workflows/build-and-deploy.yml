@@ -3,8 +3,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - packages/open-scd/**
 
 jobs:
   build-and-deploy:
