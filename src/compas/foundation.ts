@@ -106,3 +106,25 @@ export function compareVersions(
   }
   return result;
 }
+
+/** Represents user information from a backend. */
+export interface UserInfoDetail {
+  name: string;
+}
+export type UserInfoEvent = CustomEvent<UserInfoDetail>;
+export function newUserInfoEvent(
+  name: string,
+  eventInitDict?: CustomEventInit<Partial<UserInfoDetail>>
+): UserInfoEvent {
+  return new CustomEvent<UserInfoDetail>('userinfo', {
+    bubbles: true,
+    composed: true,
+    ...eventInitDict,
+    detail: { name, ...eventInitDict?.detail },
+  });
+}
+declare global {
+  interface ElementEventMap {
+    ['userinfo']: UserInfoEvent;
+  }
+}
