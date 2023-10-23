@@ -37,8 +37,7 @@ export default class CompasImportIEDSMenuPlugin extends ImportingIedPlugin {
   }
 
   protected onLoadCompasFiles(event: DocRetrievedEvent): void {
-    this.importDoc = event.detail.doc;
-    this.prepareImport();
+    this.prepareImport(event.detail.doc, event.detail.docName!);
     this.compasOpen.close();
   }
 

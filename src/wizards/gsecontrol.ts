@@ -18,6 +18,7 @@ import {
   createElement,
   Delete,
   EditorAction,
+  find,
   getUniqueElementName,
   getValue,
   identity,
@@ -26,7 +27,6 @@ import {
   newActionEvent,
   newSubWizardEvent,
   newWizardEvent,
-  selector,
   SimpleAction,
   Wizard,
   WizardActor,
@@ -335,7 +335,7 @@ function openGseControlCreateWizard(doc: XMLDocument): WizardActor {
     const [tagName, id] = path.pop()!.split(': ');
     if (tagName !== 'IED') return [];
 
-    const ied = doc.querySelector(selector(tagName, id));
+    const ied = find(doc, tagName, id);
     if (!ied) return [];
 
     const ln0 = ied.querySelector('LN0');
@@ -562,9 +562,7 @@ export function selectGseControlWizard(element: Element): Wizard {
           @selected=${(e: SingleSelectedEvent) => {
             const gseControlIndentity = (<ListItem>(<List>e.target).selected)
               .value;
-            const gseControl = element.querySelector<Element>(
-              selector('GSEControl', gseControlIndentity)
-            );
+            const gseControl = find(element, 'GSEControl', gseControlIndentity);
             if (gseControl) {
               e.target!.dispatchEvent(
                 newSubWizardEvent(() => editGseControlWizard(gseControl))

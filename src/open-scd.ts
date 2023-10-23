@@ -122,17 +122,13 @@ export class OpenSCD extends Compasing(
 
     mwc-linear-progress {
       position: fixed;
-      --mdc-theme-primary: var(--mdc-theme-secondary);
+      --mdc-linear-progress-buffer-color: var(--primary);
+      --mdc-theme-primary: var(--secondary);
       left: 0px;
-      top: 112px;
+      top: 0px;
       width: 100%;
       pointer-events: none;
-    }
-
-    @media (max-width: 599px) {
-      mwc-linear-progress {
-        top: 104px;
-      }
+      z-index: 1000;
     }
 
     tt {

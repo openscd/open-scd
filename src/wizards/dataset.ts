@@ -9,9 +9,9 @@ import '../wizard-textfield.js';
 import '../filtered-list.js';
 import {
   cloneElement,
+  find,
   getValue,
   identity,
-  selector,
   Replace,
   Wizard,
   WizardAction,
@@ -61,9 +61,7 @@ function updateDataSetAction(element: Element): WizardActor {
         'filtered-list > mwc-check-list-item:not([selected])'
       )
     )
-      .map(listItem =>
-        element.querySelector(selector('FCDA', (<CheckListItem>listItem).value))
-      )
+      .map(listItem => find(element, 'FCDA', (<CheckListItem>listItem).value))
       .filter(fcda => fcda)
       .map(fcda => {
         return {

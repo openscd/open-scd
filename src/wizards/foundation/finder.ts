@@ -3,7 +3,7 @@ import { translate } from 'lit-translate';
 
 import '../../finder-list.js';
 import { Directory } from '../../finder-list.js';
-import { identity, isPublic, selector } from '../../foundation.js';
+import { find, identity, isPublic } from '../../foundation.js';
 
 export function getDisplayString(entry: string): string {
   if (entry.startsWith('IED:')) return entry.replace(/^.*:/, '').trim();
@@ -17,7 +17,7 @@ export function getReader(
 ): (path: string[]) => Promise<Directory> {
   return async (path: string[]) => {
     const [tagName, id] = path[path.length - 1]?.split(': ', 2);
-    const element = doc.querySelector(selector(tagName, id));
+    const element = find(doc, tagName, id);
 
     if (!element)
       return { path, header: html`<p>${translate('error')}</p>`, entries: [] };

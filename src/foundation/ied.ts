@@ -1,4 +1,4 @@
-import { Delete, identity, selector } from '../foundation.js';
+import { Delete, find, identity } from '../foundation.js';
 
 /**
  * All available FCDA references that are used to link ExtRefs.
@@ -94,7 +94,7 @@ export function emptyInputsDeleteActions(
   Object.entries(inputsMap).forEach(([key, value]) => {
     if (value.children.length! == 0) {
       const doc = extRefDeleteActions[0].old.parent.ownerDocument!;
-      const inputs = doc.querySelector(selector('Inputs', key));
+      const inputs = find(doc, 'Inputs', key);
 
       if (inputs && inputs.parentElement) {
         inputDeleteActions.push({

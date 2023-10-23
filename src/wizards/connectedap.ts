@@ -104,13 +104,13 @@ function initSMVElements(
       actions.push({ new: { parent: address, element: pAppId } });
 
       const pVlanId = createElement(connectedAp.ownerDocument, 'P', {
-        type: 'VLANID',
+        type: 'VLAN-ID',
       });
       pVlanId.textContent = '000';
       actions.push({ new: { parent: address, element: pVlanId } });
 
       const pVlanPrio = createElement(connectedAp.ownerDocument, 'P', {
-        type: 'VLAN-Priority',
+        type: 'VLAN-PRIORITY',
       });
       pVlanPrio.textContent = '4';
       actions.push({ new: { parent: address, element: pVlanPrio } });
@@ -172,13 +172,13 @@ function initGSEElements(
       actions.push({ new: { parent: address, element: pAppId } });
 
       const pVlanId = createElement(connectedAp.ownerDocument, 'P', {
-        type: 'VLANID',
+        type: 'VLAN-ID',
       });
       pVlanId.textContent = '000';
       actions.push({ new: { parent: address, element: pVlanId } });
 
       const pVlanPrio = createElement(connectedAp.ownerDocument, 'P', {
-        type: 'VLAN-Priority',
+        type: 'VLAN-PRIORITY',
       });
       pVlanPrio.textContent = '4';
       actions.push({ new: { parent: address, element: pVlanPrio } });

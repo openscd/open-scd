@@ -479,23 +479,6 @@ export function newOpenDocEvent(
   });
 }
 
-/** Represents user information from a backend. */
-export interface UserInfoDetail {
-  name: string;
-}
-export type UserInfoEvent = CustomEvent<UserInfoDetail>;
-export function newUserInfoEvent(
-  name: string,
-  eventInitDict?: CustomEventInit<Partial<UserInfoDetail>>
-): UserInfoEvent {
-  return new CustomEvent<UserInfoDetail>('userinfo', {
-    bubbles: true,
-    composed: true,
-    ...eventInitDict,
-    detail: { name, ...eventInitDict?.detail },
-  });
-}
-
 /** @returns a reference to `element` with segments delimited by '/'. */
 // TODO(c-dinkel): replace with identity (FIXME)
 export function referencePath(element: Element): string {
@@ -2523,12 +2506,30 @@ export function getReference(parent: Element, tag: SCLTag): Element | null {
   return nextSibling ?? null;
 }
 
-export function selector(tagName: string, identity: string | number): string {
+function selector(tagName: string, identity: string | number): string {
   if (typeof identity !== 'string') return voidSelector;
 
   if (isSCLTag(tagName)) return tags[tagName].selector(tagName, identity);
 
   return tagName;
+}
+
+export function find(
+  root: XMLDocument | Element | DocumentFragment,
+  tagName: string,
+  identity: string | number
+): Element | null {
+  if (typeof identity !== 'string' || !isSCLTag(tagName)) return null;
+
+  const element = root.querySelector(tags[tagName].selector(tagName, identity));
+
+  if (element === null || isPublic(element)) return element;
+
+  return (
+    Array.from(
+      root.querySelectorAll(tags[tagName].selector(tagName, identity))
+    ).find(isPublic) ?? null
+  );
 }
 
 /** @returns a string uniquely identifying `e` in its document, or NaN if `e`
@@ -2862,7 +2863,6 @@ declare global {
     ['pending-state']: PendingStateEvent;
     ['editor-action']: EditorActionEvent<EditorAction>;
     ['open-doc']: OpenDocEvent;
-    ['userinfo']: UserInfoEvent;
     ['wizard']: WizardEvent;
     ['validate']: ValidateEvent;
     ['log']: LogEvent;

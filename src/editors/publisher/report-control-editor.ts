@@ -20,7 +20,7 @@ import './report-control-element-editor.js';
 import '../../filtered-list.js';
 import { FilteredList } from '../../filtered-list.js';
 
-import { compareNames, identity, selector } from '../../foundation.js';
+import { compareNames, identity, find } from '../../foundation.js';
 import { reportIcon } from '../../icons/icons.js';
 import { styles, updateElementReference } from './foundation.js';
 
@@ -66,7 +66,7 @@ export class ReportControlEditor extends LitElement {
 
   private selectReportControl(evt: Event): void {
     const id = ((evt.target as FilteredList).selected as ListItem).value;
-    const reportControl = this.doc.querySelector(selector('ReportControl', id));
+    const reportControl = find(this.doc, 'ReportControl', id);
     if (!reportControl) return;
 
     this.selectedReportControl = reportControl;

@@ -18,6 +18,7 @@ import {
   Create,
   createElement,
   EditorAction,
+  find,
   getChildElementsByTagName,
   getValue,
   identity,
@@ -27,7 +28,6 @@ import {
   newWizardEvent,
   patterns,
   Replace,
-  selector,
   Wizard,
   WizardActor,
   WizardInputElement,
@@ -130,12 +130,7 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
   const doc = (<UpdateOptions>options).doc
     ? (<UpdateOptions>options).doc
     : (<CreateOptions>options).parent.ownerDocument;
-  const DO =
-    Array.from(
-      doc.querySelectorAll(
-        selector('DO', (<UpdateOptions>options).identity ?? NaN)
-      )
-    ).find(isPublic) ?? null;
+  const DO = find(doc, 'DO', (<UpdateOptions>options).identity ?? NaN);
 
   const [
     title,
@@ -412,7 +407,7 @@ function startLNodeTypeCreate(
     const value = (<Select>inputs.find(i => i.label === 'lnClass'))?.selected
       ?.value;
     const templateLNodeType = value
-      ? templates.querySelector(selector('LNodeType', value))
+      ? find(templates, 'LNodeType', value)
       : null;
 
     const newLNodeType = templateLNodeType
@@ -439,9 +434,7 @@ function startLNodeTypeCreate(
 
 function onLnClassChange(e: Event, templates: XMLDocument): void {
   const identity = (<Select>e.target).selected?.value;
-  const lnodetype = identity
-    ? templates.querySelector(selector('LNodeType', identity))
-    : null;
+  const lnodetype = identity ? find(templates, 'LNodeType', identity) : null;
 
   const primaryAction =
     (<Element>e.target)
@@ -606,7 +599,7 @@ export function lNodeTypeWizard(
   lNodeTypeIdentity: string,
   doc: XMLDocument
 ): Wizard | undefined {
-  const lnodetype = doc.querySelector(selector('LNodeType', lNodeTypeIdentity));
+  const lnodetype = find(doc, 'LNodeType', lNodeTypeIdentity);
   if (!lnodetype) return undefined;
 
   return [

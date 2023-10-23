@@ -15,6 +15,7 @@ import {
   cloneElement,
   createElement,
   EditorAction,
+  find,
   getValue,
   identity,
   isPublic,
@@ -23,7 +24,6 @@ import {
   newWizardEvent,
   patterns,
   Replace,
-  selector,
   Wizard,
   WizardActor,
   WizardInputElement,
@@ -101,12 +101,11 @@ function eNumValWizard(options: WizardOptions): Wizard {
   const doc = (<UpdateOptions>options).doc
     ? (<UpdateOptions>options).doc
     : (<CreateOptions>options).parent.ownerDocument;
-  const enumval =
-    Array.from(
-      doc.querySelectorAll(
-        selector('EnumVal', (<UpdateOptions>options).identity ?? NaN)
-      )
-    ).find(isPublic) ?? null;
+  const enumval = find(
+    doc,
+    'EnumVal',
+    (<UpdateOptions>options).identity ?? NaN
+  );
 
   const [title, action, ord, desc, value, menuActions] = enumval
     ? [
@@ -295,7 +294,7 @@ export function eNumTypeEditWizard(
   eNumTypeIdentity: string,
   doc: XMLDocument
 ): Wizard | undefined {
-  const enumtype = doc.querySelector(selector('EnumType', eNumTypeIdentity));
+  const enumtype = find(doc, 'EnumType', eNumTypeIdentity);
   if (!enumtype) return undefined;
 
   return [

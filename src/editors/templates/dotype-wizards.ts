@@ -16,6 +16,7 @@ import {
   Create,
   createElement,
   EditorAction,
+  find,
   getValue,
   identity,
   isPublic,
@@ -23,7 +24,6 @@ import {
   newSubWizardEvent,
   newWizardEvent,
   Replace,
-  selector,
   Wizard,
   WizardActor,
   WizardInputElement,
@@ -99,12 +99,7 @@ function sDOWizard(options: WizardOptions): Wizard | undefined {
   const doc = (<UpdateOptions>options).doc
     ? (<UpdateOptions>options).doc
     : (<CreateOptions>options).parent.ownerDocument;
-  const sdo =
-    Array.from(
-      doc.querySelectorAll(
-        selector('SDO', (<UpdateOptions>options).identity ?? NaN)
-      )
-    ).find(isPublic) ?? null;
+  const sdo = find(doc, 'SDO', (<UpdateOptions>options).identity ?? NaN);
 
   const [title, action, type, menuActions, name, desc] = sdo
     ? [
@@ -351,7 +346,7 @@ export function dOTypeWizard(
   dOTypeIdentity: string,
   doc: XMLDocument
 ): Wizard | undefined {
-  const dotype = doc.querySelector(selector('DOType', dOTypeIdentity));
+  const dotype = find(doc, 'DOType', dOTypeIdentity);
   if (!dotype) return undefined;
 
   return [
@@ -411,7 +406,7 @@ export function dOTypeWizard(
               const item = <ListItem>(<List>e.target).selected;
 
               const daIdentity = (<ListItem>(<List>e.target).selected).value;
-              const da = doc.querySelector(selector('DA', daIdentity));
+              const da = find(doc, 'DA', daIdentity);
 
               const wizard = item.classList.contains('DA')
                 ? da

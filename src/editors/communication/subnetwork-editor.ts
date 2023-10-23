@@ -142,9 +142,7 @@ export class SubNetworkEditor extends LitElement {
   private subNetworkSpecs(): string {
     if (!this.type && !this.bitrate) return '';
 
-    return `(${this.type}${
-      this.type && this.bitrate ? ` — ${this.bitrate}` : ``
-    })`;
+    return `(${[this.type, this.bitrate].filter(text => !!text).join(' — ')})`;
   }
 
   private header(): string {

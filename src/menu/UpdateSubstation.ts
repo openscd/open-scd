@@ -3,10 +3,10 @@ import { get } from 'lit-translate';
 
 import {
   crossProduct,
+  find,
   identity,
   newWizardEvent,
   SCLTag,
-  selector,
   tags,
 } from '../foundation.js';
 import { Diff, mergeWizard } from '../wizards.js';
@@ -79,7 +79,11 @@ export function isValidReference(
   );
 }
 
-export function mergeSubstation(element: Element, currentDoc: Document, docWithSubstation: Document): void {
+export function mergeSubstation(
+  element: Element,
+  currentDoc: Document,
+  docWithSubstation: Document
+): void {
   element.dispatchEvent(
     newWizardEvent(
       mergeWizard(
@@ -91,21 +95,15 @@ export function mergeSubstation(element: Element, currentDoc: Document, docWithS
           selected: (diff: Diff<Element | string>): boolean =>
             diff.theirs instanceof Element
               ? diff.theirs.tagName === 'LNode'
-                ? currentDoc.querySelector(
-                  selector('LNode', identity(diff.theirs))
-                ) === null &&
-                isValidReference(docWithSubstation, identity(diff.theirs))
+                ? find(currentDoc, 'LNode', identity(diff.theirs)) === null &&
+                  isValidReference(docWithSubstation, identity(diff.theirs))
                 : diff.theirs.tagName === 'Substation' ||
-                !tags['SCL'].children.includes(
-                  <SCLTag>diff.theirs.tagName
-                )
+                  !tags['SCL'].children.includes(<SCLTag>diff.theirs.tagName)
               : diff.theirs !== null,
           disabled: (diff: Diff<Element | string>): boolean =>
             diff.theirs instanceof Element &&
             diff.theirs.tagName === 'LNode' &&
-            (currentDoc.querySelector(
-                selector('LNode', identity(diff.theirs))
-              ) !== null ||
+            (find(currentDoc, 'LNode', identity(diff.theirs)) !== null ||
               !isValidReference(docWithSubstation, identity(diff.theirs))),
           auto: (): boolean => true,
         }
@@ -113,21 +111,20 @@ export function mergeSubstation(element: Element, currentDoc: Document, docWithS
     )
   );
 }
-
 export default class UpdateSubstationPlugin extends LitElement {
   doc!: XMLDocument;
 
-  @query('#update-substation-plugin-input')
-  pluginFileUI!: HTMLInputElement;
+  @query('#update-substation-plugin-input') pluginFileUI!: HTMLInputElement;
 
   async updateSubstation(event: Event): Promise<void> {
-    const file = (<HTMLInputElement | null>event.target)?.files?.item(0) ?? false;
+    const file =
+      (<HTMLInputElement | null>event.target)?.files?.item(0) ?? false;
     if (!file) {
       return;
     }
-
-    const text = await file.text()
+    const text = await file.text();
     const doc = new DOMParser().parseFromString(text, 'application/xml');
+
     mergeSubstation(this, this.doc, doc);
     this.pluginFileUI.onchange = null;
   }
@@ -137,7 +134,8 @@ export default class UpdateSubstationPlugin extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<input @click=${(event: MouseEvent) => ((<HTMLInputElement>event.target).value = '')}
+    return html`<input @click=${(event: MouseEvent) =>
+      ((<HTMLInputElement>event.target).value = '')}
                        @change=${this.updateSubstation}
                        id="update-substation-plugin-input" accept=".sed,.scd,.ssd,.iid,.cid" type="file"></input>`;
   }
