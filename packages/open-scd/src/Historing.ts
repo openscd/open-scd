@@ -76,7 +76,7 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
     @property({ type: Array })
     log: InfoEntry[] = [];
 
-    /** All [[`LogEntry`]]s received so far through [[`LogEvent`]]s */
+    /** All [[`CommitEntry`]]s received so far through [[`LogEvent`]]s */
     @property({ type: Array })
     history: CommitEntry[] = [];
 
