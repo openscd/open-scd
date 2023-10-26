@@ -1,0 +1,1588 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "foundation.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "newOpenEvent",
+          "declaration": {
+            "name": "newOpenEvent",
+            "module": "./foundation/open-event.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "OpenEvent",
+          "declaration": {
+            "name": "OpenEvent",
+            "module": "./foundation/open-event.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "OpenDetail",
+          "declaration": {
+            "name": "OpenDetail",
+            "module": "./foundation/open-event.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "newEditEvent",
+          "declaration": {
+            "name": "newEditEvent",
+            "module": "./foundation/edit-event.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "isComplex",
+          "declaration": {
+            "name": "isComplex",
+            "module": "./foundation/edit-event.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "isInsert",
+          "declaration": {
+            "name": "isInsert",
+            "module": "./foundation/edit-event.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "isNamespaced",
+          "declaration": {
+            "name": "isNamespaced",
+            "module": "./foundation/edit-event.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "isUpdate",
+          "declaration": {
+            "name": "isUpdate",
+            "module": "./foundation/edit-event.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "isRemove",
+          "declaration": {
+            "name": "isRemove",
+            "module": "./foundation/edit-event.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "EditEvent",
+          "declaration": {
+            "name": "EditEvent",
+            "module": "./foundation/edit-event.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Edit",
+          "declaration": {
+            "name": "Edit",
+            "module": "./foundation/edit-event.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Insert",
+          "declaration": {
+            "name": "Insert",
+            "module": "./foundation/edit-event.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "AttributeValue",
+          "declaration": {
+            "name": "AttributeValue",
+            "module": "./foundation/edit-event.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "NamespacedAttributeValue",
+          "declaration": {
+            "name": "NamespacedAttributeValue",
+            "module": "./foundation/edit-event.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Update",
+          "declaration": {
+            "name": "Update",
+            "module": "./foundation/edit-event.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Remove",
+          "declaration": {
+            "name": "Remove",
+            "module": "./foundation/edit-event.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "cyrb64",
+          "declaration": {
+            "name": "cyrb64",
+            "module": "./foundation/cyrb64.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "locales.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "sourceLocale",
+          "default": "`en`",
+          "description": "The locale code that templates in this source code are written in."
+        },
+        {
+          "kind": "variable",
+          "name": "targetLocales",
+          "type": {
+            "text": "[\n  `de`,\n]"
+          },
+          "default": "[\n  `de`,\n]",
+          "description": "The other locale codes that this application is localized into. Sorted\nlexicographically."
+        },
+        {
+          "kind": "variable",
+          "name": "allLocales",
+          "type": {
+            "text": "[\n  `de`,\n  `en`,\n]"
+          },
+          "default": "[\n  `de`,\n  `en`,\n]",
+          "description": "All valid project locale codes. Sorted lexicographically."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "sourceLocale",
+          "declaration": {
+            "name": "sourceLocale",
+            "module": "locales.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "targetLocales",
+          "declaration": {
+            "name": "targetLocales",
+            "module": "locales.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "allLocales",
+          "declaration": {
+            "name": "allLocales",
+            "module": "locales.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "open-scd.spec.ts",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "open-scd.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "OpenSCD",
+          "cssProperties": [
+            {
+              "description": "Primary color for OpenSCD",
+              "name": "--oscd-theme-primary"
+            },
+            {
+              "description": "Primary color for OpenSCD appbar",
+              "name": "--oscd-theme-app-bar-primary"
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "logUI",
+              "type": {
+                "text": "Dialog"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "menuUI",
+              "type": {
+                "text": "Drawer"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "locale",
+              "attribute": "locale",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "editorIndex",
+              "type": {
+                "text": "number"
+              },
+              "privacy": "private",
+              "default": "0"
+            },
+            {
+              "kind": "field",
+              "name": "editor"
+            },
+            {
+              "kind": "field",
+              "name": "controls",
+              "type": {
+                "text": "Record<\n    'undo' | 'redo' | 'log' | 'menu',\n    Required<Control>\n  >"
+              },
+              "privacy": "private",
+              "default": "{\n    undo: {\n      icon: 'undo',\n      getName: () => msg('Undo'),\n      action: () => this.undo(),\n      isDisabled: () => !this.canUndo,\n    },\n    redo: {\n      icon: 'redo',\n      getName: () => msg('Redo'),\n      action: () => this.redo(),\n      isDisabled: () => !this.canRedo,\n    },\n    log: {\n      icon: 'history',\n      getName: () => msg('Editing history'),\n      action: () => (this.logUI.open ? this.logUI.close() : this.logUI.show()),\n      isDisabled: () => false,\n    },\n    menu: {\n      icon: 'menu',\n      getName: () => msg('Menu'),\n      action: async () => {\n        this.menuUI.open = !this.menuUI.open;\n        await this.menuUI.updateComplete;\n        if (this.menuUI.open) this.menuUI.querySelector('mwc-list')!.focus();\n      },\n      isDisabled: () => false,\n    },\n  }"
+            },
+            {
+              "kind": "field",
+              "name": "#actions",
+              "privacy": "private",
+              "type": {
+                "text": "array"
+              },
+              "default": "[this.controls.undo, this.controls.redo, this.controls.log]"
+            },
+            {
+              "kind": "field",
+              "name": "menu"
+            },
+            {
+              "kind": "field",
+              "name": "editors"
+            },
+            {
+              "kind": "field",
+              "name": "hotkeys",
+              "type": {
+                "text": "Partial<Record<string, () => void>>"
+              },
+              "privacy": "private",
+              "default": "{\n    m: this.controls.menu.action,\n    z: this.controls.undo.action,\n    y: this.controls.redo.action,\n    Z: this.controls.redo.action,\n    l: this.controls.log.action,\n  }"
+            },
+            {
+              "kind": "method",
+              "name": "handleKeyPress",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "KeyboardEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "renderLogEntry",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "entry",
+                  "type": {
+                    "text": "LogEntry"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "renderHistory",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "TemplateResult[] | TemplateResult"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "pluginProperties",
+              "privacy": "protected",
+              "return": {
+                "type": {
+                  "text": "{ [key: string]: PropertyType }"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "_plugin",
+                  "type": {
+                    "text": "Plugin"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "#loadedPlugins",
+              "privacy": "private",
+              "default": "new Map<string, Plugin>()",
+              "inheritedFrom": {
+                "name": "Plugging",
+                "module": "mixins/Plugging.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "loadedPlugins",
+              "type": {
+                "text": "Map<string, Plugin>"
+              },
+              "inheritedFrom": {
+                "name": "Plugging",
+                "module": "mixins/Plugging.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#plugins",
+              "privacy": "private",
+              "type": {
+                "text": "PluginSet"
+              },
+              "default": "{ menu: [], editor: [] }",
+              "inheritedFrom": {
+                "name": "Plugging",
+                "module": "mixins/Plugging.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "plugins",
+              "type": {
+                "text": "PluginSet"
+              },
+              "attribute": "plugins",
+              "inheritedFrom": {
+                "name": "Plugging",
+                "module": "mixins/Plugging.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "doc",
+              "type": {
+                "text": "XMLDocument"
+              },
+              "inheritedFrom": {
+                "name": "Editing",
+                "module": "mixins/Editing.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "history",
+              "type": {
+                "text": "LogEntry[]"
+              },
+              "default": "[]",
+              "inheritedFrom": {
+                "name": "Editing",
+                "module": "mixins/Editing.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "editCount",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "inheritedFrom": {
+                "name": "Editing",
+                "module": "mixins/Editing.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "last",
+              "type": {
+                "text": "number"
+              },
+              "inheritedFrom": {
+                "name": "Editing",
+                "module": "mixins/Editing.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "canUndo",
+              "type": {
+                "text": "boolean"
+              },
+              "inheritedFrom": {
+                "name": "Editing",
+                "module": "mixins/Editing.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "canRedo",
+              "type": {
+                "text": "boolean"
+              },
+              "inheritedFrom": {
+                "name": "Editing",
+                "module": "mixins/Editing.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "docs",
+              "type": {
+                "text": "Record<string, XMLDocument>"
+              },
+              "default": "{}",
+              "description": "The set of `XMLDocument`s currently loaded",
+              "inheritedFrom": {
+                "name": "Editing",
+                "module": "mixins/Editing.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "docName",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The name of the [[`doc`]] currently being edited",
+              "attribute": "docName",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "Editing",
+                "module": "mixins/Editing.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleOpenDoc",
+              "parameters": [
+                {
+                  "name": "{ detail: { docName, doc } }",
+                  "type": {
+                    "text": "OpenEvent"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "Editing",
+                "module": "mixins/Editing.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleEditEvent",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "EditEvent"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "Editing",
+                "module": "mixins/Editing.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "undo",
+              "parameters": [
+                {
+                  "name": "n",
+                  "default": "1"
+                }
+              ],
+              "description": "Undo the last `n` [[Edit]]s committed",
+              "inheritedFrom": {
+                "name": "Editing",
+                "module": "mixins/Editing.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "redo",
+              "parameters": [
+                {
+                  "name": "n",
+                  "default": "1"
+                }
+              ],
+              "description": "Redo the last `n` [[Edit]]s that have been undone",
+              "inheritedFrom": {
+                "name": "Editing",
+                "module": "mixins/Editing.ts"
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "locale",
+              "fieldName": "locale"
+            },
+            {
+              "name": "plugins",
+              "type": {
+                "text": "PluginSet"
+              },
+              "fieldName": "plugins",
+              "inheritedFrom": {
+                "name": "Plugging",
+                "module": "mixins/Plugging.ts"
+              }
+            },
+            {
+              "name": "docName",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The name of the [[`doc`]] currently being edited",
+              "fieldName": "docName",
+              "inheritedFrom": {
+                "name": "Editing",
+                "module": "mixins/Editing.ts"
+              }
+            }
+          ],
+          "mixins": [
+            {
+              "name": "Plugging",
+              "module": "/mixins/Plugging.js"
+            },
+            {
+              "name": "Editing",
+              "module": "/mixins/Editing.js"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "open-scd",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Plugging",
+          "declaration": {
+            "name": "Plugging",
+            "module": "./mixins/Plugging.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Editing",
+          "declaration": {
+            "name": "Editing",
+            "module": "./mixins/Editing.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "OpenSCD",
+          "declaration": {
+            "name": "OpenSCD",
+            "module": "open-scd.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "open-scd",
+          "declaration": {
+            "name": "OpenSCD",
+            "module": "open-scd.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "demo/AddPlugins.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "AddPlugins",
+          "members": [
+            {
+              "kind": "method",
+              "name": "run"
+            }
+          ],
+          "superclass": {
+            "name": "HTMLElement"
+          },
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "AddPlugins",
+            "module": "demo/AddPlugins.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "foundation/cyrb64.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "cyrb64",
+          "return": {
+            "type": {
+              "text": ""
+            }
+          },
+          "parameters": [
+            {
+              "name": "str",
+              "type": {
+                "text": "string"
+              }
+            }
+          ],
+          "description": "Hashes `str` using the cyrb64 variant of\nhttps://github.com/bryc/code/blob/master/jshash/experimental/cyrb53.js"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "cyrb64",
+          "declaration": {
+            "name": "cyrb64",
+            "module": "foundation/cyrb64.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "foundation/edit-event.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "isComplex",
+          "return": {
+            "type": {
+              "text": "edit is Edit[]"
+            }
+          },
+          "parameters": [
+            {
+              "name": "edit",
+              "type": {
+                "text": "Edit"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "isInsert",
+          "return": {
+            "type": {
+              "text": "edit is Insert"
+            }
+          },
+          "parameters": [
+            {
+              "name": "edit",
+              "type": {
+                "text": "Edit"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "isNamespaced",
+          "return": {
+            "type": {
+              "text": "value is NamespacedAttributeValue"
+            }
+          },
+          "parameters": [
+            {
+              "name": "value",
+              "type": {
+                "text": "AttributeValue"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "isUpdate",
+          "return": {
+            "type": {
+              "text": "edit is Update"
+            }
+          },
+          "parameters": [
+            {
+              "name": "edit",
+              "type": {
+                "text": "Edit"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "isRemove",
+          "return": {
+            "type": {
+              "text": "edit is Remove"
+            }
+          },
+          "parameters": [
+            {
+              "name": "edit",
+              "type": {
+                "text": "Edit"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "newEditEvent",
+          "return": {
+            "type": {
+              "text": "EditEvent<E>"
+            }
+          },
+          "parameters": [
+            {
+              "name": "edit",
+              "type": {
+                "text": "E"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "isComplex",
+          "declaration": {
+            "name": "isComplex",
+            "module": "foundation/edit-event.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "isInsert",
+          "declaration": {
+            "name": "isInsert",
+            "module": "foundation/edit-event.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "isNamespaced",
+          "declaration": {
+            "name": "isNamespaced",
+            "module": "foundation/edit-event.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "isUpdate",
+          "declaration": {
+            "name": "isUpdate",
+            "module": "foundation/edit-event.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "isRemove",
+          "declaration": {
+            "name": "isRemove",
+            "module": "foundation/edit-event.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "newEditEvent",
+          "declaration": {
+            "name": "newEditEvent",
+            "module": "foundation/edit-event.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "foundation/open-event.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "newOpenEvent",
+          "return": {
+            "type": {
+              "text": "OpenEvent"
+            }
+          },
+          "parameters": [
+            {
+              "name": "doc",
+              "type": {
+                "text": "XMLDocument"
+              }
+            },
+            {
+              "name": "docName",
+              "type": {
+                "text": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "newOpenEvent",
+          "declaration": {
+            "name": "newOpenEvent",
+            "module": "foundation/open-event.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "locales/de.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "templates",
+          "type": {
+            "text": "object"
+          },
+          "default": "{\n      's0731afca1ab76175': str`${0} nach ${1} verschoben`,\n's0f8217f07c54b541': str`${0} entfernt`,\n's5e8250fb85d64c23': `Schließen`,\n's62b4f83c9503e1af': str`≥ ${0} Knoten verändert`,\n's6d8c02aee480af7a': `Menü`,\n's7417792bbe720149': `Wiederholen`,\n's83eaab546be4bfb9': str`${0} in ${1} eingefügt`,\n's85a55e7007003cc2': str`${0} verändert`,\n's8f4be9f086eb530f': `Rückgängig`,\n's90c6a2fed2796c07': `Bearbeitungshistorie`,\n'sbcdf43ebad9c5a3a': `Etwas unerwartetes ist passiert!`,\n'sfb0e98cb12fe463c': `Hier wird Ihre Bearbeitungshistorie angezeigt.`,\n    }"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "templates",
+          "declaration": {
+            "name": "templates",
+            "module": "locales/de.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "mixins/Editing.spec.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "xmlAttributeName",
+          "default": "/^(?!xml|Xml|xMl|xmL|XMl|xML|XmL|XML)[A-Za-z_][A-Za-z0-9-_.]*(:[A-Za-z_][A-Za-z0-9-_.]*)?$/"
+        },
+        {
+          "kind": "function",
+          "name": "descendants",
+          "return": {
+            "type": {
+              "text": "Node[]"
+            }
+          },
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Element | XMLDocument"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "variable",
+          "name": "sclDocString",
+          "default": "`<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<SCL version=\"2007\" revision=\"B\" xmlns=\"http://www.iec.ch/61850/2003/SCL\">\n  <Substation name=\"A1\" desc=\"test substation\"></Substation>\n</SCL>`"
+        },
+        {
+          "kind": "variable",
+          "name": "testDocs",
+          "default": "tuple(\n    constantFrom(...testDocStrings),\n    constantFrom(...testDocStrings)\n  )\n    .map(strs =>\n      strs.map(str => new DOMParser().parseFromString(str, 'application/xml'))\n    )\n    .map(docs =>\n      docs.map(doc => ({ doc, nodes: descendants(doc).concat([doc]) }))\n    )"
+        },
+        {
+          "kind": "function",
+          "name": "remove",
+          "return": {
+            "type": {
+              "text": "Arbitrary<Remove>"
+            }
+          },
+          "parameters": [
+            {
+              "name": "nodes",
+              "type": {
+                "text": "Node[]"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "insert",
+          "return": {
+            "type": {
+              "text": "Arbitrary<Insert>"
+            }
+          },
+          "parameters": [
+            {
+              "name": "nodes",
+              "type": {
+                "text": "Node[]"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "update",
+          "return": {
+            "type": {
+              "text": "Arbitrary<Update>"
+            }
+          },
+          "parameters": [
+            {
+              "name": "nodes",
+              "type": {
+                "text": "Node[]"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "simpleEdit",
+          "return": {
+            "type": {
+              "text": "Arbitrary<Insert | Update | Remove>"
+            }
+          },
+          "parameters": [
+            {
+              "name": "nodes",
+              "type": {
+                "text": "Node[]"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "complexEdit",
+          "return": {
+            "type": {
+              "text": "Arbitrary<Edit[]>"
+            }
+          },
+          "parameters": [
+            {
+              "name": "nodes",
+              "type": {
+                "text": "Node[]"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "edit",
+          "return": {
+            "type": {
+              "text": "Arbitrary<Edit>"
+            }
+          },
+          "parameters": [
+            {
+              "name": "nodes",
+              "type": {
+                "text": "Node[]"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "undoRedoTestCases",
+          "return": {
+            "type": {
+              "text": "Arbitrary<UndoRedoTestCase>"
+            }
+          },
+          "parameters": [
+            {
+              "name": "testDoc1",
+              "type": {
+                "text": "TestDoc"
+              }
+            },
+            {
+              "name": "testDoc2",
+              "type": {
+                "text": "TestDoc"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "isParentNode",
+          "return": {
+            "type": {
+              "text": "node is ParentNode"
+            }
+          },
+          "parameters": [
+            {
+              "name": "node",
+              "type": {
+                "text": "Node"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "isParentOf",
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Node"
+              }
+            },
+            {
+              "name": "node",
+              "type": {
+                "text": "Node | null"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "isValidInsert",
+          "parameters": [
+            {
+              "name": "{ parent, node, reference }",
+              "type": {
+                "text": "Insert"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "EditingElement",
+          "mixins": [
+            {
+              "name": "Editing",
+              "module": "/mixins/Editing.js"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "editing-element",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "xmlAttributeName",
+          "declaration": {
+            "name": "xmlAttributeName",
+            "module": "mixins/Editing.spec.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "descendants",
+          "declaration": {
+            "name": "descendants",
+            "module": "mixins/Editing.spec.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "sclDocString",
+          "declaration": {
+            "name": "sclDocString",
+            "module": "mixins/Editing.spec.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "testDocs",
+          "declaration": {
+            "name": "testDocs",
+            "module": "mixins/Editing.spec.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "remove",
+          "declaration": {
+            "name": "remove",
+            "module": "mixins/Editing.spec.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "insert",
+          "declaration": {
+            "name": "insert",
+            "module": "mixins/Editing.spec.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "update",
+          "declaration": {
+            "name": "update",
+            "module": "mixins/Editing.spec.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "simpleEdit",
+          "declaration": {
+            "name": "simpleEdit",
+            "module": "mixins/Editing.spec.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "complexEdit",
+          "declaration": {
+            "name": "complexEdit",
+            "module": "mixins/Editing.spec.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "edit",
+          "declaration": {
+            "name": "edit",
+            "module": "mixins/Editing.spec.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "undoRedoTestCases",
+          "declaration": {
+            "name": "undoRedoTestCases",
+            "module": "mixins/Editing.spec.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "isParentNode",
+          "declaration": {
+            "name": "isParentNode",
+            "module": "mixins/Editing.spec.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "isParentOf",
+          "declaration": {
+            "name": "isParentOf",
+            "module": "mixins/Editing.spec.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "isValidInsert",
+          "declaration": {
+            "name": "isValidInsert",
+            "module": "mixins/Editing.spec.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "EditingElement",
+          "declaration": {
+            "name": "EditingElement",
+            "module": "mixins/Editing.spec.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "editing-element",
+          "declaration": {
+            "name": "EditingElement",
+            "module": "mixins/Editing.spec.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "mixins/Editing.ts",
+      "declarations": [
+        {
+          "kind": "mixin",
+          "description": "A mixin for editing a set of [[docs]] using [[EditEvent]]s",
+          "name": "Editing",
+          "members": [
+            {
+              "kind": "field",
+              "name": "doc",
+              "type": {
+                "text": "XMLDocument"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "history",
+              "type": {
+                "text": "LogEntry[]"
+              },
+              "default": "[]"
+            },
+            {
+              "kind": "field",
+              "name": "editCount",
+              "type": {
+                "text": "number"
+              },
+              "default": "0"
+            },
+            {
+              "kind": "field",
+              "name": "last",
+              "type": {
+                "text": "number"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "canUndo",
+              "type": {
+                "text": "boolean"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "canRedo",
+              "type": {
+                "text": "boolean"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "docs",
+              "type": {
+                "text": "Record<string, XMLDocument>"
+              },
+              "default": "{}",
+              "description": "The set of `XMLDocument`s currently loaded"
+            },
+            {
+              "kind": "field",
+              "name": "docName",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The name of the [[`doc`]] currently being edited",
+              "attribute": "docName",
+              "reflects": true
+            },
+            {
+              "kind": "method",
+              "name": "handleOpenDoc",
+              "parameters": [
+                {
+                  "name": "{ detail: { docName, doc } }",
+                  "type": {
+                    "text": "OpenEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleEditEvent",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "EditEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "undo",
+              "parameters": [
+                {
+                  "name": "n",
+                  "default": "1"
+                }
+              ],
+              "description": "Undo the last `n` [[Edit]]s committed"
+            },
+            {
+              "kind": "method",
+              "name": "redo",
+              "parameters": [
+                {
+                  "name": "n",
+                  "default": "1"
+                }
+              ],
+              "description": "Redo the last `n` [[Edit]]s that have been undone"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "docName",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The name of the [[`doc`]] currently being edited",
+              "fieldName": "docName"
+            }
+          ],
+          "parameters": [
+            {
+              "name": "Base",
+              "type": {
+                "text": "TBase"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Editing",
+          "declaration": {
+            "name": "Editing",
+            "module": "mixins/Editing.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "mixins/Plugging.spec.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "PluggingElement",
+          "mixins": [
+            {
+              "name": "Plugging",
+              "module": "/mixins/Plugging.js"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "plugging-element",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PluggingElement",
+          "declaration": {
+            "name": "PluggingElement",
+            "module": "mixins/Plugging.spec.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "plugging-element",
+          "declaration": {
+            "name": "PluggingElement",
+            "module": "mixins/Plugging.spec.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "mixins/Plugging.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "pluginTag",
+          "return": {
+            "type": {
+              "text": ""
+            }
+          },
+          "parameters": [
+            {
+              "name": "uri",
+              "type": {
+                "text": "string"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "mixin",
+          "description": "",
+          "name": "Plugging",
+          "members": [
+            {
+              "kind": "field",
+              "name": "#loadedPlugins",
+              "privacy": "private",
+              "default": "new Map<string, Plugin>()"
+            },
+            {
+              "kind": "field",
+              "name": "loadedPlugins",
+              "type": {
+                "text": "Map<string, Plugin>"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#plugins",
+              "privacy": "private",
+              "type": {
+                "text": "PluginSet"
+              },
+              "default": "{ menu: [], editor: [] }"
+            },
+            {
+              "kind": "field",
+              "name": "plugins",
+              "type": {
+                "text": "PluginSet"
+              },
+              "attribute": "plugins"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "plugins",
+              "type": {
+                "text": "PluginSet"
+              },
+              "fieldName": "plugins"
+            }
+          ],
+          "parameters": [
+            {
+              "name": "Base",
+              "type": {
+                "text": "TBase"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "variable",
+          "name": "tagName"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "pluginTag",
+          "declaration": {
+            "name": "pluginTag",
+            "module": "mixins/Plugging.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Plugging",
+          "declaration": {
+            "name": "Plugging",
+            "module": "mixins/Plugging.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "tagName",
+          "declaration": {
+            "name": "default",
+            "module": "mixins/Plugging.ts"
+          }
+        }
+      ]
+    }
+  ]
+}
