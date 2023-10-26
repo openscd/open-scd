@@ -58,6 +58,7 @@ export function createGSEControlWizardPage(
     ? {
         title: get('wizard.title.edit', { tagName: 'GSE Control' }),
         content: [...content],
+        element: services,
       }
     : null;
 }
