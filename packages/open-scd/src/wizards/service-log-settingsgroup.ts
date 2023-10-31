@@ -89,7 +89,7 @@ function createLogSettingsGroupServicesWizard(
         parent.querySelector('ConfDataSet')?.getAttribute('maxAttributes') ??
         null,
       modify:
-        parent.querySelector('ConfDataSet')?.getAttribute('modify') ?? null,
+        parent.querySelector('ConfDataSet')?.getAttribute('modify') ?? 'true',
     },
     clientServices: {
       readLog:
@@ -192,8 +192,8 @@ function createLogSettingsGroupServicesWizard(
           {
             kind: 'TextField',
             label: 'Max',
-            nullable: true,
-            helper: 'The maximum number of data sets in this IED',
+            nullable: false,
+            helper: 'The maximum allow data sets in this IED',
             maybeValue: content.dataSet.max,
           },
           {
