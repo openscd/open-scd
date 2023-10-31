@@ -17,7 +17,7 @@ export function isEmptyObject<T = any>(
   return (
     target === null
       ? [false]
-      : Object.keys(target).flatMap(key => {
+      : Object.keys(target as Object).flatMap(key => {
           const value: any = (target as any)[key];
           if (typeof value === 'object') {
             return isEmptyObject(value);
