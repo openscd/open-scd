@@ -16,7 +16,7 @@ import { ActionDetail, List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 import { Mixin, newPendingStateEvent } from './foundation.js';
-import { LoggingElement } from './Logging.js';
+import { HistoringElement } from './Historing.js';
 import { Plugin, PluggingElement, pluginIcons } from './Plugging.js';
 import { SettingElement } from './Setting.js';
 
@@ -39,12 +39,12 @@ interface MenuPlugin {
   run: () => Promise<void>;
 }
 
-/** Mixin that hosts the UI for Plugins, Settings and Logging */
+/** Mixin that hosts the UI for Plugins, Settings and Historing */
 export type HostingElement = Mixin<typeof Hosting>;
 
 export function Hosting<
   TBase extends new (...args: any[]) => PluggingElement &
-    LoggingElement &
+    HistoringElement &
     SettingElement
 >(Base: TBase) {
   class HostingElement extends Base {
@@ -176,10 +176,17 @@ export function Hosting<
         },
         ...validators,
         {
-          icon: 'history',
+          icon: 'list',
           name: 'menu.viewLog',
           actionItem: true,
           action: (): void => this.logUI.show(),
+          kind: 'static',
+        },
+        {
+          icon: 'history',
+          name: 'menu.viewHistory',
+          actionItem: true,
+          action: (): void => this.historyUI.show(),
           kind: 'static',
         },
         {
