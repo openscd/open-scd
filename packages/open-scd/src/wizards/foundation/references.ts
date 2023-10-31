@@ -245,7 +245,8 @@ export function updateReferences(
     }
   });
 
-  if (element.tagName === 'IED') updateVals(element, oldName, newName, actions);
+  if (element.tagName === 'IED')
+    actions.push(...updateVals(element, oldName, newName));
   return actions;
 }
 
@@ -258,15 +259,9 @@ export function updateReferences(
  * @param element - The element for which the name is updated.
  * @param oldName - The old name of the element.
  * @param newName - The new name of the element.
- * @param actions - Array of Replace actions from the updateReferences function. The Val elements will be added to this array.
  */
-function updateVals(
-  element: Element,
-  oldName: string | null,
-  newName: string,
-  actions: Replace[]
-) {
-  // Each IED will be checked for the extRef elements. So firstly all the IEDs will be gathered with the querySelectorAll function.
+function updateVals(element: Element, oldName: string | null, newName: string) {
+  const actions: Replace[] = [];
   const ieds = element.ownerDocument.querySelectorAll('IED');
   ieds.forEach(ied => {
     // All Val elements inside LGOS and LSVS lnClasses that starts with the IED name that needs to be changed will be gathered.
@@ -274,50 +269,43 @@ function updateVals(
     // If none are found continue to the next IED.
     const valValues: Element[] = Array.from(
       ied.querySelectorAll(
-        `LN[lnClass="LGOS"] > DOI > DAI > Val, LN[lnClass="LSVS"] > DOI > DAI > Val[textContent*="${oldName}"]`
+        `:scope > AccessPoint > Server > LDevice > LN[lnClass="LGOS"] > DOI > DAI > Val, :scope > AccessPoint > Server > LDevice > LN[lnClass="LSVS"] > DOI > DAI > Val`
       )
     );
 
     if (valValues.length === 0) return;
 
-    // The extRef elements are gathered that contain the to-be-changed IED name and has a srcCBName will be gathered.
-    // For each of these elements a controlblockreferences will be created.
-    const extRefs = Array.from(
-      ied.querySelectorAll(
-        'AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef'
-      )
-    ).filter(
-      ref =>
-        ref.getAttribute('iedName') === oldName && ref.getAttribute('srcCBName')
+    // If atleast one extRef element contains the to-be-changed IED name and has a srcCBName, one will be gathered.
+    // From that extRef element a controlblockreferences will be created and compared to the Val elements.
+    // If a match is found, the name of that Val element will be changed accordingly and the loop will be broken, as only 1 Val element need to be changed.
+
+    const ref = ied.querySelector(
+      `:scope > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="${oldName}"][srcCBName]`
     );
 
-    extRefLoop: for (let ref of extRefs) {
-      const suffixCBReference =
-        ref.getAttribute('srcLDInst') +
-        '/' +
-        ref.getAttribute('srcLNClass') +
-        '.' +
-        ref.getAttribute('srcCBName');
+    const suffixCBReference =
+      ref?.getAttribute('srcLDInst') +
+      '/' +
+      ref?.getAttribute('srcLNClass') +
+      '.' +
+      ref?.getAttribute('srcCBName');
 
-      // The found Val elements will be compared by the constructed controlblockreferences.
-      // The textContent of the Val element will be changed to the new IED name and will be added
-      // to the Replace action array. Only one Val element should be changed. This means that if a match
-      // is found, the loop should break.
-      for (let value of valValues) {
-        if (oldName + suffixCBReference === value.textContent!.trim()) {
-          const newElement = cloneElementAndTextContent(
-            value,
-            newName + suffixCBReference
-          );
-          actions.push({
-            old: { element: value },
-            new: { element: newElement },
-          });
-          break extRefLoop;
-        }
+    for (let value of valValues) {
+      if (oldName + suffixCBReference === value.textContent!.trim()) {
+        const newElement = cloneElementAndTextContent(
+          value,
+          newName + suffixCBReference
+        );
+        actions.push({
+          old: { element: value },
+          new: { element: newElement },
+        });
+        break;
       }
     }
   });
+
+  return actions;
 }
 
 /**

@@ -115,10 +115,7 @@ describe('Update reference for ', () => {
     it('will update all references to IED Pub and checks for correct Val elements', function () {
       const oldName = 'Pub';
       const newName = 'NewPub';
-      const oldValName = `${oldName}lisher/LLN0.cb1`;
-      const newValName = `${newName}lisher/LLN0.cb1`;
       const ied = doc.querySelector(`IED[name="${oldName}"]`)!;
-      const extRefs = ied.querySelectorAll('A');
 
       const updateActions = updateReferences(ied, oldName, newName);
       expect(updateActions.length).to.equal(5);
@@ -140,12 +137,10 @@ describe('Update reference for ', () => {
         '.' +
         input3.getAttribute('srcCBName');
 
-      const oldValName3 = oldName + valSuffix3;
-
       expectUpdateTextValue(
         updateActions[4],
         'DAI',
-        oldValName3,
+        oldName + valSuffix3,
         newName + valSuffix3
       );
     });
