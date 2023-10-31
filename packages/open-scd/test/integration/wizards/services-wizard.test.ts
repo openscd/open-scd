@@ -57,14 +57,17 @@ describe('Wizards for SCL element Services', () => {
         await elm.updateComplete;
       });
       [0, 1, 2, 3, 4, 5].forEach(idx => {
-      it(`Wizard ${idx + 1} should contain the code icon button`, () => {
-        expect(element.wizardUI.dialogs[idx].querySelector('mwc-icon-button-toggle')).to.have.attribute('onicon', 'code');
+        it(`Wizard ${idx + 1} should contain the code icon button`, () => {
+          expect(
+            element.wizardUI.dialogs[idx].querySelector(
+              'mwc-icon-button-toggle'
+            )
+          ).to.have.attribute('onicon', 'code');
+        });
       });
-    });
     });
     after(() => localStorage.removeItem('mode'));
 
-  });
     ['AP2', 'AP3', 'AP4', 'AP5', 'AP6'].forEach(accessPointName => {
       describe(`IED [${ied}]: AccessPoint wizards for Scl element Services`, () => {
         beforeEach(async () => {
