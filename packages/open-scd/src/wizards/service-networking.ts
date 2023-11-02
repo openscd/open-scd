@@ -61,6 +61,7 @@ export function createNetworkingWizardPage(
     ? {
         title: get('wizard.title.edit', { tagName: 'Networking' }),
         content: [...content],
+        element: services,
       }
     : null;
 }

@@ -547,7 +547,7 @@ export default class ImportingIedPlugin extends LitElement {
     return html`<input multiple @change=${(event: Event) => {
       this.onLoadFiles(event);
       (<HTMLInputElement>event.target).value = '';
-    }} id="importied-plugin-input" accept=".sed,.scd,.ssd,.iid,.cid,.icd" type="file"></input>`;
+    }} id="importied-plugin-input" accept=".sed,.scd,.ssd,.isd,.iid,.cid,.icd" type="file"></input>`;
   }
 
   protected buildIedSelection(importDoc: XMLDocument, fileName: string): void {
