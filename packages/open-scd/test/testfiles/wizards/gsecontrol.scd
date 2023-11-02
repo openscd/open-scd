@@ -23,7 +23,6 @@
 				<GSE ldInst="CircuitBreaker_CB1" cbName="GCB">
 					<Address>
 						<P type="MAC-Address">01-0C-CD-01-00-10</P>
-						<P type="VLAN-ID">005</P>
 						<P type="VLAN-PRIORITY">4</P>
 						<P type="APPID">0010</P>
 					</Address>

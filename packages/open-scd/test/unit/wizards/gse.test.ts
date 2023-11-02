@@ -121,7 +121,7 @@ describe('gse wizards', () => {
     });
     it('update a GSE element when only VLAN-ID attribute changed', async () => {
       const input = <WizardTextField>inputs[2];
-      input.value = '0F1';
+      input.maybeValue = '0F1';
       await input.requestUpdate();
       const editorAction = updateGSEAction(gse);
       const complexAction = editorAction(inputs, newWizard());
@@ -132,9 +132,8 @@ describe('gse wizards', () => {
       expect(actions[1]).to.satisfy(isCreate);
       const oldElement = <Element>(<Delete>actions[0]).old.element;
       const newElement = <Element>(<Create>actions[1]).new.element;
-      expect(
-        oldElement.querySelector('P[type="VLAN-ID"]')?.textContent?.trim()
-      ).to.equal('005');
+      expect(oldElement.querySelector('P[type="VLAN-ID"]')?.textContent?.trim())
+        .to.be.undefined;
       expect(
         newElement.querySelector('P[type="VLAN-ID"]')?.textContent?.trim()
       ).to.equal('0F1');
