@@ -3,8 +3,8 @@ import { translate } from 'lit-translate';
 
 import '@material/mwc-list/mwc-list-item';
 
-import '../../../src/wizard-textfield.js';
-import '../../../src/wizard-select.js';
+import '../../wizard-textfield.js';
+import '../../wizard-select.js';
 
 import { getValue, WizardInputElement } from '../../foundation.js';
 
