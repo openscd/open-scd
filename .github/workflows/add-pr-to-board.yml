@@ -76,7 +76,7 @@ jobs:
           steps.event_action.outputs.content == 'reopened')) ||
           (github.event.workflow_run.event == 'pull_request_review' &&
           steps.review_state.outputs.content == 'dismissed')
-        uses: leonsteinhaeuser/project-beta-automations@v2.1.0
+        uses: leonsteinhaeuser/project-beta-automations@v2.2.1
         with:
           project_id: 7
           gh_token: ${{ secrets.ORG_GITHUB_ACTION_SECRET }}
@@ -85,7 +85,7 @@ jobs:
           status_value: ${{ env.todo }}
       - name: Move PR to ${{env.approved}}
         if: github.event.workflow_run.event == 'pull_request_review' && steps.review_state.outputs.content == 'approved'
-        uses: leonsteinhaeuser/project-beta-automations@v2.1.0
+        uses: leonsteinhaeuser/project-beta-automations@v2.2.1
         with:
           project_id: 7
           gh_token: ${{ secrets.ORG_GITHUB_ACTION_SECRET }}
@@ -94,7 +94,7 @@ jobs:
           status_value: ${{ env.approved }}
       - name: Move PR to ${{env.changes_requested}}
         if: github.event.workflow_run.event == 'pull_request_review' && steps.review_state.outputs.content == 'changes_requested'
-        uses: leonsteinhaeuser/project-beta-automations@v2.1.0
+        uses: leonsteinhaeuser/project-beta-automations@v2.2.1
         with:
           project_id: 7
           gh_token: ${{ secrets.ORG_GITHUB_ACTION_SECRET }}
