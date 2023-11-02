@@ -21,5 +21,4 @@
 /build/
 /out-tsc/
 
-/public/cim/
-!/public/cim/README.md
+/public/cim/**/*.xml
