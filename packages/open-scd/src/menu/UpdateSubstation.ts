@@ -136,10 +136,9 @@ export default class UpdateSubstationPlugin extends LitElement {
 
   render(): TemplateResult {
     return html`<input @click=${(event: MouseEvent) =>
-      ((<HTMLInputElement>event.target).value = '')} @change=${(e: Event) =>
-      this.updateSubstation(
-        e
-      )} id="update-substation-plugin-input" accept=".sed,.scd,.ssd,.iid,.cid" type="file"></input>`;
+      ((<HTMLInputElement>event.target).value = '')}
+                       @change=${this.updateSubstation}
+                       id="update-substation-plugin-input" accept=".sed,.scd,.ssd,.iid,.cid" type="file"></input>`;
   }
 
   static styles = css`
