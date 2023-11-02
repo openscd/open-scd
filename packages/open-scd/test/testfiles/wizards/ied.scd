@@ -416,6 +416,85 @@
 		<AccessPoint name="P2">
 		</AccessPoint>
 	</IED>
+	<IED name="Subscriber1">
+        <AccessPoint name="AP1">
+            <Server>
+                <LDevice inst="LD1">
+                    <LN0 lnClass="LLN0" inst="" >
+                        <Inputs>
+                            <ExtRef iedName="Pub" ldInst="lisher" prefix="" lnClass="LLN0" lnInst="" doName="Beh" daName="stVal" />
+                            <ExtRef iedName="Pub" ldInst="lisher" prefix="" lnClass="LLN0" lnInst="" doName="Beh" daName="q" />
+                        </Inputs>
+                    </LN0>
+                    <LN prefix="Sup" lnClass="LGOS" inst="1">
+                        <DOI name="GoCBRef">
+                            <DAI name="setSrcRef">
+                                <Val>Publisher/LLN0.cb1</Val>
+                            </DAI>
+                        </DOI>
+                    </LN>
+                </LDevice>
+            </Server>
+        </AccessPoint>
+    </IED>
+    <IED name="Subscriber2">
+        <AccessPoint name="AP1">
+            <Server>
+                <LDevice inst="LD1">
+                    <LN0 lnClass="LLN0" inst="" >
+                        <Inputs>
+                            <ExtRef iedName="Publi" ldInst="sher" prefix="" lnClass="LLN0" lnInst="" doName="Beh" daName="stVal" />
+                            <ExtRef iedName="Publi" ldInst="sher" prefix="" lnClass="LLN0" lnInst="" doName="Beh" daName="q" />
+                            <ExtRef iedName="Pub" ldInst="lisher" prefix="" lnClass="LLN0" lnInst="" doName="Beh" daName="stVal" serviceType="GOOSE" srcLDInst="lisher" srcPrefix="" srcLNClass="LLN0" srcLNInst="" srcCBName="cb1" />
+                            <ExtRef iedName="Pub" ldInst="lisher" prefix="" lnClass="LLN0" lnInst="" doName="Beh" daName="q" serviceType="GOOSE" srcLDInst="lisher" srcPrefix="" srcLNClass="LLN0" srcLNInst="" srcCBName="cb1" />
+                        </Inputs>
+                    </LN0>
+                    <LN prefix="Sup" lnClass="LGOS" inst="1">
+                        <DOI name="GoCBRef">
+                            <DAI name="setSrcRef">
+                                <Val>Publisher/LLN0.cb1</Val>
+                            </DAI>
+                        </DOI>
+                    </LN>
+                    <LN prefix="Sup" lnClass="LGOS" inst="2">
+                        <DOI name="GoCBRef">
+                            <DAI name="setSrcRef">
+                                <Val>Publisher/LLN0.cb1</Val>
+                            </DAI>
+                        </DOI>
+                    </LN>
+                </LDevice>
+            </Server>
+        </AccessPoint>
+    </IED>
+    <IED name="Pub">
+        <AccessPoint name="AP1">
+            <Server>
+                <LDevice inst="lisher">
+                    <LN0 lnClass="LLN0" inst="">
+                        <DatSet name="dataSet">
+                            <FCDA ldInst="lisher" prefix="" lnClass="LLN0" lnInst="" doName="Beh" daName="stVal" fc="ST" />
+                        </DatSet>
+                        <GSEControl name="cb1" datSet=""/>
+                    </LN0>
+                </LDevice>
+            </Server>
+        </AccessPoint>
+    </IED>
+    <IED name="Publi">
+        <AccessPoint name="AP1">
+            <Server>
+                <LDevice inst="sher">
+                    <LN0 lnClass="LLN0" inst="">
+                        <DatSet name="dataSet">
+                            <FCDA ldInst="lisher" prefix="" lnClass="LLN0" lnInst="" doName="Beh" daName="stVal" fc="ST" />
+                        </DatSet>
+                        <GSEControl name="cb1" datSet="dataSet"/>
+                    </LN0>
+                </LDevice>
+            </Server>
+        </AccessPoint>
+    </IED>
 	<DataTypeTemplates>
 		<LNodeType lnClass="LLN0" id="Dummy.LLN0">
 			<DO name="Mod" type="Dummy.LLN0.Mod"/>
