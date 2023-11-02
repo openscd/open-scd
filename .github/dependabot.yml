@@ -12,7 +12,7 @@ updates:
       interval: "daily"
     open-pull-requests-limit: 5
   - package-ecosystem: "docker"
-    directory: "/"
+    directory: "packages/compas-openscd/"
     schedule:
       interval: "daily"
     open-pull-requests-limit: 5

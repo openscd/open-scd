@@ -44,13 +44,14 @@ jobs:
 
       - name: Build application with npm
         run: |
+          cd packages/compas-open-scd
           npm ci
           npm run-script build
       - name: Build and push docker image to Docker Hub
         uses: docker/build-push-action@v5
         with:
-          # Set the context to use the current directory and not execute it's own git checkout.
-          context: .
+          # Set the context to use the packages/compas-open-scd directory and not execute it's own git checkout.
+          context: packages/compas-open-scd
           push: true
           # Tag the images using the tagname and also latest.
           tags: |

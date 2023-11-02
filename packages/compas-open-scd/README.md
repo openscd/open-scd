@@ -17,23 +17,21 @@ CoMPAS Open Substation Communication Designer is an editor for SCL files as desc
 CoMPAS OpenSCD is a fork of the [OpenSCD](https://github.com/openscd/open-scd) project. The idea is to add functionality
 to use the CoMPAS Backend Service to open and save SCL Files and more.
 
-## Development
-
-This repository is a [↗ monorepo](https://en.wikipedia.org/wiki/Monorepo), made up of several packages.
-To find out more about the development of each packages, such as the base distribution or the plugins, please refer to their respective READMEs:
-- [open-scd](packages/open-scd/README.md): provides the (upstream) base distribution available on [openscd.github.io](https://openscd.github.io)
-- [compas-open-scd](packages/compas-open-scd/README.md): provides the base distribution available on [demo.compas.energy](https://demo.compas.energy)
-
 ## Contributing
 
-A recommended read for every newcomer to the CoMPAS project is [the CoMPAS Contributing guide](https://com-pas.github.io/contributing/).
+See [Development](DEVELOPMENT.md) for more information about how to build and run CoMPAS OpenSCD locally.
 
-You can also get in touch by joining the `#compas` channel hosted on [the LF Energy Slack server](https://lfenergy.slack.com/archives/C01926K9D39). 
+## Releasing
 
-## Documentation
+See [Releasing](RELEASING.md) for a step by step guide on releasing this fork with the latest version of [open-scd](https://github.com/openscd/open-scd/).
 
-How the documentation is organized.
+## License
 
-A high-level overview of how it’s organized will help you know where to look for certain things:
+The [IEC 61850](https://webstore.iec.ch/publication/63319) XSD and NSD code components used are
+distributed under their [end user license agreement](CC-EULA.pdf).
 
-- [⚖️ Decisions](docs/decisions/README.md) documents the decisions we made and why we made them.
+This project is licensed under the [Apache License 2.0](LICENSE.md).
+
+&copy; 2020-2022 OMICRON electronics GmbH, TransnetBW GmbH, Alliander N.V., and others
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fopenscd%2Fopen-scd.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fopenscd%2Fopen-scd?ref=badge_large)

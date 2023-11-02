@@ -42,6 +42,7 @@ jobs:
         timeout-minutes: 45
         if: ${{ github.event_name == 'push' }}
         run: |
+          cd packages/compas-open-scd
           npm ci
           npm run-script test
 
@@ -49,12 +50,13 @@ jobs:
         if: ${{ github.event_name == 'pull_request' }}
         timeout-minutes: 45
         run: |
+          cd packages/compas-open-scd
           npm ci
           npm run-script build
       - name: Build docker image
         if: ${{ github.event_name == 'pull_request' }}
         uses: docker/build-push-action@v5
         with:
-          # Set the context to use the current directory and not execute it's own git checkout.
-          context: .
+          # Set the context to use the packages/compas-open-scd directory and not execute it's own git checkout.
+          context: packages/compas-open-scd
           push: false

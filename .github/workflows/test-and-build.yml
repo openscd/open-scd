@@ -15,5 +15,6 @@ jobs:
 
       - name: Install and Build
         run: |
+          cd packages/compas-open-scd
           npm ci
           npm run-script build
