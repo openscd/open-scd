@@ -1,9 +1,9 @@
 {
-  "name": "compas-open-scd",
+  "name": "open-scd",
   "version": "0.33.0",
   "repository": "https://github.com/openscd/open-scd.git",
-  "description": "OpenSCD CoMPAS Edition",
-  "directory": "packages/compas-open-scd",
+  "directory": "packages/open-scd",
+  "description": "A bottom-up substation configuration designer for projects described using SCL `IEC 61850-6` Edition 2 or greater.",
   "keywords": [
     "SCL",
     "substation configuration",
@@ -37,7 +37,6 @@
     "@material/mwc-textfield": "0.22.1",
     "@material/mwc-top-app-bar-fixed": "0.22.1",
     "ace-custom-element": "^1.6.5",
-    "csv-stringify": "^6.2.0",
     "lit-element": "2.5.1",
     "lit-html": "1.4.1",
     "lit-translate": "^1.2.1",
@@ -66,8 +65,7 @@
     "release:patch": "standard-version --release-as patch",
     "release:major": "standard-version --release-as major",
     "build": "npm run test && npm run build:notest && cp .nojekyll build/",
-    "build:notest": "npm run doc && npm run build:only",
-    "build:only": "snowpack build && workbox generateSW workbox-config.cjs",
+    "build:notest": "npm run doc && snowpack build && workbox generateSW workbox-config.cjs",
     "start": "snowpack dev"
   },
   "devDependencies": {
