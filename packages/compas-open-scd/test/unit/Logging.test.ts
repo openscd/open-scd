@@ -10,21 +10,21 @@ import {
   newLogEvent,
 } from '../../src/foundation.js';
 
-describe('HistoringElement', () => {
+describe('LoggingElement', () => {
   let element: MockLogger;
   beforeEach(async () => {
     element = <MockLogger>await fixture(html`<mock-logger></mock-logger>`);
   });
 
-  it('starts out with an empty log', () =>
-    expect(element).property('log').to.be.empty);
+  it('starts out with an empty history', () =>
+    expect(element).property('history').to.be.empty);
 
   it('cannot undo', () => expect(element).property('canUndo').to.be.false);
   it('cannot redo', () => expect(element).property('canRedo').to.be.false);
 
   it('cannot undo info messages', () => {
     element.dispatchEvent(newLogEvent({ kind: 'info', title: 'test info' }));
-    expect(element).property('log').to.have.lengthOf(1);
+    expect(element).property('history').to.have.lengthOf(1);
     expect(element).property('canUndo').to.be.false;
   });
 
@@ -32,13 +32,13 @@ describe('HistoringElement', () => {
     element.dispatchEvent(
       newLogEvent({ kind: 'warning', title: 'test warning' })
     );
-    expect(element).property('log').to.have.lengthOf(1);
+    expect(element).property('history').to.have.lengthOf(1);
     expect(element).property('canUndo').to.be.false;
   });
 
   it('cannot undo error messages', () => {
     element.dispatchEvent(newLogEvent({ kind: 'error', title: 'test error' }));
-    expect(element).property('log').to.have.lengthOf(1);
+    expect(element).property('history').to.have.lengthOf(1);
     expect(element).property('canUndo').to.be.false;
   });
 
@@ -135,15 +135,14 @@ describe('HistoringElement', () => {
       expect(element).property('history').to.have.lengthOf(1);
     });
 
-    it('can reset its log', () => {
+    it('can reset its history', () => {
       element.dispatchEvent(newLogEvent({ kind: 'reset' }));
-      expect(element).property('log').to.be.empty;
       expect(element).property('history').to.be.empty;
       expect(element).to.have.property('editCount', -1);
     });
 
-    it('renders a history message for the action', () =>
-      expect(element.historyUI).to.contain.text('test'));
+    it('renders a log message for the action', () =>
+      expect(element.logUI).to.contain.text('test'));
 
     describe('with a second action logged', () => {
       beforeEach(() => {
@@ -165,7 +164,7 @@ describe('HistoringElement', () => {
       it('has a previous action', () =>
         expect(element).to.have.property('previousAction', 0));
       it('has an edit count', () =>
-        expect(element).to.have.property('editCount', 1));
+        expect(element).to.have.property('editCount', 2));
       it('has no next action', () =>
         expect(element).to.have.property('nextAction', -1));
 
@@ -177,7 +176,7 @@ describe('HistoringElement', () => {
         it('has an edit count', () =>
           expect(element).to.have.property('editCount', 0));
         it('has a next action', () =>
-          expect(element).to.have.property('nextAction', 1));
+          expect(element).to.have.property('nextAction', 2));
 
         it('can redo', () => expect(element).property('canRedo').to.be.true);
 
@@ -189,9 +188,8 @@ describe('HistoringElement', () => {
               action: MockAction.mov,
             })
           );
-          expect(element).property('log').to.have.lengthOf(1);
-          expect(element).property('history').to.have.lengthOf(2);
-          expect(element).to.have.property('editCount', 1);
+          expect(element).property('history').to.have.lengthOf(3);
+          expect(element).to.have.property('editCount', 2);
           expect(element).to.have.property('nextAction', -1);
         });
 
@@ -208,7 +206,7 @@ describe('HistoringElement', () => {
           it('has a previous action', () =>
             expect(element).to.have.property('previousAction', 0));
           it('has an edit count', () =>
-            expect(element).to.have.property('editCount', 1));
+            expect(element).to.have.property('editCount', 2));
           it('has no next action', () =>
             expect(element).to.have.property('nextAction', -1));
 

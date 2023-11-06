@@ -55,7 +55,6 @@ export function createReportConfigurationsWizardPage(
     ? {
         title: get('wizard.title.edit', { tagName: 'Report Settings' }),
         content: [...content],
-        element: services,
       }
     : null;
 }

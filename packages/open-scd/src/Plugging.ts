@@ -459,15 +459,12 @@ export function Plugging<
               value="${plugin.src}"
               ?selected=${plugin.installed}
               hasMeta
-              ?disabled=${plugin.name.startsWith('[WIP]')}
               left
             >
               <mwc-icon slot="meta"
                 >${plugin.icon || pluginIcons[plugin.kind]}</mwc-icon
               >
-              ${plugin.name.startsWith('[WIP]')
-                ? html`[WIP] <strike>${plugin.name.substring(6)}</strike>`
-                : plugin.name}
+              ${plugin.name}
             </mwc-check-list-item>`
         )}
       `;

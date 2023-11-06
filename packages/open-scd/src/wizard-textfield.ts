@@ -6,7 +6,7 @@ import {
   query,
   TemplateResult,
 } from 'lit-element';
-import { get, translate } from 'lit-translate';
+import { translate, get } from 'lit-translate';
 
 import '@material/mwc-icon-button';
 import '@material/mwc-list/mwc-list-item';
@@ -64,10 +64,8 @@ export class WizardTextField extends TextField {
     return this.null ? null : this.value;
   }
   set maybeValue(value: string | null) {
-    if (value === null) {
-      this.null = true;
-      this.value = '';
-    } else {
+    if (value === null) this.null = true;
+    else {
       this.null = false;
       this.value = value;
     }
@@ -122,8 +120,7 @@ export class WizardTextField extends TextField {
       this.setCustomValidity(get('textfield.unique'));
       return false;
     }
-    // Reset to prevent super.checkValidity to always return false
-    this.setCustomValidity('');
+    this.setCustomValidity(''); //Reset. Otherwise super.checkValidity always falseM
     return super.checkValidity();
   }
 

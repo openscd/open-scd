@@ -423,14 +423,8 @@ snapshots["open-scd looks like its snapshot"] =
     >
     </mwc-icon-button>
     <mwc-icon-button
-      icon="list"
-      label="menu.viewLog"
-      slot="actionItems"
-    >
-    </mwc-icon-button>
-    <mwc-icon-button
       icon="history"
-      label="menu.viewHistory"
+      label="menu.viewLog"
       slot="actionItems"
     >
     </mwc-icon-button>
@@ -487,6 +481,11 @@ snapshots["open-scd looks like its snapshot"] =
     on=""
   >
   </mwc-icon-button-toggle>
+  <mwc-icon-button-toggle
+    id="actionfilter"
+    on=""
+  >
+  </mwc-icon-button-toggle>
   <mwc-list
     id="content"
     wrapfocus=""
@@ -499,37 +498,7 @@ snapshots["open-scd looks like its snapshot"] =
       tabindex="0"
     >
       <span>
-        Errors, warnings and other notifications will show up here.
-      </span>
-      <mwc-icon slot="graphic">
-        info
-      </mwc-icon>
-    </mwc-list-item>
-  </mwc-list>
-  <mwc-button
-    dialogaction="close"
-    slot="primaryAction"
-  >
-    Close
-  </mwc-button>
-</mwc-dialog>
-<mwc-dialog
-  heading="SCL History"
-  id="history"
->
-  <mwc-list
-    id="content"
-    wrapfocus=""
-  >
-    <mwc-list-item
-      aria-disabled="true"
-      disabled=""
-      graphic="icon"
-      mwc-list-item=""
-      tabindex="0"
-    >
-      <span>
-        Edits will show up here
+        Edits, errors, and other notifications will show up here.
       </span>
       <mwc-icon slot="graphic">
         info

@@ -16,14 +16,8 @@ import { ActionDetail, List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 import { Mixin, newPendingStateEvent } from './foundation.js';
-<<<<<<< HEAD:packages/open-scd/src/Hosting.ts
 import { HistoringElement } from './Historing.js';
 import { Plugin, PluggingElement, pluginIcons } from './Plugging.js';
-=======
-import { UserInfoEvent } from './compas/foundation.js';
-import { LoggingElement } from './Logging.js';
-import { PluggingElement, Plugin, pluginIcons } from './Plugging.js';
->>>>>>> main:packages/compas-open-scd/src/Hosting.ts
 import { SettingElement } from './Setting.js';
 
 interface MenuItem {
@@ -38,7 +32,7 @@ interface MenuItem {
 }
 
 interface Validator {
-  validate: (manual?: boolean) => Promise<void>;
+  validate: () => Promise<void>;
 }
 
 interface MenuPlugin {
@@ -59,9 +53,6 @@ export function Hosting<
     activeTab = 0;
     @property({ attribute: false })
     validated: Promise<void> = Promise.resolve();
-
-    @property({ type: String })
-    username: string | undefined;
 
     private shouldValidate = false;
 
@@ -150,7 +141,7 @@ export function Hosting<
                   (<unknown>(
                     (<List>ae.target).items[ae.detail.index].nextElementSibling
                   ))
-                )).validate(true)
+                )).validate()
               )
             );
           },
@@ -223,10 +214,6 @@ export function Hosting<
       ];
     }
 
-    private onUserInfo(event: UserInfoEvent) {
-      this.username = event.detail.name;
-    }
-
     constructor(...args: any[]) {
       super(...args);
 
@@ -244,7 +231,7 @@ export function Hosting<
             .querySelector('mwc-list')!
             .items.filter(item => item.className === 'validator')
             .map(item =>
-              (<Validator>(<unknown>item.nextElementSibling)).validate(false)
+              (<Validator>(<unknown>item.nextElementSibling)).validate()
             )
         ).then();
         this.dispatchEvent(newPendingStateEvent(this.validated));
@@ -252,8 +239,6 @@ export function Hosting<
       this.addEventListener('close-drawer', async () => {
         this.menuUI.open = false;
       });
-
-      this.addEventListener('userinfo', this.onUserInfo);
     }
 
     renderMenuItem(me: MenuItem | 'divider'): TemplateResult {
@@ -328,16 +313,6 @@ export function Hosting<
               @click=${() => (this.menuUI.open = true)}
             ></mwc-icon-button>
             <div slot="title" id="title">${this.docName}</div>
-            ${this.username != undefined
-              ? html`<span
-                  id="userField"
-                  slot="actionItems"
-                  style="font-family:Roboto"
-                  >${translate('userinfo.loggedInAs', {
-                    name: this.username,
-                  })}</span
-                >`
-              : ``}
             ${this.menu.map(this.renderActionItem)}
             ${this.doc
               ? html`<mwc-tab-bar
@@ -360,18 +335,12 @@ export function Hosting<
                         <mwc-icon-button
                           class="landing_icon"
                           icon="${mi.icon}"
-                          @click="${() => {
-                            (<HTMLElement>(
-                              this.menuUI.querySelector(
-                                'mwc-icon-button[label="Menu"]'
-                              )
-                            )).click();
+                          @click="${() =>
                             (<ListItem>(
                               this.menuUI.querySelector('mwc-list')!.items[
                                 index
                               ]
-                            )).click();
-                          }}"
+                            )).click()}"
                         >
                           <div class="landing_label">${mi.name}</div>
                         </mwc-icon-button>

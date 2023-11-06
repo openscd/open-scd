@@ -60,7 +60,6 @@ export function createSampledValuesWizardPage(
     ? {
         title: get('wizard.title.edit', { tagName: 'Sampled Values' }),
         content: [...content],
-        element: services,
       }
     : null;
 }

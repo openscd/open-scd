@@ -42,17 +42,9 @@ describe('open-scd', () => {
   it('opens the log on log icon click', async () => {
     expect(element.logUI).to.have.property('open', false);
     await (<HTMLElement>(
-      element.shadowRoot!.querySelector('mwc-icon-button[icon="list"]')!
-    )).click();
-    expect(element.logUI).to.have.property('open', true);
-  });
-
-  it('opens the history on history icon click', async () => {
-    expect(element.historyUI).to.have.property('open', false);
-    await (<HTMLElement>(
       element.shadowRoot!.querySelector('mwc-icon-button[icon="history"]')!
     )).click();
-    expect(element.historyUI).to.have.property('open', true);
+    expect(element.logUI).to.have.property('open', true);
   });
 
   it('opens the log on snackbar button click', async () => {

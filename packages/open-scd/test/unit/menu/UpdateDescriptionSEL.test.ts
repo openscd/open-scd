@@ -1,5 +1,5 @@
-import {expect, fixture, html} from '@open-wc/testing';
-import {SinonSpy, spy} from 'sinon';
+import { expect, fixture, html } from '@open-wc/testing';
+import { SinonSpy, spy } from 'sinon';
 
 import '../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../mock-wizard-editor.js';
@@ -25,14 +25,11 @@ describe('Update method for desc attributes in SEL IEDs', () => {
         ><update-description-sel></update-description-sel
       ></mock-wizard-editor>
     `);
-    await parent.requestUpdate();
-    await parent.updateComplete;
 
     element = <UpdateDescriptionSel>(
       parent.querySelector('update-description-sel')!
     );
     await element.requestUpdate();
-    await element.updateComplete;
 
     editorAction = spy();
     window.addEventListener('editor-action', editorAction);
@@ -51,9 +48,10 @@ describe('Update method for desc attributes in SEL IEDs', () => {
 
   describe('working on SCL files without manufacturer SEL', () => {
     beforeEach(async () => {
-      element.doc = await fetch('test/testfiles/validators/zeroissues.scd')
+      const doc = await fetch('test/testfiles/validators/zeroissues.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+      element.doc = doc;
 
       signalList = await fetch(
         'test/testfiles/updatedesc/testSignalListSemicolon.csv'
@@ -61,7 +59,6 @@ describe('Update method for desc attributes in SEL IEDs', () => {
 
       element.processSignalList(signalList);
       await parent.requestUpdate();
-      await parent.updateComplete;
     });
 
     it('cannot find any desc fields to update', async () => {
@@ -73,9 +70,11 @@ describe('Update method for desc attributes in SEL IEDs', () => {
 
   describe('working on SCL files containing manufacturer SEL', () => {
     beforeEach(async () => {
-      element.doc = await fetch('test/testfiles/updatedesc/updatedescSEL.scd')
+      const doc = await fetch('test/testfiles/updatedesc/updatedescSEL.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+      element.doc = doc;
     });
 
     describe('using a semicolon separated file', () => {
@@ -86,7 +85,6 @@ describe('Update method for desc attributes in SEL IEDs', () => {
 
         element.processSignalList(signalList);
         await parent.requestUpdate();
-        await parent.updateComplete;
       });
 
       it('creates filtered list with all proposed desc attribute updates', async () => {
@@ -98,7 +96,6 @@ describe('Update method for desc attributes in SEL IEDs', () => {
           ?.querySelector<HTMLElement>('mwc-button[slot="primaryAction"]')!
           .click();
 
-        await parent.requestUpdate();
         await parent.updateComplete;
         expect(editorAction).to.have.been.calledOnce;
         expect(editorAction.args[0][0].detail.action).to.not.satisfy(isSimple);
@@ -119,7 +116,6 @@ describe('Update method for desc attributes in SEL IEDs', () => {
 
         element.processSignalList(signalList);
         await parent.requestUpdate();
-        await parent.updateComplete;
       });
 
       it('creates filtered list with all proposed desc attribute updates', async () => {
@@ -131,7 +127,6 @@ describe('Update method for desc attributes in SEL IEDs', () => {
           ?.querySelector<HTMLElement>('mwc-button[slot="primaryAction"]')!
           .click();
 
-        await parent.requestUpdate();
         await parent.updateComplete;
         expect(editorAction).to.have.been.calledOnce;
         expect(editorAction.args[0][0].detail.action).to.not.satisfy(isSimple);

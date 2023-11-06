@@ -49,7 +49,6 @@ export function createLogSettingsGroupServicesWizardPage(
     ? {
         title: get('wizard.title.edit', { tagName: 'Services' }),
         content: [...content],
-        element: services,
       }
     : null;
 }

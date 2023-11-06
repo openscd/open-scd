@@ -320,7 +320,6 @@ export interface WizardPage {
     icon: string;
     label: string;
     action: WizardActor;
-    style?: string;
   };
   initial?: boolean;
   element?: Element;
@@ -448,6 +447,7 @@ export function newPendingStateEvent(
 }
 
 /** Represents a request for validation. */
+
 export type ValidateEvent = CustomEvent<void>;
 export function newValidateEvent(
   eventInitDict?: CustomEventInit<void>

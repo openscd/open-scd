@@ -111,10 +111,6 @@ export function mergeSubstation(
     )
   );
 }
-<<<<<<< HEAD:packages/open-scd/src/menu/UpdateSubstation.ts
-
-=======
->>>>>>> main:packages/compas-open-scd/src/menu/UpdateSubstation.ts
 export default class UpdateSubstationPlugin extends LitElement {
   doc!: XMLDocument;
 

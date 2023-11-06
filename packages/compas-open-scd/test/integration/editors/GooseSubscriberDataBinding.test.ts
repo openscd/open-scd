@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import { Wizarding } from '../../../src/Wizarding.js';
 import { Editing } from '../../../src/Editing.js';
-import { Historing } from '../../../src/Historing.js';
+import { Logging } from '../../../src/Logging.js';
 import { initializeNsdoc } from '../../../src/foundation/nsdoc.js';
 
 import GooseSubscriberDataBinding from '../../../src/editors/GooseSubscriberDataBinding.js';
@@ -16,7 +16,7 @@ import {
 describe('GOOSE Subscribe Data Binding Plugin', async () => {
   customElements.define(
     'goose-subscriber-data-binding-plugin',
-    Wizarding(Editing(Historing(GooseSubscriberDataBinding)))
+    Wizarding(Editing(Logging(GooseSubscriberDataBinding)))
   );
 
   let element: GooseSubscriberDataBinding;

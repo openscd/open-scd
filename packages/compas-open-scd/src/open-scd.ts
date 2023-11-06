@@ -14,7 +14,7 @@ import { getTheme } from './themes.js';
 
 import { Editing } from './Editing.js';
 import { Hosting } from './Hosting.js';
-import { Historing } from './Historing.js';
+import { Logging } from './Logging.js';
 import { Plugging } from './Plugging.js';
 import { Setting } from './Setting.js';
 import { Waiting } from './Waiting.js';
@@ -24,13 +24,8 @@ import { Compasing } from './compas/Compasing.js';
 /** The `<open-scd>` custom element is the main entry point of the
  * Open Substation Configuration Designer. */
 @customElement('open-scd')
-<<<<<<< HEAD:packages/open-scd/src/open-scd.ts
-export class OpenSCD extends Waiting(
-  Hosting(Setting(Wizarding(Plugging(Editing(Historing(LitElement))))))
-=======
 export class OpenSCD extends Compasing(
   Waiting(Hosting(Setting(Wizarding(Plugging(Editing(Logging(LitElement)))))))
->>>>>>> main:packages/compas-open-scd/src/open-scd.ts
 ) {
   private currentSrc = '';
   /** The current file's URL. `blob:` URLs are *revoked after parsing*! */

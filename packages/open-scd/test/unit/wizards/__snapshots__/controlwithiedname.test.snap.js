@@ -212,7 +212,6 @@ snapshots["selectExtRefWizard looks like the latest snapshot"] =
     icon=""
     label="[back]"
     slot="secondaryAction"
-    style=""
   >
   </mwc-button>
   <mwc-button

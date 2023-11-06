@@ -61,7 +61,6 @@ export function createClientServerConfigurationsWizardPage(
     ? {
         title: get('wizard.title.edit', { tagName: 'Client Server Services' }),
         content: [...content],
-        element: services,
       }
     : null;
 }

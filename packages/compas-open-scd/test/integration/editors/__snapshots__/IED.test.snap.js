@@ -116,25 +116,8 @@ snapshots["IED Plugin with a doc loaded containing IEDs looks like the latest sn
         aria-disabled="false"
         graphic="control"
         mwc-list-item=""
+        selected=""
         tabindex="0"
-        value="CILO"
-      >
-        CILO
-      </mwc-check-list-item>
-      <mwc-check-list-item
-        aria-disabled="false"
-        graphic="control"
-        mwc-list-item=""
-        tabindex="-1"
-        value="CSWI"
-      >
-        CSWI
-      </mwc-check-list-item>
-      <mwc-check-list-item
-        aria-disabled="false"
-        graphic="control"
-        mwc-list-item=""
-        tabindex="-1"
         value="LLN0"
       >
         LLN0
@@ -143,6 +126,7 @@ snapshots["IED Plugin with a doc loaded containing IEDs looks like the latest sn
         aria-disabled="false"
         graphic="control"
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="XCBR"
       >
@@ -152,10 +136,31 @@ snapshots["IED Plugin with a doc loaded containing IEDs looks like the latest sn
         aria-disabled="false"
         graphic="control"
         mwc-list-item=""
+        selected=""
+        tabindex="-1"
+        value="CSWI"
+      >
+        CSWI
+      </mwc-check-list-item>
+      <mwc-check-list-item
+        aria-disabled="false"
+        graphic="control"
+        mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="XSWI"
       >
         XSWI
+      </mwc-check-list-item>
+      <mwc-check-list-item
+        aria-disabled="false"
+        graphic="control"
+        mwc-list-item=""
+        selected=""
+        tabindex="-1"
+        value="CILO"
+      >
+        CILO
       </mwc-check-list-item>
     </oscd-filter-button>
     <element-path class="elementPath">
