@@ -20,8 +20,8 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { Menu } from '@material/mwc-menu';
 
 import '../../action-pane.js';
-import '../../editors/substation/eq-function-editor.js';
-import '../../editors/substation/l-node-editor.js';
+import './eq-function-editor.js';
+import './l-node-editor.js';
 import { generalConductingEquipmentIcon } from '../../icons/icons.js';
 import {
   getChildElementsByTagName,

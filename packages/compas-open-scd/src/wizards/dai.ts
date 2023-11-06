@@ -4,7 +4,7 @@ import { get } from 'lit-translate';
 
 import { DaiFieldTypes, getCustomField } from './foundation/dai-field-type.js';
 
-import '../../src/wizard-textfield.js';
+import '../wizard-textfield.js';
 
 import {
   ComplexAction,

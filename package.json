@@ -1,7 +1,7 @@
 {
-  "name": "openscd-monorepo",
+  "name": "compas-openscd-monorepo",
   "version": "0.0.1",
-  "description": "OpenSCD base distribution and plugins",
+  "description": "CoMPAS OpenSCD base distribution and plugins",
   "private": true,
   "workspaces": [
     "packages/*"
