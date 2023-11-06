@@ -111,7 +111,6 @@ export function mergeSubstation(
     )
   );
 }
-
 export default class UpdateSubstationPlugin extends LitElement {
   doc!: XMLDocument;
 

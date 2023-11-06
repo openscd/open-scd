@@ -20,3 +20,5 @@ node_modules/
 /_site/
 /build/
 /out-tsc/
+
+/public/cim/**/*.xml

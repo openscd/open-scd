@@ -1,0 +1,28 @@
+# SPDX-FileCopyrightText: 2022 Alliander N.V.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+name: Add issues and pull request to project boards
+
+on: [ issues, pull_request, pull_request_target ]
+
+jobs:
+  github-actions-automate-projects:
+    runs-on: ubuntu-latest
+
+    if: ${{ (github.event_name != 'pull_request_target' && github.actor != 'dependabot[bot]') || (github.actor == 'dependabot[bot]' && github.event_name == 'pull_request_target') }}
+    steps:
+      - name: add-new-issues-to-organization-based-project-column
+        if: github.event_name == 'issues' && github.event.action == 'opened'
+        uses: alex-page/github-project-automation-plus@v0.8.3
+        with:
+          project: CoMPAS Issues Overview Board
+          column: To do
+          repo-token: ${{ secrets.ORG_GITHUB_ACTION_SECRET }}
+      - name: add-new-pull-request-to-organization-based-project-column
+        if: (github.event_name == 'pull_request' || github.event_name == 'pull_request_target') && github.event.action == 'opened'
+        uses: alex-page/github-project-automation-plus@v0.8.3
+        with:
+          project: CoMPAS Pull Request Overview Board
+          column: To do
+          repo-token: ${{ secrets.ORG_GITHUB_ACTION_SECRET }}

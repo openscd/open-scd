@@ -207,7 +207,6 @@ describe('ImportIedsPlugin', () => {
           .length
       ).to.equal(16);
     });
-
     it('loads unique dotypes to the project', async () => {
       expect(
         element.doc?.querySelectorAll(':root > DataTypeTemplates >  DOType')
