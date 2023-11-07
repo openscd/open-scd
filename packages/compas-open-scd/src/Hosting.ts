@@ -17,7 +17,7 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 import { Mixin, newPendingStateEvent } from './foundation.js';
 import { UserInfoEvent } from './compas/foundation.js';
-import { HistoringElement } from './Logging.js';
+import { HistoringElement } from './Historing.js';
 import { PluggingElement, Plugin, pluginIcons } from './Plugging.js';
 import { SettingElement } from './Setting.js';
 
