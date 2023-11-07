@@ -26,6 +26,7 @@ snapshots["gse wizards editGseWizard looks like the latest snapshot"] =
     >
     </wizard-textfield>
     <wizard-textfield
+      disabled=""
       label="VLAN-ID"
       nullable=""
       pattern="[0-9A-F]{3}"

@@ -40,6 +40,12 @@ export function contentGseOrSmvWizard(
 }
 
 function isEqualAddress(oldAddr: Element, newAdddr: Element): boolean {
+  if (
+    oldAddr.querySelectorAll('P').length !==
+    newAdddr.querySelectorAll('P').length
+  )
+    return false;
+
   return (
     Array.from(oldAddr.querySelectorAll('P')).filter(
       pType =>
