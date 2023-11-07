@@ -412,8 +412,8 @@ describe('ImportIedsPlugin', () => {
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       element.prepareImport(importDoc, 'invalid.iid');
 
-      expect(parent.history[0].kind).to.equal('error');
-      expect(parent.history[0].title).to.equal('[import.log.missingied]');
+      expect(parent.log[0].kind).to.equal('error');
+      expect(parent.log[0].title).to.equal('[import.log.missingied]');
     });
 
     it('throws duplicate ied name error', async () => {
@@ -422,8 +422,8 @@ describe('ImportIedsPlugin', () => {
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       element.prepareImport(importDoc, 'duplicate.iid');
 
-      expect(parent.history[0].kind).to.equal('error');
-      expect(parent.history[0].title).to.equal('[import.log.nouniqueied]');
+      expect(parent.log[0].kind).to.equal('error');
+      expect(parent.log[0].title).to.equal('[import.log.nouniqueied]');
     });
 
     it('throws parser error', async () => {
@@ -434,8 +434,8 @@ describe('ImportIedsPlugin', () => {
 
       element.prepareImport(importDoc, 'parsererror.iid');
 
-      expect(parent.history[0].kind).to.equal('error');
-      expect(parent.history[0].title).to.equal('[import.log.parsererror]');
+      expect(parent.log[0].kind).to.equal('error');
+      expect(parent.log[0].title).to.equal('[import.log.parsererror]');
     });
   });
 });

@@ -15,7 +15,7 @@ import {
 import {
   createTransformerWindingWizard,
   editTransformerWindingWizard,
-} from '../../../src/wizards/transformerWinding';
+} from '../../../src/wizards/transformerWinding.js';
 import { WizardCheckbox } from '../../../src/wizard-checkbox.js';
 
 describe('Wizards for SCL TransformerWinding element', () => {

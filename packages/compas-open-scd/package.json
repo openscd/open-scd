@@ -1,8 +1,9 @@
 {
   "name": "compas-open-scd",
-  "version": "0.33.6",
+  "version": "0.33.0-6",
   "repository": "https://github.com/openscd/open-scd.git",
-  "description": "A bottom-up substation configuration designer for projects described using SCL `IEC 61850-6` Edition 2 or greater.",
+  "description": "OpenSCD CoMPAS Edition",
+  "directory": "packages/compas-open-scd",
   "keywords": [
     "SCL",
     "substation configuration",
