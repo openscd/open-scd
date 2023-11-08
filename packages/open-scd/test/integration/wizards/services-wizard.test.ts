@@ -4,6 +4,7 @@ import { editServicesWizard } from '../../../src/wizards/services.js';
 
 import '../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../mock-wizard-editor.js';
+import { WizardDialog } from '../../../src/wizard-dialog.js';
 
 describe('Wizards for SCL element Services', () => {
   let doc: XMLDocument;
@@ -45,6 +46,23 @@ describe('Wizards for SCL element Services', () => {
         expect(element.wizardUI.dialogs[idx]).to.equalSnapshot();
       });
     });
+
+    describe('> when pro mode is enabled', () => {
+      let elm: WizardDialog;
+      beforeEach(async () => {
+        elm = element.shadowRoot!.querySelector<WizardDialog>('wizard-dialog')!;
+        localStorage.setItem('mode', 'pro');
+        elm.requestUpdate();
+        await elm.updateComplete;
+      });
+      [0, 1, 2, 3, 4, 5].forEach(idx => {
+      it(`Wizard ${idx + 1} should contain the code icon button`, () => {
+        expect(element.wizardUI.dialogs[idx].querySelector('mwc-icon-button-toggle')).to.have.attribute('onicon', 'code');
+      });
+    });
+    });
+    after(() => localStorage.removeItem('mode'));
+
   });
 
   ['AP2', 'AP3', 'AP4', 'AP5', 'AP6'].forEach(accessPointName => {
