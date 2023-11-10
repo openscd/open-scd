@@ -2,7 +2,7 @@ import {expect, fixtureSync, html, waitUntil} from '@open-wc/testing';
 import sinon, {SinonStub} from "sinon";
 
 import {Editing} from '../../../src/Editing.js';
-import {Wizarding} from '../../../src/Wizarding.js';
+import {Wizarding} from 'open-scd/src/Wizarding.js';
 
 import {
   BASIC_VERSIONS_LIST_RESPONSE,

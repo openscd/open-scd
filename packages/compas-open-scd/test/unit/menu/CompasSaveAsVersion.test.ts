@@ -7,7 +7,7 @@ import {
   getCompasSclName,
   getLabels,
   getPrivate,
-} from '../../../src/compas/private';
+} from '../../../src/compas/private.js';
 
 describe('compas-save-menu', () => {
   if (customElements.get('compare-save-as-version-menu') === undefined)

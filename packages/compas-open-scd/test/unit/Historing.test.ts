@@ -8,7 +8,7 @@ import {
   CommitEntry,
   newIssueEvent,
   newLogEvent,
-} from '../../src/foundation.js';
+} from 'open-scd/src/foundation.js';
 
 describe('HistoringElement', () => {
   let element: MockLogger;

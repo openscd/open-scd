@@ -4,11 +4,11 @@ import {get, translate} from "lit-translate";
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 
-import {newSubWizardEvent, newWizardEvent, Wizard, WizardInputElement} from '../foundation.js';
-import {isSCLNamespace} from "../schemas.js";
-import {Nsdoc} from "../foundation/nsdoc.js";
+import {newSubWizardEvent, newWizardEvent, Wizard, WizardInputElement} from 'open-scd/src/foundation.js';
+import {isSCLNamespace} from "open-scd/src/schemas.js";
+import {Nsdoc} from "open-scd/src/foundation/nsdoc.js";
 
-import '../wizard-textfield.js';
+import 'open-scd/src/wizard-textfield.js';
 
 import {locamationLNEditWizard} from "./LocamationLNEdit.js";
 import {getPrivate, getPrivateTextValue, iedHeader, lDeviceHeader, lnHeader, LOCAMATION_PRIVATE} from "./foundation.js";

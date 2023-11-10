@@ -1,10 +1,10 @@
 import {expect, fixture, html} from "@open-wc/testing";
 
-import {MockWizard} from "../../mock-wizard.js";
-import {fetchDoc} from "../wizards/test-support.js";
-import {initializeNsdoc, Nsdoc} from "../../../src/foundation/nsdoc.js";
+import {MockWizard} from "open-scd/test/mock-wizard.js";
+import {fetchDoc} from "open-scd/test/unit/wizards/test-support.js";
+import {initializeNsdoc, Nsdoc} from "open-scd/src/foundation/nsdoc.js";
 
-import "../../mock-wizard.js";
+import "open-scd/test/mock-wizard.js";
 
 import {LocamationLNodeListElement, locamationLNListWizard} from "../../../src/locamation/LocamationLNList.js";
 

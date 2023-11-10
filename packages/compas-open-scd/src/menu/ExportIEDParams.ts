@@ -2,7 +2,7 @@ import { LitElement, property } from 'lit-element';
 
 import { stringify } from 'csv-stringify/browser/esm/sync';
 
-import { compareNames } from '../foundation.js';
+import { compareNames } from 'open-scd/src/foundation.js';
 
 import { stripExtensionFromName } from '../compas/foundation.js';
 import { get } from 'lit-translate';

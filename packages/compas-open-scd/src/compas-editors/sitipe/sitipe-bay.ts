@@ -24,10 +24,10 @@ import {
   newActionEvent,
   newLogEvent,
   SimpleAction,
-} from '../../foundation.js';
+} from 'open-scd/src/foundation.js';
 
-import '../../action-pane.js';
-import '../../action-icon.js';
+import 'open-scd/src/action-pane.js';
+import 'open-scd/src/action-icon.js';
 
 import {
   SIEMENS_SITIPE_IED_REF,

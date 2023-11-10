@@ -1,7 +1,7 @@
 import { html, LitElement } from 'lit-element';
 import { get } from 'lit-translate';
 
-import { newWizardEvent, Wizard, WizardInputElement } from '../foundation.js';
+import { newWizardEvent, Wizard, WizardInputElement } from 'open-scd/src/foundation.js';
 
 import { CompasSettingsElement } from '../compas/CompasSettings.js';
 

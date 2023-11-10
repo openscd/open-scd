@@ -23,7 +23,7 @@ import {
   Replace,
   Update,
   isUpdate,
-} from './foundation.js';
+} from 'open-scd/src/foundation.js';
 
 /** Mixin that edits an `XML` `doc`, listening to [[`EditorActionEvent`]]s */
 export type EditingElement = Mixin<typeof Editing>;

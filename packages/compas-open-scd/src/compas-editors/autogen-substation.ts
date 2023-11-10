@@ -1,5 +1,5 @@
 import { LitElement, property } from 'lit-element';
-import { createElement, newActionEvent, newLogEvent } from '../foundation.js';
+import { createElement, newActionEvent, newLogEvent } from 'open-scd/src/foundation.js';
 import { get } from 'lit-translate';
 
 let cbNum = 1;

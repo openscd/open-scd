@@ -17,10 +17,10 @@ import {
   LitElementConstructor,
   Mixin,
   newLogEvent,
-} from './foundation.js';
+} from 'open-scd/src/foundation.js';
 import { Language, languages, loader } from './translations/loader.js';
 
-import './WizardDivider.js';
+import 'open-scd/src/WizardDivider.js';
 import { WizardDialog } from './wizard-dialog.js';
 
 import {
@@ -28,8 +28,8 @@ import {
   iec6185073,
   iec6185074,
   iec6185081,
-} from './validators/templates/foundation.js';
-import { initializeNsdoc, Nsdoc } from './foundation/nsdoc.js';
+} from 'open-scd/src/validators/templates/foundation.js';
+import { initializeNsdoc, Nsdoc } from 'open-scd/src/foundation/nsdoc.js';
 
 export type Settings = {
   language: Language;

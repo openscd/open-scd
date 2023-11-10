@@ -23,9 +23,9 @@ import { List } from '@material/mwc-list';
 import { Menu } from '@material/mwc-menu';
 
 import 'ace-custom-element';
-import './wizard-checkbox.js';
-import './wizard-textfield.js';
-import './wizard-select.js';
+import 'open-scd/src/wizard-checkbox.js';
+import 'open-scd/src/wizard-textfield.js';
+import 'open-scd/src/wizard-select.js';
 import {
   newActionEvent,
   Wizard,
@@ -43,7 +43,7 @@ import {
   WizardInput,
   WizardMenuActor,
   formatXml,
-} from './foundation.js';
+} from 'open-scd/src/foundation.js';
 
 function renderWizardInput(
   input: TemplateResult | WizardInput
@@ -346,7 +346,6 @@ export class WizardDialog extends LitElement {
             @click=${() => this.act(page.secondary?.action, false)}
             icon="${page.secondary.icon}"
             label="${page.secondary.label}"
-            style="${page.secondary.style ? page.secondary.style :  ''}"
           ></mwc-button>`
         : html`<mwc-button
             slot="secondaryAction"

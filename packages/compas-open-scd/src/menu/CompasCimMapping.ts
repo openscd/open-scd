@@ -4,7 +4,7 @@ import {
   newLogEvent,
   newOpenDocEvent,
   newPendingStateEvent,
-} from '../foundation.js';
+} from 'open-scd/src/foundation.js';
 import { stripExtensionFromName } from '../compas/foundation.js';
 
 import {

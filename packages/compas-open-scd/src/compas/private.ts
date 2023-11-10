@@ -1,4 +1,4 @@
-import { SCL_NAMESPACE } from '../schemas.js';
+import { SCL_NAMESPACE } from 'open-scd/src/schemas.js';
 
 export const COMPAS_NAMESPACE = 'https://www.lfenergy.org/compas/extension/v1';
 export const COMPAS_PREFIX = 'compas';

@@ -1,9 +1,9 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../mock-wizard.js';
-import { MockWizard } from '../../mock-wizard.js';
+import 'open-scd/test/mock-wizard.js';
+import { MockWizard } from 'open-scd/test/mock-wizard.js';
 
-import { WizardTextField } from '../../../src/wizard-textfield.js';
+import { WizardTextField } from 'open-scd/src/wizard-textfield.js';
 import {
   Create,
   isCreate,
@@ -12,7 +12,7 @@ import {
   Replace,
   Wizard,
   WizardInputElement,
-} from '../../../src/foundation.js';
+} from 'open-scd/src/foundation.js';
 
 import {
   executeWizardComplexAction,

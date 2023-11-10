@@ -10,14 +10,14 @@ import { translate } from 'lit-translate';
 
 import '@material/mwc-button';
 
-import { newPendingStateEvent } from '../foundation.js';
+import { newPendingStateEvent } from 'open-scd/src/foundation.js';
 
 import { CompasSclDataService } from '../compas-services/CompasSclDataService.js';
 import { createLogEvent } from '../compas-services/foundation.js';
 import { SclSelectedEvent } from './CompasSclList.js';
 import { TypeSelectedEvent } from './CompasSclTypeList.js';
 
-import '../WizardDivider.js';
+import 'open-scd/src/WizardDivider.js';
 import './CompasSclTypeList.js';
 import './CompasSclList.js';
 

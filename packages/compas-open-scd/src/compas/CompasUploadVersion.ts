@@ -11,9 +11,9 @@ import {
   newWizardEvent,
   Wizard,
   WizardInputElement,
-} from '../foundation.js';
+} from 'open-scd/src/foundation.js';
 
-import '../wizard-textfield.js';
+import 'open-scd/src/wizard-textfield.js';
 
 import { CompasExistsIn } from './CompasExistsIn.js';
 import { CompasSclDataService } from '../compas-services/CompasSclDataService.js';
