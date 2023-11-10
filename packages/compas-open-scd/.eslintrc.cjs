@@ -18,6 +18,6 @@ module.exports = {
     'import/extensions': ['error', 'always', { ignorePackages: true }],
     'import/no-duplicates': 'off',
     'no-duplicate-imports': 'off',
-    'tsdoc/syntax': 'warn'
+    'tsdoc/syntax': 'warn',
   },
 };
