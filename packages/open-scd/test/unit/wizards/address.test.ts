@@ -123,6 +123,31 @@ describe('address', () => {
         expect(actions).to.be.empty;
       });
 
+      it('update a Address element when VLAN ID gets created', async () => {
+        const input = <WizardTextField>inputs[2];
+        const type = input.label;
+        const newValue = 'newValue';
+
+        input.maybeValue = newValue;
+        await input.requestUpdate();
+
+        const actions = updateAddress(gse, addressContent(inputs), false);
+        expect(actions.length).to.equal(2);
+        expect(actions[0]).to.satisfy(isDelete);
+        expect(actions[1]).to.satisfy(isCreate);
+        const oldElement = <Element>(<Delete>actions[0]).old.element;
+        const newElement = <Element>(<Create>actions[1]).new.element;
+        expect(
+          oldElement.querySelector(`P[type="${type}"]`)?.textContent?.trim()
+        ).to.be.undefined;
+        expect(
+          newElement.querySelector(`P[type="${type}"]`)?.textContent?.trim()
+        ).to.equal(newValue);
+        expect(
+          newElement.querySelector(`P[type="${type}"]`)
+        ).to.not.have.attribute('xsi:type', `tP_${type}`);
+      });
+
       it('update a Address element when at least one attribute changes', async () => {
         for (const rawInput of inputs) {
           const input =
@@ -132,9 +157,9 @@ describe('address', () => {
 
           const type = input.label;
           const newValue = 'newValue';
-          const oldValue = input.value;
+          const oldValue = input.value || undefined;
 
-          input.value = newValue;
+          input.maybeValue = newValue;
           await input.requestUpdate();
 
           const actions = updateAddress(gse, addressContent(inputs), false);
@@ -164,9 +189,9 @@ describe('address', () => {
 
           const type = input.label;
           const newValue = input.value;
-          const oldValue = input.value;
+          const oldValue = input.value || undefined;
 
-          input.value = newValue;
+          input.maybeValue = newValue;
           await input.requestUpdate();
 
           const actions = updateAddress(gse, addressContent(inputs), true);
