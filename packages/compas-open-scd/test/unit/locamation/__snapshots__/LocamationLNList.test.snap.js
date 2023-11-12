@@ -1,7 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Wizards for Locamation Plugin to select the Logical Node -  starting screen as wizard -  looks like the latest snapshot"] =
+snapshots["Wizards for Locamation Plugin to select the Logical Node -  starting screen as wizard -  looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="next"
   heading="[locamation.vmu.ln.title]"
@@ -16,14 +16,13 @@ snapshots["Wizards for Locamation Plugin to select the Logical Node -  starting 
     icon="close"
     label="[close]"
     slot="secondaryAction"
-    style=""
   >
   </mwc-button>
 </mwc-dialog>
 `;
 /* end snapshot Wizards for Locamation Plugin to select the Logical Node -  starting screen as wizard -  looks like the latest snapshot */
 
-snapshots["Wizards for Locamation Plugin to select the Logical Node -  starting screen as web component with locamation LN -  looks like the latest snapshot"] =
+snapshots["Wizards for Locamation Plugin to select the Logical Node -  starting screen as web component with locamation LN -  looks like the latest snapshot"] = 
 `<wizard-textfield
   disabled=""
   helper="[locamation.vmu.ied.name]"
@@ -113,7 +112,7 @@ snapshots["Wizards for Locamation Plugin to select the Logical Node -  starting 
 `;
 /* end snapshot Wizards for Locamation Plugin to select the Logical Node -  starting screen as web component with locamation LN -  looks like the latest snapshot */
 
-snapshots["Wizards for Locamation Plugin to select the Logical Node -  starting screen as web component without locamation LN -  looks like the latest snapshot"] =
+snapshots["Wizards for Locamation Plugin to select the Logical Node -  starting screen as web component without locamation LN -  looks like the latest snapshot"] = 
 `<mwc-list>
   <mwc-list-item
     aria-disabled="false"

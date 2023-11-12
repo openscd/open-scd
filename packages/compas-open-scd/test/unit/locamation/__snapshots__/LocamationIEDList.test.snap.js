@@ -1,7 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Wizards for Locamation Plugin to select the IED/Logical Device -  starting screen as wizard -  looks like the latest snapshot"] =
+snapshots["Wizards for Locamation Plugin to select the IED/Logical Device -  starting screen as wizard -  looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="next"
   heading="[locamation.vmu.ied.title]"
@@ -16,14 +16,13 @@ snapshots["Wizards for Locamation Plugin to select the IED/Logical Device -  sta
     icon="close"
     label="[close]"
     slot="secondaryAction"
-    style=""
   >
   </mwc-button>
 </mwc-dialog>
 `;
 /* end snapshot Wizards for Locamation Plugin to select the IED/Logical Device -  starting screen as wizard -  looks like the latest snapshot */
 
-snapshots["Wizards for Locamation Plugin to select the IED/Logical Device -  starting screen as web component with locamation IED -  looks like the latest snapshot"] =
+snapshots["Wizards for Locamation Plugin to select the IED/Logical Device -  starting screen as web component with locamation IED -  looks like the latest snapshot"] = 
 `<mwc-list>
   <mwc-list-item
     aria-disabled="false"
@@ -42,7 +41,7 @@ snapshots["Wizards for Locamation Plugin to select the IED/Logical Device -  sta
 `;
 /* end snapshot Wizards for Locamation Plugin to select the IED/Logical Device -  starting screen as web component with locamation IED -  looks like the latest snapshot */
 
-snapshots["Wizards for Locamation Plugin to select the IED/Logical Device -  starting screen as web component without locamation IED -  looks like the latest snapshot"] =
+snapshots["Wizards for Locamation Plugin to select the IED/Logical Device -  starting screen as web component without locamation IED -  looks like the latest snapshot"] = 
 `<mwc-list>
   <mwc-list-item
     aria-disabled="false"
