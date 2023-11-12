@@ -33,10 +33,10 @@ jobs:
         id: buildx
         if: ${{ github.event_name == 'pull_request' }}
         uses: docker/setup-buildx-action@v3
-      - name: Use Node.js 14.x
+      - name: Use Node.js 18.x
         uses: actions/setup-node@v4
         with:
-          node-version: '14.x'
+          node-version: '18.x'
 
       - name: Test application with npm
         timeout-minutes: 45
