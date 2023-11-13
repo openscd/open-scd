@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # EditorConfig helps developers define and maintain consistent
 # coding styles between different editors and IDEs
 # editorconfig.org
@@ -10,18 +9,9 @@ root = true
 
 # Change these settings to your own preference
 indent_style = space
-indent_size = 2
+indent_size = 
 
 # We recommend you to keep these unchanged
-=======
-root = true
-
-[*]
-
-indent_style = space
-indent_size = 2
-
->>>>>>> open-scd-core/main
 end_of_line = lf
 charset = utf-8
 trim_trailing_whitespace = true
