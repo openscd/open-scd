@@ -59,7 +59,8 @@
       "prerelease": false,
       "initial-version": "0.33.0",
       "include-component-in-tag": true,
-      "include-v-in-tag": true
+      "include-v-in-tag": true,
+      "tag-separator": "@"
     }
   },
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
