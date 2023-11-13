@@ -60,18 +60,6 @@
       "initial-version": "0.33.0",
       "include-component-in-tag": true,
       "include-v-in-tag": true
-    },
-    "packages/core": {
-      "component": "core",
-      "changelog-path": "CHANGELOG.md",
-      "release-type": "node",
-      "bump-minor-pre-major": false,
-      "bump-patch-for-minor-pre-major": false,
-      "draft": false,
-      "prerelease": false,
-      "initial-version": "0.1.0",
-      "include-component-in-tag": true,
-      "include-v-in-tag": true
     }
   },
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
