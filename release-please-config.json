@@ -31,11 +31,11 @@
     },
     {
       "type": "chore",
-      "section": "📦 Miscellaneous Chores",
+      "section": "📦 Miscellaneous Chores"
     },
     {
       "type": "refactor",
-      "section": "Code Refactoring",
+      "section": "Code Refactoring"
     },
     {
       "type": "test",
