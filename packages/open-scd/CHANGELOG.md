@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.33.1](https://github.com/pascalwilbrink/open-scd/compare/open-scd-v0.33.0...open-scd-v0.33.1) (2023-11-13)
+
+
+### 📦 Miscellaneous Chores
+
+* Checking Release please ([32bc3f8](https://github.com/pascalwilbrink/open-scd/commit/32bc3f831a8e3527d3f047923bfff393edabca7f))
+
 ## [0.33.0](https://github.com/openscd/open-scd/compare/v0.32.0...v0.33.0) (2023-06-22)
 
 
