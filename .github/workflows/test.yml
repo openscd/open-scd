@@ -1,14 +1,19 @@
 name: Test
+<<<<<<< HEAD
 on:
   push:
     branches-ignore:
       - main
+=======
+on: push
+>>>>>>> open-scd-core/main
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
+<<<<<<< HEAD
         uses: actions/checkout@v2.3.1
 
       - name: Use Node.js 18.x
@@ -21,3 +26,20 @@ jobs:
           cd packages/open-scd
           npm clean-install
           npm run-script test
+=======
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Run tests
+        run: npm run-script test
+>>>>>>> open-scd-core/main
