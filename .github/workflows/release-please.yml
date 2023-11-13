@@ -35,24 +35,10 @@ jobs:
         if: ${{ steps.release.outputs.releases_created }}
         run: npm ci
 
-      - name: Install core dependencies
+      - name: Build OpenSCD
         if: ${{ steps.release.outputs.releases_created }}
-        run: npm i
-        working-directory: lib/core
-
-      - name: Build core
-        if: ${{ steps.release.outputs.releases_created }}
-        working-directory: lib/core
+        working-directory: packages/open-scd
         run: npm run build
-
-      - name: Install component dependencies
-        if: ${{ steps.release.outputs.releases_created }}
-        run: npm i
-        working-directory: components/oscd-textfield
-
-      - name: Build
-        if: ${{ steps.release.outputs.releases_created }}
-        run: npm run build:all
 
       - name: Publish to NPM
         if: ${{ steps.release.outputs.releases_created }}
