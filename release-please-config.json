@@ -75,6 +75,6 @@
     }
   },
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
-  "bootstrap-sha": "",
+  "bootstrap-sha": "369ee5dea36d6c5e9b08745db46561ec1921ff4b",
   "release-type": "node"
 }
