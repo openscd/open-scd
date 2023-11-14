@@ -6,6 +6,27 @@ export const officialPlugins = [
     default: true,
     kind: 'editor',
   },
+{
+    name: 'Communication Explorer',
+    src: 'https://sprinteins.github.io/oscd-plugins/communication-explorer/index.js',
+    icon: 'edit',
+    default: true,
+    kind: 'editor',
+  },
+  {
+    name: 'Type Switcher',
+    src: 'https://sprinteins.github.io/oscd-plugins/type-switcher/index.js',
+    icon: 'edit',
+    default: true,
+    kind: 'editor',
+  },
+  {
+    name: 'Documentation',
+    src: 'https://sprinteins.github.io/oscd-plugins/documentation/index.js',
+    icon: 'edit',
+    default: true,
+    kind: 'editor',
+  },
   {
     name: 'Substation',
     src: '/src/editors/Substation.js',
