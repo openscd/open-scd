@@ -47,8 +47,8 @@ describe('Setting', () => {
     await element.requestUpdate();
     await element.updateComplete;
 
-    expect(element.history.length).to.be.equal(1);
-    expect(element.history[0].title).to.be.equal(
+    expect(element.log.length).to.be.equal(1);
+    expect(element.log[0].title).to.be.equal(
       "Invalid NSDoc (invalid.nsdoc); no 'id' attribute found in file"
     );
   });
@@ -66,8 +66,8 @@ describe('Setting', () => {
     await element.requestUpdate();
     await element.updateComplete;
 
-    expect(element.history.length).to.be.equal(1);
-    expect(element.history[0].title).to.be.equal(
+    expect(element.log.length).to.be.equal(1);
+    expect(element.log[0].title).to.be.equal(
       'The version of IEC 61850-7-3 NSD (2007B3) does not correlate ' +
         'with the version of the corresponding NSDoc (wrong-version.nsdoc, 2007B4)'
     );

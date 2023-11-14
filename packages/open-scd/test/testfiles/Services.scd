@@ -23,6 +23,7 @@
 			<DynDataSet max="10" maxAttributes="300"/>
 			<LogSettings datSet="Dyn" logEna="Dyn" trgOps="Dyn" intgPd="Dyn"/>
 			<ConfLogControl max="47"/>
+			<ConfDataSet max="5" maxAttributes="8" modify="false" />
 			<SettingGroups>
 				<SGEdit resvTms="true"/>
 				<ConfSG resvTms="true"/>
@@ -49,7 +50,136 @@
 					<LN prefix="" lnClass="PTRC" inst="1" lnType="Summy.PTRC"/>
 				</LDevice>
 				<LDevice inst="Overcurrent">
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0">
+						<DataSet name="someDS">
+							<FCDA ldInst="CircuitBreaker" prefix="CB" lnClass="XCBR" lnInst="1" doName="Pos" daName="stVal" fc="ST"/>
+							<FCDA ldInst="Meas" prefix="Meas" lnClass="MMXU" lnInst="1" doName="A.phsA" daName="cVal.mag.f" fc="ST"/>
+						</DataSet>
+					</LN0>
+					<LN prefix="" lnClass="PTRC" inst="1" lnType="Summy.PTRC"/>
+				</LDevice>
+			</Server>
+		</AccessPoint>
+		<AccessPoint name="AP2">
+			<ServerAt apName="AP1"/>
+			<Services>
+				<GSESettings cbName="Conf" datSet="Dyn" appID="Dyn" dataLabel="Dyn" kdaParticipant="true">
+					<McSecurity signature="true" encryption="true"/>
+				</GSESettings>
+				<GOOSE max="51" fixedOffs="true" goose="true" rGOOSE="true"/>
+				<ClientServices maxGOOSE="54" goose="true" rGOOSE="true" gsse="true"/>
+				<SupSubscription maxGo="34" maxSv="0"/>
+				<GSSE max="1"/>
+			</Services>
+		</AccessPoint>
+		<AccessPoint name="AP3">
+			<ServerAt apName="AP1"/>
+			<Services>
+				<SMVSettings cbName="Conf" datSet="Dyn" svID="Dyn" optFields="Dyn" smpRate="Dyn" nofASDU="Conf" synchSrcId="true" kdaParticipant="true" samplesPerSec="true">
+					<SmpRate>80</SmpRate>
+					<SamplesPerSec>4000</SamplesPerSec>
+					<SecPerSamples>80</SecPerSamples>
+					<McSecurity signature="true" encryption="true"/>
+				</SMVSettings>
+				<SMVsc max="51" delivery="both" deliveryConf="false" sv="true" rSV="true"/>
+				<ClientServices maxSMV="31" sv="true" rSV="true"/>
+				<SupSubscription maxGo="0" maxSv="31"/>
+			</Services>
+		</AccessPoint>
+		<AccessPoint name="AP4">
+			<ServerAt apName="AP1"/>
+			<Services>
+				<DynAssociation max="5"/>
+				<GetDirectory/>
+				<GetDataObjectDefinition/>
+				<DataObjectDirectory/>
+				<GetDataSetValue/>
+				<SetDataSetValue/>
+				<DataSetDirectory/>
+				<ReadWrite/>
+				<ConfLdName/>
+				<ClientServices supportsLdName="true" maxAttributes="43"/>
+				<TimerActivatedControl/>
+				<GetCBValues/>
+				<GSEDir/>
+				<ValueHandling setToRO="true"/>
+				<ConfSigRef max="48"/>
+			</Services>
+		</AccessPoint>
+		<AccessPoint name="AP5">
+			<ServerAt apName="AP1"/>
+			<Services>
+				<FileHandling mms="true" ftp="true" ftps="true"/>
+				<TimeSyncProt iec61850_9_3="true" sntp="true" c37_238="true" other="true"/>
+				<ClientServices>
+					<TimeSyncProt iec61850_9_3="true" sntp="true" c37_238="true" other="true"/>
+					<McSecurity signature="true" encryption="true"/>
+				</ClientServices>
+				<RedProt prp="true" hsr="true" rstp="true"/>
+				<CommProt ipv6="true"/>
+			</Services>
+		</AccessPoint>
+		<AccessPoint name="AP6">
+			<ServerAt apName="AP1"/>
+			<Services>
+				<LogSettings cbName="Conf" datSet="Dyn" logEna="Dyn" trgOps="Dyn" intgPd="Dyn"/>
+				<ConfLogControl max="47"/>
+				<SettingGroups>
+					<SGEdit resvTms="true"/>
+					<ConfSG resvTms="true"/>
+				</SettingGroups>
+				<FileHandling mms="true" ftp="true" ftps="true"/>
+				<TimeSyncProt iec61850_9_3="true" sntp="true" c37_238="true" other="true"/>
+				<ClientServices readLog="true">
+					<TimeSyncProt iec61850_9_3="true" sntp="true" c37_238="true" other="true"/>
+					<McSecurity signature="true" encryption="true"/>
+				</ClientServices>
+				<RedProt prp="true" hsr="true" rstp="true"/>
+				<CommProt ipv6="true"/>
+			</Services>
+		</AccessPoint>
+	</IED>
+	<IED name="WithServices2" manufacturer="Dummy">
+		<Services>
+			<ReportSettings cbName="Conf" datSet="Dyn" rptID="Dyn" optFields="Dyn" bufTime="Dyn" intgPd="Dyn" resvTms="true" owner="true"/>
+			<ConfReportControl max="60" bufMode="both" maxBuf="25" bufConf="true"/>
+			<ClientServices maxReports="61" bufReport="true" unbufReport="true" readLog="true" maxGOOSE="54" goose="true" rGOOSE="true" gsse="true" maxSMV="31" sv="true" rSV="true" />
+			<DynDataSet max="10" maxAttributes="300"/>
+			<LogSettings datSet="Dyn" logEna="Dyn" trgOps="Dyn" intgPd="Dyn"/>
+			<ConfLogControl max="47"/>
+			<ConfDataSet maxAttributes="8" modify="true" />
+			<SettingGroups>
+				<SGEdit resvTms="true"/>
+				<ConfSG resvTms="true"/>
+			</SettingGroups>
+			<GSESettings cbName="Conf" datSet="Dyn" appID="Dyn" dataLabel="Dyn" kdaParticipant="true">
+				<McSecurity signature="true" encryption="true"/>
+			</GSESettings>
+			<GOOSE max="51" fixedOffs="true" goose="true" rGOOSE="true"/>
+			<SupSubscription maxGo="34" maxSv="0"/>
+			<GSSE max="1"/>
+			<SMVSettings cbName="Conf" datSet="Dyn" svID="Dyn" optFields="Dyn" smpRate="Dyn" nofASDU="Conf" synchSrcId="true" kdaParticipant="true" samplesPerSec="true">
+				<SmpRate>80</SmpRate>
+				<SamplesPerSec>4000</SamplesPerSec>
+				<SecPerSamples>80</SecPerSamples>
+				<McSecurity signature="true" encryption="true"/>
+			</SMVSettings>
+			<SMVsc max="51" delivery="both" deliveryConf="false" sv="true" rSV="true"/>
+		</Services>
+		<AccessPoint name="AP1">
+			<Server>
+				<Authentication/>
+				<LDevice inst="Overvoltage">
 					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
+					<LN prefix="" lnClass="PTRC" inst="1" lnType="Summy.PTRC"/>
+				</LDevice>
+				<LDevice inst="Overcurrent">
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0">
+						<DataSet name="someDS">
+							<FCDA ldInst="CircuitBreaker" prefix="CB" lnClass="XCBR" lnInst="1" doName="Pos" daName="stVal" fc="ST"/>
+							<FCDA ldInst="Meas" prefix="Meas" lnClass="MMXU" lnInst="1" doName="A.phsA" daName="cVal.mag.f" fc="ST"/>
+						</DataSet>
+					</LN0>
 					<LN prefix="" lnClass="PTRC" inst="1" lnType="Summy.PTRC"/>
 				</LDevice>
 			</Server>

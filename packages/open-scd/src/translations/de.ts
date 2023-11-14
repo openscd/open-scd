@@ -170,6 +170,7 @@ export const de: Translations = {
   },
   history: {
     name: 'SCL History',
+    placeholder: 'Keine History',
     noEntries: 'Keine Einträge in der SCL History',
   },
   diag: {

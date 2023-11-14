@@ -46,11 +46,6 @@ snapshots["Sampled Values Plugin in Publisher view initially the plugin looks li
     on=""
   >
   </mwc-icon-button-toggle>
-  <mwc-icon-button-toggle
-    id="actionfilter"
-    on=""
-  >
-  </mwc-icon-button-toggle>
   <mwc-list
     id="content"
     wrapfocus=""
@@ -64,6 +59,36 @@ snapshots["Sampled Values Plugin in Publisher view initially the plugin looks li
     >
       <span>
         [log.placeholder]
+      </span>
+      <mwc-icon slot="graphic">
+        info
+      </mwc-icon>
+    </mwc-list-item>
+  </mwc-list>
+  <mwc-button
+    dialogaction="close"
+    slot="primaryAction"
+  >
+    [close]
+  </mwc-button>
+</mwc-dialog>
+<mwc-dialog
+  heading="[history.name]"
+  id="history"
+>
+  <mwc-list
+    id="content"
+    wrapfocus=""
+  >
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="icon"
+      mwc-list-item=""
+      tabindex="0"
+    >
+      <span>
+        [history.placeholder]
       </span>
       <mwc-icon slot="graphic">
         info
@@ -853,11 +878,6 @@ snapshots["Sampled Values Plugin in Subscriber view initially the plugin looks l
     on=""
   >
   </mwc-icon-button-toggle>
-  <mwc-icon-button-toggle
-    id="actionfilter"
-    on=""
-  >
-  </mwc-icon-button-toggle>
   <mwc-list
     id="content"
     wrapfocus=""
@@ -871,6 +891,36 @@ snapshots["Sampled Values Plugin in Subscriber view initially the plugin looks l
     >
       <span>
         [log.placeholder]
+      </span>
+      <mwc-icon slot="graphic">
+        info
+      </mwc-icon>
+    </mwc-list-item>
+  </mwc-list>
+  <mwc-button
+    dialogaction="close"
+    slot="primaryAction"
+  >
+    [close]
+  </mwc-button>
+</mwc-dialog>
+<mwc-dialog
+  heading="[history.name]"
+  id="history"
+>
+  <mwc-list
+    id="content"
+    wrapfocus=""
+  >
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="icon"
+      mwc-list-item=""
+      tabindex="0"
+    >
+      <span>
+        [history.placeholder]
       </span>
       <mwc-icon slot="graphic">
         info

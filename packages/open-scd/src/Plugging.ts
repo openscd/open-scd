@@ -25,7 +25,7 @@ import { ifImplemented, Mixin } from './foundation.js';
 import { EditingElement } from './Editing.js';
 import { officialPlugins } from '../public/js/plugins.js';
 import { Nsdoc } from './foundation/nsdoc.js';
-import { LoggingElement } from './Logging.js';
+import { HistoringElement } from './Historing.js';
 const pluginTags = new Map<string, string>();
 /**
  * Hashes `uri` using cyrb64 analogous to
@@ -177,7 +177,7 @@ const loadedPlugins = new Set<string>();
 export type PluggingElement = Mixin<typeof Plugging>;
 
 export function Plugging<
-  TBase extends new (...args: any[]) => EditingElement & LoggingElement
+  TBase extends new (...args: any[]) => EditingElement & HistoringElement
 >(Base: TBase) {
   class PluggingElement extends Base {
     // DIRTY HACK: will refactored with open-scd-core

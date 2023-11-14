@@ -46,11 +46,6 @@ snapshots["GOOSE subscriber plugin in Publisher view per default the plugin itse
     on=""
   >
   </mwc-icon-button-toggle>
-  <mwc-icon-button-toggle
-    id="actionfilter"
-    on=""
-  >
-  </mwc-icon-button-toggle>
   <mwc-list
     id="content"
     wrapfocus=""
@@ -64,6 +59,36 @@ snapshots["GOOSE subscriber plugin in Publisher view per default the plugin itse
     >
       <span>
         [log.placeholder]
+      </span>
+      <mwc-icon slot="graphic">
+        info
+      </mwc-icon>
+    </mwc-list-item>
+  </mwc-list>
+  <mwc-button
+    dialogaction="close"
+    slot="primaryAction"
+  >
+    [close]
+  </mwc-button>
+</mwc-dialog>
+<mwc-dialog
+  heading="[history.name]"
+  id="history"
+>
+  <mwc-list
+    id="content"
+    wrapfocus=""
+  >
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="icon"
+      mwc-list-item=""
+      tabindex="0"
+    >
+      <span>
+        [history.placeholder]
       </span>
       <mwc-icon slot="graphic">
         info
@@ -867,11 +892,6 @@ snapshots["GOOSE subscriber plugin in Subscriber view per default the plugin its
     on=""
   >
   </mwc-icon-button-toggle>
-  <mwc-icon-button-toggle
-    id="actionfilter"
-    on=""
-  >
-  </mwc-icon-button-toggle>
   <mwc-list
     id="content"
     wrapfocus=""
@@ -885,6 +905,36 @@ snapshots["GOOSE subscriber plugin in Subscriber view per default the plugin its
     >
       <span>
         [log.placeholder]
+      </span>
+      <mwc-icon slot="graphic">
+        info
+      </mwc-icon>
+    </mwc-list-item>
+  </mwc-list>
+  <mwc-button
+    dialogaction="close"
+    slot="primaryAction"
+  >
+    [close]
+  </mwc-button>
+</mwc-dialog>
+<mwc-dialog
+  heading="[history.name]"
+  id="history"
+>
+  <mwc-list
+    id="content"
+    wrapfocus=""
+  >
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="icon"
+      mwc-list-item=""
+      tabindex="0"
+    >
+      <span>
+        [history.placeholder]
       </span>
       <mwc-icon slot="graphic">
         info

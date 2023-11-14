@@ -404,6 +404,7 @@ export function newLogEvent(
 
 export interface IssueDetail extends LogDetailBase {
   validatorId: string;
+  element?: Element;
 }
 export type IssueEvent = CustomEvent<IssueDetail>;
 export function newIssueEvent(

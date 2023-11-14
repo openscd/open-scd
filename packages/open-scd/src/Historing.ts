@@ -21,8 +21,11 @@ import { Snackbar } from '@material/mwc-snackbar';
 
 import './filtered-list.js';
 import {
+  CommitDetail,
   CommitEntry,
   ifImplemented,
+  InfoDetail,
+  InfoEntry,
   invert,
   IssueDetail,
   IssueEvent,
@@ -40,7 +43,6 @@ const icons = {
   info: 'info',
   warning: 'warning',
   error: 'report',
-  action: 'history',
 };
 
 function getPluginName(src: string): string {
@@ -66,13 +68,18 @@ function getPluginName(src: string): string {
  * Renders the `history` to `logUI` and the latest `'error'` [[`LogEntry`]] to
  * `messageUI`.
  */
-export type LoggingElement = Mixin<typeof Logging>;
+export type HistoringElement = Mixin<typeof Historing>;
 
-export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
-  class LoggingElement extends Base {
+export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
+  class HistoringElement extends Base {
     /** All [[`LogEntry`]]s received so far through [[`LogEvent`]]s. */
     @property({ type: Array })
-    history: LogEntry[] = [];
+    log: InfoEntry[] = [];
+
+    /** All [[`CommitEntry`]]s received so far through [[`LogEvent`]]s */
+    @property({ type: Array })
+    history: CommitEntry[] = [];
+
     /** Index of the last [[`EditorAction`]] applied. */
     @property({ type: Number })
     editCount = -1;
@@ -82,6 +89,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
     latestIssue!: IssueDetail;
 
     @query('#log') logUI!: Dialog;
+    @query('#history') historyUI!: Dialog;
     @query('#diagnostic') diagnosticUI!: Dialog;
     @query('#error') errorUI!: Snackbar;
     @query('#warning') warningUI!: Snackbar;
@@ -140,16 +148,10 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       return true;
     }
 
-    private onLog(le: LogEvent): void {
-      if (le.detail.kind === 'reset') {
-        this.history = [];
-        this.editCount = -1;
-        return;
-      }
-
-      const entry: LogEntry = {
+    private onHistory(detail: CommitDetail) {
+      const entry: CommitEntry = {
         time: new Date(),
-        ...le.detail,
+        ...detail,
       };
 
       if (entry.kind === 'action') {
@@ -160,22 +162,51 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       }
 
       this.history.push(entry);
+      this.requestUpdate('history', []);
+    }
+
+    private onReset() {
+      this.log = [];
+      this.history = [];
+      this.editCount = -1;
+    }
+
+    private onInfo(detail: InfoDetail) {
+      const entry: InfoEntry = {
+        time: new Date(),
+        ...detail,
+      };
+
+      this.log.push(entry);
       if (!this.logUI.open) {
         const ui = {
           error: this.errorUI,
           warning: this.warningUI,
           info: this.infoUI,
-          action: this.infoUI,
-        }[le.detail.kind];
+        }[detail.kind];
 
         ui.close();
         ui.show();
       }
-      if (le.detail.kind == 'error') {
+      if (detail.kind == 'error') {
         this.errorUI.close(); // hack to reset timeout
         this.errorUI.show();
       }
-      this.requestUpdate('history', []);
+      this.requestUpdate('log', []);
+    }
+
+    private onLog(le: LogEvent): void {
+      switch (le.detail.kind) {
+        case 'reset':
+          this.onReset();
+          break;
+        case 'action':
+          this.onHistory(le.detail);
+          break;
+        default:
+          this.onInfo(le.detail);
+          break;
+      }
     }
 
     async performUpdate() {
@@ -197,7 +228,36 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     renderLogEntry(
-      entry: LogEntry,
+      entry: InfoEntry,
+      index: number,
+      log: LogEntry[]
+    ): TemplateResult {
+      return html` <abbr title="${entry.title}">
+        <mwc-list-item
+          class="${entry.kind}"
+          graphic="icon"
+          ?twoline=${!!entry.message}
+          ?activated=${this.editCount == log.length - index - 1}
+        >
+          <span>
+            <!-- FIXME: replace tt with mwc-chip asap -->
+            <tt>${entry.time?.toLocaleString()}</tt>
+            ${entry.title}</span
+          >
+          <span slot="secondary">${entry.message}</span>
+          <mwc-icon
+            slot="graphic"
+            style="--mdc-theme-text-icon-on-background:var(${ifDefined(
+              iconColors[entry.kind]
+            )})"
+            >${icons[entry.kind]}</mwc-icon
+          >
+        </mwc-list-item></abbr
+      >`;
+    }
+
+    renderHistoryEntry(
+      entry: CommitEntry,
       index: number,
       history: LogEntry[]
     ): TemplateResult {
@@ -219,18 +279,31 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
             style="--mdc-theme-text-icon-on-background:var(${ifDefined(
               iconColors[entry.kind]
             )})"
-            >${icons[entry.kind]}</mwc-icon
+            >history</mwc-icon
           >
         </mwc-list-item></abbr
       >`;
     }
 
-    private renderHistory(): TemplateResult[] | TemplateResult {
-      if (this.history.length > 0)
-        return this.history.slice().reverse().map(this.renderLogEntry, this);
+    private renderLog(): TemplateResult[] | TemplateResult {
+      if (this.log.length > 0)
+        return this.log.slice().reverse().map(this.renderLogEntry, this);
       else
         return html`<mwc-list-item disabled graphic="icon">
           <span>${translate('log.placeholder')}</span>
+          <mwc-icon slot="graphic">info</mwc-icon>
+        </mwc-list-item>`;
+    }
+
+    private renderHistory(): TemplateResult[] | TemplateResult {
+      if (this.history.length > 0)
+        return this.history
+          .slice()
+          .reverse()
+          .map(this.renderHistoryEntry, this);
+      else
+        return html`<mwc-list-item disabled graphic="icon">
+          <span>${translate('history.placeholder')}</span>
           <mwc-icon slot="graphic">info</mwc-icon>
         </mwc-list-item>`;
     }
@@ -281,6 +354,42 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       );
     }
 
+    private renderLogDialog(): TemplateResult {
+      return html` <mwc-dialog id="log" heading="${translate('log.name')}">
+        ${this.renderFilterButtons()}
+        <mwc-list id="content" wrapFocus>${this.renderLog()}</mwc-list>
+        <mwc-button slot="primaryAction" dialogaction="close"
+          >${translate('close')}</mwc-button
+        >
+      </mwc-dialog>`;
+    }
+
+    private renderHistoryDialog(): TemplateResult {
+      return html` <mwc-dialog
+        id="history"
+        heading="${translate('history.name')}"
+      >
+        <mwc-list id="content" wrapFocus>${this.renderHistory()}</mwc-list>
+        <mwc-button
+          icon="undo"
+          label="${translate('undo')}"
+          ?disabled=${!this.canUndo}
+          @click=${this.undo}
+          slot="secondaryAction"
+        ></mwc-button>
+        <mwc-button
+          icon="redo"
+          label="${translate('redo')}"
+          ?disabled=${!this.canRedo}
+          @click=${this.redo}
+          slot="secondaryAction"
+        ></mwc-button>
+        <mwc-button slot="primaryAction" dialogaction="close"
+          >${translate('close')}</mwc-button
+        >
+      </mwc-dialog>`;
+    }
+
     render(): TemplateResult {
       return html`${ifImplemented(super.render())}
         <style>
@@ -298,13 +407,9 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
           #log > mwc-icon-button-toggle:nth-child(4) {
             right: 158px;
           }
-          #log > mwc-icon-button-toggle:nth-child(5) {
-            right: 206px;
-          }
           #content mwc-list-item.info,
           #content mwc-list-item.warning,
-          #content mwc-list-item.error,
-          #content mwc-list-item.action {
+          #content mwc-list-item.error {
             display: none;
           }
           #infofilter[on] ~ #content mwc-list-item.info {
@@ -314,9 +419,6 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
             display: flex;
           }
           #errorfilter[on] ~ #content mwc-list-item.error {
-            display: flex;
-          }
-          #actionfilter[on] ~ #content mwc-list-item.action {
             display: flex;
           }
 
@@ -336,7 +438,8 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
             color: var(--blue);
           }
 
-          #log {
+          #log,
+          #history {
             --mdc-dialog-min-width: 92vw;
           }
 
@@ -346,28 +449,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
             right: 14px;
           }
         </style>
-        <mwc-dialog id="log" heading="${translate('log.name')}">
-          ${this.renderFilterButtons()}
-          <mwc-list id="content" wrapFocus>${this.renderHistory()}</mwc-list>
-          <mwc-button
-            icon="undo"
-            label="${translate('undo')}"
-            ?disabled=${!this.canUndo}
-            @click=${this.undo}
-            slot="secondaryAction"
-          ></mwc-button>
-          <mwc-button
-            icon="redo"
-            label="${translate('redo')}"
-            ?disabled=${!this.canRedo}
-            @click=${this.redo}
-            slot="secondaryAction"
-          ></mwc-button>
-          <mwc-button slot="primaryAction" dialogaction="close"
-            >${translate('close')}</mwc-button
-          >
-        </mwc-dialog>
-
+        ${this.renderLogDialog()} ${this.renderHistoryDialog()}
         <mwc-dialog id="diagnostic" heading="${translate('diag.name')}">
           <filtered-list id="content" wrapFocus
             >${this.renderIssues()}</filtered-list
@@ -380,10 +462,10 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         <mwc-snackbar
           id="info"
           timeoutMs="4000"
-          labelText="${this.history
+          labelText="${this.log
             .slice()
             .reverse()
-            .find(le => le.kind === 'info' || le.kind === 'action')?.title ??
+            .find(le => le.kind === 'info')?.title ??
           get('log.snackbar.placeholder')}"
         >
           <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
@@ -391,7 +473,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         <mwc-snackbar
           id="warning"
           timeoutMs="6000"
-          labelText="${this.history
+          labelText="${this.log
             .slice()
             .reverse()
             .find(le => le.kind === 'warning')?.title ??
@@ -408,7 +490,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         <mwc-snackbar
           id="error"
           timeoutMs="10000"
-          labelText="${this.history
+          labelText="${this.log
             .slice()
             .reverse()
             .find(le => le.kind === 'error')?.title ??
@@ -439,5 +521,5 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
     }
   }
 
-  return LoggingElement;
+  return HistoringElement;
 }

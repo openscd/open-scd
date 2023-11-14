@@ -31,12 +31,19 @@ interface SGEdit {
 interface ConfSG {
   resvTms: string | null;
 }
+
+interface DataSet {
+  max: string | null;
+  maxAttributes: string | null;
+  modify: string | null;
+}
 interface ContentOptions {
   logSettings: LogSettings;
   confLogControl: ConfLogControl;
   clientServices: ClientServices;
   sGEdit: SGEdit;
   confSG: ConfSG;
+  dataSet: DataSet;
 }
 
 export function createLogSettingsGroupServicesWizardPage(
@@ -49,6 +56,7 @@ export function createLogSettingsGroupServicesWizardPage(
     ? {
         title: get('wizard.title.edit', { tagName: 'Services' }),
         content: [...content],
+        element: services,
       }
     : null;
 }
@@ -72,9 +80,21 @@ function createLogSettingsGroupServicesWizard(
     confLogControl: {
       max: parent.querySelector('ConfLogControl')?.getAttribute('max') ?? null,
     },
+    dataSet: {
+      max:
+        parent.querySelector('ConfDataSet')?.getAttribute('max') ??
+        Array.from(
+          parent.parentElement?.querySelectorAll('DataSet') || []
+        ).length.toString(),
+      maxAttributes:
+        parent.querySelector('ConfDataSet')?.getAttribute('maxAttributes') ??
+        null,
+      modify:
+        parent.querySelector('ConfDataSet')?.getAttribute('modify') ?? 'true',
+    },
     clientServices: {
       readLog:
-        parent.querySelector('CientServices')?.getAttribute('readLog') ?? null,
+        parent.querySelector('ClientServices')?.getAttribute('readLog') ?? null,
     },
     sGEdit: {
       resvTms:
@@ -166,6 +186,29 @@ function createLogSettingsGroupServicesWizard(
             helper:
               'Whether IED supports services to handle logs as a client (see IEC 61850-7-2 for further information)',
             maybeValue: content.clientServices.readLog,
+          },
+        ]),
+        createFormDivider('DataSet Configuration'),
+        ...createFormElementsFromInputs([
+          {
+            kind: 'TextField',
+            label: 'Max',
+            nullable: false,
+            helper: 'The maximum allow data sets in this IED',
+            maybeValue: content.dataSet.max,
+          },
+          {
+            kind: 'TextField',
+            label: 'Max attributes',
+            nullable: true,
+            helper: 'The maximum number of FCDA elements per DataSet',
+            maybeValue: content.dataSet.maxAttributes,
+          },
+          {
+            kind: 'Checkbox',
+            label: 'Modify',
+            helper: 'Whether DataSet can be modified by SCT',
+            maybeValue: content.dataSet.modify,
           },
         ]),
         createFormDivider('Setting Group'),

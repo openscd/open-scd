@@ -58,7 +58,7 @@ describe('ValidateSchema plugin', () => {
     });
 
     it('indicates successful schema validation in the log', async () => {
-      const lastEntry = <LogEntry>parent.history.pop();
+      const lastEntry = <LogEntry>parent.log.pop();
       expect(lastEntry.kind).to.equal('info');
       expect(lastEntry.title).to.contain('[validator.schema.valid]');
     });
@@ -92,7 +92,7 @@ describe('ValidateSchema plugin', () => {
         .be.undefined);
 
     it('generates error messages in the log', async () => {
-      const lastLogEntry = <LogEntry>parent.history.pop();
+      const lastLogEntry = <LogEntry>parent.log.pop();
       expect(lastLogEntry.kind).to.equal('warning');
       expect(lastLogEntry.title).to.contain('[validator.schema.invalid]');
     });

@@ -79,46 +79,54 @@ export function isValidReference(
   );
 }
 
+export function mergeSubstation(
+  element: Element,
+  currentDoc: Document,
+  docWithSubstation: Document
+): void {
+  element.dispatchEvent(
+    newWizardEvent(
+      mergeWizard(
+        // FIXME: doesn't work with multiple Substations!
+        currentDoc.documentElement,
+        docWithSubstation.documentElement,
+        {
+          title: get('updatesubstation.title'),
+          selected: (diff: Diff<Element | string>): boolean =>
+            diff.theirs instanceof Element
+              ? diff.theirs.tagName === 'LNode'
+                ? find(currentDoc, 'LNode', identity(diff.theirs)) === null &&
+                  isValidReference(docWithSubstation, identity(diff.theirs))
+                : diff.theirs.tagName === 'Substation' ||
+                  !tags['SCL'].children.includes(<SCLTag>diff.theirs.tagName)
+              : diff.theirs !== null,
+          disabled: (diff: Diff<Element | string>): boolean =>
+            diff.theirs instanceof Element &&
+            diff.theirs.tagName === 'LNode' &&
+            (find(currentDoc, 'LNode', identity(diff.theirs)) !== null ||
+              !isValidReference(docWithSubstation, identity(diff.theirs))),
+          auto: (): boolean => true,
+        }
+      )
+    )
+  );
+}
+
 export default class UpdateSubstationPlugin extends LitElement {
   doc!: XMLDocument;
 
   @query('#update-substation-plugin-input') pluginFileUI!: HTMLInputElement;
 
-  updateSubstation(event: Event): void {
+  async updateSubstation(event: Event): Promise<void> {
     const file =
       (<HTMLInputElement | null>event.target)?.files?.item(0) ?? false;
-    if (file)
-      file.text().then(text => {
-        const doc = new DOMParser().parseFromString(text, 'application/xml');
-        this.dispatchEvent(
-          newWizardEvent(
-            mergeWizard(
-              // FIXME: doesn't work with multiple Substations!
-              this.doc.documentElement,
-              doc.documentElement,
-              {
-                title: get('updatesubstation.title'),
-                selected: (diff: Diff<Element | string>): boolean =>
-                  diff.theirs instanceof Element
-                    ? diff.theirs.tagName === 'LNode'
-                      ? find(this.doc, 'LNode', identity(diff.theirs)) ===
-                          null && isValidReference(doc, identity(diff.theirs))
-                      : diff.theirs.tagName === 'Substation' ||
-                        !tags['SCL'].children.includes(
-                          <SCLTag>diff.theirs.tagName
-                        )
-                    : diff.theirs !== null,
-                disabled: (diff: Diff<Element | string>): boolean =>
-                  diff.theirs instanceof Element &&
-                  diff.theirs.tagName === 'LNode' &&
-                  (find(this.doc, 'LNode', identity(diff.theirs)) !== null ||
-                    !isValidReference(doc, identity(diff.theirs))),
-                auto: (): boolean => true,
-              }
-            )
-          )
-        );
-      });
+    if (!file) {
+      return;
+    }
+    const text = await file.text();
+    const doc = new DOMParser().parseFromString(text, 'application/xml');
+
+    mergeSubstation(this, this.doc, doc);
     this.pluginFileUI.onchange = null;
   }
 
@@ -128,10 +136,9 @@ export default class UpdateSubstationPlugin extends LitElement {
 
   render(): TemplateResult {
     return html`<input @click=${(event: MouseEvent) =>
-      ((<HTMLInputElement>event.target).value = '')} @change=${(e: Event) =>
-      this.updateSubstation(
-        e
-      )} id="update-substation-plugin-input" accept=".sed,.scd,.ssd,.iid,.cid" type="file"></input>`;
+      ((<HTMLInputElement>event.target).value = '')}
+                       @change=${this.updateSubstation}
+                       id="update-substation-plugin-input" accept=".sed,.scd,.ssd,.iid,.cid" type="file"></input>`;
   }
 
   static styles = css`
