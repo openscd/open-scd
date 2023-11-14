@@ -24,7 +24,7 @@ describe('Wizards for SCL element Services', () => {
     };
     expect(isEmptyObject(sut)).to.be.false;
   });
-  it('Compled filled input object is not empty', () => {
+  it('Complex filled input object is not empty', () => {
     const sut = {
       foo: {
         bar: 'qux',
