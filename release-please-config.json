@@ -64,6 +64,6 @@
     }
   },
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
-  "bootstrap-sha": "369ee5dea36d6c5e9b08745db46561ec1921ff4b",
+  "bootstrap-sha": "{{ TODO_FIX_SHA }}",
   "release-type": "node"
 }
