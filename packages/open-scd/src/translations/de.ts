@@ -521,6 +521,7 @@ export const de: Translations = {
         addAddress: '104-Adresse hinzufügen',
       },
       error: {
+        ioaConflict: 'IOA Adresse Konflikt',
         addAddressError:
           'Invalide Template Struktur, DAI kann nicht hinzugefügt werden (DO: "{{ doType }}", CDC: "{{ cdc }}", Structure: "{{ structure }}")',
       },
