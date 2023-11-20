@@ -99,7 +99,7 @@ function staticTagHtml(
 
 type PluginKind = 'editor' | 'menu' | 'validator';
 const menuPosition = ['top', 'middle', 'bottom'] as const;
-type MenuPosition = typeof menuPosition[number];
+type MenuPosition = (typeof menuPosition)[number];
 
 export type Plugin = {
   name: string;
@@ -239,6 +239,20 @@ export function Plugging<
     @query('#pluginAdd')
     pluginDownloadUI!: Dialog;
 
+    protected get locale(): string {
+      return navigator.language || 'en-US';
+    }
+
+    protected get docs(): Record<string, XMLDocument> {
+      const docs: Record<string, XMLDocument> = {};
+
+      if (this.doc) {
+        docs[this.docName] = this.doc;
+      }
+
+      return docs;
+    }
+
     private setPlugins(indices: Set<number>) {
       const newPlugins = this.plugins.map((plugin, index) => {
         return { ...plugin, installed: indices.has(index) };
@@ -293,6 +307,8 @@ export function Plugging<
             .docId=${this.docId}
             .pluginId=${plugin.src}
             .nsdoc=${this.nsdoc}
+            .docs=${this.docs}
+            .locale=${this.locale}
             class="${classMap({
               plugin: true,
               menu: plugin.kind === 'menu',
