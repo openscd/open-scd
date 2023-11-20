@@ -179,6 +179,7 @@ export type WizardInputElement =
       setCustomValidity: (message: string) => void;
       validityTransform: (newValue: string, nativeValidity: ValidityState) => ValidityState;
       validationMessage: string;
+      validity: ValidityState;
       reportValidity: () => boolean;
       label: string;
       requestUpdate(name?: PropertyKey, oldValue?: unknown): Promise<unknown>;

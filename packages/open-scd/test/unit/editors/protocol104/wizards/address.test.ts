@@ -47,6 +47,21 @@ describe('Wizards for 104 Address Element', () => {
     inputs = Array.from(element.wizardUI.inputs);
   }
 
+  describe('when adding a 104 Address', () => {
+    beforeEach(async () => {
+      await prepareWizard('IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] DOI[name="Mod"] DAI[name="ctlVal"] Address');
+    });
+
+    it('shows a validation error message if the combination of casdu and ioa is already in use', async () => {
+      await setWizardTextFieldValue(<WizardTextField>inputs[2], '208'); // Casdu Field
+      await setWizardTextFieldValue(<WizardTextField>inputs[3], '2'); // IOA Field
+      await element.updateComplete;
+      expect(inputs[3].checkValidity()).to.be.false;
+      expect(inputs[3].validity.customError).to.be.true;
+      expect(inputs[3].validationMessage).to.equal('IOA Address Conflict');
+    });
+  });
+
   describe('edit basic 104 Address', () => {
     beforeEach(async () => {
       await prepareWizard(
@@ -80,6 +95,8 @@ describe('Wizards for 104 Address Element', () => {
     it('looks like the latest snapshot', async () => {
       await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
     });
+    
+    
   });
 
   describe('edit 104 Address with expected value', () => {
