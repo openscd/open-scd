@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
 import './mock-logger.js';
-import { MockAction } from './mock-actions.js';
+import { MockAction } from 'open-scd/test/unit/mock-actions.js';
 import { MockLogger } from './mock-logger.js';
 
 import {
@@ -293,16 +293,17 @@ describe('HistoringElement', () => {
           newIssueEvent({
             validatorId: '/src/validators/CompasValidateSchema.js',
             title: 'CoMPAS Run',
-            element: substation
+            element: substation,
           })
         );
       });
 
       it('in parallel saves the issues of the CoMPAS validator', () => {
-        expect(element.diagnoses.get('/src/validators/CompasValidateSchema.js')).to
-          .exist;
+        expect(element.diagnoses.get('/src/validators/CompasValidateSchema.js'))
+          .to.exist;
         expect(
-          element.diagnoses.get('/src/validators/CompasValidateSchema.js')!.length
+          element.diagnoses.get('/src/validators/CompasValidateSchema.js')!
+            .length
         ).to.equal(1);
         const issue = element.diagnoses.get(
           '/src/validators/CompasValidateSchema.js'

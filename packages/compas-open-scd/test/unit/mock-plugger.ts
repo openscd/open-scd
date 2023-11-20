@@ -1,6 +1,6 @@
 import { LitElement, customElement } from 'lit-element';
 import { Plugging } from '../../src/Plugging.js';
-import { Editing } from '../../src/Editing.js';
+import { Editing } from 'open-scd/src/Editing.js';
 import { Historing } from '../../src/Historing.js';
 
 @customElement('mock-plugger')

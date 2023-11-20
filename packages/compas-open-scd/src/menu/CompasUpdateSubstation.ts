@@ -4,7 +4,7 @@ import { get } from 'lit-translate';
 import { newWizardEvent, Wizard } from 'open-scd/src/foundation.js';
 
 import { DocRetrievedEvent } from '../compas/CompasOpen.js';
-import { mergeSubstation } from './UpdateSubstation.js';
+import { mergeSubstation } from 'open-scd/src/menu/UpdateSubstation.js';
 
 import '../compas/CompasOpen.js';
 
