@@ -243,7 +243,7 @@ export function Plugging<
       return navigator.language || 'en-US';
     }
 
-    protected get docs(): Record<string, XMLDocument> {
+    get docs(): Record<string, XMLDocument> {
       const docs: Record<string, XMLDocument> = {};
 
       if (this.doc) {

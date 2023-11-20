@@ -34,10 +34,8 @@ describe('PluggingElement', () => {
   });
 
   it('has docs property', () => {
-    const docs: Record<string, XMLDocument> = {};
-    docs[docName] = doc;
-
-    expect(element).to.have.property('docs', docs);
+    expect(element).to.have.property(`docs`).that.is.a('Object');
+    expect(element.docs[docName]).to.equal(doc);
   });
 
   describe('plugin manager dialog', () => {
