@@ -520,7 +520,7 @@ export const en = {
         addAddress: 'Add 104 Address',
       },
       error: {
-        ioaConflict: 'IOA Address Conflict',
+        ioaConflict: 'IOA conflict found within CASDU number',
         addAddressError:
           'Invalid Template Structure, unable to create DAI Element. (DO: "{{ doType }}", CDC: "{{ cdc }}", DAI: "{{ structure }}")',
       },

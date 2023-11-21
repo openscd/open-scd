@@ -111,7 +111,7 @@ export function editAddressWizard(
       const existingAddress = iedElement.querySelector(`Address[casdu="${casdu}"][ioa="${value}"]`);
       if(existingAddress){
         // @ts-ignore
-        (this as WizardInputElement).validationMessage = "IOA Address Conflict" 
+        (this as WizardInputElement).validationMessage = get('protocol104.wizard.error.ioaConflict');
         return {
           valid: false,
           customError: true,
