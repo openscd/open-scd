@@ -14,6 +14,13 @@ export const officialPlugins = [
     kind: 'editor',
   },
   {
+    name: 'Network Explorer',
+    src: 'https://sprinteins.github.io/oscd-plugins/network-explorer/index.js',
+    icon: 'lan',
+    default: true,
+    kind: 'editor',
+  },
+  {
     name: 'Type Switcher',
     src: 'https://sprinteins.github.io/oscd-plugins/type-switcher/index.js',
     icon: 'edit',
@@ -34,13 +41,13 @@ export const officialPlugins = [
     default: true,
     kind: 'editor',
   },
-  {
-    name: 'Single Line Diagram',
-    src: '/src/editors/SingleLineDiagram.js',
-    icon: 'edit',
-    default: false,
-    kind: 'editor',
-  },
+  // {
+  //   name: 'Single Line Diagram',
+  //   src: '/src/editors/SingleLineDiagram.js',
+  //   icon: 'edit',
+  //   default: false,
+  //   kind: 'editor',
+  // },
   {
     name: 'Subscriber Message Binding (GOOSE)',
     src: '/src/editors/GooseSubscriberMessageBinding.js',
