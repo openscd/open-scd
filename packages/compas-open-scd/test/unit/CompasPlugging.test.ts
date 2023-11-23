@@ -1,12 +1,12 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import './mock-plugger.js';
-import { MockPlugger } from './mock-plugger.js';
+import './mock-compas-plugger.js';
+import { MockCompasPlugger } from './mock-compas-plugger.js';
 
 import { TextField } from '@material/mwc-textfield';
 
 describe('PluggingElement', () => {
-  let element: MockPlugger;
+  let element: MockCompasPlugger;
   let doc: XMLDocument;
 
   afterEach(async () => {
@@ -17,9 +17,12 @@ describe('PluggingElement', () => {
     doc = await fetch('/test/testfiles/valid2007B4.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-    element = <MockPlugger>(
+    element = <MockCompasPlugger>(
       await fixture(
-        html`<mock-plugger .doc=${doc} docName="testDoc"></mock-plugger>`
+        html`<mock-compas-plugger
+          .doc=${doc}
+          docName="testDoc"
+        ></mock-compas-plugger>`
       )
     );
     await element.updateComplete;
