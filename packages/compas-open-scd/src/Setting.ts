@@ -21,7 +21,7 @@ import {
 import { Language, languages, loader } from './translations/loader.js';
 
 import 'open-scd/src/WizardDivider.js';
-import { WizardDialog } from './wizard-dialog.js';
+import { WizardDialog } from 'open-scd/src/wizard-dialog.js';
 
 import {
   iec6185072,
