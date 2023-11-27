@@ -58,7 +58,7 @@ describe('Wizards for 104 Address Element', () => {
       await element.updateComplete;
       expect(inputs[3].checkValidity()).to.be.false;
       expect(inputs[3].validity.customError).to.be.true;
-      expect(inputs[3].validationMessage).to.equal('IOA Address Conflict');
+      expect(inputs[3].validationMessage).to.include('ioaConflict');
     });
   });
 
