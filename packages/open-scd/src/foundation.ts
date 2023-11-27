@@ -176,6 +176,9 @@ export type WizardInputElement =
   | TextField
   | (AceEditor & {
       checkValidity: () => boolean;
+      validityTransform: (newValue: string, nativeValidity: ValidityState) => ValidityState;
+      validationMessage: string;
+      validity: ValidityState;
       label: string;
       requestUpdate(name?: PropertyKey, oldValue?: unknown): Promise<unknown>;
     })
