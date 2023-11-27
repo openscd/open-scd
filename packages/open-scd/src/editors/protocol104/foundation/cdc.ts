@@ -29,6 +29,7 @@ import { get } from 'lit-translate';
  * List of supported Common Data Classes in the 104 protocol.
  */
 export const supportedCdcTypes = [
+  'ACD',
   'ACT',
   'APC',
   'ASG',
@@ -49,7 +50,7 @@ export const supportedCdcTypes = [
   'SPG',
   'SPS',
 ] as const;
-export type SupportedCdcType = typeof supportedCdcTypes[number];
+export type SupportedCdcType = (typeof supportedCdcTypes)[number];
 
 export type CreateFunction = (
   lnElement: Element,
@@ -96,6 +97,33 @@ export const cdcProcessings: Record<
     control: Record<string, TiInformation>;
   }
 > = {
+  ACD: {
+    monitor: {
+      '30': {
+        daPaths: [
+          { path: ['general'] },
+          { path: ['phsA'] },
+          { path: ['phsB'] },
+          { path: ['phsC'] },
+          { path: ['neut'] },
+        ],
+        create: createAddressAction,
+        inverted: true,
+      },
+      '40': {
+        daPaths: [
+          { path: ['general'] },
+          { path: ['phsA'] },
+          { path: ['phsB'] },
+          { path: ['phsC'] },
+          { path: ['neut'] },
+        ],
+        create: createAddressAction,
+        inverted: false,
+      },
+    },
+    control: {},
+  },
   ACT: {
     monitor: {
       '30': {
