@@ -56,11 +56,20 @@ describe('Wizards for 104 DOI Element', () => {
     });
   });
 
-  describe('show 104 DOI Basic Info (Unknown CDC)', () => {
+  describe('show 104 DOI Basic Info for CDC=ACD', () => {
     beforeEach(async () => {
       doiElement = doc.querySelector(
         'IED[name="B1"] LN[lnType="SE_GAPC_SET_V001"] DOI[name="Str"]'
       )!;
+
+      const doElement = doc
+        .querySelector('LNodeType[id="SE_GAPC_SET_V001"] > DO[name="Str"]')
+        ?.getAttribute('type')!;
+
+      expect(doElement).to.be.equal('SE_ACD_V001');
+
+      const doType = doc.querySelector(`DOType[id="${doElement}"]`)!;
+      expect(doType.getAttribute('cdc')).to.be.equal('ACD');
 
       const wizard = showDOIInfoWizard(doiElement);
       element.workflow.push(() => wizard);

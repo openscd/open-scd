@@ -183,7 +183,7 @@ snapshots["Wizards for 104 DOI Element show 104 DOI Basic Info with ctlModel (Kn
 `;
 /* end snapshot Wizards for 104 DOI Element show 104 DOI Basic Info with ctlModel (Known CDC Monitor and Control) looks like the latest snapshot */
 
-snapshots["Wizards for 104 DOI Element show 104 DOI Basic Info (Unknown CDC) looks like the latest snapshot"] = 
+snapshots["Wizards for 104 DOI Element show 104 DOI Basic Info for CDC=ACD looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="next"
   heading="[protocol104.wizard.title.doiInfo]"
@@ -243,7 +243,13 @@ snapshots["Wizards for 104 DOI Element show 104 DOI Basic Info (Unknown CDC) loo
     </wizard-textfield>
     <wizard-textfield
       disabled=""
-      label="Other TIs"
+      label="Available Monitor TIs"
+      readonly=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      label="Found Monitor TIs"
       readonly=""
     >
     </wizard-textfield>
@@ -257,5 +263,5 @@ snapshots["Wizards for 104 DOI Element show 104 DOI Basic Info (Unknown CDC) loo
   </mwc-button>
 </mwc-dialog>
 `;
-/* end snapshot Wizards for 104 DOI Element show 104 DOI Basic Info (Unknown CDC) looks like the latest snapshot */
+/* end snapshot Wizards for 104 DOI Element show 104 DOI Basic Info for CDC=ACD looks like the latest snapshot */
 
