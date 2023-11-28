@@ -1,7 +1,7 @@
 import {
   customElement,
   html,
-  internalProperty,
+  state,
   property,
   query,
   TemplateResult,
@@ -48,7 +48,7 @@ export class WizardTextField extends TextField {
   @property({ type: String })
   unit = '';
   private isNull = false;
-  @internalProperty()
+  @state()
   private get null(): boolean {
     return this.nullable && this.isNull;
   }
