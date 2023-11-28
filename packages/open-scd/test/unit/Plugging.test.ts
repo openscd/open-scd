@@ -8,6 +8,7 @@ import { TextField } from '@material/mwc-textfield';
 describe('PluggingElement', () => {
   let element: MockPlugger;
   let doc: XMLDocument;
+  const docName: string = 'testDoc';
 
   afterEach(async () => {
     await new Promise(resolve => setTimeout(resolve, 50)); // await animation
@@ -19,7 +20,7 @@ describe('PluggingElement', () => {
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     element = <MockPlugger>(
       await fixture(
-        html`<mock-plugger .doc=${doc} docName="testDoc"></mock-plugger>`
+        html`<mock-plugger .doc=${doc} .docName=${docName}></mock-plugger>`
       )
     );
     await element.updateComplete;
@@ -27,6 +28,15 @@ describe('PluggingElement', () => {
 
   it('stores default plugins on load', () =>
     expect(element).property('editors').to.have.lengthOf(6));
+
+  it('has Locale property', async () => {
+    expect(element).to.have.property('locale');
+  });
+
+  it('has docs property', () => {
+    expect(element).to.have.property(`docs`).that.is.a('Object');
+    expect(element.docs[docName]).to.equal(doc);
+  });
 
   describe('plugin manager dialog', () => {
     let firstEditorPlugin: HTMLElement;
