@@ -454,6 +454,50 @@ export const en = {
         'Removed Addresses from DOI "{{ name }}" ({{ nrOfAddresses }})',
       addedAddress:
         'Added 104 Address(es) to DO "{{ name }}" on LN(0) "{{ lnName }}"',
+      signalNames: {
+        tiNumber1: 'Single-point information',
+        tiNumber3: 'Double-point information',
+        tiNumber5: 'Step position information',
+        tiNumber7: 'Bit string of 32 bit',
+        tiNumber9: 'Measured value, normalized value',
+        tiNumber11: 'Measured value, scaled value',
+        tiNumber13: 'Measured value, short floating point number',
+        tiNumber15: 'Integrated totals',
+        tiNumber20:
+          'Packed single point information with status change detection',
+        tiNumber21:
+          'Measured value, normalized value without quality descriptor',
+        tiNumber30: 'Single-point information with time tag CP56Time2a',
+        tiNumber31: 'Double-point information with time tag CP56Time2a',
+        tiNumber32: 'Step position information with time tag CP56Time2a',
+        tiNumber33: 'Bit string of 32 bit with time tag CP56Time2a',
+        tiNumber34: 'Measured value, normalized value with time tag CP56Time2a',
+        tiNumber35: 'Measured value, scaled value with time tag CP56Time2a',
+        tiNumber36:
+          'Measured value, short floating point number with time tag CP56Time2a',
+        tiNumber37: 'Integrated totals with time tag CP56Time2a',
+        tiNumber38: 'Event of protection equipment with time tag CP56Time2a',
+        tiNumber39:
+          'Packed start events of protection equipment with time tag CP56Time2a',
+        tiNumber40:
+          'Packed output circuit information of protection equipment with time tag CP56Time2a',
+        tiNumber45: 'Single command',
+        tiNumber46: 'Double command',
+        tiNumber47: 'Regulating step command',
+        tiNumber48: 'Set-point Command, normalized value',
+        tiNumber49: 'Set-point Command, scaled value',
+        tiNumber50: 'Set-point Command, short floating point number',
+        tiNumber51: 'Bit string 32 bit command',
+        tiNumber60: 'Regulating step command with time tag CP56Time2a',
+        tiNumber61:
+          'Measured value, normalized value command with time tag CP56Time2a',
+        tiNumber62:
+          'Measured value, scaled value command with time tag CP56Time2a',
+        tiNumber63:
+          'Measured value, short floating point number command with time tag CP56Time2a',
+        tiNumber64: 'Bit string of 32 bit command with time tag CP56Time2a',
+        default: 'No description available',
+      },
     },
     network: {
       connectedAp: {

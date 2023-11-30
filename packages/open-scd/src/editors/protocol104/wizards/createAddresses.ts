@@ -32,6 +32,7 @@ import {
   TiInformation,
 } from '../foundation/cdc.js';
 import { createActions, createCheckActions } from '../foundation/actions.js';
+import { getSignalName } from '../foundation/signalNames.js';
 
 function getSwitchValue(wizard: Element, name: string): boolean {
   const switchElement = wizard.shadowRoot?.querySelector<Switch>(
@@ -229,7 +230,9 @@ export function createAddressesWizard(
             ${monitorTis.map(
               monitorTi =>
                 html` <mwc-list-item value="${monitorTi}">
-                  <span>${monitorTi}</span>
+                  <span
+                    >${monitorTi + ' (' + getSignalName(monitorTi) + ')'}</span
+                  >
                 </mwc-list-item>`
             )}
           </wizard-select>`

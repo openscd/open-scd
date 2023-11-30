@@ -88,12 +88,13 @@ describe('Wizards for preparing 104 Address Creation', () => {
   });
 
   describe('show prepare 104 Address creation (multi monitor TI only)', () => {
+    const newTiValue = '39';
     beforeEach(async () => {
       await prepareWizard('IED[name="B1"] LN[lnType="SE_GAPC_SET_V001"]', 'Op');
     });
 
-    it('when processing the request, the expected Create Actions are returned', () => {
-      inputs[3].value = '39';
+    it('when processing the request, the expected Create Actions are returned', async () => {
+      inputs[3].value = newTiValue;
 
       const actions = createAddressesAction(
         lnElement,
@@ -102,6 +103,15 @@ describe('Wizards for preparing 104 Address Creation', () => {
       )(inputs, element.wizardUI);
 
       expectCreateActions(actions, 1);
+    });
+
+    it('TI contains description', async () => {
+      const tiDescription = element.wizardUI.dialog!.querySelector(
+        `wizard-select[label="monitorTi"] > mwc-list-item[value='${newTiValue}']`
+      )!;
+      expect(tiDescription.textContent?.trim()).to.equal(
+        `${newTiValue} ([protocol104.values.signalNames.tiNumber${newTiValue}])`
+      );
     });
 
     it('looks like the latest snapshot', async () => {
