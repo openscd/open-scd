@@ -1,5 +1,7 @@
 import { get, translate } from 'lit-translate';
 import { html, TemplateResult } from 'lit-element';
+import { Select } from '@material/mwc-select';
+import { SelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
 import { Switch } from '@material/mwc-switch';
 
@@ -167,6 +169,18 @@ export function disableInvertedSwitch(
   return disableSwitch;
 }
 
+export function disableMonitorInvertedSwitch(
+  tiInfo: Record<string, TiInformation>,
+  tiNumberInfo: string
+): boolean {
+  let disableSwitch = true;
+  const tiNumber = tiNumberInfo.split(' (')[0];
+
+  if (!isNaN(+tiNumber)) disableSwitch = !tiInfo[tiNumber].inverted;
+
+  return disableSwitch;
+}
+
 export function createAddressesWizard(
   lnElement: Element,
   doElement: Element
@@ -218,6 +232,7 @@ export function createAddressesWizard(
 
     if (monitorTis.length > 0) {
       fields.push(html`<wizard-divider></wizard-divider>`);
+      let disabledSwitchByDefault = true;
       if (monitorTis.length > 1) {
         fields.push(
           html`<wizard-select
@@ -225,6 +240,17 @@ export function createAddressesWizard(
             helper="${translate('protocol104.wizard.monitorTiHelper')}"
             fixedMenuPosition
             required
+            @selected=${(e: SelectedEvent) => {
+              const selectedTi = (<Select>e.target).selected!.value;
+              (<Switch>(
+                (<Select>e.target).parentElement!.querySelector(
+                  'mwc-switch[id="monitorInverted"]'
+                )
+              )).disabled = disableMonitorInvertedSwitch(
+                cdcProcessing.monitor,
+                selectedTi
+              );
+            }}
           >
             ${monitorTis.map(
               monitorTi =>
@@ -235,6 +261,10 @@ export function createAddressesWizard(
           </wizard-select>`
         );
       } else {
+        disabledSwitchByDefault = disableMonitorInvertedSwitch(
+          cdcProcessing.monitor,
+          monitorTis[0]
+        );
         fields.push(
           html`<wizard-textfield
             label="monitorTi"
@@ -250,7 +280,7 @@ export function createAddressesWizard(
         >
           <mwc-switch
             id="monitorInverted"
-            .disabled="${disableInvertedSwitch(cdcProcessing.monitor)}"
+            .disabled="${disabledSwitchByDefault}"
           >
           </mwc-switch>
         </mwc-formfield>`
