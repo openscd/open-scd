@@ -65,7 +65,8 @@ export function createAddressesAction(
 
     // Create all Monitor Addresses
     const selectedMonitorTi =
-      getValue(inputs.find(i => i.label === 'monitorTi')!) ?? '';
+      getValue(inputs.find(i => i.label === 'monitorTi')!)?.split(' (')[0] ??
+      '';
     const monitorInverted = getSwitchValue(wizard, 'monitorInverted');
     const tiInformation = cdcProcessing.monitor[selectedMonitorTi];
     if (tiInformation) {
@@ -241,7 +242,9 @@ export function createAddressesWizard(
         fields.push(
           html`<wizard-textfield
             label="monitorTi"
-            .maybeValue=${monitorTis[0] ? monitorTis[0] : ''}
+            .maybeValue=${monitorTis[0]
+              ? monitorTis[0] + ' (' + getSignalName(monitorTis[0]) + ')'
+              : ''}
             disabled
           >
           </wizard-textfield>`
