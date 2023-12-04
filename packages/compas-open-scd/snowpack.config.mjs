@@ -1,5 +1,5 @@
 export default ({
-  plugins: ["@snowpack/plugin-typescript"],
+  plugins: ['@snowpack/plugin-typescript'],
   packageOptions : {
     external: ['@web/dev-server-core','@web/dev-server-esbuild','esbuild','crypto'],
   },
@@ -24,4 +24,13 @@ export default ({
     "**/.idea/**",
     "**/web-test-runner.config.mjs",
   ],
+  workspaceRoot: "../../",
+  mount: {
+    "../open-scd/": "/open-scd/",
+    "./": "/",
+  },
+  alias: {
+    "open-scd": "../open-scd/",
+  },
 });
+

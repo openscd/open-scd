@@ -4,7 +4,7 @@ import { SinonSpy, spy } from 'sinon';
 import './mock-editor.js';
 import { MockEditor } from './mock-editor.js';
 
-import { createUpdateAction, newActionEvent } from '../../src/foundation.js';
+import { createUpdateAction, newActionEvent } from 'open-scd/src/foundation.js';
 
 describe('EditingElement', () => {
   let elm: MockEditor;

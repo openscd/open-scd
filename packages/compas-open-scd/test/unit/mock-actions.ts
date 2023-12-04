@@ -1,4 +1,4 @@
-import { ComplexAction, SimpleAction } from '../../src/foundation.js';
+import { ComplexAction, SimpleAction } from 'open-scd/src/foundation.js';
 
 const element = document.createElement('test-element');
 const parent = document.createElement('test-parent');

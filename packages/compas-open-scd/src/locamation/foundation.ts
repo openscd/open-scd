@@ -1,4 +1,4 @@
-import {Nsdoc} from "../foundation/nsdoc.js";
+import {Nsdoc} from "open-scd/src/foundation/nsdoc.js";
 
 import {
   cloneElement,
@@ -8,7 +8,7 @@ import {
   getValue,
   SimpleAction,
   WizardInputElement
-} from "../foundation.js";
+} from "open-scd/src/foundation.js";
 
 export const LOCAMATION_MANUFACTURER = "Locamation B.V.";
 export const LOCAMATION_PRIVATE = "LCMTN_VMU_SENSOR";

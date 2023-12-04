@@ -15,9 +15,9 @@ import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-icon';
 import '@material/mwc-icon-button';
 
-import { WizardTextField } from '../wizard-textfield.js';
+import { WizardTextField } from 'open-scd/src/wizard-textfield.js';
 
-import '../wizard-textfield.js';
+import 'open-scd/src/wizard-textfield.js';
 
 import {
   COMPAS_LABELS_MAXIMUM,

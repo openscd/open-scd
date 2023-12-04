@@ -1,7 +1,7 @@
 import {css, customElement, html, LitElement, property, TemplateResult} from 'lit-element';
 import {get, translate} from "lit-translate";
 
-import {patterns} from "../wizards/foundation/limits.js";
+import {patterns} from "open-scd/src/wizards/foundation/limits.js";
 import {
   checkValidity,
   ComplexAction,
@@ -9,10 +9,10 @@ import {
   WizardAction,
   WizardInputElement,
   wizardInputSelector
-} from '../foundation.js';
-import {Nsdoc} from "../foundation/nsdoc.js";
+} from 'open-scd/src/foundation.js';
+import {Nsdoc} from "open-scd/src/foundation/nsdoc.js";
 
-import '../wizard-textfield.js';
+import 'open-scd/src/wizard-textfield.js';
 
 import {
   createEditorAction,

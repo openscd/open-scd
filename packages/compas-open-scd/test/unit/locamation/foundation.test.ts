@@ -1,7 +1,7 @@
 import {expect} from "@open-wc/testing";
 
-import {Create, isCreate, isReplace, Replace} from "../../../src/foundation.js";
-import {initializeNsdoc} from "../../../src/foundation/nsdoc.js";
+import {Create, isCreate, isReplace, Replace} from "open-scd/src/foundation.js";
+import {initializeNsdoc} from "open-scd/src/foundation/nsdoc.js";
 
 import {
   addPrefixAndNamespaceToDocument,

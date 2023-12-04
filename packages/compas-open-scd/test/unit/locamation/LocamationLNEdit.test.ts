@@ -1,12 +1,12 @@
 import {expect, fixture, html} from "@open-wc/testing";
 
-import {MockWizard} from "../../mock-wizard.js";
-import {fetchDoc, setWizardTextFieldValue} from "../wizards/test-support.js";
-import {initializeNsdoc, Nsdoc} from "../../../src/foundation/nsdoc.js";
-import {WizardTextField} from "../../../src/wizard-textfield.js";
-import {ComplexAction, isSimple, isReplace, Replace, WizardAction} from "../../../src/foundation.js";
+import {MockWizard} from "open-scd/test/mock-wizard.js";
+import {fetchDoc, setWizardTextFieldValue} from "open-scd/test/unit/wizards/test-support.js";
+import {initializeNsdoc, Nsdoc} from "open-scd/src/foundation/nsdoc.js";
+import {WizardTextField} from "open-scd/src/wizard-textfield.js";
+import {ComplexAction, isSimple, isReplace, Replace, WizardAction} from "open-scd/src/foundation.js";
 
-import "../../mock-wizard.js";
+import "open-scd/test/mock-wizard.js";
 
 import {LocamationVMUEditElement, locamationLNEditWizard} from "../../../src/locamation/LocamationLNEdit.js";
 

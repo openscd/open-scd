@@ -1,6 +1,6 @@
 import { html, query, state, property, TemplateResult } from 'lit-element';
 
-import { Mixin } from '../foundation.js';
+import { Mixin } from 'open-scd/src/foundation.js';
 import { EditingElement } from '../Editing.js';
 
 import { CompasUserInfoService } from '../compas-services/CompasUserInfoService.js';

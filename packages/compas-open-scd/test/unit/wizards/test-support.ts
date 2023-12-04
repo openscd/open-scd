@@ -14,9 +14,9 @@ import {
   Update,
   WizardActor,
   WizardInputElement,
-} from '../../../src/foundation.js';
-import { WizardTextField } from '../../../src/wizard-textfield.js';
-import { WizardSelect } from '../../../src/wizard-select.js';
+} from 'open-scd/src/foundation.js';
+import { WizardTextField } from 'open-scd/src/wizard-textfield.js';
+import { WizardSelect } from 'open-scd/src/wizard-select.js';
 
 export async function setWizardTextFieldValue(
   field: WizardTextField,

@@ -1,4 +1,4 @@
-import { newPendingStateEvent } from '../foundation.js';
+import { newPendingStateEvent } from 'open-scd/src/foundation.js';
 import {
   APPLICATION_ERROR,
   extractErrorMessage,

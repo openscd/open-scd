@@ -6,9 +6,9 @@ import {
   newOpenDocEvent,
   newPendingStateEvent,
   newWizardEvent,
-} from '../foundation.js';
+} from 'open-scd/src/foundation.js';
 
-import '../filtered-list.js';
+import 'open-scd/src/filtered-list.js';
 
 import {
   createLogEvent,

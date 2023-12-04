@@ -14,10 +14,10 @@ import { TextFieldBase } from '@material/mwc-textfield/mwc-textfield-base';
 import '@material/mwc-textfield';
 import '@material/mwc-button';
 
-import { newLogEvent } from '../foundation.js';
+import { newLogEvent } from 'open-scd/src/foundation.js';
 import { saveDocumentToFile } from '../file.js';
 
-import '../WizardDivider.js';
+import 'open-scd/src/WizardDivider.js';
 
 import { CompasExistsIn } from './CompasExistsIn.js';
 import { CompasChangeSetRadiogroup } from './CompasChangeSetRadiogroup.js';

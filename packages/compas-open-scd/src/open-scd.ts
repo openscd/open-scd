@@ -9,16 +9,16 @@ import {
 
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 
-import { newOpenDocEvent, newPendingStateEvent } from './foundation.js';
-import { getTheme } from './themes.js';
+import { newOpenDocEvent, newPendingStateEvent } from 'open-scd/src/foundation.js';
+import { getTheme } from 'open-scd/src/themes.js';
 
 import { Editing } from './Editing.js';
 import { Hosting } from './Hosting.js';
 import { Historing } from './Historing.js';
 import { Plugging } from './Plugging.js';
 import { Setting } from './Setting.js';
-import { Waiting } from './Waiting.js';
-import { Wizarding } from './Wizarding.js';
+import { Waiting } from 'open-scd/src/Waiting.js';
+import { Wizarding } from 'open-scd/src/Wizarding.js';
 import { Compasing } from './compas/Compasing.js';
 
 /** The `<open-scd>` custom element is the main entry point of the

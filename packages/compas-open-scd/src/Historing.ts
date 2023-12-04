@@ -19,7 +19,7 @@ import '@material/mwc-snackbar';
 import { Dialog } from '@material/mwc-dialog';
 import { Snackbar } from '@material/mwc-snackbar';
 
-import './filtered-list.js';
+import 'open-scd/src/filtered-list.js';
 import {
   CommitDetail,
   CommitEntry,
@@ -37,10 +37,10 @@ import {
   newActionEvent,
   newWizardEvent,
   SCLTag,
-} from './foundation.js';
-import { getFilterIcon, iconColors } from './icons/icons.js';
+} from 'open-scd/src/foundation.js';
+import { getFilterIcon, iconColors } from 'open-scd/src/icons/icons.js';
 import { Plugin } from './Plugging.js';
-import { wizards } from './wizards/wizard-library.js';
+import { wizards } from 'open-scd/src/wizards/wizard-library.js';
 import { nothing } from 'lit-html';
 
 const icons = {

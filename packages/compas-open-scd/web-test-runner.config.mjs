@@ -1,12 +1,16 @@
 // import { playwrightLauncher } from '@web/test-runner-playwright';
 import { esbuildPlugin } from '@web/dev-server-esbuild';
+import path from 'path';
+import process from 'process';
 
 export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
   /** we run test directly on TypeScript files */
   plugins: [esbuildPlugin({ ts: true })],
 
   /** Resolve bare module imports */
-  nodeResolve: true,
+  nodeResolve: {
+    moduleDirectories: [path.join(process.cwd(), '..', 'open-scd',  'node_modules')],
+  },
 
   /** filter browser logs
    * Plugins have a fix URL and do not fit to the file structure in test environment.
@@ -26,6 +30,7 @@ export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
         'test/unit/compas-services/*.test.ts',
         'test/unit/compas-wizards/*.test.ts',
         'test/unit/Plugging.test.ts',
+        'test/unit/locamation/*.test.ts',
       ],
     },
     {

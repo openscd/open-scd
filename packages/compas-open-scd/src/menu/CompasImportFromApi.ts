@@ -1,9 +1,9 @@
 import { html, LitElement } from 'lit-element';
 import { get } from 'lit-translate';
 
-import '../filtered-list.js';
-import '../wizard-textfield.js';
-import { newWizardEvent, Wizard } from '../foundation.js';
+import 'open-scd/src/filtered-list.js';
+import 'open-scd/src/wizard-textfield.js';
+import { newWizardEvent, Wizard } from 'open-scd/src/foundation.js';
 
 import '../compas/CompasImportFromApi.js';
 

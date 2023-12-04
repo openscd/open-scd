@@ -9,7 +9,7 @@ import {
   newLogEvent,
   newOpenDocEvent,
   newPendingStateEvent,
-} from '../foundation.js';
+} from 'open-scd/src/foundation.js';
 
 import CompasOpenElement, { DocRetrievedEvent } from '../compas/CompasOpen.js';
 import { updateDocumentInOpenSCD } from '../compas/foundation.js';
