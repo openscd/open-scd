@@ -1,5 +1,5 @@
 import {expect, fixtureSync, html, waitUntil} from '@open-wc/testing';
-import sinon, {SinonStub} from "sinon";
+import sinon, {SinonSpy, spy, SinonStub} from "sinon";
 
 import {Editing} from '../../../src/Editing.js';
 import {Wizarding} from 'open-scd/src/Wizarding.js';
@@ -10,6 +10,7 @@ import {
   VERSION_ENTRY_ELEMENT_NAME
 } from "../../unit/compas/CompasSclDataServiceResponses.js";
 import CompasVersionsPlugin from "../../../src/compas-editors/CompasVersions.js";
+import { IconButton } from '@material/mwc-icon-button';
 
 describe('compas-versions-plugin', () => {
   const FETCH_FUNCTION = 'fetchData';
@@ -103,6 +104,7 @@ describe('compas-versions-plugin', () => {
   });
 
   describe('items-in-list', () => {
+    let wizardEvent: SinonSpy;
     beforeEach(async () => {
       element = fixtureSync(html`
         <compas-versions-plugin .doc="${doc}" .docId="${docId}">
@@ -112,7 +114,8 @@ describe('compas-versions-plugin', () => {
         (result: Element[]) => {
           element.historyItem = result;
         });
-
+      wizardEvent = spy();
+      window.addEventListener('wizard', wizardEvent);
       await element.updateComplete;
       await waitUntil(() => element.historyItem !== undefined);
     });
@@ -124,6 +127,14 @@ describe('compas-versions-plugin', () => {
     it('has 3 item entries', () => {
       expect(element.shadowRoot!.querySelectorAll('mwc-list > mwc-check-list-item'))
         .to.have.length(3);
+    });
+
+    it('dispatches a wizard event when edit button is clicked', () => {
+      (element.shadowRoot!.querySelector('mwc-icon-button[icon="edit"]')! as IconButton).click()
+      expect(wizardEvent).to.have.been.calledOnce;
+      expect(wizardEvent.args[0][0].detail.wizard()[0].title).to.contain(
+        'compas.scl.wizardTitle'
+      );
     });
 
     it('first entry has correct buttons', () => {
