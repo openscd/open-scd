@@ -119,7 +119,6 @@ export const cdcProcessings: Record<
           { path: ['neut'] },
         ],
         create: createAddressAction,
-        inverted: false,
       },
     },
     control: {},
