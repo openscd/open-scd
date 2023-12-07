@@ -26,6 +26,7 @@ import {
   getFullPath,
 } from '../foundation/foundation.js';
 import { hasScaleFields, hasUnitMultiplierField } from '../foundation/cdc.js';
+import { getSignalName } from '../foundation/signalNames.js';
 
 const allowedMultipliers = [
   'm',
@@ -107,16 +108,21 @@ export function editAddressWizard(
 
     let casdu = addressElement.getAttribute('casdu') ?? '';
 
-    function validateIOA(this: WizardInputElement, value: string): Partial<ValidityState> {
-      const existingAddress = iedElement.querySelector(`Address[casdu="${casdu}"][ioa="${value}"]`);
-      if(existingAddress){
+    function validateIOA(
+      this: WizardInputElement,
+      value: string
+    ): Partial<ValidityState> {
+      const existingAddress = iedElement.querySelector(
+        `Address[casdu="${casdu}"][ioa="${value}"]`
+      );
+      if (existingAddress) {
         this.validationMessage = get('protocol104.wizard.error.ioaConflict');
         return {
           valid: false,
           customError: true,
-        }
+        };
       }
-      return {}
+      return {};
     }
 
     // Add the basic fields to the list.
@@ -166,7 +172,12 @@ export function editAddressWizard(
         required
       >
       </wizard-textfield>`,
-      html`<wizard-textfield label="ti" .maybeValue=${ti} disabled readonly>
+      html`<wizard-textfield
+        label="ti"
+        .maybeValue=${ti + ' (' + getSignalName(ti) + ')'}
+        disabled
+        readonly
+      >
       </wizard-textfield>`,
     ];
 
