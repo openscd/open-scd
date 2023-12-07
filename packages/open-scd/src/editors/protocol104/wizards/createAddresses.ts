@@ -67,8 +67,7 @@ export function createAddressesAction(
 
     // Create all Monitor Addresses
     const selectedMonitorTi =
-      getValue(inputs.find(i => i.label === 'monitorTi')!)?.split(' (')[0] ??
-      '';
+      getValue(inputs.find(i => i.label === 'monitorTi')!) ?? '';
     const monitorInverted = getSwitchValue(wizard, 'monitorInverted');
     const tiInformation = cdcProcessing.monitor[selectedMonitorTi];
     if (tiInformation) {
@@ -198,6 +197,20 @@ export function createAddressesWizard(
     const iedElement = lnElement.closest('IED');
     const fullPath = getFullPath(lnElement, 'IED');
 
+    function setMonitorInvertedSwitch(e: SelectedEvent): void {
+      const selectedTi = (<Select>e.target).selected!.value;
+      const selectElement = (<Select>e.target).parentElement!.querySelector(
+        'mwc-switch[id="monitorInverted"]'
+      );
+
+      if (!selectElement) return;
+
+      (<Switch>selectElement).disabled = disableMonitorInvertedSwitch(
+        cdcProcessing.monitor,
+        selectedTi
+      );
+    }
+
     // Add the basic fields to the list.
     const fields = [
       html`<wizard-textfield
@@ -243,15 +256,7 @@ export function createAddressesWizard(
             fixedMenuPosition
             required
             @selected=${(e: SelectedEvent) => {
-              const selectedTi = (<Select>e.target).selected!.value;
-              (<Switch>(
-                (<Select>e.target).parentElement!.querySelector(
-                  'mwc-switch[id="monitorInverted"]'
-                )
-              )).disabled = disableMonitorInvertedSwitch(
-                cdcProcessing.monitor,
-                selectedTi
-              );
+              setMonitorInvertedSwitch(e);
             }}
           >
             ${monitorTis.map(
