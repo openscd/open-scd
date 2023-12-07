@@ -67,7 +67,8 @@ export function createAddressesAction(
 
     // Create all Monitor Addresses
     const selectedMonitorTi =
-      getValue(inputs.find(i => i.label === 'monitorTi')!) ?? '';
+      getValue(inputs.find(i => i.label === 'monitorTi')!)?.split(' (')[0] ??
+      '';
     const monitorInverted = getSwitchValue(wizard, 'monitorInverted');
     const tiInformation = cdcProcessing.monitor[selectedMonitorTi];
     if (tiInformation) {
