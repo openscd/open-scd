@@ -22,7 +22,7 @@ import { Switch } from '@material/mwc-switch';
 import { TextField } from '@material/mwc-textfield';
 
 import { ifImplemented, Mixin } from 'open-scd/src/foundation.js';
-import { EditingElement } from './Editing.js';
+import { EditingElement } from 'open-scd/src/Editing.js';
 import { officialPlugins } from '../public/js/plugins.js';
 import { Nsdoc } from 'open-scd/src/foundation/nsdoc.js';
 import { HistoringElement } from './Historing.js';
@@ -99,7 +99,7 @@ function staticTagHtml(
 
 type PluginKind = 'editor' | 'menu' | 'validator';
 const menuPosition = ['top', 'middle', 'bottom'] as const;
-type MenuPosition = typeof menuPosition[number];
+type MenuPosition = (typeof menuPosition)[number];
 
 export type Plugin = {
   name: string;
