@@ -34,6 +34,7 @@ import {
   TiInformation,
 } from '../foundation/cdc.js';
 import { createActions, createCheckActions } from '../foundation/actions.js';
+import { getSignalName } from '../foundation/signalNames.js';
 
 function getSwitchValue(wizard: Element, name: string): boolean {
   const switchElement = wizard.shadowRoot?.querySelector<Switch>(
@@ -66,7 +67,8 @@ export function createAddressesAction(
 
     // Create all Monitor Addresses
     const selectedMonitorTi =
-      getValue(inputs.find(i => i.label === 'monitorTi')!) ?? '';
+      getValue(inputs.find(i => i.label === 'monitorTi')!)?.split(' (')[0] ??
+      '';
     const monitorInverted = getSwitchValue(wizard, 'monitorInverted');
     const tiInformation = cdcProcessing.monitor[selectedMonitorTi];
     if (tiInformation) {
@@ -255,7 +257,9 @@ export function createAddressesWizard(
             ${monitorTis.map(
               monitorTi =>
                 html` <mwc-list-item value="${monitorTi}">
-                  <span>${monitorTi}</span>
+                  <span
+                    >${monitorTi + ' (' + getSignalName(monitorTi) + ')'}</span
+                  >
                 </mwc-list-item>`
             )}
           </wizard-select>`
@@ -268,7 +272,9 @@ export function createAddressesWizard(
         fields.push(
           html`<wizard-textfield
             label="monitorTi"
-            .maybeValue=${monitorTis[0] ? monitorTis[0] : ''}
+            .maybeValue=${monitorTis[0]
+              ? monitorTis[0] + ' (' + getSignalName(monitorTis[0]) + ')'
+              : ''}
             disabled
           >
           </wizard-textfield>`
