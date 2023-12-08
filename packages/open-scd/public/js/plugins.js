@@ -1,5 +1,14 @@
 export const officialPlugins = [
   {
+    name: 'OSCD Open',
+    src: 'https://openscd.github.io/oscd-open/oscd-open.js',
+    icon: 'folder_open',
+    default: true,
+    kind: 'menu',
+    requireDoc: false,
+    position: 'top',
+  },
+  {
     name: 'IED',
     src: '/src/editors/IED.js',
     icon: 'developer_board',
@@ -232,6 +241,6 @@ export const officialPlugins = [
     default: false,
     kind: 'menu',
     requireDoc: true,
-    position: 'middle'
-  }
+    position: 'middle',
+  },
 ];
