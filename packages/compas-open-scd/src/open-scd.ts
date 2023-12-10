@@ -9,10 +9,13 @@ import {
 
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 
-import { newOpenDocEvent, newPendingStateEvent } from 'open-scd/src/foundation.js';
+import {
+  newOpenDocEvent,
+  newPendingStateEvent,
+} from 'open-scd/src/foundation.js';
 import { getTheme } from 'open-scd/src/themes.js';
 
-import { Editing } from './Editing.js';
+import { Editing } from 'open-scd/src/Editing.js';
 import { Hosting } from './Hosting.js';
 import { Historing } from './Historing.js';
 import { Plugging } from './Plugging.js';

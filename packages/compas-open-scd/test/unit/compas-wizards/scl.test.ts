@@ -15,10 +15,10 @@ import {
 } from 'open-scd/src/foundation.js';
 
 import {
-  executeWizardComplexAction,
   fetchDoc,
   setWizardTextFieldValue,
-} from '../wizards/test-support.js';
+} from 'open-scd/test/unit/wizards/test-support.js';
+import { executeWizardComplexAction } from '../wizards/compas-test-support.js';
 import {
   editCompasSCLWizard,
   updateSCL,
