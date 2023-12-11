@@ -42,7 +42,7 @@ import {
 } from '../compas/foundation.js';
 import { addVersionToCompasWizard } from '../compas/CompasUploadVersion.js';
 import { getElementByName, styles } from './foundation.js';
-import { wizards } from 'open-scd/src/wizards/wizard-library.js';
+import { editCompasSCLWizard } from "../compas-wizards/scl.js";
 
 /** An editor [[`plugin`]] for selecting the `Substation` section. */
 export default class CompasVersionsPlugin extends LitElement {
@@ -373,7 +373,7 @@ export default class CompasVersionsPlugin extends LitElement {
   }
 
   private openEditWizard(): void {
-    const wizard = wizards['SCL'].edit(this.doc.documentElement);
+    const wizard = editCompasSCLWizard(this.doc.documentElement);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
