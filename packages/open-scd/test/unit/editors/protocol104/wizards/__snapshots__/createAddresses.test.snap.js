@@ -120,7 +120,7 @@ snapshots["Wizards for preparing 104 Address Creation show prepare 104 Address c
         value="30"
       >
         <span>
-          30
+          30 ([protocol104.values.signalNames.tiNumber30])
         </span>
       </mwc-list-item>
       <mwc-list-item
@@ -130,7 +130,7 @@ snapshots["Wizards for preparing 104 Address Creation show prepare 104 Address c
         value="39"
       >
         <span>
-          39
+          39 ([protocol104.values.signalNames.tiNumber39])
         </span>
       </mwc-list-item>
     </wizard-select>

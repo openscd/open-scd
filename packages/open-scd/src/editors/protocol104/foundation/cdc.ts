@@ -40,6 +40,7 @@ export const supportedCdcTypes = [
   'DPC',
   'DPS',
   'ENG',
+  'ENS',
   'INC',
   'ING',
   'INS',
@@ -119,7 +120,6 @@ export const cdcProcessings: Record<
           { path: ['neut'] },
         ],
         create: createAddressAction,
-        inverted: false,
       },
     },
     control: {},
@@ -149,6 +149,7 @@ export const cdcProcessings: Record<
       '36': {
         daPaths: [{ path: ['mxVal', 'f'] }],
         create: createAddressAction,
+        inverted: true,
       },
     },
     control: {
@@ -165,6 +166,7 @@ export const cdcProcessings: Record<
       '63': {
         daPaths: [{ path: ['setMag', 'f'] }],
         create: createAddressAction,
+        inverted: true,
       },
     },
     control: {},
@@ -174,6 +176,7 @@ export const cdcProcessings: Record<
       '36': {
         daPaths: [{ path: ['mxVal', 'f'] }],
         create: createAddressAction,
+        inverted: true,
       },
     },
     control: {
@@ -190,6 +193,7 @@ export const cdcProcessings: Record<
       '37': {
         daPaths: [{ path: ['actVal'] }, { path: ['frVal'] }],
         create: createAddressAction,
+        inverted: true,
       },
     },
     control: {},
@@ -199,6 +203,7 @@ export const cdcProcessings: Record<
       '32': {
         daPaths: [{ path: ['valWTr', 'posVal'] }],
         create: createAddressAction,
+        inverted: true,
       },
     },
     control: {
@@ -215,10 +220,12 @@ export const cdcProcessings: Record<
       '35': {
         daPaths: [{ path: ['mag', 'i'] }, { path: ['ang', 'i'] }],
         create: createAddressAction,
+        inverted: true,
       },
       '36': {
         daPaths: [{ path: ['mag', 'f'] }, { path: ['ang', 'f'] }],
         create: createAddressAction,
+        inverted: true,
       },
     },
     control: {},
@@ -228,6 +235,7 @@ export const cdcProcessings: Record<
       '31': {
         daPaths: [{ path: ['stVal'] }],
         create: createAddressAction,
+        inverted: true,
       },
     },
     control: {
@@ -244,6 +252,7 @@ export const cdcProcessings: Record<
       '31': {
         daPaths: [{ path: ['stVal'] }],
         create: createAddressAction,
+        inverted: true,
       },
     },
     control: {},
@@ -253,10 +262,27 @@ export const cdcProcessings: Record<
       '58': {
         daPaths: [{ path: ['setVal'] }],
         create: createAddressWithExpectValueAction,
+        inverted: true,
       },
       '62': {
         daPaths: [{ path: ['setVal'] }],
         create: createAddressAction,
+        inverted: true,
+      },
+    },
+    control: {},
+  },
+  ENS: {
+    monitor: {
+      '30': {
+        daPaths: [{ path: ['stVal'] }],
+        create: createAddressAction,
+        inverted: true,
+      },
+      '35': {
+        daPaths: [{ path: ['stVal'] }],
+        create: createAddressAction,
+        inverted: true,
       },
     },
     control: {},
@@ -266,6 +292,7 @@ export const cdcProcessings: Record<
       '35': {
         daPaths: [{ path: ['stVal'] }],
         create: createAddressAction,
+        inverted: true,
       },
     },
     control: {
@@ -282,6 +309,7 @@ export const cdcProcessings: Record<
       '62': {
         daPaths: [{ path: ['setVal'] }],
         create: createAddressAction,
+        inverted: true,
       },
     },
     control: {},
@@ -296,10 +324,12 @@ export const cdcProcessings: Record<
       '33': {
         daPaths: [{ path: ['stVal'] }],
         create: createAddressAction,
+        inverted: true,
       },
       '35': {
         daPaths: [{ path: ['stVal'] }],
         create: createAddressAction,
+        inverted: true,
       },
     },
     control: {},
@@ -309,6 +339,7 @@ export const cdcProcessings: Record<
       '32': {
         daPaths: [{ path: ['valWTr', 'posVal'] }],
         create: createAddressAction,
+        inverted: true,
       },
     },
     control: {
@@ -325,10 +356,12 @@ export const cdcProcessings: Record<
       '35': {
         daPaths: [{ path: ['mag', 'i'] }],
         create: createAddressAction,
+        inverted: true,
       },
       '36': {
         daPaths: [{ path: ['mag', 'f'] }],
         create: createAddressAction,
+        inverted: true,
       },
     },
     control: {},
@@ -338,6 +371,7 @@ export const cdcProcessings: Record<
       '37': {
         daPaths: [{ path: ['cnt'] }],
         create: createAddressAction,
+        inverted: true,
       },
     },
     control: {},
@@ -364,6 +398,7 @@ export const cdcProcessings: Record<
       '58': {
         daPaths: [{ path: ['setVal'] }],
         create: createAddressAction,
+        inverted: true,
       },
     },
     control: {},
