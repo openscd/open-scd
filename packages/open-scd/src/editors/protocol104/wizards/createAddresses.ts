@@ -1,5 +1,7 @@
 import { get, translate } from 'lit-translate';
 import { html, TemplateResult } from 'lit-element';
+import { Select } from '@material/mwc-select';
+import { SelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
 import { Switch } from '@material/mwc-switch';
 
@@ -32,6 +34,7 @@ import {
   TiInformation,
 } from '../foundation/cdc.js';
 import { createActions, createCheckActions } from '../foundation/actions.js';
+import { getSignalName } from '../foundation/signalNames.js';
 
 function getSwitchValue(wizard: Element, name: string): boolean {
   const switchElement = wizard.shadowRoot?.querySelector<Switch>(
@@ -64,7 +67,8 @@ export function createAddressesAction(
 
     // Create all Monitor Addresses
     const selectedMonitorTi =
-      getValue(inputs.find(i => i.label === 'monitorTi')!) ?? '';
+      getValue(inputs.find(i => i.label === 'monitorTi')!)?.split(' (')[0] ??
+      '';
     const monitorInverted = getSwitchValue(wizard, 'monitorInverted');
     const tiInformation = cdcProcessing.monitor[selectedMonitorTi];
     if (tiInformation) {
@@ -167,6 +171,18 @@ export function disableInvertedSwitch(
   return disableSwitch;
 }
 
+export function disableMonitorInvertedSwitch(
+  tiInfo: Record<string, TiInformation>,
+  tiNumberInfo: string
+): boolean {
+  let disableSwitch = true;
+  const tiNumber = tiNumberInfo.split(' (')[0];
+
+  if (!isNaN(+tiNumber)) disableSwitch = !tiInfo[tiNumber].inverted;
+
+  return disableSwitch;
+}
+
 export function createAddressesWizard(
   lnElement: Element,
   doElement: Element
@@ -181,6 +197,20 @@ export function createAddressesWizard(
     const doName = getNameAttribute(doElement) ?? '';
     const iedElement = lnElement.closest('IED');
     const fullPath = getFullPath(lnElement, 'IED');
+
+    function setMonitorInvertedSwitch(e: SelectedEvent): void {
+      const selectedTi = (<Select>e.target).selected!.value;
+      const selectElement = (<Select>e.target).parentElement!.querySelector(
+        'mwc-switch[id="monitorInverted"]'
+      );
+
+      if (!selectElement) return;
+
+      (<Switch>selectElement).disabled = disableMonitorInvertedSwitch(
+        cdcProcessing.monitor,
+        selectedTi
+      );
+    }
 
     // Add the basic fields to the list.
     const fields = [
@@ -218,6 +248,7 @@ export function createAddressesWizard(
 
     if (monitorTis.length > 0) {
       fields.push(html`<wizard-divider></wizard-divider>`);
+      let disabledSwitchByDefault = true;
       if (monitorTis.length > 1) {
         fields.push(
           html`<wizard-select
@@ -225,20 +256,31 @@ export function createAddressesWizard(
             helper="${translate('protocol104.wizard.monitorTiHelper')}"
             fixedMenuPosition
             required
+            @selected=${(e: SelectedEvent) => {
+              setMonitorInvertedSwitch(e);
+            }}
           >
             ${monitorTis.map(
               monitorTi =>
                 html` <mwc-list-item value="${monitorTi}">
-                  <span>${monitorTi}</span>
+                  <span
+                    >${monitorTi + ' (' + getSignalName(monitorTi) + ')'}</span
+                  >
                 </mwc-list-item>`
             )}
           </wizard-select>`
         );
       } else {
+        disabledSwitchByDefault = disableMonitorInvertedSwitch(
+          cdcProcessing.monitor,
+          monitorTis[0]
+        );
         fields.push(
           html`<wizard-textfield
             label="monitorTi"
-            .maybeValue=${monitorTis[0] ? monitorTis[0] : ''}
+            .maybeValue=${monitorTis[0]
+              ? monitorTis[0] + ' (' + getSignalName(monitorTis[0]) + ')'
+              : ''}
             disabled
           >
           </wizard-textfield>`
@@ -250,7 +292,7 @@ export function createAddressesWizard(
         >
           <mwc-switch
             id="monitorInverted"
-            .disabled="${disableInvertedSwitch(cdcProcessing.monitor)}"
+            .disabled="${disabledSwitchByDefault}"
           >
           </mwc-switch>
         </mwc-formfield>`
