@@ -4,7 +4,7 @@ import {
   queryAll,
   LitElement,
   property,
-  internalProperty,
+  state,
   TemplateResult,
   html,
   query,
@@ -145,7 +145,7 @@ export class WizardDialog extends LitElement {
   @property({ type: Array })
   wizard: Wizard = [];
   /** Index of the currently active [[`WizardPage`]] */
-  @internalProperty()
+  @state()
   pageIndex = 0;
 
   @queryAll('mwc-dialog') dialogs!: NodeListOf<Dialog>;
