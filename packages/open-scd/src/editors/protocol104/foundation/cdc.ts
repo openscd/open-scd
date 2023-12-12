@@ -40,6 +40,7 @@ export const supportedCdcTypes = [
   'DPC',
   'DPS',
   'ENG',
+  'ENS',
   'INC',
   'ING',
   'INS',
@@ -265,6 +266,21 @@ export const cdcProcessings: Record<
       },
       '62': {
         daPaths: [{ path: ['setVal'] }],
+        create: createAddressAction,
+        inverted: true,
+      },
+    },
+    control: {},
+  },
+  ENS: {
+    monitor: {
+      '30': {
+        daPaths: [{ path: ['stVal'] }],
+        create: createAddressAction,
+        inverted: true,
+      },
+      '35': {
+        daPaths: [{ path: ['stVal'] }],
         create: createAddressAction,
         inverted: true,
       },
