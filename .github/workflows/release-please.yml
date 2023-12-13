@@ -23,14 +23,12 @@ jobs:
         if: ${{ steps.release.outputs.release_created }}
       - run: npm ci
         if: ${{ steps.release.outputs.release_created }}
-      - run: npm run build
+      - run: cd packages/core && npm run build
         if: ${{ steps.release.outputs.release_created }}
-      - run: npm publish --access public
+      - run: cd packages/core && npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
         if: ${{ steps.release.outputs.release_created }}
       - run: |
           git config user.name "GitHubActions"
           git config user.email "<deploy@actions.openscd.github.io>"
-      - run: npm run deploy
-        if: ${{ steps.release.outputs.release_created }}
