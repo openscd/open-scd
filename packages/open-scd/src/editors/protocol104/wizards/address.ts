@@ -57,7 +57,8 @@ export function updateAddressValue(
   addressElement: Element
 ): WizardActor {
   return (inputs: WizardInputElement[]): EditorAction[] => {
-    const cdc = getCdcValueFromDOIElement(doiElement) ?? '';
+    const foundCdc = getCdcValueFromDOIElement(doiElement) ?? '';
+    const cdc = foundCdc === 'WYE' || foundCdc === 'DEL' ? 'CMV' : foundCdc;
     const ti = addressElement.getAttribute('ti') ?? '';
 
     const casdu = getValue(inputs.find(i => i.label === 'casdu')!)!;
@@ -103,7 +104,8 @@ export function editAddressWizard(
   addressElement: Element
 ): Wizard {
   function renderAddressWizard(): TemplateResult[] {
-    const cdc = getCdcValueFromDOIElement(doiElement) ?? '';
+    const foundCdc = getCdcValueFromDOIElement(doiElement) ?? '';
+    const cdc = foundCdc === 'WYE' || foundCdc === 'DEL' ? 'CMV' : foundCdc;
     const ti = addressElement.getAttribute('ti') ?? '';
 
     let casdu = addressElement.getAttribute('casdu') ?? '';

@@ -187,8 +187,9 @@ export function createAddressesWizard(
   lnElement: Element,
   doElement: Element
 ): Wizard {
-  const cdc = getCdcValueFromDOElement(doElement) ?? '';
-  const cdcProcessing = cdcProcessings[<SupportedCdcType>cdc];
+  const foundCdc = getCdcValueFromDOElement(doElement) ?? '';
+  const cdc = foundCdc === 'WYE' || foundCdc === 'DEL' ? 'CMV' : foundCdc;
+  const cdcProcessing = cdcProcessings[<SupportedCdcType>foundCdc];
 
   const monitorTis = Object.keys(cdcProcessing.monitor);
   const controlTis = Object.keys(cdcProcessing.control);
