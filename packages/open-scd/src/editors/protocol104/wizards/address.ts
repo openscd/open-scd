@@ -105,7 +105,8 @@ export function editAddressWizard(
 ): Wizard {
   function renderAddressWizard(): TemplateResult[] {
     const foundCdc = getCdcValueFromDOIElement(doiElement) ?? '';
-    const cdc = foundCdc === 'WYE' || foundCdc === 'DEL' ? 'CMV' : foundCdc;
+    const reqCmvMapping = foundCdc === 'WYE' || foundCdc === 'DEL';
+    const cdc = reqCmvMapping ? 'CMV' : foundCdc;
     const ti = addressElement.getAttribute('ti') ?? '';
 
     let casdu = addressElement.getAttribute('casdu') ?? '';
@@ -145,7 +146,14 @@ export function editAddressWizard(
         disabled
       >
       </mwc-textarea>`,
-      html`<wizard-textfield label="cdc" .maybeValue="${cdc}" disabled readonly>
+      html`<wizard-textfield
+        label="cdc"
+        .maybeValue="${reqCmvMapping
+          ? translate('protocol104.mappedCmv')
+          : foundCdc}"
+        disabled
+        readonly
+      >
       </wizard-textfield>`,
       html`<mwc-textarea
         label="DAI"
