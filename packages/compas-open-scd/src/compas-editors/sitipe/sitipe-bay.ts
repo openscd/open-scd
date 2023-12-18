@@ -45,6 +45,7 @@ import {
 } from './sitipe-service.js';
 import { defaultNamingStrategy, NamingStrategy } from './sitipe-substation.js';
 import { get } from 'lit-translate';
+import { updateReferences } from 'open-scd/src/wizards/foundation/references.js';
 
 /**
  * Transfer namespaces from one element to another
@@ -567,9 +568,10 @@ export class SitipeBay extends LitElement {
     const ied: Element = ieds[0];
 
     const oldIEDName: string = ied.getAttribute('name') || '';
-    ied.setAttribute('name', iedName);
 
     this.importIED(ied);
+
+    ied.setAttribute('name', iedName);
 
     if (iedName || oldIEDName) {
       const privateIEDRef: Element = createElement(this.doc, 'Private', {
@@ -577,17 +579,20 @@ export class SitipeBay extends LitElement {
       });
       privateIEDRef.textContent = btComponent.name || oldIEDName;
 
+      const actions: SimpleAction[] = [];
+
+      actions.push({
+        new: {
+          parent: ied,
+          element: privateIEDRef,
+        },
+      });
+
+      actions.push(...updateReferences(ied, oldIEDName, iedName));
       this.dispatchEvent(
         newActionEvent({
           title: get('editing.import', { name: ied.getAttribute('name')! }),
-          actions: [
-            {
-              new: {
-                parent: ied,
-                element: privateIEDRef,
-              },
-            },
-          ],
+          actions: actions,
         })
       );
     }

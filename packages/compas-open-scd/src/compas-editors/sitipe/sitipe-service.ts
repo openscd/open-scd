@@ -1,6 +1,5 @@
 import { handleError } from '../../compas-services/foundation.js';
 import { CompasSettings } from '../../compas/CompasSettings.js';
-
 export interface BayTypical {
   id: string;
   accessId: string;
