@@ -28,9 +28,13 @@ describe('data model nodes child getter', () => {
     it('returns direct children for a SCL', () => {
       const parent = doc.querySelector('SCL')!;
       expect(getDataChildren(parent)).to.not.be.empty;
-      expect(getDataChildren(parent).length).to.be.equal(1);
+      expect(getDataChildren(parent).length).to.be.equal(3);
       expect(getDataChildren(parent)[0].tagName).to.be.equal('IED');
+      expect(getDataChildren(parent)[1].tagName).to.be.equal('IED');
+      expect(getDataChildren(parent)[2].tagName).to.be.equal('IED');
       expect(getDataChildren(parent)[0]).to.have.attribute('name', 'B1');
+      expect(getDataChildren(parent)[1]).to.have.attribute('name', 'B2');
+      expect(getDataChildren(parent)[2]).to.have.attribute('name', 'B3');
     });
 
     it('returns direct children for a IED', () => {
@@ -54,7 +58,7 @@ describe('data model nodes child getter', () => {
     it('returns direct children for a LDevice', () => {
       const parent = doc.querySelector('IED[name="B1"] LDevice[inst="LD0"]')!;
       expect(getDataChildren(parent)).to.not.be.empty;
-      expect(getDataChildren(parent).length).to.be.equal(7);
+      expect(getDataChildren(parent).length).to.be.equal(10);
       expect(getDataChildren(parent)[0].tagName).to.be.equal('LN0');
       expect(getDataChildren(parent)[0]).to.have.attribute('lnClass', 'LLN0');
       expect(getDataChildren(parent)[1].tagName).to.be.equal('LN');
@@ -66,9 +70,13 @@ describe('data model nodes child getter', () => {
         'IED[name="B1"] LDevice[inst="LD0"] > LN0[lnClass="LLN0"]'
       )!;
       expect(getDataChildren(parent)).to.not.be.empty;
-      expect(getDataChildren(parent).length).to.equal(1);
+      expect(getDataChildren(parent).length).to.equal(3);
       expect(getDataChildren(parent)[0].tagName).to.be.equal('DO');
-      expect(getDataChildren(parent)[0]).to.have.attribute('name', 'MltLev');
+      expect(getDataChildren(parent)[0]).to.have.attribute('name', 'Beh');
+      expect(getDataChildren(parent)[1].tagName).to.be.equal('DO');
+      expect(getDataChildren(parent)[1]).to.have.attribute('name', 'Health');
+      expect(getDataChildren(parent)[2].tagName).to.be.equal('DO');
+      expect(getDataChildren(parent)[2]).to.have.attribute('name', 'MltLev');
     });
   });
 

@@ -1,4 +1,4 @@
-import { html, internalProperty, TemplateResult, query } from 'lit-element';
+import { html, state, TemplateResult, query } from 'lit-element';
 import {
   ifImplemented,
   LitElementConstructor,
@@ -17,7 +17,7 @@ export type WizardingElement = Mixin<typeof Wizarding>;
 export function Wizarding<TBase extends LitElementConstructor>(Base: TBase) {
   class WizardingElement extends Base {
     /** FIFO queue of [[`Wizard`]]s to display. */
-    @internalProperty()
+    @state()
     workflow: WizardFactory[] = [];
 
     @query('wizard-dialog') wizardUI!: WizardDialog;

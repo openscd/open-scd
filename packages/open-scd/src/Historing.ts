@@ -1,10 +1,4 @@
-import {
-  html,
-  internalProperty,
-  property,
-  query,
-  TemplateResult,
-} from 'lit-element';
+import { html, state, property, query, TemplateResult } from 'lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { get, translate } from 'lit-translate';
 
@@ -85,7 +79,7 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
     editCount = -1;
     @property()
     diagnoses = new Map<string, IssueDetail[]>();
-    @internalProperty()
+    @state()
     latestIssue!: IssueDetail;
 
     @query('#log') logUI!: Dialog;
