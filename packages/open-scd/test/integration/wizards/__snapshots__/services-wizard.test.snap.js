@@ -1,7 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Wizards for SCL element Services IED [WithServices]: define a Services wizards Wizard 2 should look like snapshot"] = 
+snapshots["Wizards for SCL element Services IED [WithServices]: define a Services wizards Wizard 1 should look like snapshot"] = 
 `<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
@@ -183,6 +183,24 @@ snapshots["Wizards for SCL element Services IED [WithServices]: define a Service
     </wizard-checkbox>
     <wizard-divider>
     </wizard-divider>
+    <wizard-textfield
+      disabled=""
+      label="Max"
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      label="Max attributes"
+      nullable=""
+    >
+    </wizard-textfield>
+    <wizard-checkbox
+      disabled=""
+      label="Modify"
+    >
+    </wizard-checkbox>
+    <wizard-divider>
+    </wizard-divider>
     <wizard-checkbox
       disabled=""
       label="SGEdit"
@@ -213,9 +231,9 @@ snapshots["Wizards for SCL element Services IED [WithServices]: define a Service
   </mwc-button>
 </mwc-dialog>
 `;
-/* end snapshot Wizards for SCL element Services define a Services wizards  Wizard 1 should look like snapshot */
+/* end snapshot Wizards for SCL element Services IED [WithServices]: define a Services wizards Wizard 1 should look like snapshot */
 
-snapshots["Wizards for SCL element Services define a Services wizards  Wizard 2 should look like snapshot"] = 
+snapshots["Wizards for SCL element Services IED [WithServices]: define a Services wizards Wizard 2 should look like snapshot"] = 
 `<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
@@ -821,157 +839,9 @@ snapshots["Wizards for SCL element Services IED [WithServices]: define a Service
   </mwc-button>
 </mwc-dialog>
 `;
-
 /* end snapshot Wizards for SCL element Services IED [WithServices]: define a Services wizards Wizard 3 should look like snapshot */
-snapshots["Wizards for SCL element Services IED [WithServices]: define a Services wizards Wizard 4 should look like snapshot"] = 
-`<mwc-dialog
-  defaultaction="next"
-  heading="[wizard.title.edit]"
-  style="--mdc-dialog-min-width:calc(100% + 0px)"
->
-  <div id="wizard-content">
-    <wizard-divider>
-    </wizard-divider>
-    <wizard-checkbox
-      disabled=""
-      label="mms"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-checkbox
-      disabled=""
-      label="ftp"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-checkbox
-      disabled=""
-      label="ftps"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-divider>
-    </wizard-divider>
-    <wizard-checkbox
-      disabled=""
-      label="sntp"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-checkbox
-      disabled=""
-      label="iec61850_9_3"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-checkbox
-      disabled=""
-      label="c37_238"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-checkbox
-      disabled=""
-      label="other"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-divider>
-    </wizard-divider>
-    <wizard-checkbox
-      disabled=""
-      label="sntp"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-checkbox
-      disabled=""
-      label="iec61850_9_3"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-checkbox
-      disabled=""
-      label="c37_238"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-checkbox
-      disabled=""
-      label="other"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-divider>
-    </wizard-divider>
-    <wizard-checkbox
-      disabled=""
-      label="signature"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-checkbox
-      disabled=""
-      label="encryption"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-divider>
-    </wizard-divider>
-    <wizard-checkbox
-      disabled=""
-      label="hsr"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-checkbox
-      disabled=""
-      label="prp"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-checkbox
-      disabled=""
-      label="rstp"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-divider>
-    </wizard-divider>
-    <wizard-checkbox
-      disabled=""
-      label="ipv6"
-      nullable=""
-    >
-    </wizard-checkbox>
-  </div>
-  <mwc-button
-    dialogaction="prev"
-    icon="navigate_before"
-    label="[wizard.title.edit]"
-    slot="secondaryAction"
-  >
-  </mwc-button>
-  <mwc-button
-    dialogaction="close"
-    label="[close]"
-    slot="secondaryAction"
-    style="--mdc-theme-primary: var(--mdc-theme-error)"
-  >
-  </mwc-button>
-  <mwc-button
-    dialogaction="next"
-    icon="navigate_next"
-    label="[wizard.title.edit]"
-    slot="primaryAction"
-    trailingicon=""
-  >
-  </mwc-button>
-</mwc-dialog>
-`;
-/* end snapshot Wizards for SCL element Services define a Services wizards  Wizard 4 should look like snapshot */
 
-snapshots["Wizards for SCL element Services define a Services wizards  Wizard 5 should look like snapshot"] = 
+snapshots["Wizards for SCL element Services IED [WithServices]: define a Services wizards Wizard 4 should look like snapshot"] = 
 `<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
@@ -1621,8 +1491,15 @@ snapshots["Wizards for SCL element Services IED [WithServices]: AccessPoint wiza
   defaultaction="next"
   heading="[wizard.title.edit]"
   open=""
-  style="--mdc-dialog-min-width:calc(100% + 0px)"
+  style="--mdc-dialog-min-width:calc(100% + 48px)"
 >
+  <nav>
+    <mwc-icon-button-toggle
+      officon="code_off"
+      onicon="code"
+    >
+    </mwc-icon-button-toggle>
+  </nav>
   <div id="wizard-content">
     <wizard-divider>
     </wizard-divider>
@@ -1775,7 +1652,6 @@ snapshots["Wizards for SCL element Services IED [WithServices]: AccessPoint wiza
     <wizard-textfield
       disabled=""
       label="Max"
-      nullable=""
     >
     </wizard-textfield>
     <wizard-textfield
@@ -1827,156 +1703,16 @@ snapshots["Wizards for SCL element Services IED [WithServices2]: define a Servic
 `<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
-  style="--mdc-dialog-min-width:calc(100% + 0px)"
->
-  <div id="wizard-content">
-    <wizard-divider>
-    </wizard-divider>
-    <wizard-textfield
-      disabled=""
-      label="max"
-      nullable=""
-    >
-    </wizard-textfield>
-    <wizard-divider>
-    </wizard-divider>
-    <wizard-checkbox
-      disabled=""
-      label="GetDirectory"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-checkbox
-      disabled=""
-      label="GetDataObjectDefinition"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-checkbox
-      disabled=""
-      label="DataObjectDirectory"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-checkbox
-      disabled=""
-      label="GetDataSetValue"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-checkbox
-      disabled=""
-      label="SetDataSetValue"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-checkbox
-      disabled=""
-      label="SetDataSetDirectory"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-checkbox
-      disabled=""
-      label="ReadWrite"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-divider>
-    </wizard-divider>
-    <wizard-checkbox
-      disabled=""
-      label="ConfLdName"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-checkbox
-      disabled=""
-      label="supportsLdName"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-divider>
-    </wizard-divider>
-    <wizard-textfield
-      disabled=""
-      label="Max"
-      nullable=""
-    >
-    </wizard-textfield>
-    <wizard-textfield
-      disabled=""
-      label="Max attributes"
-      nullable=""
-    >
-    </wizard-textfield>
-    <wizard-checkbox
-      disabled=""
-      label="Modify"
-    >
-    </wizard-checkbox>
-    <wizard-divider>
-    </wizard-divider>
-    <wizard-checkbox
-      disabled=""
-      label="TimerActivatedControl"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-checkbox
-      disabled=""
-      label="GetCBValues"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-checkbox
-      disabled=""
-      label="GSEDir"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-divider>
-    </wizard-divider>
-    <wizard-checkbox
-      disabled=""
-      label="setToRO"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-divider>
-    </wizard-divider>
-    <wizard-textfield
-      disabled=""
-      label="max"
-      nullable=""
-    >
-    </wizard-textfield>
-  </div>
-  <mwc-button
-    dialogaction="prev"
-    icon="navigate_before"
-    label="[wizard.title.edit]"
-    slot="secondaryAction"
-  >
-  </mwc-button>
-  <mwc-button
-    dialogaction="close"
-    label="[close]"
-    slot="secondaryAction"
-    style="--mdc-theme-primary: var(--mdc-theme-error)"
-  >
-  </mwc-button>
-</mwc-dialog>
-`;
-/* end snapshot Wizards for SCL element Services IED [WithServices2]: define a Services wizards Wizard 1 should look like snapshot */
-
-snapshots["Wizards for SCL element Services IED [WithServices2]: define a Services wizards Wizard 2 should look like snapshot"] = 
-`<mwc-dialog
-  defaultaction="next"
-  heading="[wizard.title.edit]"
   open=""
-  style="--mdc-dialog-min-width:calc(100% + 0px)"
+  style="--mdc-dialog-min-width:calc(100% + 48px)"
 >
+  <nav>
+    <mwc-icon-button-toggle
+      officon="code_off"
+      onicon="code"
+    >
+    </mwc-icon-button-toggle>
+  </nav>
   <div id="wizard-content">
     <wizard-divider>
     </wizard-divider>
@@ -1988,13 +1724,15 @@ snapshots["Wizards for SCL element Services IED [WithServices2]: define a Servic
       <mwc-list-item
         aria-disabled="false"
         mwc-list-item=""
-        tabindex="-1"
+        role="option"
+        tabindex="0"
       >
         Conf
       </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
         mwc-list-item=""
+        role="option"
         tabindex="-1"
       >
         Fix
@@ -2006,15 +1744,20 @@ snapshots["Wizards for SCL element Services IED [WithServices2]: define a Servic
       nullable=""
     >
       <mwc-list-item
+        activated=""
         aria-disabled="false"
+        aria-selected="true"
         mwc-list-item=""
-        tabindex="-1"
+        role="option"
+        selected=""
+        tabindex="0"
       >
         Dyn
       </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
         mwc-list-item=""
+        role="option"
         tabindex="-1"
       >
         Conf
@@ -2022,6 +1765,7 @@ snapshots["Wizards for SCL element Services IED [WithServices2]: define a Servic
       <mwc-list-item
         aria-disabled="false"
         mwc-list-item=""
+        role="option"
         tabindex="-1"
       >
         Fix
@@ -2033,15 +1777,20 @@ snapshots["Wizards for SCL element Services IED [WithServices2]: define a Servic
       nullable=""
     >
       <mwc-list-item
+        activated=""
         aria-disabled="false"
+        aria-selected="true"
         mwc-list-item=""
-        tabindex="-1"
+        role="option"
+        selected=""
+        tabindex="0"
       >
         Dyn
       </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
         mwc-list-item=""
+        role="option"
         tabindex="-1"
       >
         Conf
@@ -2049,6 +1798,7 @@ snapshots["Wizards for SCL element Services IED [WithServices2]: define a Servic
       <mwc-list-item
         aria-disabled="false"
         mwc-list-item=""
+        role="option"
         tabindex="-1"
       >
         Fix
@@ -2060,15 +1810,20 @@ snapshots["Wizards for SCL element Services IED [WithServices2]: define a Servic
       nullable=""
     >
       <mwc-list-item
+        activated=""
         aria-disabled="false"
+        aria-selected="true"
         mwc-list-item=""
-        tabindex="-1"
+        role="option"
+        selected=""
+        tabindex="0"
       >
         Dyn
       </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
         mwc-list-item=""
+        role="option"
         tabindex="-1"
       >
         Conf
@@ -2076,6 +1831,7 @@ snapshots["Wizards for SCL element Services IED [WithServices2]: define a Servic
       <mwc-list-item
         aria-disabled="false"
         mwc-list-item=""
+        role="option"
         tabindex="-1"
       >
         Fix
@@ -2087,15 +1843,20 @@ snapshots["Wizards for SCL element Services IED [WithServices2]: define a Servic
       nullable=""
     >
       <mwc-list-item
+        activated=""
         aria-disabled="false"
+        aria-selected="true"
         mwc-list-item=""
-        tabindex="-1"
+        role="option"
+        selected=""
+        tabindex="0"
       >
         Dyn
       </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
         mwc-list-item=""
+        role="option"
         tabindex="-1"
       >
         Conf
@@ -2103,6 +1864,7 @@ snapshots["Wizards for SCL element Services IED [WithServices2]: define a Servic
       <mwc-list-item
         aria-disabled="false"
         mwc-list-item=""
+        role="option"
         tabindex="-1"
       >
         Fix
@@ -2126,7 +1888,307 @@ snapshots["Wizards for SCL element Services IED [WithServices2]: define a Servic
     </wizard-checkbox>
     <wizard-divider>
     </wizard-divider>
+    <wizard-textfield
+      disabled=""
+      label="Max"
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      label="Max attributes"
+      nullable=""
+    >
+    </wizard-textfield>
     <wizard-checkbox
+      disabled=""
+      label="Modify"
+    >
+    </wizard-checkbox>
+    <wizard-divider>
+    </wizard-divider>
+    <wizard-checkbox
+      disabled=""
+      label="SGEdit"
+      nullable=""
+    >
+    </wizard-checkbox>
+    <wizard-checkbox
+      disabled=""
+      label="ConfSG"
+      nullable=""
+    >
+    </wizard-checkbox>
+  </div>
+  <mwc-button
+    dialogaction="close"
+    label="[close]"
+    slot="secondaryAction"
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+  </mwc-button>
+  <mwc-button
+    dialogaction="next"
+    icon="navigate_next"
+    label="[wizard.title.edit]"
+    slot="primaryAction"
+    trailingicon=""
+  >
+  </mwc-button>
+</mwc-dialog>
+`;
+/* end snapshot Wizards for SCL element Services IED [WithServices2]: define a Services wizards Wizard 1 should look like snapshot */
+
+snapshots["Wizards for SCL element Services IED [WithServices2]: define a Services wizards Wizard 2 should look like snapshot"] = 
+`<mwc-dialog
+  defaultaction="next"
+  heading="[wizard.title.edit]"
+  style="--mdc-dialog-min-width:calc(100% + 48px)"
+>
+  <nav>
+    <mwc-icon-button-toggle
+      officon="code_off"
+      onicon="code"
+    >
+    </mwc-icon-button-toggle>
+  </nav>
+  <div id="wizard-content">
+    <wizard-divider>
+    </wizard-divider>
+    <wizard-select
+      disabled=""
+      label="cbName"
+      nullable=""
+    >
+      <mwc-list-item
+        activated=""
+        aria-disabled="false"
+        aria-selected="true"
+        mwc-list-item=""
+        role="option"
+        selected=""
+        tabindex="0"
+      >
+        Conf
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+      >
+        Fix
+      </mwc-list-item>
+    </wizard-select>
+    <wizard-select
+      disabled=""
+      label="datSet"
+      nullable=""
+    >
+      <mwc-list-item
+        activated=""
+        aria-disabled="false"
+        aria-selected="true"
+        mwc-list-item=""
+        role="option"
+        selected=""
+        tabindex="0"
+      >
+        Dyn
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+      >
+        Conf
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+      >
+        Fix
+      </mwc-list-item>
+    </wizard-select>
+    <wizard-select
+      disabled=""
+      label="rptID"
+      nullable=""
+    >
+      <mwc-list-item
+        activated=""
+        aria-disabled="false"
+        aria-selected="true"
+        mwc-list-item=""
+        role="option"
+        selected=""
+        tabindex="0"
+      >
+        Dyn
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+      >
+        Conf
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+      >
+        Fix
+      </mwc-list-item>
+    </wizard-select>
+    <wizard-select
+      disabled=""
+      label="optFields"
+      nullable=""
+    >
+      <mwc-list-item
+        activated=""
+        aria-disabled="false"
+        aria-selected="true"
+        mwc-list-item=""
+        role="option"
+        selected=""
+        tabindex="0"
+      >
+        Dyn
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+      >
+        Conf
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+      >
+        Fix
+      </mwc-list-item>
+    </wizard-select>
+    <wizard-select
+      disabled=""
+      label="bufTime"
+      nullable=""
+    >
+      <mwc-list-item
+        activated=""
+        aria-disabled="false"
+        aria-selected="true"
+        mwc-list-item=""
+        role="option"
+        selected=""
+        tabindex="0"
+      >
+        Dyn
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+      >
+        Conf
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+      >
+        Fix
+      </mwc-list-item>
+    </wizard-select>
+    <wizard-select
+      disabled=""
+      label="trgOps"
+      nullable=""
+    >
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="0"
+      >
+        Dyn
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+      >
+        Conf
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+      >
+        Fix
+      </mwc-list-item>
+    </wizard-select>
+    <wizard-select
+      disabled=""
+      label="intgPd"
+      nullable=""
+    >
+      <mwc-list-item
+        activated=""
+        aria-disabled="false"
+        aria-selected="true"
+        mwc-list-item=""
+        role="option"
+        selected=""
+        tabindex="0"
+      >
+        Dyn
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+      >
+        Conf
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+      >
+        Fix
+      </mwc-list-item>
+    </wizard-select>
+    <wizard-checkbox
+      disabled=""
+      label="resvTms"
+      nullable=""
+    >
+    </wizard-checkbox>
+    <wizard-checkbox
+      disabled=""
+      label="owner"
+      nullable=""
+    >
+    </wizard-checkbox>
+    <wizard-divider>
+    </wizard-divider>
+    <wizard-textfield
       disabled=""
       label="max"
       nullable=""
@@ -2245,8 +2307,15 @@ snapshots["Wizards for SCL element Services IED [WithServices2]: define a Servic
 `<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
-  style="--mdc-dialog-min-width:calc(100% + 0px)"
+  style="--mdc-dialog-min-width:calc(100% + 48px)"
 >
+  <nav>
+    <mwc-icon-button-toggle
+      officon="code_off"
+      onicon="code"
+    >
+    </mwc-icon-button-toggle>
+  </nav>
   <div id="wizard-content">
     <wizard-divider>
     </wizard-divider>
@@ -2495,8 +2564,15 @@ snapshots["Wizards for SCL element Services IED [WithServices2]: define a Servic
 `<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
-  style="--mdc-dialog-min-width:calc(100% + 0px)"
+  style="--mdc-dialog-min-width:calc(100% + 48px)"
 >
+  <nav>
+    <mwc-icon-button-toggle
+      officon="code_off"
+      onicon="code"
+    >
+    </mwc-icon-button-toggle>
+  </nav>
   <div id="wizard-content">
     <wizard-divider>
     </wizard-divider>
@@ -2643,8 +2719,15 @@ snapshots["Wizards for SCL element Services IED [WithServices2]: define a Servic
 `<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
-  style="--mdc-dialog-min-width:calc(100% + 0px)"
+  style="--mdc-dialog-min-width:calc(100% + 48px)"
 >
+  <nav>
+    <mwc-icon-button-toggle
+      officon="code_off"
+      onicon="code"
+    >
+    </mwc-icon-button-toggle>
+  </nav>
   <div id="wizard-content">
     <wizard-divider>
     </wizard-divider>
@@ -3002,452 +3085,19 @@ snapshots["Wizards for SCL element Services IED [WithServices2]: define a Servic
 `;
 /* end snapshot Wizards for SCL element Services IED [WithServices2]: define a Services wizards Wizard 5 should look like snapshot */
 
-snapshots["Wizards for SCL element Services IED [WithServices2]: AccessPoint wizards for Scl element Services should look like snapshot"] = 
-`<mwc-dialog
-  defaultaction="next"
-  heading="[wizard.title.edit]"
-  open=""
-  style="--mdc-dialog-min-width:calc(100% + 0px)"
->
-  <div id="wizard-content">
-    <wizard-divider>
-    </wizard-divider>
-    <wizard-select
-      disabled=""
-      label="cbName"
-      nullable=""
-    >
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        Conf
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        Fix
-      </mwc-list-item>
-    </wizard-select>
-    <wizard-select
-      disabled=""
-      label="datSet"
-      nullable=""
-    >
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        Dyn
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        Conf
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        Fix
-      </mwc-list-item>
-    </wizard-select>
-    <wizard-select
-      disabled=""
-      label="logEna"
-      nullable=""
-    >
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        Dyn
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        Conf
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        Fix
-      </mwc-list-item>
-    </wizard-select>
-    <wizard-select
-      disabled=""
-      label="trgOps"
-      nullable=""
-    >
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        Dyn
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        Conf
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        Fix
-      </mwc-list-item>
-    </wizard-select>
-    <wizard-select
-      disabled=""
-      label="intgPd"
-      nullable=""
-    >
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        Dyn
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        Conf
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        Fix
-      </mwc-list-item>
-    </wizard-select>
-    <wizard-divider>
-    </wizard-divider>
-    <wizard-textfield
-      disabled=""
-      label="Max"
-      required=""
-    >
-    </wizard-textfield>
-    <wizard-divider>
-    </wizard-divider>
-    <wizard-checkbox
-      disabled=""
-      label="read Log"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-divider>
-    </wizard-divider>
-    <wizard-textfield
-      disabled=""
-      label="Max"
-      nullable=""
-    >
-    </wizard-textfield>
-    <wizard-textfield
-      disabled=""
-      label="Max attributes"
-      nullable=""
-    >
-    </wizard-textfield>
-    <wizard-checkbox
-      disabled=""
-      label="Modify"
-    >
-    </wizard-checkbox>
-    <wizard-divider>
-    </wizard-divider>
-    <wizard-checkbox
-      disabled=""
-      label="SGEdit"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-checkbox
-      disabled=""
-      label="ConfSG"
-      nullable=""
-    >
-    </wizard-checkbox>
-  </div>
-  <mwc-button
-    dialogaction="close"
-    label="[close]"
-    slot="secondaryAction"
-    style="--mdc-theme-primary: var(--mdc-theme-error)"
-  >
-  </mwc-button>
-  <mwc-button
-    dialogaction="next"
-    icon="navigate_next"
-    label="[wizard.title.edit]"
-    slot="primaryAction"
-    trailingicon=""
-  >
-  </mwc-button>
-</mwc-dialog>
-`;
-/* end snapshot Wizards for SCL element Services IED [WithServices2]: AccessPoint wizards for Scl element Services should look like snapshot */
-
-snapshots["Wizards for SCL element Services IED [WithServices]: define a Services wizards Wizard 1 should look like snapshot"] = 
-`<mwc-dialog
-  defaultaction="next"
-  heading="[wizard.title.edit]"
-  open=""
-  style="--mdc-dialog-min-width:calc(100% + 0px)"
->
-  <div id="wizard-content">
-    <wizard-divider>
-    </wizard-divider>
-    <wizard-select
-      disabled=""
-      label="cbName"
-      nullable=""
-    >
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="0"
-      >
-        Conf
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-      >
-        Fix
-      </mwc-list-item>
-    </wizard-select>
-    <wizard-select
-      disabled=""
-      label="datSet"
-      nullable=""
-    >
-      <mwc-list-item
-        activated=""
-        aria-disabled="false"
-        aria-selected="true"
-        mwc-list-item=""
-        role="option"
-        selected=""
-        tabindex="0"
-      >
-        Dyn
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-      >
-        Conf
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-      >
-        Fix
-      </mwc-list-item>
-    </wizard-select>
-    <wizard-select
-      disabled=""
-      label="logEna"
-      nullable=""
-    >
-      <mwc-list-item
-        activated=""
-        aria-disabled="false"
-        aria-selected="true"
-        mwc-list-item=""
-        role="option"
-        selected=""
-        tabindex="0"
-      >
-        Dyn
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-      >
-        Conf
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-      >
-        Fix
-      </mwc-list-item>
-    </wizard-select>
-    <wizard-select
-      disabled=""
-      label="trgOps"
-      nullable=""
-    >
-      <mwc-list-item
-        activated=""
-        aria-disabled="false"
-        aria-selected="true"
-        mwc-list-item=""
-        role="option"
-        selected=""
-        tabindex="0"
-      >
-        Dyn
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-      >
-        Conf
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-      >
-        Fix
-      </mwc-list-item>
-    </wizard-select>
-    <wizard-select
-      disabled=""
-      label="intgPd"
-      nullable=""
-    >
-      <mwc-list-item
-        activated=""
-        aria-disabled="false"
-        aria-selected="true"
-        mwc-list-item=""
-        role="option"
-        selected=""
-        tabindex="0"
-      >
-        Dyn
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-      >
-        Conf
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-      >
-        Fix
-      </mwc-list-item>
-    </wizard-select>
-    <wizard-divider>
-    </wizard-divider>
-    <wizard-textfield
-      disabled=""
-      label="Max"
-      required=""
-    >
-    </wizard-textfield>
-    <wizard-divider>
-    </wizard-divider>
-    <wizard-checkbox
-      disabled=""
-      label="read Log"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-divider>
-    </wizard-divider>
-    <wizard-textfield
-      disabled=""
-      label="Max"
-      nullable=""
-    >
-    </wizard-textfield>
-    <wizard-textfield
-      disabled=""
-      label="Max attributes"
-      nullable=""
-    >
-    </wizard-textfield>
-    <wizard-checkbox
-      disabled=""
-      label="Modify"
-    >
-    </wizard-checkbox>
-    <wizard-divider>
-    </wizard-divider>
-    <wizard-checkbox
-      disabled=""
-      label="SGEdit"
-      nullable=""
-    >
-    </wizard-checkbox>
-    <wizard-checkbox
-      disabled=""
-      label="ConfSG"
-      nullable=""
-    >
-    </wizard-checkbox>
-  </div>
-  <mwc-button
-    dialogaction="close"
-    label="[close]"
-    slot="secondaryAction"
-    style="--mdc-theme-primary: var(--mdc-theme-error)"
-  >
-  </mwc-button>
-  <mwc-button
-    dialogaction="next"
-    icon="navigate_next"
-    label="[wizard.title.edit]"
-    slot="primaryAction"
-    trailingicon=""
-  >
-  </mwc-button>
-</mwc-dialog>
-`;
-/* end snapshot Wizards for SCL element Services IED [WithServices]: define a Services wizards Wizard 1 should look like snapshot */
-
 snapshots["Wizards for SCL element Services IED [WithServices2]: define a Services wizards Wizard 6 should look like snapshot"] = 
 `<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
-  style="--mdc-dialog-min-width:calc(100% + 0px)"
+  style="--mdc-dialog-min-width:calc(100% + 48px)"
 >
+  <nav>
+    <mwc-icon-button-toggle
+      officon="code_off"
+      onicon="code"
+    >
+    </mwc-icon-button-toggle>
+  </nav>
   <div id="wizard-content">
     <wizard-divider>
     </wizard-divider>
@@ -3575,4 +3225,217 @@ snapshots["Wizards for SCL element Services IED [WithServices2]: define a Servic
 </mwc-dialog>
 `;
 /* end snapshot Wizards for SCL element Services IED [WithServices2]: define a Services wizards Wizard 6 should look like snapshot */
+
+snapshots["Wizards for SCL element Services IED [WithServices2]: AccessPoint wizards for Scl element Services should look like snapshot"] = 
+`<mwc-dialog
+  defaultaction="next"
+  heading="[wizard.title.edit]"
+  open=""
+  style="--mdc-dialog-min-width:calc(100% + 48px)"
+>
+  <nav>
+    <mwc-icon-button-toggle
+      officon="code_off"
+      onicon="code"
+    >
+    </mwc-icon-button-toggle>
+  </nav>
+  <div id="wizard-content">
+    <wizard-divider>
+    </wizard-divider>
+    <wizard-select
+      disabled=""
+      label="cbName"
+      nullable=""
+    >
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        Conf
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        Fix
+      </mwc-list-item>
+    </wizard-select>
+    <wizard-select
+      disabled=""
+      label="datSet"
+      nullable=""
+    >
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        Dyn
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        Conf
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        Fix
+      </mwc-list-item>
+    </wizard-select>
+    <wizard-select
+      disabled=""
+      label="logEna"
+      nullable=""
+    >
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        Dyn
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        Conf
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        Fix
+      </mwc-list-item>
+    </wizard-select>
+    <wizard-select
+      disabled=""
+      label="trgOps"
+      nullable=""
+    >
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        Dyn
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        Conf
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        Fix
+      </mwc-list-item>
+    </wizard-select>
+    <wizard-select
+      disabled=""
+      label="intgPd"
+      nullable=""
+    >
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        Dyn
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        Conf
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        Fix
+      </mwc-list-item>
+    </wizard-select>
+    <wizard-divider>
+    </wizard-divider>
+    <wizard-textfield
+      disabled=""
+      label="Max"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-divider>
+    </wizard-divider>
+    <wizard-checkbox
+      disabled=""
+      label="read Log"
+      nullable=""
+    >
+    </wizard-checkbox>
+    <wizard-divider>
+    </wizard-divider>
+    <wizard-textfield
+      disabled=""
+      label="Max"
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      label="Max attributes"
+      nullable=""
+    >
+    </wizard-textfield>
+    <wizard-checkbox
+      disabled=""
+      label="Modify"
+    >
+    </wizard-checkbox>
+    <wizard-divider>
+    </wizard-divider>
+    <wizard-checkbox
+      disabled=""
+      label="SGEdit"
+      nullable=""
+    >
+    </wizard-checkbox>
+    <wizard-checkbox
+      disabled=""
+      label="ConfSG"
+      nullable=""
+    >
+    </wizard-checkbox>
+  </div>
+  <mwc-button
+    dialogaction="close"
+    label="[close]"
+    slot="secondaryAction"
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+  </mwc-button>
+  <mwc-button
+    dialogaction="next"
+    icon="navigate_next"
+    label="[wizard.title.edit]"
+    slot="primaryAction"
+    trailingicon=""
+  >
+  </mwc-button>
+</mwc-dialog>
+`;
+/* end snapshot Wizards for SCL element Services IED [WithServices2]: AccessPoint wizards for Scl element Services should look like snapshot */
 
