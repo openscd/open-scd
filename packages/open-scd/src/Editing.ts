@@ -141,12 +141,12 @@ export type EditingElement = Mixin<typeof Editing>;
  * applying [[`EditorActionEvent`]]s and dispatching [[`LogEvent`]]s. */
 export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
   class EditingElement extends Base {
-    /** The `XMLDocument` to be edited */
-    @state()
-    /** The `XMLDocument` currently being edited */
-    get doc(): XMLDocument {
-      return this.docs[this.docName];
-    }
+    /**
+     * The `XMLDocument` to be edited
+     * @deprecated
+     */
+    @property()
+    doc: XMLDocument;
 
     /** The name of the current [[`doc`]] */
     @property({ type: String }) docName = '';
@@ -185,6 +185,7 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
     handleOpenDoc({ detail: { docName, doc } }: OpenEvent) {
       this.docName = docName;
       this.docs[this.docName] = doc;
+      this.doc = doc;
 
       this.dispatchEvent(newValidateEvent());
 
@@ -610,6 +611,7 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       this.docName = event.detail.docName;
       this.docs[this.docName] = event.detail.doc;
       this.docId = event.detail.docId ?? '';
+      this.doc = event.detail.doc;
 
       await this.updateComplete;
 
