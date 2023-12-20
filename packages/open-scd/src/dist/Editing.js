@@ -389,6 +389,10 @@ function Editing(Base) {
                 });
             });
         };
+        /**
+         *
+         * @deprecated [Move to handleOpenDoc instead]
+         */
         EditingElement.prototype.onOpenDoc = function (event) {
             var _a;
             return __awaiter(this, void 0, void 0, function () {

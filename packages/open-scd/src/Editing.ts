@@ -429,6 +429,10 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       this.dispatchEvent(newValidateEvent());
     }
 
+    /**
+     *
+     * @deprecated [Move to handleOpenDoc instead]
+     */
     private async onOpenDoc(event: OpenDocEvent) {
       this.doc = event.detail.doc;
       this.docName = event.detail.docName;
