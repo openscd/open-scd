@@ -188,7 +188,8 @@ export function createAddressesWizard(
   doElement: Element
 ): Wizard {
   const foundCdc = getCdcValueFromDOElement(doElement) ?? '';
-  const cdc = foundCdc === 'WYE' || foundCdc === 'DEL' ? 'CMV' : foundCdc;
+  const reqCmvMapping = foundCdc === 'WYE' || foundCdc === 'DEL';
+  const cdc = reqCmvMapping ? 'CMV' : foundCdc;
   const cdcProcessing = cdcProcessings[<SupportedCdcType>foundCdc];
 
   const monitorTis = Object.keys(cdcProcessing.monitor);
@@ -240,7 +241,11 @@ export function createAddressesWizard(
       </wizard-textfield>`,
       html`<wizard-textfield
         label="Common Data Class"
-        .maybeValue=${cdc}
+        .maybeValue="${cdc}"
+        .helper="${reqCmvMapping
+          ? translate('protocol104.mappedCmv', { cdc: foundCdc })
+          : ''}"
+        .helperPersistent="${reqCmvMapping}"
         disabled
         readonly
       >

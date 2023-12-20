@@ -203,12 +203,12 @@ describe('Wizards for 104 Address Element', () => {
         'IED[name="B1"] LN[lnType="SE_MMXU_SET_V001"] DOI[name="PPV"] DAI[name="f"] Address'
       );
     });
-    it('should have mappedCmv translation value', async () => {
+    it('should have mappedCmv translation value in helper field', async () => {
       const cdc = element.wizardUI.dialog!.querySelector(
         'wizard-textfield[label="cdc"]'
       ) as WizardTextField;
       expect(cdc).to.exist;
-      await expect(cdc.maybeValue).to.equal('[protocol104.mappedCmv]');
+      await expect(cdc.helper).to.equal('[protocol104.mappedCmv]');
     });
   });
 

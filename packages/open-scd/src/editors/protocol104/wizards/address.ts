@@ -148,9 +148,11 @@ export function editAddressWizard(
       </mwc-textarea>`,
       html`<wizard-textfield
         label="cdc"
-        .maybeValue="${reqCmvMapping
-          ? translate('protocol104.mappedCmv')
-          : foundCdc}"
+        .maybeValue="${cdc}"
+        .helper="${reqCmvMapping
+          ? translate('protocol104.mappedCmv', { cdc: foundCdc })
+          : ''}"
+        .helperPersistent="${reqCmvMapping}"
         disabled
         readonly
       >

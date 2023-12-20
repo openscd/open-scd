@@ -452,7 +452,7 @@ export const de: Translations = {
       networkView: 'Netzwerk',
     },
     mappedCmv:
-      'CMV (gemäß dem IEC 61850-80-1 Standard ist eine WYE zuordnung über CMV erforderlich)',
+      'Gemäß dem IEC 61850-80-1 Standard ist eine "{{ cdc }}" zuordnung über CMV erforderlich',
     values: {
       missing: 'Kein IED mit 104 Adressen',
       removeAddresses: 'Alle Adressen entfernen',

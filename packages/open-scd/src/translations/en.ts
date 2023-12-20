@@ -448,7 +448,7 @@ export const en = {
       networkView: 'Network',
     },
     mappedCmv:
-      'CMV (according to the IEC 61850-80-1 standard, WYE mapping is required via CMV)',
+      'According to the IEC 61850-80-1 standard, "{{ cdc }}" mapping is required via CMV',
     values: {
       missing: 'No IED with 104 Addresses',
       removeAddresses: 'Remove all Addresses',
