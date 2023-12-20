@@ -243,6 +243,16 @@ export function Plugging<
       return navigator.language || 'en-US';
     }
 
+    get docs(): Record<string, XMLDocument> {
+      const docs: Record<string, XMLDocument> = {};
+
+      if (this.doc) {
+        docs[this.docName] = this.doc;
+      }
+
+      return docs;
+    }
+
     private setPlugins(indices: Set<number>) {
       const newPlugins = this.plugins.map((plugin, index) => {
         return { ...plugin, installed: indices.has(index) };

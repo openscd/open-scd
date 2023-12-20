@@ -1,4 +1,5 @@
-import { property, state } from 'lit-element';
+import { OpenEvent } from '@openscd/core';
+import { property } from 'lit-element';
 import { get } from 'lit-translate';
 
 import {
@@ -25,114 +26,6 @@ import {
   isUpdate,
 } from './foundation.js';
 
-import {
-  AttributeValue,
-  Edit,
-  EditEvent,
-  Insert,
-  isComplex,
-  isInsert,
-  isNamespaced,
-  isRemove,
-  isUpdate as isUpdateV2,
-  OpenEvent,
-  Remove,
-  Update as UpdateV2,
-} from '@openscd/core';
-
-function localAttributeName(attribute: string): string {
-  return attribute.includes(':') ? attribute.split(':', 2)[1] : attribute;
-}
-
-function handleInsert({
-  parent,
-  node,
-  reference,
-}: Insert): Insert | Remove | [] {
-  try {
-    const { parentNode, nextSibling } = node;
-    parent.insertBefore(node, reference);
-    if (parentNode)
-      return {
-        node,
-        parent: parentNode,
-        reference: nextSibling,
-      };
-    return { node };
-  } catch (e) {
-    // do nothing if insert doesn't work on these nodes
-    return [];
-  }
-}
-
-function handleUpdate({ element, attributes }: UpdateV2): UpdateV2 {
-  const oldAttributes = { ...attributes };
-  Object.entries(attributes)
-    .reverse()
-    .forEach(([name, value]) => {
-      let oldAttribute: AttributeValue;
-      if (isNamespaced(value!))
-        oldAttribute = {
-          value: element.getAttributeNS(
-            value.namespaceURI,
-            localAttributeName(name)
-          ),
-          namespaceURI: value.namespaceURI,
-        };
-      else
-        oldAttribute = element.getAttributeNode(name)?.namespaceURI
-          ? {
-              value: element.getAttribute(name),
-              namespaceURI: element.getAttributeNode(name)!.namespaceURI!,
-            }
-          : element.getAttribute(name);
-      oldAttributes[name] = oldAttribute;
-    });
-  for (const entry of Object.entries(attributes)) {
-    try {
-      const [attribute, value] = entry as [string, AttributeValue];
-      if (isNamespaced(value)) {
-        if (value.value === null)
-          element.removeAttributeNS(
-            value.namespaceURI,
-            localAttributeName(attribute)
-          );
-        else element.setAttributeNS(value.namespaceURI, attribute, value.value);
-      } else if (value === null) element.removeAttribute(attribute);
-      else element.setAttribute(attribute, value);
-    } catch (e) {
-      // do nothing if update doesn't work on this attribute
-      delete oldAttributes[entry[0]];
-    }
-  }
-  return {
-    element,
-    attributes: oldAttributes,
-  };
-}
-
-function handleRemove({ node }: Remove): Insert | [] {
-  const { parentNode: parent, nextSibling: reference } = node;
-  node.parentNode?.removeChild(node);
-  if (parent)
-    return {
-      node,
-      parent,
-      reference,
-    };
-  return [];
-}
-
-function handleEdit(edit: Edit): Edit {
-  if (isInsert(edit)) return handleInsert(edit);
-  if (isUpdateV2(edit)) return handleUpdate(edit);
-  if (isRemove(edit)) return handleRemove(edit);
-  if (isComplex(edit)) return edit.map(handleEdit).reverse();
-  return [];
-}
-
-export type LogEntry = { undo: Edit; redo: Edit };
-
 /** Mixin that edits an `XML` `doc`, listening to [[`EditorActionEvent`]]s */
 export type EditingElement = Mixin<typeof Editing>;
 
@@ -141,84 +34,13 @@ export type EditingElement = Mixin<typeof Editing>;
  * applying [[`EditorActionEvent`]]s and dispatching [[`LogEvent`]]s. */
 export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
   class EditingElement extends Base {
-    /**
-     * The `XMLDocument` to be edited
-     * @deprecated
-     */
-    @property()
-    doc: XMLDocument;
-
+    /** The `XMLDocument` to be edited */
+    @property({ attribute: false })
+    doc: XMLDocument | null = null;
     /** The name of the current [[`doc`]] */
     @property({ type: String }) docName = '';
     /** The UUID of the current [[`doc`]] */
     @property({ type: String }) docId = '';
-
-    @state()
-    history: LogEntry[] = [];
-
-    @state()
-    editCount: number = 0;
-
-    @state()
-    get last(): number {
-      return this.editCount - 1;
-    }
-
-    @state()
-    get canUndo(): boolean {
-      return this.last >= 0;
-    }
-
-    @state()
-    get canRedo(): boolean {
-      return this.editCount < this.history.length;
-    }
-
-    /**
-     * The set of `XMLDocument`s currently loaded
-     *
-     * @prop {Record} docs - Record of loaded XML documents
-     */
-    @state()
-    docs: Record<string, XMLDocument> = {};
-
-    handleOpenDoc({ detail: { docName, doc } }: OpenEvent) {
-      this.docName = docName;
-      this.docs[this.docName] = doc;
-      this.doc = doc;
-
-      this.dispatchEvent(newValidateEvent());
-
-      this.dispatchEvent(
-        newLogEvent({
-          kind: 'info',
-          title: get('openSCD.loaded', { name: this.docName }),
-        })
-      );
-    }
-
-    handleEditEvent(event: EditEvent) {
-      const edit = event.detail;
-      this.history.splice(this.editCount);
-      this.history.push({ undo: handleEdit(edit), redo: edit });
-      this.editCount += 1;
-    }
-
-    /** Undo the last `n` [[Edit]]s committed */
-    undo(n = 1) {
-      if (!this.canUndo || n < 1) return;
-      handleEdit(this.history[this.last!].undo);
-      this.editCount -= 1;
-      if (n > 1) this.undo(n - 1);
-    }
-
-    /** Redo the last `n` [[Edit]]s that have been undone */
-    redo(n = 1) {
-      if (!this.canRedo || n < 1) return;
-      handleEdit(this.history[this.editCount].redo);
-      this.editCount += 1;
-      if (n > 1) this.redo(n - 1);
-    }
 
     private checkCreateValidity(create: Create): boolean {
       if (create.checkValidity !== undefined) return create.checkValidity();
@@ -608,10 +430,9 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     private async onOpenDoc(event: OpenDocEvent) {
-      this.docName = event.detail.docName;
-      this.docs[this.docName] = event.detail.doc;
-      this.docId = event.detail.docId ?? '';
       this.doc = event.detail.doc;
+      this.docName = event.detail.docName;
+      this.docId = event.detail.docId ?? '';
 
       await this.updateComplete;
 
@@ -625,13 +446,17 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       );
     }
 
+    handleOpenDoc({ detail: { docName, doc } }: OpenEvent) {
+      this.doc = doc;
+      this.docName = docName;
+    }
+
     constructor(...args: any[]) {
       super(...args);
 
       this.addEventListener('editor-action', this.onAction);
       this.addEventListener('open-doc', this.onOpenDoc);
       this.addEventListener('oscd-open', this.handleOpenDoc);
-      this.addEventListener('oscd-edit', event => this.handleEditEvent(event));
     }
   }
 

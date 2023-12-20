@@ -53,6 +53,23 @@ snapshots["open-scd looks like its snapshot"] =
     <oscd-plugin679d81826289fb9a class="menu plugin">
     </oscd-plugin679d81826289fb9a>
     <mwc-list-item
+      aria-disabled="false"
+      class="top"
+      graphic="icon"
+      iconid="folder_open"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        folder_open
+      </mwc-icon>
+      <span>
+        OSCD Open
+      </span>
+    </mwc-list-item>
+    <oscd-plugina5597fe7cfa46aab class="menu plugin">
+    </oscd-plugina5597fe7cfa46aab>
+    <mwc-list-item
       aria-disabled="true"
       class="top"
       disabled=""
@@ -347,6 +364,14 @@ snapshots["open-scd looks like its snapshot"] =
   >
     <div class="landing_label">
       New project
+    </div>
+  </mwc-icon-button>
+  <mwc-icon-button
+    class="landing_icon"
+    icon="folder_open"
+  >
+    <div class="landing_label">
+      OSCD Open
     </div>
   </mwc-icon-button>
 </div>
@@ -831,6 +856,22 @@ snapshots["open-scd looks like its snapshot"] =
         create_new_folder
       </mwc-icon>
       New project
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="https://openscd.github.io/oscd-open/oscd-open.js"
+    >
+      <mwc-icon slot="meta">
+        folder_open
+      </mwc-icon>
+      OSCD Open
     </mwc-check-list-item>
     <mwc-check-list-item
       aria-disabled="false"
