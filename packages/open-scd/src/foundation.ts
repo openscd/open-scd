@@ -176,7 +176,10 @@ export type WizardInputElement =
   | TextField
   | (AceEditor & {
       checkValidity: () => boolean;
-      validityTransform: (newValue: string, nativeValidity: ValidityState) => ValidityState;
+      validityTransform: (
+        newValue: string,
+        nativeValidity: ValidityState
+      ) => ValidityState;
       validationMessage: string;
       validity: ValidityState;
       label: string;
@@ -511,6 +514,16 @@ export function getSclSchemaVersion(doc: Document): SclEdition {
  */
 export function getNameAttribute(element: Element): string | undefined {
   const name = element.getAttribute('name');
+  return name ? name : undefined;
+}
+
+/**
+ * Extract the 'ldName' attribute from the given XML element.
+ * @param element - The element to extract ldName from.
+ * @returns the ldName, or undefined if there is no ldName.
+ */
+export function getLdNameAttribute(element: Element): string | undefined {
+  const name = element.getAttribute('ldName');
   return name ? name : undefined;
 }
 
@@ -1559,7 +1572,7 @@ const sCLTags = [
   'SecPerSamples',
 ] as const;
 
-export type SCLTag = typeof sCLTags[number];
+export type SCLTag = (typeof sCLTags)[number];
 
 const tagSet = new Set<string>(sCLTags);
 

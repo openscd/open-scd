@@ -259,6 +259,15 @@ export const en = {
       deleteied: 'Removed IED "{{name}}"',
     },
   },
+  ldevice: {
+    wizard: {
+      nameHelper: 'Logical device name',
+      descHelper: 'Logical device description',
+      title: {
+        edit: 'Edit logical device',
+      },
+    },
+  },
   powertransformer: {
     wizard: {
       nameHelper: 'Power transformer name',
