@@ -43,8 +43,8 @@ describe('Wizards for SCL element Services', () => {
       });
 
       [0, 1, 2, 3, 4, 5].forEach(idx => {
-        it(`Wizard ${idx + 1} should look like snapshot`, () => {
-          expect(element.wizardUI.dialogs[idx]).to.equalSnapshot();
+        it(`Wizard ${idx + 1} should look like snapshot`, async () => {
+          await expect(element.wizardUI.dialogs[idx]).to.equalSnapshot();
         });
       });
     });
@@ -90,8 +90,8 @@ describe('Wizards for SCL element Services', () => {
           await element.requestUpdate();
         });
 
-        it('should look like snapshot', () => {
-          expect(element.wizardUI.dialog).to.equalSnapshot();
+        it('should look like snapshot', async () => {
+          await expect(element.wizardUI.dialog).to.equalSnapshot();
         });
       });
     });
