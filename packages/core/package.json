@@ -12,8 +12,7 @@
         "./dist/**"
     ],
     "exports": {
-        ".": "./dist/foundation.js",
-        "./open-scd.js": "./dist/open-scd.js"
+        ".": "./dist/foundation.js"
     },
     "scripts": {
         "start": "npm run build && concurrently -k -r \"tsc -b --watch --preserveWatchOutput\" \"wds\"",

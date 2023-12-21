@@ -17,17 +17,9 @@ import {
 } from '../../../../src/editors/singlelinediagram/sld-drawing.js';
 
 function setCoordinates(element: Element, x: number, y: number): void {
-  element.setAttributeNS(
-    SCL_COORDINATES_NAMESPACE,
-    'x',
-    `${x}`
-  );
+  element.setAttributeNS(SCL_COORDINATES_NAMESPACE, 'x', `${x}`);
 
-  element.setAttributeNS(
-    SCL_COORDINATES_NAMESPACE,
-    'y',
-    `${y}`
-  );
+  element.setAttributeNS(SCL_COORDINATES_NAMESPACE, 'y', `${y}`);
 }
 
 describe('Single Line Diagram drawing', () => {
@@ -199,55 +191,55 @@ describe('Single Line Diagram drawing', () => {
   });
 
   describe('creates a group element for every given PowerTransformer element that', () => {
-    it('looks like its latest snapshot', () => {
+    it('looks like its latest snapshot', async () => {
       const pTrans = doc.querySelector('PowerTransformer')!;
-      expect(createPowerTransformerElement(pTrans)).to.equalSnapshot();
+      await expect(createPowerTransformerElement(pTrans)).to.equalSnapshot();
     });
   });
 
   describe('creates a group element for every given ConductingEquipment element that', () => {
-    it('looks like its latest snapshot', () => {
+    it('looks like its latest snapshot', async () => {
       const condEq = doc.querySelector('ConductingEquipment')!;
-      expect(createConductingEquipmentElement(condEq)).to.equalSnapshot();
+      await expect(createConductingEquipmentElement(condEq)).to.equalSnapshot();
     });
   });
 
   describe('creates a group element for every given VoltageLevel element that', () => {
-    it('looks like its latest snapshot', () => {
+    it('looks like its latest snapshot', async () => {
       const voltLv = doc.querySelector('VoltageLevel')!;
-      expect(createVoltageLevelElement(voltLv)).to.equalSnapshot();
+      await expect(createVoltageLevelElement(voltLv)).to.equalSnapshot();
     });
   });
 
   describe('creates a group element for every given Bus Bar element that', () => {
-    it('looks like its latest snapshot', () => {
+    it('looks like its latest snapshot', async () => {
       const busBar = doc.querySelector('Bay[name="BusBar A"]')!;
-      expect(createBusBarElement(busBar, 200)).to.equalSnapshot();
+      await expect(createBusBarElement(busBar, 200)).to.equalSnapshot();
     });
   });
 
   describe('creates a group element for every given Bay element that', () => {
-    it('looks like its latest snapshot', () => {
+    it('looks like its latest snapshot', async () => {
       const bay = doc.querySelector('Bay[name="Bay A"]')!;
-      expect(createBayElement(bay)).to.equalSnapshot();
+      await expect(createBayElement(bay)).to.equalSnapshot();
     });
   });
 
   describe('creates a group element for every given ConnectivityNode element that', () => {
-    it('looks like its latest snapshot', () => {
+    it('looks like its latest snapshot', async () => {
       const cNode = doc.querySelector(
         'Bay[name="Bay A"] > ConnectivityNode[name="L1"]'
       )!;
-      expect(createConnectivityNodeElement(cNode)).to.equalSnapshot();
+      await expect(createConnectivityNodeElement(cNode)).to.equalSnapshot();
     });
   });
 
   describe('creates a group element for every given Terminal element that', () => {
-    it('looks like its latest snapshot', () => {
+    it('looks like its latest snapshot', async () => {
       const terminal = doc.querySelector(
         'ConductingEquipment > Terminal[name="T2"]'
       )!;
-      expect(createTerminalElement(terminal, 'top')).to.equalSnapshot();
+      await expect(createTerminalElement(terminal, 'top')).to.equalSnapshot();
     });
   });
 });
