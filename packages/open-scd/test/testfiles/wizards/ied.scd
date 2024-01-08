@@ -118,6 +118,7 @@
 			<GOOSE max="1"/>
 			<GSSE max="0"/>
 			<ConfLNs fixPrefix="true" fixLnInst="true"/>
+			<ConfLdName></ConfLdName>
 		</Services>
 		<AccessPoint name="P1">
 			<Server>

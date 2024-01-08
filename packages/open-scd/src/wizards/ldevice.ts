@@ -75,7 +75,7 @@ function ldNameIsAllowed(element: Element): boolean {
 function updateAction(element: Element): WizardActor {
   return (inputs: WizardInputElement[]): SimpleAction[] => {
     const ldAttrs: Record<string, string | null> = {};
-    const ldKeys = ['ldName', 'desc', 'ldInst'];
+    const ldKeys = ['ldName', 'desc'];
     ldKeys.forEach(key => {
       ldAttrs[key] = getValue(inputs.find(i => i.label === key)!);
     });
