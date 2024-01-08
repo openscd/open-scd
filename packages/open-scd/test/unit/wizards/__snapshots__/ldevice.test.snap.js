@@ -11,6 +11,8 @@ snapshots["Wizards for SCL element LDevice Allowing ldName editing looks like th
   <div id="wizard-content">
     <wizard-textfield
       disabled=""
+      helper="[ldevice.wizard.noNameSupportHelper]"
+      helperpersistent=""
       label="ldName"
       readonly=""
     >

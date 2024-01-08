@@ -265,6 +265,7 @@ export const de: Translations = {
   ldevice: {
     wizard: {
       nameHelper: 'Name des Logisches Gerät',
+      noNameSupportHelper: 'IED unterstützt keine funktionale Benennung',
       descHelper: 'Beschreibung des Logisches Gerät',
       title: {
         edit: 'Logisches Gerät bearbeiten',
