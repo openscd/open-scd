@@ -56,7 +56,7 @@ describe('Wizards for SCL EqSubFunction element', () => {
     });
 
     it('looks like the the latest snapshot', async () =>
-      expect(element.wizardUI.dialog).dom.to.equalSnapshot());
+      await expect(element.wizardUI.dialog).dom.to.equalSnapshot());
 
     it('does not accept empty name attribute', async () => {
       await primaryAction.click();

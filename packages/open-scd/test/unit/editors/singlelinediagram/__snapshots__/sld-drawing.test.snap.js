@@ -117,6 +117,18 @@ snapshots["Single Line Diagram drawing creates a group element for every given C
 `;
 /* end snapshot Single Line Diagram drawing creates a group element for every given ConductingEquipment element that looks like its latest snapshot */
 
+snapshots["Single Line Diagram drawing creates a group element for every given VoltageLevel element that looks like its latest snapshot"] = 
+`<g
+  desc="Voltage Level"
+  id="AA1>J1"
+  sxy:x="2"
+  sxy:y="6"
+  type="VoltageLevel"
+>
+</g>
+`;
+/* end snapshot Single Line Diagram drawing creates a group element for every given VoltageLevel element that looks like its latest snapshot */
+
 snapshots["Single Line Diagram drawing creates a group element for every given Bus Bar element that looks like its latest snapshot"] = 
 `<g
   id="AA1>J1>BusBar A"
@@ -188,16 +200,4 @@ snapshots["Single Line Diagram drawing creates a group element for every given T
 </g>
 `;
 /* end snapshot Single Line Diagram drawing creates a group element for every given Terminal element that looks like its latest snapshot */
-
-snapshots["Single Line Diagram drawing creates a group element for every given VoltageLevel element that looks like its latest snapshot"] = 
-`<g
-  desc="Voltage Level"
-  id="AA1>J1"
-  sxy:x="2"
-  sxy:y="6"
-  type="VoltageLevel"
->
-</g>
-`;
-/* end snapshot Single Line Diagram drawing creates a group element for every given VoltageLevel element that looks like its latest snapshot */
 

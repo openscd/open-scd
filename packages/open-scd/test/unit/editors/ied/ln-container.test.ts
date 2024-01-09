@@ -23,7 +23,7 @@ describe('ln-container', async () => {
       )}
       .nsdoc=${nsdoc}
     ></ln-container>`);
-    expect(element).shadowDom.to.equalSnapshot();
+    await expect(element).shadowDom.to.equalSnapshot();
   });
 
   it('looks like the latest snapshot with a LN0 element and child elements are toggled.', async () => {
@@ -39,7 +39,7 @@ describe('ln-container', async () => {
     )).click();
     await element.requestUpdate();
     await element.updateComplete;
-    expect(element).shadowDom.to.equalSnapshot();
+    await expect(element).shadowDom.to.equalSnapshot();
 
     (<HTMLElement>(
       element.shadowRoot!.querySelector('mwc-icon-button-toggle')
@@ -58,7 +58,7 @@ describe('ln-container', async () => {
       )}
       .nsdoc=${nsdoc}
     ></ln-container>`);
-    expect(element).shadowDom.to.equalSnapshot();
+    await expect(element).shadowDom.to.equalSnapshot();
   });
 
   it('looks like the latest snapshot with a LN element and child elements are toggled.', async () => {
@@ -74,7 +74,7 @@ describe('ln-container', async () => {
     )).click();
     await element.requestUpdate();
     await element.updateComplete;
-    expect(element).shadowDom.to.equalSnapshot();
+    await expect(element).shadowDom.to.equalSnapshot();
 
     (<HTMLElement>(
       element.shadowRoot!.querySelector('mwc-icon-button-toggle')
