@@ -38,7 +38,7 @@ describe('da-container', async () => {
     });
 
     it('looks like the latest snapshot', async () => {
-      expect(element).shadowDom.to.equalSnapshot();
+      await expect(element).shadowDom.to.equalSnapshot();
     });
   });
 
@@ -69,7 +69,7 @@ describe('da-container', async () => {
     });
 
     it('looks like the latest snapshot', async () => {
-      expect(element).shadowDom.to.equalSnapshot();
+      await expect(element).shadowDom.to.equalSnapshot();
     });
   });
 
@@ -101,7 +101,7 @@ describe('da-container', async () => {
     });
 
     it('looks like the latest snapshot', async () => {
-      expect(element).shadowDom.to.equalSnapshot();
+      await expect(element).shadowDom.to.equalSnapshot();
     });
   });
 
@@ -133,7 +133,7 @@ describe('da-container', async () => {
     });
 
     it('looks like the latest snapshot', async () => {
-      expect(element).shadowDom.to.equalSnapshot();
+      await expect(element).shadowDom.to.equalSnapshot();
     });
   });
 
@@ -147,7 +147,7 @@ describe('da-container', async () => {
       )}
       .nsdoc=${nsdoc}
     ></da-container>`);
-    expect(element).shadowDom.to.equalSnapshot();
+    await expect(element).shadowDom.to.equalSnapshot();
   });
 
   describe('has a getBDAElements function ', async () => {
