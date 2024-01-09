@@ -63,7 +63,7 @@ describe('SettingElement', () => {
     await element.updateComplete;
 
     expect(localStorage.getItem('IEC 61850-7-2')).to.eql(nsdocFile);
-    expect(element).shadowDom.to.equalSnapshot();
+    await expect(element).shadowDom.to.equalSnapshot();
   });
 
   it('deletes a chosen .nsdoc file and looks like latest snapshot', async () => {
@@ -87,7 +87,7 @@ describe('SettingElement', () => {
     await element.updateComplete;
 
     expect(localStorage.getItem('IEC 61850-7-2')).to.equal(null);
-    expect(element).shadowDom.to.equalSnapshot();
+    await expect(element).shadowDom.to.equalSnapshot();
   });
 }).afterAll(() => {
   registerTranslateConfig({ empty: key => `[${key}]` });
