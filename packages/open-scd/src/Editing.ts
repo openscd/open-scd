@@ -1,3 +1,4 @@
+import { OpenEvent } from '@openscd/core';
 import { property } from 'lit-element';
 import { get } from 'lit-translate';
 
@@ -428,6 +429,10 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       this.dispatchEvent(newValidateEvent());
     }
 
+    /**
+     *
+     * @deprecated [Move to handleOpenDoc instead]
+     */
     private async onOpenDoc(event: OpenDocEvent) {
       this.doc = event.detail.doc;
       this.docName = event.detail.docName;
@@ -445,11 +450,17 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       );
     }
 
+    handleOpenDoc({ detail: { docName, doc } }: OpenEvent) {
+      this.doc = doc;
+      this.docName = docName;
+    }
+
     constructor(...args: any[]) {
       super(...args);
 
       this.addEventListener('editor-action', this.onAction);
       this.addEventListener('open-doc', this.onOpenDoc);
+      this.addEventListener('oscd-open', this.handleOpenDoc);
     }
   }
 
