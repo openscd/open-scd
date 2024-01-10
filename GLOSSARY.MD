@@ -2,8 +2,9 @@
 
 This is an opinionated glossary of terms developed by the Alliander team.
 
-## Serverless Platform
-- The platform supports administration, permission and user management associated with the development of [Serverless Services](#serverless-service).
+## Wizard
+- A wizard is a user-friendly interface that assists individuals in completing complicated tasks by breaking them into simpler, easy-to-follow steps. It typically offers guidance, instructions, and choices, making tasks more manageable and enabling users to accomplish them efficiently.
+
 
 
 ## User Account
@@ -46,6 +47,5 @@ This is an opinionated glossary of terms developed by the Alliander team.
 
 
 
-Wizard: A wizard is a user-friendly interface that assists individuals in completing complicated tasks by breaking them into simpler, easy-to-follow steps. It typically offers guidance, instructions, and choices, making tasks more manageable and enabling users to accomplish them efficiently.
 
 
