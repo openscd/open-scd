@@ -1,6 +1,6 @@
 # OpenSCD Glossary
 
-This is an opinionated glossary of terms developed by the Alliander team.
+This is an opinionated glossary of terms developed by the OpenSCD community. Please note that terms specific to the SCL (Substation Configuration Language) fall outside the scope of this glossary, as they are thoroughly covered and explained by the relevant standards.
 
 ## Wizard
 A wizard is a user-friendly interface that assists individuals in completing complicated tasks by breaking them into simpler, easy-to-follow steps. It typically offers guidance, instructions, and choices, making tasks more manageable and enabling users to accomplish them efficiently.
