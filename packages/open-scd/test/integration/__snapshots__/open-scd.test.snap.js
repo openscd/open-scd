@@ -1,8 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["open-scd looks like its snapshot"] = 
-`<mwc-drawer
+snapshots['open-scd looks like its snapshot'] = `<mwc-drawer
   class="mdc-theme--surface"
   hasheader=""
   id="menu"
@@ -1411,4 +1410,3 @@ snapshots["open-scd looks like its snapshot"] =
 </mwc-linear-progress>
 `;
 /* end snapshot open-scd looks like its snapshot */
-

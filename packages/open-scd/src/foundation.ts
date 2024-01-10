@@ -176,7 +176,10 @@ export type WizardInputElement =
   | TextField
   | (AceEditor & {
       checkValidity: () => boolean;
-      validityTransform: (newValue: string, nativeValidity: ValidityState) => ValidityState;
+      validityTransform: (
+        newValue: string,
+        nativeValidity: ValidityState
+      ) => ValidityState;
       validationMessage: string;
       validity: ValidityState;
       label: string;
@@ -437,6 +440,10 @@ export interface PendingStateDetail {
   promise: Promise<void>;
 }
 export type PendingStateEvent = CustomEvent<PendingStateDetail>;
+
+/**
+ * @deprecated
+ */
 export function newPendingStateEvent(
   promise: Promise<void>,
   eventInitDict?: CustomEventInit<Partial<PendingStateDetail>>
@@ -1559,7 +1566,7 @@ const sCLTags = [
   'SecPerSamples',
 ] as const;
 
-export type SCLTag = typeof sCLTags[number];
+export type SCLTag = (typeof sCLTags)[number];
 
 const tagSet = new Set<string>(sCLTags);
 
