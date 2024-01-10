@@ -19,6 +19,8 @@ import {
 
 import { fetchDoc } from '../../../wizards/test-support.js';
 import { Switch } from '@material/mwc-switch';
+import { WizardSelect } from '../../../../../src/wizard-select.js';
+import { WizardTextField } from '../../../../../src/wizard-textfield.js';
 
 describe('Wizards for preparing 104 Address Creation', () => {
   let doc: XMLDocument;
@@ -143,6 +145,9 @@ describe('Wizards for preparing 104 Address Creation', () => {
   });
 
   describe('show prepare 104 Address creation (single monitor TI and single control TI with CtlModel)', () => {
+    const newMonitorTiValue = '30';
+    const newControlTiValue = '58';
+
     beforeEach(async () => {
       await prepareWizard(
         'IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"]',
@@ -151,6 +156,9 @@ describe('Wizards for preparing 104 Address Creation', () => {
     });
 
     it('when processing the request without Check Selected, the expected Create Actions are returned', () => {
+      inputs[3].value = newMonitorTiValue;
+      inputs[5].value = newControlTiValue;
+
       const actions = createAddressesAction(
         lnElement,
         doElement,
@@ -158,6 +166,28 @@ describe('Wizards for preparing 104 Address Creation', () => {
       )(inputs, element.wizardUI);
 
       expectCreateActions(actions, 2);
+    });
+
+    it('TIs contain descriptions', async () => {
+      const monitorTi = element.wizardUI.dialog!.querySelector(
+        'wizard-textfield[label="monitorTi"]'
+      ) as WizardTextField;
+      expect(monitorTi).to.exist;
+
+      const controlTi = element.wizardUI.dialog!.querySelector(
+        `wizard-textfield[label="controlTi"]`
+      ) as WizardTextField;
+      expect(controlTi).to.exist;
+
+      const monitorTiValue = monitorTi.value;
+      const controlTiValue = controlTi.value;
+
+      expect(monitorTiValue).to.equal(
+        `${newMonitorTiValue} ([protocol104.values.signalNames.tiNumber${newMonitorTiValue}])`
+      );
+      expect(controlTiValue).to.equal(
+        `${newControlTiValue} ([protocol104.values.signalNames.tiNumber${newControlTiValue}])`
+      );
     });
 
     it('when processing the request with Check Selected, the expected Create Actions are returned', async () => {
