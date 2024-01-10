@@ -41,7 +41,8 @@
     "lit": "^2.2.7",
     "lit-translate": "^1.2.1",
     "marked": "^4.0.10",
-    "panzoom": "^9.4.2"
+    "panzoom": "^9.4.2",
+    "@openscd/core": "*"
   },
   "scripts": {
     "lint:eslint": "eslint --ext .ts,.html . --ignore-path .gitignore",
