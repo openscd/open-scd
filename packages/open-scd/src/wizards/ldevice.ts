@@ -41,8 +41,8 @@ export function renderLdeviceWizard(
       : html`<wizard-textfield
           label="ldName"
           .maybeValue=${ldName}
+          nullable
           helper="${translate('ldevice.wizard.nameHelper')}"
-          required
           validationMessage="${translate('textfield.required')}"
           dialogInitialFocus
           pattern="${lDeviceNamePattern}"
