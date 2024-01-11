@@ -10,8 +10,6 @@ import {
   WizardInputElement,
 } from '../../../../../src/foundation.js';
 
-import { WizardTextField } from '../../../../../src/wizard-textfield.js';
-import { WizardSelect } from '../../../../../src/wizard-select.js';
 import '../../../../mock-wizard.js';
 
 import {
