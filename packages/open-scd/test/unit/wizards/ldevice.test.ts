@@ -4,10 +4,17 @@ import '../../mock-wizard.js';
 import { MockWizard } from '../../mock-wizard.js';
 
 import { WizardTextField } from '../../../src/wizard-textfield.js';
-import { WizardInputElement } from '../../../src/foundation.js';
+import {
+  WizardInputElement,
+  createUpdateAction,
+  getValue,
+} from '../../../src/foundation.js';
 import { editLDeviceWizard } from '../../../src/wizards/ldevice.js';
-
-import { fetchDoc, setWizardTextFieldValue } from './test-support.js';
+import {
+  fetchDoc,
+  setWizardTextFieldValue,
+  expectUpdateAction,
+} from './test-support.js';
 
 describe('Wizards for SCL element LDevice', () => {
   let doc: XMLDocument;
@@ -48,7 +55,7 @@ describe('Wizards for SCL element LDevice', () => {
     ).to.be.equal('');
   });
 
-  describe('Allowing ldName editing', () => {
+  describe('Allowing/Disallowing ldName editing', () => {
     it('ConfLdName should not be present and therefore ldName should be readonly', async function () {
       expect(services.querySelector('ConfLdName')).to.not.exist;
       expect(<WizardTextField>inputs[0]).to.have.attribute('readonly');
@@ -58,7 +65,7 @@ describe('Wizards for SCL element LDevice', () => {
       await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
     });
 
-    it('ConfLdName should be present in IED1 and therefore ldName should be readonly', async function () {
+    it('ConfLdName should be present in IED1 and therefore ldName should not be readonly', async function () {
       ied = doc.querySelector('IED[name="IED1"]')!;
       services = ied.querySelector('Services')!;
       ldevice = ied.querySelectorAll('AccessPoint > Server > LDevice')[0];
@@ -70,6 +77,33 @@ describe('Wizards for SCL element LDevice', () => {
 
       expect(services.querySelector('ConfLdName')).to.exist;
       expect(<WizardTextField>inputs[0]).to.not.have.attribute('readonly');
+
+      describe('Modify ldName', () => {
+        it('should be registered as an update action', async () => {
+          const newValue = 'LDevice1';
+          const ldeviceTextField = (<WizardTextField[]>inputs).find(
+            textField => textField.label == 'ldName'
+          )!;
+
+          expect(ldeviceTextField?.value).to.be.equal('');
+          await setWizardTextFieldValue(ldeviceTextField, newValue);
+
+          const ldNameVal = getValue(inputs.find(i => i.label === 'ldName')!)!;
+          expect(ldNameVal).to.not.be.equal(ldevice.getAttribute('ldName'));
+
+          const simpleAction = createUpdateAction(ldevice, {
+            ldName: ldNameVal,
+          });
+
+          expectUpdateAction(
+            simpleAction,
+            ldevice.tagName,
+            ldeviceTextField.label,
+            null,
+            newValue
+          );
+        });
+      });
     });
   });
 });

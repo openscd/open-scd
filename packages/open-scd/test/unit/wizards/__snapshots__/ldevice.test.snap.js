@@ -1,7 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Wizards for SCL element LDevice Allowing ldName editing looks like the latest snapshot"] = 
+snapshots["Wizards for SCL element LDevice Allowing/Disallowing ldName editing looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="next"
   heading="[ldevice.wizard.title.edit]"
@@ -48,5 +48,5 @@ snapshots["Wizards for SCL element LDevice Allowing ldName editing looks like th
   </mwc-button>
 </mwc-dialog>
 `;
-/* end snapshot Wizards for SCL element LDevice Allowing ldName editing looks like the latest snapshot */
+/* end snapshot Wizards for SCL element LDevice Allowing/Disallowing ldName editing looks like the latest snapshot */
 
