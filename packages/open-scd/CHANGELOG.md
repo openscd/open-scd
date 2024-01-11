@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.34.0](https://github.com/openscd/open-scd/compare/open-scd-v0.33.1...open-scd@v0.34.0) (2024-01-10)
+
+
+### ✨ Features
+
+* **104:** added descriptions to control ti numbers ([#1400](https://github.com/openscd/open-scd/issues/1400)) ([758a3b8](https://github.com/openscd/open-scd/commit/758a3b887b75b1eabdda7add0b3abf4cbe2df949))
+* **104:** added descriptions to ti numbers ([#1378](https://github.com/openscd/open-scd/issues/1378)) ([0e74294](https://github.com/openscd/open-scd/commit/0e742944e4e834c515488ad1f75cecf88d234a8a))
+* added acd as a supported cdc type ([#1371](https://github.com/openscd/open-scd/issues/1371)) ([5ee353c](https://github.com/openscd/open-scd/commit/5ee353cf85e61ce9edd6f48268d198adfdc3f0b2))
+* added acd as a supported ens type ([#1384](https://github.com/openscd/open-scd/issues/1384)) ([cebcd37](https://github.com/openscd/open-scd/commit/cebcd37ecbc0230561018c4bb2a8c5e58de3b807))
+
+
+### 🐞 Bug Fixes
+
+* **104:** change options between different tis when selecting a doi ([#1380](https://github.com/openscd/open-scd/issues/1380)) ([cb80080](https://github.com/openscd/open-scd/commit/cb800808e9679e673e987038678e4c9f2da9fdf3))
+
+
+### 📦 Miscellaneous Chores
+
+* **104:** validate IOA number in address-wizard ([#1370](https://github.com/openscd/open-scd/issues/1370)) ([dff67ba](https://github.com/openscd/open-scd/commit/dff67ba53eb740f912f51dbae21d83a41e1c3332))
+* add await in front of snapshot comparison ([#1395](https://github.com/openscd/open-scd/issues/1395)) ([7edd551](https://github.com/openscd/open-scd/commit/7edd55197e611ef7d2e7a333eea1bda30bd04cc0))
+* Added additional properties ([#1369](https://github.com/openscd/open-scd/issues/1369)) ([754c301](https://github.com/openscd/open-scd/commit/754c3019a71b8c23a4fc166bfa557d6405d892e2))
+
 ## [0.33.0](https://github.com/openscd/open-scd/compare/v0.32.0...v0.33.0) (2023-06-22)
 
 
