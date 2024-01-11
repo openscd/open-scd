@@ -58,6 +58,10 @@ export function getSignalName(tiNumber: string): string {
       return get('protocol104.values.signalNames.tiNumber50');
     case '51':
       return get('protocol104.values.signalNames.tiNumber51');
+    case '58':
+      return get('protocol104.values.signalNames.tiNumber58');
+    case '59':
+      return get('protocol104.values.signalNames.tiNumber59');
     case '60':
       return get('protocol104.values.signalNames.tiNumber60');
     case '61':

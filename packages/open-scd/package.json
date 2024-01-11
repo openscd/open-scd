@@ -1,6 +1,6 @@
 {
   "name": "open-scd",
-  "version": "0.33.0",
+  "version": "0.34.0",
   "repository": "https://github.com/openscd/open-scd.git",
   "directory": "packages/open-scd",
   "description": "A bottom-up substation configuration designer for projects described using SCL `IEC 61850-6` Edition 2 or greater.",
@@ -41,7 +41,8 @@
     "lit": "^2.2.7",
     "lit-translate": "^1.2.1",
     "marked": "^4.0.10",
-    "panzoom": "^9.4.2"
+    "panzoom": "^9.4.2",
+    "@openscd/core": "*"
   },
   "scripts": {
     "lint:eslint": "eslint --ext .ts,.html . --ignore-path .gitignore",

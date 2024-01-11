@@ -2,7 +2,11 @@ on:
   push:
     branches:
       - main
-    
+
+permissions:
+  contents: write
+  pull-requests: write
+  
 name: release-please
 jobs:
   release-please:
@@ -29,6 +33,3 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
         if: ${{ steps.release.outputs.release_created }}
-      - run: |
-          git config user.name "GitHubActions"
-          git config user.email "<deploy@actions.openscd.github.io>"
