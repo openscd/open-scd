@@ -225,9 +225,13 @@ export function createAddressesWizard(
         `wizard-select[label="${counterType}"]`
       ) as WizardSelect;
 
-      if (isMonitor)
-        availableTis.maybeValue = selectedTi === '30' ? '58' : '62';
-      else availableTis.maybeValue = selectedTi === '58' ? '30' : '35';
+      availableTis.maybeValue = isMonitor
+        ? selectedTi === '30'
+          ? '58'
+          : '62'
+        : selectedTi === '58'
+        ? '30'
+        : '35';
     }
 
     // Add the basic fields to the list.
