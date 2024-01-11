@@ -12,40 +12,36 @@ import { MenuBase } from '@material/mwc-menu/mwc-menu-base.js';
 const openAndCancelMenu: (
   parent: MockWizardEditor,
   element: VoltageLevelEditor
-) => Promise<void> = (
+) => Promise<void> = async (
   parent: MockWizardEditor,
   element: VoltageLevelEditor
-): Promise<void> =>
-  new Promise(async resolve => {
-    expect(parent.wizardUI.dialog).to.be.undefined;
+): Promise<void> => {
+  expect(parent.wizardUI.dialog).to.be.undefined;
 
-    element?.shadowRoot
-      ?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!
-      .click();
-    const powerTransformerMenuItem: ListItemBase =
-      element?.shadowRoot?.querySelector<ListItemBase>(
-        `mwc-list-item[value='PowerTransformer']`
-      )!;
+  element?.shadowRoot
+    ?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!
+    .click();
+  const powerTransformerMenuItem: ListItemBase =
+    element!.shadowRoot!.querySelector<ListItemBase>(
+      `mwc-list-item[value='PowerTransformer']`
+    )!;
 
-    console.log(powerTransformerMenuItem);
-    powerTransformerMenuItem.click();
-    await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+  powerTransformerMenuItem.click();
+  await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
-    expect(parent.wizardUI.dialog).to.exist;
+  expect(parent.wizardUI.dialog).to.exist;
 
-    const secondaryAction: HTMLElement = <HTMLElement>(
-      parent.wizardUI.dialog?.querySelector(
-        'mwc-button[slot="secondaryAction"]'
-      )
-    );
+  const secondaryAction: HTMLElement = <HTMLElement>(
+    parent.wizardUI.dialog?.querySelector('mwc-button[slot="secondaryAction"]')
+  );
 
-    secondaryAction.click();
-    await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+  secondaryAction.click();
+  await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
-    expect(parent.wizardUI.dialog).to.be.undefined;
+  expect(parent.wizardUI.dialog).to.be.undefined;
 
-    return resolve();
-  });
+  return;
+};
 
 describe('voltage-level-editor wizarding editing integration', () => {
   describe('edit wizard', () => {

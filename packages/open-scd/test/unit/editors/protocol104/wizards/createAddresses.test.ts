@@ -19,8 +19,8 @@ import {
 
 import { fetchDoc } from '../../../wizards/test-support.js';
 import { Switch } from '@material/mwc-switch';
-import { WizardSelect } from '../../../../../src/wizard-select.js';
-import { WizardTextField } from '../../../../../src/wizard-textfield.js';
+
+import type { WizardTextField } from '../../../../../src/wizard-textfield.js';
 
 describe('Wizards for preparing 104 Address Creation', () => {
   let doc: XMLDocument;

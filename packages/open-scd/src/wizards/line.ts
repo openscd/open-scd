@@ -13,13 +13,6 @@ import {
   WizardInputElement,
 } from '../foundation.js';
 
-const initial = {
-  nomFreq: '50',
-  numPhases: '3',
-  Voltage: '110',
-  multiplier: 'k',
-};
-
 function render(
   name: string,
   desc: string | null,

@@ -85,7 +85,7 @@ describe('IED Plugin', () => {
 
         await element.requestUpdate();
 
-        expect((element as any as WizardingElement).wizardUI).to.exist;
+        expect((element as unknown as WizardingElement).wizardUI).to.exist;
       });
     });
 
@@ -286,11 +286,11 @@ describe('IED Plugin', () => {
           await element.updateComplete;
 
           expect(
-            (element as any as WizardingElement).wizardUI.dialogs.length
+            (element as unknown as WizardingElement).wizardUI.dialogs.length
           ).to.equal(1);
           expect(
             (
-              element as any as WizardingElement
+              element as unknown as WizardingElement
             ).wizardUI.dialogs[0]!.querySelectorAll('wizard-textfield').length
           ).to.equal(3);
         });

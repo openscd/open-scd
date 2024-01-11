@@ -1,7 +1,6 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
 import CompareIEDPlugin from '../../../src/menu/CompareIED.js';
-import { PlainCompareList } from '../../../src/plain-compare-list.js';
 
 describe('Compare IED Plugin', () => {
   if (customElements.get('compare-ied') === undefined)
