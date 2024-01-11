@@ -35,6 +35,8 @@ export function renderLdeviceWizard(
       ? html`<wizard-textfield
           label="ldName"
           .maybeValue=${ldName}
+          helper="${translate('ldevice.wizard.noNameSupportHelper')}"
+          helperPersistent
           readOnly
           disabled
         ></wizard-textfield>`

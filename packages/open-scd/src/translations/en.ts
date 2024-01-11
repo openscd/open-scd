@@ -262,6 +262,7 @@ export const en = {
   ldevice: {
     wizard: {
       nameHelper: 'Logical device name',
+      noNameSupportHelper: "IED doesn't support Functional Naming",
       descHelper: 'Logical device description',
       title: {
         edit: 'Edit logical device',
