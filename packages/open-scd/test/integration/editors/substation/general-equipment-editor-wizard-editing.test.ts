@@ -82,9 +82,6 @@ describe('general-equipment-editor wizarding editing integration', () => {
       descField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector('wizard-textfield[label="desc"]')
       );
-      typeField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="type"]')
-      );
       secondaryAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
           'mwc-button[slot="secondaryAction"]'

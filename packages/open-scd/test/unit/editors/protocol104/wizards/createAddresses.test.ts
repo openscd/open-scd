@@ -18,7 +18,7 @@ import {
 } from '../../../../../src/editors/protocol104/wizards/createAddresses.js';
 
 import { fetchDoc } from '../../../wizards/test-support.js';
-import { Switch } from '@material/mwc-switch';
+import type { Switch } from '@material/mwc-switch';
 
 import type { WizardTextField } from '../../../../../src/wizard-textfield.js';
 
@@ -191,8 +191,9 @@ describe('Wizards for preparing 104 Address Creation', () => {
     });
 
     it('when processing the request with Check Selected, the expected Create Actions are returned', async () => {
-      const switchElement = element.wizardUI.dialog!.querySelector<Switch>(
-        `mwc-switch[id="controlCheck"]`
+      const switchElement: Switch =
+        element.wizardUI.dialog!.querySelector<Switch>('')!;
+          `mwc-switch[id="controlCheck"]`
       )!;
       switchElement.checked = true;
       await element.requestUpdate();
