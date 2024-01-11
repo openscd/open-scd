@@ -11,7 +11,7 @@ npm i open-scd
 
 ```html
 <script type="module">
-  import 'open-scd/open-scd.js';
+  import '@openscd/core';
 </script>
 
 <open-scd></open-scd>
