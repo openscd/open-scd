@@ -1,5 +1,5 @@
 {
-    "name": "@openscd/open-scd-core",
+    "name": "@openscd/core",
     "version": "1.0.1",
     "description": "The core editor component of open-scd, without any extensions pre-installed.",
     "author": "Open-SCD",
@@ -35,14 +35,6 @@
     },
     "dependencies": {
         "@lit/localize": "^0.11.4",
-        "@material/mwc-button": "^0.27.0",
-        "@material/mwc-dialog": "^0.27.0",
-        "@material/mwc-drawer": "^0.27.0",
-        "@material/mwc-icon": "^0.27.0",
-        "@material/mwc-icon-button": "^0.27.0",
-        "@material/mwc-list": "^0.27.0",
-        "@material/mwc-tab-bar": "^0.27.0",
-        "@material/mwc-top-app-bar-fixed": "^0.27.0",
         "@open-wc/lit-helpers": "^0.5.1",
         "lit": "^2.2.7"
     },

@@ -498,6 +498,8 @@ export const en = {
         tiNumber49: 'Set-point Command, scaled value',
         tiNumber50: 'Set-point Command, short floating point number',
         tiNumber51: 'Bit string 32 bit command',
+        tiNumber58: 'Single command with time tag CP56Time2a',
+        tiNumber59: 'Double command with time tag CP56Time2a',
         tiNumber60: 'Regulating step command with time tag CP56Time2a',
         tiNumber61:
           'Measured value, normalized value command with time tag CP56Time2a',

@@ -504,6 +504,8 @@ export const de: Translations = {
         tiNumber49: 'Sollwertbefehl, skalierte Wert',
         tiNumber50: 'Sollwertbefehl, Kurz-Gleitkommazahl',
         tiNumber51: 'Bit string von 32 Bit Befehl',
+        tiNumber58: 'Einzelbefehl mit Zeitstempel CP56Time2a',
+        tiNumber59: 'Doppelbefehl mit Zeitstempel CP56Time2a',
         tiNumber60: 'Regelungsschritt-Befehl mit Zeitstempel CP56Time2a',
         tiNumber61:
           'Gemessener Wert, normalisierter Wert Befehl mit Zeitstempel CP56Time2a',

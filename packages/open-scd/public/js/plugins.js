@@ -232,6 +232,6 @@ export const officialPlugins = [
     default: false,
     kind: 'menu',
     requireDoc: true,
-    position: 'middle'
-  }
+    position: 'middle',
+  },
 ];
