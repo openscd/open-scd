@@ -787,7 +787,6 @@ function createTemplateStructure(
     const daElement = typeElement!.querySelector(
       `:scope > DA[name="${name}"], :scope > BDA[name="${name}"]`
     );
-    console.log(daElement);
     // If there is no DA/BDA Element found the structure is incorrect, so just stop.
     if (daElement === null && sdoElement === null) {
       templateStructure = null;
