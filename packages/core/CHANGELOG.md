@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/openscd/open-scd/compare/core-v0.1.0...core@v0.1.1) (2024-01-11)
+
+
+### 📦 Miscellaneous Chores
+
+* Update README.md ([#1409](https://github.com/openscd/open-scd/issues/1409)) ([fedb6c7](https://github.com/openscd/open-scd/commit/fedb6c7c20392aed352292f4951fb29ce7a3aed4))
+
 ## [1.0.1](https://github.com/openscd/open-scd-core/compare/v1.0.0...v1.0.1) (2023-05-30)
 
 
