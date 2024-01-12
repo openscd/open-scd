@@ -63,7 +63,7 @@ describe('Wizards for 104 DOI Element', () => {
       )!;
 
       const doElement = doc
-        .querySelector('LNodeType[id="SE_GAPC_SET_V001"] > DO[name="Str"]')
+        .querySelector('LNodeType[id="SE_GAPC_SET_V001"] > DO[name="Str"]')!
         .getAttribute('type')!;
 
       expect(doElement).to.be.equal('SE_ACD_V001');

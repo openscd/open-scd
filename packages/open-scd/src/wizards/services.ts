@@ -10,17 +10,17 @@ import { createNetworkingWizardPage } from './service-networking.js';
 import { createSampledValuesWizardPage } from './service-sampled-values.js';
 import { createClientServerConfigurationsWizardPage } from './service-clientServer-configurations.js';
 
-export function isEmptyObject<T extends Record<string, unknown>>(
-  target: T,
+export function isEmptyObject(
+  target: unknown,
   dealedAsEmpty: unknown[] = [null, undefined, '']
 ): boolean {
   return (
     target === null
       ? [false]
-      : Object.keys(target).flatMap(key => {
-          const value: unknown = target[key];
+      : Object.keys(target as Record<string, unknown>).flatMap(key => {
+          const value: unknown = (target as Record<string, unknown>)[key];
           if (typeof value === 'object') {
-            return isEmptyObject(value as Record<string, unknown>);
+            return isEmptyObject(value);
           } else {
             return [dealedAsEmpty.includes(value)];
           }

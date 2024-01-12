@@ -121,7 +121,7 @@ function createNetworkingWizard(parent: Element): TemplateResult[] | null {
     },
   };
 
-  return isEmptyObject(content)
+  return isEmptyObject({ target: content })
     ? null
     : [
         createFormDivider('File Handling'),
