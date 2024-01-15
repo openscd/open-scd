@@ -10,6 +10,7 @@ import {
   WizardInputElement,
 } from '../../../../../src/foundation.js';
 
+import { WizardSelect } from '../../../../../src/wizard-select.js';
 import { WizardTextField } from '../../../../../src/wizard-textfield.js';
 import '../../../../mock-wizard.js';
 
@@ -160,7 +161,7 @@ describe('Wizards for preparing 104 Address Creation', () => {
       expect(monitorTi.maybeValue).to.equal('35');
     });
   });
-  
+
   describe('show prepare 104 Address creation with mapped cdc value', () => {
     beforeEach(async () => {
       await prepareWizard(
