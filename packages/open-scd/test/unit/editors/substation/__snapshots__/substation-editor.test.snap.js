@@ -6,6 +6,11 @@ snapshots["substation-editor looks like the latest snapshot"] =
   label="AA1 - Substation"
   tabindex="0"
 >
+  <mwc-icon
+    slot="icon"
+    style="width:24px;height:24px"
+  >
+  </mwc-icon>
   <abbr
     slot="action"
     title="[lnode.tooltip]"
@@ -122,6 +127,11 @@ snapshots["substation-editor with readonly property looks like the latest snapsh
   label="AA1 - Substation"
   tabindex="0"
 >
+  <mwc-icon
+    slot="icon"
+    style="width:24px;height:24px"
+  >
+  </mwc-icon>
   <abbr
     slot="action"
     title="[lnode.tooltip]"
@@ -238,6 +248,11 @@ snapshots["substation-editor with function filter deactivated looks like the lat
   label="AA1 - Substation"
   tabindex="0"
 >
+  <mwc-icon
+    slot="icon"
+    style="width:24px;height:24px"
+  >
+  </mwc-icon>
   <abbr
     slot="action"
     title="[lnode.tooltip]"
@@ -368,6 +383,11 @@ snapshots["substation-editor with general-equipment children with showfunctions 
   label="AA1 "
   tabindex="0"
 >
+  <mwc-icon
+    slot="icon"
+    style="width:24px;height:24px"
+  >
+  </mwc-icon>
   <abbr
     slot="action"
     title="[lnode.tooltip]"
@@ -488,6 +508,11 @@ snapshots["substation-editor with general-equipment children with showfunctions 
   label="AA1 "
   tabindex="0"
 >
+  <mwc-icon
+    slot="icon"
+    style="width:24px;height:24px"
+  >
+  </mwc-icon>
   <abbr
     slot="action"
     title="[lnode.tooltip]"

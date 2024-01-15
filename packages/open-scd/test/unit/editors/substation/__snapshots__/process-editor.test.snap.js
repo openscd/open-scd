@@ -6,6 +6,11 @@ snapshots["web component rendering Process element rendering LNode, GeneralEquip
   label="ProcessGenConduct "
   tabindex="0"
 >
+  <mwc-icon
+    slot="icon"
+    style="width:24px;height:24px"
+  >
+  </mwc-icon>
   <abbr
     slot="action"
     title="[edit]"
@@ -129,6 +134,11 @@ snapshots["web component rendering Process element hides LNode and Function chil
   label="ProcessGenConduct "
   tabindex="0"
 >
+  <mwc-icon
+    slot="icon"
+    style="width:24px;height:24px"
+  >
+  </mwc-icon>
   <abbr
     slot="action"
     title="[edit]"
@@ -246,6 +256,11 @@ snapshots["web component rendering Process element rendering Substation and Proc
   label="ProcProcSubAA1 "
   tabindex="0"
 >
+  <mwc-icon
+    slot="icon"
+    style="width:24px;height:24px"
+  >
+  </mwc-icon>
   <abbr
     slot="action"
     title="[edit]"
@@ -363,6 +378,11 @@ snapshots["web component rendering Process element rendering a Line child looks 
   label="ProcessLine "
   tabindex="0"
 >
+  <mwc-icon
+    slot="icon"
+    style="width:24px;height:24px"
+  >
+  </mwc-icon>
   <abbr
     slot="action"
     title="[edit]"
