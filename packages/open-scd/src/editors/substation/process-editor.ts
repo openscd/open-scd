@@ -27,6 +27,7 @@ import './process-editor.js';
 import './substation-editor.js';
 import './process-editor.js';
 
+import { ProcessIcon } from '../../icons/icons.js';
 import { styles } from './foundation.js';
 import {
   getChildElementsByTagName,
@@ -214,6 +215,9 @@ export class ProcessEditor extends LitElement {
 
   render(): TemplateResult {
     return html`<action-pane label=${this.header}>
+      <mwc-icon slot="icon" style="width:24px;height:24px"
+        >${ProcessIcon}</mwc-icon
+      >
       <abbr slot="action" title="${translate('edit')}">
         <mwc-icon-button
           icon="edit"
