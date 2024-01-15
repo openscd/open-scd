@@ -204,11 +204,11 @@ describe('Wizards for 104 Address Element', () => {
       );
     });
     it('should have mappedCmv translation value in helper field', async () => {
-      const cdc = element.wizardUI.dialog!.querySelector(
+      const cdc = element.wizardUI.dialog!.querySelector<WizardTextField>(
         'wizard-textfield[label="cdc"]'
-      ) as WizardTextField;
+      );
       expect(cdc).to.exist;
-      await expect(cdc.helper).to.equal('[protocol104.mappedCmv]');
+      await expect(cdc!.helper).to.equal('[protocol104.mappedCmv]');
     });
   });
 
