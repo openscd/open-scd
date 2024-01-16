@@ -21,6 +21,7 @@ import {
 } from './powertransformer.js';
 import { editSubNetworkWizard } from './subnetwork.js';
 import { editIEDWizard } from './ied.js';
+import { editLDeviceWizard } from './ldevice.js';
 import { editTrgOpsWizard } from './trgops.js';
 import { createDaWizard } from './da.js';
 import { editDAIWizard } from './dai.js';
@@ -317,7 +318,7 @@ export const wizards: Record<
     create: emptyWizard,
   },
   LDevice: {
-    edit: emptyWizard,
+    edit: editLDeviceWizard,
     create: emptyWizard,
   },
   LN: {

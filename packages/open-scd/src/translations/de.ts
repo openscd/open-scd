@@ -262,6 +262,16 @@ export const de: Translations = {
       deleteied: 'IED "{{name}}" entfernt',
     },
   },
+  ldevice: {
+    wizard: {
+      nameHelper: 'Name des Logisches Gerät',
+      noNameSupportHelper: 'IED unterstützt keine funktionale Benennung',
+      descHelper: 'Beschreibung des Logisches Gerät',
+      title: {
+        edit: 'Logisches Gerät bearbeiten',
+      },
+    },
+  },
   powertransformer: {
     wizard: {
       nameHelper: '`Name des Leistungstransformators',
