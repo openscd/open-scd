@@ -12,38 +12,35 @@ import { MenuBase } from '@material/mwc-menu/mwc-menu-base.js';
 const openAndCancelMenu: (
   parent: MockWizardEditor,
   element: ProcessEditor
-) => Promise<void> = (
+) => Promise<void> = async (
   parent: MockWizardEditor,
   element: ProcessEditor
-): Promise<void> =>
-  new Promise(async resolve => {
-    expect(parent.wizardUI.dialog).to.be.undefined;
+): Promise<void> => {
+  expect(parent.wizardUI.dialog).to.be.undefined;
 
-    element?.shadowRoot
-      ?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!
-      .click();
-    const lnodMenuItem: ListItemBase =
-      element?.shadowRoot?.querySelector<ListItemBase>(
-        `mwc-list-item[value='LNode']`
-      )!;
-    lnodMenuItem.click();
-    await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+  element?.shadowRoot
+    ?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!
+    .click();
+  const lnodMenuItem: ListItemBase =
+    element!.shadowRoot!.querySelector<ListItemBase>(
+      `mwc-list-item[value='LNode']`
+    )!;
+  lnodMenuItem.click();
+  await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
-    expect(parent.wizardUI.dialog).to.exist;
+  expect(parent.wizardUI.dialog).to.exist;
 
-    const secondaryAction: HTMLElement = <HTMLElement>(
-      parent.wizardUI.dialog?.querySelector(
-        'mwc-button[slot="secondaryAction"][dialogaction="close"]'
-      )
-    );
+  const secondaryAction: HTMLElement = <HTMLElement>(
+    parent.wizardUI.dialog?.querySelector(
+      'mwc-button[slot="secondaryAction"][dialogaction="close"]'
+    )
+  );
 
-    secondaryAction.click();
-    await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+  secondaryAction.click();
+  await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
-    expect(parent.wizardUI.dialog).to.be.undefined;
-
-    return resolve();
-  });
+  expect(parent.wizardUI.dialog).to.be.undefined;
+};
 
 describe('process-editor wizarding editing integration', () => {
   let doc: XMLDocument;

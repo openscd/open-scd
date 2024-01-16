@@ -12,36 +12,33 @@ import { ListItemBase } from '@material/mwc-list/mwc-list-item-base.js';
 const openAndCancelMenu: (
   parent: MockWizardEditor,
   element: ConductingEquipmentEditor
-) => Promise<void> = (
+) => Promise<void> = async (
   parent: MockWizardEditor,
   element: ConductingEquipmentEditor
-): Promise<void> =>
-  new Promise(async resolve => {
-    expect(parent.wizardUI.dialog).to.be.undefined;
+): Promise<void> => {
+  expect(parent.wizardUI.dialog).to.be.undefined;
 
-    element?.shadowRoot?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!.click();
-    const lnodeMenuItem: ListItemBase =
-      element?.shadowRoot?.querySelector<ListItemBase>(
-        `mwc-list-item[value='LNode']`
-      )!;
-    lnodeMenuItem.click();
-    await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+  element?.shadowRoot
+    ?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!
+    .click();
+  const lnodeMenuItem: ListItemBase =
+    element!.shadowRoot!.querySelector<ListItemBase>(
+      `mwc-list-item[value='LNode']`
+    )!;
+  lnodeMenuItem.click();
+  await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
-    expect(parent.wizardUI.dialog).to.exist;
+  expect(parent.wizardUI.dialog).to.exist;
 
-    const secondaryAction: HTMLElement = <HTMLElement>(
-      parent.wizardUI.dialog?.querySelector(
-        'mwc-button[slot="secondaryAction"]'
-      )
-    );
+  const secondaryAction: HTMLElement = <HTMLElement>(
+    parent.wizardUI.dialog?.querySelector('mwc-button[slot="secondaryAction"]')
+  );
 
-    secondaryAction.click();
-    await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+  secondaryAction.click();
+  await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
-    expect(parent.wizardUI.dialog).to.be.undefined;
-
-    return resolve();
-  });
+  expect(parent.wizardUI.dialog).to.be.undefined;
+};
 
 describe('conducting-equipment-editor wizarding editing integration', () => {
   describe('edit wizard', () => {
@@ -333,8 +330,8 @@ describe('conducting-equipment-editor wizarding editing integration', () => {
         await fixture(
           html`<mock-wizard-editor
             ><conducting-equipment-editor
-            .element=${doc.querySelector('ConductingEquipment')}
-            ?showfunctions=${true}
+              .element=${doc.querySelector('ConductingEquipment')}
+              ?showfunctions=${true}
             ></conducting-equipment-editor
           ></mock-wizard-editor>`
         )

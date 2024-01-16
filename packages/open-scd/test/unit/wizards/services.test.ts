@@ -8,7 +8,7 @@ describe('Wizards for SCL element Services', () => {
       foo: '',
     };
 
-    expect(isEmptyObject(sut)).to.be.true;
+    expect(isEmptyObject({ target: sut })).to.be.true;
   });
   it('Complex empty input object is empty', () => {
     const sut = {
@@ -16,13 +16,13 @@ describe('Wizards for SCL element Services', () => {
         bar: '',
       },
     };
-    expect(isEmptyObject(sut)).to.be.true;
+    expect(isEmptyObject({ target: sut })).to.be.true;
   });
   it('Simple filled input object is not empty', () => {
     const sut = {
       foo: 'bar',
     };
-    expect(isEmptyObject(sut)).to.be.false;
+    expect(isEmptyObject({ target: sut })).to.be.false;
   });
   it('Complex filled input object is not empty', () => {
     const sut = {
@@ -30,6 +30,6 @@ describe('Wizards for SCL element Services', () => {
         bar: 'qux',
       },
     };
-    expect(isEmptyObject(sut)).to.be.false;
+    expect(isEmptyObject({ target: sut })).to.be.false;
   });
 });
