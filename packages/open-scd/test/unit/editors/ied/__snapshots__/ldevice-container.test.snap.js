@@ -7,6 +7,13 @@ snapshots["ldevice-container LDevice Element with LN Elements and all LN Element
   </mwc-icon>
   <abbr
     slot="action"
+    title="[edit]"
+  >
+    <mwc-icon-button icon="edit">
+    </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="action"
     title="[iededitor.toggleChildElements]"
   >
     <mwc-icon-button-toggle
@@ -47,6 +54,13 @@ snapshots["ldevice-container LDevice Element with LN Elements and some LN Elemen
   </mwc-icon>
   <abbr
     slot="action"
+    title="[edit]"
+  >
+    <mwc-icon-button icon="edit">
+    </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="action"
     title="[iededitor.toggleChildElements]"
   >
     <mwc-icon-button-toggle
@@ -75,6 +89,13 @@ snapshots["ldevice-container LDevice Element with LN Elements and no LN Elements
 `<action-pane tabindex="0">
   <mwc-icon slot="icon">
   </mwc-icon>
+  <abbr
+    slot="action"
+    title="[edit]"
+  >
+    <mwc-icon-button icon="edit">
+    </mwc-icon-button>
+  </abbr>
   <div id="lnContainer">
   </div>
 </action-pane>
@@ -85,6 +106,13 @@ snapshots["ldevice-container LDevice Element without LN Element looks like the l
 `<action-pane tabindex="0">
   <mwc-icon slot="icon">
   </mwc-icon>
+  <abbr
+    slot="action"
+    title="[edit]"
+  >
+    <mwc-icon-button icon="edit">
+    </mwc-icon-button>
+  </abbr>
   <div id="lnContainer">
   </div>
 </action-pane>

@@ -17,12 +17,15 @@ import {
   getDescriptionAttribute,
   getInstanceAttribute,
   getNameAttribute,
+  getLdNameAttribute,
+  newWizardEvent,
 } from '../../foundation.js';
 import { logicalDeviceIcon } from '../../icons/ied-icons.js';
 
 import '../../action-pane.js';
 import './ln-container.js';
 
+import { wizards } from '../../wizards/wizard-library.js';
 import { Container } from './foundation.js';
 
 /** [[`IED`]] plugin subeditor for editing `LDevice` element. */
@@ -34,12 +37,20 @@ export class LDeviceContainer extends Container {
   @query('#toggleButton')
   toggleButton!: IconButtonToggle | undefined;
 
+  private openEditWizard(): void {
+    const wizard = wizards['LDevice'].edit(this.element);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
+
   private header(): TemplateResult {
     const nameOrInst =
       getNameAttribute(this.element) ?? getInstanceAttribute(this.element);
     const desc = getDescriptionAttribute(this.element);
+    const ldName = getLdNameAttribute(this.element);
 
-    return html`${nameOrInst}${desc ? html` &mdash; ${desc}` : nothing}`;
+    return html`${nameOrInst}${desc ? html` &mdash; ${desc}` : nothing}${ldName
+      ? html` &mdash; ${ldName}`
+      : nothing}`;
   }
 
   protected firstUpdated(): void {
@@ -70,6 +81,12 @@ export class LDeviceContainer extends Container {
 
     return html`<action-pane .label="${this.header()}">
       <mwc-icon slot="icon">${logicalDeviceIcon}</mwc-icon>
+      <abbr slot="action" title="${translate('edit')}">
+        <mwc-icon-button
+          icon="edit"
+          @click=${() => this.openEditWizard()}
+        ></mwc-icon-button>
+      </abbr>
       ${lnElements.length > 0
         ? html`<abbr
             slot="action"
@@ -106,6 +123,10 @@ export class LDeviceContainer extends Container {
       grid-gap: 12px;
       box-sizing: border-box;
       grid-template-columns: repeat(auto-fit, minmax(316px, auto));
+    }
+
+    abbr {
+      text-decoration: none;
     }
 
     @media (max-width: 387px) {
