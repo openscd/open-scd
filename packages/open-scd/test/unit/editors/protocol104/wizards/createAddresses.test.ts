@@ -192,7 +192,7 @@ describe('Wizards for preparing 104 Address Creation', () => {
 
     it('when processing the request with Check Selected, the expected Create Actions are returned', async () => {
       const switchElement: Switch =
-        element.wizardUI.dialog!.querySelector<Switch>('')!;
+        element.wizardUI.dialog!.querySelector<Switch>(
           `mwc-switch[id="controlCheck"]`
       )!;
       switchElement.checked = true;
