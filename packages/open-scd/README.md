@@ -36,7 +36,7 @@ This will start a local development server and open a browser window which will 
 
 ### TypeDoc
 
-This project uses [TypeDoc](https://typedoc.org/) to transform documentation comments in the source code into a rendered HTML document that can be queried and navigated through. If you want to consult the generated documentation for the TypeScript components, mixins, modules and other relevant artifacts of this project, you can [do it here](https://openscd.github.io/doc/).
+This project uses [TypeDoc](https://typedoc.org/) to transform documentation comments in the source code into a rendered HTML document that can be queried and navigated through. If you want to consult the generated documentation for the TypeScript components, mixins, modules and other relevant artifacts of this project, you can [do it here](https://openscd.github.io/doc/). Documentation for OpenSCD Core [can be found here](https://openscd.github.io/core-doc).
 
 ### Linting & Formatting
 
