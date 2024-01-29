@@ -457,6 +457,8 @@ export const en = {
       valuesView: 'Values',
       networkView: 'Network',
     },
+    mappedCmv:
+      'According to the IEC 61850-80-1 standard, "{{ cdc }}" mapping is required via CMV',
     values: {
       missing: 'No IED with 104 Addresses',
       removeAddresses: 'Remove all Addresses',

@@ -461,6 +461,8 @@ export const de: Translations = {
       valuesView: 'Werte',
       networkView: 'Netzwerk',
     },
+    mappedCmv:
+      'Gemäß dem IEC 61850-80-1 Standard ist eine "{{ cdc }}" zuordnung über CMV erforderlich',
     values: {
       missing: 'Kein IED mit 104 Adressen',
       removeAddresses: 'Alle Adressen entfernen',

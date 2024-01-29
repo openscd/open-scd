@@ -81,6 +81,22 @@ describe('Wizards for 104 DOI Element', () => {
     });
   });
 
+  describe('show 104 DOI Basic Info for CDC=DEL', () => {
+    beforeEach(async () => {
+      doiElement = doc.querySelector(
+        'IED[name="B1"] LN[lnType="SE_MMXU_SET_V001"] DOI[name="PPV"]'
+      )!;
+
+      const doElement = doc
+        .querySelector('LNodeType[id="SE_MMXU_SET_V001"] > DO[name="PPV"]')
+        ?.getAttribute('type')!;
+
+      expect(doElement).to.be.equal('SE_DEL_V001');
+      const doType = doc.querySelector(`DOType[id="${doElement}"]`)!;
+      expect(doType.getAttribute('cdc')).to.be.equal('DEL');
+    });
+  });
+
   describe('remove104Private', () => {
     let wizard: Element;
     let actionEvent: SinonSpy;

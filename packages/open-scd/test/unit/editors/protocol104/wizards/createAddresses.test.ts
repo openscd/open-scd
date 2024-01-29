@@ -10,6 +10,8 @@ import {
   WizardInputElement,
 } from '../../../../../src/foundation.js';
 
+import { WizardSelect } from '../../../../../src/wizard-select.js';
+import { WizardTextField } from '../../../../../src/wizard-textfield.js';
 import '../../../../mock-wizard.js';
 
 import {
@@ -19,8 +21,6 @@ import {
 
 import { fetchDoc } from '../../../wizards/test-support.js';
 import { Switch } from '@material/mwc-switch';
-import { WizardSelect } from '../../../../../src/wizard-select.js';
-import { WizardTextField } from '../../../../../src/wizard-textfield.js';
 
 describe('Wizards for preparing 104 Address Creation', () => {
   let doc: XMLDocument;
@@ -159,6 +159,22 @@ describe('Wizards for preparing 104 Address Creation', () => {
       controlTi.value = '62';
       await element.requestUpdate();
       expect(monitorTi.maybeValue).to.equal('35');
+    });
+  });
+
+  describe('show prepare 104 Address creation with mapped cdc value', () => {
+    beforeEach(async () => {
+      await prepareWizard(
+        'IED[name="B1"] LN[lnType="SE_MMXU_SET_V001"]',
+        'PPV'
+      );
+    });
+    it('should have mappedCmv translation value in helper field', async () => {
+      const cdc = element.wizardUI.dialog!.querySelector(
+        'wizard-textfield[label="Common Data Class"]'
+      ) as WizardTextField;
+      expect(cdc).to.exist;
+      await expect(cdc.helper).to.equal('[protocol104.mappedCmv]');
     });
   });
 
