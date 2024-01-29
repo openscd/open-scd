@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["testing sclHistory dialog with a document loaded containing SCL history items looks like its latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'testing sclHistory dialog with a document loaded containing SCL history items looks like its latest snapshot'
+] = `<mwc-dialog
   heading="[history.name]"
   id="historyLog"
   open=""
@@ -148,8 +149,9 @@ snapshots["testing sclHistory dialog with a document loaded containing SCL histo
 `;
 /* end snapshot testing sclHistory dialog with a document loaded containing SCL history items looks like its latest snapshot */
 
-snapshots["testing sclHistory dialog with no document looks like its latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'testing sclHistory dialog with no document looks like its latest snapshot'
+] = `<mwc-dialog
   heading="[history.name]"
   id="historyLog"
   open=""
@@ -179,8 +181,9 @@ snapshots["testing sclHistory dialog with no document looks like its latest snap
 `;
 /* end snapshot testing sclHistory dialog with no document looks like its latest snapshot */
 
-snapshots["testing sclHistory dialog with a document without SCL history items looks like its latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'testing sclHistory dialog with a document without SCL history items looks like its latest snapshot'
+] = `<mwc-dialog
   heading="[history.name]"
   id="historyLog"
   open=""
@@ -209,4 +212,3 @@ snapshots["testing sclHistory dialog with a document without SCL history items l
 </mwc-dialog>
 `;
 /* end snapshot testing sclHistory dialog with a document without SCL history items looks like its latest snapshot */
-

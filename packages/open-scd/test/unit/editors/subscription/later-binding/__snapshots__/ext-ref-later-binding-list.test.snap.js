@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["extref-later-binding-list looks like the latest snapshot without a doc loaded"] = 
-`<section tabindex="0">
+snapshots[
+  'extref-later-binding-list looks like the latest snapshot without a doc loaded'
+] = `<section tabindex="0">
   <h1>
     [subscription.laterBinding.extRefList.noSelection]
   </h1>
@@ -10,8 +11,9 @@ snapshots["extref-later-binding-list looks like the latest snapshot without a do
 `;
 /* end snapshot extref-later-binding-list looks like the latest snapshot without a doc loaded */
 
-snapshots["extref-later-binding-list for Sampled Value Control looks like the latest snapshot, but no event fired"] = 
-`<section tabindex="0">
+snapshots[
+  'extref-later-binding-list for Sampled Value Control looks like the latest snapshot, but no event fired'
+] = `<section tabindex="0">
   <h1>
     [subscription.laterBinding.extRefList.noSelection]
   </h1>
@@ -19,8 +21,9 @@ snapshots["extref-later-binding-list for Sampled Value Control looks like the la
 `;
 /* end snapshot extref-later-binding-list for Sampled Value Control looks like the latest snapshot, but no event fired */
 
-snapshots["extref-later-binding-list for Sampled Value Control when SVC has no subscriptions looks like the latest snapshot, when SVC has no subscriptions"] = 
-`<section tabindex="0">
+snapshots[
+  'extref-later-binding-list for Sampled Value Control when SVC has no subscriptions looks like the latest snapshot, when SVC has no subscriptions'
+] = `<section tabindex="0">
   <h1>
     [subscription.laterBinding.extRefList.title]
   </h1>
@@ -240,8 +243,9 @@ snapshots["extref-later-binding-list for Sampled Value Control when SVC has no s
 `;
 /* end snapshot extref-later-binding-list for Sampled Value Control when SVC has no subscriptions looks like the latest snapshot, when SVC has no subscriptions */
 
-snapshots["extref-later-binding-list for Sampled Value Control when SVC has a single subscriptions looks like the latest snapshot, "] = 
-`<section tabindex="0">
+snapshots[
+  'extref-later-binding-list for Sampled Value Control when SVC has a single subscriptions looks like the latest snapshot, '
+] = `<section tabindex="0">
   <h1>
     [subscription.laterBinding.extRefList.title]
   </h1>
@@ -472,8 +476,9 @@ snapshots["extref-later-binding-list for Sampled Value Control when SVC has a si
 `;
 /* end snapshot extref-later-binding-list for Sampled Value Control when SVC has a single subscriptions looks like the latest snapshot,  */
 
-snapshots["extref-later-binding-list when SVC has a multiple subscriptions looks like the latest snapshot, "] = 
-`<section tabindex="0">
+snapshots[
+  'extref-later-binding-list when SVC has a multiple subscriptions looks like the latest snapshot, '
+] = `<section tabindex="0">
   <h1>
     [subscription.laterBinding.extRefList.title]
   </h1>
@@ -736,8 +741,9 @@ snapshots["extref-later-binding-list when SVC has a multiple subscriptions looks
 `;
 /* end snapshot extref-later-binding-list when SVC has a multiple subscriptions looks like the latest snapshot,  */
 
-snapshots["extref-later-binding-list for GOOSE Control looks like the latest snapshot, but no event fired"] = 
-`<section tabindex="0">
+snapshots[
+  'extref-later-binding-list for GOOSE Control looks like the latest snapshot, but no event fired'
+] = `<section tabindex="0">
   <h1>
     [subscription.laterBinding.extRefList.noSelection]
   </h1>
@@ -745,8 +751,9 @@ snapshots["extref-later-binding-list for GOOSE Control looks like the latest sna
 `;
 /* end snapshot extref-later-binding-list for GOOSE Control looks like the latest snapshot, but no event fired */
 
-snapshots["extref-later-binding-list for GOOSE Control when GSEControl has no subscriptions looks like the latest snapshot, when GSEControl has no subscriptions"] = 
-`<section tabindex="0">
+snapshots[
+  'extref-later-binding-list for GOOSE Control when GSEControl has no subscriptions looks like the latest snapshot, when GSEControl has no subscriptions'
+] = `<section tabindex="0">
   <h1>
     [subscription.laterBinding.extRefList.title]
   </h1>
@@ -890,8 +897,9 @@ snapshots["extref-later-binding-list for GOOSE Control when GSEControl has no su
 `;
 /* end snapshot extref-later-binding-list for GOOSE Control when GSEControl has no subscriptions looks like the latest snapshot, when GSEControl has no subscriptions */
 
-snapshots["extref-later-binding-list for GOOSE Control when GSEControl has a single subscription looks like the latest snapshot, "] = 
-`<section tabindex="0">
+snapshots[
+  'extref-later-binding-list for GOOSE Control when GSEControl has a single subscription looks like the latest snapshot, '
+] = `<section tabindex="0">
   <h1>
     [subscription.laterBinding.extRefList.title]
   </h1>
@@ -1046,8 +1054,9 @@ snapshots["extref-later-binding-list for GOOSE Control when GSEControl has a sin
 `;
 /* end snapshot extref-later-binding-list for GOOSE Control when GSEControl has a single subscription looks like the latest snapshot,  */
 
-snapshots["extref-later-binding-list when GSEControl has a multiple subscriptions looks like the latest snapshot, "] = 
-`<section tabindex="0">
+snapshots[
+  'extref-later-binding-list when GSEControl has a multiple subscriptions looks like the latest snapshot, '
+] = `<section tabindex="0">
   <h1>
     [subscription.laterBinding.extRefList.title]
   </h1>
@@ -1217,4 +1226,3 @@ snapshots["extref-later-binding-list when GSEControl has a multiple subscription
 </section>
 `;
 /* end snapshot extref-later-binding-list when GSEControl has a multiple subscriptions looks like the latest snapshot,  */
-

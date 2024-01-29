@@ -44,7 +44,7 @@ const daiFieldTypes = [
   'Octet6',
   'Octet16',
 ] as const;
-export type DaiFieldTypes = typeof daiFieldTypes[number];
+export type DaiFieldTypes = (typeof daiFieldTypes)[number];
 const emptyIfNull = <T>(item: T | null, value: string): string => {
   return item === null ? '' : value;
 };

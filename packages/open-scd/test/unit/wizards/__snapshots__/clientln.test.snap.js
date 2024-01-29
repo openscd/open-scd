@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["clientln wizards createClientLnWizard looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'clientln wizards createClientLnWizard looks like the latest snapshot'
+] = `<mwc-dialog
   defaultaction="next"
   heading="[commmap.connectToIED]"
   open=""
@@ -337,8 +338,9 @@ snapshots["clientln wizards createClientLnWizard looks like the latest snapshot"
 `;
 /* end snapshot clientln wizards createClientLnWizard looks like the latest snapshot */
 
-snapshots["clientln wizards selectClientLnWizard looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'clientln wizards selectClientLnWizard looks like the latest snapshot'
+] = `<mwc-dialog
   defaultaction="next"
   heading="IED2>>CBSW> XSWI 2>ReportCb - IED1"
   open=""
@@ -400,4 +402,3 @@ snapshots["clientln wizards selectClientLnWizard looks like the latest snapshot"
 </mwc-dialog>
 `;
 /* end snapshot clientln wizards selectClientLnWizard looks like the latest snapshot */
-

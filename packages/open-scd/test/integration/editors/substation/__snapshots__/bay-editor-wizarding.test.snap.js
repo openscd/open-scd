@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["bay-editor wizarding integration looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'bay-editor wizarding integration looks like the latest snapshot'
+] = `<mwc-dialog
   defaultaction="next"
   heading="[bay.wizard.title.edit]"
   open=""
@@ -41,4 +42,3 @@ snapshots["bay-editor wizarding integration looks like the latest snapshot"] =
 </mwc-dialog>
 `;
 /* end snapshot bay-editor wizarding integration looks like the latest snapshot */
-

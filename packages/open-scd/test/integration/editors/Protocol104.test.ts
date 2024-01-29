@@ -7,10 +7,7 @@ import { Editing } from '../../../src/Editing.js';
 import { Wizarding } from '../../../src/Wizarding.js';
 
 describe('Protocol 104 Plugin', () => {
-  customElements.define(
-    'protocol104-plugin',
-    Wizarding(Editing(Protocol104))
-  );
+  customElements.define('protocol104-plugin', Wizarding(Editing(Protocol104)));
   let element: Protocol104;
   let doc: XMLDocument;
 
@@ -25,9 +22,9 @@ describe('Protocol 104 Plugin', () => {
   });
 
   describe('in Values view', () => {
-      it('the plugin looks like the latest snapshot', async () => {
-        await expect(element).shadowDom.to.equalSnapshot();
-      });
+    it('the plugin looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
+    });
   });
 
   describe('in Network view', () => {

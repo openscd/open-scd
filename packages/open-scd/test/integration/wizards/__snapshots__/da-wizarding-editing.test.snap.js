@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["DA wizarding editing integration defines a editDaWizard to edit an existing DA looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'DA wizarding editing integration defines a editDaWizard to edit an existing DA looks like the latest snapshot'
+] = `<mwc-dialog
   defaultaction="next"
   heading="[da.wizard.title.edit]"
   open=""
@@ -845,8 +846,9 @@ snapshots["DA wizarding editing integration defines a editDaWizard to edit an ex
 `;
 /* end snapshot DA wizarding editing integration defines a editDaWizard to edit an existing DA looks like the latest snapshot */
 
-snapshots["DA wizarding editing integration defines a createDaWizard to create a new DA element looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'DA wizarding editing integration defines a createDaWizard to create a new DA element looks like the latest snapshot'
+] = `<mwc-dialog
   defaultaction="next"
   heading="[da.wizard.title.edit]"
   open=""
@@ -1590,4 +1592,3 @@ snapshots["DA wizarding editing integration defines a createDaWizard to create a
 </mwc-dialog>
 `;
 /* end snapshot DA wizarding editing integration defines a createDaWizard to create a new DA element looks like the latest snapshot */
-

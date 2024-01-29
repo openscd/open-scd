@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["GOOSE Subscribe Later Binding Plugin when selecting an FCDA element with subscriptions it looks like the latest snapshot"] = 
-`<section tabindex="0">
+snapshots[
+  'GOOSE Subscribe Later Binding Plugin when selecting an FCDA element with subscriptions it looks like the latest snapshot'
+] = `<section tabindex="0">
   <h1>
     [subscription.laterBinding.extRefList.title]
   </h1>
@@ -200,4 +201,3 @@ snapshots["GOOSE Subscribe Later Binding Plugin when selecting an FCDA element w
 </section>
 `;
 /* end snapshot GOOSE Subscribe Later Binding Plugin when selecting an FCDA element with subscriptions it looks like the latest snapshot */
-

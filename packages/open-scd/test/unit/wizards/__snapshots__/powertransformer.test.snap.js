@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Wizards for SCL element Power Transformer edit existing Power Transformer looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'Wizards for SCL element Power Transformer edit existing Power Transformer looks like the latest snapshot'
+] = `<mwc-dialog
   defaultaction="next"
   heading="[powertransformer.wizard.title.edit]"
   open=""
@@ -49,8 +50,9 @@ snapshots["Wizards for SCL element Power Transformer edit existing Power Transfo
 `;
 /* end snapshot Wizards for SCL element Power Transformer edit existing Power Transformer looks like the latest snapshot */
 
-snapshots["Wizards for SCL element Power Transformer add new Power Transformer looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'Wizards for SCL element Power Transformer add new Power Transformer looks like the latest snapshot'
+] = `<mwc-dialog
   defaultaction="next"
   heading="[powertransformer.wizard.title.add]"
   open=""
@@ -96,4 +98,3 @@ snapshots["Wizards for SCL element Power Transformer add new Power Transformer l
 </mwc-dialog>
 `;
 /* end snapshot Wizards for SCL element Power Transformer add new Power Transformer looks like the latest snapshot */
-

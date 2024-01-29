@@ -1,4 +1,4 @@
-import { getNameAttribute, getPathNameAttribute } from "../../foundation.js";
+import { getNameAttribute, getPathNameAttribute } from '../../foundation.js';
 
 /**
  * A point is a position containing a x and a y within a SCL file.
@@ -8,7 +8,8 @@ export interface Point {
   y: number;
 }
 
-export const SCL_COORDINATES_NAMESPACE = 'http://www.iec.ch/61850/2003/SCLcoordinates';
+export const SCL_COORDINATES_NAMESPACE =
+  'http://www.iec.ch/61850/2003/SCLcoordinates';
 
 /** Scope factor: the ConnectivityNode allocation algorithm works better with a scale factor which is bigger than 1. */
 const COORDINATES_SCALE_FACTOR = 2;
@@ -19,14 +20,8 @@ const COORDINATES_SCALE_FACTOR = 2;
  * @returns A point containing the coordinates.
  */
 export function getRelativeCoordinates(element: Element): Point {
-  const x = element.getAttributeNS(
-    SCL_COORDINATES_NAMESPACE,
-    'x'
-  );
-  const y = element.getAttributeNS(
-    SCL_COORDINATES_NAMESPACE,
-    'y'
-  );
+  const x = element.getAttributeNS(SCL_COORDINATES_NAMESPACE, 'x');
+  const y = element.getAttributeNS(SCL_COORDINATES_NAMESPACE, 'y');
 
   return {
     x: x ? parseInt(x) * COORDINATES_SCALE_FACTOR : 0,
@@ -79,9 +74,12 @@ export function getConnectedTerminals(element: Element): Element[] {
     terminal =>
       terminal.getAttribute('connectivityNode') === path &&
       terminal.getAttribute('cNodeName') === getNameAttribute(element) &&
-      (!terminal.hasAttribute('substationName') || terminal.getAttribute('substationName') === substationName) &&
-      (!terminal.hasAttribute('voltageLevelName') || terminal.getAttribute('voltageLevelName') === voltageLevelName) &&
-      (!terminal.hasAttribute('bayName') || terminal.getAttribute('bayName') === bayName)
+      (!terminal.hasAttribute('substationName') ||
+        terminal.getAttribute('substationName') === substationName) &&
+      (!terminal.hasAttribute('voltageLevelName') ||
+        terminal.getAttribute('voltageLevelName') === voltageLevelName) &&
+      (!terminal.hasAttribute('bayName') ||
+        terminal.getAttribute('bayName') === bayName)
   );
 }
 
@@ -140,8 +138,12 @@ export function calculateConnectivityNodeCoordinates(
   };
 }
 
-export function getCommonParentElement(leftElement: Element, rightElement: Element, defaultParent: Element | null): Element | null {
-  let leftParentElement = leftElement.parentElement
+export function getCommonParentElement(
+  leftElement: Element,
+  rightElement: Element,
+  defaultParent: Element | null
+): Element | null {
+  let leftParentElement = leftElement.parentElement;
   while (leftParentElement) {
     if (leftParentElement.contains(rightElement)) {
       return leftParentElement;

@@ -19,9 +19,18 @@ export default class Cleanup extends LitElement {
   render(): TemplateResult {
     return html`
       <div class="cleanup">
-        <cleanup-datasets .editCount=${this.editCount} .doc=${this.doc}></cleanup-datasets>
-        <cleanup-control-blocks .editCount=${this.editCount} .doc=${this.doc}></cleanup-control-blocks>
-        <cleanup-data-types .editCount=${this.editCount} .doc=${this.doc}></cleanup-data-types>
+        <cleanup-datasets
+          .editCount=${this.editCount}
+          .doc=${this.doc}
+        ></cleanup-datasets>
+        <cleanup-control-blocks
+          .editCount=${this.editCount}
+          .doc=${this.doc}
+        ></cleanup-control-blocks>
+        <cleanup-data-types
+          .editCount=${this.editCount}
+          .doc=${this.doc}
+        ></cleanup-data-types>
       </div>
     `;
   }

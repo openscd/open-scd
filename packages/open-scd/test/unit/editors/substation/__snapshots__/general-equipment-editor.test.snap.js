@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Editor web component for GeneralEquipment SCL element rendered as action icon looks like the latest snapshot"] = 
-`<action-icon
+snapshots[
+  'Editor web component for GeneralEquipment SCL element rendered as action icon looks like the latest snapshot'
+] = `<action-icon
   label="genSub"
   tabindex="0"
 >
@@ -24,8 +25,9 @@ snapshots["Editor web component for GeneralEquipment SCL element rendered as act
 `;
 /* end snapshot Editor web component for GeneralEquipment SCL element rendered as action icon looks like the latest snapshot */
 
-snapshots["Editor web component for GeneralEquipment SCL element rendered as action pane look like the latest snapshot"] = 
-`<action-pane
+snapshots[
+  'Editor web component for GeneralEquipment SCL element rendered as action pane look like the latest snapshot'
+] = `<action-pane
   label="genSub —  someDesc"
   tabindex="0"
 >
@@ -87,4 +89,3 @@ snapshots["Editor web component for GeneralEquipment SCL element rendered as act
 </action-pane>
 `;
 /* end snapshot Editor web component for GeneralEquipment SCL element rendered as action pane look like the latest snapshot */
-

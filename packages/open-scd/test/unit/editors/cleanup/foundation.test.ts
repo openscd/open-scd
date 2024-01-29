@@ -26,6 +26,5 @@ describe('Sorting items by their identity', () => {
       'PhsMeas1',
       'PhsMeas2',
     ]);
-    
   });
 });

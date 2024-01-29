@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["cleanup-editor integration: dataset removal without a doc loaded looks like the latest snapshot"] = 
-`<section tabindex="0">
+snapshots[
+  'cleanup-editor integration: dataset removal without a doc loaded looks like the latest snapshot'
+] = `<section tabindex="0">
   <div>
     <h1>
       [cleanup.unreferencedDataSets.title]
@@ -37,8 +38,9 @@ snapshots["cleanup-editor integration: dataset removal without a doc loaded look
 `;
 /* end snapshot cleanup-editor integration: dataset removal without a doc loaded looks like the latest snapshot */
 
-snapshots["cleanup-editor integration: dataset removal With a test file loaded looks like the latest snapshot"] = 
-`<section tabindex="0">
+snapshots[
+  'cleanup-editor integration: dataset removal With a test file loaded looks like the latest snapshot'
+] = `<section tabindex="0">
   <div>
     <h1>
       [cleanup.unreferencedDataSets.title]
@@ -126,4 +128,3 @@ snapshots["cleanup-editor integration: dataset removal With a test file loaded l
 </wizard-dialog>
 `;
 /* end snapshot cleanup-editor integration: dataset removal With a test file loaded looks like the latest snapshot */
-

@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Wizards for LNode element contain a LNode instantiate wizard that with existing LLN0 and LPHD instances looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'Wizards for LNode element contain a LNode instantiate wizard that with existing LLN0 and LPHD instances looks like the latest snapshot'
+] = `<mwc-dialog
   defaultaction="next"
   heading="[lnode.wizard.title.selectLNodeTypes]"
   open=""
@@ -171,8 +172,9 @@ snapshots["Wizards for LNode element contain a LNode instantiate wizard that wit
 `;
 /* end snapshot Wizards for LNode element contain a LNode instantiate wizard that with existing LLN0 and LPHD instances looks like the latest snapshot */
 
-snapshots["Wizards for LNode element contain a LNode instantiate wizard that with existing LLN0 but missing LPHD instances looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'Wizards for LNode element contain a LNode instantiate wizard that with existing LLN0 but missing LPHD instances looks like the latest snapshot'
+] = `<mwc-dialog
   defaultaction="next"
   heading="[lnode.wizard.title.selectLNodeTypes]"
   open=""
@@ -340,8 +342,9 @@ snapshots["Wizards for LNode element contain a LNode instantiate wizard that wit
 `;
 /* end snapshot Wizards for LNode element contain a LNode instantiate wizard that with existing LLN0 but missing LPHD instances looks like the latest snapshot */
 
-snapshots["Wizards for LNode element contain a LNode instantiate wizard that with missing LLN0 and LPHD instances looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'Wizards for LNode element contain a LNode instantiate wizard that with missing LLN0 and LPHD instances looks like the latest snapshot'
+] = `<mwc-dialog
   defaultaction="next"
   heading="[lnode.wizard.title.selectLNodeTypes]"
   open=""
@@ -508,8 +511,9 @@ snapshots["Wizards for LNode element contain a LNode instantiate wizard that wit
 `;
 /* end snapshot Wizards for LNode element contain a LNode instantiate wizard that with missing LLN0 and LPHD instances looks like the latest snapshot */
 
-snapshots["Wizards for LNode element contain a LNode reference create wizard that with references to existing logical nodes looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'Wizards for LNode element contain a LNode reference create wizard that with references to existing logical nodes looks like the latest snapshot'
+] = `<mwc-dialog
   defaultaction="next"
   heading="[lnode.wizard.title.selectLNs]"
   open=""
@@ -693,8 +697,9 @@ snapshots["Wizards for LNode element contain a LNode reference create wizard tha
 `;
 /* end snapshot Wizards for LNode element contain a LNode reference create wizard that with references to existing logical nodes looks like the latest snapshot */
 
-snapshots["Wizards for LNode element contain a LNode reference create wizard that with missing references to existing logical nodes looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'Wizards for LNode element contain a LNode reference create wizard that with missing references to existing logical nodes looks like the latest snapshot'
+] = `<mwc-dialog
   defaultaction="next"
   heading="[lnode.wizard.title.selectIEDs]"
   open=""
@@ -773,8 +778,9 @@ snapshots["Wizards for LNode element contain a LNode reference create wizard tha
 `;
 /* end snapshot Wizards for LNode element contain a LNode reference create wizard that with missing references to existing logical nodes looks like the latest snapshot */
 
-snapshots["Wizards for LNode element contain a edit wizard that for a type reference looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'Wizards for LNode element contain a edit wizard that for a type reference looks like the latest snapshot'
+] = `<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
   open=""
@@ -841,8 +847,9 @@ snapshots["Wizards for LNode element contain a edit wizard that for a type refer
 `;
 /* end snapshot Wizards for LNode element contain a edit wizard that for a type reference looks like the latest snapshot */
 
-snapshots["Wizards for LNode element contain a edit wizard that for a IED reference looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'Wizards for LNode element contain a edit wizard that for a IED reference looks like the latest snapshot'
+] = `<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
   open=""
@@ -909,4 +916,3 @@ snapshots["Wizards for LNode element contain a edit wizard that for a IED refere
 </mwc-dialog>
 `;
 /* end snapshot Wizards for LNode element contain a edit wizard that for a IED reference looks like the latest snapshot */
-

@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Wizards for the Redundancy Group SCL element group include a create wizard that looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'Wizards for the Redundancy Group SCL element group include a create wizard that looks like the latest snapshot'
+] = `<mwc-dialog
   defaultaction="next"
   heading="[protocol104.network.redundancyGroup.wizard.title.add]"
   open=""
@@ -75,4 +76,3 @@ snapshots["Wizards for the Redundancy Group SCL element group include a create w
 </mwc-dialog>
 `;
 /* end snapshot Wizards for the Redundancy Group SCL element group include a create wizard that looks like the latest snapshot */
-

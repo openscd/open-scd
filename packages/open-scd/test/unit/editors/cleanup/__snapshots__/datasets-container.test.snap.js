@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Cleanup: Datasets Container without a doc loaded looks like the latest snapshot"] = 
-`<section tabindex="0">
+snapshots[
+  'Cleanup: Datasets Container without a doc loaded looks like the latest snapshot'
+] = `<section tabindex="0">
   <div>
     <h1>
       [cleanup.unreferencedDataSets.title]
@@ -37,8 +38,9 @@ snapshots["Cleanup: Datasets Container without a doc loaded looks like the lates
 `;
 /* end snapshot Cleanup: Datasets Container without a doc loaded looks like the latest snapshot */
 
-snapshots["Cleanup: Datasets Container with a test file loaded looks like the latest snapshot"] = 
-`<section tabindex="0">
+snapshots[
+  'Cleanup: Datasets Container with a test file loaded looks like the latest snapshot'
+] = `<section tabindex="0">
   <div>
     <h1>
       [cleanup.unreferencedDataSets.title]
@@ -126,4 +128,3 @@ snapshots["Cleanup: Datasets Container with a test file loaded looks like the la
 </wizard-dialog>
 `;
 /* end snapshot Cleanup: Datasets Container with a test file loaded looks like the latest snapshot */
-

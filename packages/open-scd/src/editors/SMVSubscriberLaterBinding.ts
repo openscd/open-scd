@@ -17,13 +17,15 @@ export default class SMVSubscribeLaterBindingPlugin extends LitElement {
           class="column"
           controlTag="SampledValueControl"
           .includeLaterBinding="${true}"
-          .editCount=${this.editCount} .doc="${this.doc}"
+          .editCount=${this.editCount}
+          .doc="${this.doc}"
         >
         </fcda-binding-list>
         <extref-later-binding-list
           class="column"
           controlTag="SampledValueControl"
-          .editCount=${this.editCount} .doc="${this.doc}"
+          .editCount=${this.editCount}
+          .doc="${this.doc}"
         >
         </extref-later-binding-list>
       </div>

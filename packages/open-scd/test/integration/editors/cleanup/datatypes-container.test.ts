@@ -125,12 +125,9 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
 
       expect(element.doc.querySelectorAll('EnumType')).to.have.lengthOf(11);
       expect(
-        element.doc.querySelectorAll(
-          'EnumType[id="NotUsedDir"]'
-        )
+        element.doc.querySelectorAll('EnumType[id="NotUsedDir"]')
       ).to.have.lengthOf(0);
     });
-
 
     describe('if the Remove subtypes checkbox is unchecked', () => {
       beforeEach(async () => {
@@ -159,7 +156,9 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
             'DOType[id="NotUsedDummy.SPS"], DOType[id="WYE_2_3"], DOType[id="Dummy.LLN0.Health.Unused]'
           )
         ).to.have.lengthOf(0);
-        expect(element.doc.querySelectorAll('DOType[id="CMV_1"]')).to.have.lengthOf(1);
+        expect(
+          element.doc.querySelectorAll('DOType[id="CMV_1"]')
+        ).to.have.lengthOf(1);
       });
 
       it('correctly removes DATypes and _not_ those referenced via a BDA from the SCL', async () => {

@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["looks like the latest snapshot with a LN0 element."] = 
-`<action-pane tabindex="0">
+snapshots[
+  'looks like the latest snapshot with a LN0 element.'
+] = `<action-pane tabindex="0">
   <abbr
     slot="action"
     title="[iededitor.toggleChildElements]"
@@ -18,8 +19,9 @@ snapshots["looks like the latest snapshot with a LN0 element."] =
 `;
 /* end snapshot looks like the latest snapshot with a LN0 element. */
 
-snapshots["looks like the latest snapshot with a LN0 element and child elements are toggled."] = 
-`<action-pane tabindex="0">
+snapshots[
+  'looks like the latest snapshot with a LN0 element and child elements are toggled.'
+] = `<action-pane tabindex="0">
   <abbr
     slot="action"
     title="[iededitor.toggleChildElements]"
@@ -48,8 +50,9 @@ snapshots["looks like the latest snapshot with a LN0 element and child elements 
 `;
 /* end snapshot looks like the latest snapshot with a LN0 element and child elements are toggled. */
 
-snapshots["looks like the latest snapshot with a LN element."] = 
-`<action-pane tabindex="0">
+snapshots[
+  'looks like the latest snapshot with a LN element.'
+] = `<action-pane tabindex="0">
   <abbr
     slot="action"
     title="[iededitor.toggleChildElements]"
@@ -65,8 +68,9 @@ snapshots["looks like the latest snapshot with a LN element."] =
 `;
 /* end snapshot looks like the latest snapshot with a LN element. */
 
-snapshots["looks like the latest snapshot with a LN element and child elements are toggled."] = 
-`<action-pane tabindex="0">
+snapshots[
+  'looks like the latest snapshot with a LN element and child elements are toggled.'
+] = `<action-pane tabindex="0">
   <abbr
     slot="action"
     title="[iededitor.toggleChildElements]"
@@ -96,4 +100,3 @@ snapshots["looks like the latest snapshot with a LN element and child elements a
 </action-pane>
 `;
 /* end snapshot looks like the latest snapshot with a LN element and child elements are toggled. */
-

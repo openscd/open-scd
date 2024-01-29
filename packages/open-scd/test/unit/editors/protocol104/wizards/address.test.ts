@@ -49,7 +49,9 @@ describe('Wizards for 104 Address Element', () => {
 
   describe('when adding a 104 Address', () => {
     beforeEach(async () => {
-      await prepareWizard('IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] DOI[name="Mod"] DAI[name="ctlVal"] Address');
+      await prepareWizard(
+        'IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"] DOI[name="Mod"] DAI[name="ctlVal"] Address'
+      );
     });
 
     it('shows a validation error message if the combination of casdu and ioa is already in use', async () => {
@@ -95,8 +97,6 @@ describe('Wizards for 104 Address Element', () => {
     it('looks like the latest snapshot', async () => {
       await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
     });
-    
-    
   });
 
   describe('edit 104 Address with expected value', () => {

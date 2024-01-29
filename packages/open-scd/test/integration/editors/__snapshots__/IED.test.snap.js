@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["IED Plugin without a doc loaded looks like the latest snapshot"] = 
-`<h1>
+snapshots[
+  'IED Plugin without a doc loaded looks like the latest snapshot'
+] = `<h1>
   <span style="color: var(--base1)">
     [iededitor.missing]
   </span>
@@ -12,8 +13,9 @@ snapshots["IED Plugin without a doc loaded looks like the latest snapshot"] =
 `;
 /* end snapshot IED Plugin without a doc loaded looks like the latest snapshot */
 
-snapshots["IED Plugin with a doc loaded containing no IEDs looks like the latest snapshot"] = 
-`<h1>
+snapshots[
+  'IED Plugin with a doc loaded containing no IEDs looks like the latest snapshot'
+] = `<h1>
   <span style="color: var(--base1)">
     [iededitor.missing]
   </span>
@@ -23,8 +25,9 @@ snapshots["IED Plugin with a doc loaded containing no IEDs looks like the latest
 `;
 /* end snapshot IED Plugin with a doc loaded containing no IEDs looks like the latest snapshot */
 
-snapshots["IED Plugin with a doc loaded containing IEDs looks like the latest snapshot"] = 
-`<section>
+snapshots[
+  'IED Plugin with a doc loaded containing IEDs looks like the latest snapshot'
+] = `<section>
   <div class="header">
     <h1>
       [filters]:
@@ -168,4 +171,3 @@ snapshots["IED Plugin with a doc loaded containing IEDs looks like the latest sn
 </wizard-dialog>
 `;
 /* end snapshot IED Plugin with a doc loaded containing IEDs looks like the latest snapshot */
-

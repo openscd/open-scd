@@ -20,12 +20,76 @@ import { Setting } from './Setting.js';
 import { Waiting } from './Waiting.js';
 import { Wizarding } from './Wizarding.js';
 
+export interface Composition {
+  name: string;
+  src: string;
+  order?: number;
+}
+
+function pluginTag(uri: string): string {
+  let h1 = 0xdeadbeef,
+    h2 = 0x41c6ce57;
+  for (let i = 0, ch; i < uri.length; i++) {
+    ch = uri.charCodeAt(i);
+    h1 = Math.imul(h1 ^ ch, 2654435761);
+    h2 = Math.imul(h2 ^ ch, 1597334677);
+  }
+  h1 =
+    Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^
+    Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+  h2 =
+    Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^
+    Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+  return (
+    'oscd-composition' +
+    ((h2 >>> 0).toString(16).padStart(8, '0') +
+      (h1 >>> 0).toString(16).padStart(8, '0'))
+  );
+}
+
+function staticTagHtml(
+  oldStrings: ReadonlyArray<string>,
+  ...oldArgs: unknown[]
+): TemplateResult {
+  const args = [...oldArgs];
+  const firstArg = args.shift();
+  const lastArg = args.pop();
+
+  if (firstArg !== lastArg)
+    throw new Error(
+      `Opening tag <${firstArg}> does not match closing tag </${lastArg}>.`
+    );
+
+  const strings = [...oldStrings] as string[] & { raw: string[] };
+  const firstString = strings.shift();
+  const secondString = strings.shift();
+
+  const lastString = strings.pop();
+  const penultimateString = strings.pop();
+
+  strings.unshift(`${firstString}${firstArg}${secondString}`);
+  strings.push(`${penultimateString}${lastArg}${lastString}`);
+
+  return html(<TemplateStringsArray>strings, ...args);
+}
+
 /** The `<open-scd>` custom element is the main entry point of the
  * Open Substation Configuration Designer. */
 @customElement('open-scd')
 export class OpenSCD extends Waiting(
   Hosting(Setting(Wizarding(Plugging(Editing(Historing(LitElement))))))
 ) {
+  @property({
+    type: Object,
+  })
+  private compositions: Composition[] = [
+    {
+      src: './oscd-historing.js',
+      name: 'Oscd Historing',
+      order: 1,
+    },
+  ];
+
   private currentSrc = '';
   /** The current file's URL. `blob:` URLs are *revoked after parsing*! */
   @property({ type: String })
@@ -35,6 +99,30 @@ export class OpenSCD extends Waiting(
   set src(value: string) {
     this.currentSrc = value;
     this.dispatchEvent(newPendingStateEvent(this.loadDoc(value)));
+  }
+
+  protected renderComposition(
+    composition: Composition,
+    content: TemplateResult
+  ): TemplateResult {
+    const tag = pluginTag(composition.src);
+    import(composition.src).then(mod =>
+      customElements.define(tag, mod.default)
+    );
+
+    return staticTagHtml`<${tag}>${content}</${tag}>`;
+  }
+
+  protected renderCompositions(content: TemplateResult): TemplateResult {
+    console.log(content);
+
+    this.compositions.forEach(composition => {
+      content = this.renderComposition(composition, content);
+    });
+
+    console.log(content);
+
+    return content;
   }
 
   /** Loads and parses an `XMLDocument` after [[`src`]] has changed. */
@@ -88,7 +176,9 @@ export class OpenSCD extends Waiting(
   }
 
   render(): TemplateResult {
-    return html` ${super.render()} ${getTheme(this.settings.theme)} `;
+    return html`${this.renderCompositions(super.render())}
+    ${getTheme(this.settings.theme)}`;
+    //    return html` ${super.render()} ${getTheme(this.settings.theme)} `;
   }
 
   static styles = css`

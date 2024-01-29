@@ -121,7 +121,5 @@ describe('Compare IED Plugin', () => {
       expect(plugin.selectedProjectIed).to.be.undefined;
       expect(plugin.selectedTemplateIed).to.be.undefined;
     });
-
   });
-
 });

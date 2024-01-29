@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["transformer-winding-editor with children when EqFunction elements are rendered looks like the latest snapshot"] = 
-`<action-pane
+snapshots[
+  'transformer-winding-editor with children when EqFunction elements are rendered looks like the latest snapshot'
+] = `<action-pane
   label="some"
   tabindex="0"
 >
@@ -87,8 +88,9 @@ snapshots["transformer-winding-editor with children when EqFunction elements are
 `;
 /* end snapshot transformer-winding-editor with children when EqFunction elements are rendered looks like the latest snapshot */
 
-snapshots["transformer-winding-editor with children when hiding EqFunction elements looks like the latest snapshot"] = 
-`<action-pane
+snapshots[
+  'transformer-winding-editor with children when hiding EqFunction elements looks like the latest snapshot'
+] = `<action-pane
   label="some"
   tabindex="0"
 >
@@ -171,8 +173,9 @@ snapshots["transformer-winding-editor with children when hiding EqFunction eleme
 `;
 /* end snapshot transformer-winding-editor with children when hiding EqFunction elements looks like the latest snapshot */
 
-snapshots["transformer-winding-editor without children looks like the latest snapshot"] = 
-`<action-pane
+snapshots[
+  'transformer-winding-editor without children looks like the latest snapshot'
+] = `<action-pane
   label="empty"
   tabindex="0"
 >
@@ -250,4 +253,3 @@ snapshots["transformer-winding-editor without children looks like the latest sna
 </action-pane>
 `;
 /* end snapshot transformer-winding-editor without children looks like the latest snapshot */
-

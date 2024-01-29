@@ -71,7 +71,8 @@ describe('IED editor component wizarding editing integration', () => {
     await parent.updateComplete;
 
     expect(parent.wizardUI.dialog).to.exist;
-    const referencesList = parent.wizardUI.dialog?.querySelectorAll('mwc-list-item');
+    const referencesList =
+      parent.wizardUI.dialog?.querySelectorAll('mwc-list-item');
 
     expect(referencesList).to.be.not.undefined;
     expect(referencesList!.length).to.equal(7);

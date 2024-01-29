@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["address renderGseSmvAddress looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'address renderGseSmvAddress looks like the latest snapshot'
+] = `<mwc-dialog
   defaultaction="next"
   heading="title"
   open=""
@@ -51,4 +52,3 @@ snapshots["address renderGseSmvAddress looks like the latest snapshot"] =
 </mwc-dialog>
 `;
 /* end snapshot address renderGseSmvAddress looks like the latest snapshot */
-

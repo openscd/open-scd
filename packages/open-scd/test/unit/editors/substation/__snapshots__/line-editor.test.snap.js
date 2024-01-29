@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["web component rendering Line element rendering LNode and Function children looks like the latest snapshot"] = 
-`<action-pane
+snapshots[
+  'web component rendering Line element rendering LNode and Function children looks like the latest snapshot'
+] = `<action-pane
   label="Berlin "
   tabindex="0"
 >
@@ -89,8 +90,9 @@ snapshots["web component rendering Line element rendering LNode and Function chi
 `;
 /* end snapshot web component rendering Line element rendering LNode and Function children looks like the latest snapshot */
 
-snapshots["web component rendering Line element rendering ConductingEquipment looks like the latest snapshot"] = 
-`<action-pane
+snapshots[
+  'web component rendering Line element rendering ConductingEquipment looks like the latest snapshot'
+] = `<action-pane
   label="Berlin "
   tabindex="0"
 >
@@ -177,8 +179,9 @@ snapshots["web component rendering Line element rendering ConductingEquipment lo
 `;
 /* end snapshot web component rendering Line element rendering ConductingEquipment looks like the latest snapshot */
 
-snapshots["web component rendering Line element rendering GeneralEquipment looks like the latest snapshot"] = 
-`<action-pane
+snapshots[
+  'web component rendering Line element rendering GeneralEquipment looks like the latest snapshot'
+] = `<action-pane
   label="Munich "
   tabindex="0"
 >
@@ -266,4 +269,3 @@ snapshots["web component rendering Line element rendering GeneralEquipment looks
 </action-pane>
 `;
 /* end snapshot web component rendering Line element rendering GeneralEquipment looks like the latest snapshot */
-

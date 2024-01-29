@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["BDA wizarding editing integration defines a editBDaWizard to edit an existing BDA looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'BDA wizarding editing integration defines a editBDaWizard to edit an existing BDA looks like the latest snapshot'
+] = `<mwc-dialog
   defaultaction="next"
   heading="[bda.wizard.title.edit]"
   open=""
@@ -656,8 +657,9 @@ snapshots["BDA wizarding editing integration defines a editBDaWizard to edit an 
 `;
 /* end snapshot BDA wizarding editing integration defines a editBDaWizard to edit an existing BDA looks like the latest snapshot */
 
-snapshots["BDA wizarding editing integration defines a createBDaWizard to create a new BDA element looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'BDA wizarding editing integration defines a createBDaWizard to create a new BDA element looks like the latest snapshot'
+] = `<mwc-dialog
   defaultaction="next"
   heading="[bda.wizard.title.edit]"
   open=""
@@ -1219,4 +1221,3 @@ snapshots["BDA wizarding editing integration defines a createBDaWizard to create
 </mwc-dialog>
 `;
 /* end snapshot BDA wizarding editing integration defines a createBDaWizard to create a new BDA element looks like the latest snapshot */
-

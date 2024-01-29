@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that for Edition 1 projects looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'Edit wizard for SCL element ConnectedAP include an edit wizard that for Edition 1 projects looks like the latest snapshot'
+] = `<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
   open=""
@@ -133,8 +134,9 @@ snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that f
 `;
 /* end snapshot Edit wizard for SCL element ConnectedAP include an edit wizard that for Edition 1 projects looks like the latest snapshot */
 
-snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that for Edition 2 projects looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'Edit wizard for SCL element ConnectedAP include an edit wizard that for Edition 2 projects looks like the latest snapshot'
+] = `<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
   open=""
@@ -313,8 +315,9 @@ snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that f
 `;
 /* end snapshot Edit wizard for SCL element ConnectedAP include an edit wizard that for Edition 2 projects looks like the latest snapshot */
 
-snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that for Edition 2.1 projects looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'Edit wizard for SCL element ConnectedAP include an edit wizard that for Edition 2.1 projects looks like the latest snapshot'
+] = `<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
   open=""
@@ -557,4 +560,3 @@ snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that f
 </mwc-dialog>
 `;
 /* end snapshot Edit wizard for SCL element ConnectedAP include an edit wizard that for Edition 2.1 projects looks like the latest snapshot */
-

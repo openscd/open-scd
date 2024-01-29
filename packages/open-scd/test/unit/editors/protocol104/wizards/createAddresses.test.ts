@@ -236,7 +236,7 @@ describe('Wizards for preparing 104 Address Creation', () => {
       const switchElement: Switch =
         element.wizardUI.dialog!.querySelector<Switch>(
           `mwc-switch[id="controlCheck"]`
-      )!;
+        )!;
       switchElement.checked = true;
       await element.requestUpdate();
 

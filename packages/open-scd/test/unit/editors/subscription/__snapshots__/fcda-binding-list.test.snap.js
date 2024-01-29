@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["fcda-binding-list without a doc loaded looks like the latest snapshot"] = 
-`<section tabindex="0">
+snapshots[
+  'fcda-binding-list without a doc loaded looks like the latest snapshot'
+] = `<section tabindex="0">
   <h1>
     [subscription.undefined.controlBlockList.title]
     <mwc-icon-button
@@ -55,8 +56,9 @@ snapshots["fcda-binding-list without a doc loaded looks like the latest snapshot
 `;
 /* end snapshot fcda-binding-list without a doc loaded looks like the latest snapshot */
 
-snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like the latest snapshot"] = 
-`<section tabindex="0">
+snapshots[
+  'fcda-binding-list with a SampledValueControl doc loaded looks like the latest snapshot'
+] = `<section tabindex="0">
   <h1>
     [subscription.SampledValueControl.controlBlockList.title]
     <mwc-icon-button
@@ -763,8 +765,9 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
 `;
 /* end snapshot fcda-binding-list with a SampledValueControl doc loaded looks like the latest snapshot */
 
-snapshots["fcda-binding-list with a GSEControl doc loaded looks like the latest snapshot"] = 
-`<section tabindex="0">
+snapshots[
+  'fcda-binding-list with a GSEControl doc loaded looks like the latest snapshot'
+] = `<section tabindex="0">
   <h1>
     [subscription.GSEControl.controlBlockList.title]
     <mwc-icon-button
@@ -1057,4 +1060,3 @@ snapshots["fcda-binding-list with a GSEControl doc loaded looks like the latest 
 </section>
 `;
 /* end snapshot fcda-binding-list with a GSEControl doc loaded looks like the latest snapshot */
-

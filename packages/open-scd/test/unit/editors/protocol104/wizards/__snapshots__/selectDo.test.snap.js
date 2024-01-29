@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["data model nodes child getter show DO Picker looks like the latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'data model nodes child getter show DO Picker looks like the latest snapshot'
+] = `<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.select]"
   open=""
@@ -29,4 +30,3 @@ snapshots["data model nodes child getter show DO Picker looks like the latest sn
 </mwc-dialog>
 `;
 /* end snapshot data model nodes child getter show DO Picker looks like the latest snapshot */
-

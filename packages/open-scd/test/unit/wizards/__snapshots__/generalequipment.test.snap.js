@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Wizards for SCL GeneralEquipment element define an create wizard that looks like the the latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'Wizards for SCL GeneralEquipment element define an create wizard that looks like the the latest snapshot'
+] = `<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.add]"
   open=""
@@ -57,8 +58,9 @@ snapshots["Wizards for SCL GeneralEquipment element define an create wizard that
 `;
 /* end snapshot Wizards for SCL GeneralEquipment element define an create wizard that looks like the the latest snapshot */
 
-snapshots["Wizards for SCL GeneralEquipment element define an edit wizard that looks like the the latest snapshot"] = 
-`<mwc-dialog
+snapshots[
+  'Wizards for SCL GeneralEquipment element define an edit wizard that looks like the the latest snapshot'
+] = `<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
   open=""
@@ -111,4 +113,3 @@ snapshots["Wizards for SCL GeneralEquipment element define an edit wizard that l
 </mwc-dialog>
 `;
 /* end snapshot Wizards for SCL GeneralEquipment element define an edit wizard that looks like the the latest snapshot */
-

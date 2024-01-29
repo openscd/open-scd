@@ -1,8 +1,9 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["smv-list looks like the latest snapshot with a document loaded"] = 
-`<section tabindex="0">
+snapshots[
+  'smv-list looks like the latest snapshot with a document loaded'
+] = `<section tabindex="0">
   <h1>
     [subscription.smv.publisher.title]
   </h1>
@@ -89,8 +90,9 @@ snapshots["smv-list looks like the latest snapshot with a document loaded"] =
 `;
 /* end snapshot smv-list looks like the latest snapshot with a document loaded */
 
-snapshots["smv-list looks like the latest snapshot without a doc loaded"] = 
-`<section tabindex="0">
+snapshots[
+  'smv-list looks like the latest snapshot without a doc loaded'
+] = `<section tabindex="0">
   <h1>
     [subscription.smv.publisher.title]
   </h1>
@@ -99,4 +101,3 @@ snapshots["smv-list looks like the latest snapshot without a doc loaded"] =
 </section>
 `;
 /* end snapshot smv-list looks like the latest snapshot without a doc loaded */
-
