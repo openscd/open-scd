@@ -1,28 +1,27 @@
 import { TemplateResult } from 'lit-element';
 import { get } from 'lit-translate';
 
-import { Wizard } from '../../../foundation.js';
+import { Wizard} from '../../../foundation.js';
 
 import '../../../wizard-textfield.js';
-import { renderBayWizard } from '../../../wizards/bay.js';
+import { renderBayWizard } from "../../../wizards/bay.js";
 import {
   getDescAttribute,
   getNameAttribute,
   getXCoordinateAttribute,
   getYCoordinateAttribute,
   updateNamingAndCoordinatesAction,
-  renderXYCoordinateFields,
-} from './foundation.js';
+  renderXYCoordinateFields
+} from "./foundation.js";
 
 function render(
   name: string | null,
   desc: string | null,
   xCoordinate: string | null,
-  yCoordinate: string | null
+  yCoordinate: string | null,
 ): TemplateResult[] {
-  return renderBayWizard(name, desc).concat(
-    renderXYCoordinateFields(xCoordinate, yCoordinate)
-  );
+  return renderBayWizard(name, desc)
+    .concat(renderXYCoordinateFields(xCoordinate, yCoordinate));
 }
 
 export function editBayWizard(element: Element): Wizard {
@@ -39,7 +38,7 @@ export function editBayWizard(element: Element): Wizard {
         getNameAttribute(element),
         getDescAttribute(element),
         getXCoordinateAttribute(element),
-        getYCoordinateAttribute(element)
+        getYCoordinateAttribute(element),
       ),
     },
   ];

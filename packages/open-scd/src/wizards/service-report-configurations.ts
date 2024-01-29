@@ -117,7 +117,7 @@ function createReportConfigurationsWizard(
     },
   };
 
-  return isEmptyObject({ target: content })
+  return isEmptyObject(content)
     ? null
     : [
         createFormDivider('Control Block Configuration'),

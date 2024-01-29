@@ -116,8 +116,8 @@ export function renderDAIWizard(
 /**
  * Checks if the DAI corresponds to a multiple setting group
  *
- * @param parent - The parent element of the DAI
- * @param element - The BDA/DA element
+ * @param parent The parent element of the DAI
+ * @param element The BDA/DA element
  * @returns The number of setting groups if the DAI is a multiple setting group, null otherwise
  */
 function checkForMultipleSettings(

@@ -1,7 +1,10 @@
 import { html, TemplateResult } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
-import { isPublic, Wizard } from '../foundation.js';
+import {
+  isPublic,
+  Wizard,
+} from '../foundation.js';
 
 function render(
   name: string | null,

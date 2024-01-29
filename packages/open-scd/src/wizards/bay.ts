@@ -12,10 +12,7 @@ import {
 } from '../foundation.js';
 import { replaceNamingAttributeWithReferencesAction } from './foundation/actions.js';
 
-export function renderBayWizard(
-  name: string | null,
-  desc: string | null
-): TemplateResult[] {
+export function renderBayWizard(name: string | null, desc: string | null): TemplateResult[] {
   return [
     html`<wizard-textfield
       label="name"
@@ -77,10 +74,7 @@ export function editBayWizard(element: Element): Wizard {
       primary: {
         icon: 'edit',
         label: get('save'),
-        action: replaceNamingAttributeWithReferencesAction(
-          element,
-          'bay.action.updateBay'
-        ),
+        action: replaceNamingAttributeWithReferencesAction(element, 'bay.action.updateBay'),
       },
       content: renderBayWizard(
         element.getAttribute('name'),

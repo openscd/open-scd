@@ -110,7 +110,7 @@ function createLogSettingsGroupServicesWizard(
     },
   };
 
-  return isEmptyObject({ target: content })
+  return isEmptyObject(content)
     ? null
     : [
         createFormDivider('Log Control Configuration'),

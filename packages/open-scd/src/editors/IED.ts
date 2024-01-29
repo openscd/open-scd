@@ -134,14 +134,12 @@ export default class IedPlugin extends LitElement {
 
   private calcSelectedLNClasses(): string[] {
     const somethingSelected = this.selectedLNClasses.length > 0;
-    const lnClasses = this.lnClassList.map(lnClassInfo => lnClassInfo[0]);
+    const lnClasses = this.lnClassList.map( lnClassInfo => lnClassInfo[0] );
 
     let selectedLNClasses = lnClasses;
 
-    if (somethingSelected) {
-      selectedLNClasses = lnClasses.filter(lnClass =>
-        this.selectedLNClasses.includes(lnClass)
-      );
+    if(somethingSelected){
+      selectedLNClasses = lnClasses.filter( lnClass => this.selectedLNClasses.includes(lnClass));
     }
 
     return selectedLNClasses;
@@ -205,6 +203,7 @@ export default class IedPlugin extends LitElement {
             multi="true"
             .header="${translate('iededitor.lnFilter')}"
             @selected-items-changed="${(e: SelectedItemsChangedEvent) => {
+
               this.selectedLNClasses = e.detail.selectedItems;
               this.requestUpdate('selectedIed');
             }}"

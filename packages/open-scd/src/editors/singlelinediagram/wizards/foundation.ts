@@ -1,5 +1,5 @@
-import { html, TemplateResult } from 'lit-element';
-import { translate } from 'lit-translate';
+import { html, TemplateResult } from "lit-element";
+import { translate } from "lit-translate";
 
 import {
   cloneElement,
@@ -8,7 +8,7 @@ import {
   WizardActor,
   WizardInputElement,
 } from '../../../foundation.js';
-import { SCL_COORDINATES_NAMESPACE } from '../foundation.js';
+import { SCL_COORDINATES_NAMESPACE } from "../foundation.js";
 
 export function getNameAttribute(element: Element): string | null {
   return element.getAttribute('name');
@@ -39,21 +39,15 @@ export function getFixedCoordinateValue(value: string | null): string | null {
   return convertedValue.toString();
 }
 
-function updateXYAttribute(
-  element: Element,
-  attributeName: string,
-  value: string | null
-): void {
+function updateXYAttribute(element: Element, attributeName: string, value: string | null): void {
   if (value === null) {
-    element.removeAttributeNS(SCL_COORDINATES_NAMESPACE, attributeName);
+    element.removeAttributeNS(SCL_COORDINATES_NAMESPACE, attributeName)
   } else {
     element.setAttributeNS(SCL_COORDINATES_NAMESPACE, attributeName, value);
   }
 }
 
-export function updateNamingAndCoordinatesAction(
-  element: Element
-): WizardActor {
+export function updateNamingAndCoordinatesAction(element: Element): WizardActor {
   return (inputs: WizardInputElement[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
@@ -79,8 +73,8 @@ export function updateNamingAndCoordinatesAction(
 
 export function renderXYCoordinateFields(
   xCoordinate: string | null,
-  yCoordinate: string | null
-): TemplateResult[] {
+  yCoordinate: string | null,
+) : TemplateResult[] {
   return [
     html`<wizard-textfield
       label="xCoordinate"

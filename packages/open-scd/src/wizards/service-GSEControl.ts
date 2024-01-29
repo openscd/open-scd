@@ -114,7 +114,7 @@ function createGSEControlWizard(parent: Element): TemplateResult[] | null {
     },
   };
 
-  return isEmptyObject({ target: content })
+  return isEmptyObject(content)
     ? null
     : [
         createFormDivider('Control Block Configuration'),

@@ -18,6 +18,7 @@ import {
   find,
   getValue,
   identity,
+  isPublic,
   newActionEvent,
   newSubWizardEvent,
   newWizardEvent,

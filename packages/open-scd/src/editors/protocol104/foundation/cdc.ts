@@ -39,7 +39,6 @@ export const supportedCdcTypes = [
   'CMV',
   'DPC',
   'DPS',
-  'ENC',
   'ENG',
   'ENS',
   'INC',
@@ -257,34 +256,6 @@ export const cdcProcessings: Record<
       },
     },
     control: {},
-  },
-  ENC: {
-    monitor: {
-      '30': {
-        daPaths: [{ path: ['stVal'] }],
-        create: createAddressAction,
-        inverted: true,
-      },
-      '35': {
-        daPaths: [{ path: ['stVal'] }],
-        create: createAddressAction,
-        inverted: false,
-      },
-    },
-    control: {
-      '58': {
-        daPaths: [{ path: ['Oper', 'ctlVal'] }],
-        create: createAddressWithExpectValueAction,
-        checkDaPaths: [{ path: ['Oper', 'Check'] }],
-        checkCreate: createCheckAddressAction,
-      },
-      '62': {
-        daPaths: [{ path: ['Oper', 'ctlVal'] }],
-        create: createAddressWithExpectValueAction,
-        checkDaPaths: [{ path: ['Oper', 'Check'] }],
-        checkCreate: createCheckAddressAction,
-      },
-    },
   },
   ENG: {
     monitor: {

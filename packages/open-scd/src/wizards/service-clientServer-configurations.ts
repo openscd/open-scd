@@ -114,7 +114,7 @@ function createClientServerConfigurationsWizard(
     },
   };
 
-  return isEmptyObject({ target: content })
+  return isEmptyObject(content)
     ? null
     : [
         createFormDivider('Dynamic Associations'),

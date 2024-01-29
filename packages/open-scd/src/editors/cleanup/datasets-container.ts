@@ -127,7 +127,7 @@ export class CleanupDatasets extends LitElement {
         deleteActions.forEach(deleteAction =>
           e.target?.dispatchEvent(newActionEvent(deleteAction))
         );
-        this.dataSetItems!.forEach(item => {
+        this.dataSetItems!.forEach((item) => {
           item.selected = false;
         });
       }}
