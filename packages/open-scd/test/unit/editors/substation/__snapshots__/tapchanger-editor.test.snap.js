@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'web component rendering TapChanger element rendering LNode and EqFunction children looks like the latest snapshot'
-] = `<action-pane
+snapshots["web component rendering TapChanger element rendering LNode and EqFunction children looks like the latest snapshot"] = 
+`<action-pane
   label="tapChComplet —My TapChanger"
   tabindex="0"
 >
@@ -77,9 +76,8 @@ snapshots[
 `;
 /* end snapshot web component rendering TapChanger element rendering LNode and EqFunction children looks like the latest snapshot */
 
-snapshots[
-  'web component rendering TapChanger element rendering SubEquipment looks like the latest snapshot'
-] = `<action-pane
+snapshots["web component rendering TapChanger element rendering SubEquipment looks like the latest snapshot"] = 
+`<action-pane
   label="tapChangerHalf "
   tabindex="0"
 >
@@ -148,3 +146,4 @@ snapshots[
 </action-pane>
 `;
 /* end snapshot web component rendering TapChanger element rendering SubEquipment looks like the latest snapshot */
+

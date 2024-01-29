@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'Clone Redirection UI triggered by bay-editor looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["Clone Redirection UI triggered by bay-editor looks like the latest snapshot"] = 
+`<mwc-dialog
   heading="[substation.clone.redirect]"
   stacked=""
 >
@@ -98,9 +97,8 @@ snapshots[
 `;
 /* end snapshot Clone Redirection UI triggered by bay-editor looks like the latest snapshot */
 
-snapshots[
-  'Clone Redirection UI triggered by voltage-level-editor looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["Clone Redirection UI triggered by voltage-level-editor looks like the latest snapshot"] = 
+`<mwc-dialog
   heading="[substation.clone.redirect]"
   stacked=""
 >
@@ -195,9 +193,8 @@ snapshots[
 `;
 /* end snapshot Clone Redirection UI triggered by voltage-level-editor looks like the latest snapshot */
 
-snapshots[
-  'Clone Redirection UI triggered by substation-editor looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["Clone Redirection UI triggered by substation-editor looks like the latest snapshot"] = 
+`<mwc-dialog
   heading="[substation.clone.redirect]"
   stacked=""
 >
@@ -291,3 +288,4 @@ snapshots[
 </mwc-dialog>
 `;
 /* end snapshot Clone Redirection UI triggered by substation-editor looks like the latest snapshot */
+

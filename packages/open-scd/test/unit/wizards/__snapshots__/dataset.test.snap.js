@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'dataset wizards include a dataset edit wizard looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["dataset wizards include a dataset edit wizard looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
   open=""
@@ -98,3 +97,4 @@ snapshots[
 </mwc-dialog>
 `;
 /* end snapshot dataset wizards include a dataset edit wizard looks like the latest snapshot */
+

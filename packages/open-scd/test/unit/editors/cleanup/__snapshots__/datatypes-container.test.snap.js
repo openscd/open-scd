@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'Cleanup: DataTypes Container without a doc loaded looks like the latest snapshot'
-] = `<section tabindex="1">
+snapshots["Cleanup: DataTypes Container without a doc loaded looks like the latest snapshot"] = 
+`<section tabindex="1">
   <div>
     <h1>
       [cleanup.unreferencedDataTypes.title]
@@ -76,9 +75,8 @@ snapshots[
 `;
 /* end snapshot Cleanup: DataTypes Container without a doc loaded looks like the latest snapshot */
 
-snapshots[
-  'Cleanup: DataTypes Container With a test file loaded looks like the latest snapshot'
-] = `<section tabindex="1">
+snapshots["Cleanup: DataTypes Container With a test file loaded looks like the latest snapshot"] = 
+`<section tabindex="1">
   <div>
     <h1>
       [cleanup.unreferencedDataTypes.title]
@@ -381,3 +379,4 @@ snapshots[
 </wizard-dialog>
 `;
 /* end snapshot Cleanup: DataTypes Container With a test file loaded looks like the latest snapshot */
+

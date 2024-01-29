@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'web component rendering Process element rendering LNode, GeneralEquipment,Function and ConductingEquipment children looks like the latest snapshot'
-] = `<action-pane
+snapshots["web component rendering Process element rendering LNode, GeneralEquipment,Function and ConductingEquipment children looks like the latest snapshot"] = 
+`<action-pane
   label="ProcessGenConduct "
   tabindex="0"
 >
@@ -125,9 +124,8 @@ snapshots[
 `;
 /* end snapshot web component rendering Process element rendering LNode, GeneralEquipment,Function and ConductingEquipment children looks like the latest snapshot */
 
-snapshots[
-  'web component rendering Process element hides LNode and Function children looks like the latest snapshot'
-] = `<action-pane
+snapshots["web component rendering Process element hides LNode and Function children looks like the latest snapshot"] = 
+`<action-pane
   label="ProcessGenConduct "
   tabindex="0"
 >
@@ -243,9 +241,8 @@ snapshots[
 `;
 /* end snapshot web component rendering Process element hides LNode and Function children looks like the latest snapshot */
 
-snapshots[
-  'web component rendering Process element rendering Substation and Process children looks like the latest snapshot'
-] = `<action-pane
+snapshots["web component rendering Process element rendering Substation and Process children looks like the latest snapshot"] = 
+`<action-pane
   label="ProcProcSubAA1 "
   tabindex="0"
 >
@@ -361,9 +358,8 @@ snapshots[
 `;
 /* end snapshot web component rendering Process element rendering Substation and Process children looks like the latest snapshot */
 
-snapshots[
-  'web component rendering Process element rendering a Line child looks like the latest snapshot'
-] = `<action-pane
+snapshots["web component rendering Process element rendering a Line child looks like the latest snapshot"] = 
+`<action-pane
   label="ProcessLine "
   tabindex="0"
 >
@@ -476,3 +472,4 @@ snapshots[
 </action-pane>
 `;
 /* end snapshot web component rendering Process element rendering a Line child looks like the latest snapshot */
+

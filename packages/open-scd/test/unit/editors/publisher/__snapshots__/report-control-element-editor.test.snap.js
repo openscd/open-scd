@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'Editor for ReportControl element and its direct children with valid ReportControl looks like the latest snapshot'
-] = `<h2 style="display: flex;">
+snapshots["Editor for ReportControl element and its direct children with valid ReportControl looks like the latest snapshot"] = 
+`<h2 style="display: flex;">
   <div style="flex:auto">
     <div>
       ReportControl
@@ -188,3 +187,4 @@ snapshots[
 </div>
 `;
 /* end snapshot Editor for ReportControl element and its direct children with valid ReportControl looks like the latest snapshot */
+

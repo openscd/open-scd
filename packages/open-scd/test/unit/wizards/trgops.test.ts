@@ -4,11 +4,7 @@ import { SinonSpy, spy } from 'sinon';
 import '../../mock-wizard.js';
 import { MockWizard } from '../../mock-wizard.js';
 
-import {
-  isReplace,
-  Replace,
-  WizardInputElement,
-} from '../../../src/foundation.js';
+import { isReplace, Replace, WizardInputElement } from '../../../src/foundation.js';
 import { WizardSelect } from '../../../src/wizard-select.js';
 import { editTrgOpsWizard } from '../../../src/wizards/trgops.js';
 

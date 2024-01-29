@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'Wizards for preparing 104 Address Creation show prepare 104 Address creation (single monitor TI only) looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for preparing 104 Address Creation show prepare 104 Address creation (single monitor TI only) looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.add]"
   open=""
@@ -71,9 +70,8 @@ snapshots[
 `;
 /* end snapshot Wizards for preparing 104 Address Creation show prepare 104 Address creation (single monitor TI only) looks like the latest snapshot */
 
-snapshots[
-  'Wizards for preparing 104 Address Creation show prepare 104 Address creation (multi monitor TI only) looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for preparing 104 Address Creation show prepare 104 Address creation (multi monitor TI only) looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.add]"
   open=""
@@ -163,9 +161,8 @@ snapshots[
 `;
 /* end snapshot Wizards for preparing 104 Address Creation show prepare 104 Address creation (multi monitor TI only) looks like the latest snapshot */
 
-snapshots[
-  'Wizards for preparing 104 Address Creation show prepare 104 Address creation (single monitor TI with CtlModel) looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for preparing 104 Address Creation show prepare 104 Address creation (single monitor TI with CtlModel) looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.add]"
   open=""
@@ -241,9 +238,8 @@ snapshots[
 `;
 /* end snapshot Wizards for preparing 104 Address Creation show prepare 104 Address creation (single monitor TI with CtlModel) looks like the latest snapshot */
 
-snapshots[
-  'Wizards for preparing 104 Address Creation show prepare 104 Address creation (single monitor TI and single control TI with CtlModel) looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for preparing 104 Address Creation show prepare 104 Address creation (single monitor TI and single control TI with CtlModel) looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.add]"
   open=""
@@ -331,3 +327,4 @@ snapshots[
 </mwc-dialog>
 `;
 /* end snapshot Wizards for preparing 104 Address Creation show prepare 104 Address creation (single monitor TI and single control TI with CtlModel) looks like the latest snapshot */
+

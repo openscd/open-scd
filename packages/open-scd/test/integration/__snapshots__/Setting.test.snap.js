@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'Setting upload .nsdoc file using event and looks like latest snapshot'
-] = `<mwc-dialog
+snapshots["Setting upload .nsdoc file using event and looks like latest snapshot"] = 
+`<mwc-dialog
   heading="Settings"
   id="settings"
   open=""
@@ -185,3 +184,4 @@ snapshots[
 </mwc-dialog>
 `;
 /* end snapshot Setting upload .nsdoc file using event and looks like latest snapshot */
+

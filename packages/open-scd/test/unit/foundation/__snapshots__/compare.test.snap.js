@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'compas-compare-dialog renderDiff child is added, so check latest snapshot'
-] = `<div>
+snapshots["compas-compare-dialog renderDiff child is added, so check latest snapshot"] = 
+`<div>
   <div class="container container--alt">
     <div class="list__container list__container--left">
       <mwc-list
@@ -52,9 +51,8 @@ snapshots[
 `;
 /* end snapshot compas-compare-dialog renderDiff child is added, so check latest snapshot */
 
-snapshots[
-  'compas-compare-dialog renderDiff child is removed and attribute added/removed/updated, so check latest snapshot'
-] = `<div>
+snapshots["compas-compare-dialog renderDiff child is removed and attribute added/removed/updated, so check latest snapshot"] = 
+`<div>
   <div class="container container--alt">
     <div class="list__container list__container--left">
       <mwc-list
@@ -229,9 +227,8 @@ snapshots[
 `;
 /* end snapshot compas-compare-dialog renderDiff child is removed and attribute added/removed/updated, so check latest snapshot */
 
-snapshots[
-  'compas-compare-dialog renderDiff attribute is updated, but is ignored, so check latest snapshot'
-] = `<div>
+snapshots["compas-compare-dialog renderDiff attribute is updated, but is ignored, so check latest snapshot"] = 
+`<div>
   <div class="container container--alt">
     <div class="list__container list__container--left">
       <mwc-list
@@ -405,3 +402,4 @@ snapshots[
 </div>
 `;
 /* end snapshot compas-compare-dialog renderDiff attribute is updated, but is ignored, so check latest snapshot */
+

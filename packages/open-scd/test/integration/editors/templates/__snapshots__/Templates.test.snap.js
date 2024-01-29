@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'Templates Plugin without a doc loaded looks like the latest snapshot'
-] = `<h1>
+snapshots["Templates Plugin without a doc loaded looks like the latest snapshot"] = 
+`<h1>
   <span style="color: var(--base1)">
     [templates.missing]
   </span>
@@ -19,9 +18,8 @@ snapshots[
 `;
 /* end snapshot Templates Plugin without a doc loaded looks like the latest snapshot */
 
-snapshots[
-  'Templates Plugin with a doc loaded looks like the latest snapshot'
-] = `<div id="containerTemplates">
+snapshots["Templates Plugin with a doc loaded looks like the latest snapshot"] = 
+`<div id="containerTemplates">
   <section tabindex="0">
     <h1>
       [scl.LNodeType]
@@ -583,3 +581,4 @@ snapshots[
 </wizard-dialog>
 `;
 /* end snapshot Templates Plugin with a doc loaded looks like the latest snapshot */
+

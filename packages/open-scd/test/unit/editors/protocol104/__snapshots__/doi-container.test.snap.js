@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'doi-104-container - DOI with simple Address Element looks like the latest snapshot'
-] = `<action-pane tabindex="0">
+snapshots["doi-104-container - DOI with simple Address Element looks like the latest snapshot"] = 
+`<action-pane tabindex="0">
   <abbr
     slot="action"
     title="[edit]"
@@ -81,9 +80,8 @@ snapshots[
 `;
 /* end snapshot doi-104-container - DOI with simple Address Element looks like the latest snapshot */
 
-snapshots[
-  'doi-104-container - DOI without Address Elements looks like the latest snapshot'
-] = `<action-pane tabindex="0">
+snapshots["doi-104-container - DOI without Address Elements looks like the latest snapshot"] = 
+`<action-pane tabindex="0">
   <abbr
     slot="action"
     title="[edit]"
@@ -108,3 +106,4 @@ snapshots[
 </action-pane>
 `;
 /* end snapshot doi-104-container - DOI without Address Elements looks like the latest snapshot */
+

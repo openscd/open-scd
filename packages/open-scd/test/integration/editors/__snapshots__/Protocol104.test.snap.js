@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'Protocol 104 Plugin in Values view the plugin looks like the latest snapshot'
-] = `<section>
+snapshots["Protocol 104 Plugin in Values view the plugin looks like the latest snapshot"] = 
+`<section>
   <div>
     <mwc-formfield label="[protocol104.view.valuesView]">
       <mwc-radio
@@ -33,9 +32,8 @@ snapshots[
 `;
 /* end snapshot Protocol 104 Plugin in Values view the plugin looks like the latest snapshot */
 
-snapshots[
-  'Protocol 104 Plugin in Network view the plugin looks like the latest snapshot'
-] = `<section>
+snapshots["Protocol 104 Plugin in Network view the plugin looks like the latest snapshot"] = 
+`<section>
   <div>
     <mwc-formfield label="[protocol104.view.valuesView]">
       <mwc-radio
@@ -64,3 +62,4 @@ snapshots[
 </wizard-dialog>
 `;
 /* end snapshot Protocol 104 Plugin in Network view the plugin looks like the latest snapshot */
+

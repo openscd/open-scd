@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'Plain Compare List Empty list looks like the latest snapshot'
-] = `<div class="container container--alt">
+snapshots["Plain Compare List Empty list looks like the latest snapshot"] = 
+`<div class="container container--alt">
   <div class="list__container list__container--left">
     <h3 class="mdc-dialog__title">
     </h3>
@@ -16,9 +15,8 @@ snapshots[
 `;
 /* end snapshot Plain Compare List Empty list looks like the latest snapshot */
 
-snapshots[
-  'Plain Compare List Basic List looks like the latest snapshot'
-] = `<div class="container container--alt">
+snapshots["Plain Compare List Basic List looks like the latest snapshot"] = 
+`<div class="container container--alt">
   <div class="list__container list__container--left">
     <h3 class="mdc-dialog__title">
       Project doc
@@ -33,9 +31,8 @@ snapshots[
 `;
 /* end snapshot Plain Compare List Basic List looks like the latest snapshot */
 
-snapshots[
-  'Plain Compare List Basic List Has a subtitlte, so looks like the latest snapshot'
-] = `<div class="container container--alt">
+snapshots["Plain Compare List Basic List Has a subtitlte, so looks like the latest snapshot"] = 
+`<div class="container container--alt">
   <div class="list__container list__container--left">
     <h3 class="mdc-dialog__title">
       Project doc
@@ -55,3 +52,4 @@ snapshots[
 </div>
 `;
 /* end snapshot Plain Compare List Basic List Has a subtitlte, so looks like the latest snapshot */
+

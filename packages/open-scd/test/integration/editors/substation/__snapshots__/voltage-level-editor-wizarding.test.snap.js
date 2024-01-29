@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'voltage-level-editor wizarding integration looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["voltage-level-editor wizarding integration looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[voltagelevel.wizard.title.edit]"
   open=""
@@ -72,3 +71,4 @@ snapshots[
 </mwc-dialog>
 `;
 /* end snapshot voltage-level-editor wizarding integration looks like the latest snapshot */
+

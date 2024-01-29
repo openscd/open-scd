@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'Wizards for SCL element Services IED [WithServices]: define a Services wizards Wizard 1 should look like snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for SCL element Services IED [WithServices]: define a Services wizards Wizard 1 should look like snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
   open=""
@@ -234,9 +233,8 @@ snapshots[
 `;
 /* end snapshot Wizards for SCL element Services IED [WithServices]: define a Services wizards Wizard 1 should look like snapshot */
 
-snapshots[
-  'Wizards for SCL element Services IED [WithServices]: define a Services wizards Wizard 2 should look like snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for SCL element Services IED [WithServices]: define a Services wizards Wizard 2 should look like snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -593,9 +591,8 @@ snapshots[
 `;
 /* end snapshot Wizards for SCL element Services IED [WithServices]: define a Services wizards Wizard 2 should look like snapshot */
 
-snapshots[
-  'Wizards for SCL element Services IED [WithServices]: define a Services wizards Wizard 3 should look like snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for SCL element Services IED [WithServices]: define a Services wizards Wizard 3 should look like snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -844,9 +841,8 @@ snapshots[
 `;
 /* end snapshot Wizards for SCL element Services IED [WithServices]: define a Services wizards Wizard 3 should look like snapshot */
 
-snapshots[
-  'Wizards for SCL element Services IED [WithServices]: define a Services wizards Wizard 4 should look like snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for SCL element Services IED [WithServices]: define a Services wizards Wizard 4 should look like snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -993,9 +989,8 @@ snapshots[
 `;
 /* end snapshot Wizards for SCL element Services IED [WithServices]: define a Services wizards Wizard 4 should look like snapshot */
 
-snapshots[
-  'Wizards for SCL element Services IED [WithServices]: define a Services wizards Wizard 5 should look like snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for SCL element Services IED [WithServices]: define a Services wizards Wizard 5 should look like snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -1357,9 +1352,8 @@ snapshots[
 `;
 /* end snapshot Wizards for SCL element Services IED [WithServices]: define a Services wizards Wizard 5 should look like snapshot */
 
-snapshots[
-  'Wizards for SCL element Services IED [WithServices]: define a Services wizards Wizard 6 should look like snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for SCL element Services IED [WithServices]: define a Services wizards Wizard 6 should look like snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -1492,9 +1486,8 @@ snapshots[
 `;
 /* end snapshot Wizards for SCL element Services IED [WithServices]: define a Services wizards Wizard 6 should look like snapshot */
 
-snapshots[
-  'Wizards for SCL element Services IED [WithServices]: AccessPoint wizards for Scl element Services should look like snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for SCL element Services IED [WithServices]: AccessPoint wizards for Scl element Services should look like snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
   open=""
@@ -1706,9 +1699,8 @@ snapshots[
 `;
 /* end snapshot Wizards for SCL element Services IED [WithServices]: AccessPoint wizards for Scl element Services should look like snapshot */
 
-snapshots[
-  'Wizards for SCL element Services IED [WithServices2]: define a Services wizards Wizard 1 should look like snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for SCL element Services IED [WithServices2]: define a Services wizards Wizard 1 should look like snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
   open=""
@@ -1946,9 +1938,8 @@ snapshots[
 `;
 /* end snapshot Wizards for SCL element Services IED [WithServices2]: define a Services wizards Wizard 1 should look like snapshot */
 
-snapshots[
-  'Wizards for SCL element Services IED [WithServices2]: define a Services wizards Wizard 2 should look like snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for SCL element Services IED [WithServices2]: define a Services wizards Wizard 2 should look like snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
   style="--mdc-dialog-min-width:calc(100% + 48px)"
@@ -2312,9 +2303,8 @@ snapshots[
 `;
 /* end snapshot Wizards for SCL element Services IED [WithServices2]: define a Services wizards Wizard 2 should look like snapshot */
 
-snapshots[
-  'Wizards for SCL element Services IED [WithServices2]: define a Services wizards Wizard 3 should look like snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for SCL element Services IED [WithServices2]: define a Services wizards Wizard 3 should look like snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
   style="--mdc-dialog-min-width:calc(100% + 48px)"
@@ -2570,9 +2560,8 @@ snapshots[
 `;
 /* end snapshot Wizards for SCL element Services IED [WithServices2]: define a Services wizards Wizard 3 should look like snapshot */
 
-snapshots[
-  'Wizards for SCL element Services IED [WithServices2]: define a Services wizards Wizard 4 should look like snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for SCL element Services IED [WithServices2]: define a Services wizards Wizard 4 should look like snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
   style="--mdc-dialog-min-width:calc(100% + 48px)"
@@ -2726,9 +2715,8 @@ snapshots[
 `;
 /* end snapshot Wizards for SCL element Services IED [WithServices2]: define a Services wizards Wizard 4 should look like snapshot */
 
-snapshots[
-  'Wizards for SCL element Services IED [WithServices2]: define a Services wizards Wizard 5 should look like snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for SCL element Services IED [WithServices2]: define a Services wizards Wizard 5 should look like snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
   style="--mdc-dialog-min-width:calc(100% + 48px)"
@@ -3097,9 +3085,8 @@ snapshots[
 `;
 /* end snapshot Wizards for SCL element Services IED [WithServices2]: define a Services wizards Wizard 5 should look like snapshot */
 
-snapshots[
-  'Wizards for SCL element Services IED [WithServices2]: define a Services wizards Wizard 6 should look like snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for SCL element Services IED [WithServices2]: define a Services wizards Wizard 6 should look like snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
   style="--mdc-dialog-min-width:calc(100% + 48px)"
@@ -3239,9 +3226,8 @@ snapshots[
 `;
 /* end snapshot Wizards for SCL element Services IED [WithServices2]: define a Services wizards Wizard 6 should look like snapshot */
 
-snapshots[
-  'Wizards for SCL element Services IED [WithServices2]: AccessPoint wizards for Scl element Services should look like snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for SCL element Services IED [WithServices2]: AccessPoint wizards for Scl element Services should look like snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
   open=""
@@ -3452,3 +3438,4 @@ snapshots[
 </mwc-dialog>
 `;
 /* end snapshot Wizards for SCL element Services IED [WithServices2]: AccessPoint wizards for Scl element Services should look like snapshot */
+

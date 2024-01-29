@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'oscd-filter-button multi selection with custom header and standard icon looks like its latest snapshot'
-] = `<mwc-icon-button icon="developer_board">
+snapshots["oscd-filter-button multi selection with custom header and standard icon looks like its latest snapshot"] =
+`<mwc-icon-button icon="developer_board">
   <slot name="icon">
   </slot>
 </mwc-icon-button>
@@ -43,9 +42,8 @@ snapshots[
 `;
 /* end snapshot oscd-filter-button multi selection with custom header and standard icon looks like its latest snapshot */
 
-snapshots[
-  'oscd-filter-button single selection with default header and custom icon looks like its latest snapshot'
-] = `<mwc-icon-button icon="undefined">
+snapshots["oscd-filter-button single selection with default header and custom icon looks like its latest snapshot"] =
+`<mwc-icon-button icon="undefined">
   <slot name="icon">
   </slot>
 </mwc-icon-button>
@@ -81,9 +79,8 @@ snapshots[
 `;
 /* end snapshot oscd-filter-button single selection with default header and custom icon looks like its latest snapshot */
 
-snapshots[
-  'oscd-filter-button is disabled looks like its latest snapshot'
-] = `<mwc-icon-button
+snapshots["oscd-filter-button is disabled looks like its latest snapshot"] =
+`<mwc-icon-button
   disabled=""
   icon="developer_board"
 >
@@ -125,3 +122,4 @@ snapshots[
 </mwc-dialog>
 `;
 /* end snapshot oscd-filter-button is disabled looks like its latest snapshot */
+

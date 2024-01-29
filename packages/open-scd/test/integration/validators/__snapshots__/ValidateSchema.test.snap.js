@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'ValidateSchema plugin for valid SCL files zeroissues indication looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["ValidateSchema plugin for valid SCL files zeroissues indication looks like the latest snapshot"] = 
+`<mwc-dialog
   heading="[diag.name]"
   id="diagnostic"
 >
@@ -49,9 +48,8 @@ undefined">
 `;
 /* end snapshot ValidateSchema plugin for valid SCL files zeroissues indication looks like the latest snapshot */
 
-snapshots[
-  'ValidateSchema plugin for invalid SCL files pushes issues to the diagnostics pane that look like the latest snapshot'
-] = `<mwc-dialog
+snapshots["ValidateSchema plugin for invalid SCL files pushes issues to the diagnostics pane that look like the latest snapshot"] = 
+`<mwc-dialog
   heading="[diag.name]"
   id="diagnostic"
 >
@@ -109,3 +107,4 @@ invalid2007B:7 Substation key identity-constraint '{http://www.iec.ch/61850/2003
 </mwc-dialog>
 `;
 /* end snapshot ValidateSchema plugin for invalid SCL files pushes issues to the diagnostics pane that look like the latest snapshot */
+

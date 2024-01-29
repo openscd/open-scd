@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'Wizards for SCL Line element define an edit wizard that looks like the the latest snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for SCL Line element define an edit wizard that looks like the the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[line.wizard.title.edit]"
   open=""
@@ -69,9 +68,8 @@ snapshots[
 `;
 /* end snapshot Wizards for SCL Line element define an edit wizard that looks like the the latest snapshot */
 
-snapshots[
-  'Wizards for SCL Line element define a create wizard that looks like the the latest snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for SCL Line element define a create wizard that looks like the the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.add]"
   open=""
@@ -136,3 +134,4 @@ snapshots[
 </mwc-dialog>
 `;
 /* end snapshot Wizards for SCL Line element define a create wizard that looks like the the latest snapshot */
+

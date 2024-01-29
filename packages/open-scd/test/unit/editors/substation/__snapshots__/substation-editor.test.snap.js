@@ -1,7 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots['substation-editor looks like the latest snapshot'] = `<action-pane
+snapshots["substation-editor looks like the latest snapshot"] = 
+`<action-pane
   label="AA1 - Substation"
   tabindex="0"
 >
@@ -116,9 +117,8 @@ snapshots['substation-editor looks like the latest snapshot'] = `<action-pane
 `;
 /* end snapshot substation-editor looks like the latest snapshot */
 
-snapshots[
-  'substation-editor with readonly property looks like the latest snapshot'
-] = `<action-pane
+snapshots["substation-editor with readonly property looks like the latest snapshot"] = 
+`<action-pane
   label="AA1 - Substation"
   tabindex="0"
 >
@@ -233,9 +233,8 @@ snapshots[
 `;
 /* end snapshot substation-editor with readonly property looks like the latest snapshot */
 
-snapshots[
-  'substation-editor with function filter deactivated looks like the latest snapshot'
-] = `<action-pane
+snapshots["substation-editor with function filter deactivated looks like the latest snapshot"] = 
+`<action-pane
   label="AA1 - Substation"
   tabindex="0"
 >
@@ -364,9 +363,8 @@ snapshots[
 `;
 /* end snapshot substation-editor with function filter deactivated looks like the latest snapshot */
 
-snapshots[
-  'substation-editor with general-equipment children with showfunctions false looks like the latest snapshot'
-] = `<action-pane
+snapshots["substation-editor with general-equipment children with showfunctions false looks like the latest snapshot"] = 
+`<action-pane
   label="AA1 "
   tabindex="0"
 >
@@ -485,9 +483,8 @@ snapshots[
 `;
 /* end snapshot substation-editor with general-equipment children with showfunctions false looks like the latest snapshot */
 
-snapshots[
-  'substation-editor with general-equipment children with showfunctions true looks like the latest snapshot'
-] = `<action-pane
+snapshots["substation-editor with general-equipment children with showfunctions true looks like the latest snapshot"] = 
+`<action-pane
   label="AA1 "
   tabindex="0"
 >
@@ -605,3 +602,4 @@ snapshots[
 </action-pane>
 `;
 /* end snapshot substation-editor with general-equipment children with showfunctions true looks like the latest snapshot */
+

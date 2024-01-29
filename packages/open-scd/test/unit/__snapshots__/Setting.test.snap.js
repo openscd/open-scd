@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'SettingElement saves chosen .nsdoc file and looks like latest snapshot'
-] = `<mwc-dialog
+snapshots["SettingElement saves chosen .nsdoc file and looks like latest snapshot"] = 
+`<mwc-dialog
   heading="Settings"
   id="settings"
   open=""
@@ -186,9 +185,8 @@ snapshots[
 `;
 /* end snapshot SettingElement saves chosen .nsdoc file and looks like latest snapshot */
 
-snapshots[
-  'SettingElement deletes a chosen .nsdoc file and looks like latest snapshot'
-] = `<mwc-dialog
+snapshots["SettingElement deletes a chosen .nsdoc file and looks like latest snapshot"] = 
+`<mwc-dialog
   heading="Settings"
   id="settings"
   open=""
@@ -364,3 +362,4 @@ snapshots[
 </mwc-dialog>
 `;
 /* end snapshot SettingElement deletes a chosen .nsdoc file and looks like latest snapshot */
+

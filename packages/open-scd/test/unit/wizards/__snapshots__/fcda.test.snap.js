@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'create wizard for FCDA element with a valid SCL file looks like the last snapshot'
-] = `<mwc-dialog
+snapshots["create wizard for FCDA element with a valid SCL file looks like the last snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.add]"
   open=""
@@ -30,3 +29,4 @@ snapshots[
 </mwc-dialog>
 `;
 /* end snapshot create wizard for FCDA element with a valid SCL file looks like the last snapshot */
+

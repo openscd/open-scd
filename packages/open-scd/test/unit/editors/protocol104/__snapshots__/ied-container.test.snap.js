@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'ied-104-container - IED with DAI Elements looks like the latest snapshot'
-] = `<action-pane tabindex="0">
+snapshots["ied-104-container - IED with DAI Elements looks like the latest snapshot"] = 
+`<action-pane tabindex="0">
   <mwc-icon slot="icon">
     developer_board
   </mwc-icon>
@@ -27,9 +26,8 @@ snapshots[
 `;
 /* end snapshot ied-104-container - IED with DAI Elements looks like the latest snapshot */
 
-snapshots[
-  'ied-104-container - IED without DAI Elements looks like the latest snapshot'
-] = `<action-pane tabindex="0">
+snapshots["ied-104-container - IED without DAI Elements looks like the latest snapshot"] = 
+`<action-pane tabindex="0">
   <mwc-icon slot="icon">
     developer_board
   </mwc-icon>
@@ -48,3 +46,4 @@ snapshots[
 </action-pane>
 `;
 /* end snapshot ied-104-container - IED without DAI Elements looks like the latest snapshot */
+

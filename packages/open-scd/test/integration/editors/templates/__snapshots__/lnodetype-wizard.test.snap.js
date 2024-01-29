@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'LNodeType wizards defines a lNodeTypeHelperWizard looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["LNodeType wizards defines a lNodeTypeHelperWizard looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[lnodetype.wizard.title.edit]"
   open=""
@@ -161,9 +160,8 @@ snapshots[
 `;
 /* end snapshot LNodeType wizards defines a lNodeTypeHelperWizard looks like the latest snapshot */
 
-snapshots[
-  'LNodeType wizards defines a createLNodeTypeWizard looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["LNodeType wizards defines a createLNodeTypeWizard looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[lnodetype.wizard.title.add]"
   open=""
@@ -4347,9 +4345,8 @@ snapshots[
 `;
 /* end snapshot LNodeType wizards defines a createLNodeTypeWizard looks like the latest snapshot */
 
-snapshots[
-  'LNodeType wizards defines a createLNodeTypeWizard opens a createLNodeTypeHelperWizard looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["LNodeType wizards defines a createLNodeTypeWizard opens a createLNodeTypeHelperWizard looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[lnodetype.wizard.title.select]"
   open=""
@@ -4683,9 +4680,8 @@ snapshots[
 `;
 /* end snapshot LNodeType wizards defines a createLNodeTypeWizard opens a createLNodeTypeHelperWizard looks like the latest snapshot */
 
-snapshots[
-  'LNodeType wizards defines a dOWizard to create a new DO element looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["LNodeType wizards defines a dOWizard to create a new DO element looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[do.wizard.title.add]"
   open=""
@@ -4883,3 +4879,4 @@ snapshots[
 </mwc-dialog>
 `;
 /* end snapshot LNodeType wizards defines a dOWizard to create a new DO element looks like the latest snapshot */
+

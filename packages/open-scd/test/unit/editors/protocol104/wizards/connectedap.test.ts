@@ -4,18 +4,8 @@ import { SinonSpy, spy } from 'sinon';
 import '../../../../mock-wizard.js';
 
 import { Checkbox } from '@material/mwc-checkbox';
-import {
-  createConnectedApWizard,
-  editConnectedApWizard,
-} from '../../../../../src/editors/protocol104/wizards/connectedap.js';
-import {
-  ComplexAction,
-  Create,
-  Delete,
-  isCreate,
-  isDelete,
-  WizardInputElement,
-} from '../../../../../src/foundation.js';
+import { createConnectedApWizard, editConnectedApWizard } from '../../../../../src/editors/protocol104/wizards/connectedap.js';
+import { ComplexAction, Create, Delete, isCreate, isDelete, WizardInputElement } from '../../../../../src/foundation.js';
 import { MockWizard } from '../../../../mock-wizard.js';
 import { WizardTextField } from '../../../../../src/wizard-textfield.js';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
@@ -42,14 +32,12 @@ describe('Wizards for SCL element ConnectedAP', () => {
 
   describe('include an edit wizard that', () => {
     beforeEach(async () => {
-      const wizard = editConnectedApWizard(
-        doc.querySelector('SubNetwork[type="104"] > ConnectedAP[apName="AP2"]')!
-      );
+      const wizard = editConnectedApWizard(doc.querySelector('SubNetwork[type="104"] > ConnectedAP[apName="AP2"]')!);
       element.workflow.push(() => wizard);
       await element.requestUpdate();
-
+  
       inputs = Array.from(element.wizardUI.inputs);
-
+  
       primaryAction = <HTMLElement>(
         element.wizardUI.dialog?.querySelector(
           'mwc-button[slot="primaryAction"]'
@@ -151,9 +139,7 @@ describe('Wizards for SCL element ConnectedAP', () => {
 
   describe('include a create wizard that', () => {
     beforeEach(async () => {
-      const wizard = createConnectedApWizard(
-        doc.querySelector('SubNetwork[type="104"] > ConnectedAP[apName="AP2"]')!
-      );
+      const wizard = createConnectedApWizard(doc.querySelector('SubNetwork[type="104"] > ConnectedAP[apName="AP2"]')!);
       element.workflow.push(() => wizard);
       await element.requestUpdate();
 
@@ -207,7 +193,7 @@ describe('Wizards for SCL element ConnectedAP', () => {
     it('shows all AccessPoint in the project', async () => {
       expect(
         element.wizardUI.dialog?.querySelectorAll('mwc-check-list-item').length
-      ).to.equal(doc.querySelectorAll(':root > IED > AccessPoint').length);
+      ).to.equal(doc.querySelectorAll(':root > IED > AccessPoint').length)
     });
 
     it('triggers a create editor action on primary action', async () => {

@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'Wizards for the Logic Link SCL element group include a create wizard that looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for the Logic Link SCL element group include a create wizard that looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[protocol104.network.logicLink.wizard.title.add]"
   open=""
@@ -48,3 +47,4 @@ snapshots[
 </mwc-dialog>
 `;
 /* end snapshot Wizards for the Logic Link SCL element group include a create wizard that looks like the latest snapshot */
+

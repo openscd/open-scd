@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'Basic component action-icon with icon property set looks like the latest snapshot'
-] = `<header>
+snapshots["Basic component action-icon with icon property set looks like the latest snapshot"] = 
+`<header>
 </header>
 <section>
   <span>
@@ -18,9 +17,8 @@ snapshots[
 `;
 /* end snapshot Basic component action-icon with icon property set looks like the latest snapshot */
 
-snapshots[
-  'Basic component action-icon with unset icon property  looks like the latest snapshot'
-] = `<header>
+snapshots["Basic component action-icon with unset icon property  looks like the latest snapshot"] = 
+`<header>
 </header>
 <section>
   <span>
@@ -37,3 +35,4 @@ snapshots[
 </footer>
 `;
 /* end snapshot Basic component action-icon with unset icon property  looks like the latest snapshot */
+

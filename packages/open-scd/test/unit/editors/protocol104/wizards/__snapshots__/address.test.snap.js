@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'Wizards for 104 Address Element edit basic 104 Address looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for 104 Address Element edit basic 104 Address looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[protocol104.wizard.title.addressEdit]"
   open=""
@@ -77,9 +76,8 @@ snapshots[
 `;
 /* end snapshot Wizards for 104 Address Element edit basic 104 Address looks like the latest snapshot */
 
-snapshots[
-  'Wizards for 104 Address Element edit 104 Address with expected value looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for 104 Address Element edit 104 Address with expected value looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[protocol104.wizard.title.addressEdit]"
   open=""
@@ -165,9 +163,8 @@ snapshots[
 `;
 /* end snapshot Wizards for 104 Address Element edit 104 Address with expected value looks like the latest snapshot */
 
-snapshots[
-  'Wizards for 104 Address Element edit 104 Address with unit multiplier looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for 104 Address Element edit 104 Address with unit multiplier looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[protocol104.wizard.title.addressEdit]"
   open=""
@@ -449,9 +446,8 @@ snapshots[
 `;
 /* end snapshot Wizards for 104 Address Element edit 104 Address with unit multiplier looks like the latest snapshot */
 
-snapshots[
-  'Wizards for 104 Address Element edit 104 Address with scale fields looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for 104 Address Element edit 104 Address with scale fields looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[protocol104.wizard.title.addressEdit]"
   open=""
@@ -747,9 +743,8 @@ snapshots[
 `;
 /* end snapshot Wizards for 104 Address Element edit 104 Address with scale fields looks like the latest snapshot */
 
-snapshots[
-  'Wizards for 104 Address Element edit 104 Address with inverted value looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for 104 Address Element edit 104 Address with inverted value looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[protocol104.wizard.title.addressEdit]"
   open=""
@@ -829,9 +824,8 @@ snapshots[
 `;
 /* end snapshot Wizards for 104 Address Element edit 104 Address with inverted value looks like the latest snapshot */
 
-snapshots[
-  'Wizards for 104 Address Element edit 104 Address with check value looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for 104 Address Element edit 104 Address with check value looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[protocol104.wizard.title.addressEdit]"
   open=""
@@ -910,3 +904,4 @@ snapshots[
 </mwc-dialog>
 `;
 /* end snapshot Wizards for 104 Address Element edit 104 Address with check value looks like the latest snapshot */
+

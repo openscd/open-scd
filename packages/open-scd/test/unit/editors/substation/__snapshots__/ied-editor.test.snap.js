@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'A component to visualize SCL element IED looks like the latest snapshot'
-] = `<action-icon
+snapshots["A component to visualize SCL element IED looks like the latest snapshot"] = 
+`<action-icon
   icon="developer_board"
   label="IED1"
   tabindex="0"
@@ -56,3 +55,4 @@ snapshots[
 </action-icon>
 `;
 /* end snapshot A component to visualize SCL element IED looks like the latest snapshot */
+

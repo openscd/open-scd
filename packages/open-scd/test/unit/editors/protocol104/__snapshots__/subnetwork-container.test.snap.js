@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'subnetwork-104-container looks like the latest snapshot'
-] = `<action-pane label=" F1 — 
+snapshots["subnetwork-104-container looks like the latest snapshot"] = 
+`<action-pane label=" F1 — 
     (104)">
   <abbr
     slot="action"
@@ -39,3 +38,4 @@ snapshots[
 </action-pane>
 `;
 /* end snapshot subnetwork-104-container looks like the latest snapshot */
+

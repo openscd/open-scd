@@ -1,7 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots['looks like the latest snapshot with a DO element.'] = `<action-pane
+snapshots["looks like the latest snapshot with a DO element."] = 
+`<action-pane
   icon=""
   tabindex="0"
 >
@@ -27,9 +28,8 @@ snapshots['looks like the latest snapshot with a DO element.'] = `<action-pane
 `;
 /* end snapshot looks like the latest snapshot with a DO element. */
 
-snapshots[
-  'looks like the latest snapshot with a DO element and child elements are toggled.'
-] = `<action-pane
+snapshots["looks like the latest snapshot with a DO element and child elements are toggled."] = 
+`<action-pane
   icon=""
   tabindex="0"
 >
@@ -88,7 +88,8 @@ snapshots[
 `;
 /* end snapshot looks like the latest snapshot with a DO element and child elements are toggled. */
 
-snapshots['looks like the latest snapshot with a SDO element.'] = `<action-pane
+snapshots["looks like the latest snapshot with a SDO element."] = 
+`<action-pane
   icon=""
   tabindex="0"
 >
@@ -114,9 +115,8 @@ snapshots['looks like the latest snapshot with a SDO element.'] = `<action-pane
 `;
 /* end snapshot looks like the latest snapshot with a SDO element. */
 
-snapshots[
-  'looks like the latest snapshot with a SDO element and child elements are toggled.'
-] = `<action-pane
+snapshots["looks like the latest snapshot with a SDO element and child elements are toggled."] = 
+`<action-pane
   icon=""
   tabindex="0"
 >
@@ -148,3 +148,4 @@ snapshots[
 </action-pane>
 `;
 /* end snapshot looks like the latest snapshot with a SDO element and child elements are toggled. */
+

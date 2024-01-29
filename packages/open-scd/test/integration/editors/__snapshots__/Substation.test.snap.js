@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'Substation Plugin without a doc loaded looks like the latest snapshot'
-] = `<zeroline-pane>
+snapshots["Substation Plugin without a doc loaded looks like the latest snapshot"] = 
+`<zeroline-pane>
 </zeroline-pane>
 <h1>
   <mwc-fab
@@ -17,3 +16,4 @@ snapshots[
 </wizard-dialog>
 `;
 /* end snapshot Substation Plugin without a doc loaded looks like the latest snapshot */
+

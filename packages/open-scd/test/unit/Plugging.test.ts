@@ -8,7 +8,7 @@ import { TextField } from '@material/mwc-textfield';
 describe('PluggingElement', () => {
   let element: MockPlugger;
   let doc: XMLDocument;
-  const docName = 'testDoc';
+  const docName: string = 'testDoc';
 
   afterEach(async () => {
     await new Promise(resolve => setTimeout(resolve, 50)); // await animation

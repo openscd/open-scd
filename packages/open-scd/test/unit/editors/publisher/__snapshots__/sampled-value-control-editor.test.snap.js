@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'Editor for SampledValueControl element initially looks like the latest snapshot'
-] = `<mwc-button
+snapshots["Editor for SampledValueControl element initially looks like the latest snapshot"] = 
+`<mwc-button
   label="[publisher.selectbutton]"
   outlined=""
 >
@@ -95,9 +94,8 @@ snapshots[
 `;
 /* end snapshot Editor for SampledValueControl element initially looks like the latest snapshot */
 
-snapshots[
-  'Editor for SampledValueControl element with a selected SampledValueControl looks like the latest snapshot'
-] = `<mwc-button
+snapshots["Editor for SampledValueControl element with a selected SampledValueControl looks like the latest snapshot"] = 
+`<mwc-button
   label="[publisher.selectbutton]"
   outlined=""
 >
@@ -197,3 +195,4 @@ snapshots[
 </div>
 `;
 /* end snapshot Editor for SampledValueControl element with a selected SampledValueControl looks like the latest snapshot */
+

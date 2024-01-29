@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'connectedap-104-editor looks like the latest snapshot'
-] = `<action-icon
+snapshots["connectedap-104-editor looks like the latest snapshot"] = 
+`<action-icon
   icon="settings_input_hdmi"
   label="AP1"
   tabindex="0"
@@ -23,3 +22,4 @@ snapshots[
 </action-icon>
 `;
 /* end snapshot connectedap-104-editor looks like the latest snapshot */
+

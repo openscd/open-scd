@@ -1,7 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots['with no ancestors looks like the latest snapshot'] = `<mwc-dialog
+snapshots["with no ancestors looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[iededitor.wizard.doTitle]"
   open=""
@@ -104,7 +105,8 @@ snapshots['with no ancestors looks like the latest snapshot'] = `<mwc-dialog
 `;
 /* end snapshot with no ancestors looks like the latest snapshot */
 
-snapshots['with a DO element looks like the latest snapshot'] = `<mwc-dialog
+snapshots["with a DO element looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[iededitor.wizard.doTitle]"
   open=""
@@ -207,9 +209,8 @@ snapshots['with a DO element looks like the latest snapshot'] = `<mwc-dialog
 `;
 /* end snapshot with a DO element looks like the latest snapshot */
 
-snapshots[
-  'with a DO element and DOI Element looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["with a DO element and DOI Element looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[iededitor.wizard.doTitle]"
   open=""
@@ -311,3 +312,4 @@ snapshots[
 </mwc-dialog>
 `;
 /* end snapshot with a DO element and DOI Element looks like the latest snapshot */
+

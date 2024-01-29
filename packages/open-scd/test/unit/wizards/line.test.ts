@@ -2,6 +2,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 import '../../mock-wizard.js';
 import { MockWizard } from '../../mock-wizard.js';
 
+import { WizardTextField } from '../../../src/wizard-textfield.js';
 import { SinonSpy, spy } from 'sinon';
 
 import {
@@ -12,6 +13,7 @@ import {
   WizardInputElement,
 } from '../../../src/foundation.js';
 import { createLineWizard, editLineWizard } from '../../../src/wizards/line.js';
+import { WizardCheckbox } from '../../../src/wizard-checkbox.js';
 
 describe('Wizards for SCL Line element', () => {
   let doc: XMLDocument;

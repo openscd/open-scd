@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'SMV Subscribe Data Binding Plugin looks like the latest snapshot'
-] = `<div>
+snapshots["SMV Subscribe Data Binding Plugin looks like the latest snapshot"] = 
+`<div>
   <div class="container">
     <fcda-binding-list
       class="column"
@@ -19,3 +18,4 @@ snapshots[
 </div>
 `;
 /* end snapshot SMV Subscribe Data Binding Plugin looks like the latest snapshot */
+

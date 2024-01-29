@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'Wizards for SCL element ConnectedAP include a create wizard that looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for SCL element ConnectedAP include a create wizard that looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.add]"
   open=""
@@ -68,3 +67,4 @@ snapshots[
 </mwc-dialog>
 `;
 /* end snapshot Wizards for SCL element ConnectedAP include a create wizard that looks like the latest snapshot */
+

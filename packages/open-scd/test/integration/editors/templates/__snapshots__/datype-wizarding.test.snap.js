@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'DAType wizards defines a createDATypeWizard looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["DAType wizards defines a createDATypeWizard looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[datype.wizard.title.add]"
   open=""
@@ -613,9 +612,8 @@ snapshots[
 `;
 /* end snapshot DAType wizards defines a createDATypeWizard looks like the latest snapshot */
 
-snapshots[
-  'DAType wizards defines a dATypeWizard looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["DAType wizards defines a dATypeWizard looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[datype.wizard.title.edit]"
   open=""
@@ -780,3 +778,4 @@ snapshots[
 </mwc-dialog>
 `;
 /* end snapshot DAType wizards defines a dATypeWizard looks like the latest snapshot */
+

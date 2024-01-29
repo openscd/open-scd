@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'Wizards for SCL element Power Transformer (X/Y) looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for SCL element Power Transformer (X/Y) looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[powertransformer.wizard.title.edit]"
   open=""
@@ -61,3 +60,4 @@ snapshots[
 </mwc-dialog>
 `;
 /* end snapshot Wizards for SCL element Power Transformer (X/Y) looks like the latest snapshot */
+

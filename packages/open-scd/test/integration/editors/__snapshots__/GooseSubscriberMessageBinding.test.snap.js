@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'GOOSE subscriber plugin in Publisher view per default the plugin itself looks like the latest snapshot'
-] = `<div>
+snapshots["GOOSE subscriber plugin in Publisher view per default the plugin itself looks like the latest snapshot"] = 
+`<div>
   <mwc-formfield label="[subscription.goose.view.publisherView]">
     <mwc-radio
       checked=""
@@ -214,9 +213,8 @@ snapshots[
 `;
 /* end snapshot GOOSE subscriber plugin in Publisher view per default the plugin itself looks like the latest snapshot */
 
-snapshots[
-  'GOOSE subscriber plugin in Publisher view per default the right hand side GSEControl list looks like the latest snapshot'
-] = `<section tabindex="0">
+snapshots["GOOSE subscriber plugin in Publisher view per default the right hand side GSEControl list looks like the latest snapshot"] = 
+`<section tabindex="0">
   <h1>
     [subscription.goose.publisher.title]
   </h1>
@@ -362,9 +360,8 @@ snapshots[
 `;
 /* end snapshot GOOSE subscriber plugin in Publisher view per default the right hand side GSEControl list looks like the latest snapshot */
 
-snapshots[
-  'GOOSE subscriber plugin in Publisher view per default the left hand side subscriber IED list looks like the latest snapshot'
-] = `<section tabindex="0">
+snapshots["GOOSE subscriber plugin in Publisher view per default the left hand side subscriber IED list looks like the latest snapshot"] = 
+`<section tabindex="0">
   <h1>
     [subscription.goose.publisher.subscriberTitle]
   </h1>
@@ -383,9 +380,8 @@ snapshots[
 `;
 /* end snapshot GOOSE subscriber plugin in Publisher view per default the left hand side subscriber IED list looks like the latest snapshot */
 
-snapshots[
-  'GOOSE subscriber plugin in Publisher view with a selected GOOSE message the left hand side subscriber IED list looks like the latest snapshot'
-] = `<section tabindex="0">
+snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE message the left hand side subscriber IED list looks like the latest snapshot"] = 
+`<section tabindex="0">
   <h1>
     [subscription.goose.publisher.subscriberTitle]
   </h1>
@@ -498,9 +494,8 @@ snapshots[
 `;
 /* end snapshot GOOSE subscriber plugin in Publisher view with a selected GOOSE message the left hand side subscriber IED list looks like the latest snapshot */
 
-snapshots[
-  'GOOSE subscriber plugin in Publisher view with a selected GOOSE message for unsubscribed IEDs after clicking on the IEDs list element the left hand side subscriber IED list looks like the latest snapshot'
-] = `<section tabindex="0">
+snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE message for unsubscribed IEDs after clicking on the IEDs list element the left hand side subscriber IED list looks like the latest snapshot"] = 
+`<section tabindex="0">
   <h1>
     [subscription.goose.publisher.subscriberTitle]
   </h1>
@@ -616,9 +611,8 @@ snapshots[
 `;
 /* end snapshot GOOSE subscriber plugin in Publisher view with a selected GOOSE message for unsubscribed IEDs after clicking on the IEDs list element the left hand side subscriber IED list looks like the latest snapshot */
 
-snapshots[
-  'GOOSE subscriber plugin in Publisher view with a selected GOOSE message for subscribed IEDs after clicking on the IEDs list element looks like the latest snapshot'
-] = `<section tabindex="0">
+snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE message for subscribed IEDs after clicking on the IEDs list element looks like the latest snapshot"] = 
+`<section tabindex="0">
   <h1>
     [subscription.goose.publisher.subscriberTitle]
   </h1>
@@ -735,9 +729,8 @@ snapshots[
 `;
 /* end snapshot GOOSE subscriber plugin in Publisher view with a selected GOOSE message for subscribed IEDs after clicking on the IEDs list element looks like the latest snapshot */
 
-snapshots[
-  'GOOSE subscriber plugin in Publisher view with a selected GOOSE message for partially subscribed IEDs after clicking on the IEDs list element it looks like the latest snapshot'
-] = `<section tabindex="0">
+snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE message for partially subscribed IEDs after clicking on the IEDs list element it looks like the latest snapshot"] = 
+`<section tabindex="0">
   <h1>
     [subscription.goose.publisher.subscriberTitle]
   </h1>
@@ -851,9 +844,8 @@ snapshots[
 `;
 /* end snapshot GOOSE subscriber plugin in Publisher view with a selected GOOSE message for partially subscribed IEDs after clicking on the IEDs list element it looks like the latest snapshot */
 
-snapshots[
-  'GOOSE subscriber plugin in Subscriber view per default the plugin itsself looks like the latest snapshot'
-] = `<div>
+snapshots["GOOSE subscriber plugin in Subscriber view per default the plugin itsself looks like the latest snapshot"] = 
+`<div>
   <mwc-formfield label="[subscription.goose.view.publisherView]">
     <mwc-radio
       id="goosePublisherView"
@@ -1067,9 +1059,8 @@ snapshots[
 `;
 /* end snapshot GOOSE subscriber plugin in Subscriber view per default the plugin itsself looks like the latest snapshot */
 
-snapshots[
-  'GOOSE subscriber plugin in Subscriber view per default the right hand side IEDs list looks like the latest snapshot'
-] = `<section tabindex="0">
+snapshots["GOOSE subscriber plugin in Subscriber view per default the right hand side IEDs list looks like the latest snapshot"] = 
+`<section tabindex="0">
   <h1>
     [subscription.goose.subscriber.iedListTitle]
   </h1>
@@ -1131,9 +1122,8 @@ snapshots[
 `;
 /* end snapshot GOOSE subscriber plugin in Subscriber view per default the right hand side IEDs list looks like the latest snapshot */
 
-snapshots[
-  'GOOSE subscriber plugin in Subscriber view per default the left hand side subscriber IED list looks like the latest snapshot'
-] = `<section tabindex="0">
+snapshots["GOOSE subscriber plugin in Subscriber view per default the left hand side subscriber IED list looks like the latest snapshot"] = 
+`<section tabindex="0">
   <h1>
     [subscription.goose.subscriber.publisherTitle]
   </h1>
@@ -1152,9 +1142,8 @@ snapshots[
 `;
 /* end snapshot GOOSE subscriber plugin in Subscriber view per default the left hand side subscriber IED list looks like the latest snapshot */
 
-snapshots[
-  'GOOSE subscriber plugin in Subscriber view with a selected IED the left hand side subscriber IED list looks like the latest snapshot'
-] = `<section tabindex="0">
+snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED the left hand side subscriber IED list looks like the latest snapshot"] = 
+`<section tabindex="0">
   <h1>
     [subscription.goose.subscriber.publisherTitle]
   </h1>
@@ -1257,9 +1246,8 @@ snapshots[
 `;
 /* end snapshot GOOSE subscriber plugin in Subscriber view with a selected IED the left hand side subscriber IED list looks like the latest snapshot */
 
-snapshots[
-  'GOOSE subscriber plugin in Subscriber view with a selected IED for unsubscribed GSEControl s clicking on a GSEControl list item the left hand side subscriber IED list looks like the latest snapshot'
-] = `<section tabindex="0">
+snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for unsubscribed GSEControl s clicking on a GSEControl list item the left hand side subscriber IED list looks like the latest snapshot"] = 
+`<section tabindex="0">
   <h1>
     [subscription.goose.subscriber.publisherTitle]
   </h1>
@@ -1353,9 +1341,8 @@ snapshots[
 `;
 /* end snapshot GOOSE subscriber plugin in Subscriber view with a selected IED for unsubscribed GSEControl s clicking on a GSEControl list item the left hand side subscriber IED list looks like the latest snapshot */
 
-snapshots[
-  'GOOSE subscriber plugin in Subscriber view with a selected IED for subscribed GSEControl s clicking on the GSEControl list item the left hand side subscriber IED list looks like the latest snapshot'
-] = `<section tabindex="0">
+snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for subscribed GSEControl s clicking on the GSEControl list item the left hand side subscriber IED list looks like the latest snapshot"] = 
+`<section tabindex="0">
   <h1>
     [subscription.goose.subscriber.publisherTitle]
   </h1>
@@ -1459,9 +1446,8 @@ snapshots[
 `;
 /* end snapshot GOOSE subscriber plugin in Subscriber view with a selected IED for subscribed GSEControl s clicking on the GSEControl list item the left hand side subscriber IED list looks like the latest snapshot */
 
-snapshots[
-  'GOOSE subscriber plugin in Subscriber view with a selected IED for partially subscribed GSEControl s clicking on the GSEControl list item the left hand side subscriber IED list looks like the latest snapshot'
-] = `<section tabindex="0">
+snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for partially subscribed GSEControl s clicking on the GSEControl list item the left hand side subscriber IED list looks like the latest snapshot"] = 
+`<section tabindex="0">
   <h1>
     [subscription.goose.subscriber.publisherTitle]
   </h1>
@@ -1556,3 +1542,4 @@ snapshots[
 </section>
 `;
 /* end snapshot GOOSE subscriber plugin in Subscriber view with a selected IED for partially subscribed GSEControl s clicking on the GSEControl list item the left hand side subscriber IED list looks like the latest snapshot */
+

@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'Publisher plugin per default looks like the latest snapshot'
-] = `<div class="publishertypeselector">
+snapshots["Publisher plugin per default looks like the latest snapshot"] = 
+`<div class="publishertypeselector">
   <mwc-formfield label="Report">
     <mwc-radio value="Report">
     </mwc-radio>
@@ -35,9 +34,8 @@ snapshots[
 `;
 /* end snapshot Publisher plugin per default looks like the latest snapshot */
 
-snapshots[
-  'Publisher plugin displays report-control-editor with selected Report publisherType'
-] = `<div class="publishertypeselector">
+snapshots["Publisher plugin displays report-control-editor with selected Report publisherType"] = 
+`<div class="publishertypeselector">
   <mwc-formfield label="Report">
     <mwc-radio
       checked=""
@@ -69,9 +67,8 @@ snapshots[
 `;
 /* end snapshot Publisher plugin displays report-control-editor with selected Report publisherType */
 
-snapshots[
-  'Publisher plugin displays sampled-value-control-editor with selected SampledValue publisherType'
-] = `<div class="publishertypeselector">
+snapshots["Publisher plugin displays sampled-value-control-editor with selected SampledValue publisherType"] = 
+`<div class="publishertypeselector">
   <mwc-formfield label="Report">
     <mwc-radio value="Report">
     </mwc-radio>
@@ -103,9 +100,8 @@ snapshots[
 `;
 /* end snapshot Publisher plugin displays sampled-value-control-editor with selected SampledValue publisherType */
 
-snapshots[
-  'Publisher plugin displays data-set-editor with selected DataSet publisherType'
-] = `<div class="publishertypeselector">
+snapshots["Publisher plugin displays data-set-editor with selected DataSet publisherType"] = 
+`<div class="publishertypeselector">
   <mwc-formfield label="Report">
     <mwc-radio value="Report">
     </mwc-radio>
@@ -136,3 +132,4 @@ snapshots[
 </data-set-editor>
 `;
 /* end snapshot Publisher plugin displays data-set-editor with selected DataSet publisherType */
+

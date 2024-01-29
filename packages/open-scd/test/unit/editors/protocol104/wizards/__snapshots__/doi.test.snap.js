@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'Wizards for 104 DOI Element show 104 DOI Basic Info (Known CDC Monitor Only) looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for 104 DOI Element show 104 DOI Basic Info (Known CDC Monitor Only) looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[protocol104.wizard.title.doiInfo]"
   open=""
@@ -84,9 +83,8 @@ snapshots[
 `;
 /* end snapshot Wizards for 104 DOI Element show 104 DOI Basic Info (Known CDC Monitor Only) looks like the latest snapshot */
 
-snapshots[
-  'Wizards for 104 DOI Element show 104 DOI Basic Info with ctlModel (Known CDC Monitor and Control) looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for 104 DOI Element show 104 DOI Basic Info with ctlModel (Known CDC Monitor and Control) looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[protocol104.wizard.title.doiInfo]"
   open=""
@@ -185,9 +183,8 @@ snapshots[
 `;
 /* end snapshot Wizards for 104 DOI Element show 104 DOI Basic Info with ctlModel (Known CDC Monitor and Control) looks like the latest snapshot */
 
-snapshots[
-  'Wizards for 104 DOI Element show 104 DOI Basic Info for CDC=ACD looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for 104 DOI Element show 104 DOI Basic Info for CDC=ACD looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[protocol104.wizard.title.doiInfo]"
   open=""
@@ -267,3 +264,4 @@ snapshots[
 </mwc-dialog>
 `;
 /* end snapshot Wizards for 104 DOI Element show 104 DOI Basic Info for CDC=ACD looks like the latest snapshot */
+

@@ -1,5 +1,5 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import { spy, SinonSpy } from 'sinon';
+import sinon, { SinonSpy } from 'sinon';
 
 import '../../mock-wizard.js';
 import { MockWizard } from '../../mock-wizard.js';
@@ -27,7 +27,7 @@ describe('Update method for desc attributes in ABB IEDs', () => {
       parent.querySelector('update-description-abb')!
     );
 
-    editorAction = spy();
+    editorAction = sinon.spy();
     window.addEventListener('editor-action', editorAction);
   });
 

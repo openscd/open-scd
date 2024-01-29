@@ -12,33 +12,36 @@ import { MenuBase } from '@material/mwc-menu/mwc-menu-base.js';
 const openAndCancelMenu: (
   parent: MockWizardEditor,
   element: SubFunctionEditor
-) => Promise<void> = async (
+) => Promise<void> = (
   parent: MockWizardEditor,
   element: SubFunctionEditor
-): Promise<void> => {
-  expect(parent.wizardUI.dialog).to.be.undefined;
+): Promise<void> =>
+  new Promise(async resolve => {
+    expect(parent.wizardUI.dialog).to.be.undefined;
 
-  element?.shadowRoot
-    ?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!
-    .click();
-  const subFunctionMenuItem: ListItemBase =
-    element!.shadowRoot!.querySelector<ListItemBase>(
-      `mwc-list-item[value='SubFunction']`
-    )!;
-  subFunctionMenuItem.click();
-  await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+    element?.shadowRoot?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!.click();
+    const subFunctionMenuItem: ListItemBase =
+      element?.shadowRoot?.querySelector<ListItemBase>(
+        `mwc-list-item[value='SubFunction']`
+      )!;
+    subFunctionMenuItem.click();
+    await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
-  expect(parent.wizardUI.dialog).to.exist;
+    expect(parent.wizardUI.dialog).to.exist;
 
-  const secondaryAction: HTMLElement = <HTMLElement>(
-    parent.wizardUI.dialog?.querySelector('mwc-button[slot="secondaryAction"]')
-  );
+    const secondaryAction: HTMLElement = <HTMLElement>(
+      parent.wizardUI.dialog?.querySelector(
+        'mwc-button[slot="secondaryAction"]'
+      )
+    );
 
-  secondaryAction.click();
-  await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+    secondaryAction.click();
+    await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
-  expect(parent.wizardUI.dialog).to.be.undefined;
-};
+    expect(parent.wizardUI.dialog).to.be.undefined;
+
+    return resolve();
+  });
 
 describe('sub-function-editor wizarding editing integration', () => {
   let doc: XMLDocument;
@@ -276,9 +279,9 @@ describe('sub-function-editor wizarding editing integration', () => {
         await fixture(
           html`<mock-wizard-editor
             ><sub-function-editor
-              .element=${doc.querySelector(
-                'Function[name="voltLvName"] > SubFunction'
-              )}
+            .element=${doc.querySelector(
+              'Function[name="voltLvName"] > SubFunction'
+            )}
             ></sub-function-editor
           ></mock-wizard-editor>`
         )

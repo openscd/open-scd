@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'web component rendering EqFunction element with complete attribute set and existing children looks like the latest snapshot'
-] = `<action-pane
+snapshots["web component rendering EqFunction element with complete attribute set and existing children looks like the latest snapshot"] = 
+`<action-pane
   highlighted=""
   icon="functions"
   label="myEqFuncQA1 - funcForQA1 (eqFuncType)"
@@ -76,9 +75,8 @@ snapshots[
 `;
 /* end snapshot web component rendering EqFunction element with complete attribute set and existing children looks like the latest snapshot */
 
-snapshots[
-  'web component rendering EqFunction element with missing desc and type attribute looks like the latest snapshot'
-] = `<action-pane
+snapshots["web component rendering EqFunction element with missing desc and type attribute looks like the latest snapshot"] = 
+`<action-pane
   highlighted=""
   icon="functions"
   label="myEqFuncPtr2"
@@ -151,9 +149,8 @@ snapshots[
 `;
 /* end snapshot web component rendering EqFunction element with missing desc and type attribute looks like the latest snapshot */
 
-snapshots[
-  'web component rendering EqFunction element with existing LNode children looks like the latest snapshot'
-] = `<action-pane
+snapshots["web component rendering EqFunction element with existing LNode children looks like the latest snapshot"] = 
+`<action-pane
   highlighted=""
   icon="functions"
   label="myEqFuncQB1"
@@ -232,9 +229,8 @@ snapshots[
 `;
 /* end snapshot web component rendering EqFunction element with existing LNode children looks like the latest snapshot */
 
-snapshots[
-  'web component rendering EqFunction element with general-equipment children with showfunctions false looks like the latest snapshot'
-] = `<action-pane
+snapshots["web component rendering EqFunction element with general-equipment children with showfunctions false looks like the latest snapshot"] = 
+`<action-pane
   highlighted=""
   icon="functions"
   label="genEqFunc"
@@ -305,9 +301,8 @@ snapshots[
 `;
 /* end snapshot web component rendering EqFunction element with general-equipment children with showfunctions false looks like the latest snapshot */
 
-snapshots[
-  'web component rendering EqFunction element with general-equipment children with showfunctions true looks like the latest snapshot'
-] = `<action-pane
+snapshots["web component rendering EqFunction element with general-equipment children with showfunctions true looks like the latest snapshot"] = 
+`<action-pane
   highlighted=""
   icon="functions"
   label="genEqFunc"
@@ -377,3 +372,4 @@ snapshots[
 </action-pane>
 `;
 /* end snapshot web component rendering EqFunction element with general-equipment children with showfunctions true looks like the latest snapshot */
+

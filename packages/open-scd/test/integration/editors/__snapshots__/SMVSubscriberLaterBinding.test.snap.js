@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'SMV Subscribe Later Binding plugin when selecting an FCDA element with subscriptions it looks like the latest snapshot'
-] = `<section tabindex="0">
+snapshots["SMV Subscribe Later Binding plugin when selecting an FCDA element with subscriptions it looks like the latest snapshot"] = 
+`<section tabindex="0">
   <h1>
     [subscription.laterBinding.extRefList.title]
   </h1>
@@ -1799,3 +1798,4 @@ snapshots[
 </section>
 `;
 /* end snapshot SMV Subscribe Later Binding plugin when selecting an FCDA element with subscriptions it looks like the latest snapshot */
+

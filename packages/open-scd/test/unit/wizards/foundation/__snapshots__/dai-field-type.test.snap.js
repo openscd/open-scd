@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'dai-field-type getCustomField BOOLEAN field render function returns the correct snapshot'
-] = `<mwc-dialog
+snapshots["dai-field-type getCustomField BOOLEAN field render function returns the correct snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="Custom Field Wizard"
   open=""
@@ -44,9 +43,8 @@ snapshots[
 `;
 /* end snapshot dai-field-type getCustomField BOOLEAN field render function returns the correct snapshot */
 
-snapshots[
-  'dai-field-type getCustomField ENUM field render function returns the correct snapshot'
-] = `<mwc-dialog
+snapshots["dai-field-type getCustomField ENUM field render function returns the correct snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="Custom Field Wizard"
   open=""
@@ -111,9 +109,8 @@ snapshots[
 `;
 /* end snapshot dai-field-type getCustomField ENUM field render function returns the correct snapshot */
 
-snapshots[
-  'dai-field-type getCustomField FLOAT32 field render function returns the correct snapshot'
-] = `<mwc-dialog
+snapshots["dai-field-type getCustomField FLOAT32 field render function returns the correct snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="Custom Field Wizard"
   open=""
@@ -142,9 +139,8 @@ snapshots[
 `;
 /* end snapshot dai-field-type getCustomField FLOAT32 field render function returns the correct snapshot */
 
-snapshots[
-  'dai-field-type getCustomField FLOAT64 field render function returns the correct snapshot'
-] = `<mwc-dialog
+snapshots["dai-field-type getCustomField FLOAT64 field render function returns the correct snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="Custom Field Wizard"
   open=""
@@ -173,9 +169,8 @@ snapshots[
 `;
 /* end snapshot dai-field-type getCustomField FLOAT64 field render function returns the correct snapshot */
 
-snapshots[
-  'dai-field-type getCustomField INT8 field render function returns the correct snapshot'
-] = `<mwc-dialog
+snapshots["dai-field-type getCustomField INT8 field render function returns the correct snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="Custom Field Wizard"
   open=""
@@ -203,9 +198,8 @@ snapshots[
 `;
 /* end snapshot dai-field-type getCustomField INT8 field render function returns the correct snapshot */
 
-snapshots[
-  'dai-field-type getCustomField INT16 field render function returns the correct snapshot'
-] = `<mwc-dialog
+snapshots["dai-field-type getCustomField INT16 field render function returns the correct snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="Custom Field Wizard"
   open=""
@@ -233,9 +227,8 @@ snapshots[
 `;
 /* end snapshot dai-field-type getCustomField INT16 field render function returns the correct snapshot */
 
-snapshots[
-  'dai-field-type getCustomField INT24 field render function returns the correct snapshot'
-] = `<mwc-dialog
+snapshots["dai-field-type getCustomField INT24 field render function returns the correct snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="Custom Field Wizard"
   open=""
@@ -263,9 +256,8 @@ snapshots[
 `;
 /* end snapshot dai-field-type getCustomField INT24 field render function returns the correct snapshot */
 
-snapshots[
-  'dai-field-type getCustomField INT32 field render function returns the correct snapshot'
-] = `<mwc-dialog
+snapshots["dai-field-type getCustomField INT32 field render function returns the correct snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="Custom Field Wizard"
   open=""
@@ -293,9 +285,8 @@ snapshots[
 `;
 /* end snapshot dai-field-type getCustomField INT32 field render function returns the correct snapshot */
 
-snapshots[
-  'dai-field-type getCustomField INT64 field render function returns the correct snapshot'
-] = `<mwc-dialog
+snapshots["dai-field-type getCustomField INT64 field render function returns the correct snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="Custom Field Wizard"
   open=""
@@ -323,9 +314,8 @@ snapshots[
 `;
 /* end snapshot dai-field-type getCustomField INT64 field render function returns the correct snapshot */
 
-snapshots[
-  'dai-field-type getCustomField INT128 field render function returns the correct snapshot'
-] = `<mwc-dialog
+snapshots["dai-field-type getCustomField INT128 field render function returns the correct snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="Custom Field Wizard"
   open=""
@@ -353,9 +343,8 @@ snapshots[
 `;
 /* end snapshot dai-field-type getCustomField INT128 field render function returns the correct snapshot */
 
-snapshots[
-  'dai-field-type getCustomField INT8U field render function returns the correct snapshot'
-] = `<mwc-dialog
+snapshots["dai-field-type getCustomField INT8U field render function returns the correct snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="Custom Field Wizard"
   open=""
@@ -383,9 +372,8 @@ snapshots[
 `;
 /* end snapshot dai-field-type getCustomField INT8U field render function returns the correct snapshot */
 
-snapshots[
-  'dai-field-type getCustomField INT16U field render function returns the correct snapshot'
-] = `<mwc-dialog
+snapshots["dai-field-type getCustomField INT16U field render function returns the correct snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="Custom Field Wizard"
   open=""
@@ -413,9 +401,8 @@ snapshots[
 `;
 /* end snapshot dai-field-type getCustomField INT16U field render function returns the correct snapshot */
 
-snapshots[
-  'dai-field-type getCustomField INT24U field render function returns the correct snapshot'
-] = `<mwc-dialog
+snapshots["dai-field-type getCustomField INT24U field render function returns the correct snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="Custom Field Wizard"
   open=""
@@ -443,9 +430,8 @@ snapshots[
 `;
 /* end snapshot dai-field-type getCustomField INT24U field render function returns the correct snapshot */
 
-snapshots[
-  'dai-field-type getCustomField INT32U field render function returns the correct snapshot'
-] = `<mwc-dialog
+snapshots["dai-field-type getCustomField INT32U field render function returns the correct snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="Custom Field Wizard"
   open=""
@@ -473,9 +459,8 @@ snapshots[
 `;
 /* end snapshot dai-field-type getCustomField INT32U field render function returns the correct snapshot */
 
-snapshots[
-  'dai-field-type getCustomField Timestamp field render function returns the correct snapshot'
-] = `<mwc-dialog
+snapshots["dai-field-type getCustomField Timestamp field render function returns the correct snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="Custom Field Wizard"
   open=""
@@ -507,9 +492,8 @@ snapshots[
 `;
 /* end snapshot dai-field-type getCustomField Timestamp field render function returns the correct snapshot */
 
-snapshots[
-  'dai-field-type getCustomField VisString32 field render function returns the correct snapshot'
-] = `<mwc-dialog
+snapshots["dai-field-type getCustomField VisString32 field render function returns the correct snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="Custom Field Wizard"
   open=""
@@ -536,9 +520,8 @@ snapshots[
 `;
 /* end snapshot dai-field-type getCustomField VisString32 field render function returns the correct snapshot */
 
-snapshots[
-  'dai-field-type getCustomField VisString64 field render function returns the correct snapshot'
-] = `<mwc-dialog
+snapshots["dai-field-type getCustomField VisString64 field render function returns the correct snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="Custom Field Wizard"
   open=""
@@ -565,9 +548,8 @@ snapshots[
 `;
 /* end snapshot dai-field-type getCustomField VisString64 field render function returns the correct snapshot */
 
-snapshots[
-  'dai-field-type getCustomField VisString65 field render function returns the correct snapshot'
-] = `<mwc-dialog
+snapshots["dai-field-type getCustomField VisString65 field render function returns the correct snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="Custom Field Wizard"
   open=""
@@ -594,9 +576,8 @@ snapshots[
 `;
 /* end snapshot dai-field-type getCustomField VisString65 field render function returns the correct snapshot */
 
-snapshots[
-  'dai-field-type getCustomField VisString129 field render function returns the correct snapshot'
-] = `<mwc-dialog
+snapshots["dai-field-type getCustomField VisString129 field render function returns the correct snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="Custom Field Wizard"
   open=""
@@ -623,9 +604,8 @@ snapshots[
 `;
 /* end snapshot dai-field-type getCustomField VisString129 field render function returns the correct snapshot */
 
-snapshots[
-  'dai-field-type getCustomField VisString255 field render function returns the correct snapshot'
-] = `<mwc-dialog
+snapshots["dai-field-type getCustomField VisString255 field render function returns the correct snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="Custom Field Wizard"
   open=""
@@ -651,3 +631,4 @@ snapshots[
 </mwc-dialog>
 `;
 /* end snapshot dai-field-type getCustomField VisString255 field render function returns the correct snapshot */
+

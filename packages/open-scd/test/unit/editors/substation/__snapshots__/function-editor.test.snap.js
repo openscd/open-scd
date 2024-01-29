@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'web component rendering Function element with complete attribute set and existing children looks like the latest snapshot'
-] = `<action-pane
+snapshots["web component rendering Function element with complete attribute set and existing children looks like the latest snapshot"] = 
+`<action-pane
   highlighted=""
   icon="functions"
   label="myFunc - myDesc (myFuncType)"
@@ -87,9 +86,8 @@ snapshots[
 `;
 /* end snapshot web component rendering Function element with complete attribute set and existing children looks like the latest snapshot */
 
-snapshots[
-  'web component rendering Function element with missing desc and type attribute looks like the latest snapshot'
-] = `<action-pane
+snapshots["web component rendering Function element with missing desc and type attribute looks like the latest snapshot"] = 
+`<action-pane
   highlighted=""
   icon="functions"
   label="voltLvName"
@@ -173,9 +171,8 @@ snapshots[
 `;
 /* end snapshot web component rendering Function element with missing desc and type attribute looks like the latest snapshot */
 
-snapshots[
-  'web component rendering Function element with existing LNode children looks like the latest snapshot'
-] = `<action-pane
+snapshots["web component rendering Function element with existing LNode children looks like the latest snapshot"] = 
+`<action-pane
   highlighted=""
   icon="functions"
   label="bay2Func"
@@ -265,9 +262,8 @@ snapshots[
 `;
 /* end snapshot web component rendering Function element with existing LNode children looks like the latest snapshot */
 
-snapshots[
-  'web component rendering Function element with general-equipment children with showfunctions false looks like the latest snapshot'
-] = `<action-pane
+snapshots["web component rendering Function element with general-equipment children with showfunctions false looks like the latest snapshot"] = 
+`<action-pane
   highlighted=""
   icon="functions"
   label="F1"
@@ -355,9 +351,8 @@ snapshots[
 `;
 /* end snapshot web component rendering Function element with general-equipment children with showfunctions false looks like the latest snapshot */
 
-snapshots[
-  'web component rendering Function element with general-equipment children with showfunctions true looks like the latest snapshot'
-] = `<action-pane
+snapshots["web component rendering Function element with general-equipment children with showfunctions true looks like the latest snapshot"] = 
+`<action-pane
   highlighted=""
   icon="functions"
   label="F1"
@@ -444,3 +439,4 @@ snapshots[
 </action-pane>
 `;
 /* end snapshot web component rendering Function element with general-equipment children with showfunctions true looks like the latest snapshot */
+

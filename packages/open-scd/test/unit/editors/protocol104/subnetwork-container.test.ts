@@ -1,6 +1,6 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../../../../src/editors/protocol104/subnetwork-container.js';
+import '../../../../src/editors/protocol104/subnetwork-container.js'
 import { SubNetwork104Container } from '../../../../src/editors/protocol104/subnetwork-container.js';
 
 describe('subnetwork-104-container', () => {
@@ -15,9 +15,7 @@ describe('subnetwork-104-container', () => {
     subNetwork = validSCL.querySelector('SubNetwork[name="F1"]')!;
     element = <SubNetwork104Container>(
       await fixture(
-        html`<subnetwork-104-container
-          .element=${subNetwork}
-        ></subnetwork-104-container>`
+        html`<subnetwork-104-container .element=${subNetwork}></subnetwork-104-container>`
       )
     );
   });

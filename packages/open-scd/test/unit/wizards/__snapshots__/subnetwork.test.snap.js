@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'Wizards for SCL element SubNetwork include an edit wizard that with existing BitRate child element looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for SCL element SubNetwork include an edit wizard that with existing BitRate child element looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
   open=""
@@ -59,9 +58,8 @@ snapshots[
 `;
 /* end snapshot Wizards for SCL element SubNetwork include an edit wizard that with existing BitRate child element looks like the latest snapshot */
 
-snapshots[
-  'Wizards for SCL element SubNetwork include an edit wizard that with missing BitRate child element looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for SCL element SubNetwork include an edit wizard that with missing BitRate child element looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
   open=""
@@ -118,9 +116,8 @@ snapshots[
 `;
 /* end snapshot Wizards for SCL element SubNetwork include an edit wizard that with missing BitRate child element looks like the latest snapshot */
 
-snapshots[
-  'Wizards for SCL element SubNetwork include an create wizard that looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for SCL element SubNetwork include an create wizard that looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.add]"
   open=""
@@ -174,3 +171,4 @@ snapshots[
 </mwc-dialog>
 `;
 /* end snapshot Wizards for SCL element SubNetwork include an create wizard that looks like the latest snapshot */
+

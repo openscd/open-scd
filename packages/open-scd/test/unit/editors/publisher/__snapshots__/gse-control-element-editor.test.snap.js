@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'Editor for GSEControl element and its direct children with valid GSEControl looks like the latest snapshot'
-] = `<h2 style="display: flex;">
+snapshots["Editor for GSEControl element and its direct children with valid GSEControl looks like the latest snapshot"] = 
+`<h2 style="display: flex;">
   <div style="flex:auto">
     <div>
       GSEControl
@@ -174,3 +173,4 @@ snapshots[
 </div>
 `;
 /* end snapshot Editor for GSEControl element and its direct children with valid GSEControl looks like the latest snapshot */
+

@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'filtered-list looks like its latest snapshot'
-] = `<div id="tfcontainer">
+snapshots["filtered-list looks like its latest snapshot"] = 
+`<div id="tfcontainer">
   <abbr title="[filter]">
     <mwc-textfield
       icontrailing="search"
@@ -26,3 +25,4 @@ snapshots[
 </ul>
 `;
 /* end snapshot filtered-list looks like its latest snapshot */
+

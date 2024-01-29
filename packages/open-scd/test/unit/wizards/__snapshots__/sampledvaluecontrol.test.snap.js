@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'Wizards for SCL element SampledValueControl define an edit wizard that with muticast attribute set to false - deprecated looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for SCL element SampledValueControl define an edit wizard that with muticast attribute set to false - deprecated looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
   open=""
@@ -212,9 +211,8 @@ snapshots[
 `;
 /* end snapshot Wizards for SCL element SampledValueControl define an edit wizard that with muticast attribute set to false - deprecated looks like the latest snapshot */
 
-snapshots[
-  'Wizards for SCL element SampledValueControl define an edit wizard that  with multicast set to treu looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for SCL element SampledValueControl define an edit wizard that  with multicast set to treu looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
   open=""
@@ -403,9 +401,8 @@ snapshots[
 `;
 /* end snapshot Wizards for SCL element SampledValueControl define an edit wizard that  with multicast set to treu looks like the latest snapshot */
 
-snapshots[
-  'Wizards for SCL element SampledValueControl define an create wizard that with existing ConnectedAP element in the Communication section the first page looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for SCL element SampledValueControl define an create wizard that with existing ConnectedAP element in the Communication section the first page looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.add]"
   open=""
@@ -542,9 +539,8 @@ snapshots[
 `;
 /* end snapshot Wizards for SCL element SampledValueControl define an create wizard that with existing ConnectedAP element in the Communication section the first page looks like the latest snapshot */
 
-snapshots[
-  'Wizards for SCL element SampledValueControl define an create wizard that with existing ConnectedAP element in the Communication section the second page looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for SCL element SampledValueControl define an create wizard that with existing ConnectedAP element in the Communication section the second page looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.add]"
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -607,9 +603,8 @@ snapshots[
 `;
 /* end snapshot Wizards for SCL element SampledValueControl define an create wizard that with existing ConnectedAP element in the Communication section the second page looks like the latest snapshot */
 
-snapshots[
-  'Wizards for SCL element SampledValueControl define an create wizard that with existing ConnectedAP element in the Communication section the third page looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for SCL element SampledValueControl define an create wizard that with existing ConnectedAP element in the Communication section the third page looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.add]"
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -677,9 +672,8 @@ snapshots[
 `;
 /* end snapshot Wizards for SCL element SampledValueControl define an create wizard that with existing ConnectedAP element in the Communication section the third page looks like the latest snapshot */
 
-snapshots[
-  'Wizards for SCL element SampledValueControl define an create wizard that with existing ConnectedAP element in the Communication section the fourth page looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for SCL element SampledValueControl define an create wizard that with existing ConnectedAP element in the Communication section the fourth page looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[dataset.fcda.add]"
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -716,9 +710,8 @@ snapshots[
 `;
 /* end snapshot Wizards for SCL element SampledValueControl define an create wizard that with existing ConnectedAP element in the Communication section the fourth page looks like the latest snapshot */
 
-snapshots[
-  'Wizards for SCL element SampledValueControl define an create wizard that with missing ConnectedAP element in the Communication section the third page having a warning message '
-] = `<mwc-dialog
+snapshots["Wizards for SCL element SampledValueControl define an create wizard that with missing ConnectedAP element in the Communication section the third page having a warning message "] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.add]"
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -756,9 +749,8 @@ snapshots[
 `;
 /* end snapshot Wizards for SCL element SampledValueControl define an create wizard that with missing ConnectedAP element in the Communication section the third page having a warning message  */
 
-snapshots[
-  'Wizards for SCL element SampledValueControl define a select wizard that looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for SCL element SampledValueControl define a select wizard that looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.select]"
   open=""
@@ -813,3 +805,4 @@ snapshots[
 </mwc-dialog>
 `;
 /* end snapshot Wizards for SCL element SampledValueControl define a select wizard that looks like the latest snapshot */
+

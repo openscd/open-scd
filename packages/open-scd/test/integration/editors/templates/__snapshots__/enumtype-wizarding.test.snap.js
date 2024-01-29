@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'EnumType wizards defines a createEnumTypeWizard looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["EnumType wizards defines a createEnumTypeWizard looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[enum.wizard.title.add]"
   open=""
@@ -1365,9 +1364,8 @@ snapshots[
 `;
 /* end snapshot EnumType wizards defines a createEnumTypeWizard looks like the latest snapshot */
 
-snapshots[
-  'EnumType wizards defines an eNumTypeEditWizard looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["EnumType wizards defines an eNumTypeEditWizard looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[enum.wizard.title.edit]"
   open=""
@@ -1524,9 +1522,8 @@ snapshots[
 `;
 /* end snapshot EnumType wizards defines an eNumTypeEditWizard looks like the latest snapshot */
 
-snapshots[
-  'EnumType wizards defines a eNumValWizard to edit an existing EnumVal looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["EnumType wizards defines a eNumValWizard to edit an existing EnumVal looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[enum-val.wizard.title.edit]"
   open=""
@@ -1599,9 +1596,8 @@ snapshots[
 `;
 /* end snapshot EnumType wizards defines a eNumValWizard to edit an existing EnumVal looks like the latest snapshot */
 
-snapshots[
-  'EnumType wizards defines a eNumValWizard to create a new EnumVal element looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["EnumType wizards defines a eNumValWizard to create a new EnumVal element looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[enum-val.wizard.title.add]"
   open=""
@@ -1649,3 +1645,4 @@ snapshots[
 </mwc-dialog>
 `;
 /* end snapshot EnumType wizards defines a eNumValWizard to create a new EnumVal element looks like the latest snapshot */
+

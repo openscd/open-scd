@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'gsecontrol wizards selectGseControlWizard looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["gsecontrol wizards selectGseControlWizard looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.select]"
   open=""
@@ -73,9 +72,8 @@ snapshots[
 `;
 /* end snapshot gsecontrol wizards selectGseControlWizard looks like the latest snapshot */
 
-snapshots[
-  'gsecontrol wizards renderGseAttribute looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["gsecontrol wizards renderGseAttribute looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="title"
   open=""
@@ -179,9 +177,8 @@ snapshots[
 `;
 /* end snapshot gsecontrol wizards renderGseAttribute looks like the latest snapshot */
 
-snapshots[
-  'gsecontrol wizards editGseControlWizard looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["gsecontrol wizards editGseControlWizard looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.edit]"
   open=""
@@ -341,9 +338,8 @@ snapshots[
 `;
 /* end snapshot gsecontrol wizards editGseControlWizard looks like the latest snapshot */
 
-snapshots[
-  'gsecontrol wizards define an create wizard that with existing ConnectedAP element in the Communication section the first page looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["gsecontrol wizards define an create wizard that with existing ConnectedAP element in the Communication section the first page looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.add]"
   open=""
@@ -460,9 +456,8 @@ snapshots[
 `;
 /* end snapshot gsecontrol wizards define an create wizard that with existing ConnectedAP element in the Communication section the first page looks like the latest snapshot */
 
-snapshots[
-  'gsecontrol wizards define an create wizard that with existing ConnectedAP element in the Communication section the second page looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["gsecontrol wizards define an create wizard that with existing ConnectedAP element in the Communication section the second page looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.add]"
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -544,9 +539,8 @@ snapshots[
 `;
 /* end snapshot gsecontrol wizards define an create wizard that with existing ConnectedAP element in the Communication section the second page looks like the latest snapshot */
 
-snapshots[
-  'gsecontrol wizards define an create wizard that with existing ConnectedAP element in the Communication section the third page looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["gsecontrol wizards define an create wizard that with existing ConnectedAP element in the Communication section the third page looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[dataset.fcda.add]"
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -580,9 +574,8 @@ snapshots[
 `;
 /* end snapshot gsecontrol wizards define an create wizard that with existing ConnectedAP element in the Communication section the third page looks like the latest snapshot */
 
-snapshots[
-  'gsecontrol wizards define an create wizard that with missing ConnectedAP element in the Communication section the second page having a warning message '
-] = `<mwc-dialog
+snapshots["gsecontrol wizards define an create wizard that with missing ConnectedAP element in the Communication section the second page having a warning message "] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[wizard.title.add]"
   style="--mdc-dialog-min-width:calc(100% + 0px)"
@@ -620,9 +613,8 @@ snapshots[
 `;
 /* end snapshot gsecontrol wizards define an create wizard that with missing ConnectedAP element in the Communication section the second page having a warning message  */
 
-snapshots[
-  'gsecontrol wizards define a wizard to select the control block reference looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["gsecontrol wizards define a wizard to select the control block reference looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[gsecontrol.wizard.location]"
   open=""
@@ -649,3 +641,4 @@ snapshots[
 </mwc-dialog>
 `;
 /* end snapshot gsecontrol wizards define a wizard to select the control block reference looks like the latest snapshot */
+

@@ -1,7 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots['selectExtRefWizard looks like the latest snapshot'] = `<mwc-dialog
+snapshots["selectExtRefWizard looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="IED3>>MU01>MSVCB01 - IED1"
   open=""
@@ -223,3 +224,4 @@ snapshots['selectExtRefWizard looks like the latest snapshot'] = `<mwc-dialog
 </mwc-dialog>
 `;
 /* end snapshot selectExtRefWizard looks like the latest snapshot */
+

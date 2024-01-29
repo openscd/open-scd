@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'DOType wizards defines a createDOTypeWizard looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["DOType wizards defines a createDOTypeWizard looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[dotype.wizard.title.add]"
   open=""
@@ -715,9 +714,8 @@ snapshots[
 `;
 /* end snapshot DOType wizards defines a createDOTypeWizard looks like the latest snapshot */
 
-snapshots[
-  'DOType wizards defines a dOTypeWizard looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["DOType wizards defines a dOTypeWizard looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[dotype.wizard.title.edit]"
   open=""
@@ -1028,9 +1026,8 @@ snapshots[
 `;
 /* end snapshot DOType wizards defines a dOTypeWizard looks like the latest snapshot */
 
-snapshots[
-  'DOType wizards defines a sDOWizard to edit an existing SDO looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["DOType wizards defines a sDOWizard to edit an existing SDO looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[sdo.wizard.title.edit]"
   open=""
@@ -1239,9 +1236,8 @@ snapshots[
 `;
 /* end snapshot DOType wizards defines a sDOWizard to edit an existing SDO looks like the latest snapshot */
 
-snapshots[
-  'DOType wizards defines a sDOWizard to create a new SDO element looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["DOType wizards defines a sDOWizard to create a new SDO element looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[sdo.wizard.title.add]"
   open=""
@@ -1423,3 +1419,4 @@ snapshots[
 </mwc-dialog>
 `;
 /* end snapshot DOType wizards defines a sDOWizard to create a new SDO element looks like the latest snapshot */
+

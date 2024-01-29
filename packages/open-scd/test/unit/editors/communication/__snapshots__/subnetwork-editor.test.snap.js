@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'subnetwork-editor with child GSE elements looks like the latest snapshot'
-] = `<action-pane label="StationBus — desc
+snapshots["subnetwork-editor with child GSE elements looks like the latest snapshot"] = 
+`<action-pane label="StationBus — desc
     (8-MMS — 100.0 b/s)">
   <abbr
     slot="action"
@@ -45,9 +44,8 @@ snapshots[
 `;
 /* end snapshot subnetwork-editor with child GSE elements looks like the latest snapshot */
 
-snapshots[
-  'subnetwork-editor with child SMV elements looks like the latest snapshot'
-] = `<action-pane label="ProcessBus1 
+snapshots["subnetwork-editor with child SMV elements looks like the latest snapshot"] = 
+`<action-pane label="ProcessBus1 
     (8-MMS — 100 b/s)">
   <abbr
     slot="action"
@@ -103,3 +101,4 @@ snapshots[
 </action-pane>
 `;
 /* end snapshot subnetwork-editor with child SMV elements looks like the latest snapshot */
+

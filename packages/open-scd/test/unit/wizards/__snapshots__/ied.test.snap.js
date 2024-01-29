@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'Wizards for SCL element IED edit IED looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for SCL element IED edit IED looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[ied.wizard.title.edit]"
   open=""
@@ -105,9 +104,8 @@ snapshots[
 `;
 /* end snapshot Wizards for SCL element IED edit IED looks like the latest snapshot */
 
-snapshots[
-  'Wizards for SCL element IED remove IED looks like the latest snapshot'
-] = `<mwc-dialog
+snapshots["Wizards for SCL element IED remove IED looks like the latest snapshot"] = 
+`<mwc-dialog
   defaultaction="next"
   heading="[ied.wizard.title.delete]"
   open=""
@@ -256,3 +254,4 @@ snapshots[
 </mwc-dialog>
 `;
 /* end snapshot Wizards for SCL element IED remove IED looks like the latest snapshot */
+

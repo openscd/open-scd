@@ -1,9 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots[
-  'Editor for SampledValueControl element its referenced elements with deprecated multicast attribute set to false looks like the latest snapshot'
-] = `<h2 style="display: flex;">
+snapshots["Editor for SampledValueControl element its referenced elements with deprecated multicast attribute set to false looks like the latest snapshot"] = 
+`<h2 style="display: flex;">
   <div style="flex:auto">
     <div>
       SampledValueControl
@@ -220,9 +219,8 @@ snapshots[
 `;
 /* end snapshot Editor for SampledValueControl element its referenced elements with deprecated multicast attribute set to false looks like the latest snapshot */
 
-snapshots[
-  'Editor for SampledValueControl element its referenced elements with multicast SampledValueControl looks like the latest snapshot'
-] = `<h2 style="display: flex;">
+snapshots["Editor for SampledValueControl element its referenced elements with multicast SampledValueControl looks like the latest snapshot"] = 
+`<h2 style="display: flex;">
   <div style="flex:auto">
     <div>
       SampledValueControl
@@ -400,3 +398,4 @@ snapshots[
 </div>
 `;
 /* end snapshot Editor for SampledValueControl element its referenced elements with multicast SampledValueControl looks like the latest snapshot */
+

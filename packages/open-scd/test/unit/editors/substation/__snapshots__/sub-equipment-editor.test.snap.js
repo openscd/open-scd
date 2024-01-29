@@ -1,7 +1,8 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots['sub-equipment-editor looks like the latest snapshot'] = `<action-pane
+snapshots["sub-equipment-editor looks like the latest snapshot"] = 
+`<action-pane
   label="subque - somedesc (all)"
   tabindex="0"
 >
@@ -58,9 +59,8 @@ snapshots['sub-equipment-editor looks like the latest snapshot'] = `<action-pane
 `;
 /* end snapshot sub-equipment-editor looks like the latest snapshot */
 
-snapshots[
-  'sub-equipment-editor With children looks like the latest snapshot'
-] = `<action-pane
+snapshots["sub-equipment-editor With children looks like the latest snapshot"] = 
+`<action-pane
   label="addEqi - somedesc (none)"
   tabindex="0"
 >
@@ -123,9 +123,8 @@ snapshots[
 `;
 /* end snapshot sub-equipment-editor With children looks like the latest snapshot */
 
-snapshots[
-  'sub-equipment-editor without description and state looks like the latest snapshot'
-] = `<action-pane
+snapshots["sub-equipment-editor without description and state looks like the latest snapshot"] = 
+`<action-pane
   label="other"
   tabindex="0"
 >
@@ -187,3 +186,4 @@ snapshots[
 </action-pane>
 `;
 /* end snapshot sub-equipment-editor without description and state looks like the latest snapshot */
+
