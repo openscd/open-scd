@@ -23,7 +23,7 @@ import './function-editor.js';
 import './general-equipment-editor.js';
 import './l-node-editor.js';
 
-import { LineIcon } from '../../icons/icons.js';
+import { lineIcon } from '../../icons/icons.js';
 import { styles } from './foundation.js';
 import {
   getChildElementsByTagName,
@@ -172,7 +172,7 @@ export class LineEditor extends LitElement {
   render(): TemplateResult {
     return html`<action-pane label=${this.header}>
       <mwc-icon slot="icon" style="width:24px;height:24px"
-        >${LineIcon}</mwc-icon
+        >${lineIcon}</mwc-icon
       >
       <abbr slot="action" title="${translate('edit')}">
         <mwc-icon-button
