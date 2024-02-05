@@ -37,10 +37,10 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
-      - name: Use Node.js 14.x
+      - name: Use Node.js 18.x
         uses: actions/setup-node@v4
         with:
-          node-version: '14.x'
+          node-version: '18.x'
 
       - name: Build application with npm
         run: |
