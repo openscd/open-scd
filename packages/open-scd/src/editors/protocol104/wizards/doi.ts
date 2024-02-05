@@ -39,7 +39,8 @@ function renderTiOverview(foundTis: string[], label: string): TemplateResult {
 export function renderDOIWizard(doiElement: Element): TemplateResult[] {
   const iedElement = doiElement.closest('IED');
   const fullpath = getFullPath(doiElement, 'IED');
-  const cdc = getCdcValueFromDOIElement(doiElement);
+  const foundCdc = getCdcValueFromDOIElement(doiElement);
+  const cdc = foundCdc === 'WYE' || foundCdc === 'DEL' ? 'CMV' : foundCdc;
 
   // Add the basic fields to the list.
   const fields: TemplateResult[] = [

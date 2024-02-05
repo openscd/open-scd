@@ -70,13 +70,15 @@ describe('data model nodes child getter', () => {
         'IED[name="B1"] LDevice[inst="LD0"] > LN0[lnClass="LLN0"]'
       )!;
       expect(getDataChildren(parent)).to.not.be.empty;
-      expect(getDataChildren(parent).length).to.equal(3);
+      expect(getDataChildren(parent).length).to.equal(4);
       expect(getDataChildren(parent)[0].tagName).to.be.equal('DO');
       expect(getDataChildren(parent)[0]).to.have.attribute('name', 'Beh');
       expect(getDataChildren(parent)[1].tagName).to.be.equal('DO');
       expect(getDataChildren(parent)[1]).to.have.attribute('name', 'Health');
       expect(getDataChildren(parent)[2].tagName).to.be.equal('DO');
       expect(getDataChildren(parent)[2]).to.have.attribute('name', 'MltLev');
+      expect(getDataChildren(parent)[3].tagName).to.be.equal('DO');
+      expect(getDataChildren(parent)[3]).to.have.attribute('name', 'Mod');
     });
   });
 

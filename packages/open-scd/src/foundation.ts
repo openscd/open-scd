@@ -522,6 +522,16 @@ export function getNameAttribute(element: Element): string | undefined {
 }
 
 /**
+ * Extract the 'ldName' attribute from the given XML element.
+ * @param element - The element to extract ldName from.
+ * @returns the ldName, or undefined if there is no ldName.
+ */
+export function getLdNameAttribute(element: Element): string | undefined {
+  const name = element.getAttribute('ldName');
+  return name ? name : undefined;
+}
+
+/**
  * Extract the 'desc' attribute from the given XML element.
  * @param element - The element to extract description from.
  * @returns the name, or undefined if there is no description.

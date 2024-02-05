@@ -37,8 +37,10 @@ export const supportedCdcTypes = [
   'BCR',
   'BSC',
   'CMV',
+  'DEL',
   'DPC',
   'DPS',
+  'ENC',
   'ENG',
   'ENS',
   'INC',
@@ -50,6 +52,7 @@ export const supportedCdcTypes = [
   'SPC',
   'SPG',
   'SPS',
+  'WYE',
 ] as const;
 export type SupportedCdcType = (typeof supportedCdcTypes)[number];
 
@@ -230,6 +233,29 @@ export const cdcProcessings: Record<
     },
     control: {},
   },
+  DEL: {
+    monitor: {
+      '35': {
+        daPaths: [
+          { path: ['phsAB', 'cVal', 'mag', 'f'] },
+          { path: ['phsBC', 'cVal', 'mag', 'f'] },
+          { path: ['phsCA', 'cVal', 'mag', 'f'] },
+        ],
+        create: createAddressAction,
+        inverted: false,
+      },
+      '36': {
+        daPaths: [
+          { path: ['phsAB', 'cVal', 'mag', 'f'] },
+          { path: ['phsBC', 'cVal', 'mag', 'f'] },
+          { path: ['phsCA', 'cVal', 'mag', 'f'] },
+        ],
+        create: createAddressAction,
+        inverted: false,
+      },
+    },
+    control: {},
+  },
   DPC: {
     monitor: {
       '31': {
@@ -256,6 +282,34 @@ export const cdcProcessings: Record<
       },
     },
     control: {},
+  },
+  ENC: {
+    monitor: {
+      '30': {
+        daPaths: [{ path: ['stVal'] }],
+        create: createAddressAction,
+        inverted: true,
+      },
+      '35': {
+        daPaths: [{ path: ['stVal'] }],
+        create: createAddressAction,
+        inverted: false,
+      },
+    },
+    control: {
+      '58': {
+        daPaths: [{ path: ['Oper', 'ctlVal'] }],
+        create: createAddressWithExpectValueAction,
+        checkDaPaths: [{ path: ['Oper', 'Check'] }],
+        checkCreate: createCheckAddressAction,
+      },
+      '62': {
+        daPaths: [{ path: ['Oper', 'ctlVal'] }],
+        create: createAddressWithExpectValueAction,
+        checkDaPaths: [{ path: ['Oper', 'Check'] }],
+        checkCreate: createCheckAddressAction,
+      },
+    },
   },
   ENG: {
     monitor: {
@@ -409,6 +463,29 @@ export const cdcProcessings: Record<
         daPaths: [{ path: ['stVal'] }],
         create: createAddressAction,
         inverted: true,
+      },
+    },
+    control: {},
+  },
+  WYE: {
+    monitor: {
+      '35': {
+        daPaths: [
+          { path: ['phsA', 'cVal', 'mag', 'f'] },
+          { path: ['phsB', 'cVal', 'mag', 'f'] },
+          { path: ['phsC', 'cVal', 'mag', 'f'] },
+        ],
+        create: createAddressAction,
+        inverted: false,
+      },
+      '36': {
+        daPaths: [
+          { path: ['phsA', 'cVal', 'mag', 'f'] },
+          { path: ['phsB', 'cVal', 'mag', 'f'] },
+          { path: ['phsC', 'cVal', 'mag', 'f'] },
+        ],
+        create: createAddressAction,
+        inverted: false,
       },
     },
     control: {},
@@ -729,19 +806,29 @@ function createTemplateStructure(
       templateStructure = null;
       return;
     }
-    const daElement = typeElement.querySelector(
+    const sdoElement = typeElement.querySelector(
+      `:scope > SDO[name="${name}"]`
+    );
+    const sdoType = sdoElement?.getAttribute('type');
+
+    if (sdoType) typeElement = doc.querySelector(`DOType[id="${sdoType}"]`);
+
+    const daElement = typeElement!.querySelector(
       `:scope > DA[name="${name}"], :scope > BDA[name="${name}"]`
     );
     // If there is no DA/BDA Element found the structure is incorrect, so just stop.
-    if (daElement === null) {
+    if (daElement === null && sdoElement === null) {
       templateStructure = null;
       return;
     }
-    templateStructure!.push(daElement);
 
-    const bType = daElement.getAttribute('bType') ?? '';
+    templateStructure!.push(sdoElement ? sdoElement : daElement!);
+
+    if (sdoElement) return;
+
+    const bType = daElement!.getAttribute('bType') ?? '';
     if (bType === 'Struct') {
-      const type = getTypeAttribute(daElement) ?? '';
+      const type = getTypeAttribute(daElement!) ?? '';
       typeElement = doc.querySelector(`DAType[id="${type}"]`);
     } else {
       typeElement = null;

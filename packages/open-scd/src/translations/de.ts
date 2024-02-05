@@ -262,6 +262,16 @@ export const de: Translations = {
       deleteied: 'IED "{{name}}" entfernt',
     },
   },
+  ldevice: {
+    wizard: {
+      nameHelper: 'Name des Logisches Gerät',
+      noNameSupportHelper: 'IED unterstützt keine funktionale Benennung',
+      descHelper: 'Beschreibung des Logisches Gerät',
+      title: {
+        edit: 'Logisches Gerät bearbeiten',
+      },
+    },
+  },
   powertransformer: {
     wizard: {
       nameHelper: '`Name des Leistungstransformators',
@@ -451,6 +461,8 @@ export const de: Translations = {
       valuesView: 'Werte',
       networkView: 'Netzwerk',
     },
+    mappedCmv:
+      'Gemäß dem IEC 61850-80-1 Standard ist eine "{{ cdc }}" zuordnung über CMV erforderlich',
     values: {
       missing: 'Kein IED mit 104 Adressen',
       removeAddresses: 'Alle Adressen entfernen',

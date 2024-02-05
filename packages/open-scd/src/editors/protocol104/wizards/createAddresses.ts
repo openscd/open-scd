@@ -11,6 +11,7 @@ import '@material/mwc-switch';
 
 import '../../../wizard-textfield.js';
 import '../../../WizardDivider.js';
+import { WizardSelect } from '../../../wizard-select.js';
 
 import {
   ComplexAction,
@@ -189,8 +190,10 @@ export function createAddressesWizard(
   lnElement: Element,
   doElement: Element
 ): Wizard {
-  const cdc = getCdcValueFromDOElement(doElement) ?? '';
-  const cdcProcessing = cdcProcessings[<SupportedCdcType>cdc];
+  const foundCdc = getCdcValueFromDOElement(doElement) ?? '';
+  const reqCmvMapping = foundCdc === 'WYE' || foundCdc === 'DEL';
+  const cdc = reqCmvMapping ? 'CMV' : foundCdc;
+  const cdcProcessing = cdcProcessings[<SupportedCdcType>foundCdc];
 
   const monitorTis = Object.keys(cdcProcessing.monitor);
   const controlTis = Object.keys(cdcProcessing.control);
@@ -212,6 +215,25 @@ export function createAddressesWizard(
         cdcProcessing.monitor,
         selectedTi
       );
+    }
+
+    function setMonitorControlValue(
+      e: SelectedEvent,
+      isMonitor: boolean
+    ): void {
+      const selectedTi = (<Select>e.target).selected!.value;
+      const counterType = isMonitor ? 'controlTi' : 'monitorTi';
+      const availableTis = (<Select>e.target).parentElement!.querySelector(
+        `wizard-select[label="${counterType}"]`
+      ) as WizardSelect;
+
+      availableTis.maybeValue = isMonitor
+        ? selectedTi === '30'
+          ? '58'
+          : '62'
+        : selectedTi === '58'
+        ? '30'
+        : '35';
     }
 
     // Add the basic fields to the list.
@@ -241,7 +263,11 @@ export function createAddressesWizard(
       </wizard-textfield>`,
       html`<wizard-textfield
         label="Common Data Class"
-        .maybeValue=${cdc}
+        .maybeValue="${cdc}"
+        .helper="${reqCmvMapping
+          ? translate('protocol104.mappedCmv', { cdc: foundCdc })
+          : ''}"
+        .helperPersistent="${reqCmvMapping}"
         disabled
         readonly
       >
@@ -260,6 +286,7 @@ export function createAddressesWizard(
             required
             @selected=${(e: SelectedEvent) => {
               setMonitorInvertedSwitch(e);
+              if (cdc === 'ENC') setMonitorControlValue(e, true);
             }}
           >
             ${monitorTis.map(
@@ -334,6 +361,9 @@ export function createAddressesWizard(
               helper="${translate('protocol104.wizard.controlTiHelper')}"
               fixedMenuPosition
               required
+              @selected=${(e: SelectedEvent) => {
+                if (cdc === 'ENC') setMonitorControlValue(e, false);
+              }}
             >
               ${controlTis.map(
                 controlTi =>

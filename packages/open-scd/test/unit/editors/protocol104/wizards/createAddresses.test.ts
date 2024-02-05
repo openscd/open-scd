@@ -10,6 +10,8 @@ import {
   WizardInputElement,
 } from '../../../../../src/foundation.js';
 
+import { WizardSelect } from '../../../../../src/wizard-select.js';
+import { WizardTextField } from '../../../../../src/wizard-textfield.js';
 import '../../../../mock-wizard.js';
 
 import {
@@ -19,8 +21,6 @@ import {
 
 import { fetchDoc } from '../../../wizards/test-support.js';
 import { Switch } from '@material/mwc-switch';
-import { WizardSelect } from '../../../../../src/wizard-select.js';
-import { WizardTextField } from '../../../../../src/wizard-textfield.js';
 
 describe('Wizards for preparing 104 Address Creation', () => {
   let doc: XMLDocument;
@@ -118,6 +118,63 @@ describe('Wizards for preparing 104 Address Creation', () => {
 
     it('looks like the latest snapshot', async () => {
       await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
+    });
+  });
+
+  describe('show prepare 104 Address creation with enc cdc value', () => {
+    let monitorTi: WizardSelect;
+    let controlTi: WizardSelect;
+
+    beforeEach(async () => {
+      await prepareWizard(
+        'IED[name="B1"] LN[lnType="SE_GGIO_SET_V002"]',
+        'Mod'
+      );
+      const cdc = element.wizardUI.dialog!.querySelector(
+        'wizard-textfield[label="Common Data Class"]'
+      ) as WizardTextField;
+      expect(cdc).to.exist;
+      expect(cdc.maybeValue).to.equal('ENC');
+      monitorTi = element.wizardUI.dialog!.querySelector(
+        'wizard-select[label="monitorTi"]'
+      ) as WizardSelect;
+      controlTi = element.wizardUI.dialog!.querySelector(
+        'wizard-select[label="controlTi"]'
+      ) as WizardSelect;
+      expect(monitorTi).to.exist;
+      expect(controlTi).to.exist;
+    });
+    it('controlTi should change to correct value when selecting monitorTi', async () => {
+      monitorTi.value = '30';
+      await element.requestUpdate();
+      expect(controlTi.maybeValue).to.equal('58');
+      monitorTi.value = '35';
+      await element.requestUpdate();
+      expect(controlTi.maybeValue).to.equal('62');
+    });
+    it('monitorTi should change to correct value when selecting controlTi', async () => {
+      controlTi.value = '58';
+      await element.requestUpdate();
+      expect(monitorTi.maybeValue).to.equal('30');
+      controlTi.value = '62';
+      await element.requestUpdate();
+      expect(monitorTi.maybeValue).to.equal('35');
+    });
+  });
+
+  describe('show prepare 104 Address creation with mapped cdc value', () => {
+    beforeEach(async () => {
+      await prepareWizard(
+        'IED[name="B1"] LN[lnType="SE_MMXU_SET_V001"]',
+        'PPV'
+      );
+    });
+    it('should have mappedCmv translation value in helper field', async () => {
+      const cdc = element.wizardUI.dialog!.querySelector(
+        'wizard-textfield[label="Common Data Class"]'
+      ) as WizardTextField;
+      expect(cdc).to.exist;
+      await expect(cdc.helper).to.equal('[protocol104.mappedCmv]');
     });
   });
 

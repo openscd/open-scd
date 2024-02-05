@@ -259,6 +259,16 @@ export const en = {
       deleteied: 'Removed IED "{{name}}"',
     },
   },
+  ldevice: {
+    wizard: {
+      nameHelper: 'Logical device name',
+      noNameSupportHelper: "IED doesn't support Functional Naming",
+      descHelper: 'Logical device description',
+      title: {
+        edit: 'Edit logical device',
+      },
+    },
+  },
   powertransformer: {
     wizard: {
       nameHelper: 'Power transformer name',
@@ -447,6 +457,8 @@ export const en = {
       valuesView: 'Values',
       networkView: 'Network',
     },
+    mappedCmv:
+      'According to the IEC 61850-80-1 standard, "{{ cdc }}" mapping is required via CMV',
     values: {
       missing: 'No IED with 104 Addresses',
       removeAddresses: 'Remove all Addresses',
