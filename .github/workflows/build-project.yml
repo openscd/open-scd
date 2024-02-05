@@ -24,7 +24,7 @@ jobs:
 
       - name: Cache Docker Register
         if: ${{ github.event_name == 'pull_request' }}
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: /tmp/.buildx-cache
           key: ${{ runner.os }}-buildx-${{ hashFiles('**/Dockerfile') }}
