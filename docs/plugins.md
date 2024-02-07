@@ -14,19 +14,16 @@ We mark our official plugins that are supported by the Open-SCD team with a badg
 ### IED <kbd>✅ Official</kbd>
 
 > [OpenSCD Organization](https://github.com/openscd) | [Repository](https://github.com/openscd/open-scd/issues/1435)
-
-
-_URL_
-```
-https://openscd.github.io/src/editors/IED.js
-```
+>
+> ```
+> https://openscd.github.io/src/editors/IED.js
+> ```
 
 
 ### Substation <kbd>✅ Official</kbd>
 
 > [OpenSCD Organization](https://github.com/openscd) | [Repository](https://github.com/openscd/open-scd/issues/1435)
-
-_URL_
-```
-https://openscd.github.io/src/editors/Substation.js"
-```
+> 
+> ```
+> https://openscd.github.io/src/editors/Substation.js"
+> ```
