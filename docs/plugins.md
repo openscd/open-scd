@@ -254,5 +254,29 @@ We mark our official plugins that are supported by the OpenSCD organization with
 > [SprintEins](https://github.com/sprinteins) | [Repository](https://github.com/sprinteins/oscd-plugins)
 > 
 > ```
-> https://openscd.github.iohttps://sprinteins.github.io/oscd-plugins/communication-explorer/index.js
+> https://sprinteins.github.io/oscd-plugins/communication-explorer/index.js
+> ```
+
+### Network Explorer
+
+> [SprintEins](https://github.com/sprinteins) | [Repository](https://github.com/sprinteins/oscd-plugins)
+> 
+> ```
+> https://sprinteins.github.io/oscd-plugins/network-explorer/index.js
+> ```
+
+### Type Switcher
+
+> [SprintEins](https://github.com/sprinteins) | [Repository](https://github.com/sprinteins/oscd-plugins)
+> 
+> ```
+> https://sprinteins.github.io/oscd-plugins/type-switcher/index.js
+> ```
+
+### Documentation
+
+> [SprintEins](https://github.com/sprinteins) | [Repository](https://github.com/sprinteins/oscd-plugins)
+> 
+> ```
+> https://sprinteins.github.io/oscd-plugins/documentation/index.js
 > ```
