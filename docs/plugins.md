@@ -1,7 +1,7 @@
 # Plugins
 
 In this file we gather all the plugins that are available in the community.  
-We mark our official plugins that are supported by the Open-SCD team with a badge: <kbd>✅ Official</kbd>
+We mark our official plugins that are supported by the OpenSCD organization with a badge: <kbd>✅ Official</kbd>
 
 > [!CAUTION]
 > We do not guarantee the quality or the security of the non-official plugins
