@@ -240,7 +240,7 @@ Core plugins are general IEC 61850 Plugins. They can be used in any project.
 
 ### Communication Explorer
 
-> by [SprintEins](https://github.com/sprinteins) | [Repository](https://github.com/sprinteins/oscd-plugins)
+> <kbd>Editor</kbd> | by [SprintEins](https://github.com/sprinteins) | [Repository](https://github.com/sprinteins/oscd-plugins)
 > 
 > ```
 > https://sprinteins.github.io/oscd-plugins/communication-explorer/index.js
@@ -256,7 +256,7 @@ Core plugins are general IEC 61850 Plugins. They can be used in any project.
 
 ### Type Switcher
 
-> by [SprintEins](https://github.com/sprinteins) | [Repository](https://github.com/sprinteins/oscd-plugins)
+> <kbd>Editor</kbd> | by [SprintEins](https://github.com/sprinteins) | [Repository](https://github.com/sprinteins/oscd-plugins)
 > 
 > ```
 > https://sprinteins.github.io/oscd-plugins/type-switcher/index.js
@@ -264,7 +264,7 @@ Core plugins are general IEC 61850 Plugins. They can be used in any project.
 
 ### Documentation
 
-> by [SprintEins](https://github.com/sprinteins) | [Repository](https://github.com/sprinteins/oscd-plugins)
+> <kbd>Editor</kbd> | by [SprintEins](https://github.com/sprinteins) | [Repository](https://github.com/sprinteins/oscd-plugins)
 > 
 > ```
 > https://sprinteins.github.io/oscd-plugins/documentation/index.js
