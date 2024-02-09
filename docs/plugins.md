@@ -10,6 +10,9 @@ We mark our official plugins that are supported by the OpenSCD organization with
 > [!NOTE]
 > If you want to add a plugin to this list, please open a pull request.
 
+> [!TIP]
+> How to add a plugin: [Extensions.md](../packages/open-scd/public/md/Extensions.md)
+
 ## Core Plugins
 
 Core plugins are general IEC 61850 Plugins. They can be used in any project. 
