@@ -75,7 +75,7 @@ describe('open-scd', () => {
     const progressBar = element
       .shadowRoot!.querySelector('oscd-waiter')!
       .shadowRoot!.querySelector('mwc-linear-progress[indeterminate]')!;
-    console.log('progress bar : ', progressBar);
+
     expect(progressBar).property('closed').to.be.true;
     element.waiting = true;
     await element.updateComplete;
