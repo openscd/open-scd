@@ -67,10 +67,15 @@ describe('open-scd', () => {
     expect(element.diagnosticUI).to.have.property('open', true);
   });
 
+  /**
+   * @deprecated
+   * Remove this integration test. It's no longer an integration test but an E2E test.
+   */
   it('renders a progress indicator on `waiting`', async () => {
-    const progressBar = element.shadowRoot!.querySelector(
-      'mwc-linear-progress[indeterminate]'
-    );
+    const progressBar = element
+      .shadowRoot!.querySelector('oscd-waiter')!
+      .shadowRoot!.querySelector('mwc-linear-progress[indeterminate]')!;
+    console.log('progress bar : ', progressBar);
     expect(progressBar).property('closed').to.be.true;
     element.waiting = true;
     await element.updateComplete;

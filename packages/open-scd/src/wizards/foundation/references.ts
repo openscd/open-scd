@@ -290,7 +290,7 @@ function updateVals(element: Element, oldName: string | null, newName: string) {
       '.' +
       ref?.getAttribute('srcCBName');
 
-    for (let value of valValues) {
+    for (const value of valValues) {
       if (oldName + suffixCBReference === value.textContent!.trim()) {
         const newElement = cloneElementAndTextContent(
           value,

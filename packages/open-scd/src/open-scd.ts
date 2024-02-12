@@ -17,14 +17,15 @@ import { Hosting } from './Hosting.js';
 import { Historing } from './Historing.js';
 import { Plugging } from './Plugging.js';
 import { Setting } from './Setting.js';
-import { Waiting } from './Waiting.js';
 import { Wizarding } from './Wizarding.js';
+
+import './addons/Waiter.js';
 
 /** The `<open-scd>` custom element is the main entry point of the
  * Open Substation Configuration Designer. */
 @customElement('open-scd')
-export class OpenSCD extends Waiting(
-  Hosting(Setting(Wizarding(Plugging(Editing(Historing(LitElement))))))
+export class OpenSCD extends Hosting(
+  Setting(Wizarding(Plugging(Editing(Historing(LitElement)))))
 ) {
   private currentSrc = '';
   /** The current file's URL. `blob:` URLs are *revoked after parsing*! */
@@ -36,6 +37,9 @@ export class OpenSCD extends Waiting(
     this.currentSrc = value;
     this.dispatchEvent(newPendingStateEvent(this.loadDoc(value)));
   }
+
+  @property({ type: Boolean })
+  waiting = false;
 
   /** Loads and parses an `XMLDocument` after [[`src`]] has changed. */
   private async loadDoc(src: string): Promise<void> {
@@ -88,7 +92,10 @@ export class OpenSCD extends Waiting(
   }
 
   render(): TemplateResult {
-    return html` ${super.render()} ${getTheme(this.settings.theme)} `;
+    return html`<oscd-waiter .waiting=${this.waiting}
+        >${super.render()}</oscd-waiter
+      >
+      ${getTheme(this.settings.theme)} `;
   }
 
   static styles = css`
