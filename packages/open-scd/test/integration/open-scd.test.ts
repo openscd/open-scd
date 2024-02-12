@@ -75,7 +75,6 @@ describe('open-scd', () => {
     const progressBar = element
       .shadowRoot!.querySelector('oscd-waiter')!
       .shadowRoot!.querySelector('mwc-linear-progress[indeterminate]')!;
-
     expect(progressBar).property('closed').to.be.true;
     element.waiting = true;
     await element.updateComplete;
@@ -96,7 +95,7 @@ describe('open-scd', () => {
     );
     expect(await fetch(emptyBlobURL)).to.be.ok;
     element.setAttribute('src', emptyBlobURL);
-    await element.workDone;
+    await element.updateComplete;
     expect(element.src).to.be.a('string').and.equal(emptyBlobURL);
     expect(async () => await fetch(emptyBlobURL)).to.throw;
   });

@@ -35,7 +35,7 @@ describe('ValidateTemplates OpenSCD integration test ', () => {
       element.pluginId = '/src/validators/ValidateTemplates.js';
 
       await element.validate();
-      await parent.workDone;
+      await parent.updateComplete;
     });
 
     it('shows a "No errors" message in the diagnostics pane', async () => {
@@ -67,7 +67,7 @@ describe('ValidateTemplates OpenSCD integration test ', () => {
       element.pluginId = '/src/validators/ValidateTemplates.js';
 
       await element.validate();
-      await parent.workDone;
+      await parent.updateComplete;
     });
     it('generates issues in the diagnistics pane', async () => {
       const issues = parent.diagnoses.get(
@@ -102,7 +102,7 @@ describe('ValidateTemplates OpenSCD integration test ', () => {
       element.pluginId = '/src/validators/ValidateTemplates.js';
 
       await element.validate();
-      await parent.workDone;
+      await parent.updateComplete;
     });
     it('shows only one message in the diagnostics pane', async () => {
       const issues = parent.diagnoses.get(
