@@ -15,10 +15,13 @@ import { Drawer } from '@material/mwc-drawer';
 import { ActionDetail, List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 
-import { Mixin, newPendingStateEvent } from './foundation.js';
+import {
+  Mixin,
+  newPendingStateEvent,
+  newSettingsUIEvent,
+} from './foundation.js';
 import { HistoringElement } from './Historing.js';
 import { Plugin, PluggingElement, pluginIcons } from './Plugging.js';
-import { SettingElement } from './Setting.js';
 
 interface MenuItem {
   icon: string;
@@ -43,9 +46,7 @@ interface MenuPlugin {
 export type HostingElement = Mixin<typeof Hosting>;
 
 export function Hosting<
-  TBase extends new (...args: any[]) => PluggingElement &
-    HistoringElement &
-    SettingElement
+  TBase extends new (...args: any[]) => PluggingElement & HistoringElement
 >(Base: TBase) {
   class HostingElement extends Base {
     /** The currently active editor tab. */
@@ -201,7 +202,9 @@ export function Hosting<
         {
           icon: 'settings',
           name: 'settings.title',
-          action: (): void => this.settingsUI.show(),
+          action: (): void => {
+            this.dispatchEvent(newSettingsUIEvent(true));
+          },
           kind: 'static',
         },
         ...bottomMenu,

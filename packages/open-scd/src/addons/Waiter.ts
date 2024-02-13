@@ -31,15 +31,12 @@ export class OscdWaiter extends LitElement {
 
   constructor() {
     super();
-    this.onPendingState = this.onPendingState.bind(this);
     this.addEventListener('pending-state', this.onPendingState);
   }
 
   render(): TemplateResult {
-    return html`<slot></slot>
-      <mwc-linear-progress
-        .closed=${!this.waiting}
-        indeterminate
-      ></mwc-linear-progress>`;
+    return html` <slot></slot>
+      <mwc-linear-progress .closed=${!this.waiting} indeterminate>
+      </mwc-linear-progress>`;
   }
 }
