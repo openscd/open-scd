@@ -38,9 +38,6 @@ export class OpenSCD extends Hosting(
     this.dispatchEvent(newPendingStateEvent(this.loadDoc(value)));
   }
 
-  @property({ type: Boolean })
-  waiting = false;
-
   /** Loads and parses an `XMLDocument` after [[`src`]] has changed. */
   private async loadDoc(src: string): Promise<void> {
     const response = await fetch(src);
@@ -92,9 +89,7 @@ export class OpenSCD extends Hosting(
   }
 
   render(): TemplateResult {
-    return html`<oscd-waiter .waiting=${this.waiting}
-        >${super.render()}</oscd-waiter
-      >
+    return html`<oscd-waiter>${super.render()}</oscd-waiter>
       ${getTheme(this.settings.theme)} `;
   }
 

@@ -6,7 +6,7 @@ import {
 } from '../../foundation.js';
 
 const referenceInfoTags = ['IED', 'Substation', 'VoltageLevel', 'Bay'] as const;
-type ReferencesInfoTag = typeof referenceInfoTags[number];
+type ReferencesInfoTag = (typeof referenceInfoTags)[number];
 
 type FilterFunction = (
   element: Element,
@@ -290,7 +290,7 @@ function updateVals(element: Element, oldName: string | null, newName: string) {
       '.' +
       ref?.getAttribute('srcCBName');
 
-    for (const value of valValues) {
+    for (let value of valValues) {
       if (oldName + suffixCBReference === value.textContent!.trim()) {
         const newElement = cloneElementAndTextContent(
           value,
