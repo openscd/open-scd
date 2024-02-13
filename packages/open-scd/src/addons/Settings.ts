@@ -5,6 +5,7 @@ import {
   TemplateResult,
   customElement,
   LitElement,
+  css,
 } from 'lit-element';
 import { get, registerTranslateConfig, translate, use } from 'lit-translate';
 
@@ -370,10 +371,14 @@ export class OscdSettings extends LitElement {
 
   connectedCallback(): void {
     super.connectedCallback();
-    this.host!.addEventListener('oscd-settings', (evt: SettingsUIEvent) => {
-      evt.detail.show ? this.settingsUI.show() : this.settingsUI.close();
-    });
-    (<any>this.host).addEventListener('load-nsdoc', this.onLoadNsdoc);
+    if (this.host) {
+      this.host!.addEventListener('oscd-settings', (evt: SettingsUIEvent) => {
+        evt.detail.show ? this.settingsUI.show() : this.settingsUI.close();
+      });
+      (<any>this.host).addEventListener('load-nsdoc', (evt: LoadNsdocEvent) =>
+        this.onLoadNsdoc(evt)
+      );
+    }
   }
 
   render(): TemplateResult {
@@ -451,4 +456,95 @@ export class OscdSettings extends LitElement {
       <slot></slot>
       ${getTheme(this.settings.theme)}`;
   }
+
+  static styles = css`
+    mwc-top-app-bar-fixed {
+      --mdc-theme-text-disabled-on-light: rgba(255, 255, 255, 0.38);
+    } /* hack to fix disabled icon buttons rendering black */
+
+    mwc-tab {
+      background-color: var(--primary);
+      --mdc-theme-primary: var(--mdc-theme-on-primary);
+    }
+
+    input[type='file'] {
+      display: none;
+    }
+
+    mwc-dialog {
+      --mdc-dialog-max-width: 98vw;
+    }
+
+    mwc-dialog > form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    mwc-dialog > form > * {
+      display: block;
+      margin-top: 16px;
+    }
+
+    mwc-linear-progress {
+      position: fixed;
+      --mdc-linear-progress-buffer-color: var(--primary);
+      --mdc-theme-primary: var(--secondary);
+      left: 0px;
+      top: 0px;
+      width: 100%;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    tt {
+      font-family: 'Roboto Mono', monospace;
+      font-weight: 300;
+    }
+
+    .landing {
+      position: absolute;
+      text-align: center;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+    }
+
+    .landing_icon:hover {
+      box-shadow: 0 12px 17px 2px rgba(0, 0, 0, 0.14),
+        0 5px 22px 4px rgba(0, 0, 0, 0.12), 0 7px 8px -4px rgba(0, 0, 0, 0.2);
+    }
+
+    .landing_icon {
+      margin: 12px;
+      border-radius: 16px;
+      width: 160px;
+      height: 140px;
+      text-align: center;
+      color: var(--mdc-theme-on-secondary);
+      background: var(--secondary);
+      --mdc-icon-button-size: 100px;
+      --mdc-icon-size: 100px;
+      --mdc-ripple-color: rgba(0, 0, 0, 0);
+      box-shadow: rgb(0 0 0 / 14%) 0px 6px 10px 0px,
+        rgb(0 0 0 / 12%) 0px 1px 18px 0px, rgb(0 0 0 / 20%) 0px 3px 5px -1px;
+      transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .landing_label {
+      width: 160px;
+      height: 50px;
+      margin-top: 100px;
+      margin-left: -30px;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .plugin.menu {
+      display: flex;
+    }
+
+    .plugin.validator {
+      display: flex;
+    }
+  `;
 }
