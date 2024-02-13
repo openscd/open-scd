@@ -4,6 +4,7 @@ import '../../src/open-scd.js';
 import { newEmptySCD } from '../../src/schemas.js';
 import { OpenSCD } from '../../src/open-scd.js';
 import { newPendingStateEvent } from '../../src/foundation.js';
+import { OscdWaiter } from '../../src/addons/Waiter.js';
 
 describe('open-scd', () => {
   let element: OpenSCD;
@@ -73,37 +74,18 @@ describe('open-scd', () => {
    * Remove this integration test. It's no longer an integration test but an E2E test.
    */
   it('renders a progress indicator on `waiting`', async () => {
-    const progressBar = element
-      .shadowRoot!.querySelector('oscd-waiter')!
-      .shadowRoot!.querySelector('mwc-linear-progress[indeterminate]')!;
+    const waiter: OscdWaiter =
+      element.shadowRoot!.querySelector<OscdWaiter>('oscd-waiter')!;
+    const progressBar = waiter.shadowRoot!.querySelector(
+      'mwc-linear-progress[indeterminate]'
+    )!;
     expect(progressBar).property('closed').to.be.true;
 
-    function defer<T = unknown>() {
-      const deferred: {
-        promise: Promise<T> | null;
-        resolve: ((value: T) => void) | null;
-        reject: ((reason?: any) => void) | null;
-      } = {
-        promise: null,
-        resolve: null,
-        reject: null,
-      };
-
-      deferred.promise = new Promise((resolve, reject) => {
-        deferred.resolve = resolve;
-        deferred.reject = reject;
-      });
-
-      return deferred;
-    }
-
-    const deferredPromise = defer<void>();
-
-    progressBar.dispatchEvent(newPendingStateEvent(deferredPromise.promise!));
-    await element.updateComplete;
+    waiter.waiting = true;
+    await waiter.updateComplete;
     expect(progressBar).property('closed').to.be.false;
-    deferredPromise.resolve!;
-    await element.updateComplete;
+    waiter.waiting = false;
+    await waiter.updateComplete;
     expect(progressBar).property('closed').to.be.true;
   });
 
