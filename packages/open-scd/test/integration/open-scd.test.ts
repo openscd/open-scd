@@ -3,6 +3,22 @@ import { expect, fixture, html } from '@open-wc/testing';
 import '../../src/open-scd.js';
 import { newEmptySCD } from '../../src/schemas.js';
 import { OpenSCD } from '../../src/open-scd.js';
+import { newPendingStateEvent } from '../../src/foundation.js';
+
+class DeferredPromise<T = unknown> {
+  private _promise: Promise<T>;
+  private resolve!: (value: T) => void;
+  private reject!: (reason?: any) => void;
+
+  constructor() {
+    this._promise = new Promise((resolve, reject) => {
+      // assign the resolve and reject functions to `this`
+      // making them usable on the class instance
+      this.resolve = resolve;
+      this.reject = reject;
+    });
+  }
+}
 
 describe('open-scd', () => {
   let element: OpenSCD;
@@ -76,10 +92,32 @@ describe('open-scd', () => {
       .shadowRoot!.querySelector('oscd-waiter')!
       .shadowRoot!.querySelector('mwc-linear-progress[indeterminate]')!;
     expect(progressBar).property('closed').to.be.true;
-    element.waiting = true;
+
+    function defer<T = unknown>() {
+      const deferred: {
+        promise: Promise<T> | null;
+        resolve: ((value: T) => void) | null;
+        reject: ((reason?: any) => void) | null;
+      } = {
+        promise: null,
+        resolve: null,
+        reject: null,
+      };
+
+      deferred.promise = new Promise((resolve, reject) => {
+        deferred.resolve = resolve;
+        deferred.reject = reject;
+      });
+
+      return deferred;
+    }
+
+    const deferredPromise = defer<void>();
+
+    progressBar.dispatchEvent(newPendingStateEvent(deferredPromise.promise!));
     await element.updateComplete;
     expect(progressBar).property('closed').to.be.false;
-    element.waiting = false;
+    deferredPromise.resolve!;
     await element.updateComplete;
     expect(progressBar).property('closed').to.be.true;
   });
