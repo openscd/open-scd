@@ -878,6 +878,10 @@ export const de: Translations = {
       server: '???',
       serverDetails: '{{type}}: {{message}}',
     },
+    warning: {
+      nsdoc: 'Fehler beim Laden des NSD-Prozesses',
+      nsdocDetails: 'Datei kann nicht geladen werden: {{fileName}}',
+    },
     changeset: {
       major: '???',
       minor: '???',

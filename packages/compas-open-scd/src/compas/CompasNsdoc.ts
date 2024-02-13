@@ -1,6 +1,9 @@
 import { newLoadNsdocEvent } from '../Setting.js';
 
-import { createLogEvent } from '../compas-services/foundation.js';
+import {
+  createLogEvent,
+  createNSDocLogEvent,
+} from '../compas-services/foundation.js';
 import { CompasSclValidatorService } from '../compas-services/CompasValidatorService.js';
 import { CompasNSDocFileService } from '../compas-services/CompasNSDocFileService.js';
 
@@ -39,8 +42,8 @@ async function processNsdocFile(
         component.dispatchEvent(newLoadNsdocEvent(nsdocContent, filename));
         localStorage.setItem(checksumKey, checksum);
       })
-      .catch(reason => {
-        createLogEvent(component, reason);
+      .catch(() => {
+        createNSDocLogEvent(component, filename);
       });
   } else {
     console.debug(`Loading NSDoc File '${nsdocId}' skipped, already loaded.`);

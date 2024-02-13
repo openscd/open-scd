@@ -103,6 +103,20 @@ export function createLogEvent(element: Element, reason: any): void {
   }
 }
 
+export function createNSDocLogEvent(element: Element, fileName: string): void {
+  if (element) {
+    element.dispatchEvent(
+      newLogEvent({
+        kind: 'warning',
+        title: get('compas.warning.nsdoc'),
+        message: get('compas.warning.nsdocDetails', {
+          fileName: fileName,
+        }),
+      })
+    );
+  }
+}
+
 export function getWebsocketUri(settingsUrl: string): string {
   if (settingsUrl.startsWith('http://') || settingsUrl.startsWith('https://')) {
     return settingsUrl
