@@ -5,21 +5,6 @@ import { newEmptySCD } from '../../src/schemas.js';
 import { OpenSCD } from '../../src/open-scd.js';
 import { newPendingStateEvent } from '../../src/foundation.js';
 
-class DeferredPromise<T = unknown> {
-  private _promise: Promise<T>;
-  private resolve!: (value: T) => void;
-  private reject!: (reason?: any) => void;
-
-  constructor() {
-    this._promise = new Promise((resolve, reject) => {
-      // assign the resolve and reject functions to `this`
-      // making them usable on the class instance
-      this.resolve = resolve;
-      this.reject = reject;
-    });
-  }
-}
-
 describe('open-scd', () => {
   let element: OpenSCD;
 
