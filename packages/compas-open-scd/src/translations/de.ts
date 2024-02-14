@@ -879,8 +879,8 @@ export const de: Translations = {
       serverDetails: '{{type}}: {{message}}',
     },
     warning: {
-      nsdoc: 'Fehler beim Laden des NSD-Prozesses',
-      nsdocDetails: 'Datei kann nicht geladen werden: {{fileName}}',
+      nsdoc: 'NSDoc-Datei konnte nicht geladen werden',
+      nsdocDetails: 'Die {{url}} kann nicht geladen werden',
     },
     changeset: {
       major: '???',

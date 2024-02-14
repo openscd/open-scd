@@ -872,8 +872,8 @@ export const en = {
       serverDetails: '{{type}}: {{message}}',
     },
     warning: {
-      nsdoc: 'Process NSD loading error',
-      nsdocDetails: 'Cannot load file: {{fileName}}',
+      nsdoc: 'Could not load NSDoc file',
+      nsdocDetails: 'Cannot load {{url}}',
     },
     changeset: {
       major: 'Major change',
