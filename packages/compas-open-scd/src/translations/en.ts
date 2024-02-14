@@ -871,6 +871,10 @@ export const en = {
       server: 'Error communicating with CoMPAS Ecosystem',
       serverDetails: '{{type}}: {{message}}',
     },
+    warning: {
+      nsdoc: 'Could not load NSDoc file',
+      nsdocDetails: 'Cannot load {{url}}',
+    },
     changeset: {
       major: 'Major change',
       minor: 'Minor change',
