@@ -382,7 +382,8 @@ export class OscdSettings extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<mwc-dialog
+    return html` <slot></slot>
+      <mwc-dialog
         id="settings"
         heading="${translate('settings.title')}"
         @closing=${this.onClosing}
@@ -453,7 +454,6 @@ export class OscdSettings extends LitElement {
           ${translate('save')}
         </mwc-button>
       </mwc-dialog>
-      <slot></slot>
       ${getTheme(this.settings.theme)}`;
   }
 

@@ -35,7 +35,7 @@ export class OscdWaiter extends LitElement {
   }
 
   render(): TemplateResult {
-    return html` <slot></slot>
+    return html`<slot></slot>
       <mwc-linear-progress .closed=${!this.waiting} indeterminate>
       </mwc-linear-progress>`;
   }
