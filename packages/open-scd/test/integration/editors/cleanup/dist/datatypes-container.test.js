@@ -42,17 +42,16 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 var testing_1 = require("@open-wc/testing");
 require("../../../mock-open-scd.js");
-var datatypes_container_js_1 = require("../../../../src/editors/cleanup/datatypes-container.js");
+require("../../../../src/editors/cleanup/datatypes-container.js");
 var foundation_js_1 = require("../../../../src/editors/cleanup/foundation.js");
 describe('cleanup-editor integration: unreferenced control blocks', function () {
-    customElements.define('cleanup-plugin-data-types', datatypes_container_js_1.CleanupDataTypes);
     var element;
     var parent;
     describe('without a doc loaded', function () {
         beforeEach(function () { return __awaiter(void 0, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, testing_1.fixture(testing_1.html(templateObject_1 || (templateObject_1 = __makeTemplateObject(["<mock-open-scd\n          ><cleanup-plugin-data-types .doc=\"", "\"></cleanup-plugin-data-types\n        ></mock-open-scd>"], ["<mock-open-scd\n          ><cleanup-plugin-data-types .doc=\"", "\"></cleanup-plugin-data-types\n        ></mock-open-scd>"])), null))];
+                    case 0: return [4 /*yield*/, testing_1.fixture(testing_1.html(templateObject_1 || (templateObject_1 = __makeTemplateObject(["<mock-open-scd\n          ><cleanup-data-types .doc=", "></cleanup-data-types\n        ></mock-open-scd>"], ["<mock-open-scd\n          ><cleanup-data-types .doc=", "></cleanup-data-types\n        ></mock-open-scd>"])), null))];
                     case 1:
                         parent = _a.sent();
                         element = parent.getActivePlugin();
@@ -84,7 +83,7 @@ describe('cleanup-editor integration: unreferenced control blocks', function () 
                             .then(function (str) { return new DOMParser().parseFromString(str, 'application/xml'); })];
                     case 1:
                         doc = _a.sent();
-                        return [4 /*yield*/, testing_1.fixture(testing_1.html(templateObject_2 || (templateObject_2 = __makeTemplateObject(["<mock-open-scd\n          ><cleanup-plugin-data-types .doc=\"", "\"></cleanup-plugin-data-types\n        ></mock-open-scd>"], ["<mock-open-scd\n          ><cleanup-plugin-data-types .doc=\"", "\"></cleanup-plugin-data-types\n        ></mock-open-scd>"])), doc))];
+                        return [4 /*yield*/, testing_1.fixture(testing_1.html(templateObject_2 || (templateObject_2 = __makeTemplateObject(["<mock-open-scd\n          ><cleanup-data-types .doc=", "></cleanup-data-types\n        ></mock-open-scd>"], ["<mock-open-scd\n          ><cleanup-data-types .doc=", "></cleanup-data-types\n        ></mock-open-scd>"])), doc))];
                     case 2:
                         parent = _a.sent();
                         element = parent.getActivePlugin();

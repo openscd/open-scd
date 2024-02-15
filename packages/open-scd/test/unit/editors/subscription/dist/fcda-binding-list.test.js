@@ -61,7 +61,7 @@ describe('fcda-binding-list', function () {
         beforeEach(function () { return __awaiter(void 0, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, testing_1.fixture(testing_1.html(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n        <mock-open-scd>\n          <fcda-binding-list></fcda-binding-list>\n        </mock-open-scd>\n      "], ["\n        <mock-open-scd>\n          <fcda-binding-list></fcda-binding-list>\n        </mock-open-scd>\n      "]))))];
+                    case 0: return [4 /*yield*/, testing_1.fixture(testing_1.html(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n        <mock-open-scd><fcda-binding-list></fcda-binding-list></mock-open-scd>\n      "], ["\n        <mock-open-scd><fcda-binding-list></fcda-binding-list></mock-open-scd>\n      "]))))];
                     case 1:
                         parent = _a.sent();
                         element = parent.getActivePlugin();
@@ -100,10 +100,10 @@ describe('fcda-binding-list', function () {
                                 .then(function (str) { return new DOMParser().parseFromString(str, 'application/xml'); })];
                     case 1:
                         doc = _a.sent();
-                        return [4 /*yield*/, testing_1.fixture(testing_1.html(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n        <mock-open-scd>\n          <fcda-binding-list\n            .doc=", "\n            controlTag=\"SampledValueControl\"\n            .includeLaterBinding=\"", "\"\n          ></fcda-binding-list>\n        </mock-open-scd>\n      "], ["\n        <mock-open-scd>\n          <fcda-binding-list\n            .doc=", "\n            controlTag=\"SampledValueControl\"\n            .includeLaterBinding=\"", "\"\n          ></fcda-binding-list>\n        </mock-open-scd>\n      "])), doc, true))];
+                        return [4 /*yield*/, testing_1.fixture(testing_1.html(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n        <mock-open-scd\n          ><fcda-binding-list\n            .doc=", "\n            controlTag=\"SampledValueControl\"\n            .includeLaterBinding=\"", "\"\n          ></fcda-binding-list\n        ></mock-open-scd>\n      "], ["\n        <mock-open-scd\n          ><fcda-binding-list\n            .doc=", "\n            controlTag=\"SampledValueControl\"\n            .includeLaterBinding=\"", "\"\n          ></fcda-binding-list\n        ></mock-open-scd>\n      "])), doc, true))];
                     case 2:
                         parent = _a.sent();
-                        element = parent.getActivePlugin();
+                        element = parent.getPlugin('fcda-binding-list');
                         return [4 /*yield*/, parent.requestUpdate()];
                     case 3:
                         _a.sent();
@@ -285,11 +285,11 @@ describe('fcda-binding-list', function () {
                                 .then(function (str) { return new DOMParser().parseFromString(str, 'application/xml'); })];
                     case 1:
                         doc = _a.sent();
-                        return [4 /*yield*/, testing_1.fixture(testing_1.html(templateObject_4 || (templateObject_4 = __makeTemplateObject(["\n        <mock-open-scd>\n          <fcda-binding-list\n            .doc=", "\n            controlTag=\"GSEControl\"\n            .includeLaterBinding=\"", "\"\n          ></fcda-binding-list>\n        </mock-open-scd>\n      "], ["\n        <mock-open-scd>\n          <fcda-binding-list\n            .doc=", "\n            controlTag=\"GSEControl\"\n            .includeLaterBinding=\"", "\"\n          ></fcda-binding-list>\n        </mock-open-scd>\n      "])), doc, true))];
+                        return [4 /*yield*/, testing_1.fixture(testing_1.html(templateObject_4 || (templateObject_4 = __makeTemplateObject(["\n        <mock-open-scd\n          ><fcda-binding-list\n            .doc=", "\n            controlTag=\"GSEControl\"\n            .includeLaterBinding=\"", "\"\n          ></fcda-binding-list\n        ></mock-open-scd>\n      "], ["\n        <mock-open-scd\n          ><fcda-binding-list\n            .doc=", "\n            controlTag=\"GSEControl\"\n            .includeLaterBinding=\"", "\"\n          ></fcda-binding-list\n        ></mock-open-scd>\n      "])), doc, true))];
                     case 2:
                         parent = _a.sent();
-                        element = parent.getActivePlugin();
-                        return [4 /*yield*/, parent.requestUpdate()];
+                        element = parent.getPlugin('fcda-binding-list');
+                        return [4 /*yield*/, parent.updateComplete];
                     case 3:
                         _a.sent();
                         return [2 /*return*/];

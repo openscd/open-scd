@@ -2,14 +2,13 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
 import '../../../mock-open-scd.js';
+import { MockOpenSCD } from '../../../mock-open-scd.js';
 
+import '../../../../src/editors/cleanup/datasets-container.js';
 import { CleanupDatasets } from '../../../../src/editors/cleanup/datasets-container.js';
 import { cleanSCLItems } from '../../../../src/editors/cleanup/foundation.js';
 
-import { MockOpenSCD } from '../../../mock-open-scd.js';
-
 describe('cleanup-editor integration: dataset removal', () => {
-  customElements.define('cleanup-plugin-datasets', CleanupDatasets);
   let element: CleanupDatasets;
   let parent: MockOpenSCD;
 
@@ -18,7 +17,7 @@ describe('cleanup-editor integration: dataset removal', () => {
       const doc = null;
       parent = await fixture(
         html`<mock-open-scd
-          ><cleanup-plugin-datasets .doc="${doc}"></cleanup-plugin-datasets
+          ><cleanup-datasets .doc=${doc}></cleanup-datasets
         ></mock-open-scd>`
       );
       element = parent.getActivePlugin();
@@ -38,7 +37,7 @@ describe('cleanup-editor integration: dataset removal', () => {
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = await fixture(
         html`<mock-open-scd
-          ><cleanup-plugin-datasets .doc="${doc}"></cleanup-plugin-datasets
+          ><cleanup-datasets .doc=${doc}></cleanup-datasets
         ></mock-open-scd>`
       );
       element = parent.getActivePlugin();

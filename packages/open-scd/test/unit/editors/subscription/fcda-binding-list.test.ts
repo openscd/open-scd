@@ -27,9 +27,7 @@ describe('fcda-binding-list', () => {
   describe('without a doc loaded', () => {
     beforeEach(async () => {
       parent = await fixture(html`
-        <mock-open-scd>
-          <fcda-binding-list></fcda-binding-list>
-        </mock-open-scd>
+        <mock-open-scd><fcda-binding-list></fcda-binding-list></mock-open-scd>
       `);
 
       element = parent.getActivePlugin();
@@ -54,16 +52,16 @@ describe('fcda-binding-list', () => {
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = await fixture(html`
-        <mock-open-scd>
-          <fcda-binding-list
+        <mock-open-scd
+          ><fcda-binding-list
             .doc=${doc}
             controlTag="SampledValueControl"
             .includeLaterBinding="${true}"
-          ></fcda-binding-list>
-        </mock-open-scd>
+          ></fcda-binding-list
+        ></mock-open-scd>
       `);
 
-      element = parent.getActivePlugin();
+      element = parent.getPlugin<FcdaBindingList>('fcda-binding-list')!;
       await parent.requestUpdate();
     });
 
@@ -204,17 +202,17 @@ describe('fcda-binding-list', () => {
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = await fixture(html`
-        <mock-open-scd>
-          <fcda-binding-list
+        <mock-open-scd
+          ><fcda-binding-list
             .doc=${doc}
             controlTag="GSEControl"
             .includeLaterBinding="${true}"
-          ></fcda-binding-list>
-        </mock-open-scd>
+          ></fcda-binding-list
+        ></mock-open-scd>
       `);
 
-      element = parent.getActivePlugin();
-      await parent.requestUpdate();
+      element = parent.getPlugin<FcdaBindingList>('fcda-binding-list')!;
+      await parent.updateComplete;
     });
 
     it('the GOOSE editor is opened', async () => {

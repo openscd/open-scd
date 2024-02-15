@@ -5,12 +5,12 @@ snapshots["cleanup-editor integration: dataset removal without a doc loaded look
 `<section tabindex="0">
   <div>
     <h1>
-      [cleanup.unreferencedDataSets.title]
+      Unreferenced Datasets
           (0)
       <abbr slot="action">
         <mwc-icon-button
           icon="info"
-          title="[cleanup.unreferencedDataSets.tooltip]"
+          title="Datasets without a reference to an associated GOOSE, Log, Report or Sampled Value Control Block"
         >
         </mwc-icon-button>
       </abbr>
@@ -26,14 +26,12 @@ snapshots["cleanup-editor integration: dataset removal without a doc loaded look
       class="cleanupDeleteButton deleteButton"
       disabled=""
       icon="delete"
-      label="[cleanup.unreferencedDataSets.deleteButton] (0)"
+      label="Remove Selected Datasets (0)"
       outlined=""
     >
     </mwc-button>
   </footer>
 </section>
-<wizard-dialog>
-</wizard-dialog>
 `;
 /* end snapshot cleanup-editor integration: dataset removal without a doc loaded looks like the latest snapshot */
 
@@ -41,12 +39,12 @@ snapshots["cleanup-editor integration: dataset removal With a test file loaded l
 `<section tabindex="0">
   <div>
     <h1>
-      [cleanup.unreferencedDataSets.title]
+      Unreferenced Datasets
           (2)
       <abbr slot="action">
         <mwc-icon-button
           icon="info"
-          title="[cleanup.unreferencedDataSets.tooltip]"
+          title="Datasets without a reference to an associated GOOSE, Log, Report or Sampled Value Control Block"
         >
         </mwc-icon-button>
       </abbr>
@@ -116,14 +114,12 @@ snapshots["cleanup-editor integration: dataset removal With a test file loaded l
       class="cleanupDeleteButton deleteButton"
       disabled=""
       icon="delete"
-      label="[cleanup.unreferencedDataSets.deleteButton] (0)"
+      label="Remove Selected Datasets (0)"
       outlined=""
     >
     </mwc-button>
   </footer>
 </section>
-<wizard-dialog>
-</wizard-dialog>
 `;
 /* end snapshot cleanup-editor integration: dataset removal With a test file loaded looks like the latest snapshot */
 

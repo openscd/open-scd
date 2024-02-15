@@ -2,13 +2,13 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
 import '../../../mock-open-scd.js';
-
-import { CleanupDataTypes } from '../../../../src/editors/cleanup/datatypes-container.js';
-import { cleanSCLItems } from '../../../../src/editors/cleanup/foundation.js';
 import { MockOpenSCD } from '../../../mock-open-scd.js';
 
+import '../../../../src/editors/cleanup/datatypes-container.js';
+import { CleanupDataTypes } from '../../../../src/editors/cleanup/datatypes-container.js';
+import { cleanSCLItems } from '../../../../src/editors/cleanup/foundation.js';
+
 describe('cleanup-editor integration: unreferenced control blocks', () => {
-  customElements.define('cleanup-plugin-data-types', CleanupDataTypes);
   let element: CleanupDataTypes;
   let parent: MockOpenSCD;
 
@@ -16,7 +16,7 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
     beforeEach(async () => {
       parent = await fixture(
         html`<mock-open-scd
-          ><cleanup-plugin-data-types .doc="${null}"></cleanup-plugin-data-types
+          ><cleanup-data-types .doc=${null}></cleanup-data-types
         ></mock-open-scd>`
       );
       element = parent.getActivePlugin();
@@ -36,7 +36,7 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = await fixture(
         html`<mock-open-scd
-          ><cleanup-plugin-data-types .doc="${doc}"></cleanup-plugin-data-types
+          ><cleanup-data-types .doc=${doc}></cleanup-data-types
         ></mock-open-scd>`
       );
       element = parent.getActivePlugin();
