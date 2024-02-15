@@ -21,17 +21,18 @@ describe('LNodeType wizards', () => {
   let lNodeTypeList: FilteredList;
 
   beforeEach(async () => {
-    parent = await fixture(
-      html`<mock-open-scd><templates-editor></templates-editor></mock-open-scd>`
-    );
-
-    templates = parent.getActivePlugin();
-
     doc = await fetch('/test/testfiles/templates/dotypes.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-    templates.doc = doc;
-    await templates.updateComplete;
+
+    parent = await fixture(
+      html`<mock-open-scd
+        ><templates-editor .doc=${doc}></templates-editor
+      ></mock-open-scd>`
+    );
+
+    templates = parent.getActivePlugin();
+    await parent.updateComplete;
     lNodeTypeList = <FilteredList>(
       templates.shadowRoot?.querySelector('filtered-list[id="lnodetypelist"]')
     );

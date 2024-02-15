@@ -39,6 +39,8 @@ describe('ValidateTemplates', () => {
       `);
 
       element = parent.getActivePlugin();
+
+      await parent.updateComplete;
     });
 
     it('triggers as newIssuesEvent for detail not containing kind', () => {
@@ -113,13 +115,15 @@ describe('ValidateTemplates', () => {
       `);
 
       element = parent.getActivePlugin();
+
+      await parent.updateComplete;
     });
 
     it('pushes only diag.zeroissues issue to diagnostics when no issues found', async () => {
       await element.validate();
       expect(issueEvent).to.have.been.calledOnce;
       expect(issueEvent.args[0][0].detail.title).to.contain(
-        '[diag.zeroissues]'
+        'No errors found in the project'
       );
     });
 
@@ -128,7 +132,7 @@ describe('ValidateTemplates', () => {
       await element.validate();
       expect(issueEvent).to.have.been.calledOnce;
       expect(issueEvent.args[0][0].detail.title).to.contain(
-        '[diag.missingnsd]'
+        'Cannot validate DataTypeTemplates. The version of the project must be higher than or equal to 2007B3'
       );
     });
 
@@ -138,7 +142,7 @@ describe('ValidateTemplates', () => {
       await element.validate();
       expect(issueEvent).to.have.been.calledOnce;
       expect(issueEvent.args[0][0].detail.title).to.contain(
-        '[diag.missingnsd]'
+        'Cannot validate DataTypeTemplates. The version of the project must be higher than or equal to 2007B3'
       );
     });
 

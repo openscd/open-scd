@@ -2,24 +2,22 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
 import '../../../mock-open-scd.js';
-
-import { CleanupDatasets } from '../../../../src/editors/cleanup/datasets-container.js';
 import { MockOpenSCD } from '../../../mock-open-scd.js';
 
+import '../../../../src/editors/cleanup/datasets-container.js';
+import { CleanupDatasets } from '../../../../src/editors/cleanup/datasets-container.js';
+
 describe('Cleanup: Datasets Container', () => {
-  customElements.define('cleanup-plugin-datasets', CleanupDatasets);
   let element: CleanupDatasets;
   let parent: MockOpenSCD;
   beforeEach(async () => {
     parent = await fixture(
-      html`<mock-open-scd
-        ><cleanup-plugin-datasets></cleanup-plugin-datasets
-      ></mock-open-scd>`
+      html`<mock-open-scd><cleanup-datasets></cleanup-datasets></mock-open-scd>`
     );
 
     element = parent.getActivePlugin();
 
-    await parent.updateComplete();
+    await parent.updateComplete;
   });
 
   describe('without a doc loaded', () => {
@@ -36,7 +34,7 @@ describe('Cleanup: Datasets Container', () => {
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = await fixture(
         html`<mock-open-scd
-          ><cleanup-plugin-datasets .doc="${doc}"></cleanup-plugin-datasets
+          ><cleanup-datasets .doc="${doc}"></cleanup-datasets
         ></mock-open-scd>`
       );
       element = parent.getActivePlugin();

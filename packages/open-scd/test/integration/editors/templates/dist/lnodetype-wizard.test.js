@@ -55,17 +55,16 @@ describe('LNodeType wizards', function () {
         var _a;
         return __generator(this, function (_b) {
             switch (_b.label) {
-                case 0: return [4 /*yield*/, testing_1.fixture(testing_1.html(templateObject_1 || (templateObject_1 = __makeTemplateObject(["<mock-open-scd><templates-editor></templates-editor></mock-open-scd>"], ["<mock-open-scd><templates-editor></templates-editor></mock-open-scd>"]))))];
+                case 0: return [4 /*yield*/, fetch('/test/testfiles/templates/dotypes.scd')
+                        .then(function (response) { return response.text(); })
+                        .then(function (str) { return new DOMParser().parseFromString(str, 'application/xml'); })];
                 case 1:
+                    doc = _b.sent();
+                    return [4 /*yield*/, testing_1.fixture(testing_1.html(templateObject_1 || (templateObject_1 = __makeTemplateObject(["<mock-open-scd\n        ><templates-editor .doc=", "></templates-editor\n      ></mock-open-scd>"], ["<mock-open-scd\n        ><templates-editor .doc=", "></templates-editor\n      ></mock-open-scd>"])), doc))];
+                case 2:
                     parent = _b.sent();
                     templates = parent.getActivePlugin();
-                    return [4 /*yield*/, fetch('/test/testfiles/templates/dotypes.scd')
-                            .then(function (response) { return response.text(); })
-                            .then(function (str) { return new DOMParser().parseFromString(str, 'application/xml'); })];
-                case 2:
-                    doc = _b.sent();
-                    templates.doc = doc;
-                    return [4 /*yield*/, templates.updateComplete];
+                    return [4 /*yield*/, parent.updateComplete];
                 case 3:
                     _b.sent();
                     lNodeTypeList = ((_a = templates.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelector('filtered-list[id="lnodetypelist"]'));

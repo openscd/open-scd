@@ -4,14 +4,14 @@ export const snapshots = {};
 snapshots["DOType wizards defines a createDOTypeWizard looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="next"
-  heading="[dotype.wizard.title.add]"
+  heading="Add DOType"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <mwc-select
       fixedmenuposition=""
-      helper="[dotype.wizard.enums]"
+      helper="Default enumerations"
       icon="playlist_add_check"
       label="values"
       outlined=""
@@ -675,7 +675,7 @@ snapshots["DOType wizards defines a createDOTypeWizard looks like the latest sna
     </mwc-select>
     <wizard-textfield
       dialoginitialfocus=""
-      helper="[scl.id]"
+      helper="ID"
       label="id"
       maxlength="127"
       minlength="1"
@@ -684,13 +684,13 @@ snapshots["DOType wizards defines a createDOTypeWizard looks like the latest sna
     </wizard-textfield>
     <wizard-textfield
       disabled=""
-      helper="[scl.desc]"
+      helper="Description"
       label="desc"
       nullable=""
     >
     </wizard-textfield>
     <wizard-textfield
-      helper="[scl.cdc]"
+      helper="scl.cdc"
       label="cdc"
       required=""
     >
@@ -698,14 +698,14 @@ snapshots["DOType wizards defines a createDOTypeWizard looks like the latest sna
   </div>
   <mwc-button
     dialogaction="close"
-    label="[close]"
+    label="Close"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
   </mwc-button>
   <mwc-button
     icon="add"
-    label="[add]"
+    label="Add"
     slot="primaryAction"
     trailingicon=""
   >
@@ -717,7 +717,7 @@ snapshots["DOType wizards defines a createDOTypeWizard looks like the latest sna
 snapshots["DOType wizards defines a dOTypeWizard looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="next"
-  heading="[dotype.wizard.title.edit]"
+  heading="Edit DOType"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 48px)"
 >
@@ -737,7 +737,7 @@ snapshots["DOType wizards defines a dOTypeWizard looks like the latest snapshot"
         tabindex="0"
       >
         <span>
-          [remove]
+          Remove
         </span>
         <mwc-icon slot="graphic">
           delete
@@ -751,7 +751,7 @@ snapshots["DOType wizards defines a dOTypeWizard looks like the latest snapshot"
         tabindex="-1"
       >
         <span>
-          [scl.DO]
+          Data object
         </span>
         <mwc-icon slot="graphic">
           playlist_add
@@ -765,7 +765,7 @@ snapshots["DOType wizards defines a dOTypeWizard looks like the latest snapshot"
         tabindex="-1"
       >
         <span>
-          [scl.DA]
+          Data attribute
         </span>
         <mwc-icon slot="graphic">
           playlist_add
@@ -776,7 +776,7 @@ snapshots["DOType wizards defines a dOTypeWizard looks like the latest snapshot"
   <div id="wizard-content">
     <wizard-textfield
       dialoginitialfocus=""
-      helper="[scl.id]"
+      helper="ID"
       label="id"
       maxlength="127"
       minlength="1"
@@ -785,13 +785,13 @@ snapshots["DOType wizards defines a dOTypeWizard looks like the latest snapshot"
     </wizard-textfield>
     <wizard-textfield
       disabled=""
-      helper="[scl.desc]"
+      helper="Description"
       label="desc"
       nullable=""
     >
     </wizard-textfield>
     <wizard-textfield
-      helper="[scl.CDC]"
+      helper="Common data class"
       label="CDC"
     >
     </wizard-textfield>
@@ -1010,14 +1010,14 @@ snapshots["DOType wizards defines a dOTypeWizard looks like the latest snapshot"
   </div>
   <mwc-button
     dialogaction="close"
-    label="[close]"
+    label="Close"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
   </mwc-button>
   <mwc-button
     icon=""
-    label="[save]"
+    label="Save"
     slot="primaryAction"
     trailingicon=""
   >
@@ -1029,7 +1029,7 @@ snapshots["DOType wizards defines a dOTypeWizard looks like the latest snapshot"
 snapshots["DOType wizards defines a sDOWizard to edit an existing SDO looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="next"
-  heading="[sdo.wizard.title.edit]"
+  heading="Edit SDO"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 48px)"
 >
@@ -1049,7 +1049,7 @@ snapshots["DOType wizards defines a sDOWizard to edit an existing SDO looks like
         tabindex="0"
       >
         <span>
-          [remove]
+          Remove
         </span>
         <mwc-icon slot="graphic">
           delete
@@ -1060,7 +1060,7 @@ snapshots["DOType wizards defines a sDOWizard to edit an existing SDO looks like
   <div id="wizard-content">
     <wizard-textfield
       dialoginitialfocus=""
-      helper="[scl.name]"
+      helper="Name"
       label="name"
       required=""
     >
@@ -1068,14 +1068,14 @@ snapshots["DOType wizards defines a sDOWizard to edit an existing SDO looks like
     </wizard-textfield>
     <wizard-textfield
       disabled=""
-      helper="[scl.desc]"
+      helper="Description"
       label="desc"
       nullable=""
     >
     </wizard-textfield>
     <mwc-select
       fixedmenuposition=""
-      helper="[scl.type]"
+      helper="Type"
       label="type"
       required=""
     >
@@ -1220,14 +1220,14 @@ snapshots["DOType wizards defines a sDOWizard to edit an existing SDO looks like
   </div>
   <mwc-button
     dialogaction="close"
-    label="[close]"
+    label="Close"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
   </mwc-button>
   <mwc-button
     icon=""
-    label="[save]"
+    label="Save"
     slot="primaryAction"
     trailingicon=""
   >
@@ -1239,14 +1239,14 @@ snapshots["DOType wizards defines a sDOWizard to edit an existing SDO looks like
 snapshots["DOType wizards defines a sDOWizard to create a new SDO element looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="next"
-  heading="[sdo.wizard.title.add]"
+  heading="Add SDO"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <wizard-textfield
       dialoginitialfocus=""
-      helper="[scl.name]"
+      helper="Name"
       label="name"
       required=""
     >
@@ -1254,14 +1254,14 @@ snapshots["DOType wizards defines a sDOWizard to create a new SDO element looks 
     </wizard-textfield>
     <wizard-textfield
       disabled=""
-      helper="[scl.desc]"
+      helper="Description"
       label="desc"
       nullable=""
     >
     </wizard-textfield>
     <mwc-select
       fixedmenuposition=""
-      helper="[scl.type]"
+      helper="Type"
       label="type"
       required=""
     >
@@ -1404,14 +1404,14 @@ snapshots["DOType wizards defines a sDOWizard to create a new SDO element looks 
   </div>
   <mwc-button
     dialogaction="close"
-    label="[close]"
+    label="Close"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
   </mwc-button>
   <mwc-button
     icon=""
-    label="[save]"
+    label="Save"
     slot="primaryAction"
     trailingicon=""
   >

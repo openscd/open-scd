@@ -7,7 +7,6 @@ import '../../../mock-open-scd.js';
 import { MockOpenSCD } from '../../../mock-open-scd.js';
 
 import ImportingIedPlugin from '../../../../src/menu/ImportIEDs.js';
-import { Editing } from '../../../../src/Editing.js';
 
 describe('ImportIedsPlugin', () => {
   customElements.define('import-ied-plugin', ImportingIedPlugin);
@@ -409,7 +408,7 @@ describe('ImportIedsPlugin', () => {
       element.prepareImport(importDoc, 'invalid.iid');
 
       expect(parent.log[0].kind).to.equal('error');
-      expect(parent.log[0].title).to.equal('[import.log.missingied]');
+      expect(parent.log[0].title).to.equal('No IED element in the file');
     });
 
     it('throws duplicate ied name error', async () => {
@@ -419,7 +418,9 @@ describe('ImportIedsPlugin', () => {
       element.prepareImport(importDoc, 'duplicate.iid');
 
       expect(parent.log[0].kind).to.equal('error');
-      expect(parent.log[0].title).to.equal('[import.log.nouniqueied]');
+      expect(parent.log[0].title).to.equal(
+        'IED element IED2 already in the file'
+      );
     });
 
     it('throws parser error', async () => {
@@ -431,7 +432,7 @@ describe('ImportIedsPlugin', () => {
       element.prepareImport(importDoc, 'parsererror.iid');
 
       expect(parent.log[0].kind).to.equal('error');
-      expect(parent.log[0].title).to.equal('[import.log.parsererror]');
+      expect(parent.log[0].title).to.equal('Parser error');
     });
   });
 });

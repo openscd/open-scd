@@ -73,6 +73,9 @@ describe('ValidateTemplates', function () {
                     case 2:
                         parent = _a.sent();
                         element = parent.getActivePlugin();
+                        return [4 /*yield*/, parent.updateComplete];
+                    case 3:
+                        _a.sent();
                         return [2 /*return*/];
                 }
             });
@@ -144,6 +147,9 @@ describe('ValidateTemplates', function () {
                     case 2:
                         parent = _a.sent();
                         element = parent.getActivePlugin();
+                        return [4 /*yield*/, parent.updateComplete];
+                    case 3:
+                        _a.sent();
                         return [2 /*return*/];
                 }
             });
@@ -155,7 +161,7 @@ describe('ValidateTemplates', function () {
                     case 1:
                         _a.sent();
                         testing_1.expect(issueEvent).to.have.been.calledOnce;
-                        testing_1.expect(issueEvent.args[0][0].detail.title).to.contain('[diag.zeroissues]');
+                        testing_1.expect(issueEvent.args[0][0].detail.title).to.contain('No errors found in the project');
                         return [2 /*return*/];
                 }
             });
@@ -170,7 +176,7 @@ describe('ValidateTemplates', function () {
                     case 1:
                         _b.sent();
                         testing_1.expect(issueEvent).to.have.been.calledOnce;
-                        testing_1.expect(issueEvent.args[0][0].detail.title).to.contain('[diag.missingnsd]');
+                        testing_1.expect(issueEvent.args[0][0].detail.title).to.contain('Cannot validate DataTypeTemplates. The version of the project must be higher than or equal to 2007B3');
                         return [2 /*return*/];
                 }
             });
@@ -186,7 +192,7 @@ describe('ValidateTemplates', function () {
                     case 1:
                         _c.sent();
                         testing_1.expect(issueEvent).to.have.been.calledOnce;
-                        testing_1.expect(issueEvent.args[0][0].detail.title).to.contain('[diag.missingnsd]');
+                        testing_1.expect(issueEvent.args[0][0].detail.title).to.contain('Cannot validate DataTypeTemplates. The version of the project must be higher than or equal to 2007B3');
                         return [2 /*return*/];
                 }
             });

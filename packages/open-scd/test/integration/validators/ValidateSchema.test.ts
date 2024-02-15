@@ -52,13 +52,17 @@ describe('ValidateSchema plugin', () => {
         parent.diagnoses.get('/src/validators/ValidateSchema.js')
       );
       expect(lastEntry.length).to.equal(1);
-      expect(lastEntry[0].title).to.contain('[validator.schema.valid]');
+      expect(lastEntry[0].title).to.contain(
+        'valid2007B XML schema validation successful'
+      );
     });
 
     it('indicates successful schema validation in the log', async () => {
       const lastEntry = <LogEntry>parent.log.pop();
       expect(lastEntry.kind).to.equal('info');
-      expect(lastEntry.title).to.contain('[validator.schema.valid]');
+      expect(lastEntry.title).to.contain(
+        'valid2007B XML schema validation successful'
+      );
     });
   });
 
@@ -92,7 +96,9 @@ describe('ValidateSchema plugin', () => {
     it('generates error messages in the log', async () => {
       const lastLogEntry = <LogEntry>parent.log.pop();
       expect(lastLogEntry.kind).to.equal('warning');
-      expect(lastLogEntry.title).to.contain('[validator.schema.invalid]');
+      expect(lastLogEntry.title).to.contain(
+        'invalid2007B XML schema validation failed'
+      );
     });
   });
 });

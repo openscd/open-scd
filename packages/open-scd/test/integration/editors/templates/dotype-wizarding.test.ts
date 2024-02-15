@@ -1,6 +1,7 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
 import '../../../mock-open-scd.js';
+import { MockOpenSCD } from '../../../mock-open-scd.js';
 
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { Select } from '@material/mwc-select';
@@ -11,7 +12,6 @@ import { WizardTextField } from '../../../../src/wizard-textfield.js';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import { patterns } from '../../../../src/wizards/foundation/limits.js';
-import { MockOpenSCD } from '../../../mock-open-scd.js';
 
 describe('DOType wizards', () => {
   if (customElements.get('templates-editor') === undefined)
@@ -22,17 +22,19 @@ describe('DOType wizards', () => {
   let dOTypeList: FilteredList;
 
   beforeEach(async () => {
+    doc = await fetch('/test/testfiles/templates/dotypes.scd')
+      .then(response => response.text())
+      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
     parent = await fixture(
-      html`<mock-open-scd><templates-editor></templates-editor></mock-open-scd>`
+      html`<mock-open-scd
+        ><templates-editor .doc=${doc}></templates-editor
+      ></mock-open-scd>`
     );
 
     templates = parent.getActivePlugin();
 
-    doc = await fetch('/test/testfiles/templates/dotypes.scd')
-      .then(response => response.text())
-      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-    templates.doc = doc;
-    await templates.updateComplete;
+    await parent.updateComplete;
     dOTypeList = <FilteredList>(
       templates.shadowRoot?.querySelector('filtered-list[id="dotypelist"]')
     );
@@ -200,7 +202,7 @@ describe('DOType wizards', () => {
           parent.wizardUI.dialog!.querySelectorAll<ListItemBase>(
             'mwc-menu > mwc-list-item'
           )
-        ).find(item => item.innerHTML.includes(`[remove]`))
+        ).find(item => item.innerHTML.includes(`Remove`))
       );
     });
 
@@ -255,6 +257,7 @@ describe('DOType wizards', () => {
     it('deletes the DOType attribute on delete button click', async () => {
       expect(doc.querySelector('DOType[id="Dummy.LLN0.Mod"]')).to.exist;
       expect(doc.querySelectorAll('DOType').length).to.equal(15);
+      console.log('del button');
       deleteButton.click();
       await parent.requestUpdate();
       expect(doc.querySelector('DAType[id="Dummy.LLN0.Mod"]')).to.not.exist;
@@ -404,7 +407,7 @@ describe('DOType wizards', () => {
           parent.wizardUI.dialog!.querySelectorAll<ListItemBase>(
             'mwc-menu > mwc-list-item'
           )
-        ).find(item => item.innerHTML.includes(`[scl.DO]`))
+        ).find(item => item.innerHTML.includes(`Data object`))
       )).click();
       await parent.wizardUI.dialog?.requestUpdate();
 

@@ -41,6 +41,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 var testing_1 = require("@open-wc/testing");
+require("../../../../src/editors/cleanup/control-blocks-container.js");
 describe('Cleanup: Control Blocks Container', function () {
     var element;
     beforeEach(function () { return __awaiter(void 0, void 0, void 0, function () {

@@ -1,6 +1,7 @@
 'use strict';
 import { html, fixture, expect } from '@open-wc/testing';
 
+import '../../../../src/editors/cleanup/control-blocks-container.js';
 import { CleanupControlBlocks } from '../../../../src/editors/cleanup/control-blocks-container.js';
 
 import { ListItem } from '@material/mwc-list/mwc-list-item.js';

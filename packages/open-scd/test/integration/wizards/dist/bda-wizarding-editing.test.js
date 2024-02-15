@@ -97,7 +97,7 @@ describe('BDA wizarding editing integration', function () {
                         _e.sent(); // await animation
                         nameField = ((_c = parent.wizardUI.dialog) === null || _c === void 0 ? void 0 : _c.querySelector('wizard-textfield[label="name"]'));
                         primayAction = ((_d = parent.wizardUI.dialog) === null || _d === void 0 ? void 0 : _d.querySelector('mwc-button[slot="primaryAction"]'));
-                        deleteButton = (Array.from(parent.wizardUI.dialog.querySelectorAll('mwc-menu > mwc-list-item')).find(function (item) { return item.innerHTML.includes('[remove]'); }));
+                        deleteButton = (Array.from(parent.wizardUI.dialog.querySelectorAll('mwc-menu > mwc-list-item')).find(function (item) { return item.innerHTML.includes('Remove'); }));
                         return [2 /*return*/];
                 }
             });

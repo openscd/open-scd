@@ -495,7 +495,7 @@ describe('ImportIedsPlugin', function () {
                         importDoc = _a.sent();
                         element.prepareImport(importDoc, 'invalid.iid');
                         testing_1.expect(parent.log[0].kind).to.equal('error');
-                        testing_1.expect(parent.log[0].title).to.equal('[import.log.missingied]');
+                        testing_1.expect(parent.log[0].title).to.equal('No IED element in the file');
                         return [2 /*return*/];
                 }
             });
@@ -510,7 +510,7 @@ describe('ImportIedsPlugin', function () {
                         importDoc = _a.sent();
                         element.prepareImport(importDoc, 'duplicate.iid');
                         testing_1.expect(parent.log[0].kind).to.equal('error');
-                        testing_1.expect(parent.log[0].title).to.equal('[import.log.nouniqueied]');
+                        testing_1.expect(parent.log[0].title).to.equal('IED element IED2 already in the file');
                         return [2 /*return*/];
                 }
             });
@@ -528,7 +528,7 @@ describe('ImportIedsPlugin', function () {
                         _a.sent();
                         element.prepareImport(importDoc, 'parsererror.iid');
                         testing_1.expect(parent.log[0].kind).to.equal('error');
-                        testing_1.expect(parent.log[0].title).to.equal('[import.log.parsererror]');
+                        testing_1.expect(parent.log[0].title).to.equal('Parser error');
                         return [2 /*return*/];
                 }
             });

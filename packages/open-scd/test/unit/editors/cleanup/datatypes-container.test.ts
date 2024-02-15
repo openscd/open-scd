@@ -2,11 +2,12 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
 import '../../../mock-open-scd.js';
+import { MockOpenSCD } from '../../../mock-open-scd.js';
 
+import '../../../../src/editors/cleanup/datatypes-container.js';
 import { CleanupDataTypes } from '../../../../src/editors/cleanup/datatypes-container.js';
 
 import { ListItem } from '@material/mwc-list/mwc-list-item.js';
-import { MockOpenSCD } from '../../../mock-open-scd.js';
 
 describe('Cleanup: DataTypes Container', () => {
   let element: CleanupDataTypes;

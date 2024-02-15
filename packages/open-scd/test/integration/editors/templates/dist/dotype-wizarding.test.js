@@ -55,17 +55,16 @@ describe('DOType wizards', function () {
         var _a;
         return __generator(this, function (_b) {
             switch (_b.label) {
-                case 0: return [4 /*yield*/, testing_1.fixture(testing_1.html(templateObject_1 || (templateObject_1 = __makeTemplateObject(["<mock-open-scd><templates-editor></templates-editor></mock-open-scd>"], ["<mock-open-scd><templates-editor></templates-editor></mock-open-scd>"]))))];
+                case 0: return [4 /*yield*/, fetch('/test/testfiles/templates/dotypes.scd')
+                        .then(function (response) { return response.text(); })
+                        .then(function (str) { return new DOMParser().parseFromString(str, 'application/xml'); })];
                 case 1:
+                    doc = _b.sent();
+                    return [4 /*yield*/, testing_1.fixture(testing_1.html(templateObject_1 || (templateObject_1 = __makeTemplateObject(["<mock-open-scd\n        ><templates-editor .doc=", "></templates-editor\n      ></mock-open-scd>"], ["<mock-open-scd\n        ><templates-editor .doc=", "></templates-editor\n      ></mock-open-scd>"])), doc))];
+                case 2:
                     parent = _b.sent();
                     templates = parent.getActivePlugin();
-                    return [4 /*yield*/, fetch('/test/testfiles/templates/dotypes.scd')
-                            .then(function (response) { return response.text(); })
-                            .then(function (str) { return new DOMParser().parseFromString(str, 'application/xml'); })];
-                case 2:
-                    doc = _b.sent();
-                    templates.doc = doc;
-                    return [4 /*yield*/, templates.updateComplete];
+                    return [4 /*yield*/, parent.updateComplete];
                 case 3:
                     _b.sent();
                     dOTypeList = ((_a = templates.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelector('filtered-list[id="dotypelist"]'));
@@ -276,7 +275,7 @@ describe('DOType wizards', function () {
                         _c.sent(); //recursive call takes time
                         idField = ((_a = parent.wizardUI.dialog) === null || _a === void 0 ? void 0 : _a.querySelector('wizard-textfield[label="id"]'));
                         primayAction = ((_b = parent.wizardUI.dialog) === null || _b === void 0 ? void 0 : _b.querySelector('mwc-button[slot="primaryAction"]'));
-                        deleteButton = (Array.from(parent.wizardUI.dialog.querySelectorAll('mwc-menu > mwc-list-item')).find(function (item) { return item.innerHTML.includes("[remove]"); }));
+                        deleteButton = (Array.from(parent.wizardUI.dialog.querySelectorAll('mwc-menu > mwc-list-item')).find(function (item) { return item.innerHTML.includes("Remove"); }));
                         return [2 /*return*/];
                 }
             });
@@ -343,6 +342,7 @@ describe('DOType wizards', function () {
                     case 0:
                         testing_1.expect(doc.querySelector('DOType[id="Dummy.LLN0.Mod"]')).to.exist;
                         testing_1.expect(doc.querySelectorAll('DOType').length).to.equal(15);
+                        console.log('del button');
                         deleteButton.click();
                         return [4 /*yield*/, parent.requestUpdate()];
                     case 1:
@@ -514,7 +514,7 @@ describe('DOType wizards', function () {
                         return [4 /*yield*/, new Promise(function (resolve) { return setTimeout(resolve, 100); })];
                     case 2:
                         _f.sent(); // await animation
-                        (Array.from(parent.wizardUI.dialog.querySelectorAll('mwc-menu > mwc-list-item')).find(function (item) { return item.innerHTML.includes("[scl.DO]"); })).click();
+                        (Array.from(parent.wizardUI.dialog.querySelectorAll('mwc-menu > mwc-list-item')).find(function (item) { return item.innerHTML.includes("Data object"); })).click();
                         return [4 /*yield*/, ((_a = parent.wizardUI.dialog) === null || _a === void 0 ? void 0 : _a.requestUpdate())];
                     case 3:
                         _f.sent();

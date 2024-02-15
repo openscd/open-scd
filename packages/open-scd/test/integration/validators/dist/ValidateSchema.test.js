@@ -109,7 +109,7 @@ describe('ValidateSchema plugin', function () {
             return __generator(this, function (_a) {
                 lastEntry = (parent.diagnoses.get('/src/validators/ValidateSchema.js'));
                 testing_1.expect(lastEntry.length).to.equal(1);
-                testing_1.expect(lastEntry[0].title).to.contain('[validator.schema.valid]');
+                testing_1.expect(lastEntry[0].title).to.contain('valid2007B XML schema validation successful');
                 return [2 /*return*/];
             });
         }); });
@@ -118,7 +118,7 @@ describe('ValidateSchema plugin', function () {
             return __generator(this, function (_a) {
                 lastEntry = parent.log.pop();
                 testing_1.expect(lastEntry.kind).to.equal('info');
-                testing_1.expect(lastEntry.title).to.contain('[validator.schema.valid]');
+                testing_1.expect(lastEntry.title).to.contain('valid2007B XML schema validation successful');
                 return [2 /*return*/];
             });
         }); });
@@ -176,7 +176,7 @@ describe('ValidateSchema plugin', function () {
             return __generator(this, function (_a) {
                 lastLogEntry = parent.log.pop();
                 testing_1.expect(lastLogEntry.kind).to.equal('warning');
-                testing_1.expect(lastLogEntry.title).to.contain('[validator.schema.invalid]');
+                testing_1.expect(lastLogEntry.title).to.contain('invalid2007B XML schema validation failed');
                 return [2 /*return*/];
             });
         }); });

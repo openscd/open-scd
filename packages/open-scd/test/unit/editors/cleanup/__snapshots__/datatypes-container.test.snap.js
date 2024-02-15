@@ -5,12 +5,12 @@ snapshots["Cleanup: DataTypes Container without a doc loaded looks like the late
 `<section tabindex="1">
   <div>
     <h1>
-      [cleanup.unreferencedDataTypes.title]
+      Unreferenced Data Types
           (0)
       <abbr slot="action">
         <mwc-icon-button
           icon="info"
-          title="[cleanup.unreferencedDataTypes.tooltip]"
+          title="Data Types which are not referenced in a Logical Node or other used Data Type"
         >
         </mwc-icon-button>
       </abbr>
@@ -54,13 +54,13 @@ snapshots["Cleanup: DataTypes Container without a doc loaded looks like the late
       class="delete-button"
       disabled=""
       icon="delete"
-      label="[cleanup.unreferencedDataTypes.deleteButton] (0)"
+      label="Remove Selected Data Types (0)"
       outlined=""
     >
     </mwc-button>
     <mwc-formfield
       class="remove-from-communication"
-      label="[cleanup.unreferencedDataTypes.alsoRemoveSubTypes]"
+      label="Also remove subtypes"
     >
       <mwc-checkbox
         checked=""
@@ -70,8 +70,6 @@ snapshots["Cleanup: DataTypes Container without a doc loaded looks like the late
     </mwc-formfield>
   </footer>
 </section>
-<wizard-dialog>
-</wizard-dialog>
 `;
 /* end snapshot Cleanup: DataTypes Container without a doc loaded looks like the latest snapshot */
 
@@ -79,12 +77,12 @@ snapshots["Cleanup: DataTypes Container With a test file loaded looks like the l
 `<section tabindex="1">
   <div>
     <h1>
-      [cleanup.unreferencedDataTypes.title]
+      Unreferenced Data Types
           (9)
       <abbr slot="action">
         <mwc-icon-button
           icon="info"
-          title="[cleanup.unreferencedDataTypes.tooltip]"
+          title="Data Types which are not referenced in a Logical Node or other used Data Type"
         >
         </mwc-icon-button>
       </abbr>
@@ -359,13 +357,13 @@ snapshots["Cleanup: DataTypes Container With a test file loaded looks like the l
       class="delete-button"
       disabled=""
       icon="delete"
-      label="[cleanup.unreferencedDataTypes.deleteButton] (0)"
+      label="Remove Selected Data Types (0)"
       outlined=""
     >
     </mwc-button>
     <mwc-formfield
       class="remove-from-communication"
-      label="[cleanup.unreferencedDataTypes.alsoRemoveSubTypes]"
+      label="Also remove subtypes"
     >
       <mwc-checkbox
         checked=""
@@ -375,8 +373,6 @@ snapshots["Cleanup: DataTypes Container With a test file loaded looks like the l
     </mwc-formfield>
   </footer>
 </section>
-<wizard-dialog>
-</wizard-dialog>
 `;
 /* end snapshot Cleanup: DataTypes Container With a test file loaded looks like the latest snapshot */
 

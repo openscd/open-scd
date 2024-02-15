@@ -69,7 +69,7 @@ describe('BDA wizarding editing integration', () => {
           parent.wizardUI.dialog!.querySelectorAll<ListItemBase>(
             'mwc-menu > mwc-list-item'
           )
-        ).find(item => item.innerHTML.includes('[remove]'))
+        ).find(item => item.innerHTML.includes('Remove'))
       );
     });
 

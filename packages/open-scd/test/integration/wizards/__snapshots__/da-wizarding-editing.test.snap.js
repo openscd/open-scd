@@ -4,7 +4,7 @@ export const snapshots = {};
 snapshots["DA wizarding editing integration defines a editDaWizard to edit an existing DA looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="next"
-  heading="[da.wizard.title.edit]"
+  heading="Edit DA"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 48px)"
 >
@@ -24,7 +24,7 @@ snapshots["DA wizarding editing integration defines a editDaWizard to edit an ex
         tabindex="0"
       >
         <span>
-          [remove]
+          Remove
         </span>
         <mwc-icon slot="graphic">
           delete
@@ -35,7 +35,7 @@ snapshots["DA wizarding editing integration defines a editDaWizard to edit an ex
   <div id="wizard-content">
     <wizard-textfield
       dialoginitialfocus=""
-      helper="[scl.name]"
+      helper="Name"
       label="name"
       maxlength="60"
       pattern="((T)|(Test)|(Check)|(SIUnit)|(Oper)|(SBO)|(SBOw)|(Cancel)|[a-z][0-9A-Za-z]*)"
@@ -45,7 +45,7 @@ snapshots["DA wizarding editing integration defines a editDaWizard to edit an ex
     </wizard-textfield>
     <wizard-textfield
       disabled=""
-      helper="[scl.desc]"
+      helper="Description"
       label="desc"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�])*"
@@ -53,7 +53,7 @@ snapshots["DA wizarding editing integration defines a editDaWizard to edit an ex
     </wizard-textfield>
     <wizard-select
       fixedmenuposition=""
-      helper="[scl.bType]"
+      helper="Basic type"
       label="bType"
       required=""
     >
@@ -405,7 +405,7 @@ snapshots["DA wizarding editing integration defines a editDaWizard to edit an ex
     </wizard-select>
     <wizard-select
       fixedmenuposition=""
-      helper="[scl.type]"
+      helper="Type"
       label="type"
     >
       <mwc-list-item
@@ -558,7 +558,7 @@ snapshots["DA wizarding editing integration defines a editDaWizard to edit an ex
     </wizard-select>
     <wizard-textfield
       disabled=""
-      helper="[scl.sAddr]"
+      helper="Short address"
       label="sAddr"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�])*"
@@ -567,7 +567,7 @@ snapshots["DA wizarding editing integration defines a editDaWizard to edit an ex
     <wizard-select
       disabled=""
       fixedmenuposition=""
-      helper="[scl.valKind]"
+      helper="Value kind"
       label="valKind"
       nullable=""
       required=""
@@ -610,7 +610,7 @@ snapshots["DA wizarding editing integration defines a editDaWizard to edit an ex
       </mwc-list-item>
     </wizard-select>
     <wizard-checkbox
-      helper="[scl.valImport]"
+      helper="Import value"
       label="valImport"
       nullable=""
       required=""
@@ -618,7 +618,7 @@ snapshots["DA wizarding editing integration defines a editDaWizard to edit an ex
     </wizard-checkbox>
     <wizard-select
       disabled=""
-      helper="[scl.Val]"
+      helper="Default value"
       label="Val"
       nullable=""
     >
@@ -675,7 +675,7 @@ snapshots["DA wizarding editing integration defines a editDaWizard to edit an ex
     </wizard-select>
     <wizard-textfield
       disabled=""
-      helper="[scl.Val]"
+      helper="Default value"
       label="Val"
       nullable=""
       style="display: none;"
@@ -683,7 +683,7 @@ snapshots["DA wizarding editing integration defines a editDaWizard to edit an ex
     </wizard-textfield>
     <wizard-select
       fixedmenuposition=""
-      helper="[scl.fc]"
+      helper="Function constraint"
       label="fc"
       required=""
     >
@@ -809,19 +809,19 @@ snapshots["DA wizarding editing integration defines a editDaWizard to edit an ex
       </mwc-list-item>
     </wizard-select>
     <wizard-checkbox
-      helper="[scl.dchg]"
+      helper="Trigger on data change"
       label="dchg"
       nullable=""
     >
     </wizard-checkbox>
     <wizard-checkbox
-      helper="[scl.qchg]"
+      helper="Trigger on quality change"
       label="qchg"
       nullable=""
     >
     </wizard-checkbox>
     <wizard-checkbox
-      helper="[scl.dupd]"
+      helper="Trigger on data update"
       label="dupd"
       nullable=""
     >
@@ -829,14 +829,14 @@ snapshots["DA wizarding editing integration defines a editDaWizard to edit an ex
   </div>
   <mwc-button
     dialogaction="close"
-    label="[close]"
+    label="Close"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
   </mwc-button>
   <mwc-button
     icon=""
-    label="[save]"
+    label="Save"
     slot="primaryAction"
     trailingicon=""
   >
@@ -848,14 +848,14 @@ snapshots["DA wizarding editing integration defines a editDaWizard to edit an ex
 snapshots["DA wizarding editing integration defines a createDaWizard to create a new DA element looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="next"
-  heading="[da.wizard.title.edit]"
+  heading="Edit DA"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <wizard-textfield
       dialoginitialfocus=""
-      helper="[scl.name]"
+      helper="Name"
       label="name"
       maxlength="60"
       pattern="((T)|(Test)|(Check)|(SIUnit)|(Oper)|(SBO)|(SBOw)|(Cancel)|[a-z][0-9A-Za-z]*)"
@@ -865,7 +865,7 @@ snapshots["DA wizarding editing integration defines a createDaWizard to create a
     </wizard-textfield>
     <wizard-textfield
       disabled=""
-      helper="[scl.desc]"
+      helper="Description"
       label="desc"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�])*"
@@ -873,7 +873,7 @@ snapshots["DA wizarding editing integration defines a createDaWizard to create a
     </wizard-textfield>
     <wizard-select
       fixedmenuposition=""
-      helper="[scl.bType]"
+      helper="Basic type"
       label="bType"
       required=""
     >
@@ -1222,7 +1222,7 @@ snapshots["DA wizarding editing integration defines a createDaWizard to create a
     </wizard-select>
     <wizard-select
       fixedmenuposition=""
-      helper="[scl.type]"
+      helper="Type"
       label="type"
     >
       <mwc-list-item
@@ -1358,7 +1358,7 @@ snapshots["DA wizarding editing integration defines a createDaWizard to create a
     </wizard-select>
     <wizard-textfield
       disabled=""
-      helper="[scl.sAddr]"
+      helper="Short address"
       label="sAddr"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�])*"
@@ -1367,7 +1367,7 @@ snapshots["DA wizarding editing integration defines a createDaWizard to create a
     <wizard-select
       disabled=""
       fixedmenuposition=""
-      helper="[scl.valKind]"
+      helper="Value kind"
       label="valKind"
       nullable=""
       required=""
@@ -1410,7 +1410,7 @@ snapshots["DA wizarding editing integration defines a createDaWizard to create a
       </mwc-list-item>
     </wizard-select>
     <wizard-checkbox
-      helper="[scl.valImport]"
+      helper="Import value"
       label="valImport"
       nullable=""
       required=""
@@ -1418,21 +1418,21 @@ snapshots["DA wizarding editing integration defines a createDaWizard to create a
     </wizard-checkbox>
     <wizard-select
       disabled=""
-      helper="[scl.Val]"
+      helper="Default value"
       label="Val"
       nullable=""
     >
     </wizard-select>
     <wizard-textfield
       disabled=""
-      helper="[scl.Val]"
+      helper="Default value"
       label="Val"
       nullable=""
     >
     </wizard-textfield>
     <wizard-select
       fixedmenuposition=""
-      helper="[scl.fc]"
+      helper="Function constraint"
       label="fc"
       required=""
     >
@@ -1555,19 +1555,19 @@ snapshots["DA wizarding editing integration defines a createDaWizard to create a
       </mwc-list-item>
     </wizard-select>
     <wizard-checkbox
-      helper="[scl.dchg]"
+      helper="Trigger on data change"
       label="dchg"
       nullable=""
     >
     </wizard-checkbox>
     <wizard-checkbox
-      helper="[scl.qchg]"
+      helper="Trigger on quality change"
       label="qchg"
       nullable=""
     >
     </wizard-checkbox>
     <wizard-checkbox
-      helper="[scl.dupd]"
+      helper="Trigger on data update"
       label="dupd"
       nullable=""
     >
@@ -1575,14 +1575,14 @@ snapshots["DA wizarding editing integration defines a createDaWizard to create a
   </div>
   <mwc-button
     dialogaction="close"
-    label="[close]"
+    label="Close"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
   </mwc-button>
   <mwc-button
     icon=""
-    label="[save]"
+    label="Save"
     slot="primaryAction"
     trailingicon=""
   >

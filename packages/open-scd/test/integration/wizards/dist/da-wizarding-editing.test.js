@@ -41,7 +41,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 var testing_1 = require("@open-wc/testing");
-require("../../mock-open-sc.js");
+require("../../mock-open-scd.js");
 var Templates_js_1 = require("../../../src/editors/Templates.js");
 describe('DA wizarding editing integration', function () {
     if (customElements.get('templates-editor') === undefined)
@@ -54,17 +54,16 @@ describe('DA wizarding editing integration', function () {
         var _a;
         return __generator(this, function (_b) {
             switch (_b.label) {
-                case 0: return [4 /*yield*/, testing_1.fixture(testing_1.html(templateObject_1 || (templateObject_1 = __makeTemplateObject(["<mock-open-scd><templates-editor></templates-editor></mock-open-scd>"], ["<mock-open-scd><templates-editor></templates-editor></mock-open-scd>"]))))];
+                case 0: return [4 /*yield*/, fetch('/test/testfiles/templates/dotypes.scd')
+                        .then(function (response) { return response.text(); })
+                        .then(function (str) { return new DOMParser().parseFromString(str, 'application/xml'); })];
                 case 1:
+                    doc = _b.sent();
+                    return [4 /*yield*/, testing_1.fixture(testing_1.html(templateObject_1 || (templateObject_1 = __makeTemplateObject(["<mock-open-scd\n        ><templates-editor .doc=", "></templates-editor\n      ></mock-open-scd>"], ["<mock-open-scd\n        ><templates-editor .doc=", "></templates-editor\n      ></mock-open-scd>"])), doc))];
+                case 2:
                     parent = _b.sent();
                     templates = parent.getActivePlugin();
-                    return [4 /*yield*/, fetch('/test/testfiles/templates/dotypes.scd')
-                            .then(function (response) { return response.text(); })
-                            .then(function (str) { return new DOMParser().parseFromString(str, 'application/xml'); })];
-                case 2:
-                    doc = _b.sent();
-                    templates.doc = doc;
-                    return [4 /*yield*/, templates.updateComplete];
+                    return [4 /*yield*/, parent.updateComplete];
                 case 3:
                     _b.sent();
                     dOTypeList = ((_a = templates.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelector('filtered-list[id="dotypelist"]'));
@@ -97,7 +96,7 @@ describe('DA wizarding editing integration', function () {
                         _e.sent(); // await animation
                         nameField = ((_c = parent.wizardUI.dialog) === null || _c === void 0 ? void 0 : _c.querySelector('wizard-textfield[label="name"]'));
                         primayAction = ((_d = parent.wizardUI.dialog) === null || _d === void 0 ? void 0 : _d.querySelector('mwc-button[slot="primaryAction"]'));
-                        deleteButton = (Array.from(parent.wizardUI.dialog.querySelectorAll('mwc-menu > mwc-list-item')).find(function (item) { return item.innerHTML.includes('[remove]'); }));
+                        deleteButton = (Array.from(parent.wizardUI.dialog.querySelectorAll('mwc-menu > mwc-list-item')).find(function (item) { return item.innerHTML.includes('Remove'); }));
                         return [2 /*return*/];
                 }
             });
@@ -184,7 +183,7 @@ describe('DA wizarding editing integration', function () {
                         return [4 /*yield*/, new Promise(function (resolve) { return setTimeout(resolve, 100); })];
                     case 2:
                         _j.sent(); // await animation
-                        (Array.from(parent.wizardUI.dialog.querySelectorAll('mwc-menu > mwc-list-item')).find(function (item) { return item.innerHTML.includes('[scl.DA]'); })).click();
+                        (Array.from(parent.wizardUI.dialog.querySelectorAll('mwc-menu > mwc-list-item')).find(function (item) { return item.innerHTML.includes('Data attribute'); })).click();
                         return [4 /*yield*/, parent.requestUpdate()];
                     case 3:
                         _j.sent();
