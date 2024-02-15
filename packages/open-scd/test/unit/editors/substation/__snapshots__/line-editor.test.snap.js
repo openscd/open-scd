@@ -6,6 +6,11 @@ snapshots["web component rendering Line element rendering LNode and Function chi
   label="Berlin "
   tabindex="0"
 >
+  <mwc-icon
+    slot="icon"
+    style="width:24px;height:24px"
+  >
+  </mwc-icon>
   <abbr
     slot="action"
     title="[edit]"
@@ -94,6 +99,11 @@ snapshots["web component rendering Line element rendering ConductingEquipment lo
   label="Berlin "
   tabindex="0"
 >
+  <mwc-icon
+    slot="icon"
+    style="width:24px;height:24px"
+  >
+  </mwc-icon>
   <abbr
     slot="action"
     title="[edit]"
@@ -182,6 +192,11 @@ snapshots["web component rendering Line element rendering GeneralEquipment looks
   label="Munich "
   tabindex="0"
 >
+  <mwc-icon
+    slot="icon"
+    style="width:24px;height:24px"
+  >
+  </mwc-icon>
   <abbr
     slot="action"
     title="[edit]"
