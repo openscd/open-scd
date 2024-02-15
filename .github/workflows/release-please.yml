@@ -18,7 +18,6 @@ jobs:
         id: release
         with:
           release-type: node
-          package-name: release-please-action
           command: manifest
           token: ${{ secrets.GITHUB_TOKEN }}
       # The logic below handles the npm publication:
