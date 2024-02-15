@@ -1,15 +1,19 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
-import '../../mock-wizard.js';
-import { MockWizard } from '../../mock-wizard.js';
+import '../../../src/addons/Wizards.js';
+import { Wizards } from '../../../src/addons/Wizards.js';
 
-import { isReplace, Replace, WizardInputElement } from '../../../src/foundation.js';
+import {
+  isReplace,
+  Replace,
+  WizardInputElement,
+} from '../../../src/foundation.js';
 import { WizardSelect } from '../../../src/wizard-select.js';
 import { editTrgOpsWizard } from '../../../src/wizards/trgops.js';
 
 describe('Wizards for SCL TrgOps element', () => {
-  let element: MockWizard;
+  let element: Wizards;
   let trgOps: Element;
   let inputs: WizardInputElement[];
 
@@ -18,7 +22,9 @@ describe('Wizards for SCL TrgOps element', () => {
   let actionEvent: SinonSpy;
 
   beforeEach(async () => {
-    element = await fixture(html`<mock-wizard></mock-wizard>`);
+    element = await fixture(
+      html`<oscd-wizards .host=${document}></oscd-wizards>`
+    );
     trgOps = <Element>(
       new DOMParser().parseFromString(
         `<TrgOps dchg="true" gi="false"></TrgOps>`,

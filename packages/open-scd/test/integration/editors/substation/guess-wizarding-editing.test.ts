@@ -1,14 +1,15 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../../mock-wizard.js';
-import { MockWizard } from '../../../mock-wizard.js';
+import '../../../../src/addons/Wizards.js';
+import { Wizards } from '../../../../src/addons/Wizards.js';
+
 import '../../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../../mock-wizard-editor.js';
 
 import { guessVoltageLevel } from '../../../../src/editors/substation/guess-wizard.js';
 
 describe('guess-wizard-integration', () => {
-  let element: MockWizard;
+  let element: Wizards;
   let validSCL: XMLDocument;
   beforeEach(async () => {
     validSCL = await fetch('/test/testfiles/valid2007B4.scd')
@@ -17,7 +18,9 @@ describe('guess-wizard-integration', () => {
 
     const substation = validSCL.querySelector('Substation')!;
     substation.innerHTML = '';
-    element = <MockWizard>await fixture(html`<mock-wizard></mock-wizard>`);
+    element = await fixture(
+      html`<oscd-wizards .host=${document}></oscd-wizards>`
+    );
 
     const wizard = guessVoltageLevel(validSCL, substation);
     element.workflow.push(() => wizard);

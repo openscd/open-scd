@@ -29,10 +29,10 @@ import {
 import { Editing } from './Editing.js';
 import { Historing } from './Historing.js';
 import { Plugging, Plugin, pluginIcons } from './Plugging.js';
-import { Wizarding } from './Wizarding.js';
 
 import './addons/Settings.js';
 import './addons/Waiter.js';
+import './addons/Wizards.js';
 
 import { ActionDetail, List } from '@material/mwc-list';
 import { Drawer } from '@material/mwc-drawer';
@@ -62,9 +62,7 @@ interface MenuPlugin {
 /** The `<open-scd>` custom element is the main entry point of the
  * Open Substation Configuration Designer. */
 @customElement('open-scd')
-export class OpenSCD extends Wizarding(
-  Plugging(Editing(Historing(LitElement)))
-) {
+export class OpenSCD extends Plugging(Editing(Historing(LitElement))) {
   private currentSrc = '';
   /** The current file's URL. `blob:` URLs are *revoked after parsing*! */
   @property({ type: String })
@@ -158,7 +156,9 @@ export class OpenSCD extends Wizarding(
 
   render(): TemplateResult {
     return html`<oscd-waiter>
-      <oscd-settings .host=${this}> ${this.renderMain()} </oscd-settings>
+      <oscd-settings .host=${this}>
+        <oscd-wizards .host=${this}> ${this.renderMain()}</oscd-wizards>
+      </oscd-settings>
     </oscd-waiter>`;
   }
 
