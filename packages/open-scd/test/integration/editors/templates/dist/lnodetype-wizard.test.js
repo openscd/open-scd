@@ -406,7 +406,7 @@ describe('LNodeType wizards', function () {
                             return [4 /*yield*/, parent.updateComplete];
                         case 2:
                             _d.sent();
-                            return [4 /*yield*/, new Promise(function (resolve) { return setTimeout(resolve, 100); })];
+                            return [4 /*yield*/, new Promise(function (resolve) { return setTimeout(resolve, 400); })];
                         case 3:
                             _d.sent(); // await animation
                             saveButton = parent.wizardUI.shadowRoot.querySelector('mwc-button[slot="primaryAction"]');

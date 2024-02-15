@@ -343,7 +343,7 @@ describe('LNodeType wizards', () => {
           )
         )).click();
         await parent.updateComplete;
-        await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+        await new Promise(resolve => setTimeout(resolve, 400)); // await animation
 
         saveButton = parent.wizardUI.shadowRoot!.querySelector<HTMLElement>(
           'mwc-button[slot="primaryAction"]'
