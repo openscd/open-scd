@@ -360,7 +360,6 @@ export class OpenSCD extends Wizarding(
     if (middleMenu.length > 0) middleMenu.push('divider');
     if (bottomMenu.length > 0) bottomMenu.push('divider');
 
-    console.log('menu');
     return [
       'divider',
       ...topMenu,
