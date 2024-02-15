@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../../mock-wizard-editor.js';
-import { MockWizardEditor } from '../../../mock-wizard-editor.js';
+import '../../../mock-open-scd.js';
+import { MockOpenSCD } from '../../../mock-open-scd.js';
 
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
 
@@ -11,7 +11,7 @@ import { SinonSpy, spy } from 'sinon';
 import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 
 describe('fcda-binding-list', () => {
-  let parent: MockWizardEditor;
+  let parent: MockOpenSCD;
   let element: FcdaBindingList;
   let doc: XMLDocument;
 
@@ -26,13 +26,13 @@ describe('fcda-binding-list', () => {
   describe('without a doc loaded', () => {
     beforeEach(async () => {
       parent = await fixture(html`
-        <mock-wizard-editor>
+        <mock-open-scd>
           <fcda-binding-list></fcda-binding-list>
-        </mock-wizard-editor>
+        </mock-open-scd>
       `);
 
-      element = <FcdaBindingList>parent.querySelector('fcda-binding-list')!;
-      await element.requestUpdate();
+      element = parent.getActivePlugin();
+      await parent.requestUpdate();
     });
 
     it('no event is fired, because no property are changed', () => {
@@ -53,17 +53,17 @@ describe('fcda-binding-list', () => {
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = await fixture(html`
-        <mock-wizard-editor>
+        <mock-open-scd>
           <fcda-binding-list
             .doc=${doc}
             controlTag="SampledValueControl"
             .includeLaterBinding="${true}"
           ></fcda-binding-list>
-        </mock-wizard-editor>
+        </mock-open-scd>
       `);
 
-      element = <FcdaBindingList>parent.querySelector('fcda-binding-list')!;
-      await element.requestUpdate();
+      element = parent.getActivePlugin();
+      await parent.requestUpdate();
     });
 
     it('the SVC editor is opened', async () => {
@@ -203,17 +203,17 @@ describe('fcda-binding-list', () => {
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = await fixture(html`
-        <mock-wizard-editor>
+        <mock-open-scd>
           <fcda-binding-list
             .doc=${doc}
             controlTag="GSEControl"
             .includeLaterBinding="${true}"
           ></fcda-binding-list>
-        </mock-wizard-editor>
+        </mock-open-scd>
       `);
 
-      element = <FcdaBindingList>parent.querySelector('fcda-binding-list')!;
-      await element.requestUpdate();
+      element = parent.getActivePlugin();
+      await parent.requestUpdate();
     });
 
     it('the GOOSE editor is opened', async () => {

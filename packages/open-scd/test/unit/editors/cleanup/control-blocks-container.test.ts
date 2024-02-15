@@ -1,23 +1,16 @@
 'use strict';
 import { html, fixture, expect } from '@open-wc/testing';
 
-import { Editing } from '../../../../src/Editing.js';
-import { Wizarding } from '../../../../src/Wizarding.js';
-
 import { CleanupControlBlocks } from '../../../../src/editors/cleanup/control-blocks-container.js';
 
 import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 
 describe('Cleanup: Control Blocks Container', () => {
-  customElements.define(
-    'cleanup-plugin-controlblocks',
-    Wizarding(Editing(CleanupControlBlocks))
-  );
   let element: CleanupControlBlocks;
 
   beforeEach(async () => {
     element = await fixture(
-      html`<cleanup-plugin-controlblocks></cleanup-plugin-controlblocks>`
+      html`<cleanup-control-blocks></cleanup-control-blocks>`
     );
   });
 
@@ -34,9 +27,7 @@ describe('Cleanup: Control Blocks Container', () => {
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       element = await fixture(
-        html`<cleanup-plugin-controlblocks
-          .doc="${doc}"
-        ></cleanup-plugin-controlblocks>`
+        html`<cleanup-control-blocks .doc="${doc}"></cleanup-control-blocks>`
       );
       await element.updateComplete;
     });

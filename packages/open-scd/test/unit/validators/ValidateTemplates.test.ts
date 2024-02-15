@@ -1,8 +1,8 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
-import '../../mock-editor-logger.js';
-import { MockEditorLogger } from '../../mock-editor-logger.js';
+import '../../mock-open-scd.js';
+import { MockOpenSCD } from '../../mock-open-scd.js';
 
 import ValidateTemplates from '../../../src/validators/ValidateTemplates.js';
 
@@ -29,16 +29,16 @@ describe('ValidateTemplates', () => {
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-      const parent = await fixture(html`
-        <mock-editor-logger
+      const parent: MockOpenSCD = await fixture(html`
+        <mock-open-scd
           ><validate-templates
             .doc=${doc}
             .pluginId="${'/src/validators/ValidateTemplates.js'}"
           ></validate-templates
-        ></mock-editor-logger>
+        ></mock-open-scd>
       `);
 
-      element = parent.querySelector<ValidateTemplates>('validate-templates')!;
+      element = parent.getActivePlugin();
     });
 
     it('triggers as newIssuesEvent for detail not containing kind', () => {
@@ -106,13 +106,13 @@ describe('ValidateTemplates', () => {
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-      const parent: MockEditorLogger = await fixture(html`
-        <mock-editor-logger
+      const parent: MockOpenSCD = await fixture(html`
+        <mock-open-scd
           ><validate-templates .doc=${doc}></validate-templates
-        ></mock-editor-logger>
+        ></mock-open-scd>
       `);
 
-      element = <ValidateTemplates>parent.querySelector('validate-templates')!;
+      element = parent.getActivePlugin();
     });
 
     it('pushes only diag.zeroissues issue to diagnostics when no issues found', async () => {

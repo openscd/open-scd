@@ -1,7 +1,7 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../../mock-wizard-editor.js';
-import { MockWizardEditor } from '../../mock-wizard-editor.js';
+import '../../mock-open-sc.js';
+import { MockOpenSCD } from '../../mock-open-scd.js';
 
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
@@ -16,18 +16,16 @@ describe('DA wizarding editing integration', () => {
   if (customElements.get('templates-editor') === undefined)
     customElements.define('templates-editor', TemplatesPlugin);
   let doc: Document;
-  let parent: MockWizardEditor;
+  let parent: MockOpenSCD;
   let templates: TemplatesPlugin;
   let dOTypeList: FilteredList;
 
   beforeEach(async () => {
     parent = await fixture(
-      html`<mock-wizard-editor
-        ><templates-editor></templates-editor
-      ></mock-wizard-editor>`
+      html`<mock-open-scd><templates-editor></templates-editor></mock-open-scd>`
     );
 
-    templates = <TemplatesPlugin>parent.querySelector('templates-editor')!;
+    templates = parent.getActivePlugin();
 
     doc = await fetch('/test/testfiles/templates/dotypes.scd')
       .then(response => response.text())

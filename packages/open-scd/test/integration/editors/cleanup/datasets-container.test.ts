@@ -1,26 +1,28 @@
 'use strict';
 import { html, fixture, expect } from '@open-wc/testing';
 
-import { Editing } from '../../../../src/Editing.js';
-import { Wizarding } from '../../../../src/Wizarding.js';
+import '../../../mock-open-scd.js';
 
 import { CleanupDatasets } from '../../../../src/editors/cleanup/datasets-container.js';
 import { cleanSCLItems } from '../../../../src/editors/cleanup/foundation.js';
 
+import { MockOpenSCD } from '../../../mock-open-scd.js';
+
 describe('cleanup-editor integration: dataset removal', () => {
-  customElements.define(
-    'cleanup-plugin-datasets',
-    Wizarding(Editing(CleanupDatasets))
-  );
+  customElements.define('cleanup-plugin-datasets', CleanupDatasets);
   let element: CleanupDatasets;
+  let parent: MockOpenSCD;
 
   describe('without a doc loaded', () => {
     beforeEach(async () => {
       const doc = null;
-      element = await fixture(
-        html`<cleanup-plugin-datasets .doc="${doc}"></cleanup-plugin-datasets>`
+      parent = await fixture(
+        html`<mock-open-scd
+          ><cleanup-plugin-datasets .doc="${doc}"></cleanup-plugin-datasets
+        ></mock-open-scd>`
       );
-      await element.updateComplete;
+      element = parent.getActivePlugin();
+      await parent.updateComplete;
     });
 
     it('looks like the latest snapshot', async () => {
@@ -34,10 +36,13 @@ describe('cleanup-editor integration: dataset removal', () => {
       doc = await fetch('/test/testfiles/cleanup.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      element = await fixture(
-        html`<cleanup-plugin-datasets .doc="${doc}"></cleanup-plugin-datasets>`
+      parent = await fixture(
+        html`<mock-open-scd
+          ><cleanup-plugin-datasets .doc="${doc}"></cleanup-plugin-datasets
+        ></mock-open-scd>`
       );
-      await element.updateComplete;
+      element = parent.getActivePlugin();
+      await parent.updateComplete;
     });
 
     it('looks like the latest snapshot', async () => {

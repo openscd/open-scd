@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../mock-wizard-editor.js';
-import { MockWizardEditor } from '../../mock-wizard-editor.js';
+import '../../mock-open-scd.js';
+import { MockOpenSCD } from '../../mock-open-scd.js';
 
 import UpdateDescriptionAbb from '../../../src/menu/UpdateDescriptionABB.js';
 
@@ -9,7 +9,7 @@ describe('Update method for desc attributes in ABB IEDs', () => {
   if (customElements.get('update-description-abb') === undefined)
     customElements.define('update-description-abb', UpdateDescriptionAbb);
 
-  let parent: MockWizardEditor;
+  let parent: MockOpenSCD;
   let element: UpdateDescriptionAbb;
   let doc: XMLDocument;
 
@@ -19,14 +19,12 @@ describe('Update method for desc attributes in ABB IEDs', () => {
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
     parent = await fixture(html`
-      <mock-wizard-editor
+      <mock-open-scd
         ><update-description-abb></update-description-abb
-      ></mock-wizard-editor>
+      ></mock-open-scd>
     `);
 
-    element = <UpdateDescriptionAbb>(
-      parent.querySelector('update-description-abb')!
-    );
+    element = parent.getActivePlugin();
 
     element.doc = doc;
     element.run();

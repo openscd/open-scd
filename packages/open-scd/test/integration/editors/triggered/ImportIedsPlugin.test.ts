@@ -3,45 +3,40 @@ import { LitElement, TemplateResult } from 'lit-element';
 
 import { CheckListItem } from '@material/mwc-list/mwc-check-list-item';
 
-import '../../../mock-editor-logger.js';
-import { MockEditorLogger } from '../../../mock-editor-logger.js';
+import '../../../mock-open-scd.js';
+import { MockOpenSCD } from '../../../mock-open-scd.js';
 
 import ImportingIedPlugin from '../../../../src/menu/ImportIEDs.js';
 import { Editing } from '../../../../src/Editing.js';
 
-class MockImportIed extends Editing(LitElement) {
-  render(): TemplateResult {
-    return html`<import-ied-plugin .doc=${this.doc!}></import-ied-plugin>`;
-  }
-}
-
 describe('ImportIedsPlugin', () => {
   customElements.define('import-ied-plugin', ImportingIedPlugin);
-  customElements.define('mock-import-ied', MockImportIed);
 
   describe('imports valid ied elements to empty projects', () => {
     let doc: XMLDocument;
     let importDoc: XMLDocument;
 
-    let parent: MockImportIed;
+    let parent: MockOpenSCD;
     let element: ImportingIedPlugin;
 
     beforeEach(async () => {
-      parent = (await fixture(
-        html`<mock-import-ied></mock-import-ied>`
-      )) as MockImportIed;
-
-      element = parent.shadowRoot!.querySelector('import-ied-plugin')!;
-
       doc = await fetch('/test/testfiles/importieds/emptyproject.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      parent.doc = doc;
 
       importDoc = await fetch('/test/testfiles/importieds/valid.iid')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      await element.updateComplete;
+
+      parent = await fixture(
+        html`<mock-open-scd
+          ><import-ied-plugin .doc=${doc}></import-ied-plugin
+        ></mock-open-scd>`
+      );
+
+      element = parent.getActivePlugin();
+
+      await parent.updateComplete;
     });
 
     it('loads ied element to the project', async () => {
@@ -161,18 +156,21 @@ describe('ImportIedsPlugin', () => {
     let doc: XMLDocument;
     let importDoc: XMLDocument;
 
-    let parent: MockImportIed;
+    let parent: MockOpenSCD;
     let element: ImportingIedPlugin;
 
     beforeEach(async () => {
-      parent = await fixture(html`<mock-import-ied></mock-import-ied>`);
-
-      element = parent.shadowRoot!.querySelector('import-ied-plugin')!;
-
       doc = await fetch('/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      parent.doc = doc;
+
+      parent = await fixture(
+        html`<mock-open-scd
+          ><import-ied-plugin .doc=${doc}></import-ied-plugin
+        ></mock-open-scd>`
+      );
+
+      element = parent.getActivePlugin();
       await parent.updateComplete;
 
       importDoc = await fetch('/test/testfiles/importieds/valid.iid')
@@ -388,23 +386,20 @@ describe('ImportIedsPlugin', () => {
     let doc: XMLDocument;
     let importDoc: XMLDocument;
 
-    let parent: MockEditorLogger;
+    let parent: MockOpenSCD;
     let element: ImportingIedPlugin;
 
     beforeEach(async () => {
-      parent = (await fixture(
-        html`<mock-editor-logger
-          ><import-ied-plugin></import-ied-plugin
-        ></mock-editor-logger>`
-      )) as MockEditorLogger;
-
-      element = parent.querySelector('import-ied-plugin')!;
-
       doc = await fetch('/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      element.doc = doc;
-      await element.updateComplete;
+
+      parent = await fixture(html`<mock-open-scd
+        ><import-ied-plugin .doc=${doc}></import-ied-plugin
+      ></mock-open-scd>`);
+
+      element = parent.getActivePlugin();
+      await parent.updateComplete;
     });
 
     it('throws missing ied elements error', async () => {

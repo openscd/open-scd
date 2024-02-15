@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../mock-editor-logger.js';
-import { MockEditorLogger } from '../../mock-editor-logger.js';
+import '../../mock-open-scd.js';
+import { MockOpenSCD } from '../../mock-open-scd.js';
 
 import ValidateSchema from '../../../src/validators/ValidateSchema.js';
 import { IssueDetail, LogEntry } from '../../../src/foundation.js';
@@ -10,7 +10,7 @@ describe('ValidateSchema plugin', () => {
   if (customElements.get('') === undefined)
     customElements.define('validate-schema', ValidateSchema);
 
-  let parent: MockEditorLogger;
+  let parent: MockOpenSCD;
   let element: ValidateSchema;
 
   let valid2007B4: XMLDocument;
@@ -18,14 +18,12 @@ describe('ValidateSchema plugin', () => {
 
   before(async () => {
     parent = await fixture(html`
-      <mock-editor-logger
-        ><validate-schema></validate-schema
-      ></mock-editor-logger>
+      <mock-open-scd><validate-schema></validate-schema></mock-open-scd>
     `);
 
-    element = <ValidateSchema>parent.querySelector('validate-schema')!;
+    element = parent.getActivePlugin();
     element.pluginId = '/src/validators/ValidateSchema.js';
-    await element.updateComplete;
+    await parent.updateComplete;
   });
 
   describe('for valid SCL files', () => {

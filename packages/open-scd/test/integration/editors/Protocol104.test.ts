@@ -1,17 +1,14 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../../mock-wizard.js';
+import '../../mock-open-scd.js';
 
 import Protocol104 from '../../../src/editors/Protocol104.js';
-import { Editing } from '../../../src/Editing.js';
-import { Wizarding } from '../../../src/Wizarding.js';
+import { MockOpenSCD } from '../../mock-open-scd.js';
 
 describe('Protocol 104 Plugin', () => {
-  customElements.define(
-    'protocol104-plugin',
-    Wizarding(Editing(Protocol104))
-  );
+  customElements.define('protocol104-plugin', Protocol104);
   let element: Protocol104;
+  let parent: MockOpenSCD;
   let doc: XMLDocument;
 
   beforeEach(async () => {
@@ -19,15 +16,18 @@ describe('Protocol 104 Plugin', () => {
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-    element = await fixture(
-      html`<protocol104-plugin .doc=${doc}></protocol104-plugin>`
+    parent = await fixture(
+      html`<mock-open-scd
+        ><protocol104-plugin .doc=${doc}></protocol104-plugin
+      ></mock-open-scd>`
     );
+    element = parent.getActivePlugin();
   });
 
   describe('in Values view', () => {
-      it('the plugin looks like the latest snapshot', async () => {
-        await expect(element).shadowDom.to.equalSnapshot();
-      });
+    it('the plugin looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
+    });
   });
 
   describe('in Network view', () => {

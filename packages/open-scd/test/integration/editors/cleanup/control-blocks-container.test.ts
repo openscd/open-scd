@@ -1,27 +1,26 @@
 'use strict';
 import { html, fixture, expect } from '@open-wc/testing';
 
-import { Editing } from '../../../../src/Editing.js';
-import { Wizarding } from '../../../../src/Wizarding.js';
+import '../../../mock-open-scd.js';
+import '../../../../src/editors/cleanup/control-blocks-container.js';
 
 import { CleanupControlBlocks } from '../../../../src/editors/cleanup/control-blocks-container.js';
 import { cleanSCLItems } from '../../../../src/editors/cleanup/foundation.js';
+import { MockOpenSCD } from '../../../mock-open-scd.js';
 
 describe('cleanup-editor integration: unreferenced control blocks', () => {
-  customElements.define(
-    'cleanup-plugin-controlblocks',
-    Wizarding(Editing(CleanupControlBlocks))
-  );
   let element: CleanupControlBlocks;
+  let parent: MockOpenSCD;
 
   describe('without a doc loaded', () => {
     beforeEach(async () => {
-      element = await fixture(
-        html`<cleanup-plugin-controlblocks
-          .doc="${null}"
-        ></cleanup-plugin-controlblocks>`
+      parent = await fixture(
+        html`<mock-open-scd
+          ><cleanup-control-blocks .doc="${null}"></cleanup-control-blocks
+        ></mock-open-scd>`
       );
-      await element.updateComplete;
+      element = parent.getActivePlugin();
+      await parent.updateComplete;
     });
 
     it('looks like the latest snapshot', async () => {
@@ -35,15 +34,18 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
       doc = await fetch('/test/testfiles/cleanup.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      element = await fixture(
-        html`<cleanup-plugin-controlblocks
-          .doc="${doc}"
-        ></cleanup-plugin-controlblocks>`
+      parent = await fixture(
+        html`<mock-open-scd
+          ><cleanup-control-blocks .doc="${doc}"></cleanup-control-blocks
+        ></mock-open-scd>`
       );
-      await element.updateComplete;
+      element = parent.getActivePlugin();
+      await parent.updateComplete;
+      console.log('foo');
     });
 
     it('correctly removes all LogControl entries from the SCL', async () => {
+      console.log('error here');
       await element.cleanupGSEControlFilter.click();
       await element.cleanupSampledValueControlFilter.click();
       // select all items and update list

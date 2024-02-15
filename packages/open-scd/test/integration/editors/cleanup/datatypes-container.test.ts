@@ -1,27 +1,26 @@
 'use strict';
 import { html, fixture, expect } from '@open-wc/testing';
 
-import { Editing } from '../../../../src/Editing.js';
-import { Wizarding } from '../../../../src/Wizarding.js';
+import '../../../mock-open-scd.js';
 
 import { CleanupDataTypes } from '../../../../src/editors/cleanup/datatypes-container.js';
 import { cleanSCLItems } from '../../../../src/editors/cleanup/foundation.js';
+import { MockOpenSCD } from '../../../mock-open-scd.js';
 
 describe('cleanup-editor integration: unreferenced control blocks', () => {
-  customElements.define(
-    'cleanup-plugin-data-types',
-    Wizarding(Editing(CleanupDataTypes))
-  );
+  customElements.define('cleanup-plugin-data-types', CleanupDataTypes);
   let element: CleanupDataTypes;
+  let parent: MockOpenSCD;
 
   describe('without a doc loaded', () => {
     beforeEach(async () => {
-      element = await fixture(
-        html`<cleanup-plugin-data-types
-          .doc="${null}"
-        ></cleanup-plugin-data-types>`
+      parent = await fixture(
+        html`<mock-open-scd
+          ><cleanup-plugin-data-types .doc="${null}"></cleanup-plugin-data-types
+        ></mock-open-scd>`
       );
-      await element.updateComplete;
+      element = parent.getActivePlugin();
+      await parent.updateComplete;
     });
 
     it('looks like the latest snapshot', async () => {
@@ -35,12 +34,13 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
       doc = await fetch('/test/testfiles/cleanup.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      element = await fixture(
-        html`<cleanup-plugin-data-types
-          .doc="${doc}"
-        ></cleanup-plugin-data-types>`
+      parent = await fixture(
+        html`<mock-open-scd
+          ><cleanup-plugin-data-types .doc="${doc}"></cleanup-plugin-data-types
+        ></mock-open-scd>`
       );
-      await element.updateComplete;
+      element = parent.getActivePlugin();
+      await parent.updateComplete;
     });
 
     it('correctly removes a LNodeType entry from the SCL', async () => {
@@ -125,12 +125,9 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
 
       expect(element.doc.querySelectorAll('EnumType')).to.have.lengthOf(11);
       expect(
-        element.doc.querySelectorAll(
-          'EnumType[id="NotUsedDir"]'
-        )
+        element.doc.querySelectorAll('EnumType[id="NotUsedDir"]')
       ).to.have.lengthOf(0);
     });
-
 
     describe('if the Remove subtypes checkbox is unchecked', () => {
       beforeEach(async () => {
@@ -159,7 +156,9 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
             'DOType[id="NotUsedDummy.SPS"], DOType[id="WYE_2_3"], DOType[id="Dummy.LLN0.Health.Unused]'
           )
         ).to.have.lengthOf(0);
-        expect(element.doc.querySelectorAll('DOType[id="CMV_1"]')).to.have.lengthOf(1);
+        expect(
+          element.doc.querySelectorAll('DOType[id="CMV_1"]')
+        ).to.have.lengthOf(1);
       });
 
       it('correctly removes DATypes and _not_ those referenced via a BDA from the SCL', async () => {
