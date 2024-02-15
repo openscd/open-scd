@@ -199,7 +199,7 @@ describe('LNodeType wizards', function () {
                         return [4 /*yield*/, parent.updateComplete];
                     case 1:
                         _c.sent();
-                        return [4 /*yield*/, new Promise(function (resolve) { return setTimeout(resolve, 200); })];
+                        return [4 /*yield*/, new Promise(function (resolve) { return setTimeout(resolve, 400); })];
                     case 2:
                         _c.sent(); // await animation
                         selector = parent.wizardUI.dialog.querySelector('mwc-select[label="lnClass"]');

@@ -144,7 +144,7 @@ describe('LNodeType wizards', () => {
       );
       button.click();
       await parent.updateComplete;
-      await new Promise(resolve => setTimeout(resolve, 200)); // await animation
+      await new Promise(resolve => setTimeout(resolve, 400)); // await animation
       selector = parent.wizardUI.dialog!.querySelector<Select>(
         'mwc-select[label="lnClass"]'
       )!;
