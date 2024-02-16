@@ -5,6 +5,7 @@ import { MockWizardEditor } from '../../mock-wizard-editor.js';
 
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import { editDataSetWizard } from '../../../src/wizards/dataset.js';
+import { newWizardEvent } from '../../../src/foundation.js';
 
 describe('dataset wizards', () => {
   let doc: XMLDocument;
@@ -25,7 +26,7 @@ describe('dataset wizards', () => {
       const wizard = editDataSetWizard(
         doc.querySelector('IED[name="IED2"] DataSet[name="GooseDataSet1"]')!
       );
-      element.workflow.push(() => wizard);
+      element.dispatchEvent(newWizardEvent(wizard));
       await element.requestUpdate();
       primaryAction = <HTMLElement>(
         element.wizardUI.dialog?.querySelector(

@@ -221,6 +221,8 @@ describe('subnetwork-editor wizarding editing integration', () => {
           'mwc-icon-button[icon="playlist_add"]'
         )
       )).click();
+      await parent.requestUpdate();
+
       await parent.updateComplete;
       await element?.updateComplete;
 
@@ -244,6 +246,8 @@ describe('subnetwork-editor wizarding editing integration', () => {
 
       newConnectedAPItem.click();
       primaryAction.click();
+      await parent.requestUpdate();
+
       await parent.updateComplete;
 
       expect(
@@ -276,6 +280,7 @@ describe('subnetwork-editor wizarding editing integration', () => {
           'mwc-icon-button[icon="playlist_add"]'
         )
       )).click();
+      await parent.requestUpdate();
       await parent.updateComplete;
       await element?.updateComplete;
 
@@ -299,6 +304,9 @@ describe('subnetwork-editor wizarding editing integration', () => {
 
       newConnectedAPItem.click();
       primaryAction.click();
+
+      await new Promise(resolve => setTimeout(resolve, 200)); // await animation
+      await parent.requestUpdate();
       await parent.updateComplete;
 
       const connectedAp = doc.querySelector(
@@ -360,6 +368,7 @@ describe('subnetwork-editor wizarding editing integration', () => {
         )
       );
       element = parent.querySelector('subnetwork-editor');
+      console.log(element);
       await parent.updateComplete;
       await element?.updateComplete;
 
@@ -368,6 +377,8 @@ describe('subnetwork-editor wizarding editing integration', () => {
           'mwc-icon-button[icon="playlist_add"]'
         )
       )).click();
+      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
       await parent.updateComplete;
       await element?.updateComplete;
 
@@ -391,6 +402,9 @@ describe('subnetwork-editor wizarding editing integration', () => {
 
       newConnectedAPItem.click();
       primaryAction.click();
+      await new Promise(resolve => setTimeout(resolve, 400)); // await animation
+
+      await parent.requestUpdate();
       await parent.updateComplete;
 
       const connectedAp = doc.querySelector(

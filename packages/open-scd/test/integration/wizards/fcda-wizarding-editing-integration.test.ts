@@ -5,6 +5,7 @@ import { MockWizardEditor } from '../../mock-wizard-editor.js';
 
 import { createFCDAsWizard } from '../../../src/wizards/fcda.js';
 import { FinderList } from '../../../src/finder-list.js';
+import { newWizardEvent } from '../../../src/foundation.js';
 
 describe('FCDA editing wizarding integration', () => {
   let doc: XMLDocument;
@@ -19,7 +20,7 @@ describe('FCDA editing wizarding integration', () => {
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
     const wizard = createFCDAsWizard(doc.querySelector('DataSet')!);
-    element.workflow.push(() => wizard!);
+    element.dispatchEvent(newWizardEvent(wizard));
     await element.requestUpdate();
 
     finder = element.wizardUI.dialog!.querySelector<FinderList>('finder-list')!;

@@ -44,6 +44,7 @@ var testing_1 = require("@open-wc/testing");
 require("../../../../src/addons/Wizards.js");
 require("../../../mock-wizard-editor.js");
 var guess_wizard_js_1 = require("../../../../src/editors/substation/guess-wizard.js");
+var foundation_js_1 = require("../../../../src/foundation.js");
 describe('guess-wizard-integration', function () {
     var element;
     var validSCL;
@@ -62,7 +63,7 @@ describe('guess-wizard-integration', function () {
                 case 2:
                     element = _a.sent();
                     wizard = guess_wizard_js_1.guessVoltageLevel(validSCL, substation);
-                    element.workflow.push(function () { return wizard; });
+                    element.dispatchEvent(foundation_js_1.newWizardEvent(function () { return wizard; }));
                     return [4 /*yield*/, element.requestUpdate()];
                 case 3:
                     _a.sent();
@@ -116,38 +117,57 @@ describe('guess-wizard-integration', function () {
     });
 });
 describe('guess-wizarding-editing-integration', function () {
-    var element;
+    var mockWizardEditor;
     var validSCL;
     beforeEach(function () { return __awaiter(void 0, void 0, void 0, function () {
         var substation, wizard;
-        var _a;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
+        var _a, _b, _c;
+        return __generator(this, function (_d) {
+            switch (_d.label) {
                 case 0: return [4 /*yield*/, fetch('/test/testfiles/valid2007B4.scd')
                         .then(function (response) { return response.text(); })
                         .then(function (str) { return new DOMParser().parseFromString(str, 'application/xml'); })];
                 case 1:
-                    validSCL = _b.sent();
+                    validSCL = _d.sent();
                     substation = validSCL.querySelector('Substation');
                     substation.innerHTML = '';
                     return [4 /*yield*/, testing_1.fixture(testing_1.html(templateObject_2 || (templateObject_2 = __makeTemplateObject(["<mock-wizard-editor></mock-wizard-editor>"], ["<mock-wizard-editor></mock-wizard-editor>"]))))];
                 case 2:
-                    element = (_b.sent());
+                    mockWizardEditor = (_d.sent());
                     wizard = guess_wizard_js_1.guessVoltageLevel(validSCL, substation);
-                    element.workflow.push(function () { return wizard; });
-                    return [4 /*yield*/, element.requestUpdate()];
+                    mockWizardEditor.dispatchEvent(foundation_js_1.newWizardEvent(wizard));
+                    return [4 /*yield*/, ((_a = mockWizardEditor.wizardUI.dialog) === null || _a === void 0 ? void 0 : _a.updateComplete)];
                 case 3:
-                    _b.sent();
-                    (element.wizardUI.dialog.querySelector('#ctlModelList > mwc-check-list-item:nth-child(5)')).click();
-                    //FIXME: hack as default selected attribute does not work in Karma.
-                    return [4 /*yield*/, element.requestUpdate()];
+                    _d.sent();
+                    return [4 /*yield*/, mockWizardEditor.requestUpdate()];
                 case 4:
-                    //FIXME: hack as default selected attribute does not work in Karma.
-                    _b.sent();
-                    ((_a = element.wizardUI.dialog) === null || _a === void 0 ? void 0 : _a.querySelector('mwc-button[slot="primaryAction"]')).click();
-                    return [4 /*yield*/, element.requestUpdate()];
+                    _d.sent();
+                    return [4 /*yield*/, mockWizardEditor.updateComplete];
                 case 5:
-                    _b.sent();
+                    _d.sent();
+                    return [4 /*yield*/, mockWizardEditor.wizardUI.requestUpdate()];
+                case 6:
+                    _d.sent();
+                    (mockWizardEditor.wizardUI.dialog.querySelector('#ctlModelList > mwc-check-list-item:nth-child(5)')).selected = true;
+                    return [4 /*yield*/, new Promise(function (resolve) { return setTimeout(resolve, 100); })];
+                case 7:
+                    _d.sent(); // await animation
+                    return [4 /*yield*/, mockWizardEditor.requestUpdate()];
+                case 8:
+                    _d.sent();
+                    return [4 /*yield*/, mockWizardEditor.updateComplete];
+                case 9:
+                    _d.sent();
+                    ((_b = mockWizardEditor.wizardUI.dialog) === null || _b === void 0 ? void 0 : _b.querySelector('mwc-button[slot="primaryAction"]')).click();
+                    return [4 /*yield*/, ((_c = mockWizardEditor.wizardUI.dialog) === null || _c === void 0 ? void 0 : _c.requestUpdate())];
+                case 10:
+                    _d.sent();
+                    return [4 /*yield*/, mockWizardEditor.requestUpdate()];
+                case 11:
+                    _d.sent();
+                    return [4 /*yield*/, mockWizardEditor.updateComplete];
+                case 12:
+                    _d.sent();
                     return [2 /*return*/];
             }
         });
@@ -160,10 +180,13 @@ describe('guess-wizarding-editing-integration', function () {
         testing_1.expect((_b = validSCL
             .querySelector(':root > Substation > VoltageLevel')) === null || _b === void 0 ? void 0 : _b.getAttribute('desc')).to.equal('guessed by OpenSCD');
     });
-    it('creates as many bays as ieds with lnType CSWI and ctlModel sbo-with-enhanced-security', function () {
-        testing_1.expect(validSCL.querySelectorAll(':root > Substation > VoltageLevel > Bay')
-            .length).to.equal(1);
-    });
+    it('creates as many bays as ieds with lnType CSWI and ctlModel sbo-with-enhanced-security', function () { return __awaiter(void 0, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            testing_1.expect(validSCL.querySelectorAll(':root > Substation > VoltageLevel > Bay')
+                .length).to.equal(1);
+            return [2 /*return*/];
+        });
+    }); });
     it('creates correct number of conducting equipments', function () {
         testing_1.expect(validSCL.querySelectorAll(':root > Substation > VoltageLevel > Bay > ConductingEquipment').length).to.equal(4);
     });

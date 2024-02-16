@@ -36,12 +36,16 @@ describe('selectExtRefWizard', () => {
   it('looks like the latest snapshot', async () => {
     commMappings.items[3].click();
     await parent.updateComplete;
+    await parent.wizardUI.updateComplete;
+
     await expect(parent.wizardUI.dialog).to.equalSnapshot();
   });
 
   it('shows all ExtRefs', async () => {
     commMappings.items[3].click();
     await parent.updateComplete;
+    await parent.wizardUI.updateComplete;
+
     expect(
       parent.wizardUI.dialog?.querySelectorAll('mwc-check-list-item').length
     ).to.equal(14);

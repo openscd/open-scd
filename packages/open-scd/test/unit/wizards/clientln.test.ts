@@ -26,6 +26,7 @@ describe('clientln wizards', () => {
       ></mock-wizard-editor>`
     );
 
+    await parent.updateComplete;
     element = <ZerolinePane>parent.querySelector('zeroline-pane')!;
     await element.updateComplete;
     element.showieds.click();
@@ -182,6 +183,7 @@ describe('clientln wizards', () => {
 
       commMappings.items[1].click();
       await parent.updateComplete;
+      await parent.wizardUI.updateComplete;
     });
 
     it('looks like the latest snapshot', async () => {

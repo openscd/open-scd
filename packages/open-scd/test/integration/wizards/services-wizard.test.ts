@@ -1,5 +1,5 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import { Wizard } from '../../../src/foundation.js';
+import { newWizardEvent, Wizard } from '../../../src/foundation.js';
 import { editServicesWizard } from '../../../src/wizards/services.js';
 
 import '../../mock-wizard-editor.js';
@@ -22,8 +22,9 @@ describe('Wizards for SCL element Services', () => {
         doc.querySelector('IED[name="WithServices"] Services')!
       );
 
-      element.workflow.push(() => wizard);
+      element.dispatchEvent(newWizardEvent(wizard));
       await element.requestUpdate();
+      await element.updateComplete;
     });
 
     describe(`IED [${ied}]: define a Services wizards`, () => {
@@ -51,7 +52,10 @@ describe('Wizards for SCL element Services', () => {
     describe('> when pro mode is enabled', () => {
       let elm: WizardDialog;
       beforeEach(async () => {
-        elm = element.shadowRoot!.querySelector<WizardDialog>('wizard-dialog')!;
+        elm =
+          element.wizards.shadowRoot!.querySelector<WizardDialog>(
+            'wizard-dialog'
+          )!;
         localStorage.setItem('mode', 'pro');
         elm.requestUpdate();
         await elm.updateComplete;
@@ -86,7 +90,7 @@ describe('Wizards for SCL element Services', () => {
             )!
           );
 
-          element.workflow.push(() => wizard);
+          element.dispatchEvent(newWizardEvent(() => wizard));
           await element.requestUpdate();
         });
 

@@ -4,6 +4,7 @@ import '../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../mock-wizard-editor.js';
 import { editGseWizard } from '../../../src/wizards/gse.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
+import { newWizardEvent } from '../../../src/foundation.js';
 
 describe('address wizarding editing integration', () => {
   let doc: XMLDocument;
@@ -26,7 +27,7 @@ describe('address wizarding editing integration', () => {
         doc.querySelector('GSE[ldInst="CircuitBreaker_CB1"][cbName="GCB"]')!
       );
 
-      element.workflow.push(() => wizard);
+      element.dispatchEvent(newWizardEvent(() => wizard));
       await element.requestUpdate();
       primaryAction = <HTMLElement>(
         element.wizardUI.dialog?.querySelector(
