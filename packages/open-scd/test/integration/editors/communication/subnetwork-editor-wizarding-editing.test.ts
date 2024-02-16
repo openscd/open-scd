@@ -368,7 +368,6 @@ describe('subnetwork-editor wizarding editing integration', () => {
         )
       );
       element = parent.querySelector('subnetwork-editor');
-      console.log(element);
       await parent.updateComplete;
       await element?.updateComplete;
 

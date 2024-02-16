@@ -257,7 +257,6 @@ describe('DOType wizards', () => {
     it('deletes the DOType attribute on delete button click', async () => {
       expect(doc.querySelector('DOType[id="Dummy.LLN0.Mod"]')).to.exist;
       expect(doc.querySelectorAll('DOType').length).to.equal(15);
-      console.log('del button');
       deleteButton.click();
       await parent.requestUpdate();
       expect(doc.querySelector('DAType[id="Dummy.LLN0.Mod"]')).to.not.exist;

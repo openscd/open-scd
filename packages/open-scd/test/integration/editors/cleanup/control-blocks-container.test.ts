@@ -41,11 +41,9 @@ describe('cleanup-editor integration: unreferenced control blocks', () => {
       );
       element = parent.getActivePlugin();
       await parent.updateComplete;
-      console.log('foo');
     });
 
     it('correctly removes all LogControl entries from the SCL', async () => {
-      console.log('error here');
       await element.cleanupGSEControlFilter.click();
       await element.cleanupSampledValueControlFilter.click();
       // select all items and update list

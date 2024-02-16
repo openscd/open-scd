@@ -33,7 +33,6 @@ export class MockOpenSCD extends OpenSCD {
   }
 
   get wizardUI(): WizardDialog {
-    console.log(this.wizards);
     return this.wizards.wizardUI;
   }
 
