@@ -2,11 +2,13 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "packages/core/**"
 
 permissions:
   contents: write
   pull-requests: write
-  
+
 name: release-please
 jobs:
   release-please:
@@ -15,6 +17,7 @@ jobs:
       - uses: google-github-actions/release-please-action@v4
         id: release
         with:
+          release-type: node
           command: manifest
           token: ${{ secrets.GITHUB_TOKEN }}
       # The logic below handles the npm publication:
@@ -23,7 +26,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 18
-          registry-url: 'https://registry.npmjs.org'
+          registry-url: "https://registry.npmjs.org"
         if: ${{ steps.release.outputs.releases_created }}
       - run: npm ci
         if: ${{ steps.release.outputs.releases_created }}
