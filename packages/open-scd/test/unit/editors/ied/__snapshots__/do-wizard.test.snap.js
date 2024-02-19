@@ -55,7 +55,7 @@ snapshots["with no ancestors looks like the latest snapshot"] =
     <mwc-textfield
       disabled=""
       id="lnPrefix"
-      label="[iededitor.wizard.lnDescription]"
+      label="[scl.lnClass]"
       readonly=""
       value="-"
     >
@@ -159,7 +159,7 @@ snapshots["with a DO element looks like the latest snapshot"] =
     <mwc-textfield
       disabled=""
       id="lnPrefix"
-      label="[iededitor.wizard.lnDescription]"
+      label="[scl.lnClass]"
       readonly=""
       value="Some LN title (LLN0)"
     >
@@ -263,7 +263,7 @@ snapshots["with a DO element and DOI Element looks like the latest snapshot"] =
     <mwc-textfield
       disabled=""
       id="lnPrefix"
-      label="[iededitor.wizard.lnDescription]"
+      label="[scl.lnClass]"
       readonly=""
       value="CSWI"
     >
