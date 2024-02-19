@@ -1,12 +1,12 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import './mock-plugger.js';
-import { MockPlugger } from './mock-plugger.js';
+import '../mock-open-scd.js';
+import { MockOpenSCD } from '../mock-open-scd.js';
 
 import { TextField } from '@material/mwc-textfield';
 
-describe('PluggingElement', () => {
-  let element: MockPlugger;
+describe('OpenSCD-Plugin', () => {
+  let element: MockOpenSCD;
   let doc: XMLDocument;
   const docName = 'testDoc';
 
@@ -18,9 +18,9 @@ describe('PluggingElement', () => {
     doc = await fetch('/test/testfiles/valid2007B4.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-    element = <MockPlugger>(
+    element = <MockOpenSCD>(
       await fixture(
-        html`<mock-plugger .doc=${doc} .docName=${docName}></mock-plugger>`
+        html`<mock-open-scd .doc=${doc} .docName=${docName}></mock-open-scd>`
       )
     );
     await element.updateComplete;
