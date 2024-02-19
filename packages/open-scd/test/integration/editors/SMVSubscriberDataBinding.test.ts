@@ -1,6 +1,4 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import { Wizarding } from '../../../src/Wizarding.js';
-import { Editing } from '../../../src/Editing.js';
 import { initializeNsdoc } from '../../../src/foundation/nsdoc.js';
 
 import SMVSubscriberDataBinding from '../../../src/editors/SMVSubscriberDataBinding.js';
@@ -11,14 +9,18 @@ import {
   getSelectedSubItemValue,
   selectFCDAItem,
 } from './test-support.js';
-import { Historing } from '../../../src/Historing.js';
+
+import { MockOpenSCD } from '../../mock-open-scd.js';
+import '../../mock-open-scd.js';
+
 describe('SMV Subscribe Data Binding Plugin', async () => {
   customElements.define(
     'smv-subscriber-data-binding-plugin',
-    Wizarding(Editing(Historing(SMVSubscriberDataBinding)))
+    SMVSubscriberDataBinding
   );
 
   let element: SMVSubscriberDataBinding;
+  let parent: MockOpenSCD;
   let doc: XMLDocument;
 
   const nsdoc = await initializeNsdoc();
@@ -28,12 +30,15 @@ describe('SMV Subscribe Data Binding Plugin', async () => {
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-    element = await fixture(
-      html` <smv-subscriber-data-binding-plugin
-        .doc="${doc}"
-        .nsdoc=${nsdoc}
-      ></smv-subscriber-data-binding-plugin>`
+    parent = await fixture(
+      html`<mock-open-scd .doc=${doc} .nsdoc=${nsdoc}
+        ><smv-subscriber-data-binding-plugin
+          .doc="${doc}"
+          .nsdoc=${nsdoc}
+        ></smv-subscriber-data-binding-plugin
+      ></mock-open-scd>`
     );
+    element = parent.getActivePlugin();
   });
 
   it('when subscribing an available ExtRef then the lists are changed', async () => {

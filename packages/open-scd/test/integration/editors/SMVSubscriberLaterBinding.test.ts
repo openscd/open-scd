@@ -13,12 +13,16 @@ import {
 } from './test-support.js';
 import { ExtRefLaterBindingList } from '../../../src/editors/subscription/later-binding/ext-ref-later-binding-list.js';
 
+import { MockOpenSCD } from '../../mock-open-scd.js';
+import '../../mock-open-scd.js';
+
 describe('SMV Subscribe Later Binding plugin', () => {
   customElements.define(
     'smv-subscribe-later-binding-plugin',
     Wizarding(Editing(Historing(SMVSubscribeLaterBindingPlugin)))
   );
   let element: SMVSubscribeLaterBindingPlugin;
+  let parent: MockOpenSCD;
   let doc: XMLDocument;
 
   beforeEach(async () => {
@@ -26,11 +30,14 @@ describe('SMV Subscribe Later Binding plugin', () => {
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-    element = await fixture(
-      html` <smv-subscribe-later-binding-plugin
-        .doc=${doc}
-      ></smv-subscribe-later-binding-plugin>`
+    parent = await fixture(
+      html`<mock-open-scd
+        ><smv-subscribe-later-binding-plugin
+          .doc=${doc}
+        ></smv-subscribe-later-binding-plugin
+      ></mock-open-scd>`
     );
+    element = parent.getActivePlugin();
     await element.requestUpdate();
   });
 
@@ -39,11 +46,14 @@ describe('SMV Subscribe Later Binding plugin', () => {
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-    element = await fixture(
-      html`<smv-subscribe-later-binding-plugin
-        .doc="${doc}"
-      ></smv-subscribe-later-binding-plugin>`
+    parent = await fixture(
+      html`<mock-open-scd
+        ><smv-subscribe-later-binding-plugin
+          .doc="${doc}"
+        ></smv-subscribe-later-binding-plugin
+      ></mock-open-scd>`
     );
+    element = parent.getActivePlugin();
 
     const fcdaListElement = getFCDABindingList(element);
     selectFCDAItem(
@@ -102,11 +112,14 @@ describe('SMV Subscribe Later Binding plugin', () => {
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-    element = await fixture(
-      html`<smv-subscribe-later-binding-plugin
-        .doc="${doc}"
-      ></smv-subscribe-later-binding-plugin>`
+    parent = await fixture(
+      html`<mock-open-scd
+        ><smv-subscribe-later-binding-plugin
+          .doc="${doc}"
+        ></smv-subscribe-later-binding-plugin
+      ></mock-open-scd>`
     );
+    element = parent.getActivePlugin();
 
     const fcdaListElement = getFCDABindingList(element);
     const extRefListElement = getExtrefLaterBindingList(element);

@@ -2,17 +2,18 @@ import { expect, fixture, html } from '@open-wc/testing';
 
 import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 
-import { Editing } from '../../../src/Editing.js';
-import { Wizarding } from '../../../src/Wizarding.js';
-import { Historing } from '../../../src/Historing.js';
 import GooseSubscriberMessageBindingPlugin from '../../../src/editors/GooseSubscriberMessageBinding.js';
+
+import '../../mock-open-scd.js';
+import { MockOpenSCD } from '../../mock-open-scd.js';
 
 describe('GOOSE subscriber plugin', () => {
   customElements.define(
     'subscription-plugin',
-    Wizarding(Editing(Historing(GooseSubscriberMessageBindingPlugin)))
+    GooseSubscriberMessageBindingPlugin
   );
   let element: GooseSubscriberMessageBindingPlugin;
+  let parent: MockOpenSCD;
   let doc: XMLDocument;
 
   beforeEach(async () => {
@@ -20,9 +21,12 @@ describe('GOOSE subscriber plugin', () => {
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-    element = await fixture(
-      html`<subscription-plugin .doc=${doc}></subscription-plugin>`
+    parent = await fixture(
+      html`<mock-open-scd
+        ><subscription-plugin .doc=${doc}></subscription-plugin
+      ></mock-open-scd>`
     );
+    element = parent.getActivePlugin();
   });
 
   describe('in Publisher view', () => {

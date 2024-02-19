@@ -3,6 +3,8 @@ import { Wizarding } from '../../../src/Wizarding.js';
 import { Editing } from '../../../src/Editing.js';
 import { Historing } from '../../../src/Historing.js';
 
+import '../../mock-open-scd.js';
+
 import GooseSubscriberLaterBinding from '../../../src/editors/GooseSubscriberLaterBinding.js';
 import {
   getExtrefLaterBindingList,
@@ -11,14 +13,16 @@ import {
   selectFCDAItem,
 } from './test-support.js';
 import { ExtRefLaterBindingList } from '../../../src/editors/subscription/later-binding/ext-ref-later-binding-list.js';
+import { MockOpenSCD } from '../../mock-open-scd.js';
 
 describe('GOOSE Subscribe Later Binding Plugin', () => {
   customElements.define(
     'goose-subscriber-later-binding-plugin',
-    Wizarding(Editing(Historing(GooseSubscriberLaterBinding)))
+    GooseSubscriberLaterBinding
   );
 
   let element: GooseSubscriberLaterBinding;
+  let parent: MockOpenSCD;
   let doc: XMLDocument;
 
   beforeEach(async () => {
@@ -26,11 +30,14 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-    element = await fixture(
-      html`<goose-subscriber-later-binding-plugin
-        .doc="${doc}"
-      ></goose-subscriber-later-binding-plugin>`
+    parent = await fixture(
+      html`<mock-open-scd
+        ><goose-subscriber-later-binding-plugin
+          .doc="${doc}"
+        ></goose-subscriber-later-binding-plugin
+      ></mock-open-scd>`
     );
+    element = parent.getActivePlugin();
   });
 
   it('when selecting an FCDA element with subscriptions it looks like the latest snapshot', async () => {
@@ -38,11 +45,14 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-    element = await fixture(
-      html`<goose-subscriber-later-binding-plugin
-        .doc="${doc}"
-      ></goose-subscriber-later-binding-plugin>`
+    parent = await fixture(
+      html`<mock-open-scd
+        ><goose-subscriber-later-binding-plugin
+          .doc="${doc}"
+        ></goose-subscriber-later-binding-plugin
+      ></mock-open-scd>`
     );
+    element = parent.getActivePlugin();
 
     const fcdaListElement = getFCDABindingList(element);
     selectFCDAItem(
@@ -101,11 +111,14 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-    element = await fixture(
-      html`<goose-subscriber-later-binding-plugin
-        .doc="${doc}"
-      ></goose-subscriber-later-binding-plugin>`
+    parent = await fixture(
+      html`<mock-open-scd
+        ><goose-subscriber-later-binding-plugin
+          .doc="${doc}"
+        ></goose-subscriber-later-binding-plugin
+      ></mock-open-scd>`
     );
+    element = parent.getActivePlugin();
 
     const extRefListElement = getExtrefLaterBindingList(element);
 
