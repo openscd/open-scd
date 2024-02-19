@@ -88,7 +88,7 @@ snapshots["with no ancestors looks like the latest snapshot"] =
     <mwc-textfield
       disabled=""
       id="lnPrefix"
-      label="[iededitor.wizard.lnDescription]"
+      label="[scl.lnClass]"
       readonly=""
       value="-"
     >
@@ -225,7 +225,7 @@ snapshots["with a DA element looks like the latest snapshot"] =
     <mwc-textfield
       disabled=""
       id="lnPrefix"
-      label="[iededitor.wizard.lnDescription]"
+      label="[scl.lnClass]"
       readonly=""
       value="XCBR"
     >
@@ -362,7 +362,7 @@ snapshots["with a BDA element looks like the latest snapshot"] =
     <mwc-textfield
       disabled=""
       id="lnPrefix"
-      label="[iededitor.wizard.lnDescription]"
+      label="[scl.lnClass]"
       readonly=""
       value="LPHD"
     >
@@ -499,7 +499,7 @@ snapshots["with a DA element and DAI Element looks like the latest snapshot"] =
     <mwc-textfield
       disabled=""
       id="lnPrefix"
-      label="[iededitor.wizard.lnDescription]"
+      label="[scl.lnClass]"
       readonly=""
       value="XCBR"
     >
