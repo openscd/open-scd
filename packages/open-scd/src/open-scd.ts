@@ -35,12 +35,12 @@ import {
   newSettingsUIEvent,
 } from './foundation.js';
 
-import { Editing } from './Editing.js';
 import { Historing } from './Historing.js';
 
 import './addons/Settings.js';
 import './addons/Waiter.js';
 import './addons/Wizards.js';
+import './addons/Editor.js';
 
 import { ActionDetail, List } from '@material/mwc-list';
 import { Drawer } from '@material/mwc-drawer';
@@ -226,7 +226,14 @@ const loadedPlugins = new Set<string>();
 /** The `<open-scd>` custom element is the main entry point of the
  * Open Substation Configuration Designer. */
 @customElement('open-scd')
-export class OpenSCD extends Editing(Historing(LitElement)) {
+export class OpenSCD extends Historing(LitElement) {
+  @property({ attribute: false })
+  doc: XMLDocument | null = null;
+  /** The name of the current [[`doc`]] */
+  @property({ type: String }) docName = '';
+  /** The UUID of the current [[`doc`]] */
+  @property({ type: String }) docId = '';
+
   private currentSrc = '';
   /** The current file's URL. `blob:` URLs are *revoked after parsing*! */
   @property({ type: String })
@@ -324,7 +331,17 @@ export class OpenSCD extends Editing(Historing(LitElement)) {
   render(): TemplateResult {
     return html`<oscd-waiter>
       <oscd-settings .host=${this}>
-        <oscd-wizards .host=${this}> ${this.renderMain()}</oscd-wizards>
+        <oscd-wizards .host=${this}>
+          <oscd-editor
+            .doc=${this.doc}
+            .docName=${this.docName}
+            .docId=${this.docId}
+            .host=${this}
+            .editCount=${this.editCount}
+          >
+            ${this.renderMain()}
+          </oscd-editor>
+        </oscd-wizards>
       </oscd-settings>
     </oscd-waiter>`;
   }
