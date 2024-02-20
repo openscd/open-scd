@@ -17,6 +17,9 @@
   "main": "open-scd.js",
   "module": "open-scd.js",
   "type": "module",
+  "files": [
+    "./build/**"
+],
   "dependencies": {
     "@material/mwc-dialog": "0.22.1",
     "@material/mwc-drawer": "0.22.1",
