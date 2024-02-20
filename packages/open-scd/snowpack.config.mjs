@@ -17,5 +17,5 @@ export default ({
     "**/tsconfig.json",
     "**/web-test-runner.config.mjs",
     "**/node_modules/**/*"
-  ],
+  ]
 });
