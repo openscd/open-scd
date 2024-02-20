@@ -23,4 +23,12 @@ export default {
     '**/web-test-runner.config.mjs',
     '**/node_modules/**/*',
   ],
+  workspaceRoot: '../../',
+  mount: {
+    '../open-scd/': '/open-scd/',
+    './': '/',
+  },
+  alias: {
+    '@openscd/open-scd': '../open-scd/',
+  },
 };
