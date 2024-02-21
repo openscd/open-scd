@@ -26,9 +26,10 @@ export default {
   workspaceRoot: '../../',
   mount: {
     './': '/',
-    '../plugins': '/plugins',
+    '../plugins/': '/plugins/',
   },
   alias: {
     '@openscd/open-scd': './',
+    '@openscd/plugins': '../plugins/',
   },
 };
