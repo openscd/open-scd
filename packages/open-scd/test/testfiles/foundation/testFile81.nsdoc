@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<NSDoc id="IEC 61850-8-1"
-       version="1010"
-       revision="X"
-       release="1"
-       lang="en">
-   <Doc id="IEC 61850-8-1:2003.SBOw"><![CDATA[Some SBOw title]]></Doc>
-   <Doc id="IEC 61850-8-1:2003.ctlNum"><![CDATA[Some ctlNum description]]></Doc>
-</NSDoc>

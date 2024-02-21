@@ -1,10 +1,14 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
-import '../../mock-wizard-editor.js';
-import { MockWizardEditor } from '../../mock-wizard-editor.js';
+import '@openscd/open-scd/test/mock-wizard-editor.js';
+import { MockWizardEditor } from '@openscd/open-scd/test/mock-wizard-editor.js';
 
-import { ComplexAction, isSimple, isReplace } from '@openscd/open-scd/src/foundation.js';
+import {
+  ComplexAction,
+  isSimple,
+  isReplace,
+} from '@openscd/open-scd/src/foundation.js';
 import UpdateDescriptionSel from '../../../src/menu/UpdateDescriptionSEL.js';
 
 describe('Update method for desc attributes in SEL IEDs', () => {

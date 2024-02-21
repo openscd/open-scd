@@ -2,8 +2,8 @@ import { expect, fixture, html } from '@open-wc/testing';
 import fc from 'fast-check';
 import { SinonSpy, spy } from 'sinon';
 
-import '../../mock-wizard-editor.js';
-import { MockWizardEditor } from '../../mock-wizard-editor.js';
+import '@openscd/open-scd/test/mock-wizard-editor.js';
+import { MockWizardEditor } from '@openscd/open-scd/test/mock-wizard-editor.js';
 
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 

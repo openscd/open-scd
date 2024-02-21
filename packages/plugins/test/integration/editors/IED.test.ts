@@ -1,14 +1,20 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../mock-wizard.js';
+import '@openscd/open-scd/test/mock-wizard.js';
 
 import { LitElement } from 'lit-element';
 
 import '../../../src/editors/IED.js';
 
 import { Editing } from '@openscd/open-scd/src/Editing.js';
-import { Wizarding, WizardingElement } from '@openscd/open-scd/src/Wizarding.js';
-import { initializeNsdoc, Nsdoc } from '@openscd/open-scd/src/foundation/nsdoc.js';
+import {
+  Wizarding,
+  WizardingElement,
+} from '@openscd/open-scd/src/Wizarding.js';
+import {
+  initializeNsdoc,
+  Nsdoc,
+} from '@openscd/open-scd/src/foundation/nsdoc.js';
 import { FilterButton } from '@openscd/open-scd/src/oscd-filter-button.js';
 
 import IED from '../../../src/editors/IED.js';

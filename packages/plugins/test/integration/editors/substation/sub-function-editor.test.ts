@@ -1,7 +1,7 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
-import '../../../mock-wizard-editor.js';
-import { MockWizardEditor } from '../../../mock-wizard-editor.js';
+import '@openscd/open-scd/test/mock-wizard-editor.js';
+import { MockWizardEditor } from '@openscd/open-scd/test/mock-wizard-editor.js';
 
 import '../../../../src/editors/substation/sub-function-editor.js';
 import { SubFunctionEditor } from '../../../../src/editors/substation/sub-function-editor.js';
@@ -19,7 +19,9 @@ const openAndCancelMenu: (
   new Promise(async resolve => {
     expect(parent.wizardUI.dialog).to.be.undefined;
 
-    element?.shadowRoot?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!.click();
+    element?.shadowRoot
+      ?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!
+      .click();
     const subFunctionMenuItem: ListItemBase =
       element?.shadowRoot?.querySelector<ListItemBase>(
         `mwc-list-item[value='SubFunction']`
@@ -279,9 +281,9 @@ describe('sub-function-editor wizarding editing integration', () => {
         await fixture(
           html`<mock-wizard-editor
             ><sub-function-editor
-            .element=${doc.querySelector(
-              'Function[name="voltLvName"] > SubFunction'
-            )}
+              .element=${doc.querySelector(
+                'Function[name="voltLvName"] > SubFunction'
+              )}
             ></sub-function-editor
           ></mock-wizard-editor>`
         )

@@ -1,7 +1,7 @@
 /* import { expect, fixture, html } from '@open-wc/testing';
 
 import { List } from '@material/mwc-list';
-import { MockWizardEditor } from '../../../mock-wizard-editor.js';
+import { MockWizardEditor } from '@openscd/open-scd/test/mock-wizard-editor.js';
 import { ZerolinePane } from '../../../../src/zeroline-pane.js';
 
 describe('CommunicationMappingPlugin', () => {

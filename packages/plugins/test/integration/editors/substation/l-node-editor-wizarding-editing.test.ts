@@ -1,7 +1,7 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
-import '../../../mock-wizard-editor.js';
-import { MockWizardEditor } from '../../../mock-wizard-editor.js';
+import '@openscd/open-scd/test/mock-wizard-editor.js';
+import { MockWizardEditor } from '@openscd/open-scd/test/mock-wizard-editor.js';
 
 import '../../../../src/editors/substation/l-node-editor.js';
 import { LNodeEditor } from '../../../../src/editors/substation/l-node-editor.js';

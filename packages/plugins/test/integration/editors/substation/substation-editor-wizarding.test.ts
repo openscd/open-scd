@@ -1,8 +1,8 @@
 import { fixture, html, expect } from '@open-wc/testing';
 import fc from 'fast-check';
 
-import '../../../mock-wizard.js';
-import { MockWizard } from '../../../mock-wizard.js';
+import '@openscd/open-scd/test/mock-wizard.js';
+import { MockWizard } from '@openscd/open-scd/test/mock-wizard.js';
 
 import '../../../../src/editors/substation/substation-editor.js';
 import { regExp, regexString } from '../../../foundation.js';

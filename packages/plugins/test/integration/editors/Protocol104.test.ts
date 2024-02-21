@@ -1,16 +1,13 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../../mock-wizard.js';
+import '@openscd/open-scd/test/mock-wizard.js';
 
 import Protocol104 from '../../../src/editors/Protocol104.js';
 import { Editing } from '@openscd/open-scd/src/Editing.js';
 import { Wizarding } from '@openscd/open-scd/src/Wizarding.js';
 
 describe('Protocol 104 Plugin', () => {
-  customElements.define(
-    'protocol104-plugin',
-    Wizarding(Editing(Protocol104))
-  );
+  customElements.define('protocol104-plugin', Wizarding(Editing(Protocol104)));
   let element: Protocol104;
   let doc: XMLDocument;
 
@@ -25,9 +22,9 @@ describe('Protocol 104 Plugin', () => {
   });
 
   describe('in Values view', () => {
-      it('the plugin looks like the latest snapshot', async () => {
-        await expect(element).shadowDom.to.equalSnapshot();
-      });
+    it('the plugin looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
+    });
   });
 
   describe('in Network view', () => {

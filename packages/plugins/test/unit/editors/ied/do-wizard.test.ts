@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../../mock-wizard.js';
-import { MockWizard } from '../../../mock-wizard.js';
+import '@openscd/open-scd/test/mock-wizard.js';
+import { MockWizard } from '@openscd/open-scd/test/mock-wizard.js';
 
 import { initializeNsdoc } from '@openscd/open-scd/src/foundation/nsdoc.js';
 import { createDoInfoWizard } from '../../../../src/editors/ied/do-wizard.js';

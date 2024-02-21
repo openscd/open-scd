@@ -1,6 +1,6 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../mock-wizard.js';
+import '@openscd/open-scd/test/mock-wizard.js';
 
 import SMVSubscriberMessageBindingPlugin from '../../../src/editors/SMVSubscriberMessageBinding.js';
 import { Editing } from '@openscd/open-scd/src/Editing.js';

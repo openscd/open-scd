@@ -1,7 +1,7 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
-import '../../../mock-wizard-editor.js';
-import { MockWizardEditor } from '../../../mock-wizard-editor.js';
+import '@openscd/open-scd/test/mock-wizard-editor.js';
+import { MockWizardEditor } from '@openscd/open-scd/test/mock-wizard-editor.js';
 
 import '../../../../src/editors/substation/sub-equipment-editor.js';
 import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';

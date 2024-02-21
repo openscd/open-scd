@@ -1,7 +1,7 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../../mock-wizard.js';
-import { MockWizard } from '../../mock-wizard.js';
+import '@openscd/open-scd/test/mock-wizard.js';
+import { MockWizard } from '@openscd/open-scd/test/mock-wizard.js';
 
 import { Editing } from '@openscd/open-scd/src/Editing.js';
 import Substation from '../../../src/editors/Substation.js';

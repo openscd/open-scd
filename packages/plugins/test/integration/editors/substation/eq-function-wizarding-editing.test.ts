@@ -1,7 +1,7 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
-import '../../../mock-wizard-editor.js';
-import { MockWizardEditor } from '../../../mock-wizard-editor.js';
+import '@openscd/open-scd/test/mock-wizard-editor.js';
+import { MockWizardEditor } from '@openscd/open-scd/test/mock-wizard-editor.js';
 
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
@@ -20,7 +20,9 @@ const openAndCancelMenu: (
   new Promise(async resolve => {
     expect(parent.wizardUI.dialog).to.be.undefined;
 
-    element?.shadowRoot?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!.click();
+    element?.shadowRoot
+      ?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!
+      .click();
     const lnodMenuItem: ListItemBase =
       element?.shadowRoot?.querySelector<ListItemBase>(
         `mwc-list-item[value='LNode']`
@@ -265,15 +267,15 @@ describe('eq-function-editor wizarding editing integration', () => {
 
     beforeEach(async () => {
       doc = await fetch('/test/testfiles/zeroline/functions.scd')
-      .then(response => response.text())
-      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <MockWizardEditor>(
         await fixture(
           html`<mock-wizard-editor
             ><eq-function-editor
-            .element=${doc.querySelector(
-              'ConductingEquipment[name="QA1"] > EqFunction'
-            )}
+              .element=${doc.querySelector(
+                'ConductingEquipment[name="QA1"] > EqFunction'
+              )}
             ></eq-function-editor
           ></mock-wizard-editor>`
         )

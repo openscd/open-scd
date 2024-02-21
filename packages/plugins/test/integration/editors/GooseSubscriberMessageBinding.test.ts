@@ -1,6 +1,6 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../mock-wizard.js';
+import '@openscd/open-scd/test/mock-wizard.js';
 
 import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 

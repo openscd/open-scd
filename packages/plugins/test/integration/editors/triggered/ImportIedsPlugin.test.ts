@@ -3,8 +3,8 @@ import { LitElement, TemplateResult } from 'lit-element';
 
 import { CheckListItem } from '@material/mwc-list/mwc-check-list-item';
 
-import '../../../mock-editor-logger.js';
-import { MockEditorLogger } from '../../../mock-editor-logger.js';
+import '@openscd/open-scd/test/mock-editor-logger.js';
+import { MockEditorLogger } from '@openscd/open-scd/test/mock-editor-logger.js';
 
 import ImportingIedPlugin from '../../../../src/menu/ImportIEDs.js';
 import { Editing } from '@openscd/open-scd/src/Editing.js';

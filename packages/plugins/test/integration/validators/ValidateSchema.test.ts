@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../mock-editor-logger.js';
-import { MockEditorLogger } from '../../mock-editor-logger.js';
+import '@openscd/open-scd/test/mock-editor-logger.js';
+import { MockEditorLogger } from '@openscd/open-scd/test/mock-editor-logger.js';
 
 import ValidateSchema from '../../../src/validators/ValidateSchema.js';
 import { IssueDetail, LogEntry } from '@openscd/open-scd/src/foundation.js';

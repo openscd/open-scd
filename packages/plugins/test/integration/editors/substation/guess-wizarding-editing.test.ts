@@ -1,9 +1,9 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../../mock-wizard.js';
-import { MockWizard } from '../../../mock-wizard.js';
-import '../../../mock-wizard-editor.js';
-import { MockWizardEditor } from '../../../mock-wizard-editor.js';
+import '@openscd/open-scd/test/mock-wizard.js';
+import { MockWizard } from '@openscd/open-scd/test/mock-wizard.js';
+import '@openscd/open-scd/test/mock-wizard-editor.js';
+import { MockWizardEditor } from '@openscd/open-scd/test/mock-wizard-editor.js';
 
 import { guessVoltageLevel } from '../../../../src/editors/substation/guess-wizard.js';
 

@@ -1,11 +1,14 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../../../mock-wizard-editor.js';
-import { MockWizardEditor } from '../../../mock-wizard-editor.js';
+import '@openscd/open-scd/test/mock-wizard-editor.js';
+import { MockWizardEditor } from '@openscd/open-scd/test/mock-wizard-editor.js';
 
 import TemplatesPlugin from '../../../../src/editors/Templates.js';
 import { Editing, EditingElement } from '@openscd/open-scd/src/Editing.js';
-import { Wizarding, WizardingElement } from '@openscd/open-scd/src/Wizarding.js';
+import {
+  Wizarding,
+  WizardingElement,
+} from '@openscd/open-scd/src/Wizarding.js';
 import { newWizardEvent } from '@openscd/open-scd/src/foundation.js';
 
 describe('Templates Plugin', () => {

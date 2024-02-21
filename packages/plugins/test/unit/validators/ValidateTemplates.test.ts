@@ -1,8 +1,8 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
-import '../../mock-editor-logger.js';
-import { MockEditorLogger } from '../../mock-editor-logger.js';
+import '@openscd/open-scd/test/mock-editor-logger.js';
+import { MockEditorLogger } from '@openscd/open-scd/test/mock-editor-logger.js';
 
 import ValidateTemplates from '../../../src/validators/ValidateTemplates.js';
 

@@ -1,8 +1,8 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import fc from 'fast-check';
 
-import '../../mock-wizard.js';
-import { MockWizard } from '../../mock-wizard.js';
+import '@openscd/open-scd/test/mock-wizard.js';
+import { MockWizard } from '@openscd/open-scd/test/mock-wizard.js';
 
 import { WizardSelect } from '@openscd/open-scd/src/wizard-select.js';
 import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';

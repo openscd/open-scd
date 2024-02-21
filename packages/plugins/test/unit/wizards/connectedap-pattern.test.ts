@@ -1,8 +1,8 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import fc, { integer, ipV4, nat } from 'fast-check';
 
-import '../../mock-wizard.js';
-import { MockWizard } from '../../mock-wizard.js';
+import '@openscd/open-scd/test/mock-wizard.js';
+import { MockWizard } from '@openscd/open-scd/test/mock-wizard.js';
 
 import '../../../src/editors/communication/connectedap-editor.js';
 import { WizardInputElement } from '@openscd/open-scd/src/foundation.js';

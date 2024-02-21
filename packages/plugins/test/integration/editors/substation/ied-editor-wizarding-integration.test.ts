@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../../mock-wizard-editor.js';
-import { MockWizardEditor } from '../../../mock-wizard-editor.js';
+import '@openscd/open-scd/test/mock-wizard-editor.js';
+import { MockWizardEditor } from '@openscd/open-scd/test/mock-wizard-editor.js';
 
 import '../../../../src/editors/substation/ied-editor.js';
 import { FilteredList } from '@openscd/open-scd/src/filtered-list.js';
@@ -71,7 +71,8 @@ describe('IED editor component wizarding editing integration', () => {
     await parent.updateComplete;
 
     expect(parent.wizardUI.dialog).to.exist;
-    const referencesList = parent.wizardUI.dialog?.querySelectorAll('mwc-list-item');
+    const referencesList =
+      parent.wizardUI.dialog?.querySelectorAll('mwc-list-item');
 
     expect(referencesList).to.be.not.undefined;
     expect(referencesList!.length).to.equal(7);

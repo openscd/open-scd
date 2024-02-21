@@ -1,7 +1,7 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
-import '../../../mock-wizard-editor.js';
-import { MockWizardEditor } from '../../../mock-wizard-editor.js';
+import '@openscd/open-scd/test/mock-wizard-editor.js';
+import { MockWizardEditor } from '@openscd/open-scd/test/mock-wizard-editor.js';
 
 import '../../../../src/editors/substation/conducting-equipment-editor.js';
 import { ConductingEquipmentEditor } from '../../../../src/editors/substation/conducting-equipment-editor.js';
@@ -19,7 +19,9 @@ const openAndCancelMenu: (
   new Promise(async resolve => {
     expect(parent.wizardUI.dialog).to.be.undefined;
 
-    element?.shadowRoot?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!.click();
+    element?.shadowRoot
+      ?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!
+      .click();
     const lnodeMenuItem: ListItemBase =
       element?.shadowRoot?.querySelector<ListItemBase>(
         `mwc-list-item[value='LNode']`
@@ -333,8 +335,8 @@ describe('conducting-equipment-editor wizarding editing integration', () => {
         await fixture(
           html`<mock-wizard-editor
             ><conducting-equipment-editor
-            .element=${doc.querySelector('ConductingEquipment')}
-            ?showfunctions=${true}
+              .element=${doc.querySelector('ConductingEquipment')}
+              ?showfunctions=${true}
             ></conducting-equipment-editor
           ></mock-wizard-editor>`
         )
