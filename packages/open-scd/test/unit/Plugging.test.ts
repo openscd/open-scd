@@ -152,6 +152,7 @@ describe('OpenSCD-Plugin', () => {
       await src.updateComplete;
       await name.updateComplete;
       primaryAction.click();
+      await element.requestUpdate();
       await element.updateComplete;
       expect(element.editors).to.have.lengthOf(7);
     });
