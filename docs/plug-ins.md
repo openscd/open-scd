@@ -5,17 +5,17 @@ We mark our official plugins that are supported by the OpenSCD organization with
 <kbd>✅ Official</kbd>
 
 > [!CAUTION]
-> We do not guarantee the quality or the security of the non-official plugins
+> We have no control over the quality or security of unofficial plug-ins.
 
 > [!NOTE]
-> If you want to add a plugin to this list, please open a pull request.
+> If you want to add a plug-in to this list, please open a pull request.
 
 > [!TIP]
-> How to add a plugin: [Extensions.md](../packages/open-scd/public/md/Extensions.md)
+> How to install a plug-in: [Extensions.md](../packages/open-scd/public/md/Extensions.md)
 
 ## Core Plug-ins
 
-Core plugins are general IEC 61850 plug-ins. They can be used in any project. 
+Core plug-ins are general IEC 61850 plug-ins. They can be used in any project. 
 
 ### IED
 
