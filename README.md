@@ -22,7 +22,7 @@ If you don't have your own webserver but still want your own version of OpenSCD 
 ## Plug-ins
 
 We gather the available plug-ins from the community in the [plug-ins](docs/plug-ins.md) file.  
-If you would like to list your plugin here, please open a pull request.
+If you would like to list your plug-in here, please open a pull request.
 
 ## Development
 
