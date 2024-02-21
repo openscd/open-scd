@@ -152,8 +152,11 @@ describe('OpenSCD-Plugin', () => {
       await src.updateComplete;
       await name.updateComplete;
       primaryAction.click();
+      await new Promise(resolve => setTimeout(resolve, 50)); // await animation
+
       await element.requestUpdate();
       await element.updateComplete;
+
       expect(element.editors).to.have.lengthOf(7);
     });
     it('adds a new menu kind plugin on add button click', async () => {

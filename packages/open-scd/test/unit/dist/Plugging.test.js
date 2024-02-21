@@ -238,11 +238,14 @@ describe('OpenSCD-Plugin', function () {
                     case 2:
                         _a.sent();
                         primaryAction.click();
-                        return [4 /*yield*/, element.requestUpdate()];
+                        return [4 /*yield*/, new Promise(function (resolve) { return setTimeout(resolve, 50); })];
                     case 3:
+                        _a.sent(); // await animation
+                        return [4 /*yield*/, element.requestUpdate()];
+                    case 4:
                         _a.sent();
                         return [4 /*yield*/, element.updateComplete];
-                    case 4:
+                    case 5:
                         _a.sent();
                         testing_1.expect(element.editors).to.have.lengthOf(7);
                         return [2 /*return*/];
