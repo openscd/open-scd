@@ -45,7 +45,7 @@ export class OscdWaiter extends LitElement {
     this.removeEventListener('pending-state', this.onPendingState);
   }
 
-  override render(): TemplateResult {
+  render(): TemplateResult {
     return html`<slot></slot>
       <mwc-linear-progress
         .closed=${!this.waiting}
