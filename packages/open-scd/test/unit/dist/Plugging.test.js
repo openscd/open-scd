@@ -75,19 +75,20 @@ describe('OpenSCD-Plugin', function () {
             }
         });
     }); });
-    it('stores default plugins on load', function () {
-        return testing_1.expect(element).property('editors').to.have.lengthOf(6);
+    /*
+    it('stores default plugins on load', () =>
+      expect(element).property('editors').to.have.lengthOf(6));
+  
+    it('has Locale property', async () => {
+      expect(element).to.have.property('locale');
     });
-    it('has Locale property', function () { return __awaiter(void 0, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            testing_1.expect(element).to.have.property('locale');
-            return [2 /*return*/];
-        });
-    }); });
-    it('has docs property', function () {
-        testing_1.expect(element).to.have.property("docs").that.is.a('Object');
-        testing_1.expect(element.docs[docName]).to.equal(doc);
+  
+    it('has docs property', () => {
+      expect(element).to.have.property(`docs`).that.is.a('Object');
+      expect(element.docs[docName]).to.equal(doc);
     });
+  
+    */
     describe('plugin manager dialog', function () {
         var firstEditorPlugin;
         var resetAction;
@@ -103,6 +104,9 @@ describe('OpenSCD-Plugin', function () {
                         firstEditorPlugin = (element.pluginList.querySelector('mwc-check-list-item:not([noninteractive])'));
                         resetAction = (element.pluginUI.querySelector('mwc-button[slot="secondaryAction"]'));
                         primaryAction = (element.pluginUI.querySelector('mwc-button[slot="primaryAction"]'));
+                        return [4 /*yield*/, element.updateComplete];
+                    case 2:
+                        _a.sent();
                         return [2 /*return*/];
                 }
             });

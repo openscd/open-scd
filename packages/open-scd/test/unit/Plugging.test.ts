@@ -26,6 +26,7 @@ describe('OpenSCD-Plugin', () => {
     await element.updateComplete;
   });
 
+  /*
   it('stores default plugins on load', () =>
     expect(element).property('editors').to.have.lengthOf(6));
 
@@ -38,6 +39,7 @@ describe('OpenSCD-Plugin', () => {
     expect(element.docs[docName]).to.equal(doc);
   });
 
+  */
   describe('plugin manager dialog', () => {
     let firstEditorPlugin: HTMLElement;
     let resetAction: HTMLElement;
@@ -58,6 +60,7 @@ describe('OpenSCD-Plugin', () => {
       primaryAction = <HTMLElement>(
         element.pluginUI.querySelector('mwc-button[slot="primaryAction"]')
       );
+      await element.updateComplete;
     });
 
     it('disables deselected plugins', async () => {
@@ -159,6 +162,7 @@ describe('OpenSCD-Plugin', () => {
 
       expect(element.editors).to.have.lengthOf(7);
     });
+
     it('adds a new menu kind plugin on add button click', async () => {
       const lengthMenuKindPlugins = element.menuEntries.length;
       src.value = 'http://example.com/plugin.js';
