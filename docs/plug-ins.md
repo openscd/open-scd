@@ -1,7 +1,7 @@
 # Plug-ins
 
-In this file we gather all the plugins that are available in the community.
-We mark our official plugins that are supported by the OpenSCD organization with a badge:
+In this file we gather all the plug-ins that are available in the community.
+We mark our official plug-ins that are supported by the OpenSCD organization with a badge:
 <kbd>✅ Official</kbd>
 
 > [!CAUTION]
@@ -275,7 +275,7 @@ Core plug-ins are general IEC 61850 plug-ins. They can be used in any project.
 
 ## Vendor Specific Plug-ins
 
-These plugins are specific to a vendor.
+These plug-ins are specific to a vendor.
 
 ### Update desc (ABB)
 
