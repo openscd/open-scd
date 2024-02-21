@@ -29,14 +29,16 @@ describe('GOOSE Subscribe Data Binding Plugin', async () => {
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
     parent = await fixture(
-      html`<mock-open-scd
+      html`<mock-open-scd .doc=${doc} .nsdoc=${nsdoc}
         ><goose-subscriber-data-binding-plugin
-          .doc="${doc}"
+          .doc=${doc}
           .nsdoc=${nsdoc}
         ></goose-subscriber-data-binding-plugin
       ></mock-open-scd>`
     );
     element = parent.getActivePlugin();
+    await parent.updateComplete;
+    await element.updateComplete;
   });
 
   it('when subscribing an available ExtRef then the lists are changed and first ExtRef is added to the LN', async () => {
@@ -48,6 +50,8 @@ describe('GOOSE Subscribe Data Binding Plugin', async () => {
       'GOOSE_Publisher>>QB2_Disconnector>GOOSE1',
       'GOOSE_Publisher>>QB2_Disconnector>GOOSE1sDataSet>QB1_Disconnector/ CSWI 1.Pos q (ST)'
     );
+    await parent.requestUpdate();
+
     await parent.updateComplete;
     await element.updateComplete;
     await extRefListElement.updateComplete;
@@ -69,6 +73,8 @@ describe('GOOSE Subscribe Data Binding Plugin', async () => {
         'mwc-list-item[value="GOOSE_Subscriber2>>Earth_Switch> XSWI 1"]'
       )
     )).click();
+    await new Promise(resolve => setTimeout(resolve, 250));
+
     await parent.requestUpdate();
     await parent.updateComplete;
     await element.updateComplete;

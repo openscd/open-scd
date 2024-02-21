@@ -19,7 +19,7 @@ import '../../mock-open-scd.js';
 describe('SMV Subscribe Later Binding plugin', () => {
   customElements.define(
     'smv-subscribe-later-binding-plugin',
-    Wizarding(Editing(Historing(SMVSubscribeLaterBindingPlugin)))
+    SMVSubscribeLaterBindingPlugin
   );
   let element: SMVSubscribeLaterBindingPlugin;
   let parent: MockOpenSCD;

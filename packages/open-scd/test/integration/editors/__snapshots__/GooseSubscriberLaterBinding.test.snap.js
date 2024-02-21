@@ -4,7 +4,7 @@ export const snapshots = {};
 snapshots["GOOSE Subscribe Later Binding Plugin when selecting an FCDA element with subscriptions it looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.laterBinding.extRefList.title]
+    Inputs available for selected data attribute
   </h1>
   <filtered-list>
     <mwc-list-item
@@ -14,7 +14,7 @@ snapshots["GOOSE Subscribe Later Binding Plugin when selecting an FCDA element w
       value="Interlocking.Input2 GOOSE_Subscriber>>Earth_Switch> CSWI 1>Pos;CSWI1/Pos/stVal[0] Interlocking.Input2 GOOSE_Subscriber1>>Earth_Switch> CSWI 1>Pos;CSWI1/Pos/stVal[0]"
     >
       <span>
-        [subscription.subscriber.subscribed]
+        Subscribed
       </span>
     </mwc-list-item>
     <li
@@ -74,7 +74,7 @@ snapshots["GOOSE Subscribe Later Binding Plugin when selecting an FCDA element w
       value="Interlocking.Input GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0] Interlocking.Input GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/q[0] Restricted To Pos GOOSE_Subscriber>>Earth_Switch> CSWI 1>someRestrictedExtRef[0] Interlocking.Input GOOSE_Subscriber1>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0] Interlocking.Input GOOSE_Subscriber1>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/q[0] Restricted To Pos GOOSE_Subscriber1>>Earth_Switch> CSWI 1>someRestrictedExtRef[0]"
     >
       <span>
-        [subscription.subscriber.availableToSubscribe]
+        Available to subscribe
       </span>
     </mwc-list-item>
     <li

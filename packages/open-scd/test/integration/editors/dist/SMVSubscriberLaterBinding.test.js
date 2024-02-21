@@ -41,14 +41,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 var testing_1 = require("@open-wc/testing");
-var Wizarding_js_1 = require("../../../src/Wizarding.js");
-var Editing_js_1 = require("../../../src/Editing.js");
-var Historing_js_1 = require("../../../src/Historing.js");
 var SMVSubscriberLaterBinding_js_1 = require("../../../src/editors/SMVSubscriberLaterBinding.js");
 var test_support_js_1 = require("./test-support.js");
 require("../../mock-open-scd.js");
 describe('SMV Subscribe Later Binding plugin', function () {
-    customElements.define('smv-subscribe-later-binding-plugin', Wizarding_js_1.Wizarding(Editing_js_1.Editing(Historing_js_1.Historing(SMVSubscriberLaterBinding_js_1["default"]))));
+    customElements.define('smv-subscribe-later-binding-plugin', SMVSubscriberLaterBinding_js_1["default"]);
     var element;
     var parent;
     var doc;

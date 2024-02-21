@@ -62,10 +62,16 @@ describe('GOOSE Subscribe Data Binding Plugin', function () { return __awaiter(v
                                     .then(function (str) { return new DOMParser().parseFromString(str, 'application/xml'); })];
                             case 1:
                                 doc = _a.sent();
-                                return [4 /*yield*/, testing_1.fixture(testing_1.html(templateObject_1 || (templateObject_1 = __makeTemplateObject(["<mock-open-scd\n        ><goose-subscriber-data-binding-plugin\n          .doc=\"", "\"\n          .nsdoc=", "\n        ></goose-subscriber-data-binding-plugin\n      ></mock-open-scd>"], ["<mock-open-scd\n        ><goose-subscriber-data-binding-plugin\n          .doc=\"", "\"\n          .nsdoc=", "\n        ></goose-subscriber-data-binding-plugin\n      ></mock-open-scd>"])), doc, nsdoc))];
+                                return [4 /*yield*/, testing_1.fixture(testing_1.html(templateObject_1 || (templateObject_1 = __makeTemplateObject(["<mock-open-scd .doc=", " .nsdoc=", "\n        ><goose-subscriber-data-binding-plugin\n          .doc=", "\n          .nsdoc=", "\n        ></goose-subscriber-data-binding-plugin\n      ></mock-open-scd>"], ["<mock-open-scd .doc=", " .nsdoc=", "\n        ><goose-subscriber-data-binding-plugin\n          .doc=", "\n          .nsdoc=", "\n        ></goose-subscriber-data-binding-plugin\n      ></mock-open-scd>"])), doc, nsdoc, doc, nsdoc))];
                             case 2:
                                 parent = _a.sent();
                                 element = parent.getActivePlugin();
+                                return [4 /*yield*/, parent.updateComplete];
+                            case 3:
+                                _a.sent();
+                                return [4 /*yield*/, element.updateComplete];
+                            case 4:
+                                _a.sent();
                                 return [2 /*return*/];
                         }
                     });
@@ -78,37 +84,43 @@ describe('GOOSE Subscribe Data Binding Plugin', function () { return __awaiter(v
                                 fcdaListElement = test_support_js_1.getFCDABindingList(element);
                                 extRefListElement = test_support_js_1.getExtrefDataBindingList(element);
                                 test_support_js_1.selectFCDAItem(fcdaListElement, 'GOOSE_Publisher>>QB2_Disconnector>GOOSE1', 'GOOSE_Publisher>>QB2_Disconnector>GOOSE1sDataSet>QB1_Disconnector/ CSWI 1.Pos q (ST)');
-                                return [4 /*yield*/, parent.updateComplete];
+                                return [4 /*yield*/, parent.requestUpdate()];
                             case 1:
                                 _a.sent();
-                                return [4 /*yield*/, element.updateComplete];
+                                return [4 /*yield*/, parent.updateComplete];
                             case 2:
                                 _a.sent();
-                                return [4 /*yield*/, extRefListElement.updateComplete];
+                                return [4 /*yield*/, element.updateComplete];
                             case 3:
                                 _a.sent();
-                                return [4 /*yield*/, fcdaListElement.updateComplete];
+                                return [4 /*yield*/, extRefListElement.updateComplete];
                             case 4:
+                                _a.sent();
+                                return [4 /*yield*/, fcdaListElement.updateComplete];
+                            case 5:
                                 _a.sent();
                                 testing_1.expect(extRefListElement['getSubscribedLNElements']().length).to.be.equal(0);
                                 testing_1.expect(test_support_js_1.getSelectedSubItemValue(fcdaListElement)).to.be["null"];
                                 testing_1.expect(extRefListElement['getAvailableLNElements']().length).to.be.equal(8);
                                 testing_1.expect(element.doc.querySelectorAll('IED[name="GOOSE_Subscriber2"] LN[lnClass="XSWI"][inst="1"] > Inputs > ExtRef[iedName="GOOSE_Publisher"]').length).to.be.equal(0);
                                 (extRefListElement.shadowRoot.querySelector('mwc-list-item[value="GOOSE_Subscriber2>>Earth_Switch> XSWI 1"]')).click();
-                                return [4 /*yield*/, parent.requestUpdate()];
-                            case 5:
-                                _a.sent();
-                                return [4 /*yield*/, parent.updateComplete];
+                                return [4 /*yield*/, new Promise(function (resolve) { return setTimeout(resolve, 250); })];
                             case 6:
                                 _a.sent();
-                                return [4 /*yield*/, element.updateComplete];
+                                return [4 /*yield*/, parent.requestUpdate()];
                             case 7:
                                 _a.sent();
-                                return [4 /*yield*/, extRefListElement.updateComplete];
+                                return [4 /*yield*/, parent.updateComplete];
                             case 8:
                                 _a.sent();
-                                return [4 /*yield*/, fcdaListElement.updateComplete];
+                                return [4 /*yield*/, element.updateComplete];
                             case 9:
+                                _a.sent();
+                                return [4 /*yield*/, extRefListElement.updateComplete];
+                            case 10:
+                                _a.sent();
+                                return [4 /*yield*/, fcdaListElement.updateComplete];
+                            case 11:
                                 _a.sent();
                                 testing_1.expect(extRefListElement['getSubscribedLNElements']().length).to.be.equal(1);
                                 testing_1.expect(test_support_js_1.getSelectedSubItemValue(fcdaListElement)).to.exist.and.have.text('1');
