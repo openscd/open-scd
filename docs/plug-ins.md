@@ -1,4 +1,4 @@
-# Plugins
+# Plug-ins
 
 In this file we gather all the plugins that are available in the community.
 We mark our official plugins that are supported by the OpenSCD organization with a badge:
@@ -13,9 +13,9 @@ We mark our official plugins that are supported by the OpenSCD organization with
 > [!TIP]
 > How to add a plugin: [Extensions.md](../packages/open-scd/public/md/Extensions.md)
 
-## Core Plugins
+## Core Plug-ins
 
-Core plugins are general IEC 61850 Plugins. They can be used in any project. 
+Core plugins are general IEC 61850 plug-ins. They can be used in any project. 
 
 ### IED
 
@@ -273,7 +273,7 @@ Core plugins are general IEC 61850 Plugins. They can be used in any project.
 > https://sprinteins.github.io/oscd-plugins/documentation/index.js
 > ```
 
-## Vendor Specific Plugins
+## Vendor Specific Plug-ins
 
 These plugins are specific to a vendor.
 
