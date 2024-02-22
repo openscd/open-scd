@@ -24,7 +24,7 @@ describe('ValidateSchema plugin', () => {
     `);
 
     element = <ValidateSchema>parent.querySelector('validate-schema')!;
-    element.pluginId = '/src/validators/ValidateSchema.js';
+    element.pluginId = '/plugins/src/validators/ValidateSchema.js';
     await element.updateComplete;
   });
 
@@ -46,12 +46,13 @@ describe('ValidateSchema plugin', () => {
       await parent.updateComplete;
     });
 
-    it('zeroissues indication looks like the latest snapshot', async () =>
-      await expect(parent.diagnosticUI).to.equalSnapshot());
+    it('zeroissues indication looks like the latest snapshot', async () => {
+      await expect(parent.diagnosticUI).to.equalSnapshot();
+    });
 
     it('indicates successful schema validation in the diagnoses pane', async () => {
       const lastEntry = <IssueDetail[]>(
-        parent.diagnoses.get('/src/validators/ValidateSchema.js')
+        parent.diagnoses.get('/plugins/src/validators/ValidateSchema.js')
       );
       expect(lastEntry.length).to.equal(1);
       expect(lastEntry[0].title).to.contain('[validator.schema.valid]');
@@ -88,8 +89,8 @@ describe('ValidateSchema plugin', () => {
       await expect(parent.diagnosticUI).to.equalSnapshot());
 
     it('create issues in diagnose', async () =>
-      expect(parent.diagnoses.get('/src/validators/ValidateSchema.js')).to.not
-        .be.undefined);
+      expect(parent.diagnoses.get('/plugins/src/validators/ValidateSchema.js'))
+        .to.not.be.undefined);
 
     it('generates error messages in the log', async () => {
       const lastLogEntry = <LogEntry>parent.log.pop();
