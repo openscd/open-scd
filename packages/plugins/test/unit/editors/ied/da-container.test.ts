@@ -9,7 +9,12 @@ import { TemplateResult } from 'lit-element';
 describe('da-container', async () => {
   let element: DAContainer;
   let validSCL: XMLDocument;
+  localStorage.clear();
+  const nsdoc81 = await fetch(
+    '@openscd/open-scd/test/testfiles/foundation/testFile81.nsdoc'
+  ).then(response => response.text());
 
+  localStorage.setItem('IEC 61850-8-1', nsdoc81!);
   const nsdoc = await initializeNsdoc();
 
   beforeEach(async () => {
@@ -134,6 +139,7 @@ describe('da-container', async () => {
 
     it('looks like the latest snapshot', async () => {
       await expect(element).shadowDom.to.equalSnapshot();
+      localStorage.clear();
     });
   });
 

@@ -10,6 +10,12 @@ import { getAncestorsFromDO } from './test-support.js';
 describe('do-wizard', async () => {
   let element: MockWizard;
   let validSCL: XMLDocument;
+  localStorage.clear();
+  const nsdoc74 = await fetch(
+    '@openscd/open-scd/test/testfiles/foundation/testFile74.nsdoc'
+  ).then(response => response.text());
+
+  localStorage.setItem('IEC 61850-7-4', nsdoc74!);
 
   const nsdoc = await initializeNsdoc();
 
@@ -52,6 +58,7 @@ describe('do-wizard', async () => {
 
     it('looks like the latest snapshot', async () => {
       await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
+      localStorage.clear();
     });
   });
 
