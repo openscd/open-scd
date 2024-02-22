@@ -1,14 +1,15 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import './mock-waiter.js';
-import { MockWaiter } from './mock-waiter.js';
+import '../../src/addons/Waiter.js';
+
+import { OscdWaiter } from '../../src/addons/Waiter.js';
 
 import { newPendingStateEvent } from '../../src/foundation.js';
 
-describe('WaitingElement', () => {
-  let element: MockWaiter;
+describe('OSCD-Waiter', () => {
+  let element: OscdWaiter;
   beforeEach(async () => {
-    element = <MockWaiter>await fixture(html`<mock-waiter></mock-waiter>`);
+    element = <OscdWaiter>await fixture(html`<oscd-waiter></oscd-waiter>`);
   });
 
   it('does not wait for pending state initially', () =>
