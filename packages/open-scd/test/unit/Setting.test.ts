@@ -13,7 +13,7 @@ describe('OSCD-Settings', () => {
     localStorage.clear();
 
     element = <OscdSettings>(
-      await fixture(html`<oscd-settings .host=${this}></oscd-settings>`)
+      await fixture(html`<oscd-settings .host=${document}></oscd-settings>`)
     );
   });
 
