@@ -6,7 +6,7 @@ import {
 } from '../../foundation.js';
 
 const referenceInfoTags = ['IED', 'Substation', 'VoltageLevel', 'Bay'] as const;
-type ReferencesInfoTag = typeof referenceInfoTags[number];
+type ReferencesInfoTag = (typeof referenceInfoTags)[number];
 
 type FilterFunction = (
   element: Element,
