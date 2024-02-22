@@ -1,8 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["open-scd looks like its snapshot"] = 
-`<oscd-waiter>
+snapshots['open-scd looks like its snapshot'] = `<oscd-waiter>
   <oscd-settings>
     <mwc-drawer
       class="mdc-theme--surface"
@@ -1239,4 +1238,3 @@ snapshots["open-scd looks like its snapshot"] =
 </oscd-waiter>
 `;
 /* end snapshot open-scd looks like its snapshot */
-

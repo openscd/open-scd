@@ -145,7 +145,7 @@ function renderFields(
     `,
     html`
       <mwc-textfield
-        label="${translate('iededitor.wizard.lnDescription')}"
+        label="${translate('scl.lnClass')}"
         value="${logicalNodeElement
           ? nsdoc.getDataDescription(logicalNodeElement, ancestors).label
           : '-'}"
