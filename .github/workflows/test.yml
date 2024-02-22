@@ -5,6 +5,7 @@ on:
       - main
     paths:
       - packages/open-scd/**
+      - packages/plugins/**
 
 jobs:
   test:
@@ -16,10 +17,16 @@ jobs:
       - name: Use Node.js 18.x
         uses: actions/setup-node@v1
         with:
-          node-version: '18.x'
+          node-version: "18.x"
 
       - name: Install and Test
         run: |
           cd packages/open-scd
+          npm clean-install
+          npm run-script test
+
+      - name: Install and Test
+        run: |
+          cd packages/plugins
           npm clean-install
           npm run-script test
