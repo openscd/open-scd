@@ -1,5 +1,6 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
+import '@openscd/open-scd/src/open-scd.js';
 import '@openscd/open-scd/test/mock-editor-logger.js';
 import { MockEditorLogger } from '@openscd/open-scd/test/mock-editor-logger.js';
 
@@ -47,6 +48,7 @@ describe('ValidateSchema plugin', () => {
     });
 
     it('zeroissues indication looks like the latest snapshot', async () => {
+      await parent.requestUpdate();
       await expect(parent.diagnosticUI).to.equalSnapshot();
     });
 
@@ -85,8 +87,10 @@ describe('ValidateSchema plugin', () => {
       await parent.updateComplete;
     });
 
-    it('pushes issues to the diagnostics pane that look like the latest snapshot', async () =>
-      await expect(parent.diagnosticUI).to.equalSnapshot());
+    it('pushes issues to the diagnostics pane that look like the latest snapshot', async () => {
+      await parent.requestUpdate();
+      await expect(parent.diagnosticUI).to.equalSnapshot();
+    });
 
     it('create issues in diagnose', async () =>
       expect(parent.diagnoses.get('/plugins/src/validators/ValidateSchema.js'))

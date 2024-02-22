@@ -32,7 +32,7 @@ describe('ValidateTemplates OpenSCD integration test ', () => {
         />
       `);
       element = <ValidateTemplates>parent.querySelector('validate-templates')!;
-      element.pluginId = '/src/validators/ValidateTemplates.js';
+      element.pluginId = '/plugins/src/validators/ValidateTemplates.js';
 
       await element.validate();
       await parent.workDone;
@@ -64,14 +64,14 @@ describe('ValidateTemplates OpenSCD integration test ', () => {
         />
       `);
       element = <ValidateTemplates>parent.querySelector('validate-templates')!;
-      element.pluginId = '/src/validators/ValidateTemplates.js';
+      element.pluginId = '/plugins/src/validators/ValidateTemplates.js';
 
       await element.validate();
       await parent.workDone;
     });
     it('generates issues in the diagnistics pane', async () => {
       const issues = parent.diagnoses.get(
-        '/src/validators/ValidateTemplates.js'
+        '/plugins/src/validators/ValidateTemplates.js'
       );
       expect(issues?.length).to.equal(28);
     }).timeout(1000);
@@ -99,14 +99,14 @@ describe('ValidateTemplates OpenSCD integration test ', () => {
         />
       `);
       element = <ValidateTemplates>parent.querySelector('validate-templates')!;
-      element.pluginId = '/src/validators/ValidateTemplates.js';
+      element.pluginId = '/plugins/src/validators/ValidateTemplates.js';
 
       await element.validate();
       await parent.workDone;
     });
     it('shows only one message in the diagnostics pane', async () => {
       const issues = parent.diagnoses.get(
-        '/src/validators/ValidateTemplates.js'
+        '/plugins/src/validators/ValidateTemplates.js'
       );
       expect(issues?.length).to.equal(1);
     }).timeout(1000);
