@@ -29,6 +29,7 @@ import {
 import { Editing } from './Editing.js';
 import { Historing } from './Historing.js';
 import { Plugging, Plugin, pluginIcons } from './Plugging.js';
+
 import { Wizarding } from './Wizarding.js';
 
 import './addons/Settings.js';
