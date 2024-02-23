@@ -84,11 +84,20 @@ snapshots["Oscd-Settings upload .nsdoc file using event and looks like latest sn
       <span>
         IEC 61850-7-2
       </span>
+      <span slot="secondary">
+        2007B3
+      </span>
       <mwc-icon
         slot="graphic"
-        style="color:red;"
+        style="color:green;"
       >
-        close
+        done
+      </mwc-icon>
+      <mwc-icon
+        id="deleteNsdocItem"
+        slot="meta"
+      >
+        delete
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
