@@ -89,6 +89,11 @@ export function newLoadNsdocEvent(
 
 @customElement('oscd-settings')
 export class OscdSettings extends LitElement {
+  @property({
+    type: Object,
+  })
+  nsdoc!: Nsdoc;
+
   /** Current [[`Settings`]] in `localStorage`, default to [[`defaults`]]. */
   @property()
   get settings(): Settings {
@@ -103,9 +108,6 @@ export class OscdSettings extends LitElement {
       'IEC 61850-8-1': this.getSetting('IEC 61850-8-1'),
     };
   }
-  /** Object containing all *.nsdoc files and a function extracting element's label form them*/
-  @property({ attribute: false })
-  nsdoc: Nsdoc = initializeNsdoc();
 
   @property({
     type: Object,
@@ -382,8 +384,7 @@ export class OscdSettings extends LitElement {
   }
 
   render(): TemplateResult {
-    return html` <slot></slot>
-      <mwc-dialog
+    return html`<mwc-dialog
         id="settings"
         heading="${translate('settings.title')}"
         @closing=${this.onClosing}
@@ -454,6 +455,7 @@ export class OscdSettings extends LitElement {
           ${translate('save')}
         </mwc-button>
       </mwc-dialog>
+      <slot></slot>
       ${getTheme(this.settings.theme)}`;
   }
 
