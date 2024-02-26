@@ -3,7 +3,7 @@ import {
   customElement,
   html,
   LitElement,
-  property,
+  property,F
   TemplateResult,
   query,
 } from 'lit-element';
@@ -34,6 +34,7 @@ import { Wizarding } from './Wizarding.js';
 
 import './addons/Settings.js';
 import './addons/Waiter.js';
+import { initializeNsdoc, Nsdoc } from './foundation/nsdoc.js';
 
 import { ActionDetail, List } from '@material/mwc-list';
 import { Drawer } from '@material/mwc-drawer';
@@ -66,12 +67,17 @@ interface MenuPlugin {
 export class OpenSCD extends Wizarding(
   Plugging(Editing(Historing(LitElement)))
 ) {
+  /** Object containing all *.nsdoc files and a function extracting element's label form them*/
+  @property({ attribute: false })
+  nsdoc: Nsdoc = initializeNsdoc();
+
   private currentSrc = '';
   /** The current file's URL. `blob:` URLs are *revoked after parsing*! */
   @property({ type: String })
   get src(): string {
     return this.currentSrc;
   }
+
   set src(value: string) {
     this.currentSrc = value;
     this.dispatchEvent(newPendingStateEvent(this.loadDoc(value)));
@@ -159,7 +165,7 @@ export class OpenSCD extends Wizarding(
 
   render(): TemplateResult {
     return html`<oscd-waiter>
-      <oscd-settings .host=${this}> ${this.renderMain()} </oscd-settings>
+      <oscd-settings .host=${this} .nsdoc=${this.nsdoc}> ${this.renderMain()} </oscd-settings>
     </oscd-waiter>`;
   }
 
