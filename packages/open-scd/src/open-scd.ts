@@ -10,21 +10,22 @@ import {
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 import { newOpenDocEvent, newPendingStateEvent } from './foundation.js';
+import { getTheme } from './themes.js';
 
 import { Editing } from './Editing.js';
 import { Hosting } from './Hosting.js';
 import { Historing } from './Historing.js';
 import { Plugging } from './Plugging.js';
+import { Setting } from './Setting.js';
 import { Wizarding } from './Wizarding.js';
 
-import './addons/Settings.js';
 import './addons/Waiter.js';
 
 /** The `<open-scd>` custom element is the main entry point of the
  * Open Substation Configuration Designer. */
 @customElement('open-scd')
 export class OpenSCD extends Hosting(
-  Wizarding(Plugging(Editing(Historing(LitElement))))
+  Setting(Wizarding(Plugging(Editing(Historing(LitElement)))))
 ) {
   private currentSrc = '';
   /** The current file's URL. `blob:` URLs are *revoked after parsing*! */
@@ -88,9 +89,8 @@ export class OpenSCD extends Hosting(
   }
 
   render(): TemplateResult {
-    return html`<oscd-waiter>
-      <oscd-settings .host=${this}> ${super.render()} </oscd-settings>
-    </oscd-waiter>`;
+    return html`<oscd-waiter>${super.render()}</oscd-waiter>
+      ${getTheme(this.settings.theme)} `;
   }
 
   static styles = css`

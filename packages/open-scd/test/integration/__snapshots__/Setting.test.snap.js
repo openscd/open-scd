@@ -1,7 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Oscd-Settings upload .nsdoc file using event and looks like latest snapshot"] = 
+snapshots["Setting upload .nsdoc file using event and looks like latest snapshot"] = 
 `<mwc-dialog
   heading="Settings"
   id="settings"
@@ -72,8 +72,7 @@ snapshots["Oscd-Settings upload .nsdoc file using event and looks like latest sn
   </section>
   <mwc-list id="nsdocList">
     <mwc-list-item
-      aria-disabled="true"
-      disabled=""
+      aria-disabled="false"
       graphic="avatar"
       hasmeta=""
       id="IEC 61850-7-2"
@@ -184,5 +183,5 @@ snapshots["Oscd-Settings upload .nsdoc file using event and looks like latest sn
   </mwc-button>
 </mwc-dialog>
 `;
-/* end snapshot Oscd-Settings upload .nsdoc file using event and looks like latest snapshot */
+/* end snapshot Setting upload .nsdoc file using event and looks like latest snapshot */
 

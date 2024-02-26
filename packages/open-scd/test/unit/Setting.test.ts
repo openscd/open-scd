@@ -2,19 +2,17 @@ import { registerTranslateConfig, use } from 'lit-translate';
 
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../../src/addons/Settings.js';
-import { OscdSettings, defaults } from '../../src/addons/Settings.js';
+import './mock-setter.js';
+import { MockSetter } from './mock-setter.js';
 
 import { Button } from '@material/mwc-button';
+import { defaults } from '../../src/Setting.js';
 
-describe('OSCD-Settings', () => {
-  let element: OscdSettings;
+describe('SettingElement', () => {
+  let element: MockSetter;
   beforeEach(async () => {
     localStorage.clear();
-
-    element = <OscdSettings>(
-      await fixture(html`<oscd-settings .host=${document}></oscd-settings>`)
-    );
+    element = <MockSetter>await fixture(html`<mock-setter></mock-setter>`);
   });
 
   it('initially has default settings', () =>
