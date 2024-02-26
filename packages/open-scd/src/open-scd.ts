@@ -19,6 +19,7 @@ import { Wizarding } from './Wizarding.js';
 
 import './addons/Settings.js';
 import './addons/Waiter.js';
+import { initializeNsdoc, Nsdoc } from './foundation/nsdoc.js';
 
 /** The `<open-scd>` custom element is the main entry point of the
  * Open Substation Configuration Designer. */
@@ -26,12 +27,17 @@ import './addons/Waiter.js';
 export class OpenSCD extends Hosting(
   Wizarding(Plugging(Editing(Historing(LitElement))))
 ) {
+  /** Object containing all *.nsdoc files and a function extracting element's label form them*/
+  @property({ attribute: false })
+  nsdoc: Nsdoc = initializeNsdoc();
+
   private currentSrc = '';
   /** The current file's URL. `blob:` URLs are *revoked after parsing*! */
   @property({ type: String })
   get src(): string {
     return this.currentSrc;
   }
+
   set src(value: string) {
     this.currentSrc = value;
     this.dispatchEvent(newPendingStateEvent(this.loadDoc(value)));
@@ -89,7 +95,9 @@ export class OpenSCD extends Hosting(
 
   render(): TemplateResult {
     return html`<oscd-waiter>
-      <oscd-settings .host=${this}> ${super.render()} </oscd-settings>
+      <oscd-settings .host=${this} .nsdoc=${this.nsdoc}>
+        ${super.render()}
+      </oscd-settings>
     </oscd-waiter>`;
   }
 
