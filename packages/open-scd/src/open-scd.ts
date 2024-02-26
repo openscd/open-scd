@@ -3,7 +3,7 @@ import {
   customElement,
   html,
   LitElement,
-  property,F
+  property,
   TemplateResult,
   query,
 } from 'lit-element';
@@ -165,7 +165,9 @@ export class OpenSCD extends Wizarding(
 
   render(): TemplateResult {
     return html`<oscd-waiter>
-      <oscd-settings .host=${this} .nsdoc=${this.nsdoc}> ${this.renderMain()} </oscd-settings>
+      <oscd-settings .host=${this} .nsdoc=${this.nsdoc}>
+        ${this.renderMain()}
+      </oscd-settings>
     </oscd-waiter>`;
   }
 
