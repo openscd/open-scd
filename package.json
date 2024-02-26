@@ -7,12 +7,20 @@
     "packages/*"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd packages/open-scd && npm run start"
+    "clean": "lerna run clean",
+    "build": "lerna run build",
+    "doc": "lerna run doc --ignore=open-scd",
+    "test": "lerna run test --ignore=@openscd/core",
+    "build:all": "npx nx run-many -t build --all",
+    "start": "lerna run start --ignore=@openscd/core"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/openscd/open-scd.git"
   },
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "lerna": "^7.1.4",
+    "nx": "^16.10.0"
+  }
 }

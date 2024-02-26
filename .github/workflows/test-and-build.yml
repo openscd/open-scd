@@ -11,16 +11,9 @@ jobs:
       - name: Use Node.js 18.x
         uses: actions/setup-node@v1
         with:
-          node-version: '18.x'
+          node-version: "18.x"
 
-      - name: Install and build Core
-        run: |
-          cd packages/core
-          npm clean-install
-          npm run-script build
-          
       - name: Install and Build OpenSCD
         run: |
-          cd packages/open-scd
           npm clean-install
           npm run-script build
