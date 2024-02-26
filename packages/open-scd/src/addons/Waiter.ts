@@ -17,10 +17,7 @@ export class OscdWaiter extends LitElement {
   waiting = false;
 
   private work: Set<Promise<void>> = new Set();
-<<<<<<< HEAD
-=======
 
->>>>>>> main
   /** A promise which resolves once all currently pending work is done. */
   workDone = Promise.allSettled(this.work);
 
@@ -35,16 +32,6 @@ export class OscdWaiter extends LitElement {
 
   constructor() {
     super();
-<<<<<<< HEAD
-    this.addEventListener('pending-state', this.onPendingState);
-  }
-
-  render(): TemplateResult {
-    return html`<slot></slot>
-      <mwc-linear-progress .closed=${!this.waiting} indeterminate>
-      </mwc-linear-progress>`;
-=======
-
     this.onPendingState = this.onPendingState.bind(this);
   }
 
@@ -64,6 +51,5 @@ export class OscdWaiter extends LitElement {
         .closed=${!this.waiting}
         indeterminate
       ></mwc-linear-progress>`;
->>>>>>> main
   }
 }
