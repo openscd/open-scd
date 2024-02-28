@@ -1,7 +1,7 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../../../mock-wizard-editor.js';
-import { MockWizardEditor } from '../../../mock-wizard-editor.js';
+import '../../../mock-open-scd.js';
+import { MockOpenSCD } from '../../../mock-open-scd.js';
 
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { Select } from '@material/mwc-select';
@@ -16,24 +16,23 @@ describe('LNodeType wizards', () => {
   if (customElements.get('templates-editor') === undefined)
     customElements.define('templates-editor', TemplatesPlugin);
   let doc: Document;
-  let parent: MockWizardEditor;
+  let parent: MockOpenSCD;
   let templates: TemplatesPlugin;
   let lNodeTypeList: FilteredList;
 
   beforeEach(async () => {
-    parent = await fixture(
-      html`<mock-wizard-editor
-        ><templates-editor></templates-editor
-      ></mock-wizard-editor>`
-    );
-
-    templates = <TemplatesPlugin>parent.querySelector('templates-editor')!;
-
     doc = await fetch('/test/testfiles/templates/dotypes.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-    templates.doc = doc;
-    await templates.updateComplete;
+
+    parent = await fixture(
+      html`<mock-open-scd
+        ><templates-editor .doc=${doc}></templates-editor
+      ></mock-open-scd>`
+    );
+
+    templates = parent.getActivePlugin();
+    await parent.updateComplete;
     lNodeTypeList = <FilteredList>(
       templates.shadowRoot?.querySelector('filtered-list[id="lnodetypelist"]')
     );
@@ -145,7 +144,7 @@ describe('LNodeType wizards', () => {
       );
       button.click();
       await parent.updateComplete;
-      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+      await new Promise(resolve => setTimeout(resolve, 400)); // await animation
       selector = parent.wizardUI.dialog!.querySelector<Select>(
         'mwc-select[label="lnClass"]'
       )!;
@@ -344,7 +343,7 @@ describe('LNodeType wizards', () => {
           )
         )).click();
         await parent.updateComplete;
-        await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+        await new Promise(resolve => setTimeout(resolve, 400)); // await animation
 
         saveButton = parent.wizardUI.shadowRoot!.querySelector<HTMLElement>(
           'mwc-button[slot="primaryAction"]'

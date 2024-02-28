@@ -5,12 +5,12 @@ snapshots["cleanup-editor integration: unreferenced control blocks without a doc
 `<section tabindex="1">
   <div>
     <h1>
-      [cleanup.unreferencedDataTypes.title]
+      Unreferenced Data Types
           (0)
       <abbr slot="action">
         <mwc-icon-button
           icon="info"
-          title="[cleanup.unreferencedDataTypes.tooltip]"
+          title="Data Types which are not referenced in a Logical Node or other used Data Type"
         >
         </mwc-icon-button>
       </abbr>
@@ -54,13 +54,13 @@ snapshots["cleanup-editor integration: unreferenced control blocks without a doc
       class="delete-button"
       disabled=""
       icon="delete"
-      label="[cleanup.unreferencedDataTypes.deleteButton] (0)"
+      label="Remove Selected Data Types (0)"
       outlined=""
     >
     </mwc-button>
     <mwc-formfield
       class="remove-from-communication"
-      label="[cleanup.unreferencedDataTypes.alsoRemoveSubTypes]"
+      label="Also remove subtypes"
     >
       <mwc-checkbox
         checked=""
@@ -70,8 +70,6 @@ snapshots["cleanup-editor integration: unreferenced control blocks without a doc
     </mwc-formfield>
   </footer>
 </section>
-<wizard-dialog>
-</wizard-dialog>
 `;
 /* end snapshot cleanup-editor integration: unreferenced control blocks without a doc loaded looks like the latest snapshot */
 

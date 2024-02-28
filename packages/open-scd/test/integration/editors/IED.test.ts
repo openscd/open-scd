@@ -4,10 +4,9 @@ import '../../mock-wizard.js';
 
 import { LitElement } from 'lit-element';
 
+import '../../mock-open-scd.js';
 import '../../../src/editors/IED.js';
 
-import { Editing } from '../../../src/Editing.js';
-import { Wizarding, WizardingElement } from '../../../src/Wizarding.js';
 import { initializeNsdoc, Nsdoc } from '../../../src/foundation/nsdoc.js';
 import { FilterButton } from '../../../src/oscd-filter-button.js';
 
@@ -16,16 +15,21 @@ import { LDeviceContainer } from '../../../src/editors/ied/ldevice-container.js'
 import { LNContainer } from '../../../src/editors/ied/ln-container.js';
 import { DOContainer } from '../../../src/editors/ied/do-container.js';
 import { DAContainer } from '../../../src/editors/ied/da-container.js';
+import { MockOpenSCD } from '../../mock-open-scd.js';
 
 describe('IED Plugin', () => {
   if (customElements.get('ied-plugin') === undefined)
-    customElements.define('ied-plugin', Wizarding(Editing(IED)));
+    customElements.define('ied-plugin', IED);
   let element: IED;
+  let parent: MockOpenSCD;
   let nsdoc: Nsdoc;
 
   describe('without a doc loaded', () => {
     beforeEach(async () => {
-      element = await fixture(html`<ied-plugin></ied-plugin>`);
+      parent = await fixture(
+        html`<mock-open-scd><ied-plugin></ied-plugin></mock-open-scd>`
+      );
+      element = parent.getActivePlugin();
       await element.requestUpdate();
       await element.updateComplete;
     });
@@ -44,9 +48,12 @@ describe('IED Plugin', () => {
           .then(response => response.text())
           .then(str => new DOMParser().parseFromString(str, 'application/xml'));
         nsdoc = await initializeNsdoc();
-        element = await fixture(
-          html` <ied-plugin .doc="${doc}" .nsdoc="${nsdoc}"></ied-plugin>`
+        parent = await fixture(
+          html`<mock-open-scd
+            ><ied-plugin .doc="${doc}" .nsdoc="${nsdoc}"></ied-plugin
+          ></mock-open-scd>`
         );
+        element = parent.getActivePlugin();
         await element.requestUpdate();
         await element.updateComplete;
       });
@@ -64,9 +71,12 @@ describe('IED Plugin', () => {
 
         nsdoc = await initializeNsdoc();
 
-        element = await fixture(
-          html`<ied-plugin .doc=${doc} .nsdoc=${nsdoc}></ied-plugin>`
+        parent = await fixture(
+          html`<mock-open-scd
+            ><ied-plugin .doc=${doc} .nsdoc=${nsdoc}></ied-plugin
+          ></mock-open-scd>`
         );
+        element = parent.getActivePlugin();
 
         await element.requestUpdate();
         await element.updateComplete;
@@ -85,7 +95,7 @@ describe('IED Plugin', () => {
 
         await element.requestUpdate();
 
-        expect((element as any as WizardingElement).wizardUI).to.exist;
+        expect(parent.wizardUI).to.exist;
       });
     });
 
@@ -95,9 +105,12 @@ describe('IED Plugin', () => {
           .then(response => response.text())
           .then(str => new DOMParser().parseFromString(str, 'application/xml'));
         nsdoc = await initializeNsdoc();
-        element = await fixture(
-          html`<ied-plugin .doc="${doc}" .nsdoc="${nsdoc}"></ied-plugin>`
+        parent = await fixture(
+          html`<mock-open-scd
+            ><ied-plugin .doc="${doc}" .nsdoc="${nsdoc}"></ied-plugin
+          ></mock-open-scd>`
         );
+        element = parent.getActivePlugin();
         await element.requestUpdate();
         await element.updateComplete;
       });
@@ -241,9 +254,12 @@ describe('IED Plugin', () => {
               new DOMParser().parseFromString(str, 'application/xml')
             );
           nsdoc = await initializeNsdoc();
-          element = await fixture(
-            html`<ied-plugin .doc="${doc}" .nsdoc="${nsdoc}"></ied-plugin>`
+          parent = await fixture(
+            html`<mock-open-scd
+              ><ied-plugin .doc="${doc}" .nsdoc="${nsdoc}"></ied-plugin
+            ></mock-open-scd>`
           );
+          element = parent.getActivePlugin();
           await element.requestUpdate();
           await element.updateComplete;
         });
@@ -283,15 +299,12 @@ describe('IED Plugin', () => {
               'mwc-icon-button[icon="add"]'
             ) as HTMLElement)!.click();
 
-          await element.updateComplete;
+          await parent.updateComplete;
 
+          expect(parent.wizardUI.dialogs.length).to.equal(1);
           expect(
-            (element as any as WizardingElement).wizardUI.dialogs.length
-          ).to.equal(1);
-          expect(
-            (
-              element as any as WizardingElement
-            ).wizardUI.dialogs[0]!.querySelectorAll('wizard-textfield').length
+            parent.wizardUI.dialogs[0]!.querySelectorAll('wizard-textfield')
+              .length
           ).to.equal(3);
         });
       });

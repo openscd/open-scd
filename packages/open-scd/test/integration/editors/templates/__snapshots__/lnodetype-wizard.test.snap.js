@@ -4,7 +4,7 @@ export const snapshots = {};
 snapshots["LNodeType wizards defines a lNodeTypeHelperWizard looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="next"
-  heading="[lnodetype.wizard.title.edit]"
+  heading="Edit LNodeType"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 48px)"
 >
@@ -24,7 +24,7 @@ snapshots["LNodeType wizards defines a lNodeTypeHelperWizard looks like the late
         tabindex="0"
       >
         <span>
-          [remove]
+          Remove
         </span>
         <mwc-icon slot="graphic">
           delete
@@ -38,7 +38,7 @@ snapshots["LNodeType wizards defines a lNodeTypeHelperWizard looks like the late
         tabindex="-1"
       >
         <span>
-          [scl.DO]
+          Data object
         </span>
         <mwc-icon slot="graphic">
           playlist_add
@@ -49,7 +49,7 @@ snapshots["LNodeType wizards defines a lNodeTypeHelperWizard looks like the late
   <div id="wizard-content">
     <wizard-textfield
       dialoginitialfocus=""
-      helper="[scl.id]"
+      helper="ID"
       label="id"
       maxlength="127"
       minlength="1"
@@ -58,13 +58,13 @@ snapshots["LNodeType wizards defines a lNodeTypeHelperWizard looks like the late
     </wizard-textfield>
     <wizard-textfield
       disabled=""
-      helper="[scl.desc]"
+      helper="Description"
       label="desc"
       nullable=""
     >
     </wizard-textfield>
     <wizard-textfield
-      helper="[scl.lnClass]"
+      helper="Logical Node Class"
       label="lnClass"
       required=""
     >
@@ -144,14 +144,14 @@ snapshots["LNodeType wizards defines a lNodeTypeHelperWizard looks like the late
   </div>
   <mwc-button
     dialogaction="close"
-    label="[close]"
+    label="Close"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
   </mwc-button>
   <mwc-button
     icon=""
-    label="[save]"
+    label="Save"
     slot="primaryAction"
     trailingicon=""
   >
@@ -160,10 +160,210 @@ snapshots["LNodeType wizards defines a lNodeTypeHelperWizard looks like the late
 `;
 /* end snapshot LNodeType wizards defines a lNodeTypeHelperWizard looks like the latest snapshot */
 
+snapshots["LNodeType wizards defines a dOWizard to create a new DO element looks like the latest snapshot"] = 
+`<mwc-dialog
+  defaultaction="next"
+  heading="Add DO"
+  open=""
+  style="--mdc-dialog-min-width:calc(100% + 0px)"
+>
+  <div id="wizard-content">
+    <wizard-textfield
+      dialoginitialfocus=""
+      helper="Name"
+      label="name"
+      pattern="[A-Z][0-9,A-Z,a-z]*"
+      required=""
+    >
+      >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      helper="Description"
+      label="desc"
+      nullable=""
+      pattern="([ -~]|[]|[ -퟿]|[-�])*"
+    >
+    </wizard-textfield>
+    <mwc-select
+      fixedmenuposition=""
+      helper="Type"
+      label="type"
+      required=""
+    >
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="0"
+        value="Dummy.LLN0.Mod"
+      >
+        Dummy.LLN0.Mod
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.LLN0.Beh"
+      >
+        Dummy.LLN0.Beh
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.LLN0.Health"
+      >
+        Dummy.LLN0.Health
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.LLN0.NamPlt"
+      >
+        Dummy.LLN0.NamPlt
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.LPHD1.PhyNam"
+      >
+        Dummy.LPHD1.PhyNam
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.LPHD1.Sim"
+      >
+        Dummy.LPHD1.Sim
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.XCBR1.Pos"
+      >
+        Dummy.XCBR1.Pos
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.CSWI.Pos1"
+      >
+        Dummy.CSWI.Pos1
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.CSWI.Pos2"
+      >
+        Dummy.CSWI.Pos2
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.XCBR1.OpCnt"
+      >
+        Dummy.XCBR1.OpCnt
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.XCBR1.NamPlt"
+      >
+        Dummy.XCBR1.NamPlt
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.XCBR1.BlkOpn"
+      >
+        Dummy.XCBR1.BlkOpn
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.SPS"
+      >
+        Dummy.SPS
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.WYE"
+      >
+        Dummy.WYE
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.CMV"
+      >
+        Dummy.CMV
+      </mwc-list-item>
+    </mwc-select>
+    <wizard-textfield
+      disabled=""
+      helper="Access control"
+      label="accessControl"
+      nullable=""
+      pattern="([ -~]|[]|[ -퟿]|[-�])*"
+    >
+    </wizard-textfield>
+    <wizard-checkbox
+      helper="Transient data"
+      label="transient"
+      nullable=""
+    >
+    </wizard-checkbox>
+  </div>
+  <mwc-button
+    dialogaction="close"
+    label="Close"
+    slot="secondaryAction"
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+  </mwc-button>
+  <mwc-button
+    icon=""
+    label="Save"
+    slot="primaryAction"
+    trailingicon=""
+  >
+  </mwc-button>
+</mwc-dialog>
+`;
+/* end snapshot LNodeType wizards defines a dOWizard to create a new DO element looks like the latest snapshot */
+
 snapshots["LNodeType wizards defines a createLNodeTypeWizard looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="next"
-  heading="[lnodetype.wizard.title.add]"
+  heading="Add LNodeType"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
@@ -4312,7 +4512,7 @@ snapshots["LNodeType wizards defines a createLNodeTypeWizard looks like the late
       </mwc-list-item>
     </mwc-select>
     <wizard-textfield
-      helper="[scl.id]"
+      helper="ID"
       label="id"
       maxlength="127"
       minlength="1"
@@ -4321,7 +4521,7 @@ snapshots["LNodeType wizards defines a createLNodeTypeWizard looks like the late
     </wizard-textfield>
     <wizard-textfield
       disabled=""
-      helper="[scl.desc]"
+      helper="Description"
       label="desc"
       nullable=""
     >
@@ -4329,14 +4529,14 @@ snapshots["LNodeType wizards defines a createLNodeTypeWizard looks like the late
   </div>
   <mwc-button
     dialogaction="close"
-    label="[close]"
+    label="Close"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
   </mwc-button>
   <mwc-button
     icon=""
-    label="[next]..."
+    label="Next..."
     slot="primaryAction"
     trailingicon=""
   >
@@ -4348,7 +4548,7 @@ snapshots["LNodeType wizards defines a createLNodeTypeWizard looks like the late
 snapshots["LNodeType wizards defines a createLNodeTypeWizard opens a createLNodeTypeHelperWizard looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="next"
-  heading="[lnodetype.wizard.title.select]"
+  heading="Select Data Objects"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
@@ -4664,14 +4864,14 @@ snapshots["LNodeType wizards defines a createLNodeTypeWizard opens a createLNode
   </div>
   <mwc-button
     dialogaction="close"
-    label="[close]"
+    label="Close"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
   </mwc-button>
   <mwc-button
     icon=""
-    label="[save]"
+    label="Save"
     slot="primaryAction"
     trailingicon=""
   >
@@ -4679,204 +4879,4 @@ snapshots["LNodeType wizards defines a createLNodeTypeWizard opens a createLNode
 </mwc-dialog>
 `;
 /* end snapshot LNodeType wizards defines a createLNodeTypeWizard opens a createLNodeTypeHelperWizard looks like the latest snapshot */
-
-snapshots["LNodeType wizards defines a dOWizard to create a new DO element looks like the latest snapshot"] = 
-`<mwc-dialog
-  defaultaction="next"
-  heading="[do.wizard.title.add]"
-  open=""
-  style="--mdc-dialog-min-width:calc(100% + 0px)"
->
-  <div id="wizard-content">
-    <wizard-textfield
-      dialoginitialfocus=""
-      helper="[scl.name]"
-      label="name"
-      pattern="[A-Z][0-9,A-Z,a-z]*"
-      required=""
-    >
-      >
-    </wizard-textfield>
-    <wizard-textfield
-      disabled=""
-      helper="[scl.desc]"
-      label="desc"
-      nullable=""
-      pattern="([ -~]|[]|[ -퟿]|[-�])*"
-    >
-    </wizard-textfield>
-    <mwc-select
-      fixedmenuposition=""
-      helper="[scl.type]"
-      label="type"
-      required=""
-    >
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="0"
-        value="Dummy.LLN0.Mod"
-      >
-        Dummy.LLN0.Mod
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="Dummy.LLN0.Beh"
-      >
-        Dummy.LLN0.Beh
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="Dummy.LLN0.Health"
-      >
-        Dummy.LLN0.Health
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="Dummy.LLN0.NamPlt"
-      >
-        Dummy.LLN0.NamPlt
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="Dummy.LPHD1.PhyNam"
-      >
-        Dummy.LPHD1.PhyNam
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="Dummy.LPHD1.Sim"
-      >
-        Dummy.LPHD1.Sim
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="Dummy.XCBR1.Pos"
-      >
-        Dummy.XCBR1.Pos
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="Dummy.CSWI.Pos1"
-      >
-        Dummy.CSWI.Pos1
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="Dummy.CSWI.Pos2"
-      >
-        Dummy.CSWI.Pos2
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="Dummy.XCBR1.OpCnt"
-      >
-        Dummy.XCBR1.OpCnt
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="Dummy.XCBR1.NamPlt"
-      >
-        Dummy.XCBR1.NamPlt
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="Dummy.XCBR1.BlkOpn"
-      >
-        Dummy.XCBR1.BlkOpn
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="Dummy.SPS"
-      >
-        Dummy.SPS
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="Dummy.WYE"
-      >
-        Dummy.WYE
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="Dummy.CMV"
-      >
-        Dummy.CMV
-      </mwc-list-item>
-    </mwc-select>
-    <wizard-textfield
-      disabled=""
-      helper="[scl.accessControl]"
-      label="accessControl"
-      nullable=""
-      pattern="([ -~]|[]|[ -퟿]|[-�])*"
-    >
-    </wizard-textfield>
-    <wizard-checkbox
-      helper="[scl.transient]"
-      label="transient"
-      nullable=""
-    >
-    </wizard-checkbox>
-  </div>
-  <mwc-button
-    dialogaction="close"
-    label="[close]"
-    slot="secondaryAction"
-    style="--mdc-theme-primary: var(--mdc-theme-error)"
-  >
-  </mwc-button>
-  <mwc-button
-    icon=""
-    label="[save]"
-    slot="primaryAction"
-    trailingicon=""
-  >
-  </mwc-button>
-</mwc-dialog>
-`;
-/* end snapshot LNodeType wizards defines a dOWizard to create a new DO element looks like the latest snapshot */
 

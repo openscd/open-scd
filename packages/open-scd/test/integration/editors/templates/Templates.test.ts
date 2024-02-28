@@ -1,32 +1,23 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../../../mock-wizard-editor.js';
-import { MockWizardEditor } from '../../../mock-wizard-editor.js';
+import '../../../mock-open-scd.js';
+import { MockOpenSCD } from '../../../mock-open-scd.js';
 
 import TemplatesPlugin from '../../../../src/editors/Templates.js';
-import { Editing, EditingElement } from '../../../../src/Editing.js';
-import { Wizarding, WizardingElement } from '../../../../src/Wizarding.js';
 import { newWizardEvent } from '../../../../src/foundation.js';
 
 describe('Templates Plugin', () => {
-  customElements.define(
-    'templates-plugin',
-    Wizarding(Editing(TemplatesPlugin))
-  );
+  customElements.define('templates-plugin', TemplatesPlugin);
 
   let element: TemplatesPlugin;
-  let parent: MockWizardEditor;
+  let parent: MockOpenSCD;
 
   beforeEach(async () => {
-    parent = <MockWizardEditor>(
-      await fixture(
-        html`<mock-wizard-editor
-          ><templates-plugin></templates-plugin
-        ></mock-wizard-editor>`
-      )
+    parent = await fixture(
+      html`<mock-open-scd><templates-plugin></templates-plugin></mock-open-scd>`
     );
 
-    element = parent.querySelector<TemplatesPlugin>('templates-plugin')!;
+    element = parent.getActivePlugin();
   });
 
   describe('without a doc loaded', () => {
@@ -189,20 +180,19 @@ describe('Templates Plugin', () => {
 
   describe('with a doc loaded missing a datatypetemplates section', () => {
     let doc: XMLDocument;
-    let parent: MockWizardEditor;
+    let parent: MockOpenSCD;
 
     beforeEach(async () => {
       doc = await fetch('/test/testfiles/templates/missingdatatypes.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-      parent = <MockWizardEditor>(
-        await fixture(
-          html`<mock-wizard-editor
-            ><templates-plugin .doc=${doc}></templates-plugin
-          ></mock-wizard-editor>`
-        )
+      parent = await fixture(
+        html`<mock-open-scd
+          ><templates-plugin .doc=${doc}></templates-plugin
+        ></mock-open-scd>`
       );
+      element = parent.getActivePlugin();
       await element.updateComplete;
     });
 
@@ -220,7 +210,7 @@ describe('Templates Plugin', () => {
       await parent.updateComplete;
       expect(
         parent!
-          .querySelector<EditingElement>('templates-plugin')!
+          .querySelector<TemplatesPlugin>('templates-plugin')!
           .doc!.querySelector('DataTypeTemplates')
       ).to.exist;
     });
@@ -228,19 +218,18 @@ describe('Templates Plugin', () => {
 
   describe('with a doc loaded having a datatypetemplates section', () => {
     let doc: XMLDocument;
-    let parent: WizardingElement & EditingElement;
+    let parent: MockOpenSCD;
 
     beforeEach(async () => {
       doc = await fetch('/test/testfiles/templates/datypes.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      parent = <WizardingElement & EditingElement>(
-        await fixture(
-          html`<mock-wizard-editor
-            ><templates-plugin .doc=${doc}></templates-plugin
-          ></mock-wizard-editor>`
-        )
+      parent = await fixture(
+        html`<mock-open-scd
+          ><templates-plugin .doc=${doc}></templates-plugin
+        ></mock-open-scd>`
       );
+      element = parent.getActivePlugin();
       await element.updateComplete;
     });
 

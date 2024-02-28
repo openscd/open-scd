@@ -1,17 +1,14 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../../../mock-wizard-editor.js';
-import { MockWizardEditor } from '../../../mock-wizard-editor.js';
+import '../../../mock-open-scd.js';
 
-import Communication from '../../../../src/editors/Communication.js'; 
+import Communication from '../../../../src/editors/Communication.js';
 import { Dialog } from '@material/mwc-dialog';
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
+import { MockOpenSCD } from '../../../mock-open-scd.js';
 
 describe('Communication Plugin', () => {
-  customElements.define(
-    'communication-plugin',
-    Communication
-  );
+  customElements.define('communication-plugin', Communication);
   let element: Communication;
   beforeEach(async () => {
     element = await fixture(
@@ -43,7 +40,7 @@ describe('Communication Plugin', () => {
 
   describe('with a doc loaded missing a communication section', () => {
     let doc: XMLDocument;
-    let parent: MockWizardEditor;
+    let parent: MockOpenSCD;
     let fab: HTMLElement;
     let element: Communication;
 
@@ -51,18 +48,14 @@ describe('Communication Plugin', () => {
       doc = await fetch('/test/testfiles/missingCommunication.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      
-      element = await fixture(
-        html`<communication-plugin .doc="${doc}"></communication-plugin>`
-      );
 
-      parent = <MockWizardEditor>(
-        await fixture(
-          html`<mock-wizard-editor
-            >${element}/mock-wizard-editor>`
-        )
+      parent = await fixture(
+        html`<mock-open-scd
+          ><communication-plugin .doc=${doc}></communication-plugin
+        ></mock-open-scd>`
       );
-      await element.updateComplete;
+      element = parent.getActivePlugin();
+      await parent.updateComplete;
       fab = <HTMLElement>(
         parent
           ?.querySelector('communication-plugin')
@@ -78,28 +71,34 @@ describe('Communication Plugin', () => {
       await parent.updateComplete;
       expect(parent.wizardUI.dialogs.length).to.equal(1);
     });
-  
+
     it('Should create a Communication Element', async () => {
-          expect(parent.wizardUI.dialogs.length).to.equal(0);
-          expect(element.doc.querySelector('Communication')).is.null;
+      expect(parent.wizardUI.dialogs.length).to.equal(0);
+      expect(element.doc.querySelector('Communication')).is.null;
 
-          await fab.click();
-          await new Promise(resolve => setTimeout(resolve, 100)); // await animation
-          await parent.updateComplete;
-          
-          const dialog: Dialog = parent.wizardUI.dialog!;
-          expect(dialog).to.not.be.undefined;
+      await fab.click();
+      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+      await parent.updateComplete;
 
-          const nameInput: WizardTextField = dialog.querySelector<WizardTextField>('wizard-textfield[label="name"]')!;
-          nameInput.value = 'Test';
-          await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+      const dialog: Dialog = parent.wizardUI.dialog!;
+      expect(dialog).to.not.be.undefined;
 
-          const saveButton: HTMLElement = dialog.querySelector('mwc-button[slot="primaryAction"]')!;
-          await saveButton.click();
-          await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+      const nameInput: WizardTextField = dialog.querySelector<WizardTextField>(
+        'wizard-textfield[label="name"]'
+      )!;
+      nameInput.value = 'Test';
+      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
-          expect(element.doc.querySelector('Communication')).not.is.null;
-          expect(element.doc.querySelector('Communication > SubNetwork[name="Test"]')).to.exist;
+      const saveButton: HTMLElement = dialog.querySelector(
+        'mwc-button[slot="primaryAction"]'
+      )!;
+      await saveButton.click();
+      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
+      expect(element.doc.querySelector('Communication')).not.is.null;
+      expect(
+        element.doc.querySelector('Communication > SubNetwork[name="Test"]')
+      ).to.exist;
     });
   });
 });

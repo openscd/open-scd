@@ -4,7 +4,7 @@ export const snapshots = {};
 snapshots["fcda-binding-list without a doc loaded looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.undefined.controlBlockList.title]
+    subscription.undefined.controlBlockList.title
     <mwc-icon-button
       class="actions-menu-icon"
       icon="filter_list"
@@ -27,7 +27,7 @@ snapshots["fcda-binding-list without a doc loaded looks like the latest snapshot
         tabindex="0"
       >
         <span>
-          [subscription.subscriber.subscribed]
+          Subscribed
         </span>
       </mwc-check-list-item>
       <mwc-check-list-item
@@ -41,7 +41,7 @@ snapshots["fcda-binding-list without a doc loaded looks like the latest snapshot
         tabindex="-1"
       >
         <span>
-          [subscription.subscriber.notSubscribed]
+          Not Subscribed
         </span>
       </mwc-check-list-item>
     </mwc-menu>
@@ -58,7 +58,7 @@ snapshots["fcda-binding-list without a doc loaded looks like the latest snapshot
 snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.SampledValueControl.controlBlockList.title]
+    Sampled Value Messages
     <mwc-icon-button
       class="actions-menu-icon"
       icon="filter_list"
@@ -81,7 +81,7 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
         tabindex="0"
       >
         <span>
-          [subscription.subscriber.subscribed]
+          Subscribed
         </span>
       </mwc-check-list-item>
       <mwc-check-list-item
@@ -95,7 +95,7 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
         tabindex="-1"
       >
         <span>
-          [subscription.subscriber.notSubscribed]
+          Not Subscribed
         </span>
       </mwc-check-list-item>
     </mwc-menu>
@@ -766,7 +766,7 @@ snapshots["fcda-binding-list with a SampledValueControl doc loaded looks like th
 snapshots["fcda-binding-list with a GSEControl doc loaded looks like the latest snapshot"] = 
 `<section tabindex="0">
   <h1>
-    [subscription.GSEControl.controlBlockList.title]
+    GOOSE Messages
     <mwc-icon-button
       class="actions-menu-icon"
       icon="filter_list"
@@ -789,7 +789,7 @@ snapshots["fcda-binding-list with a GSEControl doc loaded looks like the latest 
         tabindex="0"
       >
         <span>
-          [subscription.subscriber.subscribed]
+          Subscribed
         </span>
       </mwc-check-list-item>
       <mwc-check-list-item
@@ -803,7 +803,7 @@ snapshots["fcda-binding-list with a GSEControl doc loaded looks like the latest 
         tabindex="-1"
       >
         <span>
-          [subscription.subscriber.notSubscribed]
+          Not Subscribed
         </span>
       </mwc-check-list-item>
     </mwc-menu>

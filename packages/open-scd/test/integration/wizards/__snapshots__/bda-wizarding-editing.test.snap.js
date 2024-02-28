@@ -4,7 +4,7 @@ export const snapshots = {};
 snapshots["BDA wizarding editing integration defines a editBDaWizard to edit an existing BDA looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="next"
-  heading="[bda.wizard.title.edit]"
+  heading="Edit BDA"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 48px)"
 >
@@ -24,7 +24,7 @@ snapshots["BDA wizarding editing integration defines a editBDaWizard to edit an 
         tabindex="0"
       >
         <span>
-          [remove]
+          Remove
         </span>
         <mwc-icon slot="graphic">
           delete
@@ -35,7 +35,7 @@ snapshots["BDA wizarding editing integration defines a editBDaWizard to edit an 
   <div id="wizard-content">
     <wizard-textfield
       dialoginitialfocus=""
-      helper="[scl.name]"
+      helper="Name"
       label="name"
       maxlength="60"
       pattern="((T)|(Test)|(Check)|(SIUnit)|(Oper)|(SBO)|(SBOw)|(Cancel)|[a-z][0-9A-Za-z]*)"
@@ -45,7 +45,7 @@ snapshots["BDA wizarding editing integration defines a editBDaWizard to edit an 
     </wizard-textfield>
     <wizard-textfield
       disabled=""
-      helper="[scl.desc]"
+      helper="Description"
       label="desc"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�])*"
@@ -53,7 +53,7 @@ snapshots["BDA wizarding editing integration defines a editBDaWizard to edit an 
     </wizard-textfield>
     <wizard-select
       fixedmenuposition=""
-      helper="[scl.bType]"
+      helper="Basic type"
       label="bType"
       required=""
     >
@@ -405,7 +405,7 @@ snapshots["BDA wizarding editing integration defines a editBDaWizard to edit an 
     </wizard-select>
     <wizard-select
       fixedmenuposition=""
-      helper="[scl.type]"
+      helper="Type"
       label="type"
     >
       <mwc-list-item
@@ -514,7 +514,7 @@ snapshots["BDA wizarding editing integration defines a editBDaWizard to edit an 
     </wizard-select>
     <wizard-textfield
       disabled=""
-      helper="[scl.sAddr]"
+      helper="Short address"
       label="sAddr"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�])*"
@@ -523,7 +523,7 @@ snapshots["BDA wizarding editing integration defines a editBDaWizard to edit an 
     <wizard-select
       disabled=""
       fixedmenuposition=""
-      helper="[scl.valKind]"
+      helper="Value kind"
       label="valKind"
       nullable=""
       required=""
@@ -566,7 +566,7 @@ snapshots["BDA wizarding editing integration defines a editBDaWizard to edit an 
       </mwc-list-item>
     </wizard-select>
     <wizard-checkbox
-      helper="[scl.valImport]"
+      helper="Import value"
       label="valImport"
       nullable=""
       required=""
@@ -574,7 +574,7 @@ snapshots["BDA wizarding editing integration defines a editBDaWizard to edit an 
     </wizard-checkbox>
     <wizard-select
       disabled=""
-      helper="[scl.Val]"
+      helper="Default value"
       label="Val"
       nullable=""
     >
@@ -631,7 +631,7 @@ snapshots["BDA wizarding editing integration defines a editBDaWizard to edit an 
     </wizard-select>
     <wizard-textfield
       disabled=""
-      helper="[scl.Val]"
+      helper="Default value"
       label="Val"
       nullable=""
       style="display: none;"
@@ -640,14 +640,14 @@ snapshots["BDA wizarding editing integration defines a editBDaWizard to edit an 
   </div>
   <mwc-button
     dialogaction="close"
-    label="[close]"
+    label="Close"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
   </mwc-button>
   <mwc-button
     icon=""
-    label="[save]"
+    label="Save"
     slot="primaryAction"
     trailingicon=""
   >
@@ -659,14 +659,14 @@ snapshots["BDA wizarding editing integration defines a editBDaWizard to edit an 
 snapshots["BDA wizarding editing integration defines a createBDaWizard to create a new BDA element looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="next"
-  heading="[bda.wizard.title.edit]"
+  heading="Edit BDA"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <wizard-textfield
       dialoginitialfocus=""
-      helper="[scl.name]"
+      helper="Name"
       label="name"
       maxlength="60"
       pattern="((T)|(Test)|(Check)|(SIUnit)|(Oper)|(SBO)|(SBOw)|(Cancel)|[a-z][0-9A-Za-z]*)"
@@ -676,7 +676,7 @@ snapshots["BDA wizarding editing integration defines a createBDaWizard to create
     </wizard-textfield>
     <wizard-textfield
       disabled=""
-      helper="[scl.desc]"
+      helper="Description"
       label="desc"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�])*"
@@ -684,7 +684,7 @@ snapshots["BDA wizarding editing integration defines a createBDaWizard to create
     </wizard-textfield>
     <wizard-select
       fixedmenuposition=""
-      helper="[scl.bType]"
+      helper="Basic type"
       label="bType"
       required=""
     >
@@ -1033,7 +1033,7 @@ snapshots["BDA wizarding editing integration defines a createBDaWizard to create
     </wizard-select>
     <wizard-select
       fixedmenuposition=""
-      helper="[scl.type]"
+      helper="Type"
       label="type"
     >
       <mwc-list-item
@@ -1129,7 +1129,7 @@ snapshots["BDA wizarding editing integration defines a createBDaWizard to create
     </wizard-select>
     <wizard-textfield
       disabled=""
-      helper="[scl.sAddr]"
+      helper="Short address"
       label="sAddr"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�])*"
@@ -1138,7 +1138,7 @@ snapshots["BDA wizarding editing integration defines a createBDaWizard to create
     <wizard-select
       disabled=""
       fixedmenuposition=""
-      helper="[scl.valKind]"
+      helper="Value kind"
       label="valKind"
       nullable=""
       required=""
@@ -1181,7 +1181,7 @@ snapshots["BDA wizarding editing integration defines a createBDaWizard to create
       </mwc-list-item>
     </wizard-select>
     <wizard-checkbox
-      helper="[scl.valImport]"
+      helper="Import value"
       label="valImport"
       nullable=""
       required=""
@@ -1189,14 +1189,14 @@ snapshots["BDA wizarding editing integration defines a createBDaWizard to create
     </wizard-checkbox>
     <wizard-select
       disabled=""
-      helper="[scl.Val]"
+      helper="Default value"
       label="Val"
       nullable=""
     >
     </wizard-select>
     <wizard-textfield
       disabled=""
-      helper="[scl.Val]"
+      helper="Default value"
       label="Val"
       nullable=""
     >
@@ -1204,14 +1204,14 @@ snapshots["BDA wizarding editing integration defines a createBDaWizard to create
   </div>
   <mwc-button
     dialogaction="close"
-    label="[close]"
+    label="Close"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
   </mwc-button>
   <mwc-button
     icon=""
-    label="[save]"
+    label="Save"
     slot="primaryAction"
     trailingicon=""
   >
