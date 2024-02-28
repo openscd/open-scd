@@ -4,7 +4,6 @@ import '../../../mock-open-scd.js';
 import { MockOpenSCD } from '../../../mock-open-scd.js';
 
 import TemplatesPlugin from '../../../../src/editors/Templates.js';
-import { EditingElement } from '../../../../src/Editing.js';
 import { newWizardEvent } from '../../../../src/foundation.js';
 
 describe('Templates Plugin', () => {
@@ -211,7 +210,7 @@ describe('Templates Plugin', () => {
       await parent.updateComplete;
       expect(
         parent!
-          .querySelector<EditingElement>('templates-plugin')!
+          .querySelector<TemplatesPlugin>('templates-plugin')!
           .doc!.querySelector('DataTypeTemplates')
       ).to.exist;
     });
