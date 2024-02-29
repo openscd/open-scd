@@ -11,14 +11,31 @@ import {
 } from './test-support.js';
 import { MockOpenSCD } from '../../mock-open-scd.js';
 
-describe('GOOSE Subscribe Data Binding Plugin', async () => {
-  customElements.define(
-    'goose-subscriber-data-binding-plugin',
-    GooseSubscriberDataBinding
-  );
+import { TemplateResult } from 'lit-html';
+import { customElement, query } from 'lit-element';
 
+customElements.define(
+  'goose-subscriber-data-binding-plugin',
+  GooseSubscriberDataBinding
+);
+
+@customElement('goose-mock-open-scd')
+class GooseMockOpenSCD extends MockOpenSCD {
+  @query('goose-subscriber-data-binding-plugin')
+  plugin!: GooseSubscriberDataBinding;
+
+  renderHosting(): TemplateResult {
+    return html`<goose-subscriber-data-binding-plugin
+      .doc=${this.doc}
+      .editCount=${this.editCount}
+      .nsdoc=${this.nsdoc}
+    ></goose-subscriber-data-binding-plugin>`;
+  }
+}
+
+describe('GOOSE Subscribe Data Binding Plugin', async () => {
   let element: GooseSubscriberDataBinding;
-  let parent: MockOpenSCD;
+  let parent: GooseMockOpenSCD;
   let doc: XMLDocument;
 
   const nsdoc = await initializeNsdoc();
@@ -29,14 +46,12 @@ describe('GOOSE Subscribe Data Binding Plugin', async () => {
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
     parent = await fixture(
-      html`<mock-open-scd .doc=${doc} .nsdoc=${nsdoc}
-        ><goose-subscriber-data-binding-plugin
-          .doc=${doc}
-          .nsdoc=${nsdoc}
-        ></goose-subscriber-data-binding-plugin
-      ></mock-open-scd>`
+      html`<goose-mock-open-scd
+        .doc=${doc}
+        .nsdoc=${nsdoc}
+      ></goose-mock-open-scd>`
     );
-    element = parent.getActivePlugin();
+    element = parent.plugin;
     await parent.updateComplete;
     await element.updateComplete;
   });
@@ -125,6 +140,7 @@ describe('GOOSE Subscribe Data Binding Plugin', async () => {
       )
     )).click();
     await element.updateComplete;
+    await parent.updateComplete;
 
     expect(extRefListElement['getSubscribedLNElements']().length).to.be.equal(
       0

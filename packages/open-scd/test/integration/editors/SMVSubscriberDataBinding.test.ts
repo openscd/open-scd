@@ -1,4 +1,4 @@
-import { expect, fixture, html } from '@open-wc/testing';
+import { expect, fixture } from '@open-wc/testing';
 import { initializeNsdoc } from '../../../src/foundation/nsdoc.js';
 
 import SMVSubscriberDataBinding from '../../../src/editors/SMVSubscriberDataBinding.js';
@@ -13,14 +13,29 @@ import {
 import { MockOpenSCD } from '../../mock-open-scd.js';
 import '../../mock-open-scd.js';
 
-describe('SMV Subscribe Data Binding Plugin', async () => {
-  customElements.define(
-    'smv-subscriber-data-binding-plugin',
-    SMVSubscriberDataBinding
-  );
+import { customElement, query, TemplateResult, html } from 'lit-element';
 
+customElements.define(
+  'smv-subscriber-data-binding-plugin',
+  SMVSubscriberDataBinding
+);
+@customElement('smv-mock-open-scd')
+class SMVMockOpenSCD extends MockOpenSCD {
+  @query('smv-subscriber-data-binding-plugin')
+  plugin!: SMVSubscriberDataBinding;
+
+  renderHosting(): TemplateResult {
+    return html`<smv-subscriber-data-binding-plugin
+      .doc=${this.doc}
+      .editCount=${this.editCount}
+      .nsdoc=${this.nsdoc}
+    ></smv-subscriber-data-binding-plugin>`;
+  }
+}
+
+describe('SMV Subscribe Data Binding Plugin', async () => {
   let element: SMVSubscriberDataBinding;
-  let parent: MockOpenSCD;
+  let parent: SMVMockOpenSCD;
   let doc: XMLDocument;
 
   const nsdoc = await initializeNsdoc();
@@ -31,14 +46,10 @@ describe('SMV Subscribe Data Binding Plugin', async () => {
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
     parent = await fixture(
-      html`<mock-open-scd .doc=${doc} .nsdoc=${nsdoc}
-        ><smv-subscriber-data-binding-plugin
-          .doc="${doc}"
-          .nsdoc=${nsdoc}
-        ></smv-subscriber-data-binding-plugin
-      ></mock-open-scd>`
+      html`<smv-mock-open-scd .doc=${doc} .nsdoc=${nsdoc}></smv-mock-open-scd>`
     );
-    element = parent.getActivePlugin();
+    await parent.updateComplete;
+    element = parent.plugin;
   });
 
   it('when subscribing an available ExtRef then the lists are changed', async () => {
@@ -50,7 +61,8 @@ describe('SMV Subscribe Data Binding Plugin', async () => {
       'SMV_Publisher>>CurrentTransformer>fullSmv',
       'SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 1.AmpSv q (MX)'
     );
-    await element.requestUpdate();
+    await element.updateComplete;
+    await parent.updateComplete;
     await extRefListElement.requestUpdate();
 
     expect(extRefListElement['getSubscribedLNElements']().length).to.be.equal(
@@ -69,7 +81,8 @@ describe('SMV Subscribe Data Binding Plugin', async () => {
         'mwc-list-item[value="SMV_Subscriber1>>Overcurrent"]'
       )
     )).click();
-    await element.requestUpdate();
+    await element.updateComplete;
+    await parent.updateComplete;
 
     expect(extRefListElement['getSubscribedLNElements']().length).to.be.equal(
       2
@@ -92,7 +105,8 @@ describe('SMV Subscribe Data Binding Plugin', async () => {
       'SMV_Publisher>>CurrentTransformer>fullSmv',
       'SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L3 TCTR 1.AmpSv instMag.i (MX)'
     );
-    await element.requestUpdate();
+    await element.updateComplete;
+    await parent.updateComplete;
     await extRefListElement.requestUpdate();
 
     expect(extRefListElement['getSubscribedLNElements']().length).to.be.equal(
@@ -111,7 +125,8 @@ describe('SMV Subscribe Data Binding Plugin', async () => {
         'mwc-list-item[value="SMV_Subscriber1>>Overvoltage"]'
       )
     )).click();
-    await element.requestUpdate();
+    await element.updateComplete;
+    await parent.updateComplete;
 
     expect(extRefListElement['getSubscribedLNElements']().length).to.be.equal(
       1

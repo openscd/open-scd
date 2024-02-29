@@ -1,8 +1,4 @@
-import { expect, fixture, html } from '@open-wc/testing';
-
-import { Wizarding } from '../../../src/Wizarding.js';
-import { Editing } from '../../../src/Editing.js';
-import { Historing } from '../../../src/Historing.js';
+import { expect, fixture } from '@open-wc/testing';
 
 import SMVSubscribeLaterBindingPlugin from '../../../src/editors/SMVSubscriberLaterBinding.js';
 import {
@@ -16,13 +12,29 @@ import { ExtRefLaterBindingList } from '../../../src/editors/subscription/later-
 import { MockOpenSCD } from '../../mock-open-scd.js';
 import '../../mock-open-scd.js';
 
+import { customElement, query, TemplateResult, html } from 'lit-element';
+
+customElements.define(
+  'smv-subscribe-later-binding-plugin',
+  SMVSubscribeLaterBindingPlugin
+);
+@customElement('smv-mock-open-scd')
+class SMVMockOpenSCD extends MockOpenSCD {
+  @query('smv-subscribe-later-binding-plugin')
+  plugin!: SMVSubscribeLaterBindingPlugin;
+
+  renderHosting(): TemplateResult {
+    return html`<smv-subscribe-later-binding-plugin
+      .doc=${this.doc}
+      .editCount=${this.editCount}
+      .nsdoc=${this.nsdoc}
+    ></smv-subscribe-later-binding-plugin>`;
+  }
+}
+
 describe('SMV Subscribe Later Binding plugin', () => {
-  customElements.define(
-    'smv-subscribe-later-binding-plugin',
-    SMVSubscribeLaterBindingPlugin
-  );
   let element: SMVSubscribeLaterBindingPlugin;
-  let parent: MockOpenSCD;
+  let parent: SMVMockOpenSCD;
   let doc: XMLDocument;
 
   beforeEach(async () => {
@@ -31,14 +43,11 @@ describe('SMV Subscribe Later Binding plugin', () => {
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
     parent = await fixture(
-      html`<mock-open-scd
-        ><smv-subscribe-later-binding-plugin
-          .doc=${doc}
-        ></smv-subscribe-later-binding-plugin
-      ></mock-open-scd>`
+      html`<smv-mock-open-scd .doc=${doc}></smv-mock-open-scd>`
     );
-    element = parent.getActivePlugin();
-    await element.requestUpdate();
+    await parent.updateComplete;
+    element = parent.plugin;
+    await element.updateComplete;
   });
 
   it('when selecting an FCDA element with subscriptions it looks like the latest snapshot', async () => {
@@ -47,13 +56,11 @@ describe('SMV Subscribe Later Binding plugin', () => {
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
     parent = await fixture(
-      html`<mock-open-scd
-        ><smv-subscribe-later-binding-plugin
-          .doc="${doc}"
-        ></smv-subscribe-later-binding-plugin
-      ></mock-open-scd>`
+      html`<smv-mock-open-scd .doc="${doc}"></smv-mock-open-scd>`
     );
-    element = parent.getActivePlugin();
+    await parent.updateComplete;
+    element = parent.plugin;
+    await element.updateComplete;
 
     const fcdaListElement = getFCDABindingList(element);
     selectFCDAItem(
@@ -61,7 +68,8 @@ describe('SMV Subscribe Later Binding plugin', () => {
       'SMV_Publisher>>CurrentTransformer>currrentOnly',
       'SMV_Publisher>>CurrentTransformer>currrentOnlysDataSet>CurrentTransformer/L1 TCTR 1.AmpSv instMag.i (MX)'
     );
-    await element.requestUpdate();
+    await element.updateComplete;
+    await parent.updateComplete;
 
     const extRefListElement = <ExtRefLaterBindingList>(
       element.shadowRoot?.querySelector('extref-later-binding-list')
@@ -80,7 +88,8 @@ describe('SMV Subscribe Later Binding plugin', () => {
       'SMV_Publisher>>CurrentTransformer>currentOnly',
       'SMV_Publisher>>CurrentTransformer>currentOnlysDataSet>CurrentTransformer/L2 TCTR 1.AmpSv instMag.i (MX)'
     );
-    await element.requestUpdate();
+    await element.updateComplete;
+    await parent.updateComplete;
     await extRefListElement.requestUpdate();
 
     expect(
@@ -96,7 +105,9 @@ describe('SMV Subscribe Later Binding plugin', () => {
         'mwc-list-item[value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR2/AmpSv/instMag.i[0]"]'
       )
     )).click();
-    await element.requestUpdate();
+
+    await element.updateComplete;
+    await parent.updateComplete;
 
     expect(
       extRefListElement['getSubscribedExtRefElements']().length
@@ -113,13 +124,11 @@ describe('SMV Subscribe Later Binding plugin', () => {
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
     parent = await fixture(
-      html`<mock-open-scd
-        ><smv-subscribe-later-binding-plugin
-          .doc="${doc}"
-        ></smv-subscribe-later-binding-plugin
-      ></mock-open-scd>`
+      html`<smv-mock-open-scd .doc=${doc}></smv-mock-open-scd>`
     );
-    element = parent.getActivePlugin();
+    await parent.updateComplete;
+    element = parent.plugin;
+    await element.updateComplete;
 
     const fcdaListElement = getFCDABindingList(element);
     const extRefListElement = getExtrefLaterBindingList(element);
@@ -129,15 +138,16 @@ describe('SMV Subscribe Later Binding plugin', () => {
       'SMV_Publisher>>CurrentTransformer>fullSmv',
       'SMV_Publisher>>CurrentTransformer>fullSmvsDataSet>CurrentTransformer/L2 TCTR 2.AmpSv instMag.i (MX)'
     );
-    await element.requestUpdate();
-    await extRefListElement.requestUpdate();
+    await element.updateComplete;
+    await parent.updateComplete;
 
     (<HTMLElement>(
       extRefListElement.shadowRoot!.querySelector(
         'mwc-list-item[value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/instMag.i[0]"]'
       )
     )).click();
-    await element.requestUpdate();
+    await element.updateComplete;
+    await parent.updateComplete;
 
     const supervisionInstance = element.doc.querySelector(
       'IED[name="SMV_Subscriber"] LN[lnClass="LSVS"][inst="3"]'
@@ -176,7 +186,8 @@ describe('SMV Subscribe Later Binding plugin', () => {
         'mwc-list-item[value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/q[0]"]'
       )
     )).click();
-    await element.requestUpdate();
+    await element.updateComplete;
+    await parent.updateComplete;
 
     expect(
       extRefListElement['getSubscribedExtRefElements']().length

@@ -1,4 +1,4 @@
-import { expect, fixture, html } from '@open-wc/testing';
+import { expect, fixture } from '@open-wc/testing';
 
 import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 
@@ -7,13 +7,29 @@ import GooseSubscriberMessageBindingPlugin from '../../../src/editors/GooseSubsc
 import '../../mock-open-scd.js';
 import { MockOpenSCD } from '../../mock-open-scd.js';
 
+import { customElement, query, TemplateResult, html } from 'lit-element';
+
+customElements.define(
+  'subscription-plugin',
+  GooseSubscriberMessageBindingPlugin
+);
+@customElement('goose-mock-open-scd')
+class GooseMockOpenSCD extends MockOpenSCD {
+  @query('subscription-plugin')
+  plugin!: GooseSubscriberMessageBindingPlugin;
+
+  renderHosting(): TemplateResult {
+    return html`<subscription-plugin
+      .doc=${this.doc}
+      .editCount=${this.editCount}
+      .nsdoc=${this.nsdoc}
+    ></subscription-plugin>`;
+  }
+}
+
 describe('GOOSE subscriber plugin', () => {
-  customElements.define(
-    'subscription-plugin',
-    GooseSubscriberMessageBindingPlugin
-  );
   let element: GooseSubscriberMessageBindingPlugin;
-  let parent: MockOpenSCD;
+  let parent: GooseMockOpenSCD;
   let doc: XMLDocument;
 
   beforeEach(async () => {
@@ -22,11 +38,11 @@ describe('GOOSE subscriber plugin', () => {
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
     parent = await fixture(
-      html`<mock-open-scd
-        ><subscription-plugin .doc=${doc}></subscription-plugin
-      ></mock-open-scd>`
+      html`<goose-mock-open-scd .doc=${doc}
+      ></goosemock-open-scd>`
     );
-    element = parent.getActivePlugin();
+    await parent.updateComplete;
+    element = parent.plugin;
   });
 
   describe('in Publisher view', () => {
@@ -352,7 +368,8 @@ describe('GOOSE subscriber plugin', () => {
       describe('for subscribed GSEControl s', () => {
         beforeEach(async () => {
           (<HTMLElement>getItemFromSubscriberList('IED4')).click();
-          await element.requestUpdate();
+          await element.updateComplete;
+          await parent.updateComplete;
         });
 
         it('all ExtRefs are available in the subscriber IED', async () => {

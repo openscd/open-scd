@@ -5,11 +5,27 @@ import SMVSubscriberMessageBindingPlugin from '../../../src/editors/SMVSubscribe
 import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 import { MockOpenSCD } from '../../mock-open-scd.js';
 import '../../mock-open-scd.js';
+import { TemplateResult, customElement, query } from 'lit-element';
+
+customElements.define('smv-plugin', SMVSubscriberMessageBindingPlugin);
+
+@customElement('smv-mock-open-scd')
+class SmvMockOpenSCD extends MockOpenSCD {
+  @query('smv-plugin')
+  plugin!: SMVSubscriberMessageBindingPlugin;
+
+  renderHosting(): TemplateResult {
+    return html`<smv-plugin
+      .doc=${this.doc}
+      .editCount=${this.editCount}
+      .nsdoc=${this.nsdoc}
+    ></smv-plugin>`;
+  }
+}
 
 describe('Sampled Values Plugin', () => {
-  customElements.define('smv-plugin', SMVSubscriberMessageBindingPlugin);
   let element: SMVSubscriberMessageBindingPlugin;
-  let parent: MockOpenSCD;
+  let parent: SmvMockOpenSCD;
   let doc: XMLDocument;
 
   beforeEach(async () => {
@@ -18,9 +34,14 @@ describe('Sampled Values Plugin', () => {
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
     parent = await fixture(
-      html`<mock-open-scd><smv-plugin .doc=${doc}></smv-plugin></mock-open-scd>`
+      html`<smv-mock-open-scd .doc=${doc}></smv-mock-open-scd>`
     );
-    element = parent.getActivePlugin();
+
+    await parent.updateComplete;
+
+    element = parent.plugin;
+
+    await element.updateComplete;
   });
 
   describe('in Publisher view', () => {
@@ -343,6 +364,7 @@ describe('Sampled Values Plugin', () => {
         beforeEach(async () => {
           (<HTMLElement>getItemFromSubscriberList('MSVCB01')).click();
           await element.updateComplete;
+          await parent.updateComplete;
         });
 
         it('initially all ExtRefs are available in the subscriber IED', async () => {
@@ -364,6 +386,7 @@ describe('Sampled Values Plugin', () => {
         it('removes the required ExtRefs to the subscriber IED', async () => {
           (<HTMLElement>getItemFromSubscriberList('MSVCB01')).click();
           await element.updateComplete;
+          await parent.updateComplete;
           expect(
             element.doc.querySelectorAll(
               'IED[name="IED2"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED3"], ' +

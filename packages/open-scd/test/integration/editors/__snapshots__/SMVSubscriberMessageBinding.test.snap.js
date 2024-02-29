@@ -943,10 +943,40 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and un
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
-        value=""
+        value="IED3>>MU01>MSVCB01"
       >
         <span>
           Subscribed
+        </span>
+      </mwc-list-item>
+      <li
+        divider=""
+        role="separator"
+      >
+      </li>
+      <mwc-list-item
+        aria-disabled="false"
+        aria-selected="true"
+        graphic="avatar"
+        mwc-list-item=""
+        selected=""
+        tabindex="-1"
+      >
+        <span>
+          MSVCB01 (IED3)
+        </span>
+        <mwc-icon slot="graphic">
+          clear
+        </mwc-icon>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        noninteractive=""
+        tabindex="-1"
+        value=""
+      >
+        <span>
+          Partially subscribed
         </span>
       </mwc-list-item>
       <li
@@ -971,34 +1001,6 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and un
         value="IED4>>CircuitBreaker_CB1>MSVCB02"
       >
         <span>
-          Partially subscribed
-        </span>
-      </mwc-list-item>
-      <li
-        divider=""
-        role="separator"
-      >
-      </li>
-      <mwc-list-item
-        aria-disabled="false"
-        graphic="avatar"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <span>
-          MSVCB02 (IED4)
-        </span>
-        <mwc-icon slot="graphic">
-          add
-        </mwc-icon>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        noninteractive=""
-        tabindex="-1"
-        value="IED3>>MU01>MSVCB01"
-      >
-        <span>
           Available to subscribe
         </span>
       </mwc-list-item>
@@ -1009,14 +1011,13 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and un
       </li>
       <mwc-list-item
         aria-disabled="false"
-        aria-selected="true"
+        aria-selected="false"
         graphic="avatar"
         mwc-list-item=""
-        selected=""
-        tabindex="0"
+        tabindex="-1"
       >
         <span>
-          MSVCB01 (IED3)
+          MSVCB02 (IED4)
         </span>
         <mwc-icon slot="graphic">
           add
