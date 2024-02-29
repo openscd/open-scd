@@ -38,33 +38,7 @@ import { ActionDetail, List } from '@material/mwc-list';
 import { Drawer } from '@material/mwc-drawer';
 import { translate } from 'lit-translate';
 
-// HOSTING INTERFACES
-
-interface MenuItem {
-  icon: string;
-  name: string;
-  hint?: string;
-  actionItem?: boolean;
-  action?: (event: CustomEvent<ActionDetail>) => void;
-  disabled?: () => boolean;
-  content?: TemplateResult;
-  kind: string;
-}
-
-interface Validator {
-  validate: () => Promise<void>;
-}
-
-interface MenuPlugin {
-  run: () => Promise<void>;
-}
-import './addons/Settings.js';
-import './addons/Waiter.js';
 import { initializeNsdoc, Nsdoc } from './foundation/nsdoc.js';
-
-import { ActionDetail, List } from '@material/mwc-list';
-import { Drawer } from '@material/mwc-drawer';
-import { translate } from 'lit-translate';
 
 // HOSTING INTERFACES
 
