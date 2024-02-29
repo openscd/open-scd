@@ -690,7 +690,7 @@ snapshots["DOType wizards defines a createDOTypeWizard looks like the latest sna
     >
     </wizard-textfield>
     <wizard-textfield
-      helper="scl.cdc"
+      helper="Common data class"
       label="cdc"
       required=""
     >
