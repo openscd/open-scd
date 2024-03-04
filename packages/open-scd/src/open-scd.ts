@@ -47,12 +47,12 @@ import { Drawer } from '@material/mwc-drawer';
 import { translate } from 'lit-translate';
 
 import { officialPlugins } from '../public/js/plugins.js';
-import { Nsdoc } from './foundation/nsdoc.js';
 import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation.js';
 import { Select } from '@material/mwc-select';
 import { Switch } from '@material/mwc-switch';
 import { TextField } from '@material/mwc-textfield';
 import { Dialog } from '@material/mwc-dialog';
+import { initializeNsdoc, Nsdoc } from './foundation/nsdoc.js';
 
 // HOSTING INTERFACES
 
@@ -234,12 +234,17 @@ export class OpenSCD extends Historing(LitElement) {
   /** The UUID of the current [[`doc`]] */
   @property({ type: String }) docId = '';
 
+  /** Object containing all *.nsdoc files and a function extracting element's label form them*/
+  @property({ attribute: false })
+  nsdoc: Nsdoc = initializeNsdoc();
+
   private currentSrc = '';
   /** The current file's URL. `blob:` URLs are *revoked after parsing*! */
   @property({ type: String })
   get src(): string {
     return this.currentSrc;
   }
+
   set src(value: string) {
     this.currentSrc = value;
     this.dispatchEvent(newPendingStateEvent(this.loadDoc(value)));
@@ -298,6 +303,10 @@ export class OpenSCD extends Historing(LitElement) {
     this.requestUpdate();
   }
 
+  protected renderMain(): TemplateResult {
+    return html`${this.renderHosting()}${this.renderPlugging()}${super.render()}`;
+  }
+
   connectedCallback(): void {
     super.connectedCallback();
     this.addEventListener('validate', async () => {
@@ -322,10 +331,6 @@ export class OpenSCD extends Historing(LitElement) {
     this.addEventListener('close-drawer', async () => {
       this.menuUI.open = false;
     });
-  }
-
-  protected renderMain(): TemplateResult {
-    return html`${this.renderHosting()}${this.renderPlugging()}${super.render()}`;
   }
 
   render(): TemplateResult {
@@ -712,10 +717,6 @@ export class OpenSCD extends Historing(LitElement) {
             )}
           </div>`}`;
   }
-
-  // PLUGGING
-  // DIRTY HACK: will refactored with open-scd-core
-  nsdoc!: Nsdoc;
 
   get editors(): Plugin[] {
     return this.plugins.filter(

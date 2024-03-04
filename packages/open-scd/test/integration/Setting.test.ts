@@ -33,6 +33,10 @@ describe('Oscd-Settings', () => {
 
     await settings.requestUpdate();
     await settings.updateComplete;
+<<<<<<< HEAD
+=======
+    await logger.updateComplete;
+>>>>>>> main
 
     expect(localStorage.getItem('IEC 61850-7-2')).to.eql(nsdocFile);
     // Create a snapshot of the Settings Dialog only, not the whole Mock Component.
