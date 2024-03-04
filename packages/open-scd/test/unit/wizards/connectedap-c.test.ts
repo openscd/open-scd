@@ -206,7 +206,6 @@ describe('create wizard for ConnectedAP element', () => {
       });
 
       it('adds uniques MAC-Address and APPID', async () => {
-        console.log('test fails');
         await clickListItem(element, [
           'SMV_Publisher>AP1',
           'SMV_Publisher2>AP1',
