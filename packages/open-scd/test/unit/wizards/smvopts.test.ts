@@ -1,15 +1,15 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
-import '../../mock-wizard.js';
-import { MockWizard } from '../../mock-wizard.js';
+import '../../../src/addons/Wizards.js';
+import { Wizards } from '../../../src/addons/Wizards.js';
 
 import { WizardCheckbox } from '../../../src/wizard-checkbox.js';
 import { isReplace, Replace } from '../../../src/foundation.js';
 import { editSmvOptsWizard } from '../../../src/wizards/smvopts.js';
 
 describe('Wizards for SCL SmvOpts element', () => {
-  let element: MockWizard;
+  let element: Wizards;
   let smvOpts: Element;
   let inputs: WizardCheckbox[];
 
@@ -18,7 +18,9 @@ describe('Wizards for SCL SmvOpts element', () => {
   let actionEvent: SinonSpy;
 
   beforeEach(async () => {
-    element = await fixture(html`<mock-wizard></mock-wizard>`);
+    element = await fixture(
+      html`<oscd-wizards .host=${document}></oscd-wizards>`
+    );
     smvOpts = <Element>(
       new DOMParser().parseFromString(
         `<SmvOpts refreshTime="true" dataSet="true"></SmvOpts>`,

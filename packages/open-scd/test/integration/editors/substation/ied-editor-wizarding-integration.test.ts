@@ -35,6 +35,7 @@ describe('IED editor component wizarding editing integration', () => {
       iededitor.shadowRoot?.querySelector('mwc-fab[class="selectgse"]')
     )).click();
     await parent.updateComplete;
+    await parent.wizardUI.updateComplete;
 
     expect(parent.wizardUI.dialog).to.exist;
     const gseControlList = <FilteredList>(
@@ -52,6 +53,7 @@ describe('IED editor component wizarding editing integration', () => {
       iededitor.shadowRoot?.querySelector('mwc-fab[class="selectreport"]')
     )).click();
     await parent.updateComplete;
+    await parent.wizardUI.updateComplete;
 
     expect(parent.wizardUI.dialog).to.exist;
     const reportControlList = <FilteredList>(
@@ -69,9 +71,11 @@ describe('IED editor component wizarding editing integration', () => {
       iededitor.shadowRoot?.querySelector('mwc-fab[class="delete"]')
     )).click();
     await parent.updateComplete;
+    await parent.wizardUI.updateComplete;
 
     expect(parent.wizardUI.dialog).to.exist;
-    const referencesList = parent.wizardUI.dialog?.querySelectorAll('mwc-list-item');
+    const referencesList =
+      parent.wizardUI.dialog?.querySelectorAll('mwc-list-item');
 
     expect(referencesList).to.be.not.undefined;
     expect(referencesList!.length).to.equal(7);

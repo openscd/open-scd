@@ -1,7 +1,5 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../mock-wizard.js';
-
 import SMVSubscriberMessageBindingPlugin from '../../../src/editors/SMVSubscriberMessageBinding.js';
 import { Editing } from '../../../src/Editing.js';
 import { Historing } from '../../../src/Historing.js';

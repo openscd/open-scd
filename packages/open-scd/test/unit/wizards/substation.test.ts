@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../mock-wizard.js';
-import { MockWizard } from '../../mock-wizard.js';
+import '../../../src/addons/Wizards.js';
+import { Wizards } from '../../../src/addons/Wizards.js';
 
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
@@ -28,7 +28,7 @@ import {
 describe('Wizards for SCL element Substation', () => {
   let doc: XMLDocument;
   let substation: Element;
-  let element: MockWizard;
+  let element: Wizards;
   let inputs: WizardInputElement[];
 
   describe('edit existing Substation', () => {
@@ -36,7 +36,9 @@ describe('Wizards for SCL element Substation', () => {
       doc = await fetchDoc('/test/testfiles/wizards/substation.scd');
       substation = doc.querySelector('Substation[name="Sub1"]')!;
 
-      element = await fixture(html`<mock-wizard></mock-wizard>`);
+      element = await fixture(
+        html`<oscd-wizards .host=${document}></oscd-wizards>`
+      );
       const wizard = substationEditWizard(substation);
       element.workflow.push(() => wizard);
       await element.requestUpdate();
@@ -120,7 +122,9 @@ describe('Wizards for SCL element Substation', () => {
       doc = await fetchDoc('/test/testfiles/wizards/substation.scd');
       parent = doc.querySelector('SCL')!;
 
-      element = await fixture(html`<mock-wizard></mock-wizard>`);
+      element = await fixture(
+        html`<oscd-wizards .host=${document}></oscd-wizards>`
+      );
       const wizard = createSubstationWizard(parent);
       element.workflow.push(() => wizard);
       await element.requestUpdate();

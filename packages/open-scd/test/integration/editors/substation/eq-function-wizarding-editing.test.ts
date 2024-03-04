@@ -20,7 +20,9 @@ const openAndCancelMenu: (
   new Promise(async resolve => {
     expect(parent.wizardUI.dialog).to.be.undefined;
 
-    element?.shadowRoot?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!.click();
+    element?.shadowRoot
+      ?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!
+      .click();
     const lnodMenuItem: ListItemBase =
       element?.shadowRoot?.querySelector<ListItemBase>(
         `mwc-list-item[value='LNode']`
@@ -79,6 +81,7 @@ describe('eq-function-editor wizarding editing integration', () => {
           'mwc-list-item[value="EqSubFunction"]'
         )
       )).click();
+      await parent.requestUpdate();
       await parent.updateComplete;
 
       nameField = <WizardTextField>(
@@ -101,6 +104,7 @@ describe('eq-function-editor wizarding editing integration', () => {
 
       nameField.value = 'myEqSubFunc';
       primaryAction.click();
+
       await parent.updateComplete;
 
       expect(
@@ -141,6 +145,8 @@ describe('eq-function-editor wizarding editing integration', () => {
       (<HTMLElement>(
         element?.shadowRoot?.querySelector('mwc-icon-button[icon="edit"]')
       )).click();
+      await parent.requestUpdate();
+
       await parent.updateComplete;
 
       nameField = <WizardTextField>(
@@ -197,6 +203,8 @@ describe('eq-function-editor wizarding editing integration', () => {
       (<HTMLElement>(
         element?.shadowRoot?.querySelector('mwc-list-item[value="LNode"]')
       )).click();
+      await parent.requestUpdate();
+
       await parent.updateComplete;
 
       listItems = Array.from(
@@ -265,15 +273,15 @@ describe('eq-function-editor wizarding editing integration', () => {
 
     beforeEach(async () => {
       doc = await fetch('/test/testfiles/zeroline/functions.scd')
-      .then(response => response.text())
-      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <MockWizardEditor>(
         await fixture(
           html`<mock-wizard-editor
             ><eq-function-editor
-            .element=${doc.querySelector(
-              'ConductingEquipment[name="QA1"] > EqFunction'
-            )}
+              .element=${doc.querySelector(
+                'ConductingEquipment[name="QA1"] > EqFunction'
+              )}
             ></eq-function-editor
           ></mock-wizard-editor>`
         )

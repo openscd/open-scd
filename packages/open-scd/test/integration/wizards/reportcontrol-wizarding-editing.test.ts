@@ -15,6 +15,7 @@ import {
 } from '../../../src/wizards/reportcontrol.js';
 import { FinderList } from '../../../src/finder-list.js';
 import { CheckListItem } from '@material/mwc-list/mwc-check-list-item';
+import { newWizardEvent } from '../../../src/foundation.js';
 
 describe('Wizards for SCL element ReportControl', () => {
   let doc: XMLDocument;
@@ -35,7 +36,7 @@ describe('Wizards for SCL element ReportControl', () => {
     describe('with the document element as input', () => {
       beforeEach(async () => {
         const wizard = selectReportControlWizard(doc.documentElement);
-        element.workflow.push(() => wizard);
+        element.dispatchEvent(newWizardEvent(() => wizard));
         await element.requestUpdate();
 
         reportControlList = <FilteredList>(
@@ -90,7 +91,7 @@ describe('Wizards for SCL element ReportControl', () => {
     describe('with a specific IED as input', () => {
       beforeEach(async () => {
         const wizard = selectReportControlWizard(doc.querySelector('IED')!);
-        element.workflow.push(() => wizard);
+        element.dispatchEvent(newWizardEvent(() => wizard));
         await element.requestUpdate();
 
         reportControlList = <FilteredList>(
@@ -153,7 +154,10 @@ describe('Wizards for SCL element ReportControl', () => {
     beforeEach(async () => {
       element.workflow.length = 0; // remove all wizard from FIFO queue
       parentIED = doc.querySelector('IED')!;
-      element.workflow.push(() => selectReportControlWizard(parentIED));
+      element.dispatchEvent(
+        newWizardEvent(() => selectReportControlWizard(parentIED))
+      );
+
       await element.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 20)); // await animation
 
@@ -361,7 +365,8 @@ describe('Wizards for SCL element ReportControl', () => {
 
     beforeEach(async () => {
       const wizard = reportControlParentSelector(doc);
-      element.workflow.push(() => wizard);
+      element.dispatchEvent(newWizardEvent(() => wizard));
+
       await element.requestUpdate();
 
       iEDPicker = <FinderList>(
@@ -420,7 +425,7 @@ describe('Wizards for SCL element ReportControl', () => {
         'IED[name="IED2"] ReportControl[name="ReportCb"]'
       )!;
       const wizard = reportControlCopyToIedSelector(sourceReportControl);
-      element.workflow.push(() => wizard);
+      element.dispatchEvent(newWizardEvent(() => wizard));
       await element.requestUpdate();
 
       iedsPicker = <FilteredList>(
@@ -543,7 +548,7 @@ describe('Wizards for SCL element ReportControl', () => {
 
     beforeEach(async () => {
       const wizard = createReportControlWizard(doc.querySelector('LN0')!);
-      element.workflow.push(() => wizard);
+      element.dispatchEvent(newWizardEvent(() => wizard));
       await element.requestUpdate();
 
       primaryAction = <HTMLElement>(

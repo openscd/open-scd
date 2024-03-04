@@ -180,6 +180,7 @@ describe('substation-editor wizarding editing integration', () => {
         )
       )).click();
       await parent.updateComplete;
+      await parent.wizardUI.updateComplete;
 
       nameField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
@@ -305,6 +306,7 @@ describe('substation-editor wizarding editing integration', () => {
         element?.shadowRoot?.querySelector('mwc-list-item[value="Function"]')
       )).click();
       await parent.updateComplete;
+      await parent.wizardUI.updateComplete;
 
       nameField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
@@ -376,6 +378,7 @@ describe('substation-editor wizarding editing integration', () => {
         )
       )).click();
       await parent.updateComplete;
+      await parent.wizardUI.updateComplete;
 
       nameField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')

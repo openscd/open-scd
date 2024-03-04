@@ -30,15 +30,15 @@ import { Editing } from './Editing.js';
 import { Historing } from './Historing.js';
 import { Plugging, Plugin, pluginIcons } from './Plugging.js';
 
-import { Wizarding } from './Wizarding.js';
-
 import './addons/Settings.js';
 import './addons/Waiter.js';
-import { initializeNsdoc, Nsdoc } from './foundation/nsdoc.js';
+import './addons/Wizards.js';
 
 import { ActionDetail, List } from '@material/mwc-list';
 import { Drawer } from '@material/mwc-drawer';
 import { translate } from 'lit-translate';
+
+import { initializeNsdoc, Nsdoc } from './foundation/nsdoc.js';
 
 // HOSTING INTERFACES
 
@@ -64,9 +64,7 @@ interface MenuPlugin {
 /** The `<open-scd>` custom element is the main entry point of the
  * Open Substation Configuration Designer. */
 @customElement('open-scd')
-export class OpenSCD extends Wizarding(
-  Plugging(Editing(Historing(LitElement)))
-) {
+export class OpenSCD extends Plugging(Editing(Historing(LitElement))) {
   /** Object containing all *.nsdoc files and a function extracting element's label form them*/
   @property({ attribute: false })
   nsdoc: Nsdoc = initializeNsdoc();
@@ -166,7 +164,7 @@ export class OpenSCD extends Wizarding(
   render(): TemplateResult {
     return html`<oscd-waiter>
       <oscd-settings .host=${this} .nsdoc=${this.nsdoc}>
-        ${this.renderMain()}
+        <oscd-wizards .host=${this}> ${this.renderMain()}</oscd-wizards>
       </oscd-settings>
     </oscd-waiter>`;
   }

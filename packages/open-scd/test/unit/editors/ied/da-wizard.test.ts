@@ -1,14 +1,14 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../../mock-wizard.js';
-import { MockWizard } from '../../../mock-wizard.js';
+import '../../../../src/addons/Wizards.js';
+import { Wizards } from '../../../../src/addons/Wizards.js';
 
 import { initializeNsdoc } from '../../../../src/foundation/nsdoc.js';
 import { createDaInfoWizard } from '../../../../src/editors/ied/da-wizard.js';
 import { getAncestorsFromDA } from './test-support.js';
 
 describe('da-wizard', async () => {
-  let element: MockWizard;
+  let element: Wizards;
   let validSCL: XMLDocument;
 
   const nsdoc = await initializeNsdoc();
@@ -26,7 +26,9 @@ describe('da-wizard', async () => {
       )!;
       const ancestors: Element[] = [];
 
-      element = await fixture(html`<mock-wizard></mock-wizard>`);
+      element = await fixture(
+        html`<oscd-wizards .host=${document}></oscd-wizards>`
+      );
       const wizard = createDaInfoWizard(daElement, undefined, ancestors, nsdoc);
       element.workflow.push(() => wizard);
       await element.requestUpdate();
@@ -44,7 +46,9 @@ describe('da-wizard', async () => {
       )!;
       const ancestors = getAncestorsFromDA(daElement, 'Dummy.XCBR1.Pos');
 
-      element = await fixture(html`<mock-wizard></mock-wizard>`);
+      element = await fixture(
+        html`<oscd-wizards .host=${document}></oscd-wizards>`
+      );
       const wizard = createDaInfoWizard(daElement, undefined, ancestors, nsdoc);
       element.workflow.push(() => wizard);
       await element.requestUpdate();
@@ -66,7 +70,9 @@ describe('da-wizard', async () => {
       const ancestors = getAncestorsFromDA(daElement, 'Dummy.LPHD1.Sim');
       ancestors.push(daElement);
 
-      element = await fixture(html`<mock-wizard></mock-wizard>`);
+      element = await fixture(
+        html`<oscd-wizards .host=${document}></oscd-wizards>`
+      );
       const wizard = createDaInfoWizard(
         bdaElement,
         undefined,
@@ -93,7 +99,9 @@ describe('da-wizard', async () => {
       )!;
       const ancestors = getAncestorsFromDA(daElement, 'Dummy.XCBR1.Pos');
 
-      element = await fixture(html`<mock-wizard></mock-wizard>`);
+      element = await fixture(
+        html`<oscd-wizards .host=${document}></oscd-wizards>`
+      );
       const wizard = createDaInfoWizard(
         daElement,
         daiElement,

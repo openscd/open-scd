@@ -1,7 +1,5 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../mock-wizard.js';
-
 import { LitElement } from 'lit-element';
 
 import '../../mock-open-scd.js';

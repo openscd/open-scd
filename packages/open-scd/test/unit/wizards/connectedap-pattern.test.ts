@@ -1,8 +1,8 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import fc, { integer, ipV4, nat } from 'fast-check';
 
-import '../../mock-wizard.js';
-import { MockWizard } from '../../mock-wizard.js';
+import '../../../src/addons/Wizards.js';
+import { Wizards } from '../../../src/addons/Wizards.js';
 
 import '../../../src/editors/communication/connectedap-editor.js';
 import { WizardInputElement } from '../../../src/foundation.js';
@@ -19,12 +19,14 @@ import { editConnectedApWizard } from '../../../src/wizards/connectedap.js';
 
 describe('Edit wizard for SCL element ConnectedAP', () => {
   let doc: XMLDocument;
-  let element: MockWizard;
+  let element: Wizards;
   let inputs: WizardInputElement[];
   let input: WizardInputElement | undefined;
 
   beforeEach(async () => {
-    element = <MockWizard>await fixture(html`<mock-wizard></mock-wizard>`);
+    element = await fixture(
+      html`<oscd-wizards .host=${document}></oscd-wizards>`
+    );
   });
 
   describe('include an edit wizard that', () => {

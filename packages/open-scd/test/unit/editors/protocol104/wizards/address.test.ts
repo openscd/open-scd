@@ -1,8 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import { MockWizard } from '../../../../mock-wizard.js';
-
-import '../../../../mock-wizard.js';
+import '../../../../../src/addons/Wizards.js';
+import { Wizards } from '../../../../../src/addons/Wizards.js';
 
 import { WizardInputElement } from '../../../../../src/foundation.js';
 import { WizardTextField } from '../../../../../src/wizard-textfield.js';
@@ -27,12 +26,14 @@ describe('Wizards for 104 Address Element', () => {
   let dai: Element;
   let doi: Element;
   let ied: Element;
-  let element: MockWizard;
+  let element: Wizards;
   let inputs: WizardInputElement[];
 
   beforeEach(async () => {
     doc = await fetchDoc('/test/testfiles/104/valid-addresses.scd');
-    element = await fixture(html`<mock-wizard></mock-wizard>`);
+    element = await fixture(
+      html`<oscd-wizards .host=${document}></oscd-wizards>`
+    );
   });
 
   async function prepareWizard(daiQuery: string): Promise<void> {
