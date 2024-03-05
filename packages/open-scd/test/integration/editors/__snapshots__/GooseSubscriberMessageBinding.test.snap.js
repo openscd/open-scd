@@ -322,7 +322,7 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
-        value="IED1"
+        value="IED1 IED3"
       >
         <span>
           Subscribed
@@ -354,6 +354,17 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
         </mwc-icon>
       </mwc-list-item>
       <mwc-list-item
+        graphic="avatar"
+        mwc-list-item=""
+      >
+        <span>
+          IED3
+        </span>
+        <mwc-icon slot="graphic">
+          clear
+        </mwc-icon>
+      </mwc-list-item>
+      <mwc-list-item
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
@@ -382,7 +393,7 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
-        value="IED3 IED4"
+        value="IED4"
       >
         <span>
           Available to subscribe
@@ -400,19 +411,6 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
         mwc-list-item=""
         selected=""
         tabindex="0"
-      >
-        <span>
-          IED3
-        </span>
-        <mwc-icon slot="graphic">
-          add
-        </mwc-icon>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        graphic="avatar"
-        mwc-list-item=""
-        tabindex="-1"
       >
         <span>
           IED4
@@ -1092,7 +1090,7 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for pa
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
-        value="IED1>>CircuitBreaker_CB1>GCB"
+        value=""
       >
         <span>
           Subscribed
@@ -1105,17 +1103,13 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for pa
       </li>
       <mwc-list-item
         aria-disabled="false"
-        aria-selected="false"
         graphic="avatar"
-        mwc-list-item=""
-        tabindex="0"
+        noninteractive=""
+        tabindex="-1"
       >
         <span>
-          GCB (IED1)
+          None
         </span>
-        <mwc-icon slot="graphic">
-          clear
-        </mwc-icon>
       </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
@@ -1146,7 +1140,7 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for pa
         aria-disabled="false"
         noninteractive=""
         tabindex="-1"
-        value="IED4>>CircuitBreaker_CB1>GCB"
+        value="IED1>>CircuitBreaker_CB1>GCB IED4>>CircuitBreaker_CB1>GCB"
       >
         <span>
           Available to subscribe
@@ -1163,6 +1157,19 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for pa
         graphic="avatar"
         mwc-list-item=""
         selected=""
+        tabindex="0"
+      >
+        <span>
+          GCB (IED1)
+        </span>
+        <mwc-icon slot="graphic">
+          add
+        </mwc-icon>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="avatar"
+        mwc-list-item=""
         tabindex="-1"
       >
         <span>
