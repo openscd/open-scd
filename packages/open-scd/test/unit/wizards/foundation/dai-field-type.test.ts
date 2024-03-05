@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../../mock-wizard.js';
-import { MockWizard } from '../../../mock-wizard.js';
+import '../../../../src/addons/Wizards.js';
+import { Wizards } from '../../../../src/addons/Wizards.js';
 
 import { Wizard, WizardInputElement } from '../../../../src/foundation.js';
 
@@ -24,7 +24,7 @@ describe('dai-field-type', async () => {
 
   describe('getCustomField', () => {
     let customField: CustomField;
-    let element: MockWizard;
+    let element: Wizards;
     let inputs: WizardInputElement[];
 
     function getDAElement(doType: string, doName: string): Element {
@@ -56,7 +56,9 @@ describe('dai-field-type', async () => {
         const daiElement = getDAIElement('booleantest');
 
         customField = getCustomField()[<DaiFieldTypes>'BOOLEAN'];
-        element = await fixture(html`<mock-wizard></mock-wizard>`);
+        element = await fixture(
+          html`<oscd-wizards .host=${document}></oscd-wizards>`
+        );
         element.workflow.push(() => wizard(customField, daElement, daiElement));
         await element.requestUpdate();
         inputs = Array.from(element.wizardUI.inputs);
@@ -81,7 +83,9 @@ describe('dai-field-type', async () => {
         const daiElement = getDAIElement('enumtest');
 
         customField = getCustomField()[<DaiFieldTypes>'Enum'];
-        element = await fixture(html`<mock-wizard></mock-wizard>`);
+        element = await fixture(
+          html`<oscd-wizards .host=${document}></oscd-wizards>`
+        );
         element.workflow.push(() => wizard(customField, daElement, daiElement));
         await element.requestUpdate();
         inputs = Array.from(element.wizardUI.inputs);
@@ -106,7 +110,9 @@ describe('dai-field-type', async () => {
         const daiElement = getDAIElement('float32test');
 
         customField = getCustomField()[<DaiFieldTypes>'FLOAT32'];
-        element = await fixture(html`<mock-wizard></mock-wizard>`);
+        element = await fixture(
+          html`<oscd-wizards .host=${document}></oscd-wizards>`
+        );
         element.workflow.push(() => wizard(customField, daElement, daiElement));
         await element.requestUpdate();
         inputs = Array.from(element.wizardUI.inputs);
@@ -131,7 +137,9 @@ describe('dai-field-type', async () => {
         const daiElement = getDAIElement('float64test');
 
         customField = getCustomField()[<DaiFieldTypes>'FLOAT64'];
-        element = await fixture(html`<mock-wizard></mock-wizard>`);
+        element = await fixture(
+          html`<oscd-wizards .host=${document}></oscd-wizards>`
+        );
         element.workflow.push(() => wizard(customField, daElement, daiElement));
         await element.requestUpdate();
         inputs = Array.from(element.wizardUI.inputs);
@@ -156,7 +164,9 @@ describe('dai-field-type', async () => {
         const daiElement = getDAIElement('int8test');
 
         customField = getCustomField()[<DaiFieldTypes>'INT8'];
-        element = await fixture(html`<mock-wizard></mock-wizard>`);
+        element = await fixture(
+          html`<oscd-wizards .host=${document}></oscd-wizards>`
+        );
         element.workflow.push(() => wizard(customField, daElement, daiElement));
         await element.requestUpdate();
         inputs = Array.from(element.wizardUI.inputs);
@@ -181,7 +191,9 @@ describe('dai-field-type', async () => {
         const daiElement = getDAIElement('int16test');
 
         customField = getCustomField()[<DaiFieldTypes>'INT16'];
-        element = await fixture(html`<mock-wizard></mock-wizard>`);
+        element = await fixture(
+          html`<oscd-wizards .host=${document}></oscd-wizards>`
+        );
         element.workflow.push(() => wizard(customField, daElement, daiElement));
         await element.requestUpdate();
         inputs = Array.from(element.wizardUI.inputs);
@@ -206,7 +218,9 @@ describe('dai-field-type', async () => {
         const daiElement = getDAIElement('int24test');
 
         customField = getCustomField()[<DaiFieldTypes>'INT24'];
-        element = await fixture(html`<mock-wizard></mock-wizard>`);
+        element = await fixture(
+          html`<oscd-wizards .host=${document}></oscd-wizards>`
+        );
         element.workflow.push(() => wizard(customField, daElement, daiElement));
         await element.requestUpdate();
         inputs = Array.from(element.wizardUI.inputs);
@@ -231,7 +245,9 @@ describe('dai-field-type', async () => {
         const daiElement = getDAIElement('int32test');
 
         customField = getCustomField()[<DaiFieldTypes>'INT32'];
-        element = await fixture(html`<mock-wizard></mock-wizard>`);
+        element = await fixture(
+          html`<oscd-wizards .host=${document}></oscd-wizards>`
+        );
         element.workflow.push(() => wizard(customField, daElement, daiElement));
         await element.requestUpdate();
         inputs = Array.from(element.wizardUI.inputs);
@@ -256,7 +272,9 @@ describe('dai-field-type', async () => {
         const daiElement = getDAIElement('int64test');
 
         customField = getCustomField()[<DaiFieldTypes>'INT64'];
-        element = await fixture(html`<mock-wizard></mock-wizard>`);
+        element = await fixture(
+          html`<oscd-wizards .host=${document}></oscd-wizards>`
+        );
         element.workflow.push(() => wizard(customField, daElement, daiElement));
         await element.requestUpdate();
         inputs = Array.from(element.wizardUI.inputs);
@@ -281,7 +299,9 @@ describe('dai-field-type', async () => {
         const daiElement = getDAIElement('int128test');
 
         customField = getCustomField()[<DaiFieldTypes>'INT128'];
-        element = await fixture(html`<mock-wizard></mock-wizard>`);
+        element = await fixture(
+          html`<oscd-wizards .host=${document}></oscd-wizards>`
+        );
         element.workflow.push(() => wizard(customField, daElement, daiElement));
         await element.requestUpdate();
         inputs = Array.from(element.wizardUI.inputs);
@@ -306,7 +326,9 @@ describe('dai-field-type', async () => {
         const daiElement = getDAIElement('int8utest');
 
         customField = getCustomField()[<DaiFieldTypes>'INT8U'];
-        element = await fixture(html`<mock-wizard></mock-wizard>`);
+        element = await fixture(
+          html`<oscd-wizards .host=${document}></oscd-wizards>`
+        );
         element.workflow.push(() => wizard(customField, daElement, daiElement));
         await element.requestUpdate();
         inputs = Array.from(element.wizardUI.inputs);
@@ -331,7 +353,9 @@ describe('dai-field-type', async () => {
         const daiElement = getDAIElement('int16utest');
 
         customField = getCustomField()[<DaiFieldTypes>'INT16U'];
-        element = await fixture(html`<mock-wizard></mock-wizard>`);
+        element = await fixture(
+          html`<oscd-wizards .host=${document}></oscd-wizards>`
+        );
         element.workflow.push(() => wizard(customField, daElement, daiElement));
         await element.requestUpdate();
         inputs = Array.from(element.wizardUI.inputs);
@@ -356,7 +380,9 @@ describe('dai-field-type', async () => {
         const daiElement = getDAIElement('int24utest');
 
         customField = getCustomField()[<DaiFieldTypes>'INT24U'];
-        element = await fixture(html`<mock-wizard></mock-wizard>`);
+        element = await fixture(
+          html`<oscd-wizards .host=${document}></oscd-wizards>`
+        );
         element.workflow.push(() => wizard(customField, daElement, daiElement));
         await element.requestUpdate();
         inputs = Array.from(element.wizardUI.inputs);
@@ -381,7 +407,9 @@ describe('dai-field-type', async () => {
         const daiElement = getDAIElement('int32utest');
 
         customField = getCustomField()[<DaiFieldTypes>'INT32U'];
-        element = await fixture(html`<mock-wizard></mock-wizard>`);
+        element = await fixture(
+          html`<oscd-wizards .host=${document}></oscd-wizards>`
+        );
         element.workflow.push(() => wizard(customField, daElement, daiElement));
         await element.requestUpdate();
         inputs = Array.from(element.wizardUI.inputs);
@@ -406,7 +434,9 @@ describe('dai-field-type', async () => {
         daiElement: Element | null
       ): Promise<void> {
         customField = getCustomField()[<DaiFieldTypes>'Timestamp'];
-        element = await fixture(html` <mock-wizard></mock-wizard>`);
+        element = await fixture(
+          html` <oscd-wizards .host=${document}></oscd-wizards>`
+        );
         element.workflow.push(() => wizard(customField, daElement, daiElement));
         await element.requestUpdate();
         inputs = Array.from(element.wizardUI.inputs);
@@ -455,7 +485,9 @@ describe('dai-field-type', async () => {
         const daiElement = getDAIElement('visstring32test');
 
         customField = getCustomField()[<DaiFieldTypes>'VisString32'];
-        element = await fixture(html`<mock-wizard></mock-wizard>`);
+        element = await fixture(
+          html`<oscd-wizards .host=${document}></oscd-wizards>`
+        );
         element.workflow.push(() => wizard(customField, daElement, daiElement));
         await element.requestUpdate();
         inputs = Array.from(element.wizardUI.inputs);
@@ -480,7 +512,9 @@ describe('dai-field-type', async () => {
         const daiElement = getDAIElement('visstring64test');
 
         customField = getCustomField()[<DaiFieldTypes>'VisString64'];
-        element = await fixture(html`<mock-wizard></mock-wizard>`);
+        element = await fixture(
+          html`<oscd-wizards .host=${document}></oscd-wizards>`
+        );
         element.workflow.push(() => wizard(customField, daElement, daiElement));
         await element.requestUpdate();
         inputs = Array.from(element.wizardUI.inputs);
@@ -505,7 +539,9 @@ describe('dai-field-type', async () => {
         const daiElement = getDAIElement('visstring65test');
 
         customField = getCustomField()[<DaiFieldTypes>'VisString65'];
-        element = await fixture(html`<mock-wizard></mock-wizard>`);
+        element = await fixture(
+          html`<oscd-wizards .host=${document}></oscd-wizards>`
+        );
         element.workflow.push(() => wizard(customField, daElement, daiElement));
         await element.requestUpdate();
         inputs = Array.from(element.wizardUI.inputs);
@@ -530,7 +566,9 @@ describe('dai-field-type', async () => {
         const daiElement = getDAIElement('visstring129test');
 
         customField = getCustomField()[<DaiFieldTypes>'VisString129'];
-        element = await fixture(html`<mock-wizard></mock-wizard>`);
+        element = await fixture(
+          html`<oscd-wizards .host=${document}></oscd-wizards>`
+        );
         element.workflow.push(() => wizard(customField, daElement, daiElement));
         await element.requestUpdate();
         inputs = Array.from(element.wizardUI.inputs);
@@ -555,7 +593,9 @@ describe('dai-field-type', async () => {
         const daiElement = getDAIElement('visstring255test');
 
         customField = getCustomField()[<DaiFieldTypes>'VisString255'];
-        element = await fixture(html`<mock-wizard></mock-wizard>`);
+        element = await fixture(
+          html`<oscd-wizards .host=${document}></oscd-wizards>`
+        );
         element.workflow.push(() => wizard(customField, daElement, daiElement));
         await element.requestUpdate();
         inputs = Array.from(element.wizardUI.inputs);

@@ -11,6 +11,7 @@ import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   Create,
   isCreate,
+  newWizardEvent,
   Replace,
   WizardInputElement,
 } from '../../../src/foundation.js';
@@ -47,7 +48,7 @@ describe('Wizards for LNode element', () => {
         const wizard = lNodeWizard(
           doc.querySelector('Function[name="parentFunction"]')!
         );
-        element.workflow.push(() => wizard);
+        element.dispatchEvent(newWizardEvent(wizard));
         await element.requestUpdate();
       });
 
@@ -62,7 +63,7 @@ describe('Wizards for LNode element', () => {
           const wizard = lNodeWizard(
             doc.querySelector('SubFunction[name="disconnector"]')!
           );
-          element.workflow.push(() => wizard);
+          element.dispatchEvent(newWizardEvent(wizard));
           await element.requestUpdate();
 
           primaryAction = <HTMLElement>(
@@ -130,7 +131,7 @@ describe('Wizards for LNode element', () => {
         const wizard = lNodeWizard(
           doc.querySelector('SubFunction[name="circuitBreaker"]')!
         );
-        element.workflow.push(() => wizard);
+        element.dispatchEvent(newWizardEvent(wizard));
         await element.requestUpdate();
       });
 
@@ -143,7 +144,7 @@ describe('Wizards for LNode element', () => {
         const wizard = lNodeWizard(
           doc.querySelector('SubFunction[name="disconnector"]')!
         );
-        element.workflow.push(() => wizard);
+        element.dispatchEvent(newWizardEvent(wizard));
         await element.requestUpdate();
       });
 
@@ -159,7 +160,7 @@ describe('Wizards for LNode element', () => {
         const wizard = lNodeWizard(
           doc.querySelector('SubFunction[name="disconnector"]')!
         );
-        element.workflow.push(() => wizard);
+        element.dispatchEvent(newWizardEvent(wizard));
         await element.requestUpdate();
 
         primaryAction = <HTMLElement>(
@@ -253,7 +254,7 @@ describe('Wizards for LNode element', () => {
         const wizard = lNodeWizard(
           doc.querySelector('ConductingEquipment[name="QB1"]')!
         );
-        element.workflow.push(() => wizard);
+        element.dispatchEvent(newWizardEvent(wizard));
         await element.requestUpdate();
       });
 
@@ -264,7 +265,7 @@ describe('Wizards for LNode element', () => {
     describe('with missing references to existing logical nodes', () => {
       beforeEach(async () => {
         const wizard = lNodeWizard(doc.querySelector('Substation')!);
-        element.workflow.push(() => wizard);
+        element.dispatchEvent(newWizardEvent(wizard));
         await element.requestUpdate();
       });
 
@@ -281,7 +282,7 @@ describe('Wizards for LNode element', () => {
         const wizard = editLNodeWizard(
           doc.querySelector('SubFunction[name="disconnector"] > LNode')!
         );
-        element.workflow.push(() => wizard);
+        element.dispatchEvent(newWizardEvent(wizard));
         await element.requestUpdate();
 
         inputs = Array.from(element.wizardUI.inputs);
@@ -385,7 +386,7 @@ describe('Wizards for LNode element', () => {
         const wizard = editLNodeWizard(
           doc.querySelector('Bay[name="COUPLING_BAY"] > LNode')!
         );
-        element.workflow.push(() => wizard);
+        element.dispatchEvent(newWizardEvent(wizard));
         await element.requestUpdate();
       });
 

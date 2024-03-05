@@ -4,7 +4,7 @@ export const snapshots = {};
 snapshots["DAType wizards defines a createDATypeWizard looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="next"
-  heading="[datype.wizard.title.add]"
+  heading="Add DAType"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
@@ -579,7 +579,7 @@ snapshots["DAType wizards defines a createDATypeWizard looks like the latest sna
     </mwc-select>
     <wizard-textfield
       dialoginitialfocus=""
-      helper="[scl.id]"
+      helper="ID"
       label="id"
       maxlength="255"
       minlength="1"
@@ -588,7 +588,7 @@ snapshots["DAType wizards defines a createDATypeWizard looks like the latest sna
     </wizard-textfield>
     <wizard-textfield
       disabled=""
-      helper="[scl.desc]"
+      helper="Description"
       label="desc"
       nullable=""
     >
@@ -596,14 +596,14 @@ snapshots["DAType wizards defines a createDATypeWizard looks like the latest sna
   </div>
   <mwc-button
     dialogaction="close"
-    label="[close]"
+    label="Close"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
   </mwc-button>
   <mwc-button
     icon="add"
-    label="[add]"
+    label="Add"
     slot="primaryAction"
     trailingicon=""
   >
@@ -615,7 +615,7 @@ snapshots["DAType wizards defines a createDATypeWizard looks like the latest sna
 snapshots["DAType wizards defines a dATypeWizard looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="next"
-  heading="[datype.wizard.title.edit]"
+  heading="Edit DAType"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 48px)"
 >
@@ -635,7 +635,7 @@ snapshots["DAType wizards defines a dATypeWizard looks like the latest snapshot"
         tabindex="0"
       >
         <span>
-          [remove]
+          Remove
         </span>
         <mwc-icon slot="graphic">
           delete
@@ -649,7 +649,7 @@ snapshots["DAType wizards defines a dATypeWizard looks like the latest snapshot"
         tabindex="-1"
       >
         <span>
-          [scl.DA]
+          Data attribute
         </span>
         <mwc-icon slot="graphic">
           playlist_add
@@ -660,7 +660,7 @@ snapshots["DAType wizards defines a dATypeWizard looks like the latest snapshot"
   <div id="wizard-content">
     <wizard-textfield
       dialoginitialfocus=""
-      helper="[scl.id]"
+      helper="ID"
       label="id"
       maxlength="127"
       minlength="1"
@@ -669,7 +669,7 @@ snapshots["DAType wizards defines a dATypeWizard looks like the latest snapshot"
     </wizard-textfield>
     <wizard-textfield
       disabled=""
-      helper="[scl.desc]"
+      helper="Description"
       label="desc"
       nullable=""
     >
@@ -763,14 +763,14 @@ snapshots["DAType wizards defines a dATypeWizard looks like the latest snapshot"
   </div>
   <mwc-button
     dialogaction="close"
-    label="[close]"
+    label="Close"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
   </mwc-button>
   <mwc-button
     icon=""
-    label="[save]"
+    label="Save"
     slot="primaryAction"
     trailingicon=""
   >

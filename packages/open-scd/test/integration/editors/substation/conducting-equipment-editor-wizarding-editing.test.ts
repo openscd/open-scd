@@ -19,7 +19,9 @@ const openAndCancelMenu: (
   new Promise(async resolve => {
     expect(parent.wizardUI.dialog).to.be.undefined;
 
-    element?.shadowRoot?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!.click();
+    element?.shadowRoot
+      ?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!
+      .click();
     const lnodeMenuItem: ListItemBase =
       element?.shadowRoot?.querySelector<ListItemBase>(
         `mwc-list-item[value='LNode']`
@@ -270,6 +272,8 @@ describe('conducting-equipment-editor wizarding editing integration', () => {
       (<HTMLElement>(
         element?.shadowRoot?.querySelector('mwc-list-item[value="EqFunction"]')
       )).click();
+      await parent.requestUpdate();
+
       await parent.updateComplete;
 
       nameField = <WizardTextField>(
@@ -333,8 +337,8 @@ describe('conducting-equipment-editor wizarding editing integration', () => {
         await fixture(
           html`<mock-wizard-editor
             ><conducting-equipment-editor
-            .element=${doc.querySelector('ConductingEquipment')}
-            ?showfunctions=${true}
+              .element=${doc.querySelector('ConductingEquipment')}
+              ?showfunctions=${true}
             ></conducting-equipment-editor
           ></mock-wizard-editor>`
         )

@@ -1,8 +1,8 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
-import '../../../mock-wizard.js';
-import { MockWizard } from '../../../mock-wizard.js';
+import '../../../../src/addons/Wizards.js';
+import { Wizards } from '../../../../src/addons/Wizards.js';
 
 import {
   ComplexAction,
@@ -15,7 +15,7 @@ import { dOTypeWizard } from '../../../../src/editors/templates/dotype-wizards.j
 
 describe('wizards for DOType element', () => {
   let doc: XMLDocument;
-  let element: MockWizard;
+  let element: Wizards;
   let inputs: WizardInputElement[];
   let input: WizardInputElement | undefined;
 
@@ -24,7 +24,9 @@ describe('wizards for DOType element', () => {
   let actionEvent: SinonSpy;
 
   beforeEach(async () => {
-    element = <MockWizard>await fixture(html`<mock-wizard></mock-wizard>`);
+    element = await fixture(
+      html`<oscd-wizards .host=${document}></oscd-wizards>`
+    );
 
     actionEvent = spy();
     window.addEventListener('editor-action', actionEvent);

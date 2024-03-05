@@ -1,14 +1,15 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../../src/open-scd.js';
-import { OpenSCD } from '../../../src/open-scd.js';
+import '../../mock-open-scd.js';
+import { MockOpenSCD } from '../../mock-open-scd.js';
+
 import ValidateTemplates from '../../../src/validators/ValidateTemplates.js';
 
 describe('ValidateTemplates OpenSCD integration test ', () => {
   if (customElements.get('validate-templates') === undefined)
     customElements.define('validate-templates', ValidateTemplates);
 
-  let parent: OpenSCD;
+  let parent: MockOpenSCD;
   let element: ValidateTemplates;
 
   let doc: XMLDocument;
@@ -20,9 +21,9 @@ describe('ValidateTemplates OpenSCD integration test ', () => {
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
       parent = await fixture(html`
-        <open-scd .doc=${doc}
+        <mock-open-scd .doc=${doc}
           ><validate-templates .doc=${doc}></validate-templates
-        ></open-scd>
+        ></mock-open-scd>
 
         <link href="public/google/fonts/roboto-v27.css" rel="stylesheet" />
         <link href="public/google/fonts/roboto-mono-v13.css" rel="stylesheet" />
@@ -31,7 +32,7 @@ describe('ValidateTemplates OpenSCD integration test ', () => {
           rel="stylesheet"
         />
       `);
-      element = <ValidateTemplates>parent.querySelector('validate-templates')!;
+      element = parent.getActivePlugin();
       element.pluginId = '/src/validators/ValidateTemplates.js';
 
       await element.validate();
@@ -52,9 +53,9 @@ describe('ValidateTemplates OpenSCD integration test ', () => {
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
       parent = await fixture(html`
-        <open-scd .doc=${doc}
+        <mock-open-scd .doc=${doc}
           ><validate-templates .doc=${doc}></validate-templates
-        ></open-scd>
+        ></mock-open-scd>
 
         <link href="public/google/fonts/roboto-v27.css" rel="stylesheet" />
         <link href="public/google/fonts/roboto-mono-v13.css" rel="stylesheet" />
@@ -63,7 +64,7 @@ describe('ValidateTemplates OpenSCD integration test ', () => {
           rel="stylesheet"
         />
       `);
-      element = <ValidateTemplates>parent.querySelector('validate-templates')!;
+      element = parent.getActivePlugin();
       element.pluginId = '/src/validators/ValidateTemplates.js';
 
       await element.validate();
@@ -87,9 +88,9 @@ describe('ValidateTemplates OpenSCD integration test ', () => {
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
       parent = await fixture(html`
-        <open-scd .doc=${doc}
+        <mock-open-scd .doc=${doc}
           ><validate-templates .doc=${doc}></validate-templates
-        ></open-scd>
+        ></mock-open-scd>
 
         <link href="public/google/fonts/roboto-v27.css" rel="stylesheet" />
         <link href="public/google/fonts/roboto-mono-v13.css" rel="stylesheet" />
@@ -98,7 +99,7 @@ describe('ValidateTemplates OpenSCD integration test ', () => {
           rel="stylesheet"
         />
       `);
-      element = <ValidateTemplates>parent.querySelector('validate-templates')!;
+      element = parent.getActivePlugin();
       element.pluginId = '/src/validators/ValidateTemplates.js';
 
       await element.validate();

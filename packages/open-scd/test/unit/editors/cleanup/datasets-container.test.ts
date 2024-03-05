@@ -1,22 +1,23 @@
 'use strict';
 import { html, fixture, expect } from '@open-wc/testing';
 
-import { Editing } from '../../../../src/Editing.js';
-import { Wizarding } from '../../../../src/Wizarding.js';
+import '../../../mock-open-scd.js';
+import { MockOpenSCD } from '../../../mock-open-scd.js';
 
+import '../../../../src/editors/cleanup/datasets-container.js';
 import { CleanupDatasets } from '../../../../src/editors/cleanup/datasets-container.js';
 
 describe('Cleanup: Datasets Container', () => {
-  customElements.define(
-    'cleanup-plugin-datasets',
-    Wizarding(Editing(CleanupDatasets))
-  );
   let element: CleanupDatasets;
-
+  let parent: MockOpenSCD;
   beforeEach(async () => {
-    element = await fixture(
-      html`<cleanup-plugin-datasets></cleanup-plugin-datasets>`
+    parent = await fixture(
+      html`<mock-open-scd><cleanup-datasets></cleanup-datasets></mock-open-scd>`
     );
+
+    element = parent.getActivePlugin();
+
+    await parent.updateComplete;
   });
 
   describe('without a doc loaded', () => {
@@ -31,10 +32,13 @@ describe('Cleanup: Datasets Container', () => {
       doc = await fetch('/test/testfiles/cleanup.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      element = await fixture(
-        html`<cleanup-plugin-datasets .doc="${doc}"></cleanup-plugin-datasets>`
+      parent = await fixture(
+        html`<mock-open-scd
+          ><cleanup-datasets .doc="${doc}"></cleanup-datasets
+        ></mock-open-scd>`
       );
-      await element.updateComplete;
+      element = parent.getActivePlugin();
+      await parent.updateComplete;
     });
 
     it('looks like the latest snapshot', async () => {

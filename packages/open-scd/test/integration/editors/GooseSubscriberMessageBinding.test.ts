@@ -1,7 +1,5 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../mock-wizard.js';
-
 import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 
 import { Editing } from '../../../src/Editing.js';

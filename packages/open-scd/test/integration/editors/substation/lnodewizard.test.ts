@@ -7,6 +7,7 @@ import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import { lNodeWizard } from '../../../../src/wizards/lnode.js';
+import { newWizardEvent } from '../../../../src/foundation.js';
 
 describe('lnodewizard', () => {
   let element: MockWizardEditor;
@@ -22,7 +23,7 @@ describe('lnodewizard', () => {
       await fixture(html`<mock-wizard-editor></mock-wizard-editor>`)
     );
     const wizard = lNodeWizard(doc.querySelector('Bay')!);
-    element.workflow.push(() => wizard);
+    element.dispatchEvent(newWizardEvent(() => wizard));
     await element.requestUpdate();
   });
 
@@ -117,7 +118,11 @@ describe('lnodewizard', () => {
             ?.querySelector('mwc-dialog:nth-child(2)')
             ?.querySelector('mwc-button[slot="primaryAction"]')
         )).click();
+        await element.requestUpdate();
+
         await element.updateComplete;
+        await element.wizards.updateComplete;
+
         expect(
           doc.querySelector(
             'Bay[name="COUPLING_BAY"]>LNode[ldInst="CBSW"][lnClass="XCBR"][lnInst="1"]'
@@ -134,6 +139,8 @@ describe('lnodewizard', () => {
             ?.querySelector('filtered-list')
         )).items[3].click();
         await element.updateComplete;
+        await element.wizards.updateComplete;
+
         (<HTMLElement>(
           element.wizardUI.shadowRoot
             ?.querySelector('mwc-dialog:nth-child(2)')

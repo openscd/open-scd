@@ -1,14 +1,17 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../../mock-wizard.js';
-import { MockWizard } from '../../../mock-wizard.js';
+import '../../../../src/addons/Wizards.js';
+import { Wizards } from '../../../../src/addons/Wizards.js';
+
 import '../../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../../mock-wizard-editor.js';
 
 import { guessVoltageLevel } from '../../../../src/editors/substation/guess-wizard.js';
+import { newWizardEvent } from '../../../../src/foundation.js';
+import { CheckListItem } from '@material/mwc-list/mwc-check-list-item.js';
 
 describe('guess-wizard-integration', () => {
-  let element: MockWizard;
+  let element: Wizards;
   let validSCL: XMLDocument;
   beforeEach(async () => {
     validSCL = await fetch('/test/testfiles/valid2007B4.scd')
@@ -17,10 +20,12 @@ describe('guess-wizard-integration', () => {
 
     const substation = validSCL.querySelector('Substation')!;
     substation.innerHTML = '';
-    element = <MockWizard>await fixture(html`<mock-wizard></mock-wizard>`);
+    element = await fixture(
+      html`<oscd-wizards .host=${document}></oscd-wizards>`
+    );
 
     const wizard = guessVoltageLevel(validSCL, substation);
-    element.workflow.push(() => wizard);
+    element.dispatchEvent(newWizardEvent(() => wizard));
     await element.requestUpdate();
   });
 
@@ -77,8 +82,9 @@ describe('guess-wizard-integration', () => {
 });
 
 describe('guess-wizarding-editing-integration', () => {
-  let element: MockWizardEditor;
+  let mockWizardEditor: MockWizardEditor;
   let validSCL: XMLDocument;
+
   beforeEach(async () => {
     validSCL = await fetch('/test/testfiles/valid2007B4.scd')
       .then(response => response.text())
@@ -86,25 +92,37 @@ describe('guess-wizarding-editing-integration', () => {
 
     const substation = validSCL.querySelector('Substation')!;
     substation.innerHTML = '';
-    element = <MockWizardEditor>(
+    mockWizardEditor = <MockWizardEditor>(
       await fixture(html`<mock-wizard-editor></mock-wizard-editor>`)
     );
 
     const wizard = guessVoltageLevel(validSCL, substation);
-    element.workflow.push(() => wizard);
-    await element.requestUpdate();
+    mockWizardEditor.dispatchEvent(newWizardEvent(wizard));
+    await mockWizardEditor.wizardUI.dialog?.updateComplete;
 
-    (<HTMLElement>(
-      element.wizardUI.dialog!.querySelector(
+    await mockWizardEditor.requestUpdate();
+    await mockWizardEditor.updateComplete;
+    await mockWizardEditor.wizardUI.requestUpdate();
+
+    (<CheckListItem>(
+      mockWizardEditor.wizardUI.dialog!.querySelector(
         '#ctlModelList > mwc-check-list-item:nth-child(5)'
       )
-    )).click();
-    //FIXME: hack as default selected attribute does not work in Karma.
-    await element.requestUpdate();
+    )).selected = true;
+    await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
+    await mockWizardEditor.requestUpdate();
+    await mockWizardEditor.updateComplete;
+
     (<HTMLElement>(
-      element.wizardUI.dialog?.querySelector('mwc-button[slot="primaryAction"]')
+      mockWizardEditor.wizardUI.dialog?.querySelector(
+        'mwc-button[slot="primaryAction"]'
+      )
     )).click();
-    await element.requestUpdate();
+    await mockWizardEditor.wizardUI.dialog?.requestUpdate();
+
+    await mockWizardEditor.requestUpdate();
+    await mockWizardEditor.updateComplete;
   });
 
   it('creates only one voltage level with default name', () => {
@@ -123,7 +141,7 @@ describe('guess-wizarding-editing-integration', () => {
     ).to.equal('guessed by OpenSCD');
   });
 
-  it('creates as many bays as ieds with lnType CSWI and ctlModel sbo-with-enhanced-security', () => {
+  it('creates as many bays as ieds with lnType CSWI and ctlModel sbo-with-enhanced-security', async () => {
     expect(
       validSCL.querySelectorAll(':root > Substation > VoltageLevel > Bay')
         .length

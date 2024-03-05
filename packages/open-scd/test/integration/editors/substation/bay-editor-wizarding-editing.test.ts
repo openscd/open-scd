@@ -72,6 +72,8 @@ describe('bay-editor wizarding editing integration', () => {
       await (<HTMLElement>(
         element?.shadowRoot?.querySelector('mwc-icon-button[icon="edit"]')
       )).click();
+      await parent.requestUpdate();
+
       await parent.updateComplete;
 
       nameField = <WizardTextField>(
@@ -157,6 +159,8 @@ describe('bay-editor wizarding editing integration', () => {
           'mwc-list-item[value="ConductingEquipment"]'
         )
       )).click();
+      await parent.requestUpdate();
+
       await parent.updateComplete;
 
       nameField = <WizardTextField>(
@@ -403,6 +407,8 @@ describe('bay-editor wizarding editing integration', () => {
       (<HTMLElement>(
         element?.shadowRoot?.querySelector('mwc-list-item[value="Function"]')
       )).click();
+      await parent.requestUpdate();
+
       await parent.updateComplete;
 
       nameField = <WizardTextField>(

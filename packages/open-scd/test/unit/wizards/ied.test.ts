@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../mock-wizard.js';
-import { MockWizard } from '../../mock-wizard.js';
+import '../../../src/addons/Wizards.js';
+import { Wizards } from '../../../src/addons/Wizards.js';
 
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
@@ -28,7 +28,7 @@ import { updateNamingAttributeWithReferencesAction } from '../../../src/wizards/
 describe('Wizards for SCL element IED', () => {
   let doc: XMLDocument;
   let ied: Element;
-  let element: MockWizard;
+  let element: Wizards;
   let inputs: WizardInputElement[];
 
   beforeEach(async () => {
@@ -39,7 +39,9 @@ describe('Wizards for SCL element IED', () => {
     beforeEach(async () => {
       ied = doc.querySelector('IED[name="IED3"]')!;
 
-      element = await fixture(html`<mock-wizard></mock-wizard>`);
+      element = await fixture(
+        html`<oscd-wizards .host=${document}></oscd-wizards>`
+      );
       const wizard = editIEDWizard(ied);
       element.workflow.push(() => wizard);
       await element.requestUpdate();
@@ -156,7 +158,9 @@ describe('Wizards for SCL element IED', () => {
     beforeEach(async () => {
       ied = doc.querySelector('IED[name="IED1"]')!;
 
-      element = await fixture(html`<mock-wizard></mock-wizard>`);
+      element = await fixture(
+        html`<oscd-wizards .host=${document}></oscd-wizards>`
+      );
       const wizard = removeIEDWizard(ied);
       element.workflow.push(() => wizard!);
       await element.requestUpdate();
