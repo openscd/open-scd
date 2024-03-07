@@ -21,12 +21,196 @@ snapshots["open-scd looks like its snapshot"] =
             role="separator"
           >
           </li>
+          <mwc-list-item
+            aria-disabled="false"
+            class="top"
+            graphic="icon"
+            iconid="folder_open"
+            mwc-list-item=""
+            tabindex="0"
+          >
+            <mwc-icon slot="graphic">
+              folder_open
+            </mwc-icon>
+            <span>
+              Open project
+            </span>
+          </mwc-list-item>
+          <oscd-plugina2b400fc5f053cb1 class="menu plugin">
+          </oscd-plugina2b400fc5f053cb1>
+          <mwc-list-item
+            aria-disabled="false"
+            class="top"
+            graphic="icon"
+            iconid="create_new_folder"
+            mwc-list-item=""
+            tabindex="-1"
+          >
+            <mwc-icon slot="graphic">
+              create_new_folder
+            </mwc-icon>
+            <span>
+              New project
+            </span>
+          </mwc-list-item>
+          <oscd-plugin679d81826289fb9a class="menu plugin">
+          </oscd-plugin679d81826289fb9a>
+          <mwc-list-item
+            aria-disabled="true"
+            class="top"
+            disabled=""
+            graphic="icon"
+            iconid="save"
+            mwc-list-item=""
+            tabindex="-1"
+          >
+            <mwc-icon slot="graphic">
+              save
+            </mwc-icon>
+            <span>
+              Save project
+            </span>
+          </mwc-list-item>
+          <oscd-plugin1cb4a5367ff1f6a1 class="menu plugin">
+          </oscd-plugin1cb4a5367ff1f6a1>
           <li
             divider=""
             padded=""
             role="separator"
           >
           </li>
+          <mwc-list-item
+            aria-disabled="true"
+            class="validator"
+            disabled=""
+            graphic="icon"
+            iconid="rule_folder"
+            mwc-list-item=""
+            tabindex="-1"
+          >
+            <mwc-icon slot="graphic">
+              rule_folder
+            </mwc-icon>
+            <span>
+              Validate Schema
+            </span>
+          </mwc-list-item>
+          <oscd-plugin3aa68346726da1cd class="plugin validator">
+          </oscd-plugin3aa68346726da1cd>
+          <mwc-list-item
+            aria-disabled="true"
+            class="validator"
+            disabled=""
+            graphic="icon"
+            iconid="rule_folder"
+            mwc-list-item=""
+            tabindex="-1"
+          >
+            <mwc-icon slot="graphic">
+              rule_folder
+            </mwc-icon>
+            <span>
+              Validate Templates
+            </span>
+          </mwc-list-item>
+          <oscd-plugin186320cdd626e422 class="plugin validator">
+          </oscd-plugin186320cdd626e422>
+          <li
+            divider=""
+            padded=""
+            role="separator"
+          >
+          </li>
+          <mwc-list-item
+            aria-disabled="true"
+            class="middle"
+            disabled=""
+            graphic="icon"
+            iconid="snippet_folder"
+            mwc-list-item=""
+            tabindex="-1"
+          >
+            <mwc-icon slot="graphic">
+              snippet_folder
+            </mwc-icon>
+            <span>
+              Import IEDs
+            </span>
+          </mwc-list-item>
+          <oscd-plugin4fed39e69404009b class="menu plugin">
+          </oscd-plugin4fed39e69404009b>
+          <mwc-list-item
+            aria-disabled="true"
+            class="middle"
+            disabled=""
+            graphic="icon"
+            iconid="play_circle"
+            mwc-list-item=""
+            tabindex="-1"
+          >
+            <mwc-icon slot="graphic">
+              play_circle
+            </mwc-icon>
+            <span>
+              Subscriber Update
+            </span>
+          </mwc-list-item>
+          <oscd-plugin90bf5c90b69b347b class="menu plugin">
+          </oscd-plugin90bf5c90b69b347b>
+          <mwc-list-item
+            aria-disabled="true"
+            class="middle"
+            disabled=""
+            graphic="icon"
+            iconid="merge_type"
+            mwc-list-item=""
+            tabindex="-1"
+          >
+            <mwc-icon slot="graphic">
+              merge_type
+            </mwc-icon>
+            <span>
+              Merge Project
+            </span>
+          </mwc-list-item>
+          <oscd-plugin2b4693cc19da2446 class="menu plugin">
+          </oscd-plugin2b4693cc19da2446>
+          <mwc-list-item
+            aria-disabled="true"
+            class="middle"
+            disabled=""
+            graphic="icon"
+            iconid="merge_type"
+            mwc-list-item=""
+            tabindex="-1"
+          >
+            <mwc-icon slot="graphic">
+              merge_type
+            </mwc-icon>
+            <span>
+              Update Substation
+            </span>
+          </mwc-list-item>
+          <oscd-plugin2a662bacb120083f class="menu plugin">
+          </oscd-plugin2a662bacb120083f>
+          <mwc-list-item
+            aria-disabled="true"
+            class="middle"
+            disabled=""
+            graphic="icon"
+            iconid="compare_arrows"
+            mwc-list-item=""
+            tabindex="-1"
+          >
+            <mwc-icon slot="graphic">
+              compare_arrows
+            </mwc-icon>
+            <span>
+              Compare IED
+            </span>
+          </mwc-list-item>
+          <oscd-plugin46ae7b6e93fe0f90 class="menu plugin">
+          </oscd-plugin46ae7b6e93fe0f90>
           <li
             divider=""
             padded=""
@@ -39,7 +223,7 @@ snapshots["open-scd looks like its snapshot"] =
             graphic="icon"
             iconid="settings"
             mwc-list-item=""
-            tabindex="0"
+            tabindex="-1"
           >
             <mwc-icon slot="graphic">
               settings
@@ -48,6 +232,47 @@ snapshots["open-scd looks like its snapshot"] =
               Settings
             </span>
           </mwc-list-item>
+          <mwc-list-item
+            aria-disabled="false"
+            class="middle"
+            graphic="icon"
+            iconid="help"
+            mwc-list-item=""
+            tabindex="-1"
+          >
+            <mwc-icon slot="graphic">
+              help
+            </mwc-icon>
+            <span>
+              Help
+            </span>
+          </mwc-list-item>
+          <oscd-plugin48ab1a46d409bed9 class="menu plugin">
+          </oscd-plugin48ab1a46d409bed9>
+          <mwc-list-item
+            aria-disabled="true"
+            class="middle"
+            disabled=""
+            graphic="icon"
+            iconid="history_toggle_off"
+            mwc-list-item=""
+            tabindex="-1"
+          >
+            <mwc-icon slot="graphic">
+              history_toggle_off
+            </mwc-icon>
+            <span>
+              Show SCL History
+            </span>
+          </mwc-list-item>
+          <oscd-plugina5aa56c7c6319526 class="menu plugin">
+          </oscd-plugina5aa56c7c6319526>
+          <li
+            divider=""
+            padded=""
+            role="separator"
+          >
+          </li>
           <mwc-list-item
             aria-disabled="false"
             class="static"
@@ -111,6 +336,22 @@ snapshots["open-scd looks like its snapshot"] =
         </mwc-top-app-bar-fixed>
       </mwc-drawer>
       <div class="landing">
+        <mwc-icon-button
+          class="landing_icon"
+          icon="folder_open"
+        >
+          <div class="landing_label">
+            Open project
+          </div>
+        </mwc-icon-button>
+        <mwc-icon-button
+          class="landing_icon"
+          icon="create_new_folder"
+        >
+          <div class="landing_label">
+            New project
+          </div>
+        </mwc-icon-button>
       </div>
       <mwc-dialog
         heading="Extensions"
@@ -142,6 +383,222 @@ snapshots["open-scd looks like its snapshot"] =
             role="separator"
           >
           </li>
+          <mwc-check-list-item
+            aria-disabled="false"
+            class="official"
+            graphic="control"
+            hasmeta=""
+            left=""
+            mwc-list-item=""
+            selected=""
+            tabindex="0"
+            value="/src/editors/IED.js"
+          >
+            <mwc-icon slot="meta">
+              developer_board
+            </mwc-icon>
+            IED
+          </mwc-check-list-item>
+          <mwc-check-list-item
+            aria-disabled="false"
+            class="official"
+            graphic="control"
+            hasmeta=""
+            left=""
+            mwc-list-item=""
+            selected=""
+            tabindex="-1"
+            value="/src/editors/Substation.js"
+          >
+            <mwc-icon slot="meta">
+              margin
+            </mwc-icon>
+            Substation
+          </mwc-check-list-item>
+          <mwc-check-list-item
+            aria-disabled="false"
+            class="official"
+            graphic="control"
+            hasmeta=""
+            left=""
+            mwc-list-item=""
+            tabindex="-1"
+            value="/src/editors/SingleLineDiagram.js"
+          >
+            <mwc-icon slot="meta">
+              edit
+            </mwc-icon>
+            Single Line Diagram
+          </mwc-check-list-item>
+          <mwc-check-list-item
+            aria-disabled="false"
+            class="official"
+            graphic="control"
+            hasmeta=""
+            left=""
+            mwc-list-item=""
+            tabindex="-1"
+            value="/src/editors/GooseSubscriberMessageBinding.js"
+          >
+            <mwc-icon slot="meta">
+              link
+            </mwc-icon>
+            Subscriber Message Binding (GOOSE)
+          </mwc-check-list-item>
+          <mwc-check-list-item
+            aria-disabled="false"
+            class="official"
+            graphic="control"
+            hasmeta=""
+            left=""
+            mwc-list-item=""
+            tabindex="-1"
+            value="/src/editors/GooseSubscriberDataBinding.js"
+          >
+            <mwc-icon slot="meta">
+              link
+            </mwc-icon>
+            Subscriber Data Binding (GOOSE)
+          </mwc-check-list-item>
+          <mwc-check-list-item
+            aria-disabled="false"
+            class="official"
+            graphic="control"
+            hasmeta=""
+            left=""
+            mwc-list-item=""
+            selected=""
+            tabindex="-1"
+            value="/src/editors/GooseSubscriberLaterBinding.js"
+          >
+            <mwc-icon slot="meta">
+              link
+            </mwc-icon>
+            Subscriber Later Binding (GOOSE)
+          </mwc-check-list-item>
+          <mwc-check-list-item
+            aria-disabled="false"
+            class="official"
+            graphic="control"
+            hasmeta=""
+            left=""
+            mwc-list-item=""
+            tabindex="-1"
+            value="/src/editors/SMVSubscriberMessageBinding.js"
+          >
+            <mwc-icon slot="meta">
+              link
+            </mwc-icon>
+            Subscriber Message Binding (SMV)
+          </mwc-check-list-item>
+          <mwc-check-list-item
+            aria-disabled="false"
+            class="official"
+            graphic="control"
+            hasmeta=""
+            left=""
+            mwc-list-item=""
+            tabindex="-1"
+            value="/src/editors/SMVSubscriberDataBinding.js"
+          >
+            <mwc-icon slot="meta">
+              link
+            </mwc-icon>
+            Subscriber Data Binding (SMV)
+          </mwc-check-list-item>
+          <mwc-check-list-item
+            aria-disabled="false"
+            class="official"
+            graphic="control"
+            hasmeta=""
+            left=""
+            mwc-list-item=""
+            selected=""
+            tabindex="-1"
+            value="/src/editors/SMVSubscriberLaterBinding.js"
+          >
+            <mwc-icon slot="meta">
+              link
+            </mwc-icon>
+            Subscriber Later Binding (SMV)
+          </mwc-check-list-item>
+          <mwc-check-list-item
+            aria-disabled="false"
+            class="official"
+            graphic="control"
+            hasmeta=""
+            left=""
+            mwc-list-item=""
+            selected=""
+            tabindex="-1"
+            value="/src/editors/Communication.js"
+          >
+            <mwc-icon slot="meta">
+              settings_ethernet
+            </mwc-icon>
+            Communication
+          </mwc-check-list-item>
+          <mwc-check-list-item
+            aria-disabled="false"
+            class="official"
+            graphic="control"
+            hasmeta=""
+            left=""
+            mwc-list-item=""
+            tabindex="-1"
+            value="/src/editors/Protocol104.js"
+          >
+            <mwc-icon slot="meta">
+              settings_ethernet
+            </mwc-icon>
+            104
+          </mwc-check-list-item>
+          <mwc-check-list-item
+            aria-disabled="false"
+            class="official"
+            graphic="control"
+            hasmeta=""
+            left=""
+            mwc-list-item=""
+            selected=""
+            tabindex="-1"
+            value="/src/editors/Templates.js"
+          >
+            <mwc-icon slot="meta">
+              copy_all
+            </mwc-icon>
+            Templates
+          </mwc-check-list-item>
+          <mwc-check-list-item
+            aria-disabled="false"
+            class="official"
+            graphic="control"
+            hasmeta=""
+            left=""
+            mwc-list-item=""
+            tabindex="-1"
+            value="/src/editors/Publisher.js"
+          >
+            <mwc-icon slot="meta">
+              publish
+            </mwc-icon>
+            Publisher
+          </mwc-check-list-item>
+          <mwc-check-list-item
+            aria-disabled="false"
+            class="official"
+            graphic="control"
+            hasmeta=""
+            left=""
+            mwc-list-item=""
+            tabindex="-1"
+            value="/src/editors/Cleanup.js"
+          >
+            <mwc-icon slot="meta">
+              cleaning_services
+            </mwc-icon>
+            Cleanup
+          </mwc-check-list-item>
           <mwc-list-item
             aria-disabled="false"
             graphic="avatar"
@@ -165,24 +622,276 @@ snapshots["open-scd looks like its snapshot"] =
             role="separator"
           >
           </li>
+          <mwc-check-list-item
+            aria-disabled="false"
+            class="official"
+            graphic="control"
+            hasmeta=""
+            left=""
+            mwc-list-item=""
+            selected=""
+            tabindex="-1"
+            value="/src/menu/OpenProject.js"
+          >
+            <mwc-icon slot="meta">
+              folder_open
+            </mwc-icon>
+            Open project
+          </mwc-check-list-item>
+          <mwc-check-list-item
+            aria-disabled="false"
+            class="official"
+            graphic="control"
+            hasmeta=""
+            left=""
+            mwc-list-item=""
+            selected=""
+            tabindex="-1"
+            value="/src/menu/NewProject.js"
+          >
+            <mwc-icon slot="meta">
+              create_new_folder
+            </mwc-icon>
+            New project
+          </mwc-check-list-item>
+          <mwc-check-list-item
+            aria-disabled="false"
+            class="official"
+            graphic="control"
+            hasmeta=""
+            left=""
+            mwc-list-item=""
+            selected=""
+            tabindex="-1"
+            value="/src/menu/SaveProject.js"
+          >
+            <mwc-icon slot="meta">
+              save
+            </mwc-icon>
+            Save project
+          </mwc-check-list-item>
           <li
             divider=""
             inset=""
             role="separator"
           >
           </li>
+          <mwc-check-list-item
+            aria-disabled="false"
+            class="official"
+            graphic="control"
+            hasmeta=""
+            left=""
+            mwc-list-item=""
+            selected=""
+            tabindex="-1"
+            value="/src/validators/ValidateSchema.js"
+          >
+            <mwc-icon slot="meta">
+              rule_folder
+            </mwc-icon>
+            Validate Schema
+          </mwc-check-list-item>
+          <mwc-check-list-item
+            aria-disabled="false"
+            class="official"
+            graphic="control"
+            hasmeta=""
+            left=""
+            mwc-list-item=""
+            selected=""
+            tabindex="-1"
+            value="/src/validators/ValidateTemplates.js"
+          >
+            <mwc-icon slot="meta">
+              rule_folder
+            </mwc-icon>
+            Validate Templates
+          </mwc-check-list-item>
           <li
             divider=""
             inset=""
             role="separator"
           >
           </li>
+          <mwc-check-list-item
+            aria-disabled="false"
+            class="official"
+            graphic="control"
+            hasmeta=""
+            left=""
+            mwc-list-item=""
+            selected=""
+            tabindex="-1"
+            value="/src/menu/ImportIEDs.js"
+          >
+            <mwc-icon slot="meta">
+              snippet_folder
+            </mwc-icon>
+            Import IEDs
+          </mwc-check-list-item>
+          <mwc-check-list-item
+            aria-disabled="false"
+            class="official"
+            graphic="control"
+            hasmeta=""
+            left=""
+            mwc-list-item=""
+            tabindex="-1"
+            value="/src/menu/VirtualTemplateIED.js"
+          >
+            <mwc-icon slot="meta">
+              developer_board
+            </mwc-icon>
+            Create Virtual IED
+          </mwc-check-list-item>
+          <mwc-check-list-item
+            aria-disabled="false"
+            class="official"
+            graphic="control"
+            hasmeta=""
+            left=""
+            mwc-list-item=""
+            selected=""
+            tabindex="-1"
+            value="/src/menu/SubscriberInfo.js"
+          >
+            <mwc-icon slot="meta">
+              play_circle
+            </mwc-icon>
+            Subscriber Update
+          </mwc-check-list-item>
+          <mwc-check-list-item
+            aria-disabled="false"
+            class="official"
+            graphic="control"
+            hasmeta=""
+            left=""
+            mwc-list-item=""
+            tabindex="-1"
+            value="/src/menu/UpdateDescriptionABB.js"
+          >
+            <mwc-icon slot="meta">
+              play_circle
+            </mwc-icon>
+            Update desc (ABB)
+          </mwc-check-list-item>
+          <mwc-check-list-item
+            aria-disabled="false"
+            class="official"
+            graphic="control"
+            hasmeta=""
+            left=""
+            mwc-list-item=""
+            tabindex="-1"
+            value="/src/menu/UpdateDescriptionSEL.js"
+          >
+            <mwc-icon slot="meta">
+              play_circle
+            </mwc-icon>
+            Update desc (SEL)
+          </mwc-check-list-item>
+          <mwc-check-list-item
+            aria-disabled="false"
+            class="official"
+            graphic="control"
+            hasmeta=""
+            left=""
+            mwc-list-item=""
+            selected=""
+            tabindex="-1"
+            value="/src/menu/Merge.js"
+          >
+            <mwc-icon slot="meta">
+              merge_type
+            </mwc-icon>
+            Merge Project
+          </mwc-check-list-item>
+          <mwc-check-list-item
+            aria-disabled="false"
+            class="official"
+            graphic="control"
+            hasmeta=""
+            left=""
+            mwc-list-item=""
+            selected=""
+            tabindex="-1"
+            value="/src/menu/UpdateSubstation.js"
+          >
+            <mwc-icon slot="meta">
+              merge_type
+            </mwc-icon>
+            Update Substation
+          </mwc-check-list-item>
+          <mwc-check-list-item
+            aria-disabled="false"
+            class="official"
+            graphic="control"
+            hasmeta=""
+            left=""
+            mwc-list-item=""
+            selected=""
+            tabindex="-1"
+            value="/src/menu/CompareIED.js"
+          >
+            <mwc-icon slot="meta">
+              compare_arrows
+            </mwc-icon>
+            Compare IED
+          </mwc-check-list-item>
+          <mwc-check-list-item
+            aria-disabled="false"
+            class="official"
+            graphic="control"
+            hasmeta=""
+            left=""
+            mwc-list-item=""
+            tabindex="-1"
+            value="/src/menu/ExportCommunication.js"
+          >
+            <mwc-icon slot="meta">
+              sim_card_download
+            </mwc-icon>
+            Export Communication Section
+          </mwc-check-list-item>
           <li
             divider=""
             inset=""
             role="separator"
           >
           </li>
+          <mwc-check-list-item
+            aria-disabled="false"
+            class="official"
+            graphic="control"
+            hasmeta=""
+            left=""
+            mwc-list-item=""
+            selected=""
+            tabindex="-1"
+            value="/src/menu/Help.js"
+          >
+            <mwc-icon slot="meta">
+              help
+            </mwc-icon>
+            Help
+          </mwc-check-list-item>
+          <mwc-check-list-item
+            aria-disabled="false"
+            class="official"
+            graphic="control"
+            hasmeta=""
+            left=""
+            mwc-list-item=""
+            selected=""
+            tabindex="-1"
+            value="/src/menu/SclHistory.js"
+          >
+            <mwc-icon slot="meta">
+              history_toggle_off
+            </mwc-icon>
+            Show SCL History
+          </mwc-check-list-item>
         </mwc-list>
         <mwc-button
           icon="refresh"
