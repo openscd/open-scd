@@ -5,7 +5,8 @@ We mark our official plug-ins that are supported by the OpenSCD organization wit
 <kbd>✅ Official</kbd>
 
 > [!CAUTION]
-> We have no control over the quality or security of unofficial plug-ins.
+> The OpenSCD project does not actively check the security, quality, governance and license 
+> of the 3rd party plug-ins. Broken or insecure plug-ins can be removed without notice.
 
 > [!NOTE]
 > If you want to add a plug-in to this list, please open a pull request.
@@ -15,7 +16,10 @@ We mark our official plug-ins that are supported by the OpenSCD organization wit
 
 ## Core Plug-ins
 
-Core plug-ins are general IEC 61850 plug-ins. They can be used in any project. 
+Core plug-ins are general IEC 61850 plug-ins. They don't allow any vendor specific 
+extensions or logic but they can be used in any project.
+Only IEC 61850 and related (IEC) documents and XSD's are allowed to be 
+implemented in these plugins.
 
 ### IED
 
@@ -275,7 +279,8 @@ Core plug-ins are general IEC 61850 plug-ins. They can be used in any project.
 
 ## Vendor Specific Plug-ins
 
-These plug-ins are specific to a vendor.
+These plug-ins are specific to a vendor and can include vendor specific 
+logic or vendor specific private SCL extensions.
 
 ### Update desc (ABB)
 
