@@ -1,4 +1,3 @@
-import { Wizarding } from '../src/Wizarding.js';
 import { Editing } from '../src/Editing.js';
 import {
   LitElement,

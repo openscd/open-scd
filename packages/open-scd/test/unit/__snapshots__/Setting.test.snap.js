@@ -2,9 +2,7 @@
 export const snapshots = {};
 
 snapshots["OSCD-Settings saves chosen .nsdoc file and looks like latest snapshot"] = 
-`<slot>
-</slot>
-<mwc-dialog
+`<mwc-dialog
   heading="Settings"
   id="settings"
   open=""
@@ -184,13 +182,13 @@ snapshots["OSCD-Settings saves chosen .nsdoc file and looks like latest snapshot
     Save
   </mwc-button>
 </mwc-dialog>
+<slot>
+</slot>
 `;
 /* end snapshot OSCD-Settings saves chosen .nsdoc file and looks like latest snapshot */
 
 snapshots["OSCD-Settings deletes a chosen .nsdoc file and looks like latest snapshot"] = 
-`<slot>
-</slot>
-<mwc-dialog
+`<mwc-dialog
   heading="Settings"
   id="settings"
   open=""
@@ -364,6 +362,8 @@ snapshots["OSCD-Settings deletes a chosen .nsdoc file and looks like latest snap
     Save
   </mwc-button>
 </mwc-dialog>
+<slot>
+</slot>
 `;
 /* end snapshot OSCD-Settings deletes a chosen .nsdoc file and looks like latest snapshot */
 

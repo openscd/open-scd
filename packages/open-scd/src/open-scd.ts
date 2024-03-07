@@ -47,12 +47,13 @@ import { Drawer } from '@material/mwc-drawer';
 import { translate } from 'lit-translate';
 
 import { officialPlugins } from '../public/js/plugins.js';
-import { Nsdoc } from './foundation/nsdoc.js';
 import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation.js';
 import { Select } from '@material/mwc-select';
 import { Switch } from '@material/mwc-switch';
 import { TextField } from '@material/mwc-textfield';
 import { Dialog } from '@material/mwc-dialog';
+
+import { initializeNsdoc, Nsdoc } from './foundation/nsdoc.js';
 
 // HOSTING INTERFACES
 
@@ -227,12 +228,17 @@ const loadedPlugins = new Set<string>();
  * Open Substation Configuration Designer. */
 @customElement('open-scd')
 export class OpenSCD extends Editing(Historing(LitElement)) {
+  /** Object containing all *.nsdoc files and a function extracting element's label form them*/
+  @property({ attribute: false })
+  nsdoc: Nsdoc = initializeNsdoc();
+
   private currentSrc = '';
   /** The current file's URL. `blob:` URLs are *revoked after parsing*! */
   @property({ type: String })
   get src(): string {
     return this.currentSrc;
   }
+
   set src(value: string) {
     this.currentSrc = value;
     this.dispatchEvent(newPendingStateEvent(this.loadDoc(value)));
@@ -291,6 +297,10 @@ export class OpenSCD extends Editing(Historing(LitElement)) {
     this.requestUpdate();
   }
 
+  protected renderMain(): TemplateResult {
+    return html`${this.renderHosting()}${this.renderPlugging()}${super.render()}`;
+  }
+
   connectedCallback(): void {
     super.connectedCallback();
     this.addEventListener('validate', async () => {
@@ -317,13 +327,9 @@ export class OpenSCD extends Editing(Historing(LitElement)) {
     });
   }
 
-  protected renderMain(): TemplateResult {
-    return html`${this.renderHosting()}${this.renderPlugging()}${super.render()}`;
-  }
-
   render(): TemplateResult {
     return html`<oscd-waiter>
-      <oscd-settings .host=${this}>
+      <oscd-settings .host=${this} .nsdoc=${this.nsdoc}>
         <oscd-wizards .host=${this}> ${this.renderMain()}</oscd-wizards>
       </oscd-settings>
     </oscd-waiter>`;
@@ -695,10 +701,6 @@ export class OpenSCD extends Editing(Historing(LitElement)) {
             )}
           </div>`}`;
   }
-
-  // PLUGGING
-  // DIRTY HACK: will refactored with open-scd-core
-  nsdoc!: Nsdoc;
 
   get editors(): Plugin[] {
     return this.plugins.filter(
