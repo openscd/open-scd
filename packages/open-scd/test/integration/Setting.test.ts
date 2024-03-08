@@ -33,6 +33,7 @@ describe('Oscd-Settings', () => {
 
     await settings.requestUpdate();
     await settings.updateComplete;
+
     await logger.updateComplete;
 
     expect(localStorage.getItem('IEC 61850-7-2')).to.eql(nsdocFile);

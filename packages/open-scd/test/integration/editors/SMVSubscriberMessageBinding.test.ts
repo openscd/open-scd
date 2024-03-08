@@ -1,17 +1,31 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
 import SMVSubscriberMessageBindingPlugin from '../../../src/editors/SMVSubscriberMessageBinding.js';
-import { Editing } from '../../../src/Editing.js';
-import { Historing } from '../../../src/Historing.js';
-import { Wizarding } from '../../../src/Wizarding.js';
+
 import { ListItem } from '@material/mwc-list/mwc-list-item.js';
+import { MockOpenSCD } from '../../mock-open-scd.js';
+import '../../mock-open-scd.js';
+import { TemplateResult, customElement, query } from 'lit-element';
+
+customElements.define('smv-plugin', SMVSubscriberMessageBindingPlugin);
+
+@customElement('smv-mock-open-scd')
+class SmvMockOpenSCD extends MockOpenSCD {
+  @query('smv-plugin')
+  plugin!: SMVSubscriberMessageBindingPlugin;
+
+  renderHosting(): TemplateResult {
+    return html`<smv-plugin
+      .doc=${this.doc}
+      .editCount=${this.editCount}
+      .nsdoc=${this.nsdoc}
+    ></smv-plugin>`;
+  }
+}
 
 describe('Sampled Values Plugin', () => {
-  customElements.define(
-    'smv-plugin',
-    Wizarding(Editing(Historing(SMVSubscriberMessageBindingPlugin)))
-  );
   let element: SMVSubscriberMessageBindingPlugin;
+  let parent: SmvMockOpenSCD;
   let doc: XMLDocument;
 
   beforeEach(async () => {
@@ -19,7 +33,15 @@ describe('Sampled Values Plugin', () => {
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-    element = await fixture(html`<smv-plugin .doc=${doc}></smv-plugin>`);
+    parent = await fixture(
+      html`<smv-mock-open-scd .doc=${doc}></smv-mock-open-scd>`
+    );
+
+    await parent.updateComplete;
+
+    element = parent.plugin;
+
+    await element.updateComplete;
   });
 
   describe('in Publisher view', () => {
@@ -342,6 +364,7 @@ describe('Sampled Values Plugin', () => {
         beforeEach(async () => {
           (<HTMLElement>getItemFromSubscriberList('MSVCB01')).click();
           await element.updateComplete;
+          await parent.updateComplete;
         });
 
         it('initially all ExtRefs are available in the subscriber IED', async () => {
@@ -363,7 +386,7 @@ describe('Sampled Values Plugin', () => {
         it('removes the required ExtRefs to the subscriber IED', async () => {
           (<HTMLElement>getItemFromSubscriberList('MSVCB01')).click();
           await element.updateComplete;
-
+          await parent.updateComplete;
           expect(
             element.doc.querySelectorAll(
               'IED[name="IED2"] > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="IED3"], ' +
