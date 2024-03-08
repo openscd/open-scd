@@ -26,7 +26,6 @@ describe('OpenSCD-Plugin', () => {
     await element.updateComplete;
   });
 
-  /*
   it('stores default plugins on load', () =>
     expect(element).property('editors').to.have.lengthOf(6));
 
@@ -39,7 +38,6 @@ describe('OpenSCD-Plugin', () => {
     expect(element.docs[docName]).to.equal(doc);
   });
 
-  */
   describe('plugin manager dialog', () => {
     let firstEditorPlugin: HTMLElement;
     let resetAction: HTMLElement;
