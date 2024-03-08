@@ -31,7 +31,6 @@ export class OscdWaiter extends LitElement {
 
   constructor() {
     super();
-
     this.onPendingState = this.onPendingState.bind(this);
   }
 
