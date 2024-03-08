@@ -11,6 +11,8 @@ import '@material/mwc-switch';
 
 import '../../../wizard-textfield.js';
 import '../../../WizardDivider.js';
+
+import '../../../wizard-select.js';
 import { WizardSelect } from '../../../wizard-select.js';
 
 import {
@@ -38,9 +40,8 @@ import { createActions, createCheckActions } from '../foundation/actions.js';
 import { getSignalName } from '../foundation/signalNames.js';
 
 function getSwitchValue(wizard: Element, name: string): boolean {
-  const switchElement = wizard.shadowRoot?.querySelector<Switch>(
-    `mwc-switch[id="${name}"`
-  );
+  const switchElement: Switch | undefined | null =
+    wizard.shadowRoot?.querySelector<Switch>(`mwc-switch[id="${name}"`);
   return switchElement?.checked ?? false;
 }
 

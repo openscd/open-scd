@@ -67,7 +67,8 @@
     "release:major": "standard-version --release-as major",
     "build": "npm run test && npm run build:notest && cp .nojekyll build/",
     "build:notest": "npm run doc && snowpack build && workbox generateSW workbox-config.cjs",
-    "start": "snowpack dev"
+    "start": "npm run bundle && concurrently -k -r \"tsc -b --watch --preserveWatchOutput\" \"wds\"",
+    "bundle": "rimraf dist && rollup -c rollup.config.js"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
@@ -75,13 +76,12 @@
     "@open-wc/eslint-config": "^4.3.0",
     "@open-wc/semantic-dom-diff": "^0.19.5",
     "@open-wc/testing": "^2.5.33",
-    "@snowpack/plugin-typescript": "^1.2.1",
     "@types/marked": "^2.0.4",
     "@types/node": "^16.6.1",
     "@typescript-eslint/eslint-plugin": "^4.29.2",
     "@typescript-eslint/parser": "^4.29.2",
-    "@web/dev-server-esbuild": "^0.2.16",
-    "@web/test-runner": "^0.13.22",
+    "@web/dev-server": "^0.1.32",
+    "@web/test-runner": "next",
     "concurrently": "^6.2.1",
     "deepmerge": "^4.2.2",
     "es-dev-server": "^2.1.0",
@@ -94,7 +94,6 @@
     "lint-staged": "^11.1.2",
     "prettier": "^2.3.2",
     "sinon": "^11.1.2",
-    "snowpack": "3.8.6",
     "source-map": "^0.7.4",
     "standard-version": "^9.3.1",
     "tslib": "^2.3.1",
