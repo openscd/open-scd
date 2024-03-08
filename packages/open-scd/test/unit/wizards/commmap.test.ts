@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../mock-wizard.js';
-import { MockWizard } from '../../mock-wizard.js';
+import '../../../src/addons/Wizards.js';
+import { Wizards } from '../../../src/addons/Wizards.js';
 
 import '../../../src/editors/substation/zeroline-pane.js';
 import {
@@ -12,7 +12,7 @@ import { ZerolinePane } from '../../../src/editors/substation/zeroline-pane.js';
 
 describe('communication mapping wizard', () => {
   let doc: Document;
-  let parent: MockWizard;
+  let parent: Wizards;
   let element: ZerolinePane;
 
   beforeEach(async () => {
@@ -21,9 +21,9 @@ describe('communication mapping wizard', () => {
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
     parent = await fixture(
-      html`<mock-wizard
+      html`<oscd-wizards .host=${document}
         ><zeroline-pane .doc=${doc}></zeroline-pane
-      ></mock-wizard>`
+      ></oscd-wizards>`
     );
 
     element = <ZerolinePane>parent.querySelector('zeroline-pane')!;

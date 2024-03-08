@@ -70,8 +70,6 @@ snapshots["Cleanup: Control Blocks Container without a doc loaded looks like the
     </mwc-formfield>
   </footer>
 </section>
-<wizard-dialog>
-</wizard-dialog>
 `;
 /* end snapshot Cleanup: Control Blocks Container without a doc loaded looks like the latest snapshot */
 
@@ -344,8 +342,6 @@ snapshots["Cleanup: Control Blocks Container With a test file loaded looks like 
     </mwc-formfield>
   </footer>
 </section>
-<wizard-dialog>
-</wizard-dialog>
 `;
 /* end snapshot Cleanup: Control Blocks Container With a test file loaded looks like the latest snapshot */
 

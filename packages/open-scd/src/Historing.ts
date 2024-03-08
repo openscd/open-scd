@@ -31,7 +31,7 @@ import {
   newActionEvent,
 } from './foundation.js';
 import { getFilterIcon, iconColors } from './icons/icons.js';
-import { Plugin } from './Plugging.js';
+import { Plugin } from './open-scd.js';
 
 const icons = {
   info: 'info',

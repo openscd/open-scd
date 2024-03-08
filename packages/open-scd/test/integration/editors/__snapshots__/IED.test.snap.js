@@ -4,22 +4,18 @@ export const snapshots = {};
 snapshots["IED Plugin without a doc loaded looks like the latest snapshot"] = 
 `<h1>
   <span style="color: var(--base1)">
-    [iededitor.missing]
+    No IED
   </span>
 </h1>
-<wizard-dialog>
-</wizard-dialog>
 `;
 /* end snapshot IED Plugin without a doc loaded looks like the latest snapshot */
 
 snapshots["IED Plugin with a doc loaded containing no IEDs looks like the latest snapshot"] = 
 `<h1>
   <span style="color: var(--base1)">
-    [iededitor.missing]
+    No IED
   </span>
 </h1>
-<wizard-dialog>
-</wizard-dialog>
 `;
 /* end snapshot IED Plugin with a doc loaded containing no IEDs looks like the latest snapshot */
 
@@ -27,7 +23,7 @@ snapshots["IED Plugin with a doc loaded containing IEDs looks like the latest sn
 `<section>
   <div class="header">
     <h1>
-      [filters]:
+      Filters:
     </h1>
     <oscd-filter-button
       icon="developer_board"
@@ -38,7 +34,6 @@ snapshots["IED Plugin with a doc loaded containing IEDs looks like the latest sn
         aria-selected="true"
         graphic="control"
         mwc-list-item=""
-        selected=""
         tabindex="0"
         twoline=""
         value="IED1"
@@ -164,8 +159,6 @@ snapshots["IED Plugin with a doc loaded containing IEDs looks like the latest sn
   <ied-container>
   </ied-container>
 </section>
-<wizard-dialog>
-</wizard-dialog>
 `;
 /* end snapshot IED Plugin with a doc loaded containing IEDs looks like the latest snapshot */
 

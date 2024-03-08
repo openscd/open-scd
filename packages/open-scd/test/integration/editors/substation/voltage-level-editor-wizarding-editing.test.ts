@@ -269,6 +269,7 @@ describe('voltage-level-editor wizarding editing integration', () => {
         element?.shadowRoot?.querySelector('mwc-list-item[value="Bay"]')
       )).click();
       await parent.updateComplete;
+      await parent.wizardUI.updateComplete;
 
       nameField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
@@ -541,6 +542,7 @@ describe('voltage-level-editor wizarding editing integration', () => {
         element?.shadowRoot?.querySelector('mwc-list-item[value="Function"]')
       )).click();
       await parent.updateComplete;
+      await parent.wizardUI.updateComplete;
 
       nameField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
@@ -580,6 +582,7 @@ describe('voltage-level-editor wizarding editing integration', () => {
 
       nameField.value = 'someNewFunction';
       await parent.updateComplete;
+
       primaryAction.click();
 
       expect(

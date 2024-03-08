@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../mock-wizard.js';
-import { MockWizard } from '../../mock-wizard.js';
+import '../../../src/addons/Wizards.js';
+import { Wizards } from '../../../src/addons/Wizards.js';
 
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
@@ -26,7 +26,7 @@ describe('Wizards for SCL element DAI', () => {
   let doi: Element;
   let dai: Element;
   let da: Element;
-  let element: MockWizard;
+  let element: Wizards;
   let inputs: WizardInputElement[];
 
   describe('create DAI with existing Val Element', () => {
@@ -40,7 +40,9 @@ describe('Wizards for SCL element DAI', () => {
         'DOType[cdc="ENS"][id="Dummy.LLN0.Beh"] > DA[name="integer"]'
       )!;
 
-      element = await fixture(html`<mock-wizard></mock-wizard>`);
+      element = await fixture(
+        html`<oscd-wizards .host=${document}></oscd-wizards>`
+      );
       const wizard = createDAIWizard(doi, dai, da);
       element.workflow.push(() => wizard);
       await element.requestUpdate();
@@ -75,7 +77,9 @@ describe('Wizards for SCL element DAI', () => {
         'DOType[cdc="ENS"][id="Dummy.LLN0.Beh"] > DA[name="t"]'
       )!;
 
-      element = await fixture(html`<mock-wizard></mock-wizard>`);
+      element = await fixture(
+        html`<oscd-wizards .host=${document}></oscd-wizards>`
+      );
       const wizard = createDAIWizard(doi, dai, da);
       element.workflow.push(() => wizard);
       await element.requestUpdate();
@@ -114,7 +118,9 @@ describe('Wizards for SCL element DAI', () => {
           'DOType[cdc="ENS"][id="Dummy.LLN0.Beh"] > DA[name="integer"]'
         )!;
 
-        element = await fixture(html`<mock-wizard></mock-wizard>`);
+        element = await fixture(
+          html`<oscd-wizards .host=${document}></oscd-wizards>`
+        );
         const wizard = editDAIWizard(da, dai);
         element.workflow.push(() => wizard);
         await element.requestUpdate();
@@ -151,7 +157,9 @@ describe('Wizards for SCL element DAI', () => {
           'DAType[id="OpenSCD_AnVal_FLOAT32"] > BDA[name="f"]'
         )!;
 
-        element = await fixture(html`<mock-wizard></mock-wizard>`);
+        element = await fixture(
+          html`<oscd-wizards .host=${document}></oscd-wizards>`
+        );
         const wizard = editDAIWizard(da, dai);
         element.workflow.push(() => wizard);
         await element.requestUpdate();

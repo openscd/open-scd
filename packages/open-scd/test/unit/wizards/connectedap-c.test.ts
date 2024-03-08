@@ -6,6 +6,7 @@ import { MockWizardEditor } from '../../mock-wizard-editor.js';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base.js';
 
 import { createConnectedApWizard } from '../../../src/wizards/connectedap.js';
+import { newWizardEvent } from '../../../src/foundation.js';
 
 function isAllMacUnique(parent: Element, serviceType: 'GSE' | 'SMV'): boolean {
   const allMacs = Array.from(
@@ -71,7 +72,7 @@ describe('create wizard for ConnectedAP element', () => {
 
     parent = doc.querySelector('SubNetwork')!;
     const wizard = createConnectedApWizard(parent);
-    element.workflow.push(() => wizard);
+    element.dispatchEvent(newWizardEvent(wizard));
     await element.requestUpdate();
 
     /*

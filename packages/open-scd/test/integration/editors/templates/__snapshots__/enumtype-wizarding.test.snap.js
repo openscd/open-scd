@@ -4,7 +4,7 @@ export const snapshots = {};
 snapshots["EnumType wizards defines a createEnumTypeWizard looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="next"
-  heading="[enum.wizard.title.add]"
+  heading="Add EnumType"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
@@ -1331,7 +1331,7 @@ snapshots["EnumType wizards defines a createEnumTypeWizard looks like the latest
     </mwc-select>
     <wizard-textfield
       dialoginitialfocus=""
-      helper="[scl.id]"
+      helper="ID"
       label="id"
       maxlength="127"
       minlength="1"
@@ -1340,7 +1340,7 @@ snapshots["EnumType wizards defines a createEnumTypeWizard looks like the latest
     </wizard-textfield>
     <wizard-textfield
       disabled=""
-      helper="[scl.desc]"
+      helper="Description"
       label="desc"
       nullable=""
     >
@@ -1348,14 +1348,14 @@ snapshots["EnumType wizards defines a createEnumTypeWizard looks like the latest
   </div>
   <mwc-button
     dialogaction="close"
-    label="[close]"
+    label="Close"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
   </mwc-button>
   <mwc-button
     icon="add"
-    label="[add]"
+    label="Add"
     slot="primaryAction"
     trailingicon=""
   >
@@ -1367,7 +1367,7 @@ snapshots["EnumType wizards defines a createEnumTypeWizard looks like the latest
 snapshots["EnumType wizards defines an eNumTypeEditWizard looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="next"
-  heading="[enum.wizard.title.edit]"
+  heading="Edit EnumType"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 48px)"
 >
@@ -1387,7 +1387,7 @@ snapshots["EnumType wizards defines an eNumTypeEditWizard looks like the latest 
         tabindex="0"
       >
         <span>
-          [remove]
+          Remove
         </span>
         <mwc-icon slot="graphic">
           delete
@@ -1401,7 +1401,7 @@ snapshots["EnumType wizards defines an eNumTypeEditWizard looks like the latest 
         tabindex="-1"
       >
         <span>
-          [scl.EnumVal]
+          Enum Value
         </span>
         <mwc-icon slot="graphic">
           playlist_add
@@ -1412,7 +1412,7 @@ snapshots["EnumType wizards defines an eNumTypeEditWizard looks like the latest 
   <div id="wizard-content">
     <wizard-textfield
       dialoginitialfocus=""
-      helper="[scl.id]"
+      helper="ID"
       label="id"
       maxlength="127"
       minlength="1"
@@ -1421,7 +1421,7 @@ snapshots["EnumType wizards defines an eNumTypeEditWizard looks like the latest 
     </wizard-textfield>
     <wizard-textfield
       disabled=""
-      helper="[scl.desc]"
+      helper="Description"
       label="desc"
       nullable=""
     >
@@ -1506,14 +1506,14 @@ snapshots["EnumType wizards defines an eNumTypeEditWizard looks like the latest 
   </div>
   <mwc-button
     dialogaction="close"
-    label="[close]"
+    label="Close"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
   </mwc-button>
   <mwc-button
     icon=""
-    label="[save]"
+    label="Save"
     slot="primaryAction"
     trailingicon=""
   >
@@ -1525,7 +1525,7 @@ snapshots["EnumType wizards defines an eNumTypeEditWizard looks like the latest 
 snapshots["EnumType wizards defines a eNumValWizard to edit an existing EnumVal looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="next"
-  heading="[enum-val.wizard.title.edit]"
+  heading="Edit EnumVal"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 48px)"
 >
@@ -1545,7 +1545,7 @@ snapshots["EnumType wizards defines a eNumValWizard to edit an existing EnumVal 
         tabindex="0"
       >
         <span>
-          [remove]
+          Remove
         </span>
         <mwc-icon slot="graphic">
           delete
@@ -1555,7 +1555,7 @@ snapshots["EnumType wizards defines a eNumValWizard to edit an existing EnumVal 
   </nav>
   <div id="wizard-content">
     <wizard-textfield
-      helper="[scl.ord]"
+      helper="Ordinal"
       label="ord"
       required=""
       type="number"
@@ -1563,14 +1563,14 @@ snapshots["EnumType wizards defines a eNumValWizard to edit an existing EnumVal 
     </wizard-textfield>
     <wizard-textfield
       dialoginitialfocus=""
-      helper="[scl.value]"
+      helper="Value"
       label="value"
       pattern="([ -~]|[]|[ -퟿]|[-�])*"
     >
     </wizard-textfield>
     <wizard-textfield
       disabled=""
-      helper="[scl.desc]"
+      helper="Description"
       id="evDesc"
       label="desc"
       nullable=""
@@ -1580,7 +1580,7 @@ snapshots["EnumType wizards defines a eNumValWizard to edit an existing EnumVal 
   </div>
   <mwc-button
     dialogaction="close"
-    label="[close]"
+    label="Close"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -1599,13 +1599,13 @@ snapshots["EnumType wizards defines a eNumValWizard to edit an existing EnumVal 
 snapshots["EnumType wizards defines a eNumValWizard to create a new EnumVal element looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="next"
-  heading="[enum-val.wizard.title.add]"
+  heading="Add EnumVal"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
   <div id="wizard-content">
     <wizard-textfield
-      helper="[scl.ord]"
+      helper="Ordinal"
       label="ord"
       required=""
       type="number"
@@ -1613,14 +1613,14 @@ snapshots["EnumType wizards defines a eNumValWizard to create a new EnumVal elem
     </wizard-textfield>
     <wizard-textfield
       dialoginitialfocus=""
-      helper="[scl.value]"
+      helper="Value"
       label="value"
       pattern="([ -~]|[]|[ -퟿]|[-�])*"
     >
     </wizard-textfield>
     <wizard-textfield
       disabled=""
-      helper="[scl.desc]"
+      helper="Description"
       id="evDesc"
       label="desc"
       nullable=""
@@ -1630,7 +1630,7 @@ snapshots["EnumType wizards defines a eNumValWizard to create a new EnumVal elem
   </div>
   <mwc-button
     dialogaction="close"
-    label="[close]"
+    label="Close"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >

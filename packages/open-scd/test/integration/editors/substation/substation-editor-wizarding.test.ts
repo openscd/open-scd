@@ -1,28 +1,26 @@
 import { fixture, html, expect } from '@open-wc/testing';
 import fc from 'fast-check';
 
-import '../../../mock-wizard.js';
-import { MockWizard } from '../../../mock-wizard.js';
+import '../../../../src/addons/Wizards.js';
+import { Wizards } from '../../../../src/addons/Wizards.js';
 
 import '../../../../src/editors/substation/substation-editor.js';
 import { regExp, regexString } from '../../../foundation.js';
 
 describe('substation-editor wizarding integration', () => {
   let doc: XMLDocument;
-  let parent: MockWizard;
+  let parent: Wizards;
 
   beforeEach(async () => {
     doc = await fetch('/test/testfiles/valid2007B4.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-    parent = <MockWizard>(
-      await fixture(
-        html`<mock-wizard
-          ><substation-editor
-            .element=${doc.querySelector('Substation')}
-          ></substation-editor
-        ></mock-wizard>`
-      )
+    parent = await fixture(
+      html`<oscd-wizards .host=${document}
+        ><substation-editor
+          .element=${doc.querySelector('Substation')}
+        ></substation-editor
+      ></oscd-wizards>`
     );
 
     (<HTMLElement>(

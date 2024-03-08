@@ -1,9 +1,8 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
-import { MockWizard } from '../../../../mock-wizard.js';
-
-import '../../../../mock-wizard.js';
+import '../../../../../src/addons/Wizards.js';
+import { Wizards } from '../../../../../src/addons/Wizards.js';
 
 import { ComplexAction, isSimple } from '../../../../../src/foundation.js';
 
@@ -17,11 +16,13 @@ import { fetchDoc } from '../../../wizards/test-support.js';
 describe('Wizards for 104 DOI Element', () => {
   let doc: XMLDocument;
   let doiElement: Element;
-  let element: MockWizard;
+  let element: Wizards;
 
   beforeEach(async () => {
     doc = await fetchDoc('/test/testfiles/104/valid-addresses.scd');
-    element = await fixture(html`<mock-wizard></mock-wizard>`);
+    element = await fixture(
+      html`<oscd-wizards .host=${document}></oscd-wizards>`
+    );
   });
 
   describe('show 104 DOI Basic Info (Known CDC Monitor Only)', () => {

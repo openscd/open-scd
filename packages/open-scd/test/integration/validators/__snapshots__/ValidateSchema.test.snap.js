@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["ValidateSchema plugin for valid SCL files zeroissues indication looks like the latest snapshot"] = 
 `<mwc-dialog
-  heading="[diag.name]"
+  heading="Diagnostics"
   id="diagnostic"
 >
   <filtered-list
@@ -23,7 +23,7 @@ snapshots["ValidateSchema plugin for valid SCL files zeroissues indication looks
       role="separator"
     >
     </li>
-    <abbr title="[validator.schema.valid]
+    <abbr title="valid2007B XML schema validation successful
 undefined">
       <mwc-list-item
         aria-disabled="false"
@@ -31,7 +31,7 @@ undefined">
         tabindex="-1"
       >
         <span>
-          [validator.schema.valid]
+          valid2007B XML schema validation successful
         </span>
         <span slot="secondary">
         </span>
@@ -42,7 +42,7 @@ undefined">
     dialogaction="close"
     slot="primaryAction"
   >
-    [close]
+    Close
   </mwc-button>
 </mwc-dialog>
 `;
@@ -50,7 +50,7 @@ undefined">
 
 snapshots["ValidateSchema plugin for invalid SCL files pushes issues to the diagnostics pane that look like the latest snapshot"] = 
 `<mwc-dialog
-  heading="[diag.name]"
+  heading="Diagnostics"
   id="diagnostic"
 >
   <filtered-list
@@ -102,7 +102,7 @@ invalid2007B:7 Substation key identity-constraint '{http://www.iec.ch/61850/2003
     dialogaction="close"
     slot="primaryAction"
   >
-    [close]
+    Close
   </mwc-button>
 </mwc-dialog>
 `;

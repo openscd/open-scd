@@ -4,7 +4,7 @@ export const snapshots = {};
 snapshots["Update method for desc attributes in ABB IEDs working on SCL files without manufacturer ABB creates an empty wizard indicating not found desc updates"] = 
 `<mwc-dialog
   defaultaction="next"
-  heading="[wizard.title.add]"
+  heading="Add desc"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
@@ -14,14 +14,14 @@ snapshots["Update method for desc attributes in ABB IEDs working on SCL files wi
   </div>
   <mwc-button
     dialogaction="close"
-    label="[close]"
+    label="Close"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
   </mwc-button>
   <mwc-button
     icon="save"
-    label="[save]"
+    label="Save"
     slot="primaryAction"
     trailingicon=""
   >
@@ -33,7 +33,7 @@ snapshots["Update method for desc attributes in ABB IEDs working on SCL files wi
 snapshots["Update method for desc attributes in ABB IEDs working on SCL files containing manufacturer ABB creates a wizard with all valid desc update possibilities"] = 
 `<mwc-dialog
   defaultaction="next"
-  heading="[wizard.title.add]"
+  heading="Add desc"
   open=""
   style="--mdc-dialog-min-width:calc(100% + 0px)"
 >
@@ -75,14 +75,14 @@ snapshots["Update method for desc attributes in ABB IEDs working on SCL files co
   </div>
   <mwc-button
     dialogaction="close"
-    label="[close]"
+    label="Close"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
   </mwc-button>
   <mwc-button
     icon="save"
-    label="[save]"
+    label="Save"
     slot="primaryAction"
     trailingicon=""
   >

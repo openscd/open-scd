@@ -1,8 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import { MockWizard } from '../../../../mock-wizard.js';
-
-import '../../../../mock-wizard.js';
+import '../../../../../src/addons/Wizards.js';
+import { Wizards } from '../../../../../src/addons/Wizards.js';
 
 import {
   getDataChildren,
@@ -11,7 +10,7 @@ import {
 
 describe('data model nodes child getter', () => {
   let doc: XMLDocument;
-  let element: MockWizard;
+  let element: Wizards;
 
   describe('getDataChildren', () => {
     beforeEach(async () => {
@@ -84,7 +83,9 @@ describe('data model nodes child getter', () => {
 
   describe('show DO Picker', () => {
     beforeEach(async () => {
-      element = await fixture(html`<mock-wizard></mock-wizard>`);
+      element = await fixture(
+        html`<oscd-wizards .host=${document}></oscd-wizards>`
+      );
 
       const wizard = selectDoWizard(doc);
       element.workflow.push(() => wizard);

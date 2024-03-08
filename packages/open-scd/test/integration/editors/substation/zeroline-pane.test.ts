@@ -34,6 +34,7 @@ describe('zeroline-pane wizarding editing integration', () => {
   it('opens selectGseControlWizard for the complete SCL file', async () => {
     zeroline.gsecontrol.click();
     await parent.updateComplete;
+    await parent.wizardUI.updateComplete;
     expect(parent.wizardUI.dialog).to.exist;
     const gseControlList = <FilteredList>(
       parent.wizardUI.dialog?.querySelector('filtered-list')
@@ -47,6 +48,7 @@ describe('zeroline-pane wizarding editing integration', () => {
   it('opens selectSampledValueControlWizard for the complete SCL file', async () => {
     zeroline.smvcontrol.click();
     await parent.updateComplete;
+    await parent.wizardUI.updateComplete;
 
     expect(parent.wizardUI.dialog).to.exist;
     const smvControlList = <FilteredList>(
@@ -61,6 +63,8 @@ describe('zeroline-pane wizarding editing integration', () => {
   it('opens select wizard for SCL element ReportControl for the complete project', async () => {
     zeroline.reportcontrol.click();
     await parent.updateComplete;
+    await parent.wizardUI.updateComplete;
+
     expect(parent.wizardUI.dialog).to.exist;
     const reportControlList = <FilteredList>(
       parent.wizardUI.dialog?.querySelector('filtered-list')
@@ -76,6 +80,7 @@ describe('zeroline-pane wizarding editing integration', () => {
     zeroline.addButton.click();
     (<ListItem>zeroline.addMenu.querySelector('[value=Substation]')).click();
     await parent.updateComplete;
+    await parent.wizardUI.updateComplete;
 
     const primaryAction = <IconButton>(
       parent.wizardUI.dialog?.querySelector('mwc-button[slot="primaryAction"]')

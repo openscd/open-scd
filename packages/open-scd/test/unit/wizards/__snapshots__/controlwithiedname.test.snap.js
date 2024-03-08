@@ -11,8 +11,10 @@ snapshots["selectExtRefWizard looks like the latest snapshot"] =
   <div id="wizard-content">
     <filtered-list multi="">
       <mwc-check-list-item
+        aria-disabled="false"
         graphic="icon"
         mwc-list-item=""
+        tabindex="0"
         twoline=""
       >
         <span>
@@ -25,8 +27,10 @@ snapshots["selectExtRefWizard looks like the latest snapshot"] =
         </mwc-icon>
       </mwc-check-list-item>
       <mwc-check-list-item
+        aria-disabled="false"
         graphic="icon"
         mwc-list-item=""
+        tabindex="-1"
         twoline=""
       >
         <span>
@@ -39,8 +43,10 @@ snapshots["selectExtRefWizard looks like the latest snapshot"] =
         </mwc-icon>
       </mwc-check-list-item>
       <mwc-check-list-item
+        aria-disabled="false"
         graphic="icon"
         mwc-list-item=""
+        tabindex="-1"
         twoline=""
       >
         <span>
@@ -53,8 +59,10 @@ snapshots["selectExtRefWizard looks like the latest snapshot"] =
         </mwc-icon>
       </mwc-check-list-item>
       <mwc-check-list-item
+        aria-disabled="false"
         graphic="icon"
         mwc-list-item=""
+        tabindex="-1"
         twoline=""
       >
         <span>
@@ -67,8 +75,10 @@ snapshots["selectExtRefWizard looks like the latest snapshot"] =
         </mwc-icon>
       </mwc-check-list-item>
       <mwc-check-list-item
+        aria-disabled="false"
         graphic="icon"
         mwc-list-item=""
+        tabindex="-1"
         twoline=""
       >
         <span>
@@ -81,8 +91,10 @@ snapshots["selectExtRefWizard looks like the latest snapshot"] =
         </mwc-icon>
       </mwc-check-list-item>
       <mwc-check-list-item
+        aria-disabled="false"
         graphic="icon"
         mwc-list-item=""
+        tabindex="-1"
         twoline=""
       >
         <span>
@@ -95,8 +107,10 @@ snapshots["selectExtRefWizard looks like the latest snapshot"] =
         </mwc-icon>
       </mwc-check-list-item>
       <mwc-check-list-item
+        aria-disabled="false"
         graphic="icon"
         mwc-list-item=""
+        tabindex="-1"
         twoline=""
       >
         <span>
@@ -109,8 +123,10 @@ snapshots["selectExtRefWizard looks like the latest snapshot"] =
         </mwc-icon>
       </mwc-check-list-item>
       <mwc-check-list-item
+        aria-disabled="false"
         graphic="icon"
         mwc-list-item=""
+        tabindex="-1"
         twoline=""
       >
         <span>
@@ -123,8 +139,10 @@ snapshots["selectExtRefWizard looks like the latest snapshot"] =
         </mwc-icon>
       </mwc-check-list-item>
       <mwc-check-list-item
+        aria-disabled="false"
         graphic="icon"
         mwc-list-item=""
+        tabindex="-1"
         twoline=""
       >
         <span>
@@ -137,8 +155,10 @@ snapshots["selectExtRefWizard looks like the latest snapshot"] =
         </mwc-icon>
       </mwc-check-list-item>
       <mwc-check-list-item
+        aria-disabled="false"
         graphic="icon"
         mwc-list-item=""
+        tabindex="-1"
         twoline=""
       >
         <span>
@@ -151,8 +171,10 @@ snapshots["selectExtRefWizard looks like the latest snapshot"] =
         </mwc-icon>
       </mwc-check-list-item>
       <mwc-check-list-item
+        aria-disabled="false"
         graphic="icon"
         mwc-list-item=""
+        tabindex="-1"
         twoline=""
       >
         <span>
@@ -165,8 +187,10 @@ snapshots["selectExtRefWizard looks like the latest snapshot"] =
         </mwc-icon>
       </mwc-check-list-item>
       <mwc-check-list-item
+        aria-disabled="false"
         graphic="icon"
         mwc-list-item=""
+        tabindex="-1"
         twoline=""
       >
         <span>
@@ -179,8 +203,10 @@ snapshots["selectExtRefWizard looks like the latest snapshot"] =
         </mwc-icon>
       </mwc-check-list-item>
       <mwc-check-list-item
+        aria-disabled="false"
         graphic="icon"
         mwc-list-item=""
+        tabindex="-1"
         twoline=""
       >
         <span>
@@ -193,8 +219,10 @@ snapshots["selectExtRefWizard looks like the latest snapshot"] =
         </mwc-icon>
       </mwc-check-list-item>
       <mwc-check-list-item
+        aria-disabled="false"
         graphic="icon"
         mwc-list-item=""
+        tabindex="-1"
         twoline=""
       >
         <span>

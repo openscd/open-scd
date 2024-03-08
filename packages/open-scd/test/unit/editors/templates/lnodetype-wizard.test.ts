@@ -2,8 +2,8 @@ import { expect, fixture, html } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 import fc from 'fast-check';
 
-import '../../../mock-wizard.js';
-import { MockWizard } from '../../../mock-wizard.js';
+import '../../../../src/addons/Wizards.js';
+import { Wizards } from '../../../../src/addons/Wizards.js';
 
 import {
   ComplexAction,
@@ -17,7 +17,7 @@ import { regExp, regexString } from '../../../foundation.js';
 
 describe('wizards for LNodeType element', () => {
   let doc: XMLDocument;
-  let element: MockWizard;
+  let element: Wizards;
   let inputs: WizardInputElement[];
   let input: WizardInputElement | undefined;
 
@@ -26,7 +26,9 @@ describe('wizards for LNodeType element', () => {
   let actionEvent: SinonSpy;
 
   beforeEach(async () => {
-    element = <MockWizard>await fixture(html`<mock-wizard></mock-wizard>`);
+    element = await fixture(
+      html`<oscd-wizards .host=${document}></oscd-wizards>`
+    );
 
     actionEvent = spy();
     window.addEventListener('editor-action', actionEvent);

@@ -1,7 +1,7 @@
-import { expect, fixture, html } from '@open-wc/testing';
-import { Wizarding } from '../../../src/Wizarding.js';
-import { Editing } from '../../../src/Editing.js';
-import { Historing } from '../../../src/Historing.js';
+import { expect, fixture } from '@open-wc/testing';
+import { customElement, TemplateResult, html, query } from 'lit-element';
+
+import '../../mock-open-scd.js';
 
 import GooseSubscriberLaterBinding from '../../../src/editors/GooseSubscriberLaterBinding.js';
 import {
@@ -11,14 +11,29 @@ import {
   selectFCDAItem,
 } from './test-support.js';
 import { ExtRefLaterBindingList } from '../../../src/editors/subscription/later-binding/ext-ref-later-binding-list.js';
+import { MockOpenSCD } from '../../mock-open-scd.js';
+
+customElements.define(
+  'goose-subscriber-later-binding-plugin',
+  GooseSubscriberLaterBinding
+);
+@customElement('goose-mock-open-scd')
+class GooseMockOpenSCD extends MockOpenSCD {
+  @query('goose-subscriber-later-binding-plugin')
+  plugin!: GooseSubscriberLaterBinding;
+
+  renderHosting(): TemplateResult {
+    return html`<goose-subscriber-later-binding-plugin
+      .doc=${this.doc}
+      .editCount=${this.editCount}
+      .nsdoc=${this.nsdoc}
+    ></goose-subscriber-later-binding-plugin>`;
+  }
+}
 
 describe('GOOSE Subscribe Later Binding Plugin', () => {
-  customElements.define(
-    'goose-subscriber-later-binding-plugin',
-    Wizarding(Editing(Historing(GooseSubscriberLaterBinding)))
-  );
-
   let element: GooseSubscriberLaterBinding;
+  let parent: GooseMockOpenSCD;
   let doc: XMLDocument;
 
   beforeEach(async () => {
@@ -26,11 +41,12 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-    element = await fixture(
-      html`<goose-subscriber-later-binding-plugin
-        .doc="${doc}"
-      ></goose-subscriber-later-binding-plugin>`
+    parent = await fixture(
+      html`<goose-mock-open-scd .doc=${doc}></goose-mock-open-scd>`
     );
+    await parent.updateComplete;
+    element = parent.plugin;
+    await element.updateComplete;
   });
 
   it('when selecting an FCDA element with subscriptions it looks like the latest snapshot', async () => {
@@ -38,11 +54,14 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-    element = await fixture(
-      html`<goose-subscriber-later-binding-plugin
-        .doc="${doc}"
-      ></goose-subscriber-later-binding-plugin>`
+    parent = await fixture(
+      html`<mock-open-scd
+        ><goose-subscriber-later-binding-plugin
+          .doc="${doc}"
+        ></goose-subscriber-later-binding-plugin
+      ></mock-open-scd>`
     );
+    element = parent.getActivePlugin();
 
     const fcdaListElement = getFCDABindingList(element);
     selectFCDAItem(
@@ -86,6 +105,7 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
       )
     )).click();
     await element.requestUpdate();
+    await parent.updateComplete;
 
     expect(
       extRefListElement['getSubscribedExtRefElements']().length
@@ -101,11 +121,13 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-    element = await fixture(
-      html`<goose-subscriber-later-binding-plugin
-        .doc="${doc}"
-      ></goose-subscriber-later-binding-plugin>`
+    parent = await fixture(
+      html`<goose-mock-open-scd .doc=${doc}
+      ></goosemock-open-scd>`
     );
+    await parent.updateComplete;
+    element = parent.plugin;
+    await element.updateComplete;
 
     const extRefListElement = getExtrefLaterBindingList(element);
 
@@ -163,6 +185,7 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
       )
     )).click();
     await element.requestUpdate();
+    await parent.updateComplete;
 
     expect(
       extRefListElement['getSubscribedExtRefElements']().length

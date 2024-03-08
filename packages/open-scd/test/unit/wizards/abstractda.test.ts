@@ -1,8 +1,8 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import fc from 'fast-check';
 
-import '../../mock-wizard.js';
-import { MockWizard } from '../../mock-wizard.js';
+import '../../../src/addons/Wizards.js';
+import { Wizards } from '../../../src/addons/Wizards.js';
 
 import { WizardSelect } from '../../../src/wizard-select.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
@@ -59,7 +59,7 @@ describe('abstractda wizards', () => {
   describe('renderWizard', () => {
     let doc: XMLDocument;
     let data: Element;
-    let element: MockWizard;
+    let element: Wizards;
     let enumTypes: string[];
     let daTypes: string[];
     let nameTextField: WizardTextField;
@@ -69,7 +69,9 @@ describe('abstractda wizards', () => {
     let typeSelect: WizardSelect;
 
     beforeEach(async () => {
-      element = await fixture(html`<mock-wizard></mock-wizard>`);
+      element = await fixture(
+        html`<oscd-wizards .host=${document}></oscd-wizards>`
+      );
       doc = await fetch('/test/testfiles/wizards/abstractda.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));

@@ -1,17 +1,21 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../../mock-wizard.js';
-import { MockWizard } from '../../mock-wizard.js';
+import '../../mock-open-scd.js';
 
-import { Editing } from '../../../src/Editing.js';
 import Substation from '../../../src/editors/Substation.js';
-import { Wizarding } from '../../../src/Wizarding.js';
+import { MockOpenSCD } from '../../mock-open-scd.js';
 
 describe('Substation Plugin', () => {
-  customElements.define('substation-plugin', Wizarding(Editing(Substation)));
+  customElements.define('substation-plugin', Substation);
   let element: Substation;
+  let parent: MockOpenSCD;
   beforeEach(async () => {
-    element = await fixture(html`<substation-plugin></substation-plugin>`);
+    parent = await fixture(
+      html`<mock-open-scd
+        ><substation-plugin></substation-plugin
+      ></mock-open-scd>`
+    );
+    element = parent.getActivePlugin();
   });
 
   describe('without a doc loaded', () => {
@@ -23,13 +27,17 @@ describe('Substation Plugin', () => {
   describe('with a doc loaded including substation section', () => {
     let doc: XMLDocument;
     let element: Substation;
+    let parent: MockOpenSCD;
     beforeEach(async () => {
       doc = await fetch('/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      element = await fixture(
-        html`<substation-plugin .doc="${doc}"></substation-plugin>`
+      parent = await fixture(
+        html`<mock-open-scd
+          ><substation-plugin .doc="${doc}"></substation-plugin
+        ></mock-open-scd>`
       );
+      element = parent.getActivePlugin();
     });
     it('constains a zeroline-pane rendering the substation sections', () => {
       expect(element.shadowRoot?.querySelector('zeroline-pane')).to.exist;
@@ -38,19 +46,18 @@ describe('Substation Plugin', () => {
 
   describe('with a doc loaded missing a substation section', () => {
     let doc: XMLDocument;
-    let parent: MockWizard;
+    let parent: MockOpenSCD;
 
     beforeEach(async () => {
       doc = await fetch('/test/testfiles/missingSubstation.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      parent = <MockWizard>(
-        await fixture(
-          html`<mock-wizard
-            ><substation-plugin .doc=${doc}></substation-plugin
-          ></mock-wizard>`
-        )
+      parent = await fixture(
+        html`<mock-open-scd
+          ><substation-plugin .doc=${doc}></substation-plugin
+        ></mock-open-scd>`
       );
+      element = parent.getActivePlugin();
       await element.updateComplete;
     });
     it('has a mwc-fab', () => {

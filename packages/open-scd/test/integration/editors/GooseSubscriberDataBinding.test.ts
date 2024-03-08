@@ -1,25 +1,41 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import { Wizarding } from '../../../src/Wizarding.js';
-import { Editing } from '../../../src/Editing.js';
-import { Historing } from '../../../src/Historing.js';
 import { initializeNsdoc } from '../../../src/foundation/nsdoc.js';
 
 import GooseSubscriberDataBinding from '../../../src/editors/GooseSubscriberDataBinding.js';
-
+import '../../mock-open-scd.js';
 import {
   getExtrefDataBindingList,
   getFCDABindingList,
   getSelectedSubItemValue,
   selectFCDAItem,
 } from './test-support.js';
+import { MockOpenSCD } from '../../mock-open-scd.js';
+
+import { TemplateResult } from 'lit-html';
+import { customElement, query } from 'lit-element';
+
+customElements.define(
+  'goose-subscriber-data-binding-plugin',
+  GooseSubscriberDataBinding
+);
+
+@customElement('goose-mock-open-scd')
+class GooseMockOpenSCD extends MockOpenSCD {
+  @query('goose-subscriber-data-binding-plugin')
+  plugin!: GooseSubscriberDataBinding;
+
+  renderHosting(): TemplateResult {
+    return html`<goose-subscriber-data-binding-plugin
+      .doc=${this.doc}
+      .editCount=${this.editCount}
+      .nsdoc=${this.nsdoc}
+    ></goose-subscriber-data-binding-plugin>`;
+  }
+}
 
 describe('GOOSE Subscribe Data Binding Plugin', async () => {
-  customElements.define(
-    'goose-subscriber-data-binding-plugin',
-    Wizarding(Editing(Historing(GooseSubscriberDataBinding)))
-  );
-
   let element: GooseSubscriberDataBinding;
+  let parent: GooseMockOpenSCD;
   let doc: XMLDocument;
 
   const nsdoc = await initializeNsdoc();
@@ -29,12 +45,15 @@ describe('GOOSE Subscribe Data Binding Plugin', async () => {
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-    element = await fixture(
-      html` <goose-subscriber-data-binding-plugin
-        .doc="${doc}"
+    parent = await fixture(
+      html`<goose-mock-open-scd
+        .doc=${doc}
         .nsdoc=${nsdoc}
-      ></goose-subscriber-data-binding-plugin>`
+      ></goose-mock-open-scd>`
     );
+    element = parent.plugin;
+    await parent.updateComplete;
+    await element.updateComplete;
   });
 
   it('when subscribing an available ExtRef then the lists are changed and first ExtRef is added to the LN', async () => {
@@ -46,6 +65,9 @@ describe('GOOSE Subscribe Data Binding Plugin', async () => {
       'GOOSE_Publisher>>QB2_Disconnector>GOOSE1',
       'GOOSE_Publisher>>QB2_Disconnector>GOOSE1sDataSet>QB1_Disconnector/ CSWI 1.Pos q (ST)'
     );
+    await parent.requestUpdate();
+
+    await parent.updateComplete;
     await element.updateComplete;
     await extRefListElement.updateComplete;
     await fcdaListElement.updateComplete;
@@ -66,6 +88,10 @@ describe('GOOSE Subscribe Data Binding Plugin', async () => {
         'mwc-list-item[value="GOOSE_Subscriber2>>Earth_Switch> XSWI 1"]'
       )
     )).click();
+    await new Promise(resolve => setTimeout(resolve, 250));
+
+    await parent.requestUpdate();
+    await parent.updateComplete;
     await element.updateComplete;
     await extRefListElement.updateComplete;
     await fcdaListElement.updateComplete;
@@ -114,6 +140,7 @@ describe('GOOSE Subscribe Data Binding Plugin', async () => {
       )
     )).click();
     await element.updateComplete;
+    await parent.updateComplete;
 
     expect(extRefListElement['getSubscribedLNElements']().length).to.be.equal(
       0

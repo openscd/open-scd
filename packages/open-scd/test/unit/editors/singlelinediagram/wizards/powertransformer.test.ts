@@ -1,7 +1,8 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../../../mock-wizard.js';
-import { MockWizard } from '../../../../mock-wizard.js';
+import '../../../../../src/addons/Wizards.js';
+import { Wizards } from '../../../../../src/addons/Wizards.js';
+
 import {
   executeWizardReplaceAction,
   expectWizardNoUpdateAction,
@@ -17,14 +18,16 @@ import { updateNamingAndCoordinatesAction } from '../../../../../src/editors/sin
 describe('Wizards for SCL element Power Transformer (X/Y)', () => {
   let doc: XMLDocument;
   let powerTransformer: Element;
-  let element: MockWizard;
+  let element: Wizards;
   let inputs: WizardInputElement[];
 
   beforeEach(async () => {
     doc = await fetchDoc('/test/testfiles/valid2007B4withSubstationXY.scd');
     powerTransformer = doc.querySelector('PowerTransformer[name="TA1"]')!;
 
-    element = await fixture(html`<mock-wizard></mock-wizard>`);
+    element = await fixture(
+      html`<oscd-wizards .host=${document}></oscd-wizards>`
+    );
     const wizard = editPowerTransformerWizard(powerTransformer);
     element.workflow.push(() => wizard);
     await element.requestUpdate();

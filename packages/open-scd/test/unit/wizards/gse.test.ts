@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../mock-wizard.js';
-import { MockWizard } from '../../mock-wizard.js';
+import '../../../src/addons/Wizards.js';
+import { Wizards } from '../../../src/addons/Wizards.js';
 
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
@@ -24,10 +24,12 @@ import {
 
 describe('gse wizards', () => {
   let doc: XMLDocument;
-  let element: MockWizard;
+  let element: Wizards;
 
   beforeEach(async () => {
-    element = await fixture(html`<mock-wizard></mock-wizard>`);
+    element = await fixture(
+      html`<oscd-wizards .host=${document}></oscd-wizards>`
+    );
     doc = await fetch('/test/testfiles/wizards/gsecontrol.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));

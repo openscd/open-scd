@@ -1,16 +1,28 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
-import '../../../../mock-wizard.js';
+import '../../../../../src/addons/Wizards.js';
+import { Wizards } from '../../../../../src/addons/Wizards.js';
 
-import { ComplexAction, Create, Delete, isCreate, isDelete, isReplace, Replace, WizardInputElement } from '../../../../../src/foundation.js';
-import { MockWizard } from '../../../../mock-wizard.js';
+import {
+  ComplexAction,
+  Create,
+  Delete,
+  isCreate,
+  isDelete,
+  isReplace,
+  Replace,
+  WizardInputElement,
+} from '../../../../../src/foundation.js';
 import { WizardTextField } from '../../../../../src/wizard-textfield.js';
-import { createLogicLinkWizard, editLogicLinkWizard } from '../../../../../src/editors/protocol104/wizards/logiclink.js';
+import {
+  createLogicLinkWizard,
+  editLogicLinkWizard,
+} from '../../../../../src/editors/protocol104/wizards/logiclink.js';
 
 describe('Wizards for the Logic Link SCL element group', () => {
   let doc: XMLDocument;
-  let element: MockWizard;
+  let element: Wizards;
   let inputs: WizardInputElement[];
   let input: WizardInputElement | undefined;
   let primaryAction: HTMLElement;
@@ -22,7 +34,9 @@ describe('Wizards for the Logic Link SCL element group', () => {
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-    element = <MockWizard>await fixture(html`<mock-wizard></mock-wizard>`);
+    element = await fixture(
+      html`<oscd-wizards .host=${document}></oscd-wizards>`
+    );
 
     actionEvent = spy();
     window.addEventListener('editor-action', actionEvent);
@@ -30,12 +44,18 @@ describe('Wizards for the Logic Link SCL element group', () => {
 
   describe('include an edit wizard that', () => {
     beforeEach(async () => {
-      const wizard = editLogicLinkWizard(doc.querySelector('Communication > SubNetwork[name="W1"] > ConnectedAP[iedName="B1"]')!, 2, 1);
+      const wizard = editLogicLinkWizard(
+        doc.querySelector(
+          'Communication > SubNetwork[name="W1"] > ConnectedAP[iedName="B1"]'
+        )!,
+        2,
+        1
+      );
       element.workflow.push(() => wizard);
       await element.requestUpdate();
-  
+
       inputs = Array.from(element.wizardUI.inputs);
-  
+
       primaryAction = <HTMLElement>(
         element.wizardUI.dialog?.querySelector(
           'mwc-button[slot="primaryAction"]'
@@ -50,7 +70,9 @@ describe('Wizards for the Logic Link SCL element group', () => {
     });
 
     it('does not trigger a editor action to update P elements(s) when not all fields are filled in', async () => {
-      input = <WizardTextField>inputs.find(input => input.label === 'IP-SUBNET');
+      input = <WizardTextField>(
+        inputs.find(input => input.label === 'IP-SUBNET')
+      );
       input.value = '';
       await input.requestUpdate();
 
@@ -67,41 +89,45 @@ describe('Wizards for the Logic Link SCL element group', () => {
 
       primaryAction.click();
       await element.requestUpdate();
-      
+
       const complexAction = <ComplexAction>actionEvent.args[0][0].detail.action;
       expect(complexAction.title).to.contain('edit');
       expect(complexAction.actions).to.have.lengthOf(1);
 
       const action = complexAction.actions[0];
       expect(action).to.satisfy(isReplace);
-      expect((<Replace>(action)).old.element.textContent).to.eql('192.128.0.2');
-      expect((<Replace>(action)).new.element.textContent).to.eql('192.128.0.12');
+      expect((<Replace>action).old.element.textContent).to.eql('192.128.0.2');
+      expect((<Replace>action).new.element.textContent).to.eql('192.128.0.12');
     });
 
     it('properly creates a P element if not present', async () => {
-      doc.querySelector('Communication > SubNetwork[name="W1"] > ConnectedAP[iedName="B1"] > Address > P[type="RG2-LL1-IP-SUBNET"]')?.remove();
+      doc
+        .querySelector(
+          'Communication > SubNetwork[name="W1"] > ConnectedAP[iedName="B1"] > Address > P[type="RG2-LL1-IP-SUBNET"]'
+        )
+        ?.remove();
 
-      input = <WizardTextField>inputs.find(input => input.label === 'IP-SUBNET');
+      input = <WizardTextField>(
+        inputs.find(input => input.label === 'IP-SUBNET')
+      );
       input.value = '200.200.200.2';
       await input.requestUpdate();
 
       primaryAction.click();
       await element.requestUpdate();
-      
+
       const complexAction = <ComplexAction>actionEvent.args[0][0].detail.action;
       expect(complexAction.title).to.contain('edit');
       expect(complexAction.actions).to.have.lengthOf(1);
 
       const action = complexAction.actions[0];
       expect(action).to.satisfy(isCreate);
-      expect((<Create>(action)).new.element.textContent).to.eql('200.200.200.2');
+      expect((<Create>action).new.element.textContent).to.eql('200.200.200.2');
     });
 
     it('properly deletes a full Logic Link group', async () => {
       const deleteAction = <HTMLElement>(
-        element.wizardUI.dialog?.querySelector(
-          'mwc-menu > mwc-list-item'
-        )
+        element.wizardUI.dialog?.querySelector('mwc-menu > mwc-list-item')
       );
 
       deleteAction.click();
@@ -113,17 +139,27 @@ describe('Wizards for the Logic Link SCL element group', () => {
 
       const firstAction = complexAction.actions[0];
       expect(firstAction).to.satisfy(isDelete);
-      expect((<Delete>(firstAction)).old.element.textContent).to.eql('192.128.0.2');
+      expect((<Delete>firstAction).old.element.textContent).to.eql(
+        '192.128.0.2'
+      );
 
       const secondAction = complexAction.actions[1];
       expect(secondAction).to.satisfy(isDelete);
-      expect((<Delete>(secondAction)).old.element.textContent).to.eql('255.255.255.0');
+      expect((<Delete>secondAction).old.element.textContent).to.eql(
+        '255.255.255.0'
+      );
     });
   });
 
   describe('include a create wizard that', () => {
     beforeEach(async () => {
-      const wizard = createLogicLinkWizard(doc.querySelector('SubNetwork[type="104"] > ConnectedAP[iedName="B1"][apName="AP1"]')!, 1, [1, 2]);
+      const wizard = createLogicLinkWizard(
+        doc.querySelector(
+          'SubNetwork[type="104"] > ConnectedAP[iedName="B1"][apName="AP1"]'
+        )!,
+        1,
+        [1, 2]
+      );
       element.workflow.push(() => wizard);
       await element.requestUpdate();
 
@@ -140,8 +176,10 @@ describe('Wizards for the Logic Link SCL element group', () => {
       await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
     });
 
-    it('doesn\'t trigger a create editor action on primary action without all fields being filled in', async () => {
-      const ipElement = <WizardTextField>inputs.find(input => input.label === 'IP');
+    it("doesn't trigger a create editor action on primary action without all fields being filled in", async () => {
+      const ipElement = <WizardTextField>(
+        inputs.find(input => input.label === 'IP')
+      );
       ipElement.value = '192.168.0.1';
       await ipElement.requestUpdate();
 
@@ -152,10 +190,14 @@ describe('Wizards for the Logic Link SCL element group', () => {
     });
 
     it('triggers a create editor action on primary action with all fields being filled in', async () => {
-      const ipElement = <WizardTextField>inputs.find(input => input.label === 'IP');
+      const ipElement = <WizardTextField>(
+        inputs.find(input => input.label === 'IP')
+      );
       ipElement.value = '192.168.0.1';
 
-      const ipSubNetElement = <WizardTextField>inputs.find(input => input.label === 'IP-SUBNET');
+      const ipSubNetElement = <WizardTextField>(
+        inputs.find(input => input.label === 'IP-SUBNET')
+      );
       ipSubNetElement.value = '255.255.255.0';
       await element.requestUpdate();
 
@@ -168,11 +210,15 @@ describe('Wizards for the Logic Link SCL element group', () => {
 
       const firstAction = complexAction.actions[0];
       expect(firstAction).to.satisfy(isCreate);
-      expect((<Create>(firstAction)).new.element.textContent).to.eql('192.168.0.1');
+      expect((<Create>firstAction).new.element.textContent).to.eql(
+        '192.168.0.1'
+      );
 
       const secondAction = complexAction.actions[1];
       expect(secondAction).to.satisfy(isCreate);
-      expect((<Create>(secondAction)).new.element.textContent).to.eql('255.255.255.0');
+      expect((<Create>secondAction).new.element.textContent).to.eql(
+        '255.255.255.0'
+      );
     });
   });
 });

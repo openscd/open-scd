@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../mock-wizard.js';
-import { MockWizard } from '../../mock-wizard.js';
+import '../../../src/addons/Wizards.js';
+import { Wizards } from '../../../src/addons/Wizards.js';
 
 import { WizardSelect } from '../../../src/wizard-select.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
@@ -20,7 +20,7 @@ describe('bda wizards', () => {
   describe('updateBDaAction', () => {
     let doc: XMLDocument;
     let data: Element;
-    let element: MockWizard;
+    let element: Wizards;
 
     const bda = <Element>(
       new DOMParser().parseFromString(
@@ -42,7 +42,9 @@ describe('bda wizards', () => {
     };
 
     beforeEach(async () => {
-      element = await fixture(html`<mock-wizard></mock-wizard>`);
+      element = await fixture(
+        html`<oscd-wizards .host=${document}></oscd-wizards>`
+      );
       doc = await fetch('/test/testfiles/wizards/abstractda.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
@@ -168,7 +170,7 @@ describe('bda wizards', () => {
   describe('createBDaAction', () => {
     let doc: XMLDocument;
     let data: Element;
-    let element: MockWizard;
+    let element: Wizards;
 
     const daType = <Element>(
       new DOMParser().parseFromString(
@@ -190,7 +192,9 @@ describe('bda wizards', () => {
     };
 
     beforeEach(async () => {
-      element = await fixture(html`<mock-wizard></mock-wizard>`);
+      element = await fixture(
+        html`<oscd-wizards .host=${document}></oscd-wizards>`
+      );
       doc = await fetch('/test/testfiles/wizards/abstractda.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));

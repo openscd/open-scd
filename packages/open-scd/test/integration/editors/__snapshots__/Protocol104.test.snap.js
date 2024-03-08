@@ -4,7 +4,7 @@ export const snapshots = {};
 snapshots["Protocol 104 Plugin in Values view the plugin looks like the latest snapshot"] = 
 `<section>
   <div>
-    <mwc-formfield label="[protocol104.view.valuesView]">
+    <mwc-formfield label="Values">
       <mwc-radio
         checked=""
         id="byValuesRadio"
@@ -13,7 +13,7 @@ snapshots["Protocol 104 Plugin in Values view the plugin looks like the latest s
       >
       </mwc-radio>
     </mwc-formfield>
-    <mwc-formfield label="[protocol104.view.networkView]">
+    <mwc-formfield label="Network">
       <mwc-radio
         id="byNetworkRadio"
         name="view"
@@ -27,15 +27,13 @@ snapshots["Protocol 104 Plugin in Values view the plugin looks like the latest s
     </div>
   </div>
 </section>
-<wizard-dialog>
-</wizard-dialog>
 `;
 /* end snapshot Protocol 104 Plugin in Values view the plugin looks like the latest snapshot */
 
 snapshots["Protocol 104 Plugin in Network view the plugin looks like the latest snapshot"] = 
 `<section>
   <div>
-    <mwc-formfield label="[protocol104.view.valuesView]">
+    <mwc-formfield label="Values">
       <mwc-radio
         id="byValuesRadio"
         name="view"
@@ -43,7 +41,7 @@ snapshots["Protocol 104 Plugin in Network view the plugin looks like the latest 
       >
       </mwc-radio>
     </mwc-formfield>
-    <mwc-formfield label="[protocol104.view.networkView]">
+    <mwc-formfield label="Network">
       <mwc-radio
         checked=""
         id="byNetworkRadio"
@@ -58,8 +56,6 @@ snapshots["Protocol 104 Plugin in Network view the plugin looks like the latest 
     </div>
   </div>
 </section>
-<wizard-dialog>
-</wizard-dialog>
 `;
 /* end snapshot Protocol 104 Plugin in Network view the plugin looks like the latest snapshot */
 
