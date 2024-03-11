@@ -1,33 +1,27 @@
-import {
-  css,
-  customElement,
-  html,
-  LitElement,
-  property,
-  TemplateResult,
-  query,
-} from 'lit-element';
-import { classMap } from 'lit-html/directives/class-map';
+import { html, HTMLTemplateResult, TemplateResult, LitElement, css } from 'lit';
+import { customElement, property, query } from 'lit/decorators.js';
 
-import { ListItem } from '@material/mwc-list/mwc-list-item';
+import { classMap } from 'lit-html/directives/class-map.js';
 
-import '@material/mwc-icon';
-import '@material/mwc-icon-button';
-import '@material/mwc-linear-progress';
-import '@material/mwc-list';
-import '@material/mwc-list/mwc-list-item';
-import '@material/mwc-tab';
-import '@material/mwc-tab-bar';
-import '@material/mwc-top-app-bar-fixed';
-import '@material/mwc-drawer';
-import '@material/mwc-button';
-import '@material/mwc-dialog';
-import '@material/mwc-formfield';
-import '@material/mwc-list/mwc-check-list-item';
-import '@material/mwc-list/mwc-radio-list-item';
-import '@material/mwc-select';
-import '@material/mwc-switch';
-import '@material/mwc-textfield';
+import { ListItem } from '@material/mwc-list/mwc-list-item.js';
+
+import '@material/mwc-icon/mwc-icon.js';
+import '@material/mwc-icon-button/mwc-icon-button.js';
+import '@material/mwc-linear-progress/mwc-linear-progress.js';
+import '@material/mwc-list/mwc-list.js';
+import '@material/mwc-list/mwc-list-item.js';
+import '@material/mwc-tab/mwc-tab.js';
+import '@material/mwc-tab-bar/mwc-tab-bar.js';
+import '@material/mwc-top-app-bar-fixed/mwc-top-app-bar-fixed.js';
+import '@material/mwc-drawer/mwc-drawer.js';
+import '@material/mwc-button/mwc-button.js';
+import '@material/mwc-dialog/mwc-dialog.js';
+import '@material/mwc-formfield/mwc-formfield.js';
+import '@material/mwc-list/mwc-check-list-item.js';
+import '@material/mwc-list/mwc-radio-list-item.js';
+import '@material/mwc-select/mwc-select.js';
+import '@material/mwc-switch/mwc-switch.js';
+import '@material/mwc-textfield/mwc-textfield.js';
 
 import {
   newOpenDocEvent,
@@ -42,16 +36,16 @@ import './addons/Waiter.js';
 import './addons/Wizards.js';
 import './addons/Editor.js';
 
-import { ActionDetail, List } from '@material/mwc-list';
-import { Drawer } from '@material/mwc-drawer';
+import { ActionDetail, List } from '@material/mwc-list/mwc-list.js';
+import type { Drawer } from '@material/mwc-drawer/mwc-drawer.js';
 import { translate } from 'lit-translate';
 
 import { officialPlugins } from '../public/js/plugins.js';
 import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation.js';
-import { Select } from '@material/mwc-select';
-import { Switch } from '@material/mwc-switch';
-import { TextField } from '@material/mwc-textfield';
-import { Dialog } from '@material/mwc-dialog';
+import type { Select } from '@material/mwc-select/mwc-select.js';
+import type { Switch } from '@material/mwc-switch/mwc-switch.js';
+import type { TextField } from '@material/mwc-textfield/mwc-textfield.js';
+import type { Dialog } from '@material/mwc-dialog/mwc-dialog.js';
 import { initializeNsdoc, Nsdoc } from './foundation/nsdoc.js';
 
 // HOSTING INTERFACES
@@ -333,7 +327,7 @@ export class OpenSCD extends Historing(LitElement) {
     });
   }
 
-  render(): TemplateResult {
+  render(): HTMLTemplateResult {
     return html`<oscd-waiter>
       <oscd-settings .host=${this}>
         <oscd-wizards .host=${this}>
@@ -885,7 +879,7 @@ export class OpenSCD extends Historing(LitElement) {
       src: pluginSrcInput.value,
       name: pluginNameInput.value,
       kind: <PluginKind>(<ListItem>pluginKindList.selected).value,
-      requireDoc: requireDoc.checked,
+      requireDoc: requireDoc.selected,
       position: <MenuPosition>positionList.value,
       installed: true,
     });

@@ -1,11 +1,6 @@
 import { Editing } from '../src/Editing.js';
-import {
-  LitElement,
-  customElement,
-  TemplateResult,
-  html,
-  query,
-} from 'lit-element';
+import { LitElement, TemplateResult, html } from 'lit';
+import { query, customElement } from 'lit/decorators.js';
 
 import '../src/addons/Wizards.js';
 import { Wizards } from '../src/addons/Wizards.js';

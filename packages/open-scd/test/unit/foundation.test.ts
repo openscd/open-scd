@@ -14,7 +14,6 @@ import {
   getSclSchemaVersion,
   getUniqueElementName,
   identity,
-  ifImplemented,
   invert,
   isCreate,
   isDelete,
@@ -170,22 +169,6 @@ describe('foundation', () => {
         .property('wizard')
         .to.be.a('function');
     });
-  });
-
-  describe('ifImplemented', () => {
-    let nonEmpty: HTMLElement;
-    let empty: HTMLElement;
-
-    beforeEach(async () => {
-      nonEmpty = await fixture(html`<p>${ifImplemented('test')}</p>`);
-      empty = await fixture(html`<p>${ifImplemented({})}</p>`);
-    });
-
-    it('renders non-empty objects into its template', () =>
-      expect(nonEmpty).dom.to.have.text('test'));
-
-    it('does not render empty objects into its template', () =>
-      expect(empty).dom.to.be.empty);
   });
 
   describe('isSame', () => {

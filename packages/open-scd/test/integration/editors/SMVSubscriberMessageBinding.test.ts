@@ -5,7 +5,8 @@ import SMVSubscriberMessageBindingPlugin from '../../../src/editors/SMVSubscribe
 import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 import { MockOpenSCD } from '../../mock-open-scd.js';
 import '../../mock-open-scd.js';
-import { TemplateResult, customElement, query } from 'lit-element';
+import { TemplateResult, html as litHTML } from 'lit';
+import { customElement, query } from 'lit/decorators.js';
 
 customElements.define('smv-plugin', SMVSubscriberMessageBindingPlugin);
 
@@ -15,7 +16,7 @@ class SmvMockOpenSCD extends MockOpenSCD {
   plugin!: SMVSubscriberMessageBindingPlugin;
 
   renderHosting(): TemplateResult {
-    return html`<smv-plugin
+    return litHTML`<smv-plugin
       .doc=${this.doc}
       .editCount=${this.editCount}
       .nsdoc=${this.nsdoc}

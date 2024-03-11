@@ -1,12 +1,5 @@
-import {
-  customElement,
-  html,
-  LitElement,
-  property,
-  query,
-  state,
-  TemplateResult,
-} from 'lit-element';
+import { html, HTMLTemplateResult, TemplateResult, LitElement } from 'lit';
+import { customElement, state, property, query } from 'lit/decorators.js';
 
 import '@material/mwc-formfield';
 import '@material/mwc-switch';
@@ -105,14 +98,14 @@ export class WizardCheckbox extends LitElement {
         ?checked=${!this.null}
         ?disabled=${this.disabled}
         @change=${() => {
-          this.null = !this.nullSwitch!.checked;
+          this.null = !this.nullSwitch!.selected;
         }}
       ></mwc-switch>`;
     }
     return html``;
   }
 
-  render(): TemplateResult {
+  render(): HTMLTemplateResult {
     return html`
       <div style="display: flex; flex-direction: row;">
         <div style="flex: auto;">

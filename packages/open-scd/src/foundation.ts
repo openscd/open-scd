@@ -1,5 +1,5 @@
-import { LitElement, TemplateResult } from 'lit-element';
-import { directive, Part } from 'lit-html';
+import { TemplateResult, Part } from 'lit-html';
+import { LitElement } from 'lit';
 
 import { List } from '@material/mwc-list';
 import { Select } from '@material/mwc-select';
@@ -2647,12 +2647,6 @@ export function cloneElement(
   });
   return newElement;
 }
-
-/** A directive rendering its argument `rendered` only if `rendered !== {}`. */
-export const ifImplemented = directive(rendered => (part: Part) => {
-  if (Object.keys(rendered).length) part.setValue(rendered);
-  else part.setValue('');
-});
 
 /** Constructor type for defining `LitElement` mixins. */
 export type LitElementConstructor = new (...args: any[]) => LitElement;

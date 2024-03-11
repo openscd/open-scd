@@ -11,8 +11,8 @@ import {
 } from './test-support.js';
 import { MockOpenSCD } from '../../mock-open-scd.js';
 
-import { TemplateResult } from 'lit-html';
-import { customElement, query } from 'lit-element';
+import { TemplateResult, html as litHTML } from 'lit';
+import { customElement, query } from 'lit/decorators.js';
 
 customElements.define(
   'goose-subscriber-data-binding-plugin',
@@ -25,7 +25,7 @@ class GooseMockOpenSCD extends MockOpenSCD {
   plugin!: GooseSubscriberDataBinding;
 
   renderHosting(): TemplateResult {
-    return html`<goose-subscriber-data-binding-plugin
+    return litHTML`<goose-subscriber-data-binding-plugin
       .doc=${this.doc}
       .editCount=${this.editCount}
       .nsdoc=${this.nsdoc}

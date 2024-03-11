@@ -1,6 +1,5 @@
 import { html, state, TemplateResult, query } from 'lit-element';
 import {
-  ifImplemented,
   LitElementConstructor,
   Mixin,
   WizardEvent,
@@ -47,7 +46,7 @@ export function Wizarding<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     render(): TemplateResult {
-      return html`${ifImplemented(super.render())}
+      return html`${super.render()}
         <wizard-dialog .wizard=${this.workflow[0]?.() ?? []}></wizard-dialog>`;
     }
   }

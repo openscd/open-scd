@@ -1,11 +1,5 @@
-import {
-  customElement,
-  html,
-  state,
-  property,
-  query,
-  TemplateResult,
-} from 'lit-element';
+import { html, HTMLTemplateResult, TemplateResult } from 'lit';
+import { customElement, state, property, query } from 'lit/decorators.js';
 
 import '@material/mwc-switch';
 import { Switch } from '@material/mwc-switch';
@@ -75,7 +69,7 @@ export class WizardSelect extends Select {
   }
 
   checkValidity(): boolean {
-    if (this.nullable && !this.nullSwitch?.checked) return true;
+    if (this.nullable && !this.nullSwitch?.selected) return true;
     return super.checkValidity();
   }
 
@@ -92,14 +86,14 @@ export class WizardSelect extends Select {
         ?checked=${!this.null}
         ?disabled=${this.disabledSwitch}
         @change=${() => {
-          this.null = !this.nullSwitch!.checked;
+          this.null = !this.nullSwitch!.selected;
         }}
       ></mwc-switch>`;
     }
     return html``;
   }
 
-  render(): TemplateResult {
+  render(): HTMLTemplateResult {
     return html`
       <div style="display: flex; flex-direction: row;">
         <div style="flex: auto;">${super.render()}</div>

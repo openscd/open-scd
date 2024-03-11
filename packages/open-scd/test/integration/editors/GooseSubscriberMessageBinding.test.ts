@@ -1,4 +1,4 @@
-import { expect, fixture } from '@open-wc/testing';
+import { expect, fixture, html } from '@open-wc/testing';
 
 import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 
@@ -7,7 +7,9 @@ import GooseSubscriberMessageBindingPlugin from '../../../src/editors/GooseSubsc
 import '../../mock-open-scd.js';
 import { MockOpenSCD } from '../../mock-open-scd.js';
 
-import { customElement, query, TemplateResult, html } from 'lit-element';
+import { TemplateResult, html as litHTML } from 'lit';
+import { customElement, query } from 'lit/decorators.js';
+
 import { SubscriberList } from '../../../src/editors/subscription/goose/subscriber-list.js';
 
 customElements.define(
@@ -20,7 +22,7 @@ class GooseMockOpenSCD extends MockOpenSCD {
   plugin!: GooseSubscriberMessageBindingPlugin;
 
   renderHosting(): TemplateResult {
-    return html`<subscription-plugin
+    return litHTML`<subscription-plugin
       .doc=${this.doc}
       .editCount=${this.editCount}
       .nsdoc=${this.nsdoc}

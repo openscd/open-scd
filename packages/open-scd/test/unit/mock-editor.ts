@@ -1,4 +1,6 @@
-import { LitElement, customElement } from 'lit-element';
+import { LitElement } from 'lit';
+import { customElement } from 'lit/decorators.js';
+
 import { Editing } from '../../src/Editing.js';
 
 @customElement('mock-editor')

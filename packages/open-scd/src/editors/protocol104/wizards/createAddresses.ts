@@ -41,7 +41,7 @@ function getSwitchValue(wizard: Element, name: string): boolean {
   const switchElement = wizard.shadowRoot?.querySelector<Switch>(
     `mwc-switch[id="${name}"`
   );
-  return switchElement?.checked ?? false;
+  return switchElement?.selected ?? false;
 }
 
 export function createAddressesAction(

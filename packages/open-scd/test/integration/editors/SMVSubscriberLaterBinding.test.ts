@@ -1,4 +1,4 @@
-import { expect, fixture } from '@open-wc/testing';
+import { expect, fixture, html } from '@open-wc/testing';
 
 import SMVSubscribeLaterBindingPlugin from '../../../src/editors/SMVSubscriberLaterBinding.js';
 import {
@@ -12,7 +12,8 @@ import { ExtRefLaterBindingList } from '../../../src/editors/subscription/later-
 import { MockOpenSCD } from '../../mock-open-scd.js';
 import '../../mock-open-scd.js';
 
-import { customElement, query, TemplateResult, html } from 'lit-element';
+import { TemplateResult, html as litHTML } from 'lit';
+import { customElement, query } from 'lit/decorators.js';
 
 customElements.define(
   'smv-subscribe-later-binding-plugin',
@@ -24,7 +25,7 @@ class SMVMockOpenSCD extends MockOpenSCD {
   plugin!: SMVSubscribeLaterBindingPlugin;
 
   renderHosting(): TemplateResult {
-    return html`<smv-subscribe-later-binding-plugin
+    return litHTML`<smv-subscribe-later-binding-plugin
       .doc=${this.doc}
       .editCount=${this.editCount}
       .nsdoc=${this.nsdoc}

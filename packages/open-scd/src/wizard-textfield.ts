@@ -1,11 +1,6 @@
-import {
-  customElement,
-  html,
-  state,
-  property,
-  query,
-  TemplateResult,
-} from 'lit-element';
+import { html, HTMLTemplateResult, TemplateResult } from 'lit';
+import { customElement, state, property, query } from 'lit/decorators.js';
+
 import { translate, get } from 'lit-translate';
 
 import '@material/mwc-icon-button';
@@ -167,14 +162,14 @@ export class WizardTextField extends TextField {
         ?checked=${!this.null}
         ?disabled=${this.disabledSwitch}
         @change=${() => {
-          this.null = !this.nullSwitch!.checked;
+          this.null = !this.nullSwitch!.selected;
         }}
       ></mwc-switch>`;
     }
     return html``;
   }
 
-  render(): TemplateResult {
+  render(): HTMLTemplateResult {
     return html`
       <div style="display: flex; flex-direction: row;">
         <div style="flex: auto;">${super.render()}</div>

@@ -52,14 +52,14 @@ describe('address wizarding editing integration', () => {
           ?.textContent?.trim()
       ).to.be.undefined;
 
-      expect(vlanIdField.nullSwitch?.checked).to.be.false;
+      expect(vlanIdField.nullSwitch?.selected).to.be.false;
 
       vlanIdField.nullSwitch?.click();
       vlanIdField.value = '007';
       primaryAction.click();
       await element.updateComplete;
 
-      expect(vlanIdField.nullSwitch?.checked).to.be.true;
+      expect(vlanIdField.nullSwitch?.selected).to.be.true;
 
       expect(
         doc
