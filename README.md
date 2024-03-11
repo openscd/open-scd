@@ -19,6 +19,10 @@ In order to install your own instance of OpenSCD on your own webserver (e.g. on 
 
 If you don't have your own webserver but still want your own version of OpenSCD hosted locally (e.g. on a system without an internet connection), you can [use a browser plugin that acts as a local webserver](https://github.com/openscd/open-scd/wiki/Install-OpenSCD#offline) (only for you) instead.
 
+## Plug-ins
+
+We gather the available plug-ins from the community in the [plug-ins](docs/plug-ins.md) file.  
+If you would like to list your plug-in here, please open a pull request.
 
 ## Development
 
