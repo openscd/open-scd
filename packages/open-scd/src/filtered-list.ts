@@ -8,7 +8,7 @@ import {
   TemplateResult,
   unsafeCSS,
 } from 'lit-element';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-checkbox';
 import '@material/mwc-formfield';
@@ -45,14 +45,14 @@ function hideFiltered(item: ListItemBase, searchText: string): void {
     .split(/\s+/g);
 
   (terms.length === 1 && terms[0] === '') ||
-    terms.every(term => {
-      // regexp escape
-      const reTerm = new RegExp(
-        `*${term}*`.replace(/\*/g, '.*').replace(/\?/g, '.{1}'),
-        'i'
-      );
-      return reTerm.test(filterTarget);
-    })
+  terms.every(term => {
+    // regexp escape
+    const reTerm = new RegExp(
+      `*${term}*`.replace(/\*/g, '.*').replace(/\?/g, '.{1}'),
+      'i'
+    );
+    return reTerm.test(filterTarget);
+  })
     ? slotItem(item).classList.remove('hidden')
     : slotItem(item).classList.add('hidden');
 }
@@ -136,8 +136,8 @@ export class FilteredList extends ListBase {
             ?indeterminate=${!this.isAllSelected && this.isSomeSelected}
             ?checked=${this.isAllSelected}
             @change=${() => {
-          this.onCheckAll();
-        }}
+              this.onCheckAll();
+            }}
           ></mwc-checkbox
         ></mwc-formfield>`
       : html``;
@@ -145,7 +145,7 @@ export class FilteredList extends ListBase {
 
   render(): TemplateResult {
     return html`<div id="tfcontainer">
-        <abbr title="${this.searchFieldLabel ?? translate('filter')}"
+        <abbr title="${this.searchFieldLabel ?? get('filter')}"
           ><mwc-textfield
             label="${this.searchFieldLabel ?? ''}"
             iconTrailing="search"

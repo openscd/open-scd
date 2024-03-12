@@ -1,5 +1,5 @@
 import { html, TemplateResult } from 'lit-element';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '../wizard-textfield.js';
 import {
@@ -34,22 +34,22 @@ function contentSubNetwork(options: ContentOptions): TemplateResult[] {
     html`<wizard-textfield
       label="name"
       .maybeValue=${options.name}
-      helper="${translate('subnetwork.wizard.nameHelper')}"
+      helper="${get('subnetwork.wizard.nameHelper')}"
       required
-      validationMessage="${translate('textfield.required')}"
+      validationMessage="${get('textfield.required')}"
       dialogInitialFocus
     ></wizard-textfield>`,
     html`<wizard-textfield
       label="desc"
       .maybeValue=${options.desc}
       nullable
-      helper="${translate('subnetwork.wizard.descHelper')}"
+      helper="${get('subnetwork.wizard.descHelper')}"
     ></wizard-textfield>`,
     html`<wizard-textfield
       label="type"
       .maybeValue=${options.type}
       nullable
-      helper="${translate('subnetwork.wizard.typeHelper')}"
+      helper="${get('subnetwork.wizard.typeHelper')}"
       pattern="${patterns.normalizedString}"
     ></wizard-textfield>`,
     html`<wizard-textfield
@@ -59,9 +59,9 @@ function contentSubNetwork(options: ContentOptions): TemplateResult[] {
       unit="b/s"
       .multipliers=${[null, 'M']}
       .multiplier=${options.multiplier}
-      helper="${translate('subnetwork.wizard.bitrateHelper')}"
+      helper="${get('subnetwork.wizard.bitrateHelper')}"
       required
-      validationMessage="${translate('textfield.nonempty')}"
+      validationMessage="${get('textfield.nonempty')}"
       pattern="${patterns.decimal}"
     ></wizard-textfield>`,
   ];

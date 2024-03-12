@@ -1,5 +1,5 @@
 import { html, TemplateResult } from 'lit-element';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 import { ifDefined } from 'lit-html/directives/if-defined';
 
 import '@material/mwc-checkbox';
@@ -229,7 +229,7 @@ export function editConnectedApWizard(
             )?.innerHTML ?? null}
             required
             fixedMenuPosition
-            helper="${translate(typeDescriptiveNameKeys['StationType'])}"
+            helper="${get(typeDescriptiveNameKeys['StationType'])}"
           >
             ${stationTypeOptions.map(
               option =>
@@ -388,7 +388,7 @@ function createEditTextField(parent: Element, pType: string): TemplateResult {
 
 function createTypeRestrictionCheckbox(element: Element): TemplateResult {
   return html`<mwc-formfield
-    label="${translate('connectedap.wizard.addschemainsttype')}"
+    label="${get('connectedap.wizard.addschemainsttype')}"
     ><mwc-checkbox
       id="typeRestriction"
       ?checked=${hasTypeRestriction(element)}

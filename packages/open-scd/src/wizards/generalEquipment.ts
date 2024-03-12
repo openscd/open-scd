@@ -1,5 +1,5 @@
 import { html, TemplateResult } from 'lit-element';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 import {
   cloneElement,
   createElement,
@@ -85,9 +85,9 @@ export function contentGeneralEquipmentWizard(
     html`<wizard-textfield
       label="name"
       .maybeValue=${content.name}
-      helper="${translate('scl.name')}"
+      helper="${get('scl.name')}"
       required
-      validationMessage="${translate('textfield.required')}"
+      validationMessage="${get('textfield.required')}"
       .reservedValues=${content.reservedNames}
       dialogInitialFocus
     ></wizard-textfield>`,
@@ -95,12 +95,12 @@ export function contentGeneralEquipmentWizard(
       label="desc"
       .maybeValue=${content.desc}
       nullable
-      helper="${translate('scl.desc')}"
+      helper="${get('scl.desc')}"
     ></wizard-textfield>`,
     html`<wizard-textfield
       label="type"
       .maybeValue=${content.type}
-      helper="${translate('scl.type')}"
+      helper="${get('scl.type')}"
       minLength="${3}"
       pattern="AXN|BAT|MOT|FAN|FIL|PMP|TNK|VLV|E[A-Z]*"
       required
@@ -108,7 +108,7 @@ export function contentGeneralEquipmentWizard(
     html`<wizard-checkbox
       label="virtual"
       .maybeValue=${content.virtual}
-      helper="${translate('scl.virtual')}"
+      helper="${get('scl.virtual')}"
       nullable
     ></wizard-checkbox>`,
   ];

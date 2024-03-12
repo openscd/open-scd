@@ -1,6 +1,6 @@
 import { html, state, property, query, TemplateResult } from 'lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-button';
 import '@material/mwc-dialog';
@@ -284,7 +284,7 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
         return this.log.slice().reverse().map(this.renderLogEntry, this);
       else
         return html`<mwc-list-item disabled graphic="icon">
-          <span>${translate('log.placeholder')}</span>
+          <span>${get('log.placeholder')}</span>
           <mwc-icon slot="graphic">info</mwc-icon>
         </mwc-list-item>`;
     }
@@ -297,7 +297,7 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
           .map(this.renderHistoryEntry, this);
       else
         return html`<mwc-list-item disabled graphic="icon">
-          <span>${translate('history.placeholder')}</span>
+          <span>${get('history.placeholder')}</span>
           <mwc-icon slot="graphic">info</mwc-icon>
         </mwc-list-item>`;
     }
@@ -334,7 +334,7 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
       return issueItems.length
         ? issueItems
         : html`<mwc-list-item disabled graphic="icon">
-            <span>${translate('diag.placeholder')}</span>
+            <span>${get('diag.placeholder')}</span>
             <mwc-icon slot="graphic">info</mwc-icon>
           </mwc-list-item>`;
     }
@@ -349,37 +349,34 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     private renderLogDialog(): TemplateResult {
-      return html` <mwc-dialog id="log" heading="${translate('log.name')}">
+      return html` <mwc-dialog id="log" heading="${get('log.name')}">
         ${this.renderFilterButtons()}
         <mwc-list id="content" wrapFocus>${this.renderLog()}</mwc-list>
         <mwc-button slot="primaryAction" dialogaction="close"
-          >${translate('close')}</mwc-button
+          >${get('close')}</mwc-button
         >
       </mwc-dialog>`;
     }
 
     private renderHistoryDialog(): TemplateResult {
-      return html` <mwc-dialog
-        id="history"
-        heading="${translate('history.name')}"
-      >
+      return html` <mwc-dialog id="history" heading="${get('history.name')}">
         <mwc-list id="content" wrapFocus>${this.renderHistory()}</mwc-list>
         <mwc-button
           icon="undo"
-          label="${translate('undo')}"
+          label="${get('undo')}"
           ?disabled=${!this.canUndo}
           @click=${this.undo}
           slot="secondaryAction"
         ></mwc-button>
         <mwc-button
           icon="redo"
-          label="${translate('redo')}"
+          label="${get('redo')}"
           ?disabled=${!this.canRedo}
           @click=${this.redo}
           slot="secondaryAction"
         ></mwc-button>
         <mwc-button slot="primaryAction" dialogaction="close"
-          >${translate('close')}</mwc-button
+          >${get('close')}</mwc-button
         >
       </mwc-dialog>`;
     }
@@ -444,12 +441,12 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
           }
         </style>
         ${this.renderLogDialog()} ${this.renderHistoryDialog()}
-        <mwc-dialog id="diagnostic" heading="${translate('diag.name')}">
+        <mwc-dialog id="diagnostic" heading="${get('diag.name')}">
           <filtered-list id="content" wrapFocus
             >${this.renderIssues()}</filtered-list
           >
           <mwc-button slot="primaryAction" dialogaction="close"
-            >${translate('close')}</mwc-button
+            >${get('close')}</mwc-button
           >
         </mwc-dialog>
 
@@ -477,7 +474,7 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
             slot="action"
             icon="history"
             @click=${() => this.logUI.show()}
-            >${translate('log.snackbar.show')}</mwc-button
+            >${get('log.snackbar.show')}</mwc-button
           >
           <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
         </mwc-snackbar>
@@ -494,7 +491,7 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
             slot="action"
             icon="history"
             @click=${() => this.logUI.show()}
-            >${translate('log.snackbar.show')}</mwc-button
+            >${get('log.snackbar.show')}</mwc-button
           >
           <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
         </mwc-snackbar>
@@ -508,7 +505,7 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
             slot="action"
             icon="rule"
             @click=${() => this.diagnosticUI.show()}
-            >${translate('log.snackbar.show')}</mwc-button
+            >${get('log.snackbar.show')}</mwc-button
           >
           <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
         </mwc-snackbar>`;

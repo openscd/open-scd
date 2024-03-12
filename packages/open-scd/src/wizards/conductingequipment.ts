@@ -1,5 +1,5 @@
 import { html, TemplateResult } from 'lit-element';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-select';
@@ -191,8 +191,8 @@ function renderTypeSelector(
         style="--mdc-menu-max-height: 196px;"
         required
         label="type"
-        helper="${translate('conductingequipment.wizard.typeHelper')}"
-        validationMessage="${translate('textfield.required')}"
+        helper="${get('conductingequipment.wizard.typeHelper')}"
+        validationMessage="${get('textfield.required')}"
       >
         ${Object.keys(types).map(
           v => html`<mwc-list-item value="${v}">${types[v]}</mwc-list-item>`
@@ -200,8 +200,8 @@ function renderTypeSelector(
       </mwc-select>`
     : html`<mwc-select
         label="type"
-        helper="${translate('conductingequipment.wizard.typeHelper')}"
-        validationMessage="${translate('textfield.required')}"
+        helper="${get('conductingequipment.wizard.typeHelper')}"
+        validationMessage="${get('textfield.required')}"
         disabled
       >
         <mwc-list-item selected value="0">${type}</mwc-list-item>
@@ -220,9 +220,9 @@ export function renderConductingEquipmentWizard(
     html`<wizard-textfield
       label="name"
       .maybeValue=${name}
-      helper="${translate('conductingequipment.wizard.nameHelper')}"
+      helper="${get('conductingequipment.wizard.nameHelper')}"
       required
-      validationMessage="${translate('textfield.required')}"
+      validationMessage="${get('textfield.required')}"
       dialogInitialFocus
       .reservedValues=${reservedNames}
     ></wizard-textfield>`,
@@ -230,7 +230,7 @@ export function renderConductingEquipmentWizard(
       label="desc"
       .maybeValue=${desc}
       nullable
-      helper="${translate('conductingequipment.wizard.descHelper')}"
+      helper="${get('conductingequipment.wizard.descHelper')}"
     ></wizard-textfield>`,
   ];
 }

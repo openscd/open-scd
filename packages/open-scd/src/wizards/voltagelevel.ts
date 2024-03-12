@@ -1,5 +1,5 @@
 import { html, TemplateResult } from 'lit-html';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '../wizard-textfield.js';
 import {
@@ -16,7 +16,7 @@ import {
   WizardInputElement,
 } from '../foundation.js';
 
-import { updateReferences } from "./foundation/references.js";
+import { updateReferences } from './foundation/references.js';
 
 const initial = {
   nomFreq: '50',
@@ -37,35 +37,35 @@ function render(
     html`<wizard-textfield
       label="name"
       .maybeValue=${name}
-      helper="${translate('voltagelevel.wizard.nameHelper')}"
+      helper="${get('voltagelevel.wizard.nameHelper')}"
       required
-      validationMessage="${translate('textfield.required')}"
+      validationMessage="${get('textfield.required')}"
       dialogInitialFocus
     ></wizard-textfield>`,
     html`<wizard-textfield
       label="desc"
       .maybeValue=${desc}
       nullable
-      helper="${translate('voltagelevel.wizard.descHelper')}"
+      helper="${get('voltagelevel.wizard.descHelper')}"
     ></wizard-textfield>`,
     html`<wizard-textfield
       label="nomFreq"
       .maybeValue=${nomFreq}
       nullable
-      helper="${translate('voltagelevel.wizard.nomFreqHelper')}"
+      helper="${get('voltagelevel.wizard.nomFreqHelper')}"
       suffix="Hz"
       required
-      validationMessage="${translate('textfield.nonempty')}"
+      validationMessage="${get('textfield.nonempty')}"
       pattern="${patterns.unsigned}"
     ></wizard-textfield>`,
     html`<wizard-textfield
       label="numPhases"
       .maybeValue=${numPhases}
       nullable
-      helper="${translate('voltagelevel.wizard.numPhaseHelper')}"
+      helper="${get('voltagelevel.wizard.numPhaseHelper')}"
       suffix="#"
       required
-      validationMessage="${translate('textfield.nonempty')}"
+      validationMessage="${get('textfield.nonempty')}"
       type="number"
       min="1"
       max="255"
@@ -77,9 +77,9 @@ function render(
       unit="V"
       .multipliers=${[null, 'G', 'M', 'k', '', 'm']}
       .multiplier=${multiplier}
-      helper="${translate('voltagelevel.wizard.voltageHelper')}"
+      helper="${get('voltagelevel.wizard.voltageHelper')}"
       required
-      validationMessage="${translate('textfield.nonempty')}"
+      validationMessage="${get('textfield.nonempty')}"
       pattern="${patterns.decimal}"
     ></wizard-textfield>`,
   ];
@@ -232,14 +232,13 @@ export function updateAction(element: Element): WizardActor {
 
     const complexAction: ComplexAction = {
       actions: [],
-      title: get('voltagelevel.action.updateVoltagelevel', {name}),
+      title: get('voltagelevel.action.updateVoltagelevel', { name }),
     };
     if (voltageLevelAction) complexAction.actions.push(voltageLevelAction);
     if (voltageAction) complexAction.actions.push(voltageAction);
-    complexAction.actions.push(...updateReferences(
-      element,
-      element.getAttribute('name'),
-      name));
+    complexAction.actions.push(
+      ...updateReferences(element, element.getAttribute('name'), name)
+    );
     return complexAction.actions.length ? [complexAction] : [];
   };
 }

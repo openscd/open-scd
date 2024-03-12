@@ -1,5 +1,5 @@
 import { html, TemplateResult } from 'lit-element';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-list/mwc-list-item.js';
 import { Checkbox } from '@material/mwc-checkbox';
@@ -140,9 +140,9 @@ function contentSampledValueControlWizard(
     html`<wizard-textfield
       label="name"
       .maybeValue=${options.name}
-      helper="${translate('scl.name')}"
+      helper="${get('scl.name')}"
       required
-      validationMessage="${translate('textfield.required')}"
+      validationMessage="${get('textfield.required')}"
       pattern="${patterns.asciName}"
       maxLength="${maxLength.cbName}"
       dialogInitialFocus
@@ -152,29 +152,29 @@ function contentSampledValueControlWizard(
       .maybeValue=${options.desc}
       nullable
       pattern="${patterns.normalizedString}"
-      helper="${translate('scl.desc')}"
+      helper="${get('scl.desc')}"
     ></wizard-textfield>`,
     options.multicast === 'true'
       ? html``
       : html`<wizard-checkbox
           label="multicast"
           .maybeValue=${options.multicast}
-          helper="${translate('scl.multicast')}"
+          helper="${get('scl.multicast')}"
           disabled
         ></wizard-checkbox>`,
     html`<wizard-textfield
       label="smvID"
       .maybeValue=${options.smvID}
-      helper="${translate('scl.id')}"
+      helper="${get('scl.id')}"
       required
-      validationMessage="${translate('textfield.nonempty')}"
+      validationMessage="${get('textfield.nonempty')}"
     ></wizard-textfield>`,
     html`<wizard-select
       label="smpMod"
       .maybeValue=${options.smpMod}
       nullable
       required
-      helper="${translate('scl.smpMod')}"
+      helper="${get('scl.smpMod')}"
       >${smpModEnum.map(
         option =>
           html`<mwc-list-item value="${option}">${option}</mwc-list-item>`
@@ -183,7 +183,7 @@ function contentSampledValueControlWizard(
     html`<wizard-textfield
       label="smpRate"
       .maybeValue=${options.smpRate}
-      helper="${translate('scl.smpRate')}"
+      helper="${get('scl.smpRate')}"
       required
       type="number"
       min="0"
@@ -191,7 +191,7 @@ function contentSampledValueControlWizard(
     html`<wizard-textfield
       label="nofASDU"
       .maybeValue=${options.nofASDU}
-      helper="${translate('scl.nofASDU')}"
+      helper="${get('scl.nofASDU')}"
       required
       type="number"
       min="0"
@@ -201,7 +201,7 @@ function contentSampledValueControlWizard(
       .maybeValue=${options.securityEnabled}
       nullable
       required
-      helper="${translate('scl.securityEnable')}"
+      helper="${get('scl.securityEnable')}"
       >${securityEnabledEnum.map(
         option =>
           html`<mwc-list-item value="${option}">${option}</mwc-list-item>`
@@ -429,7 +429,7 @@ export function createSampledValueControlWizard(ln0OrLn: Element): Wizard {
                       font-family: 'Roboto', sans-serif;
                       font-weight: 300;"
             >
-              ${translate('smv.missingaccp')}
+              ${get('smv.missingaccp')}
             </h3>`,
           ],
         },

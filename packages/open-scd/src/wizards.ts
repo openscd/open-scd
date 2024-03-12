@@ -1,6 +1,6 @@
 import { html } from 'lit-element';
 import { repeat } from 'lit-html/directives/repeat';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-icon';
 import '@material/mwc-list';
@@ -212,7 +212,7 @@ export function mergeWizard(
             )}
             ${childDiffs.length
               ? html`<mwc-list-item noninteractive
-                    >${translate('merge.children')}</mwc-list-item
+                    >${get('merge.children')}</mwc-list-item
                   >
                   <li padded divider role="separator"></li>`
               : ''}

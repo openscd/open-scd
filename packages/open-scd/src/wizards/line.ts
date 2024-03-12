@@ -1,5 +1,5 @@
 import { html, TemplateResult } from 'lit-html';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '../wizard-textfield.js';
 import {
@@ -31,39 +31,39 @@ function render(
     html`<wizard-textfield
       label="name"
       .maybeValue=${name}
-      helper="${translate('line.wizard.nameHelper')}"
+      helper="${get('line.wizard.nameHelper')}"
       required
-      validationMessage="${translate('textfield.required')}"
+      validationMessage="${get('textfield.required')}"
       dialogInitialFocus
     ></wizard-textfield>`,
     html`<wizard-textfield
       label="desc"
       .maybeValue=${desc}
       nullable
-      helper="${translate('line.wizard.descHelper')}"
+      helper="${get('line.wizard.descHelper')}"
     ></wizard-textfield>`,
     html`<wizard-textfield
       label="type"
       .maybeValue=${type}
       nullable
-      helper="${translate('line.wizard.typeHelper')}"
+      helper="${get('line.wizard.typeHelper')}"
     ></wizard-textfield>`,
     html`<wizard-textfield
       label="nomFreq"
       .maybeValue=${nomFreq}
       nullable
-      helper="${translate('voltagelevel.wizard.nomFreqHelper')}"
+      helper="${get('voltagelevel.wizard.nomFreqHelper')}"
       suffix="Hz"
-      validationMessage="${translate('textfield.nonempty')}"
+      validationMessage="${get('textfield.nonempty')}"
       pattern="${patterns.unsigned}"
     ></wizard-textfield>`,
     html`<wizard-textfield
       label="numPhases"
       .maybeValue=${numPhases}
       nullable
-      helper="${translate('voltagelevel.wizard.numPhaseHelper')}"
+      helper="${get('voltagelevel.wizard.numPhaseHelper')}"
       suffix="#"
-      validationMessage="${translate('textfield.nonempty')}"
+      validationMessage="${get('textfield.nonempty')}"
       type="number"
       min="1"
       max="255"

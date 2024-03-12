@@ -1,5 +1,5 @@
 import { html, TemplateResult } from 'lit-element';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
@@ -48,9 +48,9 @@ export function renderIEDWizard(
     html`<wizard-textfield
       label="name"
       .maybeValue=${name}
-      helper="${translate('ied.wizard.nameHelper')}"
+      helper="${get('ied.wizard.nameHelper')}"
       required
-      validationMessage="${translate('textfield.required')}"
+      validationMessage="${get('textfield.required')}"
       dialogInitialFocus
       .reservedValues=${reservedNames}
       pattern="${iedNamePattern}"
@@ -59,52 +59,52 @@ export function renderIEDWizard(
       label="desc"
       .maybeValue=${desc}
       nullable
-      helper="${translate('ied.wizard.descHelper')}"
+      helper="${get('ied.wizard.descHelper')}"
       pattern="${patterns.normalizedString}"
     ></wizard-textfield>`,
     html`<wizard-textfield
       label="type"
-      .maybeValue=${type || "-"}
+      .maybeValue=${type || '-'}
       readOnly
       disabled
     ></wizard-textfield>`,
     html`<wizard-textfield
       label="manufacturer"
-      .maybeValue=${manufacturer || "-"}
+      .maybeValue=${manufacturer || '-'}
       readOnly
       disabled
     ></wizard-textfield>`,
     html`<wizard-textfield
-    label="configVersion"
-      .maybeValue=${configVersion || "-"}
+      label="configVersion"
+      .maybeValue=${configVersion || '-'}
       readOnly
       disabled
     ></wizard-textfield>`,
     html`<wizard-textfield
-    label="originalSclVersion"
-      .maybeValue=${originalSclVersion || "-"}
+      label="originalSclVersion"
+      .maybeValue=${originalSclVersion || '-'}
       readOnly
       disabled
     ></wizard-textfield>`,
     html`<wizard-textfield
-    label="engRight"
-      .maybeValue=${engRight || "-"}
+      label="engRight"
+      .maybeValue=${engRight || '-'}
       readOnly
       disabled
     ></wizard-textfield>`,
     html`<wizard-textfield
-    label="owner"
-      .maybeValue=${owner || "-"}
+      label="owner"
+      .maybeValue=${owner || '-'}
       readOnly
       disabled
-    ></wizard-textfield>`
+    ></wizard-textfield>`,
   ];
 }
 
 function renderIEDReferencesWizard(references: Delete[]): TemplateResult[] {
   return [
     html` <section>
-      <h1>${translate('ied.wizard.title.references')}</h1>
+      <h1>${get('ied.wizard.title.references')}</h1>
       <mwc-list>
         ${references.map(reference => {
           const oldElement = <Element>reference.old.element;
@@ -121,9 +121,9 @@ function renderIEDReferencesWizard(references: Delete[]): TemplateResult[] {
 }
 
 function validatedVersionAttribute(element: Element): string {
-  return (element.getAttribute('originalSclVersion') ?? '') 
+  return (element.getAttribute('originalSclVersion') ?? '')
     .concat(element.getAttribute('originalSclRevision') ?? '')
-    .concat(element.getAttribute('originalSclRelease') ?? '')
+    .concat(element.getAttribute('originalSclRelease') ?? '');
 }
 
 export function reservedNamesIED(currentElement: Element): string[] {

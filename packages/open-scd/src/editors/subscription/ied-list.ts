@@ -6,7 +6,7 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-icon';
 import '@material/mwc-list/mwc-list-item';
@@ -49,7 +49,7 @@ export class IedList extends LitElement {
   render(): TemplateResult {
     return html` <section tabindex="0">
       <h1>
-        ${translate(`subscription.${this.serviceType}.subscriber.iedListTitle`)}
+        ${get(`subscription.${this.serviceType}.subscriber.iedListTitle`)}
       </h1>
       <filtered-list activatable>
         ${getOrderedIeds(this.doc).map(

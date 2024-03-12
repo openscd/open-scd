@@ -1,4 +1,4 @@
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 import { html, TemplateResult } from 'lit-element';
 import { Select } from '@material/mwc-select';
 import { SelectedEvent } from '@material/mwc-list/mwc-list-foundation';
@@ -265,7 +265,7 @@ export function createAddressesWizard(
         label="Common Data Class"
         .maybeValue="${cdc}"
         .helper="${reqCmvMapping
-          ? translate('protocol104.mappedCmv', { cdc: foundCdc })
+          ? get('protocol104.mappedCmv', { cdc: foundCdc })
           : ''}"
         .helperPersistent="${reqCmvMapping}"
         disabled
@@ -281,7 +281,7 @@ export function createAddressesWizard(
         fields.push(
           html`<wizard-select
             label="monitorTi"
-            helper="${translate('protocol104.wizard.monitorTiHelper')}"
+            helper="${get('protocol104.wizard.monitorTiHelper')}"
             fixedMenuPosition
             required
             @selected=${(e: SelectedEvent) => {
@@ -317,7 +317,7 @@ export function createAddressesWizard(
       }
       fields.push(
         html`<mwc-formfield
-          label="${translate('protocol104.wizard.monitorInverted')}"
+          label="${get('protocol104.wizard.monitorInverted')}"
         >
           <mwc-switch
             id="monitorInverted"
@@ -327,9 +327,7 @@ export function createAddressesWizard(
         </mwc-formfield>`
       );
       fields.push(
-        html`<mwc-formfield
-          label="${translate('protocol104.wizard.monitorCheck')}"
-        >
+        html`<mwc-formfield label="${get('protocol104.wizard.monitorCheck')}">
           <mwc-switch
             id="monitorCheck"
             .disabled="${disableCheckSwitch(cdcProcessing.monitor)}"
@@ -358,7 +356,7 @@ export function createAddressesWizard(
           fields.push(
             html` <wizard-select
               label="controlTi"
-              helper="${translate('protocol104.wizard.controlTiHelper')}"
+              helper="${get('protocol104.wizard.controlTiHelper')}"
               fixedMenuPosition
               required
               @selected=${(e: SelectedEvent) => {
@@ -392,7 +390,7 @@ export function createAddressesWizard(
         }
         fields.push(
           html` <mwc-formfield
-            label="${translate('protocol104.wizard.controlInverted')}"
+            label="${get('protocol104.wizard.controlInverted')}"
           >
             <mwc-switch
               id="controlInverted"
@@ -403,7 +401,7 @@ export function createAddressesWizard(
         );
         fields.push(
           html` <mwc-formfield
-            label="${translate('protocol104.wizard.controlCheck')}"
+            label="${get('protocol104.wizard.controlCheck')}"
           >
             <mwc-switch
               id="controlCheck"

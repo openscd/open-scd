@@ -1,5 +1,5 @@
 import { html, TemplateResult } from 'lit-html';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '../wizard-textfield.js';
 import {
@@ -12,21 +12,24 @@ import {
 } from '../foundation.js';
 import { replaceNamingAttributeWithReferencesAction } from './foundation/actions.js';
 
-export function renderBayWizard(name: string | null, desc: string | null): TemplateResult[] {
+export function renderBayWizard(
+  name: string | null,
+  desc: string | null
+): TemplateResult[] {
   return [
     html`<wizard-textfield
       label="name"
       .maybeValue=${name}
-      helper="${translate('bay.wizard.nameHelper')}"
+      helper="${get('bay.wizard.nameHelper')}"
       required
-      validationMessage="${translate('textfield.required')}"
+      validationMessage="${get('textfield.required')}"
       dialogInitialFocus
     ></wizard-textfield>`,
     html`<wizard-textfield
       label="desc"
       .maybeValue=${desc}
       nullable
-      helper="${translate('bay.wizard.descHelper')}"
+      helper="${get('bay.wizard.descHelper')}"
     ></wizard-textfield>`,
   ];
 }
@@ -74,7 +77,10 @@ export function editBayWizard(element: Element): Wizard {
       primary: {
         icon: 'edit',
         label: get('save'),
-        action: replaceNamingAttributeWithReferencesAction(element, 'bay.action.updateBay'),
+        action: replaceNamingAttributeWithReferencesAction(
+          element,
+          'bay.action.updateBay'
+        ),
       },
       content: renderBayWizard(
         element.getAttribute('name'),

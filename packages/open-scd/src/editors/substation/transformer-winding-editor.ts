@@ -8,7 +8,7 @@ import {
   query,
 } from 'lit-element';
 
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-fab';
 import '@material/mwc-icon';
@@ -47,7 +47,7 @@ export class TransformerWindingEditor extends LitElement {
   /** The document being edited as provided to editor by [[`Zeroline`]]. */
   @property({ attribute: false })
   doc!: XMLDocument;
-  @property({type: Number})
+  @property({ type: Number })
   editCount = -1;
   /** SCL element TransformerWinding */
   @property({ attribute: false })
@@ -113,7 +113,8 @@ export class TransformerWindingEditor extends LitElement {
           ${lNodes.map(
             lNode =>
               html`<l-node-editor
-                .editCount=${this.editCount} .doc=${this.doc}
+                .editCount=${this.editCount}
+                .doc=${this.doc}
                 .element=${lNode}
               ></l-node-editor>`
           )}
@@ -128,7 +129,8 @@ export class TransformerWindingEditor extends LitElement {
       ? html` ${eqFunctions.map(
           eqFunction =>
             html`<eq-function-editor
-              .editCount=${this.editCount} .doc=${this.doc}
+              .editCount=${this.editCount}
+              .doc=${this.doc}
               .element=${eqFunction}
               ?showfunctions=${this.showfunctions}
             ></eq-function-editor>`
@@ -143,7 +145,8 @@ export class TransformerWindingEditor extends LitElement {
       ? html` ${tapChangers.map(
           tapChanger =>
             html`<tapchanger-editor
-              .editCount=${this.editCount} .doc=${this.doc}
+              .editCount=${this.editCount}
+              .doc=${this.doc}
               .element=${tapChanger}
               ?showfunctions=${this.showfunctions}
             ></tapchanger-editor>`
@@ -162,23 +165,19 @@ export class TransformerWindingEditor extends LitElement {
 
   render(): TemplateResult {
     return html`<action-pane label="${this.label}">
-      <abbr slot="action" title="${translate('edit')}">
+      <abbr slot="action" title="${get('edit')}">
         <mwc-icon-button
           icon="edit"
           @click=${() => this.openEditWizard()}
         ></mwc-icon-button>
       </abbr>
-      <abbr slot="action" title="${translate('remove')}">
+      <abbr slot="action" title="${get('remove')}">
         <mwc-icon-button
           icon="delete"
           @click=${() => this.remove()}
         ></mwc-icon-button>
       </abbr>
-      <abbr
-        slot="action"
-        style="position:relative;"
-        title="${translate('add')}"
-      >
+      <abbr slot="action" style="position:relative;" title="${get('add')}">
         <mwc-icon-button
           icon="playlist_add"
           @click=${() => (this.addMenu.open = true)}

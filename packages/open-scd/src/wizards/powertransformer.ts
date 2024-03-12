@@ -1,5 +1,5 @@
 import { html, TemplateResult } from 'lit-element';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import {
   createElement,
@@ -11,7 +11,7 @@ import {
   WizardInputElement,
 } from '../foundation.js';
 
-import { replaceNamingAction } from "./foundation/actions.js";
+import { replaceNamingAction } from './foundation/actions.js';
 
 const defaultPowerTransformerType = 'PTR';
 
@@ -22,7 +22,7 @@ export function createAction(parent: Element): WizardActor {
     const element = createElement(parent.ownerDocument, 'PowerTransformer', {
       name,
       desc,
-      type: defaultPowerTransformerType
+      type: defaultPowerTransformerType,
     });
 
     const action = {
@@ -46,9 +46,9 @@ export function renderPowerTransformerWizard(
     html`<wizard-textfield
       label="name"
       .maybeValue=${name}
-      helper="${translate('powertransformer.wizard.nameHelper')}"
+      helper="${get('powertransformer.wizard.nameHelper')}"
       required
-      validationMessage="${translate('textfield.required')}"
+      validationMessage="${get('textfield.required')}"
       dialogInitialFocus
       .reservedValues=${reservedNames}
     ></wizard-textfield>`,
@@ -56,18 +56,21 @@ export function renderPowerTransformerWizard(
       label="desc"
       .maybeValue=${desc}
       nullable
-      helper="${translate('powertransformer.wizard.descHelper')}"
+      helper="${get('powertransformer.wizard.descHelper')}"
     ></wizard-textfield>`,
     html`<wizard-textfield
       label="type"
       .maybeValue=${type}
       disabled
-      helper="${translate('powertransformer.wizard.typeHelper')}"
+      helper="${get('powertransformer.wizard.typeHelper')}"
     ></wizard-textfield>`,
   ];
 }
 
-export function reservedNamesPowerTransformer(parent: Element, currentName?: string | null): string[] {
+export function reservedNamesPowerTransformer(
+  parent: Element,
+  currentName?: string | null
+): string[] {
   return Array.from(parent.querySelectorAll('PowerTransformer'))
     .filter(isPublic)
     .map(pwt => pwt.getAttribute('name') ?? '')
@@ -86,7 +89,12 @@ export function createPowerTransformerWizard(parent: Element): Wizard {
         label: get('add'),
         action: createAction(parent),
       },
-      content: renderPowerTransformerWizard('', null, defaultPowerTransformerType, reservedNames),
+      content: renderPowerTransformerWizard(
+        '',
+        null,
+        defaultPowerTransformerType,
+        reservedNames
+      ),
     },
   ];
 }
@@ -94,7 +102,8 @@ export function createPowerTransformerWizard(parent: Element): Wizard {
 export function editPowerTransformerWizard(element: Element): Wizard {
   const reservedNames = reservedNamesPowerTransformer(
     <Element>element.parentNode!,
-    element.getAttribute('name'));
+    element.getAttribute('name')
+  );
 
   return [
     {
