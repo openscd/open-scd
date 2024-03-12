@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.35.0](https://github.com/openscd/open-scd/compare/open-scd@v0.34.0...open-scd@v0.35.0) (2024-02-19)
+
+
+### ✨ Features
+
+* **104:** implement enc cdc support ([#1391](https://github.com/openscd/open-scd/issues/1391)) ([fa4142b](https://github.com/openscd/open-scd/commit/fa4142b4b85085f092533dd54097d3c4efbf5441))
+* **104:** implement wye and del cdc support ([#1390](https://github.com/openscd/open-scd/issues/1390)) ([43b8285](https://github.com/openscd/open-scd/commit/43b82853f877a8eb080db2b4ea99898f861c8418))
+* support ldname attribute ([#1401](https://github.com/openscd/open-scd/issues/1401)) ([c0972f3](https://github.com/openscd/open-scd/commit/c0972f33b7e386c39a127739b4c2962f9c9a60f4))
+
+
+### 🐞 Bug Fixes
+
+* do and da wizard lnclass textfield correction ([#1444](https://github.com/openscd/open-scd/issues/1444)) ([ad08ff2](https://github.com/openscd/open-scd/commit/ad08ff2f4ea51655da5fd158c7106680b6b68506))
+* **gh-action:** build-and-deploy should first build core before building OpenSCD ([#1427](https://github.com/openscd/open-scd/issues/1427)) ([e25e5f8](https://github.com/openscd/open-scd/commit/e25e5f8c94457deeed207891fec3234201fb1a03))
+
 ## [0.34.0](https://github.com/openscd/open-scd/compare/open-scd-v0.33.1...open-scd@v0.34.0) (2024-01-10)
 
 
