@@ -15,6 +15,7 @@
   "author": "Open-SCD",
   "license": "Apache-2.0",
   "type": "module",
+  "private": true,
   "dependencies": {
     "@material/mwc-dialog": "0.22.1",
     "@material/mwc-fab": "0.22.1",
