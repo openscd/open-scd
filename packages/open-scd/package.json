@@ -41,6 +41,7 @@
     "ace-custom-element": "^1.6.5",
     "lit": "^2.2.7",
     "lit-translate": "^1.2.1",
+    "panzoom": "^9.4.2",
     "@openscd/core": "*"
   },
   "scripts": {
