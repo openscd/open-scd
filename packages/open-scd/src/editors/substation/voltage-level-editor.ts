@@ -1,13 +1,6 @@
-import {
-  LitElement,
-  TemplateResult,
-  customElement,
-  html,
-  property,
-  css,
-  query,
-  state,
-} from 'lit-element';
+import { LitElement, TemplateResult, html, css } from 'lit';
+import { customElement, property, query, state } from 'lit/decorators.js';
+
 import { classMap } from 'lit-html/directives/class-map';
 import { translate } from 'lit-translate';
 

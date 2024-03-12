@@ -1,11 +1,7 @@
-import {
-  css,
-  html,
-  LitElement,
-  property,
-  query,
-  TemplateResult,
-} from 'lit-element';
+import { css, html, LitElement, TemplateResult } from 'lit';
+
+import { property, query } from 'lit/decorators.js';
+
 import { translate } from 'lit-translate';
 
 import { RadioListItem } from '@material/mwc-list/mwc-radio-list-item.js';

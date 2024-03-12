@@ -1,4 +1,4 @@
-import { html, TemplateResult } from 'lit-element';
+import { html, TemplateResult } from 'lit';
 import { get, translate } from 'lit-translate';
 
 import '@material/mwc-list';
@@ -64,40 +64,40 @@ export function renderIEDWizard(
     ></wizard-textfield>`,
     html`<wizard-textfield
       label="type"
-      .maybeValue=${type || "-"}
+      .maybeValue=${type || '-'}
       readOnly
       disabled
     ></wizard-textfield>`,
     html`<wizard-textfield
       label="manufacturer"
-      .maybeValue=${manufacturer || "-"}
+      .maybeValue=${manufacturer || '-'}
       readOnly
       disabled
     ></wizard-textfield>`,
     html`<wizard-textfield
-    label="configVersion"
-      .maybeValue=${configVersion || "-"}
+      label="configVersion"
+      .maybeValue=${configVersion || '-'}
       readOnly
       disabled
     ></wizard-textfield>`,
     html`<wizard-textfield
-    label="originalSclVersion"
-      .maybeValue=${originalSclVersion || "-"}
+      label="originalSclVersion"
+      .maybeValue=${originalSclVersion || '-'}
       readOnly
       disabled
     ></wizard-textfield>`,
     html`<wizard-textfield
-    label="engRight"
-      .maybeValue=${engRight || "-"}
+      label="engRight"
+      .maybeValue=${engRight || '-'}
       readOnly
       disabled
     ></wizard-textfield>`,
     html`<wizard-textfield
-    label="owner"
-      .maybeValue=${owner || "-"}
+      label="owner"
+      .maybeValue=${owner || '-'}
       readOnly
       disabled
-    ></wizard-textfield>`
+    ></wizard-textfield>`,
   ];
 }
 
@@ -121,9 +121,9 @@ function renderIEDReferencesWizard(references: Delete[]): TemplateResult[] {
 }
 
 function validatedVersionAttribute(element: Element): string {
-  return (element.getAttribute('originalSclVersion') ?? '') 
+  return (element.getAttribute('originalSclVersion') ?? '')
     .concat(element.getAttribute('originalSclRevision') ?? '')
-    .concat(element.getAttribute('originalSclRelease') ?? '')
+    .concat(element.getAttribute('originalSclRelease') ?? '');
 }
 
 export function reservedNamesIED(currentElement: Element): string[] {

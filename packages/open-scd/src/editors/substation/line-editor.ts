@@ -1,13 +1,5 @@
-import {
-  css,
-  customElement,
-  html,
-  LitElement,
-  TemplateResult,
-  property,
-  state,
-  query,
-} from 'lit-element';
+import { css, html, LitElement, TemplateResult } from 'lit';
+import { customElement, property, state, query } from 'lit/decorators.js';
 
 import { translate } from 'lit-translate';
 

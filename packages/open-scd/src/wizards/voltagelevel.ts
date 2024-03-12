@@ -1,4 +1,4 @@
-import { html, TemplateResult } from 'lit-html';
+import { html, TemplateResult } from 'lit';
 import { get, translate } from 'lit-translate';
 
 import '../wizard-textfield.js';
@@ -16,7 +16,7 @@ import {
   WizardInputElement,
 } from '../foundation.js';
 
-import { updateReferences } from "./foundation/references.js";
+import { updateReferences } from './foundation/references.js';
 
 const initial = {
   nomFreq: '50',
@@ -232,14 +232,13 @@ export function updateAction(element: Element): WizardActor {
 
     const complexAction: ComplexAction = {
       actions: [],
-      title: get('voltagelevel.action.updateVoltagelevel', {name}),
+      title: get('voltagelevel.action.updateVoltagelevel', { name }),
     };
     if (voltageLevelAction) complexAction.actions.push(voltageLevelAction);
     if (voltageAction) complexAction.actions.push(voltageAction);
-    complexAction.actions.push(...updateReferences(
-      element,
-      element.getAttribute('name'),
-      name));
+    complexAction.actions.push(
+      ...updateReferences(element, element.getAttribute('name'), name)
+    );
     return complexAction.actions.length ? [complexAction] : [];
   };
 }

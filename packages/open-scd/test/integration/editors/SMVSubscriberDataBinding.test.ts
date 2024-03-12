@@ -1,4 +1,4 @@
-import { expect, fixture } from '@open-wc/testing';
+import { expect, fixture, html } from '@open-wc/testing';
 import { initializeNsdoc } from '../../../src/foundation/nsdoc.js';
 
 import SMVSubscriberDataBinding from '../../../src/editors/SMVSubscriberDataBinding.js';
@@ -13,7 +13,8 @@ import {
 import { MockOpenSCD } from '../../mock-open-scd.js';
 import '../../mock-open-scd.js';
 
-import { customElement, query, TemplateResult, html } from 'lit-element';
+import { TemplateResult, html as litHTML } from 'lit';
+import { customElement, query } from 'lit/decorators.js';
 
 customElements.define(
   'smv-subscriber-data-binding-plugin',
@@ -25,7 +26,7 @@ class SMVMockOpenSCD extends MockOpenSCD {
   plugin!: SMVSubscriberDataBinding;
 
   renderHosting(): TemplateResult {
-    return html`<smv-subscriber-data-binding-plugin
+    return litHTML`<smv-subscriber-data-binding-plugin
       .doc=${this.doc}
       .editCount=${this.editCount}
       .nsdoc=${this.nsdoc}

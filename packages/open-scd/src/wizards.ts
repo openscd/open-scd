@@ -1,5 +1,5 @@
-import { html } from 'lit-element';
-import { repeat } from 'lit-html/directives/repeat';
+import { html } from 'lit';
+import { repeat } from 'lit/directives/repeat.js';
 import { get, translate } from 'lit-translate';
 
 import '@material/mwc-icon';

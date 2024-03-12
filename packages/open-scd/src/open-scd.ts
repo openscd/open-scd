@@ -1,33 +1,28 @@
-import {
-  css,
-  customElement,
-  html,
-  LitElement,
-  property,
-  TemplateResult,
-  query,
-} from 'lit-element';
-import { classMap } from 'lit-html/directives/class-map';
+import { html, HTMLTemplateResult, TemplateResult, LitElement, css } from 'lit';
+import { customElement, property, query } from 'lit/decorators.js';
+import { html as staticHtml, unsafeStatic } from 'lit/static-html.js';
 
-import { ListItem } from '@material/mwc-list/mwc-list-item';
+import { classMap } from 'lit/directives/class-map.js';
 
-import '@material/mwc-icon';
-import '@material/mwc-icon-button';
-import '@material/mwc-linear-progress';
-import '@material/mwc-list';
-import '@material/mwc-list/mwc-list-item';
-import '@material/mwc-tab';
-import '@material/mwc-tab-bar';
-import '@material/mwc-top-app-bar-fixed';
-import '@material/mwc-drawer';
-import '@material/mwc-button';
-import '@material/mwc-dialog';
-import '@material/mwc-formfield';
-import '@material/mwc-list/mwc-check-list-item';
-import '@material/mwc-list/mwc-radio-list-item';
-import '@material/mwc-select';
-import '@material/mwc-switch';
-import '@material/mwc-textfield';
+import { ListItem } from '@material/mwc-list/mwc-list-item.js';
+
+import '@material/mwc-icon/mwc-icon.js';
+import '@material/mwc-icon-button/mwc-icon-button.js';
+import '@material/mwc-linear-progress/mwc-linear-progress.js';
+import '@material/mwc-list/mwc-list.js';
+import '@material/mwc-list/mwc-list-item.js';
+import '@material/mwc-tab/mwc-tab.js';
+import '@material/mwc-tab-bar/mwc-tab-bar.js';
+import '@material/mwc-top-app-bar-fixed/mwc-top-app-bar-fixed.js';
+import '@material/mwc-drawer/mwc-drawer.js';
+import '@material/mwc-button/mwc-button.js';
+import '@material/mwc-dialog/mwc-dialog.js';
+import '@material/mwc-formfield/mwc-formfield.js';
+import '@material/mwc-list/mwc-check-list-item.js';
+import '@material/mwc-list/mwc-radio-list-item.js';
+import '@material/mwc-select/mwc-select.js';
+import '@material/mwc-switch/mwc-switch.js';
+import '@material/mwc-textfield/mwc-textfield.js';
 
 import {
   newOpenDocEvent,
@@ -35,23 +30,21 @@ import {
   newSettingsUIEvent,
 } from './foundation.js';
 
-import { Historing } from './Historing.js';
-
 import './addons/Settings.js';
 import './addons/Waiter.js';
 import './addons/Wizards.js';
 import './addons/Editor.js';
 
-import { ActionDetail, List } from '@material/mwc-list';
-import { Drawer } from '@material/mwc-drawer';
-import { translate } from 'lit-translate';
+import { ActionDetail, List } from '@material/mwc-list/mwc-list.js';
+import { Drawer } from '@material/mwc-drawer/mwc-drawer.js';
+import { get } from 'lit-translate';
 
 import { officialPlugins } from '../public/js/plugins.js';
 import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation.js';
-import { Select } from '@material/mwc-select';
-import { Switch } from '@material/mwc-switch';
-import { TextField } from '@material/mwc-textfield';
-import { Dialog } from '@material/mwc-dialog';
+import type { Select } from '@material/mwc-select/mwc-select.js';
+import type { Switch } from '@material/mwc-switch/mwc-switch.js';
+import type { TextField } from '@material/mwc-textfield/mwc-textfield.js';
+import type { Dialog } from '@material/mwc-dialog/mwc-dialog.js';
 import { initializeNsdoc, Nsdoc } from './foundation/nsdoc.js';
 
 // HOSTING INTERFACES
@@ -226,7 +219,7 @@ const loadedPlugins = new Set<string>();
 /** The `<open-scd>` custom element is the main entry point of the
  * Open Substation Configuration Designer. */
 @customElement('open-scd')
-export class OpenSCD extends Historing(LitElement) {
+export class OpenSCD extends LitElement {
   @property({ attribute: false })
   doc: XMLDocument | null = null;
   /** The name of the current [[`doc`]] */
@@ -263,6 +256,34 @@ export class OpenSCD extends Historing(LitElement) {
     if (src.startsWith('blob:')) URL.revokeObjectURL(src);
   }
 
+  undo() {}
+
+  redo() {}
+
+  diagnosticUI: any;
+
+  logUI: any;
+
+  historyUI: any;
+
+  diagnoses = new Map<string, any[]>();
+
+  editCount: number = -1;
+
+  log: any[] = [];
+
+  issueUI: any;
+
+  errorUI: any;
+
+  canUndo(): boolean {
+    return true;
+  }
+
+  canRedo(): boolean {
+    return false;
+  }
+
   private handleKeyPress(e: KeyboardEvent): void {
     let handled = false;
     const ctrlAnd = (key: string) =>
@@ -293,22 +314,19 @@ export class OpenSCD extends Historing(LitElement) {
     if (handled) e.preventDefault();
   }
 
-  constructor() {
-    super();
-
-    this.handleKeyPress = this.handleKeyPress.bind(this);
-    document.onkeydown = this.handleKeyPress;
-
-    this.updatePlugins();
-    this.requestUpdate();
-  }
-
   protected renderMain(): TemplateResult {
     return html`${this.renderHosting()}${this.renderPlugging()}${super.render()}`;
   }
 
   connectedCallback(): void {
     super.connectedCallback();
+
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+    document.onkeydown = this.handleKeyPress;
+
+    this.updatePlugins();
+    this.requestUpdate();
+
     this.addEventListener('validate', async () => {
       this.shouldValidate = true;
       await this.validated;
@@ -333,7 +351,7 @@ export class OpenSCD extends Historing(LitElement) {
     });
   }
 
-  render(): TemplateResult {
+  render(): HTMLTemplateResult {
     return html`<oscd-waiter>
       <oscd-settings .host=${this}>
         <oscd-wizards .host=${this}>
@@ -622,7 +640,7 @@ export class OpenSCD extends Historing(LitElement) {
         graphic="icon"
         .disabled=${me.disabled?.() || !me.action}
         ><mwc-icon slot="graphic">${me.icon}</mwc-icon>
-        <span>${translate(me.name)}</span>
+        <span>${get(me.name)}</span>
         ${me.hint
           ? html`<span slot="secondary"><tt>${me.hint}</tt></span>`
           : ''}
@@ -644,8 +662,7 @@ export class OpenSCD extends Historing(LitElement) {
   }
 
   renderEditorTab({ name, icon }: Plugin): TemplateResult {
-    return html`<mwc-tab label=${translate(name)} icon=${icon || 'edit'}>
-    </mwc-tab>`;
+    return html`<mwc-tab label=${get(name)} icon=${icon || 'edit'}> </mwc-tab>`;
   }
 
   renderHosting(): TemplateResult {
@@ -655,7 +672,7 @@ export class OpenSCD extends Historing(LitElement) {
         type="modal"
         id="menu"
       >
-        <span slot="title">${translate('menu.title')}</span>
+        <span slot="title">${get('menu.title')}</span>
         ${this.docName
           ? html`<span slot="subtitle">${this.docName}</span>`
           : ''}
@@ -832,9 +849,10 @@ export class OpenSCD extends Historing(LitElement) {
       loadedPlugins.add(tag);
       import(plugin.src).then(mod => customElements.define(tag, mod.default));
     }
+
     return {
       ...plugin,
-      content: staticTagHtml`<${tag}
+      content: staticHtml`<${unsafeStatic(tag)}
             .doc=${this.doc}
             .docName=${this.docName}
             .editCount=${this.editCount}
@@ -849,7 +867,7 @@ export class OpenSCD extends Historing(LitElement) {
               validator: plugin.kind === 'validator',
               editor: plugin.kind === 'editor',
             })}"
-          ></${tag}>`,
+          ></${unsafeStatic(tag)}>`,
     };
   }
 
@@ -885,7 +903,7 @@ export class OpenSCD extends Historing(LitElement) {
       src: pluginSrcInput.value,
       name: pluginNameInput.value,
       kind: <PluginKind>(<ListItem>pluginKindList.selected).value,
-      requireDoc: requireDoc.checked,
+      requireDoc: requireDoc.selected,
       position: <MenuPosition>positionList.value,
       installed: true,
     });
@@ -897,14 +915,14 @@ export class OpenSCD extends Historing(LitElement) {
 
   renderDownloadUI(): TemplateResult {
     return html`
-      <mwc-dialog id="pluginAdd" heading="${translate('plugins.add.heading')}">
+      <mwc-dialog id="pluginAdd" heading="${get('plugins.add.heading')}">
         <div style="display: flex; flex-direction: column; row-gap: 8px;">
           <p style="color:var(--mdc-theme-error);">
-            ${translate('plugins.add.warning')}
+            ${get('plugins.add.warning')}
           </p>
           <mwc-textfield
-            label="${translate('plugins.add.name')}"
-            helper="${translate('plugins.add.nameHelper')}"
+            label="${get('plugins.add.name')}"
+            helper="${get('plugins.add.nameHelper')}"
             required
             id="pluginNameInput"
           ></mwc-textfield>
@@ -915,19 +933,19 @@ export class OpenSCD extends Historing(LitElement) {
               hasMeta
               selected
               left
-              >${translate('plugins.editor')}<mwc-icon slot="meta"
+              >${get('plugins.editor')}<mwc-icon slot="meta"
                 >${pluginIcons['editor']}</mwc-icon
               ></mwc-radio-list-item
             >
             <mwc-radio-list-item id="menu" value="menu" hasMeta left
-              >${translate('plugins.menu')}<mwc-icon slot="meta"
+              >${get('plugins.menu')}<mwc-icon slot="meta"
                 >${pluginIcons['menu']}</mwc-icon
               ></mwc-radio-list-item
             >
             <div id="menudetails">
               <mwc-formfield
                 id="enabledefault"
-                label="${translate('plugins.requireDoc')}"
+                label="${get('plugins.requireDoc')}"
               >
                 <mwc-switch id="requireDoc" checked></mwc-switch>
               </mwc-formfield>
@@ -935,7 +953,7 @@ export class OpenSCD extends Historing(LitElement) {
                 >${Object.values(menuPosition).map(
                   menutype =>
                     html`<mwc-list-item value="${menutype}"
-                      >${translate('plugins.' + menutype)}</mwc-list-item
+                      >${get('plugins.' + menutype)}</mwc-list-item
                     >`
                 )}</mwc-select
               >
@@ -957,14 +975,14 @@ export class OpenSCD extends Historing(LitElement) {
               }
             </style>
             <mwc-radio-list-item id="validator" value="validator" hasMeta left
-              >${translate('plugins.validator')}<mwc-icon slot="meta"
+              >${get('plugins.validator')}<mwc-icon slot="meta"
                 >${pluginIcons['validator']}</mwc-icon
               ></mwc-radio-list-item
             >
           </mwc-list>
           <mwc-textfield
-            label="${translate('plugins.add.src')}"
-            helper="${translate('plugins.add.srcHelper')}"
+            label="${get('plugins.add.src')}"
+            helper="${get('plugins.add.srcHelper')}"
             placeholder="http://example.com/plugin.js"
             type="url"
             required
@@ -974,12 +992,12 @@ export class OpenSCD extends Historing(LitElement) {
         <mwc-button
           slot="secondaryAction"
           dialogAction="close"
-          label="${translate('cancel')}"
+          label="${get('cancel')}"
         ></mwc-button>
         <mwc-button
           slot="primaryAction"
           icon="add"
-          label="${translate('add')}"
+          label="${get('add')}"
           trailingIcon
           @click=${() => this.handleAddPlugin()}
         ></mwc-button>
@@ -1015,7 +1033,7 @@ export class OpenSCD extends Historing(LitElement) {
       <mwc-dialog
         stacked
         id="pluginManager"
-        heading="${translate('plugins.heading')}"
+        heading="${get('plugins.heading')}"
       >
         <mwc-list
           id="pluginList"
@@ -1024,7 +1042,7 @@ export class OpenSCD extends Historing(LitElement) {
             this.setPlugins(e.detail.index)}
         >
           <mwc-list-item graphic="avatar" noninteractive
-            ><strong>${translate(`plugins.editor`)}</strong
+            ><strong>${get(`plugins.editor`)}</strong
             ><mwc-icon slot="graphic" class="inverted"
               >${pluginIcons['editor']}</mwc-icon
             ></mwc-list-item
@@ -1035,7 +1053,7 @@ export class OpenSCD extends Historing(LitElement) {
             this.plugins.filter(p => p.kind === 'editor')
           )}
           <mwc-list-item graphic="avatar" noninteractive
-            ><strong>${translate(`plugins.menu`)}</strong
+            ><strong>${get(`plugins.menu`)}</strong
             ><mwc-icon slot="graphic" class="inverted"
               ><strong>${pluginIcons['menu']}</strong></mwc-icon
             ></mwc-list-item
@@ -1068,7 +1086,7 @@ export class OpenSCD extends Historing(LitElement) {
         <mwc-button
           slot="secondaryAction"
           icon="refresh"
-          label="${translate('reset')}"
+          label="${get('reset')}"
           @click=${async () => {
             resetPlugins();
             this.requestUpdate();
@@ -1079,7 +1097,7 @@ export class OpenSCD extends Historing(LitElement) {
         <mwc-button
           slot="secondaryAction"
           icon=""
-          label="${translate('close')}"
+          label="${get('close')}"
           dialogAction="close"
         ></mwc-button>
         <mwc-button
@@ -1087,7 +1105,7 @@ export class OpenSCD extends Historing(LitElement) {
           trailingIcon
           slot="primaryAction"
           icon="library_add"
-          label="${translate('plugins.add.heading')}&hellip;"
+          label="${get('plugins.add.heading')}&hellip;"
           @click=${() => this.pluginDownloadUI.show()}
         >
         </mwc-button>

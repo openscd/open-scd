@@ -1,12 +1,6 @@
-import {
-  html,
-  state,
-  TemplateResult,
-  query,
-  customElement,
-  LitElement,
-  property,
-} from 'lit-element';
+import { html, TemplateResult, LitElement } from 'lit';
+import { state, query, customElement, property } from 'lit/decorators.js';
+
 import { WizardEvent, WizardFactory } from '../foundation.js';
 
 import '../wizard-dialog.js';

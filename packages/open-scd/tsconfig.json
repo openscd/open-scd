@@ -12,7 +12,7 @@
     "importHelpers": true,
     "allowJs": true,
     "skipLibCheck": true,
-    "outDir": "out-tsc",
+    "outDir": "dist",
     "sourceMap": true,
     "inlineSources": true,
     "resolveJsonModule": true,

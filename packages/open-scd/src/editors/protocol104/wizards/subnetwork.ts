@@ -1,6 +1,15 @@
-import { html, TemplateResult } from 'lit-element';
+import { html, TemplateResult } from 'lit';
 import { get, translate } from 'lit-translate';
-import { createElement, EditorAction, getMultiplier, getValue, patterns, Wizard, WizardActor, WizardInputElement } from '../../../foundation.js';
+import {
+  createElement,
+  EditorAction,
+  getMultiplier,
+  getValue,
+  patterns,
+  Wizard,
+  WizardActor,
+  WizardInputElement,
+} from '../../../foundation.js';
 
 import '../../../wizard-textfield.js';
 

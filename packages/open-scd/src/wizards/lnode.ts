@@ -1,4 +1,4 @@
-import { html, render, TemplateResult } from 'lit-html';
+import { html, render, TemplateResult } from 'lit';
 import { get, translate } from 'lit-translate';
 
 import '@material/mwc-icon';
@@ -296,7 +296,10 @@ export function lNodeWizardAction(parent: Element): WizardActor {
   };
 }
 
-function getListContainer(target: Element, selector: string): Element | null {
+function getListContainer(
+  target: Element,
+  selector: string
+): HTMLElement | null {
   return (
     target.parentElement?.parentElement?.nextElementSibling?.querySelector(
       selector

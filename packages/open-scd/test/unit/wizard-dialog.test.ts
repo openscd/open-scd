@@ -1,4 +1,5 @@
 import { html, fixture, expect } from '@open-wc/testing';
+import { html as litHTML } from 'lit';
 
 import './mock-editor.js';
 
@@ -60,7 +61,7 @@ describe('wizard-dialog', () => {
         {
           title: 'Page 1',
           content: [
-            html`<wizard-textfield
+            litHTML`<wizard-textfield
               label="Test textfield 1"
             ></wizard-textfield>`,
           ],
@@ -69,7 +70,7 @@ describe('wizard-dialog', () => {
         {
           title: 'Page 2',
           content: [
-            html`<wizard-textfield
+            litHTML`<wizard-textfield
               type="email"
               label="Test textfield 2"
             ></wizard-textfield>`,

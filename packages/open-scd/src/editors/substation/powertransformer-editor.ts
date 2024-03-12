@@ -1,12 +1,6 @@
-import {
-  css,
-  customElement,
-  html,
-  LitElement,
-  property,
-  query,
-  TemplateResult,
-} from 'lit-element';
+import { css, html, LitElement, TemplateResult } from 'lit';
+import { customElement, property, query } from 'lit/decorators.js';
+
 import { translate } from 'lit-translate';
 
 import '@material/mwc-fab';

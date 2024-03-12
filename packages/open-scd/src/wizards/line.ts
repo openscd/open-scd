@@ -1,4 +1,4 @@
-import { html, TemplateResult } from 'lit-html';
+import { html, TemplateResult } from 'lit';
 import { get, translate } from 'lit-translate';
 
 import '../wizard-textfield.js';

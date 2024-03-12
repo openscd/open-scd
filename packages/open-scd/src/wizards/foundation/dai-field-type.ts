@@ -1,4 +1,4 @@
-import { html, TemplateResult } from 'lit-html';
+import { html, TemplateResult } from 'lit';
 import { translate } from 'lit-translate';
 
 import '@material/mwc-list/mwc-list-item';
@@ -44,7 +44,7 @@ const daiFieldTypes = [
   'Octet6',
   'Octet16',
 ] as const;
-export type DaiFieldTypes = typeof daiFieldTypes[number];
+export type DaiFieldTypes = (typeof daiFieldTypes)[number];
 const emptyIfNull = <T>(item: T | null, value: string): string => {
   return item === null ? '' : value;
 };

@@ -1,4 +1,4 @@
-import { html, TemplateResult } from 'lit-element';
+import { html, TemplateResult } from 'lit';
 import { get, translate } from 'lit-translate';
 
 import {
@@ -11,7 +11,7 @@ import {
   WizardInputElement,
 } from '../foundation.js';
 
-import { replaceNamingAction } from "./foundation/actions.js";
+import { replaceNamingAction } from './foundation/actions.js';
 
 const defaultPowerTransformerType = 'PTR';
 
@@ -22,7 +22,7 @@ export function createAction(parent: Element): WizardActor {
     const element = createElement(parent.ownerDocument, 'PowerTransformer', {
       name,
       desc,
-      type: defaultPowerTransformerType
+      type: defaultPowerTransformerType,
     });
 
     const action = {
@@ -67,7 +67,10 @@ export function renderPowerTransformerWizard(
   ];
 }
 
-export function reservedNamesPowerTransformer(parent: Element, currentName?: string | null): string[] {
+export function reservedNamesPowerTransformer(
+  parent: Element,
+  currentName?: string | null
+): string[] {
   return Array.from(parent.querySelectorAll('PowerTransformer'))
     .filter(isPublic)
     .map(pwt => pwt.getAttribute('name') ?? '')
@@ -86,7 +89,12 @@ export function createPowerTransformerWizard(parent: Element): Wizard {
         label: get('add'),
         action: createAction(parent),
       },
-      content: renderPowerTransformerWizard('', null, defaultPowerTransformerType, reservedNames),
+      content: renderPowerTransformerWizard(
+        '',
+        null,
+        defaultPowerTransformerType,
+        reservedNames
+      ),
     },
   ];
 }
@@ -94,7 +102,8 @@ export function createPowerTransformerWizard(parent: Element): Wizard {
 export function editPowerTransformerWizard(element: Element): Wizard {
   const reservedNames = reservedNamesPowerTransformer(
     <Element>element.parentNode!,
-    element.getAttribute('name'));
+    element.getAttribute('name')
+  );
 
   return [
     {

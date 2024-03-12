@@ -1,4 +1,5 @@
 import { expect, fixture, html } from '@open-wc/testing';
+import { html as litHTML } from 'lit';
 
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 
@@ -38,7 +39,7 @@ async function read(path: Path): Promise<Directory> {
   const dir = path[path.length - 1];
   return {
     path,
-    header: dir === 'e5' ? undefined : html`<h2>${dir}</h2>`,
+    header: dir === 'e5' ? undefined : litHTML`<h2>${dir}</h2>`,
     entries: entries[dir] ?? [],
   };
 }

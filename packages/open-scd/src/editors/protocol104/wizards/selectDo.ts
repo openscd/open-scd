@@ -1,4 +1,4 @@
-import { html, TemplateResult } from 'lit-element';
+import { html, TemplateResult } from 'lit';
 import { get } from 'lit-translate';
 
 import '../../../finder-list.js';

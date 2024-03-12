@@ -1,15 +1,13 @@
+import { css, LitElement, TemplateResult, html } from 'lit';
 import {
   customElement,
-  css,
-  queryAll,
-  LitElement,
   property,
   state,
-  TemplateResult,
-  html,
   query,
-} from 'lit-element';
-import { ifDefined } from 'lit-html/directives/if-defined';
+  queryAll,
+} from 'lit/decorators.js';
+
+import { ifDefined } from 'lit/directives/if-defined.js';
 import { get, translate } from 'lit-translate';
 
 import '@material/mwc-button';
@@ -45,10 +43,22 @@ import {
   formatXml,
 } from './foundation.js';
 
+function isWizardInput(
+  input: TemplateResult | WizardInput
+): input is WizardInput {
+  if ((input as WizardInput).kind) {
+    return true;
+  }
+
+  return false;
+}
+
 function renderWizardInput(
   input: TemplateResult | WizardInput
 ): TemplateResult {
-  if (input instanceof TemplateResult) return input;
+  if (!isWizardInput(input)) {
+    return input;
+  }
 
   if (input.kind === 'Checkbox')
     return html`<wizard-checkbox

@@ -1,5 +1,5 @@
-import { css, LitElement, query } from 'lit-element';
-
+import { css, LitElement } from 'lit';
+import { query } from 'lit/decorators.js';
 import {
   cloneElement,
   compareNames,

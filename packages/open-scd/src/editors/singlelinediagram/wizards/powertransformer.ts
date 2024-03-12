@@ -1,21 +1,21 @@
-import { TemplateResult } from 'lit-element';
+import { TemplateResult } from 'lit';
 import { get } from 'lit-translate';
 
-import { Wizard} from '../../../foundation.js';
+import { Wizard } from '../../../foundation.js';
 
 import '../../../wizard-textfield.js';
 import {
   reservedNamesPowerTransformer,
-  renderPowerTransformerWizard
-} from "../../../wizards/powertransformer.js";
+  renderPowerTransformerWizard,
+} from '../../../wizards/powertransformer.js';
 import {
   getDescAttribute,
   getNameAttribute,
   getXCoordinateAttribute,
   getYCoordinateAttribute,
   updateNamingAndCoordinatesAction,
-  renderXYCoordinateFields
-} from "./foundation.js";
+  renderXYCoordinateFields,
+} from './foundation.js';
 
 function render(
   name: string | null,
@@ -25,8 +25,9 @@ function render(
   yCoordinate: string | null,
   reservedNames: string[]
 ): TemplateResult[] {
-  return renderPowerTransformerWizard(name, desc, type, reservedNames)
-    .concat(renderXYCoordinateFields(xCoordinate, yCoordinate));
+  return renderPowerTransformerWizard(name, desc, type, reservedNames).concat(
+    renderXYCoordinateFields(xCoordinate, yCoordinate)
+  );
 }
 
 export function editPowerTransformerWizard(element: Element): Wizard {

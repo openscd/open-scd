@@ -1,6 +1,6 @@
-import { html, TemplateResult } from 'lit-element';
+import { html, TemplateResult } from 'lit';
 import { get, translate } from 'lit-translate';
-import { live } from 'lit-html/directives/live';
+import { live } from 'lit/directives/live.js';
 
 import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-select';

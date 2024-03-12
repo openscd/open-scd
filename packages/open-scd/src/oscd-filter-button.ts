@@ -1,12 +1,6 @@
-import {
-  css,
-  customElement,
-  html,
-  property,
-  query,
-  TemplateResult,
-  unsafeCSS,
-} from 'lit-element';
+import { html, HTMLTemplateResult, TemplateResult, css, unsafeCSS } from 'lit';
+import { customElement, property, query } from 'lit/decorators.js';
+
 import { get, translate } from 'lit-translate';
 
 import '@material/mwc-icon-button';
@@ -48,7 +42,7 @@ export class FilterButton extends FilteredList {
     }
   }
 
-  render(): TemplateResult {
+  render(): HTMLTemplateResult {
     return html`
       <mwc-icon-button
         icon="${this.icon}"

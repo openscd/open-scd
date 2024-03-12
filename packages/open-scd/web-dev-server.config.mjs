@@ -4,7 +4,7 @@
 const hmr = process.argv.includes('--hmr');
 
 export default /** @type {import('@web/dev-server').DevServerConfig} */ ({
-  open: '/demo/',
+  open: '/',
   /** Use regular watch mode if HMR is not enabled. */
   watch: !hmr,
   /** Resolve bare module imports */

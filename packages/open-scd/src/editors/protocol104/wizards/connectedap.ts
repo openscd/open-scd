@@ -1,6 +1,6 @@
-import { html, TemplateResult } from 'lit-element';
+import { html, TemplateResult } from 'lit';
 import { get, translate } from 'lit-translate';
-import { ifDefined } from 'lit-html/directives/if-defined';
+import { ifDefined } from 'lit/directives/if-defined.js';
 
 import '@material/mwc-checkbox';
 import '@material/mwc-switch';

@@ -1,5 +1,4 @@
-import { html } from 'lit-element';
-import { TemplateResult } from 'lit-html';
+import { html, TemplateResult } from 'lit';
 import { get, translate } from 'lit-translate';
 
 import '@material/mwc-textarea';

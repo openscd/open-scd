@@ -1,4 +1,4 @@
-import { html, TemplateResult } from 'lit-element';
+import { html, TemplateResult } from 'lit';
 import { Settings } from './addons/Settings.js';
 
 export function getTheme(theme: Settings['theme']): TemplateResult {

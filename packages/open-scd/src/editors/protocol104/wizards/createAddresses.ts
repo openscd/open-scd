@@ -1,5 +1,5 @@
 import { get, translate } from 'lit-translate';
-import { html, TemplateResult } from 'lit-element';
+import { html, TemplateResult } from 'lit';
 import { Select } from '@material/mwc-select';
 import { SelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
@@ -40,9 +40,10 @@ import { createActions, createCheckActions } from '../foundation/actions.js';
 import { getSignalName } from '../foundation/signalNames.js';
 
 function getSwitchValue(wizard: Element, name: string): boolean {
-  const switchElement: Switch | undefined | null =
-    wizard.shadowRoot?.querySelector<Switch>(`mwc-switch[id="${name}"`);
-  return switchElement?.checked ?? false;
+  const switchElement = wizard.shadowRoot?.querySelector<Switch>(
+    `mwc-switch[id="${name}"`
+  );
+  return switchElement?.selected ?? false;
 }
 
 export function createAddressesAction(

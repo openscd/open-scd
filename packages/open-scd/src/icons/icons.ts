@@ -1,4 +1,4 @@
-import { html, svg, SVGTemplateResult, TemplateResult } from 'lit-element';
+import { html, svg, SVGTemplateResult, TemplateResult } from 'lit';
 
 export type iconType =
   | 'action'
@@ -97,13 +97,12 @@ export const iconProperties: Partial<Record<iconType, iconProperty>> = {
   },
 };
 
-export const dataTypeTemplateIcons: Partial<Record<string, SVGTemplateResult>> =
-  {
-    DAType: getIcon('dAIcon'),
-    DOType: getIcon('dOIcon'),
-    EnumType: getIcon('enumIcon'),
-    LNodeType: getIcon('lNIcon'),
-  };
+export const dataTypeTemplateIcons: Partial<Record<string, TemplateResult>> = {
+  DAType: getIcon('dAIcon'),
+  DOType: getIcon('dOIcon'),
+  EnumType: getIcon('enumIcon'),
+  LNodeType: getIcon('lNIcon'),
+};
 
 export const iconColors: { [key: string]: string } = {
   info: '--cyan',

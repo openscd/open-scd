@@ -1,4 +1,4 @@
-import { html, render, TemplateResult } from 'lit-html';
+import { html, render, TemplateResult } from 'lit';
 import { translate } from 'lit-translate';
 
 import '@material/mwc-list/mwc-list-item';

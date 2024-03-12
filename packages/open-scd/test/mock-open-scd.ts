@@ -1,10 +1,6 @@
-import {
-  customElement,
-  TemplateResult,
-  html,
-  queryAssignedNodes,
-  query,
-} from 'lit-element';
+import { html, HTMLTemplateResult, TemplateResult } from 'lit';
+import { customElement, query, queryAssignedNodes } from 'lit/decorators.js';
+
 import { Wizards } from '../src/addons/Wizards.js';
 import { WizardFactory } from '../src/foundation.js';
 import { OpenSCD } from '../src/open-scd.js';

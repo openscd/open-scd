@@ -1,11 +1,6 @@
-import {
-  css,
-  customElement,
-  html,
-  LitElement,
-  property,
-  TemplateResult,
-} from 'lit-element';
+import { css, html, LitElement, TemplateResult } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
+
 import { translate } from 'lit-translate';
 
 import '@material/mwc-icon';
@@ -20,7 +15,7 @@ import {
 import { newSmvSelectEvent } from './foundation.js';
 import { smvIcon } from '../../../icons/icons.js';
 import { getOrderedIeds, styles } from '../foundation.js';
-import { classMap } from 'lit-html/directives/class-map.js';
+import { classMap } from 'lit/directives/class-map.js';
 import { wizards } from '../../../wizards/wizard-library.js';
 
 let selectedSmvMsg: Element | undefined;

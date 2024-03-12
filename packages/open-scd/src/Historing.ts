@@ -1,5 +1,7 @@
-import { html, state, property, query, TemplateResult } from 'lit-element';
-import { ifDefined } from 'lit-html/directives/if-defined';
+import { html, TemplateResult } from 'lit';
+import { state, property, query } from 'lit/decorators.js';
+
+import { ifDefined } from 'lit/directives/if-defined.js';
 import { get, translate } from 'lit-translate';
 
 import '@material/mwc-button';
@@ -17,7 +19,6 @@ import './filtered-list.js';
 import {
   CommitDetail,
   CommitEntry,
-  ifImplemented,
   InfoDetail,
   InfoEntry,
   invert,
@@ -202,16 +203,17 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
           break;
       }
     }
-
+    /*
     async performUpdate() {
       await new Promise<void>(resolve =>
         requestAnimationFrame(() => resolve())
       );
-      super.performUpdate();
+      return super.performUpdate();
     }
+*/
 
-    constructor(...args: any[]) {
-      super(...args);
+    connectedCallback() {
+      super.connectedCallback();
 
       this.undo = this.undo.bind(this);
       this.redo = this.redo.bind(this);
@@ -385,7 +387,7 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     render(): TemplateResult {
-      return html`${ifImplemented(super.render())}
+      return html`${super.render()}
         <style>
           #log > mwc-icon-button-toggle {
             position: absolute;

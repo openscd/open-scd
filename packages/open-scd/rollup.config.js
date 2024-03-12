@@ -1,8 +1,6 @@
 import nodeResolve from '@rollup/plugin-node-resolve';
 import typescript from '@rollup/plugin-typescript';
 
-import { readdirSync } from 'fs';
-
 export default [
   {
     input: 'src/open-scd.ts',

@@ -1,11 +1,7 @@
-import {
-  css,
-  customElement,
-  html,
-  property,
-  TemplateResult,
-} from 'lit-element';
-import { nothing } from 'lit-html';
+import { css, html, TemplateResult } from 'lit';
+import { property, customElement } from 'lit/decorators.js';
+
+import { nothing } from 'lit';
 import { get, translate } from 'lit-translate';
 
 import '@material/mwc-icon';

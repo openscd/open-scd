@@ -1,4 +1,4 @@
-import { html } from 'lit-element';
+import { html } from 'lit';
 import { get, translate } from 'lit-translate';
 
 import '@material/mwc-button';

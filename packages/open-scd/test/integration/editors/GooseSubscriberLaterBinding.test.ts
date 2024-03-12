@@ -1,5 +1,6 @@
-import { expect, fixture } from '@open-wc/testing';
-import { customElement, TemplateResult, html, query } from 'lit-element';
+import { expect, fixture, html } from '@open-wc/testing';
+import { TemplateResult, html as litHTML } from 'lit';
+import { customElement, query } from 'lit/decorators.js';
 
 import '../../mock-open-scd.js';
 
@@ -23,7 +24,7 @@ class GooseMockOpenSCD extends MockOpenSCD {
   plugin!: GooseSubscriberLaterBinding;
 
   renderHosting(): TemplateResult {
-    return html`<goose-subscriber-later-binding-plugin
+    return litHTML`<goose-subscriber-later-binding-plugin
       .doc=${this.doc}
       .editCount=${this.editCount}
       .nsdoc=${this.nsdoc}

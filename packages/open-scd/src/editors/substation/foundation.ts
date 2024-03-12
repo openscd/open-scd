@@ -1,4 +1,4 @@
-import { css, html, LitElement, TemplateResult } from 'lit-element';
+import { css, html, LitElement, TemplateResult } from 'lit';
 import { classMap } from 'lit-html/directives/class-map.js';
 
 import './function-editor.js';

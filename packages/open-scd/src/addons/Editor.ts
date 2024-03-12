@@ -1,11 +1,7 @@
 import { OpenEvent } from '@openscd/core';
-import {
-  property,
-  LitElement,
-  customElement,
-  TemplateResult,
-  html,
-} from 'lit-element';
+import { LitElement, TemplateResult, html } from 'lit';
+import { property, customElement } from 'lit/decorators.js';
+
 import { get } from 'lit-translate';
 
 import {

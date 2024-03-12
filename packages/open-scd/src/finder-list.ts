@@ -1,12 +1,6 @@
-import {
-  css,
-  customElement,
-  html,
-  LitElement,
-  property,
-  query,
-  TemplateResult,
-} from 'lit-element';
+import { css, html, LitElement, TemplateResult } from 'lit';
+import { property, customElement, query } from 'lit/decorators.js';
+
 import { until } from 'lit-html/directives/until';
 import { translate } from 'lit-translate';
 

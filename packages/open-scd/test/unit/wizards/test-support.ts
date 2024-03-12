@@ -20,7 +20,7 @@ export async function setWizardTextFieldValue(
   field: WizardTextField,
   value: string | null
 ): Promise<void> {
-  if (field.nullSwitch && !field.nullSwitch.checked) {
+  if (field.nullSwitch && !field.nullSwitch.selected) {
     field.nullSwitch?.click();
   }
   field.maybeValue = value;
@@ -31,7 +31,7 @@ export async function setWizardSelectValue(
   field: WizardSelect,
   value: string | null
 ): Promise<void> {
-  if (field.nullSwitch && !field.nullSwitch.checked) {
+  if (field.nullSwitch && !field.nullSwitch.selected) {
     field.nullSwitch?.click();
   }
   field.maybeValue = value;

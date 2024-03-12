@@ -1,12 +1,6 @@
-import {
-  html,
-  property,
-  query,
-  TemplateResult,
-  customElement,
-  LitElement,
-  css,
-} from 'lit-element';
+import { html, TemplateResult, LitElement, css } from 'lit';
+import { property, query, customElement } from 'lit/decorators.js';
+
 import { get, registerTranslateConfig, translate, use } from 'lit-translate';
 
 import '@material/mwc-button';
@@ -203,9 +197,9 @@ export class OscdSettings extends LitElement {
       this.requestUpdate('settings');
     } else if (ae.detail?.action === 'save') {
       this.setSetting('language', <Language>this.languageUI.value);
-      this.setSetting('theme', this.darkThemeUI.checked ? 'dark' : 'light');
-      this.setSetting('mode', this.modeUI.checked ? 'pro' : 'safe');
-      this.setSetting('showieds', this.showiedsUI.checked ? 'on' : 'off');
+      this.setSetting('theme', this.darkThemeUI.selected ? 'dark' : 'light');
+      this.setSetting('mode', this.modeUI.selected ? 'pro' : 'safe');
+      this.setSetting('showieds', this.showiedsUI.selected ? 'on' : 'off');
       this.requestUpdate('settings');
     }
   }

@@ -1,5 +1,5 @@
 import { OpenEvent } from '@openscd/core';
-import { property } from 'lit-element';
+import { property } from 'lit/decorators.js';
 import { get } from 'lit-translate';
 
 import {

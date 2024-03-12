@@ -1,16 +1,7 @@
-import {
-  css,
-  customElement,
-  html,
-  LitElement,
-  property,
-  PropertyValues,
-  query,
-  state,
-  TemplateResult,
-} from 'lit-element';
-import { nothing, SVGTemplateResult } from 'lit-html';
-import { classMap } from 'lit-html/directives/class-map.js';
+import { css, html, LitElement, PropertyValues, TemplateResult } from 'lit';
+import { customElement, property, query, state } from 'lit/decorators.js';
+import { nothing, SVGTemplateResult } from 'lit';
+import { classMap } from 'lit/directives/class-map.js';
 import { translate } from 'lit-translate';
 
 import '@material/mwc-icon';

@@ -2,6 +2,9 @@ import { expect, fixture, html } from '@open-wc/testing';
 
 import { LitElement } from 'lit-element';
 
+import { IconButton } from '@material/mwc-icon-button';
+import '@material/mwc-icon-button';
+
 import '../../mock-open-scd.js';
 import '../../../src/editors/IED.js';
 
@@ -195,7 +198,7 @@ describe('IED Plugin', () => {
             'oscd-filter-button[id="lnClassesFilter"]'
           )
         );
-        const filterButton = <LitElement>(
+        const filterButton = <IconButton>(
           oscdFilterButton!.shadowRoot!.querySelector('mwc-icon-button')
         );
         filterButton.click();
@@ -346,7 +349,7 @@ describe('IED Plugin', () => {
             'oscd-filter-button[id="lnClassesFilter"]'
           )
         );
-        const filterButton = <LitElement>(
+        const filterButton = <IconButton>(
           oscdFilterButton!.shadowRoot!.querySelector('mwc-icon-button')
         );
         filterButton.click();

@@ -1,13 +1,6 @@
-import {
-  html,
-  LitElement,
-  TemplateResult,
-  property,
-  customElement,
-  state,
-  css,
-  query,
-} from 'lit-element';
+import { html, LitElement, TemplateResult, css } from 'lit';
+import { property, customElement, state, query } from 'lit/decorators.js';
+
 import { translate } from 'lit-translate';
 
 import '@material/mwc-icon-button';
@@ -28,7 +21,6 @@ import {
   tags,
 } from '../../foundation.js';
 import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
-import { classMap } from 'lit-html/directives/class-map.js';
 import { renderGeneralEquipment } from './foundation.js';
 
 function childTags(element: Element | null | undefined): SCLTag[] {

@@ -1,12 +1,6 @@
-import {
-  css,
-  html,
-  LitElement,
-  property,
-  query,
-  state,
-  TemplateResult,
-} from 'lit-element';
+import { css, html, LitElement, TemplateResult } from 'lit';
+import { property, query, state } from 'lit/decorators.js';
+
 import { get, translate } from 'lit-translate';
 
 import '@material/mwc-list/mwc-check-list-item';

@@ -1,4 +1,5 @@
 import { expect, fixture, html } from '@open-wc/testing';
+import { html as litHTML } from 'lit';
 
 import '../../../../src/addons/Wizards.js';
 import { Wizards } from '../../../../src/addons/Wizards.js';
@@ -45,7 +46,7 @@ describe('dai-field-type', async () => {
       return [
         {
           title: 'Custom Field Wizard',
-          content: [html`${customField.render(daElement, daiElement!)}`],
+          content: [litHTML`${customField.render(daElement, daiElement!)}`],
         },
       ];
     }

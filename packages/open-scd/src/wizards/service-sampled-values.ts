@@ -1,4 +1,4 @@
-import { TemplateResult } from 'lit-html';
+import { TemplateResult } from 'lit';
 import { get } from 'lit-translate';
 import { WizardPage } from '../foundation.js';
 

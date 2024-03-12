@@ -1,4 +1,4 @@
-import { html } from 'lit-element';
+import { html } from 'lit';
 import { get } from 'lit-translate';
 
 import '@material/mwc-list/mwc-check-list-item';
