@@ -1,19 +1,22 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import './mock-logger.js';
+import '../mock-editor-logger.js';
 import { MockAction } from './mock-actions.js';
-import { MockLogger } from './mock-logger.js';
+import { MockEditorLogger } from '../mock-editor-logger.js';
 
 import {
   CommitEntry,
   newIssueEvent,
   newLogEvent,
 } from '../../src/foundation.js';
+import { OscdHistory } from '../../src/addons/History.js';
 
 describe('HistoringElement', () => {
-  let element: MockLogger;
+  let mock: MockEditorLogger;
+  let element: OscdHistory;
   beforeEach(async () => {
-    element = <MockLogger>await fixture(html`<mock-logger></mock-logger>`);
+    mock = <MockEditorLogger>await fixture(html`<mock-editor-logger></mock-editor-logger>`);
+    element = mock.history;
   });
 
   it('starts out with an empty log', () =>

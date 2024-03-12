@@ -68,6 +68,7 @@ describe('Communication Plugin', () => {
     it('that opens a add subnetwork wizard on mwc-fab click', async () => {
       expect(parent.wizardUI.dialogs.length).to.equal(0);
       fab.click();
+      await parent.requestUpdate();
       await parent.updateComplete;
       expect(parent.wizardUI.dialogs.length).to.equal(1);
     });

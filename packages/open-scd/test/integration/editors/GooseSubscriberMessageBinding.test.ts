@@ -1,4 +1,5 @@
 import { expect, fixture } from '@open-wc/testing';
+import { initializeNsdoc } from '../../../src/foundation/nsdoc.js';
 
 import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 
@@ -28,10 +29,11 @@ class GooseMockOpenSCD extends MockOpenSCD {
   }
 }
 
-describe('GOOSE subscriber plugin', () => {
+describe('GOOSE subscriber plugin', async () => {
   let element: GooseSubscriberMessageBindingPlugin;
   let parent: GooseMockOpenSCD;
   let doc: XMLDocument;
+  const nsdoc = await initializeNsdoc();
 
   beforeEach(async () => {
     doc = await fetch('/test/testfiles/editors/MessageBindingGOOSE2007B4.scd')
@@ -42,6 +44,7 @@ describe('GOOSE subscriber plugin', () => {
       html`<goose-mock-open-scd .doc=${doc}
       ></goosemock-open-scd>`
     );
+    await parent.requestUpdate();
     await parent.updateComplete;
     element = parent.plugin;
   });
@@ -390,6 +393,7 @@ describe('GOOSE subscriber plugin', () => {
           beforeEach(async () => {
             (<HTMLElement>getItemFromSubscriberList('IED4')).click();
             await element.requestUpdate();
+            await element.updateComplete;
           });
 
           describe('the left hand side subscriber IED list', () => {

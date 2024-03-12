@@ -297,6 +297,7 @@ describe('IED Plugin', () => {
               'mwc-icon-button[icon="add"]'
             ) as HTMLElement)!.click();
 
+          await parent.requestUpdate();
           await parent.updateComplete;
 
           expect(parent.wizardUI.dialogs.length).to.equal(1);

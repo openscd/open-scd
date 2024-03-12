@@ -1,5 +1,4 @@
-import { html, state, property, query, TemplateResult } from 'lit-element';
-import { ifDefined } from 'lit-html/directives/if-defined';
+import { html, state, property, query, TemplateResult, customElement, LitElement } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
 import '@material/mwc-button';
@@ -13,7 +12,7 @@ import '@material/mwc-snackbar';
 import { Dialog } from '@material/mwc-dialog';
 import { Snackbar } from '@material/mwc-snackbar';
 
-import './filtered-list.js';
+import '../filtered-list.js';
 import {
   CommitDetail,
   CommitEntry,
@@ -27,11 +26,10 @@ import {
   LogEntry,
   LogEntryType,
   LogEvent,
-  Mixin,
   newActionEvent,
-} from './foundation.js';
-import { getFilterIcon, iconColors } from './icons/icons.js';
-import { Plugin } from './open-scd.js';
+} from '../foundation.js';
+import { getFilterIcon, iconColors } from '../icons/icons.js';
+import { Plugin } from '../open-scd.js';
 
 const icons = {
   info: 'info',
@@ -51,21 +49,25 @@ function getPluginName(src: string): string {
   return name || src;
 }
 
-/**
- * A mixin adding a `history` property to any `LitElement`, in which
- * incoming [[`LogEvent`]]s are logged.
- *
- * For [[`EditorAction`]] entries, also sets `editCount` to the index of
- * the committed action, allowing the user to go to `previousAction` with
- * `undo()` if `canUndo` and to go to `nextAction` with `redo()` if `canRedo`.
- *
- * Renders the `history` to `logUI` and the latest `'error'` [[`LogEntry`]] to
- * `messageUI`.
- */
-export type HistoringElement = Mixin<typeof Historing>;
 
-export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
-  class HistoringElement extends Base {
+export interface EditCountDetail {
+  editCount: number;
+}
+export type EditCountEvent = CustomEvent<EditCountDetail>;
+export function newEditCountEvent(
+  editCount: number,
+  eventInitDict?: CustomEventInit<Partial<EditCountDetail>>
+): EditCountEvent {
+  return new CustomEvent<EditCountDetail>('edit-count', {
+    bubbles: true,
+    composed: true,
+    ...eventInitDict,
+    detail: { editCount },
+  });
+}
+
+@customElement('oscd-history')
+export class OscdHistory extends LitElement {
     /** All [[`LogEntry`]]s received so far through [[`LogEvent`]]s. */
     @property({ type: Array })
     log: InfoEntry[] = [];
@@ -77,8 +79,15 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
     /** Index of the last [[`EditorAction`]] applied. */
     @property({ type: Number })
     editCount = -1;
+    
     @property()
     diagnoses = new Map<string, IssueDetail[]>();
+
+    @property({
+    type: Object,
+    })
+    host!: HTMLElement;
+
     @state()
     latestIssue!: IssueDetail;
 
@@ -125,20 +134,25 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
 
     undo(): boolean {
       if (!this.canUndo) return false;
-      this.dispatchEvent(
+      this.host.dispatchEvent(
         newActionEvent(
           invert((<CommitEntry>this.history[this.editCount]).action)
         )
       );
-      this.editCount = this.previousAction;
+      this.editCount = this.previousAction; 
+      this.dispatchEvent(newEditCountEvent(this.editCount));
       return true;
     }
     redo(): boolean {
       if (!this.canRedo) return false;
-      this.dispatchEvent(
+      this.host.dispatchEvent(
         newActionEvent((<CommitEntry>this.history[this.nextAction]).action)
       );
-      this.editCount = this.nextAction;
+      this.editCount = this.nextAction; 
+      this.host.dispatchEvent(
+        newActionEvent((<CommitEntry>this.history[this.editCount]).action)
+      );
+      
       return true;
     }
 
@@ -152,7 +166,8 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
         if (entry.action.derived) return;
         entry.action.derived = true;
         if (this.nextAction !== -1) this.history.splice(this.nextAction);
-        this.editCount = this.history.length;
+        this.editCount = this.history.length; 
+        this.dispatchEvent(newEditCountEvent(this.editCount));
       }
 
       this.history.push(entry);
@@ -162,7 +177,8 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
     private onReset() {
       this.log = [];
       this.history = [];
-      this.editCount = -1;
+      this.editCount = -1; 
+      this.dispatchEvent(newEditCountEvent(this.editCount));
     }
 
     private onInfo(detail: InfoDetail) {
@@ -203,22 +219,14 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
       }
     }
 
-    async performUpdate() {
-      await new Promise<void>(resolve =>
-        requestAnimationFrame(() => resolve())
-      );
-      super.performUpdate();
-    }
-
-    constructor(...args: any[]) {
-      super(...args);
-
+    firstUpdated(): void { 
       this.undo = this.undo.bind(this);
       this.redo = this.redo.bind(this);
       this.onLog = this.onLog.bind(this);
+      this.onIssue = this.onIssue.bind(this);
 
-      this.addEventListener('log', this.onLog);
-      this.addEventListener('issue', this.onIssue);
+      this.host.addEventListener('log', this.onLog);
+      this.host.addEventListener('issue', this.onIssue);
     }
 
     renderLogEntry(
@@ -241,9 +249,9 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
           <span slot="secondary">${entry.message}</span>
           <mwc-icon
             slot="graphic"
-            style="--mdc-theme-text-icon-on-background:var(${ifDefined(
+            style="--mdc-theme-text-icon-on-background:var(${
               iconColors[entry.kind]
-            )})"
+            })"
             >${icons[entry.kind]}</mwc-icon
           >
         </mwc-list-item></abbr
@@ -270,9 +278,9 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
           <span slot="secondary">${entry.message}</span>
           <mwc-icon
             slot="graphic"
-            style="--mdc-theme-text-icon-on-background:var(${ifDefined(
+            style="--mdc-theme-text-icon-on-background:var(${
               iconColors[entry.kind]
-            )})"
+            })"
             >history</mwc-icon
           >
         </mwc-list-item></abbr
@@ -385,7 +393,7 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     render(): TemplateResult {
-      return html`${ifImplemented(super.render())}
+      return html`
         <style>
           #log > mwc-icon-button-toggle {
             position: absolute;
@@ -513,7 +521,5 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
           <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
         </mwc-snackbar>`;
     }
-  }
-
-  return HistoringElement;
 }
+

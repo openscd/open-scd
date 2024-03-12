@@ -140,6 +140,7 @@ describe('GOOSE Subscribe Data Binding Plugin', async () => {
       )
     )).click();
     await element.updateComplete;
+    await parent.requestUpdate();
     await parent.updateComplete;
 
     expect(extRefListElement['getSubscribedLNElements']().length).to.be.equal(

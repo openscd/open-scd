@@ -39,7 +39,7 @@ describe('Editing-Logging integration', () => {
       );
       expect(newElement.parentElement).to.equal(parent);
 
-      elm.undo();
+      elm.history.undo();
       expect(newElement.parentElement).to.be.null;
     });
 
@@ -48,9 +48,9 @@ describe('Editing-Logging integration', () => {
         newActionEvent({ new: { parent, element: newElement } })
       );
 
-      elm.undo();
+      elm.history.undo();
 
-      elm.redo();
+      elm.history.redo();
       expect(newElement.parentElement).to.equal(parent);
     });
 
@@ -58,9 +58,9 @@ describe('Editing-Logging integration', () => {
       elm.dispatchEvent(
         newActionEvent({ new: { parent, element: newElement } })
       );
-      elm.undo();
+      elm.history.undo();
 
-      elm.redo();
+      elm.history.redo();
       expect(
         parent.querySelector('Bay[name="Q03"]')?.nextElementSibling
       ).to.equal(parent.querySelector('Bay[name="Q01"]'));
@@ -80,9 +80,9 @@ describe('Editing-Logging integration', () => {
         })
       );
 
-      elm.undo();
+      elm.history.undo();
 
-      elm.redo();
+      elm.history.redo();
 
       expect(parent.querySelector('Bay[name="Q03"]')?.nextSibling).to.equal(
         parent.lastChild
@@ -104,7 +104,7 @@ describe('Editing-Logging integration', () => {
       );
       expect(element.parentElement).to.be.null;
 
-      elm.undo();
+      elm.history.undo();
       expect(element.parentElement).to.equal(parent);
     });
 
@@ -118,9 +118,9 @@ describe('Editing-Logging integration', () => {
         })
       );
 
-      elm.undo();
+      elm.history.undo();
 
-      elm.redo();
+      elm.history.redo();
       expect(element.parentElement).to.be.null;
     });
 
@@ -135,7 +135,7 @@ describe('Editing-Logging integration', () => {
           },
         })
       );
-      elm.undo();
+      elm.history.undo();
 
       expect(element.nextSibling).to.equal(originalNextSibling);
     });
@@ -155,7 +155,7 @@ describe('Editing-Logging integration', () => {
       );
       expect(element.parentElement).to.equal(newParent);
 
-      elm.undo();
+      elm.history.undo();
       expect(element.parentElement).to.equal(parent);
     });
 
@@ -164,9 +164,9 @@ describe('Editing-Logging integration', () => {
         newActionEvent({ old: { parent, element }, new: { parent: newParent } })
       );
 
-      elm.undo();
+      elm.history.undo();
 
-      elm.redo();
+      elm.history.redo();
       expect(element.parentElement).to.equal(newParent);
     });
 
@@ -185,7 +185,7 @@ describe('Editing-Logging integration', () => {
         newActionEvent({ old: { parent, element }, new: { parent: newParent } })
       );
 
-      elm.undo();
+      elm.history.undo();
       expect(
         parent.querySelector('Bay[name="Q01"]')?.nextElementSibling
       ).to.equal(parent.querySelector('Bay[name="Q02"]'));
@@ -204,7 +204,7 @@ describe('Editing-Logging integration', () => {
         newActionEvent({ old: { element }, new: { element: newElement } })
       );
 
-      elm.undo();
+      elm.history.undo();
       expect(newElement.parentElement).to.be.null;
       expect(element.parentElement).to.equal(parent);
     });
@@ -214,9 +214,9 @@ describe('Editing-Logging integration', () => {
         newActionEvent({ old: { element }, new: { element: newElement } })
       );
 
-      elm.undo();
+      elm.history.undo();
 
-      elm.redo();
+      elm.history.redo();
 
       expect(newElement.parentElement).to.equal(parent);
       expect(element.parentElement).to.be.null;
@@ -232,14 +232,14 @@ describe('Editing-Logging integration', () => {
       expect(element.children).to.have.lengthOf(originNewChildCount);
       expect(newElement.children).to.have.lengthOf(originOldChildCount);
 
-      elm.undo();
-      elm.redo();
+      elm.history.undo();
+      elm.history.redo();
 
-      elm.undo();
+      elm.history.undo();
       expect(element.children).to.have.lengthOf(originOldChildCount);
       expect(newElement.children).to.have.lengthOf(originNewChildCount);
 
-      elm.redo();
+      elm.history.redo();
       expect(element.children).to.have.lengthOf(originNewChildCount);
       expect(newElement.children).to.have.lengthOf(originOldChildCount);
     });
@@ -259,7 +259,7 @@ describe('Editing-Logging integration', () => {
       expect(element).to.have.attribute('name', 'Q03');
       expect(element).to.not.have.attribute('desc');
 
-      elm.undo();
+      elm.history.undo();
       expect(element).to.have.attribute('name', 'Q01');
       expect(element).to.have.attribute('desc', 'Bay');
     });
@@ -267,8 +267,8 @@ describe('Editing-Logging integration', () => {
     it('can redo', () => {
       elm.dispatchEvent(newActionEvent(updateAction));
 
-      elm.undo();
-      elm.redo();
+      elm.history.undo();
+      elm.history.redo();
 
       expect(element).to.have.attribute('name', 'Q03');
       expect(element).to.not.have.attribute('desc');

@@ -107,6 +107,7 @@ describe('SMV Subscribe Later Binding plugin', () => {
     )).click();
 
     await element.updateComplete;
+    await parent.requestUpdate();
     await parent.updateComplete;
 
     expect(
@@ -187,6 +188,7 @@ describe('SMV Subscribe Later Binding plugin', () => {
       )
     )).click();
     await element.updateComplete;
+    await parent.requestUpdate();
     await parent.updateComplete;
 
     expect(
