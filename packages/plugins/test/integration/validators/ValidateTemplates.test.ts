@@ -24,13 +24,6 @@ describe('ValidateTemplates OpenSCD integration test ', () => {
         <mock-open-scd .doc=${doc}
           ><validate-templates .doc=${doc}></validate-templates
         ></mock-open-scd>
-
-        <link href="public/google/fonts/roboto-v27.css" rel="stylesheet" />
-        <link href="public/google/fonts/roboto-mono-v13.css" rel="stylesheet" />
-        <link
-          href="public/google/icons/material-icons-outlined.css"
-          rel="stylesheet"
-        />
       `);
       element = parent.getActivePlugin();
       element.pluginId = '/plugins/src/validators/ValidateTemplates.js';
@@ -56,13 +49,6 @@ describe('ValidateTemplates OpenSCD integration test ', () => {
         <mock-open-scd .doc=${doc}
           ><validate-templates .doc=${doc}></validate-templates
         ></mock-open-scd>
-
-        <link href="public/google/fonts/roboto-v27.css" rel="stylesheet" />
-        <link href="public/google/fonts/roboto-mono-v13.css" rel="stylesheet" />
-        <link
-          href="public/google/icons/material-icons-outlined.css"
-          rel="stylesheet"
-        />
       `);
       element = parent.getActivePlugin();
       element.pluginId = '/plugins/src/validators/ValidateTemplates.js';
@@ -91,13 +77,6 @@ describe('ValidateTemplates OpenSCD integration test ', () => {
         <mock-open-scd .doc=${doc}
           ><validate-templates .doc=${doc}></validate-templates
         ></mock-open-scd>
-
-        <link href="public/google/fonts/roboto-v27.css" rel="stylesheet" />
-        <link href="public/google/fonts/roboto-mono-v13.css" rel="stylesheet" />
-        <link
-          href="public/google/icons/material-icons-outlined.css"
-          rel="stylesheet"
-        />
       `);
       element = parent.getActivePlugin();
       element.pluginId = '/plugins/src/validators/ValidateTemplates.js';
