@@ -1,7 +1,12 @@
+// this file is necessary to exclude the spec
+// from being built, but we still include them
+// in type checking
 {
 	"extends": "./tsconfig.json",
 	"exclude": [
 		"**/*.spec.ts",
-		"vitest.config.ts"
+		"vitest.config.ts",
+		"dist/",
+		"coverage/",
 	]
 }
