@@ -6,6 +6,6 @@ export function createEditEvent(element: Element): EditEvent {
 	return { element }
 }
 
-export function sum(a, b) {
+export function sum(a: number, b: number) {
 	return a + b
 }
