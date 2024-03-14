@@ -4,11 +4,12 @@
 	"description": "Core interface and definition for OpenSCD",
 	"main": "dist/index.js",
 	"scripts": {
-		"build": "tsc",
+		"build": "tsc --project ./tsconfig.build.json",
 		"build:watch": "tsc -w",
 		"test": "vitest --config ./vitest.config.ts",
 		"coverage": "npm test -- run --coverage",
-		"lint": "eslint ./src --ext .ts"
+		"lint": "eslint ./src --ext .ts",
+		"fix": "eslint ./src --ext .ts --fix"
 	},
 	"keywords": [
 		"openscd",

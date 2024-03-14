@@ -99,7 +99,6 @@
 		"skipLibCheck": true /* Skip type checking all .d.ts files. */
 	},
 	"exclude": [
-		"**/*.spec.ts",
 		"vitest.config.ts"
 	]
 }
