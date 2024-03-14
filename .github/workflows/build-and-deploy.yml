@@ -28,6 +28,10 @@ jobs:
         run: |
           cp -R packages/core/doc packages/open-scd/build/core-doc
 
+      - name: Copy Plugin Docs to OpenSCD
+        run: |
+          cp -R packages/plugins/doc packages/open-scd/build/plugin-doc
+
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:

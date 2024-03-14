@@ -47,6 +47,7 @@
     "@openscd/core": "*"
   },
   "scripts": {
+    "clean": "rimraf build",
     "lint:eslint": "eslint --ext .ts,.html . --ignore-path .gitignore",
     "format:eslint": "eslint --ext .ts,.html . --fix --ignore-path .gitignore",
     "lint:prettier": "prettier \"**/*.js\" \"**/*.ts\" --check --ignore-path .gitignore",
@@ -95,7 +96,7 @@
     "husky": "^7.0.1",
     "lint-staged": "^11.1.2",
     "prettier": "^2.3.2",
-    "sinon": "^11.1.2",
+    "sinon": "^17.0.1",
     "snowpack": "3.8.6",
     "source-map": "^0.7.4",
     "standard-version": "^9.3.1",

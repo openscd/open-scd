@@ -8,11 +8,10 @@
   ],
   "scripts": {
     "clean": "lerna run clean",
-    "build": "lerna run build",
-    "doc": "lerna run doc --ignore=open-scd",
-    "test": "lerna run test --ignore=@openscd/core",
-    "build:all": "npx nx run-many -t build --all",
-    "start": "lerna run start --ignore=@openscd/core"
+    "build": "npx nx run-many -t build --all",
+    "doc": "lerna run doc",
+    "test": "lerna run test",
+    "start": "lerna run start"
   },
   "repository": {
     "type": "git",

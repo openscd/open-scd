@@ -19,7 +19,7 @@
       "inputs": ["default", "^default"]
     },
     "build": {
-      "dependsOn": ["^build"]
+      "dependsOn": ["clean", "^clean", "^build"]
     }
   }
 }
