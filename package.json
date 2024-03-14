@@ -3,9 +3,6 @@
   "version": "0.0.1",
   "description": "OpenSCD base distribution and plugins",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cd packages/open-scd && npm run start"
