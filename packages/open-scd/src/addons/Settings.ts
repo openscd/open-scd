@@ -33,7 +33,7 @@ import {
   iec6185073,
   iec6185074,
   iec6185081,
-} from '../validators/templates/foundation.js';
+} from '../foundation/nsd.js';
 import { initializeNsdoc, Nsdoc } from '../foundation/nsdoc.js';
 
 export type Settings = {
@@ -89,11 +89,6 @@ export function newLoadNsdocEvent(
 
 @customElement('oscd-settings')
 export class OscdSettings extends LitElement {
-  @property({
-    type: Object,
-  })
-  nsdoc!: Nsdoc;
-
   /** Current [[`Settings`]] in `localStorage`, default to [[`defaults`]]. */
   @property()
   get settings(): Settings {
@@ -108,6 +103,9 @@ export class OscdSettings extends LitElement {
       'IEC 61850-8-1': this.getSetting('IEC 61850-8-1'),
     };
   }
+  /** Object containing all *.nsdoc files and a function extracting element's label form them*/
+  @property({ attribute: false })
+  nsdoc: Nsdoc = initializeNsdoc();
 
   @property({
     type: Object,
