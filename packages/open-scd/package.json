@@ -1,10 +1,9 @@
 {
-  "name": "open-scd",
+  "name": "@openscd/open-scd",
   "version": "0.34.0",
   "repository": "https://github.com/openscd/open-scd.git",
   "directory": "packages/open-scd",
   "description": "A bottom-up substation configuration designer for projects described using SCL `IEC 61850-6` Edition 2 or greater.",
-  "private": true,
   "keywords": [
     "SCL",
     "substation configuration",
@@ -18,6 +17,9 @@
   "main": "open-scd.js",
   "module": "open-scd.js",
   "type": "module",
+  "files": [
+    "./build/**"
+  ],
   "dependencies": {
     "@material/mwc-dialog": "0.22.1",
     "@material/mwc-drawer": "0.22.1",
