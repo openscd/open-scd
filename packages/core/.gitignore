@@ -1,2 +1,5 @@
-dist
-coverage
+.tsbuildinfo
+
+dist/
+node_modules/
+coverage/
