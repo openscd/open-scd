@@ -17,5 +17,6 @@
     "inlineSources": true,
     "resolveJsonModule": true,
     "rootDir": "./src"
-  }
+  },
+  "include": ["src/**/*.ts"]
 }
