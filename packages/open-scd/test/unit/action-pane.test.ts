@@ -132,4 +132,35 @@ describe('action-pane', () => {
         ?.classList.contains('contrasted')
     ).to.be.true;
   });
+
+  describe('with existing parent action-pane', () => {
+    let parent: ActionPane;
+    const bay = <Element>(
+      new DOMParser().parseFromString(
+        `<Bay name="name" desc="desc"></Bay>`,
+        'application/xml'
+      ).documentElement
+    );
+    beforeEach(async () => {
+      parent = await fixture(
+        html`<action-pane header="parent header"
+          ><action-pane header="child header"></action-pane
+        ></action-pane>`
+      );
+
+      element = parent.querySelector('action-pane')!;
+      await element.updateComplete;
+    });
+
+    it('increments the default level property of the parent', () => {
+      expect(element.level).to.equal(2);
+    });
+
+    it('only increments on first update', async () => {
+      parent.level = 3;
+      await parent.requestUpdate();
+
+      expect(element.level).to.equal(2);
+    });
+  });
 });
