@@ -16,8 +16,6 @@
   },
   "scripts": {
     "clean": "rimraf .tsbuildinfo dist",
-    "test": "playwright install && wtr --coverage",
-    "test:watch": "npm run build && concurrently -k -r \"tsc -b --watch --preserveWatchOutput\" \"wtr --watch --coverage\"",
     "build": "tsc -b",
     "doc": "npm run analyze -- --exclude dist && typedoc --out doc foundation.ts",
     "prepublish": "npm run lint && npm run build && npm run doc",
