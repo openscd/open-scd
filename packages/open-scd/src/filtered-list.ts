@@ -1,7 +1,6 @@
 import { html, HTMLTemplateResult, TemplateResult, unsafeCSS, css } from 'lit';
 import { customElement, state, property, query } from 'lit/decorators.js';
-
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-checkbox';
 import '@material/mwc-formfield';
@@ -138,7 +137,7 @@ export class FilteredList extends ListBase {
 
   render(): HTMLTemplateResult {
     return html`<div id="tfcontainer">
-        <abbr title="${this.searchFieldLabel ?? translate('filter')}"
+        <abbr title="${this.searchFieldLabel ?? get('filter')}"
           ><mwc-textfield
             label="${this.searchFieldLabel ?? ''}"
             iconTrailing="search"

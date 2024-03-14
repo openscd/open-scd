@@ -1,8 +1,6 @@
 import { css, html, LitElement, TemplateResult } from 'lit';
-
 import { property, query } from 'lit/decorators.js';
-
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import { RadioListItem } from '@material/mwc-list/mwc-radio-list-item.js';
 
@@ -47,9 +45,7 @@ export default class SMVSubscriberMessageBindingPlugin extends LitElement {
 
   render(): TemplateResult {
     return html`<div>
-      <mwc-formfield
-        label="${translate('subscription.smv.view.publisherView')}"
-      >
+      <mwc-formfield label="${get('subscription.smv.view.publisherView')}">
         <mwc-radio
           id="smvPublisherView"
           name="view"
@@ -58,9 +54,7 @@ export default class SMVSubscriberMessageBindingPlugin extends LitElement {
             this.listDiv.dispatchEvent(newViewEvent(View.PUBLISHER))}
         ></mwc-radio>
       </mwc-formfield>
-      <mwc-formfield
-        label="${translate('subscription.smv.view.subscriberView')}"
-      >
+      <mwc-formfield label="${get('subscription.smv.view.subscriberView')}">
         <mwc-radio
           id="smvSubscriberView"
           name="view"

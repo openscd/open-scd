@@ -1,5 +1,5 @@
 import { html, TemplateResult } from 'lit';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '../../finder-list.js';
 import { Directory } from '../../finder-list.js';
@@ -20,7 +20,7 @@ export function getReader(
     const element = find(doc, tagName, id);
 
     if (!element)
-      return { path, header: html`<p>${translate('error')}</p>`, entries: [] };
+      return { path, header: html`<p>${get('error')}</p>`, entries: [] };
 
     return {
       path,

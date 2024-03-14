@@ -1,5 +1,5 @@
 import { html, TemplateResult } from 'lit';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import {
   cloneElement,
@@ -86,13 +86,13 @@ export function renderXYCoordinateFields(
       label="xCoordinate"
       nullable
       .maybeValue=${xCoordinate}
-      helper="${translate('sld.wizard.xCoordinateHelper')}"
+      helper="${get('sld.wizard.xCoordinateHelper')}"
     ></wizard-textfield>`,
     html`<wizard-textfield
       label="yCoordinate"
       .maybeValue=${yCoordinate}
       nullable
-      helper="${translate('sld.wizard.yCoordinateHelper')}"
+      helper="${get('sld.wizard.yCoordinateHelper')}"
     ></wizard-textfield>`,
   ];
 }

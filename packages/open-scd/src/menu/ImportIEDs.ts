@@ -1,7 +1,6 @@
 import { css, html, LitElement, TemplateResult } from 'lit';
 import { property, query, state } from 'lit/decorators.js';
-
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-list/mwc-check-list-item';
 import '@material/dialog';
@@ -556,7 +555,7 @@ export default class ImportingIedPlugin extends LitElement {
       </filtered-list>
       <mwc-button
         dialogAction="close"
-        label="${translate('close')}"
+        label="${get('close')}"
         slot="secondaryAction"
         style="--mdc-theme-primary: var(--mdc-theme-error)"
       ></mwc-button>

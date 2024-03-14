@@ -1,5 +1,5 @@
 import { html, TemplateResult } from 'lit';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 import { live } from 'lit/directives/live.js';
 
 import '@material/mwc-list/mwc-list-item';
@@ -150,7 +150,7 @@ export function editAddressWizard(
         label="cdc"
         .maybeValue="${cdc}"
         .helper="${reqCmvMapping
-          ? translate('protocol104.mappedCmv', { cdc: foundCdc })
+          ? get('protocol104.mappedCmv', { cdc: foundCdc })
           : ''}"
         .helperPersistent="${reqCmvMapping}"
         disabled
@@ -172,7 +172,7 @@ export function editAddressWizard(
           casdu = (<WizardInputElement>evt.target).value ?? '';
         }}}"
         .maybeValue="${live(addressElement.getAttribute('casdu') ?? '')}"
-        helper="${translate('protocol104.wizard.casduHelper')}"
+        helper="${get('protocol104.wizard.casduHelper')}"
         required
       >
       </wizard-textfield>`,
@@ -180,7 +180,7 @@ export function editAddressWizard(
         .validityTransform="${validateIOA}"
         label="ioa"
         .maybeValue="${live(addressElement.getAttribute('ioa') ?? '')}"
-        helper="${translate('protocol104.wizard.ioaHelper')}"
+        helper="${get('protocol104.wizard.ioaHelper')}"
         required
       >
       </wizard-textfield>`,
@@ -197,7 +197,7 @@ export function editAddressWizard(
       fields.push(html`<wizard-select
         label="unitMultiplier"
         .maybeValue="${addressElement.getAttribute('unitMultiplier')}"
-        helper="${translate('protocol104.wizard.unitMultiplierHelper')}"
+        helper="${get('protocol104.wizard.unitMultiplierHelper')}"
         fixedMenuPosition
         nullable
       >
@@ -214,7 +214,7 @@ export function editAddressWizard(
       fields.push(html`<wizard-textfield
         label="scaleMultiplier"
         .maybeValue="${addressElement.getAttribute('scaleMultiplier')}"
-        helper="${translate('protocol104.wizard.scaleMultiplierHelper')}"
+        helper="${get('protocol104.wizard.scaleMultiplierHelper')}"
         pattern="${patterns.decimal}"
         nullable
       >
@@ -223,7 +223,7 @@ export function editAddressWizard(
       fields.push(html`<wizard-textfield
         label="scaleOffset"
         .maybeValue="${addressElement.getAttribute('scaleOffset')}"
-        helper="${translate('protocol104.wizard.scaleOffsetHelper')}"
+        helper="${get('protocol104.wizard.scaleOffsetHelper')}"
         pattern="${patterns.decimal}"
         nullable
       >

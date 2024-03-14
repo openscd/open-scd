@@ -1,5 +1,5 @@
 import { html, render, TemplateResult } from 'lit';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-icon';
 import '@material/mwc-list/mwc-check-list-item';
@@ -411,7 +411,7 @@ function renderIEDPage(element: Element): TemplateResult {
     >`;
   else
     return html`<mwc-list-item noninteractive graphic="icon">
-      <span>${translate('lnode.wizard.placeholder')}</span>
+      <span>${get('lnode.wizard.placeholder')}</span>
       <mwc-icon slot="graphic">info</mwc-icon>
     </mwc-list-item>`;
 }
@@ -480,14 +480,14 @@ function contentLNodeWizard(options: ContentOptions): TemplateResult[] {
     html`<wizard-textfield
       label="iedName"
       .maybeValue=${options.iedName}
-      helper="${translate('scl.iedName')}"
+      helper="${get('scl.iedName')}"
       helperPersistent
       disabled
     ></wizard-textfield>`,
     html`<wizard-textfield
       label="ldInst"
       .maybeValue=${options.ldInst}
-      helper="${translate('scl.ldInst')}"
+      helper="${get('scl.ldInst')}"
       helperPersistent
       nullable
       disabled
@@ -495,7 +495,7 @@ function contentLNodeWizard(options: ContentOptions): TemplateResult[] {
     html`<wizard-textfield
       label="prefix"
       .maybeValue=${options.prefix}
-      helper="${translate('scl.prefix')}"
+      helper="${get('scl.prefix')}"
       pattern="${patterns.asciName}"
       maxLength="11"
       helperPersistent
@@ -505,14 +505,14 @@ function contentLNodeWizard(options: ContentOptions): TemplateResult[] {
     html`<wizard-textfield
       label="lnClass"
       .maybeValue=${options.lnClass}
-      helper="${translate('scl.lnClass')}"
+      helper="${get('scl.lnClass')}"
       helperPersistent
       disabled
     ></wizard-textfield>`,
     html`<wizard-textfield
       label="lnInst"
       .maybeValue=${options.lnInst}
-      helper="${translate('scl.lnInst')}"
+      helper="${get('scl.lnInst')}"
       helperPersistent
       type="number"
       min="1"

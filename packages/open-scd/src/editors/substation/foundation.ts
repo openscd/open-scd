@@ -20,7 +20,7 @@ import {
 import { typeStr } from '../../wizards/conductingequipment.js';
 import { Select } from '@material/mwc-select';
 import { WizardTextField } from '../../wizard-textfield.js';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 import { BayEditor } from './bay-editor.js';
 import { VoltageLevelEditor } from './voltage-level-editor.js';
 import { SubstationEditor } from './substation-editor.js';
@@ -373,10 +373,10 @@ export function redirectDialog(cloneEntity: Element): TemplateResult {
 
   return html` <mwc-dialog
     stacked
-    heading="${translate('substation.clone.redirect')}"
+    heading="${get('substation.clone.redirect')}"
   >
     <wizard-textfield
-      label="${translate('substation.clone.newname')}"
+      label="${get('substation.clone.newname')}"
       value="${newName}"
       .reservedValues="${entitySiblings}"
     ></wizard-textfield>
@@ -401,19 +401,19 @@ export function redirectDialog(cloneEntity: Element): TemplateResult {
     <mwc-button
       slot="secondaryAction"
       dialogAction="close"
-      label="${translate('close')}"
+      label="${get('close')}"
       style="--mdc-theme-primary: var(--mdc-theme-error)"
     ></mwc-button>
     <mwc-button
       slot="primaryAction"
       dialogAction="close"
-      label="${translate('substation.clone.cloneclose')}"
+      label="${get('substation.clone.cloneclose')}"
       icon="content_copy"
       @click=${(evt: Event) => cloneWithRedirect(evt, cloneEntity)}
     ></mwc-button>
     <mwc-button
       slot="primaryAction"
-      label="${translate('substation.clone.cloneproc')}"
+      label="${get('substation.clone.cloneproc')}"
       icon="content_copy"
       @click=${(evt: Event) => cloneWithRedirect(evt, cloneEntity)}
     ></mwc-button>

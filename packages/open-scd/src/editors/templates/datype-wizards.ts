@@ -1,5 +1,5 @@
 import { html } from 'lit';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-button';
 import '@material/mwc-list';
@@ -119,7 +119,7 @@ export function editDaTypeWizard(
       content: [
         html`<wizard-textfield
           label="id"
-          helper="${translate('scl.id')}"
+          helper="${get('scl.id')}"
           .maybeValue=${id}
           required
           maxlength="127"
@@ -129,7 +129,7 @@ export function editDaTypeWizard(
         ></wizard-textfield>`,
         html`<wizard-textfield
           label="desc"
-          helper="${translate('scl.desc')}"
+          helper="${get('scl.desc')}"
           .maybeValue=${desc}
           nullable
           pattern="${patterns.normalizedString}"
@@ -244,7 +244,7 @@ export function createDATypeWizard(
         </mwc-select>`,
         html`<wizard-textfield
           label="id"
-          helper="${translate('scl.id')}"
+          helper="${get('scl.id')}"
           .maybeValue=${''}
           required
           maxlength="255"
@@ -254,7 +254,7 @@ export function createDATypeWizard(
         ></wizard-textfield>`,
         html`<wizard-textfield
           label="desc"
-          helper="${translate('scl.desc')}"
+          helper="${get('scl.desc')}"
           .maybeValue=${null}
           nullable
           pattern="${patterns.normalizedString}"

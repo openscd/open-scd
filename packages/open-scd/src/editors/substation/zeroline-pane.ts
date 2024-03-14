@@ -1,7 +1,6 @@
 import { LitElement, html, TemplateResult, css } from 'lit';
 import { property, customElement, query } from 'lit/decorators.js';
-
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-icon-button';
 import '@material/mwc-icon-button-toggle';
@@ -151,9 +150,7 @@ export class ZerolinePane extends LitElement {
         </section>`
       : !this.doc?.querySelector(':root > Line, :root > Process')
       ? html`<h1>
-          <span style="color: var(--base1)"
-            >${translate('substation.missing')}</span
-          >
+          <span style="color: var(--base1)">${get('substation.missing')}</span>
         </h1>`
       : html``;
   }
@@ -221,7 +218,7 @@ export class ZerolinePane extends LitElement {
   render(): TemplateResult {
     return html` <h1>
         <nav>
-          <abbr slot="action" title="${translate('add')}">
+          <abbr slot="action" title="${get('add')}">
             <mwc-icon-button
               icon="playlist_add"
               @click=${() => (this.addMenu.open = true)}
@@ -237,7 +234,7 @@ export class ZerolinePane extends LitElement {
           >
         </nav>
         <nav>
-          <abbr title="${translate('zeroline.showieds')}">
+          <abbr title="${get('zeroline.showieds')}">
             <mwc-icon-button-toggle
               ?on=${shouldShowIEDs()}
               @click=${() => this.toggleShowIEDs()}
@@ -246,7 +243,7 @@ export class ZerolinePane extends LitElement {
               offIcon="developer_board_off"
             ></mwc-icon-button-toggle>
           </abbr>
-          <abbr title="${translate('zeroline.showfunctions')}">
+          <abbr title="${get('zeroline.showfunctions')}">
             <mwc-icon-button-toggle
               ?on=${shouldShowFunctions()}
               @click=${() => this.toggleShowFunctions()}
@@ -255,28 +252,28 @@ export class ZerolinePane extends LitElement {
               offIcon="layers_clear"
             ></mwc-icon-button-toggle>
           </abbr>
-          <abbr title="${translate('zeroline.commmap')}">
+          <abbr title="${get('zeroline.commmap')}">
             <mwc-icon-button
               id="commmap"
               icon="link"
               @click=${() => this.openCommunicationMapping()}
             ></mwc-icon-button>
           </abbr>
-          <abbr title="${translate('zeroline.reportcontrol')}"
+          <abbr title="${get('zeroline.reportcontrol')}"
             ><mwc-icon-button
               id="reportcontrol"
               @click="${() => this.openReportControlSelection()}"
               >${reportIcon}</mwc-icon-button
             ></abbr
           >
-          <abbr title="${translate('zeroline.gsecontrol')}"
+          <abbr title="${get('zeroline.gsecontrol')}"
             ><mwc-icon-button
               id="gsecontrol"
               @click="${() => this.openGseControlSelection()}"
               >${gooseIcon}</mwc-icon-button
             ></abbr
           >
-          <abbr title="${translate('zeroline.smvcontrol')}"
+          <abbr title="${get('zeroline.smvcontrol')}"
             ><mwc-icon-button
               id="smvcontrol"
               @click="${() => this.openSampledValueControlSelection()}"

@@ -1,7 +1,7 @@
 import { css, html, LitElement, TemplateResult } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { nothing } from 'lit';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import {
   ComplexAction,
@@ -222,7 +222,7 @@ export class ExtRefLnBindingList extends LitElement {
   }
 
   private renderTitle(): TemplateResult {
-    return html`<h1>${translate(`subscription.binding.extRefList.title`)}</h1>`;
+    return html`<h1>${get(`subscription.binding.extRefList.title`)}</h1>`;
   }
 
   private renderSubscribedLN(lnElement: Element): TemplateResult {
@@ -278,13 +278,13 @@ export class ExtRefLnBindingList extends LitElement {
           )
           .join(' ')}"
       >
-        <span>${translate('subscription.subscriber.subscribed')}</span>
+        <span>${get('subscription.subscriber.subscribed')}</span>
       </mwc-list-item>
       <li divider role="separator"></li>
       ${subscribedLNs.length > 0
         ? html`${subscribedLNs.map(lN => this.renderSubscribedLN(lN))}`
         : html`<mwc-list-item graphic="large" noninteractive>
-            ${translate('subscription.binding.extRefList.noSubscribedLNs')}
+            ${get('subscription.binding.extRefList.noSubscribedLNs')}
           </mwc-list-item>`}
     `;
   }
@@ -303,9 +303,7 @@ export class ExtRefLnBindingList extends LitElement {
           )
           .join(' ')}"
       >
-        <span>
-          ${translate('subscription.subscriber.availableToSubscribe')}
-        </span>
+        <span> ${get('subscription.subscriber.availableToSubscribe')} </span>
       </mwc-list-item>
       <li divider role="separator"></li>
       ${availableLNs.length > 0
@@ -336,7 +334,7 @@ export class ExtRefLnBindingList extends LitElement {
             </mwc-list-item>`
           )}`
         : html`<mwc-list-item graphic="large" noninteractive>
-            ${translate('subscription.binding.extRefList.noAvailableLNs')}
+            ${get('subscription.binding.extRefList.noAvailableLNs')}
           </mwc-list-item>`}
     `;
   }
@@ -351,7 +349,7 @@ export class ExtRefLnBindingList extends LitElement {
             </filtered-list>
           `
         : html`
-            <h1>${translate('subscription.binding.extRefList.noSelection')}</h1>
+            <h1>${get('subscription.binding.extRefList.noSelection')}</h1>
           `}
     </section>`;
   }

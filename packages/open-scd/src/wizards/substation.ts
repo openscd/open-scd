@@ -1,5 +1,5 @@
 import { html, TemplateResult } from 'lit';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-checkbox';
 import '@material/mwc-formfield';
@@ -25,19 +25,19 @@ function render(
     html`<wizard-textfield
       label="name"
       .maybeValue=${name}
-      helper="${translate('substation.wizard.nameHelper')}"
+      helper="${get('substation.wizard.nameHelper')}"
       required
-      validationMessage="${translate('textfield.required')}"
+      validationMessage="${get('textfield.required')}"
       dialogInitialFocus
     ></wizard-textfield>`,
     html`<wizard-textfield
       label="desc"
       .maybeValue=${desc}
       nullable
-      helper="${translate('substation.wizard.descHelper')}"
+      helper="${get('substation.wizard.descHelper')}"
     ></wizard-textfield>`,
     guessable
-      ? html`<mwc-formfield label="${translate('guess.wizard.primary')}">
+      ? html`<mwc-formfield label="${get('guess.wizard.primary')}">
           <mwc-checkbox></mwc-checkbox>
         </mwc-formfield>`
       : html``,

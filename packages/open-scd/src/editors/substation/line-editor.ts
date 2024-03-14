@@ -1,7 +1,7 @@
 import { css, html, LitElement, TemplateResult } from 'lit';
 import { customElement, property, state, query } from 'lit/decorators.js';
 
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-icon';
 import '@material/mwc-icon-button';
@@ -162,23 +162,19 @@ export class LineEditor extends LitElement {
   }
   render(): TemplateResult {
     return html`<action-pane label=${this.header}>
-      <abbr slot="action" title="${translate('edit')}">
+      <abbr slot="action" title="${get('edit')}">
         <mwc-icon-button
           icon="edit"
           @click=${() => this.openEditWizard()}
         ></mwc-icon-button>
       </abbr>
-      <abbr slot="action" title="${translate('remove')}">
+      <abbr slot="action" title="${get('remove')}">
         <mwc-icon-button
           icon="delete"
           @click=${() => this.remove()}
         ></mwc-icon-button>
       </abbr>
-      <abbr
-        slot="action"
-        style="position:relative;"
-        title="${translate('add')}"
-      >
+      <abbr slot="action" style="position:relative;" title="${get('add')}">
         <mwc-icon-button
           icon="playlist_add"
           @click=${() => (this.addMenu.open = true)}

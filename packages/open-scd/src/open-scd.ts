@@ -1,8 +1,8 @@
 import { html, HTMLTemplateResult, TemplateResult, LitElement, css } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import { html as staticHtml, unsafeStatic } from 'lit/static-html.js';
-
 import { classMap } from 'lit/directives/class-map.js';
+import { get } from 'lit-translate';
 
 import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 
@@ -37,7 +37,6 @@ import './addons/Editor.js';
 
 import { ActionDetail, List } from '@material/mwc-list/mwc-list.js';
 import { Drawer } from '@material/mwc-drawer/mwc-drawer.js';
-import { get } from 'lit-translate';
 
 import { officialPlugins } from '../public/js/plugins.js';
 import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation.js';

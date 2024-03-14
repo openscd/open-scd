@@ -1,6 +1,6 @@
 import { css, html, LitElement, TemplateResult } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 import { classMap } from 'lit/directives/class-map.js';
 
 import '@material/mwc-icon';
@@ -90,7 +90,7 @@ export class GooseList extends LitElement {
 
   render(): TemplateResult {
     return html` <section tabindex="0">
-      <h1>${translate('subscription.goose.publisher.title')}</h1>
+      <h1>${get('subscription.goose.publisher.title')}</h1>
       <filtered-list activatable>
         ${getOrderedIeds(this.doc).map(
           ied =>

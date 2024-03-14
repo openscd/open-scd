@@ -1,5 +1,5 @@
 import { html, TemplateResult } from 'lit';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
@@ -48,9 +48,9 @@ export function renderIEDWizard(
     html`<wizard-textfield
       label="name"
       .maybeValue=${name}
-      helper="${translate('ied.wizard.nameHelper')}"
+      helper="${get('ied.wizard.nameHelper')}"
       required
-      validationMessage="${translate('textfield.required')}"
+      validationMessage="${get('textfield.required')}"
       dialogInitialFocus
       .reservedValues=${reservedNames}
       pattern="${iedNamePattern}"
@@ -59,7 +59,7 @@ export function renderIEDWizard(
       label="desc"
       .maybeValue=${desc}
       nullable
-      helper="${translate('ied.wizard.descHelper')}"
+      helper="${get('ied.wizard.descHelper')}"
       pattern="${patterns.normalizedString}"
     ></wizard-textfield>`,
     html`<wizard-textfield
@@ -104,7 +104,7 @@ export function renderIEDWizard(
 function renderIEDReferencesWizard(references: Delete[]): TemplateResult[] {
   return [
     html` <section>
-      <h1>${translate('ied.wizard.title.references')}</h1>
+      <h1>${get('ied.wizard.title.references')}</h1>
       <mwc-list>
         ${references.map(reference => {
           const oldElement = <Element>reference.old.element;

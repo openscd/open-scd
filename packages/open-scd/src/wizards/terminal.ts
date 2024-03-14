@@ -1,5 +1,5 @@
 import { html, TemplateResult } from 'lit';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import { isPublic, Wizard } from '../foundation.js';
 
@@ -13,9 +13,9 @@ function render(
     html`<wizard-textfield
       label="name"
       .maybeValue=${name}
-      helper="${translate('terminal.wizard.nameHelper')}"
+      helper="${get('terminal.wizard.nameHelper')}"
       required
-      validationMessage="${translate('textfield.required')}"
+      validationMessage="${get('textfield.required')}"
       dialogInitialFocus
       .reservedValues=${reservedNames}
       readonly
@@ -23,17 +23,17 @@ function render(
     html`<wizard-textfield
       label="connectivityNode"
       .maybeValue=${connectivityNode}
-      helper="${translate('terminal.wizard.connectivityNodeHelper')}"
+      helper="${get('terminal.wizard.connectivityNodeHelper')}"
       required
-      validationMessage="${translate('textfield.required')}"
+      validationMessage="${get('textfield.required')}"
       readonly
     ></wizard-textfield>`,
     html`<wizard-textfield
       label="cNodeName"
       .maybeValue=${cNodeName}
-      helper="${translate('terminal.wizard.cNodeNameHelper')}"
+      helper="${get('terminal.wizard.cNodeNameHelper')}"
       required
-      validationMessage="${translate('textfield.required')}"
+      validationMessage="${get('textfield.required')}"
       readonly
     ></wizard-textfield>`,
   ];

@@ -1,5 +1,5 @@
 import { html } from 'lit';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-button';
 import '@material/mwc-list';
@@ -133,7 +133,7 @@ function sDOWizard(options: WizardOptions): Wizard | undefined {
         html`<wizard-textfield
           label="name"
           .maybeValue=${name}
-          helper="${translate('scl.name')}"
+          helper="${get('scl.name')}"
           required
           pattern="${patterns.tRestrName1stL}"
           dialogInitialFocus
@@ -142,7 +142,7 @@ function sDOWizard(options: WizardOptions): Wizard | undefined {
         >`,
         html`<wizard-textfield
           label="desc"
-          helper="${translate('scl.desc')}"
+          helper="${get('scl.desc')}"
           .maybeValue=${desc}
           nullable
           pattern="${patterns.normalizedString}"
@@ -151,7 +151,7 @@ function sDOWizard(options: WizardOptions): Wizard | undefined {
           fixedMenuPosition
           label="type"
           required
-          helper="${translate('scl.type')}"
+          helper="${get('scl.type')}"
           >${types.map(
             dataType =>
               html`<mwc-list-item
@@ -248,7 +248,7 @@ export function createDOTypeWizard(
           outlined
           icon="playlist_add_check"
           label="values"
-          helper="${translate('dotype.wizard.enums')}"
+          helper="${get('dotype.wizard.enums')}"
           @selected=${(e: Event) => onSelectTemplateDOType(e, templates)}
         >
           ${Array.from(templates.querySelectorAll('DOType')).map(
@@ -268,7 +268,7 @@ export function createDOTypeWizard(
         </mwc-select>`,
         html`<wizard-textfield
           label="id"
-          helper="${translate('scl.id')}"
+          helper="${get('scl.id')}"
           .maybeValue=${''}
           required
           maxlength="127"
@@ -278,14 +278,14 @@ export function createDOTypeWizard(
         ></wizard-textfield>`,
         html`<wizard-textfield
           label="desc"
-          helper="${translate('scl.desc')}"
+          helper="${get('scl.desc')}"
           .maybeValue=${null}
           nullable
           pattern="${patterns.normalizedString}"
         ></wizard-textfield>`,
         html`<wizard-textfield
           label="cdc"
-          helper="${translate('scl.CDC')}"
+          helper="${get('scl.CDC')}"
           required
           pattern="${patterns.cdc}"
         ></wizard-textfield>`,
@@ -378,7 +378,7 @@ export function dOTypeWizard(
       content: [
         html`<wizard-textfield
           label="id"
-          helper="${translate('scl.id')}"
+          helper="${get('scl.id')}"
           .maybeValue=${dotype.getAttribute('id')}
           required
           maxlength="127"
@@ -388,14 +388,14 @@ export function dOTypeWizard(
         ></wizard-textfield>`,
         html`<wizard-textfield
           label="desc"
-          helper="${translate('scl.desc')}"
+          helper="${get('scl.desc')}"
           .maybeValue=${dotype.getAttribute('desc')}
           nullable
           pattern="${patterns.normalizedString}"
         ></wizard-textfield>`,
         html`<wizard-textfield
           label="CDC"
-          helper="${translate('scl.CDC')}"
+          helper="${get('scl.CDC')}"
           .maybeValue=${dotype.getAttribute('cdc')}
           pattern="${patterns.normalizedString}"
         ></wizard-textfield>`,

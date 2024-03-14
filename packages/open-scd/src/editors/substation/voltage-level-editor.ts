@@ -2,7 +2,7 @@ import { LitElement, TemplateResult, html, css } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 
 import { classMap } from 'lit-html/directives/class-map';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-icon-button';
 import { Menu } from '@material/mwc-menu';
@@ -215,42 +215,38 @@ export class VoltageLevelEditor extends LitElement {
 
   render(): TemplateResult {
     return html`${this.renderRedirectUI()}<action-pane label="${this.header}">
-        <abbr slot="action" title="${translate('lnode.tooltip')}">
+        <abbr slot="action" title="${get('lnode.tooltip')}">
           <mwc-icon-button
             icon="account_tree"
             @click=${() => this.openLNodeWizard()}
           ></mwc-icon-button>
         </abbr>
-        <abbr slot="action" title="${translate('duplicate')}">
+        <abbr slot="action" title="${get('duplicate')}">
           <mwc-icon-button
             icon="content_copy"
             @click=${() => cloneSubstationElement(this)}
           ></mwc-icon-button>
         </abbr>
-        <abbr slot="action" title="${translate('edit')}">
+        <abbr slot="action" title="${get('edit')}">
           <mwc-icon-button
             icon="edit"
             @click=${() => this.openEditWizard()}
           ></mwc-icon-button>
         </abbr>
-        <abbr slot="action" title="${translate('move')}">
+        <abbr slot="action" title="${get('move')}">
           <mwc-icon-button
             icon="forward"
             @click=${() =>
               startMove(this, VoltageLevelEditor, [SubstationEditor])}
           ></mwc-icon-button>
         </abbr>
-        <abbr slot="action" title="${translate('remove')}">
+        <abbr slot="action" title="${get('remove')}">
           <mwc-icon-button
             icon="delete"
             @click=${() => this.remove()}
           ></mwc-icon-button>
         </abbr>
-        <abbr
-          slot="action"
-          style="position:relative;"
-          title="${translate('add')}"
-        >
+        <abbr slot="action" style="position:relative;" title="${get('add')}">
           <mwc-icon-button
             icon="playlist_add"
             @click=${() => (this.addMenu.open = true)}

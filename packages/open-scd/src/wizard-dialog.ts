@@ -8,7 +8,7 @@ import {
 } from 'lit/decorators.js';
 
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-button';
 import '@material/mwc-dialog';
@@ -360,7 +360,7 @@ export class WizardDialog extends LitElement {
         : html`<mwc-button
             slot="secondaryAction"
             dialogAction="close"
-            label="${translate('close')}"
+            label="${get('close')}"
             style="--mdc-theme-primary: var(--mdc-theme-error)"
           ></mwc-button>`}
       ${this.code && page.element
@@ -368,7 +368,7 @@ export class WizardDialog extends LitElement {
             slot="primaryAction"
             @click=${() => this.act(codeAction(page.element!))}
             icon="code"
-            label="${translate('save')}"
+            label="${get('save')}"
             trailingIcon
           ></mwc-button>`
         : page.primary
