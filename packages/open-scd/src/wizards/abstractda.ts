@@ -1,5 +1,5 @@
 import { html, render, TemplateResult } from 'lit-html';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-list/mwc-list-item';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
@@ -111,7 +111,7 @@ export function wizardContent(
     html`<wizard-textfield
       label="name"
       .maybeValue=${name}
-      helper="${translate('scl.name')}"
+      helper="${get('scl.name')}"
       required
       pattern="${patterns.abstractDataAttributeName}"
       maxLength="${maxLength.abstracDaName}"
@@ -121,7 +121,7 @@ export function wizardContent(
     >`,
     html`<wizard-textfield
       label="desc"
-      helper="${translate('scl.desc')}"
+      helper="${get('scl.desc')}"
       .maybeValue=${desc}
       nullable
       pattern="${patterns.normalizedString}"
@@ -130,7 +130,7 @@ export function wizardContent(
       fixedMenuPosition
       label="bType"
       .value=${bType}
-      helper="${translate('scl.bType')}"
+      helper="${get('scl.bType')}"
       required
       @selected=${(e: SelectedEvent) => selectBType(e, bType, type)}
       >${predefinedBasicTypeEnum.map(
@@ -143,7 +143,7 @@ export function wizardContent(
     html`<wizard-select
       label="type"
       .maybeValue=${type}
-      helper="${translate('scl.type')}"
+      helper="${get('scl.type')}"
       fixedMenuPosition
       @selected=${(e: SelectedEvent) => selectType(e, data, Val)}
       >${types.map(
@@ -158,14 +158,14 @@ export function wizardContent(
     html`<wizard-textfield
       label="sAddr"
       .maybeValue=${sAddr}
-      helper="${translate('scl.sAddr')}"
+      helper="${get('scl.sAddr')}"
       nullable
       pattern="${patterns.normalizedString}"
     ></wizard-textfield>`,
     html`<wizard-select
       label="valKind"
       .maybeValue=${valKind}
-      helper="${translate('scl.valKind')}"
+      helper="${get('scl.valKind')}"
       nullable
       required
       fixedMenuPosition
@@ -179,14 +179,14 @@ export function wizardContent(
     html`<wizard-checkbox
       label="valImport"
       .maybeValue=${valImport}
-      helper="${translate('scl.valImport')}"
+      helper="${get('scl.valImport')}"
       nullable
       required
     ></wizard-checkbox>`,
     html`<wizard-select
       label="Val"
       .maybeValue=${Val}
-      helper="${translate('scl.Val')}"
+      helper="${get('scl.Val')}"
       nullable
       >${Array.from(
         data.querySelectorAll(`EnumType > EnumVal[id="${type}"]`)
@@ -200,7 +200,7 @@ export function wizardContent(
     html`<wizard-textfield
       label="Val"
       .maybeValue=${Val}
-      helper="${translate('scl.Val')}"
+      helper="${get('scl.Val')}"
       nullable
     ></wizard-textfield>`,
   ];

@@ -5,7 +5,7 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import { compareNames, newWizardEvent } from '../../foundation.js';
 
@@ -66,7 +66,7 @@ export class Values104Container extends Base104Container {
     }
     return html` <h1>
         <span style="color: var(--base1)"
-          >${translate('protocol104.values.missing')}</span
+          >${get('protocol104.values.missing')}</span
         >
       </h1>
       ${this.renderAddButton()}`;

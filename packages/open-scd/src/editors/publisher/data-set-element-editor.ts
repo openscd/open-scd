@@ -7,7 +7,7 @@ import {
   state,
   TemplateResult,
 } from 'lit-element';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-list/mwc-list-item';
 
@@ -38,7 +38,7 @@ export class DataSetElementEditor extends LitElement {
     return html`<wizard-textfield
         label="name"
         .maybeValue=${this.name}
-        helper="${translate('scl.name')}"
+        helper="${get('scl.name')}"
         required
         disabled
       >
@@ -46,7 +46,7 @@ export class DataSetElementEditor extends LitElement {
       <wizard-textfield
         label="desc"
         .maybeValue=${this.desc}
-        helper="${translate('scl.desc')}"
+        helper="${get('scl.desc')}"
         nullable
         disabled
       >
@@ -89,7 +89,7 @@ export class DataSetElementEditor extends LitElement {
     return html`<div class="content">
       <h2>
         <div>DataSet</div>
-        <div class="headersubtitle">${translate('publisher.nodataset')}</div>
+        <div class="headersubtitle">${get('publisher.nodataset')}</div>
       </h2>
     </div>`;
   }

@@ -6,7 +6,7 @@ import {
   query,
   TemplateResult,
 } from 'lit-element';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-radio';
 import '@material/mwc-formfield';
@@ -53,9 +53,7 @@ export default class GooseSubscriberMessageBindingPlugin extends LitElement {
 
   render(): TemplateResult {
     return html`<div>
-      <mwc-formfield
-        label="${translate('subscription.goose.view.publisherView')}"
-      >
+      <mwc-formfield label="${get('subscription.goose.view.publisherView')}">
         <mwc-radio
           id="goosePublisherView"
           name="view"
@@ -64,9 +62,7 @@ export default class GooseSubscriberMessageBindingPlugin extends LitElement {
             this.listDiv.dispatchEvent(newViewEvent(View.PUBLISHER))}
         ></mwc-radio>
       </mwc-formfield>
-      <mwc-formfield
-        label="${translate('subscription.goose.view.subscriberView')}"
-      >
+      <mwc-formfield label="${get('subscription.goose.view.subscriberView')}">
         <mwc-radio
           id="gooseSubscriberView"
           name="view"

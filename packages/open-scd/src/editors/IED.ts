@@ -7,7 +7,7 @@ import {
   state,
   TemplateResult,
 } from 'lit-element';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 import { nothing } from 'lit-html';
 
 import '@material/mwc-list/mwc-check-list-item';
@@ -134,12 +134,14 @@ export default class IedPlugin extends LitElement {
 
   private calcSelectedLNClasses(): string[] {
     const somethingSelected = this.selectedLNClasses.length > 0;
-    const lnClasses = this.lnClassList.map( lnClassInfo => lnClassInfo[0] );
+    const lnClasses = this.lnClassList.map(lnClassInfo => lnClassInfo[0]);
 
     let selectedLNClasses = lnClasses;
 
-    if(somethingSelected){
-      selectedLNClasses = lnClasses.filter( lnClass => this.selectedLNClasses.includes(lnClass));
+    if (somethingSelected) {
+      selectedLNClasses = lnClasses.filter(lnClass =>
+        this.selectedLNClasses.includes(lnClass)
+      );
     }
 
     return selectedLNClasses;
@@ -150,12 +152,12 @@ export default class IedPlugin extends LitElement {
     if (iedList.length > 0) {
       return html`<section>
         <div class="header">
-          <h1>${translate('filters')}:</h1>
+          <h1>${get('filters')}:</h1>
 
           <oscd-filter-button
             id="iedFilter"
             icon="developer_board"
-            .header=${translate('iededitor.iedSelector')}
+            .header=${get('iededitor.iedSelector')}
             @selected-items-changed="${(e: SelectedItemsChangedEvent) => {
               const equalArrays = <T>(first: T[], second: T[]): boolean => {
                 return (
@@ -201,9 +203,8 @@ export default class IedPlugin extends LitElement {
           <oscd-filter-button
             id="lnClassesFilter"
             multi="true"
-            .header="${translate('iededitor.lnFilter')}"
+            .header="${get('iededitor.lnFilter')}"
             @selected-items-changed="${(e: SelectedItemsChangedEvent) => {
-
               this.selectedLNClasses = e.detail.selectedItems;
               this.requestUpdate('selectedIed');
             }}"
@@ -234,7 +235,7 @@ export default class IedPlugin extends LitElement {
       </section>`;
     }
     return html`<h1>
-      <span style="color: var(--base1)">${translate('iededitor.missing')}</span>
+      <span style="color: var(--base1)">${get('iededitor.missing')}</span>
     </h1>`;
   }
 

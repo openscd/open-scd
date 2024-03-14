@@ -19,7 +19,7 @@ import {
   SCLTag,
   tags,
 } from '../../foundation.js';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
 import { Menu } from '@material/mwc-menu';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
@@ -40,7 +40,7 @@ export class FunctionEditor extends LitElement {
   /** The document being edited as provided to editor by [[`Zeroline`]]. */
   @property({ attribute: false })
   doc!: XMLDocument;
-  @property({type: Number})
+  @property({ type: Number })
   editCount = -1;
   /** The edited `Function` element */
   @property({ attribute: false })
@@ -96,7 +96,8 @@ export class FunctionEditor extends LitElement {
           ${lNodes.map(
             lNode =>
               html`<l-node-editor
-                .editCount=${this.editCount} .doc=${this.doc}
+                .editCount=${this.editCount}
+                .doc=${this.doc}
                 .element=${lNode}
               ></l-node-editor>`
           )}
@@ -109,7 +110,8 @@ export class FunctionEditor extends LitElement {
     return html` ${subfunctions.map(
       subFunction =>
         html`<sub-function-editor
-          .editCount=${this.editCount} .doc=${this.doc}
+          .editCount=${this.editCount}
+          .doc=${this.doc}
           .element=${subFunction}
           ?showfunctions=${this.showfunctions}
         ></sub-function-editor>`
@@ -131,21 +133,17 @@ export class FunctionEditor extends LitElement {
       icon="functions"
       secondary
       highlighted
-      ><abbr slot="action" title="${translate('edit')}">
+      ><abbr slot="action" title="${get('edit')}">
         <mwc-icon-button
           icon="edit"
           @click=${() => this.openEditWizard()}
         ></mwc-icon-button> </abbr
-      ><abbr slot="action" title="${translate('remove')}">
+      ><abbr slot="action" title="${get('remove')}">
         <mwc-icon-button
           icon="delete"
           @click=${() => this.remove()}
         ></mwc-icon-button> </abbr
-      ><abbr
-        slot="action"
-        style="position:relative;"
-        title="${translate('add')}"
-      >
+      ><abbr slot="action" style="position:relative;" title="${get('add')}">
         <mwc-icon-button
           icon="playlist_add"
           @click=${() => (this.addMenu.open = true)}

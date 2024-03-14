@@ -6,7 +6,7 @@ import {
   query,
   TemplateResult,
 } from 'lit-element';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-dialog';
 import '@material/mwc-list';
@@ -161,7 +161,7 @@ export default class CompareIEDPlugin extends LitElement {
       slot="primaryAction"
       icon="arrow_back"
       trailingIcon
-      label="${translate('compare-ied.selectIedButton')}"
+      label="${get('compare-ied.selectIedButton')}"
       @click=${() => {
         this.selectedProjectIed = undefined;
         this.selectedTemplateIed = undefined;
@@ -174,7 +174,7 @@ export default class CompareIEDPlugin extends LitElement {
       slot="primaryAction"
       icon="compare_arrows"
       trailingIcon
-      label="${translate('compare.compareButton')}"
+      label="${get('compare.compareButton')}"
       @click=${() => {
         this.selectedProjectIed = this.getSelectedListItem(
           this.doc,
@@ -192,7 +192,7 @@ export default class CompareIEDPlugin extends LitElement {
     return html`<mwc-button
       slot="secondaryAction"
       dialogAction="close"
-      label="${translate('close')}"
+      label="${get('close')}"
       style="--mdc-theme-primary: var(--mdc-theme-error)"
     ></mwc-button>`;
   }
@@ -229,13 +229,13 @@ export default class CompareIEDPlugin extends LitElement {
   protected renderIEDLists(): TemplateResult {
     return html`<div class="splitContainer">
         <div>
-          <div>${translate('compare-ied.projectIedTitle')}</div>
+          <div>${get('compare-ied.projectIedTitle')}</div>
           <div class="iedList">
             ${this.renderIEDList(this.ieds, 'currentDocument')}
           </div>
         </div>
         <div>
-          <div>${translate('compare-ied.templateIedTitle')}</div>
+          <div>${get('compare-ied.templateIedTitle')}</div>
           <div class="iedList">
             ${this.renderIEDList(this.templateIeds, 'currentTemplate')}
           </div>
@@ -257,7 +257,7 @@ export default class CompareIEDPlugin extends LitElement {
         />
 
         <mwc-button
-          label="${translate('compare-ied.selectTemplateButton')}"
+          label="${get('compare-ied.selectTemplateButton')}"
           @click=${() => {
             const input = <HTMLInputElement | null>(
               this.shadowRoot!.querySelector('#template-file')

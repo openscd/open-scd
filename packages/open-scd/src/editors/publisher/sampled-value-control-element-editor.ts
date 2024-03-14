@@ -6,7 +6,7 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-formfield';
 import '@material/mwc-checkbox';
@@ -46,10 +46,8 @@ export class SampledValueControlElementEditor extends LitElement {
     const sMV = this.sMV;
     if (!sMV)
       return html` <h3>
-        <div>${translate('publisher.smv.commsetting')}</div>
-        <div class="headersubtitle">
-          ${translate('publisher.smv.noconnectionap')}
-        </div>
+        <div>${get('publisher.smv.commsetting')}</div>
+        <div class="headersubtitle">${get('publisher.smv.noconnectionap')}</div>
       </h3>`;
 
     const hasInstType = Array.from(sMV.querySelectorAll('Address > P')).some(
@@ -66,9 +64,8 @@ export class SampledValueControlElementEditor extends LitElement {
             ?.textContent?.trim() ?? null;
     });
 
-    return html` <h3>${translate('publisher.smv.commsetting')}</h3>
-      <mwc-formfield
-        label="${translate('connectedap.wizard.addschemainsttype')}"
+    return html` <h3>${get('publisher.smv.commsetting')}</h3>
+      <mwc-formfield label="${get('connectedap.wizard.addschemainsttype')}"
         ><mwc-checkbox
           id="instType"
           ?checked="${hasInstType}"
@@ -98,7 +95,7 @@ export class SampledValueControlElementEditor extends LitElement {
       attr => this.element.querySelector('SmvOpts')?.getAttribute(attr) ?? null
     );
 
-    return html`<h3>${translate('publisher.smv.smvopts')}</h3>
+    return html`<h3>${get('publisher.smv.smvopts')}</h3>
       ${Object.entries({
         refreshTime,
         sampleRate,
@@ -111,7 +108,7 @@ export class SampledValueControlElementEditor extends LitElement {
             label="${key}"
             .maybeValue=${value}
             nullable
-            helper="${translate(`scl.${key}`)}"
+            helper="${get(`scl.${key}`)}"
             disabled
           ></wizard-checkbox>`
       )}`;
@@ -148,9 +145,9 @@ export class SampledValueControlElementEditor extends LitElement {
       <wizard-textfield
         label="name"
         .maybeValue=${name}
-        helper="${translate('scl.name')}"
+        helper="${get('scl.name')}"
         required
-        validationMessage="${translate('textfield.required')}"
+        validationMessage="${get('textfield.required')}"
         pattern="${patterns.asciName}"
         maxLength="${maxLength.cbName}"
         dialogInitialFocus
@@ -160,7 +157,7 @@ export class SampledValueControlElementEditor extends LitElement {
         label="desc"
         .maybeValue=${desc}
         nullable
-        helper="${translate('scl.desc')}"
+        helper="${get('scl.desc')}"
         disabled
       ></wizard-textfield>
       ${multicast === 'true'
@@ -168,15 +165,15 @@ export class SampledValueControlElementEditor extends LitElement {
         : html`<wizard-checkbox
             label="multicast"
             .maybeValue=${multicast}
-            helper="${translate('scl.multicast')}"
+            helper="${get('scl.multicast')}"
             disabled
           ></wizard-checkbox>`}
       <wizard-textfield
         label="smvID"
         .maybeValue=${smvID}
-        helper="${translate('scl.id')}"
+        helper="${get('scl.id')}"
         required
-        validationMessage="${translate('textfield.nonempty')}"
+        validationMessage="${get('textfield.nonempty')}"
         disabled
       ></wizard-textfield>
       <wizard-select
@@ -184,7 +181,7 @@ export class SampledValueControlElementEditor extends LitElement {
         .maybeValue=${smpMod}
         nullable
         required
-        helper="${translate('scl.smpMod')}"
+        helper="${get('scl.smpMod')}"
         disabled
         >${['SmpPerPeriod', 'SmpPerSec', 'SecPerSmp'].map(
           option =>
@@ -194,7 +191,7 @@ export class SampledValueControlElementEditor extends LitElement {
       <wizard-textfield
         label="smpRate"
         .maybeValue=${smpRate}
-        helper="${translate('scl.smpRate')}"
+        helper="${get('scl.smpRate')}"
         required
         type="number"
         min="0"
@@ -203,7 +200,7 @@ export class SampledValueControlElementEditor extends LitElement {
       <wizard-textfield
         label="nofASDU"
         .maybeValue=${nofASDU}
-        helper="${translate('scl.nofASDU')}"
+        helper="${get('scl.nofASDU')}"
         required
         type="number"
         min="0"
@@ -214,7 +211,7 @@ export class SampledValueControlElementEditor extends LitElement {
         .maybeValue=${securityEnabled}
         nullable
         required
-        helper="${translate('scl.securityEnable')}"
+        helper="${get('scl.securityEnable')}"
         disabled
         >${['None', 'Signature', 'SignatureAndEncryption'].map(
           type => html`<mwc-list-item value="${type}">${type}</mwc-list-item>`

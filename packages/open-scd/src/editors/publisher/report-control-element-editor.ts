@@ -6,7 +6,7 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '../../wizard-textfield.js';
 import '../../wizard-checkbox.js';
@@ -63,7 +63,7 @@ export class ReportControlElementEditor extends LitElement {
             label="${key}"
             .maybeValue=${value}
             nullable
-            helper="${translate(`scl.${key}`)}"
+            helper="${get(`scl.${key}`)}"
             disabled
           ></wizard-checkbox>`
       )}`;
@@ -87,7 +87,7 @@ export class ReportControlElementEditor extends LitElement {
             label="${key}"
             .maybeValue=${value}
             nullable
-            helper="${translate(`scl.${key}`)}"
+            helper="${get(`scl.${key}`)}"
             disabled
           ></wizard-checkbox>`
       )}`;
@@ -116,9 +116,9 @@ export class ReportControlElementEditor extends LitElement {
       <wizard-textfield
         label="name"
         .maybeValue=${name}
-        helper="${translate('scl.name')}"
+        helper="${get('scl.name')}"
         required
-        validationMessage="${translate('textfield.required')}"
+        validationMessage="${get('textfield.required')}"
         pattern="${patterns.asciName}"
         maxLength="${maxLength.cbName}"
         dialogInitialFocus
@@ -128,13 +128,13 @@ export class ReportControlElementEditor extends LitElement {
         label="desc"
         .maybeValue=${desc}
         nullable
-        helper="${translate('scl.desc')}"
+        helper="${get('scl.desc')}"
         disabled
       ></wizard-textfield
       ><wizard-checkbox
         label="buffered"
         .maybeValue=${buffered}
-        helper="${translate('scl.buffered')}"
+        helper="${get('scl.buffered')}"
         disabled
       ></wizard-checkbox
       ><wizard-textfield
@@ -142,20 +142,20 @@ export class ReportControlElementEditor extends LitElement {
         .maybeValue=${rptID}
         nullable
         required
-        helper="${translate('report.rptID')}"
+        helper="${get('report.rptID')}"
         disabled
       ></wizard-textfield
       ><wizard-checkbox
         label="indexed"
         .maybeValue=${indexed}
         nullable
-        helper="${translate('scl.indexed')}"
+        helper="${get('scl.indexed')}"
         disabled
       ></wizard-checkbox
       ><wizard-textfield
         label="max Clients"
         .maybeValue=${max}
-        helper="${translate('scl.maxReport')}"
+        helper="${get('scl.maxReport')}"
         nullable
         type="number"
         suffix="#"
@@ -164,7 +164,7 @@ export class ReportControlElementEditor extends LitElement {
       ><wizard-textfield
         label="bufTime"
         .maybeValue=${bufTime}
-        helper="${translate('scl.bufTime')}"
+        helper="${get('scl.bufTime')}"
         nullable
         required
         type="number"
@@ -175,7 +175,7 @@ export class ReportControlElementEditor extends LitElement {
       ><wizard-textfield
         label="intgPd"
         .maybeValue=${intgPd}
-        helper="${translate('scl.intgPd')}"
+        helper="${get('scl.intgPd')}"
         nullable
         required
         type="number"
@@ -199,7 +199,7 @@ export class ReportControlElementEditor extends LitElement {
         </div>`;
 
     return html`<div class="content">
-      <h2>${translate('publisher.nodataset')}</h2>
+      <h2>${get('publisher.nodataset')}</h2>
     </div>`;
   }
 

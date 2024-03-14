@@ -10,7 +10,7 @@ import {
   query,
   queryAll,
 } from 'lit-element';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-button';
 import '@material/mwc-icon';
@@ -113,7 +113,7 @@ export class CleanupDatasets extends LitElement {
       outlined
       icon="delete"
       class="deleteButton cleanupDeleteButton"
-      label="${translate(
+      label="${get(
         'cleanup.unreferencedDataSets.deleteButton'
       )} (${sizeSelectedItems || '0'})"
       ?disabled=${(<Set<number>>this.selectedDatasetItems).size === 0 ||
@@ -127,7 +127,7 @@ export class CleanupDatasets extends LitElement {
         deleteActions.forEach(deleteAction =>
           e.target?.dispatchEvent(newActionEvent(deleteAction))
         );
-        this.dataSetItems!.forEach((item) => {
+        this.dataSetItems!.forEach(item => {
           item.selected = false;
         });
       }}
@@ -158,12 +158,12 @@ export class CleanupDatasets extends LitElement {
     return html`
       <div>
         <h1>
-          ${translate('cleanup.unreferencedDataSets.title')}
+          ${get('cleanup.unreferencedDataSets.title')}
           (${unreferencedDataSets.length})
           <abbr slot="action">
             <mwc-icon-button
               icon="info"
-              title="${translate('cleanup.unreferencedDataSets.tooltip')}"
+              title="${get('cleanup.unreferencedDataSets.tooltip')}"
             >
             </mwc-icon-button>
           </abbr>

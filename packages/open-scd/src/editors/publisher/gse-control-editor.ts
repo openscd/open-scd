@@ -8,7 +8,7 @@ import {
   query,
   TemplateResult,
 } from 'lit-element';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-button';
 import '@material/mwc-list/mwc-list-item';
@@ -138,7 +138,7 @@ export class GseControlEditor extends LitElement {
   private renderToggleButton(): TemplateResult {
     return html`<mwc-button
       outlined
-      label="${translate('publisher.selectbutton', { type: 'GOOSE' })}"
+      label="${get('publisher.selectbutton', { type: 'GOOSE' })}"
       @click=${() => {
         this.selectionList.classList.remove('hidden');
         this.selectGSEControlButton.classList.add('hidden');

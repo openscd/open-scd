@@ -9,7 +9,7 @@ import {
   TemplateResult,
 } from 'lit-element';
 import { nothing } from 'lit-html';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 
@@ -81,7 +81,7 @@ export class LDeviceContainer extends Container {
 
     return html`<action-pane .label="${this.header()}">
       <mwc-icon slot="icon">${logicalDeviceIcon}</mwc-icon>
-      <abbr slot="action" title="${translate('edit')}">
+      <abbr slot="action" title="${get('edit')}">
         <mwc-icon-button
           icon="edit"
           @click=${() => this.openEditWizard()}
@@ -90,7 +90,7 @@ export class LDeviceContainer extends Container {
       ${lnElements.length > 0
         ? html`<abbr
             slot="action"
-            title="${translate('iededitor.toggleChildElements')}"
+            title="${get('iededitor.toggleChildElements')}"
           >
             <mwc-icon-button-toggle
               on

@@ -6,7 +6,7 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-formfield';
 import '@material/mwc-checkbox';
@@ -70,8 +70,7 @@ export class GseControlElementEditor extends LitElement {
 
     return html`<div class="content">
       <h3>Communication Settings (GSE)</h3>
-      <mwc-formfield
-        label="${translate('connectedap.wizard.addschemainsttype')}"
+      <mwc-formfield label="${get('connectedap.wizard.addschemainsttype')}"
         ><mwc-checkbox
           id="instType"
           ?checked="${hasInstType}"
@@ -120,9 +119,9 @@ export class GseControlElementEditor extends LitElement {
       <wizard-textfield
         label="name"
         .maybeValue=${name}
-        helper="${translate('scl.name')}"
+        helper="${get('scl.name')}"
         required
-        validationMessage="${translate('textfield.required')}"
+        validationMessage="${get('textfield.required')}"
         pattern="${patterns.asciName}"
         maxLength="${maxLength.cbName}"
         dialogInitialFocus
@@ -132,13 +131,13 @@ export class GseControlElementEditor extends LitElement {
         label="desc"
         .maybeValue=${desc}
         nullable
-        helper="${translate('scl.desc')}"
+        helper="${get('scl.desc')}"
         disabled
       ></wizard-textfield>
       <wizard-select
         label="type"
         .maybeValue=${type}
-        helper="${translate('scl.type')}"
+        helper="${get('scl.type')}"
         nullable
         required
         disabled
@@ -149,16 +148,16 @@ export class GseControlElementEditor extends LitElement {
       <wizard-textfield
         label="appID"
         .maybeValue=${appID}
-        helper="${translate('scl.id')}"
+        helper="${get('scl.id')}"
         required
-        validationMessage="${translate('textfield.nonempty')}"
+        validationMessage="${get('textfield.nonempty')}"
         disabled
       ></wizard-textfield>
       <wizard-checkbox
         label="fixedOffs"
         .maybeValue=${fixedOffs}
         nullable
-        helper="${translate('scl.fixedOffs')}"
+        helper="${get('scl.fixedOffs')}"
         disabled
       ></wizard-checkbox>
       <wizard-select
@@ -166,7 +165,7 @@ export class GseControlElementEditor extends LitElement {
         .maybeValue=${securityEnabled}
         nullable
         required
-        helper="${translate('scl.securityEnable')}"
+        helper="${get('scl.securityEnable')}"
         disabled
         >${['None', 'Signature', 'SignatureAndEncryption'].map(
           type => html`<mwc-list-item value="${type}">${type}</mwc-list-item>`
