@@ -19,7 +19,9 @@ const openAndCancelMenu: (
   new Promise(async resolve => {
     expect(parent.wizardUI.dialog).to.be.undefined;
 
-    element?.shadowRoot?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!.click();
+    element?.shadowRoot
+      ?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!
+      .click();
     const subFunctionMenuItem: ListItemBase =
       element?.shadowRoot?.querySelector<ListItemBase>(
         `mwc-list-item[value='SubFunction']`
@@ -77,6 +79,7 @@ describe('sub-function-editor wizarding editing integration', () => {
         element?.shadowRoot?.querySelector('mwc-list-item[value="SubFunction"]')
       )).click();
       await parent.updateComplete;
+      await parent.wizardUI.updateComplete;
 
       nameField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
@@ -139,6 +142,7 @@ describe('sub-function-editor wizarding editing integration', () => {
         element?.shadowRoot?.querySelector('mwc-icon-button[icon="edit"]')
       )).click();
       await parent.updateComplete;
+      await parent.wizardUI.updateComplete;
 
       nameField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
@@ -212,6 +216,7 @@ describe('sub-function-editor wizarding editing integration', () => {
         element?.shadowRoot?.querySelector('mwc-list-item[value="LNode"]')
       )).click();
       await parent.updateComplete;
+      await parent.wizardUI.updateComplete;
 
       listItems = Array.from(
         parent.wizardUI!.dialog!.querySelectorAll<ListItemBase>(
@@ -279,9 +284,9 @@ describe('sub-function-editor wizarding editing integration', () => {
         await fixture(
           html`<mock-wizard-editor
             ><sub-function-editor
-            .element=${doc.querySelector(
-              'Function[name="voltLvName"] > SubFunction'
-            )}
+              .element=${doc.querySelector(
+                'Function[name="voltLvName"] > SubFunction'
+              )}
             ></sub-function-editor
           ></mock-wizard-editor>`
         )

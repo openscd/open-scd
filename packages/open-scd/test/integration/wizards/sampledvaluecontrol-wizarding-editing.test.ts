@@ -13,6 +13,7 @@ import {
 } from '../../../src/wizards/sampledvaluecontrol.js';
 import { WizardCheckbox } from '../../../src/wizard-checkbox.js';
 import { FinderList } from '../../../src/finder-list.js';
+import { newWizardEvent } from '../../../src/foundation.js';
 
 describe('Wizards for SCL element SampledValueControl', () => {
   let doc: XMLDocument;
@@ -31,7 +32,7 @@ describe('Wizards for SCL element SampledValueControl', () => {
     describe('with the document element as input', () => {
       beforeEach(async () => {
         const wizard = selectSampledValueControlWizard(doc.documentElement);
-        element.workflow.push(() => wizard);
+        element.dispatchEvent(newWizardEvent(() => wizard));
         await element.requestUpdate();
 
         sampledValueControlList = <FilteredList>(
@@ -88,7 +89,7 @@ describe('Wizards for SCL element SampledValueControl', () => {
         const wizard = selectSampledValueControlWizard(
           doc.querySelector('IED[name="IED3"]')!
         );
-        element.workflow.push(() => wizard);
+        element.dispatchEvent(newWizardEvent(() => wizard));
         await element.requestUpdate();
 
         sampledValueControlList = <FilteredList>(
@@ -154,7 +155,10 @@ describe('Wizards for SCL element SampledValueControl', () => {
       beforeEach(async () => {
         element.workflow.length = 0; // remove all wizard from FIFO queue
         parentIED = doc.querySelectorAll('IED')[1];
-        element.workflow.push(() => selectSampledValueControlWizard(parentIED));
+        element.dispatchEvent(
+          newWizardEvent(() => selectSampledValueControlWizard(parentIED))
+        );
+
         await element.requestUpdate();
         await new Promise(resolve => setTimeout(resolve, 20)); // await animation
 
@@ -265,7 +269,9 @@ describe('Wizards for SCL element SampledValueControl', () => {
       beforeEach(async () => {
         element.workflow.length = 0; // remove all wizard from FIFO queue
         parentIED = doc.querySelectorAll('IED')[2];
-        element.workflow.push(() => selectSampledValueControlWizard(parentIED));
+        element.dispatchEvent(
+          newWizardEvent(() => selectSampledValueControlWizard(parentIED))
+        );
         await element.requestUpdate();
         await new Promise(resolve => setTimeout(resolve, 20)); // await animation
 
@@ -387,7 +393,7 @@ describe('Wizards for SCL element SampledValueControl', () => {
       const wizard = createSampledValueControlWizard(
         doc.querySelector('IED[name="IED3"] LN0')!
       );
-      element.workflow.push(() => wizard);
+      element.dispatchEvent(newWizardEvent(() => wizard));
       await element.requestUpdate();
 
       (<WizardTextField>(

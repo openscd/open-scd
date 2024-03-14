@@ -3,71 +3,80 @@ import { expect, fixture, html } from '@open-wc/testing';
 import '../mock-setter-logger.js';
 import { MockSetterLogger } from '../mock-setter-logger.js';
 
-import { newLoadNsdocEvent } from '../../src/Setting.js';
+import { newLoadNsdocEvent, OscdSettings } from '../../src/addons/Settings.js';
 
-describe('Setting', () => {
-  let element: MockSetterLogger;
+describe('Oscd-Settings', () => {
+  let logger: MockSetterLogger;
+  let settings: OscdSettings;
 
   beforeEach(async () => {
     localStorage.clear();
 
-    element = await fixture(html`<mock-setter-logger></mock-setter-logger>`);
+    logger = await fixture(
+      html`<mock-setter-logger>
+        <oscd-settings .host=${document}></oscd-settings>
+      </mock-setter-logger>`
+    );
+
+    settings = logger.querySelector('oscd-settings')!;
   });
 
   it('upload .nsdoc file using event and looks like latest snapshot', async () => {
-    element.settingsUI.show();
-    await element.settingsUI.updateComplete;
+    settings.settingsUI.show();
+    await settings.settingsUI.updateComplete;
 
     const nsdocFile = await fetch(
       '/test/testfiles/nsdoc/IEC_61850-7-2.nsdoc'
     ).then(response => response.text());
 
-    element.dispatchEvent(newLoadNsdocEvent(nsdocFile, 'IEC_61850-7-2.nsdoc'));
+    settings.dispatchEvent(newLoadNsdocEvent(nsdocFile, 'IEC_61850-7-2.nsdoc'));
 
-    await element.requestUpdate();
-    await element.updateComplete;
+    await settings.requestUpdate();
+    await settings.updateComplete;
+
+    await logger.updateComplete;
 
     expect(localStorage.getItem('IEC 61850-7-2')).to.eql(nsdocFile);
     // Create a snapshot of the Settings Dialog only, not the whole Mock Component.
     await expect(
-      element.shadowRoot!.querySelector('mwc-dialog[id="settings"]')
+      settings.shadowRoot!.querySelector('mwc-dialog[id="settings"]')
     ).to.equalSnapshot();
   });
 
   it('upload invalid .nsdoc file using event and log event fired', async () => {
-    element.settingsUI.show();
-    await element.settingsUI.updateComplete;
+    settings.settingsUI.show();
+    await settings.settingsUI.updateComplete;
 
     const nsdocFile = await fetch('/test/testfiles/nsdoc/invalid.nsdoc').then(
       response => response.text()
     );
 
-    element.dispatchEvent(newLoadNsdocEvent(nsdocFile, 'invalid.nsdoc'));
+    logger.dispatchEvent(newLoadNsdocEvent(nsdocFile, 'invalid.nsdoc'));
 
-    await element.requestUpdate();
-    await element.updateComplete;
+    await logger.requestUpdate();
+    await logger.updateComplete;
 
-    expect(element.log.length).to.be.equal(1);
-    expect(element.log[0].title).to.be.equal(
+    expect(logger.log.length).to.be.equal(1);
+    expect(logger.log[0].title).to.be.equal(
       "Invalid NSDoc (invalid.nsdoc); no 'id' attribute found in file"
     );
   });
 
   it('upload .nsdoc file with wrong version using event and log event fired', async () => {
-    element.settingsUI.show();
-    await element.settingsUI.updateComplete;
+    settings.settingsUI.show();
+    await settings.settingsUI.updateComplete;
 
     const nsdocFile = await fetch(
       '/test/testfiles/nsdoc/wrong-version.nsdoc'
     ).then(response => response.text());
 
-    element.dispatchEvent(newLoadNsdocEvent(nsdocFile, 'wrong-version.nsdoc'));
+    logger.dispatchEvent(newLoadNsdocEvent(nsdocFile, 'wrong-version.nsdoc'));
 
-    await element.requestUpdate();
-    await element.updateComplete;
+    await logger.requestUpdate();
+    await logger.updateComplete;
 
-    expect(element.log.length).to.be.equal(1);
-    expect(element.log[0].title).to.be.equal(
+    expect(logger.log.length).to.be.equal(1);
+    expect(logger.log[0].title).to.be.equal(
       'The version of IEC 61850-7-3 NSD (2007B3) does not correlate ' +
         'with the version of the corresponding NSDoc (wrong-version.nsdoc, 2007B4)'
     );

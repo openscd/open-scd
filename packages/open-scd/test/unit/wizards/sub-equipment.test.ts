@@ -1,8 +1,8 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
-import '../../mock-wizard.js';
-import { MockWizard } from '../../mock-wizard.js';
+import '../../../src/addons/Wizards.js';
+import { Wizards } from '../../../src/addons/Wizards.js';
 
 import {
   Create,
@@ -19,7 +19,7 @@ import { WizardCheckbox } from '../../../src/wizard-checkbox.js';
 
 describe('Wizards for SCL SubEquipment element', () => {
   let doc: XMLDocument;
-  let element: MockWizard;
+  let element: Wizards;
   let inputs: WizardInputElement[];
 
   let primaryAction: HTMLElement;
@@ -27,7 +27,9 @@ describe('Wizards for SCL SubEquipment element', () => {
   let actionEvent: SinonSpy;
 
   beforeEach(async () => {
-    element = await fixture(html`<mock-wizard></mock-wizard>`);
+    element = await fixture(
+      html`<oscd-wizards .host=${document}></oscd-wizards>`
+    );
     doc = await fetch('test/testfiles/SubEquipment.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));

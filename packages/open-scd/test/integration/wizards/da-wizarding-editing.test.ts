@@ -1,7 +1,7 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../../mock-wizard-editor.js';
-import { MockWizardEditor } from '../../mock-wizard-editor.js';
+import '../../mock-open-scd.js';
+import { MockOpenSCD } from '../../mock-open-scd.js';
 
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
@@ -16,24 +16,23 @@ describe('DA wizarding editing integration', () => {
   if (customElements.get('templates-editor') === undefined)
     customElements.define('templates-editor', TemplatesPlugin);
   let doc: Document;
-  let parent: MockWizardEditor;
+  let parent: MockOpenSCD;
   let templates: TemplatesPlugin;
   let dOTypeList: FilteredList;
 
   beforeEach(async () => {
-    parent = await fixture(
-      html`<mock-wizard-editor
-        ><templates-editor></templates-editor
-      ></mock-wizard-editor>`
-    );
-
-    templates = <TemplatesPlugin>parent.querySelector('templates-editor')!;
-
     doc = await fetch('/test/testfiles/templates/dotypes.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-    templates.doc = doc;
-    await templates.updateComplete;
+
+    parent = await fixture(
+      html`<mock-open-scd
+        ><templates-editor .doc=${doc}></templates-editor
+      ></mock-open-scd>`
+    );
+
+    templates = parent.getActivePlugin();
+    await parent.updateComplete;
     dOTypeList = <FilteredList>(
       templates.shadowRoot?.querySelector('filtered-list[id="dotypelist"]')
     );
@@ -71,7 +70,7 @@ describe('DA wizarding editing integration', () => {
           parent.wizardUI.dialog!.querySelectorAll<ListItemBase>(
             'mwc-menu > mwc-list-item'
           )
-        ).find(item => item.innerHTML.includes('[remove]'))
+        ).find(item => item.innerHTML.includes('Remove'))
       );
     });
 
@@ -154,7 +153,7 @@ describe('DA wizarding editing integration', () => {
           parent.wizardUI.dialog!.querySelectorAll<ListItemBase>(
             'mwc-menu > mwc-list-item'
           )
-        ).find(item => item.innerHTML.includes('[scl.DA]'))
+        ).find(item => item.innerHTML.includes('Data attribute'))
       )).click();
 
       await parent.requestUpdate();

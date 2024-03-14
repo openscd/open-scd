@@ -1,8 +1,8 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
-import '../../mock-wizard.js';
-import { MockWizard } from '../../mock-wizard.js';
+import '../../../src/addons/Wizards.js';
+import { Wizards } from '../../../src/addons/Wizards.js';
 
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
@@ -22,7 +22,7 @@ import {
 
 describe('Wizards for SCL element SubNetwork', () => {
   let doc: XMLDocument;
-  let element: MockWizard;
+  let element: Wizards;
   let inputs: WizardInputElement[];
   let input: WizardInputElement | undefined;
   let primaryAction: HTMLElement;
@@ -30,7 +30,9 @@ describe('Wizards for SCL element SubNetwork', () => {
   let actionEvent: SinonSpy;
 
   beforeEach(async () => {
-    element = <MockWizard>await fixture(html`<mock-wizard></mock-wizard>`);
+    element = await fixture(
+      html`<oscd-wizards .host=${document}></oscd-wizards>`
+    );
 
     actionEvent = spy();
     window.addEventListener('editor-action', actionEvent);

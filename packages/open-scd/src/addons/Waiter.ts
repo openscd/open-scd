@@ -17,7 +17,6 @@ export class OscdWaiter extends LitElement {
   waiting = false;
 
   private work: Set<Promise<void>> = new Set();
-
   /** A promise which resolves once all currently pending work is done. */
   workDone = Promise.allSettled(this.work);
 

@@ -1,7 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["SettingElement saves chosen .nsdoc file and looks like latest snapshot"] = 
+snapshots["OSCD-Settings saves chosen .nsdoc file and looks like latest snapshot"] = 
 `<mwc-dialog
   heading="Settings"
   id="settings"
@@ -182,10 +182,12 @@ snapshots["SettingElement saves chosen .nsdoc file and looks like latest snapsho
     Save
   </mwc-button>
 </mwc-dialog>
+<slot>
+</slot>
 `;
-/* end snapshot SettingElement saves chosen .nsdoc file and looks like latest snapshot */
+/* end snapshot OSCD-Settings saves chosen .nsdoc file and looks like latest snapshot */
 
-snapshots["SettingElement deletes a chosen .nsdoc file and looks like latest snapshot"] = 
+snapshots["OSCD-Settings deletes a chosen .nsdoc file and looks like latest snapshot"] = 
 `<mwc-dialog
   heading="Settings"
   id="settings"
@@ -360,6 +362,8 @@ snapshots["SettingElement deletes a chosen .nsdoc file and looks like latest sna
     Save
   </mwc-button>
 </mwc-dialog>
+<slot>
+</slot>
 `;
-/* end snapshot SettingElement deletes a chosen .nsdoc file and looks like latest snapshot */
+/* end snapshot OSCD-Settings deletes a chosen .nsdoc file and looks like latest snapshot */
 

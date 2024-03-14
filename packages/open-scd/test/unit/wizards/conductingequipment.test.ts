@@ -1,8 +1,8 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
-import '../../mock-wizard.js';
-import { MockWizard } from '../../mock-wizard.js';
+import '../../../src/addons/Wizards.js';
+import { Wizards } from '../../../src/addons/Wizards.js';
 
 import {
   Create,
@@ -15,7 +15,7 @@ import { createConductingEquipmentWizard } from '../../../src/wizards/conducting
 
 describe('Wizards for SCL element ConductingEquipment', () => {
   let doc: XMLDocument;
-  let element: MockWizard;
+  let element: Wizards;
   let inputs: WizardInputElement[];
   let primaryAction: HTMLElement;
 
@@ -36,7 +36,9 @@ describe('Wizards for SCL element ConductingEquipment', () => {
         beforeEach(async () => {
           parent = doc.querySelector('Bay')!;
 
-          element = await fixture(html`<mock-wizard></mock-wizard>`);
+          element = await fixture(
+            html`<oscd-wizards .host=${document}></mock-wizards>`
+          );
           const wizard = createConductingEquipmentWizard(parent);
           element.workflow.push(() => wizard);
           await element.requestUpdate();
@@ -83,7 +85,9 @@ describe('Wizards for SCL element ConductingEquipment', () => {
         beforeEach(async () => {
           parent = doc.querySelector('VoltageLevel[name="J1"] > Bay')!;
 
-          element = await fixture(html`<mock-wizard></mock-wizard>`);
+          element = await fixture(
+            html`<oscd-wizards .host=${document}></oscd-wizards>`
+          );
           const wizard = createConductingEquipmentWizard(parent);
           element.workflow.push(() => wizard);
           await element.requestUpdate();

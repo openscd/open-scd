@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../mock-editor-logger.js';
-import { MockEditorLogger } from '../../mock-editor-logger.js';
+import '../../mock-open-scd.js';
+import { MockOpenSCD } from '../../mock-open-scd.js';
 
 import ValidateSchema from '../../../src/validators/ValidateSchema.js';
 import { IssueDetail, LogEntry } from '../../../src/foundation.js';
@@ -10,7 +10,7 @@ describe('ValidateSchema plugin', () => {
   if (customElements.get('') === undefined)
     customElements.define('validate-schema', ValidateSchema);
 
-  let parent: MockEditorLogger;
+  let parent: MockOpenSCD;
   let element: ValidateSchema;
 
   let valid2007B4: XMLDocument;
@@ -18,14 +18,12 @@ describe('ValidateSchema plugin', () => {
 
   before(async () => {
     parent = await fixture(html`
-      <mock-editor-logger
-        ><validate-schema></validate-schema
-      ></mock-editor-logger>
+      <mock-open-scd><validate-schema></validate-schema></mock-open-scd>
     `);
 
-    element = <ValidateSchema>parent.querySelector('validate-schema')!;
+    element = parent.getActivePlugin();
     element.pluginId = '/src/validators/ValidateSchema.js';
-    await element.updateComplete;
+    await parent.updateComplete;
   });
 
   describe('for valid SCL files', () => {
@@ -54,13 +52,17 @@ describe('ValidateSchema plugin', () => {
         parent.diagnoses.get('/src/validators/ValidateSchema.js')
       );
       expect(lastEntry.length).to.equal(1);
-      expect(lastEntry[0].title).to.contain('[validator.schema.valid]');
+      expect(lastEntry[0].title).to.contain(
+        'valid2007B XML schema validation successful'
+      );
     });
 
     it('indicates successful schema validation in the log', async () => {
       const lastEntry = <LogEntry>parent.log.pop();
       expect(lastEntry.kind).to.equal('info');
-      expect(lastEntry.title).to.contain('[validator.schema.valid]');
+      expect(lastEntry.title).to.contain(
+        'valid2007B XML schema validation successful'
+      );
     });
   });
 
@@ -94,7 +96,9 @@ describe('ValidateSchema plugin', () => {
     it('generates error messages in the log', async () => {
       const lastLogEntry = <LogEntry>parent.log.pop();
       expect(lastLogEntry.kind).to.equal('warning');
-      expect(lastLogEntry.title).to.contain('[validator.schema.invalid]');
+      expect(lastLogEntry.title).to.contain(
+        'invalid2007B XML schema validation failed'
+      );
     });
   });
 });

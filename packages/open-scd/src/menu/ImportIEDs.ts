@@ -385,8 +385,7 @@ export default class ImportingIedPlugin extends LitElement {
   }
 
   async docUpdate(): Promise<void> {
-    await ((this.getRootNode() as ShadowRoot).host as LitElement)
-      .updateComplete;
+    await this.updateComplete;
   }
 
   private importIED(ied: Element): void {

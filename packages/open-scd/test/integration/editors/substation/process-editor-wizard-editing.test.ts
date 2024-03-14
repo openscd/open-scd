@@ -76,6 +76,7 @@ describe('process-editor wizarding editing integration', () => {
         element?.shadowRoot?.querySelector('mwc-icon-button[icon="edit"]')
       )).click();
       await parent.updateComplete;
+      await parent.wizardUI.updateComplete;
 
       nameField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')

@@ -12,8 +12,6 @@ snapshots["Substation Plugin without a doc loaded looks like the latest snapshot
   >
   </mwc-fab>
 </h1>
-<wizard-dialog>
-</wizard-dialog>
 `;
 /* end snapshot Substation Plugin without a doc loaded looks like the latest snapshot */
 

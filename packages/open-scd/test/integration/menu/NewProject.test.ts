@@ -1,23 +1,21 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../mock-wizard-editor.js';
-import { MockWizardEditor } from '../../mock-wizard-editor.js';
+import '../../mock-open-scd.js';
+import { MockOpenSCD } from '../../mock-open-scd.js';
 
 import NewProjectPlugin from '../../../src/menu/NewProject.js';
 
 describe('NewProject loader', () => {
   customElements.define('new-project-plugin', NewProjectPlugin);
-  let parent: MockWizardEditor;
+  let parent: MockOpenSCD;
   let element: NewProjectPlugin;
 
   beforeEach(async () => {
     parent = await fixture(html`
-      <mock-wizard-editor
-        ><new-project-plugin></new-project-plugin
-      ></mock-wizard-editor>
+      <mock-open-scd><new-project-plugin></new-project-plugin></mock-open-scd>
     `);
 
-    element = <NewProjectPlugin>parent.querySelector('new-project-plugin')!;
+    element = parent.getActivePlugin();
   });
 
   it('creates an empty Edition 2.1 project on wizard primary button click', async () => {

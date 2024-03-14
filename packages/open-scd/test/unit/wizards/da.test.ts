@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../mock-wizard.js';
-import { MockWizard } from '../../mock-wizard.js';
+import '../../../src/addons/Wizards.js';
+import { Wizards } from '../../../src/addons/Wizards.js';
 
 import { wizardContent } from '../../../src/wizards/abstractda.js';
 import { WizardSelect } from '../../../src/wizard-select.js';
@@ -24,7 +24,7 @@ describe('da wizards', () => {
   describe('updateDaAction', () => {
     let doc: XMLDocument;
     let data: Element;
-    let element: MockWizard;
+    let element: Wizards;
 
     const da = <Element>(
       new DOMParser().parseFromString(
@@ -46,7 +46,9 @@ describe('da wizards', () => {
     };
 
     beforeEach(async () => {
-      element = await fixture(html`<mock-wizard></mock-wizard>`);
+      element = await fixture(
+        html`<oscd-wizards .host=${document}></oscd-wizards>`
+      );
       doc = await fetch('/test/testfiles/wizards/abstractda.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
@@ -226,7 +228,7 @@ describe('da wizards', () => {
   describe('createDaAction', () => {
     let doc: XMLDocument;
     let data: Element;
-    let element: MockWizard;
+    let element: Wizards;
 
     const daType = <Element>(
       new DOMParser().parseFromString(
@@ -248,7 +250,9 @@ describe('da wizards', () => {
     };
 
     beforeEach(async () => {
-      element = await fixture(html`<mock-wizard></mock-wizard>`);
+      element = await fixture(
+        html`<oscd-wizards .host=${document}></oscd-wizards>`
+      );
       doc = await fetch('/test/testfiles/wizards/abstractda.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));

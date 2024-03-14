@@ -4,6 +4,7 @@ import '../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../mock-wizard-editor.js';
 
 import { editConnectedApWizard } from '../../../src/wizards/connectedap.js';
+import { newWizardEvent } from '../../../src/foundation.js';
 
 describe('connectedap wizarding editing integration', () => {
   let doc: XMLDocument;
@@ -34,7 +35,7 @@ describe('connectedap wizarding editing integration', () => {
     );
 
     const wizard = editConnectedApWizard(connectedAP);
-    element.workflow.push(() => wizard);
+    element.dispatchEvent(newWizardEvent(wizard));
     await element.requestUpdate();
     await element.updateComplete;
 

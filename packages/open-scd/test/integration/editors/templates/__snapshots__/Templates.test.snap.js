@@ -4,17 +4,15 @@ export const snapshots = {};
 snapshots["Templates Plugin without a doc loaded looks like the latest snapshot"] = 
 `<h1>
   <span style="color: var(--base1)">
-    [templates.missing]
+    DataTypeTemplates missing
   </span>
   <mwc-fab
     extended=""
     icon="add"
-    label="[templates.add]"
+    label="Add DataTypeTemplates"
   >
   </mwc-fab>
 </h1>
-<wizard-dialog>
-</wizard-dialog>
 `;
 /* end snapshot Templates Plugin without a doc loaded looks like the latest snapshot */
 
@@ -22,9 +20,9 @@ snapshots["Templates Plugin with a doc loaded looks like the latest snapshot"] =
 `<div id="containerTemplates">
   <section tabindex="0">
     <h1>
-      [scl.LNodeType]
+      Logical Node Type
       <nav>
-        <abbr title="[add]">
+        <abbr title="Add">
           <mwc-icon-button icon="playlist_add">
           </mwc-icon-button>
         </abbr>
@@ -179,9 +177,9 @@ snapshots["Templates Plugin with a doc loaded looks like the latest snapshot"] =
   </section>
   <section tabindex="0">
     <h1>
-      [scl.DOType]
+      Data Object Type
       <nav>
-        <abbr title="[add]">
+        <abbr title="Add">
           <mwc-icon-button icon="playlist_add">
           </mwc-icon-button>
         </abbr>
@@ -426,9 +424,9 @@ snapshots["Templates Plugin with a doc loaded looks like the latest snapshot"] =
   </section>
   <section tabindex="0">
     <h1>
-      [scl.DAType]
+      Data Attribute Type
       <nav>
-        <abbr title="[add]">
+        <abbr title="Add">
           <mwc-icon-button icon="playlist_add">
           </mwc-icon-button>
         </abbr>
@@ -509,9 +507,9 @@ snapshots["Templates Plugin with a doc loaded looks like the latest snapshot"] =
   </section>
   <section tabindex="0">
     <h1>
-      [scl.EnumType]
+      Enum Type
       <nav>
-        <abbr title="[add]">
+        <abbr title="Add">
           <mwc-icon-button icon="playlist_add">
           </mwc-icon-button>
         </abbr>
@@ -577,8 +575,6 @@ snapshots["Templates Plugin with a doc loaded looks like the latest snapshot"] =
     </filtered-list>
   </section>
 </div>
-<wizard-dialog>
-</wizard-dialog>
 `;
 /* end snapshot Templates Plugin with a doc loaded looks like the latest snapshot */
 

@@ -75,6 +75,7 @@ describe('powertransformer-editor wizarding editing integration', () => {
         element?.shadowRoot?.querySelector('mwc-list-item[value="EqFunction"]')
       )).click();
       await parent.updateComplete;
+      await parent.wizardUI.updateComplete;
 
       nameField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
@@ -97,6 +98,7 @@ describe('powertransformer-editor wizarding editing integration', () => {
       nameField.value = 'myEqFuncPtr2';
       primaryAction.click();
       await parent.updateComplete;
+      await parent.wizardUI.updateComplete;
 
       expect(
         doc.querySelectorAll(
@@ -147,6 +149,7 @@ describe('powertransformer-editor wizarding editing integration', () => {
       element = parent.querySelector('powertransformer-editor');
 
       await parent.updateComplete;
+      await parent.wizardUI.updateComplete;
     });
 
     it('Should open the same wizard for the second time', async () => {

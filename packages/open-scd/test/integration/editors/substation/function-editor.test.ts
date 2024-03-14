@@ -20,7 +20,9 @@ const openAndCancelMenu: (
   new Promise(async resolve => {
     expect(parent.wizardUI.dialog).to.be.undefined;
 
-    element?.shadowRoot?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!.click();
+    element?.shadowRoot
+      ?.querySelector<MenuBase>("mwc-icon-button[icon='playlist_add']")!
+      .click();
     const subFunctionMenuItem: ListItemBase =
       element?.shadowRoot?.querySelector<ListItemBase>(
         `mwc-list-item[value='SubFunction']`
@@ -76,6 +78,7 @@ describe('function-editor wizarding editing integration', () => {
       (<HTMLElement>(
         element?.shadowRoot?.querySelector('mwc-list-item[value="SubFunction"]')
       )).click();
+      await parent.requestUpdate();
       await parent.updateComplete;
 
       nameField = <WizardTextField>(
@@ -138,6 +141,7 @@ describe('function-editor wizarding editing integration', () => {
       (<HTMLElement>(
         element?.shadowRoot?.querySelector('mwc-icon-button[icon="edit"]')
       )).click();
+      await parent.requestUpdate();
       await parent.updateComplete;
 
       nameField = <WizardTextField>(
@@ -192,6 +196,8 @@ describe('function-editor wizarding editing integration', () => {
       (<HTMLElement>(
         element?.shadowRoot?.querySelector('mwc-list-item[value="LNode"]')
       )).click();
+      await parent.requestUpdate();
+
       await parent.updateComplete;
 
       listItems = Array.from(

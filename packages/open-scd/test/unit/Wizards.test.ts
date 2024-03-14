@@ -1,15 +1,15 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../mock-wizard.js';
+import '../../src/addons/Wizards.js';
+import { Wizards } from '../../src/addons/Wizards.js';
 
 import { newWizardEvent } from '../../src/foundation.js';
-import { WizardingElement } from '../../src/Wizarding.js';
 
-describe('WizardingElement', () => {
-  let element: WizardingElement;
+describe('OSCD-Wizard', () => {
+  let element: Wizards;
   beforeEach(async () => {
-    element = <WizardingElement>(
-      await fixture(html`<mock-wizard></mock-wizard>`)
+    element = <Wizards>(
+      await fixture(html`<oscd-wizards .host=${document}></oscd-wizards>`)
     );
   });
 

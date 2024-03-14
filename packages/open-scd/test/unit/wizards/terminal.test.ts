@@ -1,16 +1,18 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../mock-wizard.js';
-import { MockWizard } from '../../mock-wizard.js';
+import '../../../src/addons/Wizards.js';
+import { Wizards } from '../../../src/addons/Wizards.js';
 
 import { editTerminalWizard } from '../../../src/wizards/terminal.js';
 
 describe('Wizards for SCL element Terminal', () => {
   let doc: XMLDocument;
-  let element: MockWizard;
+  let element: Wizards;
 
   beforeEach(async () => {
-    element = await fixture(html`<mock-wizard></mock-wizard>`);
+    element = await fixture(
+      html`<oscd-wizards .host=${document}></oscd-wizards>`
+    );
     doc = await fetch('/test/testfiles/valid2007B4withSubstationXY.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));

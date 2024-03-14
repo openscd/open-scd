@@ -18,6 +18,7 @@ import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-list/mwc-check-list-item';
 import '@material/mwc-menu';
+import '@material/mwc-icon-button';
 
 import { Icon } from '@material/mwc-icon';
 import { List } from '@material/mwc-list';

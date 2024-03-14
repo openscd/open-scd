@@ -12,6 +12,7 @@ import {
 import { FilteredList } from '../../../src/filtered-list.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import { FinderList } from '../../../src/finder-list.js';
+import { newWizardEvent } from '../../../src/foundation.js';
 
 describe('Wizards for SCL element GSEControl', () => {
   let doc: XMLDocument;
@@ -30,7 +31,7 @@ describe('Wizards for SCL element GSEControl', () => {
     describe('with the document element as input', () => {
       beforeEach(async () => {
         const wizard = selectGseControlWizard(doc.documentElement);
-        element.workflow.push(() => wizard);
+        element.dispatchEvent(newWizardEvent(wizard));
         await element.requestUpdate();
         gseControlList = <FilteredList>(
           element.wizardUI.dialog?.querySelector('filtered-list')
@@ -86,7 +87,7 @@ describe('Wizards for SCL element GSEControl', () => {
     describe('with a specific IED as input', () => {
       beforeEach(async () => {
         const wizard = selectGseControlWizard(doc.querySelector('IED')!);
-        element.workflow.push(() => wizard);
+        element.dispatchEvent(newWizardEvent(wizard));
         await element.requestUpdate();
 
         gseControlList = <FilteredList>(
@@ -153,7 +154,10 @@ describe('Wizards for SCL element GSEControl', () => {
         element.workflow.length = 0; // remove all wizard from FIFO queue
 
         parentIED = doc.querySelector('IED')!;
-        element.workflow.push(() => selectGseControlWizard(parentIED));
+        element.dispatchEvent(
+          newWizardEvent(() => selectGseControlWizard(parentIED))
+        );
+
         await element.requestUpdate();
         await new Promise(resolve => setTimeout(resolve, 20)); // await animation
 
@@ -311,7 +315,7 @@ describe('Wizards for SCL element GSEControl', () => {
       beforeEach(async () => {
         gseControl = doc.querySelector('GSEControl[name="GCB2"]')!;
         const wizard = editGseControlWizard(gseControl);
-        element.workflow.push(() => wizard);
+        element.dispatchEvent(newWizardEvent(() => wizard));
         await element.requestUpdate();
       });
 
@@ -334,7 +338,7 @@ describe('Wizards for SCL element GSEControl', () => {
           'IED[name="IED2"] GSEControl[name="GCB"]'
         )!;
         const wizard = editGseControlWizard(gseControl);
-        element.workflow.push(() => wizard);
+        element.dispatchEvent(newWizardEvent(() => wizard));
         await element.requestUpdate();
       });
 

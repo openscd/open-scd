@@ -5,12 +5,12 @@ snapshots["cleanup-editor integration: unreferenced control blocks without a doc
 `<section tabindex="1">
   <div>
     <h1>
-      [cleanup.unreferencedControls.title]
+      Control Blocks with a Missing or Invalid Dataset
           (0)
       <abbr slot="action">
         <mwc-icon-button
           icon="info"
-          title="[cleanup.unreferencedControls.tooltip]"
+          title="Control Blocks without a reference to an existing DataSet. Note that this is normal in an ICD file or for an MMS ReportControl with a dynamically allocated DataSet"
         >
         </mwc-icon-button>
       </abbr>
@@ -53,13 +53,13 @@ snapshots["cleanup-editor integration: unreferenced control blocks without a doc
       class="deleteButton"
       disabled=""
       icon="delete"
-      label="[cleanup.unreferencedControls.deleteButton] (0)"
+      label="Remove Selected Control Blocks (0)"
       outlined=""
     >
     </mwc-button>
     <mwc-formfield
       class="removeFromCommunication"
-      label="[cleanup.unreferencedControls.alsoRemoveFromCommunication]"
+      label="Also remove SMV/GSE Address"
     >
       <mwc-checkbox
         checked=""
@@ -70,8 +70,6 @@ snapshots["cleanup-editor integration: unreferenced control blocks without a doc
     </mwc-formfield>
   </footer>
 </section>
-<wizard-dialog>
-</wizard-dialog>
 `;
 /* end snapshot cleanup-editor integration: unreferenced control blocks without a doc loaded looks like the latest snapshot */
 

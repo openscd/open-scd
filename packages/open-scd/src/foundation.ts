@@ -456,6 +456,27 @@ export function newPendingStateEvent(
   });
 }
 
+export interface SettingsUIDetail {
+  show: boolean;
+}
+
+export type SettingsUIEvent = CustomEvent<SettingsUIDetail>;
+
+export function newSettingsUIEvent(
+  show: boolean,
+  eventInitDict?: CustomEventInit<Partial<SettingsUIDetail>>
+): SettingsUIEvent {
+  return new CustomEvent<SettingsUIDetail>('oscd-settings', {
+    bubbles: true,
+    composed: true,
+    ...eventInitDict,
+    detail: {
+      show,
+      ...eventInitDict?.detail,
+    },
+  });
+}
+
 /** Represents a request for validation. */
 
 export type ValidateEvent = CustomEvent<void>;
@@ -2881,6 +2902,7 @@ export function minAvailableLogicalNodeInstance(
 declare global {
   interface ElementEventMap {
     ['pending-state']: PendingStateEvent;
+    ['oscd-settings']: SettingsUIEvent;
     ['editor-action']: EditorActionEvent<EditorAction>;
     ['open-doc']: OpenDocEvent;
     ['wizard']: WizardEvent;
