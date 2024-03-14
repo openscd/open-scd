@@ -58,7 +58,7 @@
     "release:major": "standard-version --release-as major",
     "build": "npm run test && npm run build:notest && cp .nojekyll build/",
     "build:notest": "npm run doc && snowpack build && workbox generateSW workbox-config.cjs",
-    "start": "snowpack dev"
+    "bundle": "tsc"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",

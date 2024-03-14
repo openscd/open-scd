@@ -25,8 +25,9 @@ jobs:
           npm clean-install
           npm run-script build
 
-      - name: Install and Build Plugins
+      - name: Install and Bundle Plugins
         run: |
           cd packages/plugins
           npm clean-install
-          npm run-script build
+          npm run-script test
+          npm run-script bundle

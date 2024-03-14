@@ -1,4 +1,4 @@
-  {
+{
   "compilerOptions": {
     "target": "es2020",
     "module": "esnext",
@@ -12,11 +12,10 @@
     "importHelpers": true,
     "allowJs": true,
     "skipLibCheck": true,
-    "outDir": "out-tsc",
+    "outDir": "dist",
     "sourceMap": true,
     "inlineSources": true,
     "resolveJsonModule": true,
-    "rootDir": "./"
-  },
-  "include": ["**/*.ts"]
+    "rootDir": "./src"
+  }
 }
