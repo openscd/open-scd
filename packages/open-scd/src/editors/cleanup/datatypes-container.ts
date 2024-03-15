@@ -385,7 +385,7 @@ export class CleanupDataTypes extends LitElement {
       class="delete-button"
       label="${get('cleanup.unreferencedDataTypes.deleteButton')} (${(<
         Set<number>
-      >this.selectedDataTypeItems).size || '0'} )"
+      >this.selectedDataTypeItems).size || '0'})"
       ?disabled=${(<Set<number>>this.selectedDataTypeItems).size === 0 ||
       (Array.isArray(this.selectedDataTypeItems) &&
         !this.selectedDataTypeItems.length)}
@@ -470,7 +470,7 @@ export class CleanupDataTypes extends LitElement {
     return html`
       <div>
         <h1>
-          ${this.getAttribute('cleanup.unreferencedDataTypes.title')}
+          ${get('cleanup.unreferencedDataTypes.title')}
           (${this.unreferencedDataTypes.length})
           <abbr slot="action">
             <mwc-icon-button

@@ -4,12 +4,12 @@ export const snapshots = {};
 snapshots["Templates Plugin without a doc loaded looks like the latest snapshot"] = 
 `<h1>
   <span style="color: var(--base1)">
-    DataTypeTemplates missing
+    [templates.missing]
   </span>
   <mwc-fab
     extended=""
     icon="add"
-    label="Add DataTypeTemplates"
+    label="[templates.add]"
   >
   </mwc-fab>
 </h1>
