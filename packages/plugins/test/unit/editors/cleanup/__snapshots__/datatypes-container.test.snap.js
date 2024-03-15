@@ -5,12 +5,12 @@ snapshots["Cleanup: DataTypes Container without a doc loaded looks like the late
 `<section tabindex="1">
   <div>
     <h1>
-      [cleanup.unreferencedDataTypes.title]
+      cleanup.unreferencedDataTypes.title
           (0)
       <abbr slot="action">
         <mwc-icon-button
           icon="info"
-          title="[cleanup.unreferencedDataTypes.tooltip]"
+          title="cleanup.unreferencedDataTypes.tooltip"
         >
         </mwc-icon-button>
       </abbr>
@@ -54,13 +54,13 @@ snapshots["Cleanup: DataTypes Container without a doc loaded looks like the late
       class="delete-button"
       disabled=""
       icon="delete"
-      label="[cleanup.unreferencedDataTypes.deleteButton] (0)"
+      label="cleanup.unreferencedDataTypes.deleteButton (0)"
       outlined=""
     >
     </mwc-button>
     <mwc-formfield
       class="remove-from-communication"
-      label="[cleanup.unreferencedDataTypes.alsoRemoveSubTypes]"
+      label="cleanup.unreferencedDataTypes.alsoRemoveSubTypes"
     >
       <mwc-checkbox
         checked=""
