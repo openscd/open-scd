@@ -3,12 +3,12 @@ import { expect, fixture, html } from '@open-wc/testing';
 import '../../src/open-scd.js';
 import { newEmptySCD } from '../../src/schemas.js';
 import { OpenSCD } from '../../src/open-scd.js';
-import { newPendingStateEvent } from '../../src/foundation.js';
 import { OscdWaiter } from '../../src/addons/Waiter.js';
+import { OscdHistory } from '../../src/addons/History.js';
 
 describe('open-scd', () => {
   let element: OpenSCD;
-
+  let historyAddon: OscdHistory;
   beforeEach(async () => {
     localStorage.clear();
 
@@ -23,6 +23,8 @@ describe('open-scd', () => {
       />
     `);
     await element.updateComplete;
+    historyAddon = element.shadowRoot?.querySelector('oscd-history') as OscdHistory;
+
   });
 
   it('looks like its snapshot', async () => {
@@ -42,31 +44,31 @@ describe('open-scd', () => {
   });
 
   it('opens the log on log icon click', async () => {
-    expect(element.historyAddon.logUI).to.have.property('open', false);
+    expect(historyAddon.logUI).to.have.property('open', false);
     await (<HTMLElement>(
       element.shadowRoot!.querySelector('mwc-icon-button[icon="list"]')!
     )).click();
-    expect(element.historyAddon.logUI).to.have.property('open', true);
+    expect(historyAddon.logUI).to.have.property('open', true);
   });
 
   it('opens the history on history icon click', async () => {
-    expect(element.historyAddon.historyUI).to.have.property('open', false);
+    expect(historyAddon.historyUI).to.have.property('open', false);
     await (<HTMLElement>(
       element.shadowRoot!.querySelector('mwc-icon-button[icon="history"]')!
     )).click();
-    expect(element.historyAddon.historyUI).to.have.property('open', true);
+    expect(historyAddon.historyUI).to.have.property('open', true);
   });
 
   it('opens the log on snackbar button click', async () => {
-    expect(element.historyAddon.logUI).to.have.property('open', false);
-    await element.historyAddon.errorUI.querySelector('mwc-button')!.click();
-    expect(element.historyAddon.logUI).to.have.property('open', true);
+    expect(historyAddon.logUI).to.have.property('open', false);
+    await historyAddon.errorUI.querySelector('mwc-button')!.click();
+    expect(historyAddon.logUI).to.have.property('open', true);
   });
 
   it('opens the diagnostics on snackbar button click', async () => {
-    expect(element.historyAddon.diagnosticUI).to.have.property('open', false);
-    await element.historyAddon.issueUI.querySelector('mwc-button')!.click();
-    expect(element.historyAddon.diagnosticUI).to.have.property('open', true);
+    expect(historyAddon.diagnosticUI).to.have.property('open', false);
+    await historyAddon.issueUI.querySelector('mwc-button')!.click();
+    expect(historyAddon.diagnosticUI).to.have.property('open', true);
   });
 
   /**

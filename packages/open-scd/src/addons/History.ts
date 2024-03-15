@@ -22,7 +22,6 @@ import {
   invert,
   IssueDetail,
   IssueEvent,
-  LitElementConstructor,
   LogEntry,
   LogEntryType,
   LogEvent,
@@ -49,22 +48,88 @@ function getPluginName(src: string): string {
   return name || src;
 }
 
-
-export interface EditCountDetail {
-  editCount: number;
+export enum HistoryUIKind {
+  log = 'log',
+  history = 'history',
+  diagnostic = 'diagnostic',
 }
-export type EditCountEvent = CustomEvent<EditCountDetail>;
-export function newEditCountEvent(
-  editCount: number,
-  eventInitDict?: CustomEventInit<Partial<EditCountDetail>>
-): EditCountEvent {
-  return new CustomEvent<EditCountDetail>('edit-count', {
+export interface HistoryUIDetail {
+  show: boolean;
+  kind: HistoryUIKind;
+}
+
+export type HistoryUIEvent = CustomEvent<HistoryUIDetail>;
+
+export function newHistoryUIEvent(
+  show: boolean,
+  kind: HistoryUIKind,
+  eventInitDict?: CustomEventInit<Partial<HistoryUIDetail>>
+): HistoryUIEvent {
+  return new CustomEvent<HistoryUIDetail>('history-dialog-ui', {
     bubbles: true,
     composed: true,
     ...eventInitDict,
-    detail: { editCount },
+    detail: {
+      show,
+      kind,
+      ...eventInitDict?.detail,
+    },
   });
 }
+
+export interface EmptyIssuesDetail {
+  pluginSrc: string;
+}
+
+export type EmptyIssuesEvent = CustomEvent<EmptyIssuesDetail>;
+
+export function newEmptyIssuesEvent(
+  pluginSrc: string,
+  eventInitDict?: CustomEventInit<Partial<EmptyIssuesDetail>>
+): EmptyIssuesEvent {
+  return new CustomEvent<EmptyIssuesDetail>('empty-issues', {
+    bubbles: true,
+    composed: true,
+    ...eventInitDict,
+    detail: { pluginSrc, ...eventInitDict?.detail },
+  });
+}
+
+export interface UndoRedoChangedDetail {
+  canUndo: boolean;
+  canRedo: boolean;
+  editCount: number;
+}
+
+export type UndoRedoChangedEvent = CustomEvent<UndoRedoChangedDetail>;
+
+export function newUndoRedoChangedEvent(
+  canUndo: boolean,
+  canRedo: boolean,
+  editCount: number,
+  eventInitDict?: CustomEventInit<Partial<UndoRedoChangedDetail>>
+): UndoRedoChangedEvent {
+  return new CustomEvent<UndoRedoChangedDetail>('undo-redo-changed', {
+    bubbles: true,
+    composed: true,
+    ...eventInitDict,
+    detail: {
+      canUndo,
+      canRedo,
+      editCount,
+      ...eventInitDict?.detail,
+    },
+  });
+}
+
+export function newUndoEvent(): CustomEvent {
+  return new CustomEvent('undo', { bubbles: true, composed: true });
+}
+
+export function newRedoEvent(): CustomEvent {
+  return new CustomEvent('redo', { bubbles: true, composed: true });
+}
+
 
 @customElement('oscd-history')
 export class OscdHistory extends LitElement {
@@ -140,7 +205,7 @@ export class OscdHistory extends LitElement {
         )
       );
       this.editCount = this.previousAction; 
-      this.dispatchEvent(newEditCountEvent(this.editCount));
+      this.dispatchEvent(newUndoRedoChangedEvent(this.canUndo, this.canRedo, this.editCount));
       return true;
     }
     redo(): boolean {
@@ -152,7 +217,7 @@ export class OscdHistory extends LitElement {
       this.host.dispatchEvent(
         newActionEvent((<CommitEntry>this.history[this.editCount]).action)
       );
-      
+      this.dispatchEvent(newUndoRedoChangedEvent(this.canUndo, this.canRedo, this.editCount));
       return true;
     }
 
@@ -167,7 +232,7 @@ export class OscdHistory extends LitElement {
         entry.action.derived = true;
         if (this.nextAction !== -1) this.history.splice(this.nextAction);
         this.editCount = this.history.length; 
-        this.dispatchEvent(newEditCountEvent(this.editCount));
+        this.dispatchEvent(newUndoRedoChangedEvent(this.canUndo, this.canRedo, this.editCount));
       }
 
       this.history.push(entry);
@@ -178,7 +243,7 @@ export class OscdHistory extends LitElement {
       this.log = [];
       this.history = [];
       this.editCount = -1; 
-      this.dispatchEvent(newEditCountEvent(this.editCount));
+      this.dispatchEvent(newUndoRedoChangedEvent(this.canUndo, this.canRedo, this.editCount));
     }
 
     private onInfo(detail: InfoDetail) {
@@ -219,14 +284,59 @@ export class OscdHistory extends LitElement {
       }
     }
 
-    firstUpdated(): void { 
+    private historyUIHandler(e: HistoryUIEvent): void {
+      const ui = {
+        log: this.logUI,
+        history: this.historyUI,
+        diagnostic: this.diagnosticUI,
+      }[e.detail.kind];
+
+      if (e.detail.show) ui.show();
+      else ui.close();
+    }
+
+    private emptyIssuesHandler(e: EmptyIssuesEvent): void {
+      const issues = this.diagnoses.get(e.detail.pluginSrc);
+      if (this.diagnoses.get(e.detail.pluginSrc))
+        this.diagnoses.get(e.detail.pluginSrc)!.length = 0;
+    }
+
+    private handleKeyPress(e: KeyboardEvent): void {
+      let handled = false;
+      const ctrlAnd = (key: string) =>
+        e.key === key && e.ctrlKey && (handled = true);
+  
+      if (ctrlAnd('y')) this.redo();
+      if (ctrlAnd('z')) this.undo();
+      if (ctrlAnd('l')) this.logUI.open ? this.logUI.close() : this.logUI.show();
+      if (ctrlAnd('d'))
+        this.diagnosticUI.open
+          ? this.diagnosticUI.close()
+          : this.diagnosticUI.show();
+    }
+
+    constructor() {
+      super();
       this.undo = this.undo.bind(this);
       this.redo = this.redo.bind(this);
       this.onLog = this.onLog.bind(this);
       this.onIssue = this.onIssue.bind(this);
+      this.historyUIHandler = this.historyUIHandler.bind(this);
+      this.emptyIssuesHandler = this.emptyIssuesHandler.bind(this);
+      this.handleKeyPress = this.handleKeyPress.bind(this);
+      document.onkeydown = this.handleKeyPress;
+    }
+
+    connectedCallback(): void { 
+      super.connectedCallback();
 
       this.host.addEventListener('log', this.onLog);
       this.host.addEventListener('issue', this.onIssue);
+      this.host.addEventListener('history-dialog-ui', this.historyUIHandler);
+      this.host.addEventListener('empty-issues', this.emptyIssuesHandler);
+      this.host.addEventListener('undo', this.undo);
+      this.host.addEventListener('redo', this.redo);
+      this.diagnoses.clear();
     }
 
     renderLogEntry(
@@ -366,7 +476,7 @@ export class OscdHistory extends LitElement {
       </mwc-dialog>`;
     }
 
-    private renderHistoryDialog(): TemplateResult {
+    private renderHistoryUI(): TemplateResult {
       return html` <mwc-dialog
         id="history"
         heading="${translate('history.name')}"
@@ -393,7 +503,7 @@ export class OscdHistory extends LitElement {
     }
 
     render(): TemplateResult {
-      return html`
+      return html`<slot></slot>
         <style>
           #log > mwc-icon-button-toggle {
             position: absolute;
@@ -451,7 +561,7 @@ export class OscdHistory extends LitElement {
             right: 14px;
           }
         </style>
-        ${this.renderLogDialog()} ${this.renderHistoryDialog()}
+        ${this.renderLogDialog()} ${this.renderHistoryUI()}
         <mwc-dialog id="diagnostic" heading="${translate('diag.name')}">
           <filtered-list id="content" wrapFocus
             >${this.renderIssues()}</filtered-list
@@ -521,5 +631,13 @@ export class OscdHistory extends LitElement {
           <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
         </mwc-snackbar>`;
     }
+}
+
+declare global {
+  interface ElementEventMap {
+    'history-dialog-ui': CustomEvent<HistoryUIDetail>;
+    'empty-issues': CustomEvent<EmptyIssuesDetail>;
+    'undo-redo-changed': CustomEvent<UndoRedoChangedDetail>;
+  }
 }
 

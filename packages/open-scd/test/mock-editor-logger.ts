@@ -3,7 +3,7 @@ import { LitElement, customElement, property, state, html, query, TemplateResult
 import '../src/addons/Editor.js';
 import '../src/addons/History.js';
 import { OscdEditor } from '../src/addons/Editor.js';
-import { EditCountEvent, OscdHistory } from '../src/addons/History.js';
+import { UndoRedoChangedEvent, OscdHistory } from '../src/addons/History.js';
 
 @customElement('mock-editor-logger')
 export class MockEditorLogger extends LitElement {
@@ -26,7 +26,7 @@ export class MockEditorLogger extends LitElement {
     return html`
         <oscd-history 
             .host=${this} 
-            @edit-count="${(e:EditCountEvent) => { this.editCount = e.detail.editCount }}"
+            @undo-redo-changed="${(e:UndoRedoChangedEvent) => { this.editCount = e.detail.editCount }}"
           >
             <oscd-editor
               .doc=${this.doc}

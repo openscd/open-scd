@@ -1054,7 +1054,6 @@ snapshots["open-scd looks like its snapshot"] =
             >
             </mwc-button>
           </mwc-dialog>
-          [object Object]
         </oscd-editor>
       </oscd-history>
     </oscd-wizards>

@@ -53,7 +53,7 @@ import { Switch } from '@material/mwc-switch';
 import { TextField } from '@material/mwc-textfield';
 import { Dialog } from '@material/mwc-dialog';
 import { initializeNsdoc, Nsdoc } from './foundation/nsdoc.js';
-import { EditCountEvent, OscdHistory } from './addons/History.js';
+import { HistoryUIKind, newEmptyIssuesEvent, newHistoryUIEvent, newRedoEvent, newUndoEvent, UndoRedoChangedEvent } from './addons/History.js';
 
 // HOSTING INTERFACES
 
@@ -239,6 +239,12 @@ export class OpenSCD extends LitElement {
   @state()
   editCount = -1;
 
+  @state()
+  canRedo = false;
+
+  @state()
+  canUndo = false;
+
   /** Object containing all *.nsdoc files and a function extracting element's label form them*/
   @property({ attribute: false })
   nsdoc: Nsdoc = initializeNsdoc();
@@ -249,8 +255,6 @@ export class OpenSCD extends LitElement {
   get src(): string {
     return this.currentSrc;
   }
-
-  @query('oscd-history') historyAddon!: OscdHistory;
 
   set src(value: string) {
     this.currentSrc = value;
@@ -275,13 +279,6 @@ export class OpenSCD extends LitElement {
     const ctrlAnd = (key: string) =>
       e.key === key && e.ctrlKey && (handled = true);
 
-    if (ctrlAnd('y')) this.historyAddon.redo();
-    if (ctrlAnd('z')) this.historyAddon.undo();
-    if (ctrlAnd('l')) this.historyAddon.logUI.open ? this.historyAddon.logUI.close() : this.historyAddon.logUI.show();
-    if (ctrlAnd('d'))
-      this.historyAddon.diagnosticUI.open
-        ? this.historyAddon.diagnosticUI.close()
-        : this.historyAddon.diagnosticUI.show();
     if (ctrlAnd('m')) this.menuUI.open = !this.menuUI.open;
     if (ctrlAnd('o'))
       this.menuUI
@@ -311,17 +308,17 @@ export class OpenSCD extends LitElement {
   }
 
   protected renderMain(): TemplateResult {
-    return html`${this.renderHosting()}${this.renderPlugging()}${super.render()}`;
+    return html`${this.renderHosting()}${this.renderPlugging()}`;
   }
 
-  firstUpdated(): void {
+  connectedCallback(): void {
+    super.connectedCallback();
     this.addEventListener('validate', async () => {
       this.shouldValidate = true;
       await this.validated;
 
       if (!this.shouldValidate) return;
 
-      this.historyAddon.diagnoses.clear();
       this.shouldValidate = false;
 
       this.validated = Promise.allSettled(
@@ -337,6 +334,10 @@ export class OpenSCD extends LitElement {
     this.addEventListener('close-drawer', async () => {
       this.menuUI.open = false;
     });
+    this.addEventListener('undo-redo-changed', e => {
+      this.canRedo = (e as UndoRedoChangedEvent).detail.canRedo;
+      this.canUndo = (e as UndoRedoChangedEvent).detail.canUndo;
+    });
   }
 
   render(): TemplateResult {
@@ -345,7 +346,11 @@ export class OpenSCD extends LitElement {
         <oscd-wizards .host=${this}>
           <oscd-history 
             .host=${this} 
-            @edit-count="${(e:EditCountEvent) => { this.editCount = e.detail.editCount }}"
+            @undo-redo-changed="${(e:UndoRedoChangedEvent) => { 
+              this.editCount = e.detail.editCount 
+              this.canRedo = e.detail.canRedo
+              this.canUndo = e.detail.canUndo
+            }}"
           >
             <oscd-editor
               .doc=${this.doc}
@@ -538,8 +543,7 @@ export class OpenSCD extends LitElement {
         icon: plugin.icon || pluginIcons['validator'],
         name: plugin.name,
         action: ae => {
-          if (this.historyAddon.diagnoses.get(plugin.src))
-            this.historyAddon.diagnoses.get(plugin.src)!.length = 0;
+          this.dispatchEvent(newEmptyIssuesEvent(plugin.src));
 
           this.dispatchEvent(
             newPendingStateEvent(
@@ -568,16 +572,20 @@ export class OpenSCD extends LitElement {
         icon: 'undo',
         name: 'undo',
         actionItem: true,
-        action: this.historyAddon?.undo || undefined,
-        disabled: (): boolean => !this.historyAddon?.canUndo,
+        action: (): void => {
+          this.dispatchEvent(newUndoEvent())
+        },
+        disabled: (): boolean => !this.canUndo,
         kind: 'static',
       },
       {
         icon: 'redo',
         name: 'redo',
         actionItem: true,
-        action: this.historyAddon?.redo || undefined,
-        disabled: (): boolean => !this.historyAddon?.canRedo,
+        action: (): void => {
+          this.dispatchEvent(newRedoEvent())
+        },
+        disabled: (): boolean => !this.canRedo,
         kind: 'static',
       },
       ...validators,
@@ -585,21 +593,27 @@ export class OpenSCD extends LitElement {
         icon: 'list',
         name: 'menu.viewLog',
         actionItem: true,
-        action: (): void => this.historyAddon?.logUI.show(),
+        action: (): void => {
+          this.dispatchEvent(newHistoryUIEvent(true, HistoryUIKind.log))
+        },
         kind: 'static',
       },
       {
         icon: 'history',
         name: 'menu.viewHistory',
         actionItem: true,
-        action: (): void => this.historyAddon?.historyUI.show(),
+        action: (): void => {
+          this.dispatchEvent(newHistoryUIEvent(true, HistoryUIKind.history))
+        },
         kind: 'static',
       },
       {
         icon: 'rule',
         name: 'menu.viewDiag',
         actionItem: true,
-        action: (): void => this.historyAddon?.diagnosticUI.show(),
+        action: (): void => {
+          this.dispatchEvent(newHistoryUIEvent(true, HistoryUIKind.diagnostic))
+        },
         kind: 'static',
       },
       'divider',
