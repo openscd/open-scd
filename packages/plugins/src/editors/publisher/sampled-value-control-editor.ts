@@ -8,7 +8,7 @@ import {
   state,
   TemplateResult,
 } from 'lit-element';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-button';
 import '@material/mwc-list/mwc-list-item';
@@ -147,7 +147,7 @@ export class SampledValueControlEditor extends LitElement {
   private renderToggleButton(): TemplateResult {
     return html`<mwc-button
       outlined
-      label="${translate('publisher.selectbutton', { type: 'SMV' })}"
+      label="${get('publisher.selectbutton', { type: 'SMV' })}"
       @click=${() => {
         this.selectionList.classList.remove('hidden');
         this.selectSampledValueControlButton.classList.add('hidden');

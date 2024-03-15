@@ -7,7 +7,7 @@ import {
   query,
   TemplateResult,
 } from 'lit-element';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-fab';
 import '@material/mwc-icon';
@@ -164,7 +164,7 @@ export class PowerTransformerEditor extends LitElement {
     return html`<mwc-icon slot="icon" style="width:24px;height:24px"
         >${powerTransformerTwoWindingIcon}</mwc-icon
       >
-      <abbr slot="action" title="${translate('lnode.tooltip')}">
+      <abbr slot="action" title="${get('lnode.tooltip')}">
         <mwc-icon-button
           slot="action"
           mini
@@ -172,7 +172,7 @@ export class PowerTransformerEditor extends LitElement {
           icon="account_tree"
         ></mwc-icon-button>
       </abbr>
-      <abbr slot="action" title="${translate('edit')}">
+      <abbr slot="action" title="${get('edit')}">
         <mwc-icon-button
           slot="action"
           mini
@@ -180,7 +180,7 @@ export class PowerTransformerEditor extends LitElement {
           @click="${() => this.openEditWizard()}}"
         ></mwc-icon-button>
       </abbr>
-      <abbr slot="action" title="${translate('move')}">
+      <abbr slot="action" title="${get('move')}">
         <mwc-icon-button
           slot="action"
           mini
@@ -194,18 +194,14 @@ export class PowerTransformerEditor extends LitElement {
           icon="forward"
         ></mwc-icon-button>
       </abbr>
-      <abbr slot="action" title="${translate('remove')}">
+      <abbr slot="action" title="${get('remove')}">
         <mwc-icon-button
           slot="action"
           mini
           icon="delete"
           @click="${() => this.removeElement()}}"
         ></mwc-icon-button> </abbr
-      ><abbr
-        slot="action"
-        style="position:relative;"
-        title="${translate('add')}"
-      >
+      ><abbr slot="action" style="position:relative;" title="${get('add')}">
         <mwc-icon-button
           icon="playlist_add"
           @click=${() => (this.addMenu.open = true)}

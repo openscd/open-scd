@@ -1,5 +1,5 @@
 import { html, TemplateResult } from 'lit-html';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import {
   cloneElement,
@@ -31,23 +31,23 @@ export function contentSubEquipmentWizard(
       label="name"
       .maybeValue=${content.name}
       .reservedValues=${content.reservedNames}
-      helper="${translate('scl.name')}"
+      helper="${get('scl.name')}"
       required
-      validationMessage="${translate('textfield.required')}"
+      validationMessage="${get('textfield.required')}"
       dialogInitialFocus
     ></wizard-textfield>`,
     html`<wizard-textfield
       label="desc"
       .maybeValue=${content.desc}
       nullable
-      helper="${translate('scl.desc')}"
+      helper="${get('scl.desc')}"
     ></wizard-textfield>`,
     html`<wizard-select
       label="phase"
       fixedMenuPosition
       .maybeValue=${content.phase}
       nullable
-      helper="${translate('scl.phase')}"
+      helper="${get('scl.phase')}"
     >
       ${['A', 'B', 'C', 'N', 'all', 'none', 'AB', 'BC', 'CA'].map(
         value =>
@@ -60,7 +60,7 @@ export function contentSubEquipmentWizard(
       label="virtual"
       .maybeValue=${content.virtual}
       nullable
-      helper="${translate('scl.virtual')}"
+      helper="${get('scl.virtual')}"
     ></wizard-checkbox>`,
   ];
 }

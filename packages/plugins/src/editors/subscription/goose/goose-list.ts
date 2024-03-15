@@ -6,7 +6,7 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 import { classMap } from 'lit-html/directives/class-map';
 
 import '@material/mwc-icon';
@@ -96,7 +96,7 @@ export class GooseList extends LitElement {
 
   render(): TemplateResult {
     return html` <section tabindex="0">
-      <h1>${translate('subscription.goose.publisher.title')}</h1>
+      <h1>${get('subscription.goose.publisher.title')}</h1>
       <filtered-list activatable>
         ${getOrderedIeds(this.doc).map(
           ied =>

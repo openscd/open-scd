@@ -6,7 +6,7 @@ import {
   query,
   TemplateResult,
 } from 'lit-element';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-fab';
 import '@material/mwc-radio';
@@ -60,7 +60,7 @@ export default class Communication104Plugin extends LitElement {
   render(): TemplateResult {
     return html` <section>
       <div>
-        <mwc-formfield label="${translate('protocol104.view.valuesView')}">
+        <mwc-formfield label="${get('protocol104.view.valuesView')}">
           <mwc-radio
             id="byValuesRadio"
             name="view"
@@ -69,7 +69,7 @@ export default class Communication104Plugin extends LitElement {
               this.listDiv.dispatchEvent(newViewEvent(View.VALUES))}
           ></mwc-radio>
         </mwc-formfield>
-        <mwc-formfield label="${translate('protocol104.view.networkView')}">
+        <mwc-formfield label="${get('protocol104.view.networkView')}">
           <mwc-radio
             id="byNetworkRadio"
             name="view"

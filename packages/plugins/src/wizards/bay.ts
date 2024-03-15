@@ -1,5 +1,5 @@
 import { html, TemplateResult } from 'lit-html';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@openscd/open-scd/src/wizard-textfield.js';
 import {
@@ -20,16 +20,16 @@ export function renderBayWizard(
     html`<wizard-textfield
       label="name"
       .maybeValue=${name}
-      helper="${translate('bay.wizard.nameHelper')}"
+      helper="${get('bay.wizard.nameHelper')}"
       required
-      validationMessage="${translate('textfield.required')}"
+      validationMessage="${get('textfield.required')}"
       dialogInitialFocus
     ></wizard-textfield>`,
     html`<wizard-textfield
       label="desc"
       .maybeValue=${desc}
       nullable
-      helper="${translate('bay.wizard.descHelper')}"
+      helper="${get('bay.wizard.descHelper')}"
     ></wizard-textfield>`,
   ];
 }

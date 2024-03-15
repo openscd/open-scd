@@ -1,5 +1,5 @@
 import { html } from 'lit-element';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-button';
 import '@material/mwc-list';
@@ -183,7 +183,7 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
         html`<wizard-textfield
           label="name"
           .maybeValue=${name}
-          helper="${translate('scl.name')}"
+          helper="${get('scl.name')}"
           required
           pattern="${patterns.alphanumericFirstUpperCase}"
           dialogInitialFocus
@@ -192,7 +192,7 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
         >`,
         html`<wizard-textfield
           label="desc"
-          helper="${translate('scl.desc')}"
+          helper="${get('scl.desc')}"
           .maybeValue=${desc}
           nullable
           pattern="${patterns.normalizedString}"
@@ -201,7 +201,7 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
           fixedMenuPosition
           label="type"
           required
-          helper="${translate('scl.type')}"
+          helper="${get('scl.type')}"
           >${types.map(
             dataType =>
               html`<mwc-list-item
@@ -213,7 +213,7 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
         >`,
         html`<wizard-textfield
           label="accessControl"
-          helper="${translate('scl.accessControl')}"
+          helper="${get('scl.accessControl')}"
           .maybeValue=${accessControl}
           nullable
           pattern="${patterns.normalizedString}"
@@ -221,7 +221,7 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
         html`<wizard-checkbox
           label="transient"
           .maybeValue="${transient}"
-          helper="${translate('scl.transient')}"
+          helper="${get('scl.transient')}"
           nullable
         ></wizard-checkbox>`,
       ],
@@ -540,7 +540,7 @@ export function createLNodeTypeWizard(
         </mwc-select>`,
         html`<wizard-textfield
           label="id"
-          helper="${translate('scl.id')}"
+          helper="${get('scl.id')}"
           .maybeValue=${''}
           required
           maxlength="127"
@@ -549,7 +549,7 @@ export function createLNodeTypeWizard(
         ></wizard-textfield>`,
         html`<wizard-textfield
           label="desc"
-          helper="${translate('scl.desc')}"
+          helper="${get('scl.desc')}"
           .maybeValue=${null}
           nullable
           pattern="${patterns.normalizedString}"
@@ -626,7 +626,7 @@ export function lNodeTypeWizard(
       content: [
         html`<wizard-textfield
           label="id"
-          helper="${translate('scl.id')}"
+          helper="${get('scl.id')}"
           .maybeValue=${lnodetype.getAttribute('id')}
           required
           maxlength="127"
@@ -636,14 +636,14 @@ export function lNodeTypeWizard(
         ></wizard-textfield>`,
         html`<wizard-textfield
           label="desc"
-          helper="${translate('scl.desc')}"
+          helper="${get('scl.desc')}"
           .maybeValue=${lnodetype.getAttribute('desc')}
           nullable
           pattern="${patterns.normalizedString}"
         ></wizard-textfield>`,
         html`<wizard-textfield
           label="lnClass"
-          helper="${translate('scl.lnClass')}"
+          helper="${get('scl.lnClass')}"
           .maybeValue=${lnodetype.getAttribute('lnClass')}
           required
           pattern="${patterns.lnClass}"

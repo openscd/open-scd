@@ -6,7 +6,7 @@ import {
   query,
   TemplateResult,
 } from 'lit-element';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 import { nothing } from 'lit-html';
 
 import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
@@ -82,10 +82,7 @@ export class Ied104Container extends Base104Container {
     return html`
       <action-pane .label="${this.header}">
         <mwc-icon slot="icon">developer_board</mwc-icon>
-        <abbr
-          slot="action"
-          title="${translate('protocol104.toggleChildElements')}"
-        >
+        <abbr slot="action" title="${get('protocol104.toggleChildElements')}">
           <mwc-icon-button-toggle
             id="toggleButton"
             on

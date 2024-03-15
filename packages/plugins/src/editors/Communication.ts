@@ -1,5 +1,5 @@
 import { LitElement, html, TemplateResult, property, css } from 'lit-element';
-import { translate, get } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-fab';
 
@@ -49,8 +49,7 @@ export default class CommunicationPlugin extends LitElement {
   render(): TemplateResult {
     if (!this.doc?.querySelector(':root > Communication >SubNetwork'))
       return html`<h1>
-        <span style="color: var(--base1)"
-          >${translate('communication.missing')}</span
+        <span style="color: var(--base1)">${get('communication.missing')}</span
         ><mwc-fab
           extended
           icon="add"

@@ -1,5 +1,5 @@
 import { html, TemplateResult } from 'lit-html';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-button';
 import '@material/mwc-list/mwc-list-item';
@@ -41,7 +41,7 @@ export function renderDa(
     html`<wizard-select
       label="fc"
       .maybeValue=${fc}
-      helper="${translate('scl.fc')}"
+      helper="${get('scl.fc')}"
       required
       fixedMenuPosition
       >${functionalConstraintEnum.map(
@@ -52,19 +52,19 @@ export function renderDa(
     html`<wizard-checkbox
       label="dchg"
       .maybeValue=${dchg}
-      helper="${translate('scl.dchg')}"
+      helper="${get('scl.dchg')}"
       nullable
     ></wizard-checkbox>`,
     html`<wizard-checkbox
       label="qchg"
       .maybeValue=${qchg}
-      helper="${translate('scl.qchg')}"
+      helper="${get('scl.qchg')}"
       nullable
     ></wizard-checkbox>`,
     html`<wizard-checkbox
       label="dupd"
       .maybeValue=${dupd}
-      helper="${translate('scl.dupd')}"
+      helper="${get('scl.dupd')}"
       nullable
     ></wizard-checkbox>`,
   ];

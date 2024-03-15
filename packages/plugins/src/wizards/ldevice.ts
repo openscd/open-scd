@@ -1,5 +1,5 @@
 import { html, TemplateResult } from 'lit-element';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
@@ -35,7 +35,7 @@ export function renderLdeviceWizard(
       ? html`<wizard-textfield
           label="ldName"
           .maybeValue=${ldName}
-          helper="${translate('ldevice.wizard.noNameSupportHelper')}"
+          helper="${get('ldevice.wizard.noNameSupportHelper')}"
           helperPersistent
           readOnly
           disabled
@@ -44,8 +44,8 @@ export function renderLdeviceWizard(
           label="ldName"
           .maybeValue=${ldName}
           nullable
-          helper="${translate('ldevice.wizard.nameHelper')}"
-          validationMessage="${translate('textfield.required')}"
+          helper="${get('ldevice.wizard.nameHelper')}"
+          validationMessage="${get('textfield.required')}"
           dialogInitialFocus
           pattern="${lDeviceNamePattern}"
         ></wizard-textfield>`,
@@ -53,7 +53,7 @@ export function renderLdeviceWizard(
       label="desc"
       .maybeValue=${desc}
       nullable
-      helper="${translate('ldevice.wizard.descHelper')}"
+      helper="${get('ldevice.wizard.descHelper')}"
       pattern="${patterns.normalizedString}"
     ></wizard-textfield>`,
     html`<wizard-textfield

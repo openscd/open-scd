@@ -8,7 +8,7 @@ import {
   state,
   TemplateResult,
 } from 'lit-element';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-button';
 import '@material/mwc-list/mwc-list-item';
@@ -114,7 +114,7 @@ export class DataSetEditor extends LitElement {
   private renderToggleButton(): TemplateResult {
     return html`<mwc-button
       outlined
-      label="${translate('publisher.selectbutton', { type: 'DataSet' })}"
+      label="${get('publisher.selectbutton', { type: 'DataSet' })}"
       @click=${() => {
         this.selectionList.classList.remove('hidden');
         this.selectDataSetButton.classList.add('hidden');

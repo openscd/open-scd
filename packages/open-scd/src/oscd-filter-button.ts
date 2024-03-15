@@ -7,7 +7,7 @@ import {
   TemplateResult,
   unsafeCSS,
 } from 'lit-element';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-icon-button';
 import '@material/mwc-dialog';
@@ -65,7 +65,7 @@ export class FilterButton extends FilteredList {
       >
         ${super.render()}
         <mwc-button slot="primaryAction" dialogAction="close">
-          ${translate('close')}
+          ${get('close')}
         </mwc-button>
       </mwc-dialog>
     `;

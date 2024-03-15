@@ -11,7 +11,7 @@ import {
   queryAll,
 } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-button';
 import '@material/mwc-icon';
@@ -185,7 +185,7 @@ export class CleanupControlBlocks extends LitElement {
           label="warning"
           icon="warning_amber"
           class="cautionItem"
-          title="${translate(
+          title="${get(
             'cleanup.unreferencedControls.addressDefinitionTooltip'
           )}"
           ?disabled="${!(getCommAddress(controlBlock) !== null)}"
@@ -244,7 +244,7 @@ export class CleanupControlBlocks extends LitElement {
       outlined
       icon="delete"
       class="deleteButton"
-      label="${translate(
+      label="${get(
         'cleanup.unreferencedControls.deleteButton'
       )} (${sizeSelectedItems || '0'})"
       ?disabled=${(<Set<number>>this.selectedControlItems).size === 0 ||
@@ -297,12 +297,12 @@ export class CleanupControlBlocks extends LitElement {
     return html`
       <div>
         <h1>
-          ${translate('cleanup.unreferencedControls.title')}
+          ${get('cleanup.unreferencedControls.title')}
           (${unreferencedCBs.length})
           <abbr slot="action">
             <mwc-icon-button
               icon="info"
-              title="${translate('cleanup.unreferencedControls.tooltip')}"
+              title="${get('cleanup.unreferencedControls.tooltip')}"
             >
             </mwc-icon-button>
           </abbr>
@@ -319,7 +319,7 @@ export class CleanupControlBlocks extends LitElement {
         ${this.renderDeleteButton()}
         <mwc-formfield
           class="removeFromCommunication"
-          label="${translate(
+          label="${get(
             'cleanup.unreferencedControls.alsoRemoveFromCommunication'
           )}"
         >

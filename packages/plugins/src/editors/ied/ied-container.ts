@@ -6,7 +6,7 @@ import {
   TemplateResult,
 } from 'lit-element';
 import { nothing } from 'lit-html';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@openscd/open-scd/src/action-pane.js';
 import './access-point-container.js';
@@ -40,7 +40,7 @@ export class IedContainer extends Container {
       return html``;
     }
 
-    return html` <abbr slot="action" title="${translate('iededitor.settings')}">
+    return html` <abbr slot="action" title="${get('iededitor.settings')}">
       <mwc-icon-button
         icon="settings"
         @click=${() => this.openSettingsWizard(services)}
@@ -77,13 +77,13 @@ export class IedContainer extends Container {
   render(): TemplateResult {
     return html` <action-pane .label="${this.header()}">
       <mwc-icon slot="icon">developer_board</mwc-icon>
-      <abbr slot="action" title="${translate('remove')}">
+      <abbr slot="action" title="${get('remove')}">
         <mwc-icon-button
           icon="delete"
           @click=${() => this.removeIED()}
         ></mwc-icon-button>
       </abbr>
-      <abbr slot="action" title="${translate('edit')}">
+      <abbr slot="action" title="${get('edit')}">
         <mwc-icon-button
           icon="edit"
           @click=${() => this.openEditWizard()}

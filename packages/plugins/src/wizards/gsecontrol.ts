@@ -1,5 +1,5 @@
 import { html, TemplateResult } from 'lit-element';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-button';
 import '@material/mwc-list/mwc-list-item';
@@ -78,9 +78,9 @@ export function contentGseControlWizard(
     html`<wizard-textfield
       label="name"
       .maybeValue=${content.name}
-      helper="${translate('scl.name')}"
+      helper="${get('scl.name')}"
       required
-      validationMessage="${translate('textfield.required')}"
+      validationMessage="${get('textfield.required')}"
       pattern="${patterns.asciName}"
       maxLength="${maxLength.cbName}"
       dialogInitialFocus
@@ -89,12 +89,12 @@ export function contentGseControlWizard(
       label="desc"
       .maybeValue=${content.desc}
       nullable
-      helper="${translate('scl.desc')}"
+      helper="${get('scl.desc')}"
     ></wizard-textfield>`,
     html`<wizard-select
       label="type"
       .maybeValue=${content.type}
-      helper="${translate('scl.type')}"
+      helper="${get('scl.type')}"
       nullable
       required
       >${['GOOSE', 'GSSE'].map(
@@ -104,22 +104,22 @@ export function contentGseControlWizard(
     html`<wizard-textfield
       label="appID"
       .maybeValue=${content.appID}
-      helper="${translate('scl.id')}"
+      helper="${get('scl.id')}"
       required
-      validationMessage="${translate('textfield.nonempty')}"
+      validationMessage="${get('textfield.nonempty')}"
     ></wizard-textfield>`,
     html`<wizard-checkbox
       label="fixedOffs"
       .maybeValue=${content.fixedOffs}
       nullable
-      helper="${translate('scl.fixedOffs')}"
+      helper="${get('scl.fixedOffs')}"
     ></wizard-checkbox>`,
     html`<wizard-select
       label="securityEnabled"
       .maybeValue=${content.securityEnabled}
       nullable
       required
-      helper="${translate('scl.securityEnable')}"
+      helper="${get('scl.securityEnable')}"
       >${securityEnabledEnum.map(
         type => html`<mwc-list-item value="${type}">${type}</mwc-list-item>`
       )}</wizard-select
@@ -309,7 +309,7 @@ export function createGseControlWizard(ln0OrLn: Element): Wizard {
                       font-family: 'Roboto', sans-serif;
                       font-weight: 300;"
             >
-              ${translate('gse.missingaccp')}
+              ${get('gse.missingaccp')}
             </h3>`,
           ],
         },

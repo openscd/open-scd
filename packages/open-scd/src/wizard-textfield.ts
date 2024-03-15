@@ -6,7 +6,7 @@ import {
   query,
   TemplateResult,
 } from 'lit-element';
-import { translate, get } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-icon-button';
 import '@material/mwc-list/mwc-list-item';
@@ -154,7 +154,7 @@ export class WizardTextField extends TextField {
       multiplier =>
         html`<mwc-list-item ?selected=${multiplier === this.multiplier}
           >${multiplier === null
-            ? translate('textfield.noMultiplier')
+            ? get('textfield.noMultiplier')
             : multiplier}</mwc-list-item
         >`
     )}`;

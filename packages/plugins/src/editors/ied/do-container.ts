@@ -6,7 +6,7 @@ import {
   TemplateResult,
 } from 'lit-element';
 import { nothing } from 'lit-html';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-icon-button-toggle';
 import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
@@ -118,7 +118,7 @@ export class DOContainer extends Container {
       ${daElements.length > 0 || doElements.length > 0
         ? html`<abbr
             slot="action"
-            title="${translate('iededitor.toggleChildElements')}"
+            title="${get('iededitor.toggleChildElements')}"
           >
             <mwc-icon-button-toggle
               id="toggleButton"

@@ -1,5 +1,5 @@
 import { html, TemplateResult } from 'lit-element';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-button';
 import '@material/mwc-list/mwc-list-item';
@@ -60,9 +60,9 @@ function contentReportControlWizard(options: ContentOptions): TemplateResult[] {
     html`<wizard-textfield
       label="name"
       .maybeValue=${options.name}
-      helper="${translate('scl.name')}"
+      helper="${get('scl.name')}"
       required
-      validationMessage="${translate('textfield.required')}"
+      validationMessage="${get('textfield.required')}"
       pattern="${patterns.asciName}"
       maxLength="${maxLength.cbName}"
       dialogInitialFocus
@@ -71,30 +71,30 @@ function contentReportControlWizard(options: ContentOptions): TemplateResult[] {
       label="desc"
       .maybeValue=${options.desc}
       nullable
-      helper="${translate('scl.desc')}"
+      helper="${get('scl.desc')}"
     ></wizard-textfield>`,
     html`<wizard-checkbox
       label="buffered"
       .maybeValue=${options.buffered}
-      helper="${translate('scl.buffered')}"
+      helper="${get('scl.buffered')}"
     ></wizard-checkbox>`,
     html`<wizard-textfield
       label="rptID"
       .maybeValue=${options.rptID}
       nullable
       required
-      helper="${translate('report.rptID')}"
+      helper="${get('report.rptID')}"
     ></wizard-textfield>`,
     html`<wizard-checkbox
       label="indexed"
       .maybeValue=${options.indexed}
       nullable
-      helper="${translate('scl.indexed')}"
+      helper="${get('scl.indexed')}"
     ></wizard-checkbox>`,
     html`<wizard-textfield
       label="max Clients"
       .maybeValue=${options.max}
-      helper="${translate('scl.maxReport')}"
+      helper="${get('scl.maxReport')}"
       nullable
       type="number"
       suffix="#"
@@ -102,7 +102,7 @@ function contentReportControlWizard(options: ContentOptions): TemplateResult[] {
     html`<wizard-textfield
       label="bufTime"
       .maybeValue=${options.bufTime}
-      helper="${translate('scl.bufTime')}"
+      helper="${get('scl.bufTime')}"
       nullable
       required
       type="number"
@@ -112,7 +112,7 @@ function contentReportControlWizard(options: ContentOptions): TemplateResult[] {
     html`<wizard-textfield
       label="intgPd"
       .maybeValue=${options.intgPd}
-      helper="${translate('scl.intgPd')}"
+      helper="${get('scl.intgPd')}"
       nullable
       required
       type="number"
