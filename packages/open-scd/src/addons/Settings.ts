@@ -33,7 +33,7 @@ import {
   iec6185073,
   iec6185074,
   iec6185081,
-} from '../validators/templates/foundation.js';
+} from '../foundation/nsd.js';
 import { initializeNsdoc, Nsdoc } from '../foundation/nsdoc.js';
 
 export type Settings = {
