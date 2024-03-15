@@ -2,7 +2,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
 import '../../../../../src/addons/Wizards.js';
-import { Wizards } from '../../../../../src/addons/Wizards.js';
+import { OscdWizards } from '../../../../../src/addons/Wizards.js';
 
 import { Checkbox } from '@material/mwc-checkbox';
 import {
@@ -22,7 +22,7 @@ import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 describe('Wizards for SCL element ConnectedAP', () => {
   let doc: XMLDocument;
-  let element: Wizards;
+  let element: OscdWizards;
   let inputs: WizardInputElement[];
   let input: WizardInputElement | undefined;
   let primaryAction: HTMLElement;

@@ -5,7 +5,7 @@ import {
   queryAssignedNodes,
   query,
 } from 'lit-element';
-import { Wizards } from '../src/addons/Wizards.js';
+import { OscdWizards } from '../src/addons/Wizards.js';
 import { WizardFactory } from '../src/foundation.js';
 import { OpenSCD } from '../src/open-scd.js';
 import { WizardDialog } from '../src/wizard-dialog.js';
@@ -16,7 +16,7 @@ export class MockOpenSCD extends OpenSCD {
   _plugins!: Array<HTMLElement>;
 
   @query('oscd-wizards')
-  wizards!: Wizards;
+  wizards!: OscdWizards;
 
   renderHosting(): TemplateResult {
     return html`<slot></slot>`;

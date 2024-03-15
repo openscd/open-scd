@@ -2,7 +2,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
 import '../../../../src/addons/Wizards.js';
-import { Wizards } from '../../../../src/addons/Wizards.js';
+import { OscdWizards } from '../../../../src/addons/Wizards.js';
 
 import {
   ComplexAction,
@@ -15,7 +15,7 @@ import { editDaTypeWizard } from '../../../../src/editors/templates/datype-wizar
 
 describe('wizards for DAType element', () => {
   let doc: XMLDocument;
-  let element: Wizards;
+  let element: OscdWizards;
   let inputs: WizardInputElement[];
   let input: WizardInputElement | undefined;
 

@@ -2,14 +2,14 @@ import { fixture, html, expect } from '@open-wc/testing';
 import fc from 'fast-check';
 
 import '../../../../src/addons/Wizards.js';
-import { Wizards } from '../../../../src/addons/Wizards.js';
+import { OscdWizards } from '../../../../src/addons/Wizards.js';
 
 import '../../../../src/editors/substation/conducting-equipment-editor.js';
 import { regexString, regExp } from '../../../foundation.js';
 
 describe('conducting-equipment-editor wizarding integration', () => {
   let doc: XMLDocument;
-  let parent: Wizards;
+  let parent: OscdWizards;
 
   beforeEach(async () => {
     doc = await fetch('/test/testfiles/valid2007B4.scd')

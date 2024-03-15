@@ -3,7 +3,7 @@ import { SinonSpy, spy } from 'sinon';
 import fc, { hexaString, integer } from 'fast-check';
 
 import '../../../src/addons/Wizards.js';
-import { Wizards } from '../../../src/addons/Wizards.js';
+import { OscdWizards } from '../../../src/addons/Wizards.js';
 
 import {
   ComplexAction,
@@ -17,7 +17,7 @@ import { WizardTextField } from '../../../src/wizard-textfield.js';
 
 describe('Wizards for SCL element SMV', () => {
   let doc: XMLDocument;
-  let element: Wizards;
+  let element: OscdWizards;
   let inputs: WizardInputElement[];
   let input: WizardInputElement | undefined;
 

@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
 import '../../../src/addons/Wizards.js';
-import { Wizards } from '../../../src/addons/Wizards.js';
+import { OscdWizards } from '../../../src/addons/Wizards.js';
 
 import { wizardContent } from '../../../src/wizards/abstractda.js';
 import { WizardSelect } from '../../../src/wizard-select.js';
@@ -24,7 +24,7 @@ describe('da wizards', () => {
   describe('updateDaAction', () => {
     let doc: XMLDocument;
     let data: Element;
-    let element: Wizards;
+    let element: OscdWizards;
 
     const da = <Element>(
       new DOMParser().parseFromString(
@@ -228,7 +228,7 @@ describe('da wizards', () => {
   describe('createDaAction', () => {
     let doc: XMLDocument;
     let data: Element;
-    let element: Wizards;
+    let element: OscdWizards;
 
     const daType = <Element>(
       new DOMParser().parseFromString(

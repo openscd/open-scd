@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
 import '../../../../../src/addons/Wizards.js';
-import { Wizards } from '../../../../../src/addons/Wizards.js';
+import { OscdWizards } from '../../../../../src/addons/Wizards.js';
 
 import {
   getDataChildren,
@@ -10,7 +10,7 @@ import {
 
 describe('data model nodes child getter', () => {
   let doc: XMLDocument;
-  let element: Wizards;
+  let element: OscdWizards;
 
   describe('getDataChildren', () => {
     beforeEach(async () => {

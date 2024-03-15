@@ -3,7 +3,7 @@ import { SinonSpy, spy } from 'sinon';
 import fc, { integer } from 'fast-check';
 
 import '../../../src/addons/Wizards.js';
-import { Wizards } from '../../../src/addons/Wizards.js';
+import { OscdWizards } from '../../../src/addons/Wizards.js';
 
 import {
   ComplexAction,
@@ -31,7 +31,7 @@ import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 describe('Wizards for SCL ReportControl element', () => {
   let doc: XMLDocument;
-  let element: Wizards;
+  let element: OscdWizards;
   let inputs: WizardInputElement[];
 
   let primaryAction: HTMLElement;

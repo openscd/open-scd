@@ -2,7 +2,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
 import '../../../../../src/addons/Wizards.js';
-import { Wizards } from '../../../../../src/addons/Wizards.js';
+import { OscdWizards } from '../../../../../src/addons/Wizards.js';
 
 import { WizardTextField } from '../../../../../src/wizard-textfield.js';
 import {
@@ -15,7 +15,7 @@ import { createSubNetworkWizard } from '../../../../../src/editors/protocol104/w
 
 describe('SubNetwork 104 wizard', () => {
   let doc: XMLDocument;
-  let element: Wizards;
+  let element: OscdWizards;
   let inputs: WizardInputElement[];
   let input: WizardInputElement | undefined;
   let primaryAction: HTMLElement;

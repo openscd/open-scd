@@ -2,7 +2,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
 import '../../../src/addons/Wizards.js';
-import { Wizards } from '../../../src/addons/Wizards.js';
+import { OscdWizards } from '../../../src/addons/Wizards.js';
 
 import {
   isReplace,
@@ -13,7 +13,7 @@ import { WizardSelect } from '../../../src/wizard-select.js';
 import { editTrgOpsWizard } from '../../../src/wizards/trgops.js';
 
 describe('Wizards for SCL TrgOps element', () => {
-  let element: Wizards;
+  let element: OscdWizards;
   let trgOps: Element;
   let inputs: WizardInputElement[];
 

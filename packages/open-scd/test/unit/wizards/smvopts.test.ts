@@ -2,14 +2,14 @@ import { expect, fixture, html } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
 import '../../../src/addons/Wizards.js';
-import { Wizards } from '../../../src/addons/Wizards.js';
+import { OscdWizards } from '../../../src/addons/Wizards.js';
 
 import { WizardCheckbox } from '../../../src/wizard-checkbox.js';
 import { isReplace, Replace } from '../../../src/foundation.js';
 import { editSmvOptsWizard } from '../../../src/wizards/smvopts.js';
 
 describe('Wizards for SCL SmvOpts element', () => {
-  let element: Wizards;
+  let element: OscdWizards;
   let smvOpts: Element;
   let inputs: WizardCheckbox[];
 

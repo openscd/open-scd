@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
 import '../../../../../src/addons/Wizards.js';
-import { Wizards } from '../../../../../src/addons/Wizards.js';
+import { OscdWizards } from '../../../../../src/addons/Wizards.js';
 
 import { WizardInputElement } from '../../../../../src/foundation.js';
 import { WizardTextField } from '../../../../../src/wizard-textfield.js';
@@ -26,7 +26,7 @@ describe('Wizards for 104 Address Element', () => {
   let dai: Element;
   let doi: Element;
   let ied: Element;
-  let element: Wizards;
+  let element: OscdWizards;
   let inputs: WizardInputElement[];
 
   beforeEach(async () => {

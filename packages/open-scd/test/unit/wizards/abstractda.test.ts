@@ -2,7 +2,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 import fc from 'fast-check';
 
 import '../../../src/addons/Wizards.js';
-import { Wizards } from '../../../src/addons/Wizards.js';
+import { OscdWizards } from '../../../src/addons/Wizards.js';
 
 import { WizardSelect } from '../../../src/wizard-select.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
@@ -59,7 +59,7 @@ describe('abstractda wizards', () => {
   describe('renderWizard', () => {
     let doc: XMLDocument;
     let data: Element;
-    let element: Wizards;
+    let element: OscdWizards;
     let enumTypes: string[];
     let daTypes: string[];
     let nameTextField: WizardTextField;

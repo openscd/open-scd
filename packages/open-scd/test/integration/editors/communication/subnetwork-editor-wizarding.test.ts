@@ -2,7 +2,7 @@ import { fixture, html, expect } from '@open-wc/testing';
 import fc from 'fast-check';
 
 import '../../../../src/addons/Wizards.js';
-import { Wizards } from '../../../../src/addons/Wizards.js';
+import { OscdWizards } from '../../../../src/addons/Wizards.js';
 
 import '../../../../src/editors/communication/subnetwork-editor.js';
 import { regexString, regExp, inverseRegExp } from '../../../foundation.js';
@@ -10,7 +10,7 @@ import { regexString, regExp, inverseRegExp } from '../../../foundation.js';
 describe('subnetwork-editor wizarding integration', () => {
   describe('edit/add Subnetwork wizard', () => {
     let doc: XMLDocument;
-    let parent: Wizards;
+    let parent: OscdWizards;
 
     beforeEach(async () => {
       doc = await fetch('/test/testfiles/valid2007B4.scd')

@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
 import '../../../src/addons/Wizards.js';
-import { Wizards } from '../../../src/addons/Wizards.js';
+import { OscdWizards } from '../../../src/addons/Wizards.js';
 
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
@@ -21,7 +21,7 @@ describe('Wizards for SCL element LDevice', () => {
   let ied: Element;
   let services: Element;
   let ldevice: Element;
-  let element: Wizards;
+  let element: OscdWizards;
   let inputs: WizardInputElement[];
 
   beforeEach(async () => {

@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
 import '../../../src/addons/Wizards.js';
-import { Wizards } from '../../../src/addons/Wizards.js';
+import { OscdWizards } from '../../../src/addons/Wizards.js';
 
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
@@ -28,7 +28,7 @@ import { updateNamingAttributeWithReferencesAction } from '../../../src/wizards/
 describe('Wizards for SCL element IED', () => {
   let doc: XMLDocument;
   let ied: Element;
-  let element: Wizards;
+  let element: OscdWizards;
   let inputs: WizardInputElement[];
 
   beforeEach(async () => {

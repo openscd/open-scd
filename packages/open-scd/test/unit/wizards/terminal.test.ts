@@ -1,13 +1,13 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
 import '../../../src/addons/Wizards.js';
-import { Wizards } from '../../../src/addons/Wizards.js';
+import { OscdWizards } from '../../../src/addons/Wizards.js';
 
 import { editTerminalWizard } from '../../../src/wizards/terminal.js';
 
 describe('Wizards for SCL element Terminal', () => {
   let doc: XMLDocument;
-  let element: Wizards;
+  let element: OscdWizards;
 
   beforeEach(async () => {
     element = await fixture(

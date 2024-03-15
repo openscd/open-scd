@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
 import '../../../src/addons/Wizards.js';
-import { Wizards } from '../../../src/addons/Wizards.js';
+import { OscdWizards } from '../../../src/addons/Wizards.js';
 
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import { SinonSpy, spy } from 'sinon';
@@ -18,7 +18,7 @@ import { WizardCheckbox } from '../../../src/wizard-checkbox.js';
 
 describe('Wizards for SCL Line element', () => {
   let doc: XMLDocument;
-  let element: Wizards;
+  let element: OscdWizards;
   let inputs: WizardInputElement[];
 
   let primaryAction: HTMLElement;

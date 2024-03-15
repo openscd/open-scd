@@ -1,14 +1,14 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
 import '../../../../src/addons/Wizards.js';
-import { Wizards } from '../../../../src/addons/Wizards.js';
+import { OscdWizards } from '../../../../src/addons/Wizards.js';
 
 import { initializeNsdoc } from '../../../../src/foundation/nsdoc.js';
 import { createDoInfoWizard } from '../../../../src/editors/ied/do-wizard.js';
 import { getAncestorsFromDO } from './test-support.js';
 
 describe('do-wizard', async () => {
-  let element: Wizards;
+  let element: OscdWizards;
   let validSCL: XMLDocument;
 
   const nsdoc = await initializeNsdoc();
