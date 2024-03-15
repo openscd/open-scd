@@ -429,7 +429,7 @@ export class OscdSettings extends LitElement {
         <wizard-divider></wizard-divider>
         ${this.nsdUploadButton
           ? html`<section id="shownsdbutton">
-              <h3>${translate('settings.loadNsdTranslations')}</h3>
+              <h3>${get('settings.loadNsdTranslations')}</h3>
               ${this.renderFileSelect()}
             </section>`
           : html``}
