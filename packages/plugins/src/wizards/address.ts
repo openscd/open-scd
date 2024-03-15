@@ -1,6 +1,6 @@
 import { html, TemplateResult } from 'lit-html';
 import { ifDefined } from 'lit-html/directives/if-defined';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-checkbox';
 import '@material/mwc-formfield';
@@ -22,9 +22,7 @@ export function contentGseOrSmvWizard(
   content: ContentOptions
 ): TemplateResult[] {
   return [
-    html`<mwc-formfield
-      label="${translate('connectedap.wizard.addschemainsttype')}"
-    >
+    html`<mwc-formfield label="${get('connectedap.wizard.addschemainsttype')}">
       <mwc-checkbox
         id="instType"
         ?checked="${content.hasInstType}"

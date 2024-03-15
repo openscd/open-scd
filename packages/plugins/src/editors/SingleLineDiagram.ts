@@ -47,7 +47,7 @@ import {
 import { isSCLNamespace } from '@openscd/open-scd/src/schemas.js';
 import { wizards } from './singlelinediagram/wizards/wizard-library.js';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-select';
@@ -550,7 +550,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
         return html`
           <mwc-select
             id="substationSelector"
-            label="${translate('sld.substationSelector')}"
+            label="${get('sld.substationSelector')}"
             @selected=${this.onSelect}
           >
             ${substationList.map(substation => {
@@ -574,7 +574,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
       const description = getDescriptionAttribute(selectedSubstationElement);
       return html`
         <mwc-textfield
-          label="${translate('substation.name')}"
+          label="${get('substation.name')}"
           value="${name}${description !== undefined
             ? ' (' + description + ')'
             : ''}"
@@ -587,9 +587,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
     }
     return html`
       <h1>
-        <span id="noSubstationSelector"
-          >${translate('substation.missing')}</span
-        >
+        <span id="noSubstationSelector">${get('substation.missing')}</span>
       </h1>
     `;
   }

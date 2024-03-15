@@ -1,6 +1,6 @@
 import { CheckListItem } from '@material/mwc-list/mwc-check-list-item';
 import { html } from 'lit-element';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-button';
 import '@material/mwc-list/mwc-check-list-item';
@@ -105,7 +105,7 @@ export function editDataSetWizard(element: Element): Wizard {
         html`<wizard-textfield
           label="name"
           .maybeValue=${name}
-          helper="${translate('scl.name')}"
+          helper="${get('scl.name')}"
           required
           disabled="true"
         >
@@ -113,7 +113,7 @@ export function editDataSetWizard(element: Element): Wizard {
         html`<wizard-textfield
           label="desc"
           .maybeValue=${desc}
-          helper="${translate('scl.desc')}"
+          helper="${get('scl.desc')}"
           nullable
           required
         >

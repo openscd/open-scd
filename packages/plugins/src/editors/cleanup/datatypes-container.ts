@@ -11,7 +11,7 @@ import {
   queryAll,
 } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-button';
 import '@material/mwc-icon';
@@ -383,7 +383,7 @@ export class CleanupDataTypes extends LitElement {
       outlined
       icon="delete"
       class="delete-button"
-      label="${translate('cleanup.unreferencedDataTypes.deleteButton')} (${(<
+      label="${get('cleanup.unreferencedDataTypes.deleteButton')} (${(<
         Set<number>
       >this.selectedDataTypeItems).size || '0'})"
       ?disabled=${(<Set<number>>this.selectedDataTypeItems).size === 0 ||
@@ -470,12 +470,12 @@ export class CleanupDataTypes extends LitElement {
     return html`
       <div>
         <h1>
-          ${translate('cleanup.unreferencedDataTypes.title')}
+          ${get('cleanup.unreferencedDataTypes.title')}
           (${this.unreferencedDataTypes.length})
           <abbr slot="action">
             <mwc-icon-button
               icon="info"
-              title="${translate('cleanup.unreferencedDataTypes.tooltip')}"
+              title="${get('cleanup.unreferencedDataTypes.tooltip')}"
             >
             </mwc-icon-button>
           </abbr>
@@ -494,9 +494,7 @@ export class CleanupDataTypes extends LitElement {
         ${this.renderDeleteButton()}
         <mwc-formfield
           class="remove-from-communication"
-          label="${translate(
-            'cleanup.unreferencedDataTypes.alsoRemoveSubTypes'
-          )}"
+          label="${get('cleanup.unreferencedDataTypes.alsoRemoveSubTypes')}"
         >
           <mwc-checkbox checked class="clean-sub-types-checkbox"></mwc-checkbox
         ></mwc-formfield>

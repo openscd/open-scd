@@ -6,7 +6,7 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-icon';
 import '@material/mwc-list';
@@ -92,7 +92,7 @@ export class SmvPublisherList extends LitElement {
 
   render(): TemplateResult {
     return html` <section tabindex="0">
-      <h1>${translate('subscription.smv.publisher.title')}</h1>
+      <h1>${get('subscription.smv.publisher.title')}</h1>
       <filtered-list activatable>
         ${getOrderedIeds(this.doc).map(
           ied =>

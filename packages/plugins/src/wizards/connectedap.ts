@@ -1,6 +1,6 @@
 import { html, TemplateResult } from 'lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined';
-import { translate, get } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-checkbox';
 import '@material/mwc-formfield';
@@ -314,7 +314,7 @@ export function createTypeRestrictionCheckbox(
   element: Element
 ): TemplateResult {
   return html`<mwc-formfield
-    label="${translate('connectedap.wizard.addschemainsttype')}"
+    label="${get('connectedap.wizard.addschemainsttype')}"
     ><mwc-checkbox
       id="typeRestriction"
       ?checked=${hasTypeRestriction(element)}

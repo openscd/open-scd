@@ -1,5 +1,5 @@
 import { html, TemplateResult } from 'lit-element';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import {
   cloneElement,
@@ -70,9 +70,9 @@ export function contentTapChangerWizard(
     html`<wizard-textfield
       label="name"
       .maybeValue=${content.name}
-      helper="${translate('scl.name')}"
+      helper="${get('scl.name')}"
       required
-      validationMessage="${translate('textfield.required')}"
+      validationMessage="${get('textfield.required')}"
       .reservedValues=${content.reservedNames}
       dialogInitialFocus
     ></wizard-textfield>`,
@@ -80,18 +80,18 @@ export function contentTapChangerWizard(
       label="desc"
       .maybeValue=${content.desc}
       nullable
-      helper="${translate('scl.desc')}"
+      helper="${get('scl.desc')}"
     ></wizard-textfield>`,
     html`<wizard-textfield
       label="type"
       .maybeValue=${content.type}
       disabled
-      helper="${translate('scl.type')}"
+      helper="${get('scl.type')}"
     ></wizard-textfield>`,
     html`<wizard-checkbox
       label="virtual"
       .maybeValue=${content.virtual}
-      helper="${translate('scl.virtual')}"
+      helper="${get('scl.virtual')}"
       nullable
     ></wizard-checkbox>`,
   ];

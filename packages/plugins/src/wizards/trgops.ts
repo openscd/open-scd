@@ -1,5 +1,5 @@
 import { html, TemplateResult } from 'lit-element';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-list/mwc-list-item';
 
@@ -29,7 +29,7 @@ export function contentTrgOpsWizard(option: ContentOptions): TemplateResult[] {
         label="${key}"
         .maybeValue=${value}
         nullable
-        helper="${translate(`scl.${key}`)}"
+        helper="${get(`scl.${key}`)}"
       ></wizard-checkbox>`
   );
 }

@@ -6,7 +6,7 @@ import {
   query,
   TemplateResult,
 } from 'lit-element';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 import { nothing } from 'lit-html';
 
 import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
@@ -137,16 +137,13 @@ export class Doi104Container extends Base104Container {
   render(): TemplateResult {
     return html`
       <action-pane .label="${this.header}">
-        <abbr slot="action" title="${translate('edit')}">
+        <abbr slot="action" title="${get('edit')}">
           <mwc-icon-button
             icon="info"
             @click=${() => this.openEditTiWizard()}
           ></mwc-icon-button>
         </abbr>
-        <abbr
-          slot="action"
-          title="${translate('protocol104.toggleChildElements')}"
-        >
+        <abbr slot="action" title="${get('protocol104.toggleChildElements')}">
           <mwc-icon-button-toggle
             id="toggleButton"
             on

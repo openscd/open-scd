@@ -1,5 +1,5 @@
 import { html, TemplateResult } from 'lit-html';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-list/mwc-list-item';
 
@@ -152,7 +152,7 @@ export function getCustomField(): Record<DaiFieldTypes, CustomField> {
             id="Val${emptyIfNull(item, `${i + 1}`)}"
             label="Val${emptyIfNull(item, ` for sGroup ${i + 1}`)}"
             .maybeValue=${getInstanceValue(instanceElement)}
-            helper="${translate('dai.wizard.valueHelper', { type })}"
+            helper="${get('dai.wizard.valueHelper', { type })}"
             type="number"
             min=${min}
             max=${max}
@@ -182,7 +182,7 @@ export function getCustomField(): Record<DaiFieldTypes, CustomField> {
             id="Val${emptyIfNull(item, `${i + 1}`)}"
             label="Val${emptyIfNull(item, ` for sGroup ${i + 1}`)}"
             .maybeValue=${getInstanceValue(instanceElement)}
-            helper="${translate('dai.wizard.valueHelper', { type })}"
+            helper="${get('dai.wizard.valueHelper', { type })}"
             type="number"
             min=${min}
             max=${max}
@@ -256,7 +256,7 @@ export function getCustomField(): Record<DaiFieldTypes, CustomField> {
             id="Val${emptyIfNull(item, ` ${i + 1}`)}"
             label="Val${emptyIfNull(item, ` for sGroup ${i + 1}`)}"
             .maybeValue=${getInstanceValue(instanceElement)}
-            helper="${translate('dai.wizard.valueHelper', { type })}"
+            helper="${get('dai.wizard.valueHelper', { type })}"
             maxLength=${maxNrOfCharacters}
             type="text"
           >
