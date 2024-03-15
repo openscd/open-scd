@@ -7,7 +7,7 @@ import {
   LitElement,
   css,
 } from 'lit-element';
-import { get, registerTranslateConfig, translate, use } from 'lit-translate';
+import { get, registerTranslateConfig, use } from 'lit-translate';
 
 import '@material/mwc-button';
 import '@material/mwc-dialog';
@@ -33,7 +33,7 @@ import {
   iec6185073,
   iec6185074,
   iec6185081,
-} from '../validators/templates/foundation.js';
+} from '../foundation/nsd.js';
 import { initializeNsdoc, Nsdoc } from '../foundation/nsdoc.js';
 
 export type Settings = {
@@ -224,7 +224,7 @@ export class OscdSettings extends LitElement {
         @change="${(evt: Event) => this.uploadNsdocFile(evt)}}"
       />
       <mwc-button
-        label="${translate('settings.selectFileButton')}"
+        label="${get('settings.selectFileButton')}"
         id="selectFileButton"
         @click=${() => {
           const input = <HTMLInputElement | null>(
@@ -384,7 +384,7 @@ export class OscdSettings extends LitElement {
   render(): TemplateResult {
     return html`<mwc-dialog
         id="settings"
-        heading="${translate('settings.title')}"
+        heading="${get('settings.title')}"
         @closing=${this.onClosing}
       >
         <form>
@@ -392,7 +392,7 @@ export class OscdSettings extends LitElement {
             fixedMenuPosition
             id="language"
             icon="language"
-            label="${translate('settings.language')}"
+            label="${get('settings.language')}"
           >
             ${Object.keys(languages).map(
               lang =>
@@ -400,23 +400,23 @@ export class OscdSettings extends LitElement {
                   graphic="icon"
                   value="${lang}"
                   ?selected=${lang === this.settings.language}
-                  >${translate(`settings.languages.${lang}`)}</mwc-list-item
+                  >${get(`settings.languages.${lang}`)}</mwc-list-item
                 >`
             )}
           </mwc-select>
-          <mwc-formfield label="${translate('settings.dark')}">
+          <mwc-formfield label="${get('settings.dark')}">
             <mwc-switch
               id="dark"
               ?checked=${this.settings.theme === 'dark'}
             ></mwc-switch>
           </mwc-formfield>
-          <mwc-formfield label="${translate('settings.mode')}">
+          <mwc-formfield label="${get('settings.mode')}">
             <mwc-switch
               id="mode"
               ?checked=${this.settings.mode === 'pro'}
             ></mwc-switch>
           </mwc-formfield>
-          <mwc-formfield label="${translate('settings.showieds')}">
+          <mwc-formfield label="${get('settings.showieds')}">
             <mwc-switch
               id="showieds"
               ?checked=${this.settings.showieds === 'on'}
@@ -425,7 +425,7 @@ export class OscdSettings extends LitElement {
         </form>
         <wizard-divider></wizard-divider>
         <section>
-          <h3>${translate('settings.loadNsdTranslations')}</h3>
+          <h3>${get('settings.loadNsdTranslations')}</h3>
           ${this.renderFileSelect()}
         </section>
         <mwc-list id="nsdocList">
@@ -435,14 +435,14 @@ export class OscdSettings extends LitElement {
           ${this.renderNsdocItem('IEC 61850-8-1')}
         </mwc-list>
         <mwc-button slot="secondaryAction" dialogAction="close">
-          ${translate('cancel')}
+          ${get('cancel')}
         </mwc-button>
         <mwc-button
           style="--mdc-theme-primary: var(--mdc-theme-error)"
           slot="secondaryAction"
           dialogAction="reset"
         >
-          ${translate('reset')}
+          ${get('reset')}
         </mwc-button>
         <mwc-button
           icon="save"
@@ -450,7 +450,7 @@ export class OscdSettings extends LitElement {
           slot="primaryAction"
           dialogAction="save"
         >
-          ${translate('save')}
+          ${get('save')}
         </mwc-button>
       </mwc-dialog>
       <slot></slot>

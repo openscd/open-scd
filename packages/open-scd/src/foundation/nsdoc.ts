@@ -1,4 +1,4 @@
-import { iec6185072, iec6185073, iec6185074, iec6185081 } from "../validators/templates/foundation.js";
+import { iec6185072, iec6185073, iec6185074, iec6185081 } from "./nsd.js";
 
 export interface Nsdoc {
   nsdoc72?: XMLDocument;

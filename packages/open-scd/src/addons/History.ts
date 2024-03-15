@@ -1,5 +1,5 @@
 import { html, state, property, query, TemplateResult, customElement, LitElement } from 'lit-element';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-button';
 import '@material/mwc-dialog';
@@ -402,7 +402,7 @@ export class OscdHistory extends LitElement {
         return this.log.slice().reverse().map(this.renderLogEntry, this);
       else
         return html`<mwc-list-item disabled graphic="icon">
-          <span>${translate('log.placeholder')}</span>
+          <span>${get('log.placeholder')}</span>
           <mwc-icon slot="graphic">info</mwc-icon>
         </mwc-list-item>`;
     }
@@ -415,7 +415,7 @@ export class OscdHistory extends LitElement {
           .map(this.renderHistoryEntry, this);
       else
         return html`<mwc-list-item disabled graphic="icon">
-          <span>${translate('history.placeholder')}</span>
+          <span>${get('history.placeholder')}</span>
           <mwc-icon slot="graphic">info</mwc-icon>
         </mwc-list-item>`;
     }
@@ -452,7 +452,7 @@ export class OscdHistory extends LitElement {
       return issueItems.length
         ? issueItems
         : html`<mwc-list-item disabled graphic="icon">
-            <span>${translate('diag.placeholder')}</span>
+            <span>${get('diag.placeholder')}</span>
             <mwc-icon slot="graphic">info</mwc-icon>
           </mwc-list-item>`;
     }
@@ -467,11 +467,11 @@ export class OscdHistory extends LitElement {
     }
 
     private renderLogDialog(): TemplateResult {
-      return html` <mwc-dialog id="log" heading="${translate('log.name')}">
+      return html` <mwc-dialog id="log" heading="${get('log.name')}">
         ${this.renderFilterButtons()}
         <mwc-list id="content" wrapFocus>${this.renderLog()}</mwc-list>
         <mwc-button slot="primaryAction" dialogaction="close"
-          >${translate('close')}</mwc-button
+          >${get('close')}</mwc-button
         >
       </mwc-dialog>`;
     }
@@ -479,25 +479,25 @@ export class OscdHistory extends LitElement {
     private renderHistoryUI(): TemplateResult {
       return html` <mwc-dialog
         id="history"
-        heading="${translate('history.name')}"
+        heading="${get('history.name')}"
       >
         <mwc-list id="content" wrapFocus>${this.renderHistory()}</mwc-list>
         <mwc-button
           icon="undo"
-          label="${translate('undo')}"
+          label="${get('undo')}"
           ?disabled=${!this.canUndo}
           @click=${this.undo}
           slot="secondaryAction"
         ></mwc-button>
         <mwc-button
           icon="redo"
-          label="${translate('redo')}"
+          label="${get('redo')}"
           ?disabled=${!this.canRedo}
           @click=${this.redo}
           slot="secondaryAction"
         ></mwc-button>
         <mwc-button slot="primaryAction" dialogaction="close"
-          >${translate('close')}</mwc-button
+          >${get('close')}</mwc-button
         >
       </mwc-dialog>`;
     }
@@ -562,12 +562,12 @@ export class OscdHistory extends LitElement {
           }
         </style>
         ${this.renderLogDialog()} ${this.renderHistoryUI()}
-        <mwc-dialog id="diagnostic" heading="${translate('diag.name')}">
+        <mwc-dialog id="diagnostic" heading="${get('diag.name')}">
           <filtered-list id="content" wrapFocus
             >${this.renderIssues()}</filtered-list
           >
           <mwc-button slot="primaryAction" dialogaction="close"
-            >${translate('close')}</mwc-button
+            >${get('close')}</mwc-button
           >
         </mwc-dialog>
 
@@ -595,7 +595,7 @@ export class OscdHistory extends LitElement {
             slot="action"
             icon="history"
             @click=${() => this.logUI.show()}
-            >${translate('log.snackbar.show')}</mwc-button
+            >${get('log.snackbar.show')}</mwc-button
           >
           <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
         </mwc-snackbar>
@@ -612,7 +612,7 @@ export class OscdHistory extends LitElement {
             slot="action"
             icon="history"
             @click=${() => this.logUI.show()}
-            >${translate('log.snackbar.show')}</mwc-button
+            >${get('log.snackbar.show')}</mwc-button
           >
           <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
         </mwc-snackbar>
@@ -626,7 +626,7 @@ export class OscdHistory extends LitElement {
             slot="action"
             icon="rule"
             @click=${() => this.diagnosticUI.show()}
-            >${translate('log.snackbar.show')}</mwc-button
+            >${get('log.snackbar.show')}</mwc-button
           >
           <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
         </mwc-snackbar>`;

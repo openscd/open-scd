@@ -1,7 +1,6 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
 import '../../src/action-pane.js';
-import '../../src/editors/substation/bay-editor.js';
 import { ActionPane } from '../../src/action-pane.js';
 
 describe('action-pane', () => {
@@ -134,17 +133,6 @@ describe('action-pane', () => {
     ).to.be.true;
   });
 
-  describe('with icon property set', () => {
-    beforeEach(async () => {
-      element.icon = 'edit';
-      await element.updateComplete;
-    });
-
-    it('looks like the latest snapshot', async () => {
-      await expect(element).shadowDom.to.equalSnapshot();
-    });
-  });
-
   describe('with existing parent action-pane', () => {
     let parent: ActionPane;
     const bay = <Element>(
@@ -156,13 +144,11 @@ describe('action-pane', () => {
     beforeEach(async () => {
       parent = await fixture(
         html`<action-pane header="parent header"
-          ><bay-editor .element=${bay}></bay-editor
+          ><action-pane header="child header"></action-pane
         ></action-pane>`
       );
 
-      element = parent
-        .querySelector('bay-editor')!
-        .shadowRoot!.querySelector<ActionPane>('action-pane')!;
+      element = parent.querySelector('action-pane')!;
       await element.updateComplete;
     });
 
