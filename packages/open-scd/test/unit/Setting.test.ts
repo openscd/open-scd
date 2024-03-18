@@ -51,6 +51,24 @@ describe('OSCD-Settings', () => {
     expect(element).to.have.deep.property('settings', defaults);
   });
 
+  it('enables/shows the upload .nsdoc file button by default', async () => {
+    element.settingsUI.show();
+    await element.settingsUI.updateComplete;
+    expect(element.settingsUI.querySelector('section[id="shownsdbutton"]')).to
+      .not.be.null;
+    await expect(element).shadowDom.to.equalSnapshot();
+  });
+
+  it('disables/hides the upload .nsdoc file button', async () => {
+    element.settingsUI.show();
+    await element.settingsUI.updateComplete;
+    element.nsdUploadButton = false;
+    await element.requestUpdate();
+    expect(element.settingsUI.querySelector('section[id="shownsdbutton"]')).to
+      .be.null;
+    await expect(element).shadowDom.to.equalSnapshot();
+  });
+
   it('saves chosen .nsdoc file and looks like latest snapshot', async () => {
     element.settingsUI.show();
     await element.settingsUI.updateComplete;
