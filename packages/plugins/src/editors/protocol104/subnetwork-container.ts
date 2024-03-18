@@ -9,11 +9,12 @@ import {
 import '@material/mwc-icon-button';
 
 import './connectedap-editor.js';
+
 import {
   compareNames,
   newWizardEvent,
 } from '@openscd/open-scd/src/foundation.js';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 import { createConnectedApWizard } from './wizards/connectedap.js';
 import { Base104Container } from './base-container.js';
 import { getTypeAttribute } from './foundation/foundation.js';
@@ -82,7 +83,7 @@ export class SubNetwork104Container extends Base104Container {
 
   render(): TemplateResult {
     return html`<action-pane label="${this.header()}">
-      <abbr slot="action" title="${translate('add')}">
+      <abbr slot="action" title="${get('add')}">
         <mwc-icon-button
           icon="playlist_add"
           @click="${() => this.openConnectedAPwizard()}"

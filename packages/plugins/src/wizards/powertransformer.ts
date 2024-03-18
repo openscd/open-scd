@@ -1,5 +1,5 @@
 import { html, TemplateResult } from 'lit-element';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import {
   createElement,
@@ -46,9 +46,9 @@ export function renderPowerTransformerWizard(
     html`<wizard-textfield
       label="name"
       .maybeValue=${name}
-      helper="${translate('powertransformer.wizard.nameHelper')}"
+      helper="${get('powertransformer.wizard.nameHelper')}"
       required
-      validationMessage="${translate('textfield.required')}"
+      validationMessage="${get('textfield.required')}"
       dialogInitialFocus
       .reservedValues=${reservedNames}
     ></wizard-textfield>`,
@@ -56,13 +56,13 @@ export function renderPowerTransformerWizard(
       label="desc"
       .maybeValue=${desc}
       nullable
-      helper="${translate('powertransformer.wizard.descHelper')}"
+      helper="${get('powertransformer.wizard.descHelper')}"
     ></wizard-textfield>`,
     html`<wizard-textfield
       label="type"
       .maybeValue=${type}
       disabled
-      helper="${translate('powertransformer.wizard.typeHelper')}"
+      helper="${get('powertransformer.wizard.typeHelper')}"
     ></wizard-textfield>`,
   ];
 }

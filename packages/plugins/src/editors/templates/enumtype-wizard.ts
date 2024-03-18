@@ -1,5 +1,5 @@
 import { html } from 'lit-element';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-button';
 import '@material/mwc-list';
@@ -144,14 +144,14 @@ function eNumValWizard(options: WizardOptions): Wizard {
       content: [
         html`<wizard-textfield
           label="ord"
-          helper="${translate('scl.ord')}"
+          helper="${get('scl.ord')}"
           .maybeValue=${ord}
           required
           type="number"
         ></wizard-textfield>`,
         html`<wizard-textfield
           label="value"
-          helper="${translate('scl.value')}"
+          helper="${get('scl.value')}"
           .maybeValue=${value}
           pattern="${patterns.normalizedString}"
           dialogInitialFocus
@@ -159,7 +159,7 @@ function eNumValWizard(options: WizardOptions): Wizard {
         html`<wizard-textfield
           id="evDesc"
           label="desc"
-          helper="${translate('scl.desc')}"
+          helper="${get('scl.desc')}"
           .maybeValue=${desc}
           nullable
           pattern="${patterns.normalizedString}"
@@ -232,7 +232,7 @@ export function createEnumTypeWizard(
         </mwc-select>`,
         html`<wizard-textfield
           label="id"
-          helper="${translate('scl.id')}"
+          helper="${get('scl.id')}"
           .maybeValue=${''}
           required
           maxlength="127"
@@ -242,7 +242,7 @@ export function createEnumTypeWizard(
         ></wizard-textfield>`,
         html`<wizard-textfield
           label="desc"
-          helper="${translate('scl.desc')}"
+          helper="${get('scl.desc')}"
           .maybeValue=${null}
           nullable
           pattern="${patterns.normalizedString}"
@@ -321,7 +321,7 @@ export function eNumTypeEditWizard(
       content: [
         html`<wizard-textfield
           label="id"
-          helper="${translate('scl.id')}"
+          helper="${get('scl.id')}"
           .maybeValue=${enumtype.getAttribute('id')}
           required
           maxlength="127"
@@ -331,7 +331,7 @@ export function eNumTypeEditWizard(
         ></wizard-textfield>`,
         html`<wizard-textfield
           label="desc"
-          helper="${translate('scl.desc')}"
+          helper="${get('scl.desc')}"
           .maybeValue=${enumtype.getAttribute('desc')}
           nullable
           pattern="${patterns.normalizedString}"

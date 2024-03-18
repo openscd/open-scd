@@ -1,5 +1,5 @@
 import { LitElement, html, TemplateResult, property, css } from 'lit-element';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-fab';
 import '@material/mwc-icon-button';
@@ -157,13 +157,11 @@ export default class TemplatesPlugin extends LitElement {
   render(): TemplateResult {
     if (!this.doc?.querySelector(':root > DataTypeTemplates'))
       return html`<h1>
-        <span style="color: var(--base1)"
-          >${translate('templates.missing')}</span
-        >
+        <span style="color: var(--base1)">${get('templates.missing')}</span>
         <mwc-fab
           extended
           icon="add"
-          label="${translate('templates.add')}"
+          label="${get('templates.add')}"
           @click=${() => this.createDataTypeTemplates()}
         ></mwc-fab>
       </h1>`;
@@ -171,9 +169,9 @@ export default class TemplatesPlugin extends LitElement {
       <div id="containerTemplates">
         <section tabindex="0">
           <h1>
-            ${translate('scl.LNodeType')}
+            ${get('scl.LNodeType')}
             <nav>
-              <abbr title="${translate('add')}">
+              <abbr title="${get('add')}">
                 <mwc-icon-button
                   icon="playlist_add"
                   @click=${() => this.openCreateLNodeTypeWizard()}
@@ -211,9 +209,9 @@ export default class TemplatesPlugin extends LitElement {
         </section>
         <section tabindex="0">
           <h1>
-            ${translate('scl.DOType')}
+            ${get('scl.DOType')}
             <nav>
-              <abbr title="${translate('add')}">
+              <abbr title="${get('add')}">
                 <mwc-icon-button
                   icon="playlist_add"
                   @click=${() => this.openCreateDOTypeWizard()}
@@ -250,9 +248,9 @@ export default class TemplatesPlugin extends LitElement {
         </section>
         <section tabindex="0">
           <h1>
-            ${translate('scl.DAType')}
+            ${get('scl.DAType')}
             <nav>
-              <abbr title="${translate('add')}">
+              <abbr title="${get('add')}">
                 <mwc-icon-button
                   icon="playlist_add"
                   @click=${() => this.openCreateDATypeWizard()}
@@ -286,9 +284,9 @@ export default class TemplatesPlugin extends LitElement {
         </section>
         <section tabindex="0">
           <h1>
-            ${translate('scl.EnumType')}
+            ${get('scl.EnumType')}
             <nav>
-              <abbr title="${translate('add')}">
+              <abbr title="${get('add')}">
                 <mwc-icon-button
                   icon="playlist_add"
                   @click=${() => this.openCreateEnumWizard()}

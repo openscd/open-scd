@@ -6,7 +6,7 @@ import {
   TemplateResult,
 } from 'lit-element';
 import { nothing } from 'lit-html';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-icon';
 import '@material/mwc-list';
@@ -368,9 +368,7 @@ export class SubscriberList extends SubscriberListContainer {
           })
           .join(' ')}"
       >
-        <span
-          >${translate('subscription.subscriber.availableToSubscribe')}</span
-        >
+        <span>${get('subscription.subscriber.availableToSubscribe')}</span>
       </mwc-list-item>
       <li divider role="separator"></li>
       ${elements.length > 0
@@ -378,7 +376,7 @@ export class SubscriberList extends SubscriberListContainer {
             this.renderSubscriber(SubscribeStatus.None, element.element)
           )
         : html`<mwc-list-item graphic="avatar" noninteractive>
-            <span>${translate('subscription.none')}</span>
+            <span>${get('subscription.none')}</span>
           </mwc-list-item>`}`;
   }
 
@@ -392,7 +390,7 @@ export class SubscriberList extends SubscriberListContainer {
           })
           .join(' ')}"
       >
-        <span>${translate('subscription.subscriber.partiallySubscribed')}</span>
+        <span>${get('subscription.subscriber.partiallySubscribed')}</span>
       </mwc-list-item>
       <li divider role="separator"></li>
       ${elements.length > 0
@@ -400,7 +398,7 @@ export class SubscriberList extends SubscriberListContainer {
             this.renderSubscriber(SubscribeStatus.Partial, element.element)
           )
         : html`<mwc-list-item graphic="avatar" noninteractive>
-            <span>${translate('subscription.none')}</span>
+            <span>${get('subscription.none')}</span>
           </mwc-list-item>`}`;
   }
 
@@ -414,7 +412,7 @@ export class SubscriberList extends SubscriberListContainer {
           })
           .join(' ')}"
       >
-        <span>${translate('subscription.subscriber.subscribed')}</span>
+        <span>${get('subscription.subscriber.subscribed')}</span>
       </mwc-list-item>
       <li divider role="separator"></li>
       ${this.subscribedElements.length > 0
@@ -422,7 +420,7 @@ export class SubscriberList extends SubscriberListContainer {
             this.renderSubscriber(SubscribeStatus.Full, element.element)
           )
         : html`<mwc-list-item graphic="avatar" noninteractive>
-            <span>${translate('subscription.none')}</span>
+            <span>${get('subscription.none')}</span>
           </mwc-list-item>`}`;
   }
 
@@ -432,14 +430,14 @@ export class SubscriberList extends SubscriberListContainer {
 
     return view == View.PUBLISHER
       ? html`<h1>
-          ${translate('subscription.goose.publisher.subscriberTitle', {
+          ${get('subscription.goose.publisher.subscriberTitle', {
             selected: gseControlName
               ? this.currentGooseIedName + ' > ' + gseControlName
               : 'GOOSE',
           })}
         </h1>`
       : html`<h1>
-          ${translate('subscription.goose.subscriber.publisherTitle', {
+          ${get('subscription.goose.subscriber.publisherTitle', {
             selected: this.currentSelectedIed
               ? this.currentSelectedIed.getAttribute('name')!
               : 'IED',
@@ -472,10 +470,8 @@ export class SubscriberList extends SubscriberListContainer {
               <mwc-list-item noninteractive>
                 <span>${
                   view == View.PUBLISHER
-                    ? translate(
-                        'subscription.subscriber.noControlBlockSelected'
-                      )
-                    : translate('subscription.subscriber.noIedSelected')
+                    ? get('subscription.subscriber.noControlBlockSelected')
+                    : get('subscription.subscriber.noIedSelected')
                 }</span>
               </mwc-list-item>
             </mwc-list>

@@ -8,7 +8,7 @@ import {
   state,
   TemplateResult,
 } from 'lit-element';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-dialog';
 import '@material/mwc-list';
@@ -308,14 +308,14 @@ export default class VirtualTemplateIED extends LitElement {
       <mwc-button
         slot="secondaryAction"
         dialogAction="close"
-        label="${translate('close')}"
+        label="${get('close')}"
         style="--mdc-theme-primary: var(--mdc-theme-error)"
       ></mwc-button>
       <mwc-button
         ?disabled=${!this.validPriparyAction}
         slot="primaryAction"
         icon="save"
-        label="${translate('save')}"
+        label="${get('save')}"
         trailingIcon
         @click=${() => this.onPrimaryAction(functionElementDescriptions)}
       ></mwc-button

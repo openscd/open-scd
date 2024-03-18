@@ -11,7 +11,7 @@ import {
 } from 'lit-element';
 import { nothing, SVGTemplateResult } from 'lit-html';
 import { classMap } from 'lit-html/directives/class-map.js';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-icon';
 import '@material/mwc-list';
@@ -288,7 +288,7 @@ export class FcdaBindingList extends LitElement {
       'filter-off': this.hideSubscribed || this.hideNotSubscribed,
     };
     return html`<h1>
-      ${translate(`subscription.${this.controlTag}.controlBlockList.title`)}
+      ${get(`subscription.${this.controlTag}.controlBlockList.title`)}
       <mwc-icon-button
         class="actions-menu-icon ${classMap(menuClasses)}"
         icon="filter_list"
@@ -308,14 +308,14 @@ export class FcdaBindingList extends LitElement {
           left
           ?selected=${!this.hideSubscribed}
         >
-          <span>${translate('subscription.subscriber.subscribed')}</span>
+          <span>${get('subscription.subscriber.subscribed')}</span>
         </mwc-check-list-item>
         <mwc-check-list-item
           class="filter-not-subscribed"
           left
           ?selected=${!this.hideNotSubscribed}
         >
-          <span>${translate('subscription.subscriber.notSubscribed')}</span>
+          <span>${get('subscription.subscriber.notSubscribed')}</span>
         </mwc-check-list-item>
       </mwc-menu>
     </h1> `;
@@ -388,7 +388,7 @@ export class FcdaBindingList extends LitElement {
       ${this.renderTitle()}
       ${controlElements
         ? this.renderControls(controlElements)
-        : html`<h4>${translate('subscription.subscriber.notSubscribed')}</h4> `}
+        : html`<h4>${get('subscription.subscriber.notSubscribed')}</h4> `}
     </section>`;
   }
 

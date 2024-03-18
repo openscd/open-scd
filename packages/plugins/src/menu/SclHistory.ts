@@ -6,7 +6,7 @@ import {
   TemplateResult,
   LitElement,
 } from 'lit-element';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-button';
 import '@material/mwc-dialog';
@@ -73,20 +73,17 @@ export default class SclHistoryPlugin extends LitElement {
         .map(this.renderSclHistoryEntry, this);
     else
       return html`<mwc-list-item disabled>
-        <span>${translate('history.noEntries')}</span>
+        <span>${get('history.noEntries')}</span>
       </mwc-list-item>`;
   }
 
   render(): TemplateResult {
-    return html` <mwc-dialog
-      id="historyLog"
-      heading="${translate('history.name')}"
-    >
+    return html` <mwc-dialog id="historyLog" heading="${get('history.name')}">
       <mwc-list id="historyLogContent" wrapFocus
         >${this.renderSclHistory()}</mwc-list
       >
       <mwc-button slot="secondaryAction" dialogaction="close"
-        >${translate('close')}</mwc-button
+        >${get('close')}</mwc-button
       >
     </mwc-dialog>`;
   }

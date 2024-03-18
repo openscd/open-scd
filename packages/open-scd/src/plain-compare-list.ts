@@ -7,7 +7,7 @@ import {
   css,
   state,
 } from 'lit-element';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import { DiffFilter, renderDiff } from './foundation/compare.js';
 
@@ -94,7 +94,7 @@ export class PlainCompareList extends LitElement {
       return html`
         <div class="container">
           <div class="flex"></div>
-          <mwc-formfield label="${translate('compare.filterMutables')}">
+          <mwc-formfield label="${get('compare.filterMutables')}">
             <mwc-checkbox
               ?checked=${this.filterMutables}
               @change=${() => (this.filterMutables = !this.filterMutables)}

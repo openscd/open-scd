@@ -5,12 +5,12 @@ snapshots["cleanup-editor integration: dataset removal without a doc loaded look
 `<section tabindex="0">
   <div>
     <h1>
-      Unreferenced Datasets
+      [cleanup.unreferencedDataSets.title]
           (0)
       <abbr slot="action">
         <mwc-icon-button
           icon="info"
-          title="Datasets without a reference to an associated GOOSE, Log, Report or Sampled Value Control Block"
+          title="[cleanup.unreferencedDataSets.tooltip]"
         >
         </mwc-icon-button>
       </abbr>
@@ -26,7 +26,7 @@ snapshots["cleanup-editor integration: dataset removal without a doc loaded look
       class="cleanupDeleteButton deleteButton"
       disabled=""
       icon="delete"
-      label="Remove Selected Datasets (0)"
+      label="[cleanup.unreferencedDataSets.deleteButton] (0)"
       outlined=""
     >
     </mwc-button>

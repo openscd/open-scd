@@ -1,5 +1,5 @@
 import { html, TemplateResult } from 'lit-element';
-import { get, translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import { isPublic, Wizard } from '@openscd/open-scd/src/foundation.js';
 
@@ -12,9 +12,9 @@ function render(
     html`<wizard-textfield
       label="name"
       .maybeValue=${name}
-      helper="${translate('connectivitynode.wizard.nameHelper')}"
+      helper="${get('connectivitynode.wizard.nameHelper')}"
       required
-      validationMessage="${translate('textfield.required')}"
+      validationMessage="${get('textfield.required')}"
       dialogInitialFocus
       .reservedValues=${reservedNames}
       readonly
@@ -22,9 +22,9 @@ function render(
     html`<wizard-textfield
       label="pathName"
       .maybeValue=${pathName}
-      helper="${translate('connectivitynode.wizard.pathNameHelper')}"
+      helper="${get('connectivitynode.wizard.pathNameHelper')}"
       required
-      validationMessage="${translate('textfield.required')}"
+      validationMessage="${get('textfield.required')}"
       readonly
     ></wizard-textfield>`,
   ];

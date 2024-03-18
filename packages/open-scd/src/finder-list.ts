@@ -8,7 +8,7 @@ import {
   TemplateResult,
 } from 'lit-element';
 import { until } from 'lit-html/directives/until';
-import { translate } from 'lit-translate';
+import { get } from 'lit-translate';
 
 import '@material/mwc-icon';
 import '@material/mwc-list';
@@ -33,9 +33,7 @@ export interface Directory {
 const waitingList = html`<div class="column">
   <mwc-list
     ><mwc-list-item noninteractive hasMeta
-      >${translate('loading')}<mwc-icon slot="meta"
-        >pending</mwc-icon
-      ></mwc-list-item
+      >${get('loading')}<mwc-icon slot="meta">pending</mwc-icon></mwc-list-item
     ></mwc-list
   >
 </div>`;

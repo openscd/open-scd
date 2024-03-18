@@ -1,6 +1,7 @@
 import { html, TemplateResult } from 'lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined.js';
-import { translate } from 'lit-translate';
+
+import { get } from 'lit-translate';
 import {
   getInstanceAttribute,
   getNameAttribute,
@@ -484,7 +485,7 @@ export function createNetworkTextField(
     pattern="${ifDefined(typePattern[pType])}"
     .maybeValue=${maybeValue ?? null}
     maxLength="${ifDefined(typeMaxLength[pType])}"
-    helper="${translate(typeDescriptiveNameKeys[pType])}"
+    helper="${get(typeDescriptiveNameKeys[pType])}"
   ></wizard-textfield>`;
 }
 
