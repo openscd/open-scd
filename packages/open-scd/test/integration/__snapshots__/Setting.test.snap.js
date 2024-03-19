@@ -52,7 +52,7 @@ snapshots["Oscd-Settings upload .nsdoc file using event and looks like latest sn
   </form>
   <wizard-divider>
   </wizard-divider>
-  <section>
+  <section id="shownsdbutton">
     <h3>
       Uploaded NSDoc files
     </h3>

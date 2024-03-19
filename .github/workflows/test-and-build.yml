@@ -13,21 +13,7 @@ jobs:
         with:
           node-version: "18.x"
 
-      - name: Install and build Core
-        run: |
-          cd packages/core
-          npm clean-install
-          npm run-script build
-
       - name: Install and Build OpenSCD
         run: |
-          cd packages/open-scd
           npm clean-install
           npm run-script build
-
-      - name: Install and Bundle Plugins
-        run: |
-          cd packages/plugins
-          npm clean-install
-          npm run-script test
-          npm run-script bundle

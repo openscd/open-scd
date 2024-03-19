@@ -112,6 +112,9 @@ export class OscdSettings extends LitElement {
   })
   host!: HTMLElement;
 
+  @property({ type: Boolean })
+  nsdUploadButton = true;
+
   /**
    * Get the versions of the current OpenSCD NSD files.
    * @returns Current version, revision and release for all current OpenSCD NSD files.
@@ -424,10 +427,12 @@ export class OscdSettings extends LitElement {
           </mwc-formfield>
         </form>
         <wizard-divider></wizard-divider>
-        <section>
-          <h3>${get('settings.loadNsdTranslations')}</h3>
-          ${this.renderFileSelect()}
-        </section>
+        ${this.nsdUploadButton
+          ? html`<section id="shownsdbutton">
+              <h3>${get('settings.loadNsdTranslations')}</h3>
+              ${this.renderFileSelect()}
+            </section>`
+          : html``}
         <mwc-list id="nsdocList">
           ${this.renderNsdocItem('IEC 61850-7-2')}
           ${this.renderNsdocItem('IEC 61850-7-3')}

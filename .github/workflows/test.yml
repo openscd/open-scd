@@ -21,12 +21,5 @@ jobs:
 
       - name: Install and Test
         run: |
-          cd packages/open-scd
-          npm clean-install
-          npm run-script test
-
-      - name: Install and Test
-        run: |
-          cd packages/plugins
           npm clean-install
           npm run-script test
