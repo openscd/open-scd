@@ -1,4 +1,5 @@
 {
   "packages/open-scd": "0.34.0",
-  "packages/core": "0.1.1"
+  "packages/core": "0.1.1",
+  ".": "0.34.0"
 }
