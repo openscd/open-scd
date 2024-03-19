@@ -22,14 +22,14 @@ import { Plugging } from './Plugging.js';
 import { Setting } from './Setting.js';
 import { Waiting } from 'open-scd/src/Waiting.js';
 import { Wizarding } from 'open-scd/src/Wizarding.js';
-import { Compasing } from './compas/Compasing.js';
+import './addons/CompasSession.js';
 
 /** The `<open-scd>` custom element is the main entry point of the
  * Open Substation Configuration Designer. */
 @customElement('open-scd')
-export class OpenSCD extends Compasing(
+export class OpenSCD extends 
   Waiting(Hosting(Setting(Wizarding(Plugging(Editing(Historing(LitElement)))))))
-) {
+ {
   private currentSrc = '';
   /** The current file's URL. `blob:` URLs are *revoked after parsing*! */
   @property({ type: String })
@@ -92,7 +92,7 @@ export class OpenSCD extends Compasing(
   }
 
   render(): TemplateResult {
-    return html` ${super.render()} ${getTheme(this.settings.theme)} `;
+    return html`<compas-session> ${super.render()} ${getTheme(this.settings.theme)} </compas-session>`;
   }
 
   static styles = css`
