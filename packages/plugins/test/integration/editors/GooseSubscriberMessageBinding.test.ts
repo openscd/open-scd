@@ -41,7 +41,7 @@ describe('GOOSE subscriber plugin', async () => {
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
     parent = await fixture(
-      html`<goose-mock-open-scd .doc=${doc}
+      html`<goose-mock-open-scd .doc=${doc} .nsdoc=${nsdoc}
       ></goosemock-open-scd>`
     );
     await parent.requestUpdate();
