@@ -16,7 +16,6 @@ import '../filtered-list.js';
 import {
   CommitDetail,
   CommitEntry,
-  ifImplemented,
   InfoDetail,
   InfoEntry,
   invert,
