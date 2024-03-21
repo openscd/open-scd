@@ -334,9 +334,9 @@ export class OpenSCD extends LitElement {
     this.addEventListener('close-drawer', async () => {
       this.menuUI.open = false;
     });
-    this.addEventListener('undo-redo-changed', e => {
-      this.canRedo = (e as UndoRedoChangedEvent).detail.canRedo;
-      this.canUndo = (e as UndoRedoChangedEvent).detail.canUndo;
+    this.addEventListener('undo-redo-changed', (e: UndoRedoChangedEvent) => {
+      this.canRedo = e.detail.canRedo;
+      this.canUndo = e.detail.canUndo;
     });
   }
 
