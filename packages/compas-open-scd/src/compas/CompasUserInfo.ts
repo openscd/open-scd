@@ -3,7 +3,7 @@ import { newUserInfoEvent } from './foundation.js';
 import { CompasUserInfoService } from '../compas-services/CompasUserInfoService.js';
 import { createLogEvent } from '../compas-services/foundation.js';
 
-import { newSetSessionTimeoutsEvent } from './Compasing.js';
+import { newSetSessionTimeoutsEvent } from '../addons/CompasSession.js';
 
 export async function retrieveUserInfo(element: Element): Promise<void> {
   await CompasUserInfoService()
