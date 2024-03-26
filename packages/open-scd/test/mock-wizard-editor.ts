@@ -8,12 +8,12 @@ import {
 } from 'lit-element';
 
 import '../src/addons/Wizards.js';
-import { Wizards } from '../src/addons/Wizards.js';
+import { OscdWizards } from '../src/addons/Wizards.js';
 
 @customElement('mock-wizard-editor')
 export class MockWizardEditor extends Editing(LitElement) {
   @query('oscd-wizards')
-  wizards!: Wizards;
+  wizards!: OscdWizards;
 
   render(): TemplateResult {
     return html`<oscd-wizards .host=${this}><slot></slot></oscd-wizards>`;

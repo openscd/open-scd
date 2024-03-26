@@ -37,7 +37,7 @@ describe('ValidateSchema plugin', () => {
     });
 
     beforeEach(async () => {
-      parent.diagnoses.clear();
+      parent.historyAddon.diagnoses.clear();
       await parent.updateComplete;
 
       await element.validate();
@@ -46,12 +46,12 @@ describe('ValidateSchema plugin', () => {
 
     it('zeroissues indication looks like the latest snapshot', async () => {
       await parent.requestUpdate();
-      await expect(parent.diagnosticUI).to.equalSnapshot();
+      await expect(parent.historyAddon.diagnosticUI).to.equalSnapshot();
     });
 
     it('indicates successful schema validation in the diagnoses pane', async () => {
       const lastEntry = <IssueDetail[]>(
-        parent.diagnoses.get('/plugins/src/validators/ValidateSchema.js')
+        parent.historyAddon.diagnoses.get('/plugins/src/validators/ValidateSchema.js')
       );
       expect(lastEntry.length).to.equal(1);
       expect(lastEntry[0].title).to.contain(
@@ -60,7 +60,7 @@ describe('ValidateSchema plugin', () => {
     });
 
     it('indicates successful schema validation in the log', async () => {
-      const lastEntry = <LogEntry>parent.log.pop();
+      const lastEntry = <LogEntry>parent.historyAddon.log.pop();
       expect(lastEntry.kind).to.equal('info');
       expect(lastEntry.title).to.contain(
         'valid2007B XML schema validation successful'
@@ -81,7 +81,7 @@ describe('ValidateSchema plugin', () => {
     });
 
     beforeEach(async () => {
-      parent.diagnoses.clear();
+      parent.historyAddon.diagnoses.clear();
       await parent.updateComplete;
 
       await element.validate();
@@ -90,15 +90,15 @@ describe('ValidateSchema plugin', () => {
 
     it('pushes issues to the diagnostics pane that look like the latest snapshot', async () => {
       await parent.requestUpdate();
-      await expect(parent.diagnosticUI).to.equalSnapshot();
+      await expect(parent.historyAddon.diagnosticUI).to.equalSnapshot();
     });
 
     it('create issues in diagnose', async () =>
-      expect(parent.diagnoses.get('/plugins/src/validators/ValidateSchema.js'))
+      expect(parent.historyAddon.diagnoses.get('/plugins/src/validators/ValidateSchema.js'))
         .to.not.be.undefined);
 
     it('generates error messages in the log', async () => {
-      const lastLogEntry = <LogEntry>parent.log.pop();
+      const lastLogEntry = <LogEntry>parent.historyAddon.log.pop();
       expect(lastLogEntry.kind).to.equal('warning');
       expect(lastLogEntry.title).to.contain(
         'invalid2007B XML schema validation failed'

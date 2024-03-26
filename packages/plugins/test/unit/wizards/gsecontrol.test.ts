@@ -3,7 +3,7 @@ import { SinonSpy, spy } from 'sinon';
 import fc from 'fast-check';
 
 import '@openscd/open-scd/src/addons/Wizards.js';
-import { Wizards } from '@openscd/open-scd/src/addons/Wizards.js';
+import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
 import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
 import {
@@ -32,7 +32,7 @@ import { FinderList } from '@openscd/open-scd/src/finder-list.js';
 
 describe('gsecontrol wizards', () => {
   let doc: XMLDocument;
-  let element: Wizards;
+  let element: OscdWizards;
 
   let primaryAction: HTMLElement;
 

@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
 import '@openscd/open-scd/src/addons/Wizards.js';
-import { Wizards } from '@openscd/open-scd/src/addons/Wizards.js';
+import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
 import '../../../src/editors/substation/zeroline-pane.js';
 import {
@@ -12,7 +12,7 @@ import { ZerolinePane } from '../../../src/editors/substation/zeroline-pane.js';
 
 describe('communication mapping wizard', () => {
   let doc: Document;
-  let parent: Wizards;
+  let parent: OscdWizards;
   let element: ZerolinePane;
 
   beforeEach(async () => {

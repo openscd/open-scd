@@ -1,5 +1,4 @@
-import { html, state, property, query, TemplateResult } from 'lit-element';
-import { ifDefined } from 'lit-html/directives/if-defined';
+import { html, state, property, query, TemplateResult, customElement, LitElement } from 'lit-element';
 import { get } from 'lit-translate';
 
 import '@material/mwc-button';
@@ -13,25 +12,22 @@ import '@material/mwc-snackbar';
 import { Dialog } from '@material/mwc-dialog';
 import { Snackbar } from '@material/mwc-snackbar';
 
-import './filtered-list.js';
+import '../filtered-list.js';
 import {
   CommitDetail,
   CommitEntry,
-  ifImplemented,
   InfoDetail,
   InfoEntry,
   invert,
   IssueDetail,
   IssueEvent,
-  LitElementConstructor,
   LogEntry,
   LogEntryType,
   LogEvent,
-  Mixin,
   newActionEvent,
-} from './foundation.js';
-import { getFilterIcon, iconColors } from './icons/icons.js';
-import { Plugin } from './open-scd.js';
+} from '../foundation.js';
+import { getFilterIcon, iconColors } from '../icons/icons.js';
+import { Plugin } from '../open-scd.js';
 
 const icons = {
   info: 'info',
@@ -51,21 +47,91 @@ function getPluginName(src: string): string {
   return name || src;
 }
 
-/**
- * A mixin adding a `history` property to any `LitElement`, in which
- * incoming [[`LogEvent`]]s are logged.
- *
- * For [[`EditorAction`]] entries, also sets `editCount` to the index of
- * the committed action, allowing the user to go to `previousAction` with
- * `undo()` if `canUndo` and to go to `nextAction` with `redo()` if `canRedo`.
- *
- * Renders the `history` to `logUI` and the latest `'error'` [[`LogEntry`]] to
- * `messageUI`.
- */
-export type HistoringElement = Mixin<typeof Historing>;
+export enum HistoryUIKind {
+  log = 'log',
+  history = 'history',
+  diagnostic = 'diagnostic',
+}
+export interface HistoryUIDetail {
+  show: boolean;
+  kind: HistoryUIKind;
+}
 
-export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
-  class HistoringElement extends Base {
+export type HistoryUIEvent = CustomEvent<HistoryUIDetail>;
+
+export function newHistoryUIEvent(
+  show: boolean,
+  kind: HistoryUIKind,
+  eventInitDict?: CustomEventInit<Partial<HistoryUIDetail>>
+): HistoryUIEvent {
+  return new CustomEvent<HistoryUIDetail>('history-dialog-ui', {
+    bubbles: true,
+    composed: true,
+    ...eventInitDict,
+    detail: {
+      show,
+      kind,
+      ...eventInitDict?.detail,
+    },
+  });
+}
+
+export interface EmptyIssuesDetail {
+  pluginSrc: string;
+}
+
+export type EmptyIssuesEvent = CustomEvent<EmptyIssuesDetail>;
+
+export function newEmptyIssuesEvent(
+  pluginSrc: string,
+  eventInitDict?: CustomEventInit<Partial<EmptyIssuesDetail>>
+): EmptyIssuesEvent {
+  return new CustomEvent<EmptyIssuesDetail>('empty-issues', {
+    bubbles: true,
+    composed: true,
+    ...eventInitDict,
+    detail: { pluginSrc, ...eventInitDict?.detail },
+  });
+}
+
+export interface UndoRedoChangedDetail {
+  canUndo: boolean;
+  canRedo: boolean;
+  editCount: number;
+}
+
+export type UndoRedoChangedEvent = CustomEvent<UndoRedoChangedDetail>;
+
+export function newUndoRedoChangedEvent(
+  canUndo: boolean,
+  canRedo: boolean,
+  editCount: number,
+  eventInitDict?: CustomEventInit<Partial<UndoRedoChangedDetail>>
+): UndoRedoChangedEvent {
+  return new CustomEvent<UndoRedoChangedDetail>('undo-redo-changed', {
+    bubbles: true,
+    composed: true,
+    ...eventInitDict,
+    detail: {
+      canUndo,
+      canRedo,
+      editCount,
+      ...eventInitDict?.detail,
+    },
+  });
+}
+
+export function newUndoEvent(): CustomEvent {
+  return new CustomEvent('undo', { bubbles: true, composed: true });
+}
+
+export function newRedoEvent(): CustomEvent {
+  return new CustomEvent('redo', { bubbles: true, composed: true });
+}
+
+
+@customElement('oscd-history')
+export class OscdHistory extends LitElement {
     /** All [[`LogEntry`]]s received so far through [[`LogEvent`]]s. */
     @property({ type: Array })
     log: InfoEntry[] = [];
@@ -77,8 +143,15 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
     /** Index of the last [[`EditorAction`]] applied. */
     @property({ type: Number })
     editCount = -1;
+    
     @property()
     diagnoses = new Map<string, IssueDetail[]>();
+
+    @property({
+    type: Object,
+    })
+    host!: HTMLElement;
+
     @state()
     latestIssue!: IssueDetail;
 
@@ -130,7 +203,8 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
           invert((<CommitEntry>this.history[this.editCount]).action)
         )
       );
-      this.editCount = this.previousAction;
+      this.editCount = this.previousAction; 
+      this.dispatchEvent(newUndoRedoChangedEvent(this.canUndo, this.canRedo, this.editCount));
       return true;
     }
     redo(): boolean {
@@ -138,7 +212,8 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
       this.dispatchEvent(
         newActionEvent((<CommitEntry>this.history[this.nextAction]).action)
       );
-      this.editCount = this.nextAction;
+      this.editCount = this.nextAction; 
+      this.dispatchEvent(newUndoRedoChangedEvent(this.canUndo, this.canRedo, this.editCount));
       return true;
     }
 
@@ -152,7 +227,8 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
         if (entry.action.derived) return;
         entry.action.derived = true;
         if (this.nextAction !== -1) this.history.splice(this.nextAction);
-        this.editCount = this.history.length;
+        this.editCount = this.history.length; 
+        this.dispatchEvent(newUndoRedoChangedEvent(this.canUndo, this.canRedo, this.editCount));
       }
 
       this.history.push(entry);
@@ -162,7 +238,8 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
     private onReset() {
       this.log = [];
       this.history = [];
-      this.editCount = -1;
+      this.editCount = -1; 
+      this.dispatchEvent(newUndoRedoChangedEvent(this.canUndo, this.canRedo, this.editCount));
     }
 
     private onInfo(detail: InfoDetail) {
@@ -203,22 +280,59 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
       }
     }
 
-    async performUpdate() {
-      await new Promise<void>(resolve =>
-        requestAnimationFrame(() => resolve())
-      );
-      super.performUpdate();
+    private historyUIHandler(e: HistoryUIEvent): void {
+      const ui = {
+        log: this.logUI,
+        history: this.historyUI,
+        diagnostic: this.diagnosticUI,
+      }[e.detail.kind];
+
+      if (e.detail.show) ui.show();
+      else ui.close();
     }
 
-    constructor(...args: any[]) {
-      super(...args);
+    private emptyIssuesHandler(e: EmptyIssuesEvent): void {
+      const issues = this.diagnoses.get(e.detail.pluginSrc);
+      if (this.diagnoses.get(e.detail.pluginSrc))
+        this.diagnoses.get(e.detail.pluginSrc)!.length = 0;
+    }
 
+    private handleKeyPress(e: KeyboardEvent): void {
+      let handled = false;
+      const ctrlAnd = (key: string) =>
+        e.key === key && e.ctrlKey && (handled = true);
+  
+      if (ctrlAnd('y')) this.redo();
+      if (ctrlAnd('z')) this.undo();
+      if (ctrlAnd('l')) this.logUI.open ? this.logUI.close() : this.logUI.show();
+      if (ctrlAnd('d'))
+        this.diagnosticUI.open
+          ? this.diagnosticUI.close()
+          : this.diagnosticUI.show();
+    }
+
+    constructor() {
+      super();
       this.undo = this.undo.bind(this);
       this.redo = this.redo.bind(this);
       this.onLog = this.onLog.bind(this);
+      this.onIssue = this.onIssue.bind(this);
+      this.historyUIHandler = this.historyUIHandler.bind(this);
+      this.emptyIssuesHandler = this.emptyIssuesHandler.bind(this);
+      this.handleKeyPress = this.handleKeyPress.bind(this);
+      document.onkeydown = this.handleKeyPress;
+    }
 
-      this.addEventListener('log', this.onLog);
-      this.addEventListener('issue', this.onIssue);
+    connectedCallback(): void { 
+      super.connectedCallback();
+
+      this.host.addEventListener('log', this.onLog);
+      this.host.addEventListener('issue', this.onIssue);
+      this.host.addEventListener('history-dialog-ui', this.historyUIHandler);
+      this.host.addEventListener('empty-issues', this.emptyIssuesHandler);
+      this.host.addEventListener('undo', this.undo);
+      this.host.addEventListener('redo', this.redo);
+      this.diagnoses.clear();
     }
 
     renderLogEntry(
@@ -241,9 +355,9 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
           <span slot="secondary">${entry.message}</span>
           <mwc-icon
             slot="graphic"
-            style="--mdc-theme-text-icon-on-background:var(${ifDefined(
+            style="--mdc-theme-text-icon-on-background:var(${
               iconColors[entry.kind]
-            )})"
+            })"
             >${icons[entry.kind]}</mwc-icon
           >
         </mwc-list-item></abbr
@@ -270,9 +384,9 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
           <span slot="secondary">${entry.message}</span>
           <mwc-icon
             slot="graphic"
-            style="--mdc-theme-text-icon-on-background:var(${ifDefined(
+            style="--mdc-theme-text-icon-on-background:var(${
               iconColors[entry.kind]
-            )})"
+            })"
             >history</mwc-icon
           >
         </mwc-list-item></abbr
@@ -358,8 +472,11 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
       </mwc-dialog>`;
     }
 
-    private renderHistoryDialog(): TemplateResult {
-      return html` <mwc-dialog id="history" heading="${get('history.name')}">
+    private renderHistoryUI(): TemplateResult {
+      return html` <mwc-dialog
+        id="history"
+        heading="${get('history.name')}"
+      >
         <mwc-list id="content" wrapFocus>${this.renderHistory()}</mwc-list>
         <mwc-button
           icon="undo"
@@ -382,7 +499,7 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     render(): TemplateResult {
-      return html`${ifImplemented(super.render())}
+      return html`<slot></slot>
         <style>
           #log > mwc-icon-button-toggle {
             position: absolute;
@@ -440,7 +557,7 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
             right: 14px;
           }
         </style>
-        ${this.renderLogDialog()} ${this.renderHistoryDialog()}
+        ${this.renderLogDialog()} ${this.renderHistoryUI()}
         <mwc-dialog id="diagnostic" heading="${get('diag.name')}">
           <filtered-list id="content" wrapFocus
             >${this.renderIssues()}</filtered-list
@@ -510,7 +627,13 @@ export function Historing<TBase extends LitElementConstructor>(Base: TBase) {
           <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
         </mwc-snackbar>`;
     }
-  }
-
-  return HistoringElement;
 }
+
+declare global {
+  interface ElementEventMap {
+    'history-dialog-ui': CustomEvent<HistoryUIDetail>;
+    'empty-issues': CustomEvent<EmptyIssuesDetail>;
+    'undo-redo-changed': CustomEvent<UndoRedoChangedDetail>;
+  }
+}
+

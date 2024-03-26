@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
 import '@openscd/open-scd/src/addons/Wizards.js';
-import { Wizards } from '@openscd/open-scd/src/addons/Wizards.js';
+import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
 import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
 import {
@@ -24,7 +24,7 @@ import {
 
 describe('gse wizards', () => {
   let doc: XMLDocument;
-  let element: Wizards;
+  let element: OscdWizards;
 
   beforeEach(async () => {
     element = await fixture(

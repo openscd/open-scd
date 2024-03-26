@@ -2,7 +2,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
 import '@openscd/open-scd/src/addons/Wizards.js';
-import { Wizards } from '@openscd/open-scd/src/addons/Wizards.js';
+import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
 import { createFCDAsWizard } from '../../../src/wizards/fcda.js';
 import { isCreate } from '@openscd/open-scd/src/foundation.js';
@@ -10,7 +10,7 @@ import { FinderList } from '@openscd/open-scd/src/finder-list.js';
 
 describe('create wizard for FCDA element', () => {
   let doc: XMLDocument;
-  let element: Wizards;
+  let element: OscdWizards;
   let finder: FinderList;
   let primaryAction: HTMLElement;
   let actionEvent: SinonSpy;

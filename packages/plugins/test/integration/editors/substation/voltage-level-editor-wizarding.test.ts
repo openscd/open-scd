@@ -2,7 +2,7 @@ import { fixture, html, expect } from '@open-wc/testing';
 import fc from 'fast-check';
 
 import '@openscd/open-scd/src/addons/Wizards.js';
-import { Wizards } from '@openscd/open-scd/src/addons/Wizards.js';
+import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
 import '../../../../src/editors/substation/voltage-level-editor.js';
 import { regexString, regExp, inverseRegExp } from '../../../foundation.js';
@@ -10,7 +10,7 @@ import { patterns } from '@openscd/open-scd/src/foundation.js';
 
 describe('voltage-level-editor wizarding integration', () => {
   let doc: XMLDocument;
-  let parent: Wizards;
+  let parent: OscdWizards;
 
   beforeEach(async () => {
     doc = await fetch('/test/testfiles/valid2007B4.scd')

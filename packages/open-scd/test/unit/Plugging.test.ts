@@ -114,7 +114,7 @@ describe('OpenSCD-Plugin', () => {
       await element.pluginDownloadUI.updateComplete;
       menuKindOption = <HTMLElement>(
         element.pluginDownloadUI.querySelector(
-          '#pluginKindList > mwc-radio-list-item[id="menu"]'
+          '#pluginKindList > mwc-radio-list-item[value="menu"]'
         )
       );
       validatorKindOption = <HTMLElement>(

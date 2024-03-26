@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
 import '@openscd/open-scd/src/addons/Wizards.js';
-import { Wizards } from '@openscd/open-scd/src/addons/Wizards.js';
+import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
 import {
   ComplexAction,
@@ -26,7 +26,7 @@ describe('Wizards for preparing 104 Address Creation', () => {
   let doc: XMLDocument;
   let lnElement: Element;
   let doElement: Element;
-  let element: Wizards;
+  let element: OscdWizards;
   let inputs: WizardInputElement[];
 
   beforeEach(async () => {

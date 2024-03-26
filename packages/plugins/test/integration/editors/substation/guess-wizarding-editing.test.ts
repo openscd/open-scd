@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
 import '@openscd/open-scd/src/addons/Wizards.js';
-import { Wizards } from '@openscd/open-scd/src/addons/Wizards.js';
+import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
 import '@openscd/open-scd/test/mock-wizard-editor.js';
 import { MockWizardEditor } from '@openscd/open-scd/test/mock-wizard-editor.js';
@@ -11,7 +11,7 @@ import { newWizardEvent } from '@openscd/open-scd/src/foundation.js';
 import { CheckListItem } from '@material/mwc-list/mwc-check-list-item.js';
 
 describe('guess-wizard-integration', () => {
-  let element: Wizards;
+  let element: OscdWizards;
   let validSCL: XMLDocument;
   beforeEach(async () => {
     validSCL = await fetch('/test/testfiles/valid2007B4.scd')

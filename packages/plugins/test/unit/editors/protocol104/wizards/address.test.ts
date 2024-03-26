@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
 import '@openscd/open-scd/src/addons/Wizards.js';
-import { Wizards } from '@openscd/open-scd/src/addons/Wizards.js';
+import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
 import { WizardInputElement } from '@openscd/open-scd/src/foundation.js';
 import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
@@ -26,7 +26,7 @@ describe('Wizards for 104 Address Element', () => {
   let dai: Element;
   let doi: Element;
   let ied: Element;
-  let element: Wizards;
+  let element: OscdWizards;
   let inputs: WizardInputElement[];
 
   beforeEach(async () => {

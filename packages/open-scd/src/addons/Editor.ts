@@ -31,7 +31,7 @@ import {
 } from '../foundation.js';
 
 @customElement('oscd-editor')
-export class Editor extends LitElement {
+export class OscdEditor extends LitElement {
   /** The `XMLDocument` to be edited */
   @property({ attribute: false })
   doc: XMLDocument | null = null;

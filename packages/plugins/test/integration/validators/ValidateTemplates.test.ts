@@ -34,8 +34,8 @@ describe('ValidateTemplates OpenSCD integration test ', () => {
 
     it('shows a "No errors" message in the diagnostics pane', async () => {
       await parent.requestUpdate();
-      expect(parent.diagnosticUI).to.contain.text('No errors');
-      await expect(parent.diagnosticUI).to.equalSnapshot();
+      expect(parent.historyAddon.diagnosticUI).to.contain.text('No errors');
+      await expect(parent.historyAddon.diagnosticUI).to.equalSnapshot();
     });
   });
 
@@ -57,14 +57,14 @@ describe('ValidateTemplates OpenSCD integration test ', () => {
       await parent.updateComplete;
     });
     it('generates issues in the diagnistics pane', async () => {
-      const issues = parent.diagnoses.get(
+      const issues = parent.historyAddon.diagnoses.get(
         '/plugins/src/validators/ValidateTemplates.js'
       );
       expect(issues?.length).to.equal(28);
     }).timeout(1000);
     it('pushes issues to the diagnostics pane that look like the latest snapshot', async () => {
       await parent.requestUpdate();
-      await expect(parent.diagnosticUI).to.equalSnapshot();
+      await expect(parent.historyAddon.diagnosticUI).to.equalSnapshot();
     });
   });
   describe('with schema version smaller "2007B3"', () => {
@@ -85,14 +85,14 @@ describe('ValidateTemplates OpenSCD integration test ', () => {
       await parent.updateComplete;
     });
     it('shows only one message in the diagnostics pane', async () => {
-      const issues = parent.diagnoses.get(
+      const issues = parent.historyAddon.diagnoses.get(
         '/plugins/src/validators/ValidateTemplates.js'
       );
       expect(issues?.length).to.equal(1);
     }).timeout(1000);
     it('looks like the latest snapshot', async () => {
       await parent.requestUpdate();
-      await expect(parent.diagnosticUI).to.equalSnapshot();
+      await expect(parent.historyAddon.diagnosticUI).to.equalSnapshot();
     });
   });
 });

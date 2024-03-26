@@ -15,7 +15,7 @@ import { WizardDialog } from '../wizard-dialog.js';
 /** `LitElement` mixin that adds a `workflow` property which [[`Wizard`]]s are
  * queued onto on incoming [[`WizardEvent`]]s, first come first displayed. */
 @customElement('oscd-wizards')
-export class Wizards extends LitElement {
+export class OscdWizards extends LitElement {
   @property({
     type: Object,
   })

@@ -70,6 +70,7 @@ describe('Substation Plugin', () => {
           ?.querySelector('substation-plugin')
           ?.shadowRoot?.querySelector('mwc-fab')
       )).click();
+      await parent.requestUpdate();
       await parent.updateComplete;
       expect(parent.wizardUI.dialogs.length).to.equal(1);
     });

@@ -5,12 +5,12 @@ snapshots["cleanup-editor integration: unreferenced control blocks without a doc
 `<section tabindex="1">
   <div>
     <h1>
-      [cleanup.unreferencedControls.title]
+      cleanup.unreferencedControls.title
           (0)
       <abbr slot="action">
         <mwc-icon-button
           icon="info"
-          title="[cleanup.unreferencedControls.tooltip]"
+          title="cleanup.unreferencedControls.tooltip"
         >
         </mwc-icon-button>
       </abbr>
@@ -53,13 +53,13 @@ snapshots["cleanup-editor integration: unreferenced control blocks without a doc
       class="deleteButton"
       disabled=""
       icon="delete"
-      label="[cleanup.unreferencedControls.deleteButton] (0)"
+      label="cleanup.unreferencedControls.deleteButton (0)"
       outlined=""
     >
     </mwc-button>
     <mwc-formfield
       class="removeFromCommunication"
-      label="[cleanup.unreferencedControls.alsoRemoveFromCommunication]"
+      label="cleanup.unreferencedControls.alsoRemoveFromCommunication"
     >
       <mwc-checkbox
         checked=""

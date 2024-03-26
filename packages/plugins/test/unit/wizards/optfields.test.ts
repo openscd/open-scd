@@ -2,7 +2,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
 import '@openscd/open-scd/src/addons/Wizards.js';
-import { Wizards } from '@openscd/open-scd/src/addons/Wizards.js';
+import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
 import { WizardSelect } from '@openscd/open-scd/src/wizard-select.js';
 import {
@@ -13,7 +13,7 @@ import {
 import { editOptFieldsWizard } from '../../../src/wizards/optfields.js';
 
 describe('Wizards for SCL OptFields element', () => {
-  let element: Wizards;
+  let element: OscdWizards;
   let optFields: Element;
   let inputs: WizardInputElement[];
 

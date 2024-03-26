@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
 import '@openscd/open-scd/src/addons/Wizards.js';
-import { Wizards } from '@openscd/open-scd/src/addons/Wizards.js';
+import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
 import { Wizard, WizardInputElement } from '@openscd/open-scd/src/foundation.js';
 
@@ -24,7 +24,7 @@ describe('dai-field-type', async () => {
 
   describe('getCustomField', () => {
     let customField: CustomField;
-    let element: Wizards;
+    let element: OscdWizards;
     let inputs: WizardInputElement[];
 
     function getDAElement(doType: string, doName: string): Element {

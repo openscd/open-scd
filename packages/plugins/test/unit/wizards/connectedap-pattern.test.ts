@@ -2,7 +2,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 import fc, { integer, ipV4, nat } from 'fast-check';
 
 import '@openscd/open-scd/src/addons/Wizards.js';
-import { Wizards } from '@openscd/open-scd/src/addons/Wizards.js';
+import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
 import '../../../src/editors/communication/connectedap-editor.js';
 import { WizardInputElement } from '@openscd/open-scd/src/foundation.js';
@@ -19,7 +19,7 @@ import { editConnectedApWizard } from '../../../src/wizards/connectedap.js';
 
 describe('Edit wizard for SCL element ConnectedAP', () => {
   let doc: XMLDocument;
-  let element: Wizards;
+  let element: OscdWizards;
   let inputs: WizardInputElement[];
   let input: WizardInputElement | undefined;
 

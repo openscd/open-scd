@@ -2,7 +2,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
 import '@openscd/open-scd/src/addons/Wizards.js';
-import { Wizards } from '@openscd/open-scd/src/addons/Wizards.js';
+import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
 import { ComplexAction, isSimple } from '@openscd/open-scd/src/foundation.js';
 
@@ -16,7 +16,7 @@ import { fetchDoc } from '../../../wizards/test-support.js';
 describe('Wizards for 104 DOI Element', () => {
   let doc: XMLDocument;
   let doiElement: Element;
-  let element: Wizards;
+  let element: OscdWizards;
 
   beforeEach(async () => {
     doc = await fetchDoc('/test/testfiles/104/valid-addresses.scd');

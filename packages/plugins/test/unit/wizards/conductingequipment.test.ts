@@ -2,7 +2,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
 import '@openscd/open-scd/src/addons/Wizards.js';
-import { Wizards } from '@openscd/open-scd/src/addons/Wizards.js';
+import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
 import {
   Create,
@@ -15,7 +15,7 @@ import { createConductingEquipmentWizard } from '../../../src/wizards/conducting
 
 describe('Wizards for SCL element ConductingEquipment', () => {
   let doc: XMLDocument;
-  let element: Wizards;
+  let element: OscdWizards;
   let inputs: WizardInputElement[];
   let primaryAction: HTMLElement;
 

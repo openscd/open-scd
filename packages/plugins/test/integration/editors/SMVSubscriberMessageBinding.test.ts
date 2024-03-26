@@ -1,5 +1,5 @@
 import { expect, fixture, html } from '@open-wc/testing';
-
+import {initializeNsdoc} from '@openscd/open-scd/src/foundation/nsdoc.js';
 import SMVSubscriberMessageBindingPlugin from '../../../src/editors/SMVSubscriberMessageBinding.js';
 
 import { ListItem } from '@material/mwc-list/mwc-list-item.js';
@@ -23,10 +23,11 @@ class SmvMockOpenSCD extends MockOpenSCD {
   }
 }
 
-describe('Sampled Values Plugin', () => {
+describe('Sampled Values Plugin', async () => {
   let element: SMVSubscriberMessageBindingPlugin;
   let parent: SmvMockOpenSCD;
   let doc: XMLDocument;
+  const nsdoc = await initializeNsdoc();
 
   beforeEach(async () => {
     doc = await fetch('/test/testfiles/editors/MessageBindingSMV2007B4.scd')
@@ -36,7 +37,7 @@ describe('Sampled Values Plugin', () => {
     parent = await fixture(
       html`<smv-mock-open-scd .doc=${doc}></smv-mock-open-scd>`
     );
-
+    await parent.requestUpdate();
     await parent.updateComplete;
 
     element = parent.plugin;
@@ -364,6 +365,7 @@ describe('Sampled Values Plugin', () => {
         beforeEach(async () => {
           (<HTMLElement>getItemFromSubscriberList('MSVCB01')).click();
           await element.updateComplete;
+          await parent.requestUpdate();
           await parent.updateComplete;
         });
 

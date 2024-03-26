@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
 import '@openscd/open-scd/src/addons/Wizards.js';
-import { Wizards } from '@openscd/open-scd/src/addons/Wizards.js';
+import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
 import { WizardSelect } from '@openscd/open-scd/src/wizard-select.js';
 import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
@@ -20,7 +20,7 @@ describe('bda wizards', () => {
   describe('updateBDaAction', () => {
     let doc: XMLDocument;
     let data: Element;
-    let element: Wizards;
+    let element: OscdWizards;
 
     const bda = <Element>(
       new DOMParser().parseFromString(
@@ -170,7 +170,7 @@ describe('bda wizards', () => {
   describe('createBDaAction', () => {
     let doc: XMLDocument;
     let data: Element;
-    let element: Wizards;
+    let element: OscdWizards;
 
     const daType = <Element>(
       new DOMParser().parseFromString(

@@ -82,6 +82,7 @@ describe('SMV Subscribe Data Binding Plugin', async () => {
       )
     )).click();
     await element.updateComplete;
+    await parent.requestUpdate();
     await parent.updateComplete;
 
     expect(extRefListElement['getSubscribedLNElements']().length).to.be.equal(
@@ -126,6 +127,7 @@ describe('SMV Subscribe Data Binding Plugin', async () => {
       )
     )).click();
     await element.updateComplete;
+    await parent.requestUpdate();
     await parent.updateComplete;
 
     expect(extRefListElement['getSubscribedLNElements']().length).to.be.equal(

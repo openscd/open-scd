@@ -407,8 +407,8 @@ describe('ImportIedsPlugin', () => {
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       element.prepareImport(importDoc, 'invalid.iid');
 
-      expect(parent.log[0].kind).to.equal('error');
-      expect(parent.log[0].title).to.equal('No IED element in the file');
+      expect(parent.historyAddon.log[0].kind).to.equal('error');
+      expect(parent.historyAddon.log[0].title).to.equal('No IED element in the file');
     });
 
     it('throws duplicate ied name error', async () => {
@@ -417,8 +417,8 @@ describe('ImportIedsPlugin', () => {
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       element.prepareImport(importDoc, 'duplicate.iid');
 
-      expect(parent.log[0].kind).to.equal('error');
-      expect(parent.log[0].title).to.equal(
+      expect(parent.historyAddon.log[0].kind).to.equal('error');
+      expect(parent.historyAddon.log[0].title).to.equal(
         'IED element IED2 already in the file'
       );
     });
@@ -431,8 +431,8 @@ describe('ImportIedsPlugin', () => {
 
       element.prepareImport(importDoc, 'parsererror.iid');
 
-      expect(parent.log[0].kind).to.equal('error');
-      expect(parent.log[0].title).to.equal('Parser error');
+      expect(parent.historyAddon.log[0].kind).to.equal('error');
+      expect(parent.historyAddon.log[0].title).to.equal('Parser error');
     });
   });
 });

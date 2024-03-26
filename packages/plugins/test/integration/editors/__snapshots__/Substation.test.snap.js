@@ -8,7 +8,7 @@ snapshots["Substation Plugin without a doc loaded looks like the latest snapshot
   <mwc-fab
     extended=""
     icon="add"
-    label="[substation.wizard.title.add]"
+    label="substation.wizard.title.add"
   >
   </mwc-fab>
 </h1>

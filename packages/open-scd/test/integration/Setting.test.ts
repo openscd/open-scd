@@ -1,21 +1,20 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../mock-setter-logger.js';
-import { MockSetterLogger } from '../mock-setter-logger.js';
-
 import { newLoadNsdocEvent, OscdSettings } from '../../src/addons/Settings.js';
+import '../../src/addons/History.js';
+import { OscdHistory } from '../../src/addons/History.js';
 
 describe('Oscd-Settings', () => {
-  let logger: MockSetterLogger;
+  let logger: OscdHistory;
   let settings: OscdSettings;
 
   beforeEach(async () => {
     localStorage.clear();
 
     logger = await fixture(
-      html`<mock-setter-logger>
+      html`<oscd-history .host=${document}>
         <oscd-settings .host=${document}></oscd-settings>
-      </mock-setter-logger>`
+      </oscd-history>`
     );
 
     settings = logger.querySelector('oscd-settings')!;

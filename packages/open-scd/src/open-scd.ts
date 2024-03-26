@@ -4,6 +4,7 @@ import {
   html,
   LitElement,
   property,
+  state,
   TemplateResult,
   query,
 } from 'lit-element';
@@ -35,12 +36,11 @@ import {
   newSettingsUIEvent,
 } from './foundation.js';
 
-import { Historing } from './Historing.js';
-
 import './addons/Settings.js';
 import './addons/Waiter.js';
 import './addons/Wizards.js';
 import './addons/Editor.js';
+import './addons/History.js';
 
 import { ActionDetail, List } from '@material/mwc-list';
 import { Drawer } from '@material/mwc-drawer';
@@ -53,6 +53,7 @@ import { Switch } from '@material/mwc-switch';
 import { TextField } from '@material/mwc-textfield';
 import { Dialog } from '@material/mwc-dialog';
 import { initializeNsdoc, Nsdoc } from './foundation/nsdoc.js';
+import { HistoryUIKind, newEmptyIssuesEvent, newHistoryUIEvent, newRedoEvent, newUndoEvent, UndoRedoChangedEvent } from './addons/History.js';
 
 // HOSTING INTERFACES
 
@@ -226,13 +227,23 @@ const loadedPlugins = new Set<string>();
 /** The `<open-scd>` custom element is the main entry point of the
  * Open Substation Configuration Designer. */
 @customElement('open-scd')
-export class OpenSCD extends Historing(LitElement) {
+export class OpenSCD extends LitElement {
   @property({ attribute: false })
   doc: XMLDocument | null = null;
   /** The name of the current [[`doc`]] */
   @property({ type: String }) docName = '';
   /** The UUID of the current [[`doc`]] */
   @property({ type: String }) docId = '';
+
+  /** Index of the last [[`EditorAction`]] applied. */
+  @state()
+  editCount = -1;
+
+  @state()
+  canRedo = false;
+
+  @state()
+  canUndo = false;
 
   /** Object containing all *.nsdoc files and a function extracting element's label form them*/
   @property({ attribute: false })
@@ -268,13 +279,6 @@ export class OpenSCD extends Historing(LitElement) {
     const ctrlAnd = (key: string) =>
       e.key === key && e.ctrlKey && (handled = true);
 
-    if (ctrlAnd('y')) this.redo();
-    if (ctrlAnd('z')) this.undo();
-    if (ctrlAnd('l')) this.logUI.open ? this.logUI.close() : this.logUI.show();
-    if (ctrlAnd('d'))
-      this.diagnosticUI.open
-        ? this.diagnosticUI.close()
-        : this.diagnosticUI.show();
     if (ctrlAnd('m')) this.menuUI.open = !this.menuUI.open;
     if (ctrlAnd('o'))
       this.menuUI
@@ -304,7 +308,7 @@ export class OpenSCD extends Historing(LitElement) {
   }
 
   protected renderMain(): TemplateResult {
-    return html`${this.renderHosting()}${this.renderPlugging()}${super.render()}`;
+    return html`${this.renderHosting()}${this.renderPlugging()}`;
   }
 
   connectedCallback(): void {
@@ -315,7 +319,6 @@ export class OpenSCD extends Historing(LitElement) {
 
       if (!this.shouldValidate) return;
 
-      this.diagnoses.clear();
       this.shouldValidate = false;
 
       this.validated = Promise.allSettled(
@@ -331,21 +334,34 @@ export class OpenSCD extends Historing(LitElement) {
     this.addEventListener('close-drawer', async () => {
       this.menuUI.open = false;
     });
+    this.addEventListener('undo-redo-changed', (e: UndoRedoChangedEvent) => {
+      this.canRedo = e.detail.canRedo;
+      this.canUndo = e.detail.canUndo;
+    });
   }
 
   render(): TemplateResult {
     return html`<oscd-waiter>
       <oscd-settings .host=${this}>
         <oscd-wizards .host=${this}>
-          <oscd-editor
-            .doc=${this.doc}
-            .docName=${this.docName}
-            .docId=${this.docId}
-            .host=${this}
-            .editCount=${this.editCount}
+          <oscd-history 
+            .host=${this} 
+            @undo-redo-changed="${(e:UndoRedoChangedEvent) => { 
+              this.editCount = e.detail.editCount 
+              this.canRedo = e.detail.canRedo
+              this.canUndo = e.detail.canUndo
+            }}"
           >
-            ${this.renderMain()}
-          </oscd-editor>
+            <oscd-editor
+              .doc=${this.doc}
+              .docName=${this.docName}
+              .docId=${this.docId}
+              .host=${this}
+              .editCount=${this.editCount}
+            >
+              ${this.renderMain()}
+            </oscd-editor>
+          </oscd-history>
         </oscd-wizards>
       </oscd-settings>
     </oscd-waiter>`;
@@ -527,8 +543,7 @@ export class OpenSCD extends Historing(LitElement) {
         icon: plugin.icon || pluginIcons['validator'],
         name: plugin.name,
         action: ae => {
-          if (this.diagnoses.get(plugin.src))
-            this.diagnoses.get(plugin.src)!.length = 0;
+          this.dispatchEvent(newEmptyIssuesEvent(plugin.src));
 
           this.dispatchEvent(
             newPendingStateEvent(
@@ -557,7 +572,9 @@ export class OpenSCD extends Historing(LitElement) {
         icon: 'undo',
         name: 'undo',
         actionItem: true,
-        action: this.undo,
+        action: (): void => {
+          this.dispatchEvent(newUndoEvent())
+        },
         disabled: (): boolean => !this.canUndo,
         kind: 'static',
       },
@@ -565,7 +582,9 @@ export class OpenSCD extends Historing(LitElement) {
         icon: 'redo',
         name: 'redo',
         actionItem: true,
-        action: this.redo,
+        action: (): void => {
+          this.dispatchEvent(newRedoEvent())
+        },
         disabled: (): boolean => !this.canRedo,
         kind: 'static',
       },
@@ -574,21 +593,27 @@ export class OpenSCD extends Historing(LitElement) {
         icon: 'list',
         name: 'menu.viewLog',
         actionItem: true,
-        action: (): void => this.logUI.show(),
+        action: (): void => {
+          this.dispatchEvent(newHistoryUIEvent(true, HistoryUIKind.log))
+        },
         kind: 'static',
       },
       {
         icon: 'history',
         name: 'menu.viewHistory',
         actionItem: true,
-        action: (): void => this.historyUI.show(),
+        action: (): void => {
+          this.dispatchEvent(newHistoryUIEvent(true, HistoryUIKind.history))
+        },
         kind: 'static',
       },
       {
         icon: 'rule',
         name: 'menu.viewDiag',
         actionItem: true,
-        action: (): void => this.diagnosticUI.show(),
+        action: (): void => {
+          this.dispatchEvent(newHistoryUIEvent(true, HistoryUIKind.diagnostic))
+        },
         kind: 'static',
       },
       'divider',
@@ -918,7 +943,7 @@ export class OpenSCD extends Historing(LitElement) {
                 >${pluginIcons['editor']}</mwc-icon
               ></mwc-radio-list-item
             >
-            <mwc-radio-list-item id="menu" value="menu" hasMeta left
+            <mwc-radio-list-item value="menu" hasMeta left
               >${get('plugins.menu')}<mwc-icon slot="meta"
                 >${pluginIcons['menu']}</mwc-icon
               ></mwc-radio-list-item

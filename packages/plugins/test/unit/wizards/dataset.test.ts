@@ -2,7 +2,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
 import '@openscd/open-scd/src/addons/Wizards.js';
-import { Wizards } from '@openscd/open-scd/src/addons/Wizards.js';
+import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
@@ -19,7 +19,7 @@ import {
 
 describe('dataset wizards', () => {
   let doc: XMLDocument;
-  let element: Wizards;
+  let element: OscdWizards;
   let wizardEvent: SinonSpy;
   let actionEvent: SinonSpy;
 
