@@ -57,6 +57,8 @@ export class OpenSCDWrapper extends LitElement {
         };
       </script>
 
+      <open-scd></open-scd>
+
       <script>
         if ('serviceWorker' in navigator)
           navigator.serviceWorker.register('/sw.js');
@@ -64,15 +66,13 @@ export class OpenSCDWrapper extends LitElement {
 
       <script>
         const openScd = document.querySelector('open-scd');
-        addEventListener('beforeunload', e => {
+        window.addEventListener('beforeunload', e => {
           if (openScd && openScd.doc) {
             e.preventDefault();
             return (e.returnValue = 'Are you sure you want to exit?');
           }
         });
       </script>
-
-      <open-scd></open-scd>
     `;
   } // render
 
