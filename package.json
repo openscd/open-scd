@@ -10,7 +10,7 @@
     "clean": "lerna run clean",
     "build": "npx nx run-many -t build --all",
     "doc": "lerna run doc",
-    "test": "lerna run test",
+    "test": "lerna run test --concurrency=1",
     "start": "lerna run start"
   },
   "repository": {
