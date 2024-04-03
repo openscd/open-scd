@@ -26,7 +26,7 @@ implemented in these plugins.
 > <kbd>✅ Official</kbd> | <kbd>Editor</kbd> | by [OpenSCD](https://github.com/openscd) | [Repository](https://github.com/openscd/open-scd/)
 > 
 > ```
-> https://openscd.github.io/src/editors/IED.js
+> https://openscd.github.io/plugins/src/editors/IED.js
 > ```
 
 ### Substation
@@ -34,7 +34,7 @@ implemented in these plugins.
 > <kbd>✅ Official</kbd> | <kbd>Editor</kbd> | by [OpenSCD](https://github.com/openscd) | [Repository](https://github.com/openscd/open-scd/)
 > 
 > ```
-> https://openscd.github.io/src/editors/Substation.js
+> https://openscd.github.io/plugins/src/editors/Substation.js
 > ```
 
 ### Single Line Diagram
@@ -42,7 +42,7 @@ implemented in these plugins.
 > <kbd>✅ Official</kbd> | <kbd>Editor</kbd> | by [OpenSCD](https://github.com/openscd) | [Repository](https://github.com/openscd/open-scd/)
 > 
 > ```
-> https://openscd.github.io/src/editors/SingleLineDiagram.js
+> https://openscd.github.io/plugins/src/editors/SingleLineDiagram.js
 > ```
 
 ### Subscriber Message Binding (GOOSE)
@@ -50,7 +50,7 @@ implemented in these plugins.
 > <kbd>✅ Official</kbd> | <kbd>Editor</kbd> | by [OpenSCD](https://github.com/openscd) | [Repository](https://github.com/openscd/open-scd/)
 > 
 > ```
-> https://openscd.github.io/src/editors/GooseSubscriberMessageBinding.js
+> https://openscd.github.io/plugins/src/editors/GooseSubscriberMessageBinding.js
 > ```
 
 ### Subscriber Data Binding (GOOSE)
@@ -58,7 +58,7 @@ implemented in these plugins.
 > <kbd>✅ Official</kbd> | <kbd>Editor</kbd> | by [OpenSCD](https://github.com/openscd) | [Repository](https://github.com/openscd/open-scd/)
 > 
 > ```
-> https://openscd.github.io/src/editors/GooseSubscriberDataBinding.js
+> https://openscd.github.io/plugins/src/editors/GooseSubscriberDataBinding.js
 > ```
 
 ### Subscriber Later Binding (GOOSE)
@@ -66,7 +66,7 @@ implemented in these plugins.
 > <kbd>✅ Official</kbd> | <kbd>Editor</kbd> | by [OpenSCD](https://github.com/openscd) | [Repository](https://github.com/openscd/open-scd/)
 > 
 > ```
-> https://openscd.github.io/src/editors/GooseSubscriberLaterBinding.js
+> https://openscd.github.io/plugins/src/editors/GooseSubscriberLaterBinding.js
 > ```
 
 ### Subscriber Message Binding (SMV)
@@ -74,7 +74,7 @@ implemented in these plugins.
 > <kbd>✅ Official</kbd> | <kbd>Editor</kbd> | by [OpenSCD](https://github.com/openscd) | [Repository](https://github.com/openscd/open-scd/)
 > 
 > ```
-> https://openscd.github.io/src/editors/SMVSubscriberMessageBinding.js
+> https://openscd.github.io/plugins/src/editors/SMVSubscriberMessageBinding.js
 > ```
 
 ### Subscriber Data Binding (SMV)
@@ -82,7 +82,7 @@ implemented in these plugins.
 > <kbd>✅ Official</kbd> | <kbd>Editor</kbd> | by [OpenSCD](https://github.com/openscd) | [Repository](https://github.com/openscd/open-scd/)
 > 
 > ```
-> https://openscd.github.io/src/editors/SMVSubscriberDataBinding.js
+> https://openscd.github.io/plugins/src/editors/SMVSubscriberDataBinding.js
 > ```
 
 ### Subscriber Later Binding (SMV)
@@ -90,7 +90,7 @@ implemented in these plugins.
 > <kbd>✅ Official</kbd> | <kbd>Editor</kbd> | by [OpenSCD](https://github.com/openscd) | [Repository](https://github.com/openscd/open-scd/)
 > 
 > ```
-> https://openscd.github.io/src/editors/SMVSubscriberLaterBinding.js
+> https://openscd.github.io/plugins/src/editors/SMVSubscriberLaterBinding.js
 > ```
 
 ### Communication
@@ -98,7 +98,7 @@ implemented in these plugins.
 > <kbd>✅ Official</kbd> | <kbd>Editor</kbd> | by [OpenSCD](https://github.com/openscd) | [Repository](https://github.com/openscd/open-scd/)
 > 
 > ```
-> https://openscd.github.io/src/editors/Communication.js
+> https://openscd.github.io/plugins/src/editors/Communication.js
 > ```
 
 ### 104
@@ -106,7 +106,7 @@ implemented in these plugins.
 > <kbd>✅ Official</kbd> | <kbd>Editor</kbd> | by [OpenSCD](https://github.com/openscd) | [Repository](https://github.com/openscd/open-scd/)
 > 
 > ```
-> https://openscd.github.io/src/editors/Protocol104.js
+> https://openscd.github.io/plugins/src/editors/Protocol104.js
 > ```
 
 ### Templates
@@ -114,7 +114,7 @@ implemented in these plugins.
 > <kbd>✅ Official</kbd> | <kbd>Editor</kbd> | by [OpenSCD](https://github.com/openscd) | [Repository](https://github.com/openscd/open-scd/)
 > 
 > ```
-> https://openscd.github.io/src/editors/Templates.js
+> https://openscd.github.io/plugins/src/editors/Templates.js
 > ```
 
 ### Publisher
@@ -122,7 +122,7 @@ implemented in these plugins.
 > <kbd>✅ Official</kbd> | <kbd>Editor</kbd> | by [OpenSCD](https://github.com/openscd) | [Repository](https://github.com/openscd/open-scd/)
 > 
 > ```
-> https://openscd.github.io/src/editors/Publisher.js
+> https://openscd.github.io/plugins/src/editors/Publisher.js
 > ```
 
 ### Cleanup
@@ -130,7 +130,7 @@ implemented in these plugins.
 > <kbd>✅ Official</kbd> | <kbd>Editor</kbd> | by [OpenSCD](https://github.com/openscd) | [Repository](https://github.com/openscd/open-scd/)
 > 
 > ```
-> https://openscd.github.io/src/editors/Cleanup.js
+> https://openscd.github.io/plugins/src/editors/Cleanup.js
 > ```
 
 ### Open project
@@ -138,7 +138,7 @@ implemented in these plugins.
 > <kbd>✅ Official</kbd> | <kbd>✅ Official</kbd> | <kbd>Menu</kbd> | by [OpenSCD](https://github.com/openscd) | [Repository](https://github.com/openscd/open-scd/)
 > 
 > ```
-> https://openscd.github.io/src/menu/OpenProject.js
+> https://openscd.github.io/plugins/src/menu/OpenProject.js
 > ```
 
 ### New project
@@ -146,7 +146,7 @@ implemented in these plugins.
 > <kbd>✅ Official</kbd> | <kbd>Menu</kbd> | by [OpenSCD](https://github.com/openscd) | [Repository](https://github.com/openscd/open-scd/)
 > 
 > ```
-> https://openscd.github.io/src/menu/NewProject.js
+> https://openscd.github.io/plugins/src/menu/NewProject.js
 > ```
 
 ### Save project
@@ -154,7 +154,7 @@ implemented in these plugins.
 > <kbd>✅ Official</kbd> | <kbd>Menu</kbd> | by [OpenSCD](https://github.com/openscd) | [Repository](https://github.com/openscd/open-scd/)
 > 
 > ```
-> https://openscd.github.io/src/menu/SaveProject.js
+> https://openscd.github.io/plugins/src/menu/SaveProject.js
 > ```
 
 ### Validate Schema
@@ -162,7 +162,7 @@ implemented in these plugins.
 > <kbd>✅ Official</kbd> | <kbd>Validator</kbd> | by [OpenSCD](https://github.com/openscd) | [Repository](https://github.com/openscd/open-scd/)
 > 
 > ```
-> https://openscd.github.io/src/validators/ValidateSchema.js
+> https://openscd.github.io/plugins/src/validators/ValidateSchema.js
 > ```
 
 ### Validate Templates
@@ -170,7 +170,7 @@ implemented in these plugins.
 > <kbd>✅ Official</kbd> | <kbd>Validator</kbd> | by [OpenSCD](https://github.com/openscd) | [Repository](https://github.com/openscd/open-scd/)
 > 
 > ```
-> https://openscd.github.io/src/validators/ValidateTemplates.js
+> https://openscd.github.io/plugins/src/validators/ValidateTemplates.js
 > ```
 
 ### Import IEDs
@@ -178,7 +178,7 @@ implemented in these plugins.
 > <kbd>✅ Official</kbd> | <kbd>Menu</kbd> | by [OpenSCD](https://github.com/openscd) | [Repository](https://github.com/openscd/open-scd/)
 > 
 > ```
-> https://openscd.github.io/src/menu/ImportIEDs.js
+> https://openscd.github.io/plugins/src/menu/ImportIEDs.js
 > ```
 
 ### Create Virtual IED
@@ -186,7 +186,7 @@ implemented in these plugins.
 > <kbd>✅ Official</kbd> | <kbd>Menu</kbd> | by [OpenSCD](https://github.com/openscd) | [Repository](https://github.com/openscd/open-scd/)
 > 
 > ```
-> https://openscd.github.io/src/menu/VirtualTemplateIED.js
+> https://openscd.github.io/plugins/src/menu/VirtualTemplateIED.js
 > ```
 
 ### Subscriber Update
@@ -194,7 +194,7 @@ implemented in these plugins.
 > <kbd>✅ Official</kbd> | <kbd>Menu</kbd> | by [OpenSCD](https://github.com/openscd) | [Repository](https://github.com/openscd/open-scd/)
 > 
 > ```
-> https://openscd.github.io/src/menu/SubscriberInfo.js
+> https://openscd.github.io/plugins/src/menu/SubscriberInfo.js
 > ```
 
 ### Merge Project
@@ -202,7 +202,7 @@ implemented in these plugins.
 > <kbd>✅ Official</kbd> | <kbd>Menu</kbd> | by [OpenSCD](https://github.com/openscd) | [Repository](https://github.com/openscd/open-scd/)
 > 
 > ```
-> https://openscd.github.io/src/menu/Merge.js
+> https://openscd.github.io/plugins/src/menu/Merge.js
 > ```
 
 ### Update Substation
@@ -210,7 +210,7 @@ implemented in these plugins.
 > <kbd>✅ Official</kbd> | <kbd>Menu</kbd> | by [OpenSCD](https://github.com/openscd) | [Repository](https://github.com/openscd/open-scd/)
 > 
 > ```
-> https://openscd.github.io/src/menu/UpdateSubstation.js
+> https://openscd.github.io/plugins/src/menu/UpdateSubstation.js
 > ```
 
 ### Compare IED
@@ -218,7 +218,7 @@ implemented in these plugins.
 > <kbd>✅ Official</kbd> | <kbd>Menu</kbd> | by [OpenSCD](https://github.com/openscd) | [Repository](https://github.com/openscd/open-scd/)
 > 
 > ```
-> https://openscd.github.io/src/menu/CompareIED.js
+> https://openscd.github.io/plugins/src/menu/CompareIED.js
 > ```
 
 ### Export Communication Section
@@ -226,7 +226,7 @@ implemented in these plugins.
 > <kbd>✅ Official</kbd> | <kbd>Menu</kbd> | by [OpenSCD](https://github.com/openscd) | [Repository](https://github.com/openscd/open-scd/)
 > 
 > ```
-> https://openscd.github.io/src/menu/ExportCommunication.js
+> https://openscd.github.io/plugins/src/menu/ExportCommunication.js
 > ```
 
 ### Help
@@ -234,7 +234,7 @@ implemented in these plugins.
 > <kbd>✅ Official</kbd> | <kbd>Menu</kbd> | by [OpenSCD](https://github.com/openscd) | [Repository](https://github.com/openscd/open-scd/)
 > 
 > ```
-> https://openscd.github.io/src/menu/Help.js
+> https://openscd.github.io/plugins/src/menu/Help.js
 > ```
 
 ### Show SCL History
@@ -242,7 +242,7 @@ implemented in these plugins.
 > <kbd>✅ Official</kbd> | <kbd>Menu</kbd> | by [OpenSCD](https://github.com/openscd) | [Repository](https://github.com/openscd/open-scd/)
 > 
 > ```
-> https://openscd.github.io/src/menu/SclHistory.js
+> https://openscd.github.io/plugins/src/menu/SclHistory.js
 > ```
 
 ### Communication Explorer
@@ -287,7 +287,7 @@ logic or vendor specific private SCL extensions.
 > <kbd>✅ Official</kbd> | <kbd>Menu</kbd> | by [OpenSCD](https://github.com/openscd) | [Repository](https://github.com/openscd/open-scd/)
 > 
 > ```
-> https://openscd.github.io/src/menu/UpdateDescriptionABB.js
+> https://openscd.github.io/plugins/src/menu/UpdateDescriptionABB.js
 > ```
 
 ### Update desc (SEL)
@@ -295,5 +295,5 @@ logic or vendor specific private SCL extensions.
 > <kbd>✅ Official</kbd> | <kbd>Menu</kbd> | by [OpenSCD](https://github.com/openscd) | [Repository](https://github.com/openscd/open-scd/)
 > 
 > ```
-> https://openscd.github.io/src/menu/UpdateDescriptionSEL.js
+> https://openscd.github.io/plugins/src/menu/UpdateDescriptionSEL.js
 > ```
