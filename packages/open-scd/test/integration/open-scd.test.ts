@@ -106,4 +106,20 @@ describe('open-scd', () => {
     expect(element.src).to.be.a('string').and.equal(emptyBlobURL);
     expect(async () => await fetch(emptyBlobURL)).to.throw;
   });
+
+  it('renders a plugin passed down as props and it looks like its snapshot', async () => {
+    element = await fixture(html`
+        <open-scd .plugins=${[{ "name": "Mock Plugin", "src": "https://mockup-plugin.url/plugin.js", "icon": "link", "default": true, "kind": "menu", "requireDoc": false, "position": "bottom" }]}></open-scd>
+
+        <link href="public/google/fonts/roboto-v27.css" rel="stylesheet" />
+        <link href="public/google/fonts/roboto-mono-v13.css" rel="stylesheet" />
+        <link
+          href="public/google/icons/material-icons-outlined.css"
+          rel="stylesheet"
+        />
+      `);
+    await element.updateComplete;
+
+    await expect(element).shadowDom.to.equalSnapshot();
+  })
 }).timeout(4000);
