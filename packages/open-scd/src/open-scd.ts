@@ -156,6 +156,7 @@ export type Plugin = {
   name: string;
   src: string;
   icon?: string;
+  default?: boolean;
   kind: PluginKind;
   requireDoc?: boolean;
   position?: MenuPosition;
@@ -189,9 +190,9 @@ export const pluginIcons: Record<PluginKind | MenuPosition, string> = {
   bottom: 'play_circle',
 };
 
-function resetPlugins(): void {
+function resetPlugins(paramPlugins: Plugin[]): void {
   storePlugins(
-    officialPlugins.map(plugin => {
+    (officialPlugins as Plugin[]).concat(paramPlugins).map(plugin => {
       return {
         src: plugin.src,
         installed: plugin.default ?? false,
@@ -302,9 +303,6 @@ export class OpenSCD extends LitElement {
 
     this.handleKeyPress = this.handleKeyPress.bind(this);
     document.onkeydown = this.handleKeyPress;
-
-    this.updatePlugins();
-    this.requestUpdate();
   }
 
   protected renderMain(): TemplateResult {
@@ -338,6 +336,9 @@ export class OpenSCD extends LitElement {
       this.canRedo = e.detail.canRedo;
       this.canUndo = e.detail.canUndo;
     });
+
+    this.updatePlugins();
+    this.requestUpdate();
   }
 
   render(): TemplateResult {
@@ -743,17 +744,17 @@ export class OpenSCD extends LitElement {
   }
 
   get editors(): Plugin[] {
-    return this.plugins.filter(
+    return this.sortedStoredPlugins.filter(
       plugin => plugin.installed && plugin.kind === 'editor'
     );
   }
   get validators(): Plugin[] {
-    return this.plugins.filter(
+    return this.sortedStoredPlugins.filter(
       plugin => plugin.installed && plugin.kind === 'validator'
     );
   }
   get menuEntries(): Plugin[] {
-    return this.plugins.filter(
+    return this.sortedStoredPlugins.filter(
       plugin => plugin.installed && plugin.kind === 'menu'
     );
   }
@@ -767,11 +768,17 @@ export class OpenSCD extends LitElement {
     return this.menuEntries.filter(plugin => plugin.position === 'bottom');
   }
 
-  private get plugins(): Plugin[] {
+  /**
+   * @prop {Plugin[]} plugins - Array of plugins that are passed down to OpenSCD 
+   */
+  @property({ type: Array })
+  plugins: Plugin[] = [];
+
+  private get sortedStoredPlugins(): Plugin[] {
     return this.storedPlugins
       .map(plugin => {
         if (!plugin.official) return plugin;
-        const officialPlugin = officialPlugins.find(
+        const officialPlugin = (officialPlugins as Plugin[]).concat(this.plugins).find(
           needle => needle.src === plugin.src
         );
         return <Plugin>{
@@ -813,7 +820,7 @@ export class OpenSCD extends LitElement {
   }
 
   private setPlugins(indices: Set<number>) {
-    const newPlugins = this.plugins.map((plugin, index) => {
+    const newPlugins = this.sortedStoredPlugins.map((plugin, index) => {
       return { ...plugin, installed: indices.has(index) };
     });
     storePlugins(newPlugins);
@@ -823,7 +830,7 @@ export class OpenSCD extends LitElement {
   private updatePlugins() {
     const stored: Plugin[] = this.storedPlugins;
     const officialStored = stored.filter(p => p.official);
-    const newOfficial: Array<Plugin | InstalledOfficialPlugin> = officialPlugins
+    const newOfficial: Array<Plugin | InstalledOfficialPlugin> = (officialPlugins as Plugin[]).concat(this.plugins)
       .filter(p => !officialStored.find(o => o.src === p.src))
       .map(plugin => {
         return {
@@ -833,7 +840,7 @@ export class OpenSCD extends LitElement {
         };
       });
     const oldOfficial = officialStored.filter(
-      p => !officialPlugins.find(o => p.src === o.src)
+      p => !(officialPlugins as Plugin[]).concat(this.plugins).find(o => p.src === o.src)
     );
     const newPlugins: Array<Plugin | InstalledOfficialPlugin> = stored.filter(
       p => !oldOfficial.find(o => p.src === o.src)
@@ -1056,7 +1063,7 @@ export class OpenSCD extends LitElement {
           <li divider role="separator"></li>
           ${this.renderPluginKind(
             'editor',
-            this.plugins.filter(p => p.kind === 'editor')
+            this.sortedStoredPlugins.filter(p => p.kind === 'editor')
           )}
           <mwc-list-item graphic="avatar" noninteractive
             ><strong>${get(`plugins.menu`)}</strong
@@ -1067,24 +1074,24 @@ export class OpenSCD extends LitElement {
           <li divider role="separator"></li>
           ${this.renderPluginKind(
             'top',
-            this.plugins.filter(p => p.kind === 'menu' && p.position === 'top')
+            this.sortedStoredPlugins.filter(p => p.kind === 'menu' && p.position === 'top')
           )}
           <li divider role="separator" inset></li>
           ${this.renderPluginKind(
             'validator',
-            this.plugins.filter(p => p.kind === 'validator')
+            this.sortedStoredPlugins.filter(p => p.kind === 'validator')
           )}
           <li divider role="separator" inset></li>
           ${this.renderPluginKind(
             'middle',
-            this.plugins.filter(
+            this.sortedStoredPlugins.filter(
               p => p.kind === 'menu' && p.position === 'middle'
             )
           )}
           <li divider role="separator" inset></li>
           ${this.renderPluginKind(
             'bottom',
-            this.plugins.filter(
+            this.sortedStoredPlugins.filter(
               p => p.kind === 'menu' && p.position === 'bottom'
             )
           )}
@@ -1094,7 +1101,7 @@ export class OpenSCD extends LitElement {
           icon="refresh"
           label="${get('reset')}"
           @click=${async () => {
-            resetPlugins();
+            resetPlugins(this.plugins);
             this.requestUpdate();
           }}
           style="--mdc-theme-primary: var(--mdc-theme-error)"
