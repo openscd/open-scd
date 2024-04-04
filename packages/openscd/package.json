@@ -32,16 +32,11 @@
     "format:prettier": "prettier \"**/*.js\" \"**/*.ts\" --write --ignore-path .gitignore",
     "lint": "npm run lint:eslint && npm run lint:prettier",
     "format": "npm run format:eslint && npm run format:prettier",
-    "doc:clean": "npx rimraf doc",
-    "doc:typedoc": "typedoc --plugin none --out doc src",
-    "doc:wca": "wca src --outDir doc/components",
-    "doc": "npm run doc:clean && npm run doc:typedoc && npm run doc:wca",
     "release": "standard-version",
     "release:minor": "standard-version --release-as minor",
     "release:patch": "standard-version --release-as patch",
     "release:major": "standard-version --release-as major",
-    "build": "npm run test && npm run build:notest && cp .nojekyll build/",
-    "build:notest": "npm run doc && snowpack build && workbox generateSW workbox-config.cjs",
+    "build": "snowpack build && workbox generateSW workbox-config.cjs",
     "start": "snowpack dev"
   },
   "devDependencies": {
