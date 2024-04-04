@@ -236,86 +236,64 @@ export const zeroLineIcon = html`<svg
 </svg>`;
 
 export const voltageLevelIcon = html`<svg
+  id="Laag_1"
+  data-name="Laag 1"
   xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 25 25"
+  viewBox="0 0 24 24"
 >
+  <defs>
+    <style>
+      .cls-1 {
+        fill: currentColor;
+      }
+
+      .cls-1,
+      .cls-2 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: currentColor;
+        opacity: 0;
+      }
+    </style>
+  </defs>
   <path
-    d="M 4 4 L 12.5 21 L 21 4"
-    fill="transparent"
-    stroke="currentColor"
-    stroke-width="3"
-    stroke-linejoin="round"
-    stroke-linecap="round"
+    class="cls-1"
+    d="M11.13,20.06L3.63,6.93c-.27-.48-.11-1.09.37-1.36h0c.48-.27,1.09-.11,1.36.37l6.64,11.61,6.64-11.61c.27-.48.88-.65,1.36-.37h0c.48.27.65.88.37,1.36l-7.5,13.13c-.38.67-1.35.67-1.74,0Z"
   />
+  <rect class="cls-2" width="24" height="24" />
 </svg>`;
 
 export const bayIcon = html`<svg
+  id="Laag_1"
+  data-name="Laag 1"
   xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 25 25"
+  viewBox="0 0 24 24"
 >
+  <defs>
+    <style>
+      .cls-1 {
+        fill: currentColor;
+        stroke-width: 0px;
+      }
+    </style>
+  </defs>
   <path
-    d="M 3 2 L 22 2"
-    fill="transparent"
-    stroke="currentColor"
-    stroke-width="1.5"
-    stroke-linejoin="round"
-    stroke-linecap="round"
+    class="cls-1"
+    d="M7.75,8c0-.41-.34-.75-.75-.75s-.75.34-.75.75v1.5h-1.25c0,.84.52,1.55,1.25,1.85v8.65h1.5v-8.65c.73-.3,1.25-1.01,1.25-1.85h-1.25v-1.5Z"
   />
   <path
-    d="M 3 5 L 22 5"
-    fill="transparent"
-    stroke="currentColor"
-    stroke-width="1.5"
-    stroke-linejoin="round"
-    stroke-linecap="round"
+    class="cls-1"
+    d="M12.75,8c0-.41-.34-.75-.75-.75s-.75.34-.75.75v1.5h-1.25c0,.84.52,1.55,1.25,1.85v8.65h1.5v-8.65c.73-.3,1.25-1.01,1.25-1.85h-1.25v-1.5Z"
   />
   <path
-    d="M 7 2 L 7 7.5"
-    fill="transparent"
-    stroke="currentColor"
-    stroke-width="1.5"
-    stroke-linejoin="round"
-    stroke-linecap="round"
+    class="cls-1"
+    d="M17.75,8c0-.41-.34-.75-.75-.75s-.75.34-.75.75v1.5h-1.25c0,.84.52,1.55,1.25,1.85v8.65h1.5v-8.65c.73-.3,1.25-1.01,1.25-1.85h-1.25v-1.5Z"
   />
   <path
-    d="M 18 5 L 18 7.5"
-    fill="transparent"
-    stroke="currentColor"
-    stroke-width="1.5"
-    stroke-linejoin="round"
-    stroke-linecap="round"
-  />
-  <path
-    d="M 5.5 8.5 L 7 11 L 7 13 L 18 13 L 18 11 L 16.5 8.5"
-    fill="transparent"
-    stroke="currentColor"
-    stroke-width="1.5"
-    stroke-linejoin="round"
-    stroke-linecap="round"
-  />
-  <path
-    d="M 12.5 13 L 12.5 15"
-    fill="transparent"
-    stroke="currentColor"
-    stroke-width="1.5"
-    stroke-linejoin="round"
-    stroke-linecap="round"
-  />
-  <path
-    d="M 11 16 L 12.5 18.5 L 12.5 23"
-    fill="transparent"
-    stroke="currentColor"
-    stroke-width="1.5"
-    stroke-linejoin="round"
-    stroke-linecap="round"
-  />
-  <path
-    d="M 10.5 21 L 12.5 23 L 14.5 21"
-    fill="transparent"
-    stroke="currentColor"
-    stroke-width="1.5"
-    stroke-linejoin="round"
-    stroke-linecap="round"
+    class="cls-1"
+    d="M20,4H4c-1.1,0-2,.9-2,2v4c0,1.1.9,2,2,2v-6h16v6c1.1,0,2-.9,2-2v-4c0-1.1-.9-2-2-2Z"
   />
 </svg>`;
 
@@ -683,4 +661,93 @@ export const sizableSmvIcon = svg`
 
 export const sizableGooseIcon = svg`<svg viewBox="0 0 24 24">
 <path fill="currentColor" d="M11,7H15V9H11V15H13V11H15V15A2,2 0 0,1 13,17H11A2,2 0 0,1 9,15V9A2,2 0 0,1 11,7M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z" />
+</svg>`;
+
+export const substationIcon = svg`<svg id="Laag_1" data-name="Laag 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<defs>
+  <style>
+    .cls-1 {
+      fill: currentColor;
+    }
+
+    .cls-1, .cls-2 {
+      stroke-width: 0px;
+    }
+
+    .cls-2 {
+      fill: currentColor;
+      opacity: 0;
+    }
+  </style>
+</defs>
+<g>
+  <path class="cls-1" d="M19.3,7.94l-6-5.14c-.75-.64-1.85-.65-2.6,0l-6,5.14c-.44.38-.7.93-.7,1.52v9.54c0,1.1.9,2,2,2h12c1.1,0,2-.9,2-2v-9.54c0-.58-.25-1.14-.7-1.52ZM18,19H6v-9.54l6-5.14,6,5.14v9.54Z"/>
+  <path class="cls-1" d="M11.57,7.74l-3,5c-.09.15-.09.35,0,.5.09.16.26.25.44.25h2v3.5c0,.22.15.42.37.48.04.01.09.02.13.02.17,0,.34-.09.43-.24l3-5c.09-.15.09-.35,0-.5-.09-.16-.26-.25-.44-.25h-2v-3.5c0-.22-.15-.42-.37-.48-.22-.06-.45.03-.56.22Z"/>
+</g>
+<rect class="cls-2" y="0" width="24" height="24"/>
+</svg>`;
+export const lineIcon = svg`<svg id="Laag_1" data-name="Laag 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<defs>
+  <style>
+    .cls-1 {
+      fill: currentColor;
+    }
+
+    .cls-1, .cls-2 {
+      stroke-width: 0px;
+    }
+
+    .cls-2 {
+      fill: currentColor;
+      opacity: 0;
+    }
+  </style>
+</defs>
+<path class="cls-1" d="M14.39,11.93l-1.39.58v-1.84l2.15-.89c.51-.21.75-.8.54-1.31-.21-.51-.8-.75-1.31-.54l-1.39.58V3c0-.55-.45-1-1-1s-1,.45-1,1v6.33l-2.15.89c-.51.21-.75.8-.54,1.31.21.51.8.75,1.31.54l1.39-.58v1.84l-2.15.89c-.51.21-.75.8-.54,1.31.21.51.8.75,1.31.54l1.39-.58v5.5c0,.55.45,1,1,1s1-.45,1-1v-6.33l2.15-.89c.51-.21.75-.8.54-1.31-.21-.51-.8-.75-1.31-.54Z"/>
+<rect class="cls-2" width="24" height="24"/>
+</svg>`;
+export const processIcon = svg`<svg id="Laag_1" data-name="Laag 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<defs>
+  <style>
+    .cls-1 {
+      fill: currentColor;
+    }
+
+    .cls-1, .cls-2 {
+      stroke-width: 0px;
+    }
+
+    .cls-2 {
+      fill: currentColor;
+      opacity: 0;
+    }
+  </style>
+</defs>
+<path class="cls-1" d="M18.71,15.29c-.39-.39-1.02-.39-1.41,0s-.39,1.02,0,1.41l.29.29h-5.59c0-1.1-.9-2-2-2h-2c-1.01,0-1.84.76-1.97,1.74-.61-.34-1.03-.99-1.03-1.74,0-1.1.9-2,2-2h5c0,1.1.9,2,2,2h2c1.1,0,2-.9,2-2v-.14c1.72-.45,3-2,3-3.86,0-2.21-1.79-4-4-4h-5c0-1.1-.9-2-2-2h-2c-1.1,0-2,.9-2,2h-2c-.55,0-1,.45-1,1s.45,1,1,1h2c0,1.1.9,2,2,2h2c1.1,0,2-.9,2-2h5c1.1,0,2,.9,2,2,0,.75-.42,1.39-1.03,1.74-.13-.98-.96-1.74-1.97-1.74h-2c-1.1,0-2,.9-2,2h-5c-2.21,0-4,1.79-4,4,0,1.86,1.28,3.41,3,3.86v.14c0,1.1.9,2,2,2h2c1.1,0,2-.9,2-2h5.59l-.29.29c-.39.39-.39,1.02,0,1.41.2.2.45.29.71.29s.51-.1.71-.29l2-2c.39-.39.39-1.02,0-1.41l-2-2ZM8,7v-2h2v2s-2,0-2,0ZM14,11h2v2s-2,0-2,0v-2ZM8,19v-2h2v2s-2,0-2,0Z"/>
+<rect class="cls-2" y="0" width="24" height="24"/>
+</svg>`;
+
+export const transformerWindingIcon = svg`<svg id="Laag_1" data-name="Laag 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<defs>
+  <style>
+    .cls-1 {
+      fill: currentColor;
+    }
+
+    .cls-1, .cls-2 {
+      stroke-width: 0px;
+    }
+
+    .cls-2 {
+      fill: currentColor;
+      opacity: 0;
+    }
+  </style>
+</defs>
+<g>
+  <path class="cls-1" d="M19,20h-2c-1.21,0-2.18-1.09-1.97-2.34.16-.98,1.09-1.66,2.08-1.66h-.11c.55,0,1-.45,1-1s-.42-.96-.95-.99c.04,0,.08-.01.12-.01h-.17c-1.21,0-2.18-1.09-1.97-2.34.16-.98,1.09-1.66,2.08-1.66h-.11c.55,0,1-.45,1-1s-.42-.96-.95-.99c.04,0,.08-.01.12-.01h-.17c-1.21,0-2.18-1.09-1.97-2.34.16-.98,1.09-1.66,2.08-1.66h1.89c.55,0,1-.45,1-1s-.45-1-1-1h-1.83c-2.09,0-3.95,1.53-4.15,3.61-.13,1.37.44,2.59,1.38,3.41-.76.64-1.28,1.55-1.38,2.59-.13,1.37.44,2.59,1.38,3.41-.76.64-1.28,1.55-1.38,2.59-.23,2.39,1.64,4.39,3.98,4.39h2c.55,0,1-.45,1-1s-.45-1-1-1Z"/>
+  <path class="cls-1" d="M10.98,6.39c.23-2.39-1.64-4.39-3.98-4.39h-2c-.55,0-1,.45-1,1s.45,1,1,1h2c1.21,0,2.18,1.09,1.97,2.34-.16.98-1.09,1.66-2.08,1.66h.11c-.55,0-1,.45-1,1s.42.96.95.99c-.04,0-.08.01-.12.01h.17c1.21,0,2.18,1.09,1.97,2.34-.16.98-1.09,1.66-2.08,1.66h.11c-.55,0-1,.45-1,1,0,.28.11.53.29.71.17.17.4.27.65.28h0s.03.01.05.01c1.21,0,2.18,1.09,1.97,2.34-.16.98-1.09,1.66-2.08,1.66h-1.89c-.55,0-1,.45-1,1s.45,1,1,1h1.83c2.09,0,3.95-1.53,4.15-3.61.13-1.37-.44-2.59-1.38-3.41.76-.64,1.28-1.55,1.38-2.59.13-1.37-.44-2.59-1.38-3.41.76-.64,1.28-1.55,1.38-2.59Z"/>
+  <path class="cls-1" d="M6.83,16h.17s-.03,0-.05-.01c-.04,0-.08.01-.12.01Z"/>
+</g>
+<rect class="cls-2" width="24" height="24"/>
 </svg>`;
