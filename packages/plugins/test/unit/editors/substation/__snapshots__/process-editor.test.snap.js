@@ -7,8 +7,8 @@ snapshots["web component rendering Process element rendering LNode, GeneralEquip
   tabindex="0"
 >
   <mwc-icon
+    class="substation-editor-icon"
     slot="icon"
-    style="width:24px;height:24px"
   >
   </mwc-icon>
   <abbr
@@ -135,8 +135,8 @@ snapshots["web component rendering Process element hides LNode and Function chil
   tabindex="0"
 >
   <mwc-icon
+    class="substation-editor-icon"
     slot="icon"
-    style="width:24px;height:24px"
   >
   </mwc-icon>
   <abbr
@@ -257,8 +257,8 @@ snapshots["web component rendering Process element rendering Substation and Proc
   tabindex="0"
 >
   <mwc-icon
+    class="substation-editor-icon"
     slot="icon"
-    style="width:24px;height:24px"
   >
   </mwc-icon>
   <abbr
@@ -379,8 +379,8 @@ snapshots["web component rendering Process element rendering a Line child looks 
   tabindex="0"
 >
   <mwc-icon
+    class="substation-editor-icon"
     slot="icon"
-    style="width:24px;height:24px"
   >
   </mwc-icon>
   <abbr

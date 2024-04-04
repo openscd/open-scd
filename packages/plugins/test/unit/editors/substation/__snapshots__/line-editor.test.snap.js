@@ -7,8 +7,8 @@ snapshots["web component rendering Line element rendering LNode and Function chi
   tabindex="0"
 >
   <mwc-icon
+    class="substation-editor-icon"
     slot="icon"
-    style="width:24px;height:24px"
   >
   </mwc-icon>
   <abbr
@@ -100,8 +100,8 @@ snapshots["web component rendering Line element rendering ConductingEquipment lo
   tabindex="0"
 >
   <mwc-icon
+    class="substation-editor-icon"
     slot="icon"
-    style="width:24px;height:24px"
   >
   </mwc-icon>
   <abbr
@@ -193,8 +193,8 @@ snapshots["web component rendering Line element rendering GeneralEquipment looks
   tabindex="0"
 >
   <mwc-icon
+    class="substation-editor-icon"
     slot="icon"
-    style="width:24px;height:24px"
   >
   </mwc-icon>
   <abbr

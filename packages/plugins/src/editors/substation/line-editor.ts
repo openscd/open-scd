@@ -171,7 +171,7 @@ export class LineEditor extends LitElement {
   }
   render(): TemplateResult {
     return html`<action-pane label=${this.header}>
-      <mwc-icon slot="icon" style="width:24px;height:24px"
+      <mwc-icon class="substation-editor-icon" slot="icon"
         >${lineIcon}</mwc-icon
       >
       <abbr slot="action" title="${get('edit')}">

@@ -8,8 +8,8 @@ snapshots["voltage-level-editor looks like the latest snapshot"] =
   tabindex="0"
 >
   <mwc-icon
+    class="substation-editor-icon"
     slot="icon"
-    style="width:24px;height:24px"
   >
   </mwc-icon>
   <abbr
@@ -132,8 +132,8 @@ snapshots["voltage-level-editor with readonly property looks like the latest sna
   tabindex="0"
 >
   <mwc-icon
+    class="substation-editor-icon"
     slot="icon"
-    style="width:24px;height:24px"
   >
   </mwc-icon>
   <abbr
@@ -256,8 +256,8 @@ snapshots["voltage-level-editor with function filter deactivated looks like the 
   tabindex="0"
 >
   <mwc-icon
+    class="substation-editor-icon"
     slot="icon"
-    style="width:24px;height:24px"
   >
   </mwc-icon>
   <abbr
@@ -386,8 +386,8 @@ snapshots["voltage-level-editor with function filter deactivated and existing LN
   tabindex="0"
 >
   <mwc-icon
+    class="substation-editor-icon"
     slot="icon"
-    style="width:24px;height:24px"
   >
   </mwc-icon>
   <abbr
@@ -514,8 +514,8 @@ snapshots["voltage-level-editor with general-equipment children with showfunctio
   tabindex="0"
 >
   <mwc-icon
+    class="substation-editor-icon"
     slot="icon"
-    style="width:24px;height:24px"
   >
   </mwc-icon>
   <abbr
@@ -646,8 +646,8 @@ snapshots["voltage-level-editor with general-equipment children with showfunctio
   tabindex="0"
 >
   <mwc-icon
+    class="substation-editor-icon"
     slot="icon"
-    style="width:24px;height:24px"
   >
   </mwc-icon>
   <abbr

@@ -189,7 +189,7 @@ export class BayEditor extends LitElement {
 
   render(): TemplateResult {
     return html`${this.renderRedirectUI()}<action-pane label="${this.header}">
-        <mwc-icon slot="icon" style="width:24px;height:24px"
+        <mwc-icon class="substation-editor-icon" slot="icon"
           >${bayIcon}</mwc-icon
         >
         <abbr slot="action" title="${get('lnode.tooltip')}">

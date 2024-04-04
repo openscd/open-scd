@@ -161,7 +161,7 @@ export class PowerTransformerEditor extends LitElement {
   }
 
   renderContentPane(): TemplateResult {
-    return html`<mwc-icon slot="icon" style="width:24px;height:24px"
+    return html`<mwc-icon class="substation-editor-icon" slot="icon"
         >${powerTransformerTwoWindingIcon}</mwc-icon
       >
       <abbr slot="action" title="${get('lnode.tooltip')}">

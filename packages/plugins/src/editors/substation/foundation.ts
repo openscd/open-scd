@@ -679,4 +679,9 @@ export const styles = css`
   general-equipment-editor[showfunctions] {
     margin: 4px 8px 16px;
   }
+
+  .substation-editor-icon {
+    width: 24px;
+    height: 24px;
+  }
 `;
