@@ -68,7 +68,7 @@
     "release:minor": "standard-version --release-as minor",
     "release:patch": "standard-version --release-as patch",
     "release:major": "standard-version --release-as major",
-    "bundle": "npm run test && npm run bundle:notest && cp .nojekyll build/",
+    "bundle": "npm run test && npm run bundle:notest",
     "bundle:notest": "tsc"
   },
   "devDependencies": {
