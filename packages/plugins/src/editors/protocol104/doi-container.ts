@@ -19,7 +19,7 @@ import '@material/mwc-list/mwc-list-item';
 
 import { newWizardEvent } from '@openscd/open-scd/src/foundation.js';
 
-import '@openscd/open-scd/src/action-pane.js';
+import '@openscd/components/action-pane.js';
 
 import {
   get104DetailsLine,

@@ -5,7 +5,7 @@ import '@material/mwc-icon';
 import '@material/mwc-list/mwc-list-item';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
-import '@openscd/open-scd/src/filtered-list.js';
+import '@openscd/components/filtered-list.js';
 import {
   find,
   findControlBlocks,

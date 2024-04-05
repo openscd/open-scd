@@ -1,13 +1,13 @@
 import { html, TemplateResult } from 'lit-element';
 import { get } from 'lit-translate';
 
-import '@openscd/open-scd/src/finder-list.js';
+import '@openscd/components/finder-list.js';
 
 import {
   getDisplayString,
   getReader,
 } from '../../../wizards/foundation/finder.js';
-import { FinderList, Path } from '@openscd/open-scd/src/finder-list.js';
+import { FinderList, Path } from '@openscd/components/finder-list.js';
 import {
   compareNames,
   getNameAttribute,

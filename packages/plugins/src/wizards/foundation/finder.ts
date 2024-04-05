@@ -1,8 +1,8 @@
 import { html, TemplateResult } from 'lit-element';
 import { get } from 'lit-translate';
 
-import '@openscd/open-scd/src/finder-list.js';
-import { Directory } from '@openscd/open-scd/src/finder-list.js';
+import '@openscd/components/finder-list.js';
+import { Directory } from '@openscd/components/finder-list.js';
 import { find, identity, isPublic } from '@openscd/open-scd/src/foundation.js';
 
 export function getDisplayString(entry: string): string {

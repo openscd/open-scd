@@ -4,7 +4,7 @@ import { SinonSpy, spy } from 'sinon';
 import '@openscd/open-scd/src/addons/Wizards.js';
 import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
-import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
+import { WizardTextField } from '@openscd/components/wizard-textfield.js';
 import {
   Create,
   isCreate,
@@ -16,7 +16,7 @@ import {
   createTransformerWindingWizard,
   editTransformerWindingWizard,
 } from '../../../src/wizards/transformerWinding';
-import { WizardCheckbox } from '@openscd/open-scd/src/wizard-checkbox.js';
+import { WizardCheckbox } from '@openscd/components/wizard-checkbox.js';
 
 describe('Wizards for SCL TransformerWinding element', () => {
   let doc: XMLDocument;

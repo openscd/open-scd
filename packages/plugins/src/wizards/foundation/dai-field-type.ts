@@ -3,8 +3,8 @@ import { get } from 'lit-translate';
 
 import '@material/mwc-list/mwc-list-item';
 
-import '@openscd/open-scd/src/wizard-textfield.js';
-import '@openscd/open-scd/src/wizard-select.js';
+import '@openscd/components/wizard-textfield.js';
+import '@openscd/components/wizard-select.js';
 
 import {
   getValue,

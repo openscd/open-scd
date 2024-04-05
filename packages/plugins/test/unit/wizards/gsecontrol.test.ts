@@ -5,7 +5,7 @@ import fc from 'fast-check';
 import '@openscd/open-scd/src/addons/Wizards.js';
 import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
-import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
+import { WizardTextField } from '@openscd/components/wizard-textfield.js';
 import {
   ComplexAction,
   Create,
@@ -28,7 +28,7 @@ import {
   updateGseControlAction,
 } from '../../../src/wizards/gsecontrol.js';
 import { regExp, regexString } from '../../foundation.js';
-import { FinderList } from '@openscd/open-scd/src/finder-list.js';
+import { FinderList } from '@openscd/components/finder-list.js';
 
 describe('gsecontrol wizards', () => {
   let doc: XMLDocument;

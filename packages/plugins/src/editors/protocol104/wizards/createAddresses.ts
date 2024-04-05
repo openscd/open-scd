@@ -9,9 +9,10 @@ import '@material/mwc-formfield';
 import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-switch';
 
-import '@openscd/open-scd/src/wizard-textfield.js';
-import '@openscd/open-scd/src/WizardDivider.js';
-import { WizardSelect } from '@openscd/open-scd/src/wizard-select.js';
+import '@openscd/components/wizard-textfield.js';
+import '@openscd/components/wizardDivider.js';
+
+import { WizardSelect } from '@openscd/components/wizard-select.js';
 
 import {
   ComplexAction,

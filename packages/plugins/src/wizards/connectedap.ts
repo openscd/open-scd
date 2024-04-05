@@ -11,8 +11,8 @@ import { Checkbox } from '@material/mwc-checkbox';
 import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
-import '@openscd/open-scd/src/wizard-textfield.js';
-import '@openscd/open-scd/src/filtered-list.js';
+import '@openscd/components/wizard-textfield.js';
+import '@openscd/components/filtered-list.js';
 import {
   EditorAction,
   Wizard,

@@ -1,6 +1,6 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
-import '@openscd/open-scd/src/wizard-textfield.js';
+import '@openscd/components/wizard-textfield.js';
 import {
   WizardInputElement,
   isCreate,
@@ -31,9 +31,7 @@ describe('VoltageLevelEditor', () => {
       ['name', 'desc', 'nomFreq', 'numPhases', 'Voltage'].map(
         label =>
           <Promise<WizardInputElement>>(
-            fixture(
-              html`<wizard-textfield label=${label}></wizard-textfield>`
-            )
+            fixture(html`<wizard-textfield label=${label}></wizard-textfield>`)
           )
       )
     );
@@ -163,7 +161,6 @@ describe('VoltageLevelEditor', () => {
   });
 
   describe('with nulled properties', () => {
-
     describe('has an updateAction that', () => {
       describe('with present child element Voltage', () => {
         let element: Element;

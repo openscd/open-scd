@@ -18,7 +18,7 @@ import { Dialog } from '@material/mwc-dialog';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { List } from '@material/mwc-list';
 
-import '@openscd/open-scd/src/plain-compare-list.js';
+import '@openscd/components/plain-compare-list.js';
 
 import {
   compareNames,

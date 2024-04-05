@@ -25,7 +25,7 @@ import { getTheme } from '../themes.js';
 import { newLogEvent, SettingsUIEvent } from '../foundation.js';
 import { Language, languages, loader } from '../translations/loader.js';
 
-import '../WizardDivider.js';
+import '@openscd/components/wizardDivider.js';
 import { WizardDialog } from '../wizard-dialog.js';
 
 import {

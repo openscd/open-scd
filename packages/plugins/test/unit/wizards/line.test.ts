@@ -3,7 +3,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 import '@openscd/open-scd/src/addons/Wizards.js';
 import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
-import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
+import { WizardTextField } from '@openscd/components/wizard-textfield.js';
 import { SinonSpy, spy } from 'sinon';
 
 import {
@@ -14,7 +14,7 @@ import {
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
 import { createLineWizard, editLineWizard } from '../../../src/wizards/line.js';
-import { WizardCheckbox } from '@openscd/open-scd/src/wizard-checkbox.js';
+import { WizardCheckbox } from '@openscd/components/wizard-checkbox.js';
 
 describe('Wizards for SCL Line element', () => {
   let doc: XMLDocument;

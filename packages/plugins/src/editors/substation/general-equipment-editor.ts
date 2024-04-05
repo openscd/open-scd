@@ -19,7 +19,7 @@ import { IconButton } from '@material/mwc-icon-button';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { Menu } from '@material/mwc-menu';
 
-import '@openscd/open-scd/src/action-pane.js';
+import '@openscd/components/action-pane.js';
 import '../../editors/substation/eq-function-editor.js';
 import '../../editors/substation/l-node-editor.js';
 import { generalConductingEquipmentIcon } from '@openscd/open-scd/src/icons/icons.js';

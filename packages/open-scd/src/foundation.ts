@@ -6,9 +6,9 @@ import { Select } from '@material/mwc-select';
 import { TextField } from '@material/mwc-textfield';
 import AceEditor from 'ace-custom-element';
 
-import { WizardTextField } from './wizard-textfield.js';
-import { WizardSelect } from './wizard-select.js';
-import { WizardCheckbox } from './wizard-checkbox.js';
+import { WizardTextField } from '@openscd/components/wizard-textfield.js';
+import { WizardSelect } from '@openscd/components/wizard-select.js';
+import { WizardCheckbox } from '@openscd/components/wizard-checkbox.js';
 
 export type SimpleAction = Update | Create | Replace | Delete | Move;
 export type ComplexAction = {

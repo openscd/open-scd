@@ -9,9 +9,9 @@ import {
   editGseControlWizard,
   selectGseControlWizard,
 } from '../../../src/wizards/gsecontrol.js';
-import { FilteredList } from '@openscd/open-scd/src/filtered-list.js';
-import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
-import { FinderList } from '@openscd/open-scd/src/finder-list.js';
+import { FilteredList } from '@openscd/components/filtered-list.js';
+import { WizardTextField } from '@openscd/components/wizard-textfield.js';
+import { FinderList } from '@openscd/components/finder-list.js';
 import { newWizardEvent } from '@openscd/open-scd/src/foundation.js';
 
 describe('Wizards for SCL element GSEControl', () => {

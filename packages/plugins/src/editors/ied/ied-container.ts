@@ -8,7 +8,7 @@ import {
 import { nothing } from 'lit-html';
 import { get } from 'lit-translate';
 
-import '@openscd/open-scd/src/action-pane.js';
+import '@openscd/components/action-pane.js';
 import './access-point-container.js';
 
 import { wizards } from '../../wizards/wizard-library.js';

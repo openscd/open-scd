@@ -10,9 +10,9 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { Select } from '@material/mwc-select';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
-import '@openscd/open-scd/src/wizard-checkbox.js';
-import '@openscd/open-scd/src/wizard-textfield.js';
-import '@openscd/open-scd/src/wizard-select.js';
+import '@openscd/components/wizard-checkbox.js';
+import '@openscd/components/wizard-textfield.js';
+import '@openscd/components/wizard-select.js';
 import {
   cloneElement,
   Create,
@@ -33,7 +33,7 @@ import {
   WizardInputElement,
   WizardMenuActor,
 } from '@openscd/open-scd/src/foundation.js';
-import { WizardSelect } from '@openscd/open-scd/src/wizard-select.js';
+import { WizardSelect } from '@openscd/components/wizard-select.js';
 import {
   addReferencedDataTypes,
   allDataTypeSelector,

@@ -8,7 +8,7 @@ import {
 
 import '@material/mwc-fab';
 
-import '@openscd/open-scd/src/action-icon.js';
+import '@openscd/components/action-icon.js';
 import {
   newWizardEvent,
   newActionEvent,
