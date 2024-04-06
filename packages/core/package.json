@@ -12,7 +12,10 @@
     "./dist/**"
   ],
   "exports": {
-    ".": "./dist/foundation.js"
+    ".": "./dist/foundation.js",
+    "./foundation/deprecated/foundation.js": "./dist/foundation/deprecated/foundation.js",
+    "./foundation/deprecated/editor/foundation.js": "./dist/foundation/deprecated/editor/foundation.js",
+    "./foundation/deprecated/log/foundation.js": "./dist/foundation/deprecated/log/foundation.js",
   },
   "scripts": {
     "clean": "rimraf .tsbuildinfo dist",
