@@ -53,7 +53,16 @@ import { Switch } from '@material/mwc-switch';
 import { TextField } from '@material/mwc-textfield';
 import { Dialog } from '@material/mwc-dialog';
 import { initializeNsdoc, Nsdoc } from './foundation/nsdoc.js';
-import { HistoryUIKind, newEmptyIssuesEvent, newHistoryUIEvent, newRedoEvent, newUndoEvent, UndoRedoChangedEvent } from './addons/History.js';
+import {
+  HistoryUIKind,
+  newEmptyIssuesEvent,
+  newHistoryUIEvent,
+  newRedoEvent,
+  newUndoEvent,
+  UndoRedoChangedEvent,
+} from './addons/History.js';
+
+import type { PluginSet } from '@openscd/core';
 
 // HOSTING INTERFACES
 
@@ -345,12 +354,12 @@ export class OpenSCD extends LitElement {
     return html`<oscd-waiter>
       <oscd-settings .host=${this}>
         <oscd-wizards .host=${this}>
-          <oscd-history 
-            .host=${this} 
-            @undo-redo-changed="${(e:UndoRedoChangedEvent) => { 
-              this.editCount = e.detail.editCount 
-              this.canRedo = e.detail.canRedo
-              this.canUndo = e.detail.canUndo
+          <oscd-history
+            .host=${this}
+            @undo-redo-changed="${(e: UndoRedoChangedEvent) => {
+              this.editCount = e.detail.editCount;
+              this.canRedo = e.detail.canRedo;
+              this.canUndo = e.detail.canUndo;
             }}"
           >
             <oscd-editor
@@ -574,7 +583,7 @@ export class OpenSCD extends LitElement {
         name: 'undo',
         actionItem: true,
         action: (): void => {
-          this.dispatchEvent(newUndoEvent())
+          this.dispatchEvent(newUndoEvent());
         },
         disabled: (): boolean => !this.canUndo,
         kind: 'static',
@@ -584,7 +593,7 @@ export class OpenSCD extends LitElement {
         name: 'redo',
         actionItem: true,
         action: (): void => {
-          this.dispatchEvent(newRedoEvent())
+          this.dispatchEvent(newRedoEvent());
         },
         disabled: (): boolean => !this.canRedo,
         kind: 'static',
@@ -595,7 +604,7 @@ export class OpenSCD extends LitElement {
         name: 'menu.viewLog',
         actionItem: true,
         action: (): void => {
-          this.dispatchEvent(newHistoryUIEvent(true, HistoryUIKind.log))
+          this.dispatchEvent(newHistoryUIEvent(true, HistoryUIKind.log));
         },
         kind: 'static',
       },
@@ -604,7 +613,7 @@ export class OpenSCD extends LitElement {
         name: 'menu.viewHistory',
         actionItem: true,
         action: (): void => {
-          this.dispatchEvent(newHistoryUIEvent(true, HistoryUIKind.history))
+          this.dispatchEvent(newHistoryUIEvent(true, HistoryUIKind.history));
         },
         kind: 'static',
       },
@@ -613,7 +622,7 @@ export class OpenSCD extends LitElement {
         name: 'menu.viewDiag',
         actionItem: true,
         action: (): void => {
-          this.dispatchEvent(newHistoryUIEvent(true, HistoryUIKind.diagnostic))
+          this.dispatchEvent(newHistoryUIEvent(true, HistoryUIKind.diagnostic));
         },
         kind: 'static',
       },
@@ -769,18 +778,34 @@ export class OpenSCD extends LitElement {
   }
 
   /**
-   * @prop {Plugin[]} plugins - Array of plugins that are passed down to OpenSCD 
+   * @prop {PluginSet} plugins - Set of plugins that are used by OpenSCD
    */
-  @property({ type: Array })
-  plugins: Plugin[] = [];
+  @property({ type: Object })
+  plugins: PluginSet = { menu: [], editor: [] };
+
+  get parsedPlugins(): Plugin[] {
+    return this.plugins.menu
+      .map(p => ({
+        ...p,
+        kind: 'menu' as PluginKind,
+        installed: p.default ?? false,
+      }))
+      .concat(
+        this.plugins.editor.map(p => ({
+          ...p,
+          kind: 'editor' as PluginKind,
+          installed: p.default ?? false,
+        }))
+      );
+  }
 
   private get sortedStoredPlugins(): Plugin[] {
     return this.storedPlugins
       .map(plugin => {
         if (!plugin.official) return plugin;
-        const officialPlugin = (officialPlugins as Plugin[]).concat(this.plugins).find(
-          needle => needle.src === plugin.src
-        );
+        const officialPlugin = (officialPlugins as Plugin[])
+          .concat(this.parsedPlugins)
+          .find(needle => needle.src === plugin.src);
         return <Plugin>{
           ...officialPlugin,
           ...plugin,
@@ -830,7 +855,10 @@ export class OpenSCD extends LitElement {
   private updatePlugins() {
     const stored: Plugin[] = this.storedPlugins;
     const officialStored = stored.filter(p => p.official);
-    const newOfficial: Array<Plugin | InstalledOfficialPlugin> = (officialPlugins as Plugin[]).concat(this.plugins)
+    const newOfficial: Array<Plugin | InstalledOfficialPlugin> = (
+      officialPlugins as Plugin[]
+    )
+      .concat(this.parsedPlugins)
       .filter(p => !officialStored.find(o => o.src === p.src))
       .map(plugin => {
         return {
@@ -840,7 +868,10 @@ export class OpenSCD extends LitElement {
         };
       });
     const oldOfficial = officialStored.filter(
-      p => !(officialPlugins as Plugin[]).concat(this.plugins).find(o => p.src === o.src)
+      p =>
+        !(officialPlugins as Plugin[])
+          .concat(this.parsedPlugins)
+          .find(o => p.src === o.src)
     );
     const newPlugins: Array<Plugin | InstalledOfficialPlugin> = stored.filter(
       p => !oldOfficial.find(o => p.src === o.src)
@@ -1074,7 +1105,9 @@ export class OpenSCD extends LitElement {
           <li divider role="separator"></li>
           ${this.renderPluginKind(
             'top',
-            this.sortedStoredPlugins.filter(p => p.kind === 'menu' && p.position === 'top')
+            this.sortedStoredPlugins.filter(
+              p => p.kind === 'menu' && p.position === 'top'
+            )
           )}
           <li divider role="separator" inset></li>
           ${this.renderPluginKind(
@@ -1101,7 +1134,7 @@ export class OpenSCD extends LitElement {
           icon="refresh"
           label="${get('reset')}"
           @click=${async () => {
-            resetPlugins(this.plugins);
+            resetPlugins(this.parsedPlugins);
             this.requestUpdate();
           }}
           style="--mdc-theme-primary: var(--mdc-theme-error)"

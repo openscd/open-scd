@@ -27,4 +27,4 @@ export type {
 export { cyrb64 } from './foundation/cyrb64.js';
 
 export { Editing } from './mixins/Editing.js';
-export { Plugging } from './mixins/Plugging.js';
+export type { Plugin, PluginSet } from './foundation/plugin.js';

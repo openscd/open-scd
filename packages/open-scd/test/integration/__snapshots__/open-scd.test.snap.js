@@ -1062,7 +1062,7 @@ snapshots["open-scd looks like its snapshot"] =
 `;
 /* end snapshot open-scd looks like its snapshot */
 
-snapshots["open-scd renders a plugin passed down as props and it looks like its snapshot"] = 
+snapshots["open-scd renders menu plugins passed down as props and it looks like its snapshot"] = 
 `<oscd-waiter>
   <oscd-settings>
     <oscd-wizards>
@@ -1118,6 +1118,23 @@ snapshots["open-scd renders a plugin passed down as props and it looks like its 
               </mwc-list-item>
               <oscd-pluginc252142cdc95195e class="menu plugin">
               </oscd-pluginc252142cdc95195e>
+              <mwc-list-item
+                aria-disabled="false"
+                class="top"
+                graphic="icon"
+                iconid="link"
+                mwc-list-item=""
+                tabindex="-1"
+              >
+                <mwc-icon slot="graphic">
+                  link
+                </mwc-icon>
+                <span>
+                  Top Mock Plugin
+                </span>
+              </mwc-list-item>
+              <oscd-plugin479826bd471d9af8 class="menu plugin">
+              </oscd-plugin479826bd471d9af8>
               <mwc-list-item
                 aria-disabled="true"
                 class="top"
@@ -1184,6 +1201,23 @@ snapshots["open-scd renders a plugin passed down as props and it looks like its 
                 role="separator"
               >
               </li>
+              <mwc-list-item
+                aria-disabled="false"
+                class="middle"
+                graphic="icon"
+                iconid="link"
+                mwc-list-item=""
+                tabindex="-1"
+              >
+                <mwc-icon slot="graphic">
+                  link
+                </mwc-icon>
+                <span>
+                  Middle Mock Plugin
+                </span>
+              </mwc-list-item>
+              <oscd-plugin5dd59bed3b346aba class="menu plugin">
+              </oscd-plugin5dd59bed3b346aba>
               <mwc-list-item
                 aria-disabled="true"
                 class="middle"
@@ -1324,11 +1358,11 @@ snapshots["open-scd renders a plugin passed down as props and it looks like its 
                   link
                 </mwc-icon>
                 <span>
-                  Mock Plugin
+                  Bottom Mock Plugin
                 </span>
               </mwc-list-item>
-              <oscd-plugin5a165f48d974b827 class="menu plugin">
-              </oscd-plugin5a165f48d974b827>
+              <oscd-plugina2cfc5e9bd9a0738 class="menu plugin">
+              </oscd-plugina2cfc5e9bd9a0738>
               <mwc-list-item
                 aria-disabled="true"
                 class="middle"
@@ -1430,6 +1464,14 @@ snapshots["open-scd renders a plugin passed down as props and it looks like its 
             >
               <div class="landing_label">
                 New project
+              </div>
+            </mwc-icon-button>
+            <mwc-icon-button
+              class="landing_icon"
+              icon="link"
+            >
+              <div class="landing_label">
+                Top Mock Plugin
               </div>
             </mwc-icon-button>
           </div>
@@ -1743,6 +1785,22 @@ snapshots["open-scd renders a plugin passed down as props and it looks like its 
                 mwc-list-item=""
                 selected=""
                 tabindex="-1"
+                value="https://mockup-plugin.url/plugin-top.js"
+              >
+                <mwc-icon slot="meta">
+                  link
+                </mwc-icon>
+                Top Mock Plugin
+              </mwc-check-list-item>
+              <mwc-check-list-item
+                aria-disabled="false"
+                class="official"
+                graphic="control"
+                hasmeta=""
+                left=""
+                mwc-list-item=""
+                selected=""
+                tabindex="-1"
                 value="/plugins/src/menu/SaveProject.js"
               >
                 <mwc-icon slot="meta">
@@ -1794,6 +1852,22 @@ snapshots["open-scd renders a plugin passed down as props and it looks like its 
                 role="separator"
               >
               </li>
+              <mwc-check-list-item
+                aria-disabled="false"
+                class="official"
+                graphic="control"
+                hasmeta=""
+                left=""
+                mwc-list-item=""
+                selected=""
+                tabindex="-1"
+                value="https://mockup-plugin.url/plugin-middle.js"
+              >
+                <mwc-icon slot="meta">
+                  link
+                </mwc-icon>
+                Middle Mock Plugin
+              </mwc-check-list-item>
               <mwc-check-list-item
                 aria-disabled="false"
                 class="official"
@@ -1965,12 +2039,12 @@ snapshots["open-scd renders a plugin passed down as props and it looks like its 
                 mwc-list-item=""
                 selected=""
                 tabindex="-1"
-                value="https://mockup-plugin.url/plugin.js"
+                value="https://mockup-plugin.url/plugin-bottom.js"
               >
                 <mwc-icon slot="meta">
                   link
                 </mwc-icon>
-                Mock Plugin
+                Bottom Mock Plugin
               </mwc-check-list-item>
               <mwc-check-list-item
                 aria-disabled="false"
@@ -2154,5 +2228,5 @@ snapshots["open-scd renders a plugin passed down as props and it looks like its 
   </oscd-settings>
 </oscd-waiter>
 `;
-/* end snapshot open-scd renders a plugin passed down as props and it looks like its snapshot */
+/* end snapshot open-scd renders menu plugins passed down as props and it looks like its snapshot */
 
