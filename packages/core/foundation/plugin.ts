@@ -8,6 +8,5 @@ export type Plugin = {
   requireDoc?: boolean;
   active?: boolean;
   position: 'top' | 'middle' | 'bottom';
-  default?: boolean;
 };
 export type PluginSet = { menu: Plugin[]; editor: Plugin[] };

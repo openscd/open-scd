@@ -788,13 +788,13 @@ export class OpenSCD extends LitElement {
       .map(p => ({
         ...p,
         kind: 'menu' as PluginKind,
-        installed: p.default ?? false,
+        installed: p.active ?? false,
       }))
       .concat(
         this.plugins.editor.map(p => ({
           ...p,
           kind: 'editor' as PluginKind,
-          installed: p.default ?? false,
+          installed: p.active ?? false,
         }))
       );
   }
