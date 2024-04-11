@@ -1,6 +1,6 @@
 {
   "name": "@openscd/distribution",
-  "version": "0.34.0",
+  "version": "0.0.1",
   "repository": "https://github.com/openscd/open-scd.git",
   "directory": "packages/distribution",
   "description": "Official OpenSCD Distribution",
