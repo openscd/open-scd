@@ -19,8 +19,6 @@
     "url": "git+https://github.com/openscd/open-scd.git"
   },
   "license": "Apache-2.0",
-  "dependencies": {
-  },
   "devDependencies": {
     "lerna": "^7.1.4",
     "nx": "^16.10.0"
