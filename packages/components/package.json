@@ -19,8 +19,7 @@
     "./dist/**"
   ],
   "dependencies": {
-    "@material/mwc-dialog": "0.22.1",
-    "@angular/core": "15.0.0"
+    "@material/mwc-dialog": "0.22.1"
   },
   "scripts": {
     "clean": "rimraf build",
