@@ -34,7 +34,9 @@
     "marked": "^4.0.10",
     "panzoom": "^9.4.2",
     "@openscd/open-scd": "*",
-    "@openscd/wizards": "*"
+    "@openscd/core": "*",
+    "@openscd/wizards": "*",
+    "@openscd/components": "*"
   },
   "scripts": {
     "clean": "rimraf dist",
