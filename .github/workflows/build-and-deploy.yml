@@ -37,6 +37,6 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
           branch: master
-          folder: packages/openscd/build
+          folder: packages/distribution/build
           repository-name: openscd/openscd.github.io
           ssh-key: ${{ secrets.DEPLOY_KEY }}
