@@ -7,6 +7,11 @@ snapshots["voltage-level-editor looks like the latest snapshot"] =
     (110.0 kV)"
   tabindex="0"
 >
+  <mwc-icon
+    class="substation-editor-icon"
+    slot="icon"
+  >
+  </mwc-icon>
   <abbr
     slot="action"
     title="[lnode.tooltip]"
@@ -126,6 +131,11 @@ snapshots["voltage-level-editor with readonly property looks like the latest sna
     (110.0 kV)"
   tabindex="0"
 >
+  <mwc-icon
+    class="substation-editor-icon"
+    slot="icon"
+  >
+  </mwc-icon>
   <abbr
     slot="action"
     title="[lnode.tooltip]"
@@ -245,6 +255,11 @@ snapshots["voltage-level-editor with function filter deactivated looks like the 
     (110.0 kV)"
   tabindex="0"
 >
+  <mwc-icon
+    class="substation-editor-icon"
+    slot="icon"
+  >
+  </mwc-icon>
   <abbr
     slot="action"
     title="[lnode.tooltip]"
@@ -370,6 +385,11 @@ snapshots["voltage-level-editor with function filter deactivated and existing LN
     "
   tabindex="0"
 >
+  <mwc-icon
+    class="substation-editor-icon"
+    slot="icon"
+  >
+  </mwc-icon>
   <abbr
     slot="action"
     title="[lnode.tooltip]"
@@ -493,6 +513,11 @@ snapshots["voltage-level-editor with general-equipment children with showfunctio
     (110 kV)"
   tabindex="0"
 >
+  <mwc-icon
+    class="substation-editor-icon"
+    slot="icon"
+  >
+  </mwc-icon>
   <abbr
     slot="action"
     title="[lnode.tooltip]"
@@ -620,6 +645,11 @@ snapshots["voltage-level-editor with general-equipment children with showfunctio
     (110 kV)"
   tabindex="0"
 >
+  <mwc-icon
+    class="substation-editor-icon"
+    slot="icon"
+  >
+  </mwc-icon>
   <abbr
     slot="action"
     title="[lnode.tooltip]"
