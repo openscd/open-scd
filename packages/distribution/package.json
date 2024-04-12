@@ -37,8 +37,7 @@
     "doc:typedoc": "typedoc --plugin none --out doc src",
     "doc:wca": "wca src --outDir doc/components",
     "doc": "npm run doc:clean && npm run doc:typedoc && npm run doc:wca",
-    "start": "snowpack dev",
-    "build": "rollup"
+    "start": "snowpack dev"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",

@@ -40,7 +40,6 @@
     "doc:typedoc": "typedoc --plugin none --out doc src",
     "doc:wca": "wca src --outDir doc/components",
     "doc": "npm run doc:clean && npm run doc:typedoc && npm run doc:wca",
-    "build": "npm run test && npm run build:notest && cp .nojekyll build/",
     "build:notest": "tsc"
   },
   "devDependencies": {
