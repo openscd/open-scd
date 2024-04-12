@@ -20,6 +20,7 @@ jobs:
 
       - name: Install and Build OpenSCD
         run: |
+          npm i @nx/nx-linux-x64-gnu
           npm clean-install
           npm run-script build
           npm run-script doc
