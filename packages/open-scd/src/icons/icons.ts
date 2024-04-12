@@ -298,286 +298,194 @@ export const bayIcon = html`<svg
 </svg>`;
 
 export const disconnectorIcon = html`<svg
+  id="Laag_1"
+  data-name="Laag 1"
   xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 25 25"
+  viewBox="0 0 24 24"
 >
-  <path
-    d="M 12.5 2 L 12.5 8"
-    fill="transparent"
-    stroke="currentColor"
-    stroke-width="1.5"
-    stroke-linecap="round"
-  />
-  <path
-    d=" M 12.5 23 L 12.5 18"
-    fill="transparent"
-    stroke="currentColor"
-    stroke-width="1.5"
-    stroke-linecap="round"
-  />
-  <path
-    d="M 12.5 18 L 8 9"
-    fill="transparent"
-    stroke="currentColor"
-    stroke-width="1.5"
-    stroke-linecap="round"
-  />
-  <path
-    d="M 11.5 8 L 13.5 8"
-    fill="transparent"
-    stroke="currentColor"
-    stroke-width="1.5"
-    stroke-linecap="round"
-  />
+  <defs>
+    <style>
+      .cls-1 {
+        fill: currentColor;
+      }
+
+      .cls-1,
+      .cls-2 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        opacity: 0;
+      }
+    </style>
+  </defs>
+  <g>
+    <path
+      class="cls-1"
+      d="M12.71,15.29l-6.79-6.79c-.39-.39-1.02-.39-1.41,0-.39.39-.39,1.02,0,1.41l6.5,6.5v4.59c0,.55.45,1,1,1s1-.45,1-1v-5c0-.13-.03-.26-.08-.38-.05-.12-.12-.23-.22-.33Z"
+    />
+    <path
+      class="cls-1"
+      d="M14,6h-1v-3c0-.55-.45-1-1-1s-1,.45-1,1v3h-1c-.55,0-1,.45-1,1s.45,1,1,1h4c.55,0,1-.45,1-1s-.45-1-1-1Z"
+    />
+  </g>
+  <rect class="cls-2" width="24" height="24" />
 </svg>`;
 
 export const circuitBreakerIcon = html`<svg
+  id="Laag_1"
+  data-name="Laag 1"
   xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 25 25"
+  viewBox="0 0 24 24"
 >
-  <line
-    x1="12.5"
-    y1="2"
-    x2="12.5"
-    y2="8"
-    stroke="currentColor"
-    stroke-width="1.5"
-    stroke-linecap="round"
-  />
-  <line
-    x1="12.5"
-    y1="23"
-    x2="12.5"
-    y2="18"
-    stroke="currentColor"
-    stroke-width="1.5"
-    stroke-linecap="round"
-  />
-  <line
-    x1="12.5"
-    y1="18"
-    x2="8"
-    y2="9"
-    stroke="currentColor"
-    stroke-width="1.5"
-    stroke-linecap="round"
-  />
-  <line
-    x1="11.5"
-    y1="7"
-    x2="13.5"
-    y2="9"
-    stroke="currentColor"
-    stroke-width="1.5"
-    stroke-linecap="round"
-  />
-  <line
-    x1="11.5"
-    y1="9"
-    x2="13.5"
-    y2="7"
-    stroke="currentColor"
-    stroke-width="1.5"
-    stroke-linecap="round"
-  />
+  <defs>
+    <style>
+      .cls-1 {
+        fill: currentColor;
+      }
+
+      .cls-1,
+      .cls-2 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        opacity: 0;
+      }
+    </style>
+  </defs>
+  <g>
+    <path
+      class="cls-1"
+      d="M12.71,15.29l-6.79-6.79c-.39-.39-1.02-.39-1.41,0-.39.39-.39,1.02,0,1.41l6.5,6.5v4.59c0,.55.45,1,1,1s1-.45,1-1v-5c0-.13-.03-.26-.08-.38-.05-.12-.12-.23-.22-.33Z"
+    />
+    <path
+      class="cls-1"
+      d="M13.41,7l1.29-1.29c.39-.39.39-1.02,0-1.41s-1.02-.39-1.41,0l-1.29,1.29-1.29-1.29c-.39-.39-1.02-.39-1.41,0s-.39,1.02,0,1.41l1.29,1.29-1.29,1.29c-.39.39-.39,1.02,0,1.41.2.2.45.29.71.29s.51-.1.71-.29l1.29-1.29,1.29,1.29c.2.2.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.02,0-1.41l-1.29-1.29Z"
+    />
+  </g>
+  <rect class="cls-2" width="24" height="24" />
 </svg>`;
 
 export const currentTransformerIcon = html`<svg
+  id="Laag_1"
+  data-name="Laag 1"
   xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 25 25"
+  viewBox="0 0 24 24"
 >
-  <line
-    x1="12.5"
-    y1="2"
-    x2="12.5"
-    y2="23"
-    stroke="currentColor"
-    stroke-width="1.5"
-    stroke-linecap="round"
+  <defs>
+    <style>
+      .cls-1 {
+        fill: currentColor;
+      }
+
+      .cls-1,
+      .cls-2 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        opacity: 0;
+      }
+    </style>
+  </defs>
+  <path
+    class="cls-1"
+    d="M19,12c0-3.53-2.61-6.43-6-6.92v-2.08c0-.55-.45-1-1-1s-1,.45-1,1v2.08c-3.39.49-6,3.39-6,6.92s2.61,6.43,6,6.92v2.08c0,.55.45,1,1,1s1-.45,1-1v-2.08c3.39-.49,6-3.39,6-6.92ZM7,12c0-2.42,1.72-4.44,4-4.9v9.8c-2.28-.46-4-2.48-4-4.9ZM13,16.9V7.1c2.28.46,4,2.48,4,4.9s-1.72,4.44-4,4.9Z"
   />
-  <circle
-    cx="12.5"
-    cy="12.5"
-    r="7.5"
-    stroke="currentColor"
-    fill="transparent"
-    stroke-width="1.5"
-    stroke-linecap="round"
-  />
+  <rect class="cls-2" width="24" height="24" />
 </svg>`;
 
 export const voltageTransformerIcon = html`<svg
+  id="Laag_1"
+  data-name="Laag 1"
   xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 25 25"
+  viewBox="0 0 24 24"
 >
-  <line
-    x1="12.5"
-    y1="2"
-    x2="12.5"
-    y2="5"
-    stroke="currentColor"
-    stroke-width="1.5"
-    stroke-linecap="round"
+  <defs>
+    <style>
+      .cls-1 {
+        fill: currentColor;
+      }
+
+      .cls-1,
+      .cls-2 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        opacity: 0;
+      }
+    </style>
+  </defs>
+  <path
+    class="cls-1"
+    d="M17,10c0-2.42-1.72-4.44-4-4.9v-2.1s0-1-1-1-1,1-1,1v2.1c-2.28.46-4,2.48-4,4.9,0,.71.15,1.39.42,2-.27.61-.42,1.29-.42,2,0,2.42,1.72,4.44,4,4.9v1.1h-1c-.55,0-1,.45-1,1s.45,1,1,1h4c.55,0,1-.45,1-1s-.45-1-1-1h-1v-1.1c2.28-.46,4-2.48,4-4.9,0-.71-.15-1.39-.42-2,.27-.61.42-1.29.42-2ZM12,7c1.66,0,3,1.34,3,3,0,0,0,.01,0,.02-.84-.63-1.87-1.02-3-1.02s-2.16.39-3,1.02c0,0,0-.01,0-.02,0-1.66,1.34-3,3-3ZM14.22,12c-.55.61-1.34,1-2.22,1s-1.67-.39-2.22-1c.55-.61,1.34-1,2.22-1s1.67.39,2.22,1ZM12,17c-1.66,0-3-1.34-3-3,0,0,0-.01,0-.02.84.63,1.87,1.02,3,1.02s2.16-.39,3-1.02c0,0,0,.01,0,.02,0,1.66-1.34,3-3,3Z"
   />
-  <circle
-    cx="12.5"
-    cy="10"
-    r="5"
-    stroke="currentColor"
-    fill="transparent"
-    stroke-width="1.5"
-    stroke-linecap="round"
-  />
-  <circle
-    cx="12.5"
-    cy="15"
-    r="5"
-    stroke="currentColor"
-    fill="transparent"
-    stroke-width="1.5"
-    stroke-linecap="round"
-  />
-  <line
-    x1="12.5"
-    y1="20"
-    x2="12.5"
-    y2="23"
-    stroke="currentColor"
-    stroke-width="1.5"
-    stroke-linecap="round"
-  />
-  <line
-    x1="11"
-    y1="23"
-    x2="14"
-    y2="23"
-    stroke="currentColor"
-    stroke-width="1.5"
-    stroke-linecap="round"
-  />
+  <rect class="cls-2" width="24" height="24" />
 </svg>`;
 
 export const earthSwitchIcon = html`<svg
-  viewBox="0 0 25 25"
+  id="Laag_1"
+  data-name="Laag 1"
   xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
 >
-  <line
-    x1="12.5"
-    x2="12.5"
-    y1="19.2"
-    y2="16.2"
-    stroke="currentColor"
-    stroke-linecap="round"
-    stroke-width="1.5"
-  />
-  <line
-    x1="12.5"
-    x2="12.5"
-    y1="1.25"
-    y2="6.25"
-    stroke="currentColor"
-    stroke-linecap="round"
-    stroke-width="1.5"
-  />
-  <line
-    x1="12.5"
-    x2="8"
-    y1="16.2"
-    y2="7.25"
-    stroke="currentColor"
-    stroke-linecap="round"
-    stroke-width="1.5"
-  />
-  <line
-    x1="13.5"
-    x2="11.5"
-    y1="6.25"
-    y2="6.25"
-    stroke="currentColor"
-    stroke-linecap="round"
-    stroke-width="1.5"
-  />
-  <line
-    x1="17"
-    x2="8"
-    y1="19.2"
-    y2="19.2"
-    stroke="currentColor"
-    stroke-linecap="round"
-    stroke-width="1.5"
-  />
-  <line
-    x1="15.5"
-    x2="9.5"
-    y1="21.4"
-    y2="21.4"
-    stroke="currentColor"
-    stroke-linecap="round"
-    stroke-width="1.5"
-  />
-  <line
-    x1="14.5"
-    x2="10.5"
-    y1="23.5"
-    y2="23.5"
-    stroke="currentColor"
-    stroke-linecap="round"
-    stroke-width="1.5"
-  />
+  <defs>
+    <style>
+      .cls-1 {
+        fill: currentColor;
+      }
+
+      .cls-1,
+      .cls-2 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        opacity: 0;
+      }
+    </style>
+  </defs>
+  <g>
+    <path
+      class="cls-1"
+      d="M13,20h-2c-.55,0-1,.45-1,1s.45,1,1,1h2c.55,0,1-.45,1-1s-.45-1-1-1Z"
+    />
+    <path
+      class="cls-1"
+      d="M15,16h-2v-5c0-.13-.03-.26-.08-.38-.05-.12-.12-.23-.22-.33L5.91,3.5c-.39-.39-1.02-.39-1.41,0-.39.39-.39,1.02,0,1.41l6.5,6.5v4.59h-2c-.55,0-1,.45-1,1s.45,1,1,1h6c.55,0,1-.45,1-1s-.45-1-1-1Z"
+    />
+    <path
+      class="cls-1"
+      d="M10,4h4c.55,0,1-.45,1-1s-.45-1-1-1h-4c-.55,0-1,.45-1,1s.45,1,1,1Z"
+    />
+  </g>
+  <rect class="cls-2" width="24" height="24" />
 </svg>`;
 
 export const generalConductingEquipmentIcon = html`<svg
+  id="Laag_1"
+  data-name="Laag 1"
   xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 25 25"
+  viewBox="0 0 24 24"
 >
-  <circle
-    cx="12.5"
-    cy="12.5"
-    r="11"
-    stroke-width="1.5"
-    stroke="currentColor"
-    fill="transparent"
-  />
-
+  <defs>
+    <style>
+      .cls-1 {
+        fill: currentColor;
+        stroke-width: 0px;
+      }
+    </style>
+  </defs>
   <path
-    d=" M 7.5 17.5
-    L 12 13
-    Z"
-    fill="transparent"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linejoin="round"
-    stroke-linecap="round"
-  />
-  <path
-    d="	M 11 7
-      L 10 8
-      C 5 13, 11 20, 17 15
-      L 18 14
-      Z"
-    fill="currentColor"
-    stroke="currentColor"
-    stroke-linejoin="round"
-  />
-  <path
-    d=" M 13 9
-    L 16 6
-    Z"
-    fill="transparent"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linejoin="round"
-    stroke-linecap="round"
-  />
-  <path
-    d=" M 16 12
-    L 19 9
-    Z"
-    fill="transparent"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linejoin="round"
-    stroke-linecap="round"
+    class="cls-1"
+    d="M20.41,3.59c-.78-.78-2.05-.78-2.83,0-.59.59-.73,1.47-.43,2.19l-1.49,1.49c-1.02-.79-2.29-1.27-3.67-1.27-3.31,0-6,2.69-6,6,0,1.38.48,2.66,1.27,3.67l-1.49,1.49c-.73-.31-1.6-.17-2.19.43-.78.78-.78,2.05,0,2.83.78.78,2.05.78,2.83,0,.59-.59.73-1.47.43-2.19l1.49-1.49c1.02.79,2.29,1.27,3.67,1.27,3.31,0,6-2.69,6-6,0-1.38-.48-2.66-1.27-3.67l1.49-1.49c.73.31,1.6.17,2.19-.43.78-.78.78-2.05,0-2.83ZM12,16c-2.21,0-4-1.79-4-4s1.79-4,4-4,4,1.79,4,4-1.79,4-4,4Z"
   />
 </svg>`;
 
