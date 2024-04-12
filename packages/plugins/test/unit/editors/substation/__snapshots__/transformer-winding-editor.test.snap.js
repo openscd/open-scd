@@ -6,6 +6,11 @@ snapshots["transformer-winding-editor with children when EqFunction elements are
   label="some"
   tabindex="0"
 >
+  <mwc-icon
+    class="substation-editor-icon"
+    slot="icon"
+  >
+  </mwc-icon>
   <abbr
     slot="action"
     title="[edit]"
@@ -92,6 +97,11 @@ snapshots["transformer-winding-editor with children when hiding EqFunction eleme
   label="some"
   tabindex="0"
 >
+  <mwc-icon
+    class="substation-editor-icon"
+    slot="icon"
+  >
+  </mwc-icon>
   <abbr
     slot="action"
     title="[edit]"
@@ -176,6 +186,11 @@ snapshots["transformer-winding-editor without children looks like the latest sna
   label="empty"
   tabindex="0"
 >
+  <mwc-icon
+    class="substation-editor-icon"
+    slot="icon"
+  >
+  </mwc-icon>
   <abbr
     slot="action"
     title="[edit]"

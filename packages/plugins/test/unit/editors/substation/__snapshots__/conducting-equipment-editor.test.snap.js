@@ -42,8 +42,8 @@ snapshots["conducting-equipment-editor rendered as action pane looks like the la
   tabindex="0"
 >
   <mwc-icon
+    class="substation-editor-icon"
     slot="icon"
-    style="width:24px;height:24px"
   >
   </mwc-icon>
   <abbr
@@ -146,8 +146,8 @@ snapshots["conducting-equipment-editor rendered as action pane with EqFunction c
   tabindex="0"
 >
   <mwc-icon
+    class="substation-editor-icon"
     slot="icon"
-    style="width:24px;height:24px"
   >
   </mwc-icon>
   <abbr
@@ -252,8 +252,8 @@ snapshots["conducting-equipment-editor rendered as action pane with LNode childr
   tabindex="0"
 >
   <mwc-icon
+    class="substation-editor-icon"
     slot="icon"
-    style="width:24px;height:24px"
   >
   </mwc-icon>
   <abbr
@@ -364,8 +364,8 @@ snapshots["conducting-equipment-editor rendered as action pane with SubEquipment
   tabindex="0"
 >
   <mwc-icon
+    class="substation-editor-icon"
     slot="icon"
-    style="width:24px;height:24px"
   >
   </mwc-icon>
   <abbr

@@ -12,6 +12,7 @@ import { classMap } from 'lit-html/directives/class-map';
 import { get } from 'lit-translate';
 
 import '@material/mwc-icon-button';
+import '@material/mwc-icon';
 import { Menu } from '@material/mwc-menu';
 import { IconButton } from '@material/mwc-icon-button';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
@@ -21,6 +22,7 @@ import './ied-editor.js';
 import './powertransformer-editor.js';
 import './voltage-level-editor.js';
 import './general-equipment-editor.js';
+import { substationIcon } from '@openscd/open-scd/src/icons/icons.js';
 import {
   getChildElementsByTagName,
   newActionEvent,
@@ -212,6 +214,9 @@ export class SubstationEditor extends LitElement {
 
   render(): TemplateResult {
     return html`${this.renderRedirectUI()}<action-pane label="${this.header}">
+        <mwc-icon class="substation-editor-icon" slot="icon"
+          >${substationIcon}</mwc-icon
+        >
         <abbr slot="action" title="${get('lnode.tooltip')}">
           <mwc-icon-button
             icon="account_tree"

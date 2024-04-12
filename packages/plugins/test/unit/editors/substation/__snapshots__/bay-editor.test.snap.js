@@ -6,6 +6,11 @@ snapshots["bay-editor looks like the latest snapshot"] =
   label="COUPLING_BAY - Bay"
   tabindex="0"
 >
+  <mwc-icon
+    class="substation-editor-icon"
+    slot="icon"
+  >
+  </mwc-icon>
   <abbr
     slot="action"
     title="[lnode.tooltip]"
@@ -130,6 +135,11 @@ snapshots["bay-editor with readonly property looks like the latest snapshot"] =
   label="COUPLING_BAY - Bay"
   tabindex="0"
 >
+  <mwc-icon
+    class="substation-editor-icon"
+    slot="icon"
+  >
+  </mwc-icon>
   <abbr
     slot="action"
     title="[lnode.tooltip]"
@@ -254,6 +264,11 @@ snapshots["bay-editor with function filter deactivated looks like the latest sna
   label="COUPLING_BAY - Bay"
   tabindex="0"
 >
+  <mwc-icon
+    class="substation-editor-icon"
+    slot="icon"
+  >
+  </mwc-icon>
   <abbr
     slot="action"
     title="[lnode.tooltip]"
@@ -382,6 +397,11 @@ snapshots["bay-editor with existing LNode children looks like the latest snapsho
   label="Q01 - Bay with LNode"
   tabindex="0"
 >
+  <mwc-icon
+    class="substation-editor-icon"
+    slot="icon"
+  >
+  </mwc-icon>
   <abbr
     slot="action"
     title="[lnode.tooltip]"
@@ -504,6 +524,11 @@ snapshots["bay-editor with general-equipment children with showfunctions false l
   label="Q02 "
   tabindex="0"
 >
+  <mwc-icon
+    class="substation-editor-icon"
+    slot="icon"
+  >
+  </mwc-icon>
   <abbr
     slot="action"
     title="[lnode.tooltip]"
@@ -624,6 +649,11 @@ snapshots["bay-editor with general-equipment children with showfunctions true lo
   label="Q02 "
   tabindex="0"
 >
+  <mwc-icon
+    class="substation-editor-icon"
+    slot="icon"
+  >
+  </mwc-icon>
   <abbr
     slot="action"
     title="[lnode.tooltip]"

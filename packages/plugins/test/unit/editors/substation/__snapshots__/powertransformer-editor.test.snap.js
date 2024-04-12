@@ -43,8 +43,8 @@ snapshots["powertransformer-editor rendered as action pane looks like the latest
   tabindex="0"
 >
   <mwc-icon
+    class="substation-editor-icon"
     slot="icon"
-    style="width:24px;height:24px"
   >
   </mwc-icon>
   <abbr
@@ -164,8 +164,8 @@ snapshots["powertransformer-editor rendered as action pane with EqFunction child
   tabindex="0"
 >
   <mwc-icon
+    class="substation-editor-icon"
     slot="icon"
-    style="width:24px;height:24px"
   >
   </mwc-icon>
   <abbr
@@ -281,8 +281,8 @@ snapshots["powertransformer-editor rendered as action pane with LNode children l
   tabindex="0"
 >
   <mwc-icon
+    class="substation-editor-icon"
     slot="icon"
-    style="width:24px;height:24px"
   >
   </mwc-icon>
   <abbr
@@ -400,8 +400,8 @@ snapshots["powertransformer-editor rendered as action pane with SubEquipment chi
   tabindex="0"
 >
   <mwc-icon
+    class="substation-editor-icon"
     slot="icon"
-    style="width:24px;height:24px"
   >
   </mwc-icon>
   <abbr
