@@ -24,6 +24,7 @@ import './eq-function-editor.js';
 import './l-node-editor.js';
 import './tapchanger-editor.js';
 
+import { transformerWindingIcon } from '@openscd/open-scd/src/icons/icons.js';
 import { styles } from './foundation.js';
 import {
   getChildElementsByTagName,
@@ -165,6 +166,9 @@ export class TransformerWindingEditor extends LitElement {
 
   render(): TemplateResult {
     return html`<action-pane label="${this.label}">
+      <mwc-icon class="substation-editor-icon" slot="icon"
+        >${transformerWindingIcon}</mwc-icon
+      >
       <abbr slot="action" title="${get('edit')}">
         <mwc-icon-button
           icon="edit"

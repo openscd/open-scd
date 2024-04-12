@@ -31,6 +31,10 @@ import {
   SCLTag,
   tags,
 } from '@openscd/open-scd/src/foundation.js';
+import {
+  bayIcon,
+  voltageLevelIcon,
+} from '@openscd/open-scd/src/icons/icons.js';
 import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
 import {
   cloneSubstationElement,
@@ -185,6 +189,9 @@ export class BayEditor extends LitElement {
 
   render(): TemplateResult {
     return html`${this.renderRedirectUI()}<action-pane label="${this.header}">
+        <mwc-icon class="substation-editor-icon" slot="icon"
+          >${bayIcon}</mwc-icon
+        >
         <abbr slot="action" title="${get('lnode.tooltip')}">
           <mwc-icon-button
             icon="account_tree"
