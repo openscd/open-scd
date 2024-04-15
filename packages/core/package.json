@@ -17,7 +17,7 @@
   "scripts": {
     "clean": "rimraf .tsbuildinfo dist",
     "build": "tsc -b",
-    "doc": "npm run analyze -- --exclude dist && typedoc --out doc foundation.ts",
+    "doc": "typedoc --out doc foundation.ts",
     "prepublish": "npm run lint && npm run build && npm run doc",
     "lint": "eslint --ext .ts,.html . --ignore-path .gitignore && prettier \"**/*.ts\" --check --ignore-path .gitignore",
     "format": "eslint --ext .ts,.html . --fix --ignore-path .gitignore && prettier \"**/*.ts\" --write --ignore-path .gitignore"
