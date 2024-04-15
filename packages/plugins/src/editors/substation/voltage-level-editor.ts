@@ -37,6 +37,7 @@ import {
   tags,
 } from '@openscd/open-scd/src/foundation.js';
 
+import { voltageLevelIcon } from '@openscd/open-scd/src/icons/icons.js';
 import { SubstationEditor } from './substation-editor.js';
 import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
 import { Dialog } from '@material/mwc-dialog';
@@ -222,6 +223,9 @@ export class VoltageLevelEditor extends LitElement {
 
   render(): TemplateResult {
     return html`${this.renderRedirectUI()}<action-pane label="${this.header}">
+        <mwc-icon class="substation-editor-icon" slot="icon"
+          >${voltageLevelIcon}</mwc-icon
+        >
         <abbr slot="action" title="${get('lnode.tooltip')}">
           <mwc-icon-button
             icon="account_tree"
