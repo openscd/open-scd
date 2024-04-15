@@ -117,8 +117,7 @@ describe('open-scd', () => {
               name: 'Top Mock Plugin',
               src: 'https://mockup-plugin.url/plugin-top.js',
               icon: 'link',
-              default: true,
-              kind: 'menu',
+              active: true,
               requireDoc: false,
               position: 'top',
             },
@@ -126,8 +125,7 @@ describe('open-scd', () => {
               name: 'Middle Mock Plugin',
               src: 'https://mockup-plugin.url/plugin-middle.js',
               icon: 'link',
-              default: true,
-              kind: 'menu',
+              active: true,
               requireDoc: false,
               position: 'middle',
             },
@@ -135,13 +133,40 @@ describe('open-scd', () => {
               name: 'Bottom Mock Plugin',
               src: 'https://mockup-plugin.url/plugin-bottom.js',
               icon: 'link',
-              default: true,
-              kind: 'menu',
-              requireDoc: false,
+              active: true,
               position: 'bottom',
             },
           ],
           editor: [],
+        }}
+      ></open-scd>
+
+      <link href="public/google/fonts/roboto-v27.css" rel="stylesheet" />
+      <link href="public/google/fonts/roboto-mono-v13.css" rel="stylesheet" />
+      <link
+        href="public/google/icons/material-icons-outlined.css"
+        rel="stylesheet"
+      />
+    `);
+    await element.updateComplete;
+
+    await expect(element).shadowDom.to.equalSnapshot();
+  });
+
+  it('renders editor plugins passed down as props and it looks like its snapshot', async () => {
+    element = await fixture(html`
+      <open-scd
+        .plugins=${{
+          menu: [],
+          editor: [
+            {
+              name: 'Mock Editor Plugin',
+              src: 'https://mockup-plugin.url/editor-plugin.js',
+              icon: 'link',
+              active: true,
+              requireDoc: true,
+            },
+          ],
         }}
       ></open-scd>
 
