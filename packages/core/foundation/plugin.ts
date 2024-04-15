@@ -7,6 +7,6 @@ export type Plugin = {
   icon: string;
   requireDoc?: boolean;
   active?: boolean;
-  position: 'top' | 'middle' | 'bottom';
+  position: ('top' | 'middle' | 'bottom') | number;
 };
 export type PluginSet = { menu: Plugin[]; editor: Plugin[] };
