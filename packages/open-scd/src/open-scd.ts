@@ -62,7 +62,7 @@ import {
   UndoRedoChangedEvent,
 } from './addons/History.js';
 
-import type { PluginSet } from '@openscd/core';
+import type { PluginSet, Plugin as CorePlugin } from '@openscd/core';
 
 // HOSTING INTERFACES
 
@@ -785,14 +785,19 @@ export class OpenSCD extends LitElement {
 
   get parsedPlugins(): Plugin[] {
     return this.plugins.menu
-      .map(p => ({
+      .map((p: CorePlugin) => ({
         ...p,
+        position:
+          typeof p.position !== 'number'
+            ? (p.position as MenuPosition)
+            : undefined,
         kind: 'menu' as PluginKind,
         installed: p.active ?? false,
       }))
       .concat(
-        this.plugins.editor.map(p => ({
+        this.plugins.editor.map((p: CorePlugin) => ({
           ...p,
+          position: undefined,
           kind: 'editor' as PluginKind,
           installed: p.active ?? false,
         }))
