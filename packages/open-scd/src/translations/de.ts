@@ -181,7 +181,7 @@ export const de: Translations = {
       'DataTypeTemplates können nicht validiert werden. Das Projekt muss die Version 2007B3 oder höher haben.',
   },
   plugins: {
-    heading: 'Erweiterungen',
+    heading: 'Plug-ins',
     editor: 'Editor',
     menu: 'Menüeintrag',
     requireDoc: 'Benötigt Dokument',
@@ -190,13 +190,13 @@ export const de: Translations = {
     bottom: 'unten',
     validator: 'Validator',
     add: {
-      heading: 'Benutzerdefinierte Erweiterung',
-      warning: `Hier können Sie benutzerdefinierte Erweiterungen hinzufügen.
+      heading: 'Benutzerdefinierte plug-in',
+      warning: `Hier können Sie benutzerdefinierte plug-ins hinzufügen.
                 OpenSCD übernimmt hierfür keine Gewähr.`,
       name: 'Name',
-      nameHelper: 'Lokaler Name der Erweiterung (frei wählbar)',
+      nameHelper: 'Lokaler Name der plug-in (frei wählbar)',
       src: 'URL',
-      srcHelper: 'Die Erweiterungs-URL des Herstellers',
+      srcHelper: 'Die plug-in-URL des Herstellers',
     },
   },
   substation: {
