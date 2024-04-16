@@ -287,7 +287,7 @@ snapshots["open-scd looks like its snapshot"] =
                   extension
                 </mwc-icon>
                 <span>
-                  Extensions
+                  Plug-ins
                 </span>
               </mwc-list-item>
             </mwc-list>
@@ -356,7 +356,7 @@ snapshots["open-scd looks like its snapshot"] =
             </mwc-icon-button>
           </div>
           <mwc-dialog
-            heading="Extensions"
+            heading="Plug-ins"
             id="pluginManager"
             stacked=""
           >
@@ -911,7 +911,7 @@ snapshots["open-scd looks like its snapshot"] =
             </mwc-button>
             <mwc-button
               icon="library_add"
-              label="Add custom extension…"
+              label="Add custom plug-in…"
               outlined=""
               slot="primaryAction"
               trailingicon=""
@@ -919,16 +919,16 @@ snapshots["open-scd looks like its snapshot"] =
             </mwc-button>
           </mwc-dialog>
           <mwc-dialog
-            heading="Add custom extension"
+            heading="Add custom plug-in"
             id="pluginAdd"
           >
             <div style="display: flex; flex-direction: column; row-gap: 8px;">
               <p style="color:var(--mdc-theme-error);">
-                Here you may add remote extensions directly from a custom URL.
+                Here you may add remote plug-ins directly from a custom URL.
                 You do this at your own risk.
               </p>
               <mwc-textfield
-                helper="Your preferred extension name"
+                helper="Your preferred plug-in name"
                 id="pluginNameInput"
                 label="Name"
                 required=""
@@ -1031,7 +1031,7 @@ snapshots["open-scd looks like its snapshot"] =
                 </mwc-radio-list-item>
               </mwc-list>
               <mwc-textfield
-                helper="The vendor supplied extension URL"
+                helper="The vendor supplied plug-in URL"
                 id="pluginSrcInput"
                 label="URL"
                 placeholder="http://example.com/plugin.js"
