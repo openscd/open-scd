@@ -15,7 +15,7 @@ import {
   editSubEquipmentWizard,
   createSubEquipmentWizard,
 } from '../../../src/wizards/subequipment.js';
-import { WizardCheckbox } from '@openscd/open-scd/src/wizard-checkbox.js';
+import { WizardCheckbox } from '@openscd/components/wizard-checkbox.js';
 
 describe('Wizards for SCL SubEquipment element', () => {
   let doc: XMLDocument;

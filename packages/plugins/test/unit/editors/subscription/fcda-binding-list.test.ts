@@ -3,7 +3,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 import '@openscd/open-scd/test/mock-open-scd.js';
 import { MockOpenSCD } from '@openscd/open-scd/test/mock-open-scd.js';
 
-import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
+import { WizardTextField } from '@openscd/components/wizard-textfield.js';
 
 import '../../../../src/editors/subscription/fcda-binding-list.js';
 import { FcdaBindingList } from '../../../../src/editors/subscription/fcda-binding-list.js';

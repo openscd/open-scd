@@ -5,7 +5,7 @@ import { MockWizardEditor } from '@openscd/open-scd/test/mock-wizard-editor.js';
 
 import '../../../../src/editors/substation/sub-function-editor.js';
 import { SubFunctionEditor } from '../../../../src/editors/substation/sub-function-editor.js';
-import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
+import { WizardTextField } from '@openscd/components/wizard-textfield.js';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { MenuBase } from '@material/mwc-menu/mwc-menu-base.js';
 

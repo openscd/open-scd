@@ -10,7 +10,7 @@ import {
   setWizardTextFieldValue,
 } from '../../../wizards/test-support.js';
 
-import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
+import { WizardTextField } from '@openscd/components/wizard-textfield.js';
 import { WizardInputElement } from '@openscd/open-scd/src/foundation.js';
 import { editBayWizard } from '../../../../../src/editors/singlelinediagram/wizards/bay.js';
 import { updateNamingAndCoordinatesAction } from '../../../../../src/editors/singlelinediagram/wizards/foundation.js';

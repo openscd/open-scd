@@ -4,10 +4,10 @@ import * as marked from 'marked';
 
 import '@material/mwc-icon';
 
-import '@openscd/open-scd/src/finder-list.js';
+import '@openscd/components/finder-list.js';
 import { newWizardEvent, Wizard } from '@openscd/open-scd/src/foundation.js';
 import { openSCDIcon } from '@openscd/open-scd/src/icons/icons.js';
-import { Directory } from '@openscd/open-scd/src/finder-list.js';
+import { Directory } from '@openscd/components/finder-list.js';
 
 function aboutBox(version: string) {
   return html`<div>

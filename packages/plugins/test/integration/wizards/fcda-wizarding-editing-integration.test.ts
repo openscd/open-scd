@@ -4,7 +4,7 @@ import '@openscd/open-scd/test/mock-wizard-editor.js';
 import { MockWizardEditor } from '@openscd/open-scd/test/mock-wizard-editor.js';
 
 import { createFCDAsWizard } from '../../../src/wizards/fcda.js';
-import { FinderList } from '@openscd/open-scd/src/finder-list.js';
+import { FinderList } from '@openscd/components/finder-list.js';
 import { newWizardEvent } from '@openscd/open-scd/src/foundation.js';
 
 describe('FCDA editing wizarding integration', () => {

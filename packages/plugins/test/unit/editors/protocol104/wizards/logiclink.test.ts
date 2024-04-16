@@ -14,7 +14,7 @@ import {
   Replace,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
-import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
+import { WizardTextField } from '@openscd/components/wizard-textfield.js';
 import {
   createLogicLinkWizard,
   editLogicLinkWizard,

@@ -11,8 +11,8 @@ import {
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
 
-import { WizardSelect } from '@openscd/open-scd/src/wizard-select.js';
-import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
+import { WizardSelect } from '@openscd/components/wizard-select.js';
+import { WizardTextField } from '@openscd/components/wizard-textfield.js';
 
 import {
   createAddressesAction,

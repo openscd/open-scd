@@ -8,8 +8,8 @@ import {
 } from 'lit-element';
 import { get } from 'lit-translate';
 
-import '@openscd/open-scd/src/wizard-textfield.js';
-import '@openscd/open-scd/src/wizard-checkbox.js';
+import '@openscd/components/wizard-textfield.js';
+import '@openscd/components/wizard-checkbox.js';
 
 import { identity } from '@openscd/open-scd/src/foundation.js';
 import { maxLength, patterns } from '../../wizards/foundation/limits.js';

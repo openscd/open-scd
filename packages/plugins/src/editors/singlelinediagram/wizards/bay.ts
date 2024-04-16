@@ -3,7 +3,7 @@ import { get } from 'lit-translate';
 
 import { Wizard } from '@openscd/open-scd/src/foundation.js';
 
-import '@openscd/open-scd/src/wizard-textfield.js';
+import '@openscd/components/wizard-textfield.js';
 import { renderBayWizard } from '../../../wizards/bay.js';
 import {
   getDescAttribute,

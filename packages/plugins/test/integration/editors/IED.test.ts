@@ -9,7 +9,7 @@ import {
   initializeNsdoc,
   Nsdoc,
 } from '@openscd/open-scd/src/foundation/nsdoc.js';
-import { FilterButton } from '@openscd/open-scd/src/oscd-filter-button.js';
+import { FilterButton } from '@openscd/components/oscd-filter-button.js';
 
 import IED from '../../../src/editors/IED.js';
 import { LDeviceContainer } from '../../../src/editors/ied/ldevice-container.js';

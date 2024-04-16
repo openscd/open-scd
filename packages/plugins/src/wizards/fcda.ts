@@ -9,7 +9,7 @@ import {
   WizardActor,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
-import { FinderList } from '@openscd/open-scd/src/finder-list.js';
+import { FinderList } from '@openscd/components/finder-list.js';
 import {
   dataAttributePicker,
   getDataModelChildren,

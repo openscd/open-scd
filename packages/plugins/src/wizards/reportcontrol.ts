@@ -8,10 +8,11 @@ import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
-import '@openscd/open-scd/src/wizard-checkbox.js';
-import '@openscd/open-scd/src/wizard-textfield.js';
-import '@openscd/open-scd/src/wizard-select.js';
-import '@openscd/open-scd/src/filtered-list.js';
+import '@openscd/components/wizard-checkbox.js';
+import '@openscd/components/wizard-textfield.js';
+import '@openscd/components/wizard-select.js';
+import '@openscd/components/filtered-list.js';
+import '@openscd/components/finder-list.js';
 import {
   cloneElement,
   createElement,
@@ -34,8 +35,8 @@ import {
   newActionEvent,
   newWizardEvent,
 } from '@openscd/open-scd/src/foundation.js';
-import { FilteredList } from '@openscd/open-scd/src/filtered-list.js';
-import { FinderList } from '@openscd/open-scd/src/finder-list.js';
+import { FilteredList } from '@openscd/components/filtered-list.js';
+import { FinderList } from '@openscd/components/finder-list.js';
 import { dataAttributePicker, iEDPicker } from './foundation/finder.js';
 import { maxLength, patterns } from './foundation/limits.js';
 import { editDataSetWizard } from './dataset.js';

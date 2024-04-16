@@ -8,7 +8,7 @@ import {
 } from 'lit-element';
 import { nothing } from 'lit-html';
 
-import '@openscd/open-scd/src/action-pane.js';
+import '@openscd/components/action-pane.js';
 import './ldevice-container.js';
 import { serverIcon } from '@openscd/open-scd/src/icons/ied-icons.js';
 import { getDescriptionAttribute } from '@openscd/open-scd/src/foundation.js';

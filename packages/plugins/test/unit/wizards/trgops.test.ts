@@ -9,7 +9,7 @@ import {
   Replace,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
-import { WizardSelect } from '@openscd/open-scd/src/wizard-select.js';
+import { WizardSelect } from '@openscd/components/wizard-select.js';
 import { editTrgOpsWizard } from '../../../src/wizards/trgops.js';
 
 describe('Wizards for SCL TrgOps element', () => {

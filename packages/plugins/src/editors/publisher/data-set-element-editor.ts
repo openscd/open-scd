@@ -11,8 +11,8 @@ import { get } from 'lit-translate';
 
 import '@material/mwc-list/mwc-list-item';
 
-import '@openscd/open-scd/src/wizard-textfield.js';
-import '@openscd/open-scd/src/filtered-list.js';
+import '@openscd/components/wizard-textfield.js';
+import '@openscd/components/filtered-list.js';
 
 import { identity } from '@openscd/open-scd/src/foundation.js';
 

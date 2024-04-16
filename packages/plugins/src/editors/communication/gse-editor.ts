@@ -9,7 +9,7 @@ import {
 
 import '@material/mwc-icon';
 
-import '@openscd/open-scd/src/action-icon.js';
+import '@openscd/components/action-icon.js';
 import {
   newWizardEvent,
   newActionEvent,

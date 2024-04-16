@@ -7,7 +7,7 @@ import {
   state,
 } from 'lit-element';
 
-import '@openscd/open-scd/src/action-icon.js';
+import '@openscd/components/action-icon.js';
 import {
   cloneElement,
   identity,
