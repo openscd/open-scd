@@ -1,5 +1,5 @@
 {
-  "name": "open-scd",
+  "name": "@openscd/openscd",
   "version": "0.34.0",
   "repository": "https://github.com/openscd/open-scd.git",
   "directory": "packages/open-scd",
@@ -68,9 +68,11 @@
     "start": "snowpack dev",
     "build": "npm run test && npm run build:notest && cp .nojekyll build/",
     "build:notest": "npm run doc && snowpack build && workbox generateSW workbox-config.cjs",
-    "build:wc": "npm run build:notest && npm run build:esbuild",
+    "build:wc": "npm run build:notest && npm run build:esbuild && npm run build:cpkg",
     "build:typechecks": "tsc --noEmit",
-    "build:esbuild": "esbuild --bundle --minify --sourcemap --target=es2020 --platform=browser --format=esm --outdir=build src/open-scd-wrapper.ts"
+    "build:esbuild": "esbuild --bundle --minify --sourcemap --target=es2020 --platform=browser --format=esm --outdir=build src/open-scd-wrapper.ts",
+    "build:esbuild:watch": "npm run build:esbuild -- --watch",
+    "build:cpkg": "cp package.wc.json build/package.json"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",

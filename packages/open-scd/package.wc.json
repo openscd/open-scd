@@ -1,0 +1,12 @@
+{
+  "name": "@tamasruss/x-open-scd",
+  "version": "0.0.1",
+  "description": "",
+  "private": false,
+  "keywords": [],
+  "author": "Tamás Russ",
+  "license": "Apache-2.0",
+  "main": "open-scd.js",
+  "module": "open-scd.js",
+  "type": "module"
+}

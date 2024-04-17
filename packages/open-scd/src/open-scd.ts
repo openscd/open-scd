@@ -830,7 +830,9 @@ export class OpenSCD extends Historing(LitElement) {
     const tag = pluginTag(plugin.src);
     if (!loadedPlugins.has(tag)) {
       loadedPlugins.add(tag);
-      import(plugin.src).then(mod => customElements.define(tag, mod.default));
+      import(plugin.src)
+        .then(mod => customElements.define(tag, mod.default))
+        .catch(err => console.error(err));
     }
     return {
       ...plugin,

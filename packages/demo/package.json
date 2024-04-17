@@ -1,0 +1,14 @@
+{
+  "name": "@openscd/demo",
+  "version": "0.0.1",
+  "description": "A demo of the usage of OpenSCD",
+  "main": "index.html",
+  "scripts": {
+    "start": "http-server ."
+  },
+  "dependencies": {
+    "@openscd/openscd": "*"
+  },
+  "author": "OpenSCD",
+  "license": "Apache-2.0"
+}
