@@ -50,7 +50,7 @@
     "test:unit": "web-test-runner --watch --group unit",
     "test:integration": "web-test-runner --watch --group integration",
     "doc:clean": "npx rimraf doc",
-    "doc:typedoc": "typedoc --plugin none --out doc src",
+    "doc:typedoc": "typedoc --plugin none --out doc --entryPointStrategy expand ./src",
     "doc:wca": "wca src --outDir doc/components",
     "doc": "npm run doc:clean && npm run doc:typedoc && npm run doc:wca",
     "release": "standard-version",
