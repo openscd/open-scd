@@ -11,6 +11,7 @@
     "build": "npx nx run-many -t build --all",
     "doc": "lerna run doc",
     "test": "npx nx run-many -t test --all --parallel=false",
+    "graph": "npx nx graph",
     "start": "lerna run start"
   },
   "repository": {
