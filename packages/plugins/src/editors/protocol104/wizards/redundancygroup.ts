@@ -5,19 +5,21 @@ import '@openscd/open-scd/src/wizard-textfield.js';
 import { pTypesRedundancyGroup104 } from '../foundation/p-types.js';
 import {
   cloneElement,
-  ComplexAction,
   createElement,
-  EditorAction,
   getValue,
-  newActionEvent,
   newSubWizardEvent,
   newWizardEvent,
-  SimpleAction,
   Wizard,
   WizardActor,
   WizardInputElement,
   WizardMenuActor,
 } from '@openscd/open-scd/src/foundation.js';
+import {
+  ComplexAction,
+  EditorAction,
+  newActionEvent,
+  SimpleAction
+} from '@openscd/core/foundation/deprecated/editor.js';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { createLogicLinkWizard, editLogicLinkWizard } from './logiclink.js';
 import {

@@ -7,12 +7,11 @@ import { DaiFieldTypes, getCustomField } from './foundation/dai-field-type.js';
 import '@openscd/open-scd/src/wizard-textfield.js';
 
 import {
-  ComplexAction,
-  EditorAction,
   Wizard,
   WizardActor,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
+import { EditorAction, ComplexAction } from '@openscd/core/foundation/deprecated/editor.js';
 import { SCL_NAMESPACE } from '@openscd/open-scd/src/schemas.js';
 
 export function updateValue(element: Element, val: Element): WizardActor {

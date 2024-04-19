@@ -1,4 +1,4 @@
-import { ComplexAction, SimpleAction } from '../../src/foundation.js';
+import { ComplexAction, SimpleAction } from '@openscd/core/foundation/deprecated/editor.js';
 
 const element = document.createElement('test-element');
 const parent = document.createElement('test-parent');

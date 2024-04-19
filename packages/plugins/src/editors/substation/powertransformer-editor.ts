@@ -26,11 +26,11 @@ import { powerTransformerTwoWindingIcon } from '@openscd/open-scd/src/icons/icon
 import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
 import {
   getChildElementsByTagName,
-  newActionEvent,
   newWizardEvent,
   SCLTag,
   tags,
 } from '@openscd/open-scd/src/foundation.js';
+import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { startMove, styles } from './foundation.js';
 import { SubstationEditor } from './substation-editor.js';
 import { BayEditor } from './bay-editor.js';

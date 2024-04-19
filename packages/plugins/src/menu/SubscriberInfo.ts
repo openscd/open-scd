@@ -3,9 +3,11 @@ import { get } from 'lit-translate';
 import {
   createElement,
   getVersion,
-  newActionEvent,
-  SimpleAction,
 } from '@openscd/open-scd/src/foundation.js';
+import { 
+  newActionEvent, 
+  SimpleAction
+} from '@openscd/core/foundation/deprecated/editor.js';
 
 function getElementIndexOf(list: (Element | null)[], match: Element): number {
   for (let i = 0; list.length; i++) if (list[i]?.isEqualNode(match)) return i;

@@ -14,21 +14,22 @@ import '@openscd/open-scd/src/wizard-textfield.js';
 import {
   cloneElement,
   createElement,
-  EditorAction,
   find,
   getValue,
   identity,
-  isPublic,
-  newActionEvent,
   newSubWizardEvent,
   newWizardEvent,
   patterns,
-  Replace,
   Wizard,
   WizardActor,
   WizardInputElement,
   WizardMenuActor,
 } from '@openscd/open-scd/src/foundation.js';
+import { 
+  EditorAction,
+  newActionEvent,
+  Replace
+} from '@openscd/core/foundation/deprecated/editor.js';
 import { CreateOptions, UpdateOptions, WizardOptions } from './foundation.js';
 
 function remove(element: Element): WizardMenuActor {

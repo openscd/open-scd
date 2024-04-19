@@ -4,10 +4,10 @@ import '../mock-editor-logger.js';
 import { MockEditorLogger } from '../mock-editor-logger.js';
 
 import {
-  createUpdateAction,
   newActionEvent,
   Update,
-} from '../../src/foundation.js';
+  createUpdateAction
+} from '@openscd/core/foundation/deprecated/editor.js';
 
 describe('Editing-Logging integration', () => {
   let elm: MockEditorLogger;

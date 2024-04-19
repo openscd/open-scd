@@ -27,12 +27,11 @@ import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 import '@openscd/open-scd/src/filtered-list.js';
 
 import {
-  Delete,
   identity,
   isPublic,
   newSubWizardEvent,
-  newActionEvent,
 } from '@openscd/open-scd/src/foundation.js';
+import { Delete, newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { styles } from '../templates/foundation.js';
 import {
   controlBlockIcons,

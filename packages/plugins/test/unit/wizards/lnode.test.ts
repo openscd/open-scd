@@ -9,12 +9,14 @@ import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
 import {
-  Create,
-  isCreate,
   newWizardEvent,
-  Replace,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
+import { 
+  isCreate, 
+  Create, 
+  Replace 
+} from '@openscd/core/foundation/deprecated/editor.js';
 import { regExp, regexString } from '../../foundation.js';
 import { editLNodeWizard, lNodeWizard } from '../../../src/wizards/lnode.js';
 

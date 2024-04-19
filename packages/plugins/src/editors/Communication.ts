@@ -6,10 +6,10 @@ import '@material/mwc-fab';
 import './communication/subnetwork-editor.js';
 import {
   newWizardEvent,
-  newActionEvent,
   createElement,
   isPublic,
 } from '@openscd/open-scd/src/foundation.js';
+import { newActionEvent} from '@openscd/core/foundation/deprecated/editor.js';
 import { createSubNetworkWizard } from '../wizards/subnetwork.js';
 
 /** An editor [[`plugin`]] for editing the `Communication` section. */

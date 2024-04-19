@@ -15,24 +15,26 @@ import '@openscd/open-scd/src/wizard-textfield.js';
 import '@openscd/open-scd/src/wizard-select.js';
 import {
   cloneElement,
-  Create,
   createElement,
-  EditorAction,
   find,
   getChildElementsByTagName,
   getValue,
   identity,
   isPublic,
-  newActionEvent,
   newSubWizardEvent,
   newWizardEvent,
   patterns,
-  Replace,
   Wizard,
   WizardActor,
   WizardInputElement,
   WizardMenuActor,
 } from '@openscd/open-scd/src/foundation.js';
+import {
+  Create, 
+  EditorAction,
+  newActionEvent,
+  Replace
+} from '@openscd/core/foundation/deprecated/editor.js';
 import { WizardSelect } from '@openscd/open-scd/src/wizard-select.js';
 import {
   addReferencedDataTypes,

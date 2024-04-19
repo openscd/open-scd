@@ -14,8 +14,6 @@ import '@openscd/open-scd/src/WizardDivider.js';
 import { WizardSelect } from '@openscd/open-scd/src/wizard-select.js';
 
 import {
-  ComplexAction,
-  EditorAction,
   getNameAttribute,
   getValue,
   newWizardEvent,
@@ -23,7 +21,10 @@ import {
   WizardActor,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
-
+import {
+  ComplexAction,
+  EditorAction,
+} from '@openscd/core/foundation/deprecated/editor.js';
 import {
   getCdcValueFromDOElement,
   getCtlModel,

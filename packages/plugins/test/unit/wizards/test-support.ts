@@ -1,18 +1,20 @@
 import { expect } from '@open-wc/testing';
 
 import {
-  Create,
-  Delete,
-  isCreate,
-  isDelete,
-  isReplace,
-  isUpdate,
-  Replace,
-  SimpleAction,
-  Update,
   WizardActor,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
+import { 
+  SimpleAction, 
+  Create, 
+  Delete, 
+  Replace,
+  Update,
+  isCreate,
+  isDelete,
+  isReplace,
+  isUpdate
+} from '@openscd/core/foundation/deprecated/editor.js';
 import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
 import { WizardSelect } from '@openscd/open-scd/src/wizard-select.js';
 

@@ -9,13 +9,15 @@ import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { editDataSetWizard } from '../../../src/wizards/dataset.js';
 import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
 import {
-  Delete,
-  isDelete,
-  isReplace,
-  Replace,
   Wizard,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
+import { 
+  isDelete,
+  isReplace,
+  Delete, 
+  Replace 
+} from '@openscd/core/foundation/deprecated/editor.js';
 
 describe('dataset wizards', () => {
   let doc: XMLDocument;

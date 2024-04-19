@@ -4,14 +4,15 @@ import { get } from 'lit-translate';
 import '@material/mwc-textarea';
 
 import {
-  ComplexAction,
   getNameAttribute,
-  newActionEvent,
   newWizardEvent,
   Wizard,
   WizardMenuActor,
 } from '@openscd/open-scd/src/foundation.js';
-
+import {
+  ComplexAction,
+  newActionEvent,
+} from '@openscd/core/foundation/deprecated/editor.js';
 import '@openscd/open-scd/src/wizard-textfield.js';
 
 import {

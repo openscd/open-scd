@@ -5,10 +5,9 @@ import '@openscd/open-scd/src/addons/Wizards.js';
 import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
 import {
-  isReplace,
-  Replace,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
+import { Replace, isReplace} from '@openscd/core/foundation/deprecated/editor.js';
 import { WizardSelect } from '@openscd/open-scd/src/wizard-select.js';
 import { editTrgOpsWizard } from '../../../src/wizards/trgops.js';
 
