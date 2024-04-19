@@ -39,9 +39,9 @@ import { createActions, createCheckActions } from '../foundation/actions.js';
 import { getSignalName } from '../foundation/signalNames.js';
 
 function getSwitchValue(wizard: Element, name: string): boolean {
-  const switchElement = wizard.shadowRoot?.querySelector<Switch>(
+  const switchElement = wizard.shadowRoot?.querySelector(
     `mwc-switch[id="${name}"`
-  );
+  ) as Switch;
   return switchElement?.checked ?? false;
 }
 
