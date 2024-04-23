@@ -20,7 +20,7 @@
   ],
   "dependencies": {
   },
-  "scripts": {
+  "//": {
     "clean": "rimraf build",
     "lint:eslint": "eslint --ext .ts . --ignore-path .gitignore",
     "format:eslint": "eslint --ext .ts . --fix --ignore-path .gitignore",
