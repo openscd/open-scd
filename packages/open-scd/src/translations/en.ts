@@ -158,7 +158,7 @@ export const en = {
       'Cannot validate DataTypeTemplates. The version of the project must be higher than or equal to 2007B3',
   },
   plugins: {
-    heading: 'Extensions',
+    heading: 'Plug-ins',
     editor: 'Editor tab',
     menu: 'Menu entry',
     requireDoc: 'Requires loaded document',
@@ -167,13 +167,13 @@ export const en = {
     bottom: 'bottom',
     validator: 'Validator',
     add: {
-      heading: 'Add custom extension',
-      warning: `Here you may add remote extensions directly from a custom URL.
+      heading: 'Add custom plug-in',
+      warning: `Here you may add remote plug-ins directly from a custom URL.
                 You do this at your own risk.`,
       name: 'Name',
-      nameHelper: 'Your preferred extension name',
+      nameHelper: 'Your preferred plug-in name',
       src: 'URL',
-      srcHelper: 'The vendor supplied extension URL',
+      srcHelper: 'The vendor supplied plug-in URL',
     },
   },
   validator: {

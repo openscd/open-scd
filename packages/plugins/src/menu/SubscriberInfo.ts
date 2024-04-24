@@ -29,31 +29,31 @@ function addIEDName(extRef: Element, gseControl: Element): Element | null {
       .filter(item => !item.closest('Private'))
       .filter(
         iedName =>
-          iedName.innerHTML === ied.getAttribute('name') &&
+          iedName.innerHTML === ied?.getAttribute('name') &&
           (iedName.getAttribute('apRef') ?? '') ===
-            (accPoint.getAttribute('name') ?? '') &&
+            (accPoint?.getAttribute('name') ?? '') &&
           (iedName.getAttribute('ldInst') ?? '') ===
-            (lDevice.getAttribute('inst') ?? '') &&
+            (lDevice?.getAttribute('inst') ?? '') &&
           (iedName.getAttribute('prefix') ?? '') ===
-            (anyln.getAttribute('prefix') ?? '') &&
+            (anyln?.getAttribute('prefix') ?? '') &&
           (iedName.getAttribute('lnClass') ?? '') ===
-            (anyln.getAttribute('lnClass') ?? '') &&
+            (anyln?.getAttribute('lnClass') ?? '') &&
           (iedName.getAttribute('lnInst') ?? '') ===
-            (anyln.getAttribute('inst') ?? '')
+            (anyln?.getAttribute('inst') ?? '')
       ).length === 0
   ) {
     const iedName: Element = createElement(
       gseControl.ownerDocument,
       'IEDName',
       {
-        apRef: accPoint.getAttribute('name') ?? '',
-        ldInst: lDevice.getAttribute('inst') ?? '',
-        prefix: anyln.getAttribute('prefix') ?? '',
-        lnClass: anyln.getAttribute('lnClass') ?? '',
-        lnInst: anyln.getAttribute('inst') || null,
+        apRef: accPoint?.getAttribute('name') ?? '',
+        ldInst: lDevice?.getAttribute('inst') ?? '',
+        prefix: anyln?.getAttribute('prefix') ?? '',
+        lnClass: anyln?.getAttribute('lnClass') ?? '',
+        lnInst: anyln?.getAttribute('inst') || null,
       }
     );
-    iedName.innerHTML = ied.getAttribute('name')!;
+    iedName.innerHTML = ied?.getAttribute('name')!;
 
     return iedName;
   }
@@ -61,7 +61,7 @@ function addIEDName(extRef: Element, gseControl: Element): Element | null {
   if (
     Array.from(gseControl.getElementsByTagName('IEDName'))
       .filter(item => !item.closest('Private'))
-      .filter(iedName => iedName.innerHTML === ied.getAttribute('name'))
+      .filter(iedName => iedName.innerHTML === ied?.getAttribute('name'))
       .length === 0
   ) {
     const iedName: Element = createElement(
@@ -69,7 +69,7 @@ function addIEDName(extRef: Element, gseControl: Element): Element | null {
       'IEDName',
       {}
     );
-    iedName.innerHTML = ied.getAttribute('name')!;
+    iedName.innerHTML = ied?.getAttribute('name')!;
 
     return iedName;
   }

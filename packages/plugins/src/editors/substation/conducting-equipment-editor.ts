@@ -158,7 +158,7 @@ export class ConductingEquipmentEditor extends LitElement {
   }
 
   renderContentPane(): TemplateResult {
-    return html`<mwc-icon slot="icon" style="width:24px;height:24px"
+    return html`<mwc-icon class="substation-editor-icon" slot="icon"
         >${getIcon(this.element)}</mwc-icon
       >
       <abbr slot="action" title="${get('lnode.tooltip')}">
