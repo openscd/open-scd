@@ -3,5 +3,11 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "packages/plugins/src",
-  "targets": {}
+  "targets": {
+    "build": {
+      "command": "npm run build",
+      "dependsOn": ["test"]
+    }
+  }
+
 }

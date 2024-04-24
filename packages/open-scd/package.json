@@ -69,7 +69,7 @@
     "release:patch": "standard-version --release-as patch",
     "release:major": "standard-version --release-as major",
     "bundle": "npm run test && npm run bundle:notest",
-    "bundle:notest": "tsc"
+    "build": "tsc"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",

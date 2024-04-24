@@ -37,24 +37,9 @@
     "doc:clean": "npx rimraf doc",
     "doc:typedoc": "typedoc --plugin none --out doc src",
     "doc:wca": "wca src --outDir doc/components",
-<<<<<<< HEAD
-    "doc": "npm run doc:clean && npm run doc:typedoc && npm run doc:wca",
-    "build:notest": "tsc"
-=======
-    "doc": "npm run doc:clean && npm run doc:typedoc && npm run doc:wca"
->>>>>>> main
-  },
-  "devDependencies": {
-    "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
-    "@open-wc/eslint-config": "^4.3.0",
     "@open-wc/semantic-dom-diff": "^0.19.5",
     "@open-wc/testing": "^2.5.33",
-<<<<<<< HEAD
-    "@snowpack/plugin-typescript": "^1.2.1",
-    "@types/marked": "^2.0.4",
-=======
->>>>>>> main
     "@types/node": "^16.6.1",
     "@typescript-eslint/eslint-plugin": "^4.29.2",
     "@typescript-eslint/parser": "^4.29.2",
@@ -73,10 +58,6 @@
     "prettier": "^2.3.2",
     "sinon": "^17.0.1",
     "source-map": "^0.7.4",
-<<<<<<< HEAD
-    "standard-version": "^9.3.1",
-=======
->>>>>>> main
     "tslib": "^2.3.1",
     "typedoc": "^0.21.10",
     "typedoc-plugin-markdown": "3.10.4",
