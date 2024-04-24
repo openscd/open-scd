@@ -33,6 +33,12 @@ describe('open-scd', () => {
     await expect(element).shadowDom.to.equalSnapshot();
   });
 
+  describe('layout', () => {
+    it('looks like its snapshot', async () => {
+      await expect(layoutAddon).shadowDom.to.equalSnapshot();
+    });
+  });
+
   it('opens the menu on navigation icon click', async () => {
     const menu = layoutAddon.shadowRoot!.querySelector('mwc-drawer')!;
     expect(menu).property('open').to.be.false;
