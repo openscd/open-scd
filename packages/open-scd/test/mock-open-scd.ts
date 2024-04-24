@@ -30,6 +30,12 @@ export class MockOpenSCD extends OpenSCD {
     return html`<slot></slot>`;
   }
 
+  render(): TemplateResult {
+    return html`
+    ${this.renderHosting()}
+    ${super.render()}`;
+  }
+
   getPlugin<T extends HTMLElement>(name: string): T | undefined {
     return this._plugins.find(
       p => p.tagName.toLowerCase() === name.toLowerCase()
