@@ -21,7 +21,7 @@
   "dependencies": {
     "@material/mwc-dialog": "0.22.1"
   },
-  "scripts": {
+  "//": {
     "clean": "rimraf build",
     "lint:eslint": "eslint --ext .ts . --ignore-path .gitignore",
     "format:eslint": "eslint --ext .ts . --fix --ignore-path .gitignore",
@@ -44,8 +44,6 @@
     "@open-wc/eslint-config": "^4.3.0",
     "@open-wc/semantic-dom-diff": "^0.19.5",
     "@open-wc/testing": "^2.5.33",
-    "@snowpack/plugin-typescript": "^1.2.1",
-    "@types/marked": "^2.0.4",
     "@types/node": "^16.6.1",
     "@typescript-eslint/eslint-plugin": "^4.29.2",
     "@typescript-eslint/parser": "^4.29.2",
@@ -64,7 +62,6 @@
     "prettier": "^2.3.2",
     "sinon": "^17.0.1",
     "source-map": "^0.7.4",
-    "standard-version": "^9.3.1",
     "tslib": "^2.3.1",
     "typedoc": "^0.21.10",
     "typedoc-plugin-markdown": "3.10.4",

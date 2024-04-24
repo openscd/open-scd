@@ -109,7 +109,8 @@ export class WizardTextField extends TextField {
   async firstUpdated(): Promise<void> {
     await super.firstUpdated();
     if (this.multiplierMenu)
-      this.multiplierMenu.anchor = this.multiplierButton ?? null;
+      this.multiplierMenu.anchor =
+        (this.multiplierButton as HTMLElement) ?? null;
   }
 
   checkValidity(): boolean {
