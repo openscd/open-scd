@@ -356,7 +356,7 @@ export class OscdLayout extends LitElement {
     });
 	}
 	
-  renderMenuItem(me: MenuItem | 'divider'): TemplateResult {
+  private renderMenuItem(me: MenuItem | 'divider'): TemplateResult {
     if (me === 'divider')
       return html`<li divider padded role="separator"></li>`;
     if (me.actionItem) return html``;
@@ -376,7 +376,7 @@ export class OscdLayout extends LitElement {
     `;
   }
 
-  renderActionItem(me: MenuItem | 'divider'): TemplateResult {
+  private renderActionItem(me: MenuItem | 'divider'): TemplateResult {
     if (me !== 'divider' && me.actionItem)
       return html`<mwc-icon-button
         slot="actionItems"
@@ -388,11 +388,12 @@ export class OscdLayout extends LitElement {
     else return html``;
   }
 
-  renderEditorTab({ name, icon }: Plugin): TemplateResult {
+  private renderEditorTab({ name, icon }: Plugin): TemplateResult {
     return html`<mwc-tab label=${get(name)} icon=${icon || 'edit'}> </mwc-tab>`;
   }
 
-  renderHeader(): TemplateResult {
+  /** Renders top bar which features icon buttons for undo, redo, log, scl history and diagnostics*/
+  protected renderHeader(): TemplateResult {
     return html`<mwc-top-app-bar-fixed>
         <mwc-icon-button
           icon="menu"
@@ -405,7 +406,8 @@ export class OscdLayout extends LitElement {
       </mwc-top-app-bar-fixed>`;
   }
   
-  renderAside(): TemplateResult {
+  /** Renders a drawer toolbar featuring the scl filename, enabled menu plugins, settings, help, scl history and plug-ins management */
+  protected renderAside(): TemplateResult {
     return html`
       <mwc-drawer
         class="mdc-theme--surface"
@@ -436,7 +438,8 @@ export class OscdLayout extends LitElement {
     `;
   }
 
-  renderContent(): TemplateResult {
+  /** Renders the enabled editor plugins and a tab bar to switch between them*/
+  protected renderContent(): TemplateResult {
     return html`
       ${this.doc
       ? html`<mwc-tab-bar
@@ -450,7 +453,8 @@ export class OscdLayout extends LitElement {
     `;
   }
 
-  renderLanding(): TemplateResult {
+  /** Renders the landing buttons (open project and new project)*/
+  protected renderLanding(): TemplateResult {
     return html` 
     ${!this.doc? 
       html`<div class="landing">
@@ -475,7 +479,8 @@ export class OscdLayout extends LitElement {
       }`;
   }
 
-  renderDownloadUI(): TemplateResult {
+  /** Renders the "Add Custom Plug-in" UI*/
+  protected renderDownloadUI(): TemplateResult {
     return html`
       <mwc-dialog id="pluginAdd" heading="${get('plugins.add.heading')}">
         <div style="display: flex; flex-direction: column; row-gap: 8px;">
@@ -567,7 +572,7 @@ export class OscdLayout extends LitElement {
     `;
   }
 
-  renderPluginKind(
+  private renderPluginKind(
     type: PluginKind | MenuPosition,
     plugins: Plugin[]
   ): TemplateResult {
@@ -590,7 +595,8 @@ export class OscdLayout extends LitElement {
     `;
   }
 
-  renderPluginUI(): TemplateResult {
+  /** Renders the plug-in management UI (turning plug-ins on/off)*/
+  protected renderPluginUI(): TemplateResult {
     return html`
       <mwc-dialog
         stacked
@@ -675,7 +681,7 @@ export class OscdLayout extends LitElement {
     `;
   }
 
-  renderPlugging(): TemplateResult {
+  private renderPlugging(): TemplateResult {
     return html` ${this.renderPluginUI()} ${this.renderDownloadUI()} `;
   }
 	
