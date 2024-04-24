@@ -681,6 +681,7 @@ export class OscdLayout extends LitElement {
 	
 	render(): TemplateResult {
 		return html`
+      <slot></slot>
 			${this.renderHeader()}
 			${this.renderAside()}
 			${this.renderContent()}
