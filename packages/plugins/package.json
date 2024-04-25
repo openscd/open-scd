@@ -33,7 +33,10 @@
     "lit-translate": "^1.2.1",
     "marked": "^4.0.10",
     "panzoom": "^9.4.2",
-    "@openscd/open-scd": "*"
+    "@openscd/open-scd": "*",
+    "@openscd/core": "*",
+    "@openscd/wizards": "*",
+    "@openscd/components": "*"
   },
   "scripts": {
     "clean": "rimraf dist",
@@ -50,7 +53,7 @@
     "test:unit": "web-test-runner --watch --group unit",
     "test:integration": "web-test-runner --watch --group integration",
     "doc:clean": "npx rimraf doc",
-    "doc:typedoc": "typedoc --plugin none --out doc src",
+    "doc:typedoc": "typedoc --plugin none --out doc --entryPointStrategy expand ./src",
     "doc:wca": "wca src --outDir doc/components",
     "doc": "npm run doc:clean && npm run doc:typedoc && npm run doc:wca",
     "release": "standard-version",
@@ -90,9 +93,9 @@
     "source-map": "^0.7.4",
     "standard-version": "^9.3.1",
     "tslib": "^2.3.1",
-    "typedoc": "^0.21.10",
-    "typedoc-plugin-markdown": "3.10.4",
-    "typescript": "4.3.5",
+    "typedoc": "^0.23.8",
+    "typedoc-plugin-markdown": "3.12.0",
+    "typescript": "^4.7.4",
     "web-component-analyzer": "^1.1.6",
     "workbox-cli": "^6.2.4"
   },
