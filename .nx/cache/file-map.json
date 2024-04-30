@@ -2,7 +2,6 @@
   "version": "6.0",
   "nxVersion": "16.10.0",
   "deps": {
-    "@nx/js": "^18.3.3",
     "lerna": "^7.1.4",
     "nx": "^16.10.0"
   },
@@ -32,7 +31,7 @@
       },
       {
         "file": ".github/workflows/build-and-deploy.yml",
-        "hash": "8852778112924520515"
+        "hash": "3617558363489372364"
       },
       {
         "file": ".github/workflows/release-please.yml",
@@ -44,11 +43,11 @@
       },
       {
         "file": ".github/workflows/test-and-build.yml",
-        "hash": "4246209307954340970"
+        "hash": "13610151643821338721"
       },
       {
         "file": ".github/workflows/test.yml",
-        "hash": "13587119295607511294"
+        "hash": "1343255566892871255"
       },
       {
         "file": ".gitignore",
@@ -407,32 +406,220 @@
         "hash": "4664556114322093609"
       },
       {
+        "file": ".nx/cache/9988056682578342565/code",
+        "hash": "1838281907459330133"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/foundation/cyrb64.d.ts",
+        "hash": "6444380205484214496"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/foundation/cyrb64.js",
+        "hash": "13818884337642622145"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/foundation/cyrb64.js.map",
+        "hash": "8208762077939552952"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/foundation/deprecated/editor.d.ts",
+        "hash": "6073219257783926583"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/foundation/deprecated/editor.js",
+        "hash": "10569776039983881392"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/foundation/deprecated/editor.js.map",
+        "hash": "18073842695450943701"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/foundation/deprecated/history.d.ts",
+        "hash": "13994022595748043762"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/foundation/deprecated/history.js",
+        "hash": "8736049536476385531"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/foundation/deprecated/history.js.map",
+        "hash": "12914124363691791829"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/foundation/deprecated/open-event.d.ts",
+        "hash": "16211149371931988509"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/foundation/deprecated/open-event.js",
+        "hash": "9156719096863065164"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/foundation/deprecated/open-event.js.map",
+        "hash": "960607841993449321"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/foundation/deprecated/settings.d.ts",
+        "hash": "9348891199005505557"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/foundation/deprecated/settings.js",
+        "hash": "5278547169574669114"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/foundation/deprecated/settings.js.map",
+        "hash": "1174528504327423961"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/foundation/deprecated/validation.d.ts",
+        "hash": "15632000527541047056"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/foundation/deprecated/validation.js",
+        "hash": "14353352478396705993"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/foundation/deprecated/validation.js.map",
+        "hash": "14327549372112486702"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/foundation/deprecated/waiter.d.ts",
+        "hash": "547346934235485722"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/foundation/deprecated/waiter.js",
+        "hash": "8061070873817077188"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/foundation/deprecated/waiter.js.map",
+        "hash": "5979910848551256241"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/foundation/edit-event.d.ts",
+        "hash": "9714496284745335135"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/foundation/edit-event.js",
+        "hash": "14925307945620573259"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/foundation/edit-event.js.map",
+        "hash": "8750174052889884778"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/foundation/open-event.d.ts",
+        "hash": "2909132766607237256"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/foundation/open-event.js",
+        "hash": "16136447459654608512"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/foundation/open-event.js.map",
+        "hash": "6317909538404003572"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/foundation.d.ts",
+        "hash": "5747063768376578003"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/foundation.js",
+        "hash": "7594812310088767708"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/foundation.js.map",
+        "hash": "9433971016904548305"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/locales/de.d.ts",
+        "hash": "15478526369249555236"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/locales/de.js",
+        "hash": "13620029051295598219"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/locales/de.js.map",
+        "hash": "5446467956300472849"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/locales.d.ts",
+        "hash": "1536198590738388777"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/locales.js",
+        "hash": "5535228750576455021"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/locales.js.map",
+        "hash": "13793442794096461968"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/mixins/Editing.d.ts",
+        "hash": "14634411646566623912"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/mixins/Editing.js",
+        "hash": "11716118004521767819"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/mixins/Editing.js.map",
+        "hash": "9446827861937360295"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/mixins/Plugging.d.ts",
+        "hash": "17783312072315012967"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/mixins/Plugging.js",
+        "hash": "10926220715208926652"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/outputs/packages/core/dist/mixins/Plugging.js.map",
+        "hash": "8547535372388200925"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/source",
+        "hash": "7198174333550335109"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565/terminalOutput",
+        "hash": "2793810466222428060"
+      },
+      {
+        "file": ".nx/cache/9988056682578342565.commit",
+        "hash": "4664556114322093609"
+      },
+      {
         "file": ".nx/cache/d/daemon.log",
-        "hash": "14250691957095608666"
+        "hash": "229381649169194138"
       },
       {
         "file": ".nx/cache/d/server-process.json",
-        "hash": "6446948847132572589"
+        "hash": "7370030619951562189"
       },
       {
         "file": ".nx/cache/file-map.json",
-        "hash": "9179253601054711322"
+        "hash": "17566069549964547214"
       },
       {
         "file": ".nx/cache/lockfile.hash",
-        "hash": "2046405174560821738"
+        "hash": "17597693993633327355"
       },
       {
         "file": ".nx/cache/parsed-lock-file.json",
-        "hash": "12704358244975894636"
+        "hash": "17775153613472576344"
       },
       {
         "file": ".nx/cache/project-graph.json",
-        "hash": "15199747550156733550"
+        "hash": "10168723746139911270"
       },
       {
         "file": ".nx/cache/run.json",
-        "hash": "13158948950388296560"
+        "hash": "10681592230160934018"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/10331543484639234437",
+        "hash": "17521234788187731150"
       },
       {
         "file": ".nx/cache/terminalOutputs/10598202416686308419",
@@ -477,6 +664,10 @@
       {
         "file": ".nx/cache/terminalOutputs/15654023757139604242",
         "hash": "6975450976265115461"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/15997152607748241396",
+        "hash": "8839756260359775264"
       },
       {
         "file": ".nx/cache/terminalOutputs/16428025177912398855",
@@ -583,6 +774,10 @@
         "hash": "5463074861651668799"
       },
       {
+        "file": ".nx/cache/terminalOutputs/9302864672724991207",
+        "hash": "4065161711821627250"
+      },
+      {
         "file": ".nx/cache/terminalOutputs/9372141763647187791",
         "hash": "15793863112617213821"
       },
@@ -593,6 +788,10 @@
       {
         "file": ".nx/cache/terminalOutputs/9826620813935244055",
         "hash": "4065161711821627250"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/9988056682578342565",
+        "hash": "2793810466222428060"
       },
       {
         "file": ".nx/cache/terminalOutputs/9993654251157754047",
@@ -656,22 +855,278 @@
       },
       {
         "file": "nx.json",
-        "hash": "17867321494180021010"
+        "hash": "8784509091802805146"
       },
       {
         "file": "package-lock.json",
-        "hash": "5847539932836963461"
+        "hash": "8717265324456153957"
       },
       {
         "file": "package.json",
-        "hash": "2691293662166281976"
+        "hash": "16533090622602708400"
       },
       {
         "file": "release-please-config.json",
         "hash": "17030112814031350355"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/3552100026387369843",
+        "hash": "4065161711821627250"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/mixins/Plugging.js",
+        "hash": "10926220715208926652"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/foundation/cyrb64.d.ts",
+        "hash": "6444380205484214496"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/locales.js.map",
+        "hash": "13793442794096461968"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/mixins/Plugging.js.map",
+        "hash": "8547535372388200925"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/mixins/Editing.js",
+        "hash": "11716118004521767819"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/locales/de.js",
+        "hash": "13620029051295598219"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/terminalOutput",
+        "hash": "2793810466222428060"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/locales/de.js.map",
+        "hash": "5446467956300472849"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/mixins/Editing.js.map",
+        "hash": "9446827861937360295"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/11413158501567882404",
+        "hash": "2793810466222428060"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/foundation/cyrb64.js.map",
+        "hash": "8208762077939552952"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/locales.d.ts",
+        "hash": "1536198590738388777"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/locales/de.d.ts",
+        "hash": "15478526369249555236"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/mixins/Editing.d.ts",
+        "hash": "14634411646566623912"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/mixins/Plugging.d.ts",
+        "hash": "17783312072315012967"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/foundation.js",
+        "hash": "7594812310088767708"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/foundation/open-event.js",
+        "hash": "16136447459654608512"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/source",
+        "hash": "7198174333550335109"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/foundation/deprecated/open-event.js.map",
+        "hash": "960607841993449321"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/foundation/deprecated/editor.js.map",
+        "hash": "18073842695450943701"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/foundation/open-event.js.map",
+        "hash": "6317909538404003572"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/foundation/deprecated/settings.d.ts",
+        "hash": "9348891199005505557"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/foundation/deprecated/validation.js",
+        "hash": "14353352478396705993"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/foundation/edit-event.js.map",
+        "hash": "8750174052889884778"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/foundation/deprecated/history.js.map",
+        "hash": "12914124363691791829"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/foundation/deprecated/waiter.js.map",
+        "hash": "5979910848551256241"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/foundation/deprecated/settings.js",
+        "hash": "5278547169574669114"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/foundation/deprecated/validation.d.ts",
+        "hash": "15632000527541047056"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/foundation/deprecated/waiter.d.ts",
+        "hash": "547346934235485722"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/foundation/deprecated/editor.js",
+        "hash": "10569776039983881392"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/foundation/deprecated/history.d.ts",
+        "hash": "13994022595748043762"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/foundation/edit-event.js",
+        "hash": "14925307945620573259"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/foundation/deprecated/waiter.js",
+        "hash": "8061070873817077188"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/foundation/deprecated/open-event.js",
+        "hash": "9156719096863065164"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/foundation/deprecated/validation.js.map",
+        "hash": "14327549372112486702"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/foundation/deprecated/editor.d.ts",
+        "hash": "6073219257783926583"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/code",
+        "hash": "1838281907459330133"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/foundation.js.map",
+        "hash": "9433971016904548305"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/foundation/deprecated/settings.js.map",
+        "hash": "1174528504327423961"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/foundation/cyrb64.js",
+        "hash": "13818884337642622145"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/locales.js",
+        "hash": "5535228750576455021"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404.commit",
+        "hash": "4664556114322093609"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/foundation.d.ts",
+        "hash": "5747063768376578003"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/foundation/deprecated/open-event.d.ts",
+        "hash": "16211149371931988509"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/foundation/edit-event.d.ts",
+        "hash": "9714496284745335135"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/foundation/deprecated/history.js",
+        "hash": "8736049536476385531"
+      },
+      {
+        "file": ".nx/cache/11413158501567882404/outputs/packages/core/dist/foundation/open-event.d.ts",
+        "hash": "2909132766607237256"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/17564930225592253690",
+        "hash": "15793863112617213821"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/5387398773439645539",
+        "hash": "11624013529078043326"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/1277765384938277666",
+        "hash": "12785541076869602337"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/10159659095528575451",
+        "hash": "15793863112617213821"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/130865955083639154",
+        "hash": "11624013529078043326"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/11689363059836083892",
+        "hash": "12785541076869602337"
       }
     ],
     "projectFileMap": {
+      "@openscd/addons": [
+        {
+          "file": "packages/addons/package.json",
+          "hash": "3679798140701567882",
+          "deps": [
+            "npm:lit",
+            "@openscd/core",
+            "@openscd/components",
+            "npm:@commitlint/cli",
+            "npm:@commitlint/config-conventional",
+            "npm:@open-wc/eslint-config",
+            "npm:@open-wc/semantic-dom-diff",
+            "npm:@open-wc/testing",
+            "npm:@types/node",
+            "npm:@typescript-eslint/eslint-plugin",
+            "npm:@typescript-eslint/parser",
+            "npm:@web/dev-server-esbuild",
+            "npm:@web/test-runner",
+            "npm:concurrently",
+            "npm:deepmerge",
+            "npm:es-dev-server",
+            "npm:eslint",
+            "npm:eslint-config-prettier",
+            "npm:eslint-plugin-babel",
+            "npm:eslint-plugin-tsdoc",
+            "npm:fast-check",
+            "npm:husky",
+            "npm:lint-staged",
+            "npm:prettier",
+            "npm:sinon",
+            "npm:source-map",
+            "npm:tslib",
+            "npm:typescript"
+          ]
+        },
+        {
+          "file": "packages/addons/project.json",
+          "hash": "9246635840514187193"
+        }
+      ],
       "@openscd/core": [
         {
           "file": "packages/core/.gitignore",
@@ -818,32 +1273,92 @@
           "hash": "6483262654239276716"
         },
         {
+          "file": "packages/core/foundation/deprecated/editor.ts",
+          "hash": "1352743718760104597"
+        },
+        {
+          "file": "packages/core/foundation/deprecated/history.ts",
+          "hash": "650703901614165462"
+        },
+        {
+          "file": "packages/core/foundation/deprecated/open-event.ts",
+          "hash": "14767817853214901722"
+        },
+        {
+          "file": "packages/core/foundation/deprecated/settings.ts",
+          "hash": "14033618034352957389"
+        },
+        {
+          "file": "packages/core/foundation/deprecated/validation.ts",
+          "hash": "10261571973889258156"
+        },
+        {
+          "file": "packages/core/foundation/deprecated/waiter.ts",
+          "hash": "8343629881682687949"
+        },
+        {
           "file": "packages/core/foundation/edit-event.ts",
-          "hash": "3449805757649960647"
+          "hash": "1841710746551365280"
         },
         {
           "file": "packages/core/foundation/open-event.ts",
-          "hash": "10578152697860642081"
+          "hash": "7158554060856099214"
         },
         {
           "file": "packages/core/foundation.ts",
-          "hash": "16574945108133998638"
+          "hash": "6528294703743712816"
+        },
+        {
+          "file": "packages/core/lit-localize.json",
+          "hash": "7722221453374084890"
         },
         {
           "file": "packages/core/locales/de.ts",
           "hash": "15750652247756435122"
         },
         {
+          "file": "packages/core/locales.ts",
+          "hash": "10923244641850805000"
+        },
+        {
+          "file": "packages/core/localization/de.xlf",
+          "hash": "16166789695289770206"
+        },
+        {
+          "file": "packages/core/mixins/Editing.ts",
+          "hash": "10456869744071458278"
+        },
+        {
+          "file": "packages/core/mixins/Plugging.ts",
+          "hash": "9053966085299195721"
+        },
+        {
           "file": "packages/core/package.json",
-          "hash": "4068171722949368005",
+          "hash": "10566870862874583718",
           "deps": [
+            "npm:@lit/localize",
+            "npm:@open-wc/lit-helpers",
+            "npm:lit",
+            "npm:@custom-elements-manifest/analyzer",
+            "npm:@lit/localize-tools",
+            "npm:@open-wc/building-rollup",
+            "npm:@open-wc/eslint-config",
+            "npm:@open-wc/testing",
+            "npm:@rollup/plugin-typescript",
             "npm:@types/node",
             "npm:@typescript-eslint/eslint-plugin",
             "npm:@typescript-eslint/parser",
+            "npm:@web/dev-server",
+            "npm:@web/test-runner",
+            "npm:@web/test-runner-playwright",
+            "npm:@web/test-runner-visual-regression",
             "npm:concurrently",
+            "npm:es-dev-server",
             "npm:eslint",
             "npm:eslint-config-prettier",
             "npm:eslint-plugin-tsdoc",
+            "npm:fast-check",
+            "npm:gh-pages",
             "npm:husky",
             "npm:lint-staged",
             "npm:prettier",
@@ -854,7 +1369,7 @@
         },
         {
           "file": "packages/core/project.json",
-          "hash": "11260038190473337622"
+          "hash": "13750082808474185265"
         },
         {
           "file": "packages/core/rollup.config.js",
@@ -1172,47 +1687,54 @@
           ]
         }
       ],
-      "@openscd/plugins": [
+      "@openscd/distribution": [
         {
-          "file": "packages/plugins/.eslintrc.cjs",
+          "file": "packages/distribution/.eslintrc.cjs",
           "hash": "17644058191750607887"
         },
         {
-          "file": "packages/plugins/.gitignore",
-          "hash": "14173734176158120779"
+          "file": "packages/distribution/.gitignore",
+          "hash": "8321704309217581771"
         },
         {
-          "file": "packages/plugins/.nojekyll",
+          "file": "packages/distribution/.nojekyll",
           "hash": "708642270230508292"
         },
         {
-          "file": "packages/plugins/README.md",
-          "hash": "16843830254589678322"
+          "file": "packages/distribution/CHANGELOG.md",
+          "hash": "811442079311045459"
         },
         {
-          "file": "packages/plugins/package.json",
-          "hash": "15874619281374422053",
+          "file": "packages/distribution/README.md",
+          "hash": "2589587792174354476"
+        },
+        {
+          "file": "packages/distribution/browserconfig.xml",
+          "hash": "6541539627108079072"
+        },
+        {
+          "file": "packages/distribution/favicon.ico",
+          "hash": "9745956228541674246"
+        },
+        {
+          "file": "packages/distribution/index.html",
+          "hash": "9165574028022014059"
+        },
+        {
+          "file": "packages/distribution/main.ts",
+          "hash": "18181926935518211157"
+        },
+        {
+          "file": "packages/distribution/manifest.json",
+          "hash": "8816689474378108950"
+        },
+        {
+          "file": "packages/distribution/package.json",
+          "hash": "4111569241590408221",
           "deps": [
-            "npm:@material/mwc-dialog",
-            "npm:@material/mwc-fab",
-            "npm:@material/mwc-formfield",
-            "npm:@material/mwc-icon",
-            "npm:@material/mwc-icon-button",
-            "npm:@material/mwc-icon-button-toggle",
-            "npm:@material/mwc-list",
-            "npm:@material/mwc-menu",
-            "npm:@material/mwc-select",
-            "npm:@material/mwc-switch",
-            "npm:@material/mwc-textarea",
-            "npm:@material/mwc-textfield",
-            "npm:lit",
-            "npm:lit-translate",
-            "npm:marked",
-            "npm:panzoom",
             "@openscd/open-scd",
-            "@openscd/core",
-            "@openscd/wizards",
-            "@openscd/components",
+            "@openscd/addons",
+            "@openscd/plugins",
             "npm:@commitlint/cli",
             "npm:@commitlint/config-conventional",
             "npm:@open-wc/semantic-dom-diff",
@@ -1244,8 +1766,1214 @@
           ]
         },
         {
+          "file": "packages/distribution/project.json",
+          "hash": "8936609372453109866"
+        },
+        {
+          "file": "packages/distribution/public/apple-touch-icon.png",
+          "hash": "8255636196001427371"
+        },
+        {
+          "file": "packages/distribution/public/css/normalize.css",
+          "hash": "4081816717657929031"
+        },
+        {
+          "file": "packages/distribution/public/favicon-16x16.png",
+          "hash": "13707519148919541918"
+        },
+        {
+          "file": "packages/distribution/public/favicon-32x32.png",
+          "hash": "4422168256416965943"
+        },
+        {
+          "file": "packages/distribution/public/google/fonts/roboto-mono-v13-latin-300.ttf",
+          "hash": "11092660628056188778"
+        },
+        {
+          "file": "packages/distribution/public/google/fonts/roboto-mono-v13-latin-300.woff",
+          "hash": "9917163342901736249"
+        },
+        {
+          "file": "packages/distribution/public/google/fonts/roboto-mono-v13-latin-300.woff2",
+          "hash": "1066463892304466654"
+        },
+        {
+          "file": "packages/distribution/public/google/fonts/roboto-mono-v13.css",
+          "hash": "1306353331501983234"
+        },
+        {
+          "file": "packages/distribution/public/google/fonts/roboto-v27-latin-300.ttf",
+          "hash": "8469775184521824518"
+        },
+        {
+          "file": "packages/distribution/public/google/fonts/roboto-v27-latin-300.woff",
+          "hash": "10154414347099253919"
+        },
+        {
+          "file": "packages/distribution/public/google/fonts/roboto-v27-latin-300.woff2",
+          "hash": "4167966890579689996"
+        },
+        {
+          "file": "packages/distribution/public/google/fonts/roboto-v27-latin-500.ttf",
+          "hash": "13258010954044418653"
+        },
+        {
+          "file": "packages/distribution/public/google/fonts/roboto-v27-latin-500.woff",
+          "hash": "1793384290551641661"
+        },
+        {
+          "file": "packages/distribution/public/google/fonts/roboto-v27-latin-500.woff2",
+          "hash": "15444657261876582837"
+        },
+        {
+          "file": "packages/distribution/public/google/fonts/roboto-v27-latin-regular.ttf",
+          "hash": "4151621888851525670"
+        },
+        {
+          "file": "packages/distribution/public/google/fonts/roboto-v27-latin-regular.woff",
+          "hash": "10995893687007998711"
+        },
+        {
+          "file": "packages/distribution/public/google/fonts/roboto-v27-latin-regular.woff2",
+          "hash": "12948365522108916446"
+        },
+        {
+          "file": "packages/distribution/public/google/fonts/roboto-v27.css",
+          "hash": "5528784856015535882"
+        },
+        {
+          "file": "packages/distribution/public/google/icons/material-icons-outlined.css",
+          "hash": "1262166653950853147"
+        },
+        {
+          "file": "packages/distribution/public/google/icons/material-icons-outlined.woff2",
+          "hash": "15560109777398165401"
+        },
+        {
+          "file": "packages/distribution/public/icon-192x192.png",
+          "hash": "7631583239115182464"
+        },
+        {
+          "file": "packages/distribution/public/icon-512x512.png",
+          "hash": "1208864852193386297"
+        },
+        {
+          "file": "packages/distribution/public/icon.svg",
+          "hash": "10742432829855556443"
+        },
+        {
+          "file": "packages/distribution/public/js/worker.js",
+          "hash": "8095450326227374791"
+        },
+        {
+          "file": "packages/distribution/public/js/xmlvalidate.js",
+          "hash": "9451187126297767672"
+        },
+        {
+          "file": "packages/distribution/public/js/xmlvalidate.wasm",
+          "hash": "5175032934662663762"
+        },
+        {
+          "file": "packages/distribution/public/maskable_icon.png",
+          "hash": "18101247248750889685"
+        },
+        {
+          "file": "packages/distribution/public/monochrome_icon.png",
+          "hash": "13565896860593691930"
+        },
+        {
+          "file": "packages/distribution/public/mstile-144x144.png",
+          "hash": "10285972173853260168"
+        },
+        {
+          "file": "packages/distribution/public/mstile-150x150.png",
+          "hash": "12587743538979837303"
+        },
+        {
+          "file": "packages/distribution/public/mstile-310x150.png",
+          "hash": "59474961430734570"
+        },
+        {
+          "file": "packages/distribution/public/mstile-310x310.png",
+          "hash": "14469173214685422286"
+        },
+        {
+          "file": "packages/distribution/public/mstile-70x70.png",
+          "hash": "7523939375870386701"
+        },
+        {
+          "file": "packages/distribution/public/xml/CC-EULA.pdf",
+          "hash": "6253266956788550028"
+        },
+        {
+          "file": "packages/distribution/public/xml/Disclaimer.md",
+          "hash": "11114111129865766129"
+        },
+        {
+          "file": "packages/distribution/public/xml/IEC_61850-7-2_2007B3.nsd",
+          "hash": "14892262145430950391"
+        },
+        {
+          "file": "packages/distribution/public/xml/IEC_61850-7-3_2007B3.nsd",
+          "hash": "10672291729284444751"
+        },
+        {
+          "file": "packages/distribution/public/xml/IEC_61850-7-420_2019A4.nsd",
+          "hash": "2697189070121476019"
+        },
+        {
+          "file": "packages/distribution/public/xml/IEC_61850-7-4_2007B3.nsd",
+          "hash": "15640195857577558913"
+        },
+        {
+          "file": "packages/distribution/public/xml/IEC_61850-8-1_2003A2.nsd",
+          "hash": "15535032645697118789"
+        },
+        {
+          "file": "packages/distribution/public/xml/templates.scd",
+          "hash": "15674047140246154676"
+        },
+        {
+          "file": "packages/distribution/snowpack.config.mjs",
+          "hash": "18171219225380219943"
+        },
+        {
+          "file": "packages/distribution/sw.js",
+          "hash": "9577298729713038210"
+        },
+        {
+          "file": "packages/distribution/tsconfig.json",
+          "hash": "12218822935376146567"
+        },
+        {
+          "file": "packages/distribution/web-test-runner.config.mjs",
+          "hash": "8715077720788600936"
+        },
+        {
+          "file": "packages/distribution/workbox-config.cjs",
+          "hash": "3488956881234875947"
+        }
+      ],
+      "@openscd/open-scd": [
+        {
+          "file": "packages/open-scd/.eslintrc.cjs",
+          "hash": "17644058191750607887"
+        },
+        {
+          "file": "packages/open-scd/.gitignore",
+          "hash": "8321704309217581771"
+        },
+        {
+          "file": "packages/open-scd/.nojekyll",
+          "hash": "708642270230508292"
+        },
+        {
+          "file": "packages/open-scd/CHANGELOG.md",
+          "hash": "811442079311045459"
+        },
+        {
+          "file": "packages/open-scd/README.md",
+          "hash": "2589587792174354476"
+        },
+        {
+          "file": "packages/open-scd/favicon.ico",
+          "hash": "9745956228541674246"
+        },
+        {
+          "file": "packages/open-scd/package.json",
+          "hash": "1168451658712759358",
+          "deps": [
+            "npm:@material/mwc-dialog",
+            "npm:@material/mwc-drawer",
+            "npm:@material/mwc-fab",
+            "npm:@material/mwc-formfield",
+            "npm:@material/mwc-icon",
+            "npm:@material/mwc-icon-button",
+            "npm:@material/mwc-icon-button-toggle",
+            "npm:@material/mwc-linear-progress",
+            "npm:@material/mwc-list",
+            "npm:@material/mwc-menu",
+            "npm:@material/mwc-select",
+            "npm:@material/mwc-snackbar",
+            "npm:@material/mwc-switch",
+            "npm:@material/mwc-tab",
+            "npm:@material/mwc-tab-bar",
+            "npm:@material/mwc-textarea",
+            "npm:@material/mwc-textfield",
+            "npm:@material/mwc-top-app-bar-fixed",
+            "npm:ace-custom-element",
+            "npm:lit",
+            "npm:lit-translate",
+            "npm:marked",
+            "npm:panzoom",
+            "@openscd/core",
+            "npm:@commitlint/cli",
+            "npm:@commitlint/config-conventional",
+            "npm:@open-wc/eslint-config",
+            "npm:@open-wc/semantic-dom-diff",
+            "npm:@open-wc/testing",
+            "npm:@snowpack/plugin-typescript",
+            "npm:@types/marked",
+            "npm:@types/node",
+            "npm:@typescript-eslint/eslint-plugin",
+            "npm:@typescript-eslint/parser",
+            "npm:@web/dev-server-esbuild",
+            "npm:@web/test-runner",
+            "npm:concurrently",
+            "npm:deepmerge",
+            "npm:es-dev-server",
+            "npm:eslint",
+            "npm:eslint-config-prettier",
+            "npm:eslint-plugin-babel",
+            "npm:eslint-plugin-tsdoc",
+            "npm:fast-check",
+            "npm:husky",
+            "npm:lint-staged",
+            "npm:prettier",
+            "npm:sinon",
+            "npm:snowpack",
+            "npm:source-map",
+            "npm:standard-version",
+            "npm:tslib",
+            "npm:typescript",
+            "npm:web-component-analyzer",
+            "npm:workbox-cli"
+          ]
+        },
+        {
+          "file": "packages/open-scd/project.json",
+          "hash": "9568985228805963158"
+        },
+        {
+          "file": "packages/open-scd/public/js/plugins.js",
+          "hash": "5536147299312378898"
+        },
+        {
+          "file": "packages/open-scd/public/md/Add-DAType-from-templates.md",
+          "hash": "7632171038187899085"
+        },
+        {
+          "file": "packages/open-scd/public/md/Add-DOType-from-templates.md",
+          "hash": "1894183691628393578"
+        },
+        {
+          "file": "packages/open-scd/public/md/Add-EnumType-from-templates.md",
+          "hash": "4609717271818397986"
+        },
+        {
+          "file": "packages/open-scd/public/md/Add-LNodeType-from-templates.md",
+          "hash": "489320221840580551"
+        },
+        {
+          "file": "packages/open-scd/public/md/All-template-editor-wizards.md",
+          "hash": "13727218619751131422"
+        },
+        {
+          "file": "packages/open-scd/public/md/Bay.md",
+          "hash": "14866107152844558234"
+        },
+        {
+          "file": "packages/open-scd/public/md/ClientLN.md",
+          "hash": "9897962791398252761"
+        },
+        {
+          "file": "packages/open-scd/public/md/Communication-Basics.md",
+          "hash": "8967205583285904629"
+        },
+        {
+          "file": "packages/open-scd/public/md/Conducting-Equipment.md",
+          "hash": "7300930969810583342"
+        },
+        {
+          "file": "packages/open-scd/public/md/ConnectedAP.md",
+          "hash": "16502032358017111834"
+        },
+        {
+          "file": "packages/open-scd/public/md/Create-GOOSE-Control-Blocks.md",
+          "hash": "9151697034532586484"
+        },
+        {
+          "file": "packages/open-scd/public/md/Create-Report-Control-Blocks.md",
+          "hash": "16632204082796274727"
+        },
+        {
+          "file": "packages/open-scd/public/md/Create-Sampled-Values-Control-Blocks.md",
+          "hash": "17913221650532417430"
+        },
+        {
+          "file": "packages/open-scd/public/md/Create-Specification-IED-from-functions.md",
+          "hash": "17100053241515069293"
+        },
+        {
+          "file": "packages/open-scd/public/md/Data-attribute-type-DAType.md",
+          "hash": "9361779753344148521"
+        },
+        {
+          "file": "packages/open-scd/public/md/Data-attribute-type-child-BDA.md",
+          "hash": "14086264127285171983"
+        },
+        {
+          "file": "packages/open-scd/public/md/Data-object-type-DOType.md",
+          "hash": "2143270927319123243"
+        },
+        {
+          "file": "packages/open-scd/public/md/Data-object-type-child-DA.md",
+          "hash": "2103910637702816417"
+        },
+        {
+          "file": "packages/open-scd/public/md/Data-object-type-child-SDO.md",
+          "hash": "4654830432230889187"
+        },
+        {
+          "file": "packages/open-scd/public/md/DataTypeTemplates.md",
+          "hash": "11926638132363039278"
+        },
+        {
+          "file": "packages/open-scd/public/md/Edit-GOOSE-Control-Blocks.md",
+          "hash": "957766021862151742"
+        },
+        {
+          "file": "packages/open-scd/public/md/Edit-Report-Control-Blocks.md",
+          "hash": "2186849900448724482"
+        },
+        {
+          "file": "packages/open-scd/public/md/Edit-Sampled-Value-Control-Blocks.md",
+          "hash": "11141382621762249692"
+        },
+        {
+          "file": "packages/open-scd/public/md/Enumeration-EnumType.md",
+          "hash": "6044514298468008973"
+        },
+        {
+          "file": "packages/open-scd/public/md/Enumeration-EnumVal.md",
+          "hash": "7305154441125116769"
+        },
+        {
+          "file": "packages/open-scd/public/md/Extensions.md",
+          "hash": "6591404271141839486"
+        },
+        {
+          "file": "packages/open-scd/public/md/Function.md",
+          "hash": "2396370581122879875"
+        },
+        {
+          "file": "packages/open-scd/public/md/Functional-Naming-Basics.md",
+          "hash": "1424157226931378780"
+        },
+        {
+          "file": "packages/open-scd/public/md/Generic-Substation-Event-Basics.md",
+          "hash": "7345973281698033565"
+        },
+        {
+          "file": "packages/open-scd/public/md/Global-SCL-manipulation.md",
+          "hash": "9584016088754545240"
+        },
+        {
+          "file": "packages/open-scd/public/md/Guess-substation-structure.md",
+          "hash": "2875995111374752127"
+        },
+        {
+          "file": "packages/open-scd/public/md/Home.md",
+          "hash": "5597160643416405668"
+        },
+        {
+          "file": "packages/open-scd/public/md/IED.md",
+          "hash": "5093811992878555761"
+        },
+        {
+          "file": "packages/open-scd/public/md/Import-IEDs.md",
+          "hash": "2697147160948088410"
+        },
+        {
+          "file": "packages/open-scd/public/md/Install-OpenSCD.md",
+          "hash": "4870289996323257036"
+        },
+        {
+          "file": "packages/open-scd/public/md/Interface.md",
+          "hash": "6278602661934875272"
+        },
+        {
+          "file": "packages/open-scd/public/md/Logical-Node-Reference.md",
+          "hash": "16185774406241805752"
+        },
+        {
+          "file": "packages/open-scd/public/md/Logical-node-type-LNodeType.md",
+          "hash": "16837157848214223052"
+        },
+        {
+          "file": "packages/open-scd/public/md/Logical-node-type-child-DO.md",
+          "hash": "7944105073641571821"
+        },
+        {
+          "file": "packages/open-scd/public/md/Merge-functionality.md",
+          "hash": "1426923011109762228"
+        },
+        {
+          "file": "packages/open-scd/public/md/Power-Transformer.md",
+          "hash": "7694420192312749843"
+        },
+        {
+          "file": "packages/open-scd/public/md/Project-workflow.md",
+          "hash": "2730532738404076849"
+        },
+        {
+          "file": "packages/open-scd/public/md/Report-Basics.md",
+          "hash": "14048196035719930850"
+        },
+        {
+          "file": "packages/open-scd/public/md/Sampled-Values-Basics.md",
+          "hash": "8992263995862266787"
+        },
+        {
+          "file": "packages/open-scd/public/md/Save-project.md",
+          "hash": "10971061805746056033"
+        },
+        {
+          "file": "packages/open-scd/public/md/Start-from-scratch.md",
+          "hash": "194686234617903536"
+        },
+        {
+          "file": "packages/open-scd/public/md/Start-from-template.md",
+          "hash": "1542572143826819718"
+        },
+        {
+          "file": "packages/open-scd/public/md/Subnetwork.md",
+          "hash": "7569968389459259486"
+        },
+        {
+          "file": "packages/open-scd/public/md/Subscribe-complete-GOOSE.md",
+          "hash": "6074639160524786830"
+        },
+        {
+          "file": "packages/open-scd/public/md/Subscribe-complete-SMV.md",
+          "hash": "10284061904737192554"
+        },
+        {
+          "file": "packages/open-scd/public/md/Subscriber-basics.md",
+          "hash": "4579408188515769743"
+        },
+        {
+          "file": "packages/open-scd/public/md/Substation-Section-Basics.md",
+          "hash": "2749047212988599460"
+        },
+        {
+          "file": "packages/open-scd/public/md/Substation.md",
+          "hash": "8172268288084933058"
+        },
+        {
+          "file": "packages/open-scd/public/md/Update-subscriber-info.md",
+          "hash": "12902504025068530749"
+        },
+        {
+          "file": "packages/open-scd/public/md/Validate-schema.md",
+          "hash": "12546997160178550684"
+        },
+        {
+          "file": "packages/open-scd/public/md/Validate-template.md",
+          "hash": "4402742907194773973"
+        },
+        {
+          "file": "packages/open-scd/public/md/Validators.md",
+          "hash": "13810934083813939781"
+        },
+        {
+          "file": "packages/open-scd/public/md/Voltage-Level.md",
+          "hash": "14885900683486194968"
+        },
+        {
+          "file": "packages/open-scd/public/md/XML-code-editor.md",
+          "hash": "930391076388032597"
+        },
+        {
+          "file": "packages/open-scd/public/md/_Sidebar.md",
+          "hash": "8120477852787622090"
+        },
+        {
+          "file": "packages/open-scd/public/xml/CC-EULA.pdf",
+          "hash": "6253266956788550028"
+        },
+        {
+          "file": "packages/open-scd/public/xml/Disclaimer.md",
+          "hash": "11114111129865766129"
+        },
+        {
+          "file": "packages/open-scd/public/xml/IEC_61850-7-2_2007B3.nsd",
+          "hash": "14892262145430950391"
+        },
+        {
+          "file": "packages/open-scd/public/xml/IEC_61850-7-3_2007B3.nsd",
+          "hash": "10672291729284444751"
+        },
+        {
+          "file": "packages/open-scd/public/xml/IEC_61850-7-420_2019A4.nsd",
+          "hash": "2697189070121476019"
+        },
+        {
+          "file": "packages/open-scd/public/xml/IEC_61850-7-4_2007B3.nsd",
+          "hash": "15640195857577558913"
+        },
+        {
+          "file": "packages/open-scd/public/xml/IEC_61850-8-1_2003A2.nsd",
+          "hash": "15535032645697118789"
+        },
+        {
+          "file": "packages/open-scd/public/xml/templates.scd",
+          "hash": "15674047140246154676"
+        },
+        {
+          "file": "packages/open-scd/src/Editing.ts",
+          "hash": "3931424949621839647"
+        },
+        {
+          "file": "packages/open-scd/src/WizardDivider.ts",
+          "hash": "10943915664918582113",
+          "deps": [
+            "npm:lit-element"
+          ]
+        },
+        {
+          "file": "packages/open-scd/src/Wizarding.ts",
+          "hash": "14492560696964237874",
+          "deps": [
+            "npm:lit-element"
+          ]
+        },
+        {
+          "file": "packages/open-scd/src/action-icon.ts",
+          "hash": "16089961871989680000",
+          "deps": [
+            "npm:lit-element",
+            "npm:lit-html",
+            "npm:@material/mwc-icon"
+          ]
+        },
+        {
+          "file": "packages/open-scd/src/action-pane.ts",
+          "hash": "12081366906307207947",
+          "deps": [
+            "npm:lit-element",
+            "npm:lit-html",
+            "npm:@material/mwc-icon"
+          ]
+        },
+        {
+          "file": "packages/open-scd/src/addons/Editor.ts",
+          "hash": "9621982148607549118"
+        },
+        {
+          "file": "packages/open-scd/src/addons/History.ts",
+          "hash": "17055225139136015730"
+        },
+        {
+          "file": "packages/open-scd/src/addons/Settings.ts",
+          "hash": "9092757163989637365"
+        },
+        {
+          "file": "packages/open-scd/src/addons/Waiter.ts",
+          "hash": "8037581805973173596"
+        },
+        {
+          "file": "packages/open-scd/src/addons/Wizards.ts",
+          "hash": "925889065670814935",
+          "deps": [
+            "npm:lit-element"
+          ]
+        },
+        {
+          "file": "packages/open-scd/src/filtered-list.ts",
+          "hash": "4063737332527680786",
+          "deps": [
+            "npm:lit-element",
+            "npm:lit-translate",
+            "npm:@material/mwc-checkbox",
+            "npm:@material/mwc-formfield",
+            "npm:@material/mwc-textfield",
+            "npm:@material/mwc-list"
+          ]
+        },
+        {
+          "file": "packages/open-scd/src/finder-list.ts",
+          "hash": "11438414723826618044",
+          "deps": [
+            "npm:lit-element",
+            "npm:lit-html",
+            "npm:lit-translate",
+            "npm:@material/mwc-icon",
+            "npm:@material/mwc-list"
+          ]
+        },
+        {
+          "file": "packages/open-scd/src/foundation/compare.ts",
+          "hash": "3112075075585402130",
+          "deps": [
+            "npm:lit-element",
+            "npm:lit-html",
+            "npm:lit-translate",
+            "npm:@material/mwc-list",
+            "npm:@material/mwc-icon"
+          ]
+        },
+        {
+          "file": "packages/open-scd/src/foundation/dai.ts",
+          "hash": "13872761161406433074"
+        },
+        {
+          "file": "packages/open-scd/src/foundation/generators.ts",
+          "hash": "4932107582668988548"
+        },
+        {
+          "file": "packages/open-scd/src/foundation/ied.ts",
+          "hash": "4393868115845779192"
+        },
+        {
+          "file": "packages/open-scd/src/foundation/nsd.ts",
+          "hash": "10572307661230518659"
+        },
+        {
+          "file": "packages/open-scd/src/foundation/nsdoc.ts",
+          "hash": "13082370609751747567"
+        },
+        {
+          "file": "packages/open-scd/src/foundation/scl.ts",
+          "hash": "5784302317695473211"
+        },
+        {
+          "file": "packages/open-scd/src/foundation.ts",
+          "hash": "15074565980890328849"
+        },
+        {
+          "file": "packages/open-scd/src/icons/compare.ts",
+          "hash": "1060967711676109361",
+          "deps": [
+            "npm:lit-html"
+          ]
+        },
+        {
+          "file": "packages/open-scd/src/icons/icons.ts",
+          "hash": "10869915432410950331",
+          "deps": [
+            "npm:lit-element"
+          ]
+        },
+        {
+          "file": "packages/open-scd/src/icons/ied-icons.ts",
+          "hash": "3016155618657912138",
+          "deps": [
+            "npm:lit-element"
+          ]
+        },
+        {
+          "file": "packages/open-scd/src/icons/lnode.ts",
+          "hash": "15533300009024790450",
+          "deps": [
+            "npm:lit-element"
+          ]
+        },
+        {
+          "file": "packages/open-scd/src/open-scd.ts",
+          "hash": "16267992695858677029"
+        },
+        {
+          "file": "packages/open-scd/src/oscd-filter-button.ts",
+          "hash": "840326489970933787",
+          "deps": [
+            "npm:lit-element",
+            "npm:lit-translate",
+            "npm:@material/mwc-icon-button",
+            "npm:@material/mwc-dialog"
+          ]
+        },
+        {
+          "file": "packages/open-scd/src/plain-compare-list.ts",
+          "hash": "12120257545756275580",
+          "deps": [
+            "npm:lit-element",
+            "npm:lit-translate"
+          ]
+        },
+        {
+          "file": "packages/open-scd/src/schemas.ts",
+          "hash": "17202853285850379179"
+        },
+        {
+          "file": "packages/open-scd/src/themes.ts",
+          "hash": "2998893925173071785"
+        },
+        {
+          "file": "packages/open-scd/src/translations/de.ts",
+          "hash": "3726687335703655818"
+        },
+        {
+          "file": "packages/open-scd/src/translations/en.ts",
+          "hash": "14010142935881459815"
+        },
+        {
+          "file": "packages/open-scd/src/translations/loader.ts",
+          "hash": "15159742372176815733"
+        },
+        {
+          "file": "packages/open-scd/src/wizard-checkbox.ts",
+          "hash": "17244218985107095887",
+          "deps": [
+            "npm:lit-element",
+            "npm:@material/mwc-formfield",
+            "npm:@material/mwc-switch",
+            "npm:@material/mwc-checkbox"
+          ]
+        },
+        {
+          "file": "packages/open-scd/src/wizard-dialog.ts",
+          "hash": "2222946121581144960"
+        },
+        {
+          "file": "packages/open-scd/src/wizard-select.ts",
+          "hash": "8755363152420704560",
+          "deps": [
+            "npm:lit-element",
+            "npm:@material/mwc-switch",
+            "npm:@material/mwc-select"
+          ]
+        },
+        {
+          "file": "packages/open-scd/src/wizard-textfield.ts",
+          "hash": "3251564838229694354",
+          "deps": [
+            "npm:lit-element",
+            "npm:lit-translate",
+            "npm:@material/mwc-icon-button",
+            "npm:@material/mwc-list",
+            "npm:@material/mwc-menu",
+            "npm:@material/mwc-switch",
+            "npm:@material/mwc-textfield"
+          ]
+        },
+        {
+          "file": "packages/open-scd/src/wizards.ts",
+          "hash": "1881946783373789716"
+        },
+        {
+          "file": "packages/open-scd/test/foundation.ts",
+          "hash": "17330926813949514613",
+          "deps": [
+            "npm:fast-check"
+          ]
+        },
+        {
+          "file": "packages/open-scd/test/integration/Editing.test.ts",
+          "hash": "4176867892348323635"
+        },
+        {
+          "file": "packages/open-scd/test/integration/Setting.test.ts",
+          "hash": "441673369951103925"
+        },
+        {
+          "file": "packages/open-scd/test/integration/__snapshots__/Setting.test.snap.js",
+          "hash": "14799367076293232426"
+        },
+        {
+          "file": "packages/open-scd/test/integration/__snapshots__/open-scd.test.snap.js",
+          "hash": "3643119380559539379"
+        },
+        {
+          "file": "packages/open-scd/test/integration/open-scd.test.ts",
+          "hash": "5388628032237360265",
+          "deps": [
+            "npm:@open-wc/testing"
+          ]
+        },
+        {
+          "file": "packages/open-scd/test/mock-editor-logger.ts",
+          "hash": "14879990107134185796",
+          "deps": [
+            "npm:lit-element"
+          ]
+        },
+        {
+          "file": "packages/open-scd/test/mock-open-scd.ts",
+          "hash": "284983970408762507",
+          "deps": [
+            "npm:lit-element"
+          ]
+        },
+        {
+          "file": "packages/open-scd/test/mock-wizard-editor.ts",
+          "hash": "14610666400273643835",
+          "deps": [
+            "npm:lit-element"
+          ]
+        },
+        {
+          "file": "packages/open-scd/test/testfiles/Editing.scd",
+          "hash": "15877327175876096082"
+        },
+        {
+          "file": "packages/open-scd/test/testfiles/comm-map.scd",
+          "hash": "1621801861016247353"
+        },
+        {
+          "file": "packages/open-scd/test/testfiles/editors/LaterBindingGOOSE-LGOS.scd",
+          "hash": "10505902909939719066"
+        },
+        {
+          "file": "packages/open-scd/test/testfiles/editors/LaterBindingSMV-LSVS.scd",
+          "hash": "10291808663933236042"
+        },
+        {
+          "file": "packages/open-scd/test/testfiles/foundation/compare-changed.cid",
+          "hash": "18068329593840456546"
+        },
+        {
+          "file": "packages/open-scd/test/testfiles/foundation/compare-original.cid",
+          "hash": "16722563218947456305"
+        },
+        {
+          "file": "packages/open-scd/test/testfiles/foundation/sclbasics.scd",
+          "hash": "4101609162973607674"
+        },
+        {
+          "file": "packages/open-scd/test/testfiles/foundation/testFile73.nsdoc",
+          "hash": "6842989918686570632"
+        },
+        {
+          "file": "packages/open-scd/test/testfiles/foundation/testFile74.nsdoc",
+          "hash": "90000831416964477"
+        },
+        {
+          "file": "packages/open-scd/test/testfiles/foundation/testFile81.nsdoc",
+          "hash": "15766749350439094223"
+        },
+        {
+          "file": "packages/open-scd/test/testfiles/lnodewizard.scd",
+          "hash": "6053146309638263945"
+        },
+        {
+          "file": "packages/open-scd/test/testfiles/menu/compare-ied-changed.scd",
+          "hash": "17588967429168656294"
+        },
+        {
+          "file": "packages/open-scd/test/testfiles/menu/compare-ied-original.scd",
+          "hash": "10599530753527664264"
+        },
+        {
+          "file": "packages/open-scd/test/testfiles/nsdoc/IEC_61850-7-2.nsdoc",
+          "hash": "11652524404954493157"
+        },
+        {
+          "file": "packages/open-scd/test/testfiles/nsdoc/invalid.nsdoc",
+          "hash": "8299511061862252241"
+        },
+        {
+          "file": "packages/open-scd/test/testfiles/nsdoc/wrong-version.nsdoc",
+          "hash": "16252917889319368184"
+        },
+        {
+          "file": "packages/open-scd/test/testfiles/valid2003.scd",
+          "hash": "15974192271882022407"
+        },
+        {
+          "file": "packages/open-scd/test/testfiles/valid2007B.scd",
+          "hash": "5668925401626749441"
+        },
+        {
+          "file": "packages/open-scd/test/testfiles/valid2007B4.scd",
+          "hash": "7519130007474256636"
+        },
+        {
+          "file": "packages/open-scd/test/testfiles/valid2007B4withIEDModifications.scd",
+          "hash": "7017501701506018288"
+        },
+        {
+          "file": "packages/open-scd/test/unit/Editing.test.ts",
+          "hash": "15151790341555831959"
+        },
+        {
+          "file": "packages/open-scd/test/unit/Historing.test.ts",
+          "hash": "182384644467747519"
+        },
+        {
+          "file": "packages/open-scd/test/unit/Plugging.test.ts",
+          "hash": "3261062037939044897",
+          "deps": [
+            "npm:@open-wc/testing",
+            "npm:@material/mwc-textfield"
+          ]
+        },
+        {
+          "file": "packages/open-scd/test/unit/Setting.test.ts",
+          "hash": "7424564659260305884",
+          "deps": [
+            "npm:lit-translate",
+            "npm:@open-wc/testing",
+            "npm:@material/mwc-button"
+          ]
+        },
+        {
+          "file": "packages/open-scd/test/unit/Waiting.test.ts",
+          "hash": "11726850840610998532"
+        },
+        {
+          "file": "packages/open-scd/test/unit/Wizards.test.ts",
+          "hash": "13059739489870200911",
+          "deps": [
+            "npm:@open-wc/testing"
+          ]
+        },
+        {
+          "file": "packages/open-scd/test/unit/__snapshots__/Setting.test.snap.js",
+          "hash": "2157094751490304824"
+        },
+        {
+          "file": "packages/open-scd/test/unit/__snapshots__/action-icon.test.snap.js",
+          "hash": "5301421550010660367"
+        },
+        {
+          "file": "packages/open-scd/test/unit/__snapshots__/action-pane.test.snap.js",
+          "hash": "898823903317541434"
+        },
+        {
+          "file": "packages/open-scd/test/unit/__snapshots__/filtered-list.test.snap.js",
+          "hash": "18072052773773724883"
+        },
+        {
+          "file": "packages/open-scd/test/unit/__snapshots__/finder-list.test.snap.js",
+          "hash": "9485318271661850403"
+        },
+        {
+          "file": "packages/open-scd/test/unit/__snapshots__/oscd-filter-button.test.snap.js",
+          "hash": "5285964709607557792"
+        },
+        {
+          "file": "packages/open-scd/test/unit/__snapshots__/plain-compare-list.test.snap.js",
+          "hash": "11150281621752054921"
+        },
+        {
+          "file": "packages/open-scd/test/unit/__snapshots__/wizard-dialog.test.snap.js",
+          "hash": "11267355871437031654"
+        },
+        {
+          "file": "packages/open-scd/test/unit/action-icon.test.ts",
+          "hash": "5981778179956191304",
+          "deps": [
+            "npm:@open-wc/testing"
+          ]
+        },
+        {
+          "file": "packages/open-scd/test/unit/action-pane.test.ts",
+          "hash": "13650505312571229471",
+          "deps": [
+            "npm:@open-wc/testing"
+          ]
+        },
+        {
+          "file": "packages/open-scd/test/unit/filtered-list.test.ts",
+          "hash": "2520230619366819246",
+          "deps": [
+            "npm:@open-wc/testing",
+            "npm:@material/mwc-list"
+          ]
+        },
+        {
+          "file": "packages/open-scd/test/unit/finder-list.test.ts",
+          "hash": "8721225737840516740",
+          "deps": [
+            "npm:@open-wc/testing",
+            "npm:@material/mwc-list"
+          ]
+        },
+        {
+          "file": "packages/open-scd/test/unit/foundation/__snapshots__/compare.test.snap.js",
+          "hash": "9035664690187745155"
+        },
+        {
+          "file": "packages/open-scd/test/unit/foundation/compare.test.ts",
+          "hash": "468276787326670776",
+          "deps": [
+            "npm:@open-wc/testing",
+            "npm:lit-element"
+          ]
+        },
+        {
+          "file": "packages/open-scd/test/unit/foundation/dai.test.ts",
+          "hash": "82569793558493321",
+          "deps": [
+            "npm:@open-wc/testing"
+          ]
+        },
+        {
+          "file": "packages/open-scd/test/unit/foundation/generators.test.ts",
+          "hash": "5540525343140547630",
+          "deps": [
+            "npm:@open-wc/testing"
+          ]
+        },
+        {
+          "file": "packages/open-scd/test/unit/foundation/nsdoc.test.ts",
+          "hash": "16765844190647664816",
+          "deps": [
+            "npm:@open-wc/testing"
+          ]
+        },
+        {
+          "file": "packages/open-scd/test/unit/foundation/scl.test.ts",
+          "hash": "3516589427443026047",
+          "deps": [
+            "npm:@open-wc/testing"
+          ]
+        },
+        {
+          "file": "packages/open-scd/test/unit/foundation.test.ts",
+          "hash": "12940765827352529581"
+        },
+        {
+          "file": "packages/open-scd/test/unit/mock-actions.ts",
+          "hash": "2699365977933504287"
+        },
+        {
+          "file": "packages/open-scd/test/unit/mock-document.ts",
+          "hash": "16801415548286164313"
+        },
+        {
+          "file": "packages/open-scd/test/unit/mock-editor.ts",
+          "hash": "3126259051079207300"
+        },
+        {
+          "file": "packages/open-scd/test/unit/oscd-filter-button.test.ts",
+          "hash": "9700837170685453521",
+          "deps": [
+            "npm:@open-wc/testing",
+            "npm:sinon",
+            "npm:@material/mwc-list"
+          ]
+        },
+        {
+          "file": "packages/open-scd/test/unit/plain-compare-list.test.ts",
+          "hash": "14912879554019159502",
+          "deps": [
+            "npm:@open-wc/testing"
+          ]
+        },
+        {
+          "file": "packages/open-scd/test/unit/schema.test.ts",
+          "hash": "14806523135675525388",
+          "deps": [
+            "npm:@open-wc/testing"
+          ]
+        },
+        {
+          "file": "packages/open-scd/test/unit/wizard-checkbox.test.ts",
+          "hash": "7498068846791433102",
+          "deps": [
+            "npm:@open-wc/testing"
+          ]
+        },
+        {
+          "file": "packages/open-scd/test/unit/wizard-dialog.test.ts",
+          "hash": "14412010882609929335"
+        },
+        {
+          "file": "packages/open-scd/test/unit/wizard-select.test.ts",
+          "hash": "3616888333084087679",
+          "deps": [
+            "npm:@open-wc/testing",
+            "npm:@material/mwc-list"
+          ]
+        },
+        {
+          "file": "packages/open-scd/test/unit/wizard-textfield.test.ts",
+          "hash": "16591066005681057267",
+          "deps": [
+            "npm:@open-wc/testing"
+          ]
+        },
+        {
+          "file": "packages/open-scd/tsconfig.json",
+          "hash": "12569360543550565162"
+        },
+        {
+          "file": "packages/open-scd/web-test-runner.config.mjs",
+          "hash": "8715077720788600936",
+          "deps": [
+            "npm:@web/dev-server-esbuild"
+          ]
+        }
+      ],
+      "@openscd/plugins": [
+        {
+          "file": "packages/plugins/.eslintrc.cjs",
+          "hash": "17644058191750607887"
+        },
+        {
+          "file": "packages/plugins/.gitignore",
+          "hash": "14173734176158120779"
+        },
+        {
+          "file": "packages/plugins/.nojekyll",
+          "hash": "708642270230508292"
+        },
+        {
+          "file": "packages/plugins/README.md",
+          "hash": "16843830254589678322"
+        },
+        {
+          "file": "packages/plugins/package.json",
+          "hash": "9460333804708018444",
+          "deps": [
+            "npm:@material/mwc-dialog",
+            "npm:@material/mwc-fab",
+            "npm:@material/mwc-formfield",
+            "npm:@material/mwc-icon",
+            "npm:@material/mwc-icon-button",
+            "npm:@material/mwc-icon-button-toggle",
+            "npm:@material/mwc-list",
+            "npm:@material/mwc-menu",
+            "npm:@material/mwc-select",
+            "npm:@material/mwc-switch",
+            "npm:@material/mwc-textarea",
+            "npm:@material/mwc-textfield",
+            "npm:lit",
+            "npm:lit-translate",
+            "npm:marked",
+            "npm:panzoom",
+            "@openscd/open-scd",
+            "@openscd/core",
+            "@openscd/wizards",
+            "@openscd/components",
+            "npm:@commitlint/cli",
+            "npm:@commitlint/config-conventional",
+            "npm:@open-wc/eslint-config",
+            "npm:@open-wc/semantic-dom-diff",
+            "npm:@open-wc/testing",
+            "npm:@snowpack/plugin-typescript",
+            "npm:@types/marked",
+            "npm:@types/node",
+            "npm:@typescript-eslint/eslint-plugin",
+            "npm:@typescript-eslint/parser",
+            "npm:@web/dev-server-esbuild",
+            "npm:@web/test-runner",
+            "npm:concurrently",
+            "npm:deepmerge",
+            "npm:es-dev-server",
+            "npm:eslint",
+            "npm:eslint-config-prettier",
+            "npm:eslint-plugin-babel",
+            "npm:eslint-plugin-tsdoc",
+            "npm:fast-check",
+            "npm:husky",
+            "npm:lint-staged",
+            "npm:prettier",
+            "npm:sinon",
+            "npm:snowpack",
+            "npm:source-map",
+            "npm:standard-version",
+            "npm:tslib",
+            "npm:typescript",
+            "npm:web-component-analyzer",
+            "npm:workbox-cli"
+          ]
+        },
+        {
           "file": "packages/plugins/project.json",
-          "hash": "10513349291678591624"
+          "hash": "11513871543658667761"
         },
         {
           "file": "packages/plugins/public/js/worker.js",
@@ -1300,13 +3028,7 @@
         },
         {
           "file": "packages/plugins/src/editors/Communication.ts",
-          "hash": "3538353810181881741",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-fab",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "9044210928593477106"
         },
         {
           "file": "packages/plugins/src/editors/GooseSubscriberDataBinding.ts",
@@ -1420,114 +3142,39 @@
         },
         {
           "file": "packages/plugins/src/editors/Templates.ts",
-          "hash": "11975176777131566686",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-fab",
-            "npm:@material/mwc-icon-button",
-            "npm:@material/mwc-list",
-            "npm:@openscd/open-scd/src/filtered-list.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "12120814882644273956"
         },
         {
           "file": "packages/plugins/src/editors/cleanup/control-blocks-container.ts",
-          "hash": "1326913448767056026",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-html",
-            "npm:lit-translate",
-            "npm:@material/mwc-button",
-            "npm:@material/mwc-icon",
-            "npm:@material/mwc-icon-button-toggle",
-            "npm:@material/mwc-list",
-            "npm:@material/mwc-checkbox",
-            "npm:@openscd/open-scd/src/filtered-list.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/icons/icons.js"
-          ]
+          "hash": "3207721770384674942"
         },
         {
           "file": "packages/plugins/src/editors/cleanup/datasets-container.ts",
-          "hash": "12631204351452039457",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-button",
-            "npm:@material/mwc-icon",
-            "npm:@material/mwc-icon-button-toggle",
-            "npm:@material/mwc-list",
-            "npm:@material/mwc-checkbox",
-            "npm:@openscd/open-scd/src/filtered-list.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "10205337091989929708"
         },
         {
           "file": "packages/plugins/src/editors/cleanup/datatypes-container.ts",
-          "hash": "1504117337375868523",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-html",
-            "npm:lit-translate",
-            "npm:@material/mwc-button",
-            "npm:@material/mwc-icon",
-            "npm:@material/mwc-icon-button-toggle",
-            "npm:@material/mwc-list",
-            "npm:@material/mwc-checkbox",
-            "npm:@openscd/open-scd/src/filtered-list.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/icons/icons.js"
-          ]
+          "hash": "12482274850751958228"
         },
         {
           "file": "packages/plugins/src/editors/cleanup/foundation.ts",
-          "hash": "12655768171403170482",
-          "deps": [
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "5747551928957505455"
         },
         {
           "file": "packages/plugins/src/editors/communication/connectedap-editor.ts",
-          "hash": "13818583136418286581",
-          "deps": [
-            "npm:lit-element",
-            "npm:@material/mwc-fab",
-            "npm:@openscd/open-scd/src/action-icon.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "11419413731722150449"
         },
         {
           "file": "packages/plugins/src/editors/communication/gse-editor.ts",
-          "hash": "2171603766544718341",
-          "deps": [
-            "npm:lit-element",
-            "npm:@material/mwc-icon",
-            "npm:@openscd/open-scd/src/action-icon.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/icons/icons.js"
-          ]
+          "hash": "17957098883732948126"
         },
         {
           "file": "packages/plugins/src/editors/communication/smv-editor.ts",
-          "hash": "16697775802073221875",
-          "deps": [
-            "npm:lit-element",
-            "npm:@material/mwc-icon",
-            "npm:@openscd/open-scd/src/action-icon.js",
-            "npm:@openscd/open-scd/src/icons/icons.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "12152032317978168884"
         },
         {
           "file": "packages/plugins/src/editors/communication/subnetwork-editor.ts",
-          "hash": "3028059795180563847",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-icon-button",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "9852622761596645446"
         },
         {
           "file": "packages/plugins/src/editors/ied/access-point-container.ts",
@@ -1581,16 +3228,7 @@
         },
         {
           "file": "packages/plugins/src/editors/ied/do-wizard.ts",
-          "hash": "17740648735291257901",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-html",
-            "npm:lit-translate",
-            "npm:@material/mwc-textarea",
-            "npm:@material/mwc-textfield",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/foundation/nsdoc.js"
-          ]
+          "hash": "4806971365715199146"
         },
         {
           "file": "packages/plugins/src/editors/ied/element-path.ts",
@@ -1610,14 +3248,7 @@
         },
         {
           "file": "packages/plugins/src/editors/ied/ied-container.ts",
-          "hash": "6982092382616256185",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-html",
-            "npm:lit-translate",
-            "npm:@openscd/open-scd/src/action-pane.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "15806196040261713509"
         },
         {
           "file": "packages/plugins/src/editors/ied/ldevice-container.ts",
@@ -1664,13 +3295,7 @@
         },
         {
           "file": "packages/plugins/src/editors/protocol104/connectedap-editor.ts",
-          "hash": "1732138549228741779",
-          "deps": [
-            "npm:lit-element",
-            "npm:@material/mwc-fab",
-            "npm:@openscd/open-scd/src/action-icon.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "3253805200891144226"
         },
         {
           "file": "packages/plugins/src/editors/protocol104/doi-container.ts",
@@ -1689,19 +3314,11 @@
         },
         {
           "file": "packages/plugins/src/editors/protocol104/foundation/actions.ts",
-          "hash": "12923247342468279360",
-          "deps": [
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "14192240311226425386"
         },
         {
           "file": "packages/plugins/src/editors/protocol104/foundation/cdc.ts",
-          "hash": "17298022270190759106",
-          "deps": [
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/foundation/dai.js",
-            "npm:lit-translate"
-          ]
+          "hash": "14169764893134958297"
         },
         {
           "file": "packages/plugins/src/editors/protocol104/foundation/foundation.ts",
@@ -1746,12 +3363,7 @@
         },
         {
           "file": "packages/plugins/src/editors/protocol104/network-container.ts",
-          "hash": "16780922492086474675",
-          "deps": [
-            "npm:lit-translate",
-            "npm:lit-element",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "14587870435821788178"
         },
         {
           "file": "packages/plugins/src/editors/protocol104/subnetwork-container.ts",
@@ -1774,83 +3386,27 @@
         },
         {
           "file": "packages/plugins/src/editors/protocol104/wizards/address.ts",
-          "hash": "6611904628463046475",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:lit-html",
-            "npm:@material/mwc-list",
-            "npm:@material/mwc-select",
-            "npm:@material/mwc-textarea",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/wizard-select.js"
-          ]
+          "hash": "8177570132193946897"
         },
         {
           "file": "packages/plugins/src/editors/protocol104/wizards/connectedap.ts",
-          "hash": "6194969998551216373",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:lit-html",
-            "npm:@material/mwc-checkbox",
-            "npm:@material/mwc-switch",
-            "npm:@material/mwc-formfield",
-            "npm:@material/mwc-list",
-            "npm:@material/mwc-icon",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/filtered-list.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "3239349135080143166"
         },
         {
           "file": "packages/plugins/src/editors/protocol104/wizards/createAddresses.ts",
-          "hash": "10602113135669180252",
-          "deps": [
-            "npm:lit-translate",
-            "npm:lit-element",
-            "npm:@material/mwc-select",
-            "npm:@material/mwc-list",
-            "npm:@material/mwc-switch",
-            "npm:@material/mwc-formfield",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/WizardDivider.js",
-            "npm:@openscd/open-scd/src/wizard-select.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "1951163873771390179"
         },
         {
           "file": "packages/plugins/src/editors/protocol104/wizards/doi.ts",
-          "hash": "1509762537308804684",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-textarea",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js"
-          ]
+          "hash": "13056337753128333865"
         },
         {
           "file": "packages/plugins/src/editors/protocol104/wizards/logiclink.ts",
-          "hash": "13974409642458364670",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "4753108361871344720"
         },
         {
           "file": "packages/plugins/src/editors/protocol104/wizards/redundancygroup.ts",
-          "hash": "16313316888765797870",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@material/mwc-list"
-          ]
+          "hash": "7716255592346509620"
         },
         {
           "file": "packages/plugins/src/editors/protocol104/wizards/selectDo.ts",
@@ -1864,13 +3420,7 @@
         },
         {
           "file": "packages/plugins/src/editors/protocol104/wizards/subnetwork.ts",
-          "hash": "8677190584447832540",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js"
-          ]
+          "hash": "1718397987850873000"
         },
         {
           "file": "packages/plugins/src/editors/publisher/data-set-editor.ts",
@@ -2027,12 +3577,7 @@
         },
         {
           "file": "packages/plugins/src/editors/singlelinediagram/wizards/foundation.ts",
-          "hash": "14770847495894220266",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "6102975276566908054"
         },
         {
           "file": "packages/plugins/src/editors/singlelinediagram/wizards/powertransformer.ts",
@@ -2068,13 +3613,7 @@
         },
         {
           "file": "packages/plugins/src/editors/subscription/foundation.ts",
-          "hash": "8527756128324840282",
-          "deps": [
-            "npm:lit-element",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/foundation/ied.js",
-            "npm:@openscd/open-scd/src/schemas.js"
-          ]
+          "hash": "18305462782665980800"
         },
         {
           "file": "packages/plugins/src/editors/subscription/goose/foundation.ts",
@@ -2096,17 +3635,7 @@
         },
         {
           "file": "packages/plugins/src/editors/subscription/goose/subscriber-list.ts",
-          "hash": "18315126697453114308",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-html",
-            "npm:lit-translate",
-            "npm:@material/mwc-icon",
-            "npm:@material/mwc-list",
-            "npm:@openscd/open-scd/src/filtered-list.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/foundation/ied.js"
-          ]
+          "hash": "4742323078667780751"
         },
         {
           "file": "packages/plugins/src/editors/subscription/ied-list.ts",
@@ -2122,25 +3651,11 @@
         },
         {
           "file": "packages/plugins/src/editors/subscription/later-binding/ext-ref-later-binding-list.ts",
-          "hash": "3439726581623777255",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-html",
-            "npm:lit-translate",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "8964643111679185724"
         },
         {
           "file": "packages/plugins/src/editors/subscription/later-binding/ext-ref-ln-binding-list.ts",
-          "hash": "18240416410779955619",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-html",
-            "npm:lit-translate",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/foundation/nsdoc.js",
-            "npm:@openscd/open-scd/src/foundation/ied.js"
-          ]
+          "hash": "7741502946738966308"
         },
         {
           "file": "packages/plugins/src/editors/subscription/later-binding/foundation.ts",
@@ -2168,391 +3683,115 @@
         },
         {
           "file": "packages/plugins/src/editors/subscription/sampledvalues/subscriber-list.ts",
-          "hash": "8864865415230383850",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-html",
-            "npm:lit-translate",
-            "npm:@material/mwc-icon",
-            "npm:@material/mwc-list",
-            "npm:@openscd/open-scd/src/filtered-list.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/foundation/ied.js"
-          ]
+          "hash": "14621433521595922650"
         },
         {
           "file": "packages/plugins/src/editors/substation/bay-editor.ts",
-          "hash": "1982321140382514703",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-html",
-            "npm:lit-translate",
-            "npm:@material/mwc-icon-button",
-            "npm:@material/mwc-textfield",
-            "npm:@material/mwc-dialog",
-            "npm:@material/mwc-menu",
-            "npm:@material/mwc-list",
-            "npm:@openscd/open-scd/src/action-pane.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/icons/icons.js"
-          ]
+          "hash": "4730430801367955826"
         },
         {
           "file": "packages/plugins/src/editors/substation/conducting-equipment-editor.ts",
-          "hash": "12875568592201480895",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-fab",
-            "npm:@material/mwc-icon",
-            "npm:@material/mwc-icon-button",
-            "npm:@material/mwc-menu",
-            "npm:@material/mwc-list",
-            "npm:@openscd/open-scd/src/action-icon.js",
-            "npm:@openscd/open-scd/src/action-pane.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "4451070887139372983"
         },
         {
           "file": "packages/plugins/src/editors/substation/eq-function-editor.ts",
-          "hash": "8463135153808897528",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-icon-button",
-            "npm:@material/mwc-list",
-            "npm:@material/mwc-menu",
-            "npm:@openscd/open-scd/src/action-pane.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:lit-html"
-          ]
+          "hash": "8178191763731148248"
         },
         {
           "file": "packages/plugins/src/editors/substation/eq-sub-function-editor.ts",
-          "hash": "14878663631482826826",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-icon-button",
-            "npm:@material/mwc-list",
-            "npm:@material/mwc-menu",
-            "npm:@openscd/open-scd/src/action-pane.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:lit-html"
-          ]
+          "hash": "6039197546698780781"
         },
         {
           "file": "packages/plugins/src/editors/substation/foundation.ts",
-          "hash": "17169656022148133227",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-html",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/icons/icons.js",
-            "npm:@material/mwc-select",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:lit-translate"
-          ]
+          "hash": "4972444959503036824"
         },
         {
           "file": "packages/plugins/src/editors/substation/function-editor.ts",
-          "hash": "15949664352593321173",
-          "deps": [
-            "npm:lit-element",
-            "npm:@openscd/open-scd/src/action-pane.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:lit-translate",
-            "npm:@material/mwc-menu",
-            "npm:@material/mwc-list",
-            "npm:@material/mwc-icon-button"
-          ]
+          "hash": "16495738827169528708"
         },
         {
           "file": "packages/plugins/src/editors/substation/general-equipment-editor.ts",
-          "hash": "12074894932149632225",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-icon-button",
-            "npm:@material/mwc-list",
-            "npm:@material/mwc-menu",
-            "npm:@material/mwc-fab",
-            "npm:@openscd/open-scd/src/action-pane.js",
-            "npm:@openscd/open-scd/src/icons/icons.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "15248947559670644836"
         },
         {
           "file": "packages/plugins/src/editors/substation/guess-wizard.ts",
-          "hash": "7875819278697238778",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-list",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "2274284267884639549"
         },
         {
           "file": "packages/plugins/src/editors/substation/ied-editor.ts",
-          "hash": "14123635670240587821",
-          "deps": [
-            "npm:lit-element",
-            "npm:@material/mwc-fab",
-            "npm:@material/mwc-icon",
-            "npm:@openscd/open-scd/src/action-icon.js",
-            "npm:@openscd/open-scd/src/icons/icons.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "2748278189465065003"
         },
         {
           "file": "packages/plugins/src/editors/substation/l-node-editor.ts",
-          "hash": "10459032165596771117",
-          "deps": [
-            "npm:lit-element",
-            "npm:@openscd/open-scd/src/action-icon.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/icons/lnode.js"
-          ]
+          "hash": "12031605076762101057"
         },
         {
           "file": "packages/plugins/src/editors/substation/line-editor.ts",
-          "hash": "17315272416720334457",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-icon",
-            "npm:@material/mwc-icon-button",
-            "npm:@material/mwc-menu",
-            "npm:@material/mwc-list",
-            "npm:@openscd/open-scd/src/icons/icons.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "4484637764069696042"
         },
         {
           "file": "packages/plugins/src/editors/substation/powertransformer-editor.ts",
-          "hash": "7759077338100281044",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-fab",
-            "npm:@material/mwc-icon",
-            "npm:@material/mwc-icon-button",
-            "npm:@material/mwc-menu",
-            "npm:@material/mwc-list",
-            "npm:@openscd/open-scd/src/action-icon.js",
-            "npm:@openscd/open-scd/src/action-pane.js",
-            "npm:@openscd/open-scd/src/icons/icons.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "17860269715969486680"
         },
         {
           "file": "packages/plugins/src/editors/substation/process-editor.ts",
-          "hash": "2093644957573181496",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-icon",
-            "npm:@material/mwc-icon-button",
-            "npm:@material/mwc-menu",
-            "npm:@material/mwc-list",
-            "npm:@openscd/open-scd/src/icons/icons.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "17994786235390459016"
         },
         {
           "file": "packages/plugins/src/editors/substation/sub-equipment-editor.ts",
-          "hash": "10493485306569124374",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-fab",
-            "npm:@material/mwc-icon",
-            "npm:@material/mwc-icon-button",
-            "npm:@material/mwc-menu",
-            "npm:@material/mwc-list",
-            "npm:@openscd/open-scd/src/action-icon.js",
-            "npm:@openscd/open-scd/src/action-pane.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "7427149022737990647"
         },
         {
           "file": "packages/plugins/src/editors/substation/sub-function-editor.ts",
-          "hash": "11987729323897547716",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-icon-button",
-            "npm:@material/mwc-list",
-            "npm:@material/mwc-menu",
-            "npm:@openscd/open-scd/src/action-pane.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "5103901740724894921"
         },
         {
           "file": "packages/plugins/src/editors/substation/substation-editor.ts",
-          "hash": "13829545066174908191",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-html",
-            "npm:lit-translate",
-            "npm:@material/mwc-icon-button",
-            "npm:@material/mwc-icon",
-            "npm:@material/mwc-menu",
-            "npm:@material/mwc-list",
-            "npm:@openscd/open-scd/src/action-pane.js",
-            "npm:@openscd/open-scd/src/icons/icons.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@material/mwc-dialog"
-          ]
+          "hash": "12967181840790456691"
         },
         {
           "file": "packages/plugins/src/editors/substation/tapchanger-editor.ts",
-          "hash": "5971733179513457965",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-icon",
-            "npm:@material/mwc-icon-button",
-            "npm:@material/mwc-menu",
-            "npm:@material/mwc-list",
-            "npm:@openscd/open-scd/src/action-pane.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "3000087137954516512"
         },
         {
           "file": "packages/plugins/src/editors/substation/transformer-winding-editor.ts",
-          "hash": "2052874149753646943",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-fab",
-            "npm:@material/mwc-icon",
-            "npm:@material/mwc-icon-button",
-            "npm:@material/mwc-menu",
-            "npm:@material/mwc-list",
-            "npm:@openscd/open-scd/src/action-icon.js",
-            "npm:@openscd/open-scd/src/action-pane.js",
-            "npm:@openscd/open-scd/src/icons/icons.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "7913659562332025715"
         },
         {
           "file": "packages/plugins/src/editors/substation/voltage-level-editor.ts",
-          "hash": "8145843869356957486",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-html",
-            "npm:lit-translate",
-            "npm:@material/mwc-icon-button",
-            "npm:@material/mwc-menu",
-            "npm:@material/mwc-list",
-            "npm:@openscd/open-scd/src/action-pane.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/icons/icons.js",
-            "npm:@material/mwc-dialog"
-          ]
+          "hash": "8622164978506227090"
         },
         {
           "file": "packages/plugins/src/editors/substation/zeroline-pane.ts",
-          "hash": "2097972667336297306",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-icon-button",
-            "npm:@material/mwc-icon-button-toggle",
-            "npm:@material/mwc-list",
-            "npm:@material/mwc-menu",
-            "npm:@openscd/open-scd/src/icons/icons.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/addons/Settings.js"
-          ]
+          "hash": "13387076407762054913"
         },
         {
           "file": "packages/plugins/src/editors/templates/datype-wizards.ts",
-          "hash": "11775207283040499047",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-button",
-            "npm:@material/mwc-list",
-            "npm:@material/mwc-select",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "9393411831633116074"
         },
         {
           "file": "packages/plugins/src/editors/templates/dotype-wizards.ts",
-          "hash": "11483159150803972074",
-          "deps": [
-            "npm:lit-html",
-            "npm:lit-translate",
-            "npm:@material/mwc-button",
-            "npm:@material/mwc-list",
-            "npm:@material/mwc-select",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "3782854864607415189"
         },
         {
           "file": "packages/plugins/src/editors/templates/enumtype-wizard.ts",
-          "hash": "9935377554845734529",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-button",
-            "npm:@material/mwc-list",
-            "npm:@material/mwc-select",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "3256760759633795448"
         },
         {
           "file": "packages/plugins/src/editors/templates/foundation.ts",
-          "hash": "11102831329213567903",
-          "deps": [
-            "npm:lit-element",
-            "npm:@material/mwc-list",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "2243562881544806423"
         },
         {
           "file": "packages/plugins/src/editors/templates/lnodetype-wizard.ts",
-          "hash": "2872487523605300654",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-button",
-            "npm:@material/mwc-list",
-            "npm:@material/mwc-select",
-            "npm:@openscd/open-scd/src/wizard-checkbox.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/wizard-select.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "10028841436515786617"
         },
         {
           "file": "packages/plugins/src/menu/CompareIED.ts",
-          "hash": "14838504933255847953",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-dialog",
-            "npm:@material/mwc-list",
-            "npm:@material/mwc-formfield",
-            "npm:@material/mwc-checkbox",
-            "npm:@openscd/open-scd/src/plain-compare-list.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/foundation/compare.js"
-          ]
+          "hash": "14372295661321849662"
         },
         {
           "file": "packages/plugins/src/menu/ExportCommunication.ts",
-          "hash": "1149893687285253161",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "16395678601820174976"
         },
         {
           "file": "packages/plugins/src/menu/Help.ts",
@@ -2569,17 +3808,7 @@
         },
         {
           "file": "packages/plugins/src/menu/ImportIEDs.ts",
-          "hash": "1216287125226798591",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-list",
-            "npm:@material/dialog",
-            "npm:@material/mwc-button",
-            "npm:@material/mwc-dialog",
-            "npm:@openscd/open-scd/src/filtered-list.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "10908375037730271767"
         },
         {
           "file": "packages/plugins/src/menu/Merge.ts",
@@ -2592,23 +3821,11 @@
         },
         {
           "file": "packages/plugins/src/menu/NewProject.ts",
-          "hash": "18031404461955155588",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-list",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/schemas.js"
-          ]
+          "hash": "15796061967963740758"
         },
         {
           "file": "packages/plugins/src/menu/OpenProject.ts",
-          "hash": "7288900700257714771",
-          "deps": [
-            "npm:lit-element",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "1620737002526680983"
         },
         {
           "file": "packages/plugins/src/menu/SaveProject.ts",
@@ -2630,12 +3847,7 @@
         },
         {
           "file": "packages/plugins/src/menu/SubscriberInfo.ts",
-          "hash": "3239997356175491346",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "14439085751683076604"
         },
         {
           "file": "packages/plugins/src/menu/UpdateDescriptionABB.ts",
@@ -2671,17 +3883,7 @@
         },
         {
           "file": "packages/plugins/src/menu/VirtualTemplateIED.ts",
-          "hash": "7924737092255046967",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-dialog",
-            "npm:@material/mwc-list",
-            "npm:@material/mwc-select",
-            "npm:@openscd/open-scd/src/filtered-list.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js"
-          ]
+          "hash": "1598207926264809316"
         },
         {
           "file": "packages/plugins/src/menu/virtualtemplateied/foundation.ts",
@@ -2692,117 +3894,51 @@
         },
         {
           "file": "packages/plugins/src/validators/ValidateSchema.ts",
-          "hash": "12000057731964430224",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/schemas.js"
-          ]
+          "hash": "7394095155021371669"
         },
         {
           "file": "packages/plugins/src/validators/ValidateTemplates.ts",
-          "hash": "16138087419743128328",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "13209144023430910419"
         },
         {
           "file": "packages/plugins/src/validators/templates/dabda.ts",
-          "hash": "14966041075062809360",
-          "deps": [
-            "npm:lit-translate",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "2897462441939322315"
         },
         {
           "file": "packages/plugins/src/validators/templates/datype.ts",
-          "hash": "8116600548209393569",
-          "deps": [
-            "npm:lit-translate",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/foundation/nsd.js"
-          ]
+          "hash": "9228645565441718032"
         },
         {
           "file": "packages/plugins/src/validators/templates/dosdo.ts",
-          "hash": "717960475722499513",
-          "deps": [
-            "npm:lit-translate",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "17823905421141458172"
         },
         {
           "file": "packages/plugins/src/validators/templates/dotype.ts",
-          "hash": "16210060234758198404",
-          "deps": [
-            "npm:lit-translate",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/foundation/nsd.js"
-          ]
+          "hash": "13488795110749739893"
         },
         {
           "file": "packages/plugins/src/validators/templates/foundation.ts",
-          "hash": "15178607568940184732",
-          "deps": [
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "12440656396334352209"
         },
         {
           "file": "packages/plugins/src/validators/templates/lnodetype.ts",
-          "hash": "16603055169938792266",
-          "deps": [
-            "npm:lit-translate",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/foundation/nsd.js"
-          ]
+          "hash": "4885603701199526059"
         },
         {
           "file": "packages/plugins/src/wizards/abstractda.ts",
-          "hash": "14820327510466540757",
-          "deps": [
-            "npm:lit-html",
-            "npm:lit-translate",
-            "npm:@material/mwc-list",
-            "npm:@material/mwc-select",
-            "npm:@openscd/open-scd/src/wizard-checkbox.js",
-            "npm:@openscd/open-scd/src/wizard-select.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "13778533387611058072"
         },
         {
           "file": "packages/plugins/src/wizards/address.ts",
-          "hash": "17061634096347036217",
-          "deps": [
-            "npm:lit-html",
-            "npm:lit-translate",
-            "npm:@material/mwc-checkbox",
-            "npm:@material/mwc-formfield",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "4992928890543878977"
         },
         {
           "file": "packages/plugins/src/wizards/bay.ts",
-          "hash": "2664388955946699018",
-          "deps": [
-            "npm:lit-html",
-            "npm:lit-translate",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "1302384483312765070"
         },
         {
           "file": "packages/plugins/src/wizards/bda.ts",
-          "hash": "10467870434066852987",
-          "deps": [
-            "npm:lit-translate",
-            "npm:@material/mwc-button",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "9952927128441394679"
         },
         {
           "file": "packages/plugins/src/wizards/clientln.ts",
@@ -2832,32 +3968,11 @@
         },
         {
           "file": "packages/plugins/src/wizards/conductingequipment.ts",
-          "hash": "3896535659528209051",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-list",
-            "npm:@material/mwc-select",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "16276472584543540989"
         },
         {
           "file": "packages/plugins/src/wizards/connectedap.ts",
-          "hash": "257814054191499468",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-html",
-            "npm:lit-translate",
-            "npm:@material/mwc-checkbox",
-            "npm:@material/mwc-formfield",
-            "npm:@material/mwc-list",
-            "npm:@material/mwc-icon",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/filtered-list.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/foundation/generators.js"
-          ]
+          "hash": "7811593327461413135"
         },
         {
           "file": "packages/plugins/src/wizards/connectivitynode.ts",
@@ -2870,70 +3985,27 @@
         },
         {
           "file": "packages/plugins/src/wizards/controlwithiedname.ts",
-          "hash": "1411401450324088701",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-icon",
-            "npm:@material/mwc-list",
-            "npm:@openscd/open-scd/src/filtered-list.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/icons/icons.js"
-          ]
+          "hash": "18408462672080073318"
         },
         {
           "file": "packages/plugins/src/wizards/da.ts",
-          "hash": "16310896221915177484",
-          "deps": [
-            "npm:lit-html",
-            "npm:lit-translate",
-            "npm:@material/mwc-button",
-            "npm:@material/mwc-list",
-            "npm:@openscd/open-scd/src/wizard-checkbox.js",
-            "npm:@openscd/open-scd/src/wizard-select.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "11525492478024487632"
         },
         {
           "file": "packages/plugins/src/wizards/dai.ts",
-          "hash": "15231263715156800355",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-html",
-            "npm:lit-translate",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/schemas.js"
-          ]
+          "hash": "16181778339027496148"
         },
         {
           "file": "packages/plugins/src/wizards/dataset.ts",
-          "hash": "1040128501369901942",
-          "deps": [
-            "npm:@material/mwc-list",
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-button",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/filtered-list.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "7857557434736594286"
         },
         {
           "file": "packages/plugins/src/wizards/eqfunction.ts",
-          "hash": "142777687194904671",
-          "deps": [
-            "npm:lit-translate",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "4612735251275756903"
         },
         {
           "file": "packages/plugins/src/wizards/eqsubfunction.ts",
-          "hash": "6726867018711006308",
-          "deps": [
-            "npm:lit-translate",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "1282671859724608220"
         },
         {
           "file": "packages/plugins/src/wizards/fcda.ts",
@@ -2947,11 +4019,7 @@
         },
         {
           "file": "packages/plugins/src/wizards/foundation/actions.ts",
-          "hash": "7077436206541288210",
-          "deps": [
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:lit-translate"
-          ]
+          "hash": "1116533375532305079"
         },
         {
           "file": "packages/plugins/src/wizards/foundation/dai-field-type.ts",
@@ -2989,10 +4057,7 @@
         },
         {
           "file": "packages/plugins/src/wizards/foundation/references.ts",
-          "hash": "12128149474615391495",
-          "deps": [
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "6120046877033852999"
         },
         {
           "file": "packages/plugins/src/wizards/foundation/scl.ts",
@@ -3000,94 +4065,35 @@
         },
         {
           "file": "packages/plugins/src/wizards/function.ts",
-          "hash": "16365556506837493305",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "12471616982514654310"
         },
         {
           "file": "packages/plugins/src/wizards/generalEquipment.ts",
-          "hash": "13957626536987513995",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "3241819426519486899"
         },
         {
           "file": "packages/plugins/src/wizards/gse.ts",
-          "hash": "10084845696500673565",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-checkbox",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "6990189737345936496"
         },
         {
           "file": "packages/plugins/src/wizards/gsecontrol.ts",
-          "hash": "2776926511288744339",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-button",
-            "npm:@material/mwc-list",
-            "npm:@material/mwc-checkbox",
-            "npm:@openscd/open-scd/src/filtered-list.js",
-            "npm:@openscd/open-scd/src/wizard-checkbox.js",
-            "npm:@openscd/open-scd/src/wizard-select.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/finder-list.js"
-          ]
+          "hash": "12506074148620678959"
         },
         {
           "file": "packages/plugins/src/wizards/ied.ts",
-          "hash": "13863334648225452572",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-list",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/foundation/ied.js"
-          ]
+          "hash": "13420043296320306481"
         },
         {
           "file": "packages/plugins/src/wizards/ldevice.ts",
-          "hash": "3865304434954040806",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-list",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "18213717798529486671"
         },
         {
           "file": "packages/plugins/src/wizards/line.ts",
-          "hash": "17704233705990688769",
-          "deps": [
-            "npm:lit-html",
-            "npm:lit-translate",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "10770289954611829458"
         },
         {
           "file": "packages/plugins/src/wizards/lnode.ts",
-          "hash": "5875577414554472861",
-          "deps": [
-            "npm:lit-html",
-            "npm:lit-translate",
-            "npm:@material/mwc-icon",
-            "npm:@material/mwc-list",
-            "npm:@openscd/open-scd/src/filtered-list.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "2915664524848289889"
         },
         {
           "file": "packages/plugins/src/wizards/optfields.ts",
@@ -3103,54 +4109,19 @@
         },
         {
           "file": "packages/plugins/src/wizards/powertransformer.ts",
-          "hash": "3572816676997511579",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "14771806295174283470"
         },
         {
           "file": "packages/plugins/src/wizards/process.ts",
-          "hash": "1793996908178531170",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "17182564761194062887"
         },
         {
           "file": "packages/plugins/src/wizards/reportcontrol.ts",
-          "hash": "11775879678725942627",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-button",
-            "npm:@material/mwc-list",
-            "npm:@openscd/open-scd/src/wizard-checkbox.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/wizard-select.js",
-            "npm:@openscd/open-scd/src/filtered-list.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/finder-list.js",
-            "npm:@openscd/open-scd/src/foundation/scl.js"
-          ]
+          "hash": "13850929295698414229"
         },
         {
           "file": "packages/plugins/src/wizards/sampledvaluecontrol.ts",
-          "hash": "8715825606180855307",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-list",
-            "npm:@material/mwc-checkbox",
-            "npm:@openscd/open-scd/src/filtered-list.js",
-            "npm:@openscd/open-scd/src/wizard-checkbox.js",
-            "npm:@openscd/open-scd/src/wizard-select.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/finder-list.js"
-          ]
+          "hash": "9083856697863753177"
         },
         {
           "file": "packages/plugins/src/wizards/service-GSEControl.ts",
@@ -3218,12 +4189,7 @@
         },
         {
           "file": "packages/plugins/src/wizards/smv.ts",
-          "hash": "13611864294468677668",
-          "deps": [
-            "npm:lit-translate",
-            "npm:@material/mwc-checkbox",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "3570261867800078815"
         },
         {
           "file": "packages/plugins/src/wizards/smvopts.ts",
@@ -3236,32 +4202,15 @@
         },
         {
           "file": "packages/plugins/src/wizards/subequipment.ts",
-          "hash": "283181874080121639",
-          "deps": [
-            "npm:lit-html",
-            "npm:lit-translate",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/wizard-select.js"
-          ]
+          "hash": "12733957050896392379"
         },
         {
           "file": "packages/plugins/src/wizards/subfunction.ts",
-          "hash": "3639225798320100418",
-          "deps": [
-            "npm:lit-translate",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "11035002864775632253"
         },
         {
           "file": "packages/plugins/src/wizards/subnetwork.ts",
-          "hash": "1451785544769058151",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "7854624849022936786"
         },
         {
           "file": "packages/plugins/src/wizards/substation.ts",
@@ -3277,12 +4226,7 @@
         },
         {
           "file": "packages/plugins/src/wizards/tapchanger.ts",
-          "hash": "2685079758154003235",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "10951182437723336272"
         },
         {
           "file": "packages/plugins/src/wizards/terminal.ts",
@@ -3295,12 +4239,7 @@
         },
         {
           "file": "packages/plugins/src/wizards/transformerWinding.ts",
-          "hash": "8311501490428579971",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "1886317094685124473"
         },
         {
           "file": "packages/plugins/src/wizards/trgops.ts",
@@ -3316,13 +4255,7 @@
         },
         {
           "file": "packages/plugins/src/wizards/voltagelevel.ts",
-          "hash": "14130966456762680540",
-          "deps": [
-            "npm:lit-html",
-            "npm:lit-translate",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "10784137307033561490"
         },
         {
           "file": "packages/plugins/src/wizards/wizard-library.ts",
@@ -3949,12 +4882,7 @@
         },
         {
           "file": "packages/plugins/test/integration/validators/ValidateSchema.test.ts",
-          "hash": "11164063378403649580",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:@openscd/open-scd/test/mock-open-scd.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "310802367091084254"
         },
         {
           "file": "packages/plugins/test/integration/validators/ValidateTemplates.test.ts",
@@ -4586,30 +5514,15 @@
         },
         {
           "file": "packages/plugins/test/unit/editors/communication/conductingap-editor.test.ts",
-          "hash": "10445003308005974011",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "14573281676930603261"
         },
         {
           "file": "packages/plugins/test/unit/editors/communication/gse-editor.test.ts",
-          "hash": "6768819229328680572",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "9453501173082265860"
         },
         {
           "file": "packages/plugins/test/unit/editors/communication/smv-editor.test.ts",
-          "hash": "5047753534765196688",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "16989440816349098391"
         },
         {
           "file": "packages/plugins/test/unit/editors/communication/subnetwork-editor.test.ts",
@@ -4789,12 +5702,7 @@
         },
         {
           "file": "packages/plugins/test/unit/editors/protocol104/foundation/actions.test.ts",
-          "hash": "14330556865564938924",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "12728428171056636028"
         },
         {
           "file": "packages/plugins/test/unit/editors/protocol104/foundation/cdc.test.ts",
@@ -4891,60 +5799,23 @@
         },
         {
           "file": "packages/plugins/test/unit/editors/protocol104/wizards/connectedap.test.ts",
-          "hash": "6715540908317466631",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@material/mwc-checkbox",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@material/mwc-list"
-          ]
+          "hash": "12346575826619879970"
         },
         {
           "file": "packages/plugins/test/unit/editors/protocol104/wizards/createAddresses.test.ts",
-          "hash": "755289365067504222",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/wizard-select.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@material/mwc-switch"
-          ]
+          "hash": "14371256358586599801"
         },
         {
           "file": "packages/plugins/test/unit/editors/protocol104/wizards/doi.test.ts",
-          "hash": "8283745719599026455",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "11945977514958543209"
         },
         {
           "file": "packages/plugins/test/unit/editors/protocol104/wizards/logiclink.test.ts",
-          "hash": "11708593772268952222",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js"
-          ]
+          "hash": "12217897655094180877"
         },
         {
           "file": "packages/plugins/test/unit/editors/protocol104/wizards/redundancygroup.test.ts",
-          "hash": "14710536693686182828",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js"
-          ]
+          "hash": "2465011778630835013"
         },
         {
           "file": "packages/plugins/test/unit/editors/protocol104/wizards/selectDo.test.ts",
@@ -4956,14 +5827,7 @@
         },
         {
           "file": "packages/plugins/test/unit/editors/protocol104/wizards/subnetwork.test.ts",
-          "hash": "934723337759082761",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "1006119829571392285"
         },
         {
           "file": "packages/plugins/test/unit/editors/publisher/__snapshots__/data-set-editor.test.snap.js",
@@ -5253,11 +6117,7 @@
         },
         {
           "file": "packages/plugins/test/unit/editors/subscription/supervision.test.ts",
-          "hash": "4718906941887986857",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "5001400725506157160"
         },
         {
           "file": "packages/plugins/test/unit/editors/substation/__snapshots__/bay-editor.test.snap.js",
@@ -5344,12 +6204,7 @@
         },
         {
           "file": "packages/plugins/test/unit/editors/substation/conducting-equipment-editor.test.ts",
-          "hash": "2028556909256350605",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "12709374797880969496"
         },
         {
           "file": "packages/plugins/test/unit/editors/substation/conductingequipmentwizard.test.ts",
@@ -5417,12 +6272,7 @@
         },
         {
           "file": "packages/plugins/test/unit/editors/substation/powertransformer-editor.test.ts",
-          "hash": "11724174012855003061",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "14041549093083379279"
         },
         {
           "file": "packages/plugins/test/unit/editors/substation/process-editor.test.ts",
@@ -5493,44 +6343,19 @@
         },
         {
           "file": "packages/plugins/test/unit/editors/templates/datype.test.ts",
-          "hash": "3231451124614503042",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "1367207031573530398"
         },
         {
           "file": "packages/plugins/test/unit/editors/templates/dotype.test.ts",
-          "hash": "10570493505976870954",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "15927585439528015601"
         },
         {
           "file": "packages/plugins/test/unit/editors/templates/enumtype.test.ts",
-          "hash": "18153202050284560553",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "9801498640253481267"
         },
         {
           "file": "packages/plugins/test/unit/editors/templates/lnodetype-wizard.test.ts",
-          "hash": "399470557088808598",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:fast-check",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "9045399645617897357"
         },
         {
           "file": "packages/plugins/test/unit/menu/CompareIED.test.ts",
@@ -5549,42 +6374,19 @@
         },
         {
           "file": "packages/plugins/test/unit/menu/SubscriberInfo.test.ts",
-          "hash": "12481105316277355640",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "3317299951625231717"
         },
         {
           "file": "packages/plugins/test/unit/menu/UpdateDescriptionSEL.test.ts",
-          "hash": "3328984467950048760",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:@openscd/open-scd/test/mock-open-scd.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "13747632675819396676"
         },
         {
           "file": "packages/plugins/test/unit/menu/UpdateDescritionABB.test.ts",
-          "hash": "6111376024901527967",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:@openscd/open-scd/test/mock-open-scd.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "10164102016357889640"
         },
         {
           "file": "packages/plugins/test/unit/menu/VirtualTemplateIED.test.ts",
-          "hash": "2381469775863280126",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@material/mwc-list",
-            "npm:@openscd/open-scd/src/wizard-textfield.js"
-          ]
+          "hash": "13807300385099284287"
         },
         {
           "file": "packages/plugins/test/unit/menu/__snapshots__/CompareIED.test.snap.js",
@@ -5823,46 +6625,19 @@
         },
         {
           "file": "packages/plugins/test/unit/wizards/abstractda.test.ts",
-          "hash": "5325553323455537346",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:fast-check",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/wizard-select.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "13348386175468365278"
         },
         {
           "file": "packages/plugins/test/unit/wizards/address.test.ts",
-          "hash": "14003548795975882306",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/wizard-select.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "10426061240882333956"
         },
         {
           "file": "packages/plugins/test/unit/wizards/bay.test.ts",
-          "hash": "10157821665801419288",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js"
-          ]
+          "hash": "7792875123798488768"
         },
         {
           "file": "packages/plugins/test/unit/wizards/bda.test.ts",
-          "hash": "2252788702441149811",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/wizard-select.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "17261124746424778054"
         },
         {
           "file": "packages/plugins/test/unit/wizards/clientln.test.ts",
@@ -5883,13 +6658,7 @@
         },
         {
           "file": "packages/plugins/test/unit/wizards/conductingequipment.test.ts",
-          "hash": "9678416474182429047",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "722885444390141689"
         },
         {
           "file": "packages/plugins/test/unit/wizards/connectedap-c.test.ts",
@@ -5914,15 +6683,7 @@
         },
         {
           "file": "packages/plugins/test/unit/wizards/connectedap.test.ts",
-          "hash": "290389488260427355",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@material/mwc-checkbox",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "10372850180134867115"
         },
         {
           "file": "packages/plugins/test/unit/wizards/connectivitynode.test.ts",
@@ -5943,69 +6704,27 @@
         },
         {
           "file": "packages/plugins/test/unit/wizards/da.test.ts",
-          "hash": "4385277003041505596",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/wizard-select.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "12863377338199468658"
         },
         {
           "file": "packages/plugins/test/unit/wizards/dai.test.ts",
-          "hash": "5758681639290415834",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "4679642483587269802"
         },
         {
           "file": "packages/plugins/test/unit/wizards/dataset.test.ts",
-          "hash": "15184046168433726878",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@material/mwc-list",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "16923642407480453926"
         },
         {
           "file": "packages/plugins/test/unit/wizards/eqfunction.test.ts",
-          "hash": "12221470503735493196",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "1613202078696156208"
         },
         {
           "file": "packages/plugins/test/unit/wizards/eqsubfunction.test.ts",
-          "hash": "17482279666070790479",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "11212296219903125532"
         },
         {
           "file": "packages/plugins/test/unit/wizards/fcda.test.ts",
-          "hash": "2719530049172541612",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/finder-list.js"
-          ]
+          "hash": "17100929761027769165"
         },
         {
           "file": "packages/plugins/test/unit/wizards/foundation/__snapshots__/dai-field-type.test.snap.js",
@@ -6043,105 +6762,39 @@
         },
         {
           "file": "packages/plugins/test/unit/wizards/function.test.ts",
-          "hash": "14692960450835315915",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "6125560862240315955"
         },
         {
           "file": "packages/plugins/test/unit/wizards/generalequipment.test.ts",
-          "hash": "14040923267794081397",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/wizard-checkbox.js"
-          ]
+          "hash": "10737892076586741600"
         },
         {
           "file": "packages/plugins/test/unit/wizards/gse.test.ts",
-          "hash": "5231849714343434462",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "8622524015217488210"
         },
         {
           "file": "packages/plugins/test/unit/wizards/gsecontrol.test.ts",
-          "hash": "11196558262185752077",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:fast-check",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/finder-list.js"
-          ]
+          "hash": "18240984085269271625"
         },
         {
           "file": "packages/plugins/test/unit/wizards/ied.test.ts",
-          "hash": "15334179674808917488",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "10427087584000218383"
         },
         {
           "file": "packages/plugins/test/unit/wizards/ldevice.test.ts",
-          "hash": "14666555014050612935",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "17242423121685946488"
         },
         {
           "file": "packages/plugins/test/unit/wizards/line.test.ts",
-          "hash": "16529830914467909149",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:sinon",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/wizard-checkbox.js"
-          ]
+          "hash": "10498316101614410374"
         },
         {
           "file": "packages/plugins/test/unit/wizards/lnode.test.ts",
-          "hash": "3005747227082889172",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:fast-check",
-            "npm:sinon",
-            "npm:@openscd/open-scd/test/mock-wizard-editor.js",
-            "npm:@material/mwc-list",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "7815799996368910758"
         },
         {
           "file": "packages/plugins/test/unit/wizards/optfields.test.ts",
-          "hash": "15689666317098728064",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/wizard-select.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "6694577342139852013"
         },
         {
           "file": "packages/plugins/test/unit/wizards/powertransformer.test.ts",
@@ -6155,43 +6808,15 @@
         },
         {
           "file": "packages/plugins/test/unit/wizards/process.test.ts",
-          "hash": "3526652405424639441",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:sinon",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "12768624059785483474"
         },
         {
           "file": "packages/plugins/test/unit/wizards/reportcontrol.test.ts",
-          "hash": "12715307635605643463",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:fast-check",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/finder-list.js",
-            "npm:@openscd/open-scd/src/filtered-list.js",
-            "npm:@material/mwc-list"
-          ]
+          "hash": "14928635174847711860"
         },
         {
           "file": "packages/plugins/test/unit/wizards/sampledvaluecontrol.test.ts",
-          "hash": "5407298305269679803",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:fast-check",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/wizard-checkbox.js",
-            "npm:@openscd/open-scd/src/finder-list.js"
-          ]
+          "hash": "14629181274678900970"
         },
         {
           "file": "packages/plugins/test/unit/wizards/services.test.ts",
@@ -6202,81 +6827,31 @@
         },
         {
           "file": "packages/plugins/test/unit/wizards/smv.test.ts",
-          "hash": "10609980706653616724",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:fast-check",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js"
-          ]
+          "hash": "2921875115775968676"
         },
         {
           "file": "packages/plugins/test/unit/wizards/smvopts.test.ts",
-          "hash": "8042773547599092922",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/wizard-checkbox.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "13414905685221679571"
         },
         {
           "file": "packages/plugins/test/unit/wizards/sub-equipment.test.ts",
-          "hash": "13174674000853982299",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/wizard-checkbox.js"
-          ]
+          "hash": "2591509383773477896"
         },
         {
           "file": "packages/plugins/test/unit/wizards/subfunction.test.ts",
-          "hash": "8358999641663245054",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "1468400495491521582"
         },
         {
           "file": "packages/plugins/test/unit/wizards/subnetwork.test.ts",
-          "hash": "10141284822216046431",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "1882436445083129872"
         },
         {
           "file": "packages/plugins/test/unit/wizards/substation.test.ts",
-          "hash": "983617014812755185",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "16140630878511249095"
         },
         {
           "file": "packages/plugins/test/unit/wizards/tapchanger.test.ts",
-          "hash": "3054234148746390523",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/wizard-checkbox.js"
-          ]
+          "hash": "15377453571638478004"
         },
         {
           "file": "packages/plugins/test/unit/wizards/terminal.test.ts",
@@ -6288,45 +6863,19 @@
         },
         {
           "file": "packages/plugins/test/unit/wizards/test-support.ts",
-          "hash": "8146327137492232040",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/wizard-select.js"
-          ]
+          "hash": "12696811442059406002"
         },
         {
           "file": "packages/plugins/test/unit/wizards/transformerwinding.test.ts",
-          "hash": "12024994906025598587",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/wizard-checkbox.js"
-          ]
+          "hash": "8888931618617303788"
         },
         {
           "file": "packages/plugins/test/unit/wizards/trgops.test.ts",
-          "hash": "368513893219967089",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:@openscd/open-scd/src/addons/Wizards.js",
-            "npm:@openscd/open-scd/src/foundation.js",
-            "npm:@openscd/open-scd/src/wizard-select.js"
-          ]
+          "hash": "17594408757906845890"
         },
         {
           "file": "packages/plugins/test/unit/wizards/voltagelevel.test.ts",
-          "hash": "12241737079562294212",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:@openscd/open-scd/src/wizard-textfield.js",
-            "npm:@openscd/open-scd/src/foundation.js"
-          ]
+          "hash": "3505077978808808389"
         },
         {
           "file": "packages/plugins/tsconfig.json",
@@ -6347,11 +6896,14 @@
       "@openscd/components": [
         {
           "file": "packages/components/package.json",
-          "hash": "3352041044646174490",
+          "hash": "3926850392616758961",
           "deps": [
+            "npm:@material/mwc-dialog",
             "npm:@commitlint/cli",
             "npm:@commitlint/config-conventional",
+            "npm:@open-wc/eslint-config",
             "npm:@open-wc/semantic-dom-diff",
+            "npm:@open-wc/testing",
             "npm:@types/node",
             "npm:@typescript-eslint/eslint-plugin",
             "npm:@typescript-eslint/parser",
@@ -6364,6 +6916,7 @@
             "npm:eslint-config-prettier",
             "npm:eslint-plugin-babel",
             "npm:eslint-plugin-tsdoc",
+            "npm:fast-check",
             "npm:husky",
             "npm:lint-staged",
             "npm:prettier",
@@ -6379,1362 +6932,19 @@
           "hash": "16693876272900055364"
         }
       ],
-      "@openscd/addons": [
-        {
-          "file": "packages/addons/package.json",
-          "hash": "15501735313917636266",
-          "deps": [
-            "npm:lit",
-            "@openscd/core",
-            "@openscd/components",
-            "npm:@commitlint/cli",
-            "npm:@commitlint/config-conventional",
-            "npm:@open-wc/semantic-dom-diff",
-            "npm:@types/node",
-            "npm:@typescript-eslint/eslint-plugin",
-            "npm:@typescript-eslint/parser",
-            "npm:@web/dev-server-esbuild",
-            "npm:@web/test-runner",
-            "npm:concurrently",
-            "npm:deepmerge",
-            "npm:es-dev-server",
-            "npm:eslint",
-            "npm:eslint-config-prettier",
-            "npm:eslint-plugin-babel",
-            "npm:eslint-plugin-tsdoc",
-            "npm:husky",
-            "npm:lint-staged",
-            "npm:prettier",
-            "npm:sinon",
-            "npm:source-map",
-            "npm:tslib",
-            "npm:typescript",
-            "npm:web-component-analyzer"
-          ]
-        },
-        {
-          "file": "packages/addons/project.json",
-          "hash": "1743551875682471437"
-        }
-      ],
       "@openscd/wizards": [
         {
           "file": "packages/wizards/package.json",
-          "hash": "11851249364758765283",
+          "hash": "7712383612743368535",
           "deps": [
             "npm:@material/mwc-dialog",
             "@openscd/core",
-            "@openscd/components",
-            "npm:@commitlint/cli",
-            "npm:@commitlint/config-conventional",
-            "npm:@open-wc/semantic-dom-diff",
-            "npm:@types/node",
-            "npm:@typescript-eslint/eslint-plugin",
-            "npm:@typescript-eslint/parser",
-            "npm:@web/dev-server-esbuild",
-            "npm:@web/test-runner",
-            "npm:concurrently",
-            "npm:deepmerge",
-            "npm:es-dev-server",
-            "npm:eslint",
-            "npm:eslint-config-prettier",
-            "npm:eslint-plugin-babel",
-            "npm:eslint-plugin-tsdoc",
-            "npm:husky",
-            "npm:lint-staged",
-            "npm:prettier",
-            "npm:sinon",
-            "npm:source-map",
-            "npm:tslib",
-            "npm:typescript",
-            "npm:web-component-analyzer"
+            "@openscd/components"
           ]
         },
         {
           "file": "packages/wizards/project.json",
           "hash": "3062636036320216518"
-        }
-      ],
-      "@openscd/distribution": [
-        {
-          "file": "packages/distribution/package.json",
-          "hash": "4111569241590408221",
-          "deps": [
-            "@openscd/open-scd",
-            "@openscd/addons",
-            "@openscd/plugins",
-            "npm:@commitlint/cli",
-            "npm:@commitlint/config-conventional",
-            "npm:@open-wc/semantic-dom-diff",
-            "npm:@snowpack/plugin-typescript",
-            "npm:@types/marked",
-            "npm:@types/node",
-            "npm:@typescript-eslint/eslint-plugin",
-            "npm:@typescript-eslint/parser",
-            "npm:@web/dev-server-esbuild",
-            "npm:@web/test-runner",
-            "npm:concurrently",
-            "npm:deepmerge",
-            "npm:es-dev-server",
-            "npm:eslint",
-            "npm:eslint-config-prettier",
-            "npm:eslint-plugin-babel",
-            "npm:eslint-plugin-tsdoc",
-            "npm:husky",
-            "npm:lint-staged",
-            "npm:prettier",
-            "npm:sinon",
-            "npm:snowpack",
-            "npm:source-map",
-            "npm:standard-version",
-            "npm:tslib",
-            "npm:typescript",
-            "npm:web-component-analyzer",
-            "npm:workbox-cli"
-          ]
-        },
-        {
-          "file": "packages/distribution/project.json",
-          "hash": "8936609372453109866"
-        }
-      ],
-      "@openscd/open-scd": [
-        {
-          "file": "packages/open-scd/.eslintrc.cjs",
-          "hash": "17644058191750607887"
-        },
-        {
-          "file": "packages/open-scd/.gitignore",
-          "hash": "8321704309217581771"
-        },
-        {
-          "file": "packages/open-scd/.nojekyll",
-          "hash": "708642270230508292"
-        },
-        {
-          "file": "packages/open-scd/CHANGELOG.md",
-          "hash": "811442079311045459"
-        },
-        {
-          "file": "packages/open-scd/README.md",
-          "hash": "2589587792174354476"
-        },
-        {
-          "file": "packages/open-scd/browserconfig.xml",
-          "hash": "6541539627108079072"
-        },
-        {
-          "file": "packages/open-scd/favicon.ico",
-          "hash": "9745956228541674246"
-        },
-        {
-          "file": "packages/open-scd/index.html",
-          "hash": "17930972987705327925"
-        },
-        {
-          "file": "packages/open-scd/manifest.json",
-          "hash": "8816689474378108950"
-        },
-        {
-          "file": "packages/open-scd/package.json",
-          "hash": "14951703508255966707",
-          "deps": [
-            "npm:@material/mwc-dialog",
-            "npm:@material/mwc-drawer",
-            "npm:@material/mwc-fab",
-            "npm:@material/mwc-formfield",
-            "npm:@material/mwc-icon",
-            "npm:@material/mwc-icon-button",
-            "npm:@material/mwc-icon-button-toggle",
-            "npm:@material/mwc-linear-progress",
-            "npm:@material/mwc-list",
-            "npm:@material/mwc-menu",
-            "npm:@material/mwc-select",
-            "npm:@material/mwc-snackbar",
-            "npm:@material/mwc-switch",
-            "npm:@material/mwc-tab",
-            "npm:@material/mwc-tab-bar",
-            "npm:@material/mwc-textarea",
-            "npm:@material/mwc-textfield",
-            "npm:@material/mwc-top-app-bar-fixed",
-            "npm:ace-custom-element",
-            "npm:lit",
-            "npm:lit-translate",
-            "npm:marked",
-            "npm:panzoom",
-            "@openscd/core",
-            "npm:@commitlint/cli",
-            "npm:@commitlint/config-conventional",
-            "npm:@open-wc/semantic-dom-diff",
-            "npm:@snowpack/plugin-typescript",
-            "npm:@types/marked",
-            "npm:@types/node",
-            "npm:@typescript-eslint/eslint-plugin",
-            "npm:@typescript-eslint/parser",
-            "npm:@web/dev-server-esbuild",
-            "npm:@web/test-runner",
-            "npm:concurrently",
-            "npm:deepmerge",
-            "npm:es-dev-server",
-            "npm:eslint",
-            "npm:eslint-config-prettier",
-            "npm:eslint-plugin-babel",
-            "npm:eslint-plugin-tsdoc",
-            "npm:husky",
-            "npm:lint-staged",
-            "npm:prettier",
-            "npm:sinon",
-            "npm:snowpack",
-            "npm:source-map",
-            "npm:standard-version",
-            "npm:tslib",
-            "npm:typescript",
-            "npm:web-component-analyzer",
-            "npm:workbox-cli"
-          ]
-        },
-        {
-          "file": "packages/open-scd/project.json",
-          "hash": "10070602198549130858"
-        },
-        {
-          "file": "packages/open-scd/public/ace/ext-searchbox.js",
-          "hash": "114381147821229241"
-        },
-        {
-          "file": "packages/open-scd/public/ace/mode-xml.js",
-          "hash": "6706426316733857337"
-        },
-        {
-          "file": "packages/open-scd/public/ace/theme-solarized_dark.js",
-          "hash": "1551674450348557803"
-        },
-        {
-          "file": "packages/open-scd/public/ace/theme-solarized_light.js",
-          "hash": "8639995166742238232"
-        },
-        {
-          "file": "packages/open-scd/public/ace/worker-xml.js",
-          "hash": "8224738385307093734",
-          "deps": [
-            [
-              "npm:ace/lib/event_emitter",
-              "dynamic"
-            ],
-            [
-              "npm:ace/lib/oop",
-              "dynamic"
-            ]
-          ]
-        },
-        {
-          "file": "packages/open-scd/public/apple-touch-icon.png",
-          "hash": "8255636196001427371"
-        },
-        {
-          "file": "packages/open-scd/public/css/normalize.css",
-          "hash": "4081816717657929031"
-        },
-        {
-          "file": "packages/open-scd/public/favicon-16x16.png",
-          "hash": "13707519148919541918"
-        },
-        {
-          "file": "packages/open-scd/public/favicon-32x32.png",
-          "hash": "4422168256416965943"
-        },
-        {
-          "file": "packages/open-scd/public/google/fonts/roboto-mono-v13-latin-300.ttf",
-          "hash": "11092660628056188778"
-        },
-        {
-          "file": "packages/open-scd/public/google/fonts/roboto-mono-v13-latin-300.woff",
-          "hash": "9917163342901736249"
-        },
-        {
-          "file": "packages/open-scd/public/google/fonts/roboto-mono-v13-latin-300.woff2",
-          "hash": "1066463892304466654"
-        },
-        {
-          "file": "packages/open-scd/public/google/fonts/roboto-mono-v13.css",
-          "hash": "1306353331501983234"
-        },
-        {
-          "file": "packages/open-scd/public/google/fonts/roboto-v27-latin-300.ttf",
-          "hash": "8469775184521824518"
-        },
-        {
-          "file": "packages/open-scd/public/google/fonts/roboto-v27-latin-300.woff",
-          "hash": "10154414347099253919"
-        },
-        {
-          "file": "packages/open-scd/public/google/fonts/roboto-v27-latin-300.woff2",
-          "hash": "4167966890579689996"
-        },
-        {
-          "file": "packages/open-scd/public/google/fonts/roboto-v27-latin-500.ttf",
-          "hash": "13258010954044418653"
-        },
-        {
-          "file": "packages/open-scd/public/google/fonts/roboto-v27-latin-500.woff",
-          "hash": "1793384290551641661"
-        },
-        {
-          "file": "packages/open-scd/public/google/fonts/roboto-v27-latin-500.woff2",
-          "hash": "15444657261876582837"
-        },
-        {
-          "file": "packages/open-scd/public/google/fonts/roboto-v27-latin-regular.ttf",
-          "hash": "4151621888851525670"
-        },
-        {
-          "file": "packages/open-scd/public/google/fonts/roboto-v27-latin-regular.woff",
-          "hash": "10995893687007998711"
-        },
-        {
-          "file": "packages/open-scd/public/google/fonts/roboto-v27-latin-regular.woff2",
-          "hash": "12948365522108916446"
-        },
-        {
-          "file": "packages/open-scd/public/google/fonts/roboto-v27.css",
-          "hash": "5528784856015535882"
-        },
-        {
-          "file": "packages/open-scd/public/google/icons/material-icons-outlined.css",
-          "hash": "1262166653950853147"
-        },
-        {
-          "file": "packages/open-scd/public/google/icons/material-icons-outlined.woff2",
-          "hash": "15560109777398165401"
-        },
-        {
-          "file": "packages/open-scd/public/icon-192x192.png",
-          "hash": "7631583239115182464"
-        },
-        {
-          "file": "packages/open-scd/public/icon-512x512.png",
-          "hash": "1208864852193386297"
-        },
-        {
-          "file": "packages/open-scd/public/icon.svg",
-          "hash": "10742432829855556443"
-        },
-        {
-          "file": "packages/open-scd/public/js/plugins.js",
-          "hash": "5536147299312378898"
-        },
-        {
-          "file": "packages/open-scd/public/js/worker.js",
-          "hash": "18377303484627311606"
-        },
-        {
-          "file": "packages/open-scd/public/js/xmlvalidate.js",
-          "hash": "6475736286768917334"
-        },
-        {
-          "file": "packages/open-scd/public/js/xmlvalidate.wasm",
-          "hash": "5175032934662663762"
-        },
-        {
-          "file": "packages/open-scd/public/maskable_icon.png",
-          "hash": "18101247248750889685"
-        },
-        {
-          "file": "packages/open-scd/public/md/Add-DAType-from-templates.md",
-          "hash": "7632171038187899085"
-        },
-        {
-          "file": "packages/open-scd/public/md/Add-DOType-from-templates.md",
-          "hash": "1894183691628393578"
-        },
-        {
-          "file": "packages/open-scd/public/md/Add-EnumType-from-templates.md",
-          "hash": "4609717271818397986"
-        },
-        {
-          "file": "packages/open-scd/public/md/Add-LNodeType-from-templates.md",
-          "hash": "489320221840580551"
-        },
-        {
-          "file": "packages/open-scd/public/md/All-template-editor-wizards.md",
-          "hash": "13727218619751131422"
-        },
-        {
-          "file": "packages/open-scd/public/md/Bay.md",
-          "hash": "14866107152844558234"
-        },
-        {
-          "file": "packages/open-scd/public/md/ClientLN.md",
-          "hash": "9897962791398252761"
-        },
-        {
-          "file": "packages/open-scd/public/md/Communication-Basics.md",
-          "hash": "8967205583285904629"
-        },
-        {
-          "file": "packages/open-scd/public/md/Conducting-Equipment.md",
-          "hash": "7300930969810583342"
-        },
-        {
-          "file": "packages/open-scd/public/md/ConnectedAP.md",
-          "hash": "16502032358017111834"
-        },
-        {
-          "file": "packages/open-scd/public/md/Create-GOOSE-Control-Blocks.md",
-          "hash": "9151697034532586484"
-        },
-        {
-          "file": "packages/open-scd/public/md/Create-Report-Control-Blocks.md",
-          "hash": "16632204082796274727"
-        },
-        {
-          "file": "packages/open-scd/public/md/Create-Sampled-Values-Control-Blocks.md",
-          "hash": "17913221650532417430"
-        },
-        {
-          "file": "packages/open-scd/public/md/Create-Specification-IED-from-functions.md",
-          "hash": "17100053241515069293"
-        },
-        {
-          "file": "packages/open-scd/public/md/Data-attribute-type-DAType.md",
-          "hash": "9361779753344148521"
-        },
-        {
-          "file": "packages/open-scd/public/md/Data-attribute-type-child-BDA.md",
-          "hash": "14086264127285171983"
-        },
-        {
-          "file": "packages/open-scd/public/md/Data-object-type-DOType.md",
-          "hash": "2143270927319123243"
-        },
-        {
-          "file": "packages/open-scd/public/md/Data-object-type-child-DA.md",
-          "hash": "2103910637702816417"
-        },
-        {
-          "file": "packages/open-scd/public/md/Data-object-type-child-SDO.md",
-          "hash": "4654830432230889187"
-        },
-        {
-          "file": "packages/open-scd/public/md/DataTypeTemplates.md",
-          "hash": "11926638132363039278"
-        },
-        {
-          "file": "packages/open-scd/public/md/Edit-GOOSE-Control-Blocks.md",
-          "hash": "957766021862151742"
-        },
-        {
-          "file": "packages/open-scd/public/md/Edit-Report-Control-Blocks.md",
-          "hash": "2186849900448724482"
-        },
-        {
-          "file": "packages/open-scd/public/md/Edit-Sampled-Value-Control-Blocks.md",
-          "hash": "11141382621762249692"
-        },
-        {
-          "file": "packages/open-scd/public/md/Enumeration-EnumType.md",
-          "hash": "6044514298468008973"
-        },
-        {
-          "file": "packages/open-scd/public/md/Enumeration-EnumVal.md",
-          "hash": "7305154441125116769"
-        },
-        {
-          "file": "packages/open-scd/public/md/Extensions.md",
-          "hash": "6591404271141839486"
-        },
-        {
-          "file": "packages/open-scd/public/md/Function.md",
-          "hash": "2396370581122879875"
-        },
-        {
-          "file": "packages/open-scd/public/md/Functional-Naming-Basics.md",
-          "hash": "1424157226931378780"
-        },
-        {
-          "file": "packages/open-scd/public/md/Generic-Substation-Event-Basics.md",
-          "hash": "7345973281698033565"
-        },
-        {
-          "file": "packages/open-scd/public/md/Global-SCL-manipulation.md",
-          "hash": "9584016088754545240"
-        },
-        {
-          "file": "packages/open-scd/public/md/Guess-substation-structure.md",
-          "hash": "2875995111374752127"
-        },
-        {
-          "file": "packages/open-scd/public/md/Home.md",
-          "hash": "5597160643416405668"
-        },
-        {
-          "file": "packages/open-scd/public/md/IED.md",
-          "hash": "5093811992878555761"
-        },
-        {
-          "file": "packages/open-scd/public/md/Import-IEDs.md",
-          "hash": "2697147160948088410"
-        },
-        {
-          "file": "packages/open-scd/public/md/Install-OpenSCD.md",
-          "hash": "4870289996323257036"
-        },
-        {
-          "file": "packages/open-scd/public/md/Interface.md",
-          "hash": "6278602661934875272"
-        },
-        {
-          "file": "packages/open-scd/public/md/Logical-Node-Reference.md",
-          "hash": "16185774406241805752"
-        },
-        {
-          "file": "packages/open-scd/public/md/Logical-node-type-LNodeType.md",
-          "hash": "16837157848214223052"
-        },
-        {
-          "file": "packages/open-scd/public/md/Logical-node-type-child-DO.md",
-          "hash": "7944105073641571821"
-        },
-        {
-          "file": "packages/open-scd/public/md/Merge-functionality.md",
-          "hash": "1426923011109762228"
-        },
-        {
-          "file": "packages/open-scd/public/md/Power-Transformer.md",
-          "hash": "7694420192312749843"
-        },
-        {
-          "file": "packages/open-scd/public/md/Project-workflow.md",
-          "hash": "2730532738404076849"
-        },
-        {
-          "file": "packages/open-scd/public/md/Report-Basics.md",
-          "hash": "14048196035719930850"
-        },
-        {
-          "file": "packages/open-scd/public/md/Sampled-Values-Basics.md",
-          "hash": "8992263995862266787"
-        },
-        {
-          "file": "packages/open-scd/public/md/Save-project.md",
-          "hash": "10971061805746056033"
-        },
-        {
-          "file": "packages/open-scd/public/md/Start-from-scratch.md",
-          "hash": "194686234617903536"
-        },
-        {
-          "file": "packages/open-scd/public/md/Start-from-template.md",
-          "hash": "1542572143826819718"
-        },
-        {
-          "file": "packages/open-scd/public/md/Subnetwork.md",
-          "hash": "7569968389459259486"
-        },
-        {
-          "file": "packages/open-scd/public/md/Subscribe-complete-GOOSE.md",
-          "hash": "6074639160524786830"
-        },
-        {
-          "file": "packages/open-scd/public/md/Subscribe-complete-SMV.md",
-          "hash": "10284061904737192554"
-        },
-        {
-          "file": "packages/open-scd/public/md/Subscriber-basics.md",
-          "hash": "4579408188515769743"
-        },
-        {
-          "file": "packages/open-scd/public/md/Substation-Section-Basics.md",
-          "hash": "2749047212988599460"
-        },
-        {
-          "file": "packages/open-scd/public/md/Substation.md",
-          "hash": "8172268288084933058"
-        },
-        {
-          "file": "packages/open-scd/public/md/Update-subscriber-info.md",
-          "hash": "12902504025068530749"
-        },
-        {
-          "file": "packages/open-scd/public/md/Validate-schema.md",
-          "hash": "12546997160178550684"
-        },
-        {
-          "file": "packages/open-scd/public/md/Validate-template.md",
-          "hash": "4402742907194773973"
-        },
-        {
-          "file": "packages/open-scd/public/md/Validators.md",
-          "hash": "13810934083813939781"
-        },
-        {
-          "file": "packages/open-scd/public/md/Voltage-Level.md",
-          "hash": "14885900683486194968"
-        },
-        {
-          "file": "packages/open-scd/public/md/XML-code-editor.md",
-          "hash": "930391076388032597"
-        },
-        {
-          "file": "packages/open-scd/public/md/_Sidebar.md",
-          "hash": "8120477852787622090"
-        },
-        {
-          "file": "packages/open-scd/public/monochrome_icon.png",
-          "hash": "13565896860593691930"
-        },
-        {
-          "file": "packages/open-scd/public/mstile-144x144.png",
-          "hash": "10285972173853260168"
-        },
-        {
-          "file": "packages/open-scd/public/mstile-150x150.png",
-          "hash": "12587743538979837303"
-        },
-        {
-          "file": "packages/open-scd/public/mstile-310x150.png",
-          "hash": "59474961430734570"
-        },
-        {
-          "file": "packages/open-scd/public/mstile-310x310.png",
-          "hash": "14469173214685422286"
-        },
-        {
-          "file": "packages/open-scd/public/mstile-70x70.png",
-          "hash": "7523939375870386701"
-        },
-        {
-          "file": "packages/open-scd/public/xml/CC-EULA.pdf",
-          "hash": "6253266956788550028"
-        },
-        {
-          "file": "packages/open-scd/public/xml/Disclaimer.md",
-          "hash": "11114111129865766129"
-        },
-        {
-          "file": "packages/open-scd/public/xml/IEC_61850-7-2_2007B3.nsd",
-          "hash": "14892262145430950391"
-        },
-        {
-          "file": "packages/open-scd/public/xml/IEC_61850-7-3_2007B3.nsd",
-          "hash": "10672291729284444751"
-        },
-        {
-          "file": "packages/open-scd/public/xml/IEC_61850-7-420_2019A4.nsd",
-          "hash": "2697189070121476019"
-        },
-        {
-          "file": "packages/open-scd/public/xml/IEC_61850-7-4_2007B3.nsd",
-          "hash": "15640195857577558913"
-        },
-        {
-          "file": "packages/open-scd/public/xml/IEC_61850-8-1_2003A2.nsd",
-          "hash": "15535032645697118789"
-        },
-        {
-          "file": "packages/open-scd/public/xml/templates.scd",
-          "hash": "15674047140246154676"
-        },
-        {
-          "file": "packages/open-scd/snowpack.config.mjs",
-          "hash": "10808509243673232398"
-        },
-        {
-          "file": "packages/open-scd/src/Editing.ts",
-          "hash": "2509163004066892405",
-          "deps": [
-            "npm:@openscd/core",
-            "npm:lit-element",
-            "npm:lit-translate"
-          ]
-        },
-        {
-          "file": "packages/open-scd/src/WizardDivider.ts",
-          "hash": "10943915664918582113",
-          "deps": [
-            "npm:lit-element"
-          ]
-        },
-        {
-          "file": "packages/open-scd/src/Wizarding.ts",
-          "hash": "14492560696964237874",
-          "deps": [
-            "npm:lit-element"
-          ]
-        },
-        {
-          "file": "packages/open-scd/src/action-icon.ts",
-          "hash": "16089961871989680000",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-html",
-            "npm:@material/mwc-icon"
-          ]
-        },
-        {
-          "file": "packages/open-scd/src/action-pane.ts",
-          "hash": "12081366906307207947",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-html",
-            "npm:@material/mwc-icon"
-          ]
-        },
-        {
-          "file": "packages/open-scd/src/addons/Editor.ts",
-          "hash": "17270976363574688966",
-          "deps": [
-            "npm:@openscd/core",
-            "npm:lit-element",
-            "npm:lit-translate"
-          ]
-        },
-        {
-          "file": "packages/open-scd/src/addons/History.ts",
-          "hash": "14470604840606841524",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-button",
-            "npm:@material/mwc-dialog",
-            "npm:@material/mwc-icon",
-            "npm:@material/mwc-icon-button",
-            "npm:@material/mwc-icon-button-toggle",
-            "npm:@material/mwc-list",
-            "npm:@material/mwc-snackbar"
-          ]
-        },
-        {
-          "file": "packages/open-scd/src/addons/Settings.ts",
-          "hash": "11319960743124996841",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-button",
-            "npm:@material/mwc-dialog",
-            "npm:@material/mwc-formfield",
-            "npm:@material/mwc-list",
-            "npm:@material/mwc-select",
-            "npm:@material/mwc-switch"
-          ]
-        },
-        {
-          "file": "packages/open-scd/src/addons/Waiter.ts",
-          "hash": "3016989594067169311",
-          "deps": [
-            "npm:lit-element",
-            "npm:@material/mwc-linear-progress"
-          ]
-        },
-        {
-          "file": "packages/open-scd/src/addons/Wizards.ts",
-          "hash": "925889065670814935",
-          "deps": [
-            "npm:lit-element"
-          ]
-        },
-        {
-          "file": "packages/open-scd/src/filtered-list.ts",
-          "hash": "4063737332527680786",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-checkbox",
-            "npm:@material/mwc-formfield",
-            "npm:@material/mwc-textfield",
-            "npm:@material/mwc-list"
-          ]
-        },
-        {
-          "file": "packages/open-scd/src/finder-list.ts",
-          "hash": "11438414723826618044",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-html",
-            "npm:lit-translate",
-            "npm:@material/mwc-icon",
-            "npm:@material/mwc-list"
-          ]
-        },
-        {
-          "file": "packages/open-scd/src/foundation/compare.ts",
-          "hash": "3112075075585402130",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-html",
-            "npm:lit-translate",
-            "npm:@material/mwc-list",
-            "npm:@material/mwc-icon"
-          ]
-        },
-        {
-          "file": "packages/open-scd/src/foundation/dai.ts",
-          "hash": "13872761161406433074"
-        },
-        {
-          "file": "packages/open-scd/src/foundation/generators.ts",
-          "hash": "4932107582668988548"
-        },
-        {
-          "file": "packages/open-scd/src/foundation/ied.ts",
-          "hash": "3533742057826192423"
-        },
-        {
-          "file": "packages/open-scd/src/foundation/nsd.ts",
-          "hash": "10572307661230518659"
-        },
-        {
-          "file": "packages/open-scd/src/foundation/nsdoc.ts",
-          "hash": "13082370609751747567"
-        },
-        {
-          "file": "packages/open-scd/src/foundation/scl.ts",
-          "hash": "5784302317695473211"
-        },
-        {
-          "file": "packages/open-scd/src/foundation.ts",
-          "hash": "14734991683598510295",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-html",
-            "npm:@material/mwc-list",
-            "npm:@material/mwc-select",
-            "npm:@material/mwc-textfield",
-            "npm:ace-custom-element"
-          ]
-        },
-        {
-          "file": "packages/open-scd/src/icons/compare.ts",
-          "hash": "1060967711676109361",
-          "deps": [
-            "npm:lit-html"
-          ]
-        },
-        {
-          "file": "packages/open-scd/src/icons/icons.ts",
-          "hash": "10869915432410950331",
-          "deps": [
-            "npm:lit-element"
-          ]
-        },
-        {
-          "file": "packages/open-scd/src/icons/ied-icons.ts",
-          "hash": "3016155618657912138",
-          "deps": [
-            "npm:lit-element"
-          ]
-        },
-        {
-          "file": "packages/open-scd/src/icons/lnode.ts",
-          "hash": "15533300009024790450",
-          "deps": [
-            "npm:lit-element"
-          ]
-        },
-        {
-          "file": "packages/open-scd/src/open-scd.ts",
-          "hash": "12930507280981479986",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-html",
-            "npm:@material/mwc-list",
-            "npm:@material/mwc-icon",
-            "npm:@material/mwc-icon-button",
-            "npm:@material/mwc-linear-progress",
-            "npm:@material/mwc-tab",
-            "npm:@material/mwc-tab-bar",
-            "npm:@material/mwc-top-app-bar-fixed",
-            "npm:@material/mwc-drawer",
-            "npm:@material/mwc-button",
-            "npm:@material/mwc-dialog",
-            "npm:@material/mwc-formfield",
-            "npm:@material/mwc-select",
-            "npm:@material/mwc-switch",
-            "npm:@material/mwc-textfield",
-            "npm:lit-translate"
-          ]
-        },
-        {
-          "file": "packages/open-scd/src/oscd-filter-button.ts",
-          "hash": "840326489970933787",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-icon-button",
-            "npm:@material/mwc-dialog"
-          ]
-        },
-        {
-          "file": "packages/open-scd/src/plain-compare-list.ts",
-          "hash": "12120257545756275580",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate"
-          ]
-        },
-        {
-          "file": "packages/open-scd/src/schemas.ts",
-          "hash": "17202853285850379179"
-        },
-        {
-          "file": "packages/open-scd/src/themes.ts",
-          "hash": "1699906348298053239",
-          "deps": [
-            "npm:lit-element"
-          ]
-        },
-        {
-          "file": "packages/open-scd/src/translations/de.ts",
-          "hash": "3726687335703655818"
-        },
-        {
-          "file": "packages/open-scd/src/translations/en.ts",
-          "hash": "14010142935881459815"
-        },
-        {
-          "file": "packages/open-scd/src/translations/loader.ts",
-          "hash": "5463838662228107649",
-          "deps": [
-            "npm:lit-translate"
-          ]
-        },
-        {
-          "file": "packages/open-scd/src/wizard-checkbox.ts",
-          "hash": "17244218985107095887",
-          "deps": [
-            "npm:lit-element",
-            "npm:@material/mwc-formfield",
-            "npm:@material/mwc-switch",
-            "npm:@material/mwc-checkbox"
-          ]
-        },
-        {
-          "file": "packages/open-scd/src/wizard-dialog.ts",
-          "hash": "4592178464317559893",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-html",
-            "npm:lit-translate",
-            "npm:@material/mwc-button",
-            "npm:@material/mwc-dialog",
-            "npm:@material/mwc-icon-button",
-            "npm:@material/mwc-icon-button-toggle",
-            "npm:@material/mwc-menu",
-            "npm:@material/mwc-list",
-            "npm:ace-custom-element"
-          ]
-        },
-        {
-          "file": "packages/open-scd/src/wizard-select.ts",
-          "hash": "8755363152420704560",
-          "deps": [
-            "npm:lit-element",
-            "npm:@material/mwc-switch",
-            "npm:@material/mwc-select"
-          ]
-        },
-        {
-          "file": "packages/open-scd/src/wizard-textfield.ts",
-          "hash": "3251564838229694354",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-translate",
-            "npm:@material/mwc-icon-button",
-            "npm:@material/mwc-list",
-            "npm:@material/mwc-menu",
-            "npm:@material/mwc-switch",
-            "npm:@material/mwc-textfield"
-          ]
-        },
-        {
-          "file": "packages/open-scd/src/wizards.ts",
-          "hash": "17849545038540840717",
-          "deps": [
-            "npm:lit-element",
-            "npm:lit-html",
-            "npm:lit-translate",
-            "npm:@material/mwc-icon",
-            "npm:@material/mwc-list"
-          ]
-        },
-        {
-          "file": "packages/open-scd/sw.js",
-          "hash": "9577298729713038210"
-        },
-        {
-          "file": "packages/open-scd/test/foundation.ts",
-          "hash": "17330926813949514613",
-          "deps": [
-            "npm:fast-check"
-          ]
-        },
-        {
-          "file": "packages/open-scd/test/integration/Editing.test.ts",
-          "hash": "17742535600421891418",
-          "deps": [
-            "npm:@open-wc/testing"
-          ]
-        },
-        {
-          "file": "packages/open-scd/test/integration/Setting.test.ts",
-          "hash": "16030666115569564650",
-          "deps": [
-            "npm:@open-wc/testing"
-          ]
-        },
-        {
-          "file": "packages/open-scd/test/integration/__snapshots__/Setting.test.snap.js",
-          "hash": "14799367076293232426"
-        },
-        {
-          "file": "packages/open-scd/test/integration/__snapshots__/open-scd.test.snap.js",
-          "hash": "3643119380559539379"
-        },
-        {
-          "file": "packages/open-scd/test/integration/open-scd.test.ts",
-          "hash": "5388628032237360265",
-          "deps": [
-            "npm:@open-wc/testing"
-          ]
-        },
-        {
-          "file": "packages/open-scd/test/mock-editor-logger.ts",
-          "hash": "14879990107134185796",
-          "deps": [
-            "npm:lit-element"
-          ]
-        },
-        {
-          "file": "packages/open-scd/test/mock-open-scd.ts",
-          "hash": "284983970408762507",
-          "deps": [
-            "npm:lit-element"
-          ]
-        },
-        {
-          "file": "packages/open-scd/test/mock-wizard-editor.ts",
-          "hash": "14610666400273643835",
-          "deps": [
-            "npm:lit-element"
-          ]
-        },
-        {
-          "file": "packages/open-scd/test/testfiles/Editing.scd",
-          "hash": "15877327175876096082"
-        },
-        {
-          "file": "packages/open-scd/test/testfiles/comm-map.scd",
-          "hash": "1621801861016247353"
-        },
-        {
-          "file": "packages/open-scd/test/testfiles/editors/LaterBindingGOOSE-LGOS.scd",
-          "hash": "10505902909939719066"
-        },
-        {
-          "file": "packages/open-scd/test/testfiles/editors/LaterBindingSMV-LSVS.scd",
-          "hash": "10291808663933236042"
-        },
-        {
-          "file": "packages/open-scd/test/testfiles/foundation/compare-changed.cid",
-          "hash": "18068329593840456546"
-        },
-        {
-          "file": "packages/open-scd/test/testfiles/foundation/compare-original.cid",
-          "hash": "16722563218947456305"
-        },
-        {
-          "file": "packages/open-scd/test/testfiles/foundation/sclbasics.scd",
-          "hash": "4101609162973607674"
-        },
-        {
-          "file": "packages/open-scd/test/testfiles/foundation/testFile73.nsdoc",
-          "hash": "6842989918686570632"
-        },
-        {
-          "file": "packages/open-scd/test/testfiles/foundation/testFile74.nsdoc",
-          "hash": "90000831416964477"
-        },
-        {
-          "file": "packages/open-scd/test/testfiles/foundation/testFile81.nsdoc",
-          "hash": "15766749350439094223"
-        },
-        {
-          "file": "packages/open-scd/test/testfiles/lnodewizard.scd",
-          "hash": "6053146309638263945"
-        },
-        {
-          "file": "packages/open-scd/test/testfiles/menu/compare-ied-changed.scd",
-          "hash": "17588967429168656294"
-        },
-        {
-          "file": "packages/open-scd/test/testfiles/menu/compare-ied-original.scd",
-          "hash": "10599530753527664264"
-        },
-        {
-          "file": "packages/open-scd/test/testfiles/nsdoc/IEC_61850-7-2.nsdoc",
-          "hash": "11652524404954493157"
-        },
-        {
-          "file": "packages/open-scd/test/testfiles/nsdoc/invalid.nsdoc",
-          "hash": "8299511061862252241"
-        },
-        {
-          "file": "packages/open-scd/test/testfiles/nsdoc/wrong-version.nsdoc",
-          "hash": "16252917889319368184"
-        },
-        {
-          "file": "packages/open-scd/test/testfiles/valid2003.scd",
-          "hash": "15974192271882022407"
-        },
-        {
-          "file": "packages/open-scd/test/testfiles/valid2007B.scd",
-          "hash": "5668925401626749441"
-        },
-        {
-          "file": "packages/open-scd/test/testfiles/valid2007B4.scd",
-          "hash": "7519130007474256636"
-        },
-        {
-          "file": "packages/open-scd/test/testfiles/valid2007B4withIEDModifications.scd",
-          "hash": "7017501701506018288"
-        },
-        {
-          "file": "packages/open-scd/test/unit/Editing.test.ts",
-          "hash": "4413852285476532286",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon"
-          ]
-        },
-        {
-          "file": "packages/open-scd/test/unit/Historing.test.ts",
-          "hash": "14265044991188515659",
-          "deps": [
-            "npm:@open-wc/testing"
-          ]
-        },
-        {
-          "file": "packages/open-scd/test/unit/Plugging.test.ts",
-          "hash": "3261062037939044897",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:@material/mwc-textfield"
-          ]
-        },
-        {
-          "file": "packages/open-scd/test/unit/Setting.test.ts",
-          "hash": "7424564659260305884",
-          "deps": [
-            "npm:lit-translate",
-            "npm:@open-wc/testing",
-            "npm:@material/mwc-button"
-          ]
-        },
-        {
-          "file": "packages/open-scd/test/unit/Waiting.test.ts",
-          "hash": "672494096199161230",
-          "deps": [
-            "npm:@open-wc/testing"
-          ]
-        },
-        {
-          "file": "packages/open-scd/test/unit/Wizards.test.ts",
-          "hash": "13059739489870200911",
-          "deps": [
-            "npm:@open-wc/testing"
-          ]
-        },
-        {
-          "file": "packages/open-scd/test/unit/__snapshots__/Setting.test.snap.js",
-          "hash": "2157094751490304824"
-        },
-        {
-          "file": "packages/open-scd/test/unit/__snapshots__/action-icon.test.snap.js",
-          "hash": "5301421550010660367"
-        },
-        {
-          "file": "packages/open-scd/test/unit/__snapshots__/action-pane.test.snap.js",
-          "hash": "898823903317541434"
-        },
-        {
-          "file": "packages/open-scd/test/unit/__snapshots__/filtered-list.test.snap.js",
-          "hash": "18072052773773724883"
-        },
-        {
-          "file": "packages/open-scd/test/unit/__snapshots__/finder-list.test.snap.js",
-          "hash": "9485318271661850403"
-        },
-        {
-          "file": "packages/open-scd/test/unit/__snapshots__/oscd-filter-button.test.snap.js",
-          "hash": "5285964709607557792"
-        },
-        {
-          "file": "packages/open-scd/test/unit/__snapshots__/plain-compare-list.test.snap.js",
-          "hash": "11150281621752054921"
-        },
-        {
-          "file": "packages/open-scd/test/unit/__snapshots__/wizard-dialog.test.snap.js",
-          "hash": "11267355871437031654"
-        },
-        {
-          "file": "packages/open-scd/test/unit/action-icon.test.ts",
-          "hash": "5981778179956191304",
-          "deps": [
-            "npm:@open-wc/testing"
-          ]
-        },
-        {
-          "file": "packages/open-scd/test/unit/action-pane.test.ts",
-          "hash": "13650505312571229471",
-          "deps": [
-            "npm:@open-wc/testing"
-          ]
-        },
-        {
-          "file": "packages/open-scd/test/unit/filtered-list.test.ts",
-          "hash": "2520230619366819246",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:@material/mwc-list"
-          ]
-        },
-        {
-          "file": "packages/open-scd/test/unit/finder-list.test.ts",
-          "hash": "8721225737840516740",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:@material/mwc-list"
-          ]
-        },
-        {
-          "file": "packages/open-scd/test/unit/foundation/__snapshots__/compare.test.snap.js",
-          "hash": "9035664690187745155"
-        },
-        {
-          "file": "packages/open-scd/test/unit/foundation/compare.test.ts",
-          "hash": "468276787326670776",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:lit-element"
-          ]
-        },
-        {
-          "file": "packages/open-scd/test/unit/foundation/dai.test.ts",
-          "hash": "82569793558493321",
-          "deps": [
-            "npm:@open-wc/testing"
-          ]
-        },
-        {
-          "file": "packages/open-scd/test/unit/foundation/generators.test.ts",
-          "hash": "5540525343140547630",
-          "deps": [
-            "npm:@open-wc/testing"
-          ]
-        },
-        {
-          "file": "packages/open-scd/test/unit/foundation/nsdoc.test.ts",
-          "hash": "16765844190647664816",
-          "deps": [
-            "npm:@open-wc/testing"
-          ]
-        },
-        {
-          "file": "packages/open-scd/test/unit/foundation/scl.test.ts",
-          "hash": "3516589427443026047",
-          "deps": [
-            "npm:@open-wc/testing"
-          ]
-        },
-        {
-          "file": "packages/open-scd/test/unit/foundation.test.ts",
-          "hash": "14395380874696328900",
-          "deps": [
-            "npm:@open-wc/testing"
-          ]
-        },
-        {
-          "file": "packages/open-scd/test/unit/mock-actions.ts",
-          "hash": "18217328064319220866"
-        },
-        {
-          "file": "packages/open-scd/test/unit/mock-document.ts",
-          "hash": "16801415548286164313"
-        },
-        {
-          "file": "packages/open-scd/test/unit/mock-editor.ts",
-          "hash": "3126259051079207300",
-          "deps": [
-            "npm:lit-element"
-          ]
-        },
-        {
-          "file": "packages/open-scd/test/unit/oscd-filter-button.test.ts",
-          "hash": "9700837170685453521",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:sinon",
-            "npm:@material/mwc-list"
-          ]
-        },
-        {
-          "file": "packages/open-scd/test/unit/plain-compare-list.test.ts",
-          "hash": "14912879554019159502",
-          "deps": [
-            "npm:@open-wc/testing"
-          ]
-        },
-        {
-          "file": "packages/open-scd/test/unit/schema.test.ts",
-          "hash": "14806523135675525388",
-          "deps": [
-            "npm:@open-wc/testing"
-          ]
-        },
-        {
-          "file": "packages/open-scd/test/unit/wizard-checkbox.test.ts",
-          "hash": "7498068846791433102",
-          "deps": [
-            "npm:@open-wc/testing"
-          ]
-        },
-        {
-          "file": "packages/open-scd/test/unit/wizard-dialog.test.ts",
-          "hash": "11268747171454740454",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:@material/mwc-button"
-          ]
-        },
-        {
-          "file": "packages/open-scd/test/unit/wizard-select.test.ts",
-          "hash": "3616888333084087679",
-          "deps": [
-            "npm:@open-wc/testing",
-            "npm:@material/mwc-list"
-          ]
-        },
-        {
-          "file": "packages/open-scd/test/unit/wizard-textfield.test.ts",
-          "hash": "16591066005681057267",
-          "deps": [
-            "npm:@open-wc/testing"
-          ]
-        },
-        {
-          "file": "packages/open-scd/tsconfig.json",
-          "hash": "12218822935376146567"
-        },
-        {
-          "file": "packages/open-scd/web-test-runner.config.mjs",
-          "hash": "8715077720788600936",
-          "deps": [
-            "npm:@web/dev-server-esbuild"
-          ]
-        },
-        {
-          "file": "packages/open-scd/workbox-config.cjs",
-          "hash": "3488956881234875947"
         }
       ]
     }

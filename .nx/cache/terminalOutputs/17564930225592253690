@@ -1,0 +1,4 @@
+
+> @openscd/open-scd@0.34.0 clean
+> rimraf build
+

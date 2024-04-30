@@ -4,9 +4,5 @@
   "projectType": "application",
   "sourceRoot": "packages/open-scd/src",
   "targets": {
-    "build": {
-      "command": "npm run build",
-      "dependsOn": ["test"]
-    }
   }
 }

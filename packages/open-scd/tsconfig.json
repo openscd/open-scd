@@ -18,5 +18,5 @@
     "resolveJsonModule": true,
     "rootDir": "./src"
   },
-  "include": ["**/*.ts"]
+  "include": ["./src/**/*.ts", "./public/js/plugins.js"]
 }

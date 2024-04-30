@@ -1,0 +1,225 @@
+
+> @openscd/open-scd@0.34.0 test
+> web-test-runner --coverage
+
+
+Chrome: |[90m█████▊                        [39m| 0/26 test files | [32m0 passed[39m, 0 failed
+
+[1mRunning tests...[22m
+
+[1mRunning 26 test files...
+[22m
+
+[2K[1A[2K[GError while handling server request.
+[Error: ENOENT: no such file or directory, stat '/Users/pascalwilbrink/Documents/Workspaces/Alliander/playground/hierarchy/open-scd/packages/core/dist/foundation/deprecated/waiter.js'] {
+  errno: [33m-2[39m,
+  code: [32m'ENOENT'[39m,
+  syscall: [32m'stat'[39m,
+  path: [32m'/Users/pascalwilbrink/Documents/Workspaces/Alliander/playground/hierarchy/open-scd/packages/core/dist/foundation/deprecated/waiter.js'[39m,
+  expose: [33mtrue[39m,
+  statusCode: [33m404[39m,
+  status: [33m404[39m
+}
+
+[2K[1A[2K[GError while handling server request.
+[Error: ENOENT: no such file or directory, stat '/Users/pascalwilbrink/Documents/Workspaces/Alliander/playground/hierarchy/open-scd/packages/core/dist/foundation/deprecated/history.js'] {
+  errno: [33m-2[39m,
+  code: [32m'ENOENT'[39m,
+  syscall: [32m'stat'[39m,
+  path: [32m'/Users/pascalwilbrink/Documents/Workspaces/Alliander/playground/hierarchy/open-scd/packages/core/dist/foundation/deprecated/history.js'[39m,
+  expose: [33mtrue[39m,
+  statusCode: [33m404[39m,
+  status: [33m404[39m
+}
+
+[2K[1A[2K[GError while handling server request.
+[Error: ENOENT: no such file or directory, stat '/Users/pascalwilbrink/Documents/Workspaces/Alliander/playground/hierarchy/open-scd/packages/core/dist/foundation/deprecated/editor.js'] {
+  errno: [33m-2[39m,
+  code: [32m'ENOENT'[39m,
+  syscall: [32m'stat'[39m,
+  path: [32m'/Users/pascalwilbrink/Documents/Workspaces/Alliander/playground/hierarchy/open-scd/packages/core/dist/foundation/deprecated/editor.js'[39m,
+  expose: [33mtrue[39m,
+  statusCode: [33m404[39m,
+  status: [33m404[39m
+}
+
+[2K[1A[2K[GError while handling server request.
+[Error: ENOENT: no such file or directory, stat '/Users/pascalwilbrink/Documents/Workspaces/Alliander/playground/hierarchy/open-scd/packages/core/dist/foundation/deprecated/history.js'] {
+  errno: [33m-2[39m,
+  code: [32m'ENOENT'[39m,
+  syscall: [32m'stat'[39m,
+  path: [32m'/Users/pascalwilbrink/Documents/Workspaces/Alliander/playground/hierarchy/open-scd/packages/core/dist/foundation/deprecated/history.js'[39m,
+  expose: [33mtrue[39m,
+  statusCode: [33m404[39m,
+  status: [33m404[39m
+}
+
+[2K[1A[2K[GError while handling server request.
+[Error: ENOENT: no such file or directory, stat '/Users/pascalwilbrink/Documents/Workspaces/Alliander/playground/hierarchy/open-scd/packages/core/dist/foundation/deprecated/settings.js'] {
+  errno: [33m-2[39m,
+  code: [32m'ENOENT'[39m,
+  syscall: [32m'stat'[39m,
+  path: [32m'/Users/pascalwilbrink/Documents/Workspaces/Alliander/playground/hierarchy/open-scd/packages/core/dist/foundation/deprecated/settings.js'[39m,
+  expose: [33mtrue[39m,
+  statusCode: [33m404[39m,
+  status: [33m404[39m
+}
+
+[2K[1A[2K[GError while handling server request.
+[Error: ENOENT: no such file or directory, stat '/Users/pascalwilbrink/Documents/Workspaces/Alliander/playground/hierarchy/open-scd/packages/core/dist/foundation/deprecated/open-event.js'] {
+  errno: [33m-2[39m,
+  code: [32m'ENOENT'[39m,
+  syscall: [32m'stat'[39m,
+  path: [32m'/Users/pascalwilbrink/Documents/Workspaces/Alliander/playground/hierarchy/open-scd/packages/core/dist/foundation/deprecated/open-event.js'[39m,
+  expose: [33mtrue[39m,
+  statusCode: [33m404[39m,
+  status: [33m404[39m
+}
+
+[2K[1A[2K[GError while handling server request.
+[Error: ENOENT: no such file or directory, stat '/Users/pascalwilbrink/Documents/Workspaces/Alliander/playground/hierarchy/open-scd/packages/core/dist/foundation/deprecated/waiter.js'] {
+  errno: [33m-2[39m,
+  code: [32m'ENOENT'[39m,
+  syscall: [32m'stat'[39m,
+  path: [32m'/Users/pascalwilbrink/Documents/Workspaces/Alliander/playground/hierarchy/open-scd/packages/core/dist/foundation/deprecated/waiter.js'[39m,
+  expose: [33mtrue[39m,
+  statusCode: [33m404[39m,
+  status: [33m404[39m
+}
+
+[2K[1A[2K[GError while handling server request.
+[Error: ENOENT: no such file or directory, stat '/Users/pascalwilbrink/Documents/Workspaces/Alliander/playground/hierarchy/open-scd/packages/core/dist/foundation/deprecated/settings.js'] {
+  errno: [33m-2[39m,
+  code: [32m'ENOENT'[39m,
+  syscall: [32m'stat'[39m,
+  path: [32m'/Users/pascalwilbrink/Documents/Workspaces/Alliander/playground/hierarchy/open-scd/packages/core/dist/foundation/deprecated/settings.js'[39m,
+  expose: [33mtrue[39m,
+  statusCode: [33m404[39m,
+  status: [33m404[39m
+}
+
+[2K[1A[2K[GError while handling server request.
+[Error: ENOENT: no such file or directory, stat '/Users/pascalwilbrink/Documents/Workspaces/Alliander/playground/hierarchy/open-scd/packages/core/dist/foundation/deprecated/history.js'] {
+  errno: [33m-2[39m,
+  code: [32m'ENOENT'[39m,
+  syscall: [32m'stat'[39m,
+  path: [32m'/Users/pascalwilbrink/Documents/Workspaces/Alliander/playground/hierarchy/open-scd/packages/core/dist/foundation/deprecated/history.js'[39m,
+  expose: [33mtrue[39m,
+  statusCode: [33m404[39m,
+  status: [33m404[39m
+}
+
+[2K[1A[2K[GError while handling server request.
+[Error: ENOENT: no such file or directory, stat '/Users/pascalwilbrink/Documents/Workspaces/Alliander/playground/hierarchy/open-scd/packages/core/dist/foundation/deprecated/validation.js'] {
+  errno: [33m-2[39m,
+  code: [32m'ENOENT'[39m,
+  syscall: [32m'stat'[39m,
+  path: [32m'/Users/pascalwilbrink/Documents/Workspaces/Alliander/playground/hierarchy/open-scd/packages/core/dist/foundation/deprecated/validation.js'[39m,
+  expose: [33mtrue[39m,
+  statusCode: [33m404[39m,
+  status: [33m404[39m
+}
+
+[2K[1A[2K[GError while handling server request.
+[Error: ENOENT: no such file or directory, stat '/Users/pascalwilbrink/Documents/Workspaces/Alliander/playground/hierarchy/open-scd/packages/core/dist/foundation/deprecated/editor.js'] {
+  errno: [33m-2[39m,
+  code: [32m'ENOENT'[39m,
+  syscall: [32m'stat'[39m,
+  path: [32m'/Users/pascalwilbrink/Documents/Workspaces/Alliander/playground/hierarchy/open-scd/packages/core/dist/foundation/deprecated/editor.js'[39m,
+  expose: [33mtrue[39m,
+  statusCode: [33m404[39m,
+  status: [33m404[39m
+}
+
+[2K[1A[2K[G[1m[36mtest/unit/Historing.test.ts[39m[22m:
+
+ ❌ Could not import your test module. Check the browser logs or open the browser in debug mode for more information. 
+
+[1m[36mtest/unit/Editing.test.ts[39m[22m:
+
+ ❌ Could not import your test module. Check the browser logs or open the browser in debug mode for more information. 
+
+[1m[36mtest/unit/Waiting.test.ts[39m[22m:
+
+ ❌ Could not import your test module. Check the browser logs or open the browser in debug mode for more information. 
+
+[1m[36mtest/unit/Setting.test.ts[39m[22m:
+
+ ❌ Could not import your test module. Check the browser logs or open the browser in debug mode for more information. 
+
+
+[2K[1A[2K[G[1m[36mtest/unit/Plugging.test.ts[39m[22m:
+
+ ❌ Could not import your test module. Check the browser logs or open the browser in debug mode for more information. 
+
+
+[2K[1A[2K[GError while handling server request.
+[Error: ENOENT: no such file or directory, stat '/Users/pascalwilbrink/Documents/Workspaces/Alliander/playground/hierarchy/open-scd/packages/core/dist/foundation/deprecated/editor.js'] {
+  errno: [33m-2[39m,
+  code: [32m'ENOENT'[39m,
+  syscall: [32m'stat'[39m,
+  path: [32m'/Users/pascalwilbrink/Documents/Workspaces/Alliander/playground/hierarchy/open-scd/packages/core/dist/foundation/deprecated/editor.js'[39m,
+  expose: [33mtrue[39m,
+  statusCode: [33m404[39m,
+  status: [33m404[39m
+}
+
+[2K[1A[2K[G[1m[36mtest/unit/Wizards.test.ts[39m[22m:
+
+ ❌ Could not import your test module. Check the browser logs or open the browser in debug mode for more information. 
+
+
+[2K[1A[2K[GError while handling server request.
+[Error: ENOENT: no such file or directory, stat '/Users/pascalwilbrink/Documents/Workspaces/Alliander/playground/hierarchy/open-scd/packages/core/dist/foundation/deprecated/editor.js'] {
+  errno: [33m-2[39m,
+  code: [32m'ENOENT'[39m,
+  syscall: [32m'stat'[39m,
+  path: [32m'/Users/pascalwilbrink/Documents/Workspaces/Alliander/playground/hierarchy/open-scd/packages/core/dist/foundation/deprecated/editor.js'[39m,
+  expose: [33mtrue[39m,
+  statusCode: [33m404[39m,
+  status: [33m404[39m
+}
+
+[2K[1A[2K[GError while handling server request.
+[Error: ENOENT: no such file or directory, stat '/Users/pascalwilbrink/Documents/Workspaces/Alliander/playground/hierarchy/open-scd/packages/core/dist/foundation/deprecated/waiter.js'] {
+  errno: [33m-2[39m,
+  code: [32m'ENOENT'[39m,
+  syscall: [32m'stat'[39m,
+  path: [32m'/Users/pascalwilbrink/Documents/Workspaces/Alliander/playground/hierarchy/open-scd/packages/core/dist/foundation/deprecated/waiter.js'[39m,
+  expose: [33mtrue[39m,
+  statusCode: [33m404[39m,
+  status: [33m404[39m
+}
+
+[2K[1A[2K[G[1m[36mtest/unit/foundation.test.ts[39m[22m:
+
+ ❌ Could not import your test module. Check the browser logs or open the browser in debug mode for more information. 
+
+
+[2K[1A[2K[G[1m[36mtest/unit/wizard-dialog.test.ts[39m[22m:
+
+ 🚧 404 network requests:
+    [1m[90m-[39m[22m test/unit/mock-editor.js
+
+ ❌ Could not import your test module. Check the browser logs or open the browser in debug mode for more information. 
+
+
+[2K[1A[2K[G[1m[36mtest/integration/open-scd.test.ts[39m[22m:
+
+ 🚧 404 network requests:
+    [1m[90m-[39m[22m public/google/fonts/roboto-v27.css
+    [1m[90m-[39m[22m public/google/fonts/roboto-mono-v13.css
+    [1m[90m-[39m[22m public/google/icons/material-icons-outlined.css
+
+Chrome: |[37m██████████████████████████████[39m| 26/26 test files | [32m231 passed[39m, 0 failed
+
+Code coverage: [1m[32m80.78 %[39m[22m
+View full coverage report at [4mcoverage/lcov-report/index.html[24m
+
+[1m[31mError while running tests.[39m[22m
+
+
+npm ERR! Lifecycle script `test` failed with error: 
+npm ERR! Error: command failed 
+npm ERR!   in workspace: @openscd/open-scd@0.34.0 
+npm ERR!   at location: /Users/pascalwilbrink/Documents/Workspaces/Alliander/playground/hierarchy/open-scd/packages/open-scd 

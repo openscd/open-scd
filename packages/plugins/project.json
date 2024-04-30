@@ -4,10 +4,6 @@
   "projectType": "library",
   "sourceRoot": "packages/plugins/src",
   "targets": {
-    "build": {
-      "command": "npm run build",
-      "dependsOn": ["test"]
-    }
   }
 
 }

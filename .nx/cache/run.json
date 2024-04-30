@@ -1,43 +1,65 @@
 {
   "run": {
-    "command": "lerna run doc",
-    "startTime": "2024-04-24T14:24:02.911Z",
-    "endTime": "2024-04-24T14:31:59.543Z",
+    "command": "nx run-many -t test --all --parallel=false --verbose",
+    "startTime": "2024-04-30T10:14:16.323Z",
+    "endTime": "2024-04-30T10:14:19.952Z",
     "inner": false
   },
   "tasks": [
     {
-      "taskId": "@openscd/core:doc",
-      "target": "doc",
+      "taskId": "@openscd/core:clean",
+      "target": "clean",
       "projectName": "@openscd/core",
-      "hash": "13380760453510729741",
-      "startTime": "2024-04-24T14:24:02.957Z",
-      "endTime": "2024-04-24T14:27:02.121Z",
+      "hash": "3552100026387369843",
+      "startTime": "2024-04-30T10:14:16.327Z",
+      "endTime": "2024-04-30T10:14:16.752Z",
       "params": "",
       "cacheStatus": "cache-miss",
       "status": 0
     },
     {
-      "taskId": "@openscd/open-scd:doc",
-      "target": "doc",
+      "taskId": "@openscd/core:build",
+      "target": "build",
+      "projectName": "@openscd/core",
+      "hash": "11413158501567882404",
+      "startTime": "2024-04-30T10:14:16.752Z",
+      "endTime": "2024-04-30T10:14:16.796Z",
+      "params": "",
+      "cacheStatus": "local-cache-hit",
+      "status": 0
+    },
+    {
+      "taskId": "@openscd/open-scd:clean",
+      "target": "clean",
       "projectName": "@openscd/open-scd",
-      "hash": "17408256649605376734",
-      "startTime": "2024-04-24T14:24:02.957Z",
-      "endTime": "2024-04-24T14:29:57.852Z",
+      "hash": "17564930225592253690",
+      "startTime": "2024-04-30T10:14:16.807Z",
+      "endTime": "2024-04-30T10:14:17.192Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@openscd/open-scd:build",
+      "target": "build",
+      "projectName": "@openscd/open-scd",
+      "hash": "5387398773439645539",
+      "startTime": "2024-04-30T10:14:17.192Z",
+      "endTime": "2024-04-30T10:14:19.574Z",
       "params": "",
       "cacheStatus": "cache-miss",
       "status": 1
     },
     {
-      "taskId": "@openscd/plugins:doc",
-      "target": "doc",
+      "taskId": "@openscd/plugins:clean",
+      "target": "clean",
       "projectName": "@openscd/plugins",
-      "hash": "18242530092014284465",
-      "startTime": "2024-04-24T14:24:02.957Z",
-      "endTime": "2024-04-24T14:31:59.541Z",
+      "hash": "1277765384938277666",
+      "startTime": "2024-04-30T10:14:19.574Z",
+      "endTime": "2024-04-30T10:14:19.952Z",
       "params": "",
       "cacheStatus": "cache-miss",
-      "status": 1
+      "status": 0
     }
   ]
 }
