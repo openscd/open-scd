@@ -1,0 +1,43 @@
+{
+  "run": {
+    "command": "lerna run doc",
+    "startTime": "2024-04-24T14:24:02.911Z",
+    "endTime": "2024-04-24T14:31:59.543Z",
+    "inner": false
+  },
+  "tasks": [
+    {
+      "taskId": "@openscd/core:doc",
+      "target": "doc",
+      "projectName": "@openscd/core",
+      "hash": "13380760453510729741",
+      "startTime": "2024-04-24T14:24:02.957Z",
+      "endTime": "2024-04-24T14:27:02.121Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@openscd/open-scd:doc",
+      "target": "doc",
+      "projectName": "@openscd/open-scd",
+      "hash": "17408256649605376734",
+      "startTime": "2024-04-24T14:24:02.957Z",
+      "endTime": "2024-04-24T14:29:57.852Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 1
+    },
+    {
+      "taskId": "@openscd/plugins:doc",
+      "target": "doc",
+      "projectName": "@openscd/plugins",
+      "hash": "18242530092014284465",
+      "startTime": "2024-04-24T14:24:02.957Z",
+      "endTime": "2024-04-24T14:31:59.541Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 1
+    }
+  ]
+}

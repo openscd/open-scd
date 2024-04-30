@@ -1,0 +1,4 @@
+
+> @openscd/plugins@0.0.1 clean
+> rimraf dist
+

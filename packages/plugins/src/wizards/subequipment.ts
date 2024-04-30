@@ -6,12 +6,11 @@ import {
   createElement,
   getChildElementsByTagName,
   getValue,
-  SimpleAction,
   Wizard,
   WizardActor,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
-
+import { SimpleAction } from '@openscd/core/foundation/deprecated/editor';
 import '@openscd/open-scd/src/wizard-textfield.js';
 import '@openscd/open-scd/src/wizard-select.js';
 

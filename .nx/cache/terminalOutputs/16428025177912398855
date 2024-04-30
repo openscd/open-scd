@@ -1,0 +1,16 @@
+
+> @openscd/core@0.1.1 doc
+> typedoc --out doc foundation.ts
+
+[93mwarning[0m Editing: Comment [[target]] style links are deprecated and will be removed in 0.24
+[93mwarning[0m Failed to find target: docs
+[96m./mixins/Editing.ts[0m:[93m129[0m:[93m0[0m - [93mwarning[0m ReturnConstructor is referenced by Editing.Editing but not included in the documentation.
+
+[47m[30m129[0m    type ReturnConstructor = new (...args: any[]) => LitElement & EditingMixin;
+
+[96m./mixins/Plugging.ts[0m:[93m31[0m:[93m0[0m - [93mwarning[0m ReturnConstructor is referenced by Plugging.Plugging but not included in the documentation.
+
+[47m[30m31[0m    type ReturnConstructor = new (...args: any[]) => LitElement & PluginMixin;
+
+[93mwarning[0m Failed to resolve link to "docs" in comment for Editing.Editing
+Documentation generated at ./doc

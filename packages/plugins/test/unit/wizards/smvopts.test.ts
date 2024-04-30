@@ -5,7 +5,7 @@ import '@openscd/open-scd/src/addons/Wizards.js';
 import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
 import { WizardCheckbox } from '@openscd/open-scd/src/wizard-checkbox.js';
-import { isReplace, Replace } from '@openscd/open-scd/src/foundation.js';
+import { Replace, isReplace } from '@openscd/core/foundation/deprecated/editor.js';
 import { editSmvOptsWizard } from '../../../src/wizards/smvopts.js';
 
 describe('Wizards for SCL SmvOpts element', () => {

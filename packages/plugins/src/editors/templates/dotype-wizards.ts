@@ -13,22 +13,24 @@ import { List } from '@material/mwc-list';
 import '@openscd/open-scd/src/wizard-textfield.js';
 import {
   cloneElement,
-  Create,
   createElement,
-  EditorAction,
   find,
   getValue,
   identity,
   isPublic,
-  newActionEvent,
   newSubWizardEvent,
   newWizardEvent,
-  Replace,
   Wizard,
   WizardActor,
   WizardInputElement,
   WizardMenuActor,
 } from '@openscd/open-scd/src/foundation.js';
+import { 
+  Create,
+  EditorAction,
+  newActionEvent,
+  Replace
+} from '@openscd/core/foundation/deprecated/editor.js';
 import { createDaWizard, editDAWizard } from '../../wizards/da.js';
 import { patterns } from '../../wizards/foundation/limits.js';
 import {

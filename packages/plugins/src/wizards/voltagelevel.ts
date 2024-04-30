@@ -4,17 +4,19 @@ import { get } from 'lit-translate';
 import '@openscd/open-scd/src/wizard-textfield.js';
 import {
   cloneElement,
-  ComplexAction,
   createElement,
-  EditorAction,
   getMultiplier,
   getValue,
   patterns,
-  SimpleAction,
   Wizard,
   WizardActor,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
+import {
+  ComplexAction,
+  EditorAction,
+  SimpleAction,
+} from '@openscd/core/foundation/deprecated/editor';
 
 import { updateReferences } from './foundation/references.js';
 

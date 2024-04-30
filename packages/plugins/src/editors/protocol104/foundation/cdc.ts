@@ -1,9 +1,9 @@
 import {
-  Create,
   getNameAttribute,
-  newLogEvent,
   newWizardEvent,
 } from '@openscd/open-scd/src/foundation.js';
+import { Create } from '@openscd/core/foundation/deprecated/editor.js';
+import { newLogEvent } from '@openscd/core/foundation/deprecated/history.js';
 
 import {
   addPrefixAndNamespaceToDocument,

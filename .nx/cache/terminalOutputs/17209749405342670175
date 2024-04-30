@@ -1,0 +1,12 @@
+
+> openscd-monorepo@0.0.1 doc
+> lerna run doc
+
+lerna notice cli v7.4.2
+
+ [31m>[39m [0m[7m[1m[31m NX [39m[22m[27m[0m  [31mDaemon process terminated and closed the connection[39m
+
+   Please rerun the command, which will restart the daemon.
+   If you get this error again, check for any errors in the daemon process logs found in: /Users/pascalwilbrink/Documents/Workspaces/Alliander/playground/hierarchy/open-scd/.nx/cache/d/daemon.log
+
+Warning: run-commands command "npm run doc" exited with non-zero status code

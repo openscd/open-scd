@@ -13,19 +13,18 @@ import { Dialog } from '@material/mwc-dialog';
 import { Snackbar } from '@material/mwc-snackbar';
 
 import '../filtered-list.js';
-import {
+import { 
   CommitDetail,
   CommitEntry,
   InfoDetail,
   InfoEntry,
-  invert,
   IssueDetail,
   IssueEvent,
   LogEntry,
   LogEntryType,
   LogEvent,
-  newActionEvent,
-} from '../foundation.js';
+} from '@openscd/core/foundation/deprecated/history.js';
+import { newActionEvent, invert } from '@openscd/core/foundation/deprecated/editor.js';
 import { getFilterIcon, iconColors } from '../icons/icons.js';
 import { Plugin } from '../open-scd.js';
 

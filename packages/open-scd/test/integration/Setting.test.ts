@@ -1,8 +1,10 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import { newLoadNsdocEvent, OscdSettings } from '../../src/addons/Settings.js';
+import { newLoadNsdocEvent } from '@openscd/core/foundation/deprecated/settings.js';
 import '../../src/addons/History.js';
+import '../../src/addons/Settings.js';
 import { OscdHistory } from '../../src/addons/History.js';
+import { OscdSettings } from '../../src/addons/Settings.js';
 
 describe('Oscd-Settings', () => {
   let logger: OscdHistory;
@@ -16,7 +18,7 @@ describe('Oscd-Settings', () => {
         <oscd-settings .host=${document}></oscd-settings>
       </oscd-history>`
     );
-
+    
     settings = logger.querySelector('oscd-settings')!;
   });
 

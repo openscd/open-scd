@@ -1,0 +1,18 @@
+
+> @openscd/core@0.1.1 doc
+> typedoc --out doc foundation.ts
+
+[96mfoundation.ts[0m:[93m29[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module './mixins/Editing.js' or its corresponding type declarations.
+
+[7m29[0m export { Editing } from './mixins/Editing.js';
+[7m  [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96mfoundation.ts[0m:[93m30[0m:[93m26[0m - [91merror[0m[90m TS2307: [0mCannot find module './mixins/Plugging.js' or its corresponding type declarations.
+
+[7m30[0m export { Plugging } from './mixins/Plugging.js';
+[7m  [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+npm ERR! Lifecycle script `doc` failed with error: 
+npm ERR! Error: command failed 
+npm ERR!   in workspace: @openscd/core@0.1.1 
+npm ERR!   at location: /Users/pascalwilbrink/Documents/Workspaces/Alliander/playground/hierarchy/open-scd/packages/core 

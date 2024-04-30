@@ -3,7 +3,7 @@ import { SinonSpy, spy } from 'sinon';
 
 import '../../../../src/editors/substation/conducting-equipment-editor.js';
 import { ConductingEquipmentEditor } from '../../../../src/editors/substation/conducting-equipment-editor.js';
-import { isDelete } from '@openscd/open-scd/src/foundation.js';
+import { isDelete } from '@openscd/core/foundation/deprecated/editor.js';
 
 describe('conducting-equipment-editor', () => {
   let element: ConductingEquipmentEditor;

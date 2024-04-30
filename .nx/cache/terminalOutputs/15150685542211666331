@@ -1,0 +1,22 @@
+
+> @openscd/open-scd@0.34.0 doc
+> npm run doc:clean && npm run doc:typedoc && npm run doc:wca
+
+
+> @openscd/open-scd@0.34.0 doc:clean
+> npx rimraf doc
+
+[Error: ENOTEMPTY: directory not empty, rmdir '/Users/pascalwilbrink/Documents/Workspaces/Alliander/playground/hierarchy/open-scd/packages/open-scd/doc/components'] {
+  errno: [33m-66[39m,
+  code: [32m'ENOTEMPTY'[39m,
+  syscall: [32m'rmdir'[39m,
+  path: [32m'/Users/pascalwilbrink/Documents/Workspaces/Alliander/playground/hierarchy/open-scd/packages/open-scd/doc/components'[39m
+}
+npm ERR! Lifecycle script `doc:clean` failed with error: 
+npm ERR! Error: command failed 
+npm ERR!   in workspace: @openscd/open-scd@0.34.0 
+npm ERR!   at location: /Users/pascalwilbrink/Documents/Workspaces/Alliander/playground/hierarchy/open-scd/packages/open-scd 
+npm ERR! Lifecycle script `doc` failed with error: 
+npm ERR! Error: command failed 
+npm ERR!   in workspace: @openscd/open-scd@0.34.0 
+npm ERR!   at location: /Users/pascalwilbrink/Documents/Workspaces/Alliander/playground/hierarchy/open-scd/packages/open-scd 

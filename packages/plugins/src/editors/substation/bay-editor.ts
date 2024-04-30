@@ -26,11 +26,11 @@ import './powertransformer-editor.js';
 import { VoltageLevelEditor } from './voltage-level-editor.js';
 import {
   getChildElementsByTagName,
-  newActionEvent,
   newWizardEvent,
   SCLTag,
   tags,
 } from '@openscd/open-scd/src/foundation.js';
+import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import {
   bayIcon,
   voltageLevelIcon,

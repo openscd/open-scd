@@ -12,7 +12,6 @@ import {
   find,
   getValue,
   identity,
-  Replace,
   Wizard,
   WizardAction,
   WizardActor,
@@ -20,6 +19,7 @@ import {
   WizardMenuActor,
   newSubWizardEvent,
 } from '@openscd/open-scd/src/foundation.js';
+import { Replace } from '@openscd/core/foundation/deprecated/editor.js';
 import { createFCDAsWizard } from './fcda.js';
 
 function openFcdaWizard(element: Element): WizardMenuActor {

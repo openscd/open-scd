@@ -9,10 +9,8 @@ import {
 import '@material/mwc-fab';
 
 import '@openscd/open-scd/src/action-icon.js';
-import {
-  newWizardEvent,
-  newActionEvent,
-} from '@openscd/open-scd/src/foundation.js';
+import { newWizardEvent } from '@openscd/open-scd/src/foundation.js';
+import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { editConnectedApWizard } from '../../wizards/connectedap.js';
 
 /** [[`Communication`]] subeditor for a `ConnectedAP` element. */

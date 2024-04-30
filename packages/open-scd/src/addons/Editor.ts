@@ -9,26 +9,31 @@ import {
 import { get } from 'lit-translate';
 
 import {
+  Move,
   Create,
   Delete,
   EditorAction,
   EditorActionEvent,
+  SimpleAction,
+  Replace,
+  Update
+} from '@openscd/core/foundation/deprecated/editor.js';
+
+import { newLogEvent } from '@openscd/core/foundation/deprecated/history.js';
+import { newValidateEvent } from '@openscd/core/foundation/deprecated/validation.js'
+import {OpenDocEvent} from '@openscd/core/foundation/deprecated/open-event.js';
+import {
   getReference,
+  SCLTag,
+} from '../foundation.js';
+import {
   isCreate,
   isDelete,
   isMove,
   isSimple,
   isReplace,
-  Move,
-  newLogEvent,
-  newValidateEvent,
-  OpenDocEvent,
-  SCLTag,
-  SimpleAction,
-  Replace,
-  Update,
   isUpdate,
-} from '../foundation.js';
+} from '@openscd/core/foundation/deprecated/editor.js';
 
 @customElement('oscd-editor')
 export class OscdEditor extends LitElement {

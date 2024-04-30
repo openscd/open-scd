@@ -6,13 +6,13 @@ import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
 import { SinonSpy, spy } from 'sinon';
 
-import {
-  Create,
+import { WizardInputElement } from '@openscd/open-scd/src/foundation.js';
+import { 
   isCreate,
   isReplace,
-  Replace,
-  WizardInputElement,
-} from '@openscd/open-scd/src/foundation.js';
+  Create, 
+  Replace 
+} from '@openscd/core/foundation/deprecated/editor.js';
 import {
   createProcessWizard,
   editProcessWizard,

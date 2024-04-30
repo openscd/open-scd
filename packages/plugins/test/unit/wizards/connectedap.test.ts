@@ -8,14 +8,16 @@ import { Checkbox } from '@material/mwc-checkbox';
 
 import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
 import {
-  ComplexAction,
-  Delete,
+  WizardInputElement,
+} from '@openscd/open-scd/src/foundation.js';
+import { 
   isCreate,
   isDelete,
   isSimple,
-  Create,
-  WizardInputElement,
-} from '@openscd/open-scd/src/foundation.js';
+  ComplexAction, 
+  Delete, 
+  Create
+} from '@openscd/core/foundation/deprecated/editor.js';
 import { editConnectedApWizard } from '../../../src/wizards/connectedap.js';
 
 describe('Wizards for SCL element ConnectedAP', () => {
