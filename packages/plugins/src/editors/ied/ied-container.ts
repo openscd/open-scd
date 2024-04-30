@@ -16,9 +16,9 @@ import { Container } from './foundation.js';
 import {
   getDescriptionAttribute,
   getNameAttribute,
-  newActionEvent,
   newWizardEvent,
 } from '@openscd/open-scd/src/foundation.js';
+import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { removeIEDWizard } from '../../wizards/ied.js';
 import { editServicesWizard } from '../../wizards/services.js';
 

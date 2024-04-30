@@ -25,11 +25,11 @@ import './sub-equipment-editor.js';
 import { startMove, getIcon, styles } from './foundation.js';
 import {
   getChildElementsByTagName,
-  newActionEvent,
   newWizardEvent,
   SCLTag,
   tags,
 } from '@openscd/open-scd/src/foundation.js';
+import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { BayEditor } from './bay-editor.js';
 import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
 

@@ -8,7 +8,7 @@ import {
   ComplexAction,
   isSimple,
   isReplace,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/core/foundation/deprecated/editor.js';
 import UpdateDescriptionSel from '../../../src/menu/UpdateDescriptionSEL.js';
 
 describe('Update method for desc attributes in SEL IEDs', () => {

@@ -5,18 +5,20 @@ import '@openscd/open-scd/src/wizard-textfield.js';
 import { pTypesLogicLink104 } from '../foundation/p-types.js';
 import {
   cloneElement,
-  ComplexAction,
   createElement,
-  EditorAction,
   getValue,
-  newActionEvent,
   newWizardEvent,
-  SimpleAction,
   Wizard,
   WizardActor,
   WizardInputElement,
   WizardMenuActor,
 } from '@openscd/open-scd/src/foundation.js';
+import {
+  ComplexAction,
+  EditorAction,
+  newActionEvent,
+  SimpleAction
+} from '@openscd/core/foundation/deprecated/editor.js';
 import { createNetworkTextField } from '../foundation/foundation.js';
 
 export function editLogicLinkWizard(

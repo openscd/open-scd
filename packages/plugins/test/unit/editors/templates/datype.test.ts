@@ -5,12 +5,14 @@ import '@openscd/open-scd/src/addons/Wizards.js';
 import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
 import {
-  ComplexAction,
   identity,
-  isSimple,
-  Replace,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
+import {
+  ComplexAction,
+  Replace,
+  isSimple
+} from '@openscd/core/foundation/deprecated/editor.js';
 import { editDaTypeWizard } from '../../../../src/editors/templates/datype-wizards.js';
 
 describe('wizards for DAType element', () => {

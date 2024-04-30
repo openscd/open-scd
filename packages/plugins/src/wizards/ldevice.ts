@@ -8,12 +8,11 @@ import '@openscd/open-scd/src/wizard-textfield.js';
 import {
   cloneElement,
   getValue,
-  SimpleAction,
   Wizard,
   WizardActor,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
-
+import { SimpleAction } from '@openscd/core/foundation/deprecated/editor.js';
 import { patterns } from './foundation/limits.js';
 
 const lDeviceNamePattern =

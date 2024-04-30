@@ -4,11 +4,8 @@ import '@openscd/open-scd/src/addons/Wizards.js';
 import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
 import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
-import {
-  ComplexAction,
-  isSimple,
-  WizardInputElement,
-} from '@openscd/open-scd/src/foundation.js';
+import { WizardInputElement } from '@openscd/open-scd/src/foundation.js';
+import { isSimple, ComplexAction } from '@openscd/core/foundation/deprecated/editor.js';
 import {
   editIEDWizard,
   removeIEDAndReferences,

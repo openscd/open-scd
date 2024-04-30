@@ -3,7 +3,7 @@ import { SinonSpy, spy } from 'sinon';
 
 import '../../../../src/editors/communication/connectedap-editor.js';
 import { ConnectedAPEditor } from '../../../../src/editors/communication/connectedap-editor.js';
-import { isDelete } from '@openscd/open-scd/src/foundation.js';
+import { isDelete } from '@openscd/core/foundation/deprecated/editor.js';
 
 describe('A component to visualize SCL element ConnectedAP', () => {
   let element: ConnectedAPEditor;

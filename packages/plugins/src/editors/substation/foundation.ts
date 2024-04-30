@@ -5,10 +5,10 @@ import './function-editor.js';
 
 import {
   identity,
-  newActionEvent,
   isPublic,
   getChildElementsByTagName,
 } from '@openscd/open-scd/src/foundation.js';
+import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import {
   circuitBreakerIcon,
   disconnectorIcon,

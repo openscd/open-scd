@@ -5,12 +5,12 @@ import fc, { hexaString, integer } from 'fast-check';
 import '@openscd/open-scd/src/addons/Wizards.js';
 import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
-import {
-  ComplexAction,
-  Create,
-  Delete,
-  WizardInputElement,
-} from '@openscd/open-scd/src/foundation.js';
+import { WizardInputElement } from '@openscd/open-scd/src/foundation.js';
+import { 
+  ComplexAction, 
+  Create, 
+  Delete, 
+} from '@openscd/core/foundation/deprecated/editor.js';
 import { editSMvWizard } from '../../../src/wizards/smv.js';
 import { invertedRegex, MAC, regExp } from '../../foundation.js';
 import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';

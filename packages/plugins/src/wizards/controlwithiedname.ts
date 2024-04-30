@@ -9,7 +9,6 @@ import { List } from '@material/mwc-list';
 import '@openscd/open-scd/src/filtered-list.js';
 import {
   createElement,
-  EditorAction,
   findControlBlocks,
   identity,
   Wizard,
@@ -17,7 +16,7 @@ import {
   WizardActor,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
-
+import { EditorAction } from '@openscd/core/foundation/deprecated/editor.js';
 import { inputIcon } from '@openscd/open-scd/src/icons/icons.js';
 import {
   getSourceReferences,

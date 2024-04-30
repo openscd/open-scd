@@ -1,5 +1,5 @@
 import { html, TemplateResult } from 'lit-element';
-import { Settings } from './addons/Settings.js';
+import { Settings } from '@openscd/core/foundation/deprecated/settings.js';
 
 export function getTheme(theme: Settings['theme']): TemplateResult {
   document.body.style.cssText = bodyStyles[theme];

@@ -8,7 +8,7 @@ import {
   CommitEntry,
   newIssueEvent,
   newLogEvent,
-} from '../../src/foundation.js';
+} from '@openscd/core/foundation/deprecated/history.js';
 import { OscdHistory } from '../../src/addons/History.js';
 
 describe('HistoringElement', () => {

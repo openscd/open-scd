@@ -14,18 +14,20 @@ import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import '@openscd/open-scd/src/wizard-textfield.js';
 import '@openscd/open-scd/src/filtered-list.js';
 import {
-  EditorAction,
   Wizard,
   WizardActor,
   WizardInputElement,
   compareNames,
   getValue,
   createElement,
-  ComplexAction,
   isPublic,
   identity,
-  SimpleAction,
 } from '@openscd/open-scd/src/foundation.js';
+import {
+  EditorAction,
+  ComplexAction,
+  SimpleAction,
+} from '@openscd/core/foundation/deprecated/editor.js';
 import {
   getTypes,
   typeMaxLength,

@@ -1,7 +1,11 @@
 import { expect } from '@open-wc/testing';
 
 import { createMissingIEDNameSubscriberInfo } from '../../../src/menu/SubscriberInfo.js';
-import { Create, isCreate, SimpleAction } from '@openscd/open-scd/src/foundation.js';
+import { isCreate } from '@openscd/core/foundation/deprecated/editor.js';
+import {
+  SimpleAction,
+  Create,
+} from '@openscd/core/foundation/deprecated/editor.js';
 
 describe('menu plugin adding subscriber info', () => {
   describe('for Edition2 and higher files', () => {

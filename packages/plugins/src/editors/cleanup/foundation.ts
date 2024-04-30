@@ -1,6 +1,7 @@
 'use strict';
 
-import { identity, Delete } from '@openscd/open-scd/src/foundation.js';
+import { identity } from '@openscd/open-scd/src/foundation.js';
+import { Delete } from '@openscd/core/foundation/deprecated/editor.js';
 
 /**
  * Clean SCL items as requested by removing SCL elements specified from the SCL file

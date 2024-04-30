@@ -13,22 +13,24 @@ import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import '@openscd/open-scd/src/wizard-textfield.js';
 import {
   cloneElement,
-  Create,
   createElement,
-  EditorAction,
   find,
   getValue,
   identity,
-  newActionEvent,
   newSubWizardEvent,
   newWizardEvent,
   patterns,
-  Replace,
   Wizard,
   WizardActor,
   WizardInputElement,
   WizardMenuActor,
 } from '@openscd/open-scd/src/foundation.js';
+import { 
+  Create,
+  EditorAction,
+  newActionEvent,
+  Replace
+} from '@openscd/core/foundation/deprecated/editor.js';
 import { createBDAWizard, editBDAWizard } from '../../wizards/bda.js';
 import {
   addReferencedDataTypes,
