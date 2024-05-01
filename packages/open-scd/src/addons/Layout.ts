@@ -14,7 +14,7 @@ import { newSettingsUIEvent } from '@openscd/core/foundation/deprecated/settings
 import { MenuItem, Plugin, Validator, PluginKind, MenuPosition, MenuPlugin, menuPosition, pluginIcons, newResetPluginsEvent, newAddExternalPluginEvent, newSetPluginsEvent } from '../open-scd.js';
 import { HistoryUIKind, newEmptyIssuesEvent, newHistoryUIEvent, newRedoEvent, newUndoEvent, UndoRedoChangedEvent } from './History.js';
 import type { Drawer } from '@material/mwc-drawer';
-import { ActionDetail, List } from '@material/mwc-list';
+import type { ActionDetail, List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { Dialog } from '@material/mwc-dialog';
 import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation.js';
