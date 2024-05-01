@@ -28,7 +28,11 @@ export class OscdLayout extends LitElement {
   @property({ attribute: false })
   doc: XMLDocument | null = null;
   /** The name of the current [[`doc`]] */
-  @property({ type: String }) docName = '';
+  @property({ type: String }) 
+  docName = '';
+  /** Index of the last [[`EditorAction`]] applied. */
+  @property({ type: Number })
+  editCount = -1;
   /** The currently active editor tab. */
   @property({ type: Number })
   activeTab = 0;

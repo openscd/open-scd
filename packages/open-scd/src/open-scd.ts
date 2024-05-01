@@ -333,6 +333,7 @@ export class OpenSCD extends LitElement {
                 .host=${this}
                 .doc=${this.doc}
                 .docName=${this.docName}
+                .editCount=${this.editCount}
                 .plugins=${this.plugins}
               >
               </oscd-layout>
