@@ -1,10 +1,11 @@
 import {
-  Delete,
   getNameAttribute,
   isPublic,
-  Replace,
 } from '@openscd/open-scd/src/foundation.js';
-
+import {
+  Delete,
+  Replace
+} from '@openscd/core/foundation/deprecated/editor';
 const referenceInfoTags = ['IED', 'Substation', 'VoltageLevel', 'Bay'] as const;
 type ReferencesInfoTag = (typeof referenceInfoTags)[number];
 

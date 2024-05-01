@@ -5,7 +5,7 @@ import '@openscd/open-scd/src/addons/Wizards.js';
 import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
 import { createFCDAsWizard } from '../../../src/wizards/fcda.js';
-import { isCreate } from '@openscd/open-scd/src/foundation.js';
+import { isCreate } from '@openscd/core/foundation/deprecated/editor.js';
 import { FinderList } from '@openscd/open-scd/src/finder-list.js';
 
 describe('create wizard for FCDA element', () => {

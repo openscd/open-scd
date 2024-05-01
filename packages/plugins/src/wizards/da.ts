@@ -9,16 +9,15 @@ import '@openscd/open-scd/src/wizard-select.js';
 import {
   cloneElement,
   createElement,
-  EditorAction,
   getValue,
   isPublic,
-  newActionEvent,
   newWizardEvent,
   Wizard,
   WizardActor,
   WizardInputElement,
   WizardMenuActor,
 } from '@openscd/open-scd/src/foundation.js';
+import { EditorAction, newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { getValAction, wizardContent } from './abstractda.js';
 import { functionalConstraintEnum } from './foundation/enums.js';
 

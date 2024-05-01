@@ -7,13 +7,13 @@ import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import '@openscd/open-scd/src/wizard-textfield.js';
 import {
-  EditorAction,
-  newLogEvent,
-  newOpenDocEvent,
   newWizardEvent,
   Wizard,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
+import { newOpenDocEvent } from '@openscd/core/foundation/deprecated/open-event.js';
+import { EditorAction } from '@openscd/core/foundation/deprecated/editor.js';
+import { newLogEvent } from '@openscd/core/foundation/deprecated/history.js';
 import {
   newEmptySCD,
   SupportedVersion,

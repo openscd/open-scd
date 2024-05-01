@@ -10,8 +10,6 @@ import {
 } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 
-import { ListItem } from '@material/mwc-list/mwc-list-item';
-
 import '@material/mwc-icon';
 import '@material/mwc-icon-button';
 import '@material/mwc-linear-progress';
@@ -30,10 +28,8 @@ import '@material/mwc-select';
 import '@material/mwc-switch';
 import '@material/mwc-textfield';
 
-import {
-  newOpenDocEvent,
-  newPendingStateEvent,
-} from './foundation.js';
+import { newOpenDocEvent } from '@openscd/core/foundation/deprecated/open-event.js';
+import { newPendingStateEvent } from '@openscd/core/foundation/deprecated/waiter.js';
 
 import './addons/Settings.js';
 import './addons/Waiter.js';

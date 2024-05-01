@@ -14,25 +14,27 @@ import '@openscd/open-scd/src/wizard-select.js';
 import '@openscd/open-scd/src/wizard-textfield.js';
 import {
   cloneElement,
-  ComplexAction,
   createElement,
-  Delete,
-  EditorAction,
   find,
   getUniqueElementName,
   getValue,
   identity,
   isPublic,
   MenuAction,
-  newActionEvent,
   newSubWizardEvent,
   newWizardEvent,
-  SimpleAction,
   Wizard,
   WizardActor,
   WizardInputElement,
   WizardMenuActor,
 } from '@openscd/open-scd/src/foundation.js';
+import { 
+  ComplexAction,
+  Delete,
+  SimpleAction,
+  EditorAction,
+  newActionEvent
+} from '@openscd/core/foundation/deprecated/editor.js';
 import { maxLength, patterns } from './foundation/limits.js';
 import { editDataSetWizard } from './dataset.js';
 import { editGseWizard } from './gse.js';

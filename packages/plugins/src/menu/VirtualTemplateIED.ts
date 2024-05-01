@@ -24,8 +24,8 @@ import {
   find,
   getChildElementsByTagName,
   identity,
-  newActionEvent,
 } from '@openscd/open-scd/src/foundation.js';
+import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
 import {
   getFunctionNamingPrefix,

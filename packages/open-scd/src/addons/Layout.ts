@@ -9,7 +9,8 @@ import {
 	css
 } from 'lit-element';
 import { get } from 'lit-translate';
-import { newPendingStateEvent, newSettingsUIEvent} from '../foundation.js';
+import { newPendingStateEvent } from '@openscd/core/foundation/deprecated/waiter.js';
+import { newSettingsUIEvent } from '@openscd/core/foundation/deprecated/settings.js';
 import { MenuItem, Plugin, Validator, PluginKind, MenuPosition, MenuPlugin, menuPosition, pluginIcons, newResetPluginsEvent, newAddExternalPluginEvent, newSetPluginsEvent } from '../open-scd.js';
 import { HistoryUIKind, newEmptyIssuesEvent, newHistoryUIEvent, newRedoEvent, newUndoEvent, UndoRedoChangedEvent } from './History.js';
 import { Drawer } from '@material/mwc-drawer';

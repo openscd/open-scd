@@ -5,7 +5,7 @@ import {
   LogDetailBase,
   newIssueEvent,
   newLogEvent,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/core/foundation/deprecated/history.js';
 import { validateChildren } from './templates/foundation.js';
 
 type ValidationResult = LogDetailBase | LogDetail;

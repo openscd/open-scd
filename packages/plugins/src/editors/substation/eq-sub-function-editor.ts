@@ -22,11 +22,11 @@ import '@openscd/open-scd/src/action-pane.js';
 import './general-equipment-editor.js';
 import {
   getChildElementsByTagName,
-  newActionEvent,
   newWizardEvent,
   SCLTag,
   tags,
 } from '@openscd/open-scd/src/foundation.js';
+import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
 import { classMap } from 'lit-html/directives/class-map.js';
 import { renderGeneralEquipment } from './foundation.js';

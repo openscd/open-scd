@@ -5,7 +5,6 @@ import '@openscd/open-scd/src/wizard-textfield.js';
 import {
   cloneElement,
   createElement,
-  EditorAction,
   getMultiplier,
   getValue,
   patterns,
@@ -13,6 +12,7 @@ import {
   WizardActor,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
+import { EditorAction } from '@openscd/core/foundation/deprecated/editor';
 
 /** Initial attribute values suggested for `SubNetwork` creation */
 const initial = {

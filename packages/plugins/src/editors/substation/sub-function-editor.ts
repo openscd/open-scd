@@ -22,11 +22,11 @@ import './sub-function-editor.js';
 import './general-equipment-editor.js';
 import {
   getChildElementsByTagName,
-  newActionEvent,
   newWizardEvent,
   SCLTag,
   tags,
 } from '@openscd/open-scd/src/foundation.js';
+import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
 import { renderGeneralEquipment } from './foundation.js';
 

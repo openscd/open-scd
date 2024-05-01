@@ -5,11 +5,9 @@ import '@openscd/open-scd/src/addons/Wizards.js';
 import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
 import {
-  Create,
-  isCreate,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
-
+import { Create, isCreate } from '@openscd/core/foundation/deprecated/editor.js';
 import { fetchDoc } from './test-support.js';
 import { createConductingEquipmentWizard } from '../../../src/wizards/conductingequipment.js';
 

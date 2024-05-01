@@ -11,8 +11,8 @@ import '@openscd/open-scd/src/wizard-select.js';
 import '@openscd/open-scd/src/wizard-textfield.js';
 import {
   createElement,
-  EditorAction,
 } from '@openscd/open-scd/src/foundation.js';
+import { EditorAction } from '@openscd/core/foundation/deprecated/editor.js';
 import { WizardSelect } from '@openscd/open-scd/src/wizard-select.js';
 import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
 import { maxLength, patterns } from './foundation/limits.js';

@@ -5,13 +5,15 @@ import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
 import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
 import {
-  ComplexAction,
-  Create,
-  isSimple,
-  Replace,
   WizardAction,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
+import { 
+  isSimple,
+  Create, 
+  Replace,
+  ComplexAction
+} from '@openscd/core/foundation/deprecated/editor.js';
 
 import { fetchDoc, setWizardTextFieldValue } from './test-support.js';
 import {

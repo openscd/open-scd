@@ -12,12 +12,15 @@ import { get } from 'lit-translate';
 
 import {
   cloneElement,
-  ComplexAction,
-  Delete,
   getDescriptionAttribute,
   identity,
-  newActionEvent,
 } from '@openscd/open-scd/src/foundation.js';
+
+import {
+  ComplexAction,
+  Delete,
+  newActionEvent,
+} from '@openscd/core/foundation/deprecated/editor.js';
 
 import {
   getExistingSupervision,

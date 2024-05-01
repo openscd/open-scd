@@ -8,13 +8,13 @@ import '@openscd/open-scd/src/wizard-textfield.js';
 import {
   createElement,
   crossProduct,
-  EditorAction,
   getValue,
   isPublic,
   Wizard,
   WizardActor,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
+import { EditorAction } from '@openscd/core/foundation/deprecated/editor.js';
 import { replaceNamingAction } from './foundation/actions.js';
 
 const types: Partial<Record<string, string>> = {

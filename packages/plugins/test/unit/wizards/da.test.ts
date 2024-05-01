@@ -7,13 +7,15 @@ import { wizardContent } from '../../../src/wizards/abstractda.js';
 import { WizardSelect } from '@openscd/open-scd/src/wizard-select.js';
 import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
 import {
-  Create,
-  isCreate,
-  isReplace,
-  Replace,
   Wizard,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
+import { 
+  isCreate,
+  isReplace,
+  Create, 
+  Replace 
+} from '@openscd/core/foundation/deprecated/editor.js';
 import {
   createDaAction,
   renderDa,

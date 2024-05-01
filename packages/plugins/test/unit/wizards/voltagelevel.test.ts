@@ -3,13 +3,15 @@ import { fixture, html, expect } from '@open-wc/testing';
 import '@openscd/open-scd/src/wizard-textfield.js';
 import {
   WizardInputElement,
+  WizardActor,
+} from '@openscd/open-scd/src/foundation.js';
+import { 
+  ComplexAction,
   isCreate,
   isReplace,
   isDelete,
   isSimple,
-  ComplexAction,
-  WizardActor,
-} from '@openscd/open-scd/src/foundation.js';
+ } from '@openscd/core/foundation/deprecated/editor.js';
 import {
   createAction,
   updateAction,

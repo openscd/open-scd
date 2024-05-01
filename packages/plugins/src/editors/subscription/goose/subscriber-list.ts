@@ -14,14 +14,16 @@ import '@material/mwc-list/mwc-list-item';
 
 import '@openscd/open-scd/src/filtered-list.js';
 import {
+  createElement,
+  identity,
+} from '@openscd/open-scd/src/foundation.js';
+import {
   ComplexAction,
   Create,
-  createElement,
   Delete,
-  identity,
   Move,
   newActionEvent,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/core/foundation/deprecated/editor.js';
 import {
   GOOSESelectEvent,
   GooseSubscriptionEvent,
