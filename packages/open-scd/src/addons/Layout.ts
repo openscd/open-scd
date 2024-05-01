@@ -22,6 +22,13 @@ import type { Select } from '@material/mwc-select';
 import type { Switch } from '@material/mwc-switch';
 import type { TextField } from '@material/mwc-textfield';
 
+import '@material/mwc-drawer';
+import '@material/mwc-list';
+import '@material/mwc-dialog';
+import '@material/mwc-switch';
+import '@material/mwc-select';
+import '@material/mwc-textfield';
+
 @customElement('oscd-layout')
 export class OscdLayout extends LitElement {
 	
