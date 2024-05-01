@@ -40,7 +40,7 @@ import './addons/Layout.js';
 
 import { ActionDetail, List } from '@material/mwc-list';
 
-import { officialPlugins } from '../public/js/plugins.js';
+import { officialPlugins } from './plugins.js';
 import { initializeNsdoc, Nsdoc } from './foundation/nsdoc.js';
 import { UndoRedoChangedEvent } from './addons/History.js';
 
