@@ -15,7 +15,7 @@ import { MenuItem, Plugin, Validator, PluginKind, MenuPosition, MenuPlugin, menu
 import { HistoryUIKind, newEmptyIssuesEvent, newHistoryUIEvent, newRedoEvent, newUndoEvent, UndoRedoChangedEvent } from './History.js';
 import type { Drawer } from '@material/mwc-drawer';
 import type { ActionDetail, List } from '@material/mwc-list';
-import { ListItem } from '@material/mwc-list/mwc-list-item';
+import type { ListItem } from '@material/mwc-list/mwc-list-item';
 import { Dialog } from '@material/mwc-dialog';
 import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation.js';
 import { Select } from '@material/mwc-select';
