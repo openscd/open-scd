@@ -13,7 +13,7 @@ import { newPendingStateEvent } from '@openscd/core/foundation/deprecated/waiter
 import { newSettingsUIEvent } from '@openscd/core/foundation/deprecated/settings.js';
 import { MenuItem, Plugin, Validator, PluginKind, MenuPosition, MenuPlugin, menuPosition, pluginIcons, newResetPluginsEvent, newAddExternalPluginEvent, newSetPluginsEvent } from '../open-scd.js';
 import { HistoryUIKind, newEmptyIssuesEvent, newHistoryUIEvent, newRedoEvent, newUndoEvent, UndoRedoChangedEvent } from './History.js';
-import { Drawer } from '@material/mwc-drawer';
+import type { Drawer } from '@material/mwc-drawer';
 import { ActionDetail, List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { Dialog } from '@material/mwc-dialog';
