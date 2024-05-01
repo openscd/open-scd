@@ -17,7 +17,7 @@ import type { Drawer } from '@material/mwc-drawer';
 import type { ActionDetail, List } from '@material/mwc-list';
 import type { ListItem } from '@material/mwc-list/mwc-list-item';
 import type { Dialog } from '@material/mwc-dialog';
-import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation.js';
+import type { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation.js';
 import { Select } from '@material/mwc-select';
 import { Switch } from '@material/mwc-switch';
 import { TextField } from '@material/mwc-textfield';
