@@ -20,7 +20,7 @@ import type { Dialog } from '@material/mwc-dialog';
 import type { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation.js';
 import type { Select } from '@material/mwc-select';
 import type { Switch } from '@material/mwc-switch';
-import { TextField } from '@material/mwc-textfield';
+import type { TextField } from '@material/mwc-textfield';
 
 @customElement('oscd-layout')
 export class OscdLayout extends LitElement {
