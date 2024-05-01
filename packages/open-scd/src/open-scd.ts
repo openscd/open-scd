@@ -46,6 +46,7 @@ import { Drawer } from '@material/mwc-drawer';
 import { get } from 'lit-translate';
 
 import { officialPlugins } from './plugins.js';
+
 import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation.js';
 import { Select } from '@material/mwc-select';
 import { Switch } from '@material/mwc-switch';
