@@ -4,8 +4,7 @@ on:
     branches-ignore:
       - main
     paths:
-      - packages/open-scd/**
-      - packages/plugins/**
+      - packages/**
 
 jobs:
   test:

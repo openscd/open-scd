@@ -60,7 +60,8 @@
     "release:minor": "standard-version --release-as minor",
     "release:patch": "standard-version --release-as patch",
     "release:major": "standard-version --release-as major",
-    "build": "tsc"
+    "build": "npm run doc && npm run bundle",
+    "bundle": "tsc"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
