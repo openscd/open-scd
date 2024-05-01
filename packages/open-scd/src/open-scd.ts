@@ -45,14 +45,21 @@ import { ActionDetail, List } from '@material/mwc-list';
 import { Drawer } from '@material/mwc-drawer';
 import { get } from 'lit-translate';
 
-import { officialPlugins } from '../public/js/plugins.js';
+import { officialPlugins } from './plugins.js';
 import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation.js';
 import { Select } from '@material/mwc-select';
 import { Switch } from '@material/mwc-switch';
 import { TextField } from '@material/mwc-textfield';
 import { Dialog } from '@material/mwc-dialog';
 import { initializeNsdoc, Nsdoc } from './foundation/nsdoc.js';
-import { HistoryUIKind, newEmptyIssuesEvent, newHistoryUIEvent, newRedoEvent, newUndoEvent, UndoRedoChangedEvent } from './addons/History.js';
+import {
+  HistoryUIKind,
+  newEmptyIssuesEvent,
+  newHistoryUIEvent,
+  newRedoEvent,
+  newUndoEvent,
+  UndoRedoChangedEvent,
+} from './addons/History.js';
 
 // HOSTING INTERFACES
 
@@ -343,12 +350,12 @@ export class OpenSCD extends LitElement {
     return html`<oscd-waiter>
       <oscd-settings .host=${this}>
         <oscd-wizards .host=${this}>
-          <oscd-history 
-            .host=${this} 
-            @undo-redo-changed="${(e:UndoRedoChangedEvent) => { 
-              this.editCount = e.detail.editCount 
-              this.canRedo = e.detail.canRedo
-              this.canUndo = e.detail.canUndo
+          <oscd-history
+            .host=${this}
+            @undo-redo-changed="${(e: UndoRedoChangedEvent) => {
+              this.editCount = e.detail.editCount;
+              this.canRedo = e.detail.canRedo;
+              this.canUndo = e.detail.canUndo;
             }}"
           >
             <oscd-editor
@@ -572,7 +579,7 @@ export class OpenSCD extends LitElement {
         name: 'undo',
         actionItem: true,
         action: (): void => {
-          this.dispatchEvent(newUndoEvent())
+          this.dispatchEvent(newUndoEvent());
         },
         disabled: (): boolean => !this.canUndo,
         kind: 'static',
@@ -582,7 +589,7 @@ export class OpenSCD extends LitElement {
         name: 'redo',
         actionItem: true,
         action: (): void => {
-          this.dispatchEvent(newRedoEvent())
+          this.dispatchEvent(newRedoEvent());
         },
         disabled: (): boolean => !this.canRedo,
         kind: 'static',
@@ -593,7 +600,7 @@ export class OpenSCD extends LitElement {
         name: 'menu.viewLog',
         actionItem: true,
         action: (): void => {
-          this.dispatchEvent(newHistoryUIEvent(true, HistoryUIKind.log))
+          this.dispatchEvent(newHistoryUIEvent(true, HistoryUIKind.log));
         },
         kind: 'static',
       },
@@ -602,7 +609,7 @@ export class OpenSCD extends LitElement {
         name: 'menu.viewHistory',
         actionItem: true,
         action: (): void => {
-          this.dispatchEvent(newHistoryUIEvent(true, HistoryUIKind.history))
+          this.dispatchEvent(newHistoryUIEvent(true, HistoryUIKind.history));
         },
         kind: 'static',
       },
@@ -611,7 +618,7 @@ export class OpenSCD extends LitElement {
         name: 'menu.viewDiag',
         actionItem: true,
         action: (): void => {
-          this.dispatchEvent(newHistoryUIEvent(true, HistoryUIKind.diagnostic))
+          this.dispatchEvent(newHistoryUIEvent(true, HistoryUIKind.diagnostic));
         },
         kind: 'static',
       },
