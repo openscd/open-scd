@@ -16,7 +16,7 @@ import { HistoryUIKind, newEmptyIssuesEvent, newHistoryUIEvent, newRedoEvent, ne
 import type { Drawer } from '@material/mwc-drawer';
 import type { ActionDetail, List } from '@material/mwc-list';
 import type { ListItem } from '@material/mwc-list/mwc-list-item';
-import { Dialog } from '@material/mwc-dialog';
+import type { Dialog } from '@material/mwc-dialog';
 import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation.js';
 import { Select } from '@material/mwc-select';
 import { Switch } from '@material/mwc-switch';
