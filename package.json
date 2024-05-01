@@ -13,7 +13,7 @@
     "test": "npx nx run-many -t test --all --parallel=false",
     "graph": "npx nx graph",
     "start": "lerna run start",
-    "serve": "npm run build"
+    "preserve": "npm run build"
   },
   "repository": {
     "type": "git",
