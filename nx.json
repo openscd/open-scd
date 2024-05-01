@@ -17,7 +17,7 @@
     },
     "test": {
       "inputs": ["default", "^default"],
-      "dependsOn": ["^test"]
+      "dependsOn": ["^test", "build"]
     },
     "build": {
       "dependsOn": ["clean", "^clean", "^build"]
