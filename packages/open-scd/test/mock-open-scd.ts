@@ -10,6 +10,7 @@ import { WizardFactory } from '../src/foundation.js';
 import { OpenSCD } from '../src/open-scd.js';
 import { WizardDialog } from '../src/wizard-dialog.js';
 import { OscdHistory } from '../src/addons/History.js';
+import { OscdLayout } from '../src/addons/Layout.js';
 
 @customElement('mock-open-scd')
 export class MockOpenSCD extends OpenSCD {
@@ -22,8 +23,17 @@ export class MockOpenSCD extends OpenSCD {
   @query('oscd-history')
   historyAddon!: OscdHistory;
 
+  @query('oscd-layout')
+  layout!: OscdLayout;
+
   renderHosting(): TemplateResult {
     return html`<slot></slot>`;
+  }
+
+  render(): TemplateResult {
+    return html`
+    ${this.renderHosting()}
+    ${super.render()}`;
   }
 
   getPlugin<T extends HTMLElement>(name: string): T | undefined {
