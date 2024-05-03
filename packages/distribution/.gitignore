@@ -19,4 +19,4 @@ node_modules/
 # build
 /_site/
 /build/
-/dist/
+/out-tsc/

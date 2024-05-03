@@ -15,5 +15,6 @@ jobs:
 
       - name: Install and Test OpenSCD
         run: |
+          npm i @nx/nx-linux-x64-gnu
           npm clean-install
           npm run-script test

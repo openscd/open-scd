@@ -19,6 +19,7 @@
     "./dist/**"
   ],
   "dependencies": {
+    "@material/mwc-dialog": "0.22.1"
   },
   "//": {
     "clean": "rimraf build",
@@ -34,7 +35,8 @@
     "doc:clean": "npx rimraf doc",
     "doc:typedoc": "typedoc --plugin none --out doc src",
     "doc:wca": "wca src --outDir doc/components",
-    "doc": "npm run doc:clean && npm run doc:typedoc && npm run doc:wca"
+    "doc": "npm run doc:clean && npm run doc:typedoc && npm run doc:wca",
+    "build:notest": "tsc"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
