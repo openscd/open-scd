@@ -17,6 +17,38 @@ snapshots["open-scd looks like its snapshot"] =
 `;
 /* end snapshot open-scd looks like its snapshot */
 
+snapshots["open-scd renders menu plugins passed down as props and it looks like its snapshot"] = 
+`<oscd-waiter>
+  <oscd-settings>
+    <oscd-wizards>
+      <oscd-history>
+        <oscd-editor>
+          <oscd-layout>
+          </oscd-layout>
+        </oscd-editor>
+      </oscd-history>
+    </oscd-wizards>
+  </oscd-settings>
+</oscd-waiter>
+`;
+/* end snapshot open-scd renders menu plugins passed down as props and it looks like its snapshot */
+
+snapshots["open-scd renders editor plugins passed down as props and it looks like its snapshot"] = 
+`<oscd-waiter>
+  <oscd-settings>
+    <oscd-wizards>
+      <oscd-history>
+        <oscd-editor>
+          <oscd-layout>
+          </oscd-layout>
+        </oscd-editor>
+      </oscd-history>
+    </oscd-wizards>
+  </oscd-settings>
+</oscd-waiter>
+`;
+/* end snapshot open-scd renders editor plugins passed down as props and it looks like its snapshot */
+
 snapshots["open-scd layout looks like its snapshot"] = 
 `<slot>
 </slot>
