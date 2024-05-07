@@ -2,28 +2,30 @@ import { OpenEvent } from '@openscd/core';
 import { property } from 'lit-element';
 import { get } from 'lit-translate';
 
-import {
-  Create,
-  Delete,
+import { newLogEvent } from '@openscd/core/foundation/deprecated/history.js';
+import { newValidateEvent } from '@openscd/core/foundation/deprecated/validation.js'
+import { 
+  Create, 
+  Delete, 
+  Move, 
+  Update, 
+  Replace, 
+  SimpleAction,
   EditorAction,
   EditorActionEvent,
-  getReference,
   isCreate,
   isDelete,
   isMove,
   isSimple,
   isReplace,
-  LitElementConstructor,
-  Mixin,
-  Move,
-  newLogEvent,
-  newValidateEvent,
-  OpenDocEvent,
-  SCLTag,
-  SimpleAction,
-  Replace,
-  Update,
   isUpdate,
+} from '@openscd/core/foundation/deprecated/editor.js';
+import { OpenDocEvent } from '@openscd/core/foundation/deprecated/open-event.js';
+import {
+  getReference,
+  SCLTag,
+  Mixin,
+  LitElementConstructor
 } from './foundation.js';
 
 /** Mixin that edits an `XML` `doc`, listening to [[`EditorActionEvent`]]s */

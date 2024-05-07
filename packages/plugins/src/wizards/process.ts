@@ -6,11 +6,11 @@ import {
   createElement,
   getChildElementsByTagName,
   getValue,
-  SimpleAction,
   Wizard,
   WizardActor,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
+import { SimpleAction } from '@openscd/core/foundation/deprecated/editor.js';
 
 function createProcessAction(parent: Element): WizardActor {
   return (inputs: WizardInputElement[]) => {

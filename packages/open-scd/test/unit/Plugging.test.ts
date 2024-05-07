@@ -27,7 +27,7 @@ describe('OpenSCD-Plugin', () => {
   });
 
   it('stores default plugins on load', () =>
-    expect(element).property('editors').to.have.lengthOf(6));
+    expect(element.layout).property('editors').to.have.lengthOf(6));
 
   it('has Locale property', async () => {
     expect(element).to.have.property('locale');
@@ -44,48 +44,48 @@ describe('OpenSCD-Plugin', () => {
     let primaryAction: HTMLElement;
 
     beforeEach(async () => {
-      element.pluginUI.show();
-      await element.pluginUI.updateComplete;
+      element.layout.pluginUI.show();
+      await element.layout.pluginUI.updateComplete;
       firstEditorPlugin = <HTMLElement>(
-        element.pluginList.querySelector(
+        element.layout.pluginList.querySelector(
           'mwc-check-list-item:not([noninteractive])'
         )
       );
 
       resetAction = <HTMLElement>(
-        element.pluginUI.querySelector('mwc-button[slot="secondaryAction"]')
+        element.layout.pluginUI.querySelector('mwc-button[slot="secondaryAction"]')
       );
       primaryAction = <HTMLElement>(
-        element.pluginUI.querySelector('mwc-button[slot="primaryAction"]')
+        element.layout.pluginUI.querySelector('mwc-button[slot="primaryAction"]')
       );
     });
 
     it('disables deselected plugins', async () => {
       firstEditorPlugin.click();
       await element.updateComplete;
-      expect(element).property('editors').to.have.lengthOf(5);
+      expect(element.layout).property('editors').to.have.lengthOf(5);
     });
 
     it('enables selected plugins', async () => {
-      (<HTMLElement>element.pluginList.firstElementChild).click();
+      (<HTMLElement>element.layout.pluginList.firstElementChild).click();
       await element.updateComplete;
-      (<HTMLElement>element.pluginList.firstElementChild).click();
+      (<HTMLElement>element.layout.pluginList.firstElementChild).click();
       await element.updateComplete;
-      expect(element).property('editors').to.have.lengthOf(6);
+      expect(element.layout).property('editors').to.have.lengthOf(6);
     });
 
     it('resets plugins to default on reset button click', async () => {
-      (<HTMLElement>element.pluginList.firstElementChild).click();
+      (<HTMLElement>element.layout.pluginList.firstElementChild).click();
       await element.updateComplete;
       resetAction.click();
       await element.updateComplete;
-      expect(element).property('editors').to.have.lengthOf(6);
+      expect(element.layout).property('editors').to.have.lengthOf(6);
     });
 
     it('opens the custom plugin dialog on add button click', async () => {
       primaryAction.click();
       await element.updateComplete;
-      expect(element)
+      expect(element.layout)
         .property('pluginDownloadUI')
         .to.have.property('open', true);
     });
@@ -100,25 +100,26 @@ describe('OpenSCD-Plugin', () => {
 
     beforeEach(async () => {
       src = <TextField>(
-        element.pluginDownloadUI.querySelector('#pluginSrcInput')
+        element.layout.pluginDownloadUI.querySelector('#pluginSrcInput')
       );
       name = <TextField>(
-        element.pluginDownloadUI.querySelector('#pluginNameInput')
+        element.layout.pluginDownloadUI.querySelector('#pluginNameInput')
       );
       primaryAction = <HTMLElement>(
-        element.pluginDownloadUI.querySelector(
+        element.layout.pluginDownloadUI.querySelector(
           'mwc-button[slot="primaryAction"]'
         )
       );
-      element.pluginDownloadUI.show();
-      await element.pluginDownloadUI.updateComplete;
+      element.layout.pluginDownloadUI.show();
+      await element.layout.pluginDownloadUI.updateComplete;
+      await element.updateComplete;
       menuKindOption = <HTMLElement>(
-        element.pluginDownloadUI.querySelector(
+        element.layout.pluginDownloadUI.querySelector(
           '#pluginKindList > mwc-radio-list-item[value="menu"]'
         )
       );
       validatorKindOption = <HTMLElement>(
-        element.pluginDownloadUI.querySelector(
+        element.layout.pluginDownloadUI.querySelector(
           '#pluginKindList > mwc-radio-list-item[id="validator"]'
         )
       );
@@ -126,24 +127,24 @@ describe('OpenSCD-Plugin', () => {
 
     it('requires a name and a valid URL to add a plugin', async () => {
       primaryAction.click();
-      expect(element.pluginDownloadUI).to.have.property('open', true);
+      expect(element.layout.pluginDownloadUI).to.have.property('open', true);
 
       src.value = 'http://example.com/plugin.js';
       await src.updateComplete;
       primaryAction.click();
-      expect(element.pluginDownloadUI).to.have.property('open', true);
+      expect(element.layout.pluginDownloadUI).to.have.property('open', true);
 
       src.value = 'notaURL';
       name.value = 'testName';
       await src.updateComplete;
       await name.updateComplete;
       primaryAction.click();
-      expect(element.pluginDownloadUI).to.have.property('open', true);
+      expect(element.layout.pluginDownloadUI).to.have.property('open', true);
 
       src.value = 'http://example.com/plugin.js';
       await src.updateComplete;
       primaryAction.click();
-      expect(element.pluginDownloadUI).to.have.property('open', false);
+      expect(element.layout.pluginDownloadUI).to.have.property('open', false);
     });
 
     it('adds a new editor kind plugin on add button click', async () => {
@@ -153,10 +154,10 @@ describe('OpenSCD-Plugin', () => {
       await name.updateComplete;
       primaryAction.click();
       await element.updateComplete;
-      expect(element.editors).to.have.lengthOf(7);
+      expect(element.layout.editors).to.have.lengthOf(7);
     });
     it('adds a new menu kind plugin on add button click', async () => {
-      const lengthMenuKindPlugins = element.menuEntries.length;
+      const lengthMenuKindPlugins = element.layout.menuEntries.length;
       src.value = 'http://example.com/plugin.js';
       name.value = 'testName';
       menuKindOption.click();
@@ -164,7 +165,7 @@ describe('OpenSCD-Plugin', () => {
       await name.updateComplete;
       primaryAction.click();
       await element.updateComplete;
-      expect(element.menuEntries).to.have.lengthOf(lengthMenuKindPlugins + 1);
+      expect(element.layout.menuEntries).to.have.lengthOf(lengthMenuKindPlugins + 1);
     });
     it('sets requireDoc and position for new menu kind plugin', async () => {
       src.value = 'http://example.com/plugin.js';
@@ -176,14 +177,14 @@ describe('OpenSCD-Plugin', () => {
       await element.updateComplete;
 
       expect(
-        element.menuEntries[element.menuEntries.length - 1]
+        element.layout.menuEntries[element.layout.menuEntries.length - 1]
       ).to.have.property('requireDoc');
       expect(
-        element.menuEntries[element.menuEntries.length - 1]
+        element.layout.menuEntries[element.layout.menuEntries.length - 1]
       ).to.have.property('position');
     });
     it('adds a new validator kind plugin on add button click', async () => {
-      expect(element.validators).to.have.lengthOf(2);
+      expect(element.layout.validators).to.have.lengthOf(2);
       src.value = 'http://example.com/plugin.js';
       name.value = 'testName';
       validatorKindOption.click();
@@ -191,7 +192,7 @@ describe('OpenSCD-Plugin', () => {
       await name.updateComplete;
       primaryAction.click();
       await element.updateComplete;
-      expect(element.validators).to.have.lengthOf(3);
+      expect(element.layout.validators).to.have.lengthOf(3);
     });
   });
 });

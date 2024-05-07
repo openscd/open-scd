@@ -9,16 +9,14 @@ import '@material/mwc-list/mwc-list-item';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 import {
-  EditorAction,
   identity,
   isEqual,
   isSame,
   newWizardEvent,
-  SimpleAction,
   Wizard,
   WizardActor,
 } from './foundation.js';
-
+import { EditorAction, SimpleAction } from '@openscd/core/foundation/deprecated/editor.js';
 interface MergeOptions {
   title?: string;
   selected?: (diff: Diff<Element | string>) => boolean;

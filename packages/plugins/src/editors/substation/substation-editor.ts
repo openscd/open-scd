@@ -25,11 +25,11 @@ import './general-equipment-editor.js';
 import { substationIcon } from '@openscd/open-scd/src/icons/icons.js';
 import {
   getChildElementsByTagName,
-  newActionEvent,
   newWizardEvent,
   SCLTag,
   tags,
 } from '@openscd/open-scd/src/foundation.js';
+import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
 import {
   cloneSubstationElement,

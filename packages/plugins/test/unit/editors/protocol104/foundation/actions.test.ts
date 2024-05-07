@@ -1,7 +1,7 @@
 import { expect } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
-import { Create } from '@openscd/open-scd/src/foundation.js';
+import { Create } from '@openscd/core/foundation/deprecated/editor.js';
 
 import {
   cdcProcessings,

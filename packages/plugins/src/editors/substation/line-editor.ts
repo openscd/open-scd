@@ -28,11 +28,10 @@ import { styles } from './foundation.js';
 import {
   getChildElementsByTagName,
   newWizardEvent,
-  newActionEvent,
   SCLTag,
   tags,
 } from '@openscd/open-scd/src/foundation.js';
-
+import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
 
 function childTags(element: Element | null | undefined): SCLTag[] {

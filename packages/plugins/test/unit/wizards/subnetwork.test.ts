@@ -6,15 +6,17 @@ import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
 import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
 import {
-  isCreate,
-  isDelete,
   WizardInputElement,
-  isReplace,
-  Replace,
-  Delete,
-  Create,
   patterns,
 } from '@openscd/open-scd/src/foundation.js';
+import { 
+  isCreate,
+  isDelete,
+  isReplace,
+  Create, 
+  Delete, 
+  Replace
+} from '@openscd/core/foundation/deprecated/editor.js';
 import {
   createSubNetworkWizard,
   editSubNetworkWizard,

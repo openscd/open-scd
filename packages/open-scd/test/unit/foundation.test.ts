@@ -2,9 +2,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 
 import {
   cloneElement,
-  ComplexAction,
   depth,
-  EditorAction,
   find,
   findControlBlocks,
   findFCDAs,
@@ -15,21 +13,26 @@ import {
   getUniqueElementName,
   identity,
   ifImplemented,
+  newLnInstGenerator,
+  newWizardEvent,
+  SCLTag,
+  tags,
+  isSame,
+  minAvailableLogicalNodeInstance,
+} from '../../src/foundation.js';
+
+import {
+  ComplexAction,
+  EditorAction,
   invert,
   isCreate,
   isDelete,
   isMove,
   isReplace,
-  isSame,
   isSimple,
   newActionEvent,
-  newLnInstGenerator,
-  newPendingStateEvent,
-  newWizardEvent,
-  SCLTag,
-  tags,
-  minAvailableLogicalNodeInstance,
-} from '../../src/foundation.js';
+} from '@openscd/core/foundation/deprecated/editor.js';
+import { newPendingStateEvent } from '@openscd/core/foundation/deprecated/waiter.js';
 
 import { MockAction } from './mock-actions.js';
 

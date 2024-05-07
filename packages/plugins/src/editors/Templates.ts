@@ -10,9 +10,9 @@ import '@openscd/open-scd/src/filtered-list.js';
 import {
   createElement,
   identity,
-  newActionEvent,
   newWizardEvent,
 } from '@openscd/open-scd/src/foundation.js';
+import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { styles } from './templates/foundation.js';
 
 import {

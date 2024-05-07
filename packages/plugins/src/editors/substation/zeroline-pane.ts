@@ -34,7 +34,7 @@ import { selectSampledValueControlWizard } from '../../wizards/sampledvaluecontr
 import { selectReportControlWizard } from '../../wizards/reportcontrol.js';
 
 import { SCLTag, tags } from '@openscd/open-scd/src/foundation.js';
-import { Settings } from '@openscd/open-scd/src/addons/Settings.js';
+import { Settings } from '@openscd/core/foundation/deprecated/settings.js';
 
 function shouldShowIEDs(): boolean {
   return localStorage.getItem('showieds') === 'on';

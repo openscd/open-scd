@@ -22,10 +22,12 @@ import {
   find,
   identity,
   isPublic,
-  newActionEvent,
-  newLogEvent,
-  SimpleAction,
 } from '@openscd/open-scd/src/foundation.js';
+import {
+  SimpleAction, 
+  newActionEvent,
+} from '@openscd/core/foundation/deprecated/editor.js';
+import { newLogEvent } from '@openscd/core/foundation/deprecated/history';
 
 function uniqueTemplateIedName(doc: XMLDocument, ied: Element): string {
   const [manufacturer, type] = ['manufacturer', 'type'].map(attr =>

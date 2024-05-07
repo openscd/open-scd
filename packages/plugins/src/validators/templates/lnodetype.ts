@@ -1,5 +1,6 @@
 import { get } from 'lit-translate';
-import { identity, LogDetailBase } from '@openscd/open-scd/src/foundation.js';
+import { identity } from '@openscd/open-scd/src/foundation.js';
+import { LogDetailBase } from '@openscd/core/foundation/deprecated/history.js';
 import {
   getAdjacentClass,
   validateChildren,

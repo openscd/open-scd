@@ -26,9 +26,7 @@ import {
 import {
   cloneElement,
   compareNames,
-  ComplexAction,
   createElement,
-  EditorAction,
   getValue,
   identity,
   isPublic,
@@ -39,6 +37,10 @@ import {
   WizardInputElement,
   WizardMenuActor,
 } from '@openscd/open-scd/src/foundation.js';
+import {
+  ComplexAction,
+  EditorAction,
+} from '@openscd/core/foundation/deprecated/editor.js';
 import { getTypeAttribute } from '../foundation/foundation.js';
 import {
   createRedundancyGroupWizard,

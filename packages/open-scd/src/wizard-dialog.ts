@@ -26,8 +26,13 @@ import 'ace-custom-element';
 import './wizard-checkbox.js';
 import './wizard-textfield.js';
 import './wizard-select.js';
-import {
+
+import{
   newActionEvent,
+  Delete,
+  Create,
+} from '@openscd/core/foundation/deprecated/editor.js';
+import {
   Wizard,
   WizardInputElement,
   WizardPage,
@@ -37,8 +42,6 @@ import {
   isWizardFactory,
   checkValidity,
   reportValidity,
-  Delete,
-  Create,
   identity,
   WizardInput,
   WizardMenuActor,

@@ -19,10 +19,8 @@ import {
   reportIcon,
 } from '@openscd/open-scd/src/icons/icons.js';
 import { wizards } from '../../wizards/wizard-library.js';
-import {
-  newActionEvent,
-  newWizardEvent,
-} from '@openscd/open-scd/src/foundation.js';
+import { newWizardEvent } from '@openscd/open-scd/src/foundation.js';
+import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { selectGseControlWizard } from '../../wizards/gsecontrol.js';
 import { selectSampledValueControlWizard } from '../../wizards/sampledvaluecontrol.js';
 import { selectReportControlWizard } from '../../wizards/reportcontrol.js';

@@ -20,6 +20,7 @@ jobs:
 
       - name: Install and Build OpenSCD
         run: |
+          npm i @nx/nx-linux-x64-gnu
           npm clean-install
           npm run-script build
           npm run-script doc
@@ -36,6 +37,6 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
           branch: master
-          folder: packages/open-scd/build
+          folder: packages/distribution/build
           repository-name: openscd/openscd.github.io
           ssh-key: ${{ secrets.DEPLOY_KEY }}

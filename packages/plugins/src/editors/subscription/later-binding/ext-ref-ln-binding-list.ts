@@ -11,12 +11,14 @@ import { nothing } from 'lit-html';
 import { get } from 'lit-translate';
 
 import {
-  ComplexAction,
   createElement,
-  Delete,
   identity,
-  newActionEvent,
 } from '@openscd/open-scd/src/foundation.js';
+import {
+  ComplexAction,
+  Delete,
+  newActionEvent,
+} from '@openscd/core/foundation/deprecated/editor.js';
 import { Nsdoc } from '@openscd/open-scd/src/foundation/nsdoc.js';
 
 import {

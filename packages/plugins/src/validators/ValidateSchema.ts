@@ -4,7 +4,7 @@ import { get } from 'lit-translate';
 import {
   newIssueEvent,
   newLogEvent,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/core/foundation/deprecated/history.js';
 
 import {
   getSchema,

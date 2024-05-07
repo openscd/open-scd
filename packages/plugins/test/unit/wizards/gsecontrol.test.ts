@@ -7,17 +7,19 @@ import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
 import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
 import {
-  ComplexAction,
-  Create,
-  Delete,
+  Wizard,
+  WizardInputElement,
+} from '@openscd/open-scd/src/foundation.js';
+import { 
   isCreate,
   isDelete,
   isReplace,
   isSimple,
-  Replace,
-  Wizard,
-  WizardInputElement,
-} from '@openscd/open-scd/src/foundation.js';
+  ComplexAction, 
+  Create, 
+  Delete, 
+  Replace 
+} from '@openscd/core/foundation/deprecated/editor.js';
 import {
   contentGseControlWizard,
   createGseControlWizard,

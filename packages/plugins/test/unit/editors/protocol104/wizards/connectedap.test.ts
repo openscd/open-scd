@@ -9,14 +9,14 @@ import {
   createConnectedApWizard,
   editConnectedApWizard,
 } from '../../../../../src/editors/protocol104/wizards/connectedap.js';
+import { WizardInputElement } from '@openscd/open-scd/src/foundation.js';
 import {
+  isCreate,
+  isDelete,
   ComplexAction,
   Create,
   Delete,
-  isCreate,
-  isDelete,
-  WizardInputElement,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/core/foundation/deprecated/editor.js';
 import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 

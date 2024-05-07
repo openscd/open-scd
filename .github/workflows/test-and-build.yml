@@ -13,7 +13,8 @@ jobs:
         with:
           node-version: "18.x"
 
-      - name: Install and Build OpenSCD
+      - name: Install and Test OpenSCD
         run: |
+          npm i @nx/nx-linux-x64-gnu
           npm clean-install
-          npm run-script build
+          npm run-script test

@@ -37,12 +37,7 @@
     "doc:clean": "npx rimraf doc",
     "doc:typedoc": "typedoc --plugin none --out doc src",
     "doc:wca": "wca src --outDir doc/components",
-    "doc": "npm run doc:clean && npm run doc:typedoc && npm run doc:wca"
-  },
-  "devDependencies": {
-    "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
-    "@open-wc/eslint-config": "^4.3.0",
     "@open-wc/semantic-dom-diff": "^0.19.5",
     "@open-wc/testing": "^2.5.33",
     "@types/node": "^16.6.1",

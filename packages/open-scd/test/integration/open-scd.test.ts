@@ -5,10 +5,12 @@ import { newEmptySCD } from '../../src/schemas.js';
 import { OpenSCD } from '../../src/open-scd.js';
 import { OscdWaiter } from '../../src/addons/Waiter.js';
 import { OscdHistory } from '../../src/addons/History.js';
+import { OscdLayout } from '../../src/addons/Layout.js';
 
 describe('open-scd', () => {
   let element: OpenSCD;
   let historyAddon: OscdHistory;
+  let layoutAddon: OscdLayout;
   beforeEach(async () => {
     localStorage.clear();
 
@@ -23,20 +25,25 @@ describe('open-scd', () => {
       />
     `);
     await element.updateComplete;
-    historyAddon = element.shadowRoot?.querySelector(
-      'oscd-history'
-    ) as OscdHistory;
+    historyAddon = element.shadowRoot?.querySelector('oscd-history') as OscdHistory;
+    layoutAddon = element.shadowRoot?.querySelector('oscd-layout') as OscdLayout;
   });
 
   it('looks like its snapshot', async () => {
     await expect(element).shadowDom.to.equalSnapshot();
   });
 
+  describe('layout', () => {
+    it('looks like its snapshot', async () => {
+      await expect(layoutAddon).shadowDom.to.equalSnapshot();
+    });
+  });
+
   it('opens the menu on navigation icon click', async () => {
-    const menu = element.shadowRoot!.querySelector('mwc-drawer')!;
+    const menu = layoutAddon.shadowRoot!.querySelector('mwc-drawer')!;
     expect(menu).property('open').to.be.false;
     const menuButton = <HTMLElement>(
-      element.shadowRoot!.querySelector(
+      layoutAddon.shadowRoot!.querySelector(
         'mwc-icon-button[slot="navigationIcon"]'
       )
     );
@@ -47,7 +54,7 @@ describe('open-scd', () => {
   it('opens the log on log icon click', async () => {
     expect(historyAddon.logUI).to.have.property('open', false);
     await (<HTMLElement>(
-      element.shadowRoot!.querySelector('mwc-icon-button[icon="list"]')!
+      layoutAddon.shadowRoot!.querySelector('mwc-icon-button[icon="list"]')!
     )).click();
     expect(historyAddon.logUI).to.have.property('open', true);
   });
@@ -55,7 +62,7 @@ describe('open-scd', () => {
   it('opens the history on history icon click', async () => {
     expect(historyAddon.historyUI).to.have.property('open', false);
     await (<HTMLElement>(
-      element.shadowRoot!.querySelector('mwc-icon-button[icon="history"]')!
+      layoutAddon.shadowRoot!.querySelector('mwc-icon-button[icon="history"]')!
     )).click();
     expect(historyAddon.historyUI).to.have.property('open', true);
   });

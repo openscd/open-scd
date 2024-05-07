@@ -22,8 +22,17 @@ import { Switch } from '@material/mwc-switch';
 
 import { getTheme } from '../themes.js';
 
-import { newLogEvent, SettingsUIEvent } from '../foundation.js';
-import { Language, languages, loader } from '../translations/loader.js';
+import { newLogEvent } from '@openscd/core/foundation/deprecated/history.js';
+import { 
+  Settings, 
+  SettingsUIEvent, 
+  Language,
+  NsdVersions,
+  NsdVersion,
+  LoadNsdocEvent,
+  newLoadNsdocEvent
+} from '@openscd/core/foundation/deprecated/settings.js';
+import { languages, loader } from '../translations/loader.js';
 
 import '../WizardDivider.js';
 import { WizardDialog } from '../wizard-dialog.js';
@@ -36,16 +45,6 @@ import {
 } from '../foundation/nsd.js';
 import { initializeNsdoc, Nsdoc } from '../foundation/nsdoc.js';
 
-export type Settings = {
-  language: Language;
-  theme: 'light' | 'dark';
-  mode: 'safe' | 'pro';
-  showieds: 'on' | 'off';
-  'IEC 61850-7-2': string | undefined;
-  'IEC 61850-7-3': string | undefined;
-  'IEC 61850-7-4': string | undefined;
-  'IEC 61850-8-1': string | undefined;
-};
 export const defaults: Settings = {
   language: 'en',
   theme: 'light',
@@ -56,36 +55,6 @@ export const defaults: Settings = {
   'IEC 61850-7-4': undefined,
   'IEC 61850-8-1': undefined,
 };
-
-type NsdVersion = {
-  version: string | undefined;
-  revision: string | undefined;
-  release: string | undefined;
-};
-
-type NsdVersions = {
-  'IEC 61850-7-2': NsdVersion;
-  'IEC 61850-7-3': NsdVersion;
-  'IEC 61850-7-4': NsdVersion;
-  'IEC 61850-8-1': NsdVersion;
-};
-
-/** Represents a document to be opened. */
-export interface LoadNsdocDetail {
-  nsdoc: string;
-  filename: string;
-}
-export type LoadNsdocEvent = CustomEvent<LoadNsdocDetail>;
-export function newLoadNsdocEvent(
-  nsdoc: string,
-  filename: string
-): LoadNsdocEvent {
-  return new CustomEvent<LoadNsdocDetail>('load-nsdoc', {
-    bubbles: true,
-    composed: true,
-    detail: { nsdoc, filename },
-  });
-}
 
 @customElement('oscd-settings')
 export class OscdSettings extends LitElement {

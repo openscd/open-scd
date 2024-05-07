@@ -5,11 +5,11 @@ import {
   createElement,
   getChildElementsByTagName,
   getValue,
-  SimpleAction,
   Wizard,
   WizardActor,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
+import { SimpleAction } from '@openscd/core/foundation/deprecated/editor.js';
 import { contentFunctionWizard } from './function.js';
 
 function updateEqSubFunctionAction(element: Element): WizardActor {

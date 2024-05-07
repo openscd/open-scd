@@ -9,7 +9,6 @@ import {
   getDescriptionAttribute,
   getInstanceAttribute,
   getNameAttribute,
-  newWizardEvent,
   Wizard,
 } from '@openscd/open-scd/src/foundation.js';
 import { Nsdoc } from '@openscd/open-scd/src/foundation/nsdoc.js';

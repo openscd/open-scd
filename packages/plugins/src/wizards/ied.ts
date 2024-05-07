@@ -6,12 +6,8 @@ import '@material/mwc-list/mwc-list-item';
 
 import '@openscd/open-scd/src/wizard-textfield.js';
 import {
-  ComplexAction,
-  Delete,
-  EditorAction,
   identity,
   isPublic,
-  newActionEvent,
   newSubWizardEvent,
   newWizardEvent,
   Wizard,
@@ -19,6 +15,12 @@ import {
   WizardInputElement,
   WizardMenuActor,
 } from '@openscd/open-scd/src/foundation.js';
+import { 
+  ComplexAction,
+  Delete,
+  EditorAction,
+  newActionEvent
+} from '@openscd/core/foundation/deprecated/editor.js';
 import { patterns } from './foundation/limits.js';
 
 import { updateNamingAttributeWithReferencesAction } from './foundation/actions.js';
