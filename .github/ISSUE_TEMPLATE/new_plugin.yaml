@@ -1,12 +1,12 @@
-name: New plugin
-description: Have a new plugin Idea? File it here
-title: "[Plugin]: "
+name: New plug-in
+description: Have a new plug-in Idea? File it here
+title: "[new Plug-in idea]: "
 labels: ["plugin", "enhancement"]
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to fill out this new plugin report!
+        Thanks for taking the time to fill out this new plug-in report!
   - type: input
     id: contact
     attributes:
@@ -21,13 +21,13 @@ body:
       label: What is your idea?
       description: Please be as specific as possible
       placeholder: Please tell us your idea!
-      value: "I would like a plugin that ..."
+      value: "I would like a plug-in that ..."
     validations:
       required: true
   - type: dropdown
     id: type
     attributes:
-      label: What type of plugin should it be?
+      label: What type of plug-in should it be?
       options:
         - Menu
         - Editor
