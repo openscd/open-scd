@@ -21,4 +21,7 @@ module.exports = {
     'no-duplicate-imports': 'off',
     'tsdoc/syntax': 'warn'
   },
+  env: {
+    browser: true,
+  },
 };
