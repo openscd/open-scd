@@ -16,46 +16,31 @@ body:
     validations:
       required: false
   - type: textarea
-    id: what-happened
+    id: idea
     attributes:
-      label: What happened?
-      description: Also tell us, what did you expect to happen?
-      placeholder: Tell us what you see!
-      value: "A bug happened!"
+      label: What is your idea?
+      description: Please be as specific as possible
+      placeholder: Please tell us your idea!
+      value: "I would like a plugin that ..."
     validations:
       required: true
   - type: dropdown
-    id: version
+    id: type
     attributes:
-      label: Version
-      description: What version of our software are you running?
+      label: What type of plugin should it be?
       options:
-        - 1.0.2 (Default)
-        - 1.0.3 (Edge)
-      default: 0
-    validations:
-      required: true
-  - type: dropdown
-    id: browsers
-    attributes:
-      label: What browsers are you seeing the problem on?
-      multiple: true
-      options:
-        - Firefox
-        - Chrome
-        - Safari
-        - Microsoft Edge
+        - Menu
+        - Editor
   - type: textarea
-    id: logs
+    id: mockups
     attributes:
-      label: Relevant log output
-      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
-      render: shell
+      label: Relevant mockups
+      description: If you have any mockups, please attach them here
   - type: checkboxes
     id: terms
     attributes:
       label: Code of Conduct
-      description: By submitting this issue, you agree to follow our [Code of Conduct](https://example.com). 
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/openscd/.github/blob/main/profile/code_of_conduct.md). 
       options:
         - label: I agree to follow this project's Code of Conduct
           required: true
