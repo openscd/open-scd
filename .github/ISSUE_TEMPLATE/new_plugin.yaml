@@ -28,6 +28,7 @@ body:
     id: type
     attributes:
       label: What type of plug-in should it be?
+      multiple: true
       options:
         - Menu
         - Editor
