@@ -31,6 +31,8 @@ body:
       options:
         - Menu
         - Editor
+      validations:
+        required: true
   - type: textarea
     id: mockups
     attributes:
