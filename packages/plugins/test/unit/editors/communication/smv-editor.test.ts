@@ -3,7 +3,7 @@ import { SinonSpy, spy } from 'sinon';
 
 import '../../../../src/editors/communication/smv-editor.js';
 import { SmvEditor } from '../../../../src/editors/communication/smv-editor.js';
-import { isDelete } from '@openscd/open-scd/src/foundation.js';
+import { isDelete } from '@openscd/core/foundation/deprecated/editor.js';
 
 describe('Editor web component for SMV element', () => {
   let element: SmvEditor;

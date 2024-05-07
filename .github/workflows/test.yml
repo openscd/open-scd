@@ -4,8 +4,7 @@ on:
     branches-ignore:
       - main
     paths:
-      - packages/open-scd/**
-      - packages/plugins/**
+      - packages/**
 
 jobs:
   test:
@@ -21,5 +20,6 @@ jobs:
 
       - name: Install and Test
         run: |
+          npm i @nx/nx-linux-x64-gnu
           npm clean-install
           npm run-script test

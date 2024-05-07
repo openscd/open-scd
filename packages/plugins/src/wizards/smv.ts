@@ -3,7 +3,6 @@ import { get } from 'lit-translate';
 import { Checkbox } from '@material/mwc-checkbox';
 
 import {
-  ComplexAction,
   getValue,
   identity,
   Wizard,
@@ -11,6 +10,7 @@ import {
   WizardActor,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
+import { ComplexAction } from '@openscd/core/foundation/deprecated/editor.js';
 import { contentGseOrSmvWizard, updateAddress } from './address.js';
 
 export function updateSmvAction(element: Element): WizardActor {

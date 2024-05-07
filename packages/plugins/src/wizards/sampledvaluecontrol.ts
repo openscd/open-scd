@@ -13,17 +13,13 @@ import '@openscd/open-scd/src/wizard-select.js';
 import '@openscd/open-scd/src/wizard-textfield.js';
 import {
   cloneElement,
-  ComplexAction,
   createElement,
-  Delete,
-  EditorAction,
   find,
   getUniqueElementName,
   getValue,
   identity,
   isPublic,
   MenuAction,
-  newActionEvent,
   newSubWizardEvent,
   newWizardEvent,
   Wizard,
@@ -31,6 +27,12 @@ import {
   WizardInputElement,
   WizardMenuActor,
 } from '@openscd/open-scd/src/foundation.js';
+import { 
+  EditorAction,
+  Delete,
+  ComplexAction,
+  newActionEvent
+} from '@openscd/core/foundation/deprecated/editor.js';
 import { securityEnabledEnum, smpModEnum } from './foundation/enums.js';
 import { maxLength, patterns } from './foundation/limits.js';
 import { editSMvWizard } from './smv.js';

@@ -15,25 +15,27 @@ import '@openscd/open-scd/src/filtered-list.js';
 import {
   cloneElement,
   createElement,
-  EditorAction,
   find,
   getReference,
   getValue,
   identity,
   isPublic,
   newSubWizardEvent,
-  SimpleAction,
   Wizard,
   WizardActor,
   WizardInputElement,
-  Delete,
   getUniqueElementName,
-  ComplexAction,
   WizardMenuActor,
   MenuAction,
-  newActionEvent,
   newWizardEvent,
 } from '@openscd/open-scd/src/foundation.js';
+import { 
+  EditorAction,
+  SimpleAction,
+  Delete,
+  ComplexAction,
+  newActionEvent
+} from '@openscd/core/foundation/deprecated/editor.js';
 import { FilteredList } from '@openscd/open-scd/src/filtered-list.js';
 import { FinderList } from '@openscd/open-scd/src/finder-list.js';
 import { dataAttributePicker, iEDPicker } from './foundation/finder.js';

@@ -22,3 +22,5 @@ node_modules/
 
 # lerna
 /lerna-debug.log
+
+.nx/cache

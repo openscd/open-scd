@@ -1,8 +1,7 @@
 import { Strings } from 'lit-translate';
 import { de } from './de.js';
 import { en } from './en.js';
-
-export type Language = 'en' | 'de';
+import { Language } from '@openscd/core/foundation/deprecated/settings.js';
 export const languages = { en, de };
 
 export type Translations = typeof en;

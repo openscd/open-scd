@@ -6,9 +6,9 @@ import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
 import {
   WizardInputElement,
-  createUpdateAction,
   getValue,
 } from '@openscd/open-scd/src/foundation.js';
+import { createUpdateAction } from '@openscd/core/foundation/deprecated/editor.js';
 import { editLDeviceWizard } from '../../../src/wizards/ldevice.js';
 import {
   fetchDoc,

@@ -26,8 +26,8 @@ import {
   getNameAttribute,
   identity,
   isPublic,
-  newPendingStateEvent,
 } from '@openscd/open-scd/src/foundation.js';
+import { newPendingStateEvent } from '@openscd/core/foundation/deprecated/waiter.js';
 import { DiffFilter } from '@openscd/open-scd/src/foundation/compare.js';
 
 const tctrClass = `LN[lnClass='TCTR']`;

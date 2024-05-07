@@ -3,13 +3,12 @@ import { css, LitElement, query } from 'lit-element';
 import {
   cloneElement,
   compareNames,
-  Create,
   createElement,
-  Delete,
   getSclSchemaVersion,
   isPublic,
   minAvailableLogicalNodeInstance,
 } from '@openscd/open-scd/src/foundation.js';
+import { Create, Delete } from '@openscd/core/foundation/deprecated/editor.js';
 import { getFcdaReferences } from '@openscd/open-scd/src/foundation/ied.js';
 import { SCL_NAMESPACE } from '@openscd/open-scd/src/schemas.js';
 

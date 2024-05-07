@@ -7,11 +7,11 @@ import {
   createElement,
   getValue,
   patterns,
-  SimpleAction,
   Wizard,
   WizardActor,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
+import { SimpleAction } from '@openscd/core/foundation/deprecated/editor.js';
 
 const initial = {
   nomFreq: '50',
