@@ -37,6 +37,7 @@
     "doc:typedoc": "typedoc --plugin none --out doc src",
     "doc:wca": "wca src --outDir doc/components",
     "doc": "npm run doc:clean && npm run doc:typedoc && npm run doc:wca",
+    "build": "snowpack build && workbox generateSW workbox-config.cjs && cp .nojekyll build/",
     "start": "snowpack dev"
   },
   "devDependencies": {

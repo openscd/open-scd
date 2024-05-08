@@ -27,11 +27,11 @@ jobs:
 
       - name: Copy Core Docs to OpenSCD
         run: |
-          cp -R packages/core/doc packages/open-scd/build/core-doc
+          cp -R packages/core/doc packages/distribution/build/core-doc
 
       - name: Copy Plugin Docs to OpenSCD
         run: |
-          cp -R packages/plugins/doc packages/open-scd/build/plugin-doc
+          cp -R packages/plugins/doc packages/distribution/build/plugin-doc
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.5
