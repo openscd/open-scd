@@ -13,8 +13,8 @@ import { nothing } from 'lit-html';
 import '@material/mwc-list/mwc-check-list-item';
 import '@material/mwc-list/mwc-radio-list-item';
 
-import '@openscd/open-scd/src/oscd-filter-button.js';
-import { SelectedItemsChangedEvent } from '@openscd/open-scd/src/oscd-filter-button.js';
+import '@openscd/components/oscd-filter-button.js';
+import { SelectedItemsChangedEvent } from '@openscd/components/oscd-filter-button.js';
 
 import './ied/ied-container.js';
 import './ied/element-path.js';

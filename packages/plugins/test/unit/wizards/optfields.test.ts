@@ -4,9 +4,12 @@ import { SinonSpy, spy } from 'sinon';
 import '@openscd/open-scd/src/addons/Wizards.js';
 import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
-import { WizardSelect } from '@openscd/open-scd/src/wizard-select.js';
+import { WizardSelect } from '@openscd/components/wizard-select.js';
 import { WizardInputElement } from '@openscd/open-scd/src/foundation.js';
-import { Replace, isReplace } from '@openscd/core/foundation/deprecated/editor.js';
+import {
+  Replace,
+  isReplace,
+} from '@openscd/core/foundation/deprecated/editor.js';
 import { editOptFieldsWizard } from '../../../src/wizards/optfields.js';
 
 describe('Wizards for SCL OptFields element', () => {

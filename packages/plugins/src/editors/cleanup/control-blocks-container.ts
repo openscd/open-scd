@@ -24,7 +24,7 @@ import { Checkbox } from '@material/mwc-checkbox';
 import { List, MWCListIndex } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 
-import '@openscd/open-scd/src/filtered-list.js';
+import '@openscd/components/filtered-list.js';
 
 import {
   identity,

@@ -37,6 +37,7 @@ import './addons/Wizards.js';
 import './addons/Editor.js';
 import './addons/History.js';
 import './addons/Layout.js';
+import './addons/Charging-Waiter.js';
 
 import { ActionDetail, List } from '@material/mwc-list';
 
@@ -75,8 +76,9 @@ export interface AddExternalPluginDetail {
 
 export type AddExternalPluginEvent = CustomEvent<AddExternalPluginDetail>;
 
-
-export function newAddExternalPluginEvent(plugin: Omit<Plugin, 'content'>): AddExternalPluginEvent {
+export function newAddExternalPluginEvent(
+  plugin: Omit<Plugin, 'content'>
+): AddExternalPluginEvent {
   return new CustomEvent<AddExternalPluginDetail>('add-external-plugin', {
     bubbles: true,
     composed: true,
@@ -300,22 +302,25 @@ export class OpenSCD extends LitElement {
   connectedCallback(): void {
     super.connectedCallback();
     this.addEventListener('reset-plugins', resetPlugins);
-    this.addEventListener('add-external-plugin', (e: AddExternalPluginEvent) => {
-      this.addExternalPlugin(e.detail.plugin);
-    });
+    this.addEventListener(
+      'add-external-plugin',
+      (e: AddExternalPluginEvent) => {
+        this.addExternalPlugin(e.detail.plugin);
+      }
+    );
     this.addEventListener('set-plugins', (e: SetPluginsEvent) => {
       this.setPlugins(e.detail.indices);
     });
   }
 
   render(): TemplateResult {
-    return html`<oscd-waiter>
+    return html`<charging-waiter>
       <oscd-settings .host=${this}>
         <oscd-wizards .host=${this}>
-          <oscd-history 
-            .host=${this} 
-            @undo-redo-changed="${(e:UndoRedoChangedEvent) => { 
-              this.editCount = e.detail.editCount
+          <oscd-history
+            .host=${this}
+            @undo-redo-changed="${(e: UndoRedoChangedEvent) => {
+              this.editCount = e.detail.editCount;
             }}"
           >
             <oscd-editor
@@ -337,7 +342,7 @@ export class OpenSCD extends LitElement {
           </oscd-history>
         </oscd-wizards>
       </oscd-settings>
-    </oscd-waiter>`;
+    </charging-waiter>`;
   }
 
   @state()
@@ -368,7 +373,6 @@ export class OpenSCD extends LitElement {
       )
     );
   }
-
 
   protected get locale(): string {
     return navigator.language || 'en-US';
@@ -414,7 +418,9 @@ export class OpenSCD extends LitElement {
     storePlugins(newPlugins);
   }
 
-  private async addExternalPlugin(plugin: Omit<Plugin, 'content'>): Promise<void> {
+  private async addExternalPlugin(
+    plugin: Omit<Plugin, 'content'>
+  ): Promise<void> {
     if (this.storedPlugins.some(p => p.src === plugin.src)) return;
 
     const newPlugins: Omit<Plugin, 'content'>[] = this.storedPlugins;

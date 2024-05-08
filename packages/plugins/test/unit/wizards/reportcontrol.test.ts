@@ -6,16 +6,16 @@ import '@openscd/open-scd/src/addons/Wizards.js';
 import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
 import { WizardInputElement } from '@openscd/open-scd/src/foundation.js';
-import { 
+import {
   isCreate,
   isDelete,
   isSimple,
-  ComplexAction, 
-  Create, 
-  Delete, 
-  Replace 
+  ComplexAction,
+  Create,
+  Delete,
+  Replace,
 } from '@openscd/core/foundation/deprecated/editor.js';
-import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
+import { WizardTextField } from '@openscd/components/wizard-textfield.js';
 import {
   reportControlParentSelector,
   createReportControlWizard,
@@ -25,8 +25,8 @@ import {
   reportControlCopyToIedSelector,
 } from '../../../src/wizards/reportcontrol.js';
 import { inverseRegExp, regExp, regexString } from '../../foundation.js';
-import { FinderList } from '@openscd/open-scd/src/finder-list.js';
-import { FilteredList } from '@openscd/open-scd/src/filtered-list.js';
+import { FinderList } from '@openscd/components/finder-list.js';
+import { FilteredList } from '@openscd/components/filtered-list.js';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 describe('Wizards for SCL ReportControl element', () => {

@@ -5,7 +5,7 @@ import '@material/mwc-list';
 import '@material/mwc-list/mwc-radio-list-item';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
-import '@openscd/open-scd/src/wizard-textfield.js';
+import '@openscd/components/wizard-textfield.js';
 import {
   newWizardEvent,
   Wizard,

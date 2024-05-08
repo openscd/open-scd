@@ -1,10 +1,13 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
-import { Create, isCreate } from '@openscd/core/foundation/deprecated/editor.js';
+import {
+  Create,
+  isCreate,
+} from '@openscd/core/foundation/deprecated/editor.js';
 import VirtualTemplateIED from '../../../src/menu/VirtualTemplateIED.js';
 import { CheckListItem } from '@material/mwc-list/mwc-check-list-item';
-import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
+import { WizardTextField } from '@openscd/components/wizard-textfield.js';
 
 describe('Plugin that creates with some user input a virtual template IED - SPECIFICATION', () => {
   if (customElements.get('virtual-template-i-e-d') === undefined)

@@ -1,4 +1,4 @@
-import { OpenEvent } from '@openscd/core';
+import { EditEvent, OpenEvent, handleEdit } from '@openscd/core';
 import {
   property,
   LitElement,
@@ -16,16 +16,13 @@ import {
   EditorActionEvent,
   SimpleAction,
   Replace,
-  Update
+  Update,
 } from '@openscd/core/foundation/deprecated/editor.js';
 
 import { newLogEvent } from '@openscd/core/foundation/deprecated/history.js';
-import { newValidateEvent } from '@openscd/core/foundation/deprecated/validation.js'
-import {OpenDocEvent} from '@openscd/core/foundation/deprecated/open-event.js';
-import {
-  getReference,
-  SCLTag,
-} from '../foundation.js';
+import { newValidateEvent } from '@openscd/core/foundation/deprecated/validation.js';
+import { OpenDocEvent } from '@openscd/core/foundation/deprecated/open-event.js';
+import { getReference, SCLTag } from '../foundation.js';
 import {
   isCreate,
   isDelete,
@@ -441,6 +438,12 @@ export class OscdEditor extends LitElement {
     this.dispatchEvent(newValidateEvent());
   }
 
+  private onEdit(event: EditEvent) {
+    const edit = event.detail;
+    handleEdit(edit);
+    this.editCount += 1;
+  }
+
   /**
    *
    * @deprecated [Move to handleOpenDoc instead]
@@ -473,6 +476,7 @@ export class OscdEditor extends LitElement {
     this.host.addEventListener('editor-action', this.onAction.bind(this));
     this.host.addEventListener('open-doc', this.onOpenDoc);
     this.host.addEventListener('oscd-open', this.handleOpenDoc);
+    this.host.addEventListener('oscd-edit', this.onEdit);
   }
 
   render(): TemplateResult {

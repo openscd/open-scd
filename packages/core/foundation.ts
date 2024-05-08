@@ -13,6 +13,7 @@ export {
   isNamespaced,
   isUpdate,
   isRemove,
+  handleEdit,
 } from './foundation/edit-event.js';
 export type {
   EditEvent,

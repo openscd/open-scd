@@ -12,31 +12,62 @@
     "SCD",
     "editor"
   ],
-  "author": "OpenSCD",
+  "author": "Open-SCD",
   "license": "Apache-2.0",
   "type": "module",
+  "private": true,
   "files": [
-    "./dist/**"
+    "./*"
   ],
-  "dependencies": {
-    "@material/mwc-dialog": "0.22.1"
+  "exports": {
+    "./wizard-textfield.js": "./wizard-textfield.js",
+    "./wizard-checkbox.js": "./wizard-checkbox.js",
+    "./finder-list.js": "./finder-list.js",
+    "./filtered-list.js": "./filtered-list.js",
+    "./oscd-filter-button.js": "./oscd-filter-button.js",
+    "./wizard-select.js": "./wizard-select.js",
+    "./action-pane.js": "./action-pane.js",
+    "./action-icon.js": "./action-icon.js",
+    "./wizardDivider.js": "./wizardDivider.js",
+    "./plain-compare-list.js": "./plain-compare-list.js"
   },
-  "//": {
-    "clean": "rimraf build",
+  "dependencies": {
+    "@material/mwc-dialog": "0.22.1",
+    "@material/mwc-fab": "0.22.1",
+    "@material/mwc-formfield": "0.22.1",
+    "@material/mwc-icon": "0.22.1",
+    "@material/mwc-icon-button": "0.22.1",
+    "@material/mwc-icon-button-toggle": "0.22.1",
+    "@material/mwc-list": "0.22.1",
+    "@material/mwc-menu": "0.22.1",
+    "@material/mwc-select": "0.22.1",
+    "@material/mwc-switch": "0.22.1",
+    "@material/mwc-textarea": "0.22.1",
+    "@material/mwc-textfield": "0.22.1",
+    "lit": "^2.2.7",
+    "lit-translate": "^1.2.1",
+    "marked": "^4.0.10",
+    "panzoom": "^9.4.2"
+  },
+  "scripts": {
+    "clean": "tsc --build --clean",
     "lint:eslint": "eslint --ext .ts . --ignore-path .gitignore",
     "format:eslint": "eslint --ext .ts . --fix --ignore-path .gitignore",
     "lint:prettier": "prettier \"**/*.js\" \"**/*.ts\" --check --ignore-path .gitignore",
     "format:prettier": "prettier \"**/*.js\" \"**/*.ts\" --write --ignore-path .gitignore",
     "lint": "npm run lint:eslint && npm run lint:prettier",
     "format": "npm run format:eslint && npm run format:prettier",
+    "test": "web-test-runner --coverage",
+    "test:snapshot": "web-test-runner --update-snapshots --coverage",
     "test:manual": "web-test-runner --manual",
     "test:watch": "web-test-runner --watch",
     "test:unit": "web-test-runner --watch --group unit",
+    "test:integration": "web-test-runner --watch --group integration",
     "doc:clean": "npx rimraf doc",
     "doc:typedoc": "typedoc --plugin none --out doc src",
     "doc:wca": "wca src --outDir doc/components",
     "doc": "npm run doc:clean && npm run doc:typedoc && npm run doc:wca",
-    "build:notest": "tsc"
+    "build": "tsc --build"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",

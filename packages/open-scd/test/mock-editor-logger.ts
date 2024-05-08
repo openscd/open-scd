@@ -35,7 +35,6 @@ export class MockEditorLogger extends LitElement {
               .host=${this}
               .editCount=${this.editCount}
             >
-
             </oscd-editor>
           </oscd-history>`;
   }

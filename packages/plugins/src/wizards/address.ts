@@ -5,10 +5,8 @@ import { get } from 'lit-translate';
 import '@material/mwc-checkbox';
 import '@material/mwc-formfield';
 
-import '@openscd/open-scd/src/wizard-textfield.js';
-import {
-  createElement,
-} from '@openscd/open-scd/src/foundation.js';
+import '@openscd/components/wizard-textfield.js';
+import { createElement } from '@openscd/open-scd/src/foundation.js';
 import { Create, Delete } from '@openscd/core/foundation/deprecated/editor.js';
 import { typeNullable, typePattern } from './foundation/p-types.js';
 

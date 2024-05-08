@@ -3,7 +3,7 @@ import { get } from 'lit-translate';
 
 import { Checkbox } from '@material/mwc-checkbox';
 
-import '@openscd/open-scd/src/wizard-textfield.js';
+import '@openscd/components/wizard-textfield.js';
 import {
   createElement,
   getValue,
@@ -13,10 +13,10 @@ import {
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
 import { contentGseOrSmvWizard, updateAddress } from './address.js';
-import { 
+import {
   ComplexAction,
   SimpleAction,
-  EditorAction
+  EditorAction,
 } from '@openscd/core/foundation/deprecated/editor.js';
 
 export function getMTimeAction(

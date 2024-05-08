@@ -4,13 +4,13 @@ import { SinonSpy, spy } from 'sinon';
 import '@openscd/open-scd/src/addons/Wizards.js';
 import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
-import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
+import { WizardTextField } from '@openscd/components/wizard-textfield.js';
 import { WizardInputElement } from '@openscd/open-scd/src/foundation.js';
 import {
   isCreate,
   isReplace,
-  Create, 
-  Replace 
+  Create,
+  Replace,
 } from '@openscd/core/foundation/deprecated/editor.js';
 import {
   createFunctionWizard,

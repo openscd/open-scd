@@ -16,7 +16,7 @@ import { Dialog } from '@material/mwc-dialog';
 import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
-import '@openscd/open-scd/src/filtered-list.js';
+import '@openscd/components/filtered-list.js';
 import {
   createElement,
   find,
@@ -24,7 +24,7 @@ import {
   isPublic,
 } from '@openscd/open-scd/src/foundation.js';
 import {
-  SimpleAction, 
+  SimpleAction,
   newActionEvent,
 } from '@openscd/core/foundation/deprecated/editor.js';
 import { newLogEvent } from '@openscd/core/foundation/deprecated/history';

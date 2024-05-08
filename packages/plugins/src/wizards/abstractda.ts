@@ -6,15 +6,13 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { SelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { Select } from '@material/mwc-select';
 
-import '@openscd/open-scd/src/wizard-checkbox.js';
-import '@openscd/open-scd/src/wizard-select.js';
-import '@openscd/open-scd/src/wizard-textfield.js';
-import {
-  createElement,
-} from '@openscd/open-scd/src/foundation.js';
+import '@openscd/components/wizard-checkbox.js';
+import '@openscd/components/wizard-select.js';
+import '@openscd/components/wizard-textfield.js';
+import { createElement } from '@openscd/open-scd/src/foundation.js';
 import { EditorAction } from '@openscd/core/foundation/deprecated/editor.js';
-import { WizardSelect } from '@openscd/open-scd/src/wizard-select.js';
-import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
+import { WizardSelect } from '@openscd/components/wizard-select.js';
+import { WizardTextField } from '@openscd/components/wizard-textfield.js';
 import { maxLength, patterns } from './foundation/limits.js';
 import { predefinedBasicTypeEnum, valKindEnum } from './foundation/enums.js';
 

@@ -5,8 +5,8 @@ import '@openscd/open-scd/src/addons/Wizards.js';
 import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
 import { WizardInputElement } from '@openscd/open-scd/src/foundation.js';
-import { 
-  Create, 
+import {
+  Create,
   Replace,
   isCreate,
   isReplace,
@@ -15,7 +15,7 @@ import {
   editSubEquipmentWizard,
   createSubEquipmentWizard,
 } from '../../../src/wizards/subequipment.js';
-import { WizardCheckbox } from '@openscd/open-scd/src/wizard-checkbox.js';
+import { WizardCheckbox } from '@openscd/components/wizard-checkbox.js';
 
 describe('Wizards for SCL SubEquipment element', () => {
   let doc: XMLDocument;

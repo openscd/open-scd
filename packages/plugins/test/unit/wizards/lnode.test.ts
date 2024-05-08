@@ -7,15 +7,15 @@ import { MockWizardEditor } from '@openscd/open-scd/test/mock-wizard-editor.js';
 
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
-import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
+import { WizardTextField } from '@openscd/components/wizard-textfield.js';
 import {
   newWizardEvent,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
-import { 
-  isCreate, 
-  Create, 
-  Replace 
+import {
+  isCreate,
+  Create,
+  Replace,
 } from '@openscd/core/foundation/deprecated/editor.js';
 import { regExp, regexString } from '../../foundation.js';
 import { editLNodeWizard, lNodeWizard } from '../../../src/wizards/lnode.js';

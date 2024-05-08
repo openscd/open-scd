@@ -23,11 +23,11 @@ import { List } from '@material/mwc-list';
 import { Menu } from '@material/mwc-menu';
 
 import 'ace-custom-element';
-import './wizard-checkbox.js';
-import './wizard-textfield.js';
-import './wizard-select.js';
+import '@openscd/components/wizard-checkbox.js';
+import '@openscd/components/wizard-textfield.js';
+import '@openscd/components/wizard-select.js';
 
-import{
+import {
   newActionEvent,
   Delete,
   Create,

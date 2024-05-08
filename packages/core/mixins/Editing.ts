@@ -101,7 +101,7 @@ function handleRemove({ node }: Remove): Insert | [] {
   return [];
 }
 
-function handleEdit(edit: Edit): Edit {
+export function handleEdit(edit: Edit): Edit {
   if (isInsert(edit)) return handleInsert(edit);
   if (isUpdate(edit)) return handleUpdate(edit);
   if (isRemove(edit)) return handleRemove(edit);

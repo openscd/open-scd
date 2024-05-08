@@ -6,7 +6,7 @@ import '@material/mwc-icon';
 import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
-import '@openscd/open-scd/src/filtered-list.js';
+import '@openscd/components/filtered-list.js';
 import {
   createElement,
   find,

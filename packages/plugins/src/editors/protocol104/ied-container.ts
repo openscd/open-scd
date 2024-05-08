@@ -19,7 +19,7 @@ import {
   getNameAttribute,
 } from '@openscd/open-scd/src/foundation.js';
 
-import '@openscd/open-scd/src/action-pane.js';
+import '@openscd/components/action-pane.js';
 
 import { getFullPath } from './foundation/foundation.js';
 

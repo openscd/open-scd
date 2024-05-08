@@ -18,7 +18,7 @@ import { Menu } from '@material/mwc-menu';
 import { IconButton } from '@material/mwc-icon-button';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 
-import '@openscd/open-scd/src/action-pane.js';
+import '@openscd/components/action-pane.js';
 import './ied-editor.js';
 import './conducting-equipment-editor.js';
 import './general-equipment-editor.js';

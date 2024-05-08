@@ -4,7 +4,7 @@ import { get } from 'lit-translate';
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 
-import '@openscd/open-scd/src/wizard-textfield.js';
+import '@openscd/components/wizard-textfield.js';
 import {
   identity,
   isPublic,
@@ -15,11 +15,11 @@ import {
   WizardInputElement,
   WizardMenuActor,
 } from '@openscd/open-scd/src/foundation.js';
-import { 
+import {
   ComplexAction,
   Delete,
   EditorAction,
-  newActionEvent
+  newActionEvent,
 } from '@openscd/core/foundation/deprecated/editor.js';
 import { patterns } from './foundation/limits.js';
 
