@@ -14,7 +14,7 @@ import {
   Delete,
   Replace,
 } from '@openscd/core/foundation/deprecated/editor.js';
-import { WizardTextField } from '@openscd/components/wizard-textfield.js';
+import { WizardTextField } from '@openscd/components';
 import {
   createRedundancyGroupWizard,
   editRedundancyGroupWizard,

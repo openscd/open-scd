@@ -18,7 +18,7 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 import './data-set-element-editor.js';
 import './gse-control-element-editor.js';
 import '@openscd/components/filtered-list.js';
-import { FilteredList } from '@openscd/components/filtered-list.js';
+import { FilteredList } from '@openscd/components';
 
 import { gooseIcon } from '@openscd/open-scd/src/icons/icons.js';
 import {

@@ -15,8 +15,8 @@ import {
   isReplace,
   isUpdate,
 } from '@openscd/core/foundation/deprecated/editor.js';
-import { WizardTextField } from '@openscd/components/wizard-textfield.js';
-import { WizardSelect } from '@openscd/components/wizard-select.js';
+import { WizardTextField } from '@openscd/components';
+import { WizardSelect } from '@openscd/components';
 
 export async function setWizardTextFieldValue(
   field: WizardTextField,

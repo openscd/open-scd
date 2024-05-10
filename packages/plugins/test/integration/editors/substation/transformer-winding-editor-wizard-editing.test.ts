@@ -6,7 +6,7 @@ import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import '../../../../src/editors/substation/transformer-winding-editor.js';
 import { TransformerWindingEditor } from '../../../../src/editors/substation/transformer-winding-editor.js';
-import { WizardTextField } from '@openscd/components/wizard-textfield.js';
+import { WizardTextField } from '@openscd/components';
 import { WizardCheckbox } from '@openscd/components/wizard-checkbox.js';
 import { MenuBase } from '@material/mwc-menu/mwc-menu-base.js';
 

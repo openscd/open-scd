@@ -36,8 +36,7 @@ import {
   ComplexAction,
   newActionEvent,
 } from '@openscd/core/foundation/deprecated/editor.js';
-import { FilteredList } from '@openscd/components/filtered-list.js';
-import { FinderList } from '@openscd/components/finder-list.js';
+import { FilteredList, FinderList } from '@openscd/components';
 import { dataAttributePicker, iEDPicker } from './foundation/finder.js';
 import { maxLength, patterns } from './foundation/limits.js';
 import { editDataSetWizard } from './dataset.js';

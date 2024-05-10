@@ -13,13 +13,15 @@
     "allowJs": true,
     "skipLibCheck": true,
     "declaration": true,
-    "outDir": ".",
+    "outDir": "./dist",
     "sourceMap": true,
     "inlineSources": true,
-    "rootDir": ".",
+    "rootDir": "./src",
   },
-  "include": ["*.ts"],
+  "include": [
+    "./src/**/*"
+  ],
   "exclude": [
-    "test/*.ts"
+    "./test/**/*"
   ]
 }

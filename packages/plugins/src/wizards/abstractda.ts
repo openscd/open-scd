@@ -11,8 +11,8 @@ import '@openscd/components/wizard-select.js';
 import '@openscd/components/wizard-textfield.js';
 import { createElement } from '@openscd/open-scd/src/foundation.js';
 import { EditorAction } from '@openscd/core/foundation/deprecated/editor.js';
-import { WizardSelect } from '@openscd/components/wizard-select.js';
-import { WizardTextField } from '@openscd/components/wizard-textfield.js';
+import { WizardSelect } from '@openscd/components';
+import { WizardTextField } from '@openscd/components';
 import { maxLength, patterns } from './foundation/limits.js';
 import { predefinedBasicTypeEnum, valKindEnum } from './foundation/enums.js';
 

@@ -6,7 +6,7 @@ import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
 import { Checkbox } from '@material/mwc-checkbox';
 
-import { WizardTextField } from '@openscd/components/wizard-textfield.js';
+import { WizardTextField } from '@openscd/components';
 import { WizardInputElement } from '@openscd/open-scd/src/foundation.js';
 import {
   isCreate,

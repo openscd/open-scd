@@ -4,7 +4,7 @@ import '@openscd/open-scd/test/mock-wizard-editor.js';
 import { MockWizardEditor } from '@openscd/open-scd/test/mock-wizard-editor.js';
 
 import { editGseWizard } from '../../../src/wizards/gse.js';
-import { WizardTextField } from '@openscd/components/wizard-textfield.js';
+import { WizardTextField } from '@openscd/components';
 import { newWizardEvent } from '@openscd/open-scd/src/foundation.js';
 
 describe('gse wizarding editing integration', () => {

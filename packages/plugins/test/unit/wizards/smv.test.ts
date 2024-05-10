@@ -13,7 +13,7 @@ import {
 } from '@openscd/core/foundation/deprecated/editor.js';
 import { editSMvWizard } from '../../../src/wizards/smv.js';
 import { invertedRegex, MAC, regExp } from '../../foundation.js';
-import { WizardTextField } from '@openscd/components/wizard-textfield.js';
+import { WizardTextField } from '@openscd/components';
 
 describe('Wizards for SCL element SMV', () => {
   let doc: XMLDocument;

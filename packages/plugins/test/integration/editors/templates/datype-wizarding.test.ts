@@ -5,8 +5,8 @@ import '@openscd/open-scd/test/mock-open-scd.js';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { Select } from '@material/mwc-select';
 
-import { FilteredList } from '@openscd/components/filtered-list.js';
-import { WizardTextField } from '@openscd/components/wizard-textfield.js';
+import { FilteredList } from '@openscd/components.js';
+import { WizardTextField } from '@openscd/components';
 import TemplatesPlugin from '../../../../src/editors/Templates.js';
 import { patterns } from '@openscd/open-scd/src/foundation.js';
 import { MockOpenSCD } from '@openscd/open-scd/test/mock-open-scd.js';

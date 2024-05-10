@@ -6,7 +6,7 @@ import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import '../../../../src/editors/substation/line-editor.js';
 import { LineEditor } from '../../../../src/editors/substation/line-editor.js';
-import { WizardTextField } from '@openscd/components/wizard-textfield.js';
+import { WizardTextField } from '@openscd/components';
 import { MenuBase } from '@material/mwc-menu/mwc-menu-base.js';
 
 const openAndCancelMenu: (

@@ -23,7 +23,7 @@ import {
 } from '../../../src/wizards/sampledvaluecontrol.js';
 import fc, { integer } from 'fast-check';
 import { inverseRegExp, regExp, regexString } from '../../foundation.js';
-import { WizardTextField } from '@openscd/components/wizard-textfield.js';
+import { WizardTextField } from '@openscd/components';
 import { WizardCheckbox } from '@openscd/components/wizard-checkbox.js';
 import { FinderList } from '@openscd/components/finder-list.js';
 

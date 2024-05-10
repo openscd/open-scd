@@ -7,7 +7,7 @@ import { MockWizardEditor } from '@openscd/open-scd/test/mock-wizard-editor.js';
 
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
-import { WizardTextField } from '@openscd/components/wizard-textfield.js';
+import { WizardTextField } from '@openscd/components';
 import {
   newWizardEvent,
   WizardInputElement,

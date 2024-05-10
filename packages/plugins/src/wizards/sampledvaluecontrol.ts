@@ -39,7 +39,7 @@ import { editSMvWizard } from './smv.js';
 import { contentSmvOptsWizard, editSmvOptsWizard } from './smvopts.js';
 import { editDataSetWizard } from './dataset.js';
 import { iEDPicker, sampledValueDataPicker } from './foundation/finder.js';
-import { FinderList } from '@openscd/components/finder-list.js';
+import { FinderList } from '@openscd/components';
 
 import {
   getConnectedAP,

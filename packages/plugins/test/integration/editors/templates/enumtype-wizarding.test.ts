@@ -6,9 +6,9 @@ import { MockOpenSCD } from '@openscd/open-scd/test/mock-open-scd.js';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { Select } from '@material/mwc-select';
 
-import { FilteredList } from '@openscd/components/filtered-list.js';
+import { FilteredList } from '@openscd/components.js';
 import TemplatesPlugin from '../../../../src/editors/Templates.js';
-import { WizardTextField } from '@openscd/components/wizard-textfield.js';
+import { WizardTextField } from '@openscd/components';
 import { patterns } from '@openscd/open-scd/src/foundation.js';
 
 describe('EnumType wizards', () => {

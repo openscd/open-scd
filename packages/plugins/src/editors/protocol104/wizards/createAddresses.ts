@@ -11,7 +11,7 @@ import '@material/mwc-switch';
 
 import '@openscd/components/wizard-textfield.js';
 import '@openscd/components/wizardDivider.js';
-import { WizardSelect } from '@openscd/components/wizard-select.js';
+import { WizardSelect } from '@openscd/components';
 
 import {
   getNameAttribute,

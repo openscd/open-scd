@@ -3,8 +3,8 @@ import { expect, fixture, html } from '@open-wc/testing';
 import '@openscd/open-scd/src/addons/Wizards.js';
 import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
-import { WizardSelect } from '@openscd/components/wizard-select.js';
-import { WizardTextField } from '@openscd/components/wizard-textfield.js';
+import { WizardSelect } from '@openscd/components';
+import { WizardTextField } from '@openscd/components';
 import {
   getValue,
   Wizard,

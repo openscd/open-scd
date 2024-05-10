@@ -26,7 +26,7 @@ import {
   identity,
 } from '@openscd/open-scd/src/foundation.js';
 import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
-import { WizardTextField } from '@openscd/components/wizard-textfield.js';
+import { WizardTextField } from '@openscd/components';
 import {
   getFunctionNamingPrefix,
   getNonLeafParent,

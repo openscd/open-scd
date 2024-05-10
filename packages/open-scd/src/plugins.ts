@@ -1,12 +1,5 @@
 export const officialPlugins = [
   {
-    name: 'Demo',
-    src: '/plugins/src/demo/Demo.js',
-    icon: 'science',
-    default: true,
-    kind: 'editor',
-  },
-  {
     name: 'IED',
     src: '/plugins/src/editors/IED.js',
     icon: 'developer_board',

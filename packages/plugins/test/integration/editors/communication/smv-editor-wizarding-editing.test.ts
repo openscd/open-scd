@@ -5,7 +5,7 @@ import { MockWizardEditor } from '@openscd/open-scd/test/mock-wizard-editor.js';
 
 import '../../../../src/editors/communication/smv-editor.js';
 import { SmvEditor } from '../../../../src/editors/communication/smv-editor.js';
-import { WizardTextField } from '@openscd/components/wizard-textfield.js';
+import { WizardTextField } from '@openscd/components';
 
 describe('smv-editor wizarding editing integration', () => {
   describe('edit wizard', () => {

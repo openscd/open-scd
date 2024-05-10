@@ -16,21 +16,12 @@
   "license": "Apache-2.0",
   "type": "module",
   "private": true,
-  "files": [
-    "./*"
-  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    "./wizard-textfield.js": "./wizard-textfield.js",
-    "./wizard-checkbox.js": "./wizard-checkbox.js",
-    "./finder-list.js": "./finder-list.js",
-    "./filtered-list.js": "./filtered-list.js",
-    "./oscd-filter-button.js": "./oscd-filter-button.js",
-    "./wizard-select.js": "./wizard-select.js",
-    "./action-pane.js": "./action-pane.js",
-    "./action-icon.js": "./action-icon.js",
-    "./wizardDivider.js": "./wizardDivider.js",
-    "./plain-compare-list.js": "./plain-compare-list.js"
-  },
+    "./*": "./dist/*"
+},
   "dependencies": {
     "@material/mwc-dialog": "0.22.1",
     "@material/mwc-fab": "0.22.1",
@@ -67,7 +58,7 @@
     "doc:typedoc": "typedoc --plugin none --out doc src",
     "doc:wca": "wca src --outDir doc/components",
     "doc": "npm run doc:clean && npm run doc:typedoc && npm run doc:wca",
-    "build": "tsc --build"
+    "build": "tsc"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",

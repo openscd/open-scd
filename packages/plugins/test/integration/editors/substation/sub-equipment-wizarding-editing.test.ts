@@ -4,7 +4,7 @@ import '@openscd/open-scd/test/mock-wizard-editor.js';
 import { MockWizardEditor } from '@openscd/open-scd/test/mock-wizard-editor.js';
 
 import '../../../../src/editors/substation/sub-equipment-editor.js';
-import { WizardTextField } from '@openscd/components/wizard-textfield.js';
+import { WizardTextField } from '@openscd/components';
 import { SubEquipmentEditor } from '../../../../src/editors/substation/sub-equipment-editor.js';
 import { WizardCheckbox } from '@openscd/components/wizard-checkbox.js';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';

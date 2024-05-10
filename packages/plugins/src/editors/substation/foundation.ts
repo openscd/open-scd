@@ -20,7 +20,7 @@ import {
 import { typeStr } from '../../wizards/conductingequipment.js';
 import { Select } from '@material/mwc-select';
 
-import { WizardTextField } from '@openscd/components/wizard-textfield.js';
+import { WizardTextField } from '@openscd/components';
 import { get } from 'lit-translate';
 
 import { BayEditor } from './bay-editor.js';

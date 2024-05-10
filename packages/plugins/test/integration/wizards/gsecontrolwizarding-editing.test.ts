@@ -9,8 +9,8 @@ import {
   editGseControlWizard,
   selectGseControlWizard,
 } from '../../../src/wizards/gsecontrol.js';
-import { FilteredList } from '@openscd/components/filtered-list.js';
-import { WizardTextField } from '@openscd/components/wizard-textfield.js';
+import { FilteredList } from '@openscd/components.js';
+import { WizardTextField } from '@openscd/components';
 import { FinderList } from '@openscd/components/finder-list.js';
 import { newWizardEvent } from '@openscd/open-scd/src/foundation.js';
 

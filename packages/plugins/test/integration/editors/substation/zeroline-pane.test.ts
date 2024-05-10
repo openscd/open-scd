@@ -4,9 +4,9 @@ import '@openscd/open-scd/test/mock-wizard-editor.js';
 import { MockWizardEditor } from '@openscd/open-scd/test/mock-wizard-editor.js';
 
 import '../../../../src/editors/substation/zeroline-pane.js';
-import { FilteredList } from '@openscd/components/filtered-list.js';
+import { FilteredList } from '@openscd/components.js';
 import { ZerolinePane } from '../../../../src/editors/substation/zeroline-pane.js';
-import { WizardTextField } from '@openscd/components/wizard-textfield.js';
+import { WizardTextField } from '@openscd/components';
 import { IconButton } from '@material/mwc-icon-button';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 

@@ -2,7 +2,7 @@ import { html, TemplateResult } from 'lit-element';
 import { get } from 'lit-translate';
 
 import '@openscd/components/finder-list.js';
-import { Directory } from '@openscd/components/finder-list.js';
+import { Directory } from '@openscd/components';
 import { find, identity, isPublic } from '@openscd/open-scd/src/foundation.js';
 
 export function getDisplayString(entry: string): string {

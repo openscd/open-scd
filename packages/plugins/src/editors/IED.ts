@@ -14,7 +14,7 @@ import '@material/mwc-list/mwc-check-list-item';
 import '@material/mwc-list/mwc-radio-list-item';
 
 import '@openscd/components/oscd-filter-button.js';
-import { SelectedItemsChangedEvent } from '@openscd/components/oscd-filter-button.js';
+import { SelectedItemsChangedEvent } from '@openscd/components';
 
 import './ied/ied-container.js';
 import './ied/element-path.js';

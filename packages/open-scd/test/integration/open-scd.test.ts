@@ -114,4 +114,78 @@ describe('open-scd', () => {
     expect(element.src).to.be.a('string').and.equal(emptyBlobURL);
     expect(async () => await fetch(emptyBlobURL)).to.throw;
   });
+
+  it('renders menu plugins passed down as props and it looks like its snapshot', async () => {
+    element = await fixture(html`
+      <open-scd
+        .plugins=${{
+          menu: [
+            {
+              name: 'Top Mock Plugin',
+              src: 'https://mockup-plugin.url/plugin-top.js',
+              icon: 'link',
+              active: true,
+              requireDoc: false,
+              position: 'top',
+            },
+            {
+              name: 'Middle Mock Plugin',
+              src: 'https://mockup-plugin.url/plugin-middle.js',
+              icon: 'link',
+              active: true,
+              requireDoc: false,
+              position: 'middle',
+            },
+            {
+              name: 'Bottom Mock Plugin',
+              src: 'https://mockup-plugin.url/plugin-bottom.js',
+              icon: 'link',
+              active: true,
+              position: 'bottom',
+            },
+          ],
+          editor: [],
+        }}
+      ></open-scd>
+
+      <link href="public/google/fonts/roboto-v27.css" rel="stylesheet" />
+      <link href="public/google/fonts/roboto-mono-v13.css" rel="stylesheet" />
+      <link
+        href="public/google/icons/material-icons-outlined.css"
+        rel="stylesheet"
+      />
+    `);
+    await element.updateComplete;
+
+    await expect(element).shadowDom.to.equalSnapshot();
+  });
+
+  it('renders editor plugins passed down as props and it looks like its snapshot', async () => {
+    element = await fixture(html`
+      <open-scd
+        .plugins=${{
+          menu: [],
+          editor: [
+            {
+              name: 'Mock Editor Plugin',
+              src: 'https://mockup-plugin.url/editor-plugin.js',
+              icon: 'link',
+              active: true,
+              requireDoc: true,
+            },
+          ],
+        }}
+      ></open-scd>
+
+      <link href="public/google/fonts/roboto-v27.css" rel="stylesheet" />
+      <link href="public/google/fonts/roboto-mono-v13.css" rel="stylesheet" />
+      <link
+        href="public/google/icons/material-icons-outlined.css"
+        rel="stylesheet"
+      />
+    `);
+    await element.updateComplete;
+
+    await expect(element).shadowDom.to.equalSnapshot();
+  });
 }).timeout(4000);

@@ -17,7 +17,7 @@ import {
   Create,
   Delete,
 } from '@openscd/core/foundation/deprecated/editor.js';
-import { WizardTextField } from '@openscd/components/wizard-textfield.js';
+import { WizardTextField } from '@openscd/components';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 describe('Wizards for SCL element ConnectedAP', () => {

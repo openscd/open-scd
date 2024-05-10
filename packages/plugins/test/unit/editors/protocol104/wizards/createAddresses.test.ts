@@ -13,8 +13,8 @@ import {
   ComplexAction,
 } from '@openscd/core/foundation/deprecated/editor.js';
 
-import { WizardSelect } from '@openscd/components/wizard-select.js';
-import { WizardTextField } from '@openscd/components/wizard-textfield.js';
+import { WizardSelect } from '@openscd/components';
+import { WizardTextField } from '@openscd/components';
 
 import {
   createAddressesAction,

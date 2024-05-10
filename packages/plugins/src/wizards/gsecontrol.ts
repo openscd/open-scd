@@ -40,7 +40,7 @@ import { editDataSetWizard } from './dataset.js';
 import { editGseWizard } from './gse.js';
 import { securityEnabledEnum } from './foundation/enums.js';
 import { dataAttributePicker, iEDPicker } from './foundation/finder.js';
-import { FinderList } from '@openscd/components/finder-list.js';
+import { FinderList } from '@openscd/components';
 import { newFCDA } from './fcda.js';
 import {
   getConnectedAP,

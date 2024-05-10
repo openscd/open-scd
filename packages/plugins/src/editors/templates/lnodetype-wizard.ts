@@ -35,7 +35,7 @@ import {
   newActionEvent,
   Replace
 } from '@openscd/core/foundation/deprecated/editor.js';
-import { WizardSelect } from '@openscd/components/wizard-select.js';
+import { WizardSelect } from '@openscd/components';
 import {
   addReferencedDataTypes,
   allDataTypeSelector,

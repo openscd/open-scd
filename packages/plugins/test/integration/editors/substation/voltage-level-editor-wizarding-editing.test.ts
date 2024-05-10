@@ -5,7 +5,7 @@ import { MockWizardEditor } from '@openscd/open-scd/test/mock-wizard-editor.js';
 
 import '../../../../src/editors/substation/voltage-level-editor.js';
 import { VoltageLevelEditor } from '../../../../src/editors/substation/voltage-level-editor.js';
-import { WizardTextField } from '@openscd/components/wizard-textfield.js';
+import { WizardTextField } from '@openscd/components';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base.js';
 import { MenuBase } from '@material/mwc-menu/mwc-menu-base.js';
 

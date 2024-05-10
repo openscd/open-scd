@@ -6,9 +6,11 @@ import { Select } from '@material/mwc-select';
 import { TextField } from '@material/mwc-textfield';
 import AceEditor from 'ace-custom-element';
 
-import { WizardTextField } from '@openscd/components/wizard-textfield.js';
-import { WizardSelect } from '@openscd/components/wizard-select.js';
-import { WizardCheckbox } from '@openscd/components/wizard-checkbox.js';
+import {
+  WizardCheckbox,
+  WizardSelect,
+  WizardTextField,
+} from '@openscd/components';
 
 import { EditorAction } from '@openscd/core/foundation/deprecated/editor.js';
 

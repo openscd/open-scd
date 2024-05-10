@@ -7,7 +7,7 @@ import {
   getDisplayString,
   getReader,
 } from '../../../wizards/foundation/finder.js';
-import { FinderList, Path } from '@openscd/components/finder-list.js';
+import { FinderList, Path } from '@openscd/components';
 import {
   compareNames,
   getNameAttribute,

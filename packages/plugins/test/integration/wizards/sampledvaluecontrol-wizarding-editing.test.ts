@@ -5,8 +5,8 @@ import { MockWizardEditor } from '@openscd/open-scd/test/mock-wizard-editor.js';
 
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
-import { FilteredList } from '@openscd/components/filtered-list.js';
-import { WizardTextField } from '@openscd/components/wizard-textfield.js';
+import { FilteredList } from '@openscd/components.js';
+import { WizardTextField } from '@openscd/components';
 import {
   createSampledValueControlWizard,
   selectSampledValueControlWizard,
