@@ -325,6 +325,7 @@ export class OpenSCD extends LitElement {
 
   private storePlugins(plugins: Array<Plugin | InstalledOfficialPlugin>) {
     localStorage.setItem('plugins', JSON.stringify(plugins.map(withoutContent)));
+    this.requestUpdate();
     this._sortedStoredPlugins = this.sortedStoredPlugins;
   }
   private resetPlugins(): void {
@@ -413,7 +414,6 @@ export class OpenSCD extends LitElement {
       return { ...plugin, installed: indices.has(index) };
     });
     this.storePlugins(newPlugins);
-    this.requestUpdate();
   }
 
   private updatePlugins() {

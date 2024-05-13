@@ -155,9 +155,10 @@ describe('open-scd', () => {
         rel="stylesheet"
       />
     `);
-    await element.updateComplete;
+    layoutAddon = element.shadowRoot?.querySelector('oscd-layout') as OscdLayout;
+    element.requestUpdate();
 
-    await expect(element).shadowDom.to.equalSnapshot();
+    await expect(layoutAddon).shadowDom.to.equalSnapshot();
   });
 
   it('renders editor plugins passed down as props and it looks like its snapshot', async () => {
@@ -184,8 +185,9 @@ describe('open-scd', () => {
         rel="stylesheet"
       />
     `);
-    await element.updateComplete;
+    layoutAddon = element.shadowRoot?.querySelector('oscd-layout') as OscdLayout;
+    element.requestUpdate();
 
-    await expect(element).shadowDom.to.equalSnapshot();
+    await expect(layoutAddon).shadowDom.to.equalSnapshot();
   });
 }).timeout(4000);
