@@ -297,6 +297,7 @@ export class OpenSCD extends LitElement {
             .host=${this} 
             @undo-redo-changed="${(e:UndoRedoChangedEvent) => { 
               this.editCount = e.detail.editCount
+              this.requestUpdate();
             }}"
           >
             <oscd-editor
