@@ -7,7 +7,7 @@ import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import { lNodeWizard } from '../../../../src/wizards/lnode.js';
-import { newWizardEvent } from '@openscd/open-scd/src/foundation.js';
+import { newWizardEvent } from '@openscd/open-scd/foundation.js';
 
 describe('lnodewizard', () => {
   let element: MockWizardEditor;

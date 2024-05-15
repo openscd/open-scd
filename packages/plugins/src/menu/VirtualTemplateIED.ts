@@ -17,16 +17,18 @@ import '@material/mwc-list/mwc-check-list-item';
 import '@material/mwc-list/mwc-radio-list-item';
 import { Dialog } from '@material/mwc-dialog';
 import { CheckListItem } from '@material/mwc-list/mwc-check-list-item';
-import { Select } from '@material/mwc-select';
+import type { Select } from '@material/mwc-select/mwc-select.js';
+import '@material/mwc-select/mwc-select.js';
 
-import '@openscd/open-scd/src/filtered-list.js';
+import '@openscd/open-scd/filtered-list.js';
 import {
   find,
   getChildElementsByTagName,
   identity,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/core/foundation/scl.js';
 import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
-import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
+import type { WizardTextField } from '@openscd/open-scd/wizard-textfield.js';
+import '@openscd/open-scd/wizard-textfield.js';
 import {
   getFunctionNamingPrefix,
   getNonLeafParent,

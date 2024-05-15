@@ -4,14 +4,16 @@ import { get } from 'lit-translate';
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 
-import '@openscd/open-scd/src/wizard-textfield.js';
+import '@openscd/open-scd/wizard-textfield.js';
 import {
   cloneElement,
+} from '@openscd/core/foundation/scl.js';
+import {
   getValue,
   Wizard,
   WizardActor,
   WizardInputElement,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/open-scd/foundation.js';
 import { SimpleAction } from '@openscd/core/foundation/deprecated/editor.js';
 import { patterns } from './foundation/limits.js';
 

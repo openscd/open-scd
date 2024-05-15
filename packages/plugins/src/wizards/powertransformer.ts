@@ -3,12 +3,14 @@ import { get } from 'lit-translate';
 
 import {
   createElement,
-  getValue,
   isPublic,
+} from '@openscd/core/foundation/scl.js';
+import {
+  getValue,
   Wizard,
   WizardActor,
   WizardInputElement,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/open-scd/foundation.js';
 import { EditorAction } from '@openscd/core/foundation/deprecated/editor.js';
 
 import { replaceNamingAction } from './foundation/actions.js';

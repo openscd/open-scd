@@ -1,5 +1,5 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import {initializeNsdoc} from '@openscd/open-scd/src/foundation/nsdoc.js';
+import {initializeNsdoc} from '@openscd/open-scd/foundation/nsdoc.js';
 import SMVSubscriberMessageBindingPlugin from '../../../src/editors/SMVSubscriberMessageBinding.js';
 
 import { ListItem } from '@material/mwc-list/mwc-list-item.js';

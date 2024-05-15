@@ -21,7 +21,7 @@ describe('clientln wizards', () => {
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
     parent = await fixture(
-      html`<mock-wizard-editor
+      html`<mock-wizard-editor .doc=${doc}
         ><zeroline-pane .doc=${doc}></zeroline-pane
       ></mock-wizard-editor>`
     );

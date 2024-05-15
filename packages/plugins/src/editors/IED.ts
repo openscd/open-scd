@@ -13,8 +13,8 @@ import { nothing } from 'lit-html';
 import '@material/mwc-list/mwc-check-list-item';
 import '@material/mwc-list/mwc-radio-list-item';
 
-import '@openscd/open-scd/src/oscd-filter-button.js';
-import { SelectedItemsChangedEvent } from '@openscd/open-scd/src/oscd-filter-button.js';
+import '@openscd/open-scd/oscd-filter-button.js';
+import { SelectedItemsChangedEvent } from '@openscd/open-scd/oscd-filter-button.js';
 
 import './ied/ied-container.js';
 import './ied/element-path.js';
@@ -23,9 +23,9 @@ import {
   compareNames,
   getDescriptionAttribute,
   getNameAttribute,
-} from '@openscd/open-scd/src/foundation.js';
-import { Nsdoc } from '@openscd/open-scd/src/foundation/nsdoc.js';
-import { getIcon } from '@openscd/open-scd/src/icons/icons.js';
+} from '@openscd/core/foundation/scl.js';
+import { Nsdoc } from '@openscd/open-scd/foundation/nsdoc.js';
+import { getIcon } from '@openscd/open-scd/icons/icons.js';
 
 /** An editor [[`plugin`]] for editing the `IED` section. */
 export default class IedPlugin extends LitElement {

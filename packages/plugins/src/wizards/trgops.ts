@@ -3,16 +3,18 @@ import { get } from 'lit-translate';
 
 import '@material/mwc-list/mwc-list-item';
 
-import '@openscd/open-scd/src/wizard-checkbox.js';
-import '@openscd/open-scd/src/wizard-select.js';
+import '@openscd/open-scd/wizard-checkbox.js';
+import '@openscd/open-scd/wizard-select.js';
 import {
   cloneElement,
+} from '@openscd/core/foundation/scl.js';
+import {
   getValue,
   Wizard,
   WizardAction,
   WizardActor,
   WizardInputElement,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/open-scd/foundation.js';
 
 interface ContentOptions {
   dchg: string | null;

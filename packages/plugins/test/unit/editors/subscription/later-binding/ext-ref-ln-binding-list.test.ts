@@ -1,6 +1,6 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import { initializeNsdoc } from '@openscd/open-scd/src/foundation/nsdoc.js';
+import { initializeNsdoc } from '@openscd/open-scd/foundation/nsdoc.js';
 
 import '../../../../../src/editors/subscription/later-binding/ext-ref-ln-binding-list.js';
 

@@ -2,7 +2,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 
 import '../../../../src/editors/ied/ln-container.js';
 import { LNContainer } from '../../../../src/editors/ied/ln-container.js';
-import { initializeNsdoc } from '@openscd/open-scd/src/foundation/nsdoc.js';
+import { initializeNsdoc } from '@openscd/open-scd/foundation/nsdoc.js';
 
 describe('ln-container', async () => {
   let element: LNContainer;

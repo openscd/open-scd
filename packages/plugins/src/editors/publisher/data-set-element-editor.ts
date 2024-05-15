@@ -11,10 +11,10 @@ import { get } from 'lit-translate';
 
 import '@material/mwc-list/mwc-list-item';
 
-import '@openscd/open-scd/src/wizard-textfield.js';
-import '@openscd/open-scd/src/filtered-list.js';
+import '@openscd/open-scd/wizard-textfield.js';
+import '@openscd/open-scd/filtered-list.js';
 
-import { identity } from '@openscd/open-scd/src/foundation.js';
+import { identity } from '@openscd/core/foundation/scl.js';
 
 @customElement('data-set-element-editor')
 export class DataSetElementEditor extends LitElement {

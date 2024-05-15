@@ -5,11 +5,13 @@ import {
   cloneElement,
   createElement,
   getChildElementsByTagName,
+} from '@openscd/core/foundation/scl.js';
+import {
   getValue,
   Wizard,
   WizardActor,
   WizardInputElement,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/open-scd/foundation.js';
 import { SimpleAction } from '@openscd/core/foundation/deprecated/editor.js';
 
 interface ContentOptions {

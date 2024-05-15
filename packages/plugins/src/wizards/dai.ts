@@ -4,15 +4,15 @@ import { get } from 'lit-translate';
 
 import { DaiFieldTypes, getCustomField } from './foundation/dai-field-type.js';
 
-import '@openscd/open-scd/src/wizard-textfield.js';
+import '@openscd/open-scd/wizard-textfield.js';
 
 import {
   Wizard,
   WizardActor,
   WizardInputElement,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/open-scd/foundation.js';
 import { EditorAction, ComplexAction } from '@openscd/core/foundation/deprecated/editor.js';
-import { SCL_NAMESPACE } from '@openscd/open-scd/src/schemas.js';
+import { SCL_NAMESPACE } from '@openscd/open-scd/schemas.js';
 
 export function updateValue(element: Element, val: Element): WizardActor {
   return (inputs: WizardInputElement[]): EditorAction[] => {

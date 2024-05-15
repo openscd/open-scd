@@ -4,7 +4,7 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 import '../../src/finder-list.js';
 import { Directory, FinderList, Path } from '../../src/finder-list.js';
-import { depth } from '../../src/foundation.js';
+import { depth } from '@openscd/core/foundation/scl.js';
 
 const pathA = ['e2', 'e1', 'e4'];
 const pathB = ['e1', 'e4'];

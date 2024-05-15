@@ -8,27 +8,29 @@ import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
-import '@openscd/open-scd/src/wizard-checkbox.js';
-import '@openscd/open-scd/src/wizard-textfield.js';
-import '@openscd/open-scd/src/wizard-select.js';
-import '@openscd/open-scd/src/filtered-list.js';
+import '@openscd/open-scd/wizard-checkbox.js';
+import '@openscd/open-scd/wizard-textfield.js';
+import '@openscd/open-scd/wizard-select.js';
+import '@openscd/open-scd/filtered-list.js';
 import {
   cloneElement,
   createElement,
   find,
   getReference,
-  getValue,
   identity,
   isPublic,
+  getUniqueElementName,
+} from '@openscd/core/foundation/scl.js';
+import {
+  getValue,
   newSubWizardEvent,
   Wizard,
   WizardActor,
   WizardInputElement,
-  getUniqueElementName,
   WizardMenuActor,
   MenuAction,
   newWizardEvent,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/open-scd/foundation.js';
 import { 
   EditorAction,
   SimpleAction,
@@ -36,15 +38,15 @@ import {
   ComplexAction,
   newActionEvent
 } from '@openscd/core/foundation/deprecated/editor.js';
-import { FilteredList } from '@openscd/open-scd/src/filtered-list.js';
-import { FinderList } from '@openscd/open-scd/src/finder-list.js';
+import { FilteredList } from '@openscd/open-scd/filtered-list.js';
+import { FinderList } from '@openscd/open-scd/finder-list.js';
 import { dataAttributePicker, iEDPicker } from './foundation/finder.js';
 import { maxLength, patterns } from './foundation/limits.js';
 import { editDataSetWizard } from './dataset.js';
 import { newFCDA } from './fcda.js';
 import { contentOptFieldsWizard, editOptFieldsWizard } from './optfields.js';
 import { contentTrgOpsWizard, editTrgOpsWizard } from './trgops.js';
-import { existFcdaReference } from '@openscd/open-scd/src/foundation/scl.js';
+import { existFcdaReference } from '@openscd/open-scd/foundation/scl.js';
 
 interface ContentOptions {
   name: string | null;

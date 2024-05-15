@@ -16,7 +16,7 @@
     "sourceMap": true,
     "inlineSources": true,
     "resolveJsonModule": true,
-    "rootDir": "./src"
+    "declaration": true
   },
-  "include": ["./src/**/*.ts"]
+  "include": ["./src/**/*.ts", "./test/**/*.ts"],
 }

@@ -4,7 +4,7 @@ import '@openscd/open-scd/test/mock-wizard-editor.js';
 import { MockWizardEditor } from '@openscd/open-scd/test/mock-wizard-editor.js';
 
 import { editConnectedApWizard } from '../../../src/wizards/connectedap.js';
-import { newWizardEvent } from '@openscd/open-scd/src/foundation.js';
+import { newWizardEvent } from '@openscd/open-scd/foundation.js';
 
 describe('connectedap wizarding editing integration', () => {
   let doc: XMLDocument;

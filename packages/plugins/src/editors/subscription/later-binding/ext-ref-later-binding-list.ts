@@ -14,7 +14,7 @@ import {
   cloneElement,
   getDescriptionAttribute,
   identity,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/core/foundation/scl.js';
 
 import {
   ComplexAction,
@@ -41,6 +41,8 @@ import {
   inputRestriction,
   isSubscribed,
 } from './foundation.js';
+
+import '@material/mwc-list/mwc-list-item.js';
 
 /**
  * A sub element for showing all Ext Refs from a FCDA Element.

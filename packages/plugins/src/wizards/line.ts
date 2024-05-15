@@ -1,16 +1,18 @@
 import { html, TemplateResult } from 'lit-html';
 import { get } from 'lit-translate';
 
-import '@openscd/open-scd/src/wizard-textfield.js';
+import '@openscd/open-scd/wizard-textfield.js';
 import {
   cloneElement,
   createElement,
-  getValue,
   patterns,
+} from '@openscd/core/foundation/scl.js';
+import {
+  getValue,
   Wizard,
   WizardActor,
   WizardInputElement,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/open-scd/foundation.js';
 import { SimpleAction } from '@openscd/core/foundation/deprecated/editor.js';
 
 const initial = {

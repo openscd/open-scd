@@ -12,14 +12,16 @@ import { classMap } from 'lit-html/directives/class-map';
 import '@material/mwc-icon';
 import '@material/mwc-list/mwc-list-item';
 
-import '@openscd/open-scd/src/filtered-list.js';
+import '@openscd/open-scd/filtered-list.js';
 import {
   getNameAttribute,
   identity,
+} from '@openscd/core/foundation/scl.js';
+import {
   newWizardEvent,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/open-scd/foundation.js';
 import { newGOOSESelectEvent } from './foundation.js';
-import { gooseIcon } from '@openscd/open-scd/src/icons/icons.js';
+import { gooseIcon } from '@openscd/open-scd/icons/icons.js';
 import { wizards } from '../../../wizards/wizard-library.js';
 import { getOrderedIeds, styles } from '../foundation.js';
 

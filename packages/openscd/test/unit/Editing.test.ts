@@ -1,13 +1,13 @@
 import { html, fixture, expect } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
-import './mock-editor.js';
-import { MockEditor } from './mock-editor.js';
+import '../../src/addons/Editor.js';
+import { OscdEditor } from '../../src/addons/Editor.js';
 
 import { createUpdateAction, newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 
 describe('EditingElement', () => {
-  let elm: MockEditor;
+  let elm: OscdEditor;
   let doc: XMLDocument;
   let parent: Element;
   let element: Element;
@@ -19,8 +19,8 @@ describe('EditingElement', () => {
     doc = await fetch('/test/testfiles/Editing.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-    elm = <MockEditor>(
-      await fixture(html`<mock-editor .doc=${doc}></mock-editor>`)
+    elm = <OscdEditor>(
+      await fixture(html`<oscd-editor .host=${document} .doc=${doc}></oscd-editor>`)
     );
 
     parent = elm.doc!.querySelector('VoltageLevel[name="E1"]')!;

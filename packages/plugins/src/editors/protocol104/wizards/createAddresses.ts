@@ -1,6 +1,6 @@
 import { get } from 'lit-translate';
 import { html, TemplateResult } from 'lit-element';
-import { Select } from '@material/mwc-select';
+import { Select } from '@material/mwc-select/mwc-select.js';
 import { SelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
 import { Switch } from '@material/mwc-switch';
@@ -9,18 +9,20 @@ import '@material/mwc-formfield';
 import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-switch';
 
-import '@openscd/open-scd/src/wizard-textfield.js';
-import '@openscd/open-scd/src/WizardDivider.js';
-import { WizardSelect } from '@openscd/open-scd/src/wizard-select.js';
+import '@openscd/open-scd/wizard-textfield.js';
+import '@openscd/open-scd/WizardDivider.js';
+import { WizardSelect } from '@openscd/open-scd/wizard-select.js';
 
 import {
   getNameAttribute,
+} from '@openscd/core/foundation/scl.js';
+import {
   getValue,
   newWizardEvent,
   Wizard,
   WizardActor,
   WizardInputElement,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/open-scd/foundation.js';
 import {
   ComplexAction,
   EditorAction,

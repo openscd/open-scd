@@ -1,6 +1,6 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import './mock-editor.js';
+import '../mock-editor.js';
 
 import { Button } from '@material/mwc-button';
 

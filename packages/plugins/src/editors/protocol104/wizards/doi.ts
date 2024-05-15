@@ -5,15 +5,17 @@ import '@material/mwc-textarea';
 
 import {
   getNameAttribute,
+} from '@openscd/core/foundation/scl.js';
+import {
   newWizardEvent,
   Wizard,
   WizardMenuActor,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/open-scd/foundation.js';
 import {
   ComplexAction,
   newActionEvent,
 } from '@openscd/core/foundation/deprecated/editor.js';
-import '@openscd/open-scd/src/wizard-textfield.js';
+import '@openscd/open-scd/wizard-textfield.js';
 
 import {
   getCdcValueFromDOIElement,

@@ -1,20 +1,20 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '@openscd/open-scd/src/addons/Wizards.js';
-import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
+import '@openscd/open-scd/addons/Wizards.js';
+import { OscdWizards } from '@openscd/open-scd/addons/Wizards.js';
 
 import {
   WizardAction,
   WizardInputElement,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/open-scd/foundation.js';
 import { 
   isCreate,
   isSimple,
   ComplexAction 
 } from '@openscd/core/foundation/deprecated/editor.js';
 
-import { WizardSelect } from '@openscd/open-scd/src/wizard-select.js';
-import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
+import { WizardSelect } from '@openscd/open-scd/wizard-select.js';
+import { WizardTextField } from '@openscd/open-scd/wizard-textfield.js';
 
 import {
   createAddressesAction,
@@ -252,9 +252,9 @@ describe('Wizards for preparing 104 Address Creation', () => {
     });
 
     it('when processing the request with Check Selected, the expected Create Actions are returned', async () => {
-      const switchElement = element.wizardUI.dialog!.querySelector<Switch>(
+      const switchElement = element.wizardUI.dialog!.querySelector(
         `mwc-switch[id="controlCheck"]`
-      )!;
+      )! as Switch;
       switchElement.checked = true;
       await element.requestUpdate();
 

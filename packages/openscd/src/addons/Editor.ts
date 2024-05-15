@@ -25,7 +25,7 @@ import {OpenDocEvent} from '@openscd/core/foundation/deprecated/open-event.js';
 import {
   getReference,
   SCLTag,
-} from '../foundation.js';
+} from '@openscd/core/foundation/scl.js';
 import {
   isCreate,
   isDelete,

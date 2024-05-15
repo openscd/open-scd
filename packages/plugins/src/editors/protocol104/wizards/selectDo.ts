@@ -1,23 +1,25 @@
 import { html, TemplateResult } from 'lit-element';
 import { get } from 'lit-translate';
 
-import '@openscd/open-scd/src/finder-list.js';
+import '@openscd/open-scd/finder-list.js';
 
 import {
   getDisplayString,
   getReader,
 } from '../../../wizards/foundation/finder.js';
-import { FinderList, Path } from '@openscd/open-scd/src/finder-list.js';
+import { FinderList, Path } from '@openscd/open-scd/finder-list.js';
 import {
   compareNames,
   getNameAttribute,
   identity,
-  newSubWizardEvent,
   find,
+} from '@openscd/core/foundation/scl.js';
+import {
+  newSubWizardEvent,
   Wizard,
   WizardActor,
   WizardInputElement,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/open-scd/foundation.js';
 import { createAddressesWizard } from './createAddresses.js';
 import { SupportedCdcType, supportedCdcTypes } from '../foundation/cdc.js';
 import { PROTOCOL_104_PRIVATE } from '../foundation/private.js';

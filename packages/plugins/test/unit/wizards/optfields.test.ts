@@ -1,11 +1,11 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
-import '@openscd/open-scd/src/addons/Wizards.js';
-import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
+import '@openscd/open-scd/addons/Wizards.js';
+import { OscdWizards } from '@openscd/open-scd/addons/Wizards.js';
 
-import { WizardSelect } from '@openscd/open-scd/src/wizard-select.js';
-import { WizardInputElement } from '@openscd/open-scd/src/foundation.js';
+import { WizardSelect } from '@openscd/open-scd/wizard-select.js';
+import { WizardInputElement } from '@openscd/open-scd/foundation.js';
 import { Replace, isReplace } from '@openscd/core/foundation/deprecated/editor.js';
 import { editOptFieldsWizard } from '../../../src/wizards/optfields.js';
 

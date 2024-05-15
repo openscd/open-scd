@@ -1,6 +1,6 @@
 'use strict';
 
-import { identity } from '@openscd/open-scd/src/foundation.js';
+import { identity } from '@openscd/core/foundation/scl.js';
 import { Delete } from '@openscd/core/foundation/deprecated/editor.js';
 
 /**

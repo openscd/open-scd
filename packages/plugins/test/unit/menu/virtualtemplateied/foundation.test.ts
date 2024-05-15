@@ -1,5 +1,5 @@
 import { expect } from '@open-wc/testing';
-import { identity } from '@openscd/open-scd/src/foundation.js';
+import { identity } from '@openscd/core/foundation/scl.js';
 
 import {
   getFunctionNamingPrefix,

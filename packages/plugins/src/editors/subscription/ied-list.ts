@@ -11,8 +11,8 @@ import { get } from 'lit-translate';
 import '@material/mwc-icon';
 import '@material/mwc-list/mwc-list-item';
 
-import '@openscd/open-scd/src/filtered-list.js';
-import { getNameAttribute } from '@openscd/open-scd/src/foundation.js';
+import '@openscd/open-scd/filtered-list.js';
+import { getNameAttribute } from '@openscd/core/foundation/scl.js';
 import { getOrderedIeds, newIEDSelectEvent, styles } from './foundation.js';
 
 let selectedIed: Element | undefined;

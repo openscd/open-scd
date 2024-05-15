@@ -1,14 +1,16 @@
 import { html, TemplateResult } from 'lit-html';
 import { get } from 'lit-translate';
 
-import '@openscd/open-scd/src/wizard-textfield.js';
+import '@openscd/open-scd/wizard-textfield.js';
 import {
   createElement,
+} from '@openscd/core/foundation/scl.js';
+import {
   getValue,
   Wizard,
   WizardActor,
   WizardInputElement,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/open-scd/foundation.js';
 import { EditorAction } from '@openscd/core/foundation/deprecated/editor.js';
 import { replaceNamingAttributeWithReferencesAction } from './foundation/actions.js';
 

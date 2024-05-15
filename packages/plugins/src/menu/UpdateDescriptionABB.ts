@@ -5,19 +5,21 @@ import '@material/mwc-list/mwc-check-list-item';
 import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
-import '@openscd/open-scd/src/filtered-list.js';
+import '@openscd/open-scd/filtered-list.js';
 import {
   cloneElement,
   find,
   identity,
   isPublic,
-  newWizardEvent,
   SCLTag,
+} from '@openscd/core/foundation/scl.js';
+import {
+  newWizardEvent,
   Wizard,
   WizardAction,
   WizardActor,
   WizardInputElement,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/open-scd/foundation.js';
 
 interface addDescItem {
   desc: string;

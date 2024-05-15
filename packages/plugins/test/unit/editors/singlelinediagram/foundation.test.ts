@@ -5,7 +5,12 @@ import {
   getConnectedTerminals,
   calculateConnectivityNodeCoordinates, getCommonParentElement,
 } from '../../../../src/editors/singlelinediagram/foundation.js';
-import { getDescriptionAttribute, getInstanceAttribute, getNameAttribute, getPathNameAttribute } from '@openscd/open-scd/src/foundation.js';
+import { 
+  getDescriptionAttribute, 
+  getInstanceAttribute, 
+  getNameAttribute, 
+  getPathNameAttribute 
+} from '@openscd/core/foundation/scl.js';
 
 describe('Single Line Diagram foundation', () => {
   let doc: Document;

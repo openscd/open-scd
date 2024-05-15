@@ -1,17 +1,19 @@
 import { html, TemplateResult } from 'lit-html';
 import { get } from 'lit-translate';
 
-import '@openscd/open-scd/src/wizard-textfield.js';
+import '@openscd/open-scd/wizard-textfield.js';
 import {
   cloneElement,
   createElement,
+  patterns,
+} from '@openscd/core/foundation/scl.js';
+import {
   getMultiplier,
   getValue,
-  patterns,
   Wizard,
   WizardActor,
   WizardInputElement,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/open-scd/foundation.js';
 import {
   ComplexAction,
   EditorAction,

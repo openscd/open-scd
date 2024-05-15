@@ -1,4 +1,4 @@
-import { crossProduct } from '../foundation.js';
+import { crossProduct } from '@openscd/core/foundation/scl.js';
 
 function getDataModelChildren(parent: Element): Element[] {
   if (['LDevice', 'Server'].includes(parent.tagName))

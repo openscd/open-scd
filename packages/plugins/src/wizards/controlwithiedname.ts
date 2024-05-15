@@ -6,18 +6,20 @@ import '@material/mwc-list';
 import '@material/mwc-list/mwc-check-list-item';
 import { List } from '@material/mwc-list';
 
-import '@openscd/open-scd/src/filtered-list.js';
+import '@openscd/open-scd/filtered-list.js';
 import {
   createElement,
   findControlBlocks,
   identity,
+} from '@openscd/core/foundation/scl.js';
+import {
   Wizard,
   WizardAction,
   WizardActor,
   WizardInputElement,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/open-scd/foundation.js';
 import { EditorAction } from '@openscd/core/foundation/deprecated/editor.js';
-import { inputIcon } from '@openscd/open-scd/src/icons/icons.js';
+import { inputIcon } from '@openscd/open-scd/icons/icons.js';
 import {
   getSourceReferences,
   openCommunicationMappingWizard,

@@ -1,4 +1,4 @@
-import { getSclSchemaVersion } from '@openscd/open-scd/src/foundation.js';
+import { getSclSchemaVersion } from '@openscd/core/foundation/scl.js';
 import { serviceTypes } from '../foundation.js';
 
 function dataAttributeSpecification(

@@ -1,6 +1,6 @@
 import { get } from 'lit-translate';
 
-import { identity } from '@openscd/open-scd/src/foundation.js';
+import { identity } from '@openscd/core/foundation/scl.js';
 import { LogDetailBase } from '@openscd/core/foundation/deprecated/history.js';
 import {
   getAdjacentClass,
@@ -10,7 +10,7 @@ import {
   iec6185073,
   iec6185074,
   iec6185081,
-} from '@openscd/open-scd/src/foundation/nsd.js';
+} from '@openscd/open-scd/foundation/nsd.js';
 
 async function getSpecificDataObject(
   lnClass: string | null | undefined,

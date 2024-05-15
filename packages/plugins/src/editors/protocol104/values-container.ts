@@ -9,8 +9,10 @@ import { get } from 'lit-translate';
 
 import {
   compareNames,
+} from '@openscd/core/foundation/scl.js';
+import {
   newWizardEvent,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/open-scd/foundation.js';
 
 import './ied-container.js';
 

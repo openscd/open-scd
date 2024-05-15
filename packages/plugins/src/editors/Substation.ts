@@ -4,7 +4,7 @@ import { get } from 'lit-translate';
 import '@material/mwc-fab';
 
 import './substation/zeroline-pane.js';
-import { newWizardEvent } from '@openscd/open-scd/src/foundation.js';
+import { newWizardEvent } from '@openscd/open-scd/foundation.js';
 import { wizards } from '../wizards/wizard-library.js';
 
 /** An editor [[`plugin`]] for editing the `Substation` section. */

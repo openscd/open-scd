@@ -5,20 +5,22 @@ import { get } from 'lit-translate';
 import '@material/mwc-button';
 import '@material/mwc-list/mwc-check-list-item';
 
-import '@openscd/open-scd/src/wizard-textfield.js';
-import '@openscd/open-scd/src/filtered-list.js';
+import '@openscd/open-scd/wizard-textfield.js';
+import '@openscd/open-scd/filtered-list.js';
 import {
   cloneElement,
   find,
-  getValue,
   identity,
+} from '@openscd/core/foundation/scl.js';
+import {
+  getValue,
   Wizard,
   WizardAction,
   WizardActor,
   WizardInputElement,
   WizardMenuActor,
   newSubWizardEvent,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/open-scd/foundation.js';
 import { Replace } from '@openscd/core/foundation/deprecated/editor.js';
 import { createFCDAsWizard } from './fcda.js';
 

@@ -14,9 +14,11 @@ import './connectedap-editor.js';
 import './gse-editor.js';
 import './smv-editor.js';
 import {
-  newWizardEvent,
   compareNames,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/core/foundation/scl.js';
+import {
+  newWizardEvent,
+} from '@openscd/open-scd/foundation.js';
 import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { createConnectedApWizard } from '../../wizards/connectedap.js';
 import { wizards } from '../../wizards/wizard-library.js';

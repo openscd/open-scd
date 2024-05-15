@@ -12,6 +12,8 @@ import {
   identity,
   isEqual,
   isSame,
+} from '@openscd/core/foundation/scl.js';
+import {
   newWizardEvent,
   Wizard,
   WizardActor,

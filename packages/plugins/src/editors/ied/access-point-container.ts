@@ -13,12 +13,14 @@ import { get } from 'lit-translate';
 import {
   getDescriptionAttribute,
   getNameAttribute,
+} from '@openscd/core/foundation/scl.js';
+import {
   newWizardEvent,
-} from '@openscd/open-scd/src/foundation.js';
-import { accessPointIcon } from '@openscd/open-scd/src/icons/ied-icons.js';
+} from '@openscd/open-scd/foundation.js';
+import { accessPointIcon } from '@openscd/open-scd/icons/ied-icons.js';
 import { editServicesWizard } from '../../wizards/services.js';
 
-import '@openscd/open-scd/src/action-pane.js';
+import '@openscd/open-scd/action-pane.js';
 import './server-container.js';
 
 import { Container } from './foundation.js';

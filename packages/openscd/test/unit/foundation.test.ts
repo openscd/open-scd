@@ -12,13 +12,16 @@ import {
   getSclSchemaVersion,
   getUniqueElementName,
   identity,
-  ifImplemented,
   newLnInstGenerator,
-  newWizardEvent,
   SCLTag,
   tags,
   isSame,
-  minAvailableLogicalNodeInstance,
+  minAvailableLogicalNodeInstance
+} from '@openscd/core/foundation/scl.js';
+
+import {
+  ifImplemented,
+  newWizardEvent
 } from '../../src/foundation.js';
 
 import {

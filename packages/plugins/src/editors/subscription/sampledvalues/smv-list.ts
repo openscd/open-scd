@@ -15,10 +15,12 @@ import '@material/mwc-list/mwc-list-item';
 import {
   getNameAttribute,
   identity,
+} from '@openscd/core/foundation/scl.js';
+import {
   newWizardEvent,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/open-scd/foundation.js';
 import { newSmvSelectEvent } from './foundation.js';
-import { smvIcon } from '@openscd/open-scd/src/icons/icons.js';
+import { smvIcon } from '@openscd/open-scd/icons/icons.js';
 import { getOrderedIeds, styles } from '../foundation.js';
 import { classMap } from 'lit-html/directives/class-map.js';
 import { wizards } from '../../../wizards/wizard-library.js';

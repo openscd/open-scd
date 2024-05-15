@@ -18,11 +18,13 @@ import {
   getInstanceAttribute,
   getNameAttribute,
   getLdNameAttribute,
+} from '@openscd/core/foundation/scl.js';
+import {
   newWizardEvent,
-} from '@openscd/open-scd/src/foundation.js';
-import { logicalDeviceIcon } from '@openscd/open-scd/src/icons/ied-icons.js';
+} from '@openscd/open-scd/foundation.js';
+import { logicalDeviceIcon } from '@openscd/open-scd/icons/ied-icons.js';
 
-import '@openscd/open-scd/src/action-pane.js';
+import '@openscd/open-scd/action-pane.js';
 import './ln-container.js';
 
 import { wizards } from '../../wizards/wizard-library.js';

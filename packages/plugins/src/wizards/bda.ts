@@ -5,14 +5,16 @@ import '@material/mwc-button';
 import {
   cloneElement,
   createElement,
-  getValue,
   isPublic,
+} from '@openscd/core/foundation/scl.js';
+import {
+  getValue,
   newWizardEvent,
   Wizard,
   WizardActor,
   WizardInputElement,
   WizardMenuActor,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/open-scd/foundation.js';
 import { EditorAction, newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { getValAction, wizardContent } from './abstractda.js';
 

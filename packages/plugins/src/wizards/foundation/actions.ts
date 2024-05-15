@@ -1,14 +1,16 @@
 import {
   cloneElement,
+} from '@openscd/core/foundation/scl.js';
+import {
   getValue,
   WizardActor,
   WizardInputElement,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/open-scd/foundation.js';
 import {
   ComplexAction,
   EditorAction,
   createUpdateAction
-} from '@openscd/core/foundation/deprecated/editor';
+} from '@openscd/core/foundation/deprecated/editor.js';
 import { get } from 'lit-translate';
 import { updateReferences } from './references.js';
 

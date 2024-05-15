@@ -11,15 +11,15 @@ import '@material/mwc-fab';
 import '@material/mwc-icon';
 import { Fab } from '@material/mwc-fab';
 
-import '@openscd/open-scd/src/action-icon.js';
+import '@openscd/open-scd/action-icon.js';
 import { createClientLnWizard } from '../../wizards/clientln.js';
 import {
   gooseIcon,
   smvIcon,
   reportIcon,
-} from '@openscd/open-scd/src/icons/icons.js';
+} from '@openscd/open-scd/icons/icons.js';
 import { wizards } from '../../wizards/wizard-library.js';
-import { newWizardEvent } from '@openscd/open-scd/src/foundation.js';
+import { newWizardEvent } from '@openscd/open-scd/foundation.js';
 import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { selectGseControlWizard } from '../../wizards/gsecontrol.js';
 import { selectSampledValueControlWizard } from '../../wizards/sampledvaluecontrol.js';

@@ -11,11 +11,11 @@ import { get } from 'lit-translate';
 import '@material/mwc-formfield';
 import '@material/mwc-checkbox';
 
-import '@openscd/open-scd/src/wizard-checkbox.js';
-import '@openscd/open-scd/src/wizard-select.js';
-import '@openscd/open-scd/src/wizard-textfield.js';
+import '@openscd/open-scd/wizard-checkbox.js';
+import '@openscd/open-scd/wizard-select.js';
+import '@openscd/open-scd/wizard-textfield.js';
 
-import { identity } from '@openscd/open-scd/src/foundation.js';
+import { identity } from '@openscd/core/foundation/scl.js';
 import { maxLength, patterns } from '../../wizards/foundation/limits.js';
 import { typeNullable, typePattern } from '../../wizards/foundation/p-types.js';
 import { ifDefined } from 'lit-html/directives/if-defined.js';

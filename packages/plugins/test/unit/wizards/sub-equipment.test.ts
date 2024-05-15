@@ -1,10 +1,10 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
-import '@openscd/open-scd/src/addons/Wizards.js';
-import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
+import '@openscd/open-scd/addons/Wizards.js';
+import { OscdWizards } from '@openscd/open-scd/addons/Wizards.js';
 
-import { WizardInputElement } from '@openscd/open-scd/src/foundation.js';
+import { WizardInputElement } from '@openscd/open-scd/foundation.js';
 import { 
   Create, 
   Replace,
@@ -15,7 +15,7 @@ import {
   editSubEquipmentWizard,
   createSubEquipmentWizard,
 } from '../../../src/wizards/subequipment.js';
-import { WizardCheckbox } from '@openscd/open-scd/src/wizard-checkbox.js';
+import { WizardCheckbox } from '@openscd/open-scd/wizard-checkbox.js';
 
 describe('Wizards for SCL SubEquipment element', () => {
   let doc: XMLDocument;
