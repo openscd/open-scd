@@ -1,21 +1,12 @@
 # OpenSCD Core
-## \<open-scd>
 
 ## Installation
 
 ```sh
-npm i open-scd
+npm i @openscd/core
 ```
 
 ## Usage
-
-```html
-<script type="module">
-  import '@openscd/core';
-</script>
-
-<open-scd></open-scd>
-```
 
 ## Linting and formatting
 
