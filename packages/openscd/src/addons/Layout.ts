@@ -453,17 +453,14 @@ export class OscdLayout extends LitElement {
 
   /** Renders the enabled editor plugins and a tab bar to switch between them*/
   protected renderContent(): TemplateResult {
-    return html`
-      ${this.doc
-      ? html`<mwc-tab-bar
-          @MDCTabBar:activated=${(e: CustomEvent) =>
-            (this.activeTab = e.detail.index)}
-        >
-          ${this.editors.map(this.renderEditorTab)}
-        </mwc-tab-bar>
-        ${this.editors[this.activeTab]?.content? this.editors[this.activeTab].content: ``}`
-      : ``}
-    `;
+    const activePlugin = this.editors[this.activeTab];
+    return html`<mwc-tab-bar
+        @MDCTabBar:activated=${(e: CustomEvent) =>
+          (this.activeTab = e.detail.index)}
+      >
+        ${this.editors.filter(p=> !p.requireDoc || this.doc).map(this.renderEditorTab)}
+      </mwc-tab-bar>
+      ${activePlugin && (!activePlugin.requireDoc || this.doc)? this.editors[this.activeTab].content: ``}`;
   }
 
   /** Renders the landing buttons (open project and new project)*/
