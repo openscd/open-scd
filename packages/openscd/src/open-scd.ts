@@ -1,12 +1,10 @@
 import {
-  css,
   customElement,
   html,
   LitElement,
   property,
   state,
   TemplateResult,
-  query,
 } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 
@@ -38,7 +36,7 @@ import './addons/Editor.js';
 import './addons/History.js';
 import './addons/Layout.js';
 
-import { ActionDetail, List } from '@material/mwc-list';
+import { ActionDetail } from '@material/mwc-list';
 
 import { officialPlugins } from './plugins.js';
 import { initializeNsdoc, Nsdoc } from './foundation/nsdoc.js';
