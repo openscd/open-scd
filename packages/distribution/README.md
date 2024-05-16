@@ -52,6 +52,7 @@ We provide the following `npm` scripts for your convenience:
 - `npm run format` runs the formatter (formats your code in a unified way)
 - `npm run doc` builds HTML documentation into the `doc` directory
 - `npm run build` builds a deployable version of the project into the `dist` directory
+- `npm run serve` starts a local server to serve the built project files (useful for testing the production version of OpenSCD)
 
 ## License
 
