@@ -20,8 +20,8 @@
     "./dist/**"
   ],
   "dependencies": {
-    "@openscd/open-scd": "*",
     "@openscd/addons": "*",
+    "@openscd/open-scd": "*",
     "@openscd/plugins": "*"
   },
   "scripts": {
@@ -38,7 +38,8 @@
     "doc:wca": "wca src --outDir doc/components",
     "doc": "npm run doc:clean && npm run doc:typedoc && npm run doc:wca",
     "build": "snowpack build && workbox generateSW workbox-config.cjs && cp .nojekyll build/",
-    "start": "snowpack dev"
+    "start": "snowpack dev",
+    "serve": "npm run build && http-server build"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
@@ -61,6 +62,7 @@
     "eslint-plugin-tsdoc": "^0.2.16",
     "eslint-plugin-babel": "^5.3.1",
     "fast-check": "^2.19.0",
+    "http-server": "^14.1.1",
     "husky": "^7.0.1",
     "lint-staged": "^11.1.2",
     "prettier": "^2.3.2",

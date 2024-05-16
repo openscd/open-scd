@@ -28,7 +28,7 @@ If you would like to list your plug-in here, please open a pull request.
 
 This repository is a [↗ monorepo](https://en.wikipedia.org/wiki/Monorepo), made up of several packages.
 To find out more about the development of each packages, such as the base distribution or the plugins, please refer to their respective READMEs:
-- [open-scd](packages/open-scd/README.md): provides the base distribution available on [openscd.github.io](https://openscd.github.io)
+- [open-scd](packages/openscd/README.md): provides the base distribution available on [openscd.github.io](https://openscd.github.io)
 - [core](packages/core/README.md): provides the agreed api of OpenSCD Core
 
 ## Contributing
