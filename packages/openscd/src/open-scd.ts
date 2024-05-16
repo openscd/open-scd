@@ -296,7 +296,8 @@ export class OpenSCD extends LitElement {
           <oscd-history 
             .host=${this} 
             @undo-redo-changed="${(e:UndoRedoChangedEvent) => { 
-              this.editCount = e.detail.editCount
+              this.editCount = e.detail.editCount;
+              this.requestUpdate();
             }}"
           >
             <oscd-editor
@@ -311,7 +312,7 @@ export class OpenSCD extends LitElement {
                 .doc=${this.doc}
                 .docName=${this.docName}
                 .editCount=${this.editCount}
-                .plugins=${this._sortedStoredPlugins}
+                .plugins=${this.sortedStoredPlugins}
               >
               </oscd-layout>
             </oscd-editor>
@@ -324,7 +325,6 @@ export class OpenSCD extends LitElement {
   private storePlugins(plugins: Array<Plugin | InstalledOfficialPlugin>) {
     localStorage.setItem('plugins', JSON.stringify(plugins.map(withoutContent)));
     this.requestUpdate();
-    this._sortedStoredPlugins = this.sortedStoredPlugins;
   }
   private resetPlugins(): void {
     this.storePlugins(
@@ -380,9 +380,6 @@ export class OpenSCD extends LitElement {
       .sort(compareNeedsDoc)
       .sort(menuCompare);
   }
-
-  @state()
-  _sortedStoredPlugins: Plugin[] = [];
 
   private get storedPlugins(): Plugin[] {
     return <Plugin[]>(
