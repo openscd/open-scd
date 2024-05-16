@@ -47,7 +47,7 @@
     "@openscd/core": "*"
   },
   "scripts": {
-    "clean": "rimraf build",
+    "clean": "rimraf dist",
     "lint:eslint": "eslint --ext .ts,.html . --ignore-path .gitignore",
     "format:eslint": "eslint --ext .ts,.html . --fix --ignore-path .gitignore",
     "lint:prettier": "prettier \"**/*.js\" \"**/*.ts\" --check --ignore-path .gitignore",
