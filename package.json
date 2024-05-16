@@ -12,7 +12,8 @@
     "doc": "lerna run doc",
     "test": "npx nx run-many -t test --all --parallel=false",
     "graph": "npx nx graph",
-    "start": "lerna run start"
+    "start": "lerna run start",
+    "serve": "nx run @openscd/distribution:serve"
   },
   "repository": {
     "type": "git",
