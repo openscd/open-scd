@@ -4,12 +4,12 @@ import '@openscd/open-scd/test/mock-open-scd.js';
 import { MockOpenSCD } from '@openscd/open-scd/test/mock-open-scd.js';
 
 import { ListItem } from '@material/mwc-list/mwc-list-item';
-import { Select } from '@material/mwc-select';
+import type { Select } from '@material/mwc-select/mwc-select.js';
 
-import { FilteredList } from '@openscd/open-scd/src/filtered-list.js';
+import { FilteredList } from '@openscd/open-scd/filtered-list.js';
 import TemplatesPlugin from '../../../../src/editors/Templates.js';
-import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
-import { patterns } from '@openscd/open-scd/src/foundation.js';
+import { WizardTextField } from '@openscd/open-scd/wizard-textfield.js';
+import { patterns } from '@openscd/core/foundation/scl.js';
 
 describe('EnumType wizards', () => {
   if (customElements.get('templates-editor') === undefined)

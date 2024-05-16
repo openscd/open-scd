@@ -6,10 +6,10 @@ import { get } from 'lit-translate';
 import {
   getInstanceAttribute,
   getNameAttribute,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/core/foundation/scl.js';
 import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 
-import '@openscd/open-scd/src/action-pane.js';
+import '@openscd/open-scd/action-pane.js';
 import './do-container.js';
 
 import { Container } from './foundation.js';

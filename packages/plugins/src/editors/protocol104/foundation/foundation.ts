@@ -5,7 +5,7 @@ import { get } from 'lit-translate';
 import {
   getInstanceAttribute,
   getNameAttribute,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/core/foundation/scl.js';
 import { typeMaxLength } from '../../../wizards/foundation/p-types.js';
 import { typeDescriptiveNameKeys, typePattern } from './p-types.js';
 

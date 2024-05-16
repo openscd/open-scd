@@ -8,10 +8,10 @@ import {
 } from 'lit-element';
 import { get } from 'lit-translate';
 
-import '@openscd/open-scd/src/wizard-textfield.js';
-import '@openscd/open-scd/src/wizard-checkbox.js';
+import '@openscd/open-scd/wizard-textfield.js';
+import '@openscd/open-scd/wizard-checkbox.js';
 
-import { identity } from '@openscd/open-scd/src/foundation.js';
+import { identity } from '@openscd/core/foundation/scl.js';
 import { maxLength, patterns } from '../../wizards/foundation/limits.js';
 
 @customElement('report-control-element-editor')

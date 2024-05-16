@@ -42,11 +42,13 @@ import {
   isWizardFactory,
   checkValidity,
   reportValidity,
-  identity,
   WizardInput,
   WizardMenuActor,
-  formatXml,
 } from './foundation.js';
+import { 
+  identity,
+  formatXml
+} from '@openscd/core/foundation/scl.js';
 
 function renderWizardInput(
   input: TemplateResult | WizardInput

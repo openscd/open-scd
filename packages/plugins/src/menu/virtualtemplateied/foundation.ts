@@ -2,7 +2,7 @@ import {
   createElement,
   getChildElementsByTagName,
   identity,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/core/foundation/scl.js';
 
 const functionTypeElementTags = [
   'Function',

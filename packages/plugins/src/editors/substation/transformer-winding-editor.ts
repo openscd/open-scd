@@ -18,20 +18,22 @@ import { IconButton } from '@material/mwc-icon-button';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { Menu } from '@material/mwc-menu';
 
-import '@openscd/open-scd/src/action-icon.js';
-import '@openscd/open-scd/src/action-pane.js';
+import '@openscd/open-scd/action-icon.js';
+import '@openscd/open-scd/action-pane.js';
 import './eq-function-editor.js';
 import './l-node-editor.js';
 import './tapchanger-editor.js';
 
-import { transformerWindingIcon } from '@openscd/open-scd/src/icons/icons.js';
+import { transformerWindingIcon } from '@openscd/open-scd/icons/icons.js';
 import { styles } from './foundation.js';
 import {
   getChildElementsByTagName,
-  newWizardEvent,
   SCLTag,
   tags,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/core/foundation/scl.js';
+import {
+  newWizardEvent,
+} from '@openscd/open-scd/foundation.js';
 import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
 

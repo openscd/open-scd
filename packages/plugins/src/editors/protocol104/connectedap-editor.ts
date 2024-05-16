@@ -2,8 +2,8 @@ import { customElement, html, property, TemplateResult } from 'lit-element';
 
 import '@material/mwc-fab';
 
-import '@openscd/open-scd/src/action-icon.js';
-import { newWizardEvent } from '@openscd/open-scd/src/foundation.js';
+import '@openscd/open-scd/action-icon.js';
+import { newWizardEvent } from '@openscd/open-scd/foundation.js';
 import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { editConnectedApWizard } from './wizards/connectedap.js';
 import { Base104Container } from './base-container.js';

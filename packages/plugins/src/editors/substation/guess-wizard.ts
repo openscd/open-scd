@@ -10,10 +10,12 @@ import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import {
   compareNames,
   createElement,
+} from '@openscd/core/foundation/scl.js';
+import {
   Wizard,
   WizardActor,
   WizardInputElement,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/open-scd/foundation.js';
 import { EditorAction } from '@openscd/core/foundation/deprecated/editor.js';
 
 let bayNum = 1;

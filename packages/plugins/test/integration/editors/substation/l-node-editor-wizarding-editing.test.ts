@@ -5,7 +5,7 @@ import { MockWizardEditor } from '@openscd/open-scd/test/mock-wizard-editor.js';
 
 import '../../../../src/editors/substation/l-node-editor.js';
 import { LNodeEditor } from '../../../../src/editors/substation/l-node-editor.js';
-import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
+import { WizardTextField } from '@openscd/open-scd/wizard-textfield.js';
 
 describe('l-node-editor wizarding editing integration', () => {
   let doc: XMLDocument;

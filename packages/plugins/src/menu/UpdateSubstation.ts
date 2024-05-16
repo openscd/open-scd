@@ -5,11 +5,11 @@ import {
   crossProduct,
   find,
   identity,
-  newWizardEvent,
   SCLTag,
   tags,
-} from '@openscd/open-scd/src/foundation.js';
-import { Diff, mergeWizard } from '@openscd/open-scd/src/wizards.js';
+} from '@openscd/core/foundation/scl.js';
+import { newWizardEvent } from '@openscd/open-scd/foundation.js';
+import { Diff, mergeWizard } from '@openscd/open-scd/wizards.js';
 
 export function isValidReference(
   doc: XMLDocument,

@@ -6,18 +6,20 @@ import '@material/mwc-icon';
 import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
-import '@openscd/open-scd/src/filtered-list.js';
+import '@openscd/open-scd/filtered-list.js';
 import {
   createElement,
   find,
   identity,
   pathParts,
+} from '@openscd/core/foundation/scl.js';
+import {
   Wizard,
   WizardAction,
   WizardActor,
   WizardInputElement,
-} from '@openscd/open-scd/src/foundation.js';
-import { clientIcon } from '@openscd/open-scd/src/icons/icons.js';
+} from '@openscd/open-scd/foundation.js';
+import { clientIcon } from '@openscd/open-scd/icons/icons.js';
 import { openCommunicationMappingWizard } from './commmap-wizards.js';
 
 function getPath(identity: string | number): string {

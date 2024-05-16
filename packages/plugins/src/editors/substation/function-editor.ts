@@ -9,15 +9,17 @@ import {
   query,
 } from 'lit-element';
 
-import '@openscd/open-scd/src/action-pane.js';
+import '@openscd/open-scd/action-pane.js';
 import './sub-function-editor.js';
 import './general-equipment-editor.js';
 import {
   getChildElementsByTagName,
-  newWizardEvent,
   SCLTag,
   tags,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/core/foundation/scl.js';
+import {
+  newWizardEvent,
+} from '@openscd/open-scd/foundation.js';
 import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { get } from 'lit-translate';
 

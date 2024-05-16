@@ -1,9 +1,9 @@
 import { html, TemplateResult } from 'lit-element';
 import { get } from 'lit-translate';
 
-import '@openscd/open-scd/src/finder-list.js';
-import { Directory } from '@openscd/open-scd/src/finder-list.js';
-import { find, identity, isPublic } from '@openscd/open-scd/src/foundation.js';
+import '@openscd/open-scd/finder-list.js';
+import { Directory } from '@openscd/open-scd/finder-list.js';
+import { find, identity, isPublic } from '@openscd/core/foundation/scl.js';
 
 export function getDisplayString(entry: string): string {
   if (entry.startsWith('IED:')) return entry.replace(/^.*:/, '').trim();

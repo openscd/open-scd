@@ -3,10 +3,12 @@ import { get } from 'lit-translate';
 
 import {
   cloneElement,
+} from '@openscd/core/foundation/scl.js';
+import {
   getValue,
   WizardActor,
   WizardInputElement,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/open-scd/foundation.js';
 import { EditorAction } from '@openscd/core/foundation/deprecated/editor.js';
 import { SCL_COORDINATES_NAMESPACE } from '../foundation.js';
 

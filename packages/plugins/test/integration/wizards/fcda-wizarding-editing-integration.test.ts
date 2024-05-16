@@ -4,8 +4,8 @@ import '@openscd/open-scd/test/mock-wizard-editor.js';
 import { MockWizardEditor } from '@openscd/open-scd/test/mock-wizard-editor.js';
 
 import { createFCDAsWizard } from '../../../src/wizards/fcda.js';
-import { FinderList } from '@openscd/open-scd/src/finder-list.js';
-import { newWizardEvent } from '@openscd/open-scd/src/foundation.js';
+import { FinderList } from '@openscd/open-scd/finder-list.js';
+import { newWizardEvent } from '@openscd/open-scd/foundation.js';
 
 describe('FCDA editing wizarding integration', () => {
   let doc: XMLDocument;

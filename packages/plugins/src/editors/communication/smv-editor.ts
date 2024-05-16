@@ -9,9 +9,9 @@ import {
 
 import '@material/mwc-icon';
 
-import '@openscd/open-scd/src/action-icon.js';
-import { sizableSmvIcon } from '@openscd/open-scd/src/icons/icons.js';
-import { newWizardEvent } from '@openscd/open-scd/src/foundation.js';
+import '@openscd/open-scd/action-icon.js';
+import { sizableSmvIcon } from '@openscd/open-scd/icons/icons.js';
+import { newWizardEvent } from '@openscd/open-scd/foundation.js';
 import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { editSMvWizard } from '../../wizards/smv.js';
 

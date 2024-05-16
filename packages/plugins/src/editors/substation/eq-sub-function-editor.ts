@@ -18,17 +18,18 @@ import { IconButton } from '@material/mwc-icon-button';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { Menu } from '@material/mwc-menu';
 
-import '@openscd/open-scd/src/action-pane.js';
+import '@openscd/open-scd/action-pane.js';
 import './general-equipment-editor.js';
 import {
   getChildElementsByTagName,
-  newWizardEvent,
   SCLTag,
   tags,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/core/foundation/scl.js';
+import {
+  newWizardEvent,
+} from '@openscd/open-scd/foundation.js';
 import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
-import { classMap } from 'lit-html/directives/class-map.js';
 import { renderGeneralEquipment } from './foundation.js';
 
 function childTags(element: Element | null | undefined): SCLTag[] {

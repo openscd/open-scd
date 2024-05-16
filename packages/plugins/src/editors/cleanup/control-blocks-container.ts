@@ -24,20 +24,22 @@ import { Checkbox } from '@material/mwc-checkbox';
 import { List, MWCListIndex } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 
-import '@openscd/open-scd/src/filtered-list.js';
+import '@openscd/open-scd/filtered-list.js';
 
 import {
   identity,
   isPublic,
+} from '@openscd/core/foundation/scl.js';
+import {
   newSubWizardEvent,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/open-scd/foundation.js';
 import { Delete, newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { styles } from '../templates/foundation.js';
 import {
   controlBlockIcons,
   getFilterIcon,
   iconType,
-} from '@openscd/open-scd/src/icons/icons.js';
+} from '@openscd/open-scd/icons/icons.js';
 import { editGseControlWizard, getGSE } from '../../wizards/gsecontrol.js';
 import { editReportControlWizard } from '../../wizards/reportcontrol.js';
 import {

@@ -3,8 +3,8 @@ import { expect, fixture, html } from '@open-wc/testing';
 import '@openscd/open-scd/test/mock-wizard-editor.js';
 import { MockWizardEditor } from '@openscd/open-scd/test/mock-wizard-editor.js';
 import { editGseWizard } from '../../../src/wizards/gse.js';
-import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
-import { newWizardEvent } from '@openscd/open-scd/src/foundation.js';
+import { WizardTextField } from '@openscd/open-scd/wizard-textfield.js';
+import { newWizardEvent } from '@openscd/open-scd/foundation.js';
 
 describe('address wizarding editing integration', () => {
   let doc: XMLDocument;

@@ -6,7 +6,7 @@ import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-icon';
 
-import { identity } from '../foundation.js';
+import { identity } from '@openscd/core/foundation/scl.js';
 import { SVGTemplateResult } from 'lit-html';
 
 import { attributeIcon, contentIcon, elementIcon } from '../icons/compare.js';

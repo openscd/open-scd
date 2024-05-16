@@ -1,6 +1,4 @@
-import { Editing } from '../src/Editing.js';
 import {
-  LitElement,
   customElement,
   TemplateResult,
   html,
@@ -8,15 +6,21 @@ import {
 } from 'lit-element';
 
 import '../src/addons/Wizards.js';
-import { OscdWizards } from '../src/addons/Wizards.js';
+import type { OscdWizards } from '../src/addons/Wizards.js';
+import './mock-editor.js';
+import { MockEditor } from './mock-editor.js';
 
 @customElement('mock-wizard-editor')
-export class MockWizardEditor extends Editing(LitElement) {
+export class MockWizardEditor extends MockEditor {
+
   @query('oscd-wizards')
   wizards!: OscdWizards;
 
   render(): TemplateResult {
-    return html`<oscd-wizards .host=${this}><slot></slot></oscd-wizards>`;
+    return html`
+      <oscd-wizards .host=${this}>
+      ${super.render()}
+      </oscd-wizards>`;
   }
 
   get wizardUI() {

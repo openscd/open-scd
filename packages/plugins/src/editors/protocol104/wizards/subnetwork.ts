@@ -2,17 +2,19 @@ import { html, TemplateResult } from 'lit-element';
 import { get } from 'lit-translate';
 import {
   createElement,
+  patterns,
+} from '@openscd/core/foundation/scl.js';
+import {
   getMultiplier,
   getValue,
-  patterns,
   Wizard,
   WizardActor,
   WizardInputElement,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/open-scd/foundation.js';
 
 import { EditorAction } from '@openscd/core/foundation/deprecated/editor';
 
-import '@openscd/open-scd/src/wizard-textfield.js';
+import '@openscd/open-scd/wizard-textfield.js';
 
 /** Initial attribute values suggested for `SubNetwork` creation for the 104 plugin */
 const initial = {

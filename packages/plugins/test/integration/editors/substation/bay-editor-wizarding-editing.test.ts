@@ -5,8 +5,8 @@ import { MockWizardEditor } from '@openscd/open-scd/test/mock-wizard-editor.js';
 
 import '../../../../src/editors/substation/bay-editor.js';
 import { BayEditor } from '../../../../src/editors/substation/bay-editor.js';
-import { Select } from '@material/mwc-select';
-import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
+import type { Select } from '@material/mwc-select/mwc-select.js';
+import { WizardTextField } from '@openscd/open-scd/wizard-textfield.js';
 import { MenuBase } from '@material/mwc-menu/mwc-menu-base.js';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base.js';
 

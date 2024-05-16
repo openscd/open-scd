@@ -17,15 +17,15 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 import './data-set-element-editor.js';
 import './gse-control-element-editor.js';
-import '@openscd/open-scd/src/filtered-list.js';
-import { FilteredList } from '@openscd/open-scd/src/filtered-list.js';
+import '@openscd/open-scd/filtered-list.js';
+import { FilteredList } from '@openscd/open-scd/filtered-list.js';
 
-import { gooseIcon } from '@openscd/open-scd/src/icons/icons.js';
+import { gooseIcon } from '@openscd/open-scd/icons/icons.js';
 import {
   compareNames,
   identity,
   find,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/core/foundation/scl.js';
 import { styles, updateElementReference } from './foundation.js';
 
 @customElement('gse-control-editor')

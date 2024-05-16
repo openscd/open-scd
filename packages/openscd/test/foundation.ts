@@ -1,7 +1,7 @@
 /* eslint-disable no-control-regex */
 
 import fc, { Arbitrary, array, hexaString, integer, tuple } from 'fast-check';
-import { patterns } from '../src/foundation.js';
+import { patterns } from '@openscd/core/foundation/scl.js';
 
 export function invertedRegex(
   re: RegExp,

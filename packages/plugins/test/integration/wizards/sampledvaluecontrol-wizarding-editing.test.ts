@@ -5,15 +5,15 @@ import { MockWizardEditor } from '@openscd/open-scd/test/mock-wizard-editor.js';
 
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
-import { FilteredList } from '@openscd/open-scd/src/filtered-list.js';
-import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
+import { FilteredList } from '@openscd/open-scd/filtered-list.js';
+import { WizardTextField } from '@openscd/open-scd/wizard-textfield.js';
 import {
   createSampledValueControlWizard,
   selectSampledValueControlWizard,
 } from '../../../src/wizards/sampledvaluecontrol.js';
-import { WizardCheckbox } from '@openscd/open-scd/src/wizard-checkbox.js';
-import { FinderList } from '@openscd/open-scd/src/finder-list.js';
-import { newWizardEvent } from '@openscd/open-scd/src/foundation.js';
+import { WizardCheckbox } from '@openscd/open-scd/wizard-checkbox.js';
+import { FinderList } from '@openscd/open-scd/finder-list.js';
+import { newWizardEvent } from '@openscd/open-scd/foundation.js';
 
 describe('Wizards for SCL element SampledValueControl', () => {
   let doc: XMLDocument;

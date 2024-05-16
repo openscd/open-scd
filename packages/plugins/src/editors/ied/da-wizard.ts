@@ -9,9 +9,11 @@ import {
   getDescriptionAttribute,
   getInstanceAttribute,
   getNameAttribute,
+} from '@openscd/core/foundation/scl.js';
+import {
   Wizard,
-} from '@openscd/open-scd/src/foundation.js';
-import { Nsdoc } from '@openscd/open-scd/src/foundation/nsdoc.js';
+} from '@openscd/open-scd/foundation.js';
+import { Nsdoc } from '@openscd/open-scd/foundation/nsdoc.js';
 import {
   findDOTypeElement,
   findElement,

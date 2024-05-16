@@ -16,9 +16,9 @@ import {
   getNameAttribute,
   getPathNameAttribute,
   identity,
-  newWizardEvent,
   SCLTag,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/core/foundation/scl.js';
+import { newWizardEvent } from '@openscd/open-scd/foundation.js';
 import {
   addLabelToBay,
   addLabelToBusBar,
@@ -44,13 +44,13 @@ import {
   getConnectedTerminals,
   isBusBar,
 } from './singlelinediagram/foundation.js';
-import { isSCLNamespace } from '@openscd/open-scd/src/schemas.js';
+import { isSCLNamespace } from '@openscd/open-scd/schemas.js';
 import { wizards } from './singlelinediagram/wizards/wizard-library.js';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { get } from 'lit-translate';
 
 import '@material/mwc-list/mwc-list-item';
-import '@material/mwc-select';
+import '@material/mwc-select/mwc-select.js';
 import '@material/mwc-textfield';
 
 /*

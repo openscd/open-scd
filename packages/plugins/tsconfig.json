@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es2020",
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "noEmitOnError": true,
     "lib": ["es2020", "dom"],
     "strict": true,
@@ -16,7 +16,6 @@
     "sourceMap": true,
     "inlineSources": true,
     "resolveJsonModule": true,
-    "rootDir": "./src"
   },
-  "include": ["src/**/*.ts"]
+  "include": ["./src/**/*.ts", "./test/**/*.ts"],
 }

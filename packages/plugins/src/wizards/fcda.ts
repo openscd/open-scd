@@ -4,12 +4,14 @@ import { get } from 'lit-translate';
 import {
   createElement,
   find,
+} from '@openscd/core/foundation/scl.js';
+import {
   Wizard,
   WizardAction,
   WizardActor,
   WizardInputElement,
-} from '@openscd/open-scd/src/foundation.js';
-import { FinderList } from '@openscd/open-scd/src/finder-list.js';
+} from '@openscd/open-scd/foundation.js';
+import { FinderList } from '@openscd/open-scd/finder-list.js';
 import {
   dataAttributePicker,
   getDataModelChildren,

@@ -8,6 +8,7 @@
   ],
   "scripts": {
     "clean": "lerna run clean",
+    "clean:modules": "npm exec --workspaces -- npx rimraf node_modules && npx rimraf node_modules && npx rimraf package-lock.json",
     "build": "npx nx run-many -t build --all",
     "doc": "lerna run doc",
     "test": "npx nx run-many -t test --all --parallel=false",

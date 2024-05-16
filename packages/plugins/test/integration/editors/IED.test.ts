@@ -8,8 +8,8 @@ import '../../../src/editors/IED.js';
 import {
   initializeNsdoc,
   Nsdoc,
-} from '@openscd/open-scd/src/foundation/nsdoc.js';
-import { FilterButton } from '@openscd/open-scd/src/oscd-filter-button.js';
+} from '@openscd/open-scd/foundation/nsdoc.js';
+import { FilterButton } from '@openscd/open-scd/oscd-filter-button.js';
 
 import IED from '../../../src/editors/IED.js';
 import { LDeviceContainer } from '../../../src/editors/ied/ldevice-container.js';

@@ -22,15 +22,17 @@ import { Button } from '@material/mwc-button';
 import { List, MWCListIndex } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item.js';
 
-import '@openscd/open-scd/src/filtered-list.js';
+import '@openscd/open-scd/filtered-list.js';
 
 import { editDataSetWizard } from '../../wizards/dataset.js';
 import { styles } from '../templates/foundation.js';
 import {
   identity,
   isPublic,
+} from '@openscd/core/foundation/scl.js';
+import {
   newSubWizardEvent,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/open-scd/foundation.js';
 import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { cleanSCLItems, identitySort } from './foundation.js';
 

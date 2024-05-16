@@ -1,7 +1,7 @@
 import { css, html, LitElement, query, TemplateResult } from 'lit-element';
 
-import { newWizardEvent } from '@openscd/open-scd/src/foundation.js';
-import { mergeWizard } from '@openscd/open-scd/src/wizards.js';
+import { newWizardEvent } from '@openscd/open-scd/foundation.js';
+import { mergeWizard } from '@openscd/open-scd/wizards.js';
 
 export default class MergePlugin extends LitElement {
   doc!: XMLDocument;

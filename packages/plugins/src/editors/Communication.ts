@@ -4,11 +4,11 @@ import { get } from 'lit-translate';
 import '@material/mwc-fab';
 
 import './communication/subnetwork-editor.js';
+import { newWizardEvent } from '@openscd/open-scd/foundation.js';
 import {
-  newWizardEvent,
   createElement,
   isPublic,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/core/foundation/scl.js';
 import { newActionEvent} from '@openscd/core/foundation/deprecated/editor.js';
 import { createSubNetworkWizard } from '../wizards/subnetwork.js';
 

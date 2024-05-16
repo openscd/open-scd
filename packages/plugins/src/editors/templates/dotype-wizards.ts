@@ -4,27 +4,29 @@ import { get } from 'lit-translate';
 import '@material/mwc-button';
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
-import '@material/mwc-select';
-import { Select } from '@material/mwc-select';
+import '@material/mwc-select/mwc-select.js';
+import type { Select } from '@material/mwc-select/mwc-select.js';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { List } from '@material/mwc-list';
 
-import '@openscd/open-scd/src/wizard-textfield.js';
+import '@openscd/open-scd/wizard-textfield.js';
 import {
   cloneElement,
   createElement,
   find,
-  getValue,
   identity,
   isPublic,
+} from '@openscd/core/foundation/scl.js';
+import {
+  getValue,
   newSubWizardEvent,
   newWizardEvent,
   Wizard,
   WizardActor,
   WizardInputElement,
   WizardMenuActor,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/open-scd/foundation.js';
 import { 
   Create,
   EditorAction,

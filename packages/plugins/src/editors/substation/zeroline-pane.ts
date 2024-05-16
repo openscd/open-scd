@@ -25,15 +25,15 @@ import {
   gooseIcon,
   smvIcon,
   reportIcon,
-} from '@openscd/open-scd/src/icons/icons.js';
-import { isPublic, newWizardEvent } from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/open-scd/icons/icons.js';
+import { isPublic, SCLTag, tags } from '@openscd/core/foundation/scl.js';
+import { newWizardEvent } from '@openscd/open-scd/foundation.js';
 import { selectGseControlWizard } from '../../wizards/gsecontrol.js';
 import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
 import { getAttachedIeds } from './foundation.js';
 import { selectSampledValueControlWizard } from '../../wizards/sampledvaluecontrol.js';
 import { selectReportControlWizard } from '../../wizards/reportcontrol.js';
 
-import { SCLTag, tags } from '@openscd/open-scd/src/foundation.js';
 import { Settings } from '@openscd/core/foundation/deprecated/settings.js';
 
 function shouldShowIEDs(): boolean {

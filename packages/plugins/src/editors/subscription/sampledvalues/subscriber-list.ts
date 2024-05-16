@@ -12,11 +12,11 @@ import '@material/mwc-icon';
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 
-import '@openscd/open-scd/src/filtered-list.js';
+import '@openscd/open-scd/filtered-list.js';
 import {
   createElement,
   identity,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/core/foundation/scl.js';
 import {
   Create,
   ComplexAction,
@@ -29,7 +29,7 @@ import {
   SmvSelectEvent,
   SmvSubscriptionEvent,
 } from './foundation.js';
-import { emptyInputsDeleteActions } from '@openscd/open-scd/src/foundation/ied.js';
+import { emptyInputsDeleteActions } from '@openscd/open-scd/foundation/ied.js';
 import {
   canCreateValidExtRef,
   createExtRefElement,

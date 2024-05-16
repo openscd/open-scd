@@ -1,13 +1,13 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '@openscd/open-scd/src/addons/Wizards.js';
-import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
+import '@openscd/open-scd/addons/Wizards.js';
+import { OscdWizards } from '@openscd/open-scd/addons/Wizards.js';
 
-import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
+import { WizardTextField } from '@openscd/open-scd/wizard-textfield.js';
 import {
   WizardInputElement,
   getValue,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/open-scd/foundation.js';
 import { createUpdateAction } from '@openscd/core/foundation/deprecated/editor.js';
 import { editLDeviceWizard } from '../../../src/wizards/ldevice.js';
 import {

@@ -3,8 +3,8 @@ import { LitElement, property } from 'lit-element';
 import {
   getInstanceAttribute,
   getNameAttribute,
-} from '@openscd/open-scd/src/foundation.js';
-import { Nsdoc } from '@openscd/open-scd/src/foundation/nsdoc.js';
+} from '@openscd/core/foundation/scl.js';
+import { Nsdoc } from '@openscd/open-scd/foundation/nsdoc.js';
 
 /** Base class for all containers inside the IED Editor. */
 export class Container extends LitElement {

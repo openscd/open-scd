@@ -1,11 +1,11 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import fc, { integer, ipV4, nat } from 'fast-check';
 
-import '@openscd/open-scd/src/addons/Wizards.js';
-import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
+import '@openscd/open-scd/addons/Wizards.js';
+import { OscdWizards } from '@openscd/open-scd/addons/Wizards.js';
 
 import '../../../src/editors/communication/connectedap-editor.js';
-import { WizardInputElement } from '@openscd/open-scd/src/foundation.js';
+import { WizardInputElement } from '@openscd/open-scd/foundation.js';
 
 import {
   ipV6,
@@ -14,7 +14,7 @@ import {
   regExp,
   regexString,
 } from '../../foundation.js';
-import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
+import { WizardTextField } from '@openscd/open-scd/wizard-textfield.js';
 import { editConnectedApWizard } from '../../../src/wizards/connectedap.js';
 
 describe('Edit wizard for SCL element ConnectedAP', () => {

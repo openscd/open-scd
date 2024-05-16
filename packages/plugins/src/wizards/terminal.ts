@@ -1,7 +1,8 @@
 import { html, TemplateResult } from 'lit-element';
 import { get } from 'lit-translate';
 
-import { isPublic, Wizard } from '@openscd/open-scd/src/foundation.js';
+import { isPublic } from '@openscd/core/foundation/scl.js';
+import { Wizard } from '@openscd/open-scd/foundation.js';
 
 function render(
   name: string | null,

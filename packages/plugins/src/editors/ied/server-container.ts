@@ -8,10 +8,10 @@ import {
 } from 'lit-element';
 import { nothing } from 'lit-html';
 
-import '@openscd/open-scd/src/action-pane.js';
+import '@openscd/open-scd/action-pane.js';
 import './ldevice-container.js';
-import { serverIcon } from '@openscd/open-scd/src/icons/ied-icons.js';
-import { getDescriptionAttribute } from '@openscd/open-scd/src/foundation.js';
+import { serverIcon } from '@openscd/open-scd/icons/ied-icons.js';
+import { getDescriptionAttribute } from '@openscd/core/foundation/scl.js';
 import { Container } from './foundation.js';
 
 /** [[`IED`]] plugin subeditor for editing `Server` element. */

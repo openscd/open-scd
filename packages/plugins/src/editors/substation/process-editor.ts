@@ -27,14 +27,16 @@ import './process-editor.js';
 import './substation-editor.js';
 import './process-editor.js';
 
-import { processIcon } from '@openscd/open-scd/src/icons/icons.js';
+import { processIcon } from '@openscd/open-scd/icons/icons.js';
 import { styles } from './foundation.js';
 import {
   getChildElementsByTagName,
-  newWizardEvent,
   SCLTag,
   tags,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/core/foundation/scl.js';
+import {
+  newWizardEvent,
+} from '@openscd/open-scd/foundation.js';
 import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
 

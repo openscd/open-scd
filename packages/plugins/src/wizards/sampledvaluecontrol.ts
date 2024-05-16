@@ -7,18 +7,20 @@ import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
-import '@openscd/open-scd/src/filtered-list.js';
-import '@openscd/open-scd/src/wizard-checkbox.js';
-import '@openscd/open-scd/src/wizard-select.js';
-import '@openscd/open-scd/src/wizard-textfield.js';
+import '@openscd/open-scd/filtered-list.js';
+import '@openscd/open-scd/wizard-checkbox.js';
+import '@openscd/open-scd/wizard-select.js';
+import '@openscd/open-scd/wizard-textfield.js';
 import {
   cloneElement,
   createElement,
   find,
   getUniqueElementName,
-  getValue,
   identity,
   isPublic,
+} from '@openscd/core/foundation/scl.js';
+import {
+  getValue,
   MenuAction,
   newSubWizardEvent,
   newWizardEvent,
@@ -26,7 +28,7 @@ import {
   WizardActor,
   WizardInputElement,
   WizardMenuActor,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/open-scd/foundation.js';
 import { 
   EditorAction,
   Delete,
@@ -39,7 +41,7 @@ import { editSMvWizard } from './smv.js';
 import { contentSmvOptsWizard, editSmvOptsWizard } from './smvopts.js';
 import { editDataSetWizard } from './dataset.js';
 import { iEDPicker, sampledValueDataPicker } from './foundation/finder.js';
-import { FinderList } from '@openscd/open-scd/src/finder-list.js';
+import { FinderList } from '@openscd/open-scd/finder-list.js';
 import {
   getConnectedAP,
   isAccessPointConnected,

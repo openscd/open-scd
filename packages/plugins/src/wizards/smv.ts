@@ -3,13 +3,15 @@ import { get } from 'lit-translate';
 import { Checkbox } from '@material/mwc-checkbox';
 
 import {
-  getValue,
   identity,
+} from '@openscd/core/foundation/scl.js';
+import {
+  getValue,
   Wizard,
   WizardAction,
   WizardActor,
   WizardInputElement,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/open-scd/foundation.js';
 import { ComplexAction } from '@openscd/core/foundation/deprecated/editor.js';
 import { contentGseOrSmvWizard, updateAddress } from './address.js';
 

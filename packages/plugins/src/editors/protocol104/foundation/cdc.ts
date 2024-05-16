@@ -1,7 +1,9 @@
 import {
   getNameAttribute,
+} from '@openscd/core/foundation/scl.js';
+import {
   newWizardEvent,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/open-scd/foundation.js';
 import { Create } from '@openscd/core/foundation/deprecated/editor.js';
 import { newLogEvent } from '@openscd/core/foundation/deprecated/history.js';
 
@@ -22,7 +24,7 @@ import { editAddressWizard } from '../wizards/address.js';
 import {
   determineUninitializedStructure,
   initializeElements,
-} from '@openscd/open-scd/src/foundation/dai.js';
+} from '@openscd/open-scd/foundation/dai.js';
 import { get } from 'lit-translate';
 
 /**

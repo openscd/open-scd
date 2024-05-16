@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+   "files": [
+      "./test/mock-open-scd.ts",
+      "./test/mock-wizard-editor.ts"
+   ],
+   "exclude": [
+      "./test/**/*.ts",
+   ],
+}

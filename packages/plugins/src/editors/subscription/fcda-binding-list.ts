@@ -28,9 +28,11 @@ import {
   getDescriptionAttribute,
   getNameAttribute,
   identity,
+} from '@openscd/core/foundation/scl.js';
+import {
   newWizardEvent,
-} from '@openscd/open-scd/src/foundation.js';
-import { gooseIcon, smvIcon } from '@openscd/open-scd/src/icons/icons.js';
+} from '@openscd/open-scd/foundation.js';
+import { gooseIcon, smvIcon } from '@openscd/open-scd/icons/icons.js';
 import { wizards } from '../../wizards/wizard-library.js';
 
 import {

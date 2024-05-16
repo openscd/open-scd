@@ -7,7 +7,7 @@ import {
   identity,
   isPublic,
   getChildElementsByTagName,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/core/foundation/scl.js';
 import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import {
   circuitBreakerIcon,
@@ -16,11 +16,11 @@ import {
   voltageTransformerIcon,
   earthSwitchIcon,
   generalConductingEquipmentIcon,
-} from '@openscd/open-scd/src/icons/icons.js';
+} from '@openscd/open-scd/icons/icons.js';
 import { typeStr } from '../../wizards/conductingequipment.js';
-import { Select } from '@material/mwc-select';
+import { Select } from '@material/mwc-select/mwc-select.js';
 
-import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
+import { WizardTextField } from '@openscd/open-scd/wizard-textfield.js';
 import { get } from 'lit-translate';
 
 import { BayEditor } from './bay-editor.js';

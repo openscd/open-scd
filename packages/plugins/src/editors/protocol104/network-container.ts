@@ -5,8 +5,10 @@ import './subnetwork-container.js';
 import {
   compareNames,
   createElement,
+} from '@openscd/core/foundation/scl.js';
+import {
   newWizardEvent,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/open-scd/foundation.js';
 import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { createSubNetworkWizard } from './wizards/subnetwork.js';
 import { Base104Container } from './base-container.js';

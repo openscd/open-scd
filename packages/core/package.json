@@ -24,7 +24,8 @@
     "./foundation/deprecated/settings": "./dist/foundation/deprecated/settings.js",
     "./foundation/deprecated/validation": "./dist/foundation/deprecated/validation.js",
     "./foundation/deprecated/history": "./dist/foundation/deprecated/history.js",
-    "./foundation/deprecated/waiter": "./dist/foundation/deprecated/waiter.js"
+    "./foundation/deprecated/waiter": "./dist/foundation/deprecated/waiter.js",
+    "./foundation/scl.js": "./dist/foundation/scl.js"
   },
   "scripts": {
     "clean": "rimraf .tsbuildinfo dist",
@@ -47,8 +48,8 @@
     "@open-wc/testing": "next",
     "@rollup/plugin-typescript": "^9.0.2",
     "@types/node": "^18.11.9",
-    "@typescript-eslint/eslint-plugin": "^5.30.7",
-    "@typescript-eslint/parser": "^5.30.7",
+    "@typescript-eslint/eslint-plugin": "^7.8.0",
+    "@typescript-eslint/parser": "^7.8.0",
     "@web/dev-server": "^0.1.32",
     "@web/test-runner": "next",
     "@web/test-runner-playwright": "^0.8.10",

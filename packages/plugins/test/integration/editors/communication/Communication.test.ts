@@ -4,7 +4,7 @@ import '@openscd/open-scd/test/mock-open-scd.js';
 
 import Communication from '../../../../src/editors/Communication.js';
 import { Dialog } from '@material/mwc-dialog';
-import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
+import { WizardTextField } from '@openscd/open-scd/wizard-textfield.js';
 import { MockOpenSCD } from '@openscd/open-scd/test/mock-open-scd.js';
 
 describe('Communication Plugin', () => {

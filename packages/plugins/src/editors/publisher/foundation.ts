@@ -1,6 +1,6 @@
 import { css } from 'lit-element';
 
-import { identity, find } from '@openscd/open-scd/src/foundation.js';
+import { identity, find } from '@openscd/core/foundation/scl.js';
 
 export function updateElementReference(
   newDoc: XMLDocument,

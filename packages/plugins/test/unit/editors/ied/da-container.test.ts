@@ -3,7 +3,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 import '../../../../src/editors/ied/da-container.js';
 
 import { DAContainer } from '../../../../src/editors/ied/da-container.js';
-import { initializeNsdoc } from '@openscd/open-scd/src/foundation/nsdoc.js';
+import { initializeNsdoc } from '@openscd/open-scd/foundation/nsdoc.js';
 import { TemplateResult } from 'lit-element';
 
 describe('da-container', async () => {

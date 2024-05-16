@@ -3,12 +3,14 @@ import { get } from 'lit-translate';
 
 import {
   cloneElement,
+} from '@openscd/core/foundation/scl.js';
+import {
   getValue,
   Wizard,
   WizardAction,
   WizardActor,
   WizardInputElement,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/open-scd/foundation.js';
 
 interface ContentOptions {
   refreshTime: string | null;

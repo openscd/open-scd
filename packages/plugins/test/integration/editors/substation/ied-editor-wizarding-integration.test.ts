@@ -4,7 +4,7 @@ import '@openscd/open-scd/test/mock-wizard-editor.js';
 import { MockWizardEditor } from '@openscd/open-scd/test/mock-wizard-editor.js';
 
 import '../../../../src/editors/substation/ied-editor.js';
-import { FilteredList } from '@openscd/open-scd/src/filtered-list.js';
+import { FilteredList } from '@openscd/open-scd/filtered-list.js';
 import { IedEditor } from '../../../../src/editors/substation/ied-editor.js';
 
 describe('IED editor component wizarding editing integration', () => {

@@ -2,10 +2,10 @@ import { TemplateResult } from 'lit-element';
 import { get } from 'lit-translate';
 
 import '@material/mwc-list/mwc-list-item';
-import '@material/mwc-select';
+import '@material/mwc-select/mwc-select.js';
 
-import '@openscd/open-scd/src/wizard-textfield.js';
-import { Wizard } from '@openscd/open-scd/src/foundation.js';
+import '@openscd/open-scd/wizard-textfield.js';
+import { Wizard } from '@openscd/open-scd/foundation.js';
 import {
   getDescAttribute,
   getNameAttribute,

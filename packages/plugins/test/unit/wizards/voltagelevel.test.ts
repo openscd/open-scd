@@ -1,10 +1,10 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
-import '@openscd/open-scd/src/wizard-textfield.js';
+import '@openscd/open-scd/wizard-textfield.js';
 import {
   WizardInputElement,
   WizardActor,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/open-scd/foundation.js';
 import { 
   ComplexAction,
   isCreate,

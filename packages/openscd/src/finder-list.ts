@@ -18,7 +18,7 @@ import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 import './filtered-list.js';
-import { depth } from './foundation.js';
+import { depth } from '@openscd/core/foundation/scl.js';
 import { ifDefined } from 'lit-html/directives/if-defined';
 
 export type Selection = { [name: string]: Selection };

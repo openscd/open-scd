@@ -6,8 +6,8 @@ import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import '../../../../src/editors/substation/tapchanger-editor.js';
 import { TapChangerEditor } from '../../../../src/editors/substation/tapchanger-editor.js';
-import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
-import { WizardCheckbox } from '@openscd/open-scd/src/wizard-checkbox.js';
+import { WizardTextField } from '@openscd/open-scd/wizard-textfield.js';
+import { WizardCheckbox } from '@openscd/open-scd/wizard-checkbox.js';
 import { MenuBase } from '@material/mwc-menu/mwc-menu-base.js';
 
 const openAndCancelMenu: (

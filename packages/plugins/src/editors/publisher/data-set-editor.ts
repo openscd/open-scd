@@ -16,14 +16,14 @@ import { Button } from '@material/mwc-button';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 import './data-set-element-editor.js';
-import '@openscd/open-scd/src/filtered-list.js';
-import { FilteredList } from '@openscd/open-scd/src/filtered-list.js';
+import '@openscd/open-scd/filtered-list.js';
+import { FilteredList } from '@openscd/open-scd/filtered-list.js';
 
 import {
   compareNames,
   identity,
   find,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/core/foundation/scl.js';
 import { styles, updateElementReference } from './foundation.js';
 
 @customElement('data-set-editor')

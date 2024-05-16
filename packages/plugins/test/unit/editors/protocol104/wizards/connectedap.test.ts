@@ -1,15 +1,15 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
-import '@openscd/open-scd/src/addons/Wizards.js';
-import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
+import '@openscd/open-scd/addons/Wizards.js';
+import { OscdWizards } from '@openscd/open-scd/addons/Wizards.js';
 
 import { Checkbox } from '@material/mwc-checkbox';
 import {
   createConnectedApWizard,
   editConnectedApWizard,
 } from '../../../../../src/editors/protocol104/wizards/connectedap.js';
-import { WizardInputElement } from '@openscd/open-scd/src/foundation.js';
+import { WizardInputElement } from '@openscd/open-scd/foundation.js';
 import {
   isCreate,
   isDelete,
@@ -17,7 +17,7 @@ import {
   Create,
   Delete,
 } from '@openscd/core/foundation/deprecated/editor.js';
-import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
+import { WizardTextField } from '@openscd/open-scd/wizard-textfield.js';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 describe('Wizards for SCL element ConnectedAP', () => {

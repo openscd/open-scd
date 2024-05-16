@@ -1,6 +1,6 @@
 import { css, html, LitElement, property, TemplateResult } from 'lit-element';
 
-import { Nsdoc } from '@openscd/open-scd/src/foundation/nsdoc.js';
+import type { Nsdoc } from '@openscd/open-scd/foundation/nsdoc.js';
 
 import './subscription/fcda-binding-list.js';
 import './subscription/later-binding/ext-ref-ln-binding-list.js';

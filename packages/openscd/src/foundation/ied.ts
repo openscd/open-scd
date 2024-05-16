@@ -1,4 +1,4 @@
-import { find, identity } from '../foundation.js';
+import { find, identity } from '@openscd/core/foundation/scl.js';
 import { Delete } from '@openscd/core/foundation/deprecated/editor.js';
 
 /**

@@ -3,7 +3,7 @@ import { get } from 'lit-translate';
 import {
   createElement,
   getVersion,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/core/foundation/scl.js';
 import { 
   newActionEvent, 
   SimpleAction
