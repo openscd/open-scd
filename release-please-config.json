@@ -49,7 +49,7 @@
     }
   ],
   "packages": {
-    "packages/open-scd": {
+    "packages/openscd": {
       "component": "open-scd",
       "changelog-path": "CHANGELOG.md",
       "release-type": "node",

@@ -12,7 +12,7 @@ We mark our official plug-ins that are supported by the OpenSCD organization wit
 > If you want to add a plug-in to this list, please open a pull request.
 
 > [!TIP]
-> How to install a plug-in: [Extensions.md](../packages/open-scd/public/md/Extensions.md)
+> How to install a plug-in: [Extensions.md](../packages/openscd/public/md/Extensions.md)
 
 ## Core Plug-ins
 
