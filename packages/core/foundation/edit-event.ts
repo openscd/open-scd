@@ -1,3 +1,5 @@
+export type Initiator = 'user' | 'system' | 'undo' | 'redo' | string;
+
 /** Intent to `parent.insertBefore(node, reference)` */
 export type Insert = {
   parent: Node;
@@ -48,13 +50,24 @@ export function isRemove(edit: Edit): edit is Remove {
   );
 }
 
-export type EditEvent<E extends Edit = Edit> = CustomEvent<E>;
+export interface EditEventDetail<E extends Edit = Edit> {
+  edit: E;
+  initiator: Initiator;
+}
 
-export function newEditEvent<E extends Edit>(edit: E): EditEvent<E> {
-  return new CustomEvent<E>('oscd-edit', {
+export type EditEvent = CustomEvent<EditEventDetail>;
+
+export function newEditEvent<E extends Edit>(
+  edit: E,
+  initiator: Initiator = 'user'
+): EditEvent {
+  return new CustomEvent<EditEventDetail>('oscd-edit', {
     composed: true,
     bubbles: true,
-    detail: edit,
+    detail: {
+      edit: edit,
+      initiator: initiator,
+    },
   });
 }
 
