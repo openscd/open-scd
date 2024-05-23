@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "$id": "Addon",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What name would you like to use?"
+    },
+    "packageName": {
+      "type": "string",
+      "description": "Provide the name of the package",
+      "x-prompt": "Package name"
+    }
+  },
+  "required": ["name", "packageName"]
+}

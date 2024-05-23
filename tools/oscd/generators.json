@@ -1,0 +1,9 @@
+{
+  "generators": {
+    "addon": {
+      "factory": "./src/generators/addon/generator",
+      "schema": "./src/generators/addon/schema.json",
+      "description": "addon generator"
+    }
+  }
+}
