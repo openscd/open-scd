@@ -44,7 +44,7 @@ import type {
   PluginSet,
   Plugin as CorePlugin,
   EditEvent,
-  DocChangedEvent,
+  EditCompletedEvent,
 } from '@openscd/core';
 
 // HOSTING INTERFACES
@@ -295,7 +295,7 @@ export class OpenSCD extends LitElement {
     this.updatePlugins();
     this.requestUpdate();
 
-    this.addEventListener('oscd-doc-changed', (evt: DocChangedEvent) => {
+    this.addEventListener('oscd-edit-completed', (evt: EditCompletedEvent) => {
       const initiator = evt.detail.initiator;
 
       if (initiator === 'undo') {
