@@ -1,5 +1,5 @@
-import { EditorAction, Initiator } from './deprecated/editor.js';
-import { Edit } from './edit-event.js';
+import { EditorAction } from './deprecated/editor.js';
+import { Edit, Initiator } from './edit-event.js';
 
 export type EditCompletedDetail = {
   edit: Edit | EditorAction;
