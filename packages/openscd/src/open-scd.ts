@@ -43,7 +43,6 @@ import { initializeNsdoc, Nsdoc } from './foundation/nsdoc.js';
 import type {
   PluginSet,
   Plugin as CorePlugin,
-  EditEvent,
   EditCompletedEvent,
 } from '@openscd/core';
 

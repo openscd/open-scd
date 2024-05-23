@@ -191,6 +191,8 @@ describe('GOOSE subscriber plugin', async () => {
         describe('after clicking on the IEDs list element', () => {
           beforeEach(async () => {
             (<HTMLElement>getItemFromSubscriberList('IED1')).click();
+            await parent.historyAddon.requestUpdate();
+
             await element.requestUpdate();
           });
 
@@ -220,6 +222,8 @@ describe('GOOSE subscriber plugin', async () => {
         describe('after clicking on the IEDs list element', () => {
           beforeEach(async () => {
             (<HTMLElement>getItemFromSubscriberList('IED4')).click();
+            await parent.historyAddon.requestUpdate();
+
             await element.requestUpdate();
           });
 
