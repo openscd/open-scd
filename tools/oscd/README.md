@@ -6,10 +6,6 @@ This library was generated with [Nx](https://nx.dev).
 
 Run `nx build oscd` to build the library.
 
-## Running unit tests
-
-Run `nx test oscd` to execute the unit tests via [Jest](https://jestjs.io).
-
 ## Generators
 
 ### Addons
