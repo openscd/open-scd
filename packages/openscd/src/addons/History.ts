@@ -38,7 +38,7 @@ import {
 } from '@openscd/core/foundation/deprecated/editor.js';
 import { getFilterIcon, iconColors } from '../icons/icons.js';
 import { Plugin } from '../open-scd.js';
-import { newDocChangedEvent } from '@openscd/core';
+import { newEditCompletedEvent } from '@openscd/core';
 
 const icons = {
   info: 'info',
@@ -186,7 +186,7 @@ export class OscdHistory extends LitElement {
     );
     this.dispatchEvent(newActionEvent(invertedAction, 'undo'));
     this.editCount = this.previousAction;
-    this.dispatchEvent(newDocChangedEvent(invertedAction, 'undo'));
+    this.dispatchEvent(newEditCompletedEvent(invertedAction, 'undo'));
     return true;
   }
   redo(): boolean {
@@ -194,7 +194,7 @@ export class OscdHistory extends LitElement {
     const nextAction = (<CommitEntry>this.history[this.nextAction]).action;
     this.dispatchEvent(newActionEvent(nextAction, 'redo'));
     this.editCount = this.nextAction;
-    this.dispatchEvent(newDocChangedEvent(nextAction, 'redo'));
+    this.dispatchEvent(newEditCompletedEvent(nextAction, 'redo'));
     return true;
   }
 
