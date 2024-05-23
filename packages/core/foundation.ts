@@ -29,9 +29,9 @@ export { cyrb64 } from './foundation/cyrb64.js';
 export { Editing } from './mixins/Editing.js';
 export type { Plugin, PluginSet } from './foundation/plugin.js';
 
-export { newDocChangedEvent } from './foundation/doc-changed-event.js';
+export { newEditCompletedEvent } from './foundation/edit-completed-event.js';
 
 export type {
-  DocChangedEvent,
-  DocChangedDetail,
-} from './foundation/doc-changed-event.js';
+  EditCompletedEvent,
+  EditCompletedDetail,
+} from './foundation/edit-completed-event.js';

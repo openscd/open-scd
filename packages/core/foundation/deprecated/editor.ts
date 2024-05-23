@@ -1,3 +1,5 @@
+import { Initiator } from '../edit-event.js';
+
 /** Inserts `new.element` to `new.parent` before `new.reference`. */
 export interface Create {
   new: { parent: Node; element: Node; reference?: Node | null };
