@@ -1,0 +1,13 @@
+# Triggers on all branches
+on:
+  push:
+    branches:
+       main
+
+
+name: Sync Fork
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: uknowwhoim/auto-pr-fork@v0.2
