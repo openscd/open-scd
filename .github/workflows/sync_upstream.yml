@@ -9,5 +9,9 @@ name: Sync Fork
 jobs:
   release-please:
     runs-on: ubuntu-latest
+    
     steps:
-      - uses: uknowwhoim/auto-pr-fork@v0.2
+      - name: Checkout
+        uses: actions/checkout@v2.3.1
+      - name: Create PR for Upstream
+        uses: uknowwhoim/auto-pr-fork@v0.2
