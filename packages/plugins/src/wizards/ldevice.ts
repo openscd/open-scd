@@ -6,12 +6,14 @@ import '@material/mwc-list/mwc-list-item';
 
 import '@openscd/open-scd/src/wizard-textfield.js';
 import {
-  cloneElement,
   getValue,
   Wizard,
   WizardActor,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
+
+import { cloneElement } from '@openscd/xml';
+
 import { SimpleAction } from '@openscd/core/foundation/deprecated/editor.js';
 import { patterns } from './foundation/limits.js';
 

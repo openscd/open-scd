@@ -4,8 +4,6 @@ import { get } from 'lit-translate';
 import '@openscd/open-scd/src/wizard-textfield.js';
 import { pTypesRedundancyGroup104 } from '../foundation/p-types.js';
 import {
-  cloneElement,
-  createElement,
   getValue,
   newSubWizardEvent,
   newWizardEvent,
@@ -14,6 +12,12 @@ import {
   WizardInputElement,
   WizardMenuActor,
 } from '@openscd/open-scd/src/foundation.js';
+
+import {
+  cloneElement,
+  createElement,
+} from '@openscd/xml';
+
 import {
   ComplexAction,
   EditorAction,

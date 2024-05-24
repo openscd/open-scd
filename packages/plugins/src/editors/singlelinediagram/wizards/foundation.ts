@@ -2,11 +2,15 @@ import { html, TemplateResult } from 'lit-element';
 import { get } from 'lit-translate';
 
 import {
-  cloneElement,
   getValue,
   WizardActor,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
+
+import {
+  cloneElement
+} from '@openscd/xml';
+
 import { EditorAction } from '@openscd/core/foundation/deprecated/editor.js';
 import { SCL_COORDINATES_NAMESPACE } from '../foundation.js';
 

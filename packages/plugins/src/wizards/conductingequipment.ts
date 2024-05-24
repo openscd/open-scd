@@ -6,7 +6,6 @@ import '@material/mwc-select';
 
 import '@openscd/open-scd/src/wizard-textfield.js';
 import {
-  createElement,
   crossProduct,
   getValue,
   isPublic,
@@ -14,6 +13,11 @@ import {
   WizardActor,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
+
+import {
+  createElement,
+} from '@openscd/xml';
+
 import { EditorAction } from '@openscd/core/foundation/deprecated/editor.js';
 import { replaceNamingAction } from './foundation/actions.js';
 

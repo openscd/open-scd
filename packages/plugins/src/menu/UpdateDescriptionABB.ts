@@ -7,7 +7,6 @@ import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import '@openscd/open-scd/src/filtered-list.js';
 import {
-  cloneElement,
   find,
   identity,
   isPublic,
@@ -18,6 +17,8 @@ import {
   WizardActor,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
+
+import { cloneElement } from '@openscd/xml';
 
 interface addDescItem {
   desc: string;

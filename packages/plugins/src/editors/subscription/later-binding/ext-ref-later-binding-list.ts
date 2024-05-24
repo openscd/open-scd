@@ -11,10 +11,13 @@ import { nothing } from 'lit-html';
 import { get } from 'lit-translate';
 
 import {
-  cloneElement,
   getDescriptionAttribute,
   identity,
 } from '@openscd/open-scd/src/foundation.js';
+
+import {
+  cloneElement,
+} from '@openscd/xml';
 
 import {
   ComplexAction,

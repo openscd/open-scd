@@ -3,11 +3,10 @@ import { classMap } from 'lit-html/directives/class-map.js';
 
 import './function-editor.js';
 
-import {
-  identity,
-  isPublic,
-  getChildElementsByTagName,
-} from '@openscd/open-scd/src/foundation.js';
+import { identity, isPublic } from '@openscd/open-scd/src/foundation.js';
+
+import { getChildElementsByTagName } from '@openscd/xml';
+
 import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import {
   circuitBreakerIcon,

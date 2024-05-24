@@ -8,7 +8,6 @@ import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import '@openscd/open-scd/src/filtered-list.js';
 import {
-  createElement,
   find,
   identity,
   pathParts,
@@ -17,6 +16,11 @@ import {
   WizardActor,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
+
+import {
+  createElement,
+} from '@openscd/xml';
+
 import { clientIcon } from '@openscd/open-scd/src/icons/icons.js';
 import { openCommunicationMappingWizard } from './commmap-wizards.js';
 

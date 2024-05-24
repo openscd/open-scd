@@ -9,11 +9,15 @@ import {
 
 import '@openscd/open-scd/src/action-icon.js';
 import {
-  cloneElement,
   identity,
   newLnInstGenerator,
   newWizardEvent,
 } from '@openscd/open-scd/src/foundation.js';
+
+import {
+  cloneElement,
+} from '@openscd/xml';
+
 import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import {
   automationLogicalNode,

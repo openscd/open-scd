@@ -20,11 +20,9 @@ import { CheckListItem } from '@material/mwc-list/mwc-check-list-item';
 import { Select } from '@material/mwc-select';
 
 import '@openscd/open-scd/src/filtered-list.js';
-import {
-  find,
-  getChildElementsByTagName,
-  identity,
-} from '@openscd/open-scd/src/foundation.js';
+import { find, identity } from '@openscd/open-scd/src/foundation.js';
+import { getChildElementsByTagName } from '@openscd/xml';
+
 import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
 import {

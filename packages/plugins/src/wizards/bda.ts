@@ -3,8 +3,6 @@ import { get } from 'lit-translate';
 import '@material/mwc-button';
 
 import {
-  cloneElement,
-  createElement,
   getValue,
   isPublic,
   newWizardEvent,
@@ -13,6 +11,12 @@ import {
   WizardInputElement,
   WizardMenuActor,
 } from '@openscd/open-scd/src/foundation.js';
+
+import {
+  cloneElement,
+  createElement,
+} from '@openscd/xml';
+
 import { EditorAction, newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { getValAction, wizardContent } from './abstractda.js';
 

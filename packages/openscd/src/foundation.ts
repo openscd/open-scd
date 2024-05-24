@@ -6,6 +6,8 @@ import { Select } from '@material/mwc-select';
 import { TextField } from '@material/mwc-textfield';
 import AceEditor from 'ace-custom-element';
 
+import { getChildElementsByTagName } from '@openscd/xml';
+
 import { WizardTextField } from './wizard-textfield.js';
 import { WizardSelect } from './wizard-select.js';
 import { WizardCheckbox } from './wizard-checkbox.js';
@@ -2325,32 +2327,6 @@ export function isEqual(a: Element, b: Element): boolean {
   return true;
 }
 
-/** @returns a new [[`tag`]] element owned by [[`doc`]]. */
-export function createElement(
-  doc: Document,
-  tag: string,
-  attrs: Record<string, string | null>
-): Element {
-  const element = doc.createElementNS(doc.documentElement.namespaceURI, tag);
-  Object.entries(attrs)
-    .filter(([_, value]) => value !== null)
-    .forEach(([name, value]) => element.setAttribute(name, value!));
-  return element;
-}
-
-/** @returns a clone of `element` with attributes set to values from `attrs`. */
-export function cloneElement(
-  element: Element,
-  attrs: Record<string, string | null>
-): Element {
-  const newElement = <Element>element.cloneNode(false);
-  Object.entries(attrs).forEach(([name, value]) => {
-    if (value === null) newElement.removeAttribute(name);
-    else newElement.setAttribute(name, value);
-  });
-  return newElement;
-}
-
 /** A directive rendering its argument `rendered` only if `rendered !== {}`. */
 export const ifImplemented = directive(rendered => (part: Part) => {
   if (Object.keys(rendered).length) part.setValue(rendered);
@@ -2438,18 +2414,6 @@ export function depth(t: Record<string, unknown>, mem = new WeakSet()): number {
     }
 }
 
-export function getUniqueElementName(
-  parent: Element,
-  tagName: string,
-  iteration = 1
-): string {
-  const newName = 'new' + tagName + iteration;
-  const child = parent.querySelector(`:scope > ${tagName}[name="${newName}"]`);
-
-  if (!child) return newName;
-  else return getUniqueElementName(parent, tagName, ++iteration);
-}
-
 export function findFCDAs(extRef: Element): Element[] {
   if (extRef.tagName !== 'ExtRef' || extRef.closest('Private')) return [];
 
@@ -2519,16 +2483,6 @@ export function getVersion(element: Element): string {
   return header[0].getAttribute('version') ?? '2003';
 }
 
-export function getChildElementsByTagName(
-  element: Element | null | undefined,
-  tag: string | null | undefined
-): Element[] {
-  if (!element || !tag) return [];
-  return Array.from(element.children).filter(
-    element => element.tagName === tag
-  );
-}
-
 /** maximum value for `lnInst` attribute */
 const maxLnInst = 99;
 const lnInstRange = Array(maxLnInst)
@@ -2564,25 +2518,6 @@ export function newLnInstGenerator(
 
     return generators.get(lnClass)!();
   };
-}
-
-/**
- * Format xml string in "pretty print" style and return as a string
- * @param xml - xml document as a string
- * @param tab - character to use as a tab
- * @returns string with pretty print formatting
- */
-export function formatXml(xml: string, tab?: string): string {
-  let formatted = '',
-    indent = '';
-
-  if (!tab) tab = '\t';
-  xml.split(/>\s*</).forEach(function (node) {
-    if (node.match(/^\/\w/)) indent = indent.substring(tab!.length);
-    formatted += indent + '<' + node + '>\r\n';
-    if (node.match(/^<?\w[^>]*[^/]$/)) indent += tab;
-  });
-  return formatted.substring(1, formatted.length - 3);
 }
 
 /**

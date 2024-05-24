@@ -24,9 +24,7 @@ import {
   typePattern,
 } from '../foundation/p-types.js';
 import {
-  cloneElement,
   compareNames,
-  createElement,
   getValue,
   identity,
   isPublic,
@@ -37,6 +35,9 @@ import {
   WizardInputElement,
   WizardMenuActor,
 } from '@openscd/open-scd/src/foundation.js';
+
+import { cloneElement, createElement } from '@openscd/xml';
+
 import {
   ComplexAction,
   EditorAction,

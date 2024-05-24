@@ -36,7 +36,8 @@
     "@openscd/open-scd": "*",
     "@openscd/core": "*",
     "@openscd/wizards": "*",
-    "@openscd/components": "*"
+    "@openscd/components": "*",
+    "@openscd/xml": "*"
   },
   "scripts": {
     "clean": "rimraf dist",

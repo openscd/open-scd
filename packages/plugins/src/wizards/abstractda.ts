@@ -11,7 +11,7 @@ import '@openscd/open-scd/src/wizard-select.js';
 import '@openscd/open-scd/src/wizard-textfield.js';
 import {
   createElement,
-} from '@openscd/open-scd/src/foundation.js';
+} from '@openscd/xml';
 import { EditorAction } from '@openscd/core/foundation/deprecated/editor.js';
 import { WizardSelect } from '@openscd/open-scd/src/wizard-select.js';
 import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';

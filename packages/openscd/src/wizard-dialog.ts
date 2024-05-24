@@ -22,12 +22,14 @@ import { IconButton } from '@material/mwc-icon-button';
 import { List } from '@material/mwc-list';
 import { Menu } from '@material/mwc-menu';
 
+import { formatXml } from '@openscd/xml';
+
 import 'ace-custom-element';
 import './wizard-checkbox.js';
 import './wizard-textfield.js';
 import './wizard-select.js';
 
-import{
+import {
   newActionEvent,
   Delete,
   Create,
@@ -45,7 +47,6 @@ import {
   identity,
   WizardInput,
   WizardMenuActor,
-  formatXml,
 } from './foundation.js';
 
 function renderWizardInput(

@@ -22,11 +22,13 @@ import '@openscd/open-scd/src/action-pane.js';
 import './l-node-editor.js';
 import './eq-function-editor.js';
 import {
-  getChildElementsByTagName,
   newWizardEvent,
   SCLTag,
   tags,
 } from '@openscd/open-scd/src/foundation.js';
+
+import { getChildElementsByTagName } from '@openscd/xml';
+
 import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
 

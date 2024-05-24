@@ -7,7 +7,6 @@ import '@material/mwc-select';
 import '@material/mwc-textarea';
 
 import {
-  cloneElement,
   getNameAttribute,
   getValue,
   patterns,
@@ -15,6 +14,9 @@ import {
   WizardActor,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
+
+import { cloneElement } from '@openscd/xml';
+
 import { EditorAction } from '@openscd/core/foundation/deprecated/editor.js';
 
 import '@openscd/open-scd/src/wizard-textfield.js';

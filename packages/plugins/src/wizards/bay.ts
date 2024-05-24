@@ -3,12 +3,16 @@ import { get } from 'lit-translate';
 
 import '@openscd/open-scd/src/wizard-textfield.js';
 import {
-  createElement,
   getValue,
   Wizard,
   WizardActor,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
+
+import {
+  createElement,
+} from '@openscd/xml';
+
 import { EditorAction } from '@openscd/core/foundation/deprecated/editor.js';
 import { replaceNamingAttributeWithReferencesAction } from './foundation/actions.js';
 
