@@ -53,7 +53,7 @@ jobs:
           if [[ -n "${{ vars.REVIEW_SCOPE }}" ]]; then
             REVIEW_SCOPE_OPTION=" --review_scope=${{ vars.REVIEW_SCOPE }}"
           fi
-          echo "OPTIONS=--static_analysis.fb_infer.enabled=True --code_feedback=True --dependency_check.enabled=False --bee.path=/automation-platform  --bee.actn_dir=/automation-platform/default_bito_ad/bito_modules --git.access_token=${{ secrets.BITO_GH_TOKEN }} --bito_cli.bito.access_key=${{ secrets.BITO_ACCESS_KEY }}${GIT_DOMAIN_OPTION}${STATIC_ANALYSIS_TOOL_OPTION}${REVIEW_SCOPE_OPTION}" >> $GITHUB_ENV
+          echo "OPTIONS=--static_analysis.fb_infer.enabled=True --code_feedback=True --dependency_check.enabled=False --bee.path=/automation-platform  --bee.actn_dir=/automation-platform/default_bito_ad/bito_modules --git.access_token=${{ secrets.BITO_GH_TOKEN }} --bito_cli.bito.access_key=${{ secrets.API_TOKEN }}${GIT_DOMAIN_OPTION}${STATIC_ANALYSIS_TOOL_OPTION}${REVIEW_SCOPE_OPTION}" >> $GITHUB_ENV
       - name: Code Review Agent action step
         if: github.event_name == 'pull_request'
         uses: gitbito/codereviewagent@main
