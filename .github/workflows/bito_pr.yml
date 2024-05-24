@@ -1,0 +1,63 @@
+on:
+  pull_request:
+    types: [opened]
+  issue_comment:
+    types: [created]
+
+jobs:
+  code_review_job:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+      contents: write
+    name: Run code review agent on every pull request, respond to user comments
+
+    steps:
+      - name: Set Options Environment Variable for Issue Comment
+        if: github.event_name == 'issue_comment'
+        run: |
+          GIT_DOMAIN_OPTION=""
+          if [[ -n "${{ vars.GIT_DOMAIN }}" ]]; then
+            GIT_DOMAIN_OPTION=" --git.domain=${{ vars.GIT_DOMAIN }}"
+          fi
+          STATIC_ANALYSIS_TOOL_OPTION=""
+          if [[ -n "${{ vars.STATIC_ANALYSIS_TOOL }}" ]]; then
+            STATIC_ANALYSIS_TOOL_OPTION=" --static_analysis_tool=${{ vars.STATIC_ANALYSIS_TOOL }}"
+          fi
+          REVIEW_SCOPE_OPTION=""
+          if [[ -n "${{ vars.REVIEW_SCOPE }}" ]]; then
+            REVIEW_SCOPE_OPTION=" --review_scope=${{ vars.REVIEW_SCOPE }}"
+          fi
+          echo "OPTIONS=--static_analysis.fb_infer.enabled=True --code_feedback=True --dependency_check.enabled=False --bee.path=/automation-platform  --bee.actn_dir=/automation-platform/default_bito_ad/bito_modules --git.access_token=${{ secrets.BITO_GH_TOKEN }} --bito_cli.bito.access_key=${{ secrets.BITO_API_TOKEN }}${GIT_DOMAIN_OPTION}${STATIC_ANALYSIS_TOOL_OPTION}${REVIEW_SCOPE_OPTION}" >> $GITHUB_ENV
+      - name: Code Review Agent - Issue Comment
+        if: github.event_name == 'issue_comment'
+        uses: gitbito/codereviewagent@main
+        with:
+          pr: ${{ github.event.issue.pull_request.html_url }}
+          command: ${{ github.event.comment.body }}
+          options: ${{ env.OPTIONS }}
+
+      - name: Set Options Environment Variable for Pull Request
+        if: github.event_name == 'pull_request'
+        run: |
+          GIT_DOMAIN_OPTION=""
+          if [[ -n "${{ vars.GIT_DOMAIN }}" ]]; then
+            GIT_DOMAIN_OPTION=" --git.domain=${{ vars.GIT_DOMAIN }}"
+          fi
+          STATIC_ANALYSIS_TOOL_OPTION=""
+          if [[ -n "${{ vars.STATIC_ANALYSIS_TOOL }}" ]]; then
+            STATIC_ANALYSIS_TOOL_OPTION=" --static_analysis_tool=${{ vars.STATIC_ANALYSIS_TOOL }}"
+          fi
+          REVIEW_SCOPE_OPTION=""
+          if [[ -n "${{ vars.REVIEW_SCOPE }}" ]]; then
+            REVIEW_SCOPE_OPTION=" --review_scope=${{ vars.REVIEW_SCOPE }}"
+          fi
+          echo "OPTIONS=--static_analysis.fb_infer.enabled=True --code_feedback=True --dependency_check.enabled=False --bee.path=/automation-platform  --bee.actn_dir=/automation-platform/default_bito_ad/bito_modules --git.access_token=${{ secrets.BITO_GH_TOKEN }} --bito_cli.bito.access_key=${{ secrets.BITO_API_TOKEN }}${GIT_DOMAIN_OPTION}${STATIC_ANALYSIS_TOOL_OPTION}${REVIEW_SCOPE_OPTION}" >> $GITHUB_ENV
+      - name: Code Review Agent action step
+        if: github.event_name == 'pull_request'
+        uses: gitbito/codereviewagent@main
+        with:
+          pr: ${{ github.event.pull_request.html_url }}
+          command: review
+          options: ${{ env.OPTIONS }}
