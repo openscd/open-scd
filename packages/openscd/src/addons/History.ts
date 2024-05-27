@@ -7,6 +7,7 @@ import {
   customElement,
   LitElement,
 } from 'lit-element';
+
 import { get } from 'lit-translate';
 
 import '@material/mwc-button';
@@ -21,6 +22,7 @@ import { Dialog } from '@material/mwc-dialog';
 import { Snackbar } from '@material/mwc-snackbar';
 
 import '../filtered-list.js';
+
 import {
   CommitDetail,
   CommitEntry,
@@ -32,13 +34,15 @@ import {
   LogEntryType,
   LogEvent,
 } from '@openscd/core/foundation/deprecated/history.js';
+
 import {
   newActionEvent,
   invert,
 } from '@openscd/core/foundation/deprecated/editor.js';
+
 import { getFilterIcon, iconColors } from '../icons/icons.js';
+
 import { Plugin } from '../open-scd.js';
-import { newEditCompletedEvent } from '@openscd/core';
 
 const icons = {
   info: 'info',
@@ -269,15 +273,12 @@ export class OscdHistory extends LitElement {
   }
 
   private emptyIssuesHandler(e: EmptyIssuesEvent): void {
-    const issues = this.diagnoses.get(e.detail.pluginSrc);
     if (this.diagnoses.get(e.detail.pluginSrc))
       this.diagnoses.get(e.detail.pluginSrc)!.length = 0;
   }
 
   private handleKeyPress(e: KeyboardEvent): void {
-    let handled = false;
-    const ctrlAnd = (key: string) =>
-      e.key === key && e.ctrlKey && (handled = true);
+    const ctrlAnd = (key: string) => e.key === key && e.ctrlKey;
 
     if (ctrlAnd('y')) this.redo();
     if (ctrlAnd('z')) this.undo();
