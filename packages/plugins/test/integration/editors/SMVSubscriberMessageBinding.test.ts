@@ -35,7 +35,7 @@ describe('Sampled Values Plugin', async () => {
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
     parent = await fixture(
-      html`<smv-mock-open-scd .doc=${doc}></smv-mock-open-scd>`
+      html`<smv-mock-open-scd .doc=${doc} .nsdoc=${nsdoc}></smv-mock-open-scd>`
     );
     await parent.requestUpdate();
     await parent.updateComplete;
