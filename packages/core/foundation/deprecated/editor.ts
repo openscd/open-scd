@@ -1,3 +1,5 @@
+import { Initiator } from '../edit-event.js';
+
 /** Inserts `new.element` to `new.parent` before `new.reference`. */
 export interface Create {
   new: { parent: Node; element: Node; reference?: Node | null };
@@ -148,6 +150,7 @@ export function invert(action: EditorAction): EditorAction {
 /** Represents some intended modification of a `Document` being edited. */
 export interface EditorActionDetail<T extends EditorAction> {
   action: T;
+  initiator?: Initiator;
 }
 export type EditorActionEvent<T extends EditorAction> = CustomEvent<
   EditorActionDetail<T>
@@ -155,20 +158,19 @@ export type EditorActionEvent<T extends EditorAction> = CustomEvent<
 
 export function newActionEvent<T extends EditorAction>(
   action: T,
+  initiator: Initiator = 'user',
   eventInitDict?: CustomEventInit<Partial<EditorActionDetail<T>>>
 ): EditorActionEvent<T> {
   return new CustomEvent<EditorActionDetail<T>>('editor-action', {
     bubbles: true,
     composed: true,
     ...eventInitDict,
-    detail: { action, ...eventInitDict?.detail },
+    detail: { action, initiator, ...eventInitDict?.detail },
   });
 }
 
-
 declare global {
-    interface ElementEventMap {
-      ['editor-action']: EditorActionEvent<EditorAction>;
-    }
+  interface ElementEventMap {
+    ['editor-action']: EditorActionEvent<EditorAction>;
   }
-  
+}

@@ -40,8 +40,11 @@ import { ActionDetail } from '@material/mwc-list';
 
 import { officialPlugins } from './plugins.js';
 import { initializeNsdoc, Nsdoc } from './foundation/nsdoc.js';
-import { UndoRedoChangedEvent } from './addons/History.js';
-import type { PluginSet, Plugin as CorePlugin } from '@openscd/core';
+import type {
+  PluginSet,
+  Plugin as CorePlugin,
+  EditCompletedEvent,
+} from '@openscd/core';
 
 // HOSTING INTERFACES
 
@@ -74,8 +77,9 @@ export interface AddExternalPluginDetail {
 
 export type AddExternalPluginEvent = CustomEvent<AddExternalPluginDetail>;
 
-
-export function newAddExternalPluginEvent(plugin: Omit<Plugin, 'content'>): AddExternalPluginEvent {
+export function newAddExternalPluginEvent(
+  plugin: Omit<Plugin, 'content'>
+): AddExternalPluginEvent {
   return new CustomEvent<AddExternalPluginDetail>('add-external-plugin', {
     bubbles: true,
     composed: true,
@@ -198,7 +202,6 @@ function withoutContent<P extends Plugin | InstalledOfficialPlugin>(
   return { ...plugin, content: undefined };
 }
 
-
 export const pluginIcons: Record<PluginKind | MenuPosition, string> = {
   editor: 'tab',
   menu: 'play_circle',
@@ -278,28 +281,37 @@ export class OpenSCD extends LitElement {
   connectedCallback(): void {
     super.connectedCallback();
     this.addEventListener('reset-plugins', this.resetPlugins);
-    this.addEventListener('add-external-plugin', (e: AddExternalPluginEvent) => {
-      this.addExternalPlugin(e.detail.plugin);
-    });
+    this.addEventListener(
+      'add-external-plugin',
+      (e: AddExternalPluginEvent) => {
+        this.addExternalPlugin(e.detail.plugin);
+      }
+    );
     this.addEventListener('set-plugins', (e: SetPluginsEvent) => {
       this.setPlugins(e.detail.indices);
     });
 
     this.updatePlugins();
     this.requestUpdate();
+
+    this.addEventListener('oscd-edit-completed', (evt: EditCompletedEvent) => {
+      const initiator = evt.detail.initiator;
+
+      if (initiator === 'undo') {
+        this.editCount -= 1;
+      } else {
+        this.editCount += 1;
+      }
+
+      this.requestUpdate();
+    });
   }
 
   render(): TemplateResult {
     return html`<oscd-waiter>
       <oscd-settings .host=${this}>
         <oscd-wizards .host=${this}>
-          <oscd-history 
-            .host=${this} 
-            @undo-redo-changed="${(e:UndoRedoChangedEvent) => { 
-              this.editCount = e.detail.editCount;
-              this.requestUpdate();
-            }}"
-          >
+          <oscd-history .host=${this} .editCount=${this.editCount}>
             <oscd-editor
               .doc=${this.doc}
               .docName=${this.docName}
@@ -323,7 +335,10 @@ export class OpenSCD extends LitElement {
   }
 
   private storePlugins(plugins: Array<Plugin | InstalledOfficialPlugin>) {
-    localStorage.setItem('plugins', JSON.stringify(plugins.map(withoutContent)));
+    localStorage.setItem(
+      'plugins',
+      JSON.stringify(plugins.map(withoutContent))
+    );
     this.requestUpdate();
   }
   private resetPlugins(): void {
@@ -389,7 +404,6 @@ export class OpenSCD extends LitElement {
     );
   }
 
-
   protected get locale(): string {
     return navigator.language || 'en-US';
   }
@@ -439,7 +453,9 @@ export class OpenSCD extends LitElement {
     this.storePlugins(newPlugins);
   }
 
-  private async addExternalPlugin(plugin: Omit<Plugin, 'content'>): Promise<void> {
+  private async addExternalPlugin(
+    plugin: Omit<Plugin, 'content'>
+  ): Promise<void> {
     if (this.storedPlugins.some(p => p.src === plugin.src)) return;
 
     const newPlugins: Omit<Plugin, 'content'>[] = this.storedPlugins;

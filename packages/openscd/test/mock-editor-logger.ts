@@ -1,9 +1,17 @@
-import { LitElement, customElement, property, state, html, query, TemplateResult } from 'lit-element';
+import {
+  LitElement,
+  customElement,
+  property,
+  state,
+  html,
+  query,
+  TemplateResult,
+} from 'lit-element';
 
 import '../src/addons/Editor.js';
 import '../src/addons/History.js';
 import { OscdEditor } from '../src/addons/Editor.js';
-import { UndoRedoChangedEvent, OscdHistory } from '../src/addons/History.js';
+import { OscdHistory } from '../src/addons/History.js';
 
 @customElement('mock-editor-logger')
 export class MockEditorLogger extends LitElement {
@@ -23,20 +31,15 @@ export class MockEditorLogger extends LitElement {
   editor!: OscdEditor;
 
   render(): TemplateResult {
-    return html`
-        <oscd-history 
-            .host=${this} 
-            @undo-redo-changed="${(e:UndoRedoChangedEvent) => { this.editCount = e.detail.editCount }}"
-          >
-            <oscd-editor
-              .doc=${this.doc}
-              .docName=${this.docName}
-              .docId=${this.docId}
-              .host=${this}
-              .editCount=${this.editCount}
-            >
-
-            </oscd-editor>
-          </oscd-history>`;
+    return html` <oscd-history .host=${this} .editCount=${this.editCount}>
+      <oscd-editor
+        .doc=${this.doc}
+        .docName=${this.docName}
+        .docId=${this.docId}
+        .host=${this}
+        .editCount=${this.editCount}
+      >
+      </oscd-editor>
+    </oscd-history>`;
   }
 }

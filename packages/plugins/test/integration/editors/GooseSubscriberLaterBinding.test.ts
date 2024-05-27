@@ -90,6 +90,7 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
     );
     await element.requestUpdate();
     await extRefListElement.requestUpdate();
+    await parent.historyAddon.requestUpdate();
 
     expect(
       extRefListElement['getSubscribedExtRefElements']().length
@@ -106,6 +107,7 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
     )).click();
     await element.requestUpdate();
     await parent.updateComplete;
+    await parent.historyAddon.requestUpdate();
 
     expect(
       extRefListElement['getSubscribedExtRefElements']().length
@@ -186,6 +188,7 @@ describe('GOOSE Subscribe Later Binding Plugin', () => {
     )).click();
     await element.requestUpdate();
     await parent.updateComplete;
+    await parent.historyAddon.requestUpdate();
 
     expect(
       extRefListElement['getSubscribedExtRefElements']().length
