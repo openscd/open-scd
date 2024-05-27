@@ -311,7 +311,7 @@ export class OpenSCD extends LitElement {
     return html`<oscd-waiter>
       <oscd-settings .host=${this}>
         <oscd-wizards .host=${this}>
-          <oscd-history .host=${this}>
+          <oscd-history .host=${this} .editCount=${this.editCount}>
             <oscd-editor
               .doc=${this.doc}
               .docName=${this.docName}

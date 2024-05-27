@@ -185,16 +185,12 @@ export class OscdHistory extends LitElement {
       (<CommitEntry>this.history[this.editCount]).action
     );
     this.dispatchEvent(newActionEvent(invertedAction, 'undo'));
-    this.editCount = this.previousAction;
-    this.dispatchEvent(newEditCompletedEvent(invertedAction, 'undo'));
     return true;
   }
   redo(): boolean {
     if (!this.canRedo) return false;
     const nextAction = (<CommitEntry>this.history[this.nextAction]).action;
     this.dispatchEvent(newActionEvent(nextAction, 'redo'));
-    this.editCount = this.nextAction;
-    this.dispatchEvent(newEditCompletedEvent(nextAction, 'redo'));
     return true;
   }
 

@@ -436,9 +436,9 @@ export class OscdEditor extends LitElement {
 
     await this.updateComplete;
     this.dispatchEvent(newValidateEvent());
-    if (!['undo', 'redo'].includes(event.detail.initiator || '')) {
-      this.dispatchEvent(newEditCompletedEvent(event.detail.action, 'user'));
-    }
+    this.dispatchEvent(
+      newEditCompletedEvent(event.detail.action, event.detail.initiator)
+    );
   }
 
   /**
