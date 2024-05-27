@@ -31,7 +31,7 @@ export class MockEditorLogger extends LitElement {
   editor!: OscdEditor;
 
   render(): TemplateResult {
-    return html` <oscd-history .host=${this}>
+    return html` <oscd-history .host=${this} .editCount=${this.editCount}>
       <oscd-editor
         .doc=${this.doc}
         .docName=${this.docName}

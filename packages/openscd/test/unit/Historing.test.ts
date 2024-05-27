@@ -1,8 +1,8 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../mock-editor-logger.js';
+import '../mock-open-scd.js';
 import { MockAction } from './mock-actions.js';
-import { MockEditorLogger } from '../mock-editor-logger.js';
+import { MockOpenSCD } from '../mock-open-scd.js';
 
 import {
   CommitEntry,
@@ -12,11 +12,11 @@ import {
 import { OscdHistory } from '../../src/addons/History.js';
 
 describe('HistoringElement', () => {
-  let mock: MockEditorLogger;
+  let mock: MockOpenSCD;
   let element: OscdHistory;
   beforeEach(async () => {
-    mock = <MockEditorLogger>await fixture(html`<mock-editor-logger></mock-editor-logger>`);
-    element = mock.history;
+    mock = <MockOpenSCD>await fixture(html`<mock-open-scd></mock-open-scd>`);
+    element = mock.historyAddon;
   });
 
   it('starts out with an empty log', () =>
@@ -112,8 +112,8 @@ describe('HistoringElement', () => {
       );
       element.requestUpdate();
       await element.updateComplete;
-      element.requestUpdate();
-      await element.updateComplete;
+      mock.requestUpdate();
+      await mock.updateComplete;
     });
 
     it('can undo', () => expect(element).property('canUndo').to.be.true);
@@ -184,7 +184,7 @@ describe('HistoringElement', () => {
 
         it('can redo', () => expect(element).property('canRedo').to.be.true);
 
-        it('removes the undone action when a new action is logged', () => {
+        it('removes the undone action when a new action is logged', async () => {
           element.dispatchEvent(
             newLogEvent({
               kind: 'action',
@@ -192,6 +192,7 @@ describe('HistoringElement', () => {
               action: MockAction.mov,
             })
           );
+          await element.updateComplete;
           expect(element).property('log').to.have.lengthOf(1);
           expect(element).property('history').to.have.lengthOf(2);
           expect(element).to.have.property('editCount', 1);
@@ -199,10 +200,16 @@ describe('HistoringElement', () => {
         });
 
         describe('with the second action undone', () => {
-          beforeEach(() => element.undo());
+          beforeEach(async () => {
+            element.undo();
+            await element.updateComplete;
+            await mock.updateComplete;
+          });
 
-          it('cannot undo any funther', () =>
-            expect(element.undo()).to.be.false);
+          it('cannot undo any funther', () => {
+            console.log('error');
+            expect(element.undo()).to.be.false;
+          });
         });
 
         describe('with the action redone', () => {
