@@ -78,10 +78,15 @@ export class OscdLayout extends LitElement {
   shouldValidate = false;
 
   @state()
-  canRedo = false;
+  redoCount = 0;
 
-  @state()
-  canUndo = false;
+  get canUndo(): boolean {
+    return this.editCount >= 0;
+  }
+
+  get canRedo(): boolean {
+    return this.redoCount > 0;
+  }
 
   @query('#menu')
   menuUI!: Drawer;
@@ -380,12 +385,21 @@ export class OscdLayout extends LitElement {
     });
     this.handleKeyPress = this.handleKeyPress.bind(this);
     document.onkeydown = this.handleKeyPress;
-    /*
-		this.host.addEventListener('undo-redo-changed', (e: UndoRedoChangedEvent) => {
-      this.canRedo = e.detail.canRedo;
-      this.canUndo = e.detail.canUndo;
-    });
-    */
+
+    this.host.addEventListener(
+      'oscd-edit-completed',
+      (evt: EditCompletedEvent) => {
+        const initiator = evt.detail.initiator;
+
+        if (initiator === 'undo') {
+          this.redoCount += 1;
+        } else if (initiator === 'redo') {
+          this.redoCount -= 1;
+        }
+
+        this.requestUpdate();
+      }
+    );
   }
 
   private renderMenuItem(me: MenuItem | 'divider'): TemplateResult {
