@@ -47,6 +47,7 @@ import '@material/mwc-dialog';
 import '@material/mwc-switch';
 import '@material/mwc-select';
 import '@material/mwc-textfield';
+import { EditCompletedEvent } from '@openscd/core';
 
 @customElement('oscd-layout')
 export class OscdLayout extends LitElement {
