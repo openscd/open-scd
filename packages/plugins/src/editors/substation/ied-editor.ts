@@ -11,7 +11,7 @@ import '@material/mwc-fab';
 import '@material/mwc-icon';
 import { Fab } from '@material/mwc-fab';
 
-import '@openscd/open-scd/src/action-icon.js';
+import '@openscd/components/action-icon.js';
 import { createClientLnWizard } from '../../wizards/clientln.js';
 import {
   gooseIcon,

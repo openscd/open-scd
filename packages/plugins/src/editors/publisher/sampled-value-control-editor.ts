@@ -16,9 +16,9 @@ import { Button } from '@material/mwc-button';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 import './data-set-element-editor.js';
-import '@openscd/open-scd/src/filtered-list.js';
+import '@openscd/components/filtered-list.js';
 import './sampled-value-control-element-editor.js';
-import { FilteredList } from '@openscd/open-scd/src/filtered-list.js';
+import { FilteredList } from '@openscd/components';
 
 import {
   compareNames,

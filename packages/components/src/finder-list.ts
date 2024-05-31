@@ -8,7 +8,6 @@ import {
   TemplateResult,
 } from 'lit-element';
 import { until } from 'lit-html/directives/until';
-import { get } from 'lit-translate';
 
 import '@material/mwc-icon';
 import '@material/mwc-list';
@@ -18,7 +17,9 @@ import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 import './filtered-list.js';
+
 import { depth } from './foundation.js';
+
 import { ifDefined } from 'lit-html/directives/if-defined';
 
 export type Selection = { [name: string]: Selection };
@@ -30,10 +31,10 @@ export interface Directory {
   entries: string[];
 }
 
-const waitingList = html`<div class="column">
+const waitingList = (loadingText: string) => html`<div class="column">
   <mwc-list
     ><mwc-list-item noninteractive hasMeta
-      >${get('loading')}<mwc-icon slot="meta">pending</mwc-icon></mwc-list-item
+      >${loadingText}<mwc-icon slot="meta">pending</mwc-icon></mwc-list-item
     ></mwc-list
   >
 </div>`;
@@ -97,6 +98,11 @@ export class FinderList extends LitElement {
 
   @query('div')
   container!: Element;
+
+  @property({
+    type: String,
+  })
+  loadingText: string = 'loading';
 
   private getPaths(depth?: number): Path[] {
     let paths: Path[] = Object.keys(this.selection).map(key => [key]);
@@ -184,7 +190,7 @@ export class FinderList extends LitElement {
       .map((_, index) => this.renderColumn(index));
     this.loaded = Promise.allSettled(columns).then();
     return html`<div class="pane">
-      ${columns.map(column => until(column, waitingList))}
+      ${columns.map(column => until(column, waitingList(this.loadingText)))}
     </div>`;
   }
 

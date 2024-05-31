@@ -1,7 +1,8 @@
 {
   "name": "@openscd/components",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "library",
+  "projectType": "application",
   "sourceRoot": "packages/components/src",
-  "targets": {}
+  "targets": {
+  }
 }

@@ -7,7 +7,6 @@ import {
   TemplateResult,
   unsafeCSS,
 } from 'lit-element';
-import { get } from 'lit-translate';
 
 import '@material/mwc-icon-button';
 import '@material/mwc-dialog';
@@ -31,6 +30,16 @@ export class FilterButton extends FilteredList {
 
   @query('#filterDialog')
   private filterDialog!: Dialog;
+
+  @property({
+    type: String,
+  })
+  filterText: string = 'Filter';
+
+  @property({
+    type: String,
+  })
+  closeText: string = 'Close';
 
   private toggleList(): void {
     this.filterDialog.show();
@@ -59,13 +68,13 @@ export class FilterButton extends FilteredList {
       </mwc-icon-button>
       <mwc-dialog
         id="filterDialog"
-        heading="${this.header ? this.header : get('filter')}"
+        heading="${this.header ? this.header : this.filterText}"
         scrimClickAction=""
         @closing="${() => this.onClosing()}"
       >
         ${super.render()}
         <mwc-button slot="primaryAction" dialogAction="close">
-          ${get('close')}
+          ${this.closeText}
         </mwc-button>
       </mwc-dialog>
     `;

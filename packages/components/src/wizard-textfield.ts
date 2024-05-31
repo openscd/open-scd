@@ -6,7 +6,6 @@ import {
   query,
   TemplateResult,
 } from 'lit-element';
-import { get } from 'lit-translate';
 
 import '@material/mwc-icon-button';
 import '@material/mwc-list/mwc-list-item';
@@ -48,6 +47,17 @@ export class WizardTextField extends TextField {
   @property({ type: String })
   unit = '';
   private isNull = false;
+
+  @property({
+    type: String,
+  })
+  noMultiplierText: string = 'none';
+
+  @property({
+    type: String,
+  })
+  uniqueText: string = 'Must be unique';
+
   @state()
   private get null(): boolean {
     return this.nullable && this.isNull;
@@ -118,7 +128,7 @@ export class WizardTextField extends TextField {
       this.reservedValues &&
       this.reservedValues.some(array => array === this.value)
     ) {
-      this.setCustomValidity(get('textfield.unique'));
+      this.setCustomValidity(this.uniqueText);
       return false;
     }
     this.setCustomValidity(''); //Reset. Otherwise super.checkValidity always falseM
@@ -155,7 +165,7 @@ export class WizardTextField extends TextField {
       multiplier =>
         html`<mwc-list-item ?selected=${multiplier === this.multiplier}
           >${multiplier === null
-            ? get('textfield.noMultiplier')
+            ? this.noMultiplierText
             : multiplier}</mwc-list-item
         >`
     )}`;

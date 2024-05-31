@@ -4,8 +4,8 @@ import { get } from 'lit-translate';
 import '@material/mwc-button';
 import '@material/mwc-list/mwc-list-item';
 
-import '@openscd/open-scd/src/wizard-checkbox.js';
-import '@openscd/open-scd/src/wizard-select.js';
+import '@openscd/components/wizard-checkbox.js';
+import '@openscd/components/wizard-select.js';
 import {
   getValue,
   isPublic,
@@ -16,12 +16,12 @@ import {
   WizardMenuActor,
 } from '@openscd/open-scd/src/foundation.js';
 
-import {
-  cloneElement,
-  createElement,
-} from '@openscd/xml';
+import { cloneElement, createElement } from '@openscd/xml';
 
-import { EditorAction, newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
+import {
+  EditorAction,
+  newActionEvent,
+} from '@openscd/core/foundation/deprecated/editor.js';
 import { getValAction, wizardContent } from './abstractda.js';
 import { functionalConstraintEnum } from './foundation/enums.js';
 

@@ -6,16 +6,17 @@ import '@openscd/open-scd/src/addons/Wizards.js';
 import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
 import { WizardInputElement } from '@openscd/open-scd/src/foundation.js';
-import { 
+import {
   isCreate,
   isDelete,
   isSimple,
-  ComplexAction, 
-  Create, 
-  Delete, 
-  Replace 
+  ComplexAction,
+  Create,
+  Delete,
+  Replace,
 } from '@openscd/core/foundation/deprecated/editor.js';
-import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
+import { WizardTextField } from '@openscd/components';
+
 import {
   reportControlParentSelector,
   createReportControlWizard,

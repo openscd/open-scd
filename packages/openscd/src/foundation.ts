@@ -8,9 +8,11 @@ import AceEditor from 'ace-custom-element';
 
 import { getChildElementsByTagName } from '@openscd/xml';
 
-import { WizardTextField } from './wizard-textfield.js';
-import { WizardSelect } from './wizard-select.js';
-import { WizardCheckbox } from './wizard-checkbox.js';
+import {
+  WizardTextField,
+  WizardSelect,
+  WizardCheckbox,
+} from '@openscd/components';
 
 import { EditorAction } from '@openscd/core/foundation/deprecated/editor.js';
 
@@ -2394,26 +2396,6 @@ export function crossProduct<T>(...arrays: T[][]): T[][] {
   );
 }
 
-/** @returns the depth of `t` if it is an object or array, zero otherwise. */
-export function depth(t: Record<string, unknown>, mem = new WeakSet()): number {
-  if (mem.has(t)) return Infinity;
-  else
-    switch (t?.constructor) {
-      case Object:
-      case Array:
-        mem.add(t);
-        return (
-          1 +
-          Math.max(
-            -1,
-            ...Object.values(t).map(_ => depth(<Record<string, unknown>>_, mem))
-          )
-        );
-      default:
-        return 0;
-    }
-}
-
 export function findFCDAs(extRef: Element): Element[] {
   if (extRef.tagName !== 'ExtRef' || extRef.closest('Private')) return [];
 
@@ -2530,6 +2512,26 @@ export function minAvailableLogicalNodeInstance(
 ): string | undefined {
   const lnInsts = new Set(lnElements.map(ln => ln.getAttribute('inst') || ''));
   return lnInstRange.find(lnInst => !lnInsts.has(lnInst));
+}
+
+/** @returns the depth of `t` if it is an object or array, zero otherwise. */
+export function depth(t: Record<string, unknown>, mem = new WeakSet()): number {
+  if (mem.has(t)) return Infinity;
+  else
+    switch (t?.constructor) {
+      case Object:
+      case Array:
+        mem.add(t);
+        return (
+          1 +
+          Math.max(
+            -1,
+            ...Object.values(t).map(_ => depth(<Record<string, unknown>>_, mem))
+          )
+        );
+      default:
+        return 0;
+    }
 }
 
 declare global {

@@ -19,8 +19,8 @@ import { cloneElement } from '@openscd/xml';
 
 import { EditorAction } from '@openscd/core/foundation/deprecated/editor.js';
 
-import '@openscd/open-scd/src/wizard-textfield.js';
-import '@openscd/open-scd/src/wizard-select.js';
+import '@openscd/components/wizard-textfield.js';
+import '@openscd/components/wizard-select.js';
 
 import {
   getCdcValueFromDOIElement,
