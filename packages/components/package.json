@@ -47,6 +47,10 @@
     "@material/mwc-textfield": "0.22.1",
     "lit-translate": "^2.0.1"
   },
+  "devDependencies": {
+    "@open-wc/eslint-config": "^7.0.0",
+    "eslint-config-prettier": "^8.5.0"
+  },
   "scripts": {
     "build": "tsc"
   },
@@ -59,23 +63,6 @@
   "prettier": {
     "singleQuote": true,
     "arrowParens": "avoid"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
-  "lint-staged": {
-    "*.ts": [
-      "eslint --fix",
-      "prettier --write"
-    ]
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
   },
   "standard-version": {
     "types": [
