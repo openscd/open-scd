@@ -1,4 +1,4 @@
-import { OpenEvent } from '@openscd/core';
+import { OpenEvent, newEditCompletedEvent } from '@openscd/core';
 import {
   property,
   LitElement,
@@ -16,16 +16,13 @@ import {
   EditorActionEvent,
   SimpleAction,
   Replace,
-  Update
+  Update,
 } from '@openscd/core/foundation/deprecated/editor.js';
 
 import { newLogEvent } from '@openscd/core/foundation/deprecated/history.js';
-import { newValidateEvent } from '@openscd/core/foundation/deprecated/validation.js'
-import {OpenDocEvent} from '@openscd/core/foundation/deprecated/open-event.js';
-import {
-  getReference,
-  SCLTag,
-} from '../foundation.js';
+import { newValidateEvent } from '@openscd/core/foundation/deprecated/validation.js';
+import { OpenDocEvent } from '@openscd/core/foundation/deprecated/open-event.js';
+import { getReference, SCLTag } from '../foundation.js';
 import {
   isCreate,
   isDelete,
@@ -439,6 +436,9 @@ export class OscdEditor extends LitElement {
 
     await this.updateComplete;
     this.dispatchEvent(newValidateEvent());
+    this.dispatchEvent(
+      newEditCompletedEvent(event.detail.action, event.detail.initiator)
+    );
   }
 
   /**

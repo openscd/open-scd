@@ -1,18 +1,36 @@
 import {
-	customElement,
-	html,
-	LitElement,
-	property,
-	state,
-	TemplateResult,
-	query,
-	css
+  customElement,
+  html,
+  LitElement,
+  property,
+  state,
+  TemplateResult,
+  query,
+  css,
 } from 'lit-element';
 import { get } from 'lit-translate';
 import { newPendingStateEvent } from '@openscd/core/foundation/deprecated/waiter.js';
 import { newSettingsUIEvent } from '@openscd/core/foundation/deprecated/settings.js';
-import { MenuItem, Plugin, Validator, PluginKind, MenuPosition, MenuPlugin, menuPosition, pluginIcons, newResetPluginsEvent, newAddExternalPluginEvent, newSetPluginsEvent } from '../open-scd.js';
-import { HistoryUIKind, newEmptyIssuesEvent, newHistoryUIEvent, newRedoEvent, newUndoEvent, UndoRedoChangedEvent } from './History.js';
+import {
+  MenuItem,
+  Plugin,
+  Validator,
+  PluginKind,
+  MenuPosition,
+  MenuPlugin,
+  menuPosition,
+  pluginIcons,
+  newResetPluginsEvent,
+  newAddExternalPluginEvent,
+  newSetPluginsEvent,
+} from '../open-scd.js';
+import {
+  HistoryUIKind,
+  newEmptyIssuesEvent,
+  newHistoryUIEvent,
+  newRedoEvent,
+  newUndoEvent,
+} from './History.js';
 import type { Drawer } from '@material/mwc-drawer';
 import type { ActionDetail } from '@material/mwc-list';
 import { List } from '@material/mwc-list';
@@ -29,15 +47,15 @@ import '@material/mwc-dialog';
 import '@material/mwc-switch';
 import '@material/mwc-select';
 import '@material/mwc-textfield';
+import { EditCompletedEvent } from '@openscd/core';
 
 @customElement('oscd-layout')
 export class OscdLayout extends LitElement {
-	
-	/** The `XMLDocument` to be edited */
+  /** The `XMLDocument` to be edited */
   @property({ attribute: false })
   doc: XMLDocument | null = null;
   /** The name of the current [[`doc`]] */
-  @property({ type: String }) 
+  @property({ type: String })
   docName = '';
   /** Index of the last [[`EditorAction`]] applied. */
   @property({ type: Number })
@@ -46,36 +64,41 @@ export class OscdLayout extends LitElement {
   @property({ type: Number })
   activeTab = 0;
 
-	/** The plugins to render the layout. */
-	@property({ type: Array })
-	plugins: Plugin[] = [];
+  /** The plugins to render the layout. */
+  @property({ type: Array })
+  plugins: Plugin[] = [];
 
-	/** The open-scd host element */
-	@property({ type: Object })
-	host!: HTMLElement;
+  /** The open-scd host element */
+  @property({ type: Object })
+  host!: HTMLElement;
 
-	@state()
+  @state()
   validated: Promise<void> = Promise.resolve();
 
-	@state() 
-	shouldValidate = false;
+  @state()
+  shouldValidate = false;
 
   @state()
-  canRedo = false;
+  redoCount = 0;
 
-  @state()
-  canUndo = false;
+  get canUndo(): boolean {
+    return this.editCount >= 0;
+  }
 
-	@query('#menu') 
-	menuUI!: Drawer;
-	@query('#pluginManager')
+  get canRedo(): boolean {
+    return this.redoCount > 0;
+  }
+
+  @query('#menu')
+  menuUI!: Drawer;
+  @query('#pluginManager')
   pluginUI!: Dialog;
   @query('#pluginList')
   pluginList!: List;
   @query('#pluginAdd')
   pluginDownloadUI!: Dialog;
 
-	// Computed properties
+  // Computed properties
 
   get validators(): Plugin[] {
     return this.plugins.filter(
@@ -97,7 +120,7 @@ export class OscdLayout extends LitElement {
     return this.menuEntries.filter(plugin => plugin.position === 'bottom');
   }
 
-	get menu(): (MenuItem | 'divider')[] {
+  get menu(): (MenuItem | 'divider')[] {
     const topMenu: (MenuItem | 'divider')[] = [];
     const middleMenu: (MenuItem | 'divider')[] = [];
     const bottomMenu: (MenuItem | 'divider')[] = [];
@@ -201,7 +224,7 @@ export class OscdLayout extends LitElement {
         name: 'undo',
         actionItem: true,
         action: (): void => {
-          this.dispatchEvent(newUndoEvent())
+          this.dispatchEvent(newUndoEvent());
         },
         disabled: (): boolean => !this.canUndo,
         kind: 'static',
@@ -211,7 +234,7 @@ export class OscdLayout extends LitElement {
         name: 'redo',
         actionItem: true,
         action: (): void => {
-          this.dispatchEvent(newRedoEvent())
+          this.dispatchEvent(newRedoEvent());
         },
         disabled: (): boolean => !this.canRedo,
         kind: 'static',
@@ -222,7 +245,7 @@ export class OscdLayout extends LitElement {
         name: 'menu.viewLog',
         actionItem: true,
         action: (): void => {
-          this.dispatchEvent(newHistoryUIEvent(true, HistoryUIKind.log))
+          this.dispatchEvent(newHistoryUIEvent(true, HistoryUIKind.log));
         },
         kind: 'static',
       },
@@ -231,7 +254,7 @@ export class OscdLayout extends LitElement {
         name: 'menu.viewHistory',
         actionItem: true,
         action: (): void => {
-          this.dispatchEvent(newHistoryUIEvent(true, HistoryUIKind.history))
+          this.dispatchEvent(newHistoryUIEvent(true, HistoryUIKind.history));
         },
         kind: 'static',
       },
@@ -240,7 +263,7 @@ export class OscdLayout extends LitElement {
         name: 'menu.viewDiag',
         actionItem: true,
         action: (): void => {
-          this.dispatchEvent(newHistoryUIEvent(true, HistoryUIKind.diagnostic))
+          this.dispatchEvent(newHistoryUIEvent(true, HistoryUIKind.diagnostic));
         },
         kind: 'static',
       },
@@ -270,10 +293,8 @@ export class OscdLayout extends LitElement {
     );
   }
 
-
-
-	// Keyboard Shortcuts
-	private handleKeyPress(e: KeyboardEvent): void {
+  // Keyboard Shortcuts
+  private handleKeyPress(e: KeyboardEvent): void {
     let handled = false;
     const ctrlAnd = (key: string) =>
       e.key === key && e.ctrlKey && (handled = true);
@@ -296,7 +317,7 @@ export class OscdLayout extends LitElement {
     if (handled) e.preventDefault();
   }
 
-	private handleAddPlugin() {
+  private handleAddPlugin() {
     const pluginSrcInput = <TextField>(
       this.pluginDownloadUI.querySelector('#pluginSrcInput')
     );
@@ -324,26 +345,28 @@ export class OscdLayout extends LitElement {
     )
       return;
 
-    this.dispatchEvent(newAddExternalPluginEvent({
-      src: pluginSrcInput.value,
-      name: pluginNameInput.value,
-      kind: <PluginKind>(<ListItem>pluginKindList.selected).value,
-      requireDoc: requireDoc.checked,
-      position: <MenuPosition>positionList.value,
-      installed: true,
-    }));
+    this.dispatchEvent(
+      newAddExternalPluginEvent({
+        src: pluginSrcInput.value,
+        name: pluginNameInput.value,
+        kind: <PluginKind>(<ListItem>pluginKindList.selected).value,
+        requireDoc: requireDoc.checked,
+        position: <MenuPosition>positionList.value,
+        installed: true,
+      })
+    );
 
     this.requestUpdate();
     this.pluginUI.requestUpdate();
     this.pluginDownloadUI.close();
   }
 
-	connectedCallback(): void {
-		super.connectedCallback();
-		this.host.addEventListener('close-drawer', async () => {
-			this.menuUI.open = false;
-		});
-		this.host.addEventListener('validate', async () => {
+  connectedCallback(): void {
+    super.connectedCallback();
+    this.host.addEventListener('close-drawer', async () => {
+      this.menuUI.open = false;
+    });
+    this.host.addEventListener('validate', async () => {
       this.shouldValidate = true;
       await this.validated;
 
@@ -361,14 +384,25 @@ export class OscdLayout extends LitElement {
       ).then();
       this.dispatchEvent(newPendingStateEvent(this.validated));
     });
-		this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
     document.onkeydown = this.handleKeyPress;
-		this.host.addEventListener('undo-redo-changed', (e: UndoRedoChangedEvent) => {
-      this.canRedo = e.detail.canRedo;
-      this.canUndo = e.detail.canUndo;
-    });
-	}
-	
+
+    this.host.addEventListener(
+      'oscd-edit-completed',
+      (evt: EditCompletedEvent) => {
+        const initiator = evt.detail.initiator;
+
+        if (initiator === 'undo') {
+          this.redoCount += 1;
+        } else if (initiator === 'redo') {
+          this.redoCount -= 1;
+        }
+
+        this.requestUpdate();
+      }
+    );
+  }
+
   private renderMenuItem(me: MenuItem | 'divider'): TemplateResult {
     if (me === 'divider')
       return html`<li divider padded role="separator"></li>`;
@@ -408,26 +442,21 @@ export class OscdLayout extends LitElement {
   /** Renders top bar which features icon buttons for undo, redo, log, scl history and diagnostics*/
   protected renderHeader(): TemplateResult {
     return html`<mwc-top-app-bar-fixed>
-        <mwc-icon-button
-          icon="menu"
-          label="Menu"
-          slot="navigationIcon"
-          @click=${() => (this.menuUI.open = true)}
-        ></mwc-icon-button>
-        <div slot="title" id="title">${this.docName}</div>
-        ${this.menu.map(this.renderActionItem)}
-      </mwc-top-app-bar-fixed>`;
+      <mwc-icon-button
+        icon="menu"
+        label="Menu"
+        slot="navigationIcon"
+        @click=${() => (this.menuUI.open = true)}
+      ></mwc-icon-button>
+      <div slot="title" id="title">${this.docName}</div>
+      ${this.menu.map(this.renderActionItem)}
+    </mwc-top-app-bar-fixed>`;
   }
-  
+
   /** Renders a drawer toolbar featuring the scl filename, enabled menu plugins, settings, help, scl history and plug-ins management */
   protected renderAside(): TemplateResult {
     return html`
-      <mwc-drawer
-        class="mdc-theme--surface"
-        hasheader
-        type="modal"
-        id="menu"
-      >
+      <mwc-drawer class="mdc-theme--surface" hasheader type="modal" id="menu">
         <span slot="title">${get('menu.title')}</span>
         ${this.docName
           ? html`<span slot="subtitle">${this.docName}</span>`
@@ -455,22 +484,23 @@ export class OscdLayout extends LitElement {
   protected renderContent(): TemplateResult {
     return html`
       ${this.doc
-      ? html`<mwc-tab-bar
-          @MDCTabBar:activated=${(e: CustomEvent) =>
-            (this.activeTab = e.detail.index)}
-        >
-          ${this.editors.map(this.renderEditorTab)}
-        </mwc-tab-bar>
-        ${this.editors[this.activeTab]?.content? this.editors[this.activeTab].content: ``}`
-      : ``}
+        ? html`<mwc-tab-bar
+              @MDCTabBar:activated=${(e: CustomEvent) =>
+                (this.activeTab = e.detail.index)}
+            >
+              ${this.editors.map(this.renderEditorTab)}
+            </mwc-tab-bar>
+            ${this.editors[this.activeTab]?.content
+              ? this.editors[this.activeTab].content
+              : ``}`
+        : ``}
     `;
   }
 
   /** Renders the landing buttons (open project and new project)*/
   protected renderLanding(): TemplateResult {
-    return html` 
-    ${!this.doc? 
-      html`<div class="landing">
+    return html` ${!this.doc
+      ? html`<div class="landing">
           ${(<MenuItem[]>this.menu.filter(mi => mi !== 'divider')).map(
             (mi: MenuItem, index) =>
               mi.kind === 'top' && !mi.disabled?.()
@@ -488,8 +518,8 @@ export class OscdLayout extends LitElement {
                   `
                 : html``
           )}
-        </div>` :``
-      }`;
+        </div>`
+      : ``}`;
   }
 
   /** Renders the "Add Custom Plug-in" UI*/
@@ -697,23 +727,20 @@ export class OscdLayout extends LitElement {
   private renderPlugging(): TemplateResult {
     return html` ${this.renderPluginUI()} ${this.renderDownloadUI()} `;
   }
-	
-	render(): TemplateResult {
-		return html`
-      <slot></slot>
-			${this.renderHeader()}
-			${this.renderAside()}
-			${this.renderContent()}
-			${this.renderLanding()}
-			${this.renderPlugging()}
-		`;
-	}
 
-	static styles = css`
-		mwc-drawer {
-			position: absolute;
-			top: 0;
-		}
+  render(): TemplateResult {
+    return html`
+      <slot></slot>
+      ${this.renderHeader()} ${this.renderAside()} ${this.renderContent()}
+      ${this.renderLanding()} ${this.renderPlugging()}
+    `;
+  }
+
+  static styles = css`
+    mwc-drawer {
+      position: absolute;
+      top: 0;
+    }
 
     mwc-top-app-bar-fixed {
       --mdc-theme-text-disabled-on-light: rgba(255, 255, 255, 0.38);

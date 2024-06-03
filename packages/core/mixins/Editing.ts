@@ -181,7 +181,7 @@ export function Editing<TBase extends LitElementConstructor>(
     }
 
     handleEditEvent(event: EditEvent) {
-      const edit = event.detail;
+      const edit = event.detail.edit;
       this.history.splice(this.editCount);
       this.history.push({ undo: handleEdit(edit), redo: edit });
       this.editCount += 1;

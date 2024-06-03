@@ -1,5 +1,5 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import {initializeNsdoc} from '@openscd/open-scd/src/foundation/nsdoc.js';
+import { initializeNsdoc } from '@openscd/open-scd/src/foundation/nsdoc.js';
 import SMVSubscriberMessageBindingPlugin from '../../../src/editors/SMVSubscriberMessageBinding.js';
 
 import { ListItem } from '@material/mwc-list/mwc-list-item.js';
@@ -35,7 +35,7 @@ describe('Sampled Values Plugin', async () => {
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
     parent = await fixture(
-      html`<smv-mock-open-scd .doc=${doc}></smv-mock-open-scd>`
+      html`<smv-mock-open-scd .doc=${doc} .nsdoc=${nsdoc}></smv-mock-open-scd>`
     );
     await parent.requestUpdate();
     await parent.updateComplete;
@@ -303,6 +303,7 @@ describe('Sampled Values Plugin', async () => {
 
             (<HTMLElement>getItemFromSubscriberList('MSVCB01')).click();
             await element.requestUpdate();
+            await parent.historyAddon.requestUpdate();
           });
 
           it('it looks like the latest snapshot', async () =>
