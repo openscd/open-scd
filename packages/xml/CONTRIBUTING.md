@@ -121,7 +121,7 @@ issue or at least the author's github username in parentheses. Example:
 // FIXME(#349): Sometimes panics.
 ```
 
-#### Exported functions: max 2 args, put the rest into an options object.
+#### Exported functions: max 2 args, put the rest into an options object
 
 When designing function interfaces, stick to the following rules.
 
@@ -253,18 +253,18 @@ export { createPerson } from "./my-file.js";
 export type { Person } from "./my-file.js";
 ```
 
-#### Minimize dependencies; do not make circular imports.
+#### Minimize dependencies; do not make circular imports
 
 Try not to introduce external dependencies if you can avoid doing so.
 In particular, be careful not to introduce circular imports.
 
-#### If a filename starts with an underscore: `_foo.ts`, do not link to it.
+#### If a filename starts with an underscore: `_foo.ts`, do not link to it
 
 There may be situations where an internal module is necessary but its API is not
 meant to be stable or linked to. In this case prefix it with an underscore. By
 convention, only files in its own directory should import it.
 
-#### Use JSDoc for exported symbols.
+#### Use JSDoc for exported symbols
 
 We strive for complete documentation. Every exported symbol ideally should have
 a documentation line.
@@ -349,12 +349,12 @@ export type LitElementConstructor = new (...args: any[]) => LitElement;
 This ensures the continuous integration process doesn't fail due to linting
 problems, but it should be used scarcely.
 
-#### Each module should come with a test module.
+#### Each module should come with a test module
 
 Every module with public functionality `foo.ts` should come with a test module
 `foo.spec.ts`. This file should be a sibling to the tested module.
 
-#### Top-level functions should not use arrow syntax.
+#### Top-level functions should not use arrow syntax
 
 Top-level functions should use the `function` keyword. Arrow syntax should be
 limited to closures.
