@@ -21,12 +21,14 @@
     "doc": "typedoc --out doc src/index.ts",
     "prepublish": "npm run lint && npm run build && npm run doc",
     "lint": "eslint --ext .ts . --ignore-path .gitignore && prettier \"src/**/*.ts\" --check --ignore-path .gitignore",
-    "format": "eslint --ext .ts . --fix --ignore-path .gitignore && prettier \"src/**/*.ts\" --write --ignore-path .gitignore"
+    "format": "eslint --ext .ts . --fix --ignore-path .gitignore && prettier \"src/**/*.ts\" --write --ignore-path .gitignore",
+    "test": "web-test-runner --coverage"
   },
   "dependencies": {
   },
   "devDependencies": {
     "@types/node": "^18.11.9",
+    "@open-wc/testing": "^2.5.33",
     "@typescript-eslint/eslint-plugin": "^5.30.7",
     "@typescript-eslint/parser": "^5.30.7",
     "concurrently": "^7.3.0",
