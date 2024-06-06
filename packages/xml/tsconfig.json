@@ -17,7 +17,7 @@
     "rootDir": "./src",
     "tsBuildInfoFile": ".tsbuildinfo",
     "incremental": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
   },
   "include": ["src/**/*.ts"]
 }
