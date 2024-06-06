@@ -10,6 +10,7 @@ there we will be more than happy to help you find your way around this project.
 
 You don't need to be a software developer to contribute to this effort!
 Apart from contributions in the form of code we are also very thankful for
+
 - [bug reports](
 https://github.com/openscd/open-scd-core/issues?q=is%3Aopen+label%3Abug)
   alerting us of errors in the `open-scd` component or its `foundation` library
@@ -53,16 +54,16 @@ implemented as a [LitElement](https://lit.dev/docs) extended with our own
 
 ### Commit Messages
 
-* Use the [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)
+- Use the [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)
   format for commit messages.
 
   > A commit should contain only one single change, so you should always be
   > able to find a fitting type.
-* Use the present tense ("feat: add feature" not "feat: added feature")
-* Use the imperative mood ("fix: move cursor to..." not "fix: moves cursor
+- Use the present tense ("feat: add feature" not "feat: added feature")
+- Use the imperative mood ("fix: move cursor to..." not "fix: moves cursor
   to...")
-* Limit the first line to 72 characters or less
-* Reference issues and pull requests liberally after the first line
+- Limit the first line to 72 characters or less
+- Reference issues and pull requests liberally after the first line
 
 ### Contributing Workflow and Branching Strategy
 
