@@ -1,0 +1,18 @@
+import { html, css, LitElement } from 'lit';
+import { property } from 'lit/decorators.js';
+
+export class <%= className %> extends LitElement {
+  static styles = css`
+  `;
+
+  @property({
+    type: HTMLElement
+  })
+  host!: HTMLElement;
+
+  render() {
+    return html`
+      <slot></slot>
+    `;
+  }
+}

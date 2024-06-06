@@ -21,6 +21,11 @@
     },
     "build": {
       "dependsOn": ["clean", "^clean", "^build"]
+    },
+    "@nx/js:tsc": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["default", "^default"]
     }
   },
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
