@@ -4,8 +4,6 @@ import { get } from 'lit-translate';
 import '@openscd/open-scd/src/wizard-textfield.js';
 import { pTypesLogicLink104 } from '../foundation/p-types.js';
 import {
-  cloneElement,
-  createElement,
   getValue,
   newWizardEvent,
   Wizard,
@@ -13,11 +11,14 @@ import {
   WizardInputElement,
   WizardMenuActor,
 } from '@openscd/open-scd/src/foundation.js';
+
+import { cloneElement, createElement } from '@openscd/xml';
+
 import {
   ComplexAction,
   EditorAction,
   newActionEvent,
-  SimpleAction
+  SimpleAction,
 } from '@openscd/core/foundation/deprecated/editor.js';
 import { createNetworkTextField } from '../foundation/foundation.js';
 

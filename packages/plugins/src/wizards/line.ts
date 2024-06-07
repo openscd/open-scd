@@ -3,14 +3,15 @@ import { get } from 'lit-translate';
 
 import '@openscd/open-scd/src/wizard-textfield.js';
 import {
-  cloneElement,
-  createElement,
   getValue,
   patterns,
   Wizard,
   WizardActor,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
+
+import { cloneElement, createElement } from '@openscd/xml';
+
 import { SimpleAction } from '@openscd/core/foundation/deprecated/editor.js';
 
 const initial = {

@@ -11,9 +11,13 @@ import { nothing } from 'lit-html';
 import { get } from 'lit-translate';
 
 import {
-  createElement,
   identity,
 } from '@openscd/open-scd/src/foundation.js';
+
+import {
+  createElement,
+} from '@openscd/xml';
+
 import {
   ComplexAction,
   Delete,

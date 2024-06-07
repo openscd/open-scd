@@ -25,11 +25,15 @@ import './general-equipment-editor.js';
 import './powertransformer-editor.js';
 import { VoltageLevelEditor } from './voltage-level-editor.js';
 import {
-  getChildElementsByTagName,
   newWizardEvent,
   SCLTag,
   tags,
 } from '@openscd/open-scd/src/foundation.js';
+
+import {
+  getChildElementsByTagName,
+} from '@openscd/xml';
+
 import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import {
   bayIcon,

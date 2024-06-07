@@ -27,11 +27,15 @@ import './tapchanger-editor.js';
 import { transformerWindingIcon } from '@openscd/open-scd/src/icons/icons.js';
 import { styles } from './foundation.js';
 import {
-  getChildElementsByTagName,
   newWizardEvent,
   SCLTag,
   tags,
 } from '@openscd/open-scd/src/foundation.js';
+
+import {
+  getChildElementsByTagName,
+} from '@openscd/xml';
+
 import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
 

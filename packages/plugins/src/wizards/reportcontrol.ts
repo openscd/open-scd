@@ -13,8 +13,6 @@ import '@openscd/open-scd/src/wizard-textfield.js';
 import '@openscd/open-scd/src/wizard-select.js';
 import '@openscd/open-scd/src/filtered-list.js';
 import {
-  cloneElement,
-  createElement,
   find,
   getReference,
   getValue,
@@ -24,17 +22,23 @@ import {
   Wizard,
   WizardActor,
   WizardInputElement,
-  getUniqueElementName,
   WizardMenuActor,
   MenuAction,
   newWizardEvent,
 } from '@openscd/open-scd/src/foundation.js';
-import { 
+
+import {
+  cloneElement,
+  createElement,
+  getUniqueElementName,
+} from '@openscd/xml';
+
+import {
   EditorAction,
   SimpleAction,
   Delete,
   ComplexAction,
-  newActionEvent
+  newActionEvent,
 } from '@openscd/core/foundation/deprecated/editor.js';
 import { FilteredList } from '@openscd/open-scd/src/filtered-list.js';
 import { FinderList } from '@openscd/open-scd/src/finder-list.js';

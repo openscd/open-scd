@@ -25,11 +25,15 @@ import './transformer-winding-editor.js';
 import { powerTransformerTwoWindingIcon } from '@openscd/open-scd/src/icons/icons.js';
 import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
 import {
-  getChildElementsByTagName,
   newWizardEvent,
   SCLTag,
   tags,
 } from '@openscd/open-scd/src/foundation.js';
+
+import {
+  getChildElementsByTagName,
+} from '@openscd/xml';
+
 import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { startMove, styles } from './foundation.js';
 import { SubstationEditor } from './substation-editor.js';

@@ -19,10 +19,14 @@ import {
   WizardInputElement,
   compareNames,
   getValue,
-  createElement,
   isPublic,
   identity,
 } from '@openscd/open-scd/src/foundation.js';
+
+import {
+  createElement,
+} from '@openscd/xml';
+
 import {
   EditorAction,
   ComplexAction,

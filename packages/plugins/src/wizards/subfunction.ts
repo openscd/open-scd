@@ -4,6 +4,9 @@ import {
   cloneElement,
   createElement,
   getChildElementsByTagName,
+} from '@openscd/xml';
+
+import {
   getValue,
   Wizard,
   WizardActor,

@@ -1,9 +1,13 @@
 import {
-  cloneElement,
   getValue,
   WizardActor,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
+
+import {
+  cloneElement,
+} from '@openscd/xml';
+
 import {
   ComplexAction,
   EditorAction,

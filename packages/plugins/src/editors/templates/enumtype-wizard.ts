@@ -12,8 +12,6 @@ import { Select } from '@material/mwc-select';
 
 import '@openscd/open-scd/src/wizard-textfield.js';
 import {
-  cloneElement,
-  createElement,
   find,
   getValue,
   identity,
@@ -25,10 +23,13 @@ import {
   WizardInputElement,
   WizardMenuActor,
 } from '@openscd/open-scd/src/foundation.js';
-import { 
+
+import { cloneElement, createElement } from '@openscd/xml';
+
+import {
   EditorAction,
   newActionEvent,
-  Replace
+  Replace,
 } from '@openscd/core/foundation/deprecated/editor.js';
 import { CreateOptions, UpdateOptions, WizardOptions } from './foundation.js';
 

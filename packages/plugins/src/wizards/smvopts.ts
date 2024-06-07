@@ -1,8 +1,9 @@
 import { html, TemplateResult } from 'lit-element';
 import { get } from 'lit-translate';
 
+import { cloneElement } from '@openscd/xml';
+
 import {
-  cloneElement,
   getValue,
   Wizard,
   WizardAction,

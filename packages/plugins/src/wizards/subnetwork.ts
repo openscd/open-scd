@@ -1,10 +1,10 @@
 import { html, TemplateResult } from 'lit-element';
 import { get } from 'lit-translate';
 
+import { cloneElement, createElement } from '@openscd/xml';
+
 import '@openscd/open-scd/src/wizard-textfield.js';
 import {
-  cloneElement,
-  createElement,
   getMultiplier,
   getValue,
   patterns,

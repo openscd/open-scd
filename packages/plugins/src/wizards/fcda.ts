@@ -2,13 +2,17 @@ import { html } from 'lit-element';
 import { get } from 'lit-translate';
 
 import {
-  createElement,
   find,
   Wizard,
   WizardAction,
   WizardActor,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
+
+import {
+  createElement,
+} from '@openscd/xml';
+
 import { FinderList } from '@openscd/open-scd/src/finder-list.js';
 import {
   dataAttributePicker,

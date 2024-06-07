@@ -8,7 +8,6 @@ import '@material/mwc-list/mwc-check-list-item';
 import '@openscd/open-scd/src/wizard-textfield.js';
 import '@openscd/open-scd/src/filtered-list.js';
 import {
-  cloneElement,
   find,
   getValue,
   identity,
@@ -19,6 +18,9 @@ import {
   WizardMenuActor,
   newSubWizardEvent,
 } from '@openscd/open-scd/src/foundation.js';
+
+import { cloneElement } from '@openscd/xml';
+
 import { Replace } from '@openscd/core/foundation/deprecated/editor.js';
 import { createFCDAsWizard } from './fcda.js';
 

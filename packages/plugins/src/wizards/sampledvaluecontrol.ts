@@ -12,10 +12,7 @@ import '@openscd/open-scd/src/wizard-checkbox.js';
 import '@openscd/open-scd/src/wizard-select.js';
 import '@openscd/open-scd/src/wizard-textfield.js';
 import {
-  cloneElement,
-  createElement,
   find,
-  getUniqueElementName,
   getValue,
   identity,
   isPublic,
@@ -27,11 +24,18 @@ import {
   WizardInputElement,
   WizardMenuActor,
 } from '@openscd/open-scd/src/foundation.js';
-import { 
+
+import {
+  cloneElement,
+  createElement,
+  getUniqueElementName,
+} from '@openscd/xml';
+
+import {
   EditorAction,
   Delete,
   ComplexAction,
-  newActionEvent
+  newActionEvent,
 } from '@openscd/core/foundation/deprecated/editor.js';
 import { securityEnabledEnum, smpModEnum } from './foundation/enums.js';
 import { maxLength, patterns } from './foundation/limits.js';

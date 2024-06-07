@@ -11,10 +11,7 @@ import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
 import '@openscd/open-scd/src/filtered-list.js';
 import {
-  cloneElement,
-  createElement,
   find,
-  getChildElementsByTagName,
   getValue,
   identity,
   isPublic,
@@ -26,8 +23,18 @@ import {
   WizardMenuActor,
   newLnInstGenerator,
 } from '@openscd/open-scd/src/foundation.js';
+
+import {
+  cloneElement,
+  createElement,
+  getChildElementsByTagName,
+} from '@openscd/xml';
+
 import { patterns } from './foundation/limits.js';
-import { Create, EditorAction } from '@openscd/core/foundation/deprecated/editor.js';
+import {
+  Create,
+  EditorAction,
+} from '@openscd/core/foundation/deprecated/editor.js';
 import { newLogEvent } from '@openscd/core/foundation/deprecated/history.js';
 
 function createLNodeAction(parent: Element): WizardActor {

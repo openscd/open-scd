@@ -14,10 +14,7 @@ import '@openscd/open-scd/src/wizard-checkbox.js';
 import '@openscd/open-scd/src/wizard-textfield.js';
 import '@openscd/open-scd/src/wizard-select.js';
 import {
-  cloneElement,
-  createElement,
   find,
-  getChildElementsByTagName,
   getValue,
   identity,
   isPublic,
@@ -29,11 +26,18 @@ import {
   WizardInputElement,
   WizardMenuActor,
 } from '@openscd/open-scd/src/foundation.js';
+
 import {
-  Create, 
+  cloneElement,
+  createElement,
+  getChildElementsByTagName,
+} from '@openscd/xml';
+
+import {
+  Create,
   EditorAction,
   newActionEvent,
-  Replace
+  Replace,
 } from '@openscd/core/foundation/deprecated/editor.js';
 import { WizardSelect } from '@openscd/open-scd/src/wizard-select.js';
 import {

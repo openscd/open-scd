@@ -5,18 +5,20 @@ import { Checkbox } from '@material/mwc-checkbox';
 
 import '@openscd/open-scd/src/wizard-textfield.js';
 import {
-  createElement,
   getValue,
   identity,
   Wizard,
   WizardActor,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
+
+import { createElement } from '@openscd/xml';
+
 import { contentGseOrSmvWizard, updateAddress } from './address.js';
-import { 
+import {
   ComplexAction,
   SimpleAction,
-  EditorAction
+  EditorAction,
 } from '@openscd/core/foundation/deprecated/editor.js';
 
 export function getMTimeAction(

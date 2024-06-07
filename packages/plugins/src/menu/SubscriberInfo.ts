@@ -1,12 +1,12 @@
 import { LitElement } from 'lit-element';
 import { get } from 'lit-translate';
+import { getVersion } from '@openscd/open-scd/src/foundation.js';
+
+import { createElement } from '@openscd/xml';
+
 import {
-  createElement,
-  getVersion,
-} from '@openscd/open-scd/src/foundation.js';
-import { 
-  newActionEvent, 
-  SimpleAction
+  newActionEvent,
+  SimpleAction,
 } from '@openscd/core/foundation/deprecated/editor.js';
 
 function getElementIndexOf(list: (Element | null)[], match: Element): number {

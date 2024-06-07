@@ -2,14 +2,18 @@ import { html, TemplateResult } from 'lit-element';
 import { get } from 'lit-translate';
 
 import {
-  cloneElement,
-  createElement,
-  getChildElementsByTagName,
   getValue,
   Wizard,
   WizardActor,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
+
+import {
+  cloneElement,
+  createElement,
+  getChildElementsByTagName
+} from '@openscd/xml';
+
 import { SimpleAction } from '@openscd/core/foundation/deprecated/editor.js';
 
 interface ContentOptions {

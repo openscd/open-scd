@@ -14,9 +14,13 @@ import '@material/mwc-list/mwc-list-item';
 
 import '@openscd/open-scd/src/filtered-list.js';
 import {
-  createElement,
   identity,
 } from '@openscd/open-scd/src/foundation.js';
+
+import {
+  createElement,
+} from '@openscd/xml';
+
 import {
   Create,
   ComplexAction,

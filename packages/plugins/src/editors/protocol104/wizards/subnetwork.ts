@@ -1,7 +1,6 @@
 import { html, TemplateResult } from 'lit-element';
 import { get } from 'lit-translate';
 import {
-  createElement,
   getMultiplier,
   getValue,
   patterns,
@@ -9,6 +8,8 @@ import {
   WizardActor,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
+
+import { createElement } from '@openscd/xml';
 
 import { EditorAction } from '@openscd/core/foundation/deprecated/editor';
 
