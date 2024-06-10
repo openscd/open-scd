@@ -8,6 +8,7 @@ import {
   TemplateResult,
   unsafeCSS,
 } from 'lit-element';
+import { get } from 'lit-translate';
 
 import '@material/mwc-checkbox';
 import '@material/mwc-formfield';
@@ -67,11 +68,6 @@ export class FilteredList extends ListBase {
   /** Whether the check all option (checkbox next to search text field) is activated */
   @property({ type: Boolean })
   disableCheckAll = false;
-
-  @property({
-    type: String,
-  })
-  filterText = 'Filter';
 
   @state()
   private get existCheckListItem(): boolean {
@@ -149,7 +145,7 @@ export class FilteredList extends ListBase {
 
   render(): TemplateResult {
     return html`<div id="tfcontainer">
-        <abbr title="${this.searchFieldLabel ?? this.filterText}"
+        <abbr title="${this.searchFieldLabel ?? get('filter')}"
           ><mwc-textfield
             label="${this.searchFieldLabel ?? ''}"
             iconTrailing="search"
