@@ -4,6 +4,7 @@ import { get } from 'lit-translate';
 import { cloneElement, createElement } from '@openscd/xml';
 
 import '@openscd/components/wizard-textfield.js';
+
 import {
   getMultiplier,
   getValue,

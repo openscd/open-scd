@@ -22,6 +22,7 @@ import {
   EditorAction,
   newActionEvent,
 } from '@openscd/core/foundation/deprecated/editor.js';
+
 import { getValAction, wizardContent } from './abstractda.js';
 import { functionalConstraintEnum } from './foundation/enums.js';
 

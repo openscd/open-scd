@@ -45,8 +45,7 @@
     "marked": "^4.0.10",
     "panzoom": "^9.4.2",
     "@openscd/core": "*",
-    "@openscd/xml": "*",
-    "@openscd/components": "*"
+    "@openscd/xml": "*"
   },
   "scripts": {
     "clean": "rimraf build",

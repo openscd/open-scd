@@ -7,6 +7,7 @@ import '@material/mwc-formfield';
 import { createElement } from '@openscd/xml';
 
 import '@openscd/components/wizard-textfield.js';
+
 import {
   getValue,
   Wizard,

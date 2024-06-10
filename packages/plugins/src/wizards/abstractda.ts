@@ -10,6 +10,7 @@ import '@openscd/components/wizard-checkbox.js';
 import '@openscd/components/wizard-select.js';
 import '@openscd/components/wizard-textfield.js';
 import { createElement } from '@openscd/xml';
+
 import { EditorAction } from '@openscd/core/foundation/deprecated/editor.js';
 import { WizardSelect, WizardTextField } from '@openscd/components';
 

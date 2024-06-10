@@ -20,6 +20,7 @@ import { CheckListItem } from '@material/mwc-list/mwc-check-list-item';
 import { Select } from '@material/mwc-select';
 
 import '@openscd/components/filtered-list.js';
+
 import { find, identity } from '@openscd/open-scd/src/foundation.js';
 import { getChildElementsByTagName } from '@openscd/xml';
 
