@@ -54,7 +54,8 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "tsc",
-    "test": "web-test-runner --coverage"
+    "test": "web-test-runner --coverage",
+    "test:watch": "web-test-runner --watch"
   },
   "eslintConfig": {
     "extends": [
