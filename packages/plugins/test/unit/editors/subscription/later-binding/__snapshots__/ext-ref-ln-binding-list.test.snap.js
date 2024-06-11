@@ -67,7 +67,7 @@ snapshots["for Sampled Value Control when SVC has no subscriptions looks like th
       aria-disabled="false"
       graphic="large"
       mwc-list-item=""
-      tabindex="-1"
+      tabindex="0"
       twoline=""
       value="SMV_Subscriber1>>Overvoltage"
     >
@@ -241,7 +241,7 @@ snapshots["for Sampled Value Control when SVC has a single subscriptions looks l
       aria-disabled="false"
       graphic="large"
       mwc-list-item=""
-      tabindex="-1"
+      tabindex="0"
       twoline=""
       value="SMV_Subscriber1>>Overvoltage"
     >
@@ -430,7 +430,7 @@ snapshots["when SVC has a multiple subscriptions looks like the latest snapshot,
       aria-disabled="false"
       graphic="large"
       mwc-list-item=""
-      tabindex="-1"
+      tabindex="0"
       twoline=""
       value="SMV_Subscriber1>>Overvoltage"
     >
@@ -649,7 +649,7 @@ snapshots["for GOOSE Control when GSEControl has no subscriptions looks like the
       disabled=""
       graphic="large"
       mwc-list-item=""
-      tabindex="-1"
+      tabindex="0"
       twoline=""
       value="GOOSE_Subscriber1>>Earth_Switch"
     >
@@ -822,7 +822,7 @@ snapshots["for GOOSE Control when GSEControl has a single subscription looks lik
       aria-disabled="false"
       graphic="large"
       mwc-list-item=""
-      tabindex="-1"
+      tabindex="0"
       twoline=""
       value="GOOSE_Subscriber2>>Earth_Switch"
     >
@@ -1012,7 +1012,7 @@ snapshots["when GSEControl has a multiple subscriptions looks like the latest sn
       disabled=""
       graphic="large"
       mwc-list-item=""
-      tabindex="-1"
+      tabindex="0"
       twoline=""
       value="GOOSE_Subscriber1>>Earth_Switch"
     >

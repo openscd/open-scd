@@ -2,8 +2,11 @@
 export const snapshots = {};
 
 snapshots["subnetwork-editor with child GSE elements looks like the latest snapshot"] = 
-`<action-pane label="StationBus — desc
-    (8-MMS — 100.0 b/s)">
+`<action-pane
+  label="StationBus — desc
+    (8-MMS — 100.0 b/s)"
+  tabindex="0"
+>
   <abbr
     slot="action"
     title="[edit]"
@@ -29,6 +32,7 @@ snapshots["subnetwork-editor with child GSE elements looks like the latest snaps
     <action-pane
       id="iedSection"
       label="GOOSE_Publisher"
+      tabindex="0"
     >
       <connectedap-editor>
       </connectedap-editor>
@@ -45,8 +49,11 @@ snapshots["subnetwork-editor with child GSE elements looks like the latest snaps
 /* end snapshot subnetwork-editor with child GSE elements looks like the latest snapshot */
 
 snapshots["subnetwork-editor with child SMV elements looks like the latest snapshot"] = 
-`<action-pane label="ProcessBus1 
-    (8-MMS — 100 b/s)">
+`<action-pane
+  label="ProcessBus1 
+    (8-MMS — 100 b/s)"
+  tabindex="0"
+>
   <abbr
     slot="action"
     title="[edit]"
@@ -72,6 +79,7 @@ snapshots["subnetwork-editor with child SMV elements looks like the latest snaps
     <action-pane
       id="iedSection"
       label="GOOSE_Publisher"
+      tabindex="0"
     >
       <connectedap-editor class="disabled">
       </connectedap-editor>
@@ -85,6 +93,7 @@ snapshots["subnetwork-editor with child SMV elements looks like the latest snaps
     <action-pane
       id="iedSection"
       label="SMV_Publisher"
+      tabindex="0"
     >
       <connectedap-editor>
       </connectedap-editor>
