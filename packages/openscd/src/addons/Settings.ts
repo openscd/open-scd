@@ -347,7 +347,7 @@ export class OscdSettings extends LitElement {
       this.host!.addEventListener('oscd-settings', (evt: SettingsUIEvent) => {
         evt.detail.show ? this.settingsUI.show() : this.settingsUI.close();
       });
-      (<any>this.host).addEventListener('load-nsdoc', (evt: LoadNsdocEvent) =>
+      this.host.addEventListener('load-nsdoc', (evt: LoadNsdocEvent) =>
         this.onLoadNsdoc(evt)
       );
     }
