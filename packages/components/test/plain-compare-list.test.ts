@@ -1,6 +1,6 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../src/plain-compare-list';
+import '../src/plain-compare-list.js';
 import { PlainCompareList } from '../src/plain-compare-list.js';
 
 describe('Plain Compare List', () => {
