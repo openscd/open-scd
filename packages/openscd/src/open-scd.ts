@@ -35,6 +35,7 @@ import './addons/Wizards.js';
 import './addons/Editor.js';
 import './addons/History.js';
 import './addons/Layout.js';
+import './addons/Doc.js';
 
 import { ActionDetail } from '@material/mwc-list';
 
@@ -309,29 +310,38 @@ export class OpenSCD extends LitElement {
 
   render(): TemplateResult {
     return html`<oscd-waiter>
-      <oscd-settings .host=${this}>
-        <oscd-wizards .host=${this}>
-          <oscd-history .host=${this} .editCount=${this.editCount}>
-            <oscd-editor
-              .doc=${this.doc}
-              .docName=${this.docName}
-              .docId=${this.docId}
-              .host=${this}
-              .editCount=${this.editCount}
-            >
-              <oscd-layout
-                .host=${this}
+      <oscd-doc .host=${this}>
+        <oscd-settings .host=${this}>
+          <oscd-wizards .host=${this}>
+            <oscd-history .host=${this} .editCount=${this.editCount}>
+              <oscd-editor
                 .doc=${this.doc}
                 .docName=${this.docName}
+                .docId=${this.docId}
+                .host=${this}
                 .editCount=${this.editCount}
-                .plugins=${this.sortedStoredPlugins}
               >
-              </oscd-layout>
-            </oscd-editor>
-          </oscd-history>
-        </oscd-wizards>
-      </oscd-settings>
+                <oscd-layout
+                  .host=${this}
+                  .doc=${this.doc}
+                  .docName=${this.docName}
+                  .editCount=${this.editCount}
+                  .plugins=${this.sortedStoredPlugins}
+                >
+                </oscd-layout>
+              </oscd-editor>
+            </oscd-history>
+          </oscd-wizards>
+        </oscd-settings>
+      </oscd-doc>
     </oscd-waiter>`;
+  }
+
+  openDoc(doc: XMLDocument, docName: string) {
+    this.doc = doc;
+    this.docName = docName;
+
+    this.requestUpdate('doc');
   }
 
   private storePlugins(plugins: Array<Plugin | InstalledOfficialPlugin>) {

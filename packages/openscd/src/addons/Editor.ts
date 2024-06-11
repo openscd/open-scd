@@ -441,38 +441,10 @@ export class OscdEditor extends LitElement {
     );
   }
 
-  /**
-   *
-   * @deprecated [Move to handleOpenDoc instead]
-   */
-  private async onOpenDoc(event: OpenDocEvent) {
-    this.doc = event.detail.doc;
-    this.docName = event.detail.docName;
-    this.docId = event.detail.docId ?? '';
-
-    await this.updateComplete;
-
-    this.dispatchEvent(newValidateEvent());
-
-    this.dispatchEvent(
-      newLogEvent({
-        kind: 'info',
-        title: get('openSCD.loaded', { name: this.docName }),
-      })
-    );
-  }
-
-  handleOpenDoc({ detail: { docName, doc } }: OpenEvent) {
-    this.doc = doc;
-    this.docName = docName;
-  }
-
   connectedCallback(): void {
     super.connectedCallback();
 
     this.host.addEventListener('editor-action', this.onAction.bind(this));
-    this.host.addEventListener('open-doc', this.onOpenDoc);
-    this.host.addEventListener('oscd-open', this.handleOpenDoc);
   }
 
   render(): TemplateResult {
