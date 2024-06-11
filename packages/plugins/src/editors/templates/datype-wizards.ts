@@ -10,7 +10,7 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { Select } from '@material/mwc-select';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
-import '@openscd/open-scd/src/wizard-textfield.js';
+import '@openscd/components/wizard-textfield.js';
 import {
   find,
   getValue,

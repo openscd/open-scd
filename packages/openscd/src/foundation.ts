@@ -8,9 +8,11 @@ import AceEditor from 'ace-custom-element';
 
 import { getChildElementsByTagName } from '@openscd/xml';
 
-import { WizardTextField } from './wizard-textfield.js';
-import { WizardSelect } from './wizard-select.js';
-import { WizardCheckbox } from './wizard-checkbox.js';
+import {
+  WizardTextField,
+  WizardSelect,
+  WizardCheckbox,
+} from '@openscd/components';
 
 import { EditorAction } from '@openscd/core/foundation/deprecated/editor.js';
 

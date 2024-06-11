@@ -4,8 +4,8 @@ import '@material/mwc-list/mwc-check-list-item';
 import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-list/mwc-radio-list-item';
 
-import '../../src/filtered-list.js';
-import { FilteredList } from '../../src/filtered-list.js';
+import '../src/filtered-list.js';
+import { FilteredList } from '../src/filtered-list.js';
 
 describe('filtered-list', () => {
   let element: FilteredList;

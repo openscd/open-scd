@@ -18,7 +18,7 @@ import {
 import { accessPointIcon } from '@openscd/open-scd/src/icons/ied-icons.js';
 import { editServicesWizard } from '../../wizards/services.js';
 
-import '@openscd/open-scd/src/action-pane.js';
+import '@openscd/components/action-pane.js';
 import './server-container.js';
 
 import { Container } from './foundation.js';

@@ -27,8 +27,10 @@ export default {
   mount: {
     '../open-scd/': '/open-scd/',
     './': '/',
+    '../components': '/components/',
   },
   alias: {
     '@openscd/open-scd': '../open-scd/',
+    '@openscd/components': '../components/',
   },
 };

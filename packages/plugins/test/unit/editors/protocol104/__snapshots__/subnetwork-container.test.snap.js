@@ -2,8 +2,11 @@
 export const snapshots = {};
 
 snapshots["subnetwork-104-container looks like the latest snapshot"] = 
-`<action-pane label=" F1 — 
-    (104)">
+`<action-pane
+  label=" F1 — 
+    (104)"
+  tabindex="0"
+>
   <abbr
     slot="action"
     title="[add]"
@@ -15,6 +18,7 @@ snapshots["subnetwork-104-container looks like the latest snapshot"] =
     <action-pane
       id="iedSection"
       label="B1"
+      tabindex="0"
     >
       <connectedap-104-editor class="disabled">
       </connectedap-104-editor>
@@ -24,6 +28,7 @@ snapshots["subnetwork-104-container looks like the latest snapshot"] =
     <action-pane
       id="iedSection"
       label="B2"
+      tabindex="0"
     >
       <connectedap-104-editor class="disabled">
       </connectedap-104-editor>

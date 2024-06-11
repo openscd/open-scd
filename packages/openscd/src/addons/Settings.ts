@@ -23,18 +23,18 @@ import { Switch } from '@material/mwc-switch';
 import { getTheme } from '../themes.js';
 
 import { newLogEvent } from '@openscd/core/foundation/deprecated/history.js';
-import { 
-  Settings, 
-  SettingsUIEvent, 
+import {
+  Settings,
+  SettingsUIEvent,
   Language,
   NsdVersions,
   NsdVersion,
   LoadNsdocEvent,
-  newLoadNsdocEvent
+  newLoadNsdocEvent,
 } from '@openscd/core/foundation/deprecated/settings.js';
 import { languages, loader } from '../translations/loader.js';
 
-import '../WizardDivider.js';
+import '@openscd/components/WizardDivider.js';
 import { WizardDialog } from '../wizard-dialog.js';
 
 import {
@@ -347,7 +347,7 @@ export class OscdSettings extends LitElement {
       this.host!.addEventListener('oscd-settings', (evt: SettingsUIEvent) => {
         evt.detail.show ? this.settingsUI.show() : this.settingsUI.close();
       });
-      (<any>this.host).addEventListener('load-nsdoc', (evt: LoadNsdocEvent) =>
+      this.host.addEventListener('load-nsdoc', (evt: LoadNsdocEvent) =>
         this.onLoadNsdoc(evt)
       );
     }

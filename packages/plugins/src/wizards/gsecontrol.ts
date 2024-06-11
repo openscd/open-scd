@@ -8,10 +8,10 @@ import { List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
-import '@openscd/open-scd/src/filtered-list.js';
-import '@openscd/open-scd/src/wizard-checkbox.js';
-import '@openscd/open-scd/src/wizard-select.js';
-import '@openscd/open-scd/src/wizard-textfield.js';
+import '@openscd/components/filtered-list.js';
+import '@openscd/components/wizard-checkbox.js';
+import '@openscd/components/wizard-select.js';
+import '@openscd/components/wizard-textfield.js';
 import {
   find,
   getValue,
@@ -32,19 +32,19 @@ import {
   getUniqueElementName,
 } from '@openscd/xml';
 
-import { 
+import {
   ComplexAction,
   Delete,
   SimpleAction,
   EditorAction,
-  newActionEvent
+  newActionEvent,
 } from '@openscd/core/foundation/deprecated/editor.js';
 import { maxLength, patterns } from './foundation/limits.js';
 import { editDataSetWizard } from './dataset.js';
 import { editGseWizard } from './gse.js';
 import { securityEnabledEnum } from './foundation/enums.js';
 import { dataAttributePicker, iEDPicker } from './foundation/finder.js';
-import { FinderList } from '@openscd/open-scd/src/finder-list.js';
+import { FinderList } from '@openscd/components';
 import { newFCDA } from './fcda.js';
 import {
   getConnectedAP,

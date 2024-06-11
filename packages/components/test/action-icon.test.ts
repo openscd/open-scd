@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '../../src/action-icon.js';
-import { ActionIcon } from '../../src/action-icon.js';
+import '../src/action-icon.js';
+import { ActionIcon } from '../src/action-icon.js';
 
 describe('Basic component action-icon', () => {
   let element: ActionIcon;

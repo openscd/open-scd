@@ -2,8 +2,8 @@ import { html, fixture, expect } from '@open-wc/testing';
 
 import '@material/mwc-list/mwc-list-item';
 
-import '../../src/wizard-select.js';
-import { WizardSelect } from '../../src/wizard-select.js';
+import '../src/wizard-select.js';
+import { WizardSelect } from '../src/wizard-select.js';
 
 describe('wizard-select', () => {
   let element: WizardSelect;

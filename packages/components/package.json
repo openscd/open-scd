@@ -1,0 +1,107 @@
+{
+  "name": "@openscd/components",
+  "version": "0.34.0",
+  "repository": "https://github.com/openscd/open-scd.git",
+  "directory": "packages/openscd",
+  "description": "",
+  "keywords": [
+    "SCL",
+    "substation configuration",
+    "IEC",
+    "61850-6",
+    "SCD",
+    "editor"
+  ],
+  "author": "OpenSCD",
+  "license": "Apache-2.0",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "type": "module",
+  "files": [
+    "./dist/**"
+  ],
+  "exports": {
+    ".": "./dist/index.js",
+    "./wizard-checkbox.js": "./dist/wizard-checkbox.js",
+    "./wizard-textfield.js": "./dist/wizard-textfield.js",
+    "./wizard-select.js": "./dist/wizard-select.js",
+    "./WizardDivider.js": "./dist/WizardDivider.js",
+    "./action-icon.js": "./dist/action-icon.js",
+    "./action-pane.js": "./dist/action-pane.js",
+    "./filtered-list.js": "./dist/filtered-list.js",
+    "./finder-list.js": "./dist/finder-list.js",
+    "./oscd-filter-button.js": "./dist/oscd-filter-button.js",
+    "./plain-compare-list.js": "./dist/plain-compare-list.js"
+  },
+  "dependencies": {
+    "@material/mwc-checkbox": "0.22.1",
+    "@material/mwc-dialog": "0.22.1",
+    "@material/mwc-formfield": "0.22.1",
+    "@material/mwc-icon": "0.22.1",
+    "@material/mwc-icon-button": "0.22.1",
+    "@material/mwc-list": "0.22.1",
+    "@material/mwc-menu": "0.22.1",
+    "@material/mwc-select": "0.22.1",
+    "@material/mwc-switch": "0.22.1",
+    "@material/mwc-textfield": "0.22.1",
+    "lit-translate": "^2.0.1"
+  },
+  "devDependencies": {
+    "@open-wc/eslint-config": "^7.0.0",
+    "eslint-config-prettier": "^8.5.0"
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "tsc",
+    "test": "web-test-runner --coverage",
+    "test:watch": "web-test-runner --watch"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@open-wc/eslint-config",
+      "eslint-config-prettier"
+    ]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "arrowParens": "avoid"
+  },
+  "standard-version": {
+    "types": [
+      {
+        "type": "feat",
+        "section": "Features"
+      },
+      {
+        "type": "fix",
+        "section": "Bug Fixes"
+      },
+      {
+        "type": "chore",
+        "hidden": true
+      },
+      {
+        "type": "docs",
+        "hidden": true
+      },
+      {
+        "type": "style",
+        "hidden": true
+      },
+      {
+        "type": "refactor",
+        "hidden": true
+      },
+      {
+        "type": "perf",
+        "hidden": true
+      },
+      {
+        "type": "test",
+        "hidden": true
+      }
+    ],
+    "commitUrlFormat": "https://github.com/openscd/open-scd/commits/{{hash}}"
+  }
+}

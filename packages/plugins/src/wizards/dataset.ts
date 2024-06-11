@@ -5,8 +5,8 @@ import { get } from 'lit-translate';
 import '@material/mwc-button';
 import '@material/mwc-list/mwc-check-list-item';
 
-import '@openscd/open-scd/src/wizard-textfield.js';
-import '@openscd/open-scd/src/filtered-list.js';
+import '@openscd/components/wizard-textfield.js';
+import '@openscd/components/filtered-list.js';
 import {
   find,
   getValue,

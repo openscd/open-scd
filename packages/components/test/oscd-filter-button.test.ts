@@ -4,11 +4,9 @@ import { SinonSpy, spy } from 'sinon';
 import '@material/mwc-list/mwc-check-list-item';
 import '@material/mwc-list/mwc-radio-list-item';
 
-import { getIcon } from '../../src/icons/icons.js';
+import '../src/oscd-filter-button.js';
 
-import '../../src/oscd-filter-button.js';
-
-import { FilterButton } from '../../src/oscd-filter-button.js';
+import { FilterButton } from '../src/oscd-filter-button.js';
 
 describe('oscd-filter-button', () => {
   let element: FilterButton;
@@ -98,7 +96,7 @@ describe('oscd-filter-button', () => {
     beforeEach(async () => {
       element = await fixture(
         html`<oscd-filter-button id="filter">
-          <span slot="icon">${getIcon('lNIcon')}</span>
+          <span slot="icon">Icon</span>
           ${Array.from(listItems).map(
             item =>
               html` <mwc-radio-list-item value="${item.prim}">

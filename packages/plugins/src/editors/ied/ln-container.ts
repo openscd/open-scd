@@ -9,7 +9,7 @@ import {
 } from '@openscd/open-scd/src/foundation.js';
 import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 
-import '@openscd/open-scd/src/action-pane.js';
+import '@openscd/components/action-pane.js';
 import './do-container.js';
 
 import { Container } from './foundation.js';

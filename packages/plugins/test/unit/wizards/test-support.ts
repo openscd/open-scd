@@ -4,19 +4,18 @@ import {
   WizardActor,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
-import { 
-  SimpleAction, 
-  Create, 
-  Delete, 
+import {
+  SimpleAction,
+  Create,
+  Delete,
   Replace,
   Update,
   isCreate,
   isDelete,
   isReplace,
-  isUpdate
+  isUpdate,
 } from '@openscd/core/foundation/deprecated/editor.js';
-import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
-import { WizardSelect } from '@openscd/open-scd/src/wizard-select.js';
+import { WizardTextField, WizardSelect } from '@openscd/components';
 
 export async function setWizardTextFieldValue(
   field: WizardTextField,

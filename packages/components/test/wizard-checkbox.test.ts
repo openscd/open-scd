@@ -1,7 +1,7 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../../src/wizard-checkbox.js';
-import { WizardCheckbox } from '../../src/wizard-checkbox.js';
+import '../src/wizard-checkbox.js';
+import { WizardCheckbox } from '../src/wizard-checkbox.js';
 
 describe('wizard-checkbox', () => {
   let element: WizardCheckbox;

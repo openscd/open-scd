@@ -9,7 +9,7 @@ import {
   query,
 } from 'lit-element';
 
-import '@openscd/open-scd/src/action-pane.js';
+import '@openscd/components/action-pane.js';
 import './sub-function-editor.js';
 import './general-equipment-editor.js';
 import {

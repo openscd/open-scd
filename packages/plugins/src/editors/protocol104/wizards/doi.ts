@@ -13,7 +13,7 @@ import {
   ComplexAction,
   newActionEvent,
 } from '@openscd/core/foundation/deprecated/editor.js';
-import '@openscd/open-scd/src/wizard-textfield.js';
+import '@openscd/components/wizard-textfield.js';
 
 import {
   getCdcValueFromDOIElement,

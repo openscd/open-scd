@@ -4,13 +4,17 @@ import './mock-editor.js';
 
 import { Button } from '@material/mwc-button';
 
-import '../../src/wizard-textfield.js';
+import '@openscd/components/wizard-textfield.js';
+import '@openscd/components/wizard-select.js';
+import '@openscd/components/wizard-checkbox.js';
 import '../../src/wizard-dialog.js';
 import { WizardDialog } from '../../src/wizard-dialog.js';
 import { WizardInputElement } from '../../src/foundation.js';
-import { WizardCheckbox } from '../../src/wizard-checkbox.js';
-import { WizardSelect } from '../../src/wizard-select.js';
-import { WizardTextField } from '../../src/wizard-textfield.js';
+import {
+  WizardSelect,
+  WizardTextField,
+  WizardCheckbox,
+} from '@openscd/components';
 import { EditorAction } from '@openscd/core/foundation/deprecated/editor.js';
 
 describe('wizard-dialog', () => {

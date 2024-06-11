@@ -6,7 +6,7 @@ import '@material/mwc-icon';
 import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
-import '@openscd/open-scd/src/filtered-list.js';
+import '@openscd/components/filtered-list.js';
 import {
   find,
   identity,
@@ -17,9 +17,7 @@ import {
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
 
-import {
-  createElement,
-} from '@openscd/xml';
+import { createElement } from '@openscd/xml';
 
 import { clientIcon } from '@openscd/open-scd/src/icons/icons.js';
 import { openCommunicationMappingWizard } from './commmap-wizards.js';

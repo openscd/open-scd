@@ -67,7 +67,7 @@ snapshots["extref-later-binding-list for Sampled Value Control when SVC has no s
       aria-disabled="false"
       graphic="large"
       mwc-list-item=""
-      tabindex="-1"
+      tabindex="0"
       twoline=""
       value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR2/AmpSv/instMag.i[0]"
     >
@@ -265,7 +265,7 @@ snapshots["extref-later-binding-list for Sampled Value Control when SVC has a si
       aria-disabled="false"
       graphic="large"
       mwc-list-item=""
-      tabindex="-1"
+      tabindex="0"
       twoline=""
       value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/instMag.i[0]"
     >
@@ -497,7 +497,7 @@ snapshots["extref-later-binding-list when SVC has a multiple subscriptions looks
       aria-disabled="false"
       graphic="large"
       mwc-list-item=""
-      tabindex="-1"
+      tabindex="0"
       twoline=""
       value="SMV_Subscriber>>Overvoltage> PTRC 1>AmpSv;TCTR1/AmpSv/q[0]"
     >
@@ -793,7 +793,7 @@ snapshots["extref-later-binding-list for GOOSE Control when GSEControl has no su
       aria-disabled="false"
       graphic="large"
       mwc-list-item=""
-      tabindex="-1"
+      tabindex="0"
       twoline=""
       value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/stVal[0]"
     >
@@ -915,7 +915,7 @@ snapshots["extref-later-binding-list for GOOSE Control when GSEControl has a sin
       aria-disabled="false"
       graphic="large"
       mwc-list-item=""
-      tabindex="-1"
+      tabindex="0"
       twoline=""
       value="GOOSE_Subscriber>>Earth_Switch> CSWI 1>Pos;CSWI1/Pos/stVal[0]"
     >
@@ -1071,7 +1071,7 @@ snapshots["extref-later-binding-list when GSEControl has a multiple subscription
       aria-disabled="false"
       graphic="large"
       mwc-list-item=""
-      tabindex="-1"
+      tabindex="0"
       twoline=""
       value="GOOSE_Subscriber>>Earth_Switch> CILO 1>Pos;CSWI1/Pos/q[0]"
     >

@@ -11,7 +11,7 @@ import { get } from 'lit-translate';
 import '@material/mwc-icon-button-toggle';
 import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 
-import '@openscd/open-scd/src/action-pane.js';
+import '@openscd/components/action-pane.js';
 import './da-container.js';
 
 import {
