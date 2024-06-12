@@ -337,13 +337,6 @@ export class OpenSCD extends LitElement {
     </oscd-waiter>`;
   }
 
-  openDoc(doc: XMLDocument, docName: string) {
-    this.doc = doc;
-    this.docName = docName;
-
-    this.requestUpdate('doc');
-  }
-
   private storePlugins(plugins: Array<Plugin | InstalledOfficialPlugin>) {
     localStorage.setItem(
       'plugins',
