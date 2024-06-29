@@ -35,6 +35,13 @@ export const officialPlugins = [
     kind: 'editor',
   },
   {
+    name: 'Template Generator',
+    src: 'https://sprinteins.github.io/oscd-template-generator/oscd-template-generator.js',
+    icon: 'account_tree',
+    default: true,
+    kind: 'editor',
+  },
+  {
     name: 'Substation',
     src: '/src/editors/Substation.js',
     icon: 'margin',
