@@ -6,6 +6,7 @@ import { get } from 'lit-translate';
 import {
   getInstanceAttribute,
   getNameAttribute,
+  newWizardEvent,
 } from '@openscd/open-scd/src/foundation.js';
 import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 
@@ -13,6 +14,7 @@ import '@openscd/open-scd/src/action-pane.js';
 import './do-container.js';
 
 import { Container } from './foundation.js';
+import { wizards } from '../../wizards/wizard-library.js';
 
 /** [[`IED`]] plugin subeditor for editing `LN` and `LN0` element. */
 @customElement('ln-container')
@@ -23,11 +25,13 @@ export class LNContainer extends Container {
   private header(): TemplateResult {
     const prefix = this.element.getAttribute('prefix');
     const inst = getInstanceAttribute(this.element);
+    const desc = this.element.getAttribute('desc');
 
     const data = this.nsdoc.getDataDescription(this.element);
 
     return html`${prefix != null ? html`${prefix} &mdash; ` : nothing}
-    ${data.label} ${inst ? html` &mdash; ${inst}` : nothing}`;
+    ${data.label} ${inst ? html` &mdash; ${inst}` : nothing}
+    ${desc ? html` &mdash; ${desc}` : nothing}`;
   }
 
   /**
@@ -55,12 +59,26 @@ export class LNContainer extends Container {
     return this.element.querySelector(`:scope > DOI[name="${doName}"]`);
   }
 
+  private openEditWizard(): void {
+    const wizardType = this.element.tagName === 'LN' ? 'LN' : 'LN0';
+    const wizard = wizards[wizardType].edit(this.element);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
+
   render(): TemplateResult {
     const doElements = this.getDOElements();
 
     return html`<action-pane .label="${until(this.header())}">
       ${doElements.length > 0
-        ? html`<abbr
+        ? html`<abbr slot="action">
+          <mwc-icon-button
+            slot="action"
+            mini
+            icon="edit"
+            @click="${() => this.openEditWizard()}}"
+          ></mwc-icon-button>
+        </abbr>
+        <abbr
             slot="action"
             title="${get('iededitor.toggleChildElements')}"
           >

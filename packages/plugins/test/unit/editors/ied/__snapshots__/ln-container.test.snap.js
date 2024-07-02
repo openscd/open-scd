@@ -3,6 +3,14 @@ export const snapshots = {};
 
 snapshots["looks like the latest snapshot with a LN0 element."] = 
 `<action-pane tabindex="0">
+  <abbr slot="action">
+    <mwc-icon-button
+      icon="edit"
+      mini=""
+      slot="action"
+    >
+    </mwc-icon-button>
+  </abbr>
   <abbr
     slot="action"
     title="[iededitor.toggleChildElements]"
@@ -20,6 +28,14 @@ snapshots["looks like the latest snapshot with a LN0 element."] =
 
 snapshots["looks like the latest snapshot with a LN0 element and child elements are toggled."] = 
 `<action-pane tabindex="0">
+  <abbr slot="action">
+    <mwc-icon-button
+      icon="edit"
+      mini=""
+      slot="action"
+    >
+    </mwc-icon-button>
+  </abbr>
   <abbr
     slot="action"
     title="[iededitor.toggleChildElements]"
@@ -50,6 +66,14 @@ snapshots["looks like the latest snapshot with a LN0 element and child elements 
 
 snapshots["looks like the latest snapshot with a LN element."] = 
 `<action-pane tabindex="0">
+  <abbr slot="action">
+    <mwc-icon-button
+      icon="edit"
+      mini=""
+      slot="action"
+    >
+    </mwc-icon-button>
+  </abbr>
   <abbr
     slot="action"
     title="[iededitor.toggleChildElements]"
@@ -67,6 +91,14 @@ snapshots["looks like the latest snapshot with a LN element."] =
 
 snapshots["looks like the latest snapshot with a LN element and child elements are toggled."] = 
 `<action-pane tabindex="0">
+  <abbr slot="action">
+    <mwc-icon-button
+      icon="edit"
+      mini=""
+      slot="action"
+    >
+    </mwc-icon-button>
+  </abbr>
   <abbr
     slot="action"
     title="[iededitor.toggleChildElements]"

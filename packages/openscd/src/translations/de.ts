@@ -272,6 +272,29 @@ export const de: Translations = {
       },
     },
   },
+  ln: {
+    wizard: {
+      title: {
+        edit: 'LN bearbeiten',
+      },
+      descHelper: 'Logical Node Beschreibung',
+      lnTypeHelper: 'Logical Node Typ',
+      prefixHelper: 'Prefix des Logical Nodes',
+      lnClassHelper: 'Logical Node Klasse',
+      instHelper: 'Instanz',
+    }
+  },
+  ln0: {
+    wizard: {
+      title: {
+        edit: 'LN0 bearbeiten',
+      },
+      descHelper: 'Logical Node Beschreibung',
+      lnTypeHelper: 'Logical Node Typ',
+      lnClassHelper: 'Logical Node Klasse',
+      instHelper: 'Instanz',
+    }
+  },
   powertransformer: {
     wizard: {
       nameHelper: '`Name des Leistungstransformators',
