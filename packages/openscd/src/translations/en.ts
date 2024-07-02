@@ -269,6 +269,29 @@ export const en = {
       },
     },
   },
+  ln: {
+    wizard: {
+      title: {
+        edit: 'Edit LN',
+      },
+      descHelper: 'Logical node description',
+      lnTypeHelper: 'Logical node type',
+      prefixHelper: 'Prefix of the logical node',
+      lnClassHelper: 'Logical node class',
+      instHelper: 'Instance',
+    }
+  },
+  ln0: {
+    wizard: {
+      title: {
+        edit: 'Edit LN0',
+      },
+      descHelper: 'Logical node description',
+      lnTypeHelper: 'Logical node type',
+      lnClassHelper: 'Logical node class',
+      instHelper: 'Instance',
+    }
+  },
   powertransformer: {
     wizard: {
       nameHelper: 'Power transformer name',
