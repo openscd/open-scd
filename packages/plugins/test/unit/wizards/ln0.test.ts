@@ -2,23 +2,22 @@ import { expect, fixture, html } from '@open-wc/testing';
 import '@openscd/open-scd/src/addons/Wizards.js';
 import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards';
 
-import { editLNWizard } from '../../../src/wizards/ln.js';
+import { editLN0Wizard } from '../../../src/wizards/ln0.js';
 import { WizardInputElement } from '@openscd/open-scd/src/foundation.js';
 import { fetchDoc, setWizardTextFieldValue } from './test-support.js';
 import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
 
 
 
-describe('ln wizards', () => {
+describe('ln0 wizards', () => {
   let doc: XMLDocument;
   let element: OscdWizards;
   let inputs: WizardInputElement[];
 
   const values = {
-    lnType: 'LN-type',
-    desc: 'LN-description',
-    prefix: 'LN-prefix',
-    lnClass: 'LN-class',
+    lnType: 'LN0-type',
+    desc: 'LN0-description',
+    lnClass: 'LN0-class',
     inst: '1',
   };
   const requiredFields = [
@@ -29,7 +28,7 @@ describe('ln wizards', () => {
 
   const ln = <Element>(
     new DOMParser().parseFromString(
-      `<LN desc="${values.desc}" lnType="${values.lnType}" inst="${values.inst}" lnClass="${values.lnClass}" prefix="${values.prefix}"></LN>`,
+      `<LN0 desc="${values.desc}" lnType="${values.lnType}" inst="${values.inst}" lnClass="${values.lnClass}"></LN0>`,
       'application/xml'
     ).documentElement
   );
@@ -40,7 +39,7 @@ describe('ln wizards', () => {
     element = await fixture(
       html`<oscd-wizards .host=${document}></oscd-wizards>`
     );
-    const wizard = editLNWizard(ln);
+    const wizard = editLN0Wizard(ln);
 
     element.workflow.push(() => wizard);
     await element.requestUpdate();
