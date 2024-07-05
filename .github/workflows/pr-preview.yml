@@ -26,9 +26,8 @@ jobs:
           npm i @nx/nx-linux-x64-gnu
           npm clean-install
           npm run-script build
-          npm run-script doc
 
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         with:
-          source-dir: ./build/
+          source-dir: packages/openscd/dist
