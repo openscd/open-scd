@@ -19,6 +19,7 @@ node_modules/
 /custom-elements.json
 /.tsbuildinfo
 /.rollup.cache
+/build
 
 # lerna
 /lerna-debug.log

@@ -1,0 +1,33 @@
+name: Deploy PR previews
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - closed
+    paths:
+      - "packages/openscd/**"
+
+concurrency: preview-${{ github.ref }}
+
+jobs:
+  deploy-preview:
+    permissions: write-all
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install and Build OpenSCD
+        if: github.event.action != 'closed' # You might want to skip the build if the PR has been closed
+        run: |
+          npm i @nx/nx-linux-x64-gnu
+          npm clean-install
+          npm run-script build
+
+      - name: Deploy preview
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: packages/openscd/dist
