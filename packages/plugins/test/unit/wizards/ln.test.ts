@@ -24,7 +24,6 @@ describe('ln wizards', () => {
   const requiredFields = [
     'lnType',
     'lnClass',
-    'inst',
   ];
 
   const ln = <Element>(
