@@ -132,6 +132,7 @@ export function getExtRef(
   control: Element | undefined
 ): Element | undefined {
   function createCriteria(attributeName: string, value: string | null): string {
+    // If ExtRef is missing 'srcLNClass', it defaults to 'LLN0' as specified in the standard
     if (attributeName === 'srcLNClass' && value === 'LLN0') {
       return '';
     }
