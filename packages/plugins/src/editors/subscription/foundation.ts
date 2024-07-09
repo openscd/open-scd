@@ -132,6 +132,11 @@ export function getExtRef(
   control: Element | undefined
 ): Element | undefined {
   function createCriteria(attributeName: string, value: string | null): string {
+    // TODO: Can we safely ignore srcLNClass? What about elements with a different value
+    if (attributeName === 'srcLNClass' && value === 'LLN0') {
+      return '';
+    }
+
     if (value) {
       return `[${attributeName}="${value}"]`;
     }

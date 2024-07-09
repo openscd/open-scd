@@ -163,6 +163,9 @@ function checkEditionSpecificRequirements(
   const lDeviceElement = controlElement?.closest('LDevice') ?? undefined;
   const lnElement = controlElement?.closest('LN0') ?? undefined;
 
+  // If ExtRef is missing 'srcLNClass', it defaults to 'LLN0' as specified in the standard
+  const canIgnoreSrcLNClass = lnElement?.getAttribute('lnClass') === 'LLN0' && !extRefElement.hasAttribute('srcLNClass');
+
   // For the 2007B and 2007B4 Edition we need to check some extra attributes.
   return (
     (extRefElement.getAttribute('serviceType') ?? '') ===
@@ -179,12 +182,12 @@ function checkEditionSpecificRequirements(
       lnElement,
       'prefix'
     ) &&
-    sameAttributeValueDiffName(
+    (canIgnoreSrcLNClass || sameAttributeValueDiffName(
       extRefElement,
       'srcLNClass',
       lnElement,
       'lnClass'
-    ) &&
+    )) &&
     sameAttributeValueDiffName(extRefElement, 'srcLNInst', lnElement, 'inst') &&
     sameAttributeValueDiffName(
       extRefElement,
