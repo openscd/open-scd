@@ -322,3 +322,44 @@ describe('FCDA specification', () => {
       bType: 'INT32',
     }));
 });
+
+describe('use default value for ExtRef without srcLNClass attribute', () => {
+  let doc: XMLDocument;
+  beforeEach(async () => {
+    doc = await fetch('/test/testfiles/editors/ExtRefWithoutSrcLNClass.scd')
+      .then(response => response.text())
+      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+  });
+
+  it('should correctly consider ExtRef with srcLNClass attribute as subscribed', () => {
+    const fcda = doc.querySelector(
+      'FCDA[ldInst="QB2_Disconnector"][doName="Pos"][daName="stVal"]'
+    )!;
+    const controlBlock = doc.querySelector(
+      'IED[name="Publisher"] GSEControl[name="GOOSE2"]'
+    )!;
+
+    const extRef = doc.querySelector(
+      'ExtRef[iedName="Publisher"][ldInst="QB2_Disconnector"][doName="Pos"][daName="stVal"][srcLNClass="LLN0"]'
+    )!;
+
+    const isSubscribed = isSubscribedTo('GSEControl', controlBlock, fcda, extRef);
+    expect(isSubscribed).to.be.true;
+  });
+
+  it('should correctly consider ExtRef without srcLNClass attribute as subscribed', () => {
+    const fcda = doc.querySelector(
+      'FCDA[ldInst="QB2_Disconnector"][doName="Pos"][daName="q"]'
+    )!;
+    const controlBlock = doc.querySelector(
+      'IED[name="Publisher"] GSEControl[name="GOOSE2"]'
+    )!;
+
+    const extRef = doc.querySelector(
+      'ExtRef[iedName="Publisher"][ldInst="QB2_Disconnector"][doName="Pos"][daName="q"]'
+    )!;
+
+    const isSubscribed = isSubscribedTo('GSEControl', controlBlock, fcda, extRef);
+    expect(isSubscribed).to.be.true;
+  });
+});
