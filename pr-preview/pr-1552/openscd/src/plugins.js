@@ -1,105 +1,108 @@
+function generatePluginPath(plugin) {
+  return location.origin + location.pathname + plugin;
+}
 export const officialPlugins = [
   {
     name: "IED",
-    src: location.href + "plugins/src/editors/IED.js",
+    src: generatePluginPath("plugins/src/editors/IED.js"),
     icon: "developer_board",
     default: true,
     kind: "editor"
   },
   {
     name: "Substation",
-    src: location.href + "plugins/src/editors/Substation.js",
+    src: generatePluginPath("plugins/src/editors/Substation.js"),
     icon: "margin",
     default: true,
     kind: "editor"
   },
   {
     name: "Single Line Diagram",
-    src: location.href + "plugins/src/editors/SingleLineDiagram.js",
+    src: generatePluginPath("plugins/src/editors/SingleLineDiagram.js"),
     icon: "edit",
     default: false,
     kind: "editor"
   },
   {
     name: "Subscriber Message Binding (GOOSE)",
-    src: location.href + "plugins/src/editors/GooseSubscriberMessageBinding.js",
+    src: generatePluginPath("plugins/src/editors/GooseSubscriberMessageBinding.js"),
     icon: "link",
     default: false,
     kind: "editor"
   },
   {
     name: "Subscriber Data Binding (GOOSE)",
-    src: location.href + "plugins/src/editors/GooseSubscriberDataBinding.js",
+    src: generatePluginPath("plugins/src/editors/GooseSubscriberDataBinding.js"),
     icon: "link",
     default: false,
     kind: "editor"
   },
   {
     name: "Subscriber Later Binding (GOOSE)",
-    src: location.href + "plugins/src/editors/GooseSubscriberLaterBinding.js",
+    src: generatePluginPath("plugins/src/editors/GooseSubscriberLaterBinding.js"),
     icon: "link",
     default: true,
     kind: "editor"
   },
   {
     name: "Subscriber Message Binding (SMV)",
-    src: location.href + "plugins/src/editors/SMVSubscriberMessageBinding.js",
+    src: generatePluginPath("plugins/src/editors/SMVSubscriberMessageBinding.js"),
     icon: "link",
     default: false,
     kind: "editor"
   },
   {
     name: "Subscriber Data Binding (SMV)",
-    src: location.href + "plugins/src/editors/SMVSubscriberDataBinding.js",
+    src: generatePluginPath("plugins/src/editors/SMVSubscriberDataBinding.js"),
     icon: "link",
     default: false,
     kind: "editor"
   },
   {
     name: "Subscriber Later Binding (SMV)",
-    src: location.href + "plugins/src/editors/SMVSubscriberLaterBinding.js",
+    src: generatePluginPath("plugins/src/editors/SMVSubscriberLaterBinding.js"),
     icon: "link",
     default: true,
     kind: "editor"
   },
   {
     name: "Communication",
-    src: location.href + "plugins/src/editors/Communication.js",
+    src: generatePluginPath("plugins/src/editors/Communication.js"),
     icon: "settings_ethernet",
     default: true,
     kind: "editor"
   },
   {
     name: "104",
-    src: location.href + "plugins/src/editors/Protocol104.js",
+    src: generatePluginPath("plugins/src/editors/Protocol104.js"),
     icon: "settings_ethernet",
     default: false,
     kind: "editor"
   },
   {
     name: "Templates",
-    src: location.href + "plugins/src/editors/Templates.js",
+    src: generatePluginPath("plugins/src/editors/Templates.js"),
     icon: "copy_all",
     default: true,
     kind: "editor"
   },
   {
     name: "Publisher",
-    src: location.href + "plugins/src/editors/Publisher.js",
+    src: generatePluginPath("plugins/src/editors/Publisher.js"),
     icon: "publish",
     default: false,
     kind: "editor"
   },
   {
     name: "Cleanup",
-    src: location.href + "plugins/src/editors/Cleanup.js",
+    src: generatePluginPath("plugins/src/editors/Cleanup.js"),
     icon: "cleaning_services",
     default: false,
     kind: "editor"
   },
   {
     name: "Open project",
-    src: location.href + "plugins/src/menu/OpenProject.js",
+    src: generatePluginPath("plugins/src/menu/OpenProject.js"),
     icon: "folder_open",
     default: true,
     kind: "menu",
@@ -108,7 +111,7 @@ export const officialPlugins = [
   },
   {
     name: "New project",
-    src: location.href + "plugins/src/menu/NewProject.js",
+    src: generatePluginPath("plugins/src/menu/NewProject.js"),
     icon: "create_new_folder",
     default: true,
     kind: "menu",
@@ -117,7 +120,7 @@ export const officialPlugins = [
   },
   {
     name: "Save project",
-    src: location.href + "plugins/src/menu/SaveProject.js",
+    src: generatePluginPath("plugins/src/menu/SaveProject.js"),
     icon: "save",
     default: true,
     kind: "menu",
@@ -126,21 +129,21 @@ export const officialPlugins = [
   },
   {
     name: "Validate Schema",
-    src: location.href + "plugins/src/validators/ValidateSchema.js",
+    src: generatePluginPath("plugins/src/validators/ValidateSchema.js"),
     icon: "rule_folder",
     default: true,
     kind: "validator"
   },
   {
     name: "Validate Templates",
-    src: location.href + "plugins/src/validators/ValidateTemplates.js",
+    src: generatePluginPath("plugins/src/validators/ValidateTemplates.js"),
     icon: "rule_folder",
     default: true,
     kind: "validator"
   },
   {
     name: "Import IEDs",
-    src: location.href + "plugins/src/menu/ImportIEDs.js",
+    src: generatePluginPath("plugins/src/menu/ImportIEDs.js"),
     icon: "snippet_folder",
     default: true,
     kind: "menu",
@@ -149,7 +152,7 @@ export const officialPlugins = [
   },
   {
     name: "Create Virtual IED",
-    src: location.href + "plugins/src/menu/VirtualTemplateIED.js",
+    src: generatePluginPath("plugins/src/menu/VirtualTemplateIED.js"),
     icon: "developer_board",
     default: false,
     kind: "menu",
@@ -158,7 +161,7 @@ export const officialPlugins = [
   },
   {
     name: "Subscriber Update",
-    src: location.href + "plugins/src/menu/SubscriberInfo.js",
+    src: generatePluginPath("plugins/src/menu/SubscriberInfo.js"),
     default: true,
     kind: "menu",
     requireDoc: true,
@@ -166,7 +169,7 @@ export const officialPlugins = [
   },
   {
     name: "Update desc (ABB)",
-    src: location.href + "plugins/src/menu/UpdateDescriptionABB.js",
+    src: generatePluginPath("plugins/src/menu/UpdateDescriptionABB.js"),
     default: false,
     kind: "menu",
     requireDoc: true,
@@ -174,7 +177,7 @@ export const officialPlugins = [
   },
   {
     name: "Update desc (SEL)",
-    src: location.href + "plugins/src/menu/UpdateDescriptionSEL.js",
+    src: generatePluginPath("plugins/src/menu/UpdateDescriptionSEL.js"),
     default: false,
     kind: "menu",
     requireDoc: true,
@@ -182,7 +185,7 @@ export const officialPlugins = [
   },
   {
     name: "Merge Project",
-    src: location.href + "plugins/src/menu/Merge.js",
+    src: generatePluginPath("plugins/src/menu/Merge.js"),
     icon: "merge_type",
     default: true,
     kind: "menu",
@@ -191,7 +194,7 @@ export const officialPlugins = [
   },
   {
     name: "Update Substation",
-    src: location.href + "plugins/src/menu/UpdateSubstation.js",
+    src: generatePluginPath("plugins/src/menu/UpdateSubstation.js"),
     icon: "merge_type",
     default: true,
     kind: "menu",
@@ -200,7 +203,7 @@ export const officialPlugins = [
   },
   {
     name: "Compare IED",
-    src: location.href + "plugins/src/menu/CompareIED.js",
+    src: generatePluginPath("plugins/src/menu/CompareIED.js"),
     icon: "compare_arrows",
     default: true,
     kind: "menu",
@@ -209,7 +212,7 @@ export const officialPlugins = [
   },
   {
     name: "Show SCL History",
-    src: location.href + "plugins/src/menu/SclHistory.js",
+    src: generatePluginPath("plugins/src/menu/SclHistory.js"),
     icon: "history_toggle_off",
     default: true,
     kind: "menu",
@@ -218,7 +221,7 @@ export const officialPlugins = [
   },
   {
     name: "Help",
-    src: location.href + "plugins/src/menu/Help.js",
+    src: generatePluginPath("plugins/src/menu/Help.js"),
     icon: "help",
     default: true,
     kind: "menu",
@@ -227,7 +230,7 @@ export const officialPlugins = [
   },
   {
     name: "Export Communication Section",
-    src: location.href + "plugins/src/menu/ExportCommunication.js",
+    src: generatePluginPath("plugins/src/menu/ExportCommunication.js"),
     icon: "sim_card_download",
     default: false,
     kind: "menu",
