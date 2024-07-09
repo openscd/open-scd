@@ -3,6 +3,7 @@ import { expect } from '@open-wc/testing';
 import {
   createExtRefElement,
   getExistingSupervision,
+  getExtRef,
   getFirstSubscribedExtRef,
   instantiatedSupervisionsCount,
   updateExtRefElement,
@@ -283,6 +284,54 @@ describe('foundation', () => {
       const subscriberIED = doc.querySelector('IED[name="GOOSE_Subscriber3"]')!;
       const count = instantiatedSupervisionsCount(subscriberIED, controlBlock);
       expect(count).to.equal(0);
+    });
+  });
+
+  describe('use default value for ExtRef without srcLNClass attribute', () => {
+    beforeEach(async () => {
+      doc = await fetch('/test/testfiles/editors/ExtRefWithoutSrcLNClass.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+    });
+
+    it('should correctly fetch ExtRef with srcLNClass attribute', () => {
+      const inputs = doc.querySelector(
+        'LDevice[inst="Earth_Switch"] LN0 Inputs'
+      )!;
+      const fcda = doc.querySelector(
+        'FCDA[ldInst="QB2_Disconnector"][doName="Pos"][daName="stVal"]'
+      )!;
+      const controlBlock = doc.querySelector(
+        'IED[name="Publisher"] GSEControl[name="GOOSE2"]'
+      )!;
+
+      const expectedExtRef = doc.querySelector(
+        'ExtRef[iedName="Publisher"][ldInst="QB2_Disconnector"][doName="Pos"][daName="stVal"][srcLNClass="LLN0"]'
+      )!;
+
+      const extRef = getExtRef(inputs, fcda, controlBlock);
+
+      expect(extRef).to.equal(expectedExtRef)
+    });
+
+    it('should correctly fetch ExtRef without srcLNClass attribute', () => {
+      const inputs = doc.querySelector(
+        'LDevice[inst="Earth_Switch"] LN0 Inputs'
+      )!;
+      const fcda = doc.querySelector(
+        'FCDA[ldInst="QB2_Disconnector"][doName="Pos"][daName="q"]'
+      )!;
+      const controlBlock = doc.querySelector(
+        'IED[name="Publisher"] GSEControl[name="GOOSE2"]'
+      )!;
+
+      const expectedExtRef = doc.querySelector(
+        'ExtRef[iedName="Publisher"][ldInst="QB2_Disconnector"][doName="Pos"][daName="q"]'
+      )!;
+
+      const extRef = getExtRef(inputs, fcda, controlBlock);
+
+      expect(extRef).to.equal(expectedExtRef)
     });
   });
 });
