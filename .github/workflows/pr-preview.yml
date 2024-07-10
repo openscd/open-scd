@@ -1,5 +1,6 @@
 name: Deploy PR previews
 
+
 on:
   pull_request:
     types:
@@ -8,9 +9,11 @@ on:
       - synchronize
       - closed
     paths:
-      - "packages/openscd/**"
+      - "packages/**"
 
 concurrency: preview-${{ github.ref }}
+env:
+  PR_NUMBER: ${{ github.event.number }}
 
 jobs:
   deploy-preview:
@@ -25,9 +28,11 @@ jobs:
         run: |
           npm i @nx/nx-linux-x64-gnu
           npm clean-install
-          npm run-script build
+          PUBLIC_URL=open-scd/pr-preview/pr-$PR_NUMBER npm run-script build
 
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         with:
-          source-dir: packages/openscd/dist
+          source-dir: packages/distribution/build
+          umbrella-dir: pr-preview
+
