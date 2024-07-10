@@ -44,7 +44,7 @@ describe('ValidateSchema plugin', () => {
       await parent.updateComplete;
     });
 
-    it.only('zeroissues indication looks like the latest snapshot', async () => {
+    it('zeroissues indication looks like the latest snapshot', async () => {
       await parent.requestUpdate();
       await expect(parent.historyAddon.diagnosticUI).to.equalSnapshot();
     });
