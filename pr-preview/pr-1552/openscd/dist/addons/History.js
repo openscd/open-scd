@@ -18,11 +18,20 @@ const icons = {
     error: 'report',
 };
 function getPluginName(src) {
-    const plugin = (JSON.parse(localStorage.getItem('plugins') ?? '[]').find((p) => p.src === src));
-    if (!plugin)
-        return src;
-    const name = plugin.name;
-    return name || src;
+    let storedPluginsString = localStorage.getItem('plugins');
+    if (!storedPluginsString) {
+        storedPluginsString = '[]';
+    }
+    const storedPlugins = JSON.parse(storedPluginsString);
+    const wantedPlugin = storedPlugins.find((p) => p.src === src);
+    if (!wantedPlugin) {
+        return `pluginnotfound: ${src} in ${storedPluginsString}`;
+    }
+    const name = wantedPlugin.name;
+    if (!name) {
+        return `pluginhasnoname:${src}`;
+    }
+    return name;
 }
 export var HistoryUIKind;
 (function (HistoryUIKind) {
@@ -290,9 +299,11 @@ let OscdHistory = class OscdHistory extends LitElement {
         if (issues.length === 0)
             return [html ``];
         return [
-            html `<mwc-list-item noninteractive
-        >${getPluginName(issues[0].validatorId)}</mwc-list-item
-      >`,
+            html `
+        <mwc-list-item noninteractive>
+          ${getPluginName(issues[0].validatorId)}
+        </mwc-list-item>
+      `,
             html `<li divider padded role="separator"></li>`,
             ...issues.map(issue => this.renderIssueEntry(issue)),
         ];
@@ -407,12 +418,12 @@ let OscdHistory = class OscdHistory extends LitElement {
       </style>
       ${this.renderLogDialog()} ${this.renderHistoryUI()}
       <mwc-dialog id="diagnostic" heading="${get('diag.name')}">
-        <filtered-list id="content" wrapFocus
-          >${this.renderIssues()}</filtered-list
-        >
-        <mwc-button slot="primaryAction" dialogaction="close"
-          >${get('close')}</mwc-button
-        >
+        <filtered-list id="content" wrapFocus>
+          ${this.renderIssues()}
+        </filtered-list>
+        <mwc-button slot="primaryAction" dialogaction="close">
+          ${get('close')}
+        </mwc-button>
       </mwc-dialog>
 
       <mwc-snackbar

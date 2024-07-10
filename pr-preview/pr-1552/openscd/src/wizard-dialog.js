@@ -236,8 +236,17 @@ export let WizardDialog = class extends LitElement {
       </mwc-menu>`;
   }
   renderPage(page, index) {
-    const showCodeToggleButton = page.element && localStorage.getItem("mode") === "pro";
-    const extraWidth = showCodeToggleButton && page.menuActions ? 96 : showCodeToggleButton || page.menuActions ? 48 : 0;
+    const isProMode = localStorage.getItem("mode") === "pro";
+    const hasPageElement = Boolean(page.element);
+    const showCodeToggleButton = hasPageElement && isProMode;
+    let extraWidth = 0;
+    if (showCodeToggleButton && page.menuActions) {
+      extraWidth = 96;
+    } else if (showCodeToggleButton || page.menuActions) {
+      extraWidth = 48;
+    } else {
+      extraWidth = 0;
+    }
     return html`<mwc-dialog
       defaultAction="next"
       heading=${page.title}
