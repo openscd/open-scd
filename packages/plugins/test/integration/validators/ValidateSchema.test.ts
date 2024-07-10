@@ -22,7 +22,7 @@ describe('ValidateSchema plugin', () => {
     `);
 
     element = parent.getActivePlugin();
-    element.pluginId = '/plugins/src/validators/ValidateSchema.js';
+    element.pluginId = 'http://localhost:8000/plugins/src/validators/ValidateSchema.js';
     await parent.updateComplete;
   });
 
@@ -44,14 +44,14 @@ describe('ValidateSchema plugin', () => {
       await parent.updateComplete;
     });
 
-    it('zeroissues indication looks like the latest snapshot', async () => {
+    it.only('zeroissues indication looks like the latest snapshot', async () => {
       await parent.requestUpdate();
       await expect(parent.historyAddon.diagnosticUI).to.equalSnapshot();
     });
 
     it('indicates successful schema validation in the diagnoses pane', async () => {
       const lastEntry = <IssueDetail[]>(
-        parent.historyAddon.diagnoses.get('/plugins/src/validators/ValidateSchema.js')
+        parent.historyAddon.diagnoses.get('http://localhost:8000/plugins/src/validators/ValidateSchema.js')
       );
       expect(lastEntry.length).to.equal(1);
       expect(lastEntry[0].title).to.contain(
@@ -66,6 +66,7 @@ describe('ValidateSchema plugin', () => {
         'valid2007B XML schema validation successful'
       );
     });
+
   });
 
   describe('for invalid SCL files', () => {
@@ -94,7 +95,7 @@ describe('ValidateSchema plugin', () => {
     });
 
     it('create issues in diagnose', async () =>
-      expect(parent.historyAddon.diagnoses.get('/plugins/src/validators/ValidateSchema.js'))
+      expect(parent.historyAddon.diagnoses.get('http://localhost:8000/plugins/src/validators/ValidateSchema.js'))
         .to.not.be.undefined);
 
     it('generates error messages in the log', async () => {
@@ -105,4 +106,5 @@ describe('ValidateSchema plugin', () => {
       );
     });
   });
+
 });

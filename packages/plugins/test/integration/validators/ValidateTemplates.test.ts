@@ -26,7 +26,7 @@ describe('ValidateTemplates OpenSCD integration test ', () => {
         ></mock-open-scd>
       `);
       element = parent.getActivePlugin();
-      element.pluginId = '/plugins/src/validators/ValidateTemplates.js';
+      element.pluginId = 'http://localhost:8000/plugins/src/validators/ValidateTemplates.js';
 
       await element.validate();
       await parent.updateComplete;
@@ -51,14 +51,14 @@ describe('ValidateTemplates OpenSCD integration test ', () => {
         ></mock-open-scd>
       `);
       element = parent.getActivePlugin();
-      element.pluginId = '/plugins/src/validators/ValidateTemplates.js';
+      element.pluginId = 'http://localhost:8000/plugins/src/validators/ValidateTemplates.js';
 
       await element.validate();
       await parent.updateComplete;
     });
     it('generates issues in the diagnistics pane', async () => {
       const issues = parent.historyAddon.diagnoses.get(
-        '/plugins/src/validators/ValidateTemplates.js'
+        'http://localhost:8000/plugins/src/validators/ValidateTemplates.js'
       );
       expect(issues?.length).to.equal(28);
     }).timeout(1000);
@@ -79,14 +79,14 @@ describe('ValidateTemplates OpenSCD integration test ', () => {
         ></mock-open-scd>
       `);
       element = parent.getActivePlugin();
-      element.pluginId = '/plugins/src/validators/ValidateTemplates.js';
+      element.pluginId = 'http://localhost:8000/plugins/src/validators/ValidateTemplates.js';
 
       await element.validate();
       await parent.updateComplete;
     });
     it('shows only one message in the diagnostics pane', async () => {
       const issues = parent.historyAddon.diagnoses.get(
-        '/plugins/src/validators/ValidateTemplates.js'
+        'http://localhost:8000/plugins/src/validators/ValidateTemplates.js'
       );
       expect(issues?.length).to.equal(1);
     }).timeout(1000);

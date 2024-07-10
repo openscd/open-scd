@@ -15,10 +15,12 @@ describe('bay-editor wizarding integration', () => {
     doc = await fetch('/test/testfiles/valid2007B4.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
     parent = await fixture(
-      html`<oscd-wizards .host=${document}
-        ><bay-editor .element=${doc.querySelector('Bay')}></bay-editor
-      ></oscd-wizards>`
+      html`
+        <oscd-wizards .host=${document}>
+          <bay-editor .element=${doc.querySelector('Bay')}></bay-editor>
+        </oscd-wizards>`
     );
 
     (<HTMLElement>(
@@ -28,9 +30,11 @@ describe('bay-editor wizarding integration', () => {
     )).click();
     await parent.updateComplete;
   });
+
   it('looks like the latest snapshot', async () => {
     await expect(parent.wizardUI.dialog).to.equalSnapshot();
   });
+
   describe('the first input element', () => {
     it('edits the attribute name', async () => {
       expect(parent.wizardUI.inputs[0].label).to.equal('name');
@@ -45,6 +49,7 @@ describe('bay-editor wizarding integration', () => {
       );
     });
   });
+
   describe('the second input element', () => {
     it('edits the attribute desc', async () => {
       expect(parent.wizardUI.inputs[1].label).to.equal('desc');
@@ -59,4 +64,5 @@ describe('bay-editor wizarding integration', () => {
       );
     });
   });
+
 });
