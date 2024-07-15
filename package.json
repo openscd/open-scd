@@ -23,5 +23,9 @@
   "devDependencies": {
     "lerna": "^7.1.4",
     "nx": "18.3.4"
+  },
+  "optionalDependencies": {
+    "@nx/nx-linux-x64-gnu": "18.3.4"
   }
+
 }
