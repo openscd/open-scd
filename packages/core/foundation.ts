@@ -35,4 +35,3 @@ export type {
   EditCompletedEvent,
   EditCompletedDetail,
 } from './foundation/edit-completed-event.js';
-
