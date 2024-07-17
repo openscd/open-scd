@@ -2,7 +2,6 @@
 
 ## [0.34.0](https://github.com/openscd/open-scd/compare/v0.33.0...v0.34.0) (2024-07-16)
 
-
 ### Features
 
 * **104:** added descriptions to control ti numbers ([#1400](https://github.com/openscd/open-scd/issues/1400)) ([758a3b8](https://github.com/openscd/open-scd/commit/758a3b887b75b1eabdda7add0b3abf4cbe2df949))
@@ -23,7 +22,6 @@
 * Provide ability to see Services section XML ([#1346](https://github.com/openscd/open-scd/issues/1346)) ([83d1d61](https://github.com/openscd/open-scd/commit/83d1d611eeeb79082c7f0eb7934ee045b25fe0c2))
 * set up PR preview ([#1547](https://github.com/openscd/open-scd/issues/1547)) ([fede42b](https://github.com/openscd/open-scd/commit/fede42b43272e4fbf036e18df299a45fe52741cc))
 * support ldname attribute ([#1401](https://github.com/openscd/open-scd/issues/1401)) ([c0972f3](https://github.com/openscd/open-scd/commit/c0972f33b7e386c39a127739b4c2962f9c9a60f4))
-
 
 ### Bug Fixes
 
@@ -54,7 +52,6 @@
 * **wizards/doTypes:** Adjust regular expressions for v flag in template editor ([#1273](https://github.com/openscd/open-scd/issues/1273)) ([baa9bdc](https://github.com/openscd/open-scd/commit/baa9bdcd73bb6db9ab2956dfd58344bc8859262d))
 * **wizards/foundation:** Added missing DAI bTypes ([#1320](https://github.com/openscd/open-scd/issues/1320)) ([0bff5aa](https://github.com/openscd/open-scd/commit/0bff5aa448bdfd94956aa602b74a3f44099facd1))
 * **wizards/foundation:** Escape limit regexes, closes [#1271](https://github.com/openscd/open-scd/issues/1271) ([baa9bdc](https://github.com/openscd/open-scd/commit/baa9bdcd73bb6db9ab2956dfd58344bc8859262d))
-
 
 ### Miscellaneous Chores
 
