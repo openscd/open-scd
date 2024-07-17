@@ -1,5 +1,5 @@
 {
-  "packages/openscd": "0.34.0",
-  "packages/core": "0.1.1",
-  ".": "0.34.0"
+  "packages/openscd": "0.35.0",
+  "packages/core": "0.1.2",
+  ".": "0.35.0"
 }
