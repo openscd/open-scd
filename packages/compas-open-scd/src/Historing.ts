@@ -33,6 +33,7 @@ import {
 } from '@openscd/core/foundation/deprecated/history.js';
 import {
   newActionEvent,
+  invert,
 } from '@openscd/core/foundation/deprecated/editor.js';
 import {
   ifImplemented,

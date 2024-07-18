@@ -1,10 +1,11 @@
 import {expect, fixture, html} from "@open-wc/testing";
 
-import {MockWizard} from "open-scd/test/mock-wizard.js";
-import {fetchDoc, setWizardTextFieldValue} from "open-scd/test/unit/wizards/test-support.js";
-import {initializeNsdoc, Nsdoc} from "open-scd/src/foundation/nsdoc.js";
-import {WizardTextField} from "open-scd/src/wizard-textfield.js";
-import {ComplexAction, isSimple, isReplace, Replace, WizardAction} from "open-scd/src/foundation.js";
+import {MockWizardEditor} from "@openscd/open-scd/test/mock-wizard-editor.js";
+import {fetchDoc, setWizardTextFieldValue} from "@openscd/plugins/test/unit/wizards/test-support.js";
+import {initializeNsdoc, Nsdoc} from "@openscd/open-scd/src/foundation/nsdoc.js";
+import {WizardTextField} from "@openscd/open-scd/src/wizard-textfield.js";
+import {WizardAction} from "@openscd/open-scd/src/foundation.js";
+import {ComplexAction, isSimple, isReplace, Replace} from "@openscd/core/foundation/deprecated/editor.js";
 
 import "open-scd/test/mock-wizard.js";
 
@@ -23,7 +24,7 @@ describe('Wizards for Locamation Plugin to edit the selected Logical Node - ', (
   });
 
   describe('starting screen as wizard - ', async () => {
-    let element: MockWizard;
+    let element: MockWizardEditor;
 
     beforeEach(async () => {
       logicalNode = doc.querySelector('LN[prefix="I01A"][lnClass="TCTR"]')!
