@@ -26,11 +26,11 @@ export default ({
   ],
   workspaceRoot: "../../",
   mount: {
-    "../open-scd/": "/open-scd/",
+    '../openscd/': '/openscd/',
     "./": "/",
   },
   alias: {
-    "open-scd": "../open-scd/",
+    '@openscd/open-scd': '../openscd/',
   },
 });
 
