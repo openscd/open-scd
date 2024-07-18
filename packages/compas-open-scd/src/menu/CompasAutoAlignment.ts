@@ -6,7 +6,7 @@ import {
   newWizardEvent,
   Wizard,
   WizardInputElement,
-} from 'open-scd/src/foundation.js';
+} from '@openscd/open-scd/src/foundation.js';
 
 import CompasAutoAlignmentElement from '../compas/CompasAutoAlignment.js';
 

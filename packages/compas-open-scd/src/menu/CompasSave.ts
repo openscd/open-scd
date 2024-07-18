@@ -12,7 +12,7 @@ import '@material/mwc-button';
 import '@material/mwc-dialog';
 import { Dialog } from '@material/mwc-dialog';
 
-import { newPendingStateEvent } from 'open-scd/src/foundation.js';
+import { newPendingStateEvent } from '@openscd/core/foundation/deprecated/waiter.js';
 
 import CompasSaveElement from '../compas/CompasSave.js';
 

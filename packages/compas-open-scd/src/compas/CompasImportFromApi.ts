@@ -6,7 +6,7 @@ import {
   newOpenDocEvent,
   newPendingStateEvent,
   newWizardEvent,
-} from 'open-scd/src/foundation.js';
+} from '@openscd/open-scd/src/foundation.js';
 
 import 'open-scd/src/filtered-list.js';
 

@@ -15,7 +15,8 @@ import { Drawer } from '@material/mwc-drawer';
 import { ActionDetail, List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 
-import { Mixin, newPendingStateEvent } from 'open-scd/src/foundation.js';
+import { Mixin } from '@openscd/open-scd/src/foundation.js';
+import { newPendingStateEvent } from '@openscd/core/foundation/deprecated/waiter.js';
 import { UserInfoEvent } from './compas/foundation.js';
 import { HistoringElement } from './Historing.js';
 import { PluggingElement, Plugin, pluginIcons } from './Plugging.js';

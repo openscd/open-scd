@@ -9,7 +9,7 @@ import {
   Wizard,
   WizardActor,
   WizardInputElement,
-} from 'open-scd/src/foundation.js';
+} from '@openscd/open-scd/src/foundation.js';
 
 import '../compas/CompasLabelsField.js';
 

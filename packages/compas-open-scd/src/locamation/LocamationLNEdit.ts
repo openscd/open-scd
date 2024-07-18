@@ -9,8 +9,8 @@ import {
   WizardAction,
   WizardInputElement,
   wizardInputSelector
-} from 'open-scd/src/foundation.js';
-import {Nsdoc} from "open-scd/src/foundation/nsdoc.js";
+} from '@openscd/open-scd/src/foundation.js';
+import {Nsdoc} from "@openscd/open-scd/src/foundation/nsdoc.js";
 
 import 'open-scd/src/wizard-textfield.js';
 

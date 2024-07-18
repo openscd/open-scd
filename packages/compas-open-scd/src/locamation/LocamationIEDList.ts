@@ -4,9 +4,9 @@ import {get, translate} from "lit-translate";
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 
-import {newSubWizardEvent, newWizardEvent, Wizard, WizardInputElement} from 'open-scd/src/foundation.js';
+import {newSubWizardEvent, newWizardEvent, Wizard, WizardInputElement} from '@openscd/open-scd/src/foundation.js';
 import {isSCLNamespace} from "open-scd/src/schemas.js";
-import {Nsdoc} from "open-scd/src/foundation/nsdoc.js";
+import {Nsdoc} from "@openscd/open-scd/src/foundation/nsdoc.js";
 
 import {iedHeader, lDeviceHeader, LOCAMATION_MANUFACTURER, LOCAMATION_PRIVATE} from "./foundation.js";
 import {locamationLNListWizard} from "./LocamationLNList.js";

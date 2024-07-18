@@ -11,7 +11,7 @@ import {
   newWizardEvent,
   Wizard,
   WizardInputElement,
-} from 'open-scd/src/foundation.js';
+} from '@openscd/open-scd/src/foundation.js';
 
 import 'open-scd/src/wizard-textfield.js';
 

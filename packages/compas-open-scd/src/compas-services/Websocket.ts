@@ -1,4 +1,4 @@
-import { newPendingStateEvent } from 'open-scd/src/foundation.js';
+import { newPendingStateEvent } from '@openscd/core/foundation/deprecated/waiter.js';
 import {
   APPLICATION_ERROR,
   extractErrorMessage,

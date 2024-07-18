@@ -14,7 +14,7 @@ import { TextFieldBase } from '@material/mwc-textfield/mwc-textfield-base';
 import '@material/mwc-textfield';
 import '@material/mwc-button';
 
-import { newLogEvent } from 'open-scd/src/foundation.js';
+import { newLogEvent } from '@openscd/core/foundation/deprecated/history.js';
 import { saveDocumentToFile } from '../file.js';
 
 import 'open-scd/src/WizardDivider.js';

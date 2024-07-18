@@ -1,6 +1,6 @@
 import { LitElement, property } from 'lit-element';
 
-import { newIssueEvent } from 'open-scd/src/foundation.js';
+import { newIssueEvent } from '@openscd/core/foundation/deprecated/history.js';
 
 import {
   CompasSclValidatorService,
