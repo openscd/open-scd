@@ -10,18 +10,18 @@ import {
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 import {
-  newOpenDocEvent,
-  newPendingStateEvent,
-} from 'open-scd/src/foundation.js';
-import { getTheme } from 'open-scd/src/themes.js';
+  newOpenDocEvent
+} from "@openscd/core/foundation/deprecated/open-event.js";
+import { newPendingStateEvent } from '@openscd/core/foundation/deprecated/waiter.js';
+import { getTheme } from '@openscd/open-scd/src/themes.js';
 
-import { Editing } from 'open-scd/src/Editing.js';
+import { Editing } from '@openscd/open-scd/src/Editing.js';
 import { Hosting } from './Hosting.js';
 import { Historing } from './Historing.js';
 import { Plugging } from './Plugging.js';
 import { Setting } from './Setting.js';
-import { Waiting } from 'open-scd/src/Waiting.js';
-import { Wizarding } from 'open-scd/src/Wizarding.js';
+import { Waiting } from '@openscd/open-scd/src/Waiting.js';
+import { Wizarding } from '@openscd/open-scd/src/Wizarding.js';
 import './addons/CompasSession.js';
 
 /** The `<open-scd>` custom element is the main entry point of the

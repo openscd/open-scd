@@ -1,7 +1,7 @@
 import {expect, fixture, fixtureSync, html, waitUntil} from '@open-wc/testing';
 import sinon from "sinon";
 
-import { MockWizard } from 'open-scd/test/mock-wizard.js';
+import {MockWizardEditor} from "@openscd/open-scd/test/mock-wizard-editor.js";
 import 'open-scd/test/mock-wizard.js';
 
 import {addVersionToCompasWizard, CompasUploadVersionElement} from "../../../src/compas/CompasUploadVersion.js";
@@ -70,7 +70,7 @@ describe('compas-upload-version', () => {
   })
 
   describe('existing document in compas through wizard', () => {
-    let wizardElement: MockWizard;
+    let wizardElement: MockWizardEditor;
 
     beforeEach(async () => {
       wizardElement = await fixture(html `<mock-wizard></mock-wizard>`);

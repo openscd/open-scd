@@ -16,20 +16,20 @@ import {
   ifImplemented,
   LitElementConstructor,
   Mixin,
-  newLogEvent,
-} from 'open-scd/src/foundation.js';
+} from '@openscd/open-scd/src/foundation.js';
+import { newLogEvent } from '@openscd/core/foundation/deprecated/history.js';
 import { Language, languages, loader } from './translations/loader.js';
 
 import 'open-scd/src/WizardDivider.js';
-import { WizardDialog } from 'open-scd/src/wizard-dialog.js';
+import { WizardDialog } from '@openscd/open-scd/src/wizard-dialog.js';
 
 import {
   iec6185072,
   iec6185073,
   iec6185074,
   iec6185081,
-} from 'open-scd/src/validators/templates/foundation.js';
-import { initializeNsdoc, Nsdoc } from 'open-scd/src/foundation/nsdoc.js';
+} from '@openscd/plugins/src/validators/templates/foundation.js';
+import {initializeNsdoc, Nsdoc} from "@openscd/open-scd/src/foundation/nsdoc.js";
 
 export type Settings = {
   language: Language;
