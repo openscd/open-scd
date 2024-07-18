@@ -8,3 +8,20 @@
 ## npm
 node_modules/
 /npm-debug.log
+
+## testing
+/coverage/
+
+# build
+/locales.ts
+/locales
+/dist
+/custom-elements.json
+/.tsbuildinfo
+/.rollup.cache
+/build
+
+# lerna
+/lerna-debug.log
+
+.nx/cache

@@ -1,17 +1,17 @@
 {
-    "name": "compas-openscd-monorepo",
-    "version": "0.0.1",
-    "description": "CoMPAS OpenSCD base distribution and plugins",
-    "private": true,
-    "workspaces": [
-      "packages/*"
-    ],
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-      "type": "git",
-      "url": "git+https://github.com/com-pas/compas-open-scd.git"
-    },
-    "license": "Apache-2.0"
-  }
+  "name": "compas-openscd-monorepo",
+  "version": "0.0.1",
+  "description": "CoMPAS OpenSCD base distribution and plugins",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/com-pas/compas-open-scd.git"
+  },
+  "license": "Apache-2.0"
+}
