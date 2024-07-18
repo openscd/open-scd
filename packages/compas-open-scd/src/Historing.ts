@@ -19,28 +19,31 @@ import '@material/mwc-snackbar';
 import { Dialog } from '@material/mwc-dialog';
 import { Snackbar } from '@material/mwc-snackbar';
 
-import 'open-scd/src/filtered-list.js';
+import '@openscd/open-scd/src/filtered-list.js';
 import {
   CommitDetail,
   CommitEntry,
-  ifImplemented,
   InfoDetail,
   InfoEntry,
-  invert,
   IssueDetail,
   IssueEvent,
-  LitElementConstructor,
   LogEntry,
   LogEntryType,
   LogEvent,
-  Mixin,
+} from '@openscd/core/foundation/deprecated/history.js';
+import {
   newActionEvent,
+} from '@openscd/core/foundation/deprecated/editor.js';
+import {
+  ifImplemented,
+  LitElementConstructor,
+  Mixin,
   newWizardEvent,
   SCLTag,
-} from 'open-scd/src/foundation.js';
-import { getFilterIcon, iconColors } from 'open-scd/src/icons/icons.js';
+} from '@openscd/open-scd/src/foundation.js';
+import { getFilterIcon, iconColors } from '@openscd/open-scd/src/icons/icons.js';
 import { Plugin } from './Plugging.js';
-import { wizards } from 'open-scd/src/wizards/wizard-library.js';
+import { wizards } from '@openscd/plugins/src/wizards/wizard-library.js';
 import { nothing } from 'lit-html';
 
 const icons = {
