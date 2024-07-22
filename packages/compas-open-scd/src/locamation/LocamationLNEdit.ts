@@ -1,10 +1,10 @@
 import {css, customElement, html, LitElement, property, TemplateResult} from 'lit-element';
 import {get, translate} from "lit-translate";
 
-import {patterns} from "open-scd/src/wizards/foundation/limits.js";
+import { patterns } from "@openscd/open-scd/src/foundation.js";
+import { ComplexAction } from "@openscd/core/foundation/deprecated/editor.js";
 import {
   checkValidity,
-  ComplexAction,
   Wizard,
   WizardAction,
   WizardInputElement,
@@ -12,7 +12,7 @@ import {
 } from '@openscd/open-scd/src/foundation.js';
 import {Nsdoc} from "@openscd/open-scd/src/foundation/nsdoc.js";
 
-import 'open-scd/src/wizard-textfield.js';
+import '@openscd/open-scd/src/wizard-textfield.js';
 
 import {
   createEditorAction,

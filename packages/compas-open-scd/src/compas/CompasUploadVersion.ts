@@ -6,12 +6,12 @@ import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-button';
 
 import {
-  newLogEvent,
-  newPendingStateEvent,
   newWizardEvent,
   Wizard,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
+import { newLogEvent } from '@openscd/core/foundation/deprecated/history.js';
+import { newPendingStateEvent } from '@openscd/core/foundation/deprecated/waiter.js';
 
 import 'open-scd/src/wizard-textfield.js';
 

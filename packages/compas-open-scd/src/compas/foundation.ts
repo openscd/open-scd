@@ -1,6 +1,7 @@
 import { get } from 'lit-translate';
 
-import { newLogEvent, newOpenDocEvent } from '@openscd/open-scd/src/foundation.js';
+import { newLogEvent } from '@openscd/core/foundation/deprecated/history.js';
+import { newOpenDocEvent } from '@openscd/core/foundation/deprecated/open-event.js';
 import {
   COMPAS_SCL_PRIVATE_TYPE,
   getCompasSclFileType,

@@ -5,7 +5,7 @@ import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 
 import {newSubWizardEvent, newWizardEvent, Wizard, WizardInputElement} from '@openscd/open-scd/src/foundation.js';
-import {isSCLNamespace} from "open-scd/src/schemas.js";
+import {isSCLNamespace} from "@openscd/open-scd/src/schemas.js";
 import {Nsdoc} from "@openscd/open-scd/src/foundation/nsdoc.js";
 
 import {iedHeader, lDeviceHeader, LOCAMATION_MANUFACTURER, LOCAMATION_PRIVATE} from "./foundation.js";

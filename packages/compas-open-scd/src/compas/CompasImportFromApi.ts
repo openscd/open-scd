@@ -3,12 +3,12 @@ import { customElement, html, LitElement, TemplateResult } from 'lit-element';
 import '@material/mwc-list/mwc-list-item';
 
 import {
-  newOpenDocEvent,
-  newPendingStateEvent,
   newWizardEvent,
 } from '@openscd/open-scd/src/foundation.js';
+import { newOpenDocEvent } from '@openscd/core/foundation/deprecated/open-event.js';
+import { newPendingStateEvent } from '@openscd/core/foundation/deprecated/waiter.js';
 
-import 'open-scd/src/filtered-list.js';
+import '@openscd/open-scd/src/filtered-list.js';
 
 import {
   createLogEvent,

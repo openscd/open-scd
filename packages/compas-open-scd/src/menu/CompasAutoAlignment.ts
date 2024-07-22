@@ -1,8 +1,8 @@
 import { html, LitElement, property } from 'lit-element';
 import { get } from 'lit-translate';
 
+import { newPendingStateEvent } from '@openscd/core/foundation/deprecated/waiter.js';
 import {
-  newPendingStateEvent,
   newWizardEvent,
   Wizard,
   WizardInputElement,
