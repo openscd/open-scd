@@ -8,7 +8,7 @@ import {newSubWizardEvent, newWizardEvent, Wizard, WizardInputElement} from '@op
 import {isSCLNamespace} from "@openscd/open-scd/src/schemas.js";
 import {Nsdoc} from "@openscd/open-scd/src/foundation/nsdoc.js";
 
-import 'open-scd/src/wizard-textfield.js';
+import '@openscd/open-scd/src/wizard-textfield.js';;
 
 import {locamationLNEditWizard} from "./LocamationLNEdit.js";
 import {getPrivate, getPrivateTextValue, iedHeader, lDeviceHeader, lnHeader, LOCAMATION_PRIVATE} from "./foundation.js";

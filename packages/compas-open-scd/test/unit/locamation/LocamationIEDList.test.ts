@@ -4,7 +4,7 @@ import {MockWizardEditor} from "@openscd/open-scd/test/mock-wizard-editor.js";
 import {fetchDoc} from "@openscd/plugins/test/unit/wizards/test-support.js";
 import {initializeNsdoc, Nsdoc} from "@openscd/open-scd/src/foundation/nsdoc.js"
 
-import 'open-scd/test/mock-wizard.js';
+import '@openscd/open-scd/test/mock-wizard.js';
 
 import {
   LocamationIEDListElement,

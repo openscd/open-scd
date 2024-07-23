@@ -20,7 +20,7 @@ import {
 import { newLogEvent } from '@openscd/core/foundation/deprecated/history.js';
 import { Language, languages, loader } from './translations/loader.js';
 
-import 'open-scd/src/WizardDivider.js';
+import '@openscd/open-scd/src/WizardDivider.js';
 import { WizardDialog } from '@openscd/open-scd/src/wizard-dialog.js';
 
 import {

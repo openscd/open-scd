@@ -1,6 +1,6 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import 'open-scd/test/unit/mock-logger.js';
+import '@openscd/open-scd/test/unit/mock-logger.js';
 
 import { newIssueEvent } from '@openscd/core/foundation/deprecated/history.js';
 

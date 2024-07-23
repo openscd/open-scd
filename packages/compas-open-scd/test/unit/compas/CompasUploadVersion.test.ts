@@ -2,7 +2,7 @@ import {expect, fixture, fixtureSync, html, waitUntil} from '@open-wc/testing';
 import sinon from "sinon";
 
 import {MockWizardEditor} from "@openscd/open-scd/test/mock-wizard-editor.js";
-import 'open-scd/test/mock-wizard.js';
+import '@openscd/open-scd/test/mock-wizard.js';
 
 import {addVersionToCompasWizard, CompasUploadVersionElement} from "../../../src/compas/CompasUploadVersion.js";
 import {CompasExistsInElement} from "../../../src/compas/CompasExistsIn.js";

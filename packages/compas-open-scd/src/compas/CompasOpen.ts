@@ -17,7 +17,7 @@ import { createLogEvent } from '../compas-services/foundation.js';
 import { SclSelectedEvent } from './CompasSclList.js';
 import { TypeSelectedEvent } from './CompasSclTypeList.js';
 
-import 'open-scd/src/WizardDivider.js';
+import '@openscd/open-scd/src/WizardDivider.js';
 import './CompasSclTypeList.js';
 import './CompasSclList.js';
 

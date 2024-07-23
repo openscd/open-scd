@@ -20,16 +20,14 @@ import { Hosting } from './Hosting.js';
 import { Historing } from './Historing.js';
 import { Plugging } from './Plugging.js';
 import { Setting } from './Setting.js';
-import { Waiting } from '@openscd/open-scd/src/Waiting.js';
+import { OscdWaiter } from '@openscd/open-scd/src/addons/waiter.js';
 import { Wizarding } from '@openscd/open-scd/src/Wizarding.js';
 import './addons/CompasSession.js';
 
 /** The `<open-scd>` custom element is the main entry point of the
  * Open Substation Configuration Designer. */
 @customElement('open-scd')
-export class OpenSCD extends 
-  Waiting(Hosting(Setting(Wizarding(Plugging(Editing(Historing(LitElement)))))))
- {
+export class OpenSCD extends Hosting(Setting(Wizarding(Plugging(Editing(Historing(LitElement)))))) {
   private currentSrc = '';
   /** The current file's URL. `blob:` URLs are *revoked after parsing*! */
   @property({ type: String })
@@ -92,7 +90,11 @@ export class OpenSCD extends
   }
 
   render(): TemplateResult {
-    return html`<compas-session> ${super.render()} ${getTheme(this.settings.theme)} </compas-session>`;
+    return html`<compas-session>
+      <oscd-waiter>
+        ${super.render()} ${getTheme(this.settings.theme)}
+      </oscd-waiter>
+    </compas-session>`;
   }
 
   static styles = css`
