@@ -7,7 +7,8 @@ import {WizardTextField} from "@openscd/open-scd/src/wizard-textfield.js";
 import {WizardAction} from "@openscd/open-scd/src/foundation.js";
 import {ComplexAction, isSimple, isReplace, Replace} from "@openscd/core/foundation/deprecated/editor.js";
 
-import "open-scd/test/mock-wizard.js";
+import "@openscd/open-scd/test/mock-wizard-editor.js";
+import { newWizardEvent } from '@openscd/open-scd/src/foundation.js';
 
 import {LocamationVMUEditElement, locamationLNEditWizard} from "../../../src/locamation/LocamationLNEdit.js";
 
@@ -29,9 +30,9 @@ describe('Wizards for Locamation Plugin to edit the selected Logical Node - ', (
     beforeEach(async () => {
       logicalNode = doc.querySelector('LN[prefix="I01A"][lnClass="TCTR"]')!
 
-      element = await fixture(html`<mock-wizard></mock-wizard>`);
+      element = await fixture(html`<mock-wizard-editor></mock-wizard-editor>`);
       const wizard = locamationLNEditWizard(logicalNode, nsdoc);
-      element.workflow.push(() => wizard);
+      element.dispatchEvent(newWizardEvent(wizard));
       await element.requestUpdate();
     });
 

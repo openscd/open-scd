@@ -13,7 +13,7 @@ import {
 import { newLogEvent } from '@openscd/core/foundation/deprecated/history.js';
 import { newPendingStateEvent } from '@openscd/core/foundation/deprecated/waiter.js';
 
-import '@openscd/open-scd/src/wizard-textfield.js';;
+import '@openscd/open-scd/src/wizard-textfield.js';
 
 import { CompasExistsIn } from './CompasExistsIn.js';
 import { CompasSclDataService } from '../compas-services/CompasSclDataService.js';
