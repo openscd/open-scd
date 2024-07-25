@@ -42,16 +42,16 @@ jobs:
         timeout-minutes: 45
         if: ${{ github.event_name == 'push' }}
         run: |
-          cd packages/compas-open-scd
           npm ci
+          cd packages/compas-open-scd
           npm run-script test
 
       - name: Build application with npm
         if: ${{ github.event_name == 'pull_request' }}
         timeout-minutes: 45
         run: |
-          cd packages/compas-open-scd
           npm ci
+          cd packages/compas-open-scd
           npm run-script build
       - name: Build docker image
         if: ${{ github.event_name == 'pull_request' }}
