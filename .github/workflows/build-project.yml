@@ -43,6 +43,7 @@ jobs:
         if: ${{ github.event_name == 'push' }}
         run: |
           npm ci
+          npm run-script build
           cd packages/compas-open-scd
           npm run-script test
 
