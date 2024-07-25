@@ -23,6 +23,14 @@
       "dependsOn": ["clean", "^clean", "^build"]
     }
   },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
+  },
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "defaultBase": "main"
 }
