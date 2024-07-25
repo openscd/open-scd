@@ -315,7 +315,7 @@ let OscdLayout = class OscdLayout extends LitElement {
     `;
         function renderTitle(docName) {
             if (!docName)
-                return html `''`;
+                return html ``;
             return html `<span slot="subtitle">${docName}</span>`;
         }
         function makeListAction(menuItems) {
