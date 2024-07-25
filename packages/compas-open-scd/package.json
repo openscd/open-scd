@@ -68,8 +68,8 @@
     "release:minor": "standard-version --release-as minor",
     "release:patch": "standard-version --release-as patch",
     "release:major": "standard-version --release-as major",
-    "build:test": "npm run test && npm run build:notest && cp .nojekyll build/",
-    "build": "npm run doc && npm run build:only",
+    "build:test": "npm run test && npm run build && cp .nojekyll build/",
+    "build": "npm run doc && npm run build:only && cp .nojekyll build/",
     "build:only": "snowpack build && workbox generateSW workbox-config.cjs",
     "start": "snowpack dev"
   },
