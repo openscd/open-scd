@@ -7,11 +7,18 @@
     "packages/*"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx nx run-many -t build --all"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/com-pas/compas-open-scd.git"
   },
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "nx": "18.3.4"
+  },
+  "optionalDependencies": {
+    "@nx/nx-linux-x64-gnu": "18.3.4"
+  }
 }

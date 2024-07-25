@@ -43,7 +43,8 @@
     "lit-translate": "^1.2.1",
     "marked": "^4.0.10",
     "panzoom": "^9.4.2",
-    "open-scd": "*"
+    "@openscd/open-scd": "*",
+    "@openscd/plugins": "*"
   },
   "scripts": {
     "lint:eslint": "eslint --ext .ts,.html . --ignore-path .gitignore",
@@ -66,8 +67,8 @@
     "release:minor": "standard-version --release-as minor",
     "release:patch": "standard-version --release-as patch",
     "release:major": "standard-version --release-as major",
-    "build": "npm run test && npm run build:notest && cp .nojekyll build/",
-    "build:notest": "npm run doc && npm run build:only",
+    "build:test": "npm run test && npm run build:notest && cp .nojekyll build/",
+    "build": "npm run doc && npm run build:only",
     "build:only": "snowpack build && workbox generateSW workbox-config.cjs",
     "start": "snowpack dev"
   },

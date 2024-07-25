@@ -51,7 +51,6 @@ jobs:
         timeout-minutes: 45
         run: |
           npm ci
-          cd packages/compas-open-scd
           npm run-script build
       - name: Build docker image
         if: ${{ github.event_name == 'pull_request' }}
