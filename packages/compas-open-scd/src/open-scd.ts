@@ -20,7 +20,7 @@ import { Hosting } from './Hosting.js';
 import { Historing } from './Historing.js';
 import { Plugging } from './Plugging.js';
 import { Setting } from './Setting.js';
-import '@openscd/open-scd/src/addons/waiter.js';
+import '@openscd/open-scd/src/addons/Waiter.js';
 import { Wizarding } from '@openscd/open-scd/src/Wizarding.js';
 import './addons/CompasSession.js';
 
