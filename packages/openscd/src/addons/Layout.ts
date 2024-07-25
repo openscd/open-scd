@@ -445,7 +445,7 @@ export class OscdLayout extends LitElement {
     `;
 
     function renderTitle(docName?: string){
-      if(!docName) return html`''`;
+      if(!docName) return html``;
 
       return html`<span slot="subtitle">${docName}</span>`;
     }
