@@ -38,7 +38,7 @@ import './addons/Layout.js';
 
 import { ActionDetail } from '@material/mwc-list';
 
-import { officialPlugins } from './plugins.js';
+import { officialPlugins as builtinPlugins } from './plugins.js';
 import { initializeNsdoc, Nsdoc } from './foundation/nsdoc.js';
 import type {
   PluginSet,
@@ -343,7 +343,7 @@ export class OpenSCD extends LitElement {
   }
   private resetPlugins(): void {
     this.storePlugins(
-      (officialPlugins as Plugin[]).concat(this.parsedPlugins).map(plugin => {
+      (builtinPlugins as Plugin[]).concat(this.parsedPlugins).map(plugin => {
         return {
           src: plugin.src,
           installed: plugin.default ?? false,
@@ -360,48 +360,66 @@ export class OpenSCD extends LitElement {
   plugins: PluginSet = { menu: [], editor: [] };
 
   get parsedPlugins(): Plugin[] {
-    return this.plugins.menu
-      .map((p: CorePlugin) => ({
-        ...p,
-        position:
-          typeof p.position !== 'number'
-            ? (p.position as MenuPosition)
-            : undefined,
-        kind: 'menu' as PluginKind,
-        installed: p.active ?? false,
-      }))
-      .concat(
-        this.plugins.editor.map((p: CorePlugin) => ({
-          ...p,
-          position: undefined,
-          kind: 'editor' as PluginKind,
-          installed: p.active ?? false,
-        }))
-      );
+
+    const menuPlugins = this.plugins.menu.map((plugin: CorePlugin) => {
+      let newPosition: MenuPosition | undefined = plugin.position as MenuPosition;
+      if(typeof plugin.position === 'number') {
+        newPosition = undefined
+      }
+
+      return {
+          ...plugin,
+          position: newPosition,
+          kind: 'menu' as PluginKind,
+          installed: plugin.active ?? false,
+        }
+      })
+
+    const editorPlugins = this.plugins.editor.map((plugin: CorePlugin) => ({
+      ...plugin,
+      position: undefined,
+      kind: 'editor' as PluginKind,
+      installed: plugin.active ?? false,
+    }))
+
+    const allPlugnis = [...menuPlugins, ...editorPlugins]
+    return allPlugnis
   }
 
   private get sortedStoredPlugins(): Plugin[] {
-    return this.storedPlugins
-      .map(plugin => {
-        if (!plugin.official) return plugin;
-        const officialPlugin = (officialPlugins as Plugin[])
-          .concat(this.parsedPlugins)
-          .find(needle => needle.src === plugin.src);
+
+    const mergedPlugins = this.storedPlugins.map(plugin => {
+      if (!plugin.official){ return plugin };
+
+      const officialPlugin = (builtinPlugins as Plugin[])
+        .concat(this.parsedPlugins)
+        .find(needle => needle.src === plugin.src);
+
         return <Plugin>{
           ...officialPlugin,
           ...plugin,
         };
-      })
+    })
+
+
+    return mergedPlugins
       .sort(compareNeedsDoc)
       .sort(menuCompare);
   }
 
   private get storedPlugins(): Plugin[] {
-    return <Plugin[]>(
-      JSON.parse(localStorage.getItem('plugins') ?? '[]', (key, value) =>
-        value.src && value.installed ? this.addContent(value) : value
-      )
-    );
+    const pluginsConfigStr = localStorage.getItem('plugins') ?? '[]'
+    const storedPlugins = JSON.parse(pluginsConfigStr) as Plugin[]
+
+    const plugins = storedPlugins.map(plugin => {
+      const isInstalled = plugin.src && plugin.installed
+      if(!isInstalled) { return plugin }
+
+      return this.addContent(plugin)
+    })
+
+    return plugins
+
   }
 
   protected get locale(): string {
@@ -420,16 +438,20 @@ export class OpenSCD extends LitElement {
 
   private setPlugins(indices: Set<number>) {
     const newPlugins = this.sortedStoredPlugins.map((plugin, index) => {
-      return { ...plugin, installed: indices.has(index) };
+      return {
+        ...plugin,
+        installed: indices.has(index)
+      };
     });
     this.storePlugins(newPlugins);
   }
 
   private updatePlugins() {
+
     const stored: Plugin[] = this.storedPlugins;
     const officialStored = stored.filter(p => p.official);
     const newOfficial: Array<Plugin | InstalledOfficialPlugin> = (
-      officialPlugins as Plugin[]
+      builtinPlugins as Plugin[]
     )
       .concat(this.parsedPlugins)
       .filter(p => !officialStored.find(o => o.src === p.src))
@@ -440,9 +462,10 @@ export class OpenSCD extends LitElement {
           official: true as const,
         };
       });
+
     const oldOfficial = officialStored.filter(
       p =>
-        !(officialPlugins as Plugin[])
+        !(builtinPlugins as Plugin[])
           .concat(this.parsedPlugins)
           .find(o => p.src === o.src)
     );

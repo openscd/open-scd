@@ -294,7 +294,7 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="middle"
+      class="bottom"
       graphic="icon"
       iconid="help"
       mwc-list-item=""
@@ -311,7 +311,7 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
     </oscd-plugin6589bc97026c833d>
     <mwc-list-item
       aria-disabled="true"
-      class="middle"
+      class="bottom"
       disabled=""
       graphic="icon"
       iconid="history_toggle_off"
@@ -1389,7 +1389,7 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="middle"
+      class="bottom"
       graphic="icon"
       iconid="help"
       mwc-list-item=""
@@ -1406,7 +1406,7 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
     </oscd-plugin6589bc97026c833d>
     <mwc-list-item
       aria-disabled="true"
-      class="middle"
+      class="bottom"
       disabled=""
       graphic="icon"
       iconid="history_toggle_off"
@@ -2454,7 +2454,7 @@ snapshots["open-scd layout looks like its snapshot"] =
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="middle"
+      class="bottom"
       graphic="icon"
       iconid="help"
       mwc-list-item=""
@@ -2471,7 +2471,7 @@ snapshots["open-scd layout looks like its snapshot"] =
     </oscd-plugin6589bc97026c833d>
     <mwc-list-item
       aria-disabled="true"
-      class="middle"
+      class="bottom"
       disabled=""
       graphic="icon"
       iconid="history_toggle_off"

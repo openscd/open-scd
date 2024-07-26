@@ -51,6 +51,16 @@ import { EditCompletedEvent } from '@openscd/core';
 
 @customElement('oscd-layout')
 export class OscdLayout extends LitElement {
+
+  render(): TemplateResult {
+    return html`
+      <slot></slot>
+      ${this.renderHeader()} ${this.renderAside()} ${this.renderContent()}
+      ${this.renderLanding()} ${this.renderPlugging()}
+    `;
+  }
+
+
   /** The `XMLDocument` to be edited */
   @property({ attribute: false })
   doc: XMLDocument | null = null;
@@ -120,97 +130,13 @@ export class OscdLayout extends LitElement {
     return this.menuEntries.filter(plugin => plugin.position === 'bottom');
   }
 
+
   get menu(): (MenuItem | 'divider')[] {
-    const topMenu: (MenuItem | 'divider')[] = [];
-    const middleMenu: (MenuItem | 'divider')[] = [];
-    const bottomMenu: (MenuItem | 'divider')[] = [];
-    const validators: (MenuItem | 'divider')[] = [];
 
-    this.topMenu.forEach(plugin =>
-      topMenu.push({
-        icon: plugin.icon || pluginIcons['menu'],
-        name: plugin.name,
-        action: ae => {
-          this.dispatchEvent(
-            newPendingStateEvent(
-              (<MenuPlugin>(
-                (<unknown>(
-                  (<List>ae.target).items[ae.detail.index].nextElementSibling
-                ))
-              )).run()
-            )
-          );
-        },
-        disabled: (): boolean => plugin.requireDoc! && this.doc === null,
-        content: plugin.content,
-        kind: 'top',
-      })
-    );
-
-    this.middleMenu.forEach(plugin =>
-      middleMenu.push({
-        icon: plugin.icon || pluginIcons['menu'],
-        name: plugin.name,
-        action: ae => {
-          this.dispatchEvent(
-            newPendingStateEvent(
-              (<MenuPlugin>(
-                (<unknown>(
-                  (<List>ae.target).items[ae.detail.index].nextElementSibling
-                ))
-              )).run()
-            )
-          );
-        },
-        disabled: (): boolean => plugin.requireDoc! && this.doc === null,
-        content: plugin.content,
-        kind: 'middle',
-      })
-    );
-
-    this.bottomMenu.forEach(plugin =>
-      bottomMenu.push({
-        icon: plugin.icon || pluginIcons['menu'],
-        name: plugin.name,
-        action: ae => {
-          this.dispatchEvent(
-            newPendingStateEvent(
-              (<MenuPlugin>(
-                (<unknown>(
-                  (<List>ae.target).items[ae.detail.index].nextElementSibling
-                ))
-              )).run()
-            )
-          );
-        },
-        disabled: (): boolean => plugin.requireDoc! && this.doc === null,
-        content: plugin.content,
-        kind: 'middle',
-      })
-    );
-
-    this.validators.forEach(plugin =>
-      validators.push({
-        icon: plugin.icon || pluginIcons['validator'],
-        name: plugin.name,
-        action: ae => {
-          this.dispatchEvent(newEmptyIssuesEvent(plugin.src));
-
-          this.dispatchEvent(
-            newPendingStateEvent(
-              (<Validator>(
-                (<unknown>(
-                  (<List>ae.target).items[ae.detail.index].nextElementSibling
-                ))
-              )).validate()
-            )
-          );
-        },
-        disabled: (): boolean => this.doc === null,
-        content: plugin.content,
-        kind: 'validator',
-      })
-    );
+    const topMenu = this.generateMenu(this.topMenu, 'top');
+    const middleMenu = this.generateMenu(this.middleMenu, 'middle');
+    const bottomMenu = this.generateMenu(this.bottomMenu, 'bottom');
+    const validators = this.generateValidatorMenus(this.validators);
 
     if (middleMenu.length > 0) middleMenu.push('divider');
     if (bottomMenu.length > 0) bottomMenu.push('divider');
@@ -295,26 +221,22 @@ export class OscdLayout extends LitElement {
 
   // Keyboard Shortcuts
   private handleKeyPress(e: KeyboardEvent): void {
-    let handled = false;
-    const ctrlAnd = (key: string) =>
-      e.key === key && e.ctrlKey && (handled = true);
+    // currently we only handley key shortcuts when users press ctrl
+    if(!e.ctrlKey){ return }
 
-    if (ctrlAnd('m')) this.menuUI.open = !this.menuUI.open;
-    if (ctrlAnd('o'))
-      this.menuUI
-        .querySelector<ListItem>('mwc-list-item[iconid="folder_open"]')
-        ?.click();
-    if (ctrlAnd('O'))
-      this.menuUI
-        .querySelector<ListItem>('mwc-list-item[iconid="create_new_folder"]')
-        ?.click();
-    if (ctrlAnd('s'))
-      this.menuUI
-        .querySelector<ListItem>('mwc-list-item[iconid="save"]')
-        ?.click();
-    if (ctrlAnd('P')) this.pluginUI.show();
+    const keyFunctionMap: {[key:string]: () => void} = {
+      'm': () => this.menuUI.open = !this.menuUI.open,
+      'o': () => this.menuUI.querySelector<ListItem>('mwc-list-item[iconid="folder_open"]')?.click(),
+      'O': () => this.menuUI.querySelector<ListItem>('mwc-list-item[iconid="create_new_folder"]')?.click(),
+      's': () => this.menuUI.querySelector<ListItem>('mwc-list-item[iconid="save"]')?.click(),
+      'P': () => this.pluginUI.show(),
+    }
 
-    if (handled) e.preventDefault();
+    const fn = keyFunctionMap[e.key];
+    if(!fn){ return; }
+
+    e.preventDefault();
+    fn();
   }
 
   private handleAddPlugin() {
@@ -370,7 +292,7 @@ export class OscdLayout extends LitElement {
       this.shouldValidate = true;
       await this.validated;
 
-      if (!this.shouldValidate) return;
+      if (!this.shouldValidate){ return; }
 
       this.shouldValidate = false;
 
@@ -403,10 +325,59 @@ export class OscdLayout extends LitElement {
     );
   }
 
+
+  private generateMenu(plugins:Plugin[], kind: 'top' | 'middle' | 'bottom'): (MenuItem | 'divider')[]{
+    return plugins.map(plugin => {
+      return {
+        icon: plugin.icon || pluginIcons['menu'],
+        name: plugin.name,
+        action: ae => {
+          this.dispatchEvent(
+            newPendingStateEvent(
+              (<MenuPlugin>(
+                (<unknown>(
+                  (<List>ae.target).items[ae.detail.index].nextElementSibling
+                ))
+              )).run()
+            )
+          );
+        },
+        disabled: (): boolean => plugin.requireDoc! && this.doc === null,
+        content: plugin.content,
+        kind: kind,
+      }
+    })
+  }
+
+  private generateValidatorMenus(plugins: Plugin[]): (MenuItem | 'divider')[] {
+    return plugins.map(plugin =>{
+      return {
+        icon: plugin.icon || pluginIcons['validator'],
+        name: plugin.name,
+        action: ae => {
+          this.dispatchEvent(newEmptyIssuesEvent(plugin.src));
+
+          this.dispatchEvent(
+            newPendingStateEvent(
+              (<Validator>(
+                (<unknown>(
+                  (<List>ae.target).items[ae.detail.index].nextElementSibling
+                ))
+              )).validate()
+            )
+          );
+        },
+        disabled: (): boolean => this.doc === null,
+        content: plugin.content,
+        kind: 'validator',
+      }
+    });
+  }
+
   private renderMenuItem(me: MenuItem | 'divider'): TemplateResult {
-    if (me === 'divider')
-      return html`<li divider padded role="separator"></li>`;
-    if (me.actionItem) return html``;
+    if (me === 'divider') { return html`<li divider padded role="separator"></li>`; }
+    if (me.actionItem){ return html``; }
+
     return html`
       <mwc-list-item
         class="${me.kind}"
@@ -424,15 +395,16 @@ export class OscdLayout extends LitElement {
   }
 
   private renderActionItem(me: MenuItem | 'divider'): TemplateResult {
-    if (me !== 'divider' && me.actionItem)
-      return html`<mwc-icon-button
-        slot="actionItems"
-        icon="${me.icon}"
-        label="${me.name}"
-        ?disabled=${me.disabled?.() || !me.action}
-        @click=${me.action}
-      ></mwc-icon-button>`;
-    else return html``;
+    if(me === 'divider' || !me.actionItem){ return html`` }
+
+    return html`
+    <mwc-icon-button
+      slot="actionItems"
+      icon="${me.icon}"
+      label="${me.name}"
+      ?disabled=${me.disabled?.() || !me.action}
+      @click=${me.action}
+    ></mwc-icon-button>`;
   }
 
   private renderEditorTab({ name, icon }: Plugin): TemplateResult {
@@ -453,76 +425,111 @@ export class OscdLayout extends LitElement {
     </mwc-top-app-bar-fixed>`;
   }
 
-  /** Renders a drawer toolbar featuring the scl filename, enabled menu plugins, settings, help, scl history and plug-ins management */
+  /**
+   * Renders a drawer toolbar featuring the scl filename, enabled menu plugins,
+   * settings, help, scl history and plug-ins management
+   */
   protected renderAside(): TemplateResult {
+
     return html`
       <mwc-drawer class="mdc-theme--surface" hasheader type="modal" id="menu">
         <span slot="title">${get('menu.title')}</span>
-        ${this.docName
-          ? html`<span slot="subtitle">${this.docName}</span>`
-          : ''}
+          ${renderTitle(this.docName)}
         <mwc-list
           wrapFocus
-          @action=${(ae: CustomEvent<ActionDetail>) => {
-            //FIXME: dirty hack to be fixed in open-scd-core
-            //       if clause not necessary when oscd... components in open-scd not list
-            if (ae.target instanceof List)
-              (<MenuItem>(
-                this.menu.filter(
-                  item => item !== 'divider' && !item.actionItem
-                )[ae.detail.index]
-              ))?.action?.(ae);
-          }}
+          @action=${makeListAction(this.menu)}
         >
           ${this.menu.map(this.renderMenuItem)}
         </mwc-list>
       </mwc-drawer>
     `;
+
+    function renderTitle(docName?: string){
+      if(!docName) return html``;
+
+      return html`<span slot="subtitle">${docName}</span>`;
+    }
+
+    function makeListAction(menuItems : (MenuItem|'divider')[]){
+      return function listAction(ae: CustomEvent<ActionDetail>){
+        //FIXME: dirty hack to be fixed in open-scd-core
+        //       if clause not necessary when oscd... components in open-scd not list
+        if (ae.target instanceof List)
+          (<MenuItem>(
+            menuItems.filter(
+              item => item !== 'divider' && !item.actionItem
+            )[ae.detail.index]
+          ))?.action?.(ae);
+      }
+    }
+
+
   }
 
   /** Renders the enabled editor plugins and a tab bar to switch between them*/
   protected renderContent(): TemplateResult {
+
+    if(!this.doc) return html``;
+
     return html`
-      ${this.doc
-        ? html`<mwc-tab-bar
-              @MDCTabBar:activated=${(e: CustomEvent) =>
-                (this.activeTab = e.detail.index)}
-            >
-              ${this.editors.map(this.renderEditorTab)}
-            </mwc-tab-bar>
-            ${this.editors[this.activeTab]?.content
-              ? this.editors[this.activeTab].content
-              : ``}`
-        : ``}
+      <mwc-tab-bar @MDCTabBar:activated=${(e: CustomEvent) => (this.activeTab = e.detail.index)}>
+        ${this.editors.map(this.renderEditorTab)}
+      </mwc-tab-bar>
+      ${renderEditorContent(this.editors, this.activeTab)}
     `;
+
+    function renderEditorContent(editors: Plugin[], activeTab: number){
+      const content = editors[activeTab]?.content;
+      if(!content) { return html`` }
+
+      return html`${content}`;
+    }
   }
 
-  /** Renders the landing buttons (open project and new project)*/
+  /**
+   * Renders the landing buttons (open project and new project)
+   * it no document loaded we display the menu item that are in the position
+   * 'top' and are not disabled
+   *
+   * To enable replacement of this part we have to convert it to either an addon
+   * or a plugin
+   */
   protected renderLanding(): TemplateResult {
-    return html` ${!this.doc
-      ? html`<div class="landing">
-          ${(<MenuItem[]>this.menu.filter(mi => mi !== 'divider')).map(
-            (mi: MenuItem, index) =>
-              mi.kind === 'top' && !mi.disabled?.()
-                ? html`
-                    <mwc-icon-button
-                      class="landing_icon"
-                      icon="${mi.icon}"
-                      @click="${() =>
-                        (<ListItem>(
-                          this.menuUI.querySelector('mwc-list')!.items[index]
-                        )).click()}"
-                    >
-                      <div class="landing_label">${mi.name}</div>
-                    </mwc-icon-button>
-                  `
-                : html``
-          )}
-        </div>`
-      : ``}`;
-  }
+    if(this.doc){ return html``; }
+
+    return html`
+      <div class="landing">
+        ${renderMenuItems(this.menu, this.menuUI)}
+      </div>`
+
+      function renderMenuItems(menuItemsAndDividers: (MenuItem | 'divider')[], menuUI: Drawer){
+
+        const menuItems = menuItemsAndDividers.filter(mi => mi !== 'divider') as MenuItem[];
+
+        return menuItems.map((mi: MenuItem, index) => {
+            if(mi.kind !== 'top' || mi.disabled?.()) { return html``; }
+
+            return html`
+              <mwc-icon-button
+                class="landing_icon"
+                icon="${mi.icon}"
+                @click="${() => clickListItem(index)}"
+              >
+                <div class="landing_label">${mi.name}</div>
+              </mwc-icon-button>
+            `
+          })
+
+          function clickListItem(index:number) {
+            const listItem = menuUI.querySelector('mwc-list')!.items[index];
+            listItem.click();
+          }
+
+      }
+    }
 
   /** Renders the "Add Custom Plug-in" UI*/
+  // TODO: this should be its own isolated element
   protected renderDownloadUI(): TemplateResult {
     return html`
       <mwc-dialog id="pluginAdd" heading="${get('plugins.add.heading')}">
@@ -615,30 +622,34 @@ export class OscdLayout extends LitElement {
     `;
   }
 
+  // Note: why is the type here if note used?
   private renderPluginKind(
     type: PluginKind | MenuPosition,
     plugins: Plugin[]
   ): TemplateResult {
     return html`
-      ${plugins.map(
-        plugin =>
-          html`<mwc-check-list-item
+      ${plugins.map( plugin => html`
+        <mwc-check-list-item
             class="${plugin.official ? 'official' : 'external'}"
             value="${plugin.src}"
             ?selected=${plugin.installed}
             hasMeta
             left
           >
-            <mwc-icon slot="meta"
-              >${plugin.icon || pluginIcons[plugin.kind]}</mwc-icon
-            >
+            <mwc-icon slot="meta">
+              ${plugin.icon || pluginIcons[plugin.kind]}
+            </mwc-icon>
             ${plugin.name}
-          </mwc-check-list-item>`
+          </mwc-check-list-item>
+        `
       )}
     `;
   }
 
-  /** Renders the plug-in management UI (turning plug-ins on/off)*/
+  /**
+   * Renders the plug-in management UI (turning plug-ins on/off)
+   * TODO: this is big enough to be its own isolated element
+   */
   protected renderPluginUI(): TemplateResult {
     return html`
       <mwc-dialog
@@ -728,13 +739,7 @@ export class OscdLayout extends LitElement {
     return html` ${this.renderPluginUI()} ${this.renderDownloadUI()} `;
   }
 
-  render(): TemplateResult {
-    return html`
-      <slot></slot>
-      ${this.renderHeader()} ${this.renderAside()} ${this.renderContent()}
-      ${this.renderLanding()} ${this.renderPlugging()}
-    `;
-  }
+
 
   static styles = css`
     mwc-drawer {
