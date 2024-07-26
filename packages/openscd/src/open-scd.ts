@@ -413,7 +413,7 @@ export class OpenSCD extends LitElement {
 
     const plugins = storedPlugins.map(plugin => {
       const isInstalled = plugin.src && plugin.installed
-      if(!isInstalled) { plugin }
+      if(!isInstalled) { return plugin }
 
       return this.addContent(plugin)
     })
