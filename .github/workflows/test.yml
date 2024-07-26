@@ -20,6 +20,7 @@ jobs:
 
       - name: Install and Test
         run: |
-          cd packages/compas-open-scd
           npm ci
+          npm run-script build
+          cd packages/compas-open-scd
           npm run-script test
