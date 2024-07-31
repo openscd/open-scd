@@ -34,7 +34,7 @@ import {
 } from '@openscd/core/foundation/deprecated/settings.js';
 import { languages, loader } from '../translations/loader.js';
 
-import '../WizardDivider.js';
+import '@openscd/open-scd/src/WizardDivider.js';
 import { WizardDialog } from '@openscd/open-scd/src/wizard-dialog.js';
 
 import {
@@ -56,7 +56,7 @@ export const defaults: Settings = {
   'IEC 61850-8-1': undefined,
 };
 
-@customElement('compas-settings')
+@customElement('compas-settings-addon')
 export class CompasSettings extends LitElement {
   /** Current [[`Settings`]] in `localStorage`, default to [[`defaults`]]. */
   @property()

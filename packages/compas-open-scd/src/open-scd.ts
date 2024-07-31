@@ -16,15 +16,18 @@ import {
 import { newPendingStateEvent } from '@openscd/core/foundation/deprecated/waiter.js';
 import { getTheme } from '@openscd/open-scd/src/themes.js';
 
+import './addons/CompasSession.js';
 import './addons/CompasHistory.js';
+import './addons/CompasLayout.js';
+import './addons/CompasSettings.js';
+
+
 import { Editing } from '@openscd/open-scd/src/Editing.js';
 import { Hosting } from './Hosting.js';
-import { Historing } from './Historing.js';
 import { Plugging } from './Plugging.js';
 import { Setting } from './Setting.js';
 import '@openscd/open-scd/src/addons/Waiter.js';
 import { Wizarding } from '@openscd/open-scd/src/Wizarding.js';
-import './addons/CompasSession.js';
 import { initializeNsdoc, Nsdoc } from '@openscd/open-scd/src/foundation/nsdoc.js';
 import { AddExternalPluginEvent, InstalledOfficialPlugin, SetPluginsEvent, withoutContent, Plugin, MenuPosition, PluginKind, menuOrder, pluginTag, staticTagHtml } from '@openscd/open-scd/src/open-scd.js';
 import { officialPlugins } from '../public/js/plugins.js';
@@ -67,7 +70,7 @@ export class OpenSCD extends LitElement {
 
   /** Object containing all *.nsdoc files and a function extracting element's label form them*/
   @property({ attribute: false })
-  nsdoc: Nsdoc = initializeNsdoc();
+  nsdoc!: Nsdoc;
 
   private currentSrc = '';
   /** The current file's URL. `blob:` URLs are *revoked after parsing*! */
@@ -94,6 +97,7 @@ export class OpenSCD extends LitElement {
   }
 
   connectedCallback(): void {
+    console.log('COMPAS OPEN SCD CONNECTED CALLBACK');
     super.connectedCallback();
     this.addEventListener('reset-plugins', this.resetPlugins);
     this.addEventListener(
@@ -123,9 +127,10 @@ export class OpenSCD extends LitElement {
   }
 
   render(): TemplateResult {
+    console.log('COMPAS OPEN SCD RENDER');
     return html`<compas-session>
       <oscd-waiter>
-        <oscd-settings .host=${this}>
+        <compas-settings-addon .host=${this}>
           <oscd-wizards .host=${this}>
             <compas-history .host=${this} .editCount=${this.editCount}>
               <oscd-editor
@@ -146,7 +151,7 @@ export class OpenSCD extends LitElement {
               </oscd-editor>
             </compas-history>
           </oscd-wizards>
-        </oscd-settings>
+        </compas-settings-addon>
       </oscd-waiter>
     </compas-session>`;
   }
@@ -198,7 +203,8 @@ export class OpenSCD extends LitElement {
   }
 
   private get sortedStoredPlugins(): Plugin[] {
-    return this.storedPlugins
+    console.log('----> sortedStoredPlugins')
+    const plugins =  this.storedPlugins
       .map(plugin => {
         if (!plugin.official) return plugin;
         const officialPlugin = (officialPlugins as Plugin[])
@@ -211,6 +217,9 @@ export class OpenSCD extends LitElement {
       })
       .sort(compareNeedsDoc)
       .sort(menuCompare);
+
+    console.log(plugins);
+    return plugins;
   }
 
   private get storedPlugins(): Plugin[] {

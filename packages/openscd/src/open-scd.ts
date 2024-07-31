@@ -236,7 +236,7 @@ const loadedPlugins = new Set<string>();
 
 /** The `<open-scd>` custom element is the main entry point of the
  * Open Substation Configuration Designer. */
-@customElement('open-scd')
+@customElement('open-scd-stop')
 export class OpenSCD extends LitElement {
   @property({ attribute: false })
   doc: XMLDocument | null = null;
