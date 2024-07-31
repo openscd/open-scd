@@ -108,7 +108,7 @@ const pluginTags = new Map<string, string>();
  * https://github.com/bryc/code/blob/master/jshash/experimental/cyrb53.js .
  * @returns a valid customElement tagName containing the URI hash.
  */
-function pluginTag(uri: string): string {
+export function pluginTag(uri: string): string {
   if (!pluginTags.has(uri)) {
     let h1 = 0xdeadbeef,
       h2 = 0x41c6ce57;
@@ -147,7 +147,7 @@ function pluginTag(uri: string): string {
  * After upgrading to Lit 2 we can use their static HTML functions instead:
  * https://lit.dev/docs/api/static-html/
  */
-function staticTagHtml(
+export function staticTagHtml(
   oldStrings: ReadonlyArray<string>,
   ...oldArgs: unknown[]
 ): TemplateResult {
@@ -190,13 +190,13 @@ export type Plugin = {
   content?: TemplateResult;
 };
 
-type InstalledOfficialPlugin = {
+export type InstalledOfficialPlugin = {
   src: string;
   official: true;
   installed: boolean;
 };
 
-function withoutContent<P extends Plugin | InstalledOfficialPlugin>(
+export function withoutContent<P extends Plugin | InstalledOfficialPlugin>(
   plugin: P
 ): P {
   return { ...plugin, content: undefined };
@@ -211,7 +211,7 @@ export const pluginIcons: Record<PluginKind | MenuPosition, string> = {
   bottom: 'play_circle',
 };
 
-const menuOrder: (PluginKind | MenuPosition)[] = [
+export const menuOrder: (PluginKind | MenuPosition)[] = [
   'editor',
   'top',
   'validator',
