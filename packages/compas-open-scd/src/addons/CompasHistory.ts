@@ -44,6 +44,9 @@ import { getFilterIcon, iconColors } from '@openscd/open-scd/src/icons/icons.js'
 
 import { Plugin } from '@openscd/core/';
 import { HistoryUIDetail } from '@openscd/open-scd/src/addons/History.js';
+import { wizards } from '@openscd/plugins/src/wizards/wizard-library';
+import { newWizardEvent, SCLTag } from '@openscd/open-scd/src/foundation';
+import { nothing } from 'lit-html';
 
 const icons = {
   info: 'info',
@@ -297,6 +300,20 @@ export class CompasHistory extends LitElement {
     ? this.diagnosticUI.close()
     : this.diagnosticUI.show();
   }
+
+  private openEditWizard(element: Element | undefined): void {
+    if (element) {
+      const wizard = wizards[<SCLTag>element.tagName]?.edit(element);
+      if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+    }
+  }
+
+  private hasEditWizard(element: Element | undefined): boolean {
+    if (element) {
+      return !!wizards[<SCLTag>element.tagName]?.edit(element);
+    }
+    return false;
+  }
   
   constructor() {
     super();
@@ -401,11 +418,23 @@ export class CompasHistory extends LitElement {
   }
   
   private renderIssueEntry(issue: IssueDetail): TemplateResult {
-    return html` <abbr title="${issue.title + '\n' + issue.message}"
-    ><mwc-list-item ?twoline=${!!issue.message}>
-    <span> ${issue.title}</span>
-    <span slot="secondary">${issue.message}</span>
-    </mwc-list-item></abbr
+    return html` <abbr title="${issue.title + '\n' + issue.message}">
+      <mwc-list-item
+        ?twoline=${!!issue.message}
+        ?hasMeta=${this.hasEditWizard(issue.element)}
+      >
+        <span> ${issue.title}</span>
+        <span slot="secondary">${issue.message}</span>
+        ${this.hasEditWizard(issue.element)
+            ? html` <span slot="meta">
+                <mwc-icon-button
+                  icon="edit"
+                  @click=${() => this.openEditWizard(issue.element)}
+                ></mwc-icon-button>
+              </span>`
+            : nothing}
+      </mwc-list-item>
+    </abbr
     >`;
   }
   
