@@ -49,6 +49,10 @@ import '@material/mwc-select';
 import '@material/mwc-textfield';
 import { EditCompletedEvent } from '@openscd/core';
 
+export function compasOpenMenuEvent(): CustomEvent<void> {
+  return new CustomEvent<void>('open-drawer', { bubbles: true, composed: true });
+}
+
 @customElement('compas-layout')
 export class CompasLayout extends LitElement {
   /** The `XMLDocument` to be edited */
@@ -363,6 +367,9 @@ export class CompasLayout extends LitElement {
 
   connectedCallback(): void {
     super.connectedCallback();
+    this.host.addEventListener('open-drawer', () => {
+      this.menuUI.open = true;
+    })
     this.host.addEventListener('close-drawer', async () => {
       this.menuUI.open = false;
     });

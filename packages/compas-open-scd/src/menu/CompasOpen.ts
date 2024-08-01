@@ -15,6 +15,7 @@ import CompasOpenElement, { DocRetrievedEvent } from '../compas/CompasOpen.js';
 import { updateDocumentInOpenSCD } from '../compas/foundation.js';
 
 import '../compas/CompasOpen.js';
+import { compasOpenMenuEvent } from '../addons/CompasLayout.js';
 
 export default class CompasOpenMenuPlugin extends LitElement {
   @query('mwc-dialog#compas-open-dlg')
@@ -26,6 +27,10 @@ export default class CompasOpenMenuPlugin extends LitElement {
   async run(): Promise<void> {
     this.compasOpenElement.selectedType = undefined;
     await this.compasOpenElement.requestUpdate();
+
+    // TODO: Fix for dialog, the menu has to be open to see the dialog
+    this.dispatchEvent(compasOpenMenuEvent());
+
     this.dialog.show();
   }
 

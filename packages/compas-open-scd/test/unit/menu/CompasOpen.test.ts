@@ -2,7 +2,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 
 import CompasOpenMenuPlugin from '../../../src/menu/CompasOpen.js';
 
-describe('compas-open-menu', () => {
+describe('open-drawer', () => {
   if (customElements.get('compare-open-menu') === undefined)
     customElements.define('compare-open-menu', CompasOpenMenuPlugin);
 
