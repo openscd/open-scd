@@ -70,7 +70,7 @@ export class OpenSCD extends LitElement {
 
   /** Object containing all *.nsdoc files and a function extracting element's label form them*/
   @property({ attribute: false })
-  nsdoc!: Nsdoc;
+  nsdoc: Nsdoc = initializeNsdoc();
 
   private currentSrc = '';
   /** The current file's URL. `blob:` URLs are *revoked after parsing*! */
