@@ -48,7 +48,7 @@ import '@material/mwc-switch';
 import '@material/mwc-select';
 import '@material/mwc-textfield';
 import { EditCompletedEvent } from '@openscd/core';
-import { UserInfoEvent } from '../compas/foundation';
+import type { UserInfoEvent } from '../compas/foundation';
 
 export function compasOpenMenuEvent(): CustomEvent<void> {
   return new CustomEvent<void>('open-drawer', { bubbles: true, composed: true });
