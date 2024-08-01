@@ -48,6 +48,7 @@ import '@material/mwc-switch';
 import '@material/mwc-select';
 import '@material/mwc-textfield';
 import { EditCompletedEvent } from '@openscd/core';
+import { UserInfoEvent } from '../compas/foundation';
 
 export function compasOpenMenuEvent(): CustomEvent<void> {
   return new CustomEvent<void>('open-drawer', { bubbles: true, composed: true });
@@ -75,6 +76,9 @@ export class CompasLayout extends LitElement {
   /** The open-scd host element */
   @property({ type: Object })
   host!: HTMLElement;
+
+  @property({ type: String })
+  username: string | undefined;
 
   @state()
   validated: Promise<void> = Promise.resolve();
@@ -408,6 +412,12 @@ export class CompasLayout extends LitElement {
         this.requestUpdate();
       }
     );
+
+    this.addEventListener('userinfo', this.onUserInfo);
+  }
+
+  private onUserInfo(event: UserInfoEvent) {
+    this.username = event.detail.name;
   }
 
   private renderMenuItem(me: MenuItem | 'divider'): TemplateResult {
@@ -456,6 +466,16 @@ export class CompasLayout extends LitElement {
         @click=${() => (this.menuUI.open = true)}
       ></mwc-icon-button>
       <div slot="title" id="title">${this.docName}</div>
+      ${this.username != undefined
+              ? html`<span
+                  id="userField"
+                  slot="actionItems"
+                  style="font-family:Roboto"
+                  >${get('userinfo.loggedInAs', {
+                    name: this.username,
+                  })}</span
+                >`
+              : ``}
       ${this.menu.map(this.renderActionItem)}
     </mwc-top-app-bar-fixed>`;
   }

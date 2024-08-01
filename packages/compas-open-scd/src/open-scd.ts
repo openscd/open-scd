@@ -97,7 +97,6 @@ export class OpenSCD extends LitElement {
   }
 
   connectedCallback(): void {
-    console.log('COMPAS OPEN SCD CONNECTED CALLBACK');
     super.connectedCallback();
     this.addEventListener('reset-plugins', this.resetPlugins);
     this.addEventListener(
@@ -127,7 +126,6 @@ export class OpenSCD extends LitElement {
   }
 
   render(): TemplateResult {
-    console.log('COMPAS OPEN SCD RENDER');
     return html`<compas-session>
       <oscd-waiter>
         <compas-settings-addon .host=${this}>
@@ -203,7 +201,6 @@ export class OpenSCD extends LitElement {
   }
 
   private get sortedStoredPlugins(): Plugin[] {
-    console.log('----> sortedStoredPlugins')
     const plugins =  this.storedPlugins
       .map(plugin => {
         if (!plugin.official) return plugin;
@@ -218,7 +215,6 @@ export class OpenSCD extends LitElement {
       .sort(compareNeedsDoc)
       .sort(menuCompare);
 
-    console.log(plugins);
     return plugins;
   }
 
