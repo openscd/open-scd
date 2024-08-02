@@ -7,6 +7,7 @@ import {
 
 import { OpenSCD } from '../../../src/open-scd.js';
 import '../../../src/open-scd.js';
+import { CompasLayout } from '../../../src/addons/CompasLayout.js';
 
 describe('compas-foundation', () => {
   let element: OpenSCD;
@@ -29,14 +30,17 @@ describe('compas-foundation', () => {
   });
 
   it('when UserInfoEvent event is dispatched, the username is shown in OpenSCD', async () => {
-    expect(element.shadowRoot!.querySelector('span[id="userField"]')).to.be
-      .null;
+    const layout = element.shadowRoot?.querySelector("compas-layout") as CompasLayout;
+    expect(layout).to.be.not.null;
 
-    element.dispatchEvent(newUserInfoEvent('Henk'));
-    await element.updateComplete;
+    expect(layout!.shadowRoot!.querySelector('span[id="userField"]')).to.be.null;
 
-    expect(
-      element.shadowRoot!.querySelector('span[id="userField"]')!.textContent
-    ).to.be.equal('Logged in as Henk');
+    layout!.dispatchEvent(newUserInfoEvent('Henk'));
+    await layout!.updateComplete;
+
+    const userInfo = layout?.shadowRoot?.querySelector("#userField");
+    expect(userInfo).to.be.not.null;
+
+    expect(layout!.shadowRoot!.querySelector('span[id="userField"]')!.textContent).to.be.equal('Logged in as Henk');
   });
 });
