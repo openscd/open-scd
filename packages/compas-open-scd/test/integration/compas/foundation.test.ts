@@ -38,9 +38,6 @@ describe('compas-foundation', () => {
     layout!.dispatchEvent(newUserInfoEvent('Henk'));
     await layout!.updateComplete;
 
-    const userInfo = layout?.shadowRoot?.querySelector("#userField");
-    expect(userInfo).to.be.not.null;
-
     expect(layout!.shadowRoot!.querySelector('span[id="userField"]')!.textContent).to.be.equal('Logged in as Henk');
   });
 });
