@@ -1,13 +1,13 @@
 import { expect, fixture, html } from '@open-wc/testing';
-
-import './mock-compas-plugger.js';
-import { MockCompasPlugger } from './mock-compas-plugger.js';
+'../mock-compas-open-scd.js';
+import { MockCompasOpenSCD } from '../mock-compas-open-scd.js';
 
 import { TextField } from '@material/mwc-textfield';
 
-describe('PluggingElement', () => {
-  let element: MockCompasPlugger;
+describe('CompasOpenSCD-Plugin', () => {
+  let element: MockCompasOpenSCD;
   let doc: XMLDocument;
+  const docName = 'testDoc';
 
   afterEach(async () => {
     await new Promise(resolve => setTimeout(resolve, 50)); // await animation
@@ -17,14 +17,11 @@ describe('PluggingElement', () => {
     doc = await fetch('/test/testfiles/valid2007B4.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-    element = <MockCompasPlugger>(
-      await fixture(
-        html`<mock-compas-plugger
-          .doc=${doc}
-          docName="testDoc"
-        ></mock-compas-plugger>`
-      )
-    );
+      element = <MockCompasOpenSCD>(
+        await fixture(
+          html`<mock-compas-open-scd .doc=${doc} .docName=${docName}></mock-compas-open-scd>`
+        )
+      );
     await element.updateComplete;
   });
 
@@ -37,19 +34,19 @@ describe('PluggingElement', () => {
     let primaryAction: HTMLElement;
 
     beforeEach(async () => {
-      element.pluginUI.show();
-      await element.pluginUI.updateComplete;
+      element.layout.pluginUI.show();
+      await element.layout.pluginUI.updateComplete;
       firstEditorPlugin = <HTMLElement>(
-        element.pluginList.querySelector(
+        element.layout.pluginList.querySelector(
           'mwc-check-list-item:not([noninteractive])'
         )
       );
 
       resetAction = <HTMLElement>(
-        element.pluginUI.querySelector('mwc-button[slot="secondaryAction"]')
+        element.layout.pluginUI.querySelector('mwc-button[slot="secondaryAction"]')
       );
       primaryAction = <HTMLElement>(
-        element.pluginUI.querySelector('mwc-button[slot="primaryAction"]')
+        element.layout.pluginUI.querySelector('mwc-button[slot="primaryAction"]')
       );
     });
 
@@ -60,25 +57,25 @@ describe('PluggingElement', () => {
     });
 
     it('enables selected plugins', async () => {
-      (<HTMLElement>element.pluginList.firstElementChild).click();
+      (<HTMLElement>element.layout.pluginList.firstElementChild).click();
       await element.updateComplete;
-      (<HTMLElement>element.pluginList.firstElementChild).click();
+      (<HTMLElement>element.layout.pluginList.firstElementChild).click();
       await element.updateComplete;
-      expect(element).property('editors').to.have.lengthOf(9);
+      expect(element.layout).property('editors').to.have.lengthOf(9);
     });
 
     it('resets plugins to default on reset button click', async () => {
-      (<HTMLElement>element.pluginList.firstElementChild).click();
+      (<HTMLElement>element.layout.pluginList.firstElementChild).click();
       await element.updateComplete;
       resetAction.click();
       await element.updateComplete;
-      expect(element).property('editors').to.have.lengthOf(9);
+      expect(element.layout).property('editors').to.have.lengthOf(9);
     });
 
     it('opens the custom plugin dialog on add button click', async () => {
       primaryAction.click();
       await element.updateComplete;
-      expect(element)
+      expect(element.layout)
         .property('pluginDownloadUI')
         .to.have.property('open', true);
     });
@@ -93,25 +90,26 @@ describe('PluggingElement', () => {
 
     beforeEach(async () => {
       src = <TextField>(
-        element.pluginDownloadUI.querySelector('#pluginSrcInput')
+        element.layout.pluginDownloadUI.querySelector('#pluginSrcInput')
       );
       name = <TextField>(
-        element.pluginDownloadUI.querySelector('#pluginNameInput')
+        element.layout.pluginDownloadUI.querySelector('#pluginNameInput')
       );
       primaryAction = <HTMLElement>(
-        element.pluginDownloadUI.querySelector(
+        element.layout.pluginDownloadUI.querySelector(
           'mwc-button[slot="primaryAction"]'
         )
       );
-      element.pluginDownloadUI.show();
-      await element.pluginDownloadUI.updateComplete;
+      element.layout.pluginDownloadUI.show();
+      await element.layout.pluginDownloadUI.updateComplete;
+      await element.updateComplete;
       menuKindOption = <HTMLElement>(
-        element.pluginDownloadUI.querySelector(
+        element.layout.pluginDownloadUI.querySelector(
           '#pluginKindList > mwc-radio-list-item[id="menu"]'
         )
       );
       validatorKindOption = <HTMLElement>(
-        element.pluginDownloadUI.querySelector(
+        element.layout.pluginDownloadUI.querySelector(
           '#pluginKindList > mwc-radio-list-item[id="validator"]'
         )
       );
@@ -119,24 +117,24 @@ describe('PluggingElement', () => {
 
     it('requires a name and a valid URL to add a plugin', async () => {
       primaryAction.click();
-      expect(element.pluginDownloadUI).to.have.property('open', true);
+      expect(element.layout.pluginDownloadUI).to.have.property('open', true);
 
       src.value = 'http://example.com/plugin.js';
       await src.updateComplete;
       primaryAction.click();
-      expect(element.pluginDownloadUI).to.have.property('open', true);
+      expect(element.layout.pluginDownloadUI).to.have.property('open', true);
 
       src.value = 'notaURL';
       name.value = 'testName';
       await src.updateComplete;
       await name.updateComplete;
       primaryAction.click();
-      expect(element.pluginDownloadUI).to.have.property('open', true);
+      expect(element.layout.pluginDownloadUI).to.have.property('open', true);
 
       src.value = 'http://example.com/plugin.js';
       await src.updateComplete;
       primaryAction.click();
-      expect(element.pluginDownloadUI).to.have.property('open', false);
+      expect(element.layout.pluginDownloadUI).to.have.property('open', false);
     });
 
     it('adds a new editor kind plugin on add button click', async () => {
@@ -146,10 +144,10 @@ describe('PluggingElement', () => {
       await name.updateComplete;
       primaryAction.click();
       await element.updateComplete;
-      expect(element.editors).to.have.lengthOf(10);
+      expect(element.layout.editors).to.have.lengthOf(10);
     });
     it('adds a new menu kind plugin on add button click', async () => {
-      const lengthMenuKindPlugins = element.menuEntries.length;
+      const lengthMenuKindPlugins = element.layout.menuEntries.length;
       src.value = 'http://example.com/plugin.js';
       name.value = 'testName';
       menuKindOption.click();
@@ -157,7 +155,7 @@ describe('PluggingElement', () => {
       await name.updateComplete;
       primaryAction.click();
       await element.updateComplete;
-      expect(element.menuEntries).to.have.lengthOf(lengthMenuKindPlugins + 1);
+      expect(element.layout.menuEntries).to.have.lengthOf(lengthMenuKindPlugins + 1);
     });
     it('sets requireDoc and position for new menu kind plugin', async () => {
       src.value = 'http://example.com/plugin.js';
@@ -169,14 +167,14 @@ describe('PluggingElement', () => {
       await element.updateComplete;
 
       expect(
-        element.menuEntries[element.menuEntries.length - 1]
+        element.layout.menuEntries[element.layout.menuEntries.length - 1]
       ).to.have.property('requireDoc');
       expect(
-        element.menuEntries[element.menuEntries.length - 1]
+        element.layout.menuEntries[element.layout.menuEntries.length - 1]
       ).to.have.property('position');
     });
     it('adds a new validator kind plugin on add button click', async () => {
-      expect(element.validators).to.have.lengthOf(2);
+      expect(element.layout.validators).to.have.lengthOf(2);
       src.value = 'http://example.com/plugin.js';
       name.value = 'testName';
       validatorKindOption.click();
@@ -184,7 +182,7 @@ describe('PluggingElement', () => {
       await name.updateComplete;
       primaryAction.click();
       await element.updateComplete;
-      expect(element.validators).to.have.lengthOf(3);
+      expect(element.layout.validators).to.have.lengthOf(3);
     });
   });
 });
