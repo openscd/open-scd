@@ -1,4 +1,4 @@
-import { newLoadNsdocEvent } from '../Setting.js';
+
 
 import {
   createLogEvent,
@@ -6,6 +6,7 @@ import {
 } from '../compas-services/foundation.js';
 import { CompasSclValidatorService } from '../compas-services/CompasValidatorService.js';
 import { CompasNSDocFileService } from '../compas-services/CompasNSDocFileService.js';
+import { newLoadNsdocEvent } from '@openscd/core/foundation/deprecated/settings.js';
 
 /**
  * Load a single entry. Use the nsdocId to look in the Local Storage, if already loaded,

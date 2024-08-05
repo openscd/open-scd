@@ -8,26 +8,17 @@ import {
   TemplateResult,
 } from 'lit-element';
 
-import { ListItem } from '@material/mwc-list/mwc-list-item';
-
 import {
   newOpenDocEvent
 } from "@openscd/core/foundation/deprecated/open-event.js";
 import { newPendingStateEvent } from '@openscd/core/foundation/deprecated/waiter.js';
-import { getTheme } from '@openscd/open-scd/src/themes.js';
 
 import './addons/CompasSession.js';
 import './addons/CompasHistory.js';
 import './addons/CompasLayout.js';
 import './addons/CompasSettings.js';
 
-
-import { Editing } from '@openscd/open-scd/src/Editing.js';
-import { Hosting } from './Hosting.js';
-import { Plugging } from './Plugging.js';
-import { Setting } from './Setting.js';
 import '@openscd/open-scd/src/addons/Waiter.js';
-import { Wizarding } from '@openscd/open-scd/src/Wizarding.js';
 import { initializeNsdoc, Nsdoc } from '@openscd/open-scd/src/foundation/nsdoc.js';
 import { AddExternalPluginEvent, InstalledOfficialPlugin, SetPluginsEvent, withoutContent, Plugin, MenuPosition, PluginKind, menuOrder, pluginTag, staticTagHtml } from '@openscd/open-scd/src/open-scd.js';
 import { officialPlugins } from '../public/js/plugins.js';
