@@ -128,7 +128,7 @@ export class OpenSCD extends LitElement {
   render(): TemplateResult {
     return html`<compas-session>
       <oscd-waiter>
-        <compas-settings-addon .host=${this}>
+        <compas-settings-addon .host=${this} .nsdUploadButton=${false}>
           <oscd-wizards .host=${this}>
             <compas-history .host=${this} .editCount=${this.editCount}>
               <oscd-editor
