@@ -5,10 +5,10 @@ import {
   LitElement,
   TemplateResult,
 } from 'lit-element';
-import { WizardTextField } from 'open-scd/src/wizard-textfield.js';
+import { WizardTextField } from "@openscd/open-scd/src/wizard-textfield.js";
 import { translate } from 'lit-translate';
 
-import 'open-scd/src/wizard-textfield.js';
+import "@openscd/open-scd/src/wizard-textfield.js";
 
 @customElement('compas-comment')
 export class CompasCommentElement extends LitElement {

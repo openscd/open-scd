@@ -1,10 +1,11 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import { MockWizard } from 'open-scd/test/mock-wizard.js';
-import { fetchDoc } from 'open-scd/test/unit/wizards/test-support.js';
-import { initializeNsdoc, Nsdoc } from 'open-scd/src/foundation/nsdoc.js';
+import {MockWizardEditor} from "@openscd/open-scd/test/mock-wizard-editor.js";
+import {fetchDoc} from "@openscd/plugins/test/unit/wizards/test-support.js";
+import {initializeNsdoc, Nsdoc} from "@openscd/open-scd/src/foundation/nsdoc.js"
 
-import 'open-scd/test/mock-wizard.js';
+import '@openscd/open-scd/test/mock-wizard-editor.js';
+import { newWizardEvent } from '@openscd/open-scd/src/foundation.js';
 
 import {
   LocamationIEDListElement,
@@ -22,14 +23,14 @@ describe('Wizards for Locamation Plugin to select the IED/Logical Device - ', ()
   });
 
   describe('starting screen as wizard - ', async () => {
-    let element: MockWizard;
+    let element: MockWizardEditor;
 
     beforeEach(async () => {
       doc = await fetchDoc('/test/testfiles/locamation/LCMTN_VMU_MMS.scd');
 
-      element = await fixture(html`<mock-wizard></mock-wizard>`);
+      element = await fixture(html`<mock-wizard-editor></mock-wizard-editor>`);
       const wizard = locamationIEDListWizard(doc, nsdoc);
-      element.workflow.push(() => wizard);
+      element.dispatchEvent(newWizardEvent(wizard));
       await element.requestUpdate();
     });
 

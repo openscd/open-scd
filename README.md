@@ -22,7 +22,7 @@ to use the CoMPAS Backend Service to open and save SCL Files and more.
 This repository is a [↗ monorepo](https://en.wikipedia.org/wiki/Monorepo), made up of several packages.
 To find out more about the development of each packages, such as the base distribution or the plugins, please refer to their respective READMEs:
 
-- [open-scd](packages/open-scd/README.md): provides the (upstream) base distribution available on [openscd.github.io](https://openscd.github.io)
+- [open-scd](packages/openscd/README.md): provides the (upstream) base distribution available on [openscd.github.io](https://openscd.github.io)
 - [compas-open-scd](packages/compas-open-scd/README.md): provides the base distribution available on [demo.compas.energy](https://demo.compas.energy)
 
 ## Contributing

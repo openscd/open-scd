@@ -1,23 +1,27 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import 'open-scd/test/mock-wizard.js';
-import { MockWizard } from 'open-scd/test/mock-wizard.js';
+import '@openscd/open-scd/test/mock-wizard-editor.js';
+import {MockWizardEditor} from "@openscd/open-scd/test/mock-wizard-editor.js";
+import { newWizardEvent } from '@openscd/open-scd/src/foundation.js';
 
-import { WizardTextField } from 'open-scd/src/wizard-textfield.js';
+import {WizardTextField} from "@openscd/open-scd/src/wizard-textfield.js";
 import {
   Create,
   isCreate,
   isDelete,
   isReplace,
   Replace,
+} from "@openscd/core/foundation/deprecated/editor.js";
+
+import {
   Wizard,
   WizardInputElement,
-} from 'open-scd/src/foundation.js';
+} from "@openscd/open-scd/src/foundation.js";
 
 import {
   fetchDoc,
   setWizardTextFieldValue,
-} from 'open-scd/test/unit/wizards/test-support.js';
+} from "@openscd/plugins/test/unit/wizards/test-support.js";
 import { executeWizardComplexAction } from '../wizards/compas-test-support.js';
 import {
   editCompasSCLWizard,
@@ -27,14 +31,14 @@ import {
 describe('Wizards for SCL element (CoMPAS)', () => {
   let doc: XMLDocument;
   let scl: Element;
-  let element: MockWizard;
+  let element: MockWizardEditor;
   let wizard: Wizard;
   let inputs: WizardInputElement[];
 
   async function createWizard(scl: Element): Promise<void> {
-    element = await fixture(html` <mock-wizard></mock-wizard>`);
+    element = await fixture(html` <mock-wizard-editor></mock-wizard-editor>`);
     wizard = editCompasSCLWizard(scl);
-    element.workflow.push(() => wizard);
+    element.dispatchEvent(newWizardEvent(wizard));
     await element.requestUpdate();
     inputs = Array.from(element.wizardUI.inputs);
   }

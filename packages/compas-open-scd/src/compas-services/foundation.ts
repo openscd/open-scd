@@ -1,5 +1,5 @@
 import { get } from 'lit-translate';
-import { newLogEvent } from 'open-scd/src/foundation.js';
+import { newLogEvent } from '@openscd/core/foundation/deprecated/history.js';
 
 export const NOT_FOUND_ERROR = 'NotFoundError';
 export const APPLICATION_ERROR = 'ApplicationError';

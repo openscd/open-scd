@@ -4,32 +4,65 @@ import {
   html,
   LitElement,
   property,
+  state,
   TemplateResult,
 } from 'lit-element';
 
-import { ListItem } from '@material/mwc-list/mwc-list-item';
-
 import {
-  newOpenDocEvent,
-  newPendingStateEvent,
-} from 'open-scd/src/foundation.js';
-import { getTheme } from 'open-scd/src/themes.js';
+  newOpenDocEvent
+} from "@openscd/core/foundation/deprecated/open-event.js";
+import { newPendingStateEvent } from '@openscd/core/foundation/deprecated/waiter.js';
 
-import { Editing } from 'open-scd/src/Editing.js';
-import { Hosting } from './Hosting.js';
-import { Historing } from './Historing.js';
-import { Plugging } from './Plugging.js';
-import { Setting } from './Setting.js';
-import { Waiting } from 'open-scd/src/Waiting.js';
-import { Wizarding } from 'open-scd/src/Wizarding.js';
 import './addons/CompasSession.js';
+import './addons/CompasHistory.js';
+import './addons/CompasLayout.js';
+import './addons/CompasSettings.js';
+
+import '@openscd/open-scd/src/addons/Waiter.js';
+import { initializeNsdoc, Nsdoc } from '@openscd/open-scd/src/foundation/nsdoc.js';
+import { AddExternalPluginEvent, InstalledOfficialPlugin, SetPluginsEvent, withoutContent, Plugin, MenuPosition, PluginKind, menuOrder, pluginTag, staticTagHtml } from '@openscd/open-scd/src/open-scd.js';
+import { officialPlugins } from '../public/js/plugins.js';
+import type {
+  PluginSet,
+  Plugin as CorePlugin,
+  EditCompletedEvent,
+} from '@openscd/core';
+import { classMap } from 'lit-html/directives/class-map.js';
+
+function menuCompare(a: Plugin, b: Plugin): -1 | 0 | 1 {
+  if (a.kind === b.kind && a.position === b.position) return 0;
+  const earlier = menuOrder.find(kind =>
+    [a.kind, b.kind, a.position, b.position].includes(kind)
+  );
+  return [a.kind, a.position].includes(earlier) ? -1 : 1;
+}
+
+function compareNeedsDoc(a: Plugin, b: Plugin): -1 | 0 | 1 {
+  if (a.requireDoc === b.requireDoc) return 0;
+  return a.requireDoc ? 1 : -1;
+}
+
+const loadedPlugins = new Set<string>();
 
 /** The `<open-scd>` custom element is the main entry point of the
  * Open Substation Configuration Designer. */
 @customElement('open-scd')
-export class OpenSCD extends 
-  Waiting(Hosting(Setting(Wizarding(Plugging(Editing(Historing(LitElement)))))))
- {
+export class OpenSCD extends LitElement {
+  @property({ attribute: false })
+  doc: XMLDocument | null = null;
+  /** The name of the current [[`doc`]] */
+  @property({ type: String }) docName = '';
+  /** The UUID of the current [[`doc`]] */
+  @property({ type: String }) docId = '';
+
+  /** Index of the last [[`EditorAction`]] applied. */
+  @state()
+  editCount = -1;
+
+  /** Object containing all *.nsdoc files and a function extracting element's label form them*/
+  @property({ attribute: false })
+  nsdoc: Nsdoc = initializeNsdoc();
+
   private currentSrc = '';
   /** The current file's URL. `blob:` URLs are *revoked after parsing*! */
   @property({ type: String })
@@ -54,135 +87,219 @@ export class OpenSCD extends
     if (src.startsWith('blob:')) URL.revokeObjectURL(src);
   }
 
-  private handleKeyPress(e: KeyboardEvent): void {
-    let handled = false;
-    const ctrlAnd = (key: string) =>
-      e.key === key && e.ctrlKey && (handled = true);
+  connectedCallback(): void {
+    super.connectedCallback();
+    this.addEventListener('reset-plugins', this.resetPlugins);
+    this.addEventListener(
+      'add-external-plugin',
+      (e: AddExternalPluginEvent) => {
+        this.addExternalPlugin(e.detail.plugin);
+      }
+    );
+    this.addEventListener('set-plugins', (e: SetPluginsEvent) => {
+      this.setPlugins(e.detail.indices);
+    });
 
-    if (ctrlAnd('y')) this.redo();
-    if (ctrlAnd('z')) this.undo();
-    if (ctrlAnd('l')) this.logUI.open ? this.logUI.close() : this.logUI.show();
-    if (ctrlAnd('d'))
-      this.diagnosticUI.open
-        ? this.diagnosticUI.close()
-        : this.diagnosticUI.show();
-    if (ctrlAnd('m')) this.menuUI.open = !this.menuUI.open;
-    if (ctrlAnd('o'))
-      this.menuUI
-        .querySelector<ListItem>('mwc-list-item[iconid="folder_open"]')
-        ?.click();
-    if (ctrlAnd('O'))
-      this.menuUI
-        .querySelector<ListItem>('mwc-list-item[iconid="create_new_folder"]')
-        ?.click();
-    if (ctrlAnd('s'))
-      this.menuUI
-        .querySelector<ListItem>('mwc-list-item[iconid="save"]')
-        ?.click();
-    if (ctrlAnd('P')) this.pluginUI.show();
+    this.updatePlugins();
+    this.requestUpdate();
 
-    if (handled) e.preventDefault();
-  }
+    this.addEventListener('oscd-edit-completed', (evt: EditCompletedEvent) => {
+      const initiator = evt.detail.initiator;
 
-  constructor() {
-    super();
+      if (initiator === 'undo') {
+        this.editCount -= 1;
+      } else {
+        this.editCount += 1;
+      }
 
-    this.handleKeyPress = this.handleKeyPress.bind(this);
-    document.onkeydown = this.handleKeyPress;
+      this.requestUpdate();
+    });
   }
 
   render(): TemplateResult {
-    return html`<compas-session> ${super.render()} ${getTheme(this.settings.theme)} </compas-session>`;
+    return html`<compas-session>
+      <oscd-waiter>
+        <compas-settings-addon .host=${this} .nsdUploadButton=${false}>
+          <oscd-wizards .host=${this}>
+            <compas-history .host=${this} .editCount=${this.editCount}>
+              <oscd-editor
+                .doc=${this.doc}
+                .docName=${this.docName}
+                .docId=${this.docId}
+                .host=${this}
+                .editCount=${this.editCount}
+              >
+                <compas-layout
+                  .host=${this}
+                  .doc=${this.doc}
+                  .docName=${this.docName}
+                  .editCount=${this.editCount}
+                  .plugins=${this.sortedStoredPlugins}
+                >
+                </compas-layout>
+              </oscd-editor>
+            </compas-history>
+          </oscd-wizards>
+        </compas-settings-addon>
+      </oscd-waiter>
+    </compas-session>`;
   }
 
-  static styles = css`
-    mwc-top-app-bar-fixed {
-      --mdc-theme-text-disabled-on-light: rgba(255, 255, 255, 0.38);
-    } /* hack to fix disabled icon buttons rendering black */
+  private storePlugins(plugins: Array<Plugin | InstalledOfficialPlugin>) {
+    localStorage.setItem(
+      'plugins',
+      JSON.stringify(plugins.map(withoutContent))
+    );
+    this.requestUpdate();
+  }
+  private resetPlugins(): void {
+    this.storePlugins(
+      (officialPlugins as Plugin[]).concat(this.parsedPlugins).map(plugin => {
+        return {
+          src: plugin.src,
+          installed: plugin.default ?? false,
+          official: true,
+        };
+      })
+    );
+  }
 
-    mwc-tab {
-      background-color: var(--primary);
-      --mdc-theme-primary: var(--mdc-theme-on-primary);
+  /**
+   * @prop {PluginSet} plugins - Set of plugins that are used by OpenSCD
+   */
+  @property({ type: Object })
+  plugins: PluginSet = { menu: [], editor: [] };
+
+  get parsedPlugins(): Plugin[] {
+    return this.plugins.menu
+      .map((p: CorePlugin) => ({
+        ...p,
+        position:
+          typeof p.position !== 'number'
+            ? (p.position as MenuPosition)
+            : undefined,
+        kind: 'menu' as PluginKind,
+        installed: p.active ?? false,
+      }))
+      .concat(
+        this.plugins.editor.map((p: CorePlugin) => ({
+          ...p,
+          position: undefined,
+          kind: 'editor' as PluginKind,
+          installed: p.active ?? false,
+        }))
+      );
+  }
+
+  private get sortedStoredPlugins(): Plugin[] {
+    const plugins =  this.storedPlugins
+      .map(plugin => {
+        if (!plugin.official) return plugin;
+        const officialPlugin = (officialPlugins as Plugin[])
+          .concat(this.parsedPlugins)
+          .find(needle => needle.src === plugin.src);
+        return <Plugin>{
+          ...officialPlugin,
+          ...plugin,
+        };
+      })
+      .sort(compareNeedsDoc)
+      .sort(menuCompare);
+
+    return plugins;
+  }
+
+  private get storedPlugins(): Plugin[] {
+    return <Plugin[]>(
+      JSON.parse(localStorage.getItem('plugins') ?? '[]', (key, value) =>
+        value.src && value.installed ? this.addContent(value) : value
+      )
+    );
+  }
+
+  protected get locale(): string {
+    return navigator.language || 'en-US';
+  }
+
+  get docs(): Record<string, XMLDocument> {
+    const docs: Record<string, XMLDocument> = {};
+
+    if (this.doc) {
+      docs[this.docName] = this.doc;
     }
 
-    input[type='file'] {
-      display: none;
-    }
+    return docs;
+  }
 
-    mwc-dialog {
-      --mdc-dialog-max-width: 98vw;
-    }
+  private setPlugins(indices: Set<number>) {
+    const newPlugins = this.sortedStoredPlugins.map((plugin, index) => {
+      return { ...plugin, installed: indices.has(index) };
+    });
+    this.storePlugins(newPlugins);
+  }
 
-    mwc-dialog > form {
-      display: flex;
-      flex-direction: column;
-    }
+  private updatePlugins() {
+    const stored: Plugin[] = this.storedPlugins;
+    const officialStored = stored.filter(p => p.official);
+    const newOfficial: Array<Plugin | InstalledOfficialPlugin> = (
+      officialPlugins as Plugin[]
+    )
+      .concat(this.parsedPlugins)
+      .filter(p => !officialStored.find(o => o.src === p.src))
+      .map(plugin => {
+        return {
+          src: plugin.src,
+          installed: plugin.default ?? false,
+          official: true as const,
+        };
+      });
+    const oldOfficial = officialStored.filter(
+      p =>
+        !(officialPlugins as Plugin[])
+          .concat(this.parsedPlugins)
+          .find(o => p.src === o.src)
+    );
+    const newPlugins: Array<Plugin | InstalledOfficialPlugin> = stored.filter(
+      p => !oldOfficial.find(o => p.src === o.src)
+    );
+    newOfficial.map(p => newPlugins.push(p));
+    this.storePlugins(newPlugins);
+  }
 
-    mwc-dialog > form > * {
-      display: block;
-      margin-top: 16px;
-    }
+  private async addExternalPlugin(
+    plugin: Omit<Plugin, 'content'>
+  ): Promise<void> {
+    if (this.storedPlugins.some(p => p.src === plugin.src)) return;
 
-    mwc-linear-progress {
-      position: fixed;
-      --mdc-linear-progress-buffer-color: var(--primary);
-      --mdc-theme-primary: var(--secondary);
-      left: 0px;
-      top: 0px;
-      width: 100%;
-      pointer-events: none;
-      z-index: 1000;
-    }
+    const newPlugins: Omit<Plugin, 'content'>[] = this.storedPlugins;
+    newPlugins.push(plugin);
+    this.storePlugins(newPlugins);
+  }
 
-    tt {
-      font-family: 'Roboto Mono', monospace;
-      font-weight: 300;
+  private addContent(plugin: Omit<Plugin, 'content'>): Plugin {
+    const tag = pluginTag(plugin.src);
+    if (!loadedPlugins.has(tag)) {
+      loadedPlugins.add(tag);
+      import(plugin.src).then(mod => customElements.define(tag, mod.default));
     }
-
-    .landing {
-      position: absolute;
-      text-align: center;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100%;
-    }
-
-    .landing_icon:hover {
-      box-shadow: 0 12px 17px 2px rgba(0, 0, 0, 0.14),
-        0 5px 22px 4px rgba(0, 0, 0, 0.12), 0 7px 8px -4px rgba(0, 0, 0, 0.2);
-    }
-
-    .landing_icon {
-      margin: 12px;
-      border-radius: 16px;
-      width: 160px;
-      height: 140px;
-      text-align: center;
-      color: var(--mdc-theme-on-secondary);
-      background: var(--secondary);
-      --mdc-icon-button-size: 100px;
-      --mdc-icon-size: 100px;
-      --mdc-ripple-color: rgba(0, 0, 0, 0);
-      box-shadow: rgb(0 0 0 / 14%) 0px 6px 10px 0px,
-        rgb(0 0 0 / 12%) 0px 1px 18px 0px, rgb(0 0 0 / 20%) 0px 3px 5px -1px;
-      transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .landing_label {
-      width: 160px;
-      height: 50px;
-      margin-top: 100px;
-      margin-left: -30px;
-      font-family: 'Roboto', sans-serif;
-    }
-
-    .plugin.menu {
-      display: flex;
-    }
-
-    .plugin.validator {
-      display: flex;
-    }
-  `;
+    return {
+      ...plugin,
+      content: staticTagHtml`<${tag}
+            .doc=${this.doc}
+            .docName=${this.docName}
+            .editCount=${this.editCount}
+            .docId=${this.docId}
+            .pluginId=${plugin.src}
+            .nsdoc=${this.nsdoc}
+            .docs=${this.docs}
+            .locale=${this.locale}
+            class="${classMap({
+              plugin: true,
+              menu: plugin.kind === 'menu',
+              validator: plugin.kind === 'validator',
+              editor: plugin.kind === 'editor',
+            })}"
+          ></${tag}>`,
+    };
+  }
 }

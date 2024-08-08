@@ -9,7 +9,7 @@ export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
 
   /** Resolve bare module imports */
   nodeResolve: {
-    moduleDirectories: [path.join(process.cwd(), '..', 'open-scd',  'node_modules')],
+    moduleDirectories: [path.join(process.cwd(), '..', 'openscd',  'node_modules')],
   },
 
   /** filter browser logs

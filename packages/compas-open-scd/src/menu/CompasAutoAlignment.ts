@@ -1,12 +1,12 @@
 import { html, LitElement, property } from 'lit-element';
 import { get } from 'lit-translate';
 
+import { newPendingStateEvent } from '@openscd/core/foundation/deprecated/waiter.js';
 import {
-  newPendingStateEvent,
   newWizardEvent,
   Wizard,
   WizardInputElement,
-} from 'open-scd/src/foundation.js';
+} from '@openscd/open-scd/src/foundation.js';
 
 import CompasAutoAlignmentElement from '../compas/CompasAutoAlignment.js';
 

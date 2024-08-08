@@ -1,0 +1,7 @@
+{
+  "name": "@openscd/wizards",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/wizards/src",
+  "targets": {}
+}

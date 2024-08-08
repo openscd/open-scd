@@ -11,7 +11,9 @@ import { get, translate } from 'lit-translate';
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-check-list-item';
 
-import { newLogEvent, newOpenDocEvent, newWizardEvent } from 'open-scd/src/foundation.js';
+import { newWizardEvent } from '@openscd/open-scd/src/foundation.js';
+import { newLogEvent } from '@openscd/core/foundation/deprecated/history.js';
+import { newOpenDocEvent } from '@openscd/core/foundation/deprecated/open-event.js';
 
 import { CompasSclAutoAlignmentService } from '../compas-services/CompasSclAutoAlignmentService.js';
 import { createLogEvent } from '../compas-services/foundation.js';
