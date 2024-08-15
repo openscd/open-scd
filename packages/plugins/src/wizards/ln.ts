@@ -25,6 +25,7 @@ export function renderLNWizard(
     html`<wizard-textfield
       label="lnType"
       .maybeValue=${lnType}
+      readonly
       required
       helper="${get('ln.wizard.lnTypeHelper')}"
     ></wizard-textfield>`,
@@ -37,11 +38,13 @@ export function renderLNWizard(
     html`<wizard-textfield
       label="prefix"
       nullable
+      readonly
       .maybeValue=${prefix}
       helper="${get('ln.wizard.prefixHelper')}"
     ></wizard-textfield>`,
     html`<wizard-textfield
       label="lnClass"
+      readonly
       required
       .maybeValue=${lnClass}
       helper="${get('ln.wizard.lnClassHelper')}"
@@ -49,6 +52,7 @@ export function renderLNWizard(
     html`<wizard-textfield
       label="inst"
       .maybeValue=${inst}
+      readonly
       helper="${get('ln.wizard.instHelper')}"
     ></wizard-textfield>`,
   ];
