@@ -33,7 +33,7 @@ To find out more about the development of each packages, such as the base distri
 
 ## Contributing
 
-The easiest way to get in touch is to join the `#open-scd` channel kindly hosted on [the LF Energy Slack server](https://lfenergy.slack.com/archives/C03LH7EUP34). 
+The easiest way to get in touch is to join us on the [Zulip Chat](https://openscd.zulipchat.com/join/k3cyur3wx526tvafkjwubhjn/). 
 If you say "hi" there we will be more than happy to help you find your way around this project.
 
 ## Documentation
