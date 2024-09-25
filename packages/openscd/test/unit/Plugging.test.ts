@@ -150,7 +150,7 @@ describe('OpenSCD-Plugin', () => {
       });
 
 
-      it.only('adds a plugin with a name and a valid URL', async () => {
+      it('adds a plugin with a name and a valid URL', async () => {
         name.value = 'testName';
         await name.updateComplete;
 
