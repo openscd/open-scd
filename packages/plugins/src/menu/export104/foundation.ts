@@ -9,6 +9,11 @@ export interface Signal104 {
   ti: string | null;
 }
 
+interface ExtractSignal104Result {
+  signal: Signal104 | null;
+  error?: string;
+}
+
 enum SignalType {
   Monitor,
   Control,
@@ -17,90 +22,67 @@ enum SignalType {
 
 const private104Selector = `Private[type="${PROTOCOL_104_PRIVATE}"]`;
 
-export function extractAllSignal104Data(doc: XMLDocument): Signal104[] {
-  const allSignal104Data: Signal104[] = [];
+export function extractAllSignal104Data(doc: XMLDocument): { signals: Signal104[], errors: string[] } {
+  const signals: Signal104[] = [];
+  const errors: string[] = [];
   const address104Elements = doc.querySelectorAll(`${private104Selector} > Address`);
 
   address104Elements.forEach((addressElement) => {
-    const signal104Data = extractSignal104Data(addressElement, doc);
+    const signal104Result = extractSignal104Data(addressElement, doc);
 
-    if (signal104Data) {
-      allSignal104Data.push(signal104Data);
+    if (signal104Result.error) {
+      errors.push(signal104Result.error);
+    } else {
+      signals.push(signal104Result.signal!);
     }
   });
 
-  console.log(address104Elements);
-
-  return allSignal104Data;
+  return { signals, errors };
 }
 
-function extractSignal104Data(addressElement: Element, doc: XMLDocument): Signal104 | null {
+function extractSignal104Data(addressElement: Element, doc: XMLDocument): ExtractSignal104Result {
   const ti = addressElement.getAttribute('ti');
   const ioa = addressElement.getAttribute('ioa');
 
   // By convention the last four digits of the ioa are the signalnumber, see https://github.com/com-pas/compas-open-scd/issues/334
   if (ti === null || ioa === null || ioa.length < 4) {
-    console.log('No ti, io or io too short');
-    return null;
+    return { signal: null, error: `ti or ioa are missing or ioa is less than 4 digits, ti: ${ti}, ioa: ${ioa}` };
   }
-  const signalNumber = ioa.slice(-4);
+  const { signalNumber, bayName } = splitIoa(ioa);
 
   const signalType = getSignalType(ti);
   if (signalType === SignalType.Unknown) {
-    console.log('Unknown signal type');
-    return null;
+    return { signal: null, error: `Unknown signal type for ti: ${ti}, ioa: ${ioa}` };
   }
   const isMonitorSignal = signalType === SignalType.Monitor;
-
-  // TODO: Doi desc, Bay name, VoltageLevel name, Substation name
 
   addressElement.parentElement;
   const parentDOI = addressElement.closest('DOI');
   
   if (!parentDOI) {
-    console.log('No parent DOI');
-    return null;
+    return { signal: null, error: `No parent DOI found for address with ioa: ${ioa}` };
   }
 
   const doiDesc = parentDOI.getAttribute('desc');
-  const parentIED = parentDOI.closest('IED');
-  if (!parentIED) {
-    console.log('No parent IED');
-    return null;
-  }
 
-  const iedName = parentIED.getAttribute('name');
-
-  const lNodeQuery = `Substation > VoltageLevel > Bay LNode[iedName="${iedName}"]`;
-  console.log(lNodeQuery);
-  const parentLNode = doc.querySelector(lNodeQuery);
-
-  if (!parentLNode) {
-    console.log('No parent LNode');
-    return null;
-  }
-
-  const parentBay = parentLNode.closest('Bay');
+  const parentBayQuery = `:root > Substation > VoltageLevel > Bay[name="${bayName}"]`;
+  const parentBay = doc.querySelector(parentBayQuery);
 
   if (!parentBay) {
-    console.log('No parent Bay');
-    return null;
+    return { signal: null, error: `No bay found with bayname: ${bayName} for ioa ${ioa}` };
   }
 
-  const bayName = parentBay.getAttribute('name');
   const parentVoltageLevel = parentBay.closest('VoltageLevel');
 
   if (!parentVoltageLevel) {
-    console.log('No parent VL');
-    return null;
+    return { signal: null, error: `No parent voltage level found for bay ${bayName} for ioa ${ioa}` };
   }
 
   const voltageLevelName = parentVoltageLevel.getAttribute('name');
   const parentSubstation = parentVoltageLevel.closest('Substation');
 
   if (!parentSubstation) {
-    console.log('No parent Substation');
-    return null;
+    return { signal: null, error: `No parent substation found for voltage level ${voltageLevelName} for ioa ${ioa}` };
   }
 
   const substationName = parentSubstation.getAttribute('name');
@@ -108,11 +90,13 @@ function extractSignal104Data(addressElement: Element, doc: XMLDocument): Signal
   const name = `${substationName}${voltageLevelName}${bayName}${doiDesc}`;
 
   return {
-    name,
-    signalNumber,
-    isMonitorSignal,
-    ti,
-    ioa
+    signal: {
+      name,
+      signalNumber,
+      isMonitorSignal,
+      ti,
+      ioa
+    }
   }
 }
 
@@ -131,4 +115,13 @@ function getSignalType(tiString: string): SignalType {
   } else {
     return SignalType.Unknown;
   }
+}
+
+// By Alliander convention the last four digits of the ioa are the signalnumber and the rest is the bay number
+// And every bay name consists of "V" + bay number
+function splitIoa(ioa: string): { signalNumber: string, bayName: string } {
+  const signalNumber = ioa.slice(-4);
+  const bayName = `V${ioa.slice(0, -4)}`;
+
+  return { signalNumber, bayName };
 }

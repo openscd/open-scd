@@ -1,5 +1,6 @@
 import { LitElement, property } from 'lit-element';
 import { stringify } from 'csv-stringify/browser/esm/sync';
+import { newLogEvent } from '@openscd/core/foundation/deprecated/history.js';
 
 import { extractAllSignal104Data, Signal104 } from './export104/foundation.js';
 
@@ -18,9 +19,19 @@ export default class Export104 extends LitElement {
   ];
 
   async run(): Promise<void> {
+    const { signals, errors } = extractAllSignal104Data(this.doc);
 
-    const allSignal104Data = extractAllSignal104Data(this.doc);
-    const csvLines = this.generateCsvLines(allSignal104Data);
+    errors.forEach((error) => this.logWarning(error));
+
+    if (signals.length === 0) {
+      this.dispatchEvent(newLogEvent({
+        kind: 'info',
+        title: 'Export 104 found no signals',
+      }));
+      return;
+    }
+
+    const csvLines = this.generateCsvLines(signals);
 
     const csvContent = stringify(csvLines, {
       header: true,
@@ -31,10 +42,14 @@ export default class Export104 extends LitElement {
     });
 
     this.downloadCsv(csvBlob);
+  }
 
-    console.log(csvLines);
-
-    console.log('Export104', allSignal104Data);
+  private logWarning(errorMessage: string): void {
+    this.dispatchEvent(newLogEvent({
+      kind: 'warning',
+      title: 'Export 104 found invalid signal',
+      message: errorMessage,
+    }));
   }
 
   private generateCsvLines(allSignal104Data: Signal104[]): string[][] {
