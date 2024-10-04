@@ -4,6 +4,13 @@ function generatePluginPath(plugin: string): string {
 
 export const officialPlugins = [
   {
+    name: 'EditTest', 
+    src: generatePluginPath('plugins/src/editors/EditTest.js'),
+    icon: 'developer_board',
+    default: true,
+    kind: 'editor',
+  },
+  {
     name: 'IED',
     src: generatePluginPath('plugins/src/editors/IED.js'),
     icon: 'developer_board',

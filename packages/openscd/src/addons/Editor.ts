@@ -32,6 +32,22 @@ import {
   isUpdate,
 } from '@openscd/core/foundation/deprecated/editor.js';
 
+import {
+  AttributeValue as AttributeValueV2,
+  Edit as EditV2,
+  EditEvent as EditEventV2,
+  Insert as InsertV2,
+  isComplex as isComplexV2,
+  isInsert as isInsertV2,
+  isNamespaced as isNamespacedV2,
+  isRemove as isRemoveV2,
+  isUpdate as isUpdateV2,
+  LitElementConstructor,
+  OpenEvent as OpenEventV2,
+  Remove as RemoveV2,
+  Update as UpdateV2,
+} from '@openscd/core';
+
 @customElement('oscd-editor')
 export class OscdEditor extends LitElement {
   /** The `XMLDocument` to be edited */
@@ -473,9 +489,131 @@ export class OscdEditor extends LitElement {
     this.host.addEventListener('editor-action', this.onAction.bind(this));
     this.host.addEventListener('open-doc', this.onOpenDoc);
     this.host.addEventListener('oscd-open', this.handleOpenDoc);
+
+    // TODO: Test v2 API
+    this.addEventListener('oscd-edit', event => this.handleEditEventV2(event));
   }
 
   render(): TemplateResult {
     return html`<slot></slot>`;
   }
+
+  // Test API v2 start
+  handleEditEventV2(event: EditEventV2) {
+    console.log('Edit V2', event);
+    const edit = event.detail.edit;
+    // this.history.splice(this.editCount);
+    // this.history.push({ undo: handleEdit(edit), redo: edit });
+    handleEditV2(edit);
+    this.editCount += 1;
+  }
+
+  /** Undo the last `n` [[Edit]]s committed */
+  undo(n = 1) {
+    // if (!this.canUndo || n < 1) return;
+    // handleEdit(this.history[this.last!].undo);
+    this.editCount -= 1;
+    if (n > 1) this.undo(n - 1);
+  }
+
+  /** Redo the last `n` [[Edit]]s that have been undone */
+  redo(n = 1) {
+    // if (!this.canRedo || n < 1) return;
+    // handleEdit(this.history[this.editCount].redo);
+    this.editCount += 1;
+    if (n > 1) this.redo(n - 1);
+  }
+
+  // Test API v2 end
+}
+
+function handleEditV2(edit: EditV2): EditV2 {
+  if (isInsertV2(edit)) return handleInsertV2(edit);
+  if (isUpdateV2(edit)) return handleUpdateV2(edit);
+  if (isRemoveV2(edit)) return handleRemoveV2(edit);
+  if (isComplexV2(edit)) return edit.map(handleEditV2).reverse();
+  return [];
+}
+
+function localAttributeName(attribute: string): string {
+  return attribute.includes(':') ? attribute.split(':', 2)[1] : attribute;
+}
+
+function handleInsertV2({
+  parent,
+  node,
+  reference,
+}: InsertV2): InsertV2 | RemoveV2 | [] {
+  try {
+    const { parentNode, nextSibling } = node;
+    parent.insertBefore(node, reference);
+    if (parentNode)
+      return {
+        node,
+        parent: parentNode,
+        reference: nextSibling,
+      };
+    return { node };
+  } catch (e) {
+    // do nothing if insert doesn't work on these nodes
+    return [];
+  }
+}
+
+function handleUpdateV2({ element, attributes }: UpdateV2): UpdateV2 {
+  const oldAttributes = { ...attributes };
+  Object.entries(attributes)
+    .reverse()
+    .forEach(([name, value]) => {
+      let oldAttribute: AttributeValueV2;
+      if (isNamespacedV2(value!))
+        oldAttribute = {
+          value: element.getAttributeNS(
+            value.namespaceURI,
+            localAttributeName(name)
+          ),
+          namespaceURI: value.namespaceURI,
+        };
+      else
+        oldAttribute = element.getAttributeNode(name)?.namespaceURI
+          ? {
+              value: element.getAttribute(name),
+              namespaceURI: element.getAttributeNode(name)!.namespaceURI!,
+            }
+          : element.getAttribute(name);
+      oldAttributes[name] = oldAttribute;
+    });
+  for (const entry of Object.entries(attributes)) {
+    try {
+      const [attribute, value] = entry as [string, AttributeValueV2];
+      if (isNamespacedV2(value)) {
+        if (value.value === null)
+          element.removeAttributeNS(
+            value.namespaceURI,
+            localAttributeName(attribute)
+          );
+        else element.setAttributeNS(value.namespaceURI, attribute, value.value);
+      } else if (value === null) element.removeAttribute(attribute);
+      else element.setAttribute(attribute, value);
+    } catch (e) {
+      // do nothing if update doesn't work on this attribute
+      delete oldAttributes[entry[0]];
+    }
+  }
+  return {
+    element,
+    attributes: oldAttributes,
+  };
+}
+
+function handleRemoveV2({ node }: RemoveV2): InsertV2 | [] {
+  const { parentNode: parent, nextSibling: reference } = node;
+  node.parentNode?.removeChild(node);
+  if (parent)
+    return {
+      node,
+      parent,
+      reference,
+    };
+  return [];
 }
