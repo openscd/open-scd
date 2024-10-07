@@ -3,6 +3,7 @@ import { stringify } from 'csv-stringify/browser/esm/sync';
 import { newLogEvent } from '@openscd/core/foundation/deprecated/history.js';
 
 import { extractAllSignal104Data, Signal104 } from './export104/foundation.js';
+import { get } from 'lit-translate';
 
 
 
@@ -26,7 +27,7 @@ export default class Export104 extends LitElement {
     if (signals.length === 0) {
       this.dispatchEvent(newLogEvent({
         kind: 'info',
-        title: 'Export 104 found no signals',
+        title: get('protocol104.export.noSignalsFound'),
       }));
       return;
     }
@@ -47,7 +48,7 @@ export default class Export104 extends LitElement {
   private logWarning(errorMessage: string): void {
     this.dispatchEvent(newLogEvent({
       kind: 'warning',
-      title: 'Export 104 found invalid signal',
+      title: get('protocol104.export.invalidSignalWarning'),
       message: errorMessage,
     }));
   }
