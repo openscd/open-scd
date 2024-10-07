@@ -53,8 +53,8 @@ describe('Export104 foundation', () => {
     ];
 
     const expectedErrors = [
-      'Unknown signal type for ti: 25, ioa: 1031001',
-      'ti or ioa are missing or ioa is less than 4 digits, ti: 35, ioa: 103',
+      '[protocol104.export.errors.unknownSignalType]',
+      '[protocol104.export.errors.tiOrIoaInvalid]',
     ];
 
     expect(errors).to.deep.equal(expectedErrors);
