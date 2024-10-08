@@ -158,7 +158,7 @@ export const en = {
       'Cannot validate DataTypeTemplates. The version of the project must be higher than or equal to 2007B3',
   },
   plugins: {
-    heading: 'Extensions',
+    heading: 'Plug-ins',
     editor: 'Editor tab',
     menu: 'Menu entry',
     requireDoc: 'Requires loaded document',

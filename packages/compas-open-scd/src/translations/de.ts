@@ -181,7 +181,7 @@ export const de: Translations = {
       'DataTypeTemplates können nicht validiert werden. Das Projekt muss die Version 2007B3 oder höher haben.',
   },
   plugins: {
-    heading: 'Erweiterungen',
+    heading: 'Plug-ins',
     editor: 'Editor',
     menu: 'Menüeintrag',
     requireDoc: 'Benötigt Dokument',
