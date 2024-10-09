@@ -413,7 +413,8 @@ export class CompasLayout extends LitElement {
       }
     );
 
-    this.addEventListener('userinfo', this.onUserInfo);
+    this.onUserInfo = this.onUserInfo.bind(this);
+    this.host.addEventListener('userinfo', this.onUserInfo);
   }
 
   private onUserInfo(event: UserInfoEvent) {
