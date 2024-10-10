@@ -1,4 +1,4 @@
-import { OpenEvent, newEditCompletedEvent } from '@openscd/core';
+import { OpenEvent, newEditCompletedEvent, newEditEvent } from '@openscd/core';
 import {
   property,
   LitElement,
@@ -47,6 +47,8 @@ import {
   Remove as RemoveV2,
   Update as UpdateV2,
 } from '@openscd/core';
+
+import { convertEditV1toV2 } from '@openscd/core';
 
 @customElement('oscd-editor')
 export class OscdEditor extends LitElement {
@@ -431,7 +433,18 @@ export class OscdEditor extends LitElement {
     else if (isUpdate(action)) this.logUpdate(action as Update);
   }
 
-  private async onAction(event: EditorActionEvent<EditorAction>) {
+  private onAction(event: EditorActionEvent<EditorAction>) {
+    console.log('old event', event);
+
+    const editV2 = convertEditV1toV2(event.detail.action);
+    const initiator = event.detail.initiator;
+
+    console.log('dispatching new event', editV2);
+
+    this.host.dispatchEvent(newEditEvent(editV2, initiator));
+  }
+
+  private async onActionOld(event: EditorActionEvent<EditorAction>) {
     if (isSimple(event.detail.action)) {
       if (this.onSimpleAction(event.detail.action))
         this.logSimpleAction(event.detail.action);
@@ -491,7 +504,7 @@ export class OscdEditor extends LitElement {
     this.host.addEventListener('oscd-open', this.handleOpenDoc);
 
     // TODO: Test v2 API
-    this.addEventListener('oscd-edit', event => this.handleEditEventV2(event));
+    this.host.addEventListener('oscd-edit', event => this.handleEditEventV2(event));
   }
 
   render(): TemplateResult {
@@ -528,6 +541,8 @@ export class OscdEditor extends LitElement {
 }
 
 function handleEditV2(edit: EditV2): EditV2 {
+  console.log('Edit V2 event', edit);
+
   if (isInsertV2(edit)) return handleInsertV2(edit);
   if (isUpdateV2(edit)) return handleUpdateV2(edit);
   if (isRemoveV2(edit)) return handleRemoveV2(edit);
