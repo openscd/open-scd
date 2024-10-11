@@ -519,6 +519,10 @@ export class OscdEditor extends LitElement {
     // this.history.push({ undo: handleEdit(edit), redo: edit });
     handleEditV2(edit);
     this.editCount += 1;
+
+    this.dispatchEvent(
+      newEditCompletedEvent(event.detail.edit, event.detail.initiator)
+    );
   }
 
   /** Undo the last `n` [[Edit]]s committed */
