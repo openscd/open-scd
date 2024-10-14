@@ -181,7 +181,7 @@ export const de: Translations = {
       'DataTypeTemplates können nicht validiert werden. Das Projekt muss die Version 2007B3 oder höher haben.',
   },
   plugins: {
-    heading: 'Erweiterungen',
+    heading: 'Plug-ins',
     editor: 'Editor',
     menu: 'Menüeintrag',
     requireDoc: 'Benötigt Dokument',
@@ -458,6 +458,54 @@ export const de: Translations = {
         '{{ nrOfAddresses }} Addressen von DOI "{{ name }}" entfernt',
       addedAddress:
         '104-Addressen zu DO "{{ name }}" in LN(0) "{{ lnName }}" hinzugefügt',
+      signalNames: {
+        tiNumber1: 'Einzelwertinformation',
+        tiNumber3: 'Zweipunktinformation',
+        tiNumber5: 'Stufenpositionsinformation',
+        tiNumber7: 'Bit string von 32 Bit',
+        tiNumber9: 'Gemessener Wert, normalisierter Wert',
+        tiNumber11: 'Gemessener Wert, skalierte Wert',
+        tiNumber13: 'Gemessener Wert, Kurz-Gleitkommazahl',
+        tiNumber15: 'Integrierte Summen',
+        tiNumber20:
+          'Verpackte Einzelwertinformation mit Statusänderungserkennung',
+        tiNumber21:
+          'Gemessener Wert, normalisierter Wert ohne Qualitätsbeschreibung',
+        tiNumber30: 'Einzelwertinformation mit Zeitstempel CP56Time2a',
+        tiNumber31: 'Zweipunktinformation mit Zeitstempel CP56Time2a',
+        tiNumber32: 'Stufenpositionsinformation mit Zeitstempel CP56Time2a',
+        tiNumber33: 'Bit string von 32 Bit mit Zeitstempel CP56Time2a',
+        tiNumber34:
+          'Gemessener Wert, normalisierter Wert mit Zeitstempel CP56Time2a',
+        tiNumber35:
+          'Gemessener Wert, skalierte Wert mit Zeitstempel CP56Time2a',
+        tiNumber36:
+          'Gemessener Wert, Kurz-Gleitkommazahl mit Zeitstempel CP56Time2a',
+        tiNumber37: 'Integrierte Summen mit Zeitstempel CP56Time2a',
+        tiNumber38: 'Ereignis von Schutzeinrichtung mit Zeitstempel CP56Time2a',
+        tiNumber39:
+          'Verpackte Startereignisse von Schutzeinrichtung mit Zeitstempel CP56Time2a',
+        tiNumber40:
+          'Verpackte Ausgangsschaltkreisinformationen von Schutzeinrichtung mit Zeitstempel CP56Time2a',
+        tiNumber45: 'Einzelbefehl',
+        tiNumber46: 'Doppelbefehl',
+        tiNumber47: 'Regelungsschritt-Befehl',
+        tiNumber48: 'Sollwertbefehl, normalisierter Wert',
+        tiNumber49: 'Sollwertbefehl, skalierte Wert',
+        tiNumber50: 'Sollwertbefehl, Kurz-Gleitkommazahl',
+        tiNumber51: 'Bit string von 32 Bit Befehl',
+        tiNumber58: 'Einzelbefehl mit Zeitstempel CP56Time2a',
+        tiNumber59: 'Doppelbefehl mit Zeitstempel CP56Time2a',
+        tiNumber60: 'Regelungsschritt-Befehl mit Zeitstempel CP56Time2a',
+        tiNumber61:
+          'Gemessener Wert, normalisierter Wert Befehl mit Zeitstempel CP56Time2a',
+        tiNumber62:
+          'Gemessener Wert, skalierte Wert Befehl mit Zeitstempel CP56Time2a',
+        tiNumber63:
+          'Gemessener Wert, Kurz-Gleitkommazahl Befehl mit Zeitstempel CP56Time2a',
+        tiNumber64: 'Bit string von 32 Bit Befehl mit Zeitstempel CP56Time2a',
+        default: 'Keine Beschreibung verfügbar',
+      },
     },
     network: {
       connectedAp: {
