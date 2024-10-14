@@ -582,6 +582,18 @@ export const en = {
       scaleMultiplierHelper: 'Scale Multiplier',
       scaleOffsetHelper: 'Scale Offset',
     },
+    export: {
+      noSignalsFound: 'Export 104 found no signals',
+      invalidSignalWarning: 'Export 104 found invalid signal',
+      errors: {
+        tiOrIoaInvalid: 'ti or ioa are missing or ioa is less than 4 digits, ti: "{{ ti }}", ioa: "{{ ioa }}"',
+        unknownSignalType: 'Unknown signal type for ti: "{{ ti }}", ioa: "{{ ioa }}"',
+        noDoi: 'No parent DOI found for address with ioa: "{{ ioa }}"',
+        noBay: 'No Bay found bayname: "{{ bayName }}" for address with ioa: "{{ ioa }}"',
+        noVoltageLevel: 'No parent voltage level found for bay "{{ bayName }}" for ioa "{{ ioa }}"',
+        noSubstation: 'No parent substation found for voltage level "{{ voltageLevelName }}" for ioa "{{ ioa }}"'
+      }
+    }
   },
   'compare-ied': {
     selectProjectTitle: 'Select template project to Compare IED with',

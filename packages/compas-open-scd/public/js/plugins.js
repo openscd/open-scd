@@ -336,4 +336,13 @@ export const officialPlugins = [
     requireDoc: true,
     position: 'middle',
   },
+  {
+    name: 'Export IEC 104 CSV',
+    src: '/plugins/src/menu/Export104.js',
+    icon: 'sim_card_download',
+    default: false,
+    kind: 'menu',
+    requireDoc: true,
+    position: 'middle',
+  },
 ];

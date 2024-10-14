@@ -585,6 +585,18 @@ export const de: Translations = {
       scaleMultiplierHelper: '???',
       scaleOffsetHelper: '???',
     },
+    export: {
+      noSignalsFound: 'Export 104 hat keine Signale gefunden',
+      invalidSignalWarning: 'Export 104 hat ein ungültiges Signal gefunden',
+      errors: {
+        tiOrIoaInvalid: 'ti or ioa fehlen oder ioa hat weniger als 4 Zeichen, ti: "{{ ti }}", ioa: "{{ ioa }}"',
+        unknownSignalType: 'Unbekannter Signaltyp für ti: "{{ ti }}", ioa: "{{ ioa }}"',
+        noDoi: 'Es wurde kein Eltern DOI Element gefunden für ioa: "{{ ioa }}"',
+        noBay: 'Es wurde kein Bay Element mit dem Namen "{{ bayName }}" für ioa: "{{ ioa }}" gefunden',
+        noVoltageLevel: 'Es wurde kein VoltageLevel Element für Bay "{{ bayName }}" gefunden für ioa "{{ ioa }}"',
+        noSubstation: 'Es wurde kein Substation Element gefunden für VoltageLevel "{{ voltageLevelName }}" für ioa "{{ ioa }}"'
+      }
+    }
   },
   'compare-ied': {
     selectProjectTitle: 'Lade IEDs aus Vorlage',
