@@ -1,4 +1,4 @@
-import { EditorAction } from './editor';
+import { Edit } from '../edit-event.js';
 
 type InfoEntryKind = 'info' | 'warning' | 'error';
 
@@ -12,7 +12,8 @@ export interface LogDetailBase {
 /** The [[`LogEntry`]] for a committed [[`EditorAction`]]. */
 export interface CommitDetail extends LogDetailBase {
   kind: 'action';
-  action: EditorAction;
+  redo: Edit;
+  undo: Edit;
 }
 /** A [[`LogEntry`]] for notifying the user. */
 export interface InfoDetail extends LogDetailBase {

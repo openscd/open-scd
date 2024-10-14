@@ -159,6 +159,7 @@ export class OscdEditor extends LitElement {
   }
 
   private logCreate(action: Create) {
+    /* TODO: Remove
     const name =
       action.new.element instanceof Element
         ? action.new.element.tagName
@@ -171,6 +172,7 @@ export class OscdEditor extends LitElement {
         action,
       })
     );
+    */
   }
 
   private onDelete(action: Delete) {
@@ -184,6 +186,7 @@ export class OscdEditor extends LitElement {
   }
 
   private logDelete(action: Delete) {
+    /* TODO: Remove
     const name =
       action.old.element instanceof Element
         ? action.old.element.tagName
@@ -196,6 +199,7 @@ export class OscdEditor extends LitElement {
         action,
       })
     );
+    */
   }
 
   private checkMoveValidity(move: Move): boolean {
@@ -245,7 +249,7 @@ export class OscdEditor extends LitElement {
   }
 
   private logMove(action: Move) {
-    this.dispatchEvent(
+    /* TODO: Remove
       newLogEvent({
         kind: 'action',
         title: get('editing.moved', {
@@ -254,6 +258,7 @@ export class OscdEditor extends LitElement {
         action: action,
       })
     );
+    */
   }
 
   private checkReplaceValidity(replace: Replace): boolean {
@@ -329,6 +334,7 @@ export class OscdEditor extends LitElement {
   }
 
   private logUpdate(action: Replace | Update) {
+    /* TODO: Remove
     const name = isReplace(action)
       ? action.new.element.tagName
       : (action as Update).element.tagName;
@@ -342,6 +348,7 @@ export class OscdEditor extends LitElement {
         action: action,
       })
     );
+    */
   }
 
   private checkUpdateValidity(update: Update): boolean {
@@ -444,6 +451,7 @@ export class OscdEditor extends LitElement {
     this.host.dispatchEvent(newEditEvent(editV2, initiator));
   }
 
+  /* TODO: Remove
   private async onActionOld(event: EditorActionEvent<EditorAction>) {
     if (isSimple(event.detail.action)) {
       if (this.onSimpleAction(event.detail.action))
@@ -469,6 +477,7 @@ export class OscdEditor extends LitElement {
       newEditCompletedEvent(event.detail.action, event.detail.initiator)
     );
   }
+  */
 
   /**
    *
@@ -517,12 +526,23 @@ export class OscdEditor extends LitElement {
     const edit = event.detail.edit;
     // this.history.splice(this.editCount);
     // this.history.push({ undo: handleEdit(edit), redo: edit });
-    handleEditV2(edit);
+    const undoEdit = handleEditV2(edit);
     this.editCount += 1;
 
     this.dispatchEvent(
       newEditCompletedEvent(event.detail.edit, event.detail.initiator)
     );
+
+    const isUserEvent = event.detail.initiator === 'user';
+
+    if (isUserEvent) {
+      this.dispatchEvent(newLogEvent({
+        kind: 'action',
+        title: 'Edit V2',
+        redo: edit,
+        undo: undoEdit,
+      }));
+    }
   }
 
   /** Undo the last `n` [[Edit]]s committed */

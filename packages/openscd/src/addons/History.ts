@@ -43,6 +43,7 @@ import {
 import { getFilterIcon, iconColors } from '../icons/icons.js';
 
 import { Plugin } from '../open-scd.js';
+import { newEditEvent } from '@openscd/core';
 
 const icons = {
   info: 'info',
@@ -197,18 +198,28 @@ export class OscdHistory extends LitElement {
 
   undo(): boolean {
     if (!this.canUndo) return false;
-    const invertedAction = invert(
-      (<CommitEntry>this.history[this.editCount]).action
-    );
-    this.dispatchEvent(newActionEvent(invertedAction, 'undo'));
+
+    console.log(this.history);
+
+    const undoEdit = (<CommitEntry>this.history[this.editCount]).undo;
+    this.dispatchEvent(newEditEvent(undoEdit, 'undo'));
     this.editCount = this.previousAction;
+
+    console.log('Undo - Setting edit count to ', this.editCount);
+
     return true;
   }
   redo(): boolean {
     if (!this.canRedo) return false;
-    const nextAction = (<CommitEntry>this.history[this.nextAction]).action;
-    this.dispatchEvent(newActionEvent(nextAction, 'redo'));
+
+    console.log(this.history);
+
+    const redoEdit = (<CommitEntry>this.history[this.nextAction]).redo;
+    this.dispatchEvent(newEditEvent(redoEdit, 'redo'));
     this.editCount = this.nextAction;
+
+    console.log('Redo - Setting edit count to ', this.editCount);
+
     return true;
   }
 
@@ -219,10 +230,16 @@ export class OscdHistory extends LitElement {
     };
 
     if (entry.kind === 'action') {
+      console.log('Edit ', detail);
+
+      if (this.nextAction !== -1) this.history.splice(this.nextAction);
+      this.editCount = this.history.length;
+      /*
       if (entry.action.derived) return;
       entry.action.derived = true;
       if (this.nextAction !== -1) this.history.splice(this.nextAction);
       this.editCount = this.history.length;
+      */
     }
 
     this.history.push(entry);
