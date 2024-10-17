@@ -9,43 +9,27 @@ import {
 import { get } from 'lit-translate';
 
 import {
-  Move,
-  Create,
-  Delete,
   EditorAction,
   EditorActionEvent,
-  SimpleAction,
-  Replace,
-  Update,
 } from '@openscd/core/foundation/deprecated/editor.js';
 
 import { newLogEvent } from '@openscd/core/foundation/deprecated/history.js';
 import { newValidateEvent } from '@openscd/core/foundation/deprecated/validation.js';
 import { OpenDocEvent } from '@openscd/core/foundation/deprecated/open-event.js';
-import { getReference, SCLTag } from '../foundation.js';
-import {
-  isCreate,
-  isDelete,
-  isMove,
-  isSimple,
-  isReplace,
-  isUpdate,
-} from '@openscd/core/foundation/deprecated/editor.js';
 
 import {
-  AttributeValue as AttributeValueV2,
-  Edit as EditV2,
-  EditEvent as EditEventV2,
-  Insert as InsertV2,
-  isComplex as isComplexV2,
-  isInsert as isInsertV2,
-  isNamespaced as isNamespacedV2,
-  isRemove as isRemoveV2,
-  isUpdate as isUpdateV2,
-  LitElementConstructor,
+  AttributeValue,
+  Edit,
+  EditEvent,
+  Insert,
+  isComplex,
+  isInsert,
+  isNamespaced,
+  isRemove,
+  isUpdate,
   OpenEvent as OpenEventV2,
-  Remove as RemoveV2,
-  Update as UpdateV2,
+  Remove,
+  Update,
 } from '@openscd/core';
 
 import { convertEditV1toV2 } from '@openscd/core';
@@ -70,22 +54,22 @@ export class OscdEditor extends LitElement {
   })
   editCount = -1;
 
-  private getLogText(edit: EditV2): { title: string, message?: string } {
-    if (isInsertV2(edit)) {
+  private getLogText(edit: Edit): { title: string, message?: string } {
+    if (isInsert(edit)) {
       const name = edit.node instanceof Element ?
         edit.node.tagName :
         get('editing.node');
       return { title: get('editing.created', { name }) };
-    } else if (isUpdateV2(edit)) {
+    } else if (isUpdate(edit)) {
       const name = edit.element.tagName;
       return { title: get('editing.updated', { name }) };
-    } else if (isRemoveV2(edit)) {
+    } else if (isRemove(edit)) {
       const name = edit.node instanceof Element ?
         edit.node.tagName :
         get('editing.node');
       return { title: get('editing.deleted', { name }) };
-    } else if (isComplexV2(edit)) {
-      const message = edit.map(this.getLogText).map(({ title }) => title).join(', ');
+    } else if (isComplex(edit)) {
+      const message = edit.map(e => this.getLogText(e)).map(({ title }) => title).join(', ');
       return { title: get('editing.complex'), message };
     }
 
@@ -93,12 +77,8 @@ export class OscdEditor extends LitElement {
   }
 
   private onAction(event: EditorActionEvent<EditorAction>) {
-    console.log('old event', event);
-
     const editV2 = convertEditV1toV2(event.detail.action);
     const initiator = event.detail.initiator;
-
-    console.log('dispatching new event', editV2);
 
     this.host.dispatchEvent(newEditEvent(editV2, initiator));
   }
@@ -133,22 +113,19 @@ export class OscdEditor extends LitElement {
     super.connectedCallback();
 
     this.host.addEventListener('editor-action', this.onAction.bind(this));
+    this.host.addEventListener('oscd-edit', event => this.handleEditEvent(event));
     this.host.addEventListener('open-doc', this.onOpenDoc);
     this.host.addEventListener('oscd-open', this.handleOpenDoc);
-
-    // TODO: Test v2 API
-    this.host.addEventListener('oscd-edit', event => this.handleEditEventV2(event));
   }
 
   render(): TemplateResult {
     return html`<slot></slot>`;
   }
 
-  // Test API v2 start
-  handleEditEventV2(event: EditEventV2) {
+  handleEditEvent(event: EditEvent) {
     console.log('Edit V2', event);
     const edit = event.detail.edit;
-    const undoEdit = handleEditV2(edit);
+    const undoEdit = handleEdit(edit);
     this.editCount += 1;
 
     this.dispatchEvent(
@@ -169,17 +146,13 @@ export class OscdEditor extends LitElement {
       }));
     }
   }
-
-  // Test API v2 end
 }
 
-function handleEditV2(edit: EditV2): EditV2 {
-  console.log('Edit V2 event', edit);
-
-  if (isInsertV2(edit)) return handleInsertV2(edit);
-  if (isUpdateV2(edit)) return handleUpdateV2(edit);
-  if (isRemoveV2(edit)) return handleRemoveV2(edit);
-  if (isComplexV2(edit)) return edit.map(handleEditV2).reverse();
+function handleEdit(edit: Edit): Edit {
+  if (isInsert(edit)) return handleInsert(edit);
+  if (isUpdate(edit)) return handleUpdate(edit);
+  if (isRemove(edit)) return handleRemove(edit);
+  if (isComplex(edit)) return edit.map(handleEdit).reverse();
   return [];
 }
 
@@ -187,11 +160,11 @@ function localAttributeName(attribute: string): string {
   return attribute.includes(':') ? attribute.split(':', 2)[1] : attribute;
 }
 
-function handleInsertV2({
+function handleInsert({
   parent,
   node,
   reference,
-}: InsertV2): InsertV2 | RemoveV2 | [] {
+}: Insert): Insert | Remove | [] {
   try {
     const { parentNode, nextSibling } = node;
     parent.insertBefore(node, reference);
@@ -208,13 +181,13 @@ function handleInsertV2({
   }
 }
 
-function handleUpdateV2({ element, attributes }: UpdateV2): UpdateV2 {
+function handleUpdate({ element, attributes }: Update): Update {
   const oldAttributes = { ...attributes };
   Object.entries(attributes)
     .reverse()
     .forEach(([name, value]) => {
-      let oldAttribute: AttributeValueV2;
-      if (isNamespacedV2(value!))
+      let oldAttribute: AttributeValue;
+      if (isNamespaced(value!))
         oldAttribute = {
           value: element.getAttributeNS(
             value.namespaceURI,
@@ -233,8 +206,8 @@ function handleUpdateV2({ element, attributes }: UpdateV2): UpdateV2 {
     });
   for (const entry of Object.entries(attributes)) {
     try {
-      const [attribute, value] = entry as [string, AttributeValueV2];
-      if (isNamespacedV2(value)) {
+      const [attribute, value] = entry as [string, AttributeValue];
+      if (isNamespaced(value)) {
         if (value.value === null)
           element.removeAttributeNS(
             value.namespaceURI,
@@ -254,7 +227,7 @@ function handleUpdateV2({ element, attributes }: UpdateV2): UpdateV2 {
   };
 }
 
-function handleRemoveV2({ node }: RemoveV2): InsertV2 | [] {
+function handleRemove({ node }: Remove): Insert | [] {
   const { parentNode: parent, nextSibling: reference } = node;
   node.parentNode?.removeChild(node);
   if (parent)
