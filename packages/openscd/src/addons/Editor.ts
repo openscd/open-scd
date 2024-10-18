@@ -49,11 +49,6 @@ export class OscdEditor extends LitElement {
   })
   host!: HTMLElement;
 
-  @property({
-    type: Number,
-  })
-  editCount = -1;
-
   private getLogText(edit: Edit): { title: string, message?: string } {
     if (isInsert(edit)) {
       const name = edit.node instanceof Element ?
@@ -126,7 +121,6 @@ export class OscdEditor extends LitElement {
     console.log('Edit V2', event);
     const edit = event.detail.edit;
     const undoEdit = handleEdit(edit);
-    this.editCount += 1;
 
     this.dispatchEvent(
       newEditCompletedEvent(event.detail.edit, event.detail.initiator)
