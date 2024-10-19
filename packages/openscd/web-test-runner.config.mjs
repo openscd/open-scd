@@ -14,15 +14,15 @@ export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
    * Creating open-scd in the tests leads to error in the browser log - we had to disable the browser log
   */
   browserLogs: false,
-  browsers: [
-    playwrightLauncher({
-        product: 'chromium',
-        launchOptions:{
-          // headless:false,
-          // devtools:true,
-        }
-    }),
-  ],
+  // browsers: [
+  //   playwrightLauncher({
+  //       product: 'chromium',
+  //       launchOptions:{
+  //         headless:false,
+  //         devtools:true,
+  //       }
+  //   }),
+  // ],
 
   /** specify groups for unit and integrations tests
    * hint: no --group definition runs all groups
@@ -36,10 +36,10 @@ export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
       name: 'integration',
       files: 'test/integration/**/*.test.ts',
     },
-    // {
-    //   name: 'single',
-    //   files: 'test/unit/foundation.test.ts',
-    // },
+    {
+      name: 'single',
+      files: 'test/unit/foundation.test.ts',
+    },
   ],
 
 
