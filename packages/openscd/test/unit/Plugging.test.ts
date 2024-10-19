@@ -157,7 +157,6 @@ describe('OpenSCD-Plugin', () => {
         src.value = 'http://localhost:8080/plugin/plugin.js';
         await src.updateComplete;
 
-        await new Promise(resolve => setTimeout(resolve, 2_000));
         primaryAction.click();
 
         expect(element.layout.pluginDownloadUI).to.have.property('open', false);
