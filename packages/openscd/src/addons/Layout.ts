@@ -642,6 +642,14 @@ export class OscdLayout extends LitElement {
             class="${plugin.official ? 'official' : 'external'}"
             value="${plugin.src}"
             ?selected=${plugin.installed}
+            @request-selected=${(e: CustomEvent<{source: string}>) => {
+              if(e.detail.source !== 'interaction'){
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                return false;
+              }
+            }}
             hasMeta
             left
           >
