@@ -17,5 +17,5 @@ jobs:
         run: |
           npm i @nx/nx-linux-x64-gnu
           npm clean-install
-          npx playwright install --with-deps
+          npx playwright install chromium --with-deps
           npm run-script test

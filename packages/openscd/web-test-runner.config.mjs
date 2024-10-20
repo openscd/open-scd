@@ -14,7 +14,7 @@ export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
   */
   browserLogs: false,
   browsers: [
-    playwrightLauncher({ product: 'chromium', launchOptions: { headless: false } }),
+    playwrightLauncher({ product: 'chromium', launchOptions: { headless: true } }),
     // playwrightLauncher({ product: 'firefox' }),
     // playwrightLauncher({ product: 'webkit' }),
   ],
