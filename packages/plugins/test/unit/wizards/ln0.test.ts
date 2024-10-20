@@ -20,9 +20,10 @@ describe('ln0 wizards', () => {
     lnClass: 'LN0-class',
     inst: '1',
   };
-  const requiredFields = [
+  const readonlyFields = [
     'lnType',
     'lnClass',
+    'inst'
   ];
 
   const ln = <Element>(
@@ -55,15 +56,13 @@ describe('ln0 wizards', () => {
     });
   });
 
-  requiredFields.forEach((field) => {
-    it(`is a required field ${field}`, async () => {
+  readonlyFields.forEach((field) => {
+    it(`is a readonly field ${field}`, async () => {
       const input = (<WizardInputElement[]>inputs).find(
         (textField) => textField.label === field
       ) as WizardTextField;
 
-      await setWizardTextFieldValue(input!, '');
-
-      expect(input.checkValidity()).to.be.false;
+      expect(input.readOnly).to.be.true;
     });
   });
 });
