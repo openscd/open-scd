@@ -39,13 +39,13 @@
     "@material/mwc-textarea": "0.22.1",
     "@material/mwc-textfield": "0.22.1",
     "@material/mwc-top-app-bar-fixed": "0.22.1",
+    "@openscd/core": "*",
+    "@openscd/xml": "*",
     "ace-custom-element": "^1.6.5",
     "lit": "^2.2.7",
     "lit-translate": "^1.2.1",
     "marked": "^4.0.10",
-    "panzoom": "^9.4.2",
-    "@openscd/core": "*",
-    "@openscd/xml": "*"
+    "panzoom": "^9.4.2"
   },
   "scripts": {
     "clean": "rimraf build",
@@ -85,6 +85,7 @@
     "@typescript-eslint/parser": "^4.29.2",
     "@web/dev-server-esbuild": "^0.2.16",
     "@web/test-runner": "^0.13.22",
+    "@web/test-runner-playwright": "^0.11.0",
     "concurrently": "^6.2.1",
     "deepmerge": "^4.2.2",
     "es-dev-server": "^2.1.0",

@@ -1,7 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["open-scd looks like its snapshot"] = 
+snapshots["open-scd looks like its snapshot"] =
 `<oscd-waiter>
   <oscd-settings>
     <oscd-wizards>
@@ -17,7 +17,7 @@ snapshots["open-scd looks like its snapshot"] =
 `;
 /* end snapshot open-scd looks like its snapshot */
 
-snapshots["open-scd renders menu plugins passed down as props and it looks like its snapshot"] = 
+snapshots["open-scd renders menu plugins passed down as props and it looks like its snapshot"] =
 `<slot>
 </slot>
 <mwc-top-app-bar-fixed>
@@ -912,14 +912,13 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       hasmeta=""
       left=""
       mwc-list-item=""
-      selected=""
       tabindex="-1"
-      value="http://localhost:8000/plugins/src/menu/Help.js"
+      value="https://mockup-plugin.url/plugin-bottom.js"
     >
       <mwc-icon slot="meta">
-        help
+        link
       </mwc-icon>
-      Help
+      Bottom Mock Plugin
     </mwc-check-list-item>
     <mwc-check-list-item
       aria-disabled="false"
@@ -928,13 +927,14 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       hasmeta=""
       left=""
       mwc-list-item=""
+      selected=""
       tabindex="-1"
-      value="https://mockup-plugin.url/plugin-bottom.js"
+      value="http://localhost:8000/plugins/src/menu/Help.js"
     >
       <mwc-icon slot="meta">
-        link
+        help
       </mwc-icon>
-      Bottom Mock Plugin
+      Help
     </mwc-check-list-item>
     <mwc-check-list-item
       aria-disabled="false"
@@ -1112,7 +1112,7 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
 `;
 /* end snapshot open-scd renders menu plugins passed down as props and it looks like its snapshot */
 
-snapshots["open-scd renders editor plugins passed down as props and it looks like its snapshot"] = 
+snapshots["open-scd renders editor plugins passed down as props and it looks like its snapshot"] =
 `<slot>
 </slot>
 <mwc-top-app-bar-fixed>
@@ -2177,7 +2177,7 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
 `;
 /* end snapshot open-scd renders editor plugins passed down as props and it looks like its snapshot */
 
-snapshots["open-scd layout looks like its snapshot"] = 
+snapshots["open-scd layout looks like its snapshot"] =
 `<slot>
 </slot>
 <mwc-top-app-bar-fixed>
