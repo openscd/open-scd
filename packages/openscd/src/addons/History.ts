@@ -35,15 +35,28 @@ import {
   LogEvent,
 } from '@openscd/core/foundation/deprecated/history.js';
 
-import {
-  newActionEvent,
-  invert,
-} from '@openscd/core/foundation/deprecated/editor.js';
-
 import { getFilterIcon, iconColors } from '../icons/icons.js';
 
 import { Plugin } from '../open-scd.js';
 import { newEditEvent } from '@openscd/core';
+
+export const historyStateEvent =  'history-state';
+export interface HistoryState {
+  editCount: number;
+  canUndo: boolean;
+  canRedo: boolean;
+}
+export type HistoryStateEvent = CustomEvent<HistoryState>;
+
+function newHistoryStateEvent(state: HistoryState): HistoryStateEvent {
+  return new CustomEvent(historyStateEvent, { detail: state });
+}
+
+declare global {
+  interface ElementEventMap {
+    [historyStateEvent]: HistoryStateEvent;
+  }
+}
 
 const icons = {
   info: 'info',
@@ -201,7 +214,7 @@ export class OscdHistory extends LitElement {
 
     const undoEdit = (<CommitEntry>this.history[this.editCount]).undo;
     this.dispatchEvent(newEditEvent(undoEdit, 'undo'));
-    this.editCount = this.previousAction;
+    this.setEditCount(this.previousAction);
 
     return true;
   }
@@ -210,7 +223,7 @@ export class OscdHistory extends LitElement {
 
     const redoEdit = (<CommitEntry>this.history[this.nextAction]).redo;
     this.dispatchEvent(newEditEvent(redoEdit, 'redo'));
-    this.editCount = this.nextAction;
+    this.setEditCount(this.nextAction);
 
     return true;
   }
@@ -225,17 +238,32 @@ export class OscdHistory extends LitElement {
       if (this.nextAction !== -1) {
         this.history.splice(this.nextAction);
       }
-      this.editCount = this.history.length;
     }
 
     this.history.push(entry);
+    this.setEditCount(this.history.length - 1);
     this.requestUpdate('history', []);
   }
 
   private onReset() {
     this.log = [];
     this.history = [];
-    this.editCount = -1;
+    this.setEditCount(-1);
+  }
+
+  private setEditCount(count: number): void {
+    this.editCount = count;
+    this.dispatchHistoryStateEvent();
+  }
+
+  private dispatchHistoryStateEvent(): void {
+    this.host.dispatchEvent(
+      newHistoryStateEvent({
+        editCount: this.editCount,
+        canUndo: this.canUndo,
+        canRedo: this.canRedo
+      })
+    );
   }
 
   private onInfo(detail: InfoDetail) {
@@ -313,6 +341,7 @@ export class OscdHistory extends LitElement {
     this.historyUIHandler = this.historyUIHandler.bind(this);
     this.emptyIssuesHandler = this.emptyIssuesHandler.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.dispatchHistoryStateEvent = this.dispatchHistoryStateEvent.bind(this);
     document.onkeydown = this.handleKeyPress;
   }
 

@@ -45,6 +45,7 @@ import type {
   Plugin as CorePlugin,
   EditCompletedEvent,
 } from '@openscd/core';
+import { HistoryState, historyStateEvent } from './addons/History.js';
 
 // HOSTING INTERFACES
 
@@ -245,9 +246,12 @@ export class OpenSCD extends LitElement {
   /** The UUID of the current [[`doc`]] */
   @property({ type: String }) docId = '';
 
-  /** Index of the last [[`EditorAction`]] applied. */
   @state()
-  editCount = -1;
+  historyState: HistoryState = {
+    editCount: -1,
+    canRedo: false,
+    canUndo: false,
+  } 
 
   /** Object containing all *.nsdoc files and a function extracting element's label form them*/
   @property({ attribute: false })
@@ -294,15 +298,8 @@ export class OpenSCD extends LitElement {
     this.updatePlugins();
     this.requestUpdate();
 
-    this.addEventListener('oscd-edit-completed', (evt: EditCompletedEvent) => {
-      const initiator = evt.detail.initiator;
-
-      if (initiator === 'undo') {
-        this.editCount -= 1;
-      } else {
-        this.editCount += 1;
-      }
-
+    this.addEventListener(historyStateEvent, (e: CustomEvent<HistoryState>) => {
+      this.historyState = e.detail;
       this.requestUpdate();
     });
   }
@@ -311,19 +308,20 @@ export class OpenSCD extends LitElement {
     return html`<oscd-waiter>
       <oscd-settings .host=${this}>
         <oscd-wizards .host=${this}>
-          <oscd-history .host=${this} .editCount=${this.editCount}>
+          <oscd-history .host=${this} .editCount=${this.historyState.editCount}>
             <oscd-editor
               .doc=${this.doc}
               .docName=${this.docName}
               .docId=${this.docId}
               .host=${this}
-              .editCount=${this.editCount}
+              .editCount=${this.historyState.editCount}
             >
               <oscd-layout
                 .host=${this}
                 .doc=${this.doc}
                 .docName=${this.docName}
-                .editCount=${this.editCount}
+                .editCount=${this.historyState.editCount}
+                .historyState=${this.historyState}
                 .plugins=${this.sortedStoredPlugins}
               >
               </oscd-layout>
@@ -497,7 +495,7 @@ export class OpenSCD extends LitElement {
       content: staticTagHtml`<${tag}
             .doc=${this.doc}
             .docName=${this.docName}
-            .editCount=${this.editCount}
+            .editCount=${this.historyState.editCount}
             .docId=${this.docId}
             .pluginId=${plugin.src}
             .nsdoc=${this.nsdoc}
