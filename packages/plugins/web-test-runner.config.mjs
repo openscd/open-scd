@@ -1,5 +1,7 @@
 // import { playwrightLauncher } from '@web/test-runner-playwright';
 import { esbuildPlugin } from '@web/dev-server-esbuild';
+import { playwrightLauncher } from '@web/test-runner-playwright';
+
 
 export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
   /** we run test directly on TypeScript files */
@@ -14,7 +16,7 @@ export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
   */
   browserLogs: false,
 
-  /** specify groups for unit and integrations tests 
+  /** specify groups for unit and integrations tests
    * hint: no --group definition runs all groups
   */
   groups: [
@@ -27,7 +29,7 @@ export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
       files: 'test/integration/**/*.test.ts',
     },
   ],
-  
+
   /** Compile JS for older browsers. Requires @web/dev-server-esbuild plugin */
   // esbuildTarget: 'auto',
 
@@ -38,11 +40,11 @@ export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
   // concurrency: 1,
 
   /** Browsers to run tests on */
-  // browsers: [
-  //   playwrightLauncher({ product: 'chromium' }),
-  //   playwrightLauncher({ product: 'firefox' }),
-  //   playwrightLauncher({ product: 'webkit' }),
-  // ],
+  browsers: [
+    playwrightLauncher({ product: 'chromium' }),
+    // playwrightLauncher({ product: 'firefox' }),
+    // playwrightLauncher({ product: 'webkit' }),
+  ],
 
   // See documentation for all available options
 });
