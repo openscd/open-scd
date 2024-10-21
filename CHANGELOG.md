@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.35.1](https://github.com/openscd/open-scd/compare/v0.35.0...v0.35.1) (2024-10-21)
+
+
+### Bug Fixes
+
+* 1553 LN LN0 wizards read only attributes ([#1568](https://github.com/openscd/open-scd/issues/1568)) ([87aa759](https://github.com/openscd/open-scd/commit/87aa75961c7ef0bfe11810d2fa5d4e08704da033)), closes [#1553](https://github.com/openscd/open-scd/issues/1553)
+* correct plug-ins' paths ([a7a14ce](https://github.com/openscd/open-scd/commit/a7a14ced59294d8a24daabf5ecdc76a5dbb75237))
+
 ## [0.35.0](https://github.com/openscd/open-scd/compare/v0.34.0...v0.35.0) (2024-07-17)
 
 ### Features
