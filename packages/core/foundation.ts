@@ -23,6 +23,9 @@ export type {
   Update,
   Remove,
 } from './foundation/edit-event.js';
+export {
+  convertEditV1toV2
+} from './foundation/edit-v1-to-v2-converter.js';
 
 export { cyrb64 } from './foundation/cyrb64.js';
 
