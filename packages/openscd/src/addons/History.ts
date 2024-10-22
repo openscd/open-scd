@@ -234,10 +234,8 @@ export class OscdHistory extends LitElement {
       ...detail,
     };
 
-    if (entry.kind === 'action') {
-      if (this.nextAction !== -1) {
-        this.history.splice(this.nextAction);
-      }
+    if (this.nextAction !== -1) {
+      this.history.splice(this.nextAction);
     }
 
     this.history.push(entry);
