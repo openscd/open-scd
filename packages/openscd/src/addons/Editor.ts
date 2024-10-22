@@ -32,7 +32,7 @@ import {
   Update,
 } from '@openscd/core';
 
-import { convertEditV1toV2 } from '@openscd/core';
+import { convertEditV1toV2 } from './editor/edit-v1-to-v2-converter.js';
 
 @customElement('oscd-editor')
 export class OscdEditor extends LitElement {

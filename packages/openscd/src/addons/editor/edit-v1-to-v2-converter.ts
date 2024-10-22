@@ -1,6 +1,20 @@
-import { Create, Delete, EditorAction, isCreate, isDelete, isMove, isReplace, isSimple, isUpdate, Move, Replace, SimpleAction, Update } from './deprecated/editor.js';
-import { Edit, Insert, Remove, Update as UpdateV2 } from './edit-event.js';
-import { getReference, SCLTag } from '@openscd/open-scd/src/foundation.js';
+import {
+  Create,
+  Delete,
+  EditorAction,
+  isCreate,
+  isDelete,
+  isMove,
+  isReplace,
+  isSimple,
+  isUpdate,
+  Move,
+  Replace,
+  SimpleAction,
+  Update
+} from '@openscd/core/foundation/deprecated/editor.js';
+import { Edit, Insert, Remove, Update as UpdateV2 } from '@openscd/core';
+import { getReference, SCLTag } from '../../foundation.js';
 
 
 export function convertEditV1toV2(action: EditorAction): Edit {
