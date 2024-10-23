@@ -45,6 +45,7 @@ import type {
   Plugin as CorePlugin,
   EditCompletedEvent,
 } from '@openscd/core';
+import { InstalledOfficialPlugin, MenuPosition, PluginKind, Plugin } from "./plugin.js"
 
 // HOSTING INTERFACES
 
@@ -173,28 +174,6 @@ function staticTagHtml(
   return html(<TemplateStringsArray>strings, ...args);
 }
 
-export type PluginKind = 'editor' | 'menu' | 'validator';
-export const menuPosition = ['top', 'middle', 'bottom'] as const;
-export type MenuPosition = (typeof menuPosition)[number];
-
-export type Plugin = {
-  name: string;
-  src: string;
-  icon?: string;
-  default?: boolean;
-  kind: PluginKind;
-  requireDoc?: boolean;
-  position?: MenuPosition;
-  installed: boolean;
-  official?: boolean;
-  content?: TemplateResult;
-};
-
-type InstalledOfficialPlugin = {
-  src: string;
-  official: true;
-  installed: boolean;
-};
 
 function withoutContent<P extends Plugin | InstalledOfficialPlugin>(
   plugin: P
@@ -281,6 +260,9 @@ export class OpenSCD extends LitElement {
   public handleAddExternalPlugin(e: AddExternalPluginEvent){
     this.addExternalPlugin(e.detail.plugin);
   }
+
+
+  // public handleConfigurationPluginEvent
 
   connectedCallback(): void {
     super.connectedCallback();
