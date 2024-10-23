@@ -31,6 +31,10 @@ export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
       name: 'integration',
       files: 'test/integration/**/*.test.ts',
     },
+    {
+      name: 'single',
+      files: 'test/unit/foundation.test.ts',
+    },
   ],
 
   /** Compile JS for older browsers. Requires @web/dev-server-esbuild plugin */
