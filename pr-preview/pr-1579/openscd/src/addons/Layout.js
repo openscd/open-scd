@@ -333,7 +333,11 @@ export let OscdLayout = class extends LitElement {
     }
   }
   renderContent() {
-    const activeEditors = this.editors.filter((editor) => !editor.requireDoc || this.doc).map(this.renderEditorTab);
+    const hasActiveDoc = Boolean(this.doc);
+    const activeEditors = this.editors.filter((editor) => {
+      const doesNotRequireDoc = editor.requireDoc === false;
+      return doesNotRequireDoc || hasActiveDoc;
+    }).map(this.renderEditorTab);
     const hasActiveEditors = activeEditors.length > 0;
     if (!hasActiveEditors) {
       return html``;

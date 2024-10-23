@@ -329,8 +329,14 @@ let OscdLayout = class OscdLayout extends LitElement {
     }
     /** Renders the enabled editor plugins and a tab bar to switch between them*/
     renderContent() {
+        const hasActiveDoc = Boolean(this.doc);
         const activeEditors = this.editors
-            .filter(editor => !editor.requireDoc || this.doc)
+            .filter(editor => {
+            // this is necessary because `requireDoc` can be undefined
+            // and that is not the same as false
+            const doesNotRequireDoc = editor.requireDoc === false;
+            return doesNotRequireDoc || hasActiveDoc;
+        })
             .map(this.renderEditorTab);
         const hasActiveEditors = activeEditors.length > 0;
         if (!hasActiveEditors) {
