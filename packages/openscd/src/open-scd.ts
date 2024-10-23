@@ -278,7 +278,7 @@ export class OpenSCD extends LitElement {
     if (src.startsWith('blob:')) URL.revokeObjectURL(src);
   }
 
-  public handleAddExternalPlugin = (e: AddExternalPluginEvent) => {
+  public handleAddExternalPlugin(e: AddExternalPluginEvent){
     this.addExternalPlugin(e.detail.plugin);
   }
 
