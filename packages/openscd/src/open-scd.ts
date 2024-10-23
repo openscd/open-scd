@@ -278,15 +278,13 @@ export class OpenSCD extends LitElement {
     if (src.startsWith('blob:')) URL.revokeObjectURL(src);
   }
 
+  public handleAddExternalPlugin = (e: AddExternalPluginEvent) => {
+    this.addExternalPlugin(e.detail.plugin);
+  }
+
   connectedCallback(): void {
     super.connectedCallback();
     this.addEventListener('reset-plugins', this.resetPlugins);
-    this.addEventListener(
-      'add-external-plugin',
-      (e: AddExternalPluginEvent) => {
-        this.addExternalPlugin(e.detail.plugin);
-      }
-    );
     this.addEventListener('set-plugins', (e: SetPluginsEvent) => {
       this.setPlugins(e.detail.indices);
     });
@@ -320,6 +318,7 @@ export class OpenSCD extends LitElement {
               .editCount=${this.editCount}
             >
               <oscd-layout
+                @add-external-plugin=${this.handleAddExternalPlugin}
                 .host=${this}
                 .doc=${this.doc}
                 .docName=${this.docName}
