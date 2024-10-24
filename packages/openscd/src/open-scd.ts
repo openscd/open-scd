@@ -46,7 +46,7 @@ import type {
   EditCompletedEvent,
 } from '@openscd/core';
 import { InstalledOfficialPlugin, MenuPosition, PluginKind, Plugin } from "./plugin.js"
-import { ConfigurePluginEvent, ConfigurePluginDetail, newConfigurePluginEvent } from './plugin.events';
+import { ConfigurePluginEvent, ConfigurePluginDetail, newConfigurePluginEvent } from './plugin.events.js';
 
 
 // HOSTING INTERFACES
