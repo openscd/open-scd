@@ -217,7 +217,7 @@ describe('OpenSCD-Plugin', () => {
     });
   });
 
-  describe.only('ConfigurePluginEvent', () => {
+  describe('ConfigurePluginEvent', () => {
 
       type TestCase = {
           desc: string
