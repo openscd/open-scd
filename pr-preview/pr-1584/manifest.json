@@ -1,0 +1,44 @@
+{
+  "short_name": "OpenSCD",
+  "name": "OpenSCD",
+  "description": "An editor for XML files as described by IEC 61850-6",
+  "categories": [
+    "productivity",
+    "utilities",
+    "engineering"
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#eee8d5",
+  "theme_color": "#2aa198",
+  "orientation": "any",
+  "lang": "en-US",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "public/icon.svg",
+      "sizes": "150x150",
+      "type": "image/svg+xml",
+      "purpose": "any monochrome"
+    },
+    {
+      "src": "public/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "public/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "public/maskable_icon.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "version": "0.33.0"
+}
