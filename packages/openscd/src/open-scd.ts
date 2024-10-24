@@ -282,13 +282,15 @@ export class OpenSCD extends LitElement {
     const isRemoveEvent = hasPlugin && !hasConfig
     const isAddEvent = !hasPlugin && hasConfig
 
-    if(isChangeEvent){
+    // the `&& config`is only because typescript
+    // cannot infer that `isChangeEvent` and `isAddEvent` implies `config !== null`
+    if(isChangeEvent && config){
       this.changePlugin(config)
 
     }else if( isRemoveEvent ){
       this.removePlugin(name, kind)
 
-    }else if(isAddEvent){
+    }else if(isAddEvent && config){
       this.addPlugin(config)
 
     }else{
