@@ -14,7 +14,13 @@ export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
   */
   browserLogs: false,
   browsers: [
-    playwrightLauncher({ product: 'chromium', launchOptions: { headless: true } }),
+    playwrightLauncher({
+      product: 'chromium',
+      launchOptions: {
+        headless: true,
+        devtools: true,
+      }
+    }),
     // playwrightLauncher({ product: 'firefox' }),
     // playwrightLauncher({ product: 'webkit' }),
   ],
@@ -31,10 +37,10 @@ export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
       name: 'integration',
       files: 'test/integration/**/*.test.ts',
     },
-    {
-      name: 'single',
-      files: 'test/unit/foundation.test.ts',
-    },
+    // {
+    //   name: 'single',
+    //   files: 'test/unit/Plugging.test.ts',
+    // },
   ],
 
   /** Compile JS for older browsers. Requires @web/dev-server-esbuild plugin */

@@ -42,7 +42,7 @@ import {
 
 import { getFilterIcon, iconColors } from '../icons/icons.js';
 
-import { Plugin } from '../open-scd.js';
+import { Plugin } from '../plugin.js';
 
 const icons = {
   info: 'info',
