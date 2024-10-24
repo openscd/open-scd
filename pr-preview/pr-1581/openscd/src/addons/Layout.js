@@ -317,16 +317,28 @@ export let OscdLayout = class extends LitElement {
     }
   }
   renderContent() {
-    if (!this.doc)
+    const hasActiveDoc = Boolean(this.doc);
+    const activeEditors = this.editors.filter((editor) => {
+      const doesNotRequireDoc = editor.requireDoc === false;
+      return doesNotRequireDoc || hasActiveDoc;
+    }).map(this.renderEditorTab);
+    const hasActiveEditors = activeEditors.length > 0;
+    if (!hasActiveEditors) {
       return html``;
+    }
     return html`
       <mwc-tab-bar @MDCTabBar:activated=${(e) => this.activeTab = e.detail.index}>
-        ${this.editors.map(this.renderEditorTab)}
+        ${activeEditors}
       </mwc-tab-bar>
-      ${renderEditorContent(this.editors, this.activeTab)}
+      ${renderEditorContent(this.editors, this.activeTab, this.doc)}
     `;
-    function renderEditorContent(editors, activeTab) {
-      const content = editors[activeTab]?.content;
+    function renderEditorContent(editors, activeTab, doc) {
+      const editor = editors[activeTab];
+      const requireDoc = editor?.requireDoc;
+      if (requireDoc && !doc) {
+        return html``;
+      }
+      const content = editor?.content;
       if (!content) {
         return html``;
       }
@@ -458,6 +470,14 @@ export let OscdLayout = class extends LitElement {
             class="${plugin.official ? "official" : "external"}"
             value="${plugin.src}"
             ?selected=${plugin.installed}
+            @request-selected=${(e) => {
+      if (e.detail.source !== "interaction") {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        return false;
+      }
+    }}
             hasMeta
             left
           >

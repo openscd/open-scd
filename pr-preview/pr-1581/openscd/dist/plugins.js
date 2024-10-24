@@ -15,6 +15,7 @@ export const officialPlugins = [
         icon: 'developer_board',
         default: true,
         kind: 'editor',
+        requireDoc: true,
     },
     {
         name: 'Substation',
@@ -22,6 +23,7 @@ export const officialPlugins = [
         icon: 'margin',
         default: true,
         kind: 'editor',
+        requireDoc: true,
     },
     {
         name: 'Single Line Diagram',
@@ -29,6 +31,7 @@ export const officialPlugins = [
         icon: 'edit',
         default: false,
         kind: 'editor',
+        requireDoc: true,
     },
     {
         name: 'Subscriber Message Binding (GOOSE)',
@@ -36,6 +39,7 @@ export const officialPlugins = [
         icon: 'link',
         default: false,
         kind: 'editor',
+        requireDoc: true,
     },
     {
         name: 'Subscriber Data Binding (GOOSE)',
@@ -43,6 +47,7 @@ export const officialPlugins = [
         icon: 'link',
         default: false,
         kind: 'editor',
+        requireDoc: true,
     },
     {
         name: 'Subscriber Later Binding (GOOSE)',
@@ -50,6 +55,7 @@ export const officialPlugins = [
         icon: 'link',
         default: true,
         kind: 'editor',
+        requireDoc: true,
     },
     {
         name: 'Subscriber Message Binding (SMV)',
@@ -57,6 +63,7 @@ export const officialPlugins = [
         icon: 'link',
         default: false,
         kind: 'editor',
+        requireDoc: true,
     },
     {
         name: 'Subscriber Data Binding (SMV)',
@@ -64,6 +71,7 @@ export const officialPlugins = [
         icon: 'link',
         default: false,
         kind: 'editor',
+        requireDoc: true,
     },
     {
         name: 'Subscriber Later Binding (SMV)',
@@ -71,6 +79,7 @@ export const officialPlugins = [
         icon: 'link',
         default: true,
         kind: 'editor',
+        requireDoc: true,
     },
     {
         name: 'Communication',
@@ -78,6 +87,7 @@ export const officialPlugins = [
         icon: 'settings_ethernet',
         default: true,
         kind: 'editor',
+        requireDoc: true,
     },
     {
         name: '104',
@@ -85,6 +95,7 @@ export const officialPlugins = [
         icon: 'settings_ethernet',
         default: false,
         kind: 'editor',
+        requireDoc: true,
     },
     {
         name: 'Templates',
@@ -92,6 +103,7 @@ export const officialPlugins = [
         icon: 'copy_all',
         default: true,
         kind: 'editor',
+        requireDoc: true,
     },
     {
         name: 'Publisher',
@@ -99,6 +111,7 @@ export const officialPlugins = [
         icon: 'publish',
         default: false,
         kind: 'editor',
+        requireDoc: true,
     },
     {
         name: 'Cleanup',
@@ -106,6 +119,7 @@ export const officialPlugins = [
         icon: 'cleaning_services',
         default: false,
         kind: 'editor',
+        requireDoc: true,
     },
     {
         name: 'Open project',
