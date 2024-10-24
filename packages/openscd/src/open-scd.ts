@@ -46,6 +46,7 @@ import type {
   EditCompletedEvent,
 } from '@openscd/core';
 import { InstalledOfficialPlugin, MenuPosition, PluginKind, Plugin } from "./plugin.js"
+import { ConfigurePluginEvent } from './plugin.events';
 
 // HOSTING INTERFACES
 
@@ -257,12 +258,37 @@ export class OpenSCD extends LitElement {
     if (src.startsWith('blob:')) URL.revokeObjectURL(src);
   }
 
+  // TODO: convert event to the new `ConfigurePluginEvent`
   public handleAddExternalPlugin(e: AddExternalPluginEvent){
     this.addExternalPlugin(e.detail.plugin);
   }
 
 
-  // public handleConfigurationPluginEvent
+  public handleConfigurationPluginEvent(e: ConfigurePluginEvent){
+    const { name, kind, config } = e.detail;
+
+    const hasPlugin = this.hasPlugin(name, kind);
+    const hasConfig = config !== null;
+    const isChangeEvent = hasPlugin && hasConfig
+    const isRemoveEvent = hasPlugin && !hasConfig
+    const isAddEvent = !hasPlugin && hasConfig
+
+    if(isChangeEvent){
+      this.changePlugin(config)
+
+    }else if( isRemoveEvent ){
+      this.removePlugin(name, kind)
+
+    }else if(isAddEvent){
+      this.addPlugin(config)
+
+    }else{
+      console.error("Invalid plugin configuration event", {name, kind, config})
+    }
+
+
+
+  }
 
   connectedCallback(): void {
     super.connectedCallback();
@@ -301,6 +327,7 @@ export class OpenSCD extends LitElement {
             >
               <oscd-layout
                 @add-external-plugin=${this.handleAddExternalPlugin}
+                @oscd-configure-plugin=${this.handleConfigurationPluginEvent}
                 .host=${this}
                 .doc=${this.doc}
                 .docName=${this.docName}
@@ -322,6 +349,51 @@ export class OpenSCD extends LitElement {
     );
     this.requestUpdate();
   }
+
+  /**
+   *
+   * @param name
+   * @param kind
+   * @returns the index of the plugin in the stored plugin list
+   */
+  private findPluginIndex(name: string, kind: PluginKind): number {
+    return this.storedPlugins.findIndex(p => p.name === name && p.kind === kind);
+  }
+
+  private hasPlugin(name: string, kind: PluginKind): boolean {
+    return this.findPluginIndex(name, kind) > -1
+  }
+
+  private removePlugin(name: string, kind: PluginKind) {
+    const newPlugins = this.storedPlugins.filter(
+      p => p.name !== name || p.kind !== kind
+    );
+    this.storePlugins(newPlugins);
+  }
+
+  private addPlugin(plugin: Plugin) {
+    const newPlugins = [...this.storedPlugins, plugin];
+    this.storePlugins(newPlugins);
+  }
+
+  private changePlugin(plugin: Plugin) {
+    const storedPlugins = this.storedPlugins
+    const {name, kind} = plugin
+    const pluginIndex = this.findPluginIndex(name, kind)
+
+    if(pluginIndex < 0) {
+      console.warn("Plugin not found, stopping.", {name, kind})
+      return
+    }
+
+    const pluginToChange = storedPlugins[pluginIndex]
+    const changedPlugin = {...pluginToChange, ...plugin}
+    const newPlugins = [...storedPlugins]
+    newPlugins.splice(pluginIndex, 1, changedPlugin)
+
+    this.storePlugins(newPlugins);
+  }
+
   private resetPlugins(): void {
     this.storePlugins(
       (builtinPlugins as Plugin[]).concat(this.parsedPlugins).map(plugin => {

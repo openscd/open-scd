@@ -4,6 +4,8 @@ import '../mock-open-scd.js';
 import { MockOpenSCD } from '../mock-open-scd.js';
 
 import { TextField } from '@material/mwc-textfield';
+import { Plugin } from '../../src/plugin';
+import { ConfigurePluginDetail, ConfigurePluginEvent, newConfigurePluginEvent } from '../../src/plugin.events';
 
 describe('OpenSCD-Plugin', () => {
   let element: MockOpenSCD;
@@ -214,4 +216,219 @@ describe('OpenSCD-Plugin', () => {
       expect(element.layout.validators).to.have.lengthOf(3);
     });
   });
+
+  describe.only('ConfigurePluginEvent', () => {
+
+      type TestCase = {
+          desc: string
+          currentPlugins: Plugin[]
+          eventDetails: ConfigurePluginDetail
+          expectedPlugins: Plugin[]
+      }
+
+      const featureTests: TestCase[] = [
+          {
+              desc: `
+                adds plugin,
+                if a plugin with same name and kind does not exsits
+                and there is a config
+              `,
+              currentPlugins: [],
+              eventDetails: {
+                name: "new plugin",
+                kind: "editor",
+                config: {
+                  name: "new plugin",
+                  kind: "editor",
+                  src: "https://example.com/new-plugin.js",
+                  installed: false,
+                },
+              },
+              expectedPlugins: [
+                {
+                  name: "new plugin",
+                  kind: "editor",
+                  src: "https://example.com/new-plugin.js",
+                  installed: false,
+                }
+              ]
+          },
+          {
+            desc: `
+            adds plugin,
+            if a plugin with same exists but with different kind
+            and there is a config
+          `,
+              currentPlugins: [
+                {
+                  name: "an existing plugin",
+                  kind: "menu",
+                  src: "https://example.com/new-plugin.js",
+                  installed: false,
+                }
+              ],
+              eventDetails: {
+                name: "an existing plugin",
+                kind: "editor",
+                config: {
+                  name: "an existing plugin",
+                  kind: "editor",
+                  src: "https://example.com/new-plugin.js",
+                  installed: false,
+                },
+              },
+              expectedPlugins: [
+                {
+                  name: "an existing plugin",
+                  kind: "menu",
+                  src: "https://example.com/new-plugin.js",
+                  installed: false,
+                },
+                {
+                  name: "an existing plugin",
+                  kind: "editor",
+                  src: "https://example.com/new-plugin.js",
+                  installed: false,
+                }
+              ]
+          },
+          {
+            desc: `
+            changes plugin,
+            if a plugin exists with same name and kind, and there is a config
+          `,
+              currentPlugins: [
+                {
+                  name: "I want to change this plugin",
+                  kind: "editor",
+                  src: "https://example.com/new-plugin.js",
+                  installed: false,
+                }
+              ],
+              eventDetails: {
+                name: "I want to change this plugin",
+                kind: "editor",
+                config: {
+                  name: "I want to change this plugin",
+                  kind: "editor",
+                  src: "https://example.com/changed-url.js",
+                  installed: true,
+                },
+              },
+              expectedPlugins: [
+                {
+                  name: "I want to change this plugin",
+                  kind: "editor",
+                  src: "https://example.com/changed-url.js",
+                  installed: true,
+                },
+              ]
+          },
+          {
+            desc: `
+              removes plugin,
+              if it finds it by name and kind and the econfig is 'null'
+            `,
+            currentPlugins: [{
+              name: "plugin to remove",
+              kind: "editor",
+              src: "https://example.com/plugin-to-remove.js",
+              installed: false,
+            }],
+            eventDetails: {
+              name: "plugin to remove",
+              kind: "editor",
+              config: null
+            },
+            expectedPlugins: []
+          },
+          {
+            desc: `
+              does not remove plugin,
+              if it does not find it by name
+            `,
+            currentPlugins: [{
+              name: "plugin to remove",
+              kind: "editor",
+              src: "https://example.com/plugin-to-remove.js",
+              installed: false,
+            }],
+            eventDetails: {
+              name: "wrong name",
+              kind: "editor",
+              config: null
+            },
+            expectedPlugins: [{
+              name: "plugin to remove",
+              kind: "editor",
+              src: "https://example.com/plugin-to-remove.js",
+              installed: false,
+            }]
+          },
+          {
+            desc: `
+              does not remove plugin,
+              if it does not find it by kind
+            `,
+            currentPlugins: [{
+              name: "plugin to remove, but wrong kind",
+              kind: "editor",
+              src: "https://example.com/plugin-to-remove.js",
+              installed: false,
+            }],
+            eventDetails: {
+              name: "plugin to remove, but wrong kind",
+              kind: "menu",
+              config: null
+            },
+            expectedPlugins: [{
+              name: "plugin to remove, but wrong kind",
+              kind: "editor",
+              src: "https://example.com/plugin-to-remove.js",
+              installed: false,
+            }]
+          },
+      ]
+
+      featureTests.forEach(testFeature)
+
+      function testFeature(tc: TestCase) {
+          it(tc.desc, async () => {
+            // ARRANGE
+
+            // @ts-ignore: we use the private to arrange the scenario
+            element.storePlugins(tc.currentPlugins)
+            await element.updateComplete
+
+            // ACT
+            const event = newConfigurePluginEvent(tc.eventDetails.name, tc.eventDetails.kind, tc.eventDetails.config)
+            element.layout.dispatchEvent(event)
+            await element.updateComplete
+
+            // ASSERT
+
+            // I remove all the keys that we don't have because
+            // the stored plugins get new keys and
+            // I could not figure how to compare the two lists
+            // I've tried to use chai's deep.members and deep.include.members
+            // and others but non of them worked.
+            const keys = ["name", "kind", "src", "installed"]
+            const storedPlugins = element.layout.plugins.map((plugin) => {
+              Object.keys(plugin).forEach((key) => {
+                if(!keys.includes(key)) {
+                  delete plugin[key]
+                }
+              })
+
+              return plugin
+            })
+
+            const msg = `expected: ${JSON.stringify(tc.expectedPlugins)} but got: ${JSON.stringify(element.layout.plugins)}`
+            expect(tc.expectedPlugins).to.have.deep.members(storedPlugins, msg)
+            // expect(storedPlugins).to.have.deep.members(tc.expectedPlugins)
+
+          })
+      }
+
+  })
 });
