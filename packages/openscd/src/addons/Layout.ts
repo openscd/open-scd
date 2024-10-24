@@ -25,6 +25,7 @@ import {
   newSetPluginsEvent,
 } from '../open-scd.js';
 import {
+  HistoryState,
   HistoryUIKind,
   newEmptyIssuesEvent,
   newHistoryUIEvent,
@@ -82,22 +83,14 @@ export class OscdLayout extends LitElement {
   @property({ type: Object })
   host!: HTMLElement;
 
+  @property({ type: Object })
+  historyState!: HistoryState;
+
   @state()
   validated: Promise<void> = Promise.resolve();
 
   @state()
   shouldValidate = false;
-
-  @state()
-  redoCount = 0;
-
-  get canUndo(): boolean {
-    return this.editCount >= 0;
-  }
-
-  get canRedo(): boolean {
-    return this.redoCount > 0;
-  }
 
   @query('#menu')
   menuUI!: Drawer;
@@ -152,7 +145,7 @@ export class OscdLayout extends LitElement {
         action: (): void => {
           this.dispatchEvent(newUndoEvent());
         },
-        disabled: (): boolean => !this.canUndo,
+        disabled: (): boolean => !this.historyState.canUndo,
         kind: 'static',
       },
       {
@@ -162,7 +155,7 @@ export class OscdLayout extends LitElement {
         action: (): void => {
           this.dispatchEvent(newRedoEvent());
         },
-        disabled: (): boolean => !this.canRedo,
+        disabled: (): boolean => !this.historyState.canRedo,
         kind: 'static',
       },
       ...validators,
@@ -308,21 +301,6 @@ export class OscdLayout extends LitElement {
     });
     this.handleKeyPress = this.handleKeyPress.bind(this);
     document.onkeydown = this.handleKeyPress;
-
-    this.host.addEventListener(
-      'oscd-edit-completed',
-      (evt: EditCompletedEvent) => {
-        const initiator = evt.detail.initiator;
-
-        if (initiator === 'undo') {
-          this.redoCount += 1;
-        } else if (initiator === 'redo') {
-          this.redoCount -= 1;
-        }
-
-        this.requestUpdate();
-      }
-    );
   }
 
 

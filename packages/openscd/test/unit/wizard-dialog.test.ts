@@ -1,17 +1,15 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import './mock-editor.js';
-
 import { Button } from '@material/mwc-button';
 
 import '../../src/wizard-textfield.js';
 import '../../src/wizard-dialog.js';
 import { WizardDialog } from '../../src/wizard-dialog.js';
-import { WizardInputElement } from '../../src/foundation.js';
+import { checkValidity, WizardInputElement } from '../../src/foundation.js';
 import { WizardCheckbox } from '../../src/wizard-checkbox.js';
 import { WizardSelect } from '../../src/wizard-select.js';
 import { WizardTextField } from '../../src/wizard-textfield.js';
-import { EditorAction } from '@openscd/core/foundation/deprecated/editor.js';
+import { ComplexAction, Create, Delete, EditorAction } from '@openscd/core/foundation/deprecated/editor.js';
 
 describe('wizard-dialog', () => {
   let element: WizardDialog;
@@ -230,9 +228,7 @@ describe('wizard-dialog', () => {
       let host: Element;
 
       beforeEach(async () => {
-        element = await fixture(
-          html`<mock-editor><wizard-dialog></wizard-dialog></mock-editor>`
-        ).then(elm => elm.querySelector<WizardDialog>('wizard-dialog')!);
+        element = await fixture(html`<wizard-dialog></wizard-dialog>`);
         localStorage.setItem('mode', 'pro');
         element.requestUpdate();
         await element.updateComplete;
@@ -274,6 +270,9 @@ describe('wizard-dialog', () => {
         });
 
         it('commits the code action on primary button click', async () => {
+          let editorAction: ComplexAction;
+          element.addEventListener('editor-action', (action) => editorAction = action.detail.action as ComplexAction);
+
           element.dialog
             ?.querySelector('ace-editor')
             ?.setAttribute('value', '<success></success>');
@@ -282,7 +281,22 @@ describe('wizard-dialog', () => {
             ?.querySelector<Button>('mwc-button[slot="primaryAction"]')!
             .click();
           await element.updateComplete;
-          expect(host.firstElementChild).to.have.property('tagName', 'success');
+
+          expect(editorAction!.actions.length).to.equal(2);
+
+          const elementToUpdate = host.firstElementChild!;
+          const [deleteAction, createAction] = editorAction!.actions;
+
+          const expectedDeleteAction = {
+            old: {
+              parent: elementToUpdate.parentElement!,
+              reference: elementToUpdate.nextSibling,
+              element: elementToUpdate,
+            },
+          };
+
+          expect((deleteAction as Delete).old).to.deep.equal(expectedDeleteAction.old);
+          expect(((createAction as Create).new.element as Element).tagName).to.equal('success')
         });
       });
 
