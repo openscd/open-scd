@@ -126,7 +126,6 @@ describe('OpenSCD-Plugin', () => {
       );
     });
 
-
     describe('requires a name and a valid URL to add a plugin', async () => {
 
       it('does not add without user interaction', async () => {
@@ -161,7 +160,7 @@ describe('OpenSCD-Plugin', () => {
         primaryAction.click();
 
         expect(element.layout.pluginDownloadUI).to.have.property('open', false);
-      }).timeout(600_000);
+      })
 
     });
 
