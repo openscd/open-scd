@@ -46,7 +46,8 @@ import type {
   EditCompletedEvent,
 } from '@openscd/core';
 import { InstalledOfficialPlugin, MenuPosition, PluginKind, Plugin } from "./plugin.js"
-import { ConfigurePluginEvent } from './plugin.events';
+import { ConfigurePluginEvent, ConfigurePluginDetail, newConfigurePluginEvent } from './plugin.events';
+
 
 // HOSTING INTERFACES
 
@@ -258,9 +259,17 @@ export class OpenSCD extends LitElement {
     if (src.startsWith('blob:')) URL.revokeObjectURL(src);
   }
 
-  // TODO: convert event to the new `ConfigurePluginEvent`
+  /**
+   *
+   * @deprecated Use `handleConfigurationPluginEvent` instead
+   */
   public handleAddExternalPlugin(e: AddExternalPluginEvent){
     this.addExternalPlugin(e.detail.plugin);
+    const {name, kind} = e.detail.plugin
+
+    const event = newConfigurePluginEvent(name,kind, e.detail.plugin)
+
+    this.handleConfigurationPluginEvent(event)
   }
 
 
