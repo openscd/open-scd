@@ -29,6 +29,7 @@ import './addons/Layout.js';
 import { officialPlugins as builtinPlugins } from './plugins.js';
 import { initializeNsdoc } from './foundation/nsdoc.js';
 import { newConfigurePluginEvent } from './plugin.events.js';
+import { newLogEvent } from '../../_snowpack/link/packages/core/dist/foundation/deprecated/history.js';
 export function newResetPluginsEvent() {
     return new CustomEvent('reset-plugins', { bubbles: true, composed: true });
 }
@@ -201,7 +202,12 @@ let OpenSCD = class OpenSCD extends LitElement {
             this.addPlugin(config);
         }
         else {
-            console.error("Invalid plugin configuration event", { name, kind, config });
+            const event = newLogEvent({
+                kind: "error",
+                title: "Invalid plugin configuration event",
+                message: JSON.stringify({ name, kind, config }),
+            });
+            this.dispatchEvent(event);
         }
     }
     connectedCallback() {
@@ -275,12 +281,22 @@ let OpenSCD = class OpenSCD extends LitElement {
         const newPlugins = [...this.storedPlugins, plugin];
         this.storePlugins(newPlugins);
     }
+    /**
+     *
+     * @param plugin
+     * @throws if the plugin is not found
+     */
     changePlugin(plugin) {
         const storedPlugins = this.storedPlugins;
         const { name, kind } = plugin;
         const pluginIndex = this.findPluginIndex(name, kind);
         if (pluginIndex < 0) {
-            console.warn("Plugin not found, stopping.", { name, kind });
+            const event = newLogEvent({
+                kind: "error",
+                title: "Plugin not found, stopping change process",
+                message: JSON.stringify({ name, kind }),
+            });
+            this.dispatchEvent(event);
             return;
         }
         const pluginToChange = storedPlugins[pluginIndex];
