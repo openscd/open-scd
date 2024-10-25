@@ -70,9 +70,19 @@ function convertDelete(action: Delete): Remove {
 }
 
 function convertUpdate(action: Update): UpdateV2 {
+  const oldAttributesToRemove: Record<string, string | null> = {};
+  Array.from(action.element.attributes).forEach(attr => {
+    oldAttributesToRemove[attr.name] = null;
+  });
+
+  const attributes = {
+    ...oldAttributesToRemove,
+    ...action.newAttributes
+  };
+
   return {
     element: action.element,
-    attributes: action.newAttributes
+    attributes
   };
 }
 
@@ -93,8 +103,11 @@ function convertMove(action: Move): Insert {
 
 function convertReplace(action: Replace): Edit {
   const oldChildren = action.old.element.children;
+  // We have to clone the children, because otherwise undoing the action would remove the children from the old element, because append removes the old parent
+  const copiedChildren = Array.from(oldChildren).map(e => e.cloneNode(true));
+
   const newNode = action.new.element.cloneNode() as Element;
-  newNode.append(...Array.from(oldChildren));
+  newNode.append(...Array.from(copiedChildren));
   const parent = action.old.element.parentElement;
 
   if (!parent) {
