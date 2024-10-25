@@ -74,7 +74,6 @@ let OscdEditor = class OscdEditor extends LitElement {
         return html `<slot></slot>`;
     }
     handleEditEvent(event) {
-        console.log('Edit V2', event);
         const edit = event.detail.edit;
         const undoEdit = handleEdit(edit);
         this.dispatchEvent(newEditCompletedEvent(event.detail.edit, event.detail.initiator));
