@@ -134,7 +134,7 @@ export let OscdHistory = class extends LitElement {
     if (!this.canUndo)
       return false;
     const undoEdit = this.history[this.editCount].undo;
-    this.dispatchEvent(newEditEvent(undoEdit, "undo"));
+    this.host.dispatchEvent(newEditEvent(undoEdit, "undo"));
     this.setEditCount(this.previousAction);
     return true;
   }
@@ -142,7 +142,7 @@ export let OscdHistory = class extends LitElement {
     if (!this.canRedo)
       return false;
     const redoEdit = this.history[this.nextAction].redo;
-    this.dispatchEvent(newEditEvent(redoEdit, "redo"));
+    this.host.dispatchEvent(newEditEvent(redoEdit, "redo"));
     this.setEditCount(this.nextAction);
     return true;
   }

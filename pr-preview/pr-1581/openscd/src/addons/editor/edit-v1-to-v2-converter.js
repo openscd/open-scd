@@ -47,12 +47,23 @@ function convertDelete(action) {
   };
 }
 function convertUpdate(action) {
+  const oldAttributesToRemove = {};
+  Array.from(action.element.attributes).forEach((attr) => {
+    oldAttributesToRemove[attr.name] = null;
+  });
+  const attributes = {
+    ...oldAttributesToRemove,
+    ...action.newAttributes
+  };
   return {
     element: action.element,
-    attributes: action.newAttributes
+    attributes
   };
 }
 function convertMove(action) {
+  if (action.new.reference === void 0) {
+    action.new.reference = getReference(action.new.parent, action.old.element.tagName);
+  }
   return {
     parent: action.new.parent,
     node: action.old.element,
@@ -61,8 +72,9 @@ function convertMove(action) {
 }
 function convertReplace(action) {
   const oldChildren = action.old.element.children;
+  const copiedChildren = Array.from(oldChildren).map((e) => e.cloneNode(true));
   const newNode = action.new.element.cloneNode();
-  newNode.append(...Array.from(oldChildren));
+  newNode.append(...Array.from(copiedChildren));
   const parent = action.old.element.parentElement;
   if (!parent) {
     throw new Error("Replace action called without parent in old element");
