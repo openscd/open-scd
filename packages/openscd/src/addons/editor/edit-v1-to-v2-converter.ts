@@ -77,6 +77,13 @@ function convertUpdate(action: Update): UpdateV2 {
 }
 
 function convertMove(action: Move): Insert {
+  if (action.new.reference === undefined) {
+    action.new.reference = getReference(
+      action.new.parent,
+      <SCLTag>action.old.element.tagName
+    );
+  }
+
   return {
     parent: action.new.parent,
     node: action.old.element,
