@@ -85,7 +85,10 @@ describe('edit-v1-to-v2-converter', () => {
 
     const expectedUpdateV2: UpdateV2 = {
       element: bay,
-      attributes: newAttributes
+      attributes: {
+        ...newAttributes,
+        desc: null
+      }
     };
 
     expect(updateV2).to.deep.equal(expectedUpdateV2);
