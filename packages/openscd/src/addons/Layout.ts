@@ -446,18 +446,33 @@ export class OscdLayout extends LitElement {
 
   /** Renders the enabled editor plugins and a tab bar to switch between them*/
   protected renderContent(): TemplateResult {
+    const hasActiveDoc = Boolean(this.doc);
 
-    if(!this.doc) return html``;
+    const activeEditors = this.editors
+    .filter(editor => {
+      // this is necessary because `requireDoc` can be undefined
+      // and that is not the same as false
+      const doesNotRequireDoc = editor.requireDoc === false
+      return doesNotRequireDoc || hasActiveDoc
+    })
+    .map(this.renderEditorTab)
+
+    const hasActiveEditors = activeEditors.length > 0;
+    if(!hasActiveEditors){ return html``; }
 
     return html`
       <mwc-tab-bar @MDCTabBar:activated=${(e: CustomEvent) => (this.activeTab = e.detail.index)}>
-        ${this.editors.map(this.renderEditorTab)}
+        ${activeEditors}
       </mwc-tab-bar>
-      ${renderEditorContent(this.editors, this.activeTab)}
+      ${renderEditorContent(this.editors, this.activeTab, this.doc)}
     `;
 
-    function renderEditorContent(editors: Plugin[], activeTab: number){
-      const content = editors[activeTab]?.content;
+    function renderEditorContent(editors: Plugin[], activeTab: number, doc: XMLDocument | null){
+      const editor = editors[activeTab];
+      const requireDoc = editor?.requireDoc
+      if(requireDoc && !doc) { return html`` }
+
+      const content = editor?.content;
       if(!content) { return html`` }
 
       return html`${content}`;
@@ -611,6 +626,14 @@ export class OscdLayout extends LitElement {
             class="${plugin.official ? 'official' : 'external'}"
             value="${plugin.src}"
             ?selected=${plugin.installed}
+            @request-selected=${(e: CustomEvent<{source: string}>) => {
+              if(e.detail.source !== 'interaction'){
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                return false;
+              }
+            }}
             hasMeta
             left
           >

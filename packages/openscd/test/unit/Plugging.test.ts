@@ -26,8 +26,9 @@ describe('OpenSCD-Plugin', () => {
     await element.updateComplete;
   });
 
-  it('stores default plugins on load', () =>
-    expect(element.layout).property('editors').to.have.lengthOf(6));
+  it('stores default plugins on load', () =>{
+    expect(element.layout).property('editors').to.have.lengthOf(6)
+  });
 
   it('has Locale property', async () => {
     expect(element).to.have.property('locale');
@@ -125,26 +126,42 @@ describe('OpenSCD-Plugin', () => {
       );
     });
 
-    it('requires a name and a valid URL to add a plugin', async () => {
-      primaryAction.click();
-      expect(element.layout.pluginDownloadUI).to.have.property('open', true);
+    describe('requires a name and a valid URL to add a plugin', async () => {
 
-      src.value = 'http://example.com/plugin.js';
-      await src.updateComplete;
-      primaryAction.click();
-      expect(element.layout.pluginDownloadUI).to.have.property('open', true);
+      it('does not add without user interaction', async () => {
+        primaryAction.click();
+        expect(element.layout.pluginDownloadUI).to.have.property('open', true);
+      })
 
-      src.value = 'notaURL';
-      name.value = 'testName';
-      await src.updateComplete;
-      await name.updateComplete;
-      primaryAction.click();
-      expect(element.layout.pluginDownloadUI).to.have.property('open', true);
+      it('does not add without a name', async () => {
+        src.value = 'http://example.com/plugin.js';
+        await src.updateComplete;
+        primaryAction.click();
+        expect(element.layout.pluginDownloadUI).to.have.property('open', true);
+      })
 
-      src.value = 'http://example.com/plugin.js';
-      await src.updateComplete;
-      primaryAction.click();
-      expect(element.layout.pluginDownloadUI).to.have.property('open', false);
+      it('does not add plugin with incorrect url', async () => {
+        src.value = 'notaURL';
+        name.value = 'testName';
+        await src.updateComplete;
+        await name.updateComplete;
+        primaryAction.click();
+        expect(element.layout.pluginDownloadUI).to.have.property('open', true);
+      });
+
+
+      it('adds a plugin with a name and a valid URL', async () => {
+        name.value = 'testName';
+        await name.updateComplete;
+
+        src.value = 'http://localhost:8080/plugin/plugin.js';
+        await src.updateComplete;
+
+        primaryAction.click();
+
+        expect(element.layout.pluginDownloadUI).to.have.property('open', false);
+      })
+
     });
 
     it('adds a new editor kind plugin on add button click', async () => {
@@ -156,6 +173,7 @@ describe('OpenSCD-Plugin', () => {
       await element.updateComplete;
       expect(element.layout.editors).to.have.lengthOf(7);
     });
+
     it('adds a new menu kind plugin on add button click', async () => {
       const lengthMenuKindPlugins = element.layout.menuEntries.length;
       src.value = 'http://example.com/plugin.js';
@@ -167,6 +185,7 @@ describe('OpenSCD-Plugin', () => {
       await element.updateComplete;
       expect(element.layout.menuEntries).to.have.lengthOf(lengthMenuKindPlugins + 1);
     });
+
     it('sets requireDoc and position for new menu kind plugin', async () => {
       src.value = 'http://example.com/plugin.js';
       name.value = 'testName';

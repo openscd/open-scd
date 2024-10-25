@@ -486,10 +486,12 @@ export class OpenSCD extends LitElement {
 
   private addContent(plugin: Omit<Plugin, 'content'>): Plugin {
     const tag = pluginTag(plugin.src);
+
     if (!loadedPlugins.has(tag)) {
       loadedPlugins.add(tag);
       import(plugin.src).then(mod => customElements.define(tag, mod.default));
     }
+
     return {
       ...plugin,
       content: staticTagHtml`<${tag}
