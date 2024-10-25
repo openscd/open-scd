@@ -118,7 +118,6 @@ export class OscdEditor extends LitElement {
   }
 
   handleEditEvent(event: EditEvent) {
-    console.log('Edit V2', event);
     const edit = event.detail.edit;
     const undoEdit = handleEdit(edit);
 
