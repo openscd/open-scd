@@ -425,7 +425,6 @@ describe('OpenSCD-Plugin', () => {
 
             const msg = `expected: ${JSON.stringify(tc.expectedPlugins)} but got: ${JSON.stringify(element.layout.plugins)}`
             expect(tc.expectedPlugins).to.have.deep.members(storedPlugins, msg)
-            // expect(storedPlugins).to.have.deep.members(tc.expectedPlugins)
 
           })
       }

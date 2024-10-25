@@ -47,6 +47,7 @@ import type {
 } from '@openscd/core';
 import { InstalledOfficialPlugin, MenuPosition, PluginKind, Plugin } from "./plugin.js"
 import { ConfigurePluginEvent, ConfigurePluginDetail, newConfigurePluginEvent } from './plugin.events.js';
+import { newLogEvent } from '@openscd/core/foundation/deprecated/history';
 
 
 // HOSTING INTERFACES
@@ -278,27 +279,29 @@ export class OpenSCD extends LitElement {
 
     const hasPlugin = this.hasPlugin(name, kind);
     const hasConfig = config !== null;
-    const isChangeEvent = hasPlugin && hasConfig
-    const isRemoveEvent = hasPlugin && !hasConfig
-    const isAddEvent = !hasPlugin && hasConfig
+    const isChangeEvent = hasPlugin && hasConfig;
+    const isRemoveEvent = hasPlugin && !hasConfig;
+    const isAddEvent = !hasPlugin && hasConfig;
 
     // the `&& config`is only because typescript
     // cannot infer that `isChangeEvent` and `isAddEvent` implies `config !== null`
     if(isChangeEvent && config){
-      this.changePlugin(config)
+      this.changePlugin(config);
 
-    }else if( isRemoveEvent ){
-      this.removePlugin(name, kind)
+    }else if(isRemoveEvent){
+      this.removePlugin(name, kind);
 
     }else if(isAddEvent && config){
-      this.addPlugin(config)
+      this.addPlugin(config);
 
     }else{
-      console.error("Invalid plugin configuration event", {name, kind, config})
+      const event = newLogEvent({
+        kind: "error",
+        title: "Invalid plugin configuration event",
+        message: JSON.stringify({name, kind, config}),
+      });
+      this.dispatchEvent(event);
     }
-
-
-
   }
 
   connectedCallback(): void {
@@ -372,7 +375,7 @@ export class OpenSCD extends LitElement {
   }
 
   private hasPlugin(name: string, kind: PluginKind): boolean {
-    return this.findPluginIndex(name, kind) > -1
+    return this.findPluginIndex(name, kind) > -1;
   }
 
   private removePlugin(name: string, kind: PluginKind) {
@@ -387,14 +390,24 @@ export class OpenSCD extends LitElement {
     this.storePlugins(newPlugins);
   }
 
+  /**
+   *
+   * @param plugin
+   * @throws if the plugin is not found
+   */
   private changePlugin(plugin: Plugin) {
-    const storedPlugins = this.storedPlugins
-    const {name, kind} = plugin
-    const pluginIndex = this.findPluginIndex(name, kind)
+    const storedPlugins = this.storedPlugins;
+    const {name, kind} = plugin;
+    const pluginIndex = this.findPluginIndex(name, kind);
 
     if(pluginIndex < 0) {
-      console.warn("Plugin not found, stopping.", {name, kind})
-      return
+      const event = newLogEvent({
+        kind: "error",
+        title: "Plugin not found, stopping change process",
+        message: JSON.stringify({name, kind}),
+      })
+      this.dispatchEvent(event);
+      return;
     }
 
     const pluginToChange = storedPlugins[pluginIndex]
