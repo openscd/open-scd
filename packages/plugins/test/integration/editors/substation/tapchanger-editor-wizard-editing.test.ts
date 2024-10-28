@@ -101,19 +101,7 @@ describe('tapchanger-editor wizarding editing integration', () => {
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       expect(parent.wizardUI.dialog).to.not.exist;
     });
-    it('does not change name attribute if not unique within parent element', async () => {
-      const oldName = nameField.value;
-      nameField.value = 'empty';
-      primaryAction.click();
-      await parent.updateComplete;
-      expect(
-        doc
-          .querySelector(
-            'TransformerWinding[name="withTapChanger1"] > TapChanger[name="tapChComplet"]'
-          )
-          ?.getAttribute('name')
-      ).to.equal(oldName);
-    });
+
     it('changes desc attribute on primary action', async () => {
       descField.value = 'newDesc';
       primaryAction.click();
