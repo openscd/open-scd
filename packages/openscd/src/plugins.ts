@@ -287,4 +287,12 @@ export const officialPlugins = [
     requireDoc: true,
     position: 'middle',
   },
+  {
+    name: 'Plugin Store',
+    src: 'https://sprinteins.github.io/oscd-plugin-store/index.js',
+    default: true,
+    kind: 'menu',
+    requireDoc: false,
+    position: 'bottom',
+  },
 ];
