@@ -73,7 +73,7 @@ function convertMove(action) {
 function convertReplace(action) {
   const oldChildren = action.old.element.children;
   const copiedChildren = Array.from(oldChildren).map((e) => e.cloneNode(true));
-  const newNode = action.new.element.cloneNode();
+  const newNode = action.new.element.cloneNode(true);
   newNode.append(...Array.from(copiedChildren));
   const parent = action.old.element.parentElement;
   if (!parent) {

@@ -135,6 +135,9 @@ function handleInsert({
 }) {
   try {
     const {parentNode, nextSibling} = node;
+    if (!parent.contains(reference)) {
+      reference = null;
+    }
     parent.insertBefore(node, reference);
     if (parentNode)
       return {
