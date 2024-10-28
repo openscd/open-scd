@@ -3,7 +3,8 @@ import { customElement, html, LitElement, property, state, query, css, } from '.
 import { get } from '../../../_snowpack/pkg/lit-translate.js';
 import { newPendingStateEvent } from '../../../_snowpack/link/packages/core/dist/foundation/deprecated/waiter.js';
 import { newSettingsUIEvent } from '../../../_snowpack/link/packages/core/dist/foundation/deprecated/settings.js';
-import { menuPosition, pluginIcons, newResetPluginsEvent, newAddExternalPluginEvent, newSetPluginsEvent, } from '../open-scd.js';
+import { pluginIcons, newResetPluginsEvent, newAddExternalPluginEvent, newSetPluginsEvent, } from '../open-scd.js';
+import { menuPosition, } from "../plugin.js";
 import { HistoryUIKind, newEmptyIssuesEvent, newHistoryUIEvent, newRedoEvent, newUndoEvent, } from './History.js';
 import { List } from '../../../_snowpack/pkg/@material/mwc-list.js';
 import '../../../_snowpack/pkg/@material/mwc-drawer.js';
