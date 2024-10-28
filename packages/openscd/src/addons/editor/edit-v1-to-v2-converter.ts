@@ -106,7 +106,7 @@ function convertReplace(action: Replace): Edit {
   // We have to clone the children, because otherwise undoing the action would remove the children from the old element, because append removes the old parent
   const copiedChildren = Array.from(oldChildren).map(e => e.cloneNode(true));
 
-  const newNode = action.new.element.cloneNode() as Element;
+  const newNode = action.new.element.cloneNode(true) as Element;
   newNode.append(...Array.from(copiedChildren));
   const parent = action.old.element.parentElement;
 
