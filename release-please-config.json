@@ -49,7 +49,7 @@
     }
   ],
   "packages": {
-    "packages/open-scd": {
+    "packages/openscd": {
       "component": "open-scd",
       "changelog-path": "CHANGELOG.md",
       "release-type": "node",
@@ -61,9 +61,22 @@
       "include-component-in-tag": true,
       "include-v-in-tag": true,
       "tag-separator": "@"
+    },
+    "packages/core": {
+      "component": "core",
+      "changelog-path": "CHANGELOG.md",
+      "release-type": "node",
+      "bump-minor-pre-major": false,
+      "bump-patch-for-minor-pre-major": false,
+      "draft": false,
+      "prerelease": false,
+      "initial-version": "0.1.0",
+      "include-component-in-tag": true,
+      "include-v-in-tag": true,
+      "tag-separator": "@"
     }
   },
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
-  "bootstrap-sha": "{{ TODO_FIX_SHA }}",
+  "bootstrap-sha": "e780fb7605cd828740492061a26d3fca21275976",
   "release-type": "node"
 }

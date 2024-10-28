@@ -3,14 +3,12 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "packages/**"
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-        working-directory: packages/open-scd
     steps:
       - name: Checkout
         uses: actions/checkout@v2.3.1
@@ -18,17 +16,27 @@ jobs:
       - name: Use Node.js 18.x
         uses: actions/setup-node@v1
         with:
-          node-version: '18.x'
+          node-version: "18.x"
 
-      - name: Install and Build
+      - name: Install and Build OpenSCD
         run: |
+          npm i @nx/nx-linux-x64-gnu
           npm clean-install
           npm run-script build
+          npm run-script doc
+
+      - name: Copy Core Docs to OpenSCD
+        run: |
+          cp -R packages/core/doc packages/distribution/build/core-doc
+
+      - name: Copy Plugin Docs to OpenSCD
+        run: |
+          cp -R packages/plugins/doc packages/distribution/build/plugin-doc
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
           branch: master
-          folder: packages/open-scd/build
+          folder: packages/distribution/build
           repository-name: openscd/openscd.github.io
           ssh-key: ${{ secrets.DEPLOY_KEY }}
