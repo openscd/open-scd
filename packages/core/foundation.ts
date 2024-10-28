@@ -25,3 +25,13 @@ export type {
 } from './foundation/edit-event.js';
 
 export { cyrb64 } from './foundation/cyrb64.js';
+
+export { Editing } from './mixins/Editing.js';
+export type { Plugin, PluginSet } from './foundation/plugin.js';
+
+export { newEditCompletedEvent } from './foundation/edit-completed-event.js';
+
+export type {
+  EditCompletedEvent,
+  EditCompletedDetail,
+} from './foundation/edit-completed-event.js';
