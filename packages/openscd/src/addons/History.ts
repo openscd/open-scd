@@ -37,7 +37,7 @@ import {
 
 import { getFilterIcon, iconColors } from '../icons/icons.js';
 
-import { Plugin } from '../open-scd.js';
+import { Plugin } from '../plugin.js';
 import { newEditEvent } from '@openscd/core';
 
 export const historyStateEvent =  'history-state';
