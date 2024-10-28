@@ -1,17 +1,30 @@
 {
   "name": "openscd-monorepo",
-  "version": "0.0.1",
+  "version": "0.35.0",
   "description": "OpenSCD base distribution and plugins",
   "private": true,
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "lerna run clean",
+    "build": "npx nx run-many -t build --all",
+    "doc": "lerna run doc",
+    "test": "npx nx run-many -t test --all --parallel=false",
+    "graph": "npx nx graph",
+    "start": "lerna run start",
+    "serve": "nx run @openscd/distribution:serve"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/openscd/open-scd.git"
   },
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "lerna": "^7.1.4",
+    "nx": "18.3.4"
+  },
+  "optionalDependencies": {
+    "@nx/nx-linux-x64-gnu": "18.3.4"
+  }
 }

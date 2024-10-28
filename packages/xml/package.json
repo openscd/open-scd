@@ -1,0 +1,144 @@
+{
+  "name": "@openscd/xml",
+  "version": "0.0.1",
+  "description": "The XML manipulation package for OpenSCD",
+  "author": "Open-SCD",
+  "license": "Apache-2.0",
+  "packageManager": "npm@8.12.2",
+  "type": "module",
+  "browser": "./dist/index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "./dist/**"
+  ],
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "scripts": {
+    "clean": "rimraf .tsbuildinfo dist",
+    "build": "tsc -b",
+    "doc": "typedoc --out doc src/index.ts",
+    "prepublish": "npm run lint && npm run build && npm run doc",
+    "lint": "eslint --ext .ts . --ignore-path .gitignore && prettier \"src/**/*.ts\" --check --ignore-path .gitignore",
+    "format": "eslint --ext .ts . --fix --ignore-path .gitignore && prettier \"src/**/*.ts\" --write --ignore-path .gitignore",
+    "test": "web-test-runner --coverage"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
+    "@open-wc/eslint-config": "^4.3.0",
+    "@open-wc/semantic-dom-diff": "^0.19.5",
+    "@open-wc/testing": "^2.5.33",
+    "@types/node": "^16.6.1",
+    "@typescript-eslint/eslint-plugin": "^4.29.2",
+    "@typescript-eslint/parser": "^4.29.2",
+    "@web/dev-server-esbuild": "^0.2.16",
+    "@web/test-runner": "^0.13.22",
+    "concurrently": "^7.3.0",
+    "es-dev-server": "^2.1.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-tsdoc": "^0.2.14",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.3.2",
+    "sinon": "^17.0.1",
+    "sinon-chai": "^3.7.0",
+    "tsdoc": "^0.0.4",
+    "tslib": "^2.3.1",
+    "typedoc": "^0.23.8",
+    "typescript": "^4.7.4"
+  },
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "lib": [
+        "es2018",
+        "dom"
+      ]
+    },
+    "extends": [
+      "@open-wc",
+      "prettier"
+    ],
+    "plugins": [
+      "@typescript-eslint",
+      "eslint-plugin-tsdoc"
+    ],
+    "rules": {
+      "no-unused-vars": "off",
+      "sort-imports": [
+        "error",
+        {
+          "ignoreCase": true,
+          "allowSeparatedGroups": true
+        }
+      ],
+      "class-methods-use-this": [
+        "error",
+        {
+          "exceptMethods": [
+            "locale"
+          ]
+        }
+      ],
+      "@typescript-eslint/no-explicit-any": [
+        "error",
+        {
+          "ignoreRestArgs": true
+        }
+      ],
+      "import/no-extraneous-dependencies": [
+        "error",
+        {
+          "devDependencies": [
+            "**/*.test.ts",
+            "**/*.spec.ts"
+          ]
+        }
+      ],
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          "argsIgnorePattern": "^_",
+          "varsIgnorePattern": "^_",
+          "destructuredArrayIgnorePattern": "^_"
+        }
+      ],
+      "import/no-unresolved": "off",
+      "import/extensions": [
+        "error",
+        "always",
+        {
+          "ignorePackages": true
+        }
+      ]
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/*.spec.ts"
+        ],
+        "rules": {
+          "no-unused-expressions": "off"
+        }
+      }
+    ]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "arrowParens": "avoid"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  }
+}
