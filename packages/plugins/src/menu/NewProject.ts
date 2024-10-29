@@ -30,7 +30,7 @@ export default class NewProjectPlugin extends LitElement {
 
     let docName = inputs[0].value ?? ""
 
-    const acceptedFileExtension = [".ssd", ".scd"];
+    const acceptedFileExtension = [".ssd", ".scd",".fsd"];
     const isValidFileFormat = acceptedFileExtension.some((extension) => {
       return inputs[0].value?.endsWith(extension);
     })
