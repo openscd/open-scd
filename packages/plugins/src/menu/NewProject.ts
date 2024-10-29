@@ -26,8 +26,6 @@ export default class NewProjectPlugin extends LitElement {
     wizard: Element
   ): EditorAction[] {
 
-
-
     let docName = inputs[0].value ?? ""
 
     const acceptedFileExtension = [".ssd", ".scd",".fsd"];
