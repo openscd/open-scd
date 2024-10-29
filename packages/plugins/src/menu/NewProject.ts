@@ -20,13 +20,25 @@ import {
 } from '@openscd/open-scd/src/schemas.js';
 
 export default class NewProjectPlugin extends LitElement {
+
   private createNewProject(
     inputs: WizardInputElement[],
     wizard: Element
   ): EditorAction[] {
-    const docName = inputs[0].value?.match(/\.s[sc]d$/i)
-      ? inputs[0].value
-      : inputs[0].value + '.scd';
+
+
+
+    let docName = inputs[0].value ?? ""
+
+    const acceptedFileExtension = [".ssd", ".scd"];
+    const isValidFileFormat = acceptedFileExtension.some((extension) => {
+      return inputs[0].value?.endsWith(extension);
+    })
+
+    if(!isValidFileFormat) {
+      docName = docName + ".scd";
+    }
+
     const version = <SupportedVersion>(
       (<ListItemBase>wizard.shadowRoot!.querySelector('mwc-list')!.selected)
         .value
@@ -39,7 +51,6 @@ export default class NewProjectPlugin extends LitElement {
 
     return [{ actions: [], title: '', derived: true }];
   }
-
   private newProjectWizard(): Wizard {
     return [
       {
