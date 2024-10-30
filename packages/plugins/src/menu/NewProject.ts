@@ -26,15 +26,15 @@ export default class NewProjectPlugin extends LitElement {
     wizard: Element
   ): EditorAction[] {
 
-    let docName = inputs[0].value ?? ""
+    let docName = inputs[0].value ?? ''
 
-    const acceptedFileExtension = [".ssd", ".scd",".fsd"];
+    const acceptedFileExtension = ['.ssd', '.scd','.fsd'];
     const isValidFileFormat = acceptedFileExtension.some((extension) => {
       return inputs[0].value?.endsWith(extension);
     })
 
     if(!isValidFileFormat) {
-      docName = docName + ".scd";
+      docName = docName + '.scd';
     }
 
     const version = <SupportedVersion>(
