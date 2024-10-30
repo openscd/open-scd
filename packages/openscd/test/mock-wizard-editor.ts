@@ -21,7 +21,6 @@ export class MockWizardEditor extends LitElement {
   wizards!: OscdWizards;
 
   render(): TemplateResult {
-    console.log('mock-wizard-editor render')
     return html`
       <oscd-editor
         .doc=${this.doc}
