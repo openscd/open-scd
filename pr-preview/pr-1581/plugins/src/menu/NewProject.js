@@ -13,7 +13,14 @@ import {
 } from "../../../openscd/src/schemas.js";
 export default class NewProjectPlugin extends LitElement {
   createNewProject(inputs, wizard) {
-    const docName = inputs[0].value?.match(/\.s[sc]d$/i) ? inputs[0].value : inputs[0].value + ".scd";
+    let docName = inputs[0].value ?? "";
+    const acceptedFileExtension = [".ssd", ".scd", ".fsd"];
+    const isValidFileFormat = acceptedFileExtension.some((extension) => {
+      return inputs[0].value?.endsWith(extension);
+    });
+    if (!isValidFileFormat) {
+      docName = docName + ".scd";
+    }
     const version = wizard.shadowRoot.querySelector("mwc-list").selected.value;
     this.dispatchEvent(newLogEvent({kind: "reset"}));
     this.dispatchEvent(newOpenDocEvent(newEmptySCD(docName.slice(0, -4), version), docName));
