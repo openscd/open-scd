@@ -4,7 +4,7 @@ Open SCD offers an API for editing the scd document which can be used with [Html
 
 The edits to the `doc` will be done in place, e.g. the `doc` changes but will keep the same reference. If your plugin needs to react to changes in the doc, you should listen to changes in the `editCount` property.
 
-### Event constructor
+### Event factory
 
 Open SCD core exports a factory function for edit events, so you do not have to build them manually.
 
@@ -37,7 +37,7 @@ someComponent.dispatchEvent(removeEvent);
 
 Insert events can be used to add new nodes or move existing nodes in the document. Since a node can only have one parent, using an insert on an existing node will replace it's previous parent with the new parent, essentially moving the node to a different position in the xml tree.
 
-If the reference is not `null`, the node will be inserted before the reference node. The reference has to be a child node of the parent. And if the reference is `null` the node will be added as the list child of the parent.
+If the reference is not `null`, the node will be inserted before the reference node. The reference has to be a child node of the parent. And if the reference is `null` the node will be added as the last child of the parent.
 
 ```ts
 interface Insert {
@@ -150,3 +150,102 @@ All edit events with initiator `user` will create a history log entry and can be
 
 
 ## Editor Action API (deprecated)
+
+Before the edit event API the editor action API was used to edit the `doc`. It is also custom event based and listens to the events of the type `editor-action`.
+
+For backwards compatibility the API is still supported, but it is recommended to use the edit event API instead. Internally editor actions are converted to edit events.
+
+### Breaking changes due to migration
+
+With open SCD version **v0.36.0** and higher some editor action features are no longer supported. 
+
+* The edtior action properties `derived` and `checkValidity` do not have any effect.
+* All validation checks have been removed (i.e. check for unique `id` attribute on element before create).
+* The `title` for `ComplexAction` does not have any effect.
+
+### Event factory
+
+```ts
+
+function newActionEvent<T extends EditorAction>(
+  action: T,
+  initiator: Initiator = 'user',
+  eventInitDict?: CustomEventInit<Partial<EditorActionDetail<T>>>
+): EditorActionEvent<T>
+
+type SimpleAction = Update | Create | Replace | Delete | Move;
+type ComplexAction = {
+  actions: SimpleAction[];
+  title: string;
+  derived?: boolean;
+};
+type EditorAction = SimpleAction | ComplexAction;
+
+```
+
+
+### Create
+
+`Create` actions are converted to `Insert` events.
+
+```ts
+interface Create {
+  new: { parent: Node; element: Node; reference?: Node | null };
+  derived?: boolean;
+  checkValidity?: () => boolean;
+}
+```
+
+### Move
+
+`Move` actions are converted to `Insert` events.
+
+```ts
+interface Move {
+  old: { parent: Element; element: Element; reference?: Node | null };
+  new: { parent: Element; reference?: Node | null };
+  derived?: boolean;
+  checkValidity?: () => boolean;
+}
+```
+
+
+### Delete
+
+`Delete` actions are converted to `Remove` events.
+
+```ts
+interface Delete {
+  old: { parent: Node; element: Node; reference?: Node | null };
+  derived?: boolean;
+  checkValidity?: () => boolean;
+}
+```
+
+
+### Update
+
+`Update` actions are converted to `Update` events.
+
+```ts
+interface Update {
+  element: Element;
+  oldAttributes: Record<string, string | null>;
+  newAttributes: Record<string, string | null>;
+  derived?: boolean;
+  checkValidity?: () => boolean;
+}
+```
+
+### Replace
+
+`Replace` actions are converted to a complex event with `Remove` and `Insert` events.
+
+```ts
+interface Replace {
+  old: { element: Element };
+  new: { element: Element };
+  derived?: boolean;
+  checkValidity?: () => boolean;
+}
+```
