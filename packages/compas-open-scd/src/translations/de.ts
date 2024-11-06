@@ -190,13 +190,13 @@ export const de: Translations = {
     bottom: 'unten',
     validator: 'Validator',
     add: {
-      heading: 'Benutzerdefinierte Erweiterung',
-      warning: `Hier können Sie benutzerdefinierte Erweiterungen hinzufügen.
+      heading: 'Benutzerdefinierte plug-in',
+      warning: `Hier können Sie benutzerdefinierte plug-ins hinzufügen.
                 OpenSCD übernimmt hierfür keine Gewähr.`,
       name: 'Name',
-      nameHelper: 'Lokaler Name der Erweiterung (frei wählbar)',
+      nameHelper: 'Lokaler Name der plug-in (frei wählbar)',
       src: 'URL',
-      srcHelper: 'Die Erweiterungs-URL des Herstellers',
+      srcHelper: 'Die plug-in-URL des Herstellers',
     },
   },
   substation: {
@@ -261,6 +261,39 @@ export const de: Translations = {
       updateied: 'IED "{{name}}" bearbeitet',
       deleteied: 'IED "{{name}}" entfernt',
     },
+  },
+  ldevice: {
+    wizard: {
+      nameHelper: 'Name des Logisches Gerät',
+      noNameSupportHelper: 'IED unterstützt keine funktionale Benennung',
+      descHelper: 'Beschreibung des Logisches Gerät',
+      title: {
+        edit: 'Logisches Gerät bearbeiten',
+      },
+    },
+  },
+  ln: {
+    wizard: {
+      title: {
+        edit: 'LN bearbeiten',
+      },
+      descHelper: 'Logical Node Beschreibung',
+      lnTypeHelper: 'Logical Node Typ',
+      prefixHelper: 'Prefix des Logical Nodes',
+      lnClassHelper: 'Logical Node Klasse',
+      instHelper: 'Instanz',
+    }
+  },
+  ln0: {
+    wizard: {
+      title: {
+        edit: 'LN0 bearbeiten',
+      },
+      descHelper: 'Logical Node Beschreibung',
+      lnTypeHelper: 'Logical Node Typ',
+      lnClassHelper: 'Logical Node Klasse',
+      instHelper: 'Instanz',
+    }
   },
   powertransformer: {
     wizard: {
@@ -451,6 +484,8 @@ export const de: Translations = {
       valuesView: 'Werte',
       networkView: 'Netzwerk',
     },
+    mappedCmv:
+    'Gemäß dem IEC 61850-80-1 Standard ist eine "{{ cdc }}" zuordnung über CMV erforderlich',
     values: {
       missing: 'Kein IED mit 104 Adressen',
       removeAddresses: 'Alle Adressen entfernen',
@@ -569,6 +604,7 @@ export const de: Translations = {
         addAddress: '104-Adresse hinzufügen',
       },
       error: {
+        ioaConflict: 'IOA-Konflikt innerhalb der CASDU-Nummer gefunden',
         addAddressError:
           'Invalide Template Struktur, DAI kann nicht hinzugefügt werden (DO: "{{ doType }}", CDC: "{{ cdc }}", Structure: "{{ structure }}")',
       },
@@ -751,7 +787,6 @@ export const de: Translations = {
       loaderror: 'Datei kann nicht geladen werden',
       importerror: 'IED Element kann nicht importiert werden',
       missingied: 'Kein IED Element in der Datei',
-      multipleied: 'Mehrere IED-Elemente in einer Datei',
       nouniqueied: 'IED Element {{ name }} bereits geladen',
     },
   },
@@ -903,7 +938,6 @@ export const de: Translations = {
   add: 'Hinzufügen',
   new: 'Neu',
   remove: 'Entfernen',
-  delete: 'Löschen',
   edit: 'Bearbeiten',
   move: 'Verschieben',
   create: 'Erstellen',
