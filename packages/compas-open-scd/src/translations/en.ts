@@ -167,13 +167,13 @@ export const en = {
     bottom: 'bottom',
     validator: 'Validator',
     add: {
-      heading: 'Add custom extension',
-      warning: `Here you may add remote extensions directly from a custom URL.
+      heading: 'Add custom plug-in',
+      warning: `Here you may add remote plug-ins directly from a custom URL.
                 You do this at your own risk.`,
       name: 'Name',
-      nameHelper: 'Your preferred extension name',
+      nameHelper: 'Your preferred plug-in name',
       src: 'URL',
-      srcHelper: 'The vendor supplied extension URL',
+      srcHelper: 'The vendor supplied plug-in URL',
     },
   },
   validator: {
@@ -258,6 +258,39 @@ export const en = {
       updateied: 'Edited IED "{{name}}"',
       deleteied: 'Removed IED "{{name}}"',
     },
+  },
+  ldevice: {
+    wizard: {
+      nameHelper: 'Logical device name',
+      noNameSupportHelper: "IED doesn't support Functional Naming",
+      descHelper: 'Logical device description',
+      title: {
+        edit: 'Edit logical device',
+      },
+    },
+  },
+  ln: {
+    wizard: {
+      title: {
+        edit: 'Edit LN',
+      },
+      descHelper: 'Logical node description',
+      lnTypeHelper: 'Logical node type',
+      prefixHelper: 'Prefix of the logical node',
+      lnClassHelper: 'Logical node class',
+      instHelper: 'Instance',
+    }
+  },
+  ln0: {
+    wizard: {
+      title: {
+        edit: 'Edit LN0',
+      },
+      descHelper: 'Logical node description',
+      lnTypeHelper: 'Logical node type',
+      lnClassHelper: 'Logical node class',
+      instHelper: 'Instance',
+    }
   },
   powertransformer: {
     wizard: {
@@ -447,6 +480,8 @@ export const en = {
       valuesView: 'Values',
       networkView: 'Network',
     },
+    mappedCmv:
+    'According to the IEC 61850-80-1 standard, "{{ cdc }}" mapping is required via CMV',
     values: {
       missing: 'No IED with 104 Addresses',
       removeAddresses: 'Remove all Addresses',
@@ -566,6 +601,7 @@ export const en = {
         addAddress: 'Add 104 Address',
       },
       error: {
+        ioaConflict: 'IOA conflict found within CASDU number',
         addAddressError:
           'Invalid Template Structure, unable to create DAI Element. (DO: "{{ doType }}", CDC: "{{ cdc }}", DAI: "{{ structure }}")',
       },
@@ -748,7 +784,6 @@ export const en = {
       loaderror: 'Could not load file',
       importerror: 'Could not import IED',
       missingied: 'No IED element in the file',
-      multipleied: 'Multiple IED elements found',
       nouniqueied: 'IED element {{ name }} already in the file',
     },
   },
@@ -894,7 +929,6 @@ export const en = {
   add: 'Add',
   new: 'New',
   remove: 'Remove',
-  delete: 'Delete',
   edit: 'Edit',
   move: 'Move',
   create: 'Create',
