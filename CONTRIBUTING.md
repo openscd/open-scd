@@ -7,7 +7,7 @@ If you say "hi" there we will be more than happy to help you find your way aroun
 
 ## Repo Setup
 
-To develop locally, fork the Vite repository and clone it in your local machine. The Vite repo is a [↗ monorepo](https://en.wikipedia.org/wiki/Monorepo) using pnpm workspaces. The package manager used to install and link dependencies must be [↗ npm](https://docs.npmjs.com/cli/using-npm/workspaces).
+To develop locally, fork the OpenSCD repository and clone it in your local machine. The OpenSCD repo is a [↗ monorepo](https://en.wikipedia.org/wiki/Monorepo) using pnpm workspaces. The package manager used to install and link dependencies must be [↗ npm](https://docs.npmjs.com/cli/using-npm/workspaces).
 
 To find out more about the development of each packages, such as the base distribution or the plugins, please refer to their respective READMEs:
 - [open-scd](packages/openscd/README.md): provides the base distribution available on [openscd.github.io](https://openscd.github.io)
@@ -74,7 +74,6 @@ Most deps should be added to `devDependencies` even if they are needed at runtim
 
 - Type packages. Example: `@types/*`.
 - Deps that cannot be properly bundled due to binary files. Example: `esbuild`.
-- Deps that ship their own types that are used in Vite's own public types. Example: `rollup`.
 
 Avoid deps with large transitive dependencies that result in bloated size compared to the functionality it provides. For example, `http-proxy` itself plus `@types/http-proxy` is a little over 1MB in size, but `http-proxy-middleware` pulls in a ton of dependencies that make it 7MB(!) when a minimal custom middleware on top of `http-proxy` only requires a couple of lines of code.
 
