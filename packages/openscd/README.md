@@ -29,6 +29,7 @@ Once Node.js is installed on your system, you may get started by entering the fo
 git clone https://github.com/openscd/open-scd.git
 cd open-scd
 npm install
+npm run build
 npm start
 ```
 
