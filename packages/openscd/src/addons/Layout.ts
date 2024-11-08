@@ -327,6 +327,10 @@ export class OscdLayout extends LitElement {
         this.requestUpdate();
       }
     );
+
+    document.addEventListener("open-plugin-download", () => {
+      this.pluginDownloadUI.show();
+    });
   }
 
 
