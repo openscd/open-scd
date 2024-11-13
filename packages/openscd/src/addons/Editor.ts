@@ -27,7 +27,6 @@ import {
   isNamespaced,
   isRemove,
   isUpdate,
-  OpenEvent as OpenEventV2,
   Remove,
   Update,
 } from '@openscd/core';
@@ -72,10 +71,10 @@ export class OscdEditor extends LitElement {
   }
 
   private onAction(event: EditorActionEvent<EditorAction>) {
-    const editV2 = convertEditV1toV2(event.detail.action);
+    const edit = convertEditV1toV2(event.detail.action);
     const initiator = event.detail.initiator;
 
-    this.host.dispatchEvent(newEditEvent(editV2, initiator));
+    this.host.dispatchEvent(newEditEvent(edit, initiator));
   }
 
   /**
@@ -117,7 +116,7 @@ export class OscdEditor extends LitElement {
     return html`<slot></slot>`;
   }
 
-  handleEditEvent(event: EditEvent) {
+  async handleEditEvent(event: EditEvent) {
     const edit = event.detail.edit;
     const undoEdit = handleEdit(edit);
 
@@ -125,9 +124,9 @@ export class OscdEditor extends LitElement {
       newEditCompletedEvent(event.detail.edit, event.detail.initiator)
     );
 
-    const isUserEvent = event.detail.initiator === 'user';
+    const shouldCreateHistoryEntry = event.detail.initiator !== 'redo' && event.detail.initiator !== 'undo';
 
-    if (isUserEvent) {
+    if (shouldCreateHistoryEntry) {
       const { title, message } = this.getLogText(edit);
 
       this.dispatchEvent(newLogEvent({
@@ -138,6 +137,9 @@ export class OscdEditor extends LitElement {
         undo: undoEdit,
       }));
     }
+
+    await this.updateComplete;
+    this.dispatchEvent(newValidateEvent());
   }
 }
 

@@ -310,16 +310,38 @@ describe('OSCD-Editor', () => {
           expect(logEntry.redo).to.deep.equal(remove);
         });
 
-        it('should not log edit for undo, redo or system event', () => {
+        it('should not log edit for undo or redo event', () => {
           const remove: Remove = {
             node: bay2,
           };
 
           host.dispatchEvent(newEditEvent(remove, 'redo'));
           host.dispatchEvent(newEditEvent(remove, 'undo'));
-          host.dispatchEvent(newEditEvent(remove, 'system'));
 
           expect(log).to.have.lengthOf(0);
+        });
+
+        describe('validate after edit', () => {
+          let hasTriggeredValidate = false;
+          beforeEach(() => {
+            hasTriggeredValidate = false;
+  
+            element.addEventListener('validate', () => {
+              hasTriggeredValidate = true;
+            });
+          });
+
+          it('should dispatch validate event after edit', async () => {
+            const remove: Remove = {
+              node: bay2,
+            };
+  
+            host.dispatchEvent(newEditEvent(remove));
+
+            await element.updateComplete;
+
+            expect(hasTriggeredValidate).to.be.true;
+          });
         });
       });
     });

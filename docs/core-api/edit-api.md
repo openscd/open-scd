@@ -4,7 +4,7 @@ Open SCD offers an API for editing the scd document which can be used with [Html
 
 The edits to the `doc` will be done in place, e.g. the `doc` changes but will keep the same reference. If your plugin needs to react to changes in the doc, you should listen to changes in the `editCount` property.
 
-### Event factory
+## Event factory
 
 Open SCD core exports a factory function for edit events, so you do not have to build them manually.
 
