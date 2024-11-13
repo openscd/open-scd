@@ -51,9 +51,9 @@ export let OscdEditor = class extends LitElement {
     return {title: ""};
   }
   onAction(event) {
-    const editV2 = convertEditV1toV2(event.detail.action);
+    const edit = convertEditV1toV2(event.detail.action);
     const initiator = event.detail.initiator;
-    this.host.dispatchEvent(newEditEvent(editV2, initiator));
+    this.host.dispatchEvent(newEditEvent(edit, initiator));
   }
   async onOpenDoc(event) {
     this.doc = event.detail.doc;
@@ -80,12 +80,12 @@ export let OscdEditor = class extends LitElement {
   render() {
     return html`<slot></slot>`;
   }
-  handleEditEvent(event) {
+  async handleEditEvent(event) {
     const edit = event.detail.edit;
     const undoEdit = handleEdit(edit);
     this.dispatchEvent(newEditCompletedEvent(event.detail.edit, event.detail.initiator));
-    const isUserEvent = event.detail.initiator === "user";
-    if (isUserEvent) {
+    const shouldCreateHistoryEntry = event.detail.initiator !== "redo" && event.detail.initiator !== "undo";
+    if (shouldCreateHistoryEntry) {
       const {title, message} = this.getLogText(edit);
       this.dispatchEvent(newLogEvent({
         kind: "action",
@@ -95,6 +95,8 @@ export let OscdEditor = class extends LitElement {
         undo: undoEdit
       }));
     }
+    await this.updateComplete;
+    this.dispatchEvent(newValidateEvent());
   }
 };
 __decorate([

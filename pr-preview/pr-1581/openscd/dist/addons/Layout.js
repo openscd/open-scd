@@ -199,6 +199,9 @@ let OscdLayout = class OscdLayout extends LitElement {
         });
         this.handleKeyPress = this.handleKeyPress.bind(this);
         document.onkeydown = this.handleKeyPress;
+        document.addEventListener("open-plugin-download", () => {
+            this.pluginDownloadUI.show();
+        });
     }
     generateMenu(plugins, kind) {
         return plugins.map(plugin => {
