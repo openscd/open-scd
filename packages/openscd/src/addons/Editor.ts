@@ -106,7 +106,9 @@ export class OscdEditor extends LitElement {
   connectedCallback(): void {
     super.connectedCallback();
 
+    // Deprecated editor action API, use 'oscd-edit' instead.
     this.host.addEventListener('editor-action', this.onAction.bind(this));
+
     this.host.addEventListener('oscd-edit', event => this.handleEditEvent(event));
     this.host.addEventListener('open-doc', this.onOpenDoc);
     this.host.addEventListener('oscd-open', this.handleOpenDoc);

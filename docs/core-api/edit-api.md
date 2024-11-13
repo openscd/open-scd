@@ -148,20 +148,17 @@ someComponent.dispatchEvent(complexEditEvent);
 
 All edit events with initiator `user` will create a history log entry and can be undone and redone through the history addon.
 
-
-## Editor Action API (deprecated)
-
+## Breaking changes due to migration
 Before the edit event API the editor action API was used to edit the `doc`. It is also custom event based and listens to the events of the type `editor-action`.
-
 For backwards compatibility the API is still supported, but it is recommended to use the edit event API instead. Internally editor actions are converted to edit events.
-
-### Breaking changes due to migration
-
-With open SCD version **v0.36.0** and higher some editor action features are no longer supported. 
-
-* The edtior action properties `derived` and `checkValidity` do not have any effect.
+With open SCD version **v0.36.0** and higher some editor action features are no longer supported see [Deprecated Editor Action API](#archives---editor-action-api-deprecated). 
+* The editor action properties `derived` and `checkValidity` do not have any effect.
 * All validation checks have been removed (i.e. check for unique `id` attribute on element before create).
 * The `title` for `ComplexAction` does not have any effect.
+
+---
+
+# Archives - Editor Action API (deprecated)
 
 ### Event factory
 
