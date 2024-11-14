@@ -1,6 +1,6 @@
 {
   "name": "openscd-monorepo",
-  "version": "0.35.0",
+  "version": "1.0.0",
   "description": "OpenSCD base distribution and plugins",
   "private": true,
   "workspaces": [

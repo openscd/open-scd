@@ -1,5 +1,27 @@
 # Changelog
 
+## [1.0.0](https://github.com/openscd/open-scd/compare/v0.35.0...v1.0.0) (2024-11-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* Edit API v1 validation is no longer supported (e.g. edit api v1 checked if an elements id was unique in the document)
+
+### Features
+
+* Allow .fsd file creation ([d9a4a0c](https://github.com/openscd/open-scd/commit/d9a4a0c6f6a0c9c86927d80bf5c81b4e9f6fc6d5))
+* Edit events v1 will be converted event v2 ([14e933e](https://github.com/openscd/open-scd/commit/14e933ed776ec5592c3c38e84b9884fa41a05e81))
+* Editor plugins can be rendered without an active document ([8b06a37](https://github.com/openscd/open-scd/commit/8b06a375ecfbc6275c5238d4a95383f4e80449b8))
+* Handle Config Plugin Events ([a510664](https://github.com/openscd/open-scd/commit/a5106648367dad831a248b734cd5c34aa1043d89))
+* render plugin download UI on event ([44a51f0](https://github.com/openscd/open-scd/commit/44a51f05797e8dd6345215c177a2e7b68e189d69))
+* Support edit api v2 ([#1581](https://github.com/openscd/open-scd/issues/1581)) ([14e933e](https://github.com/openscd/open-scd/commit/14e933ed776ec5592c3c38e84b9884fa41a05e81))
+
+
+### Bug Fixes
+
+* 1553 LN LN0 wizards read only attributes ([#1568](https://github.com/openscd/open-scd/issues/1568)) ([87aa759](https://github.com/openscd/open-scd/commit/87aa75961c7ef0bfe11810d2fa5d4e08704da033)), closes [#1553](https://github.com/openscd/open-scd/issues/1553)
+* correct plug-ins' paths ([a7a14ce](https://github.com/openscd/open-scd/commit/a7a14ced59294d8a24daabf5ecdc76a5dbb75237))
+
 ## [0.35.0](https://github.com/openscd/open-scd/compare/v0.34.0...v0.35.0) (2024-07-17)
 
 ### Features
