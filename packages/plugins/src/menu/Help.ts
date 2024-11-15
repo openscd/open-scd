@@ -43,12 +43,14 @@ async function getLinkedPages(path: string[]): Promise<Directory> {
   }
 
   const page = path[path.length - 1].replace(/ /g, '-');
-  const res = await fetch(`/public/md/${page}.md`);
+  const res = await fetch(`/openscd/public/md/${page}.md`);
   const md = await res.text();
+  const MD_LINK = `<a style="cursor: help; color: var(--mdc-theme-primary)" href="https://github.com/openscd/open-scd/wiki/$2" target="_blank">$1</a>`
   const unlinkedMd = md.replace(
     /\[([^\]]*)\]\(https:..github.com.openscd.open-scd.wiki.([^)]*)\)/g,
-    `<a style="cursor: help;" onclick="Array.from(event.target.closest('section').lastElementChild.children).find(child => child.text === '$2'.replace(/-/g, ' ')).click()">$1</a>`
+    MD_LINK
   );
+
   const header = html`<div style="padding: 8px;">
     ${page === 'Home' ? aboutBox(edition.version) : html``}
     ${unsafeHTML(marked.parse(unlinkedMd))}
