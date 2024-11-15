@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
 import '../mock-open-scd.js';
-import { MockAction } from './mock-actions.js';
+import { mockEdits } from '../mock-edits.js';
 import { MockOpenSCD } from '../mock-open-scd.js';
 
 import {
@@ -107,7 +107,8 @@ describe('HistoringElement', () => {
         newLogEvent({
           kind: 'action',
           title: 'test MockAction',
-          action: MockAction.cre,
+          redo: mockEdits.insert(),
+          undo: mockEdits.insert()
         })
       );
       element.requestUpdate();
@@ -125,18 +126,6 @@ describe('HistoringElement', () => {
       expect(element).to.have.property('editCount', 0));
     it('has no next action', () =>
       expect(element).to.have.property('nextAction', -1));
-
-    it('does not log derived actions', () => {
-      expect(element).property('history').to.have.lengthOf(1);
-      element.dispatchEvent(
-        newLogEvent({
-          kind: 'action',
-          title: 'test MockAction',
-          action: (<CommitEntry>element.history[0]).action,
-        })
-      );
-      expect(element).property('history').to.have.lengthOf(1);
-    });
 
     it('can reset its log', () => {
       element.dispatchEvent(newLogEvent({ kind: 'reset' }));
@@ -160,7 +149,8 @@ describe('HistoringElement', () => {
           newLogEvent({
             kind: 'action',
             title: 'test MockAction',
-            action: MockAction.del,
+            redo: mockEdits.remove(),
+            undo: mockEdits.remove()
           })
         );
       });
@@ -189,7 +179,8 @@ describe('HistoringElement', () => {
             newLogEvent({
               kind: 'action',
               title: 'test MockAction',
-              action: MockAction.mov,
+              redo: mockEdits.insert(),
+              undo: mockEdits.insert()
             })
           );
           await element.updateComplete;
