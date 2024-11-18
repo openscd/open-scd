@@ -58,20 +58,16 @@ function getLDeviceDescriptions(
 			)!;
 			const lnType = lLN0?.split(": ")[1];
 
-			// Map to ensure unique prefixes based on node attributes
 			const anyLNs = [
 				{ prefix: null, lnClass: "LLN0", inst: "", lnType },
 				...selectedLNodes.map((lNode, index) => {
 					const lnClass = lNode.getAttribute("lnClass")!;
 					const inst = lNode.getAttribute("lnInst")!;
 					const lnType = lNode.getAttribute("lnType")!;
-					const existingPrefix = lNode.getAttribute("prefix") || "";
-
-					// Generate unique prefix if not already provided
-					const uniquePrefix = existingPrefix || `${lnClass}-${index + 1}`; // Prefix includes class and unique index
+					const prefix = lNode.getAttribute("prefix") || "";
 
 					return {
-						prefix: uniquePrefix,
+						prefix: prefix || `CSWI-${index}`,
 						lnClass,
 						inst,
 						lnType,
