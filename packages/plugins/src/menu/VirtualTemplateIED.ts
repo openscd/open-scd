@@ -60,17 +60,13 @@ function getLDeviceDescriptions(
 
 			const anyLNs = [
 				{ prefix: null, lnClass: "LLN0", inst: "", lnType },
-				...selectedLNodes.map((lNode, index) => {
-					const lnClass = lNode.getAttribute("lnClass")!;
-					const inst = lNode.getAttribute("lnInst")!;
-					const lnType = lNode.getAttribute("lnType")!;
-					const prefix = lNode.getAttribute("prefix") || "";
-
+				...selectedLNodes.map((lNode) => {
+					console.log("here: ", getFunctionNamingPrefix(lNode));
 					return {
-						prefix: prefix || `CSWI-${index}`,
-						lnClass,
-						inst,
-						lnType,
+						prefix: getFunctionNamingPrefix(lNode),
+						lnClass: lNode.getAttribute("lnClass")!,
+						inst: lNode.getAttribute("lnInst")!,
+						lnType: lNode.getAttribute("lnType")!,
 					};
 				}),
 			];
