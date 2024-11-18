@@ -38,6 +38,22 @@ export function getTheme(theme: Settings['theme']): TemplateResult {
         --mdc-dialog-heading-ink-color: var(--base00);
 
         --mdc-icon-font: 'Material Icons Outlined';
+
+        --oscd-primary: var(--oscd-theme-primary, var(--cyan));
+        --oscd-secondary: var(--oscd-theme-secondary, var(--violet));
+        --oscd-error: var(--oscd-theme-error, var(--red));
+
+        --oscd-base03: var(--oscd-theme-base03, var(--base03));
+        --oscd-base02: var(--oscd-theme-base02, var(--base02));
+        --oscd-base01: var(--oscd-theme-base01, var(--base01));
+        --oscd-base00: var(--oscd-theme-base00, var(--base00));
+        --oscd-base0: var(--oscd-theme-base0, var(--base0));
+        --oscd-base1: var(--oscd-theme-base1, var(--base1));
+        --oscd-base2: var(--oscd-theme-base2, var(--base2));
+        --oscd-base3: var(--oscd-theme-base3, var(--base3));
+
+        --oscd-text-font: var(--oscd-theme-text-font, 'Roboto');
+        --oscd-icon-font: var(--oscd-theme-icon-font, 'Material Icons');
       }
 
       .mdc-drawer span.mdc-drawer__title {
