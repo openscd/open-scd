@@ -30,9 +30,6 @@ function getTitle(path: Path): string {
   return `Testing ${path[path.length - 1]}`;
 }
 
-function getDisplayString(entry: string, path: string[]) {
-  return 'Testing ' + path.length + ' ' + entry;
-}
 
 async function read(path: Path): Promise<Directory> {
   const dir = path[path.length - 1];
@@ -111,9 +108,8 @@ describe('finder-list', () => {
         .property('children')
         .to.have.lengthOf(pathA.length));
 
-    describe('when provided with .getTitle and .getDisplayString methods', () => {
+    describe('when provided with .getTitle method', () => {
       beforeEach(async () => {
-        element.getDisplayString = getDisplayString;
         element.getTitle = getTitle;
         element.requestUpdate();
         await element.updateComplete;
@@ -126,7 +122,7 @@ describe('finder-list', () => {
           .to.satisfy((l: string) => l.startsWith('Testing '));
       });
 
-      it('overrides list-item text content using .getDisplayString', () => {
+      it('overrides list-item text content using', () => {
         expect(element.container.querySelector('mwc-list-item'))
           .property('text')
           .to.satisfy((t: string) => t.startsWith('Testing '));
