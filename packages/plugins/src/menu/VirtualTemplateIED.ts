@@ -43,49 +43,40 @@ export type FunctionElementDescription = {
 function getLDeviceDescriptions(
   functions: Record<string, FunctionElementDescription>,
   selectedLNodes: Element[],
-  selectedLLN0s: string[],
+  selectedLLN0s: string[]
 ): LDeviceDescription[] {
   const lDeviceDescriptions: LDeviceDescription[] = [];
 
-  console.log("LDeviceDescriptions input - selectedLNodes: ", selectedLNodes);
-
-  Object.values(functions).forEach((functionDescription) => {
+  Object.values(functions).forEach(functionDescription => {
     if (
-      functionDescription.lNodes.some((lNode) => selectedLNodes.includes(lNode))
+      functionDescription.lNodes.some(lNode => selectedLNodes.includes(lNode))
     ) {
-      const lLN0 = selectedLLN0s.find((selectedLLN0) =>
-        selectedLLN0.includes(functionDescription.uniqueName),
+      const lLN0 = selectedLLN0s.find(selectedLLN0 =>
+        selectedLLN0.includes(functionDescription.uniqueName)
       )!;
-      const lnType = lLN0?.split(": ")[1];
-
-      const anyLNs = [
-        { prefix: null, lnClass: "LLN0", inst: "", lnType },
-        ...selectedLNodes.map((lNode) => {
-          console.log("here: ", getFunctionNamingPrefix(lNode));
-          return {
-            prefix: getFunctionNamingPrefix(lNode),
-            lnClass: lNode.getAttribute("lnClass")!,
-            inst: lNode.getAttribute("lnInst")!,
-            lnType: lNode.getAttribute("lnType")!,
-          };
-        }),
-      ];
+      const lnType = lLN0?.split(': ')[1];
 
       lDeviceDescriptions.push({
         validLdInst: functionDescription.uniqueName,
-        anyLNs,
+        anyLNs: [
+          { prefix: null, lnClass: 'LLN0', inst: '', lnType },
+          ...functionDescription.lNodes
+            .filter(lNode => selectedLNodes.includes(lNode))
+            .map(lNode => {
+              return {
+                prefix: getFunctionNamingPrefix(lNode),
+                lnClass: lNode.getAttribute('lnClass')!,
+                inst: lNode.getAttribute('lnInst')!,
+                lnType: lNode.getAttribute('lnType')!,
+              };
+            }),
+        ],
       });
     }
   });
 
-  console.log(
-    "AFTER LDeviceDescriptions input - selectedLNodes: ",
-    lDeviceDescriptions,
-  );
-
   return lDeviceDescriptions;
 }
-
 
 /** Groups all incomming LNode's with non-leaf parent function type elements */
 function groupLNodesToFunctions(
