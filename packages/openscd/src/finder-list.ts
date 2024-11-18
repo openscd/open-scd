@@ -91,6 +91,9 @@ export class FinderList extends LitElement {
     return path.join('/');
   }
 
+  getDisplayString(entry: string, path: string[]): string {
+    return entry;
+  }
 
   @query('div')
   container!: Element;
@@ -150,11 +153,9 @@ export class FinderList extends LitElement {
           html`<mwc-list-item
             value="${entry}"
             ?activated=${this.getPaths(path.length)
-              .map(p => {
-               return JSON.stringify(p)
-              })
+              .map(p => JSON.stringify(p))
               .includes(JSON.stringify(path.concat(entry)))}
-            >${entry}</mwc-list-item
+            >${this.getDisplayString(entry, path)}</mwc-list-item
           >`
       )}
     </filtered-list>`;
