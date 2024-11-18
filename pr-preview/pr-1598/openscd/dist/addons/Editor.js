@@ -76,8 +76,8 @@ let OscdEditor = class OscdEditor extends LitElement {
     }
     async handleEditEvent(event) {
         /**
-         * This is a compatibility fix for plugins based on open enegery tools edit events
-         * beause their edit event look slightly different,
+         * This is a compatibility fix for plugins based on open energy tools edit events
+         * because their edit event look slightly different
          * see https://github.com/OpenEnergyTools/open-scd-core/blob/main/foundation/edit-event-v1.ts for details
          */
         if (isOpenEnergyEditEvent(event)) {
