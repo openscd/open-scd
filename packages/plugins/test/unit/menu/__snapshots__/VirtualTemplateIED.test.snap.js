@@ -601,10 +601,10 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
         >
         </LN0>
         <LN
-          inst="2"
+          inst="1"
           lnClass="PTOC"
           lnType="OpenSCD_PTOC"
-          prefix="ID_"
+          prefix="IDD_"
         >
         </LN>
       </LDevice>
