@@ -1,13 +1,10 @@
 # ADR-0004 - Technical solution for releasing and deployments
 
-Date: 2024-11
+Date: 2024-11-19
 
 ## Status
 
-TO_BE_REFINED
-
-## Participants
- - ... link to github user
+Approved
 
 ## Context
 
