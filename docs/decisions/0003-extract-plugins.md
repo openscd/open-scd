@@ -1,17 +1,14 @@
 # ADR-0003 - Externalize OpenSCD core plugins
 
-Date: 2024-11
+Date: 2024-11-19
 
 ## Status
 
-Open
+Approved
 
 ## Context
 
 For a better expandability we would like to extract all plugins in a new plugins repository.
-
-## Participants
- - ... link to github user
 
 ## Decision
 
@@ -30,3 +27,10 @@ As final task the current documentation will be added with a new section `How to
 - Building OpenSCD is more then building a simple repository
 - Clear path must be defined how to extend OpenSCD with custom plugins (full software cycle till deployment)
 - Release process for OpenSCD Core and OpenSCD official plugins
+
+## Agreed procedure
+
+- move the plugins without any components abstraction to the external plugins repository
+  - copy all required dependencies regardless of code duplication
+- integrate the plugins as submodules within OpenSCD core in the pipeline
+- later on we can extract step by step for each plugin UI-Components
