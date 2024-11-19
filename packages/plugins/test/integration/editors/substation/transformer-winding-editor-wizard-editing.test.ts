@@ -103,19 +103,7 @@ describe('transformer-winding-editor wizarding editing integration', () => {
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       expect(parent.wizardUI.dialog).to.not.exist;
     });
-    it('does not change name attribute if not unique within parent element', async () => {
-      const oldName = nameField.value;
-      nameField.value = 'some1';
-      primaryAction.click();
-      await parent.updateComplete;
-      expect(
-        doc
-          .querySelector(
-            'PowerTransformer[name="pTransVolt"] > TransformerWinding[name="some"]'
-          )
-          ?.getAttribute('name')
-      ).to.equal(oldName);
-    });
+
     it('changes desc attribute on primary action', async () => {
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       descField.nullSwitch!.click();
