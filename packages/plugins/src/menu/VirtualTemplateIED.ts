@@ -271,6 +271,8 @@ export default class VirtualTemplateIED extends LitElement {
         <wizard-textfield
           label="desc"
           .maybeValue=${null}
+          // TODO remove toggle
+          required
           nullable
         ></wizard-textfield>
         <wizard-textfield
