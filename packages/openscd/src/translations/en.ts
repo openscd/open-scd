@@ -115,6 +115,7 @@ export const en = {
     moved: 'Moved {{ name }}',
     updated: 'Edited {{ name }}',
     import: 'Imported {{name}}',
+    complex: 'Multiple elements edited',
     error: {
       create: 'Could not add {{ name }}',
       update: 'Could not edit {{ name }}',

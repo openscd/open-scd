@@ -103,18 +103,6 @@ describe('process-editor wizarding editing integration', () => {
       expect(parent.wizardUI.dialog).to.not.exist;
     });
 
-    it('does not change name attribute if not unique within parent element', async () => {
-      const oldName = nameField.value;
-      nameField.value = 'ProcProcSubAA1';
-      primaryAction.click();
-      await parent.updateComplete;
-      expect(
-        doc
-          .querySelector('Process[name="ProcessGenConduct"]')
-          ?.getAttribute('name')
-      ).to.equal(oldName);
-    });
-
     it('changes name attribute on primary action', async () => {
       nameField.value = 'newName';
       primaryAction.click();

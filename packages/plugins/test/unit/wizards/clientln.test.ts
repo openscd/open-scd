@@ -21,7 +21,7 @@ describe('clientln wizards', () => {
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
     parent = await fixture(
-      html`<mock-wizard-editor
+      html`<mock-wizard-editor .doc=${doc}
         ><zeroline-pane .doc=${doc}></zeroline-pane
       ></mock-wizard-editor>`
     );
@@ -79,6 +79,7 @@ describe('clientln wizards', () => {
         )
       )?.to.exist;
     });
+
     it('does not add an already existing ClientLN referencing to logical nodes in AccessPoint', async () => {
       expect(
         doc.querySelectorAll(
