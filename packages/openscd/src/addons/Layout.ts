@@ -59,9 +59,13 @@ export class OscdLayout extends LitElement {
 
   render(): TemplateResult {
     return html`
-      <slot></slot>
-      ${this.renderHeader()} ${this.renderAside()} ${this.renderContent()}
-      ${this.renderLanding()} ${this.renderPlugging()}
+      <div
+        @open-plugin-download=${() => this.pluginDownloadUI.show()}
+      >
+        <slot></slot>
+        ${this.renderHeader()} ${this.renderAside()} ${this.renderContent()}
+        ${this.renderLanding()} ${this.renderPlugging()}
+      </div>
     `;
   }
 
