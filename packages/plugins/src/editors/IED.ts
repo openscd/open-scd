@@ -99,6 +99,11 @@ export default class IedPlugin extends LitElement {
     return undefined;
   }
 
+  @state()
+  private get hasIedWithoutDesc(): boolean {
+    return this.iedList.some(ied => !ied.hasAttribute('desc'));
+  }
+
   lNClassListOpenedOnce = false;
 
   protected updated(_changedProperties: PropertyValues): void {
@@ -151,6 +156,13 @@ export default class IedPlugin extends LitElement {
     const iedList = this.iedList;
     if (iedList.length > 0) {
       return html`<section>
+        ${
+          this.hasIedWithoutDesc
+            ? html`
+          <missing-desc-banner>${get('ied.wizard.noDescWarning')}</missing-desc-banner>
+        `
+            : nothing
+        }
         <div class="header">
           <h1>${get('filters')}:</h1>
 

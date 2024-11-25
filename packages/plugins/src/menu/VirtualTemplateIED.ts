@@ -263,13 +263,13 @@ export default class VirtualTemplateIED extends LitElement {
       @closed=${this.onClosed}
       ><div>
         <wizard-textfield
-          label="manufacturer"
+          label="Manufacturer"
           .maybeValue=${""}
           required
           @keypress=${() => this.requestUpdate()}
         ></wizard-textfield>
         <wizard-textfield
-          label="desc"
+          label="Description"
           .maybeValue=${null}
           required
         ></wizard-textfield>

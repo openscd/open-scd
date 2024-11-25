@@ -249,6 +249,7 @@ export const en = {
     wizard: {
       nameHelper: 'IED name',
       descHelper: 'IED description',
+      noDescWarning: "Some S-IEDs lack description.",
       title: {
         edit: 'Edit IED',
         delete: 'Remove IED with references',
