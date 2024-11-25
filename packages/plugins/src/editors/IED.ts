@@ -23,9 +23,11 @@ import {
   compareNames,
   getDescriptionAttribute,
   getNameAttribute,
+  newWizardEvent,
 } from '@openscd/open-scd/src/foundation.js';
 import { Nsdoc } from '@openscd/open-scd/src/foundation/nsdoc.js';
 import { getIcon } from '@openscd/open-scd/src/icons/icons.js';
+import { wizards } from '../wizards/wizard-library.js';
 
 /** An editor [[`plugin`]] for editing the `IED` section. */
 export default class IedPlugin extends LitElement {
@@ -100,8 +102,8 @@ export default class IedPlugin extends LitElement {
   }
 
   @state()
-  private get hasIedWithoutDesc(): boolean {
-    return this.iedList.some(ied => !ied.hasAttribute('desc'));
+  private get iedsWithoutDesc(): Element[] {
+    return this.iedList.filter(ied => !ied.hasAttribute('desc'));
   }
 
   lNClassListOpenedOnce = false;
@@ -152,14 +154,28 @@ export default class IedPlugin extends LitElement {
     return selectedLNClasses;
   }
 
+  private openEditWizard(element: Element): void {
+    const wizard = wizards['IED'].edit(element);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
+
   render(): TemplateResult {
     const iedList = this.iedList;
     if (iedList.length > 0) {
       return html`<section>
         ${
-          this.hasIedWithoutDesc
+          this.iedsWithoutDesc.length > 0
             ? html`
-          <missing-desc-banner>${get('ied.wizard.noDescWarning')}</missing-desc-banner>
+          <div
+            slot="action"
+            class="missing-desc-banner"
+            mini
+            @click="${() => this.openEditWizard(this.iedsWithoutDesc[0])}"
+            icon="edit"
+          >
+            <span>${get('ied.wizard.noDescWarning')}</span>
+            <mwc-icon>edit</mwc-icon>
+          </div>
         `
             : nothing
         }
@@ -262,6 +278,19 @@ export default class IedPlugin extends LitElement {
 
     .header {
       display: flex;
+    }
+
+    .missing-desc-banner {
+      margin-bottom: 16px;
+      background-color: var(--mdc-theme-error);
+      color: var(--mdc-theme-on-error);
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: opacity 0.2s ease-in-out;
     }
 
     h1 {
