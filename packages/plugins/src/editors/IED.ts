@@ -203,6 +203,13 @@ export default class IedPlugin extends LitElement {
                 return;
               }
 
+              // const selectedIedNames = e.detail.selectedItems.map(item => {
+              //   const [name] = item.split('__');
+              //   return name;
+              // });
+
+              // console.log("HERE: ", selectedIedNames)
+
               this.lNClassListOpenedOnce = false;
               this.selectedIEDs = e.detail.selectedItems;
               this.selectedLNClasses = [];
@@ -282,8 +289,7 @@ export default class IedPlugin extends LitElement {
 
     .missing-desc-banner {
       margin-bottom: 16px;
-      background-color: var(--mdc-theme-error);
-      color: var(--mdc-theme-on-error);
+      background-color: #ffcc00;
       padding: 8px 16px;
       display: flex;
       align-items: center;

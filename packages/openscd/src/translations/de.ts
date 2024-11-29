@@ -252,7 +252,7 @@ export const de: Translations = {
     wizard: {
       nameHelper: 'Name des IED',
       descHelper: 'Beschreibung des IED',
-      noDescWarning: "Einige S-IEDs können nicht angezeigt werden, da sie kein 'desc'-Attribut haben. Klicken Sie hier und fügen Sie es manuell hinzu.",
+      noDescWarning: "Warnung! Einige S-IEDs können nicht angezeigt werden, da sie kein „des“-Attribut haben. Klicke hier, um das Attribut manuell hinzuzufügen.",
       title: {
         edit: 'IED bearbeiten',
         delete: 'IED mit Abhängigkeiten entfernen',

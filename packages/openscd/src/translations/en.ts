@@ -249,7 +249,7 @@ export const en = {
     wizard: {
       nameHelper: 'IED name',
       descHelper: 'IED description',
-      noDescWarning: "Impossible to apply filter for some S-IEDs - missing 'desc' attribute. Manually select and add it here.",
+      noDescWarning: "Warning! Some S-IEDs cannot be displayed because they do not have a “desc” attribute. Click here to add the attribute manually.",
       title: {
         edit: 'Edit IED',
         delete: 'Remove IED with references',
