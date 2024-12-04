@@ -5,7 +5,7 @@ export interface PendingStateDetail {
 export type PendingStateEvent = CustomEvent<PendingStateDetail>;
 
 /**
- * @deprecated
+ * @deprecated not used anymore
  */
 export function newPendingStateEvent(
   promise: Promise<void>,
