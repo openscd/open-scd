@@ -6,6 +6,7 @@
 ### ⚠ BREAKING CHANGES
 
 * Edit API v1 validation is no longer supported (e.g. edit api v1 checked if an elements id was unique in the document)
+* Edit event v1 properties `derived` and `checkValidity` will be ignored
 
 ### Features
 
