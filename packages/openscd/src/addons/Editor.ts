@@ -119,6 +119,15 @@ export class OscdEditor extends LitElement {
   }
 
   async handleEditEvent(event: EditEvent) {
+    /**
+     * This is a compatibility fix for plugins based on open energy tools edit events
+     * because their edit event look slightly different
+     * see https://github.com/OpenEnergyTools/open-scd-core/blob/main/foundation/edit-event-v1.ts for details
+     */
+    if (isOpenEnergyEditEvent(event)) {
+      event = convertOpenEnergyEditEventToEditEvent(event);
+    }
+
     const edit = event.detail.edit;
     const undoEdit = handleEdit(edit);
 
@@ -244,4 +253,14 @@ function handleRemove({ node }: Remove): Insert | [] {
       reference,
     };
   return [];
+}
+
+function isOpenEnergyEditEvent(event: CustomEvent<unknown>): boolean {
+  const eventDetail = event.detail as Edit;
+  return isComplex(eventDetail) || isInsert(eventDetail) || isUpdate(eventDetail) || isRemove(eventDetail);
+}
+
+function convertOpenEnergyEditEventToEditEvent(event: CustomEvent<unknown>): EditEvent {
+  const eventDetail = event.detail as Edit;
+  return newEditEvent(eventDetail);
 }

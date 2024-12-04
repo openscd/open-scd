@@ -59,9 +59,13 @@ export class OscdLayout extends LitElement {
 
   render(): TemplateResult {
     return html`
-      <slot></slot>
-      ${this.renderHeader()} ${this.renderAside()} ${this.renderContent()}
-      ${this.renderLanding()} ${this.renderPlugging()}
+      <div
+        @open-plugin-download=${() => this.pluginDownloadUI.show()}
+      >
+        <slot></slot>
+        ${this.renderHeader()} ${this.renderAside()} ${this.renderContent()}
+        ${this.renderLanding()} ${this.renderPlugging()}
+      </div>
     `;
   }
 
@@ -394,7 +398,7 @@ export class OscdLayout extends LitElement {
   }
 
   private renderEditorTab({ name, icon }: Plugin): TemplateResult {
-    return html`<mwc-tab label=${get(name)} icon=${icon || 'edit'}> </mwc-tab>`;
+    return html`<mwc-tab label=${name} icon=${icon || 'edit'}> </mwc-tab>`;
   }
 
   /** Renders top bar which features icon buttons for undo, redo, log, scl history and diagnostics*/
