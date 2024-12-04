@@ -1,4 +1,4 @@
-import { Edit } from '../edit-event.js';
+import { Edit } from './edit-event.js';
 
 type InfoEntryKind = 'info' | 'warning' | 'error';
 

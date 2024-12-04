@@ -1,4 +1,11 @@
-import { OpenEvent, newEditCompletedEvent, newEditEvent } from '@openscd/core';
+import {
+  Edit,
+  EditEvent,
+  OpenEvent,
+  newEditCompletedEvent,
+  newEditEventV1,
+  handleEdit
+} from '@openscd/core';
 import {
   property,
   LitElement,
@@ -19,16 +26,16 @@ import { OpenDocEvent } from '@openscd/core/foundation/deprecated/open-event.js'
 
 import {
   AttributeValue,
-  Edit,
-  EditEvent,
-  Insert,
-  isComplex,
-  isInsert,
-  isNamespaced,
-  isRemove,
-  isUpdate,
-  Remove,
-  Update,
+  EditV1,
+  EditEventV1,
+  InsertV1,
+  isComplexV1,
+  isInsertV1,
+  isNamespacedV1,
+  isRemoveV1,
+  isUpdateV1,
+  RemoveV1,
+  UpdateV1,
 } from '@openscd/core';
 
 import { convertEditV1toV2 } from './editor/edit-v1-to-v2-converter.js';
@@ -48,21 +55,21 @@ export class OscdEditor extends LitElement {
   })
   host!: HTMLElement;
 
-  private getLogText(edit: Edit): { title: string, message?: string } {
-    if (isInsert(edit)) {
+  private getLogText(edit: EditV1): { title: string, message?: string } {
+    if (isInsertV1(edit)) {
       const name = edit.node instanceof Element ?
         edit.node.tagName :
         get('editing.node');
       return { title: get('editing.created', { name }) };
-    } else if (isUpdate(edit)) {
+    } else if (isUpdateV1(edit)) {
       const name = edit.element.tagName;
       return { title: get('editing.updated', { name }) };
-    } else if (isRemove(edit)) {
+    } else if (isRemoveV1(edit)) {
       const name = edit.node instanceof Element ?
         edit.node.tagName :
         get('editing.node');
       return { title: get('editing.deleted', { name }) };
-    } else if (isComplex(edit)) {
+    } else if (isComplexV1(edit)) {
       const message = edit.map(e => this.getLogText(e)).map(({ title }) => title).join(', ');
       return { title: get('editing.complex'), message };
     }
@@ -74,7 +81,7 @@ export class OscdEditor extends LitElement {
     const edit = convertEditV1toV2(event.detail.action);
     const initiator = event.detail.initiator;
 
-    this.host.dispatchEvent(newEditEvent(edit, initiator));
+    this.host.dispatchEvent(newEditEventV1(edit, initiator));
   }
 
   /**
@@ -110,6 +117,7 @@ export class OscdEditor extends LitElement {
     this.host.addEventListener('editor-action', this.onAction.bind(this));
 
     this.host.addEventListener('oscd-edit', event => this.handleEditEvent(event));
+    this.host.addEventListener('oscd-edit-v2', event => this.handleEditEventV2(event));
     this.host.addEventListener('open-doc', this.onOpenDoc);
     this.host.addEventListener('oscd-open', this.handleOpenDoc);
   }
@@ -118,7 +126,14 @@ export class OscdEditor extends LitElement {
     return html`<slot></slot>`;
   }
 
-  async handleEditEvent(event: EditEvent) {
+  handleEditEventV2(event: EditEvent) {
+    console.log('Edit event v2', event);
+    const edit = event.detail.edit;
+
+    const undoEdit = handleEdit(edit);
+  }
+
+  async handleEditEvent(event: EditEventV1) {
     /**
      * This is a compatibility fix for plugins based on open energy tools edit events
      * because their edit event look slightly different
@@ -129,7 +144,7 @@ export class OscdEditor extends LitElement {
     }
 
     const edit = event.detail.edit;
-    const undoEdit = handleEdit(edit);
+    const undoEdit = handleEditV1(edit);
 
     this.dispatchEvent(
       newEditCompletedEvent(event.detail.edit, event.detail.initiator)
@@ -154,11 +169,11 @@ export class OscdEditor extends LitElement {
   }
 }
 
-function handleEdit(edit: Edit): Edit {
-  if (isInsert(edit)) return handleInsert(edit);
-  if (isUpdate(edit)) return handleUpdate(edit);
-  if (isRemove(edit)) return handleRemove(edit);
-  if (isComplex(edit)) return edit.map(handleEdit).reverse();
+function handleEditV1(edit: EditV1): EditV1 {
+  if (isInsertV1(edit)) return handleInsert(edit);
+  if (isUpdateV1(edit)) return handleUpdate(edit);
+  if (isRemoveV1(edit)) return handleRemove(edit);
+  if (isComplexV1(edit)) return edit.map(handleEditV1).reverse();
   return [];
 }
 
@@ -170,7 +185,7 @@ function handleInsert({
   parent,
   node,
   reference,
-}: Insert): Insert | Remove | [] {
+}: InsertV1): InsertV1 | RemoveV1 | [] {
   try {
     const { parentNode, nextSibling } = node;
 
@@ -197,13 +212,13 @@ function handleInsert({
   }
 }
 
-function handleUpdate({ element, attributes }: Update): Update {
+function handleUpdate({ element, attributes }: UpdateV1): UpdateV1 {
   const oldAttributes = { ...attributes };
   Object.entries(attributes)
     .reverse()
     .forEach(([name, value]) => {
       let oldAttribute: AttributeValue;
-      if (isNamespaced(value!))
+      if (isNamespacedV1(value!))
         oldAttribute = {
           value: element.getAttributeNS(
             value.namespaceURI,
@@ -223,7 +238,7 @@ function handleUpdate({ element, attributes }: Update): Update {
   for (const entry of Object.entries(attributes)) {
     try {
       const [attribute, value] = entry as [string, AttributeValue];
-      if (isNamespaced(value)) {
+      if (isNamespacedV1(value)) {
         if (value.value === null)
           element.removeAttributeNS(
             value.namespaceURI,
@@ -243,7 +258,7 @@ function handleUpdate({ element, attributes }: Update): Update {
   };
 }
 
-function handleRemove({ node }: Remove): Insert | [] {
+function handleRemove({ node }: RemoveV1): InsertV1 | [] {
   const { parentNode: parent, nextSibling: reference } = node;
   node.parentNode?.removeChild(node);
   if (parent)
@@ -256,11 +271,11 @@ function handleRemove({ node }: Remove): Insert | [] {
 }
 
 function isOpenEnergyEditEvent(event: CustomEvent<unknown>): boolean {
-  const eventDetail = event.detail as Edit;
-  return isComplex(eventDetail) || isInsert(eventDetail) || isUpdate(eventDetail) || isRemove(eventDetail);
+  const eventDetail = event.detail as EditV1;
+  return isComplexV1(eventDetail) || isInsertV1(eventDetail) || isUpdateV1(eventDetail) || isRemoveV1(eventDetail);
 }
 
-function convertOpenEnergyEditEventToEditEvent(event: CustomEvent<unknown>): EditEvent {
-  const eventDetail = event.detail as Edit;
-  return newEditEvent(eventDetail);
+function convertOpenEnergyEditEventToEditEvent(event: CustomEvent<unknown>): EditEventV1 {
+  const eventDetail = event.detail as EditV1;
+  return newEditEventV1(eventDetail);
 }
