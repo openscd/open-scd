@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.0.0](https://github.com/openscd/open-scd/compare/v0.35.0...v1.0.0) (2024-11-14)
+## [0.36.0](https://github.com/openscd/open-scd/compare/v0.35.0...v0.36.0) (2024-11-14)
 
 
 ### ⚠ BREAKING CHANGES
