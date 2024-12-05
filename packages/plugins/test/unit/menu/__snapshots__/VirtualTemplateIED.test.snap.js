@@ -1,7 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Plugin that creates with some user input a virtual template IED - SPECIFICATION looks like the latest snapshot"] = 
+snapshots["Plugin that creates with some user input a virtual template IED - SPECIFICATION looks like the latest snapshot"] =
 `<mwc-dialog
   heading="Create SPECIFICATION type IED"
   open=""
@@ -72,7 +72,7 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
         graphic="control"
         mwc-list-item=""
         tabindex="0"
-        value="AA1>E1>Q01>QC9>Earth_Switch>(CSWI OpenSCD_CSWI)"
+        value="AA1>E1>Q01>QC9>Earth_Switch>(CSWI OpenSCD_CSWI 1)"
       >
         CSWI 1
       </mwc-check-list-item>
@@ -81,7 +81,7 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
         graphic="control"
         mwc-list-item=""
         tabindex="-1"
-        value="AA1>E1>Q01>QC9>Earth_Switch>(CILO OpenSCD_CILO)"
+        value="AA1>E1>Q01>QC9>Earth_Switch>(CILO OpenSCD_CILO 1)"
       >
         CILO 1
       </mwc-check-list-item>
@@ -90,7 +90,7 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
         graphic="control"
         mwc-list-item=""
         tabindex="-1"
-        value="AA1>E1>Q01>QC9>Earth_Switch>(XSWI OpenSCD_XSWI_EarthSwitch)"
+        value="AA1>E1>Q01>QC9>Earth_Switch>(XSWI OpenSCD_XSWI_EarthSwitch 1)"
       >
         XSWI 1
       </mwc-check-list-item>
@@ -148,7 +148,7 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
         graphic="control"
         mwc-list-item=""
         tabindex="-1"
-        value="AA1>E1>Q01>QB1>Disconnector>(CSWI OpenSCD_CSWI)"
+        value="AA1>E1>Q01>QB1>Disconnector>(CSWI OpenSCD_CSWI 1)"
       >
         CSWI 1
       </mwc-check-list-item>
@@ -157,7 +157,7 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
         graphic="control"
         mwc-list-item=""
         tabindex="-1"
-        value="AA1>E1>Q01>QB1>Disconnector>(XSWI OpenSCD_XSWI_DIS)"
+        value="AA1>E1>Q01>QB1>Disconnector>(XSWI OpenSCD_XSWI_DIS 1)"
       >
         XSWI 1
       </mwc-check-list-item>
@@ -166,7 +166,7 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
         graphic="control"
         mwc-list-item=""
         tabindex="-1"
-        value="AA1>E1>Q01>QB1>Disconnector>(CILO OpenSCD_CILO)"
+        value="AA1>E1>Q01>QB1>Disconnector>(CILO OpenSCD_CILO 1)"
       >
         CILO 1
       </mwc-check-list-item>
@@ -224,7 +224,7 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
         graphic="control"
         mwc-list-item=""
         tabindex="-1"
-        value="AA1>E1>Q01>QA1>Circuit_Breaker>(CSWI OpenSCD_CSWI)"
+        value="AA1>E1>Q01>QA1>Circuit_Breaker>(CSWI OpenSCD_CSWI 1)"
       >
         CSWI 1
       </mwc-check-list-item>
@@ -233,7 +233,7 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
         graphic="control"
         mwc-list-item=""
         tabindex="-1"
-        value="AA1>E1>Q01>QA1>Circuit_Breaker>(CILO OpenSCD_CILO)"
+        value="AA1>E1>Q01>QA1>Circuit_Breaker>(CILO OpenSCD_CILO 1)"
       >
         CILO 1
       </mwc-check-list-item>
@@ -242,7 +242,7 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
         graphic="control"
         mwc-list-item=""
         tabindex="-1"
-        value="AA1>E1>Q01>QA1>Circuit_Breaker>(XCBR OpenSCD_XCBR)"
+        value="AA1>E1>Q01>QA1>Circuit_Breaker>(XCBR OpenSCD_XCBR 1)"
       >
         XCBR 1
       </mwc-check-list-item>
@@ -292,7 +292,7 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
         graphic="control"
         mwc-list-item=""
         tabindex="-1"
-        value="AA1>E1>Q01>Timed_Overcurrent>(PTOC OpenSCD_PTOC)"
+        value="AA1>E1>Q01>Timed_Overcurrent>(PTOC OpenSCD_PTOC 2)"
       >
         ID_ PTOC 2
       </mwc-check-list-item>
@@ -301,7 +301,7 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
         graphic="control"
         mwc-list-item=""
         tabindex="-1"
-        value="AA1>E1>Q01>Timed_Overcurrent>(PTOC OpenSCD_PTOC)"
+        value="AA1>E1>Q01>Timed_Overcurrent>(PTOC OpenSCD_PTOC 1)"
       >
         IDD_ PTOC 1
       </mwc-check-list-item>
@@ -359,7 +359,7 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
         graphic="control"
         mwc-list-item=""
         tabindex="-1"
-        value="AA1>E1>Q01>Distance_Protection>Zone4>(PDIS OpenSCD_PDIS)"
+        value="AA1>E1>Q01>Distance_Protection>Zone4>(PDIS OpenSCD_PDIS 1)"
       >
         Zone4 PDIS 1
       </mwc-check-list-item>
@@ -368,7 +368,7 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
         graphic="control"
         mwc-list-item=""
         tabindex="-1"
-        value="AA1>E1>Q01>Distance_Protection>Zon3>(PDIS OpenSCD_PDIS)"
+        value="AA1>E1>Q01>Distance_Protection>Zon3>(PDIS OpenSCD_PDIS 1)"
       >
         Zon3 PDIS 1
       </mwc-check-list-item>
@@ -377,7 +377,7 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
         graphic="control"
         mwc-list-item=""
         tabindex="-1"
-        value="AA1>E1>Q01>Distance_Protection>Zone2>(PDIS OpenSCD_PDIS)"
+        value="AA1>E1>Q01>Distance_Protection>Zone2>(PDIS OpenSCD_PDIS 1)"
       >
         Zone2 PDIS 1
       </mwc-check-list-item>
@@ -386,7 +386,7 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
         graphic="control"
         mwc-list-item=""
         tabindex="-1"
-        value="AA1>E1>Q01>Distance_Protection>Zone1>(PDIS OpenSCD_PDIS)"
+        value="AA1>E1>Q01>Distance_Protection>Zone1>(PDIS OpenSCD_PDIS 1)"
       >
         Zone1 PDIS 1
       </mwc-check-list-item>
@@ -444,7 +444,7 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
         graphic="control"
         mwc-list-item=""
         tabindex="-1"
-        value="AA1>E1>Q02>QB1>Disconnector>(CSWI OpenSCD_CSWI)"
+        value="AA1>E1>Q02>QB1>Disconnector>(CSWI OpenSCD_CSWI 1)"
       >
         CSWI 1
       </mwc-check-list-item>
@@ -453,7 +453,7 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
         graphic="control"
         mwc-list-item=""
         tabindex="-1"
-        value="AA1>E1>Q02>QB1>Disconnector>(XSWI OpenSCD_XSWI_DIS)"
+        value="AA1>E1>Q02>QB1>Disconnector>(XSWI OpenSCD_XSWI_DIS 1)"
       >
         XSWI 1
       </mwc-check-list-item>
@@ -462,7 +462,7 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
         graphic="control"
         mwc-list-item=""
         tabindex="-1"
-        value="AA1>E1>Q02>QB1>Disconnector>(CILO OpenSCD_CILO)"
+        value="AA1>E1>Q02>QB1>Disconnector>(CILO OpenSCD_CILO 1)"
       >
         CILO 1
       </mwc-check-list-item>
@@ -520,7 +520,7 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
         graphic="control"
         mwc-list-item=""
         tabindex="-1"
-        value="AA1>J1>Q01>QC9>Earth_Switch>(CSWI OpenSCD_CSWI)"
+        value="AA1>J1>Q01>QC9>Earth_Switch>(CSWI OpenSCD_CSWI 1)"
       >
         CSWI 1
       </mwc-check-list-item>
@@ -529,7 +529,7 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
         graphic="control"
         mwc-list-item=""
         tabindex="-1"
-        value="AA1>J1>Q01>QC9>Earth_Switch>(CILO OpenSCD_CILO)"
+        value="AA1>J1>Q01>QC9>Earth_Switch>(CILO OpenSCD_CILO 1)"
       >
         CILO 1
       </mwc-check-list-item>
@@ -538,7 +538,7 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
         graphic="control"
         mwc-list-item=""
         tabindex="-1"
-        value="AA1>J1>Q01>QC9>Earth_Switch>(XSWI OpenSCD_XSWI_EarthSwitch)"
+        value="AA1>J1>Q01>QC9>Earth_Switch>(XSWI OpenSCD_XSWI_EarthSwitch 1)"
       >
         XSWI 1
       </mwc-check-list-item>
@@ -569,7 +569,7 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
 `;
 /* end snapshot Plugin that creates with some user input a virtual template IED - SPECIFICATION looks like the latest snapshot */
 
-snapshots["Plugin that creates with some user input a virtual template IED - SPECIFICATION IEDs data model show selected logical nodes and its structure"] = 
+snapshots["Plugin that creates with some user input a virtual template IED - SPECIFICATION IEDs data model show selected logical nodes and its structure"] =
 `<IED
   manufacturer="SomeCompanyName"
   name="SPECIFICATION"
@@ -601,10 +601,10 @@ snapshots["Plugin that creates with some user input a virtual template IED - SPE
         >
         </LN0>
         <LN
-          inst="2"
+          inst="1"
           lnClass="PTOC"
           lnType="OpenSCD_PTOC"
-          prefix="ID_"
+          prefix="IDD_"
         >
         </LN>
       </LDevice>
