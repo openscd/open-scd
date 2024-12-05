@@ -22,7 +22,7 @@ describe('connectedap-editor wizarding editing integration', () => {
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <MockWizardEditor>(
         await fixture(
-          html`<mock-wizard-editor
+          html`<mock-wizard-editor .doc=${doc}
             ><connectedap-editor
               .element=${doc.querySelector(
                 'SubNetwork[name="StationBus"] > ConnectedAP'

@@ -15,7 +15,8 @@ jobs:
 
       - name: Install and Test OpenSCD
         run: |
-          npm ci
-          npm run-script build
+          npm i @nx/nx-linux-x64-gnu
+          npm clean-install
+          npx playwright install chromium --with-deps
           cd packages/compas-open-scd
           npm run-script test

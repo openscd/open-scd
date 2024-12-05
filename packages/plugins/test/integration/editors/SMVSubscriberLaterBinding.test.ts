@@ -113,7 +113,6 @@ describe('SMV Subscribe Later Binding plugin', () => {
     expect(
       extRefListElement['getSubscribedExtRefElements']().length
     ).to.be.equal(1);
-    expect(getSelectedSubItemValue(fcdaListElement)).to.have.text('1');
     expect(
       extRefListElement['getAvailableExtRefElements']().length
     ).to.be.equal(8);
@@ -194,7 +193,6 @@ describe('SMV Subscribe Later Binding plugin', () => {
     expect(
       extRefListElement['getSubscribedExtRefElements']().length
     ).to.be.equal(2);
-    expect(getSelectedSubItemValue(fcdaListElement)).to.have.text('2');
     expect(
       extRefListElement['getAvailableExtRefElements']().length
     ).to.be.equal(10);

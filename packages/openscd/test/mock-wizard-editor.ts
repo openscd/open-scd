@@ -1,22 +1,39 @@
-import { Editing } from '../src/Editing.js';
 import {
   LitElement,
   customElement,
   TemplateResult,
   html,
   query,
+  property
 } from 'lit-element';
 
 import '../src/addons/Wizards.js';
+
+import '../src/addons/Editor.js';
+
 import { OscdWizards } from '../src/addons/Wizards.js';
 
 @customElement('mock-wizard-editor')
-export class MockWizardEditor extends Editing(LitElement) {
+export class MockWizardEditor extends LitElement {
+  @property({ type: Object }) doc!: XMLDocument;
+
   @query('oscd-wizards')
   wizards!: OscdWizards;
 
   render(): TemplateResult {
-    return html`<oscd-wizards .host=${this}><slot></slot></oscd-wizards>`;
+    return html`
+      <oscd-editor
+        .doc=${this.doc}
+        .docName=${'test'}
+        .docId=${'test'}
+        .host=${this}
+        .editCount=${-1}
+      >
+        <oscd-wizards .host=${this}>
+          <slot></slot>
+        </oscd-wizards>
+      </oscd-editor>
+    `;
   }
 
   get wizardUI() {
