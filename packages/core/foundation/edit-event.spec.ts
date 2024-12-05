@@ -9,7 +9,7 @@ import {
   isUpdate,
   NamespacedAttributeValue,
   newEditEvent,
-} from './edit-event.js';
+} from './edit-event';
 
 const doc: XMLDocument = new DOMParser().parseFromString(
   `<Document></Document>`,
