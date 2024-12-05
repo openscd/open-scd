@@ -13,17 +13,19 @@ import { newPendingStateEvent } from '@openscd/core/foundation/deprecated/waiter
 import { newSettingsUIEvent } from '@openscd/core/foundation/deprecated/settings.js';
 import {
   MenuItem,
-  Plugin,
   Validator,
-  PluginKind,
-  MenuPosition,
   MenuPlugin,
-  menuPosition,
   pluginIcons,
   newResetPluginsEvent,
   newAddExternalPluginEvent,
   newSetPluginsEvent,
 } from '@openscd/open-scd/src/open-scd.js';
+import {
+  Plugin,
+  PluginKind,
+  MenuPosition,
+  menuPosition
+} from '@openscd/open-scd/src/plugin.js'
 import {
   HistoryUIKind,
   newEmptyIssuesEvent,

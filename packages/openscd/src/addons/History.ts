@@ -433,7 +433,7 @@ export class OscdHistory extends LitElement {
       </mwc-list-item>`;
   }
 
-  private renderIssueEntry(issue: IssueDetail): TemplateResult {
+  protected renderIssueEntry(issue: IssueDetail): TemplateResult {
     return html` <abbr title="${issue.title + '\n' + issue.message}"
       ><mwc-list-item ?twoline=${!!issue.message}>
         <span> ${issue.title}</span>
