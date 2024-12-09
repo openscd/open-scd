@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '@openscd/open-scd/test/unit/mock-editor.js';
-import { MockEditor } from '@openscd/open-scd/test/unit/mock-editor.js';
+import '@openscd/open-scd/test/mock-editor-logger.js';
+import { MockEditorLogger } from '@openscd/open-scd/test/mock-editor-logger.js';
 import '../../../src/compas-editors/autogen-substation.js';
 import CompasAutogenerateSubstation from '../../../src/compas-editors/autogen-substation.js';
 
@@ -9,13 +9,13 @@ describe('autogen-substation-integration', () => {
   if (customElements.get('') === undefined)
     customElements.define('autogen-substation', CompasAutogenerateSubstation);
 
-  let parent: MockEditor;
+  let parent: MockEditorLogger;
   let element: CompasAutogenerateSubstation;
   let validSCL: XMLDocument;
 
   before(async () => {
     parent = await fixture(html`
-      <mock-editor><autogen-substation></autogen-substation></mock-editor>
+      <mock-editor-logger><autogen-substation></autogen-substation></mock-editor-logger>
     `);
 
     validSCL = await fetch(

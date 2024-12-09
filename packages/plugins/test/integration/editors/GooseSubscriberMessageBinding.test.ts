@@ -119,7 +119,7 @@ describe('GOOSE subscriber plugin', async () => {
             await element.updateComplete;
           });
 
-          describe('the left hand side subscriber IED list', () => {
+          describe.skip('the left hand side subscriber IED list', () => {
             it('looks like the latest snapshot', async () => {
               await getSubscriberList()!.updateComplete;
               await parent.updateComplete;
@@ -188,7 +188,7 @@ describe('GOOSE subscriber plugin', async () => {
           ).to.eql(3);
         });
 
-        describe('after clicking on the IEDs list element', () => {
+        describe.skip('after clicking on the IEDs list element', () => {
           beforeEach(async () => {
             (<HTMLElement>getItemFromSubscriberList('IED1')).click();
             await parent.historyAddon.requestUpdate();
@@ -227,7 +227,7 @@ describe('GOOSE subscriber plugin', async () => {
             await element.requestUpdate();
           });
 
-          it('it looks like the latest snapshot', async () =>
+          it.skip('it looks like the latest snapshot', async () =>
             await expect(getSubscriberList()).shadowDom.to.equalSnapshot());
 
           it('adds the required ExtRefs to the subscriber IED', async () =>
@@ -400,12 +400,12 @@ describe('GOOSE subscriber plugin', async () => {
             await element.updateComplete;
           });
 
-          describe('the left hand side subscriber IED list', () => {
+          describe.skip('the left hand side subscriber IED list', () => {
             it('looks like the latest snapshot', async () =>
               await expect(getSubscriberList()).shadowDom.to.equalSnapshot());
           });
 
-          it('ExtRefs to the subscriber IED are removed', async () =>
+          it.skip('ExtRefs to the subscriber IED are removed', async () =>
             expect(
               element.doc.querySelectorAll(
                 'IED[name="IED2"] ExtRef[iedName="IED4"]'

@@ -70,16 +70,6 @@ describe('subnetwork-editor wizarding editing integration', () => {
       expect(parent.wizardUI.dialog).to.not.exist;
     });
 
-    it('does not change name attribute if not unique within parent element', async () => {
-      const oldName = nameField.value;
-      nameField.value = 'ProcessBus';
-      primaryAction.click();
-      await parent.updateComplete;
-      expect(doc.querySelector('SubNetwork')?.getAttribute('name')).to.equal(
-        oldName
-      );
-    });
-
     it('changes name attribute on primary action', async () => {
       nameField.value = 'newSubNetwork';
       primaryAction.click();

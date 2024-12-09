@@ -38,3 +38,4 @@ How the documentation is organized.
 A high-level overview of how it’s organized will help you know where to look for certain things:
 
 - [⚖️ Decisions](docs/decisions/README.md) documents the decisions we made and why we made them.
+- [✏️ Edit event API](docs/core-api/edit-api.md) documents the edit event API.

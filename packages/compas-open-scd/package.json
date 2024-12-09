@@ -1,6 +1,6 @@
 {
   "name": "compas-open-scd",
-  "version": "0.35.0-1",
+  "version": "0.36.0-1",
   "repository": "https://github.com/openscd/open-scd.git",
   "description": "OpenSCD CoMPAS Edition",
   "directory": "packages/compas-open-scd",

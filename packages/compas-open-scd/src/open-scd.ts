@@ -20,7 +20,13 @@ import './addons/CompasSettings.js';
 
 import '@openscd/open-scd/src/addons/Waiter.js';
 import { initializeNsdoc, Nsdoc } from '@openscd/open-scd/src/foundation/nsdoc.js';
-import { AddExternalPluginEvent, InstalledOfficialPlugin, SetPluginsEvent, withoutContent, Plugin, MenuPosition, PluginKind, menuOrder, pluginTag, staticTagHtml } from '@openscd/open-scd/src/open-scd.js';
+import { AddExternalPluginEvent, SetPluginsEvent, withoutContent, menuOrder, pluginTag, staticTagHtml } from '@openscd/open-scd/src/open-scd.js';
+import {
+  InstalledOfficialPlugin,
+  Plugin,
+  MenuPosition,
+  PluginKind,
+} from '@openscd/open-scd/src/plugin.js';
 import { officialPlugins } from '../public/js/plugins.js';
 import type {
   PluginSet,
