@@ -7,39 +7,39 @@ export { newOpenEvent } from './foundation/open-event.js';
 export type { OpenEvent, OpenDetail } from './foundation/open-event.js';
 
 export {
-  newEditEvent as newEditEventV1,
-  isComplex as isComplexV1,
-  isInsert as isInsertV1,
-  isNamespaced as isNamespacedV1,
-  isUpdate as isUpdateV1,
-  isRemove as isRemoveV1,
+  newEditEvent,
+  isComplex,
+  isInsert,
+  isNamespaced,
+  isUpdate,
+  isRemove,
 } from './foundation/deprecated/edit-event.js';
-export type {
-  EditEvent as EditEventV1,
-  Edit as EditV1,
-  Insert as InsertV1,
-  AttributeValue,
-  NamespacedAttributeValue,
-  Update as UpdateV1,
-  Remove as RemoveV1,
-} from './foundation/deprecated/edit-event.js';
-
-export type {
-  Edit,
-  Insert,
-  Remove,
-  SetTextContent,
-  SetAttributes,
-  isEdit
-} from './foundation/edit.js';
 export type {
   EditEvent,
-  EditEventOptions,
-  EditDetail
-} from './foundation/edit-event.js';
-export { newEditEvent } from './foundation/edit-event.js';
+  Edit,
+  Insert,
+  AttributeValue,
+  NamespacedAttributeValue,
+  Update,
+  Remove,
+} from './foundation/deprecated/edit-event.js';
 
-export { handleEdit } from './foundation/handle-edit.js';
+export type {
+  EditV2,
+  InsertV2,
+  RemoveV2,
+  SetTextContentV2,
+  SetAttributesV2,
+  isEditV2
+} from './foundation/edit.js';
+export type {
+  EditEventV2,
+  EditEventOptionsV2,
+  EditDetailV2
+} from './foundation/edit-event.js';
+export { newEditEventV2 } from './foundation/edit-event.js';
+
+export { handleEditV2 } from './foundation/handle-edit.js';
 
 export { cyrb64 } from './foundation/cyrb64.js';
 

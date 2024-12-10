@@ -38,7 +38,7 @@ import {
 import { getFilterIcon, iconColors } from '../icons/icons.js';
 
 import { Plugin } from '../plugin.js';
-import { newEditEventV1 } from '@openscd/core';
+import { newEditEvent } from '@openscd/core';
 
 export const historyStateEvent =  'history-state';
 export interface HistoryState {
@@ -213,7 +213,7 @@ export class OscdHistory extends LitElement {
     if (!this.canUndo) return false;
 
     const undoEdit = (<CommitEntry>this.history[this.editCount]).undo;
-    this.host.dispatchEvent(newEditEventV1(undoEdit, 'undo'));
+    this.host.dispatchEvent(newEditEvent(undoEdit, 'undo'));
     this.setEditCount(this.previousAction);
 
     return true;
@@ -222,7 +222,7 @@ export class OscdHistory extends LitElement {
     if (!this.canRedo) return false;
 
     const redoEdit = (<CommitEntry>this.history[this.nextAction]).redo;
-    this.host.dispatchEvent(newEditEventV1(redoEdit, 'redo'));
+    this.host.dispatchEvent(newEditEvent(redoEdit, 'redo'));
     this.setEditCount(this.nextAction);
 
     return true;

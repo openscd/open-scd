@@ -1,9 +1,9 @@
-import { Edit as EditV1, Initiator } from './deprecated/edit-event.js';
+import { Edit, Initiator } from './deprecated/edit-event.js';
 
 import { EditorAction } from './deprecated/editor.js';
 
 export type EditCompletedDetail = {
-  edit: EditV1 | EditorAction;
+  edit: Edit | EditorAction;
   initiator: Initiator;
 };
 
@@ -11,7 +11,7 @@ export type EditCompletedDetail = {
 export type EditCompletedEvent = CustomEvent<EditCompletedDetail>;
 
 export function newEditCompletedEvent(
-  edit: EditV1 | EditorAction,
+  edit: Edit | EditorAction,
   initiator: Initiator = 'user'
 ): EditCompletedEvent {
   return new CustomEvent<EditCompletedDetail>('oscd-edit-completed', {

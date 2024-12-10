@@ -1,23 +1,23 @@
 import {
-  Edit,
-  Insert,
+  EditV2,
+  InsertV2,
   isComplex,
   isInsert,
   isRemove,
   isSetAttributes,
   isSetTextContent,
-  Remove,
-  SetAttributes,
-  SetTextContent,
+  RemoveV2,
+  SetAttributesV2,
+  SetTextContentV2,
 } from './edit.js';
 
 function handleSetTextContent({
   element,
   textContent,
-}: SetTextContent): (SetTextContent | Insert)[] {
+}: SetTextContentV2): (SetTextContentV2 | InsertV2)[] {
   const { childNodes } = element;
   
-  const restoreChildNodes: Insert[] = Array.from(childNodes).map((node) => ({
+  const restoreChildNodes: InsertV2[] = Array.from(childNodes).map((node) => ({
     parent: element,
     node,
     reference: null,
@@ -25,7 +25,7 @@ function handleSetTextContent({
   
   element.textContent = textContent;
   
-  const undoTextContent: SetTextContent = { element, textContent: '' };
+  const undoTextContent: SetTextContentV2 = { element, textContent: '' };
   
   return [undoTextContent, ...restoreChildNodes];
 }
@@ -53,7 +53,7 @@ function handleSetAttributes({
   element,
   attributes,
   attributesNS,
-}: SetAttributes): SetAttributes {
+}: SetAttributesV2): SetAttributesV2 {
   const oldAttributes = { ...attributes };
   const oldAttributesNS = { ...attributesNS };
   
@@ -129,7 +129,7 @@ return {
 };
 }
 
-function handleRemove({ node }: Remove): Insert | [] {
+function handleRemove({ node }: RemoveV2): InsertV2 | [] {
   const { parentNode: parent, nextSibling: reference } = node;
   node.parentNode?.removeChild(node);
   if (parent)
@@ -145,7 +145,7 @@ function handleInsert({
   parent,
   node,
   reference,
-}: Insert): Insert | Remove | [] {
+}: InsertV2): InsertV2 | RemoveV2 | [] {
   try {
     const { parentNode, nextSibling } = node;
     parent.insertBefore(node, reference);
@@ -167,12 +167,12 @@ function handleInsert({
 }
 
 /** Applies an Edit, returning the corresponding 'undo' Edit. */
-export function handleEdit(edit: Edit): Edit {
+export function handleEditV2(edit: EditV2): EditV2 {
   if (isInsert(edit)) return handleInsert(edit);
   if (isRemove(edit)) return handleRemove(edit);
   if (isSetAttributes(edit)) return handleSetAttributes(edit);
   if (isSetTextContent(edit)) return handleSetTextContent(edit);
-  if (isComplex(edit)) return edit.map((edit) => handleEdit(edit)).reverse();
+  if (isComplex(edit)) return edit.map((edit) => handleEditV2(edit)).reverse();
   
   return [];
 }

@@ -1,10 +1,10 @@
 import {
-  Edit,
-  EditEvent,
+  EditV2,
+  EditEventV2,
   OpenEvent,
   newEditCompletedEvent,
-  newEditEventV1,
-  handleEdit
+  newEditEvent,
+  handleEditV2
 } from '@openscd/core';
 import {
   property,
@@ -26,16 +26,16 @@ import { OpenDocEvent } from '@openscd/core/foundation/deprecated/open-event.js'
 
 import {
   AttributeValue,
-  EditV1,
-  EditEventV1,
-  InsertV1,
-  isComplexV1,
-  isInsertV1,
-  isNamespacedV1,
-  isRemoveV1,
-  isUpdateV1,
-  RemoveV1,
-  UpdateV1,
+  Edit,
+  EditEvent,
+  Insert,
+  isComplex,
+  isInsert,
+  isNamespaced,
+  isRemove,
+  isUpdate,
+  Remove,
+  Update,
 } from '@openscd/core';
 
 import { convertEditV1toV2 } from './editor/edit-v1-to-v2-converter.js';
@@ -55,21 +55,21 @@ export class OscdEditor extends LitElement {
   })
   host!: HTMLElement;
 
-  private getLogText(edit: EditV1): { title: string, message?: string } {
-    if (isInsertV1(edit)) {
+  private getLogText(edit: Edit): { title: string, message?: string } {
+    if (isInsert(edit)) {
       const name = edit.node instanceof Element ?
         edit.node.tagName :
         get('editing.node');
       return { title: get('editing.created', { name }) };
-    } else if (isUpdateV1(edit)) {
+    } else if (isUpdate(edit)) {
       const name = edit.element.tagName;
       return { title: get('editing.updated', { name }) };
-    } else if (isRemoveV1(edit)) {
+    } else if (isRemove(edit)) {
       const name = edit.node instanceof Element ?
         edit.node.tagName :
         get('editing.node');
       return { title: get('editing.deleted', { name }) };
-    } else if (isComplexV1(edit)) {
+    } else if (isComplex(edit)) {
       const message = edit.map(e => this.getLogText(e)).map(({ title }) => title).join(', ');
       return { title: get('editing.complex'), message };
     }
@@ -81,7 +81,7 @@ export class OscdEditor extends LitElement {
     const edit = convertEditV1toV2(event.detail.action);
     const initiator = event.detail.initiator;
 
-    this.host.dispatchEvent(newEditEventV1(edit, initiator));
+    this.host.dispatchEvent(newEditEvent(edit, initiator));
   }
 
   /**
@@ -126,14 +126,14 @@ export class OscdEditor extends LitElement {
     return html`<slot></slot>`;
   }
 
-  handleEditEventV2(event: EditEvent) {
+  handleEditEventV2(event: EditEventV2) {
     console.log('Edit event v2', event);
     const edit = event.detail.edit;
 
-    const undoEdit = handleEdit(edit);
+    const undoEdit = handleEditV2(edit);
   }
 
-  async handleEditEvent(event: EditEventV1) {
+  async handleEditEvent(event: EditEvent) {
     /**
      * This is a compatibility fix for plugins based on open energy tools edit events
      * because their edit event look slightly different
@@ -169,11 +169,11 @@ export class OscdEditor extends LitElement {
   }
 }
 
-function handleEditV1(edit: EditV1): EditV1 {
-  if (isInsertV1(edit)) return handleInsert(edit);
-  if (isUpdateV1(edit)) return handleUpdate(edit);
-  if (isRemoveV1(edit)) return handleRemove(edit);
-  if (isComplexV1(edit)) return edit.map(handleEditV1).reverse();
+function handleEditV1(edit: Edit): Edit {
+  if (isInsert(edit)) return handleInsert(edit);
+  if (isUpdate(edit)) return handleUpdate(edit);
+  if (isRemove(edit)) return handleRemove(edit);
+  if (isComplex(edit)) return edit.map(handleEditV1).reverse();
   return [];
 }
 
@@ -185,7 +185,7 @@ function handleInsert({
   parent,
   node,
   reference,
-}: InsertV1): InsertV1 | RemoveV1 | [] {
+}: Insert): Insert | Remove | [] {
   try {
     const { parentNode, nextSibling } = node;
 
@@ -212,13 +212,13 @@ function handleInsert({
   }
 }
 
-function handleUpdate({ element, attributes }: UpdateV1): UpdateV1 {
+function handleUpdate({ element, attributes }: Update): Update {
   const oldAttributes = { ...attributes };
   Object.entries(attributes)
     .reverse()
     .forEach(([name, value]) => {
       let oldAttribute: AttributeValue;
-      if (isNamespacedV1(value!))
+      if (isNamespaced(value!))
         oldAttribute = {
           value: element.getAttributeNS(
             value.namespaceURI,
@@ -238,7 +238,7 @@ function handleUpdate({ element, attributes }: UpdateV1): UpdateV1 {
   for (const entry of Object.entries(attributes)) {
     try {
       const [attribute, value] = entry as [string, AttributeValue];
-      if (isNamespacedV1(value)) {
+      if (isNamespaced(value)) {
         if (value.value === null)
           element.removeAttributeNS(
             value.namespaceURI,
@@ -258,7 +258,7 @@ function handleUpdate({ element, attributes }: UpdateV1): UpdateV1 {
   };
 }
 
-function handleRemove({ node }: RemoveV1): InsertV1 | [] {
+function handleRemove({ node }: Remove): Insert | [] {
   const { parentNode: parent, nextSibling: reference } = node;
   node.parentNode?.removeChild(node);
   if (parent)
@@ -271,11 +271,11 @@ function handleRemove({ node }: RemoveV1): InsertV1 | [] {
 }
 
 function isOpenEnergyEditEvent(event: CustomEvent<unknown>): boolean {
-  const eventDetail = event.detail as EditV1;
-  return isComplexV1(eventDetail) || isInsertV1(eventDetail) || isUpdateV1(eventDetail) || isRemoveV1(eventDetail);
+  const eventDetail = event.detail as Edit;
+  return isComplex(eventDetail) || isInsert(eventDetail) || isUpdate(eventDetail) || isRemove(eventDetail);
 }
 
-function convertOpenEnergyEditEventToEditEvent(event: CustomEvent<unknown>): EditEventV1 {
-  const eventDetail = event.detail as EditV1;
-  return newEditEventV1(eventDetail);
+function convertOpenEnergyEditEventToEditEvent(event: CustomEvent<unknown>): EditEvent {
+  const eventDetail = event.detail as Edit;
+  return newEditEvent(eventDetail);
 }

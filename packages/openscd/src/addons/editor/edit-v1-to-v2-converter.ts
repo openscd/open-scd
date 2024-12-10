@@ -13,11 +13,11 @@ import {
   SimpleAction,
   Update
 } from '@openscd/core/foundation/deprecated/editor.js';
-import { EditV1, InsertV1, RemoveV1, UpdateV1 as UpdateV2 } from '@openscd/core';
+import { Edit, Insert, Remove, Update as UpdateV2 } from '@openscd/core';
 import { getReference, SCLTag } from '../../foundation.js';
 
 
-export function convertEditV1toV2(action: EditorAction): EditV1 {
+export function convertEditV1toV2(action: EditorAction): Edit {
   if (isSimple(action)) {
     return convertSimpleAction(action);
   } else {
@@ -25,7 +25,7 @@ export function convertEditV1toV2(action: EditorAction): EditV1 {
   }
 }
 
-function convertSimpleAction(action: SimpleAction): EditV1 {
+function convertSimpleAction(action: SimpleAction): Edit {
   if (isCreate(action)) {
     return convertCreate(action);
   } else if (isDelete(action)) {
@@ -41,7 +41,7 @@ function convertSimpleAction(action: SimpleAction): EditV1 {
   throw new Error('Unknown action type');
 }
 
-function convertCreate(action: Create): InsertV1 {
+function convertCreate(action: Create): Insert {
   let reference: Node | null = null;
   if (
     action.new.reference === undefined &&
@@ -63,7 +63,7 @@ function convertCreate(action: Create): InsertV1 {
   };
 }
 
-function convertDelete(action: Delete): RemoveV1 {
+function convertDelete(action: Delete): Remove {
   return {
     node: action.old.element
   };
@@ -86,7 +86,7 @@ function convertUpdate(action: Update): UpdateV2 {
   };
 }
 
-function convertMove(action: Move): InsertV1 {
+function convertMove(action: Move): Insert {
   if (action.new.reference === undefined) {
     action.new.reference = getReference(
       action.new.parent,
@@ -101,7 +101,7 @@ function convertMove(action: Move): InsertV1 {
   }
 }
 
-function convertReplace(action: Replace): EditV1 {
+function convertReplace(action: Replace): Edit {
   const oldChildren = action.old.element.children;
   // We have to clone the children, because otherwise undoing the action would remove the children from the old element, because append removes the old parent
   const copiedChildren = Array.from(oldChildren).map(e => e.cloneNode(true));
@@ -116,8 +116,8 @@ function convertReplace(action: Replace): EditV1 {
 
   const reference = action.old.element.nextSibling;
 
-  const remove: RemoveV1 = { node: action.old.element };
-  const insert: InsertV1 = {
+  const remove: Remove = { node: action.old.element };
+  const insert: Insert = {
     parent,
     node: newNode,
     reference

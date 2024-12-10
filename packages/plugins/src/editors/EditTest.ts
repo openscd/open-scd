@@ -1,4 +1,4 @@
-import { Insert, newEditEvent, Remove, SetAttributes, SetTextContent } from '@openscd/core';
+import { InsertV2, newEditEventV2, RemoveV2, SetAttributesV2, SetTextContentV2 } from '@openscd/core';
 import { LitElement, html, TemplateResult, property, css, state } from 'lit-element';
 
 export default class SubstationPlugin extends LitElement {
@@ -14,13 +14,13 @@ export default class SubstationPlugin extends LitElement {
     const newLnode = this.doc.createElement('LNode');
     newLnode.setAttribute('desc', 'Create Test');
 
-    const edit: Insert = {
+    const edit: InsertV2 = {
       parent: bay2,
       node: newLnode,
       reference: null
     } 
 
-    const editEvent = newEditEvent(edit)
+    const editEvent = newEditEventV2(edit)
 
     this.dispatchEvent(editEvent);
 
@@ -30,11 +30,11 @@ export default class SubstationPlugin extends LitElement {
   delete() {
     const bay2 = this.doc.querySelector('Bay[name="B2"]')!;
 
-    const edit: Remove = {
+    const edit: RemoveV2 = {
       node: bay2
     }
 
-    this.dispatchEvent(newEditEvent(edit));
+    this.dispatchEvent(newEditEventV2(edit));
 
     this.updateDoc();
   }
@@ -42,7 +42,7 @@ export default class SubstationPlugin extends LitElement {
   setAttribute(): void {
     const bay1 = this.doc.querySelector('Bay[name="B1"]')!;
 
-    const edit: SetAttributes = {
+    const edit: SetAttributesV2 = {
       element: bay1,
       attributes: {
         desc: 'New description'
@@ -54,7 +54,7 @@ export default class SubstationPlugin extends LitElement {
       }
     }
 
-    this.dispatchEvent(newEditEvent(edit));
+    this.dispatchEvent(newEditEventV2(edit));
 
     this.updateDoc();
   }
@@ -62,12 +62,12 @@ export default class SubstationPlugin extends LitElement {
   setTextcontent(): void {
     const bay1 = this.doc.querySelector('Bay[name="B1"]')!;
 
-    const edit: SetTextContent = {
+    const edit: SetTextContentV2 = {
       element: bay1,
       textContent: 'New text content'
     }
 
-    this.dispatchEvent(newEditEvent(edit));
+    this.dispatchEvent(newEditEventV2(edit));
 
     this.updateDoc();
   }
