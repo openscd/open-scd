@@ -30,7 +30,14 @@ export type {
   RemoveV2,
   SetTextContentV2,
   SetAttributesV2,
-  isEditV2
+} from './foundation/edit.js';
+export {
+  isEditV2,
+  isRemoveV2,
+  isInsertV2,
+  isComplexV2,
+  isSetAttributesV2,
+  isSetTextContentV2
 } from './foundation/edit.js';
 export type {
   EditEventV2,

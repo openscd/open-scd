@@ -1,18 +1,20 @@
 import { EditV2 } from './edit.js';
 
-export type EditDetailV2<E extends EditV2 = EditV2> = {
+export type EditDetailV2<E extends EditV2 = EditV2> = EditEventOptionsV2 & {
   edit: E;
-  title?: string;
-  squash?: boolean;
 };
 
 export type EditEventV2<E extends EditV2 = EditV2> = CustomEvent<
   EditDetailV2<E>
 >;
 
-export type EditEventOptionsV2 = {
+type BaseEditEventOptionsV2 = {
   title?: string;
   squash?: boolean;
+}
+
+export type EditEventOptionsV2 = BaseEditEventOptionsV2 & {
+  createHistoryEntry?: boolean;
 };
 
 export function newEditEventV2<E extends EditV2>(

@@ -1,130 +1,36 @@
-import {
-  Create,
-  Delete,
-  EditorAction,
-  isCreate,
-  isDelete,
-  isMove,
-  isReplace,
-  isSimple,
-  isUpdate,
-  Move,
-  Replace,
-  SimpleAction,
-  Update
-} from '@openscd/core/foundation/deprecated/editor.js';
-import { Edit, Insert, Remove, Update as UpdateV2 } from '@openscd/core';
-import { getReference, SCLTag } from '../../foundation.js';
+import { Edit, EditV2, isComplex, isInsert, isNamespaced, isRemove, isUpdate, Update } from '@openscd/core';
 
-
-export function convertEditV1toV2(action: EditorAction): Edit {
-  if (isSimple(action)) {
-    return convertSimpleAction(action);
+export function convertEditV1toV2(edit: Edit): EditV2 {
+  if (isComplex(edit)) {
+    return edit.map(convertEditV1toV2);
+  } else if (isRemove(edit)) {
+    return edit as EditV2;
+  } else if (isInsert(edit)) {
+    return edit as EditV2;
+  } else if (isUpdate(edit)) {
+    return convertUpdate(edit);
   } else {
-    return action.actions.map(convertSimpleAction);
+    throw new Error('Unknown edit type');
   }
 }
 
-function convertSimpleAction(action: SimpleAction): Edit {
-  if (isCreate(action)) {
-    return convertCreate(action);
-  } else if (isDelete(action)) {
-    return convertDelete(action);
-  } else if (isUpdate(action)) {
-    return convertUpdate(action);
-  } else if (isMove(action)) {
-    return convertMove(action);
-  } else if (isReplace(action)) {
-    return convertReplace(action);
-  }
+function convertUpdate(edit: Update): EditV2 {
+  const attributes: Partial<Record<string, string | null>> = {};
+  const attributesNS: Partial<
+    Record<string, Partial<Record<string, string | null>>>
+  > = {};
 
-  throw new Error('Unknown action type');
-}
+  Object.entries(edit.attributes).forEach(([key, value]) => {
+    if (isNamespaced(value!)) {
+      const ns = value.namespaceURI;
+      if (!ns) return;
 
-function convertCreate(action: Create): Insert {
-  let reference: Node | null = null;
-  if (
-    action.new.reference === undefined &&
-    action.new.element instanceof Element &&
-    action.new.parent instanceof Element
-  ) {
-    reference = getReference(
-      action.new.parent,
-      <SCLTag>action.new.element.tagName
-    );
-  } else {
-    reference = action.new.reference ?? null; 
-  }
-
-  return {
-    parent: action.new.parent,
-    node: action.new.element,
-    reference
-  };
-}
-
-function convertDelete(action: Delete): Remove {
-  return {
-    node: action.old.element
-  };
-}
-
-function convertUpdate(action: Update): UpdateV2 {
-  const oldAttributesToRemove: Record<string, string | null> = {};
-  Array.from(action.element.attributes).forEach(attr => {
-    oldAttributesToRemove[attr.name] = null;
+      if (!attributesNS[ns]) {
+        attributesNS[ns] = {};
+      }
+      attributesNS[ns][key] = value.value;
+    } else attributes[key] = value;
   });
 
-  const attributes = {
-    ...oldAttributesToRemove,
-    ...action.newAttributes
-  };
-
-  return {
-    element: action.element,
-    attributes
-  };
-}
-
-function convertMove(action: Move): Insert {
-  if (action.new.reference === undefined) {
-    action.new.reference = getReference(
-      action.new.parent,
-      <SCLTag>action.old.element.tagName
-    );
-  }
-
-  return {
-    parent: action.new.parent,
-    node: action.old.element,
-    reference: action.new.reference ?? null
-  }
-}
-
-function convertReplace(action: Replace): Edit {
-  const oldChildren = action.old.element.children;
-  // We have to clone the children, because otherwise undoing the action would remove the children from the old element, because append removes the old parent
-  const copiedChildren = Array.from(oldChildren).map(e => e.cloneNode(true));
-
-  const newNode = action.new.element.cloneNode(true) as Element;
-  newNode.append(...Array.from(copiedChildren));
-  const parent = action.old.element.parentElement;
-
-  if (!parent) {
-    throw new Error('Replace action called without parent in old element');
-  }
-
-  const reference = action.old.element.nextSibling;
-
-  const remove: Remove = { node: action.old.element };
-  const insert: Insert = {
-    parent,
-    node: newNode,
-    reference
-  };
-
-  return [
-    remove,
-    insert
-  ];
+  return { element: edit.element, attributes, attributesNS };
 }

@@ -1,11 +1,11 @@
 import {
   EditV2,
   InsertV2,
-  isComplex,
-  isInsert,
-  isRemove,
-  isSetAttributes,
-  isSetTextContent,
+  isComplexV2,
+  isInsertV2,
+  isRemoveV2,
+  isSetAttributesV2,
+  isSetTextContentV2,
   RemoveV2,
   SetAttributesV2,
   SetTextContentV2,
@@ -168,11 +168,11 @@ function handleInsert({
 
 /** Applies an Edit, returning the corresponding 'undo' Edit. */
 export function handleEditV2(edit: EditV2): EditV2 {
-  if (isInsert(edit)) return handleInsert(edit);
-  if (isRemove(edit)) return handleRemove(edit);
-  if (isSetAttributes(edit)) return handleSetAttributes(edit);
-  if (isSetTextContent(edit)) return handleSetTextContent(edit);
-  if (isComplex(edit)) return edit.map((edit) => handleEditV2(edit)).reverse();
+  if (isInsertV2(edit)) return handleInsert(edit);
+  if (isRemoveV2(edit)) return handleRemove(edit);
+  if (isSetAttributesV2(edit)) return handleSetAttributes(edit);
+  if (isSetTextContentV2(edit)) return handleSetTextContent(edit);
+  if (isComplexV2(edit)) return edit.map((edit) => handleEditV2(edit)).reverse();
   
   return [];
 }

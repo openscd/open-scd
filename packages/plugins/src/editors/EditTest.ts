@@ -20,7 +20,7 @@ export default class SubstationPlugin extends LitElement {
       reference: null
     } 
 
-    const editEvent = newEditEventV2(edit)
+    const editEvent = newEditEventV2(edit, { title: 'Hello Test' })
 
     this.dispatchEvent(editEvent);
 
