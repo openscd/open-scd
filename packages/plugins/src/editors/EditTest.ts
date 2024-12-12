@@ -54,7 +54,7 @@ export default class SubstationPlugin extends LitElement {
       }
     }
 
-    this.dispatchEvent(newEditEventV2(edit));
+    this.dispatchEvent(newEditEventV2(edit, { squash: true }));
 
     this.updateDoc();
   }

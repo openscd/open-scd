@@ -38,7 +38,7 @@ import {
 import { getFilterIcon, iconColors } from '../icons/icons.js';
 
 import { Plugin } from '../plugin.js';
-import { newEditEventV2 } from '@openscd/core';
+import { EditV2, isComplexV2, newEditEventV2 } from '@openscd/core';
 
 export const historyStateEvent =  'history-state';
 export interface HistoryState {
@@ -238,9 +238,63 @@ export class OscdHistory extends LitElement {
       this.history.splice(this.nextAction);
     }
 
-    this.history.push(entry);
+    this.addHistoryEntry(entry);
     this.setEditCount(this.history.length - 1);
     this.requestUpdate('history', []);
+  }
+
+  private addHistoryEntry(entry: CommitEntry) {
+    const shouldSquash = Boolean(entry.squash) && this.history.length > 0;
+
+    if (shouldSquash) {
+      const previousEntry = this.history.pop() as CommitEntry;
+      const squashedEntry = this.squashHistoryEntries(entry, previousEntry);
+      this.history.push(squashedEntry);
+    } else {
+      this.history.push(entry);
+    }
+  }
+
+  private squashHistoryEntries(current: CommitEntry, previous: CommitEntry): CommitEntry {
+    const title = current.title ?? previous.title;
+    const message = current.message ?? previous.message;
+
+    const undo = this.squashUndo(current.undo, previous.undo);
+    const redo = this.squashRedo(current.redo, previous.redo);
+
+    return {
+      ...current,
+      title,
+      message,
+      undo,
+      redo
+    };
+  }
+
+  private squashUndo(current: EditV2, previous: EditV2): EditV2 {
+    const isCurrentComplex = isComplexV2(current);
+    const isPreviousComplex = isComplexV2(previous);
+
+    const previousUndos: EditV2[] = isPreviousComplex ? previous : [ previous ];
+    const currentUndos: EditV2[] = isCurrentComplex ? current : [ current ];
+
+    return [
+      ...currentUndos,
+      ...previousUndos
+    ];
+  }
+
+  private squashRedo(current: EditV2, previous: EditV2): EditV2 {
+    const isCurrentComplex = isComplexV2(current);
+    const isPreviousComplex = isComplexV2(previous);
+
+    const previousRedos: EditV2[] = isPreviousComplex ? previous : [ previous ];
+    const currentRedos: EditV2[] = isCurrentComplex ? current : [ current ];
+
+    return [
+      ...previousRedos,
+      ...currentRedos
+    ];
   }
 
   private onReset() {
