@@ -23,3 +23,4 @@ export type InstalledOfficialPlugin = {
 export type PluginKind = 'editor' | 'menu' | 'validator';
 export const menuPosition = ['top', 'middle', 'bottom'] as const;
 export type MenuPosition = (typeof menuPosition)[number];
+

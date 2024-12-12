@@ -52,7 +52,7 @@ import '@material/mwc-dialog';
 import '@material/mwc-switch';
 import '@material/mwc-select';
 import '@material/mwc-textfield';
-import { EditCompletedEvent } from '@openscd/core';
+
 
 @customElement('oscd-layout')
 export class OscdLayout extends LitElement {
@@ -61,6 +61,7 @@ export class OscdLayout extends LitElement {
     return html`
       <div
         @open-plugin-download=${() => this.pluginDownloadUI.show()}
+        @activate-tab=${this.handleActivatedEditorTabByEvent}
       >
         <slot></slot>
         ${this.renderHeader()} ${this.renderAside()} ${this.renderContent()}
@@ -322,6 +323,9 @@ export class OscdLayout extends LitElement {
         icon: plugin.icon || pluginIcons['menu'],
         name: plugin.name,
         action: ae => {
+          const targetMenuElement = (<List>ae.target).items[ae.detail.index];
+          const nextElement = targetMenuElement.nextElementSibling;
+
           this.dispatchEvent(
             newPendingStateEvent(
               (<MenuPlugin>(
@@ -367,7 +371,6 @@ export class OscdLayout extends LitElement {
   private renderMenuItem(me: MenuItem | 'divider'): TemplateResult {
     if (me === 'divider') { return html`<li divider padded role="separator"></li>`; }
     if (me.actionItem){ return html``; }
-
     return html`
       <mwc-list-item
         class="${me.kind}"
@@ -473,7 +476,10 @@ export class OscdLayout extends LitElement {
     if(!hasActiveEditors){ return html``; }
 
     return html`
-      <mwc-tab-bar @MDCTabBar:activated=${(e: CustomEvent) => (this.activeTab = e.detail.index)}>
+      <mwc-tab-bar
+        @MDCTabBar:activated=${this.handleActivatedEditorTabByUser}
+        activeIndex=${this.activeTab}
+      >
         ${activeEditors}
       </mwc-tab-bar>
       ${renderEditorContent(this.editors, this.activeTab, this.doc)}
@@ -489,6 +495,27 @@ export class OscdLayout extends LitElement {
 
       return html`${content}`;
     }
+  }
+
+  private handleActivatedEditorTabByUser(e: CustomEvent): void {
+    const tabIndex = e.detail.index;
+    this.activateTab(tabIndex);
+  }
+
+  /**
+   *
+   *
+   * @param e Custom event, where the detail is the index number of the tab
+   */
+  // Note: this function is for now the same as `handleActivatedEditorTabByUser`
+  // I would keep it spearated for now, because I think they will be different.
+  private handleActivatedEditorTabByEvent(e: CustomEvent<{index:number}>): void {
+    const tabIndex = e.detail.index
+    this.activateTab(tabIndex)
+  }
+
+  private activateTab(index: number){
+    this.activeTab = index;
   }
 
   /**

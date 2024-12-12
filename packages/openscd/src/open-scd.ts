@@ -1,3 +1,4 @@
+//#region import
 import {
   customElement,
   html,
@@ -52,176 +53,45 @@ import { InstalledOfficialPlugin, MenuPosition, PluginKind, Plugin } from "./plu
 import { ConfigurePluginEvent, ConfigurePluginDetail, newConfigurePluginEvent } from './plugin.events.js';
 import { newLogEvent } from '@openscd/core/foundation/deprecated/history';
 
-// HOSTING INTERFACES
+//#endregion import
 
-export interface MenuItem {
-  icon: string;
-  name: string;
-  hint?: string;
-  actionItem?: boolean;
-  action?: (event: CustomEvent<ActionDetail>) => void;
-  disabled?: () => boolean;
-  content?: TemplateResult;
-  kind: string;
-}
-
-export interface Validator {
-  validate: () => Promise<void>;
-}
-
-export interface MenuPlugin {
-  run: () => Promise<void>;
-}
-
-export function newResetPluginsEvent(): CustomEvent {
-  return new CustomEvent('reset-plugins', { bubbles: true, composed: true });
-}
-
-export interface AddExternalPluginDetail {
-  plugin: Omit<Plugin, 'content'>;
-}
-
-export type AddExternalPluginEvent = CustomEvent<AddExternalPluginDetail>;
-
-export function newAddExternalPluginEvent(
-  plugin: Omit<Plugin, 'content'>
-): AddExternalPluginEvent {
-  return new CustomEvent<AddExternalPluginDetail>('add-external-plugin', {
-    bubbles: true,
-    composed: true,
-    detail: { plugin },
-  });
-}
-
-export interface SetPluginsDetail {
-  indices: Set<number>;
-}
-
-export type SetPluginsEvent = CustomEvent<SetPluginsDetail>;
-
-export function newSetPluginsEvent(indices: Set<number>): SetPluginsEvent {
-  return new CustomEvent<SetPluginsDetail>('set-plugins', {
-    bubbles: true,
-    composed: true,
-    detail: { indices },
-  });
-}
-
-// PLUGGING INTERFACES
-const pluginTags = new Map<string, string>();
-/**
- * Hashes `uri` using cyrb64 analogous to
- * https://github.com/bryc/code/blob/master/jshash/experimental/cyrb53.js .
- * @returns a valid customElement tagName containing the URI hash.
- */
-function pluginTag(uri: string): string {
-  if (!pluginTags.has(uri)) {
-    let h1 = 0xdeadbeef,
-      h2 = 0x41c6ce57;
-    for (let i = 0, ch; i < uri.length; i++) {
-      ch = uri.charCodeAt(i);
-      h1 = Math.imul(h1 ^ ch, 2654435761);
-      h2 = Math.imul(h2 ^ ch, 1597334677);
-    }
-    h1 =
-      Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^
-      Math.imul(h2 ^ (h2 >>> 13), 3266489909);
-    h2 =
-      Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^
-      Math.imul(h1 ^ (h1 >>> 13), 3266489909);
-    pluginTags.set(
-      uri,
-      'oscd-plugin' +
-        ((h2 >>> 0).toString(16).padStart(8, '0') +
-          (h1 >>> 0).toString(16).padStart(8, '0'))
-    );
-  }
-  return pluginTags.get(uri)!;
-}
-
-/**
- * This is a template literal tag function. See:
- * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates
- *
- * Passes its arguments to LitElement's `html` tag after combining the first and
- * last expressions with the first two and last two static strings.
- * Throws unless the first and last expressions are identical strings.
- *
- * We need this to get around the expression location limitations documented in
- * https://lit.dev/docs/templates/expressions/#expression-locations
- *
- * After upgrading to Lit 2 we can use their static HTML functions instead:
- * https://lit.dev/docs/api/static-html/
- */
-function staticTagHtml(
-  oldStrings: ReadonlyArray<string>,
-  ...oldArgs: unknown[]
-): TemplateResult {
-  const args = [...oldArgs];
-  const firstArg = args.shift();
-  const lastArg = args.pop();
-
-  if (firstArg !== lastArg)
-    throw new Error(
-      `Opening tag <${firstArg}> does not match closing tag </${lastArg}>.`
-    );
-
-  const strings = [...oldStrings] as string[] & { raw: string[] };
-  const firstString = strings.shift();
-  const secondString = strings.shift();
-
-  const lastString = strings.pop();
-  const penultimateString = strings.pop();
-
-  strings.unshift(`${firstString}${firstArg}${secondString}`);
-  strings.push(`${penultimateString}${lastArg}${lastString}`);
-
-  return html(<TemplateStringsArray>strings, ...args);
-}
-
-
-function withoutContent<P extends Plugin | InstalledOfficialPlugin>(
-  plugin: P
-): P {
-  return { ...plugin, content: undefined };
-}
-
-export const pluginIcons: Record<PluginKind | MenuPosition, string> = {
-  editor: 'tab',
-  menu: 'play_circle',
-  validator: 'rule_folder',
-  top: 'play_circle',
-  middle: 'play_circle',
-  bottom: 'play_circle',
-};
-
-const menuOrder: (PluginKind | MenuPosition)[] = [
-  'editor',
-  'top',
-  'validator',
-  'middle',
-  'bottom',
-];
-
-function menuCompare(a: Plugin, b: Plugin): -1 | 0 | 1 {
-  if (a.kind === b.kind && a.position === b.position) return 0;
-  const earlier = menuOrder.find(kind =>
-    [a.kind, b.kind, a.position, b.position].includes(kind)
-  );
-  return [a.kind, a.position].includes(earlier) ? -1 : 1;
-}
-
-function compareNeedsDoc(a: Plugin, b: Plugin): -1 | 0 | 1 {
-  if (a.requireDoc === b.requireDoc) return 0;
-  return a.requireDoc ? 1 : -1;
-}
-
-const loadedPlugins = new Set<string>();
 
 /** The `<open-scd>` custom element is the main entry point of the
  * Open Substation Configuration Designer. */
 @customElement('open-scd')
 export class OpenSCD extends LitElement {
+
+  render(): TemplateResult {
+    return html`<oscd-waiter>
+      <oscd-settings .host=${this}>
+        <oscd-wizards .host=${this}>
+          <oscd-history .host=${this} .editCount=${this.historyState.editCount}>
+            <oscd-editor
+              .doc=${this.doc}
+              .docName=${this.docName}
+              .docId=${this.docId}
+              .host=${this}
+              .editCount=${this.historyState.editCount}
+            >
+              <oscd-layout
+                @add-external-plugin=${this.handleAddExternalPlugin}
+                @oscd-configure-plugin=${this.handleConfigurationPluginEvent}
+                .host=${this}
+                .doc=${this.doc}
+                .docName=${this.docName}
+                .editCount=${this.historyState.editCount}
+                .historyState=${this.historyState}
+                .plugins=${this.sortedStoredPlugins}
+              >
+              </oscd-layout>
+            </oscd-editor>
+          </oscd-history>
+        </oscd-wizards>
+      </oscd-settings>
+    </oscd-waiter>`;
+  }
+
+
   @property({ attribute: false })
   doc: XMLDocument | null = null;
   /** The name of the current [[`doc`]] */
@@ -234,7 +104,7 @@ export class OpenSCD extends LitElement {
     editCount: -1,
     canRedo: false,
     canUndo: false,
-  } 
+  }
 
   /** Object containing all *.nsdoc files and a function extracting element's label form them*/
   @property({ attribute: false })
@@ -311,6 +181,7 @@ export class OpenSCD extends LitElement {
 
   connectedCallback(): void {
     super.connectedCallback();
+    this.loadPluginsFromLocalStorage()
     this.addEventListener('reset-plugins', this.resetPlugins);
     this.addEventListener('set-plugins', (e: SetPluginsEvent) => {
       this.setPlugins(e.detail.indices);
@@ -325,35 +196,7 @@ export class OpenSCD extends LitElement {
     });
   }
 
-  render(): TemplateResult {
-    return html`<oscd-waiter>
-      <oscd-settings .host=${this}>
-        <oscd-wizards .host=${this}>
-          <oscd-history .host=${this} .editCount=${this.historyState.editCount}>
-            <oscd-editor
-              .doc=${this.doc}
-              .docName=${this.docName}
-              .docId=${this.docId}
-              .host=${this}
-              .editCount=${this.historyState.editCount}
-            >
-              <oscd-layout
-                @add-external-plugin=${this.handleAddExternalPlugin}
-                @oscd-configure-plugin=${this.handleConfigurationPluginEvent}
-                .host=${this}
-                .doc=${this.doc}
-                .docName=${this.docName}
-                .editCount=${this.historyState.editCount}
-                .historyState=${this.historyState}
-                .plugins=${this.sortedStoredPlugins}
-              >
-              </oscd-layout>
-            </oscd-editor>
-          </oscd-history>
-        </oscd-wizards>
-      </oscd-settings>
-    </oscd-waiter>`;
-  }
+
 
   private storePlugins(plugins: Array<Plugin | InstalledOfficialPlugin>) {
     localStorage.setItem(
@@ -462,9 +305,9 @@ export class OpenSCD extends LitElement {
     return allPlugnis
   }
 
-  private get sortedStoredPlugins(): Plugin[] {
-
-    const mergedPlugins = this.storedPlugins.map(plugin => {
+  @state() private sortedStoredPlugins: Plugin[] = [];
+  private updateSortedStoredPlugins(newPlugins: Plugin[]) {
+    const mergedPlugins = newPlugins.map(plugin => {
       if (!plugin.official){ return plugin };
 
       const officialPlugin = (builtinPlugins as Plugin[])
@@ -476,27 +319,34 @@ export class OpenSCD extends LitElement {
           ...plugin,
         };
     })
-
-
-    return mergedPlugins
-      .sort(compareNeedsDoc)
-      .sort(menuCompare);
+    this.sortedStoredPlugins = mergedPlugins;
+    // return mergedPlugins;
+    // return mergedPlugins
+    //   .sort(compareNeedsDoc)
+    //   .sort(menuCompare);
   }
 
-  private get storedPlugins(): Plugin[] {
-    const pluginsConfigStr = localStorage.getItem('plugins') ?? '[]'
-    const storedPlugins = JSON.parse(pluginsConfigStr) as Plugin[]
-
-    const plugins = storedPlugins.map(plugin => {
+  @state() private storedPlugins: Plugin[] = [];
+  private updateStoredPlugins(newPlugins: Plugin[]) {
+    // const pluginsConfigStr = localStorage.getItem('plugins') ?? '[]'
+    // const storedPlugins = JSON.parse(pluginsConfigStr) as Plugin[]
+    const plugins = newPlugins.map(plugin => {
       const isInstalled = plugin.src && plugin.installed
       if(!isInstalled) { return plugin }
 
       return this.addContent(plugin)
     })
 
-    return plugins
-
+    this.storedPlugins = plugins;
   }
+
+  private loadPluginsFromLocalStorage() {
+    const pluginsConfigStr = localStorage.getItem('plugins') ?? '[]'
+    const pluginsConfig = JSON.parse(pluginsConfigStr) as Plugin[]
+    this.updateStoredPlugins(pluginsConfig)
+    this.updateSortedStoredPlugins(this.storedPlugins)
+  }
+
 
   protected get locale(): string {
     return navigator.language || 'en-US';
@@ -519,7 +369,10 @@ export class OpenSCD extends LitElement {
         installed: indices.has(index)
       };
     });
-    this.storePlugins(newPlugins);
+    this.updateStoredPlugins(newPlugins);
+
+    this.updateSortedStoredPlugins(this.sortedStoredPlugins);
+    this.storePlugins(this.sortedStoredPlugins);
   }
 
   private updatePlugins() {
@@ -563,11 +416,13 @@ export class OpenSCD extends LitElement {
   }
 
   private addContent(plugin: Omit<Plugin, 'content'>): Plugin {
-    const tag = pluginTag(plugin.src);
+    const tag = this.pluginTag(plugin.src);
 
-    if (!loadedPlugins.has(tag)) {
-      loadedPlugins.add(tag);
-      import(plugin.src).then(mod => customElements.define(tag, mod.default));
+    if (!this.loadedPlugins.has(tag)) {
+      this.loadedPlugins.add(tag);
+      import(plugin.src).then((mod) => {
+        customElements.define(tag, mod.default)
+      })
     }
 
     return {
@@ -581,6 +436,7 @@ export class OpenSCD extends LitElement {
             .nsdoc=${this.nsdoc}
             .docs=${this.docs}
             .locale=${this.locale}
+            .plugins=${this.sortedStoredPlugins}
             class="${classMap({
               plugin: true,
               menu: plugin.kind === 'menu',
@@ -590,6 +446,42 @@ export class OpenSCD extends LitElement {
           ></${tag}>`,
     };
   }
+
+  @state() private loadedPlugins = new Set<string>();
+
+  // PLUGGING INTERFACES
+  @state() private pluginTags = new Map<string, string>();
+  /**
+   * Hashes `uri` using cyrb64 analogous to
+   * https://github.com/bryc/code/blob/master/jshash/experimental/cyrb53.js .
+   * @returns a valid customElement tagName containing the URI hash.
+   */
+  private pluginTag(uri: string): string {
+    if (!this.pluginTags.has(uri)) {
+      let h1 = 0xdeadbeef,
+        h2 = 0x41c6ce57;
+      for (let i = 0, ch; i < uri.length; i++) {
+        ch = uri.charCodeAt(i);
+        h1 = Math.imul(h1 ^ ch, 2654435761);
+        h2 = Math.imul(h2 ^ ch, 1597334677);
+      }
+      h1 =
+        Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^
+        Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+      h2 =
+        Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^
+        Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+      this.pluginTags.set(
+        uri,
+        'oscd-plugin' +
+          ((h2 >>> 0).toString(16).padStart(8, '0') +
+            (h1 >>> 0).toString(16).padStart(8, '0'))
+      );
+    }
+    return this.pluginTags.get(uri)!;
+  }
+
+
 }
 
 declare global {
@@ -599,3 +491,140 @@ declare global {
     'set-plugins': CustomEvent<SetPluginsDetail>;
   }
 }
+
+
+// HOSTING INTERFACES
+
+export interface MenuItem {
+  icon: string;
+  name: string;
+  hint?: string;
+  actionItem?: boolean;
+  action?: (event: CustomEvent<ActionDetail>) => void;
+  disabled?: () => boolean;
+  content?: TemplateResult;
+  kind: string;
+}
+
+export interface Validator {
+  validate: () => Promise<void>;
+}
+
+export interface MenuPlugin {
+  run: () => Promise<void>;
+}
+
+export function newResetPluginsEvent(): CustomEvent {
+  return new CustomEvent('reset-plugins', { bubbles: true, composed: true });
+}
+
+export interface AddExternalPluginDetail {
+  plugin: Omit<Plugin, 'content'>;
+}
+
+export type AddExternalPluginEvent = CustomEvent<AddExternalPluginDetail>;
+
+export function newAddExternalPluginEvent(
+  plugin: Omit<Plugin, 'content'>
+): AddExternalPluginEvent {
+  return new CustomEvent<AddExternalPluginDetail>('add-external-plugin', {
+    bubbles: true,
+    composed: true,
+    detail: { plugin },
+  });
+}
+
+export interface SetPluginsDetail {
+  indices: Set<number>;
+}
+
+export type SetPluginsEvent = CustomEvent<SetPluginsDetail>;
+
+export function newSetPluginsEvent(indices: Set<number>): SetPluginsEvent {
+  return new CustomEvent<SetPluginsDetail>('set-plugins', {
+    bubbles: true,
+    composed: true,
+    detail: { indices },
+  });
+}
+
+
+
+
+/**
+ * This is a template literal tag function. See:
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates
+ *
+ * Passes its arguments to LitElement's `html` tag after combining the first and
+ * last expressions with the first two and last two static strings.
+ * Throws unless the first and last expressions are identical strings.
+ *
+ * We need this to get around the expression location limitations documented in
+ * https://lit.dev/docs/templates/expressions/#expression-locations
+ *
+ * After upgrading to Lit 2 we can use their static HTML functions instead:
+ * https://lit.dev/docs/api/static-html/
+ */
+function staticTagHtml(
+  oldStrings: ReadonlyArray<string>,
+  ...oldArgs: unknown[]
+): TemplateResult {
+  const args = [...oldArgs];
+  const firstArg = args.shift();
+  const lastArg = args.pop();
+
+  if (firstArg !== lastArg)
+    throw new Error(
+      `Opening tag <${firstArg}> does not match closing tag </${lastArg}>.`
+    );
+
+  const strings = [...oldStrings] as string[] & { raw: string[] };
+  const firstString = strings.shift();
+  const secondString = strings.shift();
+
+  const lastString = strings.pop();
+  const penultimateString = strings.pop();
+
+  strings.unshift(`${firstString}${firstArg}${secondString}`);
+  strings.push(`${penultimateString}${lastArg}${lastString}`);
+
+  return html(<TemplateStringsArray>strings, ...args);
+}
+
+
+function withoutContent<P extends Plugin | InstalledOfficialPlugin>(
+  plugin: P
+): P {
+  return { ...plugin, content: undefined };
+}
+
+export const pluginIcons: Record<PluginKind | MenuPosition, string> = {
+  editor: 'tab',
+  menu: 'play_circle',
+  validator: 'rule_folder',
+  top: 'play_circle',
+  middle: 'play_circle',
+  bottom: 'play_circle',
+};
+
+const menuOrder: (PluginKind | MenuPosition)[] = [
+  'editor',
+  'top',
+  'validator',
+  'middle',
+  'bottom',
+];
+
+function menuCompare(a: Plugin, b: Plugin): -1 | 0 | 1 {
+  if (a.kind === b.kind && a.position === b.position) return 0;
+  const earlier = menuOrder.find(kind =>
+    [a.kind, b.kind, a.position, b.position].includes(kind)
+  );
+  return [a.kind, a.position].includes(earlier) ? -1 : 1;
+}
+
+function compareNeedsDoc(a: Plugin, b: Plugin): -1 | 0 | 1 {
+  if (a.requireDoc === b.requireDoc) return 0;
+  return a.requireDoc ? 1 : -1;
+}
+
