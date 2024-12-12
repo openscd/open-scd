@@ -256,16 +256,11 @@ export class OscdHistory extends LitElement {
   }
 
   private squashHistoryEntries(current: CommitEntry, previous: CommitEntry): CommitEntry {
-    const title = current.title ?? previous.title;
-    const message = current.message ?? previous.message;
-
     const undo = this.squashUndo(current.undo, previous.undo);
     const redo = this.squashRedo(current.redo, previous.redo);
 
     return {
       ...current,
-      title,
-      message,
       undo,
       redo
     };
