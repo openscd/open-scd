@@ -63,6 +63,7 @@ export class OscdLayout extends LitElement {
       <div
         @open-plugin-download=${() => this.pluginDownloadUI.show()}
         @oscd-activate-editor=${this.handleActivateEditorByEvent}
+        @oscd-run-menu=${this.handleRunMenuByEvent}
       >
         <slot></slot>
         ${this.renderHeader()} ${this.renderAside()} ${this.renderContent()}
@@ -331,9 +332,6 @@ export class OscdLayout extends LitElement {
         icon: plugin.icon || pluginIcons['menu'],
         name: plugin.name,
         action: ae => {
-          const targetMenuElement = (<List>ae.target).items[ae.detail.index];
-          const nextElement = targetMenuElement.nextElementSibling;
-
           this.dispatchEvent(
             newPendingStateEvent(
               (<MenuPlugin>(
@@ -347,7 +345,7 @@ export class OscdLayout extends LitElement {
         disabled: (): boolean => plugin.requireDoc! && this.doc === null,
         content: () => {
           if(plugin.content){ return plugin.content(); }
-          return nothing
+          return html``;
         },
         kind: kind,
       }
@@ -390,6 +388,7 @@ export class OscdLayout extends LitElement {
         class="${me.kind}"
         iconid="${me.icon}"
         graphic="icon"
+        data-name="${me.name}"
         .disabled=${me.disabled?.() || !me.action}
         ><mwc-icon slot="graphic">${me.icon}</mwc-icon>
         <span>${get(me.name)}</span>
@@ -532,6 +531,17 @@ export class OscdLayout extends LitElement {
 
   private activateTab(index: number){
     this.activeTab = index;
+  }
+
+  private handleRunMenuByEvent(e: CustomEvent<{name: string}>): void {
+
+    // TODO: this is a workaround, fix it
+    this.menuUI.open = true;
+    const menuEntry = this.menuUI.querySelector(`[data-name="${e.detail.name}"]`) as HTMLElement
+    const menuElement = menuEntry.nextElementSibling
+    if(!menuElement){ return; } // TODO: log error
+
+    (menuElement as unknown as MenuPlugin).run()
   }
 
   /**
