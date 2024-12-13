@@ -81,7 +81,7 @@ export class OpenSCD extends LitElement {
                 .docName=${this.docName}
                 .editCount=${this.historyState.editCount}
                 .historyState=${this.historyState}
-                .plugins=${this.sortedStoredPlugins}
+                .plugins=${this.storedPlugins}
               >
               </oscd-layout>
             </oscd-editor>
@@ -181,15 +181,13 @@ export class OpenSCD extends LitElement {
 
   connectedCallback(): void {
     super.connectedCallback();
-    this.loadPluginsFromLocalStorage()
+    this.loadPlugins()
+
+    // TODO: let Lit handle the event listeners, move to render()
     this.addEventListener('reset-plugins', this.resetPlugins);
     this.addEventListener('set-plugins', (e: SetPluginsEvent) => {
       this.setPlugins(e.detail.indices);
     });
-
-    this.updatePlugins();
-    this.requestUpdate();
-
     this.addEventListener(historyStateEvent, (e: CustomEvent<HistoryState>) => {
       this.historyState = e.detail;
       this.requestUpdate();
@@ -199,11 +197,8 @@ export class OpenSCD extends LitElement {
 
 
   private storePlugins(plugins: Array<Plugin | InstalledOfficialPlugin>) {
-    localStorage.setItem(
-      'plugins',
-      JSON.stringify(plugins.map(withoutContent))
-    );
-    this.requestUpdate();
+    const pluginConfigs = JSON.stringify(plugins.map(withoutContent))
+    localStorage.setItem('plugins', pluginConfigs);
   }
 
   /**
@@ -264,9 +259,8 @@ export class OpenSCD extends LitElement {
     this.storePlugins(
       (builtinPlugins as Plugin[]).concat(this.parsedPlugins).map(plugin => {
         return {
-          src: plugin.src,
+          ...plugin,
           installed: plugin.default ?? false,
-          official: true,
         };
       })
     );
@@ -305,31 +299,12 @@ export class OpenSCD extends LitElement {
     return allPlugnis
   }
 
-  @state() private sortedStoredPlugins: Plugin[] = [];
-  private updateSortedStoredPlugins(newPlugins: Plugin[]) {
-    const mergedPlugins = newPlugins.map(plugin => {
-      if (!plugin.official){ return plugin };
-
-      const officialPlugin = (builtinPlugins as Plugin[])
-        .concat(this.parsedPlugins)
-        .find(needle => needle.src === plugin.src);
-
-        return <Plugin>{
-          ...officialPlugin,
-          ...plugin,
-        };
-    })
-    this.sortedStoredPlugins = mergedPlugins;
-    // return mergedPlugins;
-    // return mergedPlugins
-    //   .sort(compareNeedsDoc)
-    //   .sort(menuCompare);
-  }
 
   @state() private storedPlugins: Plugin[] = [];
   private updateStoredPlugins(newPlugins: Plugin[]) {
-    // const pluginsConfigStr = localStorage.getItem('plugins') ?? '[]'
-    // const storedPlugins = JSON.parse(pluginsConfigStr) as Plugin[]
+    //
+    // Generate content of each plugin
+    //
     const plugins = newPlugins.map(plugin => {
       const isInstalled = plugin.src && plugin.installed
       if(!isInstalled) { return plugin }
@@ -337,14 +312,36 @@ export class OpenSCD extends LitElement {
       return this.addContent(plugin)
     })
 
-    this.storedPlugins = plugins;
+    //
+    // Merge built-in plugins
+    //
+    const mergedPlugins = plugins.map(plugin => {
+      const isBuiltIn = !plugin?.official
+      if (!isBuiltIn){ return plugin };
+
+      const builtInPlugin = [...builtinPlugins, ...this.parsedPlugins]
+        .find(p => p.src === plugin.src);
+
+        return <Plugin>{
+          ...builtInPlugin,
+          ...plugin,
+        };
+    })
+
+
+    this.storedPlugins = mergedPlugins;
+    this.storePlugins(this.storedPlugins);
+  }
+
+  private getPluginConfigsFromLocalStorage(): Plugin[] {
+    const pluginsConfigStr = localStorage.getItem('plugins') ?? '[]'
+    return JSON.parse(pluginsConfigStr) as Plugin[]
   }
 
   private loadPluginsFromLocalStorage() {
     const pluginsConfigStr = localStorage.getItem('plugins') ?? '[]'
     const pluginsConfig = JSON.parse(pluginsConfigStr) as Plugin[]
     this.updateStoredPlugins(pluginsConfig)
-    this.updateSortedStoredPlugins(this.storedPlugins)
   }
 
 
@@ -363,47 +360,75 @@ export class OpenSCD extends LitElement {
   }
 
   private setPlugins(indices: Set<number>) {
-    const newPlugins = this.sortedStoredPlugins.map((plugin, index) => {
+    const newPlugins = this.storedPlugins.map((plugin, index) => {
       return {
         ...plugin,
         installed: indices.has(index)
       };
     });
     this.updateStoredPlugins(newPlugins);
-
-    this.updateSortedStoredPlugins(this.sortedStoredPlugins);
-    this.storePlugins(this.sortedStoredPlugins);
   }
 
-  private updatePlugins() {
+  private loadPlugins(){
+    const localPluginConfigs = this.getPluginConfigsFromLocalStorage()
 
-    const stored: Plugin[] = this.storedPlugins;
-    const officialStored = stored.filter(p => p.official);
-    const newOfficial: Array<Plugin | InstalledOfficialPlugin> = (
-      builtinPlugins as Plugin[]
-    )
-      .concat(this.parsedPlugins)
-      .filter(p => !officialStored.find(o => o.src === p.src))
-      .map(plugin => {
-        return {
-          src: plugin.src,
-          installed: plugin.default ?? false,
-          official: true as const,
-        };
-      });
+    const overwritesOfBultInPlugins = localPluginConfigs.filter((p) => {
+      return builtinPlugins.some(b => b.src === p.src)
+    })
 
-    const oldOfficial = officialStored.filter(
-      p =>
-        !(builtinPlugins as Plugin[])
-          .concat(this.parsedPlugins)
-          .find(o => p.src === o.src)
-    );
-    const newPlugins: Array<Plugin | InstalledOfficialPlugin> = stored.filter(
-      p => !oldOfficial.find(o => p.src === o.src)
-    );
-    newOfficial.map(p => newPlugins.push(p));
-    this.storePlugins(newPlugins);
+    const userInstalledPlugins = localPluginConfigs.filter((p) => {
+      return !builtinPlugins.some(b => b.src === p.src)
+    })
+
+    const mergedBuiltInPlugins = builtinPlugins.map((builtInPlugin) => {
+      const noopOverwrite = {}
+      const overwrite = overwritesOfBultInPlugins
+        .find(p => p.src === builtInPlugin.src)
+        ?? noopOverwrite
+
+      return {
+        ...builtInPlugin,
+        ...overwrite,
+        installed: true, // TODO: is this correct? should we decide it based on something?
+      }
+    })
+
+    const mergedPlugins = [...mergedBuiltInPlugins, ...userInstalledPlugins]
+
+    // TODO: kind is string and enum, figour out later
+    // @ts-expect-error
+    this.updateStoredPlugins(mergedPlugins)
   }
+
+  // private updatePlugins() {
+
+  //   const stored: Plugin[] = this.storedPlugins;
+  //   const officialStored = stored.filter(p => p.official);
+  //   const newOfficial: Array<Plugin | InstalledOfficialPlugin> = (
+  //     builtinPlugins as Plugin[]
+  //   )
+  //     .concat(this.parsedPlugins)
+  //     .filter(p => !officialStored.find(o => o.src === p.src))
+  //     .map(plugin => {
+  //       return {
+  //         src: plugin.src,
+  //         installed: plugin.default ?? false,
+  //         official: true as const,
+  //       };
+  //     });
+
+  //   const oldOfficial = officialStored.filter(
+  //     p =>
+  //       !(builtinPlugins as Plugin[])
+  //         .concat(this.parsedPlugins)
+  //         .find(o => p.src === o.src)
+  //   );
+  //   const newPlugins: Array<Plugin | InstalledOfficialPlugin> = stored.filter(
+  //     p => !oldOfficial.find(o => p.src === o.src)
+  //   );
+  //   newOfficial.map(p => newPlugins.push(p));
+  //   this.storePlugins(newPlugins);
+  // }
 
   private async addExternalPlugin(
     plugin: Omit<Plugin, 'content'>
@@ -424,26 +449,27 @@ export class OpenSCD extends LitElement {
         customElements.define(tag, mod.default)
       })
     }
-
     return {
       ...plugin,
-      content: staticTagHtml`<${tag}
+      content: () => {
+        return staticTagHtml`<${tag}
             .doc=${this.doc}
             .docName=${this.docName}
             .editCount=${this.historyState.editCount}
+            .plugins=${this.storedPlugins}
             .docId=${this.docId}
             .pluginId=${plugin.src}
             .nsdoc=${this.nsdoc}
             .docs=${this.docs}
             .locale=${this.locale}
-            .plugins=${this.sortedStoredPlugins}
             class="${classMap({
               plugin: true,
               menu: plugin.kind === 'menu',
               validator: plugin.kind === 'validator',
               editor: plugin.kind === 'editor',
             })}"
-          ></${tag}>`,
+          ></${tag}>`
+        },
     };
   }
 
@@ -502,7 +528,7 @@ export interface MenuItem {
   actionItem?: boolean;
   action?: (event: CustomEvent<ActionDetail>) => void;
   disabled?: () => boolean;
-  content?: TemplateResult;
+  content: () => TemplateResult;
   kind: string;
 }
 

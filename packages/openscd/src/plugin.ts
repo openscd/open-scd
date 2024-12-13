@@ -10,7 +10,7 @@ export type Plugin = {
   position?: MenuPosition;
   installed: boolean;
   official?: boolean;
-  content?: TemplateResult;
+  content?: () => TemplateResult;
 };
 
 export type InstalledOfficialPlugin = {
