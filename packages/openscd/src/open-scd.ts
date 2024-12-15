@@ -196,10 +196,7 @@ export class OpenSCD extends LitElement {
 
 
 
-  private storePlugins(plugins: Array<Plugin | InstalledOfficialPlugin>) {
-    const pluginConfigs = JSON.stringify(plugins.map(withoutContent))
-    localStorage.setItem('plugins', pluginConfigs);
-  }
+
 
   /**
    *
@@ -328,11 +325,14 @@ export class OpenSCD extends LitElement {
         };
     })
 
-
-    this.storedPlugins = mergedPlugins;
-    this.storePlugins(this.storedPlugins);
+    this.storePlugins(mergedPlugins);
   }
 
+  private storePlugins(plugins: Plugin[]) {
+    this.storedPlugins = plugins
+    const pluginConfigs = JSON.stringify(plugins.map(withoutContent))
+    localStorage.setItem('plugins', pluginConfigs);
+  }
   private getPluginConfigsFromLocalStorage(): Plugin[] {
     const pluginsConfigStr = localStorage.getItem('plugins') ?? '[]'
     return JSON.parse(pluginsConfigStr) as Plugin[]

@@ -13,7 +13,7 @@ export type Plugin = {
   content?: () => TemplateResult;
 };
 
-export type InstalledOfficialPlugin = {
+export type InstalledOfficialPlugin = Plugin & {
   src: string;
   official: true;
   installed: boolean;
