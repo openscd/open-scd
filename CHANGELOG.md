@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.37.0](https://github.com/openscd/open-scd/compare/v0.36.0...v0.37.0) (2024-12-16)
+
+
+### Features
+
+* **monorepo:** Add contributing guide ([#1588](https://github.com/openscd/open-scd/issues/1588)) ([dd692a8](https://github.com/openscd/open-scd/commit/dd692a8d9784aaf5f8509fdad5298293195d1465))
+
 ## [0.36.0](https://github.com/openscd/open-scd/compare/v0.35.0...v0.36.0) (2024-11-14)
 
 
