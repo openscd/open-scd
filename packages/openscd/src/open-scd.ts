@@ -338,12 +338,6 @@ export class OpenSCD extends LitElement {
     return JSON.parse(pluginsConfigStr) as Plugin[]
   }
 
-  private loadPluginsFromLocalStorage() {
-    const pluginsConfigStr = localStorage.getItem('plugins') ?? '[]'
-    const pluginsConfig = JSON.parse(pluginsConfigStr) as Plugin[]
-    this.updateStoredPlugins(pluginsConfig)
-  }
-
 
   protected get locale(): string {
     return navigator.language || 'en-US';
