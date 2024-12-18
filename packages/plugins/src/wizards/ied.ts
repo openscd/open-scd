@@ -15,7 +15,7 @@ import {
   WizardInputElement,
   WizardMenuActor,
 } from '@openscd/open-scd/src/foundation.js';
-import { 
+import {
   ComplexAction,
   Delete,
   EditorAction,
@@ -60,7 +60,7 @@ export function renderIEDWizard(
     html`<wizard-textfield
       label="desc"
       .maybeValue=${desc}
-      nullable
+      required
       helper="${get('ied.wizard.descHelper')}"
       pattern="${patterns.normalizedString}"
     ></wizard-textfield>`,
