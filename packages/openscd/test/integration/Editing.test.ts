@@ -209,8 +209,9 @@ describe('Editing-Logging integration', () => {
       expect(element.parentElement).to.equal(parent);
     });
 
-    it('can be redone', () => {
+    it('can be redone', async () => {
       elm.dispatchEvent(
+        // Replace: Q01 -> Q03 (new element)
         newActionEvent({ old: { element }, new: { element: newElement } })
       );
 
@@ -218,30 +219,33 @@ describe('Editing-Logging integration', () => {
 
       elm.history.redo();
 
-      expect(newElement.parentElement).to.equal(parent);
+      const newEle = parent.querySelector('Bay[name="Q03"]')!;
+
+      expect(newEle.parentElement).to.equal(parent);
       expect(element.parentElement).to.be.null;
     });
 
-    it('correctly copying child elements between element and newElement for multiple undo/redo', () => {
+    it('correctly copying child elements between element and newElement for multiple undo/redo', async () => {
       const originOldChildCount = element.children.length;
-      const originNewChildCount = newElement.children.length;
 
       elm.dispatchEvent(
         newActionEvent({ old: { element }, new: { element: newElement } })
       );
-      expect(element.children).to.have.lengthOf(originNewChildCount);
-      expect(newElement.children).to.have.lengthOf(originOldChildCount);
+
+      let newEle = parent.querySelector('Bay[name="Q03"]')!;
+      expect(newEle.children).to.have.lengthOf(originOldChildCount);
 
       elm.history.undo();
       elm.history.redo();
 
       elm.history.undo();
-      expect(element.children).to.have.lengthOf(originOldChildCount);
-      expect(newElement.children).to.have.lengthOf(originNewChildCount);
+
+      const ele = parent.querySelector('Bay[name="Q01"]')!;
+      expect(ele.children).to.have.lengthOf(originOldChildCount);
 
       elm.history.redo();
-      expect(element.children).to.have.lengthOf(originNewChildCount);
-      expect(newElement.children).to.have.lengthOf(originOldChildCount);
+      newEle = parent.querySelector('Bay[name="Q03"]')!;
+      expect(newEle.children).to.have.lengthOf(originOldChildCount);
     });
   });
 

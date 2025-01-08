@@ -29,6 +29,7 @@ import {
 } from "../plugin.js"
 
 import {
+  HistoryState,
   HistoryUIKind,
   newEmptyIssuesEvent,
   newHistoryUIEvent,
@@ -58,9 +59,13 @@ export class OscdLayout extends LitElement {
 
   render(): TemplateResult {
     return html`
-      <slot></slot>
-      ${this.renderHeader()} ${this.renderAside()} ${this.renderContent()}
-      ${this.renderLanding()} ${this.renderPlugging()}
+      <div
+        @open-plugin-download=${() => this.pluginDownloadUI.show()}
+      >
+        <slot></slot>
+        ${this.renderHeader()} ${this.renderAside()} ${this.renderContent()}
+        ${this.renderLanding()} ${this.renderPlugging()}
+      </div>
     `;
   }
 
@@ -86,22 +91,14 @@ export class OscdLayout extends LitElement {
   @property({ type: Object })
   host!: HTMLElement;
 
+  @property({ type: Object })
+  historyState!: HistoryState;
+
   @state()
   validated: Promise<void> = Promise.resolve();
 
   @state()
   shouldValidate = false;
-
-  @state()
-  redoCount = 0;
-
-  get canUndo(): boolean {
-    return this.editCount >= 0;
-  }
-
-  get canRedo(): boolean {
-    return this.redoCount > 0;
-  }
 
   @query('#menu')
   menuUI!: Drawer;
@@ -156,7 +153,7 @@ export class OscdLayout extends LitElement {
         action: (): void => {
           this.dispatchEvent(newUndoEvent());
         },
-        disabled: (): boolean => !this.canUndo,
+        disabled: (): boolean => !this.historyState.canUndo,
         kind: 'static',
       },
       {
@@ -166,7 +163,7 @@ export class OscdLayout extends LitElement {
         action: (): void => {
           this.dispatchEvent(newRedoEvent());
         },
-        disabled: (): boolean => !this.canRedo,
+        disabled: (): boolean => !this.historyState.canRedo,
         kind: 'static',
       },
       ...validators,
@@ -313,20 +310,9 @@ export class OscdLayout extends LitElement {
     this.handleKeyPress = this.handleKeyPress.bind(this);
     document.onkeydown = this.handleKeyPress;
 
-    this.host.addEventListener(
-      'oscd-edit-completed',
-      (evt: EditCompletedEvent) => {
-        const initiator = evt.detail.initiator;
-
-        if (initiator === 'undo') {
-          this.redoCount += 1;
-        } else if (initiator === 'redo') {
-          this.redoCount -= 1;
-        }
-
-        this.requestUpdate();
-      }
-    );
+    document.addEventListener("open-plugin-download", () => {
+      this.pluginDownloadUI.show();
+    });
   }
 
 
@@ -412,7 +398,7 @@ export class OscdLayout extends LitElement {
   }
 
   private renderEditorTab({ name, icon }: Plugin): TemplateResult {
-    return html`<mwc-tab label=${get(name)} icon=${icon || 'edit'}> </mwc-tab>`;
+    return html`<mwc-tab label=${name} icon=${icon || 'edit'}> </mwc-tab>`;
   }
 
   /** Renders top bar which features icon buttons for undo, redo, log, scl history and diagnostics*/

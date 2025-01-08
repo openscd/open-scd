@@ -7,13 +7,13 @@
 
 Open Substation Communication Designer is an editor for SCL files as described in `IEC 61850-6`.
 
-> Try it out at [openscd.github.io](https://openscd.github.io)!
+> Try it out at [↗ openscd.github.io](https://openscd.github.io)!
 
 Make sure your web browser has enough free memory! If needed, disable plug-ins and close unused browser tabs.
 
 ## Installation
 
-In order to install OpenSCD on your local device (only for you), simply visit [openscd.github.io](https://openscd.github.io), click the "Install OpenSCD" button in your address bar (Chrome or Edge on desktop) or click the "Add OpenSCD to home screen" notification in any mobile browser.
+In order to install OpenSCD on your local device (only for you), simply visit [↗ openscd.github.io](https://openscd.github.io), click the "Install OpenSCD" button in your address bar (Chrome or Edge on desktop) or click the "Add OpenSCD to home screen" notification in any mobile browser.
 
 In order to install your own instance of OpenSCD on your own webserver (e.g. on your company intranet), simply download [our latest release](https://github.com/openscd/open-scd/releases/latest) (`open-scd.zip` or `open-scd.tar.gz`) and extract the archive contents into the "webroot" directory of your web server.
 
@@ -24,17 +24,9 @@ If you don't have your own webserver but still want your own version of OpenSCD 
 We gather the available plug-ins from the community in the [plug-ins](docs/plug-ins.md) file.  
 If you would like to list your plug-in here, please open a pull request.
 
-## Development
-
-This repository is a [↗ monorepo](https://en.wikipedia.org/wiki/Monorepo), made up of several packages.
-To find out more about the development of each packages, such as the base distribution or the plugins, please refer to their respective READMEs:
-- [open-scd](packages/openscd/README.md): provides the base distribution available on [openscd.github.io](https://openscd.github.io)
-- [core](packages/core/README.md): provides the agreed api of OpenSCD Core
-
 ## Contributing
 
-The easiest way to get in touch is to join us on the [Zulip Chat](https://openscd.zulipchat.com/join/k3cyur3wx526tvafkjwubhjn/). 
-If you say "hi" there we will be more than happy to help you find your way around this project.
+See [Contributing Guide](CONTRIBUTING.md)
 
 ## Documentation
 
@@ -43,3 +35,4 @@ How the documentation is organized.
 A high-level overview of how it’s organized will help you know where to look for certain things:
 
 - [⚖️ Decisions](docs/decisions/README.md) documents the decisions we made and why we made them.
+- [✏️ Edit event API](docs/core-api/edit-api.md) documents the edit event API.

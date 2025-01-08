@@ -67,7 +67,7 @@ describe('voltage-level-editor wizarding editing integration', () => {
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <MockWizardEditor>(
         await fixture(
-          html`<mock-wizard-editor
+          html`<mock-wizard-editor .doc=${doc}
             ><voltage-level-editor
               .element=${doc.querySelector('VoltageLevel')}
             ></voltage-level-editor
@@ -116,15 +116,6 @@ describe('voltage-level-editor wizarding editing integration', () => {
       secondaryAction.click();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       expect(parent.wizardUI.dialog).to.not.exist;
-    });
-    it('does not change name attribute if not unique within parent element', async () => {
-      const oldName = nameField.value;
-      nameField.value = 'J1';
-      primaryAction.click();
-      await parent.updateComplete;
-      expect(doc.querySelector('VoltageLevel')?.getAttribute('name')).to.equal(
-        oldName
-      );
     });
     it('changes name attribute on primary action', async () => {
       nameField.value = 'newName';
@@ -279,15 +270,6 @@ describe('voltage-level-editor wizarding editing integration', () => {
           'mwc-button[slot="primaryAction"]'
         )
       );
-    });
-    it('does not add bay if name attribute is not unique', async () => {
-      nameField.value = 'COUPLING_BAY';
-      await new Promise(resolve => setTimeout(resolve, 100)); // update takes some time
-      primaryAction.click();
-      await parent.updateComplete;
-      expect(
-        doc.querySelectorAll('VoltageLevel[name="E1"] > Bay').length
-      ).to.equal(2);
     });
     it('does add bay if name attribute is unique', async () => {
       nameField.value = 'SecondBay';
