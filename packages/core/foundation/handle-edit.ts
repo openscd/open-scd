@@ -158,6 +158,8 @@ function handleInsert({
       reference = null;
     }
 
+    parent.insertBefore(node, reference);
+
     if (parentNode) {
       // undo: move child node back to original place
       return {
