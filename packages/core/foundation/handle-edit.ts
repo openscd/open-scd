@@ -148,7 +148,16 @@ function handleInsert({
 }: InsertV2): InsertV2 | RemoveV2 | [] {
   try {
     const { parentNode, nextSibling } = node;
-    parent.insertBefore(node, reference);
+
+    /**
+     * This is a workaround for converted edit api v1 events,
+     * because if multiple edits are converted, they are converted before the changes from the previous edits are applied to the document
+     * so if you first remove an element and then add a clone with changed attributes, the reference will be the element to remove since it hasnt been removed yet
+     */
+    if (!parent.contains(reference)) {
+      reference = null;
+    }
+
     if (parentNode) {
       // undo: move child node back to original place
       return {

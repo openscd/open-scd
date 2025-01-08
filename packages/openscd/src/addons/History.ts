@@ -270,8 +270,8 @@ export class OscdHistory extends LitElement {
     const isCurrentComplex = isComplexV2(current);
     const isPreviousComplex = isComplexV2(previous);
 
-    const previousUndos: EditV2[] = isPreviousComplex ? previous : [ previous ];
-    const currentUndos: EditV2[] = isCurrentComplex ? current : [ current ];
+    const previousUndos: EditV2[] = (isPreviousComplex ? previous : [ previous ]) as EditV2[];
+    const currentUndos: EditV2[] = (isCurrentComplex ? current : [ current ]) as EditV2[];
 
     return [
       ...currentUndos,
@@ -283,8 +283,8 @@ export class OscdHistory extends LitElement {
     const isCurrentComplex = isComplexV2(current);
     const isPreviousComplex = isComplexV2(previous);
 
-    const previousRedos: EditV2[] = isPreviousComplex ? previous : [ previous ];
-    const currentRedos: EditV2[] = isCurrentComplex ? current : [ current ];
+    const previousRedos: EditV2[] = (isPreviousComplex ? previous : [ previous ]) as EditV2[];
+    const currentRedos: EditV2[] = (isCurrentComplex ? current : [ current ]) as EditV2[];
 
     return [
       ...previousRedos,
