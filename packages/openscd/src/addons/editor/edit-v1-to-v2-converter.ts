@@ -28,7 +28,7 @@ function convertUpdate(edit: Update): EditV2 {
       if (!attributesNS[ns]) {
         attributesNS[ns] = {};
       }
-      attributesNS[ns][key] = value.value;
+      attributesNS[ns]![key] = value.value;
     } else attributes[key] = value;
   });
 

@@ -18,7 +18,7 @@ import {
 } from '@openscd/core/foundation/deprecated/editor.js';
 import { Edit, Insert, Remove, Update as UpdateV2 } from '@openscd/core';
 
-import { convertEditV1toV2 } from '../../src/addons/editor/edit-v1-to-v2-converter.js';
+import { convertEditActiontoV1 } from '../../src/addons/editor/edit-action-to-v1-converter.js';
 
 
 describe('edit-v1-to-v2-converter', () => {
@@ -44,7 +44,7 @@ describe('edit-v1-to-v2-converter', () => {
       }
     };
 
-    const remove = convertEditV1toV2(deleteAction);
+    const remove = convertEditActiontoV1(deleteAction);
 
     const expectedRemove: Remove = {
       node: bay
@@ -64,7 +64,7 @@ describe('edit-v1-to-v2-converter', () => {
       }
     };
 
-    const insert = convertEditV1toV2(createAction);
+    const insert = convertEditActiontoV1(createAction);
 
     const expectedInsert: Insert = {
       parent: substation,
@@ -81,7 +81,7 @@ describe('edit-v1-to-v2-converter', () => {
     };
     const updateAction = createUpdateAction(bay, newAttributes);
 
-    const updateV2 = convertEditV1toV2(updateAction);
+    const updateV2 = convertEditActiontoV1(updateAction);
 
     const expectedUpdateV2: UpdateV2 = {
       element: bay,
@@ -107,7 +107,7 @@ describe('edit-v1-to-v2-converter', () => {
       }
     };
 
-    const insert = convertEditV1toV2(moveAction);
+    const insert = convertEditActiontoV1(moveAction);
 
     const expectedInsert: Insert = {
       parent: substation2,
@@ -131,7 +131,7 @@ describe('edit-v1-to-v2-converter', () => {
       }
     };
 
-    const [ remove, insert ] = convertEditV1toV2(replace) as Edit[];
+    const [ remove, insert ] = convertEditActiontoV1(replace) as Edit[];
 
     const expectedRemove: Remove = {
       node: bay
