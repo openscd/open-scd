@@ -27,6 +27,7 @@ describe('OSCD-Editor', () => {
   let bay2: Element;
   let bay4: Element;
   let bay5: Element;
+  let bayWithoutTextContent: Element;
   let lnode1: Element;
   let lnode2: Element;
 
@@ -49,6 +50,7 @@ describe('OSCD-Editor', () => {
           </Bay>
           <Bay name="b5" kind="bay">
           </Bay>
+          <Bay name="bWithoutTextContent"></Bay>
         </VoltageLevel>
       </Substation>`,
       'application/xml',
@@ -64,6 +66,7 @@ describe('OSCD-Editor', () => {
     bay2 = scd.querySelector('Bay[name="b2"]')!;
     bay4 = scd.querySelector('Bay[name="b4"]')!;
     bay5 = scd.querySelector('Bay[name="b5"]')!;
+    bayWithoutTextContent = scd.querySelector('Bay[name="bWithoutTextContent"]')!;
     lnode1 = scd.querySelector('LNode[name="l1"]')!;
     lnode2 = scd.querySelector('LNode[name="l2"]')!;
   });
@@ -126,7 +129,7 @@ describe('OSCD-Editor', () => {
       expect(scd.querySelector('VoltageLevel[name="v1"] > Bay[name="b1"]')).to.be.null;
     });
 
-    describe('Update', () => {
+    describe('SetAttributes', () => {
       it('should add new attributes and leave old attributes', () => {
         const bay1NewAttributes = {
           desc: 'new description',
@@ -279,6 +282,19 @@ describe('OSCD-Editor', () => {
         });
       });
 
+      describe('SetTextContent', () => {
+        it('should set text content', () => {
+          const update: SetTextContentV2 = {
+            element: bay1,
+            textContent: 'new text'
+          };
+
+          host.dispatchEvent(newEditEventV2(update));
+
+          expect(bay1.textContent).to.equal('new text');
+        });
+      });
+
       describe('Complex action', () => {
         it('should apply each edit from a complex edit', () => {
           const newNode = scd.createElement('Bay');
@@ -404,7 +420,7 @@ describe('OSCD-Editor', () => {
       expect(bay4FromScd).to.deep.equal(bay4);
     });
 
-    it('should undo update', () => {
+    it('should undo set attributes', () => {
       const update: SetAttributesV2 = {
         element: bay1,
         attributes: {
@@ -422,6 +438,38 @@ describe('OSCD-Editor', () => {
 
       expect(bay1.getAttribute('desc')).to.be.null;
       expect(bay1.getAttribute('kind')).to.equal('bay');
+    });
+
+    it('should undo set textcontent', () => {
+      const update: SetTextContentV2 = {
+        element: bayWithoutTextContent,
+        textContent: 'new text'
+      };
+
+      host.dispatchEvent(newEditEventV2(update));
+
+      const undoUpdate = log[0].undo as SetTextContentV2;
+
+      host.dispatchEvent(newEditEventV2(undoUpdate));
+
+      expect(bayWithoutTextContent.textContent).to.be.empty;
+    });
+
+    it('should restore children when undoing set textcontent', () => {
+      const update: SetTextContentV2 = {
+        element: bay2,
+        textContent: 'new text'
+      };
+
+      host.dispatchEvent(newEditEventV2(update));
+
+      expect(bay2.children).to.be.empty;
+
+      const undoUpdate = log[0].undo as SetTextContentV2;
+
+      host.dispatchEvent(newEditEventV2(undoUpdate));
+
+      expect(bay2.children[0]).to.deep.equal(lnode2);
     });
 
     it('should redo previously undone action', () => {
