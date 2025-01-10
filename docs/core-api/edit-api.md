@@ -90,6 +90,19 @@ interface SetTextContentV2 {
 }
 ```
 
+### Complex edits
+
+Complex edits can be used to apply multiple edits as a single event. This will create a single entry in the history. You can create complex edit events by passing an array of edit events to the `newEditEventV2` factory function.
+
+```ts
+import { newEditEventV2 } from '@openscd/core';
+
+const complexEditEvent = newEditEventV2([ insert, update, remove ]);
+
+someComponent.dispatchEvent(complexEditEvent);
+
+```
+
 ## History
 
 All edit events with the option `createHistoryEntry` will create a history log entry and can be undone and redone through the history addon.
