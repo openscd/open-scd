@@ -1,4 +1,4 @@
-[submodule "oscd-publisher"]
+[submodule "packages/external-plugins/oscd-publisher"]
 	path = packages/external-plugins/oscd-publisher
 	url = https://github.com/openenergytools/oscd-publisher
 	branch = gh-pages
