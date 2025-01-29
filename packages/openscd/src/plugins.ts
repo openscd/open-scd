@@ -101,9 +101,9 @@ export const officialPlugins = [
   },
   {
     name: 'Publisher',
-    src: generatePluginPath('plugins/src/editors/Publisher.js'),
+    src: generatePluginPath('external-plugins/oscd-publisher/oscd-publisher.js'),
     icon: 'publish',
-    default: false,
+    default: true,
     kind: 'editor',
     requireDoc: true,
   },

@@ -92,9 +92,9 @@ export const officialPlugins = [
   },
   {
     name: 'Publisher',
-    src: '/plugins/src/editors/Publisher.js',
+    src: '/external-plugins/oscd-publisher/oscd-publisher.js',
     icon: 'publish',
-    default: false,
+    default: true,
     kind: 'editor',
   },
   {
