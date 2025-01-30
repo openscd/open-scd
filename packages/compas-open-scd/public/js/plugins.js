@@ -98,6 +98,13 @@ export const officialPlugins = [
     kind: 'editor',
   },
   {
+    name: 'Communication Explorer',
+    src: '/external-plugins/oscd-plugins/communication-explorer/0.0.31/index.js',
+    icon: 'lan',
+    default: true,
+    kind: 'editor',
+  },
+  {
     name: 'Cleanup',
     src: '/plugins/src/editors/Cleanup.js',
     icon: 'cleaning_services',

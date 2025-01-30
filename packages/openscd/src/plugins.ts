@@ -108,6 +108,14 @@ export const officialPlugins = [
     requireDoc: true,
   },
   {
+    name: 'Communication Explorer',
+    src: generatePluginPath('external-plugins/oscd-plugins/communication-explorer/0.0.31/index.js'),
+    icon: 'lan',
+    default: true,
+    kind: 'editor',
+    requireDoc: true,
+  },
+  {
     name: 'Cleanup',
     src: generatePluginPath('plugins/src/editors/Cleanup.js'),
     icon: 'cleaning_services',
