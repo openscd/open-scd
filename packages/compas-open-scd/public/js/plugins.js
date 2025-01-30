@@ -92,9 +92,16 @@ export const officialPlugins = [
   },
   {
     name: 'Publisher',
-    src: '/plugins/src/editors/Publisher.js',
+    src: '/external-plugins/oscd-publisher/oscd-publisher.js',
     icon: 'publish',
-    default: false,
+    default: true,
+    kind: 'editor',
+  },
+  {
+    name: 'Communication Explorer',
+    src: '/external-plugins/oscd-plugins/communication-explorer/0.0.31/index.js',
+    icon: 'lan',
+    default: true,
     kind: 'editor',
   },
   {
