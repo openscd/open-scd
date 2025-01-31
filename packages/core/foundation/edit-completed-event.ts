@@ -1,4 +1,4 @@
-import { Edit, Initiator } from './edit-event.js';
+import { Edit, Initiator } from './deprecated/edit-event.js';
 
 import { EditorAction } from './deprecated/editor.js';
 

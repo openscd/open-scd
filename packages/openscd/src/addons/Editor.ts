@@ -1,4 +1,17 @@
-import { OpenEvent, newEditCompletedEvent, newEditEvent } from '@openscd/core';
+import {
+  EditV2,
+  EditEventV2,
+  OpenEvent,
+  newEditCompletedEvent,
+  newEditEvent,
+  handleEditV2,
+  isInsertV2,
+  isRemoveV2,
+  isSetAttributesV2,
+  isSetTextContentV2,
+  isComplexV2,
+  newEditEventV2
+} from '@openscd/core';
 import {
   property,
   LitElement,
@@ -31,6 +44,7 @@ import {
   Update,
 } from '@openscd/core';
 
+import { convertEditActiontoV1 } from './editor/edit-action-to-v1-converter.js';
 import { convertEditV1toV2 } from './editor/edit-v1-to-v2-converter.js';
 
 @customElement('oscd-editor')
@@ -48,21 +62,21 @@ export class OscdEditor extends LitElement {
   })
   host!: HTMLElement;
 
-  private getLogText(edit: Edit): { title: string, message?: string } {
-    if (isInsert(edit)) {
+  private getLogText(edit: EditV2): { title: string, message?: string } {
+    if (isInsertV2(edit)) {
       const name = edit.node instanceof Element ?
         edit.node.tagName :
         get('editing.node');
       return { title: get('editing.created', { name }) };
-    } else if (isUpdate(edit)) {
+    } else if (isSetAttributesV2(edit) || isSetTextContentV2(edit)) {
       const name = edit.element.tagName;
       return { title: get('editing.updated', { name }) };
-    } else if (isRemove(edit)) {
+    } else if (isRemoveV2(edit)) {
       const name = edit.node instanceof Element ?
         edit.node.tagName :
         get('editing.node');
       return { title: get('editing.deleted', { name }) };
-    } else if (isComplex(edit)) {
+    } else if (isComplexV2(edit)) {
       const message = edit.map(e => this.getLogText(e)).map(({ title }) => title).join(', ');
       return { title: get('editing.complex'), message };
     }
@@ -71,10 +85,26 @@ export class OscdEditor extends LitElement {
   }
 
   private onAction(event: EditorActionEvent<EditorAction>) {
-    const edit = convertEditV1toV2(event.detail.action);
-    const initiator = event.detail.initiator;
+    const edit = convertEditActiontoV1(event.detail.action);
+    const editV2 = convertEditV1toV2(edit);
 
-    this.host.dispatchEvent(newEditEvent(edit, initiator));
+    this.host.dispatchEvent(newEditEventV2(editV2));
+  }
+
+  handleEditEvent(event: EditEvent) {
+    /**
+     * This is a compatibility fix for plugins based on open energy tools edit events
+     * because their edit event look slightly different
+     * see https://github.com/OpenEnergyTools/open-scd-core/blob/main/foundation/edit-event-v1.ts for details
+     */
+    if (isOpenEnergyEditEvent(event)) {
+      event = convertOpenEnergyEditEventToEditEvent(event);
+    }
+
+    const edit = event.detail.edit;
+    const editV2 = convertEditV1toV2(edit);
+
+    this.host.dispatchEvent(newEditEventV2(editV2));
   }
 
   /**
@@ -108,8 +138,10 @@ export class OscdEditor extends LitElement {
 
     // Deprecated editor action API, use 'oscd-edit' instead.
     this.host.addEventListener('editor-action', this.onAction.bind(this));
-
+    // Deprecated edit event API, use 'oscd-edit-v2' instead.
     this.host.addEventListener('oscd-edit', event => this.handleEditEvent(event));
+
+    this.host.addEventListener('oscd-edit-v2', event => this.handleEditEventV2(event));
     this.host.addEventListener('open-doc', this.onOpenDoc);
     this.host.addEventListener('oscd-open', this.handleOpenDoc);
   }
@@ -118,141 +150,29 @@ export class OscdEditor extends LitElement {
     return html`<slot></slot>`;
   }
 
-  async handleEditEvent(event: EditEvent) {
-    /**
-     * This is a compatibility fix for plugins based on open energy tools edit events
-     * because their edit event look slightly different
-     * see https://github.com/OpenEnergyTools/open-scd-core/blob/main/foundation/edit-event-v1.ts for details
-     */
-    if (isOpenEnergyEditEvent(event)) {
-      event = convertOpenEnergyEditEventToEditEvent(event);
-    }
-
+  async handleEditEventV2(event: EditEventV2) {
     const edit = event.detail.edit;
-    const undoEdit = handleEdit(edit);
 
-    this.dispatchEvent(
-      newEditCompletedEvent(event.detail.edit, event.detail.initiator)
-    );
+    const undoEdit = handleEditV2(edit);
 
-    const shouldCreateHistoryEntry = event.detail.initiator !== 'redo' && event.detail.initiator !== 'undo';
+    const shouldCreateHistoryEntry = event.detail.createHistoryEntry !== false;
 
     if (shouldCreateHistoryEntry) {
       const { title, message } = this.getLogText(edit);
 
       this.dispatchEvent(newLogEvent({
         kind: 'action',
-        title,
+        title: event.detail.title ?? title,
         message,
         redo: edit,
         undo: undoEdit,
+        squash: event.detail.squash
       }));
     }
 
     await this.updateComplete;
     this.dispatchEvent(newValidateEvent());
   }
-}
-
-function handleEdit(edit: Edit): Edit {
-  if (isInsert(edit)) return handleInsert(edit);
-  if (isUpdate(edit)) return handleUpdate(edit);
-  if (isRemove(edit)) return handleRemove(edit);
-  if (isComplex(edit)) return edit.map(handleEdit).reverse();
-  return [];
-}
-
-function localAttributeName(attribute: string): string {
-  return attribute.includes(':') ? attribute.split(':', 2)[1] : attribute;
-}
-
-function handleInsert({
-  parent,
-  node,
-  reference,
-}: Insert): Insert | Remove | [] {
-  try {
-    const { parentNode, nextSibling } = node;
-
-    /**
-     * This is a workaround for converted edit api v1 events,
-     * because if multiple edits are converted, they are converted before the changes from the previous edits are applied to the document
-     * so if you first remove an element and then add a clone with changed attributes, the reference will be the element to remove since it hasnt been removed yet
-     */
-    if (!parent.contains(reference)) {
-      reference = null;
-    }
-
-    parent.insertBefore(node, reference);
-    if (parentNode)
-      return {
-        node,
-        parent: parentNode,
-        reference: nextSibling,
-      };
-    return { node };
-  } catch (e) {
-    // do nothing if insert doesn't work on these nodes
-    return [];
-  }
-}
-
-function handleUpdate({ element, attributes }: Update): Update {
-  const oldAttributes = { ...attributes };
-  Object.entries(attributes)
-    .reverse()
-    .forEach(([name, value]) => {
-      let oldAttribute: AttributeValue;
-      if (isNamespaced(value!))
-        oldAttribute = {
-          value: element.getAttributeNS(
-            value.namespaceURI,
-            localAttributeName(name)
-          ),
-          namespaceURI: value.namespaceURI,
-        };
-      else
-        oldAttribute = element.getAttributeNode(name)?.namespaceURI
-          ? {
-              value: element.getAttribute(name),
-              namespaceURI: element.getAttributeNode(name)!.namespaceURI!,
-            }
-          : element.getAttribute(name);
-      oldAttributes[name] = oldAttribute;
-    });
-  for (const entry of Object.entries(attributes)) {
-    try {
-      const [attribute, value] = entry as [string, AttributeValue];
-      if (isNamespaced(value)) {
-        if (value.value === null)
-          element.removeAttributeNS(
-            value.namespaceURI,
-            localAttributeName(attribute)
-          );
-        else element.setAttributeNS(value.namespaceURI, attribute, value.value);
-      } else if (value === null) element.removeAttribute(attribute);
-      else element.setAttribute(attribute, value);
-    } catch (e) {
-      // do nothing if update doesn't work on this attribute
-      delete oldAttributes[entry[0]];
-    }
-  }
-  return {
-    element,
-    attributes: oldAttributes,
-  };
-}
-
-function handleRemove({ node }: Remove): Insert | [] {
-  const { parentNode: parent, nextSibling: reference } = node;
-  node.parentNode?.removeChild(node);
-  if (parent)
-    return {
-      node,
-      parent,
-      reference,
-    };
-  return [];
 }
 
 function isOpenEnergyEditEvent(event: CustomEvent<unknown>): boolean {
