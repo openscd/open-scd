@@ -271,7 +271,7 @@ export default class VirtualTemplateIED extends LitElement {
         <wizard-textfield
           label="desc"
           .maybeValue=${null}
-          nullable
+          required
         ></wizard-textfield>
         <wizard-textfield
           label="AccessPoint name"
