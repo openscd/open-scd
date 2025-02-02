@@ -19,7 +19,7 @@ export function newOpenDocEvent(
 }
 
 declare global {
-    interface ElementEventMap {
-      ['open-doc']: OpenDocEvent;
-    }
+  interface ElementEventMap {
+    ['open-doc']: OpenDocEvent;
   }
+}

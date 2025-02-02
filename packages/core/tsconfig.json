@@ -4,7 +4,10 @@
     "module": "esnext",
     "moduleResolution": "node",
     "noEmitOnError": true,
-    "lib": ["es2018", "dom"],
+    "lib": [
+      "es2018",
+      "dom"
+    ],
     "strict": true,
     "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
@@ -19,5 +22,13 @@
     "tsBuildInfoFile": ".tsbuildinfo",
     "incremental": true
   },
-  "include": ["**/*.ts"]
+  "include": [
+    "**/*.ts",
+    "jest.config.cjs"
+  ],
+  "exclude": [
+    "**/*.spec.ts",
+    "node_modules",
+    "dist"
+  ]
 }
