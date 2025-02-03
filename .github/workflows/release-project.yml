@@ -17,6 +17,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.4
+        with:
+          submodules: 'true'
 
       - name: Cache Docker Register
         uses: actions/cache@v4
