@@ -394,36 +394,6 @@ export class OpenSCD extends LitElement {
     this.updateStoredPlugins(mergedPlugins)
   }
 
-  // private updatePlugins() {
-
-  //   const stored: Plugin[] = this.storedPlugins;
-  //   const officialStored = stored.filter(p => p.official);
-  //   const newOfficial: Array<Plugin | InstalledOfficialPlugin> = (
-  //     builtinPlugins as Plugin[]
-  //   )
-  //     .concat(this.parsedPlugins)
-  //     .filter(p => !officialStored.find(o => o.src === p.src))
-  //     .map(plugin => {
-  //       return {
-  //         src: plugin.src,
-  //         installed: plugin.default ?? false,
-  //         official: true as const,
-  //       };
-  //     });
-
-  //   const oldOfficial = officialStored.filter(
-  //     p =>
-  //       !(builtinPlugins as Plugin[])
-  //         .concat(this.parsedPlugins)
-  //         .find(o => p.src === o.src)
-  //   );
-  //   const newPlugins: Array<Plugin | InstalledOfficialPlugin> = stored.filter(
-  //     p => !oldOfficial.find(o => p.src === o.src)
-  //   );
-  //   newOfficial.map(p => newPlugins.push(p));
-  //   this.storePlugins(newPlugins);
-  // }
-
   private async addExternalPlugin(
     plugin: Omit<Plugin, 'content'>
   ): Promise<void> {
