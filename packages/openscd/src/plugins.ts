@@ -4,14 +4,6 @@ function generatePluginPath(plugin: string): string {
 
 export const officialPlugins = [
   {
-    name: 'Launcher',
-    src: 'http://localhost:50714/index.js',
-    icon: 'launch',
-    default: true,
-    kind: 'editor',
-    requireDoc: true,
-  },
-  {
     name: 'IED',
     src: generatePluginPath('plugins/src/editors/IED.js'),
     icon: 'developer_board',
