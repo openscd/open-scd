@@ -10,10 +10,10 @@ export type Plugin = {
   position?: MenuPosition;
   installed: boolean;
   official?: boolean;
-  content?: TemplateResult;
+  content?: () => TemplateResult;
 };
 
-export type InstalledOfficialPlugin = {
+export type InstalledOfficialPlugin = Plugin & {
   src: string;
   official: true;
   installed: boolean;
@@ -23,3 +23,4 @@ export type InstalledOfficialPlugin = {
 export type PluginKind = 'editor' | 'menu' | 'validator';
 export const menuPosition = ['top', 'middle', 'bottom'] as const;
 export type MenuPosition = (typeof menuPosition)[number];
+

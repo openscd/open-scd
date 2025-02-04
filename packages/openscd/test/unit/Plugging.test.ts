@@ -29,7 +29,7 @@ describe('OpenSCD-Plugin', () => {
   });
 
   it('stores default plugins on load', () =>{
-    expect(element.layout).property('editors').to.have.lengthOf(6)
+    expect(element.layout).property('editors').to.have.lengthOf(14)
   });
 
   it('has Locale property', async () => {
@@ -66,7 +66,7 @@ describe('OpenSCD-Plugin', () => {
     it('disables deselected plugins', async () => {
       firstEditorPlugin.click();
       await element.updateComplete;
-      expect(element.layout).property('editors').to.have.lengthOf(5);
+      expect(element.layout).property('editors').to.have.lengthOf(13);
     });
 
     it('enables selected plugins', async () => {
@@ -74,7 +74,7 @@ describe('OpenSCD-Plugin', () => {
       await element.updateComplete;
       (<HTMLElement>element.layout.pluginList.firstElementChild).click();
       await element.updateComplete;
-      expect(element.layout).property('editors').to.have.lengthOf(6);
+      expect(element.layout).property('editors').to.have.lengthOf(14);
     });
 
     it('resets plugins to default on reset button click', async () => {
@@ -173,7 +173,7 @@ describe('OpenSCD-Plugin', () => {
       await name.updateComplete;
       primaryAction.click();
       await element.updateComplete;
-      expect(element.layout.editors).to.have.lengthOf(7);
+      expect(element.layout.editors).to.have.lengthOf(15);
     });
 
     it('adds a new menu kind plugin on add button click', async () => {
@@ -374,7 +374,7 @@ describe('OpenSCD-Plugin', () => {
               name: "plugin to remove, but wrong kind",
               kind: "editor",
               src: "https://example.com/plugin-to-remove.js",
-              installed: false,
+              installed: true,
             }],
             eventDetails: {
               name: "plugin to remove, but wrong kind",
@@ -385,7 +385,7 @@ describe('OpenSCD-Plugin', () => {
               name: "plugin to remove, but wrong kind",
               kind: "editor",
               src: "https://example.com/plugin-to-remove.js",
-              installed: false,
+              installed: true,
             }]
           },
       ]
@@ -396,7 +396,7 @@ describe('OpenSCD-Plugin', () => {
           it(tc.desc, async () => {
             // ARRANGE
 
-            // @ts-ignore: we use the private to arrange the scenario
+            // @ts-ignore: we use the private function to arrange the scenario
             element.storePlugins(tc.currentPlugins)
             await element.updateComplete
 
@@ -431,3 +431,4 @@ describe('OpenSCD-Plugin', () => {
 
   })
 });
+
