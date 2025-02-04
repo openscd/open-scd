@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.37.0](https://github.com/openscd/open-scd/compare/v0.36.0...v0.37.0) (2025-01-27)
+
+
+### Features
+
+* Edit api v3 ([#1615](https://github.com/openscd/open-scd/issues/1615)) ([ce39e2b](https://github.com/openscd/open-scd/commit/ce39e2b7bfcda40659f36e40659b1efd571f2a53))
+* **monorepo:** Add contributing guide ([#1588](https://github.com/openscd/open-scd/issues/1588)) ([dd692a8](https://github.com/openscd/open-scd/commit/dd692a8d9784aaf5f8509fdad5298293195d1465))
+
 ## [0.36.0](https://github.com/openscd/open-scd/compare/v0.35.0...v0.36.0) (2024-11-14)
 
 

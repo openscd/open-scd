@@ -18,7 +18,7 @@ jobs:
         run: echo ${{ github.event.pull_request.node_id }} > PR_NODE_ID.txt && echo ${{ github.event.action }} > EVENT_ACTION.txt
       - name: Archive PR node_id and event_action
         if: github.event_name == 'pull_request' || github.event_name == 'pull_request_target'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: PR_DATA
           path: |
@@ -29,7 +29,7 @@ jobs:
         run: echo ${{ github.event.pull_request.node_id }} > PR_NODE_ID.txt && echo ${{ github.event.review.state }} > REVIEW_STATE.txt
       - name: Archive PR and review_state
         if: github.event_name == 'pull_request_review'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: REVIEW_DATA
           path: |
