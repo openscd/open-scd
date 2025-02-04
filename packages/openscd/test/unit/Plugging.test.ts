@@ -29,7 +29,7 @@ describe('OpenSCD-Plugin', () => {
   });
 
   it('stores default plugins on load', () =>{
-    expect(element.layout).property('editors').to.have.lengthOf(15)
+    expect(element.layout).property('editors').to.have.lengthOf(14)
   });
 
   it('has Locale property', async () => {
@@ -66,7 +66,7 @@ describe('OpenSCD-Plugin', () => {
     it('disables deselected plugins', async () => {
       firstEditorPlugin.click();
       await element.updateComplete;
-      expect(element.layout).property('editors').to.have.lengthOf(14);
+      expect(element.layout).property('editors').to.have.lengthOf(13);
     });
 
     it('enables selected plugins', async () => {
@@ -74,7 +74,7 @@ describe('OpenSCD-Plugin', () => {
       await element.updateComplete;
       (<HTMLElement>element.layout.pluginList.firstElementChild).click();
       await element.updateComplete;
-      expect(element.layout).property('editors').to.have.lengthOf(15);
+      expect(element.layout).property('editors').to.have.lengthOf(14);
     });
 
     it('resets plugins to default on reset button click', async () => {
@@ -82,7 +82,7 @@ describe('OpenSCD-Plugin', () => {
       await element.updateComplete;
       resetAction.click();
       await element.updateComplete;
-      expect(element.layout).property('editors').to.have.lengthOf(7);
+      expect(element.layout).property('editors').to.have.lengthOf(6);
     });
 
     it('opens the custom plugin dialog on add button click', async () => {
@@ -173,7 +173,7 @@ describe('OpenSCD-Plugin', () => {
       await name.updateComplete;
       primaryAction.click();
       await element.updateComplete;
-      expect(element.layout.editors).to.have.lengthOf(16);
+      expect(element.layout.editors).to.have.lengthOf(15);
     });
 
     it('adds a new menu kind plugin on add button click', async () => {
@@ -431,3 +431,4 @@ describe('OpenSCD-Plugin', () => {
 
   })
 });
+

@@ -498,22 +498,6 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
         mwc-list-item=""
         selected=""
         tabindex="0"
-        value="http://localhost:50714/index.js"
-      >
-        <mwc-icon slot="meta">
-          launch
-        </mwc-icon>
-        Launcher
-      </mwc-check-list-item>
-      <mwc-check-list-item
-        aria-disabled="false"
-        class="external"
-        graphic="control"
-        hasmeta=""
-        left=""
-        mwc-list-item=""
-        selected=""
-        tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/IED.js"
       >
         <mwc-icon slot="meta">
@@ -1668,22 +1652,6 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
         mwc-list-item=""
         selected=""
         tabindex="0"
-        value="http://localhost:50714/index.js"
-      >
-        <mwc-icon slot="meta">
-          launch
-        </mwc-icon>
-        Launcher
-      </mwc-check-list-item>
-      <mwc-check-list-item
-        aria-disabled="false"
-        class="external"
-        graphic="control"
-        hasmeta=""
-        left=""
-        mwc-list-item=""
-        selected=""
-        tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/IED.js"
       >
         <mwc-icon slot="meta">
@@ -2838,22 +2806,6 @@ snapshots["open-scd layout looks like its snapshot"] =
         mwc-list-item=""
         selected=""
         tabindex="0"
-        value="http://localhost:50714/index.js"
-      >
-        <mwc-icon slot="meta">
-          launch
-        </mwc-icon>
-        Launcher
-      </mwc-check-list-item>
-      <mwc-check-list-item
-        aria-disabled="false"
-        class="external"
-        graphic="control"
-        hasmeta=""
-        left=""
-        mwc-list-item=""
-        selected=""
-        tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/IED.js"
       >
         <mwc-icon slot="meta">
