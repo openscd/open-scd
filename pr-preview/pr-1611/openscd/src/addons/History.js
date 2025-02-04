@@ -28,7 +28,7 @@ import "../../../_snowpack/pkg/@material/mwc-list/mwc-list-item.js";
 import "../../../_snowpack/pkg/@material/mwc-snackbar.js";
 import "../filtered-list.js";
 import {getFilterIcon, iconColors} from "../icons/icons.js";
-import {newEditEvent} from "../../../_snowpack/link/packages/core/dist/foundation.js";
+import {isComplexV2, newEditEventV2} from "../../../_snowpack/link/packages/core/dist/foundation.js";
 export const historyStateEvent = "history-state";
 function newHistoryStateEvent(state2) {
   return new CustomEvent(historyStateEvent, {detail: state2});
@@ -134,7 +134,7 @@ export let OscdHistory = class extends LitElement {
     if (!this.canUndo)
       return false;
     const undoEdit = this.history[this.editCount].undo;
-    this.host.dispatchEvent(newEditEvent(undoEdit, "undo"));
+    this.host.dispatchEvent(newEditEventV2(undoEdit, {createHistoryEntry: false}));
     this.setEditCount(this.previousAction);
     return true;
   }
@@ -142,7 +142,7 @@ export let OscdHistory = class extends LitElement {
     if (!this.canRedo)
       return false;
     const redoEdit = this.history[this.nextAction].redo;
-    this.host.dispatchEvent(newEditEvent(redoEdit, "redo"));
+    this.host.dispatchEvent(newEditEventV2(redoEdit, {createHistoryEntry: false}));
     this.setEditCount(this.nextAction);
     return true;
   }
@@ -154,9 +154,48 @@ export let OscdHistory = class extends LitElement {
     if (this.nextAction !== -1) {
       this.history.splice(this.nextAction);
     }
-    this.history.push(entry);
+    this.addHistoryEntry(entry);
     this.setEditCount(this.history.length - 1);
     this.requestUpdate("history", []);
+  }
+  addHistoryEntry(entry) {
+    const shouldSquash = Boolean(entry.squash) && this.history.length > 0;
+    if (shouldSquash) {
+      const previousEntry = this.history.pop();
+      const squashedEntry = this.squashHistoryEntries(entry, previousEntry);
+      this.history.push(squashedEntry);
+    } else {
+      this.history.push(entry);
+    }
+  }
+  squashHistoryEntries(current, previous) {
+    const undo = this.squashUndo(current.undo, previous.undo);
+    const redo = this.squashRedo(current.redo, previous.redo);
+    return {
+      ...current,
+      undo,
+      redo
+    };
+  }
+  squashUndo(current, previous) {
+    const isCurrentComplex = isComplexV2(current);
+    const isPreviousComplex = isComplexV2(previous);
+    const previousUndos = isPreviousComplex ? previous : [previous];
+    const currentUndos = isCurrentComplex ? current : [current];
+    return [
+      ...currentUndos,
+      ...previousUndos
+    ];
+  }
+  squashRedo(current, previous) {
+    const isCurrentComplex = isComplexV2(current);
+    const isPreviousComplex = isComplexV2(previous);
+    const previousRedos = isPreviousComplex ? previous : [previous];
+    const currentRedos = isCurrentComplex ? current : [current];
+    return [
+      ...previousRedos,
+      ...currentRedos
+    ];
   }
   onReset() {
     this.log = [];

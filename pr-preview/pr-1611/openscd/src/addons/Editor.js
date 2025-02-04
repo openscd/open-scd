@@ -9,7 +9,16 @@ var __decorate = (decorators, target, key, kind) => {
     __defProp(target, key, result);
   return result;
 };
-import {newEditCompletedEvent, newEditEvent} from "../../../_snowpack/link/packages/core/dist/foundation.js";
+import {
+  newEditEvent,
+  handleEditV2,
+  isInsertV2,
+  isRemoveV2,
+  isSetAttributesV2,
+  isSetTextContentV2,
+  isComplexV2,
+  newEditEventV2
+} from "../../../_snowpack/link/packages/core/dist/foundation.js";
 import {
   property,
   LitElement,
@@ -22,10 +31,10 @@ import {newValidateEvent} from "../../../_snowpack/link/packages/core/dist/found
 import {
   isComplex,
   isInsert,
-  isNamespaced,
   isRemove,
   isUpdate
 } from "../../../_snowpack/link/packages/core/dist/foundation.js";
+import {convertEditActiontoV1} from "./editor/edit-action-to-v1-converter.js";
 import {convertEditV1toV2} from "./editor/edit-v1-to-v2-converter.js";
 export let OscdEditor = class extends LitElement {
   constructor() {
@@ -35,25 +44,33 @@ export let OscdEditor = class extends LitElement {
     this.docId = "";
   }
   getLogText(edit) {
-    if (isInsert(edit)) {
+    if (isInsertV2(edit)) {
       const name = edit.node instanceof Element ? edit.node.tagName : get("editing.node");
       return {title: get("editing.created", {name})};
-    } else if (isUpdate(edit)) {
+    } else if (isSetAttributesV2(edit) || isSetTextContentV2(edit)) {
       const name = edit.element.tagName;
       return {title: get("editing.updated", {name})};
-    } else if (isRemove(edit)) {
+    } else if (isRemoveV2(edit)) {
       const name = edit.node instanceof Element ? edit.node.tagName : get("editing.node");
       return {title: get("editing.deleted", {name})};
-    } else if (isComplex(edit)) {
+    } else if (isComplexV2(edit)) {
       const message = edit.map((e) => this.getLogText(e)).map(({title}) => title).join(", ");
       return {title: get("editing.complex"), message};
     }
     return {title: ""};
   }
   onAction(event) {
-    const edit = convertEditV1toV2(event.detail.action);
-    const initiator = event.detail.initiator;
-    this.host.dispatchEvent(newEditEvent(edit, initiator));
+    const edit = convertEditActiontoV1(event.detail.action);
+    const editV2 = convertEditV1toV2(edit);
+    this.host.dispatchEvent(newEditEventV2(editV2));
+  }
+  handleEditEvent(event) {
+    if (isOpenEnergyEditEvent(event)) {
+      event = convertOpenEnergyEditEventToEditEvent(event);
+    }
+    const edit = event.detail.edit;
+    const editV2 = convertEditV1toV2(edit);
+    this.host.dispatchEvent(newEditEventV2(editV2));
   }
   async onOpenDoc(event) {
     this.doc = event.detail.doc;
@@ -74,28 +91,26 @@ export let OscdEditor = class extends LitElement {
     super.connectedCallback();
     this.host.addEventListener("editor-action", this.onAction.bind(this));
     this.host.addEventListener("oscd-edit", (event) => this.handleEditEvent(event));
+    this.host.addEventListener("oscd-edit-v2", (event) => this.handleEditEventV2(event));
     this.host.addEventListener("open-doc", this.onOpenDoc);
     this.host.addEventListener("oscd-open", this.handleOpenDoc);
   }
   render() {
     return html`<slot></slot>`;
   }
-  async handleEditEvent(event) {
-    if (isOpenEnergyEditEvent(event)) {
-      event = convertOpenEnergyEditEventToEditEvent(event);
-    }
+  async handleEditEventV2(event) {
     const edit = event.detail.edit;
-    const undoEdit = handleEdit(edit);
-    this.dispatchEvent(newEditCompletedEvent(event.detail.edit, event.detail.initiator));
-    const shouldCreateHistoryEntry = event.detail.initiator !== "redo" && event.detail.initiator !== "undo";
+    const undoEdit = handleEditV2(edit);
+    const shouldCreateHistoryEntry = event.detail.createHistoryEntry !== false;
     if (shouldCreateHistoryEntry) {
       const {title, message} = this.getLogText(edit);
       this.dispatchEvent(newLogEvent({
         kind: "action",
-        title,
+        title: event.detail.title ?? title,
         message,
         redo: edit,
-        undo: undoEdit
+        undo: undoEdit,
+        squash: event.detail.squash
       }));
     }
     await this.updateComplete;
@@ -119,90 +134,6 @@ __decorate([
 OscdEditor = __decorate([
   customElement("oscd-editor")
 ], OscdEditor);
-function handleEdit(edit) {
-  if (isInsert(edit))
-    return handleInsert(edit);
-  if (isUpdate(edit))
-    return handleUpdate(edit);
-  if (isRemove(edit))
-    return handleRemove(edit);
-  if (isComplex(edit))
-    return edit.map(handleEdit).reverse();
-  return [];
-}
-function localAttributeName(attribute) {
-  return attribute.includes(":") ? attribute.split(":", 2)[1] : attribute;
-}
-function handleInsert({
-  parent,
-  node,
-  reference
-}) {
-  try {
-    const {parentNode, nextSibling} = node;
-    if (!parent.contains(reference)) {
-      reference = null;
-    }
-    parent.insertBefore(node, reference);
-    if (parentNode)
-      return {
-        node,
-        parent: parentNode,
-        reference: nextSibling
-      };
-    return {node};
-  } catch (e) {
-    return [];
-  }
-}
-function handleUpdate({element, attributes}) {
-  const oldAttributes = {...attributes};
-  Object.entries(attributes).reverse().forEach(([name, value]) => {
-    let oldAttribute;
-    if (isNamespaced(value))
-      oldAttribute = {
-        value: element.getAttributeNS(value.namespaceURI, localAttributeName(name)),
-        namespaceURI: value.namespaceURI
-      };
-    else
-      oldAttribute = element.getAttributeNode(name)?.namespaceURI ? {
-        value: element.getAttribute(name),
-        namespaceURI: element.getAttributeNode(name).namespaceURI
-      } : element.getAttribute(name);
-    oldAttributes[name] = oldAttribute;
-  });
-  for (const entry of Object.entries(attributes)) {
-    try {
-      const [attribute, value] = entry;
-      if (isNamespaced(value)) {
-        if (value.value === null)
-          element.removeAttributeNS(value.namespaceURI, localAttributeName(attribute));
-        else
-          element.setAttributeNS(value.namespaceURI, attribute, value.value);
-      } else if (value === null)
-        element.removeAttribute(attribute);
-      else
-        element.setAttribute(attribute, value);
-    } catch (e) {
-      delete oldAttributes[entry[0]];
-    }
-  }
-  return {
-    element,
-    attributes: oldAttributes
-  };
-}
-function handleRemove({node}) {
-  const {parentNode: parent, nextSibling: reference} = node;
-  node.parentNode?.removeChild(node);
-  if (parent)
-    return {
-      node,
-      parent,
-      reference
-    };
-  return [];
-}
 function isOpenEnergyEditEvent(event) {
   const eventDetail = event.detail;
   return isComplex(eventDetail) || isInsert(eventDetail) || isUpdate(eventDetail) || isRemove(eventDetail);
