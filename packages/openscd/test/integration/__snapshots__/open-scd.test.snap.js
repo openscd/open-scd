@@ -85,6 +85,7 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       <mwc-list-item
         aria-disabled="false"
         class="top"
+        data-name="Open project"
         graphic="icon"
         iconid="folder_open"
         mwc-list-item=""
@@ -102,6 +103,7 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       <mwc-list-item
         aria-disabled="false"
         class="top"
+        data-name="New project"
         graphic="icon"
         iconid="create_new_folder"
         mwc-list-item=""
@@ -119,6 +121,7 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       <mwc-list-item
         aria-disabled="true"
         class="top"
+        data-name="Save project"
         disabled=""
         graphic="icon"
         iconid="save"
@@ -143,6 +146,7 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       <mwc-list-item
         aria-disabled="true"
         class="validator"
+        data-name="Validate Schema"
         disabled=""
         graphic="icon"
         iconid="rule_folder"
@@ -161,6 +165,7 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       <mwc-list-item
         aria-disabled="true"
         class="validator"
+        data-name="Validate Templates"
         disabled=""
         graphic="icon"
         iconid="rule_folder"
@@ -185,6 +190,7 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       <mwc-list-item
         aria-disabled="true"
         class="middle"
+        data-name="Import IEDs"
         disabled=""
         graphic="icon"
         iconid="snippet_folder"
@@ -203,6 +209,26 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       <mwc-list-item
         aria-disabled="true"
         class="middle"
+        data-name="Create Virtual IED"
+        disabled=""
+        graphic="icon"
+        iconid="developer_board"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          developer_board
+        </mwc-icon>
+        <span>
+          Create Virtual IED
+        </span>
+      </mwc-list-item>
+      <oscd-pluginbde9abe11076fd6d class="menu plugin">
+      </oscd-pluginbde9abe11076fd6d>
+      <mwc-list-item
+        aria-disabled="true"
+        class="middle"
+        data-name="Subscriber Update"
         disabled=""
         graphic="icon"
         iconid="play_circle"
@@ -221,6 +247,45 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       <mwc-list-item
         aria-disabled="true"
         class="middle"
+        data-name="Update desc (ABB)"
+        disabled=""
+        graphic="icon"
+        iconid="play_circle"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          play_circle
+        </mwc-icon>
+        <span>
+          Update desc (ABB)
+        </span>
+      </mwc-list-item>
+      <oscd-plugin3fe6c997d917fd88 class="menu plugin">
+      </oscd-plugin3fe6c997d917fd88>
+      <mwc-list-item
+        aria-disabled="true"
+        class="middle"
+        data-name="Update desc (SEL)"
+        disabled=""
+        graphic="icon"
+        iconid="play_circle"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          play_circle
+        </mwc-icon>
+        <span>
+          Update desc (SEL)
+        </span>
+      </mwc-list-item>
+      <oscd-plugine30e53d4ae0fcd74 class="menu plugin">
+      </oscd-plugine30e53d4ae0fcd74>
+      <mwc-list-item
+        aria-disabled="true"
+        class="middle"
+        data-name="Merge Project"
         disabled=""
         graphic="icon"
         iconid="merge_type"
@@ -239,6 +304,7 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       <mwc-list-item
         aria-disabled="true"
         class="middle"
+        data-name="Update Substation"
         disabled=""
         graphic="icon"
         iconid="merge_type"
@@ -257,6 +323,7 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       <mwc-list-item
         aria-disabled="true"
         class="middle"
+        data-name="Compare IED"
         disabled=""
         graphic="icon"
         iconid="compare_arrows"
@@ -272,6 +339,25 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       </mwc-list-item>
       <oscd-plugin531256cb341ab97e class="menu plugin">
       </oscd-plugin531256cb341ab97e>
+      <mwc-list-item
+        aria-disabled="true"
+        class="middle"
+        data-name="Export Communication Section"
+        disabled=""
+        graphic="icon"
+        iconid="sim_card_download"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          sim_card_download
+        </mwc-icon>
+        <span>
+          Export Communication Section
+        </span>
+      </mwc-list-item>
+      <oscd-plugin49d0a50efb77ac18 class="menu plugin">
+      </oscd-plugin49d0a50efb77ac18>
       <li
         divider=""
         padded=""
@@ -281,6 +367,7 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       <mwc-list-item
         aria-disabled="false"
         class="static"
+        data-name="settings.title"
         graphic="icon"
         iconid="settings"
         mwc-list-item=""
@@ -294,25 +381,9 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
         </span>
       </mwc-list-item>
       <mwc-list-item
-        aria-disabled="false"
-        class="bottom"
-        graphic="icon"
-        iconid="help"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          help
-        </mwc-icon>
-        <span>
-          Help
-        </span>
-      </mwc-list-item>
-      <oscd-plugin6589bc97026c833d class="menu plugin">
-      </oscd-plugin6589bc97026c833d>
-      <mwc-list-item
         aria-disabled="true"
         class="bottom"
+        data-name="Show SCL History"
         disabled=""
         graphic="icon"
         iconid="history_toggle_off"
@@ -328,6 +399,24 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       </mwc-list-item>
       <oscd-plugin70e8eaeb84bf47f6 class="menu plugin">
       </oscd-plugin70e8eaeb84bf47f6>
+      <mwc-list-item
+        aria-disabled="false"
+        class="bottom"
+        data-name="Help"
+        graphic="icon"
+        iconid="help"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          help
+        </mwc-icon>
+        <span>
+          Help
+        </span>
+      </mwc-list-item>
+      <oscd-plugin6589bc97026c833d class="menu plugin">
+      </oscd-plugin6589bc97026c833d>
       <li
         divider=""
         padded=""
@@ -337,6 +426,7 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       <mwc-list-item
         aria-disabled="false"
         class="static"
+        data-name="plugins.heading"
         graphic="icon"
         iconid="extension"
         mwc-list-item=""
@@ -401,7 +491,7 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       </li>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -417,7 +507,7 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -433,11 +523,12 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/SingleLineDiagram.js"
       >
@@ -448,11 +539,12 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/GooseSubscriberMessageBinding.js"
       >
@@ -463,11 +555,12 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/GooseSubscriberDataBinding.js"
       >
@@ -478,7 +571,7 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -494,11 +587,12 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/SMVSubscriberMessageBinding.js"
       >
@@ -509,11 +603,12 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/SMVSubscriberDataBinding.js"
       >
@@ -524,7 +619,7 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -540,7 +635,7 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -556,11 +651,12 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/Protocol104.js"
       >
@@ -571,7 +667,7 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -587,11 +683,12 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/Publisher.js"
       >
@@ -602,11 +699,12 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/Cleanup.js"
       >
@@ -640,7 +738,7 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       </li>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -656,7 +754,7 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -672,22 +770,7 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
-        graphic="control"
-        hasmeta=""
-        left=""
-        mwc-list-item=""
-        tabindex="-1"
-        value="https://mockup-plugin.url/plugin-top.js"
-      >
-        <mwc-icon slot="meta">
-          link
-        </mwc-icon>
-        Top Mock Plugin
-      </mwc-check-list-item>
-      <mwc-check-list-item
-        aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -709,7 +792,7 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       </li>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -725,7 +808,7 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -747,22 +830,7 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       </li>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
-        graphic="control"
-        hasmeta=""
-        left=""
-        mwc-list-item=""
-        tabindex="-1"
-        value="https://mockup-plugin.url/plugin-middle.js"
-      >
-        <mwc-icon slot="meta">
-          link
-        </mwc-icon>
-        Middle Mock Plugin
-      </mwc-check-list-item>
-      <mwc-check-list-item
-        aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -778,11 +846,12 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/VirtualTemplateIED.js"
       >
@@ -793,7 +862,7 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -809,11 +878,12 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/UpdateDescriptionABB.js"
       >
@@ -824,11 +894,12 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/UpdateDescriptionSEL.js"
       >
@@ -839,7 +910,7 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -855,7 +926,7 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -871,7 +942,7 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -887,11 +958,12 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/ExportCommunication.js"
       >
@@ -908,38 +980,7 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       </li>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
-        graphic="control"
-        hasmeta=""
-        left=""
-        mwc-list-item=""
-        tabindex="-1"
-        value="https://mockup-plugin.url/plugin-bottom.js"
-      >
-        <mwc-icon slot="meta">
-          link
-        </mwc-icon>
-        Bottom Mock Plugin
-      </mwc-check-list-item>
-      <mwc-check-list-item
-        aria-disabled="false"
-        class="official"
-        graphic="control"
-        hasmeta=""
-        left=""
-        mwc-list-item=""
-        selected=""
-        tabindex="-1"
-        value="http://localhost:8000/plugins/src/menu/Help.js"
-      >
-        <mwc-icon slot="meta">
-          help
-        </mwc-icon>
-        Help
-      </mwc-check-list-item>
-      <mwc-check-list-item
-        aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -952,6 +993,22 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
           history_toggle_off
         </mwc-icon>
         Show SCL History
+      </mwc-check-list-item>
+      <mwc-check-list-item
+        aria-disabled="false"
+        class="external"
+        graphic="control"
+        hasmeta=""
+        left=""
+        mwc-list-item=""
+        selected=""
+        tabindex="-1"
+        value="http://localhost:8000/plugins/src/menu/Help.js"
+      >
+        <mwc-icon slot="meta">
+          help
+        </mwc-icon>
+        Help
       </mwc-check-list-item>
     </mwc-list>
     <mwc-button
@@ -1182,6 +1239,7 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       <mwc-list-item
         aria-disabled="false"
         class="top"
+        data-name="Open project"
         graphic="icon"
         iconid="folder_open"
         mwc-list-item=""
@@ -1199,6 +1257,7 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       <mwc-list-item
         aria-disabled="false"
         class="top"
+        data-name="New project"
         graphic="icon"
         iconid="create_new_folder"
         mwc-list-item=""
@@ -1216,6 +1275,7 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       <mwc-list-item
         aria-disabled="true"
         class="top"
+        data-name="Save project"
         disabled=""
         graphic="icon"
         iconid="save"
@@ -1240,6 +1300,7 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       <mwc-list-item
         aria-disabled="true"
         class="validator"
+        data-name="Validate Schema"
         disabled=""
         graphic="icon"
         iconid="rule_folder"
@@ -1258,6 +1319,7 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       <mwc-list-item
         aria-disabled="true"
         class="validator"
+        data-name="Validate Templates"
         disabled=""
         graphic="icon"
         iconid="rule_folder"
@@ -1282,6 +1344,7 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       <mwc-list-item
         aria-disabled="true"
         class="middle"
+        data-name="Import IEDs"
         disabled=""
         graphic="icon"
         iconid="snippet_folder"
@@ -1300,6 +1363,26 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       <mwc-list-item
         aria-disabled="true"
         class="middle"
+        data-name="Create Virtual IED"
+        disabled=""
+        graphic="icon"
+        iconid="developer_board"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          developer_board
+        </mwc-icon>
+        <span>
+          Create Virtual IED
+        </span>
+      </mwc-list-item>
+      <oscd-pluginbde9abe11076fd6d class="menu plugin">
+      </oscd-pluginbde9abe11076fd6d>
+      <mwc-list-item
+        aria-disabled="true"
+        class="middle"
+        data-name="Subscriber Update"
         disabled=""
         graphic="icon"
         iconid="play_circle"
@@ -1318,6 +1401,45 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       <mwc-list-item
         aria-disabled="true"
         class="middle"
+        data-name="Update desc (ABB)"
+        disabled=""
+        graphic="icon"
+        iconid="play_circle"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          play_circle
+        </mwc-icon>
+        <span>
+          Update desc (ABB)
+        </span>
+      </mwc-list-item>
+      <oscd-plugin3fe6c997d917fd88 class="menu plugin">
+      </oscd-plugin3fe6c997d917fd88>
+      <mwc-list-item
+        aria-disabled="true"
+        class="middle"
+        data-name="Update desc (SEL)"
+        disabled=""
+        graphic="icon"
+        iconid="play_circle"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          play_circle
+        </mwc-icon>
+        <span>
+          Update desc (SEL)
+        </span>
+      </mwc-list-item>
+      <oscd-plugine30e53d4ae0fcd74 class="menu plugin">
+      </oscd-plugine30e53d4ae0fcd74>
+      <mwc-list-item
+        aria-disabled="true"
+        class="middle"
+        data-name="Merge Project"
         disabled=""
         graphic="icon"
         iconid="merge_type"
@@ -1336,6 +1458,7 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       <mwc-list-item
         aria-disabled="true"
         class="middle"
+        data-name="Update Substation"
         disabled=""
         graphic="icon"
         iconid="merge_type"
@@ -1354,6 +1477,7 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       <mwc-list-item
         aria-disabled="true"
         class="middle"
+        data-name="Compare IED"
         disabled=""
         graphic="icon"
         iconid="compare_arrows"
@@ -1369,6 +1493,25 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       </mwc-list-item>
       <oscd-plugin531256cb341ab97e class="menu plugin">
       </oscd-plugin531256cb341ab97e>
+      <mwc-list-item
+        aria-disabled="true"
+        class="middle"
+        data-name="Export Communication Section"
+        disabled=""
+        graphic="icon"
+        iconid="sim_card_download"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          sim_card_download
+        </mwc-icon>
+        <span>
+          Export Communication Section
+        </span>
+      </mwc-list-item>
+      <oscd-plugin49d0a50efb77ac18 class="menu plugin">
+      </oscd-plugin49d0a50efb77ac18>
       <li
         divider=""
         padded=""
@@ -1378,6 +1521,7 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       <mwc-list-item
         aria-disabled="false"
         class="static"
+        data-name="settings.title"
         graphic="icon"
         iconid="settings"
         mwc-list-item=""
@@ -1391,25 +1535,9 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
         </span>
       </mwc-list-item>
       <mwc-list-item
-        aria-disabled="false"
-        class="bottom"
-        graphic="icon"
-        iconid="help"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          help
-        </mwc-icon>
-        <span>
-          Help
-        </span>
-      </mwc-list-item>
-      <oscd-plugin6589bc97026c833d class="menu plugin">
-      </oscd-plugin6589bc97026c833d>
-      <mwc-list-item
         aria-disabled="true"
         class="bottom"
+        data-name="Show SCL History"
         disabled=""
         graphic="icon"
         iconid="history_toggle_off"
@@ -1425,6 +1553,24 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       </mwc-list-item>
       <oscd-plugin70e8eaeb84bf47f6 class="menu plugin">
       </oscd-plugin70e8eaeb84bf47f6>
+      <mwc-list-item
+        aria-disabled="false"
+        class="bottom"
+        data-name="Help"
+        graphic="icon"
+        iconid="help"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          help
+        </mwc-icon>
+        <span>
+          Help
+        </span>
+      </mwc-list-item>
+      <oscd-plugin6589bc97026c833d class="menu plugin">
+      </oscd-plugin6589bc97026c833d>
       <li
         divider=""
         padded=""
@@ -1434,6 +1580,7 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       <mwc-list-item
         aria-disabled="false"
         class="static"
+        data-name="plugins.heading"
         graphic="icon"
         iconid="extension"
         mwc-list-item=""
@@ -1498,7 +1645,7 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       </li>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -1514,7 +1661,7 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -1530,11 +1677,12 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/SingleLineDiagram.js"
       >
@@ -1545,11 +1693,12 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/GooseSubscriberMessageBinding.js"
       >
@@ -1560,11 +1709,12 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/GooseSubscriberDataBinding.js"
       >
@@ -1575,7 +1725,7 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -1591,11 +1741,12 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/SMVSubscriberMessageBinding.js"
       >
@@ -1606,11 +1757,12 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/SMVSubscriberDataBinding.js"
       >
@@ -1621,7 +1773,7 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -1637,7 +1789,7 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -1653,11 +1805,12 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/Protocol104.js"
       >
@@ -1668,7 +1821,7 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -1684,11 +1837,12 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/Publisher.js"
       >
@@ -1699,11 +1853,12 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/Cleanup.js"
       >
@@ -1711,21 +1866,6 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
           cleaning_services
         </mwc-icon>
         Cleanup
-      </mwc-check-list-item>
-      <mwc-check-list-item
-        aria-disabled="false"
-        class="official"
-        graphic="control"
-        hasmeta=""
-        left=""
-        mwc-list-item=""
-        tabindex="-1"
-        value="https://mockup-plugin.url/editor-plugin.js"
-      >
-        <mwc-icon slot="meta">
-          link
-        </mwc-icon>
-        Mock Editor Plugin
       </mwc-check-list-item>
       <mwc-list-item
         aria-disabled="false"
@@ -1752,7 +1892,7 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       </li>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -1768,7 +1908,7 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -1784,7 +1924,7 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -1806,7 +1946,7 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       </li>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -1822,7 +1962,7 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -1844,7 +1984,7 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       </li>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -1860,11 +2000,12 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/VirtualTemplateIED.js"
       >
@@ -1875,7 +2016,7 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -1891,11 +2032,12 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/UpdateDescriptionABB.js"
       >
@@ -1906,11 +2048,12 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/UpdateDescriptionSEL.js"
       >
@@ -1921,7 +2064,7 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -1937,7 +2080,7 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -1953,7 +2096,7 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -1969,11 +2112,12 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/ExportCommunication.js"
       >
@@ -1990,23 +2134,7 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       </li>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
-        graphic="control"
-        hasmeta=""
-        left=""
-        mwc-list-item=""
-        selected=""
-        tabindex="-1"
-        value="http://localhost:8000/plugins/src/menu/Help.js"
-      >
-        <mwc-icon slot="meta">
-          help
-        </mwc-icon>
-        Help
-      </mwc-check-list-item>
-      <mwc-check-list-item
-        aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -2019,6 +2147,22 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
           history_toggle_off
         </mwc-icon>
         Show SCL History
+      </mwc-check-list-item>
+      <mwc-check-list-item
+        aria-disabled="false"
+        class="external"
+        graphic="control"
+        hasmeta=""
+        left=""
+        mwc-list-item=""
+        selected=""
+        tabindex="-1"
+        value="http://localhost:8000/plugins/src/menu/Help.js"
+      >
+        <mwc-icon slot="meta">
+          help
+        </mwc-icon>
+        Help
       </mwc-check-list-item>
     </mwc-list>
     <mwc-button
@@ -2249,6 +2393,7 @@ snapshots["open-scd layout looks like its snapshot"] =
       <mwc-list-item
         aria-disabled="false"
         class="top"
+        data-name="Open project"
         graphic="icon"
         iconid="folder_open"
         mwc-list-item=""
@@ -2266,6 +2411,7 @@ snapshots["open-scd layout looks like its snapshot"] =
       <mwc-list-item
         aria-disabled="false"
         class="top"
+        data-name="New project"
         graphic="icon"
         iconid="create_new_folder"
         mwc-list-item=""
@@ -2283,6 +2429,7 @@ snapshots["open-scd layout looks like its snapshot"] =
       <mwc-list-item
         aria-disabled="true"
         class="top"
+        data-name="Save project"
         disabled=""
         graphic="icon"
         iconid="save"
@@ -2307,6 +2454,7 @@ snapshots["open-scd layout looks like its snapshot"] =
       <mwc-list-item
         aria-disabled="true"
         class="validator"
+        data-name="Validate Schema"
         disabled=""
         graphic="icon"
         iconid="rule_folder"
@@ -2325,6 +2473,7 @@ snapshots["open-scd layout looks like its snapshot"] =
       <mwc-list-item
         aria-disabled="true"
         class="validator"
+        data-name="Validate Templates"
         disabled=""
         graphic="icon"
         iconid="rule_folder"
@@ -2349,6 +2498,7 @@ snapshots["open-scd layout looks like its snapshot"] =
       <mwc-list-item
         aria-disabled="true"
         class="middle"
+        data-name="Import IEDs"
         disabled=""
         graphic="icon"
         iconid="snippet_folder"
@@ -2367,6 +2517,26 @@ snapshots["open-scd layout looks like its snapshot"] =
       <mwc-list-item
         aria-disabled="true"
         class="middle"
+        data-name="Create Virtual IED"
+        disabled=""
+        graphic="icon"
+        iconid="developer_board"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          developer_board
+        </mwc-icon>
+        <span>
+          Create Virtual IED
+        </span>
+      </mwc-list-item>
+      <oscd-pluginbde9abe11076fd6d class="menu plugin">
+      </oscd-pluginbde9abe11076fd6d>
+      <mwc-list-item
+        aria-disabled="true"
+        class="middle"
+        data-name="Subscriber Update"
         disabled=""
         graphic="icon"
         iconid="play_circle"
@@ -2385,6 +2555,45 @@ snapshots["open-scd layout looks like its snapshot"] =
       <mwc-list-item
         aria-disabled="true"
         class="middle"
+        data-name="Update desc (ABB)"
+        disabled=""
+        graphic="icon"
+        iconid="play_circle"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          play_circle
+        </mwc-icon>
+        <span>
+          Update desc (ABB)
+        </span>
+      </mwc-list-item>
+      <oscd-plugin3fe6c997d917fd88 class="menu plugin">
+      </oscd-plugin3fe6c997d917fd88>
+      <mwc-list-item
+        aria-disabled="true"
+        class="middle"
+        data-name="Update desc (SEL)"
+        disabled=""
+        graphic="icon"
+        iconid="play_circle"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          play_circle
+        </mwc-icon>
+        <span>
+          Update desc (SEL)
+        </span>
+      </mwc-list-item>
+      <oscd-plugine30e53d4ae0fcd74 class="menu plugin">
+      </oscd-plugine30e53d4ae0fcd74>
+      <mwc-list-item
+        aria-disabled="true"
+        class="middle"
+        data-name="Merge Project"
         disabled=""
         graphic="icon"
         iconid="merge_type"
@@ -2403,6 +2612,7 @@ snapshots["open-scd layout looks like its snapshot"] =
       <mwc-list-item
         aria-disabled="true"
         class="middle"
+        data-name="Update Substation"
         disabled=""
         graphic="icon"
         iconid="merge_type"
@@ -2421,6 +2631,7 @@ snapshots["open-scd layout looks like its snapshot"] =
       <mwc-list-item
         aria-disabled="true"
         class="middle"
+        data-name="Compare IED"
         disabled=""
         graphic="icon"
         iconid="compare_arrows"
@@ -2436,6 +2647,25 @@ snapshots["open-scd layout looks like its snapshot"] =
       </mwc-list-item>
       <oscd-plugin531256cb341ab97e class="menu plugin">
       </oscd-plugin531256cb341ab97e>
+      <mwc-list-item
+        aria-disabled="true"
+        class="middle"
+        data-name="Export Communication Section"
+        disabled=""
+        graphic="icon"
+        iconid="sim_card_download"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          sim_card_download
+        </mwc-icon>
+        <span>
+          Export Communication Section
+        </span>
+      </mwc-list-item>
+      <oscd-plugin49d0a50efb77ac18 class="menu plugin">
+      </oscd-plugin49d0a50efb77ac18>
       <li
         divider=""
         padded=""
@@ -2445,6 +2675,7 @@ snapshots["open-scd layout looks like its snapshot"] =
       <mwc-list-item
         aria-disabled="false"
         class="static"
+        data-name="settings.title"
         graphic="icon"
         iconid="settings"
         mwc-list-item=""
@@ -2458,25 +2689,9 @@ snapshots["open-scd layout looks like its snapshot"] =
         </span>
       </mwc-list-item>
       <mwc-list-item
-        aria-disabled="false"
-        class="bottom"
-        graphic="icon"
-        iconid="help"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          help
-        </mwc-icon>
-        <span>
-          Help
-        </span>
-      </mwc-list-item>
-      <oscd-plugin6589bc97026c833d class="menu plugin">
-      </oscd-plugin6589bc97026c833d>
-      <mwc-list-item
         aria-disabled="true"
         class="bottom"
+        data-name="Show SCL History"
         disabled=""
         graphic="icon"
         iconid="history_toggle_off"
@@ -2492,6 +2707,24 @@ snapshots["open-scd layout looks like its snapshot"] =
       </mwc-list-item>
       <oscd-plugin70e8eaeb84bf47f6 class="menu plugin">
       </oscd-plugin70e8eaeb84bf47f6>
+      <mwc-list-item
+        aria-disabled="false"
+        class="bottom"
+        data-name="Help"
+        graphic="icon"
+        iconid="help"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          help
+        </mwc-icon>
+        <span>
+          Help
+        </span>
+      </mwc-list-item>
+      <oscd-plugin6589bc97026c833d class="menu plugin">
+      </oscd-plugin6589bc97026c833d>
       <li
         divider=""
         padded=""
@@ -2501,6 +2734,7 @@ snapshots["open-scd layout looks like its snapshot"] =
       <mwc-list-item
         aria-disabled="false"
         class="static"
+        data-name="plugins.heading"
         graphic="icon"
         iconid="extension"
         mwc-list-item=""
@@ -2565,7 +2799,7 @@ snapshots["open-scd layout looks like its snapshot"] =
       </li>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -2581,7 +2815,7 @@ snapshots["open-scd layout looks like its snapshot"] =
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -2597,11 +2831,12 @@ snapshots["open-scd layout looks like its snapshot"] =
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/SingleLineDiagram.js"
       >
@@ -2612,11 +2847,12 @@ snapshots["open-scd layout looks like its snapshot"] =
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/GooseSubscriberMessageBinding.js"
       >
@@ -2627,11 +2863,12 @@ snapshots["open-scd layout looks like its snapshot"] =
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/GooseSubscriberDataBinding.js"
       >
@@ -2642,7 +2879,7 @@ snapshots["open-scd layout looks like its snapshot"] =
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -2658,11 +2895,12 @@ snapshots["open-scd layout looks like its snapshot"] =
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/SMVSubscriberMessageBinding.js"
       >
@@ -2673,11 +2911,12 @@ snapshots["open-scd layout looks like its snapshot"] =
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/SMVSubscriberDataBinding.js"
       >
@@ -2688,7 +2927,7 @@ snapshots["open-scd layout looks like its snapshot"] =
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -2704,7 +2943,7 @@ snapshots["open-scd layout looks like its snapshot"] =
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -2720,11 +2959,12 @@ snapshots["open-scd layout looks like its snapshot"] =
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/Protocol104.js"
       >
@@ -2735,7 +2975,7 @@ snapshots["open-scd layout looks like its snapshot"] =
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -2751,11 +2991,12 @@ snapshots["open-scd layout looks like its snapshot"] =
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/Publisher.js"
       >
@@ -2766,11 +3007,12 @@ snapshots["open-scd layout looks like its snapshot"] =
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/Cleanup.js"
       >
@@ -2804,7 +3046,7 @@ snapshots["open-scd layout looks like its snapshot"] =
       </li>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -2820,7 +3062,7 @@ snapshots["open-scd layout looks like its snapshot"] =
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -2836,7 +3078,7 @@ snapshots["open-scd layout looks like its snapshot"] =
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -2858,7 +3100,7 @@ snapshots["open-scd layout looks like its snapshot"] =
       </li>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -2874,7 +3116,7 @@ snapshots["open-scd layout looks like its snapshot"] =
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -2896,7 +3138,7 @@ snapshots["open-scd layout looks like its snapshot"] =
       </li>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -2912,11 +3154,12 @@ snapshots["open-scd layout looks like its snapshot"] =
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/VirtualTemplateIED.js"
       >
@@ -2927,7 +3170,7 @@ snapshots["open-scd layout looks like its snapshot"] =
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -2943,11 +3186,12 @@ snapshots["open-scd layout looks like its snapshot"] =
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/UpdateDescriptionABB.js"
       >
@@ -2958,11 +3202,12 @@ snapshots["open-scd layout looks like its snapshot"] =
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/UpdateDescriptionSEL.js"
       >
@@ -2973,7 +3218,7 @@ snapshots["open-scd layout looks like its snapshot"] =
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -2989,7 +3234,7 @@ snapshots["open-scd layout looks like its snapshot"] =
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -3005,7 +3250,7 @@ snapshots["open-scd layout looks like its snapshot"] =
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -3021,11 +3266,12 @@ snapshots["open-scd layout looks like its snapshot"] =
       </mwc-check-list-item>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/ExportCommunication.js"
       >
@@ -3042,23 +3288,7 @@ snapshots["open-scd layout looks like its snapshot"] =
       </li>
       <mwc-check-list-item
         aria-disabled="false"
-        class="official"
-        graphic="control"
-        hasmeta=""
-        left=""
-        mwc-list-item=""
-        selected=""
-        tabindex="-1"
-        value="http://localhost:8000/plugins/src/menu/Help.js"
-      >
-        <mwc-icon slot="meta">
-          help
-        </mwc-icon>
-        Help
-      </mwc-check-list-item>
-      <mwc-check-list-item
-        aria-disabled="false"
-        class="official"
+        class="external"
         graphic="control"
         hasmeta=""
         left=""
@@ -3071,6 +3301,22 @@ snapshots["open-scd layout looks like its snapshot"] =
           history_toggle_off
         </mwc-icon>
         Show SCL History
+      </mwc-check-list-item>
+      <mwc-check-list-item
+        aria-disabled="false"
+        class="external"
+        graphic="control"
+        hasmeta=""
+        left=""
+        mwc-list-item=""
+        selected=""
+        tabindex="-1"
+        value="http://localhost:8000/plugins/src/menu/Help.js"
+      >
+        <mwc-icon slot="meta">
+          help
+        </mwc-icon>
+        Help
       </mwc-check-list-item>
     </mwc-list>
     <mwc-button
