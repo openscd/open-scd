@@ -10,10 +10,8 @@ export function newValidateEvent(
   });
 }
 
-
 declare global {
-    interface ElementEventMap {
-      ['validate']: ValidateEvent;
-    }
+  interface ElementEventMap {
+    ['validate']: ValidateEvent;
   }
-  
+}

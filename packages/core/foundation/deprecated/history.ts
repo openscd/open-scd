@@ -45,7 +45,6 @@ export type InfoEntry = Timestamped & InfoDetail;
 
 export type LogEntry = InfoEntry | CommitEntry;
 
-
 export function newLogEvent(
   detail: LogDetail,
   eventInitDict?: CustomEventInit<LogDetail>
@@ -71,9 +70,8 @@ export function newIssueEvent(
 }
 
 declare global {
-    interface ElementEventMap {
-      ['log']: LogEvent;
-      ['issue']: IssueEvent;
-    }
+  interface ElementEventMap {
+    ['log']: LogEvent;
+    ['issue']: IssueEvent;
   }
-  
+}

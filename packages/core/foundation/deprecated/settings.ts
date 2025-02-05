@@ -62,7 +62,6 @@ export function newSettingsUIEvent(
   });
 }
 
-
 declare global {
   interface ElementEventMap {
     ['oscd-settings']: SettingsUIEvent;
