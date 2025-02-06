@@ -1,4 +1,5 @@
-export function generatePluginPath(plugin: string): string {
+
+function generatePluginPath(plugin: string): string {
   return location.origin+location.pathname+plugin;
 }
 
@@ -10,41 +11,6 @@ export const officialPlugins = [
     default: true,
     kind: 'editor',
     requireDoc: true,
-  },
-{
-    name: 'Communication Explorer',
-    src: 'https://sprinteins.github.io/oscd-plugins/communication-explorer/index.js',
-    icon: 'edit',
-    default: true,
-    kind: 'editor',
-  },
-  {
-    name: 'Network Explorer',
-    src: 'https://sprinteins.github.io/oscd-plugins/network-explorer/index.js',
-    icon: 'lan',
-    default: true,
-    kind: 'editor',
-  },
-  {
-    name: 'Type Switcher',
-    src: 'https://sprinteins.github.io/oscd-plugins/type-switcher/index.js',
-    icon: 'edit',
-    default: true,
-    kind: 'editor',
-  },
-  {
-    name: 'Documentation',
-    src: 'https://sprinteins.github.io/oscd-plugins/documentation/index.js',
-    icon: 'edit',
-    default: true,
-    kind: 'editor',
-  },
-  {
-    name: 'Template Generator',
-    src: 'https://sprinteins.github.io/oscd-template-generator/oscd-template-generator.js',
-    icon: 'account_tree',
-    default: true,
-    kind: 'editor',
   },
   {
     name: 'Substation',
@@ -286,13 +252,5 @@ export const officialPlugins = [
     kind: 'menu',
     requireDoc: true,
     position: 'middle',
-  },
-  {
-    name: 'Plugin Store',
-    src: 'https://sprinteins.github.io/oscd-plugin-store/index.js',
-    default: true,
-    kind: 'menu',
-    requireDoc: false,
-    position: 'bottom',
   },
 ];
