@@ -1,5 +1,4 @@
 export default {
-  plugins: ['@snowpack/plugin-typescript'],
   packageOptions: {
     external: [
       '@web/dev-server-core',
