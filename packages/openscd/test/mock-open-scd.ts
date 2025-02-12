@@ -4,6 +4,7 @@ import {
   html,
   queryAssignedNodes,
   query,
+  property
 } from 'lit-element';
 import { OscdWizards } from '../src/addons/Wizards.js';
 import { WizardFactory } from '../src/foundation.js';
@@ -11,9 +12,15 @@ import { OpenSCD } from '../src/open-scd.js';
 import { WizardDialog } from '../src/wizard-dialog.js';
 import { OscdHistory } from '../src/addons/History.js';
 import { OscdLayout } from '../src/addons/Layout.js';
+// import type { Plugin } from '@openscd/core';
+import { Plugin } from '../src/plugin';
 
 @customElement('mock-open-scd')
 export class MockOpenSCD extends OpenSCD {
+
+  @property({ attribute: false })
+  mockPlugins: Plugin[] = []
+
   @queryAssignedNodes()
   _plugins!: Array<HTMLElement>;
 
@@ -32,9 +39,16 @@ export class MockOpenSCD extends OpenSCD {
 
   render(): TemplateResult {
     return html`
-    ${this.renderHosting()}
-    ${super.render()}`;
+      ${this.renderHosting()}
+      ${super.render()}
+    `;
   }
+
+  protected getBuiltInPlugins(): Plugin[]{
+    return this.mockPlugins;
+  }
+
+
 
   getPlugin<T extends HTMLElement>(name: string): T | undefined {
     return this._plugins.find(

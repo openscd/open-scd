@@ -1,6 +1,6 @@
 {
   "name": "@openscd/core",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "The core editor component of open-scd, without any extensions pre-installed.",
   "author": "Open-SCD",
   "license": "Apache-2.0",
@@ -13,6 +13,7 @@
   ],
   "exports": {
     ".": "./dist/foundation.js",
+    "./foundation/scl.js": "./dist/foundation/scl.js",
     "./foundation/deprecated/editor.js": "./dist/foundation/deprecated/editor.js",
     "./foundation/deprecated/open-event.js": "./dist/foundation/deprecated/open-event.js",
     "./foundation/deprecated/settings.js": "./dist/foundation/deprecated/settings.js",

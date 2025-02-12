@@ -1,4 +1,5 @@
-export function generatePluginPath(plugin: string): string {
+
+function generatePluginPath(plugin: string): string {
   return location.origin+location.pathname+plugin;
 }
 
