@@ -28,6 +28,10 @@ export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
       name: 'integration',
       files: 'test/integration/**/*.test.ts',
     },
+    // {
+    //   name: 'single',
+    //   files: 'test/integration/validators/ValidateTemplates.test.ts',
+    // },
   ],
 
   /** Compile JS for older browsers. Requires @web/dev-server-esbuild plugin */
@@ -41,7 +45,14 @@ export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
 
   /** Browsers to run tests on */
   browsers: [
-    playwrightLauncher({ product: 'chromium' }),
+    playwrightLauncher({
+      // concurrency: 1,
+      product: 'chromium',
+      launchOptions: {
+        headless: true,
+        devtools: false,
+      },
+    }),
     // playwrightLauncher({ product: 'firefox' }),
     // playwrightLauncher({ product: 'webkit' }),
   ],
