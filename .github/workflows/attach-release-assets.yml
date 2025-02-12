@@ -17,12 +17,21 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "18.x"
-      - name: Install dependecies
-        run: npm ci --include=optional
-      - name: Build project
-        run:  npm run build
+      - name: Install and Build OpenSCD
+        run: | 
+          npm i @nx/nx-linux-x64-gnu
+          npm clean-install
+          npm run-script build
+          npm run-script doc
+      - name: Copy Core Docs to OpenSCD
+        run: cp -R packages/core/doc packages/distribution/build/core-doc
+
+      - name: Copy Plugin Docs to OpenSCD
+        run: cp -R packages/plugins/doc packages/distribution/build/plugin-doc
+
       - name: Compress files
-        run: tar -czf open-scd.tar.gz -C dist .
+        run: tar -czf open-scd.tar.gz -C packages/distribution/build
+        
       - name: Upload release files
         run: gh release upload ${{ steps.release.outputs.tag_name }} open-scd.tar.gz
         env: 
