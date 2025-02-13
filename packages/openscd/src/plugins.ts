@@ -3,6 +3,15 @@ export function generatePluginPath(plugin: string): string {
 }
 
 export const officialPlugins = [
+	// start adding this temporary waiting to fix issue https://github.com/openscd/open-scd/issues/1622
+	{
+		name: 'Type Designer',
+		src: 'https://sprinteins.github.io/oscd-plugins/type-designer/index.js',
+		icon: 'design_services',
+		default: true,
+		kind: 'editor',
+	},
+	// end
   {
     name: 'IED',
     src: generatePluginPath('plugins/src/editors/IED.js'),
