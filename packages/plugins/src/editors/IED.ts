@@ -23,9 +23,11 @@ import {
   compareNames,
   getDescriptionAttribute,
   getNameAttribute,
+  newWizardEvent,
 } from '@openscd/open-scd/src/foundation.js';
 import { Nsdoc } from '@openscd/open-scd/src/foundation/nsdoc.js';
 import { getIcon } from '@openscd/open-scd/src/icons/icons.js';
+import { wizards } from '../wizards/wizard-library.js';
 
 /** An editor [[`plugin`]] for editing the `IED` section. */
 export default class IedPlugin extends LitElement {
@@ -99,6 +101,11 @@ export default class IedPlugin extends LitElement {
     return undefined;
   }
 
+  @state()
+  private get iedsWithoutDesc(): Element[] {
+    return this.iedList.filter(ied => !ied.hasAttribute('desc'));
+  }
+
   lNClassListOpenedOnce = false;
 
   protected updated(_changedProperties: PropertyValues): void {
@@ -147,10 +154,31 @@ export default class IedPlugin extends LitElement {
     return selectedLNClasses;
   }
 
+  private openEditWizard(element: Element): void {
+    const wizard = wizards['IED'].edit(element);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
+
   render(): TemplateResult {
     const iedList = this.iedList;
     if (iedList.length > 0) {
       return html`<section>
+        ${
+          this.iedsWithoutDesc.length > 0
+            ? html`
+          <div
+            slot="action"
+            class="missing-desc-banner"
+            mini
+            @click="${() => this.openEditWizard(this.iedsWithoutDesc[0])}"
+            icon="edit"
+          >
+            <span>${get('ied.wizard.noDescWarning')}</span>
+            <mwc-icon>edit</mwc-icon>
+          </div>
+        `
+            : nothing
+        }
         <div class="header">
           <h1>${get('filters')}:</h1>
 
@@ -174,6 +202,13 @@ export default class IedPlugin extends LitElement {
               if (!selectionChanged) {
                 return;
               }
+
+              // const selectedIedNames = e.detail.selectedItems.map(item => {
+              //   const [name] = item.split('__');
+              //   return name;
+              // });
+
+              // console.log("HERE: ", selectedIedNames)
 
               this.lNClassListOpenedOnce = false;
               this.selectedIEDs = e.detail.selectedItems;
@@ -250,6 +285,18 @@ export default class IedPlugin extends LitElement {
 
     .header {
       display: flex;
+    }
+
+    .missing-desc-banner {
+      margin-bottom: 16px;
+      background-color: #ffcc00;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: opacity 0.2s ease-in-out;
     }
 
     h1 {
