@@ -1,7 +1,7 @@
 on:
-  release:
-    types: [published]  # This triggers when a new release is published
-
+  push:
+    branches:
+      - main
 permissions:
   contents: write
 
@@ -31,7 +31,7 @@ jobs:
 
       - name: Compress files
         run: tar -czf open-scd.tar.gz -C packages/distribution/build
-        
+
       - name: Upload release files
         run: gh release upload ${{ steps.release.outputs.tag_name }} open-scd.tar.gz
         env: 
