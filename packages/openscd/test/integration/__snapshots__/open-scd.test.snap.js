@@ -82,282 +82,12 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
         role="separator"
       >
       </li>
-      <mwc-list-item
-        aria-disabled="false"
-        class="top"
-        data-name="Open project"
-        graphic="icon"
-        iconid="folder_open"
-        mwc-list-item=""
-        tabindex="0"
-      >
-        <mwc-icon slot="graphic">
-          folder_open
-        </mwc-icon>
-        <span>
-          Open project
-        </span>
-      </mwc-list-item>
-      <oscd-plugind0b9863131b4146e class="menu plugin">
-      </oscd-plugind0b9863131b4146e>
-      <mwc-list-item
-        aria-disabled="false"
-        class="top"
-        data-name="New project"
-        graphic="icon"
-        iconid="create_new_folder"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          create_new_folder
-        </mwc-icon>
-        <span>
-          New project
-        </span>
-      </mwc-list-item>
-      <oscd-plugin9b4f3043bce10a59 class="menu plugin">
-      </oscd-plugin9b4f3043bce10a59>
-      <mwc-list-item
-        aria-disabled="true"
-        class="top"
-        data-name="Save project"
-        disabled=""
-        graphic="icon"
-        iconid="save"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          save
-        </mwc-icon>
-        <span>
-          Save project
-        </span>
-      </mwc-list-item>
-      <oscd-pluginf3b6b19f30371924 class="menu plugin">
-      </oscd-pluginf3b6b19f30371924>
       <li
         divider=""
         padded=""
         role="separator"
       >
       </li>
-      <mwc-list-item
-        aria-disabled="true"
-        class="validator"
-        data-name="Validate Schema"
-        disabled=""
-        graphic="icon"
-        iconid="rule_folder"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          rule_folder
-        </mwc-icon>
-        <span>
-          Validate Schema
-        </span>
-      </mwc-list-item>
-      <oscd-plugin8126aea23c207f03 class="plugin validator">
-      </oscd-plugin8126aea23c207f03>
-      <mwc-list-item
-        aria-disabled="true"
-        class="validator"
-        data-name="Validate Templates"
-        disabled=""
-        graphic="icon"
-        iconid="rule_folder"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          rule_folder
-        </mwc-icon>
-        <span>
-          Validate Templates
-        </span>
-      </mwc-list-item>
-      <oscd-pluginb7f7ea2822da160b class="plugin validator">
-      </oscd-pluginb7f7ea2822da160b>
-      <li
-        divider=""
-        padded=""
-        role="separator"
-      >
-      </li>
-      <mwc-list-item
-        aria-disabled="true"
-        class="middle"
-        data-name="Import IEDs"
-        disabled=""
-        graphic="icon"
-        iconid="snippet_folder"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          snippet_folder
-        </mwc-icon>
-        <span>
-          Import IEDs
-        </span>
-      </mwc-list-item>
-      <oscd-plugin164035de870e3ce2 class="menu plugin">
-      </oscd-plugin164035de870e3ce2>
-      <mwc-list-item
-        aria-disabled="true"
-        class="middle"
-        data-name="Create Virtual IED"
-        disabled=""
-        graphic="icon"
-        iconid="developer_board"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          developer_board
-        </mwc-icon>
-        <span>
-          Create Virtual IED
-        </span>
-      </mwc-list-item>
-      <oscd-pluginbde9abe11076fd6d class="menu plugin">
-      </oscd-pluginbde9abe11076fd6d>
-      <mwc-list-item
-        aria-disabled="true"
-        class="middle"
-        data-name="Subscriber Update"
-        disabled=""
-        graphic="icon"
-        iconid="play_circle"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          play_circle
-        </mwc-icon>
-        <span>
-          Subscriber Update
-        </span>
-      </mwc-list-item>
-      <oscd-plugin73c7200b70bd16a6 class="menu plugin">
-      </oscd-plugin73c7200b70bd16a6>
-      <mwc-list-item
-        aria-disabled="true"
-        class="middle"
-        data-name="Update desc (ABB)"
-        disabled=""
-        graphic="icon"
-        iconid="play_circle"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          play_circle
-        </mwc-icon>
-        <span>
-          Update desc (ABB)
-        </span>
-      </mwc-list-item>
-      <oscd-plugin3fe6c997d917fd88 class="menu plugin">
-      </oscd-plugin3fe6c997d917fd88>
-      <mwc-list-item
-        aria-disabled="true"
-        class="middle"
-        data-name="Update desc (SEL)"
-        disabled=""
-        graphic="icon"
-        iconid="play_circle"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          play_circle
-        </mwc-icon>
-        <span>
-          Update desc (SEL)
-        </span>
-      </mwc-list-item>
-      <oscd-plugine30e53d4ae0fcd74 class="menu plugin">
-      </oscd-plugine30e53d4ae0fcd74>
-      <mwc-list-item
-        aria-disabled="true"
-        class="middle"
-        data-name="Merge Project"
-        disabled=""
-        graphic="icon"
-        iconid="merge_type"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          merge_type
-        </mwc-icon>
-        <span>
-          Merge Project
-        </span>
-      </mwc-list-item>
-      <oscd-plugin96a38f00c3583f5a class="menu plugin">
-      </oscd-plugin96a38f00c3583f5a>
-      <mwc-list-item
-        aria-disabled="true"
-        class="middle"
-        data-name="Update Substation"
-        disabled=""
-        graphic="icon"
-        iconid="merge_type"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          merge_type
-        </mwc-icon>
-        <span>
-          Update Substation
-        </span>
-      </mwc-list-item>
-      <oscd-plugind42cb104caa5b137 class="menu plugin">
-      </oscd-plugind42cb104caa5b137>
-      <mwc-list-item
-        aria-disabled="true"
-        class="middle"
-        data-name="Compare IED"
-        disabled=""
-        graphic="icon"
-        iconid="compare_arrows"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          compare_arrows
-        </mwc-icon>
-        <span>
-          Compare IED
-        </span>
-      </mwc-list-item>
-      <oscd-plugin531256cb341ab97e class="menu plugin">
-      </oscd-plugin531256cb341ab97e>
-      <mwc-list-item
-        aria-disabled="true"
-        class="middle"
-        data-name="Export Communication Section"
-        disabled=""
-        graphic="icon"
-        iconid="sim_card_download"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          sim_card_download
-        </mwc-icon>
-        <span>
-          Export Communication Section
-        </span>
-      </mwc-list-item>
-      <oscd-plugin49d0a50efb77ac18 class="menu plugin">
-      </oscd-plugin49d0a50efb77ac18>
       <li
         divider=""
         padded=""
@@ -371,7 +101,7 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
         graphic="icon"
         iconid="settings"
         mwc-list-item=""
-        tabindex="-1"
+        tabindex="0"
       >
         <mwc-icon slot="graphic">
           settings
@@ -380,49 +110,6 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
           Settings
         </span>
       </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="true"
-        class="bottom"
-        data-name="Show SCL History"
-        disabled=""
-        graphic="icon"
-        iconid="history_toggle_off"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          history_toggle_off
-        </mwc-icon>
-        <span>
-          Show SCL History
-        </span>
-      </mwc-list-item>
-      <oscd-plugin70e8eaeb84bf47f6 class="menu plugin">
-      </oscd-plugin70e8eaeb84bf47f6>
-      <mwc-list-item
-        aria-disabled="false"
-        class="bottom"
-        data-name="Help"
-        graphic="icon"
-        iconid="help"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          help
-        </mwc-icon>
-        <span>
-          Help
-        </span>
-      </mwc-list-item>
-      <oscd-plugin6589bc97026c833d class="menu plugin">
-      </oscd-plugin6589bc97026c833d>
-      <li
-        divider=""
-        padded=""
-        role="separator"
-      >
-      </li>
       <mwc-list-item
         aria-disabled="false"
         class="static"
@@ -442,22 +129,6 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
     </mwc-list>
   </mwc-drawer>
   <div class="landing">
-    <mwc-icon-button
-      class="landing_icon"
-      icon="folder_open"
-    >
-      <div class="landing_label">
-        Open project
-      </div>
-    </mwc-icon-button>
-    <mwc-icon-button
-      class="landing_icon"
-      icon="create_new_folder"
-    >
-      <div class="landing_label">
-        New project
-      </div>
-    </mwc-icon-button>
   </div>
   <mwc-dialog
     heading="Plug-ins"
@@ -496,7 +167,6 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="0"
         value="http://localhost:8000/plugins/src/editors/IED.js"
       >
@@ -512,7 +182,6 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/Substation.js"
       >
@@ -528,7 +197,6 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/SingleLineDiagram.js"
       >
@@ -544,7 +212,6 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/GooseSubscriberMessageBinding.js"
       >
@@ -560,7 +227,6 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/GooseSubscriberDataBinding.js"
       >
@@ -576,7 +242,6 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/GooseSubscriberLaterBinding.js"
       >
@@ -592,7 +257,6 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/SMVSubscriberMessageBinding.js"
       >
@@ -608,7 +272,6 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/SMVSubscriberDataBinding.js"
       >
@@ -624,7 +287,6 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/SMVSubscriberLaterBinding.js"
       >
@@ -640,7 +302,6 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/Communication.js"
       >
@@ -656,7 +317,6 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/Protocol104.js"
       >
@@ -672,7 +332,6 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/Templates.js"
       >
@@ -688,7 +347,6 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/Publisher.js"
       >
@@ -704,7 +362,6 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/Cleanup.js"
       >
@@ -743,7 +400,6 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/OpenProject.js"
       >
@@ -759,7 +415,6 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/NewProject.js"
       >
@@ -775,7 +430,6 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/SaveProject.js"
       >
@@ -797,7 +451,6 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/validators/ValidateSchema.js"
       >
@@ -813,7 +466,6 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/validators/ValidateTemplates.js"
       >
@@ -835,7 +487,6 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/ImportIEDs.js"
       >
@@ -851,7 +502,6 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/VirtualTemplateIED.js"
       >
@@ -867,7 +517,6 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/SubscriberInfo.js"
       >
@@ -883,7 +532,6 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/UpdateDescriptionABB.js"
       >
@@ -899,7 +547,6 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/UpdateDescriptionSEL.js"
       >
@@ -915,7 +562,6 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/Merge.js"
       >
@@ -931,7 +577,6 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/UpdateSubstation.js"
       >
@@ -947,7 +592,6 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/CompareIED.js"
       >
@@ -963,7 +607,6 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/ExportCommunication.js"
       >
@@ -985,7 +628,6 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/SclHistory.js"
       >
@@ -1001,7 +643,6 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/Help.js"
       >
@@ -1236,282 +877,12 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
         role="separator"
       >
       </li>
-      <mwc-list-item
-        aria-disabled="false"
-        class="top"
-        data-name="Open project"
-        graphic="icon"
-        iconid="folder_open"
-        mwc-list-item=""
-        tabindex="0"
-      >
-        <mwc-icon slot="graphic">
-          folder_open
-        </mwc-icon>
-        <span>
-          Open project
-        </span>
-      </mwc-list-item>
-      <oscd-plugind0b9863131b4146e class="menu plugin">
-      </oscd-plugind0b9863131b4146e>
-      <mwc-list-item
-        aria-disabled="false"
-        class="top"
-        data-name="New project"
-        graphic="icon"
-        iconid="create_new_folder"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          create_new_folder
-        </mwc-icon>
-        <span>
-          New project
-        </span>
-      </mwc-list-item>
-      <oscd-plugin9b4f3043bce10a59 class="menu plugin">
-      </oscd-plugin9b4f3043bce10a59>
-      <mwc-list-item
-        aria-disabled="true"
-        class="top"
-        data-name="Save project"
-        disabled=""
-        graphic="icon"
-        iconid="save"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          save
-        </mwc-icon>
-        <span>
-          Save project
-        </span>
-      </mwc-list-item>
-      <oscd-pluginf3b6b19f30371924 class="menu plugin">
-      </oscd-pluginf3b6b19f30371924>
       <li
         divider=""
         padded=""
         role="separator"
       >
       </li>
-      <mwc-list-item
-        aria-disabled="true"
-        class="validator"
-        data-name="Validate Schema"
-        disabled=""
-        graphic="icon"
-        iconid="rule_folder"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          rule_folder
-        </mwc-icon>
-        <span>
-          Validate Schema
-        </span>
-      </mwc-list-item>
-      <oscd-plugin8126aea23c207f03 class="plugin validator">
-      </oscd-plugin8126aea23c207f03>
-      <mwc-list-item
-        aria-disabled="true"
-        class="validator"
-        data-name="Validate Templates"
-        disabled=""
-        graphic="icon"
-        iconid="rule_folder"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          rule_folder
-        </mwc-icon>
-        <span>
-          Validate Templates
-        </span>
-      </mwc-list-item>
-      <oscd-pluginb7f7ea2822da160b class="plugin validator">
-      </oscd-pluginb7f7ea2822da160b>
-      <li
-        divider=""
-        padded=""
-        role="separator"
-      >
-      </li>
-      <mwc-list-item
-        aria-disabled="true"
-        class="middle"
-        data-name="Import IEDs"
-        disabled=""
-        graphic="icon"
-        iconid="snippet_folder"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          snippet_folder
-        </mwc-icon>
-        <span>
-          Import IEDs
-        </span>
-      </mwc-list-item>
-      <oscd-plugin164035de870e3ce2 class="menu plugin">
-      </oscd-plugin164035de870e3ce2>
-      <mwc-list-item
-        aria-disabled="true"
-        class="middle"
-        data-name="Create Virtual IED"
-        disabled=""
-        graphic="icon"
-        iconid="developer_board"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          developer_board
-        </mwc-icon>
-        <span>
-          Create Virtual IED
-        </span>
-      </mwc-list-item>
-      <oscd-pluginbde9abe11076fd6d class="menu plugin">
-      </oscd-pluginbde9abe11076fd6d>
-      <mwc-list-item
-        aria-disabled="true"
-        class="middle"
-        data-name="Subscriber Update"
-        disabled=""
-        graphic="icon"
-        iconid="play_circle"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          play_circle
-        </mwc-icon>
-        <span>
-          Subscriber Update
-        </span>
-      </mwc-list-item>
-      <oscd-plugin73c7200b70bd16a6 class="menu plugin">
-      </oscd-plugin73c7200b70bd16a6>
-      <mwc-list-item
-        aria-disabled="true"
-        class="middle"
-        data-name="Update desc (ABB)"
-        disabled=""
-        graphic="icon"
-        iconid="play_circle"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          play_circle
-        </mwc-icon>
-        <span>
-          Update desc (ABB)
-        </span>
-      </mwc-list-item>
-      <oscd-plugin3fe6c997d917fd88 class="menu plugin">
-      </oscd-plugin3fe6c997d917fd88>
-      <mwc-list-item
-        aria-disabled="true"
-        class="middle"
-        data-name="Update desc (SEL)"
-        disabled=""
-        graphic="icon"
-        iconid="play_circle"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          play_circle
-        </mwc-icon>
-        <span>
-          Update desc (SEL)
-        </span>
-      </mwc-list-item>
-      <oscd-plugine30e53d4ae0fcd74 class="menu plugin">
-      </oscd-plugine30e53d4ae0fcd74>
-      <mwc-list-item
-        aria-disabled="true"
-        class="middle"
-        data-name="Merge Project"
-        disabled=""
-        graphic="icon"
-        iconid="merge_type"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          merge_type
-        </mwc-icon>
-        <span>
-          Merge Project
-        </span>
-      </mwc-list-item>
-      <oscd-plugin96a38f00c3583f5a class="menu plugin">
-      </oscd-plugin96a38f00c3583f5a>
-      <mwc-list-item
-        aria-disabled="true"
-        class="middle"
-        data-name="Update Substation"
-        disabled=""
-        graphic="icon"
-        iconid="merge_type"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          merge_type
-        </mwc-icon>
-        <span>
-          Update Substation
-        </span>
-      </mwc-list-item>
-      <oscd-plugind42cb104caa5b137 class="menu plugin">
-      </oscd-plugind42cb104caa5b137>
-      <mwc-list-item
-        aria-disabled="true"
-        class="middle"
-        data-name="Compare IED"
-        disabled=""
-        graphic="icon"
-        iconid="compare_arrows"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          compare_arrows
-        </mwc-icon>
-        <span>
-          Compare IED
-        </span>
-      </mwc-list-item>
-      <oscd-plugin531256cb341ab97e class="menu plugin">
-      </oscd-plugin531256cb341ab97e>
-      <mwc-list-item
-        aria-disabled="true"
-        class="middle"
-        data-name="Export Communication Section"
-        disabled=""
-        graphic="icon"
-        iconid="sim_card_download"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          sim_card_download
-        </mwc-icon>
-        <span>
-          Export Communication Section
-        </span>
-      </mwc-list-item>
-      <oscd-plugin49d0a50efb77ac18 class="menu plugin">
-      </oscd-plugin49d0a50efb77ac18>
       <li
         divider=""
         padded=""
@@ -1525,7 +896,7 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
         graphic="icon"
         iconid="settings"
         mwc-list-item=""
-        tabindex="-1"
+        tabindex="0"
       >
         <mwc-icon slot="graphic">
           settings
@@ -1534,49 +905,6 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
           Settings
         </span>
       </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="true"
-        class="bottom"
-        data-name="Show SCL History"
-        disabled=""
-        graphic="icon"
-        iconid="history_toggle_off"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          history_toggle_off
-        </mwc-icon>
-        <span>
-          Show SCL History
-        </span>
-      </mwc-list-item>
-      <oscd-plugin70e8eaeb84bf47f6 class="menu plugin">
-      </oscd-plugin70e8eaeb84bf47f6>
-      <mwc-list-item
-        aria-disabled="false"
-        class="bottom"
-        data-name="Help"
-        graphic="icon"
-        iconid="help"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          help
-        </mwc-icon>
-        <span>
-          Help
-        </span>
-      </mwc-list-item>
-      <oscd-plugin6589bc97026c833d class="menu plugin">
-      </oscd-plugin6589bc97026c833d>
-      <li
-        divider=""
-        padded=""
-        role="separator"
-      >
-      </li>
       <mwc-list-item
         aria-disabled="false"
         class="static"
@@ -1596,22 +924,6 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
     </mwc-list>
   </mwc-drawer>
   <div class="landing">
-    <mwc-icon-button
-      class="landing_icon"
-      icon="folder_open"
-    >
-      <div class="landing_label">
-        Open project
-      </div>
-    </mwc-icon-button>
-    <mwc-icon-button
-      class="landing_icon"
-      icon="create_new_folder"
-    >
-      <div class="landing_label">
-        New project
-      </div>
-    </mwc-icon-button>
   </div>
   <mwc-dialog
     heading="Plug-ins"
@@ -1650,7 +962,6 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="0"
         value="http://localhost:8000/plugins/src/editors/IED.js"
       >
@@ -1666,7 +977,6 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/Substation.js"
       >
@@ -1682,7 +992,6 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/SingleLineDiagram.js"
       >
@@ -1698,7 +1007,6 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/GooseSubscriberMessageBinding.js"
       >
@@ -1714,7 +1022,6 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/GooseSubscriberDataBinding.js"
       >
@@ -1730,7 +1037,6 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/GooseSubscriberLaterBinding.js"
       >
@@ -1746,7 +1052,6 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/SMVSubscriberMessageBinding.js"
       >
@@ -1762,7 +1067,6 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/SMVSubscriberDataBinding.js"
       >
@@ -1778,7 +1082,6 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/SMVSubscriberLaterBinding.js"
       >
@@ -1794,7 +1097,6 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/Communication.js"
       >
@@ -1810,7 +1112,6 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/Protocol104.js"
       >
@@ -1826,7 +1127,6 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/Templates.js"
       >
@@ -1842,7 +1142,6 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/Publisher.js"
       >
@@ -1858,7 +1157,6 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/Cleanup.js"
       >
@@ -1897,7 +1195,6 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/OpenProject.js"
       >
@@ -1913,7 +1210,6 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/NewProject.js"
       >
@@ -1929,7 +1225,6 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/SaveProject.js"
       >
@@ -1951,7 +1246,6 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/validators/ValidateSchema.js"
       >
@@ -1967,7 +1261,6 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/validators/ValidateTemplates.js"
       >
@@ -1989,7 +1282,6 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/ImportIEDs.js"
       >
@@ -2005,7 +1297,6 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/VirtualTemplateIED.js"
       >
@@ -2021,7 +1312,6 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/SubscriberInfo.js"
       >
@@ -2037,7 +1327,6 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/UpdateDescriptionABB.js"
       >
@@ -2053,7 +1342,6 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/UpdateDescriptionSEL.js"
       >
@@ -2069,7 +1357,6 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/Merge.js"
       >
@@ -2085,7 +1372,6 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/UpdateSubstation.js"
       >
@@ -2101,7 +1387,6 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/CompareIED.js"
       >
@@ -2117,7 +1402,6 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/ExportCommunication.js"
       >
@@ -2139,7 +1423,6 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/SclHistory.js"
       >
@@ -2155,7 +1438,6 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/Help.js"
       >
@@ -2390,282 +1672,12 @@ snapshots["open-scd layout looks like its snapshot"] =
         role="separator"
       >
       </li>
-      <mwc-list-item
-        aria-disabled="false"
-        class="top"
-        data-name="Open project"
-        graphic="icon"
-        iconid="folder_open"
-        mwc-list-item=""
-        tabindex="0"
-      >
-        <mwc-icon slot="graphic">
-          folder_open
-        </mwc-icon>
-        <span>
-          Open project
-        </span>
-      </mwc-list-item>
-      <oscd-plugind0b9863131b4146e class="menu plugin">
-      </oscd-plugind0b9863131b4146e>
-      <mwc-list-item
-        aria-disabled="false"
-        class="top"
-        data-name="New project"
-        graphic="icon"
-        iconid="create_new_folder"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          create_new_folder
-        </mwc-icon>
-        <span>
-          New project
-        </span>
-      </mwc-list-item>
-      <oscd-plugin9b4f3043bce10a59 class="menu plugin">
-      </oscd-plugin9b4f3043bce10a59>
-      <mwc-list-item
-        aria-disabled="true"
-        class="top"
-        data-name="Save project"
-        disabled=""
-        graphic="icon"
-        iconid="save"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          save
-        </mwc-icon>
-        <span>
-          Save project
-        </span>
-      </mwc-list-item>
-      <oscd-pluginf3b6b19f30371924 class="menu plugin">
-      </oscd-pluginf3b6b19f30371924>
       <li
         divider=""
         padded=""
         role="separator"
       >
       </li>
-      <mwc-list-item
-        aria-disabled="true"
-        class="validator"
-        data-name="Validate Schema"
-        disabled=""
-        graphic="icon"
-        iconid="rule_folder"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          rule_folder
-        </mwc-icon>
-        <span>
-          Validate Schema
-        </span>
-      </mwc-list-item>
-      <oscd-plugin8126aea23c207f03 class="plugin validator">
-      </oscd-plugin8126aea23c207f03>
-      <mwc-list-item
-        aria-disabled="true"
-        class="validator"
-        data-name="Validate Templates"
-        disabled=""
-        graphic="icon"
-        iconid="rule_folder"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          rule_folder
-        </mwc-icon>
-        <span>
-          Validate Templates
-        </span>
-      </mwc-list-item>
-      <oscd-pluginb7f7ea2822da160b class="plugin validator">
-      </oscd-pluginb7f7ea2822da160b>
-      <li
-        divider=""
-        padded=""
-        role="separator"
-      >
-      </li>
-      <mwc-list-item
-        aria-disabled="true"
-        class="middle"
-        data-name="Import IEDs"
-        disabled=""
-        graphic="icon"
-        iconid="snippet_folder"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          snippet_folder
-        </mwc-icon>
-        <span>
-          Import IEDs
-        </span>
-      </mwc-list-item>
-      <oscd-plugin164035de870e3ce2 class="menu plugin">
-      </oscd-plugin164035de870e3ce2>
-      <mwc-list-item
-        aria-disabled="true"
-        class="middle"
-        data-name="Create Virtual IED"
-        disabled=""
-        graphic="icon"
-        iconid="developer_board"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          developer_board
-        </mwc-icon>
-        <span>
-          Create Virtual IED
-        </span>
-      </mwc-list-item>
-      <oscd-pluginbde9abe11076fd6d class="menu plugin">
-      </oscd-pluginbde9abe11076fd6d>
-      <mwc-list-item
-        aria-disabled="true"
-        class="middle"
-        data-name="Subscriber Update"
-        disabled=""
-        graphic="icon"
-        iconid="play_circle"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          play_circle
-        </mwc-icon>
-        <span>
-          Subscriber Update
-        </span>
-      </mwc-list-item>
-      <oscd-plugin73c7200b70bd16a6 class="menu plugin">
-      </oscd-plugin73c7200b70bd16a6>
-      <mwc-list-item
-        aria-disabled="true"
-        class="middle"
-        data-name="Update desc (ABB)"
-        disabled=""
-        graphic="icon"
-        iconid="play_circle"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          play_circle
-        </mwc-icon>
-        <span>
-          Update desc (ABB)
-        </span>
-      </mwc-list-item>
-      <oscd-plugin3fe6c997d917fd88 class="menu plugin">
-      </oscd-plugin3fe6c997d917fd88>
-      <mwc-list-item
-        aria-disabled="true"
-        class="middle"
-        data-name="Update desc (SEL)"
-        disabled=""
-        graphic="icon"
-        iconid="play_circle"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          play_circle
-        </mwc-icon>
-        <span>
-          Update desc (SEL)
-        </span>
-      </mwc-list-item>
-      <oscd-plugine30e53d4ae0fcd74 class="menu plugin">
-      </oscd-plugine30e53d4ae0fcd74>
-      <mwc-list-item
-        aria-disabled="true"
-        class="middle"
-        data-name="Merge Project"
-        disabled=""
-        graphic="icon"
-        iconid="merge_type"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          merge_type
-        </mwc-icon>
-        <span>
-          Merge Project
-        </span>
-      </mwc-list-item>
-      <oscd-plugin96a38f00c3583f5a class="menu plugin">
-      </oscd-plugin96a38f00c3583f5a>
-      <mwc-list-item
-        aria-disabled="true"
-        class="middle"
-        data-name="Update Substation"
-        disabled=""
-        graphic="icon"
-        iconid="merge_type"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          merge_type
-        </mwc-icon>
-        <span>
-          Update Substation
-        </span>
-      </mwc-list-item>
-      <oscd-plugind42cb104caa5b137 class="menu plugin">
-      </oscd-plugind42cb104caa5b137>
-      <mwc-list-item
-        aria-disabled="true"
-        class="middle"
-        data-name="Compare IED"
-        disabled=""
-        graphic="icon"
-        iconid="compare_arrows"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          compare_arrows
-        </mwc-icon>
-        <span>
-          Compare IED
-        </span>
-      </mwc-list-item>
-      <oscd-plugin531256cb341ab97e class="menu plugin">
-      </oscd-plugin531256cb341ab97e>
-      <mwc-list-item
-        aria-disabled="true"
-        class="middle"
-        data-name="Export Communication Section"
-        disabled=""
-        graphic="icon"
-        iconid="sim_card_download"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          sim_card_download
-        </mwc-icon>
-        <span>
-          Export Communication Section
-        </span>
-      </mwc-list-item>
-      <oscd-plugin49d0a50efb77ac18 class="menu plugin">
-      </oscd-plugin49d0a50efb77ac18>
       <li
         divider=""
         padded=""
@@ -2679,7 +1691,7 @@ snapshots["open-scd layout looks like its snapshot"] =
         graphic="icon"
         iconid="settings"
         mwc-list-item=""
-        tabindex="-1"
+        tabindex="0"
       >
         <mwc-icon slot="graphic">
           settings
@@ -2688,49 +1700,6 @@ snapshots["open-scd layout looks like its snapshot"] =
           Settings
         </span>
       </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="true"
-        class="bottom"
-        data-name="Show SCL History"
-        disabled=""
-        graphic="icon"
-        iconid="history_toggle_off"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          history_toggle_off
-        </mwc-icon>
-        <span>
-          Show SCL History
-        </span>
-      </mwc-list-item>
-      <oscd-plugin70e8eaeb84bf47f6 class="menu plugin">
-      </oscd-plugin70e8eaeb84bf47f6>
-      <mwc-list-item
-        aria-disabled="false"
-        class="bottom"
-        data-name="Help"
-        graphic="icon"
-        iconid="help"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          help
-        </mwc-icon>
-        <span>
-          Help
-        </span>
-      </mwc-list-item>
-      <oscd-plugin6589bc97026c833d class="menu plugin">
-      </oscd-plugin6589bc97026c833d>
-      <li
-        divider=""
-        padded=""
-        role="separator"
-      >
-      </li>
       <mwc-list-item
         aria-disabled="false"
         class="static"
@@ -2750,22 +1719,6 @@ snapshots["open-scd layout looks like its snapshot"] =
     </mwc-list>
   </mwc-drawer>
   <div class="landing">
-    <mwc-icon-button
-      class="landing_icon"
-      icon="folder_open"
-    >
-      <div class="landing_label">
-        Open project
-      </div>
-    </mwc-icon-button>
-    <mwc-icon-button
-      class="landing_icon"
-      icon="create_new_folder"
-    >
-      <div class="landing_label">
-        New project
-      </div>
-    </mwc-icon-button>
   </div>
   <mwc-dialog
     heading="Plug-ins"
@@ -2804,7 +1757,6 @@ snapshots["open-scd layout looks like its snapshot"] =
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="0"
         value="http://localhost:8000/plugins/src/editors/IED.js"
       >
@@ -2820,7 +1772,6 @@ snapshots["open-scd layout looks like its snapshot"] =
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/Substation.js"
       >
@@ -2836,7 +1787,6 @@ snapshots["open-scd layout looks like its snapshot"] =
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/SingleLineDiagram.js"
       >
@@ -2852,7 +1802,6 @@ snapshots["open-scd layout looks like its snapshot"] =
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/GooseSubscriberMessageBinding.js"
       >
@@ -2868,7 +1817,6 @@ snapshots["open-scd layout looks like its snapshot"] =
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/GooseSubscriberDataBinding.js"
       >
@@ -2884,7 +1832,6 @@ snapshots["open-scd layout looks like its snapshot"] =
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/GooseSubscriberLaterBinding.js"
       >
@@ -2900,7 +1847,6 @@ snapshots["open-scd layout looks like its snapshot"] =
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/SMVSubscriberMessageBinding.js"
       >
@@ -2916,7 +1862,6 @@ snapshots["open-scd layout looks like its snapshot"] =
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/SMVSubscriberDataBinding.js"
       >
@@ -2932,7 +1877,6 @@ snapshots["open-scd layout looks like its snapshot"] =
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/SMVSubscriberLaterBinding.js"
       >
@@ -2948,7 +1892,6 @@ snapshots["open-scd layout looks like its snapshot"] =
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/Communication.js"
       >
@@ -2964,7 +1907,6 @@ snapshots["open-scd layout looks like its snapshot"] =
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/Protocol104.js"
       >
@@ -2980,7 +1922,6 @@ snapshots["open-scd layout looks like its snapshot"] =
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/Templates.js"
       >
@@ -2996,7 +1937,6 @@ snapshots["open-scd layout looks like its snapshot"] =
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/Publisher.js"
       >
@@ -3012,7 +1952,6 @@ snapshots["open-scd layout looks like its snapshot"] =
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/editors/Cleanup.js"
       >
@@ -3051,7 +1990,6 @@ snapshots["open-scd layout looks like its snapshot"] =
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/OpenProject.js"
       >
@@ -3067,7 +2005,6 @@ snapshots["open-scd layout looks like its snapshot"] =
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/NewProject.js"
       >
@@ -3083,7 +2020,6 @@ snapshots["open-scd layout looks like its snapshot"] =
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/SaveProject.js"
       >
@@ -3105,7 +2041,6 @@ snapshots["open-scd layout looks like its snapshot"] =
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/validators/ValidateSchema.js"
       >
@@ -3121,7 +2056,6 @@ snapshots["open-scd layout looks like its snapshot"] =
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/validators/ValidateTemplates.js"
       >
@@ -3143,7 +2077,6 @@ snapshots["open-scd layout looks like its snapshot"] =
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/ImportIEDs.js"
       >
@@ -3159,7 +2092,6 @@ snapshots["open-scd layout looks like its snapshot"] =
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/VirtualTemplateIED.js"
       >
@@ -3175,7 +2107,6 @@ snapshots["open-scd layout looks like its snapshot"] =
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/SubscriberInfo.js"
       >
@@ -3191,7 +2122,6 @@ snapshots["open-scd layout looks like its snapshot"] =
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/UpdateDescriptionABB.js"
       >
@@ -3207,7 +2137,6 @@ snapshots["open-scd layout looks like its snapshot"] =
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/UpdateDescriptionSEL.js"
       >
@@ -3223,7 +2152,6 @@ snapshots["open-scd layout looks like its snapshot"] =
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/Merge.js"
       >
@@ -3239,7 +2167,6 @@ snapshots["open-scd layout looks like its snapshot"] =
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/UpdateSubstation.js"
       >
@@ -3255,7 +2182,6 @@ snapshots["open-scd layout looks like its snapshot"] =
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/CompareIED.js"
       >
@@ -3271,7 +2197,6 @@ snapshots["open-scd layout looks like its snapshot"] =
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/ExportCommunication.js"
       >
@@ -3293,7 +2218,6 @@ snapshots["open-scd layout looks like its snapshot"] =
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/SclHistory.js"
       >
@@ -3309,7 +2233,6 @@ snapshots["open-scd layout looks like its snapshot"] =
         hasmeta=""
         left=""
         mwc-list-item=""
-        selected=""
         tabindex="-1"
         value="http://localhost:8000/plugins/src/menu/Help.js"
       >

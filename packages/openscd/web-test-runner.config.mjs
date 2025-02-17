@@ -18,7 +18,7 @@ export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
       product: 'chromium',
       launchOptions: {
         headless: true,
-        devtools: true,
+        devtools: false,
       }
     }),
     // playwrightLauncher({ product: 'firefox' }),

@@ -254,7 +254,7 @@ export class OpenSCD extends LitElement {
 
   private resetPlugins(): void {
     this.storePlugins(
-      (builtinPlugins as Plugin[]).concat(this.parsedPlugins).map(plugin => {
+      (this.getBuiltInPlugins() as Plugin[]).concat(this.parsedPlugins).map(plugin => {
         return {
           ...plugin,
           installed: plugin.default ?? false,
@@ -316,7 +316,7 @@ export class OpenSCD extends LitElement {
       const isBuiltIn = !plugin?.official
       if (!isBuiltIn){ return plugin };
 
-      const builtInPlugin = [...builtinPlugins, ...this.parsedPlugins]
+      const builtInPlugin = [...this.getBuiltInPlugins(), ...this.parsedPlugins]
         .find(p => p.src === plugin.src);
 
         return <Plugin>{
@@ -367,14 +367,14 @@ export class OpenSCD extends LitElement {
     const localPluginConfigs = this.getPluginConfigsFromLocalStorage()
 
     const overwritesOfBultInPlugins = localPluginConfigs.filter((p) => {
-      return builtinPlugins.some(b => b.src === p.src)
+      return this.getBuiltInPlugins().some(b => b.src === p.src)
     })
 
     const userInstalledPlugins = localPluginConfigs.filter((p) => {
-      return !builtinPlugins.some(b => b.src === p.src)
+      return !this.getBuiltInPlugins().some(b => b.src === p.src)
     })
 
-    const mergedBuiltInPlugins = builtinPlugins.map((builtInPlugin) => {
+    const mergedBuiltInPlugins = this.getBuiltInPlugins().map((builtInPlugin) => {
       const noopOverwrite = {}
       const overwrite = overwritesOfBultInPlugins
         .find(p => p.src === builtInPlugin.src)
@@ -383,7 +383,6 @@ export class OpenSCD extends LitElement {
       return {
         ...builtInPlugin,
         ...overwrite,
-        installed: true, // TODO: is this correct? should we decide it based on something?
       }
     })
 
@@ -402,6 +401,10 @@ export class OpenSCD extends LitElement {
     const newPlugins: Omit<Plugin, 'content'>[] = this.storedPlugins;
     newPlugins.push(plugin);
     this.storePlugins(newPlugins);
+  }
+
+  protected getBuiltInPlugins(): CorePlugin[] {
+    return builtinPlugins as CorePlugin[]
   }
 
   private addContent(plugin: Omit<Plugin, 'content'>): Plugin {
