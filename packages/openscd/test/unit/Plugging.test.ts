@@ -450,7 +450,7 @@ describe('OpenSCD-Plugin', () => {
             // I could not figure how to compare the two lists
             // I've tried to use chai's deep.members and deep.include.members
             // and others but non of them worked.
-            const keys = ["name", "kind", "src", "active"]
+            const keys = ["name", "kind", "src", "active", "activeByDefault"]
             const storedPlugins = openscd.layout.plugins.map((plugin) => {
               Object.keys(plugin).forEach((key) => {
                 if(!keys.includes(key)) {
@@ -531,7 +531,6 @@ describe("Bugs ", async () => {
 
   })
 })
-
 
 
 export function generateEditorPluginConfig( overwrite: Partial<Plugin> = {}): Plugin{
@@ -870,12 +869,6 @@ function getCutomPluginNameField(openscd: MockOpenSCD): TextField {
   return openscd.layout.pluginDownloadUI.pluginNameInput
 }
 
-function getPluginUIAddCustomPluginButton(openscd: MockOpenSCD): HTMLElement {
-  const addCustomPluginButton = <HTMLElement>(
-    openscd.layout.pluginUI.querySelector('mwc-button[slot="primaryAction"]')
-  );
-  return addCustomPluginButton
-}
 
 function getCustomPluginAddButton(openscd: MockOpenSCD): HTMLElement {
   return openscd.layout.pluginDownloadUI.addButton
