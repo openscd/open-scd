@@ -484,7 +484,7 @@ describe("Bugs ", async () => {
     ]
     const doc = await fetchDoc()
     const openscd = await renderMockOpenSCD(doc, "testDoc", plugins)
-    expect(openscd.layout.plugins).to.have.lengthOf(3)
+    expect(openscd.layout.plugins).to.have.lengthOf(3, getPluginNames(openscd.layout.plugins).join(", "))
 
     openscd.layout.pluginUI.show();
     openscd.layout.pluginDownloadUI.show();
