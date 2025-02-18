@@ -13,6 +13,7 @@ async function renderMockOpenSCD(
   docName: string = "testDoc",
   builtInPlugins: Plugin[] = builtinPlugins,
 ): Promise<MockOpenSCD>{
+
   const mockHTML = html`<mock-open-scd .mockPlugins=${builtInPlugins} .doc=${doc} .docName=${docName}></mock-open-scd>`
   const openscd = (await fixture(mockHTML)) as MockOpenSCD;
   await openscd.updateComplete;
@@ -484,6 +485,8 @@ describe("Bugs ", async () => {
     ]
     const doc = await fetchDoc()
     const openscd = await renderMockOpenSCD(doc, "testDoc", plugins)
+    // @ts-ignore: we use the private function to arrange the scenario
+    openscd.storePlugins(plugins)
     expect(openscd.layout.plugins).to.have.lengthOf(3, getPluginNames(openscd.layout.plugins).join(", "))
 
     openscd.layout.pluginUI.show();
