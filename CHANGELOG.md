@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.37.1](https://github.com/openscd/open-scd/compare/v0.37.0...v0.37.1) (2025-02-04)
+
+
+### Features
+
+* Programatic Plugin Activation ([#1611](https://github.com/openscd/open-scd/issues/1611)) ([d3b2a0a](https://github.com/openscd/open-scd/commit/d3b2a0a7b2d08d0ce5484567ebfe6c6d4e548c5e))
+
 ## [0.37.0](https://github.com/openscd/open-scd/compare/v0.36.0...v0.37.0) (2025-01-27)
 
 
