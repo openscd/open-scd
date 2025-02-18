@@ -133,10 +133,10 @@ export const officialPlugins = [
         position: 'top',
     },
     {
-        name: 'Plugin Store',
+        name: 'Plugin Store (Beta)',
         src: 'https://sprinteins.github.io/oscd-plugin-store/index.js',
-        icon: 'create_new_folder',
-        activeByDefault: true,
+        icon: 'shopping_bag',
+        activeByDefault: false,
         kind: 'menu',
         requireDoc: false,
         position: 'bottom',
