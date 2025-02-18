@@ -305,24 +305,6 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
         </span>
       </mwc-list-item>
       <mwc-list-item
-        aria-disabled="false"
-        class="bottom"
-        data-name="Plugin Store"
-        graphic="icon"
-        iconid="create_new_folder"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          create_new_folder
-        </mwc-icon>
-        <span>
-          Plugin Store
-        </span>
-      </mwc-list-item>
-      <oscd-plugin4df09ef1590edfb6 class="menu plugin">
-      </oscd-plugin4df09ef1590edfb6>
-      <mwc-list-item
         aria-disabled="true"
         class="bottom"
         data-name="Show SCL History"
@@ -697,24 +679,6 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
         </span>
       </mwc-list-item>
       <mwc-list-item
-        aria-disabled="false"
-        class="bottom"
-        data-name="Plugin Store"
-        graphic="icon"
-        iconid="create_new_folder"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          create_new_folder
-        </mwc-icon>
-        <span>
-          Plugin Store
-        </span>
-      </mwc-list-item>
-      <oscd-plugin4df09ef1590edfb6 class="menu plugin">
-      </oscd-plugin4df09ef1590edfb6>
-      <mwc-list-item
         aria-disabled="true"
         class="bottom"
         data-name="Show SCL History"
@@ -1088,24 +1052,6 @@ snapshots["open-scd layout looks like its snapshot"] =
           Settings
         </span>
       </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        class="bottom"
-        data-name="Plugin Store"
-        graphic="icon"
-        iconid="create_new_folder"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <mwc-icon slot="graphic">
-          create_new_folder
-        </mwc-icon>
-        <span>
-          Plugin Store
-        </span>
-      </mwc-list-item>
-      <oscd-plugin4df09ef1590edfb6 class="menu plugin">
-      </oscd-plugin4df09ef1590edfb6>
       <mwc-list-item
         aria-disabled="true"
         class="bottom"
