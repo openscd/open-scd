@@ -487,6 +487,8 @@ describe("Bugs ", async () => {
     const openscd = await renderMockOpenSCD(doc, "testDoc", plugins)
     // @ts-ignore: we use the private function to arrange the scenario
     openscd.storePlugins(plugins)
+    await openscd.requestUpdate()
+    await openscd.updateComplete
     expect(openscd.layout.plugins).to.have.lengthOf(3, getPluginNames(openscd.layout.plugins).join(", "))
 
     openscd.layout.pluginUI.show();
