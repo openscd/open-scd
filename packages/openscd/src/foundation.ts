@@ -338,7 +338,7 @@ function lNodeIdentity(e: Element): string {
     'lnType',
   ].map(name => e.getAttribute(name));
   if (iedName === 'None')
-    return `${identity(e.parentElement)}>(${lnClass} ${lnType})`;
+    return `${identity(e.parentElement)}>(${lnClass} ${lnType} ${lnInst})`;
   return `${iedName} ${ldInst || '(Client)'}/${prefix ?? ''} ${lnClass} ${
     lnInst ?? ''
   }`;
@@ -347,7 +347,7 @@ function lNodeIdentity(e: Element): string {
 function lNodeSelector(tagName: SCLTag, identity: string): string {
   if (identity.endsWith(')')) {
     const [parentIdentity, childIdentity] = pathParts(identity);
-    const [lnClass, lnType] = childIdentity
+    const [lnClass, lnType, lnInst] = childIdentity
       .substring(1, childIdentity.length - 1)
       .split(' ');
 
@@ -360,7 +360,7 @@ function lNodeSelector(tagName: SCLTag, identity: string): string {
     return crossProduct(
       parentSelectors,
       ['>'],
-      [`${tagName}[iedName="None"][lnClass="${lnClass}"][lnType="${lnType}"]`]
+      [`${tagName}[iedName="None"][lnClass="${lnClass}"][lnType="${lnType}"][lnInst="${lnInst}"]`]
     )
       .map(strings => strings.join(''))
       .join(',');
