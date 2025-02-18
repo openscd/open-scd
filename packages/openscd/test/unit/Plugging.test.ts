@@ -476,6 +476,7 @@ describe("Bugs ", async () => {
 
 
     // ARRANGE
+    localStorage.clear()
     const plugins = [
       generateEditorPluginConfig({name: "editor-1"}),
       generateMenuPluginConfig({name: "menu-1"}),

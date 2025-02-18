@@ -118,12 +118,170 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       </mwc-list-item>
       <oscd-plugin9b4f3043bce10a59 class="menu plugin">
       </oscd-plugin9b4f3043bce10a59>
+      <mwc-list-item
+        aria-disabled="true"
+        class="top"
+        data-name="Save project"
+        disabled=""
+        graphic="icon"
+        iconid="save"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          save
+        </mwc-icon>
+        <span>
+          Save project
+        </span>
+      </mwc-list-item>
+      <oscd-pluginf3b6b19f30371924 class="menu plugin">
+      </oscd-pluginf3b6b19f30371924>
       <li
         divider=""
         padded=""
         role="separator"
       >
       </li>
+      <mwc-list-item
+        aria-disabled="true"
+        class="validator"
+        data-name="Validate Schema"
+        disabled=""
+        graphic="icon"
+        iconid="rule_folder"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          rule_folder
+        </mwc-icon>
+        <span>
+          Validate Schema
+        </span>
+      </mwc-list-item>
+      <oscd-plugin8126aea23c207f03 class="plugin validator">
+      </oscd-plugin8126aea23c207f03>
+      <mwc-list-item
+        aria-disabled="true"
+        class="validator"
+        data-name="Validate Templates"
+        disabled=""
+        graphic="icon"
+        iconid="rule_folder"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          rule_folder
+        </mwc-icon>
+        <span>
+          Validate Templates
+        </span>
+      </mwc-list-item>
+      <oscd-pluginb7f7ea2822da160b class="plugin validator">
+      </oscd-pluginb7f7ea2822da160b>
+      <li
+        divider=""
+        padded=""
+        role="separator"
+      >
+      </li>
+      <mwc-list-item
+        aria-disabled="true"
+        class="middle"
+        data-name="Import IEDs"
+        disabled=""
+        graphic="icon"
+        iconid="snippet_folder"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          snippet_folder
+        </mwc-icon>
+        <span>
+          Import IEDs
+        </span>
+      </mwc-list-item>
+      <oscd-plugin164035de870e3ce2 class="menu plugin">
+      </oscd-plugin164035de870e3ce2>
+      <mwc-list-item
+        aria-disabled="true"
+        class="middle"
+        data-name="Subscriber Update"
+        disabled=""
+        graphic="icon"
+        iconid="play_circle"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          play_circle
+        </mwc-icon>
+        <span>
+          Subscriber Update
+        </span>
+      </mwc-list-item>
+      <oscd-plugin73c7200b70bd16a6 class="menu plugin">
+      </oscd-plugin73c7200b70bd16a6>
+      <mwc-list-item
+        aria-disabled="true"
+        class="middle"
+        data-name="Merge Project"
+        disabled=""
+        graphic="icon"
+        iconid="merge_type"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          merge_type
+        </mwc-icon>
+        <span>
+          Merge Project
+        </span>
+      </mwc-list-item>
+      <oscd-plugin96a38f00c3583f5a class="menu plugin">
+      </oscd-plugin96a38f00c3583f5a>
+      <mwc-list-item
+        aria-disabled="true"
+        class="middle"
+        data-name="Update Substation"
+        disabled=""
+        graphic="icon"
+        iconid="merge_type"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          merge_type
+        </mwc-icon>
+        <span>
+          Update Substation
+        </span>
+      </mwc-list-item>
+      <oscd-plugind42cb104caa5b137 class="menu plugin">
+      </oscd-plugind42cb104caa5b137>
+      <mwc-list-item
+        aria-disabled="true"
+        class="middle"
+        data-name="Compare IED"
+        disabled=""
+        graphic="icon"
+        iconid="compare_arrows"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          compare_arrows
+        </mwc-icon>
+        <span>
+          Compare IED
+        </span>
+      </mwc-list-item>
+      <oscd-plugin531256cb341ab97e class="menu plugin">
+      </oscd-plugin531256cb341ab97e>
       <li
         divider=""
         padded=""
@@ -164,6 +322,43 @@ snapshots["open-scd renders menu plugins passed down as props and it looks like 
       </mwc-list-item>
       <oscd-plugin4df09ef1590edfb6 class="menu plugin">
       </oscd-plugin4df09ef1590edfb6>
+      <mwc-list-item
+        aria-disabled="true"
+        class="bottom"
+        data-name="Show SCL History"
+        disabled=""
+        graphic="icon"
+        iconid="history_toggle_off"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          history_toggle_off
+        </mwc-icon>
+        <span>
+          Show SCL History
+        </span>
+      </mwc-list-item>
+      <oscd-plugin70e8eaeb84bf47f6 class="menu plugin">
+      </oscd-plugin70e8eaeb84bf47f6>
+      <mwc-list-item
+        aria-disabled="false"
+        class="bottom"
+        data-name="Help"
+        graphic="icon"
+        iconid="help"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          help
+        </mwc-icon>
+        <span>
+          Help
+        </span>
+      </mwc-list-item>
+      <oscd-plugin6589bc97026c833d class="menu plugin">
+      </oscd-plugin6589bc97026c833d>
       <li
         divider=""
         padded=""
@@ -315,12 +510,170 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       </mwc-list-item>
       <oscd-plugin9b4f3043bce10a59 class="menu plugin">
       </oscd-plugin9b4f3043bce10a59>
+      <mwc-list-item
+        aria-disabled="true"
+        class="top"
+        data-name="Save project"
+        disabled=""
+        graphic="icon"
+        iconid="save"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          save
+        </mwc-icon>
+        <span>
+          Save project
+        </span>
+      </mwc-list-item>
+      <oscd-pluginf3b6b19f30371924 class="menu plugin">
+      </oscd-pluginf3b6b19f30371924>
       <li
         divider=""
         padded=""
         role="separator"
       >
       </li>
+      <mwc-list-item
+        aria-disabled="true"
+        class="validator"
+        data-name="Validate Schema"
+        disabled=""
+        graphic="icon"
+        iconid="rule_folder"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          rule_folder
+        </mwc-icon>
+        <span>
+          Validate Schema
+        </span>
+      </mwc-list-item>
+      <oscd-plugin8126aea23c207f03 class="plugin validator">
+      </oscd-plugin8126aea23c207f03>
+      <mwc-list-item
+        aria-disabled="true"
+        class="validator"
+        data-name="Validate Templates"
+        disabled=""
+        graphic="icon"
+        iconid="rule_folder"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          rule_folder
+        </mwc-icon>
+        <span>
+          Validate Templates
+        </span>
+      </mwc-list-item>
+      <oscd-pluginb7f7ea2822da160b class="plugin validator">
+      </oscd-pluginb7f7ea2822da160b>
+      <li
+        divider=""
+        padded=""
+        role="separator"
+      >
+      </li>
+      <mwc-list-item
+        aria-disabled="true"
+        class="middle"
+        data-name="Import IEDs"
+        disabled=""
+        graphic="icon"
+        iconid="snippet_folder"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          snippet_folder
+        </mwc-icon>
+        <span>
+          Import IEDs
+        </span>
+      </mwc-list-item>
+      <oscd-plugin164035de870e3ce2 class="menu plugin">
+      </oscd-plugin164035de870e3ce2>
+      <mwc-list-item
+        aria-disabled="true"
+        class="middle"
+        data-name="Subscriber Update"
+        disabled=""
+        graphic="icon"
+        iconid="play_circle"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          play_circle
+        </mwc-icon>
+        <span>
+          Subscriber Update
+        </span>
+      </mwc-list-item>
+      <oscd-plugin73c7200b70bd16a6 class="menu plugin">
+      </oscd-plugin73c7200b70bd16a6>
+      <mwc-list-item
+        aria-disabled="true"
+        class="middle"
+        data-name="Merge Project"
+        disabled=""
+        graphic="icon"
+        iconid="merge_type"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          merge_type
+        </mwc-icon>
+        <span>
+          Merge Project
+        </span>
+      </mwc-list-item>
+      <oscd-plugin96a38f00c3583f5a class="menu plugin">
+      </oscd-plugin96a38f00c3583f5a>
+      <mwc-list-item
+        aria-disabled="true"
+        class="middle"
+        data-name="Update Substation"
+        disabled=""
+        graphic="icon"
+        iconid="merge_type"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          merge_type
+        </mwc-icon>
+        <span>
+          Update Substation
+        </span>
+      </mwc-list-item>
+      <oscd-plugind42cb104caa5b137 class="menu plugin">
+      </oscd-plugind42cb104caa5b137>
+      <mwc-list-item
+        aria-disabled="true"
+        class="middle"
+        data-name="Compare IED"
+        disabled=""
+        graphic="icon"
+        iconid="compare_arrows"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          compare_arrows
+        </mwc-icon>
+        <span>
+          Compare IED
+        </span>
+      </mwc-list-item>
+      <oscd-plugin531256cb341ab97e class="menu plugin">
+      </oscd-plugin531256cb341ab97e>
       <li
         divider=""
         padded=""
@@ -361,6 +714,43 @@ snapshots["open-scd renders editor plugins passed down as props and it looks lik
       </mwc-list-item>
       <oscd-plugin4df09ef1590edfb6 class="menu plugin">
       </oscd-plugin4df09ef1590edfb6>
+      <mwc-list-item
+        aria-disabled="true"
+        class="bottom"
+        data-name="Show SCL History"
+        disabled=""
+        graphic="icon"
+        iconid="history_toggle_off"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          history_toggle_off
+        </mwc-icon>
+        <span>
+          Show SCL History
+        </span>
+      </mwc-list-item>
+      <oscd-plugin70e8eaeb84bf47f6 class="menu plugin">
+      </oscd-plugin70e8eaeb84bf47f6>
+      <mwc-list-item
+        aria-disabled="false"
+        class="bottom"
+        data-name="Help"
+        graphic="icon"
+        iconid="help"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          help
+        </mwc-icon>
+        <span>
+          Help
+        </span>
+      </mwc-list-item>
+      <oscd-plugin6589bc97026c833d class="menu plugin">
+      </oscd-plugin6589bc97026c833d>
       <li
         divider=""
         padded=""
@@ -512,12 +902,170 @@ snapshots["open-scd layout looks like its snapshot"] =
       </mwc-list-item>
       <oscd-plugin9b4f3043bce10a59 class="menu plugin">
       </oscd-plugin9b4f3043bce10a59>
+      <mwc-list-item
+        aria-disabled="true"
+        class="top"
+        data-name="Save project"
+        disabled=""
+        graphic="icon"
+        iconid="save"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          save
+        </mwc-icon>
+        <span>
+          Save project
+        </span>
+      </mwc-list-item>
+      <oscd-pluginf3b6b19f30371924 class="menu plugin">
+      </oscd-pluginf3b6b19f30371924>
       <li
         divider=""
         padded=""
         role="separator"
       >
       </li>
+      <mwc-list-item
+        aria-disabled="true"
+        class="validator"
+        data-name="Validate Schema"
+        disabled=""
+        graphic="icon"
+        iconid="rule_folder"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          rule_folder
+        </mwc-icon>
+        <span>
+          Validate Schema
+        </span>
+      </mwc-list-item>
+      <oscd-plugin8126aea23c207f03 class="plugin validator">
+      </oscd-plugin8126aea23c207f03>
+      <mwc-list-item
+        aria-disabled="true"
+        class="validator"
+        data-name="Validate Templates"
+        disabled=""
+        graphic="icon"
+        iconid="rule_folder"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          rule_folder
+        </mwc-icon>
+        <span>
+          Validate Templates
+        </span>
+      </mwc-list-item>
+      <oscd-pluginb7f7ea2822da160b class="plugin validator">
+      </oscd-pluginb7f7ea2822da160b>
+      <li
+        divider=""
+        padded=""
+        role="separator"
+      >
+      </li>
+      <mwc-list-item
+        aria-disabled="true"
+        class="middle"
+        data-name="Import IEDs"
+        disabled=""
+        graphic="icon"
+        iconid="snippet_folder"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          snippet_folder
+        </mwc-icon>
+        <span>
+          Import IEDs
+        </span>
+      </mwc-list-item>
+      <oscd-plugin164035de870e3ce2 class="menu plugin">
+      </oscd-plugin164035de870e3ce2>
+      <mwc-list-item
+        aria-disabled="true"
+        class="middle"
+        data-name="Subscriber Update"
+        disabled=""
+        graphic="icon"
+        iconid="play_circle"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          play_circle
+        </mwc-icon>
+        <span>
+          Subscriber Update
+        </span>
+      </mwc-list-item>
+      <oscd-plugin73c7200b70bd16a6 class="menu plugin">
+      </oscd-plugin73c7200b70bd16a6>
+      <mwc-list-item
+        aria-disabled="true"
+        class="middle"
+        data-name="Merge Project"
+        disabled=""
+        graphic="icon"
+        iconid="merge_type"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          merge_type
+        </mwc-icon>
+        <span>
+          Merge Project
+        </span>
+      </mwc-list-item>
+      <oscd-plugin96a38f00c3583f5a class="menu plugin">
+      </oscd-plugin96a38f00c3583f5a>
+      <mwc-list-item
+        aria-disabled="true"
+        class="middle"
+        data-name="Update Substation"
+        disabled=""
+        graphic="icon"
+        iconid="merge_type"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          merge_type
+        </mwc-icon>
+        <span>
+          Update Substation
+        </span>
+      </mwc-list-item>
+      <oscd-plugind42cb104caa5b137 class="menu plugin">
+      </oscd-plugind42cb104caa5b137>
+      <mwc-list-item
+        aria-disabled="true"
+        class="middle"
+        data-name="Compare IED"
+        disabled=""
+        graphic="icon"
+        iconid="compare_arrows"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          compare_arrows
+        </mwc-icon>
+        <span>
+          Compare IED
+        </span>
+      </mwc-list-item>
+      <oscd-plugin531256cb341ab97e class="menu plugin">
+      </oscd-plugin531256cb341ab97e>
       <li
         divider=""
         padded=""
@@ -558,6 +1106,43 @@ snapshots["open-scd layout looks like its snapshot"] =
       </mwc-list-item>
       <oscd-plugin4df09ef1590edfb6 class="menu plugin">
       </oscd-plugin4df09ef1590edfb6>
+      <mwc-list-item
+        aria-disabled="true"
+        class="bottom"
+        data-name="Show SCL History"
+        disabled=""
+        graphic="icon"
+        iconid="history_toggle_off"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          history_toggle_off
+        </mwc-icon>
+        <span>
+          Show SCL History
+        </span>
+      </mwc-list-item>
+      <oscd-plugin70e8eaeb84bf47f6 class="menu plugin">
+      </oscd-plugin70e8eaeb84bf47f6>
+      <mwc-list-item
+        aria-disabled="false"
+        class="bottom"
+        data-name="Help"
+        graphic="icon"
+        iconid="help"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <mwc-icon slot="graphic">
+          help
+        </mwc-icon>
+        <span>
+          Help
+        </span>
+      </mwc-list-item>
+      <oscd-plugin6589bc97026c833d class="menu plugin">
+      </oscd-plugin6589bc97026c833d>
       <li
         divider=""
         padded=""
