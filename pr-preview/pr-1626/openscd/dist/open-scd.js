@@ -169,12 +169,10 @@ let OpenSCD = class OpenSCD extends LitElement {
     }
     removePlugin(name, kind) {
         const newPlugins = this.storedPlugins.filter(p => p.name !== name || p.kind !== kind);
-        // this.storePlugins(newPlugins);
         this.updateStoredPlugins(newPlugins);
     }
     addPlugin(plugin) {
         const newPlugins = [...this.storedPlugins, plugin];
-        // this.storePlugins(newPlugins);
         this.updateStoredPlugins(newPlugins);
     }
     /**
@@ -212,14 +210,6 @@ let OpenSCD = class OpenSCD extends LitElement {
             };
         });
         this.storePlugins(newPluginConfigs);
-        // this.storePlugins(
-        //   (this.getBuiltInPlugins() as Plugin[]).concat(this.parsedPlugins).map(plugin => {
-        //     return {
-        //       ...plugin,
-        //       installed: plugin.activeByDefault ?? false,
-        //     };
-        //   })
-        // );
     }
     get parsedPlugins() {
         const menuPlugins = this.plugins.menu.map((plugin) => {
@@ -257,7 +247,6 @@ let OpenSCD = class OpenSCD extends LitElement {
             }
             return this.addContent(plugin);
         });
-        // console.log("updateStoredPlugins::", {plugins})
         //
         // Merge built-in plugins
         //
@@ -310,20 +299,14 @@ let OpenSCD = class OpenSCD extends LitElement {
     }
     loadPlugins() {
         const localPluginConfigs = this.getPluginConfigsFromLocalStorage();
-        // console.log({localPluginConfigs})
         const overwritesOfBultInPlugins = localPluginConfigs.filter((p) => {
             return this.getBuiltInPlugins().some(b => b.src === p.src);
         });
-        // console.log({overwritesOfBultInPlugins})
         const userInstalledPlugins = localPluginConfigs.filter((p) => {
             return !this.getBuiltInPlugins().some(b => b.src === p.src);
         });
-        // console.log({userInstalledPlugins})
-        // console.log({builtinPlugins:this.getBuiltInPlugins()})
         const mergedBuiltInPlugins = this.getBuiltInPlugins().map((builtInPlugin) => {
-            const noopOverwrite = {};
             let overwrite = overwritesOfBultInPlugins.find(p => p.src === builtInPlugin.src);
-            // if(!overwrite) { overwrite = noopOverwrite }
             const mergedPlugin = {
                 ...builtInPlugin,
                 ...overwrite,
@@ -331,9 +314,7 @@ let OpenSCD = class OpenSCD extends LitElement {
             };
             return mergedPlugin;
         });
-        // console.log({mergedBuiltInPlugins})
         const mergedPlugins = [...mergedBuiltInPlugins, ...userInstalledPlugins];
-        // console.log({mergedPlugins})
         this.updateStoredPlugins(mergedPlugins);
     }
     async addExternalPlugin(plugin) {
