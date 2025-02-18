@@ -74,6 +74,7 @@ export class OpenSCD extends LitElement {
               <oscd-layout
                 @add-external-plugin=${this.handleAddExternalPlugin}
                 @oscd-configure-plugin=${this.handleConfigurationPluginEvent}
+                @set-plugins=${ (e: SetPluginsEvent) => this.setPlugins(e.detail.selectedPlugins) }
                 .host=${this}
                 .doc=${this.doc}
                 .docName=${this.docName}
@@ -185,9 +186,6 @@ export class OpenSCD extends LitElement {
 
     // TODO: let Lit handle the event listeners, move to render()
     this.addEventListener('reset-plugins', this.resetPlugins);
-    this.addEventListener('set-plugins', (e: SetPluginsEvent) => {
-      this.setPlugins(e.detail.indices);
-    });
     this.addEventListener(historyStateEvent, (e: CustomEvent<HistoryState>) => {
       this.historyState = e.detail;
       this.requestUpdate();
@@ -337,13 +335,11 @@ export class OpenSCD extends LitElement {
           ...plugin,
         };
     })
-    console.log("=calling storePlugins 1")
     this.storePlugins(mergedPlugins);
   }
 
   private storePlugins(plugins: Plugin[]) {
     this.storedPlugins = plugins
-    console.log("=store plugins", this.storedPlugins.map(p => `${p.name}:${p.active}`))
     const pluginConfigs = JSON.stringify(plugins.map(withoutContent))
     localStorage.setItem('plugins', pluginConfigs);
   }
@@ -367,15 +363,19 @@ export class OpenSCD extends LitElement {
     return docs;
   }
 
-  private setPlugins(indices: Set<number>) {
-    const newPlugins: Plugin[] = this.storedPlugins.map((plugin, index) => {
+  private setPlugins(selectedPlugins: Plugin[]) {
+
+    const newPlugins: Plugin[] = this.storedPlugins.map((storedPlugin) => {
+      const isSelected = selectedPlugins.some( (selectedPlugin) => {
+        return selectedPlugin.name === storedPlugin.name
+            && selectedPlugin.src === storedPlugin.src
+      })
       return {
-        ...plugin,
-        active: indices.has(index)
-      };
-    });
-    // console.log("setPlugins::", {newPlugins, indices})
-    console.log("=calling storePlugins 2")
+        ...storedPlugin,
+        active: isSelected
+      }
+    })
+
     this.updateStoredPlugins(newPlugins);
   }
 
@@ -549,16 +549,16 @@ export function newAddExternalPluginEvent(
 }
 
 export interface SetPluginsDetail {
-  indices: Set<number>;
+  selectedPlugins: Plugin[];
 }
 
 export type SetPluginsEvent = CustomEvent<SetPluginsDetail>;
 
-export function newSetPluginsEvent(indices: Set<number>): SetPluginsEvent {
+export function newSetPluginsEvent(selectedPlugins: Plugin[]): SetPluginsEvent {
   return new CustomEvent<SetPluginsDetail>('set-plugins', {
     bubbles: true,
     composed: true,
-    detail: { indices },
+    detail: { selectedPlugins },
   });
 }
 

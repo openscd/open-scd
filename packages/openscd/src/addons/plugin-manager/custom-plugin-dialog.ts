@@ -19,6 +19,7 @@ import {
   PluginKind
 } from "../../plugin.js";
 
+import type { Button } from '@material/mwc-button';
 import type { Dialog } from '@material/mwc-dialog';
 import { List } from '@material/mwc-list';
 import type { ListItem } from '@material/mwc-list/mwc-list-item';
@@ -43,6 +44,7 @@ export class OscdCustomPluginDialog extends LitElement {
   @query('#pluginKindList') pluginKindList!: List
   @query('#requireDoc') requireDoc!: Switch
   @query('#positionList') positionList!: Select
+  @query('#addButton') addButton!: Button
 
   render(): TemplateResult {
     return html`
@@ -64,15 +66,18 @@ export class OscdCustomPluginDialog extends LitElement {
               hasMeta
               selected
               left
-              >${get('plugins.editor')}<mwc-icon slot="meta"
-                >${pluginIcons['editor']}</mwc-icon
-              ></mwc-radio-list-item
             >
-            <mwc-radio-list-item value="menu" hasMeta left
-              >${get('plugins.menu')}<mwc-icon slot="meta"
-                >${pluginIcons['menu']}</mwc-icon
-              ></mwc-radio-list-item
-            >
+              ${get('plugins.editor')}
+              <mwc-icon slot="meta">
+                ${pluginIcons['editor']}
+              </mwc-icon>
+            </mwc-radio-list-item>
+            <mwc-radio-list-item value="menu" hasMeta left>
+              ${get('plugins.menu')}
+            <mwc-icon slot="meta">
+              ${pluginIcons['menu']}
+            </mwc-icon>
+            </mwc-radio-list-item>
             <div id="menudetails">
               <mwc-formfield
                 id="enabledefault"
@@ -80,14 +85,14 @@ export class OscdCustomPluginDialog extends LitElement {
               >
                 <mwc-switch id="requireDoc" checked></mwc-switch>
               </mwc-formfield>
-              <mwc-select id="menuPosition" value="middle" fixedMenuPosition
-                >${Object.values(menuPosition).map(
+              <mwc-select id="positionList" value="middle" fixedpositionList>
+                ${Object.values(menuPosition).map(
                   menutype =>
                     html`<mwc-list-item value="${menutype}"
                       >${get('plugins.' + menutype)}</mwc-list-item
                     >`
-                )}</mwc-select
-              >
+                )}
+              </mwc-select>
             </div>
             <style>
               #menudetails {
@@ -101,15 +106,16 @@ export class OscdCustomPluginDialog extends LitElement {
               #enabledefault {
                 padding-bottom: 20px;
               }
-              #menuPosition {
+              #positionList {
                 max-width: 250px;
               }
             </style>
-            <mwc-radio-list-item id="validator" value="validator" hasMeta left
-              >${get('plugins.validator')}<mwc-icon slot="meta"
-                >${pluginIcons['validator']}</mwc-icon
-              ></mwc-radio-list-item
-            >
+            <mwc-radio-list-item id="validator" value="validator" hasMeta left>
+              ${get('plugins.validator')}
+              <mwc-icon slot="meta">
+                ${pluginIcons['validator']}
+              </mwc-icon>
+            </mwc-radio-list-item>
           </mwc-list>
           <mwc-textfield
             label="${get('plugins.add.src')}"
@@ -117,21 +123,22 @@ export class OscdCustomPluginDialog extends LitElement {
             placeholder="http://example.com/plugin.js"
             type="url"
             required
-            id="pluginSrcInput"
-          ></mwc-textfield>
+            id="pluginSrcInput">
+          </mwc-textfield>
         </div>
         <mwc-button
           slot="secondaryAction"
           dialogAction="close"
-          label="${get('cancel')}"
-        ></mwc-button>
+          label="${get('cancel')}">
+        </mwc-button>
         <mwc-button
+          id="addButton"
           slot="primaryAction"
           icon="add"
           label="${get('add')}"
           trailingIcon
-          @click=${() => this.handleAddPlugin()}
-        ></mwc-button>
+          @click=${() => this.handleAddPlugin()}>
+        </mwc-button>
       </mwc-dialog>
     `;
   }
@@ -159,6 +166,10 @@ export class OscdCustomPluginDialog extends LitElement {
 
   public show(){
     this.dialog.show()
+  }
+
+  get open(){
+    return this.dialog.open
   }
 
   private handleAddPlugin() {

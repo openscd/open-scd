@@ -6,7 +6,6 @@ import { TextField } from '@material/mwc-textfield';
 import { Plugin, PluginConfig, PluginConfigMenu, PluginConfigNotMenu } from '../../src/plugin';
 import { ConfigurePluginDetail, newConfigurePluginEvent } from '../../src/plugin.events';
 import { generatePluginPath } from "../../src/plugins"
-import { RecursivePartial } from '../util-types';
 
 
 async function renderMockOpenSCD(
@@ -131,30 +130,20 @@ describe('OpenSCD-Plugin', () => {
 
     beforeEach(async () => {
       openscd = await renderMockOpenSCD(doc);
-      src = <TextField>(
-        openscd.layout.pluginDownloadUI.querySelector('#pluginSrcInput')
-      );
-      name = <TextField>(
-        openscd.layout.pluginDownloadUI.querySelector('#pluginNameInput')
-      );
-      primaryAction = <HTMLElement>(
-        openscd.layout.pluginDownloadUI.querySelector(
-          'mwc-button[slot="primaryAction"]'
-        )
-      );
+      src = openscd.layout.pluginDownloadUI.pluginSrcInput
+      name = openscd.layout.pluginDownloadUI.pluginNameInput
+      primaryAction = openscd.layout.pluginDownloadUI.addButton
       openscd.layout.pluginDownloadUI.show();
       await openscd.layout.pluginDownloadUI.updateComplete;
       await openscd.updateComplete;
       menuKindOption = <HTMLElement>(
-        openscd.layout.pluginDownloadUI.querySelector(
-          '#pluginKindList > mwc-radio-list-item[value="menu"]'
-        )
-      );
+        openscd.layout.pluginDownloadUI.pluginKindList
+          .querySelector('mwc-radio-list-item[value="menu"]')
+      )
       validatorKindOption = <HTMLElement>(
-        openscd.layout.pluginDownloadUI.querySelector(
-          '#pluginKindList > mwc-radio-list-item[id="validator"]'
-        )
-      );
+        openscd.layout.pluginDownloadUI.pluginKindList
+          .querySelector('mwc-radio-list-item[id="validator"]')
+      )
     });
 
     describe('requires a name and a valid URL to add a plugin', async () => {
@@ -187,7 +176,6 @@ describe('OpenSCD-Plugin', () => {
 
         src.value = 'http://localhost:8080/plugin/plugin.js';
         await src.updateComplete;
-
         primaryAction.click();
 
         expect(openscd.layout.pluginDownloadUI).to.have.property('open', false);
@@ -196,7 +184,6 @@ describe('OpenSCD-Plugin', () => {
     });
 
     it('adds a new editor kind plugin on add button click', async () => {
-
       expect(openscd.layout.editors).to.have.lengthOf(3, getPluginNames(openscd.layout.editors).join(", "));
 
       src.value = 'http://example.com/plugin.js';
@@ -483,7 +470,7 @@ describe('OpenSCD-Plugin', () => {
   })
 });
 
-describe.only("Bugs ", async () => {
+describe("Bugs ", async () => {
 
   it('Inconsistent behavior on refresh when using a local plugin #1622',async () => {
 
@@ -519,20 +506,18 @@ describe.only("Bugs ", async () => {
     openscd.layout.pluginUI.show();
 
     const firstMenuPluginSrc = plugins[1].src
-    const firstMenuPlugin = openscd.layout.pluginList.querySelector(`mwc-check-list-item[value="${firstMenuPluginSrc}"]`)
+    const firstMenuPlugin = openscd.layout.pluginUI?.shadowRoot?.querySelector(`mwc-check-list-item[value="${firstMenuPluginSrc}"]`)
     const firstMenuPluginCheckbox = firstMenuPlugin?.shadowRoot?.querySelector('mwc-checkbox')
     expect(firstMenuPluginCheckbox).to.not.be.null
     expect(firstMenuPluginCheckbox).to.have.property('checked', true)
 
     const secondMenuPluginSrc = plugins[2].src
-    const secondMenuPlugin = openscd.layout.pluginList.querySelector(`mwc-check-list-item[value="${secondMenuPluginSrc}"]`)
+    const secondMenuPlugin = openscd.layout.pluginUI?.shadowRoot?.querySelector(`mwc-check-list-item[value="${secondMenuPluginSrc}"]`)
     const secondMenuPluginChexkbox = secondMenuPlugin?.shadowRoot?.querySelector('mwc-checkbox')
     expect(secondMenuPluginChexkbox).to.have.property('checked', true)
 
 
-
     // ACT
-    console.log("=== TEST === clicking")
     firstMenuPluginCheckbox!.click()
     await firstMenuPluginCheckbox!.updateComplete
     await secondMenuPluginChexkbox!.updateComplete
@@ -544,10 +529,8 @@ describe.only("Bugs ", async () => {
     expect(secondMenuPluginChexkbox).to.have.property('checked', true)
 
 
-  }).timeout(100000_000)
-
-
-}).timeout(100000_000)
+  })
+})
 
 
 
@@ -880,15 +863,11 @@ function getPluginNames(plugins: Plugin[]): string[]{
 }
 
 function getCustomPluginSrcField(openscd: MockOpenSCD): TextField {
-  return <TextField>(
-    openscd.layout.pluginDownloadUI.querySelector('#pluginSrcInput')
-  );
+  return openscd.layout.pluginDownloadUI.pluginSrcInput
 }
 
 function getCutomPluginNameField(openscd: MockOpenSCD): TextField {
-  return <TextField>(
-    openscd.layout.pluginDownloadUI.querySelector('#pluginNameInput')
-  );
+  return openscd.layout.pluginDownloadUI.pluginNameInput
 }
 
 function getPluginUIAddCustomPluginButton(openscd: MockOpenSCD): HTMLElement {
@@ -899,11 +878,6 @@ function getPluginUIAddCustomPluginButton(openscd: MockOpenSCD): HTMLElement {
 }
 
 function getCustomPluginAddButton(openscd: MockOpenSCD): HTMLElement {
-  const addButton = <HTMLElement>(
-    openscd.layout.pluginDownloadUI.querySelector(
-      'mwc-button[slot="primaryAction"]'
-    )
-  );
-  return addButton
+  return openscd.layout.pluginDownloadUI.addButton
 }
 

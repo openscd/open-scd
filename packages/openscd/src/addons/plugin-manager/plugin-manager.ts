@@ -14,6 +14,7 @@ import type { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation.
 import type { Dialog } from '@material/mwc-dialog';
 import '@material/mwc-dialog';
 import '@material/mwc-list';
+import type {List} from '@material/mwc-list';
 
 import {
   newResetPluginsEvent,
@@ -32,9 +33,9 @@ export class OscdPluginManager extends LitElement {
   /** The plugins to render the layout. */
   @property({ type: Array }) plugins: Plugin[] = [];
   @query('#plugin-manager-root') root!: Dialog
+  @query('#pluginList') pluginList!: List
 
   render(): TemplateResult {
-      console.log("#list::render plugins:", this.plugins.map( p => `${p.name}:${p.active}`));
       return html`
         <mwc-dialog
           stacked
@@ -44,9 +45,14 @@ export class OscdPluginManager extends LitElement {
           <mwc-list
             id="pluginList"
             multi
-            @selected=${(e: MultiSelectedEvent) => { console.log("@list::selected",e.detail, Array.from(e.detail.index)); this.dispatchEvent(newSetPluginsEvent(e.detail.index)) } }
-            @change=${(e: Event) => { console.log("change", e); }}
-            @action=${(e: CustomEvent<ActionDetail>) => { console.log("@list::action", e.detail); }}
+            @selected=${(e: MultiSelectedEvent) => {
+              const selectedPlugins = this.pluginList.items
+              .filter((item, index) => e.detail.index.has(index))
+              // @ts-expect-error: we add plugin to the list item
+              .map(item => item.plugin) as Plugin[]
+
+              this.dispatchEvent(newSetPluginsEvent(selectedPlugins))
+            }}
           >
             <mwc-list-item graphic="avatar" noninteractive>
               <strong>${get(`plugins.editor`)}</strong>
@@ -155,9 +161,9 @@ export class OscdPluginManager extends LitElement {
       <mwc-check-list-item
           class="${plugin.official ? 'official' : 'external'}"
           value="${plugin.src}"
+          .plugin=${plugin}
           ?selected=${plugin.active}
           @request-selected=${(e: CustomEvent<{source: string}>) => {
-          console.log("@item::request-selected", plugin?.name, e.detail);
             if(e.detail.source !== 'interaction'){
               e.preventDefault();
               e.stopPropagation();

@@ -63,6 +63,32 @@ import "./plugin-manager/custom-plugin-dialog.js";
 @customElement('oscd-layout')
 export class OscdLayout extends LitElement {
 
+  /** The `XMLDocument` to be edited */
+  @property({ attribute: false }) doc: XMLDocument | null = null;
+  /** The name of the current [[`doc`]] */
+  @property({ type: String }) docName = '';
+  /** Index of the last [[`EditorAction`]] applied. */
+  @property({ type: Number }) editCount = -1;
+  /** The currently active editor tab. */
+  @property({ type: Number }) activeTab = 0;
+
+  /** The plugins to render the layout. */
+  @property({ type: Array }) plugins: Plugin[] = [];
+
+  /** The open-scd host element */
+  @property({ type: Object }) host!: HTMLElement;
+
+  @property({ type: Object }) historyState!: HistoryState;
+
+  @state() validated: Promise<void> = Promise.resolve();
+  @state() shouldValidate = false;
+
+  @query('#menu') menuUI!: Drawer;
+  @query('#pluginManager') pluginUI!: OscdPluginManager;
+  @query('#pluginList') pluginList!: List;
+  @query('#pluginAdd') pluginDownloadUI!: OscdCustomPluginDialog;
+
+
   render(): TemplateResult {
     return html`
       <div
@@ -78,46 +104,25 @@ export class OscdLayout extends LitElement {
   }
 
 
-  /** The `XMLDocument` to be edited */
-  @property({ attribute: false })
-  doc: XMLDocument | null = null;
-  /** The name of the current [[`doc`]] */
-  @property({ type: String })
-  docName = '';
-  /** Index of the last [[`EditorAction`]] applied. */
-  @property({ type: Number })
-  editCount = -1;
-  /** The currently active editor tab. */
-  @property({ type: Number })
-  activeTab = 0;
+  private renderPlugging(): TemplateResult {
+    return html` ${this.renderPluginUI()} ${this.renderDownloadUI()} `;
+  }
 
-  /** The plugins to render the layout. */
-  @property({ type: Array })
-  plugins: Plugin[] = [];
+  /** Renders the "Add Custom Plug-in" UI*/
+  protected renderDownloadUI(): TemplateResult {
+    return html`
+      <oscd-custom-plugin-dialog id="pluginAdd"></oscd-custom-plugin-dialog>
+    `
+  }
 
-  /** The open-scd host element */
-  @property({ type: Object })
-  host!: HTMLElement;
-
-  @property({ type: Object })
-  historyState!: HistoryState;
-
-  @state()
-  validated: Promise<void> = Promise.resolve();
-
-  @state()
-  shouldValidate = false;
-
-  @query('#menu')
-  menuUI!: Drawer;
-  // @query('#pluginManager')
-  // pluginUI!: Dialog;
-  @query('#pluginManager')
-  pluginUI!: OscdPluginManager;
-  @query('#pluginList')
-  pluginList!: List;
-  @query('#pluginAdd')
-  pluginDownloadUI!: OscdCustomPluginDialog;
+  /**
+   * Renders the plug-in management UI (turning plug-ins on/off)
+   */
+  protected renderPluginUI(): TemplateResult {
+    return html`
+      <oscd-plugin-manager id="pluginManager" .plugins=${this.plugins}></oscd-plugin-manager>
+    `
+  }
 
   // Computed properties
 
@@ -549,27 +554,8 @@ export class OscdLayout extends LitElement {
       }
     }
 
-  /** Renders the "Add Custom Plug-in" UI*/
-  // TODO: this should be its own isolated element
-  protected renderDownloadUI(): TemplateResult {
-    return html`
-      <oscd-custom-plugin-dialog id="pluginAdd"></oscd-custom-plugin-dialog>
-    `
-  }
 
-  /**
-   * Renders the plug-in management UI (turning plug-ins on/off)
-   * TODO: this is big enough to be its own isolated element
-   */
-  protected renderPluginUI(): TemplateResult {
-    return html`
-      <oscd-plugin-manager id="pluginManager" .plugins=${this.plugins}></oscd-plugin-manager>
-    `
-  }
 
-  private renderPlugging(): TemplateResult {
-    return html` ${this.renderPluginUI()} ${this.renderDownloadUI()} `;
-  }
 
   static styles = css`
     mwc-drawer {
