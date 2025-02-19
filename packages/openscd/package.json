@@ -60,6 +60,7 @@
     "test:manual": "web-test-runner --manual",
     "test:watch": "web-test-runner --watch",
     "test:unit": "web-test-runner --watch --group unit",
+    "test:unit:headless": "web-test-runner --watch --group unit --concurrency 1 --headless",
     "test:integration": "web-test-runner --watch --group integration",
     "doc:clean": "npx rimraf doc",
     "doc:typedoc": "typedoc --plugin none --out doc --entryPointStrategy expand ./src",
