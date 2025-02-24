@@ -1,0 +1,4 @@
+[submodule "packages/oscd-official-plugins"]
+	path = packages/oscd-official-plugins
+	url = https://github.com/david-monichi/oscd-official-plugins.git
+	branch = main

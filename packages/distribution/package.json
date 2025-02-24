@@ -22,7 +22,7 @@
   "dependencies": {
     "@openscd/addons": "*",
     "@openscd/open-scd": "*",
-    "@openscd/plugins": "*"
+    "@openscd/official-plugins": "*"
   },
   "scripts": {
     "clean": "rimraf build",

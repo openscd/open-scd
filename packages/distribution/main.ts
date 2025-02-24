@@ -1,1 +1,1 @@
-import '@openscd/open-scd/src/open-scd.js';
+import '@openscd/open-scd/src/open-scd';

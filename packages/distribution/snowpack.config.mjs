@@ -25,12 +25,12 @@ export default {
   workspaceRoot: '../../',
   mount: {
     './': '/',
-    '../plugins/': '/plugins/',
+    '../oscd-official-plugins/apps/plugins/': '/plugins/',
     '../openscd/': '/openscd/',
   },
   alias: {
     '@openscd/open-scd': '../openscd/',
-    '@openscd/plugins': '../plugins/',
+    '@openscd/plugins': '../oscd-official-plugins/apps/plugins/',
   },
   buildOptions: {
     baseUrl: process.env.PUBLIC_URL || '/',
