@@ -34,7 +34,6 @@ snapshots["IED Plugin with a doc loaded containing IEDs looks like the latest sn
         aria-selected="true"
         graphic="control"
         mwc-list-item=""
-        selected=""
         tabindex="0"
         twoline=""
         value="IED1"
