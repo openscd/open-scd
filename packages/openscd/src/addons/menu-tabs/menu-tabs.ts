@@ -9,9 +9,10 @@ import {
   css
 } from 'lit-element';
 
-import '@material/mwc-dialog';
 import '@material/mwc-list';
 import '@material/mwc-tab';
+import '@material/mwc-tab-bar';
+import '@material/mwc-button';
 
 import {
   Plugin,
@@ -45,6 +46,17 @@ export class OscdMenuTabs extends LitElement {
     `
   }
 
+  static styles = css`
+    mwc-tab {
+      background-color: var(--primary);
+      --mdc-theme-primary: var(--mdc-theme-on-primary);
+      /* width: 10rem; */
+      /* max-width: 10rem; */
+      /* overflow: hidden; */
+      /* text-overflow: ellipsis; */
+    }
+  `
+
   private handleActivatedEditorTab(e: CustomEvent): void {
     const tabIndex = e.detail.index;
     const editor = this.editors[tabIndex];
@@ -63,7 +75,9 @@ export class OscdMenuTabs extends LitElement {
 }
 
 function EditorTab({ name, icon }: Plugin): TemplateResult {
-  return html`<mwc-tab label=${name} icon=${icon || 'edit'}> </mwc-tab>`;
+  return html`
+    <mwc-tab label=${name} icon=${icon || 'edit'}> </mwc-tab>
+  `;
 }
 
 export const TabActivatedEventKey = 'oscd-editor-tab-activated'
