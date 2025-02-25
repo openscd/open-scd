@@ -74,7 +74,6 @@ export class OscdLayout extends LitElement {
   /** The currently active editor tab. */
   @property({ type: Number }) activeTab = 0;
 
-
   /** The plugins to render the layout. */
   @property({ type: Array }) plugins: Plugin[] = [];
 
