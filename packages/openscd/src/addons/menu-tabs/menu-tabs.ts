@@ -50,10 +50,6 @@ export class OscdMenuTabs extends LitElement {
     mwc-tab {
       background-color: var(--primary);
       --mdc-theme-primary: var(--mdc-theme-on-primary);
-      /* width: 10rem; */
-      /* max-width: 10rem; */
-      /* overflow: hidden; */
-      /* text-overflow: ellipsis; */
     }
   `
 
