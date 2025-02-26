@@ -3,7 +3,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 import '../mock-open-scd.js';
 import { MockOpenSCD } from '../mock-open-scd.js';
 import { TextField } from '@material/mwc-textfield';
-import { Plugin } from '../../src/plugin';
+import { Plugin, PluginConfig, PluginConfigMenu, PluginConfigNotMenu } from '../../src/plugin';
 import { ConfigurePluginDetail, newConfigurePluginEvent } from '../../src/plugin.events';
 import { generatePluginPath } from "../../src/plugins"
 
@@ -13,11 +13,19 @@ async function renderMockOpenSCD(
   docName: string = "testDoc",
   builtInPlugins: Plugin[] = builtinPlugins,
 ): Promise<MockOpenSCD>{
+
   const mockHTML = html`<mock-open-scd .mockPlugins=${builtInPlugins} .doc=${doc} .docName=${docName}></mock-open-scd>`
   const openscd = (await fixture(mockHTML)) as MockOpenSCD;
   await openscd.updateComplete;
   return openscd
 }
+
+function fetchDoc(path: string = '/test/testfiles/valid2007B4.scd'): Promise<XMLDocument>{
+  return fetch(path)
+    .then(response => response.text())
+    .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+}
+
 
 describe('OpenSCD-Plugin', () => {
   let doc: XMLDocument;
@@ -123,30 +131,20 @@ describe('OpenSCD-Plugin', () => {
 
     beforeEach(async () => {
       openscd = await renderMockOpenSCD(doc);
-      src = <TextField>(
-        openscd.layout.pluginDownloadUI.querySelector('#pluginSrcInput')
-      );
-      name = <TextField>(
-        openscd.layout.pluginDownloadUI.querySelector('#pluginNameInput')
-      );
-      primaryAction = <HTMLElement>(
-        openscd.layout.pluginDownloadUI.querySelector(
-          'mwc-button[slot="primaryAction"]'
-        )
-      );
+      src = openscd.layout.pluginDownloadUI.pluginSrcInput
+      name = openscd.layout.pluginDownloadUI.pluginNameInput
+      primaryAction = openscd.layout.pluginDownloadUI.addButton
       openscd.layout.pluginDownloadUI.show();
       await openscd.layout.pluginDownloadUI.updateComplete;
       await openscd.updateComplete;
       menuKindOption = <HTMLElement>(
-        openscd.layout.pluginDownloadUI.querySelector(
-          '#pluginKindList > mwc-radio-list-item[value="menu"]'
-        )
-      );
+        openscd.layout.pluginDownloadUI.pluginKindList
+          .querySelector('mwc-radio-list-item[value="menu"]')
+      )
       validatorKindOption = <HTMLElement>(
-        openscd.layout.pluginDownloadUI.querySelector(
-          '#pluginKindList > mwc-radio-list-item[id="validator"]'
-        )
-      );
+        openscd.layout.pluginDownloadUI.pluginKindList
+          .querySelector('mwc-radio-list-item[id="validator"]')
+      )
     });
 
     describe('requires a name and a valid URL to add a plugin', async () => {
@@ -179,7 +177,6 @@ describe('OpenSCD-Plugin', () => {
 
         src.value = 'http://localhost:8080/plugin/plugin.js';
         await src.updateComplete;
-
         primaryAction.click();
 
         expect(openscd.layout.pluginDownloadUI).to.have.property('open', false);
@@ -188,13 +185,16 @@ describe('OpenSCD-Plugin', () => {
     });
 
     it('adds a new editor kind plugin on add button click', async () => {
+      expect(openscd.layout.editors).to.have.lengthOf(3, getPluginNames(openscd.layout.editors).join(", "));
+
       src.value = 'http://example.com/plugin.js';
       name.value = 'testName';
       await src.updateComplete;
       await name.updateComplete;
       primaryAction.click();
       await openscd.updateComplete;
-      expect(openscd.layout.editors).to.have.lengthOf(15);
+
+      expect(openscd.layout.editors).to.have.lengthOf(4);
     });
 
     it('adds a new menu kind plugin on add button click', async () => {
@@ -227,6 +227,7 @@ describe('OpenSCD-Plugin', () => {
     });
     it('adds a new validator kind plugin on add button click', async () => {
       expect(openscd.layout.validators).to.have.lengthOf(2);
+
       src.value = 'http://example.com/plugin.js';
       name.value = 'testName';
       validatorKindOption.click();
@@ -234,6 +235,7 @@ describe('OpenSCD-Plugin', () => {
       await name.updateComplete;
       primaryAction.click();
       await openscd.updateComplete;
+
       expect(openscd.layout.validators).to.have.lengthOf(3);
     });
   });
@@ -244,6 +246,7 @@ describe('OpenSCD-Plugin', () => {
           desc: string
           currentPlugins: Plugin[]
           eventDetails: ConfigurePluginDetail
+          // expectedPlugins: Plugin[]
           expectedPlugins: Plugin[]
       }
 
@@ -262,7 +265,8 @@ describe('OpenSCD-Plugin', () => {
                   name: "new plugin",
                   kind: "editor",
                   src: "https://example.com/new-plugin.js",
-                  installed: false,
+                  active: false,
+                  activeByDefault: true,
                 },
               },
               expectedPlugins: [
@@ -270,7 +274,8 @@ describe('OpenSCD-Plugin', () => {
                   name: "new plugin",
                   kind: "editor",
                   src: "https://example.com/new-plugin.js",
-                  installed: false,
+                  activeByDefault: true,
+                  active: false,
                 }
               ]
           },
@@ -285,7 +290,8 @@ describe('OpenSCD-Plugin', () => {
                   name: "an existing plugin",
                   kind: "menu",
                   src: "https://example.com/new-plugin.js",
-                  installed: false,
+                  active: false,
+                  activeByDefault: true,
                 }
               ],
               eventDetails: {
@@ -295,7 +301,8 @@ describe('OpenSCD-Plugin', () => {
                   name: "an existing plugin",
                   kind: "editor",
                   src: "https://example.com/new-plugin.js",
-                  installed: false,
+                  active: false,
+                  activeByDefault: true,
                 },
               },
               expectedPlugins: [
@@ -303,13 +310,15 @@ describe('OpenSCD-Plugin', () => {
                   name: "an existing plugin",
                   kind: "menu",
                   src: "https://example.com/new-plugin.js",
-                  installed: false,
+                  active: false,
+                  activeByDefault: true,
                 },
                 {
                   name: "an existing plugin",
                   kind: "editor",
                   src: "https://example.com/new-plugin.js",
-                  installed: false,
+                  active: false,
+                  activeByDefault: true,
                 }
               ]
           },
@@ -323,7 +332,8 @@ describe('OpenSCD-Plugin', () => {
                   name: "I want to change this plugin",
                   kind: "editor",
                   src: "https://example.com/new-plugin.js",
-                  installed: false,
+                  active: false,
+                  activeByDefault: true,
                 }
               ],
               eventDetails: {
@@ -333,7 +343,8 @@ describe('OpenSCD-Plugin', () => {
                   name: "I want to change this plugin",
                   kind: "editor",
                   src: "https://example.com/changed-url.js",
-                  installed: true,
+                  active: true,
+                  activeByDefault: true,
                 },
               },
               expectedPlugins: [
@@ -341,7 +352,8 @@ describe('OpenSCD-Plugin', () => {
                   name: "I want to change this plugin",
                   kind: "editor",
                   src: "https://example.com/changed-url.js",
-                  installed: true,
+                  active: true,
+                  activeByDefault: true,
                 },
               ]
           },
@@ -354,7 +366,8 @@ describe('OpenSCD-Plugin', () => {
               name: "plugin to remove",
               kind: "editor",
               src: "https://example.com/plugin-to-remove.js",
-              installed: false,
+              active: false,
+              activeByDefault: true,
             }],
             eventDetails: {
               name: "plugin to remove",
@@ -372,7 +385,8 @@ describe('OpenSCD-Plugin', () => {
               name: "plugin to remove",
               kind: "editor",
               src: "https://example.com/plugin-to-remove.js",
-              installed: false,
+              active: false,
+                  activeByDefault: true,
             }],
             eventDetails: {
               name: "wrong name",
@@ -383,7 +397,8 @@ describe('OpenSCD-Plugin', () => {
               name: "plugin to remove",
               kind: "editor",
               src: "https://example.com/plugin-to-remove.js",
-              installed: false,
+              active: false,
+                  activeByDefault: true,
             }]
           },
           {
@@ -395,7 +410,8 @@ describe('OpenSCD-Plugin', () => {
               name: "plugin to remove, but wrong kind",
               kind: "editor",
               src: "https://example.com/plugin-to-remove.js",
-              installed: true,
+              active: true,
+              activeByDefault: true,
             }],
             eventDetails: {
               name: "plugin to remove, but wrong kind",
@@ -406,7 +422,8 @@ describe('OpenSCD-Plugin', () => {
               name: "plugin to remove, but wrong kind",
               kind: "editor",
               src: "https://example.com/plugin-to-remove.js",
-              installed: true,
+              active: true,
+              activeByDefault: true,
             }]
           },
       ]
@@ -434,7 +451,7 @@ describe('OpenSCD-Plugin', () => {
             // I could not figure how to compare the two lists
             // I've tried to use chai's deep.members and deep.include.members
             // and others but non of them worked.
-            const keys = ["name", "kind", "src", "installed"]
+            const keys = ["name", "kind", "src", "active", "activeByDefault"]
             const storedPlugins = openscd.layout.plugins.map((plugin) => {
               Object.keys(plugin).forEach((key) => {
                 if(!keys.includes(key)) {
@@ -454,284 +471,412 @@ describe('OpenSCD-Plugin', () => {
   })
 });
 
+describe("Bugs ", async () => {
+
+  it('Inconsistent behavior on refresh when using a local plugin #1622',async () => {
+
+
+    // ARRANGE
+    localStorage.clear()
+    const plugins = [
+      generateEditorPluginConfig({name: "editor-1"}),
+      generateMenuPluginConfig({name: "menu-1"}),
+      generateMenuPluginConfig({name: "menu-2"}),
+    ]
+    const doc = await fetchDoc()
+    const openscd = await renderMockOpenSCD(doc, "testDoc", plugins)
+    // @ts-ignore: we use the private function to arrange the scenario
+    openscd.storePlugins(plugins)
+    await openscd.requestUpdate()
+    await openscd.updateComplete
+    expect(openscd.layout.plugins).to.have.lengthOf(3, getPluginNames(openscd.layout.plugins).join(", "))
+
+    openscd.layout.pluginUI.show();
+    openscd.layout.pluginDownloadUI.show();
+    await openscd.layout.pluginUI.updateComplete;
+
+    // Add a custom plugin
+    const src = getCustomPluginSrcField(openscd)
+    const name = getCutomPluginNameField(openscd)
+    const addCustomPlugin = getCustomPluginAddButton(openscd)
+
+    name.value = "editor-test-1"
+    src.value = "http://localhost:8080/plugin-test-1.js"
+    await src.updateComplete;
+    await name.updateComplete;
+    addCustomPlugin.click()
+    await openscd.updateComplete;
+
+    expect(openscd.layout.plugins).to.have.lengthOf(4, getPluginNames(openscd.layout.plugins).join(", "))
+
+    openscd.layout.pluginUI.show();
+
+    const firstMenuPluginSrc = plugins[1].src
+    const firstMenuPlugin = openscd.layout.pluginUI?.shadowRoot?.querySelector(`mwc-check-list-item[value="${firstMenuPluginSrc}"]`)
+    const firstMenuPluginCheckbox = firstMenuPlugin?.shadowRoot?.querySelector('mwc-checkbox')
+    expect(firstMenuPluginCheckbox).to.not.be.null
+    expect(firstMenuPluginCheckbox).to.have.property('checked', true)
+
+    const secondMenuPluginSrc = plugins[2].src
+    const secondMenuPlugin = openscd.layout.pluginUI?.shadowRoot?.querySelector(`mwc-check-list-item[value="${secondMenuPluginSrc}"]`)
+    const secondMenuPluginChexkbox = secondMenuPlugin?.shadowRoot?.querySelector('mwc-checkbox')
+    expect(secondMenuPluginChexkbox).to.have.property('checked', true)
+
+
+    // ACT
+    firstMenuPluginCheckbox!.click()
+    await firstMenuPluginCheckbox!.updateComplete
+    await secondMenuPluginChexkbox!.updateComplete
+    await openscd.updateComplete;
+
+
+    // ASSERT
+    expect(firstMenuPluginCheckbox).to.have.property('checked', false)
+    expect(secondMenuPluginChexkbox).to.have.property('checked', true)
+
+
+  })
+})
+
+
+export function generateEditorPluginConfig( overwrite: Partial<Plugin> = {}): Plugin{
+
+  const randId = crypto.randomUUID().slice(0, 8)
+  const defaultConfig: Plugin = {
+    kind:  'editor',
+    name: `Editor Plugin #${randId}`,
+    src: `http://example.com/plugin-${randId}.js`,
+    active: true,
+    activeByDefault: true,
+    official: true,
+    icon: 'developer_board',
+    requireDoc: true,
+  }
+
+  return {
+    ...defaultConfig,
+    ...overwrite,
+  }
+}
+
+export function generateMenuPluginConfig( overwrite: Partial<Plugin> = {}): Plugin{
+
+  const randId = crypto.randomUUID().slice(0, 8)
+  const defaultConfig: Plugin = {
+    kind:  'menu',
+    name: `Menu Plugin #${randId}`,
+    src: `http://example.com/plugin-${randId}.js`,
+    active: true,
+    position: 'top',
+    activeByDefault: true,
+    official: true,
+    icon: 'developer_board',
+    requireDoc: true,
+  }
+
+  return {
+    ...defaultConfig,
+    ...overwrite,
+  }
+}
+
 const builtinPlugins: Plugin[] = [
   {
     name: 'IED',
     src: generatePluginPath('plugins/src/editors/IED.js'),
     icon: 'developer_board',
-    default: true,
+    activeByDefault: true,
     kind: 'editor',
     requireDoc: true,
-    installed: true,
+    active: true,
   },
   {
     name: 'Substation',
     src: generatePluginPath('plugins/src/editors/Substation.js'),
     icon: 'margin',
-    default: true,
+    activeByDefault: true,
     kind: 'editor',
     requireDoc: true,
-    installed: true,
+    active: true,
   },
   {
     name: 'Single Line Diagram',
     src: generatePluginPath('plugins/src/editors/SingleLineDiagram.js'),
     icon: 'edit',
-    default: false,
+    activeByDefault: true,
     kind: 'editor',
     requireDoc: true,
-    installed: true,
+    active: true,
   },
-  {
-    name: 'Subscriber Message Binding (GOOSE)',
-    src: generatePluginPath('plugins/src/editors/GooseSubscriberMessageBinding.js'),
-    icon: 'link',
-    default: false,
-    kind: 'editor',
-    requireDoc: true,
-    installed: true,
-  },
-  {
-    name: 'Subscriber Data Binding (GOOSE)',
-    src: generatePluginPath('plugins/src/editors/GooseSubscriberDataBinding.js'),
-    icon: 'link',
-    default: false,
-    kind: 'editor',
-    requireDoc: true,
-    installed: true,
-  },
-  {
-    name: 'Subscriber Later Binding (GOOSE)',
-    src: generatePluginPath('plugins/src/editors/GooseSubscriberLaterBinding.js'),
-    icon: 'link',
-    default: true,
-    kind: 'editor',
-    requireDoc: true,
-    installed: true,
-  },
-  {
-    name: 'Subscriber Message Binding (SMV)',
-    src: generatePluginPath('plugins/src/editors/SMVSubscriberMessageBinding.js'),
-    icon: 'link',
-    default: false,
-    kind: 'editor',
-    requireDoc: true,
-    installed: true,
-  },
-  {
-    name: 'Subscriber Data Binding (SMV)',
-    src: generatePluginPath('plugins/src/editors/SMVSubscriberDataBinding.js'),
-    icon: 'link',
-    default: false,
-    kind: 'editor',
-    requireDoc: true,
-    installed: true,
-  },
-  {
-    name: 'Subscriber Later Binding (SMV)',
-    src: generatePluginPath('plugins/src/editors/SMVSubscriberLaterBinding.js'),
-    icon: 'link',
-    default: true,
-    kind: 'editor',
-    requireDoc: true,
-    installed: true,
-  },
-  {
-    name: 'Communication',
-    src: generatePluginPath('plugins/src/editors/Communication.js'),
-    icon: 'settings_ethernet',
-    default: true,
-    kind: 'editor',
-    requireDoc: true,
-    installed: true,
-  },
-  {
-    name: '104',
-    src: generatePluginPath('plugins/src/editors/Protocol104.js'),
-    icon: 'settings_ethernet',
-    default: false,
-    kind: 'editor',
-    requireDoc: true,
-    installed: true,
-  },
-  {
-    name: 'Templates',
-    src: generatePluginPath('plugins/src/editors/Templates.js'),
-    icon: 'copy_all',
-    default: true,
-    kind: 'editor',
-    requireDoc: true,
-    installed: true,
-  },
-  {
-    name: 'Publisher',
-    src: generatePluginPath('plugins/src/editors/Publisher.js'),
-    icon: 'publish',
-    default: false,
-    kind: 'editor',
-    requireDoc: true,
-    installed: true,
-  },
-  {
-    name: 'Cleanup',
-    src: generatePluginPath('plugins/src/editors/Cleanup.js'),
-    icon: 'cleaning_services',
-    default: false,
-    kind: 'editor',
-    requireDoc: true,
-    installed: true,
-  },
+  // {
+  //   name: 'Subscriber Message Binding (GOOSE)',
+  //   src: generatePluginPath('plugins/src/editors/GooseSubscriberMessageBinding.js'),
+  //   icon: 'link',
+  //   activeByDefault: false,
+  //   kind: 'editor',
+  //   requireDoc: true,
+  //   active: true,
+  // },
+  // {
+  //   name: 'Subscriber Data Binding (GOOSE)',
+  //   src: generatePluginPath('plugins/src/editors/GooseSubscriberDataBinding.js'),
+  //   icon: 'link',
+  //   activeByDefault: false,
+  //   kind: 'editor',
+  //   requireDoc: true,
+  //   active: true,
+  // },
+  // {
+  //   name: 'Subscriber Later Binding (GOOSE)',
+  //   src: generatePluginPath('plugins/src/editors/GooseSubscriberLaterBinding.js'),
+  //   icon: 'link',
+  //   activeByDefault: true,
+  //   kind: 'editor',
+  //   requireDoc: true,
+  //   active: true,
+  // },
+  // {
+  //   name: 'Subscriber Message Binding (SMV)',
+  //   src: generatePluginPath('plugins/src/editors/SMVSubscriberMessageBinding.js'),
+  //   icon: 'link',
+  //   activeByDefault: false,
+  //   kind: 'editor',
+  //   requireDoc: true,
+  //   active: true,
+  // },
+  // {
+  //   name: 'Subscriber Data Binding (SMV)',
+  //   src: generatePluginPath('plugins/src/editors/SMVSubscriberDataBinding.js'),
+  //   icon: 'link',
+  //   activeByDefault: false,
+  //   kind: 'editor',
+  //   requireDoc: true,
+  //   active: true,
+  // },
+  // {
+  //   name: 'Subscriber Later Binding (SMV)',
+  //   src: generatePluginPath('plugins/src/editors/SMVSubscriberLaterBinding.js'),
+  //   icon: 'link',
+  //   activeByDefault: true,
+  //   kind: 'editor',
+  //   requireDoc: true,
+  //   active: true,
+  // },
+  // {
+  //   name: 'Communication',
+  //   src: generatePluginPath('plugins/src/editors/Communication.js'),
+  //   icon: 'settings_ethernet',
+  //   activeByDefault: true,
+  //   kind: 'editor',
+  //   requireDoc: true,
+  //   active: true,
+  // },
+  // {
+  //   name: '104',
+  //   src: generatePluginPath('plugins/src/editors/Protocol104.js'),
+  //   icon: 'settings_ethernet',
+  //   activeByDefault: false,
+  //   kind: 'editor',
+  //   requireDoc: true,
+  //   active: true,
+  // },
+  // {
+  //   name: 'Templates',
+  //   src: generatePluginPath('plugins/src/editors/Templates.js'),
+  //   icon: 'copy_all',
+  //   activeByDefault: true,
+  //   kind: 'editor',
+  //   requireDoc: true,
+  //   active: true,
+  // },
+  // {
+  //   name: 'Publisher',
+  //   src: generatePluginPath('plugins/src/editors/Publisher.js'),
+  //   icon: 'publish',
+  //   activeByDefault: false,
+  //   kind: 'editor',
+  //   requireDoc: true,
+  //   active: true,
+  // },
+  // {
+  //   name: 'Cleanup',
+  //   src: generatePluginPath('plugins/src/editors/Cleanup.js'),
+  //   icon: 'cleaning_services',
+  //   activeByDefault: false,
+  //   kind: 'editor',
+  //   requireDoc: true,
+  //   active: true,
+  // },
   {
     name: 'Open project',
     src: generatePluginPath('plugins/src/menu/OpenProject.js'),
     icon: 'folder_open',
-    default: true,
+    activeByDefault: true,
     kind: 'menu',
     requireDoc: false,
-    installed: true,
+    active: true,
     position: 'top',
   },
   {
     name: 'New project',
     src: generatePluginPath('plugins/src/menu/NewProject.js'),
     icon: 'create_new_folder',
-    default: true,
+    activeByDefault: true,
     kind: 'menu',
     requireDoc: false,
-    installed: true,
+    active: true,
     position: 'top',
   },
   {
     name: 'Save project',
     src: generatePluginPath('plugins/src/menu/SaveProject.js'),
     icon: 'save',
-    default: true,
+    activeByDefault: true,
     kind: 'menu',
     requireDoc: true,
-    installed: true,
+    active: true,
     position: 'top',
   },
   {
     name: 'Validate Schema',
     src: generatePluginPath('plugins/src/validators/ValidateSchema.js'),
     icon: 'rule_folder',
-    default: true,
+    activeByDefault: true,
     kind: 'validator',
-    installed: true,
+    active: true,
   },
   {
     name: 'Validate Templates',
     src: generatePluginPath('plugins/src/validators/ValidateTemplates.js'),
     icon: 'rule_folder',
-    default: true,
+    activeByDefault: true,
     kind: 'validator',
-    installed: true,
+    active: true,
   },
   {
     name: 'Import IEDs',
     src: generatePluginPath('plugins/src/menu/ImportIEDs.js'),
     icon: 'snippet_folder',
-    default: true,
+    activeByDefault: true,
     kind: 'menu',
     requireDoc: true,
-    installed: true,
+    active: true,
     position: 'middle',
   },
   {
     name: 'Create Virtual IED',
     src: generatePluginPath('plugins/src/menu/VirtualTemplateIED.js'),
     icon: 'developer_board',
-    default: false,
+    activeByDefault: false,
     kind: 'menu',
     requireDoc: true,
-    installed: true,
+    active: true,
     position: 'middle',
   },
   {
     name: 'Subscriber Update',
     src: generatePluginPath('plugins/src/menu/SubscriberInfo.js'),
-    default: true,
+    activeByDefault: true,
     kind: 'menu',
     requireDoc: true,
-    installed: true,
+    active: true,
     position: 'middle',
   },
-  {
-    name: 'Update desc (ABB)',
-    src: generatePluginPath('plugins/src/menu/UpdateDescriptionABB.js'),
-    default: false,
-    kind: 'menu',
-    requireDoc: true,
-    installed: true,
-    position: 'middle',
-  },
-  {
-    name: 'Update desc (SEL)',
-    src: generatePluginPath('plugins/src/menu/UpdateDescriptionSEL.js'),
-    default: false,
-    kind: 'menu',
-    requireDoc: true,
-    installed: true,
-    position: 'middle',
-  },
-  {
-    name: 'Merge Project',
-    src: generatePluginPath('plugins/src/menu/Merge.js'),
-    icon: 'merge_type',
-    default: true,
-    kind: 'menu',
-    requireDoc: true,
-    installed: true,
-    position: 'middle',
-  },
-  {
-    name: 'Update Substation',
-    src: generatePluginPath('plugins/src/menu/UpdateSubstation.js'),
-    icon: 'merge_type',
-    default: true,
-    kind: 'menu',
-    requireDoc: true,
-    installed: true,
-    position: 'middle',
-  },
-  {
-    name: 'Compare IED',
-    src: generatePluginPath('plugins/src/menu/CompareIED.js'),
-    icon: 'compare_arrows',
-    default: true,
-    kind: 'menu',
-    requireDoc: true,
-    installed: true,
-    position: 'middle',
-  },
-  {
-    name: 'Show SCL History',
-    src: generatePluginPath('plugins/src/menu/SclHistory.js'),
-    icon: 'history_toggle_off',
-    default: true,
-    kind: 'menu',
-    requireDoc: true,
-    installed: true,
-    position: 'bottom',
-  },
-  {
-    name: 'Help',
-    src: generatePluginPath('plugins/src/menu/Help.js'),
-    icon: 'help',
-    default: true,
-    kind: 'menu',
-    requireDoc: false,
-    installed: true,
-    position: 'bottom',
-  },
-  {
-    name: 'Export Communication Section',
-    src: generatePluginPath('plugins/src/menu/ExportCommunication.js'),
-    icon: 'sim_card_download',
-    default: false,
-    kind: 'menu',
-    requireDoc: true,
-    installed: true,
-    position: 'middle',
-  },
+  // {
+  //   name: 'Update desc (ABB)',
+  //   src: generatePluginPath('plugins/src/menu/UpdateDescriptionABB.js'),
+  //   activeByDefault: false,
+  //   kind: 'menu',
+  //   requireDoc: true,
+  //   active: true,
+  //   position: 'middle',
+  // },
+  // {
+  //   name: 'Update desc (SEL)',
+  //   src: generatePluginPath('plugins/src/menu/UpdateDescriptionSEL.js'),
+  //   activeByDefault: false,
+  //   kind: 'menu',
+  //   requireDoc: true,
+  //   active: true,
+  //   position: 'middle',
+  // },
+  // {
+  //   name: 'Merge Project',
+  //   src: generatePluginPath('plugins/src/menu/Merge.js'),
+  //   icon: 'merge_type',
+  //   activeByDefault: true,
+  //   kind: 'menu',
+  //   requireDoc: true,
+  //   active: true,
+  //   position: 'middle',
+  // },
+  // {
+  //   name: 'Update Substation',
+  //   src: generatePluginPath('plugins/src/menu/UpdateSubstation.js'),
+  //   icon: 'merge_type',
+  //   activeByDefault: true,
+  //   kind: 'menu',
+  //   requireDoc: true,
+  //   active: true,
+  //   position: 'middle',
+  // },
+  // {
+  //   name: 'Compare IED',
+  //   src: generatePluginPath('plugins/src/menu/CompareIED.js'),
+  //   icon: 'compare_arrows',
+  //   activeByDefault: true,
+  //   kind: 'menu',
+  //   requireDoc: true,
+  //   active: true,
+  //   position: 'middle',
+  // },
+  // {
+  //   name: 'Show SCL History',
+  //   src: generatePluginPath('plugins/src/menu/SclHistory.js'),
+  //   icon: 'history_toggle_off',
+  //   activeByDefault: true,
+  //   kind: 'menu',
+  //   requireDoc: true,
+  //   active: true,
+  //   position: 'bottom',
+  // },
+  // {
+  //   name: 'Help',
+  //   src: generatePluginPath('plugins/src/menu/Help.js'),
+  //   icon: 'help',
+  //   activeByDefault: true,
+  //   kind: 'menu',
+  //   requireDoc: false,
+  //   active: true,
+  //   position: 'bottom',
+  // },
+  // {
+  //   name: 'Export Communication Section',
+  //   src: generatePluginPath('plugins/src/menu/ExportCommunication.js'),
+  //   icon: 'sim_card_download',
+  //   activeByDefault: false,
+  //   kind: 'menu',
+  //   requireDoc: true,
+  //   active: true,
+  //   position: 'middle',
+  // },
 ];
+
+
+function getPluginNames(plugins: Plugin[]): string[]{
+  return plugins.map(plugin => plugin.name)
+}
+
+function getCustomPluginSrcField(openscd: MockOpenSCD): TextField {
+  return openscd.layout.pluginDownloadUI.pluginSrcInput
+}
+
+function getCutomPluginNameField(openscd: MockOpenSCD): TextField {
+  return openscd.layout.pluginDownloadUI.pluginNameInput
+}
+
+
+function getCustomPluginAddButton(openscd: MockOpenSCD): HTMLElement {
+  return openscd.layout.pluginDownloadUI.addButton
+}
+

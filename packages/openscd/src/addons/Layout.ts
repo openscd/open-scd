@@ -54,9 +54,40 @@ import '@material/mwc-select';
 import '@material/mwc-textfield';
 import { nothing } from 'lit';
 
+import {OscdPluginManager} from "./plugin-manager/plugin-manager.js";
+import "./plugin-manager/plugin-manager.js";
+import {OscdCustomPluginDialog} from "./plugin-manager/custom-plugin-dialog.js";
+import "./plugin-manager/custom-plugin-dialog.js";
+
 
 @customElement('oscd-layout')
 export class OscdLayout extends LitElement {
+
+  /** The `XMLDocument` to be edited */
+  @property({ attribute: false }) doc: XMLDocument | null = null;
+  /** The name of the current [[`doc`]] */
+  @property({ type: String }) docName = '';
+  /** Index of the last [[`EditorAction`]] applied. */
+  @property({ type: Number }) editCount = -1;
+  /** The currently active editor tab. */
+  @property({ type: Number }) activeTab = 0;
+
+  /** The plugins to render the layout. */
+  @property({ type: Array }) plugins: Plugin[] = [];
+
+  /** The open-scd host element */
+  @property({ type: Object }) host!: HTMLElement;
+
+  @property({ type: Object }) historyState!: HistoryState;
+
+  @state() validated: Promise<void> = Promise.resolve();
+  @state() shouldValidate = false;
+
+  @query('#menu') menuUI!: Drawer;
+  @query('#pluginManager') pluginUI!: OscdPluginManager;
+  @query('#pluginList') pluginList!: List;
+  @query('#pluginAdd') pluginDownloadUI!: OscdCustomPluginDialog;
+
 
   render(): TemplateResult {
     return html`
@@ -73,55 +104,36 @@ export class OscdLayout extends LitElement {
   }
 
 
-  /** The `XMLDocument` to be edited */
-  @property({ attribute: false })
-  doc: XMLDocument | null = null;
-  /** The name of the current [[`doc`]] */
-  @property({ type: String })
-  docName = '';
-  /** Index of the last [[`EditorAction`]] applied. */
-  @property({ type: Number })
-  editCount = -1;
-  /** The currently active editor tab. */
-  @property({ type: Number })
-  activeTab = 0;
+  private renderPlugging(): TemplateResult {
+    return html` ${this.renderPluginUI()} ${this.renderDownloadUI()} `;
+  }
 
-  /** The plugins to render the layout. */
-  @property({ type: Array })
-  plugins: Plugin[] = [];
+  /** Renders the "Add Custom Plug-in" UI*/
+  protected renderDownloadUI(): TemplateResult {
+    return html`
+      <oscd-custom-plugin-dialog id="pluginAdd"></oscd-custom-plugin-dialog>
+    `
+  }
 
-  /** The open-scd host element */
-  @property({ type: Object })
-  host!: HTMLElement;
-
-  @property({ type: Object })
-  historyState!: HistoryState;
-
-  @state()
-  validated: Promise<void> = Promise.resolve();
-
-  @state()
-  shouldValidate = false;
-
-  @query('#menu')
-  menuUI!: Drawer;
-  @query('#pluginManager')
-  pluginUI!: Dialog;
-  @query('#pluginList')
-  pluginList!: List;
-  @query('#pluginAdd')
-  pluginDownloadUI!: Dialog;
+  /**
+   * Renders the plug-in management UI (turning plug-ins on/off)
+   */
+  protected renderPluginUI(): TemplateResult {
+    return html`
+      <oscd-plugin-manager id="pluginManager" .plugins=${this.plugins}></oscd-plugin-manager>
+    `
+  }
 
   // Computed properties
 
   get validators(): Plugin[] {
     return this.plugins.filter(
-      plugin => plugin.installed && plugin.kind === 'validator'
+      plugin => plugin.active && plugin.kind === 'validator'
     );
   }
   get menuEntries(): Plugin[] {
     return this.plugins.filter(
-      plugin => plugin.installed && plugin.kind === 'menu'
+      plugin => plugin.active && plugin.kind === 'menu'
     );
   }
   get topMenu(): Plugin[] {
@@ -226,7 +238,7 @@ export class OscdLayout extends LitElement {
 
   get editors(): Plugin[] {
     return this.plugins.filter(
-      plugin => plugin.installed && plugin.kind === 'editor'
+      plugin => plugin.active && plugin.kind === 'editor'
     );
   }
 
@@ -248,50 +260,6 @@ export class OscdLayout extends LitElement {
 
     e.preventDefault();
     fn();
-  }
-
-  private handleAddPlugin() {
-    const pluginSrcInput = <TextField>(
-      this.pluginDownloadUI.querySelector('#pluginSrcInput')
-    );
-    const pluginNameInput = <TextField>(
-      this.pluginDownloadUI.querySelector('#pluginNameInput')
-    );
-    const pluginKindList = <List>(
-      this.pluginDownloadUI.querySelector('#pluginKindList')
-    );
-    const requireDoc = <Switch>(
-      this.pluginDownloadUI.querySelector('#requireDoc')
-    );
-    const positionList = <Select>(
-      this.pluginDownloadUI.querySelector('#menuPosition')
-    );
-
-    if (
-      !(
-        pluginSrcInput.checkValidity() &&
-        pluginNameInput.checkValidity() &&
-        pluginKindList.selected &&
-        requireDoc &&
-        positionList.selected
-      )
-    )
-      return;
-
-    this.dispatchEvent(
-      newAddExternalPluginEvent({
-        src: pluginSrcInput.value,
-        name: pluginNameInput.value,
-        kind: <PluginKind>(<ListItem>pluginKindList.selected).value,
-        requireDoc: requireDoc.checked,
-        position: <MenuPosition>positionList.value,
-        installed: true,
-      })
-    );
-
-    this.requestUpdate();
-    this.pluginUI.requestUpdate();
-    this.pluginDownloadUI.close();
   }
 
   connectedCallback(): void {
@@ -586,224 +554,6 @@ export class OscdLayout extends LitElement {
       }
     }
 
-  /** Renders the "Add Custom Plug-in" UI*/
-  // TODO: this should be its own isolated element
-  protected renderDownloadUI(): TemplateResult {
-    return html`
-      <mwc-dialog id="pluginAdd" heading="${get('plugins.add.heading')}">
-        <div style="display: flex; flex-direction: column; row-gap: 8px;">
-          <p style="color:var(--mdc-theme-error);">
-            ${get('plugins.add.warning')}
-          </p>
-          <mwc-textfield
-            label="${get('plugins.add.name')}"
-            helper="${get('plugins.add.nameHelper')}"
-            required
-            id="pluginNameInput"
-          ></mwc-textfield>
-          <mwc-list id="pluginKindList">
-            <mwc-radio-list-item
-              id="editor"
-              value="editor"
-              hasMeta
-              selected
-              left
-              >${get('plugins.editor')}<mwc-icon slot="meta"
-                >${pluginIcons['editor']}</mwc-icon
-              ></mwc-radio-list-item
-            >
-            <mwc-radio-list-item value="menu" hasMeta left
-              >${get('plugins.menu')}<mwc-icon slot="meta"
-                >${pluginIcons['menu']}</mwc-icon
-              ></mwc-radio-list-item
-            >
-            <div id="menudetails">
-              <mwc-formfield
-                id="enabledefault"
-                label="${get('plugins.requireDoc')}"
-              >
-                <mwc-switch id="requireDoc" checked></mwc-switch>
-              </mwc-formfield>
-              <mwc-select id="menuPosition" value="middle" fixedMenuPosition
-                >${Object.values(menuPosition).map(
-                  menutype =>
-                    html`<mwc-list-item value="${menutype}"
-                      >${get('plugins.' + menutype)}</mwc-list-item
-                    >`
-                )}</mwc-select
-              >
-            </div>
-            <style>
-              #menudetails {
-                display: none;
-                padding: 20px;
-                padding-left: 50px;
-              }
-              #pluginKindList [value="menu"][selected] ~ #menudetails {
-                display: grid;
-              }
-              #enabledefault {
-                padding-bottom: 20px;
-              }
-              #menuPosition {
-                max-width: 250px;
-              }
-            </style>
-            <mwc-radio-list-item id="validator" value="validator" hasMeta left
-              >${get('plugins.validator')}<mwc-icon slot="meta"
-                >${pluginIcons['validator']}</mwc-icon
-              ></mwc-radio-list-item
-            >
-          </mwc-list>
-          <mwc-textfield
-            label="${get('plugins.add.src')}"
-            helper="${get('plugins.add.srcHelper')}"
-            placeholder="http://example.com/plugin.js"
-            type="url"
-            required
-            id="pluginSrcInput"
-          ></mwc-textfield>
-        </div>
-        <mwc-button
-          slot="secondaryAction"
-          dialogAction="close"
-          label="${get('cancel')}"
-        ></mwc-button>
-        <mwc-button
-          slot="primaryAction"
-          icon="add"
-          label="${get('add')}"
-          trailingIcon
-          @click=${() => this.handleAddPlugin()}
-        ></mwc-button>
-      </mwc-dialog>
-    `;
-  }
-
-  // Note: why is the type here if note used?
-  private renderPluginKind(
-    type: PluginKind | MenuPosition,
-    plugins: Plugin[]
-  ): TemplateResult {
-    return html`
-      ${plugins.map( plugin => html`
-        <mwc-check-list-item
-            class="${plugin.official ? 'official' : 'external'}"
-            value="${plugin.src}"
-            ?selected=${plugin.installed}
-            @request-selected=${(e: CustomEvent<{source: string}>) => {
-              if(e.detail.source !== 'interaction'){
-                e.preventDefault();
-                e.stopPropagation();
-                e.stopImmediatePropagation();
-                return false;
-              }
-            }}
-            hasMeta
-            left
-          >
-            <mwc-icon slot="meta">
-              ${plugin.icon || pluginIcons[plugin.kind]}
-            </mwc-icon>
-            ${plugin.name}
-          </mwc-check-list-item>
-        `
-      )}
-    `;
-  }
-
-  /**
-   * Renders the plug-in management UI (turning plug-ins on/off)
-   * TODO: this is big enough to be its own isolated element
-   */
-  protected renderPluginUI(): TemplateResult {
-    return html`
-      <mwc-dialog
-        stacked
-        id="pluginManager"
-        heading="${get('plugins.heading')}"
-      >
-        <mwc-list
-          id="pluginList"
-          multi
-          @selected=${(e: MultiSelectedEvent) =>
-            this.dispatchEvent(newSetPluginsEvent(e.detail.index))}
-        >
-          <mwc-list-item graphic="avatar" noninteractive
-            ><strong>${get(`plugins.editor`)}</strong
-            ><mwc-icon slot="graphic" class="inverted"
-              >${pluginIcons['editor']}</mwc-icon
-            ></mwc-list-item
-          >
-          <li divider role="separator"></li>
-          ${this.renderPluginKind(
-            'editor',
-            this.plugins.filter(p => p.kind === 'editor')
-          )}
-          <mwc-list-item graphic="avatar" noninteractive
-            ><strong>${get(`plugins.menu`)}</strong
-            ><mwc-icon slot="graphic" class="inverted"
-              ><strong>${pluginIcons['menu']}</strong></mwc-icon
-            ></mwc-list-item
-          >
-          <li divider role="separator"></li>
-          ${this.renderPluginKind(
-            'top',
-            this.plugins.filter(p => p.kind === 'menu' && p.position === 'top')
-          )}
-          <li divider role="separator" inset></li>
-          ${this.renderPluginKind(
-            'validator',
-            this.plugins.filter(p => p.kind === 'validator')
-          )}
-          <li divider role="separator" inset></li>
-          ${this.renderPluginKind(
-            'middle',
-            this.plugins.filter(
-              p => p.kind === 'menu' && p.position === 'middle'
-            )
-          )}
-          <li divider role="separator" inset></li>
-          ${this.renderPluginKind(
-            'bottom',
-            this.plugins.filter(
-              p => p.kind === 'menu' && p.position === 'bottom'
-            )
-          )}
-        </mwc-list>
-        <mwc-button
-          slot="secondaryAction"
-          icon="refresh"
-          label="${get('reset')}"
-          @click=${async () => {
-            this.dispatchEvent(newResetPluginsEvent());
-            this.requestUpdate();
-          }}
-          style="--mdc-theme-primary: var(--mdc-theme-error)"
-        >
-        </mwc-button>
-        <mwc-button
-          slot="secondaryAction"
-          icon=""
-          label="${get('close')}"
-          dialogAction="close"
-        ></mwc-button>
-        <mwc-button
-          outlined
-          trailingIcon
-          slot="primaryAction"
-          icon="library_add"
-          label="${get('plugins.add.heading')}&hellip;"
-          @click=${() => this.pluginDownloadUI.show()}
-        >
-        </mwc-button>
-      </mwc-dialog>
-    `;
-  }
-
-  private renderPlugging(): TemplateResult {
-    return html` ${this.renderPluginUI()} ${this.renderDownloadUI()} `;
-  }
 
 
 
