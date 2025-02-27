@@ -10,7 +10,7 @@ import {
 import { WizardEvent, WizardFactory } from '../foundation.js';
 import '../wizard-dialog.js';
 import { WizardDialog } from '../wizard-dialog.js';
-import { CreateWizardRequest, EditWizardRequest } from 'scl-wizarding';
+import { CreateWizardRequest, EditWizardRequest } from '../scl-wizarding.js';
 
 function adaptV3Wizard(v3Def: unknown): WizardFactory | null {
   const v3 = v3Def as {

@@ -10,7 +10,7 @@ import {
 } from 'lit-element';
 
 import { WizardFactory } from '@openscd/open-scd/src/foundation.js';
-import { newCreateWizardEvent, newEditWizardEvent } from 'scl-wizarding';
+import { newCreateWizardEvent, newEditWizardEvent } from '@openscd/open-scd/src/scl-wizarding';
 
 @customElement('v3-test')
 export class V3testComponent extends LitElement {
