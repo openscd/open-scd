@@ -38,7 +38,7 @@ import {
 import { getFilterIcon, iconColors } from '../icons/icons.js';
 
 import { Plugin } from '../plugin.js';
-import { newEditEvent } from '@openscd/core';
+import { EditV2, isComplexV2, newEditEventV2 } from '@openscd/core';
 
 export const historyStateEvent =  'history-state';
 export interface HistoryState {
@@ -213,7 +213,7 @@ export class OscdHistory extends LitElement {
     if (!this.canUndo) return false;
 
     const undoEdit = (<CommitEntry>this.history[this.editCount]).undo;
-    this.host.dispatchEvent(newEditEvent(undoEdit, 'undo'));
+    this.host.dispatchEvent(newEditEventV2(undoEdit, { createHistoryEntry: false }));
     this.setEditCount(this.previousAction);
 
     return true;
@@ -222,7 +222,7 @@ export class OscdHistory extends LitElement {
     if (!this.canRedo) return false;
 
     const redoEdit = (<CommitEntry>this.history[this.nextAction]).redo;
-    this.host.dispatchEvent(newEditEvent(redoEdit, 'redo'));
+    this.host.dispatchEvent(newEditEventV2(redoEdit, { createHistoryEntry: false }));
     this.setEditCount(this.nextAction);
 
     return true;
@@ -238,9 +238,58 @@ export class OscdHistory extends LitElement {
       this.history.splice(this.nextAction);
     }
 
-    this.history.push(entry);
+    this.addHistoryEntry(entry);
     this.setEditCount(this.history.length - 1);
     this.requestUpdate('history', []);
+  }
+
+  private addHistoryEntry(entry: CommitEntry) {
+    const shouldSquash = Boolean(entry.squash) && this.history.length > 0;
+
+    if (shouldSquash) {
+      const previousEntry = this.history.pop() as CommitEntry;
+      const squashedEntry = this.squashHistoryEntries(entry, previousEntry);
+      this.history.push(squashedEntry);
+    } else {
+      this.history.push(entry);
+    }
+  }
+
+  private squashHistoryEntries(current: CommitEntry, previous: CommitEntry): CommitEntry {
+    const undo = this.squashUndo(current.undo, previous.undo);
+    const redo = this.squashRedo(current.redo, previous.redo);
+
+    return {
+      ...current,
+      undo,
+      redo
+    };
+  }
+
+  private squashUndo(current: EditV2, previous: EditV2): EditV2 {
+    const isCurrentComplex = isComplexV2(current);
+    const isPreviousComplex = isComplexV2(previous);
+
+    const previousUndos: EditV2[] = (isPreviousComplex ? previous : [ previous ]) as EditV2[];
+    const currentUndos: EditV2[] = (isCurrentComplex ? current : [ current ]) as EditV2[];
+
+    return [
+      ...currentUndos,
+      ...previousUndos
+    ];
+  }
+
+  private squashRedo(current: EditV2, previous: EditV2): EditV2 {
+    const isCurrentComplex = isComplexV2(current);
+    const isPreviousComplex = isComplexV2(previous);
+
+    const previousRedos: EditV2[] = (isPreviousComplex ? previous : [ previous ]) as EditV2[];
+    const currentRedos: EditV2[] = (isCurrentComplex ? current : [ current ]) as EditV2[];
+
+    return [
+      ...previousRedos,
+      ...currentRedos
+    ];
   }
 
   private onReset() {
