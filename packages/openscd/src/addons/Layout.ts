@@ -346,10 +346,9 @@ export class OscdLayout extends LitElement {
   }
 
   private renderMenuItem(me: MenuItem | 'divider'): TemplateResult {
-    const isDivider = me === 'divider';
     const hasActionItem = me !== 'divider' && me.actionItem;
 
-    if (isDivider) { return html`<li divider padded role="separator"></li>`; }
+    if (isDivider(me)) { return html`<li divider padded role="separator"></li>`; }
     if (hasActionItem){ return html``; }
     return html`
       <mwc-list-item
@@ -652,4 +651,8 @@ export class OscdLayout extends LitElement {
       display: flex;
     }
   `;
+}
+
+function isDivider(item: MenuItem | 'divider'): item is 'divider' {
+  return item === 'divider';
 }
