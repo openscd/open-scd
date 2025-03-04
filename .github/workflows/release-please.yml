@@ -34,3 +34,19 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
         if: ${{ steps.release.outputs.releases_created }}
+      
+      - name: Build Distribution
+        if: ${{ steps.release.outputs.releases_created }}
+        run: cd packages/distribution && npm run build
+        
+      - name: Create and Zip Build Assets
+        if: ${{ steps.release.outputs.releases_created }}
+        run: | 
+          zip -r open-scd.zip ./packages/distribution/build/*
+          tar -czvf open-scd.tar.gz ./packages/distribution/build/*
+
+      - name: Upload Build Assets
+        if: ${{ steps.release.outputs.releases_created }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run:  gh release upload ${{ steps.release.outputs.tag_name }} open-scd.zip open-scd.tar.gz
