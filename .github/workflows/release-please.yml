@@ -38,13 +38,13 @@ jobs:
       
       - name: Build Distribution
         if: ${{ steps.release.outputs.releases_created }}
-        run: cd packages/distribution && npm run build
+        run: npm run build
         
       - name: Create and Zip Build Assets
         if: ${{ steps.release.outputs.releases_created }}
         run: | 
-          zip -r open-scd.zip ./packages/distribution/build/*
-          tar -czvf open-scd.tar.gz ./packages/distribution/build/*
+          zip -r open-scd.zip ./packages/distribution/build/
+          tar -czvf open-scd.tar.gz ./packages/distribution/build/
 
       - name: Upload Build Assets
         if: ${{ steps.release.outputs.releases_created }}
