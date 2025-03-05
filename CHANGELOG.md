@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.38.1](https://github.com/openscd/open-scd/compare/v0.38.0...v0.38.1) (2025-03-05)
+
+
+### Bug Fixes
+
+* Attach release files in release please ([#1636](https://github.com/openscd/open-scd/issues/1636)) ([f2e6a1d](https://github.com/openscd/open-scd/commit/f2e6a1d8b8fc49b03c75e94dfeed565eeb1bda2f))
+* Build entire project and attach distribution to build output ([#1639](https://github.com/openscd/open-scd/issues/1639)) ([bd554e7](https://github.com/openscd/open-scd/commit/bd554e72f308a3c6e60f4ee1d98fa4884fc5d8f8))
+* continue to upload assets job even if npm publish step fails ([#1638](https://github.com/openscd/open-scd/issues/1638)) ([bc7571e](https://github.com/openscd/open-scd/commit/bc7571e8351d2a1770e19c58eabf91404cf1726e))
+* rename releases_created into release_created for release_please_action@V4 ([#1641](https://github.com/openscd/open-scd/issues/1641)) ([81801cc](https://github.com/openscd/open-scd/commit/81801cc776311ff996c512ea2f441b2b9cc5e2cd))
+
 ## [0.38.0](https://github.com/openscd/open-scd/compare/v0.37.1...v0.38.0) (2025-02-26)
 
 
