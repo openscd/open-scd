@@ -264,6 +264,9 @@ export class CompasLayout extends LitElement {
 
   connectedCallback(): void {
     super.connectedCallback();
+    this.host.addEventListener('open-drawer', () => {
+      this.menuUI.open = true;
+    })
     this.host.addEventListener('close-drawer', async () => {
       this.menuUI.open = false;
     });
