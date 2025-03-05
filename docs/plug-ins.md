@@ -277,6 +277,14 @@ implemented in these plugins.
 > https://sprinteins.github.io/oscd-plugins/documentation/index.js
 > ```
 
+### Subscriber (Later Binding)
+
+> <kbd>Editor</kbd> | by [Daniel](https://github.com/danyill) | [Repository](https://github.com/danyill/scl-editor)
+> 
+> ```
+> https://danyill.github.io/scl-editor/plugins/oscd-subscriber-later-binding/oscd-subscriber-later-binding.js
+> ```
+
 ## Vendor Specific Plug-ins
 
 These plug-ins are specific to a vendor and can include vendor specific 
