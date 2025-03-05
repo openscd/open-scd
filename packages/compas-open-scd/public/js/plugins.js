@@ -113,7 +113,7 @@ export const officialPlugins = [
   },
   {
     name: 'Subscribe (Later Binding)',
-    src: '/external-plugins/scl-editor/plugins/oscd-subscriber-later-binding/oscd-subscriber-later-binding.js',
+    src: '/external-plugins/oscd-subscriber-later-binding/oscd-subscriber-later-binding.js',
     icon: 'link',
     default: false,
     kind: 'editor',

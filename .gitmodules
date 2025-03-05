@@ -6,3 +6,7 @@
 	path = packages/external-plugins/oscd-plugins
 	url = https://github.com/sprinteins/oscd-plugins
 	branch = gh-pages
+[submodule "packages/external-plugins/oscd-subscriber-later-binding"]
+	path = packages/external-plugins/oscd-subscriber-later-binding
+	url = https://github.com/danyill/oscd-subscriber-later-binding
+	branch = gh-pages
