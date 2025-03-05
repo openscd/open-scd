@@ -6,3 +6,7 @@
 	path = packages/external-plugins/oscd-plugins
 	url = https://github.com/sprinteins/oscd-plugins
 	branch = gh-pages
+[submodule "packages/external-plugins/scl-editor"]
+	path = packages/external-plugins/scl-editor
+	url = https://github.com/danyill/scl-editor
+	branch = gh-pages

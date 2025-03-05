@@ -112,6 +112,13 @@ export const officialPlugins = [
     kind: 'editor',
   },
   {
+    name: 'Subscribe (Later Binding)',
+    src: '/external-plugins/scl-editor/plugins/oscd-subscriber-later-binding/oscd-subscriber-later-binding.js',
+    icon: 'link',
+    default: false,
+    kind: 'editor',
+  },
+  {
     name: 'Open project',
     src: '/src/menu/CompasOpen.js',
     icon: 'folder_open',
