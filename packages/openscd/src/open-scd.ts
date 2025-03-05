@@ -56,7 +56,8 @@ import { newLogEvent } from '@openscd/core/foundation/deprecated/history';
 
 /** The `<open-scd>` custom element is the main entry point of the
  * Open Substation Configuration Designer. */
-@customElement('open-scd')
+// Change selector to avoid conflicts with open-scd from compas
+@customElement('original-open-scd')
 export class OpenSCD extends LitElement {
 
   render(): TemplateResult {
