@@ -28,7 +28,7 @@ jobs:
         if: ${{ steps.release.outputs.releases_created }}
       - run: npm ci --include=optional
         if: ${{ steps.release.outputs.releases_created }}
-      - run: cd packages/core && npm run build
+      - run: npm run build
         if: ${{ steps.release.outputs.releases_created }}
       - run: cd packages/core && npm publish --access public
         env:
@@ -36,9 +36,6 @@ jobs:
         if: ${{ steps.release.outputs.releases_created }}
         continue-on-error: true
       
-      - name: Build Distribution
-        if: ${{ steps.release.outputs.releases_created }}
-        run: npm run build
         
       - name: Create and Zip Build Assets
         if: ${{ steps.release.outputs.releases_created }}
