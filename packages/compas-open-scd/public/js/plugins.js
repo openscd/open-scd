@@ -131,8 +131,9 @@ export const officialPlugins = [
     name: 'Subscribe (Later Binding)',
     src: '/external-plugins/oscd-subscriber-later-binding/oscd-subscriber-later-binding.js',
     icon: 'link',
-    default: false,
+    activeByDefault: false,
     kind: 'editor',
+    requireDoc: true
   },
   {
     name: 'Open project',
