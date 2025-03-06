@@ -128,6 +128,13 @@ export const officialPlugins = [
     requireDoc: true,
   },
   {
+    name: 'Subscribe (Later Binding)',
+    src: '/external-plugins/oscd-subscriber-later-binding/oscd-subscriber-later-binding.js',
+    icon: 'link',
+    default: false,
+    kind: 'editor',
+  },
+  {
     name: 'Open project',
     src: '/src/menu/CompasOpen.js',
     icon: 'folder_open',
