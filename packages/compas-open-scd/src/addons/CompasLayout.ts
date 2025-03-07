@@ -16,15 +16,9 @@ import {
   Validator,
   MenuPlugin,
   pluginIcons,
-  newResetPluginsEvent,
-  newAddExternalPluginEvent,
-  newSetPluginsEvent,
 } from '@openscd/open-scd/src/open-scd.js';
 import {
   Plugin,
-  PluginKind,
-  MenuPosition,
-  menuPosition
 } from '@openscd/open-scd/src/plugin.js'
 import {
   HistoryUIKind,
@@ -37,11 +31,6 @@ import type { Drawer } from '@material/mwc-drawer';
 import type { ActionDetail } from '@material/mwc-list';
 import { List } from '@material/mwc-list';
 import type { ListItem } from '@material/mwc-list/mwc-list-item';
-import type { Dialog } from '@material/mwc-dialog';
-import type { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation.js';
-import type { Select } from '@material/mwc-select';
-import type { Switch } from '@material/mwc-switch';
-import type { TextField } from '@material/mwc-textfield';
 
 import '@material/mwc-drawer';
 import '@material/mwc-list';
