@@ -2,7 +2,17 @@ import { html, fixture, expect } from '@open-wc/testing';
 
 import '../../src/addons/Editor.js';
 import { OscdEditor } from '../../src/addons/Editor.js';
-import { Insert, newEditEvent, Remove, Update } from '@openscd/core';
+import {
+  Insert,
+  InsertV2,
+  newEditEvent,
+  newEditEventV2,
+  Remove,
+  Update,
+  SetAttributesV2,
+  SetTextContentV2,
+  RemoveV2
+} from '@openscd/core';
 import { CommitDetail, LogDetail } from '@openscd/core/foundation/deprecated/history.js';
 
 
@@ -17,6 +27,7 @@ describe('OSCD-Editor', () => {
   let bay2: Element;
   let bay4: Element;
   let bay5: Element;
+  let bayWithoutTextContent: Element;
   let lnode1: Element;
   let lnode2: Element;
 
@@ -39,6 +50,7 @@ describe('OSCD-Editor', () => {
           </Bay>
           <Bay name="b5" kind="bay">
           </Bay>
+          <Bay name="bWithoutTextContent"></Bay>
         </VoltageLevel>
       </Substation>`,
       'application/xml',
@@ -54,6 +66,7 @@ describe('OSCD-Editor', () => {
     bay2 = scd.querySelector('Bay[name="b2"]')!;
     bay4 = scd.querySelector('Bay[name="b4"]')!;
     bay5 = scd.querySelector('Bay[name="b5"]')!;
+    bayWithoutTextContent = scd.querySelector('Bay[name="bWithoutTextContent"]')!;
     lnode1 = scd.querySelector('LNode[name="l1"]')!;
     lnode2 = scd.querySelector('LNode[name="l2"]')!;
   });
@@ -63,13 +76,13 @@ describe('OSCD-Editor', () => {
       const newNode = scd.createElement('Bay');
       newNode.setAttribute('name', 'b3');
 
-      const insert: Insert = {
+      const insert: InsertV2 = {
         parent: voltageLevel1,
         node: newNode,
         reference: null
       };
 
-      host.dispatchEvent(newEditEvent(insert));
+      host.dispatchEvent(newEditEventV2(insert));
 
       const newNodeFromScd = scd.querySelector('VoltageLevel[name="v1"] > Bay[name="b3"]');
 
@@ -80,13 +93,13 @@ describe('OSCD-Editor', () => {
       const newNode = scd.createElement('Bay');
       newNode.setAttribute('name', 'b3');
 
-      const insert: Insert = {
+      const insert: InsertV2 = {
         parent: voltageLevel1,
         node: newNode,
         reference: bay1
       };
 
-      host.dispatchEvent(newEditEvent(insert));
+      host.dispatchEvent(newEditEventV2(insert));
 
       const newNodeFromScd = scd.querySelector('VoltageLevel[name="v1"] > Bay[name="b3"]');
 
@@ -94,13 +107,13 @@ describe('OSCD-Editor', () => {
     });
 
     it('should move node when inserting existing node', () => {
-      const insertMove: Insert = {
+      const insertMove: InsertV2 = {
         parent: voltageLevel1,
         node: bay2,
         reference: null
       };
 
-      host.dispatchEvent(newEditEvent(insertMove));
+      host.dispatchEvent(newEditEventV2(insertMove));
 
       expect(scd.querySelector('VoltageLevel[name="v2"] > Bay[name="b2"]')).to.be.null; 
       expect(scd.querySelector('VoltageLevel[name="v1"] > Bay[name="b2"]')).to.deep.equal(bay2);
@@ -111,12 +124,12 @@ describe('OSCD-Editor', () => {
         node: bay1
       };
 
-      host.dispatchEvent(newEditEvent(remove));
+      host.dispatchEvent(newEditEventV2(remove));
 
       expect(scd.querySelector('VoltageLevel[name="v1"] > Bay[name="b1"]')).to.be.null;
     });
 
-    describe('Update', () => {
+    describe('SetAttributes', () => {
       it('should add new attributes and leave old attributes', () => {
         const bay1NewAttributes = {
           desc: 'new description',
@@ -125,12 +138,13 @@ describe('OSCD-Editor', () => {
 
         const oldAttributes = elementAttributesToMap(bay1);
 
-        const update: Update = {
+        const update: SetAttributesV2 = {
           element: bay1,
-          attributes: bay1NewAttributes
+          attributes: bay1NewAttributes,
+          attributesNS: {}
         };
 
-        host.dispatchEvent(newEditEvent(update));
+        host.dispatchEvent(newEditEventV2(update));
 
         const updatedElement = scd.querySelector('Bay[name="b1"]')!;
 
@@ -147,12 +161,13 @@ describe('OSCD-Editor', () => {
           kind: null
         };
 
-        const update: Update = {
+        const update: SetAttributesV2 = {
           element: bay1,
-          attributes: bay1NewAttributes
+          attributes: bay1NewAttributes,
+          attributesNS: {}
         };
 
-        host.dispatchEvent(newEditEvent(update));
+        host.dispatchEvent(newEditEventV2(update));
 
         const updatedElement = scd.querySelector('Bay[name="b1"]')!;
 
@@ -168,12 +183,13 @@ describe('OSCD-Editor', () => {
 
         const oldAttributes = elementAttributesToMap(bay1);
 
-        const update: Update = {
+        const update: SetAttributesV2 = {
           element: bay1,
-          attributes: bay1NewAttributes
+          attributes: bay1NewAttributes,
+          attributesNS: {}
         };
 
-        host.dispatchEvent(newEditEvent(update));
+        host.dispatchEvent(newEditEventV2(update));
 
         const updatedElement = scd.querySelector(`Bay[name="${bay1NewAttributes.name}"]`)!;
 
@@ -187,67 +203,77 @@ describe('OSCD-Editor', () => {
 
       describe('namespaced attributes', () => {
         it('should update attribute with namespace', () => {
-          const update: Update = {
+          const update: SetAttributesV2 = {
             element: lnode1,
-            attributes: {
-              type: { value: 'newType', namespaceURI: 'xsi' }
+            attributes: { },
+            attributesNS: {
+              [nsXsi]: { type: 'newType' }
             }
           };
 
-          host.dispatchEvent(newEditEvent(update));
+          host.dispatchEvent(newEditEventV2(update));
 
-          expect(lnode1.getAttributeNS('xsi', 'type')).to.equal('newType');
+          expect(lnode1.getAttributeNS(nsXsi, 'type')).to.equal('newType');
         });
 
         it('should handle multiple namespaces', () => {
-          const update: Update = {
+          const update: SetAttributesV2 = {
             element: lnode1,
-            attributes: {
-              type: { value: 'newTypeXSI', namespaceURI: nsXsi }
+            attributes: { },
+            attributesNS: {
+              [nsXsi]: { type: 'newTypeXSI' }
             }
           };
 
-          host.dispatchEvent(newEditEvent(update));
+          host.dispatchEvent(newEditEventV2(update));
 
-          const update2: Update = {
+          const update2: SetAttributesV2 = {
             element: lnode1,
-            attributes: {
-              type: { value: 'newTypeTD', namespaceURI: nsTd }
+            attributes: { },
+            attributesNS: {
+              [nsTd]: { type: 'newTypeTD' }
             }
           };
 
-          host.dispatchEvent(newEditEvent(update2));
+          host.dispatchEvent(newEditEventV2(update2));
 
           expect(lnode1.getAttributeNS(nsXsi, 'type')).to.equal('newTypeXSI');
           expect(lnode1.getAttributeNS(nsTd, 'type')).to.equal('newTypeTD');
         });
 
         it('should remove namespaced attribute', () => {
-          const update: Update = {
+          const update: SetAttributesV2 = {
             element: lnode2,
-            attributes: {
-              type: { value: null, namespaceURI: nsXsi }
+            attributes: { },
+            attributesNS: {
+              [nsXsi]: { type: null }
             }
           };
 
-          host.dispatchEvent(newEditEvent(update));
+          host.dispatchEvent(newEditEventV2(update));
 
           expect(lnode2.getAttributeNS(nsXsi, 'type')).to.be.null;
           expect(lnode2.getAttributeNS(nsTd, 'type')).to.equal('typeTD');
         });
 
         it('should add and remove multiple normal and namespaced attributes', () => {
-          const update: Update = {
+          const update: SetAttributesV2 = {
             element: lnode2,
             attributes: {
-              type: { value: null, namespaceURI: nsXsi },
-              kind: { value: 'td-kind', namespaceURI: nsTd },
               normalAttribute: 'normalValue',
               lnClass: null
+            },
+            attributesNS: {
+              [nsXsi]: {
+                type: null
+              },
+              [nsTd]: {
+                kind: 'td-kind'
+              }
             }
           };
 
-          host.dispatchEvent(newEditEvent(update));
+          host.dispatchEvent(newEditEventV2(update));
 
           expect(lnode2.getAttributeNS(nsXsi, 'type')).to.be.null;
           expect(lnode2.getAttributeNS(nsTd, 'kind')).to.equal('td-kind');
@@ -256,29 +282,43 @@ describe('OSCD-Editor', () => {
         });
       });
 
+      describe('SetTextContent', () => {
+        it('should set text content', () => {
+          const update: SetTextContentV2 = {
+            element: bay1,
+            textContent: 'new text'
+          };
+
+          host.dispatchEvent(newEditEventV2(update));
+
+          expect(bay1.textContent).to.equal('new text');
+        });
+      });
+
       describe('Complex action', () => {
         it('should apply each edit from a complex edit', () => {
           const newNode = scd.createElement('Bay');
           newNode.setAttribute('name', 'b3');
     
-          const insert: Insert = {
+          const insert: InsertV2 = {
             parent: voltageLevel1,
             node: newNode,
             reference: bay1
           };
 
-          const remove: Remove = {
+          const remove: RemoveV2 = {
             node: bay2
           };
 
-          const update: Update = {
+          const update: SetAttributesV2 = {
             element: bay1,
             attributes: {
               desc: 'new description'
-            }
+            },
+            attributesNS: {}
           };
 
-          host.dispatchEvent(newEditEvent([insert, remove, update]));
+          host.dispatchEvent(newEditEventV2([insert, remove, update]));
 
           expect(scd.querySelector('VoltageLevel[name="v1"] > Bay[name="b3"]')).to.deep.equal(newNode);
           expect(scd.querySelector('VoltageLevel[name="v2"] > Bay[name="b2"]')).to.be.null;
@@ -296,29 +336,18 @@ describe('OSCD-Editor', () => {
           });
         });
 
-        it('should log edit for user event', () => {
-          const remove: Remove = {
+        it('should log edit by default', () => {
+          const remove: RemoveV2 = {
             node: bay2,
           };
 
-          host.dispatchEvent(newEditEvent(remove, 'user'));
+          host.dispatchEvent(newEditEventV2(remove));
 
           expect(log).to.have.lengthOf(1);
           const logEntry = log[0] as CommitDetail;
           expect(logEntry.kind).to.equal('action');
           expect(logEntry.title).to.equal('[editing.deleted]');
           expect(logEntry.redo).to.deep.equal(remove);
-        });
-
-        it('should not log edit for undo or redo event', () => {
-          const remove: Remove = {
-            node: bay2,
-          };
-
-          host.dispatchEvent(newEditEvent(remove, 'redo'));
-          host.dispatchEvent(newEditEvent(remove, 'undo'));
-
-          expect(log).to.have.lengthOf(0);
         });
 
         describe('validate after edit', () => {
@@ -332,11 +361,11 @@ describe('OSCD-Editor', () => {
           });
 
           it('should dispatch validate event after edit', async () => {
-            const remove: Remove = {
+            const remove: RemoveV2 = {
               node: bay2,
             };
   
-            host.dispatchEvent(newEditEvent(remove));
+            host.dispatchEvent(newEditEventV2(remove));
 
             await element.updateComplete;
 
@@ -361,75 +390,108 @@ describe('OSCD-Editor', () => {
       const newNode = scd.createElement('Bay');
       newNode.setAttribute('name', 'b3');
 
-      const insert: Insert = {
+      const insert: InsertV2 = {
         parent: voltageLevel1,
         node: newNode,
         reference: null
       };
 
-      host.dispatchEvent(newEditEvent(insert));
+      host.dispatchEvent(newEditEventV2(insert));
 
-      const undoInsert = log[0].undo as Remove;
+      const undoInsert = log[0].undo as RemoveV2;
 
-      host.dispatchEvent(newEditEvent(undoInsert));
+      host.dispatchEvent(newEditEventV2(undoInsert));
 
       expect(scd.querySelector('VoltageLevel[name="v1"] > Bay[name="b3"]')).to.be.null;
     });
 
     it('should undo remove', () => {
-      const remove: Remove = {
+      const remove: RemoveV2 = {
         node: bay4
       };
 
-      host.dispatchEvent(newEditEvent(remove));
+      host.dispatchEvent(newEditEventV2(remove));
 
-      const undoRemove = log[0].undo as Insert;
+      const undoRemove = log[0].undo as InsertV2;
 
-      host.dispatchEvent(newEditEvent(undoRemove));
+      host.dispatchEvent(newEditEventV2(undoRemove));
 
       const bay4FromScd = scd.querySelector('VoltageLevel[name="v2"] > Bay[name="b4"]');
       expect(bay4FromScd).to.deep.equal(bay4);
     });
 
-    it('should undo update', () => {
-      const update: Update = {
+    it('should undo set attributes', () => {
+      const update: SetAttributesV2 = {
         element: bay1,
         attributes: {
           desc: 'new description',
           kind: 'superbay'
-        }
+        },
+        attributesNS: {}
       };
 
-      host.dispatchEvent(newEditEvent(update));
+      host.dispatchEvent(newEditEventV2(update));
 
-      const undoUpdate = log[0].undo as Update;
+      const undoUpdate = log[0].undo as SetAttributesV2;
 
-      host.dispatchEvent(newEditEvent(undoUpdate));
+      host.dispatchEvent(newEditEventV2(undoUpdate));
 
       expect(bay1.getAttribute('desc')).to.be.null;
       expect(bay1.getAttribute('kind')).to.equal('bay');
+    });
+
+    it('should undo set textcontent', () => {
+      const update: SetTextContentV2 = {
+        element: bayWithoutTextContent,
+        textContent: 'new text'
+      };
+
+      host.dispatchEvent(newEditEventV2(update));
+
+      const undoUpdate = log[0].undo as SetTextContentV2;
+
+      host.dispatchEvent(newEditEventV2(undoUpdate));
+
+      expect(bayWithoutTextContent.textContent).to.be.empty;
+    });
+
+    it('should restore children when undoing set textcontent', () => {
+      const update: SetTextContentV2 = {
+        element: bay2,
+        textContent: 'new text'
+      };
+
+      host.dispatchEvent(newEditEventV2(update));
+
+      expect(bay2.children).to.be.empty;
+
+      const undoUpdate = log[0].undo as SetTextContentV2;
+
+      host.dispatchEvent(newEditEventV2(undoUpdate));
+
+      expect(bay2.children[0]).to.deep.equal(lnode2);
     });
 
     it('should redo previously undone action', () => {
       const newNode = scd.createElement('Bay');
       newNode.setAttribute('name', 'b3');
 
-      const insert: Insert = {
+      const insert: InsertV2 = {
         parent: voltageLevel1,
         node: newNode,
         reference: null
       };
 
-      host.dispatchEvent(newEditEvent(insert));
+      host.dispatchEvent(newEditEventV2(insert));
 
       const undoIsert = log[0].undo;
       const redoInsert = log[0].redo;
 
-      host.dispatchEvent(newEditEvent(undoIsert));
+      host.dispatchEvent(newEditEventV2(undoIsert));
 
       expect(scd.querySelector('VoltageLevel[name="v1"] > Bay[name="b3"]')).to.be.null;
 
-      host.dispatchEvent(newEditEvent(redoInsert));
+      host.dispatchEvent(newEditEventV2(redoInsert));
 
       expect(scd.querySelector('VoltageLevel[name="v1"] > Bay[name="b3"]')).to.deep.equal(newNode);
     });
@@ -438,35 +500,36 @@ describe('OSCD-Editor', () => {
       const newNode = scd.createElement('Bay');
       newNode.setAttribute('name', 'b3');
 
-      const insert: Insert = {
+      const insert: InsertV2 = {
         parent: voltageLevel1,
         node: newNode,
         reference: bay1
       };
 
-      const remove: Remove = {
+      const remove: RemoveV2 = {
         node: bay2
       };
 
-      const update: Update = {
+      const update: SetAttributesV2 = {
         element: bay1,
         attributes: {
           desc: 'new description'
-        }
+        },
+        attributesNS: {}
       };
 
-      host.dispatchEvent(newEditEvent([insert, remove, update]));
+      host.dispatchEvent(newEditEventV2([insert, remove, update]));
 
       const undoComplex = log[0].undo;
       const redoComplex = log[0].redo;
 
-      host.dispatchEvent(newEditEvent(undoComplex));
+      host.dispatchEvent(newEditEventV2(undoComplex));
 
       expect(scd.querySelector('VoltageLevel[name="v1"] > Bay[name="b3"]')).to.be.null;
       expect(scd.querySelector('VoltageLevel[name="v2"] > Bay[name="b2"]')).to.deep.equal(bay2);
       expect(bay1.getAttribute('desc')).to.be.null;
 
-      host.dispatchEvent(newEditEvent(redoComplex));
+      host.dispatchEvent(newEditEventV2(redoComplex));
 
       expect(scd.querySelector('VoltageLevel[name="v1"] > Bay[name="b3"]')).to.deep.equal(newNode);
       expect(scd.querySelector('VoltageLevel[name="v2"] > Bay[name="b2"]')).to.be.null;

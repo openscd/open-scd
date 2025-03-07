@@ -1,5 +1,34 @@
 # Changelog
 
+## [0.38.0](https://github.com/openscd/open-scd/compare/v0.37.1...v0.38.0) (2025-02-26)
+
+
+### Features
+
+* change release please Workflow trigger ([#1624](https://github.com/openscd/open-scd/issues/1624)) ([53f24cb](https://github.com/openscd/open-scd/commit/53f24cbc9b2be8407aa1420b5665d2a09e9051ea))
+* update release please action ([#1635](https://github.com/openscd/open-scd/issues/1635)) ([06b8356](https://github.com/openscd/open-scd/commit/06b8356485940f2841b01293de5bea2a6fa1399d))
+
+
+### Bug Fixes
+
+* inconsistent plugin activation behaviour caused by refactoring ([#1626](https://github.com/openscd/open-scd/issues/1626)) ([00c4dc0](https://github.com/openscd/open-scd/commit/00c4dc06f6d0cf1c39e4822a5b21d650d698785e))
+* update release please version to 0.37.2 ([#1632](https://github.com/openscd/open-scd/issues/1632)) ([a3d6d2f](https://github.com/openscd/open-scd/commit/a3d6d2f68952e98d62375b037b5b36bca63f325a))
+
+## [0.37.1](https://github.com/openscd/open-scd/compare/v0.37.0...v0.37.1) (2025-02-04)
+
+
+### Features
+
+* Programatic Plugin Activation ([#1611](https://github.com/openscd/open-scd/issues/1611)) ([d3b2a0a](https://github.com/openscd/open-scd/commit/d3b2a0a7b2d08d0ce5484567ebfe6c6d4e548c5e))
+
+## [0.37.0](https://github.com/openscd/open-scd/compare/v0.36.0...v0.37.0) (2025-01-27)
+
+
+### Features
+
+* Edit api v3 ([#1615](https://github.com/openscd/open-scd/issues/1615)) ([ce39e2b](https://github.com/openscd/open-scd/commit/ce39e2b7bfcda40659f36e40659b1efd571f2a53))
+* **monorepo:** Add contributing guide ([#1588](https://github.com/openscd/open-scd/issues/1588)) ([dd692a8](https://github.com/openscd/open-scd/commit/dd692a8d9784aaf5f8509fdad5298293195d1465))
+
 ## [0.36.0](https://github.com/openscd/open-scd/compare/v0.35.0...v0.36.0) (2024-11-14)
 
 
