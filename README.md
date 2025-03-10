@@ -36,3 +36,7 @@ A high-level overview of how it’s organized will help you know where to look f
 
 - [⚖️ Decisions](docs/decisions/README.md) documents the decisions we made and why we made them.
 - [✏️ Edit event API](docs/core-api/edit-api.md) documents the edit event API.
+
+## CC-EULA license
+
+Some of the files in this repository are subject to the CC-EULA License. Please check the [disclaimer](./packages/openscd/public/xml/Disclaimer.md) to to see what his means.
