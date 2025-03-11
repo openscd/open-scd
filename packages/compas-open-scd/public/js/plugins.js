@@ -120,6 +120,14 @@ export const officialPlugins = [
     requireDoc: true,
   },
   {
+    name: 'Template Generator',
+    src: '/external-plugins/oscd-template-generator/oscd-template-generator.js',
+    icon: 'copy_all',
+    activeByDefault: true,
+    kind: 'editor',
+    requireDoc: true,
+  },
+  {
     name: 'Cleanup',
     src: '/plugins/src/editors/Cleanup.js',
     icon: 'cleaning_services',
