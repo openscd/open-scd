@@ -10,3 +10,7 @@
 	path = packages/external-plugins/oscd-subscriber-later-binding
 	url = https://github.com/danyill/oscd-subscriber-later-binding
 	branch = gh-pages
+[submodule "packages/external-plugins/oscd-template-generator"]
+	path = packages/external-plugins/oscd-template-generator
+	url = https://github.com/OpenEnergyTools/oscd-template-generator
+	branch = deploy
