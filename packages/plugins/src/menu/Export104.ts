@@ -66,7 +66,7 @@ export default class Export104 extends LitElement {
       if (signal104Data.isMonitorSignal) {
         line.push(signal104Data.ioa ?? '', '');
       } else {
-        line.push('', signal104Data.ioa ?? '');
+        line.push(signal104Data.ioa ?? '', signal104Data.ioa ?? '');
       }
 
       lines.push(line);
