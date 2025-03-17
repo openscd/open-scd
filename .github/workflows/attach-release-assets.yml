@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: "18.x"
       - name: Install and Build OpenSCD
-        run: | 
+        run: |
           npm i @nx/nx-linux-x64-gnu
           npm clean-install
           npm run-script build
@@ -27,12 +27,12 @@ jobs:
         run: cp -R packages/core/doc packages/distribution/build/core-doc
 
       - name: Copy Plugin Docs to OpenSCD
-        run: cp -R packages/plugins/doc packages/distribution/build/plugin-doc
+        run: cp -R packages/oscd-official-plugins/doc packages/distribution/build/plugin-doc
 
       - name: Compress files
         run: tar -czf open-scd.tar.gz -C packages/distribution/build
-        
+
       - name: Upload release files
         run: gh release upload ${{ steps.release.outputs.tag_name }} open-scd.tar.gz
-        env: 
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

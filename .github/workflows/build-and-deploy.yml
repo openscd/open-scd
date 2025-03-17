@@ -31,7 +31,7 @@ jobs:
 
       - name: Copy Plugin Docs to OpenSCD
         run: |
-          cp -R packages/plugins/doc packages/distribution/build/plugin-doc
+          cp -R packages/oscd-official-plugins/doc packages/distribution/build/plugin-doc
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.5
