@@ -17,7 +17,7 @@ interface ExtractSignal104Result {
 
 enum SignalType {
   Monitor,
-  Control,
+  MonitorAndControl,
   Unknown
 }
 
@@ -88,7 +88,7 @@ function extractSignal104Data(addressElement: Element, doc: XMLDocument): Extrac
 
   const substationName = parentSubstation.getAttribute('name');
 
-  const name = `${substationName}${voltageLevelName}${bayName}${doiDesc}`;
+  const name = `${substationName} ${voltageLevelName} ${bayName} ${doiDesc}`;
 
   return {
     signal: {
@@ -112,7 +112,7 @@ function getSignalType(tiString: string): SignalType {
   if ((ti >= 1 && ti <= 21) || (ti >= 30 && ti <= 40)) {
     return SignalType.Monitor;
   } else if ((ti >= 45 && ti <= 51) || (ti >= 58 && ti <= 64)) {
-    return SignalType.Control;
+    return SignalType.MonitorAndControl;
   } else {
     return SignalType.Unknown;
   }

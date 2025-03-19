@@ -16,35 +16,35 @@ describe('Export104 foundation', () => {
 
     const expectedSignals = [
       {
-        name: 'S1F2V105Control1',
+        name: 'S1 F2 V105 Control1',
         signalNumber: '3001',
         isMonitorSignal: false,
         ioa: '1053001',
         ti: '50'
       },
       {
-        name: 'S1F2V105Control2',
+        name: 'S1 F2 V105 Control2',
         signalNumber: '3002',
         isMonitorSignal: false,
         ioa: '1053002',
         ti: '64'
       },
       {
-        name: 'S1F1V104Behavior',
+        name: 'S1 F1 V104 Behavior',
         signalNumber: '2001',
         isMonitorSignal: true,
         ioa: '1042001',
         ti: '35'
       },
       {
-        name: 'S1F1V104Behavior',
+        name: 'S1 F1 V104 Behavior',
         signalNumber: '2002',
         isMonitorSignal: true,
         ioa: '1042002',
         ti: '35'
       },
       {
-        name: 'S1F1V103Behavior',
+        name: 'S1 F1 V103 Behavior',
         signalNumber: '1003',
         isMonitorSignal: true,
         ioa: '1031003',
