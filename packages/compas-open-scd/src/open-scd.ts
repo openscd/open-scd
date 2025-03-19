@@ -38,6 +38,7 @@ import type {
 import { classMap } from 'lit-html/directives/class-map.js';
 import { newConfigurePluginEvent, ConfigurePluginEvent } from '@openscd/open-scd/src/plugin.events.js';
 import { newLogEvent } from '@openscd/core/foundation/deprecated/history.js';
+import packageJson from '../package.json';
 
 /** The `<open-scd>` custom element is the main entry point of the
  * Open Substation Configuration Designer. */
@@ -166,7 +167,8 @@ export class OpenSCD extends LitElement {
 
   connectedCallback(): void {
     super.connectedCallback();
-    this.loadPlugins()
+    this.checkAppVersion();
+    this.loadPlugins();
 
     // TODO: let Lit handle the event listeners, move to render()
     this.addEventListener('reset-plugins', this.resetPlugins);
@@ -421,6 +423,16 @@ get parsedPlugins(): Plugin[] {
           ></${tag}>`
         },
     };
+  }
+
+  private checkAppVersion(): void {
+    const currentVersion = packageJson.version;
+    const storedVersion = localStorage.getItem('appVersion');
+
+    if (storedVersion !== currentVersion) {
+      localStorage.setItem('appVersion', currentVersion);
+      localStorage.removeItem('plugins');
+    }
   }
 
   @state() private loadedPlugins = new Set<string>();
