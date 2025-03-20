@@ -5,7 +5,7 @@ import process from 'process';
 
 export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
   /** we run test directly on TypeScript files */
-  plugins: [esbuildPlugin({ ts: true })],
+  plugins: [esbuildPlugin({ ts: true, json: true })],
 
   /** Resolve bare module imports */
   nodeResolve: {
