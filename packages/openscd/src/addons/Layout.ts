@@ -58,6 +58,8 @@ import {OscdPluginManager} from "./plugin-manager/plugin-manager.js";
 import "./plugin-manager/plugin-manager.js";
 import {OscdCustomPluginDialog} from "./plugin-manager/custom-plugin-dialog.js";
 import "./plugin-manager/custom-plugin-dialog.js";
+import "./menu-tabs/menu-tabs.js";
+import { TabActivatedEvent } from "./menu-tabs/menu-tabs.js";
 
 
 @customElement('oscd-layout')
@@ -82,6 +84,7 @@ export class OscdLayout extends LitElement {
 
   @state() validated: Promise<void> = Promise.resolve();
   @state() shouldValidate = false;
+  @state() activeEditor: Plugin | undefined = this.calcActiveEditors()[0];
 
   @query('#menu') menuUI!: Drawer;
   @query('#pluginManager') pluginUI!: OscdPluginManager;
@@ -462,17 +465,17 @@ export class OscdLayout extends LitElement {
     if(!hasActiveEditors){ return html``; }
 
     return html`
-      <mwc-tab-bar
-        @MDCTabBar:activated=${this.handleActivatedEditorTabByUser}
-        activeIndex=${this.activeTab}
+      <oscd-menu-tabs
+        .editors=${this.calcActiveEditors()}
+        .activeEditor=${this.activeEditor}
+        @oscd-editor-tab-activated=${this.handleEditorTabActivated}
       >
-        ${activeEditors}
-      </mwc-tab-bar>
-      ${renderEditorContent(this.editors, this.activeTab, this.doc)}
+      </oscd-menu-tabs>
+      ${renderEditorContent(this.doc, this.activeEditor, )}
     `;
 
-    function renderEditorContent(editors: Plugin[], activeTab: number, doc: XMLDocument | null){
-      const editor = editors[activeTab];
+    function renderEditorContent(doc: XMLDocument | null, activeEditor?: Plugin){
+      const editor = activeEditor;
       const requireDoc = editor?.requireDoc
       if(requireDoc && !doc) { return html`` }
 
@@ -481,6 +484,10 @@ export class OscdLayout extends LitElement {
 
       return html`${content()}`;
     }
+  }
+
+  private handleEditorTabActivated(e: TabActivatedEvent){
+    this.activeEditor = e.detail.editor
   }
 
   private handleActivatedEditorTabByUser(e: CustomEvent): void {
