@@ -1,5 +1,29 @@
 # Changelog
 
+## [0.38.1](https://github.com/openscd/open-scd/compare/v0.38.0...v0.38.1) (2025-03-05)
+
+
+### Bug Fixes
+
+* Attach release files in release please ([#1636](https://github.com/openscd/open-scd/issues/1636)) ([f2e6a1d](https://github.com/openscd/open-scd/commit/f2e6a1d8b8fc49b03c75e94dfeed565eeb1bda2f))
+* Build entire project and attach distribution to build output ([#1639](https://github.com/openscd/open-scd/issues/1639)) ([bd554e7](https://github.com/openscd/open-scd/commit/bd554e72f308a3c6e60f4ee1d98fa4884fc5d8f8))
+* continue to upload assets job even if npm publish step fails ([#1638](https://github.com/openscd/open-scd/issues/1638)) ([bc7571e](https://github.com/openscd/open-scd/commit/bc7571e8351d2a1770e19c58eabf91404cf1726e))
+* rename releases_created into release_created for release_please_action@V4 ([#1641](https://github.com/openscd/open-scd/issues/1641)) ([81801cc](https://github.com/openscd/open-scd/commit/81801cc776311ff996c512ea2f441b2b9cc5e2cd))
+
+## [0.38.0](https://github.com/openscd/open-scd/compare/v0.37.1...v0.38.0) (2025-02-26)
+
+
+### Features
+
+* change release please Workflow trigger ([#1624](https://github.com/openscd/open-scd/issues/1624)) ([53f24cb](https://github.com/openscd/open-scd/commit/53f24cbc9b2be8407aa1420b5665d2a09e9051ea))
+* update release please action ([#1635](https://github.com/openscd/open-scd/issues/1635)) ([06b8356](https://github.com/openscd/open-scd/commit/06b8356485940f2841b01293de5bea2a6fa1399d))
+
+
+### Bug Fixes
+
+* inconsistent plugin activation behaviour caused by refactoring ([#1626](https://github.com/openscd/open-scd/issues/1626)) ([00c4dc0](https://github.com/openscd/open-scd/commit/00c4dc06f6d0cf1c39e4822a5b21d650d698785e))
+* update release please version to 0.37.2 ([#1632](https://github.com/openscd/open-scd/issues/1632)) ([a3d6d2f](https://github.com/openscd/open-scd/commit/a3d6d2f68952e98d62375b037b5b36bca63f325a))
+
 ## [0.37.1](https://github.com/openscd/open-scd/compare/v0.37.0...v0.37.1) (2025-02-04)
 
 

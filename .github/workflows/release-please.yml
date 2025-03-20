@@ -12,25 +12,39 @@ jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
-      - uses: google-github-actions/release-please-action@v4
+      - uses: googleapis/release-please-action@v4
         id: release
         with:
           release-type: node
           command: manifest
           token: ${{ secrets.GITHUB_TOKEN }}
       # The logic below handles the npm publication:
-      - uses: actions/checkout@v2
-        if: ${{ steps.release.outputs.releases_created }}
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v4
+        if: ${{ steps.release.outputs.release_created }}
+      - uses: actions/setup-node@v4
         with:
           node-version: 18
           registry-url: "https://registry.npmjs.org"
-        if: ${{ steps.release.outputs.releases_created }}
+        if: ${{ steps.release.outputs.release_created }}
       - run: npm ci --include=optional
-        if: ${{ steps.release.outputs.releases_created }}
-      - run: cd packages/core && npm run build
-        if: ${{ steps.release.outputs.releases_created }}
+        if: ${{ steps.release.outputs.release_created }}
+      - run: npm run build
+        if: ${{ steps.release.outputs.release_created }}
       - run: cd packages/core && npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-        if: ${{ steps.release.outputs.releases_created }}
+        if: ${{ steps.release.outputs.release_created }}
+        continue-on-error: true
+      
+        
+      - name: Create and Zip Build Assets
+        if: ${{ steps.release.outputs.release_created }}
+        run: | 
+          zip -r open-scd.zip ./packages/distribution/build/
+          tar -czvf open-scd.tar.gz ./packages/distribution/build/
+
+      - name: Upload Build Assets
+        if: ${{ steps.release.outputs.release_created }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run:  gh release upload ${{ steps.release.outputs.tag_name }} open-scd.zip open-scd.tar.gz
