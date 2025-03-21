@@ -1,7 +1,7 @@
 import { PluginConfig } from './plugin.js';
 
 export function generatePluginPath(plugin: string): string {
-  return location.origin+location.pathname+plugin;
+  return location.origin + location.pathname + plugin;
 }
 
 export const officialPlugins: PluginConfig[] = [
@@ -10,6 +10,22 @@ export const officialPlugins: PluginConfig[] = [
     src: generatePluginPath('plugins/src/editors/IED.js'),
     icon: 'developer_board',
     activeByDefault: true,
+    kind: 'editor',
+    requireDoc: true,
+  },
+  {
+    name: 'V3 Test Plugin',
+    src: generatePluginPath('plugins/src/editors/V3TestPlugin.js'),
+    icon: 'extension',
+    default: false,
+    kind: 'editor',
+    requireDoc: true,
+  },
+  {
+    name: 'Test SCL Substation Editor',
+    src: generatePluginPath('plugins/src/editors/TestSclSubstationEditor.js'),
+    icon: 'extension',
+    activeByDefault: false,
     kind: 'editor',
     requireDoc: true,
   },
@@ -31,7 +47,9 @@ export const officialPlugins: PluginConfig[] = [
   },
   {
     name: 'Subscriber Message Binding (GOOSE)',
-    src: generatePluginPath('plugins/src/editors/GooseSubscriberMessageBinding.js'),
+    src: generatePluginPath(
+      'plugins/src/editors/GooseSubscriberMessageBinding.js'
+    ),
     icon: 'link',
     activeByDefault: false,
     kind: 'editor',
@@ -39,7 +57,9 @@ export const officialPlugins: PluginConfig[] = [
   },
   {
     name: 'Subscriber Data Binding (GOOSE)',
-    src: generatePluginPath('plugins/src/editors/GooseSubscriberDataBinding.js'),
+    src: generatePluginPath(
+      'plugins/src/editors/GooseSubscriberDataBinding.js'
+    ),
     icon: 'link',
     activeByDefault: false,
     kind: 'editor',
@@ -47,7 +67,9 @@ export const officialPlugins: PluginConfig[] = [
   },
   {
     name: 'Subscriber Later Binding (GOOSE)',
-    src: generatePluginPath('plugins/src/editors/GooseSubscriberLaterBinding.js'),
+    src: generatePluginPath(
+      'plugins/src/editors/GooseSubscriberLaterBinding.js'
+    ),
     icon: 'link',
     activeByDefault: true,
     kind: 'editor',
@@ -55,7 +77,9 @@ export const officialPlugins: PluginConfig[] = [
   },
   {
     name: 'Subscriber Message Binding (SMV)',
-    src: generatePluginPath('plugins/src/editors/SMVSubscriberMessageBinding.js'),
+    src: generatePluginPath(
+      'plugins/src/editors/SMVSubscriberMessageBinding.js'
+    ),
     icon: 'link',
     activeByDefault: false,
     kind: 'editor',
