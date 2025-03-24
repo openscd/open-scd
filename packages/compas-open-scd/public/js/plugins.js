@@ -144,6 +144,14 @@ export const officialPlugins = [
     requireDoc: true
   },
   {
+    name: 'Template Update',
+    src: '/external-plugins/scl-template-update/scl-template-update.js',
+    icon: 'copy_all',
+    activeByDefault: false,
+    kind: 'editor',
+    requireDoc: true
+  },
+  {
     name: 'Open project',
     src: '/src/menu/CompasOpen.js',
     icon: 'folder_open',
