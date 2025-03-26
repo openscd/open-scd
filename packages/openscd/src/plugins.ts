@@ -103,7 +103,7 @@ export const officialPlugins: PluginConfig[] = [
   },
   {
     name: 'Publisher',
-    src: generatePluginPath('plugins/src/editors/Publisher.js'),
+    src:  'https://openenergytools.github.io/oscd-publisher/oscd-publisher.js',
     icon: 'publish',
     activeByDefault: false,
     kind: 'editor',
