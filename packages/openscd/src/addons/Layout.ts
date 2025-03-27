@@ -71,8 +71,6 @@ export class OscdLayout extends LitElement {
   @property({ type: String }) docName = '';
   /** Index of the last [[`EditorAction`]] applied. */
   @property({ type: Number }) editCount = -1;
-  /** The currently active editor tab. */
-  @property({ type: Number }) activeTab = 0;
 
   /** The plugins to render the layout. */
   @property({ type: Array }) plugins: Plugin[] = [];
@@ -490,22 +488,13 @@ export class OscdLayout extends LitElement {
     this.activeEditor = e.detail.editor
   }
 
-  private handleActivatedEditorTabByUser(e: CustomEvent): void {
-    const tabIndex = e.detail.index;
-    this.activateTab(tabIndex);
-  }
-
   private handleActivateEditorByEvent(e: CustomEvent<{name: string, src: string}>): void {
     const {name, src} = e.detail;
     const editors = this.calcActiveEditors()
-    const wantedEditorIndex = editors.findIndex(editor => editor.name === name || editor.src === src)
-    if(wantedEditorIndex < 0){ return; } // TODO: log error
+    const wantedEditor = editors.find(editor => editor.name === name || editor.src === src)
+    if(!wantedEditor){ return; } // TODO: log error
 
-    this.activateTab(wantedEditorIndex);
-  }
-
-  private activateTab(index: number){
-    this.activeTab = index;
+    this.activeEditor = wantedEditor;
   }
 
   private handleRunMenuByEvent(e: CustomEvent<{name: string}>): void {
