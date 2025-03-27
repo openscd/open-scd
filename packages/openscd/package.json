@@ -45,8 +45,7 @@
     "lit": "^2.2.7",
     "lit-translate": "^1.2.1",
     "marked": "^4.0.10",
-    "panzoom": "^9.4.2",
-    "scl-wizarding": "github:OpenEnergyTools/scl-wizarding#main"
+    "panzoom": "^9.4.2"
   },
   "scripts": {
     "clean": "rimraf build",
@@ -72,8 +71,7 @@
     "release:patch": "standard-version --release-as patch",
     "release:major": "standard-version --release-as major",
     "bundle": "npm run test && npm run bundle:notest",
-    "build": "tsc",
-    "scl-wizarding": "github:OpenEnergyTools/scl-wizarding#main"
+    "build": "tsc"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",

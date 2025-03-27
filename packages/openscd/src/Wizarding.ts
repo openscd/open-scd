@@ -8,7 +8,7 @@ import {
 } from './foundation.js';
 import './wizard-dialog.js';
 import { WizardDialog } from './wizard-dialog.js';
-import { CreateWizardRequest, EditWizardRequest } from 'scl-wizarding';
+import { CreateWizardRequest, EditWizardRequest } from './scl-wizarding.js';
 
 function adaptV3Wizard(v3Def: unknown): WizardFactory | null {
   const v3 = v3Def as {
@@ -95,7 +95,7 @@ export function Wizarding<TBase extends LitElementConstructor>(Base: TBase) {
         .then(() => this.wizardUI.dialog?.focus());
     }
 
-    constructor(...args: any[]) {
+    /*constructor(...args: any[]) {
       super(...args);
 
       this.addEventListener('wizard', this.onWizard as EventListener);
@@ -109,12 +109,26 @@ export function Wizarding<TBase extends LitElementConstructor>(Base: TBase) {
       this.addEventListener('editor-action', () =>
         this.wizardUI?.requestUpdate()
       );
+    }*/
+
+    constructor(...args: any[]) {
+      super(...args);
+
+      this.addEventListener('wizard', this.onWizard);
+      this.addEventListener('editor-action', () =>
+        this.wizardUI.requestUpdate()
+      );
     }
 
     render(): TemplateResult {
       return html`
         ${ifImplemented(super.render())}
-        <wizard-dialog .wizard=${this.workflow[0]?.() ?? []}></wizard-dialog>
+        <wizard-dialog
+          .wizard=${this.workflow[0]?.() ?? []}
+          @oscd-edit-wizard-request=${this.onWizardRequest}
+          @oscd-close-wizard=${this.onCloseWizard}
+        >
+        </wizard-dialog>
       `;
     }
   }

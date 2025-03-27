@@ -10,7 +10,7 @@ import {
 import { WizardEvent, WizardFactory } from '../foundation.js';
 import '../wizard-dialog.js';
 import { WizardDialog } from '../wizard-dialog.js';
-import { CreateWizardRequest, EditWizardRequest } from 'scl-wizarding';
+import { CreateWizardRequest, EditWizardRequest } from '../scl-wizarding.js';
 
 function adaptV3Wizard(v3Def: unknown): WizardFactory | null {
   const v3 = v3Def as {
@@ -63,7 +63,11 @@ export class OscdWizards extends LitElement {
     } else if (wizard === null) {
       this.workflow.shift();
     } else if (wizard) {
-      subwizard ? this.workflow.unshift(wizard) : this.workflow.push(wizard);
+      if (subwizard) {
+        this.workflow.unshift(wizard);
+      } else {
+        this.workflow.push(wizard);
+      }
     }
 
     this.updateWizards();
