@@ -13,7 +13,8 @@ let OscdMenuTabs = class OscdMenuTabs extends LitElement {
     get activeEditor() { return this._activeEditor; }
     set activeEditor(editor) {
         this._activeEditor = editor;
-        this.activeTabIndex = this.editors.indexOf(this.activeEditor || this.editors[0]);
+        const editorIndex = this.editors.findIndex(e => e.name === editor?.name && e.src === editor?.src);
+        this.activeTabIndex = editorIndex > -1 ? editorIndex : 0;
         this.requestUpdate();
     }
     ;
