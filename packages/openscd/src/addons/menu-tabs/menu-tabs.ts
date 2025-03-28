@@ -27,7 +27,8 @@ export class OscdMenuTabs extends LitElement {
   @property({ type: Object }) get activeEditor() { return this._activeEditor; }
   set activeEditor(editor: Plugin | undefined) {
     this._activeEditor = editor;
-    this.activeTabIndex = this.editors.indexOf(this.activeEditor || this.editors[0]);
+    const editorIndex = this.editors.findIndex(e => e.name === editor?.name && e.src === editor?.src);
+    this.activeTabIndex = editorIndex > -1 ? editorIndex : 0;
     this.requestUpdate();
   };
 
