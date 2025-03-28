@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.38.2](https://github.com/openscd/open-scd/compare/v0.38.1...v0.38.2) (2025-03-28)
+
+
+### Bug Fixes
+
+* Fix handle activate editor ([#1651](https://github.com/openscd/open-scd/issues/1651)) ([3847944](https://github.com/openscd/open-scd/commit/384794420292a9e5192eac937d907238a6113120))
+
 ## [0.38.1](https://github.com/openscd/open-scd/compare/v0.38.0...v0.38.1) (2025-03-05)
 
 
