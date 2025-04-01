@@ -48,7 +48,6 @@ export let OscdLayout = class extends LitElement {
     this.doc = null;
     this.docName = "";
     this.editCount = -1;
-    this.activeTab = 0;
     this.plugins = [];
     this.validated = Promise.resolve();
     this.shouldValidate = false;
@@ -372,21 +371,14 @@ export let OscdLayout = class extends LitElement {
   handleEditorTabActivated(e) {
     this.activeEditor = e.detail.editor;
   }
-  handleActivatedEditorTabByUser(e) {
-    const tabIndex = e.detail.index;
-    this.activateTab(tabIndex);
-  }
   handleActivateEditorByEvent(e) {
     const {name, src} = e.detail;
     const editors = this.calcActiveEditors();
-    const wantedEditorIndex = editors.findIndex((editor) => editor.name === name || editor.src === src);
-    if (wantedEditorIndex < 0) {
+    const wantedEditor = editors.find((editor) => editor.name === name || editor.src === src);
+    if (!wantedEditor) {
       return;
     }
-    this.activateTab(wantedEditorIndex);
-  }
-  activateTab(index) {
-    this.activeTab = index;
+    this.activeEditor = wantedEditor;
   }
   handleRunMenuByEvent(e) {
     this.menuUI.open = true;
@@ -532,9 +524,6 @@ __decorate([
 __decorate([
   property({type: Number})
 ], OscdLayout.prototype, "editCount", 2);
-__decorate([
-  property({type: Number})
-], OscdLayout.prototype, "activeTab", 2);
 __decorate([
   property({type: Array})
 ], OscdLayout.prototype, "plugins", 2);

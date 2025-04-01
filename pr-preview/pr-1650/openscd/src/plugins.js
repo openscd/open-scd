@@ -100,7 +100,7 @@ export const officialPlugins = [
   },
   {
     name: "Publisher",
-    src: "https://openenergytools.github.io/oscd-publisher/oscd-publisher.js",
+    src: generatePluginPath("external-plugins/oscd-publisher/oscd-publisher.js"),
     icon: "publish",
     activeByDefault: false,
     kind: "editor",

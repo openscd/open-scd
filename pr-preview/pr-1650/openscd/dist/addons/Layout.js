@@ -25,8 +25,6 @@ let OscdLayout = class OscdLayout extends LitElement {
         this.docName = '';
         /** Index of the last [[`EditorAction`]] applied. */
         this.editCount = -1;
-        /** The currently active editor tab. */
-        this.activeTab = 0;
         /** The plugins to render the layout. */
         this.plugins = [];
         this.validated = Promise.resolve();
@@ -375,21 +373,14 @@ let OscdLayout = class OscdLayout extends LitElement {
     handleEditorTabActivated(e) {
         this.activeEditor = e.detail.editor;
     }
-    handleActivatedEditorTabByUser(e) {
-        const tabIndex = e.detail.index;
-        this.activateTab(tabIndex);
-    }
     handleActivateEditorByEvent(e) {
         const { name, src } = e.detail;
         const editors = this.calcActiveEditors();
-        const wantedEditorIndex = editors.findIndex(editor => editor.name === name || editor.src === src);
-        if (wantedEditorIndex < 0) {
+        const wantedEditor = editors.find(editor => editor.name === name || editor.src === src);
+        if (!wantedEditor) {
             return;
         } // TODO: log error
-        this.activateTab(wantedEditorIndex);
-    }
-    activateTab(index) {
-        this.activeTab = index;
+        this.activeEditor = wantedEditor;
     }
     handleRunMenuByEvent(e) {
         // TODO: this is a workaround, fix it
@@ -544,9 +535,6 @@ __decorate([
 __decorate([
     property({ type: Number })
 ], OscdLayout.prototype, "editCount", void 0);
-__decorate([
-    property({ type: Number })
-], OscdLayout.prototype, "activeTab", void 0);
 __decorate([
     property({ type: Array })
 ], OscdLayout.prototype, "plugins", void 0);
