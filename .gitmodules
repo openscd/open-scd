@@ -18,3 +18,7 @@
 	path = packages/external-plugins/scl-template-update
 	url = https://github.com/OpenEnergyTools/scl-template-update
 	branch = deploy
+[submodule "packages/external-plugins/oscd-designer"]
+	path = packages/external-plugins/oscd-designer
+	url = https://github.com/OpenEnergyTools/oscd-designer
+	branch = gh-pages

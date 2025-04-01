@@ -1,7 +1,14 @@
 export default ({
   plugins: ['@snowpack/plugin-typescript'],
   packageOptions : {
-    external: ['@web/dev-server-core','@web/dev-server-esbuild','esbuild','crypto'],
+    external: [
+      '@web/dev-server-core',
+      '@web/dev-server-esbuild',
+      'esbuild',
+      'crypto',
+      '@openscd/open-scd-core',
+      '@openscd/oscd-scl',
+    ],
   },
   exclude: [
     "**/node_modules/**/*",
@@ -35,5 +42,8 @@ export default ({
     '@openscd/open-scd': '../openscd/',
     '@openscd/plugins': '../plugins/',
   },
+  buildOptions: {
+    htmlFragments: true,
+  }
 });
 

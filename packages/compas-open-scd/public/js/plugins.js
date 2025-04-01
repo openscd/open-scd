@@ -376,6 +376,14 @@ export const officialPlugins = [
     requireDoc: true
   },
   {
+    name: 'Designer',
+    src: '/external-plugins/oscd-designer/oscd-designer.js',
+    icon: 'add_box',
+    activeByDefault: false,
+    kind: 'editor',
+    requireDoc: true
+  },
+  {
     name: 'Autogen Substation',
     src: '/src/compas-editors/autogen-substation.js',
     icon: 'playlist_add_circle',
