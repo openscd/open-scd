@@ -103,7 +103,7 @@ export const officialPlugins: PluginConfig[] = [
   },
   {
     name: 'Publisher',
-    src:  generatePluginPath('external-plugins/oscd-publisher/oscd-publisher.js'),
+    src: generatePluginPath('external-plugins/oscd-publisher/oscd-publisher.js'),
     icon: 'publish',
     activeByDefault: false,
     kind: 'editor',
