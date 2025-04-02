@@ -58,6 +58,8 @@ import {OscdPluginManager} from "./plugin-manager/plugin-manager.js";
 import "./plugin-manager/plugin-manager.js";
 import {OscdCustomPluginDialog} from "./plugin-manager/custom-plugin-dialog.js";
 import "./plugin-manager/custom-plugin-dialog.js";
+import "./menu-tabs/menu-tabs.js";
+import { TabActivatedEvent } from "./menu-tabs/menu-tabs.js";
 
 
 @customElement('oscd-layout')
@@ -69,8 +71,6 @@ export class OscdLayout extends LitElement {
   @property({ type: String }) docName = '';
   /** Index of the last [[`EditorAction`]] applied. */
   @property({ type: Number }) editCount = -1;
-  /** The currently active editor tab. */
-  @property({ type: Number }) activeTab = 0;
 
   /** The plugins to render the layout. */
   @property({ type: Array }) plugins: Plugin[] = [];
@@ -82,6 +82,7 @@ export class OscdLayout extends LitElement {
 
   @state() validated: Promise<void> = Promise.resolve();
   @state() shouldValidate = false;
+  @state() activeEditor: Plugin | undefined = this.calcActiveEditors()[0];
 
   @query('#menu') menuUI!: Drawer;
   @query('#pluginManager') pluginUI!: OscdPluginManager;
@@ -462,17 +463,17 @@ export class OscdLayout extends LitElement {
     if(!hasActiveEditors){ return html``; }
 
     return html`
-      <mwc-tab-bar
-        @MDCTabBar:activated=${this.handleActivatedEditorTabByUser}
-        activeIndex=${this.activeTab}
+      <oscd-menu-tabs
+        .editors=${this.calcActiveEditors()}
+        .activeEditor=${this.activeEditor}
+        @oscd-editor-tab-activated=${this.handleEditorTabActivated}
       >
-        ${activeEditors}
-      </mwc-tab-bar>
-      ${renderEditorContent(this.editors, this.activeTab, this.doc)}
+      </oscd-menu-tabs>
+      ${renderEditorContent(this.doc, this.activeEditor, )}
     `;
 
-    function renderEditorContent(editors: Plugin[], activeTab: number, doc: XMLDocument | null){
-      const editor = editors[activeTab];
+    function renderEditorContent(doc: XMLDocument | null, activeEditor?: Plugin){
+      const editor = activeEditor;
       const requireDoc = editor?.requireDoc
       if(requireDoc && !doc) { return html`` }
 
@@ -483,22 +484,17 @@ export class OscdLayout extends LitElement {
     }
   }
 
-  private handleActivatedEditorTabByUser(e: CustomEvent): void {
-    const tabIndex = e.detail.index;
-    this.activateTab(tabIndex);
+  private handleEditorTabActivated(e: TabActivatedEvent){
+    this.activeEditor = e.detail.editor
   }
 
   private handleActivateEditorByEvent(e: CustomEvent<{name: string, src: string}>): void {
     const {name, src} = e.detail;
     const editors = this.calcActiveEditors()
-    const wantedEditorIndex = editors.findIndex(editor => editor.name === name || editor.src === src)
-    if(wantedEditorIndex < 0){ return; } // TODO: log error
+    const wantedEditor = editors.find(editor => editor.name === name || editor.src === src)
+    if(!wantedEditor){ return; } // TODO: log error
 
-    this.activateTab(wantedEditorIndex);
-  }
-
-  private activateTab(index: number){
-    this.activeTab = index;
+    this.activeEditor = wantedEditor;
   }
 
   private handleRunMenuByEvent(e: CustomEvent<{name: string}>): void {
