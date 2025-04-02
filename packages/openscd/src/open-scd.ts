@@ -568,7 +568,7 @@ export class OpenSCD extends LitElement {
 
     if (!loadedPlugins.has(tag)) {
       loadedPlugins.add(tag);
-      import(plugin.src).then(mod => customElements.define(tag, mod.default));
+      import(/* @vite-ignore */ plugin.src).then(mod => customElements.define(tag, mod.default));
     }
 
     return {
