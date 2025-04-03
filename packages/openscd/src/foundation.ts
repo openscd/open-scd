@@ -183,6 +183,7 @@ export type WizardFactory = () => Wizard;
 export interface WizardDetail {
   wizard: WizardFactory | null;
   subwizard?: boolean;
+  v3Wizard?: unknown;
 }
 export type WizardEvent = CustomEvent<WizardDetail>;
 export function newWizardEvent(
