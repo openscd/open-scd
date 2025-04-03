@@ -39,7 +39,7 @@
     "doc": "npm run doc:clean && npm run doc:typedoc && npm run doc:wca",
     "build": "vite build && workbox generateSW workbox-config.cjs && cp .nojekyll build/",
     "start": "vite",
-    "serve": "npm run build && http-server build"
+    "serve": "npm run build && http-server build -c-1 --cors"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
