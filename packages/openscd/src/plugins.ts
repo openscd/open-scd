@@ -62,14 +62,6 @@ export const officialPlugins: PluginConfig[] = [
     requireDoc: true,
   },
   {
-    name: 'Subscriber Later Binding (SMV)',
-    src: generatePluginPath('plugins/src/editors/SMVSubscriberLaterBinding.js'),
-    icon: 'link',
-    activeByDefault: true,
-    kind: 'editor',
-    requireDoc: true,
-  },
-  {
     name: 'Communication',
     src: generatePluginPath('plugins/src/editors/Communication.js'),
     icon: 'settings_ethernet',

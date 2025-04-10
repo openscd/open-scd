@@ -77,14 +77,6 @@ implemented in these plugins.
 > https://openscd.github.io/plugins/src/editors/SMVSubscriberDataBinding.js
 > ```
 
-### Subscriber Later Binding (SMV)
-
-> <kbd>✅ Official</kbd> | <kbd>Editor</kbd> | by [OpenSCD](https://github.com/openscd) | [Repository](https://github.com/openscd/open-scd/)
-> 
-> ```
-> https://openscd.github.io/plugins/src/editors/SMVSubscriberLaterBinding.js
-> ```
-
 ### Communication
 
 > <kbd>✅ Official</kbd> | <kbd>Editor</kbd> | by [OpenSCD](https://github.com/openscd) | [Repository](https://github.com/openscd/open-scd/)
