@@ -118,6 +118,14 @@ export const officialPlugins: PluginConfig[] = [
     requireDoc: true,
   },
   {
+    name: 'Subscribe Later Binding (SMV/GOOSE)',
+    src: generatePluginPath('external-plugins/oscd-subscriber-later-binding/oscd-subscriber-later-binding.js'),
+    icon: 'link',
+    activeByDefault: false,
+    kind: 'editor',
+    requireDoc: true
+  },
+  {
     name: 'Open project',
     src: generatePluginPath('plugins/src/menu/OpenProject.js'),
     icon: 'folder_open',
