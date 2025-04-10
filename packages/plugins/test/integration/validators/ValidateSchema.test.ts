@@ -158,15 +158,6 @@ const builtinPlugins: Plugin[] = [
     installed: true,
   },
   {
-    name: 'Subscriber Later Binding (GOOSE)',
-    src: generatePluginPath('plugins/src/editors/GooseSubscriberLaterBinding.js'),
-    icon: 'link',
-    default: true,
-    kind: 'editor',
-    requireDoc: true,
-    installed: true,
-  },
-  {
     name: 'Subscriber Message Binding (SMV)',
     src: generatePluginPath('plugins/src/editors/SMVSubscriberMessageBinding.js'),
     icon: 'link',

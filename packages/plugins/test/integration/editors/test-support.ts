@@ -1,5 +1,4 @@
 import GooseSubscribeDataBindingPlugin from '../../../src/editors/GooseSubscriberDataBinding.js';
-import GooseSubscribeLaterBindingPlugin from '../../../src/editors/GooseSubscriberLaterBinding.js';
 import SMVSubscribeDataBindingPlugin from '../../../src/editors/SMVSubscriberDataBinding.js';
 import SMVSubscriberLaterBindingPlugin from '../../../src/editors/SMVSubscriberLaterBinding.js';
 
@@ -10,7 +9,6 @@ import { ExtRefLnBindingList } from '../../../src/editors/subscription/later-bin
 export function getFCDABindingList(
   element:
     | SMVSubscriberLaterBindingPlugin
-    | GooseSubscribeLaterBindingPlugin
     | SMVSubscribeDataBindingPlugin
     | GooseSubscribeDataBindingPlugin
 ): FcdaBindingList {
@@ -41,7 +39,7 @@ export function getExtrefDataBindingList(
 }
 
 export function getExtrefLaterBindingList(
-  element: SMVSubscriberLaterBindingPlugin | GooseSubscribeLaterBindingPlugin
+  element: SMVSubscriberLaterBindingPlugin
 ): ExtRefLaterBindingList {
   return <ExtRefLaterBindingList>(
     element.shadowRoot?.querySelector('extref-later-binding-list')
