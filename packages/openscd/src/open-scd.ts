@@ -51,7 +51,7 @@ import { HistoryState, historyStateEvent } from './addons/History.js';
 import { InstalledOfficialPlugin, MenuPosition, PluginKind, Plugin } from "./plugin.js"
 import { ConfigurePluginEvent, ConfigurePluginDetail, newConfigurePluginEvent } from './plugin.events.js';
 import { newLogEvent } from '@openscd/core/foundation/deprecated/history';
-
+import pkg from '../package.json';
 
 
 /** The `<open-scd>` custom element is the main entry point of the
@@ -182,6 +182,7 @@ export class OpenSCD extends LitElement {
 
   connectedCallback(): void {
     super.connectedCallback();
+    this.checkAppVersion();
     this.loadPlugins()
 
     // TODO: let Lit handle the event listeners, move to render()
@@ -365,6 +366,20 @@ export class OpenSCD extends LitElement {
     })
 
     this.updateStoredPlugins(newPlugins);
+  }
+
+  private checkAppVersion(): void {
+    const currentVersion = pkg.version;
+    const storedVersion = localStorage.getItem('appVersion');
+  
+    if (storedVersion !== currentVersion) {
+      localStorage.setItem('appVersion', currentVersion);
+      this.clearPlugins();
+    }
+  }
+
+  private clearPlugins(): void {
+    localStorage.removeItem('plugins');
   }
 
   private loadPlugins(){
