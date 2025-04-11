@@ -1,6 +1,6 @@
 {
   "name": "@openscd/addons",
-  "version": "0.34.0",
+  "version": "0.34.1",
   "repository": "https://github.com/openscd/open-scd.git",
   "directory": "packages/addons",
   "description": "Official Addons for OpenSCD",
@@ -19,8 +19,8 @@
     "./dist/**"
   ],
   "dependencies": {
-    "lit": "^2.2.7",
-    "@openscd/core": "*"
+    "@openscd/core": "^0.1.5",
+    "lit": "^2.2.7"
   },
   "//": {
     "clean": "rimraf build",

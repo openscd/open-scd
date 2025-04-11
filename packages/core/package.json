@@ -1,6 +1,6 @@
 {
   "name": "@openscd/core",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "The core editor component of open-scd, without any extensions pre-installed.",
   "author": "Open-SCD",
   "license": "Apache-2.0",
