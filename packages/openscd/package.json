@@ -42,6 +42,7 @@
     "@openscd/core": "*",
     "@openscd/xml": "*",
     "ace-custom-element": "^1.6.5",
+    "eslint": "^9.24.0",
     "lit": "^2.2.7",
     "lit-translate": "^1.2.1",
     "marked": "^4.0.10",
@@ -49,12 +50,7 @@
   },
   "scripts": {
     "clean": "rimraf build",
-    "lint:eslint": "eslint --ext .ts,.html . --ignore-path .gitignore",
-    "format:eslint": "eslint --ext .ts,.html . --fix --ignore-path .gitignore",
-    "lint:prettier": "prettier \"**/*.js\" \"**/*.ts\" --check --ignore-path .gitignore",
-    "format:prettier": "prettier \"**/*.js\" \"**/*.ts\" --write --ignore-path .gitignore",
-    "lint": "npm run lint:eslint && npm run lint:prettier",
-    "format": "npm run format:eslint && npm run format:prettier",
+    "lint": "eslint --ext .ts,.js,.html src",
     "test": "web-test-runner --coverage",
     "test:snapshot": "web-test-runner --update-snapshots --coverage",
     "test:manual": "web-test-runner --manual",
@@ -89,11 +85,9 @@
     "concurrently": "^6.2.1",
     "deepmerge": "^4.2.2",
     "es-dev-server": "^2.1.0",
-    "eslint": "^7.32.0",
     "fast-check": "^2.19.0",
     "husky": "^7.0.1",
     "lint-staged": "^11.1.2",
-    "prettier": "^2.3.2",
     "sinon": "^17.0.1",
     "snowpack": "3.8.6",
     "source-map": "^0.7.4",
@@ -105,12 +99,6 @@
     "typescript-eslint": "^8.29.1",
     "web-component-analyzer": "^1.1.6",
     "workbox-cli": "^6.2.4"
-  },
-  "eslintConfig": {
-    "extends": [
-      "@open-wc/eslint-config",
-      "eslint-config-prettier"
-    ]
   },
   "commitlint": {
     "extends": [
