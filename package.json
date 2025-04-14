@@ -9,7 +9,7 @@
   "scripts": {
     "clean": "lerna run clean",
     "build": "npx nx run-many -t build --all",
-    "lint": "npx nx run-many -t lint --all",
+    "lint": "npx nx run-many -t lint --all --exclude=@openscd/distribution",
     "doc": "lerna run doc",
     "test": "npx nx run-many -t test --all --parallel=false",
     "graph": "npx nx graph",
