@@ -2,7 +2,7 @@ name: Lint
 on: pull_request
 
 jobs:
-  test-and-build:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -13,7 +13,7 @@ jobs:
         with:
           node-version: "18.x"
 
-      - name: Install and Test OpenSCD
+      - name: Lint OpenSCD
         run: |
           npm i @nx/nx-linux-x64-gnu
           npm clean-install
