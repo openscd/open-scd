@@ -8,7 +8,7 @@ export default tseslint.config(
   tseslint.configs.recommended,
   {
     rules: {
-      quotes: [2, "single", { "avoidEscape": true }]
+      quotes: [2, 'single', { 'avoidEscape': true }]
     }
   }
 );
