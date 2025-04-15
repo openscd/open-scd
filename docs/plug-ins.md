@@ -277,14 +277,6 @@ implemented in these plugins.
 > https://sprinteins.github.io/oscd-plugins/documentation/index.js
 > ```
 
-### Designer
-
-> <kbd>Editor</kbd> | by [OpenEnergyTools](https://github.com/OpenEnergyTools) | [Repository](https://github.com/OpenEnergyTools/oscd-designer)
-> 
-> ```
-> https://openenergytools.github.io/oscd-designer/oscd-designer.js
-> ```
-
 ## Vendor Specific Plug-ins
 
 These plug-ins are specific to a vendor and can include vendor specific 
