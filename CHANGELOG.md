@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.38.2](https://github.com/openscd/open-scd/compare/v0.38.1...v0.38.2) (2025-04-16)
+
+
+### Bug Fixes
+
+* Fix handle activate editor ([#1651](https://github.com/openscd/open-scd/issues/1651)) ([3847944](https://github.com/openscd/open-scd/commit/384794420292a9e5192eac937d907238a6113120))
+* modify start script to clear snowpack cache ([#1654](https://github.com/openscd/open-scd/issues/1654)) ([ff699e3](https://github.com/openscd/open-scd/commit/ff699e357442593f07bf9665473b1fbc499606b0))
+* update deprecated ubuntu image in pr-preview workflow ([#1665](https://github.com/openscd/open-scd/issues/1665)) ([f9f5e45](https://github.com/openscd/open-scd/commit/f9f5e450dee98fe3c5192f50d8ecb302be666705))
+
 ## [0.38.1](https://github.com/openscd/open-scd/compare/v0.38.0...v0.38.1) (2025-03-05)
 
 
