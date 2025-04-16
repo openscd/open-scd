@@ -62,6 +62,14 @@ export const officialPlugins: PluginConfig[] = [
     requireDoc: true,
   },
   {
+    name: 'Subscriber Later Binding (SMV/GOOSE)',
+    src: generatePluginPath('external-plugins/oscd-subscriber-later-binding/oscd-subscriber-later-binding.js'),
+    icon: 'link',
+    activeByDefault: false,
+    kind: 'editor',
+    requireDoc: true
+  },
+  {
     name: 'Communication',
     src: generatePluginPath('plugins/src/editors/Communication.js'),
     icon: 'settings_ethernet',
@@ -100,14 +108,6 @@ export const officialPlugins: PluginConfig[] = [
     activeByDefault: false,
     kind: 'editor',
     requireDoc: true,
-  },
-  {
-    name: 'Subscribe Later Binding (SMV/GOOSE)',
-    src: generatePluginPath('external-plugins/oscd-subscriber-later-binding/oscd-subscriber-later-binding.js'),
-    icon: 'link',
-    activeByDefault: false,
-    kind: 'editor',
-    requireDoc: true
   },
   {
     name: 'Open project',
