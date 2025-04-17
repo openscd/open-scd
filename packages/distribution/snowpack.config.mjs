@@ -27,6 +27,7 @@ export default {
     './': '/',
     '../plugins/': '/plugins/',
     '../openscd/': '/openscd/',
+    '../external-plugins/': '/external-plugins/',
   },
   alias: {
     '@openscd/open-scd': '../openscd/',
