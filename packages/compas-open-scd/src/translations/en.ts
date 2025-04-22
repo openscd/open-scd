@@ -1,23 +1,4 @@
 export const en = {
-  protocol104: {
-    export: {
-      noSignalsFound: 'Export 104 found no signals',
-      invalidSignalWarning: 'Export 104 found invalid signal',
-      errors: {
-        tiOrIoaInvalid:
-          'ti or ioa are missing or ioa is less than 4 digits, ti: "{{ ti }}", ioa: "{{ ioa }}"',
-        unknownSignalType:
-          'Unknown signal type for ti: "{{ ti }}", ioa: "{{ ioa }}"',
-        noDoi: 'No parent DOI found for address with ioa: "{{ ioa }}"',
-        noBay:
-          'No Bay found bayname: "{{ bayName }}" for address with ioa: "{{ ioa }}"',
-        noVoltageLevel:
-          'No parent voltage level found for bay "{{ bayName }}" for ioa "{{ ioa }}"',
-        noSubstation:
-          'No parent substation found for voltage level "{{ voltageLevelName }}" for ioa "{{ ioa }}"',
-      },
-    },
-  },
   userinfo: {
     loggedInAs: 'Logged in as {{name}}',
   },
@@ -164,6 +145,23 @@ export const en = {
       voltagelevelAmount: `Generating {{amount}} Voltage Level(s) for {{substationname}} substation!`,
       bayAmount: `Generating {{amount}} Bay Element(s) for {{voltagelevelname}} Voltage Level!`,
       substationGen: `Generated {{substationname}} substation with content!`,
+    },
+    export104: {
+      noSignalsFound: 'Export 104 found no signals',
+      invalidSignalWarning: 'Export 104 found invalid signal',
+      errors: {
+        tiOrIoaInvalid:
+          'ti or ioa are missing or ioa is less than 4 digits, ti: "{{ ti }}", ioa: "{{ ioa }}"',
+        unknownSignalType:
+          'Unknown signal type for ti: "{{ ti }}", ioa: "{{ ioa }}"',
+        noDoi: 'No parent DOI found for address with ioa: "{{ ioa }}"',
+        noBay:
+          'No Bay found bayname: "{{ bayName }}" for address with ioa: "{{ ioa }}"',
+        noVoltageLevel:
+          'No parent voltage level found for bay "{{ bayName }}" for ioa "{{ ioa }}"',
+        noSubstation:
+          'No parent substation found for voltage level "{{ voltageLevelName }}" for ioa "{{ ioa }}"',
+      },
     },
   },
   locamation: {
