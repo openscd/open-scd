@@ -82,7 +82,6 @@ describe('DOType wizards', () => {
       });
     });
 
-    // work around, because the escapes get removed in snapshot by prettier
     it('should have correct pattern', async () => {
       expect(
         parent.wizardUI.dialog!.querySelectorAll('wizard-textfield[pattern]')!
@@ -218,7 +217,6 @@ describe('DOType wizards', () => {
       });
     });
 
-    // work around, because the escapes get removed in snapshot by prettier
     it('should have correct pattern', async () => {
       expect(
         parent.wizardUI.dialog!.querySelectorAll('wizard-textfield[pattern]')!
@@ -323,7 +321,6 @@ describe('DOType wizards', () => {
       });
     });
 
-    // work around, because the escapes get removed in snapshot by prettier
     it('should have correct pattern', async () => {
       expect(
         parent.wizardUI.dialog!.querySelectorAll('wizard-textfield[pattern]')!
@@ -440,7 +437,6 @@ describe('DOType wizards', () => {
       });
     });
 
-    // work around, because the escapes get removed in snapshot by prettier
     it('should have correct pattern', async () => {
       expect(
         parent.wizardUI.dialog!.querySelectorAll('wizard-textfield[pattern]')!
