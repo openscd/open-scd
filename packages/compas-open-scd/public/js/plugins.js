@@ -152,6 +152,14 @@ export const officialPlugins = [
     requireDoc: true
   },
   {
+    name: 'Bay Typical Editor',
+    src: '/external-plugins/scl-bay-template/scl-bay-template.js',
+    icon: 'copy_all',
+    activeByDefault: false,
+    kind: 'editor',
+    requireDoc: true
+  },
+  {
     name: 'Open project',
     src: '/src/menu/CompasOpen.js',
     icon: 'folder_open',

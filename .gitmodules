@@ -22,3 +22,7 @@
 	path = packages/external-plugins/oscd-designer
 	url = https://github.com/OpenEnergyTools/oscd-designer
 	branch = gh-pages
+[submodule "packages/external-plugins/scl-bay-template"]
+	path = packages/external-plugins/scl-bay-template
+	url = https://github.com/OpenEnergyTools/scl-bay-template
+	branch = gh-pages
