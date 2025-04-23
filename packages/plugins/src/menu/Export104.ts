@@ -27,7 +27,7 @@ export default class Export104 extends LitElement {
     if (signals.length === 0) {
       this.dispatchEvent(newLogEvent({
         kind: 'info',
-        title: get('protocol104.export.noSignalsFound'),
+        title: get('compas.export104.noSignalsFound'),
       }));
       return;
     }
@@ -48,7 +48,7 @@ export default class Export104 extends LitElement {
   private logWarning(errorMessage: string): void {
     this.dispatchEvent(newLogEvent({
       kind: 'warning',
-      title: get('protocol104.export.invalidSignalWarning'),
+      title: get('compas.export104.invalidSignalWarning'),
       message: errorMessage,
     }));
   }

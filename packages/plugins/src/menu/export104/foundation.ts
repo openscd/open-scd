@@ -47,13 +47,13 @@ function extractSignal104Data(addressElement: Element, doc: XMLDocument): Extrac
 
   // By convention the last four digits of the ioa are the signalnumber, see https://github.com/com-pas/compas-open-scd/issues/334
   if (ti === null || ioa === null || ioa.length < 4) {
-    return { signal: null, error: get('protocol104.export.errors.tiOrIoaInvalid', { ti: ti ?? '', ioa: ioa ?? '' }) };
+    return { signal: null, error: get('compas.export104.errors.tiOrIoaInvalid', { ti: ti ?? '', ioa: ioa ?? '' }) };
   }
   const { signalNumber, bayName } = splitIoa(ioa);
 
   const signalType = getSignalType(ti);
   if (signalType === SignalType.Unknown) {
-    return { signal: null, error: get('protocol104.export.errors.unknownSignalType', { ti: ti ?? '', ioa: ioa ?? '' }) };
+    return { signal: null, error: get('compas.export104.errors.unknownSignalType', { ti: ti ?? '', ioa: ioa ?? '' }) };
   }
   const isMonitorSignal = signalType === SignalType.Monitor;
 
@@ -61,7 +61,7 @@ function extractSignal104Data(addressElement: Element, doc: XMLDocument): Extrac
   const parentDOI = addressElement.closest('DOI');
   
   if (!parentDOI) {
-    return { signal: null, error: get('protocol104.export.errors.noDoi', { ioa: ioa ?? '' }) };
+    return { signal: null, error: get('compas.export104.errors.noDoi', { ioa: ioa ?? '' }) };
   }
 
   const doiDesc = parentDOI.getAttribute('desc');
@@ -70,20 +70,20 @@ function extractSignal104Data(addressElement: Element, doc: XMLDocument): Extrac
   const parentBay = doc.querySelector(parentBayQuery);
 
   if (!parentBay) {
-    return { signal: null, error: get('protocol104.export.errors.noBay', { bayName, ioa: ioa ?? '' }) };
+    return { signal: null, error: get('compas.export104.errors.noBay', { bayName, ioa: ioa ?? '' }) };
   }
 
   const parentVoltageLevel = parentBay.closest('VoltageLevel');
 
   if (!parentVoltageLevel) {
-    return { signal: null, error: get('protocol104.export.errors.noVoltageLevel', { bayName, ioa: ioa ?? '' }) };
+    return { signal: null, error: get('compas.export104.errors.noVoltageLevel', { bayName, ioa: ioa ?? '' }) };
   }
 
   const voltageLevelName = parentVoltageLevel.getAttribute('name');
   const parentSubstation = parentVoltageLevel.closest('Substation');
 
   if (!parentSubstation) {
-    return { signal: null, error: get('protocol104.export.errors.noSubstation', { voltageLevelName: voltageLevelName ?? '', ioa: ioa ?? '' }) };
+    return { signal: null, error: get('compas.export104.errors.noSubstation', { voltageLevelName: voltageLevelName ?? '', ioa: ioa ?? '' }) };
   }
 
   const substationName = parentSubstation.getAttribute('name');

@@ -53,8 +53,8 @@ describe('Export104 foundation', () => {
     ];
 
     const expectedErrors = [
-      '[protocol104.export.errors.unknownSignalType]',
-      '[protocol104.export.errors.tiOrIoaInvalid]',
+      '[compas.export104.errors.unknownSignalType]',
+      '[compas.export104.errors.tiOrIoaInvalid]',
     ];
 
     expect(errors).to.deep.equal(expectedErrors);
