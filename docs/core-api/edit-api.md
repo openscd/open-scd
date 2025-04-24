@@ -2,6 +2,8 @@
 
 Open SCD offers an API for editing the scd document which can be used with [Html Custom Events](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent). The main Open SCD components listens to events of the type `oscd-edit-v2`, applies the changes to the `doc` and updates the `editCount` property.
 
+![EditApiFlow](./edit-api-flow.png)
+
 The edits to the `doc` will be done in place, e.g. the `doc` changes but will keep the same reference. If your plugin needs to react to changes in the doc, you should listen to changes in the `editCount` property.
 
 ## Event factory
