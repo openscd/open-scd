@@ -9,6 +9,7 @@
   "scripts": {
     "clean": "lerna run clean",
     "build": "npx nx run-many -t build --all",
+    "lint": "npx nx run-many -t lint --all --exclude=@openscd/distribution",
     "doc": "lerna run doc",
     "test": "npx nx run-many -t test --all --parallel=false",
     "graph": "npx nx graph",
@@ -21,10 +22,14 @@
   },
   "license": "Apache-2.0",
   "devDependencies": {
+    "@nx/eslint": "^18.3.4",
+    "eslint": "^9.24.0",
+    "typescript-eslint": "^8.29.1",
     "lerna": "^7.1.4",
     "nx": "18.3.4"
   },
   "optionalDependencies": {
     "@nx/nx-linux-x64-gnu": "18.3.4"
-  }
+  },
+  "dependencies": {}
 }
