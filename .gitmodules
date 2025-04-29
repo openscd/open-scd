@@ -25,4 +25,4 @@
 [submodule "packages/external-plugins/scl-bay-template"]
 	path = packages/external-plugins/scl-bay-template
 	url = https://github.com/com-pas/scl-bay-template
-	branch = gh-pages
+	branch = deploy

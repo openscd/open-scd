@@ -154,7 +154,7 @@ export const officialPlugins = [
   {
     name: 'Bay Typical Editor',
     src: '/external-plugins/scl-bay-template/scl-bay-template.js',
-    icon: 'copy_all',
+    icon: 'edit',
     activeByDefault: false,
     kind: 'editor',
     requireDoc: true
