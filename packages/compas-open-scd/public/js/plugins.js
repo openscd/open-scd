@@ -152,7 +152,7 @@ export const officialPlugins = [
     requireDoc: true
   },
   {
-    name: 'Bay Typical Editor',
+    name: 'Bay Template',
     src: '/external-plugins/scl-bay-template/scl-bay-template.js',
     icon: 'edit',
     activeByDefault: false,
