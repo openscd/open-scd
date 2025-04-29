@@ -37,7 +37,9 @@ Bad examples (these would be rejected):
 ```
 
 ---
-## 🔖 Some of the allowed Types (for more details visit the [conventional commits ↗](https://www.conventionalcommits.org/en/v1.0.0/) page)
+## 🔖 Some of the allowed Types
+
+⚠️ Disclaimer: For a full list please visit the [conventional commits ↗](https://www.conventionalcommits.org/en/v1.0.0/) page
 
 | Type       | Purpose                                                  |
 |------------|-----------------------------------------------------------|
