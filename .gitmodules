@@ -1,7 +1,7 @@
 [submodule "packages/external-plugins/oscd-publisher"]
 	path = packages/external-plugins/oscd-publisher
-	url = https://github.com/openenergytools/oscd-publisher
-	branch = gh-pages
+	url = https://github.com/openscd/oscd-publisher
+	branch = deploy
 [submodule "packages/external-plugins/oscd-plugins"]
 	path = packages/external-plugins/oscd-plugins
 	url = https://github.com/sprinteins/oscd-plugins
