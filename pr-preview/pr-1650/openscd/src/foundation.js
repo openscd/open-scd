@@ -1717,7 +1717,7 @@ export const ifImplemented = directive((rendered) => (part) => {
 const nameStartChar = "[:_A-Za-z]|[À-Ö]|[Ø-ö]|[ø-˿]|[Ͱ-ͽ]|[Ϳ-῿]|[‌-‍]|[⁰-↏]|[Ⰰ-⿯]|[、-퟿]|[豈-﷏]|[ﷰ-�]";
 const nameChar = nameStartChar + "|[.0-9\\-]|·|[̀-ͯ]|[‿-⁀]";
 const name = nameStartChar + "(" + nameChar + ")*";
-const nmToken = "(" + nameChar + ")+";
+const nmToken = "\\S+";
 export const patterns = {
   string: "([	-\n]|[\r]|[ -~]|[]|[ -퟿]|[-�])*",
   normalizedString: "([ -~]|[]|[ -퟿]|[-�])*",
