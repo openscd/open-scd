@@ -7,6 +7,9 @@ module.exports = {
     'src/**/*.{md,js,png,xml,pdf,css,html,info,json,ico,svg,wasm}',
     '*.{md,json,ico,xml}',
   ],
+  globIgnores: [
+    'public/nsdoc/README.md'
+  ],
   swDest: 'build/sw.js',
   runtimeCaching: [
     {
