@@ -1,222 +1,84 @@
-import { expect, fixture, html } from '@open-wc/testing';
+import { fixture, html, expect } from '@open-wc/testing';
+import { SinonSpy, spy } from 'sinon';
 
-import '@openscd/open-scd/test/mock-wizard-editor.js';
-import { MockWizardEditor } from '@openscd/open-scd/test/mock-wizard-editor.js';
-
-import { List } from '@material/mwc-list';
-import { ListItem } from '@material/mwc-list/mwc-list-item';
-
-import '../../../src/editors/substation/zeroline-pane.js';
+import '../../../../src/editors/substation/ied-editor.js';
 import { IedEditor } from '../../../src/editors/substation/ied-editor.js';
-import { ZerolinePane } from '../../../src/editors/substation/zeroline-pane.js';
 
-describe('clientln wizards', () => {
-  let doc: Document;
-  let parent: MockWizardEditor;
-  let element: ZerolinePane;
+describe('A component to visualize SCL element IED', () => {
+  let element: IedEditor;
+  let validSCL: XMLDocument;
+
+  let wizardEvent: SinonSpy;
 
   beforeEach(async () => {
-    doc = await fetch('/test/testfiles/comm-map.scd')
+    validSCL = await fetch('/test/testfiles/valid2007B4.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-    parent = await fixture(
-      html`<mock-wizard-editor .doc=${doc}
-        ><zeroline-pane .doc=${doc}></zeroline-pane
-      ></mock-wizard-editor>`
+    element = <IedEditor>(
+      await fixture(
+        html`<ied-editor
+          .element=${validSCL.querySelector('IED')}
+        ></ied-editor>`
+      )
     );
 
-    await parent.updateComplete;
-    element = <ZerolinePane>parent.querySelector('zeroline-pane')!;
-    await element.updateComplete;
-    element.showieds.click();
+    wizardEvent = spy();
+    window.addEventListener('wizard', wizardEvent);
+  });
+
+  it('looks like the latest snapshot', async () => {
+    await expect(element).shadowDom.to.equalSnapshot();
+  });
+
+  it('renders label UNDEFINED in case IED name attribute is missing', async () => {
+    const condEq = validSCL.querySelector('IED');
+    condEq?.removeAttribute('name');
     await element.requestUpdate();
+
+    expect(element).to.have.property('name', 'UNDEFINED');
   });
 
-  describe('createClientLnWizard', () => {
-    let ied1: IedEditor;
-    let primaryAction: HTMLElement;
-    let reportCbs: ListItem[];
-    let logicalnodes: ListItem[];
+  it('triggers reference wizard for removing IED on action button click', async () => {
+    (<HTMLElement>(
+      element.shadowRoot?.querySelector('mwc-fab[class="delete"]')
+    )).click();
 
-    beforeEach(async () => {
-      if (!element.showieds.on) element.showieds.click();
-      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+    await element.requestUpdate();
 
-      ied1 = element.shadowRoot!.querySelector('ied-editor')!;
-      ied1.connectReport.click();
-      await parent.updateComplete;
-      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
-
-      primaryAction = parent.wizardUI.dialog!.querySelector<HTMLElement>(
-        'mwc-button[slot="primaryAction"]'
-      )!;
-      reportCbs =
-        parent.wizardUI.dialog!.querySelector<List>('#sourcelist')!.items;
-
-      logicalnodes =
-        parent.wizardUI.dialog!.querySelector<List>('#sinklist')!.items;
-    });
-
-    it('looks like the latest snapshot', async () => {
-      await expect(parent.wizardUI.dialog).to.equalSnapshot();
-    }).timeout(5000);
-
-    it('add ClientLN referencing to logical nodes in AccessPoint', async () => {
-      expect(
-        doc.querySelector(
-          'IED[name="IED2"] ReportControl[name="ReportEmpty"] ClientLN'
-        )
-      )?.to.not.exist;
-      reportCbs[2].click();
-      logicalnodes[0].click();
-      await parent.updateComplete;
-      primaryAction.click();
-      await parent.updateComplete;
-      expect(
-        doc.querySelector(
-          'IED[name="IED2"] ReportControl[name="ReportEmpty"] ClientLN[iedName="IED1"][apRef="P1"][prefix="DC"][lnClass="CILO"][lnInst="1"]'
-        )
-      )?.to.exist;
-    });
-
-    it('does not add an already existing ClientLN referencing to logical nodes in AccessPoint', async () => {
-      expect(
-        doc.querySelectorAll(
-          'IED[name="IED2"] ReportControl[name="ReportCb"] ClientLN[iedName="IED1"][apRef="P1"][prefix="DC"][lnClass="CILO"][lnInst="1"]'
-        ).length
-      )?.to.equal(1);
-      reportCbs[0].click();
-      logicalnodes[0].click();
-      await parent.updateComplete;
-      primaryAction.click();
-      await parent.updateComplete;
-      expect(
-        doc.querySelectorAll(
-          'IED[name="IED2"] ReportControl[name="ReportCb"] ClientLN[iedName="IED1"][apRef="P1"][prefix="DC"][lnClass="CILO"][lnInst="1"]'
-        ).length
-      )?.to.equal(1);
-    });
-    it('add ClientLN referencing to LN0', async () => {
-      expect(
-        doc.querySelector(
-          'IED[name="IED2"] ReportControl[name="ReportEmpty"] ClientLN'
-        )
-      )?.to.not.exist;
-      reportCbs[2].click();
-      logicalnodes[14].click();
-      await parent.updateComplete;
-      primaryAction.click();
-      await parent.updateComplete;
-      expect(
-        doc.querySelector(
-          'IED[name="IED2"] ReportControl[name="ReportEmpty"] ClientLN[iedName="IED1"][apRef="P1"][ldInst="Disconnectors"][lnClass="LLN0"]'
-        )
-      )?.to.exist;
-    });
-    it('does not add an already existing ClientLN referencing to LN0', async () => {
-      expect(
-        doc.querySelectorAll(
-          'IED[name="IED2"] ReportControl[name="ReportCb"] ' +
-            'ClientLN[iedName="IED3"][apRef="P1"][ldInst="Disconnectors"][lnClass="LLN0"]'
-        ).length
-      )?.to.equal(1);
-      reportCbs[0].click();
-      logicalnodes[14].click();
-      await parent.updateComplete;
-      primaryAction.click();
-      await parent.updateComplete;
-      expect(
-        doc.querySelectorAll(
-          'IED[name="IED2"] ReportControl[name="ReportCb"] ClientLN[iedName="IED3"][apRef="P1"][ldInst="Disconnectors"][lnClass="LLN0"]'
-        ).length
-      )?.to.equal(1);
-    });
-    it('add ClientLN referencing to logical nodes located in logical devices', async () => {
-      expect(
-        doc.querySelector(
-          'IED[name="IED2"] ReportControl[name="ReportEmpty"] ClientLN'
-        )
-      )?.to.not.exist;
-      reportCbs[2].click();
-      logicalnodes[5].click();
-      await parent.updateComplete;
-      primaryAction.click();
-      await parent.updateComplete;
-      expect(
-        doc.querySelector(
-          'IED[name="IED2"] ReportControl[name="ReportEmpty"] ClientLN[iedName="IED1"][apRef="P1"][ldInst="Disconnectors"][prefix="DC"][lnClass="XSWI"][lnInst="1"]'
-        )
-      )?.to.exist;
-    });
-    it('does not add an already existing ClientLN referencing to to logical nodes located in logical devices', async () => {
-      expect(
-        doc.querySelectorAll(
-          'IED[name="IED2"] ReportControl[name="ReportCb"] ClientLN[iedName="IED1"][apRef="P1"][ldInst="CircuitBreaker_CB1"][lnClass="XCBR"][lnInst="1"]'
-        ).length
-      )?.to.equal(1);
-      reportCbs[0].click();
-      logicalnodes[0].click();
-      await parent.updateComplete;
-      primaryAction.click();
-      await parent.updateComplete;
-      expect(
-        doc.querySelectorAll(
-          'IED[name="IED2"] ReportControl[name="ReportCb"] ClientLN[iedName="IED1"][apRef="P1"][ldInst="CircuitBreaker_CB1"][lnClass="XCBR"][lnInst="1"]'
-        ).length
-      )?.to.equal(1);
-    });
-    it('disabled report control blocks when the number of ClientLns reach the max attribute', async () => {
-      expect(reportCbs[1]).to.have.attribute('disabled');
-    });
-  }).timeout(5000);
-
-  describe('selectClientLnWizard', () => {
-    let commMappings: List;
-
-    beforeEach(async () => {
-      element.commmap.click();
-      await parent.updateComplete;
-      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
-      commMappings = <List>(
-        parent.wizardUI.dialog?.querySelector('filtered-list')
-      );
-
-      commMappings.items[1].click();
-      await parent.updateComplete;
-      await parent.wizardUI.updateComplete;
-    });
-
-    it('looks like the latest snapshot', async () => {
-      await expect(parent.wizardUI.dialog).to.equalSnapshot();
-    });
-
-    it('filteres ClientLNs to one receiving IED', async () => {
-      expect(
-        parent.wizardUI.dialog?.querySelectorAll('mwc-check-list-item').length
-      ).to.equal(
-        doc.querySelectorAll(
-          'IED[name="IED2"] ReportControl ClientLN[iedName="IED1"]'
-        ).length
-      );
-    });
-
-    it('allowes to remove ClientLNs', async () => {
-      (<List>(
-        parent.wizardUI.dialog?.querySelector('filtered-list')
-      )).items[2].click();
-      await parent.updateComplete;
-      (<HTMLElement>(
-        parent.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="primaryAction"]'
-        )
-      )).click();
-      await parent.updateComplete;
-      expect(
-        doc.querySelector(
-          'ClientLN[iedName="IED1"][ldInst="CircuitBreaker_CB1"][lnClass="CSWI"]'
-        )
-      ).to.be.null;
-    });
+    expect(wizardEvent).to.have.be.calledOnce;
+    expect(wizardEvent.args[0][0].detail.wizard()[0].title).to.contain(
+      'delete'
+    );
   });
-}).timeout(5000);
+
+  it('triggers create wizard for ClientLN element on action button click', async () => {
+    (<HTMLElement>(
+      element.shadowRoot?.querySelector('mwc-fab[class="connectreport"]')
+    )).click();
+
+    await element.requestUpdate();
+
+    expect(wizardEvent).to.have.be.calledOnce;
+    expect(wizardEvent.args[0][0].detail.wizard()[0].title).to.contain(
+      'connectToIED'
+    );
+  });
+
+  it('still triggers create wizard for ClientLN element with missing parent', async () => {
+    const copyElement: Element = <Element>element.cloneNode(true);
+    element.element = copyElement;
+    await element.requestUpdate();
+
+    (<HTMLElement>(
+      element.shadowRoot?.querySelector('mwc-fab[class="connectreport"]')
+    )).click();
+
+    await element.requestUpdate();
+
+    expect(wizardEvent).to.have.been.calledOnce;
+    expect(wizardEvent.args[0][0].detail.wizard()[0].title).to.contain(
+      'connectToIED'
+    );
+  });
+});
