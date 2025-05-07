@@ -119,10 +119,10 @@ implemented in these plugins.
 
 ### Publisher
 
-> <kbd>✅ Official</kbd> | <kbd>Editor</kbd> | by [OpenEnergyTools](https://github.com/OpenEnergyTools) | [Repository](https://github.com/OpenEnergyTools/oscd-publisher/)
-> 
+> <kbd>✅ Official</kbd> | <kbd>Editor</kbd> | by [OpenSCD](https://github.com/openscd) | [Repository](https://github.com/openscd/oscd-publisher/)
+>
 > ```
-> https://openenergytools.github.io/oscd-publisher/oscd-publisher.js
+> https://openscd.github.io/external-plugins/oscd-publisher/oscd-publisher.js
 > ```
 
 ### Cleanup
